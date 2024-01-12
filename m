@@ -1,129 +1,146 @@
-Return-Path: <devicetree+bounces-31666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B157F82C25C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:01:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A161482C267
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:03:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91A17B23A6B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:01:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 617251C20E52
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:03:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE316E2C6;
-	Fri, 12 Jan 2024 15:00:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02B9C6E2CA;
+	Fri, 12 Jan 2024 15:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aPP/EA2D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XML8ROoH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52506DD07;
-	Fri, 12 Jan 2024 15:00:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40CDLlW6030090;
-	Fri, 12 Jan 2024 15:00:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Nt/sEVIDai5Q8pS8pgV/u7mjDZ+NS62VC4KAIb5S5MM=; b=aP
-	P/EA2DldXlpghdwXF7VXxi20HKajXZe4z3q1PIiHxrStCS0E3pEAxMXmWwV5sUw5
-	gGMFQ6b1vvVyzi5kTjfCQesB1xijKg3lAhr0KqABXyAPH2nVbQuRXKEzjyVzZzDg
-	1F15x0eqEn58sW6rDaYCDS1dYxbz4opEXkwFDn0NDNrGaFlkmrhS/M47xpnXwRvg
-	FlbAVRZc/Ah2oHyNjEoKb1cY1LHPN8FRqpifRGiGRIjm9vXoZS/NDPhae08qBzNL
-	jd3EH4MiMncGk3HmQhsjpILwwyLX9hR8+oUAzBPghV/t6GvM62RI0VVlGycSZNMT
-	blG22eF0/Suei5GDMELw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vjymn9agm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 15:00:44 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40CF0hid010713
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 15:00:43 GMT
-Received: from [10.253.78.164] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 12 Jan
- 2024 07:00:38 -0800
-Message-ID: <840fc48b-956d-47e8-8307-c419afb1efc2@quicinc.com>
-Date: Fri, 12 Jan 2024 23:00:35 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509EC6DD18
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 15:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e7f58c5fbso8838347e87.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:03:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705071806; x=1705676606; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=toiihwgbBXQtxuvplwPZBYyqQgpc30K6w6RtC5O5hmA=;
+        b=XML8ROoHt8d65P08AM15DZUPJXKIP/W0H0Ps2CLjxH2tT6iL5apC9jRDwW5uwdt/O6
+         k85Z/FrfvCrB82vIL86Z5xKS8O8pc8S1QqGHIWjoyhu7bqqe7t3ftpa9NXjvmfi0vOvS
+         4j8ge9FRIcsa8JvZUg84mPvL2UTpvyBB0A4K8VnNF1UYaaqE7PKrG3Sb6wnTCnoasfVO
+         2PumFY0V4SDT8fhqLDfH+Hpm5JiRWqhlHWGFJf9sLChZEiGSGp4wWY97Gr3bRxTBHcPx
+         kx3yA9R4cIk1jzPC+nfVUZCSPHihXuE0OKqiXMHN7lqv1290rJ9ZKR5hQfGPG7faHn0H
+         YTxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705071806; x=1705676606;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=toiihwgbBXQtxuvplwPZBYyqQgpc30K6w6RtC5O5hmA=;
+        b=SEbaGIEcQEVjlOOUjpbaLgBSYaqm7iL9biYojxinHsi2IhZ5d4ZmoqNrDXG2Th6WsW
+         7Ltkcuw+lEkYyn1SsJ/mPI1KwVfrFBC5rbz1s75hRBHo7y2QNH/wtMudcghqtenTUD3O
+         B/ke5OUrrA3peYTmhToh0MkMoM0UXHQUlFLklgiefCgzz+uDybP6hRV2PWGwgLmip60/
+         FJvCUISvlmJZIghr1DHGcwAvxQ/fCKSQFQXBzfDD8Rut/53mZxDS3taWfzIou+Td3qj9
+         ywiK4t4iHqLG3jeEdNT/moWiNZcMy188lzrERdOZzTynkbcq7fLKYM9IRRc8NCM0tjp6
+         Airw==
+X-Gm-Message-State: AOJu0YziUU1oA3edMxnXw7X3nIvXM4Oino0yW/mIZzdaTWKb5U3vket8
+	YfitZlL7OsRRKtL5LiGBhgJtsjHvhnEbUA==
+X-Google-Smtp-Source: AGHT+IHzWoBI/gw1ovzwFkaSh6dvJAdJYu8plavA7O8fbIQgYwdeuATmAxUsfd6HZf/jobqSR+6l8g==
+X-Received: by 2002:a05:6512:3b0b:b0:50e:4e6b:9cd7 with SMTP id f11-20020a0565123b0b00b0050e4e6b9cd7mr1128581lfv.12.1705071806353;
+        Fri, 12 Jan 2024 07:03:26 -0800 (PST)
+Received: from [127.0.0.1] (85-76-114-160-nat.elisa-mobile.fi. [85.76.114.160])
+        by smtp.gmail.com with ESMTPSA id u3-20020ac258c3000000b0050e7d22a9b8sm520518lfo.89.2024.01.12.07.03.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jan 2024 07:03:25 -0800 (PST)
+Date: Fri, 12 Jan 2024 17:03:23 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Jie Luo <quic_luoj@quicinc.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_soni@quicinc.com,
+ quic_pavir@quicinc.com, quic_souravp@quicinc.com, quic_linchen@quicinc.com,
+ quic_leiwei@quicinc.com
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: ipq9574: Add PPE device tree node
+User-Agent: K-9 Mail for Android
+In-Reply-To: <6fc9e65a-709a-4923-b0b3-7c460199417a@quicinc.com>
+References: <20240110112059.2498-1-quic_luoj@quicinc.com> <20240110112059.2498-2-quic_luoj@quicinc.com> <a42718a9-d0f9-47d9-9ee8-fb520ed2a7a8@linaro.org> <de0ad768-05fa-4bb1-bcbc-0adb28cb2257@quicinc.com> <CAA8EJppeQdB4W8u0ux16pxBBwF_fpt1j-5aC0f849n9_iaaYtQ@mail.gmail.com> <6fc9e65a-709a-4923-b0b3-7c460199417a@quicinc.com>
+Message-ID: <1552D7D8-2D1B-4236-A5BF-02B68DC919CB@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] Add PPE device tree node for Qualcomm IPQ SoC
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
-        <quic_soni@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_souravp@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_leiwei@quicinc.com>
-References: <20240110112059.2498-1-quic_luoj@quicinc.com>
- <458ded82-b200-4946-9b22-31cda68f1c8c@linaro.org>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <458ded82-b200-4946-9b22-31cda68f1c8c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: GDThB25HhrPiZt1J6QblhAeyuRjVe6HS
-X-Proofpoint-GUID: GDThB25HhrPiZt1J6QblhAeyuRjVe6HS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- clxscore=1015 lowpriorityscore=0 bulkscore=0 impostorscore=0 spamscore=0
- mlxscore=0 malwarescore=0 mlxlogscore=532 phishscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401120117
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+On 12 January 2024 16:40:02 EET, Jie Luo <quic_luoj@quicinc=2Ecom> wrote:
+>
+>
+>On 1/12/2024 12:06 AM, Dmitry Baryshkov wrote:
+>> On Thu, 11 Jan 2024 at 17:31, Jie Luo <quic_luoj@quicinc=2Ecom> wrote:
+>
+>>>=20
+>>>>=20
+>>>>> +                    reg =3D <0x3a000000 0xb00000>;
+>>>>> +                    #address-cells =3D <1>;
+>>>>> +                    #size-cells =3D <1>;
+>>>>> +                    ranges;
+>>>>=20
+>>>> Put after reg=2E
+>>> Ok=2E
+>>>=20
+>>>>=20
+>>>>> +                    status =3D "okay";
+>>>>=20
+>>>> Drop
+>>> Ok=2E
+>>>=20
+>>>>=20
+>>>> All of above comments apply to your entire patchset and all places=2E
+>>>>=20
+>>>> Looking at code further, it does not look like suitable for mainline,
+>>>> but copy of downstream code=2E That's not what we expect upstream=2E =
+Please
+>>>> go back to your bindings first=2E Also, I really insist you reaching =
+out
+>>>> to other folks to help you in this process=2E
+>>>>=20
+>>>> Best regards,
+>>>> Krzysztof
+>>>>=20
+>>> We will do internal review of the gaps and update the patches as per
+>>> your comments=2E
+>>>=20
+>>> Thanks for the review comments=2E
+>>=20
+>>  From the first glance, the bindings do not follow upstream principles=
+=2E
+>> You have all the settings (tdm, port config, etc) in the DT, while
+>> they should instead go to the driver=2E Well, unless you expect that th=
+e
+>> board might need to override them=2E
+>>=20
+>Hi Dmitry,
+>The TDM configuration varies per SoC type, since the ethernet port capabi=
+lities of the SoCs vary=2E So we will have two different TDM configurations=
+ for IPQ5332 and IPQ9574 SoC=2E The driver also will
+>need to support future SoC, so we choose to configure this from the DTSI=
+=2E The same reason applies to the port scheduler config as well=2E
 
+If it differs from SoC to SoC only, it goes to the driver=2E Point=2E No o=
+ther options=2E Thank you=2E
 
-On 1/10/2024 8:13 PM, Krzysztof Kozlowski wrote:
-> On 10/01/2024 12:20, Luo Jie wrote:
->> The PPE(packet process engine) hardware block is supported by Qualcomm
->> IPQ platforms, such as IPQ9574 and IPQ5332. The PPE includes the various
->> packet processing modules such as the routing and bridging flow engines,
->> L2 switch capability, VLAN and tunnels. Also included are integrated
->> ethernet MAC and PCS(uniphy), which is used to connect with the external
->> PHY devices by PCS.
->>
->> This patch series enables support for the following DTSI functionality
->> for Qualcomm IPQ9574 and IPQ5332 chipsets.
->>
->> 1. Add PPE (Packet Processing Engine) HW support
->>
->> 2. Add IPQ9574 RDP433 board support, where the PPE is connected
->>     with qca8075 PHY and AQ PHY.
->>
->> 3. Add IPQ5332 RDP441 board support, where the PPE is connected
->>     with qca8386 and SFP
->>
->> PPE DTS depends on the NSSCC clock driver below, which provides the
->> clocks for the PPE driver.
-> 
-> DTS cannot depend on clock drivers. Maybe you meant that it depends on
-> NSSCC clock controller DTS changes, which would be fine. However
-> depending on drivers is neither necessary nor allowed.
-> 
-> Best regards,
-> Krzysztof
-> 
-
-Yes, this DTSI series depends on the NSSCC clock controller DTS patches 
-which are referred to in the cover letter. I will rectify the cover 
-letter text when the series resumes later.
+>
+>Thanks for review comments=2E
 
 
