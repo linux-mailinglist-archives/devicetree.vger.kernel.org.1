@@ -1,227 +1,169 @@
-Return-Path: <devicetree+bounces-31543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F8C082BC5E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:29:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4AAA82BC69
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:35:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 159DC284F93
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:29:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 529651F26232
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:35:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB21F5D8F1;
-	Fri, 12 Jan 2024 08:29:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED6154673;
+	Fri, 12 Jan 2024 08:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QIzYeLBF"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="sRmvq4Hu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2021.outbound.protection.outlook.com [40.92.102.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B725D8E0
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 08:29:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-336897b6bd6so5741814f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 00:29:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705048167; x=1705652967; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rzSBMcH9OV38tGE26hwdykcph14F12FzWZt67w15gGA=;
-        b=QIzYeLBFr1Z2YhvUAjOFcfs1vHuJC85UwMAyKvH92LeEjiUSP4vk4QE2+d83wN1p6f
-         NrLfdg2ic/i1iJZqF1Cfn1ef+9ecmTe6oZJFJdfKzV2bXC58ZPzAEQ+7Gpkh+yikxUjW
-         CGlH+CqSBClqGBA4NNfNpSecJlL0rh5VRr6YK7C+vMkhO0QLTCaUCERr8im6UN9Sb74C
-         Ton0svIQyOQ5FCQvaoguP3c6djxE9zlubFoggcHbl/iHp2EGrhJ54UgnzeaTbEOe3Eh+
-         YdhzZf2QAkmT6Rm4EldX1+IewKB40ScazcaGk9uXIzhd05ZVjXhFJqjk7BOHJSiAhR7z
-         O4XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705048167; x=1705652967;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rzSBMcH9OV38tGE26hwdykcph14F12FzWZt67w15gGA=;
-        b=aBW8ILYjeowk5mTBn1T3+4XpTcp46x0e2SSGff0YkknKt4B+S8Mpg6vorgzrA9Y68Z
-         9kPMYaEKRVtBVE7ZjOgKThEMQB1RoFANCdPE0XfxJPGW3aky8GrgG65mmOCpXPO1AWsb
-         WGMIjznFldHtbZjcMGXD+Ua7Ch/2SWRN8/1G7p7VeL12Q2wf3BrKq51DCWfH0jzfrPSp
-         CyLiqQrotTfZ0v2aHs61bFGEztwxvgzWlkqw4ENVH01MlO4GB608/ebwNMkwsDjm9Qjp
-         vWb/JtVP82XKBaiucF8SPn9paJ8Bc3/6JlwU56lKngsZr3Ik8TRJfsNQczJ4vw8dNxb/
-         K8hg==
-X-Gm-Message-State: AOJu0Ywh22ZujMQivTY69tM7sdH/a+k6HtQ25tj7d17dvSEEYG/fWj+D
-	tdeV7bSZmjtaxhVUFg/pSsCYMD8bcwb0uw==
-X-Google-Smtp-Source: AGHT+IGNVOmMTkXQmLG65ejTgWdYNJLQ6LXgvuBftvdyvWhyCCS9fO8Cuw/eItmzvQaQj5t9Ahi+Vg==
-X-Received: by 2002:a05:600c:1e17:b0:40d:5bbf:71f2 with SMTP id ay23-20020a05600c1e1700b0040d5bbf71f2mr583829wmb.5.1705048167162;
-        Fri, 12 Jan 2024 00:29:27 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id i8-20020a05600c354800b0040e555f12d8sm8765004wmq.8.2024.01.12.00.29.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 00:29:26 -0800 (PST)
-Message-ID: <ba10b5dd-d9c0-46e1-b868-8c9f19a470d7@linaro.org>
-Date: Fri, 12 Jan 2024 09:29:24 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A7833061;
+	Fri, 12 Jan 2024 08:35:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GjP2Dl2eedcpRhimDuCoJ8gVMx77UYgH9L5jEX521fMeuvYXcZcSj+5qL4PUisIkMPiaf7B09L1Xa2C2BWX3uW6BUU+zOCkHa8j159qYblRK77wR+YjkTEwNVNWMRgHOK5Y6YSgh1W8/RTRqx/62CEsmH3S2sthhKLIi/DN7W2OmefxX1PsxMji2fgPS0xgIO2ZuhtA9KfKLHZedLABmRltSedFSnurJuRU8jYCf+meiCYqSmzCc6dQI39wHkBbqihffZSVJC37XGEUPfQGK0lLFAV1ILIbEOwCS/S6e2N+6CRH6+2RJW+TMMrJTIQanoE1cgxT6pKOB0BzoUiS2bQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JUzhEnFR+92kajQgAPVLJZPtcIZOuIAYDs3ZJ8mkkm0=;
+ b=NrH8W49WrMgtOPJPzfQOnZ3SvV8ZhFREaTyDd8EfZF2MMJDPjw7bdZM8nMaoGxEq6a5wzWeEJOjsOlMK5X7ZZFQs54JenQHdD9cx4pCLjRpdwuJqLHCezN9WPOC3D6NQr5p/h1XFYauGowiGk0rTTL3BvIVBbsZHgvCVz3E7sk6qBMHcOvxw334zUvH+VxrtaKBjOV6x4VvuZdZ0xup4AFZMtGF1jA4rt68TdoDvoGEHetU3MErdGZdoPEO9UMbuiE/+IncZcPXmUGeIlMV/zhWalHkXN+HKGWUJr/YX8V46E64HrOwlvrIH8b06h/B/1ZJEKg2xCG9bFaxV9vyuQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JUzhEnFR+92kajQgAPVLJZPtcIZOuIAYDs3ZJ8mkkm0=;
+ b=sRmvq4Hu+hGvKIt5OJ/derbL6eToNh30+jABIqRlxBBR6Fa0fO/PwyG7zJ5yT+1sxscDnYeqk1M/7NZkqBZq+HArlrvhwfalprLJdciVH/FriRUEwG5u6Agzk5SRJqOluVFfAHXhpsSfXSY3fggpwPmi6n6hH6Agw/dhtTCmig8/GmpTDteggP2yy4zXcmk661z5O1mx1IxQ0ErVr3cg9N0wORiLlQzuXNAS1RqQiMav95/cD1DiAIO43yyDzZAOG9bkPOjbsYHymgiTzJa52lqFAALc2N8Sc5CNRfemeyDO8nEaH+7ttB+9dx0xStK4KGS8Oo8E+E8rXWxYAnRCjQ==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN0P287MB1505.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:180::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.19; Fri, 12 Jan
+ 2024 08:35:11 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::6e80:69e1:f2e7:d70d]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::6e80:69e1:f2e7:d70d%3]) with mapi id 15.20.7181.020; Fri, 12 Jan 2024
+ 08:35:11 +0000
+Message-ID:
+ <MA0P287MB2822A18C53C4EDDEB2DAF42CFE6F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Fri, 12 Jan 2024 16:35:08 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/4] dt-bindings: clock: sophgo: support SG2042
+To: Conor Dooley <conor.dooley@microchip.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com,
+ robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
+ xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
+ inochiama@outlook.com, samuel.holland@sifive.com
+References: <cover.1704694903.git.unicorn_wang@outlook.com>
+ <925d99d5b4ece01337cb3389aaea4b631894dd1d.1704694903.git.unicorn_wang@outlook.com>
+ <f88b79c3-e44b-4136-ae56-10e1f2502e2d@linaro.org>
+ <MA0P287MB2822C7A3C1DC7786708E860BFE692@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <20240110-untoasted-underfed-fe81479506f6@spud>
+ <MA0P287MB282224A6097B4FCCF721C89AFE682@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <20240111-jolly-prize-930931cc648a@spud>
+ <MA0P287MB28229BCC9EA83507B99A9F3BFE6F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <20240112-overhead-disallow-8c2a4b97c36c@wendy>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20240112-overhead-disallow-8c2a4b97c36c@wendy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TMN: [QYCvGXN62KQDz23u836fR2J+ZxV5k+9P]
+X-ClientProxiedBy: SG2PR01CA0137.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:8f::17) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <1410d7e2-1e46-4a27-b574-881fec8fd214@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Proposal for QCOM PCIe switch power and configuration driver
-Content-Language: en-US
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Veerabhadrarao Badiganti <quic_vbadigan@quicinc.com>,
- quic_skananth@quicinc.com, bartosz.golaszewski@linaro.org,
- open list <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:PCIE ENDPOINT DRIVER FOR QUALCOMM"
- <linux-arm-msm@vger.kernel.org>, p.zabel@pengutronix.de,
- Bjorn Helgaas <bhelgaas@google.com>,
- "open list:PCIE ENDPOINT DRIVER FOR QUALCOMM" <linux-pci@vger.kernel.org>
-References: <413d612f-0e31-6281-64e3-6484b85afe06@quicinc.com>
- <036823ce-9815-4884-aa3a-9c3831cea9bb@linaro.org>
- <f4805d04-9514-6a41-b39e-aa8a4577ce90@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <f4805d04-9514-6a41-b39e-aa8a4577ce90@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN0P287MB1505:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8ccf027b-97a2-4ff4-6d59-08dc13496415
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	KyYSoabDyfJZD2K+jkaKuMThzWcBn2OdCisAA7oJuIzS12WYMHEECheHYN3H/uUTliSMFxSav9mqevb8vC/81jTKQOLnuPAG45fHIcKMwxsTYvlB00nWQ2+y8rJI5cVerEAAu1QmQXra7ycXrRr2UoezEkvvc9MXT/AOpCkRhkxd86Ehndvk04vMq6CyOEvHQJsdF8apxszn+IN4DbdKSHzK0q5FXo3SR+nn3XHzWTH81SKsKRO27ZHyh8B4ZNzDapxE342QDG2WT/j7qHR7IfOn3Wm9tMdJlm2OpcYeJDyAyuugwVYPWS2pjWE7JKQCbidRNoXGVC/dzQC84wYTA119aF8sJ5OtUCXQnQGCovyJMOuKD+SdnzHGdO4UBGc9nEls5qdD7nnEjhIfKODYdEVOpkX/++QX2ud5GL+ecCVXwAkOLHqcN7tPL+ariImaPoA9Rj6Hy9n6ArckAMsxR2iKzCrI6kpphSRHAtgCx0N8peKWCe91MY5pP0Hi0ue6QwwVwG8979LZ3k4pA5vLhP09fl7CGtxfkHe/SqHzQ3M+JrAz0t24N2xTO0UAQ6oW
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TFJtYWFjMUtSQnZqWTJod0NPY2gvMnlLd2szMGRDWXJJTHhVWGRvM1FRV2RM?=
+ =?utf-8?B?eGVOb3IwZGljaUx0UTB5ZFdkRWhRbHBjdEltS081cEdGMHdGM3JOU1hFV01U?=
+ =?utf-8?B?SXVTWXhjWWZ1bnFzYVhuekFpTFdsZDk2cU5jY3JyV2FuT25ZRkZNWWQvNUNZ?=
+ =?utf-8?B?bXZ2Wk5JVFBJK3BZa3hqMGUyakZWUE1QTXpWQkVhVTdsZGordHdzTUN0elRV?=
+ =?utf-8?B?QklKaHQ0dlYwNWZTaE1qUnJ0QkpFQWFaUzROWE1EOFRBVG00ZHl0MHVsbmZO?=
+ =?utf-8?B?Vm1KRkJmQkJ2WW5yc2NJTG5tcVpPc2hHblFWS0Q1MzhabWtTL1FiTUhPcktN?=
+ =?utf-8?B?eVhlQ05vQmhVOEovKzRycGRZTjdXeUZDOEdSS01FbVJLN3RXRzJjTmh6RXFE?=
+ =?utf-8?B?UEt3czN3R2tvYzF6TVlqZkFTd29UTUNIcWkwVkNVUjVmVUw0eEpDWFlXVEV0?=
+ =?utf-8?B?NVJGckZkWXVqTGRTaFB1V1B3M0xwQlBnV3VHaTA4cE45aTBwK2VqNmNncHp0?=
+ =?utf-8?B?YVl6bGdaMWFsbXRPSUZKc2RFRWkzbUYyN0g4RTBjU3k2QjVXY1ROMkVtYUhS?=
+ =?utf-8?B?bnJ2OG1NTy9sdnFzdzNWcHo5dkdXNHFNSHdSM3oyV2JwQUc1TWd2TENuOEZN?=
+ =?utf-8?B?SXBFeXhlcVJsREkycFRhU1FJbkFxYlI4SnNHUXkyRFVkQ2hQczBsYmNjN0tT?=
+ =?utf-8?B?emdpS0lkTTJvLzQ4WGZTZ1dUejRCajJZTU5sV3hmWE1Fd1JHTTUrYVpUYzJl?=
+ =?utf-8?B?bmZWQTg1L2dTUnVtbHdOOFpjYlUwUENxcUtpTUV3aENoZVB3cnhaRFBEYTNK?=
+ =?utf-8?B?REdyTlVXQXAyV1MycVZiWmhxNm1IRkZJdEJPQkg1Q3dOZ0dNdkd6eHd3d29t?=
+ =?utf-8?B?UGN5bEZBMWNkZTVScWtWNlBWRVdXdHJxU24vM0RSZ0FXWHYxSzRvTGFySUVF?=
+ =?utf-8?B?S0ZTcXBsT0c0ZExkRzdGY1B6OWxBUVVTdDVOa3puN0VRRlVMWThSRnFwV212?=
+ =?utf-8?B?M2ZFZTdIRlJ4dVZTYm42RVZVcHRvY21MSzVMVjJkU2tnY1VKTjMwTEhpeElP?=
+ =?utf-8?B?VTFIWTB2QXlqVGZ5dENYNUdMeHE0SDlEV2Iva0FGZmd5Q2VTcnc2blRvOG1G?=
+ =?utf-8?B?QkV1YllvWFJuNkZidVVLdTNtSlRNMnFqNW8yYkNuTkpaZ0wrcFNrbGNvQmZN?=
+ =?utf-8?B?dC9NajFRWHJxUnRaVzR3U1dLU0xwKy9IWDE2bFgyNTIvcy9uYkJBSittRzNk?=
+ =?utf-8?B?UjljMDNzNGZpTFNIOU0yeW1pTEw3a1pPREJXVlZIUlI5QU1QcUNCK21WVDFl?=
+ =?utf-8?B?ZVE3WXhyV3NoTitiUGdUZ0ZnRnhsdXppVGYyNzZFMERQaG1lZ3hQN0ZldDlS?=
+ =?utf-8?B?REpESi91ZkxtL1o1TXV5WTdtempmcXhaZWh6N0YyZ0hPRSsrV0paU0d2TWZl?=
+ =?utf-8?B?czBjR3cyZ3pXZmNscWtSWDhEVDNXS1ZZNEhsazgwV3kxWGVuWU9RdFJsZHJW?=
+ =?utf-8?B?THpRdEtnejRBc3hncU56cEtKMmVZTU9LY05JQjRRcmxqTm1TMGk4QXlwRm1p?=
+ =?utf-8?B?eVYyQitFbWVXRk9BME02cTFlaEw4WSs0MjdkR2RDN3liekRqNEhzZFBoUWhv?=
+ =?utf-8?Q?HWSy4TMAOcbqgOpFLXG4mLDm1nEhNucln0QETO8JhZiE=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ccf027b-97a2-4ff4-6d59-08dc13496415
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2024 08:35:11.5741
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB1505
 
-On 12/01/2024 05:16, Krishna Chaitanya Chundru wrote:
-> ++CC   Philipp Zabel ( reset controller maintainer)  & Bjorn & PCI list 
-> from PCIe subsytem.
-> 
-> On 1/11/2024 11:20 PM, Krzysztof Kozlowski wrote:
->> On 11/01/2024 18:38, Krishna Chaitanya Chundru wrote:
->>> Hi DT maintainers,
->>>
->>> We are trying to upstream the QCOM PCIe switch which has I2C interface
->>> to configure the switch.
->>>
->>> In generic a PCIe switch is a device that allows expansion of PCI
->>> Express hierarchy, which allows more devices(PCIe endpoints) to be
->>> connected to a single PCIe port.
->>>
->>> We need to configure the QCOM switch like L0s, L1ss entry times, Tx
->>> amplitudes etc.. through I2C interface before PCIe link is established
->>> as these settings can affect link stability if we don't configure them.
->>>
->>> Once PCIe switch is configured, PCIe link between the PCIe switch and
->>> PCIe port connected should be established by the QCOM PCIe controller
->>> driver to enumerate the PCIe endpoints connected to the PCIe switch.
->>>
->>> We had a QCOM switch driver which powers on the switch and do the I2C
->>> configurations.
->>>
->>> This is how the flow goes.
->>> -->Power on the switch
->>>       -->Do Switch configuration (over i2c) with qcom switch driver
->>>           -->PCIe link training and enumeration.
->>
->> And where is the PCI controller in this? Why isn't this represented like
->> I2C or GPIO expander? You need to describe what exactly the switch is doing.
->>
-> The PCIe link training and enumeration is handled by PCIe controller driver.
-> Usually a single endpoint will be connected to PCIe port, using a switch
-> we can connect multiple endpoints like WLAN, NVME, PCIe to ethernet
-> bridge etc. So in single instance of PCIe multiple endpoints are
-> connected and enumerated.
-> Like I2C or GPIO expander we don't want to configure any endpoints, here
-> we are trying to solve the initialization part of the switch power to
-> the switch and configuration of the switch before PCIe controller starts
-> link training and enumeration.
+Conor and Krzysztof,
 
-Post your datasheet or at least send some diagrams describing
-everything, so I won't have to keep guessing.
+Just a quick question, due to I am planning to change the binding files 
+you have reviewed,  should I remain your signature of “Reviewed-by" or 
+remove it in next patchset?
 
-> 
->> Also, how about using existing solutions? Aren't there any? I am not
->> going to look for them for you...
->>
-> As of I know we don't have any solutions exiting now, we are trying to
-> explore different ways for it.
-
-So did you look it up? How much? If I find one, in the drivers, what
-then? Can you look for it first?
-
->> Anyway, you should ask (means Cc) reset controller maintainers if they
->> are happy for such usage of reset framework for something not being a
->> reset. For similar reasons you should Cc PCI maintainers. If you ask me,
->> then no, PCI switch does not look like reset line so, you should not use
->> reset lines.
->>
-> I added both maintainers now. sorry for the miss.
-> We want to use reset line because I2c driver has to power on the device
-> and configure the switch only before PCIe controller driver probes.
-
-Let's don't repeat the style of discussion we have with Luo Jie, where I
-say this is not reset and you say "but we want" and use some ridiculous
-argument.
-
-> This is how reset controller operates(correct me if I was wrong).
-
-I talk about bindings. Otherwise why would you Cc me? Just because
-something has power it is a reset? No, it is not. You said about
-configuring lines: reset does not do this.
-I am really tired of such discussions after last time. Getting
-half-baked answers from you, incomplete pictures and something just to
-respond to my question without providing anything valuable, because you
-do not want to disclose too much. I got really disappointed last time
-and this will affect further submissions from you. That's how reputation
-works, sorry.
-
-Just because it controls power, among many other things, does not mean
-it is a reset. Maybe it is a phy? Or a mux? How do I know? Do you expect
-me to guess?
-
-Best regards,
-Krzysztof
-
+On 2024/1/12 15:42, Conor Dooley wrote:
+> On Fri, Jan 12, 2024 at 08:08:15AM +0800, Chen Wang wrote:
+>> On 2024/1/12 0:58, Conor Dooley wrote:
+>>> On Thu, Jan 11, 2024 at 04:00:04PM +0800, Chen Wang wrote:
+>>>> There are four types of clocks for SG2042 and following are where their
+>>>> control registers are defined in:
+>>>>
+>>>> PLL：all in SYS_CTRL
+>>>> DIV: all in CLOCK
+>>>> GATE: some are in SYS_CTRL, some others are in CLOCK
+>>> When you say "some", do you meant some entire clocks are in SYS_CTRL and
+>>> some entire clocks are in the CLOCKS? Or do you meant that for a given
+>>> clock, some registers are in SYS_CTRL and some are in CLOCK? It's the
+>>> first option, right?
+>> It's the first option.
+> Then the gate clocks that are fully contained within SYS_CTRL are
+> outputs of SYS_CTRL and gate clocks fully contained within CLOCK are
+> outputs of CLOCK. You should not use a phandle to SYS_CTRL from the
+> CLOCKS node so that you can pretend they are part of CLOCKS just because
+> that makes writing your driver easier. That said, obviously you can
+> share the routines for turning the gates on and off etc.
+>
+> Cheers,
+> Conor.
 
