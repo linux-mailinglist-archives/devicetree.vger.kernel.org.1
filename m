@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B62C82BB7E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:12:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9EAA82BB82
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A0831F26726
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:12:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 525E9283D8C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2A55C907;
-	Fri, 12 Jan 2024 07:12:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 858155C908;
+	Fri, 12 Jan 2024 07:13:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v47CiPYb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tENNIA+f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E205C8E5
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75EED5D724
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:13:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3366e78d872so6413136f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:12:45 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-336c5b5c163so3646768f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:13:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705043564; x=1705648364; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1705043626; x=1705648426; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VyQMqEIG9Yx6gN2E8r2qI5zcxsBITIFlZVoTq2jHXVY=;
-        b=v47CiPYbMkhnBeojXW76dkV30Y7Lilm1bsFxao01bQlTzVQfdme1+79AlfQ2yfk6Wi
-         zjkBotZbPk+hjVdiErAJi4Ab8GELQtt3HbVfMlPWKCta1d/tO7YnhStPyQzGT4MMMGKP
-         H/20sumAxfDX0jDlBI+jnTA+j08T+K7mG3rlf4CE1FQzgI+LKYooWIHp4vX/NPzrA7pi
-         CcaAeGATvqcSelCMHaf6tDeKhP404NmCuodlZMeAM2JiKGG8xBKBoO6VeqS7mDpHf1aA
-         Cv7so9KFQW0WrXpDZsXKz0zzYcGrjfudpjGo3IUvXXLalN/wlhjz0ynmSzO+EQacZlAB
-         I8QQ==
+        bh=/BOdUm3gdbHMFqsawB5xFPercT0eYdgrEZogleugtcM=;
+        b=tENNIA+fMRtXXC1+s9KKCQNOgRq5mbjtB67UaS+NgMZKtde1acJ4zLRSI5F9blfS/w
+         XDmfrdf77ZpVVB1XSAHWdorPqyxlcQf530ZBDXMJztbmrxzwb39mQvekyy6eMXMm5P9E
+         FJM2EkK01L3pDHkiQgnozcIYMYV6LW64lAqVuLOm+PV6WHVfllfwXU2CCxVRCZDXzPdo
+         IgoKaTzIgLpcj8zZwK/7DPsh/2pE+ur/j9gYDhk0Sx2f1ARlokyLHHTDy8BNWth0L2U3
+         kwEbs93Ijo5OLr0Pgd4tbhs691AqKewyn3Vz4hp8zRHijMg5GZSSoiC8s0B1T+dd1wzO
+         SuNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705043564; x=1705648364;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1705043626; x=1705648426;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VyQMqEIG9Yx6gN2E8r2qI5zcxsBITIFlZVoTq2jHXVY=;
-        b=qtkB7hCSnHjXLVmHaxOYP8YqeEDNAeoc0yHt8Tz1nY7+RDik1ACj3IpEPKL5/kcBxb
-         klb6UA2NVxWRQWCOmp+MQ4ba96cZXtHZWlSqog21j7OTydPkkRnHyX+O+YFD+/c8yGHN
-         gCtmAyP9MQ8twF/hXmLy9rrLjTSSr7JmUFpk9T+dbUM5ugcDMOwJ1TT5ngH+CZXEpTQR
-         sLmz/SC4iGqmshI3nszHapyqp0E5Bb1HAYh6ugzE/NVoG32b7UcNEfedc9EhO8DqRdwY
-         PUJOVWz5iYNyk9smxWI1LqGhzmOpy19S4dVp0SbDfRn6QnA+HyR6E8uRv1tN4v8cyYZA
-         F/nQ==
-X-Gm-Message-State: AOJu0YyrGjtxfkXE9ZAuaA3pzGAxGulZDIf5JVWEGKpz5K2ftOogIjRx
-	zPq8FguWgSAmAj57qNlJ/zMNM9Ycy/WRcw==
-X-Google-Smtp-Source: AGHT+IEpTwLxv+LKltiPvaNNkDGvlv8AuoLuKeXXzrwth5Tbq6VIxNHN0ViDsUulRQ7tDzRnp+ChgA==
-X-Received: by 2002:a05:6000:1281:b0:336:67f4:7111 with SMTP id f1-20020a056000128100b0033667f47111mr229376wrx.129.1705043564109;
-        Thu, 11 Jan 2024 23:12:44 -0800 (PST)
+        bh=/BOdUm3gdbHMFqsawB5xFPercT0eYdgrEZogleugtcM=;
+        b=G5eoBcwf0qaY8LaGGxm6ukpOKtIy8e8GYEeiDWvIBaJ4EtFgT93bsRbYOiPXiP4ceh
+         8K7TwwEGeAmyTv2/CQGnRZKUKrizwTZRtELhjfvcMyYgpgKBX/AG09f/SGtU1uzw//WW
+         ZJxa3y1fXA0rifQg7wBGlLjG243N9ALfRbzCri5Z04Hp/MidDuGVZI2RuDMripFQJEU5
+         Ef9D8vGjfUd4gqPD2VUSNOJgsc/NIvSVHdu5YNX4pr+2kzDwNY6mStJZISEAlJ0Y7OFG
+         RoZq0J8zSmx5DomYEeQilnaJegz9NPAmODpQE13S72O+jeSsyGfHkZyB1rBESZ+tabyW
+         9yAw==
+X-Gm-Message-State: AOJu0YxZb78dizfHAi9bsgl+BoBg9R6AWrbjzdZguaCYOMQhXn0AfbIi
+	ugFbS8h8qTMJqTD5RNVFkVbEBnu++t2TJg==
+X-Google-Smtp-Source: AGHT+IEgnYK98s+QMgNWcW2xSyxNyRzqXddcodmtWWfCogARjx9d4g4HzKG/aJEF4Vkl2hRoD7/VPw==
+X-Received: by 2002:adf:e98f:0:b0:336:86af:ede5 with SMTP id h15-20020adfe98f000000b0033686afede5mr494024wrm.46.1705043625766;
+        Thu, 11 Jan 2024 23:13:45 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id f6-20020adfb606000000b00336aa190139sm3018880wre.5.2024.01.11.23.12.42
+        by smtp.gmail.com with ESMTPSA id f6-20020adfb606000000b00336aa190139sm3018880wre.5.2024.01.11.23.13.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 23:12:43 -0800 (PST)
-Message-ID: <ad0a2f94-51a5-4533-9e20-e891c6083ad3@linaro.org>
-Date: Fri, 12 Jan 2024 08:12:42 +0100
+        Thu, 11 Jan 2024 23:13:45 -0800 (PST)
+Message-ID: <73732b62-e362-401f-b257-0613593e8557@linaro.org>
+Date: Fri, 12 Jan 2024 08:13:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] ARM64: dts: nuvoton: Add initial yosemitev4 device
- tree
+Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: fsl,sai: Add compatible string
+ for i.MX95 platform
 Content-Language: en-US
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
- openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240112013654.1424451-1-Delphine_CC_Chiu@wiwynn.com>
- <20240112013654.1424451-3-Delphine_CC_Chiu@wiwynn.com>
+To: Chancel Liu <chancel.liu@nxp.com>, lgirdwood@gmail.com,
+ broonie@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com,
+ festevam@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+ linuxppc-dev@lists.ozlabs.org
+References: <20240112054331.3244104-1-chancel.liu@nxp.com>
+ <20240112054331.3244104-2-chancel.liu@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,253 +123,16 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240112013654.1424451-3-Delphine_CC_Chiu@wiwynn.com>
+In-Reply-To: <20240112054331.3244104-2-chancel.liu@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/01/2024 02:36, Delphine CC Chiu wrote:
-> Add linux device tree entry related to
-> Yosemite 4 specific devices connected to BMC SoC.
+On 12/01/2024 06:43, Chancel Liu wrote:
+> Add compatible string "fsl,imx95-sai" for i.MX95 platform.
 > 
-
-Prefix is arm64, not ARM64.
-
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
 > ---
->  arch/arm64/boot/dts/nuvoton/Makefile          |    1 +
->  .../dts/nuvoton/nuvoton-npcm845-yosemite4.dts | 1493 +++++++++++++++++
->  2 files changed, 1494 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-yosemite4.dts
-> 
-> diff --git a/arch/arm64/boot/dts/nuvoton/Makefile b/arch/arm64/boot/dts/nuvoton/Makefile
-> index 3bc9787801a5..2b3c03083dc0 100644
-> --- a/arch/arm64/boot/dts/nuvoton/Makefile
-> +++ b/arch/arm64/boot/dts/nuvoton/Makefile
-> @@ -2,3 +2,4 @@
->  dtb-$(CONFIG_ARCH_MA35) += ma35d1-iot-512m.dtb
->  dtb-$(CONFIG_ARCH_MA35) += ma35d1-som-256m.dtb
->  dtb-$(CONFIG_ARCH_NPCM) += nuvoton-npcm845-evb.dtb
-> +dtb-$(CONFIG_ARCH_NPCM) += nuvoton-npcm845-yosemite4.dtb
-> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-yosemite4.dts b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-yosemite4.dts
-> new file mode 100644
-> index 000000000000..f6a6a47b1397
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-yosemite4.dts
-> @@ -0,0 +1,1493 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +// Copyright 2023 Facebook Inc.
-> +
-> +/dts-v1/;
-> +#include "nuvoton-npcm845.dtsi"
-> +#include "nuvoton-npcm845-pincfg-evb.dtsi"
-> +#include <dt-bindings/i2c/i2c.h>
-> +
-> +/ {
-> +	model = "Facebook Yosemite 4 BMC";
-> +	compatible = "facebook,yosemite4-n-bmc", "nuvoton,npcm845";
-> +
-> +	aliases {
-> +		serial4 = &serial0;
-> +		serial0 = &serial1;
-> +		serial1 = &serial3;
-> +		serial2 = &serial4;
-> +		serial3 = &serial5;
-> +		serial5 = &cpld_serial0;
-> +		serial6 = &cpld_serial1;
-> +		serial7 = &cpld_serial2;
-> +		serial8 = &cpld_serial3;
-> +		fiu0 = &fiu0;
-> +
-> +		i2c16 = &imux16;
-> +		i2c17 = &imux17;
-> +		i2c18 = &imux18;
-> +		i2c19 = &imux19;
-> +		i2c20 = &imux20;
-> +		i2c21 = &imux21;
-> +		i2c22 = &imux22;
-> +		i2c23 = &imux23;
-> +		i2c24 = &imux24;
-> +		i2c25 = &imux25;
-> +		i2c26 = &imux26;
-> +		i2c27 = &imux27;
-> +		i2c28 = &imux28;
-> +		i2c29 = &imux29;
-> +		i2c30 = &imux30;
-> +		i2c31 = &imux31;
-> +		i2c32 = &imux32;
-> +		i2c33 = &imux33;
-> +		i2c34 = &imux34;
-> +		i2c35 = &imux35;
-> +		i2c36 = &imux36;
-> +		i2c37 = &imux37;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &serial0;
-> +	};
-> +
-> +	memory {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x40000000>;
-> +	};
-> +
-> +	iio-hwmon {
-> +		compatible = "iio-hwmon";
-> +		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>,
-> +			<&adc 4>, <&adc 5>, <&adc 6>, <&adc 7>;
-> +	};
-> +
-> +	firmware {
-> +		optee {
-> +			compatible = "linaro,optee-tz";
-> +			method = "smc";
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		tip_reserved: tip@0x0 {
-> +			reg = <0x0 0x0 0x0 0x6200000>;
-> +		};
-> +	};
-> +
-> +	spi_gpio: spi-gpio {
-> +		compatible = "spi-gpio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		gpio-sck = <&gpio0 19 GPIO_ACTIVE_HIGH>; // GPIO19
-> +		gpio-mosi = <&gpio0 18 GPIO_ACTIVE_HIGH>; // GPIO18
-> +		gpio-miso = <&gpio0 17 GPIO_ACTIVE_HIGH>; // GPIO17
-> +		num-chipselects = <1>;
-> +		cs-gpios = <&gpio6 11 GPIO_ACTIVE_LOW>; // GPIO203
-> +
-> +		tpmdev@0 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +			compatible = "tcg,tpm_tis-spi";
-
-Please base on ongoing work adding specific compatibles.
-
-> +			spi-max-frequency = <33000000>;
-> +			reg = <0>;
-
-reg is always after compatible.
-
-> +		};
-> +	};
-> +
-> +	cpld_serial0: cpld_uart@f8000800 {
-
-Eh... so again you make the same mistakes and send the same downstream
-poor code with the same bad patterns we asked to fix.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +		device_type = "serial";
-
-compatible is always first, reg is second. Why do you need this property
-anyway?
-
-> +		compatible = "ns16450";
-> +		reg = <0x0 0xf8000800 0x0 0x200>;
-> +		reg-shift = <0>;
-> +		clocks = <&clk NPCM8XX_CLK_UART>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-> +	};
-> +
-> +	cpld_serial1: cpld_uart@f8000a00 {
-> +		device_type = "serial";
-> +		compatible = "ns16450";
-> +		reg = <0x0 0xf8000a00 0x0 0x200>;
-> +		reg-shift = <0>;
-> +		clocks = <&clk NPCM8XX_CLK_UART>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-> +	};
-> +
-> +	cpld_serial2: cpld_uart@f8000c00 {
-> +		device_type = "serial";
-> +		compatible = "ns16450";
-> +		reg = <0x0 0xf8000c00 0x0 0x200>;
-> +		reg-shift = <0>;
-> +		clocks = <&clk NPCM8XX_CLK_UART>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-> +	};
-> +
-> +	cpld_serial3: cpld_uart@f8000e00 {
-> +		device_type = "serial";
-> +		compatible = "ns16450";
-> +		reg = <0x0 0xf8000e00 0x0 0x200>;
-> +		reg-shift = <0>;
-> +		clocks = <&clk NPCM8XX_CLK_UART>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-> +	};
-> +};
-> +
-> +&serial0 {
-> +	status = "okay";
-> +};
-> +
-> +&serial1 {
-> +	status = "okay";
-> +};
-> +
-> +&serial3 {
-> +	status = "okay";
-> +};
-> +
-> +&serial4 {
-> +	status = "okay";
-> +};
-> +
-> +&serial5 {
-> +	status = "okay";
-> +};
-> +
-> +&watchdog1 {
-> +	status = "okay";
-> +};
-> +
-> +&watchdog2 {
-> +	status = "okay";
-> +};
-> +
-> +&gmac2 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&r1_pins
-> +			&r1oen_pins>;
-> +	use-ncsi;
-> +};
-> +
-> +&gmac3 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&r2_pins
-> +			&r2oen_pins>;
-> +	use-ncsi;
-> +};
-> +
-> +&fiu0 {
-> +	status = "okay";
-> +	spi-nor@0 {
-
-NAK
-
-I am not going review further. You keep repeating the same mistakes.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
