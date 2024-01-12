@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-31667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A161482C267
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:03:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 052F782C276
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:05:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 617251C20E52
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:03:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 130D51C21889
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02B9C6E2CA;
-	Fri, 12 Jan 2024 15:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BB16E2D4;
+	Fri, 12 Jan 2024 15:05:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XML8ROoH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LnfkXyM5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509EC6DD18
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 15:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086ED6DD07
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 15:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e7f58c5fbso8838347e87.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:03:28 -0800 (PST)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50ea98440a7so6774004e87.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:05:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705071806; x=1705676606; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705071914; x=1705676714; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:references
          :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=toiihwgbBXQtxuvplwPZBYyqQgpc30K6w6RtC5O5hmA=;
-        b=XML8ROoHt8d65P08AM15DZUPJXKIP/W0H0Ps2CLjxH2tT6iL5apC9jRDwW5uwdt/O6
-         k85Z/FrfvCrB82vIL86Z5xKS8O8pc8S1QqGHIWjoyhu7bqqe7t3ftpa9NXjvmfi0vOvS
-         4j8ge9FRIcsa8JvZUg84mPvL2UTpvyBB0A4K8VnNF1UYaaqE7PKrG3Sb6wnTCnoasfVO
-         2PumFY0V4SDT8fhqLDfH+Hpm5JiRWqhlHWGFJf9sLChZEiGSGp4wWY97Gr3bRxTBHcPx
-         kx3yA9R4cIk1jzPC+nfVUZCSPHihXuE0OKqiXMHN7lqv1290rJ9ZKR5hQfGPG7faHn0H
-         YTxg==
+        bh=EGj9NLjeiH7VUkvZ1A9N/SV1ZE8ovwzqiFTpfpK/e/Y=;
+        b=LnfkXyM5kM+asycsaVdodJIOpTRRCPkunWsI3zOwZolvVW5wZWIjeCUfg0G7JzTz+W
+         W9WOuvETy6F38wvY6dqyxUe2lYGILqRAZgy8QY8PXlsJquBhYZN6MCUoDsJJ6orXZivO
+         ZP2UKOBnRcXyQmN4XMQlh7Y4TVubzjhJ4PFHB6Em9OiLGNpsggw0NBN2vPXJde1Fzw8a
+         qP51Px8IXGUh0U3p/+efVZWuXUT0jsIAaXDACsdmUqymx6G/ERJD5YO90nRWMpvB4jDI
+         mUmO3GST+moracvQcJkC0JhQTgc6S4/8vEgEsnpvouvluSoboHFE+A7Nd4f43+VIDWdG
+         nuaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705071806; x=1705676606;
+        d=1e100.net; s=20230601; t=1705071914; x=1705676714;
         h=content-transfer-encoding:mime-version:message-id:references
          :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=toiihwgbBXQtxuvplwPZBYyqQgpc30K6w6RtC5O5hmA=;
-        b=SEbaGIEcQEVjlOOUjpbaLgBSYaqm7iL9biYojxinHsi2IhZ5d4ZmoqNrDXG2Th6WsW
-         7Ltkcuw+lEkYyn1SsJ/mPI1KwVfrFBC5rbz1s75hRBHo7y2QNH/wtMudcghqtenTUD3O
-         B/ke5OUrrA3peYTmhToh0MkMoM0UXHQUlFLklgiefCgzz+uDybP6hRV2PWGwgLmip60/
-         FJvCUISvlmJZIghr1DHGcwAvxQ/fCKSQFQXBzfDD8Rut/53mZxDS3taWfzIou+Td3qj9
-         ywiK4t4iHqLG3jeEdNT/moWiNZcMy188lzrERdOZzTynkbcq7fLKYM9IRRc8NCM0tjp6
-         Airw==
-X-Gm-Message-State: AOJu0YziUU1oA3edMxnXw7X3nIvXM4Oino0yW/mIZzdaTWKb5U3vket8
-	YfitZlL7OsRRKtL5LiGBhgJtsjHvhnEbUA==
-X-Google-Smtp-Source: AGHT+IHzWoBI/gw1ovzwFkaSh6dvJAdJYu8plavA7O8fbIQgYwdeuATmAxUsfd6HZf/jobqSR+6l8g==
-X-Received: by 2002:a05:6512:3b0b:b0:50e:4e6b:9cd7 with SMTP id f11-20020a0565123b0b00b0050e4e6b9cd7mr1128581lfv.12.1705071806353;
-        Fri, 12 Jan 2024 07:03:26 -0800 (PST)
+        bh=EGj9NLjeiH7VUkvZ1A9N/SV1ZE8ovwzqiFTpfpK/e/Y=;
+        b=vUMA44LHiCu0MCZea5MdLr4GZl0A+lkrYHOThqffIytq+FECMPqPHcHx+9zDiBZblA
+         4lj/j8xIZvOrBzRT1BIuh7uKYPRYSxwOWaVBK/+SzHTRbAVp1JWeMozd7R5z/w3+zDIa
+         91cj4smOrBVrvIoFfNVceQ2xAYv8TfkJbaZk5fxY1JDTW7y6FSi0cIIJnXXYu14R53xW
+         gK8i0QMa+UNpJBpd4ZxQNTIfrZLLjhMy2f5xWm2HyU6DBgZG2bp6s85rlYsEsGZkL0CP
+         udm7szLUiKA6/B4X7y44aLW6UO2A4yplMarolKvF7xZZLKemWHS3GFmCByG0Czhm0xiK
+         cxbA==
+X-Gm-Message-State: AOJu0Yy1QuyvWSYBXCv5bwkE6H38c66TowPGgfbkPY5UyO1F7ZbZqKoe
+	9rdY8dDEh3DYKYQgAPfQDTtrXwbOQsb6xQ==
+X-Google-Smtp-Source: AGHT+IGzSDNM5chFAEAwD2aU3LCcin/thQulwDNGjU0qgujLYpAVeaGN8+isXxzVUSfraMXxDSdOFg==
+X-Received: by 2002:a05:6512:3f14:b0:50e:7dcc:ef51 with SMTP id y20-20020a0565123f1400b0050e7dccef51mr624188lfa.120.1705071914138;
+        Fri, 12 Jan 2024 07:05:14 -0800 (PST)
 Received: from [127.0.0.1] (85-76-114-160-nat.elisa-mobile.fi. [85.76.114.160])
-        by smtp.gmail.com with ESMTPSA id u3-20020ac258c3000000b0050e7d22a9b8sm520518lfo.89.2024.01.12.07.03.25
+        by smtp.gmail.com with ESMTPSA id f5-20020ac251a5000000b0050e8cd014d7sm526840lfk.16.2024.01.12.07.05.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 07:03:25 -0800 (PST)
-Date: Fri, 12 Jan 2024 17:03:23 +0200
+        Fri, 12 Jan 2024 07:05:13 -0800 (PST)
+Date: Fri, 12 Jan 2024 17:05:08 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jie Luo <quic_luoj@quicinc.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, andersson@kernel.org,
+To: Luo Jie <quic_luoj@quicinc.com>, andersson@kernel.org,
  konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+CC: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
  quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_soni@quicinc.com,
  quic_pavir@quicinc.com, quic_souravp@quicinc.com, quic_linchen@quicinc.com,
  quic_leiwei@quicinc.com
-Subject: Re: [PATCH 1/6] arm64: dts: qcom: ipq9574: Add PPE device tree node
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_6/6=5D_arm64=3A_dts=3A_qcom=3A_i?= =?US-ASCII?Q?pq9574=3A_Add_RDP433_board_device_tree?=
 User-Agent: K-9 Mail for Android
-In-Reply-To: <6fc9e65a-709a-4923-b0b3-7c460199417a@quicinc.com>
-References: <20240110112059.2498-1-quic_luoj@quicinc.com> <20240110112059.2498-2-quic_luoj@quicinc.com> <a42718a9-d0f9-47d9-9ee8-fb520ed2a7a8@linaro.org> <de0ad768-05fa-4bb1-bcbc-0adb28cb2257@quicinc.com> <CAA8EJppeQdB4W8u0ux16pxBBwF_fpt1j-5aC0f849n9_iaaYtQ@mail.gmail.com> <6fc9e65a-709a-4923-b0b3-7c460199417a@quicinc.com>
-Message-ID: <1552D7D8-2D1B-4236-A5BF-02B68DC919CB@linaro.org>
+In-Reply-To: <20240110112059.2498-7-quic_luoj@quicinc.com>
+References: <20240110112059.2498-1-quic_luoj@quicinc.com> <20240110112059.2498-7-quic_luoj@quicinc.com>
+Message-ID: <FC335E96-9DE2-4BC8-BE45-8DE77AB453AE@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,64 +82,95 @@ Content-Type: text/plain;
  charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On 12 January 2024 16:40:02 EET, Jie Luo <quic_luoj@quicinc=2Ecom> wrote:
+On 10 January 2024 13:20:59 EET, Luo Jie <quic_luoj@quicinc=2Ecom> wrote:
+>From: Lei Wei <quic_leiwei@quicinc=2Ecom>
 >
+>RDP433 board has four QCA8075 PHYs and two Aquantia 10G PHY onboard=2E
 >
->On 1/12/2024 12:06 AM, Dmitry Baryshkov wrote:
->> On Thu, 11 Jan 2024 at 17:31, Jie Luo <quic_luoj@quicinc=2Ecom> wrote:
+>Signed-off-by: Lei Wei <quic_leiwei@quicinc=2Ecom>
+>Signed-off-by: Luo Jie <quic_luoj@quicinc=2Ecom>
+>---
+> arch/arm64/boot/dts/qcom/ipq9574-rdp433=2Edts | 66 +++++++++++++++++++++
+> 1 file changed, 66 insertions(+)
 >
->>>=20
->>>>=20
->>>>> +                    reg =3D <0x3a000000 0xb00000>;
->>>>> +                    #address-cells =3D <1>;
->>>>> +                    #size-cells =3D <1>;
->>>>> +                    ranges;
->>>>=20
->>>> Put after reg=2E
->>> Ok=2E
->>>=20
->>>>=20
->>>>> +                    status =3D "okay";
->>>>=20
->>>> Drop
->>> Ok=2E
->>>=20
->>>>=20
->>>> All of above comments apply to your entire patchset and all places=2E
->>>>=20
->>>> Looking at code further, it does not look like suitable for mainline,
->>>> but copy of downstream code=2E That's not what we expect upstream=2E =
-Please
->>>> go back to your bindings first=2E Also, I really insist you reaching =
-out
->>>> to other folks to help you in this process=2E
->>>>=20
->>>> Best regards,
->>>> Krzysztof
->>>>=20
->>> We will do internal review of the gaps and update the patches as per
->>> your comments=2E
->>>=20
->>> Thanks for the review comments=2E
->>=20
->>  From the first glance, the bindings do not follow upstream principles=
-=2E
->> You have all the settings (tdm, port config, etc) in the DT, while
->> they should instead go to the driver=2E Well, unless you expect that th=
-e
->> board might need to override them=2E
->>=20
->Hi Dmitry,
->The TDM configuration varies per SoC type, since the ethernet port capabi=
-lities of the SoCs vary=2E So we will have two different TDM configurations=
- for IPQ5332 and IPQ9574 SoC=2E The driver also will
->need to support future SoC, so we choose to configure this from the DTSI=
-=2E The same reason applies to the port scheduler config as well=2E
+>diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433=2Edts b/arch/arm64/b=
+oot/dts/qcom/ipq9574-rdp433=2Edts
+>index 1bb8d96c9a82=2E=2E298c0853b4d2 100644
+>--- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433=2Edts
+>+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433=2Edts
+>@@ -60,3 +60,69 @@ rclk-pins {
+> 		};
+> 	};
+> };
+>+
+>+&qcom_ppe {
+>+	qcom,port_phyinfo {
+>+		ppe_port0: port@0 {
+>+			port_id =3D <1>;
+>+			phy-mode =3D "qsgmii";
+>+			phy-handle =3D <&phy0>;
+>+		};
+>+		ppe_port1: port@1 {
+>+			port_id =3D <2>;
+>+			phy-mode =3D "qsgmii";
+>+			phy-handle =3D <&phy1>;
+>+		};
+>+		ppe_port2: port@2 {
+>+			port_id =3D <3>;
+>+			phy-mode =3D "qsgmii";
+>+			phy-handle =3D <&phy2>;
+>+		};
+>+		ppe_port3: port@3 {
+>+			port_id =3D <4>;
+>+			phy-mode =3D "qsgmii";
+>+			phy-handle =3D <&phy3>;
+>+		};
+>+		ppe_port4: port@4 {
+>+			port_id =3D <5>;
+>+			phy-mode =3D "usxgmii";
+>+			phy-handle =3D <&phy4>;
+>+		};
+>+		ppe_port5: port@5 {
+>+			port_id =3D <6>;
+>+			phy-mode =3D "usxgmii";
+>+			phy-handle =3D <&phy5>;
+>+		};
+>+	};
+>+};
+>+
+>+&mdio {
+>+	reset-gpios =3D <&tlmm 60 GPIO_ACTIVE_LOW>;
+>+	status =3D "okay";
+>+
+>+	phy0: ethernet-phy@0 {
+>+		      reg =3D <16>;
+>+	      };
 
-If it differs from SoC to SoC only, it goes to the driver=2E Point=2E No o=
-ther options=2E Thank you=2E
+This part looks extremely wrong to me=2E If the reg is 16, then it should =
+be @16 as well=2E You should have got a warning here=2E
 
->
->Thanks for review comments=2E
+>+
+>+	phy1: ethernet-phy@1 {
+>+		      reg =3D <17>;
+>+	      };
+>+
+>+	phy2: ethernet-phy@2 {
+>+		      reg =3D <18>;
+>+	      };
+>+
+>+	phy3: ethernet-phy@3 {
+>+		      reg =3D <19>;
+>+	      };
+>+
+>+	phy4: ethernet-phy@4 {
+>+		      compatible =3D"ethernet-phy-ieee802=2E3-c45";
+>+		      reg =3D <8>;
+>+	      };
+>+
+>+	phy5: ethernet-phy@5 {
+>+		      compatible =3D"ethernet-phy-ieee802=2E3-c45";
+>+		      reg =3D <0>;
+>+	      };
+>+};
 
 
