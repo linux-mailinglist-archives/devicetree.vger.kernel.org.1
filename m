@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4948382C4E0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 18:43:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2576582C4F7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 18:45:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C6811C2221C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:43:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 216211C2214D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F2571757F;
-	Fri, 12 Jan 2024 17:43:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A091317C90;
+	Fri, 12 Jan 2024 17:44:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FJH3AJ/9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Srid6E8Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1328817C7F
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 17:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F412217BDD
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 17:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33677fb38a3so6112632f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:43:37 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33770772136so3372040f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:44:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705081416; x=1705686216; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705081468; x=1705686268; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ee6xKpvxneUnoDiC8AB7cIQc/ZfkSZ84CMrUIJPEZ+c=;
-        b=FJH3AJ/9muIjbC//4TR89xmHMhguiJM6JI8gT020x0e1U3pd72+U10gGS/t8ZVg/8s
-         ciPh22T2jIc9REkzFIhwvBg42Xnpopuo/bD08BecS6AG1/HE8fo4QFRlQOoi8uS2lACf
-         qy/c4aPXF0w03AhTI0Z0CmWkr73h5gYgOF+FqWb0i7o80DDJLvuXsJXjghwDFNg4kVZQ
-         9YzV9fAnR1IZlfvcHa+2A++WE3krwe7x3OZD7lvIvOIluYNW/YD2qU0GIOvoEmHD155c
-         BFt3Jz5Dz2Ve+kDPhtENFjO1UT7gtRDMG7FONDm+8HhAvepW/YaXyM86AGTM9RAsrpkv
-         g0Yw==
+        bh=hKEv7YOJq5Zdj/IPrmRwmsM2kCNywg3/rkvBbxiaV8k=;
+        b=Srid6E8QYLtlcgo9RNQSmPX1IHsum8dVw5E0Wzig2aQvSZ38v4IdTvv/m2CCnW35d6
+         LlgH7jDbidY3DRb2jI4iLR8TYGeN0ySTf1s9mZWhVUZ6KkdTkeQTcd7CxO+R5RX9Cjx4
+         dy0EDQ8/NPpAsgLAO1VNfPzWnkJxBxSpyPjmJpS6jZyTVXuautzSz2kngSGcnmL+3XHM
+         5fKhx6GH2hUrUfGfPQLMLkyA9aQzH7u1oQsJkomyBtf47jHgH8bKWTzep5Gi1A1gA2g5
+         bFqSS3HOg8KGR2KDUVP3wilJNscPp9HkRYm6Js+SrdWonwbpzLs9KBWD2nyzyEEpWR0m
+         TNkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705081416; x=1705686216;
+        d=1e100.net; s=20230601; t=1705081468; x=1705686268;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ee6xKpvxneUnoDiC8AB7cIQc/ZfkSZ84CMrUIJPEZ+c=;
-        b=uzUCAAvR9abGHfiugvFPRrttnJqqzIoN2kmjPvH73t5OD0qzxg/+fgrO/wOI9ceUuW
-         B78NXI7ggcmVOgkAE70+8HaIN/rF2LNAw/DuUArWyEwtavjQccn/llkRsUxyRpcoKuET
-         5UtezyCYpLsHiwmC2TTeGOe2XO8qwti5hyMILoga+amc9ZUWX4iuTjTlClKna9JQg3uT
-         idx6D7La6NUXu9sxcr1pcys5PT5SzGcRKuKhShRW2CpURiSL8uFHUQKj3mBRpnyZFOw4
-         T5wpZZfsrdpG5T5kzWz28lhQ+hIvkLAIVzvxS2JfZTQPFisvioX9EvJzJVaa6wEXLfOG
-         t8UA==
-X-Gm-Message-State: AOJu0YxEM+ggIkZZ0zlwlcua11rKzWWG3ryju/1ymxADCqdNTa1Is3Al
-	xjHShJa9hY3jejywgFHpqwpl7a2pJPfvJg==
-X-Google-Smtp-Source: AGHT+IEG/RfygOLnVEXU1ua+90WU6Kb2zmqMLCNjZlPGmGHulU5Ed+rlhuWJaTig7LLnl+pgA60sTA==
-X-Received: by 2002:adf:a319:0:b0:336:8ce8:454f with SMTP id c25-20020adfa319000000b003368ce8454fmr738433wrb.138.1705081416323;
-        Fri, 12 Jan 2024 09:43:36 -0800 (PST)
+        bh=hKEv7YOJq5Zdj/IPrmRwmsM2kCNywg3/rkvBbxiaV8k=;
+        b=bGWrOwOvgbq71kfY2iL/L8M5/PjCCaVm4WVoebjuIzwO8QSLk3MYeGBAcyDc+yudRk
+         cX3WyVjiPMfOdmA6oCzx9WL57F8zTYFq9hsbwzcXopp0nUY30RoMyzUJEHFm/xvWLdZQ
+         RR/uO9sEMBbU+S1FlZ47nWLm9MrRaaoTkfoKR+W11FcabQpnbPBto4OGfF8vDSXADGFh
+         AMBE32MUa4Wpazs+yD/14D2eVNkA7uejUmj/iG0nfYqkE8bKpHKIlewZLhcfB2icF8r3
+         krj9qxs/xlyBOAPbKDmVljPj3A1l0mDn4Vl/yCrqJD2QA9PI0uVNRzXrGonBh2U/Wcgq
+         s8jg==
+X-Gm-Message-State: AOJu0YxePKC6yvB8ANK91mchSsuQqalb1x6VDcI62OnRQevzbDo/tLLY
+	BdouPQcHJk96Kn0WERLJ5OsGGUh3B8e8wg==
+X-Google-Smtp-Source: AGHT+IFMr4GNXrnSPMkWmc3f2JQ62mkSCD8u7fOdW9UxTugAVZyexcZuIyp3jIfTHX+CQKKxlnNoKA==
+X-Received: by 2002:a5d:5234:0:b0:337:6a69:e8e with SMTP id i20-20020a5d5234000000b003376a690e8emr1045154wra.84.1705081468320;
+        Fri, 12 Jan 2024 09:44:28 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id b7-20020adfe647000000b0033763a9ea2dsm4462856wrn.63.2024.01.12.09.43.34
+        by smtp.gmail.com with ESMTPSA id b7-20020adfe647000000b0033763a9ea2dsm4462856wrn.63.2024.01.12.09.44.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 09:43:35 -0800 (PST)
-Message-ID: <21a8feea-7306-4016-9a58-6e5bf8fe30a8@linaro.org>
-Date: Fri, 12 Jan 2024 18:43:33 +0100
+        Fri, 12 Jan 2024 09:44:27 -0800 (PST)
+Message-ID: <0ba3e9aa-4546-461a-a90b-0c99bfa9da48@linaro.org>
+Date: Fri, 12 Jan 2024 18:44:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,9 +69,8 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] dt-bindings: rockchip: Add Hardkernel ODROID-M1S
  board
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: KyuHyuk Lee <lee@kyuhyuk.kr>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To: KyuHyuk Lee <lee@kyuhyuk.kr>, Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
  Chris Morgan <macromorgan@hotmail.com>, Jagan Teki <jagan@edgeble.ai>,
  Tianling Shen <cnsztl@gmail.com>, Andy Yan <andyshrk@163.com>,
@@ -79,9 +78,6 @@ Cc: KyuHyuk Lee <lee@kyuhyuk.kr>, Rob Herring <robh+dt@kernel.org>,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20240112134230.28055-1-lee@kyuhyuk.kr>
- <20240112-granola-underline-36a525dc789c@spud>
- <dc4e9808-cd36-4b99-afd9-8dd4cd16a2a9@linaro.org>
- <20240112-headsman-concur-1d47da7e3e14@spud>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -127,29 +123,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240112-headsman-concur-1d47da7e3e14@spud>
+In-Reply-To: <20240112134230.28055-1-lee@kyuhyuk.kr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/01/2024 18:26, Conor Dooley wrote:
->>> if the vendor for this board is hardkernel...
->>>
->>>> +        items:
->>>> +          - const: rockchip,rk3566-odroid-m1s
->>>
->>> ...why is the vendor prefix here rockchip?
->>
->> Uh, good catch. I missed it when acking their earlier mistake year ago
->> :( Would be nice if they fixed that one too.
+On 12/01/2024 14:42, KyuHyuk Lee wrote:
+> Add device tree binding for Hardkernel ODROID-M1S board based on
+> RK3566 SoC.
 > 
-> Maybe they will if they got your email, they did not get mine
-> apparently:
-> <lee@kyuhyuk.kr>: host mx02.mail.icloud.com[17.57.155.34] said: 554 5.7.1
->     [HM08] Message rejected due to local policy. Please visit
->     https://support.apple.com/en-us/HT204137 (in reply to end of DATA command)
+> Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
 
-Uh, what did you do to Apple to be denied by their policy? Admit, you
-have an Android phone?
+Your system bounces emails from Conor, so just formality:
+
+Fix the vendor prefix.
 
 Best regards,
 Krzysztof
