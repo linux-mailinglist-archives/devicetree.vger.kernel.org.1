@@ -1,155 +1,170 @@
-Return-Path: <devicetree+bounces-31545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2529B82BC6D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:39:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B1182BC96
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 10:00:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 853C7B22650
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:39:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82A261F228A5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:00:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B225433CE;
-	Fri, 12 Jan 2024 08:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17C154FA7;
+	Fri, 12 Jan 2024 09:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BlO6yhsX"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="HO4cMldz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A62711CFB3
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 08:38:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3376f71fcbbso4030373f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 00:38:53 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA1E54273
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:00:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-5574feb7958so7236281a12.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 01:00:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705048732; x=1705653532; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ctfo2QUvaYOsGhaFDOu5VyntquVZ2L861CsiV5mIQwQ=;
-        b=BlO6yhsXrisk9bf9miUsvFOBXN60EuxNaYm/e9IcvTKkyxj1/FjSGo4XGJmoIQ0Nwu
-         25i9C40NhmAZNVTmvc0kYNdtF6SRXB8o8ar+nRa5g25M4aYGlzr3IOVWVGbkFGd97NY+
-         5ijpOYc0JyapZMF/ndvH0i7pJDZn6WX/oaomjWVWzuqdlmyjuwBzkss5yu2+PojssQX+
-         CRldkSSpRT5EmQ3Bnno2rUVqhWab/so1i97ltXxtUYeJcQlnz8V1X/bKjr2AHcVVhX97
-         7XPb7h8bkLEgbiTJtfSYbd3ZoBMEdvrFFLfYV957l4bpNvv5CwAg6YOYr+z1bkVp2ff2
-         tAyQ==
+        d=fairphone.com; s=fair; t=1705050018; x=1705654818; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9SkiM1CyhiqOdeyM++a6lT4rbKePEx/F9YY5NzKazuE=;
+        b=HO4cMldzwLhwY7Oms8X7gJSko/PvJ4uHJdPKmtax1Jjav3mLLFbpii/sscAzPnEuKf
+         SxrSCAJgKZxNvWyBYvuZlvp7hldHlp9bjk0b8CZZmCbjsddlY0tu/qgs5sLrmlK7Ykra
+         DNUzHWjemDfbcUraqpRr3EXuMOC3jwIJRF3nuTGySMB5/ETg7U3JwTjXLoSbfzeKAso1
+         EQJH9gVgZTTXF6mafvs9ahBeXu9MFUQ9w7BEprftFUTGHr92iY+BmX/xTrzLfmlnfnDr
+         AmebHBYnJgEw8mFLRJOHk1jR6572g3U+z01gL7Uqm+ZiT/5LQIEERvehH7VhvmX+6rcI
+         Sp9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705048732; x=1705653532;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ctfo2QUvaYOsGhaFDOu5VyntquVZ2L861CsiV5mIQwQ=;
-        b=HdokDl4UEn3Ak6APT1Y0zZIQ6O/zj1XkghWnIbNghhZY5TpaQ+URSYQFTUgNch2Jgg
-         uHOoIrpKFhXQUNa/oba46kk+Eug98SgW960gOkOT/H17vBN+lvnIpcD96cgEv611Bcw5
-         LybD6HASnT1oZUinFJYIUFyQUCtzcKXMdcGi3iVia4b1RUer2s8SN5hBRvsSK6kasGMO
-         OpWX0NIsS+ZIoKI674bDIUa1Na006pTVgFAq8kCxE6VyCOjVO7eJAOqu9IbD+vSB6dat
-         oyKfapCygdVZyI/Y3mvOlMhGyI8MQ+Yyh+vQEZZUyZsYiTrrwFbcEhNH5dblVmisMdJd
-         sWjA==
-X-Gm-Message-State: AOJu0YzQw9QoY4z3N4hpRRPG0YU4V69hiGI3HNsYFj0G7HdTkgwbg8EK
-	UUkH6rr6HVERCvYnQYeakzTNeedfRQatjQ==
-X-Google-Smtp-Source: AGHT+IEX0HJ0ERjFNa67qV5ViBiuNMOR2tfMTkp5EpBJsgzpsgcArfq6uIQ7rNkSpAK3iQX2xvk+5g==
-X-Received: by 2002:adf:f9c6:0:b0:336:2a24:eb8a with SMTP id w6-20020adff9c6000000b003362a24eb8amr354533wrr.161.1705048731884;
-        Fri, 12 Jan 2024 00:38:51 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id x6-20020adfcc06000000b00336f43fa654sm3225857wrh.22.2024.01.12.00.38.49
+        d=1e100.net; s=20230601; t=1705050018; x=1705654818;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9SkiM1CyhiqOdeyM++a6lT4rbKePEx/F9YY5NzKazuE=;
+        b=TuPoCG8+UmX0dvON0C/avQV8B9gX3pI59iu6+w22U6rdXJ0H4IjkgGXzzlmI+xsbAq
+         ZjzYzuX/WIvaoxOETJckcsDHZEpH84a5pxTN6aKuiSQbIt7xhmpqrNBIVvowDuFm0QCX
+         9P0pvwcFrfGQUdLP/A+zI2soJYCO7GMwLmN6M8PdsTG4Vw7YJdeo/2xBD4UKtV4I1i7o
+         WbQCofbNvaMm9T5xbPTld/BDycwToXVjeTKppUyaw8Wyov/tbcPqNd5JSyYOxRUDxlBT
+         eAG6V72fANyAI7KaX3Ayt6vM8Hz0RmBlskOhywgVer8Hlg1CRzdXI90tptj8grB1TaPY
+         QehQ==
+X-Gm-Message-State: AOJu0YxE9wL+2kiFCH9ZCbZSD6koHJJpWtBPgeZaTJgzi3kxIoZACJKu
+	pa2ZfzQ+wHyRmM6U61YH+hSvEA7D1c5ahA==
+X-Google-Smtp-Source: AGHT+IE4lqCuCcBKUQKcGYBXm2hn5tLGot0ekhVA4EDWlovNg76g03laNX/Vn5Sk4TgseAUkA74dQQ==
+X-Received: by 2002:a50:fa94:0:b0:54c:60f0:7511 with SMTP id w20-20020a50fa94000000b0054c60f07511mr480176edr.35.1705050018310;
+        Fri, 12 Jan 2024 01:00:18 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id j14-20020a50ed0e000000b005550192159bsm1555191eds.62.2024.01.12.01.00.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 00:38:51 -0800 (PST)
-Message-ID: <ccb2eee4-aaff-4263-8666-bae4609536b2@linaro.org>
-Date: Fri, 12 Jan 2024 09:38:48 +0100
+        Fri, 12 Jan 2024 01:00:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/4] dt-bindings: clock: sophgo: support SG2042
-Content-Language: en-US
-To: Chen Wang <unicorn_wang@outlook.com>,
- Conor Dooley <conor.dooley@microchip.com>
-Cc: Conor Dooley <conor@kernel.org>, Chen Wang <unicornxw@gmail.com>,
- aou@eecs.berkeley.edu, chao.wei@sophgo.com,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com,
- robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
- xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
- inochiama@outlook.com, samuel.holland@sifive.com
-References: <cover.1704694903.git.unicorn_wang@outlook.com>
- <925d99d5b4ece01337cb3389aaea4b631894dd1d.1704694903.git.unicorn_wang@outlook.com>
- <f88b79c3-e44b-4136-ae56-10e1f2502e2d@linaro.org>
- <MA0P287MB2822C7A3C1DC7786708E860BFE692@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
- <20240110-untoasted-underfed-fe81479506f6@spud>
- <MA0P287MB282224A6097B4FCCF721C89AFE682@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
- <20240111-jolly-prize-930931cc648a@spud>
- <MA0P287MB28229BCC9EA83507B99A9F3BFE6F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
- <20240112-overhead-disallow-8c2a4b97c36c@wendy>
- <MA0P287MB2822A18C53C4EDDEB2DAF42CFE6F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <MA0P287MB2822A18C53C4EDDEB2DAF42CFE6F2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Fri, 12 Jan 2024 10:00:17 +0100
+Message-Id: <CYCLSCKPPBOC.1B1MP3VOOC0Q8@fairphone.com>
+Cc: "Neil Armstrong" <neil.armstrong@linaro.org>, "Jessica Zhang"
+ <quic_jesszhan@quicinc.com>, "Sam Ravnborg" <sam@ravnborg.org>, "David
+ Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob
+ Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konrad.dybcio@linaro.org>, "Andy Gross" <agross@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/4] drm/panel: Add driver for DJN HX83112A LCD panel
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Linus Walleij" <linus.walleij@linaro.org>
+X-Mailer: aerc 0.15.2
+References: <20240110-fp4-panel-v2-0-8ad11174f65b@fairphone.com>
+ <20240110-fp4-panel-v2-2-8ad11174f65b@fairphone.com>
+ <CACRpkdaWTfPDCin_L6pefHsokjNyO8Mo6hWPdzPLLi1EUkKUuA@mail.gmail.com>
+ <CYBZEZ4IM6IL.VR04W7933VI@fairphone.com>
+ <CACRpkdZQbVXfBa70nhDOqfWPbsh-6DgX-uvZOxr19pzMmF2giQ@mail.gmail.com>
+In-Reply-To: <CACRpkdZQbVXfBa70nhDOqfWPbsh-6DgX-uvZOxr19pzMmF2giQ@mail.gmail.com>
 
-On 12/01/2024 09:35, Chen Wang wrote:
-> Conor and Krzysztof,
-> 
-> Just a quick question, due to I am planning to change the binding files 
-> you have reviewed,  should I remain your signature of “Reviewed-by" or 
-> remove it in next patchset?
+On Thu Jan 11, 2024 at 8:05 PM CET, Linus Walleij wrote:
+> On Thu, Jan 11, 2024 at 4:28=E2=80=AFPM Luca Weiss <luca.weiss@fairphone.=
+com> wrote:
+>
+> > In some internal documentation it says "LCD Driver IC" "HX83112A" and I
+> > don't see any reference to Truly 5P65 anywhere.
+>
+> In the Android directory I pointed to I see this file:
+> HX83112_Android_Driver/Truly_5p65_module_fw/UpdateFW.bat
+>
+> (Notice the 5p65 fw dir is *inside* the HX82112 dir)
+>
+> And in that file:
+> adb push TRULY_5P65_1080_2160_HX83112A_D01C01.bin
+> /system/etc/firmware/Himax_firmware.bin
+>
+> Clearly indicating that they are pushing a Truly 5P65 firmware into
+> the Himax display firmware directory.
+>
+> To be fair, that is the driver for the touchscreen part of HX83112A,
+> but ... Truly is a well known manufacturer of display controllers?
+>
+> But... given that you have a @fairphone.com mal address and
+> a working relationship with them, can't you just ask?
+>
+> > On their website they have this sentence:
+>
+> All OEMs want to look like everything is their own product. It is
+> business as usual.
 
-Depends on the amount of changes. If you remove or add properties, then
-please drop the tag. Whenever you drop a tag or skip it (so do not add
-after receiving), explain this in the changelog. changelog goes under ---.
+I can't tell you anything there that I don't know, sorry.
 
-Best regards,
-Krzysztof
+>
+> Further on the same note since I guess you have a datasheet)
+> please bring in #defines for the commands (the first byte in the
+> write sequences, for examples:
+>
+> +       mipi_dsi_dcs_write_seq(dsi, 0xbd, 0x02);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xd8,
+> +                              0xaa, 0xff, 0xff, 0xff, 0xff, 0xff, 0xaa, =
+0xff,
+> +                              0xff, 0xff, 0xff, 0xff);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xbd, 0x03);
+>
+> Clearly 0xbd is HX83112_CMD_SETREGBANK?
+> (This is easily spotted from the similar structure in the
+> existing panel-himax-hx8394.c.) So please add #defines
+> for all commands you know, especially if you have a datasheet
+> because we reviewers don't have them and "it's just magic
+> bytes" isn't very compelling. It adds a lot to understanding.
+
+Right, the register names seem to match more or less the ones from that
+driver, plus some new ones and some differently named ones. Will send a
+v3 with that.
+
+>
+> I strongly suspect other Himax displays such as HX8394 to
+> be using a Truly controller as well, hence the similarities.
+>
+> In a datasheet for their TFT800480-84-V1-E display controller
+> Truly kept the init sequence name of void LCD_INIT_HX8290(void)
+> for example.
+
+In that datasheet (assuming I'm looking at the same one?) it says
+"Driver IC" "HX8290-A[...]" so there the display driver is manufactured
+by Himax and not Truly to my understanding. Truly is assembling together
+Driver + all the other parts that go into an LCD.
+
+For the panel used on Fairphone 4 that part is done by the company DJN.
+
+Regards
+Luca
+
+>
+> Yours,
+> Linus Walleij
 
 
