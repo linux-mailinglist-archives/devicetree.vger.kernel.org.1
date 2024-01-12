@@ -1,121 +1,97 @@
-Return-Path: <devicetree+bounces-31636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CBC682C166
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:13:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8935682C172
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:20:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35D791C21A8F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:13:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBE17B213E9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:20:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA86D6D1CF;
-	Fri, 12 Jan 2024 14:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2866DCE5;
+	Fri, 12 Jan 2024 14:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K/2TkSzw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328F864AAA;
-	Fri, 12 Jan 2024 14:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5fa52e173f7so33196367b3.3;
-        Fri, 12 Jan 2024 06:13:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705068794; x=1705673594;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ogmBK4GcHnlicaeksl+88HTGrvs80uzfrt9z9GfN5KM=;
-        b=q2aQdezOMkTi488Fx34hxeBwzrkyVLaeinNhuwXDd38KvpoGJdiVGn1Z0RuBk6nTxH
-         vnG7yb8otKUq/XmDKQqYf73CD8H71pYw5p7eJNfG3dVPEZmOBKK8fVFTM8Zne+976aAi
-         etHhbJmsm9IWWfCwipad99M/LkFPixXS+BbFqUMVYW5ESFCFkfHeG1HRABtOglR0qHx1
-         r+KYKYChvyuLN8igq/jfM+5L/3EEKsBLHhASW7Pznf0QOZeEvA1fOgDyzYbOM5ta8GsO
-         b9elZKuwWNGoRGTldXWiHUEc+0KNhyqNaFY4k6pGr4vYR4sENzBY7944fMAbeJU3FyYE
-         212A==
-X-Gm-Message-State: AOJu0YycU/2j2nLLMW1fq7294fsJBQ0uKw/yviRkhMPudvMaj8wd6mPp
-	90hxatdOdvDT70LSgVkllnEP0E9AKXltZg==
-X-Google-Smtp-Source: AGHT+IFIzJ/PmIVOEEFVeKiaFwHi+rAUcGrgk0Vxlk7x5Le2iSnlytZAHamkfjeUZMjWbL7z83XYkQ==
-X-Received: by 2002:a81:6dca:0:b0:5fb:9321:9ff5 with SMTP id i193-20020a816dca000000b005fb93219ff5mr1289598ywc.61.1705068793959;
-        Fri, 12 Jan 2024 06:13:13 -0800 (PST)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id g139-20020a0ddd91000000b005d6f34893dfsm1355399ywe.135.2024.01.12.06.13.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 06:13:13 -0800 (PST)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5fa52e173f7so33196057b3.3;
-        Fri, 12 Jan 2024 06:13:12 -0800 (PST)
-X-Received: by 2002:a05:690c:7:b0:5fb:86a1:3e57 with SMTP id
- bc7-20020a05690c000700b005fb86a13e57mr1510809ywb.39.1705068792784; Fri, 12
- Jan 2024 06:13:12 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B61C6BB41;
+	Fri, 12 Jan 2024 14:20:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDDD7C433C7;
+	Fri, 12 Jan 2024 14:20:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705069221;
+	bh=zmlC6jkMelq285ECzm84F7pJRpHbtewNs6IurYJ0/EM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=K/2TkSzwlKIvIFYzFvUSp7Lg4gjIlDR9tPEg0iGi282ybmiyDw7wMISWdGupf5F4J
+	 VX3Rp0AioRhHA7gWiKoOCWY1t/6DGST6UDp2Nt1u0psSL8dcwkfszVuMRCQGbBJEJC
+	 q2SkJl392wwe2DahvMB5LLm4lI9R7e7ynEPPzvXwpHEpghxz66SskoRpgEP565I+RF
+	 ApvkRqhD8HLTinyc7vdzCVCxaPJ1Uk+zENq20+NWUOcNJKL3CPjCL7IoKR+/tBMyx8
+	 v059iRjQa93nv+5DSN9ooL0L+JLQK+7vkE5OSWfXmwcHUUJuFvLdSoZaZoIAYB1/jF
+	 imbCsXe6C14vA==
+Date: Fri, 12 Jan 2024 08:20:18 -0600
+From: Rob Herring <robh@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunfeng.yun@mediatek.com, gregkh@linuxfoundation.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, linux@roeck-us.net,
+	heikki.krogerus@linux.intel.com, cy_huang@richtek.com,
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH 1/2] dt-bindings: usb: mt6360-tcpc: Rename IRQ to PD-IRQB
+Message-ID: <20240112142018.GA3127117-robh@kernel.org>
+References: <20240112094538.65639-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87edeqgfbu.wl-kuninori.morimoto.gx@renesas.com> <878r4ygfap.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <878r4ygfap.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 12 Jan 2024 15:13:01 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVq8gjv=NFQdN0PcMoQsZ8QWYF0A9sej1mLPPF_SOSS-Q@mail.gmail.com>
-Message-ID: <CAMuHMdVq8gjv=NFQdN0PcMoQsZ8QWYF0A9sej1mLPPF_SOSS-Q@mail.gmail.com>
-Subject: Re: [PATCH v5 resend 4/4] drivers: clk: renesas: ignore all clocks
- which are assigned to non-Linux system
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240112094538.65639-1-angelogioacchino.delregno@collabora.com>
 
-On Wed, Jan 10, 2024 at 2:15=E2=80=AFAM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> Some boards might use Linux and another OS at the same time. In such
-> case, currently, during booting, Linux will stop necessary module clocks
-> which are not used on the Linux side, but are used by another OS.
->
-> To avoid such situation, renesas-cpg-mssr tries to find
-> status =3D "reserved" devices (A), and adds CLK_IGNORE_UNUSED flag to its
-> <&cgp CPG_MOD xxx> clock (B).
->
-> Table 2.4: Values for status property
-> https://github.com/devicetree-org/devicetree-specification/releases/downl=
-oad/v0.4/devicetree-specification-v0.4.pdf
->
-> "reserved"
->         Indicates that the device is operational, but should not be
->         used. Typically this is used for devices that are controlled
->         by another software component, such as platform firmware.
->
-> ex)
->         scif5: serial@e6f30000 {
->                 ...
-> (B)             clocks =3D <&cpg CPG_MOD 202>,
->                          <&cpg CPG_CORE R8A7795_CLK_S3D1>,
->                          <&scif_clk>;
->                 ...
-> (A)             status =3D "reserved";
->         };
->
-> Cc: Aymeric Aillet <aymeric.aillet@iot.bzh>
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> Tested-by: Yusuke Goda <yusuke.goda.sx@renesas.com>
+On Fri, Jan 12, 2024 at 10:45:37AM +0100, AngeloGioacchino Del Regno wrote:
+> Since there is no user yet, rename the only interrupt of this device
+> to "PD-IRQB", avoiding underscores.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+It is primarily node and property names that have this recommendation, 
+not so much -names values.
 
-Gr{oetje,eeting}s,
+If there is only 1 interrupt, I'd just drop the name.
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml         | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+> index 053264e60583..0bea23ce2f09 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+> @@ -24,7 +24,7 @@ properties:
+>  
+>    interrupt-names:
+>      items:
+> -      - const: PD_IRQB
+> +      - const: PD-IRQB
+>  
+>    connector:
+>      type: object
+> @@ -58,7 +58,7 @@ examples:
+>          tcpc {
+>            compatible = "mediatek,mt6360-tcpc";
+>            interrupts-extended = <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
+> -          interrupt-names = "PD_IRQB";
+> +          interrupt-names = "PD-IRQB";
+>  
+>            connector {
+>              compatible = "usb-c-connector";
+> -- 
+> 2.43.0
+> 
 
