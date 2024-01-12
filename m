@@ -1,207 +1,291 @@
-Return-Path: <devicetree+bounces-31672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AD4382C2BE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:32:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AB582C2C3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:32:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8C2C1F22043
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:32:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C30D71F23CA1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:32:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B496EB52;
-	Fri, 12 Jan 2024 15:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE48B6EB5F;
+	Fri, 12 Jan 2024 15:32:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="qsrBPTyr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LjUwMWRM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2071.outbound.protection.outlook.com [40.107.15.71])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0AE96E2D4;
-	Fri, 12 Jan 2024 15:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MhytvMYvjpWKwH0TBq2V0NxyRuOmyjTJJtRQFdeFjty6djT4PweHMFTCjU4rctm62u6N9N6f7n9tIupVtCbGCH+GfUG4ih/qjF/M6Xgq3jhxMg8BaqcicKXoTwH/VFpcZs8sSlpHzDZRojaBdnSGO6NG9osLrrlEBkSgU3wZBbqMoO8t5wg/1Vdcr9EqHfc7WKuP1/1nfo6tx/MQdr0cLrAFdcjRtMxGwILdPSQhFxCr0QO0v7uj3AsY3YpF5g/+iGzxqGgE43bJlKfFLA4wznkCMEzlhwgWxwwlMm76VMkdJl+Cxu3ccVKhSn8mYZxC1gp+JT9yTdBciGOBD2qqcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wATM4zZCZ7tCk2lVZCkwvvfE9iYI9FEXKTsokR23NcQ=;
- b=TI6NaAO0NSThzm9pSax3BfznTIcCsIPxWhyZ24zdWeBAJMbfwvnqZy5o2TYMZDyfVXnt24YLpcoqF/KRU5n2dJpBLUlUKJ1U09xKijuvw3cmd92YOVAcoY3VOiShwy1TrJiE2WdwmeqWTchWN0I5fU3iegHCTiUN/NECvyayRz/RCaTA2m7o0aM39CzxHYRxRV066cF6Zc9nYpu2jKN9MiyH5fsr18Aq3Deat2KbDQWdsZVLlLx7zfML8Ej4MvmV83UkZbfgixN4lMUvH37kQXF3TtwEYtSzKGoFj0Q+VJGxf3k1GCoRAvYo+ij30QsmoSDXD6C2xHU0NeN8d+Ps4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wATM4zZCZ7tCk2lVZCkwvvfE9iYI9FEXKTsokR23NcQ=;
- b=qsrBPTyrgml137ZW6xfHhGxtLCXnF/rLULeN2mSKGo0P387XERbvoZmUIDTybXh8UaWg678MvIN9DTSfH4xrF+Qyy/oW2eES4mTgvgAYeVO8e7Dw8ib3L83rtlr55jih0bImBBIfdnxmnEMuCwYDs+uVr71TXJfDeZw5k6VuBmU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB7511.eurprd04.prod.outlook.com (2603:10a6:20b:23f::5)
- by AM9PR04MB8587.eurprd04.prod.outlook.com (2603:10a6:20b:43a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.21; Fri, 12 Jan
- 2024 15:32:06 +0000
-Received: from AS8PR04MB7511.eurprd04.prod.outlook.com
- ([fe80::8ee3:bac5:a2da:d469]) by AS8PR04MB7511.eurprd04.prod.outlook.com
- ([fe80::8ee3:bac5:a2da:d469%4]) with mapi id 15.20.7181.019; Fri, 12 Jan 2024
- 15:32:06 +0000
-Date: Fri, 12 Jan 2024 10:31:57 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh@kernel.org, alexandre.belloni@bootlin.com,
-	conor.culhane@silvaco.com, gregkh@linuxfoundation.org,
-	imx@lists.linux.dev, jirislaby@kernel.org, joe@perches.com,
-	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, miquel.raynal@bootlin.com,
-	zbigniew.lukwinski@linux.intel.com, devicetree@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
- silvaco,i3c-target-v1
-Message-ID: <ZaFbbeQrC7o2dchO@lizhi-Precision-Tower-5810>
-References: <20240110175221.2335480-1-Frank.Li@nxp.com>
- <20240110175221.2335480-3-Frank.Li@nxp.com>
- <3c0be658-e7a6-4231-b206-86ffb47e0cb2@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3c0be658-e7a6-4231-b206-86ffb47e0cb2@linaro.org>
-X-ClientProxiedBy: BY3PR10CA0024.namprd10.prod.outlook.com
- (2603:10b6:a03:255::29) To AS8PR04MB7511.eurprd04.prod.outlook.com
- (2603:10a6:20b:23f::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8556EB4C;
+	Fri, 12 Jan 2024 15:32:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D888EC43399;
+	Fri, 12 Jan 2024 15:32:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705073550;
+	bh=wmOL8t5NR/xPSMgkZHegKI+IyLdAz1AEkzYz2/dO+og=;
+	h=Date:From:To:Cc:Subject:From;
+	b=LjUwMWRMgJtMW0EV7GaNr3R5Lbzf97VZ/zEm6UVo0n7MMIM9OMudPoeXFiJknZGW9
+	 jr8Hbf6+/JV0RnHaKHXavspaQEg19Op2etriTPlfEWKPsGya3xqnDXvwxs47f644QW
+	 wd/Yi1omLcPSRoFU67V8c2hXEhVN7gWO7ibexijA8lB4tpWfc3tWyuAb6TtpPtXeSK
+	 xwt0+L4+f2nQE5/a37qNRmz866bk8t9NyyVdTTWu00dUAS7PlGBdQZIh5cvxsdU1kP
+	 SXNGu4YM18E8JlfiEtdUIC0czhJL0/wjzXVHOcYyQW8TRfmeFNXfY/RCEeuR57okb1
+	 oHZftgB7BIWFQ==
+Date: Fri, 12 Jan 2024 09:32:27 -0600
+From: Rob Herring <robh@kernel.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Frank Rowand <frowand.list@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree updates for v6.8
+Message-ID: <20240112153227.GA3368286-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB7511:EE_|AM9PR04MB8587:EE_
-X-MS-Office365-Filtering-Correlation-Id: 70c22be5-4b97-4ad0-468a-08dc1383a21b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	3puNpD9nWkTp3RD0hGwRKbdY7tmRIKj/GoGt7l48/mAQvl2sMwLi3bLnEjG7Ggp7HduUzh1qW77WsjCinlx6z9e3k/TmaZSd4xc03urbOtMMtjW2E4ryxAyEDdlAfs2N6dUfom5z0EXAeyvoX9DtKtfTEeWPO6+4UGmuGmZLqhoneJDElWOItu46HYznFso3DlPdhu3+dgwjfi2MmYlhP3SVx8pT7LdbwQeeu5YCtBdwYgnn7mgKYFq63dKyTdb8rIoYty/i8EtdiGvY2NOKMnW7cFDQ7u4BeIK0fdXnruMDGCp/7NdWX+gbnkN2ZyRXHVSUVZYgD4EjOSO/CA2D5MFVm3FuLcI8aCRilFyzPBzm4hCo5Nt2+yl+GtwBdgPfOYMyva5DggxYR/E0LtuylXiZiEYJRBl59cj0ypr4KrDBiCK7K6GZhZD9F++L7DPgdtCMW0NYKjpQ1DOePwUaGcJdTQF1YQ9GCeAgSBYTX8h5ZbxBRkIxIa8w6NoIQM9kYo8dKGvpMntXGiynAmXDNCoA+5tTVsC41Gw0m34PnSmiveSDx9XfRJg0RFThXnc+AMfIfD0NSwtsmo6R7SLr5qVwVDBagbrvnOTWkxRXm8Y=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB7511.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(346002)(136003)(396003)(39860400002)(376002)(366004)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(38350700005)(966005)(9686003)(6486002)(52116002)(53546011)(478600001)(86362001)(26005)(83380400001)(5660300002)(7416002)(316002)(2906002)(8676002)(6916009)(4326008)(6512007)(6506007)(6666004)(8936002)(38100700002)(41300700001)(33716001)(66946007)(66556008)(66476007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?/S+t7vNsct13en7nznmauhkMSvzQ14QClsqxIEShBaJ8yn2qPtJk3LrCNmt/?=
- =?us-ascii?Q?r0VBgxPcRpXGWXxQmttj1bG0vnwKKl4+eQ06geKVfwWSlSp+6wPpZEq0LrUf?=
- =?us-ascii?Q?D0vCYSWd2S+Iyv1ukeaO4QbQzvlLnW2nRjzWBpa22cBkKb9RUZQ0CmuKlR1C?=
- =?us-ascii?Q?Y81ZMH08Eqx/QOGdlUHGpDRjZfH+cLzVfydROuhQA2n0IGhuuSJ8cyV76uGi?=
- =?us-ascii?Q?7nMAylYDwrCR1MTRo8ztKG8RMp0Th41UoyCogrEzrLxdFrd4a6SVVUKopSKn?=
- =?us-ascii?Q?N0DXnToLJ5zKJg2ZxiVlsh4mromAi0/9Qsc8bbVW1wwX4fTyCi5FNLGqMGBw?=
- =?us-ascii?Q?I6jQWMEiJWvUrL10aN6b1SFIdbE8PhHv0edm2gkkCGugeOEjI3wG6LttXOtY?=
- =?us-ascii?Q?7bvWWmHNm3ZmCoO/h5wWoo4vRI9DvTrcqOP21Ynim4VTjDKqhEiR5WIy4YMh?=
- =?us-ascii?Q?VrY92dOTo3fSYJpH6wAEN4DwId1DQtBVT42E+Ag/13RqeEUBvU3ISbUg8o2N?=
- =?us-ascii?Q?WDyO9vmHh6VcPDdAYcfoc1dAkCTWeYlffgePQOCTocOgJ3WsWXCtpWHQ4X3R?=
- =?us-ascii?Q?Gp2bygNWDoExhh4fsXZ9chN9VVdsaojoDo+Uts++U9YEnmhuCFIVoUf7cviX?=
- =?us-ascii?Q?V+IV5LqmwcvmtJ74cbmAVkIZG4GHk+013AeIr3jjom+qOf3UGK/J45X53gVi?=
- =?us-ascii?Q?jBzmjybCkkuPmfTgBe7d/73jOiSHNc7as4CtJAmWTYKXIPuL1whJa+sgE/+Z?=
- =?us-ascii?Q?S1NNaLg/fwRoxFlQryWdp6r6/zwZHYD9aMjJhW7ht5cgxaQ7T4eXbGOcpbNz?=
- =?us-ascii?Q?mOsgh/ph3q2x1rnVFs9SzAQvmgZnHAMqzeoe4biZODCy/j/pF6xch0tVySu0?=
- =?us-ascii?Q?hZN96HjWeK13gsDU8rDEkM0JWSJos5Zvb5OeI2F+uqn5vFUj+wQ+uvIY5yvt?=
- =?us-ascii?Q?OJZbLloONOc9DalsX5C8BcRqvInYGhzVDVaMaoDQ0RdTdmPWVQ9Rj+20fQHP?=
- =?us-ascii?Q?Z7H1Qzs9Ac1mWbcYrm6wpcQM6inisy9wxFShFcHYCqdClwxuSqbCTEL4R7rh?=
- =?us-ascii?Q?XPwUxYiugtZ1ExU6onfLhNsAjEotZ0JYlxSsqHLhZVFPHRmzpghsYpi9Dapu?=
- =?us-ascii?Q?PElvjBuIKnRAYCgAr6dsy926pX33VeF55HU7WnMVkkhGbeqtMvlu6dcPneYt?=
- =?us-ascii?Q?6KrIXl+iA6ZxBYn/eWUApRuaWCxPo5Qugimh7kq1UNV7PNHBbGRopiea4vF+?=
- =?us-ascii?Q?CPiC5frNsP5hUJ6EA4SHfoQ3N/b42wgZkK1bvBs4TwFpQMfq7fPhjzZP2sG7?=
- =?us-ascii?Q?rsDEJL5S1zpJs/M5lzdUek1fB75IdorKdBOZsAZvIY5Z2x4Gn0VC9zQFC3dS?=
- =?us-ascii?Q?s+tuvaBGEYJQzoKtCD40dURDIaPkgi3NuP0lcao1v/i7jhHl2zHviWUKQ8a8?=
- =?us-ascii?Q?AcVwC1a8r3YlmXUJG8mU7c0s1E+JLOOtyKMwESAqwUEgjKS3KNRFbA+LK9na?=
- =?us-ascii?Q?lbQrwDpnXIfQWKmR9AKD6PP9w2DC6O6BTrJW1YMLBy5vfWDiGJnIKSGJ6i8n?=
- =?us-ascii?Q?LCnEW3tQUYiIFvlOqMAVOSZDUCPGFHD+UO4r5c2B?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 70c22be5-4b97-4ad0-468a-08dc1383a21b
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB7511.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2024 15:32:06.4140
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4Zx/m9Vrv8CFCgCZifQkqUpGOZWbETSjORNB+AU87n4OYFkEdcWwT/FeSo5ETzufFnOazMzv+gcICmx6RxbwXQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8587
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jan 12, 2024 at 08:38:39AM +0100, Krzysztof Kozlowski wrote:
-> On 10/01/2024 18:52, Frank Li wrote:
-> > Add compatible string 'silvaco,i3c-target-v1' for target mode.
-> 
-> Your subject has some multiple prefixes? Why there is one more ":"?
-> Just: add XYZ device
->
-> 
-> > 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  .../devicetree/bindings/i3c/silvaco,i3c-master.yaml        | 7 ++++---
-> >  1 file changed, 4 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
-> > index 133855f11b4f5..17849c91d4d2b 100644
-> > --- a/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
-> > +++ b/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml
-> > @@ -4,7 +4,7 @@
-> >  $id: http://devicetree.org/schemas/i3c/silvaco,i3c-master.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> > -title: Silvaco I3C master
-> > +title: Silvaco I3C master/target
-> >  
-> >  maintainers:
-> >    - Conor Culhane <conor.culhane@silvaco.com>
-> > @@ -14,8 +14,9 @@ allOf:
-> >  
-> >  properties:
-> >    compatible:
-> > -    const: silvaco,i3c-master-v1
-> 
-> NAK, you got comment, didn't you? Why did you ignore it? It's like third
-> time you try to push it ignoring what we keep asking. Pushing the same
-> without resolving anything in previous discussion is not acceptable and
-> it feels like waste of my time.
+Linus,
 
-I review previous comments. The previous RFC patches and I just want I3C
-expert review to check if there are comments about whole software
-architecture. Of course, thank you for your comments about "slave".
+Please pull DT updates for v6.8.
 
-Go back this binding doc problem. 
+Note that I have a final DT header detangling patch[1] to send as well. 
+I'll be doing that once all the dependencies are merged towards the end 
+of the merge window.
 
-  "No, it's the same device.
+Rob
 
-   Anyway, this was not tested.
+[1] https://lore.kernel.org/all/20231129164316.2663565-1-robh@kernel.org/
 
-   Please use scripts/get_maintainers.pl to get a list of necessary people
-   and lists to CC. It might happen, that command when run on an older
-   kernel, gives you outdated entries. Therefore please be sure you base
-   your patches on recent Linux kernel.
 
-   You missed at least devicetree list (maybe more), so this won't be
-   tested by automated tooling. Performing review on untested code might be
-   a waste of time, thus I will skip this patch entirely till you follow
-   the process allowing the patch to be tested.
+The following changes since commit b85ea95d086471afb4ad062012a4d73cd328fa86:
 
-   Please kindly resend and include all necessary To/Cc entries.
-   "
+  Linux 6.7-rc1 (2023-11-12 16:19:07 -0800)
 
-It is the same devices, work at difference mode (master  and target).
-what's do you want to change to?
+are available in the Git repository at:
 
-Copy to new file like pci/pci-ep? all context is the same, except for
-compatible string. 
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.8
 
-Frank
-> 
-> 
-> > -
-> 
-> Why are you removing the blank line?
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+for you to fetch changes up to 716089b417cf98d01f0dc1b39f9c47e1d7b4c965:
+
+  of: unittest: Fix of_count_phandle_with_args() expected value message (2024-01-11 16:18:30 -0600)
+
+----------------------------------------------------------------
+Devicetree for v6.8:
+
+- Convert FPGA bridge, all TPMs (finally), and Rockchip HDMI bindings to
+  schemas
+
+- Improvements in Samsung GPU schemas
+
+- A few more cases of dropping unneeded quotes in schemas
+
+- Merge QCom idle-states txt binding into common idle-states schema
+
+- Add X1E80100, SM8650, SM8650, and SDX75 SoCs to QCom Power Domain
+  Controller
+
+- Add NXP i.mx8dl to SCU PD
+
+- Add synaptics r63353 panel controller
+
+- Clarify the wording around the use of 'wakeup-source' property
+
+- Add a DTS coding style doc
+
+- Add smi vendor prefix
+
+- Fix DT_SCHEMA_FILES incorrect matching of paths outside the kernel
+  tree
+
+- Disable sysfb (e.g. EFI FB) when simple-framebuffer node is present
+
+- Fix double free in of_parse_phandle_with_args_map()
+
+- A couple of kerneldoc fixes
+
+----------------------------------------------------------------
+Abel Vesa (1):
+      dt-bindings: qcom,pdc: Add compatible for SM8550
+
+Alex Bee (1):
+      dt-bindings: display: rockchip,inno-hdmi: Document RK3128 compatible
+
+André Draszik (1):
+      dt-bindings: ignore paths outside kernel for DT_SCHEMA_FILES
+
+Christian A. Ehrhardt (1):
+      of: Fix double free in of_parse_phandle_with_args_map
+
+David Heidelberg (1):
+      dt-bindings: arm: merge qcom,idle-state with idle-state
+
+Fabio Estevam (1):
+      dt-bindings: power: fsl,scu-pd: Document imx8dl
+
+Geert Uytterhoeven (1):
+      of: unittest: Fix of_count_phandle_with_args() expected value message
+
+Javier Martinez Canillas (1):
+      of/platform: Disable sysfb if a simple-framebuffer node is found
+
+Johan Hovold (1):
+      of: fix recursion typo in kernel doc
+
+Johan Jonker (1):
+      dt-bindings: drm: rockchip: convert inno_hdmi-rockchip.txt to yaml
+
+Krzysztof Kozlowski (8):
+      dt-bindings: correct white-spaces in examples
+      docs: dt-bindings: add DTS Coding Style document
+      dt-bindings: gpu: samsung-rotator: drop redundant quotes
+      dt-bindings: gpu: samsung: re-order entries to match coding convention
+      dt-bindings: gpu: samsung: constrain clocks in top-level properties
+      dt-bindings: gpu: samsung-g2d: constrain iommus and power-domains
+      dt-bindings: gpu: samsung-scaler: constrain iommus and power-domains
+      dt-bindings: cache: qcom,llcc: correct QDU1000 reg entries
+
+Luca Ceresoli (1):
+      of: overlay: enable of_overlay_fdt_apply() kerneldoc
+
+Lukas Wunner (4):
+      dt-bindings: tpm: Consolidate TCG TIS bindings
+      dt-bindings: tpm: Convert Google Cr50 bindings to DT schema
+      dt-bindings: tpm: Convert IBM vTPM bindings to DT schema
+      dt-bindings: tpm: Document Microsoft fTPM bindings
+
+Mao Jinlong (1):
+      dt-bindings: arm: Add remote etm dt-binding
+
+Mark Hasemeyer (1):
+      dt-bindings: power: Clarify wording for wakeup-source property
+
+Michael Trimarchi (1):
+      dt-bindings: display: panel: Add synaptics r63353 panel controller
+
+Michal Simek (2):
+      dt-bindings: fpga: Convert bridge binding to yaml
+      dt-bindings: fpga: altera: Convert bridge bindings to yaml
+
+Muzammil Ashraf (1):
+      drivers: of: Fixed kernel doc warning
+
+Neil Armstrong (1):
+      dt-bindings: qcom,pdc: document the SM8650 Power Domain Controller
+
+Rob Herring (4):
+      dt-bindings: fsl,dpaa2-console: drop unneeded quotes
+      dt-bindings: arm/calxeda: drop unneeded quotes
+      media: dt-bindings: samsung,s5p-mfc: Fix iommu properties schemas
+      dt-bindings: mmc: sdhci-pxa: Fix 'regs' typo
+
+Rohit Agarwal (1):
+      dt-bindings: interrupt-controller: Add SDX75 PDC compatible
+
+Sibi Sankar (1):
+      dt-bindings: interrupt-controller: qcom,pdc: document pdc on X1E80100
+
+Yoshinori Sato (1):
+      dt-bindings: vendor-prefixes: Add smi
+
+ Documentation/devicetree/bindings/Makefile         |   2 +-
+ .../devicetree/bindings/arm/calxeda/l2ecc.yaml     |   2 +-
+ .../bindings/arm/msm/qcom,idle-state.txt           |  84 ---------
+ .../bindings/arm/qcom,coresight-remote-etm.yaml    |  51 ++++++
+ .../bindings/auxdisplay/hit,hd44780.yaml           |   2 +-
+ .../devicetree/bindings/cache/qcom,llcc.yaml       |   2 +-
+ .../bindings/clock/baikal,bt1-ccu-pll.yaml         |   2 +-
+ .../devicetree/bindings/cpu/idle-states.yaml       |  81 ++++++++-
+ .../bindings/display/panel/synaptics,r63353.yaml   |  61 +++++++
+ .../display/rockchip/inno_hdmi-rockchip.txt        |  49 ------
+ .../display/rockchip/rockchip,inno-hdmi.yaml       | 139 +++++++++++++++
+ .../devicetree/bindings/dts-coding-style.rst       | 196 +++++++++++++++++++++
+ .../bindings/fpga/altera-fpga2sdram-bridge.txt     |  13 --
+ .../bindings/fpga/altera-freeze-bridge.txt         |  20 ---
+ .../bindings/fpga/altera-hps2fpga-bridge.txt       |  36 ----
+ .../fpga/altr,freeze-bridge-controller.yaml        |  41 +++++
+ .../fpga/altr,socfpga-fpga2sdram-bridge.yaml       |  33 ++++
+ .../fpga/altr,socfpga-hps2fpga-bridge.yaml         |  49 ++++++
+ .../devicetree/bindings/fpga/fpga-bridge.txt       |  13 --
+ .../devicetree/bindings/fpga/fpga-bridge.yaml      |  30 ++++
+ .../bindings/fpga/xlnx,pr-decoupler.yaml           |   5 +-
+ .../devicetree/bindings/gpu/samsung-g2d.yaml       |  71 ++++----
+ .../devicetree/bindings/gpu/samsung-rotator.yaml   |   9 +-
+ .../devicetree/bindings/gpu/samsung-scaler.yaml    |  81 +++++----
+ .../devicetree/bindings/iio/adc/adi,ad7780.yaml    |   6 +-
+ .../bindings/iio/adc/qcom,spmi-iadc.yaml           |   2 +-
+ .../bindings/iio/adc/qcom,spmi-rradc.yaml          |   2 +-
+ Documentation/devicetree/bindings/index.rst        |   1 +
+ .../bindings/interrupt-controller/qcom,pdc.yaml    |   4 +
+ .../st,stih407-irq-syscfg.yaml                     |   4 +-
+ .../devicetree/bindings/media/samsung,s5p-mfc.yaml |  33 ++--
+ .../bindings/misc/fsl,dpaa2-console.yaml           |   2 +-
+ .../devicetree/bindings/mmc/arm,pl18x.yaml         |   2 +-
+ .../devicetree/bindings/mmc/sdhci-pxa.yaml         |   4 +-
+ Documentation/devicetree/bindings/net/sff,sfp.yaml |   2 +-
+ .../bindings/pci/toshiba,visconti-pcie.yaml        |   2 +-
+ .../bindings/pinctrl/renesas,rzg2l-pinctrl.yaml    |   6 +-
+ .../devicetree/bindings/power/fsl,scu-pd.yaml      |   1 +
+ .../bindings/power/supply/richtek,rt9455.yaml      |   8 +-
+ .../devicetree/bindings/power/wakeup-source.txt    |  18 +-
+ .../devicetree/bindings/regulator/mps,mp5416.yaml  |   4 +-
+ .../devicetree/bindings/regulator/mps,mpq7920.yaml |   4 +-
+ .../bindings/remoteproc/fsl,imx-rproc.yaml         |   8 +-
+ .../bindings/security/tpm/google,cr50.txt          |  19 --
+ .../devicetree/bindings/security/tpm/ibmvtpm.txt   |  41 -----
+ .../bindings/security/tpm/st33zp24-i2c.txt         |  34 ----
+ .../bindings/security/tpm/st33zp24-spi.txt         |  32 ----
+ .../devicetree/bindings/security/tpm/tpm-i2c.txt   |  26 ---
+ .../bindings/security/tpm/tpm_tis_mmio.txt         |  25 ---
+ .../bindings/security/tpm/tpm_tis_spi.txt          |  23 ---
+ .../devicetree/bindings/tpm/google,cr50.yaml       |  65 +++++++
+ .../devicetree/bindings/tpm/ibm,vtpm.yaml          | 104 +++++++++++
+ .../devicetree/bindings/tpm/microsoft,ftpm.yaml    |  47 +++++
+ .../devicetree/bindings/tpm/tcg,tpm-tis-i2c.yaml   |  90 ++++++++++
+ .../devicetree/bindings/tpm/tcg,tpm-tis-mmio.yaml  |  49 ++++++
+ .../devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml   |  75 ++++++++
+ .../devicetree/bindings/tpm/tpm-common.yaml        |  87 +++++++++
+ .../devicetree/bindings/trivial-devices.yaml       |  16 --
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ drivers/of/base.c                                  |   1 +
+ drivers/of/overlay.c                               |   2 +-
+ drivers/of/platform.c                              |  22 ++-
+ drivers/of/property.c                              |   7 +-
+ drivers/of/unittest-data/tests-phandle.dtsi        |  10 +-
+ drivers/of/unittest.c                              |  74 ++++----
+ 65 files changed, 1432 insertions(+), 604 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-remote-etm.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/synaptics,r63353.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/rockchip/inno_hdmi-rockchip.txt
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,inno-hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/dts-coding-style.rst
+ delete mode 100644 Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt
+ delete mode 100644 Documentation/devicetree/bindings/fpga/altera-freeze-bridge.txt
+ delete mode 100644 Documentation/devicetree/bindings/fpga/altera-hps2fpga-bridge.txt
+ create mode 100644 Documentation/devicetree/bindings/fpga/altr,freeze-bridge-controller.yaml
+ create mode 100644 Documentation/devicetree/bindings/fpga/altr,socfpga-fpga2sdram-bridge.yaml
+ create mode 100644 Documentation/devicetree/bindings/fpga/altr,socfpga-hps2fpga-bridge.yaml
+ delete mode 100644 Documentation/devicetree/bindings/fpga/fpga-bridge.txt
+ create mode 100644 Documentation/devicetree/bindings/fpga/fpga-bridge.yaml
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/google,cr50.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/ibmvtpm.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/st33zp24-i2c.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/st33zp24-spi.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-i2c.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_mmio.txt
+ delete mode 100644 Documentation/devicetree/bindings/security/tpm/tpm_tis_spi.txt
+ create mode 100644 Documentation/devicetree/bindings/tpm/google,cr50.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/microsoft,ftpm.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm-tis-i2c.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm-tis-mmio.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+ create mode 100644 Documentation/devicetree/bindings/tpm/tpm-common.yaml
 
