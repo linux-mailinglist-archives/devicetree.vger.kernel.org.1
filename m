@@ -1,155 +1,152 @@
-Return-Path: <devicetree+bounces-31663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD8E82C226
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:51:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 545E482C245
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:55:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D878B23A98
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:51:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D44AE1F25F13
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:55:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014B26E2A9;
-	Fri, 12 Jan 2024 14:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DE86EB55;
+	Fri, 12 Jan 2024 14:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Mdy1ArtD"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="neAeT8Xs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 752466DD1D
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 14:51:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40d87df95ddso67261395e9.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 06:51:40 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C54A76E2B0
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 14:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2cd64022164so64514731fa.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 06:55:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705071098; x=1705675898; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TOSFjCkguS/KVsZYh402qjCoXFgnZrrR1wyDruqxevI=;
-        b=Mdy1ArtDVT6LoTJsKsXKfcjjVA8Yi8hWXDT8KDppI7J6rp833w6+5Ik1C2N8FyqKfC
-         e7TmZsg8+diobUaNGYuu4LuiIIwA5wsv2wlpgOZJ4sxJPQGOEt2rWEJwTiPLHK5UWWZH
-         czw019XWvML0oMEzj/qmZ8xL/OeTn34ROLKIyLfGqLVA6WfMfijwh0FiEX5W6FHkVDtg
-         OQhq5en1Y+Ckbev6qo8metr7ynQ9eMWeiupg/lSvV8z22aJzpFibNe7OBmkPMK2Q5G19
-         aiBR2c2rKfoeEMhH0P1Bqz8MvkRTC2jN2zhWsk93nxYLdi3j5YMU9BRhmuAk8U+qyvf3
-         IOnQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1705071325; x=1705676125; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+L9xJDVEsE7V3csU6sYKZtbMRfUFtdtCzJGzvU7993M=;
+        b=neAeT8XsY2KdELItdqx8vka/T7u8iZ1br+YyzJ66sp++PsaSwbcpzQBbafe7kn4Yup
+         ob/fgH1cbZ54UfcRoXIcwbwIUuEK8cbNxm/y/BAFdWYhGVJ3BPdFwNmGmelgLiylWH6x
+         5euzjlgFG8peaiL1Yju9cW5Jtnkq9SMTtrUAkkQXjSa1p0A4rUEpOxw3+sZZCgZsYhKG
+         D7U64C3EKTZ1n1p+WGVNduEy2gZHvIlj2/495fUKi/T2zkcJGxDjIvBqS7DclZRZoF3c
+         Vn87/dvtQd6g/ZQZj7yJGLnuF+DFXSqPVvA+lYX847xapKRI0JcVyZsW108ekSQEA+zJ
+         Ya2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705071098; x=1705675898;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TOSFjCkguS/KVsZYh402qjCoXFgnZrrR1wyDruqxevI=;
-        b=sCnvxL8tvfxflm+OWHcjRZzKKUWfqDFAOmdd80NXg6xPLAaBugnuTO69g6zmbSc6i+
-         WI2vc6+GJ0zw2E0yZ3uemaqSf/0upt4pY+aXz0THXvRbHrVlS5mWLXx+PG3IcJOqYpjZ
-         jU4d2o9xpZ39BD9ORfiJJLAhWN2erMM3JUV3CBJFLd0RLQiFbehy7Hj9L+zC5psPz9zI
-         /R3nYs+WGeCvF+042YkOZ66M5uTx/2gpgiut/zfTC5rRIWPdD7U2DMMMt99Oh2GVjb4Z
-         fQRXaaPnEepFu8jBdTqFi1tJYIHcwJJr0b1cx80vCnDBEJ+g84qumKNInHY9WiGK6uZB
-         Gw1A==
-X-Gm-Message-State: AOJu0YysIeFlIaeVzcgxubtpcc0Pssr5enZc6B/jEj73uvkVWj+/7kz7
-	/8ovr6abKIu6qaxfWA2cp++REn6AqGJnag==
-X-Google-Smtp-Source: AGHT+IF0mssoThvYgPqfb+ZUjufV4nZcHM3gPcikNdB2SUvSjVwVM0LW3bt7DTyY9wfuRALkWPnW3w==
-X-Received: by 2002:a05:600c:2101:b0:40e:5afe:a42e with SMTP id u1-20020a05600c210100b0040e5afea42emr429172wml.247.1705071098722;
-        Fri, 12 Jan 2024 06:51:38 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id s17-20020a05600c45d100b0040d3db8186fsm6136405wmo.5.2024.01.12.06.51.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 06:51:38 -0800 (PST)
-Message-ID: <84366aa2-e51e-4bce-a9d5-2420f1d9db0c@linaro.org>
-Date: Fri, 12 Jan 2024 15:51:36 +0100
+        d=1e100.net; s=20230601; t=1705071325; x=1705676125;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+L9xJDVEsE7V3csU6sYKZtbMRfUFtdtCzJGzvU7993M=;
+        b=GEKmznB8+7LnWaagCHY845N7mFORttYhXTMyhQ02CT+k5jf7m0GZ6NVpMEBukzxz8k
+         6J5Kb+z7PnjhQY7j2L7EKdeLZ91+WeDy4DRIiJHiPLu/doMQyjNrAQpx9m7fveUjgHoL
+         OH0uqLlo7fp9jeNluJIp0BBbNrnxJPVP4o3buQ7hAP4lXwoJE13RtK47Tp/FRkyg+0O2
+         GHTs8q0xfjreA6NJWDQxsjWzKQyQaGGCGcmOz+WWjHI3ekLgGePlMtlXXXLaONp6WjOs
+         kcYPO2ulxbl4P6PD87clQ337BhQDz4PLgpsFWQT5CXg2tA704C5ZMKDMLGuMPTvii6qe
+         VV5g==
+X-Gm-Message-State: AOJu0YzFcoqdlxyHSY35vBLHf8Qx714HzdhDRw3nDMb2c6v2iUVcJ8Jd
+	MkqsqVkIkuxaycXXiYwC7Wt5+afhMw03XKcOGOSmZrhF4VzkeQ==
+X-Google-Smtp-Source: AGHT+IHOBCkkSmKcJgoDfFQ2qfKU3lRx2F8RaRRCwSuhk/vh9byUp+s06T/ssB1/fybT50ECpPe/HwOtDD/JTDQsV8Q=
+X-Received: by 2002:a2e:b0d9:0:b0:2cc:f31b:56ea with SMTP id
+ g25-20020a2eb0d9000000b002ccf31b56eamr844666ljl.92.1705071324606; Fri, 12 Jan
+ 2024 06:55:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] arm64: dts: qcom: ipq9574: Add PPE device tree node
-Content-Language: en-US
-To: Jie Luo <quic_luoj@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com, quic_soni@quicinc.com,
- quic_pavir@quicinc.com, quic_souravp@quicinc.com, quic_linchen@quicinc.com,
- quic_leiwei@quicinc.com
-References: <20240110112059.2498-1-quic_luoj@quicinc.com>
- <20240110112059.2498-2-quic_luoj@quicinc.com>
- <a42718a9-d0f9-47d9-9ee8-fb520ed2a7a8@linaro.org>
- <de0ad768-05fa-4bb1-bcbc-0adb28cb2257@quicinc.com>
- <CAA8EJppeQdB4W8u0ux16pxBBwF_fpt1j-5aC0f849n9_iaaYtQ@mail.gmail.com>
- <6fc9e65a-709a-4923-b0b3-7c460199417a@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6fc9e65a-709a-4923-b0b3-7c460199417a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+ <20240109-axi-spi-engine-series-3-v1-10-e42c6a986580@baylibre.com> <20240112123759.00007440@Huawei.com>
+In-Reply-To: <20240112123759.00007440@Huawei.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Fri, 12 Jan 2024 08:55:13 -0600
+Message-ID: <CAMknhBHOEQ7vs9S=SFPxDPsKFWdoWe4EtxU_8+M=h7gDH83Afw@mail.gmail.com>
+Subject: Re: [PATCH 10/13] iio: buffer: dmaengine: export devm_iio_dmaengine_buffer_alloc()
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Hennerich <michael.hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Frank Rowand <frowand.list@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/01/2024 15:40, Jie Luo wrote:
->>
->>  From the first glance, the bindings do not follow upstream principles.
->> You have all the settings (tdm, port config, etc) in the DT, while
->> they should instead go to the driver. Well, unless you expect that the
->> board might need to override them.
->>
-> Hi Dmitry,
-> The TDM configuration varies per SoC type, since the ethernet port 
-> capabilities of the SoCs vary. So we will have two different TDM 
-> configurations for IPQ5332 and IPQ9574 SoC. The driver also will
-> need to support future SoC, so we choose to configure this from the 
-> DTSI. The same reason applies to the port scheduler config as well.
+On Fri, Jan 12, 2024 at 6:38=E2=80=AFAM Jonathan Cameron
+<Jonathan.Cameron@huawei.com> wrote:
+>
+> On Wed, 10 Jan 2024 13:49:51 -0600
+> David Lechner <dlechner@baylibre.com> wrote:
+>
+> > This changes devm_iio_dmaengine_buffer_alloc() to an exported symbol.
+> > This will be used by drivers that need to allocate a DMA buffer without
+> > attaching it to an IIO device.
+> >
+> > Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > ---
+> >  Documentation/driver-api/driver-model/devres.rst   |  1 +
+> >  drivers/iio/buffer/Kconfig                         | 14 +++++++-------
+> >  drivers/iio/buffer/industrialio-buffer-dmaengine.c |  3 ++-
+> >  include/linux/iio/buffer-dmaengine.h               |  2 ++
+> >  4 files changed, 12 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/Documentation/driver-api/driver-model/devres.rst b/Documen=
+tation/driver-api/driver-model/devres.rst
+> > index b23d4a2b68a6..60e4b7ba38e5 100644
+> > --- a/Documentation/driver-api/driver-model/devres.rst
+> > +++ b/Documentation/driver-api/driver-model/devres.rst
+> > @@ -285,6 +285,7 @@ I2C
+> >  IIO
+> >    devm_iio_device_alloc()
+> >    devm_iio_device_register()
+> > +  devm_iio_dmaengine_buffer_alloc()
+> >    devm_iio_dmaengine_buffer_setup()
+> >    devm_iio_kfifo_buffer_setup()
+> >    devm_iio_kfifo_buffer_setup_ext()
+> > diff --git a/drivers/iio/buffer/Kconfig b/drivers/iio/buffer/Kconfig
+> > index 925c5bf074bc..27d82fb4bc4d 100644
+> > --- a/drivers/iio/buffer/Kconfig
+> > +++ b/drivers/iio/buffer/Kconfig
+> > @@ -40,6 +40,13 @@ config IIO_BUFFER_HW_CONSUMER
+> >         Should be selected by drivers that want to use the generic Hw c=
+onsumer
+> >         interface.
+> >
+> > +config IIO_HW_TRIGGERED_BUFFER
+> > +     tristate "Industrial I/O hardware triggered buffer support"
+> > +     select AUXILIARY_BUS
+> > +     select IIO_TRIGGER
+> > +     help
+> > +       Provides helper functions for setting up hardware triggered buf=
+fers.
+> > +
+> >  config IIO_KFIFO_BUF
+> >       tristate "Industrial I/O buffering based on kfifo"
+> >       help
+> > @@ -53,10 +60,3 @@ config IIO_TRIGGERED_BUFFER
+> >       select IIO_KFIFO_BUF
+> >       help
+> >         Provides helper functions for setting up triggered buffers.
+> > -
+> > -config IIO_HW_TRIGGERED_BUFFER
+> > -     tristate "Industrial I/O hardware triggered buffer support"
+> > -     select AUXILIARY_BUS
+> > -     select IIO_TRIGGER
+> > -     help
+> > -       Provides helper functions for setting up hardware triggered buf=
+fers.
+>
+> Why move this?
+>
 
-Your statements here confirm Dmitry suggestion, so these are not board
-specific and should go to the driver. Please read again Dmitry's sentences.
-
-Best regards,
-Krzysztof
-
+Oops, this shouldn't be here. Looks like an artifact from a botched
+rebase. The intention was to put it in alphabetical order.
 
