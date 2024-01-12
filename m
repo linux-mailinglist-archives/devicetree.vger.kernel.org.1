@@ -1,111 +1,194 @@
-Return-Path: <devicetree+bounces-31639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFA3D82C17D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:22:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D78882C184
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:22:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D28511C21186
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:22:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B96F8B21195
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E846DCE7;
-	Fri, 12 Jan 2024 14:21:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1916DCEB;
+	Fri, 12 Jan 2024 14:22:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LCM7Xpej"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F867537E6;
-	Fri, 12 Jan 2024 14:21:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5e784ce9bb8so52341757b3.0;
-        Fri, 12 Jan 2024 06:21:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705069313; x=1705674113;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=510mmNWz2HjFAJ0z2s1UHej0ZGwB83j7sW3JtjgmIVo=;
-        b=AScpU4jjFkXUJXLgFILg3EmycvVq8xYHyuVDKytqZPWdKF57Jn+00T5+LfLpbhJ3y4
-         8alQNhv3tK07SgPS0+8eCvvHk5qUL5B536Yw/fWQHa55bm8dKazkV/YcA7xEYdwRiORX
-         EYegs8XCsvUEpmiV0ThlsOyi6r86IjzQScJPbi/gfVYfk7rU3qyFhyj+buubHJsfdvKa
-         b5XN7WmFAX29LnbLV43uC0nvuVYpkfy+w3SFn/oVAcfRaceojg0B3EpZJljWFdSCStpH
-         R1NE4wfhJ0Aj2n48GsGkyvi4TJFCsD/8UwWavSu28kzPaRiv/aPelgiLASrlkjHyaycc
-         UiAg==
-X-Gm-Message-State: AOJu0YwMOBogPSE3fe6n5coJnh113x8ixavBXttLNuf7EBhJdJE3hnOm
-	deLimzDZu2riy0l057ZZ3sMAj8piaBgO0w==
-X-Google-Smtp-Source: AGHT+IHIlh21hc4Sr0HZVdMo4jFRr3s0lw1rZu6d7Cv0tYYJpCHTA2KW98Tyci9KjjqhKZFm31I0Pg==
-X-Received: by 2002:a0d:d597:0:b0:5e4:8966:948f with SMTP id x145-20020a0dd597000000b005e48966948fmr1475712ywd.49.1705069313279;
-        Fri, 12 Jan 2024 06:21:53 -0800 (PST)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id j64-20020a819243000000b005ce93212c47sm1368190ywg.134.2024.01.12.06.21.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 06:21:53 -0800 (PST)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dbdb124491cso5132250276.1;
-        Fri, 12 Jan 2024 06:21:53 -0800 (PST)
-X-Received: by 2002:a25:8502:0:b0:dbd:73ad:9f2f with SMTP id
- w2-20020a258502000000b00dbd73ad9f2fmr497681ybk.17.1705069312892; Fri, 12 Jan
- 2024 06:21:52 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48253537E6;
+	Fri, 12 Jan 2024 14:22:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40CDGp7K005990;
+	Fri, 12 Jan 2024 14:22:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=Qm7o6bH8UVSUpx
+	L/qtsM2qZhfc8EIq6ci44HkAJiWTk=; b=LCM7Xpej1m+XX3xIhGq85Cx4YgTthg
+	uh7The2GByO2NsBSFx/p9WNxuUm4hfe4YnTe1U9FkFDCALLtdRLzIJbt8vM2NKIH
+	cxhR8gYrmqaOupM68RgMSaka/fX1gk1QDWb4xfgI7JjCG63+NEBBolW22qMeKdNI
+	5rmY/58NNI1PKls56lB9+6Luq4bDUSz7Bhr3sKpAL0RjTNWwHqWKG3RiGfjmd292
+	HM7TJEPjLsGlpSiRXPQAaihF083/jsj4aaHT4hq6m7hnaGFXcy1LkBcUwV9c6gkE
+	OOX+mVEYGHf/7bdO9GSqsKZ0zZ6l36s1u8x4qHsFaU+13IH7IrWkNCFQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vjrqj21pq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Jan 2024 14:22:21 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40CEMK9k012100
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Jan 2024 14:22:20 GMT
+Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 12 Jan 2024 06:22:13 -0800
+From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Subject: [PATCH v6 0/6] PCI: qcom: Add support for OPP
+Date: Fri, 12 Jan 2024 19:51:59 +0530
+Message-ID: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87edeqgfbu.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87edeqgfbu.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 12 Jan 2024 15:21:41 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV1GLYZGn_TgYbxfPakkLpUNTsP5hsEk9tUqLzpb5wOdQ@mail.gmail.com>
-Message-ID: <CAMuHMdV1GLYZGn_TgYbxfPakkLpUNTsP5hsEk9tUqLzpb5wOdQ@mail.gmail.com>
-Subject: Re: [PATCH v5 resend 0/4] drivers: clk: renesas: ignore all clocks
- which are assigned to non-Linux system
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Rob Herring <robh@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAlLoWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyzHQUlJIzE
+ vPSU3UzU4B8JSMDIxMDQ0Mj3fyCgvji0oKC/KISXeNEQwtjy2SzRENzQyWgjoKi1LTMCrBp0bG
+ 1tQBPdsBfXQAAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "Lorenzo
+ Pieralisi" <lpieralisi@kernel.org>,
+        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+	<kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Brian Masney <bmasney@redhat.com>, Georgi Djakov <djakov@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <vireshk@kernel.org>,
+        <quic_vbadigan@quicinc.com>, <quic_skananth@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Krishna
+ chaitanya chundru" <quic_krichai@quicinc.com>,
+        <stable@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Manivannan Sadhasivam
+	<mani@kernel.org>
+X-Mailer: b4 0.13-dev-83828
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1705069332; l=3741;
+ i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
+ bh=9kevASbFSlCa+E9D4QNcPS8Hm0GHBKXoPdtlEYKpU/I=;
+ b=TkbG+97xSskiAuMM7ujhw/fz19PSVsYk/JtTjmnxRbr7ObgM4feJbxMkSc5ZAa7JrhVEcfqzg
+ edWA125UvkMCSPCd7gq1LgaZPYRHWklNm74uwlxYon8RfuUI9li5Ne5
+X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
+ pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: E_e2NKtgP26VpO_TI45SSss7BBctYDWY
+X-Proofpoint-GUID: E_e2NKtgP26VpO_TI45SSss7BBctYDWY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ malwarescore=0 mlxlogscore=999 mlxscore=0 clxscore=1011 adultscore=0
+ phishscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401120113
 
-Hi Morimoto-san, Rob,
+This patch adds support for OPP to vote for the performance state of RPMH
+power domain based upon GEN speed it PCIe got enumerated.
 
-On Wed, Jan 10, 2024 at 2:14=E2=80=AFAM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> This is v5 resend of ignoring non Linux system assinged device.
+QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
+maintains hardware state of a regulator by performing max aggregation of
+the requests made by all of the processors.
 
-Thanks for the update!
+PCIe controller can operate on different RPMh performance state of power
+domain based up on the speed of the link. And this performance state varies
+from target to target.
 
-> v5 resend
->         - add Acked-by from Rob
+It is manadate to scale the performance state based up on the PCIe speed
+link operates so that SoC can run under optimum power conditions.
 
-You mean Reviewed-by?
-With an Acked-by, I wouldn't have to ask the next question ;-)
+Add Operating Performance Points(OPP) support to vote for RPMh state based
+upon GEN speed link is operating.
 
-Rob: How to proceed:
-  1. I give my Acked-by, you merge the series?
-  2. You give your Acked-by, I merge the series?
-  3. We do the immutable branch dance?
-       a. You apply 1-3 to an immutable branch
-       b. I merge the immutable branch and apply 4.
+Before link up PCIe driver will vote for the maximum performance state.
 
-You get to choose, as there are more DT than renesas-clk patches ;-)
+As now we are adding ICC BW vote in OPP, the ICC BW voting depends both
+GEN speed and link width using opp-level to indicate the opp entry table
+will be difficult.
 
-Thanks!
+In PCIe certain gen speeds like GEN1x2 & GEN2X1 or GEN3x2 & GEN4x1 use
+same icc bw if we use freq in the opp table to represent the PCIe Gen
+speed number of PCIe entries can reduced.
 
-Gr{oetje,eeting}s,
+So going back to use freq in the opp table instead of level.
 
-                        Geert
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+---
+Changes frm v5:
+	- Add ICC BW voting as part of OPP, rebase the latest kernel, and only
+	- either OPP or ICC BW voting will supported we removed the patch to
+	- return eror for icc opp update patch.
+	- As we added the icc bw voting in opp table I am not including reviewed
+	- by tags given in previous patch.
+	- Use opp freq to find opp entries as now we need to include pcie link
+	- also in to considerations.
+	- Add CPU-PCIe BW voting which is not present till now.
+	- Drop  PCI: qcom: Return error from 'qcom_pcie_icc_update' as either opp or icc bw
+	- only one executes and there is no need to fail if opp or icc update fails.
+	- Link for v5: https://lore.kernel.org/linux-arm-msm/20231101063323.GH2897@thinkpad/T/
+Changes from v4:
+	- Added a separate patch for returning error from the qcom_pcie_upadate
+	  and moved opp update logic to icc_update and used a bool variable to 
+	  update the opp.
+	- Addressed comments made by pavan.
+changes from v3:
+	- Removing the opp vote on suspend when the link is not up and link is not
+	  up and add debug prints as suggested by pavan.
+	- Added dev_pm_opp_find_level_floor API to find the highest opp to vote.
+changes from v2:
+	- Instead of using the freq based opp search use level based as suggested
+	  by Dmitry Baryshkov.
+Changes from v1:
+        - Addressed comments from Krzysztof Kozlowski.
+        - Added the rpmhpd_opp_xxx phandle as suggested by pavan.
+        - Added dev_pm_opp_set_opp API call which was missed on previous patch.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+---
+Krishna chaitanya chundru (6):
+      dt-bindings: PCI: qcom: Add interconnects path as required property
+      arm64: dts: qcom: sm8450: Add interconnect path to PCIe node
+      PCI: qcom: Add missing icc bandwidth vote for cpu to PCIe path
+      dt-bindings: pci: qcom: Add opp table
+      arm64: dts: qcom: sm8450: Add opp table support to PCIe
+      PCI: qcom: Add OPP support to scale performance state of power domain
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+ .../devicetree/bindings/pci/qcom,pcie.yaml         |   6 ++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi               |  82 +++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom.c             | 114 ++++++++++++++++++---
+ 3 files changed, 187 insertions(+), 15 deletions(-)
+---
+base-commit: 70d201a40823acba23899342d62bc2644051ad2e
+change-id: 20240112-opp_support-3a1839c6a171
+
+Best regards,
+-- 
+Krishna chaitanya chundru <quic_krichai@quicinc.com>
+
 
