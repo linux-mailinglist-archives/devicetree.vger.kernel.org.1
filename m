@@ -1,294 +1,133 @@
-Return-Path: <devicetree+bounces-31647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1343F82C1A4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:25:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E93282C1AD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:25:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 154D21C21D20
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:25:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 555C31C23755
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57406DD1F;
-	Fri, 12 Jan 2024 14:23:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 957556DCE9;
+	Fri, 12 Jan 2024 14:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Hg/wdzzR"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ME1AYTsv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D5E6DD18;
-	Fri, 12 Jan 2024 14:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40CC2RHK028246;
-	Fri, 12 Jan 2024 14:22:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=7A77C1bSS37WpSitpH9pPkRNIJBrqGXzPtEVUEKvxU0
-	=; b=Hg/wdzzRaYyPGgFhEXXGz4oYXUgFgM31Cw1FS9f7qPagR85b1h2LmN7YNXb
-	pJrNOQjRyuBkomfo+mejRiWAbsGmEYtb4AjsQbGmmqAlVGrdvGghvrAIb6W4x3Qd
-	QtvuUYi6pCCt6+zTaZP31PydiEQFd/Hw0/sKQvMS51J9NOKzREdH/E1XaJvKVZle
-	GyasjgPr9ceticLMjAarBcNP0wOx73fPfS+opklVHCnqdXPkMlm7SVJsoB5vgxH3
-	l8KSOcmPeRLNTXygF5TmvX8m2Cx15eU1+angIsijVWA1lwzgXBowyeuJ9oGdbp7i
-	mafs6M64ANYmU+NFhUdCwQiMukQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vjpuj28nh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 14:22:58 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40CEMvhb011779
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 14:22:57 GMT
-Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 12 Jan 2024 06:22:51 -0800
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Date: Fri, 12 Jan 2024 19:52:05 +0530
-Subject: [PATCH v6 6/6] PCI: qcom: Add OPP support to scale performance
- state of power domain
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D446C6BB45;
+	Fri, 12 Jan 2024 14:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40CEPcfP087825;
+	Fri, 12 Jan 2024 08:25:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1705069538;
+	bh=vrIOR55d4f+zfTazwATsPkDxflsXmVUUyKRUlABLwvg=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ME1AYTsvVj3lKj9pYvLghfQ+lD9PzIZLGhBDfKBUCivY8xPfTe6SoGYa9I5/g4Zkt
+	 IWKiKAe+kga5wit/ikFBY84ECh6uJfDIeHIRjP52o2VeVwpLtDlhFKk03u4tqE8/fh
+	 viMXw0uGjV6gS6Rji4FaZg3UJihU94LW94DvRs+8=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40CEPbCg100103
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 12 Jan 2024 08:25:38 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 12
+ Jan 2024 08:25:37 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 12 Jan 2024 08:25:37 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40CEPbwF030055;
+	Fri, 12 Jan 2024 08:25:37 -0600
+Date: Fri, 12 Jan 2024 08:25:37 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Sjoerd Simons <sjoerd@collabora.com>
+CC: <linux-arm-kernel@lists.infradead.org>, Roger Quadros <rogerq@kernel.org>,
+        <kernel@collabora.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am625-beagleplay: Use the builtin
+ mdio bus
+Message-ID: <20240112142537.axjy5risfe5lpnqc@quintet>
+References: <20240112124505.2054212-1-sjoerd@collabora.com>
+ <20240112135000.b54xz3boeua7y2jf@music>
+ <2ce27ed917b9bd569ee4a7f87b3d9b78d07cecbd.camel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240112-opp_support-v6-6-77bbf7d0cc37@quicinc.com>
-References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
-In-Reply-To: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "Lorenzo
- Pieralisi" <lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
-	<kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Brian Masney <bmasney@redhat.com>, Georgi Djakov <djakov@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <vireshk@kernel.org>,
-        <quic_vbadigan@quicinc.com>, <quic_skananth@quicinc.com>,
-        <quic_nitegupt@quicinc.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Krishna
- chaitanya chundru" <quic_krichai@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1705069333; l=5500;
- i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
- bh=j90gDVXur1PKhP/AIE1zWSnfJ/4AyiSuc4PM98r/tyk=;
- b=I0qelEpv6hI9WE5HwAfyM7UtoP9IdQDo7jn2wy1FJhhjEHyoMTNXpAKRVY/D4Mz4mqPOgc1Ei
- jPlnujLkhv3DNCOLZsv4bhBiiAmeR0uA8Ike/FI+Xe/zOksXuDtfoXT
-X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: WBGkdZ_8KCkw1k2mDAyTW110OJuKhEAK
-X-Proofpoint-ORIG-GUID: WBGkdZ_8KCkw1k2mDAyTW110OJuKhEAK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- mlxlogscore=999 lowpriorityscore=0 bulkscore=0 priorityscore=1501
- malwarescore=0 impostorscore=0 clxscore=1015 phishscore=0 suspectscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401120113
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <2ce27ed917b9bd569ee4a7f87b3d9b78d07cecbd.camel@collabora.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
-maintains hardware state of a regulator by performing max aggregation of
-the requests made by all of the processors.
+On 15:20-20240112, Sjoerd Simons wrote:
+> On Fri, 2024-01-12 at 07:50 -0600, Nishanth Menon wrote:
+> > On 13:44-20240112, Sjoerd Simons wrote:
+> > > The beagleplay dts was using a bit-bang gpio mdio bus as a work-
+> > > around
+> > > for errata i2329. However since commit d04807b80691 ("net:
+> > > ethernet: ti:
+> > > davinci_mdio: Add workaround for errata i2329") the mdio driver
+> > > itself
+> > > already takes care of this errata for effected silicon, which
+> > > landed
+> > > well before the beagleplay dts. So i suspect the reason for the
+> > > workaround in upstream was simply due to copying the vendor dts.
+> > > 
+> > > Switch the dts to the ti,cpsw-mdio instead so it described the
+> > > actual
+> > > hardware and is consistent with other AM625 based boards
+> > > 
+> > > Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+> > > 
+> > > ---
+> > 
+> > We have had issues with the ethernet integration previously (also why
+> > ethernet in u-boot is not yet functional on beagleplay[1]).
+> > 
+> > https://openbeagle.org/beagleplay/beagleplay/-/issues/101
+> > 
+> > we should probably do a 1000 boot nfs test or something to ensure
+> > this
+> > doesn't introduce regressions (I recollect mdio wasn't stable on
+> > beagleplay) and switching to bitbang driver stopped all complains.
+> 
+> I can do a longer test with that over the weekend sure; For reference
+> I'm seeing issues in u-boot as well on initial probe with these
+> changes, but i've not seen the same on the linux side.
+> 
+> Do you remember with what kernel versions users saw the mdio
+> instabilities? I wonder if that was a version with the commit mentioned
+> that includes the errata fix for the mdio driver.
+> 
 
-PCIe controller can operate on different RPMh performance state of power
-domain based up on the speed of the link. And this performance state varies
-from target to target.
+we were on TI 5.10 kernel (the image that went into production) and it
+did have errata fix (I am not sure if it is similar or same as what
+finally went into upstream now).. I have started an automated multiple
+boot test on my end as well..
 
-It is manadate to scale the performance state based up on the PCIe speed
-link operates so that SoC can run under optimum power conditions.
-
-Add Operating Performance Points(OPP) support to vote for RPMh state based
-upon GEN speed link is operating.
-
-OPP can handle ICC bw voting also, so move icc bw voting through opp
-framework if opp entries are present.
-
-In PCIe certain gen speeds like GEN1x2 & GEN2X1 or GEN3x2 & GEN4x1 use
-same icc bw and has frequency, so use frequency based search to reduce
-number of entries in the opp table.
-
-Don't initialize icc if opp is supported.
-
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 83 ++++++++++++++++++++++++++++------
- 1 file changed, 70 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index 035953f0b6d8..31512dc9d6ff 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -22,6 +22,7 @@
- #include <linux/of.h>
- #include <linux/of_gpio.h>
- #include <linux/pci.h>
-+#include <linux/pm_opp.h>
- #include <linux/pm_runtime.h>
- #include <linux/platform_device.h>
- #include <linux/phy/pcie.h>
-@@ -244,6 +245,7 @@ struct qcom_pcie {
- 	const struct qcom_pcie_cfg *cfg;
- 	struct dentry *debugfs;
- 	bool suspended;
-+	bool opp_supported;
- };
- 
- #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-@@ -1404,16 +1406,14 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
- 	return 0;
- }
- 
--static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
-+static void qcom_pcie_icc_opp_update(struct qcom_pcie *pcie)
- {
- 	struct dw_pcie *pci = pcie->pci;
--	u32 offset, status;
-+	u32 offset, status, freq;
-+	struct dev_pm_opp *opp;
- 	int speed, width;
- 	int ret;
- 
--	if (!pcie->icc_mem)
--		return;
--
- 	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
- 
-@@ -1424,11 +1424,42 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
- 	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
- 	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
- 
--	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
--	if (ret) {
--		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
--			ret);
-+	if (pcie->opp_supported) {
-+		switch (speed) {
-+		case 1:
-+			freq = 2500000;
-+			break;
-+		case 2:
-+			freq = 5000000;
-+			break;
-+		case 3:
-+			freq = 8000000;
-+			break;
-+		default:
-+			WARN_ON_ONCE(1);
-+			fallthrough;
-+		case 4:
-+			freq = 16000000;
-+			break;
-+		}
-+
-+		opp = dev_pm_opp_find_freq_exact(pci->dev, freq * width, true);
-+		if (!IS_ERR(opp)) {
-+			ret = dev_pm_opp_set_opp(pci->dev, opp);
-+			if (ret)
-+				dev_err(pci->dev, "Failed to set opp: freq %ld ret %d\n",
-+					dev_pm_opp_get_freq(opp), ret);
-+			dev_pm_opp_put(opp);
-+		}
-+	} else {
-+		ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
-+		if (ret) {
-+			dev_err(pci->dev, "failed to set interconnect bandwidth for pcie-mem: %d\n",
-+				ret);
-+		}
- 	}
-+
-+	return;
- }
- 
- static int qcom_pcie_link_transition_count(struct seq_file *s, void *data)
-@@ -1471,8 +1502,10 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
- static int qcom_pcie_probe(struct platform_device *pdev)
- {
- 	const struct qcom_pcie_cfg *pcie_cfg;
-+	unsigned long max_freq = INT_MAX;
- 	struct device *dev = &pdev->dev;
- 	struct qcom_pcie *pcie;
-+	struct dev_pm_opp *opp;
- 	struct dw_pcie_rp *pp;
- 	struct resource *res;
- 	struct dw_pcie *pci;
-@@ -1539,9 +1572,33 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_pm_runtime_put;
- 	}
- 
--	ret = qcom_pcie_icc_init(pcie);
--	if (ret)
-+	 /* OPP table is optional */
-+	ret = devm_pm_opp_of_add_table(dev);
-+	if (ret && ret != -ENODEV) {
-+		dev_err_probe(dev, ret, "Failed to add OPP table\n");
- 		goto err_pm_runtime_put;
-+	}
-+
-+	/* vote for max freq in the opp table if opp table is present */
-+	if (ret != -ENODEV) {
-+		opp = dev_pm_opp_find_freq_floor(dev, &max_freq);
-+		if (!IS_ERR(opp)) {
-+			ret = dev_pm_opp_set_opp(dev, opp);
-+			if (ret)
-+				dev_err_probe(pci->dev, ret,
-+					      "Failed to set opp: freq %ld\n",
-+					      dev_pm_opp_get_freq(opp));
-+			dev_pm_opp_put(opp);
-+		}
-+		pcie->opp_supported = true;
-+	}
-+
-+	/* Skip icc init if opp is supported as icc bw vote is handled by opp framework */
-+	if (!pcie->opp_supported) {
-+		ret = qcom_pcie_icc_init(pcie);
-+		if (ret)
-+			goto err_pm_runtime_put;
-+	}
- 
- 	ret = pcie->cfg->ops->get_resources(pcie);
- 	if (ret)
-@@ -1561,7 +1618,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_phy_exit;
- 	}
- 
--	qcom_pcie_icc_update(pcie);
-+	qcom_pcie_icc_opp_update(pcie);
- 
- 	if (pcie->mhi)
- 		qcom_pcie_init_debugfs(pcie);
-@@ -1640,7 +1697,7 @@ static int qcom_pcie_resume_noirq(struct device *dev)
- 		pcie->suspended = false;
- 	}
- 
--	qcom_pcie_icc_update(pcie);
-+	qcom_pcie_icc_opp_update(pcie);
- 
- 	return 0;
- }
+The signature as I recollect was spurious link Down and Up logs
+(though the cable is not physically disconnected).. been a bit of
+time.. so my memory on exact signature might be vague.
 
 -- 
-2.42.0
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
