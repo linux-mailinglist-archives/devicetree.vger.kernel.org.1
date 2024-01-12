@@ -1,232 +1,165 @@
-Return-Path: <devicetree+bounces-31633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 824BE82C125
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:52:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E0482C130
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:55:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0D3BB2312F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 13:52:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B2D21F21B58
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 13:55:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442836D1B3;
-	Fri, 12 Jan 2024 13:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="MoMDc32t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB436D1B6;
+	Fri, 12 Jan 2024 13:55:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BDC16BB40;
-	Fri, 12 Jan 2024 13:52:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40C8bMSh014558;
-	Fri, 12 Jan 2024 14:52:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=bQDWIGEUgxPtuigdQYbYpc8qQmx6+NnBxK0RzcsvHAk=; b=Mo
-	MDc32tNZ2bdXNePfuK2gQh17PuuNs5HDWkF7eC0e2Bp0QqQ4Fi9D3QoweqBAgHb7
-	5BwkGP5Ay1SVvg7oacZ4M6P09cD48CmFExeA8AM1n+G7rqU8chGQhz8+o3D4aZyU
-	32AoO6RFggFYb6q8fC0WqLeDYm2gy6deaScB8KdCaauewtSqx2mFApN0wvsEn35t
-	gG8UYxfdCR1nqK1Wh5XGv5QbWSqp5mp2/cCjBagOHFAzW68qsamp9/59kZoXPT8C
-	B/4nzc3m2m73SomaMBXTlfdSMibFVJeIkar3P0GIfhad8G3LaZh1izZZs/i+g1ru
-	HbFdBGkEFOLhjveIPeFQ==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vk22w9ab1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 14:52:28 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BCC1410002A;
-	Fri, 12 Jan 2024 14:52:27 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AA420215159;
-	Fri, 12 Jan 2024 14:52:27 +0100 (CET)
-Received: from [10.129.178.37] (10.129.178.37) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 12 Jan
- 2024 14:52:24 +0100
-Message-ID: <3552f3e5-01cc-4e95-a055-f7aea0f8dc4b@foss.st.com>
-Date: Fri, 12 Jan 2024 14:52:24 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFBE854747;
+	Fri, 12 Jan 2024 13:55:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5e734251f48so51365657b3.1;
+        Fri, 12 Jan 2024 05:55:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705067749; x=1705672549;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EGC/g2xK3NLCm39yP+e6r0PYYA1RCJNgKN4yfeuv1jg=;
+        b=j464jAxDojn+mpXZ8DF+0zxFhFgq2Fz7Btb3Td37lyyBNc4b8xkWpjihox/ClQ5N05
+         MfYx4nHRB2eikvVsagt7HSA6k4Wvcp8pmD8CcSuhmb21Xjd4GuQ5kZsDefg+T9PCQCzW
+         v3B6sHZMY99BU+28//x9yrmErQB27bf48npNneOWCCz1qjbhmp/RFARByyIDgFhBuIxE
+         e8yBfTxc/p0/LbCaSf8d3ugCKBHC3W8BVyq+cdHkmibeiSijgjZWRbFUE7AQJwhNyCQy
+         iTYZyARJXGfQ9+qj+yIzeVPh9JK/E04oxMu14AqfuNkXPz5Vi6GO5GoW/M0nlzqjpKlz
+         T7EQ==
+X-Gm-Message-State: AOJu0YzHAp6avRtMlUBZxlj46PBV0ERIDzbxLizyqH3ZCPNN5boqaENE
+	Ttjiqh0j67raZyudHCnNoPW2IbcXZu0AKw==
+X-Google-Smtp-Source: AGHT+IGi1dBhWOyIkyhYxPs19Jgh4+Mqa0q+fC5Sry7mDnl0KRNeAhVDlVuKH1WYpyeFATALIuFDeA==
+X-Received: by 2002:a81:a188:0:b0:5e7:6f9c:38fe with SMTP id y130-20020a81a188000000b005e76f9c38femr1363891ywg.46.1705067749663;
+        Fri, 12 Jan 2024 05:55:49 -0800 (PST)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id x203-20020a81a0d4000000b00583b144fe51sm1345771ywg.118.2024.01.12.05.55.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jan 2024 05:55:49 -0800 (PST)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dbed179f0faso5183234276.1;
+        Fri, 12 Jan 2024 05:55:49 -0800 (PST)
+X-Received: by 2002:a25:2e0c:0:b0:dbd:c783:c456 with SMTP id
+ u12-20020a252e0c000000b00dbdc783c456mr515265ybu.0.1705067749329; Fri, 12 Jan
+ 2024 05:55:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 4/5] ARM: dts: stm32: add display support on
- stm32f769-disco
-Content-Language: en-US
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        <linux-kernel@vger.kernel.org>
-CC: Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-amarula@amarulasolutions.com>, Lee Jones <lee@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20240111113146.16011-1-dario.binacchi@amarulasolutions.com>
- <20240111113146.16011-5-dario.binacchi@amarulasolutions.com>
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <20240111113146.16011-5-dario.binacchi@amarulasolutions.com>
+References: <20231227130810.2744550-1-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20231227130810.2744550-1-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 12 Jan 2024 14:55:37 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVnsJfOtZPpr+_MRNkx-bSXrCm8Hy_j6Gy58WnGn_kaMA@mail.gmail.com>
+Message-ID: <CAMuHMdVnsJfOtZPpr+_MRNkx-bSXrCm8Hy_j6Gy58WnGn_kaMA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: rzg3s-smarc: Add gpio keys
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-05_08,2024-01-05_01,2023-05-22_02
+Content-Transfer-Encoding: quoted-printable
 
+Hi Claudiu,
 
-On 1/11/24 12:31, Dario Binacchi wrote:
-> The patch adds display support on the stm32f769-disco board.
+On Wed, Dec 27, 2023 at 2:08=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> ---
+> RZ SMARC Carrier II board has 3 user buttons called USER_SW1, USER_SW2,
+> USER_SW3. Add a DT node in device tree to propertly instantiate the
+> gpio-keys driver for these buttons.
 >
-> (no changes since v1)
->
->  arch/arm/boot/dts/st/stm32f769-disco.dts | 72 +++++++++++++++++++++++-
->  1 file changed, 71 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/st/stm32f769-disco.dts b/arch/arm/boot/dts/st/stm32f769-disco.dts
-> index 8632bd866272..d1eb5f9c78bf 100644
-> --- a/arch/arm/boot/dts/st/stm32f769-disco.dts
-> +++ b/arch/arm/boot/dts/st/stm32f769-disco.dts
-> @@ -41,7 +41,7 @@
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> @@ -6,6 +6,7 @@
 >   */
->  
->  /dts-v1/;
-> -#include "stm32f746.dtsi"
-> +#include "stm32f769.dtsi"
->  #include "stm32f769-pinctrl.dtsi"
->  #include <dt-bindings/input/input.h>
+>
 >  #include <dt-bindings/gpio/gpio.h>
-> @@ -60,6 +60,19 @@ memory@c0000000 {
->  		reg = <0xC0000000 0x1000000>;
->  	};
->  
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		linux,dma {
-> +			compatible = "shared-dma-pool";
-> +			linux,dma-default;
-> +			no-map;
-> +			size = <0x100000>;
-> +		};
-> +	};
-> +
->  	aliases {
->  		serial0 = &usart1;
->  	};
-> @@ -85,6 +98,13 @@ button-0 {
->  		};
->  	};
->  
-> +	panel_backlight: panel-backlight {
-> +		compatible = "gpio-backlight";
-> +		gpios = <&gpioi 14 GPIO_ACTIVE_HIGH>;
-> +		default-on;
-> +		status = "okay";
-> +	};
-> +
->  	usbotg_hs_phy: usb-phy {
->  		#phy-cells = <0>;
->  		compatible = "usb-nop-xceiv";
-> @@ -114,6 +134,46 @@ &clk_hse {
->  	clock-frequency = <25000000>;
->  };
->  
-> +&dsi {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	status = "okay";
-> +
-> +	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		port@0 {
-> +			reg = <0>;
-> +			dsi_in: endpoint {
-> +				remote-endpoint = <&ltdc_out_dsi>;
-> +			};
-> +		};
-> +
-> +		port@1 {
-> +			reg = <1>;
-> +			dsi_out: endpoint {
-> +				remote-endpoint = <&dsi_panel_in>;
-> +			};
-> +		};
-> +	};
-> +
-> +	panel0: panel-dsi@0 {
-> +		compatible = "orisetech,otm8009a";
-> +		reg = <0>; /* dsi virtual channel (0..3) */
-> +		reset-gpios = <&gpioj 15 GPIO_ACTIVE_LOW>;
-> +		power-supply = <&vcc_3v3>;
-> +		backlight = <&panel_backlight>;
-> +		status = "okay";
-> +
-> +		port {
-> +			dsi_panel_in: endpoint {
-> +				remote-endpoint = <&dsi_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &i2c1 {
->  	pinctrl-0 = <&i2c1_pins_b>;
->  	pinctrl-names = "default";
-> @@ -122,6 +182,16 @@ &i2c1 {
->  	status = "okay";
->  };
->  
-> +&ltdc {
-> +	status = "okay";
-> +
-> +	port {
-> +		ltdc_out_dsi: endpoint@0 {
+> +#include <dt-bindings/input/input.h>
+>  #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+>
+>  / {
+> @@ -14,6 +15,37 @@ aliases {
+>                 mmc1 =3D &sdhi1;
+>         };
+>
+> +       keys {
 
-Hi Dario,
+Do you mind if I s/keys/keypad/ while applying? ...
 
-There is no need for unit name on this endpoint since it is alone.
-
-Otherwise it triggers this warning at build time :
-
-.../arch/arm/boot/dts/st/stm32f769-disco.dts:189.28-191.5: Warning
-(unit_address_vs_reg): /soc/display-controller@40016800/port/endpoint@0: node
-has a unit name, but no reg or ranges property
-
-.../arch/arm/boot/dts/st/stm32f769-disco.dts:189.28-191.5: Warning
-(unit_address_vs_reg): /soc/display-controller@40016800/port/endpoint@0: node
-has a unit name, but no reg or ranges property
-
-
-Regards,
-
-Raphaël
-
-> +			remote-endpoint = <&dsi_in>;
-> +		};
-> +	};
-> +};
+> +               compatible =3D "gpio-keys";
 > +
->  &rtc {
->  	status = "okay";
->  };
+> +               key-1 {
+> +                       interrupts =3D <RZG2L_GPIO(18, 0) IRQ_TYPE_EDGE_F=
+ALLING>;
+
+Oh, the horror of interrupt controllers that don't support generating
+interrupts on both edges...
+
+> +                       interrupt-parent =3D <&pinctrl>;
+
+... and move these one level up, to avoid duplication?
+
+> +                       linux,code =3D <KEY_1>;
+> +                       label =3D "USER_SW1";
+> +                       wakeup-source;
+> +                       debounce-interval =3D <20>;
+> +               };
+> +
+> +               key-2 {
+> +                       interrupts =3D <RZG2L_GPIO(0, 1) IRQ_TYPE_EDGE_FA=
+LLING>;
+> +                       interrupt-parent =3D <&pinctrl>;
+> +                       linux,code =3D <KEY_2>;
+> +                       label =3D "USER_SW2";
+> +                       wakeup-source;
+> +                       debounce-interval =3D <20>;
+> +               };
+> +
+> +               key-3 {
+> +                       interrupts =3D <RZG2L_GPIO(0, 3) IRQ_TYPE_EDGE_FA=
+LLING>;
+> +                       interrupt-parent =3D <&pinctrl>;
+> +                       linux,code =3D <KEY_3>;
+> +                       label =3D "USER_SW3";
+> +                       wakeup-source;
+> +                       debounce-interval =3D <20>;
+> +               };
+> +       };
+> +
+>         vcc_sdhi1: regulator-vcc-sdhi1 {
+>                 compatible =3D "regulator-fixed";
+>                 regulator-name =3D "SDHI1 Vcc";
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.9, with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
