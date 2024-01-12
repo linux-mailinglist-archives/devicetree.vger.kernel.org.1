@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0994982BBD3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:34:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5DB182BBD6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 08:35:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A5B71C24BAD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:34:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C22D281F29
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 07:35:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BD185C91B;
-	Fri, 12 Jan 2024 07:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD4B5C91C;
+	Fri, 12 Jan 2024 07:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kXhcK+xS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CkBATEBS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5700A5D727
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:34:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF9F5B5BF
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 07:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-50ec948ad31so5116666e87.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:34:49 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-336c5b5c163so3656189f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jan 2024 23:35:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705044888; x=1705649688; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705044942; x=1705649742; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ddS/24HTQnHz2ibEIady1e8z8N870H2ttPliU+CLMS0=;
-        b=kXhcK+xSpFu/qCZ9Z3oxNFA7b7YB6Q8z2nriHbNjlk3a/2xES+WUqzPMlYliODMEZE
-         EsjFIQTqblVmMfS95Zzp0Cv5vKB+cyQvCSrY9MPZePDGnpbaAKKcIJ/BNt3VUpk7TvON
-         iRydtRpjz6zWe5FjIW9f02HQksrhxGXzcB4ZByXAN97zZeLj4GT8/7tYu19r4wcCZlJ/
-         6yqZWjjiHEbNBcjS2Pr50aK5DQPh1jl6raO+mrkDwsZxMpskxS2J4OZsNtH4UbtXdX+b
-         sBjcgjZGzIro0IcL9zE50SGttxfAyD/CWnwgPwlmmQfEA2ZDyIKvxRWq5hhImfMzGSJa
-         MvXA==
+        bh=i8RXyMrbx6Hr2r1zY5r+vgTqculOuLcjeE55YqU9Wvs=;
+        b=CkBATEBS74e9g5Hvhw/HNjlKTZX1z40DHQcuc1GfH3pSRaLfQhveoCv6gZTrW044xO
+         Q9DCHSVp5K3hscsMOqTBmWvifnS2Pxko1VliLwcc6UaqsM2RrJoim+4BudRY5/yRypOt
+         2ocMxApPcXZFYf5Xu447FgyjRzL1axzuQ6wAXDjVLaz462CI/014UeNaPmwi5xi7YjQG
+         TN1fTpiP5jtyvkpmTjv4eN6pItEIJ073sUPRQNu5irXJTi//7j67qrJEcssi7e/+hLEu
+         Br5EF/73BwN55/7NUlj5CLNYEup0uARy23SZsOCrhiCvOVqSWKyKrPH+8R/s+6303bAb
+         iO4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705044888; x=1705649688;
+        d=1e100.net; s=20230601; t=1705044942; x=1705649742;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ddS/24HTQnHz2ibEIady1e8z8N870H2ttPliU+CLMS0=;
-        b=WPk+Bmp/Us01CCOj5xfVjEeypqVoITpARDeGPizoClYbelo1o2ghDsAjtVP286yeoD
-         Usim8UDL+D+mbW9eZ/OAhpZe2wHCGhQ2Z5/K0iUF+3+xFb1N5Dh9sZSNoH9t7Bl5cYt0
-         Uc1XW/RwEttkYNMljbR4nOUbUbVAX68b+em2CmYjbLNI8k9gWN3fERqKFLfWTcQXsl0N
-         1CE9G0osk80y1DTbe9SaE02AmVvGygtdIEAhbPbPUkXS9+KPSCiAclMFrB0Vdcc13Gwn
-         IwLF/Z8doDtEq/KxudElccBcT9IVbKQRLYKOCeQ+t3o0ngxwwSYUVtbNKGdqrAMMVjHQ
-         Y+WA==
-X-Gm-Message-State: AOJu0YwuePIOllop2nurf32l3y7S7811oF9BnbKbw8VJXcYB77jZuwbP
-	JQu3r2Qt+OqQwRcEtYWYg+YiTC3fqNr+Mw==
-X-Google-Smtp-Source: AGHT+IGuxKgoZqP/kgGeomhgGnbvEoFh+VmURoaSHImamIpRtQwUDl/qrL2+BHg3Q4xKqDq3OQvUcA==
-X-Received: by 2002:ac2:4d04:0:b0:50e:dbfe:df2 with SMTP id r4-20020ac24d04000000b0050edbfe0df2mr336704lfi.109.1705044888127;
-        Thu, 11 Jan 2024 23:34:48 -0800 (PST)
+        bh=i8RXyMrbx6Hr2r1zY5r+vgTqculOuLcjeE55YqU9Wvs=;
+        b=Myx9bBdqQ9Jf0hti9EPVmbbpn8GH7nuPnWxIHIvvlfUKLdfMo/Ur1kIAmaKEd7Da02
+         CToJfNI6C161muCkBnV1wbS2Hh72Wj1of/5kUeVqmtLOPzaTYNIN+45LzgWftwnCNAiH
+         76t6JUnaq20A1p9BVHbKrk7d1E7qknx1Xhgvg4Eo+CKFDD3XJ4klnh6Hf7AIhRrCcirB
+         Cb+HwT9Z6NMVTu0LcdwJam57tmMT68St8dr6lKjIO/5n0AKxbyvgUS13UmuC18z3rTQ0
+         BT2roOl6MaYAZ3EJ7YinD6uJ/G+eZWHSJS40wJInAEGM8HmQZ83JKQtG8Gjz1z7vcYkF
+         0t/w==
+X-Gm-Message-State: AOJu0Yy4eYY1VHRm4OKz8V0o3SqjviAAsyH2ZAXO1YKnq3SJiXaNxyQf
+	lDt9A57J2WpMworBBsZhBUsLSwkozgTG2g==
+X-Google-Smtp-Source: AGHT+IE3t6guwCPjVpNn/txwjvZie6PhBIVXbNlSCVZYTGIQb9PhEqj179AyFo06qyOu64EZ/qSvYg==
+X-Received: by 2002:adf:9794:0:b0:337:8274:a302 with SMTP id s20-20020adf9794000000b003378274a302mr462933wrb.23.1705044942112;
+        Thu, 11 Jan 2024 23:35:42 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id l26-20020adfb11a000000b0033762d4ad5asm3092792wra.81.2024.01.11.23.34.46
+        by smtp.gmail.com with ESMTPSA id l26-20020adfb11a000000b0033762d4ad5asm3092792wra.81.2024.01.11.23.35.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Jan 2024 23:34:47 -0800 (PST)
-Message-ID: <feb4e04f-8282-4b52-b785-07bf15008e06@linaro.org>
-Date: Fri, 12 Jan 2024 08:34:45 +0100
+        Thu, 11 Jan 2024 23:35:41 -0800 (PST)
+Message-ID: <2e3b0bcc-e57a-43b0-9f92-da4e3ff3d540@linaro.org>
+Date: Fri, 12 Jan 2024 08:35:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,23 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] dt-bindings: media: add mediatek ISP3.0 camsv
+Subject: Re: [PATCH 1/2] dt-bindings: bus: Document Broadcom GISB arbiter
+ 74165 compatible
 Content-Language: en-US
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Phi-bang Nguyen <pnguyen@baylibre.com>,
- Andy Hsieh <andy.hsieh@mediatek.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Florian Sylvestre <fsylvestre@baylibre.com>,
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+ linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- Louis Kuo <louis.kuo@mediatek.com>, Matthias Brugger
- <matthias.bgg@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Paul Elder <paul.elder@ideasonboard.com>, Rob Herring <robh+dt@kernel.org>
-References: <20240110141443.364655-1-jstephan@baylibre.com>
- <20240110141443.364655-3-jstephan@baylibre.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Bjorn Helgaas
+ <bhelgaas@google.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20240111231539.783785-1-florian.fainelli@broadcom.com>
+ <20240111231539.783785-2-florian.fainelli@broadcom.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,131 +126,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240110141443.364655-3-jstephan@baylibre.com>
+In-Reply-To: <20240111231539.783785-2-florian.fainelli@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/01/2024 15:14, Julien Stephan wrote:
-> From: Phi-bang Nguyen <pnguyen@baylibre.com>
+On 12/01/2024 00:15, Florian Fainelli wrote:
+> The 74165 chip introduces a new layout for the GISB arbiter which is not
+> identical to previous chips, document the new compatible that we are
+> going to key off.
 > 
-> This adds the bindings, for the ISP3.0 camsv module embedded in
-> some Mediatek SoC, such as the mt8365
-> 
-> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> Link: https://lore.kernel.org/r/20230807094940.329165-4-jstephan@baylibre.com
+> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
 > ---
->  .../bindings/media/mediatek,mt8365-camsv.yaml | 109 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
-> new file mode 100644
-> index 000000000000..097b1ab6bc72
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2023 MediaTek, BayLibre
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek,mt8365-camsv.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek CAMSV 3.0
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +  - Julien Stephan <jstephan@baylibre.com>
-> +  - Andy Hsieh <andy.hsieh@mediatek.com>
-> +
-> +description:
-> +  The CAMSV is a set of DMA engines connected to the SENINF CSI-2
-> +  receivers. The number of CAMSVs depend on the SoC model.
 
-DMA should not go to media, but to dma
-
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8365-camsv
-> +
-> +  reg:
-> +    items:
-> +      - description: camsv base
-> +      - description: img0 base
-> +      - description: tg base
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: cam clock
-> +      - description: camtg clock
-> +      - description: camsv clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: cam
-> +      - const: camtg
-> +      - const: camsv
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: connection point for camsv0
-
-This explains me nothing. What type of connection point? How does it fit
-the pipeline going to the display?
-
-It seems you represented DMA as some other device to make your drivers
-easier... That's not how it works.
-
-> +
-> +    required:
-> +      - port@0
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - iommus
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/mediatek,mt8365-clk.h>
-> +    #include <dt-bindings/memory/mediatek,mt8365-larb-port.h>
-> +    #include <dt-bindings/power/mediatek,mt8365-power.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        camsv1: camsv@15050000 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
