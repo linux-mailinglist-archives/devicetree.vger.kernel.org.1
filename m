@@ -1,106 +1,322 @@
-Return-Path: <devicetree+bounces-31623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4B8582C026
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 13:55:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B05A82C09C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:13:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC3361C21101
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 12:55:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CDE21C217BB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 13:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9BCC5EE9D;
-	Fri, 12 Jan 2024 12:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9370D6BB4F;
+	Fri, 12 Jan 2024 13:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="IUMXcYgw"
+	dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="cqxFlnPH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD12459B4E;
-	Fri, 12 Jan 2024 12:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40C8bGwb014393;
-	Fri, 12 Jan 2024 13:54:58 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=808zVNRDpa6s3QKZxLyhTp9fJbRkhQELOG0gvuy32Us=; b=IU
-	MXcYgwMO+p5NrXCwDBuYZrOXi4mGDjB+GMp1LL6ckjrgByt2+srDwii3BYOMkVVa
-	Y5y7MI6XyzrK0ANnjWcrby+ph7GXHEOShQOVp3rgAe5mH+ctgDjggS/JZut9wcNq
-	2THRefc8DHwg+BA4nE0+OBohebduXpGVekcdRdJtsL6uDyGro+pjSSaDQFCsw70x
-	eHzGrigmiBu0DsS/QKtoMkGYmncDG0l1GXSS9eCL8htAkw5q/ZCF21XfjdShxtg/
-	+8dk/HFrpkz2hsj1wNsZxzwY2sttGycPmD0P5IuK34IacVJJ8/GAG7hkDTTLzhKj
-	a2kL30oi1+CKsSL6Px4Q==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vk22u92v6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 13:54:58 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4879F10002A;
-	Fri, 12 Jan 2024 13:54:57 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3C38421230C;
-	Fri, 12 Jan 2024 13:54:57 +0100 (CET)
-Received: from [10.129.178.37] (10.129.178.37) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 12 Jan
- 2024 13:54:54 +0100
-Message-ID: <f255cb6a-44bc-4ee4-9a92-4301d43d2967@foss.st.com>
-Date: Fri, 12 Jan 2024 13:54:54 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFFC6BB3E
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 13:13:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ffwll.ch
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2cd7ebdd489so6010721fa.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 05:13:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google; t=1705065215; x=1705670015; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=x7MESFOqMbldu0jdAkEUCRW758Po4BcRceiIfnJUgcs=;
+        b=cqxFlnPHO69LD5aTtyfALGvzCdylQeOlaDJqKQ25mmtOm+glkX5AlnMaR91YulZqth
+         b802txLb1lYec96a1xwbfjwh3jGO0WIw2uTy/oWZsM0V+WwVYIVpfWZCduM8e8zwQ9No
+         pP1jk4ZUA31ion7LYMuAnA4zs3+2v4NY+f0ZA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705065215; x=1705670015;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=x7MESFOqMbldu0jdAkEUCRW758Po4BcRceiIfnJUgcs=;
+        b=sa29XuBtDnE8ERFD9mK5KHuLD17Kj5qL4Q/HEYYDIgl8PffjK+gZXdf1rINIRFAVHB
+         UMfiKqXxAn/rUJV1053bER6wiDcopJNAxQqv6bEcHboZCCt8ZSHuCKCQzf0yelY2BhvC
+         pil+LxYSOOKqMQ8eeF3HJwFOU/PMAR7hgU7U924x135A0lzV0jcy+OCKzciMqZsoZ7a1
+         EFfxxcwsx/yXSinXmm/EuFJYhn2sTDC66+wt1NUNEG1EF6nXk8MQHMZv238fiB9kiXj2
+         SJdPza57aHpn90i5yj6vPf8h6Lf5jMbiRNwcZ53m1hFVSBhdZ0R0v3Jx2kTCu8qH919i
+         0S1w==
+X-Gm-Message-State: AOJu0YwGAqVPczEUGhjKgEwQZNBkAe4MQBwqJrhpU5xcel2OUA6P2y3z
+	MzD/2nmufo7QQrfK8oZfzlI/t26t0aNZFw==
+X-Google-Smtp-Source: AGHT+IGDocnKA5u5Ry/6tcJ2qWsqvkAYYFcoQDwE3LVjDtNYc/uY2Ce4syB0oTLhh+z+YdT5+6GIXg==
+X-Received: by 2002:a19:8c4a:0:b0:50e:84f9:22dc with SMTP id i10-20020a198c4a000000b0050e84f922dcmr1041071lfj.2.1705065214674;
+        Fri, 12 Jan 2024 05:13:34 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+        by smtp.gmail.com with ESMTPSA id x25-20020a1709064bd900b00a28f54aacf1sm1789075ejv.185.2024.01.12.05.13.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Jan 2024 05:13:34 -0800 (PST)
+Date: Fri, 12 Jan 2024 14:13:32 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Jeffrey Kardatzke <jkardatzke@google.com>,
+	devicetree@vger.kernel.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	Singo Chang <singo.chang@mediatek.com>,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org,
+	Jason-ch Chen <jason-ch.chen@mediatek.com>,
+	Nancy Lin <nancy.lin@mediatek.com>,
+	linux-mediatek@lists.infradead.org,
+	Shawn Sung <shawn.sung@mediatek.com>,
+	Johnson Wang <johnson.wang@mediatek.com>,
+	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v3 03/11] drm/mediatek: Add secure buffer control flow to
+ mtk_drm_gem
+Message-ID: <ZaE6_I95IcxIUB4x@phenom.ffwll.local>
+Mail-Followup-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+	Jeffrey Kardatzke <jkardatzke@google.com>,
+	devicetree@vger.kernel.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	Singo Chang <singo.chang@mediatek.com>,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linaro-mm-sig@lists.linaro.org,
+	Jason-ch Chen <jason-ch.chen@mediatek.com>,
+	Nancy Lin <nancy.lin@mediatek.com>,
+	linux-mediatek@lists.infradead.org,
+	Shawn Sung <shawn.sung@mediatek.com>,
+	Johnson Wang <johnson.wang@mediatek.com>,
+	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+References: <20231223182932.27683-1-jason-jh.lin@mediatek.com>
+ <20231223182932.27683-4-jason-jh.lin@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/5] dt-bindings: mfd: stm32f7: Add binding definition
- for DSI
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        <linux-kernel@vger.kernel.org>
-CC: Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-amarula@amarulasolutions.com>, Lee Jones <lee@kernel.org>,
-        Conor
- Dooley <conor.dooley@microchip.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20240111113146.16011-1-dario.binacchi@amarulasolutions.com>
- <20240111113146.16011-2-dario.binacchi@amarulasolutions.com>
-Content-Language: en-US
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <20240111113146.16011-2-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-05_08,2024-01-05_01,2023-05-22_02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231223182932.27683-4-jason-jh.lin@mediatek.com>
+X-Operating-System: Linux phenom 6.5.0-4-amd64 
 
+On Sun, Dec 24, 2023 at 02:29:24AM +0800, Jason-JH.Lin wrote:
+> Add secure buffer control flow to mtk_drm_gem.
+> 
+> When user space takes DRM_MTK_GEM_CREATE_ENCRYPTED flag and size
+> to create a mtk_drm_gem object, mtk_drm_gem will find a matched size
+> dma buffer from secure dma-heap and bind it to mtk_drm_gem object.
+> 
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
 
-On 1/11/24 12:31, Dario Binacchi wrote:
-> Add binding definition for MIPI DSI Host controller.
->
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->
+Apologies for jumping rather late, but last year was a mess here.
+
+There's the fundamental issue that this is new uapi, and it needs open
+userspace, and I haven't seen that.
+
+What's more, this is a pure kms api so there's no precedent at all for
+adding special ioctl to those - all the existing support for
+protected/restricted content buffers in upstream has used render nodes and
+EGL_EXT_protected_content in mesa3d to enable this feature on the drm/kms
+side. So I'm not exactly sure what your plan here is, but you need one,
+and it needs to be more than a testcase/demo.
+
+The other issue, and the reason I've looked into the mtk code, is that the
+dma-buf implementation breaks the dma-buf api. So that needs to be
+changed.
+
+Finally I think the primary way to display a protected content buffer on a
+pure kms driver should be by using prime fd2handle buffer importing.
+Because you're adding a dma-buf heap it's already possible for userspace
+to use this path (or at least try), and so we have to make this path work
+anyway.
+
+Once we have the prime import path working correctly for protected content
+buffers (which should shake out all the dma-api issues I've explained in
+the dma-buf heaps thread), it should be possible to implement the direct
+allocation function in a generic helper:
+
+struct drm_gem_object * drm_gem_create_object_from_heap(struct drm_device *dev,
+							struct drm_file *file,
+							struct drm_buf_heap *heap);
+
+Which does roughly:
+
+- allocate a dma-buf from the desired heap
+- import that dma-buf into the device using prime for the drm_file
+- using the already implemented driver import code for special cases like
+  protected content buffers
+
+There should be no need to hand-roll all this code here, and especially
+not have any special-casing for the heap string name or things like that.
+That all must be handled in the dma-buf prime import code.
+
+Cheers, Sima
+
 > ---
+>  drivers/gpu/drm/mediatek/mtk_drm_gem.c | 85 +++++++++++++++++++++++++-
+>  drivers/gpu/drm/mediatek/mtk_drm_gem.h |  4 ++
+>  2 files changed, 88 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_gem.c b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
+> index 30e347adcbe9..858f34a735f8 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_gem.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_gem.c
+> @@ -4,6 +4,8 @@
+>   */
+>  
+>  #include <linux/dma-buf.h>
+> +#include <linux/dma-heap.h>
+> +#include <uapi/linux/dma-heap.h>
+>  #include <drm/mediatek_drm.h>
+>  
+>  #include <drm/drm.h>
+> @@ -55,6 +57,81 @@ static struct mtk_drm_gem_obj *mtk_drm_gem_init(struct drm_device *dev,
+>  	return mtk_gem_obj;
+>  }
+>  
+> +struct mtk_drm_gem_obj *mtk_drm_gem_create_from_heap(struct drm_device *dev,
+> +						     const char *heap, size_t size)
+> +{
+> +	struct mtk_drm_private *priv = dev->dev_private;
+> +	struct mtk_drm_gem_obj *mtk_gem;
+> +	struct drm_gem_object *obj;
+> +	struct dma_heap *dma_heap;
+> +	struct dma_buf *dma_buf;
+> +	struct dma_buf_attachment *attach;
+> +	struct sg_table *sgt;
+> +	struct iosys_map map = {};
+> +	int ret;
+> +
+> +	mtk_gem = mtk_drm_gem_init(dev, size);
+> +	if (IS_ERR(mtk_gem))
+> +		return ERR_CAST(mtk_gem);
+> +
+> +	obj = &mtk_gem->base;
+> +
+> +	dma_heap = dma_heap_find(heap);
+> +	if (!dma_heap) {
+> +		DRM_ERROR("heap find fail\n");
+> +		goto err_gem_free;
+> +	}
+> +	dma_buf = dma_heap_buffer_alloc(dma_heap, size,
+> +					O_RDWR | O_CLOEXEC, DMA_HEAP_VALID_HEAP_FLAGS);
+> +	if (IS_ERR(dma_buf)) {
+> +		DRM_ERROR("buffer alloc fail\n");
+> +		dma_heap_put(dma_heap);
+> +		goto err_gem_free;
+> +	}
+> +	dma_heap_put(dma_heap);
+> +
+> +	attach = dma_buf_attach(dma_buf, priv->dma_dev);
+> +	if (IS_ERR(attach)) {
+> +		DRM_ERROR("attach fail, return\n");
+> +		dma_buf_put(dma_buf);
+> +		goto err_gem_free;
+> +	}
+> +
+> +	sgt = dma_buf_map_attachment(attach, DMA_BIDIRECTIONAL);
+> +	if (IS_ERR(sgt)) {
+> +		DRM_ERROR("map failed, detach and return\n");
+> +		dma_buf_detach(dma_buf, attach);
+> +		dma_buf_put(dma_buf);
+> +		goto err_gem_free;
+> +	}
+> +	obj->import_attach = attach;
+> +	mtk_gem->dma_addr = sg_dma_address(sgt->sgl);
+> +	mtk_gem->sg = sgt;
+> +	mtk_gem->size = dma_buf->size;
+> +
+> +	if (!strcmp(heap, "mtk_svp") || !strcmp(heap, "mtk_svp_cma")) {
+> +		/* secure buffer can not be mapped */
+> +		mtk_gem->secure = true;
+> +	} else {
+> +		ret = dma_buf_vmap(dma_buf, &map);
+> +		mtk_gem->kvaddr = map.vaddr;
+> +		if (ret) {
+> +			DRM_ERROR("map failed, ret=%d\n", ret);
+> +			dma_buf_unmap_attachment(attach, sgt, DMA_BIDIRECTIONAL);
+> +			dma_buf_detach(dma_buf, attach);
+> +			dma_buf_put(dma_buf);
+> +			mtk_gem->kvaddr = NULL;
+> +		}
+> +	}
+> +
+> +	return mtk_gem;
+> +
+> +err_gem_free:
+> +	drm_gem_object_release(obj);
+> +	kfree(mtk_gem);
+> +	return ERR_PTR(-ENOMEM);
+> +}
+> +
+>  struct mtk_drm_gem_obj *mtk_drm_gem_create(struct drm_device *dev,
+>  					   size_t size, bool alloc_kmap)
+>  {
+> @@ -225,7 +302,9 @@ struct drm_gem_object *mtk_gem_prime_import_sg_table(struct drm_device *dev,
+>  	if (IS_ERR(mtk_gem))
+>  		return ERR_CAST(mtk_gem);
+>  
+> +	mtk_gem->secure = !sg_page(sg->sgl);
+>  	mtk_gem->dma_addr = sg_dma_address(sg->sgl);
+> +	mtk_gem->size = attach->dmabuf->size;
+>  	mtk_gem->sg = sg;
+>  
+>  	return &mtk_gem->base;
+> @@ -301,7 +380,11 @@ int mtk_gem_create_ioctl(struct drm_device *dev, void *data,
+>  	struct drm_mtk_gem_create *args = data;
+>  	int ret;
+>  
+> -	mtk_gem = mtk_drm_gem_create(dev, args->size, false);
+> +	if (args->flags & DRM_MTK_GEM_CREATE_ENCRYPTED)
+> +		mtk_gem = mtk_drm_gem_create_from_heap(dev, "mtk_svp_cma", args->size);
+> +	else
+> +		mtk_gem = mtk_drm_gem_create(dev, args->size, false);
+> +
+>  	if (IS_ERR(mtk_gem))
+>  		return PTR_ERR(mtk_gem);
+>  
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_gem.h b/drivers/gpu/drm/mediatek/mtk_drm_gem.h
+> index 90f3d2916ec5..8fd5ce827d4f 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_gem.h
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_gem.h
+> @@ -27,9 +27,11 @@ struct mtk_drm_gem_obj {
+>  	void			*cookie;
+>  	void			*kvaddr;
+>  	dma_addr_t		dma_addr;
+> +	size_t			size;
+>  	unsigned long		dma_attrs;
+>  	struct sg_table		*sg;
+>  	struct page		**pages;
+> +	bool			secure;
+>  };
+>  
+>  #define to_mtk_gem_obj(x)	container_of(x, struct mtk_drm_gem_obj, base)
+> @@ -37,6 +39,8 @@ struct mtk_drm_gem_obj {
+>  void mtk_drm_gem_free_object(struct drm_gem_object *gem);
+>  struct mtk_drm_gem_obj *mtk_drm_gem_create(struct drm_device *dev, size_t size,
+>  					   bool alloc_kmap);
+> +struct mtk_drm_gem_obj *mtk_drm_gem_create_from_heap(struct drm_device *dev,
+> +						     const char *heap, size_t size);
+>  int mtk_drm_gem_dumb_create(struct drm_file *file_priv, struct drm_device *dev,
+>  			    struct drm_mode_create_dumb *args);
+>  struct sg_table *mtk_gem_prime_get_sg_table(struct drm_gem_object *obj);
+> -- 
+> 2.18.0
+> 
 
-Hi,
-
-Reviewed-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-
-Regards,
-
-Raphaël
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 
