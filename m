@@ -1,170 +1,132 @@
-Return-Path: <devicetree+bounces-31546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B1182BC96
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 10:00:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29C8082BCA6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 10:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82A261F228A5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:00:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD1C52842C9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:05:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17C154FA7;
-	Fri, 12 Jan 2024 09:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CCC55778;
+	Fri, 12 Jan 2024 09:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="HO4cMldz"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="RWiNGh+S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [94.124.121.40])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EA1E54273
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:00:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-5574feb7958so7236281a12.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 01:00:19 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A797556B66
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:04:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1705050018; x=1705654818; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9SkiM1CyhiqOdeyM++a6lT4rbKePEx/F9YY5NzKazuE=;
-        b=HO4cMldzwLhwY7Oms8X7gJSko/PvJ4uHJdPKmtax1Jjav3mLLFbpii/sscAzPnEuKf
-         SxrSCAJgKZxNvWyBYvuZlvp7hldHlp9bjk0b8CZZmCbjsddlY0tu/qgs5sLrmlK7Ykra
-         DNUzHWjemDfbcUraqpRr3EXuMOC3jwIJRF3nuTGySMB5/ETg7U3JwTjXLoSbfzeKAso1
-         EQJH9gVgZTTXF6mafvs9ahBeXu9MFUQ9w7BEprftFUTGHr92iY+BmX/xTrzLfmlnfnDr
-         AmebHBYnJgEw8mFLRJOHk1jR6572g3U+z01gL7Uqm+ZiT/5LQIEERvehH7VhvmX+6rcI
-         Sp9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705050018; x=1705654818;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9SkiM1CyhiqOdeyM++a6lT4rbKePEx/F9YY5NzKazuE=;
-        b=TuPoCG8+UmX0dvON0C/avQV8B9gX3pI59iu6+w22U6rdXJ0H4IjkgGXzzlmI+xsbAq
-         ZjzYzuX/WIvaoxOETJckcsDHZEpH84a5pxTN6aKuiSQbIt7xhmpqrNBIVvowDuFm0QCX
-         9P0pvwcFrfGQUdLP/A+zI2soJYCO7GMwLmN6M8PdsTG4Vw7YJdeo/2xBD4UKtV4I1i7o
-         WbQCofbNvaMm9T5xbPTld/BDycwToXVjeTKppUyaw8Wyov/tbcPqNd5JSyYOxRUDxlBT
-         eAG6V72fANyAI7KaX3Ayt6vM8Hz0RmBlskOhywgVer8Hlg1CRzdXI90tptj8grB1TaPY
-         QehQ==
-X-Gm-Message-State: AOJu0YxE9wL+2kiFCH9ZCbZSD6koHJJpWtBPgeZaTJgzi3kxIoZACJKu
-	pa2ZfzQ+wHyRmM6U61YH+hSvEA7D1c5ahA==
-X-Google-Smtp-Source: AGHT+IE4lqCuCcBKUQKcGYBXm2hn5tLGot0ekhVA4EDWlovNg76g03laNX/Vn5Sk4TgseAUkA74dQQ==
-X-Received: by 2002:a50:fa94:0:b0:54c:60f0:7511 with SMTP id w20-20020a50fa94000000b0054c60f07511mr480176edr.35.1705050018310;
-        Fri, 12 Jan 2024 01:00:18 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id j14-20020a50ed0e000000b005550192159bsm1555191eds.62.2024.01.12.01.00.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 01:00:17 -0800 (PST)
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=xxLKZfR9ym3NvYaTuybR8pXKjRLGsluBabcSdUsoEsA=;
+	b=RWiNGh+SiP6oLepQrpQjzq3eyHcLtAafx5MtVsKMs41YlrxI7ZDYzsTEha7a/lscDptg/p8X4EdNG
+	 9hQHbb2LuE7Uk1+KOJb52iF4rkGv8v+U7irlFstAzWwblSFHHr2kpCLv5LttCQbC8I/DuV8lypwLrh
+	 ukPzt5VNY2e2ta05CYqQUJAH0lh4v4mRXfhbqHUzUwUEsaL5xOd6FZht0tZo7804cM4GnZ8H4fkHME
+	 9tjzvQNDu11r7Dk167wVVYPb2lT9z6zget+3lO/HDjuihwGjq7rM4uTW1V/4ij56Th+HnhrF5tgdI+
+	 3RE2mITMqmCDX8kcE8XPiaFC3Rp4+mw==
+X-MSG-ID: 7eeba78f-b129-11ee-ba53-0050568164d1
+Date: Fri, 12 Jan 2024 10:03:47 +0100
+From: David Jander <david@protonic.nl>
+To: Mark Brown <broonie@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
+ <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Michael Hennerich <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Frank Rowand <frowand.list@gmail.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <u.kleine-koenig@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>,
+ linux-spi@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/13] spi: add core support for controllers with
+ offload capabilities
+Message-ID: <20240112100347.548298e9@erd003.prtnl>
+In-Reply-To: <829ac770-1955-45b7-9033-6ed60ffdf77e@sirena.org.uk>
+References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+	<20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com>
+	<2c74aad9-3cb9-4222-8072-e72120c2658e@sirena.org.uk>
+	<CAMknhBGMRed9vDrDAuPJ5DnEe6MyHzd0VBebp5OaLX2Q+AyhMQ@mail.gmail.com>
+	<CAMknhBE-1Khe9J-n5WQnH=mFnN0ukiq7=F-SEOU6J-2_u-R0bw@mail.gmail.com>
+	<829ac770-1955-45b7-9033-6ed60ffdf77e@sirena.org.uk>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 12 Jan 2024 10:00:17 +0100
-Message-Id: <CYCLSCKPPBOC.1B1MP3VOOC0Q8@fairphone.com>
-Cc: "Neil Armstrong" <neil.armstrong@linaro.org>, "Jessica Zhang"
- <quic_jesszhan@quicinc.com>, "Sam Ravnborg" <sam@ravnborg.org>, "David
- Airlie" <airlied@gmail.com>, "Daniel Vetter" <daniel@ffwll.ch>, "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob
- Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
- <konrad.dybcio@linaro.org>, "Andy Gross" <agross@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/4] drm/panel: Add driver for DJN HX83112A LCD panel
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Linus Walleij" <linus.walleij@linaro.org>
-X-Mailer: aerc 0.15.2
-References: <20240110-fp4-panel-v2-0-8ad11174f65b@fairphone.com>
- <20240110-fp4-panel-v2-2-8ad11174f65b@fairphone.com>
- <CACRpkdaWTfPDCin_L6pefHsokjNyO8Mo6hWPdzPLLi1EUkKUuA@mail.gmail.com>
- <CYBZEZ4IM6IL.VR04W7933VI@fairphone.com>
- <CACRpkdZQbVXfBa70nhDOqfWPbsh-6DgX-uvZOxr19pzMmF2giQ@mail.gmail.com>
-In-Reply-To: <CACRpkdZQbVXfBa70nhDOqfWPbsh-6DgX-uvZOxr19pzMmF2giQ@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu Jan 11, 2024 at 8:05 PM CET, Linus Walleij wrote:
-> On Thu, Jan 11, 2024 at 4:28=E2=80=AFPM Luca Weiss <luca.weiss@fairphone.=
-com> wrote:
->
-> > In some internal documentation it says "LCD Driver IC" "HX83112A" and I
-> > don't see any reference to Truly 5P65 anywhere.
->
-> In the Android directory I pointed to I see this file:
-> HX83112_Android_Driver/Truly_5p65_module_fw/UpdateFW.bat
->
-> (Notice the 5p65 fw dir is *inside* the HX82112 dir)
->
-> And in that file:
-> adb push TRULY_5P65_1080_2160_HX83112A_D01C01.bin
-> /system/etc/firmware/Himax_firmware.bin
->
-> Clearly indicating that they are pushing a Truly 5P65 firmware into
-> the Himax display firmware directory.
->
-> To be fair, that is the driver for the touchscreen part of HX83112A,
-> but ... Truly is a well known manufacturer of display controllers?
->
-> But... given that you have a @fairphone.com mal address and
-> a working relationship with them, can't you just ask?
->
-> > On their website they have this sentence:
->
-> All OEMs want to look like everything is their own product. It is
-> business as usual.
 
-I can't tell you anything there that I don't know, sorry.
+Hi Mark, David,
 
->
-> Further on the same note since I guess you have a datasheet)
-> please bring in #defines for the commands (the first byte in the
-> write sequences, for examples:
->
-> +       mipi_dsi_dcs_write_seq(dsi, 0xbd, 0x02);
-> +       mipi_dsi_dcs_write_seq(dsi, 0xd8,
-> +                              0xaa, 0xff, 0xff, 0xff, 0xff, 0xff, 0xaa, =
-0xff,
-> +                              0xff, 0xff, 0xff, 0xff);
-> +       mipi_dsi_dcs_write_seq(dsi, 0xbd, 0x03);
->
-> Clearly 0xbd is HX83112_CMD_SETREGBANK?
-> (This is easily spotted from the similar structure in the
-> existing panel-himax-hx8394.c.) So please add #defines
-> for all commands you know, especially if you have a datasheet
-> because we reviewers don't have them and "it's just magic
-> bytes" isn't very compelling. It adds a lot to understanding.
+Thanks for CC'ing me. Been reading the discussion so far.
 
-Right, the register names seem to match more or less the ones from that
-driver, plus some new ones and some differently named ones. Will send a
-v3 with that.
+On Thu, 11 Jan 2024 21:49:53 +0000
+Mark Brown <broonie@kernel.org> wrote:
 
->
-> I strongly suspect other Himax displays such as HX8394 to
-> be using a Truly controller as well, hence the similarities.
->
-> In a datasheet for their TFT800480-84-V1-E display controller
-> Truly kept the init sequence name of void LCD_INIT_HX8290(void)
-> for example.
+> On Thu, Jan 11, 2024 at 03:32:54PM -0600, David Lechner wrote:
+> > On Thu, Jan 11, 2024 at 2:54=E2=80=AFPM David Lechner <dlechner@baylibr=
+e.com> wrote: =20
+>=20
+> > > > (CCed) a while back when he was doing all the work he did on optimi=
+sing
+> > > > the core for uncontended uses, the thinking there was to have a
+> > > > spi_prepare_message() (or similar) API that drivers could call and =
+then
+> > > > reuse the same transfer repeatedly, and even without any interface =
+for
+> > > > client drivers it's likely that we'd be able to take advantage of i=
+t in
+> > > > the core for multi-transfer messages.  I'd be surprised if there we=
+ren't
+> > > > wins when the message goes over the DMA copybreak size.  A much wid=
+er
+> > > > range of hardware would be able to do this bit, for example David's=
+ case
+> > > > was a Raspberry Pi using the DMA controller to write into the SPI =
+=20
+>=20
+> > For those, following along, it looks like the RPi business was
+> > actually a 2013 discussion with Martin Sperl [2]. Both this and [1]
+> > discuss proposed spi_prepare_message() APIs. =20
+>=20
+> > [2]: https://lore.kernel.org/linux-spi/CACRpkdb4mn_Hxg=3D3tuBu89n6eyJ08=
+2EETkwtNbzZDFZYTHbVVg@mail.gmail.com/T/#u =20
+>=20
+> Oh, yes - sorry, I'd misremembered which optimisation effort it was
+> associated with.  Apologies.
 
-In that datasheet (assuming I'm looking at the same one?) it says
-"Driver IC" "HX8290-A[...]" so there the display driver is manufactured
-by Himax and not Truly to my understanding. Truly is assembling together
-Driver + all the other parts that go into an LCD.
+Yes. It was Martin Sperl who proposed this on a Rpi. I mentioned something
+similar toward the end of my 2nd email reply in that thread [1]. That might
+have triggered the confusion.
+As for my interests, I am all for devising ways to make the SPI subsystem m=
+ore
+suitable for optimized high-performance use-cases. In that regard, I think
+re-usable messages (spi_prepare_message()) can be useful. More capable
+hardware can enable very powerful use-cases for SPI, and it would be cool if
+the spi subsystem had the needed infrastructure to support those. As for
+hardware-triggers, I still need to wrap my head around how to have a
+universally usable API that works nice for the first use-case that comes al=
+ong
+and also doesn't screw up the next use-case that might follow. Keep me post=
+ed.
 
-For the panel used on Fairphone 4 that part is done by the company DJN.
+[1] https://lore.kernel.org/linux-spi/20220513144645.2d16475c@erd992/
 
-Regards
-Luca
+Best regards,
 
->
-> Yours,
-> Linus Walleij
-
+--=20
+David Jander
+Protonic Holland.
 
