@@ -1,138 +1,156 @@
-Return-Path: <devicetree+bounces-31685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D64C882C35E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:12:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B30882C383
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:21:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63289B20D82
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:12:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 88188B23E3A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D63E7316D;
-	Fri, 12 Jan 2024 16:12:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Ekgw2bsD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EB6F745D3;
+	Fri, 12 Jan 2024 16:20:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1B55731D;
-	Fri, 12 Jan 2024 16:12:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40CGCDqZ006156;
-	Fri, 12 Jan 2024 16:12:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=NFapylbjEhpI9ckI99MhiQeANSyVA+//ij/N9PxpdpI=; b=Ek
-	gw2bsDCHG/6fxBSf6MEiUYjv3+RXUA3m5Obgl9ouKiY6IYcYcevvwS/6ROmR/qR2
-	9nUXwgi9/3/v6Z1a2CvrCRo8rnyPoG2H8lNpN90ct7LcvQ5d8KcEupM+AsCvwHpb
-	Ex6x2RhW10eyMrtdxViXNgXvjl4FnVsfPV/nUBTPUsX6VS6H6FF1Tn74F3uHjTFU
-	b2PrWN60j0zFhuHluYMn5KCgHCGvnSQ9fXcQjFYvxmIg8zt7C6b2JbS3AHcr4Zdb
-	zvPFkarWKDb89J3PArbwsFSZ7FWHMWP4a5xuD/2iF1OYL/zT142doDdALzuzeSlv
-	BWP0taambtWRXNNydDAg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vk18d16u8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 16:12:12 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40CGC1Gs010550
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 12 Jan 2024 16:12:01 GMT
-Received: from [10.253.78.164] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 12 Jan
- 2024 08:11:57 -0800
-Message-ID: <fdd45bd1-abff-40ab-8340-a94f5a450914@quicinc.com>
-Date: Sat, 13 Jan 2024 00:11:54 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B53D745CD;
+	Fri, 12 Jan 2024 16:20:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5f3da7ba2bfso68077987b3.3;
+        Fri, 12 Jan 2024 08:20:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705076451; x=1705681251;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6cpwkfjYe1zF94sQukQ8o3Koi2YLeB3fY8FqoXNE21c=;
+        b=uGUCM9YbXy9m+xstVPQFrJXqMG2wZQ+3pACpus8qw4jhq9IMEIXG5CHt4HouG0GY+3
+         rsvirF6JDz4+LpLGb++UxWqBpdBqF9+2ioue0zUaSLoGlDgVi1zszXt9ZIRESJjxI6HO
+         Eq63I61SgEI7UMcyA80o0/WUWqN7/QUuBU0OQdS6FyPLXJGig/8Qjn+T9WAPiYqWwDi2
+         Et99FFCl2XB65crSYWWaomYrhA6B7hK2p2fOEDr2iIa7w5DIPvPn9nILaNiiBLH3O/Ch
+         K5OjNG02ddo5w39fxRRHcev6DxCfy3tE5wf8bgLSJK76b6HZEHXz1rAFUeN9qvWN8t87
+         4bQw==
+X-Gm-Message-State: AOJu0Yzqs6wsMFERWU/kcfJgQrEJ4oAB+0suaVcKGopkLNMaICcnFwzu
+	tS7XOvvrRhL9+kp9epwANEPpCPmQ0a5aMQ==
+X-Google-Smtp-Source: AGHT+IG7Dgz/aNlBMZeIRpYwmKvZqYxUjK3D6zzq0oyomm6WGwhsSphdtu5Q/cRiIipOExiuY7CiFw==
+X-Received: by 2002:a05:690c:f8e:b0:5e8:2eac:d77b with SMTP id df14-20020a05690c0f8e00b005e82eacd77bmr1811764ywb.9.1705076451242;
+        Fri, 12 Jan 2024 08:20:51 -0800 (PST)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id u80-20020a818453000000b005e7467eaa43sm1459526ywf.32.2024.01.12.08.20.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jan 2024 08:20:51 -0800 (PST)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5f2d4aaa2fdso69925147b3.1;
+        Fri, 12 Jan 2024 08:20:51 -0800 (PST)
+X-Received: by 2002:a05:690c:b08:b0:5ee:381a:3b33 with SMTP id
+ cj8-20020a05690c0b0800b005ee381a3b33mr1571767ywb.94.1705076450821; Fri, 12
+ Jan 2024 08:20:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] arm64: dts: qcom: ipq5332: Add MDIO device tree
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
-        <quic_soni@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_souravp@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_leiwei@quicinc.com>
-References: <20240110112059.2498-1-quic_luoj@quicinc.com>
- <20240110112059.2498-4-quic_luoj@quicinc.com>
- <9b44a04d-3d04-4fdb-a51c-b0e4b72af558@linaro.org>
-From: Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <9b44a04d-3d04-4fdb-a51c-b0e4b72af558@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TeepRPbdvO01qmk4mQqCyZspsvLVYboM
-X-Proofpoint-ORIG-GUID: TeepRPbdvO01qmk4mQqCyZspsvLVYboM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 phishscore=0 mlxscore=0 lowpriorityscore=0 adultscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 clxscore=1015 mlxlogscore=999
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401120127
+References: <20231227130810.2744550-1-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdVnsJfOtZPpr+_MRNkx-bSXrCm8Hy_j6Gy58WnGn_kaMA@mail.gmail.com> <30608a28-b1e3-4ad3-aad5-1033eb8adc6f@tuxon.dev>
+In-Reply-To: <30608a28-b1e3-4ad3-aad5-1033eb8adc6f@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 12 Jan 2024 17:20:39 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXokhEEARUSSY_x74A0eRGpeJ2Y30neMP57fnjRJ7HQeg@mail.gmail.com>
+Message-ID: <CAMuHMdXokhEEARUSSY_x74A0eRGpeJ2Y30neMP57fnjRJ7HQeg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: rzg3s-smarc: Add gpio keys
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: magnus.damm@gmail.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Claudiu,
 
+On Fri, Jan 12, 2024 at 4:38=E2=80=AFPM claudiu beznea <claudiu.beznea@tuxo=
+n.dev> wrote:
+> On 12.01.2024 15:55, Geert Uytterhoeven wrote:
+> > On Wed, Dec 27, 2023 at 2:08=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.d=
+ev> wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> RZ SMARC Carrier II board has 3 user buttons called USER_SW1, USER_SW2=
+,
+> >> USER_SW3. Add a DT node in device tree to propertly instantiate the
+> >> gpio-keys driver for these buttons.
+> >>
+> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> >> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> >> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> >> @@ -14,6 +15,37 @@ aliases {
+> >>                 mmc1 =3D &sdhi1;
+> >>         };
+> >>
+> >> +       keys {
+> >
+> > Do you mind if I s/keys/keypad/ while applying? ...
+>
+> Is not actually a keypad... there are 3 buttons in a corner of the board.=
+..
+>
+> I see only 2 entries in arm64 and arm DTS directory following this patter=
+n
+> for gpio-keys compatible node:
+>
+>  arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+>  arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+>
+> But if you prefer it like this, I have nothing against.
+>
+> Just asking, do you have a particular reason for naming it like this?
 
-On 1/10/2024 7:56 PM, Krzysztof Kozlowski wrote:
-> On 10/01/2024 12:20, Luo Jie wrote:
->> Add the MDIO device tree of ipq5332.
-> 
-> Subject: drop "device tree", it is obvious. Commit msg: say something
-> more instead of copying the subject. Or better squash the entire patch.
+See the discussion in [1], and the resulting patch[2], which added the
+(so far) single user in arch/arm/boot/dts/renesas/r8a7779-marzen.dts
 
-Will update the commit message to improve the description when the 
-series is updated.
+[1] https://lore.kernel.org/all/20231023144134.1881973-1-geert+renesas@glid=
+er.be
+[2] https://lore.kernel.org/all/eec1ccfb75c6215428609fdcaf3a37c75fe1fc87.16=
+98228163.git.geert+renesas@glider.be
+>
+> >> +                       interrupt-parent =3D <&pinctrl>;
+> >
+> > ... and move these one level up, to avoid duplication?
+>
+> Moving it just near compatible will make the schema validation to fail wi=
+th
+> this (driver is working, though):
+>
+> arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: keys:
+> 'interrupt-parent' does not match any of the regexes:
+> '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]=
++-(button|event|key|switch))$',
+> 'pinctrl-[0-9]+'
+>         from schema $id: http://devicetree.org/schemas/input/gpio-keys.ya=
+ml#
 
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 44 +++++++++++++++++++++++++++
->>   1 file changed, 44 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->> index bc89480820cb..e6c780e69d6e 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->> @@ -214,6 +214,38 @@ serial_0_pins: serial0-state {
->>   				drive-strength = <8>;
->>   				bias-pull-up;
->>   			};
->> +
->> +			mdio0_pins: mdio0-state {
->> +				mux_0 {
-> 
-> This wasn't tested...
-> 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Oops, I had completely forgotten r8a7779-marzen.dts triggers this, too...
+Let's keep it for now.
 
-We will follow up the guidance mentioned in the link to validate the DTS 
-patches.
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
