@@ -1,218 +1,121 @@
-Return-Path: <devicetree+bounces-31635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D02582C14F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:04:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CBC682C166
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:13:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6E7B2823AB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:04:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35D791C21A8F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:13:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D81FA6D1BC;
-	Fri, 12 Jan 2024 14:04:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA86D6D1CF;
+	Fri, 12 Jan 2024 14:13:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C35B6BB41;
-	Fri, 12 Jan 2024 14:04:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2176D1FB;
-	Fri, 12 Jan 2024 06:05:16 -0800 (PST)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E21A93F5A1;
-	Fri, 12 Jan 2024 06:04:26 -0800 (PST)
-Message-ID: <2c920dda-fdd3-436a-85cc-ead018f28ee4@arm.com>
-Date: Fri, 12 Jan 2024 14:04:25 +0000
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 328F864AAA;
+	Fri, 12 Jan 2024 14:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5fa52e173f7so33196367b3.3;
+        Fri, 12 Jan 2024 06:13:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705068794; x=1705673594;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ogmBK4GcHnlicaeksl+88HTGrvs80uzfrt9z9GfN5KM=;
+        b=q2aQdezOMkTi488Fx34hxeBwzrkyVLaeinNhuwXDd38KvpoGJdiVGn1Z0RuBk6nTxH
+         vnG7yb8otKUq/XmDKQqYf73CD8H71pYw5p7eJNfG3dVPEZmOBKK8fVFTM8Zne+976aAi
+         etHhbJmsm9IWWfCwipad99M/LkFPixXS+BbFqUMVYW5ESFCFkfHeG1HRABtOglR0qHx1
+         r+KYKYChvyuLN8igq/jfM+5L/3EEKsBLHhASW7Pznf0QOZeEvA1fOgDyzYbOM5ta8GsO
+         b9elZKuwWNGoRGTldXWiHUEc+0KNhyqNaFY4k6pGr4vYR4sENzBY7944fMAbeJU3FyYE
+         212A==
+X-Gm-Message-State: AOJu0YycU/2j2nLLMW1fq7294fsJBQ0uKw/yviRkhMPudvMaj8wd6mPp
+	90hxatdOdvDT70LSgVkllnEP0E9AKXltZg==
+X-Google-Smtp-Source: AGHT+IFIzJ/PmIVOEEFVeKiaFwHi+rAUcGrgk0Vxlk7x5Le2iSnlytZAHamkfjeUZMjWbL7z83XYkQ==
+X-Received: by 2002:a81:6dca:0:b0:5fb:9321:9ff5 with SMTP id i193-20020a816dca000000b005fb93219ff5mr1289598ywc.61.1705068793959;
+        Fri, 12 Jan 2024 06:13:13 -0800 (PST)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id g139-20020a0ddd91000000b005d6f34893dfsm1355399ywe.135.2024.01.12.06.13.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jan 2024 06:13:13 -0800 (PST)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5fa52e173f7so33196057b3.3;
+        Fri, 12 Jan 2024 06:13:12 -0800 (PST)
+X-Received: by 2002:a05:690c:7:b0:5fb:86a1:3e57 with SMTP id
+ bc7-20020a05690c000700b005fb86a13e57mr1510809ywb.39.1705068792784; Fri, 12
+ Jan 2024 06:13:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 7/7] coresight: config: Add preloaded configuration
-Content-Language: en-US
-To: Linu Cherian <lcherian@marvell.com>, mike.leach@linaro.org,
- james.clark@arm.com, leo.yan@linaro.org
-Cc: linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, sgoutham@marvell.com, gcherian@marvell.com
-References: <20240105055840.1977897-1-lcherian@marvell.com>
- <20240105055840.1977897-8-lcherian@marvell.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20240105055840.1977897-8-lcherian@marvell.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <87edeqgfbu.wl-kuninori.morimoto.gx@renesas.com> <878r4ygfap.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <878r4ygfap.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 12 Jan 2024 15:13:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVq8gjv=NFQdN0PcMoQsZ8QWYF0A9sej1mLPPF_SOSS-Q@mail.gmail.com>
+Message-ID: <CAMuHMdVq8gjv=NFQdN0PcMoQsZ8QWYF0A9sej1mLPPF_SOSS-Q@mail.gmail.com>
+Subject: Re: [PATCH v5 resend 4/4] drivers: clk: renesas: ignore all clocks
+ which are assigned to non-Linux system
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 05/01/2024 05:58, Linu Cherian wrote:
-> Add a preloaded configuration for generating
-> external trigger on address match. This can be
-> used by CTI and ETR blocks to stop trace capture
-> on kernel panic.
-> 
-> Kernel address for panic function to be
-> programmed as below.
-> 
-> $cd /config/cs-syscfg/features/gen_etrig/params
-> $echo <panic_address> > address/value
-> 
-> Signed-off-by: Linu Cherian <lcherian@marvell.com>
-> ---
-> Changelog from v5:
-> * No changes
-> 
->   drivers/hwtracing/coresight/Makefile          |  2 +-
->   .../coresight/coresight-cfg-preload.c         |  2 +
->   .../coresight/coresight-cfg-preload.h         |  2 +
->   .../hwtracing/coresight/coresight-cfg-pstop.c | 83 +++++++++++++++++++
->   4 files changed, 88 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
-> 
-> diff --git a/drivers/hwtracing/coresight/Makefile b/drivers/hwtracing/coresight/Makefile
-> index 995d3b2c76df..68b15c8d9462 100644
-> --- a/drivers/hwtracing/coresight/Makefile
-> +++ b/drivers/hwtracing/coresight/Makefile
-> @@ -5,7 +5,7 @@
->   obj-$(CONFIG_CORESIGHT) += coresight.o
->   coresight-y := coresight-core.o  coresight-etm-perf.o coresight-platform.o \
->   		coresight-sysfs.o coresight-syscfg.o coresight-config.o \
-> -		coresight-cfg-preload.o coresight-cfg-afdo.o \
-> +		coresight-cfg-preload.o coresight-cfg-afdo.o coresight-cfg-pstop.o \
->   		coresight-syscfg-configfs.o coresight-trace-id.o
->   obj-$(CONFIG_CORESIGHT_LINK_AND_SINK_TMC) += coresight-tmc.o
->   coresight-tmc-y := coresight-tmc-core.o coresight-tmc-etf.o \
-> diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.c b/drivers/hwtracing/coresight/coresight-cfg-preload.c
-> index e237a4edfa09..4980e68483c5 100644
-> --- a/drivers/hwtracing/coresight/coresight-cfg-preload.c
-> +++ b/drivers/hwtracing/coresight/coresight-cfg-preload.c
-> @@ -13,6 +13,7 @@
->   static struct cscfg_feature_desc *preload_feats[] = {
->   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
->   	&strobe_etm4x,
-> +	&gen_etrig_etm4x,
->   #endif
->   	NULL
->   };
-> @@ -20,6 +21,7 @@ static struct cscfg_feature_desc *preload_feats[] = {
->   static struct cscfg_config_desc *preload_cfgs[] = {
->   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
->   	&afdo_etm4x,
-> +	&pstop_etm4x,
->   #endif
->   	NULL
->   };
-> diff --git a/drivers/hwtracing/coresight/coresight-cfg-preload.h b/drivers/hwtracing/coresight/coresight-cfg-preload.h
-> index 21299e175477..291ba530a6a5 100644
-> --- a/drivers/hwtracing/coresight/coresight-cfg-preload.h
-> +++ b/drivers/hwtracing/coresight/coresight-cfg-preload.h
-> @@ -10,4 +10,6 @@
->   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
->   extern struct cscfg_feature_desc strobe_etm4x;
->   extern struct cscfg_config_desc afdo_etm4x;
-> +extern struct cscfg_feature_desc gen_etrig_etm4x;
-> +extern struct cscfg_config_desc pstop_etm4x;
->   #endif
-> diff --git a/drivers/hwtracing/coresight/coresight-cfg-pstop.c b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
-> new file mode 100644
-> index 000000000000..037d6773fab8
-> --- /dev/null
-> +++ b/drivers/hwtracing/coresight/coresight-cfg-pstop.c
-> @@ -0,0 +1,83 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright(C) 2023  Marvell.
-> + * Based on coresight-cfg-afdo.c
-> + */
-> +
-> +#include "coresight-config.h"
-> +
-> +/* ETMv4 includes and features */
-> +#if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X)
-> +#include "coresight-etm4x-cfg.h"
-> +
-> +/* preload configurations and features */
-> +
-> +/* preload in features for ETMv4 */
-> +
-> +/* panic_stop feature */
-> +static struct cscfg_parameter_desc gen_etrig_params[] = {
-> +	{
-> +		.name = "address",
-> +		.value = 0x0,
-> +	},
-> +};
-> +
-> +static struct cscfg_regval_desc gen_etrig_regs[] = {
-> +	/* resource selector */
-> +	{
-> +		.type = CS_CFG_REG_TYPE_RESOURCE,
-> +		.offset = TRCRSCTLRn(2),
-> +		.hw_info = ETM4_CFG_RES_SEL,
-> +		.val32 = 0x40001,
-> +	},
-> +	/* single address comparator */
-> +	{
-> +		.type = CS_CFG_REG_TYPE_RESOURCE | CS_CFG_REG_TYPE_VAL_64BIT |
-> +			CS_CFG_REG_TYPE_VAL_PARAM,
-> +		.offset =  TRCACVRn(0),
-> +		.val32 = 0x0,
-> +	},
-> +	{
-> +		.type = CS_CFG_REG_TYPE_RESOURCE,
-> +		.offset = TRCACATRn(0),
-> +		.val64 = 0xf00,
-> +	},
-> +	/* Driver external output[0] with comparator out */
-> +	{
-> +		.type = CS_CFG_REG_TYPE_RESOURCE,
-> +		.offset = TRCEVENTCTL0R,
-> +		.val32 = 0x2,
-> +	},
-> +	/* end of regs */
-> +};
-> +
-> +struct cscfg_feature_desc gen_etrig_etm4x = {
-> +	.name = "gen_etrig",
-> +	.description = "Generate external trigger on address match\n"
-> +		       "parameter \'address\': address of kernel address\n",
-> +	.match_flags = CS_CFG_MATCH_CLASS_SRC_ETM4,
-> +	.nr_params = ARRAY_SIZE(gen_etrig_params),
-> +	.params_desc = gen_etrig_params,
-> +	.nr_regs = ARRAY_SIZE(gen_etrig_regs),
-> +	.regs_desc = gen_etrig_regs,
-> +};
-> +
-> +/* create a panic stop configuration */
-> +
-> +/* the total number of parameters in used features */
-> +#define PSTOP_NR_PARAMS	ARRAY_SIZE(gen_etrig_params)
-> +
-> +static const char *pstop_ref_names[] = {
-> +	"gen_etrig",
-> +};
-> +
-> +struct cscfg_config_desc pstop_etm4x = {
-> +	.name = "panicstop",
-> +	.description = "Stop ETM on kernel panic\n",
+On Wed, Jan 10, 2024 at 2:15=E2=80=AFAM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> Some boards might use Linux and another OS at the same time. In such
+> case, currently, during booting, Linux will stop necessary module clocks
+> which are not used on the Linux side, but are used by another OS.
+>
+> To avoid such situation, renesas-cpg-mssr tries to find
+> status =3D "reserved" devices (A), and adds CLK_IGNORE_UNUSED flag to its
+> <&cgp CPG_MOD xxx> clock (B).
+>
+> Table 2.4: Values for status property
+> https://github.com/devicetree-org/devicetree-specification/releases/downl=
+oad/v0.4/devicetree-specification-v0.4.pdf
+>
+> "reserved"
+>         Indicates that the device is operational, but should not be
+>         used. Typically this is used for devices that are controlled
+>         by another software component, such as platform firmware.
+>
+> ex)
+>         scif5: serial@e6f30000 {
+>                 ...
+> (B)             clocks =3D <&cpg CPG_MOD 202>,
+>                          <&cpg CPG_CORE R8A7795_CLK_S3D1>,
+>                          <&scif_clk>;
+>                 ...
+> (A)             status =3D "reserved";
+>         };
+>
+> Cc: Aymeric Aillet <aymeric.aillet@iot.bzh>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Tested-by: Yusuke Goda <yusuke.goda.sx@renesas.com>
 
-Since this is actually generic, i.e., Stop trace on a Kernel address, we
-could rename this ?  Or why don't we pre-populate the address of "panic"
-at load time. That way the user doesn't have to figure out the kernel
-address (e.g., if KASLR is enabled)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Suzuki
+Gr{oetje,eeting}s,
 
+                        Geert
 
-> +	.nr_feat_refs = ARRAY_SIZE(pstop_ref_names),
-> +	.feat_ref_names = pstop_ref_names,
-> +	.nr_total_params = PSTOP_NR_PARAMS,
-> +};
-> +
-> +/* end of ETM4x configurations */
-> +#endif	/* IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM4X) */
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
