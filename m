@@ -1,373 +1,192 @@
-Return-Path: <devicetree+bounces-31730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B035682C4C9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 18:33:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69E6282C4D4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 18:40:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ACCF1F24B3F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:33:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91D7E1C221C5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:40:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5986522630;
-	Fri, 12 Jan 2024 17:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE20117569;
+	Fri, 12 Jan 2024 17:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="jL32j5Fw";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="pHXvjyM6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C35AA175A3;
-	Fri, 12 Jan 2024 17:33:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TBT8s0qvjz6J9SV;
-	Sat, 13 Jan 2024 01:31:09 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 18D6D140B2A;
-	Sat, 13 Jan 2024 01:33:35 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 12 Jan
- 2024 17:33:34 +0000
-Date: Fri, 12 Jan 2024 17:33:33 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
-CC: <nuno.sa@analog.com>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, "Michael
- Hennerich" <Michael.Hennerich@analog.com>, Jonathan Cameron
-	<jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
-	<rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
-	<olivier.moysan@foss.st.com>
-Subject: Re: [PATCH v5 7/8] iio: adc: ad9467: convert to backend framework
-Message-ID: <20240112173333.00002ed1@Huawei.com>
-In-Reply-To: <20240112-iio-backend-v5-7-bdecad041ab4@analog.com>
-References: <20240112-iio-backend-v5-0-bdecad041ab4@analog.com>
-	<20240112-iio-backend-v5-7-bdecad041ab4@analog.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB6822637;
+	Fri, 12 Jan 2024 17:40:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=goldelico.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
+ARC-Seal: i=1; a=rsa-sha256; t=1705080852; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=W3GWy0FmIaj8bnyQOLBzXX83ySwtjGcplbG/RlF6oXx9qygnBd9EMgXtiadN4VCuYL
+    Vzb9K/1Q4zEh0B7XcKv8F2Sx4FijwnMPXysHfKJDCuQG0VCoTY5bqyISD5X10Sklu//B
+    6VkzB1eAyWBDr/bYsxdCjCk7edGU3pgaP2hEzvpyZbAxOha7gyG3pLDtiV5WNhRfEYbL
+    TDD/pLVM6nJvYv+XcCrZwcaohlv+M2+F2XzRIFeiekgqkBmiLXVXMh3jQ6/CCRVmglED
+    VgmepBQlqLq+ZF6ebJlWo7K1uGUcBpy8sQQyJjroV+U5685/yWLccmDVI8r77ioDgMW0
+    JoMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1705080852;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=x1r68xA9wRZ4ANIBi9hA9+/f2i2/5reMcctFU/rKIWM=;
+    b=VDcJUmHB6n+dNWMqrBgIeSm07uZuiZ3Lo4YHM+4lHTEf/fShWCuTsnhOvGLLQPDnuX
+    DVAPLYAUhm05iR1fke6fvyGt2yjAOY9M0JpWsM0G7ZDb7NOVtKdS5okSvg27EKDAjxe4
+    EZA65KUjsuxqrlxq3A4GvhvmCzWHoRqtwrIEFgzCZ+5/k2+oHOIrVt8PoLSJaD5ZuoIt
+    SkIGnPo+f/Kh0VfwAACyGqpv0UWlsRVd0cuYtQVx3MTV8cVZA1NPKmpaCAhndTK188ip
+    jcc0l/OXnhCOTjIjugpKHKxL3l3jO3UA4Ps7c/ux8panbv6FBehkIg3hmwU9B0kTY7rX
+    EJQQ==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1705080852;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=x1r68xA9wRZ4ANIBi9hA9+/f2i2/5reMcctFU/rKIWM=;
+    b=jL32j5FwaeApRttmOhW1Gu7gSfqOtYGFDHV/dfmiVwk6lv/rGq6WkiuBz82beG8UnO
+    swrsv0PhvQYaN21JZmxO2+xU2OKEIDHGCNxj9juFGzg+Ldkd0mhSBo97APtDJ6U+LRqu
+    7blY6TeqlvdGLoENvx22BbsH/dahwDdBTiZ9BLCKDH+ergN8Y0RIkiA25I65IuRw4QpB
+    qzlOiNthWw+WTgSS1LzxBVQAwVwPewl9NQf1D7CfvSzknu8aEGQJDyWjtSAjV3d/ogkE
+    eT3drVtVQwHCoz/BHuQVEe8SLaX+rax4SpDu49ZC3/DEwQeCoUx/w0zBh8zzKKg1e7bO
+    eWKg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1705080852;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=x1r68xA9wRZ4ANIBi9hA9+/f2i2/5reMcctFU/rKIWM=;
+    b=pHXvjyM6SXoq2JN88aS5Df7FeZdKXhVFedn7SwZ4nyqUqIMi1EYmq65gduamPGp39D
+    E3e2r+2FnzciMSGM/LCQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Apz9PSN6LgsXcGZjDY="
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 49.10.2 DYNA|AUTH)
+    with ESMTPSA id dbe64400CHY9PpN
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Fri, 12 Jan 2024 18:34:09 +0100 (CET)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.300.61.1.2\))
+Subject: Re: [PATCH RFC v2 04/11] ARM: dts: omap4: Add device tree entry for
+ SGX GPU
+From: H. Nikolaus Schaller <hns@goldelico.com>
+In-Reply-To: <20240108183302.255055-5-afd@ti.com>
+Date: Fri, 12 Jan 2024 18:33:58 +0100
+Cc: Frank Binns <frank.binns@imgtec.com>,
+ Donald Robson <donald.robson@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>,
+ Adam Ford <aford173@gmail.com>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+ Tony Lindgren <tony@atomide.com>,
+ Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>,
+ Paul Cercueil <paul@crapouillou.net>,
+ dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev,
+ linux-omap@vger.kernel.org,
+ linux-mips@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <122DC5ED-2AA7-46A0-845F-083922458385@goldelico.com>
+References: <20240108183302.255055-1-afd@ti.com>
+ <20240108183302.255055-5-afd@ti.com>
+To: Andrew Davis <afd@ti.com>
+X-Mailer: Apple Mail (2.3774.300.61.1.2)
 
-On Fri, 12 Jan 2024 17:40:21 +0100
-Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+Hi,
+I just comment on this example, but it applies almost the same for all =
+other .dtsi changes.
 
-> From: Nuno Sa <nuno.sa@analog.com>
-> 
-> Convert the driver to use the new IIO backend framework. The device
-> functionality is expected to be the same (meaning no added or removed
-> features).
-> 
-> Also note this patch effectively breaks ABI and that's needed so we can
-> properly support this device and add needed features making use of the
-> new IIO framework.
-> 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> Am 08.01.2024 um 19:32 schrieb Andrew Davis <afd@ti.com>:
+>=20
+> Add SGX GPU device entry to base OMAP4 dtsi file.
+>=20
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+> arch/arm/boot/dts/ti/omap/omap4.dtsi | 9 +++++----
+> 1 file changed, 5 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/ti/omap/omap4.dtsi =
+b/arch/arm/boot/dts/ti/omap/omap4.dtsi
+> index 2bbff9032be3e..559b2bfe4ca7c 100644
+> --- a/arch/arm/boot/dts/ti/omap/omap4.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/omap4.dtsi
+> @@ -501,10 +501,11 @@ sgx_module: target-module@56000000 {
+> #size-cells =3D <1>;
+> ranges =3D <0 0x56000000 0x2000000>;
+>=20
+> - /*
+> - * Closed source PowerVR driver, no child device
+> - * binding or driver in mainline
+> - */
+> + gpu@0 {
 
-Hi Nuno,
+I wonder why we don't add a "gpu:" label here.
 
-Some trivial stuff in here (not I reviewed in reverse so might make more
-sense read that way).  Mostly little changes that will reduce what
-appears to be going on in this patch to the minimum possible
+Almost all other subsystem nodes have one (e.g. emif:, aes:, dss:, dsi:, =
+hdmi:, etc.),
+obviously for convenience when using a .dtsi file.
 
+It would allow a board-specific DTS to easily add status =3D "disabled" =
+to avoid driver
+probing or disabling the GPU (e.g. if there is no display).
 
->  
-> -static int ad9467_get_scale(struct adi_axi_adc_conv *conv, int *val, int *val2)
-> +static int ad9467_get_scale(struct ad9467_state *st, int *val, int *val2)
->  {
-> -	const struct adi_axi_adc_chip_info *info = conv->chip_info;
+> + compatible =3D "ti,omap4430-gpu", "img,powervr-sgx540";
 
-Keep an info variable around in here as well.
+It still appears to me that the "img,powervr-sgx540" (or similar) entry =
+is redundant
+information.
 
-> -	const struct ad9467_chip_info *info1 = to_ad9467_chip_info(info);
-> -	struct ad9467_state *st = adi_axi_adc_conv_priv(conv);
->  	unsigned int i, vref_val;
->  	int ret;
->  
-> @@ -282,25 +276,23 @@ static int ad9467_get_scale(struct adi_axi_adc_conv *conv, int *val, int *val2)
->  	if (ret < 0)
->  		return ret;
->  
-> -	vref_val = ret & info1->vref_mask;
-> +	vref_val = ret & st->info->vref_mask;
->  
-> -	for (i = 0; i < info->num_scales; i++) {
-> -		if (vref_val == info->scale_table[i][1])
-> +	for (i = 0; i < st->info->num_scales; i++) {
-> +		if (vref_val == st->info->scale_table[i][1])
->  			break;
->  	}
->  
-> -	if (i == info->num_scales)
-> +	if (i == st->info->num_scales)
->  		return -ERANGE;
->  
-> -	__ad9467_get_scale(conv, i, val, val2);
-> +	__ad9467_get_scale(st, i, val, val2);
->  
->  	return IIO_VAL_INT_PLUS_MICRO;
->  }
->  
-> -static int ad9467_set_scale(struct adi_axi_adc_conv *conv, int val, int val2)
-> +static int ad9467_set_scale(struct ad9467_state *st, int val, int val2)
->  {
-> -	const struct adi_axi_adc_chip_info *info = conv->chip_info;
-> -	struct ad9467_state *st = adi_axi_adc_conv_priv(conv);
+I have experimentally updated our openpvrsgx driver and we do not have =
+any use for
+this information (at least in the kernel driver):
 
-Definitely good to keep local info variable here.
+=
+https://github.com/goldelico/letux-kernel/commit/f2f7cb3b858ef255f52f2b82a=
+8bb34c047337afe
 
->  	unsigned int scale_val[2];
->  	unsigned int i;
->  	int ret;
-> @@ -308,14 +300,14 @@ static int ad9467_set_scale(struct adi_axi_adc_conv *conv, int val, int val2)
->  	if (val != 0)
->  		return -EINVAL;
->  
-> -	for (i = 0; i < info->num_scales; i++) {
-> -		__ad9467_get_scale(conv, i, &scale_val[0], &scale_val[1]);
-> +	for (i = 0; i < st->info->num_scales; i++) {
-> +		__ad9467_get_scale(st, i, &scale_val[0], &scale_val[1]);
->  		if (scale_val[0] != val || scale_val[1] != val2)
->  			continue;
->  
->  		guard(mutex)(&st->lock);
->  		ret = ad9467_spi_write(st->spi, AN877_ADC_REG_VREF,
-> -				       info->scale_table[i][1]);
-> +				       st->info->scale_table[i][1]);
->  		if (ret < 0)
->  			return ret;
->  
+It shows how easy it is to derive the sgx version and revision number if =
+we ever
+need it inside the driver.
 
->  }
->  
-> -static int ad9467_write_raw(struct adi_axi_adc_conv *conv,
-> +static int ad9467_write_raw(struct iio_dev *indio_dev,
->  			    struct iio_chan_spec const *chan,
->  			    int val, int val2, long mask)
->  {
-> -	const struct adi_axi_adc_chip_info *info = conv->chip_info;
-> -	struct ad9467_state *st = adi_axi_adc_conv_priv(conv);
-> +	struct ad9467_state *st = iio_priv(indio_dev);
-Even here I'd keep a local info variable as it's harmless and
-reduces what is changed in this patch.
+So if you want to keep a reference to powervr, it would suffice to have
 
->  	long r_clk;
->  
->  	switch (mask) {
->  	case IIO_CHAN_INFO_SCALE:
-> -		return ad9467_set_scale(conv, val, val2);
-> +		return ad9467_set_scale(st, val, val2);
->  	case IIO_CHAN_INFO_SAMP_FREQ:
->  		r_clk = clk_round_rate(st->clk, val);
-> -		if (r_clk < 0 || r_clk > info->max_rate) {
-> +		if (r_clk < 0 || r_clk > st->info->max_rate) {
->  			dev_warn(&st->spi->dev,
->  				 "Error setting ADC sample rate %ld", r_clk);
->  			return -EINVAL;
-> @@ -369,26 +360,53 @@ static int ad9467_write_raw(struct adi_axi_adc_conv *conv,
->  	}
->  }
->  
-> -static int ad9467_read_avail(struct adi_axi_adc_conv *conv,
-> +static int ad9467_read_avail(struct iio_dev *indio_dev,
->  			     struct iio_chan_spec const *chan,
->  			     const int **vals, int *type, int *length,
->  			     long mask)
->  {
-> -	const struct adi_axi_adc_chip_info *info = conv->chip_info;
-> -	struct ad9467_state *st = adi_axi_adc_conv_priv(conv);
-> +	struct ad9467_state *st = iio_priv(indio_dev);
-As below, I'd keep the local info variable to reduce scope of changes
-to the minimum.
+> + compatible =3D "ti,omap4430-gpu", "img,powervr-sgx";
 
->  
->  	switch (mask) {
->  	case IIO_CHAN_INFO_SCALE:
->  		*vals = (const int *)st->scales;
->  		*type = IIO_VAL_INT_PLUS_MICRO;
->  		/* Values are stored in a 2D matrix */
-> -		*length = info->num_scales * 2;
-> +		*length = st->info->num_scales * 2;
->  		return IIO_AVAIL_LIST;
->  	default:
->  		return -EINVAL;
->  	}
->  }
->  
+Otherwise your device tree entries compile fine and seem to work (at =
+least in
+a cursory test on PandaBoard ES).
 
-> +
->  static int ad9467_outputmode_set(struct spi_device *spi, unsigned int mode)
->  {
->  	int ret;
-> @@ -401,19 +419,17 @@ static int ad9467_outputmode_set(struct spi_device *spi, unsigned int mode)
->  				AN877_ADC_TRANSFER_SYNC);
->  }
->  
-> -static int ad9467_scale_fill(struct adi_axi_adc_conv *conv)
-> +static int ad9467_scale_fill(struct ad9467_state *st)
->  {
-> -	const struct adi_axi_adc_chip_info *info = conv->chip_info;
-> -	struct ad9467_state *st = adi_axi_adc_conv_priv(conv);
->  	unsigned int i, val1, val2;
-	const struct adi_axi_adc_chip_info *info = st->info;
-I think...
+> + reg =3D <0x0 0x2000000>; /* 32MB */
+> + interrupts =3D <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+> + };
+> };
 
-Makes this patch more minimal which is nice and it's not a bad change
-in it's own right..
-
-Same with some other cases changed by this patch.
-
->  
-> -	st->scales = devm_kmalloc_array(&st->spi->dev, info->num_scales,
-> +	st->scales = devm_kmalloc_array(&st->spi->dev, st->info->num_scales,
->  					sizeof(*st->scales), GFP_KERNEL);
->  	if (!st->scales)
->  		return -ENOMEM;
->  
-> -	for (i = 0; i < info->num_scales; i++) {
-> -		__ad9467_get_scale(conv, i, &val1, &val2);
-> +	for (i = 0; i < st->info->num_scales; i++) {
-> +		__ad9467_get_scale(st, i, &val1, &val2);
->  		st->scales[i][0] = val1;
->  		st->scales[i][1] = val2;
->  	}
-> @@ -421,11 +437,27 @@ static int ad9467_scale_fill(struct adi_axi_adc_conv *conv)
->  	return 0;
->  }
->  
-> -static int ad9467_preenable_setup(struct adi_axi_adc_conv *conv)
-> +static int ad9467_setup(struct ad9467_state *st)
->  {
-> -	struct ad9467_state *st = adi_axi_adc_conv_priv(conv);
-> +	struct iio_backend_data_fmt data = {
-> +		.sign_extend = true,
-> +		.enable = true,
-> +	};
-> +	unsigned int c, mode;
-> +	int ret;
-> +
-> +	mode = st->info->default_output_mode | AN877_ADC_OUTPUT_MODE_TWOS_COMPLEMENT;
-
-Bit of a long line. Perhaps break it after the |
-
-> +	ret = ad9467_outputmode_set(st->spi, mode);
-> +	if (ret)
-> +		return ret;
->  
-> -	return ad9467_outputmode_set(st->spi, st->output_mode);
-> +	for (c = 0; c < st->info->num_channels; c++) {
-> +		ret = iio_backend_data_format_set(st->back, c, &data);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
->  }
->  
->  static int ad9467_reset(struct device *dev)
-> @@ -443,25 +475,64 @@ static int ad9467_reset(struct device *dev)
->  	return 0;
->  }
->  
-> +static int ad9467_iio_backend_get(struct ad9467_state *st)
-> +{
-> +	struct device *dev = &st->spi->dev;
-> +	struct device_node *__back;
-> +
-> +	st->back = devm_iio_backend_get(&st->spi->dev, NULL);
-> +	/* If not found, don't error out as we might have legacy DT property */
-> +	if (IS_ERR(st->back) && PTR_ERR(st->back) != -ENOENT)
-> +		return PTR_ERR(st->back);
-> +	if (!IS_ERR(st->back))
-> +		return 0;
-Why not do this one first? I know I normally moan about having error handlers
-out of line, but in this case the good is out of line whatever.
-
-	if (!IS_ERR(st->back)
-		return 0;
-
-	if (PTR_ERR(st->back) != ENOENT)
-		return PTR_ERR(st->back);
-
-	...
-
-
-> +	/*
-> +	 * if we don't get the backend using the normal API's, use the legacy
-> +	 * 'adi,adc-dev' property. So we get all nodes with that property, and
-> +	 * look for the one pointing at us. Then we directly lookup that fwnode
-> +	 * on the backend list of registered devices. This is done so we don't
-> +	 * make io-backends mandatory which would break DT ABI.
-> +	 */
-> +	for_each_node_with_property(__back, "adi,adc-dev") {
-> +		struct device_node *__me;
-> +
-> +		__me = of_parse_phandle(__back, "adi,adc-dev", 0);
-> +		if (!__me)
-> +			continue;
-> +
-> +		if (!device_match_of_node(dev, __me)) {
-> +			of_node_put(__me);
-> +			continue;
-> +		}
-> +
-> +		of_node_put(__me);
-> +		st->back = __devm_iio_backend_get_from_fwnode_lookup(dev,
-> +								     of_fwnode_handle(__back));
-> +		of_node_put(__back);
-> +		return PTR_ERR_OR_ZERO(st->back);
-> +	}
-> +
-> +	return -ENODEV;
-> +}
-> +
->  static int ad9467_probe(struct spi_device *spi)
->  {
->
-
->  
-> -	st->output_mode = info->default_output_mode |
-> -			  AN877_ADC_OUTPUT_MODE_TWOS_COMPLEMENT;
-> +	ret = ad9467_iio_backend_get(st);
-> +	if (ret)
-> +		return ret;
->  
-> -	return 0;
-> +	ret = devm_iio_backend_request_buffer(&spi->dev, st->back, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iio_backend_enable(st->back);
-> +	if (ret)
-> +		return ret;
-
-I'm curious there is no iio_backend_disable() to be done in the exit path?
-
-> +
-> +	ret = ad9467_setup(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
->  }
->  
->  static const struct of_device_id ad9467_of_match[] = {
-> @@ -529,4 +610,4 @@ module_spi_driver(ad9467_driver);
->  MODULE_AUTHOR("Michael Hennerich <michael.hennerich@analog.com>");
->  MODULE_DESCRIPTION("Analog Devices AD9467 ADC driver");
->  MODULE_LICENSE("GPL v2");
-> -MODULE_IMPORT_NS(IIO_ADI_AXI);
-> +MODULE_IMPORT_NS(IIO_BACKEND);
-> 
-
+BR and thanks,
+Nikolaus=
 
