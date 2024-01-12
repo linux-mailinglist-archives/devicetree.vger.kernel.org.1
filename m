@@ -1,310 +1,215 @@
-Return-Path: <devicetree+bounces-31590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23BF182BDB6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 10:51:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E22582BDE5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 10:54:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C256B28A927
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:51:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6FC11C2587D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 09:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F91656B9F;
-	Fri, 12 Jan 2024 09:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C05C42057;
+	Fri, 12 Jan 2024 09:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="hFkVC9Mi"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="ok5R+uLD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F095DF22
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:49:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ffwll.ch
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-557678c50feso1379779a12.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 01:49:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A4660B99
+	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 09:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f65.google.com with SMTP id 4fb4d7f45d1cf-557dcb0f870so5312735a12.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 01:52:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google; t=1705052946; x=1705657746; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=us7FlGdER6e8HJOcJ9DbE8FEDZwENOAoyDuutoH2bnc=;
-        b=hFkVC9Mif2HBdcMArgHKUWXyRYjoFTJQhqgwB5D8PgNZOVRYB7ZpE66cbg1U/8vVX3
-         P6d9CnoY14GSShjZ/kf1CpFeq7709DiignVi4kHVpO513KazjEUWHhsS/k91+z0VIFny
-         Mhekf+jCdyQTOYc16B37xdDOXC1Y9wE/tWpZ0=
+        d=fairphone.com; s=fair; t=1705053120; x=1705657920; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HlNYofu3r8i2ZCiashKW8Im9PXJC4O/VU7zX1cqDADg=;
+        b=ok5R+uLD6ZTnei0DVPWInfSJ85n49ghZCKD3glCaQMa+f//WmrikyFRrLtuYKf724v
+         x4F8ajGuLYjagd++ZzM2jU808PNxVdVE1yty5NEh/d+JJzE13S7JgptnV7E8Z2SyETg8
+         Y4LnyvFBnsrx9bVwEEYjN385B0e7TSkxuje0S6nd6YtFjGEmNPSrPEoU+/DmCM3fwtns
+         Y0f6jBK8kUxRgn7pCTYWaGdiGszKtB6MCGhhTA8M0dlYRYrcBRM9eExzqPN2+Ru9p2s2
+         nb9Cdo3LKOc/b4KjCYy+9rpcCxE6Xv8vwwyDeMdK5XfCEpaSNmWS4+knq+gun2J4XWYu
+         h7jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705052946; x=1705657746;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=us7FlGdER6e8HJOcJ9DbE8FEDZwENOAoyDuutoH2bnc=;
-        b=e1YzNThhHDRmWuVop9j09+O9rtkanvr2bMzSsBsbwUYbF4QnsL2oFj+DsCQmrqUcAq
-         yOZDGp8T2CJwygS7f/8+ZU9iWk6+KVin59sDsr/waBqIQTpOkFKkBlY9AF1RV7fqFgMI
-         htyJFkD5SVr29VAumtBFTrcal7e36aaEE6f59r7Ixa+jyfYoJOR28Ih7q3dWMhBD36fV
-         wLtKgCzoqzNd5yN7CWN908FHzkl5YfheHylWuX+C3QsmpCcDe8GXRNDwk0TXeHLOIz2r
-         8pJ0WYODsZYeLZwH11YjfpL3c7ItCMT8ybTGDBcY6/IW6GkwPICXbpRCF0afl9oqaG/F
-         PvaQ==
-X-Gm-Message-State: AOJu0Yzm1pQ42JUeg/WNORJ1h9ByBsTWUZplz3I0mcLf4modobOicICZ
-	iC4CpadML2D6UbT41pz55XOHHMWlZqoa3w==
-X-Google-Smtp-Source: AGHT+IEOiq3FXhd4T4HCBcGkiMyRtMKljt8lxwRBUf3NerLJ5gdqm06t+lKy82F5LT4WBLgvMEXbXw==
-X-Received: by 2002:a05:6402:148d:b0:557:4249:44 with SMTP id e13-20020a056402148d00b0055742490044mr760113edv.1.1705052946272;
-        Fri, 12 Jan 2024 01:49:06 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
-        by smtp.gmail.com with ESMTPSA id dh19-20020a0564021d3300b00557332d657fsm1610937edb.39.2024.01.12.01.49.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Jan 2024 01:49:05 -0800 (PST)
-Date: Fri, 12 Jan 2024 10:49:03 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
-	Pavel Machek <pavel@ucw.cz>,
-	Jeffrey Kardatzke <jkardatzke@google.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Vijayanand Jitta <quic_vjitta@quicinc.com>,
-	jianjiao.zeng@mediatek.com, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linaro-mm-sig@lists.linaro.org,
-	Pekka Paalanen <ppaalanen@gmail.com>,
-	linux-mediatek@lists.infradead.org,
-	Joakim Bech <joakim.bech@linaro.org>, tjmercier@google.com,
-	linux-arm-kernel@lists.infradead.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	youlin.pei@mediatek.com, kuohong.wang@mediatek.com,
-	linux-kernel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH v4 4/7] dma-buf: heaps: restricted_heap: Add dma_ops
-Message-ID: <ZaELD4APVuX4p77P@phenom.ffwll.local>
-Mail-Followup-To: Yong Wu <yong.wu@mediatek.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	dri-devel@lists.freedesktop.org, John Stultz <jstultz@google.com>,
-	Pavel Machek <pavel@ucw.cz>,
-	Jeffrey Kardatzke <jkardatzke@google.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Vijayanand Jitta <quic_vjitta@quicinc.com>,
-	jianjiao.zeng@mediatek.com, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linaro-mm-sig@lists.linaro.org,
-	Pekka Paalanen <ppaalanen@gmail.com>,
-	linux-mediatek@lists.infradead.org,
-	Joakim Bech <joakim.bech@linaro.org>, tjmercier@google.com,
-	linux-arm-kernel@lists.infradead.org,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	youlin.pei@mediatek.com, kuohong.wang@mediatek.com,
-	linux-kernel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>
-References: <20240112092014.23999-1-yong.wu@mediatek.com>
- <20240112092014.23999-5-yong.wu@mediatek.com>
- <ZaEJOjXP2EJIe9rK@phenom.ffwll.local>
+        d=1e100.net; s=20230601; t=1705053120; x=1705657920;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HlNYofu3r8i2ZCiashKW8Im9PXJC4O/VU7zX1cqDADg=;
+        b=sCv47s2d38PB6pCUNbxSe65dRmstEWoGaphOeBLuz+hK6WTGXINMWkJ6jPUtuncGg6
+         z9BWPerJwSc1nN7nv7MnLtE145OqHbwCJeBWSNg+3oPjS/YeJmx4ZSIBCxA9MjlvuBSO
+         fPKzJULQrpn4LDX7aeULygfeJM0uuKs37Od/3m2I6BYuJDpnyoUH5P3zHClljcybj+Jx
+         EDOJUiH9StNo9YG4lUtvGz1TxBc3KfFzeTFdZlr15cMKMQ3XARPJDN/p1wsXU9AdkdTP
+         PBQwKG1MC4GsDqdHPIyiiFmVWHl8Fquoxa2q08U9oGFAhXmJf2wfJ8/gNWVFzKkyDZwR
+         tTvQ==
+X-Gm-Message-State: AOJu0YzrBXNAPaoCmqfUltxtgEKDoZv+U/ovcO8RPWOB1Qp9O2kIG4PV
+	m6Oim6LZ9TruSEnRh4OvRQSq/eZVr9enew==
+X-Google-Smtp-Source: AGHT+IH6D9hm2y3kaGCs5RwJQn2m/6/TZIAhrZDDw5invkLKwXZ/IILZ+DDyExfQK5cF5FyfT3lihA==
+X-Received: by 2002:a05:6402:1d1c:b0:557:aa16:1e44 with SMTP id dg28-20020a0564021d1c00b00557aa161e44mr489041edb.79.1705053119939;
+        Fri, 12 Jan 2024 01:51:59 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id eg7-20020a056402288700b0055515b40464sm1616621edb.81.2024.01.12.01.51.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jan 2024 01:51:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZaEJOjXP2EJIe9rK@phenom.ffwll.local>
-X-Operating-System: Linux phenom 6.5.0-4-amd64 
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 12 Jan 2024 10:51:59 +0100
+Message-Id: <CYCMVXHYVDCI.HVH1TR8MWEUK@fairphone.com>
+Subject: Re: [PATCH v2 2/4] drm/panel: Add driver for DJN HX83112A LCD panel
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: <neil.armstrong@linaro.org>, "Linus Walleij" <linus.walleij@linaro.org>
+Cc: "Jessica Zhang" <quic_jesszhan@quicinc.com>, "Sam Ravnborg"
+ <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>, "Daniel Vetter"
+ <daniel@ffwll.ch>, "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>, "Thomas Zimmermann"
+ <tzimmermann@suse.de>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>, "Andy Gross" <agross@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20240110-fp4-panel-v2-0-8ad11174f65b@fairphone.com>
+ <20240110-fp4-panel-v2-2-8ad11174f65b@fairphone.com>
+ <CACRpkdaWTfPDCin_L6pefHsokjNyO8Mo6hWPdzPLLi1EUkKUuA@mail.gmail.com>
+ <CYBZEZ4IM6IL.VR04W7933VI@fairphone.com>
+ <CACRpkdZQbVXfBa70nhDOqfWPbsh-6DgX-uvZOxr19pzMmF2giQ@mail.gmail.com>
+ <CYCLSCKPPBOC.1B1MP3VOOC0Q8@fairphone.com>
+ <cdc18e2a-b7eb-4b54-a513-481148fb3b0d@linaro.org>
+In-Reply-To: <cdc18e2a-b7eb-4b54-a513-481148fb3b0d@linaro.org>
 
-On Fri, Jan 12, 2024 at 10:41:14AM +0100, Daniel Vetter wrote:
-> On Fri, Jan 12, 2024 at 05:20:11PM +0800, Yong Wu wrote:
-> > Add the dma_ops for this restricted heap. For restricted buffer,
-> > cache_ops/mmap are not allowed, thus return EPERM for them.
-> > 
-> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > ---
-> >  drivers/dma-buf/heaps/restricted_heap.c | 103 ++++++++++++++++++++++++
-> >  1 file changed, 103 insertions(+)
-> > 
-> > diff --git a/drivers/dma-buf/heaps/restricted_heap.c b/drivers/dma-buf/heaps/restricted_heap.c
-> > index 8c266a0f6192..ec4c63d2112d 100644
-> > --- a/drivers/dma-buf/heaps/restricted_heap.c
-> > +++ b/drivers/dma-buf/heaps/restricted_heap.c
-> > @@ -12,6 +12,10 @@
-> >  
-> >  #include "restricted_heap.h"
-> >  
-> > +struct restricted_heap_attachment {
-> > +	struct sg_table			*table;
-> > +};
-> > +
-> >  static int
-> >  restricted_heap_memory_allocate(struct restricted_heap *heap, struct restricted_buffer *buf)
-> >  {
-> > @@ -45,6 +49,104 @@ restricted_heap_memory_free(struct restricted_heap *heap, struct restricted_buff
-> >  	ops->memory_free(heap, buf);
-> >  }
-> >  
-> > +static int restricted_heap_attach(struct dma_buf *dmabuf, struct dma_buf_attachment *attachment)
-> > +{
-> > +	struct restricted_buffer *restricted_buf = dmabuf->priv;
-> > +	struct restricted_heap_attachment *a;
-> > +	struct sg_table *table;
-> > +	int ret;
-> > +
-> > +	a = kzalloc(sizeof(*a), GFP_KERNEL);
-> > +	if (!a)
-> > +		return -ENOMEM;
-> > +
-> > +	table = kzalloc(sizeof(*table), GFP_KERNEL);
-> > +	if (!table) {
-> > +		ret = -ENOMEM;
-> > +		goto err_free_attach;
-> > +	}
-> > +
-> > +	ret = sg_alloc_table(table, 1, GFP_KERNEL);
-> > +	if (ret)
-> > +		goto err_free_sgt;
-> > +	sg_set_page(table->sgl, NULL, restricted_buf->size, 0);
-> 
-> So this is definitely broken and violating the dma-buf api rules. You
-> cannot let attach succed and supply a dummy/invalid sg table.
-> 
-> Two options:
-> 
-> - Reject ->attach for all this buffers with -EBUSY and provide instead a
->   private api for these secure buffers, similar to how virtio_dma_buf has
->   private virto-specific apis. This interface would need to be
->   standardized across all arm TEE users, so that we don't have a
->   disastrous proliferation of apis.
-> 
-> - Allow ->attach, but _only_ for drivers/devices which can access the
->   secure buffer correctly, and only if you can put the right secure buffer
->   address into the sg table directly. If dma to a secure buffer for a
->   given struct device * will not work correctly (i.e. without data
->   corruption), you _must_ reject the attach attempt with -EBUSY.
-> 
-> The 2nd approach would be my preferred one, if it's technically possible.
-> 
-> Also my understanding is that arm TEE is standardized, so I think we'll at
-> least want some acks from other soc people whether this will work for them
-> too.
-> 
-> Finally the usual drill:
-> - this also needs the driver side support, if there's any changes needed.
->   Just the new heap isn't enough.
+On Fri Jan 12, 2024 at 10:14 AM CET, Neil Armstrong wrote:
+> On 12/01/2024 10:00, Luca Weiss wrote:
+> > On Thu Jan 11, 2024 at 8:05 PM CET, Linus Walleij wrote:
+> >> On Thu, Jan 11, 2024 at 4:28=E2=80=AFPM Luca Weiss <luca.weiss@fairpho=
+ne.com> wrote:
+> >>
+> >>> In some internal documentation it says "LCD Driver IC" "HX83112A" and=
+ I
+> >>> don't see any reference to Truly 5P65 anywhere.
+> >>
+> >> In the Android directory I pointed to I see this file:
+> >> HX83112_Android_Driver/Truly_5p65_module_fw/UpdateFW.bat
+> >>
+> >> (Notice the 5p65 fw dir is *inside* the HX82112 dir)
+> >>
+> >> And in that file:
+> >> adb push TRULY_5P65_1080_2160_HX83112A_D01C01.bin
+> >> /system/etc/firmware/Himax_firmware.bin
+> >>
+> >> Clearly indicating that they are pushing a Truly 5P65 firmware into
+> >> the Himax display firmware directory.
+> >>
+> >> To be fair, that is the driver for the touchscreen part of HX83112A,
+> >> but ... Truly is a well known manufacturer of display controllers?
+> >>
+> >> But... given that you have a @fairphone.com mal address and
+> >> a working relationship with them, can't you just ask?
+> >>
+> >>> On their website they have this sentence:
+> >>
+> >> All OEMs want to look like everything is their own product. It is
+> >> business as usual.
+> >=20
+> > I can't tell you anything there that I don't know, sorry.
+> >=20
+> >>
+> >> Further on the same note since I guess you have a datasheet)
+> >> please bring in #defines for the commands (the first byte in the
+> >> write sequences, for examples:
+> >>
+> >> +       mipi_dsi_dcs_write_seq(dsi, 0xbd, 0x02);
+> >> +       mipi_dsi_dcs_write_seq(dsi, 0xd8,
+> >> +                              0xaa, 0xff, 0xff, 0xff, 0xff, 0xff, 0xa=
+a, 0xff,
+> >> +                              0xff, 0xff, 0xff, 0xff);
+> >> +       mipi_dsi_dcs_write_seq(dsi, 0xbd, 0x03);
+> >>
+> >> Clearly 0xbd is HX83112_CMD_SETREGBANK?
+> >> (This is easily spotted from the similar structure in the
+> >> existing panel-himax-hx8394.c.) So please add #defines
+> >> for all commands you know, especially if you have a datasheet
+> >> because we reviewers don't have them and "it's just magic
+> >> bytes" isn't very compelling. It adds a lot to understanding.
+> >=20
+> > Right, the register names seem to match more or less the ones from that
+> > driver, plus some new ones and some differently named ones. Will send a
+> > v3 with that.
+> >=20
+> >>
+> >> I strongly suspect other Himax displays such as HX8394 to
+> >> be using a Truly controller as well, hence the similarities.
+> >>
+> >> In a datasheet for their TFT800480-84-V1-E display controller
+> >> Truly kept the init sequence name of void LCD_INIT_HX8290(void)
+> >> for example.
+> >=20
+> > In that datasheet (assuming I'm looking at the same one?) it says
+> > "Driver IC" "HX8290-A[...]" so there the display driver is manufactured
+> > by Himax and not Truly to my understanding. Truly is assembling togethe=
+r
+> > Driver + all the other parts that go into an LCD.
+> >=20
+> > For the panel used on Fairphone 4 that part is done by the company DJN.
+>
+> Looking at the discussion, this seems to confirm the Display+Touch IC is =
+HX83112A,
+> and Truly is the panel manufacturer and all assembled by DJN, so IMHO the=
+ initial driver is right.
+>
+> Perhaps the compatible should be djn,hx83112a-truly-5p65 to reflect that =
+?
 
-Ok I quickly scrolled through your drm patches and that confirms that the
-current dma-buf interface you're implementing is just completely breaking
-the api. And you need to paper over that will all kinds of very icky
-special-casing.
+Since there's zero indication Truly is involved in this panel in my
+documentation - much less the number 5P65 - I'm not going to add that.
 
-So definitely need to rethink the overall design between dma-buf heaps and
-drivers here.
--Sima
+One other number I'm certain of is from DJN's side the model number of
+this panel is 9A-3R063-1102B, which I assume is the specific combination
+of components + frame and everything for Fairphone 4 device.
 
-> - and for drm you need open userspace for this. Doesn't have to be the
->   full content protection decode pipeline, the drivers in drm that landed
->   secure buffer support thus far enabled it using the
->   EGL_EXT_protected_content extension using gl, which side steps all the
->   complications around content decryption keys and support
-> 
-> Cheers, Sima
-> 
-> > +
-> > +	a->table = table;
-> > +	attachment->priv = a;
-> > +
-> > +	return 0;
-> > +
-> > +err_free_sgt:
-> > +	kfree(table);
-> > +err_free_attach:
-> > +	kfree(a);
-> > +	return ret;
-> > +}
-> > +
-> > +static void restricted_heap_detach(struct dma_buf *dmabuf, struct dma_buf_attachment *attachment)
-> > +{
-> > +	struct restricted_heap_attachment *a = attachment->priv;
-> > +
-> > +	sg_free_table(a->table);
-> > +	kfree(a->table);
-> > +	kfree(a);
-> > +}
-> > +
-> > +static struct sg_table *
-> > +restricted_heap_map_dma_buf(struct dma_buf_attachment *attachment, enum dma_data_direction direct)
-> > +{
-> > +	struct restricted_heap_attachment *a = attachment->priv;
-> > +	struct sg_table *table = a->table;
-> > +
-> > +	return table;
-> > +}
-> > +
-> > +static void
-> > +restricted_heap_unmap_dma_buf(struct dma_buf_attachment *attachment, struct sg_table *table,
-> > +			      enum dma_data_direction direction)
-> > +{
-> > +	struct restricted_heap_attachment *a = attachment->priv;
-> > +
-> > +	WARN_ON(a->table != table);
-> > +}
-> > +
-> > +static int
-> > +restricted_heap_dma_buf_begin_cpu_access(struct dma_buf *dmabuf, enum dma_data_direction direction)
-> > +{
-> > +	return -EPERM;
-> > +}
-> > +
-> > +static int
-> > +restricted_heap_dma_buf_end_cpu_access(struct dma_buf *dmabuf, enum dma_data_direction direction)
-> > +{
-> > +	return -EPERM;
-> > +}
-> > +
-> > +static int restricted_heap_dma_buf_mmap(struct dma_buf *dmabuf, struct vm_area_struct *vma)
-> > +{
-> > +	return -EPERM;
-> > +}
-> > +
-> > +static void restricted_heap_free(struct dma_buf *dmabuf)
-> > +{
-> > +	struct restricted_buffer *restricted_buf = dmabuf->priv;
-> > +	struct restricted_heap *heap = dma_heap_get_drvdata(restricted_buf->heap);
-> > +
-> > +	restricted_heap_memory_free(heap, restricted_buf);
-> > +	kfree(restricted_buf);
-> > +}
-> > +
-> > +static const struct dma_buf_ops restricted_heap_buf_ops = {
-> > +	.attach		= restricted_heap_attach,
-> > +	.detach		= restricted_heap_detach,
-> > +	.map_dma_buf	= restricted_heap_map_dma_buf,
-> > +	.unmap_dma_buf	= restricted_heap_unmap_dma_buf,
-> > +	.begin_cpu_access = restricted_heap_dma_buf_begin_cpu_access,
-> > +	.end_cpu_access	= restricted_heap_dma_buf_end_cpu_access,
-> > +	.mmap		= restricted_heap_dma_buf_mmap,
-> > +	.release	= restricted_heap_free,
-> > +};
-> > +
-> >  static struct dma_buf *
-> >  restricted_heap_allocate(struct dma_heap *heap, unsigned long size,
-> >  			 unsigned long fd_flags, unsigned long heap_flags)
-> > @@ -66,6 +168,7 @@ restricted_heap_allocate(struct dma_heap *heap, unsigned long size,
-> >  	if (ret)
-> >  		goto err_free_buf;
-> >  	exp_info.exp_name = dma_heap_get_name(heap);
-> > +	exp_info.ops = &restricted_heap_buf_ops;
-> >  	exp_info.size = restricted_buf->size;
-> >  	exp_info.flags = fd_flags;
-> >  	exp_info.priv = restricted_buf;
-> > -- 
-> > 2.25.1
-> > 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+That one you can also find in this document (Ctrl-F for DJN)
+https://www.fairphone.com/wp-content/uploads/2022/09/FP4_Information-for-re=
+pairers-and-recyclers.pdf
+.. or on this picture:
+https://guide-images.cdn.ifixit.com/igi/HgTquQPABg1mAMHD.huge
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+So something like djn,9a-3r063-1102b would also be somewhat valid I
+guess?
+
+So in short this panel is the model 9A-3R063-1102B from DJN, which uses
+a Himax HX83112A driver IC.
+
+And there's also AU Optronics listed as =E7=8E=BB=E7=92=83=E5=8E=82=E5=AE=
+=B6 ("glass manufacturer"?)
+fwiw, though the display also uses Corning Gorilla Glass 5 so not sure
+who's supplying what.
+
+Regards
+Luca
+
+>
+> Neil
+>
+> >=20
+> > Regards
+> > Luca
+> >=20
+> >>
+> >> Yours,
+> >> Linus Walleij
+> >=20
+
 
