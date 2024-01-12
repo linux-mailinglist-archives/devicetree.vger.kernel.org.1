@@ -1,65 +1,54 @@
-Return-Path: <devicetree+bounces-31682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97AE982C33A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:00:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A68482C349
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 17:06:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D7FF282A91
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:00:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69A1F1C22512
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 16:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D2C6EB7B;
-	Fri, 12 Jan 2024 16:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF9B73165;
+	Fri, 12 Jan 2024 16:06:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VdXz1stN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZbuHgO/1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1873F6EB6E
-	for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 16:00:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3367632ce7bso4520359f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 08:00:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705075221; x=1705680021; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=KNSnE31mUWTtAu62zxte7+wGFbNxIAXcVNWvFpXarq8=;
-        b=VdXz1stNKCLwLQ/mnKJ4pCKXFCH2R3W95NvhAsG3UaYzV7EeVoYvLCMSkLeUPUpe8C
-         C8pt35XbrgtcDkRqxKon/pPVakcqHyn57h8vje1CoCajstWaf1zGl6ffSj/ufN8H+4gi
-         gPfeOX5VYVYSvyRTwyj4fomIrhEVdvYOA5hLoIW24fzi452kYyLBt9wXdUfIgSwARHL5
-         61Z5fhHJMQo30SvnjT8CjJfehVXmdjU+0VAzSjyMd16nxFMyR1n9v4tmIAP+rJTxvZTH
-         KyiZA/MCVr4ZFtGyHxEKXp/4X2GErFjvGefCwiY3svGWBrQipu2nF+PfebB4j6By+k7O
-         btsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705075221; x=1705680021;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KNSnE31mUWTtAu62zxte7+wGFbNxIAXcVNWvFpXarq8=;
-        b=PE5fEjxjvDFyeagRO/X0JZsoArdYbXaARH4ouFGuseIurAQ1KckHujlWHk/3Acfhkb
-         PnIJoJrQtd3Vj0/jhzYgnSvjvYmeT46I1LEib3g5S7SVK+brQrFOOmGPIOcLZ3obUCt5
-         DtX6FemVwWeFcUm2w22b4UIonz7QUjeiQl5T5QI/V+NFKgCZOvoWgiUqw2oC4qhziGCs
-         l9oxsiisDoZqfOB88W7XuYTaE96lsNloI/F/SD54TSF7gMPvh9NWkECQ5LM09VAbuilQ
-         DA4DM0zwi3j0tMEcN0Z5/2goT/VQ7406cR3bDV3C03uleyF4dxm3TvBpOl7WxeLqawoF
-         OY8g==
-X-Gm-Message-State: AOJu0YxztuRkpopH+XgNW2KU2v7loedpmTnb5sqAOCpYGpv1Jrraqv7y
-	QHgxXkFyP3TXBUu9AnIylRx0dCYb3gfyng==
-X-Google-Smtp-Source: AGHT+IG0t8vwy4/T+jnfap/4JzmpTGUHJHK3NjF9tz0RjHW21dsfZTqkn2BSN+XKUADqV25rHt7bjA==
-X-Received: by 2002:adf:e8c6:0:b0:336:1182:6475 with SMTP id k6-20020adfe8c6000000b0033611826475mr875372wrn.34.1705075221351;
-        Fri, 12 Jan 2024 08:00:21 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id b6-20020adfee86000000b00337478efa4fsm4200905wro.60.2024.01.12.08.00.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Jan 2024 08:00:20 -0800 (PST)
-Message-ID: <a1e673be-9c4e-4bbc-abe6-56466f8a01ad@linaro.org>
-Date: Fri, 12 Jan 2024 17:00:18 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40DAC6EB7F;
+	Fri, 12 Jan 2024 16:06:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40CEu3Vf000923;
+	Fri, 12 Jan 2024 16:06:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=M1x83cN8XOE+7DNlVKFKPABwCb6JtMLdTeKXKDUhjVc=; b=Zb
+	uHgO/1JODIsqKSelHLRXkp1YW/jiyKLpn56yA9JN68pcIUoZrJuoJMCXIornqc+t
+	LPnHqyKb5ZTGBydw3R1bjf/8Tu/aQQ4srP8pcUK+c33tHw34i6GXohLE1JIJzjOA
+	gqGrxh5xY8LM2rimDWzvNyekWywcecsNXygffnozrOGOVH1pyTFoUsKXwCrWOGWi
+	8Cm/uJ/ehygHR9jkFerNFL2eVdlM5ekYgCkzi45856r8d4Gmw6o1FIqv0UvRej2J
+	qi/xd1qLipJH1f+kEz/5bykkIpjID78YO8U5T8bBZRHVyeCIqHRyu6Y8WGj6i7lT
+	pkbcrMHPMzVt1bRmZgpQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vk1x192g4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Jan 2024 16:06:00 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40CG60JP008657
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Jan 2024 16:06:00 GMT
+Received: from [10.253.78.164] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 12 Jan
+ 2024 08:05:56 -0800
+Message-ID: <5c88945b-4a80-4346-a77c-82a68ae02047@quicinc.com>
+Date: Sat, 13 Jan 2024 00:05:53 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,115 +56,81 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
- silvaco,i3c-target-v1
+Subject: Re: [PATCH 3/6] arm64: dts: qcom: ipq5332: Add MDIO device tree
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: robh@kernel.org, alexandre.belloni@bootlin.com,
- conor.culhane@silvaco.com, gregkh@linuxfoundation.org, imx@lists.linux.dev,
- jirislaby@kernel.org, joe@perches.com, linux-i3c@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- miquel.raynal@bootlin.com, zbigniew.lukwinski@linux.intel.com,
- devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20240110175221.2335480-1-Frank.Li@nxp.com>
- <20240110175221.2335480-3-Frank.Li@nxp.com>
- <3c0be658-e7a6-4231-b206-86ffb47e0cb2@linaro.org>
- <ZaFbbeQrC7o2dchO@lizhi-Precision-Tower-5810>
- <e3b9aa63-25a5-41cc-9eb7-6e7d1eacb136@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e3b9aa63-25a5-41cc-9eb7-6e7d1eacb136@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To: Andrew Lunn <andrew@lunn.ch>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
+        <quic_soni@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_souravp@quicinc.com>, <quic_linchen@quicinc.com>,
+        <quic_leiwei@quicinc.com>
+References: <20240110112059.2498-1-quic_luoj@quicinc.com>
+ <20240110112059.2498-4-quic_luoj@quicinc.com>
+ <4bc0aff5-8a1c-44a6-89d8-460961a61310@lunn.ch>
+ <e893c298-fbfa-4ae4-9b76-72a5030a5530@quicinc.com>
+ <61973012-3f74-4b58-9575-3bc5199f61d9@lunn.ch>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <61973012-3f74-4b58-9575-3bc5199f61d9@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 1TX3T7RW1OYossRy0DccJUdBsQ6fuvg6
+X-Proofpoint-GUID: 1TX3T7RW1OYossRy0DccJUdBsQ6fuvg6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1015 mlxscore=0 spamscore=0 phishscore=0 adultscore=0 bulkscore=0
+ impostorscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0
+ mlxlogscore=442 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401120125
 
-On 12/01/2024 16:50, Krzysztof Kozlowski wrote:
-> On 12/01/2024 16:31, Frank Li wrote:
->> I review previous comments. The previous RFC patches and I just want I3C
->> expert review to check if there are comments about whole software
->> architecture. Of course, thank you for your comments about "slave".
->>
->> Go back this binding doc problem. 
->>
->>   "No, it's the same device.
->>
->>    Anyway, this was not tested.
->>
->>    Please use scripts/get_maintainers.pl to get a list of necessary people
->>    and lists to CC. It might happen, that command when run on an older
->>    kernel, gives you outdated entries. Therefore please be sure you base
->>    your patches on recent Linux kernel.
->>
->>    You missed at least devicetree list (maybe more), so this won't be
->>    tested by automated tooling. Performing review on untested code might be
->>    a waste of time, thus I will skip this patch entirely till you follow
->>    the process allowing the patch to be tested.
->>
->>    Please kindly resend and include all necessary To/Cc entries.
->>    "
->>
->> It is the same devices, work at difference mode (master  and target).
->> what's do you want to change to?
->>
->> Copy to new file like pci/pci-ep? all context is the same, except for
->> compatible string. 
->>
+
+
+On 1/12/2024 12:30 AM, Andrew Lunn wrote:
+>> Sorry for the confusion, the pin nodes are for the MDIO and MDC, these
+>> PINs are used by the dedicated hardware MDIO block in the SoC. I will update
+>> the node name from mux_0 to MDC, mux_1 to MDIO, to make it clear. The driver
+>> for this node is drivers/net/mdio/mdio-ipq4019.c, it is not related to the
+>> mdio-mux-* code.
 > 
-> Apologies, I mixed up a bit patches, so this was not obvious. I meant
-> this comment:
+> So these is all about pinmux.
+
+Yes, it is about pinmux.
+
 > 
-> https://lore.kernel.org/all/20231017201404.GA2570433-robh@kernel.org/
+> When you say:
+>> PINs are used by the dedicated hardware MDIO block in the SoC
 > 
-> There is no indication in your commit msg that these concerns were
-> addressed.
+> do you actually mean:
+> 
+> PINs are used by the two dedicated hardware MDIO blocks in the SoC.
+> 
+> You have two sets of mdio/mdc configurations here, so i assume there
+> are two MDIO hardware blocks, each being an MDIO bus master.
+> 
+>      Andrew
 
-And here:
+There are two MDIO hardware blocks on IPQ5332 SoC. One is
+for the MDIO bus master(gpio27, 28), which is for accessing the MDIO
+slave devices(like PHY device). The mdio-ipq4019.c driver enables
+this MDIO bus master.
 
-https://lore.kernel.org/all/6110c58a-8003-4889-9a4b-6a7d1821c00e@linaro.org/
+Another one is the MDIO slave(gpio25, 26), which is dedicated
+for receiving the back pressure signal from the connected Ethernet 
+switch device QCA8386.
 
-Best regards,
-Krzysztof
+There is a MDIO master block integrated in QCA8386 switch device, this
+integrated MDIO master is dedicated for generating the back
+pressure signal to IPQ5332 SoC.
 
+This MDIO slave block of IPQ5322 just needs to configure these PIN
+mux for MDC and MDIO PINs. No additional driver is needed for this MDIO
+slave block of IPQ5332.
 
