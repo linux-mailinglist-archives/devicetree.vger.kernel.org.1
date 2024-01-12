@@ -1,110 +1,111 @@
-Return-Path: <devicetree+bounces-31643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9B5482C190
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:23:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFA3D82C17D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 15:22:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DB96B21BF2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:23:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D28511C21186
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jan 2024 14:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11956EB4A;
-	Fri, 12 Jan 2024 14:22:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="5IswpgLy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04E846DCE7;
+	Fri, 12 Jan 2024 14:21:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27AD46EB44;
-	Fri, 12 Jan 2024 14:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705069361;
-	bh=2cBD3Lbpl2cRVVQBqOcu4sRyjCaGrfbaTxuW4Uf9u2k=;
-	h=From:To:Cc:Subject:Date:From;
-	b=5IswpgLyvJQ/mJIsfPnF4WKCupnP39c+fFVV1tvMQdxIs1duZkylkmsmdnG3dTY07
-	 ffU5rLJyazvVoCGTVMnM3eI1JJm0HpPt9psFhDvT9Vei0roUZZ2t3EAY57K2jTcQfF
-	 F7kRJttqjHnpy/UQk0lHe9sBm1h4NRgMtwUUVSfD5Jad7f5ciCtGMD1RmEcoghPr5y
-	 qZrHeSFeACqYw1ZaOmdxbX+SfaPisa2qOCR3/8+qwIaHzvfy9gyO2SXFcKThx1NWf8
-	 uBTVqheYQrpVpOLQRjPPjmPs8K7plC4OJJtWnsKT7fVp17PpmtDBihD+AtuR8wns9c
-	 6WE44Hi7+6Wcg==
-Received: from localhost.localdomain (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0605A3780624;
-	Fri, 12 Jan 2024 14:22:35 +0000 (UTC)
-From: =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>
-Cc: kernel@collabora.com,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Enric Balletbo i Serra <eballetbo@kernel.org>,
-	Ikjoon Jang <ikjn@chromium.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Stephen Boyd <swboyd@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2] arm64: dts: mt8183: jacuzzi: Remove CrosEC base detection node
-Date: Fri, 12 Jan 2024 11:20:28 -0300
-Message-ID: <20240112142032.909736-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F867537E6;
+	Fri, 12 Jan 2024 14:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5e784ce9bb8so52341757b3.0;
+        Fri, 12 Jan 2024 06:21:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705069313; x=1705674113;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=510mmNWz2HjFAJ0z2s1UHej0ZGwB83j7sW3JtjgmIVo=;
+        b=AScpU4jjFkXUJXLgFILg3EmycvVq8xYHyuVDKytqZPWdKF57Jn+00T5+LfLpbhJ3y4
+         8alQNhv3tK07SgPS0+8eCvvHk5qUL5B536Yw/fWQHa55bm8dKazkV/YcA7xEYdwRiORX
+         EYegs8XCsvUEpmiV0ThlsOyi6r86IjzQScJPbi/gfVYfk7rU3qyFhyj+buubHJsfdvKa
+         b5XN7WmFAX29LnbLV43uC0nvuVYpkfy+w3SFn/oVAcfRaceojg0B3EpZJljWFdSCStpH
+         R1NE4wfhJ0Aj2n48GsGkyvi4TJFCsD/8UwWavSu28kzPaRiv/aPelgiLASrlkjHyaycc
+         UiAg==
+X-Gm-Message-State: AOJu0YwMOBogPSE3fe6n5coJnh113x8ixavBXttLNuf7EBhJdJE3hnOm
+	deLimzDZu2riy0l057ZZ3sMAj8piaBgO0w==
+X-Google-Smtp-Source: AGHT+IHIlh21hc4Sr0HZVdMo4jFRr3s0lw1rZu6d7Cv0tYYJpCHTA2KW98Tyci9KjjqhKZFm31I0Pg==
+X-Received: by 2002:a0d:d597:0:b0:5e4:8966:948f with SMTP id x145-20020a0dd597000000b005e48966948fmr1475712ywd.49.1705069313279;
+        Fri, 12 Jan 2024 06:21:53 -0800 (PST)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id j64-20020a819243000000b005ce93212c47sm1368190ywg.134.2024.01.12.06.21.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Jan 2024 06:21:53 -0800 (PST)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dbdb124491cso5132250276.1;
+        Fri, 12 Jan 2024 06:21:53 -0800 (PST)
+X-Received: by 2002:a25:8502:0:b0:dbd:73ad:9f2f with SMTP id
+ w2-20020a258502000000b00dbd73ad9f2fmr497681ybk.17.1705069312892; Fri, 12 Jan
+ 2024 06:21:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <87edeqgfbu.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87edeqgfbu.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 12 Jan 2024 15:21:41 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV1GLYZGn_TgYbxfPakkLpUNTsP5hsEk9tUqLzpb5wOdQ@mail.gmail.com>
+Message-ID: <CAMuHMdV1GLYZGn_TgYbxfPakkLpUNTsP5hsEk9tUqLzpb5wOdQ@mail.gmail.com>
+Subject: Re: [PATCH v5 resend 0/4] drivers: clk: renesas: ignore all clocks
+ which are assigned to non-Linux system
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Rob Herring <robh@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Aymeric Aillet <aymeric.aillet@iot.bzh>, Yusuke Goda <yusuke.goda.sx@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The cbas node is used to describe base detection functionality in the
-ChromeOS EC, which is used for units that have a detachable keyboard and
-thus rely on this functionality to switch between tablet and laptop
-mode.
+Hi Morimoto-san, Rob,
 
-All machines in the jacuzzi family are either clamshells (ie normal
-laptops) or convertibles, meaning the keyboard can be flipped but not
-detached. The detection for the keyboard getting flipped is handled by
-the driver bound to the keyboard-controller node in the EC.
+On Wed, Jan 10, 2024 at 2:14=E2=80=AFAM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> This is v5 resend of ignoring non Linux system assinged device.
 
-Since there is no base detection in these machines, and the device
-backed by this node fails to probe and goes unused, delete the node from
-the DT.
+Thanks for the update!
 
-Fixes: 4fa8492d1e5b ("arm64: dts: mt8183: add cbas node under cros_ec")
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> v5 resend
+>         - add Acked-by from Rob
 
----
+You mean Reviewed-by?
+With an Acked-by, I wouldn't have to ask the next question ;-)
 
-Changes in v2:
-- Moved cbas node removal to jacuzzi dtsi
+Rob: How to proceed:
+  1. I give my Acked-by, you merge the series?
+  2. You give your Acked-by, I merge the series?
+  3. We do the immutable branch dance?
+       a. You apply 1-3 to an immutable branch
+       b. I merge the immutable branch and apply 4.
 
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+You get to choose, as there are more DT than renesas-clk patches ;-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-index 7592e3b86037..8c9f7435cf4c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-@@ -484,3 +484,6 @@ volup-btn-odl {
- 	};
- };
- 
-+&cros_ec {
-+	/delete-node/ cbas;
-+};
--- 
-2.43.0
+Thanks!
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
