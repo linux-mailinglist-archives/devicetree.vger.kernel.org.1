@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-31784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF6D82C938
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 04:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD75F82C964
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 05:54:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 374B228676C
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 03:27:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CCFF284DE5
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 04:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F3BCA6B;
-	Sat, 13 Jan 2024 03:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 487ABEAEA;
+	Sat, 13 Jan 2024 04:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LAFTrAa+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="F/605MET"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0480CCA68;
-	Sat, 13 Jan 2024 03:27:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9E41FBEA;
+	Sat, 13 Jan 2024 04:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1705116434; x=1736652434;
+  t=1705121670; x=1736657670;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=+i6zvCOVB0Ay9M3zKU0z/a8nJ8irYOwSAOjr0lKoeXA=;
-  b=LAFTrAa+JSFuvqkvlG4f/8oMEJfA+L4a9MWMHti1FvTr64mXijatM6gX
-   4jaihk0yVKrxesfqDj9rZUZdPqypo3SSLIoq4QVkBU25wIjZHGmAgiFx4
-   fnQy1h/3moZ37KE8XGMMSAtQxQlPr0I0JTPe9lmsOz2QHWVVUOWZoYnRl
-   d/a1FFFGDsnBqq7M1mrJULeTM4HngjKPo+UFvpyoGiglWKGTg+89nXqxm
-   CDniFPAKgKu+7fv8ta3yJW34FtppuFKZA30XSuO6p/dUzqb4gb599FGgl
-   aFXA83dmB+3h1B0/dyI1zeyNBDVdf9vDdEBc6q9J+B9tbKCX7scUPy/qF
+  bh=WL/QqSd1Bk1dMQtp6aDp3jGsFXAHfb+taVAOlJrMvNc=;
+  b=F/605METF9ZVAln3e8OBqFiocfDKLZZbp7AymsfXutzNmvjTo1/oANHr
+   b21SdWYmFiO7l9EDhIF864Z10UgmbobQuC7C9S6UIDC+Enl1zl95cOpUX
+   4Cc/QaqTNFs5IGcBNojLPctiSBSstcxi+pEjIihXdMtuo3jTso92Mp1Jl
+   7wSaae+B/2OXYtslYg2g/zFc3ZhLs7mK2rfxB3TvpynsMrPZIjGotFwPT
+   Yke490Fj0bi4fN2hxsz3xkp4blcnL6yhuv7mKkpNjQTcE4rNQNViho9kK
+   09DZlOJRWbEpm/WzOJ8msn9fHaZtqAhdQJuDzsivTtcqSh+I+SctxeKlt
    g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="6700509"
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="12715720"
 X-IronPort-AV: E=Sophos;i="6.04,191,1695711600"; 
-   d="scan'208";a="6700509"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2024 19:27:13 -0800
+   d="scan'208";a="12715720"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2024 20:54:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="926589699"
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="786570253"
 X-IronPort-AV: E=Sophos;i="6.04,191,1695711600"; 
-   d="scan'208";a="926589699"
+   d="scan'208";a="786570253"
 Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 12 Jan 2024 19:27:09 -0800
+  by fmsmga007.fm.intel.com with ESMTP; 12 Jan 2024 20:54:24 -0800
 Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1rOUfp-000A2Y-29;
-	Sat, 13 Jan 2024 03:27:06 +0000
-Date: Sat, 13 Jan 2024 11:26:55 +0800
+	id 1rOW2I-000A6u-22;
+	Sat, 13 Jan 2024 04:54:22 +0000
+Date: Sat, 13 Jan 2024 12:53:50 +0800
 From: kernel test robot <lkp@intel.com>
-To: Catalin Popescu <catalin.popescu@leica-geosystems.com>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, afd@ti.com,
-	andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Subject: Re: [PATCH 3/3] net: phy: dp83826: add support for voltage tuning of
- logical levels
-Message-ID: <202401131120.vAXFTd3t-lkp@intel.com>
-References: <20240111161927.3689084-3-catalin.popescu@leica-geosystems.com>
+To: Akhil R <akhilrajeev@nvidia.com>, herbert@gondor.apana.org.au,
+	davem@davemloft.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	thierry.reding@gmail.com, jonathanh@nvidia.com,
+	catalin.marinas@arm.com, will@kernel.org, mperttunen@nvidia.com,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+	krzk@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Akhil R <akhilrajeev@nvidia.com>
+Subject: Re: [PATCH v3 3/5] crypto: tegra: Add Tegra Security Engine driver
+Message-ID: <202401131257.8RjvB7OG-lkp@intel.com>
+References: <20240109091708.66977-4-akhilrajeev@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,45 +72,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240111161927.3689084-3-catalin.popescu@leica-geosystems.com>
+In-Reply-To: <20240109091708.66977-4-akhilrajeev@nvidia.com>
 
-Hi Catalin,
+Hi Akhil,
 
 kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on net-next/main net/main linus/master v6.7 next-20240112]
+[auto build test WARNING on herbert-cryptodev-2.6/master]
+[also build test WARNING on herbert-crypto-2.6/master tegra/for-next linus/master v6.7 next-20240112]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Catalin-Popescu/dt-bindings-net-dp83826-add-ti-cfg-dac-plus-binding/20240112-002701
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240111161927.3689084-3-catalin.popescu%40leica-geosystems.com
-patch subject: [PATCH 3/3] net: phy: dp83826: add support for voltage tuning of logical levels
-config: x86_64-randconfig-121-20240112 (https://download.01.org/0day-ci/archive/20240113/202401131120.vAXFTd3t-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240113/202401131120.vAXFTd3t-lkp@intel.com/reproduce)
+url:    https://github.com/intel-lab-lkp/linux/commits/Akhil-R/dt-bindings-crypto-Add-Tegra-Security-Engine/20240109-172454
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
+patch link:    https://lore.kernel.org/r/20240109091708.66977-4-akhilrajeev%40nvidia.com
+patch subject: [PATCH v3 3/5] crypto: tegra: Add Tegra Security Engine driver
+config: powerpc64-randconfig-r123-20240112 (https://download.01.org/0day-ci/archive/20240113/202401131257.8RjvB7OG-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce: (https://download.01.org/0day-ci/archive/20240113/202401131257.8RjvB7OG-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401131120.vAXFTd3t-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401131257.8RjvB7OG-lkp@intel.com/
 
 sparse warnings: (new ones prefixed by >>)
->> drivers/net/phy/dp83822.c:570:4: sparse: sparse: symbol 'dp83826_cfg_dac_minus_raw' was not declared. Should it be static?
->> drivers/net/phy/dp83822.c:573:4: sparse: sparse: symbol 'dp83826_cfg_dac_plus_raw' was not declared. Should it be static?
+>> drivers/crypto/tegra/tegra-se-key.c:20:1: sparse: sparse: symbol 'kslt_lock' was not declared. Should it be static?
+   drivers/crypto/tegra/tegra-se-key.c: note: in included file (through include/linux/mmzone.h, include/linux/gfp.h, include/linux/umh.h, include/linux/kmod.h, ...):
+   include/linux/page-flags.h:242:46: sparse: sparse: self-comparison always evaluates to false
 
-vim +/dp83826_cfg_dac_minus_raw +570 drivers/net/phy/dp83822.c
+vim +/kslt_lock +20 drivers/crypto/tegra/tegra-se-key.c
 
-   569	
- > 570	u8 dp83826_cfg_dac_minus_raw[DP83826_CFG_DAC_RAW_VALUES_MAX] = {0x38, 0x37, 0x36, 0x35, 0x34, 0x33,
-   571									0x32, 0x31, 0x30, 0x2f, 0x2e, 0x2d,
-   572									0x2c, 0x2b, 0x2a, 0x29, 0x28};
- > 573	u8 dp83826_cfg_dac_plus_raw[DP83826_CFG_DAC_RAW_VALUES_MAX] = {0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d,
-   574								       0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13,
-   575								       0x14, 0x15, 0x16, 0x17, 0x18};
-   576	
+    18	
+    19	/* Mutex lock to guard keyslots */
+  > 20	DEFINE_MUTEX(kslt_lock);
+    21	
 
 -- 
 0-DAY CI Kernel Test Service
