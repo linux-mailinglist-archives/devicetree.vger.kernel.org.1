@@ -1,87 +1,86 @@
-Return-Path: <devicetree+bounces-31884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D29A882CEC7
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 22:30:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82EB582CEDC
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 22:55:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 873471F21D68
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 21:30:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 259D0B21EFD
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 21:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B65DF54;
-	Sat, 13 Jan 2024 21:30:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E46E8EEB7;
+	Sat, 13 Jan 2024 21:55:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="P2LG5Wuu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fhz7AQMn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B87D1642A
-	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 21:30:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 3275F8309D;
-	Sat, 13 Jan 2024 22:30:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1705181439;
-	bh=p4DdrnviVNww4htbvzuJd4xnTcr7As2ZKhdQ/lian8U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P2LG5WuuUl3oc6oxRd+zTTif6KFAzcdifqJ4VS+pe59XEp5ufs4LJ4kPsTCqL9GzK
-	 C6vl0bhKaOy9zLr32SoaXTJTiGQKiKVRr+yS5t5/cM2pa4Bq7Jjf14Orj1PZ5QuFRj
-	 LNFvApJo+3G4Jr0S7ph1UYRHD6w5NfZqORrm+EP1LgcPL8Aj/7yP3jh1fueWwbbRfx
-	 3VP6br3JElcAYFAmUyCJR+fKtmb/W+Y5B3weWAiKjBAuiXEjq60LVPoqk3E20TBsdJ
-	 tyWYlAONNXDSLjzPzt9M9WW8Zm11YLY5cfy+jOd47/eBAiH76cET3sE/0OyIDsxaOj
-	 6BAh6D5zvFiYg==
-Message-ID: <623c294a-5c53-4e01-acbf-104acc180e14@denx.de>
-Date: Sat, 13 Jan 2024 22:30:37 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C40A71642A;
+	Sat, 13 Jan 2024 21:55:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AA95C433C7;
+	Sat, 13 Jan 2024 21:54:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705182901;
+	bh=3Mgyn8tgABjgqcCRkhZbG3x9eEHC4OuPXrxLGYGGglM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Fhz7AQMnGa8KjIGiPuSjduiGD+mwQtFpI5zz5m/QIvmoVEHu8OyTTWn9dnaKnJ9G7
+	 3OcUTyQiapgnBXDTUtUZXsOGZJH44O3JOTid4vuVCG/CXO2K/zV/eYbv6bk0zPJWFS
+	 0S127ncX0GzdsCoyi/2y2K2G71nAPZpcwI9owsK54FDsPa+4TFLEOOIr6IZYhc74wo
+	 zd0EnvuOvlXEp5r5VhDzPq656CAcv41hKWydWpYl1zmmoiVK7Ir5c8/EHDbbtAH+uk
+	 Fwln5lFBZVCI7zxrFIZtclxPb4mnTja2aBral/Uu5TMQx381+kxKvBQkmi6T0XTDXz
+	 8/sgONXJFVNig==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: imx8mp-dhcom-pdk3: Describe the USB-C
- connector
-To: Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>
-Cc: cw00.choi@samsung.com, myungjoo.ham@samsung.com, robh+dt@kernel.org,
- krzysztof.kozlowski@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, hvilleneuve@dimonoff.com,
- linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
-References: <20231212174847.759164-1-festevam@gmail.com>
- <20231212174847.759164-3-festevam@gmail.com> <20231214030732.GH270430@dragon>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20231214030732.GH270430@dragon>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sat, 13 Jan 2024 23:54:57 +0200
+Message-Id: <CYDWW0Z5CLLS.1XM7MBDWPLR39@kernel.org>
+From: "Jarkko Sakkinen" <jarkko@kernel.org>
+To: "Lukas Wunner" <lukas@wunner.de>
+Cc: <devicetree@vger.kernel.org>, <linux-integrity@vger.kernel.org>, "Peter
+ Huewe" <peterhuewe@gmx.de>, "Jason Gunthorpe" <jgg@ziepe.ca>
+Subject: Re: [PATCH v2 3/4] tpm_tis: Add compatible string atmel,at97sc3204
+X-Mailer: aerc 0.16.0
+References: <cover.1705140898.git.lukas@wunner.de>
+ <805eb0868e047bde452144a51e48ce1bc2cac45b.1705140898.git.lukas@wunner.de>
+In-Reply-To: <805eb0868e047bde452144a51e48ce1bc2cac45b.1705140898.git.lukas@wunner.de>
 
-On 12/14/23 04:07, Shawn Guo wrote:
-> On Tue, Dec 12, 2023 at 02:48:47PM -0300, Fabio Estevam wrote:
->> From: Fabio Estevam <festevam@denx.de>
->>
->> Describe the PTN5150 USB-C connector to improve the devicetree description
->> and fix the following dt-schema warning:
->>
->> imx8mp-dhcom-pdk3.dtb: typec@3d: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
->> 	from schema $id: http://devicetree.org/schemas/extcon/extcon-ptn5150.yaml#
->> 	
->> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> 
-> Applied, thanks!
+On Sat Jan 13, 2024 at 7:10 PM EET, Lukas Wunner wrote:
+> Commit 420d439849ca ("tpm_tis: Allow tpm_tis to be bound using DT")
+> added the fallback compatible "tcg,tpm-tis-mmio" to the TPM TIS driver,
+> but not the chip-specific "atmel,at97sc3204".  However it did document
+> it as a valid compatible string.
+>
+> Add it to tis_of_platform_match[] for consistency.
+>
+> Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> ---
+>  drivers/char/tpm/tpm_tis.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/char/tpm/tpm_tis.c b/drivers/char/tpm/tpm_tis.c
+> index 2c52b79..14652aa 100644
+> --- a/drivers/char/tpm/tpm_tis.c
+> +++ b/drivers/char/tpm/tpm_tis.c
+> @@ -347,6 +347,7 @@ static void tpm_tis_plat_remove(struct platform_devic=
+e *pdev)
+> =20
+>  #ifdef CONFIG_OF
+>  static const struct of_device_id tis_of_platform_match[] =3D {
+> +	{.compatible =3D "atmel,at97sc3204"},
+>  	{.compatible =3D "tcg,tpm-tis-mmio"},
+>  	{},
+>  };
 
-This patch breaks USB-C port on this board.
+Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
 
-If I plug in USB-C storage device, it is not detected. If I revert this 
-patch, it is detected.
-
-Please drop this patch for now.
+BR, Jarkko
 
