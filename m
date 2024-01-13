@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39DED82CC94
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 13:09:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D72582CC99
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 13:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB06B2850E6
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 12:09:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D599B1F22DC6
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 12:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE8C210E5;
-	Sat, 13 Jan 2024 12:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7078F210F0;
+	Sat, 13 Jan 2024 12:16:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s48LZkN/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TfjJG+Cb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 157D0210E2
-	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 12:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9184210E8
+	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 12:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-336746c7b6dso6127972f8f.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 04:09:43 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5571e662b93so6098108a12.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 04:16:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705147782; x=1705752582; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1705148167; x=1705752967; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IG/55Cf3qu6wUWnb9WGIqVzCFMPu9zDS54WirLALgRs=;
-        b=s48LZkN/4Q/+pf490OUXMxbhWeUEyUsWnmOe+cfEG+CEYo6EIXcgdhNN2ZKe/dnbZd
-         mX14QNw0ZTWBVX4kw8lwhRoMS5I6Lij3/m1lqUkRHRBmg3WI2DY8stoKWZ4bPqVA3UQX
-         A6m4f2HkevWykfUfP/OBTg7uVB2TANqrXXOFhJh0RM//uKIm5QrUcNXBSjyMy3AjN7yu
-         /M988mfQxZcjL3AUGCA1WwGeYS5cm+I8AL9M2EJNK/Pq1MGwaWd6KoAn6QJnOjY+bHay
-         CVd50R8uCuiLfXS4h0qWcCiCsNINAEPtLuMRqQw+AcLNQE0Gqz+sQpEEuMVoRp8R3ncz
-         lqIA==
+        bh=zwASn8C7UEZZZoWNwFdQpTrZjLvObf4QOT7LkGKv8Rw=;
+        b=TfjJG+CbhJnRT19dDv2VnH94J8DwWEjMPUrelLiJ355XC4fL9A2+NyGlEyw08wBJO5
+         uYkFqfQ6mZ09KcK47M5JYH7C1aY6o48ncbSHzmXe6RFgsbe765vZDzALbHeCSgXRC9gq
+         fZ8Rt/WHR4npBtRTcVK7FDbdWqgryVDVEaaxdqe3jQUbP4TFfpa3p4k7EoBgVrzpUlkS
+         y3oFttIrgNTAert55sZXlDrYpFsZz83FuArDoowNl6IcjpzOce6HVP7orn54Gp1P+Ggl
+         ZjpwCR3nlhGWzWYVUHSjOrGNhldENunib15M22YFoTTXznN7KJ2Iqt2ZZOrziYhS6Mnl
+         8z3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705147782; x=1705752582;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1705148167; x=1705752967;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IG/55Cf3qu6wUWnb9WGIqVzCFMPu9zDS54WirLALgRs=;
-        b=nIViQKQxpxWPe/Eyfd9z4TZbT7oQ3zBduQwiP5nVuoIKKlRW+nhQPV8cKhuPGk4pMu
-         TAZFNqnEUzu/7sezOhDN2PO4dpoNhooEY1cx4W+2KDsozSFyF3k+TviIiHVU7SqZa4Kl
-         Nk2lYZuvcsbzacZiu47Tg7lqzfkRnOX1coNiPGmB3kGgqQEsht6dANLzJvHrg5G91MCv
-         ThVKDUm1ehzFzTKUqt7pn1jV0HDUCw1fdBMJP+UTO3ry7D/5OfH4dPhXilOWE/2My81y
-         F6dLJBvpOrctpBm6GcQeNRwY9RniJM2Gwd+JdJ1brMLQc0feYVvBtHwxM4/ZNcsOiM66
-         1zjw==
-X-Gm-Message-State: AOJu0Yx/dGMllFC9d2Gl6oPmtvAuodGZFrGhTmSWb/+Gx/FIMTcxde9J
-	p9TUULNCv3FbI78Y3eQZKIfOu8mAfsHXaQ==
-X-Google-Smtp-Source: AGHT+IFOjVkMUDiX/JF6Ci8fa9sYuwV217p/+QK4r8dNQDD1tbjte+LtvE/BHdAp+VjJKXZ6gVnNHg==
-X-Received: by 2002:a5d:484d:0:b0:337:2aa3:ac85 with SMTP id n13-20020a5d484d000000b003372aa3ac85mr1372470wrs.117.1705147782263;
-        Sat, 13 Jan 2024 04:09:42 -0800 (PST)
-Received: from [192.168.100.86] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id z5-20020a5d4c85000000b003367ff4aadasm6606483wrs.31.2024.01.13.04.09.41
+        bh=zwASn8C7UEZZZoWNwFdQpTrZjLvObf4QOT7LkGKv8Rw=;
+        b=BnS2bfc7qSASVoZaIS4Q/bkqAsXXpSKeaEdgqWLaDgd67yobZeZtNjtw6RF54EYgdZ
+         MtpRBLDlQLKPyWaq1wY708he2w+6RmwAPpv6OQTnJGtlldq3K1JH505buYsKX5zs+z0l
+         H1fR7lR+kZpciS4Vbkl+89AGbkvZ4sQOcSohVbQE48vr4sr0nWBXrv3Hsx1e/Nhn4z5U
+         js+7cckCpFCu0IobeDMEPy3kHqQrkuSwIZ4HAT+8rFXcixKGcFgOxGQsAcA2FBGNc8Zf
+         TsSMuUFgpFbtahFSbFsD3Zrp6KJzEQFG+rN4MZGk43xE9SEOaBR88efKuWQtz5qIAoZ8
+         Bssw==
+X-Gm-Message-State: AOJu0YwhOdcx4alf5DmcIVvwGfPzgKYX0tXAKMWdye5sNFU302eX3uve
+	KeLPJ0FG9xdNtOERlcn+8TyFdTSNJ+lo7Q==
+X-Google-Smtp-Source: AGHT+IGZvjC3FPhJYs+PlP8FIl1bVQickoygZOA+9cUxJxIHk9EEJj80ffU7Y8CaYc9IAfAr4I7O+Q==
+X-Received: by 2002:a05:6402:5210:b0:558:d206:3bba with SMTP id s16-20020a056402521000b00558d2063bbamr1553275edd.20.1705148167105;
+        Sat, 13 Jan 2024 04:16:07 -0800 (PST)
+Received: from [192.168.174.25] (178235179017.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.17])
+        by smtp.gmail.com with ESMTPSA id b11-20020aa7dc0b000000b00558fc426affsm630422edu.88.2024.01.13.04.16.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Jan 2024 04:09:41 -0800 (PST)
-Message-ID: <cb2e06cb-2139-4846-8f7e-9102d952a7a2@linaro.org>
-Date: Sat, 13 Jan 2024 12:09:40 +0000
+        Sat, 13 Jan 2024 04:16:06 -0800 (PST)
+Message-ID: <a4ff0c32-6eef-44d5-9bfb-ae076bdd7487@linaro.org>
+Date: Sat, 13 Jan 2024 13:16:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,95 +66,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/13] dt-bindings: phy: qcom,msm8998-qmp-usb3-phy:
- support USB-C data
+Subject: Re: [PATCH v2 3/3] clk: qcom: gcc-sm8150: Add gcc video resets for
+ sm8150
 Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
  Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Taniya Das <quic_tdas@quicinc.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20240113-pmi632-typec-v1-0-de7dfd459353@linaro.org>
- <20240113-pmi632-typec-v1-4-de7dfd459353@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240113-pmi632-typec-v1-4-de7dfd459353@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240111-sm8150-dfs-support-v2-0-6edb44c83d3b@quicinc.com>
+ <20240111-sm8150-dfs-support-v2-3-6edb44c83d3b@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240111-sm8150-dfs-support-v2-3-6edb44c83d3b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/01/2024 05:42, Dmitry Baryshkov wrote:
-> Extend the Qualcomm USB-C QMP PHY schema with the USB-C related entry
-> points: orientation-switch property and USB-C connection graph.
+On 11.01.2024 07:32, Satya Priya Kakitapalli wrote:
+> Add gcc video axic, axi0 and axi1 resets for the global clock
+> controller on sm8150.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
 > ---
->   .../bindings/phy/qcom,msm8998-qmp-usb3-phy.yaml    | 39 ++++++++++++++++++++++
->   1 file changed, 39 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,msm8998-qmp-usb3-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,msm8998-qmp-usb3-phy.yaml
-> index 868fabd44d72..da5d4cbca24c 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,msm8998-qmp-usb3-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,msm8998-qmp-usb3-phy.yaml
-> @@ -50,6 +50,22 @@ properties:
->     "#phy-cells":
->       const: 0
->   
-> +  orientation-switch:
-> +    description:
-> +      Flag the PHY as possible handler of USB Type-C orientation switching
-> +    type: boolean
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output endpoint of the PHY
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Incoming endpoint from the USB controller
-> +
->   required:
->     - compatible
->     - reg
-> @@ -129,4 +145,27 @@ examples:
->   
->         vdda-phy-supply = <&vreg_l1a_0p875>;
->         vdda-pll-supply = <&vreg_l2a_1p2>;
-> +
-> +      orientation-switch;
-> +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@0 {
-> +          reg = <0>;
-> +
-> +          endpoint {
-> +            remote-endpoint = <&pmic_typec_mux_in>;
-> +          };
-> +        };
-> +
-> +        port@1 {
-> +          reg = <1>;
-> +
-> +          endpoint {
-> +            remote-endpoint = <&usb_dwc3_ss>;
-> +          };
-> +        };
-> +      };
->       };
-> 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
 
