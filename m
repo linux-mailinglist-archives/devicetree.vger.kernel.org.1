@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A5FC82CBDF
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 11:32:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D43E882CBE2
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 11:34:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E4B7B2340B
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:32:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFD19B237C0
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10EB020DDA;
-	Sat, 13 Jan 2024 10:32:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7EAA20DDD;
+	Sat, 13 Jan 2024 10:34:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iIRXj81c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vWmLeKt1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D1120B2E
-	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 10:32:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FA6920B2C
+	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 10:34:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a29058bb2ceso786782866b.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 02:32:37 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-50e7c6f0487so8128042e87.3
+        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 02:34:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705141956; x=1705746756; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705142039; x=1705746839; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=A4NP2s/NZcZRFJr2jB09+2fWd3wUGutLp7fYffSjRHs=;
-        b=iIRXj81cLA0/gWx8NfbE7I7HhuQHjqRt197owaubH5GYep1T1QleGwoeUHmcYiaPW9
-         XLqJkEC+OUsFxQHX+dw3pJRnxJdhRhEE9Z0bTepWwrZ8+OXMASHBmaXTCXAYaeU1nQGG
-         saEaT/uji2OrOENEUSbnwRX9jsh1BX7Ylr6dXjhTA35Li9UrpxE4Q5ZO8zeB15TqK9Ks
-         zD5kRRa3KCmmZnlIEGkUmMgSNmSDWaDDeM0rvxN3winvzCqM9bCIohal8vljhNbxprBx
-         n/4mBwoF+FM9MSWGabX8HvCr0DbXJL1vPPa/farjezvmuKVXMu4/zTYxpVmNuM7yxXnK
-         77BQ==
+        bh=O+x8bBUhmaZ5bctGOTnaKMvIif9jd5WuTDY2PH/sR2U=;
+        b=vWmLeKt1cvIugfeKkEh6WkHDVvvRr87Wh7JgsceTOwxLJS7wugMaPiXniZQ8f4R1ov
+         02ibep8vpZL6jpQL8n9Lcc2Ke0DGrHIITl8IbISf6kWEkOfTWEeN0NlWF6Em3YNAJhja
+         KY5MpBusSe3p3ZQScpTpbb6G1Ej2KNODeq/z1AsPKC3Sp7qEQTgDtSHvz8Ty2XRNpgIj
+         RdePnaAVqDV3xRj+D04RpSjlGagzmKn4U2VHAcBCXOJQ6cjdx6rsMWJZJb8uSWmNipWW
+         SnUzkVgczB9P+7ZaeYJBmsGhR8onBvWD0yhF+yS9Vsb18bBgLbTkhi9Z6wmxL+8uh7XB
+         HsGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705141956; x=1705746756;
+        d=1e100.net; s=20230601; t=1705142039; x=1705746839;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A4NP2s/NZcZRFJr2jB09+2fWd3wUGutLp7fYffSjRHs=;
-        b=rKLG1TOkjhnn5kTiGfzulZ73t68sUiy/gH8ktJy0uzbM0+BVhkUWxF063gjtZByRUh
-         u4EHPZ6xgO1NbGeFN3cTjGH7dsrJVOVq/G7qBfaLd0xodVPtXiSKe8J/GMNRqBEYA1Wu
-         YCVpeGQgjBWmaOlpFzQ6o531fyapaxuyk9yRN7BSANtRm0Ju3n/VkfuwlSgSUMwsJ6g6
-         21ZG89PgqLLs63Y1wYvnDmarHl9EYcjhnaf0tOaXi39y05fgdrVsD/t4DcJ3fMELq6Zu
-         22XDElVNOKBEkjezJR9dW+NCScgWK5rZNIFdEnNo0jBBn5ojWL6ofk5dDk5QMgPqzXi3
-         +awg==
-X-Gm-Message-State: AOJu0Ywr9oQ5sbYcwQUpt2oENahbcX7G+lPvKl0iShymSWDfp2FWAl5h
-	l21+bhhQkwOtWH3s9KmvOyXV1+2pUQIueQ==
-X-Google-Smtp-Source: AGHT+IG95Lc4vfFkA1I+bg6/+GRf0HRam+7Jt3Eft/sBwJkmo/E6k6JMgde4ifTGYE+zg0KPMuekpg==
-X-Received: by 2002:a17:907:a782:b0:a2c:e2a4:17b3 with SMTP id vx2-20020a170907a78200b00a2ce2a417b3mr831678ejc.120.1705141956288;
-        Sat, 13 Jan 2024 02:32:36 -0800 (PST)
+        bh=O+x8bBUhmaZ5bctGOTnaKMvIif9jd5WuTDY2PH/sR2U=;
+        b=LwxCwzt+LrYYwYw0QowNXURRVakAONpVnwLb0lTcOrsyZQEmMqcZddnI1Zva84K/g4
+         DSR5SdOraqULY62RcbbeEGsTD6AfePwrG0nxecseVYrpxx+2WsT/sNNyglxBGafCk1u+
+         34eoUSAobkRjvbXI9SwOeMdfhN5aKZsXqEILRkkcKQJ1jQ9EGSkQsttHGv5T6NsQLX+X
+         NVLGRS15xeui5wwRND4uYGo5feNYWU3Hb0vwu3QdYZMXDywOLiYeIKLbiIdxU34AHR3O
+         n4B8Ubzd4iCY8Ky476CIHDqn0y5T5Bp7j4K69ggpMSbV9sw2glGszoRhQm3TJ5U/1xc5
+         lS+w==
+X-Gm-Message-State: AOJu0Yzsj9tRamcVcgJa7bnd1/YFK2DMvuksLohK/231ZkaanFfISDo2
+	RiWzOZBcKviQ5ByHcd7a3czckEn82r9agA==
+X-Google-Smtp-Source: AGHT+IENpYfdaChdnutOsF0MpaQwHUt3wT9gMBJC/eiMG9zYCne1iuFI71w8sKjNAIuFwsXGphjhhg==
+X-Received: by 2002:a05:6512:15a3:b0:50e:9a16:fb with SMTP id bp35-20020a05651215a300b0050e9a1600fbmr927066lfb.6.1705142039394;
+        Sat, 13 Jan 2024 02:33:59 -0800 (PST)
 Received: from [192.168.174.25] (178235179017.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.17])
-        by smtp.gmail.com with ESMTPSA id q8-20020a170906360800b00a2bd52d2a84sm2719827ejb.200.2024.01.13.02.32.33
+        by smtp.gmail.com with ESMTPSA id q8-20020a170906360800b00a2bd52d2a84sm2719827ejb.200.2024.01.13.02.33.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Jan 2024 02:32:35 -0800 (PST)
-Message-ID: <30df6954-1d22-4c55-bb4b-e8746c3c331d@linaro.org>
-Date: Sat, 13 Jan 2024 11:32:32 +0100
+        Sat, 13 Jan 2024 02:33:59 -0800 (PST)
+Message-ID: <7e36b380-8ab5-4555-8919-1c2c6ff7aa68@linaro.org>
+Date: Sat, 13 Jan 2024 11:33:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/13] usb: typec: qcom-pmic-typec: allow different
- implementations for the PD PHY
+Subject: Re: [PATCH 06/13] usb: typec: qcom-pmic-typec: add support for PMI632
+ PMIC
 Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
@@ -84,7 +84,7 @@ To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
 References: <20240113-pmi632-typec-v1-0-de7dfd459353@linaro.org>
- <20240113-pmi632-typec-v1-5-de7dfd459353@linaro.org>
+ <20240113-pmi632-typec-v1-6-de7dfd459353@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -121,53 +121,31 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240113-pmi632-typec-v1-5-de7dfd459353@linaro.org>
+In-Reply-To: <20240113-pmi632-typec-v1-6-de7dfd459353@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13.01.2024 06:42, Dmitry Baryshkov wrote:
-> Rework Qualcomm PMIC TCPM driver to allow different platform-specific
-> implementations of the PD PHY interface. While majority of platforms
-> has the same of register for the PD PHY, some obscure ones (PMI632) do
-> not have real PD PHY support. Add proper interface between the main
-> module and the PD PHY backend to allow switching the PD PHY
-> implementation.
+> The PMI632 PMIC support Type-C port handling, but lacks USB
+> PowerDelivery support. The TCPM requires all callbacks to be provided
+> by the implementation. Implement a special, 'stub' Qcom PD PHY
+> implementation to enable the PMI632 support.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
 
 [...]
 
-> @@ -366,12 +439,13 @@ int qcom_pmic_typec_pdphy_set_roles(struct pmic_typec_pdphy *pmic_typec_pdphy,
->  				 pmic_typec_pdphy->base + USB_PDPHY_MSG_CONFIG_REG,
->  				 MSG_CONFIG_PORT_DATA_ROLE |
->  				 MSG_CONFIG_PORT_POWER_ROLE,
-> -				 data_role_host << 3 | power_role_src << 2);
-> +				 (data_role == TYPEC_HOST ? MSG_CONFIG_PORT_DATA_ROLE : 0) |
-> +				 (power_role == TYPEC_SOURCE ? MSG_CONFIG_PORT_POWER_ROLE : 0));
+>  #endif /* __QCOM_PMIC_TYPEC_PDPHY_H__ */
+> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy_stub.c b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy_stub.c
+> new file mode 100644
+> index 000000000000..5d3b0e78d4d8
+> --- /dev/null
+> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy_stub.c
 
-Was this hunk supposed to be part of this patch?
+Not a fan.
 
-[...]
-
->  int qcom_pmic_typec_pdphy_probe(struct platform_device *pdev,
-> -				struct pmic_typec_pdphy *pmic_typec_pdphy,
-> -				struct pmic_typec_pdphy_resources *res,
-> +				struct pmic_typec *tcpm,
-> +				const struct pmic_typec_pdphy_resources *res,
->  				struct regmap *regmap,
->  				u32 base)
->  {
-> +	struct pmic_typec_pdphy *pmic_typec_pdphy;
->  	struct device *dev = &pdev->dev;
->  	struct pmic_typec_pdphy_irq_data *irq_data;
->  	int i, ret, irq;
->  
-> +	pmic_typec_pdphy = devm_kzalloc(dev, sizeof(struct pmic_typec_pdphy), GFP_KERNEL);
-> +	if (!pmic_typec_pdphy)
-> +		return -ENOMEM;
-
-or simply sizeof(*pdphy) 
+Maybe add some TCPM_FLAG_NO_PD and solve it in a generic manner?
 
 Konrad
 
