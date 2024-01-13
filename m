@@ -1,188 +1,251 @@
-Return-Path: <devicetree+bounces-31860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB8182CE0F
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 19:05:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B4CB82CE11
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 19:07:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 496EAB21DA0
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 18:05:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04E061C20C72
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 18:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ACBC566B;
-	Sat, 13 Jan 2024 18:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ekhCaxae"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58A3B566B;
+	Sat, 13 Jan 2024 18:07:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D99D15257;
-	Sat, 13 Jan 2024 18:04:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-557c188f313so11181635a12.1;
-        Sat, 13 Jan 2024 10:04:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705169096; x=1705773896; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AhKW9vV6IhRimImnuy7kTVRnEpSaiNSa1m/etVcloMg=;
-        b=ekhCaxaeAh+q7qxATxpe4JNJm61autuL7phtumqqPIFTiofIXcxG/Vj9c7Y4VarIZW
-         dTmZSjOJnhXWBzN4h/Qf4DwhyvoNJKhnfzAzrxbqnbO7OulruWMYWwc8z2y+j4b9joU7
-         ihHnndG+yYmK6st229DQBtCBdibvcIr8W5V/b0bDxJ7RNgPtETOpcNyshwJvPnKoSVdk
-         RgBxr5COAT2dMKmpk3UeBDcXwMTl/Ua7UG4kTl5D+opI8MMhJYYtgS2PRegqG00cV87b
-         NCVA4eqpn95KzSUCd9Q8/G33zJJx7kx0wy3lCUBZ3QlwMNHNwR3JZhgBUuLcdudHLAib
-         C9Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705169096; x=1705773896;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AhKW9vV6IhRimImnuy7kTVRnEpSaiNSa1m/etVcloMg=;
-        b=udBEpzmN4i4jQh7rQEr7SzWN/aHvpNwc3yANzZ1vWsEWw4f64TgmnN+/EFMtsVvWQm
-         jvh02O9Mlo6vlKIls5CzsGlqseAZPKYd6l3FPP8fJ2Ws0lJ4iJN6jtjaN7TrYVELpZKX
-         6Q74nVGbljftUyWCekr1dNcqb8IVqRK821FPsiKKmWKv+Oi10E/Xwwc7mMSb41nfRa+v
-         wlRtyV+C/txKG0FY48iL5R+n/p7WaNNb0Gyfy7bHf35CcI7RWjF2/OS0JFys5HYJr4bQ
-         L2cXnOb2ZwMAa3SJDeiUqIMPRxrPYJS8MQRmK7yTZ2FHxCQlmJ4vMmQuXZUMMiw/2/hW
-         RaqA==
-X-Gm-Message-State: AOJu0YykJzH0GdrsOzpw1bSYUh/Zbxgo7RLqk+fa8o7JUmD3iO30oKXw
-	6nva7BxE4tUxJkxQX2PnT7xXDy6vtuo=
-X-Google-Smtp-Source: AGHT+IFJrtj8W8dev25IrMHGcj/DImhmwZ5y8Lb28rX0zHq3TV8Xvw+tyZcvRGB1Oc5HAyCoZ+yBog==
-X-Received: by 2002:a05:6402:1ca8:b0:558:81d8:ccd7 with SMTP id cz8-20020a0564021ca800b0055881d8ccd7mr2834099edb.31.1705169095651;
-        Sat, 13 Jan 2024 10:04:55 -0800 (PST)
-Received: from cjw-notebook (2a02-8388-0502-f480-6c32-186a-368b-d6a9.cable.dynamic.v6.surfer.at. [2a02:8388:502:f480:6c32:186a:368b:d6a9])
-        by smtp.gmail.com with ESMTPSA id et6-20020a056402378600b0055410f0d709sm3133388edb.19.2024.01.13.10.04.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Jan 2024 10:04:55 -0800 (PST)
-Date: Sat, 13 Jan 2024 19:04:52 +0100
-From: Christoph Winklhofer <cj.winklhofer@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: w1: UART 1-Wire bus
-Message-ID: <ZaLQxGjjmA_iKOv2@cjw-notebook>
-References: <20240106-w1-uart-v4-0-7fe1378a8b3e@gmail.com>
- <20240106-w1-uart-v4-1-7fe1378a8b3e@gmail.com>
- <20240113013917.GA3795949-robh@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24C05257;
+	Sat, 13 Jan 2024 18:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wunner.de
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout3.hostsharing.net (Postfix) with ESMTPS id D8D51100F00CE;
+	Sat, 13 Jan 2024 19:06:57 +0100 (CET)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id AAC5E1314C; Sat, 13 Jan 2024 19:06:57 +0100 (CET)
+Message-Id: <e6d7768e2a257e0bd5948bcf168909b6c670851b.1705168605.git.lukas@wunner.de>
+From: Lukas Wunner <lukas@wunner.de>
+Date: Sat, 13 Jan 2024 19:06:56 +0100
+Subject: [PATCH] arm64: dts: Fix TPM schema violations
+To: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, soc@kernel.org, devicetree@vger.kernel.org, linux-integrity@vger.kernel.org
+Cc: Yannic Moog <Y.Moog@phytec.de>, Alexander Bauer <a.bauer@phytec.de>, upstream@lists.phytec.de, Teresa Remmet <T.Remmet@phytec.de>, Tim Harvey <tharvey@gateworks.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com, Adam Ford <aford173@gmail.com>, Heiko Thiery <heiko.thiery@gmail.com>, "Enric Balletbo i Serra" <eballetbo@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>, Hsin-Yi Wang <hsinyi@chromium.org>, Chen-Yu Tsai <wenst@chromium.org>, Nicolas Prado <nfraprado@collabora.com>, Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240113013917.GA3795949-robh@kernel.org>
 
-On Fri, Jan 12, 2024 at 07:39:17PM -0600, Rob Herring wrote:
-> On Sat, Jan 06, 2024 at 05:02:24PM +0100, Christoph Winklhofer wrote:
-> > Add device tree binding for UART 1-Wire bus.
-> > 
-> > Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/w1/w1-uart.yaml | 62 +++++++++++++++++++++++
-> >  1 file changed, 62 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/w1/w1-uart.yaml b/Documentation/devicetree/bindings/w1/w1-uart.yaml
-> > new file mode 100644
-> > index 000000000000..6b90693b2ca0
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/w1/w1-uart.yaml
-> > @@ -0,0 +1,62 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/w1/w1-uart.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-...
-> > +properties:
-> > +  compatible:
-> > +    const: w1-uart
-> > +
-> > +  reset-speed:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 9600
-> > +    description: |
-> 
-> Don't need '|' if no formatting
-> 
+Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
+bindings"), several issues are reported by "make dtbs_check" for arm64
+devicetrees:
 
-Ok.
+The compatible property needs to contain the chip's name in addition to
+the generic "tcg,tpm_tis-spi" and the nodename needs to be "tpm@0"
+rather than "cr50@0":
 
-> > +      The baud rate for the 1-Wire reset and presence detect.
-> > +
-> > +  touch_0-speed:
-> 
-> Don't use '_' in property names.
-> 
-> I'm somewhat familar with 1-wire, but I don't get what 'touch' means 
-> here. I assume these are low and high times which are a function of the 
-> baudrate.
-> 
+  tpm@1: compatible: ['tcg,tpm_tis-spi'] is too short
+        from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
 
-I change the name to 'write-0-speed' and 'write-1-speed'. The function
-in the w1-framework is named 'touch_bit' - therefore the previous
-naming. 
+  cr50@0: $nodename:0: 'cr50@0' does not match '^tpm(@[0-9a-f]+)?$'
+        from schema $id: http://devicetree.org/schemas/tpm/google,cr50.yaml#
 
-It is the baud-rate used in the 1-Wire cycle to write a 0-Bit
-(write-0-speed) and to perform a 1-Wire cycle that writes a 1-Bit and
-reads a 0-Bit or 1-Bit (write-1-speed).
+Fix these schema violations.
 
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 115200
-> > +    description: |
-> > +      The baud rate for the 1-Wire write-0 cycle (touch bit 0).
-> > +
-> > +  touch_1-speed:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 115200
-> > +    description: |
-> > +      The baud rate for the 1-Wire write-1 and read cycle (touch bit 1).
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: false
-> 
-> w1.txt says there can be a child node for the 1-wire device. You need 
-> 'type: object'. Or w1.txt needs to be converted to schema and referenced 
-> here (along with using unevaluatedProperties here instead).
-> 
-> Rob
+phyGATE-Tauri uses an Infineon SLB9670:
+https://lore.kernel.org/all/ab45c82485fa272f74adf560cbb58ee60cc42689.camel@phytec.de/
 
-Will change it to type object. However, I also tried to convert w1.txt
-to w1.yaml - I am not quite sure, so I add an excerpt of my attempt.
-The example in w1.txt builds fine. Is oneOf allowed as a top-level
-property, the documentation only mentions allOf?
-Only one child should be allowed, but I did not find a way to restrict
-this.
+Gateworks Venice uses an Atmel ATTPM20P:
+https://trac.gateworks.com/wiki/tpm
 
-# w1-uart.yaml:
-unevaluatedProperties:
-  $ref: w1.yaml
+Signed-off-by: Lukas Wunner <lukas@wunner.de>
+---
+The commit mentioned above, 26c9d152ebf3 ("dt-bindings: tpm: Consolidate
+TCG TIS bindings") landed in Linus' tree yesterday.
 
-# w1.yaml:
-properties:
-  compatible:
-    enum:
-      - maxim,ds2760
+Because this consists only of fixes, I think it could be picked up and
+forwarded to Linus at any time, even outside the merge window.
 
-oneOf:
-  - $ref: /schemas/power/supply/maxim,ds2760.yaml
+The issues reported for imx8m*-venice-gw7*xx.dts* devicetrees will not
+go away until Jarrko picks up this amendment patch for the dt-bindings:
+https://lore.kernel.org/all/8886271d52025065eddf5915bb7778ab14362255.1705140898.git.lukas@wunner.de/
 
-unevaluatedProperties: false
-#
+ arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts    | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi     | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi     | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts         | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi     | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi     | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts      | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi              | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi            | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts             | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi        | 2 +-
+ 12 files changed, 12 insertions(+), 12 deletions(-)
 
-Thank you for the review!
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
+index 968f475..27a9025 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
+@@ -120,7 +120,7 @@
+ 	};
+ 
+ 	tpm: tpm@1 {
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+ 		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-parent = <&gpio2>;
+ 		pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+index 3f3f2a2..752caa3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+@@ -89,7 +89,7 @@
+ 	status = "okay";
+ 
+ 	tpm@1 {
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
+ 		reg = <0x1>;
+ 		spi-max-frequency = <36000000>;
+ 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+index 06fed93..2aa6c10 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+@@ -109,7 +109,7 @@
+ 	status = "okay";
+ 
+ 	tpm@1 {
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
+ 		reg = <0x1>;
+ 		spi-max-frequency = <36000000>;
+ 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+index feae77e..a080574 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+@@ -234,7 +234,7 @@
+ 	status = "okay";
+ 
+ 	tpm: tpm@0 {
+-		compatible = "infineon,slb9670";
++		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+ 		reg = <0>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_tpm>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi
+index c24587c..41c79d2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi
+@@ -103,7 +103,7 @@
+ 	status = "okay";
+ 
+ 	tpm@1 {
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
+ 		reg = <0x1>;
+ 		spi-max-frequency = <36000000>;
+ 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
+index 628ffba6..d5c400b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi
+@@ -115,7 +115,7 @@
+ 	status = "okay";
+ 
+ 	tpm@1 {
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
+ 		reg = <0x1>;
+ 		spi-max-frequency = <36000000>;
+ 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+index 9caf7ca..cae586c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+@@ -196,7 +196,7 @@
+ 	status = "okay";
+ 
+ 	tpm@0 {
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "atmel,attpm20p", "tcg,tpm_tis-spi";
+ 		reg = <0x0>;
+ 		spi-max-frequency = <36000000>;
+ 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+index 6376417..d8cf1f2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts
+@@ -65,7 +65,7 @@
+ 	status = "okay";
+ 
+ 	tpm@0 {
+-		compatible = "infineon,slb9670";
++		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+ 		reg = <0>;
+ 		spi-max-frequency = <43000000>;
+ 	};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index 5506de8..1b3396b 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -888,7 +888,7 @@
+ 	status = "okay";
+ 	cs-gpios = <&pio 86 GPIO_ACTIVE_LOW>;
+ 
+-	cr50@0 {
++	tpm@0 {
+ 		compatible = "google,cr50";
+ 		reg = <0>;
+ 		spi-max-frequency = <1000000>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+index f228125..d87aab8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+@@ -1402,7 +1402,7 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&spi5_pins>;
+ 
+-	cr50@0 {
++	tpm@0 {
+ 		compatible = "google,cr50";
+ 		reg = <0>;
+ 		interrupts-extended = <&pio 171 IRQ_TYPE_EDGE_RISING>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts b/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
+index 0f9cc04..1cba1d8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts
+@@ -70,7 +70,7 @@
+ &spi0 {
+ 	status = "okay";
+ 
+-	cr50@0 {
++	tpm@0 {
+ 		compatible = "google,cr50";
+ 		reg = <0>;
+ 		interrupt-parent = <&gpio0>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+index c5e7de6..5846a11 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+@@ -706,7 +706,7 @@ camera: &i2c7 {
+ &spi2 {
+ 	status = "okay";
+ 
+-	cr50@0 {
++	tpm@0 {
+ 		compatible = "google,cr50";
+ 		reg = <0>;
+ 		interrupt-parent = <&gpio1>;
+-- 
+2.40.1
 
-Kind regards,
-Christoph
 
