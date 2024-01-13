@@ -1,100 +1,244 @@
-Return-Path: <devicetree+bounces-31857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED10E82CDEB
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 18:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAC1482CDE6
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 18:22:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8036283EA7
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 17:29:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D545F283EBA
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 17:22:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B6E53B8;
-	Sat, 13 Jan 2024 17:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B264D5226;
+	Sat, 13 Jan 2024 17:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kyuhyuk.kr header.i=@kyuhyuk.kr header.b="AETQMjxv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7fbicXh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-ztdg10021901.me.com (pv50p00im-ztdg10021901.me.com [17.58.6.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49B24522A
-	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 17:28:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kyuhyuk.kr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kyuhyuk.kr
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kyuhyuk.kr; s=sig1;
-	t=1705166936; bh=Ncm/r4hpmcrpUhX1fSR5itLc4xrV7NoGJc5rt7JL7Tk=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version;
-	b=AETQMjxvQQErbY/lyVVbUU9dD1xPLM3nvimfEzzmbmeH6FLrS1lOzpI6foZeUMm76
-	 0zpgHM0NKLBKwi5k3kY790IdIBAne+Ot/mHhAHFOCTr5KkVqu+pdz1+muGiP9x3tLN
-	 dnxwNFbF0halDD5Hkex4vr2AOvzA8O/k7J9m+AJZ7qS1TznxA6tBeV5tfBWbrQ2L2F
-	 ucmMAgC7NQANWVL7ab3pDjCxjmGDyE3ZiFZhSyWAxojmZCf5+PEiOgHF02tOE90NJ0
-	 8t8Gua0FNFhBgkiYchSpcjH4ZzxGOXuRpW2Vkfo1KNCN8+WhoNzOIZLy/Q9jnu4uFn
-	 ecItlGyztNdPg==
-Received: from KyuDevelop.. (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-ztdg10021901.me.com (Postfix) with ESMTPSA id C3CC9813EB;
-	Sat, 13 Jan 2024 17:28:52 +0000 (UTC)
-From: KyuHyuk Lee <lee@kyuhyuk.kr>
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Tianling Shen <cnsztl@gmail.com>,
-	Andy Yan <andyshrk@163.com>,
-	Ondrej Jirman <megi@xff.cz>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	KyuHyuk Lee <lee@kyuhyuk.kr>
-Subject: [PATCH v2] dt-bindings: rockchip: Add Hardkernel ODROID-M1S board
-Date: Sun, 14 Jan 2024 02:21:03 +0900
-Message-Id: <20240113172102.6890-1-lee@kyuhyuk.kr>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915C95223;
+	Sat, 13 Jan 2024 17:22:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52831C433F1;
+	Sat, 13 Jan 2024 17:22:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705166542;
+	bh=w+xQUE9BpQOiqBSKyEmQx0VOMX/yj6HPQlUxGJJ2xkc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=q7fbicXhCZf+ttB9pYafLxfV5n0V8sVgoNJyRfH2m8h07gIwBS1sQsEgKjMxkF3OQ
+	 oaLkQaBQHjaO3US510r+NLlZyMpon6IP9L0VhdbcQTm/d9YFfxLJhO/d3LIY60QSHI
+	 b/mAdw/xHqTZ3pbDxRRN0/t1wkHO+DNAp4tsYYqSUCnqnm026wTAempBtdqpF0pyYG
+	 5nt3PRmxEOZRS0wvdMY6rtCOECkw19dSRmFGreUtpcQisQAm4px+jN4smwq2jVVgH9
+	 jNtH3mk5wuEZNXAc4m+i3SJZLEwuBlpFTJ9p+xYcrXCP11KyPj/uoRQExB4gp7H2hb
+	 AToh4nSk0jIDw==
+Date: Sat, 13 Jan 2024 17:22:08 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Cc: <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: Re: [PATCH v5 6/8] iio: add the IIO backend framework
+Message-ID: <20240113172208.6c4cfdbb@jic23-huawei>
+In-Reply-To: <20240112-iio-backend-v5-6-bdecad041ab4@analog.com>
+References: <20240112-iio-backend-v5-0-bdecad041ab4@analog.com>
+	<20240112-iio-backend-v5-6-bdecad041ab4@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.39; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: s5LNHj3FkFfaIArGgtvgU_W7ExD_8Rdg
-X-Proofpoint-GUID: s5LNHj3FkFfaIArGgtvgU_W7ExD_8Rdg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-13_07,2024-01-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 spamscore=0
- mlxlogscore=735 mlxscore=0 adultscore=0 suspectscore=0 clxscore=1030
- bulkscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2401130147
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Add device tree binding for Hardkernel ODROID-M1S board based on
-RK3566 SoC.
+On Fri, 12 Jan 2024 17:40:20 +0100
+Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
 
-Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
----
- Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+> From: Nuno Sa <nuno.sa@analog.com>
+> 
+> This is a Framework to handle complex IIO aggregate devices.
+> 
+> The typical architecture is to have one device as the frontend device which
+> can be "linked" against one or multiple backend devices. All the IIO and
+> userspace interface is expected to be registers/managed by the frontend
+> device which will callback into the backends when needed (to get/set
+> some configuration that it does not directly control).
+> 
+> The basic framework interface is pretty simple:
+>  - Backends should register themselves with @devm_iio_backend_register()
+>  - Frontend devices should get backends with @devm_iio_backend_get()
+> 
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 5cf5cbef2cf5..9a65f7269a27 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -566,6 +566,11 @@ properties:
-           - const: rockchip,rk3568-odroid-m1
-           - const: rockchip,rk3568
- 
-+      - description: Hardkernel Odroid M1S
-+        items:
-+          - const: hardkernel,rk3566-odroid-m1s
-+          - const: rockchip,rk3566
-+
-       - description: Hugsun X99 TV Box
-         items:
-           - const: hugsun,x99
--- 
-2.34.1
+A few minor comments inline.
+
+...
+
+> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
+> new file mode 100644
+> index 000000000000..994bc68c2679
+> --- /dev/null
+> +++ b/drivers/iio/industrialio-backend.c
+> @@ -0,0 +1,411 @@
+
+...
+
+> +
+> +/*
+> + * Helper struct for requesting buffers. Allows for multiple buffers per
+> + * backend.
+Only seems to be used to ensure we have all the data needed to free it...
+So comment seems less than obviously connected to that.
+> + */
+> +struct iio_backend_buffer_pair {
+> +	struct iio_backend *back;
+> +	struct iio_buffer *buffer;
+> +};
+> +
+
+> +/**
+> + * iio_backend_chan_enable - Enable a backend channel.
+> + * @back:	Backend device.
+> + * @chan:	Channel number.
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int iio_backend_chan_enable(struct iio_backend *back, unsigned int chan)
+> +{
+> +	return iio_backend_op_call(back, chan_enable, chan);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_chan_enable, IIO_BACKEND);
+> +
+> +/**
+> + * iio_backend_chan_disable - Disable a backend channel.
+> + * @back:	Backend device.
+> + * @chan:	Channel number.
+Would be good to be consistent on . or not.
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int iio_backend_chan_disable(struct iio_backend *back, unsigned int chan)
+> +{
+> +	return iio_backend_op_call(back, chan_disable, chan);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_chan_disable, IIO_BACKEND);
+> +
+> +/**
+> + * iio_backend_chan_enable - Enable the backend.
+> + * @back:	Backend device
+
+
+
+...
+
+
+> +/**
+> + * devm_iio_backend_get_from_fwnode_lookup
+
+Not valid kernel doc + name is wrong.  Make sure you run
+the kernel-doc script over this and fix any errors or warnings
+reported.
+
+> + * @dev:	Device where to bind the backend lifetime.
+> + * @fwnode:	Firmware node of the backend device.
+> + *
+> + * Search the backend list for a device matching @fwnode.
+> + * This API should not be used and it's only present for preventing the first
+> + * user of this framework to break it's DT ABI.
+> + *
+> + * RETURNS:
+> + * A backend pointer, negative error pointer otherwise.
+> + */
+> +struct iio_backend *
+> +__devm_iio_backend_get_from_fwnode_lookup(struct device *dev,
+> +					  struct fwnode_handle *fwnode)
+> +{
+> +	struct iio_backend *back;
+> +	int ret;
+> +
+> +	guard(mutex)(&iio_back_lock);
+> +	list_for_each_entry(back, &iio_back_list, entry) {
+> +		if (!device_match_fwnode(back->dev, fwnode))
+> +			continue;
+> +
+> +		ret = __devm_iio_backend_get(dev, back);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +
+> +		return back;
+> +	}
+> +
+> +	return ERR_PTR(-EPROBE_DEFER);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(__devm_iio_backend_get_from_fwnode_lookup, IIO_BACKEND);
+>
+
+
+> +/**
+> + * devm_iio_backend_register - Register a new backend device
+> + * @dev:	Backend device being registered.
+> + * @ops:	Backend ops
+> + * @priv:	Device private data.
+> + *
+> + * @ops and @priv are both mandatory. Not providing them results in -EINVAL.
+
+It's unusual to 'insist' on the private data.
+Whilst it's highly likely it will always be there from a core point of view
+we don't mind it being NULL.  This is different from the ops as we want
+to be able to call those without checking they are there.
+
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int devm_iio_backend_register(struct device *dev,
+> +			      const struct iio_backend_ops *ops, void *priv)
+> +{
+> +	struct iio_backend *back;
+> +
+> +	if (!ops || !priv) {
+
+> +		pr_err("%s: No backend ops or private data given\n",
+> +		       dev_name(dev));
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * Through device_links, we guarantee that a frontend device cannot be
+> +	 * bound/exist if the backend driver is not around. Hence, we can bind
+> +	 * the backend object lifetime with the device being passed since
+> +	 * removing it will torn the frontend down.
+
+"will have torn" or "will tear the"
+
+> +	 */
+> +	back = devm_kzalloc(dev, sizeof(*back), GFP_KERNEL);
+> +	if (!back)
+> +		return -ENOMEM;
+> +
+> +	back->ops = ops;
+> +	back->owner = dev->driver->owner;
+> +	back->dev = dev;
+> +	back->priv = priv;
+> +	mutex_lock(&iio_back_lock);
+> +	list_add(&back->entry, &iio_back_list);
+> +	mutex_unlock(&iio_back_lock);
+> +
+> +	return devm_add_action_or_reset(dev, iio_backend_unregister, back);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(devm_iio_backend_register, IIO_BACKEND);
+> +
+> +MODULE_AUTHOR("Nuno Sa <nuno.sa@analog.com>");
+> +MODULE_DESCRIPTION("Framework to handle complex IIO aggregate devices");
+> +MODULE_LICENSE("GPL");
+
 
 
