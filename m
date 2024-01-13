@@ -1,106 +1,200 @@
-Return-Path: <devicetree+bounces-31800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C1BF82CA2C
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 07:10:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2570782CAB2
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:05:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CFE01F23829
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 06:10:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 897901F23633
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 09:05:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E2DFFBF5;
-	Sat, 13 Jan 2024 06:10:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WKF91vYX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43674A3F;
+	Sat, 13 Jan 2024 09:04:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3FCFBE1;
-	Sat, 13 Jan 2024 06:10:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1705126240; x=1736662240;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Eld4MoQpbkUQ2AJhP3wOklAVBHkSsTYQWgcDlJwGMEo=;
-  b=WKF91vYXXfBwK7dbFj69h2eyzfTvOslUEiN6TPU1o5wYsr+iiyNSV2C5
-   L2H8FIkpyOCWJDw2PHP7ZljqJYxctinILX3rVo4TELvpYc/7htNYXGuls
-   s04sz0ro6RnbODD/xSCgE+HzZTSuckwlDk3z7rK9FwvZiBptv/pr5bwqT
-   wrPc6BuXkgTcl1yC5hivmjRVPG49foMBW3Ocgs58kgx0Oq+Q7Vck2eXBr
-   ppKlu0uQWcvOEla8NZP3FEafyOxxIyFf5QxF8oaHoD5WDb5xa9SLv4GZp
-   zxjhAVBfW/uA/dZGUTHc2IZaj9oRmtYzdI3ZGQB1KuIB29IPcyS3m6Ks4
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="6074976"
-X-IronPort-AV: E=Sophos;i="6.04,191,1695711600"; 
-   d="scan'208";a="6074976"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2024 22:10:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="783260272"
-X-IronPort-AV: E=Sophos;i="6.04,191,1695711600"; 
-   d="scan'208";a="783260272"
-Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 12 Jan 2024 22:10:35 -0800
-Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rOXE0-000A9q-1g;
-	Sat, 13 Jan 2024 06:10:32 +0000
-Date: Sat, 13 Jan 2024 14:10:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Catalin Popescu <catalin.popescu@leica-geosystems.com>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, afd@ti.com,
-	andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Subject: Re: [PATCH 1/3] dt-bindings: net: dp83826: add ti,cfg-dac-minus
- binding
-Message-ID: <202401131320.WhWHSzeD-lkp@intel.com>
-References: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99153A38;
+	Sat, 13 Jan 2024 09:03:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wunner.de
+Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout3.hostsharing.net (Postfix) with ESMTPS id 2C8E5100D943C;
+	Sat, 13 Jan 2024 10:03:49 +0100 (CET)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id F15972DEC30; Sat, 13 Jan 2024 10:03:48 +0100 (CET)
+Message-Id: <8b49a64d5946792f01e75fab74076557ef4f7d60.1705135956.git.lukas@wunner.de>
+From: Lukas Wunner <lukas@wunner.de>
+Date: Sat, 13 Jan 2024 10:03:51 +0100
+Subject: [PATCH] ARM: dts: Fix TPM schema violations
+To: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, soc@kernel.org, devicetree@vger.kernel.org, linux-integrity@vger.kernel.org
+Cc: Patrick Williams <patrick@stwcx.xyz>, Tao Ren <rentao.bupt@gmail.com>, Eddie James <eajames@linux.ibm.com>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, Bruno Thomsen <bruno.thomsen@gmail.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com, Wes Huang <wes.huang@moxa.com>, Fero JD Zhou <FeroJD.Zhou@moxa.com>, SZ Lin <sz.lin@moxa.com>, Benoit Cousson <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>, Yannic Moog <Y.Moog@phytec.de>, Alexander Bauer <a.bauer@phytec.de>, upstream@lists.phytec.de, Teresa Remmet <T.Remmet@phytec.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240111161927.3689084-1-catalin.popescu@leica-geosystems.com>
 
-Hi Catalin,
+Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
+bindings"), several issues are reported by "make dtbs_check" for ARM
+devicetrees:
 
-kernel test robot noticed the following build warnings:
+The nodename needs to be "tpm@0" rather than "tpmdev@0" and the
+compatible property needs to contain the chip's name in addition to the
+generic "tcg,tpm_tis-spi" or "tcg,tpm-tis-i2c":
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on net-next/main net/main linus/master v6.7 next-20240112]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+  tpmdev@0: $nodename:0: 'tpmdev@0' does not match '^tpm(@[0-9a-f]+)?$'
+        from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Catalin-Popescu/dt-bindings-net-dp83826-add-ti-cfg-dac-plus-binding/20240112-002701
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240111161927.3689084-1-catalin.popescu%40leica-geosystems.com
-patch subject: [PATCH 1/3] dt-bindings: net: dp83826: add ti,cfg-dac-minus binding
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240113/202401131320.WhWHSzeD-lkp@intel.com/reproduce)
+  tpm@2e: compatible: 'oneOf' conditional failed, one must be fixed:
+        ['tcg,tpm-tis-i2c'] is too short
+        from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm-tis-i2c.yaml#
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401131320.WhWHSzeD-lkp@intel.com/
+Fix these schema violations.
 
-dtcheck warnings: (new ones prefixed by >>)
->> Documentation/devicetree/bindings/net/ti,dp83822.yaml: ti,cfg-dac-minus: missing type definition
-   Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
+Aspeed Facebook BMCs use an Infineon SLB9670:
+https://lore.kernel.org/all/ZZSmMJ%2F%2Fl972Qbxu@fedora/
+https://lore.kernel.org/all/ZZT4%2Fw2eVzMhtsPx@fedora/
+https://lore.kernel.org/all/ZZTS0p1hdAchIbKp@heinlein.vulture-banana.ts.net/
 
+Aspeed Tacoma uses a Nuvoton NPCT75X per commit 39d8a73c53a2 ("ARM: dts:
+aspeed: tacoma: Add TPM").
+
+phyGATE-Tauri uses an Infineon SLB9670:
+https://lore.kernel.org/all/ab45c82485fa272f74adf560cbb58ee60cc42689.camel@phytec.de/
+
+A single schema violation remains in am335x-moxa-uc-2100-common.dtsi
+because it is unknown which chip is used on the board.  The devicetree's
+author has been asked for clarification but has not responded so far:
+https://lore.kernel.org/all/20231220090910.GA32182@wunner.de/
+
+Signed-off-by: Lukas Wunner <lukas@wunner.de>
+Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
+Reviewed-by: Tao Ren <rentao.bupt@gmail.com>
+---
+The commit mentioned above, 26c9d152ebf3 ("dt-bindings: tpm: Consolidate
+TCG TIS bindings") landed in Linus' tree 8 hours ago.
+
+Because this consists only of fixes, I think it could be picked up and
+forwarded to Linus at any time, even outside the merge window.
+
+The Reviewed-by tags from Patrick and Tao were offered here:
+https://lore.kernel.org/all/ZZWB4wRiAyDtlLJM@heinlein.vulture-banana.ts.net/
+https://lore.kernel.org/all/ZZWkhaiDFOGvcPQy@fedora/
+
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts   | 4 ++--
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts    | 4 ++--
+ arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts           | 2 +-
+ arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi | 4 ++--
+ arch/arm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi          | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts        | 2 +-
+ arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi    | 2 +-
+ 7 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
+index e899de6..5be0e8f 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
+@@ -45,8 +45,8 @@
+ 		num-chipselects = <1>;
+ 		cs-gpios = <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
+ 
+-		tpmdev@0 {
+-			compatible = "tcg,tpm_tis-spi";
++		tpm@0 {
++			compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+ 			spi-max-frequency = <33000000>;
+ 			reg = <0>;
+ 		};
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+index a677c82..5a8169b 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+@@ -80,8 +80,8 @@
+ 		gpio-miso = <&gpio ASPEED_GPIO(R, 5) GPIO_ACTIVE_HIGH>;
+ 		num-chipselects = <1>;
+ 
+-		tpmdev@0 {
+-			compatible = "tcg,tpm_tis-spi";
++		tpm@0 {
++			compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+ 			spi-max-frequency = <33000000>;
+ 			reg = <0>;
+ 		};
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts
+index 3f6010e..213023b 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts
+@@ -456,7 +456,7 @@
+ 	status = "okay";
+ 
+ 	tpm: tpm@2e {
+-		compatible = "tcg,tpm-tis-i2c";
++		compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
+ 		reg = <0x2e>;
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi b/arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi
+index 31590d3..00e5887 100644
+--- a/arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi
++++ b/arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi
+@@ -35,8 +35,8 @@
+ 		gpio-mosi = <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
+ 		gpio-miso = <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
+ 
+-		tpmdev@0 {
+-			compatible = "tcg,tpm_tis-spi";
++		tpm@0 {
++			compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+ 			spi-max-frequency = <33000000>;
+ 			reg = <0>;
+ 		};
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi
+index 44cc4ff..d12fb44 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi
+@@ -116,7 +116,7 @@
+ 	tpm_tis: tpm@1 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_tpm>;
+-		compatible = "tcg,tpm_tis-spi";
++		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
+ 		reg = <1>;
+ 		spi-max-frequency = <20000000>;
+ 		interrupt-parent = <&gpio5>;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts b/arch/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts
+index 3a72384..9984b34 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts
+@@ -130,7 +130,7 @@
+ 	 * TCG specification - Section 6.4.1 Clocking:
+ 	 * TPM shall support a SPI clock frequency range of 10-24 MHz.
+ 	 */
+-	st33htph: tpm-tis@0 {
++	st33htph: tpm@0 {
+ 		compatible = "st,st33htpm-spi", "tcg,tpm_tis-spi";
+ 		reg = <0>;
+ 		spi-max-frequency = <24000000>;
+diff --git a/arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi b/arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi
+index b8730aa..a59331a 100644
+--- a/arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi
++++ b/arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi
+@@ -217,7 +217,7 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&spi1_pins>;
+ 
+-	tpm_spi_tis@0 {
++	tpm@0 {
+ 		compatible = "tcg,tpm_tis-spi";
+ 		reg = <0>;
+ 		spi-max-frequency = <500000>;
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.40.1
+
 
