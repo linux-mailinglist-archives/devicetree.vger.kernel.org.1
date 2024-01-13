@@ -1,81 +1,100 @@
-Return-Path: <devicetree+bounces-31859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18F2982CE01
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 18:41:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED10E82CDEB
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 18:29:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD5702826E6
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 17:41:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8036283EA7
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 17:29:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AEEE5394;
-	Sat, 13 Jan 2024 17:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B6E53B8;
+	Sat, 13 Jan 2024 17:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kyuhyuk.kr header.i=@kyuhyuk.kr header.b="AETQMjxv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net [83.223.78.240])
+Received: from pv50p00im-ztdg10021901.me.com (pv50p00im-ztdg10021901.me.com [17.58.6.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6FA4566B;
-	Sat, 13 Jan 2024 17:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wunner.de
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout2.hostsharing.net (Postfix) with ESMTPS id AA9622800B4BB;
-	Sat, 13 Jan 2024 18:32:30 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 8F3FF54AE4; Sat, 13 Jan 2024 18:32:30 +0100 (CET)
-Message-Id: <6ec711056f5d87d8504f033a404ed14a2e449331.1705140898.git.lukas@wunner.de>
-In-Reply-To: <cover.1705140898.git.lukas@wunner.de>
-References: <cover.1705140898.git.lukas@wunner.de>
-From: Lukas Wunner <lukas@wunner.de>
-Date: Sat, 13 Jan 2024 18:10:54 +0100
-Subject: [PATCH v2 4/4] tpm: tis_i2c: Add compatible string nuvoton,npct75x
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49B24522A
+	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 17:28:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kyuhyuk.kr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kyuhyuk.kr
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kyuhyuk.kr; s=sig1;
+	t=1705166936; bh=Ncm/r4hpmcrpUhX1fSR5itLc4xrV7NoGJc5rt7JL7Tk=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version;
+	b=AETQMjxvQQErbY/lyVVbUU9dD1xPLM3nvimfEzzmbmeH6FLrS1lOzpI6foZeUMm76
+	 0zpgHM0NKLBKwi5k3kY790IdIBAne+Ot/mHhAHFOCTr5KkVqu+pdz1+muGiP9x3tLN
+	 dnxwNFbF0halDD5Hkex4vr2AOvzA8O/k7J9m+AJZ7qS1TznxA6tBeV5tfBWbrQ2L2F
+	 ucmMAgC7NQANWVL7ab3pDjCxjmGDyE3ZiFZhSyWAxojmZCf5+PEiOgHF02tOE90NJ0
+	 8t8Gua0FNFhBgkiYchSpcjH4ZzxGOXuRpW2Vkfo1KNCN8+WhoNzOIZLy/Q9jnu4uFn
+	 ecItlGyztNdPg==
+Received: from KyuDevelop.. (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-ztdg10021901.me.com (Postfix) with ESMTPSA id C3CC9813EB;
+	Sat, 13 Jan 2024 17:28:52 +0000 (UTC)
+From: KyuHyuk Lee <lee@kyuhyuk.kr>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Tianling Shen <cnsztl@gmail.com>,
+	Andy Yan <andyshrk@163.com>,
+	Ondrej Jirman <megi@xff.cz>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	KyuHyuk Lee <lee@kyuhyuk.kr>
+Subject: [PATCH v2] dt-bindings: rockchip: Add Hardkernel ODROID-M1S board
+Date: Sun, 14 Jan 2024 02:21:03 +0900
+Message-Id: <20240113172102.6890-1-lee@kyuhyuk.kr>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-To: Jarkko Sakkinen <jarkko@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-integrity@vger.kernel.org, Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>
+X-Proofpoint-ORIG-GUID: s5LNHj3FkFfaIArGgtvgU_W7ExD_8Rdg
+X-Proofpoint-GUID: s5LNHj3FkFfaIArGgtvgU_W7ExD_8Rdg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-13_07,2024-01-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 spamscore=0
+ mlxlogscore=735 mlxscore=0 adultscore=0 suspectscore=0 clxscore=1030
+ bulkscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2401130147
 
-Add "nuvoton,npct75x" as well as the fallback compatible string
-"tcg,tpm-tis-i2c" to the TPM TIS I²C driver.  They're used by:
+Add device tree binding for Hardkernel ODROID-M1S board based on
+RK3566 SoC.
 
-  arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts
-  arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
-
-And by all accounts, NPCT75x is supported by the driver:
-
-  https://lore.kernel.org/all/60e23fd0f0ff4d1f8954034237ae8865@NTILML02.nuvoton.com/
-  https://lore.kernel.org/all/20220808220839.1006341-8-peter@pjd.dev/
-
-Signed-off-by: Lukas Wunner <lukas@wunner.de>
+Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
 ---
- drivers/char/tpm/tpm_tis_i2c.c | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2c.c
-index a897402..9511c0d 100644
---- a/drivers/char/tpm/tpm_tis_i2c.c
-+++ b/drivers/char/tpm/tpm_tis_i2c.c
-@@ -383,6 +383,8 @@ static void tpm_tis_i2c_remove(struct i2c_client *client)
- #ifdef CONFIG_OF
- static const struct of_device_id of_tis_i2c_match[] = {
- 	{ .compatible = "infineon,slb9673", },
-+	{ .compatible = "nuvoton,npct75x", },
-+	{ .compatible = "tcg,tpm-tis-i2c", },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, of_tis_i2c_match);
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 5cf5cbef2cf5..9a65f7269a27 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -566,6 +566,11 @@ properties:
+           - const: rockchip,rk3568-odroid-m1
+           - const: rockchip,rk3568
+ 
++      - description: Hardkernel Odroid M1S
++        items:
++          - const: hardkernel,rk3566-odroid-m1s
++          - const: rockchip,rk3566
++
+       - description: Hugsun X99 TV Box
+         items:
+           - const: hugsun,x99
 -- 
-2.40.1
+2.34.1
 
 
