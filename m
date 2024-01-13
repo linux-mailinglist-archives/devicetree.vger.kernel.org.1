@@ -1,77 +1,233 @@
-Return-Path: <devicetree+bounces-31778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B54982C8E1
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 02:45:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 249AD82C8F1
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 02:54:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C60142862C1
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 01:45:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A057C286966
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 01:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6836317C80;
-	Sat, 13 Jan 2024 01:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839281865A;
+	Sat, 13 Jan 2024 01:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KZ0QOeWf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S3eiiwlN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4507715EA6;
-	Sat, 13 Jan 2024 01:45:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77C24C433F1;
-	Sat, 13 Jan 2024 01:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58A341A594;
+	Sat, 13 Jan 2024 01:54:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8759C433B1;
+	Sat, 13 Jan 2024 01:54:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705110317;
-	bh=DxZsLmyA+1sUvE1Z4U11K/YS97w9VOdx+PTvM4XU75M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KZ0QOeWfGn3Jr0c1lfBR5vr7csr92mBGDsDu9qaQyCIFJv4bhUDIDMslc59cfr9fM
-	 Cjpk1cN+OkUBqAGsLnlou7/4RIFhYzC/dr4aEoJTJuOsIJjqi7vv8NlmKlwrNderj7
-	 wWmjWiHx/Ws2CnOBg1FHYKno8WdhiRflVrscGc0MCsOfs8MIXZD4inuHzmyWHtuqTo
-	 g5QAeIhLAY4V6oOmyJswoYq8RFYLNngxNw76ohYHQm2J01TTWvKTr3A4PZjSMw9Voq
-	 nVCg5bjAoYTxrJsgAR0QXaq2qF8aRMS6h1wPGbWZtnolaTpepnxZ1aWwQ1dPGic56+
-	 kcWtdpVDS3bhg==
-Date: Fri, 12 Jan 2024 19:45:15 -0600
-From: Rob Herring <robh@kernel.org>
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: linux-arm-kernel@lists.infradead.org, bhelgaas@google.com, kw@linux.com,
-	devicetree@vger.kernel.org, srk@ti.com, conor+dt@kernel.org,
-	linux-pci@vger.kernel.org, lpieralisi@kernel.org,
-	linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [RFC PATCH] dt-bindings: PCI: ti,j721e-pci-host: Add device-id
- for TI's J784S4 SoC
-Message-ID: <170511031475.3817032.5482957589582376350.robh@kernel.org>
-References: <20240108050735.512445-1-s-vadapalli@ti.com>
+	s=k20201202; t=1705110842;
+	bh=53lTNv4PeoQS9hGdvt7a6AGwPPIeogMIRbF8hzV8nkE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=S3eiiwlNzsctXVIF62MT+kIY1V/yTE6D1xnutGJ+7CZJ+qo/yuArq32XtsVgPQ3c/
+	 755L1V3m3iltNsUdRdWj72MdVbaQQRmCszRc5pe/jPOmtQC0Wvay5mULriNeTtV2HQ
+	 V99+NBoK3gbYNelt4c6xFJ6Fp4r+pWcSCAub6MiFYVtQjUDH0NiETsZ7Mnmo9ec76D
+	 n3pv17ka8B446M9Yv3SPgHoDeRFEWOKoKIMRdDV+aSMyLpaYZwoEEDCB2LNINxeyID
+	 hOnYgDAx3gtgyQZ1m3aoDkEJ+O4WXckBptjeGqzHB9PbLktxiEnbrNAoPKcZZvR67w
+	 cYqEkHJpMAzww==
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2cd64022164so72340501fa.3;
+        Fri, 12 Jan 2024 17:54:02 -0800 (PST)
+X-Gm-Message-State: AOJu0Yy916hd7U0OdGIb7tgynPcbl9qIAa1eD/+GfurlPO1RXjdBgK+L
+	EKdjMmNI6260jHFr0mRT/57ykuN41nT6zJH4NQ==
+X-Google-Smtp-Source: AGHT+IGLBs7HKlazVnBbtBDn3wYjGagxFmxJfGVSZIxV0OlBGYvLM3MWroGVHD/fsJpgnLQPzGBhX3YmqV5PfJGV/9c=
+X-Received: by 2002:ac2:57cd:0:b0:50b:e713:574d with SMTP id
+ k13-20020ac257cd000000b0050be713574dmr1044659lfo.75.1705110840895; Fri, 12
+ Jan 2024 17:54:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240108050735.512445-1-s-vadapalli@ti.com>
+References: <20231107105025.1480561-1-billy_tsai@aspeedtech.com>
+ <20231107105025.1480561-3-billy_tsai@aspeedtech.com> <20231108182135.GA2698015-robh@kernel.org>
+ <SG2PR06MB33655734700697E8F6FD0D1B8BB2A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+ <CAL_JsqL=2-dD5yFWWDDHu1svcCF-EMZqcYz92Pr7L5ntppNQVA@mail.gmail.com> <SG2PR06MB3365CAEE9CE3F691DA1CA1E28BB9A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+In-Reply-To: <SG2PR06MB3365CAEE9CE3F691DA1CA1E28BB9A@SG2PR06MB3365.apcprd06.prod.outlook.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 12 Jan 2024 19:53:48 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJrqOZ9nYrWUkuRVyY0OkJG6m-YY45f1ZeYKNAyYv_tMQ@mail.gmail.com>
+Message-ID: <CAL_JsqJrqOZ9nYrWUkuRVyY0OkJG6m-YY45f1ZeYKNAyYv_tMQ@mail.gmail.com>
+Subject: Re: [PATCH RESEND v10 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM
+ TACH Control
+To: Billy Tsai <billy_tsai@aspeedtech.com>
+Cc: "jdelvare@suse.com" <jdelvare@suse.com>, "linux@roeck-us.net" <linux@roeck-us.net>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, "joel@jms.id.au" <joel@jms.id.au>, 
+	"andrew@aj.id.au" <andrew@aj.id.au>, "corbet@lwn.net" <corbet@lwn.net>, 
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>, 
+	"u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>, 
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
+	"naresh.solanki@9elements.com" <naresh.solanki@9elements.com>, 
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>, 
+	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>, 
+	"patrick@stwcx.xyz" <patrick@stwcx.xyz>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Sun, Nov 26, 2023 at 11:45=E2=80=AFPM Billy Tsai <billy_tsai@aspeedtech.=
+com> wrote:
+>
+> > > > > Document the compatible for aspeed,ast2600-pwm-tach device, which=
+ can
+> > > > > support up to 16 PWM outputs and 16 fan tach input.
+> > > > >
+> > > > > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> > > > > ---
+> > > > >  .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 69 +++++++++++++=
+++++++
+> > > > >  1 file changed, 69 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/hwmon/aspee=
+d,g6-pwm-tach.yaml
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pw=
+m-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.ya=
+ml
+> > > > > new file mode 100644
+> > > > > index 000000000000..c615fb10705c
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.=
+yaml
+> > > > > @@ -0,0 +1,69 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +# Copyright (C) 2023 Aspeed, Inc.
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/hwmon/aspeed,g6-pwm-tach.yaml=
+#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: ASPEED G6 PWM and Fan Tach controller
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> > > > > +
+> > > > > +description: |
+> > > > > +  The ASPEED PWM controller can support up to 16 PWM outputs.
+> > > > > +  The ASPEED Fan Tacho controller can support up to 16 fan tach =
+input.
+> > > > > +  They are independent hardware blocks, which are different from=
+ the
+> > > > > +  previous version of the ASPEED chip.
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - aspeed,ast2600-pwm-tach
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  clocks:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  resets:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  "#pwm-cells":
+> > > > > +    const: 3
+> > > > > +
+> > > > > +patternProperties:
+> > > > > +  "^fan-[0-9]+$":
+> > > > > +    $ref: fan-common.yaml#
+> > > > > +    unevaluatedProperties: false
+> > > > > +    required:
+> > > > > +      - tach-ch
+> > > > > +
+> > > > > +required:
+> > > > > +  - reg
+> > > > > +  - clocks
+> > > > > +  - resets
+> > > > > +  - "#pwm-cells"
+> > > > > +  - compatible
+> > > > > +
+> > > > > +additionalProperties: false
+> > > > > +
+> > > > > +examples:
+> > > > > +  - |
+> > > > > +    #include <dt-bindings/clock/aspeed-clock.h>
+> > > > > +    pwm_tach: pwm-tach-controller@1e610000 {
+> > > > > +      compatible =3D "aspeed,ast2600-pwm-tach";
+> > > > > +      reg =3D <0x1e610000 0x100>;
+> > > > > +      clocks =3D <&syscon ASPEED_CLK_AHB>;
+> > > > > +      resets =3D <&syscon ASPEED_RESET_PWM>;
+> > > > > +      #pwm-cells =3D <3>;
+> > > > > +
+> > > > > +      fan-0 {
+> > >
+> > > > I assume there's a PWM connection here? How do you know which PWM? =
+You
+> > > > said the tach channel is independent, so it is not that.
+> > >
+> > > > It should not be 0 from 'fan-0' because that's just a meaningless i=
+ndex.
+> > >
+> > > > You either need 'pwms' here or you can use 'reg' and the reg value =
+is
+> > > > the PWM channel.
+> > >
+> > > Hi Rob, this binding is used to export the PWM provider and the Fan m=
+onitor (i.e., Tach).
+> > > If the user wants to add the PWM connection for the fan, it can be do=
+ne as follows:
+> > >
+> > > fan0: pwm-fan0 {
+> > >         compatible =3D "pwm-fan";
+> > >         pwms =3D <&pwm_tach 0 40000 0>;
+> > >         cooling-min-state =3D <0>;
+> > >         cooling-max-state =3D <3>;
+> > >         #cooling-cells =3D <2>;
+> > >         cooling-levels =3D <0 15 128 255>;
+> > > };
+> > >
+> > > This will reuse the existing PWM fan driver (e.g., pwm-fan.c).
+>
+> > I'm confused now. So what are the child nodes you have? You are
+> > defining the fan in 2 places? The "pwm-fan" driver supports a tach via
+> > an interrupt, so how would this work in your case?
+>
+> Hi Rob,
+>
+> The tach interrupt for the pwm-fan is option. In our case, the dts just r=
+euse the pwm control function
+> of the pwm-fan, and the part of the tach monitor will be created by our f=
+an child nodes.
+> So the dts will like followings:
+>
+> // Use to declare the tach monitor for fan.
+> &pwm_tach {
+>         fan-0 {
+>                 tach-ch =3D /bits/ 8 <0x0>;
+>         };
+>         fan-1 {
+>                 tach-ch =3D /bits/ 8 <0x1>;
+>         };
+>         ...
+> }
+>
+> // Reuse the pwm-fan.c to control the behavior of the PWM for fan.
+> fan0: pwm-fan0 {
+>         compatible =3D "pwm-fan";
+>         pwms =3D <&pwm_tach 0 40000 0>;   /* Target freq:25 kHz */
+>         cooling-min-state =3D <0>;
+>         cooling-max-state =3D <3>;
+>         #cooling-cells =3D <2>;
+>         cooling-levels =3D <0 15 128 255>;
+> };
 
-On Mon, 08 Jan 2024 10:37:35 +0530, Siddharth Vadapalli wrote:
-> Add the device-id of 0xb012 for the PCIe controller on the J784S4 SoC as
-> described in the CTRL_MMR_PCI_DEVICE_ID register's PCI_DEVICE_ID_DEVICE_ID
-> field. The Register descriptions and the Technical Reference Manual for
-> J784S4 SoC can be found at: https://www.ti.com/lit/zip/spruj52
-> 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> This patch is based on linux-next tagged next-20240105.
-> 
-> Regards,
-> Siddharth.
-> 
->  Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+No, you can't have a fan described by 2 different nodes. Can't you
+just merge everything from the pwm-fan0 node into the fan-0 node?
 
-Acked-by: Rob Herring <robh@kernel.org>
-
+Rob
 
