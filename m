@@ -1,125 +1,107 @@
-Return-Path: <devicetree+bounces-31862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06EE982CE3D
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 20:14:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AE5482CE40
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 20:17:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7FED283D3E
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 19:14:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B4761C210D7
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 19:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 409CE610D;
-	Sat, 13 Jan 2024 19:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DD0B6122;
+	Sat, 13 Jan 2024 19:17:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="de4QuNMr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC5D63A6;
-	Sat, 13 Jan 2024 19:13:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e860cd7.versanet.de ([94.134.12.215] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rOjRp-00068M-HN; Sat, 13 Jan 2024 20:13:37 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
- soc@kernel.org, devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
- Lukas Wunner <lukas@wunner.de>
-Cc: Yannic Moog <Y.Moog@phytec.de>, Alexander Bauer <a.bauer@phytec.de>,
- upstream@lists.phytec.de, Teresa Remmet <T.Remmet@phytec.de>,
- Tim Harvey <tharvey@gateworks.com>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
- Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
- Adam Ford <aford173@gmail.com>, Heiko Thiery <heiko.thiery@gmail.com>,
- Enric Balletbo i Serra <eballetbo@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Hsin-Yi Wang <hsinyi@chromium.org>, Chen-Yu Tsai <wenst@chromium.org>,
- Nicolas Prado <nfraprado@collabora.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: Fix TPM schema violations
-Date: Sat, 13 Jan 2024 20:13:35 +0100
-Message-ID: <11865970.MucGe3eQFb@diego>
-In-Reply-To:
- <e6d7768e2a257e0bd5948bcf168909b6c670851b.1705168605.git.lukas@wunner.de>
-References:
- <e6d7768e2a257e0bd5948bcf168909b6c670851b.1705168605.git.lukas@wunner.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 615B363A9;
+	Sat, 13 Jan 2024 19:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1705173440; x=1736709440;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=l/RpQNj4gP732f2vHKYAlKSTUzjcPoYeEZirHy/RBPw=;
+  b=de4QuNMrVdp7LiFl3xnsx7VH54E5hymuG/uptzDe6rHv9oWNzSXkWoei
+   IWMltDP5P6/21ZIM1cc531s1kwM/qMIhIL/digKIScvQcLwmtpNsAayJU
+   b9lYYv1LtftKjalzPsFiASrYG95qqH574GTDbKNVwJyv/Gz2YHfKNwB/f
+   ovGGOvl+h4xveLnxHcDAd4L3l57ugwfpIDvQBCgkz5k9/32lOmhk7pLpE
+   K2LoBHZAcaF5ShtsqIyXXLL3MacATmLqb8ggAmZ48Ore867+LUz43K3oZ
+   Y6E5SbcLH8iFDVS3OA8Y3oK0eravvxlxPdo8lP623ObW6ry9XCFvQ5d+V
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10952"; a="430573453"
+X-IronPort-AV: E=Sophos;i="6.04,192,1695711600"; 
+   d="scan'208";a="430573453"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2024 11:17:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10952"; a="776334957"
+X-IronPort-AV: E=Sophos;i="6.04,192,1695711600"; 
+   d="scan'208";a="776334957"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga007.jf.intel.com with ESMTP; 13 Jan 2024 11:17:15 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rOjVJ-000Aq4-0Q;
+	Sat, 13 Jan 2024 19:17:13 +0000
+Date: Sun, 14 Jan 2024 03:16:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, afd@ti.com,
+	andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Subject: Re: [PATCH 2/3] dt-bindings: net: dp83826: add ti,cfg-dac-plus
+ binding
+Message-ID: <202401140357.ZT1pEydN-lkp@intel.com>
+References: <20240111161927.3689084-2-catalin.popescu@leica-geosystems.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240111161927.3689084-2-catalin.popescu@leica-geosystems.com>
 
-Hi Lukas,
+Hi Catalin,
 
-Am Samstag, 13. Januar 2024, 19:06:56 CET schrieb Lukas Wunner:
-> Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
-> bindings"), several issues are reported by "make dtbs_check" for arm64
-> devicetrees:
-> 
-> The compatible property needs to contain the chip's name in addition to
-> the generic "tcg,tpm_tis-spi" and the nodename needs to be "tpm@0"
-> rather than "cr50@0":
-> 
->   tpm@1: compatible: ['tcg,tpm_tis-spi'] is too short
->         from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
-> 
->   cr50@0: $nodename:0: 'cr50@0' does not match '^tpm(@[0-9a-f]+)?$'
->         from schema $id: http://devicetree.org/schemas/tpm/google,cr50.yaml#
-> 
-> Fix these schema violations.
-> 
-> phyGATE-Tauri uses an Infineon SLB9670:
-> https://lore.kernel.org/all/ab45c82485fa272f74adf560cbb58ee60cc42689.camel@phytec.de/
-> 
-> Gateworks Venice uses an Atmel ATTPM20P:
-> https://trac.gateworks.com/wiki/tpm
-> 
-> Signed-off-by: Lukas Wunner <lukas@wunner.de>
-> ---
-> The commit mentioned above, 26c9d152ebf3 ("dt-bindings: tpm: Consolidate
-> TCG TIS bindings") landed in Linus' tree yesterday.
-> 
-> Because this consists only of fixes, I think it could be picked up and
-> forwarded to Linus at any time, even outside the merge window.
-> 
-> The issues reported for imx8m*-venice-gw7*xx.dts* devicetrees will not
-> go away until Jarrko picks up this amendment patch for the dt-bindings:
-> https://lore.kernel.org/all/8886271d52025065eddf5915bb7778ab14362255.1705140898.git.lukas@wunner.de/
-> 
->  arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts    | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi     | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi     | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts         | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi     | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mp-venice-gw73xx.dtsi     | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts      | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mq-kontron-pitx-imx8m.dts | 2 +-
->  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi              | 2 +-
->  arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi            | 2 +-
->  arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts             | 2 +-
->  arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi        | 2 +-
+kernel test robot noticed the following build warnings:
 
-you might want to split this per sub-architecture perhaps (freescale,
-mediatek, rockchip) as such dts changes normally go through the trees
-of the subarchitecture maintainers.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on net-next/main net/main linus/master v6.7 next-20240112]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Catalin-Popescu/dt-bindings-net-dp83826-add-ti-cfg-dac-plus-binding/20240112-002701
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240111161927.3689084-2-catalin.popescu%40leica-geosystems.com
+patch subject: [PATCH 2/3] dt-bindings: net: dp83826: add ti,cfg-dac-plus binding
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240114/202401140357.ZT1pEydN-lkp@intel.com/reproduce)
 
-For the rockchip-parts itself, I'm also fine with them going through
-somewhere else - gru devices are pretty much "finished" by now,
-so for the rockchip changes
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401140357.ZT1pEydN-lkp@intel.com/
 
+dtcheck warnings: (new ones prefixed by >>)
+   Documentation/devicetree/bindings/net/ti,dp83822.yaml: ti,cfg-dac-minus: missing type definition
+>> Documentation/devicetree/bindings/net/ti,dp83822.yaml: ti,cfg-dac-plus: missing type definition
+   Documentation/devicetree/bindings/net/snps,dwmac.yaml: mac-mode: missing type definition
 
-Heiko
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
