@@ -1,244 +1,265 @@
-Return-Path: <devicetree+bounces-31855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAC1482CDE6
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 18:22:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 319E082CDFD
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 18:39:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D545F283EBA
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 17:22:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD06B283A85
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 17:39:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B264D5226;
-	Sat, 13 Jan 2024 17:22:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7037538A;
+	Sat, 13 Jan 2024 17:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7fbicXh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kzrPBAc+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915C95223;
-	Sat, 13 Jan 2024 17:22:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52831C433F1;
-	Sat, 13 Jan 2024 17:22:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705166542;
-	bh=w+xQUE9BpQOiqBSKyEmQx0VOMX/yj6HPQlUxGJJ2xkc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=q7fbicXhCZf+ttB9pYafLxfV5n0V8sVgoNJyRfH2m8h07gIwBS1sQsEgKjMxkF3OQ
-	 oaLkQaBQHjaO3US510r+NLlZyMpon6IP9L0VhdbcQTm/d9YFfxLJhO/d3LIY60QSHI
-	 b/mAdw/xHqTZ3pbDxRRN0/t1wkHO+DNAp4tsYYqSUCnqnm026wTAempBtdqpF0pyYG
-	 5nt3PRmxEOZRS0wvdMY6rtCOECkw19dSRmFGreUtpcQisQAm4px+jN4smwq2jVVgH9
-	 jNtH3mk5wuEZNXAc4m+i3SJZLEwuBlpFTJ9p+xYcrXCP11KyPj/uoRQExB4gp7H2hb
-	 AToh4nSk0jIDw==
-Date: Sat, 13 Jan 2024 17:22:08 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
-Cc: <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
- <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
-Subject: Re: [PATCH v5 6/8] iio: add the IIO backend framework
-Message-ID: <20240113172208.6c4cfdbb@jic23-huawei>
-In-Reply-To: <20240112-iio-backend-v5-6-bdecad041ab4@analog.com>
-References: <20240112-iio-backend-v5-0-bdecad041ab4@analog.com>
-	<20240112-iio-backend-v5-6-bdecad041ab4@analog.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.39; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4603528EF;
+	Sat, 13 Jan 2024 17:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5eefd0da5c0so78192467b3.2;
+        Sat, 13 Jan 2024 09:39:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705167569; x=1705772369; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jqQ/ardrSPtiAEurpJ6hvz43acFrRMYxJ6zuOLP6ov8=;
+        b=kzrPBAc+3vzskfy/lJuYG1Jtt2KCKnrdyH9Xm/ucAkmaC6rBUBDwGilLPpLBC9uuV8
+         PPcfJbQVN0lXJOv6prYgjYNEnrq2oX+EBnovQrG6KjNn+xn6QnItnrTS4TiTEuKtAuJL
+         rpy3PQtbnGTikKLT5lBn1y8yWvimdbryKvojr3oxJhdhIeqE9ViVOXi7n1lG88jF6rqC
+         SqlOkHslGenqL+8nMvtOoDhgp5OsJZI0BPc3YyGC15AH8cXYiTEdy3zhXaTj2q/4P3Ib
+         lbVgzhzLYQrE7gI3AfdqGe2FI9/McRJFVvPhvfQ5nY2SLT0NYeCPE19LhXwS4ClMzuBl
+         H3rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705167569; x=1705772369;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jqQ/ardrSPtiAEurpJ6hvz43acFrRMYxJ6zuOLP6ov8=;
+        b=M5vQbikfa8mojcq57OT5iQfrZoYZnEyfHbW9RVxKK4kZay/n2Y6OzJrlSXVrVacdZS
+         7qE83Eda7hFeShgxqCnwE6zLD/SgO3g4ERn8z7qiarfSs4QVdEK4k375oit88qcrUfw7
+         IDJ+mZnzGVLLBEQDZcJcGROKyBDsaoblo36Y8nnQZrgoN2/niTmPHkNRkYMDW6Ny7QCm
+         ACGgUuD4pKEUijqv80TQZQh0wlO+f6/gaUnf537lSulAMNahncxfj1ZBkJDmi6b27JW5
+         YkJVJfqbhMkPL1m3YR6qr1MybWE/y6n7DKkMIqOE33crDSn6clKD6ssjjJUwWD40HO0A
+         eMFw==
+X-Gm-Message-State: AOJu0YwQlFTX6cE5fQ7HY4KC3VLdz4evyFIzfYWBve0BTq5iTa2/qOaF
+	6q5buIvqowPL/+ocwBZiHq5gJjBslfQO3stZqG8=
+X-Google-Smtp-Source: AGHT+IG5R2SfW/IkTX2fJdaSYfCdOD7fKDYk+CKs1tj5ZGjxR3tbdh3Im04blDvG5D/Cryo9bsEfl4NQ+S0kVLJEXDo=
+X-Received: by 2002:a0d:ea05:0:b0:5d7:1940:b398 with SMTP id
+ t5-20020a0dea05000000b005d71940b398mr2956495ywe.100.1705167569648; Sat, 13
+ Jan 2024 09:39:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <8b49a64d5946792f01e75fab74076557ef4f7d60.1705135956.git.lukas@wunner.de>
+In-Reply-To: <8b49a64d5946792f01e75fab74076557ef4f7d60.1705135956.git.lukas@wunner.de>
+From: Bruno Thomsen <bruno.thomsen@gmail.com>
+Date: Sat, 13 Jan 2024 18:39:13 +0100
+Message-ID: <CAH+2xPCfJPdmttuLckRRZr20c9CpVHJmkpOymHvLOQyBMH86yQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: Fix TPM schema violations
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, soc@kernel.org, 
+	devicetree@vger.kernel.org, linux-integrity@vger.kernel.org, 
+	Patrick Williams <patrick@stwcx.xyz>, Tao Ren <rentao.bupt@gmail.com>, 
+	Eddie James <eajames@linux.ibm.com>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de, 
+	Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com, Wes Huang <wes.huang@moxa.com>, 
+	Fero JD Zhou <FeroJD.Zhou@moxa.com>, SZ Lin <sz.lin@moxa.com>, 
+	Benoit Cousson <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>, Yannic Moog <Y.Moog@phytec.de>, 
+	Alexander Bauer <a.bauer@phytec.de>, upstream@lists.phytec.de, 
+	Teresa Remmet <T.Remmet@phytec.de>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 12 Jan 2024 17:40:20 +0100
-Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
-
-> From: Nuno Sa <nuno.sa@analog.com>
-> 
-> This is a Framework to handle complex IIO aggregate devices.
-> 
-> The typical architecture is to have one device as the frontend device which
-> can be "linked" against one or multiple backend devices. All the IIO and
-> userspace interface is expected to be registers/managed by the frontend
-> device which will callback into the backends when needed (to get/set
-> some configuration that it does not directly control).
-> 
-> The basic framework interface is pretty simple:
->  - Backends should register themselves with @devm_iio_backend_register()
->  - Frontend devices should get backends with @devm_iio_backend_get()
-> 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-
-A few minor comments inline.
-
-...
-
-> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
-> new file mode 100644
-> index 000000000000..994bc68c2679
-> --- /dev/null
-> +++ b/drivers/iio/industrialio-backend.c
-> @@ -0,0 +1,411 @@
-
-...
-
-> +
-> +/*
-> + * Helper struct for requesting buffers. Allows for multiple buffers per
-> + * backend.
-Only seems to be used to ensure we have all the data needed to free it...
-So comment seems less than obviously connected to that.
-> + */
-> +struct iio_backend_buffer_pair {
-> +	struct iio_backend *back;
-> +	struct iio_buffer *buffer;
-> +};
-> +
-
-> +/**
-> + * iio_backend_chan_enable - Enable a backend channel.
-> + * @back:	Backend device.
-> + * @chan:	Channel number.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_chan_enable(struct iio_backend *back, unsigned int chan)
-> +{
-> +	return iio_backend_op_call(back, chan_enable, chan);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_chan_enable, IIO_BACKEND);
-> +
-> +/**
-> + * iio_backend_chan_disable - Disable a backend channel.
-> + * @back:	Backend device.
-> + * @chan:	Channel number.
-Would be good to be consistent on . or not.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_chan_disable(struct iio_backend *back, unsigned int chan)
-> +{
-> +	return iio_backend_op_call(back, chan_disable, chan);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_chan_disable, IIO_BACKEND);
-> +
-> +/**
-> + * iio_backend_chan_enable - Enable the backend.
-> + * @back:	Backend device
-
-
-
-...
-
-
-> +/**
-> + * devm_iio_backend_get_from_fwnode_lookup
-
-Not valid kernel doc + name is wrong.  Make sure you run
-the kernel-doc script over this and fix any errors or warnings
-reported.
-
-> + * @dev:	Device where to bind the backend lifetime.
-> + * @fwnode:	Firmware node of the backend device.
-> + *
-> + * Search the backend list for a device matching @fwnode.
-> + * This API should not be used and it's only present for preventing the first
-> + * user of this framework to break it's DT ABI.
-> + *
-> + * RETURNS:
-> + * A backend pointer, negative error pointer otherwise.
-> + */
-> +struct iio_backend *
-> +__devm_iio_backend_get_from_fwnode_lookup(struct device *dev,
-> +					  struct fwnode_handle *fwnode)
-> +{
-> +	struct iio_backend *back;
-> +	int ret;
-> +
-> +	guard(mutex)(&iio_back_lock);
-> +	list_for_each_entry(back, &iio_back_list, entry) {
-> +		if (!device_match_fwnode(back->dev, fwnode))
-> +			continue;
-> +
-> +		ret = __devm_iio_backend_get(dev, back);
-> +		if (ret)
-> +			return ERR_PTR(ret);
-> +
-> +		return back;
-> +	}
-> +
-> +	return ERR_PTR(-EPROBE_DEFER);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(__devm_iio_backend_get_from_fwnode_lookup, IIO_BACKEND);
+Den l=C3=B8r. 13. jan. 2024 kl. 10.03 skrev Lukas Wunner <lukas@wunner.de>:
 >
+> Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
+> bindings"), several issues are reported by "make dtbs_check" for ARM
+> devicetrees:
+>
+> The nodename needs to be "tpm@0" rather than "tpmdev@0" and the
+> compatible property needs to contain the chip's name in addition to the
+> generic "tcg,tpm_tis-spi" or "tcg,tpm-tis-i2c":
+>
+>   tpmdev@0: $nodename:0: 'tpmdev@0' does not match '^tpm(@[0-9a-f]+)?$'
+>         from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm_tis-sp=
+i.yaml#
+>
+>   tpm@2e: compatible: 'oneOf' conditional failed, one must be fixed:
+>         ['tcg,tpm-tis-i2c'] is too short
+>         from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm-tis-i2=
+c.yaml#
+>
+> Fix these schema violations.
+>
+> Aspeed Facebook BMCs use an Infineon SLB9670:
+> https://lore.kernel.org/all/ZZSmMJ%2F%2Fl972Qbxu@fedora/
+> https://lore.kernel.org/all/ZZT4%2Fw2eVzMhtsPx@fedora/
+> https://lore.kernel.org/all/ZZTS0p1hdAchIbKp@heinlein.vulture-banana.ts.n=
+et/
+>
+> Aspeed Tacoma uses a Nuvoton NPCT75X per commit 39d8a73c53a2 ("ARM: dts:
+> aspeed: tacoma: Add TPM").
+>
+> phyGATE-Tauri uses an Infineon SLB9670:
+> https://lore.kernel.org/all/ab45c82485fa272f74adf560cbb58ee60cc42689.came=
+l@phytec.de/
+>
+> A single schema violation remains in am335x-moxa-uc-2100-common.dtsi
+> because it is unknown which chip is used on the board.  The devicetree's
+> author has been asked for clarification but has not responded so far:
+> https://lore.kernel.org/all/20231220090910.GA32182@wunner.de/
+>
+> Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
+> Reviewed-by: Tao Ren <rentao.bupt@gmail.com>
 
+Change in imx7d-flex-concentrator.dts looks good to me.
 
-> +/**
-> + * devm_iio_backend_register - Register a new backend device
-> + * @dev:	Backend device being registered.
-> + * @ops:	Backend ops
-> + * @priv:	Device private data.
-> + *
-> + * @ops and @priv are both mandatory. Not providing them results in -EINVAL.
+Reviewed-by: Bruno Thomsen <bruno.thomsen@gmail.com>
 
-It's unusual to 'insist' on the private data.
-Whilst it's highly likely it will always be there from a core point of view
-we don't mind it being NULL.  This is different from the ops as we want
-to be able to call those without checking they are there.
-
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int devm_iio_backend_register(struct device *dev,
-> +			      const struct iio_backend_ops *ops, void *priv)
-> +{
-> +	struct iio_backend *back;
-> +
-> +	if (!ops || !priv) {
-
-> +		pr_err("%s: No backend ops or private data given\n",
-> +		       dev_name(dev));
-> +		return -EINVAL;
-> +	}
-> +
-> +	/*
-> +	 * Through device_links, we guarantee that a frontend device cannot be
-> +	 * bound/exist if the backend driver is not around. Hence, we can bind
-> +	 * the backend object lifetime with the device being passed since
-> +	 * removing it will torn the frontend down.
-
-"will have torn" or "will tear the"
-
-> +	 */
-> +	back = devm_kzalloc(dev, sizeof(*back), GFP_KERNEL);
-> +	if (!back)
-> +		return -ENOMEM;
-> +
-> +	back->ops = ops;
-> +	back->owner = dev->driver->owner;
-> +	back->dev = dev;
-> +	back->priv = priv;
-> +	mutex_lock(&iio_back_lock);
-> +	list_add(&back->entry, &iio_back_list);
-> +	mutex_unlock(&iio_back_lock);
-> +
-> +	return devm_add_action_or_reset(dev, iio_backend_unregister, back);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(devm_iio_backend_register, IIO_BACKEND);
-> +
-> +MODULE_AUTHOR("Nuno Sa <nuno.sa@analog.com>");
-> +MODULE_DESCRIPTION("Framework to handle complex IIO aggregate devices");
-> +MODULE_LICENSE("GPL");
-
-
+> ---
+> The commit mentioned above, 26c9d152ebf3 ("dt-bindings: tpm: Consolidate
+> TCG TIS bindings") landed in Linus' tree 8 hours ago.
+>
+> Because this consists only of fixes, I think it could be picked up and
+> forwarded to Linus at any time, even outside the merge window.
+>
+> The Reviewed-by tags from Patrick and Tao were offered here:
+> https://lore.kernel.org/all/ZZWB4wRiAyDtlLJM@heinlein.vulture-banana.ts.n=
+et/
+> https://lore.kernel.org/all/ZZWkhaiDFOGvcPQy@fedora/
+>
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts   | 4 ++--
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts    | 4 ++--
+>  arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts           | 2 +-
+>  arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi | 4 ++--
+>  arch/arm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi          | 2 +-
+>  arch/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts        | 2 +-
+>  arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi    | 2 +-
+>  7 files changed, 10 insertions(+), 10 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts b=
+/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
+> index e899de6..5be0e8f 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
+> @@ -45,8 +45,8 @@
+>                 num-chipselects =3D <1>;
+>                 cs-gpios =3D <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
+>
+> -               tpmdev@0 {
+> -                       compatible =3D "tcg,tpm_tis-spi";
+> +               tpm@0 {
+> +                       compatible =3D "infineon,slb9670", "tcg,tpm_tis-s=
+pi";
+>                         spi-max-frequency =3D <33000000>;
+>                         reg =3D <0>;
+>                 };
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts b/=
+arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+> index a677c82..5a8169b 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-wedge400.dts
+> @@ -80,8 +80,8 @@
+>                 gpio-miso =3D <&gpio ASPEED_GPIO(R, 5) GPIO_ACTIVE_HIGH>;
+>                 num-chipselects =3D <1>;
+>
+> -               tpmdev@0 {
+> -                       compatible =3D "tcg,tpm_tis-spi";
+> +               tpm@0 {
+> +                       compatible =3D "infineon,slb9670", "tcg,tpm_tis-s=
+pi";
+>                         spi-max-frequency =3D <33000000>;
+>                         reg =3D <0>;
+>                 };
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts b/arch/ar=
+m/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts
+> index 3f6010e..213023b 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-opp-tacoma.dts
+> @@ -456,7 +456,7 @@
+>         status =3D "okay";
+>
+>         tpm: tpm@2e {
+> -               compatible =3D "tcg,tpm-tis-i2c";
+> +               compatible =3D "nuvoton,npct75x", "tcg,tpm-tis-i2c";
+>                 reg =3D <0x2e>;
+>         };
+>  };
+> diff --git a/arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi=
+ b/arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi
+> index 31590d3..00e5887 100644
+> --- a/arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi
+> +++ b/arch/arm/boot/dts/aspeed/ast2600-facebook-netbmc-common.dtsi
+> @@ -35,8 +35,8 @@
+>                 gpio-mosi =3D <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>=
+;
+>                 gpio-miso =3D <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>=
+;
+>
+> -               tpmdev@0 {
+> -                       compatible =3D "tcg,tpm_tis-spi";
+> +               tpm@0 {
+> +                       compatible =3D "infineon,slb9670", "tcg,tpm_tis-s=
+pi";
+>                         spi-max-frequency =3D <33000000>;
+>                         reg =3D <0>;
+>                 };
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi b/arch/a=
+rm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi
+> index 44cc4ff..d12fb44 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi
+> +++ b/arch/arm/boot/dts/nxp/imx/imx6ull-phytec-tauri.dtsi
+> @@ -116,7 +116,7 @@
+>         tpm_tis: tpm@1 {
+>                 pinctrl-names =3D "default";
+>                 pinctrl-0 =3D <&pinctrl_tpm>;
+> -               compatible =3D "tcg,tpm_tis-spi";
+> +               compatible =3D "infineon,slb9670", "tcg,tpm_tis-spi";
+>                 reg =3D <1>;
+>                 spi-max-frequency =3D <20000000>;
+>                 interrupt-parent =3D <&gpio5>;
+> diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts b/arch=
+/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts
+> index 3a72384..9984b34 100644
+> --- a/arch/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts
+> +++ b/arch/arm/boot/dts/nxp/imx/imx7d-flex-concentrator.dts
+> @@ -130,7 +130,7 @@
+>          * TCG specification - Section 6.4.1 Clocking:
+>          * TPM shall support a SPI clock frequency range of 10-24 MHz.
+>          */
+> -       st33htph: tpm-tis@0 {
+> +       st33htph: tpm@0 {
+>                 compatible =3D "st,st33htpm-spi", "tcg,tpm_tis-spi";
+>                 reg =3D <0>;
+>                 spi-max-frequency =3D <24000000>;
+> diff --git a/arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi b/=
+arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi
+> index b8730aa..a59331a 100644
+> --- a/arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/am335x-moxa-uc-2100-common.dtsi
+> @@ -217,7 +217,7 @@
+>         pinctrl-names =3D "default";
+>         pinctrl-0 =3D <&spi1_pins>;
+>
+> -       tpm_spi_tis@0 {
+> +       tpm@0 {
+>                 compatible =3D "tcg,tpm_tis-spi";
+>                 reg =3D <0>;
+>                 spi-max-frequency =3D <500000>;
+> --
+> 2.40.1
+>
 
