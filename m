@@ -1,103 +1,99 @@
-Return-Path: <devicetree+bounces-31881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9D9282CEBD
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 22:17:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D222282CEC0
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 22:19:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFE901C20C38
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 21:17:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DAA08B216E8
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 21:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B541D107B2;
-	Sat, 13 Jan 2024 21:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE69115AF9;
+	Sat, 13 Jan 2024 21:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DoHfSWR9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JSHz/DwC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C46310796;
-	Sat, 13 Jan 2024 21:17:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A69C3C433C7;
-	Sat, 13 Jan 2024 21:17:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705180663;
-	bh=I7L2tY/u1kcRobIAAH7Fuhqt/+nLfFxHiF5sF+6hy+o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DoHfSWR926G+9ZEsdoCBM5+bL2aMDSBepvmfI//XiyHGLxq5FG4tci4GuL0Xqq5qC
-	 e5/GwREc1fEnYEW9afhWPSBofLSVGAlL4Qa3QCQ74pUQH/uS9K+cPFgTomTXlqJ5NZ
-	 6O3rdVjmx6G+6FPkc0ygv5RQgHAx8DMH206OI07kgDz+emGV780+DG8qGN6QVf01Qu
-	 YpR2Wo5k+N8F4mL3XJKsv3d1Bg3h3/B5lRd6qpaNhOE4hhIH6oBJ+dDXMt31m8+PhH
-	 iwb8W8oURn6WFqrNGTnUYXFRwNUzqbweGOqD43/+7eGSdbqN+4N1jb+kjhoHbfS7qK
-	 hId8TsazJ1WxQ==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C68107B6
+	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 21:18:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7810827e54eso550143885a.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 13:18:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705180737; x=1705785537; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=pF267Ysjv3yeYbmL5BLV4HmrOUtS1bnSSAX8PIAFU4E=;
+        b=JSHz/DwCP08/K3W4ctmgcIi32pa7dyzXSgbCOs5vgRdDqOUnbFIPSbvEzDdw1zhUDO
+         f0Y9BfhT1IR0jbcZI/BiRm1jqRbY5YtPEddcGyDDc9saOwgMmSEEXLgwwy83k5Ot7qX2
+         9aTqnl8y3VmJ/IzyI2cIRaYU1bmd7Lihx4oEi9C+FeDVM/ydwOK3LIJCA0RGSXioAdry
+         mhIZS4S1gI1AoIZvolIDuYqTnrpridHgdPf1wdgkzfIyoChjTR3B/xlayMtkL0XCimkP
+         PV8tnPNrdtGw6FrVi5mpxP4sMDZ6Qrxjb7ypRxIdjR6IJHCJxVpJEHl40J1txeVWciLs
+         Smvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705180737; x=1705785537;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pF267Ysjv3yeYbmL5BLV4HmrOUtS1bnSSAX8PIAFU4E=;
+        b=Xw4AplloAob0sAEv7VKOv+ivW8HJGUAAZkxhI8bORnrq5AY/2/FeenRwE6o3uMa+Ij
+         quHKlR0y4t4YD9N1/uSDS/eEfSHykG+7K0rC3L1zuDkokvof6rxRaIRjxRL/5eGOBK8Z
+         i4QFP1iiWLtXLUBRNXfW5U544PhlOGS9VO/qQWmE1fhUMJl3IOP3yW1XJfORyhbFJt1p
+         3Ci+6ctj0nAv5AyXzg+OM2pFt6UfWAFeW5j5vJyuk0APwlYkk9FwQ7tsn4HgY1I4y8CA
+         /ROScuBMRnOEBIKeeyoJtr4Sj/QxDjk6iwRKCLfkeabvIgoXmWxbIS9gj/lo57GSH3N6
+         3epg==
+X-Gm-Message-State: AOJu0YyHCfCxpCzv/GjHtEnfj02bsbIYGrmv2zMO1qO88+bWDFmxYlYH
+	AyeZ2EXWegA3EwK2yuQAoZdfubL+PKTjc3wZbOzmmvXZ3DSI1Q==
+X-Google-Smtp-Source: AGHT+IFW5WFJ1VVn2gfjgR6yZAmOCMsb23RNVbx4JnwY4Xn0MjzArTCCtrJfArzBn+QB7riuISNuBSsR4XFia86J6V4=
+X-Received: by 2002:a05:620a:2181:b0:783:528e:6c25 with SMTP id
+ g1-20020a05620a218100b00783528e6c25mr1412770qka.49.1705180737425; Sat, 13 Jan
+ 2024 13:18:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 13 Jan 2024 23:17:39 +0200
-Message-Id: <CYDW3GS1VGP4.2PUT4XW283L99@kernel.org>
-From: "Jarkko Sakkinen" <jarkko@kernel.org>
-To: "Lukas Wunner" <lukas@wunner.de>, "Rob Herring" <robh@kernel.org>
-Cc: <devicetree@vger.kernel.org>, <linux-integrity@vger.kernel.org>, "Peter
- Huewe" <peterhuewe@gmx.de>, "Jason Gunthorpe" <jgg@ziepe.ca>
-Subject: Re: [PATCH v2 1/4] dt-bindings: tpm: Add compatible string
- atmel,attpm20p
-X-Mailer: aerc 0.16.0
-References: <cover.1705140898.git.lukas@wunner.de>
- <8886271d52025065eddf5915bb7778ab14362255.1705140898.git.lukas@wunner.de>
-In-Reply-To: <8886271d52025065eddf5915bb7778ab14362255.1705140898.git.lukas@wunner.de>
+MIME-Version: 1.0
+References: <20230717-topic-branch_aon_cleanup-v6-0-46d136a4e8d0@linaro.org> <20230717-topic-branch_aon_cleanup-v6-1-46d136a4e8d0@linaro.org>
+In-Reply-To: <20230717-topic-branch_aon_cleanup-v6-1-46d136a4e8d0@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Sat, 13 Jan 2024 23:18:46 +0200
+Message-ID: <CAA8EJpoaQi57ERjSkGbNj_YbO-Gv-ybyreG6Dm+KQhp5uQM2zQ@mail.gmail.com>
+Subject: Re: [PATCH v6 01/12] clk: qcom: branch: Add a helper for setting the
+ enable bit
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Sat Jan 13, 2024 at 7:10 PM EET, Lukas Wunner wrote:
-> Commit 4f2a348aa365 ("arm64: dts: imx8mm-venice-gw73xx: add TPM device")
-> added a devicetree node for the Trusted Platform Module on certain
-> Gateworks boards.
+On Sat, 13 Jan 2024 at 16:51, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >
-> The commit only used the generic "tcg,tpm_tis-spi" compatible string,
-> but public documentation shows that the chip is an ATTPM20P from Atmel
-> (nowadays Microchip):
-> https://trac.gateworks.com/wiki/tpm
+> We hardcode some clocks to be always-on, as they're essential to the
+> functioning of the SoC / some peripherals. Add a helper to do so
+> to make the writes less magic.
 >
-> Add the chip to the supported compatible strings of the TPM TIS SPI
-> schema.
->
-> For reference, a datasheet is available at:
-> https://ww1.microchip.com/downloads/en/DeviceDoc/ATTPM20P-Trusted-Platfor=
-m-Module-TPM-2.0-SPI-Interface-Summary-Data-Sheet-DS40002082A.pdf
->
-> Signed-off-by: Lukas Wunner <lukas@wunner.de>
-> Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
-> Cc: Tim Harvey <tharvey@gateworks.com>
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml b=
-/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
-> index c3413b4..6cb2de7 100644
-> --- a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
-> +++ b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
-> @@ -20,6 +20,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - atmel,attpm20p
->            - infineon,slb9670
->            - st,st33htpm-spi
->            - st,st33zp24-spi
+>  drivers/clk/qcom/clk-branch.h | 7 +++++++
+>  1 file changed, 7 insertions(+)
 
-You should to send the patch set with Rob Herring as CC for syncing
-up. Please do it for future versions, if there is need for additional
-versions.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Rob, 3 out of 4 patches are TPM patches. Do you mind if I take all
-four patches once the patch set is ready or do you want to pick this
-patch (assuming that you think it is correctly implemented ofc)?
 
-BR, Jarkko
+-- 
+With best wishes
+Dmitry
 
