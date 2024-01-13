@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D812A82CC17
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 11:46:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0292F82CC24
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 11:48:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E55A71C21A48
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:46:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 624C61F22390
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:48:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5482120DDD;
-	Sat, 13 Jan 2024 10:46:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6A8220DE2;
+	Sat, 13 Jan 2024 10:48:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NOzO6e+x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bug/VAOE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD86720B2E
-	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 10:46:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DA2B20DD7
+	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 10:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40e586a62f7so44107935e9.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 02:46:36 -0800 (PST)
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50e7abe4be4so9688423e87.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 02:48:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705142795; x=1705747595; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705142892; x=1705747692; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ade321jw7JHVTLOJpXCwgL7HJUJfSQ7XZ3DIEXpUbQI=;
-        b=NOzO6e+x9r8FHVgbrRGI6Z8VFkMSo+oFXK7JZSEpvELRadQaCgLOrVuWdEDovCz97l
-         IzY+Mo95XgtFaXy1CaaCVCXk983Af/HPUh9PzUCM137C15O/uC+JWadbBTZtXBF15DJc
-         XYgKdXDIk6uHAJBNsw5hNgmjWnpzIVYqKez8MxXeqfNsLO/gJaTHqKmEHEo2mGzem8V5
-         BmBIhoCHZzR7OUKnVgCqu7B0x7nJDU/Y0KScLQshJ96e6rbnNrPPL6IkV0DSNe2IcemY
-         NPzzAZVnAqD9GyfNS9KCwXHlwSgWNQnGxfwGKWhgGZ7dj4mEYdHZQHv2MZ75dK/t7KHp
-         ur8g==
+        bh=KAYBSJl5eyPAJ1jPEKmoAi91rQttbyk9SIKfU8VK828=;
+        b=Bug/VAOEUPz6AP1uy/fe+1c7IJzTyZ53EwMcR2LLE1zv5xaOC63nKiQFw8R8ZClMHU
+         E9s/LDzXOpzThTNlUUIZ5/8dcWsdwxaa+7O3zEV1KuDUEsvdEQ6i+Ty0VESQQVqnQ7cN
+         nb4MHMvQ9AE8n30E5MWx0Rgh3D9XrhsUb+6BySbcbj/KpuLMaY6F8VvTeWFEYdpUOvad
+         lvUfDSmghVlY0pQVLMQnGD9vszkgCB/h7nXkD9K/Udna59+biTYRAZs9BQ6F30nkn9NI
+         LPFfK/DQ3gQigifzQJcjWmC5Puf04sekStA4s+xYy5lYdbYxzczRKTMaT2E6we4bu2pp
+         pasg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705142795; x=1705747595;
+        d=1e100.net; s=20230601; t=1705142892; x=1705747692;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ade321jw7JHVTLOJpXCwgL7HJUJfSQ7XZ3DIEXpUbQI=;
-        b=Aaw49W/DK74capoR736CXzj9AHTZEtWSdlYyuYW8fVt+sqatZA8envTD5xM9GAmti4
-         iYEk7yeOID9iJSXiiiSSpeRL1bgtCteCs28QcMyX/8SvqUYQ34o983lUnp05ELYirmwA
-         ISTGyr+PejU21Ol47+FD5W5OS6Hoeq75I9udw5i+79NYVl42Te4DLP5yVJtulWp0gGkh
-         7R6gPQbRLu5cCS3IUVSiTVa+NLHZ+n2vDe5knMHFntxkuqIdclrNkwifdNYQIXMUW+6u
-         8cTL+FBrsRURpm4MncCimnJXiMIPD9dAAm0dNlGEcDgVkaT6byv6zvE97iZUuOO4vg5z
-         Jqew==
-X-Gm-Message-State: AOJu0YwZp2oIn7KoVKZ2Qbbsi4SsbZyNTjYjP/ZPoOpb9gKojvCNMzQ+
-	QWHHiuFn8psT+n8/wOaf7Qhwjs3x/ceS0g==
-X-Google-Smtp-Source: AGHT+IE8ys/uPqy6kT1AZTlwSbhPW0haHO6vob7NMk4QN/2SCglOtJASn0w8NCOfozKHBDuidxy6OA==
-X-Received: by 2002:a05:600c:1987:b0:40e:461e:26a6 with SMTP id t7-20020a05600c198700b0040e461e26a6mr1533455wmq.36.1705142794944;
-        Sat, 13 Jan 2024 02:46:34 -0800 (PST)
+        bh=KAYBSJl5eyPAJ1jPEKmoAi91rQttbyk9SIKfU8VK828=;
+        b=L9VFvfFYVfu4YzyYGFq+YCjWrmxI+qEyvmfrNq1GEVm+ChSFjmUGyTY7kT2fXuBx0E
+         mirniA6cPjT3Rgo4gp454wMKpkkjx+SkgLFvmsuvavDzj48XgdfCkXxsyei2bpPOYzrN
+         6OPdGDU0ay258xuDvVbmA/xvtOKI9WTX3qGmnLKpG43CyYdtaZyDpQaBTv/TBubhcDqy
+         blvvyxTH85LwfOs9E+VUCJiif/CCxHawHBRK9izcDtAoJuj4nVutJY88Q5X9LosAB+1J
+         Wky5w1Tiu8QbRvd3e1QPE0YmHwaZeIMzMuJoqYb3UBwNVd+PumkGVSQfzUTj7AYb4PWt
+         N1aQ==
+X-Gm-Message-State: AOJu0YzgnsznyzVG2aJ9mQfPY/FKCAXQL0Kya/fgJ/IABAAuhjAraC59
+	WI7wIKles7su3zsSwIIPQiStYN5BP3wdAw==
+X-Google-Smtp-Source: AGHT+IHBf+EqLrB06Qyi32c2kP5UNCGx5mPkdoA9PgAsDBivkmeLcWIoo3GK+cs3Zv97TkL6aCwvsg==
+X-Received: by 2002:ac2:4206:0:b0:50e:69df:bdd4 with SMTP id y6-20020ac24206000000b0050e69dfbdd4mr1138761lfh.64.1705142892088;
+        Sat, 13 Jan 2024 02:48:12 -0800 (PST)
 Received: from [192.168.174.25] (178235179017.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.17])
-        by smtp.gmail.com with ESMTPSA id q21-20020a1709066b1500b00a2990007447sm2733330ejr.122.2024.01.13.02.46.32
+        by smtp.gmail.com with ESMTPSA id q21-20020a1709066b1500b00a2990007447sm2733330ejr.122.2024.01.13.02.48.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Jan 2024 02:46:34 -0800 (PST)
-Message-ID: <35f9ee57-3a4c-41d3-870a-f78c873afbad@linaro.org>
-Date: Sat, 13 Jan 2024 11:46:32 +0100
+        Sat, 13 Jan 2024 02:48:11 -0800 (PST)
+Message-ID: <ed511811-b110-4fa3-b7b2-b2ec512d4061@linaro.org>
+Date: Sat, 13 Jan 2024 11:48:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/13] phy: qcom: qmp-usbc: drop single lane handling
+Subject: Re: [PATCH 10/13] phy: qcom: qmp-usbc: add support for the Type-C
+ handling
 Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
@@ -83,7 +84,7 @@ To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
 References: <20240113-pmi632-typec-v1-0-de7dfd459353@linaro.org>
- <20240113-pmi632-typec-v1-9-de7dfd459353@linaro.org>
+ <20240113-pmi632-typec-v1-10-de7dfd459353@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -120,18 +121,27 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240113-pmi632-typec-v1-9-de7dfd459353@linaro.org>
+In-Reply-To: <20240113-pmi632-typec-v1-10-de7dfd459353@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13.01.2024 06:42, Dmitry Baryshkov wrote:
-> All USB-C PHYs use 2 lanes for the USB. Drop single lane handling in
-> this driver.
+> The USB-C PHYs on the msm8998, QCM2290 and SM6115 platforms use special
+> register to control which lanes of the Type-C port are used for the
+> SuperSpeed USB connection. Mimic the qmp-combo driver and handle this
+> register.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
 
-Why is this not part of the introduction of that driver then?
+[...]
+
+> +#if IS_ENABLED(CONFIG_TYPEC)
+
+I understand some people may want their USB to work without TC compiled
+in, but it looks funky to have a "USB-C PHY" with optional USB-C support..
+
+Should we just depend on it in kconfig?
 
 Konrad
 
