@@ -1,92 +1,94 @@
-Return-Path: <devicetree+bounces-31850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4491082CDAE
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 17:14:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E87A82CDCC
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 18:00:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC3F2B22932
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 16:14:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F3421C20CA3
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 17:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3647723B0;
-	Sat, 13 Jan 2024 16:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3312723A8;
+	Sat, 13 Jan 2024 17:00:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g4I8vf2C"
+	dkim=pass (2048-bit key) header.d=kyuhyuk.kr header.i=@kyuhyuk.kr header.b="rGG4FD6R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pv50p00im-zteg10011501.me.com (pv50p00im-zteg10011501.me.com [17.58.6.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 122EF4A23;
-	Sat, 13 Jan 2024 16:14:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E502AC433F1;
-	Sat, 13 Jan 2024 16:14:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705162449;
-	bh=ov4r1pQnCWGD4LZgwtdWh6NQsa71tmBhiJJ4tREobgM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=g4I8vf2CTbAdtMRpUFjQQ6vuicVXlfJhDTbvoJfaSEZu4B8RpKY7fvu5mYjmHx2gy
-	 OizC5XgkuvR3/UVktGrwVMPTm/RwlcXYyF6l5MmI7wM664xrUnhAs8ai/UxRJSMinM
-	 1hu9T9zUb2p3byQhB7JM5pPgfISob3667hsLezD9kbq8qqGdJVuVNVTzQ7ejB5zt/y
-	 e+UBj93iORkyUMGZNxMbuTCugYhu3YC/MNAgU+N3X2MWDXU1sBQFiY/Abm7Xecpyq2
-	 RAWP0s+kyzpSRaP6osnVt74Ndp15d+seaT3qpB04jknr0TdoEJUdlSESrVgWgTmLo2
-	 qrj0rHlov2W1Q==
-Date: Sat, 13 Jan 2024 16:14:03 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, linux-kernel@vger.kernel.org, Stefan Popa
- <stefan.popa@analog.com>
-Subject: Re: [PATCH v4 0/2] iio: adc: add new ad7380 driver
-Message-ID: <20240113161403.4654db9d@jic23-huawei>
-In-Reply-To: <20240110-ad7380-mainline-v4-0-93a1d96b50fa@baylibre.com>
-References: <20240110-ad7380-mainline-v4-0-93a1d96b50fa@baylibre.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.39; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED144C6D
+	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 17:00:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kyuhyuk.kr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kyuhyuk.kr
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kyuhyuk.kr; s=sig1;
+	t=1705165205; bh=rk1IHF6mZGWlBgZYgq2bepEQ66x9m0Dv71w4HAlD3Oo=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+	b=rGG4FD6RgDzucbeX1xzpFkXncTHoqRRl/5ATSR6P1eU6ETot97Cxazu+wKMI6txgm
+	 C5wNjsuIj/JveeUwck6HAGbhhqyJmI/Exm3rUDn4x9KClMiQp4uYk/RiT45EMsEsNM
+	 QwYOEODA9EGdaEQNx9TG6NnBCa216YbH+a2OsjzFeUWUOwSuo5MDG8wYLFLhPT56u7
+	 fojaXpN2jJeeq/wEJFTl8Vs1UgEPxq+IduGoYO3ApIr36el4SpfZD57CZU++2rxxPf
+	 J7DHPQ/yIirGgqRHZpbtDvrSFOdGtJjAOuodozwsY93NB0/ZhFd0zGllyDq1hLUZCy
+	 UgH+XkAWB8k8Q==
+Received: from kyuhyuk.kr (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-zteg10011501.me.com (Postfix) with ESMTPSA id C67DC4A01A9;
+	Sat, 13 Jan 2024 16:59:59 +0000 (UTC)
+Date: Sun, 14 Jan 2024 01:59:42 +0900
+From: KyuHyuk Lee <lee@kyuhyuk.kr>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jagan Teki <jagan@edgeble.ai>, Tianling Shen <cnsztl@gmail.com>,
+	Andy Yan <andyshrk@163.com>, Ondrej Jirman <megi@xff.cz>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: rockchip: Add Hardkernel ODROID-M1S
+ board
+Message-ID: <ZaLAMRi+HzfSj8sl@kyuhyuk.kr>
+References: <20240112134230.28055-1-lee@kyuhyuk.kr>
+ <0ba3e9aa-4546-461a-a90b-0c99bfa9da48@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0ba3e9aa-4546-461a-a90b-0c99bfa9da48@linaro.org>
+X-Proofpoint-ORIG-GUID: 1FWd14Z6YbyKI7QvVdGicmRaqIYR6T5A
+X-Proofpoint-GUID: 1FWd14Z6YbyKI7QvVdGicmRaqIYR6T5A
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-13_07,2024-01-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 malwarescore=0 adultscore=0
+ mlxlogscore=740 bulkscore=0 mlxscore=0 clxscore=1030 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2401130143
 
-On Wed, 10 Jan 2024 14:28:39 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+On Fri, Jan 12, 2024 at 06:44:26PM +0100, Krzysztof Kozlowski wrote:
+> On 12/01/2024 14:42, KyuHyuk Lee wrote:
+> > Add device tree binding for Hardkernel ODROID-M1S board based on
+> > RK3566 SoC.
+> > 
+> > Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
+> 
+> Your system bounces emails from Conor, so just formality:
+> 
+> Fix the vendor prefix.
+> 
+> Best regards,
+> Krzysztof
+> 
 
-> This series is adding a new driver for the Analog Devices Inc. AD7380,
-> AD7381, AD7383, and AD7384 ADCs. These chips are part of a family of
-> simultaneous sampling SAR ADCs.
-> 
-> One quirk of these chips is that since they are simultaneous sampling,
-> they have multiple SPI data output lines that allow transferring two
-> data words (one for each input channel) at the same time. So a new
-> generic devicetree binding is added to describe this sort of SPI bus
-> configuration.
-> 
-> To keep things simple, the initial driver implementation only supports
-> the 2-channel differential chips listed above. There are also 4-channel
-> differential chips and 4-channel single-ended chips in the family that
-> can be added later.
-> 
-> Furthermore, the driver is just implementing basic support for capturing
-> data. Additional features like interrupts, CRC, etc. can be added later.
-> 
-> Also, FYI, this driver will also be used as the base for an upcoming
-> series adding AXI SPI Engine offload support for these chips along with
-> [1].
-> 
-> This work is being done by BayLibre and on behalf of Analog Devices Inc.
-> hence the maintainers are @analog.com.
-> 
-> [1]: https://lore.kernel.org/linux-spi/20231204-axi-spi-engine-series-2-v1-0-063672323fce@baylibre.com/
-Series applied to the togreg branch of iio.git though that is only pushed
-out as testing for now as I'll be rebasing it on rc1 once available.
+Thank you for reviewing.
 
-Jonathan
+Ok. Will fix it.
+
+Thank you,
+KyuHyuk Lee.
 
