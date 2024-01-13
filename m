@@ -1,209 +1,105 @@
-Return-Path: <devicetree+bounces-31773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF0082C8A8
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 02:23:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ECF782C8B9
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 02:29:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D5261C22A9A
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 01:23:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5286C1F230F7
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 01:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C8AF12E62;
-	Sat, 13 Jan 2024 01:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C3D5111B4;
+	Sat, 13 Jan 2024 01:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="nVAzNk+w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jZ2H2lYC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC5511196
-	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 01:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40e68a3641dso18975e9.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Jan 2024 17:23:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1705109001; x=1705713801; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mM/RZNODygz3tcx3iBW5QQla7ILOiDn5Z5q0jGfqFBA=;
-        b=nVAzNk+wJzifbTMHg5gQsgTogGzSXLeZnbAYinxcCXcVaZHi+xFvNTKex0rVAUX60S
-         NG67klpZxv6qClviL3HGsR/LU1AmiKieCCQ4fgCYowhjjZ/gkwRn7zRaNUDsEMkbd0Nx
-         KTjY9ssbnSWjOCVIgA/asTbCaeB6ezw8F8gl7NEuaw01NIg19M4FV60yRstOhL/+rgBx
-         /oOyLA5SWOYveYkiTjB8jrsKYFoAGaT5meoNIC9uz8RIxZZgURyajDONq/ZI//UJNdP/
-         t4rn7m5qrl5XFXEhLiCO/AXpzUf/llGQMuj2S6KuyxmM5m7Mfw2Vfe8fz+kxT4mC7tCU
-         xWHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705109001; x=1705713801;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mM/RZNODygz3tcx3iBW5QQla7ILOiDn5Z5q0jGfqFBA=;
-        b=fWpPXFlqYXWUTfyCva/ZuUp1V6ipJy2CG8QpfC4UqzRddKf4PmFVss2kYiwHr20rkI
-         38JlFSv/jbuwB7Q1x5SJObFzSXAmyDDhcApSf2XEJ2JEmBYK/aPGs/vm+smIvMDxy2RK
-         +IJwGJ0fYpj2bMhJdhZcycr0UG+MUtRub3DWDMwkrbIzYJC8GO/rdDTNMRcls9NQ9WCJ
-         E5VCXKvqlbbjYXOA75YlPy0/ncUgzhpLRGz+CenbGTHmmmobOEh63FNHsVGjWvfIIYxP
-         0DSzBhzhq+Zz1pcSavqYErpp4T7oHdRD5wwY0XyNA75n7dSwZSN1VHlamNLYS1lsyRha
-         0LZQ==
-X-Gm-Message-State: AOJu0Yx2qqqgHmzaQEko4lj7abnF4jIKsqBkl49Ic/h2EYHUjREQAH3I
-	FnbytBpdZ2q4ip4fG9QcZWBP4ZAGo9qtd3eTigXz+EoUMbA=
-X-Google-Smtp-Source: AGHT+IG/+qOlk4ymLnRUPXBnV0zsSF5F2DLjgpluok3fjIXdmyv0TwrSAfnNPRC7q4VbUcI/uz5Z7ZFuE7x5bsdIM1U=
-X-Received: by 2002:a1c:721a:0:b0:40e:4990:d573 with SMTP id
- n26-20020a1c721a000000b0040e4990d573mr396698wmc.4.1705109000593; Fri, 12 Jan
- 2024 17:23:20 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367AE18E0F;
+	Sat, 13 Jan 2024 01:29:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C7C3C433C7;
+	Sat, 13 Jan 2024 01:29:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705109358;
+	bh=3gfJsBCOj95iGvlfeaMcYo6PaAxu7sDaTS+k0H9585s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jZ2H2lYC3WdyBqBjE/fndSo8j0bRYU8r17RvS+62ATm/UOXEVY1CMwgGtAsHTXJkE
+	 QndEsSMVPn35VPcC5HNKtUFUU5c7zXFSTh8CKVMnPcktXfCp41220wr+aQ0yULSIj5
+	 GXjStD13/wSc7tTpF+MLiNUmjU66HEptfh67W4S7sp658vAHHFhw7uR86MkMwAkRUN
+	 KXQ6pv7w8KtwayBNAZBpKnJ2v2q6J3X/Cr525enlKGZHZdXzm8BslncFhNrsLcyJgC
+	 ajbYvMZpEkXgPWM30x4KQxZTw2H3M7hSieCQEo+DkUSAe6Y5KbB8I8r121z7Z6qLJ/
+	 hQofdf5OZO5IA==
+Date: Fri, 12 Jan 2024 19:29:16 -0600
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Jakub Kicinski <kuba@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	William Zhang <william.zhang@broadcom.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	linux-leds@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+	linux-kernel@vger.kernel.org,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Anand Gore <anand.gore@broadcom.com>,
+	=?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org
+Subject: Re: [net-next PATCH v9 1/5] dt-bindings: net: phy: Make LED
+ active-low property common
+Message-ID: <170510935584.3795106.4060460999461861209.robh@kernel.org>
+References: <20240105142719.11042-1-ansuelsmth@gmail.com>
+ <20240105142719.11042-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240112092014.23999-1-yong.wu@mediatek.com> <20240112092014.23999-4-yong.wu@mediatek.com>
- <CANDhNCrxpeqEhJD0xJzu3vm8a4jMXD2v+_dbDNvaKhLsLB5-4g@mail.gmail.com>
- <CA+ddPcNdniUTpE_pJb-fL7+MHNSUZTkQojL48iqvW9JPr-Tc-g@mail.gmail.com>
- <CANDhNCqieBaH-Wi=vy3NSKTpwHcWef6qMOFi-7sgdGiDW7JtwA@mail.gmail.com> <CA+ddPcP9bgApNw_Nu7bxcV-oK_s3Bq1i5qun+vNSuRUO9tPEkA@mail.gmail.com>
-In-Reply-To: <CA+ddPcP9bgApNw_Nu7bxcV-oK_s3Bq1i5qun+vNSuRUO9tPEkA@mail.gmail.com>
-From: John Stultz <jstultz@google.com>
-Date: Fri, 12 Jan 2024 17:23:07 -0800
-Message-ID: <CANDhNCrGxhHJLA2ct-iqemLAsQRt3C8m5=xAD3_dDdKH6Njrdg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/7] dma-buf: heaps: restricted_heap: Add private heap ops
-To: Jeffrey Kardatzke <jkardatzke@google.com>
-Cc: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, christian.koenig@amd.com, 
-	Sumit Semwal <sumit.semwal@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	tjmercier@google.com, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Robin Murphy <robin.murphy@arm.com>, Vijayanand Jitta <quic_vjitta@quicinc.com>, 
-	Joakim Bech <joakim.bech@linaro.org>, Pavel Machek <pavel@ucw.cz>, Simon Ser <contact@emersion.fr>, 
-	Pekka Paalanen <ppaalanen@gmail.com>, jianjiao.zeng@mediatek.com, kuohong.wang@mediatek.com, 
-	youlin.pei@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240105142719.11042-2-ansuelsmth@gmail.com>
 
-On Fri, Jan 12, 2024 at 4:13=E2=80=AFPM Jeffrey Kardatzke <jkardatzke@googl=
-e.com> wrote:
-> On Fri, Jan 12, 2024 at 3:51=E2=80=AFPM John Stultz <jstultz@google.com> =
-wrote:
-> >
-> > On Fri, Jan 12, 2024 at 3:27=E2=80=AFPM Jeffrey Kardatzke <jkardatzke@g=
-oogle.com> wrote:
-> > > On Fri, Jan 12, 2024 at 2:52=E2=80=AFPM John Stultz <jstultz@google.c=
-om> wrote:
-> > > > I know part of this effort here is to start to centralize all these
-> > > > vendor specific restricted buffer implementations, which I think is
-> > > > great, but I just worry that in doing it in the dmabuf heap interfa=
-ce,
-> > > > it is a bit too user-facing. The likelihood of encoding a particula=
-r
-> > > > semantic to the singular "restricted_heap" name seems high.
-> > >
-> > > In patch #5 it has the actual driver implementation for the MTK heap
-> > > that includes the heap name of "restricted_mtk_cm", so there shouldn'=
-t
-> > > be a heap named "restricted_heap" that's actually getting exposed. Th=
-e
-> >
-> > Ah, I appreciate that clarification! Indeed, you're right the name is
-> > passed through. Apologies for missing that detail.
-> >
-> > > restricted_heap code is a framework, and not a driver itself.  Unless
-> > > I'm missing something in this patchset...but that's the way it's
-> > > *supposed* to be.
-> >
-> > So I guess I'm not sure I understand the benefit of the extra
-> > indirection. What then does the restricted_heap.c logic itself
-> > provide?
-> > The dmabuf heaps framework already provides a way to add heap implement=
-ations.
->
-> So in the v1 patchset, it was done with just a Mediatek specific heap
-> with no framework or abstractions for another vendor to build on top
-> of. The feedback was to make this more generic since Mediatek won't be
-> the only vendor who wants a restricted heap..which is how it ended up
-> here. There was more code in the framework before relating to TEE
-> calls, but then that was moved to the vendor specific code since not
-> all restricted heaps are allocated through a TEE.
 
-Yeah. I apologize, as I know how frustrating the contradictory
-feedback can be. I don't mean to demotivate. :(
+On Fri, 05 Jan 2024 15:27:13 +0100, Christian Marangi wrote:
+> Move LED active-low property to common.yaml. This property is currently
+> defined multiple times by bcm LEDs. This property will now be supported
+> in a generic way for PHY LEDs with the use of a generic function.
+> 
+> With active-low bool property not defined, active-high is always
+> assumed.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+> Changes v5:
+> - Make active-low generic
+> Changes v4:
+> - Drop support for global active-low
+> - Rework to polarity option (for marvell10g series support)
+> Changes v3:
+> - Out of RFC
+> Changes v2:
+> - Add this patch
+> 
+>  Documentation/devicetree/bindings/leds/common.yaml          | 6 ++++++
+>  Documentation/devicetree/bindings/leds/leds-bcm63138.yaml   | 4 ----
+>  Documentation/devicetree/bindings/leds/leds-bcm6328.yaml    | 4 ----
+>  Documentation/devicetree/bindings/leds/leds-bcm6358.txt     | 2 --
+>  .../devicetree/bindings/leds/leds-pwm-multicolor.yaml       | 4 ----
+>  Documentation/devicetree/bindings/leds/leds-pwm.yaml        | 5 -----
+>  6 files changed, 6 insertions(+), 19 deletions(-)
+> 
 
-I think folks would very much like to see consolidation around the
-various implementations, and I agree!
-I just worry that creating the common framework for this concept in a
-dmabuf heaps driver is maybe too peripheral/close to userland.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> This was also desirable for the V4L2 pieces since there's going to be
-> a V4L2 flag set when using restricted dma_bufs (and it wants to
-> validate that)....so in order to keep that more generic, there should
-> be a higher level concept of restricted dma_bufs that isn't specific
-> to a single vendor.  One other thing that would ideally come out of
-> this is a cleaner way to check that a dma_buf is restricted or not.
-
-Yeah. If there is a clear meaning to "restricted" here, I think having
-a query method on the dmabuf is reasonable.
-My only fret is if the meaning is too vague and userland starts
-depending on it meaning what it meant for vendor1, but doesn't mean
-for vendor2.
-
-So we need some clarity in what "restricted" really means.  For
-instance, it being not cpu mappable vs other potential variations like
-being cpu mappable, but not cpu accessible.  Or not cpu mappable, but
-only mappable between a set of 3 devices (Which 3 devices?! How can we
-tell?).
-
-And if there is variation, maybe we need to enumerate the types of
-"restricted" buffers so we can be specific when it's queried.
-
-That's where maybe having the framework for this be more central or
-closer to the kernel mm code and not just a sub-type of a dmabuf heap
-driver might be better?
-
-> The current V4L2 patchset just attaches the dma_buf and then checks if
-> the page table is empty....and if so, it's restricted. But now I see
-> there's other feedback indicating attaching a restricted dma_buf
-> shouldn't even be allowed, so we'll need another strategy for
-> detecting them. Ideally there is some function/macro like
-> is_dma_buf_restricted(struct dma_buf*) that can indicate that...but we
-> haven't come up with a good way to do that yet which doesn't involve
-> adding another field to dma_buf or to dma_buf_ops (and if such a thing
-> would be fine, then OK...but I had assumed we would get pushback on
-> modifying either of those structs).
-
-If there's a need and the best place to put something is in the
-dma_buf or dma_buf_ops, that's where it should go.  Folks may
-reasonably disagree if it's the best place (there may be yet better
-spots for the state to sit in the abstractions), but for stuff going
-upstream, there's no reason to try to hack around things or smuggle
-state just to avoid changing core structures. Especially if core
-structures are internal only and have no ABI implications.
-
-Sima's suggestion that attachments should fail if the device cannot
-properly map the restricted buffer makes sense to me. Though I don't
-quite see why all attachments should fail, and I don't really like the
-idea of a private api, but I need to look more at the suggested virtio
-example (but even they said that wasn't their preferred route).
-
-My sense of attach was only that it was supposed to connect a device's
-interest in the buffer, allowing lazy allocation to satisfy various
-device constraints before first mapping - a design feature that I
-don't think anyone ever implemented.  So my sense was it didn't have
-much meaning otherwise (but was a requirement to call before map). But
-that may have evolved since the early days.
-
-And I'm sure the method to figure out if the attachment can work with
-the device may be complicated/difficult, so it sounding reasonable can
-be far from it being reasonable to implement.
-
-And again, I don't mean to frustrate or demotivate here. I'm really
-excited to see this effort being pushed upstream!
-
-thanks
--john
 
