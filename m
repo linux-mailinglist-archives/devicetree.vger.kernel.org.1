@@ -1,93 +1,102 @@
-Return-Path: <devicetree+bounces-31886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB8E82CEDD
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 22:55:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9B4A82CEDF
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 23:06:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 334671C20F29
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 21:55:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E70CB1C20F10
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 22:06:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1327F1642A;
-	Sat, 13 Jan 2024 21:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E2616435;
+	Sat, 13 Jan 2024 22:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CKBlo2vb"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Sj1Ng4V9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6AD116426;
-	Sat, 13 Jan 2024 21:55:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C153C433C7;
-	Sat, 13 Jan 2024 21:55:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705182935;
-	bh=QVi4awp+o3VBGJySTsyvHAV+yg1wZCWyTzuEQ6e0Uls=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=CKBlo2vbCG1rhbl6d1kGpVev8puDysBKTEAeHe9nRTSbkZe5jinf48bg9jdMjNrIF
-	 HBIbtUNpWYvfEXZvNDVGP3NN4ihgZ50bSy491Ag1ChrrYkHKHLO/TOFI+7M8K7ep9o
-	 TxTYQs2zK4O5FMul3dm3dkbJffYdqcJmPN2W457TvOlJKAlVMTUK8L7g7rO5rSeAq1
-	 x2UXAtq9JZ3KuwPOuWLt9k+aAxucuc+4t+N7A97Z5mTXa6VV3jOxNxkPkqc56+MrPa
-	 i4qUfj9i1YV7sCAofSSMHLp/AmPAbb76/r3RG1mMJFD4I0UCXOXbdBB/48FBXDxwQt
-	 rxtNYYtDG94tA==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10AF168A2
+	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 22:06:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id DAF0B86EF1;
+	Sat, 13 Jan 2024 23:06:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1705183587;
+	bh=enZha7Iw0gW9RpadFFFdbpE81iwRLSzhId9/3yJ2jIg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Sj1Ng4V94PkiIHfdQq6aGI2pUiEs6YwNbWAYTjzt96v3BRPFmzfpvi/umcP4ffKBG
+	 ryHNHawxQuxVObxOXsYnMzVaJMaB5DYL+ByNrfrBOkcmj8ZRRxy273bBRokBuJJjvR
+	 ACALmL7h0tY6Y62GY9So8kpB84tJvQ44mIpAoe5ROcDNBlDhMyzrPz5IEEO/i0hPYN
+	 bqT00TPsog/m33PHs3vXCXYu20h/WnrXqZ5aH5snjkaCrq6stbDwRqLAUCrEmp+T/A
+	 qnZaVvowThRxjc7zTMPUit7fAZSfY3JxswRe7mJE95mkZFEgJMO6xS2Kxn5M9sdo6Z
+	 BZ2GvEY+/iQvg==
+Message-ID: <04c11c66-98f6-4d4e-8644-7bdf0443d4d1@denx.de>
+Date: Sat, 13 Jan 2024 23:06:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 13 Jan 2024 23:55:32 +0200
-Message-Id: <CYDWWGW2QW9K.FLB67MSI9YQR@kernel.org>
-Cc: <devicetree@vger.kernel.org>, <linux-integrity@vger.kernel.org>, "Peter
- Huewe" <peterhuewe@gmx.de>, "Jason Gunthorpe" <jgg@ziepe.ca>
-Subject: Re: [PATCH v2 4/4] tpm: tis_i2c: Add compatible string
- nuvoton,npct75x
-From: "Jarkko Sakkinen" <jarkko@kernel.org>
-To: "Lukas Wunner" <lukas@wunner.de>
-X-Mailer: aerc 0.16.0
-References: <cover.1705140898.git.lukas@wunner.de>
- <6ec711056f5d87d8504f033a404ed14a2e449331.1705140898.git.lukas@wunner.de>
-In-Reply-To: <6ec711056f5d87d8504f033a404ed14a2e449331.1705140898.git.lukas@wunner.de>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: extcon: ptn5150: Describe the USB
+ connector
+Content-Language: en-US
+To: Fabio Estevam <festevam@gmail.com>, cw00.choi@samsung.com
+Cc: myungjoo.ham@samsung.com, robh+dt@kernel.org,
+ krzysztof.kozlowski@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, shawnguo@kernel.org, hvilleneuve@dimonoff.com,
+ linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
+References: <20231212112729.700987-1-festevam@gmail.com>
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20231212112729.700987-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Sat Jan 13, 2024 at 7:10 PM EET, Lukas Wunner wrote:
-> Add "nuvoton,npct75x" as well as the fallback compatible string
-> "tcg,tpm-tis-i2c" to the TPM TIS I=C2=B2C driver.  They're used by:
->
->   arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dts
->   arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dts
->
-> And by all accounts, NPCT75x is supported by the driver:
->
->   https://lore.kernel.org/all/60e23fd0f0ff4d1f8954034237ae8865@NTILML02.n=
-uvoton.com/
->   https://lore.kernel.org/all/20220808220839.1006341-8-peter@pjd.dev/
->
-> Signed-off-by: Lukas Wunner <lukas@wunner.de>
+On 12/12/23 12:27, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> PTN5150 supports USB Type-C connector, so improve the bindings by
+> allowing to describe the connector like it is done on nxp,ptn5110.yaml.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
->  drivers/char/tpm/tpm_tis_i2c.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/char/tpm/tpm_tis_i2c.c b/drivers/char/tpm/tpm_tis_i2=
-c.c
-> index a897402..9511c0d 100644
-> --- a/drivers/char/tpm/tpm_tis_i2c.c
-> +++ b/drivers/char/tpm/tpm_tis_i2c.c
-> @@ -383,6 +383,8 @@ static void tpm_tis_i2c_remove(struct i2c_client *cli=
-ent)
->  #ifdef CONFIG_OF
->  static const struct of_device_id of_tis_i2c_match[] =3D {
->  	{ .compatible =3D "infineon,slb9673", },
-> +	{ .compatible =3D "nuvoton,npct75x", },
-> +	{ .compatible =3D "tcg,tpm-tis-i2c", },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, of_tis_i2c_match);
+>   Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> index d5cfa32ea52d..3837da7416e9 100644
+> --- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> +++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> @@ -37,6 +37,11 @@ properties:
+>         GPIO pin (output) used to control VBUS. If skipped, no such control
+>         takes place.
+>   
+> +  connector:
+> +    type: object
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +    unevaluatedProperties: false
+> +
 
-Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
+If I read drivers/usb/roles/class.c usb_role_switch_get() implementation 
+right, that function is doing an OF graph look up and expects a port {} 
+subnode for that purpose. The drivers/extcon/extcon-ptn5150.c 
+ptn5150_i2c_probe() calls usb_role_switch_get(), so I would expect the 
+ptn5150 DT node should contain a port {} subnode, not a connector subnode.
 
-BR, Jarkko
+I think that's what should be done here -- update this PTN5150 binding 
+document and describe the port {} subnode. The two DT patches are not 
+needed and are in fact wrong ; at least the PDK3 one breaks PDK3 USB-C 
+operation as the usb_role_switch_get() look up fails in the PTN5150 
+driver with that DT patch applied.
 
