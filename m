@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFF2782CC35
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 11:49:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3AD582CC49
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 11:53:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05611284CF7
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:49:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 406BC1F22CDB
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:53:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6151420DF3;
-	Sat, 13 Jan 2024 10:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B8D120DC6;
+	Sat, 13 Jan 2024 10:52:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eF5qfBph"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jc5MsmJL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67E320B2E
-	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 10:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A8F210E1
+	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 10:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-50e7ddd999bso8053789e87.1
-        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 02:49:20 -0800 (PST)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50ec948ad31so6493341e87.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 02:52:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705142959; x=1705747759; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705143175; x=1705747975; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RoFfOJUqLzw8ssWv4SjcyGTD1YBhqXvcbn47ljtsn8U=;
-        b=eF5qfBphRyChWtcwwixn+cbkghOwmKQHhitemkBAohe39PcTejs5dtYyi7YAfX41tu
-         BayppckR0sIRx/kXl/XKIctLSP0Tn4A8I3VJDf7VcOKcT6H24AhIN4PoiDMND2lSlOT7
-         S8A7PXKOSuxvpabDyT6lcwV86p1NwC9ecI4y6p7O/UBAzG1vZ5lNUncAq0EcortB7G6o
-         qfkbW8kmu3i/kyyDPDmpUUlRbAZsAnw5xjPlzAN0//7BuvGsTUM4lojSTtVTp2ip7fNx
-         xpRTD2O32jm7gs/YTPQ5StVCbKc5OSHmBhpYHIB1iaQnfBtGGG1lCyA++bgy7fZYQ2hN
-         EaTQ==
+        bh=n3ZKmXY5rNjC4L167s/lIYLusQBbgxuUulLBCtl0sr4=;
+        b=Jc5MsmJLASKG4wfE8/2I4NQq8bJVveQW9qstN5IlMrk6O2nIqvO9ffkF8eH51YsNCb
+         tKp/8wp2T1nPYCNlMAbPa+b+2/nQjTqG/+X7ME9MwGN0WS5siu8uG9+J+jI9JrbQ4UAW
+         Uz5AECnv9aAOawpvD9X4HMMwezgQ9IdY22dy/OAbpa9hac0JuILiCv8ibI7YOpeBEUYM
+         jTgl+yRoETFaBrPQEtGfVI3A25L+zHHZR7lTqjPPErbMGbKKOhG+F4H96Zx59cnEBC4r
+         qGL0A4I08MSKDFV+4e30LzKXkzTi+ll9vvo11A9wHI1dwy23wElCjeKPKWrwIcwYEy88
+         XgNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705142959; x=1705747759;
+        d=1e100.net; s=20230601; t=1705143175; x=1705747975;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RoFfOJUqLzw8ssWv4SjcyGTD1YBhqXvcbn47ljtsn8U=;
-        b=VMggNn/eJP8fUKjnupROwuXM5EMNzEtf441oYVSzgA4dOV2brw4E5LuqopbebTOyvL
-         b3rJgdMlqJXhfAsexz3ILNr7KDnmFSNMQEtGPOPsUgfxKsrL9IwZDHr6ZXh0C0Jj0oax
-         Ebm/Ljz4uoGGXkxYX5Tuz2NchLwbtcVeRMZ6M/kkgviWiN9T91Gqqb0CJXb3MarUpZ0b
-         m5eeUyRqI9b8kT6VE8lYl2QJw4t8c3rYipFBglc5YkbKxR4BA3+hihnk6MQFWeNKIJFE
-         uv8u+l2TTeJcpihW3C+qyfAsJXRS+OGe864E5aZlTw+VeHP6ZE+zJX0vVZ6hBK2i+Cb9
-         l8Cw==
-X-Gm-Message-State: AOJu0YzvjKBAixq5I5i8SAaqmHYsv3fIqm81P5I7uNLQZSfdtne/hEyR
-	wKs1WhaN0LHi7gGHBr22MfbLK3y8IxGqgg==
-X-Google-Smtp-Source: AGHT+IFuVUx5bDaFcwT+WD1WktsbxfnQHXcPu67xQiDvqKe7rqt1/fPqFjv9wZq3hy5Zp7qFSWuarw==
-X-Received: by 2002:a05:6512:1091:b0:50e:2f46:1111 with SMTP id j17-20020a056512109100b0050e2f461111mr1545279lfg.97.1705142958991;
-        Sat, 13 Jan 2024 02:49:18 -0800 (PST)
+        bh=n3ZKmXY5rNjC4L167s/lIYLusQBbgxuUulLBCtl0sr4=;
+        b=cZ2mFU9yq6riViNxHiRdEelmns+qMOBdyc8cMcxMEWz7suSBMuycUNqDFVxvcKwBHB
+         i+mawQp63gKrBEnXig8jpSBEmHwmp7h1f4mI0frK5iW/8AV1r9urpkGdwBdo6XgIDzDf
+         zIAbS5Ub+Xcf5RN2zWTzQHWnpe8G4IhhfEpvJu74/0HE5xeUY2tLmcSmxExAFcW29hUm
+         cclFUet2RlHf2ibQydQ38kRKUSfZTU+eFDS1OsVkgswfS7EgoqkyMAPkVT9BiSYh8JmH
+         7qPe1WmVUU1Eel9AwNkt3pcdckI1HifiUzj9PZ0miky+PaJuxSCkdBCagtXa4t076ki+
+         WxgQ==
+X-Gm-Message-State: AOJu0YzXeUPl5XeatxurmbXihl8RXaOXDg2GE6nZZSpKVuvpFFM8kAem
+	dAgS+zwjVgm4bEpfXla/F6lL95zyJuW/ZQ==
+X-Google-Smtp-Source: AGHT+IFLuJ4mFcAlUzv4sjeEQPGjAyfCwlCQTRF53KNER4IHUdNZtS23ltQkhxln/u/gu+tV2JOlfw==
+X-Received: by 2002:a05:6512:1112:b0:50e:e8f0:1d42 with SMTP id l18-20020a056512111200b0050ee8f01d42mr1272629lfg.119.1705143175499;
+        Sat, 13 Jan 2024 02:52:55 -0800 (PST)
 Received: from [192.168.174.25] (178235179017.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.17])
-        by smtp.gmail.com with ESMTPSA id q21-20020a1709066b1500b00a2990007447sm2733330ejr.122.2024.01.13.02.49.16
+        by smtp.gmail.com with ESMTPSA id i18-20020a170906091200b00a2c2b475a0esm2740327ejd.105.2024.01.13.02.52.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Jan 2024 02:49:18 -0800 (PST)
-Message-ID: <dfac509c-708b-43fc-8894-b160c6d1ecb9@linaro.org>
-Date: Sat, 13 Jan 2024 11:49:16 +0100
+        Sat, 13 Jan 2024 02:52:55 -0800 (PST)
+Message-ID: <75fdcb64-69b2-49b6-a6a6-2e231e3730d9@linaro.org>
+Date: Sat, 13 Jan 2024 11:52:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,7 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/13] arm64: dts: qcom: sm6115: drop pipe clock selection
+Subject: Re: [PATCH 13/13] arm64: dts: qcom: qrb4210-rb2: enable USB-C port
+ handling
 Content-Language: en-US
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
@@ -81,10 +82,9 @@ To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Philipp Zabel <p.zabel@pengutronix.de>,
  Bhupesh Sharma <bhupesh.sharma@linaro.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-phy@lists.infradead.org,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+ linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
 References: <20240113-pmi632-typec-v1-0-de7dfd459353@linaro.org>
- <20240113-pmi632-typec-v1-12-de7dfd459353@linaro.org>
+ <20240113-pmi632-typec-v1-13-de7dfd459353@linaro.org>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -121,23 +121,86 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240113-pmi632-typec-v1-12-de7dfd459353@linaro.org>
+In-Reply-To: <20240113-pmi632-typec-v1-13-de7dfd459353@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13.01.2024 06:42, Dmitry Baryshkov wrote:
-> From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Plug in USB-C related bits and pieces to enable USB role switching and
+> USB-C orientation handling for the Qualcomm RB2 board.
 > 
-> Stop selecting UTMI clock as the USB3 PIPE clock. This setting is
-> incompatible with the USB host working in USB3 (SuperSpeed) mode.
-> 
-> Fixes: 9dd5f6dba729 ("arm64: dts: qcom: sm6115: Add USB SS qmp phy node")
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> [DB: fixed commit message, dropped dr_mode setting]
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
+>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 62 ++++++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sm6115.dtsi     | 38 ++++++++++++++++++++
+>  2 files changed, 100 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> index 52f31f3166c2..a96e3afb65bc 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> @@ -6,8 +6,10 @@
+>  /dts-v1/;
+>  
+>  #include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/usb/pd.h>
+>  #include "sm4250.dtsi"
+>  #include "pm6125.dtsi"
+> +#include "pmi632.dtsi"
+>  
+>  / {
+>  	model = "Qualcomm Technologies, Inc. QRB4210 RB2";
+> @@ -256,6 +258,53 @@ kypd_vol_up_n: kypd-vol-up-n-state {
+>  	};
+>  };
+>  
+> +&pmi632_typec {
+> +	status = "okay";
+> +
+> +	connector {
+> +		compatible = "usb-c-connector";
+> +
+> +		power-role = "dual";
+> +		data-role = "dual";
+> +		self-powered;
+> +
+> +		source-pdos = <PDO_FIXED(5000, 3000,
+> +					 PDO_FIXED_DUAL_ROLE |
+> +					 PDO_FIXED_USB_COMM |
+> +					 PDO_FIXED_DATA_SWAP)>;
+> +		sink-pdos = <PDO_FIXED(5000, 500,
+> +					 PDO_FIXED_DUAL_ROLE |
+> +					 PDO_FIXED_USB_COMM |
+> +					 PDO_FIXED_DATA_SWAP)>;
+> +		op-sink-microwatt = <10000000>;
+So RB2 can provide 15 watts over the USB-C port, consume 2.5 but
+requires 10? That doesn't make a whole lot of sense..
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Unless I'm reading this wrong..
+
+> +&usb_dwc3 {
+> +	usb-role-switch;
+
+Since this is a dual-role controller, I think this could live in the SoC
+DT
+
+> +};
+> +
+> +&usb_dwc3_hs {
+> +	remote-endpoint = <&pmi632_hs_in>;
+> +};
+> +
+>  &usb_hsphy {
+>  	vdd-supply = <&vreg_l4a_0p9>;
+>  	vdda-pll-supply = <&vreg_l12a_1p8>;
+> @@ -618,10 +675,15 @@ &usb_hsphy {
+>  &usb_qmpphy {
+>  	vdda-phy-supply = <&vreg_l4a_0p9>;
+>  	vdda-pll-supply = <&vreg_l12a_1p8>;
+> +	orientation-switch;
+
+Similarly, if this doesn't kaboom w/ our implementation too much, the
+PHY itself has orientation detection capabilities
 
 Konrad
 
