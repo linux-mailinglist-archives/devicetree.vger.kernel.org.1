@@ -1,51 +1,49 @@
-Return-Path: <devicetree+bounces-31845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C05F782CD69
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 16:16:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDED882CD7B
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 16:31:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 663A6283E10
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 15:16:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD1401C20F91
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 15:31:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718E6EA4;
-	Sat, 13 Jan 2024 15:15:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E4541847;
+	Sat, 13 Jan 2024 15:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hbhhtt8o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q2lTsrhz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BDCE136A;
-	Sat, 13 Jan 2024 15:15:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B0D8C433C7;
-	Sat, 13 Jan 2024 15:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F73F23A3;
+	Sat, 13 Jan 2024 15:31:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 441A6C433C7;
+	Sat, 13 Jan 2024 15:31:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705158955;
-	bh=gi7MLkfj49jWwmlYtMReK8oYZtLf7aFm+9eg8JZZ/6o=;
+	s=k20201202; t=1705159878;
+	bh=Qfs2cj7JCte0gKHDzV5NLUlHh1kvgCNmTYtxJZN4Udo=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Hbhhtt8oHn9r0LCm2XOzjNQWqZk4/PVY9xB40qPCKV7qVzcuYngvfOro+l0fQP84i
-	 OPos3yjOpeQRI0LwVE6AFGOVRDdLa2/78xWsB80esbUh2eFbMDoATl5x3L+XpECcle
-	 /FOVvyW3JF4ff2VF9J88a3FEbKRYEsu4HDW6TIL+gptWHiyoQeoDr9ZDMo9kqfMs1F
-	 o0joNQQaLbXTAetjOQ/dzt3X4GglBjXBmAwSRbGl4hYN2p7ChqFSiNfmeLcMBLKplD
-	 v1KofWhaEGp7Ls/p6geWQLb1Uq6zBXyymaVtYYS8+4qd1cW73q4XkK1Aipf5ckHt0e
-	 A3O7uPM+rahfg==
-Date: Sat, 13 Jan 2024 15:15:49 +0000
+	b=q2lTsrhz19T9Qzi32wC8wO2nmB4DPfrFdByFTjnPFx5TB3OvNG9IP23ZfZR1EytTi
+	 7xo+o7UWigD8GN3cfrDiPVX8p7nNxpnN0KY3eI9VowCwJC987LpdfuU7+/DTnev4LF
+	 pvBHaMcT+t3BrKvl0Q10TtC2vcGJ/qxegUxtXd6V9JEgwEsMK8vbmRHTHm9M/DbPlk
+	 eDQzovLgNfgtyBUmA8yfY2rgjaNYpRRcBZEa3Lfesnhe5QPln/i4aqVJGPgKDcWfqu
+	 PejJKnQ6Eh8DivbnwxK0X4I/Ld5YSzcf7Z5kVHbBTuuz9ro+dvprwrbBQeSmLPoGm9
+	 8Sr6OJS4qn8dA==
+Date: Sat, 13 Jan 2024 15:31:12 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Christian Eggers <ceggers@arri.de>
+To: <cy_huang@richtek.com>
 Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] iio: light: as73211: add support for as7331
-Message-ID: <20240113151549.2be0463e@jic23-huawei>
-In-Reply-To: <4555448.LvFx2qVVIh@n95hx1g2>
-References: <20240103-as7331-v2-0-6f0ad05e0482@gmail.com>
-	<20240103-as7331-v2-3-6f0ad05e0482@gmail.com>
-	<4555448.LvFx2qVVIh@n95hx1g2>
+ <conor+dt@kernel.org>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <u.kleine-koenig@pengutronix.de>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 0/2] RTQ6056: Add compatible for the same chip family
+Message-ID: <20240113153112.42d3b978@jic23-huawei>
+In-Reply-To: <cover.1704676198.git.cy_huang@richtek.com>
+References: <cover.1704676198.git.cy_huang@richtek.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.39; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -56,28 +54,15 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-> > +struct as73211_data;
-> > +
-> > +/**
-> > + * struct spec_dev_data - device-specific data
-> > + * @intensity_scale:  Function to retrieve intensity scale values.
-> > + * @channel:          Device channels.
-> > + * @num_channels:     Number of channels of the device.
-> > + */
-> > +struct spec_dev_data {  
-> 
-> I would call it as73211_spec_dev_data (is the C++ One Definition Rule relevant for
-> the kernel?)
-> 
-> > +	int (*intensity_scale)(struct as73211_data *data, int chan, int *val, int *val2);
-> > +	struct iio_chan_spec const *channel;  
-> s/channel/channels/
-> 
-> > +	int num_channels;
-> > +};
-Both good suggestions so I've applied them both and pushed out a new version of
-the togreg tree.
+On Mon, 8 Jan 2024 09:47:26 +0800
+<cy_huang@richtek.com> wrote:
+
+> From: ChiYuan Huang <cy_huang@richtek.com>
+
+Applied to the togreg branch of iio.git but for now only pushed out as testing
+as I will be rebasing my tree on rc1 once it is available.
 
 Thanks,
+
 Jonathan
 
