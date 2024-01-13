@@ -1,180 +1,156 @@
-Return-Path: <devicetree+bounces-31803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A122B82CADF
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:37:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0AA982CBB9
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 11:14:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 549971F22D27
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 09:37:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 567531F22996
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:14:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BDBEC5;
-	Sat, 13 Jan 2024 09:37:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5707F1EF1D;
+	Sat, 13 Jan 2024 10:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GDzN14Pi"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="eMWZUR++"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B695DA2A;
-	Sat, 13 Jan 2024 09:37:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28057C433C7;
-	Sat, 13 Jan 2024 09:37:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705138656;
-	bh=w/zSBBUrOCogh8TXa7vV7+1viFBuWmgXZKnDrd+wg/4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=GDzN14Pi0f4Pnq/RXyJZlmAXb+3jQHnB1NEEcUgJRyc5RkgaIN2MEh1c664bOhaoF
-	 Q4c/L96XzgDV//riRy4W8fbXJ9fouhbrHQ4Z9RWNidU/t+EwYXSlIveNgaQo9ct8Tb
-	 sZkGT0PgXZH2kAog8sFRSSlK8lr/EDywrl+BD9TCuX8XdBjSW4Etv0Oahnbkxr6gQK
-	 DNiS3LlLvQr6zvg4KBKL5bXqhiblv3zBY05QgINrxYlR4ehLhxWk8iZdV/QmCS2PlU
-	 hd32/uCQIhxGcNC5FrGNOiEo3i1VXkNHis3AsJ6+uwmKO6dZcD1za70LP39r7pkQWy
-	 wa/Lh3v3mrMMQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1rOaSL-00BMls-Kk;
-	Sat, 13 Jan 2024 09:37:33 +0000
-Date: Sat, 13 Jan 2024 09:37:33 +0000
-Message-ID: <86zfx98tgi.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: David Dai <davidai@google.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Quentin Perret <qperret@google.com>,
-	Masami Hiramatsu <mhiramat@google.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Dietmar Eggemann <dietmar.eggemann@arm.com>,
-	Pavan Kondeti <quic_pkondeti@quicinc.com>,
-	Gupta Pankaj <pankaj.gupta@amd.com>,
-	Mel Gorman <mgorman@suse.de>,
-	kernel-team@android.com,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: add virtual cpufreq device
-In-Reply-To: <CAGETcx_8x4p7WTwqQiVGdtHftVjFUJruXsOXwJXgDi0GdEtLNA@mail.gmail.com>
-References: <20231111014933.1934562-1-davidai@google.com>
-	<20231111014933.1934562-2-davidai@google.com>
-	<865y231jvj.wl-maz@kernel.org>
-	<CAGETcx9-n0z5buWgtLZ+6VxW2jEko1GWzkGtGhFiZEq-x_G4nw@mail.gmail.com>
-	<867clpaxel.wl-maz@kernel.org>
-	<CAGETcx_8x4p7WTwqQiVGdtHftVjFUJruXsOXwJXgDi0GdEtLNA@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4AF17543
+	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 10:14:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e60e135a7so21185655e9.0
+        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 02:14:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1705140842; x=1705745642; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jDetwflOykzL5RhAxaaI/u51dq18i05MsncmHilsi1o=;
+        b=eMWZUR++XVu80xgAe4rMfMrjHqbNTb/y1pf8w/n8Irs1u9FtqFslwBHYhLqRoDX47x
+         CHJWlp3BRbaGy58hbGd5rsvP99YPo5XUQHVWqeREW7+eK3ju0vP2LUQ2bcRnSq5bW2PF
+         tg3u3vTheXWoXhRqIyZCcDvricY8Ux77ZI+YLl3T8TvGM134HUgA/FZToqfbN9mAlIvs
+         ebdSFMicIVUcltpCPh1/ABjttPscdc5b3XNiUwlqr6fSvB/Yw9voDx/EGzj4+2QggTCr
+         qcWbuSB5OX1vg9LiVWXLHCErft7uTOoUx51yWZUb8r17vgt8DoUdErqCKUy3UjE32UZR
+         5esw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705140842; x=1705745642;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jDetwflOykzL5RhAxaaI/u51dq18i05MsncmHilsi1o=;
+        b=G/1BWPPeL47fYYE0nYRgp4UVRbQM+sNje8JgNO+tcTM/kqZgJF39BQZ654aKBFz0xC
+         UAeCxQE7unyOHKq+rwu7J6zHzdipOJT5GQdmk/tFaq0EU/6aShhkxPQkLw4VCOnCX1+d
+         zUqr5jC57GLQxBmGgUdgG9iMSsgZmRqqj/xw8Yb3yRL7DybdnY0ibE61iFjtPHM1cfMd
+         oP9q3PYbIN5R+751C+fbdhComIe2GWXzEdsi27llH1YaV2eqdmJ58DD/dxsbMzpHK6iL
+         oIf5j6gDVUIvKJfPxTpJ/OAp2up/UB6ZfvquOi1NSlG886Xk6FkEHXcblrrlgseXPIM+
+         J38w==
+X-Gm-Message-State: AOJu0YymXQEo+ovuKBvMq/3hNSb4hdCiMvFGjPLZ3aMuCgkRkrfvzJC+
+	bj5C/ZxTeuV5fHYSkGfk3S6TAy5s+qHGlA==
+X-Google-Smtp-Source: AGHT+IFZ3DCtVK91Rdao2Q9Ai8lXJwRVm4MUO6nNsmnW7POWKovY0EtAWYNzwHjKXSN5iXVGrgWmqw==
+X-Received: by 2002:a05:600c:4f50:b0:40e:5aa4:44f9 with SMTP id m16-20020a05600c4f5000b0040e5aa444f9mr1622321wmq.10.1705140841757;
+        Sat, 13 Jan 2024 02:14:01 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.46])
+        by smtp.gmail.com with ESMTPSA id z10-20020a05600c0a0a00b0040e4bcfd826sm8976075wmp.47.2024.01.13.02.14.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 Jan 2024 02:14:01 -0800 (PST)
+Message-ID: <a1ef3681-a3c9-47fd-ad9e-4e14182b1c1d@tuxon.dev>
+Date: Sat, 13 Jan 2024 12:13:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: renesas: rzg3s-smarc: Add gpio keys
+Content-Language: en-US
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: magnus.damm@gmail.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20231227130810.2744550-1-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdVnsJfOtZPpr+_MRNkx-bSXrCm8Hy_j6Gy58WnGn_kaMA@mail.gmail.com>
+ <30608a28-b1e3-4ad3-aad5-1033eb8adc6f@tuxon.dev>
+ <CAMuHMdXokhEEARUSSY_x74A0eRGpeJ2Y30neMP57fnjRJ7HQeg@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdXokhEEARUSSY_x74A0eRGpeJ2Y30neMP57fnjRJ7HQeg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: saravanak@google.com, davidai@google.com, rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, sudeep.holla@arm.com, qperret@google.com, mhiramat@google.com, will@kernel.org, peterz@infradead.org, vincent.guittot@linaro.org, oliver.upton@linux.dev, dietmar.eggemann@arm.com, quic_pkondeti@quicinc.com, pankaj.gupta@amd.com, mgorman@suse.de, kernel-team@android.com, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Transfer-Encoding: 8bit
 
-On Fri, 12 Jan 2024 22:02:39 +0000,
-Saravana Kannan <saravanak@google.com> wrote:
->=20
-> Sorry for the delay in response. Was very busy for a while and then
-> holidays started.
->=20
-> On Fri, Dec 8, 2023 at 12:52=E2=80=AFAM Marc Zyngier <maz@kernel.org> wro=
-te:
-> >
-> > On Thu, 07 Dec 2023 22:44:36 +0000,
-> > Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > On Wed, Nov 15, 2023 at 12:49=E2=80=AFAM Marc Zyngier <maz@kernel.org=
-> wrote:
-> > > >
-> > > > On Sat, 11 Nov 2023 01:49:29 +0000,
-> > > > David Dai <davidai@google.com> wrote:
-> > > > >
-> > > > > Adding bindings to represent a virtual cpufreq device.
-> > > > >
-> > > > > Virtual machines may expose MMIO regions for a virtual cpufreq de=
-vice
-> > > > > for guests to read frequency information or to request frequency
-> > > > > selection. The virtual cpufreq device has an individual controlle=
-r for
-> > > > > each frequency domain.
-> > > >
-> > > > I would really refrain form having absolute frequencies here. A
-> > > > virtual machine can be migrated, and there are *zero* guarantees th=
-at
-> > > > the target system has the same clock range as the source.
-> > > >
-> > > > This really should be a relative number, much like the capacity. Th=
-at,
-> > > > at least, can be migrated across systems.
-> > >
-> > > There's nothing in this patch that mandates absolute frequency.
-> > > In true KVM philosophy, we leave it to the VMM to decide.
-> >
-> > This has nothing to do with KVM. It would apply to any execution
-> > environment, including QEMU in TCG mode.
-> >
-> > To quote the original patch:
-> >
-> > +    description:
-> > +      Address and size of region containing frequency controls for eac=
-h of the
-> > +      frequency domains. Regions for each frequency domain is placed
-> > +      contiugously and contain registers for controlling DVFS(Dynamic =
-Frequency
-> > +      and Voltage) characteristics. The size of the region is proporti=
-onal to
-> > +      total number of frequency domains.
-> >
-> > What part of that indicates that *relative* frequencies are
-> > acceptable? The example explicitly uses the opp-v2 binding, which
-> > clearly is about absolute frequency.
->=20
-> We can update the doc to make that clearer and update the example too.
->=20
-> > To reiterate: absolute frequencies are not the right tool for the job,
-> > and they should explicitly be described as relative in the spec. Not
-> > left as a "whatev'" option for the execution environment to interpret.
->=20
-> I think it depends on the use case. If there's no plan to migrate the
-> VM across different devices, there's no need to do the unnecessary
-> normalization back and forth.
+Hi, Geert,
 
-VM migration is a given, specially when QEMU is involved. Designing
-something that doesn't support it is a bug, plain and simple.
+On 12.01.2024 18:20, Geert Uytterhoeven wrote:
+> Hi Claudiu,
+> 
+> On Fri, Jan 12, 2024 at 4:38 PM claudiu beznea <claudiu.beznea@tuxon.dev> wrote:
+>> On 12.01.2024 15:55, Geert Uytterhoeven wrote:
+>>> On Wed, Dec 27, 2023 at 2:08 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>
+>>>> RZ SMARC Carrier II board has 3 user buttons called USER_SW1, USER_SW2,
+>>>> USER_SW3. Add a DT node in device tree to propertly instantiate the
+>>>> gpio-keys driver for these buttons.
+>>>>
+>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>
+>>> Thanks for your patch!
+>>>
+>>>> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+>>>> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+>>>> @@ -14,6 +15,37 @@ aliases {
+>>>>                 mmc1 = &sdhi1;
+>>>>         };
+>>>>
+>>>> +       keys {
+>>>
+>>> Do you mind if I s/keys/keypad/ while applying? ...
+>>
+>> Is not actually a keypad... there are 3 buttons in a corner of the board...
+>>
+>> I see only 2 entries in arm64 and arm DTS directory following this pattern
+>> for gpio-keys compatible node:
+>>
+>>  arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+>>  arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+>>
+>> But if you prefer it like this, I have nothing against.
+>>
+>> Just asking, do you have a particular reason for naming it like this?
+> 
+> See the discussion in [1], and the resulting patch[2], which added the
+> (so far) single user in arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+> 
+> [1] https://lore.kernel.org/all/20231023144134.1881973-1-geert+renesas@glider.be
 
-> And if we can translate between pCPU frequency and a normalized
-> frequency, we can do the same for whatever made up frequencies too. In
-> fact, we plan to do exactly that in our internal use cases for this.
-> There's nothing here that prevents the VMM from doing that.
->
-> Also, if there are hardware virtualized performance counters (AMU,
-> CPPC, etc) that are used for frequency normalization, then we have to
-> use the real frequencies in those devices otherwise the "current
-> frequency" can be 2 GHz while the max normalized frequency is 1024
-> KHz. That'll mess up load tracking.
+Ah, I remember part of this discussion. Good for me to rename it as you
+proposed.
 
-And that's exactly why this shouldn't be a *frequency*, but a
-performance scale or some other unit-less coefficient. Just like the
-big-little capacity.
-
-	M.
-
---=20
-Without deviation from the norm, progress is not possible.
+> [2] https://lore.kernel.org/all/eec1ccfb75c6215428609fdcaf3a37c75fe1fc87.1698228163.git.geert+renesas@glider.be
+>>
+>>>> +                       interrupt-parent = <&pinctrl>;
+>>>
+>>> ... and move these one level up, to avoid duplication?
+>>
+>> Moving it just near compatible will make the schema validation to fail with
+>> this (driver is working, though):
+>>
+>> arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: keys:
+>> 'interrupt-parent' does not match any of the regexes:
+>> '^(button|event|key|switch|(button|event|key|switch)-[a-z0-9-]+|[a-z0-9-]+-(button|event|key|switch))$',
+>> 'pinctrl-[0-9]+'
+>>         from schema $id: http://devicetree.org/schemas/input/gpio-keys.yaml#
+> 
+> Oops, I had completely forgotten r8a7779-marzen.dts triggers this, too...
+> Let's keep it for now.
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
