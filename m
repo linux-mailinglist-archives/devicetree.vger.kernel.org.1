@@ -1,65 +1,52 @@
-Return-Path: <devicetree+bounces-31775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E313182C8C2
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 02:29:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2987F82C8D3
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 02:39:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 951371F2439F
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 01:29:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5B081F24338
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 01:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FE7F13AE5;
-	Sat, 13 Jan 2024 01:29:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 376B415AF5;
+	Sat, 13 Jan 2024 01:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R4AQeqgs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iOKbQ0TN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640F01A5B9;
-	Sat, 13 Jan 2024 01:29:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0082C433C7;
-	Sat, 13 Jan 2024 01:29:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E81212E65;
+	Sat, 13 Jan 2024 01:39:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EA86C433F1;
+	Sat, 13 Jan 2024 01:39:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705109376;
-	bh=4159aUol2be32Rm/FKh9kOm2pfBIwydY2bGQPvRtmBc=;
+	s=k20201202; t=1705109959;
+	bh=f+z+aCoBo/R1LCbcJ/n9MFR1O7qF/679Gxl5cb/3qHg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R4AQeqgsCooUB+nPotOSUsyOqjYIk4TKMkQgJD7r5BNKRw5DypK/PA6z4MGP90ide
-	 p64gp9MwRuXNydAJPHExHjxBjvNnz/2V+ksCy44rulyM8QwEciSyqKVg2BHjvmHV15
-	 7r/YQv6nYHqARkpOvrkv1qeIrQ1ue/03H8BFDmytRSyVvBgDWzU+4zqfkkD5brFGjf
-	 4vNGEyCqaJ48++tfqcnU1+LFJ5DyVQVVJVTrRjG+AZdojA7ucrsZUW0/yhiC7UlGay
-	 IFAAITOQw46OjEiW28GNNzmzKH/Cn9I9yw1LN3IfbJbwKREVOg861SNaUXO/RRXlzS
-	 EDtw0N1B5LCsQ==
-Date: Fri, 12 Jan 2024 19:29:34 -0600
+	b=iOKbQ0TNrYHcl5QI2C8ytgTBbYZICCBxplvkmGjmc1SM07yILLF980Ljta5Zubsze
+	 Dhag6XvXmcIREpCusq3qVaqlC/OBITak58S+ICjWxG0N9TrgyNHpLkZsY3eoOP6N4Q
+	 QRickthm8JPRvfXeoffubHSVucXtyxlwaMTflMIZnpm2XznavfAnk0QPX0K4Nv6Zr8
+	 xpfpTlEBfxYb8qH23h6lY3tgAYyNoXL91IkXDh0bm67NuUOVCjyi1j0l3F6q03xXn+
+	 fqaJz+aE9r2cpqoH1ABqsHNEQ0ZsCMTOfASUFM4K+xrOIqHYNcOo8wrD0YsFTWc1vj
+	 ItCDSd/fDh/yA==
+Date: Fri, 12 Jan 2024 19:39:17 -0600
 From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Eric Dumazet <edumazet@google.com>, Pavel Machek <pavel@ucw.cz>,
-	Kursad Oney <kursad.oney@broadcom.com>, Lee Jones <lee@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-	William Zhang <william.zhang@broadcom.com>,
-	"David S. Miller" <davem@davemloft.net>,
+To: Christoph Winklhofer <cj.winklhofer@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, linux-leds@vger.kernel.org,
-	Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	=?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
-	netdev@vger.kernel.org, Anand Gore <anand.gore@broadcom.com>,
-	devicetree@vger.kernel.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Subject: Re: [net-next PATCH v9 2/5] dt-bindings: net: phy: Document LED
- inactive high impedance mode
-Message-ID: <170510937346.3795602.13542241905094505502.robh@kernel.org>
-References: <20240105142719.11042-1-ansuelsmth@gmail.com>
- <20240105142719.11042-3-ansuelsmth@gmail.com>
+	Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: w1: UART 1-Wire bus
+Message-ID: <20240113013917.GA3795949-robh@kernel.org>
+References: <20240106-w1-uart-v4-0-7fe1378a8b3e@gmail.com>
+ <20240106-w1-uart-v4-1-7fe1378a8b3e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,22 +55,91 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240105142719.11042-3-ansuelsmth@gmail.com>
+In-Reply-To: <20240106-w1-uart-v4-1-7fe1378a8b3e@gmail.com>
 
-
-On Fri, 05 Jan 2024 15:27:14 +0100, Christian Marangi wrote:
-> Document LED inactive high impedance mode to set the LED to require high
-> impedance configuration to be turned OFF.
+On Sat, Jan 06, 2024 at 05:02:24PM +0100, Christoph Winklhofer wrote:
+> Add device tree binding for UART 1-Wire bus.
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
 > ---
-> Changes v5:
-> - Add this patch
+>  Documentation/devicetree/bindings/w1/w1-uart.yaml | 62 +++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
 > 
->  Documentation/devicetree/bindings/leds/common.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/w1/w1-uart.yaml b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+> new file mode 100644
+> index 000000000000..6b90693b2ca0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/w1/w1-uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: UART 1-Wire Bus
+> +
+> +maintainers:
+> +  - Christoph Winklhofer <cj.winklhofer@gmail.com>
+> +
+> +description: |
+> +  UART 1-wire bus. Utilizes the UART interface via the Serial Device Bus
+> +  to create the 1-Wire timing patterns.
+> +
+> +  The UART peripheral must support full-duplex and operate in open-drain
+> +  mode. The timing patterns are generated by a specific combination of
+> +  baud-rate and transmitted byte, which corresponds to a 1-Wire read bit,
+> +  write bit or reset pulse.
+> +
+> +  The default baud-rate for reset and presence detection is 9600 and for
+> +  a 1-Wire read or write operation 115200. In case the actual baud-rate
+> +  is different from the requested one, the transmitted byte is adapted
+> +  to generate the 1-Wire timing patterns.
+> +
+> +  https://www.analog.com/en/technical-articles/using-a-uart-to-implement-a-1wire-bus-master.html
+> +
+> +
+> +properties:
+> +  compatible:
+> +    const: w1-uart
+> +
+> +  reset-speed:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 9600
+> +    description: |
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Don't need '|' if no formatting
 
+> +      The baud rate for the 1-Wire reset and presence detect.
+> +
+> +  touch_0-speed:
+
+Don't use '_' in property names.
+
+I'm somewhat familar with 1-wire, but I don't get what 'touch' means 
+here. I assume these are low and high times which are a function of the 
+baudrate.
+
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 115200
+> +    description: |
+> +      The baud rate for the 1-Wire write-0 cycle (touch bit 0).
+> +
+> +  touch_1-speed:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 115200
+> +    description: |
+> +      The baud rate for the 1-Wire write-1 and read cycle (touch bit 1).
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+
+w1.txt says there can be a child node for the 1-wire device. You need 
+'type: object'. Or w1.txt needs to be converted to schema and referenced 
+here (along with using unevaluatedProperties here instead).
+
+Rob
 
