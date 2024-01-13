@@ -1,206 +1,252 @@
-Return-Path: <devicetree+bounces-31814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3AD582CC49
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 11:53:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 041B582CC83
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 12:32:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 406BC1F22CDB
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 10:53:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A99B284897
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jan 2024 11:32:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B8D120DC6;
-	Sat, 13 Jan 2024 10:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D0A20DF6;
+	Sat, 13 Jan 2024 11:32:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jc5MsmJL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="InKI3efF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A8F210E1
-	for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 10:52:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50ec948ad31so6493341e87.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Jan 2024 02:52:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705143175; x=1705747975; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n3ZKmXY5rNjC4L167s/lIYLusQBbgxuUulLBCtl0sr4=;
-        b=Jc5MsmJLASKG4wfE8/2I4NQq8bJVveQW9qstN5IlMrk6O2nIqvO9ffkF8eH51YsNCb
-         tKp/8wp2T1nPYCNlMAbPa+b+2/nQjTqG/+X7ME9MwGN0WS5siu8uG9+J+jI9JrbQ4UAW
-         Uz5AECnv9aAOawpvD9X4HMMwezgQ9IdY22dy/OAbpa9hac0JuILiCv8ibI7YOpeBEUYM
-         jTgl+yRoETFaBrPQEtGfVI3A25L+zHHZR7lTqjPPErbMGbKKOhG+F4H96Zx59cnEBC4r
-         qGL0A4I08MSKDFV+4e30LzKXkzTi+ll9vvo11A9wHI1dwy23wElCjeKPKWrwIcwYEy88
-         XgNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705143175; x=1705747975;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n3ZKmXY5rNjC4L167s/lIYLusQBbgxuUulLBCtl0sr4=;
-        b=cZ2mFU9yq6riViNxHiRdEelmns+qMOBdyc8cMcxMEWz7suSBMuycUNqDFVxvcKwBHB
-         i+mawQp63gKrBEnXig8jpSBEmHwmp7h1f4mI0frK5iW/8AV1r9urpkGdwBdo6XgIDzDf
-         zIAbS5Ub+Xcf5RN2zWTzQHWnpe8G4IhhfEpvJu74/0HE5xeUY2tLmcSmxExAFcW29hUm
-         cclFUet2RlHf2ibQydQ38kRKUSfZTU+eFDS1OsVkgswfS7EgoqkyMAPkVT9BiSYh8JmH
-         7qPe1WmVUU1Eel9AwNkt3pcdckI1HifiUzj9PZ0miky+PaJuxSCkdBCagtXa4t076ki+
-         WxgQ==
-X-Gm-Message-State: AOJu0YzXeUPl5XeatxurmbXihl8RXaOXDg2GE6nZZSpKVuvpFFM8kAem
-	dAgS+zwjVgm4bEpfXla/F6lL95zyJuW/ZQ==
-X-Google-Smtp-Source: AGHT+IFLuJ4mFcAlUzv4sjeEQPGjAyfCwlCQTRF53KNER4IHUdNZtS23ltQkhxln/u/gu+tV2JOlfw==
-X-Received: by 2002:a05:6512:1112:b0:50e:e8f0:1d42 with SMTP id l18-20020a056512111200b0050ee8f01d42mr1272629lfg.119.1705143175499;
-        Sat, 13 Jan 2024 02:52:55 -0800 (PST)
-Received: from [192.168.174.25] (178235179017.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.17])
-        by smtp.gmail.com with ESMTPSA id i18-20020a170906091200b00a2c2b475a0esm2740327ejd.105.2024.01.13.02.52.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Jan 2024 02:52:55 -0800 (PST)
-Message-ID: <75fdcb64-69b2-49b6-a6a6-2e231e3730d9@linaro.org>
-Date: Sat, 13 Jan 2024 11:52:52 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC3020DE3;
+	Sat, 13 Jan 2024 11:32:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1705145570; x=1736681570;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Du3qdD4Uv77R7v4lmk2V7UBcI5SCGfYhkI4KA6VQIw0=;
+  b=InKI3efFvvcbWfP6i+Agft7QegQWYtaHsUaCeCMpZWpadQXFJDqIV2S8
+   nHrDT4czatxtRvQg8ALB+Kb7K52wisdMVthKTNYgCs/ATt+qorvF/PXiv
+   YlHiIBRy9tFOKaSYNVJSHYIWjU43Ot7mKrs0PfUiWmac/tua+sjy/Imfk
+   +nlaA7YMHwn8MFe/swZb5Pl7ymY38x3c1uc/fm3O7bq/nZXxsS9sznGyr
+   NS9DRoTbop3BcKLNQ0O/JEOce1jCBMzPwXR8fz+Kzm0/n57T8H5KKXi+f
+   UL3o+Eo2QTYBhp5GOarK0hpJLNsD6GpEJ5V1ndT3CiuKj2ae6eeXeuFhZ
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="12850526"
+X-IronPort-AV: E=Sophos;i="6.04,192,1695711600"; 
+   d="scan'208";a="12850526"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2024 03:32:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10951"; a="783310511"
+X-IronPort-AV: E=Sophos;i="6.04,192,1695711600"; 
+   d="scan'208";a="783310511"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 13 Jan 2024 03:32:46 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rOcFn-000AQA-2j;
+	Sat, 13 Jan 2024 11:32:43 +0000
+Date: Sat, 13 Jan 2024 19:31:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: Julien Massot <julien.massot@collabora.com>,
+	linux-media@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, kernel@collabora.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	mchehab@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	Julien Massot <julien.massot@collabora.com>
+Subject: Re: [PATCH v3 4/4] media: i2c: add MAX96714 driver
+Message-ID: <202401131916.MpdR8A2O-lkp@intel.com>
+References: <20240111130349.2776699-5-julien.massot@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/13] arm64: dts: qcom: qrb4210-rb2: enable USB-C port
- handling
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20240113-pmi632-typec-v1-0-de7dfd459353@linaro.org>
- <20240113-pmi632-typec-v1-13-de7dfd459353@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240113-pmi632-typec-v1-13-de7dfd459353@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240111130349.2776699-5-julien.massot@collabora.com>
 
-On 13.01.2024 06:42, Dmitry Baryshkov wrote:
-> Plug in USB-C related bits and pieces to enable USB role switching and
-> USB-C orientation handling for the Qualcomm RB2 board.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 62 ++++++++++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sm6115.dtsi     | 38 ++++++++++++++++++++
->  2 files changed, 100 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> index 52f31f3166c2..a96e3afb65bc 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -6,8 +6,10 @@
->  /dts-v1/;
->  
->  #include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/usb/pd.h>
->  #include "sm4250.dtsi"
->  #include "pm6125.dtsi"
-> +#include "pmi632.dtsi"
->  
->  / {
->  	model = "Qualcomm Technologies, Inc. QRB4210 RB2";
-> @@ -256,6 +258,53 @@ kypd_vol_up_n: kypd-vol-up-n-state {
->  	};
->  };
->  
-> +&pmi632_typec {
-> +	status = "okay";
-> +
-> +	connector {
-> +		compatible = "usb-c-connector";
-> +
-> +		power-role = "dual";
-> +		data-role = "dual";
-> +		self-powered;
-> +
-> +		source-pdos = <PDO_FIXED(5000, 3000,
-> +					 PDO_FIXED_DUAL_ROLE |
-> +					 PDO_FIXED_USB_COMM |
-> +					 PDO_FIXED_DATA_SWAP)>;
-> +		sink-pdos = <PDO_FIXED(5000, 500,
-> +					 PDO_FIXED_DUAL_ROLE |
-> +					 PDO_FIXED_USB_COMM |
-> +					 PDO_FIXED_DATA_SWAP)>;
-> +		op-sink-microwatt = <10000000>;
-So RB2 can provide 15 watts over the USB-C port, consume 2.5 but
-requires 10? That doesn't make a whole lot of sense..
+Hi Julien,
 
-Unless I'm reading this wrong..
+kernel test robot noticed the following build errors:
 
-> +&usb_dwc3 {
-> +	usb-role-switch;
+[auto build test ERROR on media-tree/master]
+[also build test ERROR on linuxtv-media-stage/master linus/master next-20240112]
+[cannot apply to sailus-media-tree/streams]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Since this is a dual-role controller, I think this could live in the SoC
-DT
+url:    https://github.com/intel-lab-lkp/linux/commits/Julien-Massot/dt-bindings-media-add-Maxim-MAX96717F-GMSL2-Serializer/20240111-210740
+base:   git://linuxtv.org/media_tree.git master
+patch link:    https://lore.kernel.org/r/20240111130349.2776699-5-julien.massot%40collabora.com
+patch subject: [PATCH v3 4/4] media: i2c: add MAX96714 driver
+config: i386-randconfig-r071-20240112 (https://download.01.org/0day-ci/archive/20240113/202401131916.MpdR8A2O-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240113/202401131916.MpdR8A2O-lkp@intel.com/reproduce)
 
-> +};
-> +
-> +&usb_dwc3_hs {
-> +	remote-endpoint = <&pmi632_hs_in>;
-> +};
-> +
->  &usb_hsphy {
->  	vdd-supply = <&vreg_l4a_0p9>;
->  	vdda-pll-supply = <&vreg_l12a_1p8>;
-> @@ -618,10 +675,15 @@ &usb_hsphy {
->  &usb_qmpphy {
->  	vdda-phy-supply = <&vreg_l4a_0p9>;
->  	vdda-pll-supply = <&vreg_l12a_1p8>;
-> +	orientation-switch;
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401131916.MpdR8A2O-lkp@intel.com/
 
-Similarly, if this doesn't kaboom w/ our implementation too much, the
-PHY itself has orientation detection capabilities
+All errors (new ones prefixed by >>):
 
-Konrad
+   ld: drivers/media/i2c/max96714.o: in function `max96714_parse_dt_txport':
+>> drivers/media/i2c/max96714.c:827: undefined reference to `__moddi3'
+   ld: drivers/media/i2c/max96714.o: in function `max96714_init_tx_port':
+>> drivers/media/i2c/max96714.c:725: undefined reference to `__udivdi3'
+
+
+vim +827 drivers/media/i2c/max96714.c
+
+   714	
+   715	static int max96714_init_tx_port(struct max96714_priv *priv)
+   716	{
+   717		struct v4l2_mbus_config_mipi_csi2 *mipi;
+   718		unsigned long lanes_used = 0;
+   719		u8 val, lane;
+   720		int ret;
+   721	
+   722		ret = max96714_disable_tx_port(priv);
+   723	
+   724		mipi = &priv->vep.bus.mipi_csi2;
+ > 725		val = *priv->vep.link_frequencies * 2 / MHZ(100);
+   726	
+   727		cci_update_bits(priv->regmap, MAX96714_BACKTOP25,
+   728				CSI_DPLL_FREQ_MASK, val, &ret);
+   729	
+   730		val = FIELD_PREP(MAX96714_CSI2_LANE_CNT_MASK, mipi->num_data_lanes - 1);
+   731		cci_update_bits(priv->regmap, MAX96714_MIPI_LANE_CNT,
+   732				MAX96714_CSI2_LANE_CNT_MASK, val, &ret);
+   733	
+   734		/* lanes polarity */
+   735		val = 0;
+   736		for (lane = 0; lane < mipi->num_data_lanes + 1; lane++) {
+   737			if (!mipi->lane_polarities[lane])
+   738				continue;
+   739			if (lane == 0)
+   740				/* clock lane */
+   741				val |= BIT(5);
+   742			else if (lane < 3)
+   743				/* Lane D0 and D1 */
+   744				val |= BIT(lane - 1);
+   745			else
+   746				/* D2 and D3 */
+   747				val |= BIT(lane);
+   748		}
+   749	
+   750		cci_update_bits(priv->regmap, MAX96714_MIPI_POLARITY,
+   751				MAX96714_MIPI_POLARITY_MASK, val, &ret);
+   752	
+   753		/* lanes mapping */
+   754		val = 0;
+   755		for (lane = 0; lane < mipi->num_data_lanes; lane++) {
+   756			val |= (mipi->data_lanes[lane] - 1) << (lane * 2);
+   757			lanes_used |= BIT(mipi->data_lanes[lane] - 1);
+   758		}
+   759	
+   760		/* Unused lanes need to be mapped as well to not have
+   761		 * the same lanes mapped twice.
+   762		 */
+   763		for (; lane < 4; lane++) {
+   764			unsigned int idx = find_first_zero_bit(&lanes_used, 4);
+   765	
+   766			val |= idx << (lane * 2);
+   767			lanes_used |= BIT(idx);
+   768		}
+   769	
+   770		return cci_write(priv->regmap, MAX96714_MIPI_LANE_MAP, val, &ret);
+   771	}
+   772	
+   773	static int max96714_rxport_enable_poc(struct max96714_priv *priv)
+   774	{
+   775		struct max96714_rxport *rxport = &priv->rxport;
+   776	
+   777		if (!rxport->poc)
+   778			return 0;
+   779	
+   780		return regulator_enable(rxport->poc);
+   781	}
+   782	
+   783	static int max96714_rxport_disable_poc(struct max96714_priv *priv)
+   784	{
+   785		struct max96714_rxport *rxport = &priv->rxport;
+   786	
+   787		if (!rxport->poc)
+   788			return 0;
+   789	
+   790		return regulator_disable(rxport->poc);
+   791	}
+   792	
+   793	static int max96714_parse_dt_txport(struct max96714_priv *priv)
+   794	{
+   795		struct device *dev = &priv->client->dev;
+   796		struct fwnode_handle *ep_fwnode;
+   797		u32 num_data_lanes;
+   798		s64 dpll_freq;
+   799		int ret;
+   800	
+   801		ep_fwnode = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev),
+   802							    MAX96714_PAD_SOURCE, 0, 0);
+   803		if (!ep_fwnode)
+   804			return -EINVAL;
+   805	
+   806		priv->vep.bus_type = V4L2_MBUS_UNKNOWN;
+   807	
+   808		ret = v4l2_fwnode_endpoint_alloc_parse(ep_fwnode, &priv->vep);
+   809		fwnode_handle_put(ep_fwnode);
+   810		if (ret) {
+   811			dev_err(dev, "tx: failed to parse endpoint data\n");
+   812			return -EINVAL;
+   813		}
+   814	
+   815		if (priv->vep.bus_type != V4L2_MBUS_CSI2_DPHY) {
+   816			dev_err(&priv->client->dev, "Unsupported bus-type %u\n",
+   817				priv->vep.bus_type);
+   818			return -EINVAL;
+   819		}
+   820	
+   821		if (priv->vep.nr_of_link_frequencies != 1) {
+   822			ret = -EINVAL;
+   823			goto err_free_vep;
+   824		}
+   825	
+   826		/* DPLL freq is twice the link frequency */
+ > 827		dpll_freq = priv->vep.link_frequencies[0] * 2;
+   828	
+   829		/* 100Mbps step, Min 100Mbps, Max 2500Mbps */
+   830		if (dpll_freq % MHZ(100) || dpll_freq < MHZ(100) ||
+   831		    dpll_freq > MHZ(2500)) {
+   832			dev_err(dev, "tx: invalid link frequency\n");
+   833			ret = -EINVAL;
+   834			goto err_free_vep;
+   835		}
+   836	
+   837		num_data_lanes = priv->vep.bus.mipi_csi2.num_data_lanes;
+   838		if (num_data_lanes < 1 || num_data_lanes > 4) {
+   839			dev_err(dev,
+   840				"tx: invalid number of data lanes should be 1 to 4\n");
+   841			ret = -EINVAL;
+   842			goto err_free_vep;
+   843		}
+   844	
+   845		return 0;
+   846	
+   847	err_free_vep:
+   848		v4l2_fwnode_endpoint_free(&priv->vep);
+   849	
+   850		return ret;
+   851	};
+   852	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
