@@ -1,170 +1,165 @@
-Return-Path: <devicetree+bounces-31904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 267D782D129
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 16:25:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB6BC82D150
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 16:52:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9624280F32
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 15:25:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA7F8B21406
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 15:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9B723D2;
-	Sun, 14 Jan 2024 15:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D897A257A;
+	Sun, 14 Jan 2024 15:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="UCILTuOU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Mo1VXpok"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2040.outbound.protection.outlook.com [40.107.20.40])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD0E7E;
-	Sun, 14 Jan 2024 15:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U9ERb5Tkn3pgKjRHKhqlxOvb0L+4KqAcJvSffxnV2+SXD8JTd8ooYPu+LeKWOHFvZDXguzckW/g/oh39aAHFidAAYJsypa3sHlXsg5WrGLw1uZYuLTdDQSedw1du9ga8YRH//IGmA+tc/167lk37X/9+xS8/TOj+ZX/iyKul6z/8shBSp6VYnE5mfvHBoR8JOfmUBuLpb2mRutV0De+UeTckycFztgEU/h8HZ8aTE6sswuPMh7JeK2UDv99atNRd1cny3k5RuJ6jhTZaaQ8zZFXvONLL8C62rSpm7u4be+k4mZ5CnNv6qMV5gUR9zUM5vU7cg9Rt6scZ82xHWw8/8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Vzy5D7HrAjykWw9Oml7PuUd6sm2oMjiaBCRit2uMaeE=;
- b=gYyNarPJmXcd7TbbQVOsBA2JSsQ9EXRszp1WDJXRJw9bIaHrxOxSRSw59VAybYWrCLgpW+xg9nik8B2GSud+awCEfmCQl6Lvo1m+wwMEf0y9qQCutnT2g4ddCoRxZHqOmy4Pv1HwqoN8ecYA+UKQorpOI8JylkgrNGquviYOaWzdUiwzbJNX0LnLHZbj4Wltpu1WpDQcheO9fo0j12CZIP5y6vPf7Ba9dPQkf/mdTBb/evap5wY+bnoLkaKSs9Tx+OWuwSeyKNt0/TS6tPPx44QF2Cf2LP84chRXJ+HpfkzJoFliTSVFgQQ8/PmTZ9un/HodIwL4+LsxDc/8RhcvDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324E023D6
+	for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 15:51:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33674f60184so7869622f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 07:51:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Vzy5D7HrAjykWw9Oml7PuUd6sm2oMjiaBCRit2uMaeE=;
- b=UCILTuOUoTPwZ+XSn2uKuOwfzRCkknzNIpmjqDO0jtm+V4XkWtYBug8TORn+xzPKMfw0EcfeRsWuVHM6Dkk64Dvu9ouv4X0ypAaCV50mV+CzSQlYRG6E+opD9Px3ny6OJznw5iRORcUY7DLkJValLof2OBZjDWDsDmvZEiJVnlU=
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
- by AM9PR04MB8275.eurprd04.prod.outlook.com (2603:10a6:20b:3ec::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.24; Sun, 14 Jan
- 2024 15:25:14 +0000
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::daf2:8c54:d469:793d]) by AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::daf2:8c54:d469:793d%7]) with mapi id 15.20.7181.020; Sun, 14 Jan 2024
- 15:25:13 +0000
-From: Josua Mayer <josua@solid-run.com>
-To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>
-CC: Yazan Shhady <yazan.shhady@solid-run.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-rtc@vger.kernel.org"
-	<linux-rtc@vger.kernel.org>
-Subject: Re: [PATCH v2 5/5] arm64: dts: ti: hummingboard-t: add descriptions
- for m.2 pci-e and usb-3
-Thread-Topic: [PATCH v2 5/5] arm64: dts: ti: hummingboard-t: add descriptions
- for m.2 pci-e and usb-3
-Thread-Index: AQHaRXqNuxiGMT8hwU+/Nqu/DoZlNbDWdwIAgAL5xYA=
-Date: Sun, 14 Jan 2024 15:25:13 +0000
-Message-ID: <3f86b313-f8b7-45fb-a318-e1a633bdba1b@solid-run.com>
-References: <20240112-add-am64-som-v2-0-1385246c428c@solid-run.com>
- <20240112-add-am64-som-v2-5-1385246c428c@solid-run.com>
- <c1ea65a6-4aad-4ca1-88cf-ac3fa130b0e4@ti.com>
-In-Reply-To: <c1ea65a6-4aad-4ca1-88cf-ac3fa130b0e4@ti.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR04MB8963:EE_|AM9PR04MB8275:EE_
-x-ms-office365-filtering-correlation-id: 8dfd2006-3b02-4207-7611-08dc1515013e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- rsl9BNrQKjVgrTkQsQfK3bfIFU8lkAQITJlYaomTSGxwoCIsz6UAmpjOr7st8XqDOvc8i9HxVRo+dXe5Rs1Maioq0wXWZUg80WAKNiu1agLR02aDoLWcXuucJFv8mhgZWIbVu0q+T/PIU6irXTsQoSzrR507Pc3IrFi49QIQxlggxkS+9Mn9X/bdgebgfKlxI3OxIIZsxqYhuwc6HS/mEU/B9KbqOULnmCIj6Lz7vcSYWil6GKAvTptdFsw9n4MvsC6LIUgH5yj/+4dk5hDy2YRZz6P3whgrAp774mQVL5Id82c4U0kNHcD9wfIaOxSJ7LVg5r2DQN79hS+cFc9n8+nfsC/SCBPL+CZxGjBRpZZxGyuPxNHKH+M0/5UqdrW247Sk7nwmN6287EBZPOz4WNRrYRSu9lkV+a42JVZQC7l0rCATULlZSrQr/eGQl8BbIQTcgZFEkO/OuuPKMJo2BjfRq7SbzYHRASvl1kXvaz6VKZim0fpg1sDF1MDQcurB9O0SkwZvLmXyii2JdO3yP8Cq3iTZ4LMXXKHMzi2Pm1VuNRiMCoGs2NnMYIIAEtsNYG1cmv39C1heXVC2ci4SPZi7SZFXIswLJNve+PTEdw9Y3SRV4ClzzKPEmb+xnc4tcsKyk3I2xxyN5SigPhbrgg==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39840400004)(136003)(396003)(366004)(376002)(346002)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(71200400001)(2616005)(26005)(478600001)(53546011)(6512007)(6506007)(2906002)(7416002)(4326008)(5660300002)(41300700001)(91956017)(110136005)(54906003)(64756008)(66446008)(66476007)(66556008)(66946007)(76116006)(6486002)(8676002)(8936002)(316002)(38070700009)(38100700002)(122000001)(36756003)(31696002)(86362001)(31686004)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?WVltY3RtM0JEVkdEaWxaL3lISDdTdHFWOWFLclo4KzR6NFUzUXR4aUJaaVVZ?=
- =?utf-8?B?LzFnNStwaTE3T2hhRkIwd25HdWpLRlBkS3FIRyszd1JUdXVEblZYZ3duYlhF?=
- =?utf-8?B?NTMxTkl3czYzcjFCK3ZTWmk1TnBhQ1VLSWJrK1lnb2dCSTZDMm92SmE4Rm1F?=
- =?utf-8?B?bXZaMEpEdnAxMDFmaFdlSWRyMGkwK1h0RVFXZVBrb2ZQaTZOOElXSEg5OE43?=
- =?utf-8?B?YXRMVElBanVmQkx6MEQvQk5LY2RhdmlLSDlaN0tWOFVnL25RdU1Hc2ZpTjhG?=
- =?utf-8?B?WmdpWldtR1ZTWXNsRmQ2UWE4NFZDa1pnM29KWVZBOXIxeTlaUGJUWE5BODF3?=
- =?utf-8?B?NmY3SG1PZTB2YlYrbTdIM01XZjllMGhYeW1SSk1NRmVhcS9QaFBzYTRnbnNM?=
- =?utf-8?B?SjJGc1hzUFhmaGg2clpWZHYxL0QwdTZUb2hMd2c0blE3VWVyekV0R1VqV1Zn?=
- =?utf-8?B?RnNMWGJNaU1SLzVKUzBJbFZMU05aTWtHbmV1dmpJTGdTYlJNWGJPNUFtYWp0?=
- =?utf-8?B?TmVHQllzN3drWTNaREFSOUN0NTR4L24yTFlrSnkwRTU4NnVVNTFtTHdHTS9h?=
- =?utf-8?B?VExkaDdMTE5JdEcySXUxeG1KNEMwNS82S3NYQVJLbkZKNTBkZTJOQ05OdEhJ?=
- =?utf-8?B?ZGN2bm1SbTlIV3c5M1pwUlNqaUIzbHVsU1BYM2pJN3Z1NUlVT3pPQ1BOZEYy?=
- =?utf-8?B?RWVUd1M2dXgwSnZGTVVaczFNTjgzTzVMaTV0eTBTUks5T1VORzVkTHBLWnBV?=
- =?utf-8?B?OC90WTAxZ2dHQWRQWTVTa3hGNlFiOUpQczkwNDRjK3VDZXB3WjErdmhxNWxP?=
- =?utf-8?B?emxJeEdWalVkREVRd0pCZk9ETExlWGYveStvckk4VEZ6aHp3TGRtdCtxVWNQ?=
- =?utf-8?B?eXd5SDVROEY0b0M5dVdjK2pmeXRzNjlWbGtpZTFYWG5pU2hQN0JIZnFpZlR3?=
- =?utf-8?B?M0NVMmRzcWllbURqLzNNUzRlNjJ1STZ1ZUlLb0tQWHZJYTlDTjRoMmowNHdY?=
- =?utf-8?B?ZkI5dmNnSVdSaWQ1Rml1R3hyck5LWUhvcm13ZjhURmtlaGs4UjRsL0dSZ2Iz?=
- =?utf-8?B?WVRvWnE5Tkt0NTEyYmVGbW04R2R0WHFNRHpKajZ0cjZxL1JQR0oySzR2Q01m?=
- =?utf-8?B?K1owL1BmRlBiVFg1Y0xGY1loMDJJeFFSR3Nqb1ZuNFdxbCtWL3ZNSjUxaVpa?=
- =?utf-8?B?WGRRc2RlOWl3SmJiUkdtalpoQzNVK3Y0R0IyWG5FRkZsTVZFcVN4ZklpY3Bv?=
- =?utf-8?B?Rkwrdks1RFNFUzliK2NnRXhsbnU3cS85dmc2ZGxZQ1FZYXM2M2xOd1J4ODJH?=
- =?utf-8?B?NXdvYnhBNFNUeWJsWHliNUk1VDB3UU11dnlSNjErWEdva1UweVVoVmtzMW5J?=
- =?utf-8?B?MUwyOE5EcGJrY3ZuVW5ER0Ftc3F6ZlNqeTgyQmNCUFNKRTNJYmc2NmZpa0tO?=
- =?utf-8?B?elRubVdXeTVMMDZBaVJGVzdCRHRZKzdQTTZVSnBRSEF1czYzMjRLbUNKWm50?=
- =?utf-8?B?aDhOQlMyVzI1VVlvbHpaUE9nMUZGcUhtaXByUk9Sa3IxaFdIS3ZmSWhXTCs0?=
- =?utf-8?B?VzNkMERqdmc4bElXWVRzQklvZFBDNnkraFZoSjc5NVBZaXQvOFRHUFE2aXBC?=
- =?utf-8?B?d2tEZGp5S1FPekJ6R3p2c3l2Z3QvZW5hL1RKNUIrU3k2emVud2NEN0dZMC95?=
- =?utf-8?B?cmNhZ0hZbU1wV2xFMjZlbG9mck91aHNmUm9RTDl2aVJXb2ZEOHRZRnNKQjFK?=
- =?utf-8?B?OEVOcityMS9CYXFYaVQ1VmhNL25zQ2NWSjh0b090aitwQmlkVVFpbDRDRnh2?=
- =?utf-8?B?WkoxRHhxWkd2K25adUd1dDhuVENsKytSUEZYa2hDZ1h5NVhVQmMvNnpHL2pl?=
- =?utf-8?B?QVY3Snp5Rk5GL2Z4VjlubjBIc2NRWFk5KzdrdDZjNEtncTkvRWlTNW1BTWxU?=
- =?utf-8?B?NktQTkZTSTdUUjF3VjNkc2pGc3VOQjc2WGZYeUE2anVya0tiQngySWw5UGxS?=
- =?utf-8?B?Sk1hQ0tMMWZoS0I3NkF2dEQrNnFzS0VpNEtaVnZPQTl0VmczdmpzVFd3ZVZY?=
- =?utf-8?B?ek8rRmVVM1crRDZ2N2dydjVrRWVDb1Mwek5pQUVpSGV1aUVjUDhpNHdjQVJJ?=
- =?utf-8?Q?2RDN+GD2hQ2C+AVGpPXEADEmM?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <03A51C77654ACA4EBDFCD1112CA1A040@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google; t=1705247512; x=1705852312; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yxmhpra+z46feXbyp+J4UkK+Oy6gkOf3UFSq7vBQdQQ=;
+        b=Mo1VXpoka7hy7AlWhIhlLXafVAlQjIp79qPnvyy0yKLFupOg6SPkHQsbybnqsd/Knh
+         YzCxYkeVNoZZtlE0Zp1uyJACd7whIRGEh71y4eaq8kj4tRrc9/UyyNGWsMIu94qo4Ldx
+         051AaPJAMtTEZulwpZpWU/cslhjYQBN5bghkrQLtsrc22F3LoJsRbK2L+cOjC+oc5Bgr
+         UFD/+3naCQvCdLU2zNTYwjJXxnXgj6KK9N9T1YdNGyr6Ge6YSsylVb+mKgzLoeQ6E04H
+         DU76X3UzWht+B4z2uyarBJZzfDXXg6nAlVUdO8PuiTkLo6xdE8Eaw7KdrnPDW4HUlC3/
+         RQhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705247512; x=1705852312;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yxmhpra+z46feXbyp+J4UkK+Oy6gkOf3UFSq7vBQdQQ=;
+        b=gixSWFnOer/e1rKmau99BdWeSSwZG+f1l1JLlx0bNRuSnUsYXnORi4VgY4lPvFbfJ+
+         qopc5dscSfeNaOyZ7Hh+w9pZ3Jx/MhBWjFGAotBfhVzfEpGOFuBqWimEalsScHHM45Nn
+         mKsR6zqgbyTIxuRHqDB8+8p63UxB350fwhgtfpuVs9BfO+yCLXpdJ5Fj5gifxCYz3vHh
+         UOfAaLivdRHoQzumX2FH3lCE4QAvOiB8nNPOpDo1esgVV3ubMOhn2QMqT3ZzD758xNSR
+         Nfxr1nB6oFn5K6O7wXI4Vq7GwusEZmQ+wwtFui1ryc3zAWei5DWk5EEF+asD8zxuNuXl
+         jCtw==
+X-Gm-Message-State: AOJu0YySGH1858/jd/AtHiD/vyPZjV8AJSKG8NySOnoPmv+05i4Hb7h2
+	ffHXDn0kP+P50KLVrFWuBxQYImamQ43fNg==
+X-Google-Smtp-Source: AGHT+IE7nTdFmHRLF2VThBmfOU2nxXNBRY0FXby8fwY2Ac5wx5PqE+UjvwRurxXT8qnAkKNt6W0jew==
+X-Received: by 2002:adf:f012:0:b0:336:4bc8:f6a7 with SMTP id j18-20020adff012000000b003364bc8f6a7mr1958839wro.114.1705247512395;
+        Sun, 14 Jan 2024 07:51:52 -0800 (PST)
+Received: from [192.168.100.86] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id q5-20020adf9dc5000000b003376dbc75e9sm9394700wre.14.2024.01.14.07.51.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 14 Jan 2024 07:51:51 -0800 (PST)
+Message-ID: <84b69277-36df-4844-afbe-38b7999f9a13@linaro.org>
+Date: Sun, 14 Jan 2024 15:51:50 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8dfd2006-3b02-4207-7611-08dc1515013e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jan 2024 15:25:13.8634
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8TBGE4NP0zkcYBWcLTHyzVncuTYdoZpdISSMpdkt7s1m9jtizFc826L3pk1GYUHz5WoS9erOmCZkl0Lrsesklw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8275
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 06/15] usb: typec: qcom-pmic-typec: fix arguments of
+ qcom_pmic_typec_pdphy_set_roles
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
+ <20240113-pmi632-typec-v2-6-182d9aa0a5b3@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240113-pmi632-typec-v2-6-182d9aa0a5b3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-QW0gMTIuMDEuMjQgdW0gMTg6NTggc2NocmllYiBBbmRyZXcgRGF2aXM6DQo+IE9uIDEvMTIvMjQg
-MTE6MTIgQU0sIEpvc3VhIE1heWVyIHdyb3RlOg0KPj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvdGkvazMtYW02NDItaHVtbWluZ2JvYXJkLXQtcGNpZS5kdHMgYi9hcmNoL2FybTY0
-L2Jvb3QvZHRzL3RpL2szLWFtNjQyLWh1bW1pbmdib2FyZC10LXBjaWUuZHRzDQo+PiBuZXcgZmls
-ZSBtb2RlIDEwMDY0NA0KPj4gaW5kZXggMDAwMDAwMDAwMDAwLi41YmEwMDI5ZmNmYjkNCj4+IC0t
-LSAvZGV2L251bGwNCj4+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvdGkvazMtYW02NDItaHVt
-bWluZ2JvYXJkLXQtcGNpZS5kdHMNCj4+IEBAIC0wLDAgKzEsMzEgQEANCj4+ICsvLyBTUERYLUxp
-Y2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMCsNCj4+ICsvKg0KPj4gKyAqIENvcHlyaWdodCAoQykg
-MjAyMyBKb3N1YSBNYXllciA8am9zdWFAc29saWQtcnVuLmNvbT4NCj4+ICsgKg0KPj4gKyAqIERU
-UyBmb3IgU29saWRSdW4gQU02NDIgSHVtbWluZ0JvYXJkLVQsDQo+PiArICogcnVubmluZyBvbiBD
-b3J0ZXggQTUzLCB3aXRoIFBDSS1FLg0KPj4gKyAqDQo+PiArICovDQo+PiArDQo+PiArI2luY2x1
-ZGUgImszLWFtNjQyLWh1bW1pbmdib2FyZC10LmR0cyINCj4NCj4gQXZvaWQgaW5jbHVkaW5nIC5k
-dHMgZmlsZXMsIGlmIHRoaXMgZmlsZSBpcyBmb3IgYW4gb3B0aW9uIHRoYXQNCj4gY2FuIGJlIGNo
-b3NlbiAoUENJZSB2cyBVU0IzKSwgdGhlbiBpdCBzaG91bGQgYmUgYSBEVCBvdmVybGF5Lg0KPg0K
-Pj4gKyNpbmNsdWRlICJrMy1zZXJkZXMuaCINCj4+ICsNCj4+ICsvIHsNCj4+ICvCoMKgwqAgbW9k
-ZWwgPSAiU29saWRSdW4gQU02NDIgSHVtbWluZ0JvYXJkLVQgd2l0aCBQQ0ktRSI7DQo+PiArfTsN
-Cj4+ICsNCj4+ICsmcGNpZTBfcmMgew0KPj4gK8KgwqDCoCBzdGF0dXMgPSAib2theSI7DQo+DQo+
-IElmIFBDSWUgaXMgb25seSBhdmFpbGFibGUgaGVyZSB3aGVuIHVzaW5nIHRoaXMgYWRkLW9uIHRo
-ZW4NCj4gYWxsIG9mIHRoZSBub2RlIGRhdGEgc2hvdWxkIGJlIGluIHRoaXMgYWRkLW9uIGZpbGUu
-DQpUaGF0IGlzIGNvcnJlY3QsIGFkZC1vbiBmaWxlIHNlZW1zIGFwcHJvcHJpYXRlLg0KDQpJdCBp
-cyB0aGUgc2FtZSBoYXJkd2FyZSwgbWVyZWx5IGEgZGlmZmVyZW50IGNob2ljZSBmb3Igc2lnbmFs
-IHJvdXRpbmcuDQoNClRoYW5rcyEgLSBzaW5jZXJlbHkNCkpvc3VhIE1heWVyDQo=
+On 13/01/2024 20:55, Dmitry Baryshkov wrote:
+> The function qcom_pmic_typec_set_roles() passes enum values as boolean
+> values to qcom_pmic_typec_pdphy_set_roles(), which then interprets them
+> as bit values. Be more explicit about it, pass enum values directly and
+> compute corresponding bit masks in qcom_pmic_typec_pdphy_set_roles().
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c       | 2 +-
+>   drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c | 8 +++++---
+>   drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h | 3 ++-
+>   3 files changed, 8 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
+> index 1a2b4bddaa97..a243648abb4a 100644
+> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
+> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
+> @@ -123,7 +123,7 @@ static int qcom_pmic_typec_set_roles(struct tcpc_dev *tcpc, bool attached,
+>   	struct pmic_typec *tcpm = tcpc_to_tcpm(tcpc);
+>   
+>   	return qcom_pmic_typec_pdphy_set_roles(tcpm->pmic_typec_pdphy,
+> -					       data_role, power_role);
+> +					       power_role, data_role);
+>   }
+>   
+>   static int qcom_pmic_typec_set_pd_rx(struct tcpc_dev *tcpc, bool on)
+> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c
+> index 52c81378e36e..44d8342ed0ad 100644
+> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c
+> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c
+> @@ -354,7 +354,8 @@ int qcom_pmic_typec_pdphy_set_pd_rx(struct pmic_typec_pdphy *pmic_typec_pdphy, b
+>   }
+>   
+>   int qcom_pmic_typec_pdphy_set_roles(struct pmic_typec_pdphy *pmic_typec_pdphy,
+> -				    bool data_role_host, bool power_role_src)
+> +				    enum typec_role power_role,
+> +				    enum typec_data_role data_role)
+>   {
+>   	struct device *dev = pmic_typec_pdphy->dev;
+>   	unsigned long flags;
+> @@ -366,12 +367,13 @@ int qcom_pmic_typec_pdphy_set_roles(struct pmic_typec_pdphy *pmic_typec_pdphy,
+>   				 pmic_typec_pdphy->base + USB_PDPHY_MSG_CONFIG_REG,
+>   				 MSG_CONFIG_PORT_DATA_ROLE |
+>   				 MSG_CONFIG_PORT_POWER_ROLE,
+> -				 data_role_host << 3 | power_role_src << 2);
+> +				 (data_role == TYPEC_HOST ? MSG_CONFIG_PORT_DATA_ROLE : 0) |
+> +				 (power_role == TYPEC_SOURCE ? MSG_CONFIG_PORT_POWER_ROLE : 0));
+>   
+>   	spin_unlock_irqrestore(&pmic_typec_pdphy->lock, flags);
+>   
+>   	dev_dbg(dev, "pdphy_set_roles: data_role_host=%d power_role_src=%d\n",
+> -		data_role_host, power_role_src);
+> +		data_role, power_role);
+>   
+>   	return ret;
+>   }
+> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
+> index e67954e31b14..070822dc6f17 100644
+> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
+> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
+> @@ -107,7 +107,8 @@ int qcom_pmic_typec_pdphy_start(struct pmic_typec_pdphy *pmic_typec_pdphy,
+>   void qcom_pmic_typec_pdphy_stop(struct pmic_typec_pdphy *pmic_typec_pdphy);
+>   
+>   int qcom_pmic_typec_pdphy_set_roles(struct pmic_typec_pdphy *pmic_typec_pdphy,
+> -				    bool power_role_src, bool data_role_host);
+> +				    enum typec_role power_role,
+> +				    enum typec_data_role data_role);
+>   
+>   int qcom_pmic_typec_pdphy_set_pd_rx(struct pmic_typec_pdphy *pmic_typec_pdphy, bool on);
+>   
+> 
+Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
