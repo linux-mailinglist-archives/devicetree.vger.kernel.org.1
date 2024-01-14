@@ -1,64 +1,78 @@
-Return-Path: <devicetree+bounces-31898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B707B82D05F
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 11:55:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D64CC82D072
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 13:01:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B5491F21A62
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 10:55:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4AEE1C20B3E
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 12:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD7F1C3E;
-	Sun, 14 Jan 2024 10:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC11B1FDB;
+	Sun, 14 Jan 2024 12:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UMF09fpA"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="jGPNlib4";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nvhjS/Pt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A875392
-	for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 10:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a2c67be31edso353453766b.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 02:55:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705229717; x=1705834517; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aQ4vf2xhMGy61iRCMfos95u71I0lVPKy9TPJ7Z9zeb8=;
-        b=UMF09fpAUWwCX29coiza5zBLcxxBW423YO2XvrQsVDYGc+z+KrMtMREwl6lx1Qj2ah
-         5uargweAp9l5XzJzmLX3QvBR+hSkQCu+vv7H/pIWWGGS7W82nZjmjY6CYdLmsqgf5EFH
-         IdFlXIweivmvWzq/TsITITGgEzrSxHesZnbF8+6w1dLuZn2qh3a/Rd4L0lvII38BWFwg
-         BxYYEoo70uU52tpkVyi5G+lf0xDoQKdwhG03FUYW7KXbKGLdt0LoPZlS0bkhhhwqBp4N
-         Kp2Wm9P/CIEtjbzkjVVQ5kJk2+/Xi3JVur0UQUsCPJ5VxHvYJMpIKY1JsIGOKAJmJywa
-         2MTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705229717; x=1705834517;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aQ4vf2xhMGy61iRCMfos95u71I0lVPKy9TPJ7Z9zeb8=;
-        b=rd0xNdvzKTYcePWACtY/vzjJppZEwDL8QKT0utPp75xBPA7hnwBmWIanplIyFkPyQc
-         /qPBtFANPrglSIrWulaPNLu4IgvqK+vDklD689NJF9XxuXvrAztoTmo/T1kGxZF3Ez0v
-         97jshqWHNslmVgAn7LSTQ07S4yrYfCKKVfSVe1VoB+YLnqGB1fietsnZeqCCjLIb/nHu
-         k9ItMsexQHA5TqA/BE0FOClzUyb+ZzRbuxTYck3+0zlsCz2CRg54Vs1r8PESjmnVl+ir
-         ORpW73XIRYOyXvdiI7X9Xx7qib0m+77Iba7jf+HQnLYfLEUiQTltShrkPzLlh32yDhdx
-         VFog==
-X-Gm-Message-State: AOJu0Yxsq0b10+9WHwAhnzc8YXkanhiUCs2dBMDW6JBb6Xt50gabRiM8
-	TQ18caQGQ/G+IlgfrVzYbVWIkcSHM6vulA==
-X-Google-Smtp-Source: AGHT+IHFHW6rZhyP0lPjCheg8xH1yEq7QUSZbVKzYRsQqTKZoZPYx1tlEf48M8d0kseP0OLV6E5aCQ==
-X-Received: by 2002:a17:907:d386:b0:a2d:9b63:a487 with SMTP id vh6-20020a170907d38600b00a2d9b63a487mr188617ejc.304.1705229717584;
-        Sun, 14 Jan 2024 02:55:17 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.112])
-        by smtp.gmail.com with ESMTPSA id st7-20020a170907c08700b00a2cfa8edbcesm2206367ejc.199.2024.01.14.02.55.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Jan 2024 02:55:16 -0800 (PST)
-Message-ID: <25fb8925-dba3-4cad-a111-69e0eafaf852@linaro.org>
-Date: Sun, 14 Jan 2024 11:55:15 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5DD11FC4;
+	Sun, 14 Jan 2024 12:01:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id BA97E5C011D;
+	Sun, 14 Jan 2024 07:01:43 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Sun, 14 Jan 2024 07:01:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
+	 t=1705233703; x=1705320103; bh=NIDbSUe/VY05zfXFsXVGd3fhpNJG2RNs
+	cv6cFSHMoho=; b=jGPNlib4CeHRkKxY6UHm3Je0FfiN1AtkHkrQcQBV8WBazxoJ
+	nsMk5vU/F51GtpuVeVf9zrOva6q4P8j2jbxhjGAT/25x8Ir9tTQCiA3U8/Ha4SEZ
+	FxwTz1CjF1NQkPVNedgJAVQR1GZ/yD0FN54/46QLkn/Yow/zSHIuEWg/XgDG3o8C
+	X3VuXraLJk1jR67Waq1oOuvc8SWDZPCwo/8uao8cAYTlqcalbVErNtPq06E0eQIb
+	V8ZDf11V2jTj0zijnEij3JYDd4PgvJBPCIZvkyPxmkU3o+Y3214btzXvClhjRbPo
+	t/bdhWUlF4d2eQb7KDaWD8Bw5dMIrVk9U5SZqA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1705233703; x=
+	1705320103; bh=NIDbSUe/VY05zfXFsXVGd3fhpNJG2RNscv6cFSHMoho=; b=n
+	vhjS/PtADMUsRRXwPCikeIxyyoyB2sCN5Vb9Fb3ui2DWMiD2b6IsHJWsS3BrbJO5
+	JpaMoyPbHRL6trNLaMNynCwZQyGM5SvC4RdL+DMkSYmRj4XosrrpTb966miZmLVw
+	sdRMx40weL++U0skRyqrD6t4e7jBKNaiMDgydKDyAQ6JizYVxQ+Vp7YAmU44eSfV
+	G7Kv3sY08tI0AlsH6CWNCu2RBWQTOLSVs8ICmY0pUKKsnEWoGsSdv9Za42HuQD6N
+	EHr3LaxYLj90DSkB7+6o5vL6IlpXnplKoPG3Df999NVZ+3fjwa1qOUvzCTy3dPpR
+	9wvqj2mwrXr1+qFtUUFUg==
+X-ME-Sender: <xms:Js2jZaL-xdhyI18DqcDzRp0odyXo3URQ0X91fS7BWnWSLBKcDVrJCg>
+    <xme:Js2jZSITYbAo1ZYY_Fi_w1cEMcm_90sJQImeoimVDpckUnqk71TZFR1moLlv2SE0v
+    ef9gWBh3w>
+X-ME-Received: <xmr:Js2jZasJPmclZxV75V7YwEGvGyy1RRi4vAohJABBjVHW0NNbtAzbBmVMB1FBdRh6p4isGQGo04YHKG17tha8v7AFVehBFvtp-htwkg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdeiledgfeehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefvihhm
+    ucfnuhhnnhcuoehtihhmsehfvggrthhhvghrthhophdrohhrgheqnecuggftrfgrthhtvg
+    hrnhepueegfefgveeuiedtheffgfefveejkeetiefhhfdvjeevlefhueekudeuleeghfek
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhimh
+    esfhgvrghthhgvrhhtohhprdhorhhg
+X-ME-Proxy: <xmx:Js2jZfYroSoLORR9qWaklWemgWodY4NLcockbzQsqrFEoAd6WCx8Kg>
+    <xmx:Js2jZRaAKgted1xLzhJwwwS_JWurG9nBvOMAsGFueYTB6WrQfmy0-Q>
+    <xmx:Js2jZbDpWpl8tBF2Shr-jg_eMduayvrhI_m0K1WqW8A3HdttUU-U0Q>
+    <xmx:J82jZaLTx1-8Ge7hYUsYCoBIDZ84ves9f1syL4Lh6JW5dalguy4vRA>
+Feedback-ID: i1f8241ce:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 14 Jan 2024 07:01:36 -0500 (EST)
+Message-ID: <5774eb3f-dfdc-4e4d-985e-3ec4b69ad206@feathertop.org>
+Date: Sun, 14 Jan 2024 23:01:32 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,78 +80,428 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: rockchip: Add Hardkernel ODROID-M1S board
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Hardkernel ODROID-M1S board
 Content-Language: en-US
 To: KyuHyuk Lee <lee@kyuhyuk.kr>, Rob Herring <robh+dt@kernel.org>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Chris Morgan <macromorgan@hotmail.com>, Jagan Teki <jagan@edgeble.ai>,
- Tianling Shen <cnsztl@gmail.com>, Andy Yan <andyshrk@163.com>,
- Ondrej Jirman <megi@xff.cz>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240113172102.6890-1-lee@kyuhyuk.kr>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240113172102.6890-1-lee@kyuhyuk.kr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ Tianling Shen <cnsztl@gmail.com>, Chris Morgan <macromorgan@hotmail.com>,
+ Ondrej Jirman <megi@xff.cz>, Andy Yan <andyshrk@163.com>,
+ Jagan Teki <jagan@edgeble.ai>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ David Heidelberg <david@ixit.cz>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240112135004.28907-1-lee@kyuhyuk.kr>
+From: Tim Lunn <tim@feathertop.org>
+In-Reply-To: <20240112135004.28907-1-lee@kyuhyuk.kr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 13/01/2024 18:21, KyuHyuk Lee wrote:
-> Add device tree binding for Hardkernel ODROID-M1S board based on
-> RK3566 SoC.
-> 
+Hi Lee,
+
+On 1/13/24 00:50, KyuHyuk Lee wrote:
+> This patch is to add a device tree for new board Hardkernel ODROID-M1S
+> based on Rockchip RK3566, includes basic peripherals uart/eMMC/uSD/i2c
+>
 > Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>   .../boot/dts/rockchip/rk3566-odroid-m1s.dts   | 388 ++++++++++++++++++
+>   2 files changed, 389 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dts
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index a7b30e11beaf..0cc7360a6120 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353ps.dtb
+>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353v.dtb
+>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353vs.dtb
+>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg503.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-odroid-m1s.dtb
+>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
+>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
+>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-powkiddy-rgb30.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dts b/arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dts
+> new file mode 100644
+> index 000000000000..c6c4f573535f
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dts
+> @@ -0,0 +1,388 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2024 KyuHyuk Lee <lee@kyuhyuk.kr>
+> + *
+> + */
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/pinctrl/rockchip.h>
+> +#include "rk3566.dtsi"
+> +
+> +/ {
+> +	model = "Hardkernel ODROID-M1S";
+> +	compatible = "rockchip,rk3566-odroid-m1s", "rockchip,rk3566";
+> +
+> +	aliases {
+> +		i2c0 = &i2c3;
+> +		i2c3 = &i2c0;
+> +		spi0 = &spi1;
+> +		spi1 = &spi0;
+> +		mmc0 = &sdmmc0;
+> +		mmc1 = &sdhci;
+> +		serial0 = &uart6;
+> +		serial1 = &uart0;
+> +		serial6 = &uart1;
+> +	};
+I suppose these mismatched aliases are here to keep compatibility with 
+the Odroid M1? However thats going to be super confusing to anyone 
+following the actual Odroid M1S connector pinout (even the pin card that 
+came with my Odroid M1S doesnt show these mappings, but the actual real 
+ports)?
+> +
+> +	chosen {
+> +		stdout-path = "serial2:1500000n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led_power: led-0 {
+> +			gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
+> +			function = LED_FUNCTION_POWER;
+> +			color = <LED_COLOR_ID_RED>;
+> +			linux,default-trigger = "default-on";
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&led_power_pin>;
+> +		};
+> +		led_work: led-1 {
+> +			gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+> +			function = LED_FUNCTION_HEARTBEAT;
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			linux,default-trigger = "heartbeat";
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&led_work_pin>;
+> +		};
+> +	};
+> +
+> +	vcc_sys: vcc-sys-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +
+> +	vcc3v3_sys: vcc3v3-sys-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc3v3_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc5v0_sys>;
+> +	};
+> +
+> +	vcc5v0_sys: vcc5v0-sys-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&vcc_sys>;
+> +	};
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&cpu1 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&cpu2 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&cpu3 {
+> +	cpu-supply = <&vdd_cpu>;
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	vdd_cpu: regulator@1c {
+> +		compatible = "tcs,tcs452x";
+This compatible seems to be from the Rockchip kernel, for mainline it 
+should be  "tcs,tcs4525"?
+> +		reg = <0x1c>;
+> +		fcs,suspend-voltage-selector = <1>;
+> +		regulator-name = "vdd_cpu";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <712500>;
+> +		regulator-max-microvolt = <1390000>;
+> +		regulator-init-microvolt = <900000>;
+> +		regulator-ramp-delay = <2300>;
+> +		vin-supply = <&vcc5v0_sys>;
+I had checked schematics for this and they seem to show that this is
+vin-supply = <&vcc3v3_sys>?
+> +
+> +		regulator-state-mem {
+> +			regulator-off-in-suspend;
+> +		};
+> +	};
+> +
+> +	rk809: pmic@20 {
+> +		compatible = "rockchip,rk809";
+> +		reg = <0x20>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +		#clock-cells = <1>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pmic_int_l>;
+> +		rockchip,system-power-controller;
+> +		vcc1-supply = <&vcc3v3_sys>;
+> +		vcc2-supply = <&vcc3v3_sys>;
+> +		vcc3-supply = <&vcc3v3_sys>;
+> +		vcc4-supply = <&vcc3v3_sys>;
+> +		vcc5-supply = <&vcc3v3_sys>;
+> +		vcc6-supply = <&vcc3v3_sys>;
+> +		vcc7-supply = <&vcc3v3_sys>;
+> +		vcc8-supply = <&vcc3v3_sys>;
+> +		vcc9-supply = <&vcc3v3_sys>;
+> +		wakeup-source;
+> +
+> +		regulators {
+> +			vdd_logic: DCDC_REG1 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-init-microvolt = <900000>;
+> +				regulator-ramp-delay = <6001>;
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-name = "vdd_logic";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdd_gpu: DCDC_REG2 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-init-microvolt = <900000>;
+> +				regulator-ramp-delay = <6001>;
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-name = "vdd_gpu";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_ddr: DCDC_REG3 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-name = "vcc_ddr";
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdd_npu: DCDC_REG4 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <500000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-init-microvolt = <900000>;
+> +				regulator-ramp-delay = <6001>;
+> +				regulator-initial-mode = <0x2>;
+> +				regulator-name = "vdd_npu";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdda0v9_image: LDO_REG1 {
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-name = "vdda0v9_image";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdda_0v9: LDO_REG2 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-name = "vdda_0v9";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vdda0v9_pmu: LDO_REG3 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <900000>;
+> +				regulator-max-microvolt = <900000>;
+> +				regulator-name = "vdda0v9_pmu";
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <900000>;
+> +				};
+> +			};
+> +
+> +			vccio_acodec: LDO_REG4 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <3000000>;
+> +				regulator-max-microvolt = <3000000>;
+> +				regulator-name = "vccio_acodec";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vccio_sd: LDO_REG5 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-name = "vccio_sd";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc3v3_pmu: LDO_REG6 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-name = "vcc3v3_pmu";
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <3300000>;
+> +				};
+> +			};
+> +
+> +			vcca_1v8: LDO_REG7 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-name = "vcca_1v8";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcca1v8_ddr: LDO_REG8 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-name = "vcca1v8_pmu";
+> +				regulator-state-mem {
+> +					regulator-on-in-suspend;
+> +					regulator-suspend-microvolt = <1800000>;
+> +				};
+> +			};
+> +
+> +			vcca1v8_image: LDO_REG9 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-name = "vcca1v8_image";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_1v8: DCDC_REG5 {
+Maybe its just me, but seems odd that DCDC_REG5 is out of order with the 
+other DCDC regulators above.
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-name = "vcc_1v8";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc_3v3: SWITCH_REG1 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-name = "vcc_3v3";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +
+> +			vcc3v3_sd: SWITCH_REG2 {
+> +				regulator-always-on;
+> +				regulator-boot-on;
+> +				regulator-name = "vcc3v3_sd";
+> +				regulator-state-mem {
+> +					regulator-off-in-suspend;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&pinctrl {
+> +	leds {
+> +		led_power_pin: led-power-pin {
+> +			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +		led_work_pin: led-work-pin {
+> +			rockchip,pins = <0 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
+> +		};
+> +	};
+> +
+> +	pmic {
+> +		pmic_int_l: pmic-int-l {
+> +			rockchip,pins =
+> +				<0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +	};
+> +};
+> +
+> +&pmu_io_domains {
+> +	pmuio2-supply = <&vcc3v3_pmu>;
+> +	vccio1-supply = <&vccio_acodec>;
+> +	vccio3-supply = <&vccio_sd>;
+> +	vccio4-supply = <&vcc_3v3>;
+> +	vccio5-supply = <&vcc_3v3>;
+> +	vccio6-supply = <&vcc_3v3>;
+> +	vccio7-supply = <&vcc_3v3>;
+> +	status = "okay";
+> +};
+Did you miss pmuio1 and vccio2 here? the latter of which is the eMMC domain.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Are you planning to add additional patches for usb, gmac etc? I had been 
+working through cleaning up these device tree files with a view to 
+submitting them soon also.
 
-Best regards,
-Krzysztof
-
+Regards
+    Tim
 
