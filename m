@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-31905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB6BC82D150
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 16:52:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF1EE82D157
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 16:55:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA7F8B21406
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 15:52:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EE761C20C42
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 15:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D897A257A;
-	Sun, 14 Jan 2024 15:51:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F2453C36;
+	Sun, 14 Jan 2024 15:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Mo1VXpok"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N4cWL4Ri"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 324E023D6
-	for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 15:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B5FD2581
+	for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 15:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33674f60184so7869622f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 07:51:53 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33678156e27so6821709f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 07:55:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705247512; x=1705852312; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yxmhpra+z46feXbyp+J4UkK+Oy6gkOf3UFSq7vBQdQQ=;
-        b=Mo1VXpoka7hy7AlWhIhlLXafVAlQjIp79qPnvyy0yKLFupOg6SPkHQsbybnqsd/Knh
-         YzCxYkeVNoZZtlE0Zp1uyJACd7whIRGEh71y4eaq8kj4tRrc9/UyyNGWsMIu94qo4Ldx
-         051AaPJAMtTEZulwpZpWU/cslhjYQBN5bghkrQLtsrc22F3LoJsRbK2L+cOjC+oc5Bgr
-         UFD/+3naCQvCdLU2zNTYwjJXxnXgj6KK9N9T1YdNGyr6Ge6YSsylVb+mKgzLoeQ6E04H
-         DU76X3UzWht+B4z2uyarBJZzfDXXg6nAlVUdO8PuiTkLo6xdE8Eaw7KdrnPDW4HUlC3/
-         RQhw==
+        d=linaro.org; s=google; t=1705247744; x=1705852544; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=g2aUMEjKbXUbZpLS1Bx2+nPZs3/xjW05yWubF1D71jo=;
+        b=N4cWL4RiXrIK1OXSGIzJxHH+cJrvpErqdiuNp0HJKM3gf7XgbRVCzbJhQpT7KcI1J9
+         UpYNp1WRIuKa7jrZyuFRRkxhxgp4Jt9Za7TS3jWRrLkEr3ta2sPWdhBmQVRXylYjh1Qe
+         7jOOW+5eXPFaXQOPMajOpUN/qSQVRtmx6SWaZpi7VVkX0TZiPtJLH2LKYwCjNnSguh13
+         3uletbEw5ZPAnNffMz8PZPFfpHoZ8XXRd2uwmcp+qk6Io0/GLF1VCGQLW/U/kGdOwlYg
+         iVtl+9AbqoCv6tGPbTqo29OBvTqGInHegwTCWjM4M7iGazUXdWTu7xM38A9AsefFJZ6I
+         L/Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705247512; x=1705852312;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yxmhpra+z46feXbyp+J4UkK+Oy6gkOf3UFSq7vBQdQQ=;
-        b=gixSWFnOer/e1rKmau99BdWeSSwZG+f1l1JLlx0bNRuSnUsYXnORi4VgY4lPvFbfJ+
-         qopc5dscSfeNaOyZ7Hh+w9pZ3Jx/MhBWjFGAotBfhVzfEpGOFuBqWimEalsScHHM45Nn
-         mKsR6zqgbyTIxuRHqDB8+8p63UxB350fwhgtfpuVs9BfO+yCLXpdJ5Fj5gifxCYz3vHh
-         UOfAaLivdRHoQzumX2FH3lCE4QAvOiB8nNPOpDo1esgVV3ubMOhn2QMqT3ZzD758xNSR
-         Nfxr1nB6oFn5K6O7wXI4Vq7GwusEZmQ+wwtFui1ryc3zAWei5DWk5EEF+asD8zxuNuXl
-         jCtw==
-X-Gm-Message-State: AOJu0YySGH1858/jd/AtHiD/vyPZjV8AJSKG8NySOnoPmv+05i4Hb7h2
-	ffHXDn0kP+P50KLVrFWuBxQYImamQ43fNg==
-X-Google-Smtp-Source: AGHT+IE7nTdFmHRLF2VThBmfOU2nxXNBRY0FXby8fwY2Ac5wx5PqE+UjvwRurxXT8qnAkKNt6W0jew==
-X-Received: by 2002:adf:f012:0:b0:336:4bc8:f6a7 with SMTP id j18-20020adff012000000b003364bc8f6a7mr1958839wro.114.1705247512395;
-        Sun, 14 Jan 2024 07:51:52 -0800 (PST)
-Received: from [192.168.100.86] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id q5-20020adf9dc5000000b003376dbc75e9sm9394700wre.14.2024.01.14.07.51.51
+        d=1e100.net; s=20230601; t=1705247744; x=1705852544;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g2aUMEjKbXUbZpLS1Bx2+nPZs3/xjW05yWubF1D71jo=;
+        b=IWZFdW40NFDOemgj6DqKNQxktAKWLkMU0CEYXN7Nu7/nL6fv3yuXQkAh4AhC9JAXYj
+         MIJoxeMRiUOQuqKGB+sTnrVHzkJx2/braiZyLLRSxaUIk0eEjT0kgJuIi7kXXEDFGoAa
+         p8z1NZNCnTpcPEuHHYxKsYqAf4AA8yenY+f41HF1x9fL8Zpc9718Zd1cwlysgj2et7bW
+         xQD2dIl6ZB2tsvpFFUG6LBqf+rIo6ViKLDtPe5S+qlDITkl/qWRHZeonK/mZ2nyiIS9P
+         xaziUC7I+5bYWcEBO52BIhKEBpBeUrK7DKS4N5isKaTXycNMmEufyWgycMXIqcIvgZ74
+         Pt/g==
+X-Gm-Message-State: AOJu0YzNHfcoOSsKJzflxLq2C2aBMLyIGtKYy0vNouMpEr3FLRt0P8Ps
+	NTXb8ox89PqU/lLznKA23cn9PWSyXswU4w==
+X-Google-Smtp-Source: AGHT+IG7ebHH36V/qKwnxwfmNYa2c5NimAxE+UNq6g8khSn8OVndwuDdLL6mkPqyN5HIU+NnugdFpg==
+X-Received: by 2002:a5d:4709:0:b0:337:5c44:92fb with SMTP id y9-20020a5d4709000000b003375c4492fbmr2344508wrq.132.1705247744569;
+        Sun, 14 Jan 2024 07:55:44 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.112])
+        by smtp.gmail.com with ESMTPSA id z15-20020a5d654f000000b00336c9ad1173sm9410210wrv.26.2024.01.14.07.55.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Jan 2024 07:51:51 -0800 (PST)
-Message-ID: <84b69277-36df-4844-afbe-38b7999f9a13@linaro.org>
-Date: Sun, 14 Jan 2024 15:51:50 +0000
+        Sun, 14 Jan 2024 07:55:44 -0800 (PST)
+Message-ID: <1b8cb3ba-6727-45ab-acaa-c727a0a7ad85@linaro.org>
+Date: Sun, 14 Jan 2024 16:55:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,100 +67,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/15] usb: typec: qcom-pmic-typec: fix arguments of
- qcom_pmic_typec_pdphy_set_roles
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
+Subject: Re: [PATCH v4 1/3] dt-bindings: w1: UART 1-Wire bus
+To: Christoph Winklhofer <cj.winklhofer@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
- <20240113-pmi632-typec-v2-6-182d9aa0a5b3@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240113-pmi632-typec-v2-6-182d9aa0a5b3@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Jiri Slaby <jirislaby@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20240106-w1-uart-v4-0-7fe1378a8b3e@gmail.com>
+ <20240106-w1-uart-v4-1-7fe1378a8b3e@gmail.com>
+ <20240113013917.GA3795949-robh@kernel.org> <ZaLQxGjjmA_iKOv2@cjw-notebook>
+ <81c79939-56cc-4d78-9552-56568999df09@linaro.org>
+ <ZaP0CoCYLQxrT3VD@cjw-notebook>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ZaP0CoCYLQxrT3VD@cjw-notebook>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/01/2024 20:55, Dmitry Baryshkov wrote:
-> The function qcom_pmic_typec_set_roles() passes enum values as boolean
-> values to qcom_pmic_typec_pdphy_set_roles(), which then interprets them
-> as bit values. Be more explicit about it, pass enum values directly and
-> compute corresponding bit masks in qcom_pmic_typec_pdphy_set_roles().
+On 14/01/2024 15:47, Christoph Winklhofer wrote:
+> On Sun, Jan 14, 2024 at 11:54:48AM +0100, Krzysztof Kozlowski wrote:
+>> On 13/01/2024 19:04, Christoph Winklhofer wrote:
+>>> On Fri, Jan 12, 2024 at 07:39:17PM -0600, Rob Herring wrote:
+>>>> On Sat, Jan 06, 2024 at 05:02:24PM +0100, Christoph Winklhofer wrote:
+>>>>> Add device tree binding for UART 1-Wire bus.
+>>>>>
+>>>>> Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/w1/w1-uart.yaml | 62 +++++++++++++++++++++++
+>>>>>  1 file changed, 62 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/w1/w1-uart.yaml b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..6b90693b2ca0
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+>>>>> @@ -0,0 +1,62 @@
+>>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/w1/w1-uart.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> ...
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: w1-uart
+>>>>> +
+>>>>> +  reset-speed:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    default: 9600
+>>>>> +    description: |
+>>>>
+>>>> Don't need '|' if no formatting
+>>>>
+>>>
+>>> Ok.
+>>>
+>>>>> +      The baud rate for the 1-Wire reset and presence detect.
+>>>>> +
+>>>>> +  touch_0-speed:
+>>>>
+>>>> Don't use '_' in property names.
+>>>>
+>>>> I'm somewhat familar with 1-wire, but I don't get what 'touch' means 
+>>>> here. I assume these are low and high times which are a function of the 
+>>>> baudrate.
+>>>>
+>>>
+>>> I change the name to 'write-0-speed' and 'write-1-speed'. The function
+>>> in the w1-framework is named 'touch_bit' - therefore the previous
+>>> naming. 
+>>>
+>>> It is the baud-rate used in the 1-Wire cycle to write a 0-Bit
+>>> (write-0-speed) and to perform a 1-Wire cycle that writes a 1-Bit and
+>>> reads a 0-Bit or 1-Bit (write-1-speed).
+>>
+>>
+>> Then probably -bps:
+>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c       | 2 +-
->   drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c | 8 +++++---
->   drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h | 3 ++-
->   3 files changed, 8 insertions(+), 5 deletions(-)
+> The serial.yaml uses prefix -speed for the baud rate but I can change it
+> to -bps.
+
+Do you reference serial.yaml?
+
 > 
-> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
-> index 1a2b4bddaa97..a243648abb4a 100644
-> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
-> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c
-> @@ -123,7 +123,7 @@ static int qcom_pmic_typec_set_roles(struct tcpc_dev *tcpc, bool attached,
->   	struct pmic_typec *tcpm = tcpc_to_tcpm(tcpc);
->   
->   	return qcom_pmic_typec_pdphy_set_roles(tcpm->pmic_typec_pdphy,
-> -					       data_role, power_role);
-> +					       power_role, data_role);
->   }
->   
->   static int qcom_pmic_typec_set_pd_rx(struct tcpc_dev *tcpc, bool on)
-> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c
-> index 52c81378e36e..44d8342ed0ad 100644
-> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c
-> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c
-> @@ -354,7 +354,8 @@ int qcom_pmic_typec_pdphy_set_pd_rx(struct pmic_typec_pdphy *pmic_typec_pdphy, b
->   }
->   
->   int qcom_pmic_typec_pdphy_set_roles(struct pmic_typec_pdphy *pmic_typec_pdphy,
-> -				    bool data_role_host, bool power_role_src)
-> +				    enum typec_role power_role,
-> +				    enum typec_data_role data_role)
->   {
->   	struct device *dev = pmic_typec_pdphy->dev;
->   	unsigned long flags;
-> @@ -366,12 +367,13 @@ int qcom_pmic_typec_pdphy_set_roles(struct pmic_typec_pdphy *pmic_typec_pdphy,
->   				 pmic_typec_pdphy->base + USB_PDPHY_MSG_CONFIG_REG,
->   				 MSG_CONFIG_PORT_DATA_ROLE |
->   				 MSG_CONFIG_PORT_POWER_ROLE,
-> -				 data_role_host << 3 | power_role_src << 2);
-> +				 (data_role == TYPEC_HOST ? MSG_CONFIG_PORT_DATA_ROLE : 0) |
-> +				 (power_role == TYPEC_SOURCE ? MSG_CONFIG_PORT_POWER_ROLE : 0));
->   
->   	spin_unlock_irqrestore(&pmic_typec_pdphy->lock, flags);
->   
->   	dev_dbg(dev, "pdphy_set_roles: data_role_host=%d power_role_src=%d\n",
-> -		data_role_host, power_role_src);
-> +		data_role, power_role);
->   
->   	return ret;
->   }
-> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
-> index e67954e31b14..070822dc6f17 100644
-> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
-> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h
-> @@ -107,7 +107,8 @@ int qcom_pmic_typec_pdphy_start(struct pmic_typec_pdphy *pmic_typec_pdphy,
->   void qcom_pmic_typec_pdphy_stop(struct pmic_typec_pdphy *pmic_typec_pdphy);
->   
->   int qcom_pmic_typec_pdphy_set_roles(struct pmic_typec_pdphy *pmic_typec_pdphy,
-> -				    bool power_role_src, bool data_role_host);
-> +				    enum typec_role power_role,
-> +				    enum typec_data_role data_role);
->   
->   int qcom_pmic_typec_pdphy_set_pd_rx(struct pmic_typec_pdphy *pmic_typec_pdphy, bool on);
->   
-> 
-Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
+
+Best regards,
+Krzysztof
+
 
