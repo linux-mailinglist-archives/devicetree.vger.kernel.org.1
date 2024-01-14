@@ -1,144 +1,119 @@
-Return-Path: <devicetree+bounces-31921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E219982D1C6
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 18:43:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4569082D1C2
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 18:43:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 131441C20B08
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 17:43:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19E86B211DC
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 17:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C190FEAED;
-	Sun, 14 Jan 2024 17:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1066BE56B;
+	Sun, 14 Jan 2024 17:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="G8/lsiwd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A0lBIeTy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6182BF9D0;
-	Sun, 14 Jan 2024 17:43:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.helo=mx0b-0016f401.pphosted.com
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-	by mx0b-0016f401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40EFrbhI014352;
-	Sun, 14 Jan 2024 09:22:06 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	pfpt0220; bh=QQNf0lKyajsE6Luo4IJ5sBtXhUXF5LYFHu/e6XK5dmg=; b=G8/
-	lsiwd0GmCFpnkzD6MHMPsw8tQnZDR3glMsGv/bJayu9Nhbp2CW/YfhWJgHcZvfs4
-	MRzyzCOjvJwyVFlnyRA/5J4/nLX0h/AYADP0JkWO9umCiI7N/MuWld6BAWx2DOLv
-	TE0b1EQbXv+GLpATW9hAQA+Kj5k0gjlYqJXNiCr4JnQ6pvf7ogF3LuSYncg79mhp
-	q2idmfAqL+AW3+EANnsEyCJ36RW7aR+V08r0Zwr8Z3vuEx2CzS78H61FtyBbiTPy
-	xXcM1Rw9bLKWHXeaks3KDLdq4GdFTlrHeXbi7weyjJkbAnp5iYit2WVdHUdy4ZSZ
-	GBVX9Zp/XzkAT+x9sbw==
-Received: from dc5-exch01.marvell.com ([199.233.59.181])
-	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3vktwkafqx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Sun, 14 Jan 2024 09:22:05 -0800 (PST)
-Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Sun, 14 Jan
- 2024 09:22:03 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.48 via Frontend
- Transport; Sun, 14 Jan 2024 09:22:03 -0800
-Received: from dc3lp-swdev041.marvell.com (dc3lp-swdev041.marvell.com [10.6.60.191])
-	by maili.marvell.com (Postfix) with ESMTP id 7D0025E6873;
-	Sun, 14 Jan 2024 09:22:01 -0800 (PST)
-From: Elad Nachman <enachman@marvell.com>
-To: <gregkh@linuxfoundation.org>,
-        rowland.harvard.edu@mx0b-0016f401.pphosted.com, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <enachman@marvell.com>
-Subject: [PATCH v4 2/2] usb: host: Add ac5 to EHCI Orion
-Date: Sun, 14 Jan 2024 19:21:54 +0200
-Message-ID: <20240114172154.2622275-3-enachman@marvell.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240114172154.2622275-1-enachman@marvell.com>
-References: <20240114172154.2622275-1-enachman@marvell.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42BEF134A2
+	for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 17:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-50e80d40a41so10176767e87.1
+        for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 09:42:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705254159; x=1705858959; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=O1v1apq6ozW0u5jFLbve7v/4N9ygd3uDpwX9iIhhN7s=;
+        b=A0lBIeTys1JEQumRzjzKQssBrndcm0Y96PFXE1oyii9eZwOYWFv3ZaQc6tH4gFcErU
+         ebi7iptbR65yhjNK/c8SAcd66PDE2Lz37XuY+Ol2h1k3/NZY75727t9Qh/DP4Xat3Va5
+         32Yd8AwsdhA+W2w8HOEoCfte8myLAaSxmJzojAGz8j4JlHbn7PEvXWwUpjfHDCbw7RK6
+         VlRojBfzaVatwIXywPRVvGw8jCnu8JEsuDtnhRcQdoKTKjoTBxxJJzGE6k3B8DH8GgHX
+         gUs7RAtVugstxl0y9p9OdosC7KkD4xeAGeUvOdDfak8PKIN8By3OG73LJhoNPCsYj8Vw
+         x5SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705254159; x=1705858959;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O1v1apq6ozW0u5jFLbve7v/4N9ygd3uDpwX9iIhhN7s=;
+        b=fIJWPF3Fj2WcKBlEBMzaBPi7lZJF6GJKd4yfY7aJ0HjqGrVOsC2l8SxnhXhaKG2CBq
+         LJfVhOyh6DXd3qN7aFT4nC/0eUTUgEhKWGpAI+waKifNxdWESGZUnUySRFumiTQ1OpAs
+         wCvEDAByNvz5h6x0WOO4a3WPILrJBM8L58YK7LsVq+kLdlaoyoHojd4bk8E6FBmNCooz
+         azf/IJkaCkgjW57CowaBYQ0bnAxiLT0bCEqXgst7CPqNIrBeJLMCi2WT/JOuVPzPCDRP
+         3VV2r2lS7p7I6WgwM2tEXOMpLf/srHhhqXwQpV8/Jk9R+O/Xly7LcQoJRRSlXHiw+PpX
+         2bIw==
+X-Gm-Message-State: AOJu0YzkB3VcN7KI2j3qhvqeOGKWX/B24RBAuHabblrkHNKD1b2WkDrM
+	PzHMUXEkhit8yzQHRJeq1mzrwJRNv3ZbR0ywxhcbz4Rk4qkzWR1I
+X-Google-Smtp-Source: AGHT+IFxgZxCUEhm1FRLYCT9t1d7TSUspjKroz2f2k8L1aVdBQzU7H3bizfJsuM2TBdPaH2XTEQ6BA==
+X-Received: by 2002:ac2:52b1:0:b0:50e:6a21:f9b2 with SMTP id r17-20020ac252b1000000b0050e6a21f9b2mr1722226lfm.55.1705254158824;
+        Sun, 14 Jan 2024 09:42:38 -0800 (PST)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id g12-20020a19ee0c000000b0050e7f5c8a1esm1189886lfb.206.2024.01.14.09.42.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Jan 2024 09:42:38 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH 0/2] soc: qcom: rename rename PM2250 to PM4125
+Date: Sun, 14 Jan 2024 19:42:35 +0200
+Message-Id: <20240114-pm2250-pm4125-rename-v1-0-71a0a103c3d5@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: 6g2FV-TDOt1RYnH2hzDVuTU4ot22dik8
-X-Proofpoint-GUID: 6g2FV-TDOt1RYnH2hzDVuTU4ot22dik8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAsdpGUC/x2MQQqAIBAAvxJ7TnA3regr0cFqrT1koRBB+Pek0
+ zCHmRcSR+EEQ/VC5FuSnKEI1hUsuwsbK1mLA2kyGtGo6yCyusAgWRU5uIMVoze26/pmXloo6RX
+ Zy/NvxynnDwCfHN1mAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=956;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=LamNocVv0daRaHc/6bqwTEOg+N6QEUjZyW/PN67uHqY=;
+ b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ+oSWZ7KJoVuIwMeb/6cMJctz1/VKZeVvlrFxOKbJCU8a
+ 9FRSadORmMWBkYuBlkxRRafgpapMZuSwz7smFoPM4iVCWQKAxenAEzktjH7Hz71DxFGvAJFC982
+ /JnofXrhqzsbklo8G09sZDbnkvN9rbErZ2Zg3Q7rGtlVE6aGpJ+YVuw+mZstP3vZ8tqwAH3Fhd4
+ WIYprrs5dOGeKn+QRsTWSifxiNf1yDe5nZY1Kf9xzce5ieMnqZvqhlWOyqZNsja7xWtWdk6b53T
+ jezmpeHXtyXr7MC9NCq9X2Jkoc+VeePX73nVu91qar0lCW7emkSGsL9+Pv7R8mzfN5O2nvhJYez
+ b9xU/kanhfE5Uy+6TuTV/HWjMqEhqTCNL8lmf9M+5vFNB7pzXnA1C6ob2h/rc9sXn5xczh32p45
+ Cz6UbGOSLNruIv/ajGvrMY8avX9lW/bsF9kSMdVt2hsA
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-From: Elad Nachman <enachman@marvell.com>
+According to all the documentation there is no such thing as PM2250, it
+has been replaced with PM4125. Use correct name for the PMIC.
 
-Add support for ac5 to the EHCI Orion platform driver.
-The ac5 SOC has DDR starting at offset 0x2_0000_0000,
-Hence it requires a larger than 32-bit DMA mask to operate.
-Move the dma mask to be pointed by the OF match data, and
-use that match data when initializng the DMA mask.
+Note, this doesn't change the compatible strings. There was a previous
+argument regarding renaming of compat strings.
 
-Signed-off-by: Elad Nachman <enachman@marvell.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/usb/host/ehci-orion.c | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+Dmitry Baryshkov (2):
+      soc: qcom: socinfo: rename PM2250 to PM4125
+      arm64: dts: qcom: rename PM2250 to PM4125
 
-diff --git a/drivers/usb/host/ehci-orion.c b/drivers/usb/host/ehci-orion.c
-index 6c47ab0a491d..ad145a54ca74 100644
---- a/drivers/usb/host/ehci-orion.c
-+++ b/drivers/usb/host/ehci-orion.c
-@@ -65,6 +65,15 @@ struct orion_ehci_hcd {
- 
- static struct hc_driver __read_mostly ehci_orion_hc_driver;
- 
-+/*
-+ * Legacy DMA mask is 32 bit.
-+ * AC5 has the DDR starting at 8GB, hence it requires
-+ * a larger (34-bit) DMA mask, in order for DMA allocations
-+ * to succeed:
-+ */
-+static const u64 dma_mask_orion =	DMA_BIT_MASK(32);
-+static const u64 dma_mask_ac5 =		DMA_BIT_MASK(34);
-+
- /*
-  * Implement Orion USB controller specification guidelines
-  */
-@@ -211,6 +220,7 @@ static int ehci_orion_drv_probe(struct platform_device *pdev)
- 	int irq, err;
- 	enum orion_ehci_phy_ver phy_version;
- 	struct orion_ehci_hcd *priv;
-+	u64 *dma_mask_ptr;
- 
- 	if (usb_disabled())
- 		return -ENODEV;
-@@ -228,7 +238,8 @@ static int ehci_orion_drv_probe(struct platform_device *pdev)
- 	 * set. Since shared usb code relies on it, set it here for
- 	 * now. Once we have dma capability bindings this can go away.
- 	 */
--	err = dma_coerce_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
-+	dma_mask_ptr = (u64 *)of_device_get_match_data(&pdev->dev);
-+	err = dma_coerce_mask_and_coherent(&pdev->dev, *dma_mask_ptr);
- 	if (err)
- 		goto err;
- 
-@@ -332,8 +343,9 @@ static void ehci_orion_drv_remove(struct platform_device *pdev)
- }
- 
- static const struct of_device_id ehci_orion_dt_ids[] = {
--	{ .compatible = "marvell,orion-ehci", },
--	{ .compatible = "marvell,armada-3700-ehci", },
-+	{ .compatible = "marvell,orion-ehci", .data = &dma_mask_orion},
-+	{ .compatible = "marvell,armada-3700-ehci", .data = &dma_mask_orion},
-+	{ .compatible = "marvell,ac5-ehci", .data = &dma_mask_ac5},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, ehci_orion_dt_ids);
+ .../boot/dts/qcom/{pm2250.dtsi => pm4125.dtsi}     |  8 +--
+ arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           | 78 +++++++++++-----------
+ drivers/soc/qcom/socinfo.c                         |  2 +-
+ include/soc/qcom/qcom-spmi-pmic.h                  |  2 +-
+ 4 files changed, 45 insertions(+), 45 deletions(-)
+---
+base-commit: 9e21984d62c56a0f6d1fc6f76b646212cfd7fe88
+change-id: 20240114-pm2250-pm4125-rename-e1f457783bc6
+
+Best regards,
 -- 
-2.25.1
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
