@@ -1,491 +1,194 @@
-Return-Path: <devicetree+bounces-31902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD5582D114
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 16:11:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE19582D117
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 16:14:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 805B91F213FC
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 15:11:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9276CB20B17
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 15:14:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2CAB2109;
-	Sun, 14 Jan 2024 15:11:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0599B23C6;
+	Sun, 14 Jan 2024 15:14:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kyuhyuk.kr header.i=@kyuhyuk.kr header.b="a9hHG5F2"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="X0tPEXuw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-hyfv10011601.me.com (pv50p00im-hyfv10011601.me.com [17.58.6.43])
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2062.outbound.protection.outlook.com [40.107.104.62])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2C37E
-	for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 15:11:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kyuhyuk.kr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kyuhyuk.kr
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kyuhyuk.kr; s=sig1;
-	t=1705245063; bh=qvAtBKFzunlr+pj2jJnMPpjsQvkroxkCD0slVQnw7hI=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=a9hHG5F2QyjCjX4X124oYHXNftAb2AaXES9xpJxX0i5XSFDZE+yPa77+f6Dqn1zTr
-	 qma0QhkluKMY87/nTuhSWR99ef/T1wQP7fKp7tKY4j9EXRoGnSTvx0A7nb88Duyb2A
-	 t427PZq64fDAOmSS/EmN436GdHsWRSaVB2gXxV5CAoJRGEea6S/aVXdpswlyAyycLd
-	 jLdOztn3JHwJigH8fAcuE+L2sxi2QS6nIQ4vG1NiKirudUKCvmY2jiDiTFCOwS57uD
-	 kbmQfStSRWvKoKt/g2kx+8nvE1S2tdbmeBy4Jkih8lkJHvzTa64OwJER4Rutfmzaka
-	 lxNQD5csTV3qA==
-Received: from kyuhyuk.kr (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-hyfv10011601.me.com (Postfix) with ESMTPSA id 106E4C80146;
-	Sun, 14 Jan 2024 15:10:57 +0000 (UTC)
-Date: Mon, 15 Jan 2024 00:10:45 +0900
-From: KyuHyuk Lee <lee@kyuhyuk.kr>
-To: Tim Lunn <tim@feathertop.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Tianling Shen <cnsztl@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>, Ondrej Jirman <megi@xff.cz>,
-	Andy Yan <andyshrk@163.com>, Jagan Teki <jagan@edgeble.ai>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	David Heidelberg <david@ixit.cz>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Hardkernel ODROID-M1S board
-Message-ID: <ZaP5de5wchr/b9WM@kyuhyuk.kr>
-References: <20240112135004.28907-1-lee@kyuhyuk.kr>
- <5774eb3f-dfdc-4e4d-985e-3ec4b69ad206@feathertop.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A8D7E;
+	Sun, 14 Jan 2024 15:14:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AVrgMsp6jZFn1dd36GzHR0nuxm4xicLL6Su6qug8C8AJo1Ex6qcu6shpjl+U5ZD7KOh9Qp0WnFgnw0kZPF7Z6C1d5NfvHp7anKncIc3Xlp7+Rw5UQisJ3gfbDGF0Vy1RfQYPrK6Xdy1NA7s0Wl6SZeLUAKwaj6jfulUeQOdFe0KOOobgp3IfHxY0ts3K0qQWl9OXUJf8DOCaNbr9OSDrxJGm30F9qHb9Ll7Lunn/AUWUlFxYEPeZnu9cz+ReCQ6r8MRZVhW2vVMhLBopf9Tj9cqovdjbcFFiWLOAkighCZqUDIB64aQME7BWbsRZ4Ul3n0fC/8xwFszYcglEmt1UaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Kbi9tva5vOZr+crfDbduLfW0Cky/eV0QG0EzRRIWj6Q=;
+ b=Wp/XkTAteqfPEBIS61pohsiPBumTiyaNtr2BPBZbEs4PrOe1pqxp1grJYOSnMN96k6C3qex36dp409s1e8rrZvI2g1AoeAHKY2lyQ82WC7z50mcoeDLqRfWw4u8rVbbANWX3YFprD45AcBoNdJQcUeVwYRTUJMpNtx0DvfNFSJksbDkKS+l85uOiBb3ggf+99+pjX1uUz5ix33gFO8ypJUvN1DOmZNDUAGN7h6dyjqxvjpTHgTT4z/t78OLAsiXLu8D+szHSq3nTeHSqWZhWkm6/tb/6YoqIHhFEMoAy2aXnQrp/BvFHHyDsJfMHDjdqESObDRRrecstR8E9v8N7IQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Kbi9tva5vOZr+crfDbduLfW0Cky/eV0QG0EzRRIWj6Q=;
+ b=X0tPEXuwAjtLhRtfnLTg4fCTPLyRl0PwJ16kLuH8iIwEFyURnVGGGFvBZYPQonj1cFlfKzdOFvyhE6WWp0bJ2qdraD2fnGkwcQEkiztmL2m3TU3bIGezroVwt+QeKkTbB0WDHpc8W/ez0xaNrgtfNRdDc3QPTDg7DFe9/Fl7T4g=
+Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
+ by AM8PR04MB7762.eurprd04.prod.outlook.com (2603:10a6:20b:241::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.23; Sun, 14 Jan
+ 2024 15:14:07 +0000
+Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
+ ([fe80::daf2:8c54:d469:793d]) by AS8PR04MB8963.eurprd04.prod.outlook.com
+ ([fe80::daf2:8c54:d469:793d%7]) with mapi id 15.20.7181.020; Sun, 14 Jan 2024
+ 15:14:07 +0000
+From: Josua Mayer <josua@solid-run.com>
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>
+CC: Yazan Shhady <yazan.shhady@solid-run.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-rtc@vger.kernel.org"
+	<linux-rtc@vger.kernel.org>
+Subject: Re: [PATCH v2 4/5] arm64: dts: add description for solidrun am642 som
+ and evaluation board
+Thread-Topic: [PATCH v2 4/5] arm64: dts: add description for solidrun am642
+ som and evaluation board
+Thread-Index: AQHaRXqNRxBDBTIBFEOB99P14tzvurDWdLaAgAL49gA=
+Date: Sun, 14 Jan 2024 15:14:07 +0000
+Message-ID: <9872cad8-d8a6-4a5b-a395-865345f61885@solid-run.com>
+References: <20240112-add-am64-som-v2-0-1385246c428c@solid-run.com>
+ <20240112-add-am64-som-v2-4-1385246c428c@solid-run.com>
+ <e945eec2-382a-4b31-bb6e-32b5234fdb51@ti.com>
+In-Reply-To: <e945eec2-382a-4b31-bb6e-32b5234fdb51@ti.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR04MB8963:EE_|AM8PR04MB7762:EE_
+x-ms-office365-filtering-correlation-id: d3ff77ca-4896-4761-6779-08dc151373c6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ /O3UyBhK/uaKJHsip8+IBqr5xToiEFX3wcq0JDA3J1xJY+YHMOqMIoe1T2BlzDuv1oRcBGLBJPlxtmd2+Q7HJ1R64PhIsgJ8nHQKZHppsaJ4hUPqQMab2nVCNql8Tq+tWjASllnz1HnTpKyQr19FZDbnUm9ZJnxjstGQ+aEDRZjGlsCmJ/SCi8rNFOYyfYyqwDNS8R0wQIIu2lLe3fJ+KhJMpvhrlE7ibV594ixDD0GJZe+z1q2XHIyIiICQFAlW0pXpqLEc+gUONM+XpIA2Vnl6nslj25rpdVPHq7IdPh0fWdxToHuLWsgB56TocsCH41wHMWekf0BLEORCxoL2/g2tNNVqH60t0tWmxcnhKqPX9rMUjHPmHEUBaO6gAVN5yxB7ncHqkeMB2VFEfwEs7tA2hyKSQUx6o9MPl1McliyTt7iapWRBhBx5RJXfZB7g1fPIfX0erYzc49yr33C15hmQPEZBgi/wBiHYy6B/LYelcwWGVhgDQ6APZ3sAsNRfTEU2ShN1BAB0qUWDb1uezLfysQp0Y87SV4lEDli9MCVEBB+MW/35mCs6JXYr5vHH5ZT4/5pECZolG8lsA7qWB+Kw6iv51+mHRFRMHfqGC8MdyePhak3da1ys5mqyJ6KI4pCOsygHCRlo0HfosmUkPQ==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39840400004)(376002)(396003)(136003)(346002)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(122000001)(38100700002)(38070700009)(36756003)(31686004)(86362001)(31696002)(26005)(2616005)(66556008)(83380400001)(64756008)(54906003)(76116006)(66476007)(66946007)(316002)(91956017)(110136005)(6512007)(71200400001)(478600001)(8936002)(8676002)(6506007)(53546011)(66446008)(6486002)(2906002)(41300700001)(4326008)(5660300002)(7416002)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?N3dRUXJWNGdsbzA0UzQ0TzdoOE84Qk1hT0hqNFYrdGdJYm1VZU1GV3JvSVRE?=
+ =?utf-8?B?M3h5UWl3ZkdLZ2ZUaGRsWFBZOEtET1JUSEFqK3Z4d0hPQitUUUo5TTBKQ2N0?=
+ =?utf-8?B?Y2pVV21BeWE1MWJaNlBGcVZLVWxXazdpSS90K2tNWTN1Q2crdTgzSnRsMW04?=
+ =?utf-8?B?VWw1eWFTeFJiWVJWTERxUzYzeW5aNHZFUWJRTE5XNnpSWHdOMmNoRFdHbFpG?=
+ =?utf-8?B?OUVTRDcxeXpDZmZ6WkFhcnlZejBxb0hFd2tRek1FclZxRG03Rlk0Vjh1eno0?=
+ =?utf-8?B?NmVQQllic3loNFMwRjRmNVprRjI0S0xhdDNqRGVoZ0d4L2FxcjJTeVpmc0hP?=
+ =?utf-8?B?cVJpbk9CKzJ6SW00ZERRK3FtNTNha1hXTzV2K210TitvUjg5blNZbFhJMnk4?=
+ =?utf-8?B?SXhPaDY3eFZyWS9BQnZlMzhMa1JKYzR6eDBtdzlaTDVXS2tGM256ZndCUll6?=
+ =?utf-8?B?eVVUY25OWlRQcUh3ZWVXUU42eVJwQngxWjN6VnJycnRESDVTVEZlVkFnZ3k5?=
+ =?utf-8?B?MjZ0Y2w1c2ZaU1hjNWtUcmdtV2VwQ0ZBT3B1UkJvUEJkYnlWeUNlVnFJcWxY?=
+ =?utf-8?B?SHN0dGdOdEloZmZVQXZXWEJUMGhtNW5tKysxQ0RDWHRQNEUzQ0R1QWtkdTlD?=
+ =?utf-8?B?N3F3TG1YZVVHYVAvd0VvRmVRR2NpSTBBRWluNVJQUlhBVmRsRXhodSt2WTBi?=
+ =?utf-8?B?eWRRRlJHS3BuOE5FdWJNZ0FXSGlYUHN6RUlZekErajVRVDZlc29HVDcxS0lT?=
+ =?utf-8?B?YzFEc3hMVmkrSTlLSUdvbWJ1UXFVTk5jTUhKaUZrdEYxQVlDVExVWVFORHh0?=
+ =?utf-8?B?aHBkVVBUS3ByalpjejVBSGoyaFF6QTZZd2xXd3FqWnZsdUFsVGJDSzhGK1lG?=
+ =?utf-8?B?OUVScFR5VzZYNXJPTForY0pSQnpIOHBpYnRiQXpIYjRmWk5WSVJueFhYaTJB?=
+ =?utf-8?B?cHdKb1Y2WlVaYm5yV0V1SXhIQTdWbGRaQ2dMR2Y1WGJIbmpMTVUyZis1bWtJ?=
+ =?utf-8?B?dlF2L3lNVVgySFhwRjVtSjBjbVN3YXc4YTNaTHJwL0FRV1NRbXVFeGdFbml3?=
+ =?utf-8?B?UUlRbE0yRmduZStsT0tHQmZBa1g0cHVmWktVYXVVbVd2bG15UEtVNUxDQW1s?=
+ =?utf-8?B?YTdZcHU5L1BMWnpqaFNIUWpJOW5sdmFMTkd4b3FWbnZ5ZTJIRDMwb0IwUnRT?=
+ =?utf-8?B?NHladldtOE9YYWZ0K05QTm5ZU1VmWDBhaTBlc3p6U0JhT0FXN2xyM1U4QWlY?=
+ =?utf-8?B?bXV5U0Zaa0tYam9sQlJXRUF3R3ZYWWFnaHB2L1ZoSUNrTnkzSWFNTjZMMnMw?=
+ =?utf-8?B?cUJUTFY4NDdPRjlCV0NpZStKUUdHQStyTVlJZGczMlFJZVowNkZvMW5HZkE4?=
+ =?utf-8?B?SlBFdXhlcm1tazU3bGgxcDVQOFVoZUFBRFo3aXcvYVFxWDhxY1UzVTlUMkVq?=
+ =?utf-8?B?RzUwSjFQSm5USk9DS29mbXFSL3g0VDV3M1gwNFc5Z0JOb2IrS0p1bUFFek9F?=
+ =?utf-8?B?aWlnd2NPWWJDSjFyUmhoZXlFSlMwSXVmRXNPMC84RWM0KzBjdlBRUDAwbWVJ?=
+ =?utf-8?B?L3pjc1ZxNDc2VTJWelRxejNsT21lZk1jSnpOVmFXamlScnlpa05DcWF4aWYz?=
+ =?utf-8?B?NFI2TG1HdWRJeVlCMVJod2xsaXgrb2x0UlVtaG5lZzV0aFVYU1VKb0x1TWJl?=
+ =?utf-8?B?b3A4THdDL3FUVTUrWWM3aXRuZWNvdWhHL2tvMW9neGMwYkZoUTJ1QUVWZ2l5?=
+ =?utf-8?B?UFA0T3pHU3lHNm9reXZNZXZ4eWJXYjZ4cEl5T2ZpNkFPaDFGL21jQjFxZ2pN?=
+ =?utf-8?B?Uysyenp6ckRaRVQ4YmlDNzdRZE5TTGovZWdnV1hKbEtWRUVFNnFrK2JtRUEw?=
+ =?utf-8?B?N0l5SzFTb0FPZElscjBlcGt2Q3BPV0dQYnY5QkROV0FaZFNhVHI3NGxMWUdi?=
+ =?utf-8?B?WUJQZzhETVUwL2ZLYzJpUFo4MWFCT3ltMW1jU0JNeVhtV0pLREM4VEs2RHhU?=
+ =?utf-8?B?UE1qVU05cnduaDJmWGZtRUVRV29UM1JrdXhFKzMwSDBLRWJKY2xyM25IOHlP?=
+ =?utf-8?B?UUQwRXdTNlRwblZ0MHZNTUFGckhFNWhzdjRYK2d5S1lTT2hGZ2dRVHJ0cFVm?=
+ =?utf-8?Q?L6n3TunHrg5GuOksKoicco3Lp?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <0523D96229529C4D8E40689DF9812EF4@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5774eb3f-dfdc-4e4d-985e-3ec4b69ad206@feathertop.org>
-X-Proofpoint-GUID: X9K8esLsFtU9kyWzM7X5UUUF9oIpxu5u
-X-Proofpoint-ORIG-GUID: X9K8esLsFtU9kyWzM7X5UUUF9oIpxu5u
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-14_08,2024-01-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=999
- phishscore=0 mlxscore=0 malwarescore=0 suspectscore=0 clxscore=1030
- bulkscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2401140118
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3ff77ca-4896-4761-6779-08dc151373c6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Jan 2024 15:14:07.0372
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MyKX5XX1autGf/uWtKbTeSxwV5/s5l7Q9bdzgkaLLMbpo708YborVfbGuCz6FDl9PBASvFtJGtvAnZ53dr7+0w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7762
 
-On Sun, Jan 14, 2024 at 11:01:32PM +1100, Tim Lunn wrote:
-> Hi Lee,
-> 
-> On 1/13/24 00:50, KyuHyuk Lee wrote:
-> > This patch is to add a device tree for new board Hardkernel ODROID-M1S
-> > based on Rockchip RK3566, includes basic peripherals uart/eMMC/uSD/i2c
-> > 
-> > Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
-> > ---
-> >   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> >   .../boot/dts/rockchip/rk3566-odroid-m1s.dts   | 388 ++++++++++++++++++
-> >   2 files changed, 389 insertions(+)
-> >   create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> > index a7b30e11beaf..0cc7360a6120 100644
-> > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > @@ -76,6 +76,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353ps.dtb
-> >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353v.dtb
-> >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg353vs.dtb
-> >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-anbernic-rg503.dtb
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-odroid-m1s.dtb
-> >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.1.dtb
-> >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-pinenote-v1.2.dtb
-> >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-powkiddy-rgb30.dtb
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dts b/arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dts
-> > new file mode 100644
-> > index 000000000000..c6c4f573535f
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-odroid-m1s.dts
-> > @@ -0,0 +1,388 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright (c) 2024 KyuHyuk Lee <lee@kyuhyuk.kr>
-> > + *
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include <dt-bindings/leds/common.h>
-> > +#include <dt-bindings/pinctrl/rockchip.h>
-> > +#include "rk3566.dtsi"
-> > +
-> > +/ {
-> > +	model = "Hardkernel ODROID-M1S";
-> > +	compatible = "rockchip,rk3566-odroid-m1s", "rockchip,rk3566";
-> > +
-> > +	aliases {
-> > +		i2c0 = &i2c3;
-> > +		i2c3 = &i2c0;
-> > +		spi0 = &spi1;
-> > +		spi1 = &spi0;
-> > +		mmc0 = &sdmmc0;
-> > +		mmc1 = &sdhci;
-> > +		serial0 = &uart6;
-> > +		serial1 = &uart0;
-> > +		serial6 = &uart1;
-> > +	};
-> I suppose these mismatched aliases are here to keep compatibility with the
-> Odroid M1? However thats going to be super confusing to anyone following the
-> actual Odroid M1S connector pinout (even the pin card that came with my
-> Odroid M1S doesnt show these mappings, but the actual real ports)?
-> > +
-> > +	chosen {
-> > +		stdout-path = "serial2:1500000n8";
-> > +	};
-> > +
-> > +	leds {
-> > +		compatible = "gpio-leds";
-> > +
-> > +		led_power: led-0 {
-> > +			gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-> > +			function = LED_FUNCTION_POWER;
-> > +			color = <LED_COLOR_ID_RED>;
-> > +			linux,default-trigger = "default-on";
-> > +			pinctrl-names = "default";
-> > +			pinctrl-0 = <&led_power_pin>;
-> > +		};
-> > +		led_work: led-1 {
-> > +			gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
-> > +			function = LED_FUNCTION_HEARTBEAT;
-> > +			color = <LED_COLOR_ID_BLUE>;
-> > +			linux,default-trigger = "heartbeat";
-> > +			pinctrl-names = "default";
-> > +			pinctrl-0 = <&led_work_pin>;
-> > +		};
-> > +	};
-> > +
-> > +	vcc_sys: vcc-sys-regulator {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "vcc_sys";
-> > +		regulator-always-on;
-> > +		regulator-boot-on;
-> > +		regulator-min-microvolt = <5000000>;
-> > +		regulator-max-microvolt = <5000000>;
-> > +	};
-> > +
-> > +	vcc3v3_sys: vcc3v3-sys-regulator {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "vcc3v3_sys";
-> > +		regulator-always-on;
-> > +		regulator-boot-on;
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		vin-supply = <&vcc5v0_sys>;
-> > +	};
-> > +
-> > +	vcc5v0_sys: vcc5v0-sys-regulator {
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "vcc5v0_sys";
-> > +		regulator-always-on;
-> > +		regulator-boot-on;
-> > +		regulator-min-microvolt = <5000000>;
-> > +		regulator-max-microvolt = <5000000>;
-> > +		vin-supply = <&vcc_sys>;
-> > +	};
-> > +};
-> > +
-> > +&cpu0 {
-> > +	cpu-supply = <&vdd_cpu>;
-> > +};
-> > +
-> > +&cpu1 {
-> > +	cpu-supply = <&vdd_cpu>;
-> > +};
-> > +
-> > +&cpu2 {
-> > +	cpu-supply = <&vdd_cpu>;
-> > +};
-> > +
-> > +&cpu3 {
-> > +	cpu-supply = <&vdd_cpu>;
-> > +};
-> > +
-> > +&i2c0 {
-> > +	status = "okay";
-> > +
-> > +	vdd_cpu: regulator@1c {
-> > +		compatible = "tcs,tcs452x";
-> This compatible seems to be from the Rockchip kernel, for mainline it should
-> be  "tcs,tcs4525"?
-> > +		reg = <0x1c>;
-> > +		fcs,suspend-voltage-selector = <1>;
-> > +		regulator-name = "vdd_cpu";
-> > +		regulator-always-on;
-> > +		regulator-boot-on;
-> > +		regulator-min-microvolt = <712500>;
-> > +		regulator-max-microvolt = <1390000>;
-> > +		regulator-init-microvolt = <900000>;
-> > +		regulator-ramp-delay = <2300>;
-> > +		vin-supply = <&vcc5v0_sys>;
-> I had checked schematics for this and they seem to show that this is
-> vin-supply = <&vcc3v3_sys>?
-> > +
-> > +		regulator-state-mem {
-> > +			regulator-off-in-suspend;
-> > +		};
-> > +	};
-> > +
-> > +	rk809: pmic@20 {
-> > +		compatible = "rockchip,rk809";
-> > +		reg = <0x20>;
-> > +		interrupt-parent = <&gpio0>;
-> > +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> > +		#clock-cells = <1>;
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&pmic_int_l>;
-> > +		rockchip,system-power-controller;
-> > +		vcc1-supply = <&vcc3v3_sys>;
-> > +		vcc2-supply = <&vcc3v3_sys>;
-> > +		vcc3-supply = <&vcc3v3_sys>;
-> > +		vcc4-supply = <&vcc3v3_sys>;
-> > +		vcc5-supply = <&vcc3v3_sys>;
-> > +		vcc6-supply = <&vcc3v3_sys>;
-> > +		vcc7-supply = <&vcc3v3_sys>;
-> > +		vcc8-supply = <&vcc3v3_sys>;
-> > +		vcc9-supply = <&vcc3v3_sys>;
-> > +		wakeup-source;
-> > +
-> > +		regulators {
-> > +			vdd_logic: DCDC_REG1 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <500000>;
-> > +				regulator-max-microvolt = <1350000>;
-> > +				regulator-init-microvolt = <900000>;
-> > +				regulator-ramp-delay = <6001>;
-> > +				regulator-initial-mode = <0x2>;
-> > +				regulator-name = "vdd_logic";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vdd_gpu: DCDC_REG2 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <500000>;
-> > +				regulator-max-microvolt = <1350000>;
-> > +				regulator-init-microvolt = <900000>;
-> > +				regulator-ramp-delay = <6001>;
-> > +				regulator-initial-mode = <0x2>;
-> > +				regulator-name = "vdd_gpu";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vcc_ddr: DCDC_REG3 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-initial-mode = <0x2>;
-> > +				regulator-name = "vcc_ddr";
-> > +				regulator-state-mem {
-> > +					regulator-on-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vdd_npu: DCDC_REG4 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <500000>;
-> > +				regulator-max-microvolt = <1350000>;
-> > +				regulator-init-microvolt = <900000>;
-> > +				regulator-ramp-delay = <6001>;
-> > +				regulator-initial-mode = <0x2>;
-> > +				regulator-name = "vdd_npu";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vdda0v9_image: LDO_REG1 {
-> > +				regulator-boot-on;
-> > +				regulator-always-on;
-> > +				regulator-min-microvolt = <900000>;
-> > +				regulator-max-microvolt = <900000>;
-> > +				regulator-name = "vdda0v9_image";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vdda_0v9: LDO_REG2 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <900000>;
-> > +				regulator-max-microvolt = <900000>;
-> > +				regulator-name = "vdda_0v9";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vdda0v9_pmu: LDO_REG3 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <900000>;
-> > +				regulator-max-microvolt = <900000>;
-> > +				regulator-name = "vdda0v9_pmu";
-> > +				regulator-state-mem {
-> > +					regulator-on-in-suspend;
-> > +					regulator-suspend-microvolt = <900000>;
-> > +				};
-> > +			};
-> > +
-> > +			vccio_acodec: LDO_REG4 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <3000000>;
-> > +				regulator-max-microvolt = <3000000>;
-> > +				regulator-name = "vccio_acodec";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vccio_sd: LDO_REG5 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <3300000>;
-> > +				regulator-name = "vccio_sd";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vcc3v3_pmu: LDO_REG6 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <3300000>;
-> > +				regulator-max-microvolt = <3300000>;
-> > +				regulator-name = "vcc3v3_pmu";
-> > +				regulator-state-mem {
-> > +					regulator-on-in-suspend;
-> > +					regulator-suspend-microvolt = <3300000>;
-> > +				};
-> > +			};
-> > +
-> > +			vcca_1v8: LDO_REG7 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +				regulator-name = "vcca_1v8";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vcca1v8_ddr: LDO_REG8 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +				regulator-name = "vcca1v8_pmu";
-> > +				regulator-state-mem {
-> > +					regulator-on-in-suspend;
-> > +					regulator-suspend-microvolt = <1800000>;
-> > +				};
-> > +			};
-> > +
-> > +			vcca1v8_image: LDO_REG9 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +				regulator-name = "vcca1v8_image";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vcc_1v8: DCDC_REG5 {
-> Maybe its just me, but seems odd that DCDC_REG5 is out of order with the
-> other DCDC regulators above.
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-min-microvolt = <1800000>;
-> > +				regulator-max-microvolt = <1800000>;
-> > +				regulator-name = "vcc_1v8";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vcc_3v3: SWITCH_REG1 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-name = "vcc_3v3";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +
-> > +			vcc3v3_sd: SWITCH_REG2 {
-> > +				regulator-always-on;
-> > +				regulator-boot-on;
-> > +				regulator-name = "vcc3v3_sd";
-> > +				regulator-state-mem {
-> > +					regulator-off-in-suspend;
-> > +				};
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&pinctrl {
-> > +	leds {
-> > +		led_power_pin: led-power-pin {
-> > +			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
-> > +		};
-> > +		led_work_pin: led-work-pin {
-> > +			rockchip,pins = <0 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
-> > +		};
-> > +	};
-> > +
-> > +	pmic {
-> > +		pmic_int_l: pmic-int-l {
-> > +			rockchip,pins =
-> > +				<0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&pmu_io_domains {
-> > +	pmuio2-supply = <&vcc3v3_pmu>;
-> > +	vccio1-supply = <&vccio_acodec>;
-> > +	vccio3-supply = <&vccio_sd>;
-> > +	vccio4-supply = <&vcc_3v3>;
-> > +	vccio5-supply = <&vcc_3v3>;
-> > +	vccio6-supply = <&vcc_3v3>;
-> > +	vccio7-supply = <&vcc_3v3>;
-> > +	status = "okay";
-> > +};
-> Did you miss pmuio1 and vccio2 here? the latter of which is the eMMC domain.
-> 
-> Are you planning to add additional patches for usb, gmac etc? I had been
-> working through cleaning up these device tree files with a view to
-> submitting them soon also.
-> 
-> Regards
->    Tim
-
-Hello Tim. Thank you for your reviewing.
-
-I'll check you said above.
-
-Yes, I am planning additional patches like usb, gmac as you said.
-May I understand that you cleaned up my patch?
-I look forward to your reply.
-
-Thank you,
-KyuHyuk Lee.
+QW0gMTIuMDEuMjQgdW0gMTg6NTAgc2NocmllYiBBbmRyZXcgRGF2aXM6DQoNCj4gT24gMS8xMi8y
+NCAxMToxMiBBTSwgSm9zdWEgTWF5ZXIgd3JvdGU6DQo+PiArDQo+PiArwqDCoMKgIC8qIGNoYXJn
+ZXJANmEgKi8NCj4NCj4gPw0KVGhlIHBhcnRpY3VsYXIgY2hpcCBicTI1NzEzIGhhcyBubyBtYWlu
+bGluZSBzdXBwb3J0LCBubyBkdCBiaW5kaW5ncywgYW5kIEkgZG8gbm90IHVuZGVyc3RhbmQgaXQg
+d2VsbCBlbm91Z2ggZm9yIGRlZmluaW5nIHJlYXNvbmFibGUgYmluZGluZ3MgbXlzZWxmLg0KDQpT
+aW5jZSBpdCBpcyBhc3NlbWJseSBvcHRpb24gYW5kIG5vdCBjdXJyZW50bHkgYXZhaWxhYmxlIEkg
+YWRkZWQganVzdCBhIG1hcmtlci4NCkRyb3AgaXQgaW5zdGVhZD8NCg0KPg0KPj4gK307DQo+PiAr
+DQo+PiArJm1haW5faTJjMSB7DQo+PiArwqDCoMKgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7
+DQo+PiArwqDCoMKgIHBpbmN0cmwtMCA9IDwmbWFpbl9pMmMxX3BpbnNfZGVmYXVsdD4sIDwmbWFp
+bl9pMmMxX2ludF9waW5zX2RlZmF1bHQ+Ow0KPg0KPiBUaGUgaW50ZXJydXB0IHBpbiBiZWxvbmdz
+IHRvIHRoZSBydGNANjkgYW5kIHNob3VsZCBiZSBpbiB0aGUgbm9kZSBiZWxvdy4NCkFjay4NCkkg
+d2lsbCByZW5hbWUgdGhlIGludGVycnVwdCBwaW5jdHJsIG5vZGUgcnRjX2ludF9waW5zX2RlZmF1
+bHQsIGFjY29yZGluZ2x5Lg0KPg0KPj4gK8KgwqANCj4+ICsNCj4+ICsmcGNpZTBfcmMgew0KPj4g
+K8KgwqDCoCBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KPj4gK8KgwqDCoCBwaW5jdHJsLTAg
+PSA8JnBjaWUwX3BpbnNfZGVmYXVsdD47DQo+PiArwqDCoMKgIHJlc2V0LWdwaW9zID0gPCZtYWlu
+X2dwaW8xIDE1IEdQSU9fQUNUSVZFX0hJR0g+Ow0KPj4gK8KgwqDCoCBwaHlzID0gPCZzZXJkZXMw
+X2xpbms+Ow0KPj4gK8KgwqDCoCBwaHktbmFtZXMgPSAicGNpZS1waHkiOw0KPj4gK8KgwqDCoCBu
+dW0tbGFuZXMgPSA8MT47DQo+PiArwqDCoMKgIG11eC1jb250cm9scyA9IDwmc2VyZGVzX211eD47
+DQo+PiArwqDCoMKgIG11eC1jb250cm9sLW5hbWVzID0gInNlcmRlcyI7DQptdXgtY29udHJvbHMg
+d2FzIGEgZG93bnN0cmVhbSB3b3JrYXJvdW5kIHRvIGVuc3VyZSBzZXR0aW5nIHRoZSBtdXggYmVm
+b3JlIHBjaSBwcm9iZSAoZG93bnN0cmVhbSBwYXRjaCBvbiBsaW51eCA1LjEwIHBjaSBkcml2ZXIp
+Lg0KSSBzaGFsbCByZW1vdmUgaXQgdW50aWwgY29uZmlybWluZyB3aGV0aGVyIGl0IG1ha2VzIHNl
+bnNlIC8gaXMgcmVxdWlyZWQgdXBzdHJlYW0uDQo+PiArwqDCoMKgIHN0YXR1cyA9ICJkaXNhYmxl
+ZCI7DQo+DQo+IFRoaXMgbm9kZSBpcyBhbHJlYWR5IGRlZmF1bHQgZGlzYWJsZWQgaW4gdGhlIHBh
+cmVudCAuZHRzaSBhbmQNCj4gaGFzIGJlZW4gZm9yIG1vcmUgdGhhbiBhIHllYXIgbm93LCB5b3Ug
+bWlnaHQgbmVlZCB0byBnbyByZWNoZWNrDQo+IGlmIHRoZXNlIGRpc2FibGVzIGFyZSBuZWVkZWQu
+IEkgc2VlIHNldmVyYWwgYmVsb3cgdGhhdCBhbHNvDQo+IGFyZSBub3QgbmVlZGVkLg0KQWNrLg0K
+VHVybnMgb3V0IHZlcnkgbWFueSBub2RlcyBhcmUgd2l0aG91dCBzdGF0dXMgaW4gazMtYW02NC1t
+YWluLmR0c2kuDQpJIHdlbnQgdGhyb3VnaCBhbGwgb2YgdGhlbSBpbiBzb20gYW5kIGNhcnJpZXIg
+ZHRzLCBsZWZ0IHdpdGggZXhwbGljaXQgc3RhdHVzIGFyZToNCg0KLSBjcHN3M2dfbWRpbw0KLSBj
+cHN3X3BvcnQyDQotIGljc3NnMV9tZGlvDQotIG1haWxib3gwX2NsdXN0ZXIyDQotIG1haWxib3gw
+X2NsdXN0ZXI0DQotIG1haW5faTJjMA0KLSBtYWluX2kyYzENCi0gbWFpbl9tY2FuMA0KLSBtYWlu
+X21jYW4xDQotIG1haW5fdWFydDANCi0gbWFpbl91YXJ0Mw0KLSBvc3BpMA0KDQo+DQo+PiArfTsN
+Cj4+ICsNCj4+ICsmcGNpZTBfZXAgew0KPj4gK8KgwqDCoCBwaHlzID0gPCZzZXJkZXMwX2xpbms+
+Ow0KPj4gK8KgwqDCoCBwaHktbmFtZXMgPSAicGNpZS1waHkiOw0KPj4gK8KgwqDCoCBudW0tbGFu
+ZXMgPSA8MT47DQo+PiArwqDCoMKgIHN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+PiArfTsNCj4NCj4g
+RGVsZXRlIHRoaXMgbm9kZSwgYWRkZWQgaXQgYmFjayBpZi93aGVuIHlvdSBwbGFuIHRvIHVzZSBp
+dA0KPiBhbmQgb25seSBpbiB0aGUgZHQgZmlsZSB0aGF0IGFkZHMgdGhlIHJlc3Qgb2YgdGhlIG5l
+ZWRlZA0KPiBwcm9wZXJ0aWVzLg0KQWNrLg0KPj4gKw0KPj4gK8KgwqDCoCByZXNlcnZlZC1tZW1v
+cnkgew0KPj4gK8KgwqDCoMKgwqDCoMKgICNhZGRyZXNzLWNlbGxzID0gPDI+Ow0KPj4gK8KgwqDC
+oMKgwqDCoMKgICNzaXplLWNlbGxzID0gPDI+Ow0KPj4gK8KgwqDCoMKgwqDCoMKgIHJhbmdlczsN
+Cj4+ICsNCj4+ICvCoMKgwqDCoMKgwqDCoCBzZWN1cmVfZGRyOiBvcHRlZUA5ZTgwMDAwMCB7DQo+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZWcgPSA8MHgwMCAweDllODAwMDAwIDB4MDAgMHgw
+MTgwMDAwMD47IC8qIGZvciBPUC1URUUgKi8NCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGFs
+aWdubWVudCA9IDwweDEwMDA+Ow0KPg0KPiBBbGlnbm1lbnQgbm90IG5lZWRlZCBmb3Igbm8tbWFw
+IG5vZGVzLg0KQWNrLg0KDQpUaGFua3MhIHNpbmNlcmVseSwNCkpvc3VhIE1heWVyDQoNCg==
 
