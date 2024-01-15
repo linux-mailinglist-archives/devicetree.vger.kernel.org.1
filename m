@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-32068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A7182DC0A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:06:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB06A82DC2C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:15:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5821B21143
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 15:06:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FE341F229E1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 15:15:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BD41175B9;
-	Mon, 15 Jan 2024 15:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107BD17735;
+	Mon, 15 Jan 2024 15:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wDDLNaEq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jJeXsAZ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92D0171C1
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 15:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7A517983
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 15:15:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a28da6285c1so1589147066b.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 07:06:03 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55818b733f7so7728349a12.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 07:15:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705331162; x=1705935962; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705331706; x=1705936506; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Du4T41Babi2QVYkfO/TtNiXvBjhZRh4V/13iobjx5qQ=;
-        b=wDDLNaEqS3d5/8UCvtx2sLAp4Ylyk3UpZKlOO33xVnmsNIPoEnDS/L+CZq27Y011Nh
-         8gPvgQdKib8P6A4UrxnrsiGIYG0taMNmA7jy+lhIL/mLcq1JctzZuRVP9k5vI55quLIK
-         N5V9iFvoJCxgiZAm7iXtyogU4A/qp1LoSavVia5+pXgTU2z+v2KbK05ElpsY7oAXVSro
-         LG/UENI1SfG2pY8B3vbf2FNYjDNwJNvCn4+/xk6VT+JpVrUzcuX073HeC+gJrH69TGB5
-         J4h6ueiIBS7kAGiubbKRneMiY1Us1PW7vs4ui5tRDtmdinUhH0p5aNXWnis+/j0xVwm9
-         W4Cg==
+        bh=wDEQEBN9gLO6683loCAz8Gcv3e9K7DtmlKI7Bpi49YI=;
+        b=jJeXsAZ+olukHyJSC43JwEEKolqnHhjMr3/HQIkT8tvPRGJILxFZKGOM/TWc5ILdj0
+         pFy4kLiuqWvys1Eu6VwaREIj0NgPIP5K2406W7mynN4xYHsf6dNHTfaSzJNGc60H+YR/
+         z1KqL9OryfbLXGRrb5uLikiryQ8Cx9acyF8Y2MlWZuQzgaI8RqL5mXwrXJwsGuCDtJlD
+         vu3PbuAL8BJnD7uAETd1JiYP4R9FGmh0l+tfIEniVnv0ztutvbqQsE6O7196LvrxQt7N
+         9sth5X1KEIHrQI2onUlPRi56yYKxMmw9OSXQ3NAB35JrX0y8eYCNByetF7yZ6WNKhjMn
+         jn7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705331162; x=1705935962;
+        d=1e100.net; s=20230601; t=1705331706; x=1705936506;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Du4T41Babi2QVYkfO/TtNiXvBjhZRh4V/13iobjx5qQ=;
-        b=rlspCq5ELoFi6HZLxpfkt6AEEbSVuZlVRNsuxkiYkUxkFtXGIjp2/qBY76EIqwXjK1
-         /95Btt+ScIwm8zpWYXnH74gNmUo8BB+a6CmeFx9+mw1OYGeAVeHD2mt9kgMTBAwVpEn1
-         DSSxGXTuoNfw6dtqfj7jB1n9F5R7x+Fd97d0pzIFLRF++Jm+HrZSSv8GmJal0KpBihNt
-         dVYtt9YDUDkQxK47aT3tW4SHZ/HZ0EkAIsZOtaJRpYdmRhCVMnca6IFnH+H4yBSNx0F1
-         l+WzwQriI+YrvhGpjLoDRaZG1ngAUPbQVcZawy4G0vq/x6uEIK/dl2LcZhRYUfeGfYdr
-         d8+Q==
-X-Gm-Message-State: AOJu0Yzdkj32aXPyEfW5oVKf3QzHwrctmvE1c8NYQxD0R4y73rUW54B2
-	pmS67IIlp4nhkdhTHCESGTbDRVLanNHLFA==
-X-Google-Smtp-Source: AGHT+IGfNsPtNSEbmw3Wex4XNIHLIcPDSoVqbFIDP6dCJ4jLLDOu2rkzAVT4vQ9M4e6GHREwoL0O9g==
-X-Received: by 2002:a17:907:c306:b0:a2e:174e:1092 with SMTP id tl6-20020a170907c30600b00a2e174e1092mr739535ejc.23.1705331162175;
-        Mon, 15 Jan 2024 07:06:02 -0800 (PST)
+        bh=wDEQEBN9gLO6683loCAz8Gcv3e9K7DtmlKI7Bpi49YI=;
+        b=YsTqto+gmOqJ+YBF1gxnfkVTbpQh8I6AbHFN66lF4u0KHiZKPXakT9wOXk1Nzt9vam
+         RjD1uQMD7tyD2ookzrhs0TcvZ0+06aWtIiy95Y2STyNaZYRoBwWy2kqKnOfJzWUCij8m
+         L5ZlpsnBokb1f2Z0ppENDPRbLGRSJuQzIl0WgZWZI6f1gtQhmYVDCplrbyZnFQyBxHXN
+         tRNOOhSo2E2Cd/0Xj1i8BOpZHKe3CpW2O/UN8NLDdDEil0dOH+dq7stnltmacXp8hin9
+         BrZiLrJ09WJd3ktaOXy+UdtsRsZQvAE1zLoQCQVmJVDy+90j0TvQYULy3ZuSkGwM+FsO
+         9lzQ==
+X-Gm-Message-State: AOJu0Yw6Tz/C2/YSd1S1Ua8BC3QcNjJBIAOYBPeIMwgpjSOOl3tEo3Q0
+	0IgGj+LVRqmY++AzEMC3yODXvPlXkgpapQ==
+X-Google-Smtp-Source: AGHT+IFy/5kCjTUmSlWt2ID8uQhME/XCKfRmJU7CsIWmN2JCpGLrboapEyArtvQhTUxYpuRHg+cAuQ==
+X-Received: by 2002:a50:99d9:0:b0:557:2b83:195 with SMTP id n25-20020a5099d9000000b005572b830195mr3164546edb.38.1705331706392;
+        Mon, 15 Jan 2024 07:15:06 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id vk6-20020a170907cbc600b00a2dbc664e2asm1561558ejc.89.2024.01.15.07.06.00
+        by smtp.gmail.com with ESMTPSA id n7-20020a056402434700b0055915dc8e74sm2715851edc.81.2024.01.15.07.15.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 07:06:01 -0800 (PST)
-Message-ID: <aae32b47-1bb0-4af0-baf0-836dc91b9427@linaro.org>
-Date: Mon, 15 Jan 2024 16:05:59 +0100
+        Mon, 15 Jan 2024 07:15:05 -0800 (PST)
+Message-ID: <c3c92468-a1db-498b-b4a2-7926b84cb5ea@linaro.org>
+Date: Mon, 15 Jan 2024 16:15:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +66,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: serial: stm32: add power-domains property
+Subject: Re: [PATCH] dt-bindings: fpga: Conver fpga-region binding to yaml
 Content-Language: en-US
-To: Valentin Caron <valentin.caron@foss.st.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+ monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc: Conor Dooley <conor+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20240111112450.1727866-1-valentin.caron@foss.st.com>
+ Moritz Fischer <mdf@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Tom Rix <trix@redhat.com>, Wu Hao <hao.wu@intel.com>,
+ Xu Yilun <yilun.xu@intel.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>
+References: <39e1362352959706b1f67c6feaeec2639ead4610.1705062319.git.michal.simek@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -123,19 +124,250 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240111112450.1727866-1-valentin.caron@foss.st.com>
+In-Reply-To: <39e1362352959706b1f67c6feaeec2639ead4610.1705062319.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/01/2024 12:24, Valentin Caron wrote:
-> Add "power-domains" property in stm32 serial binding to avoid:
+On 12/01/2024 13:25, Michal Simek wrote:
+> Convert the generic fpga region DT binding to json-schema.
+> There are some differences compare to txt version.
+> 1. DT overlay can't be described in example that's why directly include
+> information from overlay to node which was referenced. It is visible in
+> example with /* DT Overlay contains: &... */
 > 
-> serial@40010000: Unevaluated properties are not allowed
-> ('power-domains' were unexpected)
+> 2. All example have been rewritten to be simpler and describe only full
+> reconfiguration and partial reconfiguration with one bridge.
+> Completely drop the case where fpga region can inside partial
+> reconfiguration region which is already described in description
 > 
+> 3. Fixed some typos in descriptions compare to txt version but most of it
+> is just c&p from txt file.
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+> Please let me know if there is a way to describe overlays to dt root to be
+> able to reference fpga region back.
+> ---
 
-It would be better if you checked whether it can be part of power domain
-or not. What if the DTS is wrong?
+...
+
+> ---
+> -[1] www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_partrecon.pdf
+> -[2] tspace.library.utoronto.ca/bitstream/1807/67932/1/Byma_Stuart_A_201411_MAS_thesis.pdf
+> -[3] https://www.xilinx.com/support/documentation/sw_manuals/xilinx14_1/ug702.pdf
+> diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.yaml b/Documentation/devicetree/bindings/fpga/fpga-region.yaml
+> new file mode 100644
+> index 000000000000..bf4bb54bfbfa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fpga/fpga-region.yaml
+> @@ -0,0 +1,372 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+
+You relicense the GPL-2.0, so you need to ask all copyright holders to
+ack your patch. At least try to identify them...
+
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fpga/fpga-region.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: FPGA Region
+> +
+> +maintainers:
+> +  - Michal Simek <michal.simek@amd.com>
+> +
+> +description: |
+> +  CONTENTS
+> +   - Introduction
+> +   - Terminology
+> +   - Sequence
+> +   - FPGA Region
+> +   - Supported Use Models
+> +   - Constraints
+
+
+...
+
+
+> +  Constraints
+> +  ===========
+> +
+> +  It is beyond the scope of this document to fully describe all the FPGA design
+> +  constraints required to make partial reconfiguration work[1] [2] [3], but a few
+> +  deserve quick mention.
+> +
+> +  A persona must have boundary connections that line up with those of the partition
+> +  or region it is designed to go into.
+> +
+> +  During programming, transactions through those connections must be stopped and
+> +  the connections must be held at a fixed logic level.  This can be achieved by
+> +  FPGA Bridges that exist on the FPGA fabric prior to the partial reconfiguration.
+> +
+> +  --
+> +  [1] www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_partrecon.pdf
+> +  [2] tspace.library.utoronto.ca/bitstream/1807/67932/1/Byma_Stuart_A_201411_MAS_thesis.pdf
+> +  [3] https://www.xilinx.com/support/documentation/sw_manuals/xilinx14_1/ug702.pdf
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^fpga-region([0-9]|[1-9][0-9]+)?$"
+
+Missing -:
+
+"^fpga-region(-([0-9]|[1-9][0-9]+))?$"
+
+
+> +
+> +  compatible:
+> +    const: fpga-region
+> +
+> +  ranges: true
+
+This does not feel right - you do not allow any unit address, so ranges
+should cause warnings.
+
+> +  "#address-cells": true
+> +  "#size-cells": true
+> +
+> +  config-complete-timeout-us:
+> +    description:
+> +      The maximum time in microseconds time for the FPGA to go to operating
+> +      mode after the region has been programmed.
+> +
+> +  encrypted-fpga-config:
+> +    type: boolean
+> +    description:
+> +      Set if the bitstream is encrypted.
+> +
+> +  external-fpga-config:
+> +    type: boolean
+> +    description:
+> +      Set if the FPGA has already been configured prior to OS boot up.
+> +
+> +  firmware-name:
+> +    $ref: /schemas/types.yaml#/definitions/string
+
+This already has a type: string-array. You need maxItems instead.
+
+> +    description:
+> +      Should contain the name of an FPGA image file located on the firmware
+> +      search path. If this property shows up in a live device tree it indicates
+> +      that the FPGA has already been programmed with this image.
+> +      If this property is in an overlay targeting an FPGA region, it is
+> +      a request to program the FPGA with that image.
+> +
+> +  fpga-bridges:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Should contain a list of phandles to FPGA Bridges that must be
+
+This says list of phandles, but you allow only one.
+
+> +      controlled during FPGA programming along with the parent FPGA bridge.
+> +      This property is optional if the FPGA Manager handles the bridges.
+> +      If the fpga-region is  the child of an fpga-bridge, the list should not
+> +      contain the parent bridge.
+> +
+> +  fpga-mgr:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Should contain a phandle to an FPGA Manager.  Child FPGA Regions
+> +      inherit this property from their ancestor regions.  An fpga-mgr property
+> +      in a region will override any inherited FPGA manager.
+> +
+> +  partial-fpga-config:
+> +    type: boolean
+> +    description:
+> +      Set if partial reconfiguration is to be done, otherwise full
+> +      reconfiguration is done.
+> +
+> +  region-freeze-timeout-us:
+> +    description:
+> +      The maximum time in microseconds to wait for bridges to successfully
+> +      become disabled before the region has been programmed.
+> +
+> +  region-unfreeze-timeout-us:
+> +    description:
+> +      The maximum time in microseconds to wait for bridges to successfully
+> +      become enabled after the region has been programmed.
+> +
+> +patternProperties:
+> +  "@[0-9a-f]+$":
+> +    type: object
+> +
+> +required:
+> +  - compatible
+> +  - ranges
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - fpga-mgr
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    /*
+> +     * Full Reconfiguration without Bridges
+> +     */
+> +    fpga_mgr0: fpga-mgr@f8007000 {
+> +      compatible = "xlnx,zynq-devcfg-1.0";
+> +      reg = <0xf8007000 0x100>;
+> +      clocks = <&clkc 12>;
+> +      clock-names = "ref_clk";
+> +      interrupt-parent = <&intc>;
+> +      interrupts = <0 8 4>;
+> +      syscon = <&slcr>;
+> +    };
+> +
+> +    fpga_region0: fpga-region0 {
+
+fpga-region {
+
+> +      compatible = "fpga-region";
+> +      ranges;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      fpga-mgr = <&fpga_mgr0>;
+> +
+> +      /* DT Overlay contains: &fpga_region0 */
+> +      firmware-name = "zynq-gpio.bin";
+> +      gpio@40000000 {
+> +        compatible = "xlnx,xps-gpio-1.00.a";
+> +        reg = <0x40000000 0x10000>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +      };
+> +    };
+> +
+> +  - |
+> +    /*
+> +     * Partial reconfiguration with Bridges
+> +     */
+> +    fpga_mgr1: fpga-mgr@f8007000 {
+> +      compatible = "xlnx,zynq-devcfg-1.0";
+> +      reg = <0xf8007000 0x100>;
+> +      clocks = <&clkc 12>;
+> +      clock-names = "ref_clk";
+> +      interrupt-parent = <&intc>;
+> +      interrupts = <0 8 4>;
+> +      syscon = <&slcr>;
+> +    };
+> +
+> +    fpga_bridge1: fpga-bridge@100000450 {
+> +      compatible = "xlnx,pr-decoupler-1.00", "xlnx,pr-decoupler";
+> +      reg = <0x10000045 0x10>;
+> +      clocks = <&clkc 15>;
+> +      clock-names = "aclk";
+> +    };
+> +
+> +    fpga_region1: fpga-region1 {
+
+fpga-region {
+
+> +      compatible = "fpga-region";
+
 
 Best regards,
 Krzysztof
