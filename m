@@ -1,227 +1,145 @@
-Return-Path: <devicetree+bounces-32104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E538582DDB6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:39:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E03D82DDBF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:43:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA2F51C21DC2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:39:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BADAF1C21BBB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:43:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB6817BC2;
-	Mon, 15 Jan 2024 16:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90FEE17BC5;
+	Mon, 15 Jan 2024 16:43:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IjUYZaEC"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ixuzEPiI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D9B17BB6
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 16:39:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dc202317415so826769276.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 08:39:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705336757; x=1705941557; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=s/fqnYPq+dkxltZBpseJmaWi5P52GcYKf8Hz52+kYdw=;
-        b=IjUYZaECxzKfYLrIA6JZzfm/WyjSzCqj+ZaR3B/yqVXZfdIbfIalky8b+JGoH3NI3K
-         oIQhhDgEQUm91cIXyGgYivNQxQiONX5/J6XVIGuoD9YqKc5uEfmnR2iVx2ibEQnklPcV
-         7kHm7u0Az29VHRc5AyX57An1zAQB5RtH0Gyj0/ezzU+K0GoPhA1zPzlI7j0ML5MpbNyb
-         aUjb7v5PdTekQKR/bARWs2x2Cp0CAZMDiXsBN3D4WKvh3FckB9/Vssb334V71DaNV4d2
-         GjQIHsHTvOqIlAH8qeRtzLs5mB+s8z9sUNqD64FNeWIOhtvsAxshySe7SV9q1/sJzBm6
-         h7JA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705336757; x=1705941557;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s/fqnYPq+dkxltZBpseJmaWi5P52GcYKf8Hz52+kYdw=;
-        b=p5qyjWorp+55foAVu+GVfbTcciFjEo3I5A50rEbhNHK3PJKg66LhfcMja0LV9sb3kC
-         ygfx6HCglPQUbec3p6uTLfD8ypWuZBr8DWyAn1o0tGS+vwH/Yxmq3qIgxIIfr2wL/47X
-         oi0SWYm4pS/ap1xNKZ78zOg+yy/9anazxIYwNvPhrSSQay8lHjOcPzZ6u+ovI/0OUvZs
-         EmV6V1zHH0VW9k8xkrbAPAXND7iYgHWEifOYECvnsUibfD4F2kZ/LErYBRGA5K4E3kpg
-         XmDw2S/z7rTSQjZyjSkW8drVdkjXTdAIk8uwsfo09m6PjwvZDNOXRDxiMXOx0Nuq6RnX
-         Sppw==
-X-Gm-Message-State: AOJu0Ywka6DjzcqdsS0eq0uTrZ0ZpZ+9M5LYaFlLAN+4SPRMa9xYBo2s
-	VBHcQKBhbbr3j3NFSROHu58DMNNiAebWxsmGXajpcODQnTAWQBbPGAse5D9C0J0=
-X-Google-Smtp-Source: AGHT+IHETO9D5PNXpCW0t0+ryr9d6gweyKG6zA7bPc8EVqB2nhkeswrpOk/2xV5U8DLwdyukn9i/vGUKpTbnfZA43ds=
-X-Received: by 2002:a05:6902:1b13:b0:dbd:98db:f6ec with SMTP id
- eh19-20020a0569021b1300b00dbd98dbf6ecmr3260792ybb.33.1705336756978; Mon, 15
- Jan 2024 08:39:16 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 139CC17BB6;
+	Mon, 15 Jan 2024 16:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40FGh86x002831;
+	Mon, 15 Jan 2024 16:43:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=2GU9LyX
+	r+wNTFXEnIuiIof23UNs/vuTcgPBQP19aeb8=; b=ixuzEPiIZ6OHrO+r6HZdTRk
+	REeTmBSjqTXhb5V0EQL/b308j6a2gCwoZ5AC1rFDTWWxkEvm1E5Ak2ylkic7Ou2v
+	at2Yq/3KDU6T4VvcB2hAtb9prUtgCS7E+9V11Z7zMc71rVOB9xsPQhPljLOm4hmc
+	Hx4OQtopVuSjJYVwV9asXbiOMaYVvEZ+HotNi5dQXGRttAi6OyBOAMMiJMvlGJt7
+	3q/w1F/FHqbKmbWkgFZMLNVZAAQ2AV4g9HuqGjOPYApQkEn9Vi86qNikOv6+63Wg
+	WdM48Oo10yYTO5N8HCwST4851Ny1VNHZKlnDF4+ZWUGKIRXxZYwDj6pWw64u5zw=
+	=
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vmxdvs666-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Jan 2024 16:43:08 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40FGh7OK016382
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Jan 2024 16:43:07 GMT
+Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 15 Jan 2024 08:43:06 -0800
+From: Mao Jinlong <quic_jinlmao@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Leo Yan
+	<leo.yan@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Mathieu
+ Poirier" <mathieu.poirier@linaro.org>
+CC: Mao Jinlong <quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: [PATCH v2 0/2] coresight: core: Add device name support
+Date: Mon, 15 Jan 2024 08:42:46 -0800
+Message-ID: <20240115164252.26510-1-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1704726960.git.geert+renesas@glider.be> <ee3e57bafef123194b9779dbf5b9c181dc3b37ed.1704726960.git.geert+renesas@glider.be>
-In-Reply-To: <ee3e57bafef123194b9779dbf5b9c181dc3b37ed.1704726960.git.geert+renesas@glider.be>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 15 Jan 2024 17:38:40 +0100
-Message-ID: <CAPDyKFpc1ZsVhFM22zum=54LQ3Tiow7kG0nnt3WD3DBTGY6KFg@mail.gmail.com>
-Subject: Re: [PATCH 09/15] pmdomain: renesas: r8a779h0-sysc: Add r8a779h0 support
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ddBTI-DMlorVwJV8JEcDhQHSVay9zIjh
+X-Proofpoint-ORIG-GUID: ddBTI-DMlorVwJV8JEcDhQHSVay9zIjh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
+ phishscore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 adultscore=0 mlxlogscore=999 impostorscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401150122
 
-- trimmed cc-list
+With current design, the name of the non-cpu bounded coresight
+component is the device type with the number. And with 'ls' command
+we can get the register address of the component. But from these
+information, we can't know what the HW or system the component belongs
+to. Add device-name in DT to support it.
 
-On Mon, 8 Jan 2024 at 16:34, Geert Uytterhoeven <geert+renesas@glider.be> wrote:
->
-> From: Duy Nguyen <duy.nguyen.rh@renesas.com>
->
-> Add support for R-Car V4M (R8A779H0) SoC power areas to the R-Car SYSC
-> driver.
->
-> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
+cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
+tpdm0 -> ../../../devices/platform/soc@0/10b0d000.tpdm/tpdm0
+tpdm1 -> ../../../devices/platform/soc@0/10c28000.tpdm/tpdm1
+tpdm2 -> ../../../devices/platform/soc@0/10c29000.tpdm/tpdm2
 
-To make sure we agree on the merge strategy; should I pick up $subject
-patch, patch3 and patch4 through my pmdomain tree? DT patches, like
-patch3 and patch4, I should share as usual via my immutable "dt"
-branch, so you can pull it into your renesas tree?
+Change since V1:
+1. Change coresight-name to device name.
+2. Add the device-name in coresight dt bindings.
 
-Kind regards
-Uffe
+Mao Jinlong (2):
+  coresight: core: Add device name support
+  dt-bindings: arm: Add device-name in the coresight components
 
-> ---
-> Changes compared to the BSP:
->   - Move from drivers/soc/renesas/ to drivers/pmdomain/renesas/,
->   - Include rcar-gen4-sysc glue from "soc: renesas: rcar-gen4-sysc:
->     Introduce R-Car Gen4 SYSC driver",
->   - Remove unneeded includes,
->   - Align second column,
->   - Fix names of "a33dga" and "a23dgb" domains,
->   - Add missing "a3cr[012]" domains.
-> ---
->  drivers/pmdomain/renesas/Kconfig          |  4 ++
->  drivers/pmdomain/renesas/Makefile         |  1 +
->  drivers/pmdomain/renesas/r8a779h0-sysc.c  | 55 +++++++++++++++++++++++
->  drivers/pmdomain/renesas/rcar-gen4-sysc.c |  3 ++
->  drivers/pmdomain/renesas/rcar-gen4-sysc.h |  1 +
->  5 files changed, 64 insertions(+)
->  create mode 100644 drivers/pmdomain/renesas/r8a779h0-sysc.c
->
-> diff --git a/drivers/pmdomain/renesas/Kconfig b/drivers/pmdomain/renesas/Kconfig
-> index 80bf2cf8b60e6f63..54acb4b1ec7c4892 100644
-> --- a/drivers/pmdomain/renesas/Kconfig
-> +++ b/drivers/pmdomain/renesas/Kconfig
-> @@ -71,6 +71,10 @@ config SYSC_R8A779G0
->         bool "System Controller support for R-Car V4H" if COMPILE_TEST
->         select SYSC_RCAR_GEN4
->
-> +config SYSC_R8A779H0
-> +       bool "System Controller support for R-Car V4M" if COMPILE_TEST
-> +       select SYSC_RCAR_GEN4
-> +
->  config SYSC_RMOBILE
->         bool "System Controller support for R-Mobile" if COMPILE_TEST
->
-> diff --git a/drivers/pmdomain/renesas/Makefile b/drivers/pmdomain/renesas/Makefile
-> index e306e396fc8c10e3..89180f19c23be732 100644
-> --- a/drivers/pmdomain/renesas/Makefile
-> +++ b/drivers/pmdomain/renesas/Makefile
-> @@ -24,6 +24,7 @@ obj-$(CONFIG_SYSC_R8A77995)   += r8a77995-sysc.o
->  obj-$(CONFIG_SYSC_R8A779A0)    += r8a779a0-sysc.o
->  obj-$(CONFIG_SYSC_R8A779F0)    += r8a779f0-sysc.o
->  obj-$(CONFIG_SYSC_R8A779G0)    += r8a779g0-sysc.o
-> +obj-$(CONFIG_SYSC_R8A779H0)     += r8a779h0-sysc.o
->  # Family
->  obj-$(CONFIG_SYSC_RCAR)                += rcar-sysc.o
->  obj-$(CONFIG_SYSC_RCAR_GEN4)   += rcar-gen4-sysc.o
-> diff --git a/drivers/pmdomain/renesas/r8a779h0-sysc.c b/drivers/pmdomain/renesas/r8a779h0-sysc.c
-> new file mode 100644
-> index 0000000000000000..bf3fd50dc8dccaf0
-> --- /dev/null
-> +++ b/drivers/pmdomain/renesas/r8a779h0-sysc.c
-> @@ -0,0 +1,55 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Renesas R-Car V4M System Controller
-> + *
-> + * Copyright (C) 2016-2017 Glider bvba
-> + * Copyright (C) 2023 Renesas Electronics Corp
-> + */
-> +
-> +#include <linux/kernel.h>
-> +
-> +#include <dt-bindings/power/r8a779h0-sysc.h>
-> +
-> +#include "rcar-gen4-sysc.h"
-> +
-> +static struct rcar_gen4_sysc_area r8a779h0_areas[] __initdata = {
-> +       { "always-on",  R8A779H0_PD_ALWAYS_ON, -1, PD_ALWAYS_ON },
-> +       { "c4",         R8A779H0_PD_C4, R8A779H0_PD_ALWAYS_ON },
-> +       { "a2e0d0",     R8A779H0_PD_A2E0D0, R8A779H0_PD_C4, PD_SCU },
-> +       { "a1e0d0c0",   R8A779H0_PD_A1E0D0C0, R8A779H0_PD_A2E0D0, PD_CPU_NOCR },
-> +       { "a1e0d0c1",   R8A779H0_PD_A1E0D0C1, R8A779H0_PD_A2E0D0, PD_CPU_NOCR },
-> +       { "a1e0d0c2",   R8A779H0_PD_A1E0D0C2, R8A779H0_PD_A2E0D0, PD_CPU_NOCR },
-> +       { "a1e0d0c3",   R8A779H0_PD_A1E0D0C3, R8A779H0_PD_A2E0D0, PD_CPU_NOCR },
-> +       { "a3cr0",      R8A779H0_PD_A3CR0, R8A779H0_PD_ALWAYS_ON, PD_CPU_NOCR },
-> +       { "a3cr1",      R8A779H0_PD_A3CR1, R8A779H0_PD_ALWAYS_ON, PD_CPU_NOCR },
-> +       { "a3cr2",      R8A779H0_PD_A3CR2, R8A779H0_PD_ALWAYS_ON, PD_CPU_NOCR },
-> +       { "a33dga",     R8A779H0_PD_A33DGA, R8A779H0_PD_C4 },
-> +       { "a23dgb",     R8A779H0_PD_A23DGB, R8A779H0_PD_A33DGA },
-> +       { "a3vip0",     R8A779H0_PD_A3VIP0, R8A779H0_PD_C4 },
-> +       { "a3vip2",     R8A779H0_PD_A3VIP2, R8A779H0_PD_C4 },
-> +       { "a3dul",      R8A779H0_PD_A3DUL, R8A779H0_PD_C4 },
-> +       { "a3isp0",     R8A779H0_PD_A3ISP0, R8A779H0_PD_C4 },
-> +       { "a2cn0",      R8A779H0_PD_A2CN0, R8A779H0_PD_C4 },
-> +       { "a1cn0",      R8A779H0_PD_A1CN0, R8A779H0_PD_A2CN0 },
-> +       { "a1dsp0",     R8A779H0_PD_A1DSP0, R8A779H0_PD_A2CN0 },
-> +       { "a1dsp1",     R8A779H0_PD_A1DSP1, R8A779H0_PD_A2CN0 },
-> +       { "a2imp01",    R8A779H0_PD_A2IMP01, R8A779H0_PD_C4 },
-> +       { "a2psc",      R8A779H0_PD_A2PSC, R8A779H0_PD_C4 },
-> +       { "a2dma",      R8A779H0_PD_A2DMA, R8A779H0_PD_C4 },
-> +       { "a2cv0",      R8A779H0_PD_A2CV0, R8A779H0_PD_C4 },
-> +       { "a2cv1",      R8A779H0_PD_A2CV1, R8A779H0_PD_C4 },
-> +       { "a2cv2",      R8A779H0_PD_A2CV2, R8A779H0_PD_C4 },
-> +       { "a2cv3",      R8A779H0_PD_A2CV3, R8A779H0_PD_C4 },
-> +       { "a3imr0",     R8A779H0_PD_A3IMR0, R8A779H0_PD_C4 },
-> +       { "a3imr1",     R8A779H0_PD_A3IMR1, R8A779H0_PD_C4 },
-> +       { "a3imr2",     R8A779H0_PD_A3IMR2, R8A779H0_PD_C4 },
-> +       { "a3imr3",     R8A779H0_PD_A3IMR3, R8A779H0_PD_C4 },
-> +       { "a3vc",       R8A779H0_PD_A3VC, R8A779H0_PD_C4 },
-> +       { "a3pci",      R8A779H0_PD_A3PCI, R8A779H0_PD_C4 },
-> +       { "a2pciphy",   R8A779H0_PD_A2PCIPHY, R8A779H0_PD_A3PCI },
-> +};
-> +
-> +const struct rcar_gen4_sysc_info r8a779h0_sysc_info __initconst = {
-> +       .areas = r8a779h0_areas,
-> +       .num_areas = ARRAY_SIZE(r8a779h0_areas),
-> +};
-> diff --git a/drivers/pmdomain/renesas/rcar-gen4-sysc.c b/drivers/pmdomain/renesas/rcar-gen4-sysc.c
-> index 9e5e6e077abc081c..728248659a97e8cc 100644
-> --- a/drivers/pmdomain/renesas/rcar-gen4-sysc.c
-> +++ b/drivers/pmdomain/renesas/rcar-gen4-sysc.c
-> @@ -284,6 +284,9 @@ static const struct of_device_id rcar_gen4_sysc_matches[] __initconst = {
->  #endif
->  #ifdef CONFIG_SYSC_R8A779G0
->         { .compatible = "renesas,r8a779g0-sysc", .data = &r8a779g0_sysc_info },
-> +#endif
-> +#ifdef CONFIG_SYSC_R8A779H0
-> +       { .compatible = "renesas,r8a779h0-sysc", .data = &r8a779h0_sysc_info },
->  #endif
->         { /* sentinel */ }
->  };
-> diff --git a/drivers/pmdomain/renesas/rcar-gen4-sysc.h b/drivers/pmdomain/renesas/rcar-gen4-sysc.h
-> index 388cfa8f8f9fd656..fdf843aa51134f87 100644
-> --- a/drivers/pmdomain/renesas/rcar-gen4-sysc.h
-> +++ b/drivers/pmdomain/renesas/rcar-gen4-sysc.h
-> @@ -40,5 +40,6 @@ struct rcar_gen4_sysc_info {
->  extern const struct rcar_gen4_sysc_info r8a779a0_sysc_info;
->  extern const struct rcar_gen4_sysc_info r8a779f0_sysc_info;
->  extern const struct rcar_gen4_sysc_info r8a779g0_sysc_info;
-> +extern const struct rcar_gen4_sysc_info r8a779h0_sysc_info;
->
->  #endif /* __SOC_RENESAS_RCAR_GEN4_SYSC_H__ */
-> --
-> 2.34.1
->
+ .../bindings/arm/arm,coresight-catu.yaml      |  5 +++
+ .../bindings/arm/arm,coresight-cpu-debug.yaml |  5 +++
+ .../bindings/arm/arm,coresight-cti.yaml       |  5 +++
+ .../arm/arm,coresight-dummy-sink.yaml         |  5 +++
+ .../arm/arm,coresight-dummy-source.yaml       |  5 +++
+ .../arm/arm,coresight-dynamic-funnel.yaml     |  5 +++
+ .../arm/arm,coresight-dynamic-replicator.yaml |  5 +++
+ .../bindings/arm/arm,coresight-etb10.yaml     |  5 +++
+ .../bindings/arm/arm,coresight-etm.yaml       |  5 +++
+ .../arm/arm,coresight-static-funnel.yaml      |  5 +++
+ .../arm/arm,coresight-static-replicator.yaml  |  5 +++
+ .../bindings/arm/arm,coresight-stm.yaml       |  5 +++
+ .../bindings/arm/arm,coresight-tmc.yaml       |  5 +++
+ .../bindings/arm/arm,coresight-tpiu.yaml      |  5 +++
+ .../bindings/arm/qcom,coresight-tpda.yaml     |  5 +++
+ .../bindings/arm/qcom,coresight-tpdm.yaml     |  5 +++
+ drivers/hwtracing/coresight/coresight-core.c  | 33 ++++++++++---------
+ .../hwtracing/coresight/coresight-platform.c  | 31 +++++++++++++++++
+ include/linux/coresight.h                     |  1 +
+ 19 files changed, 130 insertions(+), 15 deletions(-)
+
+-- 
+2.41.0
+
 
