@@ -1,425 +1,167 @@
-Return-Path: <devicetree+bounces-31920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E587F82D1C1
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 18:43:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3D2082D300
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 02:43:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39F021C20C58
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jan 2024 17:43:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E59D1C2088A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 01:43:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1651EAF7;
-	Sun, 14 Jan 2024 17:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17B3A15B1;
+	Mon, 15 Jan 2024 01:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tMbZokbD"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="ReE+qO5C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2123.outbound.protection.outlook.com [40.107.114.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6EE9134C2
-	for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 17:42:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50ea98440a7so8222403e87.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 09:42:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705254160; x=1705858960; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WjkjTq9XAtIVGbC0VsyymNGzZ/iCRD/XgpgALO4Wuuc=;
-        b=tMbZokbDWfXRNeQ/Fdv9OEVUvwH4lof0dTMGCeFuDLWPX6DqpAF8qsnUq/2mwq25Pa
-         Ce/WBxUGlEh5NqLvSblMJnie+0dUZxFa9HY91ulkixrPamyomyTPkJnS3+4/NBzynjnw
-         OsmvHsybgqz2MHL20gZ/bxkrC2z3T4LlFioWjYYr1Gz5lrQd5emtqima8y5saOJ0pyix
-         6/aCBwos/jS7Otn6S1pd1CL93u4KB2mH1M3naxA5ie/0Q5xItd/ACuoViEDIr54de7Ho
-         wIS3QUvDZy8x/JQ8XWag3ivG4XyjtaTfUzyUsYFqjdwk696MDxLFkwRCgl5CFT/j0/hH
-         nfIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705254160; x=1705858960;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WjkjTq9XAtIVGbC0VsyymNGzZ/iCRD/XgpgALO4Wuuc=;
-        b=cn+SWpnuX1TeSGdE+ITwnaKk8T/CzIyyWZWa68QM8rW7E1Zut13r6xJ/0ojRfn300M
-         1ZrmTb8tPE3WoBmvDduLX9l+Dqdcr510RJpbi8/eX7yVAghzO70NAEyuRgf4YZE+odrG
-         S7FB8BxcUbUsZB+NSjSTHoZIgB+2QiZhFoR0b5Wofry4M5/Cn8JT7yKw8Z19WYkGoUhL
-         olNHy6q1VNtpkHXb0Ldd2R5yx5/2qRBPZ0zoHtuNvd8X9K5SgMT+XbRJFU0SWeL/wztw
-         6XEAsNne+By+GgVJZVBmgjT7+3HfG2JV0KIt2w9ImrrvJiP/TW6NS2hWtC2E414kuvBA
-         zbag==
-X-Gm-Message-State: AOJu0YyfK4z5/CPS08A429z/PDyTS7M4jqXGi4L9a5leUl26Cq0pExg1
-	nxU1kS+5saRHE2k7qNDWY7cxRAFhpP+Mwg==
-X-Google-Smtp-Source: AGHT+IF2ztZI+Tq1ee2HxfSz9IxMgfYsU9gz36tVox0JV5fKKZq2eyUVML7/ajRZSsYkRiwkIP0VyQ==
-X-Received: by 2002:ac2:4a81:0:b0:50e:7c6e:f241 with SMTP id l1-20020ac24a81000000b0050e7c6ef241mr1055155lfp.179.1705254160014;
-        Sun, 14 Jan 2024 09:42:40 -0800 (PST)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id g12-20020a19ee0c000000b0050e7f5c8a1esm1189886lfb.206.2024.01.14.09.42.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Jan 2024 09:42:39 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Sun, 14 Jan 2024 19:42:37 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: rename PM2250 to PM4125
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098661841;
+	Mon, 15 Jan 2024 01:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Uurj3mE55/RW8sa6WSNe/NCixcOdnxwjFiaK7VM3akqs5gwdZuEzoe/saQkYlk6QYh4ggChFvFlzXWrc5/1q3WLwIPnxSubGJx7FRsMxQb9nCTrlgGsYyk/+7QfaaDhkL1NmWi75DZURRvMshtNOn5ZTNC7SYa7p0k4By+C7w/vL/Tt6I1QC2wuS37x5cATOZtGjkP5yNQxzgdhXSJOAJuzYGfFAv7h9uBXbADh/2rjDszpMIX7zSpump2D0Bl+52kcNTh+SVyKHbZ3DiXAHyMi8u3cy2WjRnjXNqtHegcxKLm6T1BKpfdGFHzPe3RP+r8Vi7tS+4Z4LZv9qbt+t1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vkl9qPwerggBcLpJqgFrSOFTvGhwZNyoc0vvY1qNzkg=;
+ b=AYoKaMav8gXjJnlSzgWAUWRE2wR22iq5Q8vz5i93n9bOcMAci/PTLkxkLAUsL2oDfAcUZeMXgcS8g+q4tloZ+OqELQtgFhIgE7VGujDlJ7kAp00HH8pouJj1O7lz/L9XMzU9upLRTBXwpHGlwwRhfCZ7TjPaDreiAuOlzEpRyEn7+j4Hg3hxaXjYphCDRwiqNuDziS80Nb3hRHf28FZYoEPskFkR+gWCQPZ9SWkvXmo1irs/4HgDv2dY0YBDVyYDjbFSPp+J1JLo5nT6As4Ez9X15QZgaSDKGHRa9Xv0e5i7MWTYT/xB57JVJln2HO9RmuyubsYd3J1MM90tymr3Dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vkl9qPwerggBcLpJqgFrSOFTvGhwZNyoc0vvY1qNzkg=;
+ b=ReE+qO5Ch7tIX5tyFPXl6MaCpb7p/nKatmM0XRsAl7h1kJk17utERVZ5+8KDDfxDNYTvzXfKjxgZ4AenIFjDeMrYgW7AqKStfTCDSoQcAONuNmtrhRSz7gPGPpxSLFBqp7QEIdScrgSBh6bhxGJvov5hj4HmO+yBX7yqJXPJ07w=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYAPR01MB6281.jpnprd01.prod.outlook.com
+ (2603:1096:400:86::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.17; Mon, 15 Jan
+ 2024 01:43:17 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::91d:1bfa:edc4:1c5b]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::91d:1bfa:edc4:1c5b%7]) with mapi id 15.20.7202.017; Mon, 15 Jan 2024
+ 01:43:17 +0000
+Message-ID: <87mst7tlqi.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Sameer Pujar <spujar@nvidia.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>,
+	Mark Brown
+ <broonie@kernel.org>,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	robh+dt@kernel.org,
+	Jon Hunter <jonathanh@nvidia.com>,
+	linux-tegra@vger.kernel.org
+Subject: Re: Query on audio-graph-card DT binding
+In-Reply-To: <dc984f84-6877-497e-9b47-d116c8f3c42b@nvidia.com>
+References: <dfe363ef-4638-4b5e-8308-73e286ac0b50@nvidia.com>
+	<ZZblyhfzQjzyoUc_@orome.fritz.box>
+	<42c0c4fa-585e-4194-bbe4-e0377c87e632@sirena.org.uk>
+	<3faec2e9-8cd9-46f9-8807-801922de0edf@nvidia.com>
+	<ZZe5sTNz005Tt4jk@orome.fritz.box>
+	<8241c953-8ae5-4f26-b108-fccf826ed87a@nvidia.com>
+	<875y03i739.wl-kuninori.morimoto.gx@renesas.com>
+	<e7f9085d-9db1-4c5e-9940-e461835b20aa@nvidia.com>
+	<87il42gkua.wl-kuninori.morimoto.gx@renesas.com>
+	<cde6d5d5-b6ab-4c64-93f8-78d721a492bb@nvidia.com>
+	<8734v4y9yu.wl-kuninori.morimoto.gx@renesas.com>
+	<eeb61f8a-697c-425a-9873-b7b60c0a5558@nvidia.com>
+	<87o7dswjry.wl-kuninori.morimoto.gx@renesas.com>
+	<c868bce1-9a99-49d9-97cd-ead8d0295504@nvidia.com>
+	<87le8wwi2u.wl-kuninori.morimoto.gx@renesas.com>
+	<d10f9857-4259-4dff-a7f3-764086ac5a8b@nvidia.com>
+	<87v87zeasq.wl-kuninori.morimoto.gx@renesas.com>
+	<dc984f84-6877-497e-9b47-d116c8f3c42b@nvidia.com>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Mon, 15 Jan 2024 01:43:17 +0000
+X-ClientProxiedBy: TYWPR01CA0040.jpnprd01.prod.outlook.com
+ (2603:1096:400:17f::9) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240114-pm2250-pm4125-rename-v1-2-71a0a103c3d5@linaro.org>
-References: <20240114-pm2250-pm4125-rename-v1-0-71a0a103c3d5@linaro.org>
-In-Reply-To: <20240114-pm2250-pm4125-rename-v1-0-71a0a103c3d5@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8936;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=1uuAxgH1+7M9AYZW4DkRnjnDSC2JLt0jivhiS2SYHgk=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBlpB0NjiwdAhDeNc4ib5naPENh3n2xRXhs68k6x
- asozhXFCQWJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZaQdDQAKCRCLPIo+Aiko
- 1QZyB/9yvVKo/V6ax7yJsTLl2TjRSkaUwZK1fLZ8Cvzj/6CVQsqcj3/tBkTMD5+Ir14eYR95KA7
- sAQ5OqY983CHKjATRurRu+DMC8Ro2Ssc0EwXsU7zoiaieJiIddgvTl/wlHXQva0gYpC1ZWEOrLN
- 728oSeQRMrYYLkivD3fbW+F7WuZhfU6ruXvxImKcj1zD9RBzIMTjkRtQybfUZiuYu/tiqqB0OK5
- kOwJrnYJXpDCNNc4sGx1o1ioNf6aspVoocPjOJtmokFigMkmj9de0zAESNyNHMhAOV0DByUi8Mt
- ytBSQTygJyZZFvNyKcspmQ51ZM2qjBP4N8v3v+zVS9yY0puv
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYAPR01MB6281:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e5e5109-bedb-49b4-1689-08dc156b58d3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Kd019Ttzy6eWKRMS9EgLIegFUrFX0hOP6vFIUf2ZBV5DMEqUro9hqKFPyNBb0+zKJwzh3xgm0AGnNIV4wZipTzzsnYS7ZHpMGyZN5VpGP2BIm9T17ClHb4Qs4dXwedSIfBgKxMOcLCTI9nNCxBD6qdMQRDOasqWoRak09D0wsL9yLvTGevMr+Jq73phj9EfJNxfeMHJwk4mTBSwqvCQWw7DhcEJXocUpFkaaJty9m+WxVqQ+hpRnoSANC9ENSdoYQMnA3j9/VDKvoTk/ZJkSt2+ia5AqLl8yL5xlVNa0S2KZwNFtYnFWmy5UorFbq/Rh33S84IisBuWyHH7i3+kdUfsQ/uMpNDqjLvqmryaN/n0LQZdcssFhlM/qFwNvmsWCP1pI1VezdIWz9YluDLSSwSqPXKV404YoQSIfMG2Uc7su5SRYXXZS27tOhrbSVghE65BXGqHt3WpaOKvBttpRmfsWp6+hN06d0OKsVovr3+OkpskLmx9Fr+JkNjvXGnyLe42adEgL/5psLH9XGP/M20RTPYHHdYax9qhkez1DCxLmxypyAr/tKCIYnybzH9pidKnZiwlcza83NAzfjAeG6qmkOwdQSC30GLtdXWuw6uUAp1U8D/i5tLlyurKX5+VnaVQdnmRbAemkZc9gHC1lIQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(376002)(366004)(396003)(136003)(346002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(6506007)(6512007)(26005)(2013699003)(86362001)(36756003)(38350700005)(38100700002)(4326008)(5660300002)(2616005)(52116002)(8936002)(6916009)(316002)(66476007)(478600001)(8676002)(54906003)(66946007)(66556008)(4744005)(41300700001)(6486002)(2906002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?a23qxHtxqjuu14+7Rq3TbNP8lLNdmR9GJx51b18sJbk0SpSGMquIrW39VTI/?=
+ =?us-ascii?Q?W3Jvxeg8wOimsCwvqOtxlq7rLPMq3YzptF02vniOMntQv6mOLMwJONoHXUlX?=
+ =?us-ascii?Q?9k/SWPd9EBtHa0x/aNftbuQhi9ALbuJndz4vb0R47pEM/fdw7W5ZWyVZ41Js?=
+ =?us-ascii?Q?u3La7CXsual++8bdtz5cWhpa8FIJ3vvLSs85FLOP5j+8sz+Gti+O6fjsQiZx?=
+ =?us-ascii?Q?6NPw1oygHKgw1VDLMiNS/LhyWmCn0yigHM6wxCEbLqsgjD9+3OvxsITwAd1Z?=
+ =?us-ascii?Q?YdHp0OnkbNdDV40gbRZ4fz/1Yw8qqk9JyEeg1AxdukBYnLYTEkkx1lOc99/y?=
+ =?us-ascii?Q?aNoKHPooM0BMz/MbjNuHXUoSQmVR3uzErwhhsU32lgSIP2ypsCAVB0XXBTC1?=
+ =?us-ascii?Q?cvrhWR66mSU2BTqKQSrYT1KQYctohxhXNmFq6kcWp+Z03PUdiB4Ku4rvxU+M?=
+ =?us-ascii?Q?vWf/NPTob6adhJ/crVAAU5dd//9gB4HLLkp3YBfpJ40wSteQfFz+3UDKp1WP?=
+ =?us-ascii?Q?wozRbA7q4nehH9bVNTk5t7Eu3rh7SjToiPowj/EDJgPK2mfWiH7xGCdxBqEp?=
+ =?us-ascii?Q?Gap/uBewyxoWidPCvbXVj0veh+QpEsuvklnLyOaYcFZlp4on+dKid8EiiehR?=
+ =?us-ascii?Q?zhYoUbc7Oi112+E3DnufxKi8BM6b8N+DAFf4v7vO+qJhTGMAzWcCXDoTSrZR?=
+ =?us-ascii?Q?5F5Z4rRiKkCigMjRBLw3xR8k8/AsUVLck4IckO4lgyx0dNHytKevsY6yzzgE?=
+ =?us-ascii?Q?Obiz+hI3qwafu3/1La6Och2A5wnk3Kz/WNYDabiV7n9NnvkBMjxKEEiWTiGp?=
+ =?us-ascii?Q?8NMxPXAXiz+OxV5iaZVtDxyx6GCfUuygcxZJSePYtWbnrljN8yZnSwMd6dOH?=
+ =?us-ascii?Q?ssxuTtDe3/61S95G5U6R6tcWGAM2UpLnJIIAqP3XZU0PtaM3aZqhLgRTZfgR?=
+ =?us-ascii?Q?dXIdpPUmstzvCWJDrOhJU37Ses8FOvTx4tEKJk0MNYkOLd+OxzM2JIGZ3Ujg?=
+ =?us-ascii?Q?kf721p6HMnCdaJLs5K0plX5K9A8Vw5rfGi6r5nOncnMW3flZGiNAHvQaOMOp?=
+ =?us-ascii?Q?yEgLoMl6rRAMXMNfzsKy9fvLYuZIe7/h6ehhgWbNGDYIhxn4pwjmmp4AHW4u?=
+ =?us-ascii?Q?89PsCJOG091DAkzusbxRkUETdjTBQZNr/VKanXBc9zPCk7A7PwaShABnl6Fb?=
+ =?us-ascii?Q?Fh6q3d1yJHpwzwXoSohL+Xv8qVfboMwsOXrZsMhLDPuOzHTE5RUbTPgGRiqH?=
+ =?us-ascii?Q?/lQTC5aPng9Cq3XgXCQBk5GwU9knXraGJUBWXrI6PWNMvsYgmqk7KKsUG67F?=
+ =?us-ascii?Q?LsuUSMW1VrRQ1hY0J1qC57ZC/0oVGenIqXnqIWFGWotFxlBm5C9tP5R/BrMK?=
+ =?us-ascii?Q?xM3+L6gVQPOfy+azEcbMmFOi60CAhxx9JMJczo/w4qf2FU5wFFI4mJGkS7ze?=
+ =?us-ascii?Q?3OI1qOHLsQsOYCxkSHeyNILVoo4CvUYDJ7QlNE+OcCQ1LWiFBM9xZytvbUBh?=
+ =?us-ascii?Q?ICiOzoBcRjqbRj2lLoUpC+D8ylAronu5NfoUEvSM6qsKQYkQwKKNgl5OL6EK?=
+ =?us-ascii?Q?7oHFB6q3KQRRQI/oqa0AVFweU1lnE98ou7t60QIjEkJRTpMXW46FSK1NXY/8?=
+ =?us-ascii?Q?oNF1K96k+UMyfu5yo7RmpOE=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e5e5109-bedb-49b4-1689-08dc156b58d3
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2024 01:43:17.7076
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2qfKnA68MKmwJV517i674C/0DHTm13Vxg70f4+bWd7jVMABy3wfuG2wFy9Y89EUUYIR41Aul7w6TV/WEJzIxzvpqrGLX230hAXeNDBwyymbuE2ZA90ZdFIIrGBpgc7aS
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB6281
 
-According to all the documentation there is no such thing as PM2250, it
-has been replaced with PM4125. Use correct name for the PMIC.
 
-Note, this doesn't change the compatible strings. There was a previous
-argument regarding renaming of compat strings.
+Hi Sameer
 
-Fixes: c309b9a54039 ("arm64: dts: qcom: Add initial PM2250 device tree")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Thanks Morimoto-san for references. I need a lot more understanding on
+> "card2" before commenting anything further. Right now I look to
+> continue using "card" driver and have an easy DT extension, if
+> possible, without disturbing existing Tegra users. I hope it would be
+> fine to push changes to "card" without affecting existing users.
+
+"card" and "card2" are indeed different, but similar I think.
+I hope you can use "card2", but if you want to use "card",
+you can use "custome card" feature which is zero effect to
+existing "card" users. "tegra_audio_graph_card.c" is already using
+this feature. see audio_graph_parse_of()
+
+Thank you for your help !!
+
+Best regards
 ---
- .../boot/dts/qcom/{pm2250.dtsi => pm4125.dtsi}     |  8 +--
- arch/arm64/boot/dts/qcom/qrb2210-rb1.dts           | 78 +++++++++++-----------
- 2 files changed, 43 insertions(+), 43 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/pm2250.dtsi b/arch/arm64/boot/dts/qcom/pm4125.dtsi
-similarity index 91%
-rename from arch/arm64/boot/dts/qcom/pm2250.dtsi
-rename to arch/arm64/boot/dts/qcom/pm4125.dtsi
-index 5f1d15db5c99..d886a9e4b091 100644
---- a/arch/arm64/boot/dts/qcom/pm2250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm4125.dtsi
-@@ -19,7 +19,7 @@ pon@800 {
- 			compatible = "qcom,pm8916-pon";
- 			reg = <0x800>;
- 
--			pm2250_pwrkey: pwrkey {
-+			pm4125_pwrkey: pwrkey {
- 				compatible = "qcom,pm8941-pwrkey";
- 				interrupts-extended = <&spmi_bus 0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
- 				linux,code = <KEY_POWER>;
-@@ -27,7 +27,7 @@ pm2250_pwrkey: pwrkey {
- 				bias-pull-up;
- 			};
- 
--			pm2250_resin: resin {
-+			pm4125_resin: resin {
- 				compatible = "qcom,pm8941-resin";
- 				interrupts-extended = <&spmi_bus 0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
- 				debounce = <15625>;
-@@ -43,11 +43,11 @@ rtc@6000 {
- 			interrupts-extended = <&spmi_bus 0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
- 		};
- 
--		pm2250_gpios: gpio@c000 {
-+		pm4125_gpios: gpio@c000 {
- 			compatible = "qcom,pm2250-gpio", "qcom,spmi-gpio";
- 			reg = <0xc000>;
- 			gpio-controller;
--			gpio-ranges = <&pm2250_gpios 0 0 10>;
-+			gpio-ranges = <&pm4125_gpios 0 0 10>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-index aa53b6af6d9c..64b2ab286279 100644
---- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-@@ -7,7 +7,7 @@
- 
- #include <dt-bindings/leds/common.h>
- #include "qcm2290.dtsi"
--#include "pm2250.dtsi"
-+#include "pm4125.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. Robotics RB1";
-@@ -226,7 +226,7 @@ &mdss {
- };
- 
- &mdss_dsi0 {
--	vdda-supply = <&pm2250_l5>;
-+	vdda-supply = <&pm4125_l5>;
- 	status = "okay";
- };
- 
-@@ -239,7 +239,7 @@ &mdss_dsi0_phy {
- 	status = "okay";
- };
- 
--&pm2250_resin {
-+&pm4125_resin {
- 	linux,code = <KEY_VOLUMEDOWN>;
- 	status = "okay";
- };
-@@ -263,23 +263,23 @@ regulators {
- 		compatible = "qcom,rpm-pm2250-regulators";
- 		vdd_s3-supply = <&vph_pwr>;
- 		vdd_s4-supply = <&vph_pwr>;
--		vdd_l1_l2_l3_l5_l6_l7_l8_l9_l10_l11_l12-supply = <&pm2250_s3>;
-+		vdd_l1_l2_l3_l5_l6_l7_l8_l9_l10_l11_l12-supply = <&pm4125_s3>;
- 		vdd_l4_l17_l18_l19_l20_l21_l22-supply = <&vph_pwr>;
--		vdd_l13_l14_l15_l16-supply = <&pm2250_s4>;
-+		vdd_l13_l14_l15_l16-supply = <&pm4125_s4>;
- 
- 		/*
- 		 * S1 - VDD_APC
- 		 * S2 - VDD_CX
- 		 */
- 
--		pm2250_s3: s3 {
-+		pm4125_s3: s3 {
- 			/* 0.4V-1.6625V -> 1.3V (Power tree requirements) */
- 			regulator-min-microvolt = <1352000>;
- 			regulator-max-microvolt = <1352000>;
- 			regulator-boot-on;
- 		};
- 
--		pm2250_s4: s4 {
-+		pm4125_s4: s4 {
- 			/* 1.2V-2.35V -> 2.05V (Power tree requirements) */
- 			regulator-min-microvolt = <2072000>;
- 			regulator-max-microvolt = <2072000>;
-@@ -288,7 +288,7 @@ pm2250_s4: s4 {
- 
- 		/* L1 - VDD_MX */
- 
--		pm2250_l2: l2 {
-+		pm4125_l2: l2 {
- 			/* LPDDR4X VDD2 */
- 			regulator-min-microvolt = <1136000>;
- 			regulator-max-microvolt = <1136000>;
-@@ -296,7 +296,7 @@ pm2250_l2: l2 {
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l3: l3 {
-+		pm4125_l3: l3 {
- 			/* LPDDR4X VDDQ */
- 			regulator-min-microvolt = <616000>;
- 			regulator-max-microvolt = <616000>;
-@@ -304,14 +304,14 @@ pm2250_l3: l3 {
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l4: l4 {
-+		pm4125_l4: l4 {
- 			/* max = 3.05V -> max = 2.7 to disable 3V signaling (SDHCI2) */
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <2700000>;
- 			regulator-allow-set-load;
- 		};
- 
--		pm2250_l5: l5 {
-+		pm4125_l5: l5 {
- 			/* CSI/DSI */
- 			regulator-min-microvolt = <1232000>;
- 			regulator-max-microvolt = <1232000>;
-@@ -319,7 +319,7 @@ pm2250_l5: l5 {
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l6: l6 {
-+		pm4125_l6: l6 {
- 			/* DRAM PLL */
- 			regulator-min-microvolt = <928000>;
- 			regulator-max-microvolt = <928000>;
-@@ -327,7 +327,7 @@ pm2250_l6: l6 {
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l7: l7 {
-+		pm4125_l7: l7 {
- 			/* Wi-Fi CX/MX */
- 			regulator-min-microvolt = <664000>;
- 			regulator-max-microvolt = <664000>;
-@@ -338,20 +338,20 @@ pm2250_l7: l7 {
- 		 * L9 - VDD_LPI_MX
- 		 */
- 
--		pm2250_l10: l10 {
-+		pm4125_l10: l10 {
- 			/* Wi-Fi RFA */
- 			regulator-min-microvolt = <1304000>;
- 			regulator-max-microvolt = <1304000>;
- 		};
- 
--		pm2250_l11: l11 {
-+		pm4125_l11: l11 {
- 			/* GPS RF1 */
- 			regulator-min-microvolt = <1000000>;
- 			regulator-max-microvolt = <1000000>;
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l12: l12 {
-+		pm4125_l12: l12 {
- 			/* USB PHYs */
- 			regulator-min-microvolt = <928000>;
- 			regulator-max-microvolt = <928000>;
-@@ -359,7 +359,7 @@ pm2250_l12: l12 {
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l13: l13 {
-+		pm4125_l13: l13 {
- 			/* USB/QFPROM/PLLs */
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
-@@ -367,7 +367,7 @@ pm2250_l13: l13 {
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l14: l14 {
-+		pm4125_l14: l14 {
- 			/* SDHCI1 VQMMC */
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
-@@ -376,7 +376,7 @@ pm2250_l14: l14 {
- 			regulator-always-on;
- 		};
- 
--		pm2250_l15: l15 {
-+		pm4125_l15: l15 {
- 			/* WCD/DSI/BT VDDIO */
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
-@@ -385,38 +385,38 @@ pm2250_l15: l15 {
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l16: l16 {
-+		pm4125_l16: l16 {
- 			/* GPS RF2 */
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l17: l17 {
-+		pm4125_l17: l17 {
- 			regulator-min-microvolt = <3000000>;
- 			regulator-max-microvolt = <3000000>;
- 		};
- 
--		pm2250_l18: l18 {
-+		pm4125_l18: l18 {
- 			/* VDD_PXn */
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 		};
- 
--		pm2250_l19: l19 {
-+		pm4125_l19: l19 {
- 			/* VDD_PXn */
- 			regulator-min-microvolt = <1800000>;
- 			regulator-max-microvolt = <1800000>;
- 		};
- 
--		pm2250_l20: l20 {
-+		pm4125_l20: l20 {
- 			/* SDHCI1 VMMC */
- 			regulator-min-microvolt = <2400000>;
- 			regulator-max-microvolt = <3600000>;
- 			regulator-allow-set-load;
- 		};
- 
--		pm2250_l21: l21 {
-+		pm4125_l21: l21 {
- 			/* SDHCI2 VMMC */
- 			regulator-min-microvolt = <2960000>;
- 			regulator-max-microvolt = <3300000>;
-@@ -424,7 +424,7 @@ pm2250_l21: l21 {
- 			regulator-boot-on;
- 		};
- 
--		pm2250_l22: l22 {
-+		pm4125_l22: l22 {
- 			/* Wi-Fi */
- 			regulator-min-microvolt = <3312000>;
- 			regulator-max-microvolt = <3312000>;
-@@ -433,8 +433,8 @@ pm2250_l22: l22 {
- };
- 
- &sdhc_1 {
--	vmmc-supply = <&pm2250_l20>;
--	vqmmc-supply = <&pm2250_l14>;
-+	vmmc-supply = <&pm4125_l20>;
-+	vqmmc-supply = <&pm4125_l14>;
- 	pinctrl-0 = <&sdc1_state_on>;
- 	pinctrl-1 = <&sdc1_state_off>;
- 	pinctrl-names = "default", "sleep";
-@@ -446,8 +446,8 @@ &sdhc_1 {
- };
- 
- &sdhc_2 {
--	vmmc-supply = <&pm2250_l21>;
--	vqmmc-supply = <&pm2250_l4>;
-+	vmmc-supply = <&pm4125_l21>;
-+	vqmmc-supply = <&pm4125_l4>;
- 	cd-gpios = <&tlmm 88 GPIO_ACTIVE_LOW>;
- 	pinctrl-0 = <&sdc2_state_on &sd_det_in_on>;
- 	pinctrl-1 = <&sdc2_state_off &sd_det_in_off>;
-@@ -518,8 +518,8 @@ &usb {
- };
- 
- &usb_qmpphy {
--	vdda-phy-supply = <&pm2250_l12>;
--	vdda-pll-supply = <&pm2250_l13>;
-+	vdda-phy-supply = <&pm4125_l12>;
-+	vdda-pll-supply = <&pm4125_l13>;
- 	status = "okay";
- };
- 
-@@ -528,17 +528,17 @@ &usb_dwc3 {
- };
- 
- &usb_hsphy {
--	vdd-supply = <&pm2250_l12>;
--	vdda-pll-supply = <&pm2250_l13>;
--	vdda-phy-dpdm-supply = <&pm2250_l21>;
-+	vdd-supply = <&pm4125_l12>;
-+	vdda-pll-supply = <&pm4125_l13>;
-+	vdda-phy-dpdm-supply = <&pm4125_l21>;
- 	status = "okay";
- };
- 
- &wifi {
--	vdd-0.8-cx-mx-supply = <&pm2250_l7>;
--	vdd-1.8-xo-supply = <&pm2250_l13>;
--	vdd-1.3-rfa-supply = <&pm2250_l10>;
--	vdd-3.3-ch0-supply = <&pm2250_l22>;
-+	vdd-0.8-cx-mx-supply = <&pm4125_l7>;
-+	vdd-1.8-xo-supply = <&pm4125_l13>;
-+	vdd-1.3-rfa-supply = <&pm4125_l10>;
-+	vdd-3.3-ch0-supply = <&pm4125_l22>;
- 	qcom,ath10k-calibration-variant = "Thundercomm_RB1";
- 	status = "okay";
- };
-
--- 
-2.39.2
-
+Renesas Electronics
+Ph.D. Kuninori Morimoto
 
