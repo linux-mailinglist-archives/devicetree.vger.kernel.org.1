@@ -1,115 +1,141 @@
-Return-Path: <devicetree+bounces-32108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59B0282DDD0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:45:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF3B82DDDF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:48:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F2281C20B62
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:45:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE9971F228D4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C3F17BCB;
-	Mon, 15 Jan 2024 16:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BVngNTTM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7472617BD4;
+	Mon, 15 Jan 2024 16:48:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD80D17BC7;
-	Mon, 15 Jan 2024 16:45:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D9F9C433C7;
-	Mon, 15 Jan 2024 16:45:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705337118;
-	bh=ViDfJVgPPtY9rthYpqceej159xuom9miTC+tJZsNboU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BVngNTTMNIP4L6CU5fdgNjvv0Oo1gRZ1Is6CiKzne5UWuyW0DqTGU2+DN3MKVUcQa
-	 rnUNKBQHsfgmUBfWCDMzbAvbgu8gxoToUN0ze8+oVpne9kBYwTSjStn1fJHhOzcoag
-	 NditqqFyScWwP2uajbi4zzkAKu3S7LNqPjBQaM7dKDVrANUUWz86SDF9keMPrOJl5E
-	 ZQ4jKNhEF/t1XoSqHbYDjMhm41NtUrPh0Nw79iKPY1AW69+Af9H7Je6lmGflg2Wi8Z
-	 pXmDv5gkNhPKkvuNXyThTO0M/ylG5VM//Kwpzzx1GWqqeL7unf9yIuWczs+OPUtvwi
-	 tYIA6yFx2Ho4A==
-Date: Mon, 15 Jan 2024 16:45:13 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: KyuHyuk Lee <lee@kyuhyuk.kr>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jagan Teki <jagan@edgeble.ai>, Tianling Shen <cnsztl@gmail.com>,
-	Andy Yan <andyshrk@163.com>, Ondrej Jirman <megi@xff.cz>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: rockchip: Add Hardkernel ODROID-M1S
- board
-Message-ID: <20240115-elk-paralyses-e308f1d9cc2f@spud>
-References: <20240112134230.28055-1-lee@kyuhyuk.kr>
- <20240112-granola-underline-36a525dc789c@spud>
- <dc4e9808-cd36-4b99-afd9-8dd4cd16a2a9@linaro.org>
- <20240112-headsman-concur-1d47da7e3e14@spud>
- <21a8feea-7306-4016-9a58-6e5bf8fe30a8@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B05C17BBB;
+	Mon, 15 Jan 2024 16:48:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5e778e484dbso79355617b3.0;
+        Mon, 15 Jan 2024 08:48:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705337311; x=1705942111;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6Xom6xncqDax048LAWipCjONrGVwUc7wt4+JM1uzSZY=;
+        b=LEPnoPuxuer9/ZiDq7iJe/f/qr99jDh0kOBblKLqTzFQBGPNlJe7zoY6Q6HbdHlSq0
+         w+XqVnLTRzjT4esFBesrfYOzDnRETPo2U0vvCrHTPjnLTE4h0KgJqO00+mO2zYlNTReH
+         78mhwEZrvCR/31LFqIjeY8FULcV/vLcd/9OrlQWZFvdDVEtA0Etg7cZUb21G+PnKNJKF
+         fcFZs4es0Cu+uY/UyOZh1jL+ePX6pN3FRX3jcmaf5wCD4gIkcQjU8SKj5QhONcIhvm+f
+         1V/N3thToMo53XXh4W4mvfV+nRcIn6LrO33WvxO2HZBHXAf40puvW1DIxO9vbN3bPwUi
+         yLGQ==
+X-Gm-Message-State: AOJu0YwbEyw7PeJztTrTvFtHDj3jw8Hr41A21AuPGcgtpiZWL1yA+b69
+	QpdtSCGfeUqA92fB7+Dp7LJootIbyAIfdw==
+X-Google-Smtp-Source: AGHT+IGPc2kGPa+rPHUjg3iCnVulW/PAu7ISq1WSFpkeugYPVjR21uP5oCa4oMaYP/IDjafAuXlNAA==
+X-Received: by 2002:a81:ad1c:0:b0:5ff:3ee4:956c with SMTP id l28-20020a81ad1c000000b005ff3ee4956cmr534904ywh.23.1705337310737;
+        Mon, 15 Jan 2024 08:48:30 -0800 (PST)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id d70-20020a814f49000000b005fdc47c460dsm285001ywb.23.2024.01.15.08.48.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jan 2024 08:48:30 -0800 (PST)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5f0c0ca5ef1so87109787b3.2;
+        Mon, 15 Jan 2024 08:48:30 -0800 (PST)
+X-Received: by 2002:a05:690c:a98:b0:5e9:f386:dd63 with SMTP id
+ ci24-20020a05690c0a9800b005e9f386dd63mr4282644ywb.39.1705337310443; Mon, 15
+ Jan 2024 08:48:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="riS/1QbGyvUIkYNO"
-Content-Disposition: inline
-In-Reply-To: <21a8feea-7306-4016-9a58-6e5bf8fe30a8@linaro.org>
-
-
---riS/1QbGyvUIkYNO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <fb1e38c93e62221f94304edd980a2fb79c1f2995.1705325608.git.geert+renesas@glider.be>
+ <20240115-wages-secluded-b44f4eb13323@spud>
+In-Reply-To: <20240115-wages-secluded-b44f4eb13323@spud>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 15 Jan 2024 17:48:18 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWY3D45NGHvGXSZRLZz4TyCRgRCQLZV6CzYs=mSFcherw@mail.gmail.com>
+Message-ID: <CAMuHMdWY3D45NGHvGXSZRLZz4TyCRgRCQLZV6CzYs=mSFcherw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: timer: renesas,tmu: Document input capture interrupt
+To: Conor Dooley <conor@kernel.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+	Yoshinori Sato <ysato@users.sourceforge.jp>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-sh@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 12, 2024 at 06:43:33PM +0100, Krzysztof Kozlowski wrote:
-> On 12/01/2024 18:26, Conor Dooley wrote:
-> >>> if the vendor for this board is hardkernel...
-> >>>
-> >>>> +        items:
-> >>>> +          - const: rockchip,rk3566-odroid-m1s
-> >>>
-> >>> ...why is the vendor prefix here rockchip?
-> >>
-> >> Uh, good catch. I missed it when acking their earlier mistake year ago
-> >> :( Would be nice if they fixed that one too.
-> >=20
-> > Maybe they will if they got your email, they did not get mine
-> > apparently:
-> > <lee@kyuhyuk.kr>: host mx02.mail.icloud.com[17.57.155.34] said: 554 5.7=
-=2E1
-> >     [HM08] Message rejected due to local policy. Please visit
-> >     https://support.apple.com/en-us/HT204137 (in reply to end of DATA c=
-ommand)
->=20
-> Uh, what did you do to Apple to be denied by their policy? Admit, you
-> have an Android phone?
+Hi Conor,
 
-I do. I guess that puts me on -1 social credit score. I have a macbook,
-but I run linux on it, so I guess that is a +1 -0.5 sorta deal, leaving
-me negative overall.
+On Mon, Jan 15, 2024 at 5:13=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+> On Mon, Jan 15, 2024 at 02:45:39PM +0100, Geert Uytterhoeven wrote:
+> > Some Timer Unit (TMU) instances with 3 channels support a fourth
+> > interrupt: an input capture interrupt for the third channel.
+> >
+> > While at it, document the meaning of the four interrupts, and add
+> > "interrupt-names" for clarity.
+> >
+> > Update the example to match reality.
+> >
+> > Inspired by a patch by Yoshinori Sato for SH.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Either way, not sure what causes it. Maybe the fact that I sign all my
-mail is a contributing factor, but I may not be the only @kernel.org
-address that KyuHyuk Lee is not receiving mail from.
+> > --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+> > +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+> > @@ -46,7 +46,19 @@ properties:
+> >
+> >    interrupts:
+> >      minItems: 2
+> > -    maxItems: 3
+> > +    items:
+> > +      - description: Underflow interrupt 0
+> > +      - description: Underflow interrupt 1
+> > +      - description: Underflow interrupt 2
+> > +      - description: Input capture interrupt 2
+>
+> Seeing "input capture interrupt 2" makes me wonder, are there two (or
+> more!) other input capture interrupts that are still out there,
+> undocumented, and looking for a home?
 
---riS/1QbGyvUIkYNO
-Content-Type: application/pgp-signature; name="signature.asc"
+SoCs can have multiple TMU instances.
+Each TMU instance has 2 or 3 timer channels.
+Each timer channel has an underflow interrupt.
+Only the third channel may have an optional input capture interrupt
+(which is not supported yet by the Linux driver).
+Hence each instance can have 2, 3, or 4 interrupts.
 
------BEGIN PGP SIGNATURE-----
+See "RZ/G Series, 2nd Generation User's Manual: Hardware"[1],
+Section 69 ("Timer Unit (TMU)":
+  - Figure 69.2: Block Diagram of TMU,
+  - Section 69: Interrupt
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaVhGQAKCRB4tDGHoIJi
-0uviAP4vY6e5kowaPAGO9WitJXCjm8YoC2PCKDXRVbYxWNgtCQD/XT84O8/v1mMh
-C1CpXZDjrgNrmxMCmlEXsjq8g9mDEAo=
-=gT6T
------END PGP SIGNATURE-----
+Note that the documentation uses a monotonic increasing numbering
+of the channels, across all instances.
 
---riS/1QbGyvUIkYNO--
+[1] https://www.renesas.com/us/en/products/microcontrollers-microprocessors=
+/rz-mpus/rzg2h-ultra-high-performance-microprocessors-quad-core-arm-cortex-=
+a57-and-quad-core-arm-cortex-a53-cpus-3d
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
