@@ -1,132 +1,296 @@
-Return-Path: <devicetree+bounces-31946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA0782D503
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 09:25:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC22D82D50E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 09:28:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 595601C212B5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 08:25:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E344F1C208F8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 08:28:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F78C613C;
-	Mon, 15 Jan 2024 08:25:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CoV0R374"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC616105;
+	Mon, 15 Jan 2024 08:28:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AD005689;
-	Mon, 15 Jan 2024 08:25:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BC49C433C7;
-	Mon, 15 Jan 2024 08:25:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705307133;
-	bh=bkFxuxf0iCghKC8GrzWqXKXAFsRRBXSZ7feexi45UVk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CoV0R374tK5kCtzfve7eyQAekaInOpN0kUMbDADJ0KXk63eiqZTQu9MWzErWMYAfj
-	 BDp82RgAyoC0OgaHWM5EFeBKTwr8e+VuBEiW9BLrJAQoXyQcvdypB5Jg9rqF3Eto5u
-	 u+EbR/pWzZwUzdc53sIOnvkoHlbqKwwykR0GFpAgmNhCKrLV97kkbrFH0THj6m9hNd
-	 rlhyTBEwVAXw3ZeYbwAxM/EyfKlfjSXTiTQg5oBwZxiTqrTSdiuaD5tS8mwlRYdcK1
-	 J5IYOw8SdFTdWr6BorUsL3PvlYJxuPS7BKs7hxmNaGe84+JruinkUhmnF8916wcMt5
-	 vzHB0zIfM8/Ew==
-Date: Mon, 15 Jan 2024 09:25:30 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>, 
-	Donald Robson <donald.robson@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
-	Adam Ford <aford173@gmail.com>, Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Paul Cercueil <paul@crapouillou.net>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: Re: [PATCH RFC v2 04/11] ARM: dts: omap4: Add device tree entry
- for SGX GPU
-Message-ID: <vpcgccul53oibwoqb3barj3rjxoyskoldjyfvjdzmytic3tonm@wq4aqsenk7rp>
-References: <20240108183302.255055-1-afd@ti.com>
- <20240108183302.255055-5-afd@ti.com>
- <122DC5ED-2AA7-46A0-845F-083922458385@goldelico.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90995C98;
+	Mon, 15 Jan 2024 08:28:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 643A02F4;
+	Mon, 15 Jan 2024 00:29:05 -0800 (PST)
+Received: from [10.34.100.129] (unknown [10.34.100.129])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CF6313F5A1;
+	Mon, 15 Jan 2024 00:28:16 -0800 (PST)
+Message-ID: <49356b25-771b-4b42-acd6-c5fae95f0bef@arm.com>
+Date: Mon, 15 Jan 2024 09:28:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5bv4mdxrrdvnbudo"
-Content-Disposition: inline
-In-Reply-To: <122DC5ED-2AA7-46A0-845F-083922458385@goldelico.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/16] arm64: dts: ti: k3-am625: Add MIT license along
+ with GPL-2.0
+Content-Language: en-US
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Guillaume La Roque <glaroque@baylibre.com>,
+ Julien Panis <jpanis@baylibre.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Roger Quadros <rogerq@kernel.org>, Ronald Wahl <ronald.wahl@raritan.com>,
+ Sarah Walker <sarah.walker@imgtec.com>, Tony Lindgren <tony@atomide.com>
+References: <20240110140903.4090946-1-nm@ti.com>
+ <20240110140903.4090946-4-nm@ti.com>
+From: Pierre Gondois <pierre.gondois@arm.com>
+In-Reply-To: <20240110140903.4090946-4-nm@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hello,
+For all the patches of the serie that require it:
+Acked-by: Pierre Gondois <pierre.gondois@arm.com>
 
---5bv4mdxrrdvnbudo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Fri, Jan 12, 2024 at 06:33:58PM +0100, H. Nikolaus Schaller wrote:
-> > Am 08.01.2024 um 19:32 schrieb Andrew Davis <afd@ti.com>:
-> >=20
-> > Add SGX GPU device entry to base OMAP4 dtsi file.
-> >=20
-> > Signed-off-by: Andrew Davis <afd@ti.com>
-> > ---
-> > arch/arm/boot/dts/ti/omap/omap4.dtsi | 9 +++++----
-> > 1 file changed, 5 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/arch/arm/boot/dts/ti/omap/omap4.dtsi b/arch/arm/boot/dts/t=
-i/omap/omap4.dtsi
-> > index 2bbff9032be3e..559b2bfe4ca7c 100644
-> > --- a/arch/arm/boot/dts/ti/omap/omap4.dtsi
-> > +++ b/arch/arm/boot/dts/ti/omap/omap4.dtsi
-> > @@ -501,10 +501,11 @@ sgx_module: target-module@56000000 {
-> > #size-cells =3D <1>;
-> > ranges =3D <0 0x56000000 0x2000000>;
-> >=20
-> > - /*
-> > - * Closed source PowerVR driver, no child device
-> > - * binding or driver in mainline
-> > - */
-> > + gpu@0 {
->=20
-> I wonder why we don't add a "gpu:" label here.
->=20
-> Almost all other subsystem nodes have one (e.g. emif:, aes:, dss:, dsi:, =
-hdmi:, etc.),
-> obviously for convenience when using a .dtsi file.
->=20
-> It would allow a board-specific DTS to easily add status =3D "disabled" t=
-o avoid driver
-> probing or disabling the GPU (e.g. if there is no display).
-
-There's no reason to disable it in the DT: the hardware block would
-still be there and it's rendering to memory so it still could be useful.
-
-If there's no display on the board and you really don't want the GPU
-driver, then you can disable the driver or block the module loading, but
-it should be a distro / package / user decision, not a DT / kernel one
-still.
-
-Maxime
-
---5bv4mdxrrdvnbudo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZaTr7AAKCRDj7w1vZxhR
-xSybAP96mNxOy9DrBryPZmmu4a4Y6AfuRKXr9+Uh2C3OhAPO3QEA1j3KoeAhpYrF
-0pDWtJkRFUHwyOTCz3HpiAeRG3RSqwM=
-=GRcK
------END PGP SIGNATURE-----
-
---5bv4mdxrrdvnbudo--
+On 1/10/24 15:08, Nishanth Menon wrote:
+> Modify license to include dual licensing as GPL-2.0-only OR MIT
+> license for SoC and TI evm device tree files. This allows for Linux
+> kernel device tree to be used in other Operating System ecosystems
+> such as Zephyr or FreeBSD.
+> 
+> While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync
+> with latest SPDX conventions (GPL-2.0 is deprecated).
+> 
+> While at this, update the TI copyright year to sync with current year
+> to indicate license change (and add it at least for one file which was
+> missing TI copyright).
+> 
+> Cc: Guillaume La Roque <glaroque@baylibre.com>
+> Cc: Julien Panis <jpanis@baylibre.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Cc: Pierre Gondois <pierre.gondois@arm.com>
+> Cc: Roger Quadros <rogerq@kernel.org>
+> Cc: Ronald Wahl <ronald.wahl@raritan.com>
+> Cc: Sarah Walker <sarah.walker@imgtec.com>
+> Cc: Tony Lindgren <tony@atomide.com>
+> 
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts                 | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi                 | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi                  | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi              | 5 ++++-
+>   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi               | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62.dtsi                      | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am625-sk.dts                   | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am625.dtsi                     | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi           | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso      | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso      | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso | 4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso       | 4 ++--
+>   13 files changed, 28 insertions(+), 25 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+> index 5e6feb8cd125..c4149059a4c5 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
+> @@ -1,8 +1,8 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * AM62x LP SK: https://www.ti.com/tool/SK-AM62-LP
+>    *
+> - * Copyright (C) 2021-2023 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2021-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index 464b7565d085..fe0cc4a9a501 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -1,8 +1,8 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * Device Tree Source for AM625 SoC Family Main Domain peripherals
+>    *
+> - * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   &cbass_main {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> index 0e0b234581c6..e66d486ef1f2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
+> @@ -1,8 +1,8 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * Device Tree Source for AM625 SoC Family MCU Domain peripherals
+>    *
+> - * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   &cbass_mcu {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi
+> index a358757e26f0..12ba833002a1 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi
+> @@ -1,4 +1,7 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
+> + */
+>   
+>   #include <dt-bindings/thermal/thermal.h>
+>   
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> index fef76f52a52e..a0bba5ddd409 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> @@ -1,8 +1,8 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * Device Tree Source for AM625 SoC Family Wakeup Domain peripherals
+>    *
+> - * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   &cbass_wakeup {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> index f1e15206e1ce..f0781f2bea29 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
+> @@ -1,8 +1,8 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * Device Tree Source for AM62 SoC Family
+>    *
+> - * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   #include <dt-bindings/gpio/gpio.h>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> index b18092497c9a..ae81ebb39d02 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
+> @@ -1,8 +1,8 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * AM625 SK: https://www.ti.com/lit/zip/sprr448
+>    *
+> - * Copyright (C) 2021-2022 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2021-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625.dtsi b/arch/arm64/boot/dts/ti/k3-am625.dtsi
+> index 4193c2b3eed6..4014add6320d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am625.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am625.dtsi
+> @@ -1,10 +1,10 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * Device Tree Source for AM625 SoC family in Quad core configuration
+>    *
+>    * TRM: https://www.ti.com/lit/pdf/spruiv7
+>    *
+> - * Copyright (C) 2020-2022 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> index 33768c02d8eb..05b762602a65 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> @@ -1,8 +1,8 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * Common dtsi for AM62x SK and derivatives
+>    *
+> - * Copyright (C) 2021-2023 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2021-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   #include <dt-bindings/leds/common.h>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+> index 6f4cd73c2f43..76ca02127f95 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso
+> @@ -1,7 +1,7 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * IMX219 (RPi v2) Camera Module
+> - * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso
+> index 9323a4b38389..ccc7f5e43184 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso
+> @@ -1,7 +1,7 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * ALINX AN5641 & Digilent PCam 5C - OV5640 camera module
+> - * Copyright (C) 2022-2023 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso
+> index dcaa33a4c8d3..4eaf9d757dd0 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso
+> @@ -1,7 +1,7 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /*
+>    * Technexion TEVI-OV5640-*-RPI - OV5640 camera module
+> - * Copyright (C) 2022-2023 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2022-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso b/arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso
+> index 08eb2e894bbc..18c3082f68e6 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso
+> @@ -1,4 +1,4 @@
+> -// SPDX-License-Identifier: GPL-2.0
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>   /**
+>    * Audio playback via HDMI for AM625-SK and AM62-LP SK.
+>    *
+> @@ -6,7 +6,7 @@
+>    * AM625 SK: https://www.ti.com/tool/SK-AM62
+>    * AM62-LP SK: https://www.ti.com/tool/SK-AM62-LP
+>    *
+> - * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   
+>   /dts-v1/;
 
