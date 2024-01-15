@@ -1,119 +1,120 @@
-Return-Path: <devicetree+bounces-32025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3623282D986
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:09:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E526882D9D8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:15:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30F461C21210
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 13:09:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 185641C219CC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 13:15:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A351756B;
-	Mon, 15 Jan 2024 13:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C731168B7;
+	Mon, 15 Jan 2024 13:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c7BEy2in"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="NQiRHca2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A3C3171D4;
-	Mon, 15 Jan 2024 13:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3376d424a79so6728088f8f.1;
-        Mon, 15 Jan 2024 05:08:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705324106; x=1705928906; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WclvSvESBcB1ccyxeqjrdGj+frspJc0esD0QtgwrkCo=;
-        b=c7BEy2inHAh8liKaRYt9aZWfCtmK6FMbo0y3yKsVHqD4ROhT/7vCeQY7Hr76g01C8w
-         n0zlAZ6wgthxFUUAaDkcwYNQnF04UCT3zKmNkV7U63AHlCwNcbMozmr3wSzxdw/dqHZj
-         yLJPjA3wAxnid6i3w7uk4lK2aPzh/DcVUCrPY971k423nKTWoMCXzqz4PZcf9Db+nHah
-         SWIftww4gAT7Uxs/KjcuSqpXZRY02HXmeaX/A45PAujdQhFeCEyd6teo+zicffA8XqUY
-         qbt2zAUxp1tSoXEgQRMiyDJznjG98S7569PL6/bCe1jLL/07ODUnDOGZtzqa6FxRlwkH
-         JM2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705324106; x=1705928906;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WclvSvESBcB1ccyxeqjrdGj+frspJc0esD0QtgwrkCo=;
-        b=qFO8nKeqpP3Hq4a3r9MLPdSyXxX39QJ4TGcGs7HjTmdMwLBlGfYVk7NQofkEVQWUFH
-         tuwAj51cz5/HyWxRTj269ZEFF0oq7ClTvizQze+H2O3F/NiRJi+IkhOuZlvzbutGXW5a
-         EsqAQ5LxJAPBEm1jDd3SotmHTrHkh5xl+mm7T1bsIfg2aP3gfOUaId7eA7/vNJtASLHj
-         K+4WyTs/7aDIo7RydLoSTBDDn6FR452ZXsQWqUoUaeswd4kZE8X5f5+PTFGgzpG8NgBd
-         Wn3AwQ6VT4e9ZRY+cPemK4EYcNNz+oDG0jU3Ys02AFazaMouInhSvieSFM2FSFeGj5DI
-         LZ2g==
-X-Gm-Message-State: AOJu0YyojPg4fPZeOOM0Bs9kvwJyHxt2F4/FIQwS0jx5MOICNLb7YAWU
-	bhjCU75v7tbJGJDCnvQ8H4M=
-X-Google-Smtp-Source: AGHT+IGsOzQ7L6ielq7mxIFwHy6qHtdKpqdw04n+je7tcix4atLkzck0Yy0VuXqfteUT7WaM2h9fFA==
-X-Received: by 2002:adf:dd8f:0:b0:336:5f04:bff3 with SMTP id x15-20020adfdd8f000000b003365f04bff3mr2990776wrl.81.1705324105815;
-        Mon, 15 Jan 2024 05:08:25 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2500:a01:3d67:232:2eec:2430])
-        by smtp.gmail.com with ESMTPSA id d13-20020adfef8d000000b0033739c1da1dsm11843620wro.67.2024.01.15.05.08.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jan 2024 05:08:24 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v5 4/4] riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
-Date: Mon, 15 Jan 2024 13:08:17 +0000
-Message-Id: <20240115130817.88456-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240115130817.88456-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240115130817.88456-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62BAB17BA8;
+	Mon, 15 Jan 2024 13:14:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1705324462; x=1736860462;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jFA3loSz7KBaa/Y2oZSte/KcReqaqC7L01dAxlTOXyY=;
+  b=NQiRHca2sMbJTmX3Ttk8fMMjAK4lCJpEP78G6PSMznlcLtYRDAhwNEw4
+   kUUjPCmYnZ9jwWgbMKcIi2+Q5jMtpXfwU+O+6LUC8SaIAgFj8yxIGKny8
+   u56dKLmilrB98XW/yJ/RsnjSeN/EExHw/93Wt97nEM0xiMsF0ZPeYoFAG
+   TkV/ISz8W4yD/MbIqrl04ykSSfY1NC/3bzg9HjHp1KtIWDAA40V+UhJ3I
+   zFzjcQo+6paAb8b9nLSxj6eTh2FvS19JO6+uB3QDzT3elYA6AlgTlXKRb
+   COySSbuZstY50nf9x7EB6utw597/rXzcwyOJ3U95svPzS4rW0kdhzYP+w
+   Q==;
+X-CSE-ConnectionGUID: lKQerpMqQvmPFpiQXHFOyA==
+X-CSE-MsgGUID: +966s/esQnO+EyrA43oQ3g==
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; 
+   d="asc'?scan'208";a="14745244"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Jan 2024 06:14:20 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Mon, 15 Jan 2024 06:14:07 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Mon, 15 Jan 2024 06:14:04 -0700
+Date: Mon, 15 Jan 2024 13:13:28 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Drew Fustini <dfustini@tenstorrent.com>
+CC: Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei
+	<wefu@redhat.com>, Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Yangtao Li <frank.li@vivo.com>, <linux-kernel@vger.kernel.org>,
+	<linux-riscv@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Han Gao <gaohan@iscas.ac.cn>, Xi Ruoyao
+	<xry111@xry111.site>, Robert Nelson <robertcnelson@beagleboard.org>, Jason
+ Kridner <jkridner@beagleboard.org>
+Subject: Re: [PATCH RFC 2/3] dt-bindings: clock: Document T-Head TH1520 AP
+ clock controller
+Message-ID: <20240115-canteen-erupt-6634a1deece4@wendy>
+References: <20240110-clk-th1520-v1-0-8b0682567984@tenstorrent.com>
+ <20240110-clk-th1520-v1-2-8b0682567984@tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="rMErKyKoeRnUvEeF"
+Content-Disposition: inline
+In-Reply-To: <20240110-clk-th1520-v1-2-8b0682567984@tenstorrent.com>
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+--rMErKyKoeRnUvEeF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On RZ/Five we have additional pins compared to the RZ/G2UL SoC so update
-the gpio-ranges property in RZ/Five SoC DTSI.
+On Wed, Jan 10, 2024 at 08:35:16AM -0800, Drew Fustini wrote:
+> From: Yangtao Li <frank.li@vivo.com>
+>=20
+> Document devicetree bindings for the T-HEAD TH1520 AP sub-system
+> clock controller.
+>=20
+> Signed-off-by: Yangtao Li <frank.li@vivo.com>
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/riscv/boot/dts/renesas/r9a07g043f.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+> [add link to reference manual]
+> [fixed dt_binding_check warnings]
+> [revised commit description]
 
-diff --git a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-index d2272a0bfb61..aa3b1d2b999d 100644
---- a/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-+++ b/arch/riscv/boot/dts/renesas/r9a07g043f.dtsi
-@@ -46,6 +46,10 @@ cpu0_intc: interrupt-controller {
- 	};
- };
- 
-+&pinctrl {
-+	gpio-ranges = <&pinctrl 0 0 232>;
-+};
-+
- &soc {
- 	dma-noncoherent;
- 	interrupt-parent = <&plic>;
--- 
-2.34.1
+btw, can you remove this sort of thing from the commit message and put
+it in the changelog instead?
 
+Cheers,
+Conor.
+
+> Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+
+--rMErKyKoeRnUvEeF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaUveAAKCRB4tDGHoIJi
+0o71AQC7nn7S9wVZcBWfek1L479XEOdH1Z5hOxIxFhTm1tvM5wD9FzT/nkA5j93k
+DdcuMppH6E9l1Sx1mO8fXbTXey55jwY=
+=DAbR
+-----END PGP SIGNATURE-----
+
+--rMErKyKoeRnUvEeF--
 
