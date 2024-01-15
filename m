@@ -1,149 +1,117 @@
-Return-Path: <devicetree+bounces-32044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E5482DA29
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:32:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE49882DA75
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:45:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF8621F22470
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 13:32:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D9C5280F95
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 13:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E99F017547;
-	Mon, 15 Jan 2024 13:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="O9ei0t+8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4FA171C8;
+	Mon, 15 Jan 2024 13:45:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [195.130.137.90])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 129CE171D4;
-	Mon, 15 Jan 2024 13:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1705325448; x=1736861448;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=iPNqV4WqSslaaJ2XVWrUIXiGS/Zq3AEGuqtwwZfh5Cw=;
-  b=O9ei0t+8rGQ4OOK8AnmZiIiAhzIiG5X4NFaD1M+dN3CNNJsX/jVRg8YQ
-   HXybkUkroJF/c1OA8MQAqnLhpoDuWVCDoZKXlInXRHa3RqK84JQZ4jY/L
-   GZDCdwA1c0ZCoAUQWnX+9nCb8gk4t6nrEwswBqziok6D0nJmC8rqK6EME
-   rCmeuRscGAYte5WWyOtDFynUEwWQ+PBLanC27D0tbWGjlojE9hZVVRCcC
-   IXl12qSh2tvKtjROD8TcEsilOB4kWpRXVIP7Nsk/vwarkYz79kiLz8b2E
-   ctkND7TBS51j4q2s2TaLBg6n4mLAGTPFrljQOhzuXTMaNkjyOEvsJHfXm
-   w==;
-X-IronPort-AV: E=Sophos;i="6.04,196,1695679200"; 
-   d="scan'208";a="34897440"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 15 Jan 2024 14:30:45 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 9C112280075;
-	Mon, 15 Jan 2024 14:30:45 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org, Hector Palacios <hector.palacios@digi.com>
-Cc: stefan@agner.ch, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, peng.fan@nxp.com, haibo.chen@nxp.com, hector.palacios@digi.com
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx93: specify available 'ngpios' per GPIO port
-Date: Mon, 15 Jan 2024 14:30:45 +0100
-Message-ID: <2919725.e9J7NaK4W3@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240115131605.395691-3-hector.palacios@digi.com>
-References: <20240115131605.395691-1-hector.palacios@digi.com> <20240115131605.395691-3-hector.palacios@digi.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387EE17589
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 13:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:1376:70aa:e074:32d3])
+	by albert.telenet-ops.be with bizsmtp
+	id b1li2B00734Hgv9061liDQ; Mon, 15 Jan 2024 14:45:44 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rPNGr-00FdxB-N1;
+	Mon, 15 Jan 2024 14:45:42 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rPNHa-00C0Vf-Dk;
+	Mon, 15 Jan 2024 14:45:42 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-sh@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: timer: renesas,tmu: Document input capture interrupt
+Date: Mon, 15 Jan 2024 14:45:39 +0100
+Message-Id: <fb1e38c93e62221f94304edd980a2fb79c1f2995.1705325608.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
 
-Hi Hector,
+Some Timer Unit (TMU) instances with 3 channels support a fourth
+interrupt: an input capture interrupt for the third channel.
 
-thanks for the patch.
+While at it, document the meaning of the four interrupts, and add
+"interrupt-names" for clarity.
 
-Am Montag, 15. Januar 2024, 14:16:05 CET schrieb Hector Palacios:
-> According to NXP HRM for i.MX93, the following GPIO pins are available:
-> - GPIO1: 16 pins (0..15)
+Update the example to match reality.
 
-Mh, RM Rev4 (12/2023) says:
->  Bit[31:17] should be Reserved for GPIO1
+Inspired by a patch by Yoshinori Sato for SH.
 
-So GPIO1 has the range 0..16
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+The corresponding DTS updates can be found in series "[PATCH 0/2]
+ARM/arm64: dts: renesas: Improve TMU interrupt descriptions".
+https://lore.kernel.org/r/cover.1705325654.git.geert+renesas@glider.be
 
-> - GPIO2: 30 pins (0..29)
-> - GPIO3: 32 pins (0..31)
-> - GPIO4: 30 pins (0..29)
+ .../devicetree/bindings/timer/renesas,tmu.yaml | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-RM Rev4 (12/2023) says:
-> Bit[31:28] should be Reserved for GPIO4
-
-So GPIO4 would be the range 0..27
-
-Where did you get your numbers from?
-
-Best regards,
-Alexander
-
->=20
-> Signed-off-by: Hector Palacios <hector.palacios@digi.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> b/arch/arm64/boot/dts/freescale/imx93.dtsi index 34c0540276d1..7eb2cab7c7=
-49
-> 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -970,6 +970,7 @@ gpio2: gpio@43810000 {
->  				 <&clk IMX93_CLK_GPIO2_GATE>;
->  			clock-names =3D "gpio", "port";
->  			gpio-ranges =3D <&iomuxc 0 4 30>;
-> +			ngpios =3D <30>;
->  		};
->=20
->  		gpio3: gpio@43820000 {
-> @@ -986,6 +987,7 @@ gpio3: gpio@43820000 {
->  			clock-names =3D "gpio", "port";
->  			gpio-ranges =3D <&iomuxc 0 84 8>, <&iomuxc 8 66=20
-18>,
->  				      <&iomuxc 26 34 2>, <&iomuxc 28 0=20
-4>;
-> +			ngpios =3D <32>;
->  		};
->=20
->  		gpio4: gpio@43830000 {
-> @@ -1001,6 +1003,7 @@ gpio4: gpio@43830000 {
->  				 <&clk IMX93_CLK_GPIO4_GATE>;
->  			clock-names =3D "gpio", "port";
->  			gpio-ranges =3D <&iomuxc 0 38 28>, <&iomuxc 28 36=20
-2>;
-> +			ngpios =3D <30>;
->  		};
->=20
->  		gpio1: gpio@47400000 {
-> @@ -1016,6 +1019,7 @@ gpio1: gpio@47400000 {
->  				 <&clk IMX93_CLK_GPIO1_GATE>;
->  			clock-names =3D "gpio", "port";
->  			gpio-ranges =3D <&iomuxc 0 92 16>;
-> +			ngpios =3D <16>;
->  		};
->=20
->  		ocotp: efuse@47510000 {
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+index a67e427a9e7e22aa..9a823224c144f7d4 100644
+--- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
++++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+@@ -46,7 +46,19 @@ properties:
+ 
+   interrupts:
+     minItems: 2
+-    maxItems: 3
++    items:
++      - description: Underflow interrupt 0
++      - description: Underflow interrupt 1
++      - description: Underflow interrupt 2
++      - description: Input capture interrupt 2
++
++  interrupt-names:
++    minItems: 2
++    items:
++      - const: tuni0
++      - const: tuni1
++      - const: tuni2
++      - const: ticpi2
+ 
+   clocks:
+     maxItems: 1
+@@ -100,7 +112,9 @@ examples:
+             reg = <0xffd80000 0x30>;
+             interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
+                          <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
+-                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
++                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "tuni0", "tuni1", "tuni2", "ticpi2";
+             clocks = <&mstp0_clks R8A7779_CLK_TMU0>;
+             clock-names = "fck";
+             power-domains = <&sysc R8A7779_PD_ALWAYS_ON>;
+-- 
+2.34.1
 
 
