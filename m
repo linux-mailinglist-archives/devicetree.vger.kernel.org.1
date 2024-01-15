@@ -1,66 +1,68 @@
-Return-Path: <devicetree+bounces-31981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 410EF82D684
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 10:58:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CACA82D689
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 10:59:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 564261C21618
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 09:58:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40E332840F0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 09:59:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D87DE57A;
-	Mon, 15 Jan 2024 09:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29B31EAF2;
+	Mon, 15 Jan 2024 09:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="bTLW0FQI"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="e+bmhS0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCB60E568;
-	Mon, 15 Jan 2024 09:58:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705312715;
-	bh=sucihfcuI+IzjO4bvrC1r8rLwyzhexN3edyT2mt02b4=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=bTLW0FQIF7NFjoo2zaXsdWlnkfgNUSisiP53Pk+n23M7RsSAk11W7A9k8Gy6FJ3GX
-	 /sAhEGwZF8pdCJQy5T9SYJjobyO4wDJkAIKDixVccRx2xdRJyVunvz5KSZGZFwgPvW
-	 F7vKsxbJXVmF3nS05AAcXaUrqSBT0IR0JaSdNZyMdWPO+3vDPXnCS83BjLp/8LteQ1
-	 ALntvNSnNa9AsnHgqovNynjchS+06bnou0tz/uii/CCogo0dEKHO3y1mc/YJJUMd1+
-	 PXfMZx/6eed0mHUPQdTSTuV/SwADh4YluYpZaWj0kwUoCU816QDQNwQXEJBUuVDAgK
-	 VYRazVdn3Uf0A==
-Received: from beast.luon.net (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sjoerd)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9799C37811CD;
-	Mon, 15 Jan 2024 09:58:35 +0000 (UTC)
-Received: by beast.luon.net (Postfix, from userid 1000)
-	id 23BA59FB0C71; Mon, 15 Jan 2024 10:58:35 +0100 (CET)
-Message-ID: <d55d9b13a93c49c86dba097bdf8a36ebdd90c837.camel@collabora.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am625-beagleplay: Use the builtin
- mdio bus
-From: Sjoerd Simons <sjoerd@collabora.com>
-To: Nishanth Menon <nm@ti.com>
-Cc: linux-arm-kernel@lists.infradead.org, Roger Quadros <rogerq@kernel.org>,
-  kernel@collabora.com, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDD92BAE4;
+	Mon, 15 Jan 2024 09:59:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1705312752; x=1736848752;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=uQts1tBeQahw7yIJZ2JO2t05z0jjvt6OA35IEEr1+kY=;
+  b=e+bmhS0s6VxiK7NjZt88vwXGDPjAhRse+KqIJmUJoa30wZ40UYNCubca
+   8/q/xQ0GOp1j1plGtKf5AEqLOtGsTUQGvY4yVJnOhaOXCOoTyhKx5r0gN
+   qZZwd5ReO1MhfRJvqcp74uP9f6gnhNRe7bcr/VxLhqM2d0rdzVdTWC4RV
+   Kcmy3lvRbBVIwfGydIHTSgh3K06Vkhn02oASl7/eU26bGiEp/pD3R3s3F
+   /bWisa7zK7YPw72Mf/YUhc3pT6vqZCI1e2t6fifl3j/y4Yd3qqppGSdFx
+   IC7K8P8cHVSk000llLWO/g+04+rq+yC1ZdnQlv+tCKdTwaDiuMC8koP7+
+   w==;
+X-IronPort-AV: E=Sophos;i="6.04,196,1695679200"; 
+   d="scan'208";a="34892366"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 15 Jan 2024 10:59:03 +0100
+Received: from [192.168.2.128] (SCHIFFERM-M2.tq-net.de [10.121.53.15])
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 148E9280075;
+	Mon, 15 Jan 2024 10:59:03 +0100 (CET)
+Message-ID: <e16cf4bc7e0bbd04f993c685095ab7f1728d5d0f.camel@ew.tq-group.com>
+Subject: Re: [PATCH 05/16] arm64: dts: ti: k3-am64: Add MIT license along
+ with GPL-2.0
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
  Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra
- <vigneshr@ti.com>, devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Date: Mon, 15 Jan 2024 10:58:34 +0100
-In-Reply-To: <20240112142537.axjy5risfe5lpnqc@quintet>
-References: <20240112124505.2054212-1-sjoerd@collabora.com>
-	 <20240112135000.b54xz3boeua7y2jf@music>
-	 <2ce27ed917b9bd569ee4a7f87b3d9b78d07cecbd.camel@collabora.com>
-	 <20240112142537.axjy5risfe5lpnqc@quintet>
-Organization: Collabora Ltd.
+ <robh+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Christian Gmeiner
+ <christian.gmeiner@gmail.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>, Pierre Gondois <pierre.gondois@arm.com>, 
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Wadim
+ Egorov <w.egorov@phytec.de>,  linux@ew.tq-group.com
+Date: Mon, 15 Jan 2024 10:59:02 +0100
+In-Reply-To: <20240110140903.4090946-6-nm@ti.com>
+References: <20240110140903.4090946-1-nm@ti.com>
+	 <20240110140903.4090946-6-nm@ti.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.2-1 
+User-Agent: Evolution 3.44.4-0ubuntu2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,74 +70,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Fri, 2024-01-12 at 08:25 -0600, Nishanth Menon wrote:
-> On 15:20-20240112, Sjoerd Simons wrote:
-> > On Fri, 2024-01-12 at 07:50 -0600, Nishanth Menon wrote:
-> > > On 13:44-20240112, Sjoerd Simons wrote:
-> > > > The beagleplay dts was using a bit-bang gpio mdio bus as a
-> > > > work-
-> > > > around
-> > > > for errata i2329. However since commit d04807b80691 ("net:
-> > > > ethernet: ti:
-> > > > davinci_mdio: Add workaround for errata i2329") the mdio driver
-> > > > itself
-> > > > already takes care of this errata for effected silicon, which
-> > > > landed
-> > > > well before the beagleplay dts. So i suspect the reason for the
-> > > > workaround in upstream was simply due to copying the vendor
-> > > > dts.
-> > > >=20
-> > > > Switch the dts to the ti,cpsw-mdio instead so it described the
-> > > > actual
-> > > > hardware and is consistent with other AM625 based boards
-> > > >=20
-> > > > Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
-> > > >=20
-> > > > ---
-> > >=20
-> > > We have had issues with the ethernet integration previously (also
-> > > why
-> > > ethernet in u-boot is not yet functional on beagleplay[1]).
-> > >=20
-> > > https://openbeagle.org/beagleplay/beagleplay/-/issues/101
-> > >=20
-> > > we should probably do a 1000 boot nfs test or something to ensure
-> > > this
-> > > doesn't introduce regressions (I recollect mdio wasn't stable on
-> > > beagleplay) and switching to bitbang driver stopped all
-> > > complains.
-> >=20
-> > I can do a longer test with that over the weekend sure; For
-> > reference
-> > I'm seeing issues in u-boot as well on initial probe with these
-> > changes, but i've not seen the same on the linux side.
-> >=20
-> > Do you remember with what kernel versions users saw the mdio
-> > instabilities? I wonder if that was a version with the commit
-> > mentioned
-> > that includes the errata fix for the mdio driver.
-> >=20
+On Wed, 2024-01-10 at 08:08 -0600, Nishanth Menon wrote:
 >=20
-> we were on TI 5.10 kernel (the image that went into production) and
-> it
-> did have errata fix (I am not sure if it is similar or same as what
-> finally went into upstream now).. I have started an automated
-> multiple
-> boot test on my end as well..
+> Modify license to include dual licensing as GPL-2.0-only OR MIT
+> license for SoC and TI evm device tree files. This allows for Linux
+> kernel device tree to be used in other Operating System ecosystems
+> such as Zephyr or FreeBSD.
 >=20
-> The signature as I recollect was spurious link Down and Up logs
-> (though the cable is not physically disconnected).. been a bit of
-> time.. so my memory on exact signature might be vague.
+> While at this, update the GPL-2.0 to be GPL-2.0-only to be in sync
+> with latest SPDX conventions (GPL-2.0 is deprecated).
+>=20
+> While at this, update the TI copyright year to sync with current year
+> to indicate license change (and add it at least for one file which was
+> missing TI copyright).
 
-For reference over the weekend our test infra did over 1600 boots with
-an NFS root fs (see [0] for an example job) without a single boot
-failure. So with the upstream kernel this seems pretty solid.
 
-
-0: https://staging.lava.collabora.dev/scheduler/job/572063
+Acked-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 
 
 --=20
-Sjoerd Simons
-Collabora Ltd.
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
