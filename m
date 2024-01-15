@@ -1,213 +1,152 @@
-Return-Path: <devicetree+bounces-32034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B8382DA01
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:22:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EADB882DA0E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:28:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3D711C219A6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 13:22:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6891228200C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 13:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91616168D9;
-	Mon, 15 Jan 2024 13:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25164171A2;
+	Mon, 15 Jan 2024 13:28:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="5eyOIGQ7"
+	dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b="p0Alr4oY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from smtp-fw-9105.amazon.com (smtp-fw-9105.amazon.com [207.171.188.204])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C756817583;
-	Mon, 15 Jan 2024 13:21:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40F8N7en008279;
-	Mon, 15 Jan 2024 14:21:34 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	selector1; bh=f+RuX/Eia9uR2MHJdZssTap6bVCpuc5frqUe4l82QhE=; b=5e
-	yOIGQ7nGa6gp8/2bn9LEtZrefGSBPsKD3bgJqHFzW9+TgccxSgyAo6yCaV2Q9zX3
-	EB0wCJbGm1A6dYt9pRhVwW1XU3cCfm0GNMI64MDh4vJ/asptXiow/anqao8LsXDC
-	qdLHTBp/5IwSsETWXXW2bkLP7MsPZZT1U2ePjWL5N3F0EZ0P647J/fjENde6hx/0
-	jyd/aamEVSWylb+zO7uyWwUuu0NIFah4kGNX2ydEliLS8SiF5lCwPmTMU7FffEc6
-	MjkOSc2CYiw4cn6NfC6Dmvh+1E6SOYn86ueQOW+9EGPBoUezu8Gq5nWoUob85Kfh
-	4sWsk4tGoP3LIcmHPsyw==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vkmddrm9y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Jan 2024 14:21:34 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0DF7B10002A;
-	Mon, 15 Jan 2024 14:21:34 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 03C1A2831A8;
-	Mon, 15 Jan 2024 14:21:34 +0100 (CET)
-Received: from localhost (10.129.178.37) by SHFDAG1NODE2.st.com (10.75.129.70)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 15 Jan
- 2024 14:21:33 +0100
-From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-To: Yannick Fertre <yannick.fertre@foss.st.com>,
-        Raphael Gallais-Pou
-	<raphael.gallais-pou@foss.st.com>,
-        Philippe Cornu
-	<philippe.cornu@foss.st.com>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter
-	<daniel@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 6/6] arm64: dts: st: add display support on stm32mp257f-ev
-Date: Mon, 15 Jan 2024 14:20:09 +0100
-Message-ID: <20240115132009.101718-7-raphael.gallais-pou@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240115132009.101718-1-raphael.gallais-pou@foss.st.com>
-References: <20240115132009.101718-1-raphael.gallais-pou@foss.st.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DEF6168DE;
+	Mon, 15 Jan 2024 13:28:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1705325281; x=1736861281;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=CRE66M5NAo6zqtyZQM3AWAf6gOvFh/lPcxTLxUzKJu0=;
+  b=p0Alr4oY/WE/6zqqOWFg7Z3U/IC92V2UVasniiWWKeSy9aC9xZIhh9oa
+   tDZ2gvXgjw7DDKATFNaTnEdxr3Hd7lejDwMP9f4UVhbT3liyVCGObcKm0
+   I0cisZ7x6wgiKs5OJDFx6aVhL0qN33BfWwKKLF4rt5k79GExlnLgi04pD
+   0=;
+X-IronPort-AV: E=Sophos;i="6.04,196,1695686400"; 
+   d="scan'208";a="697876050"
+Received: from pdx4-co-svc-p1-lb2-vlan2.amazon.com (HELO email-inbound-relay-iad-1d-m6i4x-00fceed5.us-east-1.amazon.com) ([10.25.36.210])
+  by smtp-border-fw-9105.sea19.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2024 13:27:52 +0000
+Received: from smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev (iad7-ws-svc-p70-lb3-vlan3.iad.amazon.com [10.32.235.38])
+	by email-inbound-relay-iad-1d-m6i4x-00fceed5.us-east-1.amazon.com (Postfix) with ESMTPS id 18BD5A0A25;
+	Mon, 15 Jan 2024 13:27:44 +0000 (UTC)
+Received: from EX19MTAUWC002.ant.amazon.com [10.0.7.35:24915]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.61.210:2525] with esmtp (Farcaster)
+ id 00e71d69-8a91-48a6-b14b-66e164da46e8; Mon, 15 Jan 2024 13:27:44 +0000 (UTC)
+X-Farcaster-Flow-ID: 00e71d69-8a91-48a6-b14b-66e164da46e8
+Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
+ EX19MTAUWC002.ant.amazon.com (10.250.64.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 15 Jan 2024 13:27:43 +0000
+Received: from [0.0.0.0] (10.253.83.51) by EX19D020UWC004.ant.amazon.com
+ (10.13.138.149) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 15 Jan
+ 2024 13:27:34 +0000
+Message-ID: <64047065-41a1-4235-b600-bf3530c76722@amazon.com>
+Date: Mon, 15 Jan 2024 14:27:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-05_08,2024-01-05_01,2023-05-22_02
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 04/17] kexec: Add KHO parsing support
+Content-Language: en-US
+To: Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>,
+	<linux-mm@kvack.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kexec@lists.infradead.org>,
+	<linux-doc@vger.kernel.org>, <x86@kernel.org>, Eric Biederman
+	<ebiederm@xmission.com>, "H. Peter Anvin" <hpa@zytor.com>, Andy Lutomirski
+	<luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Rob Herring
+	<robh+dt@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, Andrew Morton
+	<akpm@linux-foundation.org>, Mark Rutland <mark.rutland@arm.com>, "Tom
+ Lendacky" <thomas.lendacky@amd.com>, Ashish Kalra <ashish.kalra@amd.com>,
+	James Gowans <jgowans@amazon.com>, <arnd@arndb.de>, <pbonzini@redhat.com>,
+	<madvenka@linux.microsoft.com>, Anthony Yznaga <anthony.yznaga@oracle.com>,
+	Usama Arif <usama.arif@bytedance.com>, David Woodhouse <dwmw@amazon.co.uk>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>
+References: <20231222193607.15474-1-graf@amazon.com>
+ <20231222193607.15474-5-graf@amazon.com> <20240101033301.GA765@skinsburskii.>
+From: Alexander Graf <graf@amazon.com>
+In-Reply-To: <20240101033301.GA765@skinsburskii.>
+X-ClientProxiedBy: EX19D041UWB004.ant.amazon.com (10.13.139.143) To
+ EX19D020UWC004.ant.amazon.com (10.13.138.149)
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This patch enables the following IPs on stm32mp257f-ev :
-  * LTDC
-  * LVDS
-  * WSVGA LVDS panel (1024x600)
-  * Panel backlight
-  * Ilitek touchescreen
-
-Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 79 ++++++++++++++++++++++
- 1 file changed, 79 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 0ea8e69bfb3d..ca2da988d91c 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -29,6 +29,43 @@ memory@80000000 {
- 		reg = <0x0 0x80000000 0x1 0x0>;
- 	};
- 
-+	panel_lvds: panel-lvds {
-+		compatible = "edt,etml0700z9ndha", "panel-lvds";
-+		enable-gpios = <&gpiog 15 GPIO_ACTIVE_HIGH>;
-+		backlight = <&panel_lvds_backlight>;
-+		status = "okay";
-+
-+		width-mm = <156>;
-+		height-mm = <92>;
-+		data-mapping = "vesa-24";
-+
-+		panel-timing {
-+			clock-frequency = <54000000>;
-+			hactive = <1024>;
-+			vactive = <600>;
-+			hfront-porch = <150>;
-+			hback-porch = <150>;
-+			hsync-len = <21>;
-+			vfront-porch = <24>;
-+			vback-porch = <24>;
-+			vsync-len = <21>;
-+		};
-+
-+		port {
-+			lvds_panel_in: endpoint {
-+				remote-endpoint = <&lvds_out0>;
-+			};
-+		};
-+	};
-+
-+	panel_lvds_backlight: panel-lvds-backlight {
-+		compatible = "gpio-backlight";
-+		gpios = <&gpioi 5 GPIO_ACTIVE_HIGH>;
-+		default-on;
-+		default-brightness-level = <0>;
-+		status = "okay";
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -63,6 +100,15 @@ &i2c2 {
- 	i2c-scl-falling-time-ns = <13>;
- 	clock-frequency = <400000>;
- 	status = "okay";
-+
-+	ili2511: ili2511@41 {
-+		compatible = "ilitek,ili251x";
-+		reg = <0x41>;
-+		interrupt-parent = <&gpioi>;
-+		interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpiog 14 GPIO_ACTIVE_LOW>;
-+		status = "okay";
-+	};
- };
- 
- &i2c8 {
-@@ -75,6 +121,39 @@ &i2c8 {
- 	status = "disabled";
- };
- 
-+&ltdc {
-+	status = "okay";
-+
-+	port {
-+		ltdc_ep0_out: endpoint {
-+			remote-endpoint = <&lvds_in>;
-+		};
-+	};
-+};
-+
-+&lvds {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			lvds_in: endpoint {
-+				remote-endpoint = <&ltdc_ep0_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			lvds_out0: endpoint {
-+				remote-endpoint = <&lvds_panel_in>;
-+			};
-+		};
-+	};
-+};
-+
- &sdmmc1 {
- 	pinctrl-names = "default", "opendrain", "sleep";
- 	pinctrl-0 = <&sdmmc1_b4_pins_a>;
--- 
-2.25.1
+Ck9uIDAxLjAxLjI0IDA0OjMzLCBTdGFuaXNsYXYgS2luc2J1cnNraWkgd3JvdGU6Cj4gT24gRnJp
+LCBEZWMgMjIsIDIwMjMgYXQgMDc6MzU6NTRQTSArMDAwMCwgQWxleGFuZGVyIEdyYWYgd3JvdGU6
+Cj4+ICsvKioKPj4gKyAqIGtob19yZXNlcnZlX3ByZXZpb3VzX21lbSAtIEFkZHMgYWxsIG1lbW9y
+eSByZXNlcnZhdGlvbnMgaW50byBtZW1ibG9ja3MKPj4gKyAqIGFuZCBtb3ZlcyB1cyBvdXQgb2Yg
+dGhlIHNjcmF0Y2ggb25seSBwaGFzZS4gTXVzdCBiZSBjYWxsZWQgYWZ0ZXIgcGFnZSB0YWJsZXMK
+Pj4gKyAqIGFyZSBpbml0aWFsaXplZCBhbmQgbWVtYmxvY2tfYWxsb3dfcmVzaXplKCkuCj4+ICsg
+Ki8KPj4gK3ZvaWQgX19pbml0IGtob19yZXNlcnZlX3ByZXZpb3VzX21lbSh2b2lkKQo+PiArewo+
+PiArICAgICB2b2lkICptZW1fdmlydCA9IF9fdmEobWVtX3BoeXMpOwo+PiArICAgICBpbnQgb2Zm
+LCBlcnI7Cj4+ICsKPj4gKyAgICAgaWYgKCFoYW5kb3Zlcl9waHlzIHx8ICFtZW1fcGh5cykKPj4g
+KyAgICAgICAgICAgICByZXR1cm47Cj4+ICsKPj4gKyAgICAgLyoKPj4gKyAgICAgICogV2UgcmVh
+Y2hlZCBoZXJlIGJlY2F1c2Ugd2UgYXJlIHJ1bm5pbmcgaW5zaWRlIGEgd29ya2luZyBsaW5lYXIg
+bWFwCj4+ICsgICAgICAqIHRoYXQgYWxsb3dzIHVzIHRvIHJlc2l6ZSBtZW1ibG9ja3MgZHluYW1p
+Y2FsbHkuIFVzZSB0aGUgY2hhbmNlIGFuZAo+PiArICAgICAgKiBwb3B1bGF0ZSB0aGUgZ2xvYmFs
+IGZkdCBwb2ludGVyCj4+ICsgICAgICAqLwo+PiArICAgICBmZHQgPSBfX3ZhKGhhbmRvdmVyX3Bo
+eXMpOwo+PiArCj4+ICsgICAgIG9mZiA9IGZkdF9wYXRoX29mZnNldChmZHQsICIvIik7Cj4+ICsg
+ICAgIGlmIChvZmYgPCAwKSB7Cj4+ICsgICAgICAgICAgICAgZmR0ID0gTlVMTDsKPj4gKyAgICAg
+ICAgICAgICByZXR1cm47Cj4+ICsgICAgIH0KPj4gKwo+PiArICAgICBlcnIgPSBmZHRfbm9kZV9j
+aGVja19jb21wYXRpYmxlKGZkdCwgb2ZmLCAia2hvLXYxIik7Cj4+ICsgICAgIGlmIChlcnIpIHsK
+Pj4gKyAgICAgICAgICAgICBwcl93YXJuKCJLSE8gaGFzIGludmFsaWQgY29tcGF0aWJsZSwgZGlz
+YWJsaW5nLiIpOwo+IEl0IGxvb2tzIGxpa2UgS0hPIHByZXNlcnZlZCByZWdpb25zIHdvbid0IGJl
+IHJlc2VydmVkIGluIHRoaXMgY2FzZS4KPiBTaG91bGQgS0hPIERUIHN0YXRlIGJlIGRlc3Ryb3ll
+ZCBoZXJlIHRvIHByZXZlbnQgS0hPIG1lbW9yeSByZWdpb25zCj4gcmV1c2UgdXBvbiByb2xsYmFj
+az8KCgpHb29kIGNhdGNoLiBJJ2xsIHNldCBmZHQgdG8gTlVMTCBpbiB0aGF0IGNhc2UgaW4gdjMu
+CgoKPgo+PiArCj4+ICt2b2lkIF9faW5pdCBraG9fcG9wdWxhdGUocGh5c19hZGRyX3QgaGFuZG92
+ZXJfZHRfcGh5cywgcGh5c19hZGRyX3Qgc2NyYXRjaF9waHlzLAo+PiArICAgICAgICAgICAgICAg
+ICAgICAgIHU2NCBzY3JhdGNoX2xlbiwgcGh5c19hZGRyX3QgbWVtX2NhY2hlX3BoeXMsCj4+ICsg
+ICAgICAgICAgICAgICAgICAgICAgdTY0IG1lbV9jYWNoZV9sZW4pCj4+ICt7Cj4+ICsgICAgIHZv
+aWQgKmhhbmRvdmVyX2R0Owo+PiArCj4+ICsgICAgIC8qIERldGVybWluZSB0aGUgcmVhbCBzaXpl
+IG9mIHRoZSBEVCAqLwo+PiArICAgICBoYW5kb3Zlcl9kdCA9IGVhcmx5X21lbXJlbWFwKGhhbmRv
+dmVyX2R0X3BoeXMsIHNpemVvZihzdHJ1Y3QgZmR0X2hlYWRlcikpOwo+PiArICAgICBpZiAoIWhh
+bmRvdmVyX2R0KSB7Cj4+ICsgICAgICAgICAgICAgcHJfd2Fybigic2V0dXA6IGZhaWxlZCB0byBt
+ZW1yZW1hcCBrZXhlYyBGRFQgKDB4JWxseClcbiIsIGhhbmRvdmVyX2R0X3BoeXMpOwo+PiArICAg
+ICAgICAgICAgIHJldHVybjsKPj4gKyAgICAgfQo+PiArCj4+ICsgICAgIGlmIChmZHRfY2hlY2tf
+aGVhZGVyKGhhbmRvdmVyX2R0KSkgewo+PiArICAgICAgICAgICAgIHByX3dhcm4oInNldHVwOiBr
+ZXhlYyBoYW5kb3ZlciBGRFQgaXMgaW52YWxpZCAoMHglbGx4KVxuIiwgaGFuZG92ZXJfZHRfcGh5
+cyk7Cj4+ICsgICAgICAgICAgICAgZWFybHlfbWVtdW5tYXAoaGFuZG92ZXJfZHQsIFBBR0VfU0la
+RSk7Cj4+ICsgICAgICAgICAgICAgcmV0dXJuOwo+PiArICAgICB9Cj4+ICsKPj4gKyAgICAgaGFu
+ZG92ZXJfbGVuID0gZmR0X3RvdGFsc2l6ZShoYW5kb3Zlcl9kdCk7Cj4+ICsgICAgIGhhbmRvdmVy
+X3BoeXMgPSBoYW5kb3Zlcl9kdF9waHlzOwo+PiArCj4+ICsgICAgIC8qIFJlc2VydmUgdGhlIERU
+IHNvIHdlIGNhbiBzdGlsbCBhY2Nlc3MgaXQgaW4gbGF0ZSBib290ICovCj4+ICsgICAgIG1lbWJs
+b2NrX3Jlc2VydmUoaGFuZG92ZXJfcGh5cywgaGFuZG92ZXJfbGVuKTsKPj4gKwo+PiArICAgICAv
+KiBSZXNlcnZlIHRoZSBtZW0gY2FjaGUgc28gd2UgY2FuIHN0aWxsIGFjY2VzcyBpdCBsYXRlciAq
+Lwo+PiArICAgICBtZW1ibG9ja19yZXNlcnZlKG1lbV9jYWNoZV9waHlzLCBtZW1fY2FjaGVfbGVu
+KTsKPj4gKwo+PiArICAgICAvKgo+PiArICAgICAgKiBXZSBwYXNzIGEgc2FmZSBjb250aWd1b3Vz
+IGJsb2NrIG9mIG1lbW9yeSB0byB1c2UgZm9yIGVhcmx5IGJvb3QgcHVycG9yc2VzIGZyb20KPj4g
+KyAgICAgICogdGhlIHByZXZpb3VzIGtlcm5lbCBzbyB0aGF0IHdlIGNhbiByZXNpemUgdGhlIG1l
+bWJsb2NrIGFycmF5IGFzIG5lZWRlZC4KPj4gKyAgICAgICovCj4+ICsgICAgIG1lbWJsb2NrX2Fk
+ZChzY3JhdGNoX3BoeXMsIHNjcmF0Y2hfbGVuKTsKPj4gKwo+PiArICAgICBpZiAoV0FSTl9PTiht
+ZW1ibG9ja19tYXJrX3NjcmF0Y2goc2NyYXRjaF9waHlzLCBzY3JhdGNoX2xlbikpKSB7Cj4+ICsg
+ICAgICAgICAgICAgcHJfZXJyKCJLZXhlYyBmYWlsZWQgdG8gbWFyayB0aGUgc2NyYXRjaCByZWdp
+b24uIERpc2FibGluZyBLSE8uIik7Cj4+ICsgICAgICAgICAgICAgaGFuZG92ZXJfbGVuID0gMDsK
+Pj4gKyAgICAgICAgICAgICBoYW5kb3Zlcl9waHlzID0gMDsKPiBTYW1lIHF1ZXN0aW9uIGhlcmU6
+IGRvZXNuJ3QgYWxsIHRoZSBLSE8gc3RhdGUgZ2V0cyBpbnZhbGlkIGluIGNhc2Ugb2YgYW55Cj4g
+cmVzdG9yYXRpb24gZXJyb3I/CgoKSXQgZG9lcywgd2hpY2ggaXMgd2hhdCB0aGUgZXJyb3IgY2Fz
+ZSBoZXJlIGRvZXMsIG5vPyBPciBhcmUgeW91IApyZWZlcnJpbmcgdG8gdGhlIGZhY3QgdGhhdCB3
+ZSdyZSBub3QgdW5yb2xsaW5nIHRoZSBtZW1ibG9jayAKcmVzZXJ2YXRpb25zPyBJZiB3ZSBjYW4n
+dCBtYXJrIHRoZSBzY3JhdGNoIHJlZ2lvbiwgSSdkIHJhdGhlciBsZWF2ZSAKZXZlcnl0aGluZyBl
+bHNlIGFsb25lLiBJdCBtZWFucyB0aGUgc2NyYXRjaCByZWdpb24gaXMgaW4gYSBob2xlLCB3aGlj
+aCAKc2hvdWxkIG5ldmVyIGhhcHBlbi4KCgpBbGV4CgoKCgpBbWF6b24gRGV2ZWxvcG1lbnQgQ2Vu
+dGVyIEdlcm1hbnkgR21iSApLcmF1c2Vuc3RyLiAzOAoxMDExNyBCZXJsaW4KR2VzY2hhZWZ0c2Z1
+ZWhydW5nOiBDaHJpc3RpYW4gU2NobGFlZ2VyLCBKb25hdGhhbiBXZWlzcwpFaW5nZXRyYWdlbiBh
+bSBBbXRzZ2VyaWNodCBDaGFybG90dGVuYnVyZyB1bnRlciBIUkIgMTQ5MTczIEIKU2l0ejogQmVy
+bGluClVzdC1JRDogREUgMjg5IDIzNyA4NzkKCgo=
 
 
