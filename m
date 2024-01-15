@@ -1,146 +1,163 @@
-Return-Path: <devicetree+bounces-32118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D72CF82DE7B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:32:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC4382DE86
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:37:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9E311C21B6E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:32:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 329FF281BF3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:37:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 587241803C;
-	Mon, 15 Jan 2024 17:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B0018044;
+	Mon, 15 Jan 2024 17:37:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NOPt/Hn/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8FF18026
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 17:32:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rPQom-0004EU-7Y; Mon, 15 Jan 2024 18:32:12 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rPQoh-00044H-MF; Mon, 15 Jan 2024 18:32:07 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rPQoh-000A5v-1x;
-	Mon, 15 Jan 2024 18:32:07 +0100
-Message-ID: <289c4af00bcc46e83555dacbc76f56477126d645.camel@pengutronix.de>
-Subject: Re: [PATCH v3 2/5] reset: Instantiate reset GPIO controller for
- shared reset-gpios
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konrad.dybcio@linaro.org>, Srinivas Kandagatla
- <srinivas.kandagatla@linaro.org>,  Banajit Goswami <bgoswami@quicinc.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,  Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Peter Rosin <peda@axentia.se>, Jaroslav Kysela <perex@perex.cz>, Takashi
- Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org, 
- alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-i2c@vger.kernel.org, Chris Packham
- <chris.packham@alliedtelesis.co.nz>,  Sean Anderson <sean.anderson@seco.com>
-Date: Mon, 15 Jan 2024 18:32:07 +0100
-In-Reply-To: <7f311659-9f49-44dc-ad40-977d34066d98@linaro.org>
-References: <20240112163608.528453-1-krzysztof.kozlowski@linaro.org>
-	 <20240112163608.528453-3-krzysztof.kozlowski@linaro.org>
-	 <CAMRc=MdcCZP5kgv7JBdy2m_naNbTSeq4MDE_3mk+1-5UD4ntwQ@mail.gmail.com>
-	 <7f311659-9f49-44dc-ad40-977d34066d98@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14028F72;
+	Mon, 15 Jan 2024 17:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3376ead25e1so7007680f8f.3;
+        Mon, 15 Jan 2024 09:36:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705340218; x=1705945018; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kx0olFuw+rWfaGw9tfp+XkjX2b+u9ESGzSxY7G46xRE=;
+        b=NOPt/Hn/TuX3gy7qE3WsnKLi1wh58fYxKwBtNAZm/pvCYoBvtzZeerq/XPXgNBBHMh
+         HYuv/OMNzbD5qpt3PUnX0ARMcDL+8cKyUQfAoRQqBmovXww76Vg7hqeSn6jDji8dU0BO
+         7fsLhLIxLw0czLF0hFa0hkhLGLXqJjthxRQosjYY/kfZparoR8FbAYrBb7v4xPHQwbPo
+         eq2X2a91enACoeMjRg9Kv/1dye6E66vBpmkeC7F5kglLUscv5SpHbiDdYI4Jw2w0k9w0
+         cL9ppm5jIJytySf1evdB55c72tzI69SO7kZrdOtld9tWYtH/TUwxMgMLAXrGggT60nkM
+         9hYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705340218; x=1705945018;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kx0olFuw+rWfaGw9tfp+XkjX2b+u9ESGzSxY7G46xRE=;
+        b=xINWuTYHA+LV2z43Y+1rtH5834LztrTXSULISb3DSYExKg+5bS2Vt6RKAKPk/jKAo0
+         3yL7SMBN9AfF2kInQQHgG0eJ63OwtQ8KtD39gY+qYqIfH/yX2F4l5nMFvMUSDBdRQij7
+         3ftezXe0YM46tP5+//3omD2+GYE9kjJUWLL/aNN3luBkldOZxeB6PW04bgiXwivA6JPf
+         xLHcj0O19/taAESPmtQKda1vp+iZEezS8pzaYL6jbjtCTjnOUMW7ZDbdp2UheYomKyBL
+         GB8iXkymaUQjnyMVHLfe0+lZe+4hPFarnW/4YwooXiE8VekEfwS0tCUXv35pOpzcnjv8
+         IoCQ==
+X-Gm-Message-State: AOJu0YzFzwDJzd2xk04/CfyTPD3SM4rUFr7pAVqgXQpppALAgfvnnmAd
+	gNUsvdDiIdTibLUOLbYW+/Q=
+X-Google-Smtp-Source: AGHT+IFmNxeS6EDVKe79tQhOTctYIXVnIx901GrCRPbT56iCqzf+VsIghY08iUphbcf6YPfnxEQdzQ==
+X-Received: by 2002:a05:600c:190c:b0:40e:6009:94ae with SMTP id j12-20020a05600c190c00b0040e600994aemr3188249wmq.186.1705340217724;
+        Mon, 15 Jan 2024 09:36:57 -0800 (PST)
+Received: from cjw-notebook (2a02-8388-0502-f480-6c32-186a-368b-d6a9.cable.dynamic.v6.surfer.at. [2a02:8388:502:f480:6c32:186a:368b:d6a9])
+        by smtp.gmail.com with ESMTPSA id je14-20020a05600c1f8e00b0040e3635ca65sm20525173wmb.2.2024.01.15.09.36.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jan 2024 09:36:57 -0800 (PST)
+Date: Mon, 15 Jan 2024 18:36:54 +0100
+From: Christoph Winklhofer <cj.winklhofer@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: w1: UART 1-Wire bus
+Message-ID: <ZaVtNmvRjPAn9bph@cjw-notebook>
+References: <20240106-w1-uart-v4-0-7fe1378a8b3e@gmail.com>
+ <20240106-w1-uart-v4-1-7fe1378a8b3e@gmail.com>
+ <20240113013917.GA3795949-robh@kernel.org>
+ <ZaLQxGjjmA_iKOv2@cjw-notebook>
+ <81c79939-56cc-4d78-9552-56568999df09@linaro.org>
+ <ZaP0CoCYLQxrT3VD@cjw-notebook>
+ <1b8cb3ba-6727-45ab-acaa-c727a0a7ad85@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1b8cb3ba-6727-45ab-acaa-c727a0a7ad85@linaro.org>
 
-On Mo, 2024-01-15 at 17:13 +0100, Krzysztof Kozlowski wrote:
-> On 15/01/2024 17:06, Bartosz Golaszewski wrote:
-> > > +
-> > > +static int __reset_add_reset_gpio_lookup(int id, struct device_node =
-*np,
-> > > +                                        unsigned int gpio,
-> > > +                                        unsigned int of_flags)
-> > > +{
-> > > +       struct gpiod_lookup_table *lookup __free(kfree) =3D NULL;
-> > > +       struct gpio_device *gdev __free(gpio_device_put) =3D NULL;
-> > > +       char *label __free(kfree) =3D NULL;
-> >=20
-> > I got yelled at by Linus Torvalds personally for doing it like this. I
-> > know this is a common pattern in code using GLib but Linus wants auto
-> > variables to be initialized where they're declared...
->=20
-> Declaration is here. Initialization is here. Therefore this is
-> initialized where it is declared. What's more it is initialized to a
-> valid value, because __free() accepts NULLs.
-[...]
-> > ... so this should become:
-> >=20
-> >   struct gpio_device *gdev __free(gpio_device_put) =3D gpio_device_find=
-(...)
-> >=20
-> > and same for the rest.
-> >=20
-> > Don't get me wrong, I love cleanup.h but there's a (unofficial for
-> > now) coding style.
->=20
-> So you just want to declare it not in top-part of the function but just
-> before first use?
+On Sun, Jan 14, 2024 at 04:55:42PM +0100, Krzysztof Kozlowski wrote:
+> On 14/01/2024 15:47, Christoph Winklhofer wrote:
+> > On Sun, Jan 14, 2024 at 11:54:48AM +0100, Krzysztof Kozlowski wrote:
+> >> On 13/01/2024 19:04, Christoph Winklhofer wrote:
+> >>> On Fri, Jan 12, 2024 at 07:39:17PM -0600, Rob Herring wrote:
+> >>>> On Sat, Jan 06, 2024 at 05:02:24PM +0100, Christoph Winklhofer wrote:
+> >>>>> Add device tree binding for UART 1-Wire bus.
+> >>>>>
+> >>>>> Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
+> >>>>> ---
+> >>>>>  Documentation/devicetree/bindings/w1/w1-uart.yaml | 62 +++++++++++++++++++++++
+> >>>>>  1 file changed, 62 insertions(+)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/w1/w1-uart.yaml b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..6b90693b2ca0
+> >>>>> --- /dev/null
+> >>>>> +++ b/Documentation/devicetree/bindings/w1/w1-uart.yaml
+> >>>>> @@ -0,0 +1,62 @@
+> >>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> >>>>> +%YAML 1.2
+> >>>>> +---
+> >>>>> +$id: http://devicetree.org/schemas/w1/w1-uart.yaml#
+> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> ...
+> >>>>> +properties:
+> >>>>> +  compatible:
+> >>>>> +    const: w1-uart
+> >>>>> +
+> >>>>> +  reset-speed:
+> >>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>>>> +    default: 9600
+> >>>>> +    description: |
+> >>>>
+> >>>> Don't need '|' if no formatting
+> >>>>
+> >>>
+> >>> Ok.
+> >>>
+> >>>>> +      The baud rate for the 1-Wire reset and presence detect.
+> >>>>> +
+> >>>>> +  touch_0-speed:
+> >>>>
+> >>>> Don't use '_' in property names.
+> >>>>
+> >>>> I'm somewhat familar with 1-wire, but I don't get what 'touch' means 
+> >>>> here. I assume these are low and high times which are a function of the 
+> >>>> baudrate.
+> >>>>
+> >>>
+> >>> I change the name to 'write-0-speed' and 'write-1-speed'. The function
+> >>> in the w1-framework is named 'touch_bit' - therefore the previous
+> >>> naming. 
+> >>>
+> >>> It is the baud-rate used in the 1-Wire cycle to write a 0-Bit
+> >>> (write-0-speed) and to perform a 1-Wire cycle that writes a 1-Bit and
+> >>> reads a 0-Bit or 1-Bit (write-1-speed).
+> >>
+> >>
+> >> Then probably -bps:
+> >> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+> > 
+> > The serial.yaml uses prefix -speed for the baud rate but I can change it
+> > to -bps.
+> 
+> Do you reference serial.yaml?
+> 
 
-IIUC, Linus wants exactly this:
+No, serial.yaml is not referenced but 'onewire' will be a child-node of
+a serial-device which already defines baud rate related properties
+with -speed (e.g. max-speed although not used in w1-uart). Hence, I
+thought -speed is typically used for baud rates.
 
-https://lore.kernel.org/all/CAHk-=3DwgRHiV5VSxtfXA4S6aLUmcQYEuB67u3BJPJPtuE=
-Ss1JyA@mail.gmail.com/
-
-[...]
-> >=20
-> > > +               goto out_unlock;
-> > >         }
-> > >=20
-> > >         rstc_id =3D rcdev->of_xlate(rcdev, &args);
-> > >         if (rstc_id < 0) {
-> > >                 rstc =3D ERR_PTR(rstc_id);
-> > > -               goto out;
-> > > +               goto out_unlock;
-> > >         }
-> > >=20
-> > >         /* reset_list_mutex also protects the rcdev's reset_control l=
-ist */
-> > >         rstc =3D __reset_control_get_internal(rcdev, rstc_id, shared,=
- acquired);
-> > >=20
-> > > -out:
-> > > +out_unlock:
-> > >         mutex_unlock(&reset_list_mutex);
-> > > +out_put:
-> > >         of_node_put(args.np);
-> >=20
-> > I suggest reworking this to use cleanup.h as well.
->=20
-> It's independent task. This is an existing code and any refactoring to
-> cleanup or not is independent thing.
-
-Seconded. Separate cleanup very welcome, but this series is about
-adding functionality.
-
-regards
-Philipp
+Thanks,
+Christoph
 
