@@ -1,56 +1,73 @@
-Return-Path: <devicetree+bounces-32075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD94682DC9A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:49:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4681182DCAC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:55:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F96E1F2278B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 15:49:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD7401F22856
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 15:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF30A17758;
-	Mon, 15 Jan 2024 15:48:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5107C1775A;
+	Mon, 15 Jan 2024 15:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kyuhyuk.kr header.i=@kyuhyuk.kr header.b="JQlNQZqM"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="iDgeT8Ch"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-zteg10011501.me.com (pv50p00im-zteg10011501.me.com [17.58.6.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F30AA1774E
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 15:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kyuhyuk.kr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kyuhyuk.kr
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kyuhyuk.kr; s=sig1;
-	t=1705333733; bh=yxNM4ChCxcfO1k8Hlw537DgVXRAXIZRMKWfvKsTXyrE=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-	b=JQlNQZqMl+B2aYMVXWvFwnRZIExG1g/izHCe19R87x7oy0OItSlfdn9Zx9NQnfvzy
-	 IfSbbLTnTFwVj81JEvEBrQQWKvd10Szg39wte6sNhsyhc3rzkFyzwDwJBjHoS1JUL6
-	 U05Jtq1tjR11qRPVKms3rl6zeGcfxfSWy8dxymZbzDONWjQiiMxcBsKui70c+dpeL4
-	 ipWuXcpN0h2tB1wNbPgpSmHZyR00+3qUadrrCbuLi3HCk1RKyJtY86SIUQIHv3DhiA
-	 451YJPZcjxMIe3d351mCnlErLO2Th8i8tTK4vAbpzRNoligIbitVEPlXwf2YeskG1v
-	 mSg8gpI2yD5Dw==
-Received: from kyuhyuk.kr (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-zteg10011501.me.com (Postfix) with ESMTPSA id BC2FF4A0176;
-	Mon, 15 Jan 2024 15:48:49 +0000 (UTC)
-Date: Tue, 16 Jan 2024 00:48:37 +0900
-From: KyuHyuk Lee <lee@kyuhyuk.kr>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Tianling Shen <cnsztl@gmail.com>, Jagan Teki <jagan@edgeble.ai>,
-	Ondrej Jirman <megi@xff.cz>, Andy Yan <andyshrk@163.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rockchip: Fix Hardkernel ODROID-M1 board
- bindings
-Message-ID: <ZaVT1S7bb6qZ++FK@kyuhyuk.kr>
-References: <20240115145142.6292-1-lee@kyuhyuk.kr>
- <b4f97202-43ec-4f04-af95-b1ccd3b5d203@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9ECA17743
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 15:55:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-557a3ce9942so9764208a12.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 07:55:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1705334143; x=1705938943; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=DMrg2ftiySODP1utRQcg6FAO055EYrzqcviBe8d027c=;
+        b=iDgeT8Ch+pR1hGZdkC8kNzwZFKyO/lxrgea/tOv28dgSV5XAKkjYqp/BQCDNArfvo7
+         jtoxflJnrKQdOaHSTegLy2ooNypZtC0hFcvPiPlDku7Vg+RespmWrCBXHkn7atB+lst9
+         BMtSA7j5LITXJfR5ZyKVXpgqDrX6WDeypbV8e+ESgSKymKQP78+taMfOG6rKS2t6GaJa
+         VTvPhojF1QGrSksfUemilYcUpM5V0FO5aVDu8AoUQoHxbqBw0wZS2JzMDhKDLcchjXi1
+         fIA48A1Ts5DVspAbRth8UDZaW9dtmwAOasPtBfadTtmPdItkIgFaFingQRCFumlgCnoW
+         5y/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705334143; x=1705938943;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DMrg2ftiySODP1utRQcg6FAO055EYrzqcviBe8d027c=;
+        b=OqtqCR/YZoM4geUhT6lpJppIQUs63SlE5h8anomxgfICoYdy+20X4u7KcpIAiyba/v
+         TYODqrf3cfn9YOFMG8rX16mAZ1p7JY1wt8sISc6PTql5ZN/NSkIkl7wNbHinGhDSMuMb
+         qbYYfhXY2Xu/aBpMyjcN+8w+VTTfbkNv6Kr3JQE5D8HSdXcKgIMYqlxJ+AmSLrAxvv93
+         6oiC/fOPNwH7HTX3n5tYZa3xUQdN88VkHyKzJF+rSk8gnjzGGNf/CBPDAizaq8b9HBKs
+         A1Vi0AU8MkwyH0qj1ulWag3MtphUPvxZW+ndbl5BRk6kL3vX41IkP5MgJVg970KvHMfl
+         sS2A==
+X-Gm-Message-State: AOJu0YzL/RHUMCMeeFY0Lvkce1cIoFE8clVDtURh4Uw1i/x1Y4NJS5Zk
+	jdRRlgcz9ao/7v+Sgh3GcIZ97FEGLR86Vg==
+X-Google-Smtp-Source: AGHT+IGPRILw6QZUdJm8bg28ZEaLAG0BKzFK5hzPlkBnp7yvq4KUBRiZDFadwrpsjQbzjOOl7WxqQw==
+X-Received: by 2002:a17:906:fc10:b0:a2c:43d:3fa with SMTP id ov16-20020a170906fc1000b00a2c043d03famr1870560ejb.122.1705334143308;
+        Mon, 15 Jan 2024 07:55:43 -0800 (PST)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id v1-20020a17090606c100b00a2a04754eb1sm5430467ejb.8.2024.01.15.07.55.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jan 2024 07:55:42 -0800 (PST)
+Date: Mon, 15 Jan 2024 16:55:42 +0100
+From: Andrew Jones <ajones@ventanamicro.com>
+To: Anup Patel <apatel@ventanamicro.com>
+Cc: Paolo Bonzini <pbonzini@redhat.com>, 
+	Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Shuah Khan <shuah@kernel.org>, Anup Patel <anup@brainfault.org>, 
+	devicetree@vger.kernel.org, kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH 08/15] RISC-V: KVM: Allow Zfh[min] extensions for Guest/VM
+Message-ID: <20240115-a20755a0a5fe14b342814b16@orel>
+References: <20231128145357.413321-1-apatel@ventanamicro.com>
+ <20231128145357.413321-9-apatel@ventanamicro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,49 +76,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b4f97202-43ec-4f04-af95-b1ccd3b5d203@linaro.org>
-X-Proofpoint-ORIG-GUID: xfG1gLpxLCaQEbJ_kmI3LhtxShXho3-8
-X-Proofpoint-GUID: xfG1gLpxLCaQEbJ_kmI3LhtxShXho3-8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-15_10,2024-01-15_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxlogscore=785
- mlxscore=0 clxscore=1030 malwarescore=0 spamscore=0 phishscore=0
- bulkscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2401150115
+In-Reply-To: <20231128145357.413321-9-apatel@ventanamicro.com>
 
-On Mon, Jan 15, 2024 at 03:58:56PM +0100, Krzysztof Kozlowski wrote:
-> On 15/01/2024 15:51, KyuHyuk Lee wrote:
-> > The vendor in ODROID-M1 is hardkernel, but it was incorrectly written
-> > as rockchip. Fixed the vendor prefix correctly.
-> > 
-> > Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
-> > ---
-> >  Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
+On Tue, Nov 28, 2023 at 08:23:50PM +0530, Anup Patel wrote:
+> We extend the KVM ISA extension ONE_REG interface to allow KVM
+> user space to detect and enable Zfh[min] extensions for Guest/VM.
 > 
-> You need to start testing your patches. Your last M1 fails as well in
-> multiple places.
-> 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
-> 
-> The DTS change will break the users, so would be nice to mention this in
-> its commit msg.
-> 
-> Best regards,
-> Krzysztof
-> 
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> ---
+>  arch/riscv/include/uapi/asm/kvm.h | 2 ++
+>  arch/riscv/kvm/vcpu_onereg.c      | 4 ++++
+>  2 files changed, 6 insertions(+)
+>
 
-Hello, Krzysztof.
-
-I am truly sorry for wasting your time due to my mistake.
-From now on, i will carefully send PATCH with testing.
-I'm really sorry.
-
-Thank you,
-KyuHyuk Lee.
+Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
