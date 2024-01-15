@@ -1,151 +1,113 @@
-Return-Path: <devicetree+bounces-31974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E93282D652
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 10:48:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F5F882D6BB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 11:07:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 318BD1F21E0F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 09:48:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1C29B2171B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 10:07:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BE8DDD6;
-	Mon, 15 Jan 2024 09:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E68FF4FA;
+	Mon, 15 Jan 2024 10:06:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CY1l8xIA"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="JJNov7xM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053D9D2F5;
-	Mon, 15 Jan 2024 09:48:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 85D03C433C7;
-	Mon, 15 Jan 2024 09:48:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705312130;
-	bh=D8eqyGJBMl/zmbPd8uMuLY2qesCRT+s4btQ/GCmYQIw=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=CY1l8xIAPtPo9+Fb87monGh/dYTtJV0bz1NnwXnv1dTNX3G3sZ9onMjIsIVPD9i6Z
-	 OXZpWO7S7dlklPmF7/3paM/CDcWUaVtTqkAbodn9yVUt6oV+XiaCENuRyfkKD1tihD
-	 jVS+TeaGLiuyOWFxn6TFRygg5j0O5pVwhxaMWUKOFMz0DuqEHg3QpzeSdyL+5vmPR8
-	 shz8enDRn+9udYvY4fNRR+ZwkR63vBawu2oBYmMEmdxjbMm8jIqtQCOCeg0hG54gY6
-	 GGFyPXrPXrk5aWSW1FTj5Vn2z0NUbfSiDBJlOv4Z5yQWoBzZlih/RHAvs0bdyYlG2x
-	 nQ8fu4aNSA1Ng==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66438C3DA79;
-	Mon, 15 Jan 2024 09:48:50 +0000 (UTC)
-From: Hui Liu via B4 Relay <devnull+quic_huliu.quicinc.com@kernel.org>
-Date: Mon, 15 Jan 2024 17:48:37 +0800
-Subject: [PATCH v5] arm64: dts: qcom: qcm6490-idp: Add definition for three
- LEDs
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26E717727;
+	Mon, 15 Jan 2024 10:06:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Q+8/IEjFJ6FaUC9Is4EXtyjT3oDpArt5eWtCr0Ef22I=; b=JJNov7xMP1eeUqF57OqkVV0Nd8
+	CG4eDIjLaLjDGy6lnktp+/oCd1AapYBTwa0aVcSRDn6eMl+ozeWKaxL2EvkduGLpeSJ+D2PcfkoK3
+	1q9HRivJr99rsTBVN3y6SG1Ght43y31YvvRoLrwFitMGQajaTin7lqJTrCb1iUSMKcU2+kClKYNH2
+	THPlLOupz6L9+vqzRqp12TOTK1wKnM5RFpXVYPdRR7NFMf5W9OW4fJZq4dJaBQQ2dR6NCmpWqpBjZ
+	X1h7cPV9HwWu6dqwaZyVjTXIBRGDE0h4rWcVj9Z/gf6yT3BX5UzIeFKABGYKjJYaUBUsf+V7oyKyA
+	w/rwAJJg==;
+Received: from p200301077700f3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:107:7700:f300:1a3d:a2ff:febf:d33a] helo=aktux)
+	by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <andreas@kemnade.info>)
+	id 1rPJc6-008P8Q-Iv; Mon, 15 Jan 2024 10:50:38 +0100
+Date: Mon, 15 Jan 2024 10:50:35 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Andrew Davis <afd@ti.com>, Frank
+ Binns <frank.binns@imgtec.com>, Donald Robson <donald.robson@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>, Adam Ford <aford173@gmail.com>,
+ Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>, Tony Lindgren
+ <tony@atomide.com>, Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, Paul Cercueil
+ <paul@crapouillou.net>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-omap@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH RFC v2 04/11] ARM: dts: omap4: Add device tree entry for
+ SGX GPU
+Message-ID: <20240115105035.06e6af86@aktux>
+In-Reply-To: <7BC64F03-A4DF-411F-9B6F-6BCA436D9B50@goldelico.com>
+References: <20240108183302.255055-1-afd@ti.com>
+	<20240108183302.255055-5-afd@ti.com>
+	<122DC5ED-2AA7-46A0-845F-083922458385@goldelico.com>
+	<vpcgccul53oibwoqb3barj3rjxoyskoldjyfvjdzmytic3tonm@wq4aqsenk7rp>
+	<7BC64F03-A4DF-411F-9B6F-6BCA436D9B50@goldelico.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240115-lpg-v5-1-3c56f77f9cec@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAHX/pGUC/1WO3wqCMBxGXyV23WK/bS7pqveIiLk/OlCnm41Cf
- PemEeHlge8cvhlFE5yJ6HKYUTDJRef7DMXxgFQj+9pgpzMjSigDCgVuhxpzKbVmZ14CSJSXQzD
- WvbbK7Z7ZBt/hqQlG/l0Agkflu0drdMSJYsBMSQ22qpQo5HV8OuV6dcqTNdm4OPnw3n4ltob3F
- xLLAW6orogS2hZ2F1hPJP6zOAGgX4tnS3FCOKFClKLaW8uyfAB9zWyOEQEAAA==
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Hui Liu <quic_huliu@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1705312129; l=1982;
- i=quic_huliu@quicinc.com; s=20230823; h=from:subject:message-id;
- bh=kbl/RWkKCwiC9v8FHJS+qQTVX4k0SVTLaRWOhdD+XYo=;
- b=MmaOYHX12oex5H21exM2lmlZ4WrwfDdHYzPHMkIFWMZ1AxXDFqLJij+2eCSpU4ch55er29s/g
- vqBq9BNnFCHCEAUOtlyLRS4z8evAdZzlIb06UWqF1W7sBA1IAbH+sSv
-X-Developer-Key: i=quic_huliu@quicinc.com; a=ed25519;
- pk=1z+A50UnTuKe/FdQv2c0W3ajDsJOYddwIHo2iivhTTA=
-X-Endpoint-Received:
- by B4 Relay for quic_huliu@quicinc.com/20230823 with auth_id=80
-X-Original-From: Hui Liu <quic_huliu@quicinc.com>
-Reply-To: <quic_huliu@quicinc.com>
 
-From: Hui Liu <quic_huliu@quicinc.com>
+Hi, 
 
-Add definition for three LEDs to make sure they can
-be enabled base on QCOM LPG LED driver.
+On Mon, 15 Jan 2024 09:55:00 +0100
+"H. Nikolaus Schaller" <hns@goldelico.com> wrote:
 
-Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
----
-Changes in v5:
-- Rephrased commit text, replaced qcs6490-idp to qcm6490-idp.
-- Removed the unnecessary full.
-- Link to v4: https://lore.kernel.org/r/20240112-lpg-v4-1-c4004026686b@quicinc.com
+> > There's no reason to disable it in the DT: the hardware block would
+> > still be there and it's rendering to memory so it still could be useful.  
+> 
+> Well, if you know that the board does not have a dm3730 but a dm3725 without
+> GPU it is better to disable the GPU completely instead of loading the driver
+> and make it detect by some internal bits that it has no GPU on the SoC.
+> 
+That is at least some valid reason.
 
-Changes in v4:
-- Removed "label" definition and added "function" definition.
-- Link to v3: https://lore.kernel.org/r/20231215-lpg-v3-1-4e2db0c6df5f@quicinc.com
+> > If there's no display on the board and you really don't want the GPU
+> > driver, then you can disable the driver or block the module loading, but
+> > it should be a distro / package / user decision, not a DT / kernel one
+> > still.  
+> 
+> The same holds for aes: dss: dsi: hdmi: etc. If they are not used by some
+> board file, they don't change a single bit of the DTB [1] which IMHO would
+> be of reasonable concern to question additional labels.
 
-Changes in v3:
-- Rephrased commit text and updated the nodes to qcm6490-idp board file.
-- Link to v2: https://lore.kernel.org/all/20231110-qcom_leds-v2-1-3cad1fbbc65a@quicinc.com/
+There is some difference here, some hardware can just not be used without
+wired external pins, the gpu can be used even if no display is connected
+either to accelerate some remote access or you could use the gpu for something
+completely else...
+Maybe mining bitcoins if temperate gets too low to warm you pocket ;-)
 
-Changes in v2:
-- Rephrased commit text and updated the nodes to board file.
-- Link to v1: https://lore.kernel.org/r/20231108-qcom_leds-v1-1-c3e1c8572cb0@quicinc.com
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+But as these labels do not harm, I have no strong opinion against it.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index 37c91fdf3ab9..8268fad505e7 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sc7280.dtsi"
- #include "pm7325.dtsi"
-@@ -414,6 +415,28 @@ vreg_bob_3p296: bob {
- 	};
- };
- 
-+&pm8350c_pwm {
-+	function = LED_FUNCTION_STATUS;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	led@1 {
-+		reg = <1>;
-+		color = <LED_COLOR_ID_RED>;
-+	};
-+
-+	led@2 {
-+		reg = <2>;
-+		color = <LED_COLOR_ID_GREEN>;
-+	};
-+
-+	led@3 {
-+		reg = <3>;
-+		color = <LED_COLOR_ID_BLUE>;
-+	};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-
----
-base-commit: 17cb8a20bde66a520a2ca7aad1063e1ce7382240
-change-id: 20231215-lpg-4aadd374811a
-
-Best regards,
--- 
-Hui Liu <quic_huliu@quicinc.com>
-
+Regards,
+Andreas
 
