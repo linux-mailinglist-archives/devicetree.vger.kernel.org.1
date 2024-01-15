@@ -1,385 +1,115 @@
-Return-Path: <devicetree+bounces-32107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86DDF82DDC7
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:44:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59B0282DDD0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:45:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B6C7282DDC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:44:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F2281C20B62
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C5A317BC5;
-	Mon, 15 Jan 2024 16:43:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C3F17BCB;
+	Mon, 15 Jan 2024 16:45:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Mhi9FGuo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BVngNTTM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF2218040;
-	Mon, 15 Jan 2024 16:43:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40FFEkOI025807;
-	Mon, 15 Jan 2024 16:43:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=nhVHwgyt/dROCTwBL3dn+GnFtDNV81LhIY2UEZjZLm0=; b=Mh
-	i9FGuodHag3m2cD0q73ZEwLwlN71KJaqkE07jidiBTPkYuQEi9x778qLreqwPbT4
-	ZuXfRkqBdNRnWf2ItyfeQt9nnxFjwNiNGLP/89cJEq2bAjSEGfJdi+d8PjlCADPi
-	KuPji1dqFy1xNuYD53KmPfNbxDfGZcVml6Bvgv73g82J7x3EASTIcUE9ebR+hmar
-	y2wvy8XSoPtsZ5e246nEadQgCjQegpAgKgCAIgmmC3knVn8YrS6igwtH2tofROhv
-	OzFX2r93fAp0mlajdom5doaMmV2IGmmuem4yjnI9IvZH28ReQLQDRzYQdgET3qyu
-	8OrcpnmpBXa3LI58PiEw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vn75t862k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Jan 2024 16:43:08 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40FGh7Tu020790
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 15 Jan 2024 16:43:07 GMT
-Received: from hu-jinlmao-lv.qualcomm.com (10.49.16.6) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 15 Jan 2024 08:43:07 -0800
-From: Mao Jinlong <quic_jinlmao@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Leo Yan
-	<leo.yan@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "Alexandre Torgue" <alexandre.torgue@foss.st.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Mathieu
- Poirier" <mathieu.poirier@linaro.org>
-CC: Mao Jinlong <quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-msm@vger.kernel.org>
-Subject: [PATCH v2 2/2] dt-bindings: arm: Add device-name in the coresight components
-Date: Mon, 15 Jan 2024 08:42:48 -0800
-Message-ID: <20240115164252.26510-3-quic_jinlmao@quicinc.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20240115164252.26510-1-quic_jinlmao@quicinc.com>
-References: <20240115164252.26510-1-quic_jinlmao@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD80D17BC7;
+	Mon, 15 Jan 2024 16:45:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D9F9C433C7;
+	Mon, 15 Jan 2024 16:45:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705337118;
+	bh=ViDfJVgPPtY9rthYpqceej159xuom9miTC+tJZsNboU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BVngNTTMNIP4L6CU5fdgNjvv0Oo1gRZ1Is6CiKzne5UWuyW0DqTGU2+DN3MKVUcQa
+	 rnUNKBQHsfgmUBfWCDMzbAvbgu8gxoToUN0ze8+oVpne9kBYwTSjStn1fJHhOzcoag
+	 NditqqFyScWwP2uajbi4zzkAKu3S7LNqPjBQaM7dKDVrANUUWz86SDF9keMPrOJl5E
+	 ZQ4jKNhEF/t1XoSqHbYDjMhm41NtUrPh0Nw79iKPY1AW69+Af9H7Je6lmGflg2Wi8Z
+	 pXmDv5gkNhPKkvuNXyThTO0M/ylG5VM//Kwpzzx1GWqqeL7unf9yIuWczs+OPUtvwi
+	 tYIA6yFx2Ho4A==
+Date: Mon, 15 Jan 2024 16:45:13 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: KyuHyuk Lee <lee@kyuhyuk.kr>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jagan Teki <jagan@edgeble.ai>, Tianling Shen <cnsztl@gmail.com>,
+	Andy Yan <andyshrk@163.com>, Ondrej Jirman <megi@xff.cz>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: rockchip: Add Hardkernel ODROID-M1S
+ board
+Message-ID: <20240115-elk-paralyses-e308f1d9cc2f@spud>
+References: <20240112134230.28055-1-lee@kyuhyuk.kr>
+ <20240112-granola-underline-36a525dc789c@spud>
+ <dc4e9808-cd36-4b99-afd9-8dd4cd16a2a9@linaro.org>
+ <20240112-headsman-concur-1d47da7e3e14@spud>
+ <21a8feea-7306-4016-9a58-6e5bf8fe30a8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4ImuXbad9OGJ2kxOYfBm0jrplxCV8_p7
-X-Proofpoint-ORIG-GUID: 4ImuXbad9OGJ2kxOYfBm0jrplxCV8_p7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- phishscore=0 mlxlogscore=999 lowpriorityscore=0 malwarescore=0 mlxscore=0
- spamscore=0 adultscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401150122
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="riS/1QbGyvUIkYNO"
+Content-Disposition: inline
+In-Reply-To: <21a8feea-7306-4016-9a58-6e5bf8fe30a8@linaro.org>
 
-device-name is used to provide a better description of the coresight
-device. It can provide the info like the system or HW it belongs to.
 
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
----
- .../devicetree/bindings/arm/arm,coresight-catu.yaml          | 5 +++++
- .../devicetree/bindings/arm/arm,coresight-cpu-debug.yaml     | 5 +++++
- Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml | 5 +++++
- .../devicetree/bindings/arm/arm,coresight-dummy-sink.yaml    | 5 +++++
- .../devicetree/bindings/arm/arm,coresight-dummy-source.yaml  | 5 +++++
- .../bindings/arm/arm,coresight-dynamic-funnel.yaml           | 5 +++++
- .../bindings/arm/arm,coresight-dynamic-replicator.yaml       | 5 +++++
- .../devicetree/bindings/arm/arm,coresight-etb10.yaml         | 5 +++++
- Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml | 5 +++++
- .../devicetree/bindings/arm/arm,coresight-static-funnel.yaml | 5 +++++
- .../bindings/arm/arm,coresight-static-replicator.yaml        | 5 +++++
- Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml | 5 +++++
- Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml | 5 +++++
- .../devicetree/bindings/arm/arm,coresight-tpiu.yaml          | 5 +++++
- .../devicetree/bindings/arm/qcom,coresight-tpda.yaml         | 5 +++++
- .../devicetree/bindings/arm/qcom,coresight-tpdm.yaml         | 5 +++++
- 16 files changed, 80 insertions(+)
+--riS/1QbGyvUIkYNO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-index 2bae06eed693..313e25d62f0d 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-@@ -44,6 +44,11 @@ properties:
-       - const: arm,coresight-catu
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml
-index 0a6bc03ebe00..f7904a7df726 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml
-@@ -39,6 +39,11 @@ properties:
-       - const: arm,coresight-cpu-debug
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-index 2d5545a2b49c..ba7b4e2db77c 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-@@ -88,6 +88,11 @@ properties:
-           - const: arm,coresight-cti
-           - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
-index c960c8e0a9a5..f94e08ca91f0 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
-@@ -39,6 +39,11 @@ properties:
-     enum:
-       - arm,coresight-dummy-sink
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   in-ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-index 6745b4cc8f1c..031c4a1cb199 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-@@ -38,6 +38,11 @@ properties:
-     enum:
-       - arm,coresight-dummy-source
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   out-ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-index 44a1041cb0fc..2b4829492218 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-@@ -41,6 +41,11 @@ properties:
-       - const: arm,coresight-dynamic-funnel
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml
-index 03792e9bd97a..c841db363a87 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-dynamic-replicator.yaml
-@@ -41,6 +41,11 @@ properties:
-       - const: arm,coresight-dynamic-replicator
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml
-index 90679788e0bf..6605a8097a14 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml
-@@ -41,6 +41,11 @@ properties:
-       - const: arm,coresight-etb10
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-index 01200f67504a..d9ab0fc57f72 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-@@ -60,6 +60,11 @@ properties:
-           Embedded Trace Macrocell (version 4.x), with system register access only
-         const: arm,coresight-etm4x-sysreg
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-static-funnel.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-static-funnel.yaml
-index cc8c3baa79b4..342dfb303072 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-static-funnel.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-static-funnel.yaml
-@@ -27,6 +27,11 @@ properties:
-   compatible:
-     const: arm,coresight-static-funnel
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   power-domains:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-index 1892a091ac35..eaa828124c58 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-@@ -27,6 +27,11 @@ properties:
-   compatible:
-     const: arm,coresight-static-replicator
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   power-domains:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-index 378380c3f5aa..9bc49fed2096 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-@@ -43,6 +43,11 @@ properties:
-       - const: arm,coresight-stm
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 2
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-index cb8dceaca70e..ba1dec0f580a 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-@@ -42,6 +42,11 @@ properties:
-       - const: arm,coresight-tmc
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-index 61a0cdc27745..6a5d0c3468f7 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-@@ -41,6 +41,11 @@ properties:
-       - const: arm,coresight-tpiu
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     maxItems: 1
- 
-diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-index ea3c5db6b52d..31b7d7471a23 100644
---- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-@@ -54,6 +54,11 @@ properties:
-       - const: qcom,coresight-tpda
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     minItems: 1
-     maxItems: 2
-diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-index 3bad47b7b02b..3b72ca36636e 100644
---- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-@@ -40,6 +40,11 @@ properties:
-       - const: qcom,coresight-tpdm
-       - const: arm,primecell
- 
-+  device-name:
-+    description:
-+      Define the name which can describe what kind of HW or system the
-+      device is for.
-+
-   reg:
-     minItems: 1
-     maxItems: 2
--- 
-2.41.0
+On Fri, Jan 12, 2024 at 06:43:33PM +0100, Krzysztof Kozlowski wrote:
+> On 12/01/2024 18:26, Conor Dooley wrote:
+> >>> if the vendor for this board is hardkernel...
+> >>>
+> >>>> +        items:
+> >>>> +          - const: rockchip,rk3566-odroid-m1s
+> >>>
+> >>> ...why is the vendor prefix here rockchip?
+> >>
+> >> Uh, good catch. I missed it when acking their earlier mistake year ago
+> >> :( Would be nice if they fixed that one too.
+> >=20
+> > Maybe they will if they got your email, they did not get mine
+> > apparently:
+> > <lee@kyuhyuk.kr>: host mx02.mail.icloud.com[17.57.155.34] said: 554 5.7=
+=2E1
+> >     [HM08] Message rejected due to local policy. Please visit
+> >     https://support.apple.com/en-us/HT204137 (in reply to end of DATA c=
+ommand)
+>=20
+> Uh, what did you do to Apple to be denied by their policy? Admit, you
+> have an Android phone?
 
+I do. I guess that puts me on -1 social credit score. I have a macbook,
+but I run linux on it, so I guess that is a +1 -0.5 sorta deal, leaving
+me negative overall.
+
+Either way, not sure what causes it. Maybe the fact that I sign all my
+mail is a contributing factor, but I may not be the only @kernel.org
+address that KyuHyuk Lee is not receiving mail from.
+
+--riS/1QbGyvUIkYNO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaVhGQAKCRB4tDGHoIJi
+0uviAP4vY6e5kowaPAGO9WitJXCjm8YoC2PCKDXRVbYxWNgtCQD/XT84O8/v1mMh
+C1CpXZDjrgNrmxMCmlEXsjq8g9mDEAo=
+=gT6T
+-----END PGP SIGNATURE-----
+
+--riS/1QbGyvUIkYNO--
 
