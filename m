@@ -1,83 +1,73 @@
-Return-Path: <devicetree+bounces-32126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF5C282DF3C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 19:21:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE4CA82DF48
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 19:22:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68158283545
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:21:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 018FA1C22073
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:22:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07F5182D4;
-	Mon, 15 Jan 2024 18:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3CB18C2F;
+	Mon, 15 Jan 2024 18:20:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RtFGMwdL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m2/Owckg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C911F182D8
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 18:20:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1DCD19474
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 18:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a298accc440so1109259566b.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 10:20:35 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5542a7f1f3cso10968573a12.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 10:20:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705342834; x=1705947634; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705342845; x=1705947645; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pk9BYAlXOny5vx7IIMl1r8Ckvn8t89LgHQENG37+b/I=;
-        b=RtFGMwdLlpA2K61X0/3BwNSIPMZCsvQ6g8czvocxlf6ZcBG2+7dVmU54zuaI5Wj0h+
-         2nf64vQBEUIj2brXPxXq+gz5eB5JjfHQTojckyYyvQiZwIrmg4rKYFmGC1HpUNw++bjA
-         Z0I/+OARYDGYC8yytMmLOFiR6LiYiLavtV99iOl3y9sVENMPp5gkvmBpjV98MmI7EBbE
-         BTgWuyusqzRuYIyKorazBjF7iC9zJDXw3Up3ugVQx7zqvG9g7n7CB3WBsH93iifhCj8C
-         ahwePWI3pl20ZP3fnfeyWi96KNQvc5fnjM336mmFwPZumAVr+9QPISVB4cIDV/kOdsSv
-         CecQ==
+        bh=yI0z1EBMjyfzrrKKJYC9G/TfAYY0KS2lk1QKsvfTpXw=;
+        b=m2/OwckgTgVR1/ZFdbkgjKwZaZyQzcl+v3+/gxh0QV42FtjLjlt2c92P1VEhu0LlWo
+         DPK2E37sEQgNxYJONPTDp/lSVes/mssNQ+QMchs8vFil1uf3RBIFhhaK6G7dwAAhPeh4
+         iPnSEv3OJKmBlndGgwVf5Xo1NB94E6vtQzj6HYcuxzn2weaF0Hr8wc4vh2Li0+P+KBR7
+         pTRPBB1svyibToaF8XmkTlFB6IhLzVRZgfQw/wnK7ygpXMv8We2SLzatOY2k8bFy515l
+         sS9JfZytf+etDFC9a5yvSjaeEK68N+KmRurn1hOAk4RdBGNLES3dojS4dxKzWn3RhJ3z
+         VACA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705342834; x=1705947634;
+        d=1e100.net; s=20230601; t=1705342845; x=1705947645;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Pk9BYAlXOny5vx7IIMl1r8Ckvn8t89LgHQENG37+b/I=;
-        b=B8nYyy1+cbyMcOZCa/GCb+7G0du9U/xeaZUSKvUNOerdz4uxnxrPELQlSZUpr/zclN
-         P3N9bUXwex8ipiPs0qlNFawVe7JyPkGByuDTyhM2ndDu7VsLBjLHRrrforL3JY5nf9FU
-         9vPy/zZfge32/4+4xfJgq8cw7URFOVTDPFanTkonI0jbPebVkmBs26aBH2FQnB1n2JSZ
-         ZYjw1JEkzaTLaV8DroW2V/HPy+uZRErHDY+QBUfMIyljFTwzNDE0ewMeWkFktOKTInKf
-         jVpPBrQJNWaVE/T1SyqP0tL1qShvD+uUJLOyVKCs9iQuV02ulHTt9c5kQgLRV5QhgqRm
-         Y7fQ==
-X-Gm-Message-State: AOJu0Yx1e63rKsD6TQwdHDIQRg34Pg4UwPo/XWG13YZr0eAhfaFBTvYa
-	Gu+L84aOO3abOQBNvlkOErtBm3+l2D6fPg==
-X-Google-Smtp-Source: AGHT+IE8Rv7TALy6QHOmV7wneFYPZJqN4DYMVXyzwYotmqd3ln8eAYgtdWF5rpaj14WiTEjiCunTIQ==
-X-Received: by 2002:a17:907:c24d:b0:a2e:49a4:fabe with SMTP id tj13-20020a170907c24d00b00a2e49a4fabemr138108ejc.16.1705342834090;
-        Mon, 15 Jan 2024 10:20:34 -0800 (PST)
+        bh=yI0z1EBMjyfzrrKKJYC9G/TfAYY0KS2lk1QKsvfTpXw=;
+        b=DII7p30IWEh6viX7qmWt0YghNMZjQlQKkSBgD+r7c1qfjbpW8szapH2/Q67RAkejLo
+         bNA2Y6uHa2aFYmZrdgHtU2p3vtkKCZqoeUmmHVgulYYNi3aOa5jcW4Vb8Ayst6pEzILH
+         OBW/49sMuZ0K210rXqvELx1wTY041LJDq0Fa66Ful8iXxOavcWmAgD6j9qiVnXWK4DFw
+         Bt83BjqpuJuexOkoCW+Ck7+KP7IWr0zyC6/J/P/9f52FPM1Uh0oy5Vpf+4fI5dID0aYw
+         IFDjFQ1k3mUMua3/BzrgAmRc1eEEAQewHuV9nlks4G+//EL79ystxqjmHyd5U8IB0In3
+         9d4A==
+X-Gm-Message-State: AOJu0YxLc8vkyg5QNeTUY0zgeFAV9GJL36KDV4cqMUjyG4R2atCtXESh
+	KM4ymj7o8v8FKhYFsXZcsBuuaYt9ERr0hqR6Bb3t9k2zoCA=
+X-Google-Smtp-Source: AGHT+IGnRpCOOr+n+ZPFPjAXDPvj142P9E0o/W17+Ui/ChpAdhCEdlTKK2f3b/LvVE1QSl+SU/KlpQ==
+X-Received: by 2002:aa7:d88c:0:b0:54c:b889:9c12 with SMTP id u12-20020aa7d88c000000b0054cb8899c12mr2647466edq.18.1705342845122;
+        Mon, 15 Jan 2024 10:20:45 -0800 (PST)
 Received: from krzk-bin.. ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id n11-20020a170906118b00b00a2bd02d5f7asm5591970eja.148.2024.01.15.10.20.32
+        by smtp.gmail.com with ESMTPSA id c25-20020a50d659000000b00557c51910e4sm5944434edj.85.2024.01.15.10.20.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jan 2024 10:20:33 -0800 (PST)
+        Mon, 15 Jan 2024 10:20:44 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
+To: Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Tinghan Shen <tinghan.shen@mediatek.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	linux-remoteproc@vger.kernel.org,
+	Jeff LaBundy <jeff@labundy.com>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org
+	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: remoteproc: do not override firmware-name $ref
-Date: Mon, 15 Jan 2024 19:20:31 +0100
-Message-Id: <20240115182031.1610088-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: mfd: iqs62x: Do not override firmware-name $ref
+Date: Mon, 15 Jan 2024 19:20:42 +0100
+Message-Id: <20240115182042.1610134-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -93,171 +83,22 @@ of expected firmware file names.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml     | 4 ++--
- .../devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml       | 2 +-
- .../devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml       | 2 +-
- .../devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml  | 2 +-
- .../devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml      | 2 +-
- .../devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml       | 2 +-
- .../devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml       | 2 +-
- .../devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml       | 2 +-
- .../devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml       | 2 +-
- .../devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml       | 2 +-
- .../devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml        | 2 +-
- 11 files changed, 12 insertions(+), 12 deletions(-)
+ Documentation/devicetree/bindings/mfd/iqs62x.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-index 09102dda4942..507f98f73d23 100644
---- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-@@ -47,7 +47,7 @@ properties:
+diff --git a/Documentation/devicetree/bindings/mfd/iqs62x.yaml b/Documentation/devicetree/bindings/mfd/iqs62x.yaml
+index 044cd7542c2b..f438c2374966 100644
+--- a/Documentation/devicetree/bindings/mfd/iqs62x.yaml
++++ b/Documentation/devicetree/bindings/mfd/iqs62x.yaml
+@@ -31,7 +31,7 @@ properties:
      maxItems: 1
  
    firmware-name:
 -    $ref: /schemas/types.yaml#/definitions/string
 +    maxItems: 1
      description:
-       If present, name (or relative path) of the file within the
-       firmware search path containing the firmware image used when
-@@ -115,7 +115,7 @@ patternProperties:
-         maxItems: 1
- 
-       firmware-name:
--        $ref: /schemas/types.yaml#/definitions/string
-+        maxItems: 1
-         description:
-           If present, name (or relative path) of the file within the
-           firmware search path containing the firmware image used when
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml
-index eb868a7ff4cd..ad45fd00ae34 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml
-@@ -46,7 +46,7 @@ properties:
-     description: Reference to the reserved-memory for the Hexagon core
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description: Firmware name for the Hexagon core
- 
- required:
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml
-index c054b84fdcd5..66b455d0a8e3 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml
-@@ -45,7 +45,7 @@ properties:
-   smd-edge: false
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description: Firmware name for the Hexagon core
- 
- required:
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-index b6bd33438584..9381c7022ff4 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-@@ -80,7 +80,7 @@ properties:
-     description: Reference to the reserved-memory for the Hexagon core
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description:
-       The name of the firmware which should be loaded for this remote
-       processor.
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml
-index 4744a37b2b5d..45ee9fbe0966 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml
-@@ -42,7 +42,7 @@ properties:
-     description: Reference to the reserved-memory for the Hexagon core
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description: Firmware name for the Hexagon core
- 
- required:
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
-index 028287235912..758adb06c8dd 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
-@@ -47,7 +47,7 @@ properties:
-   smd-edge: false
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description: Firmware name for the Hexagon core
- 
- required:
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml
-index f7e40fb166da..c1a3cc308bdb 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml
-@@ -42,7 +42,7 @@ properties:
-   smd-edge: false
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description: Firmware name for the Hexagon core
- 
- required:
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
-index 3e4a03eb4532..7286b2baa19f 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
-@@ -36,7 +36,7 @@ properties:
-     description: Reference to the reserved-memory for the Hexagon core
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description: Firmware name for the Hexagon core
- 
-   smd-edge: false
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-index 238c6e5e67c5..d67386c50fa4 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-@@ -46,7 +46,7 @@ properties:
-   smd-edge: false
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description: Firmware name for the Hexagon core
- 
- required:
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml
-index 53cea8e53a31..4b9fb74fb9e9 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml
-@@ -47,7 +47,7 @@ properties:
-     description: Reference to the reserved-memory for the Hexagon core
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description: Firmware name for the Hexagon core
- 
- required:
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
-index 45eb42bd3c2c..8e033b22d28c 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
-@@ -51,7 +51,7 @@ properties:
-       - const: stop-ack
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-+    maxItems: 1
-     description:
-       Relative firmware image path for the WCNSS core. Defaults to
-       "wcnss.mdt".
+       Specifies the name of the calibration and configuration file selected by
+       the driver. If this property is omitted, the name is chosen based on the
 -- 
 2.34.1
 
