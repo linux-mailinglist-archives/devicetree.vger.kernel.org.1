@@ -1,167 +1,196 @@
-Return-Path: <devicetree+bounces-31996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD84782D703
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 11:17:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C325182D70F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 11:18:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A5B6B21072
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 10:17:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D7D82820F0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 10:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78935F9C7;
-	Mon, 15 Jan 2024 10:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDB07F9E4;
+	Mon, 15 Jan 2024 10:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="CDd8hdL6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PcNn570d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2048.outbound.protection.outlook.com [40.107.8.48])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA82F9C1;
-	Mon, 15 Jan 2024 10:17:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lClCCwXgdxoxCSZ7/M2FlbErVKk0hmZHiR9ZXpVkPBL1iLf/p0Czhyl9nFBU93kIDRUmhEjfvtsxcyshFBws8S4FdNaPflNeTsd+Qz/TZPxQ9hMyxwok6IOQd/T20tN0h7uYKODRk6/TrXu/XEJ3FoJ72VQF5rye0F2F7qFiPtI/4/cI4Zx34SflQi4px30/jaPZTSB64M4aiPa7Uz2F8QAhPrWGcRzJTxw/8c2Thp84AFgaBF1Yr+bY40aMh7JMUEAqvrh4O3E68jPQRXeH0HCuVn3/fvzbaOwF4Aeh/D7wthREEsEEHGndavllIU+LQ6bOel2iCrncVVP2U6+rFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jhTYgZXt92oQKHampK1/tBZ8SuNP5fsgdmIpxI72uBg=;
- b=edgCcceeT6MdBpC9z0mhC7V9njKdA+UApp+zrPE/sjdTx8528Fu2VJlNZSzwKfwRO4ZOkDmi31mA5U6xxJUj82UGef3w8e5RS5L+CToKe33xl/4QF5YFvYPWchwxsBT8sNbJQDL1fOVY5QoKCqC8cAzPIxhpJ+KYzkDspHjhY8QdGlCf4lmSr7Ej+J1WBqzcdeNSNkM1ErNSJAs2w/I7GVHTtRFshOL6Y85eD7f0g5jD3tKlmp+K7/VZvkOayv7pE8zBKd/fic+mUi828K8SWILNS0fi0Zp/1b69/VCRitGhtSwPDnP8z+PWjYhJ3woZvp8wnorFR7MkT3lygi6J6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jhTYgZXt92oQKHampK1/tBZ8SuNP5fsgdmIpxI72uBg=;
- b=CDd8hdL6MSZ4BHBy0eOscSDD5SjfUWJAeUbooM+O13ixLWemDLZGnxs2RqtDAfYlk3bqkudw2wmOKOs3cXc8LHHzFPf5rQLNUv1hQ/DGn9dkrnGRSpxAr4bi9DTUhfshI+zo4WPnUlscdCvWtvxmoY96ilK2qzWs5tfLkm7kncw=
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
- by PAXPR04MB9667.eurprd04.prod.outlook.com (2603:10a6:102:242::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.23; Mon, 15 Jan
- 2024 10:17:19 +0000
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::daf2:8c54:d469:793d]) by AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::daf2:8c54:d469:793d%7]) with mapi id 15.20.7181.020; Mon, 15 Jan 2024
- 10:17:19 +0000
-From: Josua Mayer <josua@solid-run.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Nishanth Menon
-	<nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
-	<kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Alessandro Zummo <a.zummo@towertech.it>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>
-CC: Yazan Shhady <yazan.shhady@solid-run.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-rtc@vger.kernel.org"
-	<linux-rtc@vger.kernel.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: rtc: abx80x: convert to yaml
-Thread-Topic: [PATCH v2 2/5] dt-bindings: rtc: abx80x: convert to yaml
-Thread-Index: AQHaRXqM9m6egMxAy0iAmXaXPfibdLDWa+UAgAMNhQCAAAh5gIAA/G+AgAAuw4A=
-Date: Mon, 15 Jan 2024 10:17:19 +0000
-Message-ID: <d702f384-7c0f-443b-84bc-4333933cee7b@solid-run.com>
-References: <20240112-add-am64-som-v2-0-1385246c428c@solid-run.com>
- <20240112-add-am64-som-v2-2-1385246c428c@solid-run.com>
- <7f45aaea-6520-41c7-8788-f6dd14c5fcb2@linaro.org>
- <fa954f30-22dc-4914-b037-c0ebb311637b@solid-run.com>
- <9cbc3ab1-0621-450c-b9f5-ecb1f401d326@solid-run.com>
- <c8c41aec-1a53-4b5f-82a3-e9b786c5325b@linaro.org>
-In-Reply-To: <c8c41aec-1a53-4b5f-82a3-e9b786c5325b@linaro.org>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR04MB8963:EE_|PAXPR04MB9667:EE_
-x-ms-office365-filtering-correlation-id: 63a4cf7e-43ea-423f-01a6-08dc15b32830
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- g9wOK3grfIOkAvzTlvh6InqkDADKi1UbUh/QQS9aM3eiqLxq9u1zSnp51yeN8C+kQJc1RlZjICTsIbnXlQPHnaFfShm5ZHTNOU7TEgi8ux4hzjb+oi3EIBbUJxwTl5oTqnENTSJBVtfeph6A3dAD5STwTI6ES/H4q88aoskSByRtLkByXi+TfDVjRdyuB2HA7UrgNnNkb5qqKN8azuNqTbYFOFGYT9P8vBejJJZ1pwh9X4BuEqb8QaE0NEyiRqZ+YYY/hVlltye8lqXuIKpn741ch25jHeEWzmScqJU7xCDbJhZIqezRmyhXdO0u2/f+09rVXjSelT9PAGcw8vdxjodDtk2XOBmGfU5EdOmnagj64DKCkSB6EJUWEyvL5vFfSBTAQihkSn23h2OKSsdtQi1PG7CkL2tiVhRSQPQ5xi8Kszs22XDANOIWBxOH+PKnIpssOuk/vsamSKtGkGlxpqeo8xmz4Y5ERBe5hZba6WgVUU1UIx3rOGYHYhqw4hX34ZiMwTTENe8Ls4+Q7PcjXu2Kj7Rk7cp2nlIHdpLgC4KKrfRYH11kN3M0kr0JiQM1O/1ZGHvDkjD+16prkTVJjXRRz0YRLMRW1DgWuznsTJuHslDKeq0oU/QoyjfzN+f3tktIXcUPyPNHfd5Irtj8uA==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(39840400004)(376002)(396003)(136003)(346002)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(38100700002)(122000001)(38070700009)(36756003)(31686004)(86362001)(31696002)(26005)(41300700001)(478600001)(316002)(6512007)(66556008)(54906003)(91956017)(76116006)(66946007)(2616005)(6506007)(71200400001)(110136005)(53546011)(64756008)(66476007)(66446008)(6486002)(2906002)(5660300002)(4326008)(7416002)(4744005)(8936002)(8676002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?eG43QWErbktQZUZ2R0NhTjFWNy8vWUFiaUUyWTZJWUlsZTdmdndQeStZV1Iv?=
- =?utf-8?B?Sjl0VXdMb3VwK1U0WmpFbGh0NmlmOGQ4dnVZdWFmNkNaSDJ1NGhvdy9lRkJs?=
- =?utf-8?B?VEtJOWF3dWZRNndQZlFIYnowM0M2ZElmVGZMc0JlSkh0MDlwNHNCY2lIeDBj?=
- =?utf-8?B?SXIzMEdBMFphK1lxZzlwdlZWVVFhMU1CdWRNQ1BCdUF1dHhIeXFReTZiMHFM?=
- =?utf-8?B?YXdoemlMT2wyRkJQczArTlQzaUdKd0JYeC9kUWFQa3NoU3JJaERSc2FvVTJv?=
- =?utf-8?B?dHpSMlpub2IwZEF3aG1CNlkydWJoL3RIUlpqMEovUDV3YkNYZ05hRjJyMWh6?=
- =?utf-8?B?NWpET291M3BRU1VSQm9MRnoxTjh0cDluSmN6UUFTUnR3T2hDMjFxNGp6SkpI?=
- =?utf-8?B?bzAzT21mSnlJMlFjbjFMb0s0amhQdlVIeFl0ZFRER0RxS0R4NzBWQjQzM2lj?=
- =?utf-8?B?SWRBenZURUM1dmk1ZGFrK3poNWQvVFpUYlhTbkhqU0sycjkvQUErT0pYL2wx?=
- =?utf-8?B?YStDQmp6OWhFK3FXdzhza3pnQ0VGY3hVbGtvL1dIVzZ3QWFNRXRtL3pnWW1i?=
- =?utf-8?B?VE13NzZ1bTkvUG94MWRzR0tNNTFmTEZQcEdHQWpxd2VNNTdlWTdPVFZhYTla?=
- =?utf-8?B?R25SQjlFc1BSd3JNN21TZWpyL2ZBRVlOcFgzQnJhZEtCbm9DeTZ5SnlXeEo4?=
- =?utf-8?B?WElUZHpna2lnekxraGFIQXpTNjlWYVBoY2ttYjU5MTUzSXIvdTlhY0czT2dK?=
- =?utf-8?B?Um5QZVlJM3ovVkVqb2VaUjE1SzVseXpvUHljYTNFNFJYNnJVaTBpNGkwRmky?=
- =?utf-8?B?RUVsL3dnUTU2VHZlSXlQSWQrOTJjS0xNRDZUUldMNkI3MHA0R1Boamxsb1c2?=
- =?utf-8?B?SHc2c3dWeXRFMnNuRGxGY25UejczelZ2ZjNBS2xmQ1NoOEdDcVZqa0JjcmRN?=
- =?utf-8?B?eW1FOSt1OXl3U291MVR1K0IzVkJNeDd5TTkybDdVa0Ivd0VoT2xrZnRvVGJ3?=
- =?utf-8?B?OEUxd0ViRFByYnAwa1NDUEtBYnJhNWk3MGs3aEdaUVIxYnFMR3V3VnZ0bkQ1?=
- =?utf-8?B?WDZMS1dnOVhaWlN1Mm1CWXB4MXE4S093QUlpTG4zMWVVU3haTXBuYWFwQ0Jz?=
- =?utf-8?B?c293VnpYbXJ3VmRLazlpV3RoWHc2OHpCbVRwN21RUjZ1c0JQR1RGb1hId2kr?=
- =?utf-8?B?K3RUMmRPek0vTVpaRDhGTWFBMWJJZ2RaMzFrbTFvRTlxQTNzR2R4c2xuMWFh?=
- =?utf-8?B?THdiU1NSRjkyNWtIeGgrMmFuOFVYemZPWVlpVDFtMEdFZVZNUytTODhDMUMr?=
- =?utf-8?B?YktteVd5bWJYbU9jRHhOVGlseGtiK2IxL284WUtuZGdSRTBNT3F6SDFMWU8z?=
- =?utf-8?B?T2o4TVdxNFg2UDcvbUdTK3duL3I4N1A5NVN5Vmp0WHRtdGtFZHRzRk1rMlRn?=
- =?utf-8?B?S1dLSTJhb2VrNVZlalRwT3QxY2FQUk1RRnREamQ4ZDRzN25XS3VjNWMvQ0sx?=
- =?utf-8?B?RHUva0JEOE82RldySkl0eXlaSkt6ditQbFdaWCtoL0doMzlUR3VITk4wRVRn?=
- =?utf-8?B?d3VhWlJRbE1IWFBTMDlMSThsZkJtZkRkY016a21xZUp1RFBDU2Y5M1lOY3c5?=
- =?utf-8?B?QlV4SjQzZnFXWU4xRGtOUHZMMlJZcXFuRkFpczZIRkhpSldTcThmUHh2RE9O?=
- =?utf-8?B?eVlTVHB5Z1FWV2RzZVg5UEJETXlQUnFDWVdrOThydUpTb1RwaldrYlVZTWhX?=
- =?utf-8?B?Y0gySHVEQlFXZ3FqR1Njb0VUcjJqTUd2UzRJR05VRW5JYXdWcldyUW9uQjA2?=
- =?utf-8?B?cEJMVmhyeC9xSzlvbHd1TGRJcTRUbUlKY1pRYUV4QTJqT1c0R3NIK0ZERTdE?=
- =?utf-8?B?REE1R1JDWWFxcVMxS3RPenJhZ0N4a1BkS0xUTFpyQXdCblpxREJ5NVZud2Rw?=
- =?utf-8?B?UjhKQnRYZVIvclFnc1Z5aVF5MlMvZ2QyN0x4SDg4OXpJb2lvT005cHlnTHF5?=
- =?utf-8?B?TTdXT0c3ZHBhWmZhWGhiU2lHWHR4TmR0dTdCcllzd2QzZFI4WnFLZWVNS29V?=
- =?utf-8?B?VTcxR1BuL1ROK25EUkhGRkZubnNsU3J6Yyt0RFVUYkVySktQWnltMzdhaGdC?=
- =?utf-8?Q?e9bnejl/jv++DzmeI5IkF1TV+?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <20B30A37652E3A47BA41D23B0B51F1AD@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37415F9C2;
+	Mon, 15 Jan 2024 10:18:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40F8CFDM028424;
+	Mon, 15 Jan 2024 10:18:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=BcTltSVcdGatbrBUU6zTKBg6pJMPZtwaqVsNWEXHsVQ=; b=Pc
+	Nn570deNxiOAGf4LVoqq41hLF22XRiVYM8WdW3IoFDjc5S7rL7nvUPO4OARRMQFl
+	wEd0lvNGOekV2z+J9QHr2jDKv27dmNh7x+XnX/2XxFX9y6pSbnLX73OTBU3HrFr7
+	jcA4MP7VY8G3PlJKIfUAv3GxVDGYHL3ZBAiuO9VZ2mPa7VOE8FTnYTpRe4njPvKM
+	sijepxsMqkUjZC4HM2dB1izcxBq0OEdO5TuIDPgsaPAWPmRk9bN+1cB9y8EqJmR7
+	ZV3gzy4u8OEoXlgQPCpeYf+l6ywBc5FMCG9QnK7iyWHv7zFLLDARAIreLlQutG7d
+	IhSeAcwDF23yTYJLZSAQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vkmefu5uw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Jan 2024 10:18:12 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40FAIB3n019860
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Jan 2024 10:18:11 GMT
+Received: from [10.238.139.231] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 15 Jan
+ 2024 02:18:08 -0800
+Message-ID: <e16f5ff1-9b12-4f90-89d5-f95cbfb859e7@quicinc.com>
+Date: Mon, 15 Jan 2024 18:18:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63a4cf7e-43ea-423f-01a6-08dc15b32830
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2024 10:17:19.6695
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZMAEOG9yOJ4Lpy2wlMzG8Rb0fAU3EGjZ3J/EISd0q1MAFzcrNdeG4LBYtw5FcHhiWasGj7s+Nu3Q71jWT7SO0g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9667
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] arm64: dts: qcom: qcm6490-idp: Add definition for
+ three LEDs
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240115-lpg-v5-1-3c56f77f9cec@quicinc.com>
+ <CAA8EJpoemnXTmshWrArVOCm0GRSkWZ5tH557nbAjRL1Tgg-Dig@mail.gmail.com>
+From: hui liu <quic_huliu@quicinc.com>
+In-Reply-To: <CAA8EJpoemnXTmshWrArVOCm0GRSkWZ5tH557nbAjRL1Tgg-Dig@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: U7i25dWANcFUdMluCwtOkccBACL9wKdR
+X-Proofpoint-ORIG-GUID: U7i25dWANcFUdMluCwtOkccBACL9wKdR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ suspectscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0 phishscore=0
+ clxscore=1015 mlxlogscore=815 priorityscore=1501 mlxscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401150074
 
-QW0gMTUuMDEuMjQgdW0gMDg6Mjkgc2NocmllYiBLcnp5c3p0b2YgS296bG93c2tpOg0KDQo+IE9u
-IDE0LzAxLzIwMjQgMTc6MjYsIEpvc3VhIE1heWVyIHdyb3RlOg0KPj4+Pj4gK21haW50YWluZXJz
-OiBbXQ0KPj4+PiBZb3UgbmVlZCBhIG5hbWUgaGVyZS4gSWYgdGhlcmUgaXMgbm8gZHJpdmVyIG1h
-aW50YWluZXIgb3IgYW55b25lDQo+Pj4+IGludGVyZXN0ZWQsIHB1dCBkZXZpY2V0cmVlIGxpc3Qu
-DQo+Pj4gQWNrLg0KPj4+Pj4gKw0KPj4+Pj4gK2FsbE9mOg0KPj4+Pj4gKyAgLSAkcmVmOiBydGMu
-eWFtbCMNCj4+ICsgJHJlZjogL3NjaGVtYXMvaW50ZXJydXB0cy55YW1sIw0KPj4NCj4+IElzIGl0
-IGFjY2VwdGFibGUgdG8gcmVmZXJlbmNlIGdlbmVyaWMgaW50ZXJydXB0cyBzY2hlbWE/Og0KPiBX
-aHk/IE5vLg0KPg0KPj4gSSBzZWUgbm8gcnRjIHlhbWwgZG9pbmcgdGhhdCwgYW5kIG9ubHkgc29t
-ZSBkZXNjcmliZSBpbnRlcnJ1cHRzIHByb3BlcnR5IGV4cGxpY2l0bHkuIEJ1dCBJbXBvcnRpbmcg
-dGhlIHNjaGVtYSB3b3VsZCBhbHNvIGNvdmVyIC1wYXJlbnQgYW5kIC1uYW1lcy4NCj4gTm8sIGl0
-IHdvdWxkbid0LiBJdCBkb2VzIG5vdCBtYXR0ZXIuIEkgZG9uJ3QgdW5kZXJzdGFuZCB3aGF0IGFy
-ZSB5b3UNCj4gdHJ5aW5nIHRvIHNvbHZlLg0KZHRic19jaGVjayBpcyBjb21wbGFpbmluZyBhYm91
-dCBpbnRlcnJ1cHQtcGFyZW50IHByb3BlcnR5LA0KYmVjYXVzZSBJIGFkZGVkIGJvdGggaW50ZXJy
-cnVwdHMgYW5kIGludGVycnVwdC1wYXJlbnQgdG8gbXkgcnRjIG5vZGUuDQoNCkFsc28gd29uZGVy
-aW5nIHdoZXRoZXIgaW50ZXJydXB0cyBwcm9wZXJ0eSBzaG91bGQgYmUgaW5jbHVkZWQgaW4NCnRo
-ZSBleGFtcGxlLg0KDQpJIGZvdW5kIHRoaXMgaWRlYSBpbiB5YW1sIGZpbGVzIG91dHNpZGUgcnRj
-Lg0KQnV0IG5vIGV4aXN0aW5nIHJ0YyB5YW1sIHJlZmVyZW5jZXMgdGhhdCBzY2hlbWEsIHNvIEkg
-YXNrZWQuDQoNCg0Kc2luY2VyZWx5DQpKb3N1YSBNYXllcg0KDQo=
+
+
+On 1/15/2024 5:56 PM, Dmitry Baryshkov wrote:
+> On Mon, 15 Jan 2024 at 11:48, Hui Liu via B4 Relay
+> <devnull+quic_huliu.quicinc.com@kernel.org> wrote:
+>>
+>> From: Hui Liu <quic_huliu@quicinc.com>
+>>
+>> Add definition for three LEDs to make sure they can
+>> be enabled base on QCOM LPG LED driver.
+> 
+> The "function" property is still placed incorrectly. Posting the next
+> iteration before concluding the discussion on the previous one is not
+> the best idea.
+Do you mean I should update it as below? Seems there is no consumer to 
+use the function config, do we need to add now?
+pm8350c_pwm {
+  +       function = LED_FUNCTION_STATUS;
+  +       #address-cells = <1>;
+  +       #size-cells = <0>;
+  +       status = "okay";
+  +
+  +       led@1 {
+  +               reg = <1>;
+  +               color = <LED_COLOR_ID_RED>;
+  +		 function = LED_FUNCTION_STATUS;
+  +       };
+  + ...
+
+> 
+>>
+>> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
+>> ---
+>> Changes in v5:
+>> - Rephrased commit text, replaced qcs6490-idp to qcm6490-idp.
+>> - Removed the unnecessary full.
+>> - Link to v4: https://lore.kernel.org/r/20240112-lpg-v4-1-c4004026686b@quicinc.com
+>>
+>> Changes in v4:
+>> - Removed "label" definition and added "function" definition.
+>> - Link to v3: https://lore.kernel.org/r/20231215-lpg-v3-1-4e2db0c6df5f@quicinc.com
+>>
+>> Changes in v3:
+>> - Rephrased commit text and updated the nodes to qcm6490-idp board file.
+>> - Link to v2: https://lore.kernel.org/all/20231110-qcom_leds-v2-1-3cad1fbbc65a@quicinc.com/
+>>
+>> Changes in v2:
+>> - Rephrased commit text and updated the nodes to board file.
+>> - Link to v1: https://lore.kernel.org/r/20231108-qcom_leds-v1-1-c3e1c8572cb0@quicinc.com
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 23 +++++++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> index 37c91fdf3ab9..8268fad505e7 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> @@ -5,6 +5,7 @@
+>>
+>>   /dts-v1/;
+>>
+>> +#include <dt-bindings/leds/common.h>
+>>   #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>   #include "sc7280.dtsi"
+>>   #include "pm7325.dtsi"
+>> @@ -414,6 +415,28 @@ vreg_bob_3p296: bob {
+>>          };
+>>   };
+>>
+>> +&pm8350c_pwm {
+>> +       function = LED_FUNCTION_STATUS;
+>> +       #address-cells = <1>;
+>> +       #size-cells = <0>;
+>> +       status = "okay";
+>> +
+>> +       led@1 {
+>> +               reg = <1>;
+>> +               color = <LED_COLOR_ID_RED>;
+>> +       };
+>> +
+>> +       led@2 {
+>> +               reg = <2>;
+>> +               color = <LED_COLOR_ID_GREEN>;
+>> +       };
+>> +
+>> +       led@3 {
+>> +               reg = <3>;
+>> +               color = <LED_COLOR_ID_BLUE>;
+>> +       };
+>> +};
+>> +
+>>   &qupv3_id_0 {
+>>          status = "okay";
+>>   };
+>>
+>> ---
+>> base-commit: 17cb8a20bde66a520a2ca7aad1063e1ce7382240
+>> change-id: 20231215-lpg-4aadd374811a
+>>
+>> Best regards,
+>> --
+>> Hui Liu <quic_huliu@quicinc.com>
+>>
+>>
+> 
+> 
 
