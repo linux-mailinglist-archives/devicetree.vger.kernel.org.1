@@ -1,61 +1,53 @@
-Return-Path: <devicetree+bounces-32092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF81C82DD0F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:10:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE89182DD1A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:13:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81ED4B22391
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:10:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B82B283B9C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E09179AD;
-	Mon, 15 Jan 2024 16:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B04179AD;
+	Mon, 15 Jan 2024 16:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PrTxj9h8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vKBw81Ha"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA0017BA1;
-	Mon, 15 Jan 2024 16:10:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27C89C433C7;
-	Mon, 15 Jan 2024 16:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B933179A8;
+	Mon, 15 Jan 2024 16:13:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EFDBC433F1;
+	Mon, 15 Jan 2024 16:13:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705335020;
-	bh=w/OftDh4haN2MUyHJodrZDqK6lQj9eUZRQeCxQ/l7Ac=;
+	s=k20201202; t=1705335202;
+	bh=/Udn5btmcKZ81o6zntRILY52O0+BbAVgkogRfVpdH4I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PrTxj9h8iv3oUVYDlsDMw6ziBXPwyLBfz1FBQFz1heG31SYFyJOeUEjqZT04R/kQT
-	 oyP2cP8Ir19etl5iRIbATXbSLxSUonr0Y7EftVyljpVF426h+dauRzy2AUqa9JLUlL
-	 uvxgUU+4mUiLMQj3LvXtY9avfeK/nAR2Pt0CQRQSuUIygt2LQPNVoX+QnuzrZ56tlb
-	 zrJKICdYsb1Wxa05xvMMfs7XJ3MC5JmF8zm4h+4fNBlWsiFVnDGZdc4Um7jvBBkJmi
-	 F6duLj91sviOzFqpwdxWAeIwKoK3Vh4JXmzWqpbY/X8EPQfOpeKOKOjsbTqulHqEfC
-	 M0JSUGFpvTK2A==
-Date: Mon, 15 Jan 2024 16:10:13 +0000
+	b=vKBw81HaIt5FUW+hc+ycf5KpoKe8QoQ7Kb2NrDW1ifiq8W7ZlKuq3kLYM5/hUI2HD
+	 QDSYQbVnIX1AHeVN3fKmYo9PjG4PyRgs4Oy69kdL6Gd0tCt83/DKXznku8x6mSZBNk
+	 XWQxtZo23C6bSdKZtZ7Ldr3nM02leyFg2fjoya8XqzdUJWF2W/Ozmk0jIYT53+22X+
+	 rbo3EXnhm49IZtTFsGFZaQwXUSn8tZUIWXT0sK8ZzDxRtaHQWI0j4bVVmMw5tMPjP8
+	 hWRah2Q2fD0pxh+ygsdq2KXgdn0db/XLqDcZE/eIl8UKmvaU2NRk4HjkiK92WVUDvi
+	 966h4QAwEpCZQ==
+Date: Mon, 15 Jan 2024 16:13:16 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
-	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>,
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Leonard =?iso-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Haibo Chen <haibo.chen@nxp.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: adc: ad7173: add support for additional
- models
-Message-ID: <20240115-praising-disdain-d81d4ce69194@spud>
-References: <20240115135416.10595-1-mitrutzceclan@gmail.com>
- <20240115135416.10595-2-mitrutzceclan@gmail.com>
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Yoshinori Sato <ysato@users.sourceforge.jp>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-sh@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: renesas,tmu: Document input capture
+ interrupt
+Message-ID: <20240115-wages-secluded-b44f4eb13323@spud>
+References: <fb1e38c93e62221f94304edd980a2fb79c1f2995.1705325608.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,162 +55,96 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="sV1oz/EzmBq1F27T"
+	protocol="application/pgp-signature"; boundary="D9JecHxJ6soLeUK4"
 Content-Disposition: inline
-In-Reply-To: <20240115135416.10595-2-mitrutzceclan@gmail.com>
+In-Reply-To: <fb1e38c93e62221f94304edd980a2fb79c1f2995.1705325608.git.geert+renesas@glider.be>
 
 
---sV1oz/EzmBq1F27T
+--D9JecHxJ6soLeUK4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 15, 2024 at 03:53:04PM +0200, Dumitru Ceclan wrote:
-> Add support for: AD7172-2, AD7175-8, AD7177-2
-> Add hardware description of the AD771X family instead of "Bindings for"
-> AD7172-4 does not feature an internal reference, check for ext-ref
+On Mon, Jan 15, 2024 at 02:45:39PM +0100, Geert Uytterhoeven wrote:
+> Some Timer Unit (TMU) instances with 3 channels support a fourth
+> interrupt: an input capture interrupt for the third channel.
 >=20
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> While at it, document the meaning of the four interrupts, and add
+> "interrupt-names" for clarity.
+>=20
+> Update the example to match reality.
+>=20
+> Inspired by a patch by Yoshinori Sato for SH.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../bindings/iio/adc/adi,ad7173.yaml          | 50 +++++++++++++++++--
->  1 file changed, 46 insertions(+), 4 deletions(-)
+> The corresponding DTS updates can be found in series "[PATCH 0/2]
+> ARM/arm64: dts: renesas: Improve TMU interrupt descriptions".
+> https://lore.kernel.org/r/cover.1705325654.git.geert+renesas@glider.be
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> index 7c8caef76528..6d4b26e43144 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> @@ -11,19 +11,33 @@ maintainers:
->    - Ceclan Dumitru <dumitru.ceclan@analog.com>
+>  .../devicetree/bindings/timer/renesas,tmu.yaml | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/D=
+ocumentation/devicetree/bindings/timer/renesas,tmu.yaml
+> index a67e427a9e7e22aa..9a823224c144f7d4 100644
+> --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+> +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+> @@ -46,7 +46,19 @@ properties:
 > =20
->  description: |
-> -  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported=
- chips:
-> +  Analog Devices AD717X ADC's:
-> +  The AD717x family offer a complete integrated Sigma-Delta ADC solution=
- which
-> +  can be used in high precision, low noise single channel applications
-> +  (Life Science measurements) or higher speed multiplexed applications
-> +  (Factory Automation PLC Input modules). The Sigma-Delta ADC is intended
-> +  primarily for measurement of signals close to DC but also delivers out=
-standing
-> +  performance with input bandwidths out to ~10kHz.
-> +
-> +  Datasheets for supported chips:
->      https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7172-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7172-4.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7173-8.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7175-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7175-8.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7176-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7177-2.pdf
-> =20
->  properties:
->    compatible:
->      enum:
->        - adi,ad7172-2
-> +      - adi,ad7172-4
->        - adi,ad7173-8
->        - adi,ad7175-2
-> +      - adi,ad7175-8
->        - adi,ad7176-2
-> +      - adi,ad7177-2
-> =20
->    reg:
->      maxItems: 1
-> @@ -89,8 +103,10 @@ patternProperties:
->            refout-avss: REFOUT/AVSS (Internal reference)
->            avdd       : AVDD
-> =20
-> -          External reference refin2 only available on ad7173-8.
-> -          If not specified, internal reference used.
-> +          External reference refin2 only available on ad7173-8 and ad717=
-2-4.
-> +          Internal reference refout-avss not available on ad7172-4.
-> +
-> +          If not specified, internal reference used (if available).
->          $ref: /schemas/types.yaml#/definitions/string
->          enum:
->            - refin
-> @@ -111,12 +127,15 @@ required:
->  allOf:
->    - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> =20
-> +  # Only ad7172-4 and ad7173-8 support refin2
->    - if:
->        properties:
->          compatible:
->            not:
->              contains:
-> -              const: adi,ad7173-8
-> +              anyOf:
-> +                - const: adi,ad7172-4
-> +                - const: adi,ad7173-8
->      then:
->        properties:
->          refin2-supply: false
-> @@ -129,6 +148,29 @@ allOf:
->                  - refout-avss
->                  - avdd
-> =20
-> +  # Model ad7172-4 does not support internal reference
-> +  #  mandatory to have an external reference
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: adi,ad7172-4
-> +    then:
-> +      patternProperties:
-> +        "^channel@[0-9a-f]$":
-> +          properties:
-> +            adi,reference-select:
-> +              enum:
-> +                - refin
-> +                - refin2
-> +                - avdd
-> +              default: false
+>    interrupts:
+>      minItems: 2
+> -    maxItems: 3
+> +    items:
+> +      - description: Underflow interrupt 0
+> +      - description: Underflow interrupt 1
+> +      - description: Underflow interrupt 2
+> +      - description: Input capture interrupt 2
 
-The default shouldn't be needed here since the property is required.
+Seeing "input capture interrupt 2" makes me wonder, are there two (or
+more!) other input capture interrupts that are still out there,
+undocumented, and looking for a home?
 
-> +          required:
-> +            - adi,reference-select
-> +      oneOf:
-> +        - required: [refin2-supply]
-> +        - required: [refin-supply]
-
-I'm a little curious - the enum allows avdd but you are requiring one of
-these two references to be set. Is one required if avdd is used as the
-reference?
-
-Thanks,
+Cheers,
 Conor.
 
 > +
->  unevaluatedProperties: false
+> +  interrupt-names:
+> +    minItems: 2
+> +    items:
+> +      - const: tuni0
+> +      - const: tuni1
+> +      - const: tuni2
+> +      - const: ticpi2
 > =20
->  examples:
+>    clocks:
+>      maxItems: 1
+> @@ -100,7 +112,9 @@ examples:
+>              reg =3D <0xffd80000 0x30>;
+>              interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
+>                           <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
+> -                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> +                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names =3D "tuni0", "tuni1", "tuni2", "ticpi2";
+>              clocks =3D <&mstp0_clks R8A7779_CLK_TMU0>;
+>              clock-names =3D "fck";
+>              power-domains =3D <&sysc R8A7779_PD_ALWAYS_ON>;
 > --=20
-> 2.42.0
+> 2.34.1
+>=20
 >=20
 
---sV1oz/EzmBq1F27T
+--D9JecHxJ6soLeUK4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaVY5QAKCRB4tDGHoIJi
-0g7lAQCHDDAXjWK+zjzjnxHJR7BmkaEep2iUVKmmYQAuU3Z6twEAgeAYhyvVcXaM
-9H46UOZvwaIiwAfWx07mC2comwosZAM=
-=tR9x
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaVZnAAKCRB4tDGHoIJi
+0ncYAQDlET2wYW1oPcGLuPX5StJ7ZYz4oqIZmek/mCyzmqU+5QEA0LHWuV+uQl1L
+tyDL9jR7lcURTHIY/U2kGi/3Pe8OGwA=
+=4RIc
 -----END PGP SIGNATURE-----
 
---sV1oz/EzmBq1F27T--
+--D9JecHxJ6soLeUK4--
 
