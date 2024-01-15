@@ -1,212 +1,157 @@
-Return-Path: <devicetree+bounces-32062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B82082DB51
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 15:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 116B682DB5F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 15:35:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FE9A1C21A63
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:33:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2661D1C20322
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E96981374;
-	Mon, 15 Jan 2024 14:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E9B717F3;
+	Mon, 15 Jan 2024 14:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="AoFDiZHW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zK/eMiVR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2062.outbound.protection.outlook.com [40.107.223.62])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42FC91759E;
-	Mon, 15 Jan 2024 14:33:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YuQjpgex3YJ7KuGSYIzTJ4yqtZdKaXbECUUrN9MTdIcNbZAO/LMIYRfHL4SZ3WQyWJFhXom57pI3kyyZpIolZ9nd7ZutJ3pKeO9GnIDiryv6z5t+WMGnDJhjzGZfrJTm6ETDIcNPONSN5cDh9daqVnFWSQFPhhD9F0GKa8MtEqoNTQqCI21j/zpLYEHGFRUb3BCungM70vLIvRaUaPUI/YdjgLgONfbFJpDfpPQ/J360y/OmOq3rqDgEuULWQopV5GlRzGsuOpwgmsT95m65VCzp8Mjhljpl1zyS2uOC2wtS/H59yTp9J0wnrgG6YYvoDspDzEflIX8NlBgtWbkAEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qMI6jzx/sVGVrU/71xt5ejmVPUROg2dZO/aZt55pMjY=;
- b=On2EyUFvAWll+3cGcvaaAgOtd0HK8VwAwH/WPfGse/CWs1yiAqTkHmSdboi+lKX5kEopraKOruy8B2v/ewvVOdD08BWtaF2pGenvhXMlmorz+TH2zXjajBBRlTrkkWovw6Fvbyfvg7EJszwrZsWK5y1Aub32A3MiEyO57LwxYUB1Von52l4i/ugTPH+iuE/UpWCNbHFTiitQHsN65kkFp07HNGeX5jHA/Jnn5YnOIKoxUHfSsMZuvBuErnISiAdcnU4rCL4ZoeiUdo7o4/NtUbDvA6OmjzMytk11Tm+kx/t9Y7MbdeszWsC478vRLuRKyo2KZrL5EUF+sUmKzOtmiQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qMI6jzx/sVGVrU/71xt5ejmVPUROg2dZO/aZt55pMjY=;
- b=AoFDiZHWSq47l/O/o45pyEESN2lGOt1yGJn0YcVwtU4Hfdv5UvSSnBlBR9GVSsD1mutENqM6CwEBALgu4/B7a+MY4qHr2ZxwAawiZEIQoMgEmUcvoOCkeTr7UGbu2Sjwu2P7RtUNAetg1vHLA4m2LwcQWJU8/G2RaubtPcBLMOeoTW3vLum/Bhya7/eJvAG5B9qW1s2KyEADCqKAdXoIAIlwjZ5EUdYFmZNbq9SeSsP0Tj0EckFXLH5B0lmSsDVPzoHI4LkegUaM7hx3PWqv6486d8ScIIMtrZyfMT0aRT72XPU9Yyk1PzL60v5I89ivz2ZpOGCb+InRP6Iwe790+g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from PH8PR12MB6674.namprd12.prod.outlook.com (2603:10b6:510:1c1::18)
- by SA3PR12MB7973.namprd12.prod.outlook.com (2603:10b6:806:305::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7159.23; Mon, 15 Jan
- 2024 14:33:11 +0000
-Received: from PH8PR12MB6674.namprd12.prod.outlook.com
- ([fe80::55f7:f35f:a684:bf3c]) by PH8PR12MB6674.namprd12.prod.outlook.com
- ([fe80::55f7:f35f:a684:bf3c%4]) with mapi id 15.20.7181.022; Mon, 15 Jan 2024
- 14:33:10 +0000
-Message-ID: <5e8f6c52-6149-42c0-affb-d8b072a77956@nvidia.com>
-Date: Mon, 15 Jan 2024 20:02:56 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 2/2] PCI: Add support for "preserve-boot-config"
- property
-Content-Language: en-US
-To: Bjorn Helgaas <helgaas@kernel.org>, robh@kernel.org
-Cc: lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org,
- frowand.list@gmail.com, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, treding@nvidia.com,
- jonathanh@nvidia.com, kthota@nvidia.com, mmaddireddy@nvidia.com,
- sagar.tv@gmail.com, kernel test robot <lkp@intel.com>
-References: <20240112165830.GA2271982@bhelgaas>
-From: Vidya Sagar <vidyas@nvidia.com>
-In-Reply-To: <20240112165830.GA2271982@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0083.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ae::9) To PH8PR12MB6674.namprd12.prod.outlook.com
- (2603:10b6:510:1c1::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CC317596
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 14:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a2c375d2430so542333966b.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 06:35:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705329350; x=1705934150; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=JBl3NUkAH57VQ8h1RlzRvYz+47UYR+NG04LNwz4ru70=;
+        b=zK/eMiVRg8KWf0/zUTe999y7aD9tkUTAXA1s0SexphyHEGKcPxAbJHY1FKovSFGkv4
+         A5rjE5dWJWXfGURNg8t6et6H7J2v7OeBqPHmcJ7j1jFzk20n8l4KshZxeUJBio0dkqcO
+         UPJxVIIAGE+bUD870NZBOv399EguUuittFVbfNo5Gpoy8c7kEDRYz8htnFhswqOAscbC
+         JaMO7oGLPf+yAcWur5zBEpUpikBsmiUE/KqudUZohS7ubVtxRMBHji6cTj9HpttxWd1z
+         NHNQrPgNbCvw6IdbDGe6YQBKlAxGZXRWmI4YCKEWxGZkcHF+wwyGOhT0Grr+YF3EARC8
+         IgzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705329350; x=1705934150;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JBl3NUkAH57VQ8h1RlzRvYz+47UYR+NG04LNwz4ru70=;
+        b=AWoQEw6HqLeoq8xUTD5Rl6qT0BbkBES4nU4qj77Uj/Oiahap9/ZdzwYbc22Z2ns6x7
+         3iZ1zmZ4N9M2Erti844/s6I95ZmLFK76O4DP8zq8OyUQkxAtXprFjz5xkdoqr/IppMaV
+         YjaqSGq5gPnu2QNfR6Qj5qvqvPWlsCd7JYwu5eOcUlFnqfl8/xWyoUAGYlfBXps+zldL
+         vbYt8m5oHwtttZH1oRH+Tdf+y4EDvFB6yshR1BeII70pFzgiG+AzCh5hNZyJbwgu8DlZ
+         iIE3Q0dOvLFyo0n83MgsIZ1/XYtYyeGjl9ni399Df9UlRLhAkqmcNdB6O9XM5KwT2h/2
+         I5nw==
+X-Gm-Message-State: AOJu0YzHHl3wXibvYkqOxbPqIFu7zwYv41l0jVkqwrmlEQbmKKdb6VkB
+	R5qOR9bE2SFi5Wgs9erlyrLA+4fSZqwycw==
+X-Google-Smtp-Source: AGHT+IFSxI58BWQcA5iMedtFSx+BMRulQczzL4NJJmUYEGLfnw0mi4TT7+L1s8Gc1bzfitqI93BFxg==
+X-Received: by 2002:a17:906:b6cf:b0:a2a:f4a0:a00 with SMTP id ec15-20020a170906b6cf00b00a2af4a00a00mr2170072ejb.145.1705329350306;
+        Mon, 15 Jan 2024 06:35:50 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id v15-20020a170906180f00b00a28cf49520asm5316864eje.203.2024.01.15.06.35.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jan 2024 06:35:49 -0800 (PST)
+Message-ID: <644f7f02-405d-47fb-bc72-4d54e897255f@linaro.org>
+Date: Mon, 15 Jan 2024 15:35:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR12MB6674:EE_|SA3PR12MB7973:EE_
-X-MS-Office365-Filtering-Correlation-Id: eb58cc61-e126-4645-4f33-08dc15d6e5c8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	HruN5eKpbxKPDvykE79JfLBLeZvT8AU9Y5piOiwu3UMZe9/2MShOO7a41Tlv85A9dgyRZHrz4IflsR2nf9T4MOKjUbYB02imtS7G9YHf35xHvqX0A47fHQsHPkGZ38w0cKGYT3vtpfbVMbIxcjfHtk9qPsAfHh7e3OckRjqtmuo2+Mkz8R0b8nfkA0TMXFK24f4DgZ3UI2B5Ueli+in6OQXfihDjcGXuSrBqpPNK4dJoqdrW6v9MctqcdUQeHzcepkr648FN4uSFpyLD31S2PpXKxnVMmDl8/4kwtg153QK5QmIdwQBLw/pqkEz++GhXM4yuP3kOmZZUQvI2rth0uqLwnIBafBX6Flpr++eNuqKNs5P+9WFJrlEyKg4ClLnyXqsByhka2wA01clWBMZw7uOy0E3C+pfaUoj9KRaYnlz6kJLj9TDaZBbONi3O1mPdCYRUT7Xew9CZ6TtJnIgepvvqpbAsGRzKZPY4Be9G+wAyHGRstyXHpyllccn0dLsY/l2ECmdH5l//TukZg5qGEiqbP6Wa7R0A7jxQlxysljeemWjDMQycl23VsGJprZEb6sv7HIpF7+cICvhUd8qkghoE9d2KAlVFiACV763yWE3oOccBBxKDBeuMo72uBne/8knsWBZ7jEN1tKV9WS10RU2m2zVPAEjN6lSN5K/0pF/H5lwFAdI8GpZpsAZBjAnk
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR12MB6674.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(376002)(366004)(136003)(346002)(396003)(230273577357003)(230173577357003)(230922051799003)(1800799012)(64100799003)(186009)(451199024)(31686004)(86362001)(41300700001)(36756003)(31696002)(83380400001)(2906002)(38100700002)(6486002)(478600001)(26005)(2616005)(66476007)(8676002)(6506007)(66556008)(316002)(6666004)(66946007)(5660300002)(8936002)(53546011)(6512007)(7416002)(4326008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RzhHMnNTSWdPSHlLUjh6K1ROOEZpcFhZcGNNcnpoMGdJOGhuYWxuTmZzbFZv?=
- =?utf-8?B?VzFCWldWNVFVdHhwUlV6SXkxYXRZMUFVM0NveFVMNWoyczdod0dyaGRCaXB0?=
- =?utf-8?B?dlRXcHFWbGZXY1BhbDRNaVNDWXpUYXVDOVR1emQxdC9mWE5hQVdHT0tkNXNj?=
- =?utf-8?B?V0JvNU5oaFNBY0QyZU1pUnNOaUtybmc4V21oaEVhUmIwVGFHUGVpSHNHdkpO?=
- =?utf-8?B?Z08rTG1CMmVpaldvWXMrOHlUa1o5TzUyM28rTUE3Y2owV2VyOFJyVUpEU3NM?=
- =?utf-8?B?OXlpS01qazF3Rk0wcEJyTjlFbEZtbVF0VnQyaVZsUGJ6bHZ6SG8xZk5mSjAr?=
- =?utf-8?B?Z0ZEVlN1cXJFSytJV1VyNTdobkNOMDFrblY4Z0dQZVRHZm0weFBJaURjYm1r?=
- =?utf-8?B?ZWxlRmI2Z3NJN2hVRWVhdFZHWEtVTlFoemd0blYycGxVeTRQN0JaQXB5Wm1T?=
- =?utf-8?B?d1luMkVmcG1vUzJFWVVQazU3RWdmSUFyOGJjVFNNWDVaanNHdDFROU5QT3Vu?=
- =?utf-8?B?aXJubmNVVk5OeXVwQ0lmdXpRa2pkanpDbW5iU0lZdEdoZGZCYTZmS3Y1OXFs?=
- =?utf-8?B?U2VLR05hODNkaTkyVU5Gdm1Fa2RycmNOWHk0V1JJdm4vcklkaW1IZDZ6WlA2?=
- =?utf-8?B?MEJGbVY5MEoxN04xMWdRVGhBMmpvRnVLanFMb29tK1ZQb25McmRMRjBGRFcy?=
- =?utf-8?B?czRzTnpxaSt6Z0t0MTMrUWJTYkZwekxWVWVaZzEyeHRVUmgxYWNjaU11L1R3?=
- =?utf-8?B?WGh1MEovOFRDaXhQdFVjendSbko5aENJWkV0V2dyR2xGclhQcDdaOTVGUFFU?=
- =?utf-8?B?QUhGcW5BSHJCL0hCVkJwb0hTK1Z3NVVZR3NqYzQreUJEUEpBMzRCRTVnZTRh?=
- =?utf-8?B?WHJ4S204SEVVcERnZUNvY3lJMm1tQStYTUNWaTVFWXNjdWtFQ3FDUWRwVVNx?=
- =?utf-8?B?ZE5Md2xwNEJDOURBSkxWSWNUMU5YOXp6UDE2T0hiUkUyNU1XS2Q4NXFXaWlJ?=
- =?utf-8?B?am1QOFlhVWxpckxhWnZqeUdRaFJsNEJ2aDJjMFRISm44T2Y0Y1V0WnI0OE1T?=
- =?utf-8?B?ZmJRNHZGRGFNTFlXSkFkR1JZRVdWOU90UEdxMU1hck9JZVlleFNQdEl3VHFL?=
- =?utf-8?B?T3pvOVRYLytteFFuL0xTaENUNGMySUZJRWpwbU5jazBCR1hNdkFUVXI4QWRl?=
- =?utf-8?B?aWt6S3B3Q0t3ZWdZc1lhKzFSUTlBVDlYZUpjbVpqVGNiOGZUNUpQR1FZMlk3?=
- =?utf-8?B?dHBjeFdGdVlsZ2czeXliNUkvdzFucmFRZDZGb1luQ01yMUp0SHBGOTFlczV1?=
- =?utf-8?B?TCtLeGFFMmUvWE16YVcxVkoxMTY0N09YbzArb0VFYUFxTnJsdGx4VXZ2TnhX?=
- =?utf-8?B?cXZmUkU4ajVicCtRNW5hdGxhS2RXbEExeSswZ25ja094Qi9WNVZrNXlGYTdN?=
- =?utf-8?B?Y0owNDJaUUJtdUxFRjk5M1htNWFxSTdwU09KLytWbUZON3VMTWw3dDViSHo5?=
- =?utf-8?B?cnE0aDZEQmM3dmtFbDAvcnZRN0VKQkYzRDhtZWZjTWtxY1FwQVg5ZzNFVXpU?=
- =?utf-8?B?TUdrZVdqQVdVZnNDMVF2UVVwNVVsWStzNXo3TzltekRmYVRkM1pSMW5Wa1FL?=
- =?utf-8?B?WHRCZDZMN3JBMHc0U1ozMnkzUEZWMkV1NFhBbHlJSUdwMFBUL2FYbWxVYjQ0?=
- =?utf-8?B?RHdJYk1OZDIrWHNOWENmNUpxcVJ4akFpeEh4RC85OTMvSXR6MUY2NkxDS2x3?=
- =?utf-8?B?MEp5bC93UHl3Y0I5K3pYMDc4OXhGQTBROFdiejlUTkhNR0JLQXBjYXdxQnN1?=
- =?utf-8?B?NFVpdlVkb1RwV0hiU04vbk52Z1M4YW9UUDZ1bUhCK29tbFdhSW54dGl5MVgx?=
- =?utf-8?B?MExkUC8wVytQZFc1czJwUDFDa3lhTGNOaC93R0xMRG1Kb1pOem95aFZhc2ND?=
- =?utf-8?B?ZkpkZXpReUcyMmxwUnVRdTRhYi9rZEExcXZSWmtyYnl6aU95Y2ZnamNndXZC?=
- =?utf-8?B?R1BXendFVmp5Y3JBUUtiUVAwNEc0K3BKWEVkSUE5dDBvZ3kyUzJkQ1BUejEy?=
- =?utf-8?B?SElMcUFlU1NyYjBJYVVuOW1aWHBka1NWK2NBMHZiK0dvQUlDZ2dxdC9Vc3o0?=
- =?utf-8?Q?yoz4sLJcb4vDAtkNitqYYKCYL?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb58cc61-e126-4645-4f33-08dc15d6e5c8
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB6674.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jan 2024 14:33:10.3159
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TunJXrDxBqb3xVpGY6wgmjM6hzGoMic8kuUrCGGd5kmpHQnNfTNaUIqGO428e1E7lTVHtbttT8KIRvtEZhdofg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7973
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] ASoC: dt-bindings: xmos,xvf3500: add bindings for
+ XMOS XVF3500
+To: Javier Carrasco <javier.carrasco@wolfvision.net>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
+References: <20240115-feature-xvf3500_driver-v1-0-ed9cfb48bb85@wolfvision.net>
+ <20240115-feature-xvf3500_driver-v1-2-ed9cfb48bb85@wolfvision.net>
+ <333c2986-c7c2-4a46-90cf-b59ae206e55a@linaro.org>
+ <96abddcc-fa65-4f27-84fe-2281fe0fcf1c@wolfvision.net>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <96abddcc-fa65-4f27-84fe-2281fe0fcf1c@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-
-On 1/12/2024 10:28 PM, Bjorn Helgaas wrote:
-> External email: Use caution opening links or attachments
-> 
-> 
-> On Wed, Jan 10, 2024 at 08:37:25AM +0530, Vidya Sagar wrote:
->> Add support for "preserve-boot-config" property that can be used to
->> selectively (i.e. per host bridge) instruct the kernel to preserve the
->> boot time configuration done by the platform firmware.
+On 15/01/2024 14:58, Javier Carrasco wrote:
+> On 15.01.24 14:02, Krzysztof Kozlowski wrote:
+>> On 15/01/2024 10:16, Javier Carrasco wrote:
+>>> The XMOS XVF3500 VocalFusion Voice Processor[1] is a low-latency, 32-bit
+>>> multicore controller for voice processing.
+>>>
+>>> Add new bindings to define the device properties.
 >>
->> Reported-by: kernel test robot <lkp@intel.com>
->> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
->> ---
->> V2:
->> * Addressed issues reported by kernel test robot <lkp@intel.com>
+>> I don't see any bus, so how does it work? How do you get the voice data
+>> from it? I also do not see any DAI: neither here nor in the driver...
 >>
->>   drivers/pci/controller/pci-host-common.c |  5 ++++-
->>   drivers/pci/of.c                         | 18 ++++++++++++++++++
->>   drivers/pci/probe.c                      |  2 +-
->>   include/linux/of_pci.h                   |  6 ++++++
->>   4 files changed, 29 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/pci/controller/pci-host-common.c b/drivers/pci/controller/pci-host-common.c
->> index 6be3266cd7b5..d3475dc9ec44 100644
->> --- a/drivers/pci/controller/pci-host-common.c
->> +++ b/drivers/pci/controller/pci-host-common.c
->> @@ -68,13 +68,16 @@ int pci_host_common_probe(struct platform_device *pdev)
->>
->>        of_pci_check_probe_only();
->>
->> +     bridge->preserve_config =
->> +             of_pci_check_preserve_boot_config(dev->of_node);
-> 
-> Thanks for leveraging the existing "preserve_config" support for the
-> ACPI _DSM.  Is pci_host_common_probe() the best place for this?  I
-> think there are many DT platform drivers that do not use
-> pci_host_common_probe(), so I wonder if there's a more generic place
-> to put this.
-My understanding is that pci_host_common_probe() is mainly used in
-systems where the firmware would have taken care of all the platform
-specific initialization and giving the ECAM and 'ranges' info through DT
-for the Linux kernel to go ahead and perform the enumeration. This is
-similar to ACPI way of handing over the system from firmware to the OS.
+> The voice data and any other information can be retrieved directly via
+> USB from userspace. Once in normal operation, the device acts as a
+> regular "onboard" USB device and the driver does not need to do any
+> further management.
 
-If PCIe controllers are getting initialized in the kernel itself, then
-pci_host_probe() is called directly from the respective host controller
-drivers which is the case with all the DesignWare based implementations
-including Tegra194 and Tegra234. In those systems, since the controllers
-themselves have come up and gotten initialized in the kernel, resource
-assignment has to happen anyway.
+So is this an USB device? If yes, then shouldn't be just auto-discovered
+and you add here some bindings for other device? This looks like coding
+power sequence not in USB node, but in some other, new node.
 
-> 
-> I see Rob's concern about adding "preserve-boot-config" vs extending
-> "linux,pci-probe-only" and I don't really have an opinion on that,
-> although I do think the "pci-probe-only" name is not as descriptive as
-> it could be.  I guess somebody will argue that "preserve_config" could
-> be more descriptive, too :)
-Honestly I would have liked to repurpose of_pci_check_probe_only() API
-to look for "preserve-boot-config" in the respective PCIe controller's
-DT node and not "linux,pci-probe-only" in the chosen entry, had it not
-for the single usage of of_pci_check_probe_only() in arch/powerpc
-/platforms/pseries/setup.c file.
-Also FWIW, "linux,pci-probe-only" is not documented anywhere.
+Best regards,
+Krzysztof
 
-Since there is at least one user for of_pci_check_probe_only(), and
-combining with the fact that the scope where "linux,pci-probe-only" and
-"preserve-boot-config" are used (i.e. chosen entry Vs individual PCIe
-controller node), I prefer to have it as a separate option.
-Rob, please let me know if you have any strong objections to that?
-
-> 
-> Bjorn
 
