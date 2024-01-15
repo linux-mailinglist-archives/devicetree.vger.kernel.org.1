@@ -1,126 +1,102 @@
-Return-Path: <devicetree+bounces-32121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6071082DE97
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:43:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00FB482DEB0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:57:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04926283770
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:43:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 117B91C21EAC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB1C1803D;
-	Mon, 15 Jan 2024 17:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0E71804E;
+	Mon, 15 Jan 2024 17:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K9z2HeYX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p35Gl/yr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF3717C98;
-	Mon, 15 Jan 2024 17:43:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E850DC433C7;
-	Mon, 15 Jan 2024 17:43:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D4618AE0;
+	Mon, 15 Jan 2024 17:57:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7B96C433C7;
+	Mon, 15 Jan 2024 17:57:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705340623;
-	bh=TNNXHlCOpAGGqgmgfpLzL9G4VoowSCtm3Fdz6y9uqF8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=K9z2HeYXg8Ri8q/JdndsnZnWUOsgcOP7Mc1/4aLtm0m2gjnxLbig+qTSTIjOg8KEK
-	 8op721GbB2BH0EJhV5tWHjK6/i5UqFz2714NB0xtnWP6dYPdAiH8wJjKuNi/u0EQzP
-	 RFFYTPYzg8TDNvA6zgH3BdIVGR3/B8k4r6/Xc1XhJv9ifxFPgszGc0DEmE2Aq/tT+i
-	 QDy7y8bb31DhKpXgEM8qv6D8fs1bcwp/dn4Fl1GylqrlP8Jnw6pQoeZ4p4TeIl9SQK
-	 Nq0We2m3gt4YLjnY4ZDUlepnvwLFJABoFv6mbJXcRbWignsxt0plzu2XKL+hQYRZu0
-	 GAN8whVDoam3w==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2cd703e9014so79591781fa.1;
-        Mon, 15 Jan 2024 09:43:43 -0800 (PST)
-X-Gm-Message-State: AOJu0YwjbvV9weYzkJJeuhxwjBEJYvHSOQZCzS/jQtA0kq04ONbDdxtX
-	UqbmUhTdHP2dzpxWl/53VtfAtRFUJTRbBxtMRg==
-X-Google-Smtp-Source: AGHT+IEdcvEmGLc2vxkMNR7ny/nWk3upQpsAYJ5biMMTm3Rx1zQeTWmjrbuSeSUFWyhnJj8ycbxRcd55ApkN0iho+9k=
-X-Received: by 2002:a2e:b0d9:0:b0:2cc:f31b:56ea with SMTP id
- g25-20020a2eb0d9000000b002ccf31b56eamr2992580ljl.92.1705340622164; Mon, 15
- Jan 2024 09:43:42 -0800 (PST)
+	s=k20201202; t=1705341443;
+	bh=thBhnHt9jZFGQePPNqkyQjdjPMKZmxdsMlzWKPj8+Jc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p35Gl/yrY53OdCBI06PlYbOCPu8PAdffbIyGPu1B+JJ8LCI4uLoO8zCBoPhEbZDLS
+	 2IuoXD/t8k77ozhb8mPOLhbNFyEP4GY8mx1XWU4y7yBIbDXxNC5TLZcXn4YQydXZb+
+	 ihr5kYCGinap2g3Ra56/Q9Wdrh9KoWNBTljTqqTGVPXMUstYfVTqYHhmmbvqbuBaqQ
+	 R0D0wrr1HgN2cQjEjJrRRpn7IK2XvNg/wtd9MvHtZWsxwRCZJ8BWJdfLf157zF8Ife
+	 iEtCOl9+pCW2cWVL5OumkEzSAdDC5KxaFB7NfQJIEp+JhKI5bT6ZCPEyvbkuFrYfyK
+	 obT1KF8SeUyhQ==
+Date: Mon, 15 Jan 2024 11:57:20 -0600
+From: Rob Herring <robh@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+	linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+	kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org,
+	devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Subject: Re: [PATCH 1/6] arm64: Unconditionally call unflatten_device_tree()
+Message-ID: <20240115175720.GA1017185-robh@kernel.org>
+References: <20240112200750.4062441-1-sboyd@kernel.org>
+ <20240112200750.4062441-2-sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231220145537.2163811-1-andre.draszik@linaro.org>
- <170432630603.2042234.10993333941885772911.robh@kernel.org>
- <827695c3-bb33-4a86-8586-2c7323530398@amd.com> <bcd89ef7a43eb7d652f045c029d8e108adf7ba32.camel@linaro.org>
- <20240115-fragment-clean-95ef01dd8b20@spud> <ffd6f60e-fea9-4426-a981-badd3c68cd4d@amd.com>
- <8c5afb4e52e0c5a6dd88f6b7eaa7bc2e97ba31ad.camel@linaro.org>
-In-Reply-To: <8c5afb4e52e0c5a6dd88f6b7eaa7bc2e97ba31ad.camel@linaro.org>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 15 Jan 2024 11:43:29 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL3ELh=i6cA+8EhH0uBw19sw5+vCyLWUODU7D80JS-D8w@mail.gmail.com>
-Message-ID: <CAL_JsqL3ELh=i6cA+8EhH0uBw19sw5+vCyLWUODU7D80JS-D8w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: ignore paths outside kernel for DT_SCHEMA_FILES
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Michal Simek <michal.simek@amd.com>, Conor Dooley <conor@kernel.org>, 
-	Masahiro Yamada <masahiroy@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240112200750.4062441-2-sboyd@kernel.org>
 
-On Mon, Jan 15, 2024 at 10:57=E2=80=AFAM Andr=C3=A9 Draszik <andre.draszik@=
-linaro.org> wrote:
->
-> On Mon, 2024-01-15 at 17:37 +0100, Michal Simek wrote:
-> >
-> >
-> > On 1/15/24 17:29, Conor Dooley wrote:
-> > > On Mon, Jan 15, 2024 at 09:40:37AM +0000, Andr=C3=A9 Draszik wrote:
-> > > > Hi,
-> > > >
-> > > > On Mon, 2024-01-15 at 10:20 +0100, Michal Simek wrote:
-> > > > > This patch is causing issue for me. Look at log below.
-> > > > > I am running it directly on the latest linux-next/master.
-> > > > >
-> > > > > Thanks,
-> > > > > Michal
-> > > > >
-> > > > > $ make DT_SCHEMA_FILES=3D"Documentation/devicetree/bindings/arm/a=
-rm,cci-400.yaml"
-> > > > > dt_binding_check
-> > > >
-> > > > It'll work if you drop the 'Documentation/devicetree/bindings' part=
- from the path, as
-> > > > it is implied since bindings can only be in that directory anyway:
-> > > >
-> > > >      make DT_SCHEMA_FILES=3D"arm/arm,cci-400.yaml" dt_binding_check
-> > > >      make DT_SCHEMA_FILES=3D"arm,cci-400.yaml" dt_binding_check
-> > > >
-> > > > both work.
-> > >
-> > > Requiring that is pretty user unfriendly though I think, passing the
-> > > full path from the root directory of the kernel tree would be my
-> > > assumption of the "default".
-> >
-> > I am using full path like this for years.
->
-> I just just went by Documentation/devicetree/bindings/writing-schema.rst
-> which doesn't suggest adding Documentation/devicetree/bindings/. In an
-> attempt to make it more robust for anybody following this doc, I opted
-> for the current implementation.
+On Fri, Jan 12, 2024 at 12:07:44PM -0800, Stephen Boyd wrote:
+> Call this function unconditionally so that we can populate an empty DTB
+> on platforms that don't boot with a firmware provided or builtin DTB.
+> There's no harm in calling unflatten_device_tree() unconditionally. If
+> there isn't a valid initial_boot_params dtb then unflatten_device_tree()
+> returns early.
 
-It originally worked only with the full tree path. It's now enhanced
-to take any substring for a match. As that is preferred (and shorter)
-that's what the documentation has.
+There's always a valid DTB because that's the boot params even for ACPI 
+systems. This does also create a userspace visible change that 
+/proc/device-tree will be populated. I don't see an issue with that.
 
-> > I can fix my scripts but would be good to consider correct path inside =
-the
-> > kernel is something what this patch should also allow.
-> > Because path above is correct and it is not outside of the kernel that'=
-s why at
-> > least commit message should be massage a little bit.
->
-> I hear you, and I'll make a v2 to not imply the bindings directory.
+There was worry when ACPI was added that systems would pass both DT and 
+ACPI tables and that the kernel must only use ACPI. That was more to 
+force ACPI adoption, but I'm not sure if that actually exists in any 
+early system. I think we're past forcing adoption now.
 
-A follow-up, not a v2 because v1 is already applied.
-
-Rob
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: <linux-arm-kernel@lists.infradead.org>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  arch/arm64/kernel/setup.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+> index 417a8a86b2db..ede3d59dabf0 100644
+> --- a/arch/arm64/kernel/setup.c
+> +++ b/arch/arm64/kernel/setup.c
+> @@ -351,8 +351,7 @@ void __init __no_sanitize_address setup_arch(char **cmdline_p)
+>  	/* Parse the ACPI tables for possible boot-time configuration */
+>  	acpi_boot_table_init();
+>  
+> -	if (acpi_disabled)
+> -		unflatten_device_tree();
+> +	unflatten_device_tree();
+>  
+>  	bootmem_init();
+>  
+> -- 
+> https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/
+> https://git.kernel.org/pub/scm/linux/kernel/git/sboyd/spmi.git
+> 
 
