@@ -1,229 +1,151 @@
-Return-Path: <devicetree+bounces-32096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C1DD82DD7E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:21:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D88B82DD7F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:21:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F17AB2201D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:21:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE8672835F1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:21:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5AB417BB6;
-	Mon, 15 Jan 2024 16:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D76E17BC3;
+	Mon, 15 Jan 2024 16:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GD+7GY2Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KSmmcdu8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810B417BB1;
-	Mon, 15 Jan 2024 16:17:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED86EC433B2;
-	Mon, 15 Jan 2024 16:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E435517BB1;
+	Mon, 15 Jan 2024 16:17:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CFB1C3277D;
+	Mon, 15 Jan 2024 16:17:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705335420;
-	bh=T+2sSv2X8aSMaN+ypn7mK/Rq48tUKizTpqsxeAp5JXg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=GD+7GY2Y59G0AWjmxmyDueLlKdjD545OB41J37Fcw1V1AbXHiCPvMtkR8ZLBEk+bB
-	 o6h6jxgbo4NPaxdPliQlTsqCLFu0z1zw395a8xiF9jQis/ezAcPv7aZ7Nv0g9U2UUz
-	 NMFIKVdlIK1EP+dulIVzcKB8z3P233h8iHO5Xh/PiaycNVF17dAJJWbEB2cMaze/uH
-	 4bjXRqIJK+NsTTl2B+WhLfTBqxEwPmpuIYpEMqDGu6rsMV1+lzXx4R5BdkJ6SSTxiu
-	 XljzFVMlL2IWBqw175nqZ+3m12n+BxQUUkgO/tM1uk7XmhIFT5LpYQg+lyIwaZ2NiB
-	 dhQr8W2Z7TSkQ==
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2cd81b09e83so53699531fa.2;
-        Mon, 15 Jan 2024 08:16:59 -0800 (PST)
-X-Gm-Message-State: AOJu0YwOqh8yCg768VnykVmUXKvYDy4vIuBy9JtXyXfs5N2G+x7Nj8X3
-	hFIinAF4m4yRENUFLWNYLD1FmjaAfLxf+OGiQg==
-X-Google-Smtp-Source: AGHT+IF9uStzXLvMKSDmlonhF6vj8iuop2j6X3GFmK9wutfyiriS22etcNW5wavbcSbXH+5+Z1eNgdixUpHXm6YARF4=
-X-Received: by 2002:a2e:9ec4:0:b0:2cd:418:a38 with SMTP id h4-20020a2e9ec4000000b002cd04180a38mr1221350ljk.136.1705335418126;
- Mon, 15 Jan 2024 08:16:58 -0800 (PST)
+	s=k20201202; t=1705335432;
+	bh=R7wYv89WuvE+UdIk/00VqgnE5zrK2xX9FX1H5cIHu4Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KSmmcdu8Ut/hJbGoxzczBG3o82C+I8aeXFwsON62BLraBsvzsCAShnE03PlTlzLLn
+	 CPmHxbM4A+kCVFM0v9EQAVSTW6PUyTV1611SCU4ElEjwGi+3edZk7gLTCLNOUp1F3B
+	 1BEo5XovFEv8Xwe6bX8hwBGOVEHbuI8wO2pXjuDlwztaN9FBASREtXuD8N+pVcuAP7
+	 DhmWCTkRnyJWPQbKsguH7KuWWum4homKcB+Gvs0Oqa9c0aVKs8hyIkd0BzTNKbIbmE
+	 MVWhMU8B6P/5ioWw+00td5+LIc4tC3pFY5aKYX72V8es44m2GT+liSZK9NgKpAXkFx
+	 o2KPNXdThNGGA==
+Date: Mon, 15 Jan 2024 16:17:06 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Devarsh Thakkar <devarsht@ti.com>
+Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com,
+	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, praneeth@ti.com, nm@ti.com,
+	vigneshr@ti.com, a-bhatia1@ti.com, j-luthra@ti.com,
+	kristo@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add support for
+ common1 region
+Message-ID: <20240115-craftsman-capricorn-d2930678c222@spud>
+References: <20240115125716.560363-1-devarsht@ti.com>
+ <20240115125716.560363-2-devarsht@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
- <20230827115033.935089-9-dmitry.baryshkov@linaro.org> <20231011154935.GA785564-robh@kernel.org>
- <CAA8EJpqf4Q7wh657==C45Ka8YmmyopkCQnyEFcXkaoRwnCRZLQ@mail.gmail.com>
- <CAL_JsqKwWyoPdt3C0FdsgN087xK0jGyp3PVgiCaETZK9FX2JdQ@mail.gmail.com> <CAA8EJpqNRrpcK50FRLcrSdyHFadU1=6yRqBOCFv=fnTBYJs9=g@mail.gmail.com>
-In-Reply-To: <CAA8EJpqNRrpcK50FRLcrSdyHFadU1=6yRqBOCFv=fnTBYJs9=g@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 15 Jan 2024 10:16:45 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJo_5qAocpU9UqkZqGMxCLQ+BT6SgSJh3uTJ+Rrcfo-ZA@mail.gmail.com>
-Message-ID: <CAL_JsqJo_5qAocpU9UqkZqGMxCLQ+BT6SgSJh3uTJ+Rrcfo-ZA@mail.gmail.com>
-Subject: Re: [PATCH v4 08/23] soc: qcom: Add driver for Qualcomm Krait L2
- cache scaling
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Ilia Lin <ilia.lin@kernel.org>, 
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Georgi Djakov <djakov@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Christian Marangi <ansuelsmth@gmail.com>, Stephan Gerhold <stephan@gerhold.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6UE2VM8YXmjg8HrJ"
+Content-Disposition: inline
+In-Reply-To: <20240115125716.560363-2-devarsht@ti.com>
+
+
+--6UE2VM8YXmjg8HrJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 3, 2024 at 8:02=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> HI Rob,
->
-> Resurrecting old thread, but I think it's better as it has context.
->
-> Added driver core maintainers, see discussion points below.
->
-> On Wed, 11 Oct 2023 at 21:44, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Wed, Oct 11, 2023 at 1:20=E2=80=AFPM Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> > >
-> > > On Wed, 11 Oct 2023 at 18:49, Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Sun, Aug 27, 2023 at 02:50:18PM +0300, Dmitry Baryshkov wrote:
-> > > > > Add a simple driver that handles scaling of L2 frequency and volt=
-ages.
-> > > > >
-> > > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > > ---
-> > > >
-> > > > [...]
-> > > >
-> > > > > +static const struct of_device_id krait_l2_match_table[] =3D {
-> > > > > +     { .compatible =3D "qcom,krait-l2-cache" },
-> > > > > +     {}
-> > > > > +};
-> > > > > +MODULE_DEVICE_TABLE(of, krait_l2_match_table);
-> > > > > +
-> > > > > +static struct platform_driver krait_l2_driver =3D {
-> > > > > +     .probe =3D krait_l2_probe,
-> > > > > +     .remove =3D krait_l2_remove,
-> > > > > +     .driver =3D {
-> > > > > +             .name =3D "qcom-krait-l2",
-> > > > > +             .of_match_table =3D krait_l2_match_table,
-> > > > > +             .sync_state =3D icc_sync_state,
-> > > > > +     },
-> > > > > +};
-> > > >
-> > > > As I mentioned in the other thread, cache devices already have a st=
-ruct
-> > > > device. Specifically, they have a struct device (no subclass) on th=
-e
-> > > > cpu_subsys bus type. So there should be no need for a platform devi=
-ce
-> > > > and second struct device.
-> > > >
-> > > > See drivers/acpi/processor_driver.c for an example. Or grep any use=
- of
-> > > > "cpu_subsys".
-> > >
-> > > Most likely you mean drivers/base/cacheinfo.c. I saw this code, I
-> > > don't think it makes a good fit here. The cacheinfo devices provide
-> > > information only, they are not tied to DT nodes in any way.
-> >
-> > They are completely tied to DT nodes beyond L1.
-> >
-> > >  cpu_subsys
-> > > doesn't provide a way to match drivers with subsys devices in the
-> > > non-ACPI case, etc.
-> >
-> > That's a 2 line addition to add DT support.
-> >
-> > > Moreover, the whole cacheinfo subsys is
-> > > non-existing on arm32, there is no cacheinfo implementation there,
-> > > thanks to the overall variety of architectures.
-> >
-> > Humm, well I don't think it would be too hard to add, but I won't ask
-> > you to do that. All the info comes from DT or can come from DT, so it
-> > should be just a matter of arm32 calling the cacheinfo init.
-> >
-> > > Thus said, I don't think cacheinfo makes a good fit for the case of
-> > > scaling L2 cache.
-> >
-> > I still disagree. It's not really cacheinfo. That is what creates the
-> > devices, but it's the cpu_subsys bus type. Why do you care that it is
-> > platform bus vs. cpu_subsys?
->
-> I finally found a timeslot to look at cacheinfo. I added support for
-> arm32 cacheinfo (which is fine) and tried using cacheinfo devices for
-> L2 driver mapping (the RFC has been posted at [1]).
-> But after I actually tried using it for the L2 cache driver.  I
-> stumbled upon several issues, which I'd like to discuss before rushing
-> to code.
->
-> First, you supposed that cacheinfo devices land onto the cpu_subsys
-> bus. However only actual CPU devices end up on cpu_subsys. CPU cache
-> devices are created using cpu_device_create(), but despite its name
-> they don't go to cpu_subsys.
->
-> Second and more important, these devices are created without any
-> attempt to share them. So on a 4-core system I have 4 distinct devices
-> for L2 cache even though it is shared between all cores.
+On Mon, Jan 15, 2024 at 06:27:15PM +0530, Devarsh Thakkar wrote:
+> TI keystone display subsystem present in AM65 and other SoCs such as AM62
 
-I wonder if that's because things are created in CPU hotplug callbacks
-and there might be ordering problems if cache devices are created in
-another code path.
+Do all 3 SoCs supported by this binding (am625 am62a7 am65x) have this
+common1 register? If not, you should limit it the platforms that do have
+it.
 
-Also, I think on some PowerPC systems, CPUs can move to different L2
-(or L3?) caches when hot unplugged and then plugged. So hotplug
-rescans everything. I don't think that would be a problem with this
-and PowerPC does its own scanning anyways. Just wanted you to be aware
-of the issue.
+Thanks,
+Conor.
 
-> root@qcom-armv7a:~# stat -c "%N %i" /sys/bus/cpu/devices/cpu*/cache/index=
-2/level
-> /sys/bus/cpu/devices/cpu0/cache/index2/level 15537
-> /sys/bus/cpu/devices/cpu1/cache/index2/level 15560
-> /sys/bus/cpu/devices/cpu2/cache/index2/level 15583
-> /sys/bus/cpu/devices/cpu3/cache/index2/level 15606
->
-> I think it makes sense to rework cacheinfo to create actual CPU cache
-> devices (maybe having a separate cache bus).
-> In my case it should become something like:
->
-> cpu0-2-unified (shared between all 4 cores)
-> cpu0-1-icache
-> cpu0-1-dcache
-> cpu1-1-icache
-> cpu1-1-dcache
-> ...
->
-> I'm not sure if it's worth supporting more than one instance of the
-> same kind per level (e.g. I think current cacheinfo has nothing
-> against having two I-cache or two D-cache devices)
+> support two separate register spaces namely "common" and "common1" which
+> can be used by two separate hosts to program the display controller as
+> described in respective Technical Reference Manuals [1].
+>=20
+> The common1 register space has similar set of configuration registers as
+> supported in common register space except the global configuration
+> registers which are exclusive to common region.
+>=20
+> This adds binding for "common1" register region too as supported by the
+> hardware.
+>=20
+> [1]:
+> AM62x TRM:
+> https://www.ti.com/lit/pdf/spruiv7 (Section 14.8.9.1 DSS Registers)
+>=20
+> AM65x TRM:
+> https://www.ti.com/lit/pdf/spruid7 (Section 12.6.5 DSS Registers)
+>=20
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> ---
+>  .../devicetree/bindings/display/ti/ti,am65x-dss.yaml       | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.ya=
+ml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> index b6767ef0d24d..55e3e490d0e6 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> @@ -37,6 +37,7 @@ properties:
+>        - description: OVR2 overlay manager for vp2
+>        - description: VP1 video port 1
+>        - description: VP2 video port 2
+> +      - description: common1 DSS register area
+> =20
+>    reg-names:
+>      items:
+> @@ -47,6 +48,7 @@ properties:
+>        - const: ovr2
+>        - const: vp1
+>        - const: vp2
+> +      - const: common1
+> =20
+>    clocks:
+>      items:
+> @@ -147,9 +149,10 @@ examples:
+>                      <0x04a07000 0x1000>, /* ovr1 */
+>                      <0x04a08000 0x1000>, /* ovr2 */
+>                      <0x04a0a000 0x1000>, /* vp1 */
+> -                    <0x04a0b000 0x1000>; /* vp2 */
+> +                    <0x04a0b000 0x1000>, /* vp2 */
+> +                    <0x04a01000 0x1000>; /* common1 */
+>              reg-names =3D "common", "vidl1", "vid",
+> -                    "ovr1", "ovr2", "vp1", "vp2";
+> +                    "ovr1", "ovr2", "vp1", "vp2", "common1";
+>              ti,am65x-oldi-io-ctrl =3D <&dss_oldi_io_ctrl>;
+>              power-domains =3D <&k3_pds 67 TI_SCI_PD_EXCLUSIVE>;
+>              clocks =3D        <&k3_clks 67 1>,
+> --=20
+> 2.34.1
+>=20
 
-Probably a safe assumption. Though I think old XScale CPUs had a 1K
-mini I-cache and the main L1 I-cache. I guess that's really an L0
-cache though.
+--6UE2VM8YXmjg8HrJ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> The cpuN/cache/indexM should become symlinks to those cache devices.
->
-> What do you think?
+-----BEGIN PGP SIGNATURE-----
 
-Seems like a good improvement to me if changing the current way
-doesn't cause an ABI issue.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaVaggAKCRB4tDGHoIJi
+0ofxAP9644IoFXpzq15LHVlrL0JW2/U7emx4AxBos1MWHgBw7wD+J8ZVW2G1GO2O
+Vy00E4ucrIaKQkVECBpcSKeGws8qFgA=
+=J3/J
+-----END PGP SIGNATURE-----
 
-
-> [1] https://lore.kernel.org/linux-arm-msm/CAA8EJppCRzknaujKFyLa_i7x4UnX31=
-YFSyjtux+zJ0harixrbA@mail.gmail.com
->
-> > On a separate issue, I'd propose you move this to drivers/cache/
-> > instead of the dumping ground that is drivers/soc/. It's nothing more
-> > than a location to collect cache related drivers ATM because we seem
-> > to be accumulating more of them.
->
-> I thought about reusing drivers/devfreq, it already has the Mediatek CCI =
-driver.
-
-Anywhere except drivers/misc/ would be an improvement over
-drivers/soc/. devfreq is more tied to interconnects than caches
-though.
-
-Rob
+--6UE2VM8YXmjg8HrJ--
 
