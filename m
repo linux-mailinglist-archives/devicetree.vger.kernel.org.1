@@ -1,497 +1,349 @@
-Return-Path: <devicetree+bounces-32149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 982B082E228
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 22:18:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B98DF82E257
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 22:53:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C084283ABA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 21:18:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49F392838AB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 21:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B4001B292;
-	Mon, 15 Jan 2024 21:18:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7B21B277;
+	Mon, 15 Jan 2024 21:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="EWopEcah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1229B1B267
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 21:18:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rPULS-0000Ix-3d; Mon, 15 Jan 2024 22:18:10 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rPULQ-0006FH-R8; Mon, 15 Jan 2024 22:18:08 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rPULQ-000PRz-2Q;
-	Mon, 15 Jan 2024 22:18:08 +0100
-Date: Mon, 15 Jan 2024 22:18:04 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	michael.hennerich@analog.com, nuno.sa@analog.com, devicetree@vger.kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Subject: Re: [PATCH 2/2] pwm: Add driver for AXI PWM generator
-Message-ID: <gbessnmierg5gvdguhwauoe2mxr3krwcfk2afhazrqvz45md64@itbchezepncg>
-References: <20240115201222.1423626-1-tgamblin@baylibre.com>
- <20240115201222.1423626-3-tgamblin@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA381B580
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 21:53:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2cd33336b32so120594601fa.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 13:53:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1705355631; x=1705960431; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0juhdxoJdNDjw3AWC7m674HZgZNMoXBN904ysxBcgSY=;
+        b=EWopEcahXmwmGocHFB/tEfXBcVBpIcPv/tsOi5vf+WJiaFOsGWf+DulHLv6qRY3cCB
+         mqAXrDj8wzlUZp5tK/uHJZ90F3VS2d4qHC7YyqbpcZwQsMqH4WbKtv3ncVm4+XQD9iJn
+         6+DYnm6E7Go8xH5W41NVXN2RtZqW5UCUau6tU7EPumUvIzIxsl7gwN8fsSSobMwe2Yxl
+         jNVVsDXW0FBnqyFiqnwZv34rV98zXoVk348KSgiyBR/S5vs/wUMVLp9SfsBTviDNL719
+         VvBilHo1n+lx+mTd9FGlEUQhXDMt+Y3w4RmDwUZZ81Fj5edz1Zl0k6JOLP0byG86KCpx
+         zhrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705355631; x=1705960431;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0juhdxoJdNDjw3AWC7m674HZgZNMoXBN904ysxBcgSY=;
+        b=h6mOefcSlC0hcDTusFze6cEEW7pvw2lyTywDx4BKRU0C5X0mI9h3xyfNQXQAy1cVuj
+         QJJPxdOLoih9oaOuxbfmcvX1vM3S5GuzsOxyXajdhxDe4xebbLbOkEhtgB+3OW+1GsGi
+         Cq2cnpZ+/h4khsiqassw1gq/8GV8WFr/grXz6gqqUOCkLzUFd5RtjfhIBNM8z3y9yElg
+         vLEEdjW6d2hckxlTX0cHToRyqOk7dnxYtciOzqIv146ZfDzQLnXGJ7xwO5JW2PGXKzwL
+         qBhS/F2AwllLbreQEySbbcC5wPu7dQHy0hQ+pVs0/RkbTYgCt9zT3JpFWxtlgAyFpun/
+         MQoA==
+X-Gm-Message-State: AOJu0Ywzir7Gx9ieHc/qCm6k8PdZR/SXS27YPjmyEW1Nw5TRxMbTXAIe
+	ZPRpZs+HhuWCPywsjiKfK8rK78wfub5NzFmtVWoJiJ426ZMs5A==
+X-Google-Smtp-Source: AGHT+IGYi8HACiYudVUVmDmfVIu6fL9eg+hsPDqQoeSbZVORoJSzUkCzMnPUtyA7lZ+zfvqM1cVeE1n8Nt1Yi0D892s=
+X-Received: by 2002:a2e:9c91:0:b0:2cc:9882:4cb5 with SMTP id
+ x17-20020a2e9c91000000b002cc98824cb5mr3372646lji.45.1705355630105; Mon, 15
+ Jan 2024 13:53:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tx74ann2b5ciakvj"
-Content-Disposition: inline
-In-Reply-To: <20240115201222.1423626-3-tgamblin@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-
---tx74ann2b5ciakvj
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+References: <20231220104810.3179-1-mitrutzceclan@gmail.com>
+In-Reply-To: <20231220104810.3179-1-mitrutzceclan@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Mon, 15 Jan 2024 15:53:39 -0600
+Message-ID: <CAMknhBELp3NQEHE16gHhC96bttoafQOGxx3a_dLZn9o2Ru7y9g@mail.gmail.com>
+Subject: Re: [PATCH v11 1/2] dt-bindings: adc: add AD7173
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org, 
+	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Walle <michael@walle.cc>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
+	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>, 
+	Niklas Schnelle <schnelle@linux.ibm.com>, =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
+	Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, 
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
-
-On Mon, Jan 15, 2024 at 03:12:21PM -0500, Trevor Gamblin wrote:
-> From: Drew Fustini <dfustini@baylibre.com>
->=20
-> Add support for the Analog Devices AXI PWM Generator. This device is an
-> FPGA-implemented peripheral used as PWM signal generator and can be
-> interfaced with AXI4. The register map of this peripheral makes it
-> possible to configure the period and duty cycle of the output signal.
->=20
-> Link: https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
-> Co-developed-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
-> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
-> Co-developed-by: David Lechner <dlechner@baylibre.com>
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
-> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+On Wed, Dec 20, 2023 at 4:48=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@gmail=
+.com> wrote:
+>
+> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> which can be used in high precision, low noise single channel application=
+s
+> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
+> primarily for measurement of signals close to DC but also delivers
+> outstanding performance with input bandwidths out to ~10kHz.
+>
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
 > ---
->  MAINTAINERS                  |   1 +
->  drivers/pwm/Kconfig          |  12 ++
->  drivers/pwm/Makefile         |   1 +
->  drivers/pwm/pwm-axi-pwmgen.c | 229 +++++++++++++++++++++++++++++++++++
->  4 files changed, 243 insertions(+)
->  create mode 100644 drivers/pwm/pwm-axi-pwmgen.c
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7b0f3aec5381..3abe90dec82e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3422,6 +3422,7 @@ L:	linux-pwm@vger.kernel.org
->  S:	Supported
->  W:	https://ez.analog.com/linux-software-drivers
->  F:	Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
-> +F:	drivers/pwm/pwm-axi-pwmgen.c
-> =20
->  AXXIA I2C CONTROLLER
->  M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 4b956d661755..b105c0db4936 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -98,6 +98,18 @@ config PWM_ATMEL_TCB
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-atmel-tcb.
-> =20
-> +config PWM_AXI_PWMGEN
-> +	tristate "Analog Devices AXI PWM generator"
-> +	select REGMAP_MMIO
 
-Assuming you won't find the device on all machines, can you please add a
-reasonable dependency to not annoy users?
+Sorry for the late reply as I see this has been applied already but...
 
-> +	help
-> +	  This enables support for the Analog Devices AXI PWM generator.
-> +
-> +	  This is a configurable PWM generator with variable pulse width and
-> +	  period.
-> +
-> +	  To compile this driver as a module, choose M here: the module will be
-> +	  called pwm-axi-pwmgen.
-> +
->  config PWM_BCM_IPROC
->  	tristate "iProc PWM support"
->  	depends on ARCH_BCM_IPROC || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index c5ec9e168ee7..8322089954e9 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -6,6 +6,7 @@ obj-$(CONFIG_PWM_APPLE)		+=3D pwm-apple.o
->  obj-$(CONFIG_PWM_ATMEL)		+=3D pwm-atmel.o
->  obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+=3D pwm-atmel-hlcdc.o
->  obj-$(CONFIG_PWM_ATMEL_TCB)	+=3D pwm-atmel-tcb.o
-> +obj-$(CONFIG_PWM_AXI_PWMGEN)	+=3D pwm-axi-pwmgen.o
->  obj-$(CONFIG_PWM_BCM_IPROC)	+=3D pwm-bcm-iproc.o
->  obj-$(CONFIG_PWM_BCM_KONA)	+=3D pwm-bcm-kona.o
->  obj-$(CONFIG_PWM_BCM2835)	+=3D pwm-bcm2835.o
-> diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
+(I've been going over the datasheets for these and other related parts
+(AD411x) in detail today so please CC me on future updates to the
+bindings/driver for these if you don't mind)
+
+>  .../bindings/iio/adc/adi,ad7173.yaml          | 188 ++++++++++++++++++
+>  1 file changed, 188 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.=
+yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
 > new file mode 100644
-> index 000000000000..5e91636b88b4
+> index 000000000000..7c8caef76528
 > --- /dev/null
-> +++ b/drivers/pwm/pwm-axi-pwmgen.c
-> @@ -0,0 +1,229 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Analog Devices AXI PWM generator
-> + *
-> + * Copyright 2024 Analog Devices Inc.
-> + * Copyright 2024 Baylibre SAS
-> + */
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/err.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> @@ -0,0 +1,188 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#define AXI_PWMGEN_NPWM			4
-> +#define AXI_PWMGEN_REG_CORE_VERSION	0x00
-> +#define AXI_PWMGEN_REG_ID		0x04
-> +#define AXI_PWMGEN_REG_SCRATCHPAD	0x08
-> +#define AXI_PWMGEN_REG_CORE_MAGIC	0x0C
-> +#define AXI_PWMGEN_REG_CONFIG		0x10
-> +#define AXI_PWMGEN_REG_NPWM		0x14
-> +#define AXI_PWMGEN_CH_PERIOD_BASE	0x40
-> +#define AXI_PWMGEN_CH_DUTY_BASE		0x44
-> +#define AXI_PWMGEN_CH_OFFSET_BASE	0x48
-> +#define AXI_PWMGEN_CHX_PERIOD(ch)	(AXI_PWMGEN_CH_PERIOD_BASE + (12 * (ch=
-)))
-> +#define AXI_PWMGEN_CHX_DUTY(ch)		(AXI_PWMGEN_CH_DUTY_BASE + (12 * (ch)))
-> +#define AXI_PWMGEN_CHX_OFFSET(ch)	(AXI_PWMGEN_CH_OFFSET_BASE + (12 * (ch=
-)))
-
-I'd drop the name AXI_PWMGEN_CH_PERIOD_BASE and just hard code it in the
-definition of AXI_PWMGEN_CHX_PERIOD. Ditto for the two other macros.
-
-> +#define AXI_PWMGEN_TEST_DATA		0x5A0F0081
-
-Is this a documented constant, or just a random (as in xkcd#221) value?
-
-> +#define AXI_PWMGEN_LOAD_CONFIG		BIT(1)
-> +#define AXI_PWMGEN_RESET		BIT(0)
-> +#define AXI_PWMGEN_MAX_REGISTER		0x6C
+> +title: Analog Devices AD7173 ADC
 > +
-> +struct axi_pwmgen {
-> +	struct pwm_chip		chip;
-> +	struct clk		*clk;
-> +	struct regmap		*regmap;
+> +maintainers:
+> +  - Ceclan Dumitru <dumitru.ceclan@analog.com>
 > +
-> +	/* Used to store the period when the channel is disabled */
-> +	unsigned int		ch_period[AXI_PWMGEN_NPWM];
-> +	bool			ch_enabled[AXI_PWMGEN_NPWM];
-> +};
+> +description: |
+> +  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported=
+ chips:
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7172-2.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7173-8.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7175-2.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7176-2.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7172-2
+> +      - adi,ad7173-8
+> +      - adi,ad7175-2
+> +      - adi,ad7176-2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
 
-I'm not a fan of this alignment. If you don't have a strong opinion here
-please just use a single space here. (I would expect you to not have a
-strong opinion as other structs in this driver are not aligned in this
-way.)
+As discussed in v8 [1] it is not clear what signal this is. Based on
+that discussion, I'm assuming the RDY signal, but how would bindings
+consumers know that without a description since it is not the only
+digital output signal of the chip? And why the ERROR signal was
+omitted here was never addressed AFAICT.
+
+[1]: https://lore.kernel.org/linux-iio/20231217135007.3e5d959a@jic23-huawei=
+/
 
 > +
-> +static const struct regmap_config axi_pwm_regmap_config =3D {
-> +	.reg_bits =3D 32,
-> +	.reg_stride =3D 4,
-> +	.val_bits =3D 32,
-> +	.max_register =3D AXI_PWMGEN_MAX_REGISTER,
-> +};
+> +  '#address-cells':
+> +    const: 1
 > +
-> +static struct axi_pwmgen *to_axi_pwmgen(struct pwm_chip *chip)
-
-I'm a big fan of common symbol prefixes. I suggest to rename
-axi_pwm_regmap_config to axi_pwmgen_regmap_config and to_axi_pwmgen to
-axi_pwmgen_from_chip.
-
-> +{
-> +	return container_of(chip, struct axi_pwmgen, chip);
-> +}
+> +  '#size-cells':
+> +    const: 0
 > +
-> +static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *de=
-vice,
-> +			    const struct pwm_state *state)
-> +{
-> +	struct axi_pwmgen *pwm =3D to_axi_pwmgen(chip);
-
-Please pick a different name. "pwm" is reserved for pwm_device
-variables. (And please use it for these.) A typical name would be
-"ddata", or "pc" or "apg". (Maybe also rename axi_pwmgen to
-axi_pwmgen_ddata?)
-
-> +	unsigned long clk_rate_hz =3D clk_get_rate(pwm->clk);
-> +	unsigned int ch =3D device->hwpwm;
-> +	struct regmap *regmap =3D pwm->regmap;
-> +	u64 period_cnt, duty_cnt;
-> +	int ret;
-
-You didn't check for state->polarity. You should however. Also
-=2Eget_state() needs to assign that one.
-
-> +	if (!clk_rate_hz)
-> +		return -EINVAL;
-> +
-> +	period_cnt =3D DIV_ROUND_UP_ULL(state->period * clk_rate_hz, NSEC_PER_S=
-EC);
-
-The multiplication might overflow. Please use mul_u64_u64_div_u64() (or
-one of its variant) and error out on clk_rate_hz > NSEC_PER_SEC.
-
-Also round-up is wrong. I would expect that enabling PWM_DEBUG and
-enough testing should tell you that. .apply is supposed to implement the
-biggest period not bigger than the requested one. So you have to round
-down here.
-
-> +	if (period_cnt > UINT_MAX)
-> +		return -EINVAL;
-
-That's wrong. Please continue with period_cnd =3D UINT_MAX here.
-
-Instead you should probably error out on period_cnt =3D=3D 0.
-
-> +	pwm->ch_period[ch] =3D period_cnt;
-> +	pwm->ch_enabled[ch] =3D state->enabled;
-> +	ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), state->enabled =
-? period_cnt : 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	duty_cnt =3D DIV_ROUND_UP_ULL(state->duty_cycle * clk_rate_hz, NSEC_PER=
-_SEC);
-> +	ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), duty_cnt);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_write(regmap, AXI_PWMGEN_REG_CONFIG, AXI_PWMGEN_LOAD_CONF=
-IG);
-
-I assume this means that the writes above are to shadow registers and on
-this write they are latched into the hardware. So there is no glitch?!
-
-Does this wait for the currently running period to complete before
-switching to the new configuration?
-
-Please document these two hardware properties in a "Limitations"
-paragraph at the top of the driver. See other drivers for the format.
-
-> +}
-> +
-> +static int axi_pwmgen_get_state(struct pwm_chip *chip, struct pwm_device=
- *device,
-> +				struct pwm_state *state)
-> +{
-> +	struct axi_pwmgen *pwm =3D to_axi_pwmgen(chip);
-> +	unsigned long clk_rate_hz =3D clk_get_rate(pwm->clk);
-> +	struct regmap *regmap =3D pwm->regmap;
-> +	unsigned int ch =3D device->hwpwm;
-> +	u32 cnt;
-> +	int ret;
-> +
-> +	if (!clk_rate_hz) {
-> +		dev_err(device->chip->dev, "axi pwm clock has no frequency\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	state->enabled =3D pwm->ch_enabled[ch];
-> +
-> +	if (state->enabled) {
-> +		ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(ch), &cnt);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		cnt =3D pwm->ch_period[ch];
-> +	}
-
-If state->enabled is false, state->period is (or should) be ignored by
-the caller, so there shouldn't be a need to track ch_period.
-
-Also ch_enabled shouldn't be needed. Just reporting
-AXI_PWMGEN_CHX_PERIOD(ch) =3D=3D 0 as disabled should work fine?!
-
-I think then you also don't need to artificially limit npwm to four.
-
-> +	state->period =3D DIV_ROUND_CLOSEST_ULL((u64)cnt * NSEC_PER_SEC, clk_ra=
-te_hz);
-
-As feeding the result for .get_state() to .apply() should not modify the
-hardware state, you have to round up here.
-
-> +	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(ch), &cnt);
-> +	if (ret)
-> +		return ret;
-> +
-> +	state->duty_cycle =3D DIV_ROUND_CLOSEST_ULL((u64)cnt * NSEC_PER_SEC, cl=
-k_rate_hz);
-
-ditto.
-
-> +	return 0;
-> +}
-> +
-> +static const struct pwm_ops axi_pwmgen_pwm_ops =3D {
-> +	.apply =3D axi_pwmgen_apply,
-> +	.get_state =3D axi_pwmgen_get_state,
-> +};
-> +
-> +static int axi_pwmgen_setup(struct axi_pwmgen *pwm, struct device *dev)
-> +{
-> +	struct regmap *regmap =3D pwm->regmap;
-> +	int idx;
-> +	int ret;
-> +	u32 val;
-> +
-> +	ret =3D regmap_write(regmap, AXI_PWMGEN_REG_SCRATCHPAD, AXI_PWMGEN_TEST=
-_DATA);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D regmap_read(regmap, AXI_PWMGEN_REG_SCRATCHPAD, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (val !=3D AXI_PWMGEN_TEST_DATA)
-> +		return dev_err_probe(dev, -EIO, "failed to access the device registers=
-\n");
-> +
-> +	ret =3D regmap_read(regmap, AXI_PWMGEN_REG_NPWM, &pwm->chip.npwm);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (pwm->chip.npwm > AXI_PWMGEN_NPWM) {
-> +		dev_warn(dev, "driver is limited to %d channels but hardware reported =
-%u\n",
-> +				AXI_PWMGEN_NPWM, pwm->chip.npwm);
-> +		pwm->chip.npwm =3D AXI_PWMGEN_NPWM;
-> +	}
-> +
-> +	/* Disable all the outputs */
-
-Please don't. If the bootloader setup a splash screen, loading the pwm
-driver shouldn't disable the backlight. So please don't touch the
-configuration in .probe().
-
-> +	for (idx =3D 0; idx < pwm->chip.npwm; idx++) {
-> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(idx), 0);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(idx), 0);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_OFFSET(idx), 0);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	/* Enable the core */
-> +	return regmap_update_bits(regmap, AXI_PWMGEN_REG_CONFIG, AXI_PWMGEN_RES=
-ET, 0);
-> +}
-> +
-> +static int axi_pwmgen_probe(struct platform_device *pdev)
-> +{
-> +	struct axi_pwmgen *pwm;
-> +	void __iomem *io_base;
-> +	int ret;
-> +
-> +	pwm =3D devm_kzalloc(&pdev->dev, sizeof(*pwm), GFP_KERNEL);
-> +	if (!pwm)
-> +		return -ENOMEM;
-> +
-> +	io_base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(io_base))
-> +		return PTR_ERR(io_base);
-> +
-> +	pwm->regmap =3D devm_regmap_init_mmio(&pdev->dev, io_base, &axi_pwm_reg=
-map_config);
-> +	if (IS_ERR(pwm->regmap))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(pwm->regmap),
-> +				     "failed to init register map\n");
-> +
-> +	pwm->clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
-> +	if (IS_ERR(pwm->clk))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(pwm->clk), "failed to get clo=
-ck\n");
-
-Please call clk_rate_exclusive_get() on pwm->clk and cache the rate in
-struct axi_pwmgen.
-
-> +	pwm->chip.dev =3D &pdev->dev;
-> +	pwm->chip.ops =3D &axi_pwmgen_pwm_ops;
-> +	pwm->chip.base =3D -1;
-
-Don't assign .base.
-
-> +
-> +	ret =3D axi_pwmgen_setup(pwm, &pdev->dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return devm_pwmchip_add(&pdev->dev, &pwm->chip);
-> +}
-> +
-> +static const struct of_device_id axi_pwmgen_ids[] =3D {
-> +	{ .compatible =3D "adi,axi-pwmgen-1.00.a" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, axi_pwmgen_ids);
-> +
-> +static struct platform_driver axi_pwmgen_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "axi-pwmgen",
-> +		.of_match_table =3D axi_pwmgen_ids,
-> +	},
-> +	.probe =3D axi_pwmgen_probe,
-> +};
+> +  spi-max-frequency:
+> +    maximum: 20000000
 > +
 
-Drop this empty line.
+According to the timing diagram in the datasheet, SCLK is high during
+idle, so don't we need `spi-cpol: true` here?
 
-> +module_platform_driver(axi_pwmgen_driver);
+Likewise, data is valid on the trailing SCLK edge, so don't we need
+`spi-cpha: true` here?
+
+
+> +  gpio-controller:
+> +    description: Marks the device node as a GPIO controller.
 > +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Sergiu Cuciurean <sergiu.cuciurean@analog.com>");
-> +MODULE_DESCRIPTION("Driver for the Analog Devices AXI PWM generator");
+> +  "#gpio-cells":
+> +    const: 2
+> +    description:
+> +      The first cell is the GPIO number and the second cell specifies
+> +      GPIO flags, as defined in <dt-bindings/gpio/gpio.h>.
+> +
+> +  refin-supply:
+> +    description: external reference supply, can be used as reference for=
+ conversion.
 
-Best regards
-Uwe
+If I'm understanding correctly, this represents both voltage inputs
+REF+ and REF-, correct? The datasheet says "Reference Input Negative
+Terminal. REF=E2=88=92 can span from AVSS to AVDD1 =E2=88=92 1 V". It seems=
+ like they
+should be separate supplies in case REF- is non-zero. Otherwise, how
+can we know what voltage it is? (same comment applies to refin2.)
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+> +
+> +  refin2-supply:
+> +    description: external reference supply, can be used as reference for=
+ conversion.
+> +
+> +  avdd-supply:
+> +    description: avdd supply, can be used as reference for conversion.
+> +
+> +  avdd2-supply:
+> +    description: avdd2 supply, used as the input to the internal voltage=
+ regulator.
+> +
+> +  iovdd-supply:
+> +    description: iovdd supply, used for the chip digital interface.
+> +
 
---tx74ann2b5ciakvj
-Content-Type: application/pgp-signature; name="signature.asc"
+I overlooked this before, but these chips also have an optional
+external clock input so it seems like they should have an optional
+clocks property as well.
 
------BEGIN PGP SIGNATURE-----
+> +patternProperties:
+> +  "^channel@[0-9a-f]$":
+> +    type: object
+> +    $ref: adc.yaml
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 15
+> +
+> +      diff-channels:
+> +        items:
+> +          minimum: 0
+> +          maximum: 31
+> +
+> +      adi,reference-select:
+> +        description: |
+> +          Select the reference source to use when converting on
+> +          the specific channel. Valid values are:
+> +          refin      : REFIN(+)/REFIN(=E2=88=92).
+> +          refin2     : REFIN2(+)/REFIN2(=E2=88=92)
+> +          refout-avss: REFOUT/AVSS (Internal reference)
+> +          avdd       : AVDD
+> +
+> +          External reference refin2 only available on ad7173-8.
+> +          If not specified, internal reference used.
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        enum:
+> +          - refin
+> +          - refin2
+> +          - refout-avss
+> +          - avdd
+> +        default: refout-avss
+> +
+> +    required:
+> +      - reg
+> +      - diff-channels
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWloQsACgkQj4D7WH0S
-/k4XNwf+LaA/Rztj4bxdTeyCwVjj2DybwiI4EVDVrHmafVlK9E4oTnIm15gREru/
-0GVon1F2izw10EvlcEBsuW8fI/MNWhgqooHt2RIrhN9sTjiYkmC21eSwZ5vhTM8b
-ww43oQKvSXtiKcLkwdLybhVBzS1DgZkWfoePC2zYJ/NMVBkYS1kHuaUHBX22BUhS
-9eKW82FkpGMs/hvim7yf4RlolDe4/NykegdCsFuZqOIpadwgrQ2nB0IQ0som8EPg
-z7sbilsd4hnRD1BGa0d7F/wMvnS8HH/2yHPRyj+zZ6/pzKDIMlr4XIx436SKj26N
-WhHlpBXfGbV9YQdFdtyP7vYz0HjaKQ==
-=x9+i
------END PGP SIGNATURE-----
+Why are interrupts required? What if the pin is not connected?
 
---tx74ann2b5ciakvj--
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          not:
+> +            contains:
+> +              const: adi,ad7173-8
+> +    then:
+> +      properties:
+> +        refin2-supply: false
+> +      patternProperties:
+> +        "^channel@[0-9a-f]$":
+> +          properties:
+> +            adi,reference-select:
+> +              enum:
+> +                - refin
+> +                - refout-avss
+> +                - avdd
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      adc@0 {
+> +        compatible =3D "adi,ad7173-8";
+> +        reg =3D <0>;
+> +
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        interrupts =3D <25 IRQ_TYPE_EDGE_FALLING>;
+> +        interrupt-parent =3D <&gpio>;
+> +        spi-max-frequency =3D <5000000>;
+> +        gpio-controller;
+> +        #gpio-cells =3D <2>;
+> +
+> +        refin-supply =3D <&dummy_regulator>;
+> +
+> +        channel@0 {
+> +          reg =3D <0>;
+> +          bipolar;
+> +          diff-channels =3D <0 1>;
+> +          adi,reference-select =3D "refin";
+> +        };
+> +
+> +        channel@1 {
+> +          reg =3D <1>;
+> +          diff-channels =3D <2 3>;
+> +        };
+> +
+> +        channel@2 {
+> +          reg =3D <2>;
+> +          bipolar;
+> +          diff-channels =3D <4 5>;
+> +        };
+> +
+> +        channel@3 {
+> +          reg =3D <3>;
+> +          bipolar;
+> +          diff-channels =3D <6 7>;
+> +        };
+> +
+> +        channel@4 {
+> +          reg =3D <4>;
+> +          diff-channels =3D <8 9>;
+> +          adi,reference-select =3D "avdd";
+> +        };
+> +      };
+> +    };
+> --
+> 2.42.0
+>
+>
 
