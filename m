@@ -1,48 +1,46 @@
-Return-Path: <devicetree+bounces-31925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66EB082D32C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 03:49:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C36282D38E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 04:57:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F3C328158B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 02:49:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5D981F21374
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 03:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB71628;
-	Mon, 15 Jan 2024 02:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D25B187F;
+	Mon, 15 Jan 2024 03:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="bkLPxBjA"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IQQqkaVZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D3FE1841
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 02:49:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1705286938; x=1707878938;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=3/ACdTZKN4glzPwOsiLffRTMiq/cD9OoJCSWuTR7GA8=;
-	b=bkLPxBjAsp6uHux0pvGfAgo2O5UWo4kfCGYB5jx8lDSHmKwKMqfkgIu72+13xRp/
-	tqOiMyi+4Ih/HLCOFv+May221ETqctI8u6zV0bhQTrr5PXKINFoMuLrun6I3Qa61
-	QWMZKSfdMUR5mfBp3evpNMNSAW8/PWbs2yHQUho6AK8=;
-X-AuditID: ac14000a-fadff7000000290d-3f-65a49d1a1715
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id BF.33.10509.A1D94A56; Mon, 15 Jan 2024 03:48:58 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Mon, 15 Jan
- 2024 03:48:56 +0100
-Message-ID: <343339e6-a3b9-4795-bbe3-e82e0c527529@phytec.de>
-Date: Mon, 15 Jan 2024 03:48:55 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8EC1FAA;
+	Mon, 15 Jan 2024 03:57:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705291029;
+	bh=gE9f3UIrT8NLh3MU9oG58RY7ipRU2KmEb7/90wbvBuM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IQQqkaVZ7ckQeiFkbhaMfASgeJu9n1eMACAVZLlzjlLu+I074ad0rVl022oIIWkWW
+	 ks+B2pXyuEw833mkdN8LMhKatddZh+OZZ975lwtHYseUcqkR7/U6k8amMAbH6FKiWo
+	 UJAWN/gEe/W4imsClXpjRqLFzFyIKZ/2VBLQos34W8nXkXPSnopP9gN/Seh5Rp/pxH
+	 X+lC3Cyzr1sugmM/9SC8vV4CgIKmiX+n2hUDEQVQYSB431t1C4+MM+5fjKW+8HUjhT
+	 KW0Q/u2PoYFLDRYl9gNf0mWtBJbSfLCRdm10MsUBsT8f2SebpDBxcnSdopCdi4OTZB
+	 IVhhRGUSGHQmQ==
+Received: from [100.90.194.27] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: ehristev)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 77B0337811D0;
+	Mon, 15 Jan 2024 03:57:07 +0000 (UTC)
+Message-ID: <94beea2a-c4b9-4241-bbfe-8c57ca50fbf7@collabora.com>
+Date: Mon, 15 Jan 2024 05:57:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,48 +48,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 15/16] arm64: dts: ti: phycore*: Clarify GPL-2.0 as
- GPL-2.0-only
+Subject: Re: [PATCH 1/2] dt-bindings: media: mediatek-jpeg-encoder: change max
+ ioomus count
+To: Rob Herring <robh@kernel.org>
+Cc: bin.liu@mediatek.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20231227130812.148914-1-eugen.hristev@collabora.com>
+ <20240109032731.GA2578937-robh@kernel.org>
 Content-Language: en-US
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Rob Herring
-	<robh+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Garrett Giordano
-	<ggiordano@phytec.com>
-References: <20240110140903.4090946-1-nm@ti.com>
- <20240110140903.4090946-16-nm@ti.com>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240110140903.4090946-16-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Eugen Hristev <eugen.hristev@collabora.com>
+In-Reply-To: <20240109032731.GA2578937-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprAIsWRmVeSWpSXmKPExsWyRpKBR1dq7pJUgzU39S3W7D3HZDH/yDlW
-	i/VbfrNZLP88m92i78VDZotNj6+xWlzeNYfN4s2Ps0wWrXuPsFv8P/uB3YHLY9OqTjaPO9f2
-	sHlsXlLv8efiO1aP4ze2M3l83iQXwBbFZZOSmpNZllqkb5fAlXHy4032gvtMFb8f/GVrYFzE
-	1MXIySEhYCLxdM0nti5GLg4hgcVMEhcedzBDOHcZJT52X2UGqeIVsJHouH6ODcRmEVCVmPa0
-	lx0iLihxcuYTFhBbVEBe4v6tGWBxYYEwiV/z1oDFmQXEJW49mc8EMlRE4DWjRMO9LrB1zAJT
-	GSWO378KViUkECHRefgI2AY2AXWJOxu+sYLYnAJGEjcaNzJBTLKQWPzmIDuELS+x/e0cZohe
-	eYkXl5azQPwjLzHt3GtmCDtUYuuX7UwTGIVnITl2FpKjZiEZOwvJ2AWMLKsYhXIzk7NTizKz
-	9QoyKktSk/VSUjcxgmJNhIFrB2PfHI9DjEwcjIcYJTiYlUR4Dz5fkCrEm5JYWZValB9fVJqT
-	WnyIUZqDRUmcd3VHcKqQQHpiSWp2ampBahFMlomDU6qBcU2RErcyU2PkrIP1Xo9+mnaFzMhg
-	W3NS6IGOd8ZZvo+uPU9SPx947cp6KL3y/k+jtOiH1a3rNGb9+Kk8Pa/w1PH0o89X/2J3iZ00
-	4fdBrQkPT+vwtL57Ff/iZXJtdcJjFnuHq16zT6T4T8/0ULi3+n/rtwM71VN/cxkb3J9x+sLc
-	E39P6ZXaViuxFGckGmoxFxUnAgCZZ1v9owIAAA==
 
+On 1/9/24 05:27, Rob Herring wrote:
+> On Wed, Dec 27, 2023 at 03:08:11PM +0200, Eugen Hristev wrote:
+>> MT8186 has 4 iommus in the list, to cope with this situation, adjust
+>> the maxItems to 4 (instead of previous 2).
+>> Add also minItems as 1 since iommus are mandatory, to avoid warning
+>> on the example.
+> 
+> maxItems alone means minItems is the same size. If IOMMU is required, 
+> then 'required' is where that is defined. Is there a case where 1 IOMMU 
+> is valid? If so, what h/w has this case.
+> 
+> Rob
+> 
+> 
 
-Am 10.01.24 um 15:09 schrieb Nishanth Menon:
-> SPDX identifier GPL-2.0 has been deprecated since license list version
-> 3.0. Use GPL-2.0-only to be specific.
->
-> Cc: Garrett Giordano <ggiordano@phytec.com>
-> Cc: Wadim Egorov <w.egorov@phytec.de>
->
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+Hello Rob,
 
-Acked-by: Wadim Egorov <w.egorov@phytec.de>
+Without setting a minItems , the example in the binding fails, because it has just
+2 items, while the maxItems is now 4.
+I set minItems as 1 to avoid restricting any kind of hardware to have at least 2
+items, but if you claim that previously, maxItems=minItems=2 , I will change this to 2.
+Is that fine with you ?
 
-
+Eugen
 
