@@ -1,155 +1,97 @@
-Return-Path: <devicetree+bounces-32065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD0782DB97
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 15:45:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 663C682DBEE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 15:54:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C52E51F229A8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:45:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14DC6280EC0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B91B175A4;
-	Mon, 15 Jan 2024 14:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF450175AC;
+	Mon, 15 Jan 2024 14:53:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EQR/pEoz"
+	dkim=pass (2048-bit key) header.d=kyuhyuk.kr header.i=@kyuhyuk.kr header.b="o0uB9/0f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pv50p00im-ztdg10021901.me.com (pv50p00im-ztdg10021901.me.com [17.58.6.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFBD175A1;
-	Mon, 15 Jan 2024 14:45:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56BE3C433C7;
-	Mon, 15 Jan 2024 14:45:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705329940;
-	bh=tRLQ0Z88RKbDDHqezEjN3omnxCVQLyn4MWvS8yuJ5G4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EQR/pEozoncS5C3Ol7jiA/QacLXasDr5SzqDhp7hsq0JpO3tPfLz3ZVokJj8586el
-	 CjNNdgORcvFgXTBZXeHRrTEEv8OGN+DaWt4iql928ZOSZScnA79uc0Dl+x8Emf6vGn
-	 TGoB/lSOBEhLgpOhOv8bZ53DIdeAoNzHi9+oPgYgPpmOqEOmF+faeFG0k/N8ribQXk
-	 u+mpY34z54kgqNf6cg87CqtOhN3eBJSt3tqm2/UfuLDWOpobBRhIORmGyK6bJRCfM4
-	 VO2BK8o28Uf6cfJjKB3GQymTLO0ISMdOEBNnXrcrXCH5A5DT+Qyv/uX/eTcsm87xdh
-	 etysZWABystcw==
-Date: Mon, 15 Jan 2024 15:45:37 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>, 
-	Donald Robson <donald.robson@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
-	Adam Ford <aford173@gmail.com>, Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Paul Cercueil <paul@crapouillou.net>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: Re: [PATCH RFC v2 04/11] ARM: dts: omap4: Add device tree entry
- for SGX GPU
-Message-ID: <xagwa5cie5gjzidg5wa6ou3yd2qwta7ridci4jzkrpcccm24mz@aphgjsdytirz>
-References: <20240108183302.255055-1-afd@ti.com>
- <20240108183302.255055-5-afd@ti.com>
- <122DC5ED-2AA7-46A0-845F-083922458385@goldelico.com>
- <vpcgccul53oibwoqb3barj3rjxoyskoldjyfvjdzmytic3tonm@wq4aqsenk7rp>
- <7BC64F03-A4DF-411F-9B6F-6BCA436D9B50@goldelico.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26DC3175AB
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 14:53:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kyuhyuk.kr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kyuhyuk.kr
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kyuhyuk.kr; s=sig1;
+	t=1705330433; bh=2+fJNK0tDVBz4TCLJ97mC6ABjRsY+gTG6ZoZy4vbqaw=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version;
+	b=o0uB9/0fHpuxFGWEyCG906GLotIw53+8nd+k1lnBr8tFnBaPLjIB1W7kPQqA5TKY8
+	 k8N2kqGiRAqQnzWw525lDfkeiDeeGTpP80NADBGV7c3+FCYbh7/+uOW9pZ5qO0yp6T
+	 cBtDFXOmxK5aK+5CETeFGqVZ96htgaVU9OxyxRXNjxo0+5V8g9CgNi7DxJQ9e0kqGr
+	 ZhFQLw00e2p3JOTrSIO2vuGvdi0Tj1H7ZMMGwKSv0KU2rKFcGPakQsUpplAPztWoAU
+	 O3IIsDshanl8pHdQoDjALPtl+Wf6aSksesCzQECX5ybQHF3WeNgUPF1BMUmePZdgAG
+	 6GZTEg77tIu0w==
+Received: from KyuDevelop.. (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-ztdg10021901.me.com (Postfix) with ESMTPSA id 0E7428148E;
+	Mon, 15 Jan 2024 14:53:47 +0000 (UTC)
+From: KyuHyuk Lee <lee@kyuhyuk.kr>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Tianling Shen <cnsztl@gmail.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Ondrej Jirman <megi@xff.cz>,
+	Andy Yan <andyshrk@163.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	KyuHyuk Lee <lee@kyuhyuk.kr>
+Subject: [PATCH] dt-bindings: rockchip: Fix Hardkernel ODROID-M1 board bindings
+Date: Mon, 15 Jan 2024 23:51:42 +0900
+Message-Id: <20240115145142.6292-1-lee@kyuhyuk.kr>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3xx7p3mwtk5a7dcv"
-Content-Disposition: inline
-In-Reply-To: <7BC64F03-A4DF-411F-9B6F-6BCA436D9B50@goldelico.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: niry3WWL1W0m_DapRYWwFycyjk25WHMD
+X-Proofpoint-ORIG-GUID: niry3WWL1W0m_DapRYWwFycyjk25WHMD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-15_09,2024-01-15_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1030 mlxlogscore=690
+ phishscore=0 malwarescore=0 adultscore=0 mlxscore=0 suspectscore=0
+ spamscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2401150109
 
+The vendor in ODROID-M1 is hardkernel, but it was incorrectly written
+as rockchip. Fixed the vendor prefix correctly.
 
---3xx7p3mwtk5a7dcv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Mon, Jan 15, 2024 at 09:55:00AM +0100, H. Nikolaus Schaller wrote:
-> Hi,
->=20
-> > Am 15.01.2024 um 09:25 schrieb Maxime Ripard <mripard@kernel.org>:
-> >=20
-> > Hi,
-> >=20
-> > On Fri, Jan 12, 2024 at 06:33:58PM +0100, H. Nikolaus Schaller wrote:
-> >>> Am 08.01.2024 um 19:32 schrieb Andrew Davis <afd@ti.com>:
-> >>>=20
-> >>> Add SGX GPU device entry to base OMAP4 dtsi file.
-> >>>=20
-> >>> Signed-off-by: Andrew Davis <afd@ti.com>
-> >>> ---
-> >>> arch/arm/boot/dts/ti/omap/omap4.dtsi | 9 +++++----
-> >>> 1 file changed, 5 insertions(+), 4 deletions(-)
-> >>>=20
-> >>> diff --git a/arch/arm/boot/dts/ti/omap/omap4.dtsi b/arch/arm/boot/dts=
-/ti/omap/omap4.dtsi
-> >>> index 2bbff9032be3e..559b2bfe4ca7c 100644
-> >>> --- a/arch/arm/boot/dts/ti/omap/omap4.dtsi
-> >>> +++ b/arch/arm/boot/dts/ti/omap/omap4.dtsi
-> >>> @@ -501,10 +501,11 @@ sgx_module: target-module@56000000 {
-> >>> #size-cells =3D <1>;
-> >>> ranges =3D <0 0x56000000 0x2000000>;
-> >>>=20
-> >>> - /*
-> >>> - * Closed source PowerVR driver, no child device
-> >>> - * binding or driver in mainline
-> >>> - */
-> >>> + gpu@0 {
-> >>=20
-> >> I wonder why we don't add a "gpu:" label here.
-> >>=20
-> >> Almost all other subsystem nodes have one (e.g. emif:, aes:, dss:, dsi=
-:, hdmi:, etc.),
-> >> obviously for convenience when using a .dtsi file.
-> >>=20
-> >> It would allow a board-specific DTS to easily add status =3D "disabled=
-" to avoid driver
-> >> probing or disabling the GPU (e.g. if there is no display).
-> >=20
-> > There's no reason to disable it in the DT: the hardware block would
-> > still be there and it's rendering to memory so it still could be useful.
->=20
-> Well, if you know that the board does not have a dm3730 but a dm3725 with=
-out
-> GPU it is better to disable the GPU completely instead of loading the dri=
-ver
-> and make it detect by some internal bits that it has no GPU on the SoC.
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 5cf5cbef2cf5..869abf6bcfe6 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -563,7 +563,7 @@ properties:
+ 
+       - description: Hardkernel Odroid M1
+         items:
+-          - const: rockchip,rk3568-odroid-m1
++          - const: hardkernel,rk3568-odroid-m1
+           - const: rockchip,rk3568
+ 
+       - description: Hugsun X99 TV Box
+-- 
+2.34.1
 
-It shouldn't even be in the DTSI if it's not in the SoC.
-
-> > If there's no display on the board and you really don't want the GPU
-> > driver, then you can disable the driver or block the module loading, but
-> > it should be a distro / package / user decision, not a DT / kernel one
-> > still.
->=20
-> The same holds for aes: dss: dsi: hdmi: etc. If they are not used by some
-> board file, they don't change a single bit of the DTB [1] which IMHO would
-> be of reasonable concern to question additional labels.
-
-Not really, no. If there's no HDMI connector, the HDMI controller is
-useless. A GPU without a display can still be useful, depending on the
-workload.
-
-Maxime
-
---3xx7p3mwtk5a7dcv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZaVFEQAKCRDj7w1vZxhR
-xYLAAQD7hjmkBsOxfyoIsGNpz7ekssiiDTWUKJBEn79S9qdkjQD/ZF6T4o4JwKg2
-1Y0Gk2k+BhScqbkykr/ZplBD8LyDcgg=
-=po+r
------END PGP SIGNATURE-----
-
---3xx7p3mwtk5a7dcv--
 
