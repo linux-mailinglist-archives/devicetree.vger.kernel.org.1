@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-31939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E28382D494
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 08:31:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C13582D4BB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 08:56:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7947B20BDD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 07:31:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D7FD1F21546
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 07:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B15440D;
-	Mon, 15 Jan 2024 07:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E24C5244;
+	Mon, 15 Jan 2024 07:56:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vcBgaaWV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BgaIR2WX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2DA4401
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 07:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08EE441B
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 07:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a2e0be86878so30183066b.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 23:31:40 -0800 (PST)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50ea98440a7so8715921e87.1
+        for <devicetree@vger.kernel.org>; Sun, 14 Jan 2024 23:56:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705303898; x=1705908698; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705305389; x=1705910189; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VLPmsXGHyoDh39vYvuhwJm4beZ1T5linb+SgIloxF5o=;
-        b=vcBgaaWV9jKZRm3KHRJHWZWb8PO8t9HooBnWFVKprTq67DYjSjw0FBgqHZorPMe+C6
-         yLAjeox49x4TWp+OcX7fgkzti97wkkQQmDX7TwAN1cmCFQVWJsonfxjPmFymUZJKF1OE
-         amU5+TAeRI+TcVLJx3vvIZymljQZhDt8XJrQgTdQTO61igkHHljZY75QR2WLU0oc0Y5j
-         y6VALpb2ryQiYmaipLs4fZtuvMYrd/UuSeknb91b2ei/UW4zTPavHXXE/1Y4BnMQjYkq
-         Nc8ly6AmFZa2V2TBvDzIqxa4sEE6oKtdFjPvOSPLo8vN0x3ECP2BncnWr5Z/VKJ6aSsM
-         TSIw==
+        bh=zjl+Gf77UzHXhdhmcknsOd2nnETCByNyOlZH40OVLb0=;
+        b=BgaIR2WXYNQ7wHTxTuS8mNnewsuU6kj6obTCz21OIb50wY1I2OULWwGncA0Qvjdh3E
+         fv1teLJDyH0q3vxOLTAHBu1tjrtlezoRBJIE6W8xkY6hESLSf89WrWWseKC90YARHsjh
+         KhSKBsO/jporQPMez5wjlh95zC/DoUQgCDhMR/vE1/dfd8cDrotAtoVJE/v7alNpiggZ
+         Q6PYH32kUJWOUpoO2XiQft6vxKePow/b/1ArFRXxZL7l/j+flKNXeyw7k0msUs0azjPt
+         reMhKTAK6njiaSHQpkTIpjOy3U5Wx3hq+50Zt4VPek1TUavJGQ0XZr3/20tCxJ8qa2PC
+         pGVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705303898; x=1705908698;
+        d=1e100.net; s=20230601; t=1705305389; x=1705910189;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VLPmsXGHyoDh39vYvuhwJm4beZ1T5linb+SgIloxF5o=;
-        b=sojTGW4ZL+5oFAudzstjBlyeIRIQjp7CTyAe6q/UpG6fXw6teA9VRJSwD7ZRJ/OK+9
-         Dbtkh4GXlJBkHxlYZmghVbJJusaycwEtnaZHlLX5+mXWfrpDA6bnVFD4HlklyQLkw2Yq
-         vbVZp5p1A3LTPbnf0dxPR6VkRE8Kj2dU9X7sHbohJXXQayFH89G5CW7xnsh3nea38QJt
-         UrogpuRa4ZiNq5bmsjB0NQXeeUzS/LOKE8IVG7Mi4mPxrBSe38YKjKcMD2fpEYwpbrE7
-         3b58bpL72XyfMlUXAeZHf65yXa+x3ywlBNNps6lM/m72BEBKP2iIyxbqwsvILaNUsbcj
-         SLew==
-X-Gm-Message-State: AOJu0YzQOZAN2bngq73Xgjl4fB4tH7er+CR1f2wxLHgvHsxXg49OJEzW
-	I1kcPJIZxqWHnGtCXBO/yb0JdiZG6wxGHg==
-X-Google-Smtp-Source: AGHT+IFN7w6o0ZqXumH9ekA6ew51r31mOKd7fpNHys17lhlDGhr0Xhr2aQcBoVdEqnu5yN8b7JqvQg==
-X-Received: by 2002:a17:907:9496:b0:a2a:b340:7126 with SMTP id dm22-20020a170907949600b00a2ab3407126mr6680021ejc.6.1705303898576;
-        Sun, 14 Jan 2024 23:31:38 -0800 (PST)
+        bh=zjl+Gf77UzHXhdhmcknsOd2nnETCByNyOlZH40OVLb0=;
+        b=OWTSSBrbl4Mvr28s3iAB25eo192eJScK7iaPlDrtI3vItgMmjnuZUOyUyqzWJlFwly
+         VDvGTs8GT8BSVFVm+kRjMSGVWmgxYOeZZreuIUwsQrp29AwbjMVsc729sVRCPsdVUvE4
+         /waLniwrZMFS54F365LaLotdd6XCdDxH/i6WacjzcxKzZ/X4vY4bxvv3tfgmmDnnYMBO
+         MgqeX92UFw24dxEE9vnzItO7JuL62Gb+gKy/hPgjSf9oATTFmUbxww2oEVLDtm+Wa8FQ
+         JqIaa2q6ZxH06MOqxkDtUQ0pZNTCU66wn0ikr2jEZ/Nnmt0Pv+8q3UXi2tO99Bsv8TMT
+         KJRA==
+X-Gm-Message-State: AOJu0YycNcKyclO9h24c/TTTmSy13vtbaF0NOpNChgqwxqSuzbcuencI
+	cCZe3IcZLVfAZS9G/2XnDl2MEl1AxhgdUg==
+X-Google-Smtp-Source: AGHT+IEUQ7e0ADO3LPmtiqCWhFwJw8VlGp5b8XS/9/XC91Kr5sIUOu7KG9deeuEgmHlbMuPRqZJUQw==
+X-Received: by 2002:a05:6512:3a96:b0:50e:b3e4:a475 with SMTP id q22-20020a0565123a9600b0050eb3e4a475mr1969400lfu.114.1705305389678;
+        Sun, 14 Jan 2024 23:56:29 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id w17-20020a17090652d100b00a28116285e0sm598698ejn.165.2024.01.14.23.31.36
+        by smtp.gmail.com with ESMTPSA id r7-20020aa7cfc7000000b00557075b4499sm5182877edy.58.2024.01.14.23.56.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Jan 2024 23:31:38 -0800 (PST)
-Message-ID: <ebc8dc6a-e365-4cdb-9b98-cc07a2ba3dff@linaro.org>
-Date: Mon, 15 Jan 2024 08:31:36 +0100
+        Sun, 14 Jan 2024 23:56:29 -0800 (PST)
+Message-ID: <40210196-3852-4c8b-94e6-e744890f003f@linaro.org>
+Date: Mon, 15 Jan 2024 08:56:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,23 +66,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/4] dt-bindings: clock: sophgo: Add clock controller
- of SG2000 series SoC
+Subject: Re: [PATCH v12 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
+ Control
 Content-Language: en-US
-To: Inochi Amaoto <inochiama@outlook.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
- Chen Wang <unicorn_wang@outlook.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
-Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>,
- Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <IA1PR20MB4953C774D41EDF1EADB6EC18BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com>
- <IA1PR20MB4953B0CD5B8796102DE358C2BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+To: Billy Tsai <billy_tsai@aspeedtech.com>, Rob Herring <robh@kernel.org>
+Cc: "jdelvare@suse.com" <jdelvare@suse.com>,
+ "linux@roeck-us.net" <linux@roeck-us.net>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "joel@jms.id.au" <joel@jms.id.au>, "andrew@aj.id.au" <andrew@aj.id.au>,
+ "corbet@lwn.net" <corbet@lwn.net>,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "naresh.solanki@9elements.com" <naresh.solanki@9elements.com>,
+ "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+ BMC-SW <BMC-SW@aspeedtech.com>, "patrick@stwcx.xyz" <patrick@stwcx.xyz>
+References: <20240108074348.735014-1-billy_tsai@aspeedtech.com>
+ <20240108074348.735014-3-billy_tsai@aspeedtech.com>
+ <20240113015556.GA3829553-robh@kernel.org>
+ <OSQPR06MB725208AEF8779B0BC971DFF48B6C2@OSQPR06MB7252.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,25 +137,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <IA1PR20MB4953B0CD5B8796102DE358C2BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+In-Reply-To: <OSQPR06MB725208AEF8779B0BC971DFF48B6C2@OSQPR06MB7252.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/01/2024 05:16, Inochi Amaoto wrote:
-> SG2000 series SoC has the same clock as CV1810 series, but the clock
-> related to A53 is functional in SG2000 series. So a new compatible
-> string is needed for the new SoC.
+On 15/01/2024 08:05, Billy Tsai wrote:
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/clock/aspeed-clock.h>
+>>> +    pwm_tach: pwm-tach-controller@1e610000 {
+>>> +      compatible = "aspeed,ast2600-pwm-tach";
+>>> +      reg = <0x1e610000 0x100>;
+>>> +      clocks = <&syscon ASPEED_CLK_AHB>;
+>>> +      resets = <&syscon ASPEED_RESET_PWM>;
+>>> +      #pwm-cells = <3>;
+>>> +
+>>> +      fan-0 {
+>>> +        tach-ch = /bits/ 8 <0x0>;
+>>> +      };
+>>> +
+>>> +      fan-1 {
+>>> +        tach-ch = /bits/ 8 <0x1 0x2>;
+>>> +      };
 > 
-> Add definition for the clock controller of the SG2000 series SoC.
+>> NAK on this based on how you are using pwm-fan in v10 discussion. See my
+>> comments there.
 > 
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Link: https://github.com/sophgo/sophgo-doc/releases/tag/sg2000-datasheet-v1.0-alpha
-> ---
->  Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+> Okay, I will merge everything from the pwm-fan0 node into the fan-0 node
+> and add the 'simple-bus' to the compatible string of the pwm_tach node.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+What simple-bus has anything to do with it? This is not a bus. Just to
+remind: we talk about bindings, not driver.
 
 Best regards,
 Krzysztof
