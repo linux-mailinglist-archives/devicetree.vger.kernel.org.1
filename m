@@ -1,242 +1,163 @@
-Return-Path: <devicetree+bounces-32055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 376D282DABF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:59:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BA8182DACE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 15:00:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 275891C215F5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 13:59:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 949722827F2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 14:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA24917574;
-	Mon, 15 Jan 2024 13:59:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1D4E17577;
+	Mon, 15 Jan 2024 14:00:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DJu7BBnO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE90C17584;
-	Mon, 15 Jan 2024 13:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dbedb1ee3e4so7115395276.3;
-        Mon, 15 Jan 2024 05:59:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705327161; x=1705931961;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nCoI6wmXQhas4p+QHjRACvDabiOp6RlTb///RFp+bYk=;
-        b=tiSTZFK9+adD4pS2CiBp3H8TjNvhxoFkiEeyDJM3qLno8Xx43Uvjdy/whJLepRGP40
-         f/JUNxXcbwBC1NiMKrPQ5O6mjxsEMayOZw+l7hP+OGkvJ0cIlp9/xrESL6ud2rc14k5c
-         +g4LU/CdOIf1P42IpSu7NCDGmFEWWr8a34O/gElzv6KrM0MO5K/Qxo1/E4zAPazwrvcz
-         iAzMy4H6DJ4l8hwdexcGGRgmLQxnHtYDmYYfHnlNJC6S723bxAXTI6frA3GfAEDGGtJ0
-         idx+3WYRQKDVqknRh6cJB2Lh44m1MIyWNgsSDwT+H0KWkJS4ugZ3/y4ecfpbQ2cOsGwi
-         VyKw==
-X-Gm-Message-State: AOJu0Yw+ysJ8APvGt4ir1qpo8FTztilyNSmmUF09L5UA6NgCR2jYtVdT
-	g/D3hUPw+w1FiPxLKxUmpTfNug4I8TlWKw==
-X-Google-Smtp-Source: AGHT+IE88cEfoMkTPLs3uXh1bjP2h2ZDA1PqvxGd+SApFuHgdVhtMFJ+iBdwagRwRd4K9ubiXU6JRg==
-X-Received: by 2002:a05:6902:2687:b0:db5:c77d:1fae with SMTP id dx7-20020a056902268700b00db5c77d1faemr2834232ybb.29.1705327161525;
-        Mon, 15 Jan 2024 05:59:21 -0800 (PST)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id c6-20020a25a2c6000000b00d9caecd5c86sm3481218ybn.62.2024.01.15.05.59.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 05:59:20 -0800 (PST)
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dbed5d2ad18so7074363276.0;
-        Mon, 15 Jan 2024 05:59:20 -0800 (PST)
-X-Received: by 2002:a25:ad8b:0:b0:dbe:e4d3:bbb7 with SMTP id
- z11-20020a25ad8b000000b00dbee4d3bbb7mr2479427ybi.99.1705327159968; Mon, 15
- Jan 2024 05:59:19 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CBED17583;
+	Mon, 15 Jan 2024 14:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1705327221; x=1736863221;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=n/RLhgyGoa+DPRyRCqq45dasWWYKEjc9SvpU3zeNWxA=;
+  b=DJu7BBnOuNj/SImDyBXORRaeLfB5ec7RkBklriuacBBKeIivqpouC2Fd
+   oArlJNI5YQxFshQTZxWRXd/ljUWeir9uGZTbJjI+Gbs/JZBDgH8YZM2OR
+   pNEBuBxGbV6rOzHg53Cm14Xkkp+E8f+NZtnicRiyahA/WHxeg6OmzgenN
+   6GKm1S19K0gvoVPqClRb2ZVT08D4hHMAXtD+CnxTQGff+90WqtVC+rYr8
+   4OoM/+p+IPbnkHVdF3iF7LVsuvglH+PVfmKmjQCPDXjpMKMCj7/biUYoK
+   ZkB54Fm/Y0WfOxuC/6vC8N19RV0Ku8OmTZc5kKks0dxYzBDPwRMlcBhrZ
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="463900313"
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; 
+   d="scan'208";a="463900313"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2024 06:00:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10953"; a="733312147"
+X-IronPort-AV: E=Sophos;i="6.04,196,1695711600"; 
+   d="scan'208";a="733312147"
+Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
+  by orsmga003.jf.intel.com with ESMTP; 15 Jan 2024 06:00:14 -0800
+Message-ID: <2178e799-2068-7443-59b2-310dfdd1ddee@linux.intel.com>
+Date: Mon, 15 Jan 2024 16:01:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1704788539.git.ysato@users.sourceforge.jp> <183bc01316cab97a7ae96df525a5a450c477210d.1704788539.git.ysato@users.sourceforge.jp>
-In-Reply-To: <183bc01316cab97a7ae96df525a5a450c477210d.1704788539.git.ysato@users.sourceforge.jp>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 15 Jan 2024 14:59:08 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW-Ak6P3nFH7cdomSYec9=WZf8mZaVwmG=qoYHz1thLMQ@mail.gmail.com>
-Message-ID: <CAMuHMdW-Ak6P3nFH7cdomSYec9=WZf8mZaVwmG=qoYHz1thLMQ@mail.gmail.com>
-Subject: Re: [DO NOT MERGE v6 09/37] dt-bindings: timer: renesas,tmu: add renesas,tmu-sh7750
-To: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: linux-sh@vger.kernel.org, Damien Le Moal <dlemoal@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Thomas Gleixner <tglx@linutronix.de>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Rich Felker <dalias@libc.org>, 
-	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, Lee Jones <lee@kernel.org>, 
-	Helge Deller <deller@gmx.de>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Yang Xiwen <forbidden405@foxmail.com>, Sebastian Reichel <sre@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Randy Dunlap <rdunlap@infradead.org>, 
-	Arnd Bergmann <arnd@arndb.de>, Vlastimil Babka <vbabka@suse.cz>, Hyeonggon Yoo <42.hyeyoo@gmail.com>, 
-	David Rientjes <rientjes@google.com>, Baoquan He <bhe@redhat.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Stephen Rothwell <sfr@canb.auug.org.au>, Azeem Shaikh <azeemshaikh38@gmail.com>, 
-	Javier Martinez Canillas <javierm@redhat.com>, Max Filippov <jcmvbkbc@gmail.com>, 
-	Palmer Dabbelt <palmer@rivosinc.com>, Bin Meng <bmeng@tinylab.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Jacky Huang <ychuang3@nuvoton.com>, 
-	Lukas Bulwahn <lukas.bulwahn@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Sam Ravnborg <sam@ravnborg.org>, Sergey Shtylyov <s.shtylyov@omp.ru>, 
-	Michael Karcher <kernel@mkarcher.dialup.fu-berlin.de>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-pci@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.13.0
+Subject: Re: [PATCH v12 04/41] usb: host: xhci-mem: Cleanup pending secondary
+ event ring events
+Content-Language: en-US
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ corbet@lwn.net, gregkh@linuxfoundation.org, lgirdwood@gmail.com,
+ andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ konrad.dybcio@linaro.org, Thinh.Nguyen@synopsys.com, broonie@kernel.org,
+ bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org, agross@kernel.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+ alsa-devel@alsa-project.org
+References: <20240102214549.22498-1-quic_wcheng@quicinc.com>
+ <20240102214549.22498-5-quic_wcheng@quicinc.com>
+ <734591a1-50b4-6dc7-0b93-077355ec12e4@linux.intel.com>
+ <7b2ec96b-b72f-c848-7c35-36e61a4072ac@quicinc.com>
+ <b254f73b-a1bc-3dd4-f485-a3acf556835d@quicinc.com>
+From: Mathias Nyman <mathias.nyman@linux.intel.com>
+In-Reply-To: <b254f73b-a1bc-3dd4-f485-a3acf556835d@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Sato-san,
+On 10.1.2024 1.42, Wesley Cheng wrote:
+> Hi Mathias,
+> 
+> On 1/8/2024 12:51 PM, Wesley Cheng wrote:
+>> Hi Mathias,
+>>
+>> On 1/4/2024 6:48 AM, Mathias Nyman wrote:
+>>> On 2.1.2024 23.45, Wesley Cheng wrote:
+>>>> As part of xHCI bus suspend, the XHCI is halted.  However, if there are
+>>>> pending events in the secondary event ring, it is observed that the xHCI
+>>>> controller stops responding to further commands upon host or device
+>>>> initiated bus resume.  Iterate through all pending events and update the
+>>>> dequeue pointer to the beginning of the event ring.
+>>>>
+>>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>> ...
+>>>> +/*
+>>>> + * Move the event ring dequeue pointer to skip events kept in the secondary
+>>>> + * event ring.  This is used to ensure that pending events in the ring are
+>>>> + * acknowledged, so the XHCI HCD can properly enter suspend/resume. The
+>>>> + * secondary ring is typically maintained by an external component.
+>>>> + */
+>>>> +void xhci_skip_sec_intr_events(struct xhci_hcd *xhci,
+>>>> +    struct xhci_ring *ring,    struct xhci_interrupter *ir)
+>>>> +{
+>>>> +    union xhci_trb *erdp_trb, *current_trb;
+>>>> +    u64 erdp_reg;
+>>>> +    u32 iman_reg;
+>>>> +    dma_addr_t deq;
+>>>> +
+>>>> +    /* disable irq, ack pending interrupt and ack all pending events */
+>>>> +    xhci_disable_interrupter(ir);
+>>>> +    iman_reg = readl_relaxed(&ir->ir_set->irq_pending);
+>>>> +    if (iman_reg & IMAN_IP)
+>>>> +        writel_relaxed(iman_reg, &ir->ir_set->irq_pending);
+>>>> +
+>>>> +    /* last acked event trb is in erdp reg  */
+>>>> +    erdp_reg = xhci_read_64(xhci, &ir->ir_set->erst_dequeue);
+>>>> +    deq = (dma_addr_t)(erdp_reg & ERST_PTR_MASK);
+>>>> +    if (!deq) {
+>>>> +        xhci_err(xhci, "event ring handling not required\n");
+>>>> +        return;
+>>>> +    }
+>>>> +
+>>>> +    erdp_trb = current_trb = ir->event_ring->dequeue;
+>>>> +    /* read cycle state of the last acked trb to find out CCS */
+>>>> +    ring->cycle_state = le32_to_cpu(current_trb->event_cmd.flags) & TRB_CYCLE;
+>>>> +
+>>>> +    while (1) {
+>>>> +        inc_deq(xhci, ir->event_ring);
+>>>> +        erdp_trb = ir->event_ring->dequeue;
+>>>> +        /* cycle state transition */
+>>>> +        if ((le32_to_cpu(erdp_trb->event_cmd.flags) & TRB_CYCLE) !=
+>>>> +            ring->cycle_state)
+>>>> +            break;
+>>>> +    }
+>>>> +
+>>>> +    xhci_update_erst_dequeue(xhci, ir, current_trb, true);
+>>>> +}
+>>>
+>>> Code above is very similar to the existing event ring processing parts of xhci_irq()
+>>> and xhci_handle_event()
+>>>
+>>> I'll see if I can refactor the existing event ring processing, decouple it from
+>>> event handling so that it could be used by primary and secondary interrupters with
+>>> handlers, and this case where we just want to clear the event ring.
+>>>
+>>
+>> Thanks, that makes sense.  Will take a look as well.
+>>
+> 
+> How about something like the below?  Tested this on my set up and everything looks to be working fine.  Had to add another param to struct xhci_interrupters to tell the XHCI interrupt handler to say if that particular interrupter wants to skip_events (handling).  This way, its something that the class driver utilizing the interrupter will have to tell XHCI sideband.  It would allow the user to determine if they want to use the interrupter to actually handle events or not on the proc running Linux.
+> 
 
-On Tue, Jan 9, 2024 at 9:23=E2=80=AFAM Yoshinori Sato
-<ysato@users.sourceforge.jp> wrote:
-> Add SH7750 TMU entry.
->
-> I wanted to replace interrupts and interrupt-names in the if compatible i=
-s
-> "renesas,tmu-7750", but it seems that I can't rewrite it as expected.
-> This resulted in a redundant conditional statement.
->
-> Signed-off-by: Yoshinori Sato <ysato@users.sourceforge.jp>
+Yes, I have something similar.
+I'll share it soon, just need to
+clean it up a bit fist.
 
-Thanks for your patch!
+Thanks
+Mathias
 
-> --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> @@ -39,14 +39,15 @@ properties:
->            - renesas,tmu-r8a779a0 # R-Car V3U
->            - renesas,tmu-r8a779f0 # R-Car S4-8
->            - renesas,tmu-r8a779g0 # R-Car V4H
-> +          - renesas,tmu-sh7750   # SH7750
-
-OK
-
->        - const: renesas,tmu
->
->    reg:
->      maxItems: 1
->
-> -  interrupts:
-> -    minItems: 2
-> -    maxItems: 3
-> +  interrupts: true
-> +
-> +  interrupt-names: true
-
-I would drop this change (see below).
-
->
->    clocks:
->      maxItems: 1
-> @@ -75,21 +76,55 @@ required:
->    - clock-names
->    - power-domains
->
-> -if:
-> -  not:
-> -    properties:
-> -      compatible:
-> -        contains:
-> -          enum:
-> -            - renesas,tmu-r8a7740
-> -            - renesas,tmu-r8a7778
-> -            - renesas,tmu-r8a7779
-> -then:
-> -  required:
-> -    - resets
-> -
->  additionalProperties: false
->
-> +allOf:
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - renesas,tmu-r8a7740
-> +                - renesas,tmu-r8a7778
-> +                - renesas,tmu-r8a7779
-> +                - renesas,tmu-sh7750
-
-Adding renesas,tmu-sh7750 to this list is OK.
-
-> +
-> +    then:
-> +      required:
-> +        - resets
-> +
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - renesas,tmu-sh7750
-> +
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 2
-> +          maxItems: 3
-> +        interrupt-names:
-> +          items:
-> +            - const: tuni0
-> +            - const: tuni1
-> +            - const: tuni2
-> +
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          minItems: 2
-> +          maxItems: 4
-> +        interrupt-names:
-> +          items:
-> +            - const: tuni0
-> +            - const: tuni1
-> +            - const: tuni2
-> +            - const: ticpi2
-> +
->  examples:
->    - |
->      #include <dt-bindings/clock/r8a7779-clock.h>
-
-The new interrupt logic is not really correct: several TMU instances
-on other SoCs do support the fourth interrupt.  It just was not
-documented before, or supported by the driver.
-
-I have sent a patch to document the fourth interrupt[1].  Once that
-patch has been applied, adding support for sh7751 involves adding just
-two new lines.
-
-[1] "PATCH] dt-bindings: timer: renesas,tmu: Document input capture
-     interrupt"
-    https://lore.kernel.org/r/fb1e38c93e62221f94304edd980a2fb79c1f2995.1705=
-325608.git.geert+renesas@glider.be
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
