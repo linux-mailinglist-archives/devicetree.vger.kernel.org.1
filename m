@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-32123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287D382DED9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 19:03:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59D8F82DEE4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 19:12:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 408EE1C21FF1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:03:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E421928341A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:12:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FC5182D4;
-	Mon, 15 Jan 2024 18:03:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD20182AE;
+	Mon, 15 Jan 2024 18:12:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JKAzJTOF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AyoZ5iVo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41560182BF
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 18:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28CA018048
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 18:11:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-557a3ce9942so9922168a12.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 10:03:01 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-557a3ce9942so9931806a12.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 10:11:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705341779; x=1705946579; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705342317; x=1705947117; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MqzAPvsOsW3WIKxe5N0hrRAxSr5WJEJ2bNXdcxOPEsM=;
-        b=JKAzJTOFbMadqk027who7GKCl/PRsqUDk2SYqQrYkOc5ByJDKtnKdR/19KLot/4B88
-         hyWGZSSapC24EK7FaktxVbAf7rn2qfozFn+XNohsD5ShlsW4/QWsy70+/emZLv8S9RSh
-         uuo0lqC4STMxHqm9l3WsnReQ8IwI14MYcQ5Nf+IvFpcG4osj/P+HPt8WklewvoeTRMWW
-         YihWdxUcApZuUS+gkLuM8YWJGw2onlHXCFAe1nhk++cVkFb7p99KZYm/Ii1oQVmrAynK
-         A6QDX+BA1ffYikpRa+bxcnJZs1I+6svUXvm/Ga5sx9Smf8m2i4tWYFtdIG8n+3USAEKm
-         8q2Q==
+        bh=TP2RO2ZM/QWz8fTOo7P4b/AeuJ5Lrv4Ps+iKRZQ17yM=;
+        b=AyoZ5iVoTBVS/tigyYqUGGc+pCWoWYOOw9nkRCQLLVvkFPQzRGA8zW0j26xtIBJEYl
+         vm96h+TJ26F3zCoKOiQICR52ZhJJQQujqAuXNMya81ZNraUDyRKlPLyxS+DCPZQ3XXhI
+         VvMpxVpHAkJQAIjrCNruWyEtlOjRwHUNtJkk1sJqfrnLOdIUvSfijHxVRc4hjezTpcqL
+         pzYuA8G2JW6CCBNxeHTBAa6y8eP8OQWNPe1UaC5OvV+ilKWtYTRZ1NAaNQVlcCPSeuA5
+         uabdz9IdqiCWATmcKqHCZQtL2QX+gZwdb90HI3hMGtkGd7e3nAa4puKbARlRUxacKI9H
+         F7ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705341779; x=1705946579;
+        d=1e100.net; s=20230601; t=1705342317; x=1705947117;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MqzAPvsOsW3WIKxe5N0hrRAxSr5WJEJ2bNXdcxOPEsM=;
-        b=ZzpJhndSJG8LOTz1oem5dr2Gfrt7NuH1yV5lbFn5NwEVQOlyOKhlYN051rp0AgclDB
-         /9yvoTpCgqrSsCm4XQwWEC6I9KQMKWztSbV22PfxeoRrP+D3c0Ns0oX1TL3q6RiNiy7R
-         tda9SiORwVk1sEanwkd5umI7HZIWeUA4hSXcbU+KTxUtPOhOYIZ9sC5K9ZvZ/B068JzF
-         nhhd6oTnh4RDDL0E3YK+iV28CPFqhg45I4RssVyW1vBwmDXaIXypXOQyHq0NFfZ7Nwls
-         lGiXl0ne7I63fKJQldmGWgnKM/ZgL3aJQhSXcfZK0srvW9RjMk3J6oUmqkmssS5GknV8
-         SPfw==
-X-Gm-Message-State: AOJu0Yw05kOvWTf3p0tCCuizeZpVyFhVmdScZ7zwPqTYDudyL8JeD5Fr
-	QpYSdC0iHivw8y+mPjIkedmaQNjLYBUJqw==
-X-Google-Smtp-Source: AGHT+IG9G1GkeAeA6ad1nzmDuCqRg+12HdfgfYRJSKGljcFZ2UgaPYxviAFXZFNSo3E0KreGWJJK1A==
-X-Received: by 2002:aa7:c418:0:b0:555:13c9:5f88 with SMTP id j24-20020aa7c418000000b0055513c95f88mr2016362edq.118.1705341779560;
-        Mon, 15 Jan 2024 10:02:59 -0800 (PST)
+        bh=TP2RO2ZM/QWz8fTOo7P4b/AeuJ5Lrv4Ps+iKRZQ17yM=;
+        b=kd0DZb1SnnDQscSK8DNz6xRrR8O2EgDBUs87iS7hGnQIYIoONvXydkmlQ94yuTjrHj
+         outV5ZL9GwTplqmmuX5YNN0gQiQFwX54c+xWsbE4c3DmZNBLfC6kUUjmjWiezWIwy/Vw
+         zBgeoats8iIi5zeQpHjfp3Z0l5CcHDwWnTX6WdszWLMtsVXStb6IjGYxSwfUI79e5hYV
+         BMfgkzDQf0Nm14ZVZE+0/nDnU7e3TV3tH9T/ZAzcNeVmOrBY1wedCGIz9IwENRyUR2uh
+         R6ARm3Ofl1OHdwMDUfWdzfuuupmr2YxAUrxh69O2rKl/BpkuJvr15Ug4sQ4eFEdmqrtx
+         FUkA==
+X-Gm-Message-State: AOJu0YyH5yZ1fdyZit2s2Ek3TuFJof4LNA/QfO/xnVRYPjYlBDRKlU1Q
+	M7rEycZUA8jOpgRakCRTu61n124nRdopMA==
+X-Google-Smtp-Source: AGHT+IFcu57Q62zy6UQ/83g9hWEvTMemAqi03ffAh1lc7ysmh3o3kyMwXrNezD1/PmjYX1EmaQtPfA==
+X-Received: by 2002:aa7:d5cb:0:b0:557:741c:7b8 with SMTP id d11-20020aa7d5cb000000b00557741c07b8mr1929241eds.55.1705342317491;
+        Mon, 15 Jan 2024 10:11:57 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id fe1-20020a056402390100b005592d70c31esm2241652edb.17.2024.01.15.10.02.57
+        by smtp.gmail.com with ESMTPSA id y10-20020aa7ccca000000b005572a1159b9sm5692305edt.22.2024.01.15.10.11.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 10:02:59 -0800 (PST)
-Message-ID: <7035daa6-e654-4e77-be55-60f8e8c6639f@linaro.org>
-Date: Mon, 15 Jan 2024 19:02:55 +0100
+        Mon, 15 Jan 2024 10:11:56 -0800 (PST)
+Message-ID: <47bdc31c-50d2-4d33-9339-5132b6364539@linaro.org>
+Date: Mon, 15 Jan 2024 19:11:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,23 +66,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: w1: UART 1-Wire bus
+Subject: Re: [PATCH 2/3] ASoC: dt-bindings: xmos,xvf3500: add bindings for
+ XMOS XVF3500
 Content-Language: en-US
-To: Christoph Winklhofer <cj.winklhofer@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>,
+To: Javier Carrasco <javier.carrasco@wolfvision.net>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20240106-w1-uart-v4-0-7fe1378a8b3e@gmail.com>
- <20240106-w1-uart-v4-1-7fe1378a8b3e@gmail.com>
- <20240113013917.GA3795949-robh@kernel.org> <ZaLQxGjjmA_iKOv2@cjw-notebook>
- <81c79939-56cc-4d78-9552-56568999df09@linaro.org>
- <ZaP0CoCYLQxrT3VD@cjw-notebook>
- <1b8cb3ba-6727-45ab-acaa-c727a0a7ad85@linaro.org>
- <ZaVtNmvRjPAn9bph@cjw-notebook>
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
+References: <20240115-feature-xvf3500_driver-v1-0-ed9cfb48bb85@wolfvision.net>
+ <20240115-feature-xvf3500_driver-v1-2-ed9cfb48bb85@wolfvision.net>
+ <333c2986-c7c2-4a46-90cf-b59ae206e55a@linaro.org>
+ <96abddcc-fa65-4f27-84fe-2281fe0fcf1c@wolfvision.net>
+ <644f7f02-405d-47fb-bc72-4d54e897255f@linaro.org>
+ <5db4b898-93d5-446f-bfed-b57847f9967a@wolfvision.net>
+ <435f502c-1e1b-4d40-8dcc-34487905d69c@linaro.org>
+ <b7f76546-9998-43e0-abff-a4e73817dbae@wolfvision.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -128,90 +130,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZaVtNmvRjPAn9bph@cjw-notebook>
+In-Reply-To: <b7f76546-9998-43e0-abff-a4e73817dbae@wolfvision.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/01/2024 18:36, Christoph Winklhofer wrote:
-> On Sun, Jan 14, 2024 at 04:55:42PM +0100, Krzysztof Kozlowski wrote:
->> On 14/01/2024 15:47, Christoph Winklhofer wrote:
->>> On Sun, Jan 14, 2024 at 11:54:48AM +0100, Krzysztof Kozlowski wrote:
->>>> On 13/01/2024 19:04, Christoph Winklhofer wrote:
->>>>> On Fri, Jan 12, 2024 at 07:39:17PM -0600, Rob Herring wrote:
->>>>>> On Sat, Jan 06, 2024 at 05:02:24PM +0100, Christoph Winklhofer wrote:
->>>>>>> Add device tree binding for UART 1-Wire bus.
->>>>>>>
->>>>>>> Signed-off-by: Christoph Winklhofer <cj.winklhofer@gmail.com>
->>>>>>> ---
->>>>>>>  Documentation/devicetree/bindings/w1/w1-uart.yaml | 62 +++++++++++++++++++++++
->>>>>>>  1 file changed, 62 insertions(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/w1/w1-uart.yaml b/Documentation/devicetree/bindings/w1/w1-uart.yaml
->>>>>>> new file mode 100644
->>>>>>> index 000000000000..6b90693b2ca0
->>>>>>> --- /dev/null
->>>>>>> +++ b/Documentation/devicetree/bindings/w1/w1-uart.yaml
->>>>>>> @@ -0,0 +1,62 @@
->>>>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>>>>> +%YAML 1.2
->>>>>>> +---
->>>>>>> +$id: http://devicetree.org/schemas/w1/w1-uart.yaml#
->>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> ...
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    const: w1-uart
->>>>>>> +
->>>>>>> +  reset-speed:
->>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>>> +    default: 9600
->>>>>>> +    description: |
->>>>>>
->>>>>> Don't need '|' if no formatting
->>>>>>
->>>>>
->>>>> Ok.
->>>>>
->>>>>>> +      The baud rate for the 1-Wire reset and presence detect.
->>>>>>> +
->>>>>>> +  touch_0-speed:
->>>>>>
->>>>>> Don't use '_' in property names.
->>>>>>
->>>>>> I'm somewhat familar with 1-wire, but I don't get what 'touch' means 
->>>>>> here. I assume these are low and high times which are a function of the 
->>>>>> baudrate.
->>>>>>
->>>>>
->>>>> I change the name to 'write-0-speed' and 'write-1-speed'. The function
->>>>> in the w1-framework is named 'touch_bit' - therefore the previous
->>>>> naming. 
->>>>>
->>>>> It is the baud-rate used in the 1-Wire cycle to write a 0-Bit
->>>>> (write-0-speed) and to perform a 1-Wire cycle that writes a 1-Bit and
->>>>> reads a 0-Bit or 1-Bit (write-1-speed).
->>>>
->>>>
->>>> Then probably -bps:
->>>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
->>>
->>> The serial.yaml uses prefix -speed for the baud rate but I can change it
->>> to -bps.
->>
->> Do you reference serial.yaml?
->>
+On 15/01/2024 17:24, Javier Carrasco wrote:
+> Do you mean that the XVF3500 should not be represented as a platform
+> device and instead it should turn into an USB device represented as a
+> node of an USB controller? Something like this (Rockchip SoC):
 > 
-> No, serial.yaml is not referenced but 'onewire' will be a child-node of
-> a serial-device which already defines baud rate related properties
-> with -speed (e.g. max-speed although not used in w1-uart). Hence, I
-> thought -speed is typically used for baud rates.
+> &usb_host1_xhci {
+> 	...
+> 
+> 	xvf3500 {
+> 		...
+> 	};
+> };
+> 
+> Did I get you right or is that not the correct representation? Thank you
+> again.
 
-Ah, it defines max-speed for childre, so for onewire. Re-using that
-property would make sense, but since you are defining completely new
-properties, let's use proper (-bps) naming.
+I believe it should be just like onboard hub. I don't understand why
+onboard hub was limited to hub, because other USB devices also could be
+designed similarly by hardware folks :/
 
-I still wonder, why would you use different baud rates for these three
-different operations?
+And if we talk about Linux drivers, then your current solution does not
+support suspend/resume and device unbind.
 
 Best regards,
 Krzysztof
