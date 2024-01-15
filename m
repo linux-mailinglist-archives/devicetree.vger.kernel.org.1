@@ -1,168 +1,175 @@
-Return-Path: <devicetree+bounces-32085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 114A282DCDE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:03:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AFF482DCE3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:06:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1648F1C21A40
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:03:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF8EE28290B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:06:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84A3B179A6;
-	Mon, 15 Jan 2024 16:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E57017997;
+	Mon, 15 Jan 2024 16:06:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dQzxKctH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L2/cTZ3S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0820175B3
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 16:03:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50e72e3d435so8546323e87.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 08:03:46 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3954C17735;
+	Mon, 15 Jan 2024 16:06:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-28be8ebcdc1so5886299a91.0;
+        Mon, 15 Jan 2024 08:06:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705334625; x=1705939425; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zK5ZlZIsbkA8bSGYvP65mCyUL8AXb+1aICzPu5IaoPU=;
-        b=dQzxKctHSUSPLhN/x6O8tcKdnrcdYLUHXLt9xYR6zBB/cadTznwLYdHCUyN3LSIT7n
-         t/ONBAlITN6Nf2TVLJ8UoPTT1bhvZBDKz+5AtYJsXf9Wxby3PcUZnf4zJGvZ1CLxWgoc
-         4mgwyhNdWSv+YS00trq62Lzq7Am877Nmys/P34nI/XXC2d6nmoB+ZdAaw0d2I05bnvpe
-         EoOygc35WqmPhYIqHtBLC1Hul9H6tlWpTGnydg7/vNKiUNee/iK2z70Qy1xfIsl1WQ4q
-         ZbVd7bqD3H3moJE/BG7MRP2oCbGpa0N1kDCOon1Ly0A++TpOq4Ac6b9IgakUB8ib5HDe
-         LvvQ==
+        d=gmail.com; s=20230601; t=1705334766; x=1705939566; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yDa16CVmSfs+N/D++bcE7PtMkJn0aFkGKpqTBxiLGsQ=;
+        b=L2/cTZ3SFqh+QfzKCvu9u+OuK4YEShFfgKf+tQQXZBgMeOkPKPN49Apb7f9gV4chgT
+         nA3g05Ssn8Zp27ooBNPIvX5a5gx6ZwF0XtwJnfHMpq+qkak9OVImEt5HNSGCwCHsk9Uf
+         /3jKJe81kiE5s/CN5EhC/kR5cZAZLgfJuBfLs/eToDAf0dYnE7h91w9OCC/JUVoGhNGc
+         9TD9F6WkeoweSpbJv2Lv/7ienI3Yl/8h2bXTgCWne1XHyGJLCP0yvpJsbHFUhjdrWd2+
+         NGLXb5AkyeZQqEwMuGG90faEABWxXcFOkKZas6yEp+nT2Ou1JwPX1tY1laJUv7D4k3K9
+         Mg3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705334625; x=1705939425;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zK5ZlZIsbkA8bSGYvP65mCyUL8AXb+1aICzPu5IaoPU=;
-        b=rp1FlfWuvIVrLKUquZGkvpyDdh+kr5KDsiKjsC3zXPln1wmEKhxoVsXAzSfOR37oZj
-         aECGaqubgI3545qzpY5l8iMgWsXfSGMxOUg8sf/Eb4lvxX3G0fK+FrAxjFR+5JP7aDMv
-         dFPQOwHotQAU2qolBCy+A1NTiGrDTkLFNK4Soh0r5U96tGNMWL5JRT0nKgqePnaS3dta
-         vA9h4ME/IANjm6ZKvVsBcV8Q3jYM4uCb3FyRn02LDv2FSngGxQbFdnzhce4fTbAhxeAl
-         bWEBWYJsR+HoaiOp+KxW9gFuRzkY0UOr4C1vL/vUR81ethVL9hsKqmTr+/O6/OyPWQjT
-         PF3g==
-X-Gm-Message-State: AOJu0Yw4r2hNCrAUvqJouMao1/H8Dl7k6qFNGm0cVATzfPeU6H9jItUn
-	a93IWkeDBMe0KRB6sXQs/P3xa6MO00+rK7ONHzXVQzDsVlo=
-X-Google-Smtp-Source: AGHT+IFPMUOcSnKd08//gCrnsz2ipHiWG/Je7tzdmhdclDm1BqARSQ9Qq8NZnAx1AW0bothZMyi3/g==
-X-Received: by 2002:ac2:5feb:0:b0:50e:dcb9:8b03 with SMTP id s11-20020ac25feb000000b0050edcb98b03mr1516463lfg.196.1705334624867;
-        Mon, 15 Jan 2024 08:03:44 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id vs7-20020a170907a58700b00a2caa85c0c1sm4520714ejc.30.2024.01.15.08.03.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 08:03:44 -0800 (PST)
-Message-ID: <435f502c-1e1b-4d40-8dcc-34487905d69c@linaro.org>
-Date: Mon, 15 Jan 2024 17:03:42 +0100
+        d=1e100.net; s=20230601; t=1705334766; x=1705939566;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yDa16CVmSfs+N/D++bcE7PtMkJn0aFkGKpqTBxiLGsQ=;
+        b=v4LvO/EqDsCB9mw0IfzBwhCiB2m4elrfghIMaIIwAoOMbcabNWER1fxyNR7YYacUKK
+         Qg3I8Cfonn0vAEdNFCoVls355YOhAOACv4NYhhN2JCwfNlzgqHycS7YebuLi51YX2yf0
+         XVyLBJghrsykwzsxhshbyuNz5HyeHt0dCmNz7pf7MAbSmBaS62JhfPfhZbGP0AJpmB7H
+         ftFP5C6YJ5ms1ARPeUUj2CMAs+s9Fexlkf+DLVYPBjegAqCA9avtjzcWHIZaozu0n2Dd
+         TlWf0kAWbf60sznTjUcd7c6BhdOW8rd1G+0F3D8/bRhhn7pYn6+sv/PRN1l6/I3O7tir
+         gNjA==
+X-Gm-Message-State: AOJu0YyD7KryRsnRvncM7BiSy11ku2cb9v8xJfNHfuJbCZ1Y2fsyKY/v
+	lber4nR8flqJCf6y7x03P/U=
+X-Google-Smtp-Source: AGHT+IFJtE0KE+EoKxq7n4ougV/OrUqltD5x3+pgimBp47DSgYBBvcKSSCZGIhA8medm7ns1Q5Q18w==
+X-Received: by 2002:a17:90b:1e12:b0:28c:f9d8:14e2 with SMTP id pg18-20020a17090b1e1200b0028cf9d814e2mr2927632pjb.84.1705334765968;
+        Mon, 15 Jan 2024 08:06:05 -0800 (PST)
+Received: from localhost ([124.131.233.112])
+        by smtp.gmail.com with ESMTPSA id li16-20020a17090b48d000b0028e55789456sm2313340pjb.24.2024.01.15.08.06.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jan 2024 08:06:05 -0800 (PST)
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+To: alexandre.belloni@bootlin.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	chao.wei@sophgo.com,
+	unicorn_wang@outlook.com,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu
+Cc: linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	dlan@gentoo.org,
+	inochiama@outlook.com
+Subject: [PATCH v6 0/3] riscv: rtc: sophgo: add mfd and rtc support for CV1800
+Date: Tue, 16 Jan 2024 00:05:57 +0800
+Message-ID: <20240115160600.5444-1-qiujingbao.dlmu@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] ASoC: dt-bindings: xmos,xvf3500: add bindings for
- XMOS XVF3500
-Content-Language: en-US
-To: Javier Carrasco <javier.carrasco@wolfvision.net>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20240115-feature-xvf3500_driver-v1-0-ed9cfb48bb85@wolfvision.net>
- <20240115-feature-xvf3500_driver-v1-2-ed9cfb48bb85@wolfvision.net>
- <333c2986-c7c2-4a46-90cf-b59ae206e55a@linaro.org>
- <96abddcc-fa65-4f27-84fe-2281fe0fcf1c@wolfvision.net>
- <644f7f02-405d-47fb-bc72-4d54e897255f@linaro.org>
- <5db4b898-93d5-446f-bfed-b57847f9967a@wolfvision.net>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <5db4b898-93d5-446f-bfed-b57847f9967a@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 15/01/2024 16:59, Javier Carrasco wrote:
->>> The voice data and any other information can be retrieved directly via
->>> USB from userspace. Once in normal operation, the device acts as a
->>> regular "onboard" USB device and the driver does not need to do any
->>> further management.
->>
->> So is this an USB device? If yes, then shouldn't be just auto-discovered
->> and you add here some bindings for other device? This looks like coding
->> power sequence not in USB node, but in some other, new node.
->>
->> Best regards,
->> Krzysztof
->>
-> It is an USB device that requires two power supplies and a reset to
-> boot. Afterwards it is auto-discovered and functions normally as a
-> regular USB device. In that sense it works like the onboard USB HUBs:
-> 
-> https://github.com/torvalds/linux/blob/master/drivers/usb/misc/onboard_usb_hub.c
-> 
-> The onboard USB HUB driver is of course more complex because it has to
-> support other features, but the idea of enabling the power supplies and
-> toggling the reset signal is essentially the same.
-> 
+Real Time Clock (RTC) is an independently powered module
+within the chip, which includes a 32KHz oscillator and
+a Power On Reset/POR submodule. It can be used for time
+display and timed alarm generation.
 
-Yeah, about that... so this is not really correct device representation
-for DT. There is no such device as XVF3500 outside of USB bus. There is
-XVF3500 but on USB bus and this should be there. In the past we allowed
-such root-level devices just because we did not have other way to handle
-them. Now we have.
+Power On Reset/POR submodule only using register resources
+so it should be empty. The 32KHz oscillator only provides
+pulses for RTC in hardware.
 
-Best regards,
-Krzysztof
+Changes since v5:
+- remove unnecessary lock
+- fix cv1800_rtc_alarm_irq_enable()
+- remove duplicate checks
+- using alrm->enabled instead of unconditionally
+  enabling
+- remove disable alarms on probe
+- using rtc_update_irq() replace mess of alarm
+- remove leak clk
+- useing devm_rtc_allocate_device() and
+  devm_rtc_register_device() instead old way
+- add judgment for rtc_enable_sec_counter()
+- add POR nodes in DTS. This POR device shares
+  the register region with the RTC device
+
+v5: https://lore.kernel.org/all/20240108072253.30183-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v4:
+- remove POR dt-bindings because it empty
+- remove MFD dt-bindings because SoC does
+  not have MFDs
+- add syscon attribute to share registers
+  with POR
+
+v4: https://lore.kernel.org/all/20231229090643.116575-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v3:
+- temporarily not submitting RTC driver code
+  waiting for communication with IC designer
+- add MFD dt-bindings
+- add POR dt-bindings
+
+v3: https://lore.kernel.org/all/20231226100431.331616-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v2:
+- add mfd support for CV1800
+- add rtc to mfd
+- using regmap replace iomap
+- merge register address in dts
+
+v2: https://lore.kernel.org/lkml/20231217110952.78784-1-qiujingbao.dlmu@gmail.com/
+
+Changes since v1
+- fix duplicate names in subject
+- using RTC replace RTC controller
+- improve the properties of dt-bindings
+- using `unevaluatedProperties` replace `additionalProperties`
+- dt-bindings passed the test
+- using `devm_platform_ioremap_resource()` replace
+  `platform_get_resource()` and `devm_ioremap_resource()`
+- fix random order of the code
+- fix wrong wrapping of the `devm_request_irq()` and map the flag with dts
+- using devm_clk_get_enabled replace `devm_clk_get()` and
+  `clk_prepare_enable()`
+- fix return style
+- add rtc clock calibration function
+- use spinlock when write register on read/set time
+
+v1: https://lore.kernel.org/lkml/20231121094642.2973795-1-qiujingbao.dlmu@gmail.com/
+
+Jingbao Qiu (3):
+  dt-bindings: rtc: sophgo: add RTC support for Sophgo CV1800 series SoC
+  rtc: sophgo: add rtc support for Sophgo CV1800 SoC
+  riscv: dts: sophgo: add rtc dt node for CV1800
+
+ .../bindings/rtc/sophgo,cv1800-rtc.yaml       |  55 +++
+ arch/riscv/boot/dts/sophgo/cv1800b.dtsi       |  12 +
+ drivers/rtc/Kconfig                           |   7 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-cv1800.c                      | 397 ++++++++++++++++++
+ 5 files changed, 472 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/sophgo,cv1800-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-cv1800.c
+
+
+base-commit: e3d3fe7e7bf08820a83c9d9a4c38c7b29a2927f1
+-- 
+2.43.0
 
 
