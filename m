@@ -1,141 +1,154 @@
-Return-Path: <devicetree+bounces-32109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AF3B82DDDF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:48:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4068E82DDF9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:52:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE9971F228D4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:48:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4109A1C21BBB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7472617BD4;
-	Mon, 15 Jan 2024 16:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 384A217C67;
+	Mon, 15 Jan 2024 16:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="yWI9NouH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B05C17BBB;
-	Mon, 15 Jan 2024 16:48:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-5e778e484dbso79355617b3.0;
-        Mon, 15 Jan 2024 08:48:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705337311; x=1705942111;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6Xom6xncqDax048LAWipCjONrGVwUc7wt4+JM1uzSZY=;
-        b=LEPnoPuxuer9/ZiDq7iJe/f/qr99jDh0kOBblKLqTzFQBGPNlJe7zoY6Q6HbdHlSq0
-         w+XqVnLTRzjT4esFBesrfYOzDnRETPo2U0vvCrHTPjnLTE4h0KgJqO00+mO2zYlNTReH
-         78mhwEZrvCR/31LFqIjeY8FULcV/vLcd/9OrlQWZFvdDVEtA0Etg7cZUb21G+PnKNJKF
-         fcFZs4es0Cu+uY/UyOZh1jL+ePX6pN3FRX3jcmaf5wCD4gIkcQjU8SKj5QhONcIhvm+f
-         1V/N3thToMo53XXh4W4mvfV+nRcIn6LrO33WvxO2HZBHXAf40puvW1DIxO9vbN3bPwUi
-         yLGQ==
-X-Gm-Message-State: AOJu0YwbEyw7PeJztTrTvFtHDj3jw8Hr41A21AuPGcgtpiZWL1yA+b69
-	QpdtSCGfeUqA92fB7+Dp7LJootIbyAIfdw==
-X-Google-Smtp-Source: AGHT+IGPc2kGPa+rPHUjg3iCnVulW/PAu7ISq1WSFpkeugYPVjR21uP5oCa4oMaYP/IDjafAuXlNAA==
-X-Received: by 2002:a81:ad1c:0:b0:5ff:3ee4:956c with SMTP id l28-20020a81ad1c000000b005ff3ee4956cmr534904ywh.23.1705337310737;
-        Mon, 15 Jan 2024 08:48:30 -0800 (PST)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id d70-20020a814f49000000b005fdc47c460dsm285001ywb.23.2024.01.15.08.48.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 08:48:30 -0800 (PST)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5f0c0ca5ef1so87109787b3.2;
-        Mon, 15 Jan 2024 08:48:30 -0800 (PST)
-X-Received: by 2002:a05:690c:a98:b0:5e9:f386:dd63 with SMTP id
- ci24-20020a05690c0a9800b005e9f386dd63mr4282644ywb.39.1705337310443; Mon, 15
- Jan 2024 08:48:30 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E26C317C6A;
+	Mon, 15 Jan 2024 16:52:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40FDrZU1008279;
+	Mon, 15 Jan 2024 17:51:30 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=v/GemSIloeASK3WLJ1Xew5INevRA7DxBKaKXrgp0BrI=; b=yW
+	I9NouHDCyq43z3fEbedcH1DBWBHnlGwKnS2NFXi0ofmWWeaCMJLvOFimeL7TiLvv
+	0Rm4EJ2vXjSkSoVbG93Q47Ib0LjVySE0FJVc83GQM3158cyKguQ0YwenISvU75T8
+	f3odqvHeu7q26Ic++F5pOUt2H/vQUM917hoP0IiHBHWN/a6+h/dlmUX+NciD0XP5
+	3DpK0ZkYCCBHWuncmuD7WFLnDxGiyliD3bzb0BuQIKszMEPo5/WG4xXrrN9R8/J1
+	swRCMM6ZEKiw8y3RVrwDxe+boWapMNCRfB6KaVFEet/6LA3P/crX6rXDVcgJ3iQt
+	H1hlwJ5mEXRw1hxKmdGw==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vkmddstng-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Jan 2024 17:51:30 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1111910002A;
+	Mon, 15 Jan 2024 17:51:29 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EE6662EAB7A;
+	Mon, 15 Jan 2024 17:51:28 +0100 (CET)
+Received: from [10.129.178.37] (10.129.178.37) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Mon, 15 Jan
+ 2024 17:51:28 +0100
+Message-ID: <3479c5d7-a9c3-40cf-a415-b8324f160ec7@foss.st.com>
+Date: Mon, 15 Jan 2024 17:51:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <fb1e38c93e62221f94304edd980a2fb79c1f2995.1705325608.git.geert+renesas@glider.be>
- <20240115-wages-secluded-b44f4eb13323@spud>
-In-Reply-To: <20240115-wages-secluded-b44f4eb13323@spud>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 15 Jan 2024 17:48:18 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWY3D45NGHvGXSZRLZz4TyCRgRCQLZV6CzYs=mSFcherw@mail.gmail.com>
-Message-ID: <CAMuHMdWY3D45NGHvGXSZRLZz4TyCRgRCQLZV6CzYs=mSFcherw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: renesas,tmu: Document input capture interrupt
-To: Conor Dooley <conor@kernel.org>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
-	Yoshinori Sato <ysato@users.sourceforge.jp>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-sh@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] dt-bindings: display: add dt-bindings for STM32
+ LVDS device
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+CC: Yannick Fertre <yannick.fertre@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240115132009.101718-1-raphael.gallais-pou@foss.st.com>
+ <20240115132009.101718-2-raphael.gallais-pou@foss.st.com>
+ <20240115154659.GA815331-robh@kernel.org>
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+In-Reply-To: <20240115154659.GA815331-robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-05_08,2024-01-05_01,2023-05-22_02
 
-Hi Conor,
 
-On Mon, Jan 15, 2024 at 5:13=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
-> On Mon, Jan 15, 2024 at 02:45:39PM +0100, Geert Uytterhoeven wrote:
-> > Some Timer Unit (TMU) instances with 3 channels support a fourth
-> > interrupt: an input capture interrupt for the third channel.
-> >
-> > While at it, document the meaning of the four interrupts, and add
-> > "interrupt-names" for clarity.
-> >
-> > Update the example to match reality.
-> >
-> > Inspired by a patch by Yoshinori Sato for SH.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 1/15/24 16:46, Rob Herring wrote:
+> On Mon, Jan 15, 2024 at 02:20:04PM +0100, Raphael Gallais-Pou wrote:
+>> Add "st,stm32mp25-lvds" compatible.
+>>
+>> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+>> ---
+>> Depends on: "dt-bindings: stm32: add clocks and reset binding for
+>> 	    stm32mp25 platform" by Gabriel Fernandez
+>>
+>> Changes in v3:
+>> 	- Clarify commit dependency
+>> 	- Fix includes in the example
+>> 	- Fix YAML
+>> 	- Add "clock-cells" description
+>> 	- s/regroups/is composed of/
+>> 	- Changed compatible to show SoC specificity
+>>
+>> Changes in v2:
+>> 	- Switch compatible and clock-cells related areas
+>> 	- Remove faulty #include in the example.
+>> 	- Add entry in MAINTAINERS
+>> ---
+>>  .../bindings/display/st,stm32-lvds.yaml       | 119 ++++++++++++++++++
+> Filename matching compatible.
 
-> > --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> > +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> > @@ -46,7 +46,19 @@ properties:
-> >
-> >    interrupts:
-> >      minItems: 2
-> > -    maxItems: 3
-> > +    items:
-> > +      - description: Underflow interrupt 0
-> > +      - description: Underflow interrupt 1
-> > +      - description: Underflow interrupt 2
-> > +      - description: Input capture interrupt 2
+Hi Rob,
+
+
+I was unsure about this.
+
+The driver will eventually support several SoCs with different compatibles,
+wouldn't this be more confusing ?
+
+I also wanted to keep the similarity with the "st,stm32-<ip>.yaml" name for the
+DRM STM drivers. Would that be possible ?
+
+
+Regards,
+
+Raphaël
+
+
+
 >
-> Seeing "input capture interrupt 2" makes me wonder, are there two (or
-> more!) other input capture interrupts that are still out there,
-> undocumented, and looking for a home?
-
-SoCs can have multiple TMU instances.
-Each TMU instance has 2 or 3 timer channels.
-Each timer channel has an underflow interrupt.
-Only the third channel may have an optional input capture interrupt
-(which is not supported yet by the Linux driver).
-Hence each instance can have 2, 3, or 4 interrupts.
-
-See "RZ/G Series, 2nd Generation User's Manual: Hardware"[1],
-Section 69 ("Timer Unit (TMU)":
-  - Figure 69.2: Block Diagram of TMU,
-  - Section 69: Interrupt
-
-Note that the documentation uses a monotonic increasing numbering
-of the channels, across all instances.
-
-[1] https://www.renesas.com/us/en/products/microcontrollers-microprocessors=
-/rz-mpus/rzg2h-ultra-high-performance-microprocessors-quad-core-arm-cortex-=
-a57-and-quad-core-arm-cortex-a53-cpus-3d
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+>> +properties:
+>> +  compatible:
+>> +    const: st,stm32mp25-lvds
+>
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
+>> +    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
+>> +
+>> +    lvds: lvds@48060000 {
+>> +        compatible = "st,stm32-lvds";
+> Wrong compatible.
 
