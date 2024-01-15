@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-32011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9BE82D86C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 12:37:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1580682D87D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 12:39:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C46911F20FE8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 11:37:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F6C2B217C9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 11:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CE182C6A6;
-	Mon, 15 Jan 2024 11:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B57192C695;
+	Mon, 15 Jan 2024 11:39:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a7BCUwCY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="es8YCWNF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4CC42C695
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 11:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC272C68B
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 11:39:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a2d7e2e7fe0so208667666b.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 03:36:50 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55790581457so9747198a12.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 03:39:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705318609; x=1705923409; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1705318765; x=1705923565; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KTjUdUAVGjQbbSEjeN8Hm51/ZRU50dz0VKTW6WtWo8A=;
-        b=a7BCUwCYgR/APa53rgiG89Y0t1ADSS5njlA/MQwWQsi824NQI6NZ+sNJ5DVjXim3zw
-         gerNBl/rHJzc2oZNHXhwN3HFpG76SlUo0016m09uoLjHYicfTDfrKG7ra0iAI9x9JKzn
-         GqE0Uic0F5YCY62VK4Snotnvj7aeCJrjsoCxRBKBlxCXsHU0P5/cgZ98pw0XJUvPZ9nV
-         TwhY9XaaD6j+pC4oyb+o2vupzbJl+9Uypc8OBEt7whzgv3jL4kSIgtPZs2NLQrmXCtcR
-         q2xZz7pYOBqRiDgoXkxcXYZb++KVy4q8FfIzSSAW3/MKvo/uGXRkTRiPA+m8zl347L0k
-         Iu7A==
+        bh=l3frZZSaJ0FqqnRHcXPzH/pZUPe1LoezaNa34iVa8Bg=;
+        b=es8YCWNFHPE2gr2fy7H/6KSELLKLMDuNkVbF+Kz3dn8JjTTVjyAIZUWTI//koa/iMX
+         vprov5bL3hEMQHBtwtxe8ffvyuA1T/H3LlGlE7f/fWJRd+X4IN70DSRw3O4R+5PFCSr/
+         AVQ5qsgsL5NWkbvB4Ya3QlZ5lJifQTZ0FaZE4Y5HysU9o52LiJOGQRvybapL0azCxdtw
+         W0xBQkkg134x8QoLBExamy7y31og1eBezXE4BCgk4H3ae4rApFeEXo0VVsOpdUzHEnEa
+         Y9G5boHWkTVD6Tr74e6kpHUbKd+0dZdSDt2V/sP97+nUFc/2k0SWx9PfdHvLr/eXCIWj
+         mA0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705318609; x=1705923409;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1705318765; x=1705923565;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KTjUdUAVGjQbbSEjeN8Hm51/ZRU50dz0VKTW6WtWo8A=;
-        b=ECHYhVYKDQyV7nk4fgRxIfO+ZPDb+WDPsOEzZdA/uO1uVqFRfGDgxXMyGruIz0kx3v
-         aC1dQi8gSq60aniCzVnxwZVoufCuhJPJyjPqKo5DhSBVjnOw9JYg9AcmDmPK1pQBJsS+
-         DF2HyONWVHJBnZdeCfjd/Iy7nTP5Zuls0roluLl6J9Db+g3FFhSLGqAr22BzXqXo8FaJ
-         rNe55eFRZ6mL53X5+3Ev2/VTNYfBV1I1m+uFwhAYMl178lR3hvRFnl0/yUgeymAnXNPg
-         InVt+fO2hVjwg9ViNPQeL6h/d1tsF9/JsgOifL+77+MiJ47SIoqOMpX39DoMckstdQdY
-         4kqw==
-X-Gm-Message-State: AOJu0YwxmrzhWiVkdtdStiQ8Leljb8zqf5CMFR0T2ghD5GG92uRa/xwj
-	ovUaQCnUJkI6oR5ozogw9cVbetxT86IDjg==
-X-Google-Smtp-Source: AGHT+IGiTxclcD525r0O//wVGjf7VkwRFmTVqmgCMljop427MY0ycSXo70dtRQwKE34g87/EZa3MTQ==
-X-Received: by 2002:a17:907:c09:b0:a28:aef6:9964 with SMTP id ga9-20020a1709070c0900b00a28aef69964mr7817964ejc.14.1705318609127;
-        Mon, 15 Jan 2024 03:36:49 -0800 (PST)
+        bh=l3frZZSaJ0FqqnRHcXPzH/pZUPe1LoezaNa34iVa8Bg=;
+        b=hgb1BOnNXoOmm2qCt2xNUt0te6UcoVndhmlsEM5aU8X4SimHRSNXv5L2BGM5cdXAQV
+         yUz909tPjlu/oyybc9seIp+jXkJUfyI0OWZSDQzeqdWbVkr4daorGYTwFk2hs2j6zdLb
+         jHNS+VyQntYK9IbcRbASWz+RRVG//9Rub8HWxEbRT5LzeeqPmRrKbV8VK3lNWSsjtvIu
+         oucy5P+hys4dHB7HuBSRdH9XvD4fbU3QBoIWfsaL2vp6C5ALy1mv1x35uZOEp5ALs1FS
+         AIi+W5XsvpIYpkEdqkubHB15ibeJen/T9Z38CXf7jAgZ0fzvMYM23fYfLDC0dtl1IpiF
+         ZxYg==
+X-Gm-Message-State: AOJu0YzblOMSPH15IPnD7mB19JxBFIPfOeVa3CiFYgabETVztmHZEpPG
+	xALXFDQKJvqilOYb4jZDaiekaU9Ql/gj/w==
+X-Google-Smtp-Source: AGHT+IHiXIWP+10j7TO4GK7Xp69CrOm3VKfG7rCFmd5MmDfqZGjVwTJTMs3juUrFE9gIYsiR+38Ffg==
+X-Received: by 2002:a17:906:19d3:b0:a26:e760:40ba with SMTP id h19-20020a17090619d300b00a26e76040bamr2294148ejd.46.1705318764912;
+        Mon, 15 Jan 2024 03:39:24 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id v24-20020a1709067d9800b00a2a4efe7d3dsm5204355ejo.79.2024.01.15.03.36.47
+        by smtp.gmail.com with ESMTPSA id gc9-20020a170906c8c900b00a26f1f36708sm5178658ejb.78.2024.01.15.03.39.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 03:36:48 -0800 (PST)
-Message-ID: <4c819e89-80d9-442f-af82-4b3d084ab9df@linaro.org>
-Date: Mon, 15 Jan 2024 12:36:46 +0100
+        Mon, 15 Jan 2024 03:39:24 -0800 (PST)
+Message-ID: <f354cfe1-88eb-4daf-aea3-7acd2de5d106@linaro.org>
+Date: Mon, 15 Jan 2024 12:39:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,19 +66,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: add common Type-C USB Switch schema
+Subject: Re: [PATCH 02/15] dt-bindings: clock: Add R8A779H0 V4M CPG Core Clock
+ Definitions
 Content-Language: en-US
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240115092923.105275-1-krzysztof.kozlowski@linaro.org>
- <CYF6E9BR9QHY.3441MOKCRAB15@fairphone.com>
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Cong Dang <cong.dang.xn@renesas.com>,
+ Duy Nguyen <duy.nguyen.rh@renesas.com>, Hai Pham <hai.pham.ud@renesas.com>,
+ Linh Phung <linh.phung.jy@renesas.com>, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+References: <cover.1704726960.git.geert+renesas@glider.be>
+ <2e083461752c9d52fdb251ad9071f6111f13c3c5.1704726960.git.geert+renesas@glider.be>
+ <ca0cb671-43ce-4bda-aad5-da38bace4132@linaro.org>
+ <CAMuHMdUJYH7YhQ65Bh1K8F2earTM60VwBd2=LH2vnGbaGPU53w@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,85 +130,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CYF6E9BR9QHY.3441MOKCRAB15@fairphone.com>
+In-Reply-To: <CAMuHMdUJYH7YhQ65Bh1K8F2earTM60VwBd2=LH2vnGbaGPU53w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 15/01/2024 10:34, Luca Weiss wrote:
->> diff --git a/Documentation/devicetree/bindings/usb/usb-switch.yaml b/Documentation/devicetree/bindings/usb/usb-switch.yaml
->> new file mode 100644
->> index 000000000000..0d0b60234d1f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/usb/usb-switch.yaml
->> @@ -0,0 +1,68 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/usb/usb-switch.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: USB Orientation and Mode Switches Common Properties
->> +
->> +maintainers:
->> +  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->> +
->> +description:
->> +  Common properties for devices handling USB mode and orientation switching.
->> +
->> +properties:
->> +  mode-switch:
->> +    description: Possible handle of altmode switching
+On 15/01/2024 10:27, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
 > 
-> handle -> handler
+> On Tue, Jan 9, 2024 at 8:21 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 08/01/2024 16:33, Geert Uytterhoeven wrote:
+>>> From: Duy Nguyen <duy.nguyen.rh@renesas.com>
+>>>
+>>> Add all Clock Pulse Generator Core Clock Outputs for the Renesas R-Car
+>>> V4M (R8A779H0) SoC.
+>>>
+>>> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
+>>> Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
+>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>> ---
+>>> Changes compared to the BSP:
+>>>   - Drop POST* clocks, as they are internal clocks.
+>>> ---
+>>>  include/dt-bindings/clock/r8a779h0-cpg-mssr.h | 96 +++++++++++++++++++
+>>
+>> Mediatek was able to switch to vendor,device naming scheme, so Renesas
+>> should follow as well.
+> 
+> For new bindings, or also for existing ones?
+> Doing the former means there are inconsistencies among different SoCs
+> in the same family.
 
-ack
+For the new ones. It's just naming inconsistency which does not cause
+any issues. Otherwise you never move to vendor,device.h format... which
+is not that critical, but in the long term brings uniformity.
 
-> 
->> +    type: boolean
->> +
->> +  orientation-switch:
->> +    description: Possible handler of orientation switching
->> +    type: boolean
->> +
->> +  retimer-switch:
->> +    description: Possible handle of SuperSpeed signals retiming
-> 
-> handle -> handler
+> Doing the latter requires keeping the existing header files as wrappers
+> including the new header files, because the binding definitions are
+> part of the stable DT API.
 
-ack
-
-> 
->> +    type: boolean
->> +
->> +  port:
->> +    $ref: /schemas/graph.yaml#/properties/port
->> +    description:
->> +      A port node to link the device to a TypeC controller for the purpose of
->> +      handling altmode muxing and orientation switching.
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description:
->> +          Super Speed (SS) Output endpoint to the Type-C connector
->> +
->> +      port@1:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        description:
->> +          Super Speed (SS) Input endpoint from the Super-Speed PHY
->> +        unevaluatedProperties: false
->> +
->> +        properties:
->> +          endpoint:
->> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
->> +            # additionalProperties: true
-> 
-> Don't think this should still be here?
-> 
-
-Indeed, debug left-over. I'll remove it.
+This could also work if you want all the filenames to be consistent. I
+would go only with new ones, though.
 
 Best regards,
 Krzysztof
