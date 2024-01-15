@@ -1,212 +1,419 @@
-Return-Path: <devicetree+bounces-31950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-31951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2981982D530
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 09:43:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 218DB82D537
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 09:43:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A26BF281B3A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 08:43:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B6F81F21B5E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 08:43:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5512563;
-	Mon, 15 Jan 2024 08:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CDA863CD;
+	Mon, 15 Jan 2024 08:43:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="TJrp23rW"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="yYPkofjL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2105.outbound.protection.outlook.com [40.107.117.105])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6EA26FA1;
-	Mon, 15 Jan 2024 08:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZFfk6Hnn4JdYKapeAPa0hpq9qVIHl1WXJufI82CzpQnjfd97qesAENR/h8XZuRllf0y2rBMo8aB5znB4f13yGBGNCxTQCCC1La1IaqR1zFm6ufjx5PhBhePksFpVeoPs0odLXzLwngVdUAW6APpbORO1Loid+scLVPzQN82EsYjYrANOlw1YnqrdiulRWGVfmh3G6+zE+S2LMIqKN4NV7j5Fnr7wli+Pwf40ecsIkKDLk6GcoZ8cI7lEnSDgI6pHIib0MAAKCyj4wL+H0Ihn0tvcT/Gi91zvdrHxsncgQUoEwWJtLII+5XH2ZnSq1npTXAxf0AESWQdgI4yJjDMV7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IRCWbulzf0TeqVgiB0AF33LAS9x5mZSborVRjlm7xnU=;
- b=gGtY2SzuZcRdyhJqsjNOKnDdxZaD/jd2nvH59/kcmfOyJum0990WFKneciD3pxdV65jqfLczIKkwUKRoslcBThlLDp4cf1DWSzyAnOSgjE2DKfcPvkoNThyK07SKqwNqDbbOxtWbhuDqScvBcL6/9eKeO11uECXnO/zgzx6xXXS/DIwt7fgFwohmbiYft7HbIF+c2Gn4KXUm/keZ7afEx+aDNzcw5zzjxFneP/CnPhLcu+PoRcfb8gF0eIlM3T5S/l1qOsewr1WEzb81bnnL+AhMjTcWETgGxF8S2TL6jIFu7UiHbPt+NCV3nnfmzOdfTxME2YffUj4zfW5yKQLPzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IRCWbulzf0TeqVgiB0AF33LAS9x5mZSborVRjlm7xnU=;
- b=TJrp23rW30Epv0QMCR5OXBbVam0+89ZXSYCVdNAWzBWD1RWKCTSPob7QWmzjuA4wWzy080BkSvAsgOqwt3j/ckXgBRJIynsVn6we2LZhyAWX7Fi3GMs9dlPxhW1xabzxNqu1fXr8gNsoLfQJAA7C7PzFnu1W6nANObAych7bPcRiQEckXWoxjdk+P8dgwrz+rniZUvp2EeHgkuGME1X1L3xqV+GZDK8oSPPYm5xp0W1mkAdUcodGyfXlvTMRIHTCN3QRAr9eFnZdOJhAxQE408aTXTxwYVNKNl8wmGo13cQO/UuW5qxd0KxhCLpXsV/l1pk0EafS7PSFX4zTQGJsfg==
-Received: from OSQPR06MB7252.apcprd06.prod.outlook.com (2603:1096:604:29c::6)
- by SEZPR06MB5592.apcprd06.prod.outlook.com (2603:1096:101:c8::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.21; Mon, 15 Jan
- 2024 08:43:09 +0000
-Received: from OSQPR06MB7252.apcprd06.prod.outlook.com
- ([fe80::36df:4bd:1991:976b]) by OSQPR06MB7252.apcprd06.prod.outlook.com
- ([fe80::36df:4bd:1991:976b%5]) with mapi id 15.20.7181.018; Mon, 15 Jan 2024
- 08:43:09 +0000
-From: Billy Tsai <billy_tsai@aspeedtech.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
-	<robh@kernel.org>
-CC: "jdelvare@suse.com" <jdelvare@suse.com>, "linux@roeck-us.net"
-	<linux@roeck-us.net>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "joel@jms.id.au" <joel@jms.id.au>,
-	"andrew@aj.id.au" <andrew@aj.id.au>, "corbet@lwn.net" <corbet@lwn.net>,
-	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	"u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"naresh.solanki@9elements.com" <naresh.solanki@9elements.com>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, "linux-pwm@vger.kernel.org"
-	<linux-pwm@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>,
-	"patrick@stwcx.xyz" <patrick@stwcx.xyz>
-Subject: Re: [PATCH v12 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
- Control
-Thread-Topic: [PATCH v12 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
- Control
-Thread-Index: AQHaQgZuUE5b5SSLEUGoux677v5Ay7DXAz4AgAN4T2CAABEVgIAAANU/
-Date: Mon, 15 Jan 2024 08:43:09 +0000
-Message-ID:
- <OSQPR06MB72520BD77D68B7940273F2498B6C2@OSQPR06MB7252.apcprd06.prod.outlook.com>
-References: <20240108074348.735014-1-billy_tsai@aspeedtech.com>
- <20240108074348.735014-3-billy_tsai@aspeedtech.com>
- <20240113015556.GA3829553-robh@kernel.org>
- <OSQPR06MB725208AEF8779B0BC971DFF48B6C2@OSQPR06MB7252.apcprd06.prod.outlook.com>
- <40210196-3852-4c8b-94e6-e744890f003f@linaro.org>
-In-Reply-To: <40210196-3852-4c8b-94e6-e744890f003f@linaro.org>
-Accept-Language: en-US, zh-TW
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OSQPR06MB7252:EE_|SEZPR06MB5592:EE_
-x-ms-office365-filtering-correlation-id: 84105c39-4753-406c-b06f-08dc15a6003c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- adYEqprLDkLPVo3ZCmjYAEefhwr3hxgLrVO+3zm+2XmF5g0xU1IbvHp9hNd6Qw5fkY1KiLFw1enMrcPNRobYYj4f57qct0mRmTrpsDWZ9g2aWsnCK1PYTjUhNJhapK1pnUS7DS74oxAPK8nQOZ4uHGOdvIvNoJQEJpAHhupOAWeyY/ncLeatYawmD503mdqvrEA9J0G8JOvE1h9Mq7tnUyB16LK6+S456aiiqeP6N5G/q8nmdxjhF7//wxBq0SuG2+r3HYv4ZB3RiJtGIqUjHqsWgkUGAAzEtxMeURF6+dP8yBDJVTBPtInMHnksMsjlz5yMSt8by98OaqGxDIoE42NsKetnchjb4PXlRTRN3QUSmAjv26rLqFbv3XgZATpMDAg3TD5VZEzzUCo2o6G54VRiz9vGvCYyn8PVPVJGSLfZhduUQbADDaksxvgVUq8A2xbH6rPY56HWM9jWzSAX8MUfEhp9bzRWwtY+2HE4Rr8IqPgyrHyT8l8dnfE/gVQ+UuiReVArUGg18GMTYqQ3NP3B7/yekFcFJl6EQ3ghvS97t1niCtyJeTP/RCnjFjMiU0OPxKtaONkYzs/hZCyHnxKVRLvQeEWy4h9ztz8r4YVQSflUbcFCdXhQ/Sk5C4Gy
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSQPR06MB7252.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(396003)(39850400004)(376002)(366004)(346002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(55016003)(64756008)(2906002)(7416002)(5660300002)(66946007)(66476007)(8676002)(8936002)(41300700001)(316002)(71200400001)(52536014)(76116006)(110136005)(54906003)(9686003)(66556008)(66446008)(4326008)(478600001)(122000001)(33656002)(26005)(86362001)(38100700002)(38070700009)(55236004)(7696005)(83380400001)(6506007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?7T49JpnUmm3/m26G8phn7p6m05DJvoax2h6Sqmfdw/+4Zq/E7Vr/qHltYl?=
- =?iso-8859-1?Q?gPAjyDsAqLvveaUa3Z+zzknP3WLrgjxie+enl9VSGKQHdakxeUFEnsCiII?=
- =?iso-8859-1?Q?KvKWnyUw10xpGHozDk2CfkR1bNjzAWnE1P2B4Yq+qZ+BYtnqkgzv6dK6IN?=
- =?iso-8859-1?Q?4YAWgB+vJTLR0tNWVsrl6+Aiz5FK0Yw2TgaIyQmeMeaWha9UTsDzOulJwN?=
- =?iso-8859-1?Q?HBnX2CYOwJvpNCqP0HNI6YQd+UKl5DKXv+USbE4gp60rGj0p7k4Npoz7ac?=
- =?iso-8859-1?Q?Tn1BLAoTCnEgPRG3cTZ5SGswvcPu0cYGeTuw6R5WrnKUTh/rBcz0CEIhiy?=
- =?iso-8859-1?Q?HDlmpGjXSfLi3HFujDzuHsCRUFuC4fb45Bvd4k2C1VzsybQMAheBNC7m0Z?=
- =?iso-8859-1?Q?QCTPMI14V8B3I7q+nfwIbOz7GXoVLodYFn/m7WyKB7JaOhjHEB4LU+9Ff6?=
- =?iso-8859-1?Q?qLZZ8DiWjE7fH7D1WKiWB3W4qJLjkhjdi4W4YJTDCOzGYyTSKvrgsF2T7w?=
- =?iso-8859-1?Q?JIEmqwS8txUAEMR5/xtqTiIS18WyfwjErPEcnP4u4HOhIALMUtm6mwsc8e?=
- =?iso-8859-1?Q?YJsxDJrWhZedTz9crTj/gfku7XAE2VQFiZ3BOIx40HZbF/8iSIoZmV2qON?=
- =?iso-8859-1?Q?9L/BL9Mvp4PR/wIi2nl8PrrhSnzYTkRFtUohauJf8pZEXihZhr7ySKNfdf?=
- =?iso-8859-1?Q?REVJ/EuduXW2RrLt6cvKf1oIu1sRPo3XIOCsga9aRKE14RwvT3xE+9WKLB?=
- =?iso-8859-1?Q?foveT9AdjB9D0351f/xScWJsHGEEnfPzn3WVk3nVOMetNIgjzwWExxLF84?=
- =?iso-8859-1?Q?UVUzmv5vU5paSmOYw989+sMVwxHSE3na9fWWcFPBs0HQmXdwFORZrPsrne?=
- =?iso-8859-1?Q?dYf1Pq1PVBac2TFpMMbT9kF3zH2C+gCXv7zxKs3Faqyh3fGZg/HI/DF0Ns?=
- =?iso-8859-1?Q?hYZ6obwhFvPSx0T28t+nRMobzk9ItcJLdIexHHLk9svA4WDHb9oQcvZoWK?=
- =?iso-8859-1?Q?KSNYnELh+1E8bhkMGTeZYjGi+x5ALy/BK0K1NZG503teTj+FvmnXF8wXfV?=
- =?iso-8859-1?Q?JnfZ6kkXdWLcKOr9HnniC58tzJalw3AspiQ/a8KWXcqnYtGwSjSS8qPm6f?=
- =?iso-8859-1?Q?ew1MfDwmrJzU5OHeOXpt+s8+0Mrmj4l6I3Ev+F1Ond3903vDbpW6uKnHGC?=
- =?iso-8859-1?Q?Z1IKUQtdAJVs+IIRDwgdcryiTereh4uks1qO9o39Lc7b6+DBtF9Vwz9lxY?=
- =?iso-8859-1?Q?NZdUb9PzfRiFSL3WwXcURZuLHsjC5O0/Av7j+kT5UTTVCdMpIwWOIpbxhF?=
- =?iso-8859-1?Q?ibwfJVxyilgtE6rAVQT00AXC9zZ5RVrYl4Xwfb9JyD4waX61aJoLMnyKnp?=
- =?iso-8859-1?Q?Hutm8Bkq+StP/5cBgdk3ukMXrw4HpvRWE8jjf3Hv42ml03oqU+hFzxmOI1?=
- =?iso-8859-1?Q?Lg3vNcvdavnpcdusud3yCrxLXQEnKCFU4OobGQqy5CoWyi9mmu0o8Jj7m4?=
- =?iso-8859-1?Q?T5N9Jjb1lZk2gWMehV+rXn3N5wVi+DfM1jlQ6ssFjam4TniDyPQYBM9d40?=
- =?iso-8859-1?Q?l9pqjwM9KaS2Hfc79wVCr9bcrNjRBeAjK1Z5FK9qQmEOreeKPggA9DO3ec?=
- =?iso-8859-1?Q?DcNARcoIAaTfDCel03U/szvMDvfSby+TXm?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0CC6FB6;
+	Mon, 15 Jan 2024 08:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705308220;
+	bh=fWC8AI6Ve32LNmZjAmRE1i2JV47QZOoleVJgSRPGrs8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=yYPkofjLb32MLJy568wc0pyvnuz2dchYpZyFaKaLnQ1ISIodu+NSXBy75vDYyRK0i
+	 jNw8o+PWxt6aX4JghVKbBT41lALRET0R4E7y8/MQarXiVj51MY7VZyqRJ6/f7zIv1r
+	 PhJh/XXu96mVpWk9Ve8sZuHJGwxtNz8MwQVNr7vyoci5HTEAApZqKEcqxJWwdvB6QS
+	 ftK9zemjpJDI13qjWHrEfSxfc4Scgy60A/TMUd/qNRmybsSi/KLu/ynr9vhmadf2ri
+	 14+aXW/tTmJGQafJ8sThdLAMqTkLzsKZRdTEHNCfFRMKkIFaTy5Uc39kWSAsh2H1Ch
+	 F2CYJWA1FRV5w==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 13D4D3782041;
+	Mon, 15 Jan 2024 08:43:40 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: matthias.bgg@gmail.com
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	wenst@chromium.org,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH] arm64: dts: mediatek: mt8195: Add MTU3 nodes and correctly describe USB
+Date: Mon, 15 Jan 2024 09:43:36 +0100
+Message-ID: <20240115084336.938426-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OSQPR06MB7252.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84105c39-4753-406c-b06f-08dc15a6003c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2024 08:43:09.2394
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mZDnV0btBjzSx/5MU2U3/oG27oUHcuYAPFcA+ADHohd457jStj6n1eZ2hliPv2qOsOq229+9waSPuhwh/8QHnw6t5WwC+2WE3S40sXx6bXk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5592
+Content-Transfer-Encoding: 8bit
 
-> >>> +examples:=0A=
-> >>> +  - |=0A=
-> >>> +    #include <dt-bindings/clock/aspeed-clock.h>=0A=
-> >>> +    pwm_tach: pwm-tach-controller@1e610000 {=0A=
-> >>> +      compatible =3D "aspeed,ast2600-pwm-tach";=0A=
-> >>> +      reg =3D <0x1e610000 0x100>;=0A=
-> >>> +      clocks =3D <&syscon ASPEED_CLK_AHB>;=0A=
-> >>> +      resets =3D <&syscon ASPEED_RESET_PWM>;=0A=
-> >>> +      #pwm-cells =3D <3>;=0A=
-> >>> +=0A=
-> >>> +      fan-0 {=0A=
-> >>> +        tach-ch =3D /bits/ 8 <0x0>;=0A=
-> >>> +      };=0A=
-> >>> +=0A=
-> >>> +      fan-1 {=0A=
-> >>> +        tach-ch =3D /bits/ 8 <0x1 0x2>;=0A=
-> >>> +      };=0A=
-> >=0A=
-> >> NAK on this based on how you are using pwm-fan in v10 discussion. See =
-my=0A=
-> >> comments there.=0A=
-> >=0A=
-> > Okay, I will merge everything from the pwm-fan0 node into the fan-0 nod=
-e=0A=
-> > and add the 'simple-bus' to the compatible string of the pwm_tach node.=
-=0A=
-=0A=
-> What simple-bus has anything to do with it? This is not a bus. Just to=0A=
-> remind: we talk about bindings, not driver.=0A=
-=0A=
-Hi Krzysztof,=0A=
-=0A=
-If I want to create a dt-binding to indicate that the child nodes=0A=
-should be treated as platform devices, which will be probed based on the=0A=
-compatible string, can I add "simple-bus" for our pwm_tach node like the=0A=
-following?=0A=
-pwm_tach: pwm-tach-controller@1e610000 {=0A=
-        compatible =3D "aspeed,ast2600-pwm-tach", "simple-bus";=0A=
-        reg =3D <0x1e610000 0x100>;=0A=
-        clocks =3D <&syscon ASPEED_CLK_AHB>;=0A=
-        resets =3D <&syscon ASPEED_RESET_PWM>;=0A=
-        #pwm-cells =3D <3>;=0A=
-  =0A=
-        fan-0 {=0A=
-          tach-ch =3D /bits/ 8 <0x0>;=0A=
-          compatible =3D "pwm-fan";=0A=
-          pwms =3D <&pwm_tach 0 40000 0>;=0A=
-        };=0A=
-  =0A=
-        fan-1 {=0A=
-          tach-ch =3D /bits/ 8 <0x1 0x2>;=0A=
-          compatible =3D "pwm-fan";=0A=
-          pwms =3D <&pwm_tach 1 40000 0>;=0A=
-        };=0A=
-      };=0A=
-Or do you have any other suggestions for describing this in the dt-bindings=
-?=0A=
-=0A=
-Thanks=0A=
-=0A=
-Billy Tsai.=0A=
-  =
+The MT8195 SoC has four USB controllers: only one is a direct path to
+a XHCI controller, while the other three (0, 2 and 3) are behind the
+MTU3 DRD controller instead!
+
+Add the missing MTU3 nodes, default disabled, for controllers 0, 2 and
+3 and move the related XHCI nodes to be children of their MTU3 DRD to
+correctly describe the SoC.
+
+In order to retain USB functionality on all of the MT8195 and MT8395
+boards, also move the vusb33 supply and enable the relevant MTU3 nodes
+with special attention to the MT8195 Cherry Chromebook, where it was
+necessary to set the dr_mode of all MTU3 controllers to host to avoid
+interfering with the EC performing DRD on its own.
+
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+
+Depends on [1]
+
+This patch was tested on a MT8395 board and on the MT8195 Cherry
+Tomato Chromebook.
+
+[1]: https://lore.kernel.org/all/20240112133222.240038-1-angelogioacchino.delregno@collabora.com
+
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      |  26 +++-
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts  |  18 ++-
+ arch/arm64/boot/dts/mediatek/mt8195-evb.dts   |  12 ++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 125 +++++++++++-------
+ .../dts/mediatek/mt8395-genio-1200-evk.dts    |  17 ++-
+ 5 files changed, 140 insertions(+), 58 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+index a136bea99d9c..e563a2dc4cce 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+@@ -1293,11 +1293,32 @@ &uart0 {
+ 	status = "okay";
+ };
+ 
++/*
++ * For the USB Type-C ports the role and alternate modes switching is
++ * done by the EC so we set dr_mode to host to avoid interfering.
++ */
++&ssusb0 {
++	dr_mode = "host";
++	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	status = "okay";
++};
++
++&ssusb2 {
++	dr_mode = "host";
++	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	status = "okay";
++};
++
++&ssusb3 {
++	dr_mode = "host";
++	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	status = "okay";
++};
++
+ &xhci0 {
+ 	status = "okay";
+ 
+ 	rx-fifo-depth = <3072>;
+-	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	vbus-supply = <&usb_vbus>;
+ };
+ 
+@@ -1311,8 +1332,6 @@ &xhci1 {
+ 
+ &xhci2 {
+ 	status = "okay";
+-
+-	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	vbus-supply = <&usb_vbus>;
+ };
+ 
+@@ -1321,7 +1340,6 @@ &xhci3 {
+ 
+ 	/* MT7921's USB Bluetooth has issues with USB2 LPM */
+ 	usb2-lpm-disable;
+-	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	vbus-supply = <&usb_vbus>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+index 69c7f3954ae5..9872743f743f 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+@@ -528,8 +528,22 @@ &u3phy3 {
+ 	status = "okay";
+ };
+ 
+-&xhci0 {
++&ssusb0 {
++	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	status = "okay";
++};
++
++&ssusb2 {
+ 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	status = "okay";
++};
++
++&ssusb3 {
++	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	status = "okay";
++};
++
++&xhci0 {
+ 	vbus-supply = <&otg_vbus_regulator>;
+ 	status = "okay";
+ };
+@@ -540,11 +554,9 @@ &xhci1 {
+ };
+ 
+ &xhci2 {
+-	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	status = "okay";
+ };
+ 
+ &xhci3 {
+-	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+index 690dc7717f2c..341b6e074139 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+@@ -160,6 +160,18 @@ &uart0 {
+ 	status = "okay";
+ };
+ 
++&ssusb0 {
++	status = "okay";
++};
++
++&ssusb2 {
++	status = "okay";
++};
++
++&ssusb3 {
++	status = "okay";
++};
++
+ &xhci0 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index 152cc0b191bb..45f278efd946 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -1349,29 +1349,40 @@ queue3 {
+ 			};
+ 		};
+ 
+-		xhci0: usb@11200000 {
+-			compatible = "mediatek,mt8195-xhci",
+-				     "mediatek,mtk-xhci";
+-			reg = <0 0x11200000 0 0x1000>,
+-			      <0 0x11203e00 0 0x0100>;
++		ssusb0: usb@11201000 {
++			compatible = "mediatek,mt8195-mtu3", "mediatek,mtu3";
++			reg = <0 0x11201000 0 0x2dff>, <0 0x11203e00 0 0x0100>;
+ 			reg-names = "mac", "ippc";
+-			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
+-			phys = <&u2port0 PHY_TYPE_USB2>,
+-			       <&u3port0 PHY_TYPE_USB3>;
+-			assigned-clocks = <&topckgen CLK_TOP_USB_TOP>,
+-					  <&topckgen CLK_TOP_SSUSB_XHCI>;
+-			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+-						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
++			ranges = <0 0 0 0x11200000 0 0x3f00>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH 0>;
+ 			clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
+ 				 <&topckgen CLK_TOP_SSUSB_REF>,
+-				 <&apmixedsys CLK_APMIXED_USB1PLL>,
+-				 <&clk26m>,
+ 				 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
+-			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
+-				      "xhci_ck";
+-			mediatek,syscon-wakeup = <&pericfg 0x400 103>;
++			clock-names = "sys_ck", "ref_ck", "mcu_ck";
++			phys = <&u2port0 PHY_TYPE_USB2>, <&u3port0 PHY_TYPE_USB3>;
+ 			wakeup-source;
++			mediatek,syscon-wakeup = <&pericfg 0x400 103>;
+ 			status = "disabled";
++
++			xhci0: usb@0 {
++				compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
++				reg = <0 0 0 0x1000>;
++				reg-names = "mac";
++				interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
++				assigned-clocks = <&topckgen CLK_TOP_USB_TOP>,
++						  <&topckgen CLK_TOP_SSUSB_XHCI>;
++				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
++							 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
++				clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
++					 <&topckgen CLK_TOP_SSUSB_REF>,
++					 <&apmixedsys CLK_APMIXED_USB1PLL>,
++					 <&clk26m>,
++					 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
++				clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
++				status = "disabled";
++			};
+ 		};
+ 
+ 		mmc0: mmc@11230000 {
+@@ -1452,52 +1463,68 @@ xhci1: usb@11290000 {
+ 			status = "disabled";
+ 		};
+ 
+-		xhci2: usb@112a0000 {
+-			compatible = "mediatek,mt8195-xhci",
+-				     "mediatek,mtk-xhci";
+-			reg = <0 0x112a0000 0 0x1000>,
+-			      <0 0x112a3e00 0 0x0100>;
++		ssusb2: usb@112a1000 {
++			compatible = "mediatek,mt8195-mtu3", "mediatek,mtu3";
++			reg = <0 0x112a1000 0 0x2dff>, <0 0x112a3e00 0 0x0100>;
+ 			reg-names = "mac", "ippc";
+-			interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH 0>;
+-			phys = <&u2port2 PHY_TYPE_USB2>;
+-			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_2P>,
+-					  <&topckgen CLK_TOP_SSUSB_XHCI_2P>;
+-			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+-						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
++			ranges = <0 0 0 0x112a0000 0 0x3f00>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			interrupts = <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH 0>;
++			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_2P>;
++			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+ 			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_2P_BUS>,
+ 				 <&topckgen CLK_TOP_SSUSB_P2_REF>,
+-				 <&clk26m>,
+-				 <&clk26m>,
+ 				 <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
+-			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
+-				      "xhci_ck";
+-			mediatek,syscon-wakeup = <&pericfg 0x400 105>;
++			clock-names = "sys_ck", "ref_ck", "mcu_ck";
++			phys = <&u2port2 PHY_TYPE_USB2>;
+ 			wakeup-source;
++			mediatek,syscon-wakeup = <&pericfg 0x400 105>;
+ 			status = "disabled";
++
++			xhci2: usb@0 {
++				compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
++				reg = <0 0 0 0x1000>;
++				reg-names = "mac";
++				interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH 0>;
++				assigned-clocks = <&topckgen CLK_TOP_SSUSB_XHCI_2P>;
++				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
++				clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
++				clock-names = "sys_ck";
++				status = "disabled";
++			};
+ 		};
+ 
+-		xhci3: usb@112b0000 {
+-			compatible = "mediatek,mt8195-xhci",
+-				     "mediatek,mtk-xhci";
+-			reg = <0 0x112b0000 0 0x1000>,
+-			      <0 0x112b3e00 0 0x0100>;
++		ssusb3: usb@112b1000 {
++			compatible = "mediatek,mt8195-mtu3", "mediatek,mtu3";
++			reg = <0 0x112b1000 0 0x2dff>, <0 0x112b3e00 0 0x0100>;
+ 			reg-names = "mac", "ippc";
+-			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>;
+-			phys = <&u2port3 PHY_TYPE_USB2>;
+-			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_3P>,
+-					  <&topckgen CLK_TOP_SSUSB_XHCI_3P>;
+-			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
+-						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
++			ranges = <0 0 0 0x112b0000 0 0x3f00>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			interrupts = <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH 0>;
++			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_3P>;
++			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
+ 			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_3P_BUS>,
+ 				 <&topckgen CLK_TOP_SSUSB_P3_REF>,
+-				 <&clk26m>,
+-				 <&clk26m>,
+ 				 <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>;
+-			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck",
+-				      "xhci_ck";
+-			mediatek,syscon-wakeup = <&pericfg 0x400 106>;
++			clock-names = "sys_ck", "ref_ck", "mcu_ck";
++			phys = <&u2port3 PHY_TYPE_USB2>;
+ 			wakeup-source;
++			mediatek,syscon-wakeup = <&pericfg 0x400 106>;
+ 			status = "disabled";
++
++			xhci3: usb@0 {
++				compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
++				reg = <0 0 0 0x1000>;
++				reg-names = "mac";
++				interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>;
++				assigned-clocks = <&topckgen CLK_TOP_SSUSB_XHCI_3P>;
++				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
++				clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>;
++				clock-names = "sys_ck";
++				status = "disabled";
++			};
+ 		};
+ 
+ 		pcie0: pcie@112f0000 {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+index 7fc515a07c65..1558649f633c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8395-genio-1200-evk.dts
+@@ -880,6 +880,21 @@ &ufsphy {
+ 	status = "disabled";
+ };
+ 
++&ssusb0 {
++	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	status = "okay";
++};
++
++&ssusb2 {
++	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	status = "okay";
++};
++
++&ssusb3 {
++	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	status = "okay";
++};
++
+ &xhci0 {
+ 	status = "okay";
+ };
+@@ -890,11 +905,9 @@ &xhci1 {
+ };
+ 
+ &xhci2 {
+-	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	status = "okay";
+ };
+ 
+ &xhci3 {
+-	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+ 	status = "okay";
+ };
+-- 
+2.43.0
+
 
