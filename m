@@ -1,349 +1,248 @@
-Return-Path: <devicetree+bounces-32150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98DF82E257
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 22:53:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8144182E279
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 23:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49F392838AB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 21:53:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FFE0B220D0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 22:13:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7B21B277;
-	Mon, 15 Jan 2024 21:53:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 674BC1B5A0;
+	Mon, 15 Jan 2024 22:13:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="EWopEcah"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mK8yDsDx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA381B580
-	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 21:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2cd33336b32so120594601fa.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 13:53:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1705355631; x=1705960431; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0juhdxoJdNDjw3AWC7m674HZgZNMoXBN904ysxBcgSY=;
-        b=EWopEcahXmwmGocHFB/tEfXBcVBpIcPv/tsOi5vf+WJiaFOsGWf+DulHLv6qRY3cCB
-         mqAXrDj8wzlUZp5tK/uHJZ90F3VS2d4qHC7YyqbpcZwQsMqH4WbKtv3ncVm4+XQD9iJn
-         6+DYnm6E7Go8xH5W41NVXN2RtZqW5UCUau6tU7EPumUvIzIxsl7gwN8fsSSobMwe2Yxl
-         jNVVsDXW0FBnqyFiqnwZv34rV98zXoVk348KSgiyBR/S5vs/wUMVLp9SfsBTviDNL719
-         VvBilHo1n+lx+mTd9FGlEUQhXDMt+Y3w4RmDwUZZ81Fj5edz1Zl0k6JOLP0byG86KCpx
-         zhrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705355631; x=1705960431;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0juhdxoJdNDjw3AWC7m674HZgZNMoXBN904ysxBcgSY=;
-        b=h6mOefcSlC0hcDTusFze6cEEW7pvw2lyTywDx4BKRU0C5X0mI9h3xyfNQXQAy1cVuj
-         QJJPxdOLoih9oaOuxbfmcvX1vM3S5GuzsOxyXajdhxDe4xebbLbOkEhtgB+3OW+1GsGi
-         Cq2cnpZ+/h4khsiqassw1gq/8GV8WFr/grXz6gqqUOCkLzUFd5RtjfhIBNM8z3y9yElg
-         vLEEdjW6d2hckxlTX0cHToRyqOk7dnxYtciOzqIv146ZfDzQLnXGJ7xwO5JW2PGXKzwL
-         qBhS/F2AwllLbreQEySbbcC5wPu7dQHy0hQ+pVs0/RkbTYgCt9zT3JpFWxtlgAyFpun/
-         MQoA==
-X-Gm-Message-State: AOJu0Ywzir7Gx9ieHc/qCm6k8PdZR/SXS27YPjmyEW1Nw5TRxMbTXAIe
-	ZPRpZs+HhuWCPywsjiKfK8rK78wfub5NzFmtVWoJiJ426ZMs5A==
-X-Google-Smtp-Source: AGHT+IGYi8HACiYudVUVmDmfVIu6fL9eg+hsPDqQoeSbZVORoJSzUkCzMnPUtyA7lZ+zfvqM1cVeE1n8Nt1Yi0D892s=
-X-Received: by 2002:a2e:9c91:0:b0:2cc:9882:4cb5 with SMTP id
- x17-20020a2e9c91000000b002cc98824cb5mr3372646lji.45.1705355630105; Mon, 15
- Jan 2024 13:53:50 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A820017BDC;
+	Mon, 15 Jan 2024 22:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay4-d.mail.gandi.net (unknown [217.70.183.196])
+	by mslow1.mail.gandi.net (Postfix) with ESMTP id 7F256C5E91;
+	Mon, 15 Jan 2024 22:11:11 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0BE28E0002;
+	Mon, 15 Jan 2024 22:10:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1705356663;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=BNpSqsS8XC+o4t+8mb4+eClJ0FTb3VnER5NeEMVYzUk=;
+	b=mK8yDsDxaA5F7ORFHTfdYDVAtRLbHg29t2GN/tpinTID/C73BtiJGw8SmjrtnuGx4q0Rha
+	tBzMlvU53RmKMJtQOgAV3zPTrELcO/LfjLVCpv10cH5yDyPaMT/WnpXjs5RkngldQPRJh7
+	McPsM4JI349fkggPDS9WFwa+CdiagK6gF6EEzfNFl4H4lMTyN1P+uz94KdRYkaC1WmZlh3
+	kNgrLE3D0w8ilyc2YEVAlwNcqlr6GJoV/XctyyVoHCOoklwyVSKv5vfPyZFnA3ZeDNty2g
+	Ck6JwFTtmdCNzkI1xK37qHPCi9nfriGsKRVzVEiRfELUqntq+u+ZNGZxNNWIeg==
+Date: Mon, 15 Jan 2024 23:10:57 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, Srinivas Kandagatla
+ <srinivas.kandagatla@linaro.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Walle
+ <michael@walle.cc>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, u-boot@lists.denx.de, =?UTF-8?B?UmFmYcWC?=
+ =?UTF-8?B?IE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V3 1/6] dt-bindings: nvmem: layouts: add U-Boot
+ environment variables layout
+Message-ID: <20240115231057.6ac1dbd0@xps-13>
+In-Reply-To: <20240115170903.GA911971-robh@kernel.org>
+References: <20231221173421.13737-1-zajec5@gmail.com>
+	<20240104001129.GA2045237-robh@kernel.org>
+	<20240104085839.5624c354@xps-13>
+	<8c8d2d38-faf2-47f2-bfbf-2e4842dded47@gmail.com>
+	<20240115170903.GA911971-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231220104810.3179-1-mitrutzceclan@gmail.com>
-In-Reply-To: <20231220104810.3179-1-mitrutzceclan@gmail.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 15 Jan 2024 15:53:39 -0600
-Message-ID: <CAMknhBELp3NQEHE16gHhC96bttoafQOGxx3a_dLZn9o2Ru7y9g@mail.gmail.com>
-Subject: Re: [PATCH v11 1/2] dt-bindings: adc: add AD7173
-To: Dumitru Ceclan <mitrutzceclan@gmail.com>
-Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org, 
-	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Walle <michael@walle.cc>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu <chiaen_wu@richtek.com>, 
-	Niklas Schnelle <schnelle@linux.ibm.com>, =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
-	Mike Looijmans <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, 
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Wed, Dec 20, 2023 at 4:48=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@gmail=
-.com> wrote:
->
-> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
-> which can be used in high precision, low noise single channel application=
-s
-> or higher speed multiplexed applications. The Sigma-Delta ADC is intended
-> primarily for measurement of signals close to DC but also delivers
-> outstanding performance with input bandwidths out to ~10kHz.
->
-> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
-> ---
+Hi Rob,
 
-Sorry for the late reply as I see this has been applied already but...
+robh@kernel.org wrote on Mon, 15 Jan 2024 11:09:03 -0600:
 
-(I've been going over the datasheets for these and other related parts
-(AD411x) in detail today so please CC me on future updates to the
-bindings/driver for these if you don't mind)
+> On Thu, Jan 04, 2024 at 10:10:13AM +0100, Rafa=C5=82 Mi=C5=82ecki wrote:
+> > On 4.01.2024 08:58, Miquel Raynal wrote:
+> > > robh@kernel.org wrote on Wed, 3 Jan 2024 17:11:29 -0700:
+> > > > On Thu, Dec 21, 2023 at 06:34:16PM +0100, Rafa=C5=82 Mi=C5=82ecki w=
+rote:
+> > > > > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> > > > >=20
+> > > > > U-Boot env data is a way of storing firmware variables. It's a fo=
+rmat
+> > > > > that can be used of top of various storage devices. Its binding s=
+hould
+> > > > > be an NVMEM layout instead of a standalone device.
+> > > > >=20
+> > > > > This patch adds layout binding which allows using it on top of MT=
+D NVMEM
+> > > > > device as well as any other. At the same time it deprecates the o=
+ld
+> > > > > combined binding.
+> > > >=20
+> > > > I don't understand the issue. From a DT perspective, there isn't. A
+> > > > partition is not a device, but is describing the layout of storage
+> > > > already.
+> > >=20
+> > > Actually I think what Rafa=C5=82 wants to do goes in the right direct=
+ion but
+> > > I also understand from a binding perspective it may be a little
+> > > confusing, even more if we consider "NVMEM" a Linux specific concept.
+> > >=20
+> > > There is today a "u-boot env" NVMEM *device* description which
+> > > almost sits at the same level as eg. an eeprom device. We cannot
+> > > compare "an eeprom device" and "a u-boot environment" of course. But
+> > > that's truly what is currently described.
+> > >=20
+> > > * Current situation
+> > >=20
+> > > 	Flash device -> U-Boot env layout -> NVMEM cells
+>=20
+> Isn't it?:
+>=20
+> Flash device -> fixed-partitions -> U-Boot env layout -> NVMEM cells
+>=20
+> > >=20
+> > > * Improved situation
+> > >=20
+> > > 	Any storage device -> NVMEM -> U-Boot env layout -> NVMEM cells
+>=20
+> Why is this better? We don't need a container to say 'this is NVMEM=20
+> stuff' or 'this is MTD stuff'. 'U-Boot env layout' can tell us 'this is=20
+> NVMEM stuff' or whatever the kernel decides in the future.
 
->  .../bindings/iio/adc/adi,ad7173.yaml          | 188 ++++++++++++++++++
->  1 file changed, 188 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7173.=
-yaml
->
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/=
-Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> new file mode 100644
-> index 000000000000..7c8caef76528
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
-> @@ -0,0 +1,188 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7173.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD7173 ADC
-> +
-> +maintainers:
-> +  - Ceclan Dumitru <dumitru.ceclan@analog.com>
-> +
-> +description: |
-> +  Bindings for the Analog Devices AD717X ADC's. Datasheets for supported=
- chips:
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7172-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7173-8.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7175-2.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
-AD7176-2.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7172-2
-> +      - adi,ad7173-8
-> +      - adi,ad7175-2
-> +      - adi,ad7176-2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
+Yes, I also want the U-boot env layout to tell us "this is nvmem
+stuff". But that's not the case today. Today, it says "this is NVMEM
+stuff on top of mtd stuff". This was a mistake in the first place, but
+this compatible is heavily tight to mtd and cannot work on anything
+else. And correcting this is IMO the right direction.
 
-As discussed in v8 [1] it is not clear what signal this is. Based on
-that discussion, I'm assuming the RDY signal, but how would bindings
-consumers know that without a description since it is not the only
-digital output signal of the chip? And why the ERROR signal was
-omitted here was never addressed AFAICT.
+> > > The latter is of course the most relevant description as we expect
+> > > storage devices to expose a storage-agnostic interface (NVMEM in
+> > > this case) which can then be parsed (by NVMEM layouts) in a storage
+> > > agnostic way.
+> > >=20
+> > > In the current case, the current U-Boot env binding tells people to
+> > > declare the env layout on top of a flash device (only). The current
+> > > description also expects a partition node which is typical to flash
+> > > devices. Whereas what we should have described in the first place is a
+> > > layout that applies on any kind of NVMEM device.
+> > >=20
+> > > Bonus point: We've been working the last couple years on clarifying
+> > > bindings, especially with mtd partitions (with the partitions{}
+> > > container) and NVMEM layouts (with the nvmem-layout{} container).
+> > > The switch proposed in this patch makes use of the latter, of course.
+> >=20
+> > Thanks Miqu=C3=A8l for filling bits I missed in commit description. Des=
+pite
+> > years in Linux/DT I still struggle with more complex designs
+> > documentation.
+> >=20
+> >=20
+> > As per Rob's comment I think I see his point and a possible design
+> > confusion. If you look from a pure DT perspective then "partitions" and
+> > "nvmem-layout" serve a very similar purpose. They describe device's data
+> > content structure. For fixed structures we have very similar
+> > "fixed-partitions" and "fixed-cells".
+> >=20
+> > If we were to design those bindings today I'm wondering if we couldn't
+> > have s/partitions/layout/ and s/nvmem-layout/layout/.
+>=20
+> Why!? It is just a name, and we can't get rid of the old names. We don't=
+=20
+> need 2 names.
 
-[1]: https://lore.kernel.org/linux-iio/20231217135007.3e5d959a@jic23-huawei=
-/
+We need 2 names because we are not capturing the same concepts here?
 
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  spi-max-frequency:
-> +    maximum: 20000000
-> +
+> > Rob: other than having different bindings for MTD vs. NVMEM layouts I
+> > think they overall design makes sense. A single device may have content
+> > structurized on more than 1 level:
+> > 1. You may have fixed layout at top level (multiple partitions)
+> > 2. Single partitions may have their own layouts (like U-Boot env data)
+>=20
+> Sure. Partitions is for 1 and Layouts is for 2.
+>=20
+> > Maybe ideally above should look more like:
+> >=20
+> > flash@0 {
+> > 	compatible =3D "<flash-compatible>";
+> >=20
+> > 	layout {
+> > 		compatible =3D "fixed-layout";
+>=20
+> Why does 'partitions' and 'fixed-partitions' not work here?
 
-According to the timing diagram in the datasheet, SCLK is high during
-idle, so don't we need `spi-cpol: true` here?
+They do, and that's actually what we use. This example just illustrates
+another proposal from Rafal. No panic :)
 
-Likewise, data is valid on the trailing SCLK edge, so don't we need
-`spi-cpha: true` here?
+>=20
+> > 		#address-cells =3D <1>;
+> > 		#size-cells =3D <1>;
+> >=20
+> > 		partition@0 {
+> > 			reg =3D <0x0 0x40000>;
+> > 			label =3D "u-boot";
+> > 		};
+> >=20
+> > 		partition@40000 {
+> > 			reg =3D <0x40000 0x10000>;
+> > 			label =3D "u-boot-env";
+> >=20
+> > 			layout {
+> > 				compatible =3D "u-boot,env-layout";
+> > 			};
+> > 		};
+> >=20
+> > 		partition@50000 {
+> > 			reg =3D <0x50000 0x100000>;
+> > 			label =3D "u-boot";
+> > 		};
+> > 	};
+> > };
+> >=20
+> > but I can clearly see a use for nested "layout"s. As I said maybe we
+> > just shouldn't be so open in calling those MTD or NVMEM devices as that
+> > is kind of Linux specific.
+>=20
+> The overall structure should be agnostic to the subsystem. Specific=20
+> compatibles like 'u-boot,env' can be tied to a subsystem.
+>=20
+> Maybe some things need to be both MTD and NVMEM. MTD to operate on the=20
+> opague region and NVMEM to access the contents.
+>=20
+>=20
+> > I'm not sure if we should try renaming "nvmem-layout" to "layout" or
+> > "partitions" in similar way at this point.
+>=20
+> You can't rename. It's an ABI though maybe the whole "nvmem-layout" is=20
+> new enough we can. It's looking like it was a mistake to accept any of=20
+> this.
 
+I don't think so.
 
-> +  gpio-controller:
-> +    description: Marks the device node as a GPIO controller.
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +    description:
-> +      The first cell is the GPIO number and the second cell specifies
-> +      GPIO flags, as defined in <dt-bindings/gpio/gpio.h>.
-> +
-> +  refin-supply:
-> +    description: external reference supply, can be used as reference for=
- conversion.
+A partition and a layout are not the same concept, as acknowledged
+above. We need both, and we need both because we can encapsulate
+both as well:
 
-If I'm understanding correctly, this represents both voltage inputs
-REF+ and REF-, correct? The datasheet says "Reference Input Negative
-Terminal. REF=E2=88=92 can span from AVSS to AVDD1 =E2=88=92 1 V". It seems=
- like they
-should be separate supplies in case REF- is non-zero. Otherwise, how
-can we know what voltage it is? (same comment applies to refin2.)
+flash { partitions { partA@x { layout { cell@Y } } } }
 
-> +
-> +  refin2-supply:
-> +    description: external reference supply, can be used as reference for=
- conversion.
-> +
-> +  avdd-supply:
-> +    description: avdd supply, can be used as reference for conversion.
-> +
-> +  avdd2-supply:
-> +    description: avdd2 supply, used as the input to the internal voltage=
- regulator.
-> +
-> +  iovdd-supply:
-> +    description: iovdd supply, used for the chip digital interface.
-> +
+Renaming nvmem-layout to layout can be done if you want, I don't mind,
+but I don't see the point in doing that.
 
-I overlooked this before, but these chips also have an optional
-external clock input so it seems like they should have an optional
-clocks property as well.
-
-> +patternProperties:
-> +  "^channel@[0-9a-f]$":
-> +    type: object
-> +    $ref: adc.yaml
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        minimum: 0
-> +        maximum: 15
-> +
-> +      diff-channels:
-> +        items:
-> +          minimum: 0
-> +          maximum: 31
-> +
-> +      adi,reference-select:
-> +        description: |
-> +          Select the reference source to use when converting on
-> +          the specific channel. Valid values are:
-> +          refin      : REFIN(+)/REFIN(=E2=88=92).
-> +          refin2     : REFIN2(+)/REFIN2(=E2=88=92)
-> +          refout-avss: REFOUT/AVSS (Internal reference)
-> +          avdd       : AVDD
-> +
-> +          External reference refin2 only available on ad7173-8.
-> +          If not specified, internal reference used.
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        enum:
-> +          - refin
-> +          - refin2
-> +          - refout-avss
-> +          - avdd
-> +        default: refout-avss
-> +
-> +    required:
-> +      - reg
-> +      - diff-channels
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-
-Why are interrupts required? What if the pin is not connected?
-
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
-> +            contains:
-> +              const: adi,ad7173-8
-> +    then:
-> +      properties:
-> +        refin2-supply: false
-> +      patternProperties:
-> +        "^channel@[0-9a-f]$":
-> +          properties:
-> +            adi,reference-select:
-> +              enum:
-> +                - refin
-> +                - refout-avss
-> +                - avdd
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      adc@0 {
-> +        compatible =3D "adi,ad7173-8";
-> +        reg =3D <0>;
-> +
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        interrupts =3D <25 IRQ_TYPE_EDGE_FALLING>;
-> +        interrupt-parent =3D <&gpio>;
-> +        spi-max-frequency =3D <5000000>;
-> +        gpio-controller;
-> +        #gpio-cells =3D <2>;
-> +
-> +        refin-supply =3D <&dummy_regulator>;
-> +
-> +        channel@0 {
-> +          reg =3D <0>;
-> +          bipolar;
-> +          diff-channels =3D <0 1>;
-> +          adi,reference-select =3D "refin";
-> +        };
-> +
-> +        channel@1 {
-> +          reg =3D <1>;
-> +          diff-channels =3D <2 3>;
-> +        };
-> +
-> +        channel@2 {
-> +          reg =3D <2>;
-> +          bipolar;
-> +          diff-channels =3D <4 5>;
-> +        };
-> +
-> +        channel@3 {
-> +          reg =3D <3>;
-> +          bipolar;
-> +          diff-channels =3D <6 7>;
-> +        };
-> +
-> +        channel@4 {
-> +          reg =3D <4>;
-> +          diff-channels =3D <8 9>;
-> +          adi,reference-select =3D "avdd";
-> +        };
-> +      };
-> +    };
-> --
-> 2.42.0
->
->
+Thanks,
+Miqu=C3=A8l
 
