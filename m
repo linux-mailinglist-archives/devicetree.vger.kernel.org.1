@@ -1,290 +1,146 @@
-Return-Path: <devicetree+bounces-32117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F20A82DE6C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:23:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72CF82DE7B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 18:32:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CECDB282799
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:23:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E9E311C21B6E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:32:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D1217C98;
-	Mon, 15 Jan 2024 17:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KqlK2dID"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 587241803C;
+	Mon, 15 Jan 2024 17:32:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B3E18626;
-	Mon, 15 Jan 2024 17:23:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF34CC433C7;
-	Mon, 15 Jan 2024 17:23:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705339386;
-	bh=JWnACth0LzK7HNW8h/dOlwEvzifFvKEPIk8Dim2dsV0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KqlK2dIDtCW6ZHgZAwO6Wv353sYnGQa+fSqmbp9c2bNiEs6pPbZtO5SvxWvFwNOT7
-	 OHwTXnG9uLG2H7H1WG1bwORxzfdbR6Uh7Vq+GY82ZF0+K5LdoJ9qEFE5CnNkjnyIwb
-	 u+RmS0odFVtlBW9pAaYtY/+i+NB73ZOHc3GhDdYp9AvB9/PStOi+XcTu/uJdOwwvSC
-	 0gE/96B8/Zk2/u71kgW49xvWckn44jfEKGweNafZr7E5uuFQgzbbfII3PKTUurY4zf
-	 7TxbjPKdb/xIAc2MZ8JwDU7Kupdyqh9v13Mqm1wC0yIuvLtgTXrTxkorZX70bkzMff
-	 Hcx7+r+vxUUzg==
-Date: Mon, 15 Jan 2024 17:23:00 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jason-JH Lin =?utf-8?B?KOael+edv+elpSk=?= <Jason-JH.Lin@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	Johnson Wang =?utf-8?B?KOeOi+iBlumRqyk=?= <Johnson.Wang@mediatek.com>,
-	Singo Chang =?utf-8?B?KOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-	Jason-ch Chen =?utf-8?B?KOmZs+W7uuixqik=?= <Jason-ch.Chen@mediatek.com>,
-	Shawn Sung =?utf-8?B?KOWui+WtneismSk=?= <Shawn.Sung@mediatek.com>,
-	Nancy Lin =?utf-8?B?KOael+aso+ieoik=?= <Nancy.Lin@mediatek.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: mailbox: mediatek: gce-mailbox: Add
- reference to gce-props.yaml
-Message-ID: <20240115-player-waltz-8efb5885a23f@spud>
-References: <20240110063532.14124-1-jason-jh.lin@mediatek.com>
- <20240110063532.14124-3-jason-jh.lin@mediatek.com>
- <20240110-grumbling-tattling-0202fc5e21f2@spud>
- <8c4004d5b6f68dc096aaf2a537e429c310b60c08.camel@mediatek.com>
- <20240111-anthology-dock-c60d28ac7f1c@spud>
- <5eaccb10853215a6399759a715d2f0356782bac9.camel@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8FF18026
+	for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 17:32:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rPQom-0004EU-7Y; Mon, 15 Jan 2024 18:32:12 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rPQoh-00044H-MF; Mon, 15 Jan 2024 18:32:07 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rPQoh-000A5v-1x;
+	Mon, 15 Jan 2024 18:32:07 +0100
+Message-ID: <289c4af00bcc46e83555dacbc76f56477126d645.camel@pengutronix.de>
+Subject: Re: [PATCH v3 2/5] reset: Instantiate reset GPIO controller for
+ shared reset-gpios
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bartosz
+ Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, Srinivas Kandagatla
+ <srinivas.kandagatla@linaro.org>,  Banajit Goswami <bgoswami@quicinc.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,  Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Peter Rosin <peda@axentia.se>, Jaroslav Kysela <perex@perex.cz>, Takashi
+ Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org, 
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-i2c@vger.kernel.org, Chris Packham
+ <chris.packham@alliedtelesis.co.nz>,  Sean Anderson <sean.anderson@seco.com>
+Date: Mon, 15 Jan 2024 18:32:07 +0100
+In-Reply-To: <7f311659-9f49-44dc-ad40-977d34066d98@linaro.org>
+References: <20240112163608.528453-1-krzysztof.kozlowski@linaro.org>
+	 <20240112163608.528453-3-krzysztof.kozlowski@linaro.org>
+	 <CAMRc=MdcCZP5kgv7JBdy2m_naNbTSeq4MDE_3mk+1-5UD4ntwQ@mail.gmail.com>
+	 <7f311659-9f49-44dc-ad40-977d34066d98@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="wJ/jLXk4vNiM6iYD"
-Content-Disposition: inline
-In-Reply-To: <5eaccb10853215a6399759a715d2f0356782bac9.camel@mediatek.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
---wJ/jLXk4vNiM6iYD
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Jan 12, 2024 at 07:44:13AM +0000, Jason-JH Lin (=E6=9E=97=E7=9D=BF=
-=E7=A5=A5) wrote:
-> On Thu, 2024-01-11 at 17:31 +0000, Conor Dooley wrote:
-> > On Wed, Jan 10, 2024 at 04:36:20PM +0000, Jason-JH Lin (=E6=9E=97=E7=9D=
-=BF=E7=A5=A5) wrote:
-> > > Hi Conor,
-> > >=20
-> > > Thanks for the reviews.
-> > >=20
-> > > On Wed, 2024-01-10 at 10:36 +0000, Conor Dooley wrote:
-> > > > On Wed, Jan 10, 2024 at 02:35:30PM +0800, Jason-JH.Lin wrote:
-> > > > > 1. Add "Provider" to the title to make it clearer.
-> > > > > 2. Add reference to gce-props.yaml for adding mediatek,gce-
-> > > > > events
-> > > > > property.
-> > > >=20
-> > > > I can see this from the diff. There's still no explanation here
-> > > > as to
-> > > > why the mailbox provider needs to have a gce-event id. NAK until
-> > > > you
-> > > > can
-> > > > explain that.
-> > > >=20
-> > >=20
-> > > Sorry for missing the reason in commit message, I'll add it in the
-> > > next
-> > > version.
-> > >=20
-> > > There are 2 reasons why the mailbox provider needs gce-events:
-> > > 1. The mailbox provider here is CMDQ mailbox driver. It configures
-> > > GCE
-> > > hardware register by CPU directly. If we want to set the default
-> > > value
-> > > from 0 to 1 for specific gce-events during the initialization of
-> > > CMDQ
-> > > driver. We need to tell CMDQ driver what gce-events need to be set
-> > > and
-> > > I think such GCE hardware setting can get from its device node.
+On Mo, 2024-01-15 at 17:13 +0100, Krzysztof Kozlowski wrote:
+> On 15/01/2024 17:06, Bartosz Golaszewski wrote:
+> > > +
+> > > +static int __reset_add_reset_gpio_lookup(int id, struct device_node =
+*np,
+> > > +                                        unsigned int gpio,
+> > > +                                        unsigned int of_flags)
+> > > +{
+> > > +       struct gpiod_lookup_table *lookup __free(kfree) =3D NULL;
+> > > +       struct gpio_device *gdev __free(gpio_device_put) =3D NULL;
+> > > +       char *label __free(kfree) =3D NULL;
 > >=20
-> > Why would someone want to set it to 1 or 0?
+> > I got yelled at by Linus Torvalds personally for doing it like this. I
+> > know this is a common pattern in code using GLib but Linus wants auto
+> > variables to be initialized where they're declared...
 >=20
-> GCE HW have an event table in SRAM. Each event ID has a boolean event
-> value and the default value is 0. There are 1024 event IDs (0~1023) in
-> the event table. The mediatek,gce-events is the property to get the
-> event IDs.
->=20
-> E.g.
-> In some camera suspend/resume use cases, the may set the event ID: 100
-> to 1 before suspend. When CMDQ driver resumes, all the event value of
-> event IDs will be clear to 0. But camera driver won't know the event
-> IDs:100 has been cleared to 0 and still send a cmd to wait for the
-> event ID:100. So CMDQ driver may need to keep the value of event ID:
-> 100 before suspend and set back the value to 1 after CMDQ driver
-> clearing all the event value of event IDs.
->=20
-> CMDQ driver will need to know which event IDs' values need to be
-> backupped and restored in that camera suspend/resume use case.
-
-Unfortunately "some use case" doesn't really help me here, it is hard
-for me to tell whether these use cases are software policy or an
-attribute of the hardware. If I had the same exact camera but was using
-it for a different reason, might I set it to 1 before suspend in one
-case but not in the other?
-
-I also don't really understand how having this property helps in this
-case either. If a camera is a mailbox consumer, it should have a
-gce-event property for the event ID that it is using in its node.
-
-Why is that not sufficient and a gce-event also needs to be present in
-the consumer node? It seems to me like having it in the consumer alone
-should be sufficient, and the registration process would inform the
-mailbox provider driver which gce-event ID was being used by the camera.
-
->=20
-> > At what level will that vary? Per SoC? Per board? Something else?
+> Declaration is here. Initialization is here. Therefore this is
+> initialized where it is declared. What's more it is initialized to a
+> valid value, because __free() accepts NULLs.
+[...]
+> > ... so this should become:
 > >=20
->=20
-> I think the SoC supports camera feature may need this property.
->=20
-> > > 2. We'll have the secure CMDQ mailbox driver in the future patch
-> > > [1].
-> > > It will request or reserve a mailbox channel, which is a dedicate
-> > > GCE
-> > > thread, as a secure IRQ handler. This GCE thread executes a looping
-> > > instruction set that keeps waiting for the gce-event set from
-> > > another
-> > > GCE thread in the secure world. So we also need to tell the CMDQ
-> > > driver
-> > > what gce-event need to be waited.
+> >   struct gpio_device *gdev __free(gpio_device_put) =3D gpio_device_find=
+(...)
 > >=20
-> > Ditto here, what level does this vary at? Do different SoCs or
-> > different
-> > boards/platforms dictate the value?
->=20
-> It's a SoC level, the SoC supports secure feature will need this
-> property.
->=20
-> > Could this channel be determined from the soc-specific compatible?
+> > and same for the rest.
 > >=20
-> > In other words, please explain in your commit message why this
-> > requires
-> > a property and is not detectable from any existing mechanism. From
-> > reading this I don't know what is preventing the secure mailbox
-> > channel
-> > from picking a "random" unused channel.
+> > Don't get me wrong, I love cleanup.h but there's a (unofficial for
+> > now) coding style.
 >=20
-> The secure channel could be dedicated from the soc-specific compatible,
-> but the event ID couldn't.
->=20
-> The same event signal corresponding event ID may changes in different
-> SoC.
-> E.g.
-> The HW event signal for CMDQ_EVENT_VDO0_MUTEX_STREAM_DONE_0 is
-> corresponding to GCE event ID: 574 in MT8188, but it's corresponding to
-> eventID: 597 in MT8195.
+> So you just want to declare it not in top-part of the function but just
+> before first use?
 
-Is it always 574 in MT8188 and always 597 in MT8195?
+IIUC, Linus wants exactly this:
 
-Thanks,
-Conor.
+https://lore.kernel.org/all/CAHk-=3DwgRHiV5VSxtfXA4S6aLUmcQYEuB67u3BJPJPtuE=
+Ss1JyA@mail.gmail.com/
 
-> I can take any of the "unused" mailbox channel for the secure irq
-> handler. But without the property mediatek,gce-events, the secure
-> channel might not know what event ID to wait for.
->=20
-> Regards,
-> Jason-JH.Lin
+[...]
 > >=20
-> > Thanks,
-> > Conor.
-> >=20
-> > > [1] cmdq_sec_irq_notify_start() is where the GCE thread is
-> > > requested to
-> > > prepare a looping instruction set to wait for the gce-event.
-> > > -=20
+> > > +               goto out_unlock;
+> > >         }
 > > >=20
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20231222045228.=
-27826-9-jason-jh.lin@mediatek.com/
+> > >         rstc_id =3D rcdev->of_xlate(rcdev, &args);
+> > >         if (rstc_id < 0) {
+> > >                 rstc =3D ERR_PTR(rstc_id);
+> > > -               goto out;
+> > > +               goto out_unlock;
+> > >         }
 > > >=20
-> > > Regards,
-> > > Jason-JH.Lin
+> > >         /* reset_list_mutex also protects the rcdev's reset_control l=
+ist */
+> > >         rstc =3D __reset_control_get_internal(rcdev, rstc_id, shared,=
+ acquired);
 > > >=20
-> > > > Cheers,
-> > > > Conor.
-> > > >=20
-> > > > >=20
-> > > > > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml   |
-> > > > > 6
-> > > > > ++++--
-> > > > >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > > > >=20
-> > > > > diff --git
-> > > > > a/Documentation/devicetree/bindings/mailbox/mediatek,gce-
-> > > > > mailbox.yaml
-> > > > > b/Documentation/devicetree/bindings/mailbox/mediatek,gce-
-> > > > > mailbox.yaml
-> > > > > index cef9d7601398..728dc93117a6 100644
-> > > > > --- a/Documentation/devicetree/bindings/mailbox/mediatek,gce-
-> > > > > mailbox.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-
-> > > > > mailbox.yaml
-> > > > > @@ -4,7 +4,7 @@
-> > > > >  $id:=20
-> > > > >=20
-> http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
-> > > > >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > =20
-> > > > > -title: Mediatek Global Command Engine Mailbox
-> > > > > +title: MediaTek Global Command Engine Mailbox Provider
-> > > > > =20
-> > > > >  maintainers:
-> > > > >    - Houlong Wei <houlong.wei@mediatek.com>
-> > > > > @@ -57,6 +57,8 @@ required:
-> > > > >    - clocks
-> > > > > =20
-> > > > >  allOf:
-> > > > > +  - $ref: mediatek,gce-props.yaml
-> > > > > +
-> > > > >    - if:
-> > > > >        not:
-> > > > >          properties:
-> > > > > @@ -67,7 +69,7 @@ allOf:
-> > > > >        required:
-> > > > >          - clock-names
-> > > > > =20
-> > > > > -additionalProperties: false
-> > > > > +unevaluatedProperties: false
-> > > > > =20
-> > > > >  examples:
-> > > > >    - |
-> > > > > --=20
-> > > > > 2.18.0
-> > > > >=20
+> > > -out:
+> > > +out_unlock:
+> > >         mutex_unlock(&reset_list_mutex);
+> > > +out_put:
+> > >         of_node_put(args.np);
+> >=20
+> > I suggest reworking this to use cleanup.h as well.
+>=20
+> It's independent task. This is an existing code and any refactoring to
+> cleanup or not is independent thing.
 
---wJ/jLXk4vNiM6iYD
-Content-Type: application/pgp-signature; name="signature.asc"
+Seconded. Separate cleanup very welcome, but this series is about
+adding functionality.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaVp9AAKCRB4tDGHoIJi
-0ucwAQDQ7iL6IxT5xeFFIgZmy1d8nErCc0ODiz9/qpKRG8QSgwEAuWPzmOA6EYym
-kg59jObX1MP438/COfKD75/g+zMofww=
-=x6aM
------END PGP SIGNATURE-----
-
---wJ/jLXk4vNiM6iYD--
+regards
+Philipp
 
