@@ -1,50 +1,58 @@
-Return-Path: <devicetree+bounces-32101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C34FF82DDA6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:32:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF74382DDAD
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 17:36:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F2F4B20FAB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:32:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B8491F223A1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jan 2024 16:36:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B6DD17730;
-	Mon, 15 Jan 2024 16:32:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 099BB17BB5;
+	Mon, 15 Jan 2024 16:36:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RPX6xHOJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="baIIcGGK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B80F17BAD;
-	Mon, 15 Jan 2024 16:32:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CF92C433F1;
-	Mon, 15 Jan 2024 16:32:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9C117C62;
+	Mon, 15 Jan 2024 16:36:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE023C433C7;
+	Mon, 15 Jan 2024 16:35:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705336338;
-	bh=jIHd7RWYoQH0ICLh5gm4rBIQX41V/WBDu5Lo3jqSrkc=;
+	s=k20201202; t=1705336563;
+	bh=xUGRPQ2EffaZwZLMEGtFK+oABfjvuI3uXumfT349cmM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RPX6xHOJogGdH3G2C+jlERKp4dvJJRR3bRIJhm0HpriyqkWtucYEIPQosA6GXjeM9
-	 EHAP+QXGFNxBzgT90WVDALLYDfOAXa5laLPDt6uSZLy4ikSa4KrbDT9HQglytJ3ywI
-	 Kdor+c7keaMy7fct1NZzyrAF/gy/scPASOpq9pGLzlp/MOzB6lAtayR1xzyYhJZWqg
-	 F150GRNOuUv4JAuVvq/FxKMmrc+yBBN+QC2gzh+gA6dID2dNxHri1WdMWB6h1HrqKv
-	 KYJs83fBjB+N7a2Na8NqVrDSBbEe38Lcd7FrsUd9HNyIPgBhWTsPg4N6yFidyqWIrN
-	 Mndnv2EyCjVjQ==
-Date: Mon, 15 Jan 2024 16:32:14 +0000
+	b=baIIcGGKasqctSxWoLvoIPPfrKaUFdbi3SU7f2+lkFCiFEVr5lQdbQDJDBiRNob/E
+	 S7mTeaClEEVSuokJ0I8H9bdImVf+TbIj8CKBxy0J74zjOmoDJRIzNdUcSgjMje6znx
+	 LgH63B0/kouOCHiikIdpJDupCsZ0aRUyFL0sGnh3KWOuVZlE+5JsTilI8jGyHbdWEK
+	 CoAI8C3SzUUYPb0F2YJf/4f0ef6A8y1AKTTHnPYVLeEGSZCiM2Na8RVeDenqP1mxGo
+	 yJP3rDXHZ5oItZjiLQ3p4bAnE3gsu6XrIs2G1yKP7Bf8A4aOAPuRDcnY4kkVX8o1Cg
+	 199mFZfiOZYwA==
+Date: Mon, 15 Jan 2024 16:35:57 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Elad Nachman <enachman@marvell.com>, gregkh@linuxfoundation.org,
-	rowland.harvard.edu@mx0a-0016f401.pphosted.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add Marvell ac5
-Message-ID: <20240115-angelfish-droplet-2e1f300397f2@spud>
-References: <20240114172154.2622275-1-enachman@marvell.com>
- <20240114172154.2622275-2-enachman@marvell.com>
- <de079fa2-bba2-4e50-b738-465ed959633a@linaro.org>
+To: Inochi Amaoto <inochiama@outlook.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chao Wei <chao.wei@sophgo.com>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Liu Gui <kenneth.liu@sophgo.com>,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v6 1/4] dt-bindings: clock: sophgo: Add clock controller
+ of SG2000 series SoC
+Message-ID: <20240115-spendable-achiness-cff7918fe810@spud>
+References: <IA1PR20MB4953C774D41EDF1EADB6EC18BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com>
+ <IA1PR20MB4953B0CD5B8796102DE358C2BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,63 +60,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="myXpCa/y9/oa7o6h"
+	protocol="application/pgp-signature"; boundary="TuBYItwW9BIAMewk"
 Content-Disposition: inline
-In-Reply-To: <de079fa2-bba2-4e50-b738-465ed959633a@linaro.org>
+In-Reply-To: <IA1PR20MB4953B0CD5B8796102DE358C2BB6D2@IA1PR20MB4953.namprd20.prod.outlook.com>
 
 
---myXpCa/y9/oa7o6h
+--TuBYItwW9BIAMewk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 15, 2024 at 08:25:08AM +0100, Krzysztof Kozlowski wrote:
-> On 14/01/2024 18:21, Elad Nachman wrote:
-> > From: Elad Nachman <enachman@marvell.com>
-> >=20
-> > Add Marvell ac5 device tree bindings to generic EHCI.
-> > This compatible enables the Marvell Orion platform code
-> > to properly configure the DMA mask for the Marvell AC5 SOC.
-> >=20
-> > Signed-off-by: Elad Nachman <enachman@marvell.com>
+On Sun, Jan 14, 2024 at 12:16:58PM +0800, Inochi Amaoto wrote:
+> SG2000 series SoC has the same clock as CV1810 series, but the clock
+> related to A53 is functional in SG2000 series. So a new compatible
+> string is needed for the new SoC.
 >=20
-> This is a friendly reminder during the review process.
+> Add definition for the clock controller of the SG2000 series SoC.
 >=20
-> It looks like you received a tag and forgot to add it.
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> Link: https://github.com/sophgo/sophgo-doc/releases/tag/sg2000-datasheet-=
+v1.0-alpha
+> ---
+>  Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.ya=
+ml b/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
+> index c1dc24673c0d..59ef41adb539 100644
+> --- a/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
+> +++ b/Documentation/devicetree/bindings/clock/sophgo,cv1800-clk.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/clock/sophgo,cv1800-clk.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>=20
+> -title: Sophgo CV1800 Series Clock Controller
+> +title: Sophgo CV1800/SG2000 Series Clock Controller
+>=20
+>  maintainers:
+>    - Inochi Amaoto <inochiama@outlook.com>
+> @@ -14,6 +14,7 @@ properties:
+>      enum:
+>        - sophgo,cv1800-clk
+>        - sophgo,cv1810-clk
+> +      - sophgo,sg2000-clk
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I recall before you mentioned that the Sophgo folks were considering
+renaming one of their devices. Is the sg2000 the renamed one, or a
+different chip?
 
-Cheers,
+Thanks,
 Conor.
 
->=20
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tag is "received", when
-> provided in a message replied to you on the mailing list. Tools like b4
-> can help here. However, there's no need to repost patches *only* to add
-> the tags. The upstream maintainer will do that for tags received on the
-> version they apply.
->=20
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/su=
-bmitting-patches.rst#L577
->=20
-> If a tag was not added on purpose, please state why and what changed.
->=20
-> Best regards,
-> Krzysztof
->=20
-
---myXpCa/y9/oa7o6h
+--TuBYItwW9BIAMewk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaVeDgAKCRB4tDGHoIJi
-0u+hAQDNSp4qA2zR+OLCrexT01BskxalE5VSWlr+JoAUW4Tn1gEAl7pCg05locJn
-rLpNsU+tATBqiRfVnlBJGPIv3dDb0gE=
-=5xKb
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaVe7QAKCRB4tDGHoIJi
+0uRwAP9mzzbnJcU5NjK3wd0CYbLltUApBRsV7oVkt08heTojJwEA5gmuu8dEjtdJ
+1GycIchYx+T0qBt3L2ppGCqwqlIiMQ8=
+=TyKR
 -----END PGP SIGNATURE-----
 
---myXpCa/y9/oa7o6h--
+--TuBYItwW9BIAMewk--
 
