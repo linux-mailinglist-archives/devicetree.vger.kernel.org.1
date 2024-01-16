@@ -1,152 +1,236 @@
-Return-Path: <devicetree+bounces-32403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FCDF82F39C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:00:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C87482F3A2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:03:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93B961C23770
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:00:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ECF80B21F90
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:03:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 790271CD09;
-	Tue, 16 Jan 2024 18:00:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25771CD0B;
+	Tue, 16 Jan 2024 18:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e0czVSY7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BaRaCezC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 514941CAAE;
-	Tue, 16 Jan 2024 18:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A38B91CD04;
+	Tue, 16 Jan 2024 18:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705428042; cv=none; b=e89ZQ9pzg3fPH0zb6ZzPNSIHbSdqhLYms6H4LU9KzSssKM3M7FhjhRpLOWA2nKPTWnkoY5xALTIBc+ze3/Hb8VE1tZXtzV8j0xYSbyPh03/xbCVC0lRG7SYXGGZf/5li0idV/NXXvWO54m/gIVvthGkF1G+IcWIitd50MkiP4qs=
+	t=1705428206; cv=none; b=KBGfSqOz00hn3qlWpjSThsbkwgBIYheuR7Q8kwGrZwCT+TeBFdCCRKhLggWfbkadgRXXvKMZbDznIENa9H9fiLEOPDhJ+Lqfr1SSaDxapwMyPeIJZJWylemmHEstXs8bVtNIKTCgfnTMfX0w/X1Ihog8iefRIlDmLa+DosreY1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705428042; c=relaxed/simple;
-	bh=NEmbov86oEbrydeXDDCXgpjjK2og0SPcFaeap06DhNI=;
+	s=arc-20240116; t=1705428206; c=relaxed/simple;
+	bh=CRg9h5ljaE20inyWideyi9skHzli+4ErlCRBYmz6veQ=;
 	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
 	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=JvGkd+dcz3nMl0qolSOx1+DsP7jNlsCI9ssgYCjfE7eZHXA6aaxJ9AoI9ttXFPu+fexW9t0uPo9DET8qVNKl2oOPyg9m98n8J4LWJc274CkSYSIzX/mKgF60IjEd4b+DKzZwpkXHKKvGyoOwaFBi18e7bWXPfhxXXEz3X+hXKPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e0czVSY7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F26CC433C7;
-	Tue, 16 Jan 2024 18:00:41 +0000 (UTC)
+	 In-Reply-To; b=CTJPmzB8xhylbyQnNe9o+BHA6FHTJkSfwSYhtemFmhIrfqzEkpLnlHL5gQg1gUyMHe0zN7N6joulWCMEgzmYlC9ARGLCv4UPWFxdK1N1WI+xRkt1sS4fn81Jy7vg1wdo6Mliq9+Cca9Ls+0tz0jJ/fj9/uF9/nlvUjZaO3Mqh34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BaRaCezC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A272AC433C7;
+	Tue, 16 Jan 2024 18:03:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705428041;
-	bh=NEmbov86oEbrydeXDDCXgpjjK2og0SPcFaeap06DhNI=;
+	s=k20201202; t=1705428206;
+	bh=CRg9h5ljaE20inyWideyi9skHzli+4ErlCRBYmz6veQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e0czVSY7sYagwdSeFeVe0S+Yp2+5n0OKq+ZMhiSiuBdoX8nJLLpSnQcuiIS4wUh33
-	 ct1nBqldsfrL+a9oMZJNZu0vQMewgGaYwtV+kuFuaFdCyUJYM9vcTzriSE/YsapZh5
-	 XXgkV5mZZFrTum9xg7bgfHBk11CgSNUojd2KR3SICJqN06ooDLjFeFcgrvS7IAZOzl
-	 94jbFkI1OIVT2diIXI3ZRejJvf1i0VRn+12NJyVyRLsw7Th1z8urjCJWtwjCk1KJT4
-	 b283Gw2bT1B3BjB2jYRkY6eg7BGUhUoQI5zG/SNA2pBNQLTKEytXGW9sawLezP+cXO
-	 Qdkr6PD28NyxA==
-Date: Tue, 16 Jan 2024 12:00:39 -0600
-From: Rob Herring <robh@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
-	git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2] dt-bindings: soc: xilinx: Add support for K26 rev2
- SOMs
-Message-ID: <20240116180039.GA169201-robh@kernel.org>
-References: <3e86244a840a45c970289ba6d2fa700a74f5b259.1705051222.git.michal.simek@amd.com>
+	b=BaRaCezCYCB/6jAYn1+DDxNo1cVtLacjtp3GBM1osdwaHvaQqurkeAir7UuN1lg5H
+	 POv7TK/LsOheAe83JFTPv7pgHLFD+l3db41OLAbWZiB0kIhhiXGrmYNuNUJNJx+sQ5
+	 FQ7sTPqXd7SxpAyKnlnF06gZ5WzQWSW8iC8eWFZ3xf3NlrmCGwAQB3NRwEC5xQa3DA
+	 oxOtY2l+mpHKIQa6k8u2vR7GVUbDAHPS5SNxjYsZRhFybzC5ezJdtpNU11Gi8ajmXP
+	 t3+iZx9WdanZUXM+zO9KFvdykp71rC7RVjTYoipDj+ldnotA96ScnFBVTxRDtnlsAr
+	 bqEEvihRx7HUQ==
+Date: Tue, 16 Jan 2024 18:03:19 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: conor.dooley@microchip.com, sam@ravnborg.org, bbrezillon@kernel.org,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	lee@kernel.org, thierry.reding@gmail.com,
+	u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
+	linux4microchip@microchip.com
+Subject: Re: [PATCH v2 2/3] dt-bindings: atmel,hlcdc: convert pwm bindings to
+ json-schema
+Message-ID: <20240116-rising-gap-df4124f191a0@spud>
+References: <20240116113800.82529-1-dharma.b@microchip.com>
+ <20240116113800.82529-3-dharma.b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="QLbmZbOLjpJ/vPR8"
+Content-Disposition: inline
+In-Reply-To: <20240116113800.82529-3-dharma.b@microchip.com>
+
+
+--QLbmZbOLjpJ/vPR8
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3e86244a840a45c970289ba6d2fa700a74f5b259.1705051222.git.michal.simek@amd.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 12, 2024 at 10:20:29AM +0100, Michal Simek wrote:
-> Revision 2 is SW compatible with revision 1 but it is necessary to reflect
-> it in model and compatible properties which are parsed by user space.
-> Rev 2 has improved a power on boot reset and MIO34 shutdown glich
-> improvement done via an additional filter in the GreenPak chip.
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
+On Tue, Jan 16, 2024 at 05:07:59PM +0530, Dharma Balasubiramani wrote:
+> Convert device tree bindings for Atmel's HLCDC PWM controller to YAML
+> format.
+>=20
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 > ---
-> 
-> Changes in v2:
-> - Support older combinations
-> 
-> I want to support all versions we created:
-> All of them:
-> -rev2, -rev1, -revB, -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
-> 
-> rev1:
-> -rev1, -revB, -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
-> 
-> revB:
-> -revB, -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
-> 
-> revA:
-> -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
-> 
-> And also single one are permitted:
-> -revB, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
-> -rev1, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
-> -rev2, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
-> 
-> I didn't find a way to pretty much all the time force that there must be
-> both "xlnx,zynqmp-smk-k26", "xlnx,zynqmp" that's why there is only
-> requested to have xlnx,zynqmp. If you find a way how to encode it please
-> let me know.
-> 
+> changelog
+> v1 -> v2
+> - Remove the explicit copyrights.
+> - Modify title (not include words like binding/driver).
+> - Modify description actually describing the hardware and not the driver.
+> - Remove pinctrl properties which aren't required.
+> - Drop parent node and it's other sub-device node which are not related h=
+ere.
 > ---
->  .../bindings/soc/xilinx/xilinx.yaml           | 32 +++++++++++++------
->  1 file changed, 22 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-> index d4c0fe1fe435..39242efeec47 100644
-> --- a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-> +++ b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
-> @@ -117,20 +117,32 @@ properties:
->            - const: xlnx,zynqmp
->  
->        - description: Xilinx Kria SOMs
-> +        additionalItems: true
-> +        maxItems: 6
-> +        minItems: 3
->          items:
-> -          - const: xlnx,zynqmp-sm-k26-rev1
-> -          - const: xlnx,zynqmp-sm-k26-revB
-> -          - const: xlnx,zynqmp-sm-k26-revA
-> -          - const: xlnx,zynqmp-sm-k26
-> -          - const: xlnx,zynqmp
-> +          - enum:
-> +              - xlnx,zynqmp-sm-k26-rev2
-> +              - xlnx,zynqmp-sm-k26-rev1
-> +              - xlnx,zynqmp-sm-k26-revB
-> +              - xlnx,zynqmp-sm-k26-revA
-> +              - xlnx,zynqmp-sm-k26
-> +        contains:
-> +          const: xlnx,zynqmp
+>  .../bindings/pwm/atmel,hlcdc-pwm.yaml         | 47 +++++++++++++++++++
+>  .../bindings/pwm/atmel-hlcdc-pwm.txt          | 29 ------------
+>  2 files changed, 47 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm=
+=2Eyaml
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm=
+=2Etxt
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml b=
+/Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml
+> new file mode 100644
+> index 000000000000..751122309fa9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/atmel,hlcdc-pwm.yaml
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 
-This allows:
+The original file has no license, but was originally written by a
+free-electrons employee, so the relicensing here is fine.
 
-xlnx,zynqmp-sm-k26-rev2, foo, xlnx,zynqmp, bar
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/atmel,hlcdc-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel's HLCDC's PWM controller
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> +
+> +description: |
 
-You need the schema form of 'items' (no '-'). For multiple contains, you 
-need 'allOf'. Like this:
+Again, the | is not needed here.
 
-items:
-  enum: [ all of them ]
-allOf:
-  - contains:
-      const: xlnx,zynqmp
-  - contains:
-      const: xlnx,zynqmp-sm-k26
+> +  The LCDC integrates a Pulse Width Modulation (PWM) Controller. This bl=
+ock
+> +  generates the LCD contrast control signal (LCD_PWM) that controls the
+> +  display's contrast by software. LCDC_PWM is an 8-bit PWM signal that c=
+an be
+> +  converted to an analog voltage with a simple passive filter. LCD displ=
+ay
+> +  panels have different backlight specifications in terms of minimum/max=
+imum
+> +  values for PWM frequency. If the LCDC PWM frequency range does not mat=
+ch the
+> +  LCD display panel, it is possible to use the standalone PWM Controller=
+ to
+> +  drive the backlight.
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,hlcdc-pwm
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +    description: |
+> +      This PWM chip uses the default 3 cells bindings defined in pwm.yam=
+l in
+> +      this directory.
+
+I would delete this description tbh.
+
+> +
+> +required:
+> +  - compatible
+> +  - "#pwm-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pwm: pwm {
+> +      compatible =3D "atmel,hlcdc-pwm";
+> +      pinctrl-names =3D "default";
+> +      pinctrl-0 =3D <&pinctrl_lcd_pwm>;
+> +      #pwm-cells =3D <3>;
+> +    };
+
+The label here is not used and can be dropped. Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 
-This of course has no enforcement of the order. Just no sane way to do 
-that in json-schema.
+Cheers,
+Conor.
 
-Rob
+> diff --git a/Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt b/=
+Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt
+> deleted file mode 100644
+> index afa501bf7f94..000000000000
+> --- a/Documentation/devicetree/bindings/pwm/atmel-hlcdc-pwm.txt
+> +++ /dev/null
+> @@ -1,29 +0,0 @@
+> -Device-Tree bindings for Atmel's HLCDC (High-end LCD Controller) PWM dri=
+ver
+> -
+> -The Atmel HLCDC PWM is subdevice of the HLCDC MFD device.
+> -See ../mfd/atmel-hlcdc.txt for more details.
+> -
+> -Required properties:
+> - - compatible: value should be one of the following:
+> -   "atmel,hlcdc-pwm"
+> - - pinctr-names: the pin control state names. Should contain "default".
+> - - pinctrl-0: should contain the pinctrl states described by pinctrl
+> -   default.
+> - - #pwm-cells: should be set to 3. This PWM chip use the default 3 cells
+> -   bindings defined in pwm.yaml in this directory.
+> -
+> -Example:
+> -
+> -	hlcdc: hlcdc@f0030000 {
+> -		compatible =3D "atmel,sama5d3-hlcdc";
+> -		reg =3D <0xf0030000 0x2000>;
+> -		clocks =3D <&lcdc_clk>, <&lcdck>, <&clk32k>;
+> -		clock-names =3D "periph_clk","sys_clk", "slow_clk";
+> -
+> -		hlcdc_pwm: hlcdc-pwm {
+> -			compatible =3D "atmel,hlcdc-pwm";
+> -			pinctrl-names =3D "default";
+> -			pinctrl-0 =3D <&pinctrl_lcd_pwm>;
+> -			#pwm-cells =3D <3>;
+> -		};
+> -	};
+> --=20
+> 2.25.1
+>=20
+
+--QLbmZbOLjpJ/vPR8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZabE5wAKCRB4tDGHoIJi
+0hwFAP9jhcXP9wzaYy0Zz+9WvhngHO1gBGv8fpvpusu/vOgDugEA9tZzT38ZV7GR
+lEyPDaLupBQig1Y0zS0MvcAUj/eMsQQ=
+=LcB+
+-----END PGP SIGNATURE-----
+
+--QLbmZbOLjpJ/vPR8--
 
