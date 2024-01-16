@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-32202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC19382EA04
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:27:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2CF482EA09
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:29:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9FF81C228F5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:27:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C604B22600
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B130610A2D;
-	Tue, 16 Jan 2024 07:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A8A10A33;
+	Tue, 16 Jan 2024 07:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A9PTIkhA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HAdM6/q+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D7411701
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F69A11183
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:29:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5592d72ede0so2067881a12.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 23:27:30 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-55969c01168so2058257a12.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 23:28:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705390049; x=1705994849; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705390138; x=1705994938; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wuBLtt2GZSpGcO9j/EnadY8DR8roytq++vYju0CnFXo=;
-        b=A9PTIkhAmzMktDetCYwbQxVpy8pOMq8fTPK1+vrVQvtQR0SmPq6rWerJz8UftOEAqu
-         bqVTg3k9TFKn8Kuv6l2cmFDYUsUxx/bcSpuJ9qgugy2rcoQYMu6JKSg8yHw1K8r407pM
-         WcZThVTSE7PqdozjELu+rHA/jcIygYhyvSC+dLJR5QIF2I+NbmU3WCOkxYBwBE4gBdYQ
-         tbfSOxgazK0a1GoJnZbGjfaLZikemSUEBJ2xtHg+mvqwheWwbUpYEs0zfnTCMCW8XzNf
-         SFYefl/Pbtqd4/D9R8S0EuIyDiu+zZCjHfPbWcx62u9mZRl3r3TGxSi25IcRHZ5XE/08
-         QmYQ==
+        bh=t4tiXeWppsrDELOJj7EzC5LEw685HVViUAxBRaPVuQg=;
+        b=HAdM6/q+47uEBEkT27IkX4Wj4FMK0xe98H0cIia5Qkme550muAcD+2wDkTiFKQ47as
+         RkMtaNrvwom0DI5UJWgsSVPfOOJysR5389cP0Ij6F1GqigsjDe7JPAkCbm9vDq+NsgjA
+         s0J43etcyVAJmkR69dT9odOFfoRd8R37KftCpkMiKynHBXgPjZ3b5p3r+M5c6+aaTnvZ
+         xOIcWu+uWFugPf+IN60ox76hsupRjLziVlNJTX9MTMHUmjqXEMx5TLuofof0NX6Zq9VG
+         eMytbmugISuRVbHbou+0Y/ozFvMAjt8cBRiRr8ueZ+tqdhQR26stBtIOfEW1SYyI3s4D
+         QbMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705390049; x=1705994849;
+        d=1e100.net; s=20230601; t=1705390138; x=1705994938;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wuBLtt2GZSpGcO9j/EnadY8DR8roytq++vYju0CnFXo=;
-        b=QEz+GKqIErMMY9x8MDkJ0kVchT82wlGb3ZzgZtDSl/rrzhciHiiOkqbWP3pIoCU/tH
-         OFtrVtxB7a75gxo5A1q6hWoRrT8WVFa2UlJ93oUjU9aoSnkGUcIlaAZEYmPdQh9l0u71
-         8E1Y75ANdrGOa6lmiWhjB3ZpDPYKec1JVnr1E6zfVq+VUHVvN5M7446Nc5t+ak2HM6I3
-         BHQvRRWHJQGV76RhYB6okBBDhSOTxD2/b5aKR/++OgYYemAGsrpBNkpD/3d9yYwATIrV
-         HXCli5oRn0SOEIn48Q/8EQ1DervkRoNbxT2fS7+ucXBvGogFHQh4sOblnD5zD7Jkwj9q
-         Mmjg==
-X-Gm-Message-State: AOJu0Yy7wDWohtqhqUqsrIJPBuqp/A9lp7K4AkiMGGRoOeslLJmuHsd+
-	1aSUpzAFwc9d35gxM4p6AicEnzNq5tSQ5g==
-X-Google-Smtp-Source: AGHT+IHdKHkIBgK6L0jIMlQ3v6xRghPzDBEX0+OVS4q0bI64XYK4k9HjphY6IR1YoqAe3wuzYlZfrQ==
-X-Received: by 2002:a50:ee13:0:b0:558:d5ce:dd74 with SMTP id g19-20020a50ee13000000b00558d5cedd74mr2944423eds.34.1705390049307;
-        Mon, 15 Jan 2024 23:27:29 -0800 (PST)
+        bh=t4tiXeWppsrDELOJj7EzC5LEw685HVViUAxBRaPVuQg=;
+        b=RCxUKUzDXPkT2amdgV8SIM2BG31fPNnDEhxUT7DF/IT/pbvMS0sFt73ZdtTl6NXRqN
+         yCyEFI6vJtMIr+wArTVGjM3kHdMSH6B3vmmZC3G5Dys4tjHWhlWViGfkHA1ovxl9dzL6
+         FZUe6Uc77GGdy843g2baq7DzgtEXOZaiG12TUL6KYFxFKlW1kcV9UrY2FcgzSkeQHrmw
+         O5mMVyhsmxwUL1SDqfzS+u/K/SSr9B6DYC5+EfhmwiEeP6UbfxGAY/wkc9buGIDsHk/o
+         k1+iHr2ty2sTZzXGXcgV2Odyrz9MXdIo7j2MbGx4UqM8nHXAaq6BoeTgNJvqTYJVmWZu
+         u62w==
+X-Gm-Message-State: AOJu0Yw5Z8Ksr6BnKAauNjhuJ2ohmBT907fFm2GNyNeEWO+AvGLFpU/m
+	gegfYz03xAjo7lAA61PiXTEdkZ0y2fg4hQ==
+X-Google-Smtp-Source: AGHT+IElil34nT4GyUaLgQ1di5oIOFfl5AVJ0oFfCu3zhKNo9gURyyLNxOsvXtMsZlXlOa61gsoZ8A==
+X-Received: by 2002:a05:6402:22f4:b0:558:b88d:e8b with SMTP id dn20-20020a05640222f400b00558b88d0e8bmr6774268edb.3.1705390138508;
+        Mon, 15 Jan 2024 23:28:58 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id fj23-20020a0564022b9700b00557f54cceb6sm6428657edb.4.2024.01.15.23.27.28
+        by smtp.gmail.com with ESMTPSA id fj23-20020a0564022b9700b00557f54cceb6sm6428657edb.4.2024.01.15.23.28.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 23:27:28 -0800 (PST)
-Message-ID: <e2310177-0b18-4615-978b-83a4fcd05f6c@linaro.org>
-Date: Tue, 16 Jan 2024 08:27:27 +0100
+        Mon, 15 Jan 2024 23:28:58 -0800 (PST)
+Message-ID: <28eeece4-6230-4c56-9706-813a9d9cf92e@linaro.org>
+Date: Tue, 16 Jan 2024 08:28:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,16 +66,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] ARM: dts: aspeed-g6: Add I3C controller nodes
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: coresight: Remove pattern match
+ of ETE node name
 Content-Language: en-US
-To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+To: Mao Jinlong <quic_jinlmao@quicinc.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+ Leo Yan <leo.yan@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20240116065050.3657049-1-Delphine_CC_Chiu@wiwynn.com>
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>
+References: <20240116064505.487-1-quic_jinlmao@quicinc.com>
+ <20240116064505.487-2-quic_jinlmao@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -121,86 +131,50 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240116065050.3657049-1-Delphine_CC_Chiu@wiwynn.com>
+In-Reply-To: <20240116064505.487-2-quic_jinlmao@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2024 07:50, Delphine CC Chiu wrote:
-> Add default device tree settings for the 6 I3C controllers embedded in
-> the aspeed-g6 family SOCs.
+On 16/01/2024 07:45, Mao Jinlong wrote:
+> Remove pattern match of ETE node name. Use ete with the number as the
+> name for ete nodes.
 > 
-> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 > ---
->  arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 148 ++++++++++++++++++++++++
->  1 file changed, 148 insertions(+)
+>  .../bindings/arm/arm,embedded-trace-extension.yaml          | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-> index c4d1faade8be..ed5021001e7f 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
-> @@ -13,6 +13,12 @@ / {
->  	interrupt-parent = <&gic>;
+> diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+> index f725e6940993..ed78cc7ae94a 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+> @@ -22,8 +22,6 @@ description: |
+>    with any optional connection graph as per the coresight bindings.
 >  
->  	aliases {
-> +		i3c0 = &i3c0;
-> +		i3c1 = &i3c1;
-> +		i3c2 = &i3c2;
-> +		i3c3 = &i3c3;
-> +		i3c4 = &i3c4;
-> +		i3c5 = &i3c5;
->  		i2c0 = &i2c0;
->  		i2c1 = &i2c1;
->  		i2c2 = &i2c2;
-> @@ -577,6 +583,13 @@ wdt4: watchdog@1e7850c0 {
->  				status = "disabled";
->  			};
+>  properties:
+> -  $nodename:
+> -    pattern: "^ete([0-9a-f]+)$"
+>    compatible:
+>      items:
+>        - const: arm,embedded-trace-extension
+> @@ -55,13 +53,13 @@ examples:
 >  
-> +			i3c: bus@1e7a0000 {
-> +				compatible = "simple-bus";
-> +				#address-cells = <1>;
-> +				#size-cells = <1>;
-> +				ranges = <0 0x1e7a0000 0x8000>;
-> +			};
-> +
->  			peci0: peci-controller@1e78b000 {
->  				compatible = "aspeed,ast2600-peci";
->  				reg = <0x1e78b000 0x100>;
-> @@ -1139,3 +1152,138 @@ i2c15: i2c-bus@800 {
->  		status = "disabled";
->  	};
->  };
-> +
-> +&i3c {
-> +	i3c_global: i3cg@0 {
+>  # An ETE node without legacy CoreSight connections
+>    - |
+> -    ete0 {
+> +    ete-0 {
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+ete {
 
+>        compatible = "arm,embedded-trace-extension";
+>        cpu = <&cpu_0>;
+>      };
+>  # An ETE node with legacy CoreSight connections
+>    - |
+> -   ete1 {
+> +   ete-1 {
 
-> +		reg = <0x0 0x1000>;
-> +		compatible = "aspeed,ast2600-i3c-global", "syscon";
-
-There is no such compatible.
-
-> +	};
-> +
-> +	i3c0: i3c0@2000 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-Anyway, please respect DTS coding style for order of properties.
-Compatible is always first.
-
-> +		compatible = "aspeed,ast2600-i3c", "syscon";
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
+ete {
 
 Best regards,
 Krzysztof
