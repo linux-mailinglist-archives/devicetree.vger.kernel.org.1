@@ -1,98 +1,163 @@
-Return-Path: <devicetree+bounces-32413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A392182F3FC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:18:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0271882F426
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:23:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 578251F24A67
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:18:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0697B1C2387D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99EB51CD28;
-	Tue, 16 Jan 2024 18:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 952E41CD2B;
+	Tue, 16 Jan 2024 18:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b="J41U4+BM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="udPD62db"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182741CD2D
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 18:18:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kali.org
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63DBC1D520;
+	Tue, 16 Jan 2024 18:23:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705429116; cv=none; b=HlUSLK/r731cJ9xgs/YHNgxxwDc7PVNBuXWYJ45XrOos4Y7jgh06hkimQAkwLa1B9/n+BGcJSliadipeRpMu4a4MRldht9EdM5UthNXxzLSYgsdZEVgmrwpelz5AalmorZkc/8SVESAslf4f1g5tknh+FY3tV2jEffmbXX5IMOE=
+	t=1705429395; cv=none; b=pUNgiuf2QUZxIT1RT4CPBZ3g/nRLqMh2VFaGtaShrlqOd8XXo93JNv2VEPlf7CxygtlZr7eyoF5psx9lYHnfbtyi8k0Sqi8TNlZdBZpn0ST5m2r6QOJ6Q2dEYBLQS/tr+S6Bd+3xU4+5LypP+K02B08rFDkVNZM4jgHSssHjIYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705429116; c=relaxed/simple;
-	bh=PrPV+IPne0K1/ui0ipzGQFRKiSKSX1kc+OfaOcUmtO0=;
-	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
-	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
-	 Content-Type; b=g3Fboi023+ukjk3NXh+kHVbSnTMhXbODQ0qr1jIIdBVfJvSMFJQ0LSC2HAyqgr7roVmr3IVcPh6lW64uzlsIUULb3EMzQwmCMSN7rgNxV4QIHi+StuJICibqdtsLeRGmumaljh8GfL7vTsACdX5TDKBsjd8nbzQZFLBy309X9CQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b=J41U4+BM; arc=none smtp.client-ip=209.85.208.46
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-555144cd330so12464257a12.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 10:18:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1705429113; x=1706033913; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JQvuYVH+1K16FEdRksTVFQVLm5F7cTOcGjXShSf6Fo8=;
-        b=J41U4+BM02C1v72liUVrEk3IVFWk3v4k/09hqLHAtm7ofxncvBlWAnxMYLNvGNddoX
-         YPEBD6w2VelMv9oMcqfP6MZ/5U4bgQxPmoq306gzuvSknC0o4DRTy/FpUNGZD6vUvg5i
-         XeW3W8Y4pEV5HaVnx+PIJrMcqCovQbytBrheWV8FU9ax3H+SEaH5laKRmG71uvIgjG2k
-         jXhbqOvYzSdGB/Lig6yYN2f1PpuD8Gd0LbuUpiRnlvkTcqcYIOIkDR/TvuO7G5xEHqSm
-         uWI/23G2OC/JqvJxigj6X25MvmVLbrmwCZiYD88LpI+tFIX0PcCQ+cnRfVWENJ1CNlKL
-         cJ2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705429113; x=1706033913;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JQvuYVH+1K16FEdRksTVFQVLm5F7cTOcGjXShSf6Fo8=;
-        b=gL+ayiTQSQtb8/wDRsU6BJ2kn5u1R+0eOqq0aLuN9iT+InGVpTm3NCOLTJmP3yi9CO
-         m4hfhV/DcRvr3lZ76f7Qi/zBShMLV2L5AHKwhKB+7TArMfWpN1IL4W0NdenO9ROOwz3S
-         k0pjaHZjCc5Sf4AbP5Jrzu1t4K/hxsuxcnCt2PWPQNj1WNVfC9zMjVSgGw92SSKBIYID
-         Qzph+9BipngUswVu9xEy3revyAYN/UofGDy+hsbRseau9Vsd91cEyBr5o72gDcEmc1SH
-         uKGhfk/IFz47OtQjL05OI6IKI+23PO8XYC8nJSIxpTW/vxDmhPsVU7QNdXkJFMWhNnBE
-         c+4g==
-X-Gm-Message-State: AOJu0YzpvpcPWAyTdM3BaMfJrqsGbPl4wWajfS2g8gMXPniFKy4jtE4U
-	TArV8GhHHM2UMuRzcD/T37lLLDgMXDF9LttZgp+P/42hBnQMYQ==
-X-Google-Smtp-Source: AGHT+IGVDGMb6nRHnwkOZipudGexG004cHyDIg6pmFyZVLZUJcJhRb8bBQknt2LAUeCGxUmywSgiyOcE5mWOVnG65lk=
-X-Received: by 2002:aa7:c403:0:b0:558:cd07:3d3c with SMTP id
- j3-20020aa7c403000000b00558cd073d3cmr3824295edq.72.1705429112721; Tue, 16 Jan
- 2024 10:18:32 -0800 (PST)
+	s=arc-20240116; t=1705429395; c=relaxed/simple;
+	bh=BZZrwB54NzVpdIKnJH5IBEBJlnxfuCsPO9zMgTYYx0Q=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=N0hxUpELg5L2X2//+ejvosvbr9dBvyyjQ4uOtsj81niFzVHV5JSd4aL3CIBv9U1tvvWMsXhE3Yi/CMP/94O5h5BOEotijm+9GHzJtb555/HE0uHK/x1ro6G3l6vSmZ0+L+I5Jyd/WZOaBA+k3bO0GYcXVDuXvg11B+ZatFwDtFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=udPD62db; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9565AC433F1;
+	Tue, 16 Jan 2024 18:23:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705429394;
+	bh=BZZrwB54NzVpdIKnJH5IBEBJlnxfuCsPO9zMgTYYx0Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=udPD62dbadhMBLT6wXnbk/PYsrCAhEDzjxtawZJ9t1xIzxa7qfbeCQZOMjoea3fNW
+	 ny+vVTuIADQ7GD+7sSRh8UkwpzCq8tRLvoVD1YVU3y8RlPNrvhJaPpGtGNVQ7KuO22
+	 UY8nTAwYCb42cZNy+jP21tJ/QioS8vTLwiEwsExq/qag4FgJ8znilhvRbhZm7y66b1
+	 tRzF0R/qHyskJBWBYZfiOHQgcKgDt0IAHFQ8cv33ftqROoOt7W8C7TJgl137N72wn6
+	 VFHO8HARbFh3IEiUgbMNiIv+izNcblv8i63ErRkDoKK+o68aALBny2lm8lYFeq9y9Y
+	 QWDaX98aExH2A==
+Date: Tue, 16 Jan 2024 18:23:09 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	robh@kernel.org, alexandre.belloni@bootlin.com,
+	conor.culhane@silvaco.com, gregkh@linuxfoundation.org,
+	imx@lists.linux.dev, jirislaby@kernel.org, joe@perches.com,
+	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, miquel.raynal@bootlin.com,
+	zbigniew.lukwinski@linux.intel.com, devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
+ silvaco,i3c-target-v1
+Message-ID: <20240116-retract-conclude-c47a7fc8cb21@spud>
+References: <e3b9aa63-25a5-41cc-9eb7-6e7d1eacb136@linaro.org>
+ <ZaFjaWCA6k+tiCSJ@lizhi-Precision-Tower-5810>
+ <ZaWLCrWJEMtFx8cR@lizhi-Precision-Tower-5810>
+ <1b628901-7f71-4c97-9a16-723912988417@linaro.org>
+ <ZaXqCoCHPWER94Hh@lizhi-Precision-Tower-5810>
+ <d45e31c4-914e-4cea-a145-9775b6f516ab@linaro.org>
+ <20240116-bleach-herbicide-48d636967134@wendy>
+ <3199c245-3d2d-49e8-951e-2b059de4d683@linaro.org>
+ <20240116-achiness-thievish-10a12b3c08cd@wendy>
+ <Zaa+cLGVVDSB5MYr@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240116115921.804185-1-daniel.lezcano@linaro.org>
- <CYG4WTCOBTG2.11PA7Q4A3H93H@fairphone.com> <5db88d48-4868-49f0-b702-6eea14400e5b@linaro.org>
- <CYG6QOFYOX79.2ROURJ8FK446C@fairphone.com> <70b359c6-f094-4874-b903-1dca07d0db7c@linaro.org>
-In-Reply-To: <70b359c6-f094-4874-b903-1dca07d0db7c@linaro.org>
-From: Steev Klimaszewski <steev@kali.org>
-Date: Tue, 16 Jan 2024 12:18:21 -0600
-Message-ID: <CAKXuJqjgXp1ns4fy11XdxRov0Lp5_=8WqmfCQ0qmZj4hCXKaRQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845: Fix wild reboot during Antutu test
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Luca Weiss <luca.weiss@fairphone.com>, andersson@kernel.org, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Amit Pundir <amit.pundir@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qdmJxKjtdyHy6e/u"
+Content-Disposition: inline
+In-Reply-To: <Zaa+cLGVVDSB5MYr@lizhi-Precision-Tower-5810>
 
-Hi
 
-Shouldn't the patch subject line be changed?  Reading the git log,
-"fix wild reboot during antutu test" doesn't tell me that much;  I
-would think something like "Enable thermal mitigation for sdm845 gpu"
-might be better for someone reading through the logs later
+--qdmJxKjtdyHy6e/u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
---steev
+On Tue, Jan 16, 2024 at 12:35:44PM -0500, Frank Li wrote:
+> On Tue, Jan 16, 2024 at 09:48:08AM +0000, Conor Dooley wrote:
+> > On Tue, Jan 16, 2024 at 10:33:48AM +0100, Krzysztof Kozlowski wrote:
+> > > On 16/01/2024 10:30, Conor Dooley wrote:
+> > > > On Tue, Jan 16, 2024 at 08:24:20AM +0100, Krzysztof Kozlowski wrote:
+> > > >> On 16/01/2024 03:29, Frank Li wrote:
+> > > >>>>> 	Patches were accepted after discussion, what you ponit to. So I
+> > > >>>>> think everyone agree on the name 'silvaco,i3c-master-v1'.
+> > > >>>>> 	I plan send next version to fix auto build error. Any addition=
+al
+> > > >>>>> comments about this?
+> > > >>>>
+> > > >>>> I still do not see how did you address Rob's comment and his poi=
+nt is
+> > > >>>> valid. You just did not reply to it.
+> > > >>>
+> > > >>> See https://lore.kernel.org/imx/ZXCiaKfMYYShoiXK@lizhi-Precision-=
+Tower-5810/
+> > > >>
+> > > >> First of all, that's not the answer to Rob's email, but some other
+> > > >> thread which is 99% ignored by Rob (unless he has filters for
+> > > >> "@Rob"...). Therefore no, it does not count as valid answer.
+> > > >>
+> > > >> Second, explanation does not make sense. There is no argument gran=
+ting
+> > > >> you exception from SoC specific compatibles.
+> > > >=20
+> > > > The patch could have been applied two months ago had Frank done as
+> > > > was requested (multiple times). I don't understand the resistance
+> > > > towards doing so given the process has taken way way longer as a re=
+sult.
+> > >=20
+> > > I think that Rob's comment was just skipped and original master bindi=
+ng
+> > > was merged without addressing it. I don't want to repeat the same
+> > > process for the "target". Indeed I could point this earlier... if I o=
+nly
+> > > knew that Rob pointed out that issue.
+> >=20
+> > Oh I think I got confused here. The context for this mail led me to
+> > think that this was still trying to push the i3c-master-v1 stuff through
+> > and I was commenting on my frustration with the resistance to applying
+> > the feedback received. I didn't realise that this was for another
+> > patch adding a target.
+> >=20
+> > I think you already said it, but NAK to adding any more compatibles here
+> > until the soc-specific compatible that was asked for for the imx93 is
+> > added.
+>=20
+> Is it okay for 'silvaco,i3c-target-imx93'?
+
+I don't know. Is the device in question capable of also operating in
+master mode? I have no idea from the commit message since it contains
+zero information on the hardware.
+If the exact same controller can operate in master and target mode,
+having two compatibles for the same device does not seem okay to me.
+
+Also, "silvaco" does not make the imx93 so that is not a suitable vendor
+prefix. If the imx93 only supports i3c IPs in target mode, I would call
+it "<vendorofimx>,imx93-i3c" with "silvaco,i3c-target-v1" as a fallback.
+
+Thanks,
+Conor.
+
+--qdmJxKjtdyHy6e/u
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZabJjQAKCRB4tDGHoIJi
+0oBVAQDDSQszcWBHPjv+zzPJ4Jwf5F3zvlWOZOaPQSVALMBS1AEAjehMKKMgybnn
+hKiuBGxe+C7CLnu7Tf0NAw78Xj6lcQY=
+=fPBb
+-----END PGP SIGNATURE-----
+
+--qdmJxKjtdyHy6e/u--
 
