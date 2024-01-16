@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-32505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBD1582F8D5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A71682F8DC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:54:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCDDD1C252F4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:53:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16C2F1C2535B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29AD813A263;
-	Tue, 16 Jan 2024 19:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87ECC13AA46;
+	Tue, 16 Jan 2024 19:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AXXliYSy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bnWLhSZC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04FB13A25C;
-	Tue, 16 Jan 2024 19:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D61813AA43;
+	Tue, 16 Jan 2024 19:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705434804; cv=none; b=hF1odCmrt6P4dpfOmt2qkTIf7lea0BAjJXVW0lSz4F/mAQIwyNex5SlCurNTy2bQh4RBb7nt80+1TEp7r2H/rIzfAMCNX7pjQ2n8393X2vKMHAFxmLvtyQzeVCw4pxuocH3G51oaWZ2+5sY36bJlAQjiGsJH5/3VVnvV0ueA6U8=
+	t=1705434808; cv=none; b=tJsxsW9fxI+6aPq7tKx+SaAMtaevd7zpI2kIzSl/VvfFlq1nDf146TTAiZpdHaM4Vch7W2GLQMvD1NC26JwKNa97yU2on0SXif1g6yW7+8HenxJaqPjDLoaV4FanMKPhOPfsS9Xl2KsEkEM0X5pp2tb2AVjjgK9HuVfb0FlX5Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705434804; c=relaxed/simple;
-	bh=Tyk/aprcfqpI37EGshT92tn98SfJrI2142dd2Nb/S7I=;
+	s=arc-20240116; t=1705434808; c=relaxed/simple;
+	bh=D2ixwIy2DgRLBSaqA87mBG0pCTbp+mlrfu3WdPxsoK0=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=CN02dNDfvE+am0TXP495cR1srJo6WHwcVVvluzUWyR/QhMFQve+9Ht29KyxiFmDzRRnUAaZQ1jHNemPtNwJaclG3T/Zp3mmTvUcEV6nvrCuSelZz7vgWjn2OWQ2kn8P4wtMqrbSkzdvjpKfMUVp3fjsvvjJVw21eDlbSG3QwDIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AXXliYSy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A5ECC433F1;
-	Tue, 16 Jan 2024 19:53:22 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=dt8kJa2OsXbGMG48Ax8ISJ/Tlfwo9caIvp0XrvwJjeNxGfSKH/Fw9oBP09lhuSpxBfO/6VrwZcTRBio5Y+bnFRRKxYTovE9wKGmbGpk4nRkD+jLsyogTXukCCU3+8H+ED4X+qnmyRnsoBG59N3ss4hruhksr9tvr6TeMwc+XOAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bnWLhSZC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B7A7C433A6;
+	Tue, 16 Jan 2024 19:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705434803;
-	bh=Tyk/aprcfqpI37EGshT92tn98SfJrI2142dd2Nb/S7I=;
+	s=k20201202; t=1705434807;
+	bh=D2ixwIy2DgRLBSaqA87mBG0pCTbp+mlrfu3WdPxsoK0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=AXXliYSyffVlOSH/UvG/0l/OljsltdkJ8MzGvIXAzEPbSj6Yvwx8tlV+2AUlWf9GX
-	 J8fSOTMK8it530ofNFoyR4yyGug1khemruLB+crBoBcJl0qpgnyCc579r7FPbXmweo
-	 RNwjrYarVByVtM8Um1YCucQvlG+dm6PvRP17SUA7bivU6EAZBNYsqX2AzKxAoWhyb8
-	 43/otXltNWr23lGTg3Hw3BE+7wa6AwXdVXwUNIN1vlKIbTl1K3QaduxPXreCU8S8ta
-	 IBjjTTlofac0mXsDpmJN8OXr6U5NsSCgofWsxGNfZoux5I8pAKJD+96neP5/+epylY
-	 wsAvXfpqlFlDw==
+	b=bnWLhSZCQj34iKWkhgwrYdEuY0SzsqhUzycWqDwxSM5gHSEeeS8d3c5vrpoIRJHkg
+	 ICMYL7BYpCk8dqnTVYRBDsRkYfqXuQNUdK6Wi59Z4R+pqHNccEDV808L7NB26Qd6b0
+	 9yNOLLleA6bsaWbaAe9cjqIj0ZYC7Omo9ca4Tv/HjE31p4/IbuzkpybGcnGPt4Tjy3
+	 nF809hgju69RtaIiXng88oCef4hka8YEVeNgCFhRqteLFQ///VZ0mIgR4ude+gPlQ3
+	 Sy8eEQORRixSv0iVyK7JSASoriTTgWUb9chp58JVaz4NRph3pCxKycupjJXnNFpG3y
+	 EapcwemKBPF8g==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Mao Jinlong <quic_jinlmao@quicinc.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Sasha Levin <sashal@kernel.org>,
-	konrad.dybcio@linaro.org,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 084/104] arm64: dts: qcom: Fix coresight warnings in in-ports and out-ports
-Date: Tue, 16 Jan 2024 14:46:50 -0500
-Message-ID: <20240116194908.253437-84-sashal@kernel.org>
+	khilman@baylibre.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.6 086/104] arm64: dts: amlogic: fix format for s4 uart node
+Date: Tue, 16 Jan 2024 14:46:52 -0500
+Message-ID: <20240116194908.253437-86-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240116194908.253437-1-sashal@kernel.org>
 References: <20240116194908.253437-1-sashal@kernel.org>
@@ -72,124 +72,64 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.6.12
 Content-Transfer-Encoding: 8bit
 
-From: Mao Jinlong <quic_jinlmao@quicinc.com>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-[ Upstream commit bdb6339fd46b8702ea7411b0b414587b86a40562 ]
+[ Upstream commit eb54ef36282f670c704ed5af8593da62bebba80d ]
 
-When a node is only one in port or one out port, address-cells and
-size-cells are not required in in-ports and out-ports. And the number
-and reg of the port need to be removed.
+Aliases use lowercase letters and place status in end.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-Link: https://lore.kernel.org/r/20231210072633.4243-5-quic_jinlmao@quicinc.com
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Link: https://lore.kernel.org/r/20231215-s4-dts-v1-1-7831ab6972be@amlogic.com
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi |  5 +----
- arch/arm64/boot/dts/qcom/sm8150.dtsi |  5 +----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 24 ++++--------------------
- 3 files changed, 6 insertions(+), 28 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi             | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 055ca80c0075..5af7f52d8a8d 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3555,11 +3555,8 @@ etf_out: endpoint {
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+index 8ffbcb2b1ac5..bbd3c05cbd90 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+@@ -15,7 +15,7 @@ / {
+ 	#size-cells = <2>;
+ 
+ 	aliases {
+-		serial0 = &uart_B;
++		serial0 = &uart_b;
+ 	};
+ 
+ 	memory@0 {
+@@ -25,6 +25,6 @@ memory@0 {
+ 
+ };
+ 
+-&uart_B {
++&uart_b {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+index f24460186d3d..55ddea6dc9f8 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -118,14 +118,14 @@ gpio_intc: interrupt-controller@4080 {
+ 					<10 11 12 13 14 15 16 17 18 19 20 21>;
  			};
  
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 
--				port@1 {
--					reg = <1>;
-+				port {
- 					etf_in: endpoint {
- 						remote-endpoint =
- 						  <&merge_funnel_out>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 19c6003dca15..513dcebd6ed4 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -2973,11 +2973,8 @@ replicator1_out: endpoint {
+-			uart_B: serial@7a000 {
++			uart_b: serial@7a000 {
+ 				compatible = "amlogic,meson-s4-uart",
+ 					     "amlogic,meson-ao-uart";
+ 				reg = <0x0 0x7a000 0x0 0x18>;
+ 				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
+-				status = "disabled";
+ 				clocks = <&xtal>, <&xtal>, <&xtal>;
+ 				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
  			};
  
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 
--				port@1 {
--					reg = <1>;
-+				port {
- 					replicator1_in: endpoint {
- 						remote-endpoint = <&replicator_out1>;
- 					};
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index a4e58ad731c3..35998bf23b60 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2830,11 +2830,8 @@ tpda@6004000 {
- 			clock-names = "apb_pclk";
- 
- 			out-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 
--				port@0 {
--					reg = <0>;
-+				port {
- 					tpda_out_funnel_qatb: endpoint {
- 						remote-endpoint = <&funnel_qatb_in_tpda>;
- 					};
-@@ -2877,11 +2874,7 @@ funnel_qatb_out_funnel_in0: endpoint {
- 			};
- 
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@0 {
--					reg = <0>;
-+				port {
- 					funnel_qatb_in_tpda: endpoint {
- 						remote-endpoint = <&tpda_out_funnel_qatb>;
- 					};
-@@ -3090,11 +3083,8 @@ etf_out: endpoint {
- 			};
- 
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 
--				port@0 {
--					reg = <0>;
-+				port {
- 					etf_in_funnel_swao_out: endpoint {
- 						remote-endpoint = <&funnel_swao_out_etf>;
- 					};
-@@ -3178,8 +3168,6 @@ funnel@6c2d000 {
- 			clock-names = "apb_pclk";
- 
- 			out-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				port {
- 					tpdm_mm_out_tpda9: endpoint {
- 						remote-endpoint = <&tpda_9_in_tpdm_mm>;
-@@ -3445,11 +3433,7 @@ funnel_apss_merg_out_funnel_in1: endpoint {
- 			};
- 
- 			in-ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port@0 {
--					reg = <0>;
-+				port {
- 					funnel_apss_merg_in_funnel_apss: endpoint {
- 					remote-endpoint = <&funnel_apss_out_funnel_apss_merg>;
- 					};
+ 			reset: reset-controller@2000 {
 -- 
 2.43.0
 
