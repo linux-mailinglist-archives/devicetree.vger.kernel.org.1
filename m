@@ -1,135 +1,221 @@
-Return-Path: <devicetree+bounces-32343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC4982F094
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:35:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D2E682F0B6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:42:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 219191F23E66
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 14:35:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17C3C285E06
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 14:42:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE3341BF27;
-	Tue, 16 Jan 2024 14:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74E531BDEC;
+	Tue, 16 Jan 2024 14:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4jEQCA1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OygdoxNa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD7E51BDEC;
-	Tue, 16 Jan 2024 14:35:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17A51C43390;
-	Tue, 16 Jan 2024 14:35:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705415711;
-	bh=YxRAEs1+500SQYSJEteA7haAvPYo8UdPYN9Xe9/mIio=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D4jEQCA1oX2gdAuwVRAq1lU9gfTshP5xoyXgnUw5fC28RHQN1BTC/y12Wp2JP8d2Q
-	 ZifSys3WVBpWG10QhMIvdm8TRX/BQ0MIIOVa0vPaMbzKxrkQyAxIwkhptUb+9RQa+f
-	 2M7l3yDoJJsO9wq/DESwzXCATOm/bGMCzQRPnnghsL+qwphJBAtxUsSX4L8w4CMAZ9
-	 wZ8WgqQkQf65IsRckBsyg91ZU4ILHZUBhRLHY1FDOzfJ0oXwNtXeB8vhNgvgtlIiQp
-	 Ccgf4p10qpBOo8A0I4sbezUfWKcyK3F41Xj7hRikxXHJbQsxywodU7C0SZWNeW/S5k
-	 MsPjEWUqjaYfg==
-Date: Tue, 16 Jan 2024 08:35:09 -0600
-From: Rob Herring <robh@kernel.org>
-To: Pintu Agarwal <pintu.ping@gmail.com>
-Cc: vichy.kuo@gmail.com, Pintu Kumar <quic_pintu@quicinc.com>,
-	linux-kernel@vger.kernel.org, akpm@linux-foundation.org,
-	linux-mm@kvack.org, frowand.list@gmail.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] of: reserved_mem: fix error log for reserved mem init
- failure
-Message-ID: <20240116143509.GA3845101-robh@kernel.org>
-References: <20231206151600.26833-1-quic_pintu@quicinc.com>
- <20231208203128.GA2646347-robh@kernel.org>
- <CAOuPNLg90T69USVQ8Ti6c8fXb_XrnaR035in_CbJHmNMUYLqOg@mail.gmail.com>
- <CAOuPNLj4_pQiAHoER2VJpW_2NEaq8+zF8p1br+tf0Toe1t1UDg@mail.gmail.com>
- <CAOuPNLh+V1-Uu_rnnbdu7p6DGjHOJf0yJnaxnchwpzh_YyP=_Q@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 006401B976;
+	Tue, 16 Jan 2024 14:41:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3bd884146e9so610244b6e.0;
+        Tue, 16 Jan 2024 06:41:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705416116; x=1706020916; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AQ4d+SlUG6im65swBc/lE81/JJeu4tSZ2OjB3i8zM48=;
+        b=OygdoxNanq0dbpjHN7wuYqbaPT9odFOHVn1PCo+TQOUDWRPw2uQHNP+7/Aehs8aNcj
+         UYxzjWuMuU9SPN5yO/5XLd5uAI71Ha+HURLUyvYQ3775I3YPu8rYorcVjvN0lLzunSG1
+         jdb1dbygzUrgzUQ3MrFLqE4cPLf7+oSQKYGaphcxowsNNdh295f3bQzn34NNYejQcW0i
+         S5lRbseY9HM+vRxrKclHidJcIC2KsavfqNVv8ytSvIR8T+Wo6me2tYePOo1cMnqbrBpS
+         GkB/ZRS4x4fj40BXmDAxqSsUwC6nr60DjAUJwKjKzCFPrLgSIlmV0apD2Ek/8vV6gVM/
+         /qYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705416116; x=1706020916;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AQ4d+SlUG6im65swBc/lE81/JJeu4tSZ2OjB3i8zM48=;
+        b=qf1SRIFAMqJhRXs0O/80LTZEgsP2DR3baGoYqPcFQEl4siiSqnOsuBdyQ+w6L6ajuL
+         Jm2XzfTEqlbw22cdVAC8U2FLaYpAzNgbScYOmVUKPp+5nnMFg81yRP4JhHf9OzTctGa4
+         fxFgUCIPH7qNrVdM0DsCjYHfSYsV9SoOh9/pznomJOT9Zhu5NuhgvrzbPkEOqagAs96H
+         SWqC7YQ0KEoIfLPMZkAwleX0lweDxc2P3dDeXuaclt61dNr1qzcwTJy1fCkoMQEzis9u
+         mt9W8qbZt9y6NqxARjulI35nYVc7ArlhK3DKNeuEkuxSkdM1a8KAmf+NSqt6pGmK08Fq
+         18Mw==
+X-Gm-Message-State: AOJu0YzZJm1cm5aQXdVuuLQTSGZBWR3BUlKcp99HG58UFTqWtVOTD0U2
+	LHuCXC8CKyhnW325Y8fwAL9Qu6N8kVHrmsKKgTw=
+X-Google-Smtp-Source: AGHT+IGdN42iTr1pjIYzZRVPqpOkdba/69EuP+xiL6yzLztkZqhXPgykIy6zP7S0/jTHm/ia2tFzbofM6OSceHK7xBE=
+X-Received: by 2002:a05:6870:1687:b0:203:8474:e84b with SMTP id
+ j7-20020a056870168700b002038474e84bmr10287293oae.24.1705416115534; Tue, 16
+ Jan 2024 06:41:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOuPNLh+V1-Uu_rnnbdu7p6DGjHOJf0yJnaxnchwpzh_YyP=_Q@mail.gmail.com>
+References: <20240115160600.5444-1-qiujingbao.dlmu@gmail.com>
+ <20240115160600.5444-4-qiujingbao.dlmu@gmail.com> <f2b3dff2-ce0d-4ddb-ad61-74abf2c3022d@linaro.org>
+In-Reply-To: <f2b3dff2-ce0d-4ddb-ad61-74abf2c3022d@linaro.org>
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Date: Tue, 16 Jan 2024 22:41:44 +0800
+Message-ID: <CAJRtX8QFLoWnJBkepZrbneHX8qZdde=aw+zbdErVC91B=u==MA@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] riscv: dts: sophgo: add rtc dt node for CV1800
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, chao.wei@sophgo.com, 
+	unicorn_wang@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	dlan@gentoo.org, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jan 06, 2024 at 11:31:12PM +0530, Pintu Agarwal wrote:
-> Hi,
-> 
-> On Thu, 14 Dec 2023 at 22:47, Pintu Agarwal <pintu.ping@gmail.com> wrote:
+On Tue, Jan 16, 2024 at 3:44=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 15/01/2024 17:06, Jingbao Qiu wrote:
+> > Add the rtc device tree node to cv1800 SoC.
 > >
-> > On Mon, 11 Dec 2023 at 20:13, Pintu Agarwal <pintu.ping@gmail.com> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Sat, 9 Dec 2023 at 02:01, Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Wed, Dec 06, 2023 at 08:46:00PM +0530, Pintu Kumar wrote:
-> > > > > During fdt_init_reserved_mem() when __reserved_mem_init_node()
-> > > > > fail we are using pr_info to print error.
-> > > > >
-> > > > > So, if we change the loglevel to 4 (or below), this error
-> > > > > message will be missed.
-> > > > >
-> > > > > Thus, change the pr_info to pr_err for fail case.
-> > > > >
-> > > > > Signed-off-by: Pintu Kumar <quic_pintu@quicinc.com>
-> > > > > ---
-> > > > >  drivers/of/of_reserved_mem.c | 2 +-
-> > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> > > > > index 7ec94cfcbddb..473665e76b6f 100644
-> > > > > --- a/drivers/of/of_reserved_mem.c
-> > > > > +++ b/drivers/of/of_reserved_mem.c
-> > > > > @@ -334,7 +334,7 @@ void __init fdt_init_reserved_mem(void)
-> > > > >               if (err == 0) {
-> > > > >                       err = __reserved_mem_init_node(rmem);
-> > > > >                       if (err != 0 && err != -ENOENT) {
-> > > > > -                             pr_info("node %s compatible matching fail\n",
-> > > > > +                             pr_err("node %s compatible matching fail\n",
-> > > >
-> > > > Isn't the message just wrong. If compatible match fails, we return
-> > > > ENOENT. The failure here would be from the init function.
-> > > >
-> > > Okay.
-> > > You mean to say, if __reserved_mem_init_node fails with default err
-> > > (ENOENT) then it may not hit this condition.
-> > > Instead it will hit the 'else' case which is wrong ?
-> > > Also, the "initfn" inside "__reserved_mem_init_node" may fail in which
-> > > case also it may return default err.
-> > >
-> > > Maybe, the initial author's intention was to free the memory only if
-> > > the failure type is not the default ENOENT type.
-> > >
-> > > This seems to be a different issue.
-> > > Can we address this separately in a different patch ?
-> > >
-> > > And how do we fix this ?
-> > > One option is to add another "if" condition with just ENOENT error check ?
-> > > if (err == -ENOENT) {
-> > >     pr_err("node %s compatible matching fail\n", rmem->name);
-> > >     return;
-> > > }
-> > > Then, correct the existing log with a different message:
-> > > pr_err("node %s matching reserved mem not found.\n", rmem->name);
-> > > Or, add one more "if else" condition ?
-> > > Or, fix the calling function itself : __reserved_mem_init_node ?
-> > >
+> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> > ---
+> >  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
 > >
-> > Any further comments on this ?
-> 
-> Any further comments or suggestions on the above ?
-> Shall we just fix the log message, or correct the if/else case as well ?
+> > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/=
+dts/sophgo/cv1800b.dtsi
+> > index df40e87ee063..66bb4a752b91 100644
+> > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > @@ -119,5 +119,17 @@ clint: timer@74000000 {
+> >                       reg =3D <0x74000000 0x10000>;
+> >                       interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_in=
+tc 7>;
+> >               };
+> > +
+> > +             rtc: rtc@5025000 {
+> > +                     compatible =3D "sophgo,cv1800-rtc", "syscon";
+> > +                     reg =3D <0x5025000 0x2000>;
+> > +                     interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     clocks =3D <&osc>;
+> > +             };
+> > +
+> > +             por {
+> > +                     compatible =3D "sophgo,cv1800-por";
+>
+> What is this? Why is it here, how did it even appear? It misses unit
+> address and reg or is clearly placed in wrong place. It seems you
+> entirely ignored out previous discussion.
+>
+> NAK
+>
 
-It looked to me like the original author's intent was this is not an 
-error. Either convince me otherwise or wait for me to study this 
-further. This code gets a lot of drive-by patches and what is "correct" 
-isn't always clear.
+I'm very sorry for wasting your time. Furthermore, we would like to
+thank you for your patient response.
+Let me realize the rigor of Linux kernel code. I greatly admire
+this.Please allow me to briefly review
+our previous discussions.
 
-Rob
+CV1800 is a RISCV based SOC that includes an RTC module. The RTC
+module has an OSC oscillator
+and POR submodule inside.This OSC oscillator is only for RTC use, so
+it does not need to be described
+as a dt node. The POR submodule provides power off/on and restart
+functions for CV1800. So I need
+two drivers corresponding to RTC and POR respectively. RTC requires
+the use of irq and clk resources
+in addition to registers, while POR only requires Reg resources. The
+current problem is how to describe
+the relationship between RTC and POR, and how to make registers shared
+by these two drivers.
+
+In v3, I thought RTC was an MFD device because it not only had RTC
+functionality but also restart and
+power on/off capabilities.So my example is shown below.
+
+syscon@5025000 {
+  compatible =3D "sophgo,cv1800b-subsys", "syscon", "simple-mfd";
+  reg =3D <0x05025000 0x2000>;
+  rtc {
+    compatible =3D "sophgo,cv1800b-rtc";
+    interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
+    clocks =3D <&clk CLK_RTC_25M>;
+  };
+}
+
+There were two suggestions you made at the time. Firstly, I only
+described RTC and did not describe
+the POR submodule. Secondly, regarding the name issue, system
+controllers should not be placed
+in the mfd file.Afterwards, I released the 4th version, in which I
+described the POR submodule, which
+is included side by side with RTC in the misc device. Then, by sharing
+the register, both RTC and
+POR drivers can access the registers.
+
+misc@5025000 {
+  compatible =3D "sophgo,cv1800-misc", "syscon", "simple-mfd";
+  reg =3D <0x05025000 0x2000>;
+  rtc  {
+    compatible =3D "sophgo,cv1800-rtc";
+    interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
+    clocks =3D <&clk 15>;
+  };
+  por  {
+    compatible =3D "sophgo,cv1800-por";
+  };
+};
+
+Your suggestion is, firstly, the por submodule does not have any
+resources, so it should be deleted.
+The second issue is still the name, misc is any device.
+Afterwards, I released the 5th edition. In this version, I removed the
+POR submodule in RTC.
+
+rtc@5025000 {
+    compatible =3D "sophgo,cv1800-rtc", "syscon";
+    reg =3D <0x5025000 0x2000>;
+    interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
+    clocks =3D <&clk 15>;
+};
+
+The question you raised is why syscon child nodes are used.
+In this version, I will try the following methods.
+
+rtc: rtc@5025000 {
+                    compatible =3D "sophgo,cv1800-rtc", "syscon";
+                    reg =3D <0x5025000 0x2000>;
+                    interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
+                    clocks =3D <&osc>;
+};
+por {
+                    compatible =3D "sophgo,cv1800-por";
+                    sophgo,rtc-sysreg =3D <&rtc>;
+};
+
+My idea is that this register can be accessed through the syscon tag,
+RTC driver, and reboot driver.
+Then complete their functions.
+I'm sorry if it was due to language differences that caused my misunderstan=
+ding.
+Perhaps I can accomplish it through the following methods.
+rtc: rtc@5025000 {
+                    compatible =3D "sophgo,cv1800-rtc", "sophgo,cv1800-por"=
+;
+                    reg =3D <0x5025000 0x2000>;
+                    interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
+                    clocks =3D <&osc>;
+};
+However, in reality, the POR submodule does not use IRQ and CLK.
+Please do not hesitate to teach. Thanks.
+
+
+Best regards,
+Jingbao Qiu
 
