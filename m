@@ -1,182 +1,126 @@
-Return-Path: <devicetree+bounces-32430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42A882F538
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:22:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C64582F541
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:26:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64520286172
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:22:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE41EB23A1E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EC01CFB7;
-	Tue, 16 Jan 2024 19:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D171CFBE;
+	Tue, 16 Jan 2024 19:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jDAoxy/e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LY7+CK8W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490231D551;
-	Tue, 16 Jan 2024 19:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F2E1CFA9;
+	Tue, 16 Jan 2024 19:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705432908; cv=none; b=EuBitNO56Kq3K7Ts77l0fNqMDPr4x5Hq+AK24CnAw+wD+6nPlhIe7lqcIj4CTuUcUGrS9JFSrxDVnscRZ18fhYoMY6bCMy/ttx4mw6yEa6WjanAQt8LhDJ9J6F8rrecPSnw76MWw5GMT7DZ+PL+pvG5JnjPRGKqFzyq5sPAYpTU=
+	t=1705433168; cv=none; b=Khn16j1moGZ+caawCi+4zX0Zps4XyswkBWRwwSAOtO2SR2ms3UBNdlisSabMOFJlbDsovVW2Zzgz2fyKfw0KIZglrNG4SK/Vib90u5z3NnAdD6exO9/yebV887XEcQ1oqaP+ZEw3dAQ43X4EBTcjEu6el2BvAREI4tvBJtPI85Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705432908; c=relaxed/simple;
-	bh=a/KKy2dE543H2Gl6BmUDI+HNtbqufnDY/kX/+aRrmDc=;
+	s=arc-20240116; t=1705433168; c=relaxed/simple;
+	bh=B4b0GWY0RQ8JpYsz9T55TuKhWcRS0NpwY9X992qXy6Y=;
 	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
 	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=MTLSVY3HPxzC56D3REAHxEruNw/f4NUbGRztpVx9E+fpqDyzJUKP7HudsQrdW7xXizkzcl50CDmpbipMV6j+03a2T6iiigKwhzA6XFtqNm7UP8nkMeWUMNaq2BK1z6/5TkH26k39LXZYgyU6FXeAv5jaDlJXYg8mg1Ie87VClek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jDAoxy/e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83B1DC433C7;
-	Tue, 16 Jan 2024 19:21:47 +0000 (UTC)
+	 Content-Transfer-Encoding:In-Reply-To; b=Y7WX4mQkSkXgh2u5tctvgMotD+J5PDdVNSbQDMiif3Rw6D57fD4+hz9REb68F2dNbZBfAmXESP6GNsugRIeN0tk+v/0YX18ecxAYIKHYrwh0yO2vHYsPMxlXjUJyE2vVtpGk7SlX7RYaCPE9p3fNvWhg/l32rr0Va7gKNqsNIu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LY7+CK8W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19B24C433F1;
+	Tue, 16 Jan 2024 19:26:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705432907;
-	bh=a/KKy2dE543H2Gl6BmUDI+HNtbqufnDY/kX/+aRrmDc=;
+	s=k20201202; t=1705433167;
+	bh=B4b0GWY0RQ8JpYsz9T55TuKhWcRS0NpwY9X992qXy6Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jDAoxy/eYK61+Kg+xMhbM8xlmHaaAueJnPU9exonyxZzgXOus0vBbOgLYb5wueTX2
-	 GkXwlwdNe+NT+3vysFVA31Db9m5O5XRcGO2/Ku3qYpyuzRv+sCvpfHRDsJ0g6uDT1J
-	 m/tLBAN77h5YizY521DffARYkQ8x0or7b6ehyREuW7hyKAQWbHknRPqyED3YTsB0HV
-	 oZlgDi9YLyv1+wq/y4sWE0mjT5p95+P9GWU8U1/1Z6ixKvF1D/Ve1wGdiUHfEyYhqg
-	 j6bwZ0Jp02j857IHouQc/HP4o8HUZfAV4px4m0T3LQJKxDaCnR/22TbP79gCiaxMGE
-	 61HaulBQ9UnxQ==
-Date: Tue, 16 Jan 2024 13:21:45 -0600
+	b=LY7+CK8WU7DjDEgOihpyGM+XAuWkFtPSJ72WNOfgGwo6D1fpQDJcpdXtkpqV3bUX3
+	 CGC4ukQylgEKR/VzXIg0Is83b1JRwHCOMiq5UaGFtwuhPwnZ/Ea31ZyAzT8mSEYRaj
+	 u0kiaEQYQ+lvDittBjpxD1PTrDTjkw6JcAv1VnjyAx8VfYbcyt+B66SF0uY2dMJgCA
+	 leDjeBKo7gW1XfQaUgqQMbiXGTS+UhDitnK/12NNqK2g0hivR6k5pXKwp5Liu5Vjiy
+	 Pl4SErZCsJ0eCI2Y7f5G97lrHSxjhGPHxeB4tqp0QtuQQizh4BarJjc4G/Aa9VKMK9
+	 RnzQLq3tSdhgA==
+Date: Tue, 16 Jan 2024 13:26:05 -0600
 From: Rob Herring <robh@kernel.org>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
+To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+Cc: Tim Lunn <tim@feathertop.org>, KyuHyuk Lee <lee@kyuhyuk.kr>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: remoteproc: add compatibility for TEE
- support
-Message-ID: <20240116192145.GA265232-robh@kernel.org>
-References: <20240115135249.296822-1-arnaud.pouliquen@foss.st.com>
- <20240115135249.296822-3-arnaud.pouliquen@foss.st.com>
+	Chris Morgan <macromorgan@hotmail.com>,
+	Tianling Shen <cnsztl@gmail.com>, Jagan Teki <jagan@edgeble.ai>,
+	Ondrej Jirman <megi@xff.cz>, Andy Yan <andyshrk@163.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rockchip: Fix Hardkernel ODROID-M1 board
+ bindings
+Message-ID: <20240116192605.GA274661-robh@kernel.org>
+References: <20240115145142.6292-1-lee@kyuhyuk.kr>
+ <8b31ae29-b88b-4ded-95b4-c2d9bbad24e1@feathertop.org>
+ <3dfe868d-ff8d-44ac-a68e-066ac42a6705@linaro.org>
+ <2421144.zToM8qfIzz@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240115135249.296822-3-arnaud.pouliquen@foss.st.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2421144.zToM8qfIzz@diego>
 
-On Mon, Jan 15, 2024 at 02:52:47PM +0100, Arnaud Pouliquen wrote:
-> The "st,stm32mp1-m4-tee" compatible is utilized in a system configuration
-> where the Cortex-M4 firmware is loaded by the Trusted execution Environment
-> (TEE).
-> This compatible is used in both the Linux and OP-TEE device-tree.
-> - In OP-TEE, a node is defined in the device tree with the
->   st,stm32mp1-m4-tee to support signed remoteproc firmware.
->   Based on DT properties, OP-TEE authenticates, loads, starts, and stops
->   the firmware.
-> - On Linux, when the compatibility is set, the Cortex-M resets should not
->   be declared in the device tree.
+On Tue, Jan 16, 2024 at 09:31:35AM +0100, Heiko Stübner wrote:
+> Am Dienstag, 16. Januar 2024, 08:24:44 CET schrieb Krzysztof Kozlowski:
+> > On 16/01/2024 03:00, Tim Lunn wrote:
+> > > 
+> > > On 1/16/24 01:58, Krzysztof Kozlowski wrote:
+> > >> On 15/01/2024 15:51, KyuHyuk Lee wrote:
+> > >>> The vendor in ODROID-M1 is hardkernel, but it was incorrectly written
+> > >>> as rockchip. Fixed the vendor prefix correctly.
+> > >>>
+> > >>> Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
+> > >>> ---
+> > >>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
+> > >>>   1 file changed, 1 insertion(+), 1 deletion(-)
+> > >> You need to start testing your patches. Your last M1 fails as well in
+> > >> multiple places.
+> > >>
+> > >> It does not look like you tested the DTS against bindings. Please run
+> > >> `make dtbs_check W=1` (see
+> > >> Documentation/devicetree/bindings/writing-schema.rst or
+> > >> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+> > >> for instructions).
+> > >>
+> > >> The DTS change will break the users, so would be nice to mention this in
+> > >> its commit msg.
+> > > 
+> > > I notice there are a couple of other boards that incorrectly use 
+> > > rockchip as the vendor also:
+> > > 
+> > >            - const: rockchip,rk3399-orangepi
+> > >            - const: rockchip,rk3568-bpi-r2pro
+> > > 
+> > > Perhaps these should also be fixed at the same time?
+> > 
+> > What is happening with rockchip boards?
 > 
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> ---
->  .../bindings/remoteproc/st,stm32-rproc.yaml   | 53 +++++++++++++++----
->  1 file changed, 44 insertions(+), 9 deletions(-)
+> Copy-paste stuff ... boards using rockchip,boardname instead of
+> vendor,boardname for their compatible.
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-> index 370af61d8f28..9fdfa30eff20 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
-> @@ -16,7 +16,12 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    const: st,stm32mp1-m4
-> +    enum:
-> +      - st,stm32mp1-m4
-> +      - st,stm32mp1-m4-tee
-> +    description:
-> +      Use "st,stm32mp1-m4" for the Cortex-M4 coprocessor management by Linux
-
-What if other OSs want to manage the M4?
-
-> +      Use "st,stm32mp1-m4-tee" for the Cortex-M4 coprocessor management by secure context
->  
->    reg:
->      description:
-> @@ -142,21 +147,41 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - resets
->  
->  allOf:
->    - if:
->        properties:
-> -        reset-names:
-> -          not:
-> -            contains:
-> -              const: hold_boot
-> +        compatible:
-> +          contains:
-> +            const: st,stm32mp1-m4
-> +    then:
-> +      if:
-> +        properties:
-> +          reset-names:
-> +            not:
-> +              contains:
-> +                const: hold_boot
-> +      then:
-> +        required:
-> +          - st,syscfg-holdboot
-> +          - resets
-> +      else:
-> +        properties:
-> +          st,syscfg-holdboot: false
-> +        required:
-> +          - reset-names
-
-Looks like a new required property.
-
-> +          - resets
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: st,stm32mp1-m4-tee
->      then:
-> -      required:
-> -        - st,syscfg-holdboot
-> -    else:
->        properties:
->          st,syscfg-holdboot: false
-> +        reset-names: false
-> +        resets: false
->  
->  additionalProperties: false
->  
-> @@ -188,5 +213,15 @@ examples:
->        st,syscfg-rsc-tbl = <&tamp 0x144 0xFFFFFFFF>;
->        st,syscfg-m4-state = <&tamp 0x148 0xFFFFFFFF>;
->      };
-> +  - |
-> +    #include <dt-bindings/reset/stm32mp1-resets.h>
-> +    m4@10000000 {
-> +      compatible = "st,stm32mp1-m4-tee";
-> +      reg = <0x10000000 0x40000>,
-> +            <0x30000000 0x40000>,
-> +            <0x38000000 0x10000>;
-> +      st,syscfg-rsc-tbl = <&tamp 0x144 0xFFFFFFFF>;
-> +      st,syscfg-m4-state = <&tamp 0x148 0xFFFFFFFF>;
-> +    };
->  
->  ...
-> -- 
-> 2.25.1
+> I do remember us noticing this a number of times on some boards
+> and requesting fixes, but looks like some slipped through.
 > 
+> So I guess Tim is suggesting changing the compatible, but with boards
+> being merged a while ago, this would break backwards compatibility.
+> So I guess both the Orange and Banana Pies will need to live with that.
+
+You may get away with it because we generally don't use the names...
+
+Though there are some discussions to start using them to select dtbs by 
+bootloaders.
+
+Rob
 
