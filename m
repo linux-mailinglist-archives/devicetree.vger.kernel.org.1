@@ -1,83 +1,92 @@
-Return-Path: <devicetree+bounces-32432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C16E82F555
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:27:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C865782F55E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:31:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15605B23A73
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:27:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ADC92865DC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1492E1D547;
-	Tue, 16 Jan 2024 19:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63331D525;
+	Tue, 16 Jan 2024 19:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WUX/YzJ3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kcSYsMbG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DADF21D541;
-	Tue, 16 Jan 2024 19:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DFEB1CFBE;
+	Tue, 16 Jan 2024 19:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705433250; cv=none; b=UiGZFcecT95o1Kd2Jm1XbcR7hZIuJLxDKFBS5C5qweCdbJmnq/98RUztFcjRTRlzH+bck2Dri8I9bpXRirlwHi2wGyL3nQBqo7VjId/5h0fMg+knd9RmKPxtQW0Ezx/WMad6PI/+hYmRJTujK3bmpulE/mMl+6rh2JMqOLAMltM=
+	t=1705433457; cv=none; b=Xh7IDoyugvx4xQ60cixU4ZHcvGoPfc21n+umm+ZU3RyFbSjkGNGAHYrhNr+HwShaj81ePaT8sT31lUn+l2WArGxbtRbYV36/uhcWebEqaHpOr7QpL3RXNrR5hVt91j/6nH9naMwdshvdvnMUl1M/DD3u7kC20ClxIcVeLRLTnk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705433250; c=relaxed/simple;
-	bh=vBWLu8oHrZSwoN6aHtVx9YgfqkzR3n3V63/JGBFBvgY=;
+	s=arc-20240116; t=1705433457; c=relaxed/simple;
+	bh=nFYmtr+6YzRDg3+bAiJfqwdAdGxuORN0ImfHiq3Hs2s=;
 	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
 	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=W4285cVdhQLZugV7+B0WPb16d7HFncXmYmOBYaihIKMCE6l/CMblMOz4mVK0zUhFz19dRWyTtoifY1GT/WJUiU0PxiJrBys87x43FK0B35husVPtJpvGMUHuaz+tbgYX081AewZBCr2+AT3etbxW4mpRPqE4MHK3GDxjLch9sk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WUX/YzJ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14D0DC433F1;
-	Tue, 16 Jan 2024 19:27:28 +0000 (UTC)
+	 Content-Transfer-Encoding:In-Reply-To; b=MX/DuhWHnYuv26SUg7Vi1KkA1MJN7kT2YimSf4nS8R7TuucGC9pqJv29wpZJloixRnMBDcDRt25mjXijHJTYs8cAFD/RbeKO6Px8Xbvs+qy40RFXX4zsaeU/SRrFnR865Xy2Y5ig51oWi6b30PtHPpZeZeG8Ic2TZfVhiBj3fiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kcSYsMbG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3266FC433F1;
+	Tue, 16 Jan 2024 19:30:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705433249;
-	bh=vBWLu8oHrZSwoN6aHtVx9YgfqkzR3n3V63/JGBFBvgY=;
+	s=k20201202; t=1705433457;
+	bh=nFYmtr+6YzRDg3+bAiJfqwdAdGxuORN0ImfHiq3Hs2s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WUX/YzJ3V1h/6jM1zyh4v68+kfhTEJaEI9PRNiDhyi1007mqpShYR0h8hSYbRySO3
-	 mPvJg51xtSjKaPtZllVhHCXl0ZB5g6KzMm+3lBOuEVsn8Bm9WA4U0L//JWSGx4UD3R
-	 /tsF26L6xS/bLyksbSX6ZxbRBVHX4Dis6c6t2q/O1oA7VZ1ueUKt2HrUSBetzkg31i
-	 f7O002Yn58NFmK2hjZZ8lXqC22FourVoI29spnEV0lA3I7lPShQTYTo/X0/CmYcPFL
-	 Wm/Iuh63JBkI5BDk31+CBqXkriYjITIGY6lMf4nib8rcXZs8R3fo5GoJiWg9AzggJ3
-	 SydBDRYamJsUQ==
-Date: Tue, 16 Jan 2024 13:27:26 -0600
+	b=kcSYsMbGsXMaV+a88y2F015OKzhzdrpOpnXsWBjGlDu3aIJapJe5S8RiykrqQm4Rv
+	 bo1Sb6zV6VGsLv6WUNNMXA42ph6NT/tF6tuHZCxiyfZ7CoKhNomz97j35bJR+Unoct
+	 u90p6fxoQ8DFt/qva4wk43R80YM4U/jZ9zqNZj7Q/cD2HAMiG4s5bKyu80GtXws2MV
+	 hIV177w1KqwzeH6GUtGG6z0kPajAMl+nF/Bjn03Ah+h7HflMFZnqsj8FI3WxG/RYE3
+	 kl41EiIXp0kME1pouIpOEJ3EsR0JE8+yhsid7jXfCL3UVYJTc2u2Cx4BtlVdlPu3A3
+	 hD9WezZLAvK7w==
+Date: Tue, 16 Jan 2024 13:30:55 -0600
 From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-	Herve Codina <herve.codina@bootlin.com>, devicetree@vger.kernel.org,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, linux-sound@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: Do not override firmware-name $ref
-Message-ID: <170543324653.279718.18172687756006729713.robh@kernel.org>
-References: <20240115182017.1610055-1-krzysztof.kozlowski@linaro.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <git@andred.net>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	devicetree@vger.kernel.org,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Masahiro Yamada <masahiroy@kernel.org>, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: don't anchor DT_SCHEMA_FILES to bindings
+ directory
+Message-ID: <170543338330.282631.14506406638025276437.robh@kernel.org>
+References: <20240116062731.2810067-1-git@andred.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240115182017.1610055-1-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240116062731.2810067-1-git@andred.net>
 
 
-On Mon, 15 Jan 2024 19:20:17 +0100, Krzysztof Kozlowski wrote:
-> dtschema package defines firmware-name as string-array, so individual
-> bindings should not make it a string but instead just narrow the number
-> of expected firmware file names.
+On Tue, 16 Jan 2024 06:27:31 +0000, André Draszik wrote:
+> From: André Draszik <andre.draszik@linaro.org>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Commit 5e3ef4546819 ("dt-bindings: ignore paths outside kernel for
+> DT_SCHEMA_FILES") anchored all searches to the bindings directory
+> (since bindings only exist below that), but it turns out this is not
+> always desired.
+> 
+> Just anchor to the base kernel source directory and while at it, break
+> the overly long line for legibility.
+> 
+> Reported-by: Michal Simek <michal.simek@amd.com>
+> Closes: https://lore.kernel.org/all/827695c3-bb33-4a86-8586-2c7323530398@amd.com/
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
 > ---
->  Documentation/devicetree/bindings/sound/fsl,easrc.yaml        | 4 ++--
->  Documentation/devicetree/bindings/sound/infineon,peb2466.yaml | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/Makefile | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Added a 'Fixes' tag and applied, thanks!
 
 
