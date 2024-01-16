@@ -1,164 +1,129 @@
-Return-Path: <devicetree+bounces-32236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EAD282EB65
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:19:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A261082EB89
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:31:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 963081C22F42
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:19:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F32F1F24077
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:31:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90586125DC;
-	Tue, 16 Jan 2024 09:19:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF32D12B77;
+	Tue, 16 Jan 2024 09:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rpvc4JTi"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="IvdmDo/9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE5AD12B60;
-	Tue, 16 Jan 2024 09:19:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40G9J06o094644;
-	Tue, 16 Jan 2024 03:19:00 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1705396740;
-	bh=+f0VemhyFwFnGlJoV6Z/6zvcuO/sA8b/sNMJ7K0g+fw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=rpvc4JTiBq5NkJv7NzywIZG3UI8vvJBWKFeeCCsCpST3uDWpwR6eF9hL8STki1M9k
-	 xPvjCnTdU5o9WQET7BQpH28k14UmiknVnIlgIgON2FY//jrSmriQLWR1+qmne05Sx3
-	 K4RNA15d6Nhid0TD9aM0/sskyYY+veKq3dsrsvQk=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40G9J0Q7037956
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 16 Jan 2024 03:19:00 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- Jan 2024 03:18:59 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 Jan 2024 03:18:59 -0600
-Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40G9IrAI020250;
-	Tue, 16 Jan 2024 03:18:54 -0600
-Message-ID: <4c5cb4ed-96a3-7bd8-f660-2a3bb041ca09@ti.com>
-Date: Tue, 16 Jan 2024 14:48:53 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 176B212E42;
+	Tue, 16 Jan 2024 09:31:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1705397484; x=1736933484;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+e6Ln558idTWadRn1DXntGL0wDIyCZpJMPP2MxyNkHo=;
+  b=IvdmDo/9x2r0RyR0dBmM+vU1fA4M8UhHYFIF5ZGW9Hr/ngzBKvFWaMkK
+   v5cojJ5uf8zg0+5a4WXHL2Ju1L2CfPgFl8hrxUSc6hLaeCL3WAh/d9dE/
+   i0yKxWvMwp1rYGTzpk8KYBQQ5evfNLpCO41MWzxMs3VQ1BwGRd9zGADHm
+   ACbabhXgYI6Eh3dAFTYSdJcs/6vLV3MANX5uCTdkTGw/I5e+MKvrxbMsV
+   3vbo8PYtQDtS2dQPW5ALj9KNL3EXZMr+OaqLD3G/Xd1WNiUu3hDLCzFNS
+   qoj55trBOXJ2vqaY+kmRfyLP/5q46zJVmF2Dug4Hr2ng2iarUwHpSEHG2
+   w==;
+X-CSE-ConnectionGUID: WayHWkw8Q7O2gJ+Gskrx3A==
+X-CSE-MsgGUID: 0aICPRxpQsWlKp7G71Bc1A==
+X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; 
+   d="asc'?scan'208";a="15990500"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Jan 2024 02:31:22 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 16 Jan 2024 02:31:04 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Tue, 16 Jan 2024 02:31:01 -0700
+Date: Tue, 16 Jan 2024 09:30:25 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC: Frank Li <Frank.li@nxp.com>, <robh@kernel.org>,
+	<alexandre.belloni@bootlin.com>, <conor.culhane@silvaco.com>,
+	<gregkh@linuxfoundation.org>, <imx@lists.linux.dev>, <jirislaby@kernel.org>,
+	<joe@perches.com>, <linux-i3c@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+	<miquel.raynal@bootlin.com>, <zbigniew.lukwinski@linux.intel.com>,
+	<devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
+ silvaco,i3c-target-v1
+Message-ID: <20240116-bleach-herbicide-48d636967134@wendy>
+References: <20240110175221.2335480-1-Frank.Li@nxp.com>
+ <20240110175221.2335480-3-Frank.Li@nxp.com>
+ <3c0be658-e7a6-4231-b206-86ffb47e0cb2@linaro.org>
+ <ZaFbbeQrC7o2dchO@lizhi-Precision-Tower-5810>
+ <e3b9aa63-25a5-41cc-9eb7-6e7d1eacb136@linaro.org>
+ <ZaFjaWCA6k+tiCSJ@lizhi-Precision-Tower-5810>
+ <ZaWLCrWJEMtFx8cR@lizhi-Precision-Tower-5810>
+ <1b628901-7f71-4c97-9a16-723912988417@linaro.org>
+ <ZaXqCoCHPWER94Hh@lizhi-Precision-Tower-5810>
+ <d45e31c4-914e-4cea-a145-9775b6f516ab@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [DO NOT MERGE PATCH 2/2] arm64: dts: ti: Add common1 register
- space for AM62x and AM65x SoCs
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-CC: <jyri.sarha@iki.fi>, <tomi.valkeinen@ideasonboard.com>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <praneeth@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <kristo@kernel.org>
-References: <20240115125716.560363-1-devarsht@ti.com>
- <20240115125716.560363-3-devarsht@ti.com>
- <20240115-penpal-pluck-d156ccf21b2f@spud>
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20240115-penpal-pluck-d156ccf21b2f@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tU9usgt5JDc4MslD"
+Content-Disposition: inline
+In-Reply-To: <d45e31c4-914e-4cea-a145-9775b6f516ab@linaro.org>
 
-Hi Conor,
+--tU9usgt5JDc4MslD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the review.
+On Tue, Jan 16, 2024 at 08:24:20AM +0100, Krzysztof Kozlowski wrote:
+> On 16/01/2024 03:29, Frank Li wrote:
+> >>> 	Patches were accepted after discussion, what you ponit to. So I
+> >>> think everyone agree on the name 'silvaco,i3c-master-v1'.
+> >>> 	I plan send next version to fix auto build error. Any additional
+> >>> comments about this?
+> >>
+> >> I still do not see how did you address Rob's comment and his point is
+> >> valid. You just did not reply to it.
+> >=20
+> > See https://lore.kernel.org/imx/ZXCiaKfMYYShoiXK@lizhi-Precision-Tower-=
+5810/
+>=20
+> First of all, that's not the answer to Rob's email, but some other
+> thread which is 99% ignored by Rob (unless he has filters for
+> "@Rob"...). Therefore no, it does not count as valid answer.
+>=20
+> Second, explanation does not make sense. There is no argument granting
+> you exception from SoC specific compatibles.
 
-On 15/01/24 21:44, Conor Dooley wrote:
-> On Mon, Jan 15, 2024 at 06:27:16PM +0530, Devarsh Thakkar wrote:
->> This adds common1 register space for AM62x and AM65x SoC's which are using
->> TI's Keystone display hardware and supporting it as described in
->> Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml.
->>
->> This region is documented in respective Technical Reference Manuals [1].
->>
->> [1]:
->> AM62x TRM:
->> https://www.ti.com/lit/pdf/spruiv7 (Section 14.8.9.1 DSS Registers)
->>
->> AM65x TRM:
->> https://www.ti.com/lit/pdf/spruid7 (Section 12.6.5 DSS Registers)
->>
->> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->> ---
-> 
-> "[DO NOT MERGE PATCH 2/2]" but no rationale here as to why this cannot
-> be merged? What's the problem with it?
-> 
+The patch could have been applied two months ago had Frank done as
+was requested (multiple times). I don't understand the resistance
+towards doing so given the process has taken way way longer as a result.
 
-No problem as such from my point of view, but this is the process I follow
-since maintainer trees for device-tree file and bindings are different. I
-generally mark a [DO NOT MERGE] tag for device-tree file patches until binding
-patch gets merged so that the device-tree patches don't get applied by mistake
-if binding patch has some pending comments.
+--tU9usgt5JDc4MslD
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Once binding patch gets merged, I re-send the device-tree file patches again
-to respective list.
+-----BEGIN PGP SIGNATURE-----
 
-Regards
-Devarsh
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaZMsQAKCRB4tDGHoIJi
+0oXjAQD+n2/ohO6suxsrwD5Ou5eVTuKiCJW4yn6SzYminXj4UQEA5Z7Y5G8MfUrU
+u49KfI9asa8Tjp9X2y7YIiNSAtP1Qg0=
+=nQni
+-----END PGP SIGNATURE-----
 
-> Cheers,
-> Conor.
-> 
->>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 5 +++--
->>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 5 +++--
->>  2 files changed, 6 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->> index 464b7565d085..298bf8d5de8c 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
->> @@ -779,9 +779,10 @@ dss: dss@30200000 {
->>  		      <0x00 0x30207000 0x00 0x1000>, /* ovr1 */
->>  		      <0x00 0x30208000 0x00 0x1000>, /* ovr2 */
->>  		      <0x00 0x3020a000 0x00 0x1000>, /* vp1: Used for OLDI */
->> -		      <0x00 0x3020b000 0x00 0x1000>; /* vp2: Used as DPI Out */
->> +		      <0x00 0x3020b000 0x00 0x1000>, /* vp2: Used as DPI Out */
->> +		      <0x00 0x30201000 0x00 0x1000>; /* common1 */
->>  		reg-names = "common", "vidl1", "vid",
->> -			    "ovr1", "ovr2", "vp1", "vp2";
->> +			    "ovr1", "ovr2", "vp1", "vp2", "common1";
->>  		power-domains = <&k3_pds 186 TI_SCI_PD_EXCLUSIVE>;
->>  		clocks = <&k3_clks 186 6>,
->>  			 <&dss_vp1_clk>,
->> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> index fcea54465636..5b2d4365b911 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->> @@ -1019,9 +1019,10 @@ dss: dss@4a00000 {
->>  		      <0x0 0x04a07000 0x0 0x1000>, /* ovr1 */
->>  		      <0x0 0x04a08000 0x0 0x1000>, /* ovr2 */
->>  		      <0x0 0x04a0a000 0x0 0x1000>, /* vp1 */
->> -		      <0x0 0x04a0b000 0x0 0x1000>; /* vp2 */
->> +		      <0x0 0x04a0b000 0x0 0x1000>, /* vp2 */
->> +		      <0x0 0x04a01000 0x0 0x1000>; /* common1 */
->>  		reg-names = "common", "vidl1", "vid",
->> -			"ovr1", "ovr2", "vp1", "vp2";
->> +			"ovr1", "ovr2", "vp1", "vp2", "common1";
->>  
->>  		ti,am65x-oldi-io-ctrl = <&dss_oldi_io_ctrl>;
->>  
->> -- 
->> 2.34.1
->>
+--tU9usgt5JDc4MslD--
 
