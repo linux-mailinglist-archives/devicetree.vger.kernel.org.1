@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-32522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F4C482F9C5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:16:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E0782F9CC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:17:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94069B28280
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:14:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 443711C25C39
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6C321482F6;
-	Tue, 16 Jan 2024 19:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDAC14A4EF;
+	Tue, 16 Jan 2024 19:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z4f60X6D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MLrUzx4l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EFF61482EC;
-	Tue, 16 Jan 2024 19:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44EF14A4EA;
+	Tue, 16 Jan 2024 19:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705435017; cv=none; b=QPNL5zcXrGaKce8Y/fBgZLh6tIo7RURxeEj0DecDuQa1dq+jjCqgTH1j9P6i+TdIbFLQm+SPrHNiMi+QcGiJcmxuRlNTgLYNsCkBz137QL0hjnIQ1PI4C/SdksmhB37OENOfC+5hjmPtVRs5oqmecnnyPz5go/7V/LbyuWqR9/A=
+	t=1705435034; cv=none; b=ebG+X/MqB4oZZYIbpEeI2X8XgSYyLh2Hx5Rm4tIM59nv1KG+YuYTulgawcXCgc01noUnHEuF37R9ZDc5B8o48aDw1vXVxejaheJQ9UueodZDzuU2anCyVUKIdEfxG5XyO1sBkLVNUuKeUeR+AaSxrf1wugSJh0nF+ZbQPYcC12Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705435017; c=relaxed/simple;
-	bh=jcwuOQxwyxb6zSdrifRuP5NhfFhRZHRGvV4Hpb4lmVA=;
+	s=arc-20240116; t=1705435034; c=relaxed/simple;
+	bh=+chJaTaEeJ7ADT1okLW5FlwbJPRKpKDMOmwMmhKkqBE=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=oo7WE2OzoTyw2IMLHzDgmChOXNTnH9GfU73Y/+deGzUv9c+IhSiBjpkUtaBBeVUzt+XcmAOnB3uhSxjuZiREe0xqJgC7BEbK62Z/hUZRl7/uv/ywTX4TI086Spe+jveJ2W4/MPzBKSEVdVi+vn0MwNuqP1EGTpEk2PIWLj0096Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z4f60X6D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AE8CC433B1;
-	Tue, 16 Jan 2024 19:56:56 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=C8CmoL1eLBddk4Bnxs5ZNyOvRvITT0xhpUaO/fyoE6eOKT0bAe5J3B0jxmm2hgOgCTf7bfdB24wGuLBQ0IjF5BEY2UjUGaqtOR3/JIa6vmOy6pJdsxQvEdotl7Xncx+DhUISjdZeWsSSqWDZmivwTN8vxDohw28NjNUPS/pWEXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MLrUzx4l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 783F6C43609;
+	Tue, 16 Jan 2024 19:57:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705435017;
-	bh=jcwuOQxwyxb6zSdrifRuP5NhfFhRZHRGvV4Hpb4lmVA=;
+	s=k20201202; t=1705435034;
+	bh=+chJaTaEeJ7ADT1okLW5FlwbJPRKpKDMOmwMmhKkqBE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Z4f60X6DXoBhcUsWt18I/PJkK0pf0WoQQ2drDiqVFC2hqM+rFjkygoXM1XF/mWfEd
-	 inTQJW0OzKTlVPQKK7u5Btg+3bL23z6/rGyir/Dq2Uo1OnykFBBhXyOVyAxOmb5gDT
-	 RFEtlvi87+qxCuIOSaa0NpNvW3nIAzBF7/jc8WWE2IqkaQwibE89mZf/S5PlRu0XPU
-	 bhR190n/OZQC48vZrX9nxNsJEtGfFGhVBSzswSVts5ClC5+isxjcSZ2km4Z1dYD3sh
-	 csVqj9QmPKAfBGtLUHMhJaHV2W+nNYmYqZHk44O3a5XS8waJx7EPBSVkD7Ww8t7tF4
-	 aRJ+O/1lu0cEQ==
+	b=MLrUzx4lSCVLtxu7PHF3cBBAMTFcF9Zi5x+Rtm1d5p8u6zZ53y9Okx7xlrZuySXrF
+	 KR6n65RA511lxELAIQp8ZJDpbBq5W7cozehTWO/jhFdksyD0K1KKKZH6CgFgTLueeu
+	 HvfGyniUPkV0Gw9rYe7GtPLEIFG5h6eyZwNlBDUGw7/dg8XhX7HLjrd5ERoNlcevWN
+	 pDvssyMaMRumeHlQQF9D8g+bBlf6BSScKc+cQnMRfzd6FyFgb/nCkpAXAeHaJVkySX
+	 OBDGPQlLzUmLiGGNFJPjVdw8CsfMMbvpRujrgUgD2AY9QmrOQlkgjSEDy9TRslj62w
+	 ktmwYDTk86HgA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Fabio Estevam <festevam@denx.de>,
-	Shawn Guo <shawnguo@kernel.org>,
+Cc: Mao Jinlong <quic_jinlmao@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
 	Sasha Levin <sashal@kernel.org>,
+	konrad.dybcio@linaro.org,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.1 44/68] ARM: dts: imx23/28: Fix the DMA controller node name
-Date: Tue, 16 Jan 2024 14:53:43 -0500
-Message-ID: <20240116195511.255854-44-sashal@kernel.org>
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.1 52/68] arm64: dts: qcom: msm8996: Fix 'in-ports' is a required property
+Date: Tue, 16 Jan 2024 14:53:51 -0500
+Message-ID: <20240116195511.255854-52-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240116195511.255854-1-sashal@kernel.org>
 References: <20240116195511.255854-1-sashal@kernel.org>
@@ -70,51 +72,61 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.1.73
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+From: Mao Jinlong <quic_jinlmao@quicinc.com>
 
-[ Upstream commit 858d83ca4b50bbc8693d95cc94310e6d791fb2e6 ]
+[ Upstream commit 9a6fc510a6a3ec150cb7450aec1e5f257e6fc77b ]
 
-Per fsl,mxs-dma.yaml, the node name should be 'dma-controller'.
+Add the inport of funnel@3023000 to fix 'in-ports' is a required property
+warning.
 
-Change it to fix the following dt-schema warning.
-
-imx28-apf28.dtb: dma-apbx@80024000: $nodename:0: 'dma-apbx@80024000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/fsl,mxs-dma.yaml#
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+Link: https://lore.kernel.org/r/20231210072633.4243-3-quic_jinlmao@quicinc.com
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx23.dtsi | 2 +-
- arch/arm/boot/dts/imx28.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx23.dtsi b/arch/arm/boot/dts/imx23.dtsi
-index 7f4c602454a5..ec476b159649 100644
---- a/arch/arm/boot/dts/imx23.dtsi
-+++ b/arch/arm/boot/dts/imx23.dtsi
-@@ -414,7 +414,7 @@ emi@80020000 {
- 				status = "disabled";
- 			};
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index 9de2248a385a..789121171a11 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -390,6 +390,19 @@ memory@80000000 {
+ 		reg = <0x0 0x80000000 0x0 0x0>;
+ 	};
  
--			dma_apbx: dma-apbx@80024000 {
-+			dma_apbx: dma-controller@80024000 {
- 				compatible = "fsl,imx23-dma-apbx";
- 				reg = <0x80024000 0x2000>;
- 				interrupts = <7 5 9 26
-diff --git a/arch/arm/boot/dts/imx28.dtsi b/arch/arm/boot/dts/imx28.dtsi
-index 130b4145af82..b15df16ecb01 100644
---- a/arch/arm/boot/dts/imx28.dtsi
-+++ b/arch/arm/boot/dts/imx28.dtsi
-@@ -994,7 +994,7 @@ etm: etm@80022000 {
- 				status = "disabled";
- 			};
++	etm {
++		compatible = "qcom,coresight-remote-etm";
++
++		out-ports {
++			port {
++				modem_etm_out_funnel_in2: endpoint {
++					remote-endpoint =
++					  <&funnel_in2_in_modem_etm>;
++				};
++			};
++		};
++	};
++
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
+@@ -2565,6 +2578,14 @@ funnel@3023000 {
+ 			clocks = <&rpmcc RPM_QDSS_CLK>, <&rpmcc RPM_QDSS_A_CLK>;
+ 			clock-names = "apb_pclk", "atclk";
  
--			dma_apbx: dma-apbx@80024000 {
-+			dma_apbx: dma-controller@80024000 {
- 				compatible = "fsl,imx28-dma-apbx";
- 				reg = <0x80024000 0x2000>;
- 				interrupts = <78 79 66 0
++			in-ports {
++				port {
++					funnel_in2_in_modem_etm: endpoint {
++						remote-endpoint =
++						  <&modem_etm_out_funnel_in2>;
++					};
++				};
++			};
+ 
+ 			out-ports {
+ 				port {
 -- 
 2.43.0
 
