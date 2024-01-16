@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-32588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32591-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8632082FC36
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:15:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6FE582FC40
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:16:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FFDF28F3A1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:15:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 345AA28F7D5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:16:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53455249E7;
-	Tue, 16 Jan 2024 20:41:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55C0024B53;
+	Tue, 16 Jan 2024 20:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ts8kRwMJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Xqu7FLT+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8EB71DA51
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 20:41:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581B81EB56
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 20:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705437677; cv=none; b=lhRQtgC1lpci2EBaSZ6Wgj0CYEAZtOP+GrS0FD+fsJw1c38FoRE4WGS9x4/4V5p0zXttvdQq8mVvHBZcAKKYe5/WUrpOQEXQtepfl7gC8zTBH/TYd7t3OhwYXHXBklXC6VAfSdNwZNp9eeMZft13SJwN+OLCWIGVgnzDqV+EPw4=
+	t=1705437830; cv=none; b=mBFvbB5YUvu2DiCrsE1fEQ0MOzBVfLTahAA9q79G1+eECS7S6ZwMf9+0K5QfPmuefDOJs6GjCFWY6vS+04tWdzPI9wjq1pIvGa1AEMLrxjZ1W+2nG6u6dpyD3ii2GcXrQXHG6ZIWHeV1+EJdDmbtQZzbb7GizIS6SWb1zaTKgdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705437677; c=relaxed/simple;
-	bh=XmFU90GyA+U8ut8T6e6djiZu0XPsCMUd4t+6dR5k/+M=;
+	s=arc-20240116; t=1705437830; c=relaxed/simple;
+	bh=lUZs54U2UA0MeATkJMD8r2dxKqaLVbxdSBpnA7CBAQ0=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
 	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
 	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=NTBVxfQd66mjRs44uX6vOoy1KPNFfRGlsiUlhN9KbniZlaeQIZEoKrLym13SsxBGmZjily+inHVgqt8+v1CXZGIqTFR68ppz2MCrlKuMB8+Xyh0p8iLc7k8dHHh/ujm1Sk5Q7YcL05dSTeb8oVA27lMyFDi5zxae3s109XVKVkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ts8kRwMJ; arc=none smtp.client-ip=209.85.218.52
+	 Content-Transfer-Encoding; b=hTzwFMw7s1WECGkP5w2R1G2kbEiYWMKU15SFZO9Ajj32RRHzbhYAkQIJ2vPrDjkauMHGGZIGKo9OweM9IqGY0AYgoFOhF5xkBe/QS1yHLR4avJmnp6MclG6fisLz15NgDkrs7MTznM1MAc8yzgubHY+hOS83GwPEywV5R2jQc9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Xqu7FLT+; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a2d348d213dso364431266b.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 12:41:15 -0800 (PST)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a29058bb2ceso1096689066b.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 12:43:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705437674; x=1706042474; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705437825; x=1706042625; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8AV6p1YAjXVsg43aeNRRf1sOrvdKTjzDvVP/4t3Uwmw=;
-        b=ts8kRwMJ7xz5DRtwYSMjVvt/3uO8Mk5kzCamTuEYmMdzeGT7EBe2NyE0Otb3cblzYt
-         2Fi33guScgSGkYfWADGPm4Nbbs5LaBfqAHCnz8+Sv65iOvGeZBsx+LQYtVLWmWAUstZP
-         wJdftkwqWHauS0oqOEKmsrsvTJcerVuhN9CEsC/XaJgZDjLgPpsJMwc10n7SD8d5aXfg
-         AeSXgE6BxbgXkGKBHOpT6lH1DqwdY0r3EGtR7ysogsJMsXiSMCRvp4zYR7uMYvORS/qQ
-         Rcotp1HjIwuBCRIeyT7m1BRrLcCxA+cFVgoYqrIDVC1KkpHUp3fL3FpXR55AknIVe6cA
-         dl5w==
+        bh=22jyeaAES+kz8Hg4ntOJsukTiv9OkKs46DcXVyNEJTs=;
+        b=Xqu7FLT+egSQzmOFkDylIEdEB14CKE00TxyNniistkUa0d0ejwDO45GhioaLoC7cAz
+         5CqEs0WS4qrtLQT+N29+NIl6riuzHjb5153pWXlFPHtbnC5txcqbI4ohXwt4wh3PPfRe
+         lqbswDiQhuoytuZma6nFP/F1iwVJKcsdjVGzKMEP/+AIkWwBASszqR69vNwQCev4wn2b
+         Th3D69QFDEN9fOqPBicr2aTJ2KF3PddBGE+cy9h5EXOcb3fhWy1aD4DRH4ez2Vrf57CK
+         r7u6UFFW3jr6CLv32F9BgGZsEHnf4fYqJQUnQINWkV3hoK701DrXN6WEoOmq+3KBHl4B
+         YR6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705437674; x=1706042474;
+        d=1e100.net; s=20230601; t=1705437825; x=1706042625;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8AV6p1YAjXVsg43aeNRRf1sOrvdKTjzDvVP/4t3Uwmw=;
-        b=QaGTg6rbcZpIl5/vmaipjVdKPH500NJiZo0necxjsSCHDSFr6SCGUBTCLr+INp1hHU
-         cr2CN9e1LSS5ZmNSBKR+D0QGctYIaaPp2wBBOm7tqJf80DEtZaq2MXldC7TS+bagy+BA
-         XPIXodTG6h6ugplscFtPNmWipTWxBuqwdT7vjreNdIIu4gFceWb030dFl4HDcX3TqMOt
-         8i95x1CRqaA6LhQ2AofyEWkQzcx/tB9+WBWiZ97XBWZZ2vEiQXfLS8LU6nk3grQwR9yy
-         c4N3DNcyEhj4dog00qeJ2NgzHv4VLL5Stm4gEQLWJ2U8+sdeH9WXBP57TGcwrfwNNRDb
-         wAPg==
-X-Gm-Message-State: AOJu0YwGQ8WMPFbE/doG29KSNdX+PwRWGzIJITqUbW8PeorGhoy2eM/D
-	wnSDxj+KjcmIbmkMOk9YDvJmsjCZfOxrXg==
-X-Google-Smtp-Source: AGHT+IGl3VYM7br1rpA/tGxzWdbWhI2812qneSnFAhbs4UAwfYByZSo0BgNBilsbNauRHKNOQNbOTA==
-X-Received: by 2002:a17:906:c2d9:b0:a2b:969a:bb3b with SMTP id ch25-20020a170906c2d900b00a2b969abb3bmr3960198ejb.122.1705437673899;
-        Tue, 16 Jan 2024 12:41:13 -0800 (PST)
+        bh=22jyeaAES+kz8Hg4ntOJsukTiv9OkKs46DcXVyNEJTs=;
+        b=WsVr7/fhIujzKCB/EUpTnlHZqKVFHsC1nRbXqOp+8C5/fkgM2NU32Em1KKlF284alz
+         OcuR2epbeaOOH1YYcmSBN+jT8mwXlGpLhA1B06Tb3sMtxRroF3nn8b36Y1+aDJ1skiA0
+         TpsskozXR22IPlv5dbhhIVt6UENcLZL4Uo8DEES9gdfrt4XSAUyhmmeDZE6DjvQE8Vfu
+         LAKwQG6a1APTL4K5EACwqAy23LSKHTgSl1TuQZHNp6N6tXt3Y8NlSUPET/3cEKMZBn2d
+         6TKmF4fAFwnDXCelbvt5Aj9D3WKdksJaM/RbI660Vhvmou4giA2AWcm006HzTjEFukUq
+         4uSQ==
+X-Gm-Message-State: AOJu0Yx0OPyzBI9JHKRp8Eq2e0PQqCRjPZrS1q86E2Xn4rp5b99lXa9M
+	CChbd2iagENrQ9pEW7KP9qNuF6/cS1kg8w==
+X-Google-Smtp-Source: AGHT+IGtRFyxikoY0ukF5REg3tnlz3401jAWmQD327xf257XtFX+iLMVSmAceT0l1tsLj5bHQGX8bA==
+X-Received: by 2002:a17:906:fe46:b0:a27:7de8:9cd9 with SMTP id wz6-20020a170906fe4600b00a277de89cd9mr3368634ejb.23.1705437825488;
+        Tue, 16 Jan 2024 12:43:45 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id ot8-20020a170906ccc800b00a28a8a7de10sm6904562ejb.159.2024.01.16.12.41.12
+        by smtp.gmail.com with ESMTPSA id st6-20020a170907c08600b00a2ce3230351sm5448862ejc.37.2024.01.16.12.43.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 12:41:13 -0800 (PST)
-Message-ID: <05691d0e-2d23-4d0d-a773-13ec6305a5a0@linaro.org>
-Date: Tue, 16 Jan 2024 21:41:12 +0100
+        Tue, 16 Jan 2024 12:43:45 -0800 (PST)
+Message-ID: <0c9ea547-eaa5-4446-9d6c-e6fcc289ec4a@linaro.org>
+Date: Tue, 16 Jan 2024 21:43:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,19 +78,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v22 7/8] arm64: dts: nuvoton: npcm8xx: replace reg with
- syscon property
+Subject: Re: [PATCH v2 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
+ schema format
 Content-Language: en-US
-To: Tomer Maimon <tmaimon77@gmail.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240108135421.684263-1-tmaimon77@gmail.com>
- <20240108135421.684263-8-tmaimon77@gmail.com>
- <23fdd643-ae30-474b-93b0-fb98edeb0071@linaro.org>
- <CAP6Zq1i88mx8hfE-Ui_yMDOUxB5YofyyRSygBY8zuPq71ptHqg@mail.gmail.com>
+To: Dharma Balasubiramani <dharma.b@microchip.com>,
+ conor.dooley@microchip.com, sam@ravnborg.org, bbrezillon@kernel.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+ claudiu.beznea@tuxon.dev, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, lee@kernel.org, thierry.reding@gmail.com,
+ u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org
+Cc: linux4microchip@microchip.com
+References: <20240116113800.82529-1-dharma.b@microchip.com>
+ <20240116113800.82529-4-dharma.b@microchip.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,30 +139,110 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAP6Zq1i88mx8hfE-Ui_yMDOUxB5YofyyRSygBY8zuPq71ptHqg@mail.gmail.com>
+In-Reply-To: <20240116113800.82529-4-dharma.b@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2024 20:39, Tomer Maimon wrote:
-> Hi Krzysztof,
+On 16/01/2024 12:38, Dharma Balasubiramani wrote:
+> Convert the atmel,hlcdc binding to DT schema format.
 > 
-> Thanks for your comment.
+> Adjust the clock-names property to clarify that the LCD controller expects
+> one of these clocks (either sys_clk or lvds_pll_clk to be present but not
+> both) along with the slow_clk and periph_clk. This alignment with the actual
+> hardware requirements will enable accurate device tree configuration for
+> systems using the HLCDC IP.
 > 
-> On Wed, 10 Jan 2024 at 22:59, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 08/01/2024 14:54, Tomer Maimon wrote:
->>> Replace reg with syscon property since the clock registers handle the
->>> reset registers as well.
->>>
->>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->>> ---
->>
->> NAK for the same reasons as previous patch.
-> Will explain more in the commit message
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+> changelog
+> v1 -> v2
+> - Remove the explicit copyrights.
+> - Modify title (not include words like binding/driver).
+> - Modify description actually describing the hardware and not the driver.
+> - Add details of lvds_pll addition in commit message.
+> - Ref endpoint and not endpoint-base.
+> - Fix coding style.
+> 
+> Note: Renaming hlcdc-display-controller, hlcdc-pwm to generic names throws
+> errors from the existing DTS files.
+> ...
+> /home/dharma/Mainline/linux/arch/arm/boot/dts/microchip/at91sam9n12ek.dtb:
+> hlcdc@f8038000: 'hlcdc-display-controller' does not match any of the
+> regexes: 'pinctrl-[0-9]+'
+> ---
+>  .../devicetree/bindings/mfd/atmel,hlcdc.yaml  | 105 ++++++++++++++++++
+>  .../devicetree/bindings/mfd/atmel-hlcdc.txt   |  56 ----------
+>  2 files changed, 105 insertions(+), 56 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml b/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
+> new file mode 100644
+> index 000000000000..f624b60b76fb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/atmel,hlcdc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel's HLCD Controller
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> +
+> +description: |
+> +  The Atmel HLCDC (HLCD Controller) IP available on Atmel SoCs exposes two
+> +  subdevices
+> +    # a PWM chip:
+> +    # a Display Controller:
 
-No, this wasn't even tested. Build your code with W=1 and fix all
-warnings first. But anyway this is not the way to go.
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - atmel,at91sam9n12-hlcdc
+> +      - atmel,at91sam9x5-hlcdc
+> +      - atmel,sama5d2-hlcdc
+> +      - atmel,sama5d3-hlcdc
+> +      - atmel,sama5d4-hlcdc
+> +      - microchip,sam9x60-hlcdc
+> +      - microchip,sam9x75-xlcdc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    anyOf:
+> +      - items:
+> +          - enum:
+> +              - sys_clk
+> +              - lvds_pll_clk
+> +      - contains:
+> +          const: periph_clk
+> +      - contains:
+> +          const: slow_clk
+
+NAK. You just ignored entire review.
 
 Best regards,
 Krzysztof
