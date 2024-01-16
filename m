@@ -1,157 +1,109 @@
-Return-Path: <devicetree+bounces-32338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DFB182F054
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:12:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86D9D82F05C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:14:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77EA61F21CFC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 14:12:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10249B2340D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 14:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D67321BDED;
-	Tue, 16 Jan 2024 14:12:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O0314XBI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5191BF20;
+	Tue, 16 Jan 2024 14:13:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B80C1BF21;
-	Tue, 16 Jan 2024 14:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6D4541C0004;
-	Tue, 16 Jan 2024 14:12:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1705414328;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=SOCRlvdGfX4al4ZItqxCkVlf8liyb3/Akd8IILM1iBU=;
-	b=O0314XBIHPKlYZCptjyxPtClQlYhlBjMrlKqvbvkLIqSXfBWlc/M/SUmSsuLJnS0wf781u
-	uQT9P3sltuloK12tsj9AuKraoap9M2QzgnSVLLvLX/39QZ/4H49tClOd0XW4/xIMk9K1b2
-	sGf2CQvGfYRIfncJmMmBhpOYJl5wsbOH8qQggABfKwVu8y7IN5/oo8+BTATQLc9BzOcpDd
-	mP3xEnUXqbV+WCv5xZT+Dpk9O8gEz/43oYNxRx0zNhmNTTVe7kQaJmFQ9oYH5Xl8g/ut1z
-	oJpzPclUUTR3wbuIV9cNJiN1txMz8sy3RXxznix2s2naB7NIFH81ipunwd0rSQ==
-Date: Tue, 16 Jan 2024 15:12:05 +0100
-From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v2 8/8] net: pse-pd: Add PD692x0 PSE controller
- driver
-Message-ID: <20240116151205.0bf44181@kmaincent-XPS-13-7390>
-In-Reply-To: <64f30166-58cc-409d-ba5b-9ea3fb8ead88@lunn.ch>
-References: <20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com>
-	<20231201-feature_poe-v2-8-56d8cac607fa@bootlin.com>
-	<639c5222-043f-4e27-9efa-ce2a1d73eaba@lunn.ch>
-	<20240116104949.12708cd5@kmaincent-XPS-13-7390>
-	<64f30166-58cc-409d-ba5b-9ea3fb8ead88@lunn.ch>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542131BDEC;
+	Tue, 16 Jan 2024 14:13:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5ff4b02a187so9839397b3.1;
+        Tue, 16 Jan 2024 06:13:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705414435; x=1706019235;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0sqbUk2C6b7oHNAWGCQckjFoAuDgEH4C3P1gTqqawwA=;
+        b=BR26XPmktfaU+CEn+uFdgac2RdcCa5vRlNxC8rlVIDotqeBefX2q6X/sedrT5rd/oY
+         XAH2ZTg7l863oDJaUInAiTVJQaeooH4J8Jlz4nVeaXvc4/PrLsBzGR4dd/XyPs62CLQd
+         mE5L6SjGbsC+DXacY7iCioTfPff4jz528L2rpif/95yHdGD63YocojZ1eu6wQnVkUn/4
+         IZTYpsL115p8Y1nvmm6kKt0t8ttUwk8prc4Vy0RF/hFnaqLEcnTKfcXYxM8pfr2A0sDS
+         pwp9ALHxf+09h/3HBbZR5Wc+eleP6SNdLocOrGR76J1tKQfNlVrz+3NiK+gSfyXYMBpU
+         4ulA==
+X-Gm-Message-State: AOJu0YymKvNDumSAaDAOGRU/QkG2WwwtXZtKF7rtY54wFTbo9BA0y6rd
+	y3uk9qSe+DNWHtmZ0V1JEOGQkm4BGMpdCA==
+X-Google-Smtp-Source: AGHT+IHJCuG5fGG5xtCd6dsPl+0LMYoHb/eov4Ep5uFYCcFe4YivlUTIiG5IEn+n/W/zNWUVVpbZgA==
+X-Received: by 2002:a0d:d805:0:b0:5ff:409d:5a74 with SMTP id a5-20020a0dd805000000b005ff409d5a74mr2063693ywe.21.1705414435078;
+        Tue, 16 Jan 2024 06:13:55 -0800 (PST)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id p10-20020a81980a000000b005effa4feef0sm4842844ywg.58.2024.01.16.06.13.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jan 2024 06:13:54 -0800 (PST)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5ff4da9494cso9604817b3.3;
+        Tue, 16 Jan 2024 06:13:54 -0800 (PST)
+X-Received: by 2002:a05:690c:1d:b0:5f6:e8c8:9b6c with SMTP id
+ bc29-20020a05690c001d00b005f6e8c89b6cmr6746864ywb.46.1705414434365; Tue, 16
+ Jan 2024 06:13:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20240112200750.4062441-1-sboyd@kernel.org> <20240112200750.4062441-2-sboyd@kernel.org>
+ <ZaZtbU9hre3YhZam@FVFF77S0Q05N>
+In-Reply-To: <ZaZtbU9hre3YhZam@FVFF77S0Q05N>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 16 Jan 2024 15:13:42 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU0qtMeX=7SY+32=30-QGMRniFVCCm217REJ1X+ZNJ=Aw@mail.gmail.com>
+Message-ID: <CAMuHMdU0qtMeX=7SY+32=30-QGMRniFVCCm217REJ1X+ZNJ=Aw@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: Unconditionally call unflatten_device_tree()
+To: Mark Rutland <mark.rutland@arm.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, linux-um@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com, 
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, 
+	Frank Rowand <frowand.list@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
 
-On Tue, 16 Jan 2024 14:18:04 +0100
-Andrew Lunn <andrew@lunn.ch> wrote:
+Hi Mark,
 
-> >  =20
-> > > > +static int pd692x0_fw_get_next_line(const u8 *data,
-> > > > +				    char *line, size_t size)
-> > > > +{
-> > > > +	size_t line_size;
-> > > > +	int i;
-> > > > +
-> > > > +	line_size =3D min_t(size_t, size,
-> > > > (size_t)PD692X0_FW_LINE_MAX_SZ); +
-> > > > +	memset(line, 0, PD692X0_FW_LINE_MAX_SZ);
-> > > > +	for (i =3D 0; i < line_size - 1; i++) {
-> > > > +		if (*data =3D=3D '\r' && *(data + 1) =3D=3D '\n') {
-> > > > +			line[i] =3D '\r';
-> > > > +			line[i + 1] =3D '\n';
-> > > > +			return i + 2;
-> > > > +		}   =20
-> > >=20
-> > > Does the Vendor Documentation indicate Windoze line endings will
-> > > always be used? Motorola SREC allow both Windows or rest of the world
-> > > line endings to be used.  =20
-> >=20
-> > All the firmware lines end with "\r\n" but indeed it is not specifically
-> > written that the firmware content would follow this. IMHO it is implicit
-> > that it would be the case as all i2c messages use this line termination.
-> > Do you prefer that I add support to the world line endings possibility?=
-  =20
->=20
-> No need, just hack an SREC file, and test the parser does not explode
-> with an opps, and you get an sensible error message about the firmware
-> being corrupt. I would not be too surprised if there are some mail
-> systems still out there which might convert the line ending.
+On Tue, Jan 16, 2024 at 12:51=E2=80=AFPM Mark Rutland <mark.rutland@arm.com=
+> wrote:
+> On Fri, Jan 12, 2024 at 12:07:44PM -0800, Stephen Boyd wrote:
+> > Call this function unconditionally so that we can populate an empty DTB
+> > on platforms that don't boot with a firmware provided or builtin DTB.
+> > There's no harm in calling unflatten_device_tree() unconditionally.
+>
+> For better or worse, that's not true: there are systems the provide both =
+a DTB
+> *and* ACPI tables, and we must not consume both at the same time as those=
+ can
+> clash and cause all sorts of problems. In addition, we don't want people =
+being
+> "clever" and describing disparate portions of their system in ACPI and DT=
+.
 
-Ok I will do so.
+We'd get to the latter anyway, when plugging in a USB device where the
+circuitry on/behind the USB device is described in DT.
 
->=20
-> > > > +static enum fw_upload_err pd692x0_fw_poll_complete(struct fw_upload
-> > > > *fwl) +{
-> > > > +	struct pd692x0_priv *priv =3D fwl->dd_handle;
-> > > > +	const struct i2c_client *client =3D priv->client;
-> > > > +	struct pd692x0_msg_ver ver;
-> > > > +	int ret;
-> > > > +
-> > > > +	priv->fw_state =3D PD692X0_FW_COMPLETE;
-> > > > +
-> > > > +	ret =3D pd692x0_fw_reset(client);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	ver =3D pd692x0_get_sw_version(priv);
-> > > > +	if (ver.maj_sw_ver !=3D PD692X0_FW_MAJ_VER) {   =20
-> > >=20
-> > > That is probably too strong a condition. You need to allow firmware
-> > > upgrades, etc. Does it need to be an exact match, or would < be
-> > > enough? =20
-> >=20
-> > The major version is not compatible with the last one, the i2c messages
-> > content changed. I supposed a change in major version would imply a cha=
-nge
-> > in the i2c messages content and would need a driver update that's why I
-> > used this strong condition. =20
->=20
-> Do you know the next major version will change the message contents?
+Gr{oetje,eeting}s,
 
-No.
-
-> Is this documented somewhere? If so add a comment. Otherwise, i would
-> allow higher major versions. When the vendor breaks backwards
-> compatibility, its going to need code changes anyway, and at that
-> point the test can be made more strict.
->=20
-> We try to make vendors not make firmware ABI breaking changes, and we
-> have pushed back against a number of vendors who do. So i think its
-> best we assume they won't break the ABI.
-
-Alright, thanks!
+                        Geert
 
 --=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
