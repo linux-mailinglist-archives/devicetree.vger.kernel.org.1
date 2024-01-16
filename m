@@ -1,107 +1,101 @@
-Return-Path: <devicetree+bounces-32415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32416-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F0982F433
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:27:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A288782F437
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:27:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EAC21C23832
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:27:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D25641C23958
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:27:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B0B31CF96;
-	Tue, 16 Jan 2024 18:27:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992F81CD32;
+	Tue, 16 Jan 2024 18:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZzTICfnb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uhYf6t5F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329D21CF8F;
-	Tue, 16 Jan 2024 18:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636FC1CABD;
+	Tue, 16 Jan 2024 18:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705429624; cv=none; b=Iepk9MK4L2v2ud6x0C1vvGGh28c+NLBMAYMyFIZEy064M7YAA3qE/IEcmfG9zVXbWnKNxuygjbeh4CesmPxVNKH8hzuRj4GmFAuehfpZZdAh5SmQqsMxJxB3qFAu3hlIsrpaT6DkOyOtCX8CYHYDHxenoIw9BpPutd4iij8wGaY=
+	t=1705429640; cv=none; b=QxELFMKCbh2lt/TPOM6Wapq+UFx8JL0kSUQpPh9APQg0DiTH41dNX5ioV5vMcGARNbhZCLdAhOQ6hisszlZpsMdL3pgnO3fdo4/5VyLbu1tZBzpx5f9C99AemoadRzbPMN45MVq4c6CxFLOmAlRfvTUcRxhcso14MPvSNaNyQSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705429624; c=relaxed/simple;
-	bh=taELUrY69KcHAXLRi5qbEgOkPnQr+NV3fILPPJfZOJA=;
-	h=Received:DKIM-Signature:Received:X-Gm-Message-State:
-	 X-Google-Smtp-Source:X-Received:MIME-Version:References:
-	 In-Reply-To:From:Date:X-Gmail-Original-Message-ID:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding; b=pKh118Wfvy7CD43p9nVS3VayOHDi3+JO8mGGcOP9k9WcuaxBKn20X4etjNakUbpkF2v7q726COkvkPlmjoEaNDw63riZT/9mtiQLomIy8CddK8BPz3dGUnGD/NYFN70xJqmjfgjRGnnaWpnDBfwomsac8Xb0+IymnKVt8KQ3me4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZzTICfnb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8736C43330;
-	Tue, 16 Jan 2024 18:27:03 +0000 (UTC)
+	s=arc-20240116; t=1705429640; c=relaxed/simple;
+	bh=GoV6P97mBKlY0A0OpxO//43jXPc+qh/qWkDvpufu9c4=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=ZYqy7vmdOmagPRmspeLDk/Ei57tPt3IjAB5OHAin0WIBo57bytiJm1L9yrv6ljMiUfYF0YsKlKN1ZL5gx7tcZHLbwRJjMo5XL8/7QPfrMNNKjEHmRtPzSLCpTsB/rWNsUnR7bEI2RXOLbQ/FLkp5s0P699sQy2qgp6tnXBemxN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uhYf6t5F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F3F4C433C7;
+	Tue, 16 Jan 2024 18:27:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705429623;
-	bh=taELUrY69KcHAXLRi5qbEgOkPnQr+NV3fILPPJfZOJA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ZzTICfnb64brOegVh2Kv07G1+DW09K+eOkWnEXOAXKGvX4R9q5i8ZqbLM2kLHzNb0
-	 l4YjVqsHSsRnO27II3HgcaMlH2qVWzVI6qRrIL12nt5wXPnjrDJbMnRmnNaHpRqz1K
-	 zUQypxZuYQkRXWrKgByUX1k5Duh17YfDlTG6JVHwCiptcHkvZiVoedCh6pWy0zjf2V
-	 P8Eh2gw1k9XYUlo/Sdk/TgU8gQfML7dvwfIXFJJ0gsR2JXfLNAKXz2jihA8WUFQpl4
-	 wc5zflCEt2lATFHc9zEKh1zhbRb1AD90Z3slqJ7Z/bSm5JU4cBiVVY9acCqqhFaM57
-	 tl3E1oPLVwerg==
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2cd64022164so118923581fa.3;
-        Tue, 16 Jan 2024 10:27:03 -0800 (PST)
-X-Gm-Message-State: AOJu0YwphRppc5Q5CpjTZs7JQELPt9K9hjZsPms3b6NvKg5pkJ1egI4c
-	5/oAdCn1n4CfDaY0O5noAIYmQLDIJjIY3WsHjg==
-X-Google-Smtp-Source: AGHT+IGVjOVbKIhhQDf0snPwfmdER0IRfYmM/jUFpgoBhZsYv/IAdKdyrKk4nUXn8nuydufb9LH/5OhxnvSTtpU6w8w=
-X-Received: by 2002:a2e:a4d5:0:b0:2cd:a2e:fba6 with SMTP id
- p21-20020a2ea4d5000000b002cd0a2efba6mr3711751ljm.11.1705429621748; Tue, 16
- Jan 2024 10:27:01 -0800 (PST)
+	s=k20201202; t=1705429639;
+	bh=GoV6P97mBKlY0A0OpxO//43jXPc+qh/qWkDvpufu9c4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uhYf6t5FgUfLAIryawnsSZ+L2OdC8Nsbx9vp12EvS7On7q9ZjuiUXX9I+1WRSKVp3
+	 sdhxCsWqQaZTjH4bOw7ATyxJziuqNLWUOQ0dLRlmqkdL0sulgbrzt/+u2wj+GD4PA/
+	 y4Yfid0AFLqXt1u6aNmRY9Rj93kgYaQzV/MBb48i1Ogmu/p8mbEB04gkTJpGiPTuz8
+	 QJbKAI9xl1OLPd3TvT/Ji+tPZ1QWyJ4uUN7OuPotOjk53bRIcyM80/CpykZw1I1K8v
+	 E3Yb52cLXz8JbfFbJeWOj1BYIgjVEFynEzn4PUaBkGD9Pj4e4GDJETJhfugn+gUx+m
+	 OHQxNXYoRYAsQ==
+Date: Tue, 16 Jan 2024 12:27:17 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-sound@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+	Banajit Goswami <bgoswami@quicinc.com>, alsa-devel@alsa-project.org,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Sean Anderson <sean.anderson@seco.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+	devicetree@vger.kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jaroslav Kysela <perex@perex.cz>, Peter Rosin <peda@axentia.se>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] ASoC: dt-bindings: qcom,wsa8840: Add reset-gpios
+ for shared line
+Message-ID: <170542963664.213464.16983216340118145853.robh@kernel.org>
+References: <20240112163608.528453-1-krzysztof.kozlowski@linaro.org>
+ <20240112163608.528453-4-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240114165358.119916-1-jic23@kernel.org> <20240114165358.119916-3-jic23@kernel.org>
-In-Reply-To: <20240114165358.119916-3-jic23@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 16 Jan 2024 12:26:49 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+vsXgBYtj66NG+3eZM-9gGw4QkU-bpn+JprAmG+UWmTQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+vsXgBYtj66NG+3eZM-9gGw4QkU-bpn+JprAmG+UWmTQ@mail.gmail.com>
-Subject: Re: [PATCH 2/4] of: unittest: Use __free(device_node)
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Frank Rowand <frowand.list@gmail.com>, Julia Lawall <Julia.Lawall@inria.fr>, 
-	Nicolas Palix <nicolas.palix@imag.fr>, Sumera Priyadarsini <sylphrenadin@gmail.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240112163608.528453-4-krzysztof.kozlowski@linaro.org>
 
-On Sun, Jan 14, 2024 at 10:54=E2=80=AFAM Jonathan Cameron <jic23@kernel.org=
-> wrote:
->
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->
-> A simple example of the utility of this autocleanup approach to
-> handling of_node_put()
->
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+
+On Fri, 12 Jan 2024 17:36:06 +0100, Krzysztof Kozlowski wrote:
+> On newer Qualcomm platforms, like X1E80100-CRD, the WSA884x speakers
+> share SD_N GPIOs between two speakers, thus a coordinated assertion is
+> needed.  Linux supports handling shared GPIO lines through "reset-gpios"
+> property, thus allow specifying either powerdown or reset GPIOs (these
+> are the same).
+> 
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Sean Anderson <sean.anderson@seco.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->  drivers/of/unittest.c | 10 +++-------
->  1 file changed, 3 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index e9e90e96600e..b6d9edb831f0 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -233,27 +233,23 @@ static void __init of_unittest_dynamic(void)
->
->  static int __init of_unittest_check_node_linkage(struct device_node *np)
->  {
-> -       struct device_node *child;
-> +       struct device_node *child __free(device_node) =3D NULL;
+> 
+> If previous patches are fine, then this commit is independent and could
+> be taken via ASoC.
+> ---
+>  .../devicetree/bindings/sound/qcom,wsa8840.yaml       | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
 
-In another thread[1], it seems that initializing to NULL is bad form
-according to the chief penguin. But as this is a refcounted pointer
-rather than an allocation, IDK?
+Acked-by: Rob Herring <robh@kernel.org>
 
-Rob
-
-[1] https://lore.kernel.org/all/289c4af00bcc46e83555dacbc76f56477126d645.ca=
-mel@pengutronix.de
 
