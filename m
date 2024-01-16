@@ -1,188 +1,125 @@
-Return-Path: <devicetree+bounces-32584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2439782FC28
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:14:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD2BE82FC2A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:14:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE07BB29F22
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:13:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 380D528E859
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD6B23741;
-	Tue, 16 Jan 2024 20:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F43241E3;
+	Tue, 16 Jan 2024 20:35:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WBhgCnPJ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IPzrISPu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8635522F1D
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 20:33:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B5921E522;
+	Tue, 16 Jan 2024 20:35:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.55.52.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705437188; cv=none; b=PtcWpnaK3gnQGQaaugmAD55uPV30CWmhAnwbNwk88UmPmYRCLcIkKe1JlIOHk4aXb3Vei1+qjxa/DUjeAmJap04kmVLfb0qVuwv5k11dYzxCBWpcldUGRoLnKM4EA6pD2BW4aPqJr9barRC/pYwVNdBHDqaNPyNLt22luyp2Gk0=
+	t=1705437337; cv=none; b=YN29aFEGf5IUFcwDLA21VoML/tREwLlfdeSWR/02/Bp9O+U2c1Qe9TIBuVymPQrd935DB/gupkd1ljOk7vjDbIsxKgR6jAmrUz5woiJsrZn4qYW1z5bOUWIKrb509OiUbUQjohVKTsBKv21PI8beeBC86cAKMiNL53aUatxyvHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705437188; c=relaxed/simple;
-	bh=UZhOUcuw6c3yvY8HwUWiMiTNnqgekRGrbmejXm0Luak=;
-	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
-	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
-	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=J5YAa6cmJpn7X4sg5LQ7oO6/xPQxcuTUvqCw3d2CiVY6Z6BAvtJJXzKWI1H4YfKPjkwi0arpGvw66qgP4fjId11bolg/KL4YPqjCWnrOwVBIUgWpMWGYmsRfkZhu44ugCIy6RWcBOifZfPVgN1ZHAgpYqTQwa6xJF+6awDVY8/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WBhgCnPJ; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2cd1232a2c7so127956601fa.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 12:33:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705437184; x=1706041984; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZmkUyeDtILM4j0A8ZkydaXWgJFrv0AfuF4OsKct4FSs=;
-        b=WBhgCnPJxome+VxxYB1BXZW3+/f8DyekeyrBYo3SHwkYEcHLMNnFPz6StNq9ZDmS6s
-         rRcmNGERGsAWNjvBdxJxZ6JW7UsT4TDknAQYfy5ZNe3pPHOn4kTe7WrlQzn40e4fMl5i
-         X69AMW4JZb4YGmLJ0k+/g22L3PFVxGPhsRBCY/NNPgQ3018cvgWgdA5p+WMTUANASUJm
-         WIctiBotC3WXi7dyU+iYzkE1kwazGlIZ3DJdtAanMheNP46F5wr/wOmy/bCKdniMyfnu
-         DFmFqZDyK8h+pdidaxA8o43mgOFqWNLGCzO/GC1AHvBjFZeGCfKi8fs4m3FWtlezUxTy
-         /cfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705437184; x=1706041984;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZmkUyeDtILM4j0A8ZkydaXWgJFrv0AfuF4OsKct4FSs=;
-        b=Q3Nedre4kNrQZTIxkMbiTSFnKDwrq3XNNr18wJWFgFCyKHIzyHeAj8sBNLGO1u7RVA
-         llprmx+lFSOb2JKgu6ofpCdxfcQtUGUfNET5ruanMxXOEzg/6Fg2SUKejRiLs75Kmhbv
-         mmd3I5pwy6pzZoDtwXCFdRR2r+dl6HkdI5qaYF/gOLcS5AW6aa+Gwh2QvMOMRTIMMh8S
-         8/HtUn4q3bu3Gr3t3w4XEusqRFp4mGmdhAM+Cypk0fB2USZRiHk14Wsg0I0LmpnkhcEE
-         uw949vrVvXm+UoKw+9IjbghYyFMwADgP5QWroLINNEYYEt9FQUCz7gnQKCRsvINLzUkQ
-         P6SA==
-X-Gm-Message-State: AOJu0YybGCHjV/rPgVdvDTtJNqtHs0SP/c/FvAASMfg+7S2+U9v89WbA
-	uvLxYJeaHTo4AyKuqVkAZZQZ3CkD6SblRw==
-X-Google-Smtp-Source: AGHT+IHty6zoQlN4MzUQdFwDQqOaZ5jVeEehJLQl61Fuew+N/AVC7g0NQu7WEcIq2Nlaz4zp5JQNBw==
-X-Received: by 2002:a2e:3208:0:b0:2cc:d4d9:905 with SMTP id y8-20020a2e3208000000b002ccd4d90905mr3424013ljy.11.1705437184624;
-        Tue, 16 Jan 2024 12:33:04 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id ig12-20020a056402458c00b00559c3cbba3bsm469440edb.37.2024.01.16.12.33.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 12:33:04 -0800 (PST)
-Message-ID: <52697bd3-01a6-4522-a0fc-e9e6f027cff2@linaro.org>
-Date: Tue, 16 Jan 2024 21:33:02 +0100
+	s=arc-20240116; t=1705437337; c=relaxed/simple;
+	bh=9PpIhVPT+ja3jI9uPpGTzGflBYIHLpQFQiw2CXoF3f8=;
+	h=DKIM-Signature:X-IronPort-AV:X-IronPort-AV:Received:X-ExtLoop1:
+	 X-IronPort-AV:Received:Received:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=jQMQPdFsFOpspp+/z2GVsUpzN6Co98L7C0mTkeNaCAqBDcf6R6mLXb+mW5Ss+1qZFC+uVNGxsXobLdoCREVyEjlIprM8T5M5h75lh0vaTOoGo0hiOu9HjS/Db22DDLgmL+Acbm5uhE1Si/3Z4nrbUnTe28F0rRkhFukxYW0nzwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IPzrISPu; arc=none smtp.client-ip=192.55.52.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1705437336; x=1736973336;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9PpIhVPT+ja3jI9uPpGTzGflBYIHLpQFQiw2CXoF3f8=;
+  b=IPzrISPuLC2ZgXdiSwTT2tKnbeMLEZPKLXvoc06eR502MdOXkZ0dxUpT
+   nnn4ZIFqE/BqGjsXsD+/Qn55tWD4WHco9iw30iNJeyeD+hZBqIEBBbIRf
+   PSYiKzayRtmtcxdWxb5LBTAoqHFnZGEKWt2nN71L11avl6thwroT+hE6m
+   lBfGB0PSeTtMG+7TxrgBWaBaQCCfyeDRsLB3/mULLLRyvGLGRSJgNT+T+
+   GdhhuGPdQ5zF2XH0UdgeYkBHZwBrAOcZlnbnE/AubDHLO9Fqwq0LIMq+V
+   9dMqmdRncEmJ38y8D6docf/9Lf/rwE4jgqohFV1WLgFF7negIwXRQ3P2l
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="397137949"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
+   d="scan'208";a="397137949"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2024 12:35:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
+   d="scan'208";a="25935828"
+Received: from lkp-server01.sh.intel.com (HELO 961aaaa5b03c) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 16 Jan 2024 12:35:30 -0800
+Received: from kbuild by 961aaaa5b03c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rPq9f-0001Ck-1k;
+	Tue, 16 Jan 2024 20:35:27 +0000
+Date: Wed, 17 Jan 2024 04:34:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	James Clark <james.clark@arm.com>, Leo Yan <leo.yan@linaro.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: oe-kbuild-all@lists.linux.dev, Mao Jinlong <quic_jinlmao@quicinc.com>,
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: arm: Add device-name in the
+ coresight components
+Message-ID: <202401170445.7STzlFcl-lkp@intel.com>
+References: <20240115164252.26510-3-quic_jinlmao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v22 3/8] arm: dts: nuvoton: npcm7xx: modify rst syscon
- node
-Content-Language: en-US
-To: Tomer Maimon <tmaimon77@gmail.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240108135421.684263-1-tmaimon77@gmail.com>
- <20240108135421.684263-4-tmaimon77@gmail.com>
- <99eca166-7d78-4ada-ac0a-ad67f3d8eb33@linaro.org>
- <CAP6Zq1g7NoLVbAUyeQ8jm3qZvjLV6HSVZB+r-X7dxvVNtvddPg@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAP6Zq1g7NoLVbAUyeQ8jm3qZvjLV6HSVZB+r-X7dxvVNtvddPg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240115164252.26510-3-quic_jinlmao@quicinc.com>
 
-On 16/01/2024 20:51, Tomer Maimon wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your comment.
-> 
-> On Wed, 10 Jan 2024 at 23:01, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 08/01/2024 14:54, Tomer Maimon wrote:
->>> rst node name and compatible property modified since clock and reset are
->>> handled in the same memory region.
->>>
->>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->>> ---
->>>  arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi | 4 ++--
->>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
->>> index 868454ae6bde..f72c5a03d04c 100644
->>> --- a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
->>> +++ b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
->>> @@ -93,8 +93,8 @@ gcr: gcr@800000 {
->>>                       reg = <0x800000 0x1000>;
->>>               };
->>>
->>> -             rst: rst@801000 {
->>> -                     compatible = "nuvoton,npcm750-rst", "syscon", "simple-mfd";
->>> +             clk_rst: syscon@801000 {
->>> +                     compatible = "nuvoton,npcm750-clk-rst", "syscon", "simple-mfd";
->>
->> NAK. This breakes the users, is not justified, is not explained.
-> Sorry, I didn't understand, which user it is breaking? there isn't a
-> device tree node that uses the rst node.
+Hi Mao,
 
-Any user of this DTS.
+kernel test robot noticed the following build warnings:
 
-> Should I explain it better in the commit message?
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.7 next-20240112]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-I doubt that you can find proper reason, because "I want different name"
-is not valid. It's just compatible, it cannot be changed just because
-you add new property.
+url:    https://github.com/intel-lab-lkp/linux/commits/Mao-Jinlong/coresight-core-Add-device-name-support/20240116-004557
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240115164252.26510-3-quic_jinlmao%40quicinc.com
+patch subject: [PATCH v2 2/2] dt-bindings: arm: Add device-name in the coresight components
+compiler: loongarch64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20240117/202401170445.7STzlFcl-lkp@intel.com/reproduce)
 
-Best regards,
-Krzysztof
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401170445.7STzlFcl-lkp@intel.com/
 
+dtcheck warnings: (new ones prefixed by >>)
+>> Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml: device-name: missing type definition
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
