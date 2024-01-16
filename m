@@ -1,173 +1,356 @@
-Return-Path: <devicetree+bounces-32593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B6982FC4D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:17:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 099E982FC64
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:19:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B9031F28D0C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:17:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 203881C27D5E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD7B250EE;
-	Tue, 16 Jan 2024 20:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33289286AE;
+	Tue, 16 Jan 2024 20:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QX2dfPNZ"
+	dkim=pass (1024-bit key) header.d=atishpatra.org header.i=@atishpatra.org header.b="f6jxmEtM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246C759B63
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 20:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F178C286AD
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 20:55:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705437925; cv=none; b=AicSN7JTDiCmJMvTa0S7Ml40RHUQ4QUedf7PmXUfI90ULfmytSp77hTgXAtoc004/Y+rhxBZOei/JOs7HnSwrPdjjfLzCEaxes28VsqIms8nX8w8woRjgCTN+ree9wKew32e41w6QrYVxZQlK6P1VqzeNaezekdZNdR5ZL9MWQk=
+	t=1705438557; cv=none; b=oiLGsn7yqYsRfDWKyvNnpc2MbTcP4LAm3gk6Q77+vqTgelN5ZQ9T1ns1t0p0XFEWGyqvDn02rCcw59u3XoHBGXdRkXT1brvmm61jmEJfQ6BS6kW5Qd0rgOOAUPn10+M2I2ZmBzBsbOvBi2gj/pp1CDRKsCekGUx+oM+pm1YZivE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705437925; c=relaxed/simple;
-	bh=VwD2o42GKCMVoFWM4BCeW2ZBYFCQzyp04aI4NBC1I88=;
+	s=arc-20240116; t=1705438557; c=relaxed/simple;
+	bh=EDcdzIOhXQ/52ms8gzeDSrTpan3bCbvz3619AOQ1tBU=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
-	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
-	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=Cluqh9ZayvANbKsiX+oJgtno4NUVf8tMi3SoHx0Uq5VFVH/GA+WTduMmaeQQsT7iur6qPGT++pm/jd4Mylm5uG+SXCRiFtNMwyfQATublPTcjeavHuifMOZPXUUkm4J0um/xAvS6Al2AU2SQo9E969lHkx/RoaV/k5n7N0alRXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QX2dfPNZ; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50e67e37661so14244888e87.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 12:45:23 -0800 (PST)
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
+	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
+	 Content-Type:Content-Transfer-Encoding; b=I4/nmkpozfcZJ+BJDbWOOSiSdFOQyE2bZMF4BCdzX5/Chic4KX+KKOGE3x68SeMdgFQEnxiB4MF5Y0bCdjlpQj8VgxOsLB7Gav1ioe8bhUNhe70A5js+EMOFdDZuqC8a9zLw62DcGSxP6bt9Wir/UddLYFGYkO4AyIaIJHO73zI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atishpatra.org; spf=pass smtp.mailfrom=atishpatra.org; dkim=pass (1024-bit key) header.d=atishpatra.org header.i=@atishpatra.org header.b=f6jxmEtM; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atishpatra.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atishpatra.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2cdc1af60b2so31448191fa.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 12:55:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705437922; x=1706042722; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=txkFZci/pgsXaxnR/38VBVYwmC/OcvuhAyTTbLIrlLk=;
-        b=QX2dfPNZ7iTk1JUsVkg255Q8C2IPQs0aohtn0aDYIvUSI0xq2jAAuTQZohRwav8kyR
-         gb4rCz1Eu40HieJyHQXEruCM7QbEjk8lec0SASFN0pntZ+zEL1tEf+x4ObqG5yUb51eP
-         01lDP0joyi84bQqEEeG5LDEvN/lRe97HFzfAuTo0C4ENNwUfK/4aqGO03+LkuRBFU06r
-         ZHkLuB0U8iKnNS4RQ/HQrxVnsj+97TJZTLb7p6Yr2kfE7OK+dlmghdak51yi5cPV/uTT
-         roIfYMrtG2gDmS6ZZoeM8+wza9cohtKRXWMnncCVV2soioFsPa3zfk+KeRBUxToMfdLR
-         FkBA==
+        d=atishpatra.org; s=google; t=1705438553; x=1706043353; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n7aeoNCGecPYipNdateEPrHUR8jipxighb0wJVc74QM=;
+        b=f6jxmEtM54r8oDuQFOwdHbMg+z9y4Mx2xlj8j/f4tae/HrtpLQA3PhPnK9GU28CEim
+         V1Mect/gAQQ3fP38vycuywdeUFP4qCMVZJk925B0u2KNYqP2IotPH1TI0DcZGSZBXKHv
+         YJSJZy64DlAjbK5pqL6xN+Ie69TxMzx4tx9pI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705437922; x=1706042722;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=txkFZci/pgsXaxnR/38VBVYwmC/OcvuhAyTTbLIrlLk=;
-        b=AtS5R7665KlSnhDq1lXBaeEYzfbZfs2VaGyQe78Ja+d4N252acQ5noX7l+bNDWbvft
-         i8jJSc4Is7d6ADkQ1ZW6xhwmMHbNG9mkDn/LguGENBUFrRVebh9DxKKFlD0lAUihFzkf
-         EpH0r2bYar0MRVEEp754UuQCQqDH5iA0bpZ5Qn/aDK9Jb0li/Hko/kUZ5zf5PbsuPH7B
-         T5oqbr//7zUWCqKb+r4hAf5X5iUXKPBARdeWxRcV9vHOnq/bmfuFSEn6E5qa7w14IpgT
-         3acZfd/3n4sSwc90Zy4jZqYpukfIdMtOdAiHuInD51UjRL7QyTwUneTlRKdqOr1tZAz2
-         Xeqg==
-X-Gm-Message-State: AOJu0YzgjicIAJXpWaZ/L19ZRs06+PeIQG9MLgGUcWwUfvXuOyh5YBCY
-	eonWTQaOPL0hiCDXlWaKj8kx/9hjL7B94A==
-X-Google-Smtp-Source: AGHT+IGGcXxw/R0mm39DaU/LVmJ6coh0dFZ6uHogacHYaydxCmMOz/aPNXG/4aLNp003Lf0G81ZpGA==
-X-Received: by 2002:a05:6512:39d5:b0:50e:2f43:8b7f with SMTP id k21-20020a05651239d500b0050e2f438b7fmr4218175lfu.13.1705437922134;
-        Tue, 16 Jan 2024 12:45:22 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id st6-20020a170907c08600b00a2ce3230351sm5448862ejc.37.2024.01.16.12.45.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 12:45:21 -0800 (PST)
-Message-ID: <d90d035b-c63b-4bb2-a84b-9627fca10eee@linaro.org>
-Date: Tue, 16 Jan 2024 21:45:19 +0100
+        d=1e100.net; s=20230601; t=1705438553; x=1706043353;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n7aeoNCGecPYipNdateEPrHUR8jipxighb0wJVc74QM=;
+        b=Y3j0ZJP2/PQxgp7gDpK9FOkamUYPEhamSDhpsakv/Q3kLsrNXKcD0i31fPo+8ZMigG
+         zuDkMItjmNWamK0uSvoNfpnPkp1qvrYdcV+xz0qpTCwceWgl8WM+s2OijF3OjV33fxqo
+         r6Tl4I6rcTjARUYeXMpK9WOPl2tap8R734Dcxed4eooFcxAS86S1F8TVtDFB3DdBIG5C
+         va/PXDvm5/lIQOWH2rcrgZbkjdSkz8ck9F1YFZ0k1o1LTrh03oJUQ2v+UkHZBDcQsCQ7
+         /lZ8z74WuJOqnCGeUzTRQ//0dPa9cw3C7XPfb8cnwCF35IL0MrhDhDOYorp/XLHc/wFk
+         5pUA==
+X-Gm-Message-State: AOJu0YxWarHZ2xzFKDSFYjhM71JpYjp6nGyKq/zgE2S+XfAbhYCZRUu7
+	CHOSmf6INjpBU94gR+86dsdJv/OwQ5NAhxyIpy+fSeWLcudZ
+X-Google-Smtp-Source: AGHT+IG3hQqwOEAuQIEe26wVuEJZ0hqaSYghTTXqBTohi8bagHfjNbU3GhlWTUQwbqnDsE5lrjQe3fr3XFikPueYIHg=
+X-Received: by 2002:a2e:b0f2:0:b0:2cd:2ac6:9685 with SMTP id
+ h18-20020a2eb0f2000000b002cd2ac69685mr3760083ljl.92.1705438552740; Tue, 16
+ Jan 2024 12:55:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: convert Atmel's HLCDC to DT
- schema
-Content-Language: en-US
-To: Dharma Balasubiramani <dharma.b@microchip.com>,
- conor.dooley@microchip.com, sam@ravnborg.org, bbrezillon@kernel.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
- claudiu.beznea@tuxon.dev, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, lee@kernel.org, thierry.reding@gmail.com,
- u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org
-Cc: linux4microchip@microchip.com
-References: <20240116113800.82529-1-dharma.b@microchip.com>
- <20240116113800.82529-2-dharma.b@microchip.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240116113800.82529-2-dharma.b@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240110073917.2398826-1-peterlin@andestech.com> <20240110073917.2398826-8-peterlin@andestech.com>
+In-Reply-To: <20240110073917.2398826-8-peterlin@andestech.com>
+From: Atish Patra <atishp@atishpatra.org>
+Date: Tue, 16 Jan 2024 12:55:41 -0800
+Message-ID: <CAOnJCUKY8H+pvgTWW5zkfm8O4WR-OWOKmyPTcMjUZBCC5RaLWQ@mail.gmail.com>
+Subject: Re: [PATCH v7 07/16] RISC-V: Move T-Head PMU to CPU feature
+ alternative framework
+To: Yu Chien Peter Lin <peterlin@andestech.com>
+Cc: acme@kernel.org, adrian.hunter@intel.com, ajones@ventanamicro.com, 
+	alexander.shishkin@linux.intel.com, andre.przywara@arm.com, 
+	anup@brainfault.org, aou@eecs.berkeley.edu, conor+dt@kernel.org, 
+	conor.dooley@microchip.com, conor@kernel.org, devicetree@vger.kernel.org, 
+	dminus@andestech.com, evan@rivosinc.com, geert+renesas@glider.be, 
+	guoren@kernel.org, heiko@sntech.de, irogers@google.com, 
+	jernej.skrabec@gmail.com, jolsa@kernel.org, jszhang@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, locus84@andestech.com, magnus.damm@gmail.com, 
+	mark.rutland@arm.com, mingo@redhat.com, n.shubin@yadro.com, 
+	namhyung@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com, 
+	peterz@infradead.org, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org, 
+	sunilvl@ventanamicro.com, tglx@linutronix.de, tim609@andestech.com, 
+	uwu@icenowy.me, wens@csie.org, will@kernel.org, ycliang@andestech.com, 
+	inochiama@outlook.com, chao.wei@sophgo.com, unicorn_wang@outlook.com, 
+	wefu@redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 16/01/2024 12:37, Dharma Balasubiramani wrote:
-> Convert the existing DT binding to DT schema of the Atmel's HLCDC display
-> controller.
-> 
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+On Tue, Jan 9, 2024 at 11:40=E2=80=AFPM Yu Chien Peter Lin
+<peterlin@andestech.com> wrote:
+>
+> The custom PMU extension aims to support perf event sampling prior
+> to the ratification of Sscofpmf. Instead of diverting the bits and
+> register reserved for future standard, a set of custom registers is
+> added.  Hence, we may consider it as a CPU feature rather than an
+> erratum.
+>
+
+I don't think we should do that. Any custom implementation that
+violates the standard RISC-V spec should
+be an errata not a feature.
+As per my understanding, a vendor can call an extension custom ISA
+extension if the same feature is not available
+in the standard ISA extensions or the mechanism is completely
+different. It must also not violate any standard spec as well.
+
+In this case, a standard sscofpmf is already available. Moreover, both
+Andes and T-head extensions violate the standard
+spec by reusing local interrupt numbers (17(Thead) & 18(Andes)) which
+are clearly specified as reserved for standard local interrupts
+in the AIA specification.
+
+Please implementation Andes PMU support as an errata as well similar to T-h=
+ead
+
+
+> T-Head cores need to append "xtheadpmu" to the riscv,isa-extensions
+> for each cpu node in device tree, and enable CONFIG_THEAD_CUSTOM_PMU
+> for proper functioning as of this commit.
+>
+> Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> Reviewed-by: Guo Ren <guoren@kernel.org>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
-> changelog
-> v1 -> v2
-> - Remove the explicit copyrights.
-> - Modify filename like compatible.
-> - Modify title (drop words like binding/driver).
-> - Modify description actually describing the hardware and not the driver.
-> - Remove pinctrl properties which aren't required.
-> - Ref endpoint and not endpoint-base.
-> - Drop redundant info about bus-width description and add ref to video-interfaces.
-> - Move 'additionalProperties' after 'Required'.
-> - Drop parent node and it's other sub-device node which are not related here.
-> - Add compatible to example 2 and add comments that bus-width is the diff between two examples.
+> Changes v1 -> v2:
+>   - New patch
+> Changes v2 -> v3:
+>   - Removed m{vendor/arch/imp}id checks in pmu_sbi_setup_irqs()
+> Changes v3 -> v4:
+>   - No change
+> Changes v4 -> v5:
+>   - Include Guo's Reviewed-by
+>   - Let THEAD_CUSTOM_PMU depend on ARCH_THEAD
+> Changes v5 -> v6:
+>   - Include Conor's Reviewed-by
+> Changes v6 -> v7:
+>   - No change
 > ---
+>  arch/riscv/Kconfig.errata            | 13 -------------
+>  arch/riscv/errata/thead/errata.c     | 19 -------------------
+>  arch/riscv/include/asm/errata_list.h | 15 +--------------
+>  arch/riscv/include/asm/hwcap.h       |  1 +
+>  arch/riscv/kernel/cpufeature.c       |  1 +
+>  drivers/perf/Kconfig                 | 13 +++++++++++++
+>  drivers/perf/riscv_pmu_sbi.c         | 19 ++++++++++++++-----
+>  7 files changed, 30 insertions(+), 51 deletions(-)
+>
+> diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
+> index e2c731cfed8c..0d19f47d1018 100644
+> --- a/arch/riscv/Kconfig.errata
+> +++ b/arch/riscv/Kconfig.errata
+> @@ -86,17 +86,4 @@ config ERRATA_THEAD_CMO
+>
+>           If you don't know what to do here, say "Y".
+>
+> -config ERRATA_THEAD_PMU
+> -       bool "Apply T-Head PMU errata"
+> -       depends on ERRATA_THEAD && RISCV_PMU_SBI
+> -       default y
+> -       help
+> -         The T-Head C9xx cores implement a PMU overflow extension very
+> -         similar to the core SSCOFPMF extension.
+> -
+> -         This will apply the overflow errata to handle the non-standard
+> -         behaviour via the regular SBI PMU driver and interface.
+> -
+> -         If you don't know what to do here, say "Y".
+> -
+>  endmenu # "CPU errata selection"
+> diff --git a/arch/riscv/errata/thead/errata.c b/arch/riscv/errata/thead/e=
+rrata.c
+> index 0554ed4bf087..5de5f7209132 100644
+> --- a/arch/riscv/errata/thead/errata.c
+> +++ b/arch/riscv/errata/thead/errata.c
+> @@ -53,22 +53,6 @@ static bool errata_probe_cmo(unsigned int stage,
+>         return true;
+>  }
+>
+> -static bool errata_probe_pmu(unsigned int stage,
+> -                            unsigned long arch_id, unsigned long impid)
+> -{
+> -       if (!IS_ENABLED(CONFIG_ERRATA_THEAD_PMU))
+> -               return false;
+> -
+> -       /* target-c9xx cores report arch_id and impid as 0 */
+> -       if (arch_id !=3D 0 || impid !=3D 0)
+> -               return false;
+> -
+> -       if (stage =3D=3D RISCV_ALTERNATIVES_EARLY_BOOT)
+> -               return false;
+> -
+> -       return true;
+> -}
+> -
+>  static u32 thead_errata_probe(unsigned int stage,
+>                               unsigned long archid, unsigned long impid)
+>  {
+> @@ -80,9 +64,6 @@ static u32 thead_errata_probe(unsigned int stage,
+>         if (errata_probe_cmo(stage, archid, impid))
+>                 cpu_req_errata |=3D BIT(ERRATA_THEAD_CMO);
+>
+> -       if (errata_probe_pmu(stage, archid, impid))
+> -               cpu_req_errata |=3D BIT(ERRATA_THEAD_PMU);
+> -
+>         return cpu_req_errata;
+>  }
+>
+> diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/as=
+m/errata_list.h
+> index 4ed21a62158c..9bccc2ba0eb5 100644
+> --- a/arch/riscv/include/asm/errata_list.h
+> +++ b/arch/riscv/include/asm/errata_list.h
+> @@ -25,8 +25,7 @@
+>  #ifdef CONFIG_ERRATA_THEAD
+>  #define        ERRATA_THEAD_PBMT 0
+>  #define        ERRATA_THEAD_CMO 1
+> -#define        ERRATA_THEAD_PMU 2
+> -#define        ERRATA_THEAD_NUMBER 3
+> +#define        ERRATA_THEAD_NUMBER 2
+>  #endif
+>
+>  #ifdef __ASSEMBLY__
+> @@ -147,18 +146,6 @@ asm volatile(ALTERNATIVE_2(                         =
+                       \
+>             "r"((unsigned long)(_start) + (_size))                      \
+>         : "a0")
+>
+> -#define THEAD_C9XX_RV_IRQ_PMU                  17
+> -#define THEAD_C9XX_CSR_SCOUNTEROF              0x5c5
+> -
+> -#define ALT_SBI_PMU_OVERFLOW(__ovl)                                    \
+> -asm volatile(ALTERNATIVE(                                              \
+> -       "csrr %0, " __stringify(CSR_SSCOUNTOVF),                        \
+> -       "csrr %0, " __stringify(THEAD_C9XX_CSR_SCOUNTEROF),             \
+> -               THEAD_VENDOR_ID, ERRATA_THEAD_PMU,                      \
+> -               CONFIG_ERRATA_THEAD_PMU)                                \
+> -       : "=3Dr" (__ovl) :                                               =
+ \
+> -       : "memory")
+> -
+>  #endif /* __ASSEMBLY__ */
+>
+>  #endif
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwca=
+p.h
+> index 5340f818746b..480f9da7fba7 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -80,6 +80,7 @@
+>  #define RISCV_ISA_EXT_ZFA              71
+>  #define RISCV_ISA_EXT_ZTSO             72
+>  #define RISCV_ISA_EXT_ZACAS            73
+> +#define RISCV_ISA_EXT_XTHEADPMU                74
+>
+>  #define RISCV_ISA_EXT_MAX              128
+>  #define RISCV_ISA_EXT_INVALID          U32_MAX
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index e32591e9da90..4aded5bf8fc3 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -303,6 +303,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D {
+>         __RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+>         __RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
+>         __RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
+> +       __RISCV_ISA_EXT_DATA(xtheadpmu, RISCV_ISA_EXT_XTHEADPMU),
+>  };
+>
+>  const size_t riscv_isa_ext_count =3D ARRAY_SIZE(riscv_isa_ext);
+> diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
+> index 273d67ecf6d2..6cef15ec7c25 100644
+> --- a/drivers/perf/Kconfig
+> +++ b/drivers/perf/Kconfig
+> @@ -86,6 +86,19 @@ config RISCV_PMU_SBI
+>           full perf feature support i.e. counter overflow, privilege mode
+>           filtering, counter configuration.
+>
+> +config THEAD_CUSTOM_PMU
+> +       bool "T-Head custom PMU support"
+> +       depends on ARCH_THEAD && RISCV_ALTERNATIVE && RISCV_PMU_SBI
+> +       default y
+> +       help
+> +         The T-Head C9xx cores implement a PMU overflow extension very
+> +         similar to the core SSCOFPMF extension.
+> +
+> +         This will patch the overflow CSR and handle the non-standard
+> +         behaviour via the regular SBI PMU driver and interface.
+> +
+> +         If you don't know what to do here, say "Y".
+> +
+>  config ARM_PMU_ACPI
+>         depends on ARM_PMU && ACPI
+>         def_bool y
+> diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
+> index 2edbc37abadf..31ca79846399 100644
+> --- a/drivers/perf/riscv_pmu_sbi.c
+> +++ b/drivers/perf/riscv_pmu_sbi.c
+> @@ -20,10 +20,21 @@
+>  #include <linux/cpu_pm.h>
+>  #include <linux/sched/clock.h>
+>
+> -#include <asm/errata_list.h>
+>  #include <asm/sbi.h>
+>  #include <asm/cpufeature.h>
+>
+> +#define THEAD_C9XX_RV_IRQ_PMU          17
+> +#define THEAD_C9XX_CSR_SCOUNTEROF      0x5c5
+> +
+> +#define ALT_SBI_PMU_OVERFLOW(__ovl)                                    \
+> +asm volatile(ALTERNATIVE(                                              \
+> +       "csrr %0, " __stringify(CSR_SSCOUNTOVF),                        \
+> +       "csrr %0, " __stringify(THEAD_C9XX_CSR_SCOUNTEROF),             \
+> +               0, RISCV_ISA_EXT_XTHEADPMU,                             \
+> +               CONFIG_THEAD_CUSTOM_PMU)                                \
+> +       : "=3Dr" (__ovl) :                                               =
+ \
+> +       : "memory")
+> +
+>  #define SYSCTL_NO_USER_ACCESS  0
+>  #define SYSCTL_USER_ACCESS     1
+>  #define SYSCTL_LEGACY          2
+> @@ -808,10 +819,8 @@ static int pmu_sbi_setup_irqs(struct riscv_pmu *pmu,=
+ struct platform_device *pde
+>         if (riscv_isa_extension_available(NULL, SSCOFPMF)) {
+>                 riscv_pmu_irq_num =3D RV_IRQ_PMU;
+>                 riscv_pmu_use_irq =3D true;
+> -       } else if (IS_ENABLED(CONFIG_ERRATA_THEAD_PMU) &&
+> -                  riscv_cached_mvendorid(0) =3D=3D THEAD_VENDOR_ID &&
+> -                  riscv_cached_marchid(0) =3D=3D 0 &&
+> -                  riscv_cached_mimpid(0) =3D=3D 0) {
+> +       } else if (riscv_isa_extension_available(NULL, XTHEADPMU) &&
+> +                  IS_ENABLED(CONFIG_THEAD_CUSTOM_PMU)) {
+>                 riscv_pmu_irq_num =3D THEAD_C9XX_RV_IRQ_PMU;
+>                 riscv_pmu_use_irq =3D true;
+>         }
+> --
+> 2.34.1
+>
 
-Please respond to review comments and acknowledge you implement each of
-them. I don't think you did here everything I pointed out. The next
-patch for sure misses things.
 
-Best regards,
-Krzysztof
-
+--
+Regards,
+Atish
 
