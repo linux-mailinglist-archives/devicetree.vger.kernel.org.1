@@ -1,132 +1,99 @@
-Return-Path: <devicetree+bounces-32284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61EF682ED70
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 12:11:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B4F82ED94
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 12:21:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB0371F2454F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:11:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86E551F23767
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEDC11B802;
-	Tue, 16 Jan 2024 11:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB261B7F4;
+	Tue, 16 Jan 2024 11:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="zx9q7ofI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SAAAm80K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C24F1B7EE;
-	Tue, 16 Jan 2024 11:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kZz/E4VEeHZbG9TPn7CJdoAE69Fjm46YdKMQkR88YoEJ9pPoU3owQ9/uXHKVAFwZpgMcE67DJew88x0926d9vJ/yE71n2k+zoja9h1+By5XQlJElf+A4LXNYdCTCE6s/riJ30DKnd1NaKotXoWTLn15bLtNZc7rMSpq91s7vwgnpCzfmj/fU86s4TFj/BT5MhHYUBY5YBz7eSEhq1XWus8royQbNc2kqxgar9ifxntQWsS5e4Jk6TdrJ8gj+AcZeaPwJdwB7KNXpHYoz3ng8bXGKZ4fpBMJkrASr7bJgwiV68Q8jcGREQow9/WLp5P+tpqTDiIU1szm33hxtqUYK/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VEfBxmXsN5GatCFvkL1HJC7vi7MsLypWqGC2uW9DQms=;
- b=PCIDpvdZ20Uk0P3MQoozitMZfuhG+3hUELptPjWx6AdiQNzqewRIHf2raJG4Q7akTCvzNJ2/QAi2tP50DLe7x/bWC577FYhqkhfaVz6HCMDKtAORa7QOh1X9dOjkiKYI2/uCyesA07XiZE0pa2RKreCxxTV3MIUYqfqwIu7IiGSLNkWf3pUGNaOnE9/Gzk4A0FzxDtqag3KJowjOa0cAd2R1MUdvC/eQpi2ZX6wEDhOu+23BmVkPU9hawgWSPdioCe7/zJSQphR+HkbDMj/OLoQqN+uKsS76V6kRbf4z71A89EAsJybu+1X1GHgwuBuc9qcWdX0Eou874D43cm1Itg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=arndb.de smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VEfBxmXsN5GatCFvkL1HJC7vi7MsLypWqGC2uW9DQms=;
- b=zx9q7ofIDtBXeo1lMiiNPuMHL7iOAyGj87g376iR/voYp3o2hPzghKKxc6T3ZR16309PdSkQ/OSKa8ee6UnegOFwDrxEdp+rTX9HwW5P2M2yKehOatW/xTL2F5fr2vNrMDC45utaOqQEyxaaszWoKUKlP2c44HDWeOp6u1cvrfk=
-Received: from BY3PR04CA0025.namprd04.prod.outlook.com (2603:10b6:a03:217::30)
- by DS7PR12MB8418.namprd12.prod.outlook.com (2603:10b6:8:e9::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.21; Tue, 16 Jan
- 2024 11:11:46 +0000
-Received: from SJ5PEPF000001D4.namprd05.prod.outlook.com
- (2603:10b6:a03:217:cafe::3c) by BY3PR04CA0025.outlook.office365.com
- (2603:10b6:a03:217::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.23 via Frontend
- Transport; Tue, 16 Jan 2024 11:11:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- SJ5PEPF000001D4.mail.protection.outlook.com (10.167.242.56) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7202.16 via Frontend Transport; Tue, 16 Jan 2024 11:11:45 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 16 Jan
- 2024 05:11:43 -0600
-Received: from xirdraganc40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
- Transport; Tue, 16 Jan 2024 05:11:42 -0600
-From: Dragan Cvetic <dragan.cvetic@amd.com>
-To: <arnd@arndb.de>, <gregkh@linuxfoundation.org>, <michal.simek@xilinx.com>,
-	<linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
-	<mark.rutland@arm.com>, <devicetree@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <git@amd.com>
-Subject: [PATCH 2/2] MAINTAINERS: Update sd-fec documentation file from txt to yaml
-Date: Tue, 16 Jan 2024 11:11:35 +0000
-Message-ID: <20240116111135.3059-3-dragan.cvetic@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240116111135.3059-1-dragan.cvetic@amd.com>
-References: <20240116111135.3059-1-dragan.cvetic@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332C61B7F2;
+	Tue, 16 Jan 2024 11:21:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5c6910e93e3so1311060a12.1;
+        Tue, 16 Jan 2024 03:21:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705404087; x=1706008887; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2frdD80csrQQUHGsaueDexralzHnoTFsGiRETYFj+P8=;
+        b=SAAAm80Ktvql/9N2c0PBTPSM1dK6+Z7WG4GSJ+R56Z4d0z7lPmkxG4iZ8u24k3i0SS
+         kQHHqQweCBTfjEP18ZmbLqLaoLIpHhc5JJ00gU5nGOZ9nmB7ItQJFZAOlkxjPDrE6ytZ
+         gXWWeAw4a7nB+WjY/EAEc1SONMwEGXxwZXNQlAfWO63/Ss/91bkzHIFIk6RD+eo5/ewg
+         HHoTvdKR6bD0CkxejOtvatnczOg41wHKBqBEzw/O7fVoSwalli2wrMifJoE6QSfc1tov
+         ZOdrhlza4g9rMtmQWAZlS+LI7lLvnVL9AiUXTvbS0lET5yOqWR+s+rHucg+Uwc/hm66Z
+         E4XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705404087; x=1706008887;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2frdD80csrQQUHGsaueDexralzHnoTFsGiRETYFj+P8=;
+        b=Eo6ojdNm3UUWDg6EdZDKxgtaAQS1xe/9vj358K4dE5+GzqdDhZBiqYmG+TfOg6qY2J
+         jobu/bJxVENpWyjvhL+NQun5MQ+UJy5reaCxykswJPjvt2x0N/7AIPN+4UmC9GmKSy4f
+         dcvms3M790AdIPD4JG1yK3XClsAtFqtHTdoWLR3ugSMKt1Qi0mIPXYBATAItZXk/6XX7
+         gcGqYco9mT05oReEx+H5Helqvqn/kiYvM1RYaZmLSp1iA98BEcZ1LQUeJca+sye3ZFcN
+         QlOMwjBE7JPMEUpyS6X9zSetEC6K40Q1vRC9fD8OuJ2Dn/PcTE3tfGXxdv/YlbNPIyPR
+         UQ4Q==
+X-Gm-Message-State: AOJu0Yymn9RTppmqVihyA71yT8hdv+/suk0qtNIYeFJyG3ClkMEg8snB
+	Pf8UVMFkovYeMx6Qh+853TeodZqXxhWYNslXCPM=
+X-Google-Smtp-Source: AGHT+IE9fyCX5XxM744+q1T3mzQxH5LsqLALOlIAytz20SCY3uCcOSDSx1KLO7eSCKJWzlsheKRM3B1TBv+GewOLKtw=
+X-Received: by 2002:a05:6a21:9218:b0:19b:20e9:90da with SMTP id
+ tl24-20020a056a21921800b0019b20e990damr3250632pzb.5.1705404087498; Tue, 16
+ Jan 2024 03:21:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D4:EE_|DS7PR12MB8418:EE_
-X-MS-Office365-Filtering-Correlation-Id: 995a9ce5-f17c-4683-7c53-08dc1683ed5b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	G2672sKydKkgAxjj3S2ZXct/h4GHaYxV0qLdA4cSrJjyI5y2Wo6LWPb3SRyj8ZBSSxsMI8FJuJMrm/RVwhJ9zVpjYY+/cd4UMXHXmgsE7jOMfrqbB6+V6xTZ5AASSiGZY7jLpzuAb5KwbUK3Ixqn4gSXVZexipBirYk0mF9oH8mqXLdIcivyNL4C3Imzx9yegEsToPRjiorctiFkS7tq+ReC2bEZoY+q8bpIRe+wVXt1WFOFlgcvuI9lAWUj3m8sPfLPX3SVX66JEDl7fl9rlnmVX3XjJUEs45RQw1NOsberctJ+yqSuGKB6eULLKjORgCkSv/igTHVZJlA2Wb0ZKr0EZ1tIFnyF75TQXXK6yNW8mW9bvdn0XG9Drc/dqFEq1oZdhmZ0rS+YAJEhkk7PSTtq7trwnzAtWkK9wwqUuhdVBn0KZvfK8Xs75Hfcdx5KNxSSCsRBOL4EBZJI8Bsrol6t6W/PGP075aUA486OfQcnAoTpFezTE0kIOaiaZ1wJb3eg2vfQ+Xhz1C1HnofCRNqIDVuUtz38itrpGDBsZGtR6YNF3S9ZqjxA7xZPqwBphgrJQj96JZFeHRkCORuNiJEm9ZPsKI6AbrGKQrHf0VDfRhReT3lwZdkXCRMyjIkOS1fYNCfAKYKqbr487WyECD+t1+1KxLG1s76sJmU1R2YIwJ5K7R6FOf67PjKNnkg3Sg2VEtYwL3NTb08I1DAWNcYGr2sH5Qmp+W93OqR3r4iqB1gvyzWq4oj7TnPwkSDTw1f4Ewei1ILN47hVM6oXww==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(376002)(136003)(346002)(39860400002)(230922051799003)(451199024)(82310400011)(64100799003)(186009)(1800799012)(46966006)(40470700004)(36840700001)(2616005)(426003)(6666004)(36756003)(478600001)(47076005)(36860700001)(41300700001)(26005)(336012)(1076003)(83380400001)(40460700003)(40480700001)(5660300002)(110136005)(70586007)(2906002)(70206006)(44832011)(8936002)(4744005)(15650500001)(356005)(54906003)(4326008)(8676002)(81166007)(316002)(86362001)(82740400003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2024 11:11:45.7240
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 995a9ce5-f17c-4683-7c53-08dc1683ed5b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001D4.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8418
+References: <20240116105317.267525-1-frieder@fris.de> <20240116105317.267525-4-frieder@fris.de>
+In-Reply-To: <20240116105317.267525-4-frieder@fris.de>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 16 Jan 2024 08:21:16 -0300
+Message-ID: <CAOMZO5DONvb8GpH0PrBaa_EW+br6jWeMC=Jx_y_Etz1EUg11mw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ARM: dts: imx6dl: Add support for Sielaff i.MX6 Solo board
+To: Frieder Schrempf <frieder@fris.de>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+	Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
+	Frieder Schrempf <frieder.schrempf@kontron.de>, Andre Przywara <andre.przywara@arm.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Gregory CLEMENT <gregory.clement@bootlin.com>, 
+	James Hilliard <james.hilliard1@gmail.com>, 
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The documentation for sd-fec bindings is now YAML, so update the
-MAINTAINERS file.
+On Tue, Jan 16, 2024 at 7:54=E2=80=AFAM Frieder Schrempf <frieder@fris.de> =
+wrote:
 
-Signed-off-by: Dragan Cvetic <dragan.cvetic@amd.com>
----
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> +&i2c3 {
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pinctrl_i2c3>;
+> +       clock-frequency =3D <100000>;
+> +       status =3D "okay";
+> +
+> +       st1633@55 {
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 35147477e8e4..37754901119d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23942,7 +23942,7 @@ XILINX SD-FEC IP CORES
- M:	Derek Kiernan <derek.kiernan@amd.com>
- M:	Dragan Cvetic <dragan.cvetic@amd.com>
- S:	Maintained
--F:	Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
-+F:	Documentation/devicetree/bindings/misc/xlnx,sd-fec.yaml
- F:	Documentation/misc-devices/xilinx_sdfec.rst
- F:	drivers/misc/Kconfig
- F:	drivers/misc/Makefile
--- 
-2.17.1
+Please use a generic node name.
 
+> +       gt911@5d {
+
+Ditto.
 
