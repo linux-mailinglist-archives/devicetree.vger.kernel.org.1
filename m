@@ -1,101 +1,92 @@
-Return-Path: <devicetree+bounces-32224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B909482EAE1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:32:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB59582EAFF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:42:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53B111F240C7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:32:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A78C2853A6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:42:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21CEF11C83;
-	Tue, 16 Jan 2024 08:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B87E125DC;
+	Tue, 16 Jan 2024 08:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YuvdH5mI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A8D11C84;
-	Tue, 16 Jan 2024 08:32:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i5e860cd7.versanet.de ([94.134.12.215] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rPerA-0000Y0-Lt; Tue, 16 Jan 2024 09:31:36 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Tim Lunn <tim@feathertop.org>, KyuHyuk Lee <lee@kyuhyuk.kr>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
- Tianling Shen <cnsztl@gmail.com>, Jagan Teki <jagan@edgeble.ai>,
- Ondrej Jirman <megi@xff.cz>, Andy Yan <andyshrk@163.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH] dt-bindings: rockchip: Fix Hardkernel ODROID-M1 board bindings
-Date: Tue, 16 Jan 2024 09:31:35 +0100
-Message-ID: <2421144.zToM8qfIzz@diego>
-In-Reply-To: <3dfe868d-ff8d-44ac-a68e-066ac42a6705@linaro.org>
-References:
- <20240115145142.6292-1-lee@kyuhyuk.kr>
- <8b31ae29-b88b-4ded-95b4-c2d9bbad24e1@feathertop.org>
- <3dfe868d-ff8d-44ac-a68e-066ac42a6705@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E9A125D9;
+	Tue, 16 Jan 2024 08:41:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705394511;
+	bh=3vm3djyuGxuOvKgs02bBxiarOCcIXQxbzAdbmeHHzfU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YuvdH5mINDH88ByNQQgmMqqavq2kD/OTj+hnIn/vhJ2hoY9kFAlVDpdHGyVAbufb9
+	 TnN9ttDET06VwYH0F9MqEjRPM9xmRfBHjqRzfqbqBV17v+1Jx7OHqpNFoQNb1HdtyM
+	 2WHGFrCycsT0IZSSXnsMMyWDm7q5pKG/eWBsPbL+ep2oAXCGDzPnidedHdidqABXCQ
+	 p9BT/BRxDb7wzO7Z7ufOv4dmHvlUzQr5GavsubjYqejEjLbny2HOhKwlav6FdAIQ6j
+	 VB9YHzoXZd9f7prbI0V/PeT0DywXtjLyPzJNarA58CtLhQ94TGUjwTXJnFvAF5n/fZ
+	 jmYK1MXmbl/2g==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9B6183782009;
+	Tue, 16 Jan 2024 08:41:50 +0000 (UTC)
+Message-ID: <feb39d03-bc78-474e-b99c-d835a37dd36b@collabora.com>
+Date: Tue, 16 Jan 2024 09:41:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/15] arm64: dts: mediatek: radxa-nio-12l: Enable System
+ Companion Processor
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-mediatek@lists.infradead.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com, wenst@chromium.org,
+ hsinyi@chromium.org, nfraprado@collabora.com, macpaul.lin@mediatek.com,
+ sean.wang@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@collabora.com
+References: <20240112094632.66310-1-angelogioacchino.delregno@collabora.com>
+ <20240112094632.66310-10-angelogioacchino.delregno@collabora.com>
+ <106b925b-93d7-4661-a561-424f426dd92a@linaro.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <106b925b-93d7-4661-a561-424f426dd92a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Am Dienstag, 16. Januar 2024, 08:24:44 CET schrieb Krzysztof Kozlowski:
-> On 16/01/2024 03:00, Tim Lunn wrote:
-> > 
-> > On 1/16/24 01:58, Krzysztof Kozlowski wrote:
-> >> On 15/01/2024 15:51, KyuHyuk Lee wrote:
-> >>> The vendor in ODROID-M1 is hardkernel, but it was incorrectly written
-> >>> as rockchip. Fixed the vendor prefix correctly.
-> >>>
-> >>> Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
-> >>> ---
-> >>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
-> >>>   1 file changed, 1 insertion(+), 1 deletion(-)
-> >> You need to start testing your patches. Your last M1 fails as well in
-> >> multiple places.
-> >>
-> >> It does not look like you tested the DTS against bindings. Please run
-> >> `make dtbs_check W=1` (see
-> >> Documentation/devicetree/bindings/writing-schema.rst or
-> >> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> >> for instructions).
-> >>
-> >> The DTS change will break the users, so would be nice to mention this in
-> >> its commit msg.
-> > 
-> > I notice there are a couple of other boards that incorrectly use 
-> > rockchip as the vendor also:
-> > 
-> >            - const: rockchip,rk3399-orangepi
-> >            - const: rockchip,rk3568-bpi-r2pro
-> > 
-> > Perhaps these should also be fixed at the same time?
+Il 16/01/24 09:18, Krzysztof Kozlowski ha scritto:
+> On 12/01/2024 10:46, AngeloGioacchino Del Regno wrote:
+>> The SCP is used by the SoC for various tasks, including initializing
+>> hardware video encoding/decoding hardware and managing other remote
+>> processors. Enable this node and assign its own DMA pool to it.
+>>
 > 
-> What is happening with rockchip boards?
+> Please provide reason why this cannot be included in initial submission
+> and must be split into separate patch. I really do not understand except
+> some patch count stats.
+> 
 
-Copy-paste stuff ... boards using rockchip,boardname instead of
-vendor,boardname for their compatible.
+This was done to describe both the reasons why each node was enabled at
+which point and the actual workflow for the bringup with each commit.
 
-I do remember us noticing this a number of times on some boards
-and requesting fixes, but looks like some slipped through.
+I don't care about the stats.
 
-So I guess Tim is suggesting changing the compatible, but with boards
-being merged a while ago, this would break backwards compatibility.
-So I guess both the Orange and Banana Pies will need to live with that.
+I will squash some of those patches for v2, anyway.
 
+Regards,
+Angelo
 
 
