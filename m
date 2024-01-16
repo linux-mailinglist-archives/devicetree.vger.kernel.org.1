@@ -1,104 +1,221 @@
-Return-Path: <devicetree+bounces-32508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 374E282F90A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:58:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C854282F7CC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B63F28AD69
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:58:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6A70283905
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F58213E21C;
-	Tue, 16 Jan 2024 19:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9141185C63;
+	Tue, 16 Jan 2024 19:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FhFQJmx0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rt2FDwLk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7622513E216;
-	Tue, 16 Jan 2024 19:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A8385C59;
+	Tue, 16 Jan 2024 19:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705434833; cv=none; b=Ly3Us7YF+JOclufMpYGC6zqhIlMEeMZqPXsYn6SOY9gHz0a6OH89OB3BvrlYVaBpMuz/sJm8Kav5SmL7ZB8VgPdpTZIcCkqnk5JP3bP/2H5S9uwOfgdKnMYTyo+Vw6r+0vgxcG7mNm+ZzNzS5L6G6rkhHHS1owGTjUaCEf2Ie4M=
+	t=1705434586; cv=none; b=krqc0sDUbzKVVQzDO1lpQb6H+i6UsEFXiYQ1imhr0SJ6x58slbtBwQtz0PH+D0gD6gzMN/ve0+A/1KRk7hNk/OlaS8E0oPsYofl46e91LE37p0z+d7Mp4nv3+S2FQbAJF2MXAx8bMnZsFk+Uu6uP4PIKt4AITUy7vI+QueCaVRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705434833; c=relaxed/simple;
-	bh=1IIOulkQDN13tdGFSOGwHqIlVziots8gO/o/4wKI6Bc=;
-	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
-	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=VvkHyBM66UOXqaotu3Z4ET7eR66m46QDLK66XRBBNkY1o0AgwSmzKobhx+hnDtgMkxzqPv3OodaKvZ+ATqZU5nnUk0SBQKklKoHTfU++4foNkYVLa0wXvjA8PciKVlTytP7dTl453ZQhtMX8VoukAiGrBXhrgUfv4JWF/BiUqhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FhFQJmx0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47579C43141;
-	Tue, 16 Jan 2024 19:53:52 +0000 (UTC)
+	s=arc-20240116; t=1705434586; c=relaxed/simple;
+	bh=nDrC9wTsCV4ph2iLOi/kjmUrKVaAS25bEBAFssh/F98=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=g37O4MuPxP2serrZusp7S2nxo2Svbyk4+VFr3A0CdjpBXH1TzjdYgL2v2YN3a2rpVUt+52mnU9wVmjuyu0ZWZhwwMcNR02lNpwymHcG3uaiJSkcs3LVRk+pu88DMy+fuCtF/0drBu5mc4Dm8gedwc/vf1AKRnGhLTTAo4CMQWbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rt2FDwLk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B14B4C43390;
+	Tue, 16 Jan 2024 19:49:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705434833;
-	bh=1IIOulkQDN13tdGFSOGwHqIlVziots8gO/o/4wKI6Bc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=FhFQJmx0fbu/G0iI8K1z1seEoALfJErk4xh5prrDKUSQOE+B4qtxIvZI7cahgtbWR
-	 rcycrN18Romi1/Bppmfb12yMWO2bBtM5WAfjES2sTyILKtQd/JAEklxhjRSYAU6zC/
-	 lSe7IEb4Y7zv/BzrUTnpwuiZGZpvDLnUz8J6tD3GVIABJzDw1ru3Bi3Bjzo5NGfURm
-	 lxQp6/dtX5Jkhxy3Cc8teQDBEIf4aLCks28mrPfirlwewOh9a5NI+6YdR/zEKLXINH
-	 pXadPI9SP8x9VrofTc0x9XW8ko9Tc51emg7Dr2WhYPKLhpWDSAlQ9RcROrLa19piWH
-	 vUn00dsik19dA==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Chunyan Zhang <chunyan.zhang@unisoc.com>,
-	Sasha Levin <sashal@kernel.org>,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	orsonzhai@gmail.com,
-	zhang.lyra@gmail.com,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 100/104] arm64: dts: sprd: Change UMS512 idle-state nodename to match bindings
-Date: Tue, 16 Jan 2024 14:47:06 -0500
-Message-ID: <20240116194908.253437-100-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240116194908.253437-1-sashal@kernel.org>
-References: <20240116194908.253437-1-sashal@kernel.org>
+	s=k20201202; t=1705434586;
+	bh=nDrC9wTsCV4ph2iLOi/kjmUrKVaAS25bEBAFssh/F98=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rt2FDwLkrEvke5xX3NG2XsTzU/1v1AFMfYT3gFwaDjFtMNSx6SOqH1XIkRtJBOoyh
+	 mwsMlpc8GweBANnXi89yX+fAIpoxT6EWsyWKMKpLs4FIKElC12KDINnLVfxEo3AMdY
+	 XEhkRRLSfe4V14sKLBqM7RP+DW8+GxDVF9O5iIf8FRYDiDm++l96OruiFu1UqmINk4
+	 cnmmpOfsCcqOr4VCcRnE9QcR8OwpiDKoGUdCPU0yRunpacKpAhO5bUH5bNgi3DTtO8
+	 4n2bT1APCSEQmT7Q0G011OkJoWArrWMb0WDzQ0TdzNVYmfRNshybGniknqm8+EhrkF
+	 AQy2aI8+dwU2w==
+Date: Tue, 16 Jan 2024 13:49:43 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: conor.dooley@microchip.com, sam@ravnborg.org, bbrezillon@kernel.org,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, lee@kernel.org,
+	thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+	linux-pwm@vger.kernel.org, linux4microchip@microchip.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: convert Atmel's HLCDC to DT
+ schema
+Message-ID: <20240116194943.GA301272-robh@kernel.org>
+References: <20240116113800.82529-1-dharma.b@microchip.com>
+ <20240116113800.82529-2-dharma.b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.12
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240116113800.82529-2-dharma.b@microchip.com>
 
-From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+On Tue, Jan 16, 2024 at 05:07:58PM +0530, Dharma Balasubiramani wrote:
+> Convert the existing DT binding to DT schema of the Atmel's HLCDC display
+> controller.
+> 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+> changelog
+> v1 -> v2
+> - Remove the explicit copyrights.
+> - Modify filename like compatible.
+> - Modify title (drop words like binding/driver).
+> - Modify description actually describing the hardware and not the driver.
+> - Remove pinctrl properties which aren't required.
+> - Ref endpoint and not endpoint-base.
+> - Drop redundant info about bus-width description and add ref to video-interfaces.
+> - Move 'additionalProperties' after 'Required'.
+> - Drop parent node and it's other sub-device node which are not related here.
+> - Add compatible to example 2 and add comments that bus-width is the diff between two examples.
+> ---
+>  .../atmel/atmel,hlcdc-display-controller.yaml | 110 ++++++++++++++++++
+>  .../bindings/display/atmel/hlcdc-dc.txt       |  75 ------------
+>  2 files changed, 110 insertions(+), 75 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-display-controller.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/atmel/hlcdc-dc.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-display-controller.yaml b/Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-display-controller.yaml
+> new file mode 100644
+> index 000000000000..f022c294cfbc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-display-controller.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/atmel/atmel,hlcdc-display-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel's High LCD Controller (HLCDC)
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
+> +
+> +description: |
+> +  The LCD Controller (LCDC) consists of logic for transferring LCD image
+> +  data from an external display buffer to a TFT LCD panel. The LCDC has one
+> +  display input buffer per layer that fetches pixels through the single bus
+> +  host interface and a look-up table to allow palletized display
+> +  configurations.
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,hlcdc-display-controller
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  port@0:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    unevaluatedProperties: false
+> +    description:
+> +      Output endpoint of the controller, connecting the LCD panel signals.
+> +
+> +    properties:
+> +      '#address-cells':
+> +        const: 1
+> +
+> +      '#size-cells':
+> +        const: 0
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      endpoint:
+> +        $ref: /schemas/graph.yaml#/$defs/endpoint
+> +        unevaluatedProperties: false
+> +        description:
+> +          Endpoint connecting the LCD panel signals.
+> +
+> +        properties:
+> +          bus-width:
+> +            description: Endpoint bus width.
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            enum: [ 12, 16, 18, 24 ]
+> +
+> +required:
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - compatible
+> +  - port@0
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    //Example 1
+> +
+> +    display-controller {
+> +      compatible = "atmel,hlcdc-display-controller";
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb888>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      port@0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        reg = <0>;
+> +
+> +        hlcdc_panel_output: endpoint@0 {
+> +          reg = <0>;
+> +          remote-endpoint = <&panel_input>;
+> +        };
+> +      };
+> +    };
+> +
+> +  - |
+> +    //Example 2 With a video interface override to force rgb565, bus-width=16
+> +
+> +    display-controller {
+> +      compatible = "atmel,hlcdc-display-controller";
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb565>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      port@0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        reg = <0>;
+> +        hlcdc_panel_output2: endpoint@0 {
+> +          reg = <0>;
+> +          remote-endpoint = <&panel_input>;
+> +          bus-width = <16>;
+> +        };
+> +      };
+> +    };
 
-[ Upstream commit 1cff7243334f851b7dddf450abdaa6223a7a28e3 ]
+Just 1 extra property doesn't justify 2 examples.
 
-Fix below dtbs_check warning:
+In any case, drop the partial examples and just have 1 complete example 
+in the MFD binding schema.
 
-idle-states: 'core-pd' does not match any of the regexes: '^(cpu|cluster)-', 'pinctrl-[0-9]+'
-
-Link: https://lore.kernel.org/r/20231221092824.1169453-3-chunyan.zhang@unisoc.com
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/sprd/ums512.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/sprd/ums512.dtsi b/arch/arm64/boot/dts/sprd/ums512.dtsi
-index 7984492ef651..b85be1034554 100644
---- a/arch/arm64/boot/dts/sprd/ums512.dtsi
-+++ b/arch/arm64/boot/dts/sprd/ums512.dtsi
-@@ -113,7 +113,7 @@ CPU7: cpu@700 {
- 
- 	idle-states {
- 		entry-method = "psci";
--		CORE_PD: core-pd {
-+		CORE_PD: cpu-pd {
- 			compatible = "arm,idle-state";
- 			entry-latency-us = <4000>;
- 			exit-latency-us = <4000>;
--- 
-2.43.0
-
+Rob
 
