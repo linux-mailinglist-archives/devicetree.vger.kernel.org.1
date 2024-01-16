@@ -1,123 +1,174 @@
-Return-Path: <devicetree+bounces-32393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3CB682F330
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:30:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E91182F342
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:34:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66345286F9F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:30:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B31F287415
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 196EB1CAAE;
-	Tue, 16 Jan 2024 17:30:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95111CAB0;
+	Tue, 16 Jan 2024 17:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n8mMRdRy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="suoP77rj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1BD61CA87;
-	Tue, 16 Jan 2024 17:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5F81CAAC;
+	Tue, 16 Jan 2024 17:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705426226; cv=none; b=VilWETcTcbsE5uCaUwqhh6YBULLUH9gMCBiBgQ/OGqZdACGix6IUsojpq8ZyKma+5YV8NWO65QaLjzwujtpECSHX/dyYQqzzsnRHqVV0KAOhbJnF22AbX4idIlEkis1oG2+KgRtZnAit5Izo7gp3QVCmJkLLz4ndIZRmc6w8a8U=
+	t=1705426458; cv=none; b=JwfG+wCP4ymxZmOssoO51ZNA0BqmvTNo2Iz0Sa6R9izn+i5KFl/qwgiLNZmOOabQdX7gYoPAMJYzCLs49CUlPnBnAFyHbHkEmQm28AZ7LXNtBS8gDsMxUotT1J/hN6E1HXS96UC1ZmE07FjFYuiqMtbgm7alXQydFjj4WH37WOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705426226; c=relaxed/simple;
-	bh=MHbGCgDXoLO32ycO/d98J+MN0cEFtEnVDmEKDb8wMKM=;
+	s=arc-20240116; t=1705426458; c=relaxed/simple;
+	bh=8p3Bv9fS9hcvnux4i7+QsuaRONJtDzRbjULEc/qM+pk=;
 	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
 	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=tZJJ/0rUXOdKz2Wm0ZgIznEHSIsG0iRZj0TEwz+gvLgVZ9q4U9aNfLjPSkp5Oa2ZnWfAtDNqOiR9tzjucr+AYGM3E4AkkQIGea1QiW6sFjATIs757y1fb7MQ2slMgDga+k4sLQOlLCjHFCmPjCQhfvifl+dCm5nE0arzCunl4Dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n8mMRdRy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 429EFC43399;
-	Tue, 16 Jan 2024 17:30:25 +0000 (UTC)
+	 In-Reply-To; b=Hv7ZqiVKy7R+zXCMH1UJjpR2ZA389lU7zMCXDw9NHzwrl74V71q/Sr/lj7A3C2kqbs1J4+oVsmB7/1zI8emhMyGHQ4KqPquCbI0ZyXMgu7g9CZAVAQKggPsmeA/ojTVTrfakUu0t026osxhzquRWdDAzUGZGlMbKTht/un3ww2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=suoP77rj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E79ABC433C7;
+	Tue, 16 Jan 2024 17:34:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705426225;
-	bh=MHbGCgDXoLO32ycO/d98J+MN0cEFtEnVDmEKDb8wMKM=;
+	s=k20201202; t=1705426458;
+	bh=8p3Bv9fS9hcvnux4i7+QsuaRONJtDzRbjULEc/qM+pk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n8mMRdRyuQK3x1YDlCIYh4rOrj4/+pme/Xl+Oz+G404d7dUqv++TTe9baz3z89B1p
-	 m1jNEdf7miWbDQ2Jk1lqN2ebccMcFj+zptjgjwnpBfWz2uGLbhfYv1XmtdDvWHJKjJ
-	 n2g3jyYfqTso8XYrVe9Gu67LtKhfyFncXfB1FgtawtMMOpFMIPYc+sW7WyZN4SrLy2
-	 RwaXDubX4IFBdk/9r/aFqWPlGu0Yxtrm5mWm9j8/oMEJbgf72OpBEvudQAWMTlxiqV
-	 eg5JFZr33fDOodbi9vaRudll9qep9HfEsiw2NeXtf5wZfiK93RlGoi/b0RmhDANJwj
-	 5wWjTppvXIO+A==
-Date: Tue, 16 Jan 2024 11:30:23 -0600
-From: Rob Herring <robh@kernel.org>
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
+	b=suoP77rjxNLBOyGKknnGu7OlFdoZTknBpSYJt471v4NArHDJPfOnHKszO3PmsVQkG
+	 fkF5NwYMP7b3BBAKAPpHbeGN8tpU/rHmElwy5k9c8vJEdTq3fZTPtfalX+XRvRBf9Z
+	 040bLDMI46bsENQZdwUSkZLXG24eZAe74Gw6GJkF8RaFmsFsBqtK0sAdnwdi5GfN1b
+	 LCT2a1wTRXOFLfhaanRAqXqVFlSWfYvStB4ZWGqheR79z5M4JVxtCrQMzO82N6HVtb
+	 Nxstn9oDb3ARbT03AyplV0x+hONRyV2qtJUgFhBEa30RwXgyrRe5Py/k9bEcFZR9oF
+	 C1gQPtza/RNNQ==
+Date: Tue, 16 Jan 2024 17:34:13 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/6] dt-bindings: iio: pressure: honeywell,hsc030pa.yaml
- add sleep-mode
-Message-ID: <20240116173023.GA139792-robh@kernel.org>
-References: <20240110172306.31273-1-petre.rodan@subdimension.ro>
- <20240110172306.31273-3-petre.rodan@subdimension.ro>
- <bc37f7d8-c43f-4751-9216-fc95f439b2f6@linaro.org>
- <ZaDqlmXJD6if1xK7@sunspire>
+	Conor Dooley <conor+dt@kernel.org>,
+	Yoshinori Sato <ysato@users.sourceforge.jp>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	linux-sh@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: renesas,tmu: Document input capture
+ interrupt
+Message-ID: <20240116-coasting-pastrami-1dda8d1025d0@spud>
+References: <fb1e38c93e62221f94304edd980a2fb79c1f2995.1705325608.git.geert+renesas@glider.be>
+ <20240115-wages-secluded-b44f4eb13323@spud>
+ <CAMuHMdWY3D45NGHvGXSZRLZz4TyCRgRCQLZV6CzYs=mSFcherw@mail.gmail.com>
+ <20240115170807.GJ5869@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="PLgkBpzBz5n2FhT/"
 Content-Disposition: inline
-In-Reply-To: <ZaDqlmXJD6if1xK7@sunspire>
+In-Reply-To: <20240115170807.GJ5869@pendragon.ideasonboard.com>
 
-On Fri, Jan 12, 2024 at 09:30:30AM +0200, Petre Rodan wrote:
-> 
-> Hello Krzysztof,
-> 
-> On Wed, Jan 10, 2024 at 09:48:34PM +0100, Krzysztof Kozlowski wrote:
-> > On 10/01/2024 18:22, Petre Rodan wrote:
-> > > Add sleep-mode property present in some custom chips.
-> > > 
-> > > This flag activates a special wakeup sequence prior to conversion.
-> > > 
-> > > Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
-> > > ---
-> > >  .../bindings/iio/pressure/honeywell,hsc030pa.yaml      | 10 ++++++++++
-> > >  1 file changed, 10 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-> > > index 89977b9f01cf..350da1d6991b 100644
-> > > --- a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-> > > +++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-> > > @@ -86,6 +86,15 @@ properties:
-> > >        Maximum pressure value the sensor can measure in pascal.
-> > >        To be specified only if honeywell,pressure-triplet is set to "NA".
-> > > 
-> > > +  honeywell,sleep-mode:
-> > 
-> > "Sleep mode" naming suggests there are choices, like mode foo and mode
-> > bar. Probably you want something like "sleep-between-measurements" or
-> > something matching how does it work.
-> 
-> "sleep mode" is the terminology used by Honeywell and it defines a chip capability.
-> it is present in the HSC/SSC and ABP series of ICs.
-> 
-> other such options (capabilities) include temperature output in the ABP series.
-> 
-> the action the driver needs to perform if this option is present is to provide a
-> wake-up sequence before reading out the conversions.
-> 
-> now regarding a rename of this property, I would vote to leave it as is - for the
-> users to have a 1:1 equivalence of terms between the driver and the datasheet.
-> 
-> I say that because for instance in circuit design when a part symbol and
-> footprint is drawn based on a datasheet it is recommended to keep the same pin
-> notations and the same block diagram as in the datasheet, precisely for this 1:1
-> equivalence, so there is no uncertainty for the end-user.
 
-At least add a '-en' suffix so it is clear this property enables the 
-mode. We have both flavors (enables and disables). 
+--PLgkBpzBz5n2FhT/
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Low power modes between samples is pretty common on these devices. We 
-should consider if this should be a common property. Jonathan?
+On Mon, Jan 15, 2024 at 07:08:07PM +0200, Laurent Pinchart wrote:
+> On Mon, Jan 15, 2024 at 05:48:18PM +0100, Geert Uytterhoeven wrote:
+> > Hi Conor,
+> >=20
+> > On Mon, Jan 15, 2024 at 5:13=E2=80=AFPM Conor Dooley <conor@kernel.org>=
+ wrote:
+> > > On Mon, Jan 15, 2024 at 02:45:39PM +0100, Geert Uytterhoeven wrote:
+> > > > Some Timer Unit (TMU) instances with 3 channels support a fourth
+> > > > interrupt: an input capture interrupt for the third channel.
+> > > >
+> > > > While at it, document the meaning of the four interrupts, and add
+> > > > "interrupt-names" for clarity.
+> > > >
+> > > > Update the example to match reality.
+> > > >
+> > > > Inspired by a patch by Yoshinori Sato for SH.
+> > > >
+> > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >=20
+> > > > --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+> > > > +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+> > > > @@ -46,7 +46,19 @@ properties:
+> > > >
+> > > >    interrupts:
+> > > >      minItems: 2
+> > > > -    maxItems: 3
+> > > > +    items:
+> > > > +      - description: Underflow interrupt 0
+> > > > +      - description: Underflow interrupt 1
+> > > > +      - description: Underflow interrupt 2
+> > > > +      - description: Input capture interrupt 2
+> > >
+> > > Seeing "input capture interrupt 2" makes me wonder, are there two (or
+> > > more!) other input capture interrupts that are still out there,
+> > > undocumented, and looking for a home?
+>=20
+> Maybe writing this as
+>=20
+>       - description: Underflow interrupt, channel 0
+>       - description: Underflow interrupt, channel 1
+>       - description: Underflow interrupt, channel 2
+>       - description: Input capture interrupt, channel 2
 
-Rob
+I, for one, prefer this wording.
+
+> would make it clearer ?
+>=20
+> I'm also wondering if we really need to add interrupt-names. Drivers
+> can't depend on the names due to backward compatibility, what benefit
+> does it bring to add them to the bindings ?
+
+Adding a -names property and not making it required has always seemed
+like a waste of time to me. Granted, making it required post-factum has
+other problems, so I am inclined to agree that it adds nothing.
+
+>=20
+> > SoCs can have multiple TMU instances.
+> > Each TMU instance has 2 or 3 timer channels.
+> > Each timer channel has an underflow interrupt.
+> > Only the third channel may have an optional input capture interrupt
+> > (which is not supported yet by the Linux driver).
+> > Hence each instance can have 2, 3, or 4 interrupts.
+> >=20
+> > See "RZ/G Series, 2nd Generation User's Manual: Hardware"[1],
+> > Section 69 ("Timer Unit (TMU)":
+> >   - Figure 69.2: Block Diagram of TMU,
+> >   - Section 69: Interrupt
+> >=20
+> > Note that the documentation uses a monotonic increasing numbering
+> > of the channels, across all instances.
+> >=20
+> > [1] https://www.renesas.com/us/en/products/microcontrollers-microproces=
+sors/rz-mpus/rzg2h-ultra-high-performance-microprocessors-quad-core-arm-cor=
+tex-a57-and-quad-core-arm-cortex-a53-cpus-3d
+>=20
+> --=20
+> Regards,
+>=20
+> Laurent Pinchart
+>=20
+
+--PLgkBpzBz5n2FhT/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaa+FQAKCRB4tDGHoIJi
+0hJKAPsH2IaDOPlurMPkBUuO019dDgDcIkdyy3NJnFmex6flPAEA3v8Ly8XOMz9L
+LAWEsu4AzTmlAFdnbKbgDQzeugjdYQo=
+=F/w/
+-----END PGP SIGNATURE-----
+
+--PLgkBpzBz5n2FhT/--
 
