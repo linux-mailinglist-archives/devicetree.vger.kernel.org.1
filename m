@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-32583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7794282FC1C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:12:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2439782FC28
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:14:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2265328E5EB
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:12:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE07BB29F22
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65D881D68E;
-	Tue, 16 Jan 2024 20:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBD6B23741;
+	Tue, 16 Jan 2024 20:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OJYZc4vS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WBhgCnPJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA5B1BF31
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 20:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8635522F1D
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 20:33:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705437030; cv=none; b=jIA45czsfAOovXWwo6D/fNJVRShaNZnPVstLAArZD6KBd1Ic8JWmTNcS7yVwgcPIBn0cxWrRrQYA8OruI84BdIXGP1hxQJb1eklFJseoidbEHjBV1zpMxkKL0bOXdGHgh76OXR3NW8xQTIve525m5KCboR2qopy0DW4nFQLXGbE=
+	t=1705437188; cv=none; b=PtcWpnaK3gnQGQaaugmAD55uPV30CWmhAnwbNwk88UmPmYRCLcIkKe1JlIOHk4aXb3Vei1+qjxa/DUjeAmJap04kmVLfb0qVuwv5k11dYzxCBWpcldUGRoLnKM4EA6pD2BW4aPqJr9barRC/pYwVNdBHDqaNPyNLt22luyp2Gk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705437030; c=relaxed/simple;
-	bh=2NRTYrgjnR5bKwdsLSCYxUfDL1Cs7AM/YYHwnsSsa2w=;
+	s=arc-20240116; t=1705437188; c=relaxed/simple;
+	bh=UZhOUcuw6c3yvY8HwUWiMiTNnqgekRGrbmejXm0Luak=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
 	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
 	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=a8/vr/o/48PsJj9TetEpOl655Ls9Z1MjsMAc983U+bTS9ogSY0KxQS9iiBZX21Mj1IO/D0zDszntX+07kbIus1m39+rQT3iFW2tnLZhQm68roNdrKll1HUWnBHSIrVHo2aP5C6b3toI2+51qyngv+39aOPJmAuAPXW51xyzR5D0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OJYZc4vS; arc=none smtp.client-ip=209.85.208.48
+	 Content-Transfer-Encoding; b=J5YAa6cmJpn7X4sg5LQ7oO6/xPQxcuTUvqCw3d2CiVY6Z6BAvtJJXzKWI1H4YfKPjkwi0arpGvw66qgP4fjId11bolg/KL4YPqjCWnrOwVBIUgWpMWGYmsRfkZhu44ugCIy6RWcBOifZfPVgN1ZHAgpYqTQwa6xJF+6awDVY8/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WBhgCnPJ; arc=none smtp.client-ip=209.85.208.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5578485fc0eso9576553a12.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 12:30:28 -0800 (PST)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2cd1232a2c7so127956601fa.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 12:33:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705437027; x=1706041827; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705437184; x=1706041984; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=uTXhmBHw2EA0caAaydvwAT6rwYI/NJUX8jAJJV8Sy00=;
-        b=OJYZc4vSsguB0zBpM18DzqJJoz8N6I6uMSZ/mv3kEM7OhAqeOP9+OlY4HbkJNxFOVy
-         KWvQODmuz2DUhuBscm8QumjAYgolvGf29UxlOJhdGPipBuHW7SmTF1babY71HxPqjlSy
-         dVQN8ZChjbqEmLPUdQRcQRQ2GEzvKvhu/KmtEctKXA0XCfKtbzIf3xbFJugAlVtWCDzb
-         iHaOt8MnUS8EH7mhPb1JcpVb8aKJy9gdu///XaFByAAploMzvCcgjOa/zclvIMjTDxKs
-         49cxoIB220etpqcgBBrk5lLPFZ4MxYL7sXXpxl0vECqOfBbdHPMRJESypb2dTS4T6GHz
-         9+7w==
+        bh=ZmkUyeDtILM4j0A8ZkydaXWgJFrv0AfuF4OsKct4FSs=;
+        b=WBhgCnPJxome+VxxYB1BXZW3+/f8DyekeyrBYo3SHwkYEcHLMNnFPz6StNq9ZDmS6s
+         rRcmNGERGsAWNjvBdxJxZ6JW7UsT4TDknAQYfy5ZNe3pPHOn4kTe7WrlQzn40e4fMl5i
+         X69AMW4JZb4YGmLJ0k+/g22L3PFVxGPhsRBCY/NNPgQ3018cvgWgdA5p+WMTUANASUJm
+         WIctiBotC3WXi7dyU+iYzkE1kwazGlIZ3DJdtAanMheNP46F5wr/wOmy/bCKdniMyfnu
+         DFmFqZDyK8h+pdidaxA8o43mgOFqWNLGCzO/GC1AHvBjFZeGCfKi8fs4m3FWtlezUxTy
+         /cfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705437027; x=1706041827;
+        d=1e100.net; s=20230601; t=1705437184; x=1706041984;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uTXhmBHw2EA0caAaydvwAT6rwYI/NJUX8jAJJV8Sy00=;
-        b=Qf336QsXC0ekWNDsmKU1Bii2mM409dLKAJC2MHnjeyTd4L13erNg/w9Fe/XqVYB+oy
-         ORaaIjaXcK20WPlYa9OUZaFWR4tepzwX2eJXW047SefkjrneaxfvLd4AskLJmIsSlX/h
-         g2WKRPm4u3WuwF8Oz5AoTzNIgdmO4Fjz1s975U3v30nvvx5R9OIC7G4GhcpQ0OJUC5bx
-         i17gkJiCP3qDngukFdVNHOgM1KDYUUDT0J2VRcU4qgTbM3vtUaeRe6Z3+9/ZpjGjxCMo
-         miWCszu2NzidqZtw9sq90toHD2JI2yPHpdaaXbrZVKYVlxVtaPUV58zxVzncGSHsdXnZ
-         MaQw==
-X-Gm-Message-State: AOJu0Yx7LXVjdoM32k/XmXAnYIXg0hLT+y9gWgonAFKCR/tIujfwsAzK
-	EnM2UqDWN7iFTCZ5KQGILHO77m1Zm0lmjw==
-X-Google-Smtp-Source: AGHT+IHFuFzFMM2bM2UjSx6fFyIc5tvQ1xs4HEI2FsjCRLD6pEYz+/oaXtUkDCaPFFhcoVD1Rw+sOw==
-X-Received: by 2002:a17:907:c24b:b0:a2d:d3a0:c9e6 with SMTP id tj11-20020a170907c24b00b00a2dd3a0c9e6mr2489729ejc.46.1705437026927;
-        Tue, 16 Jan 2024 12:30:26 -0800 (PST)
+        bh=ZmkUyeDtILM4j0A8ZkydaXWgJFrv0AfuF4OsKct4FSs=;
+        b=Q3Nedre4kNrQZTIxkMbiTSFnKDwrq3XNNr18wJWFgFCyKHIzyHeAj8sBNLGO1u7RVA
+         llprmx+lFSOb2JKgu6ofpCdxfcQtUGUfNET5ruanMxXOEzg/6Fg2SUKejRiLs75Kmhbv
+         mmd3I5pwy6pzZoDtwXCFdRR2r+dl6HkdI5qaYF/gOLcS5AW6aa+Gwh2QvMOMRTIMMh8S
+         8/HtUn4q3bu3Gr3t3w4XEusqRFp4mGmdhAM+Cypk0fB2USZRiHk14Wsg0I0LmpnkhcEE
+         uw949vrVvXm+UoKw+9IjbghYyFMwADgP5QWroLINNEYYEt9FQUCz7gnQKCRsvINLzUkQ
+         P6SA==
+X-Gm-Message-State: AOJu0YybGCHjV/rPgVdvDTtJNqtHs0SP/c/FvAASMfg+7S2+U9v89WbA
+	uvLxYJeaHTo4AyKuqVkAZZQZ3CkD6SblRw==
+X-Google-Smtp-Source: AGHT+IHty6zoQlN4MzUQdFwDQqOaZ5jVeEehJLQl61Fuew+N/AVC7g0NQu7WEcIq2Nlaz4zp5JQNBw==
+X-Received: by 2002:a2e:3208:0:b0:2cc:d4d9:905 with SMTP id y8-20020a2e3208000000b002ccd4d90905mr3424013ljy.11.1705437184624;
+        Tue, 16 Jan 2024 12:33:04 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id wb1-20020a170907d50100b00a2cd86caa73sm5541237ejc.121.2024.01.16.12.30.25
+        by smtp.gmail.com with ESMTPSA id ig12-20020a056402458c00b00559c3cbba3bsm469440edb.37.2024.01.16.12.33.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 12:30:26 -0800 (PST)
-Message-ID: <4a9ed1ca-cd13-4b61-af06-a3d7935aeeee@linaro.org>
-Date: Tue, 16 Jan 2024 21:30:24 +0100
+        Tue, 16 Jan 2024 12:33:04 -0800 (PST)
+Message-ID: <52697bd3-01a6-4522-a0fc-e9e6f027cff2@linaro.org>
+Date: Tue, 16 Jan 2024 21:33:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,28 +78,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
- silvaco,i3c-target-v1
+Subject: Re: [PATCH v22 3/8] arm: dts: nuvoton: npcm7xx: modify rst syscon
+ node
 Content-Language: en-US
-To: Frank Li <Frank.li@nxp.com>, Conor Dooley <conor@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, robh@kernel.org,
- alexandre.belloni@bootlin.com, conor.culhane@silvaco.com,
- gregkh@linuxfoundation.org, imx@lists.linux.dev, jirislaby@kernel.org,
- joe@perches.com, linux-i3c@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- miquel.raynal@bootlin.com, zbigniew.lukwinski@linux.intel.com,
- devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <ZaFjaWCA6k+tiCSJ@lizhi-Precision-Tower-5810>
- <ZaWLCrWJEMtFx8cR@lizhi-Precision-Tower-5810>
- <1b628901-7f71-4c97-9a16-723912988417@linaro.org>
- <ZaXqCoCHPWER94Hh@lizhi-Precision-Tower-5810>
- <d45e31c4-914e-4cea-a145-9775b6f516ab@linaro.org>
- <20240116-bleach-herbicide-48d636967134@wendy>
- <3199c245-3d2d-49e8-951e-2b059de4d683@linaro.org>
- <20240116-achiness-thievish-10a12b3c08cd@wendy>
- <Zaa+cLGVVDSB5MYr@lizhi-Precision-Tower-5810>
- <20240116-retract-conclude-c47a7fc8cb21@spud>
- <ZabVSYgq1Mz3LPpC@lizhi-Precision-Tower-5810>
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240108135421.684263-1-tmaimon77@gmail.com>
+ <20240108135421.684263-4-tmaimon77@gmail.com>
+ <99eca166-7d78-4ada-ac0a-ad67f3d8eb33@linaro.org>
+ <CAP6Zq1g7NoLVbAUyeQ8jm3qZvjLV6HSVZB+r-X7dxvVNtvddPg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -145,61 +136,51 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZabVSYgq1Mz3LPpC@lizhi-Precision-Tower-5810>
+In-Reply-To: <CAP6Zq1g7NoLVbAUyeQ8jm3qZvjLV6HSVZB+r-X7dxvVNtvddPg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2024 20:13, Frank Li wrote:
-> On Tue, Jan 16, 2024 at 06:23:09PM +0000, Conor Dooley wrote:
->> On Tue, Jan 16, 2024 at 12:35:44PM -0500, Frank Li wrote:
->>> On Tue, Jan 16, 2024 at 09:48:08AM +0000, Conor Dooley wrote:
->>>> On Tue, Jan 16, 2024 at 10:33:48AM +0100, Krzysztof Kozlowski wrote:
->>>>> On 16/01/2024 10:30, Conor Dooley wrote:
->>>>>> On Tue, Jan 16, 2024 at 08:24:20AM +0100, Krzysztof Kozlowski wrote:
->>>>>>> On 16/01/2024 03:29, Frank Li wrote:
->>>>>>>>>> 	Patches were accepted after discussion, what you ponit to. So I
->>>>>>>>>> think everyone agree on the name 'silvaco,i3c-master-v1'.
->>>>>>>>>> 	I plan send next version to fix auto build error. Any additional
->>>>>>>>>> comments about this?
->>>>>>>>>
->>>>>>>>> I still do not see how did you address Rob's comment and his point is
->>>>>>>>> valid. You just did not reply to it.
->>>>>>>>
->>>>>>>> See https://lore.kernel.org/imx/ZXCiaKfMYYShoiXK@lizhi-Precision-Tower-5810/
->>>>>>>
->>>>>>> First of all, that's not the answer to Rob's email, but some other
->>>>>>> thread which is 99% ignored by Rob (unless he has filters for
->>>>>>> "@Rob"...). Therefore no, it does not count as valid answer.
->>>>>>>
->>>>>>> Second, explanation does not make sense. There is no argument granting
->>>>>>> you exception from SoC specific compatibles.
->>>>>>
->>>>>> The patch could have been applied two months ago had Frank done as
->>>>>> was requested (multiple times). I don't understand the resistance
->>>>>> towards doing so given the process has taken way way longer as a result.
->>>>>
->>>>> I think that Rob's comment was just skipped and original master binding
->>>>> was merged without addressing it. I don't want to repeat the same
->>>>> process for the "target". Indeed I could point this earlier... if I only
->>>>> knew that Rob pointed out that issue.
->>>>
->>>> Oh I think I got confused here. The context for this mail led me to
->>>> think that this was still trying to push the i3c-master-v1 stuff through
->>>> and I was commenting on my frustration with the resistance to applying
->>>> the feedback received. I didn't realise that this was for another
->>>> patch adding a target.
->>>>
->>>> I think you already said it, but NAK to adding any more compatibles here
->>>> until the soc-specific compatible that was asked for for the imx93 is
->>>> added.
+On 16/01/2024 20:51, Tomer Maimon wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your comment.
+> 
+> On Wed, 10 Jan 2024 at 23:01, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 08/01/2024 14:54, Tomer Maimon wrote:
+>>> rst node name and compatible property modified since clock and reset are
+>>> handled in the same memory region.
 >>>
->>> Is it okay for 'silvaco,i3c-target-imx93'?
+>>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+>>> ---
+>>>  arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi | 4 ++--
+>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
+>>> index 868454ae6bde..f72c5a03d04c 100644
+>>> --- a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
+>>> +++ b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
+>>> @@ -93,8 +93,8 @@ gcr: gcr@800000 {
+>>>                       reg = <0x800000 0x1000>;
+>>>               };
+>>>
+>>> -             rst: rst@801000 {
+>>> -                     compatible = "nuvoton,npcm750-rst", "syscon", "simple-mfd";
+>>> +             clk_rst: syscon@801000 {
+>>> +                     compatible = "nuvoton,npcm750-clk-rst", "syscon", "simple-mfd";
+>>
+>> NAK. This breakes the users, is not justified, is not explained.
+> Sorry, I didn't understand, which user it is breaking? there isn't a
+> device tree node that uses the rst node.
 
-No, because imx93 is product of NXP, not Silvaco.
+Any user of this DTS.
 
-You need regular SoC-block compatibles, just like we have for all other
-snps, dwc and cdns.
+> Should I explain it better in the commit message?
 
+I doubt that you can find proper reason, because "I want different name"
+is not valid. It's just compatible, it cannot be changed just because
+you add new property.
 
 Best regards,
 Krzysztof
