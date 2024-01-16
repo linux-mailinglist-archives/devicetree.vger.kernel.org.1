@@ -1,96 +1,135 @@
-Return-Path: <devicetree+bounces-32437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1318C82F58E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:39:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B4482F64C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:56:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A41E1C23B44
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:39:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8D19B24657
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:56:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D2B81D53C;
-	Tue, 16 Jan 2024 19:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1ED2D62C;
+	Tue, 16 Jan 2024 19:44:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHdd04mx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t8RhtSsY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D0E1D69B;
-	Tue, 16 Jan 2024 19:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1FF42D78B;
+	Tue, 16 Jan 2024 19:44:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705433958; cv=none; b=aPAjAtS83vLg7uweNn3pLa3O6EGps3s5KwZ9r3s5MrWX4+bzGYqeEh3Jxzu1/6fkthd+Xke4Gve4eLqsPycAvbutq/iaV19zNJzEjncCkuXeO3NhQKZ8UD9HMKPnFf7lZtsymZyItkwZmOMO7adXhU53aqFWvPZT2VgkjCPO/t8=
+	t=1705434270; cv=none; b=MR0Vo8Nf1UI5+L8n383OPScYiP+4mLCN8WxuSZoe3TmkWOEXO/lPyYSfVtYBVDp1YJG0DJ4WsMQ2zghwNcYOueNWlyBTyPH4ccuzRDrA+bzhTNX6kdQOdZex7SjffIwgZQjoAtVRrpQ2RyFfwSJOhxgirZsitWtnBVP5fWVLe/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705433958; c=relaxed/simple;
-	bh=pjDgdDVU36HSsdeAh8iqjM/fJHnEYcbqQIdZRgQQpxo=;
-	h=Received:DKIM-Signature:Received:X-Gm-Message-State:
-	 X-Google-Smtp-Source:X-Received:MIME-Version:References:
-	 In-Reply-To:From:Date:X-Gmail-Original-Message-ID:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding; b=jZ68VpzCp5BRlmh+yNyNeL486EcklZhG++UJsAi6Jq/+M8OU4lWxNnP76imAQznPOnNe9JzNm/3XDoGOiEdbymG6JJN54gyfyvLJXvEx1+icnmhiT29xFE6rE6O6G++foRbfnpZ8CI7HdOd7x2L+FIrR5TPzRox9n+dDbFaMrbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHdd04mx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5238C433A6;
-	Tue, 16 Jan 2024 19:39:17 +0000 (UTC)
+	s=arc-20240116; t=1705434270; c=relaxed/simple;
+	bh=Rux4A75HfQFutwp+vRjQ/gjHxkjnT0mdFXRPi5y+ycI=;
+	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
+	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=qAa4fUCLhS6MM/Wz3C+LNJpDL7tbbBRZHsYtQy4w5Jbou6EkYW2MsqfniUskIpOfuUZsE13PsNfnmN5EVE6vdcQF3H5rd3uyyQh+WwjJt2VNtO87Su6eOjHrQ133jox0Dc7Wefi1juEPuM6439PTdlEcFOUkeXZTde3IJL4u4lI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t8RhtSsY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8934C43394;
+	Tue, 16 Jan 2024 19:44:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705433957;
-	bh=pjDgdDVU36HSsdeAh8iqjM/fJHnEYcbqQIdZRgQQpxo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=iHdd04mxCP+tOwIJVpVwsLiix52+TwrftpE748cBUHhjPy92EUpa6S++7uqtmVG/z
-	 TNw6IND5Q2iTwLW0o8XJI7dh8mF5cjI5oPpGvMq5ovWMsBLI4BHDSk7v/TbKZC+WtD
-	 xeRjeZWTXdp43zoGXVMvssyHaRkfIZ1yNIoo00OWd54XUCHGrv8JUpb0UaKo/dwprh
-	 E4tDiVadkiMzCQdRFEwfnc1y6Dby2nqUYq7q3qrlYf72er/mY43ps+UHnIrlHd5+Ia
-	 qSMnxm0UO7eTv4tNwagpV8JHgS3gNHPgCDXP0QQnB9cYhPA3OnR4VBTuXGmkQ27H6B
-	 5hF2abXdNgMPw==
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2cd0f4f306fso119800291fa.0;
-        Tue, 16 Jan 2024 11:39:17 -0800 (PST)
-X-Gm-Message-State: AOJu0YxnbBV862HtwpLzo+JRd+A6VI13ZyPqsXj8LnRbO8UUr/abKF8c
-	nDGx1W8eQOGBGRsNKJOm+pl+aD5YEpxc5ZH3NA==
-X-Google-Smtp-Source: AGHT+IHXHjYON9ofprozxosV1rLsC6hkADTeC9xOtqdXDcdf4lotORYA2DspdiZkDAvS/+SWb8KBa8qFkc+G/Bp+/vM=
-X-Received: by 2002:a2e:390a:0:b0:2cc:ea0d:f6c0 with SMTP id
- g10-20020a2e390a000000b002ccea0df6c0mr3767274lja.83.1705433955919; Tue, 16
- Jan 2024 11:39:15 -0800 (PST)
+	s=k20201202; t=1705434270;
+	bh=Rux4A75HfQFutwp+vRjQ/gjHxkjnT0mdFXRPi5y+ycI=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=t8RhtSsYNG+JP4BzaO9+9x0aJeMyNirT6xHCIWW90T4FFJBCtrD/qH+yipAyFGIdT
+	 +jMGNxEMSSqpbg0QjgVRfdBmzIP5XBuHqtjW+ZLGcadWBS+HflDVLWRKyxd00QFbqA
+	 GhkJygZhSacPTsxyBwBkdWtraOx0k60dpHD2odszq6Bn7NGoMYSr6QK+/GBFOgWogl
+	 foynh33ET0IkVuhiavxn7J7m4Dg5OE1IWxQOa1r39VjaRVSKocgktbzlKrzjG6jABI
+	 POkuF2k7JqgeiyHNpQUlFfbDfAKzN0vlPEgycduCRyx4QQoXUmXusK6df7CNlHYNoh
+	 BuKEZwrtZ/dcw==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Sasha Levin <sashal@kernel.org>,
+	konrad.dybcio@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.7 045/108] arm64: dts: qcom: sm8550: fix soundwire controllers node name
+Date: Tue, 16 Jan 2024 14:39:11 -0500
+Message-ID: <20240116194225.250921-45-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240116194225.250921-1-sashal@kernel.org>
+References: <20240116194225.250921-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240116084618.3112410-1-tim@feathertop.org> <20240116084618.3112410-3-tim@feathertop.org>
- <170543385965.291741.2100641423770592209.robh@kernel.org>
-In-Reply-To: <170543385965.291741.2100641423770592209.robh@kernel.org>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Tue, 16 Jan 2024 13:39:03 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ0BfVY0zO4SAB6rjZVvXYrZObZ+6bfWkPBC1NO=VOzFA@mail.gmail.com>
-Message-ID: <CAL_JsqJ0BfVY0zO4SAB6rjZVvXYrZObZ+6bfWkPBC1NO=VOzFA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: rockchip: rk809 fix compatible string in examples
-To: Tim Lunn <tim@feathertop.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Zhang Qing <zhangqing@rock-chips.com>, 
-	Heiko Stuebner <heiko@sntech.de>, Chris Zhong <zyw@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.7
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 16, 2024 at 1:37=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
->
->
-> On Tue, 16 Jan 2024 19:46:17 +1100, Tim Lunn wrote:
-> > Fix typo in the example specifying wrong compatible string
-> >
-> > Signed-off-by: Tim Lunn <tim@feathertop.org>
-> > ---
-> >
-> >  Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
->
-> Acked-by: Rob Herring <robh@kernel.org>
+From: Neil Armstrong <neil.armstrong@linaro.org>
 
-Err, withdrawn. This doesn't pass tests.
+[ Upstream commit 07c88da81caf0e72c3690b689d30f0d325cfeff4 ]
 
-Rob
+Fix the following dt bindings check:
+arch/arm64/boot/dts/qcom/sm8550-mtp.dtb: soundwire-controller@6ab0000: $nodename:0: 'soundwire-controller@6ab0000' does not match '^soundwire(@.*)?$'
+from schema $id: http://devicetree.org/schemas/soundwire/qcom,soundwire.yaml#
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Link: https://lore.kernel.org/r/20231106-topic-sm8550-upstream-soundwire-bindings-fix-v1-1-4ded91c805a1@linaro.org
+Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index 7b9ddde0b2c9..85dc7b5494ab 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -2050,7 +2050,7 @@ lpass_wsa2macro: codec@6aa0000 {
+ 			#sound-dai-cells = <1>;
+ 		};
+ 
+-		swr3: soundwire-controller@6ab0000 {
++		swr3: soundwire@6ab0000 {
+ 			compatible = "qcom,soundwire-v2.0.0";
+ 			reg = <0 0x06ab0000 0 0x10000>;
+ 			interrupts = <GIC_SPI 171 IRQ_TYPE_LEVEL_HIGH>;
+@@ -2096,7 +2096,7 @@ lpass_rxmacro: codec@6ac0000 {
+ 			#sound-dai-cells = <1>;
+ 		};
+ 
+-		swr1: soundwire-controller@6ad0000 {
++		swr1: soundwire@6ad0000 {
+ 			compatible = "qcom,soundwire-v2.0.0";
+ 			reg = <0 0x06ad0000 0 0x10000>;
+ 			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+@@ -2161,7 +2161,7 @@ lpass_wsamacro: codec@6b00000 {
+ 			#sound-dai-cells = <1>;
+ 		};
+ 
+-		swr0: soundwire-controller@6b10000 {
++		swr0: soundwire@6b10000 {
+ 			compatible = "qcom,soundwire-v2.0.0";
+ 			reg = <0 0x06b10000 0 0x10000>;
+ 			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+@@ -2188,7 +2188,7 @@ swr0: soundwire-controller@6b10000 {
+ 			status = "disabled";
+ 		};
+ 
+-		swr2: soundwire-controller@6d30000 {
++		swr2: soundwire@6d30000 {
+ 			compatible = "qcom,soundwire-v2.0.0";
+ 			reg = <0 0x06d30000 0 0x10000>;
+ 			interrupts = <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
+-- 
+2.43.0
+
 
