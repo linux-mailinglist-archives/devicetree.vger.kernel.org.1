@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-32220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA3482EAC3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:17:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D92D182EAC6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:19:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FD751F23FE8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:17:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE7601C228CD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA711171E;
-	Tue, 16 Jan 2024 08:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85EAD1171F;
+	Tue, 16 Jan 2024 08:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NVwVz72Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xS5mqk2X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1004B11717
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 08:17:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05BFD11714
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 08:18:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a28fb463a28so1021208666b.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 00:17:16 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55783b7b47aso10110841a12.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 00:18:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705393035; x=1705997835; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705393137; x=1705997937; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rrhK0c+0Rq6kEjHQTS6pPqJPShO2zOU/mFt3UGYecps=;
-        b=NVwVz72YKTovCx2ePWWA0SLHrfvPvFSZVPofjtLCGyhnpmnJQIw0yZO7KShYrVJpkP
-         UnRgsZ3f/nbgACrMWUiEsPhABq/pxfr2AoFI4QT8+D8sRq48TcCKtY0GQ62MmzzBXLxV
-         x//bzzG3CQXHVc1P0+m9F/MrZ8GB8hrm7oXsWRUOYhR/3NKFt7SnkKQFiQDIY90RmqGl
-         msbU/+CoVq8MZBo0CXfgrwU68P9zqSapVYL8Rd6bOOIb+JY0N1uPkgrgVF0y9NkRxE1H
-         U8cEkHjmaXKxyovmnjyRzAPn0nF8nQL2XJO24VI9lP0fqiP2nUX1KedZnE+aSUixebNr
-         ZieA==
+        bh=uIcB5l/OSJVohWD1Y+E9fOJA/uWKBnJEsejmN7jF54o=;
+        b=xS5mqk2XNI3Uu386jkxv/nWLTWuN1W7aQ89Ao45PYzyKi7/XfM7kGK8OEVSNJld9Y2
+         L5Q1JuABNUDoFfRUTkR+2oFPhLznod187m/l4TN2zgYP7G7zHR8aF6KNoNdcwKGu/wjz
+         ufqqaOe94UGnfxwcZcr97DIfH1TK8qObbvqHIRaZwFDHsRJxXo9a7L/ht/el+ftx0ku7
+         pVmaQJR5BIyIOdRmJSfLog3M32h03oUET/OYMaT6QdFme0dffLYblFGNHcysiAXdM7LS
+         fM157rq8TPy5bbXPignnt1TP910ZTHSC9BVSekhVqD32o4kcsLkbQpWzVgA8bHPvWXf+
+         ambw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705393035; x=1705997835;
+        d=1e100.net; s=20230601; t=1705393137; x=1705997937;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rrhK0c+0Rq6kEjHQTS6pPqJPShO2zOU/mFt3UGYecps=;
-        b=J80Pf0IfPpHWpoTwwcGquunOzvsUWMz1OTJF4u1D/oB01NYPpYGI4UQWzk+E+Nh9vn
-         XIzRlEl3bPYDicAEhdvaMZy1wGDUWa/Mb05M+BoVJ5hnF1HoBp2/1hEWmv97WoxeHq65
-         I2HkvwMDfbo/eCQAzVemN5kzbO8ZQE3qturpFWAiL00w8e9V5ahbplsxnH19I88s0RFq
-         D9uzR8q48w5nJIqJwjYjhRn9rqXEOq1QZuKF+KdHqs0kMPyOZmJDpRW2/c6EeZc4YUCr
-         yaNaJTVGJ6jCYoALE34kUM+kMZ0aqYe63ZyCgAGY+/yFLOnAli4byE+O0yZO8ua7uiny
-         NJTQ==
-X-Gm-Message-State: AOJu0YxKABhjs4UaInU7I/Kd/+8nYIIFmMVfo6mBALRBtjBI5EcAK8pN
-	eDJZLjkXQwAqR24EaGH7Inh7oK+iUU9sEA==
-X-Google-Smtp-Source: AGHT+IFsuGoqfmd8ueOlfSy1KWHZl2ryVHic1JDuWPOXrlPGLSQboOdc1bK88UM3BI6/h7is3PV9Hw==
-X-Received: by 2002:a17:906:ff53:b0:a26:c83d:e086 with SMTP id zo19-20020a170906ff5300b00a26c83de086mr3025889ejb.103.1705393035378;
-        Tue, 16 Jan 2024 00:17:15 -0800 (PST)
+        bh=uIcB5l/OSJVohWD1Y+E9fOJA/uWKBnJEsejmN7jF54o=;
+        b=AhvDvnAZc0i6F4/nPRfHO0lHrX43+2JzXe9wJwV+Bya7MEkWWn4VCxd3fndSd+SsdV
+         wON2j5ix50cfMrqFIwqqE/X96GmHuXVbjEFYcqik4iXNxFpuPdMOG4sJagBKjv2yucF1
+         iKfJu1Rtu+0MKFRPFMKglWIQ0S16B/DGXue1NZ0ppEtoST9tag02CfZQTgJFWV0H4ZJD
+         78YMXAfwqkXiBLBqcUebDvSmE205YkFdHuTNviUriva2FqfMct74butq6R35om9949tl
+         Cm/CKa/MgUW2J4vAIi/XeqKxd17/h9rsCWQZGYRm5xDbuqSarVMvE1ktqc71uOgk7Vlv
+         N+EQ==
+X-Gm-Message-State: AOJu0YxnqZy1fQqvic6FTE2E6C93EmOA/D7+CxMe3tQbiXPyyx86foRY
+	eXjLX2KFIdYMZPxLFQQNWVSawVTwWn6Gng==
+X-Google-Smtp-Source: AGHT+IHU/QkgrRUiL6Whr9TslYwuvIlN3NtCNkXzUYg6Le12xpMs4Ufph4liXBHRmH4KiVaL/Kp8sw==
+X-Received: by 2002:a17:907:8b90:b0:a2d:1a5c:3a14 with SMTP id tb16-20020a1709078b9000b00a2d1a5c3a14mr2038759ejc.151.1705393137327;
+        Tue, 16 Jan 2024 00:18:57 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id t19-20020a1709067c1300b00a2ca9d38654sm5267734ejo.85.2024.01.16.00.17.13
+        by smtp.gmail.com with ESMTPSA id t19-20020a1709067c1300b00a2ca9d38654sm5267734ejo.85.2024.01.16.00.18.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 00:17:14 -0800 (PST)
-Message-ID: <1125e1c3-4bbe-49c2-9c20-f109b782f15f@linaro.org>
-Date: Tue, 16 Jan 2024 09:17:13 +0100
+        Tue, 16 Jan 2024 00:18:56 -0800 (PST)
+Message-ID: <106b925b-93d7-4661-a561-424f426dd92a@linaro.org>
+Date: Tue, 16 Jan 2024 09:18:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +66,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/15] arm64: dts: mediatek: radxa-nio-12l: Add MT6360
- battery charger
+Subject: Re: [PATCH 09/15] arm64: dts: mediatek: radxa-nio-12l: Enable System
+ Companion Processor
 Content-Language: en-US
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
  linux-mediatek@lists.infradead.org
@@ -78,7 +78,7 @@ Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  kernel@collabora.com
 References: <20240112094632.66310-1-angelogioacchino.delregno@collabora.com>
- <20240112094632.66310-8-angelogioacchino.delregno@collabora.com>
+ <20240112094632.66310-10-angelogioacchino.delregno@collabora.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -124,20 +124,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240112094632.66310-8-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240112094632.66310-10-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 12/01/2024 10:46, AngeloGioacchino Del Regno wrote:
-> Enable the MT6360 PMIC's battery charger which also provides a regulator
-> the USB VBUS.
+> The SCP is used by the SoC for various tasks, including initializing
+> hardware video encoding/decoding hardware and managing other remote
+> processors. Enable this node and assign its own DMA pool to it.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts | 11 +++++++++++
->  1 file changed, 11 insertions(+)
 
-Don't add new nodes one by one. This obfuscates entire picture.
+Please provide reason why this cannot be included in initial submission
+and must be split into separate patch. I really do not understand except
+some patch count stats.
 
 Best regards,
 Krzysztof
