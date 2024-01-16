@@ -1,109 +1,108 @@
-Return-Path: <devicetree+bounces-32339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86D9D82F05C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:14:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9FD82F07E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:23:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10249B2340D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 14:14:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 923C6B20BCD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 14:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F5191BF20;
-	Tue, 16 Jan 2024 14:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2241BF22;
+	Tue, 16 Jan 2024 14:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DUnzJwZQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542131BDEC;
-	Tue, 16 Jan 2024 14:13:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5ff4b02a187so9839397b3.1;
-        Tue, 16 Jan 2024 06:13:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705414435; x=1706019235;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0sqbUk2C6b7oHNAWGCQckjFoAuDgEH4C3P1gTqqawwA=;
-        b=BR26XPmktfaU+CEn+uFdgac2RdcCa5vRlNxC8rlVIDotqeBefX2q6X/sedrT5rd/oY
-         XAH2ZTg7l863oDJaUInAiTVJQaeooH4J8Jlz4nVeaXvc4/PrLsBzGR4dd/XyPs62CLQd
-         mE5L6SjGbsC+DXacY7iCioTfPff4jz528L2rpif/95yHdGD63YocojZ1eu6wQnVkUn/4
-         IZTYpsL115p8Y1nvmm6kKt0t8ttUwk8prc4Vy0RF/hFnaqLEcnTKfcXYxM8pfr2A0sDS
-         pwp9ALHxf+09h/3HBbZR5Wc+eleP6SNdLocOrGR76J1tKQfNlVrz+3NiK+gSfyXYMBpU
-         4ulA==
-X-Gm-Message-State: AOJu0YymKvNDumSAaDAOGRU/QkG2WwwtXZtKF7rtY54wFTbo9BA0y6rd
-	y3uk9qSe+DNWHtmZ0V1JEOGQkm4BGMpdCA==
-X-Google-Smtp-Source: AGHT+IHJCuG5fGG5xtCd6dsPl+0LMYoHb/eov4Ep5uFYCcFe4YivlUTIiG5IEn+n/W/zNWUVVpbZgA==
-X-Received: by 2002:a0d:d805:0:b0:5ff:409d:5a74 with SMTP id a5-20020a0dd805000000b005ff409d5a74mr2063693ywe.21.1705414435078;
-        Tue, 16 Jan 2024 06:13:55 -0800 (PST)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id p10-20020a81980a000000b005effa4feef0sm4842844ywg.58.2024.01.16.06.13.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 06:13:54 -0800 (PST)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5ff4da9494cso9604817b3.3;
-        Tue, 16 Jan 2024 06:13:54 -0800 (PST)
-X-Received: by 2002:a05:690c:1d:b0:5f6:e8c8:9b6c with SMTP id
- bc29-20020a05690c001d00b005f6e8c89b6cmr6746864ywb.46.1705414434365; Tue, 16
- Jan 2024 06:13:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C7E1BDC9;
+	Tue, 16 Jan 2024 14:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1705415023; x=1736951023;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Na5eWQh1Z258eSgFghhYRXbSbOGbUrO4q4Hww3wmrL8=;
+  b=DUnzJwZQ1PucwowjWUOVv7UkKttMtJtdgLEP8OKYdJW0/JhOdRM2pocv
+   YMqyp9OgIBl/Vt/fCeuymwR7oTsTj3tsu/yg+onvXXsZ8/6IcClwQtKCh
+   fRewa5Gs37pE7zPeokJLGBIlH9VtAYCtw0KqNcl06mp+ee0kz/6JeKx0f
+   SMTJaM0UUJeUCmwJ/F4y3Hnv5md3srqHzeOH8d7WeHweChl9oowAmZP9h
+   OGcz7MpjeiWBVtr+MWoOHv3XBy8TbuZ9AIxA1SMNLduhUpP9mFC/ABuTQ
+   lOQECnQxWlFND27Sb/l2dBrzwnyrU6OyIrIJ6r668TpkRKR6wBgsVODSi
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="13376539"
+X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; 
+   d="scan'208";a="13376539"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2024 06:23:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10955"; a="1115308365"
+X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; 
+   d="scan'208";a="1115308365"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga005.fm.intel.com with SMTP; 16 Jan 2024 06:23:34 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 16 Jan 2024 16:23:35 +0200
+Date: Tue, 16 Jan 2024 16:23:35 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 09/15] usb: typec: qcom-pmic-typec: add support for
+ PMI632 PMIC
+Message-ID: <ZaaRZ/xi8vyIKD5d@kuha.fi.intel.com>
+References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
+ <20240113-pmi632-typec-v2-9-182d9aa0a5b3@linaro.org>
+ <2e07f014-0884-49ca-babd-b89cc90a16b7@linaro.org>
+ <CAA8EJpqPqV_nHxxbo2Vzwcp__hvREjF3bhduGhM=7UpuOgBxTQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240112200750.4062441-1-sboyd@kernel.org> <20240112200750.4062441-2-sboyd@kernel.org>
- <ZaZtbU9hre3YhZam@FVFF77S0Q05N>
-In-Reply-To: <ZaZtbU9hre3YhZam@FVFF77S0Q05N>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 16 Jan 2024 15:13:42 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU0qtMeX=7SY+32=30-QGMRniFVCCm217REJ1X+ZNJ=Aw@mail.gmail.com>
-Message-ID: <CAMuHMdU0qtMeX=7SY+32=30-QGMRniFVCCm217REJ1X+ZNJ=Aw@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: Unconditionally call unflatten_device_tree()
-To: Mark Rutland <mark.rutland@arm.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	patches@lists.linux.dev, linux-um@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com, 
-	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, 
-	Frank Rowand <frowand.list@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpqPqV_nHxxbo2Vzwcp__hvREjF3bhduGhM=7UpuOgBxTQ@mail.gmail.com>
 
-Hi Mark,
+On Tue, Jan 16, 2024 at 02:56:11PM +0200, Dmitry Baryshkov wrote:
+> On Tue, 16 Jan 2024 at 14:32, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> > On 1/13/24 21:55, Dmitry Baryshkov wrote:
+> > > The PMI632 PMIC support Type-C port handling, but lacks USB
+> > > PowerDelivery support. The TCPM requires all callbacks to be provided
+> > > by the implementation. Implement a special, 'stub' Qcom PD PHY
+> > > implementation to enable the PMI632 support.
+> > >
+> > > Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > ---
+> >
+> > Still not a fan of stubby stubs :/
+> 
+> Me too. If there are better suggestions, I'll be pleased to implement
+> them. Greg, Heikki?
 
-On Tue, Jan 16, 2024 at 12:51=E2=80=AFPM Mark Rutland <mark.rutland@arm.com=
-> wrote:
-> On Fri, Jan 12, 2024 at 12:07:44PM -0800, Stephen Boyd wrote:
-> > Call this function unconditionally so that we can populate an empty DTB
-> > on platforms that don't boot with a firmware provided or builtin DTB.
-> > There's no harm in calling unflatten_device_tree() unconditionally.
->
-> For better or worse, that's not true: there are systems the provide both =
-a DTB
-> *and* ACPI tables, and we must not consume both at the same time as those=
- can
-> clash and cause all sorts of problems. In addition, we don't want people =
-being
-> "clever" and describing disparate portions of their system in ACPI and DT=
-.
+Guenter, do you have time to look at this?
 
-We'd get to the latter anyway, when plugging in a USB device where the
-circuitry on/behind the USB device is described in DT.
+thanks,
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+heikki
 
