@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-32451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E6CF82F653
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:57:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF3E82F66E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:59:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AF561F21A2A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:57:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 883BCB212D3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553772E3FD;
-	Tue, 16 Jan 2024 19:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0C9341A0;
+	Tue, 16 Jan 2024 19:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eeiduyn4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N94xfS1w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5B02E3F5;
-	Tue, 16 Jan 2024 19:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1605C3588C;
+	Tue, 16 Jan 2024 19:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705434274; cv=none; b=KFEX9aCzAlULFwEFu2B/i+8cTFyMDYbXmgBZggGER2v5ARAHYfF92opiW29KOUe7ey+aY5c8+Sk5kV3pWIFWDHqr8LSCE22VtyweMwRfKjMsGkV6MsomnByhtupRBNeBQW7V/oeOrS8leJ6GVCb6+UimWHk6yLMVCSduSI87XqY=
+	t=1705434294; cv=none; b=aL8T4Bn+/WuMvDeTOsQnrpa71oDVJ3/JMgLT/lQ4k/fVehObshEegFe0rL+7lqIK/3vjz7ztyVywNKCKElwAy6v4oaRPESHENsUuj+M08SKkmHQmtfSrZpofwLsITTPtraA1j97+Ek7hr1uZEt9kTdRrbrMPutJL9jAEo0AXKQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705434274; c=relaxed/simple;
-	bh=HInhuxAfFhc5lXJaCJf0TusmapJy+bd2OP1bhgf/c4s=;
+	s=arc-20240116; t=1705434294; c=relaxed/simple;
+	bh=sRESA0Mf6oMOfaCCJFfjN2881zrZn5Z1Kd53N5cU50w=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=elWM0H3AzAL1kpFj7VvJoYXbwQIg7GWi6HI45+Txf8PZ60jNyefllShWTk8AwvI8FF0YomyM8G9/dMOHjLsVumF2bPKNrLuPokck0ojzaTXgOWtBr7+MUdnqzxBc3GTzBn7D/pw0hyxJuT3KtaRJATClcVwmsMqAWbo/hITaZ8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eeiduyn4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7DFDC433B1;
-	Tue, 16 Jan 2024 19:44:32 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=n9cB3vsGqC3Yh6VObt/L7/dL+UPwGOMpO2gazd4HX9muDaMkBxOxhh6ZWwPSISA3mUrVuxMeNkyd/ScJF1QDNN0NK8fsPE4PYNGnTd6DKOGZqhgCu1HXf1Rb1S4a8ttjAjyDk+AG/jf46aiCRgkyQabgvavqJQ/ZAT6tPS8ceNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N94xfS1w; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E4BBC433F1;
+	Tue, 16 Jan 2024 19:44:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705434274;
-	bh=HInhuxAfFhc5lXJaCJf0TusmapJy+bd2OP1bhgf/c4s=;
+	s=k20201202; t=1705434293;
+	bh=sRESA0Mf6oMOfaCCJFfjN2881zrZn5Z1Kd53N5cU50w=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=eeiduyn45+/AqB/6YXazaNKv6Om0aaIDNjoJ1W/FQDMHt4jbZ6rtOeG5DvWPGkkby
-	 FXzcC8rWPMcRkqtOXEUWDobgH03MGqHUZ85XFdAvcBzdjIFWutXoykfz6rBAADuTnF
-	 TZUvC+QTCv40t4q9fgIiOwtVu8LcfzRFK9s3NSy/C+pBv/dgG8Tv1mjQ1QpjlV5FBw
-	 +b55zf0wAIOTQMS6ysgp53dkI7NzILClHHySYBCJ72sQ1jd+ZIW2qxmzpVc+12YAui
-	 a6vmePXoof37aHUUPKbX11V9wSjkL6v3wr/L3d8HURPOFqr88QM4x2vnMqUWlbHaWB
-	 wMSzDw0hlhkjQ==
+	b=N94xfS1wTGZTEvFEL0SyLD4VNFpe/tzol5zzFkuD+HombkKD18uhUL9QseQsLduRO
+	 3eNQTp/DIM3yFJZPvbqVeQxi7jPcFNwEKG+q1E+Qz9l3lEtKZJn8n6epIzp+iULPhR
+	 /Mqgk+f5obHjp6dDYh9XMvRbLDrIpnO9fMmTR5q4YSUD9uTWTANJB65CHRyAiPnp+n
+	 GR0k7sdZkP9ENvrt6R/b5lvEpdqbkQlec95SZygeBCLo7tBwi1h7gto1nvvWFLbcN3
+	 1QV9xS3/z0HqGYpBgX7vEXp3kmb3RX8ZX6spmjVLjPloLQHUzANR7WDQyn4pHGzSQQ
+	 dufycqBLgs9lg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Nia Espera <nespera@igalia.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+Cc: Johan Jonker <jbx6244@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
 	Sasha Levin <sashal@kernel.org>,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.7 047/108] arm64: dts: qcom: sm8350: Fix remoteproc interrupt type
-Date: Tue, 16 Jan 2024 14:39:13 -0500
-Message-ID: <20240116194225.250921-47-sashal@kernel.org>
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.7 055/108] ARM: dts: rockchip: fix rk3036 hdmi ports node
+Date: Tue, 16 Jan 2024 14:39:21 -0500
+Message-ID: <20240116194225.250921-55-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240116194225.250921-1-sashal@kernel.org>
 References: <20240116194225.250921-1-sashal@kernel.org>
@@ -71,64 +71,49 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.7
 Content-Transfer-Encoding: 8bit
 
-From: Nia Espera <nespera@igalia.com>
+From: Johan Jonker <jbx6244@gmail.com>
 
-[ Upstream commit 54ee322f845c7f25fbf6e43e11147b6cae8eff56 ]
+[ Upstream commit 27ded76ef0fcfcf939914532aae575cf23c221b4 ]
 
-In a similar vein to
-https://lore.kernel.org/lkml/20220530080842.37024-3-manivannan.sadhasivam@linaro.org/,
-the remote processors on sm8350 fail to initialize with the 'correct'
-(i.e., specified in downstream) IRQ type. Change this to EDGE_RISING.
+Fix hdmi ports node so that it matches the
+rockchip,inno-hdmi.yaml binding.
 
-Signed-off-by: Nia Espera <nespera@igalia.com>
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Link: https://lore.kernel.org/r/20231111-nia-sm8350-for-upstream-v4-4-3a638b02eea5@igalia.com
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Link: https://lore.kernel.org/r/9a2afac1-ed5c-382d-02b0-b2f5f1af3abb@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/rockchip/rk3036.dtsi | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index b46236235b7f..23ee2fb5abcc 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -2021,7 +2021,7 @@ mpss: remoteproc@4080000 {
- 			compatible = "qcom,sm8350-mpss-pas";
- 			reg = <0x0 0x04080000 0x0 0x4040>;
+diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+index 78686fc72ce6..c420c7c642cb 100644
+--- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+@@ -402,12 +402,20 @@ hdmi: hdmi@20034000 {
+ 		pinctrl-0 = <&hdmi_ctl>;
+ 		status = "disabled";
  
--			interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_modem_in 0 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_modem_in 1 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_modem_in 2 IRQ_TYPE_EDGE_RISING>,
-@@ -2063,7 +2063,7 @@ slpi: remoteproc@5c00000 {
- 			compatible = "qcom,sm8350-slpi-pas";
- 			reg = <0 0x05c00000 0 0x4000>;
- 
--			interrupts-extended = <&pdc 9 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts-extended = <&pdc 9 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_slpi_in 0 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_slpi_in 1 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_slpi_in 2 IRQ_TYPE_EDGE_RISING>,
-@@ -3207,7 +3207,7 @@ adsp: remoteproc@17300000 {
- 			compatible = "qcom,sm8350-adsp-pas";
- 			reg = <0 0x17300000 0 0x100>;
- 
--			interrupts-extended = <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
-@@ -3512,7 +3512,7 @@ cdsp: remoteproc@98900000 {
- 			compatible = "qcom,sm8350-cdsp-pas";
- 			reg = <0 0x98900000 0 0x1400000>;
- 
--			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_cdsp_in 1 IRQ_TYPE_EDGE_RISING>,
- 					      <&smp2p_cdsp_in 2 IRQ_TYPE_EDGE_RISING>,
+-		hdmi_in: port {
++		ports {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-			hdmi_in_vop: endpoint@0 {
++
++			hdmi_in: port@0 {
+ 				reg = <0>;
+-				remote-endpoint = <&vop_out_hdmi>;
++
++				hdmi_in_vop: endpoint {
++					remote-endpoint = <&vop_out_hdmi>;
++				};
++			};
++
++			hdmi_out: port@1 {
++				reg = <1>;
+ 			};
+ 		};
+ 	};
 -- 
 2.43.0
 
