@@ -1,203 +1,112 @@
-Return-Path: <devicetree+bounces-32266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5910482ECA7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:21:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5143482ECB5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:24:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF87A1F23D3D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:21:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 616071C22E5C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5E2134D7;
-	Tue, 16 Jan 2024 10:21:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="kpHNPqFe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D27134D8;
+	Tue, 16 Jan 2024 10:24:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 910B2134D6
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 10:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B13134D5;
+	Tue, 16 Jan 2024 10:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E25313F274
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 10:20:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1705400459;
-	bh=xU+S+uXFFj2cwv3uk43aNu2KbGErrv7KCMlpZ+iS0ZQ=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=kpHNPqFejZke64zOWf2zxi+lbiuNCMCJojW0Ct0GdDMO+82GoqKeG34bOH8oxcKqK
-	 6My5kg/DyaEhpprQPMI7WVQ2LSGB6iIGFdld7SrlG30lCDPhGfhD2jL7k20ryjWXCK
-	 czdIe8uq6lPuyU48nRCrsEhOKdySM/lcO86X4+1LPXnDYI9WpG6xRuxSyIck0Jz/na
-	 P7ZtEsTF7Jrn+zx/0HNhBEosloaR0mcY6YUEfLh1FdUy2dOzWvvEzHT4gw8PdJCjon
-	 IiOkT02FbqdFkzt4eSsnDUUWh9OvD+hzR1tIOS71JTqDgj6O5PPm78UfxdB0ACHxxZ
-	 oL2Osk49yWyWQ==
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4298c15d3a9so132423291cf.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 02:20:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705400458; x=1706005258;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xU+S+uXFFj2cwv3uk43aNu2KbGErrv7KCMlpZ+iS0ZQ=;
-        b=OvUfEY74t6w5c/x4rQpDHJaSzArl72PgAmWbTf0rst8uByJ6DXY3cnO1z8E3Cz2O2w
-         N3E4U8YaNesZeBByxxJEY1sQiv2JqzTTKQkdtFl1eCeYilI4LEtEWdPV8EUqmtqCYo49
-         q1yaKkeTTnBdYiNIs4cSrvmk/X5Sa1EPNZWmIZ8Y92qbIDTSvchu8wV/3pnXgXHdO9HJ
-         vN8AyXvXnUHgeixC0AF8bdh347Z8kzODYrLe3zW4zs2arTEKI1z1LyVYWgvxavEfpQO/
-         kUEUe+4x2wuUV4wIMiiUJoJhwqz14PsUuQiqNqeKk/p1XJBWKcYzmWBQOCBrVmn72zkk
-         T77w==
-X-Gm-Message-State: AOJu0YzwgSxIPfKKSSSeM0e+O+m7jg78kGE3nb4YHFhM0bah8v1rYkjW
-	E6MVIJUZAfUPQw3eHrMsJxcR/RTvifmrZ2RrXM27TUyDUP5yFmXrsyqaHnW65hz5ifLkQL5jrqu
-	d/2uOpWYUYizT/smofutiUmFahSgq6n9Rarl7Dh5yZhY/i/nDkuuu6QMYj5Eoaw==
-X-Received: by 2002:a05:622a:314:b0:42a:9f3:f98f with SMTP id q20-20020a05622a031400b0042a09f3f98fmr59872qtw.31.1705400458737;
-        Tue, 16 Jan 2024 02:20:58 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFyHQK1zxeZizu8qJrW9Hsx4AGxq9c2N/E+5X7YH8Yr1ZSbWwOhH277LwZ3NAq14oAPDip5nwCUUFeB0BgriaE=
-X-Received: by 2002:a05:622a:314:b0:42a:9f3:f98f with SMTP id
- q20-20020a05622a031400b0042a09f3f98fmr59852qtw.31.1705400458380; Tue, 16 Jan
- 2024 02:20:58 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 16 Jan 2024 02:20:57 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20240116041054.11641-2-nylon.chen@sifive.com>
-References: <20240116041054.11641-1-nylon.chen@sifive.com> <20240116041054.11641-2-nylon.chen@sifive.com>
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
+	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
+	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
+	by bmailout1.hostsharing.net (Postfix) with ESMTPS id F2BB730000868;
+	Tue, 16 Jan 2024 11:24:23 +0100 (CET)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id E3127316BEB; Tue, 16 Jan 2024 11:24:23 +0100 (CET)
+Date: Tue, 16 Jan 2024 11:24:23 +0100
+From: Lukas Wunner <lukas@wunner.de>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Olof Johansson <olof@lixom.net>, soc@kernel.org,
+	devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+	Yannic Moog <Y.Moog@phytec.de>, Alexander Bauer <a.bauer@phytec.de>,
+	upstream@lists.phytec.de, Teresa Remmet <T.Remmet@phytec.de>,
+	Tim Harvey <tharvey@gateworks.com>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
+	Heiko Thiery <heiko.thiery@gmail.com>,
+	Enric Balletbo i Serra <eballetbo@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] arm64: dts: Fix TPM schema violations
+Message-ID: <20240116102423.GA27561@wunner.de>
+References: <e6d7768e2a257e0bd5948bcf168909b6c670851b.1705168605.git.lukas@wunner.de>
+ <682b50dc-a92a-4da5-ad06-631c5125ebc5@collabora.com>
+ <8e138e54-22ba-43d3-898c-ab772039cd99@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Tue, 16 Jan 2024 02:20:57 -0800
-Message-ID: <CAJM55Z9ZbmbPKaJ8LJ5KyoCW9fAEJaT3Q4PbcadwLNCq1NXbxA@mail.gmail.com>
-Subject: Re: [v6 1/3] riscv: dts: sifive: unleashed/unmatched: Remove PWM
- controlled LED's active-low properties
-To: Nylon Chen <nylon.chen@sifive.com>, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, 
-	u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com, 
-	aou@eecs.berkeley.edu
-Cc: zong.li@sifve.com, vincent.chen@sifive.com, linux-pwm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, nylon7717@gmail.com, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8e138e54-22ba-43d3-898c-ab772039cd99@app.fastmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-Nylon Chen wrote:
-> This removes the active-low properties of the PWM-controlled LEDs in
-> the HiFive Unmatched device tree.
->
-> The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
->
-> Link: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf [0]
-> Link: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf [1]
->
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Co-developed-by: Zong Li <zong.li@sifve.com>
-> Signed-off-by: Zong Li <zong.li@sifve.com>
-> Co-developed-by: Vincent Chen <vincent.chen@sifive.com>
-> Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
-> Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> ---
->  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  8 ++++----
->  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 12 ++++--------
->  2 files changed, 8 insertions(+), 12 deletions(-)
->
-> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-> index 900a50526d77..11e7ac1c54bb 100644
-> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-> @@ -49,7 +49,7 @@ led-controller {
->  		compatible = "pwm-leds";
->
->  		led-d1 {
-> -			pwms = <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
-> +			pwms = <&pwm0 0 7812500 0>;
->  			active-low;
->  			color = <LED_COLOR_ID_GREEN>;
->  			max-brightness = <255>;
-> @@ -57,7 +57,7 @@ led-d1 {
->  		};
->
->  		led-d2 {
-> -			pwms = <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
-> +			pwms = <&pwm0 1 7812500 0>;
->  			active-low;
->  			color = <LED_COLOR_ID_GREEN>;
->  			max-brightness = <255>;
-> @@ -65,7 +65,7 @@ led-d2 {
->  		};
->
->  		led-d3 {
-> -			pwms = <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
-> +			pwms = <&pwm0 2 7812500 0>;
->  			active-low;
->  			color = <LED_COLOR_ID_GREEN>;
->  			max-brightness = <255>;
-> @@ -73,7 +73,7 @@ led-d3 {
->  		};
->
->  		led-d4 {
-> -			pwms = <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
-> +			pwms = <&pwm0 3 7812500 0>;
->  			active-low;
->  			color = <LED_COLOR_ID_GREEN>;
->  			max-brightness = <255>;
-> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> index 07387f9c135c..b328ee80693f 100644
-> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> @@ -51,8 +51,7 @@ led-controller-1 {
->  		compatible = "pwm-leds";
->
->  		led-d12 {
-> -			pwms = <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
-> -			active-low;
-> +			pwms = <&pwm0 0 7812500 0>;
+On Mon, Jan 15, 2024 at 09:17:41PM +0100, Arnd Bergmann wrote:
+> > Il 13/01/24 19:06, Lukas Wunner ha scritto:
+> > > Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
+> > > bindings"), several issues are reported by "make dtbs_check" for arm64
+> > > devicetrees:
+> > > 
+> > > The compatible property needs to contain the chip's name in addition to
+> > > the generic "tcg,tpm_tis-spi" and the nodename needs to be "tpm@0"
+> > > rather than "cr50@0":
+> > > 
+> > >    tpm@1: compatible: ['tcg,tpm_tis-spi'] is too short
+> > >          from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
+> > > 
+> > >    cr50@0: $nodename:0: 'cr50@0' does not match '^tpm(@[0-9a-f]+)?$'
+> > >          from schema $id: http://devicetree.org/schemas/tpm/google,cr50.yaml#
+> > > 
+> > > Fix these schema violations.
+> 
+> However, I got some conflicts trying to apply them on
+> top of v6.7, so maybe check that and resend.
 
-Here you remove the active-low property, but you don't above. I'm not sure
-what's the right thing to do, but I would have expected the same change in both
-places.
+This patch needs to be applied on top of the soc-dt-6.8 tag,
+not v6.7, because there were changes in your v6.8 pull request
+which introduce a new TPM DT node in:
 
-/Emil
+  arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+  arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi
 
->  			color = <LED_COLOR_ID_GREEN>;
->  			max-brightness = <255>;
->  			label = "d12";
-> @@ -68,20 +67,17 @@ multi-led {
->  			label = "d2";
->
->  			led-red {
-> -				pwms = <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
-> -				active-low;
-> +				pwms = <&pwm0 2 7812500 0>;
->  				color = <LED_COLOR_ID_RED>;
->  			};
->
->  			led-green {
-> -				pwms = <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
-> -				active-low;
-> +				pwms = <&pwm0 1 7812500 0>;
->  				color = <LED_COLOR_ID_GREEN>;
->  			};
->
->  			led-blue {
-> -				pwms = <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
-> -				active-low;
-> +				pwms = <&pwm0 3 7812500 0>;
->  				color = <LED_COLOR_ID_BLUE>;
->  			};
->  		};
-> --
-> 2.42.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+and modify an existing TPM DT node in:
+
+  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+
+So if I'd base this patch on top of v6.7, it would be missing
+the fixes for these three devicetrees and I'd have to submit
+a separate patch with them.  Happy to do so if that's what
+you want but basing on top of soc-dt-6.8 seemed more reasonable
+to me as initial submission.
+
+Thanks!
+
+Lukas
 
