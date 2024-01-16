@@ -1,70 +1,59 @@
-Return-Path: <devicetree+bounces-32416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A288782F437
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:27:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F16682F462
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:37:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D25641C23958
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:27:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F16D1C2391B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992F81CD32;
-	Tue, 16 Jan 2024 18:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43EA61CD33;
+	Tue, 16 Jan 2024 18:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uhYf6t5F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LUX3Zpt1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636FC1CABD;
-	Tue, 16 Jan 2024 18:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B2C310A1A;
+	Tue, 16 Jan 2024 18:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705429640; cv=none; b=QxELFMKCbh2lt/TPOM6Wapq+UFx8JL0kSUQpPh9APQg0DiTH41dNX5ioV5vMcGARNbhZCLdAhOQ6hisszlZpsMdL3pgnO3fdo4/5VyLbu1tZBzpx5f9C99AemoadRzbPMN45MVq4c6CxFLOmAlRfvTUcRxhcso14MPvSNaNyQSM=
+	t=1705430228; cv=none; b=Jq1eXLnLFXtJTqdvTPC72x7EmqVqZ6p2jpYzKHdpPY2xYOc25Nv6Blj9+q0ern5Tl1gi6uJcFXEArxYSxM0ubmaTrXiDFoKk0hlu7u3UrH7+gcp110sXA8w20HfzTIq3rOMVeUrFLlhzv0oDDOdoGYu00L4d/IEawedVduTwCOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705429640; c=relaxed/simple;
-	bh=GoV6P97mBKlY0A0OpxO//43jXPc+qh/qWkDvpufu9c4=;
+	s=arc-20240116; t=1705430228; c=relaxed/simple;
+	bh=Y5vvGd8nKvvbzMcdjzzUBFGNkkXCqj92/HLGh4OyYdE=;
 	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
 	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=ZYqy7vmdOmagPRmspeLDk/Ei57tPt3IjAB5OHAin0WIBo57bytiJm1L9yrv6ljMiUfYF0YsKlKN1ZL5gx7tcZHLbwRJjMo5XL8/7QPfrMNNKjEHmRtPzSLCpTsB/rWNsUnR7bEI2RXOLbQ/FLkp5s0P699sQy2qgp6tnXBemxN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uhYf6t5F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F3F4C433C7;
-	Tue, 16 Jan 2024 18:27:19 +0000 (UTC)
+	 In-Reply-To; b=FQlIIljRSro7q2aVFIVoNMje1YHvDLSF8yXu31RxnDIvVz8dkgQceTu45uV2UAyAEapsa8QtzVIOepIOTOAA+3jWd39Y6a2sxMMh20uw3Lktb6KGGFNbnvwkBaHhx3jICtWQouX4wqnjSyXgoWN2+u7z2MYfMfRDGkzRQoWEhfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LUX3Zpt1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AEBEC433C7;
+	Tue, 16 Jan 2024 18:37:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705429639;
-	bh=GoV6P97mBKlY0A0OpxO//43jXPc+qh/qWkDvpufu9c4=;
+	s=k20201202; t=1705430227;
+	bh=Y5vvGd8nKvvbzMcdjzzUBFGNkkXCqj92/HLGh4OyYdE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uhYf6t5FgUfLAIryawnsSZ+L2OdC8Nsbx9vp12EvS7On7q9ZjuiUXX9I+1WRSKVp3
-	 sdhxCsWqQaZTjH4bOw7ATyxJziuqNLWUOQ0dLRlmqkdL0sulgbrzt/+u2wj+GD4PA/
-	 y4Yfid0AFLqXt1u6aNmRY9Rj93kgYaQzV/MBb48i1Ogmu/p8mbEB04gkTJpGiPTuz8
-	 QJbKAI9xl1OLPd3TvT/Ji+tPZ1QWyJ4uUN7OuPotOjk53bRIcyM80/CpykZw1I1K8v
-	 E3Yb52cLXz8JbfFbJeWOj1BYIgjVEFynEzn4PUaBkGD9Pj4e4GDJETJhfugn+gUx+m
-	 OHQxNXYoRYAsQ==
-Date: Tue, 16 Jan 2024 12:27:17 -0600
+	b=LUX3Zpt1eyLvR+W3zL/vZOOdscX4ijOKCLYs8Sw5AQW9vBGumyqzywgnymW1T3yhT
+	 yNyMbe+yLy/7g+awe7iOHBGw5UnKVEecuyQHzDK178+jJzk9+UTG0cN9/Pwv3rWPhA
+	 GX6ree090s+imaRaXxbm7Ws8BFpC597JBLiMvQatLqEF6UWVvoFKFOBOM28vtiPYBb
+	 FcGtq28MbqtuSDDfGE8VAx60OsFZUqcaTBygUXBCau0g1UoiO9v7ZNFO1Wvos+Fpyq
+	 A4TNNhmDhL7+tDG0w17R9i6ZEg427d4HdLLMaxmm7ZVhH3N2CpN/zkL3Tv9I8hVEcK
+	 +AtJZs2+s9dvw==
+Date: Tue, 16 Jan 2024 12:37:05 -0600
 From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-sound@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-	Banajit Goswami <bgoswami@quicinc.com>, alsa-devel@alsa-project.org,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Sean Anderson <sean.anderson@seco.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-	devicetree@vger.kernel.org,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jaroslav Kysela <perex@perex.cz>, Peter Rosin <peda@axentia.se>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v3 3/5] ASoC: dt-bindings: qcom,wsa8840: Add reset-gpios
- for shared line
-Message-ID: <170542963664.213464.16983216340118145853.robh@kernel.org>
-References: <20240112163608.528453-1-krzysztof.kozlowski@linaro.org>
- <20240112163608.528453-4-krzysztof.kozlowski@linaro.org>
+To: Jarkko Sakkinen <jarkko@kernel.org>
+Cc: Lukas Wunner <lukas@wunner.de>, devicetree@vger.kernel.org,
+	linux-integrity@vger.kernel.org, Peter Huewe <peterhuewe@gmx.de>,
+	Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [PATCH v2 1/4] dt-bindings: tpm: Add compatible string
+ atmel,attpm20p
+Message-ID: <20240116183705.GA220865-robh@kernel.org>
+References: <cover.1705140898.git.lukas@wunner.de>
+ <8886271d52025065eddf5915bb7778ab14362255.1705140898.git.lukas@wunner.de>
+ <CYDW3GS1VGP4.2PUT4XW283L99@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,29 +62,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240112163608.528453-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CYDW3GS1VGP4.2PUT4XW283L99@kernel.org>
 
+On Sat, Jan 13, 2024 at 11:17:39PM +0200, Jarkko Sakkinen wrote:
+> On Sat Jan 13, 2024 at 7:10 PM EET, Lukas Wunner wrote:
+> > Commit 4f2a348aa365 ("arm64: dts: imx8mm-venice-gw73xx: add TPM device")
+> > added a devicetree node for the Trusted Platform Module on certain
+> > Gateworks boards.
+> >
+> > The commit only used the generic "tcg,tpm_tis-spi" compatible string,
+> > but public documentation shows that the chip is an ATTPM20P from Atmel
+> > (nowadays Microchip):
+> > https://trac.gateworks.com/wiki/tpm
+> >
+> > Add the chip to the supported compatible strings of the TPM TIS SPI
+> > schema.
+> >
+> > For reference, a datasheet is available at:
+> > https://ww1.microchip.com/downloads/en/DeviceDoc/ATTPM20P-Trusted-Platform-Module-TPM-2.0-SPI-Interface-Summary-Data-Sheet-DS40002082A.pdf
+> >
+> > Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> > Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
+> > Cc: Tim Harvey <tharvey@gateworks.com>
+> > ---
+> >  Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+> > index c3413b4..6cb2de7 100644
+> > --- a/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+> > +++ b/Documentation/devicetree/bindings/tpm/tcg,tpm_tis-spi.yaml
+> > @@ -20,6 +20,7 @@ properties:
+> >    compatible:
+> >      items:
+> >        - enum:
+> > +          - atmel,attpm20p
+> >            - infineon,slb9670
+> >            - st,st33htpm-spi
+> >            - st,st33zp24-spi
+> 
+> You should to send the patch set with Rob Herring as CC for syncing
+> up. Please do it for future versions, if there is need for additional
+> versions.
 
-On Fri, 12 Jan 2024 17:36:06 +0100, Krzysztof Kozlowski wrote:
-> On newer Qualcomm platforms, like X1E80100-CRD, the WSA884x speakers
-> share SD_N GPIOs between two speakers, thus a coordinated assertion is
-> needed.  Linux supports handling shared GPIO lines through "reset-gpios"
-> property, thus allow specifying either powerdown or reset GPIOs (these
-> are the same).
-> 
-> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-> Cc: Sean Anderson <sean.anderson@seco.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> If previous patches are fine, then this commit is independent and could
-> be taken via ASoC.
-> ---
->  .../devicetree/bindings/sound/qcom,wsa8840.yaml       | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
-> 
+More specifically, use what get_maintainers.pl outputs.
 
-Acked-by: Rob Herring <robh@kernel.org>
+I don't actually care if I'm Cc'ed because I'm just Cc'ed on everything 
+to the DT list.
 
+> Rob, 3 out of 4 patches are TPM patches. Do you mind if I take all
+> four patches once the patch set is ready or do you want to pick this
+> patch (assuming that you think it is correctly implemented ofc)?
+
+You can take it.
+
+Rob
 
