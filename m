@@ -1,110 +1,163 @@
-Return-Path: <devicetree+bounces-32376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C40582F291
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:47:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 935EB82F2AB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:54:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18A551F24D65
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:47:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 222182859DF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827921BC2A;
-	Tue, 16 Jan 2024 16:47:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C2801C6A8;
+	Tue, 16 Jan 2024 16:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VDcxDPja"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IqlFBjCP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 612A1748D;
-	Tue, 16 Jan 2024 16:47:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADF5BC433C7;
-	Tue, 16 Jan 2024 16:47:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705423661;
-	bh=fCFQedqBtnHbk0RjkLAsOwMAS2Fb6uEfIUfJDT9Jjzo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VDcxDPjaqkX7bh/a5dvzL+zrOdvUXO+D68NLQwuZXoE/f0CIGUrTsK/jHv7+sYSEG
-	 60TM0eokPBmFx5U6RrzXiRFEE8FyxRrg6ch4s7jRk78m+BLB4KAqX9IpsfuULyJBY7
-	 OEzQ+IJjnV5xLp1GgevJmJZqx4RfNuu8dRIykZUN5E+NVS00ZoXW8krtyROk1yw9JN
-	 re/uUAvqbqaoJc4sky02cHWPwSsPSAsN7SAA3epwPZOuwvZkCYjsDejpPKNMln+2CE
-	 Sq7AEPzpLzeW1V4gXpz4Pgx85Z256Ex4WEErbPWlUu6VAVW5+qMc9+srB5jv1CnlG7
-	 ZH9L4Plv/tVPQ==
-Date: Tue, 16 Jan 2024 10:47:39 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD6E51CA80;
+	Tue, 16 Jan 2024 16:54:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9D3A724000F;
+	Tue, 16 Jan 2024 16:53:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1705424038;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TDyxxPBWASolnrw6aGy7NIdq8Al0r2BJ6k5gaCOPFq4=;
+	b=IqlFBjCPvjbP+0obF3YLWMwVTCrrKFs+4+Y+zMfcO5kgJ8f4UIXOwBmLYpDIH8lmcL74nv
+	wM8MG1uCTl4p9Vnp1xVfi8ut+EBMtPnhcPKZ/IEtKt3lbVCoaJD0PoEdOF+70WE0NhqOFn
+	iwUV7sSusENcH7+qULDhnq+YGIVrMCMCtVharXSW6erFGu7BbBtOMMr1pMcb7RZ1rzRxgu
+	G+tDZsIPW4RpJSG02Rsp8dCfpItzSAJcwtOHTl0S0YYtXAudFip1C9KfQi0a4MNfYj+NmF
+	Li0xVRIVUJHqt7zZ+V8illQ3RgVBJl4UbtznAUpsDtb2yi7rtODiqlKBN7oXhQ==
+Date: Tue, 16 Jan 2024 17:53:56 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: dai-common: Narrow possible
- sound-dai-cells
-Message-ID: <20240116164739.GA93647-robh@kernel.org>
-References: <20240109213812.558492-1-krzysztof.kozlowski@linaro.org>
- <1ja5pdzb7k.fsf@starbuckisacylon.baylibre.com>
- <7e312b05-857f-40a6-a1a1-a954dfea7044@sirena.org.uk>
- <f9f5df54-dbeb-4246-b30f-52f3db7d94b3@linaro.org>
- <3b1b956b-985c-45f2-bda3-018aaf897295@sirena.org.uk>
- <445daac6-841a-4335-9b53-689e5bd2530c@linaro.org>
- <1jjzohxpl7.fsf@starbuckisacylon.baylibre.com>
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, chao.wei@sophgo.com, unicorn_wang@outlook.com,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	dlan@gentoo.org, inochiama@outlook.com
+Subject: Re: [PATCH v6 3/3] riscv: dts: sophgo: add rtc dt node for CV1800
+Message-ID: <20240116165356eaa221fe@mail.local>
+References: <20240115160600.5444-1-qiujingbao.dlmu@gmail.com>
+ <20240115160600.5444-4-qiujingbao.dlmu@gmail.com>
+ <f2b3dff2-ce0d-4ddb-ad61-74abf2c3022d@linaro.org>
+ <CAJRtX8QFLoWnJBkepZrbneHX8qZdde=aw+zbdErVC91B=u==MA@mail.gmail.com>
+ <007e8c14-13eb-4917-b9da-8d47d6c965c7@linaro.org>
+ <CAJRtX8ROH4R_s1=ML5ka340PAE0SWJKK24yVWHw5gCd+7d9pkA@mail.gmail.com>
+ <dfcf74a9-db76-43fe-9261-20bf7a993bc3@linaro.org>
+ <CAJRtX8Tkie+ykLv8L2EgBQcy9tVP5Yz-_J_eHE-9N9hjt+6gkg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1jjzohxpl7.fsf@starbuckisacylon.baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJRtX8Tkie+ykLv8L2EgBQcy9tVP5Yz-_J_eHE-9N9hjt+6gkg@mail.gmail.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Wed, Jan 10, 2024 at 02:36:01PM +0100, Jerome Brunet wrote:
+On 17/01/2024 00:29:28+0800, Jingbao Qiu wrote:
+> On Wed, Jan 17, 2024 at 12:03 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 16/01/2024 16:51, Jingbao Qiu wrote:
+> > >>> CV1800 is a RISCV based SOC that includes an RTC module. The RTC
+> > >>> module has an OSC oscillator
+> > >>
+> > >>
+> > >> I am not going to read pages of description. Please write concise replies.
+> > >
+> > > Thanks, What I mean is that this hardware includes two functions, RTC
+> > > and POR. How should I describe their relationship?
+> >
+> > Your POR does not need to take any resources, so no need to describe any
+> > relationship.
+> >
+> > ...
+> >
+> > >>> Your suggestion is, firstly, the por submodule does not have any
+> > >>> resources, so it should be deleted.
+> > >>
+> > >> So where did you delete it? I still see it in this patch.
+> > >
+> > > Should I completely delete him? How can a por driver obtain device information?
+> >
+> > Delete completely.
+> >
+> > Device information? What is this? We already agreed you don't have any
+> > resources for POR.
+> >
+> > ....
+> >
+> > >> Device is only one thing, not two.
+> > >>
+> > >>>                     reg = <0x5025000 0x2000>;
+> > >>>                     interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
+> > >>>                     clocks = <&osc>;
+> > >>> };
+> > >>> However, in reality, the POR submodule does not use IRQ and CLK.
+> > >>> Please do not hesitate to teach. Thanks.
+> > >>
+> > >> I expect one device node. How many drivers you have does not matter: you
+> > >> can instantiate 100 Linux devices in 100 Linux device drivers.
+> > >
+> > > I understand what you mean. A device node corresponds to multiple drivers.
+> > > Should I completely delete the POR device tree node and add it when
+> > > submitting the POR driver?
+> >
+> > ? I wrote it in previous messages and twice in this thread. Completely
+> > delete. You do not add it back! Because if you ever intended to add it
+> > back, it should be added since beginning. I don't understand what
+> > submitting later would solve.
+> >
+> > > If that's the case, how can I explain that the rtc device tree node
+> > > uses the syscon tag?
+> > > How can I describe a POR device in DTS? POR is a submodule of RTC, and
+> > > it also has corresponding drivers.
+> >
+> > I said, there is no need for POR in DTS, because you have nothing there.
+> > Why do you insist on putting it on DTS?
+> >
+> > > It's just that his resources are only shared with RTC's Reg.
+> >
+> > What resources? Reg? That's not a separate resource.
 > 
-> On Wed 10 Jan 2024 at 14:24, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> I'm very sorry about this.
+> But I found a binding file that only contains Reg and Compatible.
 > 
-> > On 10/01/2024 13:57, Mark Brown wrote:
-> >> On Wed, Jan 10, 2024 at 01:51:03PM +0100, Krzysztof Kozlowski wrote:
-> >>> On 10/01/2024 12:37, Mark Brown wrote:
-> >>>> On Wed, Jan 10, 2024 at 12:07:30PM +0100, Jerome Brunet wrote:
-> >> 
-> >>>>> If restricting things here is really important, defaulting to 0 (with a
-> >>>>> comment explaining it) and letting actual devices then override the
-> >>>>> value would feel less 'made up'
-> >> 
-> >>> Wait, what do you mean by "letting actual devices then override"? It's
-> >>> already like this. Nothing changed. What do you refer to?
-> >> 
-> >> The suggestion is that instead of limiting to 1 and having one device
+> rtc@80920000 {
+> compatible = "cirrus,ep9301-rtc";
+> reg = <0x80920000 0x100>;
+> };
+> 
+> Link: Documentation/devicetree/bindings/rtc/cirrus,ep9301-rtc.yaml
+> 
 > >
-> > Nothing limits here to 0. I limit from all technically possible values
-> > to reasonable subset.
-> >
-> >> override limit to 0 and have all the devices that need 1 override as
-> >> well.
-> >
-> > I don't think that actual default value for this should be provided.
-> > This should be conscious choice when writing bindings and driver.
-> > Similarly we do already for some other #cells:
-> > #io-channel-cells, address/size-cells (dtschema), #mux-control-cells and
-> > others.
-> >
-> > I agree we do not restrict all of them, though. However I do not see
-> > single reason to allow developers use 3 as #sound-dai-cells.
+> > To summarize: Drop POR from DTS and never bring it back, unless you come
+> > with some different arguments, which you did not say already.
 > >
 > 
-> Similarly, I do not see a reason to forbid it.
-> Submitter should not have to update the generic bindings every time we
-> come up with something new.
+> You are right, if there is no por device tree node, how can the por
+> driver obtain the Reg?
 
-Why not? If someone comes up with a use for N cells, I'd like to know 
-about it which would be more easily seen here than hidden in some device 
-specific binding.
+I guess the question is why don't you register everything from the RTC
+driver?
 
-That being said, there's a global max of 8 in dtschema already, so 
-limiting here doesn't add that much.
 
-Rob
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
