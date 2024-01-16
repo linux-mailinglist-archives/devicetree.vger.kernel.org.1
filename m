@@ -1,101 +1,103 @@
-Return-Path: <devicetree+bounces-32298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 230DE82EDFA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 12:42:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79EF782EE77
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 12:51:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34C8D1C20CC7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:42:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B89CB2244E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30F71B819;
-	Tue, 16 Jan 2024 11:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="izK5MYuz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FF1D1B950;
+	Tue, 16 Jan 2024 11:51:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150821A731;
-	Tue, 16 Jan 2024 11:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a2c375d2430so669774566b.1;
-        Tue, 16 Jan 2024 03:42:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705405328; x=1706010128; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3ETa/IB76FnSUzUMCNIjO0OPtMyIpkffhHAQmKw0f14=;
-        b=izK5MYuz703M5UOYhLdBRF1ePTMhRaHY+jQSx3EIXzgXnUZHM/vQl1/lYfiPOoEumq
-         Bac8PpBT8l2IbOgxuiwp5W/EaogsdciJ+bumkKLO5aL7kw+ltXBCt2gwW6tYXvxyHQIP
-         /DQHqpnv2eGUY87u64U9OE7+a6Jb6OnaBdjBP6PiRT922SR/ffziwn7NhK9cvbLutibq
-         WeaUcUSEJz1t55YGjgIW9X3m2K8DbsiHgXqOGJdDiI21edB1RWWXIkQXx06FgID2+Yqz
-         KGvG03gaR/eTM5MDBbbMS3PZzVWFYx5HGes3kmDzkQ7+aYgBW2w/ff+mPX+XZ9PKy9Ji
-         D6Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705405328; x=1706010128;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3ETa/IB76FnSUzUMCNIjO0OPtMyIpkffhHAQmKw0f14=;
-        b=oJyAsxcsCOh3Nxv/Y2ETe20pZ3NKoCQ6SeXI6qcrmVcrOFCy9xoVsnSN/RMTQX0PFZ
-         DIor3ph3P93vxy9CrzoOnsrgm9OMbUJ47pPgXG49c1esESyUABafe06gwFpdV32ajQQi
-         zJAs0s3rJ8R1wC/q9XNjUKIBkli1hg3I68Zqni6QYDPFai8k+6dJLjwc6nsIBvlyOM/f
-         HJKumqy5AKUKsX7P/6748k+Rk7HbWUJJk3BRVSGbsOoFaaV/3Nl00hgPGSico2NMUK2N
-         2dKJXWW6aqn8lUvR6XW6DeGcm9Bq5X+mngyhRIyokuLBAIyepd73aWDRfDZ7ftrR59dk
-         /9fg==
-X-Gm-Message-State: AOJu0YzBQV9iUpkTwANjKmU+VlyXb6ac6lc1m1v3uQsV1vRBJiYqYmY4
-	3L/fwlOUav5QIUcamVB+BlXaSblSus8B3bYqkRw=
-X-Google-Smtp-Source: AGHT+IFIdXVTOsU0yGpd1l5hqqYw5SvEntjk0/FMvYbowcSgHq4IbAXkUksATwXJ85XfgfUxAQrwrtF3G0v3Xv8URCg=
-X-Received: by 2002:a17:907:8b93:b0:a23:4e3f:a2fd with SMTP id
- tb19-20020a1709078b9300b00a234e3fa2fdmr4050086ejc.5.1705405327664; Tue, 16
- Jan 2024 03:42:07 -0800 (PST)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90331B949;
+	Tue, 16 Jan 2024 11:51:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5BD412F4;
+	Tue, 16 Jan 2024 03:52:10 -0800 (PST)
+Received: from FVFF77S0Q05N (unknown [10.57.90.186])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 50E793F5A1;
+	Tue, 16 Jan 2024 03:51:20 -0800 (PST)
+Date: Tue, 16 Jan 2024 11:51:14 +0000
+From: Mark Rutland <mark.rutland@arm.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev, linux-um@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com,
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
+	Frank Rowand <frowand.list@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Subject: Re: [PATCH 1/6] arm64: Unconditionally call unflatten_device_tree()
+Message-ID: <ZaZtbU9hre3YhZam@FVFF77S0Q05N>
+References: <20240112200750.4062441-1-sboyd@kernel.org>
+ <20240112200750.4062441-2-sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231218124058.2047167-1-elinor.montmasson@savoirfairelinux.com>
- <CAEnQRZAwk-USZqXwLOVuN3iTn7r-55BJH=Sqq5+2Od+DhrK0iw@mail.gmail.com>
- <347346270.284192.1702989565367.JavaMail.zimbra@savoirfairelinux.com> <361044647.7067.1703857544284.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <361044647.7067.1703857544284.JavaMail.zimbra@savoirfairelinux.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 16 Jan 2024 13:41:55 +0200
-Message-ID: <CAEnQRZDaGazi8j4LYEoWmSTORET89DVjEwD+2EdTizKGFp0CAg@mail.gmail.com>
-Subject: Re: [PATCHv3 RESEND 00/10] ASoC: fsl-asoc-card: compatibility
- integration of a generic codec use case for use with S/PDIF controller
-To: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	shengjiu wang <shengjiu.wang@gmail.com>, Xiubo Lee <Xiubo.Lee@gmail.com>, 
-	Fabio Estevam <festevam@gmail.com>, Nicolin Chen <nicoleotsuka@gmail.com>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	linux-sound <linux-sound@vger.kernel.org>, devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, alsa-devel <alsa-devel@alsa-project.org>, 
-	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
-	Philip-Dylan Gleonec <philip-dylan.gleonec@savoirfairelinux.com>, 
-	"S.j. Wang" <shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240112200750.4062441-2-sboyd@kernel.org>
 
-On Fri, Dec 29, 2023 at 3:45=E2=80=AFPM Elinor Montmasson
-<elinor.montmasson@savoirfairelinux.com> wrote:
->
-> Hello
->
-> On Monday, 18 December, 2023 14:54:03, Daniel Baluta wrote
-> > I know this is extra-work but we would greatly appreciate if you first
-> > convert fsl-asoc-card.txt
-> > to yml format and then add your new properties.
->
-> DT schema must have at least one maintainer in the "maintainers" field.
-> Who should I put for fsl-asoc-card.yaml ?
+Hi Stephen,
 
-I think it should be Shengjiu Wang, if he is OK with that.
+On Fri, Jan 12, 2024 at 12:07:44PM -0800, Stephen Boyd wrote:
+> Call this function unconditionally so that we can populate an empty DTB
+> on platforms that don't boot with a firmware provided or builtin DTB.
+> There's no harm in calling unflatten_device_tree() unconditionally.
+
+For better or worse, that's not true: there are systems the provide both a DTB
+*and* ACPI tables, and we must not consume both at the same time as those can
+clash and cause all sorts of problems. In addition, we don't want people being
+"clever" and describing disparate portions of their system in ACPI and DT.
+
+It is a very deliberate choice to not unflatten the DTB when ACPI is in use,
+and I don't think we want to reopen this can of worms.
+
+Given that, I'm afraid I must NAK this patch.
+
+Thanks
+Mark.
+
+> If there isn't a valid initial_boot_params dtb then unflatten_device_tree()
+> returns early.
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Catalin Marinas <catalin.marinas@arm.com>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: <linux-arm-kernel@lists.infradead.org>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  arch/arm64/kernel/setup.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+> index 417a8a86b2db..ede3d59dabf0 100644
+> --- a/arch/arm64/kernel/setup.c
+> +++ b/arch/arm64/kernel/setup.c
+> @@ -351,8 +351,7 @@ void __init __no_sanitize_address setup_arch(char **cmdline_p)
+>  	/* Parse the ACPI tables for possible boot-time configuration */
+>  	acpi_boot_table_init();
+>  
+> -	if (acpi_disabled)
+> -		unflatten_device_tree();
+> +	unflatten_device_tree();
+>  
+>  	bootmem_init();
+>  
+> -- 
+> https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git/
+> https://git.kernel.org/pub/scm/linux/kernel/git/sboyd/spmi.git
+> 
+> 
 
