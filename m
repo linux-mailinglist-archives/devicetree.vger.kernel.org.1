@@ -1,60 +1,77 @@
-Return-Path: <devicetree+bounces-32386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9FE682F307
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:15:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 702E982F30C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8715C288C9E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:15:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AADC1C23609
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:16:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C81B91CA9C;
-	Tue, 16 Jan 2024 17:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155A51CAA1;
+	Tue, 16 Jan 2024 17:16:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cE7HF9zb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UoncxEI/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2B91CA87;
-	Tue, 16 Jan 2024 17:15:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23BFAC433F1;
-	Tue, 16 Jan 2024 17:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFFA21CA9B;
+	Tue, 16 Jan 2024 17:16:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705425379; cv=none; b=Y1gOiyVQ98AYI6HiEg84W3BF4ZmD6I/VOlOuBugthxI0C13zpj+MoNm6N3GYdYzBFUVbP1BjDHBj+6bD+QWTqtYedOkjdZ2CskoujdSc5Qlv+UAs4XkL5Y3jcUpbpUKKvVLX1G4qsuWcB6Hbt9hZHvR+GzYdim9wkxektLhpjU4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705425379; c=relaxed/simple;
+	bh=YccJ3G4ylERWPrrdaVoG3THwwNeSrwk0EoXOTYZSinE=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=ud6gLE6hu4t1tU3ZgI8Q00mo/3aHPAAz1Sk5NScxjx4s5jeMjjr+Cx6LX4DTsL8Pk51ScgsfB4JZY5KvFiG/bd516Nt4c2Nej6NZ8sJc6q3LT8LOARsvlSwz6V91YmqxgIErLOYUJF8ByHT/fWrvHHTcs8YuHsKZthPb9CGG3D8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UoncxEI/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EC5FC433F1;
+	Tue, 16 Jan 2024 17:16:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705425300;
-	bh=AM/mT4cfVjyQmj8eYYeWn3zIDa2zuDQADbRVMWcGQdU=;
+	s=k20201202; t=1705425378;
+	bh=YccJ3G4ylERWPrrdaVoG3THwwNeSrwk0EoXOTYZSinE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cE7HF9zb3MEIMMqRSRNybfeEURjS9oo8qSa2eouXnVBcJp8jCdDLXmwyQHHwaxOTp
-	 3L7ifg/Ezqf9+cJrXxyFVMLSyGFMcnOIE6FDpTl00HC2NzJPbAinpaP26ggF6Eq4uV
-	 DFW+lyp9Y6z6Z9hV+Puo25xhruj4VwB6cxnyHrRdljDUHl2c7jCI6z8yX8c/bCCmLS
-	 v/Ke9t6b48smIY5ohyuRz4FGtvhuiQyX/gczFKu4lZnng/KbBDXxaF07peT6AMbL3X
-	 eOsv7zPA7r45u1QeYjJF2F6GQkh7f6dTk22up8doKBv1L74rMzyGt5F6QCKwD+DbZz
-	 MMaCrur52lMTQ==
-Date: Tue, 16 Jan 2024 17:14:53 +0000
+	b=UoncxEI/P+JuQysmNbatwCoAKihQXSQfNnUv1m47oUb6oCNjjezYCQH+UA7isGykR
+	 RndPOGH9kISHGxxzWFjebt1h0kgU25Yyu4gfU4q6hYIysho995Z96y4w2javU269Va
+	 6tNA2b0NJIhrENxuggg4eIB3rIYlmTAqNV5z/GhONSVXGxl4rUEsGIbMaKD6OWUvQ2
+	 DrYLaQ01cJVrIbcg4mgTrSm0Uy/WfhTWoE+HK+Gd6zGdCpqGMI4mfOMno2c16Cqrnt
+	 9gQG57SPu7+x0JCg5t7m0Yv1nkpzt2y/k+tJD3NCSXNELcaXpRzN/UwjaSzP4Fq2Y4
+	 QJFo/8VFbrSRQ==
+Date: Tue, 16 Jan 2024 17:16:12 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Frieder Schrempf <frieder@fris.de>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-	Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Josua Mayer <josua@solid-run.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-	Marco Felsch <m.felsch@pengutronix.de>, Marek Vasut <marex@denx.de>,
-	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	Stefan Wahren <stefan.wahren@chargebyte.com>,
-	Tim Harvey <tharvey@gateworks.com>, Yannic Moog <y.moog@phytec.de>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: fsl: Add Sielaff i.MX6 Solo board
-Message-ID: <20240116-donated-squealing-ff35a3bfe18d@spud>
-References: <20240116105317.267525-1-frieder@fris.de>
- <20240116105317.267525-3-frieder@fris.de>
+To: Shengyang Chen <shengyang.chen@starfivetech.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"quic_jesszhan@quicinc.com" <quic_jesszhan@quicinc.com>,
+	"sam@ravnborg.org" <sam@ravnborg.org>,
+	"airlied@gmail.com" <airlied@gmail.com>,
+	"daniel@ffwll.ch" <daniel@ffwll.ch>,
+	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+	"mripard@kernel.org" <mripard@kernel.org>,
+	"tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"wahrenst@gmx.net" <wahrenst@gmx.net>,
+	"dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>,
+	"thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+	Changhuang Liang <changhuang.liang@starfivetech.com>,
+	Keith Zhao <keith.zhao@starfivetech.com>,
+	Jack Zhu <jack.zhu@starfivetech.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: panel-simple: Add
+ compatible property for waveshare 7inch touchscreen panel
+Message-ID: <20240116-unbundle-secret-477cd2fda3dc@spud>
+References: <20240109070949.23957-1-shengyang.chen@starfivetech.com>
+ <20240109070949.23957-2-shengyang.chen@starfivetech.com>
+ <20240109-worsening-material-fae02ff4e611@spud>
+ <ZQ0PR01MB1062EDD1B18349619DF14654EF73A@ZQ0PR01MB1062.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,61 +79,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DfmlNYOfuJd0KgGS"
+	protocol="application/pgp-signature"; boundary="Qw+MCndyFqEnJYvW"
 Content-Disposition: inline
-In-Reply-To: <20240116105317.267525-3-frieder@fris.de>
+In-Reply-To: <ZQ0PR01MB1062EDD1B18349619DF14654EF73A@ZQ0PR01MB1062.CHNPR01.prod.partner.outlook.cn>
 
 
---DfmlNYOfuJd0KgGS
-Content-Type: text/plain; charset=us-ascii
+--Qw+MCndyFqEnJYvW
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 16, 2024 at 11:51:56AM +0100, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On Tue, Jan 16, 2024 at 09:40:21AM +0000, Shengyang Chen wrote:
+> Hi, Conor
 >=20
-> Add compatible for the Sielaff i.MX6 Solo board.
+> Thanks for comment.
 >=20
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> > -----Original Message-----
+> > From: Conor Dooley <conor@kernel.org>
+> > Sent: 2024=E5=B9=B41=E6=9C=8810=E6=97=A5 0:32
+> > To: Shengyang Chen <shengyang.chen@starfivetech.com>
+> > Cc: devicetree@vger.kernel.org; dri-devel@lists.freedesktop.org;
+> > neil.armstrong@linaro.org; quic_jesszhan@quicinc.com; sam@ravnborg.org;
+> > airlied@gmail.com; daniel@ffwll.ch; maarten.lankhorst@linux.intel.com;
+> > mripard@kernel.org; tzimmermann@suse.de; robh+dt@kernel.org;
+> > krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org; wahrenst@gmx.ne=
+t;
+> > dave.stevenson@raspberrypi.com; thierry.reding@gmail.com; Changhuang
+> > Liang <changhuang.liang@starfivetech.com>; Keith Zhao
+> > <keith.zhao@starfivetech.com>; Jack Zhu <jack.zhu@starfivetech.com>;
+> > linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: panel-simple: =
+Add
+> > compatible property for waveshare 7inch touchscreen panel
+> >=20
+> > On Tue, Jan 09, 2024 at 03:09:48PM +0800, Shengyang Chen wrote:
+> > > The waveshare 7" 800x480 panel is a clone of Raspberry Pi 7" 800x480
+> > > panel It can be drived by Raspberry Pi panel's process but it needs
+> > > different timing from Raspberry Pi panel. Add compatible property for=
+ it.
+> > >
+> > > Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
+> > > Signed-off-by: Shengyang Chen <shengyang.chen@starfivetech.com>
+> > > ---
+> > >  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 =
+++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> > > b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> > > index 11422af3477e..02f6b1b2ddc9 100644
+> > > ---
+> > > a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yam
+> > > +++ l
+> > > @@ -335,6 +335,8 @@ properties:
+> > >        - vivax,tpc9150-panel
+> > >          # VXT 800x480 color TFT LCD panel
+> > >        - vxt,vl050-8048nt-c01
+> > > +        # Waveshare 7" (800x480) touchscreen LCD panel
+> > > +      - waveshare,7inch-touchscreen
+> >=20
+> > Is "7inch-touchscreen" really a specific enough identifier for this dev=
+ice?
+> >=20
+>=20
+> Referring to official website[1] and Neil's suggestion, maybe I should ch=
+ange to
+> "7inch-touchscreen-dsi-lcd" or "waveshare,7inch-dsi-sku19885" if the next=
+ patch version is needed.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+The one with the sku certainly seems more specific, if a next version is
+needed I would use that.
 
-Cheers,
+Thanks,
 Conor.
 
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
-on/devicetree/bindings/arm/fsl.yaml
-> index 32b195852a75c..f6cdf4a8e51a2 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -469,6 +469,7 @@ properties:
->                - prt,prtvt7                # Protonic VT7 board
->                - rex,imx6dl-rex-basic      # Rex Basic i.MX6 Dual Lite Bo=
-ard
->                - riot,imx6s-riotboard      # RIoTboard i.MX6S
-> +              - sielaff,imx6dl-board      # Sielaff i.MX6 Solo Board
->                - skov,imx6dl-skov-revc-lt2 # SKOV IMX6 CPU SoloCore lt2
->                - skov,imx6dl-skov-revc-lt6 # SKOV IMX6 CPU SoloCore lt6
->                - solidrun,cubox-i/dl            # SolidRun Cubox-i Solo/D=
-ualLite
-> --=20
-> 2.43.0
->=20
-
---DfmlNYOfuJd0KgGS
+--Qw+MCndyFqEnJYvW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaa5jQAKCRB4tDGHoIJi
-0hO4AP9CXUUylAtaQzw7HfQVBSy6p8Z4JW5/NMb0Uqt2v/xgAQEA1fMAeW5GZFTS
-000iUenQZ/HZOWMfld459agOkgEzJgk=
-=wYVv
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaa53AAKCRB4tDGHoIJi
+0qMgAP9ieYp/4oV7UEcPqmkgbADwRvXtrtX7hF4KPTDrmg9+mAEAkS83+Hy60CD3
+HdSRO+hHlw6yx6k7OA2nIQXeLxtnDQg=
+=V79Y
 -----END PGP SIGNATURE-----
 
---DfmlNYOfuJd0KgGS--
+--Qw+MCndyFqEnJYvW--
 
