@@ -1,145 +1,245 @@
-Return-Path: <devicetree+bounces-32378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1329C82F2B1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:56:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 793A782F2CA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:59:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18B501C23773
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:55:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 015231F2631F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A811CA80;
-	Tue, 16 Jan 2024 16:55:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6FCA1CA98;
+	Tue, 16 Jan 2024 16:58:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HTFtI0JU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h7jY/vIK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D2C1C6BC;
-	Tue, 16 Jan 2024 16:55:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACE52C433C7;
-	Tue, 16 Jan 2024 16:55:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705424152;
-	bh=vvb30FWvCMkK5KvuyLxMDAHpy7g1C7TNhUJRnix82e0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HTFtI0JUPYXjGnf23ymD8iN1J/BvQkfvN05xycJohmdD9/dBLLJxrn+lAsQdLf6Gc
-	 HC5VR6YolpNriimnya+VLtufx9UFno8TGB3qAFpP8nuUJJ0gszUw7fotTWZ7+1EJHc
-	 TBGX4Hz6roF9hrQvBnTxUZ7F4b6hE+6IEr/eFsNb9Xicmw6HYeDleHgBY3+2bly1gK
-	 YWGTRv6X4R1OWfeROefuR3dSZemhTckyEbwZtjRlYsF4RQjozf6H9sw2C2AV36NkZt
-	 7J/GMVRl51LoTE4ScvwQt8AT2n8/FqUOfawWA6+KsTuaZkY0/+phMTIOWRNKrGXU+L
-	 yIgKSHYRPQ2Kw==
-Date: Tue, 16 Jan 2024 10:55:50 -0600
-From: Rob Herring <robh@kernel.org>
-To: Vidya Sagar <vidyas@nvidia.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, lpieralisi@kernel.org, kw@linux.com,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, will@kernel.org, frowand.list@gmail.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	treding@nvidia.com, jonathanh@nvidia.com, kthota@nvidia.com,
-	mmaddireddy@nvidia.com, sagar.tv@gmail.com,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH V2 2/2] PCI: Add support for "preserve-boot-config"
- property
-Message-ID: <20240116165550.GA102137-robh@kernel.org>
-References: <20240112165830.GA2271982@bhelgaas>
- <5e8f6c52-6149-42c0-affb-d8b072a77956@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5441CF81
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 16:58:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705424336; cv=none; b=XYg0+6xQlHMXO/3Qc3yLGU/jK+39//TGNuW4oAkr3yocW9vJiGWecvwzerJTL7SaG316cgm66lqCk41HXAW724PCr4P3H9qB9dem9LkhMpRquEaYVgz8ZmI8kFg6lyLAc+cwohYw8ztTDh49VD2YWGGbmd2iFw0MR909UfAKFaU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705424336; c=relaxed/simple;
+	bh=gcXcjopMWR5DqoKpPfgcIHWzFHgpzOizG/IvJSBvb0c=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
+	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
+	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding; b=RcHZFM90Ued2nemii08mXzdUADpDPcgJrmLSN3sHnV8k4xbpSf94OQPPGMGiyW6HFRd/EbeBPdN04u7/1K2lUgx5e0B0foEl8MEzsiALxGhIaZxSKCIBIuPGQ++CzGysT3ik1hQ2aylR0/M0r6sWeb9ptYiqeNfbPtKUUDp9Pis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h7jY/vIK
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a28b0207c1dso821346066b.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 08:58:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705424333; x=1706029133; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3VGcJoUzgugAcMhoIstgiUVP/tM57SrNlpYbezL9TQU=;
+        b=h7jY/vIK7rc+QJYw43Ps+aLXce/uzSRDxGYU4vDYScJu5TK0kPc8JBf6YmkebZGeU7
+         GOg6T//EPQQOFozKR9jpck2Ra5XrApV/uF3+qp3B3VOuUW41fnj+KYpxMSQRrdoNsnRi
+         Ty9n2MhIrpBNxLREWwl4lDFFUNodpfjvJ9SzhEUc+S5gwnnZ1Hh+cRo5IMMvbYAPbcwn
+         4fyawZbulDEL5wbufWmA6CCNHVF5BjAT3JXBfpyfZ7HySgLgKdCrEmXdSKQ3yK2VtD/4
+         5M9Q1de4/AqVACrsRarJL1cPMTvO6x72yDSL13+Y6x17nQqRQZWw82+iAmQ4BLAj2KTe
+         EmHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705424333; x=1706029133;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3VGcJoUzgugAcMhoIstgiUVP/tM57SrNlpYbezL9TQU=;
+        b=YFyrJrBD9QuHR0B12SahgXodwCovhfUUUbzs7YbX7q3R8EUBJcdRd6O+TLchBEChL8
+         ZarYf4gSgTDRjn/kq39CMLRq77ZMdW/NmG+JjIZGsGXG9dAHzYJ4rMEQqYrflXLCBrho
+         Nzo0MHTOzJBNbyn919JsBMF28+gjmfHF6HjRggy/F71VV5xnRBitMHOwR/+DvMdYaOW+
+         JtRrWKg67hhD+SaQETMY/lbcaBYG/VhDLBVOpw8LRrArxVwRGJWx7CiMOgg3YFjGQZBD
+         HH3EILWnNTc2uhJgrwv/qSCiJsK25yuH5Qz797G4bQ4D//3RBEOsYOC6QqGcC6zjaFud
+         Xhsg==
+X-Gm-Message-State: AOJu0Yy6itxsdTFFnL3QcSnt69pHoTSiz5c8cDmMtb4eDIKGv7ytLDdS
+	qveZgqLHgHf+iNf8KxspfnNrR76HQ/OugQ==
+X-Google-Smtp-Source: AGHT+IHDJAbuoMnXsElq0dBlX+uCvt4Z6cr9rlNAFNuN/+MrNZBVWDhbT+Xrf9hqTQbd5B3Bp8hk9g==
+X-Received: by 2002:a17:906:18ea:b0:a28:da64:ac06 with SMTP id e10-20020a17090618ea00b00a28da64ac06mr3906828ejf.73.1705424333188;
+        Tue, 16 Jan 2024 08:58:53 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id m23-20020a17090607d700b00a233efe6aa7sm6693928ejc.51.2024.01.16.08.58.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jan 2024 08:58:52 -0800 (PST)
+Message-ID: <f99da95d-a6ab-4646-8ad8-8245e275639e@linaro.org>
+Date: Tue, 16 Jan 2024 17:58:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5e8f6c52-6149-42c0-affb-d8b072a77956@nvidia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/3] riscv: dts: sophgo: add rtc dt node for CV1800
+Content-Language: en-US
+To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Cc: alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, chao.wei@sophgo.com,
+ unicorn_wang@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, dlan@gentoo.org, inochiama@outlook.com
+References: <20240115160600.5444-1-qiujingbao.dlmu@gmail.com>
+ <20240115160600.5444-4-qiujingbao.dlmu@gmail.com>
+ <f2b3dff2-ce0d-4ddb-ad61-74abf2c3022d@linaro.org>
+ <CAJRtX8QFLoWnJBkepZrbneHX8qZdde=aw+zbdErVC91B=u==MA@mail.gmail.com>
+ <007e8c14-13eb-4917-b9da-8d47d6c965c7@linaro.org>
+ <CAJRtX8ROH4R_s1=ML5ka340PAE0SWJKK24yVWHw5gCd+7d9pkA@mail.gmail.com>
+ <dfcf74a9-db76-43fe-9261-20bf7a993bc3@linaro.org>
+ <CAJRtX8Tkie+ykLv8L2EgBQcy9tVP5Yz-_J_eHE-9N9hjt+6gkg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAJRtX8Tkie+ykLv8L2EgBQcy9tVP5Yz-_J_eHE-9N9hjt+6gkg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 15, 2024 at 08:02:56PM +0530, Vidya Sagar wrote:
+On 16/01/2024 17:29, Jingbao Qiu wrote:
+> On Wed, Jan 17, 2024 at 12:03 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 16/01/2024 16:51, Jingbao Qiu wrote:
+>>>>> CV1800 is a RISCV based SOC that includes an RTC module. The RTC
+>>>>> module has an OSC oscillator
+>>>>
+>>>>
+>>>> I am not going to read pages of description. Please write concise replies.
+>>>
+>>> Thanks, What I mean is that this hardware includes two functions, RTC
+>>> and POR. How should I describe their relationship?
+>>
+>> Your POR does not need to take any resources, so no need to describe any
+>> relationship.
+>>
+>> ...
+>>
+>>>>> Your suggestion is, firstly, the por submodule does not have any
+>>>>> resources, so it should be deleted.
+>>>>
+>>>> So where did you delete it? I still see it in this patch.
+>>>
+>>> Should I completely delete him? How can a por driver obtain device information?
+>>
+>> Delete completely.
+>>
+>> Device information? What is this? We already agreed you don't have any
+>> resources for POR.
+>>
+>> ....
+>>
+>>>> Device is only one thing, not two.
+>>>>
+>>>>>                     reg = <0x5025000 0x2000>;
+>>>>>                     interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>                     clocks = <&osc>;
+>>>>> };
+>>>>> However, in reality, the POR submodule does not use IRQ and CLK.
+>>>>> Please do not hesitate to teach. Thanks.
+>>>>
+>>>> I expect one device node. How many drivers you have does not matter: you
+>>>> can instantiate 100 Linux devices in 100 Linux device drivers.
+>>>
+>>> I understand what you mean. A device node corresponds to multiple drivers.
+>>> Should I completely delete the POR device tree node and add it when
+>>> submitting the POR driver?
+>>
+>> ? I wrote it in previous messages and twice in this thread. Completely
+>> delete. You do not add it back! Because if you ever intended to add it
+>> back, it should be added since beginning. I don't understand what
+>> submitting later would solve.
+>>
+>>> If that's the case, how can I explain that the rtc device tree node
+>>> uses the syscon tag?
+>>> How can I describe a POR device in DTS? POR is a submodule of RTC, and
+>>> it also has corresponding drivers.
+>>
+>> I said, there is no need for POR in DTS, because you have nothing there.
+>> Why do you insist on putting it on DTS?
+>>
+>>> It's just that his resources are only shared with RTC's Reg.
+>>
+>> What resources? Reg? That's not a separate resource.
+
+I meant, separate from the RTC. I had impression that IO space is shared
+or mixed with RTC? If it is separate, why it wasn't listed?
+
 > 
+> I'm very sorry about this.
+> But I found a binding file that only contains Reg and Compatible.
 > 
-> On 1/12/2024 10:28 PM, Bjorn Helgaas wrote:
-> > External email: Use caution opening links or attachments
-> > 
-> > 
-> > On Wed, Jan 10, 2024 at 08:37:25AM +0530, Vidya Sagar wrote:
-> > > Add support for "preserve-boot-config" property that can be used to
-> > > selectively (i.e. per host bridge) instruct the kernel to preserve the
-> > > boot time configuration done by the platform firmware.
-> > > 
-> > > Reported-by: kernel test robot <lkp@intel.com>
-> > > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> > > ---
-> > > V2:
-> > > * Addressed issues reported by kernel test robot <lkp@intel.com>
-> > > 
-> > >   drivers/pci/controller/pci-host-common.c |  5 ++++-
-> > >   drivers/pci/of.c                         | 18 ++++++++++++++++++
-> > >   drivers/pci/probe.c                      |  2 +-
-> > >   include/linux/of_pci.h                   |  6 ++++++
-> > >   4 files changed, 29 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/pci/controller/pci-host-common.c b/drivers/pci/controller/pci-host-common.c
-> > > index 6be3266cd7b5..d3475dc9ec44 100644
-> > > --- a/drivers/pci/controller/pci-host-common.c
-> > > +++ b/drivers/pci/controller/pci-host-common.c
-> > > @@ -68,13 +68,16 @@ int pci_host_common_probe(struct platform_device *pdev)
-> > > 
-> > >        of_pci_check_probe_only();
-> > > 
-> > > +     bridge->preserve_config =
-> > > +             of_pci_check_preserve_boot_config(dev->of_node);
-> > 
-> > Thanks for leveraging the existing "preserve_config" support for the
-> > ACPI _DSM.  Is pci_host_common_probe() the best place for this?  I
-> > think there are many DT platform drivers that do not use
-> > pci_host_common_probe(), so I wonder if there's a more generic place
-> > to put this.
-> My understanding is that pci_host_common_probe() is mainly used in
-> systems where the firmware would have taken care of all the platform
-> specific initialization and giving the ECAM and 'ranges' info through DT
-> for the Linux kernel to go ahead and perform the enumeration. This is
-> similar to ACPI way of handing over the system from firmware to the OS.
+> rtc@80920000 {
+> compatible = "cirrus,ep9301-rtc";
+> reg = <0x80920000 0x100>;
+> };
 > 
-> If PCIe controllers are getting initialized in the kernel itself, then
-> pci_host_probe() is called directly from the respective host controller
-> drivers which is the case with all the DesignWare based implementations
-> including Tegra194 and Tegra234. In those systems, since the controllers
-> themselves have come up and gotten initialized in the kernel, resource
-> assignment has to happen anyway.
-> 
-> > 
-> > I see Rob's concern about adding "preserve-boot-config" vs extending
-> > "linux,pci-probe-only" and I don't really have an opinion on that,
-> > although I do think the "pci-probe-only" name is not as descriptive as
-> > it could be.  I guess somebody will argue that "preserve_config" could
-> > be more descriptive, too :)
-> Honestly I would have liked to repurpose of_pci_check_probe_only() API
-> to look for "preserve-boot-config" in the respective PCIe controller's
-> DT node and not "linux,pci-probe-only" in the chosen entry, had it not
-> for the single usage of of_pci_check_probe_only() in arch/powerpc
-> /platforms/pseries/setup.c file.
-> Also FWIW, "linux,pci-probe-only" is not documented anywhere.
+> Link: Documentation/devicetree/bindings/rtc/cirrus,ep9301-rtc.yaml
 
-Yes, it is[1].
+And?
 
 > 
-> Since there is at least one user for of_pci_check_probe_only(), and
-> combining with the fact that the scope where "linux,pci-probe-only" and
-> "preserve-boot-config" are used (i.e. chosen entry Vs individual PCIe
-> controller node), I prefer to have it as a separate option.
-> Rob, please let me know if you have any strong objections to that?
+>>
+>> To summarize: Drop POR from DTS and never bring it back, unless you come
+>> with some different arguments, which you did not say already.
+>>
+> 
+> You are right, if there is no por device tree node, how can the por
+> driver obtain the Reg?
 
-Didn't I already object?
+The same as currently. Does your POR node has reg? No, so according to
+your logic it cannot obtain address space.
 
-What's the concern with existing users? There shouldn't be any. If 
-"linux,pci-probe-only" appeared in a bridge node, it would have been 
-ignored and now would be honored.
+Children Linux devices share regmap with parent device.
 
-Rob
+Best regards,
+Krzysztof
 
-[1] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/chosen.yaml#L140
 
