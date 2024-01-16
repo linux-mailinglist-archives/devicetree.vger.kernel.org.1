@@ -1,105 +1,123 @@
-Return-Path: <devicetree+bounces-32185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B2582E97E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:27:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95BF882E9B2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:52:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C470B21F6E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 06:27:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA7BF1C22D84
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 06:52:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD5C101EB;
-	Tue, 16 Jan 2024 06:27:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37B2810A17;
+	Tue, 16 Jan 2024 06:52:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kapsi.fi header.i=@kapsi.fi header.b="EWb1mvNP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB2D10A01;
-	Tue, 16 Jan 2024 06:27:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=andred.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33678156e27so8164066f8f.1;
-        Mon, 15 Jan 2024 22:27:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705386454; x=1705991254;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WLmIQO5gjNwewjIEyYlXBATMFk8RP9bB5NwlP7qSviQ=;
-        b=KUAc9zIs71bitA50xACTq/g38twzHNNVRZIReguasU8NP9yuesQuhTXDp3IfTbZC3M
-         oOeeNTF6dD7xxBF+fzGwy7G4A/4Y3iwnwhZTUotePwXp+T7IQJ/XQcYSKAy8NYlN8t24
-         pn2bi7Wk/0aAufOdGe0tzio6L0z0TPAShVu67aUjrVcOQ1V6FUaofFjcnTGLX9g/fCE/
-         +TgZOg9Tj1w/+BOWuAyHbRqmboXarKYmuU6B7jbSKTC2SGtI9S4FLutsmUJJMc9DFxw2
-         W90nQVpay4DMAfllm8oWiaXZsdYTa2OTq81FGj2DiTPANaGu7s8OQEjhqej6IqRGUjlu
-         mj9g==
-X-Gm-Message-State: AOJu0Yyj0LmwIBxu/FocXgiCLNDpiw1CQUOOjIT2GiRrZDT2zsPzc28a
-	m2BI2PrwyzcmUvoRVVS5BLEsOm3WiLkFLWPi
-X-Google-Smtp-Source: AGHT+IHva935nGbu7TVWrQNK2PSWvc56wD9J2fu4K27ZngGatoogEF/kVpgRvlHnjgTGnxGy6WMUKg==
-X-Received: by 2002:a5d:5646:0:b0:337:7c91:d75d with SMTP id j6-20020a5d5646000000b003377c91d75dmr4277549wrw.27.1705386453745;
-        Mon, 15 Jan 2024 22:27:33 -0800 (PST)
-Received: from salami.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id t5-20020adff045000000b00337b47ae539sm934426wro.42.2024.01.15.22.27.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jan 2024 22:27:33 -0800 (PST)
-From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
-To: linux-kernel@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Cc: Michal Simek <michal.simek@amd.com>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	=?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>
-Subject: [PATCH] dt-bindings: don't anchor DT_SCHEMA_FILES to bindings directory
-Date: Tue, 16 Jan 2024 06:27:31 +0000
-Message-ID: <20240116062731.2810067-1-git@andred.net>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA50110A05;
+	Tue, 16 Jan 2024 06:52:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kapsi.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kapsi.fi
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+	s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
+	To:Subject:From:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=l9cbtoVxmahu43eSHexnSSM/C+AFOi8SW69yat4JZ0A=; b=EWb1mvNPtJnN6SSi52fNO/z6wg
+	wbhDrovcJ/US7uMMt3iw6ibEiLzJEgT6aJ10GwT7gae7oM84PF7RZcrJthI7NZIQaDQQ4ryYGLESs
+	idq9FSTqiNIL/N+ZGX/A2LK0e1pxSKxb4amtoubTbfTVC5MQBuV4LEZdL3IKMtha/Q4xyME1tR4WC
+	GeeMoxppEqJm6xYUjUKYg2iE/ZrlgdnpSHteFEUgTqaFwrVw8QoczfS8ItSv579rlps7A/pi1sH2H
+	CzDvslR+repTDMWObh+jKvWrqKeK85YMxChoGOhlzMLUBtA8hXQy8AtGxjB7VxP644Ihd5tphh5Uj
+	K4Cwnzlg==;
+Received: from [39.110.237.146] (helo=[10.19.62.31])
+	by mail.kapsi.fi with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96)
+	(envelope-from <cyndis@kapsi.fi>)
+	id 1rPd44-006n2A-2f;
+	Tue, 16 Jan 2024 08:36:49 +0200
+Message-ID: <84be2248-9789-4b32-8f89-296c0f195835@kapsi.fi>
+Date: Tue, 16 Jan 2024 15:36:38 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+From: Mikko Perttunen <cyndis@kapsi.fi>
+Subject: Re: [PATCH v3 2/5] gpu: host1x: Add Tegra SE to SID table
+To: Akhil R <akhilrajeev@nvidia.com>, herbert@gondor.apana.org.au,
+ davem@davemloft.net, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
+ catalin.marinas@arm.com, will@kernel.org, mperttunen@nvidia.com,
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, krzk@kernel.org
+References: <20240109091708.66977-1-akhilrajeev@nvidia.com>
+ <20240109091708.66977-3-akhilrajeev@nvidia.com>
+Content-Language: en-US
+In-Reply-To: <20240109091708.66977-3-akhilrajeev@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 39.110.237.146
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 
-From: André Draszik <andre.draszik@linaro.org>
+On 1/9/24 18:17, Akhil R wrote:
+> Add Tegra Security Engine details to the SID table in host1x driver.
+> These will be referred when registering the SE as host1x device.
 
-Commit 5e3ef4546819 ("dt-bindings: ignore paths outside kernel for
-DT_SCHEMA_FILES") anchored all searches to the bindings directory
-(since bindings only exist below that), but it turns out this is not
-always desired.
+Technically, these entries are required to be in place any time we want 
+to configure SE's stream ID. Register writes to stream ID registers fail 
+otherwise.
 
-Just anchor to the base kernel source directory and while at it, break
-the overly long line for legibility.
+> 
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> ---
+>   drivers/gpu/host1x/dev.c | 24 ++++++++++++++++++++++++
+>   1 file changed, 24 insertions(+)
+> 
+> diff --git a/drivers/gpu/host1x/dev.c b/drivers/gpu/host1x/dev.c
+> index 42fd504abbcd..b564c7042235 100644
+> --- a/drivers/gpu/host1x/dev.c
+> +++ b/drivers/gpu/host1x/dev.c
+> @@ -214,6 +214,30 @@ static const struct host1x_info host1x07_info = {
+>    * and firmware stream ID in the MMIO path table.
+>    */
+>   static const struct host1x_sid_entry tegra234_sid_table[] = {
+> +	{
+> +		/* SE2 MMIO */
+> +		.base = 0x1658,
+> +		.offset = 0x90,
+> +		.limit = 0x90
+> +	},
+> +	{
+> +		/* SE4 MMIO */
+> +		.base = 0x1660,
+> +		.offset = 0x90,
+> +		.limit = 0x90
+> +	},
+> +	{
+> +		/* SE2 channel */
+> +		.base = 0x1738,
+> +		.offset = 0x90,
+> +		.limit = 0x90
+> +	},
+> +	{
+> +		/* SE4 channel */
+> +		.base = 0x1740,
+> +		.offset = 0x90,
+> +		.limit = 0x90
+> +	},
+>   	{
+>   		/* VIC channel */
+>   		.base = 0x17b8,
 
-Reported-by: Michal Simek <michal.simek@amd.com>
-Closes: https://lore.kernel.org/all/827695c3-bb33-4a86-8586-2c7323530398@amd.com/
-Cc: Masahiro Yamada <masahiroy@kernel.org>
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- Documentation/devicetree/bindings/Makefile | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+With the commit message slightly adjusted,
 
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index 2323fd5b7cda..129cf698fa8a 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -28,7 +28,10 @@ $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
- find_all_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
- 		-name 'processed-schema*' \)
- 
--find_cmd = $(find_all_cmd) | sed 's|^$(srctree)/$(src)/||' | grep -F -e "$(subst :," -e ",$(DT_SCHEMA_FILES))" | sed 's|^|$(srctree)/$(src)/|'
-+find_cmd = $(find_all_cmd) | \
-+		sed 's|^$(srctree)/||' | \
-+		grep -F -e "$(subst :," -e ",$(DT_SCHEMA_FILES))" | \
-+		sed 's|^|$(srctree)/|'
- CHK_DT_DOCS := $(shell $(find_cmd))
- 
- quiet_cmd_yamllint = LINT    $(src)
--- 
-2.43.0
-
+Acked-by: Mikko Perttunen <mperttunen@nvidia.com>
 
