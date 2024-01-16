@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-32401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F8CE82F38E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:58:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F9C582F396
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:59:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE95228601E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:58:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 938362858E7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:59:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E64D51CD03;
-	Tue, 16 Jan 2024 17:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A4E1CD04;
+	Tue, 16 Jan 2024 17:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MElkXJua"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JkDahVsT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1991CD0B
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 17:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC2B1CD07
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 17:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705427887; cv=none; b=P46L6E08mNlmS4MIOH1PGxhBZ0ryjMhPlrNB6iVh2sGNDKLcLLCAgw84+BVDtcYHKYj8/G8SmCb8SYmiMYLihls6VMndyOyMiBWdq6y6Rhv5af77SLgt8g3LLz6wbwQEvY58Y4W8DU5btPeGyne7OPfhzvcx0dkEE6a3IGqbW3I=
+	t=1705427951; cv=none; b=Vo/q9Zx6SZ4k4isJoIySpm+42aBHLmh+fCGlh7kwOEd0qiLDtWYKU5caoYKZ1tnQy2HehXksNBQYeIKplH4lVQ0Dya8YX0hUAp6x23zaG/UfH+p9Fao6HchBcVr9aXeqkvHIlZHtHwmoBTXqCrOuk6QPZlC6EbTMSSTQk1SV/6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705427887; c=relaxed/simple;
-	bh=94CsEeB+VEaGfjxVcLH+dZSqndBa7lGsbFtuy8/OM0M=;
+	s=arc-20240116; t=1705427951; c=relaxed/simple;
+	bh=RTj1/a3oYSeud5ORgmRAnE80RHagk1otScZh5SrAwTU=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
 	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
-	 Content-Type:Content-Transfer-Encoding; b=aIXerqB6OSOWC+b11p0lt9Q1AZlpsBlYZuNbeXm6xCaG5e/ftPw4EowqO+GcKWx1mdvtzwXWpmlIcrllgagoh1bivS4Pi+leKIIJ60iSKJTjSAI6a1kLYKjd+E/Wj40o6IGFBevPlSD8bqfODSz6HRi9wRPKv60n2EuGBV+fXhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MElkXJua; arc=none smtp.client-ip=209.85.215.177
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5ce0efd60ddso5345317a12.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 09:58:06 -0800 (PST)
+	 Content-Type:Content-Transfer-Encoding; b=hp9BmX4ITo1xUwxe/6GVtwBMMYBRuNp+HrW1xpCtvvZkPotnM7enZuHe19oeM6AIC8IrH8sFNLA4tvjZUBhpZWSevFuAtVXCywrAZVFvmXUAes0+1nNb1oDyalAd1xzWnQPjW6RXYMkxD70LW4UnEluiyEsA+hBAc2MIDkOompQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JkDahVsT; arc=none smtp.client-ip=209.85.210.175
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6daf694b439so5480692b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 09:59:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705427886; x=1706032686; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705427949; x=1706032749; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=32EVrbNt/EEZNt4rB/iUu9mmtUkEQtXJa14AmPNNrcM=;
-        b=MElkXJuaawNydVw6JcsnRiYanA7raXGXtYwlPriMOTP0xS6fEBdXrldXAYa4/2J7ii
-         3IwOdBGrX7PV9ogueSMc5vRjY+SA/MydfNhfmL0+uNKZ9JjFGt9v6kOqydZbRe5gBSxP
-         oEHPvBKKZenqfk5UPSLZcfIzc82s61n4tTeyt4R2Y+RPWmlNXjUTqqHUIt1axZ8IhFIF
-         NGGxdSQJuHrB7SGAKwvcESgWv/0AXD2a3V8tXdupAWyhlsgt4YHb197q8LK9Z96AKwI6
-         e4FUdhDec8VZSMtqZLpdhptPKbWTG1JWvI3UdVaJxV6fy1oI6fd31APQBdIrj7JyKzhp
-         /mMQ==
+        bh=Oc31P8IatTocdDsZCQmXC0DQW4G/2dM1ao0ezkE1ShU=;
+        b=JkDahVsTUFQzILwmrbaw5GVoo7GKSHClYkN0dmYQMmepUpA4q6ORNLgDOOVfgLZyrs
+         R8O+PTNwYKkB8ifFwD3GC6F1hM3WON9o1M9s3rlQcakCqBEYD2w2HlFMAkJl3cyzF82G
+         bA2mjh72ioX0a08JvbZuqitFtyv6Ex6P8jwr2RSV2DBr2EArb9uKfZ6K4bsbSNbTn3by
+         1Ugi6NmAxJhN0RnPWToXL2Bo1RoMPIJCqIUd5WbYTkCnJcN1EVwP5BzN3HzGi84EQ6RY
+         EN1WpK/Cc0yV0HLymo/0JtTz0Ji5dtjexuCauf35fjhbg8RZt3w6iuHhuYKdyIdXO/AE
+         lnkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705427886; x=1706032686;
+        d=1e100.net; s=20230601; t=1705427949; x=1706032749;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=32EVrbNt/EEZNt4rB/iUu9mmtUkEQtXJa14AmPNNrcM=;
-        b=i4JYxyLdfDzXYIQDABx3Zgo/WRsdVUx/mgQ20UR1aEsK4Fi2hRii74V8A5DB5E+okB
-         LLVn9UUI4LktZGacxr37noZ6FU6MbqKa98CkPVlqAkQsA2+1FDd6ZgsoI+hXfLW0I5xL
-         P/FCAYNMZfdtDg0KNPre5ibS4Jq6dp2Jzw6qhC26SquaO+NkNi6lQbUI+6OQMiiX4aH+
-         QSfwYz7LPTpHJ7jtw2VuWL2JNkQeZqrN1kc4w/Pw4CCvLPDez5eGi6klcZWpZuppHO3R
-         y9FEKZMGSooSnlwdrtwqsn7vR0PmUjfAUndgJJlZWj4kjCtnnJtaPX+YtHewISppq1Ud
-         RPWw==
-X-Gm-Message-State: AOJu0YxdOlN/y0b2a2rcqw9PFRtXjgSMoRDNImMJQHCoOPJlUaxnT6bi
-	m67GOvu5piOrgrpeIcknni5zbnq+Z1pyWhqRLYPjwPd1vQ+0rw==
-X-Google-Smtp-Source: AGHT+IHGRtGYR+ob5MH2hJ9O7cpvkhc29lKyflj59tl/q0n6uLbpibKZyAHkvaN5aYqJcQ+eGaWe0X2V6OSM6MjTHGU=
-X-Received: by 2002:a05:6a20:932f:b0:199:f5ef:5a8e with SMTP id
- r47-20020a056a20932f00b00199f5ef5a8emr2984054pzh.62.1705427885815; Tue, 16
- Jan 2024 09:58:05 -0800 (PST)
+        bh=Oc31P8IatTocdDsZCQmXC0DQW4G/2dM1ao0ezkE1ShU=;
+        b=tnpQbAKdeDMO2XZ7ojjJo35pLs6yRTMzf/C3eAeSGUixzQcH+JUr4Xm63VMbjvZXgh
+         vKk28fikpziAWQV97f7i/KMWpMTkheVCgl3CdF1tlCu2ygyW7u4Q2EBncNBMrG3Y8wWD
+         uEiN75ZYBezke+fFT95RaqOXiVUzAUwmMw7vvjVLpnebQDIEJptmjprdExe+oI8Ex2G7
+         uIF4UIIQNK3FEKZCJFGdY2MdQT59Rh7CXluXgVBQPwA1QGyuPAMKjel0maCWR+yP7PPT
+         dXayCJ1PZ8ypoRrz//IL9yAPQQtotv4JNmEQ6urO1vuG+OdcTxxgACwkgjCA7X+SISRi
+         rUOQ==
+X-Gm-Message-State: AOJu0YymWxYW81pfz/eIyX94avJw2r+AZHERRDcWJqsyOJ7xEOs2ynaX
+	aQ6h5lR951H0D2arAEFuC6lqeAr/DsZplKM+gI/4n0AUKH9XSg==
+X-Google-Smtp-Source: AGHT+IHNDDAgODlU90dyfmnXD7N4uAm4wwmeGkhk10dznInmiWmF4zv8f/xyyIrQiB56xBzJulFhItR2ZgwhI+7RmH0=
+X-Received: by 2002:a05:6a00:2310:b0:6d9:b3ce:9bce with SMTP id
+ h16-20020a056a00231000b006d9b3ce9bcemr4079809pfh.40.1705427949018; Tue, 16
+ Jan 2024 09:59:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240109125814.3691033-1-tudor.ambarus@linaro.org> <20240109125814.3691033-9-tudor.ambarus@linaro.org>
-In-Reply-To: <20240109125814.3691033-9-tudor.ambarus@linaro.org>
+References: <20240109125814.3691033-1-tudor.ambarus@linaro.org> <20240109125814.3691033-11-tudor.ambarus@linaro.org>
+In-Reply-To: <20240109125814.3691033-11-tudor.ambarus@linaro.org>
 From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Tue, 16 Jan 2024 11:57:54 -0600
-Message-ID: <CAPLW+4mUMx9RvFiS0L2U+_Fd_PzcHhmNbyR4cmUrYF3BVgb=Cw@mail.gmail.com>
-Subject: Re: [PATCH v3 08/12] arm64: dts: exynos: gs101: remove reg-io-width
- from serial
+Date: Tue, 16 Jan 2024 11:58:58 -0600
+Message-ID: <CAPLW+4k948THg=UVx-VVN8QJ980M8cLF0EDOUjhGwu=tTMcxqQ@mail.gmail.com>
+Subject: Re: [PATCH v3 10/12] arm64: dts: exynos: gs101: update USI UART to
+ use peric0 clocks
 To: Tudor Ambarus <tudor.ambarus@linaro.org>
 Cc: peter.griffin@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
 	gregkh@linuxfoundation.org, mturquette@baylibre.com, sboyd@kernel.org, 
@@ -92,51 +92,73 @@ Cc: peter.griffin@linaro.org, krzysztof.kozlowski+dt@linaro.org,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 9, 2024 at 7:00=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro.=
+On Tue, Jan 9, 2024 at 7:01=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro.=
 org> wrote:
 >
-> Remove the reg-io-width property in order to comply with the bindings.
+> Get rid of the dummy clock and start using the cmu_peric0 clocks
+> for the usi_uart and serial_0 nodes.
 >
-> The entire bus (PERIC) on which the GS101 serial resides only allows
-> 32-bit register accesses. The reg-io-width dt property is disallowed
-> for the "google,gs101-uart" compatible and instead the iotype is
-> inferred from the compatible.
+> Tested the serial at 115200, 1000000 and 3000000 baudrates,
+> everthing went fine.
 >
-> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 > Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 > ---
-
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-
-Just out of curiosity (I probably missed the relevant discussion
-earlier): what is the actual reason for moving 'reg-io-width' to the
-driver's code as 'iotype'? I mean, what is the actual problem that's
-being solved by this -- is it to make the earlycon functional for
-gs101? I'm asking because the bus width looks like a part of HW
-description, which usually belongs to dts, from the design point of
-view. Anyways, that's not a concern, just trying to understand the
-decision.
-
-> v3: collect Peter's R-b tag
-> v2: new patch
+> v3: no change
+> v2: identify and use gate clocks instead of divider clocks
 >
->  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 1 -
->  1 file changed, 1 deletion(-)
+>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 14 ++++----------
+>  1 file changed, 4 insertions(+), 10 deletions(-)
 >
 > diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/bo=
 ot/dts/exynos/google/gs101.dtsi
-> index d838e3a7af6e..4e5f4c748906 100644
+> index 2d1344a202a9..6aa25cc4676e 100644
 > --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
 > +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> @@ -366,7 +366,6 @@ usi_uart: usi@10a000c0 {
->                         serial_0: serial@10a00000 {
->                                 compatible =3D "google,gs101-uart";
+> @@ -180,14 +180,6 @@ HERA_CPU_SLEEP: cpu-hera-sleep {
+>                 };
+>         };
+>
+> -       /* TODO replace with CCF clock */
+> -       dummy_clk: clock-3 {
+> -               compatible =3D "fixed-clock";
+> -               #clock-cells =3D <0>;
+> -               clock-frequency =3D <12345>;
+> -               clock-output-names =3D "pclk";
+> -       };
+> -
+>         /* ect node is required to be present by bootloader */
+>         ect {
+>         };
+> @@ -367,7 +359,8 @@ usi_uart: usi@10a000c0 {
+>                         ranges;
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> -                       clocks =3D <&dummy_clk>, <&dummy_clk>;
+> +                       clocks =3D <&cmu_peric0 CLK_GOUT_PERIC0_CLK_PERIC=
+0_USI0_UART_CLK>,
+> +                                <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1=
+_IPCLK_0>;
+
+That looks much better.
+
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+
+>                         clock-names =3D "pclk", "ipclk";
+>                         samsung,sysreg =3D <&sysreg_peric0 0x1020>;
+>                         samsung,mode =3D <USI_V2_UART>;
+> @@ -378,7 +371,8 @@ serial_0: serial@10a00000 {
 >                                 reg =3D <0x10a00000 0xc0>;
-> -                               reg-io-width =3D <4>;
 >                                 interrupts =3D <GIC_SPI 634
 >                                               IRQ_TYPE_LEVEL_HIGH 0>;
->                                 clocks =3D <&dummy_clk 0>, <&dummy_clk 0>=
+> -                               clocks =3D <&dummy_clk 0>, <&dummy_clk 0>=
 ;
+> +                               clocks =3D <&cmu_peric0 CLK_GOUT_PERIC0_C=
+LK_PERIC0_USI0_UART_CLK>,
+> +                                        <&cmu_peric0 CLK_GOUT_PERIC0_PER=
+IC0_TOP1_IPCLK_0>;
+>                                 clock-names =3D "uart", "clk_uart_baud0";
+>                                 samsung,uart-fifosize =3D <256>;
+>                                 status =3D "disabled";
 > --
 > 2.43.0.472.g3155946c3a-goog
 >
