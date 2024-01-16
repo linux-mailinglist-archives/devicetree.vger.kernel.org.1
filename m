@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-32445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB03582F5EA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:47:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9993482F60D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:50:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABA411C240B7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:47:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38F441F253CF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBBDB1D55B;
-	Tue, 16 Jan 2024 19:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908D924A0D;
+	Tue, 16 Jan 2024 19:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EypzR3vg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SR2z+fyx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DC9D2231B;
-	Tue, 16 Jan 2024 19:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6677E24A0A;
+	Tue, 16 Jan 2024 19:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705434199; cv=none; b=k8nZ9i+8xInrtRxVKoUyDUYj5CwS7lbvqlV+CZJVf7BenZEHLXgQaTtsuKi/TdxeNWTC/vkXR/NZfIsslreparwOqh2XnMJzhcXScCgRaVPK3fjTH3wQlv39DOtmVvEoNvMsi0Nz82rC0oG3K0QZbvBvSsG3diIEWQcrn+lOthM=
+	t=1705434222; cv=none; b=R8LyMkrr6S7o2vtbWfeafqAe5PSPpWAEqUSHGH16nMxWskn/LHQmidYwkCpyQteHsPrevTSaCUfOQa+Dj7AAYk/5s2ucjnn8lxneLChAb2uJtfJvoIw+vKUzj6RTgjniErp+QaaxCns92kExwFChHIuQMrF3rOUyW+SCHU77zsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705434199; c=relaxed/simple;
-	bh=sHhNFhqpZh+BbakbgsxrMWK/0jDfFM02+cTHaEb4zO8=;
+	s=arc-20240116; t=1705434222; c=relaxed/simple;
+	bh=nEyyAn0Ezb8gPN2lMWSjSx6DFjbmdn0O36gA3PSaols=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=oPZn4E6MPxeBWDuknw0p4gRXgIOiKHC7EcMZlLIK/cUAdEl5TpjvwNj3we/r1NziUSf6bLTUuThmStsEYisO9fT2aDBjiX8NVkKeL1ym0Apo4rsCAgJkdz+MNfUP6KJ8e5dSSNiCBJ1sKXh1/kfgSwvpOxhG+ltiegIIP9Zsg/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EypzR3vg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 082A8C433C7;
-	Tue, 16 Jan 2024 19:43:17 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=JDeALm/PXj3+PiRjaMYUbmx/83MWbmmTxyGpd0oAyoTHaonn63VqR21gAvfM914bDcPi+5mFT3cnl2XLvJa+31vP3vw1aeyHGjV9MRwq0VQ+sdIPQgPuWgqRsPIvAaWKvlZD1MfCJUBn+B2yGzRW4XORRFSuDA8JqTQLL3zgry0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SR2z+fyx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2015EC433C7;
+	Tue, 16 Jan 2024 19:43:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705434199;
-	bh=sHhNFhqpZh+BbakbgsxrMWK/0jDfFM02+cTHaEb4zO8=;
+	s=k20201202; t=1705434222;
+	bh=nEyyAn0Ezb8gPN2lMWSjSx6DFjbmdn0O36gA3PSaols=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=EypzR3vgNNBNXhFz9JGEuV4/DcdJ014gfG1FkKrKH1461MTtT8aliW0ziHiSHeQ8G
-	 ONzGP0LmEAvqP0uwXcK8kN2AHI7E2qhi3bn1XDTkQxkEBPqt/2MrnjH8kKSd2qZq56
-	 fszgxdSyhnu585fxUK2ZT6XGW7aVx+U/D4DWhQxj70pI3KvyBswp/WeZHdCor/RyFS
-	 /Um/v6xGb8mj4dLAe5JK4BUeujmcqRXa4q0rLRPrwN8yGf/BWEld4X2YTseF/A3y2s
-	 jv5yukC4NsTwRimCzHBWzXImx0/Z/Jgg43CH+dpRXtcR02J4Z/KNdKTIZEzfmQspzV
-	 T730Bn47q1Ocw==
+	b=SR2z+fyxjM8PM/X2llK0dzhpOdoSqRp6PACDk92hPbRiCxE8cFFoK46doBA4vD3sH
+	 d3v3dem/G5Lv5S/R4CN17l3T/vyUT9ojH/t633fd49jrYxt0XcVgkDWYK/j+ZiXd6R
+	 35TFidcJuPGbVn8SUoyvJXgSZoEqZe+bVNwetpUT4jk8XQqqn2IRXghOv/+j076QGL
+	 asstEET0MZBF4HYp7DGS+1junT1OVyKSuqK3GeZbhbh2Xlrsyv4zPXcTT5i4vwT17s
+	 b5qHnBmDMrewOFUITRI/gBYtyLEqhHFwNTGV5bM2zKhmFDJLr/lnkpipmYAa0rn4ab
+	 cqfYI+DpseZbQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Shawn Guo <shawnguo@kernel.org>,
 	Sasha Levin <sashal@kernel.org>,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.7 018/108] ARM: dts: samsung: s5pv210: fix camera unit addresses/ranges
-Date: Tue, 16 Jan 2024 14:38:44 -0500
-Message-ID: <20240116194225.250921-18-sashal@kernel.org>
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 6.7 028/108] ARM: dts: imx7d: Fix coresight funnel ports
+Date: Tue, 16 Jan 2024 14:38:54 -0500
+Message-ID: <20240116194225.250921-28-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240116194225.250921-1-sashal@kernel.org>
 References: <20240116194225.250921-1-sashal@kernel.org>
@@ -70,87 +70,58 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.7
 Content-Transfer-Encoding: 8bit
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-[ Upstream commit 07e6a553c2f1d385edfc9185081dee442a9dd38d ]
+[ Upstream commit 0d4ac04fa7c3f6dc263dba6f575a2ec7a2d4eca8 ]
 
-The camera node has both unit address and children within the same bus
-mapping, thus needs proper ranges property to fix dtc W=1 warnings:
+imx7d uses two ports for 'in-ports', so the syntax port@<num> has to
+be used. imx7d has both port and port@1 nodes present, raising these
+error:
+funnel@30041000: in-ports: More than one condition true in oneOf schema
+funnel@30041000: Unevaluated properties are not allowed
+('in-ports' was unexpected)
 
-  Warning (unit_address_vs_reg): /soc/camera@fa600000: node has a unit name, but no reg or ranges property
-  Warning (simple_bus_reg): /soc/camera@fa600000: missing or empty reg/ranges property
+Fix this by also using port@0 for imx7s as well.
 
-Subtract 0xfa600000 from all its children nodes.  No functional impact
-expected.
-
-Link: https://lore.kernel.org/r/20230722121719.150094-3-krzysztof.kozlowski@linaro.org
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/samsung/s5pv210.dtsi | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ arch/arm/boot/dts/nxp/imx/imx7d.dtsi | 3 ---
+ arch/arm/boot/dts/nxp/imx/imx7s.dtsi | 6 +++++-
+ 2 files changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/samsung/s5pv210.dtsi b/arch/arm/boot/dts/samsung/s5pv210.dtsi
-index f7de5b5f2f38..ed560c9a3aa1 100644
---- a/arch/arm/boot/dts/samsung/s5pv210.dtsi
-+++ b/arch/arm/boot/dts/samsung/s5pv210.dtsi
-@@ -549,17 +549,17 @@ i2c1: i2c@fab00000 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7d.dtsi b/arch/arm/boot/dts/nxp/imx/imx7d.dtsi
+index 4b94b8afb55d..0484e349e064 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7d.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx7d.dtsi
+@@ -217,9 +217,6 @@ fec2: ethernet@30bf0000 {
+ };
  
- 		camera: camera@fa600000 {
- 			compatible = "samsung,fimc";
-+			ranges = <0x0 0xfa600000 0xe01000>;
- 			clocks = <&clocks SCLK_CAM0>, <&clocks SCLK_CAM1>;
- 			clock-names = "sclk_cam0", "sclk_cam1";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			#clock-cells = <1>;
- 			clock-output-names = "cam_a_clkout", "cam_b_clkout";
--			ranges;
+ &ca_funnel_in_ports {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+ 	port@1 {
+ 		reg = <1>;
+ 		ca_funnel_in_port1: endpoint {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+index 5387da8a2a0a..9f216d11a396 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx7s.dtsi
+@@ -190,7 +190,11 @@ funnel@30041000 {
+ 			clock-names = "apb_pclk";
  
--			csis0: csis@fa600000 {
-+			csis0: csis@0 {
- 				compatible = "samsung,s5pv210-csis";
--				reg = <0xfa600000 0x4000>;
-+				reg = <0x00000000 0x4000>;
- 				interrupt-parent = <&vic2>;
- 				interrupts = <29>;
- 				clocks = <&clocks CLK_CSIS>,
-@@ -572,9 +572,9 @@ csis0: csis@fa600000 {
- 				#size-cells = <0>;
- 			};
- 
--			fimc0: fimc@fb200000 {
-+			fimc0: fimc@c00000 {
- 				compatible = "samsung,s5pv210-fimc";
--				reg = <0xfb200000 0x1000>;
-+				reg = <0x00c00000 0x1000>;
- 				interrupts = <5>;
- 				interrupt-parent = <&vic2>;
- 				clocks = <&clocks CLK_FIMC0>,
-@@ -586,9 +586,9 @@ fimc0: fimc@fb200000 {
- 				samsung,cam-if;
- 			};
- 
--			fimc1: fimc@fb300000 {
-+			fimc1: fimc@d00000 {
- 				compatible = "samsung,s5pv210-fimc";
--				reg = <0xfb300000 0x1000>;
-+				reg = <0x00d00000 0x1000>;
- 				interrupt-parent = <&vic2>;
- 				interrupts = <6>;
- 				clocks = <&clocks CLK_FIMC1>,
-@@ -602,9 +602,9 @@ fimc1: fimc@fb300000 {
- 				samsung,lcd-wb;
- 			};
- 
--			fimc2: fimc@fb400000 {
-+			fimc2: fimc@e00000 {
- 				compatible = "samsung,s5pv210-fimc";
--				reg = <0xfb400000 0x1000>;
-+				reg = <0x00e00000 0x1000>;
- 				interrupt-parent = <&vic2>;
- 				interrupts = <7>;
- 				clocks = <&clocks CLK_FIMC2>,
+ 			ca_funnel_in_ports: in-ports {
+-				port {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
+ 					ca_funnel_in_port0: endpoint {
+ 						remote-endpoint = <&etm0_out_port>;
+ 					};
 -- 
 2.43.0
 
