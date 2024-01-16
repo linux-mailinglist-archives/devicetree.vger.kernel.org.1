@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-32572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC3B482FBB6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:01:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF8782FBC5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 23:03:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75394289A26
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:01:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4100CB292EA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF38916A2C0;
-	Tue, 16 Jan 2024 20:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23B516AFA5;
+	Tue, 16 Jan 2024 20:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BXNA8F67"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HjAJaa/y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C772D4F1FE;
-	Tue, 16 Jan 2024 20:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D4416AFA0;
+	Tue, 16 Jan 2024 20:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705435483; cv=none; b=cOXvJaeF2yrBxMbU8ERpmAjQ+//TpiKRqFXGbYBwW4P90xWvPCHIwuZzSBUgwBHo8q+vflsjg7TKHd/4V4o1V+U0XqXcVUr5S/2Qseh35IDF1A41kLE2CSPaKVSmpxYllUTrM0ovhnUUN5NqkQ3W8ITsndhBANzvZTdXMMk9YgE=
+	t=1705435491; cv=none; b=GSYO6DRBKlnu7Sc1e1wv3FbJU1xGm6EruxTgqS7pZ3aFLqz/4aEvzO/FkWB3kscjN54fGGVnuTwiVkORhR9N52hPy5uDFcR8WZi65nrfzRmJ0I6iSpBmj2SQLmgo/KpltREDLMVdsQM1RQUEYP+xOn4A/axlf23tEsQcuHdWxRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705435483; c=relaxed/simple;
-	bh=BoyZwHexvERldwxIRCsmteyIZajdYFVcQDx9WiF+kfo=;
+	s=arc-20240116; t=1705435491; c=relaxed/simple;
+	bh=YzyRqvbY41j8DBxTfmp8NbzikVnpkHjD8uBwXtztwko=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=bKdgcM5CoYeCUFuhLYkrOUE80VTYSuN0OQ+g07GhfReDZAy8DKQKQ6EKb2Na0+TYF+m5cT27gpIWQUX3iMmX7wrP2HHsV++6SbT/ynB0YZQzDBstVFqKz+gJoOlYg7hm7onm86QHhb3h0+zL9CBjce/jPzP4FTydPJcG40w8wO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BXNA8F67; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44D63C43390;
-	Tue, 16 Jan 2024 20:04:42 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=mz7+Ud/9egSttqJ8kk+ADMtO6wRw5lhE64ZOVhX3MaLxI7zdnkvo7/Qh+13YUkBiPQW4EtJpodZ7B/qpTI4kRfBM8cVADZRDl85tw7Z3Uc/AzbR0VULwmXG61z6nQ29vBdmHQ/cyKF8XwkdzKlZ4ukMg3nGK0/S9GzvaPO7DfO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HjAJaa/y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90A01C43390;
+	Tue, 16 Jan 2024 20:04:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705435483;
-	bh=BoyZwHexvERldwxIRCsmteyIZajdYFVcQDx9WiF+kfo=;
+	s=k20201202; t=1705435491;
+	bh=YzyRqvbY41j8DBxTfmp8NbzikVnpkHjD8uBwXtztwko=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=BXNA8F67/IXc5DV5hcVyWrV9zn9YSzraTGvo0AjWhtTJmQqH0mvjzIEOK+iyLAuJa
-	 /LwQz4kFh6AO0Tb6TJQKfOpc6Qzk+xXf4XgCeoosFLN8+A5t2MFdslxSCOOt2WKPwl
-	 Mibta3mCX/8Wg1LsAykCW8IHqiewSdRwO574W34mfFpUSZY8OL3zjLBOeTg7vfZgXg
-	 gxihy6poaBWH1N6GvwaUazE5NamOv0Ku4Lyz7r5NqWzCd+beqLqYED9lm0DK66rjV/
-	 7SaO9FjxjCpr026MSJVZmE3NeEKNcqa89Jb5m3PIVTKMpknOIct5Eanq+beyZ8oQeD
-	 Z0HF68cCOiLWA==
+	b=HjAJaa/yCCvRTTYZDneXz51VMF4z2MzXrPeAAhO5bpNjefsP9efm8kI1w8co7SIem
+	 y9iwFVe4AKxNTR1HPn7Dv3H7XxUEnUr6cp/SrvKqa8ffC+KLfjIobKZvZWh78gvx0l
+	 aBGYbY2G6TlV3weQDJ4yE4OzyeeVbVDHDBeSFc+xIIkpUulF4EUliFS2+i/vVRxOkd
+	 Sb+iKuouslYkfafDudAOq+2ujd3YxKOQmRqqjUOpQNlNzQQZyiatUC/oiCQtQ26iEU
+	 r6VbItwZT7WKvaghrFInEYxmt7kuDB7GP7Aktqsrva+3VqmqYdgst57cK8gYRj+dmo
+	 qrMLFiKloG0Pg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Shawn Guo <shawnguo@kernel.org>,
+Cc: Johan Jonker <jbx6244@gmail.com>,
+	Heiko Stuebner <heiko@sntech.de>,
 	Sasha Levin <sashal@kernel.org>,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 05/22] ARM: dts: imx7s: Fix nand-controller #size-cells
-Date: Tue, 16 Jan 2024 15:03:59 -0500
-Message-ID: <20240116200432.260016-5-sashal@kernel.org>
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 10/22] ARM: dts: rockchip: fix rk3036 hdmi ports node
+Date: Tue, 16 Jan 2024 15:04:04 -0500
+Message-ID: <20240116200432.260016-10-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240116200432.260016-1-sashal@kernel.org>
 References: <20240116200432.260016-1-sashal@kernel.org>
@@ -70,36 +69,49 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 4.19.305
 Content-Transfer-Encoding: 8bit
 
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
+From: Johan Jonker <jbx6244@gmail.com>
 
-[ Upstream commit 4aadb841ed49bada1415c48c44d21f5b69e01299 ]
+[ Upstream commit 27ded76ef0fcfcf939914532aae575cf23c221b4 ]
 
-nand-controller.yaml bindings says #size-cells shall be set to 0.
-Fixes the dtbs_check warning:
-arch/arm/boot/dts/nxp/imx/imx7s-mba7.dtb: nand-controller@33002000:
- #size-cells:0:0: 0 was expected
-  from schema $id: http://devicetree.org/schemas/mtd/gpmi-nand.yaml#
+Fix hdmi ports node so that it matches the
+rockchip,inno-hdmi.yaml binding.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Link: https://lore.kernel.org/r/9a2afac1-ed5c-382d-02b0-b2f5f1af3abb@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx7s.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/rk3036.dtsi | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
-index ebe954f94e09..c62cf9fea481 100644
---- a/arch/arm/boot/dts/imx7s.dtsi
-+++ b/arch/arm/boot/dts/imx7s.dtsi
-@@ -1094,7 +1094,7 @@ dma_apbh: dma-apbh@33000000 {
- 		gpmi: gpmi-nand@33002000{
- 			compatible = "fsl,imx7d-gpmi-nand";
+diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
+index db612271371b..c5144f06c3e7 100644
+--- a/arch/arm/boot/dts/rk3036.dtsi
++++ b/arch/arm/boot/dts/rk3036.dtsi
+@@ -336,12 +336,20 @@ hdmi: hdmi@20034000 {
+ 		pinctrl-0 = <&hdmi_ctl>;
+ 		status = "disabled";
+ 
+-		hdmi_in: port {
++		ports {
  			#address-cells = <1>;
--			#size-cells = <1>;
-+			#size-cells = <0>;
- 			reg = <0x33002000 0x2000>, <0x33004000 0x4000>;
- 			reg-names = "gpmi-nand", "bch";
- 			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+ 			#size-cells = <0>;
+-			hdmi_in_vop: endpoint@0 {
++
++			hdmi_in: port@0 {
+ 				reg = <0>;
+-				remote-endpoint = <&vop_out_hdmi>;
++
++				hdmi_in_vop: endpoint {
++					remote-endpoint = <&vop_out_hdmi>;
++				};
++			};
++
++			hdmi_out: port@1 {
++				reg = <1>;
+ 			};
+ 		};
+ 	};
 -- 
 2.43.0
 
