@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-32549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7061482FAF8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:45:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2440482FB01
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:46:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2E97B230F9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:44:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 491DEB25EF6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:45:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0516715E276;
-	Tue, 16 Jan 2024 20:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9AE8657CD;
+	Tue, 16 Jan 2024 20:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D9oGuL5I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g0XjUw5j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D027415E272;
-	Tue, 16 Jan 2024 20:01:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C78657C9;
+	Tue, 16 Jan 2024 20:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705435300; cv=none; b=sXkQum1FGypKCshguK1QE7OQNcWHHMr1TV67ilRftR71NSgjZ0wxPnsWC7AAXSIZe2HHPhRhGb+CeCO0QJUCCagXxHbM/auHqwCloiwRlQjvZ0Sz8IkWqGHHR9vYYoJ5fltgrTgMlzplaGvY54FTTy8KI48MhgRTAEwJ9/kGr2E=
+	t=1705435318; cv=none; b=Fs8dp6p+st+mshTcCEo3v1xikJ90Ndjlo1qNosgTkKY3Zjmo10lGKF1B5gKjne2iWjU2RrZgwd4vvAZPHuD23t3yhGtR5ffc9Ef1VxHxKIrud/GiuyIRUbRWqbxOSMvC6z0tsX1qGsjisl1QeDVhOPSvNgqCCa203dvGZ6UwnsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705435300; c=relaxed/simple;
-	bh=uwVLloBRdccwgje9BLUjzSaV/tJxTpF1y6Cch1AdSj4=;
+	s=arc-20240116; t=1705435318; c=relaxed/simple;
+	bh=NG+Su3RKYRTKaczlnbgTDf5XSrB7y//c1cAxksNaT+A=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=MvvoUIXtx1rqYizaT8KZ/IRZiikJt30ORNNEfHBr6DYNgGNIQ+8t/EiEZQtgCdJkaWEP4gwmyZ/hEsqz9W5rGJ2/7szUmImBAIUTBqvHKHcEgBO1xuxpss5GTasa+Fg05XQyturvkPZwospQJIgOxBhqWI6PJa8Wk0Qzf6awqxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D9oGuL5I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9AFC43601;
-	Tue, 16 Jan 2024 20:01:39 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=StAuhQRZ055Q53ScGq7O651qquhLhO+kVu59DWxBlfRuHEDIYraRsg/Tv/gZ0AJSehP3SRDk1gYhaivk46TkAUmYcDesFT177UAos5KuFs9w6KdOSw9m8bZoR502PnJMV7oeuRmtZ+v3wU1p4i3UgIEoq60WoUiL10/0FsyiV9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g0XjUw5j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21815C433A6;
+	Tue, 16 Jan 2024 20:01:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705435300;
-	bh=uwVLloBRdccwgje9BLUjzSaV/tJxTpF1y6Cch1AdSj4=;
+	s=k20201202; t=1705435318;
+	bh=NG+Su3RKYRTKaczlnbgTDf5XSrB7y//c1cAxksNaT+A=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=D9oGuL5IBIDjMv17oK045xRq/Yxkq9oeDBr6xsoB/WVEmFJkTEGawNqssXA+lePDW
-	 Y+YN6YkcmXhKGgSpfRE8KsIUbWY6j9Qua7ENGRiajNy7shiA/+2+dsERK0MF/rFFUh
-	 f7JxeDB10Wh1Q1HrBUF4qHAKtvDDfVctbuqo3ExskLzEvDibI1iUGQkuFtzv25ts04
-	 gRabWnT6SVJ8to8kax9TbY4DVSxYJxUhdLbdugtFC1YqZAMsr9ruwDCsY2NZ44OYZa
-	 wiZyIAJ72n5ZT8cnvjUwCBzW96dBKGtg4OlU03c+aoykvbtNzs/RwJslRhfPIOhMUK
-	 p9wtJ0StFt4EA==
+	b=g0XjUw5jGBOkY54EaC++tlEQpVfO4tMauKDSK/nAFf84lI2jyRielASe7U1vb8rFt
+	 0R3PTyRMkA3Tnp1u/BeB7QK63KTr74fzLHi07MXhi61B3im8JoHc6aX5PAV15h38lh
+	 XHT+spS8OahCy0Hsr0AbSBQNd/QLxv1Wj5MOpAW49JsONv5R5ib028YZ0Ql12+ioYn
+	 je0nGQR5x8FTTs5tX3wVn+X5yvfCMVrmAal/iqzfjNzJoDs73vnaAboJCdoJJC2Qnz
+	 NHgheZJ/IL+gLGKB5TwqVoCoqqEEC4lt35UANNeLqDcxwIH5oVQGzQ2bs+wrY0mHqE
+	 Bt4eWnNp7tkmg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -53,9 +53,9 @@ Cc: Fabio Estevam <festevam@denx.de>,
 	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 24/44] ARM: dts: imx1: Fix sram node
-Date: Tue, 16 Jan 2024 14:59:53 -0500
-Message-ID: <20240116200044.258335-24-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 27/44] ARM: dts: imx25: Fix the iim compatible string
+Date: Tue, 16 Jan 2024 14:59:56 -0500
+Message-ID: <20240116200044.258335-27-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240116200044.258335-1-sashal@kernel.org>
 References: <20240116200044.258335-1-sashal@kernel.org>
@@ -72,49 +72,36 @@ Content-Transfer-Encoding: 8bit
 
 From: Fabio Estevam <festevam@denx.de>
 
-[ Upstream commit c248e535973088ba7071ff6f26ab7951143450af ]
+[ Upstream commit f0b929f58719fc57a4926ab4fc972f185453d6a5 ]
 
-Per sram.yaml, address-cells, size-cells and ranges are mandatory.
+Per imx-iim.yaml, the compatible string should only contain a single
+entry.
 
-The node name should be sram.
+Use it as "fsl,imx25-iim" to fix the following dt-schema warning:
 
-Change the node name and pass the required properties to fix the
-following dt-schema warnings:
-
-imx1-apf9328.dtb: esram@300000: $nodename:0: 'esram@300000' does not match '^sram(@.*)?'
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-imx1-apf9328.dtb: esram@300000: '#address-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-imx1-apf9328.dtb: esram@300000: '#size-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-imx1-apf9328.dtb: esram@300000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
+imx25-karo-tx25.dtb: efuse@53ff0000: compatible: ['fsl,imx25-iim', 'fsl,imx27-iim'] is too long
+	from schema $id: http://devicetree.org/schemas/nvmem/imx-iim.yaml#
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx1.dtsi | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/imx25.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx1.dtsi b/arch/arm/boot/dts/imx1.dtsi
-index 9b940987864c..8d6e900a9081 100644
---- a/arch/arm/boot/dts/imx1.dtsi
-+++ b/arch/arm/boot/dts/imx1.dtsi
-@@ -268,9 +268,12 @@ weim: weim@220000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm/boot/dts/imx25.dtsi b/arch/arm/boot/dts/imx25.dtsi
+index d24b1da18766..99886ba36724 100644
+--- a/arch/arm/boot/dts/imx25.dtsi
++++ b/arch/arm/boot/dts/imx25.dtsi
+@@ -543,7 +543,7 @@ pwm1: pwm@53fe0000 {
+ 			};
  
--		esram: esram@300000 {
-+		esram: sram@300000 {
- 			compatible = "mmio-sram";
- 			reg = <0x00300000 0x20000>;
-+			ranges = <0 0x00300000 0x20000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 		};
- 	};
- };
+ 			iim: efuse@53ff0000 {
+-				compatible = "fsl,imx25-iim", "fsl,imx27-iim";
++				compatible = "fsl,imx25-iim";
+ 				reg = <0x53ff0000 0x4000>;
+ 				interrupts = <19>;
+ 				clocks = <&clks 99>;
 -- 
 2.43.0
 
