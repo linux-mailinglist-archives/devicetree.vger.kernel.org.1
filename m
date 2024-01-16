@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-32456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97ACB82F67B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:00:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0B082F68B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:02:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA0D11C246AA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:00:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34E0C282B75
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:02:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717B436096;
-	Tue, 16 Jan 2024 19:45:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B481B208AE;
+	Tue, 16 Jan 2024 19:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zd6kkuXe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tlJn4aJb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47DFA3B18D;
-	Tue, 16 Jan 2024 19:45:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0B540BE4;
+	Tue, 16 Jan 2024 19:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705434301; cv=none; b=mSWEJUuauwBnZQBY/Svgi5S2gKHNgJk484Nm6CIRmkecjk0tQupqwS5e5C7c9pkwLlAzqANyzbdPPICXKAYEX6Su2McdIYRI/yTVXFIEokJXkG7KAd1b64jh3+NTbwQoAqlmZgJEs+dHqYnL8fTNJgK6gqyo7E8Nf6H3O28GpQ4=
+	t=1705434331; cv=none; b=qhwoobT5zIVnrSht3ApcUY+2c9FWtM1caAPxITpo8/QCee//PGSIfwAlajTO62CXCwtYFI7W2/iTeKKy1grUwrZXa53Cf5XazwqEAl/r01fiUaVP+eVdV75C454m68LTYURUCyH210k3Jl85E7zUddjg4+cNBNWqLxiL8f/YX8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705434301; c=relaxed/simple;
-	bh=PRZN9YTZt/ZgWb3fRzdwcprIRBSH4482/juVxFqgRk4=;
+	s=arc-20240116; t=1705434331; c=relaxed/simple;
+	bh=HlzBsDp6k6DRdPQsKDOA1wu2AKK9wqQg1A7h1nmaL/A=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=nSEs1bmktAPWDFg8W7JMzvinOZNZOvO+QC+XrJ7aE+VsHT9dbQPd7QfbG4mk5Sgdcaa24wGCb8NS5goZN1ym6CC1PAZNByluk3LDTwP1x/Ck+oeq1cmk7NUVSVRET5iH2KSd93ghdYOtma4e5w05Znl6CivwvEkJZXz+pUIk0+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zd6kkuXe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94C59C433C7;
-	Tue, 16 Jan 2024 19:44:59 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=a0F5QQBvhKiso+Er7sNgJnawVgG3T7G+r6irCotgpPPl2hzMgJiE0dg3yJNAAIw1BjBtpfRjhOQsv1cOXFcd8gHRBX8wxT65DcZCVdNxM1qIkc+4k8ceBxx8UyiTXDaav/czps+8ACnkQMfqCD9FVK3qAYGObhw78ah0hW6T67o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tlJn4aJb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF1FAC433F1;
+	Tue, 16 Jan 2024 19:45:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705434300;
-	bh=PRZN9YTZt/ZgWb3fRzdwcprIRBSH4482/juVxFqgRk4=;
+	s=k20201202; t=1705434330;
+	bh=HlzBsDp6k6DRdPQsKDOA1wu2AKK9wqQg1A7h1nmaL/A=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Zd6kkuXeD66hfEot5cKjl6Q38LBMK0fIbB1W0DE7mCmlRCQjV+M5hBWsnsQstscaM
-	 YX70J8CMnxu0OA8p5fGhto7xlt+lYVDftU5Q083Hx8tUywuLmug9Ftl7haXPFgAfh5
-	 p9Hm9r+qA7Kd4FfihEe7o/BmWZIM8LR782Q/OtZAjGn16JKWZBk0PFMs7GN2F0xAuz
-	 oSf5kUTAyNnE4kfOoaoPnMHDSncUGHEUsvxupalV3yckb69VyT4xNNN399MgzB1yn4
-	 MZVVj+9DRME85JSM/x8o4peUVv67CodtrDxbweUb480CJqoFe9o+V4yugCIxUeRt4w
-	 k/SLTISQbxYPA==
+	b=tlJn4aJbF6NDA3pUsEu0OD199J2lVg/CYIKV6XfBitV2f6CK2y8EVkRttaKMUJDh7
+	 cjsp2PnrM4habWZb3HIk29gWNcrHtpuN+6mSoOGatmdkw4L5y6dn0cpHM/dKbtyeRE
+	 m8BiIm2IVI9suR0JJ0eTbGgYs6b3xfgnG/5gPpQi/M6omAp1iUDZ89vMXRWNIvKt5a
+	 UWuVy4kypB+VA9URmSQHdTqbSu3u6F4jzrdDbIGHfd/l9X10FrcEyOJrE69BWbTrYw
+	 EY/OMwCYFXxFBxnniuv9R8mpaqKLcAKoJoOzAIs0/9aLQ9EXL1uOooHawExBDaO7MF
+	 hmG87DWm4fAgQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Fabio Estevam <festevam@denx.de>,
-	Shawn Guo <shawnguo@kernel.org>,
+Cc: Michal Simek <michal.simek@amd.com>,
 	Sasha Levin <sashal@kernel.org>,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
+	ashok.reddy.soma@xilinx.com,
+	manikanta.guntupalli@amd.com,
+	laurent.pinchart@ideasonboard.com,
+	harini.katakam@amd.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.7 059/108] ARM: dts: imx1: Fix sram node
-Date: Tue, 16 Jan 2024 14:39:25 -0500
-Message-ID: <20240116194225.250921-59-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.7 064/108] arm64: zynqmp: Move fixed clock to / for kv260
+Date: Tue, 16 Jan 2024 14:39:30 -0500
+Message-ID: <20240116194225.250921-64-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240116194225.250921-1-sashal@kernel.org>
 References: <20240116194225.250921-1-sashal@kernel.org>
@@ -70,51 +73,115 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.7
 Content-Transfer-Encoding: 8bit
 
-From: Fabio Estevam <festevam@denx.de>
+From: Michal Simek <michal.simek@amd.com>
 
-[ Upstream commit c248e535973088ba7071ff6f26ab7951143450af ]
+[ Upstream commit 6a10a19a6bd2fd8d27a510678bf87bd9408f51d8 ]
 
-Per sram.yaml, address-cells, size-cells and ranges are mandatory.
+fixed clock nodes can't be on the bus because they are missing reg
+property. That's why move them to root.
+And because it is root it is good to have it as the first node in a file.
 
-The node name should be sram.
-
-Change the node name and pass the required properties to fix the
-following dt-schema warnings:
-
-imx1-apf9328.dtb: esram@300000: $nodename:0: 'esram@300000' does not match '^sram(@.*)?'
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-imx1-apf9328.dtb: esram@300000: '#address-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-imx1-apf9328.dtb: esram@300000: '#size-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-imx1-apf9328.dtb: esram@300000: 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Michal Simek <michal.simek@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/nxp/imx/imx1.dtsi | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 28 ++++++++---------
+ .../boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 30 +++++++++----------
+ 2 files changed, 29 insertions(+), 29 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx1.dtsi b/arch/arm/boot/dts/nxp/imx/imx1.dtsi
-index e312f1e74e2f..4aeb74479f44 100644
---- a/arch/arm/boot/dts/nxp/imx/imx1.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx1.dtsi
-@@ -268,9 +268,12 @@ weim: weim@220000 {
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+index ae1b9b2bdbee..dee238739290 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+@@ -21,20 +21,7 @@
+ /dts-v1/;
+ /plugin/;
  
--		esram: esram@300000 {
-+		esram: sram@300000 {
- 			compatible = "mmio-sram";
- 			reg = <0x00300000 0x20000>;
-+			ranges = <0 0x00300000 0x20000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 		};
+-&i2c1 { /* I2C_SCK C23/C24 - MIO from SOM */
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	pinctrl-names = "default", "gpio";
+-	pinctrl-0 = <&pinctrl_i2c1_default>;
+-	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 24 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+-	sda-gpios = <&gpio 25 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+-
+-	/* u14 - 0x40 - ina260 */
+-	/* u27 - 0xe0 - STDP4320 DP/HDMI splitter */
+-};
+-
+-&amba {
++&{/} {
+ 	si5332_0: si5332_0 { /* u17 */
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -72,6 +59,19 @@ si5332_5: si5332_5 { /* u17 */
  	};
  };
+ 
++&i2c1 { /* I2C_SCK C23/C24 - MIO from SOM */
++	#address-cells = <1>;
++	#size-cells = <0>;
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_i2c1_default>;
++	pinctrl-1 = <&pinctrl_i2c1_gpio>;
++	scl-gpios = <&gpio 24 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 25 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++
++	/* u14 - 0x40 - ina260 */
++	/* u27 - 0xe0 - STDP4320 DP/HDMI splitter */
++};
++
+ /* DP/USB 3.0 and SATA */
+ &psgtr {
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+index b59e48be6465..73c5cb156caf 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+@@ -16,21 +16,7 @@
+ /dts-v1/;
+ /plugin/;
+ 
+-&i2c1 { /* I2C_SCK C23/C24 - MIO from SOM */
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	pinctrl-names = "default", "gpio";
+-	pinctrl-0 = <&pinctrl_i2c1_default>;
+-	pinctrl-1 = <&pinctrl_i2c1_gpio>;
+-	scl-gpios = <&gpio 24 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+-	sda-gpios = <&gpio 25 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+-
+-	/* u14 - 0x40 - ina260 */
+-	/* u43 - 0x2d - usb5744 */
+-	/* u27 - 0xe0 - STDP4320 DP/HDMI splitter */
+-};
+-
+-&amba {
++&{/} {
+ 	si5332_0: si5332_0 { /* u17 */
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -68,6 +54,20 @@ si5332_5: si5332_5 { /* u17 */
+ 	};
+ };
+ 
++&i2c1 { /* I2C_SCK C23/C24 - MIO from SOM */
++	#address-cells = <1>;
++	#size-cells = <0>;
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_i2c1_default>;
++	pinctrl-1 = <&pinctrl_i2c1_gpio>;
++	scl-gpios = <&gpio 24 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio 25 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++
++	/* u14 - 0x40 - ina260 */
++	/* u43 - 0x2d - usb5744 */
++	/* u27 - 0xe0 - STDP4320 DP/HDMI splitter */
++};
++
+ /* DP/USB 3.0 */
+ &psgtr {
+ 	status = "okay";
 -- 
 2.43.0
 
