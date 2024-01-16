@@ -1,125 +1,131 @@
-Return-Path: <devicetree+bounces-32272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1584082ECED
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:46:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBACA82ED3D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 920B4285567
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:46:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 799BEB22C36
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:59:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE13118056;
-	Tue, 16 Jan 2024 10:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A1C1A58C;
+	Tue, 16 Jan 2024 10:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mfqpe7nz"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="nq382OCs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.fris.de (unknown [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8518617BBC;
-	Tue, 16 Jan 2024 10:46:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1296AC43399;
-	Tue, 16 Jan 2024 10:46:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705401965;
-	bh=mbJ1c5G3Vv08PsHhe4Zo7OUyXuKmAEsQWpRmgYggN64=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mfqpe7nz66qoUzp5GJeBswJTc4VxZiZH5Xbho3cjzMjqQfv+8blfoDXbXrNaZc8ln
-	 cCFSjMZ+YpuwFmfIf4Lxr8fx5a2PN+KztapO4FFzk0N9GPMQGvu4VGKFe3TPfcTJ0D
-	 /rITwa2Z+EPytNi84txlH5Rv4Ej24TcsWbZp0Xo88V1q6SS5ONKP+BlzAF8tny8dJp
-	 bWp5adKnChYgZoM1bDnXB8U4HTEs+hdOIgTRT3+K1bIgXnDwS7LiRXq0WmhSBJHS/o
-	 HZPYNbFPB/P+6rZ7GcQjNL4mQnPYoz7g8CJlmefGDLYrqbenwG8wQO4D7JOfRp7orW
-	 Tr87DyYUOAgBg==
-Received: from johan by xi.lan with local (Exim 4.96.2)
-	(envelope-from <johan@kernel.org>)
-	id 1rPgxL-0005YC-1P;
-	Tue, 16 Jan 2024 11:46:07 +0100
-Date: Tue, 16 Jan 2024 11:46:07 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 075741A711;
+	Tue, 16 Jan 2024 10:59:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=fris.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 98DCCC0307;
+	Tue, 16 Jan 2024 11:53:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+	t=1705402415; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=H6HXW36t66rC6youCTbv8zF7oQnyFZiT5vVPj7yQdkI=;
+	b=nq382OCs/cCX1l9apT3dE4VHNziQ2tG/E5wSwRGqAPukcJEhrEO2TuMAjIqFJAIyTxXE+w
+	Q139O3XNK2KfAGZLp2Cio0ohSKu2D5nW7u4/pWKUfg6zd8/BGTc0tOA6sL7ebRGKXRfoQu
+	72LP+E9HQS7xcai9WONnD1O3kppHY9vqhBEb6N3F8qoF3CS/yKnf4QuGW7TMePV/ioQ2gx
+	lt8c7cwnv71qv7uKSr/NQHwP3tuHp+7jtZot4og7kZen/3b69qnmG5U/Fne7m9jy1VpqJJ
+	PSU6NHQoj8e07GLDZX9l8gf0w9tJgZJQ1E7lA+3m7+KjNQ/46u1To9h01i50KA==
+From: Frieder Schrempf <frieder@fris.de>
+To: Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Li Yang <leoyang.li@nxp.com>,
+	netdev@vger.kernel.org,
+	Richard Cochran <richardcochran@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
-	vireshk@kernel.org, quic_vbadigan@quicinc.com,
-	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v6 3/6] PCI: qcom: Add missing icc bandwidth vote for cpu
- to PCIe path
-Message-ID: <ZaZeb8YysChzT3L1@hovoldconsulting.com>
-References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
- <20240112-opp_support-v6-3-77bbf7d0cc37@quicinc.com>
- <ZaFhzOCTpZYlAh60@hovoldconsulting.com>
- <1a3aeab6-740b-ebcc-e934-6153a4292151@quicinc.com>
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	James Hilliard <james.hilliard1@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jesper Nilsson <jesper.nilsson@axis.com>,
+	Josua Mayer <josua@solid-run.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Marek Vasut <marex@denx.de>,
+	Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Stefan Wahren <stefan.wahren@chargebyte.com>,
+	Tim Harvey <tharvey@gateworks.com>,
+	Wei Xu <xuwei5@hisilicon.com>,
+	Yang Xiwen <forbidden405@foxmail.com>,
+	Yannic Moog <y.moog@phytec.de>
+Subject: [PATCH 0/3] ARM: dts: imx6dl: Add support for Sielaff i.MX6 Solo board
+Date: Tue, 16 Jan 2024 11:51:54 +0100
+Message-ID: <20240116105317.267525-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1a3aeab6-740b-ebcc-e934-6153a4292151@quicinc.com>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Jan 16, 2024 at 10:34:22AM +0530, Krishna Chaitanya Chundru wrote:
-> 
-> 
-> On 1/12/2024 9:29 PM, Johan Hovold wrote:
-> > On Fri, Jan 12, 2024 at 07:52:02PM +0530, Krishna chaitanya chundru wrote:
-> >> CPU-PCIe path consits for registers PCIe BAR space, config space.
-> > 
-> > consits?
-> > 
-> >> As there is less access on this path compared to pcie to mem path
-> >> add minimum vote i.e GEN1x1 bandwidth always.
-> > 
-> > gen1 bandwidth can't be right.
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-> There is no recommended value we need vote for this path, as there is
-> BAR and config space in this path we are voting for GEN1x1.
+This series adds upstream support for the Sielaff i.MX6 Solo board.
+It is used as controller and user interface in vending machines. It
+is based on the i.MX6 Solo SoC and features the following
+peripherals and interfaces:
 
-I can see that, but that does not explain why you used those seemingly
-arbitrary numbers or why you think that's correct.
+* 512 MB DDR3 RAM
+* 512 MB NAND Flash
+* 1 MB NOR Flash
+* SD card
+* Debug LED
+* Debug UART
+* Key Inputs
+* RTC
+* RS232
+* 100 MBit Ethernet
+* USB Hub
+* USB OTG
+* HDMI
+* 7" LVDS IPS panel
+* PWM Backlight
+* Optional Extension Board with USB Ethernet NIC
 
-> Please suggest a recommended value for this path if the GEN1x1 is high.
+Patch 1 adds the vendor prefix, patch 2 adds the DT bindings and
+patch 3 adds the DT.
 
-No, you submitted the patch and you work for Qualcomm. You need to
-figure out what the value should be. All I can say is that the gen1
-value is likely not correct and therefore confusing.
+Frieder Schrempf (3):
+  dt-bindings: vendor-prefixes: Add Sielaff
+  dt-bindings: arm: fsl: Add Sielaff i.MX6 Solo board
+  ARM: dts: imx6dl: Add support for Sielaff i.MX6 Solo board
 
-> >> In suspend remove the cpu vote after register space access is done.
-> >>
-> >> Fixes: c4860af88d0c ("PCI: qcom: Add basic interconnect support")
-> >> cc: stable@vger.kernel.org
-> > 
-> > This does not look like a fix so drop the above.
-> > 
-> > The commit you refer to explicitly left this path unconfigured for now
-> > and only added support for the configuring the mem path as needed on
-> > sc8280xp which otherwise would crash.
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/nxp/imx/Makefile            |   1 +
+ arch/arm/boot/dts/nxp/imx/imx6dl-sielaff.dts  | 533 ++++++++++++++++++
+ 4 files changed, 537 insertions(+)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-sielaff.dts
 
-> Without this path vote BAR and config space can result NOC timeout
-> errors, we are surviving because of other driver vote for this path.
-> For that reason we added a fix tag.
+-- 
+2.43.0
 
-Ok, then mention that in the commit message so that it becomes more
-clear why this is needed and whether this should be considered a fix. As
-it stands, the commit message makes this look like a new feature.
-
-And the above Fixes tag is incorrect either way as that commit did not
-introduce any issue.
-
-Johan
 
