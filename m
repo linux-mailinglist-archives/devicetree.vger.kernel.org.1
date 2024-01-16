@@ -1,163 +1,203 @@
-Return-Path: <devicetree+bounces-32264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1DDD82EC97
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:10:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5910482ECA7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 806E91F2365C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:10:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF87A1F23D3D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB94A134C9;
-	Tue, 16 Jan 2024 10:10:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5E2134D7;
+	Tue, 16 Jan 2024 10:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oAo+U6ks"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="kpHNPqFe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0298C134C0;
-	Tue, 16 Jan 2024 10:10:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1705399801; x=1736935801;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=LcspFKOnWW08Dve9A5/fi9ZB2V7B9o4EjqhBO4t07k8=;
-  b=oAo+U6ksGoz30Xw74gGWeGQNoQRCBqk6Y1z3aim/aGCSAS9BIBV5Ohti
-   fKUxUTn3qd4WZrTjrRPNG7kQCKZd5tDZI66EQIAPQQRqdEOLDsERWlqNZ
-   CB1fTQ/8TpJpBOQXkV3h9bzb2gm3d7OH7PUleCKfgDHemr02FdkR0ztYI
-   Q/mYNTsebC4BCGyaEkYGfkGFCOa3DNbntpeOwTaD9UTTPdmt4Abv4P68c
-   g/MGAqvyVbBbezeZpOo1wuIvk89kgBbas53NKD/xQ3B1Ue9t7ryQ9Ujgi
-   VuXcTQFKkV9pL1PhVP6mAXvtT4Woxy+yNlle/R2hK2hsfRx3Wqaa5p9Y2
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="430980916"
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; 
-   d="scan'208";a="430980916"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2024 02:10:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; 
-   d="scan'208";a="26081915"
-Received: from lkp-server01.sh.intel.com (HELO 961aaaa5b03c) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 16 Jan 2024 02:09:56 -0800
-Received: from kbuild by 961aaaa5b03c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rPgOH-0000QQ-18;
-	Tue, 16 Jan 2024 10:09:53 +0000
-Date: Tue, 16 Jan 2024 18:09:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mao Jinlong <quic_jinlmao@quicinc.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@arm.com>, Leo Yan <leo.yan@linaro.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: oe-kbuild-all@lists.linux.dev, Mao Jinlong <quic_jinlmao@quicinc.com>,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] coresight: core: Add device name support
-Message-ID: <202401161751.IuhpKb75-lkp@intel.com>
-References: <20240115164252.26510-2-quic_jinlmao@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 910B2134D6
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 10:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E25313F274
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 10:20:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1705400459;
+	bh=xU+S+uXFFj2cwv3uk43aNu2KbGErrv7KCMlpZ+iS0ZQ=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=kpHNPqFejZke64zOWf2zxi+lbiuNCMCJojW0Ct0GdDMO+82GoqKeG34bOH8oxcKqK
+	 6My5kg/DyaEhpprQPMI7WVQ2LSGB6iIGFdld7SrlG30lCDPhGfhD2jL7k20ryjWXCK
+	 czdIe8uq6lPuyU48nRCrsEhOKdySM/lcO86X4+1LPXnDYI9WpG6xRuxSyIck0Jz/na
+	 P7ZtEsTF7Jrn+zx/0HNhBEosloaR0mcY6YUEfLh1FdUy2dOzWvvEzHT4gw8PdJCjon
+	 IiOkT02FbqdFkzt4eSsnDUUWh9OvD+hzR1tIOS71JTqDgj6O5PPm78UfxdB0ACHxxZ
+	 oL2Osk49yWyWQ==
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4298c15d3a9so132423291cf.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 02:20:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705400458; x=1706005258;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xU+S+uXFFj2cwv3uk43aNu2KbGErrv7KCMlpZ+iS0ZQ=;
+        b=OvUfEY74t6w5c/x4rQpDHJaSzArl72PgAmWbTf0rst8uByJ6DXY3cnO1z8E3Cz2O2w
+         N3E4U8YaNesZeBByxxJEY1sQiv2JqzTTKQkdtFl1eCeYilI4LEtEWdPV8EUqmtqCYo49
+         q1yaKkeTTnBdYiNIs4cSrvmk/X5Sa1EPNZWmIZ8Y92qbIDTSvchu8wV/3pnXgXHdO9HJ
+         vN8AyXvXnUHgeixC0AF8bdh347Z8kzODYrLe3zW4zs2arTEKI1z1LyVYWgvxavEfpQO/
+         kUEUe+4x2wuUV4wIMiiUJoJhwqz14PsUuQiqNqeKk/p1XJBWKcYzmWBQOCBrVmn72zkk
+         T77w==
+X-Gm-Message-State: AOJu0YzwgSxIPfKKSSSeM0e+O+m7jg78kGE3nb4YHFhM0bah8v1rYkjW
+	E6MVIJUZAfUPQw3eHrMsJxcR/RTvifmrZ2RrXM27TUyDUP5yFmXrsyqaHnW65hz5ifLkQL5jrqu
+	d/2uOpWYUYizT/smofutiUmFahSgq6n9Rarl7Dh5yZhY/i/nDkuuu6QMYj5Eoaw==
+X-Received: by 2002:a05:622a:314:b0:42a:9f3:f98f with SMTP id q20-20020a05622a031400b0042a09f3f98fmr59872qtw.31.1705400458737;
+        Tue, 16 Jan 2024 02:20:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFyHQK1zxeZizu8qJrW9Hsx4AGxq9c2N/E+5X7YH8Yr1ZSbWwOhH277LwZ3NAq14oAPDip5nwCUUFeB0BgriaE=
+X-Received: by 2002:a05:622a:314:b0:42a:9f3:f98f with SMTP id
+ q20-20020a05622a031400b0042a09f3f98fmr59852qtw.31.1705400458380; Tue, 16 Jan
+ 2024 02:20:58 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 16 Jan 2024 02:20:57 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20240116041054.11641-2-nylon.chen@sifive.com>
+References: <20240116041054.11641-1-nylon.chen@sifive.com> <20240116041054.11641-2-nylon.chen@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240115164252.26510-2-quic_jinlmao@quicinc.com>
+Mime-Version: 1.0
+Date: Tue, 16 Jan 2024 02:20:57 -0800
+Message-ID: <CAJM55Z9ZbmbPKaJ8LJ5KyoCW9fAEJaT3Q4PbcadwLNCq1NXbxA@mail.gmail.com>
+Subject: Re: [v6 1/3] riscv: dts: sifive: unleashed/unmatched: Remove PWM
+ controlled LED's active-low properties
+To: Nylon Chen <nylon.chen@sifive.com>, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, 
+	u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com, 
+	aou@eecs.berkeley.edu
+Cc: zong.li@sifve.com, vincent.chen@sifive.com, linux-pwm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, nylon7717@gmail.com, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Mao,
+Nylon Chen wrote:
+> This removes the active-low properties of the PWM-controlled LEDs in
+> the HiFive Unmatched device tree.
+>
+> The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-schematics-v3.pdf[1].
+>
+> Link: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7bf8453f8698_hifive-unleashed-a00-schematics-1.pdf [0]
+> Link: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e68ce76f4192_hifive-unmatched-schematics-v3.pdf [1]
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Co-developed-by: Zong Li <zong.li@sifve.com>
+> Signed-off-by: Zong Li <zong.li@sifve.com>
+> Co-developed-by: Vincent Chen <vincent.chen@sifive.com>
+> Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
+> Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
+> ---
+>  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  8 ++++----
+>  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 12 ++++--------
+>  2 files changed, 8 insertions(+), 12 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> index 900a50526d77..11e7ac1c54bb 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> @@ -49,7 +49,7 @@ led-controller {
+>  		compatible = "pwm-leds";
+>
+>  		led-d1 {
+> -			pwms = <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
+> +			pwms = <&pwm0 0 7812500 0>;
+>  			active-low;
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			max-brightness = <255>;
+> @@ -57,7 +57,7 @@ led-d1 {
+>  		};
+>
+>  		led-d2 {
+> -			pwms = <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
+> +			pwms = <&pwm0 1 7812500 0>;
+>  			active-low;
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			max-brightness = <255>;
+> @@ -65,7 +65,7 @@ led-d2 {
+>  		};
+>
+>  		led-d3 {
+> -			pwms = <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
+> +			pwms = <&pwm0 2 7812500 0>;
+>  			active-low;
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			max-brightness = <255>;
+> @@ -73,7 +73,7 @@ led-d3 {
+>  		};
+>
+>  		led-d4 {
+> -			pwms = <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
+> +			pwms = <&pwm0 3 7812500 0>;
+>  			active-low;
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			max-brightness = <255>;
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> index 07387f9c135c..b328ee80693f 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> @@ -51,8 +51,7 @@ led-controller-1 {
+>  		compatible = "pwm-leds";
+>
+>  		led-d12 {
+> -			pwms = <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
+> -			active-low;
+> +			pwms = <&pwm0 0 7812500 0>;
 
-kernel test robot noticed the following build warnings:
+Here you remove the active-low property, but you don't above. I'm not sure
+what's the right thing to do, but I would have expected the same change in both
+places.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.7 next-20240112]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+/Emil
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mao-Jinlong/coresight-core-Add-device-name-support/20240116-004557
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240115164252.26510-2-quic_jinlmao%40quicinc.com
-patch subject: [PATCH v2 1/2] coresight: core: Add device name support
-config: arm-randconfig-r112-20240116 (https://download.01.org/0day-ci/archive/20240116/202401161751.IuhpKb75-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20240116/202401161751.IuhpKb75-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401161751.IuhpKb75-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/hwtracing/coresight/coresight-core.c:1775:14: sparse: sparse: incorrect type in assignment (different modifiers) @@     expected char *name @@     got char const * @@
-   drivers/hwtracing/coresight/coresight-core.c:1775:14: sparse:     expected char *name
-   drivers/hwtracing/coresight/coresight-core.c:1775:14: sparse:     got char const *
-
-vim +1775 drivers/hwtracing/coresight/coresight-core.c
-
-  1758	
-  1759	/*
-  1760	 * coresight_alloc_device_name - Get an index for a given device in the
-  1761	 * device index list specific to a driver. An index is allocated for a
-  1762	 * device and is tracked with the fwnode_handle to prevent allocating
-  1763	 * duplicate indices for the same device (e.g, if we defer probing of
-  1764	 * a device due to dependencies), in case the index is requested again.
-  1765	 */
-  1766	char *coresight_alloc_device_name(struct coresight_dev_list *dict,
-  1767					  struct device *dev)
-  1768	{
-  1769		int idx;
-  1770		char *name = NULL;
-  1771		struct fwnode_handle **list;
-  1772	
-  1773		mutex_lock(&coresight_mutex);
-  1774	
-> 1775		name = coresight_get_device_name(dev);
-  1776		if (!name) {
-  1777			idx = coresight_search_device_idx(dict, dev_fwnode(dev));
-  1778			if (idx < 0) {
-  1779				/* Make space for the new entry */
-  1780				idx = dict->nr_idx;
-  1781				list = krealloc_array(dict->fwnode_list,
-  1782						      idx + 1, sizeof(*dict->fwnode_list),
-  1783						      GFP_KERNEL);
-  1784				if (ZERO_OR_NULL_PTR(list)) {
-  1785					idx = -ENOMEM;
-  1786					goto done;
-  1787				}
-  1788	
-  1789				list[idx] = dev_fwnode(dev);
-  1790				dict->fwnode_list = list;
-  1791				dict->nr_idx = idx + 1;
-  1792			}
-  1793	
-  1794			name = devm_kasprintf(dev, GFP_KERNEL, "%s%d", dict->pfx, idx);
-  1795		}
-  1796	done:
-  1797		mutex_unlock(&coresight_mutex);
-  1798		return name;
-  1799	}
-  1800	EXPORT_SYMBOL_GPL(coresight_alloc_device_name);
-  1801	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>  			color = <LED_COLOR_ID_GREEN>;
+>  			max-brightness = <255>;
+>  			label = "d12";
+> @@ -68,20 +67,17 @@ multi-led {
+>  			label = "d2";
+>
+>  			led-red {
+> -				pwms = <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
+> -				active-low;
+> +				pwms = <&pwm0 2 7812500 0>;
+>  				color = <LED_COLOR_ID_RED>;
+>  			};
+>
+>  			led-green {
+> -				pwms = <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
+> -				active-low;
+> +				pwms = <&pwm0 1 7812500 0>;
+>  				color = <LED_COLOR_ID_GREEN>;
+>  			};
+>
+>  			led-blue {
+> -				pwms = <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
+> -				active-low;
+> +				pwms = <&pwm0 3 7812500 0>;
+>  				color = <LED_COLOR_ID_BLUE>;
+>  			};
+>  		};
+> --
+> 2.42.0
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
