@@ -1,112 +1,152 @@
-Return-Path: <devicetree+bounces-32267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5143482ECB5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:24:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C3182ECBD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:26:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 616071C22E5C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:24:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CE57285091
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:26:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76D27134D8;
-	Tue, 16 Jan 2024 10:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A90F8134DA;
+	Tue, 16 Jan 2024 10:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dHoMOann"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10B13134D5;
-	Tue, 16 Jan 2024 10:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout1.hostsharing.net (Postfix) with ESMTPS id F2BB730000868;
-	Tue, 16 Jan 2024 11:24:23 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id E3127316BEB; Tue, 16 Jan 2024 11:24:23 +0100 (CET)
-Date: Tue, 16 Jan 2024 11:24:23 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Olof Johansson <olof@lixom.net>, soc@kernel.org,
-	devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
-	Yannic Moog <Y.Moog@phytec.de>, Alexander Bauer <a.bauer@phytec.de>,
-	upstream@lists.phytec.de, Teresa Remmet <T.Remmet@phytec.de>,
-	Tim Harvey <tharvey@gateworks.com>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
-	Heiko Thiery <heiko.thiery@gmail.com>,
-	Enric Balletbo i Serra <eballetbo@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Chen-Yu Tsai <wenst@chromium.org>,
-	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: Fix TPM schema violations
-Message-ID: <20240116102423.GA27561@wunner.de>
-References: <e6d7768e2a257e0bd5948bcf168909b6c670851b.1705168605.git.lukas@wunner.de>
- <682b50dc-a92a-4da5-ad06-631c5125ebc5@collabora.com>
- <8e138e54-22ba-43d3-898c-ab772039cd99@app.fastmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AA6713AFD;
+	Tue, 16 Jan 2024 10:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40G6etJl020096;
+	Tue, 16 Jan 2024 10:25:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:references:in-reply-to
+	:content-type:content-transfer-encoding:mime-version; s=
+	qcppdkim1; bh=g6P2cMHM9kP9gUAdoVo4YHdDe5EaBqWTzFtrwDtnNWI=; b=dH
+	oMOannwl4eN7Kv3OFmHsyOWprHkItBXB1+HJuoLvQV1x3TUwXoYwxV4ZjPZu0PWC
+	yJex1iBndlToV2PMB9lESUCnrcMpqIc6JT6o4FZnDSo3XDOytM7nw7wf3ek30nyH
+	6jFQ2u49/4y9spaX566KAf+QJNv1/NbpwxvEB/sCAI4UBnCWUYS6xaq3i77/ts1w
+	h99ZeoRtWiIHAFleIyfwGumH5SotnvV0WjNP+bvACTPYYZR0Oua6MqyX98HEg96U
+	Vgd6wjcKj3H+btMCpgz4U5brydH3fcLKWLzwtf1MS2+OPNj1Ico/YtgkbcgnnhpU
+	IX06WxHMm9p1kavm2WNg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vngm58wbm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jan 2024 10:25:31 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40GAPUtt007423
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jan 2024 10:25:30 GMT
+Received: from nasanex01a.na.qualcomm.com (10.52.223.231) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 16 Jan 2024 02:25:29 -0800
+Received: from nasanex01a.na.qualcomm.com ([fe80::f03b:cbd0:26eb:aa37]) by
+ nasanex01a.na.qualcomm.com ([fe80::f03b:cbd0:26eb:aa37%12]) with mapi id
+ 15.02.1118.040; Tue, 16 Jan 2024 02:25:29 -0800
+From: "Ritesh Kumar (QUIC)" <quic_riteshk@quicinc.com>
+To: "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>
+CC: "andersson@kernel.org" <andersson@kernel.org>,
+        "konrad.dybcio@linaro.org"
+	<konrad.dybcio@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "catalin.marinas@arm.com"
+	<catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "Bjorn
+ Andersson (QUIC)" <quic_bjorande@quicinc.com>,
+        "geert+renesas@glider.be"
+	<geert+renesas@glider.be>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "nfraprado@collabora.com" <nfraprado@collabora.com>,
+        "m.szyprowski@samsung.com" <m.szyprowski@samsung.com>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "Abhinav Kumar (QUIC)"
+	<quic_abhinavk@quicinc.com>,
+        "Rajeev Nandan (QUIC)"
+	<quic_rajeevny@quicinc.com>,
+        "Vishnuvardhan Prodduturi (QUIC)"
+	<quic_vproddut@quicinc.com>
+Subject: RE: [PATCH 1/2] arm64: defconfig: enable Novatek NT36672E DSI Panel
+ driver
+Thread-Topic: [PATCH 1/2] arm64: defconfig: enable Novatek NT36672E DSI Panel
+ driver
+Thread-Index: AQHaSGFZHTqHMovipEeSl9V9RMpy6LDcus8A//9/cHA=
+Date: Tue, 16 Jan 2024 10:25:29 +0000
+Message-ID: <1d68485fd1574ff88047cef0d2d5e6f1@quicinc.com>
+References: <20240116094935.9988-1-quic_riteshk@quicinc.com>
+ <20240116094935.9988-2-quic_riteshk@quicinc.com>
+ <CAA8EJpo3YS4EzfsLtovYKbLSGYX=RwUn9dpmCW=j257LnvPrgw@mail.gmail.com>
+In-Reply-To: <CAA8EJpo3YS4EzfsLtovYKbLSGYX=RwUn9dpmCW=j257LnvPrgw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8e138e54-22ba-43d3-898c-ab772039cd99@app.fastmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Qluij26HZK-rZelrN0TyQ3jdmlvc8VpQ
+X-Proofpoint-ORIG-GUID: Qluij26HZK-rZelrN0TyQ3jdmlvc8VpQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-09_01,2023-12-07_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=914 spamscore=0
+ clxscore=1015 suspectscore=0 malwarescore=0 mlxscore=0 phishscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401160082
 
-On Mon, Jan 15, 2024 at 09:17:41PM +0100, Arnd Bergmann wrote:
-> > Il 13/01/24 19:06, Lukas Wunner ha scritto:
-> > > Since commit 26c9d152ebf3 ("dt-bindings: tpm: Consolidate TCG TIS
-> > > bindings"), several issues are reported by "make dtbs_check" for arm64
-> > > devicetrees:
-> > > 
-> > > The compatible property needs to contain the chip's name in addition to
-> > > the generic "tcg,tpm_tis-spi" and the nodename needs to be "tpm@0"
-> > > rather than "cr50@0":
-> > > 
-> > >    tpm@1: compatible: ['tcg,tpm_tis-spi'] is too short
-> > >          from schema $id: http://devicetree.org/schemas/tpm/tcg,tpm_tis-spi.yaml#
-> > > 
-> > >    cr50@0: $nodename:0: 'cr50@0' does not match '^tpm(@[0-9a-f]+)?$'
-> > >          from schema $id: http://devicetree.org/schemas/tpm/google,cr50.yaml#
-> > > 
-> > > Fix these schema violations.
-> 
-> However, I got some conflicts trying to apply them on
-> top of v6.7, so maybe check that and resend.
-
-This patch needs to be applied on top of the soc-dt-6.8 tag,
-not v6.7, because there were changes in your v6.8 pull request
-which introduce a new TPM DT node in:
-
-  arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-  arch/arm64/boot/dts/freescale/imx8mp-venice-gw72xx.dtsi
-
-and modify an existing TPM DT node in:
-
-  arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-
-So if I'd base this patch on top of v6.7, it would be missing
-the fixes for these three devicetrees and I'd have to submit
-a separate patch with them.  Happy to do so if that's what
-you want but basing on top of soc-dt-6.8 seemed more reasonable
-to me as initial submission.
-
-Thanks!
-
-Lukas
+DQo+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj5Gcm9tOiBEbWl0cnkgQmFyeXNoa292IDxk
+bWl0cnkuYmFyeXNoa292QGxpbmFyby5vcmc+DQo+U2VudDogVHVlc2RheSwgSmFudWFyeSAxNiwg
+MjAyNCAzOjMwIFBNDQo+VG86IFJpdGVzaCBLdW1hciAoUVVJQykgPHF1aWNfcml0ZXNoa0BxdWlj
+aW5jLmNvbT4NCj5DYzogYW5kZXJzc29uQGtlcm5lbC5vcmc7IGtvbnJhZC5keWJjaW9AbGluYXJv
+Lm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnOw0KPmtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJv
+Lm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsNCj5jYXRhbGluLm1hcmluYXNAYXJtLmNvbTsgd2ls
+bEBrZXJuZWwub3JnOyBCam9ybiBBbmRlcnNzb24gKFFVSUMpDQo+PHF1aWNfYmpvcmFuZGVAcXVp
+Y2luYy5jb20+OyBnZWVydCtyZW5lc2FzQGdsaWRlci5iZTsgYXJuZEBhcm5kYi5kZTsNCj5uZWls
+LmFybXN0cm9uZ0BsaW5hcm8ub3JnOyBuZnJhcHJhZG9AY29sbGFib3JhLmNvbTsNCj5tLnN6eXBy
+b3dza2lAc2Ftc3VuZy5jb207IGxpbnV4LWFybS1tc21Admdlci5rZXJuZWwub3JnOw0KPmRldmlj
+ZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBsaW51
+eC1hcm0tDQo+a2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IEFiaGluYXYgS3VtYXIgKFFVSUMp
+DQo+PHF1aWNfYWJoaW5hdmtAcXVpY2luYy5jb20+OyBSYWplZXYgTmFuZGFuIChRVUlDKQ0KPjxx
+dWljX3JhamVldm55QHF1aWNpbmMuY29tPjsgVmlzaG51dmFyZGhhbiBQcm9kZHV0dXJpIChRVUlD
+KQ0KPjxxdWljX3Zwcm9kZHV0QHF1aWNpbmMuY29tPg0KPlN1YmplY3Q6IFJlOiBbUEFUQ0ggMS8y
+XSBhcm02NDogZGVmY29uZmlnOiBlbmFibGUgTm92YXRlayBOVDM2NjcyRSBEU0kNCj5QYW5lbCBk
+cml2ZXINCj4NCj5PbiBUdWUsIDE2IEphbiAyMDI0IGF0IDExOjQ5LCBSaXRlc2ggS3VtYXIgPHF1
+aWNfcml0ZXNoa0BxdWljaW5jLmNvbT4NCj53cm90ZToNCj4+DQo+PiBCdWlsZCB0aGUgTm92YXRl
+ayBOVDM2NjcyRSBEU0kgUGFuZWwgZHJpdmVyIGFzIG1vZHVsZS4NCj4NCj4uLi4gYmVjYXVzZSBp
+dCBpcyB1c2VkIG9uIC4uLi4NCj4NCg0KVGhhbmtzLCB3aWxsIHVwZGF0ZSBpbiBuZXh0IHZlcnNp
+b24uDQoNCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBSaXRlc2ggS3VtYXIgPHF1aWNfcml0ZXNoa0Bx
+dWljaW5jLmNvbT4NCj4+IC0tLQ0KPj4gIGFyY2gvYXJtNjQvY29uZmlncy9kZWZjb25maWcgfCAx
+ICsNCj4+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4+DQo+PiBkaWZmIC0tZ2l0
+IGEvYXJjaC9hcm02NC9jb25maWdzL2RlZmNvbmZpZw0KPj4gYi9hcmNoL2FybTY0L2NvbmZpZ3Mv
+ZGVmY29uZmlnIGluZGV4IDM2MWMzMWI1ZDA2NC4uMDI4ZDgwYmU5NWY2DQo+MTAwNjQ0DQo+PiAt
+LS0gYS9hcmNoL2FybTY0L2NvbmZpZ3MvZGVmY29uZmlnDQo+PiArKysgYi9hcmNoL2FybTY0L2Nv
+bmZpZ3MvZGVmY29uZmlnDQo+PiBAQCAtODU5LDYgKzg1OSw3IEBAIENPTkZJR19EUk1fUEFORUxf
+TFZEUz1tDQo+Q09ORklHX0RSTV9QQU5FTF9TSU1QTEU9bQ0KPj4gQ09ORklHX0RSTV9QQU5FTF9F
+RFA9bSAgQ09ORklHX0RSTV9QQU5FTF9JTElURUtfSUxJOTg4MlQ9bQ0KPj4gK0NPTkZJR19EUk1f
+UEFORUxfTk9WQVRFS19OVDM2NjcyRT1tDQo+PiAgQ09ORklHX0RSTV9QQU5FTF9NQU5USVhfTUxB
+RjA1N1dFNTE9bQ0KPj4gIENPTkZJR19EUk1fUEFORUxfUkFZRElVTV9STTY3MTkxPW0NCj4+ICBD
+T05GSUdfRFJNX1BBTkVMX1NJVFJPTklYX1NUNzcwMz1tDQo+PiAtLQ0KPj4gMi4xNy4xDQo+Pg0K
+DQpUaGFua3MsDQpSaXRlc2gNCg==
 
