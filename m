@@ -1,269 +1,173 @@
-Return-Path: <devicetree+bounces-32371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C97B82F231
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:14:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20A6E82F262
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:29:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26AC71F23CD9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:14:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 242F11C232D0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57DD1C6A8;
-	Tue, 16 Jan 2024 16:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ECB11C6AD;
+	Tue, 16 Jan 2024 16:29:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fHPAigRX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GpukmRnR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3B91C69D
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 16:13:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1d5efddb33dso4675535ad.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 08:13:50 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA4B1C6A0;
+	Tue, 16 Jan 2024 16:29:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-21086556f32so211786fac.3;
+        Tue, 16 Jan 2024 08:29:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705421629; x=1706026429; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fEOjtDtYVBOB1Sc9meCvWqA+RQADIvF7Dvcqsf5Mj80=;
-        b=fHPAigRXvq91Yyo5oDw9gZOuwd0jPyNknew+iqoUxkl53/bSeEDTYttjIl/MGkN4rn
-         yLUnLso6T4NJGLntV3edsa8VmZXIH6QCEruAuGc65WR/r3kfAbqOoMQDZVPPWc7ZGtMa
-         7OH+O3vyk2c0T/is7HFggungIuQksF26rPeQEgXN//2Av9ES4jT2ivCdUDbZp0imSEio
-         Jlcte8Rr4Q2DYsHB+U/sdzQm9JQ9ejQ93l1KvTW1hU3an46wmgxzsrPyNf9pXTIfUJsZ
-         XsSaDSGu09AeE4+plNlrTm79VVjrx2bR0ZGsSgLK4QPV8JQ2eJot/1ZKbLRin+FVVrKI
-         X41Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705421629; x=1706026429;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1705422580; x=1706027380; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fEOjtDtYVBOB1Sc9meCvWqA+RQADIvF7Dvcqsf5Mj80=;
-        b=tOKbDSBZ62dCQHj7WRNpGW/QmndXdpGP8XF0UaPdXkC6BlxEzqChQgJiHEnBOVm29X
-         udVWQu8mSXr2/tkdqJx6wW2v8UFv0/6qFh9aq3HutvTqKpL9lo48wQhGInr1faNF9NlO
-         iUZNh6DrNUdpCFXx2H74E+vFb4LDQifKU25JU2SAJnHWR5wfA1gMrXwcD2OE0Dtc9M+u
-         iqXawDTe/hbADeNcyoUpFNer5wFycK9MIvm/U6wrl5sHjawetyVR7nosGipmOOX0F3+q
-         SY4Cpt/IGCQy+qe12rV/zEZcGRp1tTd5jJ25p0xY939se0rpgr+BTS0oj2I1LRz8obKE
-         K02g==
-X-Gm-Message-State: AOJu0YyipFF1auQVvrxVJSBqWAa0m8EVu4nQgCcL26/NI7YSd0rfUUuV
-	hwYVdtkL0dGVZk1T3mVKB5PlvpDEpheWkQ==
-X-Google-Smtp-Source: AGHT+IGqo6AFxOY/lJm+DyF6xmEXUShCosfyfZqWOZaC24dFB/lBB7V8xo1CdgEHQp2/QnY9hCKm0A==
-X-Received: by 2002:a17:90a:ad8b:b0:28d:b72f:a63b with SMTP id s11-20020a17090aad8b00b0028db72fa63bmr3758818pjq.69.1705421629666;
-        Tue, 16 Jan 2024 08:13:49 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800::5ced])
-        by smtp.gmail.com with ESMTPSA id sd5-20020a17090b514500b0028d573397dcsm14451049pjb.42.2024.01.16.08.13.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Jan 2024 08:13:49 -0800 (PST)
-Date: Tue, 16 Jan 2024 09:13:46 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Tinghan Shen <tinghan.shen@mediatek.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: remoteproc: do not override firmware-name
- $ref
-Message-ID: <ZaarOuqx3jzftWU3@p14s>
-References: <20240115182031.1610088-1-krzysztof.kozlowski@linaro.org>
+        bh=e2EGnddz4HVPEzCJyDOKwQL+fRJZRBk2jtXoB7hv7LM=;
+        b=GpukmRnRlfDL3rFVYNUsCDvhMKNI/5C0Os/NCg6p7CavfcRcNh+mv35N8gFbvqsxHu
+         EYGSLoIMiOtpOAKqiM9pBw/lp+0F6wZnduxVvN7ObhRGGah1R7CwKImtwBQLfjct3pOP
+         xEwm4VViy32BUzhIB1zkOcmkTgWteqDRlj+SgkjRHTnnLDrDvVKpdTQrgVL+YjYK9WXa
+         jETKW/vIuYisq5d3CnkEHju5CqsxAh2084DNO79CPXEdxZzhhDReBZQ/s8E2mVolVx5Z
+         meSKK9++gdEruk5saczDHwbmbWjhEZZMLbK1jXpvZEBTlVdSNCEA0IDM6LHntN15zBjF
+         lyHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705422580; x=1706027380;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=e2EGnddz4HVPEzCJyDOKwQL+fRJZRBk2jtXoB7hv7LM=;
+        b=BKhGsjP8a5JvJZMQAAhNQRofVyJLmWoW68e/5rqJEJJsk16nKiBNw3xUtRswxA223H
+         jdsR9ncj278vala0SDrYGQgtA9xUNEjZvD208feiZZKjIaAu6QBGWj8PFmlJ/AHSq/kD
+         MrT2erdsYd34lpA9j0jJ5Mc6Swq6gArNReGbjfmr3lKeEmfx+aRLE2UVIijgWqaXG7Vr
+         hX4PiE/igtRWx0Ld8YVXfirxIm3w+le9KEkdeQIYluLZ39brfKQnUz4CLE83Y3BEY73Y
+         BKShn8eknqfFWrGx6nKx0dGsPvEpoFDYZ2/8DX1e9l5VxoS1p99vDvn6qVMsHyoF5TKw
+         4Hhg==
+X-Gm-Message-State: AOJu0YwZttRnJ1jWrcfZXb2ViRuehfhKiuCZ97n2xKFNxrK+Tb3ecesh
+	UQvT3NzhzrTJJ0q7CUKExqt74ZuhpjasyZ4G5EM=
+X-Google-Smtp-Source: AGHT+IHCQhTy467LiJCm+Ces7xo8Nf4D2WYTeF8aTO9nIK+JFa2hlgRzM/t9mbpUinDQzzdaKdcYgGUSWsNvY2jNX/g=
+X-Received: by 2002:a05:6871:413:b0:203:743e:ba22 with SMTP id
+ d19-20020a056871041300b00203743eba22mr10223706oag.89.1705422579663; Tue, 16
+ Jan 2024 08:29:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240115182031.1610088-1-krzysztof.kozlowski@linaro.org>
+References: <20240115160600.5444-1-qiujingbao.dlmu@gmail.com>
+ <20240115160600.5444-4-qiujingbao.dlmu@gmail.com> <f2b3dff2-ce0d-4ddb-ad61-74abf2c3022d@linaro.org>
+ <CAJRtX8QFLoWnJBkepZrbneHX8qZdde=aw+zbdErVC91B=u==MA@mail.gmail.com>
+ <007e8c14-13eb-4917-b9da-8d47d6c965c7@linaro.org> <CAJRtX8ROH4R_s1=ML5ka340PAE0SWJKK24yVWHw5gCd+7d9pkA@mail.gmail.com>
+ <dfcf74a9-db76-43fe-9261-20bf7a993bc3@linaro.org>
+In-Reply-To: <dfcf74a9-db76-43fe-9261-20bf7a993bc3@linaro.org>
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Date: Wed, 17 Jan 2024 00:29:28 +0800
+Message-ID: <CAJRtX8Tkie+ykLv8L2EgBQcy9tVP5Yz-_J_eHE-9N9hjt+6gkg@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] riscv: dts: sophgo: add rtc dt node for CV1800
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, chao.wei@sophgo.com, 
+	unicorn_wang@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	dlan@gentoo.org, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 15, 2024 at 07:20:31PM +0100, Krzysztof Kozlowski wrote:
-> dtschema package defines firmware-name as string-array, so individual
-> bindings should not make it a string but instead just narrow the number
-> of expected firmware file names.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml     | 4 ++--
+On Wed, Jan 17, 2024 at 12:03=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 16/01/2024 16:51, Jingbao Qiu wrote:
+> >>> CV1800 is a RISCV based SOC that includes an RTC module. The RTC
+> >>> module has an OSC oscillator
+> >>
+> >>
+> >> I am not going to read pages of description. Please write concise repl=
+ies.
+> >
+> > Thanks, What I mean is that this hardware includes two functions, RTC
+> > and POR. How should I describe their relationship?
+>
+> Your POR does not need to take any resources, so no need to describe any
+> relationship.
+>
+> ...
+>
+> >>> Your suggestion is, firstly, the por submodule does not have any
+> >>> resources, so it should be deleted.
+> >>
+> >> So where did you delete it? I still see it in this patch.
+> >
+> > Should I completely delete him? How can a por driver obtain device info=
+rmation?
+>
+> Delete completely.
+>
+> Device information? What is this? We already agreed you don't have any
+> resources for POR.
+>
+> ....
+>
+> >> Device is only one thing, not two.
+> >>
+> >>>                     reg =3D <0x5025000 0x2000>;
+> >>>                     interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
+> >>>                     clocks =3D <&osc>;
+> >>> };
+> >>> However, in reality, the POR submodule does not use IRQ and CLK.
+> >>> Please do not hesitate to teach. Thanks.
+> >>
+> >> I expect one device node. How many drivers you have does not matter: y=
+ou
+> >> can instantiate 100 Linux devices in 100 Linux device drivers.
+> >
+> > I understand what you mean. A device node corresponds to multiple drive=
+rs.
+> > Should I completely delete the POR device tree node and add it when
+> > submitting the POR driver?
+>
+> ? I wrote it in previous messages and twice in this thread. Completely
+> delete. You do not add it back! Because if you ever intended to add it
+> back, it should be added since beginning. I don't understand what
+> submitting later would solve.
+>
+> > If that's the case, how can I explain that the rtc device tree node
+> > uses the syscon tag?
+> > How can I describe a POR device in DTS? POR is a submodule of RTC, and
+> > it also has corresponding drivers.
+>
+> I said, there is no need for POR in DTS, because you have nothing there.
+> Why do you insist on putting it on DTS?
+>
+> > It's just that his resources are only shared with RTC's Reg.
+>
+> What resources? Reg? That's not a separate resource.
 
-For the above:
+I'm very sorry about this.
+But I found a binding file that only contains Reg and Compatible.
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+rtc@80920000 {
+compatible =3D "cirrus,ep9301-rtc";
+reg =3D <0x80920000 0x100>;
+};
 
->  .../devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml       | 2 +-
->  .../devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml       | 2 +-
->  .../devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml  | 2 +-
->  .../devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml      | 2 +-
->  .../devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml       | 2 +-
->  .../devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml       | 2 +-
->  .../devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml       | 2 +-
->  .../devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml       | 2 +-
->  .../devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml       | 2 +-
->  .../devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml        | 2 +-
->  11 files changed, 12 insertions(+), 12 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> index 09102dda4942..507f98f73d23 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> @@ -47,7 +47,7 @@ properties:
->      maxItems: 1
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description:
->        If present, name (or relative path) of the file within the
->        firmware search path containing the firmware image used when
-> @@ -115,7 +115,7 @@ patternProperties:
->          maxItems: 1
->  
->        firmware-name:
-> -        $ref: /schemas/types.yaml#/definitions/string
-> +        maxItems: 1
->          description:
->            If present, name (or relative path) of the file within the
->            firmware search path containing the firmware image used when
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml
-> index eb868a7ff4cd..ad45fd00ae34 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,qcs404-pas.yaml
-> @@ -46,7 +46,7 @@ properties:
->      description: Reference to the reserved-memory for the Hexagon core
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description: Firmware name for the Hexagon core
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml
-> index c054b84fdcd5..66b455d0a8e3 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-pas.yaml
-> @@ -45,7 +45,7 @@ properties:
->    smd-edge: false
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description: Firmware name for the Hexagon core
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-> index b6bd33438584..9381c7022ff4 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-> @@ -80,7 +80,7 @@ properties:
->      description: Reference to the reserved-memory for the Hexagon core
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description:
->        The name of the firmware which should be loaded for this remote
->        processor.
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml
-> index 4744a37b2b5d..45ee9fbe0966 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc8180x-pas.yaml
-> @@ -42,7 +42,7 @@ properties:
->      description: Reference to the reserved-memory for the Hexagon core
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description: Firmware name for the Hexagon core
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
-> index 028287235912..758adb06c8dd 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6115-pas.yaml
-> @@ -47,7 +47,7 @@ properties:
->    smd-edge: false
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description: Firmware name for the Hexagon core
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml
-> index f7e40fb166da..c1a3cc308bdb 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6350-pas.yaml
-> @@ -42,7 +42,7 @@ properties:
->    smd-edge: false
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description: Firmware name for the Hexagon core
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
-> index 3e4a03eb4532..7286b2baa19f 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm6375-pas.yaml
-> @@ -36,7 +36,7 @@ properties:
->      description: Reference to the reserved-memory for the Hexagon core
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description: Firmware name for the Hexagon core
->  
->    smd-edge: false
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-> index 238c6e5e67c5..d67386c50fa4 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8150-pas.yaml
-> @@ -46,7 +46,7 @@ properties:
->    smd-edge: false
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description: Firmware name for the Hexagon core
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml
-> index 53cea8e53a31..4b9fb74fb9e9 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8350-pas.yaml
-> @@ -47,7 +47,7 @@ properties:
->      description: Reference to the reserved-memory for the Hexagon core
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description: Firmware name for the Hexagon core
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
-> index 45eb42bd3c2c..8e033b22d28c 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
-> @@ -51,7 +51,7 @@ properties:
->        - const: stop-ack
->  
->    firmware-name:
-> -    $ref: /schemas/types.yaml#/definitions/string
-> +    maxItems: 1
->      description:
->        Relative firmware image path for the WCNSS core. Defaults to
->        "wcnss.mdt".
-> -- 
-> 2.34.1
-> 
+Link: Documentation/devicetree/bindings/rtc/cirrus,ep9301-rtc.yaml
+
+>
+> To summarize: Drop POR from DTS and never bring it back, unless you come
+> with some different arguments, which you did not say already.
+>
+
+You are right, if there is no por device tree node, how can the por
+driver obtain the Reg?
+Thank you again.
+
+Best regards,
+Jingbao Qiu
 
