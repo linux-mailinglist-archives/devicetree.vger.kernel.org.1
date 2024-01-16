@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-32244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2127782EBAD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:37:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62DA382EBB2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:40:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0792B21B5C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:37:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFF751F24317
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:40:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7630B12B8D;
-	Tue, 16 Jan 2024 09:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51339134B1;
+	Tue, 16 Jan 2024 09:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="zFvONMzi"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="U5/p7CIM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D14B212B72;
-	Tue, 16 Jan 2024 09:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E044512B61;
+	Tue, 16 Jan 2024 09:39:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1705397816; x=1736933816;
+  t=1705397981; x=1736933981;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=39czfNO5V3xKHsrOqpHy7us5tDzGWkwldLuCUN58kKA=;
-  b=zFvONMzioGIA+x0+I+x0ETuSXMlxNCLJGPWwl3ja0XYWnPGX9WsCEhIQ
-   Lr5nFIpHnyiuqbeFIK9fOAgjG+m/qlKOF9iQ2fMGZXu88ocZ3q+dhlN0p
-   op3lSDkmhU30gWlzkUKeNG2witgwhAqc/s6G79+QJCzKFoRhxVB53WM39
-   U2AcTye4HEPbbyVGR1YYduziRucFOioOephH/nr/Lfgqjf/A66Wiiem5S
-   Mwo3FCtioqTbdNVSXHwtpNVmIioKMN4+ayrxB7sy3A+7dRMAKXJFhy5Cm
-   FpCQFR/auT6z5OsZY/Me4G/LcQhL6PuQenMJu9GvW0HBunXZK7oQim4cu
-   A==;
-X-CSE-ConnectionGUID: KLJlNhuBSmyPaf0y5pvXTg==
-X-CSE-MsgGUID: VqOrt//kSvysy5D/p/zs3A==
+  bh=WaSp1uecU8Hv9kjMQc6rHJ1yWydbl1s07fCkpBLmJ8Q=;
+  b=U5/p7CIM6Aury65295PJ/RHT8c2AEFRNdly7Nsm/bEAyVnHWzHEkCQuQ
+   h9/Vb1ceoMJt42UErn3OBHzzduDQ286bcfSCojUef2U8oJDU3Rlsp0BU2
+   O5TzQu1KaboeBqtX7tcqeDDXo3AzSEUy5fUoSiFCq8yRHoosX4FPSwGN1
+   Z6QEU9gMzKBzEusmStayG6r3qPKq2I/DImpMFLZnobEC6YP1zBzSkj5nS
+   JMMdpcJZ2qINZz2TdBguYDh0lYNZyZHjDXHWYA6SEBxdcNWc4j9r0LLBx
+   RWVAAYZiC/DmjkXKXn4tcQps1PzInjEsyCSkAuDCa4G4xml63wfpjCMUO
+   Q==;
+X-CSE-ConnectionGUID: dZKgwdjESgmVmHbCstXmxQ==
+X-CSE-MsgGUID: aeEHy09nT/KGdnPjW7vHHw==
 X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; 
-   d="asc'?scan'208";a="245528620"
+   d="asc'?scan'208";a="14820304"
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Jan 2024 02:36:55 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Jan 2024 02:39:39 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
  chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Jan 2024 02:36:54 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ 15.1.2507.35; Tue, 16 Jan 2024 02:39:19 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Tue, 16 Jan 2024 02:36:50 -0700
-Date: Tue, 16 Jan 2024 09:36:14 +0000
+ Transport; Tue, 16 Jan 2024 02:39:15 -0700
+Date: Tue, 16 Jan 2024 09:38:39 +0000
 From: Conor Dooley <conor.dooley@microchip.com>
 To: Devarsh Thakkar <devarsht@ti.com>
 CC: Conor Dooley <conor@kernel.org>, <jyri.sarha@iki.fi>,
@@ -62,13 +62,13 @@ CC: Conor Dooley <conor@kernel.org>, <jyri.sarha@iki.fi>,
 	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, <praneeth@ti.com>, <nm@ti.com>,
 	<vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>, <kristo@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: display: ti,am65x-dss: Add support for
- common1 region
-Message-ID: <20240116-unrobed-cornflake-b19d4c8eb6f6@wendy>
+Subject: Re: [DO NOT MERGE PATCH 2/2] arm64: dts: ti: Add common1 register
+ space for AM62x and AM65x SoCs
+Message-ID: <20240116-spending-famished-5a5e407d02bb@wendy>
 References: <20240115125716.560363-1-devarsht@ti.com>
- <20240115125716.560363-2-devarsht@ti.com>
- <20240115-craftsman-capricorn-d2930678c222@spud>
- <060358d6-ade1-b84e-4550-e2ae34a6d53c@ti.com>
+ <20240115125716.560363-3-devarsht@ti.com>
+ <20240115-penpal-pluck-d156ccf21b2f@spud>
+ <4c5cb4ed-96a3-7bd8-f660-2a3bb041ca09@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,49 +76,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+rwc3dPPDb7jGZPT"
+	protocol="application/pgp-signature"; boundary="BC6FFMzhPnkn64Jt"
 Content-Disposition: inline
-In-Reply-To: <060358d6-ade1-b84e-4550-e2ae34a6d53c@ti.com>
+In-Reply-To: <4c5cb4ed-96a3-7bd8-f660-2a3bb041ca09@ti.com>
 
---+rwc3dPPDb7jGZPT
+--BC6FFMzhPnkn64Jt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 16, 2024 at 02:43:25PM +0530, Devarsh Thakkar wrote:
+On Tue, Jan 16, 2024 at 02:48:53PM +0530, Devarsh Thakkar wrote:
 > Hi Conor,
 >=20
 > Thanks for the review.
 >=20
-> On 15/01/24 21:47, Conor Dooley wrote:
-> > On Mon, Jan 15, 2024 at 06:27:15PM +0530, Devarsh Thakkar wrote:
-> >> TI keystone display subsystem present in AM65 and other SoCs such as A=
-M62
+> On 15/01/24 21:44, Conor Dooley wrote:
+> > On Mon, Jan 15, 2024 at 06:27:16PM +0530, Devarsh Thakkar wrote:
+> >> This adds common1 register space for AM62x and AM65x SoC's which are u=
+sing
+> >> TI's Keystone display hardware and supporting it as described in
+> >> Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml.
+> >>
+> >> This region is documented in respective Technical Reference Manuals [1=
+].
+> >>
+> >> [1]:
+> >> AM62x TRM:
+> >> https://www.ti.com/lit/pdf/spruiv7 (Section 14.8.9.1 DSS Registers)
+> >>
+> >> AM65x TRM:
+> >> https://www.ti.com/lit/pdf/spruid7 (Section 12.6.5 DSS Registers)
+> >>
+> >> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> >> ---
 > >=20
-> > Do all 3 SoCs supported by this binding (am625 am62a7 am65x) have this
-> > common1 register? If not, you should limit it the platforms that do have
-> > it.
+> > "[DO NOT MERGE PATCH 2/2]" but no rationale here as to why this cannot
+> > be merged? What's the problem with it?
 > >=20
 >=20
-> Yes all 3 SoCs supported by binding have common1 register space supported.
+> No problem as such from my point of view, but this is the process I follow
+> since maintainer trees for device-tree file and bindings are different. I
+> generally mark a [DO NOT MERGE] tag for device-tree file patches until bi=
+nding
+> patch gets merged so that the device-tree patches don't get applied by mi=
+stake
+> if binding patch has some pending comments.
+>=20
+> Once binding patch gets merged, I re-send the device-tree file patches ag=
+ain
+> to respective list.
 
-Okay, thanks.
+I see. Please note this in your patches, under the --- line, in the
+future to avoid confusion.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---+rwc3dPPDb7jGZPT
+--BC6FFMzhPnkn64Jt
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaZODgAKCRB4tDGHoIJi
-0k/9AP4h3OJM2KbUAQ+lhul093KnPwadGv739cJyQuGQqMMkCwD/Q9dlnqTU0P80
-HKKE2LC1Hw/uyuPyVRQw1kceYE1gFgQ=
-=Y0Rt
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaZOnwAKCRB4tDGHoIJi
+0rJvAP4y1i7FM56Lm+nbXDP54G7/zOyfStQD6i7K+5HRE0TukAD/WY69qtoMG6kG
++p/19kPAUGbuxQCH4HeYpl6fP6cBcgU=
+=Hg35
 -----END PGP SIGNATURE-----
 
---+rwc3dPPDb7jGZPT--
+--BC6FFMzhPnkn64Jt--
 
