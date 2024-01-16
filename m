@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-32165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8C3A82E7A5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 02:52:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B2282E7A8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 02:52:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 352B61C22C4E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 01:52:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2201EB20B93
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 01:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C310A20DD9;
-	Tue, 16 Jan 2024 01:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87CA3210E1;
+	Tue, 16 Jan 2024 01:11:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EAOOogTt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZGtM+g3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFD820DC2
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 01:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC9D20DCE
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 01:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2cddf596321so996201fa.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 17:11:17 -0800 (PST)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2cd2f472665so97906891fa.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 17:11:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705367476; x=1705972276; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705367477; x=1705972277; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=J5SAl7h8gFScgWdY2BB7MUIpGVN5ls88lp1PxJmfDXY=;
-        b=EAOOogTttundkti68GsILaq8G57bnYDwOplaae97hBpOoU7StH4xy26QE6aorL4BSk
-         yErudtBxpdMeAGKmcoGb7vkDNMIuuDWjUBuZFMMm6oJQVJmrsCu4eZA0KcsAYgvVVee2
-         9cIdgW1ayZ4eKT35kmR2T4YUiPyw9fzpd82bD2t/SNUJMCAjmmeYO9noiirkSt8zMaVV
-         rMJSi/LWVGaDhBks0gbBYdghlH3cO9AcxrlT2X8ki/fwGCcQ2NRSraiiWVU6Qt+U9POr
-         tWQuqqdSdm2qISrG8GFTklISfoLks2/lSN3hoc7fIL+0wNfubdfxk0YWSqBzYMoyN/0U
-         qZ6w==
+        bh=RStsOu+xacQMgJbS/MXyR2aPxlxf4VUezrxj/3wNsBo=;
+        b=ZGtM+g3EZe7jEsisf1riGT5iM06fUtIRW/nD2vbvNQV+Q0FnOCg3IBF0rAqo1LyE92
+         t8rmiu4QpIZ3faUsa8U/GHwyA9kHMg1q0OxZTPgUCFkWRB8NyfknQs1y4bWmj0B+8zP9
+         sTyXancP0tecfLfluncGzb6sgge04uv44TUhcSd/zzOhuOlaIRlczQiKdMl3AkCp7TTs
+         G+JbmUwL7F6ifJtXxHexuZzr5tMX6OEdg1RwIDGbDau8TivjF+ORqBiQeuqbmAlYIZJJ
+         5wns+SHS6Bw2Fql2HyxrHQrTDMKeLWV8LGY2DjY/NJCtDxYq3qbjK2WhQVxWqDc24KIx
+         qKEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705367476; x=1705972276;
+        d=1e100.net; s=20230601; t=1705367477; x=1705972277;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=J5SAl7h8gFScgWdY2BB7MUIpGVN5ls88lp1PxJmfDXY=;
-        b=EVi7qV9v13O4TfJegj10RZNlPmOAGqgZtGMv78yM9UVinTch47V29SNJaJXDawT4IK
-         GRdeJ4nOjkQiMjr6pAaB2hETTVZp4ehtzXpZN0+dBxSki8H+dhR5VM0rAM5ZtghDuElb
-         H2o/sI7qggWtZc7F2ROIcL9PS85k7nKWX5OhaOcBxCgLgdjknP07cnXRMKItv3wbK6lR
-         UqC8GQETZoHh6t+NHUQa4w4ms17mXWPikhrD2ZLul6tzxpZCHgx2VEb3Js8vVdkwd04y
-         fTmF99nJ3kqZlotwK9NWEfS3K6HT5pAzaZzf56GQ3/96MLfXN/g2ANm+tjhWSdRqDqSg
-         0e8w==
-X-Gm-Message-State: AOJu0YwIePgeGf2xSfCtudD3+UWEt1WAYoPSv2hTmMovowN87nu5BTQT
-	UVeIOkUT3YcPFvVuBdUgYqaN18ivD576aQ==
-X-Google-Smtp-Source: AGHT+IGnFSgrxxhuxucsFygBud7v8OlWJ2Srm7pGmOeI++Y3FYvteXWehObGvCiESvrq7GXczc+w1Q==
-X-Received: by 2002:a2e:8193:0:b0:2cd:217:4605 with SMTP id e19-20020a2e8193000000b002cd02174605mr2838078ljg.50.1705367476226;
-        Mon, 15 Jan 2024 17:11:16 -0800 (PST)
+        bh=RStsOu+xacQMgJbS/MXyR2aPxlxf4VUezrxj/3wNsBo=;
+        b=WlKF2GjP+j7bJ8VQsawlT68cU8JGog3ovyKGZjpklm9RMYYIF2kmyzNxQutQOp6/x/
+         qwpcJDxczfpBJsm9XHAhEdbAIXoCLkNMxITEA9ZHhh8vYg0Sg72ZEhHw8Me7jQ792cUV
+         0MPUWj9W9TExBIONGN+XkQAjLVdPP3pwau/Mm1LeO3KE+e+igDzTipbiHRw4/V9IAnEg
+         VFoax3VIsFR6qiZDTZOYuYE/vV+sO+XsYv4gCLWCAppaVAya8JE7K+c/4b/nU/wtPmNu
+         ZQOs1yQTcrby1/Re5YfyHGa0DOHt9KRgfWY5UxUHAmCDtGb/0EAGf84codcerscRiNN4
+         s1vw==
+X-Gm-Message-State: AOJu0Yzp5hIiKcRaekpezSW1A+pCtolqY4dJiQdLyXL53HPnj3JXwICZ
+	GHLb0CtvAQY+AgwVUYzLVUBChmNtcL7G0g==
+X-Google-Smtp-Source: AGHT+IF9QTTC5raiMne+yAWfQBinTWrTQZS+iMZiQlovjnYcHgehvOq/I4moxnNElTukvTobtkTSNg==
+X-Received: by 2002:a2e:8e68:0:b0:2cc:6d87:9a91 with SMTP id t8-20020a2e8e68000000b002cc6d879a91mr2614457ljk.72.1705367477059;
+        Mon, 15 Jan 2024 17:11:17 -0800 (PST)
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id q15-20020a2e84cf000000b002cc7a2f7a9asm1513414ljh.98.2024.01.15.17.11.15
+        by smtp.gmail.com with ESMTPSA id q15-20020a2e84cf000000b002cc7a2f7a9asm1513414ljh.98.2024.01.15.17.11.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jan 2024 17:11:15 -0800 (PST)
+        Mon, 15 Jan 2024 17:11:16 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 16 Jan 2024 03:10:56 +0200
-Subject: [PATCH 2/4] phy: qcom: qmp-usbc: enable SDM630 support
+Date: Tue, 16 Jan 2024 03:10:57 +0200
+Subject: [PATCH 3/4] arm64: dts: qcom: sdm630: add USB QMP PHY support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,7 +68,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240116-sdm660-usb3-support-v1-2-2fbd683aea77@linaro.org>
+Message-Id: <20240116-sdm660-usb3-support-v1-3-2fbd683aea77@linaro.org>
 References: <20240116-sdm660-usb3-support-v1-0-2fbd683aea77@linaro.org>
 In-Reply-To: <20240116-sdm660-usb3-support-v1-0-2fbd683aea77@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -80,92 +80,153 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
  devicetree@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3233;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4024;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=LV1qhUDjS69E+vkNbGfcoPcd1GenuQZvkFoXfpH+sl4=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBlpdexwWXnEsw4+1OBDC1CllDE0TkIbp3x5YUxM
- pKToQtVOEeJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZaXXsQAKCRCLPIo+Aiko
- 1ZACB/oDojuk1Tw5dooz8yXhndcO4Yq7KT2xCIo+40pOTgx2m54SJy67qrEzjXBExPn8dttYzvN
- h6TmOcjwKJ55G/Xth39mkbI4ZAtpJ9KUubM2loksZKl6nsfwlueBNdG4sxRbqXY8HgUpShjmT8X
- QG88AS3hv6xl7nWswzPE8xl3BPuSjOgO4y//7lQq7TL4Jai/15EXbY8G9Bg/T5zV7Ykl33T/d9b
- mf+VsG9VSZAouAoqrXEVwP0IDydyDySq+HeQA7Ob9AKt0QvhERarAoDWsG0aFhnMUBTkLhWQijd
- bAqTiWSa7MwdJ6ByeAAFv/T9addNbpXoG8pBDCcm5cXobB84
+ bh=vROuTM9nsbcJ2159YURKAEnKyZKiaf/PSfxNouUCVmU=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBlpdex4RZUyTpfyKAR0l1z9mtwjfi8RAfh3fnpQ
+ i2EL6HKaaSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZaXXsQAKCRCLPIo+Aiko
+ 1RL9B/4q7I8AvvEE5rhJD8I+RlFZpuAGL8KtxWu/fIt3Mi7wRKBiALt44Pk/zwNDYTCG1sfCKLH
+ xDl6ESkv7X5HGAqUwszMQ2qZL/s+lb2Zi5gM7Q2g6qT1MuWK/Wf1El8a9e03GSmUI6zZzOi7cYu
+ THZTZY4eyWYEnJt5oo1mfj9dqAI3cMxFamNheWkzzq4FLo4jokTo/yTGCMh+JAfzwvN7B7lomCo
+ doPShrWy5ZUX3Kym+yimdeEdatoW8XE3s0YTCGVl3ivVugDW7F9iskso+RMf9bsHG7IKxEw9b04
+ mCWxg7B8S/fM8Izmn52q4SgOOYR0O78KC7sG2wWIo8aALEpi
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Provide PHY configuration for the USB QMP PHY for the SDM630 / SDM660
-platforms.
+Define USB3 QMP PHY presend on the SDM630 / SDM660 platforms. Enable it by
+default in the USB3 host, but (for compatibility), force USB 2.0 mode
+for all defined boards. The boards should opt-in to enable USB 3.0
+support.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 40 ++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ .../arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts |  6 ++++
+ .../boot/dts/qcom/sdm630-sony-xperia-nile.dtsi     |  6 ++++
+ arch/arm64/boot/dts/qcom/sdm630.dtsi               | 36 +++++++++++++++++-----
+ .../arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts |  6 ++++
+ 4 files changed, 46 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
-index 3a4b4849db0f..02babec76881 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
-@@ -293,6 +293,27 @@ static const struct qmp_phy_init_tbl qcm2290_usb3_rx_tbl[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_V3_RX_RX_MODE_00, 0x00),
+diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+index 2ed39d402d3f..90118f133961 100644
+--- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
++++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+@@ -454,10 +454,16 @@ &usb2_dwc3 {
  };
  
-+/* the only difference is QSERDES_V3_RX_UCDR_PI_CONTROLS */
-+static const struct qmp_phy_init_tbl sdm660_usb3_rx_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_UCDR_FASTLOCK_FO_GAIN, 0x0b),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_UCDR_PI_CONTROLS, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_UCDR_FASTLOCK_COUNT_LOW, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_UCDR_FASTLOCK_COUNT_HIGH, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_UCDR_FO_GAIN, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_UCDR_SO_GAIN, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x75),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_RX_EQU_ADAPTOR_CNTRL2, 0x02),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_RX_EQU_ADAPTOR_CNTRL3, 0x4e),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_RX_EQU_ADAPTOR_CNTRL4, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x77),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_VGA_CAL_CNTRL2, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_SIGDET_CNTRL, 0x03),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_SIGDET_DEGLITCH_CNTRL, 0x16),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_SIGDET_ENABLES, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V3_RX_RX_MODE_00, 0x00),
-+};
-+
- static const struct qmp_phy_init_tbl qcm2290_usb3_pcs_tbl[] = {
- 	QMP_PHY_INIT_CFG(QPHY_V3_PCS_TXMGN_V0, 0x9f),
- 	QMP_PHY_INIT_CFG(QPHY_V3_PCS_TXDEEMPH_M6DB_V0, 0x17),
-@@ -474,6 +495,22 @@ static const struct qmp_phy_cfg qcm2290_usb3phy_cfg = {
- 	.regs			= qmp_v3_usb3phy_regs_layout_qcm2290,
+ &usb3 {
++	qcom,select-utmi-as-pipe-clk;
++	
+ 	status = "okay";
  };
  
-+static const struct qmp_phy_cfg sdm660_usb3phy_cfg = {
-+	.offsets		= &qmp_usbc_offsets_v3_qcm2290,
+ &usb3_dwc3 {
++	maximum-speed = "high-speed";
++	phys = <&qusb2phy0>;
++	phy-names = "usb2-phy";
++	
+ 	dr_mode = "peripheral";
+ 	extcon = <&extcon_usb>;
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+index 87d0293c728d..f06a9f0cf97c 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+@@ -658,10 +658,16 @@ cam_vdig_default: cam-vdig-default-state {
+ };
+ 
+ &usb3 {
++	qcom,select-utmi-as-pipe-clk;
 +
-+	.serdes_tbl		= qcm2290_usb3_serdes_tbl,
-+	.serdes_tbl_num		= ARRAY_SIZE(qcm2290_usb3_serdes_tbl),
-+	.tx_tbl			= qcm2290_usb3_tx_tbl,
-+	.tx_tbl_num		= ARRAY_SIZE(qcm2290_usb3_tx_tbl),
-+	.rx_tbl			= sdm660_usb3_rx_tbl,
-+	.rx_tbl_num		= ARRAY_SIZE(sdm660_usb3_rx_tbl),
-+	.pcs_tbl		= qcm2290_usb3_pcs_tbl,
-+	.pcs_tbl_num		= ARRAY_SIZE(qcm2290_usb3_pcs_tbl),
-+	.vreg_list		= qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.regs			= qmp_v3_usb3phy_regs_layout_qcm2290,
-+};
+ 	status = "okay";
+ };
+ 
+ &usb3_dwc3 {
++	maximum-speed = "high-speed";
++	phys = <&qusb2phy0>;
++	phy-names = "usb2-phy";
 +
- static void qmp_usbc_configure_lane(void __iomem *base,
- 					const struct qmp_phy_init_tbl tbl[],
- 					int num,
-@@ -1171,6 +1208,9 @@ static const struct of_device_id qmp_usbc_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,qcm2290-qmp-usb3-phy",
- 		.data = &qcm2290_usb3phy_cfg,
-+	}, {
-+		.compatible = "qcom,sdm660-qmp-usb3-phy",
-+		.data = &sdm660_usb3phy_cfg,
- 	}, {
- 		.compatible = "qcom,sm6115-qmp-usb3-phy",
- 		.data = &qcm2290_usb3phy_cfg,
+ 	dr_mode = "peripheral";
+ 	extcon = <&extcon_usb>;
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index 513fe5e76b68..28489fb58b20 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -1286,7 +1286,6 @@ usb3: usb@a8f8800 {
+ 			interrupt-names = "hs_phy_irq", "ss_phy_irq";
+ 
+ 			power-domains = <&gcc USB_30_GDSC>;
+-			qcom,select-utmi-as-pipe-clk;
+ 
+ 			resets = <&gcc GCC_USB_30_BCR>;
+ 
+@@ -1297,17 +1296,38 @@ usb3_dwc3: usb@a800000 {
+ 				snps,dis_u2_susphy_quirk;
+ 				snps,dis_enblslpm_quirk;
+ 
+-				/*
+-				 * SDM630 technically supports USB3 but I
+-				 * haven't seen any devices making use of it.
+-				 */
+-				maximum-speed = "high-speed";
+-				phys = <&qusb2phy0>;
+-				phy-names = "usb2-phy";
++				phys = <&qusb2phy0>, <&usb3_qmpphy>;
++				phy-names = "usb2-phy", "usb3-phy";
+ 				snps,hird-threshold = /bits/ 8 <0>;
+ 			};
+ 		};
+ 
++		usb3_qmpphy: phy@c010000 {
++			compatible = "qcom,sdm660-qmp-usb3-phy";
++			reg = <0x0c010000 0x1000>;
++
++			clocks = <&gcc GCC_USB3_PHY_AUX_CLK>,
++				 <&gcc GCC_USB3_CLKREF_CLK>,
++				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
++				 <&gcc GCC_USB3_PHY_PIPE_CLK>;
++			clock-names = "aux",
++				      "ref",
++				      "cfg_ahb",
++				      "pipe";
++			clock-output-names = "usb3_phy_pipe_clk_src";
++			#clock-cells = <0>;
++			#phy-cells = <0>;
++
++			resets = <&gcc GCC_USB3_PHY_BCR>,
++				 <&gcc GCC_USB3PHY_PHY_BCR>;
++			reset-names = "phy",
++				      "phy_phy";
++
++			qcom,tcsr-reg = <&tcsr_regs_1 0x6b244>;
++
++			status = "disabled";
++		};
++
+ 		qusb2phy0: phy@c012000 {
+ 			compatible = "qcom,sdm660-qusb2-phy";
+ 			reg = <0x0c012000 0x180>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+index 3c47410ba94c..7167f75bced3 100644
+--- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
++++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+@@ -413,10 +413,16 @@ &tlmm {
+ };
+ 
+ &usb3 {
++	qcom,select-utmi-as-pipe-clk;
++
+ 	status = "okay";
+ };
+ 
+ &usb3_dwc3 {
++	maximum-speed = "high-speed";
++	phys = <&qusb2phy0>;
++	phy-names = "usb2-phy";
++
+ 	dr_mode = "peripheral";
+ 	extcon = <&extcon_usb>;
+ };
 
 -- 
 2.39.2
