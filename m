@@ -1,66 +1,64 @@
-Return-Path: <devicetree+bounces-32556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2184082FB1F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:48:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C5C82FB52
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 22:53:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B44E31F2AE0E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:48:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E99F61F28177
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:53:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06AEF65BAD;
-	Tue, 16 Jan 2024 20:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04D5163A9B;
+	Tue, 16 Jan 2024 20:03:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pb5BVS2J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c1e8Q/z8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC99665BA5;
-	Tue, 16 Jan 2024 20:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 962A1664AB;
+	Tue, 16 Jan 2024 20:03:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705435337; cv=none; b=KkvpAhTTsh2lvW+LJMARIM5EsVnyCdj/RgZnr0flRt8FIKc+9zsIkHuMz1UCgJmzjBDF/k3UGznBqyFOdzUZiFk5Pb2roAvISR9I2co56vNaRjsSEDsuo6lv3yiS3cEvPM49U5nawtQlJJJkAE5O6yADLquzvSRL1xRO4nNc9uU=
+	t=1705435407; cv=none; b=EwSLhJB+bGFk0ymZEn3UAjoLNCRIK8eMqw6iQPoG87Hf9FvKIjGgTPDvfJFML7SaPF9UoyMqsXtC9vmoNifcPFoMmHBj0spg7j/XTFUoxIaiFq32jxrNMe8GuSX3dz6cC3ERkwQZrWIqbv1FfOhr4YbwDLLAoxSLAtlsq0NkMoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705435337; c=relaxed/simple;
-	bh=gq5JoAXNMweGcEU6rvDYblIMP5Mecs9lRwxC0fZO2es=;
+	s=arc-20240116; t=1705435407; c=relaxed/simple;
+	bh=nzsN26+vLu+X6BikyvoklfvggpDqx0n5Eto+x0OdDTk=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=Ch9CoMHUKT70+XJ/xhzs5PDcniLHjlpVK1lZLbJY0p72QR2xSWwNBvP0cLL1ITGNG6yKwTOAzwV9AkyQM1pGqWCFJqVc7PHwyaAWdOKiyuClV0phaLqB/a1IRCKk/OVPFJbcqO0EH33ZsZicYyyYBz2MrMbUtXx1ZxK1P2N+TjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pb5BVS2J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55A3DC433B1;
-	Tue, 16 Jan 2024 20:02:16 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=kafZxKQPfM80oZpI8PwrUW0Ataaw03y6nsom2huR39W/EQYKUZvKOlOk6XIBDNNcrjVylPSEC8ro4XZmUCoJJp4dTxl9jhSei4ZVA4y/hvS1KRTUt32Sb7Zi1uaR5XiDwFnB0HGotOFjGV5ci4KYZ2gxWEAuYqes91/vmwm97ZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c1e8Q/z8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62A7CC43394;
+	Tue, 16 Jan 2024 20:03:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705435337;
-	bh=gq5JoAXNMweGcEU6rvDYblIMP5Mecs9lRwxC0fZO2es=;
+	s=k20201202; t=1705435407;
+	bh=nzsN26+vLu+X6BikyvoklfvggpDqx0n5Eto+x0OdDTk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Pb5BVS2J6etOTJnDReKs/SE6Y/CsvONeJZZbcQd1xvPo01jr8Dsc+k46cWEsW1yEx
-	 lbihdoFC56TGzNdbTe9rpdk34IEqk447sCghLMyA1A5imZwD1jM6GKatv5tL+1zv0Z
-	 tf5HTfVpBOVbbA/DNh4C2vMvFnZSDTi2qiEVa9M6ZBOac+pX0sir6BLsx+o3wERFT9
-	 UTz7zCSADil+xjy8Q95bGCflh6IMlJblqZC85aPjJOOLO4aPJPRWubGlIvkioVzi4w
-	 wNz9nIgqhW9yqSueA8VrNgTJgyOi/nZaRjTt/Dt6qlLzfd/w8QWJY1FZzqAMob6jAH
-	 E9P/QFDzP0BEw==
+	b=c1e8Q/z8Bi4PcJ5qmS0KdZlkLKsj/8fqoE4HwLdkCzAZy6H0LukhaUcW4xX99+e1/
+	 IuOE2aHgnjUmQA6JWK2k8NTFxC9zsP9cisvq+pdmQdVhKue3aPR8hY27s5oSYUzD2m
+	 734+7uR60acQiFGAR7BQ5yE1PjJmXyEiy2hscitWjIjndvio4QkniAp0zvOu7uVF4b
+	 lYu9WKfKyto6DJ3QZxrE+0qVaG2g3OcKWHGqftHdjEDWQ+bZ4Zc8i24kHSyvBgzQZE
+	 GtCGSFA8T8p5gGXIRje/ufWJSsFFja/V25/9FaVkLV+8eoAjRJ180pvSp4OEX3jOUZ
+	 cxqq7TrPWzMuw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Mao Jinlong <quic_jinlmao@quicinc.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Shawn Guo <shawnguo@kernel.org>,
 	Sasha Levin <sashal@kernel.org>,
-	konrad.dybcio@linaro.org,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 36/44] arm64: dts: qcom: msm8998: Fix 'out-ports' is a required property
-Date: Tue, 16 Jan 2024 15:00:05 -0500
-Message-ID: <20240116200044.258335-36-sashal@kernel.org>
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.4 07/31] ARM: dts: imx7d: Fix coresight funnel ports
+Date: Tue, 16 Jan 2024 15:02:16 -0500
+Message-ID: <20240116200310.259340-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240116200044.258335-1-sashal@kernel.org>
-References: <20240116200044.258335-1-sashal@kernel.org>
+In-Reply-To: <20240116200310.259340-1-sashal@kernel.org>
+References: <20240116200310.259340-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,89 +67,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.10.208
+X-stable-base: Linux 5.4.267
 Content-Transfer-Encoding: 8bit
 
-From: Mao Jinlong <quic_jinlmao@quicinc.com>
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-[ Upstream commit ae5ee3562a2519214b12228545e88a203dd68bbd ]
+[ Upstream commit 0d4ac04fa7c3f6dc263dba6f575a2ec7a2d4eca8 ]
 
-out-ports is a required property for coresight ETM. Add out-ports for
-ETM nodes to fix the warning.
+imx7d uses two ports for 'in-ports', so the syntax port@<num> has to
+be used. imx7d has both port and port@1 nodes present, raising these
+error:
+funnel@30041000: in-ports: More than one condition true in oneOf schema
+funnel@30041000: Unevaluated properties are not allowed
+('in-ports' was unexpected)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-Link: https://lore.kernel.org/r/20231210072633.4243-4-quic_jinlmao@quicinc.com
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Fix this by also using port@0 for imx7s as well.
+
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 32 +++++++++++++++++----------
- 1 file changed, 20 insertions(+), 12 deletions(-)
+ arch/arm/boot/dts/imx7d.dtsi | 3 ---
+ arch/arm/boot/dts/imx7s.dtsi | 6 +++++-
+ 2 files changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index 7c8d69ca91cf..ca8e7848769a 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -1577,9 +1577,11 @@ etm5: etm@7c40000 {
+diff --git a/arch/arm/boot/dts/imx7d.dtsi b/arch/arm/boot/dts/imx7d.dtsi
+index 8b65ca8b5f30..2b9d0b1bd982 100644
+--- a/arch/arm/boot/dts/imx7d.dtsi
++++ b/arch/arm/boot/dts/imx7d.dtsi
+@@ -204,9 +204,6 @@ pcie: pcie@33800000 {
+ };
  
- 			cpu = <&CPU4>;
+ &ca_funnel_in_ports {
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+ 	port@1 {
+ 		reg = <1>;
+ 		ca_funnel_in_port1: endpoint {
+diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+index 7ce541fcac76..33e9c210fd2f 100644
+--- a/arch/arm/boot/dts/imx7s.dtsi
++++ b/arch/arm/boot/dts/imx7s.dtsi
+@@ -183,7 +183,11 @@ funnel@30041000 {
+ 			clock-names = "apb_pclk";
  
--			port{
--				etm4_out: endpoint {
--					remote-endpoint = <&apss_funnel_in4>;
-+			out-ports {
-+				port{
-+					etm4_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in4>;
-+					};
- 				};
- 			};
- 		};
-@@ -1594,9 +1596,11 @@ etm6: etm@7d40000 {
- 
- 			cpu = <&CPU5>;
- 
--			port{
--				etm5_out: endpoint {
--					remote-endpoint = <&apss_funnel_in5>;
-+			out-ports {
-+				port{
-+					etm5_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in5>;
-+					};
- 				};
- 			};
- 		};
-@@ -1611,9 +1615,11 @@ etm7: etm@7e40000 {
- 
- 			cpu = <&CPU6>;
- 
--			port{
--				etm6_out: endpoint {
--					remote-endpoint = <&apss_funnel_in6>;
-+			out-ports {
-+				port{
-+					etm6_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in6>;
-+					};
- 				};
- 			};
- 		};
-@@ -1628,9 +1634,11 @@ etm8: etm@7f40000 {
- 
- 			cpu = <&CPU7>;
- 
--			port{
--				etm7_out: endpoint {
--					remote-endpoint = <&apss_funnel_in7>;
-+			out-ports {
-+				port{
-+					etm7_out: endpoint {
-+						remote-endpoint = <&apss_funnel_in7>;
-+					};
- 				};
- 			};
- 		};
+ 			ca_funnel_in_ports: in-ports {
+-				port {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
+ 					ca_funnel_in_port0: endpoint {
+ 						remote-endpoint = <&etm0_out_port>;
+ 					};
 -- 
 2.43.0
 
