@@ -1,212 +1,246 @@
-Return-Path: <devicetree+bounces-32424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3246682F493
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:50:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD8B582F4E3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:03:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AD2F1C20A9E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:50:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD6ADB22CC5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:03:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD3471CF89;
-	Tue, 16 Jan 2024 18:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43D51CF9B;
+	Tue, 16 Jan 2024 19:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EYvnLMYD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OSLLEeq8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A501D520;
-	Tue, 16 Jan 2024 18:50:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42DFF1CF98;
+	Tue, 16 Jan 2024 19:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705431018; cv=none; b=HsRLyvFNEO2MkQuBC5FpPDdZjhFrlgCKhBS+YtGz3sSO1mbE4BNdoX7V0F/YDDLT1nK/rZqbnc/uFGL0o/rkZ9oTceluO1CPiVrPfBy+44NYnCGqrJIYmYBeUwzWyZI+X/UXDf/YuW9nm+gSZkkeflXSQjXu0ITNjqSqb4uo69U=
+	t=1705431760; cv=none; b=Ab7dZKoSMNYgjo1POXtrK9CnmGWcEj8kQjgn46Q04+TnqJYLATDUvl+7R6vOrDul2T+0IPg8ylHizptcLxwEcwiYMtvXHJDdOitKwNxM5c9xpkizFwfyVik1irKy478EO3H2NeATPp62MBDqJ2v1WDHRAG6rMBNCU7coYa2u7FE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705431018; c=relaxed/simple;
-	bh=u9HtAreXvZzRNiP6Z/mv4lczqcqgpaGLfP2V36U+ZO8=;
-	h=Received:DKIM-Signature:Received:Received:Received:Message-ID:
-	 Date:MIME-Version:User-Agent:Subject:Content-Language:To:CC:
-	 References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 X-Originating-IP:X-ClientProxiedBy:X-QCInternal:
-	 X-Proofpoint-Virus-Version:X-Proofpoint-GUID:
-	 X-Proofpoint-ORIG-GUID:X-Proofpoint-Virus-Version:
-	 X-Proofpoint-Spam-Details; b=O1PmgqplueSvGIQJPSCiLfQH20XwdN/fX4jdnCRgz44Nd/UC70JeEojwcpdH+x1ek+zMv7olqlQlFlrCP0WVAKGCwOYx4eZmxZ7ZEx9f1A5ktQ7rq27wxP1eWRkUi0rh+nUpg4Wpt0//mWuj/4tSxA9N389ISwfdWZ0pdoGNIB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EYvnLMYD; arc=none smtp.client-ip=205.220.180.131
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40GHJqcE002807;
-	Tue, 16 Jan 2024 18:50:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=RhJ8xMqSq4+fViYmhVIvXju/z80MFnRKlqjM76zqqC8=; b=EY
-	vnLMYDbg+PpcPxubij3rLp7H+lyFZmVAvrPDIDYnk6+NmTyVKZ0dZT6pu1l+8JUy
-	qmqx6H+RhL3QWuWwbUEOxrI7GOE6FDIMP7VL1dEMf1A4b7uUkS4t0ZTqld9HgXgk
-	bK5xfvSI3PuhSaE7Hy+crhuiz5XFz24cRn/F+qxKoBY0ntDWWezS6m9chfXQkAJ2
-	S6Zdyr0dtXbRfrkQeYZHafd93/adpNV8AV7AK3mprx+tQeXpkV+gPKAeORjV6g6V
-	p/afQoEnPKV6sQrZpOVQ5iTvquGhoNEdnPZ43Iu23FK29RUeut1MoWfPL2VXzzT4
-	92CiJEZqhb8LStdsyLUQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vnnajhm3b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jan 2024 18:50:00 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40GInwWh009909
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jan 2024 18:49:58 GMT
-Received: from [10.110.59.103] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 16 Jan
- 2024 10:49:58 -0800
-Message-ID: <dc8a58ab-00df-bfd4-39f7-ec196e578260@quicinc.com>
-Date: Tue, 16 Jan 2024 10:49:49 -0800
+	s=arc-20240116; t=1705431760; c=relaxed/simple;
+	bh=M3WCsGftyWTyt8j4loJf7tAcRbNNPvT6iGKnr/fU//o=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
+	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
+	 Content-Type; b=qqLpMOTj98MePb0nDEiMYfgsNkSIwNeVbTrtZd8VWRjru7qvaZ7FA3K1JnhlFY91vawxAtnjrXL+VWSsNij6Qe9r0bnIsn+YCSpUy+OatS11mY44Q4a71m37KUWzBPKu6SVabso7afM3f+k3o/WPIlEqCMr9zW6db5qLeLNH1/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OSLLEeq8; arc=none smtp.client-ip=209.85.219.174
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dafe04717baso8061386276.1;
+        Tue, 16 Jan 2024 11:02:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705431758; x=1706036558; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=37BvvneH+DlLoR6euXvYtraItFx+5QgIxfiDUnEo3GE=;
+        b=OSLLEeq8OFRjxSLIR2yXNEaL07KcpA9pyV41Etxuay3+BRXZutVpieaewy+Ea6Nq+R
+         ClWAaYw7ly0953pSwPCvdO8948cj54iVnLEQDlANs3MO8d5gCkBwVniqIfQ1wi6KM4j/
+         gAHQn1Weu8dRbv5m56yzohpKEF/slyNcZALkwndUUxgHXVgo1jaRo4kw6v/dRpaTuhhY
+         6+CbpWTMxWv3fPwKrz+YMbleCl+5Yd/C0+qihw71LB3JR/F7yaGPOqUlyI2dpK1vtUZG
+         2xmMAz6sQrbGIGdhlXbHKQydQQjTaIqV913qdDLizVmxEPlxZG0V90xdTx6pgje/tAkq
+         4/7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705431758; x=1706036558;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=37BvvneH+DlLoR6euXvYtraItFx+5QgIxfiDUnEo3GE=;
+        b=jwoQ0ANypGD++zHwDKkhkaeeeeOJOwK0I+TRbnQVMkyVeUKIcYIiy22y+rn/RFvR8O
+         U6ljrjuR01/wJm06tijsqi+sa/sjSrekhIf6kRRumNS8Atqv9LkiVns/XNlJiHA7K512
+         eMF3zNQMoqXNDVhQru70ngiNTkSDvM8gI03Q7EkFrg4fXLLGjtH3Q6oqapZObrMEFXub
+         MbQ9oyejPxyGDrxpCeN0kyh2OBAtFvjeNEnNrphdG1mK+Xgiw/doGNlox0oM6LNe2WSb
+         cX681eaW6Wxtv9J45Qqjn46G9tl67F50qBledb+y2JJdC7ogQSygV1mW0c1YFDKdn1FD
+         ayAQ==
+X-Gm-Message-State: AOJu0Yxv10pquMG79F2kgUWoFuRsaIPOMDz5Opt4UQi8yesFfpos0H4s
+	i+0dDeyX28Ja37bzLxk9d9KPG7AETQBA2HZ5CUA=
+X-Google-Smtp-Source: AGHT+IF0aqNvzRI/TFPNIdSK5alOC8kbE6Zw7zw8xF650MhjRhQkjA0VEk6REdgO7WZuhmD2VIeoUxHhurXZEoeur8E=
+X-Received: by 2002:a25:938d:0:b0:db5:5020:518a with SMTP id
+ a13-20020a25938d000000b00db55020518amr4061693ybm.4.1705431757056; Tue, 16 Jan
+ 2024 11:02:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: (subset) [PATCH v8 0/7] Add support for LUT PPG
-Content-Language: en-US
-To: Lee Jones <lee@kernel.org>, <pavel@ucw.cz>, <thierry.reding@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>
-CC: <luca.weiss@fairphone.com>, <konrad.dybcio@linaro.org>,
-        <u.kleine-koenig@pengutronix.de>, <quic_subbaram@quicinc.com>,
-        <quic_gurus@quicinc.com>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pwm@vger.kernel.org>
-References: <20231221185838.28440-1-quic_amelende@quicinc.com>
- <170496750168.1654525.11132648331912183091.b4-ty@kernel.org>
- <20240111100747.GM7948@google.com>
-From: Anjelique Melendez <quic_amelende@quicinc.com>
-In-Reply-To: <20240111100747.GM7948@google.com>
+References: <20240108135421.684263-1-tmaimon77@gmail.com> <20240108135421.684263-5-tmaimon77@gmail.com>
+ <98eaac00-1e3d-4c27-89f5-0b6ec0fcb710@linaro.org>
+In-Reply-To: <98eaac00-1e3d-4c27-89f5-0b6ec0fcb710@linaro.org>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Tue, 16 Jan 2024 21:02:25 +0200
+Message-ID: <CAP6Zq1hxTgJWtem4Y4_4Hv1ojy5edzGXeBGhh_gzyM4Kewsbeg@mail.gmail.com>
+Subject: Re: [PATCH v22 4/8] dt-bindings: soc: nuvoton: add binding for clock
+ and reset registers
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nCYl4rsDxYDo4V1V6G-YW2wRQ5an-h_m
-X-Proofpoint-ORIG-GUID: nCYl4rsDxYDo4V1V6G-YW2wRQ5an-h_m
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2023-12-09_02,2023-12-07_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 clxscore=1011 priorityscore=1501 impostorscore=0
- malwarescore=0 spamscore=0 mlxscore=0 adultscore=0 phishscore=0
- bulkscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2401160148
 
+Hi Krzysztof,
 
+Thanks for your comments.
 
-On 1/11/2024 2:07 AM, Lee Jones wrote:
-> On Thu, 11 Jan 2024, Lee Jones wrote:
-> 
->> On Thu, 21 Dec 2023 10:58:30 -0800, Anjelique Melendez wrote:
->>> In certain PMICs, LUT pattern and LPG configuration is stored in SDAM
->>> modules instead of LUT peripheral. This feature is called PPG.
->>>
->>> This change series adds support for PPG. Thanks!
->>> Changes since v7:
->>>   - Patch 4/7
->>>     - Initialize hi/lo_pause variables in lpg_pattern_set()
->>> Changes since v6:
->>>   - Patch 2/7
->>>     - Removed required by constraint on PPG dt properties
->>> Changes since v5:
->>>   - Patch 4/7
->>>     - Update logic so that multicolor led device triggers pattern
->>>       on all LEDs at the same time
->>>     - Update nitpicks from Lee
->>>   - Patch 5/7
->>>     - Update nitpicks from Lee
->>> Changes since v4:
->>>   - Patch 3/7
->>>     - Get rid of r/w helpers
->>>     - Use regmap_read_poll_timeout() in qcom_pbs_wait_for_ack()
->>>     - Update error path in qcom_pbs_trigger_event()
->>>     - Fix reverse christmas tree
->>>   - Patch 4/7
->>>     - Get rid of r/w helpers
->>>     - Update variables to use "sdam" instead of "nvmem"
->>>     - Fix comments
->>>     - Fix reverse christmas tree
->>>     - Update lpg_pattern_set() logic
->>>   - Patch 5/7
->>>     - Removed sdam_lut_base from lpg_data
->>> Changes since v3:
->>>   - Patch 4/7
->>>     - Fix function returns
->>>     - Move register definition to top of file
->>>     - Revert max_brightness and probe accidental changes
->>>     - Combine init_sdam() and parse_sdam()
->>>     - Change error prints in probe to use dev_err_probe
->>>     - Remove ppg_en variable
->>>     - Update when pbs triggers are set/cleared
->>>   - Patch 6/7
->>>     - Remove use of nvmem_count
->>>     - Move register definition to top of file
->>>     - Remove lpg_get_sdam_lut_idx()
->>> Changes since v2:
->>>   - Patch 1/7
->>>     - Fix dt_binding_check error
->>>     - Rename binding file to match compatible
->>>     - Iclude SoC specific comptaibles
->>>   - Patch 2/7
->>>     - Update nvmem-names list
->>>   - Patch 3/7
->>>     - Update EXPORT_SYMBOL to EXPORT_SYMBOL_GPL
->>>     - Fix return/break logic in qcom_pbs_wait_for_ack()
->>>     - Update iterators to be int
->>>     - Add constants
->>>     - Fix function calls in qcom_pbs_trigger_event()
->>>     - Remove unnessary comments
->>>     - Return -EPROBE_DEFER from get_pbs_client_device()
->>> Changes since v1:
->>>   - Patch 1/7
->>>     - Fix dt_binding_check errors
->>>     - Update binding description
->>>   - Path 2/7
->>>     - Fix dt_binding_check errors
->>>     - Update per variant constraints
->>>     - Update nvmem description
->>>   - Patch 3/7
->>>     - Update get_pbs_client_device()
->>>     - Drop use of printk
->>>     - Remove unused function
->>>
->>> [...]
->>
->> Applied, thanks!
->>
->> [2/7] dt-bindings: leds: leds-qcom-lpg: Add support for LPG PPG
->>       commit: 2fdd08fec742e0c94a2a06a0c9ee0912b6f7ac39
->> [4/7] leds: rgb: leds-qcom-lpg: Add support for PPG through single SDAM
->>       commit: 07a1afc8fbb77cc893e2285112482902ac88a295
->> [5/7] leds: rgb: leds-qcom-lpg: Update PMI632 lpg_data to support PPG
->>       commit: f4f5f6a6f8d7bcc8efd0eee6751def22c9a38fd0
->> [6/7] leds: rgb: leds-qcom-lpg: Include support for PPG with dedicated LUT SDAM
->>       commit: 7399a927272de1fc42f4da8af1d8d60b65a15b84
->> [7/7] leds: rgb: Update PM8350C lpg_data to support two-nvmem PPG Scheme
->>       commit: 7b4066868689b1f341e61957611d252b6fa8cafc
-> 
-> This set had a bunch of checkpatch.pl errors.
-> 
-> Please fix them up subsequently.
-> 
-Hi Lee,
+Sorry for the long explanation but I think it is necessary.
 
-Just wanted to get some quick clarification. Would you like checkpatch.pl issues fixed in a new version
-of this series or would you like a new patch to fix all the issues? Looks like these patches are in your
-for-leds-next-next branch so I am guessing you would like a new follow up patch
-but I just wanted to double check.
+In the NPCM8XX SoC, the reset and the clock register modules are
+scrambled in the same memory register region.
+The NPCM8XX Clock driver is still in the upstream process (for a long
+time) but the NPCM8XX reset driver is already upstreamed.
 
-Thanks,
-Anjelique
+One of the main comments in the NPCM8XX Clock driver upstream process
+is that the clock register is mixed with the reset register and
+therefore we can't map (ioremap) the clock register
+region because is already mapped by the reset module, therefore we
+decided to use an external syscon to handle the clock and the reset
+registers driver.
+
+ I highly appreciate your guidance on this topic.
+
+On Wed, 10 Jan 2024 at 22:59, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 08/01/2024 14:54, Tomer Maimon wrote:
+> > A nuvoton,*-clk-rst node is present in nuvoton-common-npcm7xx.dtsi and
+> > will be added to nuvoton-common-npcm8xx.dtsi. It is necessary for the
+> > NPCM7xx and NPCM8xx clock and reset drivers, and may later be used to
+> > retrieve SoC model and version information.
+> >
+>
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>
+> > This patch adds a binding to describe this node.
+>
+> Please do not use "This commit/patch/change", but imperative mood. See
+> longer explanation here:
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+>
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+>
+> How possibly could it be v22 if there is:
+> 1. No changelog
+> 2. No previous submissions
+> ?
+Should the dt-binding and dts patches be a part of the clock patch set
+(this is why it's V22) or should I open a new patch set?
+>
+> NAK, it's something completely new without any explanation.
+>
+> Limited review follows.
+>
+>
+> >  .../soc/nuvoton/nuvoton,npcm-clk-rst.yaml     | 40 +++++++++++++++++++
+> >  1 file changed, 40 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/nuvoton/nuvoton,npcm-clk-rst.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/soc/nuvoton/nuvoton,npcm-clk-rst.yaml b/Documentation/devicetree/bindings/soc/nuvoton/nuvoton,npcm-clk-rst.yaml
+> > new file mode 100644
+> > index 000000000000..dfec64a8eb26
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/nuvoton/nuvoton,npcm-clk-rst.yaml
+> > @@ -0,0 +1,40 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/nuvoton/nuvoton,npcm-clk-rst.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Clock and reset registers block in Nuvoton SoCs
+>
+> This is vague. Any block? All blocks? Your SoC has only one block? I
+> doubt, although possible.
+>
+> Anyway, clocks go to clock directory, not to soc! We've been here and
+> you already received that feedback.
+Since one region handles the reset and the clock registers shouldn't I
+add the dt-binding to the SoC like the GCR and not to the clock
+directory?
+https://elixir.bootlin.com/linux/v6.7/source/Documentation/devicetree/bindings/soc/nuvoton/nuvoton,npcm-gcr.yaml
+>
+>
+> > +
+> > +maintainers:
+> > +  - Tomer Maimon <tmaimon77@gmail.com>
+> > +
+> > +description:
+> > +  The clock and reset registers are a registers block in Nuvoton SoCs that
+> > +  handle both reset and clock functionality.
+>
+> That's still vague. Say something useful.
+Will describe more
+>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - nuvoton,npcm750-clk-rst
+> > +          - nuvoton,npcm845-clk-rst
+> > +      - const: syscon
+> > +      - const: simple-mfd
+>
+> No, it's not a syscon and not a simple-mfd. You just said it is clock
+Yes, I understand the syscon node represents a register region
+containing a set of miscellaneous registers, but as explain above it
+is quite the case here.
+I will remove the simple-mfd.
+> provider and reset controller. Thus missing clock cells and reset cells.
+The reset cell and clock cell found at the clock and reset dt-binding,
+is it enough?
+>
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties:
+> > +  type: object
+>
+> No, instead:
+> additionalProperties: false
+O.K.
+>
+> > +
+> > +examples:
+> > +  - |
+> > +    clk_rst: syscon@801000 {
+I should use syscon no? if no what should I use?
+>
+> Suddenly a syscon?
+>
+> Drop unused label.
+>
+> > +      compatible = "nuvoton,npcm750-clk-rst", "syscon", "simple-mfd";
+> > +      reg = <0x801000 0x6C>;
+>
+> Only lowercase hex.
+>
+> You just sent some v22 of something new, making all the mistakes from
+> the past submissions for which you received feedback.
+> > +    };
+>
+> Best regards,
+> Krzysztof
+>
+
+Thanks a lot!
+
+Tomer
 
