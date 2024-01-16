@@ -1,134 +1,145 @@
-Return-Path: <devicetree+bounces-32167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CEF82E7AA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 02:52:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E031082E7CF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 03:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F305B208A3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 01:52:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 653C5B21F42
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 02:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1749B210E9;
-	Tue, 16 Jan 2024 01:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9C410FA;
+	Tue, 16 Jan 2024 02:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X9SQounu"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="nQp7+hD1";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Uf9q2wMC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C9820DD5
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 01:11:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50edf4f478eso7149623e87.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 17:11:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705367478; x=1705972278; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Dn3ssfHj6Am73X2yQSvVvrWK/i23VzGIzNntnpF9EZY=;
-        b=X9SQounuoXFT0cvALid6fQQ/SDveFx/KF+ZDCWfIBBM2ckEi0XZxbFvF/oxgWYTvsg
-         BOvusHVOKj13aPAtOVOYBNKR5RN4AsK4h0VqO1uGadt/l3kID6EbkN6/1Xwbe4fvFRLv
-         U5mrz6BEmTqiVsruHwsz4eyVAPWYQ4UrRfCaIo7yjnOHUxTwmEnWXk0zW8Opggl5i9Ec
-         rcuIMm8F6qXCEY0OYXea4ItCDVdsSU6piMwmJ+9WmARcFqvmU3+8MOa9Oo5K5hKE5j/a
-         hE4RUv/5EOqVoJLErjxYbOC/WsdkBfguQq2fXvlkCSSpflhBholc3Cdu1UqADzWqcy/n
-         RS5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705367478; x=1705972278;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Dn3ssfHj6Am73X2yQSvVvrWK/i23VzGIzNntnpF9EZY=;
-        b=AVraKMzW7idx1PHMy3sgBErQYH0EOIqzpw1fRgTf0ArXvoh48c2Lw7VDoOb3Z2EXNI
-         1XXuY4p7oI/ebD5VrKckFGRx2gY7hsrtLbNL4UC1BME/IfwtrrCh9wIpmVpGUS1DVuZJ
-         ZK/rGtU92Fc2KM1k3zQP6m7/PtNMpANkb0Hc3snyuvrgXjkLZ/LqvjuB9ktPYaRiglwI
-         c8cMZWl53sG5Xii3or325CIxhFJA9tRC32wM+ZB4H3p7E/3gEt/5ifnANqfwgCGfP56X
-         agNpS9A9Mrm6iDdBNVvjKxY6rfvKky4FbddEzOSBdVisT+B0viu9ougtgvsb8lV+3oH2
-         HTyQ==
-X-Gm-Message-State: AOJu0Yxsz4FtKIGJFrTdNeuxjUm4H57dwMKToxi4/Stc5UhN9TVaSVHZ
-	a7V1+ywGGioaOmvPLOL+un/mfh/3ferAUg==
-X-Google-Smtp-Source: AGHT+IFH7WgFoPCVlV0SK521OdMnDlNIpVmLRMpQSRhjATjhMK359lIBg5UXvE5dQyxaUCQIB3MD9Q==
-X-Received: by 2002:a2e:8007:0:b0:2cd:63e4:75ff with SMTP id j7-20020a2e8007000000b002cd63e475ffmr2923703ljg.35.1705367477770;
-        Mon, 15 Jan 2024 17:11:17 -0800 (PST)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id q15-20020a2e84cf000000b002cc7a2f7a9asm1513414ljh.98.2024.01.15.17.11.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jan 2024 17:11:17 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 16 Jan 2024 03:10:58 +0200
-Subject: [PATCH 4/4] arm64: dts: qcom: sda660-ifc6560: enable USB 3.0 PHY
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76260388;
+	Tue, 16 Jan 2024 02:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 5FB0A5C0178;
+	Mon, 15 Jan 2024 21:00:25 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 15 Jan 2024 21:00:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1705370425; x=1705456825; bh=2Z1qmxEMsTLQKMDBfJ+3O0kjmLD/ZIDW
+	rrbu4Nd1JY8=; b=nQp7+hD1mEDFNO9npIAC09Ca9w/EUlHo5mORB4C09PhCzBaN
+	vPaMLM3XpxZ0mdePdFX9F+cVNHRM0YuecJV9brXIQHCtMh+71H8sVoBCkzLvTi1E
+	HIGouJJSU94nSPb8PgY4lSppEnL4x4Z5WmKAKB+KTejQ/zFJIyfF0h97Oc67J590
+	pKC3Mo88Iao1rb6t1tDJQ/71TtBRBRaHRrWpO+LjLKuQiwdQ0t0oWs+saA3r0F6d
+	BbOqtf1QSIlQiijNOhr57KA1PZpp2jyl50pSO+BIM3+yGk/jJkRmRgZ2mfep/NtA
+	lpLAqIrKmXN3Lr15z64O1RVVMxUwxZ7HWgfuww==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1705370425; x=
+	1705456825; bh=2Z1qmxEMsTLQKMDBfJ+3O0kjmLD/ZIDWrrbu4Nd1JY8=; b=U
+	f9q2wMCYiBq/sv/XZ0oWHcrEPi5NNNjVQNkEkxP4pvGO8hOGUyCunIDIY3S75nCs
+	TiDPxJXJVckT4/Lmwb8o3bKFhs1k93/585YD/GN9LX5JV4po2kqLNAzh1JatpmpS
+	ahxvTOayTo6mv7aVBL56W7dHsJ1HZon//HO1LgRgaKXgLfE4MLj4FY848T1Kul5+
+	nI8YI/wrNr5/r4HWZa4CjwT3K9Z0WNe8pFb+9f1w1EFFTHA0I3UhZHVQKrd14YSX
+	0uigaULCZeMy0ilwADhDb3YVIdcMmRib1ktFD2RC25B9T869M8TL5sORW+eTnRbx
+	AGjRzdLOusHM1liQpc1bA==
+X-ME-Sender: <xms:OOOlZfmX7XpJvnjcIa9Kq1JcYz2nDGCrHILkaK0r93BG80MKu4kAAg>
+    <xme:OOOlZS2HNR2SJlC5C0scqG2XwwqLfVf8jIJKLItxWifU6nkS-AAOHdsVmprJHDHJ0
+    m74amzj1w>
+X-ME-Received: <xmr:OOOlZVpUGSIBay8uQZZCejcjUleP1uczMxKswtuDkjbnkqnYe6l14zz-CiyMXppb_My4wmOQ4AgkwnjT1N6qpzOBgTtfgGD2lwF4Hg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdejvddggedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefvihhm
+    ucfnuhhnnhcuoehtihhmsehfvggrthhhvghrthhophdrohhrgheqnecuggftrfgrthhtvg
+    hrnhepjeekhfeikeffgfeuvdefgfehudevffeiudeiudfgveevudeukeetveeiueehtedv
+    necuffhomhgrihhnpehlihhnrghrohdrohhrghdpihhnfhhrrgguvggrugdrohhrghenuc
+    evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehtihhmsehf
+    vggrthhhvghrthhophdrohhrgh
+X-ME-Proxy: <xmx:OOOlZXkybVrzi8xkVydYhUDZetMJ5H9fWi2TATa3iDPS_elPcyfW2g>
+    <xmx:OOOlZd33pk1pFHCqC1v0oPRHV-Iuhw8aquvYHI4Ng45Wt0CngGujVA>
+    <xmx:OOOlZWuzarl8bGVNlAV5XEobCJXPhTeUbmQnEQ8ZTwEl_5Qf88gKrA>
+    <xmx:OeOlZc3UFnagpq3i1sFx5jLSm0Ps7dZvTsFgMsCgGQgm8ltRqTCecQ>
+Feedback-ID: i1f8241ce:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 15 Jan 2024 21:00:18 -0500 (EST)
+Message-ID: <8b31ae29-b88b-4ded-95b4-c2d9bbad24e1@feathertop.org>
+Date: Tue, 16 Jan 2024 13:00:15 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240116-sdm660-usb3-support-v1-4-2fbd683aea77@linaro.org>
-References: <20240116-sdm660-usb3-support-v1-0-2fbd683aea77@linaro.org>
-In-Reply-To: <20240116-sdm660-usb3-support-v1-0-2fbd683aea77@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=988;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=QwGWMzQp8Pf2pQC4KMxafaFpJfYGFQD+YP9PO5OleRQ=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBlpdeyqOGeyzaNbEhO66EY0plD0VtAkdAjeQbce
- VdTxSbGCnSJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZaXXsgAKCRCLPIo+Aiko
- 1bckB/4uYcH6UyIitNmvQh772NqkEnb3xAHfkpz8IQJ56vdLm3Lv4DnbSwvVygzQhDTj82EdhDD
- w1p/jGwRSkFT+4mdpZL3yUSYjCUwm3AhGGmd/msf0AfNk/W3Yz60Ce19KUd5Cjo8FFEdS1oUtDN
- Y8w0pUHwVP6SfZ51/7KandzHJhYlfzqSEnTuxK0qWQftxbiy7TcgjVe7NnYXmFfDRyGBMFTRLJB
- 8XIR7BgZQZ6PCwkZlbrQll2VyNw5P3pFSNMXGzBdzc6FsxlxJjnMJkQUBDP2WssdxbezHwqA+lf
- 9Db1c7w39EJhWx1w+hG0n/Z/sQuiFCZuOJzg9+C5oACnzbPg
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: rockchip: Fix Hardkernel ODROID-M1 board
+ bindings
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ KyuHyuk Lee <lee@kyuhyuk.kr>, Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chris Morgan <macromorgan@hotmail.com>, Tianling Shen <cnsztl@gmail.com>,
+ Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
+ Andy Yan <andyshrk@163.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240115145142.6292-1-lee@kyuhyuk.kr>
+ <b4f97202-43ec-4f04-af95-b1ccd3b5d203@linaro.org>
+From: Tim Lunn <tim@feathertop.org>
+In-Reply-To: <b4f97202-43ec-4f04-af95-b1ccd3b5d203@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The Inforce IFC6560 board actually has USB SS lines routed to the USB-C
-connector. Enable USB 3.0 PHY and SS mode for the USB3 host.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+On 1/16/24 01:58, Krzysztof Kozlowski wrote:
+> On 15/01/2024 15:51, KyuHyuk Lee wrote:
+>> The vendor in ODROID-M1 is hardkernel, but it was incorrectly written
+>> as rockchip. Fixed the vendor prefix correctly.
+>>
+>> Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
+>> ---
+>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+> You need to start testing your patches. Your last M1 fails as well in
+> multiple places.
+>
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+> for instructions).
+>
+> The DTS change will break the users, so would be nice to mention this in
+> its commit msg.
 
-diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-index 90118f133961..702ab49bbc59 100644
---- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-+++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-@@ -454,16 +454,15 @@ &usb2_dwc3 {
- };
- 
- &usb3 {
--	qcom,select-utmi-as-pipe-clk;
--	
- 	status = "okay";
- };
- 
- &usb3_dwc3 {
--	maximum-speed = "high-speed";
--	phys = <&qusb2phy0>;
--	phy-names = "usb2-phy";
--	
- 	dr_mode = "peripheral";
- 	extcon = <&extcon_usb>;
- };
-+
-+&usb3_qmpphy {
-+	vdda-phy-supply = <&vreg_l1b_0p925>;
-+	status = "okay";
-+};
+I notice there are a couple of other boards that incorrectly use 
+rockchip as the vendor also:
 
--- 
-2.39.2
+           - const: rockchip,rk3399-orangepi
+           - const: rockchip,rk3568-bpi-r2pro
 
+Perhaps these should also be fixed at the same time?
+
+Regards
+   Tim
+
+>
+> Best regards,
+> Krzysztof
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
