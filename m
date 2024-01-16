@@ -1,129 +1,94 @@
-Return-Path: <devicetree+bounces-32237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A261082EB89
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:31:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD96482EB92
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 10:33:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F32F1F24077
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:31:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4338928501E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 09:33:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF32D12B77;
-	Tue, 16 Jan 2024 09:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="IvdmDo/9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 974B912B7A;
+	Tue, 16 Jan 2024 09:33:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 176B212E42;
-	Tue, 16 Jan 2024 09:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1705397484; x=1736933484;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+e6Ln558idTWadRn1DXntGL0wDIyCZpJMPP2MxyNkHo=;
-  b=IvdmDo/9x2r0RyR0dBmM+vU1fA4M8UhHYFIF5ZGW9Hr/ngzBKvFWaMkK
-   v5cojJ5uf8zg0+5a4WXHL2Ju1L2CfPgFl8hrxUSc6hLaeCL3WAh/d9dE/
-   i0yKxWvMwp1rYGTzpk8KYBQQ5evfNLpCO41MWzxMs3VQ1BwGRd9zGADHm
-   ACbabhXgYI6Eh3dAFTYSdJcs/6vLV3MANX5uCTdkTGw/I5e+MKvrxbMsV
-   3vbo8PYtQDtS2dQPW5ALj9KNL3EXZMr+OaqLD3G/Xd1WNiUu3hDLCzFNS
-   qoj55trBOXJ2vqaY+kmRfyLP/5q46zJVmF2Dug4Hr2ng2iarUwHpSEHG2
-   w==;
-X-CSE-ConnectionGUID: WayHWkw8Q7O2gJ+Gskrx3A==
-X-CSE-MsgGUID: 0aICPRxpQsWlKp7G71Bc1A==
-X-IronPort-AV: E=Sophos;i="6.04,198,1695711600"; 
-   d="asc'?scan'208";a="15990500"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 16 Jan 2024 02:31:22 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 16 Jan 2024 02:31:04 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Tue, 16 Jan 2024 02:31:01 -0700
-Date: Tue, 16 Jan 2024 09:30:25 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Frank Li <Frank.li@nxp.com>, <robh@kernel.org>,
-	<alexandre.belloni@bootlin.com>, <conor.culhane@silvaco.com>,
-	<gregkh@linuxfoundation.org>, <imx@lists.linux.dev>, <jirislaby@kernel.org>,
-	<joe@perches.com>, <linux-i3c@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-	<miquel.raynal@bootlin.com>, <zbigniew.lukwinski@linux.intel.com>,
-	<devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
- silvaco,i3c-target-v1
-Message-ID: <20240116-bleach-herbicide-48d636967134@wendy>
-References: <20240110175221.2335480-1-Frank.Li@nxp.com>
- <20240110175221.2335480-3-Frank.Li@nxp.com>
- <3c0be658-e7a6-4231-b206-86ffb47e0cb2@linaro.org>
- <ZaFbbeQrC7o2dchO@lizhi-Precision-Tower-5810>
- <e3b9aa63-25a5-41cc-9eb7-6e7d1eacb136@linaro.org>
- <ZaFjaWCA6k+tiCSJ@lizhi-Precision-Tower-5810>
- <ZaWLCrWJEMtFx8cR@lizhi-Precision-Tower-5810>
- <1b628901-7f71-4c97-9a16-723912988417@linaro.org>
- <ZaXqCoCHPWER94Hh@lizhi-Precision-Tower-5810>
- <d45e31c4-914e-4cea-a145-9775b6f516ab@linaro.org>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85754134A0;
+	Tue, 16 Jan 2024 09:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4303A2F4;
+	Tue, 16 Jan 2024 01:34:20 -0800 (PST)
+Received: from [10.57.46.197] (unknown [10.57.46.197])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 636543F6C4;
+	Tue, 16 Jan 2024 01:33:29 -0800 (PST)
+Message-ID: <f616989b-2d84-483d-80c4-d3c6eb97b137@arm.com>
+Date: Tue, 16 Jan 2024 09:33:27 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tU9usgt5JDc4MslD"
-Content-Disposition: inline
-In-Reply-To: <d45e31c4-914e-4cea-a145-9775b6f516ab@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: coresight: Remove pattern match
+ of ETE node name
+Content-Language: en-GB
+To: Mao Jinlong <quic_jinlmao@quicinc.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+ Leo Yan <leo.yan@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Tao Zhang <quic_taozha@quicinc.com>
+References: <20240116064505.487-1-quic_jinlmao@quicinc.com>
+ <20240116064505.487-2-quic_jinlmao@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20240116064505.487-2-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---tU9usgt5JDc4MslD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 16/01/2024 06:45, Mao Jinlong wrote:
+> Remove pattern match of ETE node name. Use ete with the number as the
+> name for ete nodes.
+> 
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>   .../bindings/arm/arm,embedded-trace-extension.yaml          | 6 ++----
+>   1 file changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+> index f725e6940993..ed78cc7ae94a 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+> @@ -22,8 +22,6 @@ description: |
+>     with any optional connection graph as per the coresight bindings.
+>   
+>   properties:
+> -  $nodename:
+> -    pattern: "^ete([0-9a-f]+)$"
+>     compatible:
+>       items:
+>         - const: arm,embedded-trace-extension
+> @@ -55,13 +53,13 @@ examples:
+>   
+>   # An ETE node without legacy CoreSight connections
+>     - |
+> -    ete0 {
+> +    ete-0 {
 
-On Tue, Jan 16, 2024 at 08:24:20AM +0100, Krzysztof Kozlowski wrote:
-> On 16/01/2024 03:29, Frank Li wrote:
-> >>> 	Patches were accepted after discussion, what you ponit to. So I
-> >>> think everyone agree on the name 'silvaco,i3c-master-v1'.
-> >>> 	I plan send next version to fix auto build error. Any additional
-> >>> comments about this?
-> >>
-> >> I still do not see how did you address Rob's comment and his point is
-> >> valid. You just did not reply to it.
-> >=20
-> > See https://lore.kernel.org/imx/ZXCiaKfMYYShoiXK@lizhi-Precision-Tower-=
-5810/
->=20
-> First of all, that's not the answer to Rob's email, but some other
-> thread which is 99% ignored by Rob (unless he has filters for
-> "@Rob"...). Therefore no, it does not count as valid answer.
->=20
-> Second, explanation does not make sense. There is no argument granting
-> you exception from SoC specific compatibles.
+Why do we need the number ? why not simply "ete" as Krzysztof suggested ?
 
-The patch could have been applied two months ago had Frank done as
-was requested (multiple times). I don't understand the resistance
-towards doing so given the process has taken way way longer as a result.
+Suzuki
 
---tU9usgt5JDc4MslD
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaZMsQAKCRB4tDGHoIJi
-0oXjAQD+n2/ohO6suxsrwD5Ou5eVTuKiCJW4yn6SzYminXj4UQEA5Z7Y5G8MfUrU
-u49KfI9asa8Tjp9X2y7YIiNSAtP1Qg0=
-=nQni
------END PGP SIGNATURE-----
-
---tU9usgt5JDc4MslD--
 
