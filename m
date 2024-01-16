@@ -1,92 +1,148 @@
-Return-Path: <devicetree+bounces-32367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E9A82F1CF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:50:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D20682F1D8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:50:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F639285ED0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:50:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E3B12853B0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:50:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 073E01C691;
-	Tue, 16 Jan 2024 15:50:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C099C1C2B3;
+	Tue, 16 Jan 2024 15:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D7hkVFcF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W+thR5h9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA8E81BF53;
-	Tue, 16 Jan 2024 15:50:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FCBBC433C7;
-	Tue, 16 Jan 2024 15:50:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705420204;
-	bh=i3khedQ+kiQ0f7qWV61kvzfkthuUNxWpEynNOJvz5Ak=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D7hkVFcFHNtDHPtRPUO+psut8uD4XDQ6J6Z1j1aS25VcpxgYMF04nRcp021DwdSuU
-	 blLjX3+dH65ZlAXHYHJP1NrqwAxhuMgbD1rG5IRXwiXmUA8epSC/TYjopWZggSd7Z0
-	 LvTJ6v8QKqnmqA1f/yD2zFgtNpOcRxehzcVV1Q/zyInUErQNUo/aMEr2lVAg9bPyJs
-	 uqnU1XsKgJUNFx9JcDsP6Mt5VSCwTGpBJG4Yshf0Swzg2I8uFVndetcfiGcwpch+Dd
-	 SBQgciWT8/tKGvHdFkMLWjCHNOxapWZw4qPWi3e2JtPeJM2DsR973TyY3f4pqj2qS/
-	 kWeSsW7GjwAJw==
-Date: Tue, 16 Jan 2024 09:50:02 -0600
-From: Rob Herring <robh@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: cw00.choi@samsung.com, willmcvicker@google.com, andi.shyti@kernel.org,
-	gregkh@linuxfoundation.org, linux-samsung-soc@vger.kernel.org,
-	tomasz.figa@gmail.com, Sam Protsenko <semen.protsenko@linaro.org>,
-	peter.griffin@linaro.org, s.nawrocki@samsung.com,
-	andre.draszik@linaro.org, linux-serial@vger.kernel.org,
-	linux-clk@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	jirislaby@kernel.org, linux-i2c@vger.kernel.org,
-	alim.akhtar@samsung.com, linux-arm-kernel@lists.infradead.org,
-	robh+dt@kernel.org, sboyd@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, kernel-team@android.com,
-	mturquette@baylibre.com, conor+dt@kernel.org
-Subject: Re: [PATCH v3 01/12] dt-bindings: clock: google,gs101-clock: add
- PERIC0 clock management unit
-Message-ID: <170542020157.4185440.8965772370823681119.robh@kernel.org>
-References: <20240109125814.3691033-1-tudor.ambarus@linaro.org>
- <20240109125814.3691033-2-tudor.ambarus@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B81B1C688
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 15:50:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5537dd673e5so7988921a12.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:50:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705420237; x=1706025037; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=9fj5lq6WLox3RxjS6VLyZoS1TJDfe/9L/a0d/uRsoK8=;
+        b=W+thR5h9caAfKbl+/kNjBeLtP8cspHTVwwI5aUp7ScrKxAifo2UOU9Q0St/13ffx9J
+         DIiHvvdQ+zu/Im6EptpxkbB8bd7NXDOO/veKqFBwU4/lAcKVEv5x/RQAnA4vz4hroaon
+         HUGVnsgDexSUiui+r49zUQf3Nvp61iDjhkN54vb2ulsg5zmUcp4xW1Pi2Gf/QpVJPsa5
+         9LT0pz/ZSlU6IeDTChv3zD4BdbCOTC6Cz1B4DI3fkb9kgDu4MaCvRbxVUZRKPrNCI/F0
+         og7zCeMpyEHdQ4GVy8rBJdCr9mIeofQVFn8NNMtgb7qRvEPC3qo8TYnPf1Wf3T8r2Omf
+         rchA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705420237; x=1706025037;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9fj5lq6WLox3RxjS6VLyZoS1TJDfe/9L/a0d/uRsoK8=;
+        b=Tv9H0ckRjRMPYl7XPEa7n1EUd9Ve8N/fDwEGqh0COd5WGH/NQ24oWX4Tzwz56UPHf8
+         FUfanlMRt5kL1QcIG2NpF4K+O0UgSnMqsbb1v9nMs5UBMfxeom1za8OyfkW2m1d0YTTM
+         epXaA2GMo0yILMMcUpWJVbudTsINOADYExHRqsoEzX9TwlVo0NV3Q2S5psK1Azkh//rb
+         PmXaCnPFBB2DCSlYbHX5bYk6jk/MHYpG0SlmYjnyCB1Tvy/yZshsRSr6TeXBlz89xYN0
+         jES13ZJNkyQgGHfoteBB0vc4Y91pzmdLmoGSkfGMEweXseQnQ4opUZiz4iQ2m6PC102G
+         If8w==
+X-Gm-Message-State: AOJu0YzpEUHz/cKk6zbeVICEohQZjF+TN+xPoKzMbGR0+kbRvfsFjo+2
+	ueoHJ3Lo2eFKFAk6AYjeULkCOb1N3s1fUA==
+X-Google-Smtp-Source: AGHT+IEYuVSvF/JKexN7Ir4q8goD9uz1mF37OGXaoJOKP5GnOYSE90nyS5BLB9IfbXZ8CyKoRsL86w==
+X-Received: by 2002:aa7:c899:0:b0:558:e349:a0a7 with SMTP id p25-20020aa7c899000000b00558e349a0a7mr3599165eds.61.1705420237493;
+        Tue, 16 Jan 2024 07:50:37 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id fi13-20020a056402550d00b005578b816f20sm6781154edb.29.2024.01.16.07.50.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jan 2024 07:50:37 -0800 (PST)
+Message-ID: <cc861718-d6d0-4ebe-8f75-8c2534d89557@linaro.org>
+Date: Tue, 16 Jan 2024 16:50:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240109125814.3691033-2-tudor.ambarus@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] iio: pressure: Add driver for Sensirion SDP500
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Petar Stoykov <pd.pstoykov@gmail.com>, linux-iio@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Angel Iglesias <ang.iglesiasg@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <CADFWO8HOb4zY7rPsCxWe2nvrzd8FjVNw0k8=8s4yB7C_BwS0ig@mail.gmail.com>
+ <fd8a8f09-7661-42c2-ace6-0a0e4845184d@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <fd8a8f09-7661-42c2-ace6-0a0e4845184d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 16/01/2024 16:30, Krzysztof Kozlowski wrote:
+>> +
+>> +static struct i2c_driver sdp500_driver = {
+>> +    .driver = {
+>> +        .name    = "sensirion,sdp500",
+>> +        .of_match_table = sdp500_of_match,
+>> +    },
+>> +    .probe        = sdp500_probe,
+>> +    .remove        = sdp500_remove,
+> 
+> Some random wrapping here..
 
-On Tue, 09 Jan 2024 12:58:03 +0000, Tudor Ambarus wrote:
-> Add dt-schema documentation for the Connectivity Peripheral 0 (PERIC0)
-> clock management unit.
-> 
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
-> v3:
-> - rename the clock names to just "bus" and "ip" as per Rob's suggestion
-> - collect Peter's R-b tag
-> 
-> v2:
-> - fix comments as per Sam's suggestion and collect his R-b tag
-> - Rob's suggestion of renaming the clock-names to just "bus" and "ip"
->   was not implemented as I felt it affects readability in the driver
->   and consistency with other exynos clock drivers. I will happily update
->   the names in the -rc phase if someone else has a stronger opinion than
->   mine.
-> 
->  .../bindings/clock/google,gs101-clock.yaml    | 25 +++++-
->  include/dt-bindings/clock/google,gs101.h      | 81 +++++++++++++++++++
->  2 files changed, 104 insertions(+), 2 deletions(-)
-> 
+I meant: indentation before =.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Best regards,
+Krzysztof
 
 
