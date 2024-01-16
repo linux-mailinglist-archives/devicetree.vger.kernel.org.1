@@ -1,154 +1,81 @@
-Return-Path: <devicetree+bounces-32374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 070AD82F278
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:37:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD88682F284
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 17:40:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99AC61F24618
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:37:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 802271F24604
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E9366FAE;
-	Tue, 16 Jan 2024 16:37:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036BB6FAE;
+	Tue, 16 Jan 2024 16:40:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RosJsvoR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 280541CA92;
-	Tue, 16 Jan 2024 16:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TDvkK568dz6K5nX;
-	Wed, 17 Jan 2024 00:35:05 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id F24F01408FF;
-	Wed, 17 Jan 2024 00:37:14 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Tue, 16 Jan
- 2024 16:37:14 +0000
-Date: Tue, 16 Jan 2024 16:37:13 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96581CA80;
+	Tue, 16 Jan 2024 16:40:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81EAFC433F1;
+	Tue, 16 Jan 2024 16:40:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705423201;
+	bh=ZbJj5nuP9rttxf9BhEtuz8jE4n341pZWyh0MY1kmfEc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RosJsvoRLA5GdJJbyKD2Fn7S55LTEEB42yjdR+spcsbL07xQycjBs48LYaoz4DXg/
+	 Mz+pOO7lOOk4RCc+deNkgKJZ3BDF/neIDITpz6t/KFyzanl1Fml/zBf/imSI1gCeYG
+	 AkctpitWxGbIM/4depQqBY2zHTMxt6lESIqaAK5HMuY2Vr085RP5KCkmr5SmSyykdp
+	 /NHbNorongfBUdNxs0IbuU+m18ZxJdO0re1o9eEawvzrUvoPhTGtFkYnnTafTGlPsN
+	 iCDrTzNpA+EIqwA3nKTkwUv+Td3X7EOOxgFiY11gDLcAdH9j7FcaryOo2MWMkRfOmL
+	 Oik83o3D86XxA==
+Date: Tue, 16 Jan 2024 10:39:59 -0600
+From: Rob Herring <robh@kernel.org>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC: Petar Stoykov <pd.pstoykov@gmail.com>, <linux-iio@vger.kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>, Andy Shevchenko
-	<andriy.shevchenko@linux.intel.com>, Angel Iglesias
-	<ang.iglesiasg@gmail.com>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: iio: pressure: Add Sensirion SDP500
-Message-ID: <20240116163713.00006bf3@Huawei.com>
-In-Reply-To: <4eab426b-f654-4e10-9ffa-5b34016565fb@linaro.org>
-References: <CADFWO8EomrhEgtC+i9ikkcDU1c05kx-8kjrS4usAv-TRKxif+w@mail.gmail.com>
-	<4eab426b-f654-4e10-9ffa-5b34016565fb@linaro.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+	Michael Walle <michael@walle.cc>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH] dt-bindings: nvmem: add common definition of
+ nvmem-cell-cells
+Message-ID: <170542319882.93436.3353325004500279691.robh@kernel.org>
+References: <20240109213739.558287-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-
-On Tue, 16 Jan 2024 16:31:55 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 16/01/2024 16:24, Petar Stoykov wrote:
-> > Sensirion SDP500 is a digital differential pressure sensor. It provides
-> > a digital I2C output. Add devicetree bindings requiring the compatible
-> > string and I2C slave address (reg).
-> > 
-> > Signed-off-by: Petar Stoykov <pd.pstoykov@gmail.com>
-> > ---
-> >  .../bindings/iio/pressure/sdp500.yaml         | 38 +++++++++++++++++++
-> >  1 file changed, 38 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/pressure/sdp500.yaml  
-> 
-> Filename like compatible.
-> 
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/pressure/sdp500.yaml
-> > b/Documentation/devicetree/bindings/iio/pressure/sdp500.yaml
-> > new file mode 100644
-> > index 000000000000..af01ec7e3802
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/pressure/sdp500.yaml
-> > @@ -0,0 +1,38 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/pressure/sdp500.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: sdp500/sdp510 pressure sensor with I2C bus interface
-> > +
-> > +maintainers:
-> > +  - Petar Stoykov <pd.pstoykov@gmail.com>
-> > +
-> > +description: |  
-> 
-> Do not need '|' unless you need to preserve formatting.
-> 
-> > +  Pressure sensor from Sensirion with I2C bus interface.
-> > +  There is no software difference between sdp500 and sdp510.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sensirion,sdp500
-> > +  
-> 
-> No resources? No interrupts? No power supply or any pins? No even
-> iio-cells? This looks incomplete.
-
-For a pressure sensors, io-channel-cells (which I guess you me you
-mean) would be a new thing. We've never yet had a consumer of this
-data type...  Not necessarily a bad thing to have as one can
-conceive of one, but none of the current pressure sensor bindings
-have that.
-
-vdd-supply though definitely wants to be in here and required
-given device is unlikely to work without power!
-
-Jonathan
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240109213739.558287-1-krzysztof.kozlowski@linaro.org>
 
 
+On Tue, 09 Jan 2024 22:37:39 +0100, Krzysztof Kozlowski wrote:
+> Linux kernel NVMEM consumer bindings define phandle to NVMEM cells
+> ("nvmem-cells"), thus we also want the common definition of property
+> defining number of cells encoding that specifier, so the
 > 
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c3 {  
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Reported-by: Michael Walle <michael@walle.cc>
+> Closes: https://github.com/devicetree-org/dt-schema/pull/89
+> Reported-by: Rafał Miłecki <zajec5@gmail.com>
+> Closes: https://lore.kernel.org/linux-arm-kernel/20221121105830.7411-1-zajec5@gmail.com/#r
+> Closes: https://lore.kernel.org/all/bdf7751b-0421-485d-8382-26c084f09d7d@gmail.com/
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/nvmem/nvmem-provider.yaml         | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-provider.yaml
 > 
-> i2c {
-> 
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +      sdp500@40 {  
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
