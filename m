@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-32364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096B482F1B1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:38:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFBDC82F1BD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 16:44:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C4781C23681
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:38:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4207B1F23E39
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 15:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611AC1C294;
-	Tue, 16 Jan 2024 15:38:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F34EE1C2A9;
+	Tue, 16 Jan 2024 15:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XOJdlMI7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="efNoSlQz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A6A1C2B2
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 15:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55D781BF53
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 15:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e86c86a6fso3226085e9.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:38:36 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a29058bb2ceso1062470666b.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:44:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705419515; x=1706024315; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1705419872; x=1706024672; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=j23It0IuiUroSCWhj0PbPFmrnm7HHPIjuz5iaZMj6Ng=;
-        b=XOJdlMI7htmqqojzaByDzH9N57lPW91ckWcExpcEDZJV3bSDTLEmJ5Oqza/3Q4D+iP
-         GbvpU0qtXH/w6xg71dhr+aDeHUWm+Vp8b6ofO7fexeY0tdj4hcZEIPX8ZKKmk+eTfs/g
-         ahC94EIB42o1MYjSygZx9ugoh6emRl2i6JdEKjgA1nlGPQGYYOFkV4tVBQ8KK2Xc0I3m
-         O9NpwetgK1fDdTnHSAeTh+pf26+Bq268p76IEJT83pGy+aVgbl74E8atB9pNKArjd/JB
-         dYVle1PVHRRMd6eFcJoDGoBkm8DKBU0I42DC/CwmyyCxXWyTS6aetei0RV9eyh/mvXSg
-         dl6w==
+        bh=rik98Wypelg/iFUeapRB60xFxi9oGl9rWiTrFyc7vzA=;
+        b=efNoSlQzrfB7jCDE/Z2ZrgNNfzB1HF/ybR9rVoRa0wmfvpYEyK3gs9rAuWb0VeNVrt
+         UgpAEsfyyKB4GutWVeJkrCABZnMPcEGrW8W0AkLS83uu16ixq4HRBY1zNUmXX3YjXS5V
+         Rhrphr08Ngk4JQROMUZrZAPO2YFGQF2eDBfIrV6vj8IOP8liFK++o+iPgwTagDs7E/Lj
+         nenmqwHIxYvASWZ8++oTEahes5eeq7OxmYyDi4TDWf4HFz81YKDECd1kbsnCKzsK/tZN
+         Nbuuv+Akzz7q8EyPicwdAkwegNvDYIt/3pvEC/HG7Uep70RMyLks8QPXheWFxba5M89D
+         UoUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705419515; x=1706024315;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1705419872; x=1706024672;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j23It0IuiUroSCWhj0PbPFmrnm7HHPIjuz5iaZMj6Ng=;
-        b=njOKJ+hgMd3J7LZuWOwBfk/pKwX+gZrLoxY7WG8ZAtdjeBewH2mgai0YLbKJqPqm7x
-         2CdzDqZyfaftuVLQSDzQfsOJOlOHwqAlaKok4laOGCrxhKdCUj7QC5cUWVgYhgEyuY5N
-         I1+0fgBeNHxCthpApqmYtlLs8sR7tr+2alQzQdn0BV0EuHw9JeU91PaPvN/vip3sBzL9
-         TNZLEVEmQjexPXHajh1FVuXuGET7LlAgH8p/wOJBYFVUppQyFBgHvZzXqZULoQ+p7Gga
-         ijpVlxSbgF6k/UVaLgJm+e/1TTnQ6P7hruBQbAWI+LXz2bcOneN22TfbN4yRN879zy9a
-         WidA==
-X-Gm-Message-State: AOJu0YyxyHQOMtPjQ1S7cKjJQFFNcdlJ+10qGoWD5zjn4+pWyEqC54C1
-	5+LHb94vlz5/Pwymz22nxDBf+J86N5R2lQ==
-X-Google-Smtp-Source: AGHT+IFofYs+TOqujuleYZ0THVO9V5vRRggjAVkn1zTZEBw5Ywb0Azkc/icqAhQUDcJudaP4Sp+CyQ==
-X-Received: by 2002:a05:600c:257:b0:40e:7e40:10c6 with SMTP id 23-20020a05600c025700b0040e7e4010c6mr716196wmj.182.1705419514820;
-        Tue, 16 Jan 2024 07:38:34 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:fab3:687:ead6:5b40? ([2a05:6e02:1041:c10:fab3:687:ead6:5b40])
-        by smtp.googlemail.com with ESMTPSA id bi7-20020a05600c3d8700b0040e877fde55sm339538wmb.5.2024.01.16.07.38.34
+        bh=rik98Wypelg/iFUeapRB60xFxi9oGl9rWiTrFyc7vzA=;
+        b=jjZseRafGtEK/Xc5lz/CGcAiJYwTFJKjqsifbCYKbhIG6CP/oOnmOYNYJ0mCypmrEt
+         S6erfr95KNyGpvJ7kBVkFxw61OrG+6+0R7IE41tkkz/wOFq9k1jv1YKIFbl8JBMr2bSg
+         /qEeWq+S6a38LCOvJP5ul8NIqBKbnr/VSqPpBcmAWeibisvOEFcYKOpTbMFoNhUmMbUg
+         lPrI6PaEzfWIbGLUJplPhfkr+wde2IkM5ZFXzSOPPX7Q+sNJEpDRY72I24gUZt/PwYKs
+         KwS22xNFVKy792S8suUo+2p7MjiC5gtMMuGKGnQX8CUHp83q2r4FN51lOwL0bN8YxfY4
+         zXhg==
+X-Gm-Message-State: AOJu0YzWDpDiyy3HD6pZn4Ysv85zJSWS/oYNvLNylGs+EuKnZ5ExTB5j
+	agBTRAM+sLPufUSset2GlayeTJTXlF9t7w==
+X-Google-Smtp-Source: AGHT+IGkCnW2ZMoOUk1SXehRKpWkgXFjFJAq8lJ8k4Ku2uNP/50UESdVONXfRCEPBjT32jDgukBNRA==
+X-Received: by 2002:a17:906:4741:b0:a23:7576:3552 with SMTP id j1-20020a170906474100b00a2375763552mr2335553ejs.45.1705419872631;
+        Tue, 16 Jan 2024 07:44:32 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id ap3-20020a17090735c300b00a2c879e89a8sm6186366ejc.188.2024.01.16.07.44.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 07:38:34 -0800 (PST)
-Message-ID: <70b359c6-f094-4874-b903-1dca07d0db7c@linaro.org>
-Date: Tue, 16 Jan 2024 16:38:33 +0100
+        Tue, 16 Jan 2024 07:44:32 -0800 (PST)
+Message-ID: <f3d7d02e-dec3-4292-b00a-d90c8b614642@linaro.org>
+Date: Tue, 16 Jan 2024 16:44:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,77 +66,122 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845: Fix wild reboot during Antutu
- test
+Subject: Re: [PATCH 1/2] dt-bindings: misc: xlnx,sd-fec: convert bindings to
+ yaml
 Content-Language: en-US
-To: Luca Weiss <luca.weiss@fairphone.com>, andersson@kernel.org,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Amit Pundir <amit.pundir@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20240116115921.804185-1-daniel.lezcano@linaro.org>
- <CYG4WTCOBTG2.11PA7Q4A3H93H@fairphone.com>
- <5db88d48-4868-49f0-b702-6eea14400e5b@linaro.org>
- <CYG6QOFYOX79.2ROURJ8FK446C@fairphone.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <CYG6QOFYOX79.2ROURJ8FK446C@fairphone.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Michal Simek <michal.simek@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, arnd@arndb.de, gregkh@linuxfoundation.org,
+ michal.simek@xilinx.com, linux-arm-kernel@lists.infradead.org,
+ robh+dt@kernel.org, mark.rutland@arm.com, devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, git@amd.com
+References: <20240116111135.3059-1-dragan.cvetic@amd.com>
+ <20240116111135.3059-2-dragan.cvetic@amd.com>
+ <107e9496-8b2f-4de2-9396-945a7c822493@linaro.org>
+ <7c76ac86-40d3-4c55-a0a8-0b83fe971bd0@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <7c76ac86-40d3-4c55-a0a8-0b83fe971bd0@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 16/01/2024 15:03, Luca Weiss wrote:
-> On Tue Jan 16, 2024 at 1:51 PM CET, Daniel Lezcano wrote:
->> On 16/01/2024 13:37, Luca Weiss wrote:
->>> On Tue Jan 16, 2024 at 12:59 PM CET, Daniel Lezcano wrote:
->>>> Running an Antutu benchmark makes the board to do a hard reboot.
->>>>
->>>> Cause: it appears the gpu-bottom and gpu-top temperature sensors are showing
->>>> too high temperatures, above 115°C.
->>>>
->>>> Out of tree configuratons show the gpu thermal zone is configured to
->>>> be mitigated at 85°C with devfreq.
->>>>
->>>> Add the DT snippet to enable the thermal mitigation on the sdm845
->>>> based board.
->>>>
->>>> Fixes: c79800103eb18 ("arm64: dts: sdm845: Add gpu and gmu device nodes")
->>>> Cc: Amit Pundir <amit.pundir@linaro.org>
->>>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->>>
->>> A part of this is already included with this patch:
->>> https://lore.kernel.org/linux-arm-msm/20240102-topic-gpu_cooling-v1-4-fda30c57e353@linaro.org/
->>>
->>> Maybe rebase on top of that one and add the 85degC trip point or
->>> something?
+On 16/01/2024 16:36, Michal Simek wrote:
+>>> +  clock-names:
+>>> +    additionalItems: true
 >>
->> Actually, I think the patch is wrong.
-> 
-> I recommend telling Konrad in that patch then, not me :)
-
-That's good Konrad is in the recipient list :)
-
->> The cooling effect does not operate on 'hot' trip point type as it is
->> considered as a critical trip point. The governor is not invoked, so no
->> mitigation happen. The 'hot' trip point type results in sending a
->> notification to userspace to give the last chance to do something before
->> 'critical' is reached where the system is shut down.
+>> Nope
 >>
->> I suggest to revert it and pick the one I proposed.
+>>> +    minItems: 2
+>>> +    maxItems: 8
+>>
+>> Nope
+>>
+>>> +    items:
+>>> +      - const: core_clk
+>>> +      - const: s_axi_aclk
+>>> +      - enum:
+>>> +          - s_axis_ctrl_aclk
+>>> +          - s_axis_din_aclk
+>>> +          - m_axis_status_aclk
+>>> +          - m_axis_dout_aclk
+>>> +          - s_axis_din_words_aclk
+>>> +          - m_axis_dout_words_aclk
+>>
+>> Why order is not enforced?
 > 
-> It hasn't been applied yet so it can be fixed in v2 there.
+> Let me comment this one. Based on my discussion with Dragan IP itself is 
+> configurable and only the first two clocks are in all combinations. But based on 
+> his description that last 6 clocks can be present in some of them.
+> It means order is not really fixed and any combination is possible.
+> That's why I have suggested him to use this description because I didn't find 
+> any better one.
+> I actually tested this schema here but didn't get a feedback on it yet.
+> https://lore.kernel.org/r/3e86244a840a45c970289ba6d2fa700a74f5b259.1705051222.git.michal.simek@amd.com
+> 
+> It means not sure about not defining maxItems but when I don't do it it is not 
+> passing dtbs_check.
 
-The patch was submitted without testing AFAICT. So it is preferable to 
-pick the one I sent which was tested by Amit and me.
+
+This would explain why you want additionalItems:true, but it should be
+also explained in commit msg. Old code did not have such relaxed
+statement, at least not explicitly written, and commit msg explicitly
+says it is 1-to-1 conversion.
+
+Anyway, current solution won't work, because additional items can be
+anything. Try it. Put as fourth clock "yellow_duck" and see what happens.
+
+I don't find such names as useful and maybe the drivers should just get
+by index. Especially that Linux driver does not care. It would be a ABI
+change, though, so up to you.
+
+If you want to keep the names, then:
+1. Look at snps,dwmac.yaml
+2. or just list 6 enums with all possibilities.
 
 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Best regards,
+Krzysztof
 
 
