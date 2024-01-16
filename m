@@ -1,99 +1,167 @@
-Return-Path: <devicetree+bounces-32286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7B4F82ED94
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 12:21:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E34682EDCD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 12:35:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86E551F23767
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:21:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DF451C23258
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 11:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CB261B7F4;
-	Tue, 16 Jan 2024 11:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A07811B977;
+	Tue, 16 Jan 2024 11:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SAAAm80K"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YOLevhJi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332C61B7F2;
-	Tue, 16 Jan 2024 11:21:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5c6910e93e3so1311060a12.1;
-        Tue, 16 Jan 2024 03:21:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705404087; x=1706008887; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2frdD80csrQQUHGsaueDexralzHnoTFsGiRETYFj+P8=;
-        b=SAAAm80Ktvql/9N2c0PBTPSM1dK6+Z7WG4GSJ+R56Z4d0z7lPmkxG4iZ8u24k3i0SS
-         kQHHqQweCBTfjEP18ZmbLqLaoLIpHhc5JJ00gU5nGOZ9nmB7ItQJFZAOlkxjPDrE6ytZ
-         gXWWeAw4a7nB+WjY/EAEc1SONMwEGXxwZXNQlAfWO63/Ss/91bkzHIFIk6RD+eo5/ewg
-         HHoTvdKR6bD0CkxejOtvatnczOg41wHKBqBEzw/O7fVoSwalli2wrMifJoE6QSfc1tov
-         ZOdrhlza4g9rMtmQWAZlS+LI7lLvnVL9AiUXTvbS0lET5yOqWR+s+rHucg+Uwc/hm66Z
-         E4XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705404087; x=1706008887;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2frdD80csrQQUHGsaueDexralzHnoTFsGiRETYFj+P8=;
-        b=Eo6ojdNm3UUWDg6EdZDKxgtaAQS1xe/9vj358K4dE5+GzqdDhZBiqYmG+TfOg6qY2J
-         jobu/bJxVENpWyjvhL+NQun5MQ+UJy5reaCxykswJPjvt2x0N/7AIPN+4UmC9GmKSy4f
-         dcvms3M790AdIPD4JG1yK3XClsAtFqtHTdoWLR3ugSMKt1Qi0mIPXYBATAItZXk/6XX7
-         gcGqYco9mT05oReEx+H5Helqvqn/kiYvM1RYaZmLSp1iA98BEcZ1LQUeJca+sye3ZFcN
-         QlOMwjBE7JPMEUpyS6X9zSetEC6K40Q1vRC9fD8OuJ2Dn/PcTE3tfGXxdv/YlbNPIyPR
-         UQ4Q==
-X-Gm-Message-State: AOJu0Yymn9RTppmqVihyA71yT8hdv+/suk0qtNIYeFJyG3ClkMEg8snB
-	Pf8UVMFkovYeMx6Qh+853TeodZqXxhWYNslXCPM=
-X-Google-Smtp-Source: AGHT+IE9fyCX5XxM744+q1T3mzQxH5LsqLALOlIAytz20SCY3uCcOSDSx1KLO7eSCKJWzlsheKRM3B1TBv+GewOLKtw=
-X-Received: by 2002:a05:6a21:9218:b0:19b:20e9:90da with SMTP id
- tl24-20020a056a21921800b0019b20e990damr3250632pzb.5.1705404087498; Tue, 16
- Jan 2024 03:21:27 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC581BC2A;
+	Tue, 16 Jan 2024 11:35:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1705404911; x=1736940911;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pDRoozCoSvSnaG9Is1Yrkh4GD9ZgaI1XvL1QIBhfKro=;
+  b=YOLevhJitTaxPW23hPpZ/cRYlWdnzRv2Mi6SQdDFpNyNQq5Ihz/n32FI
+   pNr1iSuwUpW/pf1UXse8jREeABjwbBq5NVmIAYHdrCdK6eGDmzFsDpWGc
+   DNi36F9N+0TW8W/9r5wzyuWZtE5qQ1rv1ADqRDQPScWpiXVwPXtxHR/iH
+   g5VFIgJKUrssGji8M2NPE+noNZK30e3SX131BX4BiVSuehjSOAFJ+BGxr
+   S66OT6WGdXVlRqFz3IVvyhA9+m48XYiTv1zZmK/D63EgZLyJizXdpyNTO
+   QSm9kihzjs4vxqlwkvpUgPZhXFNGg8+H76lxKdjKc7x9YRBXfzxQpFk7x
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="13337831"
+X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; 
+   d="scan'208";a="13337831"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2024 03:35:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10954"; a="760151374"
+X-IronPort-AV: E=Sophos;i="6.05,199,1701158400"; 
+   d="scan'208";a="760151374"
+Received: from lkp-server01.sh.intel.com (HELO 961aaaa5b03c) ([10.239.97.150])
+  by orsmga006.jf.intel.com with ESMTP; 16 Jan 2024 03:35:03 -0800
+Received: from kbuild by 961aaaa5b03c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rPhif-0000dH-0f;
+	Tue, 16 Jan 2024 11:35:01 +0000
+Date: Tue, 16 Jan 2024 19:34:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@linaro.org>,
+	James Clark <james.clark@arm.com>, Leo Yan <leo.yan@linaro.org>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: oe-kbuild-all@lists.linux.dev, Mao Jinlong <quic_jinlmao@quicinc.com>,
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] coresight: core: Add device name support
+Message-ID: <202401161905.KuRUhKW4-lkp@intel.com>
+References: <20240115164252.26510-2-quic_jinlmao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240116105317.267525-1-frieder@fris.de> <20240116105317.267525-4-frieder@fris.de>
-In-Reply-To: <20240116105317.267525-4-frieder@fris.de>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 16 Jan 2024 08:21:16 -0300
-Message-ID: <CAOMZO5DONvb8GpH0PrBaa_EW+br6jWeMC=Jx_y_Etz1EUg11mw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: imx6dl: Add support for Sielaff i.MX6 Solo board
-To: Frieder Schrempf <frieder@fris.de>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	Richard Cochran <richardcochran@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Frieder Schrempf <frieder.schrempf@kontron.de>, Andre Przywara <andre.przywara@arm.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Gregory CLEMENT <gregory.clement@bootlin.com>, 
-	James Hilliard <james.hilliard1@gmail.com>, 
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, NXP Linux Team <linux-imx@nxp.com>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240115164252.26510-2-quic_jinlmao@quicinc.com>
 
-On Tue, Jan 16, 2024 at 7:54=E2=80=AFAM Frieder Schrempf <frieder@fris.de> =
-wrote:
+Hi Mao,
 
-> +&i2c3 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pinctrl_i2c3>;
-> +       clock-frequency =3D <100000>;
-> +       status =3D "okay";
-> +
-> +       st1633@55 {
+kernel test robot noticed the following build errors:
 
-Please use a generic node name.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.7 next-20240112]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> +       gt911@5d {
+url:    https://github.com/intel-lab-lkp/linux/commits/Mao-Jinlong/coresight-core-Add-device-name-support/20240116-004557
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240115164252.26510-2-quic_jinlmao%40quicinc.com
+patch subject: [PATCH v2 1/2] coresight: core: Add device name support
+config: arm-randconfig-r081-20240116 (https://download.01.org/0day-ci/archive/20240116/202401161905.KuRUhKW4-lkp@intel.com/config)
+compiler: clang version 18.0.0git (https://github.com/llvm/llvm-project 9bde5becb44ea071f5e1fa1f5d4071dc8788b18c)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240116/202401161905.KuRUhKW4-lkp@intel.com/reproduce)
 
-Ditto.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401161905.KuRUhKW4-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/hwtracing/coresight/coresight-core.c:1775:7: error: assigning to 'char *' from 'const char *' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+    1775 |         name = coresight_get_device_name(dev);
+         |              ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 error generated.
+
+
+vim +1775 drivers/hwtracing/coresight/coresight-core.c
+
+  1758	
+  1759	/*
+  1760	 * coresight_alloc_device_name - Get an index for a given device in the
+  1761	 * device index list specific to a driver. An index is allocated for a
+  1762	 * device and is tracked with the fwnode_handle to prevent allocating
+  1763	 * duplicate indices for the same device (e.g, if we defer probing of
+  1764	 * a device due to dependencies), in case the index is requested again.
+  1765	 */
+  1766	char *coresight_alloc_device_name(struct coresight_dev_list *dict,
+  1767					  struct device *dev)
+  1768	{
+  1769		int idx;
+  1770		char *name = NULL;
+  1771		struct fwnode_handle **list;
+  1772	
+  1773		mutex_lock(&coresight_mutex);
+  1774	
+> 1775		name = coresight_get_device_name(dev);
+  1776		if (!name) {
+  1777			idx = coresight_search_device_idx(dict, dev_fwnode(dev));
+  1778			if (idx < 0) {
+  1779				/* Make space for the new entry */
+  1780				idx = dict->nr_idx;
+  1781				list = krealloc_array(dict->fwnode_list,
+  1782						      idx + 1, sizeof(*dict->fwnode_list),
+  1783						      GFP_KERNEL);
+  1784				if (ZERO_OR_NULL_PTR(list)) {
+  1785					idx = -ENOMEM;
+  1786					goto done;
+  1787				}
+  1788	
+  1789				list[idx] = dev_fwnode(dev);
+  1790				dict->fwnode_list = list;
+  1791				dict->nr_idx = idx + 1;
+  1792			}
+  1793	
+  1794			name = devm_kasprintf(dev, GFP_KERNEL, "%s%d", dict->pfx, idx);
+  1795		}
+  1796	done:
+  1797		mutex_unlock(&coresight_mutex);
+  1798		return name;
+  1799	}
+  1800	EXPORT_SYMBOL_GPL(coresight_alloc_device_name);
+  1801	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
