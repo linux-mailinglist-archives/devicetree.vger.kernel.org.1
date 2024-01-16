@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-32469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A67C482F6DE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:10:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F50D82F714
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:15:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42A9E1F23573
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:10:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B54BE1C2469D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5611160BAB;
-	Tue, 16 Jan 2024 19:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8E964CE9;
+	Tue, 16 Jan 2024 19:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uVMR5IYr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q8FxST3E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C55F60BA7;
-	Tue, 16 Jan 2024 19:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E853C6E2BC;
+	Tue, 16 Jan 2024 19:46:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705434389; cv=none; b=UMp5hQVUEefHHIOWK/8thzOjw9dJs7yYsQlwROZakuBdlReHKz9VuLYNvl9SeHjGHLHOqxLjb33/c2YiLwM0dwCDPADXywEud80VU5jpKbyFgqgIxX4HcGzOg4SDaYgFh50fRweUD5ngt97Xd+590j0Jjq62iVhEUWvbhN+wrdA=
+	t=1705434414; cv=none; b=WvfMYHnBh6dQHQRNCWWJPnp4uO8huGpcvwJxR0AKiLE+5FC/X9osFRavbflU8/qPvNB8r4wi5a+sTdG/H9Mr2LA+RFYpaAaGoLLkuTEO5GtqR9Jnpe9ns6lV/5Ys5HZSb6jlMliypkvXA8ob9d7zzjfx/EOtWtf3sXV88VS+B0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705434389; c=relaxed/simple;
-	bh=fymq6E4rspAhYqkF6S+Z9Qly/bJA3N38Hp7udBD3v44=;
+	s=arc-20240116; t=1705434414; c=relaxed/simple;
+	bh=nGHY1WKzTqPdqg3P8pbhZCk7xp1yaqoB8FolSVNnx1M=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=l70ClcsqypK5SLcPuRcUPUR2VPHfCZmF3poehTQ005mB2tKqIg9/SOVWSchJ3xpVT4r2AUdmcVr51bWM9LvNQrIppeKPuYJ17tPof2I8RBXtmFGhi+2cVKLdOht5AC34G32GSIxqd7wNtbe1kt5R1Q76eDz4GK7Gf1akqpxfJn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uVMR5IYr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45AABC433A6;
-	Tue, 16 Jan 2024 19:46:27 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=jZW5GmY7TWY/kE84KcPKzsudqH33Qm2U2evcLUkxd+A2SxxQEPLNCxnSSCi4q0NN8AjnakTDTvDDocq0SWmkWS/AIiDVGqKOIgajvXe6+olS3pdk4QLdxbv9D2Nf080O/yzpdBFNyH3A+rc6+/Y/KqkNloqqRAMMVWizAvPYXvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q8FxST3E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57186C43394;
+	Tue, 16 Jan 2024 19:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705434388;
-	bh=fymq6E4rspAhYqkF6S+Z9Qly/bJA3N38Hp7udBD3v44=;
+	s=k20201202; t=1705434413;
+	bh=nGHY1WKzTqPdqg3P8pbhZCk7xp1yaqoB8FolSVNnx1M=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=uVMR5IYrJsdu6DBgsn1Gn4XhX9LUfk6V3sddUVrY2tUQkAuUf1QNuO7jq1ufC9abp
-	 +WN9Z5Gj39CfI1NNOrtymHjMkVyO5ByNDrtws184zurAWpzsI3XfrtxFUyKZJEHrJ1
-	 WFlFTE7di/hSzCg06X6KdFC8XYCsmWtKEiXNhjPZE0uKGQwxjaFOc7wQP5f2bVOXSx
-	 38/AY9Iz0UamN5sT0H82jfjIHXIW5gwTlDfaMcuxYMzCeKiEHdk8eW8MnUDHRml7OZ
-	 mnJoLBF9lFfOrQHLF+IKFLux7C2BwJivhIqV6eZ45sSaQp7RHIKZAANVTVcCl32Pzo
-	 bXMIy1ixTfmqw==
+	b=Q8FxST3Ek6FLmoZ0PZbGf33/UE/ocWR4GM/Xvc3p4/sKgKP/vgriL41Xe80wx3SI/
+	 9T8BJVb5lkvrDAmMe1SmM1YwNo+Y5t/wgiAtQS22LSdIgR3nGQ3sKQh3pW4r8qDY7m
+	 PmmEVmXzkFgEd6KTflwp8sa0RxWa33OHUp+5KzR0G3RW5w+vjOzZbS/cQDeOq8xQPa
+	 oUbMHuWmxr0lN3B09oBe16oaU0a0P3eg8/rhgfVF+31MyDTxPmQJpCLV/Zrwbupo+2
+	 XeNYslPgtc89nn8DLAAoePXR7QdG2GsLn38ZdnMX0P9HQSvmtA2TiPjYr0n0Sn3O4a
+	 H5NOQWXQJ3tLQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
+Cc: Chunyan Zhang <chunyan.zhang@unisoc.com>,
 	Sasha Levin <sashal@kernel.org>,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	khilman@baylibre.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.7 089/108] arm64: dts: amlogic: fix format for s4 uart node
-Date: Tue, 16 Jan 2024 14:39:55 -0500
-Message-ID: <20240116194225.250921-89-sashal@kernel.org>
+	orsonzhai@gmail.com,
+	zhang.lyra@gmail.com,
+	devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.7 102/108] arm64: dts: sprd: Add clock reference for pll2 on UMS512
+Date: Tue, 16 Jan 2024 14:40:08 -0500
+Message-ID: <20240116194225.250921-102-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240116194225.250921-1-sashal@kernel.org>
 References: <20240116194225.250921-1-sashal@kernel.org>
@@ -72,65 +70,33 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.7
 Content-Transfer-Encoding: 8bit
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 
-[ Upstream commit eb54ef36282f670c704ed5af8593da62bebba80d ]
+[ Upstream commit 829e3e70fe72edc084fbfc4964669594ebe427ce ]
 
-Aliases use lowercase letters and place status in end.
+Fix below dtbs_check warning:
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Link: https://lore.kernel.org/r/20231215-s4-dts-v1-1-7831ab6972be@amlogic.com
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+'clocks' is a dependency of 'clock-names'
+
+Link: https://lore.kernel.org/r/20231221092824.1169453-2-chunyan.zhang@unisoc.com
+Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi             | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/sprd/ums512.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-index c1f322c73982..b1b81ac03200 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-@@ -15,7 +15,7 @@ / {
- 	#size-cells = <2>;
- 
- 	aliases {
--		serial0 = &uart_B;
-+		serial0 = &uart_b;
- 	};
- 
- 	memory@0 {
-@@ -25,7 +25,7 @@ memory@0 {
- 
- };
- 
--&uart_B {
-+&uart_b {
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index e0cfc54ebccb..dac18eb634d7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -126,14 +126,14 @@ gpio_intc: interrupt-controller@4080 {
- 					<10 11 12 13 14 15 16 17 18 19 20 21>;
+diff --git a/arch/arm64/boot/dts/sprd/ums512.dtsi b/arch/arm64/boot/dts/sprd/ums512.dtsi
+index 024be594c47d..7984492ef651 100644
+--- a/arch/arm64/boot/dts/sprd/ums512.dtsi
++++ b/arch/arm64/boot/dts/sprd/ums512.dtsi
+@@ -291,6 +291,7 @@ anlg_phy_gc_regs: syscon@323e0000 {
+ 			pll2: clock-controller@0 {
+ 				compatible = "sprd,ums512-gc-pll";
+ 				reg = <0x0 0x100>;
++				clocks = <&ext_26m>;
+ 				clock-names = "ext-26m";
+ 				#clock-cells = <1>;
  			};
- 
--			uart_B: serial@7a000 {
-+			uart_b: serial@7a000 {
- 				compatible = "amlogic,meson-s4-uart",
- 					     "amlogic,meson-ao-uart";
- 				reg = <0x0 0x7a000 0x0 0x18>;
- 				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
--				status = "disabled";
- 				clocks = <&xtal>, <&xtal>, <&xtal>;
- 				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
- 			};
- 
- 			reset: reset-controller@2000 {
 -- 
 2.43.0
 
