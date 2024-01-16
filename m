@@ -1,179 +1,182 @@
-Return-Path: <devicetree+bounces-32429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99E2A82F52D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:17:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B42A882F538
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:22:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B10321C22DBF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:17:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64520286172
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:22:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B6F1CFAF;
-	Tue, 16 Jan 2024 19:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77EC01CFB7;
+	Tue, 16 Jan 2024 19:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jDAoxy/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9DF41CF9A;
-	Tue, 16 Jan 2024 19:17:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490231D551;
+	Tue, 16 Jan 2024 19:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705432637; cv=none; b=ku3pstpP3UhE3kt02GkKcLBI2bl5Qr29CpL4RR2mt5L9bTrCTsg6AtTe62R0mEm1gTybXsE2DvreT7SAUwoHq6/wpPftTzsYTYXbfoVT+BbZisfkzSplIPMltCtxQE52w7HmFyifNZXaCIqLArpdghztsJCMei5B8pfb+49ohls=
+	t=1705432908; cv=none; b=EuBitNO56Kq3K7Ts77l0fNqMDPr4x5Hq+AK24CnAw+wD+6nPlhIe7lqcIj4CTuUcUGrS9JFSrxDVnscRZ18fhYoMY6bCMy/ttx4mw6yEa6WjanAQt8LhDJ9J6F8rrecPSnw76MWw5GMT7DZ+PL+pvG5JnjPRGKqFzyq5sPAYpTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705432637; c=relaxed/simple;
-	bh=9I7YyZPgpZUSOyaxMUI9VIR0QfiqbLybOfWU35SYZF4=;
-	h=Received:X-Google-DKIM-Signature:X-Gm-Message-State:
-	 X-Google-Smtp-Source:X-Received:Received:Received:X-Received:
-	 MIME-Version:References:In-Reply-To:From:Date:
-	 X-Gmail-Original-Message-ID:Message-ID:Subject:To:Cc:Content-Type:
-	 Content-Transfer-Encoding; b=WbykxYsXpMtSnPpNBtZNR/4jbubxxqrOiCCWP/GBkJLQZXz0+W0tTI6tu3BMe0foFvnGUtdZw3ydLSlHusmheJTIFeQUb03Z7fndIUCtYfRpEuGwKOlQ254tjTFtSwr2hblUWoelG+OHCZMmAG4evkIDnx8b62FYfeMr2K811MU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5ebca94cf74so97871567b3.0;
-        Tue, 16 Jan 2024 11:17:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705432634; x=1706037434;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CIvFeeK6Pq4WtOkZORdSST2d5hJuslQ8+bqOPyEGAQ4=;
-        b=otkTmzOYhktmxwDZvdJTtZy74jVjn1Tos5DqCzujDDlMaVOKcWQn6zveKxesrYGKtZ
-         Zh8f4HtaR3PbZFFxNzRW6ceLXXBLpfpRQBVLt9b8F6Ye9xgF3ExzxkjsDg9BTaIzu4aY
-         7nSLdDhBXP1diePfsWl3Z9bYB00OnxJWWebyu6d5zbIhJGa+8Yrd4tFrPePRViL8Xuqg
-         YpCKiBlX1Qquqtc2QZG7KrDF3RoN09qS/4mvLzjYEsI/EOQGE/GgcD4FjVFFobTfXHI/
-         UrxjFrDU8mH76RVUn7fV2mATPt+f+JRLwzob3CykeruyatRzaJ7muLGre5ycGoi2dcLn
-         BchQ==
-X-Gm-Message-State: AOJu0YzmddcXqvMWNvjrbHTApP2nRbXNu/ta9pQZWDmAgm78XzaBPilb
-	7Fj6NmO6yKlnkdaJR+7NiRI4RZ5LDij2uA==
-X-Google-Smtp-Source: AGHT+IGc/36JJMqIYi9vRPfpY1Kl4SM54e9FLgfy5QLBYI1840qqPoL5Q0Bnq1jMKWxgFC+2sUYl6g==
-X-Received: by 2002:a81:ac59:0:b0:5ff:5646:283d with SMTP id z25-20020a81ac59000000b005ff5646283dmr1007103ywj.76.1705432634629;
-        Tue, 16 Jan 2024 11:17:14 -0800 (PST)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id fr3-20020a05690c358300b005ff4c76ceb3sm910917ywb.145.2024.01.16.11.17.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 11:17:14 -0800 (PST)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5ebca94cf74so97871407b3.0;
-        Tue, 16 Jan 2024 11:17:14 -0800 (PST)
-X-Received: by 2002:a25:c882:0:b0:db5:4c11:6278 with SMTP id
- y124-20020a25c882000000b00db54c116278mr3878445ybf.31.1705432634106; Tue, 16
- Jan 2024 11:17:14 -0800 (PST)
+	s=arc-20240116; t=1705432908; c=relaxed/simple;
+	bh=a/KKy2dE543H2Gl6BmUDI+HNtbqufnDY/kX/+aRrmDc=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=MTLSVY3HPxzC56D3REAHxEruNw/f4NUbGRztpVx9E+fpqDyzJUKP7HudsQrdW7xXizkzcl50CDmpbipMV6j+03a2T6iiigKwhzA6XFtqNm7UP8nkMeWUMNaq2BK1z6/5TkH26k39LXZYgyU6FXeAv5jaDlJXYg8mg1Ie87VClek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jDAoxy/e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83B1DC433C7;
+	Tue, 16 Jan 2024 19:21:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705432907;
+	bh=a/KKy2dE543H2Gl6BmUDI+HNtbqufnDY/kX/+aRrmDc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jDAoxy/eYK61+Kg+xMhbM8xlmHaaAueJnPU9exonyxZzgXOus0vBbOgLYb5wueTX2
+	 GkXwlwdNe+NT+3vysFVA31Db9m5O5XRcGO2/Ku3qYpyuzRv+sCvpfHRDsJ0g6uDT1J
+	 m/tLBAN77h5YizY521DffARYkQ8x0or7b6ehyREuW7hyKAQWbHknRPqyED3YTsB0HV
+	 oZlgDi9YLyv1+wq/y4sWE0mjT5p95+P9GWU8U1/1Z6ixKvF1D/Ve1wGdiUHfEyYhqg
+	 j6bwZ0Jp02j857IHouQc/HP4o8HUZfAV4px4m0T3LQJKxDaCnR/22TbP79gCiaxMGE
+	 61HaulBQ9UnxQ==
+Date: Tue, 16 Jan 2024 13:21:45 -0600
+From: Rob Herring <robh@kernel.org>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: remoteproc: add compatibility for TEE
+ support
+Message-ID: <20240116192145.GA265232-robh@kernel.org>
+References: <20240115135249.296822-1-arnaud.pouliquen@foss.st.com>
+ <20240115135249.296822-3-arnaud.pouliquen@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <fb1e38c93e62221f94304edd980a2fb79c1f2995.1705325608.git.geert+renesas@glider.be>
- <20240115-wages-secluded-b44f4eb13323@spud> <CAMuHMdWY3D45NGHvGXSZRLZz4TyCRgRCQLZV6CzYs=mSFcherw@mail.gmail.com>
- <20240115170807.GJ5869@pendragon.ideasonboard.com> <20240116-coasting-pastrami-1dda8d1025d0@spud>
-In-Reply-To: <20240116-coasting-pastrami-1dda8d1025d0@spud>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 16 Jan 2024 20:17:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUfyqR8AisO7NcBqHK=Poty+dJYG=hqk=iaWYf7eQCZQQ@mail.gmail.com>
-Message-ID: <CAMuHMdUfyqR8AisO7NcBqHK=Poty+dJYG=hqk=iaWYf7eQCZQQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: renesas,tmu: Document input capture interrupt
-To: Conor Dooley <conor@kernel.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yoshinori Sato <ysato@users.sourceforge.jp>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-sh@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240115135249.296822-3-arnaud.pouliquen@foss.st.com>
 
-Hi Conor, Laurent,
+On Mon, Jan 15, 2024 at 02:52:47PM +0100, Arnaud Pouliquen wrote:
+> The "st,stm32mp1-m4-tee" compatible is utilized in a system configuration
+> where the Cortex-M4 firmware is loaded by the Trusted execution Environment
+> (TEE).
+> This compatible is used in both the Linux and OP-TEE device-tree.
+> - In OP-TEE, a node is defined in the device tree with the
+>   st,stm32mp1-m4-tee to support signed remoteproc firmware.
+>   Based on DT properties, OP-TEE authenticates, loads, starts, and stops
+>   the firmware.
+> - On Linux, when the compatibility is set, the Cortex-M resets should not
+>   be declared in the device tree.
+> 
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> ---
+>  .../bindings/remoteproc/st,stm32-rproc.yaml   | 53 +++++++++++++++----
+>  1 file changed, 44 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> index 370af61d8f28..9fdfa30eff20 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> @@ -16,7 +16,12 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: st,stm32mp1-m4
+> +    enum:
+> +      - st,stm32mp1-m4
+> +      - st,stm32mp1-m4-tee
+> +    description:
+> +      Use "st,stm32mp1-m4" for the Cortex-M4 coprocessor management by Linux
 
-On Tue, Jan 16, 2024 at 6:34=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
-> On Mon, Jan 15, 2024 at 07:08:07PM +0200, Laurent Pinchart wrote:
-> > On Mon, Jan 15, 2024 at 05:48:18PM +0100, Geert Uytterhoeven wrote:
-> > > On Mon, Jan 15, 2024 at 5:13=E2=80=AFPM Conor Dooley <conor@kernel.or=
-g> wrote:
-> > > > On Mon, Jan 15, 2024 at 02:45:39PM +0100, Geert Uytterhoeven wrote:
-> > > > > Some Timer Unit (TMU) instances with 3 channels support a fourth
-> > > > > interrupt: an input capture interrupt for the third channel.
-> > > > >
-> > > > > While at it, document the meaning of the four interrupts, and add
-> > > > > "interrupt-names" for clarity.
-> > > > >
-> > > > > Update the example to match reality.
-> > > > >
-> > > > > Inspired by a patch by Yoshinori Sato for SH.
-> > > > >
-> > > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > >
-> > > > > --- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> > > > > @@ -46,7 +46,19 @@ properties:
-> > > > >
-> > > > >    interrupts:
-> > > > >      minItems: 2
-> > > > > -    maxItems: 3
-> > > > > +    items:
-> > > > > +      - description: Underflow interrupt 0
-> > > > > +      - description: Underflow interrupt 1
-> > > > > +      - description: Underflow interrupt 2
-> > > > > +      - description: Input capture interrupt 2
-> > > >
-> > > > Seeing "input capture interrupt 2" makes me wonder, are there two (=
-or
-> > > > more!) other input capture interrupts that are still out there,
-> > > > undocumented, and looking for a home?
-> >
-> > Maybe writing this as
-> >
-> >       - description: Underflow interrupt, channel 0
-> >       - description: Underflow interrupt, channel 1
-> >       - description: Underflow interrupt, channel 2
-> >       - description: Input capture interrupt, channel 2
->
-> I, for one, prefer this wording.
+What if other OSs want to manage the M4?
 
-Fine for me.
+> +      Use "st,stm32mp1-m4-tee" for the Cortex-M4 coprocessor management by secure context
+>  
+>    reg:
+>      description:
+> @@ -142,21 +147,41 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - resets
+>  
+>  allOf:
+>    - if:
+>        properties:
+> -        reset-names:
+> -          not:
+> -            contains:
+> -              const: hold_boot
+> +        compatible:
+> +          contains:
+> +            const: st,stm32mp1-m4
+> +    then:
+> +      if:
+> +        properties:
+> +          reset-names:
+> +            not:
+> +              contains:
+> +                const: hold_boot
+> +      then:
+> +        required:
+> +          - st,syscfg-holdboot
+> +          - resets
+> +      else:
+> +        properties:
+> +          st,syscfg-holdboot: false
+> +        required:
+> +          - reset-names
 
-> > I'm also wondering if we really need to add interrupt-names. Drivers
-> > can't depend on the names due to backward compatibility, what benefit
-> > does it bring to add them to the bindings ?
+Looks like a new required property.
 
-I like adding names if there are multiple items, especially if not all
-of them have the same type.  Before, we just had a single interrupt
-per channel.
-
-I am also wary of another weird variant showing up eventually, with
-e.g. 4 channels, or multiple input capture interrupts.
-
-> Adding a -names property and not making it required has always seemed
-> like a waste of time to me. Granted, making it required post-factum has
-> other problems, so I am inclined to agree that it adds nothing.
-
-I should have mentioned that I do have another local patch, to be
-submitted after all DTS files have been updated ;-)
-
-    [WIP] dt-bindings: timer: renesas,tmu: Make interrupt-names required
-
-    Now all in-tree users have been updated, make interrupt-names required.
-
-> > > SoCs can have multiple TMU instances.
-> > > Each TMU instance has 2 or 3 timer channels.
-> > > Each timer channel has an underflow interrupt.
-> > > Only the third channel may have an optional input capture interrupt
-> > > (which is not supported yet by the Linux driver).
-> > > Hence each instance can have 2, 3, or 4 interrupts.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +          - resets
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: st,stm32mp1-m4-tee
+>      then:
+> -      required:
+> -        - st,syscfg-holdboot
+> -    else:
+>        properties:
+>          st,syscfg-holdboot: false
+> +        reset-names: false
+> +        resets: false
+>  
+>  additionalProperties: false
+>  
+> @@ -188,5 +213,15 @@ examples:
+>        st,syscfg-rsc-tbl = <&tamp 0x144 0xFFFFFFFF>;
+>        st,syscfg-m4-state = <&tamp 0x148 0xFFFFFFFF>;
+>      };
+> +  - |
+> +    #include <dt-bindings/reset/stm32mp1-resets.h>
+> +    m4@10000000 {
+> +      compatible = "st,stm32mp1-m4-tee";
+> +      reg = <0x10000000 0x40000>,
+> +            <0x30000000 0x40000>,
+> +            <0x38000000 0x10000>;
+> +      st,syscfg-rsc-tbl = <&tamp 0x144 0xFFFFFFFF>;
+> +      st,syscfg-m4-state = <&tamp 0x148 0xFFFFFFFF>;
+> +    };
+>  
+>  ...
+> -- 
+> 2.25.1
+> 
 
