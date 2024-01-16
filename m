@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-32200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6729C82E9F7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:24:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 635E182E9FA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:24:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9DD8284C49
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:24:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED5B9284BF8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:24:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D229510A2D;
-	Tue, 16 Jan 2024 07:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B05610A3B;
+	Tue, 16 Jan 2024 07:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aCjZje2v"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YwU9CR13"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D308111A9
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:24:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D0210A24
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a28f66dc7ffso1907932366b.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 23:24:23 -0800 (PST)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-50ea8fbf261so11176267e87.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 23:24:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705389862; x=1705994662; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705389886; x=1705994686; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1JgRjMNs+e9DgLVdT4/phU8KY385TQI72vtZoArIQpM=;
-        b=aCjZje2vi41XfaKmB/eBdrJiUxuFmPXXAORQzCTEzpStGZ4xrc2nP3JH5CATOkWd7g
-         969ZZ27K7KDNo9JXVhgMD+3wiksvUJkLTMZHUIQqf7ayFFcLzbxVrLgk87FXxYNALvl7
-         jvNqWmu+t5GYaRQG5qBP4DJ3q3RCX88yEI4BkTutcOBd5V2n675mMkNxt+hDMl5ngyfT
-         jb/mvdPNdaqGkvBT8fuORK5DxKVoFdFUunA7FxHnhyAfY/DdRwr/gQ4NJh713WX/Nvhz
-         5YImzECzdaHAGxMzGl9k/eZpwowIidCc2wFG8i+SdWos96PB0ezpVfjMBIRZ4Ev++7zU
-         rSrQ==
+        bh=QmuNQYYSxRr/CS/I56kykdOCBdz6OEQC10FmQ1EeQhc=;
+        b=YwU9CR13+KGWIiAkT6dEtU0z5dPvkJrHRrMgPLDQie0eesjclidp6b7BNG8kBz/Hmr
+         efME5ehG940CFmrFQL+FkMPDSTI7gWElFlHK6VhCD+mRWiU1ShG9ykKJ6CpMs24+d6FM
+         sqISTDMx9p43/HKw3Qs8e/Q6DaxDHKkbr4efQpYQexyUDnflLdG0ujlMNNUeRuZAb6et
+         uarAFI4/3zuq7FF8khhx8tLBd6kOT/kuDJ95pJCJnebS+VjU0dr0pO9Fi29PstOoyEYN
+         AtnegECgRgr9GdWGoM9Fq9pN1kl3LIw+EchQja0OZaApxl8CSBwocc0duuB44a3cOcck
+         buag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705389862; x=1705994662;
+        d=1e100.net; s=20230601; t=1705389886; x=1705994686;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1JgRjMNs+e9DgLVdT4/phU8KY385TQI72vtZoArIQpM=;
-        b=D8BIRx9KyWOp+Yhas+LFClNrx9cFaIiR63jR2/m8JqgWAKhZgcx0x4J+MBz77pY0mG
-         rfZtZgxOVa1Pcb2VmFYWxMgejwmcRIs4fn0lWk4OxUBW2tdPiEQZR+QPfG/vnsxWjXJq
-         bsRFxlhGnqqbV2pLvppjwHKgV/jPHmJD5SgYBcL8o7UnQVI2/5sVOJ/DxHSZBkFC3/W/
-         dQBsaqpgPAUgMU85VnYzi/QOzbDMV3XAcjcyAr0El2ciZhYDNFBQtNUdAMQEL5OrJ2KL
-         j5vSOYrZM5AC1wPw2ldkKIQ/Q26+BTm1Szr7kF7vGIFhZbteXEJQEH1me7tjqkJ64dHW
-         0+VA==
-X-Gm-Message-State: AOJu0Yx4VghmN35I4PNg5tFk70rj57/BExV1mWWfmMjuMxlpo7qN3/uA
-	Iz0iq1L6cSioqIZJnEbxRDaq2M95R2Ep7A==
-X-Google-Smtp-Source: AGHT+IEM49xmCazIzhhAaJcBTvlIYT3qzttjLgk+gc5Adx4ymvmbJPObcL4w9NIyBRAbJFB15Kt2aA==
-X-Received: by 2002:a17:906:bf47:b0:a2c:f62d:a598 with SMTP id ps7-20020a170906bf4700b00a2cf62da598mr6858249ejb.0.1705389862525;
-        Mon, 15 Jan 2024 23:24:22 -0800 (PST)
+        bh=QmuNQYYSxRr/CS/I56kykdOCBdz6OEQC10FmQ1EeQhc=;
+        b=nLHvqRCMjvB1sjmvoG2jAdsBZ3o87Qnp/kNJhpzptOKScgnGalxx3tdoM1Czo3oWM8
+         CP/euABprDEf/fW8zt/9T4zfqRDtKWk95rvMZ6M+iCtdflUkruGNioAQVf9zdOg/IEp0
+         tjeN6EX0KipM9USkoJzcT1W0hh3qqspkxAxzgWA9FALhTjzmqYddIVQuCZMy7g7ZjC+t
+         3oVqrduUPJMypGIpJxWuue+ISrojxkKmLp1+7JNxiw9ZvygzkvUrr2Vl01m5/cOVn2V0
+         aBUpVnD8bEPl2ohgKHqv9LLnN5gDaAlxPSc5BWZqxsUXVSItIWd64pON0higPVtuzK9Y
+         kCwA==
+X-Gm-Message-State: AOJu0Yz/SCtggVeIUgEjASC4MirV37Q3OxUssUQKWN8Dw5RIMaPhlsDo
+	ueuO4Ag9luQwhZTRh6N+HKjcdB5pUjYD0w==
+X-Google-Smtp-Source: AGHT+IHo/uu1hzJDpzHccNQb1Ziup25P9UjfC6TNi547r4ligiqKnJdY8c8q7eyttgP5SakChtGebA==
+X-Received: by 2002:a05:6512:1247:b0:50e:7be0:3c38 with SMTP id fb7-20020a056512124700b0050e7be03c38mr3701566lfb.98.1705389885808;
+        Mon, 15 Jan 2024 23:24:45 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id cw1-20020a170907160100b00a2dae4e408bsm2554928ejd.15.2024.01.15.23.24.21
+        by smtp.gmail.com with ESMTPSA id cw1-20020a170907160100b00a2dae4e408bsm2554928ejd.15.2024.01.15.23.24.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 23:24:22 -0800 (PST)
-Message-ID: <d45e31c4-914e-4cea-a145-9775b6f516ab@linaro.org>
-Date: Tue, 16 Jan 2024 08:24:20 +0100
+        Mon, 15 Jan 2024 23:24:45 -0800 (PST)
+Message-ID: <3dfe868d-ff8d-44ac-a68e-066ac42a6705@linaro.org>
+Date: Tue, 16 Jan 2024 08:24:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,25 +66,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
- silvaco,i3c-target-v1
+Subject: Re: [PATCH] dt-bindings: rockchip: Fix Hardkernel ODROID-M1 board
+ bindings
 Content-Language: en-US
-To: Frank Li <Frank.li@nxp.com>
-Cc: robh@kernel.org, alexandre.belloni@bootlin.com,
- conor.culhane@silvaco.com, gregkh@linuxfoundation.org, imx@lists.linux.dev,
- jirislaby@kernel.org, joe@perches.com, linux-i3c@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- miquel.raynal@bootlin.com, zbigniew.lukwinski@linux.intel.com,
- devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20240110175221.2335480-1-Frank.Li@nxp.com>
- <20240110175221.2335480-3-Frank.Li@nxp.com>
- <3c0be658-e7a6-4231-b206-86ffb47e0cb2@linaro.org>
- <ZaFbbeQrC7o2dchO@lizhi-Precision-Tower-5810>
- <e3b9aa63-25a5-41cc-9eb7-6e7d1eacb136@linaro.org>
- <ZaFjaWCA6k+tiCSJ@lizhi-Precision-Tower-5810>
- <ZaWLCrWJEMtFx8cR@lizhi-Precision-Tower-5810>
- <1b628901-7f71-4c97-9a16-723912988417@linaro.org>
- <ZaXqCoCHPWER94Hh@lizhi-Precision-Tower-5810>
+To: Tim Lunn <tim@feathertop.org>, KyuHyuk Lee <lee@kyuhyuk.kr>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Chris Morgan <macromorgan@hotmail.com>, Tianling Shen <cnsztl@gmail.com>,
+ Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
+ Andy Yan <andyshrk@163.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240115145142.6292-1-lee@kyuhyuk.kr>
+ <b4f97202-43ec-4f04-af95-b1ccd3b5d203@linaro.org>
+ <8b31ae29-b88b-4ded-95b4-c2d9bbad24e1@feathertop.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -130,27 +126,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZaXqCoCHPWER94Hh@lizhi-Precision-Tower-5810>
+In-Reply-To: <8b31ae29-b88b-4ded-95b4-c2d9bbad24e1@feathertop.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 16/01/2024 03:29, Frank Li wrote:
->>> 	Patches were accepted after discussion, what you ponit to. So I
->>> think everyone agree on the name 'silvaco,i3c-master-v1'.
->>> 	I plan send next version to fix auto build error. Any additional
->>> comments about this?
->>
->> I still do not see how did you address Rob's comment and his point is
->> valid. You just did not reply to it.
+On 16/01/2024 03:00, Tim Lunn wrote:
 > 
-> See https://lore.kernel.org/imx/ZXCiaKfMYYShoiXK@lizhi-Precision-Tower-5810/
+> On 1/16/24 01:58, Krzysztof Kozlowski wrote:
+>> On 15/01/2024 15:51, KyuHyuk Lee wrote:
+>>> The vendor in ODROID-M1 is hardkernel, but it was incorrectly written
+>>> as rockchip. Fixed the vendor prefix correctly.
+>>>
+>>> Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
+>>> ---
+>>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>> You need to start testing your patches. Your last M1 fails as well in
+>> multiple places.
+>>
+>> It does not look like you tested the DTS against bindings. Please run
+>> `make dtbs_check W=1` (see
+>> Documentation/devicetree/bindings/writing-schema.rst or
+>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>> for instructions).
+>>
+>> The DTS change will break the users, so would be nice to mention this in
+>> its commit msg.
+> 
+> I notice there are a couple of other boards that incorrectly use 
+> rockchip as the vendor also:
+> 
+>            - const: rockchip,rk3399-orangepi
+>            - const: rockchip,rk3568-bpi-r2pro
+> 
+> Perhaps these should also be fixed at the same time?
 
-First of all, that's not the answer to Rob's email, but some other
-thread which is 99% ignored by Rob (unless he has filters for
-"@Rob"...). Therefore no, it does not count as valid answer.
-
-Second, explanation does not make sense. There is no argument granting
-you exception from SoC specific compatibles.
+What is happening with rockchip boards?
 
 Best regards,
 Krzysztof
