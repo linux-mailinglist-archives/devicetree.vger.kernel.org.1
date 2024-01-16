@@ -1,1812 +1,315 @@
-Return-Path: <devicetree+bounces-32422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3321682F477
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:39:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D85E582F47E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 19:43:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBB1D281ABF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:39:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AA0E1F23D36
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 18:43:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21EB11D692;
-	Tue, 16 Jan 2024 18:38:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E2331CD31;
+	Tue, 16 Jan 2024 18:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="EeOcJF5U"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="kcM1kEJK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CEBD1D525;
-	Tue, 16 Jan 2024 18:38:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705430324; cv=none; b=Rb6gVURXNx0a90zFSa535YrAD/wGHMgCILa/rogk4CM2lgQkPYIHj33WT7Ih0QWK5DbC3A76CCK8lmuHJkyptGF4mNAQytZCLfBZKcU1QVkiV9vsaJGmFtcSPhUobFm3XPrevxd0rUMOcTZK0Uz/C7+fXJoAdo/K9ox6rBp8GDI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705430324; c=relaxed/simple;
-	bh=J6RR+WRLzNKKhLcQa03Kf8tkTmkxrA1tfAHnKP6mJDs=;
-	h=Received:DKIM-Signature:Received:Received:Received:Received:
-	 Received:Received:Received:Received:Received:From:To:Cc:Subject:
-	 Date:Message-Id:X-Mailer:In-Reply-To:References:X-TM-AS-GCONF:
-	 X-Proofpoint-GUID:X-Proofpoint-ORIG-GUID:Content-Transfer-Encoding:
-	 X-Proofpoint-UnRewURL:MIME-Version:X-Proofpoint-Virus-Version:
-	 X-Proofpoint-Spam-Details; b=aH9AQDzYcUYGsENKxNSkx10pSMAtdoIwHe0nELIJNcaAfTPe6uZQ7iJNXBHAK/nMK5OaRoucXILNoeoBcQiDxg/mtXjMEQ0WKN6Rz+JEkIMB0zexm1STFld5KPavHuSA9dLAwost2RkpfsCfAuzIyFo+i5w4C5pO+e0KLAIz4R8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=EeOcJF5U; arc=none smtp.client-ip=148.163.156.1
-Received: from pps.filterd (m0353728.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 40GIC9nM024390;
-	Tue, 16 Jan 2024 18:37:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : content-transfer-encoding
- : mime-version; s=pp1; bh=StG4ISOZ4NBuif5ngtRergfvh/S9wEFGxyDmv10IS6w=;
- b=EeOcJF5UZxL/RK1XwXIj3DMhXhV5A6PrOnnjQ7IPFahGlz/N6NjCgDSSzQifh3wsa2km
- fcpv+Qy88tgvTvdQ4ERi0wfB5HymENU9S6zFdzUK5R4YLcEFqrdAWQmv3O7tVeNhlBFV
- uhiI4oyP88Nj6Lx+oMf+fmpsCJdcPlk/LreY2k6sTzTGAQaF1kZ6rf6wgKQUX5FFxvcK
- AEXq+cPR9MN+nX7ohlQZVrLbTuSFMv8zDgOlVV3tkXQVSw56l18Ip8FAYLlRyaurD7aj
- 92gvM+vJxIhUoYYeeETOqjJJ2vf/wzsOxSYAKOImqVwkAPf5oRArlBaCALCIZI5eFQUp dg== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vnxvbgquk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jan 2024 18:37:44 +0000
-Received: from m0353728.ppops.net (m0353728.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 40GIGEVR008956;
-	Tue, 16 Jan 2024 18:37:43 GMT
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vnxvbgqtd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jan 2024 18:37:43 +0000
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 40GGQpmM023694;
-	Tue, 16 Jan 2024 18:37:41 GMT
-Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 3vm6bkg8ux-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jan 2024 18:37:41 +0000
-Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
-	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 40GIbeA624576710
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 16 Jan 2024 18:37:40 GMT
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 583A358060;
-	Tue, 16 Jan 2024 18:37:40 +0000 (GMT)
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 6F42C5805A;
-	Tue, 16 Jan 2024 18:37:39 +0000 (GMT)
-Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
-	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Tue, 16 Jan 2024 18:37:39 +0000 (GMT)
-From: Ninad Palsule <ninad@linux.ibm.com>
-To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        joel@jms.id.au, andrew@codeconstruct.com.au, peterhuewe@gmx.de,
-        jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org,
-        tony.luck@intel.com, gpiccoli@igalia.com, ninad@linux.ibm.com,
-        johannes.holland@infineon.com, linux@roeck-us.net, broonie@kernel.org,
-        andre.werner@systec-electronic.com
-Cc: Andrew Geissler <geissonator@yahoo.com>, patrick.rudolph@9elements.com,
-        vincent@vtremblay.dev, peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com,
-        bhelgaas@google.com, naresh.solanki@9elements.com,
-        alexander.stein@ew.tq-group.com, festevam@denx.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org,
-        geert+renesas@glider.be, luca.ceresoli@bootlin.com
-Subject: [PATCH v4 3/3] ARM: dts: aspeed: System1: IBM system1 BMC board
-Date: Tue, 16 Jan 2024 12:37:34 -0600
-Message-Id: <20240116183734.3944028-4-ninad@linux.ibm.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240116183734.3944028-1-ninad@linux.ibm.com>
-References: <20240116183734.3944028-1-ninad@linux.ibm.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: ZwCYEsDxtHIoPKs_rRJzdVw0qpANDJP4
-X-Proofpoint-ORIG-GUID: _bn2ATNRrZxDmDWUpM-ACnUAvfP_OQeW
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-UnRewURL: 2 URL's were un-rewritten
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711F61CF81;
+	Tue, 16 Jan 2024 18:43:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705430583; cv=fail; b=sz4QllIpKHvD54MULIPHuinnbAxv/Zb24EGL+F17v4rSi3yQzhCNAW6GYbApz7WIVI1aL8+HHveggFSZ7tqq0AfRXIeofvcyEClhlM39qYIKDlvuauAkemfKzL5EgPhv1vayUHvPnKp1n7U7EkR0/5XkZz9u+iKiuMeI3Og3o6s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705430583; c=relaxed/simple;
+	bh=d+rVmTXmb0DyxkDb6iHRoP2fHVN0C+wzZYcDgkdt/dg=;
+	h=ARC-Message-Signature:ARC-Authentication-Results:DKIM-Signature:
+	 Received:Received:Message-ID:Date:User-Agent:Subject:
+	 Content-Language:To:Cc:References:From:Autocrypt:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:X-ClientProxiedBy:
+	 MIME-Version:X-MS-PublicTrafficType:X-MS-TrafficTypeDiagnostic:
+	 X-MS-Office365-Filtering-Correlation-Id:
+	 X-MS-Exchange-SenderADCheck:X-MS-Exchange-AntiSpam-Relay:
+	 X-Microsoft-Antispam:X-Microsoft-Antispam-Message-Info:
+	 X-Forefront-Antispam-Report:
+	 X-MS-Exchange-AntiSpam-MessageData-ChunkCount:
+	 X-MS-Exchange-AntiSpam-MessageData-0:X-OriginatorOrg:
+	 X-MS-Exchange-CrossTenant-Network-Message-Id:
+	 X-MS-Exchange-CrossTenant-AuthSource:
+	 X-MS-Exchange-CrossTenant-AuthAs:
+	 X-MS-Exchange-CrossTenant-OriginalArrivalTime:
+	 X-MS-Exchange-CrossTenant-FromEntityHeader:
+	 X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
+	 X-MS-Exchange-CrossTenant-UserPrincipalName:
+	 X-MS-Exchange-Transport-CrossTenantHeadersStamped; b=neD3czmMHr+0A9NhY8HZkt/SBjfhEKABj/RxJjgH+eVtcbC/TZUo7rMcImkkESsxIzVFhvL+8Bz46Gu1m6XuzENDF0B4/2pIwrzkxXNcct8e0t8S8n7EqRRDqlmFfYeCw4nJBB+7ibEKJuwICl8SU5J+o5QpXs8fTr9pvV+h38Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=kcM1kEJK; arc=fail smtp.client-ip=40.107.236.41
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=giFF4nShbRbb+4ed3HWq2tsCyzLdPqp454FJdtK60jMqlX5LBC3UucBSNV3xMNRBRdnJRsh4GOBGcSAFlSwoP9bJBiGNTnsyv3lD3GKy56SMBKw5ZiVe1DmoxLJuVBuscLNTwq59rG1upZ9qPzJvlftqYHpASoKdn2HndTJInTYPy7fBEHT0cqICCrgdBdxmpeLM3mdNiAz1u9qYq5lTNAwQXtXtruuyNjH52qz23gY/HTIKM2nEaIsIe0tjrVSU8yh8MO89QGVA4F3IE/eOAB5u5b5x/tqHSrst+o5gVxDG0LY8bqpLkKg7TTGAcKVfwUfL48uHBxcvSqKT9GuBSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1JGkjFAlvSKwHxqT0fMv9tiEYJlNBr+i3jZyCAI6InM=;
+ b=WpoBqN46+L1e630JAYcElFvoeWVFADR3GQgB6VIgzvUSpd3eiCvqOH/vzZuBbXQeGVIgcNiEYZVvA2yqa/OPlXA1ggCSxYYnu8fimcjs7Ezxj/LWPdWS96GjwZChEXZD6vDVhRabaVhejodfnlL5gDpEWEL1OnJhYKt+gahHJA4vpRVbfXG3Uc3TmyYpQwBBFGhJtN715sxtXrk3ifLdXY8hujbg17FUak9j4iDMnLxmTgIppoIPow+RGQlYh1Ko2iEd3JqqDfelQWOF74AYQDVaNEvl8HcofAWsUeqO39eALJSAZYd8+/qltozK1hVixbm+8l1Hnx2+0WX//Lx1Qg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1JGkjFAlvSKwHxqT0fMv9tiEYJlNBr+i3jZyCAI6InM=;
+ b=kcM1kEJKCd0vnsb270c/BMpijZIXYEeZ6H4I5ay3qDYxUb8RfldcAU/DbwYbOzo9+KwgMZnmB7Xt5ubLgvKFWVdkrTp6r+ikPfk0K1vuuRiX6HWHyp69CifyIsAXCOPAHpeSQEg7d2oM0+R5VLeIp7BntykcAV7j34MkKl07FLU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from CYXPR12MB9337.namprd12.prod.outlook.com (2603:10b6:930:d8::20)
+ by PH8PR12MB6985.namprd12.prod.outlook.com (2603:10b6:510:1bc::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.29; Tue, 16 Jan
+ 2024 18:42:58 +0000
+Received: from CYXPR12MB9337.namprd12.prod.outlook.com
+ ([fe80::772d:da3d:154b:fa45]) by CYXPR12MB9337.namprd12.prod.outlook.com
+ ([fe80::772d:da3d:154b:fa45%7]) with mapi id 15.20.7181.018; Tue, 16 Jan 2024
+ 18:42:58 +0000
+Message-ID: <19955e50-5f6c-4248-937c-6d00684feeb1@amd.com>
+Date: Tue, 16 Jan 2024 19:42:45 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: soc: xilinx: Add support for K26 rev2
+ SOMs
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+ git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+References: <3e86244a840a45c970289ba6d2fa700a74f5b259.1705051222.git.michal.simek@amd.com>
+ <20240116180039.GA169201-robh@kernel.org>
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ 3i3l5DA=
+In-Reply-To: <20240116180039.GA169201-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1P194CA0040.EURP194.PROD.OUTLOOK.COM
+ (2603:10a6:803:3c::29) To CYXPR12MB9337.namprd12.prod.outlook.com
+ (2603:10b6:930:d8::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-16_10,2024-01-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- malwarescore=0 lowpriorityscore=0 adultscore=0 mlxscore=0 impostorscore=0
- priorityscore=1501 mlxlogscore=999 phishscore=0 bulkscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
- definitions=main-2401160147
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CYXPR12MB9337:EE_|PH8PR12MB6985:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ddd68b0-cc30-4d4e-5038-08dc16c2f576
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	h9zN6T0UqQWX7Go/27w5lEGruN+zwPQpk1T3g9jpmpKbWh0k8CaxclhtT9YNGWhKEvKgA7Rd53S9Dc3P7gZGSzxtoq30GqMnJ+oqH6YaL1JqHDb7/fLa6cwLl7tloLRIFs01GaqnU2NXBQ2eYf71PqPX8HzjRvcQ+zyqKbCKFRAHsyEgw6G4HjPNuYBcEmm0KKlg00bBiXHHOm591BCjOHhLjFJFMyIc7zl8J0l3O+1ck9q1S1sk+69MV881XL8WxytFcoo8M2SuJmeQKBaseG4sYoK+kC271fsAqgfFvu7Ro+NHMTRRZ9KuDNsq8hgSNPtUKWOcPpd+A6XaLE54/wY2kZDQOZMu3dzA9W/ZtcvxY8+rimYBm1+zDmLcURmPep2xZVuRkOIDiqUptlq33bm8vbDZq/tF8cw5fLE18lAvr12i8u/ZXX1xt8SkGE4yb3CvYYEcLhRUOLnHF+utNmNSrhne311tvkta2kVWBNDcb0Qp87+JlyGWPgtbm/2KWdyjTzzz+oRgfKPuqfGlhbU4GMRQQ2rIZPbaDmi0UrX7wSWCoIW6O1pg0SChJ0Vpzsin7UQz7OBZ6tM8MQia1ejrjLk7u4KOCJIIyO+irG+kLUAhDENexriBFhYF9Z9WolmC2/P0AsRHZYnKt19Viw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CYXPR12MB9337.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(39860400002)(366004)(376002)(396003)(136003)(230922051799003)(1800799012)(64100799003)(186009)(451199024)(31686004)(6666004)(6512007)(6506007)(26005)(53546011)(2616005)(38100700002)(36756003)(86362001)(31696002)(2906002)(41300700001)(44832011)(4326008)(6486002)(5660300002)(83380400001)(316002)(478600001)(8936002)(8676002)(6916009)(66946007)(66476007)(66556008)(54906003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?QjBOVUlnS0licENJQWtpVW00R2JJUzdsY3loczJYRnJ6MnJMaHg0aXAwa3Ra?=
+ =?utf-8?B?TTU4OEtTYm84T29lRDVqcDd4a29yVkFTaGExc3l1UGkvZVdueTYzMVB5SGpY?=
+ =?utf-8?B?UUhPZllGNXp1SDZCanF0a3lWbGFBeUFPbTd2eHF1VjRBZmtDRG5nVnJscE9a?=
+ =?utf-8?B?Q0RnVnhCQUI4SElBYURaT2dScnV2Z2toMGlKUlo3VEtjZlFHZWcxaUc0WFAw?=
+ =?utf-8?B?VGhvM0NtZi8wRGhkRFRhU2VwS3JJOERnNStMblROVCtLTVpUSVVGbHBCMGdP?=
+ =?utf-8?B?aDhORGR0R3RWUWIwZC9FaWwxRlRjTXBsYnVYbEZoM0t3SHdZbXlJUmUvS0k0?=
+ =?utf-8?B?R2pQUmVGZGd5YU1HU3FRTWovOGNNWGs2cUNVcmRxMEYzUjZOSlZHUEcrMVFk?=
+ =?utf-8?B?ZlB4aThOY2N6NTIzcGxoQ3FBazVZNWo5c29xWDVuaTRic2RVbEMyOUM1dFdo?=
+ =?utf-8?B?Y0IxSUVFQnZHWlVWbmVYR0V5Yk5mdGtqZWpjd1V2eDFFdW5jakdLbUZPeUht?=
+ =?utf-8?B?K2RkSmNlVXY4aDQrekc1dXFudWplSlhnYUJ0blZrTzZLUmZwUFVqTVRXNThN?=
+ =?utf-8?B?bVp4dzlRYmswZW5PVXgza1lsMlprc214K08xeXpuK3RzSzNHbkJlWjBqNkxX?=
+ =?utf-8?B?OS80NFJOYU9qUkhqWVZKR29UZ0ZTSTJOeU1aRWZHUmNpV28yNitQWHY4ZVJp?=
+ =?utf-8?B?elVydTMvUFVLVlVkMDh2aTBWTkYvMzkrU0RsMEV0WHYreEpkK2Q0TW5kanBr?=
+ =?utf-8?B?aW9TTkk3ZTVFaGZDQjJQSGlnWXZvdkd6Yis3L0Q4NEMxWmtVTmoyYlZjdjNw?=
+ =?utf-8?B?REhmeXM4TFZReDh1TG5rbThpZGhoZXdLK1p5MDZyaFczSTJqcDNpU1FSWTFW?=
+ =?utf-8?B?WW9QcVZYdXB1Ly9YaHZaL2VuQnpmNGk3RjFrNEkzZXliUXVxSFlZYVh6QlRD?=
+ =?utf-8?B?a21naFcvZktGQVVhS21FNWg5S2Q4S3l3M1lnYWRNSnJDQi8yZDB6WXlOQXd4?=
+ =?utf-8?B?Z05EeW11cE5zZFQwQ1poSzIyZXlFWlJzV0prdUlKNTdvbTVOK2IxeGNHbnow?=
+ =?utf-8?B?MkJUb0s4TmtUdEdHZ0dham5kUmNPd1hBejBtQ25CRVpVck9kZnFUUFBXbmMv?=
+ =?utf-8?B?MnlMaDk5cEVWSVd0NXA0UkFnWEMyeTNDTnNLbFpwUlNiYkFPalhDNE03TzdN?=
+ =?utf-8?B?TVJQYzREaitRK0d6a2pkaVlyT25ONEttR2VQTEpBY2YxdFRNeXkreHQ0OXBM?=
+ =?utf-8?B?M1dhSWI2M0dLT3VraTZ2bTVOMzFIUUVURnhmVGdYblRMUnEyM1FSR2NQYVlV?=
+ =?utf-8?B?V05RVnpZWkxXZkNkcE1Ec21ZdVFiL3IwaVpnTkh1UmM1MHhaanBpYXFWL3dG?=
+ =?utf-8?B?UWltdGluL0FXS0tXQkFyR0NBbnVZdVBWcUZ3SWYzc1pjaU8xYTJvVTFoYjlK?=
+ =?utf-8?B?c2RVWUNzRisvUVlOZU1OVHVFVW9CTWMvZWp0UEdVekhkOXp6cTQ0T2hHcjRS?=
+ =?utf-8?B?MDZSa1d0K1hyZ2k3SEVIcWRwOUJHaXlDNS9kLy9oREd2QkVBejdYU3ZSYUpv?=
+ =?utf-8?B?c09TczdFMlJ4cVhWTS9RK3RScktVTDJFdlpCM3lYdEppb1J3Nm1CbjNqUEJp?=
+ =?utf-8?B?b2hTLy9pbVIrOEpsUXJnUDlpdVR6cTEvZzFWa3NNYWU3QlNrUjRqM2dXQ2lM?=
+ =?utf-8?B?MDFqN05seWFldFVpTEJISG1vSGc5UGtMRGx6UmR2ZXY3Rk56eGpMbDhEVUIy?=
+ =?utf-8?B?ODc4dGF5OVhxVlJLU2FZVEhQMVphdUdVcVVaenhTc1hSbVdkNlBkUHZOOHZH?=
+ =?utf-8?B?bytlR2lXRy9qdldqYk5JbTJSZVhvY3JBV2ZwL04zM2lhUWpjanorZWRUTm9I?=
+ =?utf-8?B?N3p2UjR3UmhpaklLSTQyQjdHRFhUOVgrTGloUTJhVmMvYnQyelFlZWR4N2NI?=
+ =?utf-8?B?MFN4ajR3K2ZFNXNBRTNGYTJONks5d0hyUHRORnBOY05hNWV1bWxFV1Z4bEhz?=
+ =?utf-8?B?TWVIdjZzTE5PSHNWZWM0TlI5dk9mSW9pc201NFBpeVk4OEZhMXVOWVU4Zi91?=
+ =?utf-8?B?MFMwYnUxbm8zSy9JMmZvQlVZV3JvR0lpY0gxWkJoeCsvcVlxTmZnR3R6VEpM?=
+ =?utf-8?Q?X1AWfJ67ZF/+WM7DXgxhZP+Cj?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ddd68b0-cc30-4d4e-5038-08dc16c2f576
+X-MS-Exchange-CrossTenant-AuthSource: CYXPR12MB9337.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2024 18:42:58.0500
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vPbgJnR7h2kSCT7QyK94l/1iiP6Hds51aqprn8xS47aqY9xR+HgBDTYiGFjZVrez
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6985
 
-From: Andrew Geissler <geissonator@yahoo.com>
 
-Add a device tree for IBM system1 BMC board. It uses AST2600 SOC.
-- Added base board
-- Added i2c devices and muxes.
-- Added different voltage regulators.
-- Added GPIO pin assignements, GPIO expansion devices
-- Added LED brinker devices
-- Added Fan controllers
-- Added EEPROM/VPD
-- Added Power supplies
-- Added Humidity, pressure and temperature sensors.
-- Added Trusted platform module(TPM) chip.
 
-Tested:
-    This board is tested using the simics simulator.
+On 1/16/24 19:00, Rob Herring wrote:
+> On Fri, Jan 12, 2024 at 10:20:29AM +0100, Michal Simek wrote:
+>> Revision 2 is SW compatible with revision 1 but it is necessary to reflect
+>> it in model and compatible properties which are parsed by user space.
+>> Rev 2 has improved a power on boot reset and MIO34 shutdown glich
+>> improvement done via an additional filter in the GreenPak chip.
+>>
+>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>> ---
+>>
+>> Changes in v2:
+>> - Support older combinations
+>>
+>> I want to support all versions we created:
+>> All of them:
+>> -rev2, -rev1, -revB, -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+>>
+>> rev1:
+>> -rev1, -revB, -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+>>
+>> revB:
+>> -revB, -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+>>
+>> revA:
+>> -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+>>
+>> And also single one are permitted:
+>> -revB, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+>> -rev1, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+>> -rev2, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+>>
+>> I didn't find a way to pretty much all the time force that there must be
+>> both "xlnx,zynqmp-smk-k26", "xlnx,zynqmp" that's why there is only
+>> requested to have xlnx,zynqmp. If you find a way how to encode it please
+>> let me know.
+>>
+>> ---
+>>   .../bindings/soc/xilinx/xilinx.yaml           | 32 +++++++++++++------
+>>   1 file changed, 22 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+>> index d4c0fe1fe435..39242efeec47 100644
+>> --- a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+>> @@ -117,20 +117,32 @@ properties:
+>>             - const: xlnx,zynqmp
+>>   
+>>         - description: Xilinx Kria SOMs
+>> +        additionalItems: true
+>> +        maxItems: 6
+>> +        minItems: 3
+>>           items:
+>> -          - const: xlnx,zynqmp-sm-k26-rev1
+>> -          - const: xlnx,zynqmp-sm-k26-revB
+>> -          - const: xlnx,zynqmp-sm-k26-revA
+>> -          - const: xlnx,zynqmp-sm-k26
+>> -          - const: xlnx,zynqmp
+>> +          - enum:
+>> +              - xlnx,zynqmp-sm-k26-rev2
+>> +              - xlnx,zynqmp-sm-k26-rev1
+>> +              - xlnx,zynqmp-sm-k26-revB
+>> +              - xlnx,zynqmp-sm-k26-revA
+>> +              - xlnx,zynqmp-sm-k26
+>> +        contains:
+>> +          const: xlnx,zynqmp
+> 
+> This allows:
+> 
+> xlnx,zynqmp-sm-k26-rev2, foo, xlnx,zynqmp, bar
+> 
+> You need the schema form of 'items' (no '-'). For multiple contains, you
+> need 'allOf'. Like this:
+> 
+> items:
+>    enum: [ all of them ]
+> allOf:
+>    - contains:
+>        const: xlnx,zynqmp
+>    - contains:
+>        const: xlnx,zynqmp-sm-k26
+> 
+> 
+> This of course has no enforcement of the order. Just no sane way to do
+> that in json-schema.
 
-Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-Signed-off-by: Andrew Geissler <geissonator@yahoo.com>
----
-The compatibility string and schema for tpm device is documented in the
-following patch series:
--https://lore.kernel.org/all/77fe0ccd-53ff-4773-9787-0d038434297f@linux.ibm.com/
--https://lore.kernel.org/all/3f56f0a2bb90697a23e83583a21684b75dc7eea2.1701093036.git.lukas@wunner.de/
+Works for me. If below is fine I will send v3 version.
 
-v4:
-  - Removed the compatibility string "nuvoton,npct75x" from tpm node as
-    per the Conor's review comment.
-v3:
-  - Fixed the voltage-regulator names.
-v2:
-  - Incorporated review comments from Conor Dooley, Jarkko Sakkinen,
-    Guenter Roeck, Rob Herring, Krzysztof Kozlowski
-    - Merge all patches into single patch.
-    - Split the trivial device patch.
-    - Cleanup commit messages.
-    - Fixed bootargs string.
-    - Fixed node names.
-    - Dropped tpm schema patch as it is covered by Lukas's patch.
-    - Dropped "tpm: tis-i2c: Add more compatible strings" patch and
-      send it as a separate patch.
----
- arch/arm/boot/dts/aspeed/Makefile             |    1 +
- .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 1623 +++++++++++++++++
- 2 files changed, 1624 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
+       - description: Xilinx Kria SOMs
+         minItems: 3
+         items:
+           enum:
+             - xlnx,zynqmp-sm-k26-rev2
+             - xlnx,zynqmp-sm-k26-rev1
+             - xlnx,zynqmp-sm-k26-revB
+             - xlnx,zynqmp-sm-k26-revA
+             - xlnx,zynqmp-sm-k26
+             - xlnx,zynqmp
+         allOf:
+           - contains:
+               const: xlnx,zynqmp
+           - contains:
+               const: xlnx,zynqmp-sm-k26
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index 23cbc7203a8e..d551aed79286 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -32,6 +32,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-ibm-rainier.dtb \
- 	aspeed-bmc-ibm-rainier-1s4u.dtb \
- 	aspeed-bmc-ibm-rainier-4u.dtb \
-+	aspeed-bmc-ibm-system1.dtb \
- 	aspeed-bmc-intel-s2600wf.dtb \
- 	aspeed-bmc-inspur-fp5280g2.dtb \
- 	aspeed-bmc-inspur-nf5280m6.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-new file mode 100644
-index 000000000000..dcbc16308ab5
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-@@ -0,0 +1,1623 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright 2023 IBM Corp.
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/i2c/i2c.h>
-+#include <dt-bindings/leds/leds-pca955x.h>
-+
-+/ {
-+	model = "System1";
-+	compatible = "ibm,system1-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		i2c16 = &i2c8mux1chn0;
-+		i2c17 = &i2c8mux1chn1;
-+		i2c18 = &i2c8mux1chn2;
-+		i2c19 = &i2c8mux1chn3;
-+		i2c20 = &i2c8mux1chn4;
-+		i2c21 = &i2c8mux1chn5;
-+		i2c22 = &i2c8mux1chn6;
-+		i2c23 = &i2c8mux1chn7;
-+		i2c24 = &i2c3mux0chn0;
-+		i2c25 = &i2c3mux0chn1;
-+		i2c26 = &i2c3mux0chn2;
-+		i2c27 = &i2c3mux0chn3;
-+		i2c28 = &i2c3mux0chn4;
-+		i2c29 = &i2c3mux0chn5;
-+		i2c30 = &i2c3mux0chn6;
-+		i2c31 = &i2c3mux0chn7;
-+		i2c32 = &i2c6mux0chn0;
-+		i2c33 = &i2c6mux0chn1;
-+		i2c34 = &i2c6mux0chn2;
-+		i2c35 = &i2c6mux0chn3;
-+		i2c36 = &i2c6mux0chn4;
-+		i2c37 = &i2c6mux0chn5;
-+		i2c38 = &i2c6mux0chn6;
-+		i2c39 = &i2c6mux0chn7;
-+		i2c40 = &i2c7mux0chn0;
-+		i2c41 = &i2c7mux0chn1;
-+		i2c42 = &i2c7mux0chn2;
-+		i2c43 = &i2c7mux0chn3;
-+		i2c44 = &i2c7mux0chn4;
-+		i2c45 = &i2c7mux0chn5;
-+		i2c46 = &i2c7mux0chn6;
-+		i2c47 = &i2c7mux0chn7;
-+		i2c48 = &i2c8mux0chn0;
-+		i2c49 = &i2c8mux0chn1;
-+		i2c50 = &i2c8mux0chn2;
-+		i2c51 = &i2c8mux0chn3;
-+		i2c52 = &i2c8mux0chn4;
-+		i2c53 = &i2c8mux0chn5;
-+		i2c54 = &i2c8mux0chn6;
-+		i2c55 = &i2c8mux0chn7;
-+		i2c56 = &i2c14mux0chn0;
-+		i2c57 = &i2c14mux0chn1;
-+		i2c58 = &i2c14mux0chn2;
-+		i2c59 = &i2c14mux0chn3;
-+		i2c60 = &i2c14mux0chn4;
-+		i2c61 = &i2c14mux0chn5;
-+		i2c62 = &i2c14mux0chn6;
-+		i2c63 = &i2c14mux0chn7;
-+		i2c64 = &i2c15mux0chn0;
-+		i2c65 = &i2c15mux0chn1;
-+		i2c66 = &i2c15mux0chn2;
-+		i2c67 = &i2c15mux0chn3;
-+		i2c68 = &i2c15mux0chn4;
-+		i2c69 = &i2c15mux0chn5;
-+		i2c70 = &i2c15mux0chn6;
-+		i2c71 = &i2c15mux0chn7;
-+	};
-+
-+	chosen {
-+		stdout-path = "uart5:115200n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		eventlog: tcg-event-log@b3d00000 {
-+			no-map;
-+			reg = <0xb3d00000 0x100000>;
-+		};
-+
-+		ramoops@b3e00000 {
-+			compatible = "ramoops";
-+			reg = <0xb3e00000 0x200000>; /* 16 * (4 * 0x8000) */
-+			record-size = <0x8000>;
-+			console-size = <0x8000>;
-+			ftrace-size = <0x8000>;
-+			pmsg-size = <0x8000>;
-+			max-reason = <3>; /* KMSG_DUMP_EMERG */
-+		};
-+
-+		/* LPC FW cycle bridge region requires natural alignment */
-+		flash_memory: region@b4000000 {
-+			no-map;
-+			reg = <0xb4000000 0x04000000>; /* 64M */
-+		};
-+
-+		/* VGA region is dictated by hardware strapping */
-+		vga_memory: region@bf000000 {
-+			no-map;
-+			compatible = "shared-dma-pool";
-+			reg = <0xbf000000 0x01000000>;  /* 16M */
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			gpios = <&gpio0 ASPEED_GPIO(L, 7) GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			gpios = <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-2 {
-+			gpios = <&gpio0 ASPEED_GPIO(S, 6) GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-3 {
-+			gpios = <&gpio0 ASPEED_GPIO(S, 7) GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-4 {
-+			gpios = <&pca3 5 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-5 {
-+			gpios = <&pca3 6 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-6 {
-+			gpios = <&pca3 7 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-7 {
-+			gpios = <&pca3 8 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-8 {
-+			gpios = <&pca3 9 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-9 {
-+			gpios = <&pca3 10 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-a {
-+			gpios = <&pca3 11 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-b {
-+			gpios = <&pca4 4 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-c {
-+			gpios = <&pca4 5 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-d {
-+			gpios = <&pca4 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-e {
-+			gpios = <&pca4 7 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		poll-interval = <1000>;
-+
-+		event-nvme0-presence {
-+			label = "nvme0-presence";
-+			gpios = <&pca4 0 GPIO_ACTIVE_LOW>;
-+			linux,code = <0>;
-+		};
-+
-+		event-nvme1-presence {
-+			label = "nvme1-presence";
-+			gpios = <&pca4 1 GPIO_ACTIVE_LOW>;
-+			linux,code = <1>;
-+		};
-+
-+		event-nvme2-presence {
-+			label = "nvme2-presence";
-+			gpios = <&pca4 2 GPIO_ACTIVE_LOW>;
-+			linux,code = <2>;
-+		};
-+
-+		event-nvme3-presence {
-+			label = "nvme3-presence";
-+			gpios = <&pca4 3 GPIO_ACTIVE_LOW>;
-+			linux,code = <3>;
-+		};
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&p12v_vd 0>, <&p5v_aux_vd 0>,
-+			<&p5v_bmc_aux_vd 0>, <&p3v3_aux_vd 0>,
-+			<&p3v3_bmc_aux_vd 0>, <&p1v8_bmc_aux_vd 0>,
-+			<&adc1 4>, <&adc0 2>, <&adc1 0>,
-+			<&p2v5_aux_vd 0>, <&adc1 7>;
-+	};
-+
-+	p12v_vd: voltage-divider1 {
-+		compatible = "voltage-divider";
-+		io-channels = <&adc1 3>;
-+		#io-channel-cells = <1>;
-+
-+		/*
-+		 * Scale the system voltage by 1127/127 to fit the ADC range.
-+		 * Use small nominator to prevent integer overflow.
-+		 */
-+		output-ohms = <15>;
-+		full-ohms = <133>;
-+	};
-+
-+	p5v_aux_vd: voltage-divider2 {
-+		compatible = "voltage-divider";
-+		io-channels = <&adc1 5>;
-+		#io-channel-cells = <1>;
-+
-+		/*
-+		 * Scale the system voltage by 1365/365 to fit the ADC range.
-+		 * Use small nominator to prevent integer overflow.
-+		 */
-+		output-ohms = <50>;
-+		full-ohms = <187>;
-+	};
-+
-+	p5v_bmc_aux_vd: voltage-divider3 {
-+		compatible = "voltage-divider";
-+		io-channels = <&adc0 3>;
-+		#io-channel-cells = <1>;
-+
-+		/*
-+		 * Scale the system voltage by 1365/365 to fit the ADC range.
-+		 * Use small nominator to prevent integer overflow.
-+		 */
-+		output-ohms = <50>;
-+		full-ohms = <187>;
-+	};
-+
-+	p3v3_aux_vd: voltage-divider4 {
-+		compatible = "voltage-divider";
-+		io-channels = <&adc1 2>;
-+		#io-channel-cells = <1>;
-+
-+		/*
-+		 * Scale the system voltage by 1698/698 to fit the ADC range.
-+		 * Use small nominator to prevent integer overflow.
-+		 */
-+		output-ohms = <14>;
-+		full-ohms = <34>;
-+	};
-+
-+	p3v3_bmc_aux_vd: voltage-divider5 {
-+		compatible = "voltage-divider";
-+		io-channels = <&adc0 7>;
-+		#io-channel-cells = <1>;
-+
-+		/*
-+		 * Scale the system voltage by 1698/698 to fit the ADC range.
-+		 * Use small nominator to prevent integer overflow.
-+		 */
-+		output-ohms = <14>;
-+		full-ohms = <34>;
-+	};
-+
-+	p1v8_bmc_aux_vd: voltage-divider6 {
-+		compatible = "voltage-divider";
-+		io-channels = <&adc0 6>;
-+		#io-channel-cells = <1>;
-+
-+		/*
-+		 * Scale the system voltage by 4000/3000 to fit the ADC range.
-+		 * Use small nominator to prevent integer overflow.
-+		 */
-+		output-ohms = <3>;
-+		full-ohms = <4>;
-+	};
-+
-+	p2v5_aux_vd: voltage-divider7 {
-+		compatible = "voltage-divider";
-+		io-channels = <&adc1 1>;
-+		#io-channel-cells = <1>;
-+
-+		/*
-+		 * Scale the system voltage by 2100/1100 to fit the ADC range.
-+		 * Use small nominator to prevent integer overflow.
-+		 */
-+		output-ohms = <11>;
-+		full-ohms = <21>;
-+	};
-+
-+	p1v8_bmc_aux: fixedregulator-p1v8-bmc-aux {
-+		compatible = "regulator-fixed";
-+		regulator-name = "p1v8_bmc_aux";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&adc0 {
-+	status = "okay";
-+	vref-supply = <&p1v8_bmc_aux>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default
-+		&pinctrl_adc1_default
-+		&pinctrl_adc2_default
-+		&pinctrl_adc3_default
-+		&pinctrl_adc4_default
-+		&pinctrl_adc5_default
-+		&pinctrl_adc6_default
-+		&pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	status = "okay";
-+	vref-supply = <&p1v8_bmc_aux>;
-+	aspeed,battery-sensing;
-+
-+	aspeed,int-vref-microvolt = <2500000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc8_default
-+		&pinctrl_adc9_default
-+		&pinctrl_adc10_default
-+		&pinctrl_adc11_default
-+		&pinctrl_adc12_default
-+		&pinctrl_adc13_default
-+		&pinctrl_adc14_default
-+		&pinctrl_adc15_default>;
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&uhci {
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	gpio-line-names =
-+	/*A0-A7*/	"","","","","","","","",
-+	/*B0-B7*/	"","","","","bmc-tpm-reset","","","",
-+	/*C0-C7*/	"","","","","","","","",
-+	/*D0-D7*/	"","","","","","","","",
-+	/*E0-E7*/	"","","","","","","","",
-+	/*F0-F7*/	"","","","","","","","",
-+	/*G0-G7*/	"","","","","","","","",
-+	/*H0-H7*/	"","","","","","","","",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","bmc-ready",
-+	/*M0-M7*/	"","","","","","","","",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","","","","bmc-hb",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","","","rear-enc-fault0","rear-enc-id0",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","rtc-battery-voltage-read-enable","","power-chassis-control","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","power-chassis-good","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","";
-+};
-+
-+&emmc_controller {
-+	status = "okay";
-+};
-+
-+&pinctrl_emmc_default {
-+	bias-disable;
-+};
-+
-+&emmc {
-+	status = "okay";
-+	clk-phase-mmc-hs200 = <180>, <180>;
-+};
-+
-+&ibt {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&vuart1 {
-+	status = "okay";
-+};
-+
-+&vuart2 {
-+	status = "okay";
-+};
-+
-+&lpc_ctrl {
-+	status = "okay";
-+	memory-region = <&flash_memory>;
-+};
-+
-+&mac2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii3_default>;
-+	clocks = <&syscon ASPEED_CLK_GATE_MAC3CLK>,
-+		 <&syscon ASPEED_CLK_MAC3RCLK>;
-+	clock-names = "MACCLK", "RCLK";
-+	use-ncsi;
-+};
-+
-+&mac3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+	clocks = <&syscon ASPEED_CLK_GATE_MAC4CLK>,
-+		 <&syscon ASPEED_CLK_MAC4RCLK>;
-+	clock-names = "MACCLK", "RCLK";
-+	use-ncsi;
-+};
-+
-+&wdt1 {
-+	aspeed,reset-type = "none";
-+	aspeed,external-signal;
-+	aspeed,ext-push-pull;
-+	aspeed,ext-active-high;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst1_default>;
-+};
-+
-+&wdt2 {
-+	status = "okay";
-+};
-+
-+&kcs2 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca8 0xcac>;
-+};
-+
-+&kcs3 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca2>;
-+	aspeed,lpc-interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c64";
-+		reg = <0x50>;
-+	};
-+
-+	regulator@60 {
-+		compatible = "maxim,max8952";
-+		reg = <0x60>;
-+
-+		max8952,default-mode = <0>;
-+		max8952,dvs-mode-microvolt = <1250000>, <1200000>,
-+						<1050000>, <950000>;
-+		max8952,sync-freq = <0>;
-+		max8952,ramp-speed = <0>;
-+
-+		regulator-name = "VR_v77_1v4";
-+		regulator-min-microvolt = <770000>;
-+		regulator-max-microvolt = <1400000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	regulator@42 {
-+		compatible = "infineon,ir38263";
-+		reg = <0x42>;
-+	};
-+
-+	led-controller@60 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x60>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		led@0 {
-+			label = "nic1-perst";
-+			reg = <0>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@1 {
-+			label = "bmc-perst";
-+			reg = <1>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@2 {
-+			label = "reset-M2-SSD1-2-perst";
-+			reg = <2>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@3 {
-+			label = "pcie-perst1";
-+			reg = <3>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@4 {
-+			label = "pcie-perst2";
-+			reg = <4>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@5 {
-+			label = "pcie-perst3";
-+			reg = <5>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@6 {
-+			label = "pcie-perst4";
-+			reg = <6>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@7 {
-+			label = "pcie-perst5";
-+			reg = <7>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@8 {
-+			label = "pcie-perst6";
-+			reg = <8>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@9 {
-+			label = "pcie-perst7";
-+			reg = <9>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@10 {
-+			label = "pcie-perst8";
-+			reg = <10>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@11 {
-+			label = "PV-cp0-sw1stk4-perst";
-+			reg = <11>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@12 {
-+			label = "PV-cp0-sw1stk5-perst";
-+			reg = <12>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@13 {
-+			label = "pe-cp-drv0-perst";
-+			reg = <13>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@14 {
-+			label = "pe-cp-drv1-perst";
-+			reg = <14>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@15 {
-+			label = "lom-perst";
-+			reg = <15>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+	};
-+
-+	gpio@74 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x74>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+			"PLUG_DETECT_PCIE_J101_N",
-+			"PLUG_DETECT_PCIE_J102_N",
-+			"PLUG_DETECT_PCIE_J103_N",
-+			"PLUG_DETECT_PCIE_J104_N",
-+			"PLUG_DETECT_PCIE_J105_N",
-+			"PLUG_DETECT_PCIE_J106_N",
-+			"PLUG_DETECT_PCIE_J107_N",
-+			"PLUG_DETECT_PCIE_J108_N",
-+			"PLUG_DETECT_M2_SSD1_N",
-+			"PLUG_DETECT_NIC1_N",
-+			"SEL_SMB_DIMM_CPU0",
-+			"presence-ps2",
-+			"presence-ps3",
-+			"", "",
-+			"PWRBRD_PLUG_DETECT2_N";
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	power-supply@58 {
-+		compatible = "ibm,cffps";
-+		reg = <0x58>;
-+	};
-+
-+	power-supply@59 {
-+		compatible = "ibm,cffps";
-+		reg = <0x59>;
-+	};
-+
-+	power-supply@5a {
-+		compatible = "ibm,cffps";
-+		reg = <0x5a>;
-+	};
-+
-+	power-supply@5b {
-+		compatible = "ibm,cffps";
-+		reg = <0x5b>;
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		i2c3mux0chn0: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		i2c3mux0chn1: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		i2c3mux0chn2: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		i2c3mux0chn3: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+
-+		i2c3mux0chn4: i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <4>;
-+		};
-+
-+		i2c3mux0chn5: i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+		};
-+
-+		i2c3mux0chn6: i2c@6 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <6>;
-+		};
-+
-+		i2c3mux0chn7: i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <7>;
-+		};
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+
-+	regulator@42 {
-+		compatible = "infineon,ir38263";
-+		reg = <0x42>;
-+	};
-+
-+	regulator@43 {
-+		compatible = "infineon,ir38060";
-+		reg = <0x43>;
-+	};
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+
-+	fan-controller@52 {
-+		compatible = "maxim,max31785a";
-+		reg = <0x52>;
-+	};
-+
-+	fan-controller@54 {
-+		compatible = "maxim,max31785a";
-+		reg = <0x54>;
-+	};
-+
-+	eeprom@55 {
-+		compatible = "atmel,24c64";
-+		reg = <0x55>;
-+	};
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		i2c6mux0chn0: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		i2c6mux0chn1: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		i2c6mux0chn2: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		i2c6mux0chn3: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+
-+		i2c6mux0chn4: i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <4>;
-+
-+			humidity-sensor@40 {
-+				compatible = "ti,hdc1080";
-+				reg = <0x40>;
-+			};
-+
-+			temperature-sensor@48 {
-+				compatible = "ti,tmp275";
-+				reg = <0x48>;
-+			};
-+
-+			eeprom@50 {
-+				compatible = "atmel,24c32";
-+				reg = <0x50>;
-+			};
-+
-+			led-controller@60 {
-+				compatible = "nxp,pca9551";
-+				reg = <0x60>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+
-+				led@0 {
-+					label = "enclosure-id-led";
-+					reg = <0>;
-+					retain-state-shutdown;
-+					default-state = "keep";
-+					type = <PCA955X_TYPE_LED>;
-+				};
-+
-+				led@1 {
-+					label = "attention-led";
-+					reg = <1>;
-+					retain-state-shutdown;
-+					default-state = "keep";
-+					type = <PCA955X_TYPE_LED>;
-+				};
-+
-+				led@2 {
-+					label = "enclosure-fault-rollup-led";
-+					reg = <2>;
-+					retain-state-shutdown;
-+					default-state = "keep";
-+					type = <PCA955X_TYPE_LED>;
-+				};
-+
-+				led@3 {
-+					label = "power-on-led";
-+					reg = <3>;
-+					retain-state-shutdown;
-+					default-state = "keep";
-+					type = <PCA955X_TYPE_LED>;
-+				};
-+			};
-+
-+			temperature-sensor@76 {
-+				compatible = "infineon,dps310";
-+				reg = <0x76>;
-+			};
-+		};
-+
-+		i2c6mux0chn5: i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+		};
-+
-+		i2c6mux0chn6: i2c@6 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <6>;
-+		};
-+
-+		i2c6mux0chn7: i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <7>;
-+		};
-+	};
-+
-+	pca3: gpio@74 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x74>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	pca4: gpio@77 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x77>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+			"PE_NVMED0_EXP_PRSNT_N",
-+			"PE_NVMED1_EXP_PRSNT_N",
-+			"PE_NVMED2_EXP_PRSNT_N",
-+			"PE_NVMED3_EXP_PRSNT_N",
-+			"LED_FAULT_NVMED0",
-+			"LED_FAULT_NVMED1",
-+			"LED_FAULT_NVMED2",
-+			"LED_FAULT_NVMED3",
-+			"FAN0_PRESENCE_R_N",
-+			"FAN1_PRESENCE_R_N",
-+			"FAN2_PRESENCE_R_N",
-+			"FAN3_PRESENCE_R_N",
-+			"FAN4_PRESENCE_R_N",
-+			"FAN5_PRESENCE_N",
-+			"FAN6_PRESENCE_N",
-+			"";
-+	};
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		i2c7mux0chn0: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		i2c7mux0chn1: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		i2c7mux0chn2: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		i2c7mux0chn3: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+
-+			regulator@58 {
-+				compatible = "mps,mp2973";
-+				reg = <0x58>;
-+			};
-+		};
-+
-+		i2c7mux0chn4: i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <4>;
-+		};
-+
-+		i2c7mux0chn5: i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+
-+			regulator@40 {
-+				compatible = "infineon,tda38640";
-+				reg = <0x40>;
-+			};
-+		};
-+
-+		i2c7mux0chn6: i2c@6 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <6>;
-+		};
-+
-+		i2c7mux0chn7: i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <7>;
-+		};
-+	};
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+
-+	i2c-mux@71 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x71>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		i2c8mux0chn0: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			regulator@58 {
-+				compatible = "mps,mp2971";
-+				reg = <0x58>;
-+			};
-+		};
-+
-+		i2c8mux0chn1: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+
-+			regulator@40 {
-+				compatible = "infineon,tda38640";
-+				reg = <0x40>;
-+			};
-+
-+			regulator@41 {
-+				compatible = "infineon,tda38640";
-+				reg = <0x41>;
-+			};
-+
-+			regulator@58 {
-+				compatible = "mps,mp2971";
-+				reg = <0x58>;
-+			};
-+
-+			regulator@5b {
-+				compatible = "mps,mp2971";
-+				reg = <0x5b>;
-+			};
-+		};
-+
-+		i2c8mux0chn2: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		i2c8mux0chn3: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+
-+		i2c8mux0chn4: i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <4>;
-+
-+			i2c-mux@70 {
-+				compatible = "nxp,pca9548";
-+				reg = <0x70>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				i2c-mux-idle-disconnect;
-+
-+				i2c8mux1chn0: i2c@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0>;
-+				};
-+
-+				i2c8mux1chn1: i2c@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+				};
-+
-+				i2c8mux1chn2: i2c@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <2>;
-+				};
-+
-+				i2c8mux1chn3: i2c@3 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <3>;
-+				};
-+
-+				i2c8mux1chn4: i2c@4 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <4>;
-+				};
-+
-+				i2c8mux1chn5: i2c@5 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <5>;
-+				};
-+
-+				i2c8mux1chn6: i2c@6 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <6>;
-+				};
-+
-+				i2c8mux1chn7: i2c@7 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <7>;
-+				};
-+			};
-+		};
-+
-+		i2c8mux0chn5: i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+		};
-+
-+		i2c8mux0chn6: i2c@6 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <6>;
-+
-+			temperature-sensor@4c {
-+				compatible = "ti,tmp423";
-+				reg = <0x4c>;
-+			};
-+		};
-+
-+		i2c8mux0chn7: i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <7>;
-+
-+			regulator@40 {
-+				compatible = "infineon,ir38060";
-+				reg = <0x40>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+
-+	regulator@40 {
-+		compatible = "infineon,ir38263";
-+		reg = <0x40>;
-+	};
-+
-+	regulator@41 {
-+		compatible = "infineon,ir38263";
-+		reg = <0x41>;
-+	};
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c64";
-+		reg = <0x50>;
-+	};
-+
-+	regulator@60 {
-+		compatible = "maxim,max8952";
-+		reg = <0x60>;
-+
-+		max8952,default-mode = <0>;
-+		max8952,dvs-mode-microvolt = <1250000>, <1200000>,
-+						<1050000>, <950000>;
-+		max8952,sync-freq = <0>;
-+		max8952,ramp-speed = <0>;
-+
-+		regulator-name = "VR_v77_1v4";
-+		regulator-min-microvolt = <770000>;
-+		regulator-max-microvolt = <1400000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+
-+	tpm@2e {
-+		compatible = "tcg,tpm-tis-i2c";
-+		reg = <0x2e>;
-+		memory-region = <&eventlog>;
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+
-+	regulator@41 {
-+		compatible = "infineon,ir38263";
-+		reg = <0x41>;
-+	};
-+
-+	led-controller@61 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x61>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		led@0 {
-+			label = "efuse-12v-slots";
-+			reg = <0>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@1 {
-+			label = "efuse-3p3v-slot";
-+			reg = <1>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@3 {
-+			label = "nic2-pert";
-+			reg = <3>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@4 {
-+			label = "pcie-perst9";
-+			reg = <4>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@5 {
-+			label = "pcie-perst10";
-+			reg = <5>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@6 {
-+			label = "pcie-perst11";
-+			reg = <6>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@7 {
-+			label = "pcie-perst12";
-+			reg = <7>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@8 {
-+			label = "pcie-perst13";
-+			reg = <8>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@9 {
-+			label = "pcie-perst14";
-+			reg = <9>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@10 {
-+			label = "pcie-perst15";
-+			reg = <10>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@11 {
-+			label = "pcie-perst16";
-+			reg = <11>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@12 {
-+			label = "PV-cp1-sw1stk4-perst";
-+			reg = <12>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@13 {
-+			label = "PV-cp1-sw1stk5-perst";
-+			reg = <13>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@14 {
-+			label = "pe-cp-drv2-perst";
-+			reg = <14>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+
-+		led@15 {
-+			label = "pe-cp-drv3-perst";
-+			reg = <15>;
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			type = <PCA955X_TYPE_LED>;
-+		};
-+	};
-+
-+	gpio@75 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x75>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+			"PLUG_DETECT_PCIE_J109_N",
-+			"PLUG_DETECT_PCIE_J110_N",
-+			"PLUG_DETECT_PCIE_J111_N",
-+			"PLUG_DETECT_PCIE_J112_N",
-+			"PLUG_DETECT_PCIE_J113_N",
-+			"PLUG_DETECT_PCIE_J114_N",
-+			"PLUG_DETECT_PCIE_J115_N",
-+			"PLUG_DETECT_PCIE_J116_N",
-+			"PLUG_DETECT_M2_SSD2_N",
-+			"PLUG_DETECT_NIC2_N",
-+			"SEL_SMB_DIMM_CPU1",
-+			"presence-ps0",
-+			"presence-ps1",
-+			"", "",
-+			"PWRBRD_PLUG_DETECT1_N";
-+	};
-+
-+	gpio@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+			"SW1_BOOTRCVRYB1_N",
-+			"SW1_BOOTRCVRYB0_N",
-+			"SW2_BOOTRCVRYB1_N",
-+			"SW2_BOOTRCVRYB0_N",
-+			"SW3_4_BOOTRCVRYB1_N",
-+			"SW3_4_BOOTRCVRYB0_N",
-+			"SW5_BOOTRCVRYB1_N",
-+			"SW5_BOOTRCVRYB0_N",
-+			"SW6_BOOTRCVRYB1_N",
-+			"SW6_BOOTRCVRYB0_N",
-+			"SW1_RESET_N",
-+			"SW3_RESET_N",
-+			"SW4_RESET_N",
-+			"SW2_RESET_N",
-+			"SW5_RESET_N",
-+			"SW6_RESET_N";
-+	};
-+};
-+
-+&i2c14 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		i2c14mux0chn0: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		i2c14mux0chn1: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		i2c14mux0chn2: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		i2c14mux0chn3: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+
-+			regulator@58 {
-+				compatible = "mps,mp2973";
-+				reg = <0x58>;
-+			};
-+		};
-+
-+		i2c14mux0chn4: i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <4>;
-+		};
-+
-+		i2c14mux0chn5: i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+
-+			regulator@40 {
-+				compatible = "infineon,tda38640";
-+				reg = <0x40>;
-+			};
-+		};
-+
-+		i2c14mux0chn6: i2c@6 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <6>;
-+		};
-+
-+		i2c14mux0chn7: i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <7>;
-+		};
-+	};
-+};
-+
-+&i2c15 {
-+	status = "okay";
-+
-+	i2c-mux@71 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x71>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		i2c15mux0chn0: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			regulator@58 {
-+				compatible = "mps,mp2971";
-+				reg = <0x58>;
-+			};
-+		};
-+
-+		i2c15mux0chn1: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+
-+			regulator@40 {
-+				compatible = "infineon,tda38640";
-+				reg = <0x40>;
-+			};
-+
-+			regulator@41 {
-+				compatible = "infineon,tda38640";
-+				reg = <0x41>;
-+			};
-+
-+			regulator@58 {
-+				compatible = "mps,mp2971";
-+				reg = <0x58>;
-+			};
-+
-+			regulator@5b {
-+				compatible = "mps,mp2971";
-+				reg = <0x5b>;
-+			};
-+		};
-+
-+		i2c15mux0chn2: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		i2c15mux0chn3: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+
-+		i2c15mux0chn4: i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <4>;
-+
-+			i2c-mux@70 {
-+				compatible = "nxp,pca9548";
-+				reg = <0x70>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				i2c-mux-idle-disconnect;
-+
-+				i2c15mux1chn0: i2c@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0>;
-+				};
-+
-+				i2c15mux1chn1: i2c@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+				};
-+
-+				i2c15mux1chn2: i2c@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <2>;
-+				};
-+
-+				i2c15mux1chn3: i2c@3 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <3>;
-+				};
-+
-+				i2c15mux1chn4: i2c@4 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <4>;
-+				};
-+
-+				i2c15mux1chn5: i2c@5 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <5>;
-+				};
-+
-+				i2c15mux1chn6: i2c@6 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <6>;
-+				};
-+
-+				i2c15mux1chn7: i2c@7 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <7>;
-+				};
-+			};
-+		};
-+
-+		i2c15mux0chn5: i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+		};
-+
-+		i2c15mux0chn6: i2c@6 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <6>;
-+
-+			temperature-sensor@4c {
-+				compatible = "ti,tmp423";
-+				reg = <0x4c>;
-+			};
-+		};
-+
-+		i2c15mux0chn7: i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <7>;
-+
-+			regulator@40 {
-+				compatible = "infineon,ir38060";
-+				reg = <0x40>;
-+			};
-+
-+			temperature-sensor@4c {
-+				compatible = "ti,tmp423";
-+				reg = <0x4c>;
-+			};
-+		};
-+	};
-+};
--- 
-2.39.2
-
+Thanks,
+Michal
 
