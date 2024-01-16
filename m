@@ -1,221 +1,129 @@
-Return-Path: <devicetree+bounces-32477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C854282F7CC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:30:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03B0D82F851
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:43:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6A70283905
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:30:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 155B21C24E37
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9141185C63;
-	Tue, 16 Jan 2024 19:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13004130E53;
+	Tue, 16 Jan 2024 19:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rt2FDwLk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZhndZ5PJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A8385C59;
-	Tue, 16 Jan 2024 19:49:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B296130E4F;
+	Tue, 16 Jan 2024 19:51:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705434586; cv=none; b=krqc0sDUbzKVVQzDO1lpQb6H+i6UsEFXiYQ1imhr0SJ6x58slbtBwQtz0PH+D0gD6gzMN/ve0+A/1KRk7hNk/OlaS8E0oPsYofl46e91LE37p0z+d7Mp4nv3+S2FQbAJF2MXAx8bMnZsFk+Uu6uP4PIKt4AITUy7vI+QueCaVRo=
+	t=1705434688; cv=none; b=euMd0lYYpvbBiBnJLzEe1P697HhyuvkLw1AMbN5jE5X5Qu8jeIoCuBaLgCaifCzuoNM8tmuMY/HkM5yCWr6XlPXkIWPLxzCBaNOdt/1qGauNRZrJO8bkaqRuW7uuBMRJW3q7+glD2hLeDh9hOTfs0TGex4jhTA8J0R8EBaVqkYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705434586; c=relaxed/simple;
-	bh=nDrC9wTsCV4ph2iLOi/kjmUrKVaAS25bEBAFssh/F98=;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=g37O4MuPxP2serrZusp7S2nxo2Svbyk4+VFr3A0CdjpBXH1TzjdYgL2v2YN3a2rpVUt+52mnU9wVmjuyu0ZWZhwwMcNR02lNpwymHcG3uaiJSkcs3LVRk+pu88DMy+fuCtF/0drBu5mc4Dm8gedwc/vf1AKRnGhLTTAo4CMQWbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rt2FDwLk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B14B4C43390;
-	Tue, 16 Jan 2024 19:49:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705434586;
-	bh=nDrC9wTsCV4ph2iLOi/kjmUrKVaAS25bEBAFssh/F98=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rt2FDwLkrEvke5xX3NG2XsTzU/1v1AFMfYT3gFwaDjFtMNSx6SOqH1XIkRtJBOoyh
-	 mwsMlpc8GweBANnXi89yX+fAIpoxT6EWsyWKMKpLs4FIKElC12KDINnLVfxEo3AMdY
-	 XEhkRRLSfe4V14sKLBqM7RP+DW8+GxDVF9O5iIf8FRYDiDm++l96OruiFu1UqmINk4
-	 cnmmpOfsCcqOr4VCcRnE9QcR8OwpiDKoGUdCPU0yRunpacKpAhO5bUH5bNgi3DTtO8
-	 4n2bT1APCSEQmT7Q0G011OkJoWArrWMb0WDzQ0TdzNVYmfRNshybGniknqm8+EhrkF
-	 AQy2aI8+dwU2w==
-Date: Tue, 16 Jan 2024 13:49:43 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: conor.dooley@microchip.com, sam@ravnborg.org, bbrezillon@kernel.org,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, lee@kernel.org,
-	thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-	linux-pwm@vger.kernel.org, linux4microchip@microchip.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: convert Atmel's HLCDC to DT
- schema
-Message-ID: <20240116194943.GA301272-robh@kernel.org>
-References: <20240116113800.82529-1-dharma.b@microchip.com>
- <20240116113800.82529-2-dharma.b@microchip.com>
+	s=arc-20240116; t=1705434688; c=relaxed/simple;
+	bh=8LNFAiNLxDK9BNpZe1yap94I2WcbyLVKDUX+vZ5KaBQ=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
+	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
+	 Content-Type; b=D5TeW1AC5SW66Rh/M+2k5NJYzJTSvn9jSFvMIkEdgNGs0iCQVKkrX/+gG2Lv7qzAyL1d0imBtQexujygqaL9hYCxRUAHilGBIRdWTLooUkTOw4d9X2NUQltvfFpynO4wzDkZrUPVoQkioJoaNaVrQYJE9KckgzDRpWJoo9ajSMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZhndZ5PJ; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dbed4b84667so9604472276.0;
+        Tue, 16 Jan 2024 11:51:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705434685; x=1706039485; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=K8w04xiJGT72J3l5pZYydZFnp7VG18KNZBIm6eg0WXU=;
+        b=ZhndZ5PJmmeC7K11+j75TJ+jargGUCHC4OeVaOK/SjRtsuBWvD/V9Wpzg/AyPqXkku
+         1Wc3jXyhonOnE7xkkpmcgTPhT1DkbwbVsdFELECY6KXrSZBcVQNgEoaMc1MEJ8WYimK5
+         k0+vYaRAz+ACl1MKOaAObtLxN+sPvuy1uJJBKo6vHL7p6gaAO1wDQCQZHuheVttnUHvP
+         d+pYcFcenLOP+bu9tAThFs51K97bRTp2w7a0AubNz7btfw8bBiDbEMaoDrLRR8PDLSK6
+         Vxmf6E/bggwxD/F4PutNEnTp9UHMLWuH0HQamzXWaGof5x71hxCDID/lRGfACMu8enaq
+         ql1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705434685; x=1706039485;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K8w04xiJGT72J3l5pZYydZFnp7VG18KNZBIm6eg0WXU=;
+        b=QvzTYrBnAnY6Ncifi0VW7nBOWLhK8rT6qrli2WHqUEtPaL5l1rLvx4WDpxQExLZAKK
+         B/MbDXRe5/In5ZVdzwwfO6QcaCzSOnQ7agdW+uQVWPvLDRkDbO9ze7TRVxk5/q/6hvpc
+         L1HTHzdFNaWxynb4wWoqa1mgLFziTzIk7xmBhrV9xvPxr/0ISbb95k9Urj+G5af8fABd
+         KsDQgrk/2c69pKOt13VHqpT6HU+lCVqMZCg7G5pKYdRPy/kbmucv2wFvEwDF2LpbuN0/
+         AM3yP7FREM/ZJ6YzfroK/NFx5sir9tZNcud4U9nkfuqjfU/P7zE5fAp9Pep60XLmfCSK
+         IPww==
+X-Gm-Message-State: AOJu0YzENZgs6D/MVl0bGIsR7fT4SflMd6wKAPj/7X+7qdQMO23Xdufg
+	5GTVSVo+4XkmN/dmOWbseoUbHD2KGooTMyq128I=
+X-Google-Smtp-Source: AGHT+IEcHHyG+hJdFrG3M4zsgP7m+03vGfwWM2Y7XjxHTSXuNkOfPFJRl4DAeDiaEXh4RoBm4dUCzVDv8eYRlr6MSWI=
+X-Received: by 2002:a25:910:0:b0:dc2:266a:7814 with SMTP id
+ 16-20020a250910000000b00dc2266a7814mr1142886ybj.120.1705434685611; Tue, 16
+ Jan 2024 11:51:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240116113800.82529-2-dharma.b@microchip.com>
+References: <20240108135421.684263-1-tmaimon77@gmail.com> <20240108135421.684263-4-tmaimon77@gmail.com>
+ <99eca166-7d78-4ada-ac0a-ad67f3d8eb33@linaro.org>
+In-Reply-To: <99eca166-7d78-4ada-ac0a-ad67f3d8eb33@linaro.org>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Tue, 16 Jan 2024 21:51:14 +0200
+Message-ID: <CAP6Zq1g7NoLVbAUyeQ8jm3qZvjLV6HSVZB+r-X7dxvVNtvddPg@mail.gmail.com>
+Subject: Re: [PATCH v22 3/8] arm: dts: nuvoton: npcm7xx: modify rst syscon node
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, tali.perry1@gmail.com, joel@jms.id.au, 
+	venture@google.com, yuenn@google.com, benjaminfair@google.com, 
+	openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Jan 16, 2024 at 05:07:58PM +0530, Dharma Balasubiramani wrote:
-> Convert the existing DT binding to DT schema of the Atmel's HLCDC display
-> controller.
-> 
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> ---
-> changelog
-> v1 -> v2
-> - Remove the explicit copyrights.
-> - Modify filename like compatible.
-> - Modify title (drop words like binding/driver).
-> - Modify description actually describing the hardware and not the driver.
-> - Remove pinctrl properties which aren't required.
-> - Ref endpoint and not endpoint-base.
-> - Drop redundant info about bus-width description and add ref to video-interfaces.
-> - Move 'additionalProperties' after 'Required'.
-> - Drop parent node and it's other sub-device node which are not related here.
-> - Add compatible to example 2 and add comments that bus-width is the diff between two examples.
-> ---
->  .../atmel/atmel,hlcdc-display-controller.yaml | 110 ++++++++++++++++++
->  .../bindings/display/atmel/hlcdc-dc.txt       |  75 ------------
->  2 files changed, 110 insertions(+), 75 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-display-controller.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/atmel/hlcdc-dc.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-display-controller.yaml b/Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-display-controller.yaml
-> new file mode 100644
-> index 000000000000..f022c294cfbc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/atmel/atmel,hlcdc-display-controller.yaml
-> @@ -0,0 +1,110 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/atmel/atmel,hlcdc-display-controller.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Atmel's High LCD Controller (HLCDC)
-> +
-> +maintainers:
-> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
-> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> +  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
-> +
-> +description: |
-> +  The LCD Controller (LCDC) consists of logic for transferring LCD image
-> +  data from an external display buffer to a TFT LCD panel. The LCDC has one
-> +  display input buffer per layer that fetches pixels through the single bus
-> +  host interface and a look-up table to allow palletized display
-> +  configurations.
-> +
-> +properties:
-> +  compatible:
-> +    const: atmel,hlcdc-display-controller
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  port@0:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    unevaluatedProperties: false
-> +    description:
-> +      Output endpoint of the controller, connecting the LCD panel signals.
-> +
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      endpoint:
-> +        $ref: /schemas/graph.yaml#/$defs/endpoint
-> +        unevaluatedProperties: false
-> +        description:
-> +          Endpoint connecting the LCD panel signals.
-> +
-> +        properties:
-> +          bus-width:
-> +            description: Endpoint bus width.
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            enum: [ 12, 16, 18, 24 ]
-> +
-> +required:
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - compatible
-> +  - port@0
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    //Example 1
-> +
-> +    display-controller {
-> +      compatible = "atmel,hlcdc-display-controller";
-> +      pinctrl-names = "default";
-> +      pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb888>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      port@0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        reg = <0>;
-> +
-> +        hlcdc_panel_output: endpoint@0 {
-> +          reg = <0>;
-> +          remote-endpoint = <&panel_input>;
-> +        };
-> +      };
-> +    };
-> +
-> +  - |
-> +    //Example 2 With a video interface override to force rgb565, bus-width=16
-> +
-> +    display-controller {
-> +      compatible = "atmel,hlcdc-display-controller";
-> +      pinctrl-names = "default";
-> +      pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb565>;
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      port@0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        reg = <0>;
-> +        hlcdc_panel_output2: endpoint@0 {
-> +          reg = <0>;
-> +          remote-endpoint = <&panel_input>;
-> +          bus-width = <16>;
-> +        };
-> +      };
-> +    };
+Hi Krzysztof,
 
-Just 1 extra property doesn't justify 2 examples.
+Thanks for your comment.
 
-In any case, drop the partial examples and just have 1 complete example 
-in the MFD binding schema.
+On Wed, 10 Jan 2024 at 23:01, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 08/01/2024 14:54, Tomer Maimon wrote:
+> > rst node name and compatible property modified since clock and reset are
+> > handled in the same memory region.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
+> > index 868454ae6bde..f72c5a03d04c 100644
+> > --- a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
+> > +++ b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
+> > @@ -93,8 +93,8 @@ gcr: gcr@800000 {
+> >                       reg = <0x800000 0x1000>;
+> >               };
+> >
+> > -             rst: rst@801000 {
+> > -                     compatible = "nuvoton,npcm750-rst", "syscon", "simple-mfd";
+> > +             clk_rst: syscon@801000 {
+> > +                     compatible = "nuvoton,npcm750-clk-rst", "syscon", "simple-mfd";
+>
+> NAK. This breakes the users, is not justified, is not explained.
+Sorry, I didn't understand, which user it is breaking? there isn't a
+device tree node that uses the rst node.
+Should I explain it better in the commit message?
+>
+> Best regards,
+> Krzysztof
+>
 
-Rob
+Best regards,
+
+Tomer
 
