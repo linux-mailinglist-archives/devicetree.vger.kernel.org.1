@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-32201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 635E182E9FA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:24:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC19382EA04
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:27:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED5B9284BF8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:24:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9FF81C228F5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B05610A3B;
-	Tue, 16 Jan 2024 07:24:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B130610A2D;
+	Tue, 16 Jan 2024 07:27:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YwU9CR13"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A9PTIkhA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D0210A24
-	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D7411701
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:27:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-50ea8fbf261so11176267e87.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 23:24:47 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5592d72ede0so2067881a12.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 23:27:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705389886; x=1705994686; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705390049; x=1705994849; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=QmuNQYYSxRr/CS/I56kykdOCBdz6OEQC10FmQ1EeQhc=;
-        b=YwU9CR13+KGWIiAkT6dEtU0z5dPvkJrHRrMgPLDQie0eesjclidp6b7BNG8kBz/Hmr
-         efME5ehG940CFmrFQL+FkMPDSTI7gWElFlHK6VhCD+mRWiU1ShG9ykKJ6CpMs24+d6FM
-         sqISTDMx9p43/HKw3Qs8e/Q6DaxDHKkbr4efQpYQexyUDnflLdG0ujlMNNUeRuZAb6et
-         uarAFI4/3zuq7FF8khhx8tLBd6kOT/kuDJ95pJCJnebS+VjU0dr0pO9Fi29PstOoyEYN
-         AtnegECgRgr9GdWGoM9Fq9pN1kl3LIw+EchQja0OZaApxl8CSBwocc0duuB44a3cOcck
-         buag==
+        bh=wuBLtt2GZSpGcO9j/EnadY8DR8roytq++vYju0CnFXo=;
+        b=A9PTIkhAmzMktDetCYwbQxVpy8pOMq8fTPK1+vrVQvtQR0SmPq6rWerJz8UftOEAqu
+         bqVTg3k9TFKn8Kuv6l2cmFDYUsUxx/bcSpuJ9qgugy2rcoQYMu6JKSg8yHw1K8r407pM
+         WcZThVTSE7PqdozjELu+rHA/jcIygYhyvSC+dLJR5QIF2I+NbmU3WCOkxYBwBE4gBdYQ
+         tbfSOxgazK0a1GoJnZbGjfaLZikemSUEBJ2xtHg+mvqwheWwbUpYEs0zfnTCMCW8XzNf
+         SFYefl/Pbtqd4/D9R8S0EuIyDiu+zZCjHfPbWcx62u9mZRl3r3TGxSi25IcRHZ5XE/08
+         QmYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705389886; x=1705994686;
+        d=1e100.net; s=20230601; t=1705390049; x=1705994849;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QmuNQYYSxRr/CS/I56kykdOCBdz6OEQC10FmQ1EeQhc=;
-        b=nLHvqRCMjvB1sjmvoG2jAdsBZ3o87Qnp/kNJhpzptOKScgnGalxx3tdoM1Czo3oWM8
-         CP/euABprDEf/fW8zt/9T4zfqRDtKWk95rvMZ6M+iCtdflUkruGNioAQVf9zdOg/IEp0
-         tjeN6EX0KipM9USkoJzcT1W0hh3qqspkxAxzgWA9FALhTjzmqYddIVQuCZMy7g7ZjC+t
-         3oVqrduUPJMypGIpJxWuue+ISrojxkKmLp1+7JNxiw9ZvygzkvUrr2Vl01m5/cOVn2V0
-         aBUpVnD8bEPl2ohgKHqv9LLnN5gDaAlxPSc5BWZqxsUXVSItIWd64pON0higPVtuzK9Y
-         kCwA==
-X-Gm-Message-State: AOJu0Yz/SCtggVeIUgEjASC4MirV37Q3OxUssUQKWN8Dw5RIMaPhlsDo
-	ueuO4Ag9luQwhZTRh6N+HKjcdB5pUjYD0w==
-X-Google-Smtp-Source: AGHT+IHo/uu1hzJDpzHccNQb1Ziup25P9UjfC6TNi547r4ligiqKnJdY8c8q7eyttgP5SakChtGebA==
-X-Received: by 2002:a05:6512:1247:b0:50e:7be0:3c38 with SMTP id fb7-20020a056512124700b0050e7be03c38mr3701566lfb.98.1705389885808;
-        Mon, 15 Jan 2024 23:24:45 -0800 (PST)
+        bh=wuBLtt2GZSpGcO9j/EnadY8DR8roytq++vYju0CnFXo=;
+        b=QEz+GKqIErMMY9x8MDkJ0kVchT82wlGb3ZzgZtDSl/rrzhciHiiOkqbWP3pIoCU/tH
+         OFtrVtxB7a75gxo5A1q6hWoRrT8WVFa2UlJ93oUjU9aoSnkGUcIlaAZEYmPdQh9l0u71
+         8E1Y75ANdrGOa6lmiWhjB3ZpDPYKec1JVnr1E6zfVq+VUHVvN5M7446Nc5t+ak2HM6I3
+         BHQvRRWHJQGV76RhYB6okBBDhSOTxD2/b5aKR/++OgYYemAGsrpBNkpD/3d9yYwATIrV
+         HXCli5oRn0SOEIn48Q/8EQ1DervkRoNbxT2fS7+ucXBvGogFHQh4sOblnD5zD7Jkwj9q
+         Mmjg==
+X-Gm-Message-State: AOJu0Yy7wDWohtqhqUqsrIJPBuqp/A9lp7K4AkiMGGRoOeslLJmuHsd+
+	1aSUpzAFwc9d35gxM4p6AicEnzNq5tSQ5g==
+X-Google-Smtp-Source: AGHT+IHdKHkIBgK6L0jIMlQ3v6xRghPzDBEX0+OVS4q0bI64XYK4k9HjphY6IR1YoqAe3wuzYlZfrQ==
+X-Received: by 2002:a50:ee13:0:b0:558:d5ce:dd74 with SMTP id g19-20020a50ee13000000b00558d5cedd74mr2944423eds.34.1705390049307;
+        Mon, 15 Jan 2024 23:27:29 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id cw1-20020a170907160100b00a2dae4e408bsm2554928ejd.15.2024.01.15.23.24.44
+        by smtp.gmail.com with ESMTPSA id fj23-20020a0564022b9700b00557f54cceb6sm6428657edb.4.2024.01.15.23.27.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Jan 2024 23:24:45 -0800 (PST)
-Message-ID: <3dfe868d-ff8d-44ac-a68e-066ac42a6705@linaro.org>
-Date: Tue, 16 Jan 2024 08:24:44 +0100
+        Mon, 15 Jan 2024 23:27:28 -0800 (PST)
+Message-ID: <e2310177-0b18-4615-978b-83a4fcd05f6c@linaro.org>
+Date: Tue, 16 Jan 2024 08:27:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +66,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: rockchip: Fix Hardkernel ODROID-M1 board
- bindings
+Subject: Re: [PATCH v1] ARM: dts: aspeed-g6: Add I3C controller nodes
 Content-Language: en-US
-To: Tim Lunn <tim@feathertop.org>, KyuHyuk Lee <lee@kyuhyuk.kr>,
- Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Chris Morgan <macromorgan@hotmail.com>, Tianling Shen <cnsztl@gmail.com>,
- Jagan Teki <jagan@edgeble.ai>, Ondrej Jirman <megi@xff.cz>,
- Andy Yan <andyshrk@163.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240115145142.6292-1-lee@kyuhyuk.kr>
- <b4f97202-43ec-4f04-af95-b1ccd3b5d203@linaro.org>
- <8b31ae29-b88b-4ded-95b4-c2d9bbad24e1@feathertop.org>
+To: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, patrick@stwcx.xyz,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20240116065050.3657049-1-Delphine_CC_Chiu@wiwynn.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -126,42 +121,86 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <8b31ae29-b88b-4ded-95b4-c2d9bbad24e1@feathertop.org>
+In-Reply-To: <20240116065050.3657049-1-Delphine_CC_Chiu@wiwynn.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 16/01/2024 03:00, Tim Lunn wrote:
+On 16/01/2024 07:50, Delphine CC Chiu wrote:
+> Add default device tree settings for the 6 I3C controllers embedded in
+> the aspeed-g6 family SOCs.
 > 
-> On 1/16/24 01:58, Krzysztof Kozlowski wrote:
->> On 15/01/2024 15:51, KyuHyuk Lee wrote:
->>> The vendor in ODROID-M1 is hardkernel, but it was incorrectly written
->>> as rockchip. Fixed the vendor prefix correctly.
->>>
->>> Signed-off-by: KyuHyuk Lee <lee@kyuhyuk.kr>
->>> ---
->>>   Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->> You need to start testing your patches. Your last M1 fails as well in
->> multiple places.
->>
->> It does not look like you tested the DTS against bindings. Please run
->> `make dtbs_check W=1` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
->>
->> The DTS change will break the users, so would be nice to mention this in
->> its commit msg.
+> Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+> ---
+>  arch/arm/boot/dts/aspeed/aspeed-g6.dtsi | 148 ++++++++++++++++++++++++
+>  1 file changed, 148 insertions(+)
 > 
-> I notice there are a couple of other boards that incorrectly use 
-> rockchip as the vendor also:
-> 
->            - const: rockchip,rk3399-orangepi
->            - const: rockchip,rk3568-bpi-r2pro
-> 
-> Perhaps these should also be fixed at the same time?
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> index c4d1faade8be..ed5021001e7f 100644
+> --- a/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-g6.dtsi
+> @@ -13,6 +13,12 @@ / {
+>  	interrupt-parent = <&gic>;
+>  
+>  	aliases {
+> +		i3c0 = &i3c0;
+> +		i3c1 = &i3c1;
+> +		i3c2 = &i3c2;
+> +		i3c3 = &i3c3;
+> +		i3c4 = &i3c4;
+> +		i3c5 = &i3c5;
+>  		i2c0 = &i2c0;
+>  		i2c1 = &i2c1;
+>  		i2c2 = &i2c2;
+> @@ -577,6 +583,13 @@ wdt4: watchdog@1e7850c0 {
+>  				status = "disabled";
+>  			};
+>  
+> +			i3c: bus@1e7a0000 {
+> +				compatible = "simple-bus";
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +				ranges = <0 0x1e7a0000 0x8000>;
+> +			};
+> +
+>  			peci0: peci-controller@1e78b000 {
+>  				compatible = "aspeed,ast2600-peci";
+>  				reg = <0x1e78b000 0x100>;
+> @@ -1139,3 +1152,138 @@ i2c15: i2c-bus@800 {
+>  		status = "disabled";
+>  	};
+>  };
+> +
+> +&i3c {
+> +	i3c_global: i3cg@0 {
 
-What is happening with rockchip boards?
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		reg = <0x0 0x1000>;
+> +		compatible = "aspeed,ast2600-i3c-global", "syscon";
+
+There is no such compatible.
+
+> +	};
+> +
+> +	i3c0: i3c0@2000 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Anyway, please respect DTS coding style for order of properties.
+Compatible is always first.
+
+> +		compatible = "aspeed,ast2600-i3c", "syscon";
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
 Best regards,
 Krzysztof
