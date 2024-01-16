@@ -1,203 +1,158 @@
-Return-Path: <devicetree+bounces-32199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0D282E9EE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:22:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6729C82E9F7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 08:24:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0463F284B8E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:22:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9DD8284C49
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 07:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CEE211187;
-	Tue, 16 Jan 2024 07:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D229510A2D;
+	Tue, 16 Jan 2024 07:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e+wFDVJ4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aCjZje2v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A68010A3F;
-	Tue, 16 Jan 2024 07:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-21080bacc6fso53843fac.0;
-        Mon, 15 Jan 2024 23:22:27 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D308111A9
+	for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 07:24:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a28f66dc7ffso1907932366b.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jan 2024 23:24:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705389747; x=1705994547; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DSNu/F0YjWWvZJ8YEGZOLrkQaebTdrL0bEYeNxkjWKw=;
-        b=e+wFDVJ4qt7wJHsUt49BsyFF5oT/gSL5eyElCI5m4b2rilfySUi1uTmBix8UKOyvq/
-         ajK1S55BKtfKujVTnqnpKLGZ9bOo/vygUEixJEtmIew454CgLsTO0MWit+W55dJnUgh4
-         zAs1XC/fMW1xFcImYKR/QXJZCuUulDPsmT5tV5U+RBs64lY7wW1voO/I1uPBWX3L3aB1
-         vGAZNSssuAbamq9leUmW14S+w4d1Jr3OPagQ4tn0m14QgPOdSseouBJ/NWJM0UwBBjCh
-         vrwO/UHVSne4C6hJMLcRwSxD99OuRA1BU19eoqhbZm77iZSYEWZPWxXuVU9yVfAbikQZ
-         Ni2g==
+        d=linaro.org; s=google; t=1705389862; x=1705994662; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1JgRjMNs+e9DgLVdT4/phU8KY385TQI72vtZoArIQpM=;
+        b=aCjZje2vi41XfaKmB/eBdrJiUxuFmPXXAORQzCTEzpStGZ4xrc2nP3JH5CATOkWd7g
+         969ZZ27K7KDNo9JXVhgMD+3wiksvUJkLTMZHUIQqf7ayFFcLzbxVrLgk87FXxYNALvl7
+         jvNqWmu+t5GYaRQG5qBP4DJ3q3RCX88yEI4BkTutcOBd5V2n675mMkNxt+hDMl5ngyfT
+         jb/mvdPNdaqGkvBT8fuORK5DxKVoFdFUunA7FxHnhyAfY/DdRwr/gQ4NJh713WX/Nvhz
+         5YImzECzdaHAGxMzGl9k/eZpwowIidCc2wFG8i+SdWos96PB0ezpVfjMBIRZ4Ev++7zU
+         rSrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705389747; x=1705994547;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DSNu/F0YjWWvZJ8YEGZOLrkQaebTdrL0bEYeNxkjWKw=;
-        b=CX+wQRaZK/5TAx0waJ6SmDmhfi8Q9WlqOJi5qdZiuYSDoWTUNhFvmCTG1RKAV7OPhO
-         pU428/EaHLB+AQ1HFLJPSC3SRbv5LWSFkJwKsZacARLWPeOCH1MUPawppQIff2liJhbo
-         EDml7e6zV6MY7sj9Q+IwaWWDWYdf7SUzm+ZycdAbpVxlniZy0oxfmDBEMC0H1Duqbhu+
-         cfoQs+BaSpH4fJB6fRzul8+fQeU/HbPHqOIG8M+eZJ2E5YWgB31qYmG6ijVK2lvNnLS6
-         wY7NNc6pxYMduh7cZz8rU2wfJ8IMuTgZmsg13haFmz+91EDR9Ioy3OgW5JsBpMrSmcKn
-         cmmw==
-X-Gm-Message-State: AOJu0YxHprTbDtmwCRkZCrDigln1P1u+/PJWUKuncVytrCnDKyPomBWd
-	W5e1I+TkOlOIndBJ9PLNcmE=
-X-Google-Smtp-Source: AGHT+IH69Ohci1IK5bZui+I6s85n29iczQYaPx877llDqKJLtWt+hCvbGqWnV03YlB5FQwI24tl4OQ==
-X-Received: by 2002:a05:6870:3128:b0:210:7b00:e811 with SMTP id v40-20020a056870312800b002107b00e811mr389496oaa.71.1705389747085;
-        Mon, 15 Jan 2024 23:22:27 -0800 (PST)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id t20-20020a05687044d400b002060e99b486sm2905903oai.22.2024.01.15.23.22.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Jan 2024 23:22:26 -0800 (PST)
-From: Chen Wang <unicornxw@gmail.com>
-To: aou@eecs.berkeley.edu,
-	chao.wei@sophgo.com,
-	conor@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	mturquette@baylibre.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	richardcochran@gmail.com,
-	robh+dt@kernel.org,
-	sboyd@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	haijiao.liu@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	guoren@kernel.org,
-	jszhang@kernel.org,
-	inochiama@outlook.com,
-	samuel.holland@sifive.com
-Cc: Chen Wang <unicorn_wang@outlook.com>
-Subject: [PATCH v8 5/5] riscv: dts: add clock generator for Sophgo SG2042 SoC
-Date: Tue, 16 Jan 2024 15:22:20 +0800
-Message-Id: <f2edd136c97cea465a81e8949a36471c26db9b09.1705388518.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1705388518.git.unicorn_wang@outlook.com>
-References: <cover.1705388518.git.unicorn_wang@outlook.com>
+        d=1e100.net; s=20230601; t=1705389862; x=1705994662;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1JgRjMNs+e9DgLVdT4/phU8KY385TQI72vtZoArIQpM=;
+        b=D8BIRx9KyWOp+Yhas+LFClNrx9cFaIiR63jR2/m8JqgWAKhZgcx0x4J+MBz77pY0mG
+         rfZtZgxOVa1Pcb2VmFYWxMgejwmcRIs4fn0lWk4OxUBW2tdPiEQZR+QPfG/vnsxWjXJq
+         bsRFxlhGnqqbV2pLvppjwHKgV/jPHmJD5SgYBcL8o7UnQVI2/5sVOJ/DxHSZBkFC3/W/
+         dQBsaqpgPAUgMU85VnYzi/QOzbDMV3XAcjcyAr0El2ciZhYDNFBQtNUdAMQEL5OrJ2KL
+         j5vSOYrZM5AC1wPw2ldkKIQ/Q26+BTm1Szr7kF7vGIFhZbteXEJQEH1me7tjqkJ64dHW
+         0+VA==
+X-Gm-Message-State: AOJu0Yx4VghmN35I4PNg5tFk70rj57/BExV1mWWfmMjuMxlpo7qN3/uA
+	Iz0iq1L6cSioqIZJnEbxRDaq2M95R2Ep7A==
+X-Google-Smtp-Source: AGHT+IEM49xmCazIzhhAaJcBTvlIYT3qzttjLgk+gc5Adx4ymvmbJPObcL4w9NIyBRAbJFB15Kt2aA==
+X-Received: by 2002:a17:906:bf47:b0:a2c:f62d:a598 with SMTP id ps7-20020a170906bf4700b00a2cf62da598mr6858249ejb.0.1705389862525;
+        Mon, 15 Jan 2024 23:24:22 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id cw1-20020a170907160100b00a2dae4e408bsm2554928ejd.15.2024.01.15.23.24.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Jan 2024 23:24:22 -0800 (PST)
+Message-ID: <d45e31c4-914e-4cea-a145-9775b6f516ab@linaro.org>
+Date: Tue, 16 Jan 2024 08:24:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
+ silvaco,i3c-target-v1
+Content-Language: en-US
+To: Frank Li <Frank.li@nxp.com>
+Cc: robh@kernel.org, alexandre.belloni@bootlin.com,
+ conor.culhane@silvaco.com, gregkh@linuxfoundation.org, imx@lists.linux.dev,
+ jirislaby@kernel.org, joe@perches.com, linux-i3c@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ miquel.raynal@bootlin.com, zbigniew.lukwinski@linux.intel.com,
+ devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20240110175221.2335480-1-Frank.Li@nxp.com>
+ <20240110175221.2335480-3-Frank.Li@nxp.com>
+ <3c0be658-e7a6-4231-b206-86ffb47e0cb2@linaro.org>
+ <ZaFbbeQrC7o2dchO@lizhi-Precision-Tower-5810>
+ <e3b9aa63-25a5-41cc-9eb7-6e7d1eacb136@linaro.org>
+ <ZaFjaWCA6k+tiCSJ@lizhi-Precision-Tower-5810>
+ <ZaWLCrWJEMtFx8cR@lizhi-Precision-Tower-5810>
+ <1b628901-7f71-4c97-9a16-723912988417@linaro.org>
+ <ZaXqCoCHPWER94Hh@lizhi-Precision-Tower-5810>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ZaXqCoCHPWER94Hh@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Chen Wang <unicorn_wang@outlook.com>
+On 16/01/2024 03:29, Frank Li wrote:
+>>> 	Patches were accepted after discussion, what you ponit to. So I
+>>> think everyone agree on the name 'silvaco,i3c-master-v1'.
+>>> 	I plan send next version to fix auto build error. Any additional
+>>> comments about this?
+>>
+>> I still do not see how did you address Rob's comment and his point is
+>> valid. You just did not reply to it.
+> 
+> See https://lore.kernel.org/imx/ZXCiaKfMYYShoiXK@lizhi-Precision-Tower-5810/
 
-Add clock generator node to device tree for SG2042, and enable clock for
-uart.
+First of all, that's not the answer to Rob's email, but some other
+thread which is 99% ignored by Rob (unless he has filters for
+"@Rob"...). Therefore no, it does not count as valid answer.
 
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
----
- .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  | 12 ++++++
- arch/riscv/boot/dts/sophgo/sg2042.dtsi        | 39 +++++++++++++++++++
- 2 files changed, 51 insertions(+)
+Second, explanation does not make sense. There is no argument granting
+you exception from SoC specific compatibles.
 
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-index 49b4b9c2c101..80cb017974d8 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-+++ b/arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts
-@@ -14,6 +14,18 @@ chosen {
- 	};
- };
- 
-+&cgi_main {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll0 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&cgi_dpll1 {
-+	clock-frequency = <25000000>;
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/sophgo/sg2042.dtsi b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-index 93256540d078..6dd8d89d4833 100644
---- a/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/sg2042.dtsi
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/clock/sophgo,sg2042-clkgen.h>
- 
- #include "sg2042-cpus.dtsi"
- 
-@@ -18,6 +19,24 @@ aliases {
- 		serial0 = &uart0;
- 	};
- 
-+	cgi_main: oscillator0 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_main";
-+		#clock-cells = <0>;
-+	};
-+
-+	cgi_dpll0: oscillator1 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_dpll0";
-+		#clock-cells = <0>;
-+	};
-+
-+	cgi_dpll1: oscillator2 {
-+		compatible = "fixed-clock";
-+		clock-output-names = "cgi_dpll1";
-+		#clock-cells = <0>;
-+	};
-+
- 	soc: soc {
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
-@@ -311,12 +330,32 @@ intc: interrupt-controller@7090000000 {
- 			riscv,ndev = <224>;
- 		};
- 
-+		system-control@7030010000 {
-+			compatible = "sophgo,sg2042-sysctrl";
-+			reg = <0x70 0x30010000 0x0 0x1000>;
-+
-+			sysclk: clock-controller {
-+				compatible = "sophgo,sg2042-sysclk";
-+				clocks = <&cgi_main>, <&cgi_dpll0>, <&cgi_dpll1>;
-+				#clock-cells = <1>;
-+			};
-+		};
-+
-+		clkgen: clock-controller@7030012000 {
-+			compatible = "sophgo,sg2042-clkgen";
-+			reg = <0x70 0x30012000 0x0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		uart0: serial@7040000000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x00000070 0x40000000 0x00000000 0x00001000>;
- 			interrupt-parent = <&intc>;
- 			interrupts = <112 IRQ_TYPE_LEVEL_HIGH>;
- 			clock-frequency = <500000000>;
-+			clocks = <&clkgen GATE_CLK_UART_500M>,
-+				 <&clkgen GATE_CLK_APB_UART>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
- 			status = "disabled";
--- 
-2.25.1
+Best regards,
+Krzysztof
 
 
