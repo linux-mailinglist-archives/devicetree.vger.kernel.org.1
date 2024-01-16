@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-32494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50D4A82F88E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:48:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8031382F896
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 21:48:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F414B28C6A3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:48:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3099028CE3B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jan 2024 20:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABF71350D5;
-	Tue, 16 Jan 2024 19:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8AB2135A4C;
+	Tue, 16 Jan 2024 19:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CSnOfSjq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hx1l4nwY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE4D1350D1;
-	Tue, 16 Jan 2024 19:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08F3135A44;
+	Tue, 16 Jan 2024 19:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705434735; cv=none; b=RKH3BUS19XjwVpClELHGU88IHV1Hi6/ie7P+u72U5c/iPMtQNop2bp9UVinzTXO9aq7Gw1DXTWKc0gBx9UE8m7aSLALrRmsyvrOTR3B6vkYb6QJDu2V0T7+IksjjYMY/qDZGAZAhMwGjE3Bb/6X1HGrjlzNkUcYwGdg2t+LuL/s=
+	t=1705434738; cv=none; b=JTG9BeCHbnlFmi9cRouboWvAYaA5Q1ET1dUI5N7PSKl0pGJLsGzFBV4FX3oxATgQSl4ibw7ldzx4yFTG8vp8JtJAOCqO934oEIV6l1/54NtgoT+PGdSLvRQid3dwitRT90txzB/n6AUuZx7nz08qXjzic0mY61vqj259+6rsBZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705434735; c=relaxed/simple;
-	bh=o7ojtSxbbwiAuKTyLt6r3A4v7TrYc1uzV/5c/vzFSyM=;
+	s=arc-20240116; t=1705434738; c=relaxed/simple;
+	bh=PkJUZ51GVZfJP1VfxNoyBMED/5M1vBhzRXC3BJhZB9I=;
 	h=Received:DKIM-Signature:From:To:Cc:Subject:Date:Message-ID:
 	 X-Mailer:In-Reply-To:References:MIME-Version:X-stable:
-	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=IEbjKTd/Zdi4jvFgL955MJ6rzuHWfx6kWNEHtBmbwZbYJvlFaFIrqSCOa9vzwATFMRgfePwa+cppvnOht2mrvEvjrPMBhpMg+IUTUHgwdwNFH/z3ROZujCei8yOS3ZFMWzKM1Jz6ankvK+evBGb9uYCHYDCvDWFtviLnJ8RrBPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CSnOfSjq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31739C43394;
-	Tue, 16 Jan 2024 19:52:13 +0000 (UTC)
+	 X-Patchwork-Hint:X-stable-base:Content-Transfer-Encoding; b=nwZFHadP2hGM0kN5eU3Okq1uM9w/L4cIooSuZ1EeaaetmAL2JKv6GJyq57/BtTBiBpZf09OW6nGknzkGWHpVkDuD/JLXo6YmSqUrUpnv8prJKu5uBflCLae0xfecJJmXstq6yPBvyT+y5kwX6RgOD4CSOUlDSE5PuwG7u/pwS5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hx1l4nwY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69CEEC43143;
+	Tue, 16 Jan 2024 19:52:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705434734;
-	bh=o7ojtSxbbwiAuKTyLt6r3A4v7TrYc1uzV/5c/vzFSyM=;
+	s=k20201202; t=1705434738;
+	bh=PkJUZ51GVZfJP1VfxNoyBMED/5M1vBhzRXC3BJhZB9I=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CSnOfSjqyb8vB3DVV6R6gFHlQslrhxXMW2HUAJ9p5zCvAxA81CWQpHEyg22naHyAz
-	 2WhNhUhf9Gd08QZgnQDC3jyt4OfBT1UoROROXmhJD0Vl8xE0oe4Dez2miSoOQVkHiJ
-	 kpWTcGPhgRo1bbCXt3Kj8s4Dm13O2GC0zxRAEva8B0Rz3iB0kVjN01Us4YZLabAJbN
-	 vVhNltnqV8r+z+m/ODmRwxrewOdFTnvIlUi52tKqg/Qy/KlhHmBN1Kexa63JWbqkhi
-	 kk68DUIaYenKJmM3kBpG0hsWHLMdTZPxjtM0lCwQKOXZJMJ27A3FOtKP3rDhe7oR8L
-	 uMLnXqyF9WZ7w==
+	b=hx1l4nwY3DzkRj+721weLX0Rioqu/hE06NYaIF+aaERHIctrcoXCnP2eJ4iFZg48F
+	 ghF2W3ExUVlwirV99dhCHQADcifV+r4HJMu+lNVi8DjsXARzOpzR5xWGErcLBKCdt+
+	 aDeZwB8u7W8SWf7gySqzmH16InPIw/QnP0g5W0EW3yiPU6J8aBv2AE1a58fD6QJ56N
+	 z1VxWsYS5DHgzNIONQua294kvTzOgP3xAN8eGScvuEYb2yOrlTAUhgxW+5Y3lhNwQd
+	 jAvNXmz1Y+Hz+3QqvVA3cG8ya6MvlYBDRMkPIn/HQiY8L1KdRzc1zCLnEftwOAJe4a
+	 5TFFFAgrbsYow==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Michal Simek <michal.simek@amd.com>,
+Cc: Fabio Estevam <festevam@denx.de>,
+	Shawn Guo <shawnguo@kernel.org>,
 	Sasha Levin <sashal@kernel.org>,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	laurent.pinchart@ideasonboard.com,
-	ashok.reddy.soma@xilinx.com,
-	manikanta.guntupalli@amd.com,
-	harini.katakam@amd.com,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.6 064/104] arm64: zynqmp: Fix clock node name in kv260 cards
-Date: Tue, 16 Jan 2024 14:46:30 -0500
-Message-ID: <20240116194908.253437-64-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.6 066/104] ARM: dts: imx25: Fix the iim compatible string
+Date: Tue, 16 Jan 2024 14:46:32 -0500
+Message-ID: <20240116194908.253437-66-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240116194908.253437-1-sashal@kernel.org>
 References: <20240116194908.253437-1-sashal@kernel.org>
@@ -73,115 +70,38 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.6.12
 Content-Transfer-Encoding: 8bit
 
-From: Michal Simek <michal.simek@amd.com>
+From: Fabio Estevam <festevam@denx.de>
 
-[ Upstream commit 0bfb7950cc1975372c4c58c3d3f9803f05245d46 ]
+[ Upstream commit f0b929f58719fc57a4926ab4fc972f185453d6a5 ]
 
-node name shouldn't use '_' that's why convert it to '-'.
+Per imx-iim.yaml, the compatible string should only contain a single
+entry.
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
+Use it as "fsl,imx25-iim" to fix the following dt-schema warning:
+
+imx25-karo-tx25.dtb: efuse@53ff0000: compatible: ['fsl,imx25-iim', 'fsl,imx27-iim'] is too long
+	from schema $id: http://devicetree.org/schemas/nvmem/imx-iim.yaml#
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 12 ++++++------
- arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 12 ++++++------
- 2 files changed, 12 insertions(+), 12 deletions(-)
+ arch/arm/boot/dts/nxp/imx/imx25.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-index dee238739290..92f4190d564d 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-@@ -22,37 +22,37 @@
- /plugin/;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx25.dtsi b/arch/arm/boot/dts/nxp/imx/imx25.dtsi
+index 5f90d72b840b..5ac4549286bd 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx25.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx25.dtsi
+@@ -543,7 +543,7 @@ pwm1: pwm@53fe0000 {
+ 			};
  
- &{/} {
--	si5332_0: si5332_0 { /* u17 */
-+	si5332_0: si5332-0 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <125000000>;
- 	};
- 
--	si5332_1: si5332_1 { /* u17 */
-+	si5332_1: si5332-1 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <25000000>;
- 	};
- 
--	si5332_2: si5332_2 { /* u17 */
-+	si5332_2: si5332-2 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <48000000>;
- 	};
- 
--	si5332_3: si5332_3 { /* u17 */
-+	si5332_3: si5332-3 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <24000000>;
- 	};
- 
--	si5332_4: si5332_4 { /* u17 */
-+	si5332_4: si5332-4 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <26000000>;
- 	};
- 
--	si5332_5: si5332_5 { /* u17 */
-+	si5332_5: si5332-5 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-index 73c5cb156caf..f88b71f5b07a 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-@@ -17,37 +17,37 @@
- /plugin/;
- 
- &{/} {
--	si5332_0: si5332_0 { /* u17 */
-+	si5332_0: si5332-0 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <125000000>;
- 	};
- 
--	si5332_1: si5332_1 { /* u17 */
-+	si5332_1: si5332-1 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <25000000>;
- 	};
- 
--	si5332_2: si5332_2 { /* u17 */
-+	si5332_2: si5332-2 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <48000000>;
- 	};
- 
--	si5332_3: si5332_3 { /* u17 */
-+	si5332_3: si5332-3 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <24000000>;
- 	};
- 
--	si5332_4: si5332_4 { /* u17 */
-+	si5332_4: si5332-4 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <26000000>;
- 	};
- 
--	si5332_5: si5332_5 { /* u17 */
-+	si5332_5: si5332-5 { /* u17 */
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
+ 			iim: efuse@53ff0000 {
+-				compatible = "fsl,imx25-iim", "fsl,imx27-iim";
++				compatible = "fsl,imx25-iim";
+ 				reg = <0x53ff0000 0x4000>;
+ 				interrupts = <19>;
+ 				clocks = <&clks 99>;
 -- 
 2.43.0
 
