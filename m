@@ -1,233 +1,403 @@
-Return-Path: <devicetree+bounces-32621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2645182FF49
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 04:25:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEB5C82FF50
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 04:36:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FC361F2703B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 03:25:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F0942862B4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 03:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEC5728F0;
-	Wed, 17 Jan 2024 03:24:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AB861C13;
+	Wed, 17 Jan 2024 03:35:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nr3tdwd+"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="SRt8WnhD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF791864;
-	Wed, 17 Jan 2024 03:24:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1399579EF
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 03:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705461896; cv=none; b=McgRW+OhRDdwevO9hcZbz3WRFd3S0wRi5TULs1oLLni3CSiZsW/NCuVnnaYWuikGTZzt3gGk0EXmFGq+Vi9n/V3+b6CRPiSn6e6xf1WDSShIbp09AOdp0eO8K6RMWHpI7FexNRkwLmsoNwTUuAj5LMWycQvLZSQHqpjZNfeBSCY=
+	t=1705462547; cv=none; b=phdk8Q9YF0ZHvOhP1bxDhy7/brUyM0L2xWsWFU7BbSVHiuHQ+wOR0jpgH+V2atZeh+cSMyIJmi7IhIr/bVxJskDVnC8NvNSJABsc4d30dTmI/MTt3XgKhhdUd9oFWVAkedlh+bIz6PLU1HncIitusxr6dRrVwJnHrSmuQeJ8/hU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705461896; c=relaxed/simple;
-	bh=O6UyS1EMd2El1cJhogceDXs4CkCPSiWrYf8da+BURv4=;
+	s=arc-20240116; t=1705462547; c=relaxed/simple;
+	bh=cBfsCb32nUijnXH54o/TiQ0y5BseV36p/OWgKgIsIlo=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
 	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
-	 Content-Type:Content-Transfer-Encoding; b=Y7TArAbL9Xd174a5mAXKsKdt1bja/5rc/8ntCZd8Did8xGMn8xBovLGeQd+Y6BE6voHCQtDpTwA3e2Sl9RVIaG0UpDl8FmQmTsS3uJU+7lUpRRN33sUWwaaGVpGoQ/m51VyUCzI8q1oI7ivsxdgk2k4/tJI/1hY+WIEpbIh2Lic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nr3tdwd+; arc=none smtp.client-ip=209.85.161.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-59505514213so4692869eaf.0;
-        Tue, 16 Jan 2024 19:24:55 -0800 (PST)
+	 Content-Type:Content-Transfer-Encoding; b=iRApm/rHijV1YcecfxYHcBzGt8SciBlPvF5h30F0lMtmCvW1NzVMe8LzEWlf1bf98Kuqp3Q8o73IN/VCLKe8if1WCZ1xMffhM+cGN3jlUTr219kdMQGnrB5A3QWGBj51XSGrAHA5+67mTWfAKhx3PXjyKaOJhFpXoq71Z/XmNbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=SRt8WnhD; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50e766937ddso11885296e87.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 19:35:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705461894; x=1706066694; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1705462543; x=1706067343; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hrR0tHpidkGB05XRXnhTobUQZ0agqDLMMD3A5T7XObQ=;
-        b=nr3tdwd+uWj7vdRMTGMZN32aLCGnqoJBLQclPh7e1YbKFEtqTEZwrU3Z3x4Zut5ZLq
-         nY1VLCByfWIUWNnCq8RCuhEzF8zdaVbs9SOwtOFKMYSEjR6aL1NleBKybAtW2P0rrdOi
-         XLPFuirOz5Su4new/bhPZsuLx1T9HB4gbyhjU13ZUUr0MVhIZC0D+ztnRW34xG3FASRH
-         YALeVZ1dW/waFUC3z8R2BrmvWtnKBSYmGGVcGo8SPk10bdiap7tVhoD9kSPHcZQWQyy9
-         W84Jj8kmPLHwcBAKOg42ye3a3vKUmd4m59NkA+yBGWcu41HbaGx0Gitd+FShUaqPSA/g
-         Z8Xg==
+        bh=xPVeCK5B9gXpBTr58po98cr58qEX6SUXFpMHlNs4+4k=;
+        b=SRt8WnhDtqXaTRJlroK+b1NSlUxmgZe695eZO64J7052Q7ZgKIxqbDwhR+Fk3Hs5yN
+         uBax2mZNH+CGIOAP/KAJ2KsyskcH7eyXED0+FyaOjlAw7vyKlxQKD/dU4hpWL3jf3Lry
+         MoTPGUxO8BTeEWeOzXd1du8Rwv7z5CqZP8BbEHjK3o0wNE2CIlqYhI+2u++hC/Y/+UO9
+         2QtiLzhArF+P/TjHEWTknr8SsJeFggl/x0oPmg1PqKxBKG/tqfrmLxSbKvKcnYZxb81e
+         +l3OScbPdM6PJXKEdxP1XlKcrfQg7AVKdKSLZmBhPiozJBgTa46B2a2TzxlYxKEyfHLl
+         i2+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705461894; x=1706066694;
+        d=1e100.net; s=20230601; t=1705462543; x=1706067343;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hrR0tHpidkGB05XRXnhTobUQZ0agqDLMMD3A5T7XObQ=;
-        b=jfeU+s071s/hrbHE/wsYi4uwcoFjkBCQb7mU4KjHA2tcV40yI1eOOK2sEBESYPepNb
-         0KL+SNViVjd4oEVq400mJMq7yifiALstK3N1RJiKt/VasA/3R7bQTfEe41USOjOL5oOh
-         W2zlAQYzClNx2YaDTz81w12JCuhOGyfyU3Cl/w4JbG2Mqjzf9SlCg+7P/b8yNjnaVPJO
-         lDS3kJSJMZ1v7oTL2mBcBhKT7yXme+Jj85tnnTRrqcgXFRHH1I/IB9wl5LoyvIhA1pzL
-         8N211pthXtrZ8lJhKvFcj3OEjBu/59KWZsetAje611BMJa7gqEnho3E4lb4DNKGhG0Yx
-         7cbg==
-X-Gm-Message-State: AOJu0YxYeK0GzKnvLFpNIi3/x27AkQEWMQH/Nn0OzKJL2mmoEfD69S7W
-	D7Wfau+TySWsGMvWnDtmlvIs62rsF1UmfQJAK5gw9drE4j2S0k4ygdaU62qXfUhlBx+CGZkf5hW
-	VaOJMCJfbHzckyPDDS5fgHXgapG0=
-X-Google-Smtp-Source: AGHT+IHe61Kn+9uVBZYc7hWtmFOSFgviXZksDl/J4M/jJGlzviJV374++J1MEUvTailaIMHtaCZo+nTHk0X5WxMaD/o=
-X-Received: by 2002:a05:6820:2a15:b0:599:27c8:d7f9 with SMTP id
- dr21-20020a0568202a1500b0059927c8d7f9mr76965oob.8.1705461893991; Tue, 16 Jan
- 2024 19:24:53 -0800 (PST)
+        bh=xPVeCK5B9gXpBTr58po98cr58qEX6SUXFpMHlNs4+4k=;
+        b=XvRvwFZvFE/82UqkiKex4MxHNKPLSCQNYKDI8JidcONZTK1Ztj72VfHJ0zUS5smqdv
+         XLnjSYHpCZSNJ8pYV56lQrIuK8l88uJU8ynR7uK1476A1t4f4VPdo8JOqL7avJC8JHfZ
+         0zbztym2yLk6RV8ibRrBQcZtPOiODTozWkt7lYxlCTA4HHNNIKTZYGPMf+m5gWfiUO3F
+         Q9j+mG/diEE02pwSEiYWXjtZ4wPSHYhH5BObi0b4xZu/+s0YUTmDN0WTH7KJE6Z/jjH+
+         GhViVAKbBaN+aG0ddyt1uukP9vJcwnoocnLW/8ZSPTtEXLMk515vbnYpotnekdrpT/o6
+         QVWg==
+X-Gm-Message-State: AOJu0YxtvhcqqUPg27dxEygA7XQpFmniVlGWWLRkzU+lyToNrlyUwDWI
+	g1/XPiy8EdfMXw0pgn6TwPSPQ4/lKSb+Qy0FToVh5hczJIgwGA==
+X-Google-Smtp-Source: AGHT+IHD9rX+AypBxN5wLbJtFq2oz+0qCtxWPENssoBJF6WaLlzLLisFCbSvBoR6Qt8OOfZpDduvBPuY6PDtvcPgU7U=
+X-Received: by 2002:a05:6512:3da0:b0:50e:d514:77c3 with SMTP id
+ k32-20020a0565123da000b0050ed51477c3mr4684846lfv.10.1705462542798; Tue, 16
+ Jan 2024 19:35:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240115160600.5444-1-qiujingbao.dlmu@gmail.com>
- <20240115160600.5444-4-qiujingbao.dlmu@gmail.com> <f2b3dff2-ce0d-4ddb-ad61-74abf2c3022d@linaro.org>
- <CAJRtX8QFLoWnJBkepZrbneHX8qZdde=aw+zbdErVC91B=u==MA@mail.gmail.com>
- <007e8c14-13eb-4917-b9da-8d47d6c965c7@linaro.org> <CAJRtX8ROH4R_s1=ML5ka340PAE0SWJKK24yVWHw5gCd+7d9pkA@mail.gmail.com>
- <dfcf74a9-db76-43fe-9261-20bf7a993bc3@linaro.org> <CAJRtX8Tkie+ykLv8L2EgBQcy9tVP5Yz-_J_eHE-9N9hjt+6gkg@mail.gmail.com>
- <f99da95d-a6ab-4646-8ad8-8245e275639e@linaro.org>
-In-Reply-To: <f99da95d-a6ab-4646-8ad8-8245e275639e@linaro.org>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Wed, 17 Jan 2024 11:24:43 +0800
-Message-ID: <CAJRtX8Qxvpf_CTJG41U6JC3_qLL9raFxX3LD0LoPNhve=MDyFA@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] riscv: dts: sophgo: add rtc dt node for CV1800
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, chao.wei@sophgo.com, 
-	unicorn_wang@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	dlan@gentoo.org, inochiama@outlook.com
+References: <20240110073917.2398826-1-peterlin@andestech.com>
+ <20240110073917.2398826-8-peterlin@andestech.com> <CAOnJCUKY8H+pvgTWW5zkfm8O4WR-OWOKmyPTcMjUZBCC5RaLWQ@mail.gmail.com>
+In-Reply-To: <CAOnJCUKY8H+pvgTWW5zkfm8O4WR-OWOKmyPTcMjUZBCC5RaLWQ@mail.gmail.com>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Wed, 17 Jan 2024 09:05:31 +0530
+Message-ID: <CAK9=C2WHX6f3miX3ceUnFT6PyjnUNHnUOKoRSmJr_rt78njaQA@mail.gmail.com>
+Subject: Re: [PATCH v7 07/16] RISC-V: Move T-Head PMU to CPU feature
+ alternative framework
+To: Atish Patra <atishp@atishpatra.org>
+Cc: Yu Chien Peter Lin <peterlin@andestech.com>, mark.rutland@arm.com, irogers@google.com, 
+	heiko@sntech.de, geert+renesas@glider.be, alexander.shishkin@linux.intel.com, 
+	linux-kernel@vger.kernel.org, conor.dooley@microchip.com, guoren@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, linux-riscv@lists.infradead.org, 
+	will@kernel.org, linux-renesas-soc@vger.kernel.org, tim609@andestech.com, 
+	samuel@sholland.org, anup@brainfault.org, dminus@andestech.com, 
+	magnus.damm@gmail.com, jernej.skrabec@gmail.com, peterz@infradead.org, 
+	wens@csie.org, mingo@redhat.com, jszhang@kernel.org, inochiama@outlook.com, 
+	linux-sunxi@lists.linux.dev, ajones@ventanamicro.com, 
+	devicetree@vger.kernel.org, conor+dt@kernel.org, aou@eecs.berkeley.edu, 
+	andre.przywara@arm.com, locus84@andestech.com, acme@kernel.org, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, robh+dt@kernel.org, 
+	paul.walmsley@sifive.com, namhyung@kernel.org, tglx@linutronix.de, 
+	linux-arm-kernel@lists.infradead.org, ycliang@andestech.com, 
+	n.shubin@yadro.com, rdunlap@infradead.org, chao.wei@sophgo.com, 
+	adrian.hunter@intel.com, conor@kernel.org, linux-perf-users@vger.kernel.org, 
+	evan@rivosinc.com, palmer@dabbelt.com, jolsa@kernel.org, 
+	unicorn_wang@outlook.com, wefu@redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 17, 2024 at 12:58=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Wed, Jan 17, 2024 at 2:26=E2=80=AFAM Atish Patra <atishp@atishpatra.org>=
+ wrote:
 >
-> On 16/01/2024 17:29, Jingbao Qiu wrote:
-> > On Wed, Jan 17, 2024 at 12:03=E2=80=AFAM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 16/01/2024 16:51, Jingbao Qiu wrote:
-> >>>>> CV1800 is a RISCV based SOC that includes an RTC module. The RTC
-> >>>>> module has an OSC oscillator
-> >>>>
-> >>>>
-> >>>> I am not going to read pages of description. Please write concise re=
-plies.
-> >>>
-> >>> Thanks, What I mean is that this hardware includes two functions, RTC
-> >>> and POR. How should I describe their relationship?
-> >>
-> >> Your POR does not need to take any resources, so no need to describe a=
-ny
-> >> relationship.
-> >>
-> >> ...
-> >>
-> >>>>> Your suggestion is, firstly, the por submodule does not have any
-> >>>>> resources, so it should be deleted.
-> >>>>
-> >>>> So where did you delete it? I still see it in this patch.
-> >>>
-> >>> Should I completely delete him? How can a por driver obtain device in=
-formation?
-> >>
-> >> Delete completely.
-> >>
-> >> Device information? What is this? We already agreed you don't have any
-> >> resources for POR.
-> >>
-> >> ....
-> >>
-> >>>> Device is only one thing, not two.
-> >>>>
-> >>>>>                     reg =3D <0x5025000 0x2000>;
-> >>>>>                     interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
-> >>>>>                     clocks =3D <&osc>;
-> >>>>> };
-> >>>>> However, in reality, the POR submodule does not use IRQ and CLK.
-> >>>>> Please do not hesitate to teach. Thanks.
-> >>>>
-> >>>> I expect one device node. How many drivers you have does not matter:=
- you
-> >>>> can instantiate 100 Linux devices in 100 Linux device drivers.
-> >>>
-> >>> I understand what you mean. A device node corresponds to multiple dri=
-vers.
-> >>> Should I completely delete the POR device tree node and add it when
-> >>> submitting the POR driver?
-> >>
-> >> ? I wrote it in previous messages and twice in this thread. Completely
-> >> delete. You do not add it back! Because if you ever intended to add it
-> >> back, it should be added since beginning. I don't understand what
-> >> submitting later would solve.
-> >>
-> >>> If that's the case, how can I explain that the rtc device tree node
-> >>> uses the syscon tag?
-> >>> How can I describe a POR device in DTS? POR is a submodule of RTC, an=
+> On Tue, Jan 9, 2024 at 11:40=E2=80=AFPM Yu Chien Peter Lin
+> <peterlin@andestech.com> wrote:
+> >
+> > The custom PMU extension aims to support perf event sampling prior
+> > to the ratification of Sscofpmf. Instead of diverting the bits and
+> > register reserved for future standard, a set of custom registers is
+> > added.  Hence, we may consider it as a CPU feature rather than an
+> > erratum.
+> >
+>
+> I don't think we should do that. Any custom implementation that
+> violates the standard RISC-V spec should
+> be an errata not a feature.
+> As per my understanding, a vendor can call an extension custom ISA
+> extension if the same feature is not available
+> in the standard ISA extensions or the mechanism is completely
+> different. It must also not violate any standard spec as well.
+
+I agree with Atish here. There is a well defined encoding space for
+custom extensions.
+
+If a custom extension spills over to standard encoding space then
+it should be treated as an errata and not a proper custom extension.
+
+>
+> In this case, a standard sscofpmf is already available. Moreover, both
+> Andes and T-head extensions violate the standard
+> spec by reusing local interrupt numbers (17(Thead) & 18(Andes)) which
+> are clearly specified as reserved for standard local interrupts
+> in the AIA specification.
+>
+> Please implementation Andes PMU support as an errata as well similar to T=
+-head
+>
+>
+> > T-Head cores need to append "xtheadpmu" to the riscv,isa-extensions
+> > for each cpu node in device tree, and enable CONFIG_THEAD_CUSTOM_PMU
+> > for proper functioning as of this commit.
+
+T-Head has many violations of using standard encoding space. I don't see
+why this series should be touching T-Head erratas.
+
+If Andes custom PMU CSRs are defined in custom encoding space then
+Andes PMU can be treated as proper custom extension.
+
+Regards,
+Anup
+
+> >
+> > Signed-off-by: Yu Chien Peter Lin <peterlin@andestech.com>
+> > Reviewed-by: Guo Ren <guoren@kernel.org>
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> > Changes v1 -> v2:
+> >   - New patch
+> > Changes v2 -> v3:
+> >   - Removed m{vendor/arch/imp}id checks in pmu_sbi_setup_irqs()
+> > Changes v3 -> v4:
+> >   - No change
+> > Changes v4 -> v5:
+> >   - Include Guo's Reviewed-by
+> >   - Let THEAD_CUSTOM_PMU depend on ARCH_THEAD
+> > Changes v5 -> v6:
+> >   - Include Conor's Reviewed-by
+> > Changes v6 -> v7:
+> >   - No change
+> > ---
+> >  arch/riscv/Kconfig.errata            | 13 -------------
+> >  arch/riscv/errata/thead/errata.c     | 19 -------------------
+> >  arch/riscv/include/asm/errata_list.h | 15 +--------------
+> >  arch/riscv/include/asm/hwcap.h       |  1 +
+> >  arch/riscv/kernel/cpufeature.c       |  1 +
+> >  drivers/perf/Kconfig                 | 13 +++++++++++++
+> >  drivers/perf/riscv_pmu_sbi.c         | 19 ++++++++++++++-----
+> >  7 files changed, 30 insertions(+), 51 deletions(-)
+> >
+> > diff --git a/arch/riscv/Kconfig.errata b/arch/riscv/Kconfig.errata
+> > index e2c731cfed8c..0d19f47d1018 100644
+> > --- a/arch/riscv/Kconfig.errata
+> > +++ b/arch/riscv/Kconfig.errata
+> > @@ -86,17 +86,4 @@ config ERRATA_THEAD_CMO
+> >
+> >           If you don't know what to do here, say "Y".
+> >
+> > -config ERRATA_THEAD_PMU
+> > -       bool "Apply T-Head PMU errata"
+> > -       depends on ERRATA_THEAD && RISCV_PMU_SBI
+> > -       default y
+> > -       help
+> > -         The T-Head C9xx cores implement a PMU overflow extension very
+> > -         similar to the core SSCOFPMF extension.
+> > -
+> > -         This will apply the overflow errata to handle the non-standar=
 d
-> >>> it also has corresponding drivers.
-> >>
-> >> I said, there is no need for POR in DTS, because you have nothing ther=
-e.
-> >> Why do you insist on putting it on DTS?
-> >>
-> >>> It's just that his resources are only shared with RTC's Reg.
-> >>
-> >> What resources? Reg? That's not a separate resource.
->
-> I meant, separate from the RTC. I had impression that IO space is shared
-> or mixed with RTC? If it is separate, why it wasn't listed?
->
+> > -         behaviour via the regular SBI PMU driver and interface.
+> > -
+> > -         If you don't know what to do here, say "Y".
+> > -
+> >  endmenu # "CPU errata selection"
+> > diff --git a/arch/riscv/errata/thead/errata.c b/arch/riscv/errata/thead=
+/errata.c
+> > index 0554ed4bf087..5de5f7209132 100644
+> > --- a/arch/riscv/errata/thead/errata.c
+> > +++ b/arch/riscv/errata/thead/errata.c
+> > @@ -53,22 +53,6 @@ static bool errata_probe_cmo(unsigned int stage,
+> >         return true;
+> >  }
 > >
-> > I'm very sorry about this.
-> > But I found a binding file that only contains Reg and Compatible.
+> > -static bool errata_probe_pmu(unsigned int stage,
+> > -                            unsigned long arch_id, unsigned long impid=
+)
+> > -{
+> > -       if (!IS_ENABLED(CONFIG_ERRATA_THEAD_PMU))
+> > -               return false;
+> > -
+> > -       /* target-c9xx cores report arch_id and impid as 0 */
+> > -       if (arch_id !=3D 0 || impid !=3D 0)
+> > -               return false;
+> > -
+> > -       if (stage =3D=3D RISCV_ALTERNATIVES_EARLY_BOOT)
+> > -               return false;
+> > -
+> > -       return true;
+> > -}
+> > -
+> >  static u32 thead_errata_probe(unsigned int stage,
+> >                               unsigned long archid, unsigned long impid=
+)
+> >  {
+> > @@ -80,9 +64,6 @@ static u32 thead_errata_probe(unsigned int stage,
+> >         if (errata_probe_cmo(stage, archid, impid))
+> >                 cpu_req_errata |=3D BIT(ERRATA_THEAD_CMO);
 > >
-> > rtc@80920000 {
-> > compatible =3D "cirrus,ep9301-rtc";
-> > reg =3D <0x80920000 0x100>;
-> > };
+> > -       if (errata_probe_pmu(stage, archid, impid))
+> > -               cpu_req_errata |=3D BIT(ERRATA_THEAD_PMU);
+> > -
+> >         return cpu_req_errata;
+> >  }
 > >
-> > Link: Documentation/devicetree/bindings/rtc/cirrus,ep9301-rtc.yaml
->
-> And?
->
+> > diff --git a/arch/riscv/include/asm/errata_list.h b/arch/riscv/include/=
+asm/errata_list.h
+> > index 4ed21a62158c..9bccc2ba0eb5 100644
+> > --- a/arch/riscv/include/asm/errata_list.h
+> > +++ b/arch/riscv/include/asm/errata_list.h
+> > @@ -25,8 +25,7 @@
+> >  #ifdef CONFIG_ERRATA_THEAD
+> >  #define        ERRATA_THEAD_PBMT 0
+> >  #define        ERRATA_THEAD_CMO 1
+> > -#define        ERRATA_THEAD_PMU 2
+> > -#define        ERRATA_THEAD_NUMBER 3
+> > +#define        ERRATA_THEAD_NUMBER 2
+> >  #endif
 > >
-> >>
-> >> To summarize: Drop POR from DTS and never bring it back, unless you co=
-me
-> >> with some different arguments, which you did not say already.
-> >>
+> >  #ifdef __ASSEMBLY__
+> > @@ -147,18 +146,6 @@ asm volatile(ALTERNATIVE_2(                       =
+                         \
+> >             "r"((unsigned long)(_start) + (_size))                     =
+ \
+> >         : "a0")
 > >
-> > You are right, if there is no por device tree node, how can the por
-> > driver obtain the Reg?
+> > -#define THEAD_C9XX_RV_IRQ_PMU                  17
+> > -#define THEAD_C9XX_CSR_SCOUNTEROF              0x5c5
+> > -
+> > -#define ALT_SBI_PMU_OVERFLOW(__ovl)                                   =
+ \
+> > -asm volatile(ALTERNATIVE(                                             =
+ \
+> > -       "csrr %0, " __stringify(CSR_SSCOUNTOVF),                       =
+ \
+> > -       "csrr %0, " __stringify(THEAD_C9XX_CSR_SCOUNTEROF),            =
+ \
+> > -               THEAD_VENDOR_ID, ERRATA_THEAD_PMU,                     =
+ \
+> > -               CONFIG_ERRATA_THEAD_PMU)                               =
+ \
+> > -       : "=3Dr" (__ovl) :                                             =
+   \
+> > -       : "memory")
+> > -
+> >  #endif /* __ASSEMBLY__ */
+> >
+> >  #endif
+> > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hw=
+cap.h
+> > index 5340f818746b..480f9da7fba7 100644
+> > --- a/arch/riscv/include/asm/hwcap.h
+> > +++ b/arch/riscv/include/asm/hwcap.h
+> > @@ -80,6 +80,7 @@
+> >  #define RISCV_ISA_EXT_ZFA              71
+> >  #define RISCV_ISA_EXT_ZTSO             72
+> >  #define RISCV_ISA_EXT_ZACAS            73
+> > +#define RISCV_ISA_EXT_XTHEADPMU                74
+> >
+> >  #define RISCV_ISA_EXT_MAX              128
+> >  #define RISCV_ISA_EXT_INVALID          U32_MAX
+> > diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeat=
+ure.c
+> > index e32591e9da90..4aded5bf8fc3 100644
+> > --- a/arch/riscv/kernel/cpufeature.c
+> > +++ b/arch/riscv/kernel/cpufeature.c
+> > @@ -303,6 +303,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] =3D=
+ {
+> >         __RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+> >         __RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
+> >         __RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
+> > +       __RISCV_ISA_EXT_DATA(xtheadpmu, RISCV_ISA_EXT_XTHEADPMU),
+> >  };
+> >
+> >  const size_t riscv_isa_ext_count =3D ARRAY_SIZE(riscv_isa_ext);
+> > diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
+> > index 273d67ecf6d2..6cef15ec7c25 100644
+> > --- a/drivers/perf/Kconfig
+> > +++ b/drivers/perf/Kconfig
+> > @@ -86,6 +86,19 @@ config RISCV_PMU_SBI
+> >           full perf feature support i.e. counter overflow, privilege mo=
+de
+> >           filtering, counter configuration.
+> >
+> > +config THEAD_CUSTOM_PMU
+> > +       bool "T-Head custom PMU support"
+> > +       depends on ARCH_THEAD && RISCV_ALTERNATIVE && RISCV_PMU_SBI
+> > +       default y
+> > +       help
+> > +         The T-Head C9xx cores implement a PMU overflow extension very
+> > +         similar to the core SSCOFPMF extension.
+> > +
+> > +         This will patch the overflow CSR and handle the non-standard
+> > +         behaviour via the regular SBI PMU driver and interface.
+> > +
+> > +         If you don't know what to do here, say "Y".
+> > +
+> >  config ARM_PMU_ACPI
+> >         depends on ARM_PMU && ACPI
+> >         def_bool y
+> > diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.=
+c
+> > index 2edbc37abadf..31ca79846399 100644
+> > --- a/drivers/perf/riscv_pmu_sbi.c
+> > +++ b/drivers/perf/riscv_pmu_sbi.c
+> > @@ -20,10 +20,21 @@
+> >  #include <linux/cpu_pm.h>
+> >  #include <linux/sched/clock.h>
+> >
+> > -#include <asm/errata_list.h>
+> >  #include <asm/sbi.h>
+> >  #include <asm/cpufeature.h>
+> >
+> > +#define THEAD_C9XX_RV_IRQ_PMU          17
+> > +#define THEAD_C9XX_CSR_SCOUNTEROF      0x5c5
+> > +
+> > +#define ALT_SBI_PMU_OVERFLOW(__ovl)                                   =
+ \
+> > +asm volatile(ALTERNATIVE(                                             =
+ \
+> > +       "csrr %0, " __stringify(CSR_SSCOUNTOVF),                       =
+ \
+> > +       "csrr %0, " __stringify(THEAD_C9XX_CSR_SCOUNTEROF),            =
+ \
+> > +               0, RISCV_ISA_EXT_XTHEADPMU,                            =
+ \
+> > +               CONFIG_THEAD_CUSTOM_PMU)                               =
+ \
+> > +       : "=3Dr" (__ovl) :                                             =
+   \
+> > +       : "memory")
+> > +
+> >  #define SYSCTL_NO_USER_ACCESS  0
+> >  #define SYSCTL_USER_ACCESS     1
+> >  #define SYSCTL_LEGACY          2
+> > @@ -808,10 +819,8 @@ static int pmu_sbi_setup_irqs(struct riscv_pmu *pm=
+u, struct platform_device *pde
+> >         if (riscv_isa_extension_available(NULL, SSCOFPMF)) {
+> >                 riscv_pmu_irq_num =3D RV_IRQ_PMU;
+> >                 riscv_pmu_use_irq =3D true;
+> > -       } else if (IS_ENABLED(CONFIG_ERRATA_THEAD_PMU) &&
+> > -                  riscv_cached_mvendorid(0) =3D=3D THEAD_VENDOR_ID &&
+> > -                  riscv_cached_marchid(0) =3D=3D 0 &&
+> > -                  riscv_cached_mimpid(0) =3D=3D 0) {
+> > +       } else if (riscv_isa_extension_available(NULL, XTHEADPMU) &&
+> > +                  IS_ENABLED(CONFIG_THEAD_CUSTOM_PMU)) {
+> >                 riscv_pmu_irq_num =3D THEAD_C9XX_RV_IRQ_PMU;
+> >                 riscv_pmu_use_irq =3D true;
+> >         }
+> > --
+> > 2.34.1
+> >
 >
-> The same as currently. Does your POR node has reg? No, so according to
-> your logic it cannot obtain address space.
 >
-> Children Linux devices share regmap with parent device.
+> --
+> Regards,
+> Atish
 >
-
-Thanks, Power-On-Reset/POR driver requires Reg to complete its functions.
-The compatible of POR is required in DTS to load the corresponding driver.
-The POR driver was not submitted in the patch. However, this patch requires
-the addition of RTC in DTS. Considering the future addition of POR
-driver, I added a POR node.
-I'm not sure why the POR node needs to be deleted, just because it
-only has the compatible attribute?
-Or maybe it's because I didn't submit the POR driver, so I need to
-delete the POR node.
-I found an example.
-
-st: timer@fffffd00 {
-    compatible =3D "atmel,at91rm9200-st", "syscon", "simple-mfd";
-    reg =3D <0xfffffd00 0x100>;
-    interrupts =3D <1 IRQ_TYPE_LEVEL_HIGH 7>;
-    clocks =3D <&slow_xtal>;
-    watchdog {
-      compatible =3D "atmel,at91rm9200-wdt";
-    };
-};
-
-Link:arch/arm/boot/dts/microchip/at91rm9200.dtsi:114
-
-Like this, when the por driver insmod is activated, the por driver can
-obtain the regs of the parent device.
-Thank you again.
-
-Best regards,
-Jingbao Qiu
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
