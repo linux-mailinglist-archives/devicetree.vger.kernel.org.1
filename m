@@ -1,294 +1,216 @@
-Return-Path: <devicetree+bounces-32717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25C588303FC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:57:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B3538303B4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:34:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2BB7281B16
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:57:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F80C1C2455C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5798A19BA2;
-	Wed, 17 Jan 2024 10:57:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F185E1BF31;
+	Wed, 17 Jan 2024 10:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="SZoNNMed"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vv//fV6J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4044D1DDC8
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:57:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3609A19BA5
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705489071; cv=none; b=XM72Zsw5id1nSnkPFeHHykWZwNbs1v87CFjq2zGyDWAG5FEXRDCFTCDyOArPByeoaocvglF1+69iOlM52qhX47wU8QNgPFiVoiljeQ6G2ZMA04uZFOChtMnUK69WBR9qVMF6dtnI4wMedyaDaugviefdLyZ6u1DXmh3cZ11kTNw=
+	t=1705487675; cv=none; b=ltjHLerGe0A+qX3A/+sWt9KIG5QtsV7xqwdb6CrM4k8qkuAt6/IbVSdOfEBaKZcgryTlsKTQx6dFYp+w9nmWfFwIT0PzBu0KIIAxwpiBYaKdIthv/uDCUqsNGiXKM6WoTUr5W1GLjhW/xlZJf7BerZHsbys1WdpLISl9MSUzZUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705489071; c=relaxed/simple;
-	bh=dFrcmnmkmmZdK1/Cl3suXD/fcMVdImKuOSnKRYIPDMQ=;
+	s=arc-20240116; t=1705487675; c=relaxed/simple;
+	bh=Q0Q64oaZyHdJChVRsCmip6LpTcScnkNPpVHJ40Mrypc=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
-	 References:User-agent:From:To:Cc:Subject:Date:In-reply-to:
-	 Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding; b=AnfziIhqUe6tdTh7WiKTI00N7s1QzUpismx2FAHizWjix262fgDACZtqIFCbNmVFxcEMKm05QL5xJkBSEOiHW7cFmnSytuKH3WBw/b0JNIrz0dLA+8E8d/3cnz/zjE2Wl9ZWWeeOkmfm8TZOUMYFDmkkNmqpEi6FcJzaltDImUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=SZoNNMed; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40e60e135a7so51480705e9.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 02:57:48 -0800 (PST)
+	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
+	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding; b=DoF9Vy0OEdNUzfBrJ8VX2LfDKklGDp2/4/tOiMw6vzVsyu+gKZ3wX/LKZQMzlMoRUcXGgvJC2iUCeX2FQusv/oEKRcX6qBcbvTny5LVKywhmaSnZl3m1ze32c1QDDbfaZqbdWp61SQYbdXoBdGT9Jedp03BQvlR10tpwmv7+JB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vv//fV6J; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-559c6b833b0so1323656a12.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 02:34:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1705489066; x=1706093866; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AZ0irsFSW2hXq1lOFv0C5tcSeX7I48ojxIzsNWQWXR4=;
-        b=SZoNNMedalO4Md7WPsiM4gwIJgP0t5mz/ggMg3LqIBvVGCPw+b5m+sxqhbiZMti8w6
-         q4z7C5q9ZQTGV+l65wwrsUcfNAOzwTJ2wXMvAmUJ+wVPA5JEIKx9IpQ3qcjnmotKsQ1b
-         pSWtRgx1cgxhN3wi3Q/TmzxpkiaQHb25BF/B70MKHW0SztFwvevWvunv7+dcch1G+lt3
-         /sK2tzZivYaJ+RuFRS7jdJS5pHk5hFgitvwb2TdXoiIgOcMty61EOfwqLgx4CkbWk5oQ
-         2B8vyfkVy46/qEk9oIoRs12XjqWcDz4rvxDWQkIzNlmXmfs58QtEji059HpeBKfDbMCv
-         Nk3w==
+        d=linaro.org; s=google; t=1705487672; x=1706092472; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0GGLBVGU4Yylzq9JDhA1QprTUMZUU0Y+oGnERBsElLk=;
+        b=vv//fV6JGceE7dmu1GoSBUZOeswGW1sDnMaLEb5wvAmYnIavw1STqFjQHJlTUeFXAm
+         ncG256yURKEEHktMGSomQtinDCioNeZNkcHuPRMdVqrf/aaTRROFbKKk1Y/RdoCM1fe6
+         cfPhxHVp/R/c+Mp57+bVBHgMfDoDj4nDvCKvgpuAzDxXOCISq953o5bppvJCdSgICLiL
+         JmOXlBEBkfppcu4/5vxwcz4p4vyB6IiFYR5/3mZ8XlBXWGxPBXwiMSjsps12wqtjuJkW
+         uwzKoSplU7+IgvA3xR9XdcBIXXidLqJU7A+bN5jbvsZlylaTy01blauhUQVIUwZZkcqq
+         o++g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705489066; x=1706093866;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=AZ0irsFSW2hXq1lOFv0C5tcSeX7I48ojxIzsNWQWXR4=;
-        b=lC7FDqbt5fJrSkNxu8T4PF1IA4AFQsrt/21ycF9s2V5EvIyOFCwTXfB2uSaDrAFzpC
-         eDFCsn07EXRR6SSTccm14rk0qjQcUj9N1wRAyOeWJ42aEIitn9/Iei/GzOuKqB+O/whu
-         t/fd6vyfed8AESy55NGdhaW6kHDiUVSZFvcDHfUjkJn2blBoszUPxMzN5ozqPFgvqNdl
-         iEFSwZVfGgOsxy1zLw7M2bTuISf8Y3PUcUz7qHqPZFQAsIvznny+OwfVbKZhkQzhVBz2
-         X8nLdfAUEMRPEUMQ1cbITEerj9+A5vVmm00kcHZKQCEOh/SRN1cn17oFiNIfs2Uoihme
-         gthQ==
-X-Gm-Message-State: AOJu0YwBlXDVFDAP6KBssvtoUmOygQf2ByU8u8LfwcG6jlC6vclXexLh
-	KMAxs/SfdUnJTrWiPCX0SukCGMC+otdDQA==
-X-Google-Smtp-Source: AGHT+IG34Dap1ZJ3WGb+r28aPogMiJUvvKsLDnVhtoSaXpgGSZDDBQgsqehv2GQXT9TcoQZSM36iVw==
-X-Received: by 2002:a05:600c:364c:b0:40e:89f6:e2b with SMTP id y12-20020a05600c364c00b0040e89f60e2bmr434240wmq.31.1705489066317;
-        Wed, 17 Jan 2024 02:57:46 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:c1f6:14ce:b96f:2df5])
-        by smtp.gmail.com with ESMTPSA id f7-20020adffcc7000000b00337bf3586d6sm1376674wrs.103.2024.01.17.02.57.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jan 2024 02:57:45 -0800 (PST)
-References: <20231222111658.832167-1-jbrunet@baylibre.com>
- <20231222111658.832167-2-jbrunet@baylibre.com>
- <awxboh3nv4r5p7v7vcgwttu2m74fws47johb73c5f7econ2qqu@zl5xbnoeyclq>
-User-agent: mu4e 1.10.8; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Thierry Reding
- <thierry.reding@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>, Rob
- Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 1/6] dt-bindings: pwm: amlogic: fix s4 bindings
-Date: Wed, 17 Jan 2024 11:30:08 +0100
-In-reply-to: <awxboh3nv4r5p7v7vcgwttu2m74fws47johb73c5f7econ2qqu@zl5xbnoeyclq>
-Message-ID: <1jbk9kxm52.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1705487672; x=1706092472;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0GGLBVGU4Yylzq9JDhA1QprTUMZUU0Y+oGnERBsElLk=;
+        b=Z4mzovTL6L7L+VsrTplFDZpPrfB/iwbCAXUoO+TrNqWGznlX9zgfn1JanqSBL1hX+b
+         xgLYiaTSxGgq3n+Q3+82bKJZsF0kw3FtcPGr+niQmXrHJYh6T+dbkg5sTkcNS4EH1/95
+         kMzqjt4W4Z8LtEJrq4d20RmZ8abbtiruuVBV/X6ZqHQHntMf80s+C/mYshpFpdr19kei
+         hgEQu5IoV9i1PWlfiXlCOtvI7EnlqLGcB+UZb6XUFg0vYSKZKZFNwg3Hztw33R5SouX3
+         ED2jI1miy9n2QJZsa+lvcrgyKAA2MPGz/LL9fcBm1G5GrQeoGSHZNNUH7rn+gkE6szH2
+         0IaA==
+X-Gm-Message-State: AOJu0YyTBlG8JTrZxlN4fWK3VBbVSNe8PPLchIZPE2GjeXw/l4DMQMOu
+	nKuIYdlhfBXGCa7ynzeubX3XGnXStECsCg==
+X-Google-Smtp-Source: AGHT+IH717qKkfDNUHKkIIc7kCwtWbV2Q50Qmu9iJq/3pxDBScMHRNNqRyoa9pjaLRqcyb60wSVuvQ==
+X-Received: by 2002:aa7:cf04:0:b0:554:3ba8:f804 with SMTP id a4-20020aa7cf04000000b005543ba8f804mr3937221edy.28.1705487672368;
+        Wed, 17 Jan 2024 02:34:32 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id p25-20020a05640210d900b0055746f354d8sm5530161edu.56.2024.01.17.02.34.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jan 2024 02:34:31 -0800 (PST)
+Message-ID: <28fd561a-7c13-48dc-9995-230dc758f257@linaro.org>
+Date: Wed, 17 Jan 2024 11:34:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: ti,j721e-pci-*: Fix check for
+ num-lanes
+Content-Language: en-US
+To: Siddharth Vadapalli <s-vadapalli@ti.com>, bhelgaas@google.com,
+ lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ vigneshr@ti.com, afd@ti.com, srk@ti.com
+References: <20240117102526.557006-1-s-vadapalli@ti.com>
+ <20240117102526.557006-2-s-vadapalli@ti.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240117102526.557006-2-s-vadapalli@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 17/01/2024 11:25, Siddharth Vadapalli wrote:
+> The existing implementation for validating the "num-lanes" property
+> based on the compatible(s) doesn't enforce it. Fix it by updating the
+> checks to handle both single-compatible and multi-compatible cases.
+> 
+> Fixes: b3ba0f6e82cb ("dt-bindings: PCI: ti,j721e-pci-*: Add checks for num-lanes")
+> Fixes: adc14d44d7cb ("dt-bindings: PCI: ti,j721e-pci-*: Add j784s4-pci-* compatible strings")
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+>  .../bindings/pci/ti,j721e-pci-ep.yaml         | 26 ++++++++++++++-----
+>  .../bindings/pci/ti,j721e-pci-host.yaml       | 26 ++++++++++++++-----
+>  2 files changed, 38 insertions(+), 14 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+> index 97f2579ea908..278e0892f8ac 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+> @@ -68,8 +68,9 @@ allOf:
+>    - if:
+>        properties:
+>          compatible:
+
+Missing contains:, instead of your change.
+
+> -          enum:
+> -            - ti,am64-pcie-ep
+> +          items:
+> +            - const: ti,am64-pcie-ep
+> +            - const: ti,j721e-pcie-ep
+
+>      then:
+>        properties:
+>          num-lanes:
+> @@ -78,9 +79,9 @@ allOf:
+>    - if:
+>        properties:
+>          compatible:
+> -          enum:
+> -            - ti,j7200-pcie-ep
+> -            - ti,j721e-pcie-ep
+> +          items:
+> +            - const: ti,j7200-pcie-ep
+> +            - const: ti,j721e-pcie-ep
+
+"Ditto
+
+>      then:
+>        properties:
+>          num-lanes:
+> @@ -90,8 +91,19 @@ allOf:
+>    - if:
+>        properties:
+>          compatible:
+> -          enum:
+> -            - ti,j784s4-pcie-ep
+> +          items:
+> +            - const: ti,j721e-pcie-ep
+> +    then:
+> +      properties:
+> +        num-lanes:
+> +          minimum: 1
+> +          maximum: 4
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          items:
+> +            - const: ti,j784s4-pcie-ep
+
+Why? Previous code was correct.
 
 
-On Wed 17 Jan 2024 at 11:03, Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutr=
-onix.de> wrote:
+Best regards,
+Krzysztof
 
-> [[PGP Signed Part:Undecided]]
-> On Fri, Dec 22, 2023 at 12:16:49PM +0100, Jerome Brunet wrote:
->> s4 has been added to the compatible list while converting the Amlogic PWM
->> binding documentation from txt to yaml.
->>=20
->> However, on the s4, the clock bindings have different meaning compared to
->> the previous SoCs.
->>=20
->> On the previous SoCs the clock bindings used to describe which input the
->> PWM channel multiplexer should pick among its possible parents.
->>=20
->> This is very much tied to the driver implementation, instead of describi=
-ng
->> the HW for what it is. When support for the Amlogic PWM was first added,
->> how to deal with clocks through DT was not as clear as it nowadays.
->> The Linux driver now ignores this DT setting, but still relies on the
->> hard-coded list of clock sources.
->>=20
->> On the s4, the input multiplexer is gone. The clock bindings actually
->> describe the clock as it exists, not a setting. The property has a
->> different meaning, even if it is still 2 clocks and it would pass the ch=
-eck
->> when support is actually added.
->>=20
->> Also the s4 cannot work if the clocks are not provided, so the property =
-no
->> longer optional.
->
-> s/no/is no/
->
->> Finally, for once it makes sense to see the input as being numbered
->> somehow. No need to bother with clock-names on the s4 type of PWM.
->>=20
->> Fixes: 43a1c4ff3977 ("dt-bindings: pwm: Convert Amlogic Meson PWM bindin=
-g")
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 67 ++++++++++++++++---
->>  1 file changed, 58 insertions(+), 9 deletions(-)
->>=20
->> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Do=
-cumentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> index 527864a4d855..a1d382aacb82 100644
->> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
->> @@ -9,9 +9,6 @@ title: Amlogic PWM
->>  maintainers:
->>    - Heiner Kallweit <hkallweit1@gmail.com>
->>=20=20
->> -allOf:
->> -  - $ref: pwm.yaml#
->> -
->>  properties:
->>    compatible:
->>      oneOf:
->> @@ -43,12 +40,8 @@ properties:
->>      maxItems: 2
->>=20=20
->>    clock-names:
->> -    oneOf:
->> -      - items:
->> -          - enum: [clkin0, clkin1]
->> -      - items:
->> -          - const: clkin0
->> -          - const: clkin1
->> +    minItems: 1
->> +    maxItems: 2
->>=20=20
->>    "#pwm-cells":
->>      const: 3
->> @@ -57,6 +50,55 @@ required:
->>    - compatible
->>    - reg
->>=20=20
->> +allOf:
->> +  - $ref: pwm.yaml#
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - amlogic,meson8-pwm
->> +              - amlogic,meson8b-pwm
->> +              - amlogic,meson-gxbb-pwm
->> +              - amlogic,meson-gxbb-ao-pwm
->> +              - amlogic,meson-axg-ee-pwm
->> +              - amlogic,meson-axg-ao-pwm
->> +              - amlogic,meson-g12a-ee-pwm
->> +              - amlogic,meson-g12a-ao-pwm-ab
->> +              - amlogic,meson-g12a-ao-pwm-cd
->> +    then:
->> +      # Historic bindings tied to the driver implementation
->> +      # The clocks provided here are meant to be matched with the input
->> +      # known (hard-coded) in the driver and used to select pwm clock
->> +      # source. Currently, the linux driver ignores this.
->
-> I admit I didn't understand the relevant difference between the old and
-> the new binding yet.
-
-Let's try to explain differently then:
-* So far each AML PWM IP has 2 pwm.
-* Up to G12, 4 input PLL/clocks are wired to the HW IP and there=20
-  mux/div/gate to select which input to take.
-  - The historic bindings just described how to setup each of the 2
-    internal muxes - 2 optionnal clocks.
-    The actual 4 inputs names from CCF are hard coded in
-    the driver. This is a pretty bad description. The driver has been
-    updated since then to use CCF to figure out the best parent
-    according to pwm rate so this setting is ignored now.
-  - The 'new' bindings (introduced in patch #2) fixes the problem above
-    but the meaning of the clock binding is different. It describes the
-    actual HW parents - 4 clocks, optionnal since some are not wired on
-    some PWM blocks. To avoid breaking the ABI, a new compatible for
-    these SoC is introduced.
-=20=20=20=20
-> (The driver currently doesn't support the s4, right?)
-
-Indeed. I know Amlogic is preparing the support. I could do it in this
-series but I prefer to encourage them to contribute. It should come
-shortly after this series is merged.
-
-Starting from s4 (prbably even a1 - up to people contributing this SoC
-to say) the mux/div/gate is no longer in the PWM IP. It has moved to the
-main clock controller. Again the clock binding describes something
-different. It is the 2 input clocks of each block, they are mandatory
-this time.
-
-> Is it possible to detect if the dt uses the old or the new
-> binding?
-
-Apart from the compatible, no.
-
-> If yes, I suggest to drop the old one from the binding and only
-> keep it in the driver for legacy systems.
-
-I don't this would be allowed by the DT maintainers.
-My understanding is that the old binding doc is here to stay.
-What could happen after sufficient time has past it remove the support
-for the old/historic binding in the driver. Driver are not required to
-support all possible bindings after all, especially if it is not used/tested
-anymore.
-
->
->> +      properties:
->> +        clock-names:
->> +          oneOf:
->> +            - items:
->> +                - enum: [clkin0, clkin1]
->> +            - items:
->> +                - const: clkin0
->> +                - const: clkin1
->> +
->> +  # Newer IP block take a single input per channel, instead of 4 inputs
->> +  # for both channels
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - amlogic,meson-s4-pwm
->
-> The expectation is that this list contains all compatibles that are not
-> included in the "historic" list above, right? Then maybe use "else:"
-> instead of another explicit list?
->
-
-I suppose if, elseif, else is possible.
-
-I've done it this way because is slightly easier for human to read the
-doc and find what is related to what. If you this is important for you,
-I can change it.
-
->> +    then:
->> +      properties:
->> +        clocks:
->> +          items:
->> +            - description: input clock of PWM channel A
->> +            - description: input clock of PWM channel B
->> +        clock-names: false
->> +      required:
->> +        - clocks
->> +
->>  additionalProperties: false
->
-> Best regards
-> Uwe
-
-
---=20
-Jerome
 
