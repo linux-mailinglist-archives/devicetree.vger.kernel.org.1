@@ -1,133 +1,294 @@
-Return-Path: <devicetree+bounces-32709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30981830384
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:26:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25C588303FC
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D25B32823A8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:26:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2BB7281B16
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A415A14A84;
-	Wed, 17 Jan 2024 10:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5798A19BA2;
+	Wed, 17 Jan 2024 10:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="x50NvCKP"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="SZoNNMed"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF7414A8E;
-	Wed, 17 Jan 2024 10:26:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4044D1DDC8
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:57:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705487166; cv=none; b=N8HseUzeFG00YS2CSLZ9cifEfeeojBbKufsW8viSpx4MTGd1A9yxtmaYK01bg/Cd7saGGVF8jvzh391USNaGy11xnw5eZTRS+R7YQi/KTqkV9L2lW8ztfM9VuYU1fB5NDhuTDQ770R9jpD8fpXX+a6ph1yORXGO2ijQ88u53a1s=
+	t=1705489071; cv=none; b=XM72Zsw5id1nSnkPFeHHykWZwNbs1v87CFjq2zGyDWAG5FEXRDCFTCDyOArPByeoaocvglF1+69iOlM52qhX47wU8QNgPFiVoiljeQ6G2ZMA04uZFOChtMnUK69WBR9qVMF6dtnI4wMedyaDaugviefdLyZ6u1DXmh3cZ11kTNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705487166; c=relaxed/simple;
-	bh=nahy3SS6sJexvp/Fe+FnCJVPr3TOlktOrrshUHTXvMg=;
-	h=Received:DKIM-Signature:Received:Received:Received:Received:From:
-	 To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type:
-	 X-EXCLAIMER-MD-CONFIG; b=qF0IY2SEVh7JAVQNCOxsvE1sBH8FS+sLb0lgamg+1SDTKUrIani2WVo0uo70hXKsAIpxxzw/nuU3QVdIdoBHAU9XA7BsNlfdX9WT5KAqbKw3VtHQPlxIzL1vtLJgwib1nwuY37znVPyx+kq0mEJhs4n6c/hLyd0snqC3fq5Our8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=x50NvCKP; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40HAPiIv090260;
-	Wed, 17 Jan 2024 04:25:44 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1705487144;
-	bh=0OJmNLdqlDpealeON2rR+yAWVUQlNSGGnDJNQz+hl1Y=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=x50NvCKPz5fIcWDVTwbJJEOJNFku7WdsPiuuak7BFLnCaioxIy4U27cah1A9YjkdX
-	 2I9Cd0H2ZmWFtDzX6zrAX8EkeRw3U4s6ZUAWZTOS7fS1hi36pVa7llRGfm9bPlWeR1
-	 BCDN26gNHlYhR1hVh/hsHaWQPpP4zJZCtPmMroTI=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40HAPi39035540
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 17 Jan 2024 04:25:44 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 17
- Jan 2024 04:25:44 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 17 Jan 2024 04:25:44 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40HAPQIi042834;
-	Wed, 17 Jan 2024 04:25:40 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <vigneshr@ti.com>, <afd@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH 3/3] dt-bindings: PCI: ti,j721e-pci-host: Add support for J722S SoC
-Date: Wed, 17 Jan 2024 15:55:26 +0530
-Message-ID: <20240117102526.557006-4-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240117102526.557006-1-s-vadapalli@ti.com>
-References: <20240117102526.557006-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1705489071; c=relaxed/simple;
+	bh=dFrcmnmkmmZdK1/Cl3suXD/fcMVdImKuOSnKRYIPDMQ=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
+	 References:User-agent:From:To:Cc:Subject:Date:In-reply-to:
+	 Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding; b=AnfziIhqUe6tdTh7WiKTI00N7s1QzUpismx2FAHizWjix262fgDACZtqIFCbNmVFxcEMKm05QL5xJkBSEOiHW7cFmnSytuKH3WBw/b0JNIrz0dLA+8E8d/3cnz/zjE2Wl9ZWWeeOkmfm8TZOUMYFDmkkNmqpEi6FcJzaltDImUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=SZoNNMed; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40e60e135a7so51480705e9.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 02:57:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1705489066; x=1706093866; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AZ0irsFSW2hXq1lOFv0C5tcSeX7I48ojxIzsNWQWXR4=;
+        b=SZoNNMedalO4Md7WPsiM4gwIJgP0t5mz/ggMg3LqIBvVGCPw+b5m+sxqhbiZMti8w6
+         q4z7C5q9ZQTGV+l65wwrsUcfNAOzwTJ2wXMvAmUJ+wVPA5JEIKx9IpQ3qcjnmotKsQ1b
+         pSWtRgx1cgxhN3wi3Q/TmzxpkiaQHb25BF/B70MKHW0SztFwvevWvunv7+dcch1G+lt3
+         /sK2tzZivYaJ+RuFRS7jdJS5pHk5hFgitvwb2TdXoiIgOcMty61EOfwqLgx4CkbWk5oQ
+         2B8vyfkVy46/qEk9oIoRs12XjqWcDz4rvxDWQkIzNlmXmfs58QtEji059HpeBKfDbMCv
+         Nk3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705489066; x=1706093866;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=AZ0irsFSW2hXq1lOFv0C5tcSeX7I48ojxIzsNWQWXR4=;
+        b=lC7FDqbt5fJrSkNxu8T4PF1IA4AFQsrt/21ycF9s2V5EvIyOFCwTXfB2uSaDrAFzpC
+         eDFCsn07EXRR6SSTccm14rk0qjQcUj9N1wRAyOeWJ42aEIitn9/Iei/GzOuKqB+O/whu
+         t/fd6vyfed8AESy55NGdhaW6kHDiUVSZFvcDHfUjkJn2blBoszUPxMzN5ozqPFgvqNdl
+         iEFSwZVfGgOsxy1zLw7M2bTuISf8Y3PUcUz7qHqPZFQAsIvznny+OwfVbKZhkQzhVBz2
+         X8nLdfAUEMRPEUMQ1cbITEerj9+A5vVmm00kcHZKQCEOh/SRN1cn17oFiNIfs2Uoihme
+         gthQ==
+X-Gm-Message-State: AOJu0YwBlXDVFDAP6KBssvtoUmOygQf2ByU8u8LfwcG6jlC6vclXexLh
+	KMAxs/SfdUnJTrWiPCX0SukCGMC+otdDQA==
+X-Google-Smtp-Source: AGHT+IG34Dap1ZJ3WGb+r28aPogMiJUvvKsLDnVhtoSaXpgGSZDDBQgsqehv2GQXT9TcoQZSM36iVw==
+X-Received: by 2002:a05:600c:364c:b0:40e:89f6:e2b with SMTP id y12-20020a05600c364c00b0040e89f60e2bmr434240wmq.31.1705489066317;
+        Wed, 17 Jan 2024 02:57:46 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:c1f6:14ce:b96f:2df5])
+        by smtp.gmail.com with ESMTPSA id f7-20020adffcc7000000b00337bf3586d6sm1376674wrs.103.2024.01.17.02.57.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jan 2024 02:57:45 -0800 (PST)
+References: <20231222111658.832167-1-jbrunet@baylibre.com>
+ <20231222111658.832167-2-jbrunet@baylibre.com>
+ <awxboh3nv4r5p7v7vcgwttu2m74fws47johb73c5f7econ2qqu@zl5xbnoeyclq>
+User-agent: mu4e 1.10.8; emacs 29.1
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Thierry Reding
+ <thierry.reding@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>, Rob
+ Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 1/6] dt-bindings: pwm: amlogic: fix s4 bindings
+Date: Wed, 17 Jan 2024 11:30:08 +0100
+In-reply-to: <awxboh3nv4r5p7v7vcgwttu2m74fws47johb73c5f7econ2qqu@zl5xbnoeyclq>
+Message-ID: <1jbk9kxm52.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-TI's J722S SoC has one instance of a Gen3 Single Lane PCIe controller.
-The controller on J722S SoC is similar to the one present on TI's AM64
-SoC, with the difference being that the controller on AM64 SoC supports
-up to Gen2 link speed while the one on J722S SoC supports Gen3 link speed.
 
-Update the bindings with a new compatible for J722S SoC and enforce checks
-for "num-lanes" and "max-link-speed".
+On Wed 17 Jan 2024 at 11:03, Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutr=
+onix.de> wrote:
 
-Technical Reference Manual of J722S SoC: https://www.ti.com/lit/zip/sprujb3
+> [[PGP Signed Part:Undecided]]
+> On Fri, Dec 22, 2023 at 12:16:49PM +0100, Jerome Brunet wrote:
+>> s4 has been added to the compatible list while converting the Amlogic PWM
+>> binding documentation from txt to yaml.
+>>=20
+>> However, on the s4, the clock bindings have different meaning compared to
+>> the previous SoCs.
+>>=20
+>> On the previous SoCs the clock bindings used to describe which input the
+>> PWM channel multiplexer should pick among its possible parents.
+>>=20
+>> This is very much tied to the driver implementation, instead of describi=
+ng
+>> the HW for what it is. When support for the Amlogic PWM was first added,
+>> how to deal with clocks through DT was not as clear as it nowadays.
+>> The Linux driver now ignores this DT setting, but still relies on the
+>> hard-coded list of clock sources.
+>>=20
+>> On the s4, the input multiplexer is gone. The clock bindings actually
+>> describe the clock as it exists, not a setting. The property has a
+>> different meaning, even if it is still 2 clocks and it would pass the ch=
+eck
+>> when support is actually added.
+>>=20
+>> Also the s4 cannot work if the clocks are not provided, so the property =
+no
+>> longer optional.
+>
+> s/no/is no/
+>
+>> Finally, for once it makes sense to see the input as being numbered
+>> somehow. No need to bother with clock-names on the s4 type of PWM.
+>>=20
+>> Fixes: 43a1c4ff3977 ("dt-bindings: pwm: Convert Amlogic Meson PWM bindin=
+g")
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> ---
+>>  .../devicetree/bindings/pwm/pwm-amlogic.yaml  | 67 ++++++++++++++++---
+>>  1 file changed, 58 insertions(+), 9 deletions(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/Do=
+cumentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> index 527864a4d855..a1d382aacb82 100644
+>> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+>> @@ -9,9 +9,6 @@ title: Amlogic PWM
+>>  maintainers:
+>>    - Heiner Kallweit <hkallweit1@gmail.com>
+>>=20=20
+>> -allOf:
+>> -  - $ref: pwm.yaml#
+>> -
+>>  properties:
+>>    compatible:
+>>      oneOf:
+>> @@ -43,12 +40,8 @@ properties:
+>>      maxItems: 2
+>>=20=20
+>>    clock-names:
+>> -    oneOf:
+>> -      - items:
+>> -          - enum: [clkin0, clkin1]
+>> -      - items:
+>> -          - const: clkin0
+>> -          - const: clkin1
+>> +    minItems: 1
+>> +    maxItems: 2
+>>=20=20
+>>    "#pwm-cells":
+>>      const: 3
+>> @@ -57,6 +50,55 @@ required:
+>>    - compatible
+>>    - reg
+>>=20=20
+>> +allOf:
+>> +  - $ref: pwm.yaml#
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - amlogic,meson8-pwm
+>> +              - amlogic,meson8b-pwm
+>> +              - amlogic,meson-gxbb-pwm
+>> +              - amlogic,meson-gxbb-ao-pwm
+>> +              - amlogic,meson-axg-ee-pwm
+>> +              - amlogic,meson-axg-ao-pwm
+>> +              - amlogic,meson-g12a-ee-pwm
+>> +              - amlogic,meson-g12a-ao-pwm-ab
+>> +              - amlogic,meson-g12a-ao-pwm-cd
+>> +    then:
+>> +      # Historic bindings tied to the driver implementation
+>> +      # The clocks provided here are meant to be matched with the input
+>> +      # known (hard-coded) in the driver and used to select pwm clock
+>> +      # source. Currently, the linux driver ignores this.
+>
+> I admit I didn't understand the relevant difference between the old and
+> the new binding yet.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- .../devicetree/bindings/pci/ti,j721e-pci-host.yaml  | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Let's try to explain differently then:
+* So far each AML PWM IP has 2 pwm.
+* Up to G12, 4 input PLL/clocks are wired to the HW IP and there=20
+  mux/div/gate to select which input to take.
+  - The historic bindings just described how to setup each of the 2
+    internal muxes - 2 optionnal clocks.
+    The actual 4 inputs names from CCF are hard coded in
+    the driver. This is a pretty bad description. The driver has been
+    updated since then to use CCF to figure out the best parent
+    according to pwm rate so this setting is ignored now.
+  - The 'new' bindings (introduced in patch #2) fixes the problem above
+    but the meaning of the clock binding is different. It describes the
+    actual HW parents - 4 clocks, optionnal since some are not wired on
+    some PWM blocks. To avoid breaking the ABI, a new compatible for
+    these SoC is introduced.
+=20=20=20=20
+> (The driver currently doesn't support the s4, right?)
 
-diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-index 005546dc8bd4..b7648f7e73c9 100644
---- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-+++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-@@ -14,6 +14,7 @@ properties:
-   compatible:
-     oneOf:
-       - const: ti,j721e-pcie-host
-+      - const: ti,j722s-pcie-host
-       - const: ti,j784s4-pcie-host
-       - description: PCIe controller in AM64
-         items:
-@@ -134,6 +135,18 @@ allOf:
-           minimum: 1
-           maximum: 4
- 
-+  - if:
-+      properties:
-+        compatible:
-+          items:
-+            - const: ti,j722s-pcie-host
-+    then:
-+      properties:
-+        max-link-speed:
-+          const: 3
-+        num-lanes:
-+          const: 1
-+
-   - if:
-       properties:
-         compatible:
--- 
-2.34.1
+Indeed. I know Amlogic is preparing the support. I could do it in this
+series but I prefer to encourage them to contribute. It should come
+shortly after this series is merged.
 
+Starting from s4 (prbably even a1 - up to people contributing this SoC
+to say) the mux/div/gate is no longer in the PWM IP. It has moved to the
+main clock controller. Again the clock binding describes something
+different. It is the 2 input clocks of each block, they are mandatory
+this time.
+
+> Is it possible to detect if the dt uses the old or the new
+> binding?
+
+Apart from the compatible, no.
+
+> If yes, I suggest to drop the old one from the binding and only
+> keep it in the driver for legacy systems.
+
+I don't this would be allowed by the DT maintainers.
+My understanding is that the old binding doc is here to stay.
+What could happen after sufficient time has past it remove the support
+for the old/historic binding in the driver. Driver are not required to
+support all possible bindings after all, especially if it is not used/tested
+anymore.
+
+>
+>> +      properties:
+>> +        clock-names:
+>> +          oneOf:
+>> +            - items:
+>> +                - enum: [clkin0, clkin1]
+>> +            - items:
+>> +                - const: clkin0
+>> +                - const: clkin1
+>> +
+>> +  # Newer IP block take a single input per channel, instead of 4 inputs
+>> +  # for both channels
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - amlogic,meson-s4-pwm
+>
+> The expectation is that this list contains all compatibles that are not
+> included in the "historic" list above, right? Then maybe use "else:"
+> instead of another explicit list?
+>
+
+I suppose if, elseif, else is possible.
+
+I've done it this way because is slightly easier for human to read the
+doc and find what is related to what. If you this is important for you,
+I can change it.
+
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          items:
+>> +            - description: input clock of PWM channel A
+>> +            - description: input clock of PWM channel B
+>> +        clock-names: false
+>> +      required:
+>> +        - clocks
+>> +
+>>  additionalProperties: false
+>
+> Best regards
+> Uwe
+
+
+--=20
+Jerome
 
