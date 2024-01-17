@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-32863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1478830DB3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 21:06:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F291830DCB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 21:13:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5B9C1C21622
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:06:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2289B215CA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB7D24B24;
-	Wed, 17 Jan 2024 20:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8128824A1F;
+	Wed, 17 Jan 2024 20:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3draHPj8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KHroEQ/V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 991CA28E08;
-	Wed, 17 Jan 2024 20:05:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5581B249F7;
+	Wed, 17 Jan 2024 20:13:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705521921; cv=none; b=EXgN1mbuGuuRKgNNeSxXQlwEII8WZlJZT32sL+gkQ1LUgaMVuGqnpdYogjf/isTUC0PCaeLX2s3vNSYXRShXCn3ykeNVlTsrHaU7X4727pvgAWqEJSS3gnl3rw6MoSjsIgrvEMtab3QVdXZd2l7zuRPhi71g87R5kIFMNRHiEsQ=
+	t=1705522425; cv=none; b=q4fBipV9Lw9X9B1hWT1kODNZnMx1sezNEbkCVbgks+VzX4EswWGLUFN5YMYWoph0jiWWie+v5nHZd1H8DYFDk3nCKv2+s6+lPf8tR3SQYal/bTXuD7w9lvEO2G1BGP7G3AKl++LcJA8a0lJf/2kOFv1S/Q0Y9BpNOan5StWfy3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705521921; c=relaxed/simple;
-	bh=E6dxYMy2Z2QQ0y4jy0+hi+7kwOw9cSpS2xhCTEdsc/s=;
-	h=DKIM-Signature:Received:Date:From:To:Cc:Subject:Message-ID:
+	s=arc-20240116; t=1705522425; c=relaxed/simple;
+	bh=6WmOXhgilmcsgUCOS2c4XBXJqOkmHdcKb8pFyCDU1hQ=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
 	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=OW8gE7RUMyloozOun8WvtV2ZrI4xNK5H5T8Q1a92XF9mnwF+e74acqdBQcluj6xBOCMRm+/3UTjNqR6n0Exla/6+acbnOx2O8LgyP+VY28kv2h33m2rKvj9dGVBU9t71gOJMdI5T4rhwkrBV4ELxLeOS2MunH7jiJSdnSMdyhOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3draHPj8; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=R6Lc/SpeoZHjRLO/GO2tIVDi6ZtvIYMTaxkExG+20Jo=; b=3draHPj8t5mDQDFbBv4roebFZx
-	rwjM497PSAeoci7h2LvI2jrqsw8Hz3hd6mcxMjkS9fZ7AvRicv5INfMox2ULL+byoce8Qy96RlaJ8
-	6gp2gJNqNNV5cBwWN/HW0GI94olfSl2G0a4AA6QCGCBLJ50sDfFGQkVyK9a1R9vxLMLw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rQC9m-005Qig-J3; Wed, 17 Jan 2024 21:05:02 +0100
-Date: Wed, 17 Jan 2024 21:05:02 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Sergey Ryazanov <ryazanov.s.a@gmail.com>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	Robert Marko <robert.marko@sartura.hr>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [net-next PATCH RFC v3 1/8] dt-bindings: net: document ethernet
- PHY package nodes
-Message-ID: <1fb9448f-c2c8-4e01-aa12-5f60f2b49160@lunn.ch>
-References: <20231126015346.25208-1-ansuelsmth@gmail.com>
- <20231126015346.25208-2-ansuelsmth@gmail.com>
- <0926ea46-1ce4-4118-a04c-b6badc0b9e15@gmail.com>
- <659aedb1.df0a0220.35691.1853@mx.google.com>
- <0f4ec2ff-4ef7-4667-adef-d065cfbc0a91@gmail.com>
- <65a7210f.df0a0220.d10b2.1162@mx.google.com>
- <c81af808-d836-4054-b596-4a53b05f4c78@gmail.com>
+	 In-Reply-To; b=TKhTWVEoUBGnMfJmqSRL018G4wIa5oHASo+erA41UlIVKNhEt5ndkcw/g1S/EQo2ZXjNwkXCmiBGJvsHzhD0j945m9Th5NE1uJklX1RXwP3gi0q1LZyyGZA22LPm/PjB04Y0nNruQV947etRLAani8/NyRTOJfsjd8l74RoofnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KHroEQ/V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 856F1C43390;
+	Wed, 17 Jan 2024 20:13:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705522424;
+	bh=6WmOXhgilmcsgUCOS2c4XBXJqOkmHdcKb8pFyCDU1hQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KHroEQ/VOkN0bdYFQZeY1hjdwMXvlHza2D0rfIpl4phtMUBS1cHC2qWP+eWyrCH12
+	 kMo9CmciJOLvKG97/AsO+i/KebOhEHElnmtAA5nCOlEmRKziVEB2pfA4ICvSi6u/Aq
+	 UtVoZG2uNxb0qAkRhIcwX23QWsgKQ4mU9cfOEb0waNd0/HTwI6JrtTLrx2fTmiGXaO
+	 WQgXm9ZlB67eA6+A6fbu5xBR1Oyo5sEzIuk7kZkGwIfrDemsrKfzqguR+60XvjiKQU
+	 eFo2P+LmQI84qCK436hh7OcbY9F24Izpe0HxZ/PhLwQw5IpFUQSvtJYyjApFcFHp07
+	 OKqxjpXspzVAw==
+Date: Wed, 17 Jan 2024 14:13:42 -0600
+From: Rob Herring <robh@kernel.org>
+To: Devarsh Thakkar <devarsht@ti.com>
+Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com,
+	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	nm@ti.com, vigneshr@ti.com, kristo@kernel.org, praneeth@ti.com,
+	a-bhatia1@ti.com, j-luthra@ti.com
+Subject: Re: [RFC PATCH 1/3] dt-bindings: display: ti,am65x-dss: Add support
+ for display sharing mode
+Message-ID: <20240117201342.GA3041972-robh@kernel.org>
+References: <20240116134142.2092483-1-devarsht@ti.com>
+ <20240116134142.2092483-2-devarsht@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,32 +66,149 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c81af808-d836-4054-b596-4a53b05f4c78@gmail.com>
+In-Reply-To: <20240116134142.2092483-2-devarsht@ti.com>
 
-> On one hand it makes sense and looks useful for software development. On
-> another, it looks like a violation of the main DT designing rule, when DT
-> should be used to describe that hardware properties, which can not be learnt
-> from other sources.
+On Tue, Jan 16, 2024 at 07:11:40PM +0530, Devarsh Thakkar wrote:
+> Add support for using TI Keystone DSS hardware present in display
+> sharing mode.
 > 
-> As far as I understand this specific chip, each of embedded PHYs has its own
-> MDIO bus address and not an offset from a main common address. Correct me
-> please, if I am got it wrong.
+> TI Keystone DSS hardware supports partitioning of resources between
+> multiple hosts as it provides separate register space and unique
+> interrupt line to each host.
+> 
+> The DSS hardware can be used in shared mode in such a way that one or
+> more of video planes can be owned by Linux wherease other planes can be
+> owned by remote cores.
+> 
+> One or more of the video ports can be dedicated exclusively to a
+> processing core, wherease some of the video ports can be shared between
+> two hosts too with only one of them having write access.
+> 
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> ---
+>  .../bindings/display/ti/ti,am65x-dss.yaml     | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> index 55e3e490d0e6..d9bc69fbf1fb 100644
+> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+> @@ -112,6 +112,86 @@ properties:
+>        Input memory (from main memory to dispc) bandwidth limit in
+>        bytes per second
+>  
+> +  ti,dss-shared-mode:
+> +    type: boolean
+> +    description:
+> +      TI DSS7 supports sharing of display between multiple hosts
+> +      as it provides separate register space for display configuration and
+> +      unique interrupt line to each host.
 
-I don't have the datasheet for this specific PHY. But the concept of a
-quad PHY in one package is well known. Take for example the
-VSC8584. The datasheet is open on Microchips website. It has four
-strapping pins to determine the addresses of the PHYs in the
-package. The PHY number, 0 - 3 determine bits 0-1 of the MDIO
-address. The 4 strapping pins then determine bit 2-5 of the address.
+If you care about line breaks, you need '|'. 
 
-In theory, each PHY could have its own strapping pins, allowing it to
-be set to any address, and two PHYs could even have the same
-address. But i doubt anybody actually builds hardware like that. I
-expect the base addresses is set at the package level, and then PHYs
-are just offsets from this.
+> +      One of the host is provided access to the global display
+> +      configuration labelled as "common" region of DSS allows that host
+> +      exclusive access to global registers of DSS while other host can
+> +      configure the display for it's usage using a separate register
+> +      space labelled as "common1".
+> +      The DSS resources can be partitioned in such a way that one or more
+> +      of the video planes are owned by Linux whereas other video planes
 
-So to me, a range property does seem reasonable. However, I agree, we
-need acceptance from the DT Maintainers.
+Your h/w can only run Linux?
 
-     Andrew
+What if you want to use this same binding to define the configuration to 
+the 'remote processor'? You can easily s/Linux/the OS/, but it all 
+should be reworded to describe things in terms of the local processor.
+
+> +      can be owned by a remote core.
+> +      The video port controlling these planes acts as a shared video port
+> +      and it can be configured with write access either by Linux or the
+> +      remote core in which case Linux only has read-only access to that
+> +      video port.
+
+What is the purpose of this property when all the other properties are 
+required?
+
+> +
+> +  ti,dss-shared-mode-planes:
+> +    description:
+> +      The video layer that is owned by processing core running Linux.
+> +      The display driver running from Linux has exclusive write access to
+> +      this video layer.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [vidl, vid]
+> +
+> +  ti,dss-shared-mode-vp:
+> +    description:
+> +      The video port that is being used in context of processing core
+> +      running Linux with display susbsytem being used in shared mode.
+> +      This can be owned either by the processing core running Linux in
+> +      which case Linux has the write access and the responsibility to
+> +      configure this video port and the associated overlay manager or
+> +      it can be shared between core running Linux and a remote core
+> +      with remote core provided with write access to this video port and
+> +      associated overlay managers and remote core configures and drives
+> +      this video port also feeding data from one or more of the
+> +      video planes owned by Linux, with Linux only having read-only access
+> +      to this video port and associated overlay managers.
+> +
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [vp1, vp2]
+> +
+> +  ti,dss-shared-mode-common:
+> +    description:
+> +      The DSS register region owned by processing core running Linux.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [common, common1]
+> +
+> +  ti,dss-shared-mode-vp-owned:
+> +    description:
+> +      This tells whether processing core running Linux has write access to
+> +      the video ports enlisted in ti,dss-shared-mode-vps.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+
+This can be boolean. Do writes abort or just get ignored? The latter can 
+be probed and doesn't need a property.
+
+> +
+> +  ti,dss-shared-mode-plane-zorder:
+> +    description:
+> +      The zorder of the planes owned by Linux.
+> +      For the scenario where Linux is not having write access to associated
+> +      video port, this field is just for
+> +      informational purpose to enumerate the zorder configuration
+> +      being used by remote core.
+> +
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+
+I don't understand how 0 or 1 defines Z-order.
+
+> +
+> +dependencies:
+> +  ti,dss-shared-mode: [ 'ti,dss-shared-mode-planes', 'ti,dss-shared-mode-vp',
+> +                        'ti,dss-shared-mode-plane-zorder', 'ti,dss-shared-mode-vp-owned']
+> +  ti,dss-shared-mode-vp: ['ti,dss-shared-mode', 'ti,dss-shared-mode-planes',
+> +                          'ti,dss-shared-mode-plane-zorder', 'ti,dss-shared-mode-vp-owned']
+> +  ti,dss-shared-mode-planes: ['ti,dss-shared-mode', 'ti,dss-shared-mode-vp',
+> +                              'ti,dss-shared-mode-plane-zorder', 'ti,dss-shared-mode-vp-owned']
+> +  ti,dss-shared-mode-plane-zorder: ['ti,dss-shared-mode-planes', 'ti,dss-shared-mode-vp',
+> +                                    'ti,dss-shared-mode', 'ti,dss-shared-mode-vp-owned']
+> +  ti,dss-shared-mode-vp-owned: ['ti,dss-shared-mode-planes', 'ti,dss-shared-mode-vp',
+> +                                'ti,dss-shared-mode', 'ti,dss-shared-mode-plane-zorder']
+> +
+>  allOf:
+>    - if:
+>        properties:
+> @@ -123,6 +203,8 @@ allOf:
+>          ports:
+>            properties:
+>              port@0: false
+> +            ti,dss-shared-mode-vp:
+> +            enum: [vp2]
+
+This should throw a warning. You just defined a property called 'enum'.
+
+Rob
 
