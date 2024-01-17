@@ -1,194 +1,166 @@
-Return-Path: <devicetree+bounces-32749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38699830772
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:02:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B332C83077D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:04:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DE071C209FA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 14:02:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC5111C20C67
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 14:04:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD52200DE;
-	Wed, 17 Jan 2024 14:02:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4873F2030E;
+	Wed, 17 Jan 2024 14:04:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b="ngg0ERDa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XYGC07rN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-fw-52005.amazon.com (smtp-fw-52005.amazon.com [52.119.213.156])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E93B200C9;
-	Wed, 17 Jan 2024 14:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.119.213.156
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4EA20309
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 14:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705500131; cv=none; b=nGDByBAw5vlxEslL756Ql5GeZ64pFGuT+9tdbxJ5lrBsWL2J59nDOHVUu2cZOeRRdNoP0Ukkyuts/zpILEtfFKHaC1GJpX7YGoHm/qDXG8BJTRTUFlDdg854VNJNsNzFjBIA9dK0IpFai0KT5aWt9ep4HOq8PxY9iOM24taZ23w=
+	t=1705500269; cv=none; b=Hb7avCwoKIVcj6oc9GZyTWNYWD0E00xkFbBw0WncxndS3Z78yKRcPWAXfpuqpsxlLLUf66ZSefC30OrO4/i0aQKk1D626qOdo7CKz9lp+yqgbJzsahV/YdXVLxvHAbonCHLvgfKYN5yBVLpWOTjP+PyMF29a/9DDsUaQhrO94qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705500131; c=relaxed/simple;
-	bh=R+N96ZQEAfDbhmqKJeIs5t/qX5hk250eLM+kCzB/5uc=;
-	h=DKIM-Signature:X-IronPort-AV:Received:Received:Received:
-	 X-Farcaster-Flow-ID:Received:Received:Message-ID:Date:MIME-Version:
-	 User-Agent:Subject:Content-Language:To:CC:References:From:
-	 In-Reply-To:X-Originating-IP:X-ClientProxiedBy:Content-Type:
-	 Content-Transfer-Encoding; b=ePIWMg92TyWC+sJwEkV/OAcgBIKt4zJ9kD0b8l5WUbTGr0mUu8kBEUimhT8VyCkMd+OvEL/ZfEHM3uI3QfJnJ7BvGWENgGYQSbFVArOTYLNQmZPSriOkdGnrr5slBwRf2DtDmAhRF8/JCr9yybJDEwMrsL2s3oN9y+mkl4J73Hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com; spf=pass smtp.mailfrom=amazon.de; dkim=pass (1024-bit key) header.d=amazon.com header.i=@amazon.com header.b=ngg0ERDa; arc=none smtp.client-ip=52.119.213.156
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.de
+	s=arc-20240116; t=1705500269; c=relaxed/simple;
+	bh=x81CLncY/hIwp8vTAImj73oz1jLkJ9NlHddtBkJ5pxQ=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:From:
+	 Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:X-B4-Tracking:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key; b=szX/3QNKG8rdYADXDfS6jHMsvOnmnOHIAVjwADmkZm8uDMjzL1yEbioUwWxUKspuu8SsM5LQCqHNfS5htP9bBhhBlRTCTa2r6GyU/SeJzeOwW8mcYwfbznugRnsf4xt8mm4or/a4UYA4fhlnOa5VVlCpRKAqrujRF66iCthzuA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XYGC07rN; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-50e741123acso13637263e87.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 06:04:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1705500130; x=1737036130;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=R+N96ZQEAfDbhmqKJeIs5t/qX5hk250eLM+kCzB/5uc=;
-  b=ngg0ERDacrxyeq9DqzaSjO5gGkJyhaXM7MoZHLdekPWpCMMFgCIXRBCN
-   mLObZHAKGT2xnC2eBpEjvMEk7NgOktZptiFPSuug75QODcQIRbXKkX6Gm
-   0vbyF2GKGwNcz6ud8v3+gTwYAN2NUOXhvP8p01NeeaA1YhZ0E0fdPZOzG
-   g=;
-X-IronPort-AV: E=Sophos;i="6.05,200,1701129600"; 
-   d="scan'208";a="628159042"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1e-m6i4x-6e7a78d7.us-east-1.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-52005.iad7.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2024 14:02:08 +0000
-Received: from smtpout.prod.us-west-2.prod.farcaster.email.amazon.dev (iad7-ws-svc-p70-lb3-vlan2.iad.amazon.com [10.32.235.34])
-	by email-inbound-relay-iad-1e-m6i4x-6e7a78d7.us-east-1.amazon.com (Postfix) with ESMTPS id 6DBC280774;
-	Wed, 17 Jan 2024 14:02:00 +0000 (UTC)
-Received: from EX19MTAUWC002.ant.amazon.com [10.0.7.35:42529]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.41.57:2525] with esmtp (Farcaster)
- id e65f03f2-b86e-47d1-8655-6702971ecda1; Wed, 17 Jan 2024 14:01:59 +0000 (UTC)
-X-Farcaster-Flow-ID: e65f03f2-b86e-47d1-8655-6702971ecda1
-Received: from EX19D020UWC004.ant.amazon.com (10.13.138.149) by
- EX19MTAUWC002.ant.amazon.com (10.250.64.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 17 Jan 2024 14:01:59 +0000
-Received: from [0.0.0.0] (10.253.83.51) by EX19D020UWC004.ant.amazon.com
- (10.13.138.149) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 17 Jan
- 2024 14:01:53 +0000
-Message-ID: <c96203ba-a5b2-4765-9d30-0f4e66c82cd7@amazon.com>
-Date: Wed, 17 Jan 2024 15:01:51 +0100
+        d=linaro.org; s=google; t=1705500265; x=1706105065; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5/B2R8i2UwNaK6kv0GcOo8eHMF4ro6wVFkh1Kz4AGgE=;
+        b=XYGC07rNWGNeygnfthdtlwQo1VLHIdjAqFr1Dwnb9VWyzEirYtcM1FBvnsNSytHuPS
+         xeONhi2d4HgUTvWe1pATwNuI8lw+hEqSDm6IMY4pm1lOP4bZK6LFpEkVC9fc2oYOdUuF
+         awLUQ+3TGJDk6PTl9eE6wwmvTAkP3wwXiPiU44A4RnAP7/gXhLSa4FAu9lXeLfaN5CdK
+         pB7SerXmlBf558fYSSTOgD2edgJasdek8oOBlnZliUYZHCRhVbb++cUUmUX3rq6VNDmE
+         /i4CzXJzQ5lelKhguyYojXCP/PlWwdtl6HoEAis+W462B5IpoJjizYDJLS2/naS8T9PH
+         C/iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705500265; x=1706105065;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5/B2R8i2UwNaK6kv0GcOo8eHMF4ro6wVFkh1Kz4AGgE=;
+        b=kuxEme57bKeaTJbGFyh831lD6TRoYYNs7OQfshvKEt7SuLXzr3icfQk4kA3N3xaOf+
+         VoWifhvhgTlwdLfm8tpSDgJqoLdootn/RUHHed4Y2f/9QLqR/QDxcZxmfOHeTQvJudDp
+         /MAUPuah+Uq9pghdWr+dyhczHP2XCwhNrM1jxTjK1YrtuIhZmuPp9OEiVk/1MgQK4w46
+         Xp9vKAlVPXY+uRRpKdiIciLk021zmMRqsGR9LC1tiqR2wmcaI0O8H2QLtBOoIwsK1H3q
+         J2UBJbRMIurWgbwXUR1VMlq3MH7rwWcWQv3IwC8izC5MXBEpfwicErE04t/gsdD8ob8c
+         /fEA==
+X-Gm-Message-State: AOJu0YyF0w/hFtovdyPORxQjGTd2vnJvnk4ucxd5yFHNdeLKOomd515O
+	4YtXEPiH9IPSrNIMQuXLnBEM5r7HMCkSYQ==
+X-Google-Smtp-Source: AGHT+IErux1sMeAqdhWkaZXehfNGakmpthvwi4xOe9yPto2lwcwykC6xj5+JSWU3lu5Nh2w3eKdPHw==
+X-Received: by 2002:a19:8c58:0:b0:50e:812c:1acf with SMTP id i24-20020a198c58000000b0050e812c1acfmr3853287lfj.113.1705500264642;
+        Wed, 17 Jan 2024 06:04:24 -0800 (PST)
+Received: from umbar.lan ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id y29-20020a19915d000000b0050ec7a26420sm269711lfj.204.2024.01.17.06.04.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jan 2024 06:04:24 -0800 (PST)
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 0/6] phy: qcom: qmp-usbc: properly handle the clamping
+ register
+Date: Wed, 17 Jan 2024 16:04:21 +0200
+Message-Id: <20240117-usbc-phy-vls-clamp-v2-0-a950c223f10f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/17] kexec: Add documentation for KHO
-Content-Language: en-US
-To: Rob Herring <robh+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-trace-kernel@vger.kernel.org>,
-	<linux-mm@kvack.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <kexec@lists.infradead.org>,
-	<linux-doc@vger.kernel.org>, <x86@kernel.org>, Eric Biederman
-	<ebiederm@xmission.com>, "H. Peter Anvin" <hpa@zytor.com>, Andy Lutomirski
-	<luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Steven Rostedt
-	<rostedt@goodmis.org>, Andrew Morton <akpm@linux-foundation.org>, "Mark
- Rutland" <mark.rutland@arm.com>, Tom Lendacky <thomas.lendacky@amd.com>,
-	Ashish Kalra <ashish.kalra@amd.com>, James Gowans <jgowans@amazon.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>, <arnd@arndb.de>,
-	<pbonzini@redhat.com>, <madvenka@linux.microsoft.com>, Anthony Yznaga
-	<anthony.yznaga@oracle.com>, Usama Arif <usama.arif@bytedance.com>, "David
- Woodhouse" <dwmw@amazon.co.uk>, Benjamin Herrenschmidt
-	<benh@kernel.crashing.org>
-References: <20231222193607.15474-1-graf@amazon.com>
- <20231222195144.24532-1-graf@amazon.com>
- <20231222195144.24532-2-graf@amazon.com>
- <CAL_JsqJSYgq7BJnSxwKebEX8e9tL-FG74rT+eLJ4e32kKZC30g@mail.gmail.com>
-From: Alexander Graf <graf@amazon.com>
-In-Reply-To: <CAL_JsqJSYgq7BJnSxwKebEX8e9tL-FG74rT+eLJ4e32kKZC30g@mail.gmail.com>
-X-ClientProxiedBy: EX19D035UWB001.ant.amazon.com (10.13.138.33) To
- EX19D020UWC004.ant.amazon.com (10.13.138.149)
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGXep2UC/32NQQ6CMBBFr0Jm7ZhOVRBX3sOwKKXQSSptWm0kh
+ LtbOYDL95L//grJRDYJbtUK0WRO7OcC8lCBtmqeDPJQGKSQZ0FU4zv1GoNdMLuE2qlnQBJ0bc0
+ 46JEklGGIZuTPHn10hS2nl4/L/pHpZ//mMqHA5tTLQTV1S/pydzyr6I8+TtBt2/YFtBg4m7UAA
+ AA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-phy@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2555;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=x81CLncY/hIwp8vTAImj73oz1jLkJ9NlHddtBkJ5pxQ=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBlp95mMacSd+CX45gkjTa81604OBU9Jbtyvkuyk
+ r/u2D5gRKiJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZafeZgAKCRCLPIo+Aiko
+ 1UHdB/40oZ6ZQjoG9rx7y2T6f4ugeoDywqi7KNkuDTEmJaRcLW/YG2rqMrB0/KUC2Sla5Z9suks
+ A0EudD8KkMnCBVDo6TLI/A9fmfCJ9QeFLTI+sXPfsEQLtHDj6nGDHv4QXEiZnX818kRb9ToDaZ1
+ riPwXHI4MHSv8sTdOqGtRWJvqPJZIMmpDEoKQl4xt9cm/Cf6Nikhxh9FGwfzo79w2Vq5QOUMduW
+ H2HgdzQKXhs24gNbkU0mdQp6i43dZcmGTffjqjVwZGg9PheyS68Ngann5uzk8d2+R4qVb+tfQLr
+ dD37J9lHnK0kkumwhsR3kfaWl0L67h3lB7H3ojpPSjli4KK5
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Ck9uIDAzLjAxLjI0IDE5OjQ4LCBSb2IgSGVycmluZyB3cm90ZToKPgo+IE9uIEZyaSwgRGVjIDIy
-LCAyMDIzIGF0IDEyOjUy4oCvUE0gQWxleGFuZGVyIEdyYWYgPGdyYWZAYW1hem9uLmNvbT4gd3Jv
-dGU6Cj4+IFdpdGggS0hPIGluIHBsYWNlLCBsZXQncyBhZGQgZG9jdW1lbnRhdGlvbiB0aGF0IGRl
-c2NyaWJlcyB3aGF0IGl0IGlzIGFuZAo+PiBob3cgdG8gdXNlIGl0Lgo+Pgo+PiBTaWduZWQtb2Zm
-LWJ5OiBBbGV4YW5kZXIgR3JhZiA8Z3JhZkBhbWF6b24uY29tPgo+PiAtLS0KPj4gICBEb2N1bWVu
-dGF0aW9uL2toby9jb25jZXB0cy5yc3QgICB8IDg4ICsrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrCj4+ICAgRG9jdW1lbnRhdGlvbi9raG8vaW5kZXgucnN0ICAgICAgfCAxOSArKysrKysr
-Cj4+ICAgRG9jdW1lbnRhdGlvbi9raG8vdXNhZ2UucnN0ICAgICAgfCA1NyArKysrKysrKysrKysr
-KysrKysrKysKPj4gICBEb2N1bWVudGF0aW9uL3N1YnN5c3RlbS1hcGlzLnJzdCB8ICAxICsKPj4g
-ICA0IGZpbGVzIGNoYW5nZWQsIDE2NSBpbnNlcnRpb25zKCspCj4+ICAgY3JlYXRlIG1vZGUgMTAw
-NjQ0IERvY3VtZW50YXRpb24va2hvL2NvbmNlcHRzLnJzdAo+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0
-NCBEb2N1bWVudGF0aW9uL2toby9pbmRleC5yc3QKPj4gICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9j
-dW1lbnRhdGlvbi9raG8vdXNhZ2UucnN0Cj4+Cj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9u
-L2toby9jb25jZXB0cy5yc3QgYi9Eb2N1bWVudGF0aW9uL2toby9jb25jZXB0cy5yc3QKPj4gbmV3
-IGZpbGUgbW9kZSAxMDA2NDQKPj4gaW5kZXggMDAwMDAwMDAwMDAwLi44ZTRmZThjNTc4NjUKPj4g
-LS0tIC9kZXYvbnVsbAo+PiArKysgYi9Eb2N1bWVudGF0aW9uL2toby9jb25jZXB0cy5yc3QKPj4g
-QEAgLTAsMCArMSw4OCBAQAo+PiArLi4gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAt
-b3ItbGF0ZXIKPj4gKwo+PiArPT09PT09PT09PT09PT09PT09PT09PT0KPj4gK0tleGVjIEhhbmRv
-dmVyIENvbmNlcHRzCj4+ICs9PT09PT09PT09PT09PT09PT09PT09PQo+PiArCj4+ICtLZXhlYyBI
-YW5kT3ZlciAoS0hPKSBpcyBhIG1lY2hhbmlzbSB0aGF0IGFsbG93cyBMaW51eCB0byBwcmVzZXJ2
-ZSBzdGF0ZSAtCj4+ICthcmJpdHJhcnkgcHJvcGVydGllcyBhcyB3ZWxsIGFzIG1lbW9yeSBsb2Nh
-dGlvbnMgLSBhY3Jvc3Mga2V4ZWMuCj4+ICsKPj4gK0l0IGludHJvZHVjZXMgbXVsdGlwbGUgY29u
-Y2VwdHM6Cj4+ICsKPj4gK0tITyBEZXZpY2UgVHJlZQo+PiArLS0tLS0tLS0tLS0tLS0tCj4+ICsK
-Pj4gK0V2ZXJ5IEtITyBrZXhlYyBjYXJyaWVzIGEgS0hPIHNwZWNpZmljIGZsYXR0ZW5lZCBkZXZp
-Y2UgdHJlZSBibG9iIHRoYXQKPj4gK2Rlc2NyaWJlcyB0aGUgc3RhdGUgb2YgdGhlIHN5c3RlbS4g
-RGV2aWNlIGRyaXZlcnMgY2FuIHJlZ2lzdGVyIHRvIEtITyB0bwo+PiArc2VyaWFsaXplIHRoZWly
-IHN0YXRlIGJlZm9yZSBrZXhlYy4gQWZ0ZXIgS0hPLCBkZXZpY2UgZHJpdmVycyBjYW4gcmVhZAo+
-PiArdGhlIGRldmljZSB0cmVlIGFuZCBleHRyYWN0IHByZXZpb3VzIHN0YXRlLgo+IEhvdyBkb2Vz
-IHRoaXMgd29yayB3aXRoIGtleGVjIHdoZW4gdGhlcmUgaXMgYWxzbyB0aGUgRkRUIGZvciB0aGUg
-aC93Pwo+IFRoZSBoL3cgRkRUIGhhcyBhIC9jaG9zZW4gcHJvcGVydHkgcG9pbnRpbmcgdG8gdGhp
-cyBGRFQgYmxvYj8KCgpZZXAsIGV4YWN0bHkuCgoKPgo+PiArCj4+ICtLSE8gb25seSB1c2VzIHRo
-ZSBmZHQgY29udGFpbmVyIGZvcm1hdCBhbmQgbGliZmR0IGxpYnJhcnksIGJ1dCBkb2VzIG5vdAo+
-PiArYWRoZXJlIHRvIHRoZSBzYW1lIHByb3BlcnR5IHNlbWFudGljcyB0aGF0IG5vcm1hbCBkZXZp
-Y2UgdHJlZXMgZG86IFByb3BlcnRpZXMKPj4gK2FyZSBwYXNzZWQgaW4gbmF0aXZlIGVuZGlhbm5l
-c3MgYW5kIHN0YW5kYXJkaXplZCBwcm9wZXJ0aWVzIGxpa2UgYGByZWdzYGAgYW5kCj4+ICtgYHJh
-bmdlc2BgIGRvIG5vdCBleGlzdCwgaGVuY2UgdGhlcmUgYXJlIG5vIGBgIy4uLi1jZWxsc2BgIHBy
-b3BlcnRpZXMuCj4gSSB0aGluayBuYXRpdmUgZW5kaWFubmVzcyBpcyBhc2tpbmcgZm9yIHRyb3Vi
-bGUuIGxpYmZkdCB3b3VsZCBuZWVkCj4gZGlmZmVyZW50IHN3YXAgZnVuY3Rpb25zIGhlcmUgdGhh
-biBlbHNld2hlcmUgaW4gdGhlIGtlcm5lbCBmb3IgZXhhbXBsZQo+IHdoaWNoIHdvdWxkbid0IGV2
-ZW4gd29yay4gU28geW91IGFyZSBqdXN0IGNyb3NzaW5nIHlvdXIgZmluZ2VycyB0aGF0Cj4geW91
-IGFyZW4ndCB1c2luZyBhbnkgbGliZmR0IGZ1bmN0aW9ucyB0aGF0IHN3YXAuIEFuZCB3aGVuIEkg
-c3luYwo+IGR0Yy9saWJmZHQgYW5kIHRoYXQgY2hhbmdlcywgSSBtaWdodCBicmVhayB5b3UuCj4K
-PiBBbHNvLCBpZiB5b3Ugd2FudCB0byBkdW1wIHRoZSBGRFQgYW5kIGRvIGEgZHRjIERUQi0+RFRT
-IHBhc3MsIGl0IGlzCj4gbm90IGdvaW5nIHRvIGJlIHRvbyByZWFkYWJsZSBnaXZlbiB0aGF0IG91
-dHB1dHMgc3dhcHBlZCAzMi1iaXQgdmFsdWVzCj4gZm9yIGFueXRoaW5nIHRoYXQncyBhIDQgYnl0
-ZSBtdWx0aXBsZS4KCgpZZWFoLCBidXQgYmlnIGVuZGlhbiB0aGVzZSBkYXlzIGlzIGp1c3QgYSBj
-b21wbGV0ZSB3YXN0ZSBvZiBicmFpbiBhbmQgCmNwdSBjeWNsZXMgOikuIEFuZCB5ZXMsIEkgZG9u
-J3QgcmVhbGx5IHdhbnQgdG8gdXNlIGFueSBsaWJmZHQgaGVscGVyIApmdW5jdGlvbnMgdG8gcmVh
-ZCBkYXRhLiBJIHVzZSBpdCBvbmx5IHRvIGdpdmUgbWUgdGhlIHJhdyBkYXRhIGFuZCB0YWtlIApp
-dCBmcm9tIHRoZXJlLgoKCj4KPj4gKwo+PiArS0hPIGludHJvZHVjZXMgYSBuZXcgY29uY2VwdCB0
-byBpdHMgZGV2aWNlIHRyZWU6IGBgbWVtYGAgcHJvcGVydGllcy4gQQo+PiArYGBtZW1gYCBwcm9w
-ZXJ0eSBjYW4gaW5zaWRlIGFueSBzdWJub2RlIGluIHRoZSBkZXZpY2UgdHJlZS4gV2hlbiBwcmVz
-ZW50LAo+PiAraXQgY29udGFpbnMgYW4gYXJyYXkgb2YgcGh5c2ljYWwgbWVtb3J5IHJhbmdlcyB0
-aGF0IHRoZSBuZXcga2VybmVsIG11c3QgbWFyawo+PiArYXMgcmVzZXJ2ZWQgb24gYm9vdC4gSXQg
-aXMgcmVjb21tZW5kZWQsIGJ1dCBub3QgcmVxdWlyZWQsIHRvIG1ha2UgdGhlc2UgcmFuZ2VzCj4+
-ICthcyBwaHlzaWNhbGx5IGNvbnRpZ3VvdXMgYXMgcG9zc2libGUgdG8gcmVkdWNlIHRoZSBudW1i
-ZXIgb2YgYXJyYXkgZWxlbWVudHMgOjoKPj4gKwo+PiArICAgIHN0cnVjdCBraG9fbWVtIHsKPj4g
-KyAgICAgICAgICAgIF9fdTY0IGFkZHI7Cj4+ICsgICAgICAgICAgICBfX3U2NCBsZW47Cj4+ICsg
-ICAgfTsKPj4gKwo+PiArQWZ0ZXIgYm9vdCwgZHJpdmVycyBjYW4gY2FsbCB0aGUga2hvIHN1YnN5
-c3RlbSB0byB0cmFuc2ZlciBvd25lcnNoaXAgb2YgbWVtb3J5Cj4+ICt0aGF0IHdhcyByZXNlcnZl
-ZCB2aWEgYSBgYG1lbWBgIHByb3BlcnR5IHRvIHRoZW1zZWx2ZXMgdG8gY29udGludWUgdXNpbmcg
-bWVtb3J5Cj4+ICtmcm9tIHRoZSBwcmV2aW91cyBleGVjdXRpb24uCj4+ICsKPj4gK1RoZSBLSE8g
-ZGV2aWNlIHRyZWUgZm9sbG93cyB0aGUgaW4tTGludXggc2NoZW1hIHJlcXVpcmVtZW50cy4gQW55
-IGVsZW1lbnQgaW4KPj4gK3RoZSBkZXZpY2UgdHJlZSBpcyBkb2N1bWVudGVkIHZpYSBkZXZpY2Ug
-dHJlZSBzY2hlbWEgeWFtbHMgdGhhdCBleHBsYWluIHdoYXQKPj4gK2RhdGEgZ2V0cyB0cmFuc2Zl
-cnJlZC4KPiBJZiB0aGlzIGlzIGFsbCBzZXBhcmF0ZSwgdGhlbiBJIHRoaW5rIHRoZSBzY2hlbWFz
-IHNob3VsZCBiZSB0b28uIEFuZAo+IHRoZW4gZnJvbSBteSAoRFQgbWFpbnRhaW5lcikgcGVyc3Bl
-Y3RpdmUsIHlvdSBjYW4gZG8gd2hhdGV2ZXIgeW91IHdhbnQKPiBoZXJlIChsaWtlIEZJVCBpbWFn
-ZXMpLiBUaGUgZHRzY2hlbWEgdG9vbHMgYXJlIHByZXR0eSBtdWNoIG9ubHkgZ2VhcmVkCj4gZm9y
-ICJub3JtYWwiIERUcy4gQSBjb3VwbGUgb2YgcHJvYmxlbXMgY29tZSB0byBtaW5kLiBZb3UgY2Fu
-J3QgZXhjbHVkZQo+IG9yIGNoYW5nZSBzdGFuZGFyZCBwcm9wZXJ0aWVzLiBUaGUgZGVjb2Rpbmcg
-b2YgdGhlIERUQiB0byBydW4KPiB2YWxpZGF0aW9uIGFzc3VtZXMgYmlnIGVuZGlhbi4gV2UgY291
-bGQgcHJvYmFibHkgc3BsaXQgdGhpbmdzIHVwIGEKPiBiaXQsIGJ1dCB5b3UgbWF5IGJlIGJldHRl
-ciBvZmYganVzdCB1c2luZyBqc29uc2NoZW1hIGRpcmVjdGx5LiBJJ20gbm90Cj4gZXZlbiBzdXJl
-IHJ1bm5pbmcgdmFsaWRhdGlvbiBoZXJlIHdvdWxkIHRoYXQgdmFsdWFibGUuIFlvdSBoYXZlIDEK
-PiBzb3VyY2Ugb2YgY29kZSBnZW5lcmF0aW5nIHRoZSBEVCBhbmQgMSBjb25zdW1lci4gWWVzLCB0
-aGVyZSdzCj4gZGlmZmVyZW50IGtlcm5lbCB2ZXJzaW9ucyB0byBkZWFsIHdpdGgsIGJ1dCBpdCdz
-IG5vdCAxMDBzIG9mIHBlb3BsZQo+IGNyZWF0aW5nIDEwMDBzIG9mIERUcyB3aXRoIDEwMHMgb2Yg
-bm9kZXMuCj4KPiBZb3UgbWlnaHQgbG9vayBhdCB0aGUgbmV0bGluayBzdHVmZiB3aGljaCBpcyB1
-c2luZyBpdHMgb3duIHlhbWwgc3ludGF4Cj4gdG8gZ2VuZXJhdGUgY29kZSBhbmQganNvbnNjaGVt
-YSBpcyB1c2VkIHRvIHZhbGlkYXRlIHRoZSB5YW1sLgoKCkknbSBjdXJyZW50bHkgYSBsb3QgbW9y
-ZSBpbnRlcmVzdGVkIGluIHRoZSBkb2N1bWVudGF0aW9uIGFzcGVjdCB0aGFuIGluIAp0aGUgdmFs
-aWRhdGlvbiwgeWVhaC4gU28gSSB0aGluayBmb3IgdjMsIEknbGwganVzdCB0aHJvdyB0aGUgc2No
-ZW1hcyAKaW50byB0aGUgRG9jdW1lbnRhdGlvbi9raG8gZGlyZWN0b3J5IHdpdGhvdXQgYW55IHZh
-bGlkYXRpb24uIFdlIGNhbiAKd29ycnkgYWJvdXQgdGhhdCBsYXRlciA6KQoKVGhhbmtzIGEgbG90
-IGFnYWluIGZvciB0aGUgcmV2aWV3IQoKCkFsZXgKCgoKCgpBbWF6b24gRGV2ZWxvcG1lbnQgQ2Vu
-dGVyIEdlcm1hbnkgR21iSApLcmF1c2Vuc3RyLiAzOAoxMDExNyBCZXJsaW4KR2VzY2hhZWZ0c2Z1
-ZWhydW5nOiBDaHJpc3RpYW4gU2NobGFlZ2VyLCBKb25hdGhhbiBXZWlzcwpFaW5nZXRyYWdlbiBh
-bSBBbXRzZ2VyaWNodCBDaGFybG90dGVuYnVyZyB1bnRlciBIUkIgMTQ5MTczIEIKU2l0ejogQmVy
-bGluClVzdC1JRDogREUgMjg5IDIzNyA4NzkKCgo=
+The USB-C PHY on the MSM8998, QCM2290, SM6115 and several other platforms
+doesn't have built-in PCS_MISC_CLAMP_ENABLE register. Instead clamping
+is handled separately via the register in the TCSR space. Make the new
+phy-qcom-qmp-usbc driver correctly handle the clamp register.
+
+For backwards compatibility the driver treats these registers as
+optional. They are only required for the PHY suspend/resume. However the
+schema declares corresponding property as required, it should be present
+on all relevant platforms.
+
+At this point I'm not sure whether having a single TCSR-based register
+will be enough or whether we will have to add more TCSR registers in
+future. In order to avoid repeating TCSR handle (and having multiple
+instances of TCSR regmap in the driver) use qcom,tcsr-reg property
+rather than someting more exact like qcom,vls-clamp-reg.
+
+Dependecies: PHY-related changes of [1]
+
+Note for the backporters: if the patch is packported to the kernel
+before the phy-qocm-qmp-usbc split, the phy-qcom-qmp-usb driver needs to
+handle both PCS_MISC_CLAMP_ENABLE and VLS_CLAMP registers as optional.
+
+[1] https://lore.kernel.org/linux-arm-msm/20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org/
+
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+Changes in v2:
+- Fixed the TCSR region definitions (Konrad, Bjorn)
+- Link to v1: https://lore.kernel.org/r/20240116-usbc-phy-vls-clamp-v1-0-73b2da7691c5@linaro.org
+
+---
+Dmitry Baryshkov (6):
+      dt-bindings: mfd: qcom,tcsr: Add compatibles for QCM2290 and SM6115
+      dt-bindings: phy: qcom,msm8998-qmp-usb3-phy: add TCSR registers
+      phy: qcom: qmp-usbc: handle CLAMP register in a correct way
+      arm64: dts: qcom: msm8998: declare VLS CLAMP register for USB3 PHY
+      arm64: dts: qcom: qcm2290: declare VLS CLAMP register for USB3 PHY
+      arm64: dts: qcom: sm6115: declare VLS CLAMP register for USB3 PHY
+
+ .../devicetree/bindings/mfd/qcom,tcsr.yaml         |  2 +
+ .../bindings/phy/qcom,msm8998-qmp-usb3-phy.yaml    | 11 +++++
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              |  7 ++++
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi              |  7 ++++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi               |  7 ++++
+ drivers/phy/qualcomm/phy-qcom-qmp-usbc.c           | 48 +++++++++++++++++-----
+ 6 files changed, 71 insertions(+), 11 deletions(-)
+---
+base-commit: 3cbd23fa6ef85801574a4b0d3f81fb365e06b2d2
+change-id: 20240116-usbc-phy-vls-clamp-10189efdcf12
+
+Best regards,
+-- 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
