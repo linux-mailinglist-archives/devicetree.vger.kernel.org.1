@@ -1,214 +1,200 @@
-Return-Path: <devicetree+bounces-32864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F291830DCB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 21:13:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC6F830DCD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 21:14:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2289B215CA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:13:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 540CBB2240D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8128824A1F;
-	Wed, 17 Jan 2024 20:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KHroEQ/V"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62E2124B22;
+	Wed, 17 Jan 2024 20:14:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5581B249F7;
-	Wed, 17 Jan 2024 20:13:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F0D322EF5;
+	Wed, 17 Jan 2024 20:14:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705522425; cv=none; b=q4fBipV9Lw9X9B1hWT1kODNZnMx1sezNEbkCVbgks+VzX4EswWGLUFN5YMYWoph0jiWWie+v5nHZd1H8DYFDk3nCKv2+s6+lPf8tR3SQYal/bTXuD7w9lvEO2G1BGP7G3AKl++LcJA8a0lJf/2kOFv1S/Q0Y9BpNOan5StWfy3A=
+	t=1705522446; cv=none; b=ULmwcFPJ0IzzEYSSK2DR1t24t81B4J/Muio3l6OkeWYKEx7HJ30EWs2pArHPdLNe673wBzvN6VIilMpw1GAgRMul37FGlSoVCYO2U00dxVuPJoZjJl3La2nQolYhU4hNxmM9Qf4fWP5Hx4oN5W7zPqFDumJnahiKTOB6duDknpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705522425; c=relaxed/simple;
-	bh=6WmOXhgilmcsgUCOS2c4XBXJqOkmHdcKb8pFyCDU1hQ=;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=TKhTWVEoUBGnMfJmqSRL018G4wIa5oHASo+erA41UlIVKNhEt5ndkcw/g1S/EQo2ZXjNwkXCmiBGJvsHzhD0j945m9Th5NE1uJklX1RXwP3gi0q1LZyyGZA22LPm/PjB04Y0nNruQV947etRLAani8/NyRTOJfsjd8l74RoofnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KHroEQ/V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 856F1C43390;
-	Wed, 17 Jan 2024 20:13:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705522424;
-	bh=6WmOXhgilmcsgUCOS2c4XBXJqOkmHdcKb8pFyCDU1hQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KHroEQ/VOkN0bdYFQZeY1hjdwMXvlHza2D0rfIpl4phtMUBS1cHC2qWP+eWyrCH12
-	 kMo9CmciJOLvKG97/AsO+i/KebOhEHElnmtAA5nCOlEmRKziVEB2pfA4ICvSi6u/Aq
-	 UtVoZG2uNxb0qAkRhIcwX23QWsgKQ4mU9cfOEb0waNd0/HTwI6JrtTLrx2fTmiGXaO
-	 WQgXm9ZlB67eA6+A6fbu5xBR1Oyo5sEzIuk7kZkGwIfrDemsrKfzqguR+60XvjiKQU
-	 eFo2P+LmQI84qCK436hh7OcbY9F24Izpe0HxZ/PhLwQw5IpFUQSvtJYyjApFcFHp07
-	 OKqxjpXspzVAw==
-Date: Wed, 17 Jan 2024 14:13:42 -0600
-From: Rob Herring <robh@kernel.org>
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com,
-	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	nm@ti.com, vigneshr@ti.com, kristo@kernel.org, praneeth@ti.com,
-	a-bhatia1@ti.com, j-luthra@ti.com
-Subject: Re: [RFC PATCH 1/3] dt-bindings: display: ti,am65x-dss: Add support
- for display sharing mode
-Message-ID: <20240117201342.GA3041972-robh@kernel.org>
-References: <20240116134142.2092483-1-devarsht@ti.com>
- <20240116134142.2092483-2-devarsht@ti.com>
+	s=arc-20240116; t=1705522446; c=relaxed/simple;
+	bh=GpvNvnhLXozc6WP27ixII0ay/K2GATUmfZ0U1gFMPFI=;
+	h=Received:Received:Received:Date:From:To:CC:Subject:Message-ID:
+	 In-Reply-To:References:Organization:X-Mailer:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-Originating-IP:
+	 X-ClientProxiedBy; b=PlLxf3CIDRheffO0f5qWZdAhTbnolNpX/cs6SIyXIJXlmPQwSyEBvLpzhTtK0kPoasK+rpxlPKUvBI1zwnbQRHgnZ0j72hT18T41ryLU86+FrBVTFYLhX2YFv2Q0USBnPCbccdr607ofB0oJy0tWOccwlfNq5Y0r2aUk/794CPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TFcTF4ySbz6K8sR;
+	Thu, 18 Jan 2024 04:11:13 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 5CD96140CF4;
+	Thu, 18 Jan 2024 04:14:00 +0800 (CST)
+Received: from localhost (10.48.153.213) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 17 Jan
+ 2024 20:13:59 +0000
+Date: Wed, 17 Jan 2024 20:13:56 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Rob Herring <robh@kernel.org>
+CC: Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Frank Rowand <frowand.list@gmail.com>, "Julia
+ Lawall" <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>,
+	Sumera Priyadarsini <sylphrenadin@gmail.com>, Peter Zijlstra
+	<peterz@infradead.org>
+Subject: Re: [PATCH 2/4] of: unittest: Use __free(device_node)
+Message-ID: <20240117201356.00007535@Huawei.com>
+In-Reply-To: <20240117194743.GA2888190-robh@kernel.org>
+References: <20240114165358.119916-1-jic23@kernel.org>
+	<20240114165358.119916-3-jic23@kernel.org>
+	<CAL_Jsq+vsXgBYtj66NG+3eZM-9gGw4QkU-bpn+JprAmG+UWmTQ@mail.gmail.com>
+	<20240117170144.00004a43@Huawei.com>
+	<20240117194743.GA2888190-robh@kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240116134142.2092483-2-devarsht@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml500002.china.huawei.com (7.191.160.78) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Tue, Jan 16, 2024 at 07:11:40PM +0530, Devarsh Thakkar wrote:
-> Add support for using TI Keystone DSS hardware present in display
-> sharing mode.
-> 
-> TI Keystone DSS hardware supports partitioning of resources between
-> multiple hosts as it provides separate register space and unique
-> interrupt line to each host.
-> 
-> The DSS hardware can be used in shared mode in such a way that one or
-> more of video planes can be owned by Linux wherease other planes can be
-> owned by remote cores.
-> 
-> One or more of the video ports can be dedicated exclusively to a
-> processing core, wherease some of the video ports can be shared between
-> two hosts too with only one of them having write access.
-> 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> ---
->  .../bindings/display/ti/ti,am65x-dss.yaml     | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> index 55e3e490d0e6..d9bc69fbf1fb 100644
-> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> @@ -112,6 +112,86 @@ properties:
->        Input memory (from main memory to dispc) bandwidth limit in
->        bytes per second
->  
-> +  ti,dss-shared-mode:
-> +    type: boolean
-> +    description:
-> +      TI DSS7 supports sharing of display between multiple hosts
-> +      as it provides separate register space for display configuration and
-> +      unique interrupt line to each host.
+On Wed, 17 Jan 2024 13:47:43 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-If you care about line breaks, you need '|'. 
+> On Wed, Jan 17, 2024 at 05:01:44PM +0000, Jonathan Cameron wrote:
+> > On Tue, 16 Jan 2024 12:26:49 -0600
+> > Rob Herring <robh@kernel.org> wrote:
+> >  =20
+> > > On Sun, Jan 14, 2024 at 10:54=E2=80=AFAM Jonathan Cameron <jic23@kern=
+el.org> wrote: =20
+> > > >
+> > > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > >
+> > > > A simple example of the utility of this autocleanup approach to
+> > > > handling of_node_put()
+> > > >
+> > > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > > ---
+> > > >  drivers/of/unittest.c | 10 +++-------
+> > > >  1 file changed, 3 insertions(+), 7 deletions(-)
+> > > >
+> > > > diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> > > > index e9e90e96600e..b6d9edb831f0 100644
+> > > > --- a/drivers/of/unittest.c
+> > > > +++ b/drivers/of/unittest.c
+> > > > @@ -233,27 +233,23 @@ static void __init of_unittest_dynamic(void)
+> > > >
+> > > >  static int __init of_unittest_check_node_linkage(struct device_nod=
+e *np)
+> > > >  {
+> > > > -       struct device_node *child;
+> > > > +       struct device_node *child __free(device_node) =3D NULL;   =
+=20
+> > >=20
+> > > In another thread[1], it seems that initializing to NULL is bad form
+> > > according to the chief penguin. But as this is a refcounted pointer
+> > > rather than an allocation, IDK? =20
+> >=20
+> > I'm not sure the argument applies here. My understanding is it's not
+> > really about the =3D NULL, but more about where the __free(device_node)=
+ is.
+> > The ordering of that cleanup wrt to other similar clean up is to do it
+> > in reverse order of declaration and in some cases that might cause trou=
+ble. =20
+>=20
+> Rereading Linus' reply again, I think it is more that you see how=20
+> something is freed right where it is allocated, and the way to do that=20
+> is the allocation and declaration are together.
 
-> +      One of the host is provided access to the global display
-> +      configuration labelled as "common" region of DSS allows that host
-> +      exclusive access to global registers of DSS while other host can
-> +      configure the display for it's usage using a separate register
-> +      space labelled as "common1".
-> +      The DSS resources can be partitioned in such a way that one or more
-> +      of the video planes are owned by Linux whereas other video planes
+Ok.  Maybe both issues surfaced in different threads.  Both are valid points
+I've seen made about this stuff.
 
-Your h/w can only run Linux?
+>=20
+> > Here, the only way we could ensure the allocation was done at the right
+> > point and we didn't have that __free before it was set, would be to add
+> > variants of for_each_child_of_node() etc that did something like
+> >=20
+> > #define for_each_child_of_node_scoped(parent, child) \ =20
+>=20
+> Note that you don't need child here except to define the name of child.=20
+> Otherwise, the variable name you need for the loop is implicit.
 
-What if you want to use this same binding to define the configuration to 
-the 'remote processor'? You can easily s/Linux/the OS/, but it all 
-should be reworded to describe things in terms of the local processor.
+Agreed.
 
-> +      can be owned by a remote core.
-> +      The video port controlling these planes acts as a shared video port
-> +      and it can be configured with write access either by Linux or the
-> +      remote core in which case Linux only has read-only access to that
-> +      video port.
+> OTOH,=20
+> defining a name which has no type defined anywhere in the user function=20
+> isn't great for readability either.
 
-What is the purpose of this property when all the other properties are 
-required?
+Agreed it's not great to have the type missing, but I couldn't
+think of a better option. So I think if we want these toys and to not
+have it as a 2 part statement that's what we get.
 
-> +
-> +  ti,dss-shared-mode-planes:
-> +    description:
-> +      The video layer that is owned by processing core running Linux.
-> +      The display driver running from Linux has exclusive write access to
-> +      this video layer.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [vidl, vid]
-> +
-> +  ti,dss-shared-mode-vp:
-> +    description:
-> +      The video port that is being used in context of processing core
-> +      running Linux with display susbsytem being used in shared mode.
-> +      This can be owned either by the processing core running Linux in
-> +      which case Linux has the write access and the responsibility to
-> +      configure this video port and the associated overlay manager or
-> +      it can be shared between core running Linux and a remote core
-> +      with remote core provided with write access to this video port and
-> +      associated overlay managers and remote core configures and drives
-> +      this video port also feeding data from one or more of the
-> +      video planes owned by Linux, with Linux only having read-only access
-> +      to this video port and associated overlay managers.
-> +
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [vp1, vp2]
-> +
-> +  ti,dss-shared-mode-common:
-> +    description:
-> +      The DSS register region owned by processing core running Linux.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [common, common1]
-> +
-> +  ti,dss-shared-mode-vp-owned:
-> +    description:
-> +      This tells whether processing core running Linux has write access to
-> +      the video ports enlisted in ti,dss-shared-mode-vps.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
+>=20
+> WRT the whole renaming, it might be better to keep 'scoped' in the name=20
+> so that it is obvious how child needs to be handled. Or is the compiler=20
+> smart enough to catch any case of doing it wrong?
 
-This can be boolean. Do writes abort or just get ignored? The latter can 
-be probed and doesn't need a property.
+I'm not sure we have variable name shadowing detection turned on.
+If that was on we should see a warning on someone not realizing there
+is a local scoped version.  I'm fine with keeping the name.
+>=20
+> > 	for (struct device_node *child __free(device_node) =3D \
+> > 	       of_get_next_child(parent, NULL); \
+> >              child !=3D NULL; \
+> > 	     child =3D of_get_next_child(parent, child))
+> >=20
+> > So that the child variable doesn't exist at all outside of the scope
+> > of the loop.
+> >=20
+> > I thought about proposing that style of solution but it felt more invas=
+ive
+> > than a simple __free() annotation.  I don't mind going that way though
+> > if you prefer it. =20
+>=20
+> My only preference currently is to not get yelled at. :)
 
-> +
-> +  ti,dss-shared-mode-plane-zorder:
-> +    description:
-> +      The zorder of the planes owned by Linux.
-> +      For the scenario where Linux is not having write access to associated
-> +      video port, this field is just for
-> +      informational purpose to enumerate the zorder configuration
-> +      being used by remote core.
-> +
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
+Always nice ;)
 
-I don't understand how 0 or 1 defines Z-order.
+>=20
+> > Alternative is just to make sure the struct device_node * is always
+> > declared just before the for loop and not bother setting it to NULL
+> > (which is pointless anyway - it just felt fragile to not do so!) =20
+>=20
+> Would the compiler know to avoid invoking __free if exiting before the=20
+> variable is set?
 
-> +
-> +dependencies:
-> +  ti,dss-shared-mode: [ 'ti,dss-shared-mode-planes', 'ti,dss-shared-mode-vp',
-> +                        'ti,dss-shared-mode-plane-zorder', 'ti,dss-shared-mode-vp-owned']
-> +  ti,dss-shared-mode-vp: ['ti,dss-shared-mode', 'ti,dss-shared-mode-planes',
-> +                          'ti,dss-shared-mode-plane-zorder', 'ti,dss-shared-mode-vp-owned']
-> +  ti,dss-shared-mode-planes: ['ti,dss-shared-mode', 'ti,dss-shared-mode-vp',
-> +                              'ti,dss-shared-mode-plane-zorder', 'ti,dss-shared-mode-vp-owned']
-> +  ti,dss-shared-mode-plane-zorder: ['ti,dss-shared-mode-planes', 'ti,dss-shared-mode-vp',
-> +                                    'ti,dss-shared-mode', 'ti,dss-shared-mode-vp-owned']
-> +  ti,dss-shared-mode-vp-owned: ['ti,dss-shared-mode-planes', 'ti,dss-shared-mode-vp',
-> +                                'ti,dss-shared-mode', 'ti,dss-shared-mode-plane-zorder']
-> +
->  allOf:
->    - if:
->        properties:
-> @@ -123,6 +203,8 @@ allOf:
->          ports:
->            properties:
->              port@0: false
-> +            ti,dss-shared-mode-vp:
-> +            enum: [vp2]
+If it's declared just before the loop, there wouldn't be such a path
+as the init condition of the loop sets it to a valid handle or NULL.
 
-This should throw a warning. You just defined a property called 'enum'.
+I looked at about the first half (alphabetical order) of the 127 files
+with for_each_child_of_node().
 
-Rob
+Vast majority are easily converted.  I think I counted 4 possible bugs
+that need a closer look and a bunch were care would be needed (typically
+steal the pointer for a return).
+
+Happy to do a small set of them and see what it looks like if you think
+that is a promising direction to try?
+
++CC Peter Zijlstra as person most likely to have seen similar discussions
+or provide input based on his own cleanup.h conversions.
+
+Jonathan
+
+>=20
+> Rob
+>=20
+
 
