@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-32637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74135830079
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 08:23:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81B6B83007D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 08:24:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 777D01C21927
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 07:23:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 897351C22758
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 07:24:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F058F65;
-	Wed, 17 Jan 2024 07:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3D2E9467;
+	Wed, 17 Jan 2024 07:24:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Em/bewgX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m3kP9V/+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C4AC2E3
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 07:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 526898F65
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 07:24:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705476177; cv=none; b=F6DemHgW5r6s+bQXUOyWjziGmFATunTlruGCUq2P0w5jeuewTDvKSHPAZOEwhNQivDZ4UknLbmKAhiat/mlvVyrcJHDQkhjB5eTaRXzl6g6Z+EWNfOMsmYopPCFzUu4ZywY71gjGM0I8ucbOE5j6eOmvLu/1KTeaqS13OEO4GiU=
+	t=1705476255; cv=none; b=dRgi3+5FG4mdx7AaR45UARIcKy69BrCZTZsYVtgvFdEfPvSWunjQtSol9W/EIPlC33y8/CR8d/1R70QgnUH08pl3S+q+tP7MSJHAgOP/NuBh4qCIZbfeAkQGzApf0UZ3/bnaI3uRzeaaApfE1ZlxoB58GJi6FTi/ALU/whZzVEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705476177; c=relaxed/simple;
-	bh=tQ9ArgiEIxDhZiS+bkgzgrxh5erJCH0nJTQEtIK/eEo=;
+	s=arc-20240116; t=1705476255; c=relaxed/simple;
+	bh=Id3wi3olBIfysDhLSl9qyngd9s+jR6CUqvJn2Xr67tw=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
 	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
 	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=cgkKLOzhIp9NCV1ycVRVqQWECFI/pgK8mpoBo0aY+ZqlRJOEYCz7/jx4qKBJx47YwOQFDP0QSZn4bQ7fRB3kcxsIeq+GahgFgPl1USMyanYvfRmsQJSuhzKgswjlgx6wH2R+f2bsSKGdVKzzUi2nwUZoDp3rktG6cLLcfTpjoGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Em/bewgX; arc=none smtp.client-ip=209.85.208.170
+	 Content-Transfer-Encoding; b=mbz87aQTL2lgg8a4K7kpbpo0+2hasjaHgpCe35Ww5bylEL6u/Yf9aCXRSGD6sFzaBIVGgQOGiz+9hd+m6Jku95UHSjjgRLB2V12kTp5+IOdheMDVaZyeDspxyKbLmrD1BPYcj1sGbGRF2uvrnHraFunaWNBc36bn4avKBBjwt+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m3kP9V/+; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2cdeb954640so5627431fa.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 23:22:55 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5534dcfdd61so18878345a12.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 23:24:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705476174; x=1706080974; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705476252; x=1706081052; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SOYHVbiUAnjjQrw6HsFcyiBwIfZXDGBhM5yuxq5BenE=;
-        b=Em/bewgXnZV/S6jk3dKi9cybwRALWAiDgjvmm59gMgAN6MUK/AQnvEAvBoePFnOZ0s
-         1Zt9Xh92tfs4ltHNeQMV68y0VUwnk0mOMHtF5d9S+2Qxt9/c0p3gUDJFH4BzwVezYBS7
-         B27kOzBIkcAA+IRzOyvTay9eM/ARyCUx7QG56fqZ3pSm4RqEDh0lwb0qZUYqwUVBZeLy
-         d+LCVGJRv41IwabgFD5lsmXUZSyn7foQ9wfHgfISqgWJZQht3kVq60RN1vJ88T+ub30X
-         N2tYYk+fue+U6e0Dc5MjwsGN/TDcpue94cT3EYH1N2JThnqCqjhhU1kc/UqG8AIlP5rC
-         Z4Yw==
+        bh=vOeeLr5Q/SJJfobMWQJMrFz6HgRJncfEoFMxDRaNXQU=;
+        b=m3kP9V/+8n7ZK9jVepPFRJTXpBcR02u4wEHP7wPmBykvIsmGm5Q/gmu9rDV4NAP5YI
+         JBiDdkB7iQBP2w4MBin6ENiCeeoOoP2WB6Jhz6QArtTc0N14boNAyHn3BkTQeYMJFyCH
+         TdLKvKE0Vg8CrYIygdgRwyjrWVZaFOF1kY7yuw+7xfc66kKFE3Nv9fXgvBKFqZl/3Nbf
+         jCSNYsH+Vma20gDxrYLjzVYBXK0BLoAdhdgErwOu+nloUxL0Ml2nmFoxFfSUuHNZqtRw
+         83icy5X8GgDv7CJTDoXf3L6TfJ3/4ITUdIVs6SK7RrRk1Gc71s1qQAmqfyYAs/aKOLx4
+         ow/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705476174; x=1706080974;
+        d=1e100.net; s=20230601; t=1705476252; x=1706081052;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SOYHVbiUAnjjQrw6HsFcyiBwIfZXDGBhM5yuxq5BenE=;
-        b=Dz9nfBdiO6TCkq8+7hX9RkOhQi+SgapMFEqf/vNQax8vljF9FK23Wq7V2deRD1+8lh
-         tzxzKVsZVKiwSXSZpcrAuBkF1ZRlC2xJTI51GeyJd4BxAtqLb2+6psAIBsuh1stGefig
-         Y8rs9YCuT4YuS0SfhM7J4tBcEnpJr2OztNl+vD3geE8PcyotXxskmVPHxXkXiqQ6N8lD
-         nOjrlXChZ5jEd42JClTAhGeOWbopb+uzHVukOW+hKdOt0phfC+Pjlu+wUVH7o9QF+T/G
-         mgVxAQFeCMDXdpJaPVyAnLIvfwjR4m3KCgNh2Fpxrm0j7XcPMjqZmDXbOXL8o9uGJ7Ez
-         JKpg==
-X-Gm-Message-State: AOJu0YyVT6emiVAjKogJ1AVYUJ9LvvYjA8P3nhdwtjBFn2TQvkhOddLK
-	PdFIwma95oXheqwO5MiwlsctlIoqgjo8CJqUoEqKnl/unWI=
-X-Google-Smtp-Source: AGHT+IHVcF0qeMEpqs7uSkwl1gujCZSqpe2AEHAv6VCSRq3gAHW9c+mFiHiyS4ZxEJ6pJzQ5249ZBw==
-X-Received: by 2002:a2e:bd87:0:b0:2cd:cfdb:c2b3 with SMTP id o7-20020a2ebd87000000b002cdcfdbc2b3mr2415461ljq.101.1705476174083;
-        Tue, 16 Jan 2024 23:22:54 -0800 (PST)
+        bh=vOeeLr5Q/SJJfobMWQJMrFz6HgRJncfEoFMxDRaNXQU=;
+        b=kvTU2LguJzOrExrnzCoX4/NcSIMeFcPP70PScxrwlVoSORntK9vAEVMprpwVcvvk9j
+         /nmYWjcfRUskbM4srLSzuKo4m9hX2bsuq4s+Q8QZ7nKQE1ee1W5BG3raRh4kiVe81D9S
+         m0hcLe9EFRgujIJVj6LTO8LS3GCn0RJBUtDgrgP1NhoiozCwj9U06VUvpnafT+i2oO/W
+         +2UcBLPOaYTsvAW/8B4O0KnYSO/vWAInU3MMn0OAawm00BHMfTor7LEteDE3fBYQ1Xg2
+         QqoYm8BVKX74r6Xw+XdYxNgjH0hwBySpFIpip+vqv+eDLApjqbp+swYyDO/BEDRwvmSH
+         +F0w==
+X-Gm-Message-State: AOJu0Yz+uSM0z0qMjLVf2bfgHktoD/asNX4FwRirbRHcRzgrlrcbbH8t
+	t/nR8DOVT0+CJ8DJsoXaluKGEzedqs3I+A==
+X-Google-Smtp-Source: AGHT+IF/gu11M5AnhrGIj7RSq6/2aoVcOjcNcUTIP7n9SwU0eKQaaIsT1yOqjLFs0v5VPGq6tmd1KQ==
+X-Received: by 2002:a05:6402:31e4:b0:558:b5d0:e77a with SMTP id dy4-20020a05640231e400b00558b5d0e77amr442788edb.36.1705476252401;
+        Tue, 16 Jan 2024 23:24:12 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id dj17-20020a05640231b100b00559bb146ecbsm1332043edb.6.2024.01.16.23.22.52
+        by smtp.gmail.com with ESMTPSA id dj17-20020a05640231b100b00559bb146ecbsm1332043edb.6.2024.01.16.23.24.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 23:22:53 -0800 (PST)
-Message-ID: <18300e5d-364c-4d62-b460-781dc44b8f9c@linaro.org>
-Date: Wed, 17 Jan 2024 08:22:51 +0100
+        Tue, 16 Jan 2024 23:24:12 -0800 (PST)
+Message-ID: <70d52400-13b8-4f2f-81e3-0753e77e129f@linaro.org>
+Date: Wed, 17 Jan 2024 08:24:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,22 +78,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] dt-bindings: PCI: qcom,pcie-sm8450: move SM8450 to
- dedicated schema
+Subject: Re: [PATCH] ARM: dts: tps65217: add power regulator & backlight
+ drivers support
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240108-dt-bindings-pci-qcom-split-v1-0-d541f05f4de0@linaro.org>
- <20240108-dt-bindings-pci-qcom-split-v1-2-d541f05f4de0@linaro.org>
- <20240116144832.GA3862516-robh@kernel.org>
+To: Xulin Sun <xulin.sun@windriver.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240117043323.2008454-1-xulin.sun@windriver.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -139,29 +130,35 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240116144832.GA3862516-robh@kernel.org>
+In-Reply-To: <20240117043323.2008454-1-xulin.sun@windriver.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2024 15:48, Rob Herring wrote:
->> +        clock-names:
->> +          items:
->> +            - const: pipe # PIPE clock
->> +            - const: pipe_mux # PIPE MUX
->> +            - const: phy_pipe # PIPE output clock
->> +            - const: ref # REFERENCE clock
->> +            - const: aux # Auxiliary clock
->> +            - const: cfg # Configuration clock
->> +            - const: bus_master # Master AXI clock
->> +            - const: bus_slave # Slave AXI clock
->> +            - const: slave_q2a # Slave Q2A clock
->> +            - const: ddrss_sf_tbu # PCIe SF TBU clock
->> +            - const: aggre1 # Aggre NoC PCIe1 AXI clock
+On 17/01/2024 05:33, Xulin Sun wrote:
+> Support TPS65217 voltage regulator driver and TPS65217 Backlight driver.
+> And enable them by default. This will avoid below booting failed
+> information:
+> tps65217-pmic: Failed to locate of_node [id: -1]
+> tps65217-bl: Failed to locate of_node [id: -1]
 > 
-> Almost the same list. Combine them and just make the 11th entry "enum: 
-> [aggre0, aggre1]".
+> Signed-off-by: Xulin Sun <xulin.sun@windriver.com>
+> ---
+>  arch/arm/boot/dts/tps65217.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/tps65217.dtsi b/arch/arm/boot/dts/tps65217.dtsi
+> index 0d463de5650f..f412e7476660 100644
+> --- a/arch/arm/boot/dts/tps65217.dtsi
+> +++ b/arch/arm/boot/dts/tps65217.dtsi
+> @@ -13,6 +13,16 @@ &tps {
+>  	interrupt-controller;
+>  	#interrupt-cells = <1>;
+>  
+> +	pmic {
+> +		compatible = "ti,tps65217-pmic";
+> +		status = "okay";
 
-Sure.
+Why do you need status here?
 
 Best regards,
 Krzysztof
