@@ -1,228 +1,125 @@
-Return-Path: <devicetree+bounces-32844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56ED0830CAC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:23:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4274F830CCF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:39:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3EF9B22C1B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:23:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4471285151
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304AD22F09;
-	Wed, 17 Jan 2024 18:23:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86BD123748;
+	Wed, 17 Jan 2024 18:39:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EEiNw06V"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="AJgXuF5k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A3222EFE
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 18:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD1D13FFF;
+	Wed, 17 Jan 2024 18:39:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705515811; cv=none; b=bpPTmOphCd3IVcQaUBuUaJV8qzi8kVT1Htxkd5cO2ScRbUcEgwjvxp33xMhp6hhk82dkM7lnyjWzIB7obZ7XfKY2iubE8bA/Vfw+0fIiozOyvFt8IoSuBLae98QX66NW80EKAE9k0hrcuxCSc4dl0xNv4zCHDyK9mjsEdfYBZQw=
+	t=1705516787; cv=none; b=rIr4dqKBbfYaPTAF/nAbbLQfah+nQn1qH865cD28JXRjOaT79bRRimKcLl2UE5pfRd0DafKGurA9wF8ee8I4zJxTpvDwt5j5x9MY5TaQcgjtX563mFUrDKPv1d1C6Y5mHwxD3Iarg/9P0YywrnkSB/l8raU+pudwpiBmsLkR/gI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705515811; c=relaxed/simple;
-	bh=g/OQTJucCk9XRtmrjpM1TZW3zy5eX6m6El/5+HeFSfM=;
-	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
-	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
-	 To:Cc:References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=Eji2j0p3rYjGvht44khCUM3zUuYJEUeQjPbteQRoKyenVtg+qnYC8kMMNxmxRU6/gHOGFuQPFDuhFQYGt8maocvs4sdR6JzLpZHcRjy0j0V3/4pkkjudB0lXGNTJdrh5/OReS7ctQmTjyL3+t26lHMZtMCrxSizk5alR37VyfJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EEiNw06V; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-337b71a0240so1859217f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:23:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705515808; x=1706120608; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8TFf1Vx3P27CdjSDq7jNiUNW+cNOvMLpoL0yHWCOqRQ=;
-        b=EEiNw06VIxxOaHmADl09cfKPxTIjifDEbC6Ug24ylpe7N0zcAR5S/gW5CBxxvcMOIZ
-         pZjYO2+rYT3jkT91DViUfloUgYDCDZ2caUB9KxCXvQ9fs2bcRqHOMGVz2E9bklF3C0qI
-         q/+oJS/eYlLJwm5rka/ErEc6UaLRnLjJ45w2CHt+QU6Q6vUeABgvzQbAOxymMnJn0l/O
-         kVYzPmoEz27QRV4yZgjBjBrRcMRfp97u/RnR3Dq0Flf1Ne0QAJ36oROMLQ3HQ1TQa8+V
-         VVmhrB1xIaMMVNiAxcafO/dhsfmgp1fNq6L00W3ndnVchaocHhdUN0ZfAfyZIRvWaD9m
-         0M0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705515808; x=1706120608;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8TFf1Vx3P27CdjSDq7jNiUNW+cNOvMLpoL0yHWCOqRQ=;
-        b=fQwhNVlMNp7MZSgrQl383jQXenLSQWrVHkHtSPGFMctwbJTUK6v5s3e7qbj1qONVCa
-         ksDlMEGbGZeeeYoXUli/Ol/+E4KAo+iyQbHgqEIx4poBz9vKmRDqpZxo1hAMPoJ1abVG
-         X6TIeho6Hdo0c2busgkqjbK5E8IYafOC8n4sT9AV4Hc/B5FqMPUiOdwYiQpPwL+QDVGK
-         JVe06VGMccCCZqKtJHSn9yFViXyWtHHkOJMkHZDKeYKFqhEHuJTFXPFsDXOdSwzVRx6u
-         WiFVYQOAUCdNGJg2nIsy7oTD/eeSaWvrh9SZ/lFfnP2LVNnBovo7akWqMHQd0MYXxErh
-         yQww==
-X-Gm-Message-State: AOJu0YxzIHDxkJk2QUtxfb8CwOChyLqDx4buIjF4HO+xToJg1ewf2Pnc
-	xNfMobgqYCFLWugb2H76xkAb37D6PKZy/Q==
-X-Google-Smtp-Source: AGHT+IHYWffLkxrJLysqpwRplgajEK57fm4ZpJxRNz3jEiJuZEiJGCm3fO2YWVnBx5eJmxoVP/FjCA==
-X-Received: by 2002:adf:f68c:0:b0:337:bfbc:881f with SMTP id v12-20020adff68c000000b00337bfbc881fmr1617032wrp.61.1705515807683;
-        Wed, 17 Jan 2024 10:23:27 -0800 (PST)
-Received: from [192.168.100.86] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id n7-20020adff087000000b00337bb0f370dsm2224452wro.40.2024.01.17.10.23.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jan 2024 10:23:27 -0800 (PST)
-Message-ID: <4c9571d4-08b8-45e6-8c74-5b864ddba490@linaro.org>
-Date: Wed, 17 Jan 2024 18:23:26 +0000
+	s=arc-20240116; t=1705516787; c=relaxed/simple;
+	bh=OGTSWYYYIj8c+SD8nKzKyjhCGDqhkunykC0KNhW8ywg=;
+	h=DKIM-Signature:X-UI-Sender-Class:Received:From:To:Cc:Subject:Date:
+	 Message-Id:X-Mailer:MIME-Version:Content-Transfer-Encoding:
+	 X-Provags-ID:X-Spam-Flag:UI-OutboundReport; b=qckoQh81DTd4PQfa9VTvSNwNrxc2zzuBTXnhddFBjmt/og7EmVOnrojHATAvNB395sxEaRy94rjPTLEiUpPUpSnrnyB/Uf9JBG6RcCr0Rlm+QCJ9jOwCTd51kfnNXu/QQtudOTuvGXFBg7N8uVylcK0v3/37mS6oU84RyP9DV7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=AJgXuF5k; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+	s=s31663417; t=1705516763; x=1706121563; i=frank-w@public-files.de;
+	bh=OGTSWYYYIj8c+SD8nKzKyjhCGDqhkunykC0KNhW8ywg=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+	b=AJgXuF5k8HVQ523E71D9cfqi+mrPAr1Ry4u89Ofc9EUCXkQp8nVePmThzNwSutvJ
+	 +kxSD/6pyyjK+FlsFtinRsq85BS9EiBgM7wsgtO8nTIiSw7/qiUKKm8+DSh7A36Qo
+	 +DErHSq7W2O3ZIfJ18l3wRWo9RkvL4Xo5MSyrPOvOjTSLPhkLoKtYi+mYazdSomtv
+	 rM5GvsORLSpTqgviOJ6PFnrt5rXlhFQrYCbnz4SHLb2ybwz4rS9wR7Ir8/De7p5iu
+	 iSXMhAZZqQ0NN0RIDPsBlY79O1glgLFtJEN7JGk4C8bLNzGOTTRvSIDNdhZtzRqbD
+	 qIxPZrwk3MTnyZhCsA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from frank-G5 ([217.61.151.254]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N1wll-1qy5Br44rZ-012HW0; Wed, 17
+ Jan 2024 19:39:23 +0100
+From: Frank Wunderlich <frank-w@public-files.de>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 0/2] Add reset controller to mt7988 infracfg
+Date: Wed, 17 Jan 2024 19:39:12 +0100
+Message-Id: <20240117183914.62122-1-frank-w@public-files.de>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 13/15] arm64: dts: qcom: pmi632: define USB-C related
- blocks
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
- <20240113-pmi632-typec-v2-13-182d9aa0a5b3@linaro.org>
- <1d0d325d-d15e-4e86-b8e3-9f91b99e78bf@linaro.org>
- <CAA8EJpo7qH43FyvO-N9vFH=6K3rMdPpnGp9w6pGW2cz4bMK+0g@mail.gmail.com>
- <28e019ce-7612-4b10-8068-17c3fef4dba8@linaro.org>
- <CAA8EJpoXUMehrcf8sXKPhk7qb4SGXT960SUFHX5AUt1wxxHepw@mail.gmail.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CAA8EJpoXUMehrcf8sXKPhk7qb4SGXT960SUFHX5AUt1wxxHepw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:ot4r7tklUz8MgmS9LTbACzre8iQs8Hx+z+di0RWtZbnRPLQYiGe
+ tp1PvtXKeDhzaJROf+ij6+lmA+6H+pl3FOxzMBLK7SPSL8D6asAo39bpgigkHGo1ObaFwQU
+ QaTvaZQHDsvd6jeZEeDvbY+JQa61Xb73xO7orc323X1a2PNPAmf8vEHbrKReNfduQhbYFuj
+ ToYdMGed60GurzKf5UWZQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:TNCFqyXqnyM=;cQqBF/HRLDu+oXyy8j8R83GDoir
+ gbD3D6ICYH1whKRxsZtyuJcpVYLadHrticqut6pDQYYGdnCuxLIVMcr5qcoA+hRl1gFuP2+FT
+ 7T6lz5zU+PDmCISN4nWKX/EyAq0e55oFWhwUHZCN4pohOio4fsJ3W73UcYLydm0nk4krnExM6
+ VYewiT7xZi7rt9mMhhQFU84bZvIvbUNUDSEaqo899/4De58JWGW/x0fyWUXh9rndGZ8Cel61n
+ QyULho6zjXygWDA3ZWaJMbWQ6cWqt+pCzJf6CpbZrTE05bMTwL+4lmfO30sv3E3Lg2jrGO733
+ fynr6fBGeCVi3Btbgn60F32f/bq4+aWd5qYJSQqRCCg9zFaZJyMDLCqppq2pCWXn+/0Z0wa4L
+ yTqDxqc3/IGKNvI3qe2QYBBXs+CtFwkaokfgUVHRCP0yETGKNLirMNGhImc73dB5G1EvPWYFF
+ pGr/lJm2i95OrXwhkKZC0dGwYzXJHYtXhrcHtaWF4/Ct+ysma2Nv+CwEk5a2MP2jfHu+NZbfw
+ 7oKl4LJ/ekMzAJO4LnjmNCfbAIlybEzVSK6dgupRC654wlz0hCIPLOJvD43eHLCkluQuZO/HD
+ TdiPWW0qByzycKRQgGuxjIq5EapuINyep9q6xi9NyF2tEMMU4qOK4RySAXqAo9908GmwwZy4B
+ zaq0aHOemzwFvgXpqhl1tW/fOpLgBQ2WyToM4jBBjlyWrxo76zVqcpn15FkXllaaQioGmNYdy
+ EcKhOTBeANZgqt3X5aWgY4d7izw15+a0ippy09zDLBGVe9f2tW90DRIXwTLlmfZtQxs8Gln2i
+ cJYE0nbq6Xe7+Ux+kDrEzNVvJHhU5xMOzifKNVvOtvhp+PP210hHoLLIMBLuHuVCeYzu9lVsL
+ lScfk9ijLw/waxF2wzO97wUC6Sf/ToXtD5PkgjDDQMVQ9kAOv0YMKolmYlFohdYeZ53Ckvtj1
+ RiiUFQ==
 
-On 17/01/2024 18:05, Dmitry Baryshkov wrote:
-> On Wed, 17 Jan 2024 at 19:23, Bryan O'Donoghue
-> <bryan.odonoghue@linaro.org> wrote:
->>
->> On 15/01/2024 10:43, Dmitry Baryshkov wrote:
->>> On Mon, 15 Jan 2024 at 12:00, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>>>
->>>> On 13.01.2024 21:55, Dmitry Baryshkov wrote:
->>>>> Define VBUS regulator and the Type-C handling block as present on the
->>>>> Quacomm PMI632 PMIC.
->>>>>
->>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>> ---
->>>>>    arch/arm64/boot/dts/qcom/pmi632.dtsi | 30 ++++++++++++++++++++++++++++++
->>>>>    1 file changed, 30 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/pmi632.dtsi b/arch/arm64/boot/dts/qcom/pmi632.dtsi
->>>>> index 4eb79e0ce40a..d6832f0b7b80 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/pmi632.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/pmi632.dtsi
->>>>> @@ -45,6 +45,36 @@ pmic@2 {
->>>>>                 #address-cells = <1>;
->>>>>                 #size-cells = <0>;
->>>>>
->>>>> +             pmi632_vbus: usb-vbus-regulator@1100 {
->>>>> +                     compatible = "qcom,pmi632-vbus-reg", "qcom,pm8150b-vbus-reg";
->>>>> +                     reg = <0x1100>;
->>>>> +                     status = "disabled";
->>>>> +             };
->>>>> +
->>>>> +             pmi632_typec: typec@1500 {
->>>>> +                     compatible = "qcom,pmi632-typec";
->>>>> +                     reg = <0x1500>;
->>>>> +                     interrupts = <0x2 0x15 0x00 IRQ_TYPE_EDGE_RISING>,
->>>>> +                                  <0x2 0x15 0x01 IRQ_TYPE_EDGE_BOTH>,
->>>>> +                                  <0x2 0x15 0x02 IRQ_TYPE_EDGE_RISING>,
->>>>> +                                  <0x2 0x15 0x03 IRQ_TYPE_EDGE_BOTH>,
->>>>> +                                  <0x2 0x15 0x04 IRQ_TYPE_EDGE_RISING>,
->>>>> +                                  <0x2 0x15 0x05 IRQ_TYPE_EDGE_RISING>,
->>>>> +                                  <0x2 0x15 0x06 IRQ_TYPE_EDGE_BOTH>,
->>>>> +                                  <0x2 0x15 0x07 IRQ_TYPE_EDGE_RISING>;
->>>> This differs from the downstream irq types:
->>>>
->>>> <0x2 0x15 0x0 IRQ_TYPE_EDGE_BOTH>,
->>>> <0x2 0x15 0x1 IRQ_TYPE_EDGE_BOTH>,
->>>> <0x2 0x15 0x2 IRQ_TYPE_EDGE_RISING>,
->>>> <0x2 0x15 0x3 IRQ_TYPE_EDGE_RISING>,
->>>> <0x2 0x15 0x4 IRQ_TYPE_EDGE_BOTH>,
->>>> <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>,
->>>> <0x2 0x15 0x6 IRQ_TYPE_EDGE_RISING>,
->>>> <0x2 0x15 0x7 IRQ_TYPE_EDGE_RISING>;
->>>
->>> I must admit, I copied the IRQs from the pm8150b rather than from the
->>> vendor kernel.
->>>
->>> Bryan, any idea which set of flags is more correct?
->>
->> My € says 1:1 with the downstream pmi632.dtsi
->>
->> qcom,typec@1500 {
->>       reg = <0x1500 0x100>;
->>       interrupts = <0x2 0x15 0x0 IRQ_TYPE_EDGE_BOTH>,
->>                    <0x2 0x15 0x1 IRQ_TYPE_EDGE_BOTH>,
->>                    <0x2 0x15 0x2 IRQ_TYPE_EDGE_RISING>,
->>                    <0x2 0x15 0x3 IRQ_TYPE_EDGE_RISING>,
->>                    <0x2 0x15 0x4 IRQ_TYPE_EDGE_BOTH>,
->>                    <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>,
->>                    <0x2 0x15 0x6 IRQ_TYPE_EDGE_RISING>,
->>                    <0x2 0x15 0x7 IRQ_TYPE_EDGE_RISING>;
->>
->>       interrupt-names = "typec-or-rid-detect-change",
-> 
-> My 2c say that EDGE_BOTH doesn't make sense for or-rid-detect-change
-> at least. It is an "or" of several _pulse_ interrupts, so there is no
-> need to detect the falling edge.
-> 
->>                         "typec-vpd-detect",
-> 
-> both, correct in both cases
-> 
->>                         "typec-cc-state-change",
-> 
-> pulse interrupt, raising.
-> 
->>                         "typec-vconn-oc",
-> 
-> It is a 'level' interrupt, so we probably want to detect both rising
-> and falling edges.
-> 
->>                         "typec-vbus-change",
-> 
-> "pulse" interrupt => rising, not both, correct in PM8150B.
-> 
->>                         "typec-attach-detach",
-> 
-> pulse interrupt, rising only.
-> 
->>                         "typec-legacy-cable-detect",
-> 
-> level, should be both as in PM8150B.
-> 
->>                         "typec-try-snk-src-detect";
->> };
-> 
-> Pulse interrupt being raised when there is either successful or
-> unsuccessful try.SNK or try.SRC.
-> 
-> So, after consulting the documentation, I believe the flags being a
-> part of this patch (and in pm8150b.dtsi) are correct.
-> 
+Infracfg on mt7988 supports reset controller function which is
+needed to get lvts thermal working.
 
-Ah.
+Patches are based on clk-next due to recently added mt7988 clock driver:
+https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git
 
-The pm8150b state is more logical and if you are using it on pmi632 with 
-the driver we have, I'm inclined to think also more correct.
+changes:
+ v3:
+   - start resets on RST0 offset (LVTS is RST1)
+   - rename offset constants with MT7988 prefix (else collision with reset=
+.h)
+ v2:
+   - change value of constant to 0 from 9
+   - add missing SoB and commit-message for binding-patch
 
-Testing > theory.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Frank Wunderlich (2):
+  dt-bindings: reset: mediatek: add MT7988 reset IDs
+  clk: mediatek: add infracfg reset controller for mt7988
+
+ drivers/clk/mediatek/clk-mt7988-infracfg.c    | 23 +++++++++++++++++++
+ .../reset/mediatek,mt7988-resets.h            |  6 +++++
+ 2 files changed, 29 insertions(+)
+
+=2D-
+2.34.1
+
 
