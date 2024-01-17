@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-32866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62016830DD2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 21:15:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F2D830DD4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 21:16:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6035B247FA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:15:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50079B24DE2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EECA824B24;
-	Wed, 17 Jan 2024 20:15:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361E424B25;
+	Wed, 17 Jan 2024 20:15:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iaPILt36"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EGesZNk6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F17224A1F
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 20:15:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDFB22EF5
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 20:15:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705522546; cv=none; b=uy4UjSe/6oA3/LdNU/BMfy0pZFCe6q3H8VWT1i3P/JGoSeleUx1oRgzsJt5YCAKpuj4pmdgasns0OpJLWORMFqa3t7prFn/nKwILlV3nFM3O19VsIz7MO6AaXScc9Ho/R38oqgww1u7a1sNiOkZgoezZRJxMJ2WUgXBk24hhRyA=
+	t=1705522559; cv=none; b=eWNtXNiS5/xe9xClgVIEJcY2B9OLGrxcD7HXuYUQhqNBm+Ag1r5E9MJCE2bf8W/b6ovndKclfzGyQEWWUG5zMEF3QRpH/tLyyOa2Qn0t4YzMBrEw13P0T1ZXpgIo4d0mX59HCdjIkwVCNHqBJKuhKfspj8v8RXZJ15S5Sg/PRIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705522546; c=relaxed/simple;
-	bh=tWtaEStSXXeY4ZlUW4rPFxMeNANJkKEc7+GCVGjK7a8=;
+	s=arc-20240116; t=1705522559; c=relaxed/simple;
+	bh=ZtCmtaY+wb4O/4dYs6eMRhrbA354BTp1CNtLDUkfs7c=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
 	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
 	 To:Cc:References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=kX4e2XsXAW9iFbZotq/ql3Iu17YPK8+dY4ejVISu1j5CMXAhgne0KtYaMuQrakXqTAKoekQd9bLbAJ0cqm4Lxw9ed9ZVNd83duRkwILs/SbLUvoxK0p5VpcapLnOuQ0ZlXmw+XMg5ms1gBK7aeocNkzpN2sD4KLlcX1CiIE7qfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iaPILt36; arc=none smtp.client-ip=209.85.167.47
+	 Content-Transfer-Encoding; b=iroHTaUZZ0seUY1guXizWnyh5b0NGtwoI7JDspKYulQava9i6xrsGpSt2XFzenUp4IMJFPwqDPmBb9CoAu4yclZ7fTO46pR64TzUmf+AzhJTjkE0Wa+W9gSfX0IJqED1DsO02Xk/CphjCLS2gSWRoUuj8dS7JMUlQztDY/pdako=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EGesZNk6; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50ea9daac4cso12228013e87.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 12:15:44 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50e759ece35so13560175e87.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 12:15:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705522543; x=1706127343; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705522555; x=1706127355; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iPTVBifCyaSXrtahIMjrSyS80T5F+j2fg/7+8A/XGuM=;
-        b=iaPILt36c2KjfTUi22sin5SWtIiKFogOlVqr6tUXuWJOL0ggyEiM1MFAIQDixWfxmI
-         eI8ogH/sG0/d5FRWmMNTHp0AksBmKAu5Ho//4XPz1E7PbFkFHZbS8PJuOMjERo1gF6kl
-         3KbYQff6y95BazVxOudWm98Gm6909Xy0TLinDTaXsQ6rtAk5wwkX9oIv/5XqW/pFme6p
-         b0gsVV8+5XLE1LerN9kR4Ydvo1tAss4GiRt7HpupCziF/ah9nnFKJbQXVWRDmxFNUEqo
-         ePVQJgq6+TQVHcFZTlFohegVprY4lxBSPR+neE8hpDc7BXHS0B5be0tSbWBaQPTfOK/b
-         60SA==
+        bh=wffrKACYiwhCemNTJ2adHv9qr4lw6zEwO+YIXcSMwPo=;
+        b=EGesZNk6FeL2umPMoi3M9kIP/NN8z6yqFLStUfivaPaNoU2HtXzdU9f/2+8w1omHjE
+         29TMJ1vuhZV39VHPRMgH/APGMqWoBHfNV4gFoTQvai5uhxc8AvI1/cUipwybgzMtN5vx
+         0V9rOLWeTfZ/LvzsDNFwfU+lrJjLo1UosezLcvSucIf69KKKSfE7c0c//vsU6mHNlX9U
+         PeVwsywQ/Sh1o2kxuff20K0pig3AdY+RubuGI+gEcfyFuLyFarJlIHS3eu3x/XPiNaTh
+         hTJDKc9EGuPL62BVA3b0uQkB0kwDL2AOov0FfV0Z8e5S0c1VpBMxP1mHn2Fr+q9049Dd
+         2Keg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705522543; x=1706127343;
+        d=1e100.net; s=20230601; t=1705522555; x=1706127355;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iPTVBifCyaSXrtahIMjrSyS80T5F+j2fg/7+8A/XGuM=;
-        b=KDEXQwXzZpTXPKD2KIesRtkloKi+zGq2WsaMIRuVKUS5i2+ZEL7gjGZGzD7d2Qai9R
-         hDkPFTeRn7faFCy2n41RxOrdSZVKjJl+OE0JKppz8msix7fUivDa2fe9ISfANwVmJHOv
-         UpFrECf498WwSUKa+EORHV7l1dbYkq2AMhQ+5IXEhzC0sopTuYqooy32rvtORTLFKqYr
-         85PGvkaeJqFXbYS/7GjYHswPPNNjL/A7gZRdwLGue+n+AriNs0GTiVV70AwCJ2+KwKCz
-         9o6sf7ARdwZqtTS+11xFaiuUdeN8alNPXfZNkbNBEFLw71jMtPI+cMda+VpmUoGrCHCq
-         vY4w==
-X-Gm-Message-State: AOJu0Yyp3nHNHqDP/4WJse9UJKGsyJw4cf2Hg8MCk79Fu8cJnBj3hhRq
-	MRUKrEPEROIAEEFOSvDyIQIWLgXKi5u3nA==
-X-Google-Smtp-Source: AGHT+IGVmxuPFEYZ4/Vu+25N/DBMN84UjHFCbhKCCV3Z7wL8tHrxSwitzOOGHGoxY5EN0OGMnTsD+Q==
-X-Received: by 2002:ac2:5b9e:0:b0:50e:9da7:3136 with SMTP id o30-20020ac25b9e000000b0050e9da73136mr4393019lfn.75.1705522543057;
-        Wed, 17 Jan 2024 12:15:43 -0800 (PST)
+        bh=wffrKACYiwhCemNTJ2adHv9qr4lw6zEwO+YIXcSMwPo=;
+        b=QNC5UTgwjgDh/cbyYJFQzQHQrKH5E2T5u1PZSS1gnxJcLAhVlse9btE4Jx+D9Widqf
+         14c02+Kc6tkixaBAbd07z/eDwQbIhZNhmDHVjnOo7Q5wCor8K8yGGI/tAkglfgE9RrBk
+         3U+HkRHdmXpnuWc9HI5a0sW04o3pFc+xRNX6cQMN55coD6FZT0GL9O8hbrldLF7hodSp
+         vAjH8+JC0/hT52ZYKKV3c1iLIPINApxZIw1pbrAT96pCiljPMBL8OJLRWOMboo9imvP9
+         7UMQJ4wL4deWry/b5wv32sWQGNZ1ulHo7f0b4JRxCbSNEAmQDDSXPHpc+k5Jz142h7+D
+         CzRA==
+X-Gm-Message-State: AOJu0YwoD9UV+0iPHGeCDFYwuc/49dN59s0eVRB43SSOkAJBaiBPCM0j
+	VimF0MdT78EqJibsfL/kezVebIRO/1exlQ==
+X-Google-Smtp-Source: AGHT+IG0yfsNlOgbpAYwYnf4BQc1QpssehfpeF0imZ0M+byKLE7KGfXZjzn54tq4R/CQpVvnGQXsJQ==
+X-Received: by 2002:ac2:5b1a:0:b0:50e:745f:b0b7 with SMTP id v26-20020ac25b1a000000b0050e745fb0b7mr4371280lfn.52.1705522555333;
+        Wed, 17 Jan 2024 12:15:55 -0800 (PST)
 Received: from [172.30.204.151] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id x5-20020ac25dc5000000b0050eaa1a35f4sm359621lfq.303.2024.01.17.12.15.41
+        by smtp.gmail.com with ESMTPSA id x5-20020ac25dc5000000b0050eaa1a35f4sm359621lfq.303.2024.01.17.12.15.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jan 2024 12:15:42 -0800 (PST)
-Message-ID: <3325c6ea-ca30-40ee-83ba-c489dc9964b1@linaro.org>
-Date: Wed, 17 Jan 2024 21:15:40 +0100
+        Wed, 17 Jan 2024 12:15:54 -0800 (PST)
+Message-ID: <6980738e-207d-4cf5-9ebd-dde40d5d7c37@linaro.org>
+Date: Wed, 17 Jan 2024 21:15:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,11 +102,6 @@ On 1/17/24 18:34, Sibi Sankar wrote:
 > SCMI QCOM vendor protocol provides interface to communicate with SCMI
 > controller and enable vendor specific features like bus scaling capable
 > of running on it.
-
-"QCOM protocol" sounds overly generic, especially given how many
-different vendor protocols have historically been present in
-QC firmware..
-
 > 
 > Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
 > Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
@@ -117,23 +112,40 @@ QC firmware..
 > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 > ---
 
-So, this is another 0x80 protocol, different to the one that has
-been shipping on devices that got released with msm-5.4, msm-5.10
-and msm-5.15 [1][2]. They're totally incompatible (judging by the
-msg format), use the same protocol ID and they are (at a glance)
-providing access to the same HW/FW/tunables.
+[...]
 
-I'm not sure if this can be trusted not to change again.. Unless
-we get a strong commitment that all platforms (compute, mobile,
-auto, iot, whatever) stick to this one..
+> +
+> +static int qcom_scmi_set_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +			       u32 param_id, size_t size)
+> +{
+> +	int ret = -EINVAL;
+> +	struct scmi_xfer *t;
+> +	u32 *msg;
 
-That said, the spec (DEN0056C) says that protocol IDs 0x80-0xff
-are: "Reserved for vendor or platform-specific extensions to
-this interface.". So if perhaps there's a will to maintain
-multiple versions of this, with a way to discern between them..
+After you apply Dmitry's suggestions on returning -EINVAL
+directly, you can also sort definitions in a reverse-Christmas-
+tree order throughout the file.
+
+> +	msg = t->tx.buf;
+> +	*msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+> +	*msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+> +	*msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+
+lower/upper_32_bits()?
+
+[...]
+
+> +	if (t->rx.len > rx_size) {
+> +		pr_err("SCMI received buffer size %zu is more than expected size %zu\n",
+> +		       t->rx.len, rx_size);
+> +		return -EMSGSIZE;
+
+No other driver seems to be checking for this, should this:
+
+a) go to common code
+b) be ignored
+
+?
 
 Konrad
-
-[1] https://git.codelinaro.org/clo/la/kernel/msm-5.15/-/blob/KERNEL.PLATFORM.2.1.r5-05400-kernel.0/drivers/firmware/arm_scmi/memlat_vendor.c?ref_type=tags
-[2] https://git.codelinaro.org/clo/la/kernel/msm-5.15/-/blob/KERNEL.PLATFORM.2.1.r5-05400-kernel.0/include/linux/scmi_memlat.h#L16
 
