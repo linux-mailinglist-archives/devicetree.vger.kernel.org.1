@@ -1,170 +1,122 @@
-Return-Path: <devicetree+bounces-32835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0332E830C1C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:37:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1EFC830C02
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:35:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66C3B1F24911
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:37:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 674F11F25B51
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A3A22F1E;
-	Wed, 17 Jan 2024 17:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23A022615;
+	Wed, 17 Jan 2024 17:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="c2311ITY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t3wrGeyY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80908249F9;
-	Wed, 17 Jan 2024 17:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95DC22EE0;
+	Wed, 17 Jan 2024 17:35:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705512960; cv=none; b=neJeqyDOSrwYbhLOcbgXQMudurv8++ut/f+PXugEn8xpiW7LfYG4MBkMhZGV/xaV7BMp3hMdaaGLjV3j6IUuFihRqWbqf5YiIwLKPU4p1IunkPhSiOs+sDN4h0T9+4B7u+WPV8IrCZIDyMkYI0YqhTJ1skhl2vO0iIMIKhye5I4=
+	t=1705512918; cv=none; b=IF3FKi+nmdxw178KaLaMuHixoOT8miYVPWnPULZ2o1LJJLtPrAOmrLgVXX0ne4RUvP384J4j7NoX33Vg9WYM7IKhtd28dfScnNhEcBC7Zwp+RgTkXgcj/CrOhcsL0EBwFnQZFPRwRIPAsbKOj+H6CJyUGVbvkF8PL18UB8uYvME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705512960; c=relaxed/simple;
-	bh=kawY1lLCz2aCx2qqQ8gP7y9X6nAMC4JCu0MdlhV8NpQ=;
-	h=Received:DKIM-Signature:Received:Received:Received:From:To:CC:
-	 Subject:Date:Message-ID:X-Mailer:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type:
-	 X-Originating-IP:X-ClientProxiedBy:X-QCInternal:
-	 X-Proofpoint-Virus-Version:X-Proofpoint-ORIG-GUID:
-	 X-Proofpoint-GUID:X-Proofpoint-Virus-Version:
-	 X-Proofpoint-Spam-Details; b=i50duzHuAI21M7v8rsnliVcgOUnT1S3/KphoV9soFIiVaI5OOfw8YP7WBQcyKgfzVN0nOnb/RjhxymXCrSMZucIdREuXK+de880soOHAzRhZFC8+GI2RSZmkc0PMq1ZqoLDTUWS0bPwOFYSbQUBSoEw5IdM1lODEp2LCoYv65l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=c2311ITY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40HDK62b029941;
-	Wed, 17 Jan 2024 17:35:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=kGxrLeKhAxjSlJWiYSB8dyPIF3yEHkPfJ/KCGZ5FuGU=; b=c2
-	311ITYgqphCgccEBDyllS/xPOEgVlL9JeOW4Z5crP4zqsXQKRPHIvLK1XCZQYeX0
-	yV8BzGF5eMHZenjGI2jtyW+wrKxKhMlqUFlNnL7cMQnckYjgrkhiB7BwIr7gtN6S
-	0dLVwab1I67Gczys0eKlEb5kSRPUhpGzdFhqInaguIpLhfcqpYoWZhbQPrZbvF8V
-	upQsHImgcwrngoMs1t01F3XfHXdvgll/7MgLf0LSQJtC+x4K25c0zno1n3V7OSbd
-	u4IKwcLLjwyDKM5kCF2R7B8hs8T+I8LlzXLtIKrDF/kiNR3gbdj70QOz8v+EWx/o
-	I8z5JoIOIl0O8dFrrnsw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vp4ak21em-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jan 2024 17:35:53 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40HHZrsd015858
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jan 2024 17:35:53 GMT
-Received: from hu-sibis-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 17 Jan 2024 09:35:48 -0800
-From: Sibi Sankar <quic_sibis@quicinc.com>
-To: <sudeep.holla@arm.com>, <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <quic_sibis@quicinc.com>,
-        <conor+dt@kernel.org>
-Subject: [RFC 7/7] arm64: dts: qcom: x1e80100: Enable LLCC/DDR dvfs
-Date: Wed, 17 Jan 2024 23:04:58 +0530
-Message-ID: <20240117173458.2312669-8-quic_sibis@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240117173458.2312669-1-quic_sibis@quicinc.com>
-References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
+	s=arc-20240116; t=1705512918; c=relaxed/simple;
+	bh=oIWaEsBOlnYHV6T9/6T59q/lnvj4NY3Q1KQGCYH6eYM=;
+	h=Received:DKIM-Signature:Date:Content-Type:
+	 Content-Transfer-Encoding:MIME-Version:From:To:Cc:In-Reply-To:
+	 References:Message-Id:Subject; b=QLF47m0PQ4GLTwJR2J+BAc1dL2C4NZT6m4NJxdGzEh3SdEX8XAIGVKveabG1ElUZvhjuQKUq/tAjY5iUlPzmfkYDdB/KyZWT2F/PoEVBMTMvUVMobEBfFVENw6J4NsOfsMzm8RZjYaZxe+ntUrtWeJC20tDPjyCCQqoPeZFAeKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t3wrGeyY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7A33C433F1;
+	Wed, 17 Jan 2024 17:35:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705512918;
+	bh=oIWaEsBOlnYHV6T9/6T59q/lnvj4NY3Q1KQGCYH6eYM=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=t3wrGeyYRRSq+Y3cDmSao3YDe/9WSlonS30jRL+IuZsHyTgbn3ZsShXLdXqhabmIw
+	 /XWvp0VT6gM+Bv1zKwwf2wi9Z4e3DyaOKSYdbul3rpWyZJ+4XGFyBMldwgOAEUzo/Y
+	 z7en4KjdO7JIlipgWCOcYsF7Xl0QZBjffAhbLblXSOyWMuG8bieHYPoPC4z//YkfrL
+	 zxAR0z4ELZD6UxZnXiA1gsOWJjPsUGxNRFS+EX1XalkFYd+WqNd9ez75hy1Lf1Z/ea
+	 qAfFdF2Ev9JSlHuwqTPATWlZ3a8p54yrgexRMIb06ELYWGlaoasRQ+b2H68k5Iszn7
+	 JOqIrju7sXu+A==
+Date: Wed, 17 Jan 2024 11:35:16 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Ux-GjvOXFqndpwqTxF0gfFpY0edXZbC2
-X-Proofpoint-GUID: Ux-GjvOXFqndpwqTxF0gfFpY0edXZbC2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-17_10,2024-01-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- mlxlogscore=556 mlxscore=0 impostorscore=0 phishscore=0 adultscore=0
- malwarescore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401170127
+From: Rob Herring <robh@kernel.org>
+To: Diogo Ivo <diogo.ivo@siemens.com>
+Cc: conor+dt@kernel.org, danishanwar@ti.com, rogerq@kernel.org, 
+ devicetree@vger.kernel.org, davem@davemloft.net, kuba@kernel.org, 
+ robh+dt@kernel.org, netdev@vger.kernel.org, 
+ Jan Kiszka <jan.kiszka@siemens.com>, pabeni@redhat.com, 
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, 
+ edumazet@google.com
+In-Reply-To: <20240117161602.153233-2-diogo.ivo@siemens.com>
+References: <20240117161602.153233-1-diogo.ivo@siemens.com>
+ <20240117161602.153233-2-diogo.ivo@siemens.com>
+Message-Id: <170551291581.2805121.8074468578390457247.robh@kernel.org>
+Subject: Re: [PATCH v2 1/8] dt-bindings: net: Add support for AM65x SR1.0
+ in ICSSG
 
-Enable LLCC/DDR dvfs through the Qualcomm's SCMI vendor protocol.
 
-Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 48 ++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+On Wed, 17 Jan 2024 16:14:55 +0000, Diogo Ivo wrote:
+> Silicon Revision 1.0 of the AM65x came with a slightly different ICSSG
+> support: Only 2 PRUs per slice are available and instead 2 additional
+> DMA channels are used for management purposes. We have no restrictions
+> on specified PRUs, but the DMA channels need to be adjusted.
+> 
+> Co-developed-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
+> ---
+> Changes in v2:
+>  - Removed explicit reference to SR2.0
+>  - Moved sr1 to the SoC name
+>  - Expand dma-names list and adjust min/maxItems depending on SR1.0/2.0
+> 
+>  .../bindings/net/ti,icssg-prueth.yaml         | 29 ++++++++++++++++---
+>  1 file changed, 25 insertions(+), 4 deletions(-)
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 6856a206f7fc..3dc6f32fbb4c 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -329,6 +329,54 @@ scmi_dvfs: protocol@13 {
- 				reg = <0x13>;
- 				#clock-cells = <1>;
- 			};
-+
-+			scmi_vendor: protocol@80 {
-+				reg = <0x80>;
-+
-+				memlat {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					memory@0 {
-+						reg = <0x0>; /* Memory Type DDR */
-+						freq-table-khz = <200000 4224000>;
-+
-+						monitor-0 {
-+							qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7 &CPU8 &CPU9 &CPU10 &CPU11>;
-+							qcom,cpufreq-memfreq-tbl = < 999000 547000 >,
-+										   < 1440000 768000 >,
-+										   < 1671000 1555000 >,
-+										   < 2189000 2092000 >,
-+										   < 2156000 3187000 >,
-+										   < 3860000 4224000 >;
-+						};
-+
-+						monitor-1 {
-+							qcom,compute-mon;
-+							qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7 &CPU8 &CPU9 &CPU10 &CPU11>;
-+							qcom,cpufreq-memfreq-tbl = < 1440000 200000 >,
-+										   < 2189000 768000 >,
-+										   < 2156000 1555000 >,
-+										   < 3860000 2092000 >;
-+						};
-+					};
-+
-+					memory@1 {
-+						reg = <0x1>; /* Memory Type LLCC */
-+						freq-table-khz = <300000 1067000>;
-+
-+						monitor-0 {
-+							qcom,cpulist = <&CPU0 &CPU1 &CPU2 &CPU3 &CPU4 &CPU5 &CPU6 &CPU7 &CPU8 &CPU9 &CPU10 &CPU11>;
-+							qcom,cpufreq-memfreq-tbl = < 999000 300000 >,
-+										   < 1440000 466000 >,
-+										   < 1671000 600000 >,
-+										   < 2189000 806000 >,
-+										   < 2156000 933000 >,
-+										   < 3860000 1066000 >;
-+						};
-+					};
-+				};
-+			};
- 		};
- 	};
- 
--- 
-2.34.1
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml:137:1: [error] duplication of key "allOf" in mapping (key-duplicates)
+
+dtschema/dtc warnings/errors:
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/ti,icssg-prueth.example.dts'
+Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml:137:1: found duplicate key "allOf" with value "[]" (original value: "[]")
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/ti,icssg-prueth.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml:137:1: found duplicate key "allOf" with value "[]" (original value: "[]")
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml: ignoring, error parsing file
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240117161602.153233-2-diogo.ivo@siemens.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
