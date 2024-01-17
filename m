@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-32716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69E338303F2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:54:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 031658303FF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:58:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8F421F25A95
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:54:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CB401F25B19
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260FC1CD3C;
-	Wed, 17 Jan 2024 10:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02641CFB7;
+	Wed, 17 Jan 2024 10:57:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ri0WhxQv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dZA3YoKj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2BF714AA5
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:53:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CB901DDD1
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705488840; cv=none; b=Mq/4j1XVjDOa8/RY2D7N7owUSoBiBMFPeXE+IlR1ceI6oxv8OA1fC1VUwCn/FsxeBfH5d/22f1AymVrdaqtKk7Ng08SrX/z7PWdq5MlKrGRPwgcWeDqK4ZBkIqCbcQY7jzCfIevWKuvoIjnn1L2uyJ7dWp0j6jYN1eVXK0oZtVo=
+	t=1705489072; cv=none; b=q6g7q49rU1Sa7qnkfbVLeAO7gqc9cq31VJVlHXraL52ss6fLibRGaw1IM5g2mh2ckgTpNjrdounqMRYBlZnN+lZ00V6jNYb2197Cwq84TbYwfvcAg+krqp4pFhGzgz2Pvp+P3jOud3nc6yKIqHMNIBdgi2NC28kE9WWDSjKY0oY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705488840; c=relaxed/simple;
-	bh=KjhNZ8+fWl254kviZY6+sEbXk9RKty3yOVamx6dSXu4=;
+	s=arc-20240116; t=1705489072; c=relaxed/simple;
+	bh=A2c3+qw2Be6HmaqeUMsx/k6N4iMUbefgr2kZ7ngMju8=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
 	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
 	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=ks0RTVQPeCjiBi3R6xU/geeiiLhF16ZXbKAEWsfa+1s703u5KyeT4E7Mqnb03Usz8Hi8ok4NLpotTiZvmKBXVEV2hOimTTlltDhQltGqyVar2KKRwvREaICZGM+Q1eER1Dy12d9FNogQw4y3LieB/+M/vcMSVfI1cZA8M60ErQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ri0WhxQv; arc=none smtp.client-ip=209.85.218.47
+	 Content-Transfer-Encoding; b=ukx8RNVMH35SwG91+ZLn62WcPkFDD33MWqZWGRECE2J6k3JXdKcnA4Aaq6Tzq3igAO9FX+WBB+qnuHbji6j4l1HD1mK5DUi6mjMKn7ztTH3Lj9SFBmgBcGVb94h/7Z3IKIqMe4Z0wKx262P/E80rk11aBRGGz/a+V4QpBqEi3Sc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dZA3YoKj; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a28f66dc7ffso2151561666b.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 02:53:56 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5537dd673e5so8687332a12.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 02:57:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705488835; x=1706093635; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705489069; x=1706093869; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Qo8eGWPWRkX/4JThm1Lo2hklyFCe76/3hkhcrBEPdhg=;
-        b=Ri0WhxQv6o6jUyntrCe/v0zVNLiSPGfBdptIoTqdIAMPlLyHYyvES//55hnNfv+Z9H
-         P9sTPQL48Zc38M1n2tRcMF2TpK13y5LAhoRY34EkaAyPXZRyO8M5P70Yrgu4d6E9N/xV
-         skB30LduA8gM6lTgZd23jcooPAgXDdNrSTbvc2Uoz5gTke2w5keYkISNWisXeJMWcx3h
-         RknJ78MYGuEvrQxr3t/CQGHzcLktwjFpfUCmwdqsmmS6adHP8dQfMOWUlofzY0pJNuxX
-         bS4Gjmx+OkgP+fVl4WkzCpMy/u/BJZD9tmFe6E6UnRWwqqNqtZ/nERi4pgVWvugDtRS7
-         FV4Q==
+        bh=IqRs833wrue5a9LxBwlTRwYAWi+orhAtCOaaV0wmytU=;
+        b=dZA3YoKj9Dd1DxuYvBwXYStJtsp+z6V47KeN3uelhMhlWnucfjn78TsjrdUaYAcuM7
+         8qMS4/AVOam8a2MfqyqJVnxbO9GUzSx53JzG0aRgEUkk4ErA74y6Dq0ZhJcwnl5cyn1Z
+         c26EvAOyU7Ox8Ku97BlZajZtZStB/5ckb7zMB5+hTxKr373VGfzT26r1Ke3svWv3YyL6
+         Hoi7Iy2p7SfN6mOZYLZOjEbkNDFbJyMbjgPfdgYogcV8k73r26pV9wdQw5CRjfq6g9k1
+         86wzJbzFOC/yytkrBe38/WD3VtKJRXnlRgEwkfPP3JT/5/ekltlvkHZzUEb6yxJp2Ovi
+         yFjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705488835; x=1706093635;
+        d=1e100.net; s=20230601; t=1705489069; x=1706093869;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qo8eGWPWRkX/4JThm1Lo2hklyFCe76/3hkhcrBEPdhg=;
-        b=rQgDg6trpCNxEuj6sqAVE9IP7NqqEM8GmkaF1aHQs12jlcITx5+M+REV4rQjN5hCyt
-         Bn9jCCd+0pqLGRkHzuYKfggY+gj0ZQvYSmU2qQNFWoDLs42i+MRLxCj7s3aRSLEcGvI9
-         EhWywFVUca2CYQU56wtIW23frBJaG5vSIErRhUdy8VDSUZpgLSmUdD1/fRjLGjaob8ij
-         mO2TZAgd4VvCS6iBwu446MFdMc1Uvf6xOeBwZYF2BAb8SFTQlRiMOcMFW37o/4FZG4y7
-         IATaFKeQVSqORKiZXEk49OpAH6xcIQRwOSrwTOs7QZOCTqMqL64X/9wIDA2T8PjC5Ffu
-         VtXQ==
-X-Gm-Message-State: AOJu0YwSFzsnfdvvzDWKJCJOYWZWAN2Qh4TgYJbwRRelyj2CsAOJw3N+
-	0ig7df1ymBf1bf7YhrbbZ40LHlWJXf/+Af0BHzHnRvnyJSc=
-X-Google-Smtp-Source: AGHT+IEsjGUMOVB6JCi8pfFJ0atoqzMLYvj0dJD4f+ZuDyiGP7oOQugPXRhs1ZPq6vyYUEWxMOly0g==
-X-Received: by 2002:a17:906:2f8b:b0:a28:b34d:8694 with SMTP id w11-20020a1709062f8b00b00a28b34d8694mr554688eji.62.1705488835207;
-        Wed, 17 Jan 2024 02:53:55 -0800 (PST)
+        bh=IqRs833wrue5a9LxBwlTRwYAWi+orhAtCOaaV0wmytU=;
+        b=JN59BvEdx9qM8lboGzzDVYTuJZN484nXR6QOX4TglpU9fSbxI/W6UkaMPfRiSPqlSv
+         RTRBwUcNPs3GG5DYSzphrwN3qRfNgzv23Lduxinnb3Q1aJSD0Hg8PMc+OYYwjLyyOskf
+         mGA631er/1CifQQdc4azHBfTSJGrMJ8sEi2XZ6z4tP7/+8U3KDu+NxZgNjlefd+cr6AE
+         OBitqoRsvjLdX4jIHsCN/d5oibMZRPfBMCHWBUHBX6aSff9O/hVhhmBS3vOe5HLuXDha
+         yri8LeUpg0QgUpwqz/y9LMMuEKPVpXoSzVeZWS03Hy1sf5ADFTuCS/Qx2oSJPwdWO526
+         cHlQ==
+X-Gm-Message-State: AOJu0YzFEo8G4GoHaRqq5hIrn9hTDDTb7lIw4iQl0Qu1PquE6ZQXEtlE
+	ID8OrH4J9tSyWQQ+Fe6zO4ecUSiuwjzRvQ==
+X-Google-Smtp-Source: AGHT+IE/2D1PKynNN/qkS/0Bm4zLgx8w+AoPYT1OxKZ+GVRgiiNcjeWSH5vM173Vzbi7NNFjTG0IxA==
+X-Received: by 2002:aa7:cb45:0:b0:559:d34f:b056 with SMTP id w5-20020aa7cb45000000b00559d34fb056mr510634edt.21.1705489069670;
+        Wed, 17 Jan 2024 02:57:49 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id h10-20020a17090619ca00b00a2ed233c313sm591699ejd.168.2024.01.17.02.53.53
+        by smtp.gmail.com with ESMTPSA id h14-20020a056402094e00b00559cc2082dcsm976372edz.19.2024.01.17.02.57.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jan 2024 02:53:54 -0800 (PST)
-Message-ID: <bd3e809f-5d97-428f-9387-a2475c4f0d7d@linaro.org>
-Date: Wed, 17 Jan 2024 11:53:53 +0100
+        Wed, 17 Jan 2024 02:57:49 -0800 (PST)
+Message-ID: <d3a764d1-c8bb-4ad6-be0d-40d37efaad69@linaro.org>
+Date: Wed, 17 Jan 2024 11:57:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,19 +78,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: ti,j721e-pci-*: Fix check for
- num-lanes
+Subject: Re: [PATCH 1/3] dt-bindings: rockchip: Add rk809 support for rk817
+ audio codec
 Content-Language: en-US
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- vigneshr@ti.com, afd@ti.com, srk@ti.com
-References: <20240117102526.557006-1-s-vadapalli@ti.com>
- <20240117102526.557006-2-s-vadapalli@ti.com>
- <28fd561a-7c13-48dc-9995-230dc758f257@linaro.org>
- <a25ea57b-4529-4a4c-9e0b-ccd85b0457d6@ti.com>
+To: Tim Lunn <tim@feathertop.org>, Rob Herring <robh@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Chris Zhong <zyw@rock-chips.com>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lee Jones <lee@kernel.org>, Zhang Qing <zhangqing@rock-chips.com>,
+ linux-kernel@vger.kernel.org
+References: <20240116084618.3112410-1-tim@feathertop.org>
+ <20240116084618.3112410-2-tim@feathertop.org>
+ <20240116193701.GA286794-robh@kernel.org>
+ <64bce36c-468a-43b6-9d8d-0c20fbd53939@feathertop.org>
+ <71413ca3-1a14-4eda-ad29-dc5fcbe5afb3@linaro.org>
+ <6d828e2d-a25b-4784-9905-4a264b7d78fe@feathertop.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,88 +139,34 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <a25ea57b-4529-4a4c-9e0b-ccd85b0457d6@ti.com>
+In-Reply-To: <6d828e2d-a25b-4784-9905-4a264b7d78fe@feathertop.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/01/2024 11:47, Siddharth Vadapalli wrote:
-> Hello Krzysztof,
+On 17/01/2024 11:38, Tim Lunn wrote:
 > 
-> On 17/01/24 16:04, Krzysztof Kozlowski wrote:
->> On 17/01/2024 11:25, Siddharth Vadapalli wrote:
->>> The existing implementation for validating the "num-lanes" property
->>> based on the compatible(s) doesn't enforce it. Fix it by updating the
->>> checks to handle both single-compatible and multi-compatible cases.
->>>
->>> Fixes: b3ba0f6e82cb ("dt-bindings: PCI: ti,j721e-pci-*: Add checks for num-lanes")
->>> Fixes: adc14d44d7cb ("dt-bindings: PCI: ti,j721e-pci-*: Add j784s4-pci-* compatible strings")
->>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->>> ---
->>>  .../bindings/pci/ti,j721e-pci-ep.yaml         | 26 ++++++++++++++-----
->>>  .../bindings/pci/ti,j721e-pci-host.yaml       | 26 ++++++++++++++-----
->>>  2 files changed, 38 insertions(+), 14 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
->>> index 97f2579ea908..278e0892f8ac 100644
->>> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
->>> @@ -68,8 +68,9 @@ allOf:
->>>    - if:
->>>        properties:
->>>          compatible:
+> On 1/17/24 21:12, Krzysztof Kozlowski wrote:
+>> On 17/01/2024 10:37, Tim Lunn wrote:
+>>>> You can drop the description.
+>>> Yes just 1 clock, i will fix this.
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    description:
+>>>>> +      The clock name for the codec clock.
+>>>> Drop.
+>>> Just drop the description? I dont think can drop the clock names as the
+>>> driver use the name to lookup clock:
+>> Description. But anyway the problem is that adding clocks should be
+>> separate patch with its own explanation.
 >>
->> Missing contains:, instead of your change.
-> 
-> I did try the "contains" approach before determining that the implementation in
-> this patch is more suitable. Please consider the following:
-> 
-> For AM64 SoC the primary compatible is "ti,am64-pcie-ep" and fallback compatible
-> is "ti,j721e-pcie-ep". For J7200 SoC the primary compatible is
-> "ti,j7200-pcie-ep" while the fallback compatible is again "ti,j721e-pcie-ep".
-> 
-> Therefore, the device-tree nodes for AM64 and J7200 look like:
-> 
-> AM64:
->     compatible = "ti,am64-pcie-ep", "ti,j721e-pcie-ep";
->     ...
->     num-lanes = 1;
-> 
-> J7200:
->     compatible = "ti,j7200-pcie-ep", "ti,j721e-pcie-ep";
->     ...
->     num-lanes = 4;
-> 
-> This implies that when the check for "num-lanes" is performed on the device-tree
-> node for PCIe in J7200, the fallback compatible of "ti,j721e-pcie-ep" within the
-> AM64's "compatible: contains:" check will match the schema and it will check the
-> existing "num-lanes" being described as "const: 1" against the value in J7200's
-> PCIe node resulting in a warning. 
+> Right, but I am not actually adding any clocks, just documenting what is 
+> already there.
 
-What warning? What did you put to contains?
+You are. Binding did not have any clocks, now it has.
 
-> Therefore, using "contains" will result in
-> errors if the check has to be performed for device-tree nodes with fallback
-> compatibles. The "items" based approach I have used in this patch ensures that
-> the schema matches *only* when both the primary and fallback compatible are
-> present in the device-tree node.
+> There are already boards using this codec with rk809 in dts files and is 
+> working fine from driver side.
 
-Long message, but I don't understand it. Why this binding is different
-than all others which rely on contains?
-
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          items:
->>> +            - const: ti,j784s4-pcie-ep
->>
->> Why? Previous code was correct.
-> 
-> Though I used "patience diff", for some reason the addition of
-> "ti,j721e-pcie-ep" in the check has been treated as the removal of
-> "ti,j784s4-pcie-ep" first followed by adding the same later for generating the
-> diff in this patch. The diff above is equivalent to the addition of:
-
-No, why do you change existing code? It is correct.
 
 
 Best regards,
