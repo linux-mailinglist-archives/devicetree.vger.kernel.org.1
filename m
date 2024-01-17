@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-32684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EAA083024F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:29:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3154483026F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:37:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B2E62861D9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 09:29:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAC001F211EB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 09:37:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DB313FF6;
-	Wed, 17 Jan 2024 09:29:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4FC14003;
+	Wed, 17 Jan 2024 09:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="ilMqJwVO";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="jPFVY1ox"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="i0OKTCc7";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="t813JLYI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB25613FFA;
-	Wed, 17 Jan 2024 09:29:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636D113FFA;
+	Wed, 17 Jan 2024 09:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.111.4.29
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705483795; cv=none; b=g6SmQzEWNKbELEDntnjXXpsYErxnLXoW3InpVt2D6VAs5AKbKu2huqm+APFgEjjS577veRlg+kDDJDVsdZGG8Tjm8emXXQNVF/Qydq9ThxFGwsVRte3pDMZrDIy36yPUQdXZ0B+dRUaaeRU8e9Mko665n7jeH5uUq5ljYVgbJa8=
+	t=1705484274; cv=none; b=WLL8nPhzRU0WP1NdMjEeIINUMyp86KkNurIdazc/FE02oIsYCoZBINSbsTnrAOTTpZhNDfkW1xNke0KKKMXeDrlDiM136pd0iun7XYqnay+eupuai1GF+kbq1kE1eQJN6PH6AtLFeJO15AqQQ00mfq+vdwX00QlD/ZvxcNzPado=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705483795; c=relaxed/simple;
-	bh=QSUhYk2iu/3Pt17e2A9ZFtKpXoLCRx/INowv2VVp7F0=;
+	s=arc-20240116; t=1705484274; c=relaxed/simple;
+	bh=5EGyMKG9E+GsOkjgt4V+Shwmf865yRckjxW3+DFJBsA=;
 	h=Received:Received:DKIM-Signature:DKIM-Signature:X-ME-Sender:
 	 X-ME-Received:X-ME-Proxy-Cause:X-ME-Proxy:Feedback-ID:Received:
 	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
 	 To:Cc:References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=UnLaZgeKzZnfBCH+xcKlQPRT2An8St6Q7Eyh002oGfIlDH/gNiuWFRq9JkmtmVZRl/ptn8DXQAnrH9o1Uvdop16ZtUn4EVDVs+lHQliwmGQtkfmXrAyCmNEs/HeMzNZ00WUf0qOC7z8vpJfB/9Yh2Gz3lNAXUkYZHlKWyyqRq7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=ilMqJwVO; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=jPFVY1ox; arc=none smtp.client-ip=66.111.4.29
+	 Content-Transfer-Encoding; b=LxosFaBKjaEXjiDbF3FB0Sk2uY22j7XSjjeHNX3QCzdUkXLROatY8GgIWLVeOWMtNw7tW6NdqAnyJWez9t2fOYFBHyPlcWSbvmKf4IAc3TC7zcg9Z72PIcQ4n2OeXQCnO6N2tlK6l4060X/YWEUnpxAjScwWFJkyjZWx6FnEY+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=i0OKTCc7; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=t813JLYI; arc=none smtp.client-ip=66.111.4.29
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-	by mailout.nyi.internal (Postfix) with ESMTP id C74D15C0035;
-	Wed, 17 Jan 2024 04:29:52 -0500 (EST)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.nyi.internal (Postfix) with ESMTP id 6D1605C0135;
+	Wed, 17 Jan 2024 04:37:52 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Wed, 17 Jan 2024 04:29:52 -0500
+  by compute4.internal (MEProxy); Wed, 17 Jan 2024 04:37:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
 	 h=cc:cc:content-transfer-encoding:content-type:content-type
 	:date:date:from:from:in-reply-to:in-reply-to:message-id
 	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1705483792; x=1705570192; bh=QSUhYk2iu/3Pt17e2A9ZFtKpXoLCRx/I
-	Nowv2VVp7F0=; b=ilMqJwVOTCaUXiOCJCLTERMo7s+WGjY250Srh0NceOwj9wKu
-	zXlmbwokL2pJE+MQXwFt4gHYe6K9yeqQJJOP3AHdzqSRxMdEwp7Hpf+rKF8UsKqQ
-	C8shGgQg2U76560aT6MEE/p21d7Tqc/MINVsipjhr822A9eAoRH8Dxhnn9MpT9SM
-	Np9a+czeQ0AxzR+PCSvXpTpwSby6T/zzcl6iJJ6djJsPmIFs0az0+hYg1tlu8rO7
-	4n4IGQhzxgNN920enN0i2sASVW2QrgUwTTlkktINZrlRDuhDHmSQWkFOXg374tVp
-	KsuOpAWs2p0qf2djo+lsgKnTQNZLj3/KxBOjJw==
+	 t=1705484272; x=1705570672; bh=EqoG1X993nKQll/W/WElOVnpmAA1bRw9
+	scZWSKLC9hY=; b=i0OKTCc7UUWorXS51DW3NpLSH4C4hTdE8mOvVq7j8LlJQDP0
+	PBCVXmF1Y0zPbSRLPc0t+GS4l1vBMd2Z6fhzl0f/2H/VggZsLmAU9e5gxZgyY5T5
+	TDpp4ULy+zwUqU88V7XAx6isiOd8HOzzsUpzUEa53B7T2tArkwtzTPVc9rpM3J2t
+	o2OlSN5MK1sA/r27KJAq+owpxpqw1oC99db8Xfj5Nw3rQV+hSgxMBiDHyzqYY5Z0
+	KJZjJ1o2ybVax9/GfbRoj64Rfr5uzcV5N4ephWnAd9SDktHlhjwfnhppyWfXUzIF
+	LtHbU8QFyj8bdo/HeuZsU3kKBzas3DZyB3QiqQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:content-type:date:date:feedback-id:feedback-id
 	:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1705483792; x=
-	1705570192; bh=QSUhYk2iu/3Pt17e2A9ZFtKpXoLCRx/INowv2VVp7F0=; b=j
-	PFVY1oxF9Ykyht36z3Pwgc58JOy1r2FKh5RTCEvd/skZh1koBskJN3p3+aEEymLe
-	LTDQp2z+godBWjFDFAdeUEdctbF2UirMbv1LnMO995EAXgRyBXoH7+5s3pQHzSVE
-	ONF/klHXYCoqtTjEs+bB9iOhbtPP+A5gDEXGC3J/w65W11cObQwsUyk4GhJ2CIFu
-	qu4wghy6zDyGUn7sb4jxChBBSqttSBPMLkLL8K1yI2WhEhBy0lAk/mUEI5HnAim8
-	mmSDzUSKMzbaQrm2dQ8Zx1t6+bmwrvhXEKll0edHHiAKpCkxzs9gWAV2W1VOZo2p
-	NZhms5jsW5w/9dJhubnIw==
-X-ME-Sender: <xms:EJ6nZeAb64Dqgmn7qkJ4K_Mly5keCS0qsE4vFIx6LLQYqWuclFqucA>
-    <xme:EJ6nZYg6nFkfdEZyLmFyFQ3PLwm7fmBHoBszH_oAq2b7NScVpi8iwc9YjXnmlFtiU
-    8Bscs3ReQ>
-X-ME-Received: <xmr:EJ6nZRl022CugEn3Bepz7pK0-JptxR12Jhq45pS53_4JRRT8_B5V5x2e03fjTrZffMo5eT1v-yXmkYU7A54EHXpaf7xi-PFgk4GzUA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdejhedgtddvucetufdoteggodetrfdotf
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1705484272; x=
+	1705570672; bh=EqoG1X993nKQll/W/WElOVnpmAA1bRw9scZWSKLC9hY=; b=t
+	813JLYI8Bx4VI4Gwak44Oz8zyBYxPmLK+loKEXgI30f+ggoxchL9aHnUvDxz5q29
+	GdvkXJgaoZA0MTDSGokS6QKrMn8KaQ/0PZnoAePyyO2PGptoQZQ8f9YJMMEs5XDH
+	Jwg/dYwR2+CO4x+7meXg8vFX8cfkYiP6uFoOd3AWU16r0GjpwiuLzN6k2+3UqpP1
+	KC9cMdWRpKXYM/p4N1hdwKMbTV1hgdXA+tvBWA3DoBgbL0VRhl1q6H/CWB0JEuJ5
+	wQ9NBICMT1043Cgtsea6ySa9MHP9po3aB2d/PvVs8/Xg9hHV6ja4zRgc7gNgoHyL
+	+gFDUI+bbQOY2gFL5KGvA==
+X-ME-Sender: <xms:8J-nZSb-hpldiAaYglXFcIUmyvqOweJBgW7GwGfXQj0lnz88wqqNgQ>
+    <xme:8J-nZVZ2zi25ZOWY6uKcMrV6mKeWroaKWet4muV6Cw4hn_ZmmFtBvLA22wLHRJpjc
+    iJXsi9_Yg>
+X-ME-Received: <xmr:8J-nZc_-4aFTXUwvgF14q4ZA5dLs7SVQC5QUfLBwjk4QHLr1EWWDvUMwbS21i7AB2T7IsNmxlZ7oPf5l-PksHw01ZIufOessVtFAWQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdejhedgtdegucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtvdejnecuhfhrohhmpefvihhm
@@ -76,15 +76,15 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdejhedgtddvucetufdoteggod
     hrnhepheehgfelhfffgeefkefgjeelkeduleefvefhgfekgfetfeetvdeigeekjedvffeh
     necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhimh
     esfhgvrghthhgvrhhtohhprdhorhhg
-X-ME-Proxy: <xmx:EJ6nZcxQrmGzfP-MabbU2yGr6J6uoh3PRXutfAU6We9sr1Y47s5hFQ>
-    <xmx:EJ6nZTRzI9TMME48-SZoGrt8dpk842uYP0f9L7o3OoJ5n4rHzvGerg>
-    <xmx:EJ6nZXZhb_kabZJR9pETnEVn1SQj0fBFnyoYVqE2e3ytOuVmC3z4oA>
-    <xmx:EJ6nZYI63WcsNZzvs5yXne4jOo6peWDk79UDGCs_A1P6lt5SvUClnw>
+X-ME-Proxy: <xmx:8J-nZUrk3qU74OECSeysdhR2SlGbF0T9AmpolkiveP3Mz9o_-fA7DQ>
+    <xmx:8J-nZdpzfb0ohQKi7BrP4_yW3ZqNNZsBbaR6eIYeJUHSpnivY8nhBA>
+    <xmx:8J-nZSTMXr6gSJXZlcKo_KIUGATE2VLB10DtPzOlZbe0rxDygIZTpQ>
+    <xmx:8J-nZY2r_SmjYrNhVhTtSGf71pfpSXuPPwHOtJGSULhXSIwnH4vpzg>
 Feedback-ID: i1f8241ce:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 17 Jan 2024 04:29:48 -0500 (EST)
-Message-ID: <5cfba450-eb5c-42d8-b422-52610d34effc@feathertop.org>
-Date: Wed, 17 Jan 2024 20:29:46 +1100
+ 17 Jan 2024 04:37:48 -0500 (EST)
+Message-ID: <64bce36c-468a-43b6-9d8d-0c20fbd53939@feathertop.org>
+Date: Wed, 17 Jan 2024 20:37:45 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,36 +92,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: rockchip: rk809 fix existing example
+Subject: Re: [PATCH 1/3] dt-bindings: rockchip: Add rk809 support for rk817
+ audio codec
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>
 Cc: linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, Chris Zhong <zyw@rock-chips.com>,
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Zhang Qing <zhangqing@rock-chips.com>, linux-kernel@vger.kernel.org
-References: <20240116132102.3272682-1-tim@feathertop.org>
- <20240116132102.3272682-3-tim@feathertop.org>
- <20240116-flick-ungraded-b36f8db15dcc@spud>
+ Lee Jones <lee@kernel.org>, Zhang Qing <zhangqing@rock-chips.com>,
+ linux-kernel@vger.kernel.org
+References: <20240116084618.3112410-1-tim@feathertop.org>
+ <20240116084618.3112410-2-tim@feathertop.org>
+ <20240116193701.GA286794-robh@kernel.org>
 From: Tim Lunn <tim@feathertop.org>
-In-Reply-To: <20240116-flick-ungraded-b36f8db15dcc@spud>
+In-Reply-To: <20240116193701.GA286794-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
+Hi Rob,
 
-On 1/17/24 04:07, Conor Dooley wrote:
-> On Wed, Jan 17, 2024 at 12:21:01AM +1100, Tim Lunn wrote:
->> Fix typo in the example specifying wrong compatible string for rk809.
->> Remove additional vccX-supply properties that dont exist on rk809.
+On 1/17/24 06:37, Rob Herring wrote:
+> On Tue, Jan 16, 2024 at 07:46:16PM +1100, Tim Lunn wrote:
+>> Rockchip RK809 shares the same audio codec as the rk817 mfd, it is also
+>> using the same rk817_codec driver. However it is missing from the
+>> bindings.
+>>
+>> Update dt-binding documentation for rk809 to include the audio codec
+>> properties. This fixes the following warning from dtb check:
+>>
+>> pmic@20: '#sound-dai-cells', 'assigned-clock-parents', 'assigned-clocks',
+>>     'clock-names', 'clocks', 'codec' do not match any of the regexes:
+>>     'pinctrl-[0-9]+'
 >>
 >> Signed-off-by: Tim Lunn <tim@feathertop.org>
-Fixes: 6c38ca03406e ("dt-bindings: mfd: rk808: Convert bindings to yaml")
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>
+>>   .../bindings/mfd/rockchip,rk809.yaml          | 30 ++++++++++++++++++-
+>>   1 file changed, 29 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+>> index 839c0521f1e5..bac2e751e2f2 100644
+>> --- a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+>> @@ -12,7 +12,7 @@ maintainers:
+>>   
+>>   description: |
+>>     Rockchip RK809 series PMIC. This device consists of an i2c controlled MFD
+>> -  that includes regulators, an RTC, and power button.
+>> +  that includes regulators, an RTC, a power button, and an audio codec.
+>>   
+>>   properties:
+>>     compatible:
+>> @@ -93,6 +93,34 @@ properties:
+>>           unevaluatedProperties: false
+>>       unevaluatedProperties: false
+>>   
+>> +  clocks:
+>> +    description:
+>> +      The input clock for the audio codec.
+> How many clocks? (maxItems: 1)
 >
-> A fixes tag would be nice too I suppose. Not worth resending for IMO
-> since b4 will pick it up if you reply with one.
+> You can drop the description.
+Yes just 1 clock, i will fix this.
 >
-> Thanks,
-> Conor.
+>> +
+>> +  clock-names:
+>> +    description:
+>> +      The clock name for the codec clock.
+> Drop.
+Just drop the description? I dont think can drop the clock names as the 
+driver use the name to lookup clock:
+
+devm_clk_get(pdev->dev.parent, "mclk");
+>
+>> +    items:
+>> +      - const: mclk
+>> +
+>> +  '#sound-dai-cells':
+>> +    description:
+>> +      Needed for the interpretation of sound dais.
+> Common property, don't need the description.
+Ok
+>
+>> +    const: 0
+>> +
+>> +  codec:
+>> +    description: |
+>> +      The child node for the codec to hold additional properties. If no
+>> +      additional properties are required for the codec, this node can be
+>> +      omitted.
+> Why do you need a child node here? Just put the 1 property in the parent
+> node.
+This is how the existing rk817 codec driver was setup. I suppose it was 
+copied from downstream, where there are more properties than just the 
+one. I don't know if there was any intention (or need) to implement 
+those other properties.
+>
+>> +    type: object
+>> +    additionalProperties: false
+>> +    properties:
+>> +      rockchip,mic-in-differential:
+>> +        type: boolean
+>> +        description:
+>> +          Describes if the microphone uses differential mode.
+>> +
+>>   allOf:
+>>     - if:
+>>         properties:
+>> -- 
+>> 2.40.1
+>>
 
