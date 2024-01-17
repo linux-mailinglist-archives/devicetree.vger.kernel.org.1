@@ -1,432 +1,369 @@
-Return-Path: <devicetree+bounces-32850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C26F4830D14
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:04:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11649830D24
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:10:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C56BB1C23EDF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:04:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ED7D1C209B7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE72724204;
-	Wed, 17 Jan 2024 19:04:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D41C24212;
+	Wed, 17 Jan 2024 19:10:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X0hHezzd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C6aNlgK2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13206249E3
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 19:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB4CE24208
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 19:09:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705518248; cv=none; b=ijUsgk/t/WfI9mKgrEnNGkTm48kaTwmy0vJ96fv0dASWtnUuHWLcsPhwYWJyP0MsoY50uucrSRJqzRYjf5tuLwYvDIqhWzFDEnVWeQq+ObZI9ILrKbsAlbW1SMEVtOId1EgveVGcHkznYQnTAGjsBVwGgo1t9HzjbL+KZGtIKMs=
+	t=1705518602; cv=none; b=XnMmuusGnv3kn2/i++DQSCaf5vi1BtAZZemjip6csCGl9vn/NPpTjllkm5DHr5kNRIUb0S5lb3iX2vj0nBwyYDmnbZ4PGvFVq0WizoRPOsdfry/VJ1/2ijasg2qZxHjW0vd/B+7Ef+/os+6e6eHYq1W/BEalHDMRKlqVJlu/sUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705518248; c=relaxed/simple;
-	bh=RQvqK65XmEy65P0dfI9CIYOge5Hcia9/yjKvmgOX/jI=;
+	s=arc-20240116; t=1705518602; c=relaxed/simple;
+	bh=pOBH5kk4rTVzyMww58JwBtZRXinWstPMBFhlHEVIRHE=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
 	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
-	 Content-Type; b=rsEcCPXyyO6Pa6FYr61dHZdNOGwtI2WTMvhyp6HUXiHFXbiyvy7uv59gzr2cIkx5SY0IL26kS8j4CUdjEX9ofZVmC5+3EZ10D/MyKtlTUOZqTcZzzs30uKxFJQOBmvLpaUkQuEf0vp19HAXAqldOJUd0tRP2RMQk29xtM7ljTYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X0hHezzd; arc=none smtp.client-ip=209.85.167.51
+	 Content-Type; b=IZxTcwljdtUY0UiAw8uYN/7MqxEL+DdQ0UZV4Pc6PlrR4SOUAvmanE+TX7IoHXGvgf/eCgf2hdveS54HCUzLddMOLK802kjf64x1PHaZ39p3xw+XK7da2+6JJVpUrC2UZThpCxABMpf9c09n4sVV4gcGwJvMdsGZe37ciCkTTnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C6aNlgK2; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50eaa8b447bso12949854e87.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 11:04:05 -0800 (PST)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50eaaf2c7deso12921456e87.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 11:09:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705518244; x=1706123044; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705518598; x=1706123398; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=CUHue8YDMG9xSAnuptwRdO5WTGsS6ORiybCl/14VAbA=;
-        b=X0hHezzdQQtl/NS9a9iFocqY5bz7sdh4D+czebQfWVQwlZDMn3vixp4m/CROGUIWo1
-         abbgrpuPEeYZjiqLsBqXohFkaDmk03i1DA/IKxEnekW4FoVQZPNqNboKKSUjb8gqwGRl
-         4QdmRPCA36t7ws3LoyuPrJLw9u0Z06gx7Lq7ccPfVbzQ+q0rRKsSzmbKHP4PxF6qg/rh
-         SN2BDjSHsCvZmM4sBUdFMnG15tQhcthuO+eJhW0xlCGtsU7bsfhbr2+/xQnuiAjDR+Lo
-         VHXwP6n0M2mCR0rXTH/roTOxyxDD9N2xJx1ggSLRMxGI7m9nnL5lRFckt2YnYQSesIee
-         3i9Q==
+        bh=NAzAJO3N1I1OhZ284fvmMR+G059lfg2vntURweb1Fq0=;
+        b=C6aNlgK2KCFeKX2M6Xtewg67xtun5EJRmPCerSQINq3ssRC9dfHbeBJ+FcmBvW33Pv
+         kGVIkSHXcKsaWGN6ERTg6ThV/99bXMeGi5FME2hz7+AxBMInxt3NrjJNeYN1iCN9S5hP
+         eC6BwnlV4Ry2n80A+9+rp1NugHYgg6Opdnrg2GM89V/PvkCZAHjBKPgkrBa3MTC1AF87
+         jkmlYVd9E1/3mBpyRXmmQssWi/Rv8fpDZGDFv47P3UvrMPphnHlInJMxDbYuz8sZ3BYV
+         kW/4Mz7siPZb0NBJUI8w9LeRkyiUsqHjxasuWy9XyewhGfpKSbweH6UJRVvUTN517qQa
+         w6xA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705518244; x=1706123044;
+        d=1e100.net; s=20230601; t=1705518598; x=1706123398;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=CUHue8YDMG9xSAnuptwRdO5WTGsS6ORiybCl/14VAbA=;
-        b=qKhCwiK+aPBc1fdxaMe5pUvNxVheRk2fcsyVvJO+d5eL3ijuS/tAhP5AtIHAD8aWvK
-         WvMCOhH50Kui5yc3nY+mryjYdBLR638cdTcwS7JlVeTA18O4ODurCibvqK4KUIqAJPRS
-         NM/bkdUTH9FYo4Y51gFSIyxr8g5tmfZwST4+5Cp9fP1fFWsT3c7XCNou+S04/0vz8O+x
-         CBRlRht6TZj1QN7n803TM4/iITbtbqVqb38U8GHP826MgpzEcFFI/LtToQly50tpo519
-         RoxQyHRCV3M6XxKo88fg4b5A7z/h1XnRfjfa7k7NcECdKzrJ/SfOwoTiehGDd3hhFi44
-         ZeHw==
-X-Gm-Message-State: AOJu0YyOdgcIVDyouE08dAmUjYOH41ckAi6DYwnDSqTRtj23boxLEBJ2
-	ImGiucvDRk5sCbVNqMrnv70eiyw3c8YYDXlRlxvgJyy8dq1TTA==
-X-Google-Smtp-Source: AGHT+IFWNJ13bY+/wKLgO1GNB26jbHRVzb5uCWsxzGb3BEiSaEpjRas6eR3Ms+VqG1mDMUweVmjhWQSPnBnJI5K2w38=
-X-Received: by 2002:a05:6512:23aa:b0:50e:ca19:c89c with SMTP id
- c42-20020a05651223aa00b0050eca19c89cmr2614828lfv.263.1705518243995; Wed, 17
- Jan 2024 11:04:03 -0800 (PST)
+        bh=NAzAJO3N1I1OhZ284fvmMR+G059lfg2vntURweb1Fq0=;
+        b=ggWepq4dldvLd5FOBO2K8SHxAeHQXO1Q/F+Ql1QlZYxZ5QO5/otMB/XxL+kg3rvIR/
+         XMtI1bVAPEtqfQGSfU3mh1IGWTK5OPvBZOtBHrAjXXQT86EB9KgIbe5yQqwpnB0NpQXC
+         wEbAg1xQDg1mOUbdz0DeXTBkflbkKhPRCqg3wbAGbrdhv5hvYLFjvxrSli7mqBddHC1P
+         Ffi8XapDnIZ1IJ7NWKvbtm77hAGVGbARQZ46vS5XS9NKnXELg3RAtFep9ZfHk99v8R2j
+         MgA3QEcCgDAOJ7oMn8x6Ds4KQVPlvLyYJ+aWnF2xqyYGsUz6q89YreEMhaCaDBMysbFE
+         6/kA==
+X-Gm-Message-State: AOJu0YzweqifCtEUJYcC+S6ljdOji8UBlxyeBCheOY67VySzxZvZkIRm
+	qmul871HbwvAwas44Gc+m5zT8QgR2QN0o5zvoDHDe3J+e4UFqw==
+X-Google-Smtp-Source: AGHT+IGlDOdd3qY094t3cuOIq0BxFxAUEV6oA7vLrb7WTMrXhkU9b2CulrxydgXjlkSNoz4gun1ky/i7gRaQohSADr4=
+X-Received: by 2002:a19:770f:0:b0:50e:ac2a:6b6d with SMTP id
+ s15-20020a19770f000000b0050eac2a6b6dmr4104291lfc.119.1705518597942; Wed, 17
+ Jan 2024 11:09:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240117173458.2312669-1-quic_sibis@quicinc.com> <20240117173458.2312669-3-quic_sibis@quicinc.com>
-In-Reply-To: <20240117173458.2312669-3-quic_sibis@quicinc.com>
+References: <20240117173458.2312669-1-quic_sibis@quicinc.com> <20240117173458.2312669-4-quic_sibis@quicinc.com>
+In-Reply-To: <20240117173458.2312669-4-quic_sibis@quicinc.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 17 Jan 2024 21:03:52 +0200
-Message-ID: <CAA8EJpp86U=yXQJh6V6zFuFgYA-2qMvOgw_BTZ8CJOpNssoUVQ@mail.gmail.com>
-Subject: Re: [RFC 2/7] mailbox: Add support for QTI CPUCP mailbox controller
+Date: Wed, 17 Jan 2024 21:09:46 +0200
+Message-ID: <CAA8EJpqUgqHfMOZip58yGpt6S3XSBz+9BeXZSL_JmWar_JbO4g@mail.gmail.com>
+Subject: Re: [RFC 3/7] firmware: arm_scmi: Add QCOM vendor protocol
 To: Sibi Sankar <quic_sibis@quicinc.com>
 Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org, 
 	konrad.dybcio@linaro.org, jassisinghbrar@gmail.com, robh+dt@kernel.org, 
 	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org, 
 	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org
+	quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, 
+	Amir Vajid <avajid@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
 
 On Wed, 17 Jan 2024 at 19:36, Sibi Sankar <quic_sibis@quicinc.com> wrote:
 >
-> Add support for CPUSS Control Processor (CPUCP) mailbox controller,
-> this driver enables communication between AP and CPUCP by acting as
-> a doorbell between them.
+> From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
 >
+> SCMI QCOM vendor protocol provides interface to communicate with SCMI
+> controller and enable vendor specific features like bus scaling capable
+> of running on it.
+>
+> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+> Co-developed-by: Amir Vajid <avajid@quicinc.com>
+> Signed-off-by: Amir Vajid <avajid@quicinc.com>
+> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
 > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 > ---
->  drivers/mailbox/Kconfig           |   8 +
->  drivers/mailbox/Makefile          |   2 +
->  drivers/mailbox/qcom-cpucp-mbox.c | 265 ++++++++++++++++++++++++++++++
->  3 files changed, 275 insertions(+)
->  create mode 100644 drivers/mailbox/qcom-cpucp-mbox.c
+>  drivers/firmware/arm_scmi/Kconfig            |  11 ++
+>  drivers/firmware/arm_scmi/Makefile           |   1 +
+>  drivers/firmware/arm_scmi/qcom_scmi_vendor.c | 160 +++++++++++++++++++
+>  include/linux/qcom_scmi_vendor.h             |  36 +++++
+>  4 files changed, 208 insertions(+)
+>  create mode 100644 drivers/firmware/arm_scmi/qcom_scmi_vendor.c
+>  create mode 100644 include/linux/qcom_scmi_vendor.h
 >
-> diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-> index 42940108a187..23741a6f054e 100644
-> --- a/drivers/mailbox/Kconfig
-> +++ b/drivers/mailbox/Kconfig
-> @@ -273,6 +273,14 @@ config SPRD_MBOX
->           to send message between application processors and MCU. Say Y here if
->           you want to build the Spreatrum mailbox controller driver.
+> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
+> index aa5842be19b2..86b5d6c18ec4 100644
+> --- a/drivers/firmware/arm_scmi/Kconfig
+> +++ b/drivers/firmware/arm_scmi/Kconfig
+> @@ -180,4 +180,15 @@ config ARM_SCMI_POWER_CONTROL
+>           called scmi_power_control. Note this may needed early in boot to catch
+>           early shutdown/reboot SCMI requests.
 >
-> +config QCOM_CPUCP_MBOX
-> +       tristate "Qualcomm Technologies, Inc. CPUCP mailbox driver"
-> +       depends on ARCH_QCOM || COMPILE_TEST
+> +config QCOM_SCMI_VENDOR_PROTOCOL
+> +       tristate "Qualcomm Technologies, Inc. Qcom SCMI vendor Protocol"
+> +       depends on ARM || ARM64 || COMPILE_TEST
+> +       depends on ARM_SCMI_PROTOCOL
 > +       help
-> +         Qualcomm Technologies, Inc. CPUSS Control Processor (CPUCP) mailbox
-> +         controller driver enables communication between AP and CPUCP. Say
-> +         Y here if you want to build this driver.
+> +         The SCMI QCOM vendor protocol provides interface to communicate with SCMI
+> +         controller and enable vendor specific features like bus scaling.
 > +
->  config QCOM_IPCC
->         tristate "Qualcomm Technologies, Inc. IPCC driver"
->         depends on ARCH_QCOM || COMPILE_TEST
-> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-> index 18793e6caa2f..53b512800bde 100644
-> --- a/drivers/mailbox/Makefile
-> +++ b/drivers/mailbox/Makefile
-> @@ -59,4 +59,6 @@ obj-$(CONFIG_SUN6I_MSGBOX)    += sun6i-msgbox.o
->
->  obj-$(CONFIG_SPRD_MBOX)                += sprd-mailbox.o
->
-> +obj-$(CONFIG_QCOM_CPUCP_MBOX)  += qcom-cpucp-mbox.o
+> +         This driver defines the commands or message ID's used for this
+> +         communication and also exposes the ops used by the clients.
 > +
->  obj-$(CONFIG_QCOM_IPCC)                += qcom-ipcc.o
-> diff --git a/drivers/mailbox/qcom-cpucp-mbox.c b/drivers/mailbox/qcom-cpucp-mbox.c
+>  endmenu
+> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
+> index a7bc4796519c..eaeb788b93c6 100644
+> --- a/drivers/firmware/arm_scmi/Makefile
+> +++ b/drivers/firmware/arm_scmi/Makefile
+> @@ -17,6 +17,7 @@ obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
+>  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-module.o
+>
+>  obj-$(CONFIG_ARM_SCMI_POWER_CONTROL) += scmi_power_control.o
+> +obj-$(CONFIG_QCOM_SCMI_VENDOR_PROTOCOL) += qcom_scmi_vendor.o
+>
+>  ifeq ($(CONFIG_THUMB2_KERNEL)$(CONFIG_CC_IS_CLANG),yy)
+>  # The use of R7 in the SMCCC conflicts with the compiler's use of R7 as a frame
+> diff --git a/drivers/firmware/arm_scmi/qcom_scmi_vendor.c b/drivers/firmware/arm_scmi/qcom_scmi_vendor.c
 > new file mode 100644
-> index 000000000000..22ea6c802286
+> index 000000000000..878b99f0d1ef
 > --- /dev/null
-> +++ b/drivers/mailbox/qcom-cpucp-mbox.c
-> @@ -0,0 +1,265 @@
+> +++ b/drivers/firmware/arm_scmi/qcom_scmi_vendor.c
+> @@ -0,0 +1,160 @@
 > +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
 > + * Copyright (c) 2024, The Linux Foundation. All rights reserved.
 > + */
 > +
-> +#include <linux/interrupt.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/mailbox_controller.h>
-> +#include <linux/module.h>
+> +#include <linux/qcom_scmi_vendor.h>
 > +
-> +#define APSS_CPUCP_IPC_CHAN_SUPPORTED          3
-> +#define APSS_CPUCP_MBOX_CMD_OFF                        0x4
+> +#include "common.h"
 > +
-> +/* Tx Registers */
-> +#define APSS_CPUCP_TX_MBOX_IDR                 0
-> +#define APSS_CPUCP_TX_MBOX_CMD                 0x100
+> +#define        EXTENDED_MSG_ID                 0
+> +#define        SCMI_MAX_TX_RX_SIZE             128
+> +#define        PROTOCOL_PAYLOAD_SIZE           16
+> +#define        SET_PARAM                       0x10
+> +#define        GET_PARAM                       0x11
+> +#define        START_ACTIVITY                  0x12
+> +#define        STOP_ACTIVITY                   0x13
 > +
-> +/* Rx Registers */
-> +#define APSS_CPUCP_RX_MBOX_IDR                 0
-> +#define APSS_CPUCP_RX_MBOX_CMD                 0x100
-> +#define APSS_CPUCP_RX_MBOX_MAP                 0x4000
-> +#define APSS_CPUCP_RX_MBOX_STAT                        0x4400
-> +#define APSS_CPUCP_RX_MBOX_CLEAR               0x4800
-> +#define APSS_CPUCP_RX_MBOX_EN                  0x4C00
-> +#define APSS_CPUCP_RX_MBOX_CMD_MASK            0xFFFFFFFFFFFFFFFF
-> +
-> +/**
-> + * struct qcom_cpucp_mbox - Holder for the mailbox driver
-> + * @chans:                     The mailbox channel
-> + * @mbox:                      The mailbox controller
-> + * @tx_base:                   Base address of the CPUCP tx registers
-> + * @rx_base:                   Base address of the CPUCP rx registers
-> + * @dev:                       Device associated with this instance
-> + * @irq:                       CPUCP to AP irq
-> + */
-> +struct qcom_cpucp_mbox {
-> +       struct mbox_chan chans[APSS_CPUCP_IPC_CHAN_SUPPORTED];
-> +       struct mbox_controller mbox;
-> +       void __iomem *tx_base;
-> +       void __iomem *rx_base;
-> +       struct device *dev;
-> +       int irq;
-> +       int num_chan;
-> +};
-> +
-> +static irqreturn_t qcom_cpucp_mbox_irq_fn(int irq, void *data)
+> +static int qcom_scmi_set_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +                              u32 param_id, size_t size)
 > +{
-> +       struct qcom_cpucp_mbox *cpucp = data;
-> +       u64 status;
-> +       u32 val;
-> +       int i;
+> +       int ret = -EINVAL;
+> +       struct scmi_xfer *t;
+> +       u32 *msg;
 > +
-> +       status = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_STAT);
-> +
-> +       for (i = 0; i < cpucp->num_chan; i++) {
-> +               val = 0;
-> +               if (status & ((u64)1 << i)) {
-> +                       val = readl(cpucp->rx_base + APSS_CPUCP_RX_MBOX_CMD + (i * 8) + APSS_CPUCP_MBOX_CMD_OFF);
-> +                       if (!IS_ERR(cpucp->chans[i].con_priv))
-> +                               mbox_chan_received_data(&cpucp->chans[i], &val);
-
-Why do you need a check? Can mailbox cope with unallocated channel instead?
-
-> +                       writeq(status, cpucp->rx_base + APSS_CPUCP_RX_MBOX_CLEAR);
-> +               }
-> +       }
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static int qcom_cpucp_mbox_startup(struct mbox_chan *chan)
-> +{
-> +       struct qcom_cpucp_mbox *cpucp = container_of(chan->mbox, struct qcom_cpucp_mbox, mbox);
-> +       unsigned long chan_id = (unsigned long)chan->con_priv;
-> +       u64 val;
-> +
-> +       val = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> +       val |= ((u64)1 << chan_id);
-
-BIT()
-
-> +       writeq(val, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> +
-> +       return 0;
-> +}
-> +
-> +static void qcom_cpucp_mbox_shutdown(struct mbox_chan *chan)
-> +{
-> +       struct qcom_cpucp_mbox *cpucp = container_of(chan->mbox, struct qcom_cpucp_mbox, mbox);
-> +       unsigned long chan_id = (unsigned long)chan->con_priv;
-> +       u64 val;
-> +
-> +       val = readq(cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> +       val &= ~((u64)1 << chan_id);
-
-BIT()
-
-> +       writeq(val, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> +
-> +       chan->con_priv = ERR_PTR(-EINVAL);
-> +}
-> +
-> +static int qcom_cpucp_mbox_send_data(struct mbox_chan *chan, void *data)
-> +{
-> +       struct qcom_cpucp_mbox *cpucp = container_of(chan->mbox, struct qcom_cpucp_mbox, mbox);
-> +       unsigned long chan_id = (unsigned long)chan->con_priv;
-> +       u32 val = (unsigned long)data;
-
-Please don't pass an integer as a pointer value.
-
-> +
-> +       writel(val, cpucp->tx_base + APSS_CPUCP_TX_MBOX_CMD + (chan_id * 8) + APSS_CPUCP_MBOX_CMD_OFF);
-> +
-> +       return 0;
-> +}
-> +
-> +static struct mbox_chan *qcom_cpucp_mbox_xlate(struct mbox_controller *mbox,
-> +                                              const struct of_phandle_args *sp)
-> +{
-> +       unsigned long ind = sp->args[0];
-> +
-> +       if (sp->args_count != 1)
-> +               return ERR_PTR(-EINVAL);
-> +
-> +       if (ind >= mbox->num_chans)
-> +               return ERR_PTR(-EINVAL);
-> +
-> +       if (!IS_ERR(mbox->chans[ind].con_priv))
-> +               return ERR_PTR(-EBUSY);
-> +
-> +       mbox->chans[ind].con_priv = (void *)ind;
-
-This seems to be static enough. Can you set it in
-qcom_cpucp_setup_mbox() instead?
-
-Then you can use of_mbox_index_xlate() here.
-
-> +
-> +       return &mbox->chans[ind];
-> +}
-> +
-> +static const struct mbox_chan_ops qcom_cpucp_mbox_chan_ops = {
-> +       .startup = qcom_cpucp_mbox_startup,
-> +       .send_data = qcom_cpucp_mbox_send_data,
-> +       .shutdown = qcom_cpucp_mbox_shutdown
-> +};
-> +
-> +static int qcom_cpucp_setup_mbox(struct qcom_cpucp_mbox *cpucp)
-> +{
-> +       struct device *dev = cpucp->dev;
-> +       struct mbox_controller *mbox;
-> +       unsigned long i;
-> +
-> +       /* Initialize channel identifiers */
-> +       for (i = 0; i < ARRAY_SIZE(cpucp->chans); i++)
-> +               cpucp->chans[i].con_priv = ERR_PTR(-EINVAL);
-> +
-> +       mbox = &cpucp->mbox;
-> +       mbox->dev = dev;
-> +       mbox->num_chans = cpucp->num_chan;
-> +       mbox->chans = cpucp->chans;
-> +       mbox->ops = &qcom_cpucp_mbox_chan_ops;
-> +       mbox->of_xlate = qcom_cpucp_mbox_xlate;
-> +       mbox->txdone_irq = false;
-> +       mbox->txdone_poll = false;
-> +
-> +       return mbox_controller_register(mbox);
-> +}
-> +
-> +static int qcom_cpucp_mbox_probe(struct platform_device *pdev)
-> +{
-> +       struct qcom_cpucp_mbox *cpucp;
-> +       struct resource *res;
-> +       int ret;
-> +
-> +       cpucp = devm_kzalloc(&pdev->dev, sizeof(*cpucp), GFP_KERNEL);
-> +       if (!cpucp)
-> +               return -ENOMEM;
-> +
-> +       cpucp->dev = &pdev->dev;
-> +
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       if (!res) {
-> +               dev_err(&pdev->dev, "Failed to get the cpucp rx base address\n");
-> +               return -ENODEV;
-> +       }
-> +
-> +       cpucp->rx_base = devm_ioremap(&pdev->dev, res->start, resource_size(res));
-
-devm_of_iomap() here and below.
-
-> +       if (!cpucp->rx_base) {
-> +               dev_err(&pdev->dev, "Failed to ioremap cpucp tx base\n");
-> +               return -ENOMEM;
-> +       }
-> +
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +       if (!res) {
-> +               dev_err(&pdev->dev, "Failed to get the cpucp tx base address\n");
-> +               return -ENODEV;
-> +       }
-> +
-> +       cpucp->tx_base = devm_ioremap(&pdev->dev, res->start, resource_size(res));
-> +       if (!cpucp->tx_base) {
-> +               dev_err(&pdev->dev, "Failed to ioremap cpucp tx base\n");
-> +               return -ENOMEM;
-> +       }
-> +
-> +       writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_EN);
-> +       writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_CLEAR);
-> +       writeq(0, cpucp->rx_base + APSS_CPUCP_RX_MBOX_MAP);
-> +
-> +       cpucp->irq = platform_get_irq(pdev, 0);
-> +       if (cpucp->irq < 0) {
-> +               dev_err(&pdev->dev, "Failed to get the IRQ\n");
-> +               return cpucp->irq;
-> +       }
-> +
-> +       ret = devm_request_irq(&pdev->dev, cpucp->irq, qcom_cpucp_mbox_irq_fn,
-> +                              IRQF_TRIGGER_HIGH, "apss_cpucp_mbox", cpucp);
-> +       if (ret < 0) {
-> +               dev_err(&pdev->dev, "Failed to register the irq: %d\n", ret);
+> +       if (!ph || !ph->xops)
 > +               return ret;
-> +       }
-> +
-> +       writeq(APSS_CPUCP_RX_MBOX_CMD_MASK, cpucp->rx_base + APSS_CPUCP_RX_MBOX_MAP);
-> +
-> +       cpucp->num_chan = APSS_CPUCP_IPC_CHAN_SUPPORTED;
-> +       ret = qcom_cpucp_setup_mbox(cpucp);
-> +       if (ret) {
-> +               dev_err(&pdev->dev, "Failed to create mailbox\n");
-> +               return ret;
-> +       }
-> +
-> +       platform_set_drvdata(pdev, cpucp);
-> +
-> +       return 0;
-> +}
-> +
-> +static int qcom_cpucp_mbox_remove(struct platform_device *pdev)
-> +{
-> +       struct qcom_cpucp_mbox *cpucp = platform_get_drvdata(pdev);
-> +
-> +       mbox_controller_unregister(&cpucp->mbox);
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct of_device_id qcom_cpucp_mbox_of_match[] = {
-> +       { .compatible = "qcom,cpucp-mbox"},
 
-Is there a guarantee that there will be no SoC-specifcs in this driver
-in future?
+Drop init of ret, return -EINVAL directly here.
 
-> +       {}
-> +};
-> +MODULE_DEVICE_TABLE(of, qcom_cpucp_mbox_of_match);
 > +
-> +static struct platform_driver qcom_cpucp_mbox_driver = {
-> +       .probe = qcom_cpucp_mbox_probe,
-> +       .remove = qcom_cpucp_mbox_remove,
-> +       .driver = {
-> +               .name = "qcom_cpucp_mbox",
-> +               .of_match_table = qcom_cpucp_mbox_of_match,
-> +               .suppress_bind_attrs = true,
-> +       },
-> +};
-> +
-> +static int __init qcom_cpucp_mbox_init(void)
-> +{
-> +       int ret;
-> +
-> +       ret = platform_driver_register(&qcom_cpucp_mbox_driver);
+> +       ret = ph->xops->xfer_get_init(ph, SET_PARAM, size + PROTOCOL_PAYLOAD_SIZE,
+> +                                     SCMI_MAX_TX_RX_SIZE, &t);
 > +       if (ret)
-> +               pr_err("%s: qcom_cpucp_mbox register failed %d\n", __func__, ret);
+> +               return ret;
+> +
+> +       msg = t->tx.buf;
+> +       *msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+> +       *msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+> +       *msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+> +       *msg++ = cpu_to_le32(param_id);
+
+First, this header ops looks like a generic code which can be extracted.
+
+Second, using GENMASK here in the ops doesn't make any sense. The
+values will be limited to u32 anyway.
+
+> +       memcpy(msg, buf, size);
+> +       ret = ph->xops->do_xfer(ph, t);
+> +       ph->xops->xfer_put(ph, t);
 > +
 > +       return ret;
 > +}
-> +module_init(qcom_cpucp_mbox_init);
-
-module_platform_init()
-
 > +
-> +static __exit void qcom_cpucp_mbox_exit(void)
+> +static int qcom_scmi_get_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +                              u32 param_id, size_t tx_size, size_t rx_size)
 > +{
-> +       platform_driver_unregister(&qcom_cpucp_mbox_driver);
-> +}
-> +module_exit(qcom_cpucp_mbox_exit);
+> +       int ret = -EINVAL;
+> +       struct scmi_xfer *t;
+> +       u32 *msg;
 > +
-> +MODULE_DESCRIPTION("QTI CPUCP MBOX Driver");
+> +       if (!ph || !ph->xops || !buf)
+> +               return ret;
+
+Drop init of ret, return -EINVAL directly here.
+
+> +
+> +       ret = ph->xops->xfer_get_init(ph, GET_PARAM, tx_size + PROTOCOL_PAYLOAD_SIZE,
+> +                                     SCMI_MAX_TX_RX_SIZE, &t);
+> +       if (ret)
+> +               return ret;
+> +
+> +       msg = t->tx.buf;
+> +       *msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+> +       *msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+> +       *msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+> +       *msg++ = cpu_to_le32(param_id);
+> +       memcpy(msg, buf, tx_size);
+> +       ret = ph->xops->do_xfer(ph, t);
+> +       if (t->rx.len > rx_size) {
+> +               pr_err("SCMI received buffer size %zu is more than expected size %zu\n",
+> +                      t->rx.len, rx_size);
+> +               return -EMSGSIZE;
+> +       }
+> +       memcpy(buf, t->rx.buf, t->rx.len);
+> +       ph->xops->xfer_put(ph, t);
+> +
+> +       return ret;
+> +}
+> +
+> +static int qcom_scmi_start_activity(const struct scmi_protocol_handle *ph,
+> +                                   void *buf, u64 algo_str, u32 param_id, size_t size)
+> +{
+> +       int ret = -EINVAL;
+> +       struct scmi_xfer *t;
+> +       u32 *msg;
+> +
+> +       if (!ph || !ph->xops)
+> +               return ret;
+
+You can guess the comment here.
+
+> +
+> +       ret = ph->xops->xfer_get_init(ph, START_ACTIVITY, size + PROTOCOL_PAYLOAD_SIZE,
+> +                                     SCMI_MAX_TX_RX_SIZE, &t);
+> +       if (ret)
+> +               return ret;
+> +
+> +       msg = t->tx.buf;
+> +       *msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+> +       *msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+> +       *msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+> +       *msg++ = cpu_to_le32(param_id);
+> +       memcpy(msg, buf, size);
+> +       ret = ph->xops->do_xfer(ph, t);
+> +       ph->xops->xfer_put(ph, t);
+> +
+> +       return ret;
+> +}
+> +
+> +static int qcom_scmi_stop_activity(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +                                  u32 param_id, size_t size)
+> +{
+> +       int ret = -EINVAL;
+> +       struct scmi_xfer *t;
+> +       u32 *msg;
+> +
+> +       if (!ph || !ph->xops)
+> +               return ret;
+> +
+> +       ret = ph->xops->xfer_get_init(ph, STOP_ACTIVITY, size + PROTOCOL_PAYLOAD_SIZE,
+> +                                     SCMI_MAX_TX_RX_SIZE, &t);
+> +       if (ret)
+> +               return ret;
+> +
+> +       msg = t->tx.buf;
+> +       *msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+> +       *msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+> +       *msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+> +       *msg++ = cpu_to_le32(param_id);
+> +       memcpy(msg, buf, size);
+> +       ret = ph->xops->do_xfer(ph, t);
+> +       ph->xops->xfer_put(ph, t);
+> +
+> +       return ret;
+> +}
+> +
+> +static struct qcom_scmi_vendor_ops qcom_proto_ops = {
+> +       .set_param = qcom_scmi_set_param,
+> +       .get_param = qcom_scmi_get_param,
+> +       .start_activity = qcom_scmi_start_activity,
+> +       .stop_activity = qcom_scmi_stop_activity,
+> +};
+> +
+> +static int qcom_scmi_vendor_protocol_init(const struct scmi_protocol_handle *ph)
+> +{
+> +       u32 version;
+> +
+> +       ph->xops->version_get(ph, &version);
+> +
+> +       dev_info(ph->dev, "qcom scmi version %d.%d\n",
+> +                PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct scmi_protocol qcom_scmi_vendor = {
+> +       .id = QCOM_SCMI_VENDOR_PROTOCOL,
+> +       .owner = THIS_MODULE,
+> +       .instance_init = &qcom_scmi_vendor_protocol_init,
+> +       .ops = &qcom_proto_ops,
+> +};
+> +module_scmi_protocol(qcom_scmi_vendor);
+> +
+> +MODULE_DESCRIPTION("QTI SCMI vendor protocol");
 > +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/qcom_scmi_vendor.h b/include/linux/qcom_scmi_vendor.h
+> new file mode 100644
+> index 000000000000..bde57bb18367
+> --- /dev/null
+> +++ b/include/linux/qcom_scmi_vendor.h
+> @@ -0,0 +1,36 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * QTI SCMI vendor protocol's header
+> + *
+> + * Copyright (c) 2024, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +#ifndef _QCOM_SCMI_VENDOR_H
+> +#define _QCOM_SCMI_VENDOR_H
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/device.h>
+> +#include <linux/types.h>
+> +
+> +#define QCOM_SCMI_VENDOR_PROTOCOL    0x80
+> +
+> +struct scmi_protocol_handle;
+> +extern struct scmi_device *get_qcom_scmi_device(void);
+> +
+> +/**
+> + * struct qcom_scmi_vendor_ops - represents the various operations provided
+> + *                              by qcom scmi vendor protocol
+> + */
+> +struct qcom_scmi_vendor_ops {
+> +       int (*set_param)(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +                        u32 param_id, size_t size);
+> +       int (*get_param)(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +                        u32 param_id, size_t tx_size, size_t rx_size);
+> +       int (*start_activity)(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +                             u32 param_id, size_t size);
+> +       int (*stop_activity)(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +                            u32 param_id, size_t size);
+> +};
+> +
+> +#endif /* _QCOM_SCMI_VENDOR_H */
+> +
 > --
 > 2.34.1
 >
