@@ -1,131 +1,80 @@
-Return-Path: <devicetree+bounces-32744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEE7B830662
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 13:59:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47CA28306D8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 14:18:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E83C2823C0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 12:59:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EAFFF28534A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 13:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99C91EB2C;
-	Wed, 17 Jan 2024 12:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30FFC1EB48;
+	Wed, 17 Jan 2024 13:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HVmsQioh"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="BRaVVMb8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B7481EB25;
-	Wed, 17 Jan 2024 12:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF121EB3B
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 13:18:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705496362; cv=none; b=Eq5Wd7jLNMLXYU4wsy3Nzmdl6tOEDhgsWCbZTVX29nvGPrVdyPyaUNGZ0hN4e9IcJo/ACsHcjaiUPXxVok1KzFnRZxGy6d5SbcxqfbQfW9lt3DRWXhXYpyjiL9edBjIQOCBYI4qht2etsTfvJzpbczpTilkuBOaFSMNYbIKKORc=
+	t=1705497513; cv=none; b=ZugxZagycs/ORpSsYcfhXxJps1KmAE7kjOwXSf8vjsmd/v6gYGBiXAGo5rkh1ahl+3kiQzgHJLoaWPFOeVqncfk4hOxeitLaLnB9Rs2zjghoCtQaNcE18kRqkdwCt7P0xOpeGdxoIo+RtJGgEv1Xk9ssMDnSu9mcix11DsPy1gk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705496362; c=relaxed/simple;
-	bh=vTROU2jcU9nWu+CYX4jqFbAAujvImlfaJDPY2q8o8Vg=;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=CHBVLCDKO+WPCNtEbWIRuhiQg4ReZgXac37WedWtC4t8xScLIVNtCprh0dEjL/uD5ZoK2gldHTZ/7Hd/x6LuOoa1gvL2HsbzAUA3bxZKwQ/ToUPr7pcYNphqxEowVMNxPdlVCX7JdwPTu9hYCEh93dTlnskzOv3FbBzFGvPxkB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HVmsQioh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7A2FC433F1;
-	Wed, 17 Jan 2024 12:59:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705496362;
-	bh=vTROU2jcU9nWu+CYX4jqFbAAujvImlfaJDPY2q8o8Vg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HVmsQiohhFLbzEQ+55oJIC2vG/AfBFQp+crYO8KcUBSUXbSn/n2rgGYe131BHgJ8N
-	 sg6NmbnJEMvp1ENbKLpdK/6Ykpt6K+f5/fOELRfltkioAezyQd4ghtkGkO1/5dwvbT
-	 x5B7WiPDdSV8YtcOntlAvvEsVKgPg2tlv3NDv+47IS0LxntC70PqL2HzvDXBup5uQB
-	 A/ChkdwtGpnXEnaR2ANhrdQ1gu8tilKkpJhowzmX+NAAgbZ4BjutJ+NvS40WACVda3
-	 NdFW1Bzn06aSa5tdM7U0wqCgmPM4tkmF3sFFZkbchkVPLkxkjUmiQsi6MXsLO1wraE
-	 ThhoM1oS0qliQ==
-Date: Wed, 17 Jan 2024 12:59:16 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jingbao Qiu <qiujingbao.dlmu@gmail.com>, alexandre.belloni@bootlin.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, chao.wei@sophgo.com, unicorn_wang@outlook.com,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	dlan@gentoo.org, inochiama@outlook.com
-Subject: Re: [PATCH v6 3/3] riscv: dts: sophgo: add rtc dt node for CV1800
-Message-ID: <20240117-turbulent-sustained-bf960186f7cc@spud>
-References: <20240115160600.5444-1-qiujingbao.dlmu@gmail.com>
- <20240115160600.5444-4-qiujingbao.dlmu@gmail.com>
- <f2b3dff2-ce0d-4ddb-ad61-74abf2c3022d@linaro.org>
+	s=arc-20240116; t=1705497513; c=relaxed/simple;
+	bh=VRbUn2kwlJHScFcg9cybX+heoKEbz8MvlzYOFtqqSbw=;
+	h=DKIM-Signature:Received:Received:X-UD-Smtp-Session:From:To:Cc:
+	 Subject:Date:Message-Id:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding; b=FaXTvQV5pJGx8HHIiHqR9gaAvwV1fGiiRmwbYMkenLQzk+ikbE5RiNmMhNxbSeCarA7XN+El0Dx8BeWETp2NlrpIFIIKzsfEmj6OENmdG2vWgGXfRSuqyYlQGTAKM8VpQB5sBEc54JZCT5hJucrvejTq862oO38XLUoOc3DflHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=BRaVVMb8; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=P+ka5e/ApWfpXi
+	TpFT175X3zjIXXrZ2y+vntVR5PtKg=; b=BRaVVMb88P6BozbG10zXOnYXgs7ZG1
+	t9JXR8o3RvijMTF79nghqWMyXJQTqBwAsWUh1wZujaxvjn3J8W3HFk9hJuCAK99F
+	BJlzjqZpPBZTr7nwo0/FGtC9wmvm7fpDqSoIWm2kV4rCUO5WH/UvfQRpEOUlOWBw
+	hwRI7mrIA5wCfp3icHkW3tDu8vpfPnu01M5dGtHArJCnp54hMvTGoEqCmP+wxvhw
+	U3xXU8TTmhpLNZ9bsbze61QyUV2iI9gKp5hvbtcpdrMWOVn6T94N9hNT/6kto4Bm
+	/+dY+0NIOcUNfNRIr81bZtEN5tE7w+/gr105akDoo5KB8DIh4Ox8SBng==
+Received: (qmail 2754576 invoked from network); 17 Jan 2024 14:18:20 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 17 Jan 2024 14:18:20 +0100
+X-UD-Smtp-Session: l3s3148p1@bymoFCQPzKpehhtJ
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v3 0/2] arm64: dts: renesas: ulcb-kf: add GNSS support
+Date: Wed, 17 Jan 2024 14:18:05 +0100
+Message-Id: <20240117131807.24997-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ST0BWaOiT7MOC+eD"
-Content-Disposition: inline
-In-Reply-To: <f2b3dff2-ce0d-4ddb-ad61-74abf2c3022d@linaro.org>
+Content-Transfer-Encoding: 8bit
+
+It has been a while. But now the driver changes for GNSS are upstream,
+so we can add support to the KingFisher board. First clean up the 3.3V
+regulators as suggested by Geert, then add the node. Further comments in
+the individual patches.
 
 
---ST0BWaOiT7MOC+eD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Wolfram Sang (2):
+  arm64: dts: renesas: ulcb-kf: drop duplicate 3.3v regulators
+  arm64: dts: renesas: ulcb-kf: add node for GNSS
 
-On Tue, Jan 16, 2024 at 08:44:12AM +0100, Krzysztof Kozlowski wrote:
-> On 15/01/2024 17:06, Jingbao Qiu wrote:
-> > Add the rtc device tree node to cv1800 SoC.
-> >=20
-> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> > ---
-> >  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >=20
-> > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/=
-dts/sophgo/cv1800b.dtsi
-> > index df40e87ee063..66bb4a752b91 100644
-> > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> > @@ -119,5 +119,17 @@ clint: timer@74000000 {
-> >  			reg =3D <0x74000000 0x10000>;
-> >  			interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>;
-> >  		};
-> > +
-> > +		rtc: rtc@5025000 {
-> > +			compatible =3D "sophgo,cv1800-rtc", "syscon";
-> > +			reg =3D <0x5025000 0x2000>;
-> > +			interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
-> > +			clocks =3D <&osc>;
-> > +		};
-> > +
-> > +		por {
-> > +			compatible =3D "sophgo,cv1800-por";
->=20
-> What is this? Why is it here, how did it even appear? It misses unit
-> address and reg or is clearly placed in wrong place. It seems you
-> entirely ignored out previous discussion.
->=20
-> NAK
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi | 42 ++++++++----------------
+ 1 file changed, 14 insertions(+), 28 deletions(-)
 
-It doesn't pass dtbs_check, so it's automatically not a runner. Please
-make sure that your series adds no additional warnings at dtbs_check
-with W=3D1.
+-- 
+2.39.2
 
-Thanks,
-Conor.
-
---ST0BWaOiT7MOC+eD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZafPJAAKCRB4tDGHoIJi
-0iSTAP9PWEFPH4zQ1xBK8WJilwJJ9LXJX6NS+x9taovIstROjwD/eoiJGotb3Uyw
-fZm3S1Pu5lHW4CRa4GOtJs500WJuZAk=
-=353h
------END PGP SIGNATURE-----
-
---ST0BWaOiT7MOC+eD--
 
