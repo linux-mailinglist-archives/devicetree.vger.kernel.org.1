@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-32643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D03CD8300A4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 08:40:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E8CB8300A8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 08:42:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AD63B24BB7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 07:40:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64A301C2275C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 07:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CCBDBA57;
-	Wed, 17 Jan 2024 07:40:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15415BA56;
+	Wed, 17 Jan 2024 07:42:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kd8oihs7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GSwMgCmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15998BA5E
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 07:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92869C122
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 07:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705477215; cv=none; b=BcTZh4PJjetE+39mxe5Xykrw/AkmCflnNYqcR3+CfoqizVqn0de0qy3pNnQnbj8g5LzIPMwgeGUApHbfSvQA8+HvyHkdu2j0E40beukLFAKHHv0Ft5Y5XnHkX0shO/5jUMz1s4JwmN2x9/PJKaCTjUs1lFqloW8ysh38IX0hDS8=
+	t=1705477341; cv=none; b=buv7K+yVmZvE8eWtx4l59y6dKBNM4QilAdAvYCOyJjgm2N7txkZVR7ivfiZridI4RWupvl+MKvs4h9trVnJp70RlQbJzeX3ty2jAY7XURK91FfqUvqKDIcZ5A37UNN6c9r6KGsv9K4XCwMsUpODDnQQfAYabgImI+wAYD8yZl1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705477215; c=relaxed/simple;
-	bh=y53jfPvEKjZRcX80MF/OitW3I90VrEzgwnWXJyqzdZ4=;
+	s=arc-20240116; t=1705477341; c=relaxed/simple;
+	bh=5t5aUxxGeFjpacPv8IkjbXpGMOy8IUzHeHyCHb64jyE=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
 	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
 	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=uXe43ya9KEBq2BZogYXx1v3dhPwl/9ds606cCPOub/1ZXOlNiX5zG2bCKLqwMEkdcvpJfxYm/EVyKV5o+TFUXmOjNqTwExCvQxdPqbFxFajt4QeA3oG2Lx9qkIMnNaycEYTJlOjn8rJ6PkymnaFfWMsoRlq6mu3Oec+3NFAgX+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kd8oihs7; arc=none smtp.client-ip=209.85.218.46
+	 Content-Transfer-Encoding; b=Gt+m2pCSWCW0+6XFQM7kS32CQ6ObW/XIlVWJLlXxQFPc+FpCXkYiw7LJqkmjwEXs/XaYYcilOTlkqsa9/zZqSABBa988yODVGUMlwHW9Bf5li61yFXYYsH3hnj3r0x2K2eQwX6KMVXUcYzgA8+HbW9DKD6u0EZjdqwJq6SDSKsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GSwMgCmQ; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a2e0be86878so438411866b.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 23:40:12 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-559b3ee02adso1651965a12.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 23:42:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705477211; x=1706082011; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705477337; x=1706082137; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=W5yQW0eWFrxCKeOcAEvivJz+EZ4XlJj+f4zmIZYKQjo=;
-        b=Kd8oihs77nPQaPHX43nQwvQix7sXEXr1By9pOusYIAvoeXnXJQOIymaAz+0YDGc2aG
-         ECbWWYUZVlTjoC/Bm88OdYxViJThNhjyhlR/GNjM8AIegf3moNvVQiE2HewkRjhFCdpE
-         wj21px/rmPUDUEyorRwvnYhHOoN2USiIVy0BiwqL8DyoL6SRSogKqj7PLVjnWKUIXToP
-         ReYeSfsx8Hcik+Thbg/4RYiqBcAuSrgr5HJF1Q5s7AV+LpxIb+r2qFgee4ULezgeJeV6
-         sg3c2agjYx3szU4hbno1eBG5HC/bWu8Gm5T9azLKlHc1u4BhIsJF5XiOKg6uNgGiOkrD
-         yC5w==
+        bh=N/A0JqxOC2yvRQmjMig0yHNkXz/q+JUU2MtZE9QrZOA=;
+        b=GSwMgCmQ06aSWGUWqy97XLcE6QmmVmYbhQ6z3BjlZ6mUk0yZNXLQk/5TMPxRGPXyY7
+         vNzn8sS+UET8d4FfJ7GPD/stGYYNiMobjOf8130tMgyBQP7zfLjFhvOrHy5kuiYsPegA
+         KmuUKpl1UBExkDZY6dR4ISQQDrrW72MuzxoBN2Yx6wewoBNp42l4s76rfVZkIVEsDANp
+         yVavmNrqKH1YBUEFGzOIgOn2RivSxfXZnIsV+i3vVKds5BEWufBl8pEFgVkooYNhSVEc
+         GXmRZo3RqefuFRgwwn20HQKsnTkEb53xt6A/CB4vGl8cbzhPFP8ke0260rhnTWjIjL2B
+         lEhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705477211; x=1706082011;
+        d=1e100.net; s=20230601; t=1705477337; x=1706082137;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W5yQW0eWFrxCKeOcAEvivJz+EZ4XlJj+f4zmIZYKQjo=;
-        b=kMYN3008QFji6+UXZDzcuiCiGEYNBW2yYV5nkeViJfE2M+7gzNtTCZqgT933H0JX9/
-         u/FZgf8Ivg/XQQ9/OxEVuGG0ebVfjdOMYOULNdVfoPkNIeVhIhZW4tfYLOjsB5pt3o9o
-         bI3PcY8q0N2v6jvH8wZmaSz10T85q2q7EeaPFFoPsY9/8yiX3P34vgMTZ3lNujVB5Vgb
-         uzGX1MS9iRz87h2Zin+VTammsiu2TVluipKahnUoHyceqdzOTqAFj6YuF7TbSIJ29fXW
-         rrOEmlfE6enKxDN6C7D/Seb9zyEGtFLfBBdYVGkkUH3niFdOCduPq/6o1/4VJFX1U4Dy
-         K98g==
-X-Gm-Message-State: AOJu0YwM4aX1IliuMxd8HzyAR2a+THdDtM7by6n2c6M7EKotseuOHgHk
-	GeULASvF+blXv3LnkwInC3UQu/yhgvc7dA==
-X-Google-Smtp-Source: AGHT+IFyqt3d1IQmKuo9PtUC3Mv4vRKIrjVJI6y/LaXYSF2mjJEGYphvkmR0yKtBsz2T7v/mi1G1gA==
-X-Received: by 2002:a17:906:b389:b0:a2e:c311:c6fe with SMTP id uh9-20020a170906b38900b00a2ec311c6femr334425ejc.10.1705477211474;
-        Tue, 16 Jan 2024 23:40:11 -0800 (PST)
+        bh=N/A0JqxOC2yvRQmjMig0yHNkXz/q+JUU2MtZE9QrZOA=;
+        b=Mg15mzyhqyZ2WF/fV3dJQ588sXuJWSChM2BxQh4Tu8VRZO+pIKfi3EKxeSCFWJmHzU
+         FxDtgi97HUx/dTAXgiYodl3M8tpRyIyuIL0plxDIQOGJsFS+QnEQAOXi9hwYfGY+5uDx
+         aga74BzAB2clS+m1r+pdlCYwTL7EoRigLtsodJS4E2GagEUlJTvmK42SqClpPZrko+hv
+         XiJ6mGZbOjliP9BgARaKi0tlYjA9p1i3/sZ/8chUengZVOnMfSucOSWRrxPDwlnpJ/EM
+         MGNd/FpjoFJwtIIUYn4DIl8KwdeMcVtPzls9MNk+ASduseAiEgsmmjNWJALiqK/OU+M7
+         t8hg==
+X-Gm-Message-State: AOJu0YycnNknILSXm4EtYfKQFwjCM+Y1iEaiwMdNrcghu+xbTIVVaLq/
+	RtVhVGUx8LQRoLlQGgMltcm7APCUiwp8TeDwZ2Ib10Sz/zI=
+X-Google-Smtp-Source: AGHT+IFHcaQr/eSQm+S5ecxd26qyDD5gUg3MWl6egg/LoUVmQ4Wb1JQ9I0zyNcKCUV1e5cxeaC9PYg==
+X-Received: by 2002:a17:906:6713:b0:a26:f301:6b52 with SMTP id a19-20020a170906671300b00a26f3016b52mr2651539ejp.49.1705477336817;
+        Tue, 16 Jan 2024 23:42:16 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id f1-20020a170906c08100b00a28fdd21763sm7457976ejz.134.2024.01.16.23.40.09
+        by smtp.gmail.com with ESMTPSA id y23-20020a170906559700b00a269357c2e7sm7426706ejp.36.2024.01.16.23.42.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Jan 2024 23:40:11 -0800 (PST)
-Message-ID: <ff85db67-bd18-48fb-9050-81d731e5f402@linaro.org>
-Date: Wed, 17 Jan 2024 08:40:08 +0100
+        Tue, 16 Jan 2024 23:42:16 -0800 (PST)
+Message-ID: <116d7421-6aff-42e8-a4a4-2251b7764f80@linaro.org>
+Date: Wed, 17 Jan 2024 08:42:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,28 +78,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: coresight: Remove pattern match
- of ETE node name
+Subject: Re: [PATCH 2/3] dt-bindings: rockchip: rk809 fix compatible string in
+ examples
 Content-Language: en-US
-To: Jinlong Mao <quic_jinlmao@quicinc.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
- Leo Yan <leo.yan@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Rob Herring <robh+dt@kernel.org>,
+To: Tim Lunn <tim@feathertop.org>, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, Chris Zhong <zyw@rock-chips.com>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Tao Zhang <quic_taozha@quicinc.com>
-References: <20240116064505.487-1-quic_jinlmao@quicinc.com>
- <20240116064505.487-2-quic_jinlmao@quicinc.com>
- <f616989b-2d84-483d-80c4-d3c6eb97b137@arm.com>
- <69875d89-651e-41ff-a1be-385dcbb15108@quicinc.com>
+ Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Zhang Qing <zhangqing@rock-chips.com>, linux-kernel@vger.kernel.org
+References: <20240116084618.3112410-1-tim@feathertop.org>
+ <20240116084618.3112410-3-tim@feathertop.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -145,30 +135,32 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <69875d89-651e-41ff-a1be-385dcbb15108@quicinc.com>
+In-Reply-To: <20240116084618.3112410-3-tim@feathertop.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 17/01/2024 03:14, Jinlong Mao wrote:
->>>         - const: arm,embedded-trace-extension
->>> @@ -55,13 +53,13 @@ examples:
->>>   # An ETE node without legacy CoreSight connections
->>>     - |
->>> -    ete0 {
->>> +    ete-0 {
->>
->> Why do we need the number ? why not simply "ete" as Krzysztof suggested ?
->>
+On 16/01/2024 09:46, Tim Lunn wrote:
+> Fix typo in the example specifying wrong compatible string
 > 
-> Hi Suzuki & Krzysztof ,
+> Signed-off-by: Tim Lunn <tim@feathertop.org>
+> ---
 > 
-> If name all the ete nodes' name as 'ete', there will be error below when 
-> build images.
+>  Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> arch/arm64/boot/dts/qcom/sm8450.dtsi:301.6-312.4: ERROR 
+> diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> index bac2e751e2f2..3f31478932c2 100644
+> --- a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> @@ -154,8 +154,8 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> -        rk808: pmic@1b {
+> -            compatible = "rockchip,rk808";
+> +        rk809: pmic@1b {
 
-Why are you pasting DTSI for binding? How is it related? Do we talk
-about DTSI here? No, this is a binding patch.
+You can just drop the label... Is it used here?
 
 Best regards,
 Krzysztof
