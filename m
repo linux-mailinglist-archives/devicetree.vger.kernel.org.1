@@ -1,203 +1,141 @@
-Return-Path: <devicetree+bounces-32624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0A3382FF95
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 05:34:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEDE682FF9A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 05:38:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A7891F2503F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 04:34:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22CD41C23D39
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 04:38:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56AD129A9;
-	Wed, 17 Jan 2024 04:34:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=windriver.com header.i=@windriver.com header.b="Vl/MAyTY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94D129A9;
+	Wed, 17 Jan 2024 04:38:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364788BE3;
-	Wed, 17 Jan 2024 04:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.166.238
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705466047; cv=fail; b=ggDb/ANNVztcj0+I3zQ4Aq+QQZGVszxyaOBHm6e7cFViOvFBPpXttArP/F6VEsrNtEG+78Vw/XRO8J9swkd/fdQTCNJS0rJFcJGwVKqo2/Gh9ynzDDQpqG6eK592DaQbKs6J/pv4Z5umk97b+N2wWjKak5eWr043qapGdn0pzbU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705466047; c=relaxed/simple;
-	bh=+aHDwuvjW68unOCk16YV/Qi4QoI0DWr73uCD7IZdCwo=;
-	h=Received:DKIM-Signature:Received:ARC-Message-Signature:
-	 ARC-Authentication-Results:Received:Received:From:To:Cc:Subject:
-	 Date:Message-Id:X-Mailer:Content-Transfer-Encoding:Content-Type:
-	 X-ClientProxiedBy:MIME-Version:X-MS-PublicTrafficType:
-	 X-MS-TrafficTypeDiagnostic:X-MS-Office365-Filtering-Correlation-Id:
-	 X-MS-Exchange-SenderADCheck:X-MS-Exchange-AntiSpam-Relay:
-	 X-Microsoft-Antispam:X-Microsoft-Antispam-Message-Info:
-	 X-Forefront-Antispam-Report:
-	 X-MS-Exchange-AntiSpam-MessageData-ChunkCount:
-	 X-MS-Exchange-AntiSpam-MessageData-0:X-OriginatorOrg:
-	 X-MS-Exchange-CrossTenant-Network-Message-Id:
-	 X-MS-Exchange-CrossTenant-AuthSource:
-	 X-MS-Exchange-CrossTenant-AuthAs:
-	 X-MS-Exchange-CrossTenant-OriginalArrivalTime:
-	 X-MS-Exchange-CrossTenant-FromEntityHeader:
-	 X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
-	 X-MS-Exchange-CrossTenant-UserPrincipalName:
-	 X-MS-Exchange-Transport-CrossTenantHeadersStamped:
-	 X-Proofpoint-ORIG-GUID:X-Proofpoint-GUID:
-	 X-Proofpoint-Virus-Version:X-Proofpoint-Spam-Details; b=IY4xQCj/gNNyy10lBqPJPqZ0cjditGmWdzi4Dcf+cCr1AXsvFa8qW/q/xu4dwemAb8nZeAxQn3UrS2rjHILr6XehN7L8vQM8gC9G7KSRjn5WV1hC8OdpmEra9/O+OBzO1FkV8xrQ7VZ9MRjaOKKDCTztvKbg1mxGlJ0gxD5AL98=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=windriver.com; spf=pass smtp.mailfrom=windriver.com; dkim=pass (2048-bit key) header.d=windriver.com header.i=@windriver.com header.b=Vl/MAyTY; arc=fail smtp.client-ip=205.220.166.238
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=windriver.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=windriver.com
-Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40H4U2Ka018661;
-	Tue, 16 Jan 2024 20:33:49 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
-	 h=from:to:cc:subject:date:message-id:content-transfer-encoding
-	:content-type:mime-version; s=PPS06212021; bh=omaP+5Bo4VJwmdFoFV
-	cewnAVkHJVTmW2uYFnZauLZ6c=; b=Vl/MAyTYGGmv01Lv9pKmHZYaJ1is5Z8s5e
-	XLVO4fbomR3DF2w1oDq6Y9uAKBOctYtZkfERxhYkBxA37e4Mvt+WJlwPm3ZSDHrc
-	mKiaCIFLG7AuGGBZoIwCrlA2S92QwJ7BtvAHGLzc70u62qMPmEWBOEzmbu5rIoGE
-	FcmvyaQy3pHrN4fKvCEASUbmtOXSqsz8Xem7pTRmer47MaumR4ga4DvuVkxII73v
-	ClM0OtFQ2FPDdMJ8pfVSYyar2nLo8geo7n1nR5BK1ccN3KJCwKhKHoTmUa0DebNp
-	cQpFTIguDz3+3tlvDaTKT5gIFPAE0t2qSkcgudIBYFbD6BtAKr4A==
-Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2041.outbound.protection.outlook.com [104.47.66.41])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3vktwkks28-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 16 Jan 2024 20:33:48 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aUGHUus+LyTnfCPlPgy7ah8eLaI6L81oHlTeSG7vpe2pV0CMMxbBaDgeFPktpxSEiqbOWfXMhEmVRyRHblKN7SR/oqh4ceaa4MG14EyQK+X4fQWryJUU0w/upRtlyfw0xg9akOoK+0YIN1Jjh07ZjJTBgs8G1AHzE6ofunZAOYrTk99nsX5CajM904MyzbXaf8y+Tt/jYGJYR9tkaMZPgnM02BvfSOM//RRyOz0roQPtsqJhCvKFqDNsl+JFhMpYzGRJKJGnn+KZ3R+gVU/JBq4jkVCzeRTDzOWufC4p7PLcsmFtEckKIjfH0Pf6gx3XgzSB98VLhlvFfsmHB/UYmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=omaP+5Bo4VJwmdFoFVcewnAVkHJVTmW2uYFnZauLZ6c=;
- b=MZIAj+ytq4/Hx8mTSr8iKifH03GlN5OG+5xDP8N++TfBKgvchTiKAzVwzpbWJFMP7BDdLj7Qdd3B6xCnvix3R2kE/e7jAzlyJBUCbTWONd8i/N7x0hAANdzxFo9BzAZqGGGolPwQPufi6naCsJzIq9pZTYaTLcSHav6EMKYz5oD30kLiaAnQDw/kaxKmZehJW34DNFQAxdG5GNSYdorByXtvaqtGGodBQDqcEdCIZCdYR1eLZ0WYaYxG4BEe1ZtoJyJVH/1NBIQAfFTLCexPqQkRtmXwG0eUr+FZWFTzd6GKW1m0/BoKHrstC4tnR4QhxcWPehnT5mSULgUCtRDoiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from SA2PR11MB5193.namprd11.prod.outlook.com (2603:10b6:806:fa::5)
- by CH0PR11MB5268.namprd11.prod.outlook.com (2603:10b6:610:e3::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.26; Wed, 17 Jan
- 2024 04:33:43 +0000
-Received: from SA2PR11MB5193.namprd11.prod.outlook.com
- ([fe80::1f50:d5e1:869c:1709]) by SA2PR11MB5193.namprd11.prod.outlook.com
- ([fe80::1f50:d5e1:869c:1709%7]) with mapi id 15.20.7181.029; Wed, 17 Jan 2024
- 04:33:43 +0000
-From: Xulin Sun <xulin.sun@windriver.com>
-To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        xulin.sun@windriver.com
-Subject: [PATCH] ARM: dts: tps65217: add power regulator & backlight drivers support
-Date: Wed, 17 Jan 2024 12:33:23 +0800
-Message-Id: <20240117043323.2008454-1-xulin.sun@windriver.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: TY2PR02CA0052.apcprd02.prod.outlook.com
- (2603:1096:404:e2::16) To SA2PR11MB5193.namprd11.prod.outlook.com
- (2603:10b6:806:fa::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED13733C5;
+	Wed, 17 Jan 2024 04:38:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705466334; cv=none; b=Vk3JBkCZ0jYRms4TzZekGk/FBnxFHatz4degYGrgE79WxenDIqMsg9t4+K0/jeBb7vyUOOFrZH2hz2by6+ItkhC+HAk/795MSUrE1kINWsif71svjlHJTEQbTwP4IvFU0AcZZs98VqH/eBLHc2eMOVTeuFRF0CtYOVkzmgC+cdk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705466334; c=relaxed/simple;
+	bh=OiO46qZq0Is2mnUaJvP4RWs7zVxEhEoqYSm44EehkgI=;
+	h=Received:X-Google-DKIM-Signature:X-Gm-Message-State:
+	 X-Google-Smtp-Source:X-Received:Received:Received:X-Received:
+	 MIME-Version:References:In-Reply-To:Reply-To:From:Date:
+	 X-Gmail-Original-Message-ID:Message-ID:Subject:To:Cc:Content-Type:
+	 Content-Transfer-Encoding; b=kbduiDGIT90Fbj8Fjl7GiuVWL+xZmapV28gkH9zd8/bKP8Ra4kAkyNWtE4uzuga/98bH8oVzQvzo2ITFuCrcLfIOHt4BD8cq9oOnAv5le+gdOTYO0DhdCPAM2STbJZuhXGidC+QWlLIgfuRkzvTzjnwGYSMTEfnJSOrxhyuHaPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5986f790b64so4993210eaf.3;
+        Tue, 16 Jan 2024 20:38:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705466332; x=1706071132;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xWM2eCTSdv+ykArKWuxIaHFUHWUoGfAR11YwSin65Ss=;
+        b=cTY+Nb1v5meKuIqMTveM42v0RdZIRQ9h7zDXu79rJ0wfPNRqBTl2gNRxnZJrq1AHqr
+         UtBztrWPvOxAVhL1Eir241mTgt6x2TM2gtSRnTjKYJrkjRUwrhFsTAJI3UFc5uBUI21I
+         r87pCgyAY2k5/O9u6XErr8R27Vi/L/sYD43XZUoSDWKFowW0gI2De9YTISOKKhsorvsu
+         uXqLIVyW144y7wGo3Z2ZmYoWo8bVXzV+zvuPO2rPKUOQkBILhsndX/9BOzXg82RZbhdX
+         dMUfzsilvmyWfkBVONURuod4KfK35tILx/Yh/CX7lbws17w3frRgoIDzyWR4Iyge+kaL
+         pqUg==
+X-Gm-Message-State: AOJu0YwxMxdFwAGgELtOpMfIDbJfVwGn86BebisfH45WX6Z5f93zGOOn
+	2IcEwHzi3/kD+1idFtrkx/0saAtNxj4=
+X-Google-Smtp-Source: AGHT+IGHDJ8a8HOSRPJRWP5tFhCevJ9+R7B4pV2bhD5NQFlFC0HV5nuk/DGRxj8bc7OHOrCArlyOYw==
+X-Received: by 2002:a4a:1781:0:b0:593:f906:614f with SMTP id 123-20020a4a1781000000b00593f906614fmr4494191ooe.4.1705466331774;
+        Tue, 16 Jan 2024 20:38:51 -0800 (PST)
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com. [209.85.210.48])
+        by smtp.gmail.com with ESMTPSA id b22-20020a4ad896000000b005990885b67esm761937oov.34.2024.01.16.20.38.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jan 2024 20:38:51 -0800 (PST)
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-6dc20b4595bso7172901a34.0;
+        Tue, 16 Jan 2024 20:38:51 -0800 (PST)
+X-Received: by 2002:a05:6359:29c7:b0:175:9fdb:8345 with SMTP id
+ qf7-20020a05635929c700b001759fdb8345mr5167276rwb.10.1705466330959; Tue, 16
+ Jan 2024 20:38:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PR11MB5193:EE_|CH0PR11MB5268:EE_
-X-MS-Office365-Filtering-Correlation-Id: d6e5a0b0-9041-47eb-13cc-08dc17157c84
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	muhg3a0LBA/DKIcwma3k67jhayilDoH5EjY9HVeRrudp5dYYesyJdTRrFS0SCvDQtzy0a7HsS2Gnh6IDiPkDy+I5CPWXeal3ypyomRJgtFVCefLkyTDRoMT5ZknwK2L0UICTXQCdJP1Ld0T6wBekSpA2eeUTrBR4jewqCq/l7WjM/cQVTSsV27WPuCPekdBmSaY93kvIatEVlyh+dZI6NDtwlXD75ATpxa52Yi+3zYhxXKicOmO+0aZmZ1rkJ6r3hv6/WtGWfeYMjkBmyb2Lo/s4AZ6ZwXNTzuuVguh5grTpg4HQoWPUwGk3vZiv4GFsaLUwSoDGwOdSCmqrS8MloZSpPh9GsPq+4Eab07YmIvgoadv4Clc5ptq2hpjDcqJlGiXPLz2kiDtyApkF8N3UNVGpf8p/Jl4n8RIN5hnoCB1r9dAs6oaZ3pU7tZjUkEUofhDanfbk2f+J93d3qJ2XTPoTsMVbWTq8pF8FXQCNbHd4A0g9o5bUUXFLZ8ccRnlBRBGyfPY2pc581BTkPrGr5Xsf4xCzWlBNAjEPhvq6uMA7Rc251h6J57dkKIl5/lujMqOU/ENR1fqwfJ1rvYaQcJa2797DRKsAOn+Agd9wufsuuClPwestnnY34CIpufTu
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB5193.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(396003)(366004)(136003)(39850400004)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(86362001)(6506007)(6512007)(52116002)(6486002)(38350700005)(36756003)(2616005)(38100700002)(107886003)(66556008)(1076003)(26005)(5660300002)(66476007)(44832011)(4744005)(2906002)(6666004)(66946007)(478600001)(4326008)(316002)(41300700001)(8936002)(8676002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?m4B7MOasJRs4+/jvIT0eRB1i7U1fUAKNc3jGEYogCkA02TpwpCxs47RmL+px?=
- =?us-ascii?Q?/KhR10dQXuZE+BmobhpSo7B0Z0R+1BY3Jarn7cpGaHAT6YlkwqTfKlUo+Ubw?=
- =?us-ascii?Q?jYFPZwPkSPuaFcwxKpBHOQJU687q2Ejg00II6ZMMAnhKYWJhumvZ6vrWgC6G?=
- =?us-ascii?Q?fnRcCutXZ+oUp+oNQax4b76wsxwhlQT2JCp4Ss62rm1AMDk6nA8Ry2IU1NE3?=
- =?us-ascii?Q?L1sdgJSxg9G2S8WVg4fNV3eHsOu/ChXw5RXW+LfpbUK32BqVMGATRDnaDEo0?=
- =?us-ascii?Q?y5JqfRisi+mQmzqw9GCrGLZYLrh1zsIzLOxk6qTIGWN1bZ67VdRLwI7ZSkgu?=
- =?us-ascii?Q?4PscQwRqzOr4j9LHXltmEEkxJTJ897Jr0Tc56iB0NQFhP62q+na6ob2IcBjY?=
- =?us-ascii?Q?ufsGAE+An/Onw9DP8eiiQAEtywsCvPIisUGVew1dX13itZic4cGdqUdwHcIM?=
- =?us-ascii?Q?yHke30gR2o8n25QCGmChAc8r7pYiz4zqUn+k9zvYalG+FtI8bSw8eBEdVlA9?=
- =?us-ascii?Q?iCIQgCcybu1vDDV4gAGYuHFwLSjE2L9ibB+gDhQveRhUN0CnCVXyHL2eSNLU?=
- =?us-ascii?Q?0s1A1bL572humBVo4ZF248b2wKCynhjx6aqsk7z0q/qR1PXWC4WmLXxzF9mC?=
- =?us-ascii?Q?BcxC1GYyYr7elqkDLG9wQuz5D8OmF5XUKW276RoNIhE+lEqQaWW6ChNPZiuA?=
- =?us-ascii?Q?nN8DkKcbVwRI31x0l9xIniqWsuIRIuaZBRRe/K5swGEVq0zjFYkdNbRjvwn3?=
- =?us-ascii?Q?zF34nmVgtV5PQ1N4U2v7g1YjYwmOakCbEXC3xlKQrDig/U/lUaizRgxVyj3O?=
- =?us-ascii?Q?Zzof+lQUVnYIZAdN98KIJZKgeo8KGwZsTCsQmf6a4R9d+imGPVKLrLKVCXbh?=
- =?us-ascii?Q?K5/3tdHvh7aALVfY3BKnh+HQGjovTG6VYofD9xac7NF0Xo2APfFWsNUOtnZ/?=
- =?us-ascii?Q?fxajJkI0jr7x7wpTO/dvZESOV/3zvR7DUJxpRHO4vce2+GrHmhhfKlsD2BVD?=
- =?us-ascii?Q?Czc3sYa5L6A3x8lMPSeLbXkJ3nLcDcIw9GSVtbA/XHGl99TDuSHeQDsJTaka?=
- =?us-ascii?Q?qgbzq0YVupqNGh+AHMEkR5YW3n9xpDrNuAaOPO6TQq3v22W/loGtMQ+qC8+Y?=
- =?us-ascii?Q?kwNKDonUYztjcYRtbjDL6Q4Zl6FnilzvmcBI1kIHJwTqswjyrNhwlcHY4PBn?=
- =?us-ascii?Q?wSbgDe9A5wB2PJubnaE9mRk0cEJXVhpP9emwPHoQwXIH721yoBqDs2/YW0Pl?=
- =?us-ascii?Q?ecnsriSSbr1wEXxqW5Wqy9AadET7XwVVXyBKdfgcW1h2Tarm0Lcodpzy5hW9?=
- =?us-ascii?Q?O3FH0BuZkJ/6GKJTddfFE5ACqOV1Q7X3dtNuPe3fLZDtSGVhqpyG04o0EWsT?=
- =?us-ascii?Q?lEdKJtJyKqEqvCM4FSB8IZDQJhIG3dME3Bi/F9SHYmLgTaduqu3vYExumE6w?=
- =?us-ascii?Q?LiDZMeHJl4rckjNv/A01kkSW6LrMEOt45Y6Wc6Ohb3R+ovQzxsbxljCdJ9hV?=
- =?us-ascii?Q?7yjlnaSHcY6HWUPvwFkR20iCwBT6TDWhbo9DW9X3UFKJFDPGD2n+vb8UhoCe?=
- =?us-ascii?Q?pf38wlkRYwbpdfPOwb/F4YPw8csIUUzFwr3FVt7wOVMKd71uIh6+veY1lK+b?=
- =?us-ascii?Q?LQ=3D=3D?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d6e5a0b0-9041-47eb-13cc-08dc17157c84
-X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB5193.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2024 04:33:43.2768
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xNpC2PKGgmu90wH+LSqFmOeCEYjNSX3VUkcs6GKsrXgdODkgXil9pcxDR/rkDM6ifs5ykj/8h3K2+83yc4zycg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5268
-X-Proofpoint-ORIG-GUID: -uSZ62SsHOQpR1uKuCqacQ3XOxtEecr5
-X-Proofpoint-GUID: -uSZ62SsHOQpR1uKuCqacQ3XOxtEecr5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-17_01,2024-01-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- mlxlogscore=374 suspectscore=0 phishscore=0 lowpriorityscore=0 spamscore=0
- clxscore=1011 malwarescore=0 priorityscore=1501 impostorscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401170028
+References: <20240116204103.29318-1-twoerner@gmail.com> <20240116204103.29318-2-twoerner@gmail.com>
+In-Reply-To: <20240116204103.29318-2-twoerner@gmail.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Wed, 17 Jan 2024 12:38:39 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67KfNR_U_Qz85aqY1D0DKE9mo-X_L8MGvT7cdcZGUHVUg@mail.gmail.com>
+Message-ID: <CAGb2v67KfNR_U_Qz85aqY1D0DKE9mo-X_L8MGvT7cdcZGUHVUg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rock-pi-e: fix location of snps properties
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Support TPS65217 voltage regulator driver and TPS65217 Backlight driver.
-And enable them by default. This will avoid below booting failed
-information:
-tps65217-pmic: Failed to locate of_node [id: -1]
-tps65217-bl: Failed to locate of_node [id: -1]
+On Wed, Jan 17, 2024 at 4:41=E2=80=AFAM Trevor Woerner <twoerner@gmail.com>=
+ wrote:
+>
+> A number of snps (Synopsys) properties are not in their correct location.
 
-Signed-off-by: Xulin Sun <xulin.sun@windriver.com>
----
- arch/arm/boot/dts/tps65217.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Nope. If you read the snps,dwmac.yaml binding file, you'll see that these
+properties have been deprecated. They are properties pertaining to the PHY
+and should be described under the PHY node. Support for reset GPIOs on PHY
+devices in phylib has been there since v4.16. The snps prefixed properties
+were deprecated in v5.3.
 
-diff --git a/arch/arm/boot/dts/tps65217.dtsi b/arch/arm/boot/dts/tps65217.dtsi
-index 0d463de5650f..f412e7476660 100644
---- a/arch/arm/boot/dts/tps65217.dtsi
-+++ b/arch/arm/boot/dts/tps65217.dtsi
-@@ -13,6 +13,16 @@ &tps {
- 	interrupt-controller;
- 	#interrupt-cells = <1>;
- 
-+	pmic {
-+		compatible = "ti,tps65217-pmic";
-+		status = "okay";
-+	};
-+
-+	bl {
-+		compatible = "ti,tps65217-bl";
-+		status = "okay";
-+	};
-+
- 	charger {
- 		compatible = "ti,tps65217-charger";
- 		interrupts = <0>, <1>;
--- 
-2.34.1
+ChenYu
 
+> Fixes: b918e81f2145 ("arm64: dts: rockchip: rk3328: Add Radxa ROCK Pi E")
+> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm=
+64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> index 096cfa19036e..0739b8fec86e 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> @@ -150,8 +150,11 @@ &gmac2io {
+>         phy-mode =3D "rgmii";
+>         phy-supply =3D <&vcc_io>;
+>         pinctrl-names =3D "default";
+> -       pinctrl-0 =3D <&rgmiim1_pins>;
+> +       pinctrl-0 =3D <&rgmiim1_pins>, <&eth_phy_reset_pin>;
+>         snps,aal;
+> +       snps,reset-gpio =3D <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
+> +       snps,reset-active-low;
+> +       snps,reset-delays-us =3D <0 10000 50000>;
+>         snps,rxpbl =3D <0x4>;
+>         snps,txpbl =3D <0x4>;
+>         tx_delay =3D <0x26>;
+> @@ -165,13 +168,10 @@ mdio {
+>
+>                 rtl8211: ethernet-phy@1 {
+>                         reg =3D <1>;
+> -                       pinctrl-0 =3D <&eth_phy_int_pin>, <&eth_phy_reset=
+_pin>;
+> +                       pinctrl-0 =3D <&eth_phy_int_pin>;
+>                         pinctrl-names =3D "default";
+>                         interrupt-parent =3D <&gpio1>;
+>                         interrupts =3D <24 IRQ_TYPE_LEVEL_LOW>;
+> -                       reset-assert-us =3D <10000>;
+> -                       reset-deassert-us =3D <50000>;
+> -                       reset-gpios =3D <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
+>                 };
+>         };
+>  };
+> --
+> 2.43.0.76.g1a87c842ece3
+>
 
