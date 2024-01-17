@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-32805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22493830A97
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:11:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C1B0830AA0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:12:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B53B028A683
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:11:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5D901F2913C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:12:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DED7250E1;
-	Wed, 17 Jan 2024 16:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2CFB24A1F;
+	Wed, 17 Jan 2024 16:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="AGM2kIWV"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="QK7JaqDA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FF9724A18
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 16:08:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D33124B5F
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 16:08:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705507721; cv=none; b=GEHJqNACzw3PXOQIxENkvyJnRh5XClBag8jXcRo5JeP8G2V61DEvX3UMVRQRzaIc5Bp1uN8DJkIIBRfAst+gohYgEokvTlymxASZyE0eSKKNewgxQlmtF1NkDDxUY8jDG2KbUVO8YGLwcR94x2BEde0sGYyTlppQ88CnrQacZaU=
+	t=1705507722; cv=none; b=mqaomfeyqUBAKosvj/MqUQHx7Fsz1W5FLLdS2VemvOS4sOb6E/PyaVrfPtZ/u9dBsnzVCmGbs5RhYaY/hGFY0ubL4e4IXkhG5nFMykX9ikwZo7SVGJtkwZ9NWRb33cC068zONapuRc7SgWpINDxcuPUBgSFcqaQdpuVQRBlRSmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705507721; c=relaxed/simple;
-	bh=RmzggMuqX9S2sYKlWB5CTnSQ2ymEjp/UGoryY82oivE=;
+	s=arc-20240116; t=1705507722; c=relaxed/simple;
+	bh=mM8PwsCjRqxpEKB13QqnWtlTPmsb6ofAXID4BuBezD4=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:From:
 	 To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding; b=kMW6PXyQBZsKgwL3oKEgxK/1zajnov4OAgcyNXeNZZ8kesSJqCrB1/PRVJBtXyYjWImciCH2SEjhh4E4XlqtGSb17y8VsfppEkrkyfGoz0hgo8qizDbAL41pW3+3hI3n0AmbHicAG3wwXBWP08M0N8AvLrVvFS6WEtwtJJixRO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=AGM2kIWV; arc=none smtp.client-ip=209.85.221.52
+	 MIME-Version:Content-Transfer-Encoding; b=EJD8yeECW8TL65ZdLhr7TBiHR9fkT1fjUhm8prLEboTm4fYkZ6CK+6jR/YFt+DYEZ6wNz76Ow0ZKoIrj43gXeHpE5cWsdW1FQ9WEwLYq9aqxq7/GFx/3rUI9IRDY4p2Fzkz4TCa5bHFhoqJXhJfC62Vnlme4NdieM3QYp3jNjxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=QK7JaqDA; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-33694bf8835so8504345f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 08:08:39 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33678156e27so9652640f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 08:08:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1705507718; x=1706112518; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1705507719; x=1706112519; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iFu9yLDki9n8hZLDYiMoEZqERou6Z5NMTUbYakLpe9U=;
-        b=AGM2kIWV9zkOgZm5YdSDtl353IyCrexsWyLpNaXizZKE1vpFt97Qfc4DrQRl9hU1Wd
-         mgAKFdFP+XNpCd3yO/9zCnMhGtFd1W6LpYv74cpZt69+8gkYyytY4opyZwKakh1StNJI
-         BzC54uf2s/M5c4GpDss8XRaJWGVHf9sWRUzo+bGB77SXHsSmarFarYVs0mRIbo3eXcO2
-         Hd7SFbeoWvCTrqocktxS3WJnwXnH+URCh/zDs2U+Y496tg9Xwn8UDMZhryoCx34WUG7h
-         gSPjFe/yzFdihgETy1lqiRFeajWvRATHNZ3hFLklSG/n0iG16kPaRhO4ffS5N3noL4YN
-         rI5w==
+        bh=9KiJFCSMkHl908ixeSikSO3f5Gun1Y9vXqztuxAOHIc=;
+        b=QK7JaqDAX6UeY03/jWwluKciFOE4L7Z5QtbBbJsRWC+y010PQ5RkuSa7L3v3FXLFkZ
+         +tSgLHDiYLvyGfbzKdaoYKrzIDO49cM+ZQ8nhgOfiHJKx40DfnX1+0aPK0FsNALedjOP
+         JqIC25RgMeeUU31utBLG3fsLKCbCYSCaO11r0x8RpW7+jBrx/hmOZ8JkSG5vT0daH1+z
+         1mWxjBcWyxs0Zpf/9AZyBD2Xz1ThUcQS+lq4kFOAcU7ubuvUbHRePdZSWWeBbQUlcO2c
+         UDjoFIgh1/ceEp8738+sR7R0oiVQ5lciXFigpkpJMHjp/wZuaCqAYcY+wgLGvHX42Zim
+         cVAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705507718; x=1706112518;
+        d=1e100.net; s=20230601; t=1705507719; x=1706112519;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=iFu9yLDki9n8hZLDYiMoEZqERou6Z5NMTUbYakLpe9U=;
-        b=UVuscF2PXLyU0YVH3rsFOITwVZwwKMDUngxM04w03XkmzHVx6heECsiHkH9ZNXtGI1
-         FrKz2umEAFxeNOA/RwIhMp0MgI1LyndXYMUGYCS7JTf76A5oRCAVu/GqVVBjlu04g5JV
-         vqc6WWk3aWkW05LFBYU73XRN+Ens4xNoXZMaBh/Fmn3Fiutx6uTwEty/31yZ0RMfiTY6
-         rqPi25YEZZZCtBZrCsqjGuuPUtq2XFmy8vTZIwaURfncZOu6RhE5zmft5dk3y1KQf2kh
-         nPHPzjOm3vUzPWKAlT1Ak+JmL6GrHNlelHtasY/aCqueJ9rsETFTd5Ss2mcJm7rRW7Jy
-         uFQA==
-X-Gm-Message-State: AOJu0YwHdsQbkpScvxnJtG0L9w1kHgE/+Rfyv+EC75UrH4H2wpc0Dlw5
-	j46Z9DDPNXW9SoEV/9TyjTFKMKA5bWdvUQ==
-X-Google-Smtp-Source: AGHT+IEmgi0LRLiPs2g64YkCGg5BMB/9EVVczXYVKQC5N4pf2ch45rIJoaEV0jPaB90LK0yrggei2g==
-X-Received: by 2002:a05:6000:1445:b0:337:c4d5:ce70 with SMTP id v5-20020a056000144500b00337c4d5ce70mr662501wrx.137.1705507717858;
-        Wed, 17 Jan 2024 08:08:37 -0800 (PST)
+        bh=9KiJFCSMkHl908ixeSikSO3f5Gun1Y9vXqztuxAOHIc=;
+        b=eWl/7fw6kw5H+OwOvknFOdRlt2/EE5xo9qTSeb89RufUk78AVI4rSyZHP6Seo7xvOq
+         t4wMD4nuIlsoq/gXjzqrGm/v6eDVzbI82aznR3rKvNH95Ww0NpxZs0MWmgJIIhWKxrPJ
+         APyMEvpIoRth73IirwezFi/x4iuLb+EsLsSOwYlkSRV/MT0tuLu7Yr59fnG9oNsicPYS
+         ZhKxONGvy/vsKNmVbbcN6gu9+cYpWwwDg2at2L4QiCrvueRli0yNdNpdm9OPq5bmjm0Q
+         dvgU5S1AHJe/9168SvPkSHea67pDPh7gJdpJB77eh8r7+CfH43voe6ZKYB+m5q903s5f
+         sVMg==
+X-Gm-Message-State: AOJu0Yy7OCqyyw7vmPhwSzCKeO6aW69RICkKqjwFbqRo7ev4k9orytoX
+	3mdIL5fDq1fBbc8A7ky6s0IM3uzxVMVfUQ==
+X-Google-Smtp-Source: AGHT+IE09EQiEo3vEyiN4aUkmSSulxM60vCAFa6QFBzATdMqmCKCemxhHosUEgDD4K1ltVFvSuduEg==
+X-Received: by 2002:adf:e90b:0:b0:336:6bf0:a005 with SMTP id f11-20020adfe90b000000b003366bf0a005mr4715360wrm.92.1705507719524;
+        Wed, 17 Jan 2024 08:08:39 -0800 (PST)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:d0b5:43ec:48:baad])
-        by smtp.gmail.com with ESMTPSA id t10-20020a5d6a4a000000b00337b0374a3dsm1972092wrw.57.2024.01.17.08.08.36
+        by smtp.gmail.com with ESMTPSA id t10-20020a5d6a4a000000b00337b0374a3dsm1972092wrw.57.2024.01.17.08.08.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jan 2024 08:08:37 -0800 (PST)
+        Wed, 17 Jan 2024 08:08:39 -0800 (PST)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
 To: Kalle Valo <kvalo@kernel.org>,
 	"David S . Miller" <davem@davemloft.net>,
@@ -110,9 +110,9 @@ Cc: linux-wireless@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-pci@vger.kernel.org,
 	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 7/9] dt-bindings: wireless: ath11k: describe QCA6390
-Date: Wed, 17 Jan 2024 17:07:46 +0100
-Message-Id: <20240117160748.37682-8-brgl@bgdev.pl>
+Subject: [PATCH 8/9] dt-bindings: wireless: ath11k: describe WCN7850
+Date: Wed, 17 Jan 2024 17:07:47 +0100
+Message-Id: <20240117160748.37682-9-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240117160748.37682-1-brgl@bgdev.pl>
 References: <20240117160748.37682-1-brgl@bgdev.pl>
@@ -126,83 +126,101 @@ Content-Transfer-Encoding: 8bit
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Describe the ath11k variant present on the QCA6390 module.
+Describe the ath11k variant present on the WCN7850 module.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
- .../net/wireless/qcom,ath11k-pci.yaml         | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
+ .../net/wireless/qcom,ath11k-pci.yaml         | 41 +++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-index 817f02a8b481..c8ec9d313d93 100644
+index c8ec9d313d93..5648c855a122 100644
 --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
 +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-@@ -16,6 +16,7 @@ description: |
- properties:
-   compatible:
+@@ -18,6 +18,7 @@ properties:
      enum:
-+      - pci17cb,1101  # QCA6390
+       - pci17cb,1101  # QCA6390
        - pci17cb,1103  # WCN6855
++      - pci17cb,1107  # WCN7850
  
    reg:
-@@ -27,10 +28,57 @@ properties:
+     maxItems: 1
+@@ -28,13 +29,25 @@ properties:
        string to uniquely identify variant of the calibration data for designs
        with colliding bus and device ids
  
-+  enable-gpios:
-+    description: GPIO line enabling the ATH11K module when asserted.
++  clocks:
 +    maxItems: 1
 +
-+  vddio-supply:
-+    description: VDD_IO supply regulator handle
+   enable-gpios:
+     description: GPIO line enabling the ATH11K module when asserted.
+     maxItems: 1
+ 
++  vdd-supply:
++    description: VDD supply regulator handle
 +
-+  vddaon-supply:
-+    description: VDD_AON supply regulator handle
++  vdddig-supply:
++    description: VDD_DIG supply regulator handle
 +
-+  vddpmu-supply:
-+    description: VDD_PMU supply regulator handle
+   vddio-supply:
+     description: VDD_IO supply regulator handle
+ 
++  vddio12-supply:
++    description: VDD_IO12 supply regulator handle
 +
-+  vddpcie1-supply:
-+    description: VDD_PCIE1 supply regulator handle
-+
-+  vddpcie2-supply:
-+    description: VDD_PCIE2 supply regulator handle
-+
-+  vddrfa1-supply:
-+    description: VDD_RFA1 supply regulator handle
-+
-+  vddrfa2-supply:
-+    description: VDD_RFA2 supply regulator handle
-+
-+  vddrfa3-supply:
-+    description: VDD_RFA3 supply regulator handle
-+
- required:
-   - compatible
+   vddaon-supply:
+     description: VDD_AON supply regulator handle
+ 
+@@ -61,6 +74,18 @@ required:
    - reg
  
-+allOf:
+ allOf:
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
 +            enum:
-+              - pci17cb,1103
++              - pci17cb,1101
 +    then:
 +      properties:
-+        enable-gpios: false
-+        vddio-supply: false
-+        vddaon-supply: false
++        clocks: false
++        vdd-supply: false
++        vdddig-supply: false
++        vddio12-supply: false
+   - if:
+       properties:
+         compatible:
+@@ -69,7 +94,11 @@ allOf:
+               - pci17cb,1103
+     then:
+       properties:
++        clocks: false
+         enable-gpios: false
++        vdd-supply: false
++        vddio12-supply: false
++        vdddig-supply: false
+         vddio-supply: false
+         vddaon-supply: false
+         vddpmu-supply: false
+@@ -78,6 +107,18 @@ allOf:
+         vddrfa3-supply: false
+         vddpcie1-supply: false
+         vddpcie2-supply: false
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - pci17cb,1107
++    then:
++      properties:
 +        vddpmu-supply: false
-+        vddrfa1-supply: false
-+        vddrfa2-supply: false
 +        vddrfa3-supply: false
 +        vddpcie1-supply: false
 +        vddpcie2-supply: false
-+
+ 
  additionalProperties: false
  
- examples:
 -- 
 2.40.1
 
