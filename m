@@ -1,220 +1,326 @@
-Return-Path: <devicetree+bounces-32839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B9A830C65
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:06:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E01DD830C69
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:06:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01E531F21EEE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:06:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A94C1F22090
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:06:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6C922EF5;
-	Wed, 17 Jan 2024 18:06:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83B9222EF8;
+	Wed, 17 Jan 2024 18:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PdkAAOxN"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="cuhwSpt7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2059.outbound.protection.outlook.com [40.107.7.59])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 152F122EF4
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 18:06:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705514769; cv=none; b=loY0ZqiSU+ZKP28r80xnBG8Ozmrug9JIO7d1q/RURnegqJmAyv74JtD3wIouWjoe0ipCvXdvABtVmyG1uzW+WKWCSbMidRzuKHpRcomOnlRz9SP7melBaep43tfg8RWKQdS2kvfOIczlhBe2fgGKb+a4cLyMIEodq8UialujJjQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705514769; c=relaxed/simple;
-	bh=+xoMF1wZaHymim5riNdD9I4xLtRCnu68F4GVPtWeSYs=;
-	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
-	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
-	 Content-Type:Content-Transfer-Encoding; b=Il9O4oSMdjstlbE3W999uEwPCfLqMlap3gmre0xhqTnMhmlxeV6WKLA5C6ncra4fylSN7uJly3URhaGgDRg8CDhmHA3U6WNgC8lZ9m5+Jue9vJSTLFu/H9+Yy2GRgfa+HGA4xbwuuyEa9V9Lw8uwKLVZBkOzcWN96lTiUP53/j8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PdkAAOxN; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5ff821b9acfso812197b3.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:06:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705514767; x=1706119567; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YFkmgKfAYW4PQNSghqjXT5WrCqzlgmtfGOBlxJ300S0=;
-        b=PdkAAOxNnROEac8xqoEQ5gHmw9pVfk+ESH9ed+iDxWv0ruNrX53PCP/q68f4ydhDt3
-         YRnauDr9O6jfmymNvRLbtBvUHAuNXT6dpW6+Gid+Ag+hqpYreYrXyFSqzOMX/X8m5g2e
-         eDLZ4VHGL7irAmEmwuEz35UhLM4ZLD5Z2QNODlBBhtJ7qviEfOL52bc9T20Tc1ix375t
-         V6GtMXMOOHo5NkPwau17bWcqO4SCcUnvPENDGgEKg664CZV4KTdIQxqWcpSEOyMSGua6
-         xPY9KhQSwlk6hsppMyymTUjN0vR3u9c7SwLlp+UE7JcNFKPLG9TWsdRvUGaVq/wj9ikE
-         dldg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705514767; x=1706119567;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YFkmgKfAYW4PQNSghqjXT5WrCqzlgmtfGOBlxJ300S0=;
-        b=HNfHAKkylmItFgp9Eb+KDihImqXGhEwGlKx4OZTkmm6nNZWm3WT3Pez6nIO5bqQi1s
-         V6xz6T6vepAvucWYBuXYLif8KgUIl2CzXRi0ybrK1Vsq7Sv5WIZefgKZI0LTelwXKWVa
-         Xp0vRWY0x6VYrmytxRloBxKWbGc2D5Nt9adSgMOyXorY81IcNAiugjGkUxt9Qn+CFvWt
-         F7erD3SDLrSHaTCLhoHxj5FkaQlQwTwNHPJwXYqbBQRP4J3pFEtL4wnlOtrE2V/HsTd7
-         qjXUMmgN6NL2H8o19mTvz2bHCaa3JcFKMvzcg4BjAP/ECTrt6YJ1HtpuoKcr2g/Y876I
-         u2ug==
-X-Gm-Message-State: AOJu0Yy/NihNJ3Dom/qZEiO7K6U90V5vl+mImRVWWSANSUoe12F+qrSx
-	mq3aeLfnfsYmglmvHpu3ifxT2gIjD2Q6IcMTFJswn4CX6NFtSQ==
-X-Google-Smtp-Source: AGHT+IFDfNBV5xuLrOdDKdl+6yxpolFF1sCHEtmZ0DxCyYUK0PFmo0Qg0krlc8DqAXWYyh3jmVvY9UrWsNi4UR3YQ3w=
-X-Received: by 2002:a81:f80b:0:b0:5f7:c08:5c66 with SMTP id
- z11-20020a81f80b000000b005f70c085c66mr6443078ywm.81.1705514766990; Wed, 17
- Jan 2024 10:06:06 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3F241B956;
+	Wed, 17 Jan 2024 18:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705514789; cv=fail; b=fcARPuUxH+9HWn6yTOUKaDZY4yIGEoYv3kEnQ4Me9/QWJ9NC3xgTePBW8RqXUsF8NW2HfP5RYkkbiFkETZYgG1cKt0hCJnSWZasOx7IiGALrO+YFpCQ/3ENSRnFK55BlIwNP+5b2/Fq7tUTJvrQv+pSzkyXBSDQBcZCXk8I20aU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705514789; c=relaxed/simple;
+	bh=i8n34s2WQwcNftYiiWqT6lIOFthFitPKtWc+GUQfWkE=;
+	h=ARC-Message-Signature:ARC-Authentication-Results:DKIM-Signature:
+	 Received:Received:Date:From:To:Cc:Subject:Message-ID:References:
+	 Content-Type:Content-Disposition:In-Reply-To:X-ClientProxiedBy:
+	 MIME-Version:X-MS-PublicTrafficType:X-MS-TrafficTypeDiagnostic:
+	 X-MS-Office365-Filtering-Correlation-Id:
+	 X-MS-Exchange-SenderADCheck:X-MS-Exchange-AntiSpam-Relay:
+	 X-Microsoft-Antispam:X-Microsoft-Antispam-Message-Info:
+	 X-Forefront-Antispam-Report:
+	 X-MS-Exchange-AntiSpam-MessageData-ChunkCount:
+	 X-MS-Exchange-AntiSpam-MessageData-0:X-OriginatorOrg:
+	 X-MS-Exchange-CrossTenant-Network-Message-Id:
+	 X-MS-Exchange-CrossTenant-AuthSource:
+	 X-MS-Exchange-CrossTenant-AuthAs:
+	 X-MS-Exchange-CrossTenant-OriginalArrivalTime:
+	 X-MS-Exchange-CrossTenant-FromEntityHeader:
+	 X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
+	 X-MS-Exchange-CrossTenant-UserPrincipalName:
+	 X-MS-Exchange-Transport-CrossTenantHeadersStamped; b=XQ/McKDneQc/qTOamya3ZBO1wS0ODei7A25KymAeZFWKnqRgTvFL/0yjBkAur07LaylXfos09wyTTgyqP4oq/lreUrukgJN3jKz3Z5MQk9sBdjMw6VoYIwi8LUkp0hZdDaUiXs7H+IfEJE4daPGAZzCTFi/4QM4hEz7idt0Q79A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=cuhwSpt7; arc=fail smtp.client-ip=40.107.7.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eFx8bV5Qe5USl+Iwt3jPDix21Izb2cAd4mSLKHY1BYRNV2HXjEXEuNIffneA4z3Vb0b0z8nnSIqSw01LLISHILzcZ9hazac3+/s8j/No++oCwVBNSJSGrSEdmm9j5nVBCVqmhez6Q5CMVCDq1BsbRROb0qEZI6NvP+B3Q3SjX0j++BXMYiKeBKvQ9hK6BjAH2Xo8jb+vX580WoCqyjK1yQooVQSZL/BytQyCj5zzymVBXC4aJv7AbRxe05qf7Syv8nY2wle7Fn6U7DXaG0gBijEIdnjGAlCGTBA+5lS8syinbcfkUzpejwmj7mQr0jjoDph++g/S9J6KoFSV4yy0Qg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UYrPdPAbUnM1/oZoRYeg8LwQRiVNYQUQDml4Uo6Xig4=;
+ b=oDvOMGxKZ5i0YlGyrLnos5zLOf+ZdnlCqcTg6tAf/jwoiRt2+QsSg/K+T2qRZSV7QvzvlYvacgSmh1nlfuBLVF/xZ3vgZdXwDCXQ8yWm9fx/oh6yid8C/V3DZMchWvyJfHD0c9hwQjgrTqauQQqoUizicNQ4I94VAs7R7jiHaZk63UmcTr6i1m42nXUR3QPQ3ksJnjQLSauUxCW+kfPL0ZZREnlIxdbnVwb4mQTUhrDzVIYuAdcoUrLTqXy+LzYnqxkn/qy2GMPnKEVcKATJErPtxmKJ+oPyQP9ukwZDfqFscTYHym5jJ3k9jtC9EPyGrelwbWBawwqW06w+dfKhwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UYrPdPAbUnM1/oZoRYeg8LwQRiVNYQUQDml4Uo6Xig4=;
+ b=cuhwSpt734wCOdcstZyoA9hx2iPJEVZ2hUd3xO6O2W+mAQ5IHVzSgeVtknkVNXan4rHa7OkIFCWiH54uaABdKxjwkKd6zemub+QqtHpnpm2LqyTSGHEJY/CrpxRzR5swWNqjFU0AvzjsVRASVvN+iwwgsNkB+qUk8c2ZT9662IE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI1PR04MB10027.eurprd04.prod.outlook.com (2603:10a6:800:1e1::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.23; Wed, 17 Jan
+ 2024 18:06:23 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::b8af:bfe5:dffd:59a9]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::b8af:bfe5:dffd:59a9%4]) with mapi id 15.20.7202.020; Wed, 17 Jan 2024
+ 18:06:23 +0000
+Date: Wed, 17 Jan 2024 13:06:15 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>,
+	Conor Dooley <conor.dooley@microchip.com>, robh@kernel.org,
+	alexandre.belloni@bootlin.com, conor.culhane@silvaco.com,
+	gregkh@linuxfoundation.org, imx@lists.linux.dev,
+	jirislaby@kernel.org, joe@perches.com,
+	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, miquel.raynal@bootlin.com,
+	zbigniew.lukwinski@linux.intel.com, devicetree@vger.kernel.org,
+	krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
+ silvaco,i3c-target-v1
+Message-ID: <ZagXF6vMHVxvZX+6@lizhi-Precision-Tower-5810>
+References: <20240116-retract-conclude-c47a7fc8cb21@spud>
+ <ZabVSYgq1Mz3LPpC@lizhi-Precision-Tower-5810>
+ <4a9ed1ca-cd13-4b61-af06-a3d7935aeeee@linaro.org>
+ <ZabqxHD4wtiPn6ep@lizhi-Precision-Tower-5810>
+ <c760b89c-efec-489e-8333-c60b38fb5a47@linaro.org>
+ <e54e2b30-03e7-40e3-bb33-dc71de8511a4@linaro.org>
+ <ZacCQ1Eysqq5FnA4@lizhi-Precision-Tower-5810>
+ <ad44d51a-ba64-4a4b-bba9-205faa760c78@linaro.org>
+ <Zaf+Gn6rYstttnrA@lizhi-Precision-Tower-5810>
+ <e57d7f34-3abe-4860-8986-0cb7070819a4@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e57d7f34-3abe-4860-8986-0cb7070819a4@linaro.org>
+X-ClientProxiedBy: BYAPR08CA0024.namprd08.prod.outlook.com
+ (2603:10b6:a03:100::37) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
- <20240113-pmi632-typec-v2-13-182d9aa0a5b3@linaro.org> <1d0d325d-d15e-4e86-b8e3-9f91b99e78bf@linaro.org>
- <CAA8EJpo7qH43FyvO-N9vFH=6K3rMdPpnGp9w6pGW2cz4bMK+0g@mail.gmail.com> <28e019ce-7612-4b10-8068-17c3fef4dba8@linaro.org>
-In-Reply-To: <28e019ce-7612-4b10-8068-17c3fef4dba8@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 17 Jan 2024 20:05:56 +0200
-Message-ID: <CAA8EJpoXUMehrcf8sXKPhk7qb4SGXT960SUFHX5AUt1wxxHepw@mail.gmail.com>
-Subject: Re: [PATCH v2 13/15] arm64: dts: qcom: pmi632: define USB-C related blocks
-To: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wesley Cheng <quic_wcheng@quicinc.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI1PR04MB10027:EE_
+X-MS-Office365-Filtering-Correlation-Id: e125a726-5146-436a-9f7b-08dc178703df
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	2+Y/EG0zl+aTI/qtwv35PLY76buMNSBVFKbFi3/EUcSF4wbdKYDRQl1mSJWOa7w+bZwXnUFB3omFXgzqB3C1FVVxbs/t/4RoyDEjs9n8y6t5rV0s6smv3NybuBh7GX9wTDSGwq5bVrcB9gRMWpzsFXHktvnF+cAZ0G09Ds/GTzaD27msKDuTJyNh81ctUt3ZDlzAgtBbsHWmi29K7Yi+0pavd3F4eCM7VBO4aIOuNs9vSFNhCKo2oxRBDNVmL/KyT+7T+ye4Vyux+fs/fFhU0v5ZZ8zKUQFaS79CFqeRVcPqNkvcbNJ6iZJxeZAoBXIlrwJJR+/3RyAhh9WYREdM1i7RkNXR+3WJqqOCdkeJYfsr6rBh3YW6mSCGuNYnB/NNloDK6miVE4dPqA5R8ZW9BKnqembGW7kLS/rGnXAUMG1bdRY1nRg4KqNLJeT73+wP+H2eZEPkpGmMipqGnqIiKFpaurYzvyCNv/bH8la4d6O7V3vJtL48imrR/Lgg4e4V6Uu6pYeWq4Q7qJrdM1XYBd1IYpp0KAQx0FjNzHBOsEnoiSQaghwydSpCTxs1a46nA5yM3MJ/BgJmRP1iFPrKOwBpafHOwL967S6tH8BCkhUzY4CFjC+FVA5MzrUYzA3wRHn0pKB3BWL/qO1Zhs2ltQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(396003)(39860400002)(136003)(366004)(376002)(346002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(26005)(6666004)(53546011)(6512007)(52116002)(83380400001)(54906003)(7416002)(41300700001)(5660300002)(4326008)(478600001)(33716001)(6486002)(6916009)(66476007)(316002)(8676002)(66946007)(8936002)(2906002)(66556008)(86362001)(6506007)(38350700005)(38100700002)(9686003)(67856001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?JopKBLt8tRYeNAc52epQzKk50kvtO948wrNGpjmH73zmvsGcr6214fva6Goe?=
+ =?us-ascii?Q?EvO8F6JC8mdflky9d9DM32wKGoidl4ILxbNz7RP2rbfHDhwT7+qvfV/Udi1x?=
+ =?us-ascii?Q?5JaEp2HLUBcLeDSUJubdmsI2GfJGDB28TRHunbGTTHMroPLLdLoRZifIK/xW?=
+ =?us-ascii?Q?iX/zr3NRW1VK0I/RUhsiStXg8qnUJzLnvX8cNe/65j4058qYGK4lo2j6ZBlg?=
+ =?us-ascii?Q?my2Q5UTvdYgO4wxtpaqpExgOdCzaHc687WVImpaXDMPUblpsbHBaGSv1VWgH?=
+ =?us-ascii?Q?eNFL9FFOxCd3y5CzS15JcyeJu03Cm8F/TafpCCzYP+ckpeln75jzngyi6H9v?=
+ =?us-ascii?Q?3ri4zOxOFvKCJsZkfZ0O4cxjV4tbSC+4P3de4+3n+tLUWX6nW204K0/rUQwS?=
+ =?us-ascii?Q?c0Bw5gHPcbRF4MePmdVUB376gXItdW3DGna+u9TthMmGpvAOd+wkA57p3KeL?=
+ =?us-ascii?Q?pf43wUIqvhb5XiI0jIomZNzja1lJnfubdQIkmatMU5Q15Ie6iRi4UKbATiLX?=
+ =?us-ascii?Q?PaTu9pa0rvOkL1xHrcG0hapyZy8mAyRqUfLYqfeBSNYdMI3FlTYqA2sg8e/x?=
+ =?us-ascii?Q?B0gh0pgnGCJM2yLKPY/cDFNxU2G9Z3lskv0CM3KMKnFDfB6FoGNpaFYJ9za1?=
+ =?us-ascii?Q?HUfyF0bbL8wdAP4UwQBETw9gHhzk8TFDBILagvVpl3a2apoVvRyat12MZcxf?=
+ =?us-ascii?Q?JQgo4FZkMCqPMKAeB1fARmG5IHt7tQJDLMM5PHdCZ91EdPdXs8f6ws1kJbDh?=
+ =?us-ascii?Q?pMYxmA/F1sZjcQs9H+SXem8wADSkU9wM9DwIttB9LKzA1nJQymQclxTjgPtz?=
+ =?us-ascii?Q?MKUTfjX1Sshyb5WKkuSRbP5D6IysqDhrLqAjA/m3eHyO/Ug+lXSU1K1qB2Lx?=
+ =?us-ascii?Q?QbXqHw8Zo0E3iqKsFiE36gXn2Z+MQsBbS/sHdzNaI2rgs66QVWIX8RkVp2jm?=
+ =?us-ascii?Q?ou2NKdKJWxngltBWCA5EC7FWr3+/MfvmxJJ+9sLyYTLel0SIPQhMxQU0DKHe?=
+ =?us-ascii?Q?SeH2biN4v45EKe4ZDdcwHwtsle6mDzIgclI1Og3AisJxp/AESZEPsPlAadwF?=
+ =?us-ascii?Q?cEqgS9edy72UvUVc3bMYs+RhgjzrbUM9XiuSDqBR8epxmAnmmHeDFioTovhU?=
+ =?us-ascii?Q?mA/dkK96yr+M5aHCr/0tpQrE4xSfWf4L+R+xrgqH+uUmAI0eJ5RyC6ySq0//?=
+ =?us-ascii?Q?nN4ozpFq5thchtc2i7gIuNFA+HDrvwXz3XaHilRdlX9t4Ne1NoH8nCZi/IrF?=
+ =?us-ascii?Q?QsVDM7UIltuAjy+NhjAlat9Ef97LTt57S+UdSICjOF3zidYan4NTrsWrzWcH?=
+ =?us-ascii?Q?mZaHfpDpF2/22VVPzV69Cfs4SLIZO0yNhprucsNPLQMB8g+lTE1t6agXFYid?=
+ =?us-ascii?Q?AbglzEeFJry/ta+wmwEY32WU+cDyKRyBZg2s0UQfW9KQ2vMmIc1+QMDwuusB?=
+ =?us-ascii?Q?12AA6PnmSEPvY+j6soEwhOiIPddKb7aYygYrjn0ypOil2WZij59u4AOtKt0R?=
+ =?us-ascii?Q?V5A293hSBlWYkJvYD7Q4m0pY6d0TmVOKXVN8ijAuBoVqgGQ/JjmcI0foDrxK?=
+ =?us-ascii?Q?+6+0zF9v0cPHdp4O4PSPSGABDq+MBN1Fyk0GRhps?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e125a726-5146-436a-9f7b-08dc178703df
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2024 18:06:23.4576
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4e+xKmLoxRSq/n35VOBEZwAhJ+HumtLvQGFkwKB+xQuvtFg/+LWBQE5tsBs39TwVtuD0CizeHP2QnPu5J70UMg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB10027
 
-On Wed, 17 Jan 2024 at 19:23, Bryan O'Donoghue
-<bryan.odonoghue@linaro.org> wrote:
->
-> On 15/01/2024 10:43, Dmitry Baryshkov wrote:
-> > On Mon, 15 Jan 2024 at 12:00, Konrad Dybcio <konrad.dybcio@linaro.org> =
-wrote:
+On Wed, Jan 17, 2024 at 06:15:51PM +0100, Krzysztof Kozlowski wrote:
+> On 17/01/2024 17:19, Frank Li wrote:
 > >>
-> >> On 13.01.2024 21:55, Dmitry Baryshkov wrote:
-> >>> Define VBUS regulator and the Type-C handling block as present on the
-> >>> Quacomm PMI632 PMIC.
-> >>>
-> >>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >>> ---
-> >>>   arch/arm64/boot/dts/qcom/pmi632.dtsi | 30 +++++++++++++++++++++++++=
-+++++
-> >>>   1 file changed, 30 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/pmi632.dtsi b/arch/arm64/boot/d=
-ts/qcom/pmi632.dtsi
-> >>> index 4eb79e0ce40a..d6832f0b7b80 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/pmi632.dtsi
-> >>> +++ b/arch/arm64/boot/dts/qcom/pmi632.dtsi
-> >>> @@ -45,6 +45,36 @@ pmic@2 {
-> >>>                #address-cells =3D <1>;
-> >>>                #size-cells =3D <0>;
-> >>>
-> >>> +             pmi632_vbus: usb-vbus-regulator@1100 {
-> >>> +                     compatible =3D "qcom,pmi632-vbus-reg", "qcom,pm=
-8150b-vbus-reg";
-> >>> +                     reg =3D <0x1100>;
-> >>> +                     status =3D "disabled";
-> >>> +             };
-> >>> +
-> >>> +             pmi632_typec: typec@1500 {
-> >>> +                     compatible =3D "qcom,pmi632-typec";
-> >>> +                     reg =3D <0x1500>;
-> >>> +                     interrupts =3D <0x2 0x15 0x00 IRQ_TYPE_EDGE_RIS=
-ING>,
-> >>> +                                  <0x2 0x15 0x01 IRQ_TYPE_EDGE_BOTH>=
-,
-> >>> +                                  <0x2 0x15 0x02 IRQ_TYPE_EDGE_RISIN=
-G>,
-> >>> +                                  <0x2 0x15 0x03 IRQ_TYPE_EDGE_BOTH>=
-,
-> >>> +                                  <0x2 0x15 0x04 IRQ_TYPE_EDGE_RISIN=
-G>,
-> >>> +                                  <0x2 0x15 0x05 IRQ_TYPE_EDGE_RISIN=
-G>,
-> >>> +                                  <0x2 0x15 0x06 IRQ_TYPE_EDGE_BOTH>=
-,
-> >>> +                                  <0x2 0x15 0x07 IRQ_TYPE_EDGE_RISIN=
-G>;
-> >> This differs from the downstream irq types:
+> >> Not really, because compatible describes hardware and it is the same
+> >> hardware here. We do not have two different compatibles for GPIOs being
+> >> input or output.  Or two different compatibles for serial engines (ones
+> >> providing UART, SPI or I2C).
+> > 
+> > GPIO and UART is simple. Actuall SPI and I2C have two mode, slave and
+> 
+> I talked about serial engines which can be multiple: UART, SPI and I2C.
+> 
+> > master. Many SPI/I2C is dual mode controller. Just seldom use slave mode
+> > at linux side. So you just see master mode SPI/I2C controller in dt-binding
+> > and dts file. So few people upstream slave part to linux kernel community.
+> > They have the exact same problems if support slave mode.
+> > 
+> > PCI is typical example: 
+> > EP mode:  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+> > RC mode:  Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > 
+> > Which is the same hardware for two difference compatible string.
+> 
+> That's the only case, I recall.
+
+As my knowledge, yes. 
+
+> 
 > >>
-> >> <0x2 0x15 0x0 IRQ_TYPE_EDGE_BOTH>,
-> >> <0x2 0x15 0x1 IRQ_TYPE_EDGE_BOTH>,
-> >> <0x2 0x15 0x2 IRQ_TYPE_EDGE_RISING>,
-> >> <0x2 0x15 0x3 IRQ_TYPE_EDGE_RISING>,
-> >> <0x2 0x15 0x4 IRQ_TYPE_EDGE_BOTH>,
-> >> <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>,
-> >> <0x2 0x15 0x6 IRQ_TYPE_EDGE_RISING>,
-> >> <0x2 0x15 0x7 IRQ_TYPE_EDGE_RISING>;
-> >
-> > I must admit, I copied the IRQs from the pm8150b rather than from the
-> > vendor kernel.
-> >
-> > Bryan, any idea which set of flags is more correct?
->
-> My =E2=82=AC says 1:1 with the downstream pmi632.dtsi
->
-> qcom,typec@1500 {
->      reg =3D <0x1500 0x100>;
->      interrupts =3D <0x2 0x15 0x0 IRQ_TYPE_EDGE_BOTH>,
->                   <0x2 0x15 0x1 IRQ_TYPE_EDGE_BOTH>,
->                   <0x2 0x15 0x2 IRQ_TYPE_EDGE_RISING>,
->                   <0x2 0x15 0x3 IRQ_TYPE_EDGE_RISING>,
->                   <0x2 0x15 0x4 IRQ_TYPE_EDGE_BOTH>,
->                   <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>,
->                   <0x2 0x15 0x6 IRQ_TYPE_EDGE_RISING>,
->                   <0x2 0x15 0x7 IRQ_TYPE_EDGE_RISING>;
->
->      interrupt-names =3D "typec-or-rid-detect-change",
+> >>>
+> >>> I can write git commit message like:
+> >>>
+> >>> dt-bindings: i3c: svc: add compatible string nxp,imx93-svc-i3c-target
+> >>>
+> >>> silvaco i3c controller is dual mode controller, which can work as master
+> >>> and target mode. All clock, reg, irq are the same for both mode. Add
+> >>> compatible string "nxp,imx93-svc-i3c-target" to let silivaco i3c
+> >>> controller work as target mode.
+> >>>
+> >>> Of course, alternate method to added a property "mode" to distingiush
+> >>> master and target mode. but old "silvaco,i3c-master-v1" will actually work
+> >>> as dual mode support. Driver structure will become complex.
+> >>
+> >> Please send full DTS of user for this, which works for 100%, so we can
+> >> see how it differs from controller mode. If your code snippet from other
+> >> thread is correct, then it would suggest "mode" property or lack of
+> >> children. Maybe lack of children is not enough, if user-space could
+> >> control I3C bus.
+> > 
+> > According to current implment, only need change imx93.dtsi's @i3c1's 
+> > compatible string to "silvaco,i3c-target-v1". I attached imx93 dts node for
+> > your reference.
+> > 
+> > 	i3c1: i3c-master@44330000 {                        
+> >                                 compatible = "silvaco,i3c-master-v1"; 
+> > 					     ^^^^ only need change here!
+> 
+> Nope, don't change compatibles of existing nodes. Unreadable and
+> unmanageable code.
 
-My 2c say that EDGE_BOTH doesn't make sense for or-rid-detect-change
-at least. It is an "or" of several _pulse_ interrupts, so there is no
-need to detect the falling edge.
+It is just show minimize difference.
 
->                        "typec-vpd-detect",
+Normally, it should be.
 
-both, correct in both cases
+	i3c1: i3c-master@44330000 {
+		...
+		compatible = "silvaco,i3c-master-v1";
+		...
+		status = disabled;
+	}
+	
+	i3c1-target: i3c-target@44330000 {
+		...
+		compatible = "silvaco,i3c-target-v1";
+		...
+		status = disabled;
+	}
 
->                        "typec-cc-state-change",
+in board dts
 
-pulse interrupt, raising.
+@i3c1{
+	status = "okay";
+}
 
->                        "typec-vconn-oc",
+Or
+@i3c1-target{
+	status = "okay";
+}
+> 
+> >    
+> >                                 reg = <0x44330000 0x10000>;                
+> >                                 interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> >                                 #address-cells = <3>;                      
+> >                                 #size-cells = <0>;                         
+> >                                 clocks = <&clk IMX93_CLK_BUS_AON>,         
+> >                                          <&clk IMX93_CLK_I3C1_GATE>,       
+> >                                          <&clk IMX93_CLK_I3C1_SLOW>;       
+> >                                 clock-names = "pclk", "fast_clk", "slow_clk";
+> >                                 dmas = <&edma1 6 0 1>, <&edma1 5 0 0>;     
+> >                                 dma-names = "rx", "tx";                    
+> >                                 status = "disabled";                       
+> >                         }; 
+> 
+> That's not a patch for existing file. I did not claim you cannot write
+> such DTS. I claimed you don't have such DTS for upstream...
 
-It is a 'level' interrupt, so we probably want to detect both rising
-and falling edges.
+Yes, it need finialize this topic before handle dts upstream.
 
->                        "typec-vbus-change",
+> 
+> > 
+> > For master mode:
+> > Unlike i2c. Genenally I3C can auto probe children node like USB can auto
+> > detect attached devices. So I3C master can work without children nodes.
+> > Such as auto load i3c sensor driver according to i3c standard vendor id and
+> > production id.
+> 
+> Then presence of children cannot be used.
+> 
+> > 
+> > For target mode: using configfs to controller I3C.
+> > 
+> > mkdir /sys/kernel/config/i3c_target/functions/tty/t
+> > echo 0x011b > /sys/kernel/config/i3c_target/functions/tty/t/vendor_id
+> > echo 0x1000 > /sys/kernel/config/i3c_target/functions/tty/t/part_id
+> > echo 0x6 > /sys/kernel/config/i3c_target/functions/tty/t/bcr
+> > 
+> > ln -s /sys/kernel/config/i3c_target/functions/tty/t /sys/kernel/config/i3c_target/controllers/44330000.i3c-master/
+> > 
+> > Then you echo test >/dev/ttySI3C0.
+> > 
+> > Unlike USB, user can switch host and gadget mode dymatically. Suppose I3C
+> > only work on one of master or slave mode only, which is static.
+> 
+> I don't understand this. So it can switch dynamically or not?
 
-"pulse" interrupt =3D> rising, not both, correct in PM8150B.
+I3C Protocal allow do that. But no one really do that. 
 
->                        "typec-attach-detach",
+> 
+> > 
+> > Although it is one hardware, I think it is exculsive multi function device.
+> 
+> Just like serial engines. Do you see there replacing compatibles? No.
+> 
+> > 
+> > Summary: basice two option to distingiush controller and target mode.
+> > 1. by "compatible" string
+> > 2. by "mode"
+> > 
+> > I think 1 is relatively simple and easy to understand.
+> 
+> Eh, if you only saw my comments on people replacing compatibles...
+> Anyway, I stated my reasons, so to reiterate: NAK.
 
-pulse interrupt, rising only.
+I know it.  Needn't emphase it every time.
 
->                        "typec-legacy-cable-detect",
+Is using "mode" ('controller' and 'target') proptery okay?
 
-level, should be both as in PM8150B.
+Frank
 
->                        "typec-try-snk-src-detect";
-> };
-
-Pulse interrupt being raised when there is either successful or
-unsuccessful try.SNK or try.SRC.
-
-So, after consulting the documentation, I believe the flags being a
-part of this patch (and in pm8150b.dtsi) are correct.
-
---=20
-With best wishes
-Dmitry
+> 
+> Best regards,
+> Krzysztof
+> 
 
