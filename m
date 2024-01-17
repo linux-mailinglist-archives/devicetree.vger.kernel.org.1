@@ -1,33 +1,35 @@
-Return-Path: <devicetree+bounces-32812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F9A3830AE3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:20:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A118830AF0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:22:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6D2F28EED2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:19:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3527328FAE5
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:22:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1DB21114;
-	Wed, 17 Jan 2024 16:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8296B224E3;
+	Wed, 17 Jan 2024 16:22:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="kBFyqHfQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k7iF2jc9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2049.outbound.protection.outlook.com [40.107.20.49])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD8D2219F6;
-	Wed, 17 Jan 2024 16:19:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3833224C2;
+	Wed, 17 Jan 2024 16:22:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.14
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705508394; cv=fail; b=iRgNIm9KIOgEB8SLzKIwQnvyfd6PAQEa5JJeqZeVTRrK6NkSGbA2sDD1qJ9ziedbGrginHVknRXkM4vFGT26b5GRuN7jrE2UheN8dWbV502YmhARw9SXLQyXyqDezvRGe3IzVDq1OEvFP1hirCL/QXYbQXFpmMJF03JI8iwaD5E=
+	t=1705508546; cv=fail; b=UdjN0Mm6J8WjuFHwtR8p1ot9nvwDCwv1Sag6dDD7tRzLn1BWyvkkEkRTHJbDAf2n9bz33EosN1fGiLes39mgSbtDzsWv9wNuu/AEZwFhNC1aabjRnpUvfH4Ii06Cz0dmCfBCIIQ6X1LgWm0PtAdJH0QLw8xnOdRWxTU25CexIns=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705508394; c=relaxed/simple;
-	bh=PeQ6Sewlf+iQRqicOBbGuLujgjEcJv0BTGcOJEurp8I=;
-	h=ARC-Message-Signature:ARC-Authentication-Results:DKIM-Signature:
-	 Received:Received:Date:From:To:Cc:Subject:Message-ID:References:
+	s=arc-20240116; t=1705508546; c=relaxed/simple;
+	bh=uDtBYQxXnajckf5qMYofOs2JbTzwpra1i5RUG9MxWK8=;
+	h=DKIM-Signature:X-IronPort-AV:X-IronPort-AV:Received:X-ExtLoop1:
+	 X-IronPort-AV:X-IronPort-AV:Received:Received:Received:Received:
+	 Received:ARC-Message-Signature:ARC-Authentication-Results:Received:
+	 Received:Date:From:To:CC:Subject:Message-ID:References:
 	 Content-Type:Content-Disposition:In-Reply-To:X-ClientProxiedBy:
 	 MIME-Version:X-MS-PublicTrafficType:X-MS-TrafficTypeDiagnostic:
 	 X-MS-Office365-Filtering-Correlation-Id:
@@ -35,7 +37,7 @@ ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
 	 X-Microsoft-Antispam:X-Microsoft-Antispam-Message-Info:
 	 X-Forefront-Antispam-Report:
 	 X-MS-Exchange-AntiSpam-MessageData-ChunkCount:
-	 X-MS-Exchange-AntiSpam-MessageData-0:X-OriginatorOrg:
+	 X-MS-Exchange-AntiSpam-MessageData-0:
 	 X-MS-Exchange-CrossTenant-Network-Message-Id:
 	 X-MS-Exchange-CrossTenant-AuthSource:
 	 X-MS-Exchange-CrossTenant-AuthAs:
@@ -43,66 +45,110 @@ ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
 	 X-MS-Exchange-CrossTenant-FromEntityHeader:
 	 X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
 	 X-MS-Exchange-CrossTenant-UserPrincipalName:
-	 X-MS-Exchange-Transport-CrossTenantHeadersStamped; b=IpgxKK/DsYIOQJg9R0zBZ/BMh4sn3ot7n/GV4c+/cJwK3JMES1KRRwDtg/nr9fQuIy1TsxT04FKg42g5vhFEKR+vVKrPfhjVna7UHcFiish1YTp/0/VHnVPtyEpm89BUZL42VErkh0Y4bvCZ6DzQULiGDfnp8z/TAbdnxery8s8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=kBFyqHfQ; arc=fail smtp.client-ip=40.107.20.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	 X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
+	b=knfDmHlFYKrRdhYrPhYMVWQOwMl4Jd6CRHBLgQ1PmYuuWeXqnODz7MX6mJxwgtU8lAlbgTMJ2S9DS94O0aXl+ybXF/n4up85+KUkB7/gI2dWHfcNQMV3ukeqfKArRM1Hq/O8JcalpN7Rs+6PQV7Jzp2gpu2H9W4skD5IAL20KAA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k7iF2jc9; arc=fail smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1705508545; x=1737044545;
+  h=date:from:to:cc:subject:message-id:references:
+   in-reply-to:mime-version;
+  bh=uDtBYQxXnajckf5qMYofOs2JbTzwpra1i5RUG9MxWK8=;
+  b=k7iF2jc9F8L5K72rbxKa7rLWLjdcJSpemMqpHv0ownyhzJOzodsnpNLy
+   vOWG33FFS0QQYE8mU3Lten+3S/a2zcYClF3U7ru0rzvdKEqBTMArfVsVC
+   /poJuLGgEFiy13W4QiiFUVD4hXHyD6dhDdzYSXj3+I62viW+JNVhwAq2g
+   ZblPosZo50RFlDaafUiR+poijVBFxMFahygpGY+G/DeFJK4KzVlxQLIv8
+   wdgdrflpXLFVgIQwMOMkBG9LBecfW1ubPnuToXiYXpJlh3NJjlNyrP82k
+   JuX5OVq+/EHmZfecy75jVUXKe8DBjR03J5fv2YMi/sFaABbYQ1D9DheFm
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="98860"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
+   d="scan'208";a="98860"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2024 08:22:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="1031385742"
+X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
+   d="scan'208";a="1031385742"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+  by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 17 Jan 2024 08:22:21 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 17 Jan 2024 08:22:20 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 17 Jan 2024 08:22:19 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Wed, 17 Jan 2024 08:22:19 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.35; Wed, 17 Jan 2024 08:22:19 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MGn94ew9d2q/aJTtuLk8Ci7YwwSwCQGARyK3VMFweUqvkhHgZdIc0NYfgKGmGBF2hSONUDGZZ+mdnG0WQuimpXlmw564ifaRlrVJwN6oEzRlvX7FuKJfnlKxKj64NMn5a5ebN3SmSeSHwIB63mLpOOFtIf3fU+FtUFTibMd+ubS61+8EXSqkVxt60h6o0yj6XodFe2HI8OvFPxOAfrB2247cuIyPbxbSEgY6QzZcZCOyhdBSth+4q4RrPBR+0qnlQAvvyfcGA6weANo+ujxh6JrGVJZD7BKERvg1FE9fr0K+h1g44SYWkAOn+SRKh/SZ9J+rWpX69A0GgBeS9NYRuw==
+ b=RWYd6d8HWtiIB6TQI4HySqth0X1RlmzDcgg7o1ItJtmf6ZbOPrHkOmpbu59wNz8pBItF3CqAuPsmkm2cT2PSRZBeeHe5O2uLV2CfU4dQhRJiCdqaSncXaiH8hh/4PBQdPdOsibpcnVJwBDdsTw+xLlaNRgtaGsHwOjGoTVnG/qiLjmdjs9+OuoZSF1SvlYnv9TUkhZDBNO1g6+z1IpeGRL3yreAguASpKwCzuHkq2JBa7ooXlYQYOY8rlI3Gt5iIM5r+umaYrKZn0MxHFU2rnbhPFpd/tuhc3dpxqHf3+IPmDcsRCxsTpMdOceG48YN2ZGtlYB1aIVItWzMG13Y5NA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sSYDwtNEVULQuGaJJ6KMtyff8dMhyglgJe+jloBITX4=;
- b=BzeDIOLpy32973wCZOBk/TRM0X24CqMCJZisLQI6kyF3AxOh919KKOSvDU91bkgfjDGN6W+mj4W33zo69KBSxsrwTei5D+Iz1fzfXIyuiNvTw2UDEhfsYlmA6OUz4GRYJ//82v7sYTouKuX7u8hJKSWU6QMBa/FluyCz1eWhEmwCWjEh2u/Hl57Dgp8ZVQa5sAEpsm1Uj65E5N08edTm0gneoYnMTCYUfZvlAx7y26p4a9gbT2qP0g+7i1ExPlFAyLyEwX7uRJrwkugHJZCj59nxZA+ehpQKrJC+c0Y4AcN4rbVKJlyKrw4gCThyzs+scFfMK5N57qV+wJrv1/cb3w==
+ bh=HMUoLZAt5We2LMzokJluy44oVco4gwvDvkf2/mrDrcY=;
+ b=h8J1SsYyTMT/enI5Xvjyh3ij8FBWPJ13//J1b8oP0Zqr92nfVe3qTe+WUiLupt42y94tqCRkP2DG2PV4nbgnHTTAU/itMb/rmwRB7UlMVkWNLiUJXwlSiQCKHhZUND9QZKxgvKdvLFiag+7fVTQs0qKwIowGY0m9f09CCx3rV/erVzmKr6ssumd2rmmcBdJxprnT5KiTfscHYYZIpOreUJiexHoftSAustCQNh5fFtRX0ULZ6hroiwFRXvldN4vouEk2DjkUrV09RzZFoWMDj0hbanaKqMRj1LIFU49MTKl8vncts9d3ErPfCSd3eKyVE3fv6K3w86u6W+5QtCNxsg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sSYDwtNEVULQuGaJJ6KMtyff8dMhyglgJe+jloBITX4=;
- b=kBFyqHfQPp+GPqej2iuzRVI/rvqSBQhc8ayHsNsNnXmW9VkIYMlM+fkC63IKGZO/d7UMaHu498+HmnncNLSNngPlDZ1p2UjZA3LqGNQ67UDG8lBp4SgWKpuSDNySEQ2LM00e6JpK34mbdgYKzbxKcWZA5ex4BzeoTYh5kX9A3HA=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS1PR04MB9312.eurprd04.prod.outlook.com (2603:10a6:20b:4dc::17) with
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8107.namprd11.prod.outlook.com (2603:10b6:510:256::6)
+ by DS0PR11MB7682.namprd11.prod.outlook.com (2603:10b6:8:dc::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.23; Wed, 17 Jan
- 2024 16:19:48 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::b8af:bfe5:dffd:59a9]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::b8af:bfe5:dffd:59a9%4]) with mapi id 15.20.7202.020; Wed, 17 Jan 2024
- 16:19:48 +0000
-Date: Wed, 17 Jan 2024 11:19:38 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Conor Dooley <conor@kernel.org>,
-	Conor Dooley <conor.dooley@microchip.com>, robh@kernel.org,
-	alexandre.belloni@bootlin.com, conor.culhane@silvaco.com,
-	gregkh@linuxfoundation.org, imx@lists.linux.dev,
-	jirislaby@kernel.org, joe@perches.com,
-	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, miquel.raynal@bootlin.com,
-	zbigniew.lukwinski@linux.intel.com, devicetree@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v2 2/7] dt-bindings: i3c: svc: add compatible string i3c:
- silvaco,i3c-target-v1
-Message-ID: <Zaf+Gn6rYstttnrA@lizhi-Precision-Tower-5810>
-References: <20240116-achiness-thievish-10a12b3c08cd@wendy>
- <Zaa+cLGVVDSB5MYr@lizhi-Precision-Tower-5810>
- <20240116-retract-conclude-c47a7fc8cb21@spud>
- <ZabVSYgq1Mz3LPpC@lizhi-Precision-Tower-5810>
- <4a9ed1ca-cd13-4b61-af06-a3d7935aeeee@linaro.org>
- <ZabqxHD4wtiPn6ep@lizhi-Precision-Tower-5810>
- <c760b89c-efec-489e-8333-c60b38fb5a47@linaro.org>
- <e54e2b30-03e7-40e3-bb33-dc71de8511a4@linaro.org>
- <ZacCQ1Eysqq5FnA4@lizhi-Precision-Tower-5810>
- <ad44d51a-ba64-4a4b-bba9-205faa760c78@linaro.org>
-Content-Type: text/plain; charset=us-ascii
+ 2024 16:22:16 +0000
+Received: from PH8PR11MB8107.namprd11.prod.outlook.com
+ ([fe80::6257:f90:c7dd:f0b2]) by PH8PR11MB8107.namprd11.prod.outlook.com
+ ([fe80::6257:f90:c7dd:f0b2%4]) with mapi id 15.20.7181.015; Wed, 17 Jan 2024
+ 16:22:16 +0000
+Date: Wed, 17 Jan 2024 08:22:11 -0800
+From: Dan Williams <dan.j.williams@intel.com>
+To: Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>, "David
+ S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+	<konrad.dybcio@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, "Will
+ Deacon" <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, "Heiko
+ Stuebner" <heiko@sntech.de>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+	"Chris Morgan" <macromorgan@hotmail.com>, Linus Walleij
+	<linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>,
+	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>,
+	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman
+	<terry.bowman@amd.com>, Lukas Wunner <lukas@wunner.de>, Huacai Chen
+	<chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, Srini Kandagatla
+	<srinivas.kandagatla@linaro.org>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>
+CC: <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-pci@vger.kernel.org>, Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>
+Subject: RE: [PATCH 4/9] PCI: create platform devices for child OF nodes of
+ the port node
+Message-ID: <65a7feb3ea48f_3b8e294bf@dwillia2-xfh.jf.intel.com.notmuch>
+References: <20240117160748.37682-1-brgl@bgdev.pl>
+ <20240117160748.37682-5-brgl@bgdev.pl>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <ad44d51a-ba64-4a4b-bba9-205faa760c78@linaro.org>
-X-ClientProxiedBy: BYAPR07CA0100.namprd07.prod.outlook.com
- (2603:10b6:a03:12b::41) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+In-Reply-To: <20240117160748.37682-5-brgl@bgdev.pl>
+X-ClientProxiedBy: MW4PR04CA0320.namprd04.prod.outlook.com
+ (2603:10b6:303:82::25) To PH8PR11MB8107.namprd11.prod.outlook.com
+ (2603:10b6:510:256::6)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,224 +156,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS1PR04MB9312:EE_
-X-MS-Office365-Filtering-Correlation-Id: 21676586-b295-46d8-af23-08dc1778201a
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8107:EE_|DS0PR11MB7682:EE_
+X-MS-Office365-Filtering-Correlation-Id: 60c9826c-5dfa-4a71-7e02-08dc1778787b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	fx6KxTzz0zwkomlJ7+pL9DUMG+h/Gci4VUNJqBBhwSKPgA3WjGRA4a1fVlGv7WUJsLspIfCX95sZlGg7ZruYRelhRFmOGgxiaxJ8ecb2PQ5BkbIDZH7BoI7JFXCGi/69N+Hr/P7o5aFKCg806qy4Xu01q6qzIa4rzcgSpgcTkkx7nmdWSezlC18s+FET+A76pSZtcFP4YRLTAeutY8zM6KQmvf646QY4l1OxnURECWmS/nY2Z/xhg56DiKf61sFcFrHhYSUt8XKdGfUCCc5+T6m4dkNwZCBap6GntJ0LfrZbBWXZepsZ4mOx0ybVJra6Uat6uTY7a+58kDWmMSzo4ReA6cFtJRRcK4Nt2kal3JvVh+aZgn7Nb37K2Ust3S2ks9fFGiFzeMbVN69hL7QeEM/m0PkGi/K4yC3DMmKeAElnLGcBQDwFyzO8Qgqyhma5L74sB20lF/OwEtGqteI/eaQ06oga8LuFPJ0s+1k40hTidcFFR+g82FX4kbb4o8hGJyw5T8ndcUauwFjFKv6QVjs/G+LKf1D4iREyWwf13k+QC6YkGxcZdsG4oAs9SvflN0PglVOa3pkEbtgb8oTEdu53aDAktKD6brVtecc9+vDH966aUEo1KT8bC4JlYXM2
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(396003)(346002)(39860400002)(136003)(366004)(376002)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(8936002)(8676002)(4326008)(5660300002)(6916009)(7416002)(66946007)(66556008)(316002)(54906003)(2906002)(66476007)(26005)(86362001)(38350700005)(6486002)(52116002)(966005)(478600001)(6512007)(6506007)(6666004)(9686003)(53546011)(33716001)(41300700001)(38100700002)(83380400001)(67856001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: AnKukjZH2k+wRbGKqWbEnYuEvNzQgstEglxqGzBgAAARKtGWL9tUsGh8BTNVDCrU6BDPUXqsZ6hBf4H33Eox80Ll3ASS3GtY32HRFZKYP98r6/qFoOSPkM2HH/jJk6VviHUtR/C11ORpb9v23tkQzcvapvr5obTDKSDx2zxxoLduB5UgibQbchVYe3l3CfoD7R7R7rmftovFNcfK4M0JAmtudheCzhv+BLuHQGd15tfFiEWRVlNcx70LbPyWeCV6i7MjezgAAb678Vvz088D+ise8mnSYcJcAzq4EL/QUTXiPq4sukA5dJ39J8U1IbBS3Mkh5AIskK4QHGrE3KkuwauSrl9KQA8tLYUudeTkM5mHZOog5hwFazENIoBoBk64/kQu2j+PcuVgVYNZs1KcPqbJB15g8fSbAB7bsNwFxnBAFZiNFPKOH/AzNkvVCwQH5GIojHNdNMwZsnDDBwUFGJqE8/vv1PgYKIP5QSVjEBl/Dcx1FfVi7CjJKZuCL7VJo6j2MVA+O/TDAFf5o1UXHiQJtpyrNpt+KeJQ1rT1aNd1Q7aVLnG6AjLIyNPpp0Cia9LBKpZAowdudpBwnXBoptdwP9sPYYd0XcfeptPsZcw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR11MB8107.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(346002)(39860400002)(396003)(136003)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(41300700001)(5660300002)(8676002)(8936002)(2906002)(7406005)(7416002)(66556008)(66476007)(66946007)(316002)(110136005)(6486002)(478600001)(9686003)(26005)(6512007)(6506007)(6666004)(4326008)(38100700002)(82960400001)(921011)(83380400001)(86362001);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?HpsqXnvtPDiv1GgPtCEgG0rnwv+0V+sIPBdYtyJWo4sLPVUMRZ0kWSMWxFcT?=
- =?us-ascii?Q?xEyYUoKQ7/2E7ovlxQcx606Omfz0f6NalR52fMZEkwIh2D2bfMfq9K4kKOpm?=
- =?us-ascii?Q?+iG8qKdizxxDJR3Xo9wzHrYLQEl+Q7HYjdM2xGYW6ZyX/8Aco2Ub4dvwUSu7?=
- =?us-ascii?Q?nshCczu94BTdkTFp71YIbU3LxkcyqjjzmjxnpXyROQubJZKs3YgIjwmG64U1?=
- =?us-ascii?Q?EKdHNSvDGRmBWXlYcnyKYMa1Y0Z4gZT0C5UmhUFwaG7O4hRidCzWArgKqBuP?=
- =?us-ascii?Q?6dqE/vWXNZzn1KUZ6OPjXt4A1XfAKKNJKTAnYzlKIHNhM1PO714W0kpGZBRD?=
- =?us-ascii?Q?AVh/ZJpW0gOFuVtF1ZR0exdiJJko8BkMROYaj/PJUf4FyM1XB0U64TjAY+EB?=
- =?us-ascii?Q?HtCKgl+/+890na0eK7X97llykC/YStkmtMf7jL8HGlrM5eMOgyCGehCarqO7?=
- =?us-ascii?Q?K6HYac9YhDksjESUFguMFjhCLbaU0XJxIfYl86nhrR5TWkwxoCm2jhNrduV2?=
- =?us-ascii?Q?DsuyEyFq62Lgk/WCJyWNweAmwFo34O44m0Dn3/vD48aqlGtzoTwDviCa18uc?=
- =?us-ascii?Q?Pwl/ASzuUOLTosK5Wy5d34x8CflmDc/sMw4cIT728YnQBOlGClJAXqVtF+zx?=
- =?us-ascii?Q?LRlp1p+y4Q89m9pn89HCzeLnZdsGhYAodoNkFUsdMxk7eFYPbTZY7sUPML42?=
- =?us-ascii?Q?qiQwzxfcKKt/GXCj3DOjOOU9InnSlEOnW6TWKJw0dykd2FOzaMM9C2fCkHo2?=
- =?us-ascii?Q?8Nhd9aARXy/mEDs/fNUvFG1TyjCCRUmj4rZvx2+e7/4SxsYWctKp+J5wHOu6?=
- =?us-ascii?Q?z8FsJB4ttuoh+VWc9pgoMvMNtDB64STyzMqTwYRItlgz4VSKLB4zRc0tOt8i?=
- =?us-ascii?Q?6KdXTvuYlckKzw46Zk5mVGGBmvOJf9IXGT8m+dK9YZgd9taF/1GRG5gI7myT?=
- =?us-ascii?Q?InSv7Jcj3Ptwf6YTxKlxvwQTBnqSg8MvwbYCl7kIFuBjaIMaNJWYJqb1FEdC?=
- =?us-ascii?Q?kJods3tCr0tm4wjqDWfvNMFsV8j/qCDOA7M5Nl0+5c2qwVPSLYsINUwU8dVl?=
- =?us-ascii?Q?tIxJDw4pfQ98v7knQpzSg4XYB9gtkee7pOQYW6gigdoUODkwLr9WSxRN/9Ba?=
- =?us-ascii?Q?rHHWWIBlViCwwRGtChc8Q/RmSJ6ZDNwoQni3yzlxRLZYz41JUPARiXHXVgNY?=
- =?us-ascii?Q?+DjZdSVCUGoXz1BdiHqhCYetm6aYdGzeJuYKHnXBqVNn4p1eyk72tS0H6Slm?=
- =?us-ascii?Q?bTVbimmOgZOUs+U+elDI3bFsKor8HEuF1Z1OwGVrXOcP38HzrB5Aa35NHHhJ?=
- =?us-ascii?Q?xFA/C7jvJ3BlrxRZd9nvpSBm3o52YyfZctdLl3OP50Y7EEYfjxJLYaQpNCJE?=
- =?us-ascii?Q?xXvtp7LGH9E7QFdGxKTI/6laVVPXFF4UT7uYxW5i8IJXzA3x/ofPs5iZPiB0?=
- =?us-ascii?Q?2Wi5vgD9Y+WcmnVlYqjuWfxeWHY13nOyaQ1w30INRSxQgyasfRZhAV2M4Br/?=
- =?us-ascii?Q?ZXZpBoo/5s6QnMgXn2uxNyTp7nmEq0GUZrRGbVpZqzvNfnVR9wQ26LzBFcW6?=
- =?us-ascii?Q?2VIRbtlmttLtvemDPxgbvRYkqTaJsRZDU1XgoxqF?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 21676586-b295-46d8-af23-08dc1778201a
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mMIaePo2uqTD+PltBnwHL9ZeQeAXqCo45ZAwbmjtB2dZ0Pwnqa/Ar1bPEurP?=
+ =?us-ascii?Q?T7xACBtNtd1JgPtcjESi2kohliirQwD36+6AxT/BATAiLhHpmcuQQpbD32z6?=
+ =?us-ascii?Q?lEmUR64deEt8jmfvHBTH4rrp02upV+QMg9zXu2jAY2e4nael3/oDFxbA5a40?=
+ =?us-ascii?Q?e+6AcSYGdpFmp9DUMH1R2B8+a4qsOHu2GvQ/21GHhvHiMiHGxNfIzis/Rlrv?=
+ =?us-ascii?Q?My6d6FmAF6g9/c24hpnp15DeqbV6MOiEahUoEZGU70Hy1hzF8dDlN9ExNEP6?=
+ =?us-ascii?Q?2gParqu9m/we3PWKMEyQb22hyoyzEQ5STWXhakiDcC8sEq+aeX5qbv16LaLz?=
+ =?us-ascii?Q?MCkKwG1YK/o6L1hP0s5bVJOzXN6prXfr9klOk1WHG4UsPH0wvTUjsL3XcMWq?=
+ =?us-ascii?Q?x1I+SY567BobSCpqFaHSvHSgGkzy+gQ00tSpAs69tnTVlSb7MD+vNKpfBaAk?=
+ =?us-ascii?Q?7mid71+NuaHB+Y4TEoghEeITmpyXw8THTmOwI1uaBiIGB5oMGaQXbLkVqSUo?=
+ =?us-ascii?Q?nxGdHFypiEEGnLziQDnG7VqKx5kKPcRzxGjU2tQmpfKIS8QBJg60tU9dVNib?=
+ =?us-ascii?Q?LHSo6bnOhjoB0xlmRfip6J9LVylE08A5hnueT9LQ+7oFx3EJc7pfOri98u+j?=
+ =?us-ascii?Q?e/wvL3YDimB3QKEJkAn+YB92uZIW0v2pV4wCdzEazlCK6MxqdR8yVFFz0QzV?=
+ =?us-ascii?Q?xqUBFi7zm6o/ojS42beN2ZzbIKigG1D9jAUNwf7xtBe3sSs4heZJ6hTvNLPD?=
+ =?us-ascii?Q?24PLTYwmzPYQimkUdFy7LLhavgevP7mS6wQZIaQgfdDjPtF5JmvJPXTWpRLy?=
+ =?us-ascii?Q?OUJjPsTb2XKgJ/u09MD08nhLH9GKP45d84HO5cVdiUiCJDiYyWXO31mJSQrm?=
+ =?us-ascii?Q?4jPdKdpZWSdc45PFqep4bGJj8/2Uo0WiNkkszlh7NPespuGupS+LhAg+OCAq?=
+ =?us-ascii?Q?VYUxt1XyqQ7JjyXKqvR6CzdjX5vRmsdxp89GhR5SMs2lBTzcMbrXo/cwWX4y?=
+ =?us-ascii?Q?LSd34TRfyEJ53R8oAFn4L0YiwJ8lasp9TCe8mQXvWF7Mg4VP6aZTAtn25XDu?=
+ =?us-ascii?Q?MLtKFWOmYRCKdxGiY5wlAcafYW7QVIIUVxaHJBltP6nvKI/W7gddLIkukj2k?=
+ =?us-ascii?Q?pD2ux1wVvdDu0AUvgMFWV4b/I1RPAY7Cd4JHaV8aWD9sQhLw7EacYVwe5ElS?=
+ =?us-ascii?Q?mavNRmFKviglrsoDD0AuWs0bLKMjjZGW5Y+CvG4PeHGTZ8EZQb3odT7QjSNR?=
+ =?us-ascii?Q?vshh7HvkgRepYFGFqYkz9SUaV39U+kzO/mGZu430zzZ9II8Ni+gqvuTonpSV?=
+ =?us-ascii?Q?qzhu4HpFlxEghZ66la1P+OPTd8iboiCUJC1qoI5Nzwe5uIhLqXMFmulnpdn6?=
+ =?us-ascii?Q?3vzMTshSqMM9H33atyWWiC/uf+7tTyrDywlV3zvVNBrWgvmwxLqSAjAQzxMh?=
+ =?us-ascii?Q?DhTOUNJEaeB4nuEjJRjP6mb1zUYohTteiEPLhyG6uqJH5C2S+31/P7d4VcjZ?=
+ =?us-ascii?Q?NAjcl8n3XHIMPRpqYIpbhNhl56S3UxWp5QX4SImOmUAGbvNHutEDnJr39bpv?=
+ =?us-ascii?Q?jpsAmDwtK6Q/NuekqJ+AgM3YTN77PdrxOMiiKIZQk3DaFagCg/ouQx4xnPwk?=
+ =?us-ascii?Q?GA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60c9826c-5dfa-4a71-7e02-08dc1778787b
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8107.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2024 16:19:48.5458
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2024 16:22:16.5704
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gRYuF7NTP0u+/ZrdDiEp9yjuYyHZTf/s3W6CssqOLgEWlfbDCcBO5ZfkMG09WQDVa3seWiu+ZjLWmtZeEo46cA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9312
+X-MS-Exchange-CrossTenant-UserPrincipalName: y0hb6ffoU59agTQUEH4SlJrOc5hx1liAZAI13dHrJO/QFHSwcDmOG7IDM5uFIl/PZVm8cqTqAxL6782/8zLy6DzYMNc28XgTx7AupdptzrA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7682
+X-OriginatorOrg: intel.com
 
-On Wed, Jan 17, 2024 at 07:50:16AM +0100, Krzysztof Kozlowski wrote:
-> On 16/01/2024 23:25, Frank Li wrote:
-> > On Tue, Jan 16, 2024 at 10:01:42PM +0100, Krzysztof Kozlowski wrote:
-> >> On 16/01/2024 21:56, Krzysztof Kozlowski wrote:
-> >>> On 16/01/2024 21:44, Frank Li wrote:
-> >>>> On Tue, Jan 16, 2024 at 09:30:24PM +0100, Krzysztof Kozlowski wrote:
-> >>>>> On 16/01/2024 20:13, Frank Li wrote:
-> >>>>>> On Tue, Jan 16, 2024 at 06:23:09PM +0000, Conor Dooley wrote:
-> >>>>>>> On Tue, Jan 16, 2024 at 12:35:44PM -0500, Frank Li wrote:
-> >>>>>>>> On Tue, Jan 16, 2024 at 09:48:08AM +0000, Conor Dooley wrote:
-> >>>>>>>>> On Tue, Jan 16, 2024 at 10:33:48AM +0100, Krzysztof Kozlowski wrote:
-> >>>>>>>>>> On 16/01/2024 10:30, Conor Dooley wrote:
-> >>>>>>>>>>> On Tue, Jan 16, 2024 at 08:24:20AM +0100, Krzysztof Kozlowski wrote:
-> >>>>>>>>>>>> On 16/01/2024 03:29, Frank Li wrote:
-> >>>>>>>>>>>>>>> 	Patches were accepted after discussion, what you ponit to. So I
-> >>>>>>>>>>>>>>> think everyone agree on the name 'silvaco,i3c-master-v1'.
-> >>>>>>>>>>>>>>> 	I plan send next version to fix auto build error. Any additional
-> >>>>>>>>>>>>>>> comments about this?
-> >>>>>>>>>>>>>>
-> >>>>>>>>>>>>>> I still do not see how did you address Rob's comment and his point is
-> >>>>>>>>>>>>>> valid. You just did not reply to it.
-> >>>>>>>>>>>>>
-> >>>>>>>>>>>>> See https://lore.kernel.org/imx/ZXCiaKfMYYShoiXK@lizhi-Precision-Tower-5810/
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> First of all, that's not the answer to Rob's email, but some other
-> >>>>>>>>>>>> thread which is 99% ignored by Rob (unless he has filters for
-> >>>>>>>>>>>> "@Rob"...). Therefore no, it does not count as valid answer.
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> Second, explanation does not make sense. There is no argument granting
-> >>>>>>>>>>>> you exception from SoC specific compatibles.
-> >>>>>>>>>>>
-> >>>>>>>>>>> The patch could have been applied two months ago had Frank done as
-> >>>>>>>>>>> was requested (multiple times). I don't understand the resistance
-> >>>>>>>>>>> towards doing so given the process has taken way way longer as a result.
-> >>>>>>>>>>
-> >>>>>>>>>> I think that Rob's comment was just skipped and original master binding
-> >>>>>>>>>> was merged without addressing it. I don't want to repeat the same
-> >>>>>>>>>> process for the "target". Indeed I could point this earlier... if I only
-> >>>>>>>>>> knew that Rob pointed out that issue.
-> >>>>>>>>>
-> >>>>>>>>> Oh I think I got confused here. The context for this mail led me to
-> >>>>>>>>> think that this was still trying to push the i3c-master-v1 stuff through
-> >>>>>>>>> and I was commenting on my frustration with the resistance to applying
-> >>>>>>>>> the feedback received. I didn't realise that this was for another
-> >>>>>>>>> patch adding a target.
-> >>>>>>>>>
-> >>>>>>>>> I think you already said it, but NAK to adding any more compatibles here
-> >>>>>>>>> until the soc-specific compatible that was asked for for the imx93 is
-> >>>>>>>>> added.
-> >>>>>>>>
-> >>>>>>>> Is it okay for 'silvaco,i3c-target-imx93'?
-> >>>>>
-> >>>>> No, because imx93 is product of NXP, not Silvaco.
-> >>>>>
-> >>>>> You need regular SoC-block compatibles, just like we have for all other
-> >>>>> snps, dwc and cdns.
-> >>>>
-> >>>> "nxp,imx93-svc-i3c-target" ? 
-> >>>
-> >>> Could be, now please point me to patch adding such code to DTS. I would
-> >>> like to see the real use case for it.
-> >>
-> >> Probably I was not clear enough, so let's be more precise: I think you
-> >> might have troubles pointing to such code, because it just does not
-> >> exist. It is a bit contradicting to single hardware description, because
-> >> you want to describe one hardware in two different ways, with two
-> >> different compatibles.
-> >>
-> >> Your commit msg is here empty - it says what  patch is does, which is
-> >> obvious. Tells nothing about the hardware being described here, which
-> >> does not help this discussion. This would need solving as well, but main
-> >> point stays - don't add new compatibles for the same hardware, at least
-> >> not without valid reason/explanation.
-> > 
-> > I can improve commt msg. It was similar PCI case (There are two work mode:
-> > root complex and endpoint). So there are two kind compatible string for it.
-> > 
-> > If you think it is good for using two compatible string for two work mode
-> > of the same hardware.
+Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Not really, because compatible describes hardware and it is the same
-> hardware here. We do not have two different compatibles for GPIOs being
-> input or output.  Or two different compatibles for serial engines (ones
-> providing UART, SPI or I2C).
-
-GPIO and UART is simple. Actuall SPI and I2C have two mode, slave and
-master. Many SPI/I2C is dual mode controller. Just seldom use slave mode
-at linux side. So you just see master mode SPI/I2C controller in dt-binding
-and dts file. So few people upstream slave part to linux kernel community.
-They have the exact same problems if support slave mode.
-
-PCI is typical example: 
-EP mode:  Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-RC mode:  Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-
-Which is the same hardware for two difference compatible string.
+> In order to introduce PCI power-sequencing, we need to create platform
+> devices for child nodes of the port node. They will get matched against
+> the pwrseq drivers (if one exists) and then the actual PCI device will
+> reuse the node once it's detected on the bus.
 > 
-> > 
-> > I can write git commit message like:
-> > 
-> > dt-bindings: i3c: svc: add compatible string nxp,imx93-svc-i3c-target
-> > 
-> > silvaco i3c controller is dual mode controller, which can work as master
-> > and target mode. All clock, reg, irq are the same for both mode. Add
-> > compatible string "nxp,imx93-svc-i3c-target" to let silivaco i3c
-> > controller work as target mode.
-> > 
-> > Of course, alternate method to added a property "mode" to distingiush
-> > master and target mode. but old "silvaco,i3c-master-v1" will actually work
-> > as dual mode support. Driver structure will become complex.
-> 
-> Please send full DTS of user for this, which works for 100%, so we can
-> see how it differs from controller mode. If your code snippet from other
-> thread is correct, then it would suggest "mode" property or lack of
-> children. Maybe lack of children is not enough, if user-space could
-> control I3C bus.
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+[..]
+> diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
+> index d749ea8250d6..77be0630b7b3 100644
+> --- a/drivers/pci/remove.c
+> +++ b/drivers/pci/remove.c
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  #include <linux/pci.h>
+>  #include <linux/module.h>
+> +#include <linux/of_platform.h>
+>  #include "pci.h"
+>  
+>  static void pci_free_resources(struct pci_dev *dev)
+> @@ -18,11 +19,11 @@ static void pci_stop_dev(struct pci_dev *dev)
+>  	pci_pme_active(dev, false);
+>  
+>  	if (pci_dev_is_added(dev)) {
+> -
+>  		device_release_driver(&dev->dev);
+>  		pci_proc_detach_device(dev);
+>  		pci_remove_sysfs_dev_files(dev);
+>  		of_pci_remove_node(dev);
+> +		of_platform_depopulate(&dev->dev);
+>  
+>  		pci_dev_assign_added(dev, false);
 
-According to current implment, only need change imx93.dtsi's @i3c1's 
-compatible string to "silvaco,i3c-target-v1". I attached imx93 dts node for
-your reference.
-
-	i3c1: i3c-master@44330000 {                        
-                                compatible = "silvaco,i3c-master-v1"; 
-					     ^^^^ only need change here!
-   
-                                reg = <0x44330000 0x10000>;                
-                                interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-                                #address-cells = <3>;                      
-                                #size-cells = <0>;                         
-                                clocks = <&clk IMX93_CLK_BUS_AON>,         
-                                         <&clk IMX93_CLK_I3C1_GATE>,       
-                                         <&clk IMX93_CLK_I3C1_SLOW>;       
-                                clock-names = "pclk", "fast_clk", "slow_clk";
-                                dmas = <&edma1 6 0 1>, <&edma1 5 0 0>;     
-                                dma-names = "rx", "tx";                    
-                                status = "disabled";                       
-                        }; 
-
-For master mode:
-Unlike i2c. Genenally I3C can auto probe children node like USB can auto
-detect attached devices. So I3C master can work without children nodes.
-Such as auto load i3c sensor driver according to i3c standard vendor id and
-production id.
-
-For target mode: using configfs to controller I3C.
-
-mkdir /sys/kernel/config/i3c_target/functions/tty/t
-echo 0x011b > /sys/kernel/config/i3c_target/functions/tty/t/vendor_id
-echo 0x1000 > /sys/kernel/config/i3c_target/functions/tty/t/part_id
-echo 0x6 > /sys/kernel/config/i3c_target/functions/tty/t/bcr
-
-ln -s /sys/kernel/config/i3c_target/functions/tty/t /sys/kernel/config/i3c_target/controllers/44330000.i3c-master/
-
-Then you echo test >/dev/ttySI3C0.
-
-Unlike USB, user can switch host and gadget mode dymatically. Suppose I3C
-only work on one of master or slave mode only, which is static.
-
-Although it is one hardware, I think it is exculsive multi function device.
-
-Summary: basice two option to distingiush controller and target mode.
-1. by "compatible" string
-2. by "mode"
-
-I think 1 is relatively simple and easy to understand.
-
-> 
-> Best regards,
-> Krzysztof
-> 
+Why is pci_stop_dev() not in strict reverse order of
+pci_bus_add_device()? I see that pci_dev_assign_added() was already not
+in reverse "add" order before your change, but I otherwise would have
+expected of_platform_depopulate() before of_pci_remove_node() (assumed
+paired with of_pci_make_dev_node()).
 
