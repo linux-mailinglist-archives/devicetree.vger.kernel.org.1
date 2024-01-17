@@ -1,142 +1,235 @@
-Return-Path: <devicetree+bounces-32796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA4B7830A0B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:53:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A76B8830A21
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:56:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 584F91F24933
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:53:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F7781F227C3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF51D21A10;
-	Wed, 17 Jan 2024 15:53:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46C921A15;
+	Wed, 17 Jan 2024 15:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PcSv0otR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cRiBZ2Es"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E8321A0A;
-	Wed, 17 Jan 2024 15:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE3820307;
+	Wed, 17 Jan 2024 15:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705506813; cv=none; b=A9/0tpIF1apruAm0b8ZTb2HW413hXBkJE6zwRy1QeicqZF89u4ShDFzVc4WpI6eII7nKZYTzeYRGgZUlbsEtHpsXzQhlZYjQnHAzvYxTmJbjdhhG1lUoZjjbdK1GVDGmnL0H61OZ4ZW0oHc1tOcs+6E9jWMdOGCXlpLB5K+SHEI=
+	t=1705506997; cv=none; b=Z4mWQswt3DxQo1JN5c0aQMDMqT7j+vL4vIU2DT+iF5MARLlTpILb3Zd6V+npXipks6Q4fuK52qtOtdIWH/bJTHL3vVN84xVeZiLrj6CGOTDFEXd1mxMjifXpSaTrkTjZqXEW/uYgqH4Y8WkVNUS5hAcNjuJAenShfbAk3ic0gUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705506813; c=relaxed/simple;
-	bh=RN/TRAV+0bm5AnELjwjgmIYkKjf1u9x2nlP5hpU2ebs=;
-	h=Received:DKIM-Signature:Received:Received:Received:Received:
-	 Message-ID:Date:MIME-Version:User-Agent:Subject:To:CC:References:
-	 Content-Language:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:X-EXCLAIMER-MD-CONFIG; b=EVhH3G5SEckwbCHojO0hWFvEcw70CjI/MmwPZm1O9v9AMvYfrazyYxfEYmAXvHQO5zBNNfNxM2sVNsAT9mGQmxYYfWuws1xSx6TGVMFQedWEHuQ2exEkWQiJpqCHVjPrRcvX51pEWC2c0zG/7zibxg82CrGfCokYeUh1zDFNhME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PcSv0otR; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40HFqhek107121;
-	Wed, 17 Jan 2024 09:52:44 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1705506764;
-	bh=UqoXHpuOsyXayN31wfG4/f1gx1ZHV/XtpeqO3uEEUxI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=PcSv0otRf22cpnWL4ex8dgpTo4kYPE2YfM2FC7uA12j/9tyFYkEgZ2AhY9W2/eqIL
-	 UCcCKSNc2rAQMq34hF8aMVsEK2gtD8n3zgq1B2X+uumQ7rbozLTXHpMAbIth4PU623
-	 ZP/avpnMlwdRxFKiL0uRf9F+iQpxHCSIF8/AviO8=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40HFqh7o004410
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 17 Jan 2024 09:52:43 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 17
- Jan 2024 09:52:43 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 17 Jan 2024 09:52:43 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40HFqgSs087030;
-	Wed, 17 Jan 2024 09:52:42 -0600
-Message-ID: <55efd488-c6a0-4dca-baea-1fa93d13dd17@ti.com>
-Date: Wed, 17 Jan 2024 09:52:41 -0600
+	s=arc-20240116; t=1705506997; c=relaxed/simple;
+	bh=ptXYt1hCdovZz/ffSWT9gyAHt7rRwgYj2ew+MlFtyNY=;
+	h=Received:DKIM-Signature:Received:X-Gm-Message-State:
+	 X-Google-Smtp-Source:X-Received:MIME-Version:References:
+	 In-Reply-To:From:Date:X-Gmail-Original-Message-ID:Message-ID:
+	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding; b=sVnndRH+Hq+Ry+Rox91iKmcIBCOwK6TRiGM7xKjXq/H9lCS0EV/b9g9+EO4/iNnzG4G5q0SxyYMSpxFuC3nwTxNSk9Hu8YbZHdRYne7Eqh9oLYSfHQt7FidAEhG2xnt8j4Vrmxyv9G4fu3ZxZa4IE5tQNxfS11QnSLFrqVUcRt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cRiBZ2Es; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 650B9C43601;
+	Wed, 17 Jan 2024 15:56:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705506997;
+	bh=ptXYt1hCdovZz/ffSWT9gyAHt7rRwgYj2ew+MlFtyNY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=cRiBZ2Es/hp4k2N4q8iUn7Gg6G7WRx6Enx6NzwR0pvs1Uo+PJaPHaN7erZz9hslNv
+	 oJ7sqEw1Gm4XNo9zvyHyBuflt9WlyERaBGdNjvStedufPMloODdbHhUJirOzDWC+8X
+	 zVp4JrJ/gaV0VdW1ge5sqw0homVaw3Vc/e2SizUHaye7MACpqpVvpFCg/vFe6MBz1u
+	 bgnYht1IvQbsvC5pfXFx6HqJc0SdU7EZMACNFbDBzeekUAJ687dDajvzJw2G1QTSiI
+	 bwYUDUdmE4eHB+SBxhjQhqYhK29d3CioXGWhhlWOuEMZFh0a6Eu7tsz6DzSkSNNYQr
+	 KPpk+usdP0Kqg==
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50ec948ad31so11276732e87.2;
+        Wed, 17 Jan 2024 07:56:37 -0800 (PST)
+X-Gm-Message-State: AOJu0YzWD9/Dct5pest4iAUijEa90G58xOFRaUsuO6kR0Y1rO4pFgJCT
+	ZJlfroB3Gt/d/gCXKG5Ek4bq8c3VIvyjTDpKmA==
+X-Google-Smtp-Source: AGHT+IGaf7OO/QIwbRtFIzzCYIwu/CbtDrVi9rgtHOA0Oa7uryO/EzrtchbYZmaVI0oi/aGjQ3nl2bIJQVjlGNvIzlI=
+X-Received: by 2002:a05:6512:b87:b0:50e:a9db:9b89 with SMTP id
+ b7-20020a0565120b8700b0050ea9db9b89mr5288051lfv.13.1705506995412; Wed, 17 Jan
+ 2024 07:56:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 08/11] ARM: dts: DRA7xx: Add device tree entry for SGX GPU
-To: Tony Lindgren <tony@atomide.com>
-CC: Frank Binns <frank.binns@imgtec.com>,
-        Matt Coster
-	<matt.coster@imgtec.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
-        Adam
- Ford <aford173@gmail.com>,
-        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?=
-	<bcousson@baylibre.com>,
-        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Paul Cercueil
-	<paul@crapouillou.net>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-sunxi@lists.linux.dev>, <linux-omap@vger.kernel.org>,
-        <linux-mips@vger.kernel.org>
-References: <20240109171950.31010-1-afd@ti.com>
- <20240109171950.31010-9-afd@ti.com> <20240110082924.GA5185@atomide.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240110082924.GA5185@atomide.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20231116172859.393744-1-sjg@chromium.org> <20231208150042.GA1278773-robh@kernel.org>
+ <CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
+ <CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
+ <CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
+ <20231214172702.GA617226-robh@kernel.org> <CAPnjgZ2oJSGPO91Y_aLbe+v250WFrND4n3T0mOvhERYidVu=eQ@mail.gmail.com>
+ <CAFLszTizRRVbRO6_ygE2X-Lp5dENWSc4uMGL5GPJAFGAbRdCyQ@mail.gmail.com>
+In-Reply-To: <CAFLszTizRRVbRO6_ygE2X-Lp5dENWSc4uMGL5GPJAFGAbRdCyQ@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 17 Jan 2024 09:56:22 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+j7_KZtQ2ENq9+vsw0LOZF=spu293_G=AxOmBM+m_f-g@mail.gmail.com>
+Message-ID: <CAL_Jsq+j7_KZtQ2ENq9+vsw0LOZF=spu293_G=AxOmBM+m_f-g@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman compatible
+To: Simon Glass <sjg@chromium.org>
+Cc: devicetree@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
+	Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>, 
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/10/24 2:29 AM, Tony Lindgren wrote:
-> * Andrew Davis <afd@ti.com> [240109 17:20]:
->> --- a/arch/arm/boot/dts/ti/omap/dra7.dtsi
->> +++ b/arch/arm/boot/dts/ti/omap/dra7.dtsi
->> @@ -850,12 +850,19 @@ target-module@56000000 {
->>   					<SYSC_IDLE_SMART>;
->>   			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
->>   					<SYSC_IDLE_NO>,
->> -					<SYSC_IDLE_SMART>;
->> +					<SYSC_IDLE_SMART>,
->> +					<SYSC_IDLE_SMART_WKUP>;
-> 
-> You probably checked this already.. But just in case, can you please
-> confirm this is intentional. The documentation lists the smart wakeup
-> capability bit as reserved for dra7, maybe the documentation is wrong.
-> 
+On Thu, Jan 4, 2024 at 3:54=E2=80=AFPM Simon Glass <sjg@chromium.org> wrote=
+:
+>
+> Hi Rob,
+>
+> On Thu, Dec 14, 2023 at 2:09=E2=80=AFPM Simon Glass <sjg@chromium.org> wr=
+ote:
+> >
+> > Hi Rob,
+> >
+> > On Thu, 14 Dec 2023 at 10:27, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Fri, Dec 08, 2023 at 03:58:10PM -0700, Simon Glass wrote:
+> > > > Hi Rob,
+> > > >
+> > > > On Fri, 8 Dec 2023 at 14:56, Rob Herring <robh@kernel.org> wrote:
+> > > > >
+> > > > > On Fri, Dec 8, 2023 at 11:47=E2=80=AFAM Simon Glass <sjg@chromium=
+.org> wrote:
+> > > > > >
+> > > > > > Hi Rob,
+> > > > > >
+> > > > > > On Fri, 8 Dec 2023 at 08:00, Rob Herring <robh@kernel.org> wrot=
+e:
+> > > > > > >
+> > > > > > > On Thu, Nov 16, 2023 at 10:28:50AM -0700, Simon Glass wrote:
+> > > > > > > > Add a compatible string for binman, so we can extend fixed-=
+partitions
+> > > > > > > > in various ways.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > > > > > ---
+> > > > > > > >
+> > > > > > > > (no changes since v5)
+> > > > > > > >
+> > > > > > > > Changes in v5:
+> > > > > > > > - Add #address/size-cells and parternProperties
+> > > > > > > > - Drop $ref to fixed-partitions.yaml
+> > > > > > > > - Drop 'select: false'
+> > > > > > > >
+> > > > > > > > Changes in v4:
+> > > > > > > > - Change subject line
+> > > > > > > >
+> > > > > > > > Changes in v3:
+> > > > > > > > - Drop fixed-partition additional compatible string
+> > > > > > > > - Drop fixed-partitions from the example
+> > > > > > > > - Mention use of compatible instead of label
+> > > > > > > >
+> > > > > > > > Changes in v2:
+> > > > > > > > - Drop mention of 'enhanced features' in fixed-partitions.y=
+aml
+> > > > > > > > - Mention Binman input and output properties
+> > > > > > > > - Use plain partition@xxx for the node name
+> > > > > > > >
+> > > > > > > >  .../bindings/mtd/partitions/binman.yaml       | 68 +++++++=
+++++++++++++
+> > > > > > > >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
+> > > > > > > >  MAINTAINERS                                   |  5 ++
+> > > > > > > >  3 files changed, 74 insertions(+)
+> > > > > > > >  create mode 100644 Documentation/devicetree/bindings/mtd/p=
+artitions/binman.yaml
+> > > > > > > >
+> > > > > > > > diff --git a/Documentation/devicetree/bindings/mtd/partitio=
+ns/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.ya=
+ml
+> > > > > > > > new file mode 100644
+> > > > > > > > index 000000000000..329217550a98
+> > > > > > > > --- /dev/null
+> > > > > > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/binm=
+an.yaml
+> > > > > > > > @@ -0,0 +1,68 @@
+> > > > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > > > > +# Copyright 2023 Google LLC
+> > > > > > > > +
+> > > > > > > > +%YAML 1.2
+> > > > > > > > +---
+> > > > > > > > +$id: http://devicetree.org/schemas/mtd/partitions/binman.y=
+aml#
+> > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > > +
+> > > > > > > > +title: Binman firmware layout
+> > > > > > > > +
+> > > > > > > > +maintainers:
+> > > > > > > > +  - Simon Glass <sjg@chromium.org>
+> > > > > > > > +
+> > > > > > > > +description: |
+> > > > > > > > +  The binman node provides a layout for firmware, used whe=
+n packaging firmware
+> > > > > > > > +  from multiple projects. It is based on fixed-partitions,=
+ with some
+> > > > > > > > +  extensions, but uses 'compatible' to indicate the conten=
+ts of the node, to
+> > > > > > > > +  avoid perturbing or confusing existing installations whi=
+ch use 'label' for a
+> > > > > > > > +  particular purpose.
+> > > > > > > > +
+> > > > > > > > +  Binman supports properties used as inputs to the firmwar=
+e-packaging process,
+> > > > > > > > +  such as those which control alignment of partitions. Thi=
+s binding addresses
+> > > > > > > > +  these 'input' properties. For example, it is common for =
+the 'reg' property
+> > > > > > > > +  (an 'output' property) to be set by Binman, based on the=
+ alignment requested
+> > > > > > > > +  in the input.
+> > > > > > > > +
+> > > > > > > > +  Once processing is complete, input properties have mostl=
+y served their
+> > > > > > > > +  purpose, at least until the firmware is repacked later, =
+e.g. due to a
+> > > > > > > > +  firmware update. The 'fixed-partitions' binding should p=
+rovide enough
+> > > > > > > > +  information to read the firmware at runtime, including d=
+ecompression if
+> > > > > > > > +  needed.
+> > > > > > >
+> > > > > > > How is this going to work exactly? binman reads these nodes a=
+nd then
+> > > > > > > writes out 'fixed-partitions' nodes. But then you've lost the=
+ binman
+> > > > > > > specifc parts needed for repacking.
+> > > > > >
+> > > > > > No, they are the same node. I do want the extra information to =
+stick
+> > > > > > around. So long as it is compatible with fixed-partition as wel=
+l, this
+> > > > > > should work OK.
+> > > > >
+> > > > > How can it be both? The partitions node compatible can be either
+> > > > > 'fixed-partitions' or 'binman'.
+> > > >
+> > > > Can we not allow it to be both? I have tried to adjust things in
+> > > > response to feedback but perhaps the feedback was leading me down t=
+he
+> > > > wrong path?
+> > >
+> > > Sure, but then the schema has to and that means extending
+> > > fixed-partitions.
+> >
+> > Can we cross that bridge later? There might be resistance to it. I'm
+> > not sure. For now, perhaps just a binman compatible works well enough
+> > to make progress.
+>
+> Is there any way to make progress on this? I would like to have
+> software which doesn't understand the binman compatible to at least be
+> able to understand the fixed-partition compatible. Is that acceptable?
 
-It was an intentional change, although I'm not sure it is correct :)
+There's only 2 ways that it can work. Either binman writes out
+fixed-partition nodes dropping/replacing anything only defined for
+binman or fixed-partition is extended to include what binman needs.
 
-This is how we had it in our "evil vendor tree" for years (back when it
-was hwmod based), so when converting these nodes to use "ti,sysc" I noticed
-this bit was set, but as you point out the documentation disagrees.
-
-I'd rather go with what has worked before, but it doesn't seem to
-break anything either way, so we could also break this change out into
-its own patch if you would prefer.
-
-Andrew
-
-> Regards,
-> 
-> Tony
-> 
+Rob
 
