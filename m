@@ -1,177 +1,138 @@
-Return-Path: <devicetree+bounces-32778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCA0F8308CD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:54:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FDAC8308EB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:59:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C94228801B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 14:54:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 668F41C24570
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 14:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B8CE210F8;
-	Wed, 17 Jan 2024 14:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A2B120DD6;
+	Wed, 17 Jan 2024 14:59:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fEaoM5zA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M126Baao"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD2820B38;
-	Wed, 17 Jan 2024 14:52:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61CB121365
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 14:59:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705503139; cv=none; b=JsdBGG+t1G+DctDEipGoY1S8MMYFfnJAUt5ZqFtoTh8Kl+hc73MG9ebpHURuAX1y8Vny5kVmRPO0LhO4/qsCEsQMFDWs4YhsV1hfCbSrUycKkh8xJecm7dkVw8/Qb0Wvrc9tqwZn75gzUuPIS2YlfJPwfKVBUZiFemriWWyGnos=
+	t=1705503571; cv=none; b=ZXIUeQToizn5ey95aYvq2N5Ue0Q2Nv6n96hX0GX3EU5M2jZpKnt++gr+sEQwp+peB2yCGaAj2yjKvLa58jbL8xMy7XfIUisEsTzg/Flk60LiIsTerVhJR8i2gRM0BnyrIkGkh/7pgYmxe55lvZXQSnNXu5d81C4U0BAMc/7UEGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705503139; c=relaxed/simple;
-	bh=2fMFVmmLcybgOzonSAH/hVLVnteRTXL5AUOqv3OZBKA=;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=PSWcgrEOQw7cmfz0S8U4ypeqNLMSp6/pqE/UoecK8jSaYkGDLseLMGdRnOgDcBxC78kGkqwo66M8/fZbu50WTrWDQHs8HevxP8nPE3axr116QNj2LdYOVrfAq1XBY+sj91DjHfYwTruK7AP3x2oKPeyPjVERJy7yJzgtStdyqz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fEaoM5zA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7098C433C7;
-	Wed, 17 Jan 2024 14:52:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705503138;
-	bh=2fMFVmmLcybgOzonSAH/hVLVnteRTXL5AUOqv3OZBKA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fEaoM5zAmPOxyG/9s5w4W0YKD/idcpTs77OU8rQ7lwa8es5pCsvPmquvOvbGahx+d
-	 kKohTXG5rwx5Z+7iEFZiEaQeCwltEY0qdjUdJ5du3iXy92JqZ+NyZN/oIwGZrzw+6b
-	 EzOpQxs7tY3EubXzIUHXu4lCSexXrhNOlbh39AzjPE2IOHuozyBFummBKx1ryl6kSg
-	 kNK0pyzqTKGh0BL4om28Tx3BWAA+JLl/5KTelq+dBHRWS+y0U1E8eq1VUhQrzgWHem
-	 o734PeQOZhScEx6nsxG/EqKZQwuF3oxWn9yvbHxbHXPtRk2dmTEPNfsVviAneY8cKy
-	 3bwk/8C9ervmg==
-Date: Wed, 17 Jan 2024 08:52:16 -0600
-From: Rob Herring <robh@kernel.org>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Cc: linux-kbuild@vger.kernel.org, devicetree@vger.kernel.org,
-	Simon Glass <sjg@chromium.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Nicolas Schier <nicolas@fjasle.eu>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] kbuild: simplify dtbs_install by reading the list of
- compiled DTBs
-Message-ID: <20240117145216.GA2296118-robh@kernel.org>
-References: <20240109120738.346061-1-masahiroy@kernel.org>
- <20240109120738.346061-3-masahiroy@kernel.org>
+	s=arc-20240116; t=1705503571; c=relaxed/simple;
+	bh=7j81HGmM3UVZuMW1aajgnh/Tqkfv5ZlF1e2arTN11NI=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
+	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
+	 To:Cc:References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding; b=XQTYoePdKDbPy5anOzvT/yzUw/UoI5DWpCeW7/5HPKmCAZ6fRis9LNHOpAHC3oTpkGnchGNUSWwQ6kldljuSjxwyxMtPoIcUcOZkYkid1jaa87GHjfIJpd1hQEurEVhqXcPT8zhXbCsf+3WrD/HSCqeOp0OrGD3/BaGJxFYut5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M126Baao; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40e884de7b9so11164555e9.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 06:59:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705503567; x=1706108367; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nmOxe8Kt63reb+K83M/fiIpc7ZoymLxbMzD4gGdoAzs=;
+        b=M126Baaoif7bxWr9cLsIatT/8b81mBZd4R7H9bNooD8W27aH0LrMDecGWraXMcRqC8
+         Ir2XCV3QW5PYHHEZyxbiTeHHcKTbpDjR0+sj4IAcyoWnPfqhEul5vKC2d6GpAHnQPeik
+         RfVme+heJWOj5cgrC3fNaO4kOw5O9+CkeB0Mxj6UzWe53WYVKsbVgIpFK/Lw69MGhDC1
+         tNDxkChPwapCvqQWBVrKshvO6rOwmxdBjbl9PrPGqABSStMEmZfwIIxmNT/swZBRRHS+
+         TuM7NxiyJInuDpgPPQmdz/SB4/Bjqsa4hE+fDa+fYE3Eew0ORyFTxVBaxLpeZ0Fq1T2d
+         7UdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705503567; x=1706108367;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nmOxe8Kt63reb+K83M/fiIpc7ZoymLxbMzD4gGdoAzs=;
+        b=hPre2S1FfhmAah2yY4ApPS1PiF2fCWnHvUVREqFKFnwoeM0SxyOCa5hIW0h+akNr0H
+         Y9KvvGYr1yyxIc54LhDDhYXJ6M1rRSQgJzfp93KBL8tZj9QTGIvXVvt+x/gpH4qQNyv4
+         9P8h3fVaqtE8VvURuxu9mjoAh5JFvMyWDhk9fthPF9gNH9YA2iXTZc8vpe7edp3/Vp78
+         zdS19oy6D3sW6ft8JIyOuxT1vUmH0GXf3hkKr0wfFf3ygfsjpKwVLy5vtt5Y5e1rHLPB
+         TOxJEZ1K3RpW8oEDApOjgBAqqECAhqlVnTzGXTs8vIjUHxd5vXJVeUMtqpUIlM11Wr0f
+         eJ6g==
+X-Gm-Message-State: AOJu0Yy5/QNul/O/uEvS7G/EGtUBjJ6iNzqA4+YTQLU8W8qkR0bwve8O
+	qzZ8/TzDXuMwsQymn8t5jRbp5ezwmjwv3w==
+X-Google-Smtp-Source: AGHT+IGy6qHkEPrF3Ir1FNIzi8E8U7HINl3OXeiajhONjDtBYPNIZN6SHJlqkSjxbgHRxUhaMtMqfg==
+X-Received: by 2002:a05:600c:84ca:b0:40e:4e54:3e46 with SMTP id er10-20020a05600c84ca00b0040e4e543e46mr4715735wmb.91.1705503567601;
+        Wed, 17 Jan 2024 06:59:27 -0800 (PST)
+Received: from [192.168.2.107] ([79.115.63.202])
+        by smtp.gmail.com with ESMTPSA id bm19-20020a170906c05300b00a2362c5e3dbsm7856439ejb.151.2024.01.17.06.59.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jan 2024 06:59:27 -0800 (PST)
+Message-ID: <59a2e142-e970-4792-9233-7c447ac391b2@linaro.org>
+Date: Wed, 17 Jan 2024 14:59:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240109120738.346061-3-masahiroy@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 08/12] arm64: dts: exynos: gs101: remove reg-io-width
+ from serial
+Content-Language: en-US
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: peter.griffin@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+ gregkh@linuxfoundation.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
+ alim.akhtar@samsung.com, jirislaby@kernel.org, s.nawrocki@samsung.com,
+ tomasz.figa@gmail.com, cw00.choi@samsung.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-serial@vger.kernel.org, andre.draszik@linaro.org,
+ kernel-team@android.com, willmcvicker@google.com
+References: <20240109125814.3691033-1-tudor.ambarus@linaro.org>
+ <20240109125814.3691033-9-tudor.ambarus@linaro.org>
+ <CAPLW+4mUMx9RvFiS0L2U+_Fd_PzcHhmNbyR4cmUrYF3BVgb=Cw@mail.gmail.com>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <CAPLW+4mUMx9RvFiS0L2U+_Fd_PzcHhmNbyR4cmUrYF3BVgb=Cw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 09, 2024 at 09:07:35PM +0900, Masahiro Yamada wrote:
-> Retrieve the list of *.dtb(o) files from arch/*/boot/dts/dtbs-list
-> instead of traversing the directory tree again.
 
-Don't you need dtbs-list in .gitignore?
 
+On 1/16/24 17:57, Sam Protsenko wrote:
+> On Tue, Jan 9, 2024 at 7:00 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>> Remove the reg-io-width property in order to comply with the bindings.
+>>
+>> The entire bus (PERIC) on which the GS101 serial resides only allows
+>> 32-bit register accesses. The reg-io-width dt property is disallowed
+>> for the "google,gs101-uart" compatible and instead the iotype is
+>> inferred from the compatible.
+>>
+>> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> ---
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 > 
-> Please note that 'make dtbs_install' installs *.dtb(o) files directly
-> added to dtb-y because scripts/Makefile.dtbinst installs $(dtb-y)
-> without expanding the -dtbs suffix.
-> 
-> This commit preserves this behavior.
-> 
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
-> 
->  Makefile                 |  2 +-
->  scripts/Kbuild.include   |  6 ------
->  scripts/Makefile.dtbinst | 32 ++++++++++++++++++--------------
->  3 files changed, 19 insertions(+), 21 deletions(-)
-> 
-> diff --git a/Makefile b/Makefile
-> index db7f9e34a24e..dae6825b8082 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1407,7 +1407,7 @@ endif
->  dtbs_check: dtbs
->  
->  dtbs_install:
-> -	$(Q)$(MAKE) $(dtbinst)=$(dtstree) dst=$(INSTALL_DTBS_PATH)
-> +	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.dtbinst obj=$(dtstree)
->  
->  ifdef CONFIG_OF_EARLY_FLATTREE
->  all: dtbs
-> diff --git a/scripts/Kbuild.include b/scripts/Kbuild.include
-> index 7778cc97a4e0..2f331879816b 100644
-> --- a/scripts/Kbuild.include
-> +++ b/scripts/Kbuild.include
-> @@ -113,12 +113,6 @@ endef
->  # $(Q)$(MAKE) $(build)=dir
->  build := -f $(srctree)/scripts/Makefile.build obj
->  
-> -###
-> -# Shorthand for $(Q)$(MAKE) -f scripts/Makefile.dtbinst obj=
-> -# Usage:
-> -# $(Q)$(MAKE) $(dtbinst)=dir
-> -dtbinst := -f $(srctree)/scripts/Makefile.dtbinst obj
-> -
->  ###
->  # Shorthand for $(Q)$(MAKE) -f scripts/Makefile.clean obj=
->  # Usage:
-> diff --git a/scripts/Makefile.dtbinst b/scripts/Makefile.dtbinst
-> index 4405d5b67578..67956f6496a5 100644
-> --- a/scripts/Makefile.dtbinst
-> +++ b/scripts/Makefile.dtbinst
-> @@ -8,32 +8,36 @@
->  #   $INSTALL_PATH/dtbs/$KERNELRELEASE
->  # ==========================================================================
->  
-> -src := $(obj)
-> -
->  PHONY := __dtbs_install
->  __dtbs_install:
->  
->  include include/config/auto.conf
->  include $(srctree)/scripts/Kbuild.include
-> -include $(kbuild-file)
->  
-> -dtbs    := $(addprefix $(dst)/, $(dtb-y) $(if $(CONFIG_OF_ALL_DTBS),$(dtb-)))
-> -subdirs := $(addprefix $(obj)/, $(subdir-y) $(subdir-m))
-> -
-> -__dtbs_install: $(dtbs) $(subdirs)
-> -	@:
-> +dst := $(INSTALL_DTBS_PATH)
->  
->  quiet_cmd_dtb_install = INSTALL $@
->        cmd_dtb_install = install -D $< $@
->  
-> -$(dst)/%.dtb: $(obj)/%.dtb
-> +$(dst)/%: $(obj)/%
->  	$(call cmd,dtb_install)
->  
-> -$(dst)/%.dtbo: $(obj)/%.dtbo
-> -	$(call cmd,dtb_install)
-> +dtbs := $(patsubst $(obj)/%,%,$(call read-file, $(obj)/dtbs-list))
->  
-> -PHONY += $(subdirs)
-> -$(subdirs):
-> -	$(Q)$(MAKE) $(dtbinst)=$@ dst=$(if $(CONFIG_ARCH_WANT_FLAT_DTB_INSTALL),$(dst),$(patsubst $(obj)/%,$(dst)/%,$@))
-> +ifdef CONFIG_ARCH_WANT_FLAT_DTB_INSTALL
-> +
-> +define gen_install_rules
-> +$(dst)/%: $(obj)/$(1)%
-> +	$$(call cmd,dtb_install)
-> +endef
-> +
-> +$(foreach d, $(sort $(dir $(dtbs))), $(eval $(call gen_install_rules,$(d))))
-> +
-> +dtbs := $(notdir $(dtbs))
-> +
-> +endif # CONFIG_ARCH_WANT_FLAT_DTB_INSTALL
-> +
-> +__dtbs_install: $(addprefix $(dst)/, $(dtbs))
-> +	@:
->  
->  .PHONY: $(PHONY)
-> -- 
-> 2.40.1
-> 
+> Just out of curiosity (I probably missed the relevant discussion
+> earlier): what is the actual reason for moving 'reg-io-width' to the
+> driver's code as 'iotype'? I mean, what is the actual problem that's
+
+The majority (if not all?) of the hardware blocks in GS101 SoC require
+32 bit register access widths. Instead of specifying reg-io-width = 4
+everywhere in the device tree, we infer it from the compatibles.
+
+The relevant discussion is here:
+https://lore.kernel.org/linux-arm-kernel/db368449-f446-47e8-81b6-a11c2a872306@linaro.org/
+
+Cheers,
+ta
+
+> being solved by this -- is it to make the earlycon functional for
+> gs101? I'm asking because the bus width looks like a part of HW
+> description, which usually belongs to dts, from the design point of
+> view. Anyways, that's not a concern, just trying to understand the
+> decision.
 
