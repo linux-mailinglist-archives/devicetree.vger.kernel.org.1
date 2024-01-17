@@ -1,235 +1,200 @@
-Return-Path: <devicetree+bounces-32797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76B8830A21
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:56:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 069FD830A66
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:08:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F7781F227C3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:56:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53F28287BDC
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46C921A15;
-	Wed, 17 Jan 2024 15:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D016D22308;
+	Wed, 17 Jan 2024 16:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cRiBZ2Es"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="TpDV2iT9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE3820307;
-	Wed, 17 Jan 2024 15:56:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163F32231B
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 16:08:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705506997; cv=none; b=Z4mWQswt3DxQo1JN5c0aQMDMqT7j+vL4vIU2DT+iF5MARLlTpILb3Zd6V+npXipks6Q4fuK52qtOtdIWH/bJTHL3vVN84xVeZiLrj6CGOTDFEXd1mxMjifXpSaTrkTjZqXEW/uYgqH4Y8WkVNUS5hAcNjuJAenShfbAk3ic0gUU=
+	t=1705507710; cv=none; b=f46iz2MUENgiy6gXdwiQy6Dmo3droBQ/0Phk56YIjPNRLQnlwMiLmDj6PeSZvEVVnjDr35oxE0ELsYnq1NCBwSsi6ZeGROTiFNILmv5WosJPTY/UqC8T/XotAuiuEHiTGEO/MKGKkvfaES4aMxOUR4hZnXrkQ3Y2HLkfzgpCzrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705506997; c=relaxed/simple;
-	bh=ptXYt1hCdovZz/ffSWT9gyAHt7rRwgYj2ew+MlFtyNY=;
-	h=Received:DKIM-Signature:Received:X-Gm-Message-State:
-	 X-Google-Smtp-Source:X-Received:MIME-Version:References:
-	 In-Reply-To:From:Date:X-Gmail-Original-Message-ID:Message-ID:
-	 Subject:To:Cc:Content-Type:Content-Transfer-Encoding; b=sVnndRH+Hq+Ry+Rox91iKmcIBCOwK6TRiGM7xKjXq/H9lCS0EV/b9g9+EO4/iNnzG4G5q0SxyYMSpxFuC3nwTxNSk9Hu8YbZHdRYne7Eqh9oLYSfHQt7FidAEhG2xnt8j4Vrmxyv9G4fu3ZxZa4IE5tQNxfS11QnSLFrqVUcRt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cRiBZ2Es; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 650B9C43601;
-	Wed, 17 Jan 2024 15:56:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705506997;
-	bh=ptXYt1hCdovZz/ffSWT9gyAHt7rRwgYj2ew+MlFtyNY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=cRiBZ2Es/hp4k2N4q8iUn7Gg6G7WRx6Enx6NzwR0pvs1Uo+PJaPHaN7erZz9hslNv
-	 oJ7sqEw1Gm4XNo9zvyHyBuflt9WlyERaBGdNjvStedufPMloODdbHhUJirOzDWC+8X
-	 zVp4JrJ/gaV0VdW1ge5sqw0homVaw3Vc/e2SizUHaye7MACpqpVvpFCg/vFe6MBz1u
-	 bgnYht1IvQbsvC5pfXFx6HqJc0SdU7EZMACNFbDBzeekUAJ687dDajvzJw2G1QTSiI
-	 bwYUDUdmE4eHB+SBxhjQhqYhK29d3CioXGWhhlWOuEMZFh0a6Eu7tsz6DzSkSNNYQr
-	 KPpk+usdP0Kqg==
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50ec948ad31so11276732e87.2;
-        Wed, 17 Jan 2024 07:56:37 -0800 (PST)
-X-Gm-Message-State: AOJu0YzWD9/Dct5pest4iAUijEa90G58xOFRaUsuO6kR0Y1rO4pFgJCT
-	ZJlfroB3Gt/d/gCXKG5Ek4bq8c3VIvyjTDpKmA==
-X-Google-Smtp-Source: AGHT+IGaf7OO/QIwbRtFIzzCYIwu/CbtDrVi9rgtHOA0Oa7uryO/EzrtchbYZmaVI0oi/aGjQ3nl2bIJQVjlGNvIzlI=
-X-Received: by 2002:a05:6512:b87:b0:50e:a9db:9b89 with SMTP id
- b7-20020a0565120b8700b0050ea9db9b89mr5288051lfv.13.1705506995412; Wed, 17 Jan
- 2024 07:56:35 -0800 (PST)
+	s=arc-20240116; t=1705507710; c=relaxed/simple;
+	bh=wTIEtPEGvHDDF+fKBFt7TJe6k9xnGtd2Jq24lFbXPO8=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:From:
+	 To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding; b=PFIqTyHyUAOZyq27YlKHlbIuCccRPoO02H9ys9Y1lo3CnRZUT1tsOfOtakfRl0VjZpRqrlyR1Xyc0A7pfaZfY45RuDGMtBnySJ1stzUDs+Bvzq6omZ4gptmBL8qeruoznivTV+G9nJFcvQFcjuYBcA8dG9ALHI0CmWvF18JRUNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=TpDV2iT9; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40e8d3b32eeso4187775e9.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 08:08:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1705507707; x=1706112507; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MyUo/UL6AejHs5hrhdv6/x2YU8XtvFhHsaGgxgVP4HA=;
+        b=TpDV2iT90lWEt2PDlbBvIqdtaE8ty6Dx3WgPaYBm1o0EmGAUzNVEPbDh18GgDsbMFR
+         OZo7NO2iJLmX3MtgdcRUafr0R+LB/bbgH9Sy18xMH3rJ65M2vA103wNjGCk4t3+Ytgxt
+         15QJRPfyZYnQFDXtwZQpklWrYQUMlLPJc7IZ56QtYFPWyBqu56RaFIyRKPYJiMGutpPd
+         mdVlIaSYqHNY/eU6HVRqzFzm75fL49RD3UMRkmGsJTa6twUy6JWm21lwx+iLjUdT0sW4
+         leTdPs4H/AlTeQ6g15vh7AU7xl+cGEajnq//DLPAQ7if/YFLip6uH9rapj9NOhfZys8t
+         xf+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705507707; x=1706112507;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MyUo/UL6AejHs5hrhdv6/x2YU8XtvFhHsaGgxgVP4HA=;
+        b=UUeW0dq7PwGMjt2q0YqkNsXX43SqquIs9x2Cszu9koUUH2WO365SNNzhyD8pgb9VY3
+         jmGynvyqk7wrggQQY68zK8JoD90vMOa1doOJieKAOVM+CWkOJoRDhdY7/LTMgj1GMad9
+         MGspwtI+sbs/dQXxGTQsCDY1yDwYaqXn3PIVQt8AbTLjVzU1F7smgqqnKLDjwgkIE+lN
+         Va9PsCkWGg89ixxEvVAyhu+t99kxFzNa48qyaPfZuXpSrd2t9+S+wsH5Z96Nmf9Ei14Q
+         g+XvhfzdclFgFdwu21zjFaDXRVPWuArahD/EYVQC5I/8fIkklMGtQUXzC/bPBV4GaOGP
+         GtPA==
+X-Gm-Message-State: AOJu0Yxz97+G2MkG9oWykMWsjFZhweZ5UDWmAK0zfGgSOcbdi/K0YhWA
+	5A15Q7/sq2qYHt5WMDGZc97NGLlrFqkhOg==
+X-Google-Smtp-Source: AGHT+IHlxHbmKVJpdUR6FTOE1NTTevtRRWD6ZNjn5U6+9dnAYa4RC2TRfYigQaqhNQbHmnO2nJkODQ==
+X-Received: by 2002:a05:600c:3506:b0:40c:3e6e:5466 with SMTP id h6-20020a05600c350600b0040c3e6e5466mr4763135wmq.182.1705507706783;
+        Wed, 17 Jan 2024 08:08:26 -0800 (PST)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:d0b5:43ec:48:baad])
+        by smtp.gmail.com with ESMTPSA id t10-20020a5d6a4a000000b00337b0374a3dsm1972092wrw.57.2024.01.17.08.08.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Jan 2024 08:08:26 -0800 (PST)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Kalle Valo <kvalo@kernel.org>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Robert Richter <rrichter@amd.com>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Terry Bowman <terry.bowman@amd.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Abel Vesa <abel.vesa@linaro.org>
+Cc: linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH 0/9] PCI: introduce the concept of power sequencing of PCIe devices
+Date: Wed, 17 Jan 2024 17:07:39 +0100
+Message-Id: <20240117160748.37682-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231116172859.393744-1-sjg@chromium.org> <20231208150042.GA1278773-robh@kernel.org>
- <CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
- <CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
- <CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
- <20231214172702.GA617226-robh@kernel.org> <CAPnjgZ2oJSGPO91Y_aLbe+v250WFrND4n3T0mOvhERYidVu=eQ@mail.gmail.com>
- <CAFLszTizRRVbRO6_ygE2X-Lp5dENWSc4uMGL5GPJAFGAbRdCyQ@mail.gmail.com>
-In-Reply-To: <CAFLszTizRRVbRO6_ygE2X-Lp5dENWSc4uMGL5GPJAFGAbRdCyQ@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 17 Jan 2024 09:56:22 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+j7_KZtQ2ENq9+vsw0LOZF=spu293_G=AxOmBM+m_f-g@mail.gmail.com>
-Message-ID: <CAL_Jsq+j7_KZtQ2ENq9+vsw0LOZF=spu293_G=AxOmBM+m_f-g@mail.gmail.com>
-Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman compatible
-To: Simon Glass <sjg@chromium.org>
-Cc: devicetree@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
-	Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 4, 2024 at 3:54=E2=80=AFPM Simon Glass <sjg@chromium.org> wrote=
-:
->
-> Hi Rob,
->
-> On Thu, Dec 14, 2023 at 2:09=E2=80=AFPM Simon Glass <sjg@chromium.org> wr=
-ote:
-> >
-> > Hi Rob,
-> >
-> > On Thu, 14 Dec 2023 at 10:27, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Fri, Dec 08, 2023 at 03:58:10PM -0700, Simon Glass wrote:
-> > > > Hi Rob,
-> > > >
-> > > > On Fri, 8 Dec 2023 at 14:56, Rob Herring <robh@kernel.org> wrote:
-> > > > >
-> > > > > On Fri, Dec 8, 2023 at 11:47=E2=80=AFAM Simon Glass <sjg@chromium=
-.org> wrote:
-> > > > > >
-> > > > > > Hi Rob,
-> > > > > >
-> > > > > > On Fri, 8 Dec 2023 at 08:00, Rob Herring <robh@kernel.org> wrot=
-e:
-> > > > > > >
-> > > > > > > On Thu, Nov 16, 2023 at 10:28:50AM -0700, Simon Glass wrote:
-> > > > > > > > Add a compatible string for binman, so we can extend fixed-=
-partitions
-> > > > > > > > in various ways.
-> > > > > > > >
-> > > > > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > > > > > > ---
-> > > > > > > >
-> > > > > > > > (no changes since v5)
-> > > > > > > >
-> > > > > > > > Changes in v5:
-> > > > > > > > - Add #address/size-cells and parternProperties
-> > > > > > > > - Drop $ref to fixed-partitions.yaml
-> > > > > > > > - Drop 'select: false'
-> > > > > > > >
-> > > > > > > > Changes in v4:
-> > > > > > > > - Change subject line
-> > > > > > > >
-> > > > > > > > Changes in v3:
-> > > > > > > > - Drop fixed-partition additional compatible string
-> > > > > > > > - Drop fixed-partitions from the example
-> > > > > > > > - Mention use of compatible instead of label
-> > > > > > > >
-> > > > > > > > Changes in v2:
-> > > > > > > > - Drop mention of 'enhanced features' in fixed-partitions.y=
-aml
-> > > > > > > > - Mention Binman input and output properties
-> > > > > > > > - Use plain partition@xxx for the node name
-> > > > > > > >
-> > > > > > > >  .../bindings/mtd/partitions/binman.yaml       | 68 +++++++=
-++++++++++++
-> > > > > > > >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
-> > > > > > > >  MAINTAINERS                                   |  5 ++
-> > > > > > > >  3 files changed, 74 insertions(+)
-> > > > > > > >  create mode 100644 Documentation/devicetree/bindings/mtd/p=
-artitions/binman.yaml
-> > > > > > > >
-> > > > > > > > diff --git a/Documentation/devicetree/bindings/mtd/partitio=
-ns/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.ya=
-ml
-> > > > > > > > new file mode 100644
-> > > > > > > > index 000000000000..329217550a98
-> > > > > > > > --- /dev/null
-> > > > > > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/binm=
-an.yaml
-> > > > > > > > @@ -0,0 +1,68 @@
-> > > > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > > > > > +# Copyright 2023 Google LLC
-> > > > > > > > +
-> > > > > > > > +%YAML 1.2
-> > > > > > > > +---
-> > > > > > > > +$id: http://devicetree.org/schemas/mtd/partitions/binman.y=
-aml#
-> > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > > > +
-> > > > > > > > +title: Binman firmware layout
-> > > > > > > > +
-> > > > > > > > +maintainers:
-> > > > > > > > +  - Simon Glass <sjg@chromium.org>
-> > > > > > > > +
-> > > > > > > > +description: |
-> > > > > > > > +  The binman node provides a layout for firmware, used whe=
-n packaging firmware
-> > > > > > > > +  from multiple projects. It is based on fixed-partitions,=
- with some
-> > > > > > > > +  extensions, but uses 'compatible' to indicate the conten=
-ts of the node, to
-> > > > > > > > +  avoid perturbing or confusing existing installations whi=
-ch use 'label' for a
-> > > > > > > > +  particular purpose.
-> > > > > > > > +
-> > > > > > > > +  Binman supports properties used as inputs to the firmwar=
-e-packaging process,
-> > > > > > > > +  such as those which control alignment of partitions. Thi=
-s binding addresses
-> > > > > > > > +  these 'input' properties. For example, it is common for =
-the 'reg' property
-> > > > > > > > +  (an 'output' property) to be set by Binman, based on the=
- alignment requested
-> > > > > > > > +  in the input.
-> > > > > > > > +
-> > > > > > > > +  Once processing is complete, input properties have mostl=
-y served their
-> > > > > > > > +  purpose, at least until the firmware is repacked later, =
-e.g. due to a
-> > > > > > > > +  firmware update. The 'fixed-partitions' binding should p=
-rovide enough
-> > > > > > > > +  information to read the firmware at runtime, including d=
-ecompression if
-> > > > > > > > +  needed.
-> > > > > > >
-> > > > > > > How is this going to work exactly? binman reads these nodes a=
-nd then
-> > > > > > > writes out 'fixed-partitions' nodes. But then you've lost the=
- binman
-> > > > > > > specifc parts needed for repacking.
-> > > > > >
-> > > > > > No, they are the same node. I do want the extra information to =
-stick
-> > > > > > around. So long as it is compatible with fixed-partition as wel=
-l, this
-> > > > > > should work OK.
-> > > > >
-> > > > > How can it be both? The partitions node compatible can be either
-> > > > > 'fixed-partitions' or 'binman'.
-> > > >
-> > > > Can we not allow it to be both? I have tried to adjust things in
-> > > > response to feedback but perhaps the feedback was leading me down t=
-he
-> > > > wrong path?
-> > >
-> > > Sure, but then the schema has to and that means extending
-> > > fixed-partitions.
-> >
-> > Can we cross that bridge later? There might be resistance to it. I'm
-> > not sure. For now, perhaps just a binman compatible works well enough
-> > to make progress.
->
-> Is there any way to make progress on this? I would like to have
-> software which doesn't understand the binman compatible to at least be
-> able to understand the fixed-partition compatible. Is that acceptable?
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-There's only 2 ways that it can work. Either binman writes out
-fixed-partition nodes dropping/replacing anything only defined for
-binman or fixed-partition is extended to include what binman needs.
+The responses to the RFC were rather positive so here's a proper series.
 
-Rob
+During last year's Linux Plumbers we had several discussions centered
+around the need to power-on PCI devices before they can be detected on
+the bus.
+
+The consensus during the conference was that we need to introduce a
+class of "PCI slot drivers" that would handle the power-sequencing.
+
+After some additional brain-storming with Manivannan and the realization
+that DT maintainers won't like adding any "fake" nodes not representing
+actual devices, we decided to reuse existing PCI infrastructure.
+
+The general idea is to instantiate platform devices for child nodes of
+the PCIe port DT node. For those nodes for which a power-sequencing
+driver exists, we bind it and let it probe. The driver then triggers a
+rescan of the PCI bus with the aim of detecting the now powered-on
+device. The device will consume the same DT node as the platform,
+power-sequencing device. We use device links to make the latter become
+the parent of the former.
+
+The main advantage of this approach is not modifying the existing DT in
+any way and especially not adding any "fake" platform devices.
+
+Changes since RFC:
+- move the pwrseq functionality out of the port driver and into PCI core
+- add support for WCN7850 to the first pwrseq driver (and update bindings)
+- describe the WLAN modules in sm8550-qrd and sm8650-qrd
+- rework Kconfig options, drop the defconfig changes from the series as
+  they are no longer needed
+- drop the dt-binding changes for PCI vendor codes
+- extend the DT bindings for ath11k_pci with strict property checking
+- various minor tweaks and fixes
+
+Bartosz Golaszewski (7):
+  arm64: dts: qcom: qrb5165-rb5: describe the WLAN module of QCA6390
+  PCI: create platform devices for child OF nodes of the port node
+  PCI: hold the rescan mutex when scanning for the first time
+  PCI/pwrseq: add pwrseq core code
+  dt-bindings: wireless: ath11k: describe QCA6390
+  dt-bindings: wireless: ath11k: describe WCN7850
+  PCI/pwrseq: add a pwrseq driver for QCA6390
+
+Neil Armstrong (2):
+  arm64: dts: qcom: sm8550-qrd: add Wifi nodes
+  arm64: dts: qcom: sm8650-qrd: add Wifi nodes
+
+ .../net/wireless/qcom,ath11k-pci.yaml         |  89 ++++++
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  29 ++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  10 +
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts       |  37 +++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  10 +
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts       |  29 ++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi          |  10 +
+ drivers/pci/Kconfig                           |   1 +
+ drivers/pci/Makefile                          |   1 +
+ drivers/pci/bus.c                             |   9 +-
+ drivers/pci/probe.c                           |   2 +
+ drivers/pci/pwrseq/Kconfig                    |  16 ++
+ drivers/pci/pwrseq/Makefile                   |   4 +
+ drivers/pci/pwrseq/pci-pwrseq-qca6390.c       | 267 ++++++++++++++++++
+ drivers/pci/pwrseq/pwrseq.c                   |  82 ++++++
+ drivers/pci/remove.c                          |   3 +-
+ include/linux/pci-pwrseq.h                    |  24 ++
+ 17 files changed, 621 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/pci/pwrseq/Kconfig
+ create mode 100644 drivers/pci/pwrseq/Makefile
+ create mode 100644 drivers/pci/pwrseq/pci-pwrseq-qca6390.c
+ create mode 100644 drivers/pci/pwrseq/pwrseq.c
+ create mode 100644 include/linux/pci-pwrseq.h
+
+-- 
+2.40.1
+
 
