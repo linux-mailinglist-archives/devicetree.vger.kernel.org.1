@@ -1,481 +1,249 @@
-Return-Path: <devicetree+bounces-32849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB9C830D07
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:59:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B9A830D28
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:13:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1DE528A47E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:59:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4FC6A1F22C9C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B6F24205;
-	Wed, 17 Jan 2024 18:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16BC624208;
+	Wed, 17 Jan 2024 19:13:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T1sel6qD"
+	dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b="aadc6FlH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0046e701.pphosted.com (mx0a-0046e701.pphosted.com [67.231.149.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8B1241E0
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 18:58:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6B9724205;
+	Wed, 17 Jan 2024 19:13:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705517939; cv=none; b=CwfHRielF1/oo7ihJki35mbriPMLbvtWVzKlLKG9LmRdSnYy/TS5kgvYsNz2SOivHCcUfJpvLmjvypa/LmIyt6XCdJ/9NrxE8f4UfFsH+y7xWHr3UCQF/r58FYJL0RkDXUxVr9FWOTBSyz3wlJRnxytdcOaBHS4agYUJCntCoVU=
+	t=1705518800; cv=none; b=o7NXSso1ii/Gzjr1DM3u74FmRWVskyRhi7pguVXuVRGhZOQgb+sonNEf3NP1fXnIuE4pJkfxv9XmCv7mbzpAL7BnQynbxQlYXimRqR3VXmRy6MoedAd6oUT2BBMKSneD+Wfz54dbBGRcvblraeNTLgpLfu68Hxy6VQqSidpswsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705517939; c=relaxed/simple;
-	bh=AxV0BL+NI5s2WTtzJLC3HIkFdzBKvr0fn7k6ElrPwgM=;
-	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:Date:
-	 From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=LpdabnZBK1gm6YlotIU/O/Pp814i5x6px77+/O+9sFuslix8aiTv60fOKUI9B8ZuwHPEG6ThLzUI7i+ll0ANRMmT0FWpwGXZsmxN/9IufjzB2lXQ2XLZ2n7XBrnANU8VNYK7nmrN9OwOoJNVig+4n6rCWUwRv2uuA9sVYeUkyZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T1sel6qD; arc=none smtp.client-ip=209.85.216.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-28e7673233dso1842580a91.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:58:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705517936; x=1706122736; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+azfRC59xgn3YhTAL7gQBUa1nB7eIV9PBZRy6qwqdV0=;
-        b=T1sel6qDQ9AqsF5Wnt04zicU8T1vmXwXf75YRGbAfxS++kB4NoATU88GyAJT32oKem
-         g6dcvVEfqXbVN9ngXg7PQsMxGdax7mjk6s2Q1if77ik2g7P4AOcql36DWr1Ls0XYlbDG
-         acr4BDDX+i0lYEXq0HXjXaKqPczU1gi8rv5sUHhbFmhbaJaV6697MJkUYLCtPsCIQwNb
-         w9K60u74Ein3aAcyMctljCEeOf7oorCWHTqjH+tVzCepql8MeVmlAl8/k3st2mRVNKJ/
-         S1HkIzApYk8NtTWfR9qGvHaHIx7h+GLwFUOR433zUCdZQYl1rSnYjkksmBCQWCrf85+O
-         koew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705517936; x=1706122736;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+azfRC59xgn3YhTAL7gQBUa1nB7eIV9PBZRy6qwqdV0=;
-        b=cMyyU3P6e8yNSO0AFWl7qNxxyTq0phV5I483rZeB2NBRkQwNZGz86sFNr6sd7cIxNe
-         sv4TDLhRw/W6NLnsLOPcP3WOgfinTeLx2aMZW5VnaHvUplKDxLICYCa/++xew1fHcTKX
-         rasxpSmes0atHR85ISBi+g/d4HRU8Evtcvlkru/0qHwJMurphM1fvZYCYGfeZE3Xuj6X
-         BiZ02bM9IB96//cCisqHgNmsfnEJB/LsJQ536ThEdnyrzZuz19kPMg4qulPna30kX17f
-         fKDisU+gkwE22Ax3chwFUrkyNbb67Ly2razS8NESfo6IVxQLmjPEy639nwRXg+eOG72H
-         i78w==
-X-Gm-Message-State: AOJu0YwryurZ0oUmcdjNQpN0CCJJDYOVW3zKKIn7CXjyu5sQI9iB3FRs
-	EQ52fwTYtdUMma3yAXrOXY5Nf5sKp9Q7jg==
-X-Google-Smtp-Source: AGHT+IFujdlabG1NKsDfNC5pKaFEoGJZrQQB6RmqgeButjxPOePXGlxB9dT8mS4pIaTM0VHXcIQo8g==
-X-Received: by 2002:a17:90a:e38d:b0:290:2af:1624 with SMTP id b13-20020a17090ae38d00b0029002af1624mr934649pjz.10.1705517935898;
-        Wed, 17 Jan 2024 10:58:55 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800::5ced])
-        by smtp.gmail.com with ESMTPSA id i2-20020a170902c94200b001cca8a01e68sm11186940pla.278.2024.01.17.10.58.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jan 2024 10:58:55 -0800 (PST)
-Date: Wed, 17 Jan 2024 11:58:53 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: andersson@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	michal.simek@amd.com, ben.levinsky@amd.com,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 3/3] remoteproc: zynqmp: parse TCM from device tree
-Message-ID: <ZagjbaGtz/zqoJ6Z@p14s>
-References: <20240110213504.3626468-1-tanmay.shah@amd.com>
- <20240110213504.3626468-4-tanmay.shah@amd.com>
+	s=arc-20240116; t=1705518800; c=relaxed/simple;
+	bh=jKRss196qeLVlfcnne75UPlPmKcND3FARQ5NtdNiHqU=;
+	h=Received:DKIM-Signature:Received:Received:Received:From:To:CC:
+	 Subject:Thread-Topic:Thread-Index:Date:Message-ID:In-Reply-To:
+	 Accept-Language:Content-Language:X-MS-Has-Attach:
+	 X-MS-TNEF-Correlator:x-originating-ip:Content-Type:Content-ID:
+	 Content-Transfer-Encoding:MIME-Version:X-Proofpoint-ORIG-GUID:
+	 X-Proofpoint-GUID:X-Proofpoint-Virus-Version:
+	 X-Proofpoint-Spam-Details; b=mqkxcy6UzBY1Gc4/EVhdIGg5N6r1V9OhzEw3bZDXUVU2FgergU5+kQlJiF0R+P8okJvEUx/f7HTwk+Le416K4OMe2aPJd4e0Iqq4slZr9v8F6QbYwjFQCn9PnUOYfBxALhf/b5GuZnsuZ3eaZ+IrTke4UOV0/gVfbPU1eD9RVAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com; spf=pass smtp.mailfrom=plexus.com; dkim=pass (2048-bit key) header.d=plexus.com header.i=@plexus.com header.b=aadc6FlH; arc=none smtp.client-ip=67.231.149.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=plexus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=plexus.com
+Received: from pps.filterd (m0341554.ppops.net [127.0.0.1])
+	by mx0a-0046e701.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40HC8IG6019691;
+	Wed, 17 Jan 2024 12:48:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plexus.com; h=
+	from:to:cc:subject:date:message-id:in-reply-to:content-type
+	:content-id:content-transfer-encoding:mime-version; s=pps1; bh=j
+	KRss196qeLVlfcnne75UPlPmKcND3FARQ5NtdNiHqU=; b=aadc6FlHIkKg2QkpW
+	zA5iZcyDQeRy2Rzb8qR2oo1MCK6lKRNIs+u1IZ2lavL9l1svUFG4nPxWPDh5fBWN
+	tSNi9vKAG1Ezpazhb/CBtql4NkHJz3pvWThx8NpOEWCkmpRe+ASXIin6Etgz8ThN
+	+AG/bsRcF6/aLaZ5EdlLHO1oQhxW3v2qwUwcKRocMgHLIpU9A5mfDOlMsJtsrR1X
+	YHoqpngCNrEvM449HGFWg81nI+hlDs9xcWa2jqb3+P0zSVU9Mc/p1g5Nr1hlHIlC
+	p7qmTFDB+03ldmLUAm77hPgIoseJpPNVZVJuq7QQiKpTBrJ6N0zPWH1sDXIBH7n8
+	grunw==
+Received: from gcc-mail-mx-001.na.plexus.com (outbound.plexus.com [64.215.193.254])
+	by mx0a-0046e701.pphosted.com (PPS) with ESMTPS id 3vpc62ht8s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 17 Jan 2024 12:48:25 -0600 (CST)
+Received: from gcc-mail-mx-003.Na.Plexus.com (10.255.51.222) by
+ gcc-mail-mx-001.na.plexus.com (10.255.51.220) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 17 Jan 2024 18:48:23 +0000
+Received: from gcc-mail-mx-003.Na.Plexus.com ([10.255.51.222]) by
+ gcc-mail-mx-003.na.plexus.com ([10.255.51.222]) with mapi id 15.01.2507.035;
+ Wed, 17 Jan 2024 18:48:23 +0000
+From: Danny Kaehn <Danny.Kaehn@plexus.com>
+To: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
+CC: "kaehndan@gmail.com" <kaehndan@gmail.com>,
+        "bartosz.golaszewski@linaro.org" <bartosz.golaszewski@linaro.org>,
+        "benjamin.tissoires@redhat.com" <benjamin.tissoires@redhat.com>,
+        Ethan Twardy
+	<Ethan.Twardy@plexus.com>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "dmitry.torokhov@gmail.com"
+	<dmitry.torokhov@gmail.com>,
+        "jikos@kernel.org" <jikos@kernel.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "niyas.sait@linaro.org" <niyas.sait@linaro.org>,
+        "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v9 3/3] HID: cp2112: Fwnode Support
+Thread-Topic: [PATCH v9 3/3] HID: cp2112: Fwnode Support
+Thread-Index: AQHaSXW/3n6OZGvLFUWJikeLL2pJPQ==
+Date: Wed, 17 Jan 2024 18:48:23 +0000
+Message-ID: <3e0fc6fa95f19d39711ca66808a2cff344652985.camel@plexus.com>
+In-Reply-To: <ZKKpknBH3Pa9mLS1@smile.fi.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <048D5E748166D84184FB49083C976C3D@plexus.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240110213504.3626468-4-tanmay.shah@amd.com>
+X-Proofpoint-ORIG-GUID: HbbQEF2pgxdzG59UVGP_L8jik9KPpEV5
+X-Proofpoint-GUID: HbbQEF2pgxdzG59UVGP_L8jik9KPpEV5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-17_12,2024-01-17_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ mlxlogscore=999 adultscore=0 clxscore=1011 impostorscore=0 mlxscore=0
+ spamscore=0 bulkscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2401170136
 
-Alright, I spent several hours looking at this patchset and the driver as a
-whole.  I certainly salute your efforts to heed my advice and make the code less
-brittle but I'm afraid we are not there.
-
-See below for a different way to proceed.
-
-On Wed, Jan 10, 2024 at 01:35:05PM -0800, Tanmay Shah wrote:
-> ZynqMP TCM information was fixed in driver. Now ZynqMP TCM information
-> is available in device-tree. Parse TCM information in driver
-> as per new bindings.
-> 
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> ---
-> 
-> Changes in v9:
->   - Introduce new API to request and release core1 TCM power-domains in
->     lockstep mode. This will be used during prepare -> add_tcm_banks
->     callback to enable TCM in lockstep mode.
->   - Parse TCM from device-tree in lockstep mode and split mode in
->     uniform way.
->   - Fix TCM representation in device-tree in lockstep mode.
-> 
-> Changes in v8:
->   - Remove pm_domains framework
->   - Remove checking of pm_domain_id validation to power on/off tcm
->   - Remove spurious change
->   - parse power-domains property from device-tree and use EEMI calls
->     to power on/off TCM instead of using pm domains framework
-> 
-> Changes in v7:
->   - move checking of pm_domain_id from previous patch
->   - fix mem_bank_data memory allocation
-> 
->  drivers/remoteproc/xlnx_r5_remoteproc.c | 245 +++++++++++++++++++++++-
->  1 file changed, 239 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> index 4395edea9a64..0f87b984850b 100644
-> --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
-> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> @@ -74,8 +74,8 @@ struct mbox_info {
->  };
->  
->  /*
-> - * Hardcoded TCM bank values. This will be removed once TCM bindings are
-> - * accepted for system-dt specifications and upstreamed in linux kernel
-> + * Hardcoded TCM bank values. This will stay in driver to maintain backward
-> + * compatibility with device-tree that does not have TCM information.
->   */
->  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
->  	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
-> @@ -102,6 +102,7 @@ static const struct mem_bank_data zynqmp_tcm_banks_lockstep[] = {
->   * @rproc: rproc handle
->   * @pm_domain_id: RPU CPU power domain id
->   * @ipi: pointer to mailbox information
-> + * @lockstep_core1_np: second core's device_node to use in lockstep mode
->   */
->  struct zynqmp_r5_core {
->  	struct device *dev;
-> @@ -111,6 +112,7 @@ struct zynqmp_r5_core {
->  	struct rproc *rproc;
->  	u32 pm_domain_id;
->  	struct mbox_info *ipi;
-> +	struct device_node *lockstep_core1_np;
->  };
->  
->  /**
-> @@ -539,6 +541,110 @@ static int tcm_mem_map(struct rproc *rproc,
->  	return 0;
->  }
->  
-> +int request_core1_tcm_lockstep(struct rproc *rproc)
-> +{
-> +	struct zynqmp_r5_core *r5_core = rproc->priv;
-> +	struct of_phandle_args out_args = {0};
-> +	int ret, i, num_pd, pd_id, ret_err;
-> +	struct device_node *np;
-> +
-> +	np = r5_core->lockstep_core1_np;
-> +
-> +	/* Get number of power-domains */
-> +	num_pd = of_count_phandle_with_args(np, "power-domains",
-> +					    "#power-domain-cells");
-> +	if (num_pd <= 0)
-> +		return -EINVAL;
-> +
-> +	/* Get individual power-domain id and enable TCM */
-> +	for (i = 1; i < num_pd; i++) {
-> +		ret = of_parse_phandle_with_args(np, "power-domains",
-> +						 "#power-domain-cells",
-> +						 i, &out_args);
-> +		if (ret) {
-> +			dev_warn(r5_core->dev,
-> +				 "failed to get tcm %d in power-domains list, ret %d\n",
-> +				 i, ret);
-> +			goto fail_request_core1_tcm;
-> +		}
-> +
-> +		pd_id = out_args.args[0];
-> +		of_node_put(out_args.np);
-> +
-> +		ret = zynqmp_pm_request_node(pd_id, ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> +					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> +		if (ret) {
-> +			dev_err(r5_core->dev, "failed to request TCM node 0x%x\n",
-> +				pd_id);
-> +			goto fail_request_core1_tcm;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +
-> +fail_request_core1_tcm:
-> +
-> +	/* Cache actual error to return later */
-> +	ret_err = ret;
-> +
-> +	/* Release previously requested TCM in case of failure */
-> +	while (--i > 0) {
-> +		ret = of_parse_phandle_with_args(np, "power-domains",
-> +						 "#power-domain-cells",
-> +						 i, &out_args);
-> +		if (ret)
-> +			return ret;
-> +		pd_id = out_args.args[0];
-> +		of_node_put(out_args.np);
-> +		zynqmp_pm_release_node(pd_id);
-> +	}
-> +
-> +	return ret_err;
-> +}
-> +
-> +void release_core1_tcm_lockstep(struct rproc *rproc)
-> +{
-> +	struct zynqmp_r5_core *r5_core = rproc->priv;
-> +	struct of_phandle_args out_args = {0};
-> +	struct zynqmp_r5_cluster *cluster;
-> +	int ret, i, num_pd, pd_id;
-> +	struct device_node *np;
-> +
-> +	/* Get R5 core1 node */
-> +	cluster = dev_get_drvdata(r5_core->dev->parent);
-> +
-> +	if (cluster->mode != LOCKSTEP_MODE)
-> +		return;
-> +
-> +	np = r5_core->lockstep_core1_np;
-> +
-> +	/* Get number of power-domains */
-> +	num_pd = of_count_phandle_with_args(np, "power-domains",
-> +					    "#power-domain-cells");
-> +	if (num_pd <= 0)
-> +		return;
-> +
-> +	/* Get individual power-domain id and turn off each TCM */
-> +	for (i = 1; i < num_pd; i++) {
-> +		ret = of_parse_phandle_with_args(np, "power-domains",
-> +						 "#power-domain-cells",
-> +						 i, &out_args);
-> +		if (ret) {
-> +			dev_warn(r5_core->dev,
-> +				 "failed to get pd of core1 tcm %d in list, ret %d\n",
-> +				 i, ret);
-> +			continue;
-> +		}
-> +
-> +		pd_id = out_args.args[0];
-> +		of_node_put(out_args.np);
-> +
-> +		if (zynqmp_pm_release_node(pd_id))
-> +			dev_warn(r5_core->dev,
-> +				 "failed to release core1 tcm pd 0x%x\n", pd_id);
-> +	}
-> +}
-> +
->  /*
->   * add_tcm_carveout_split_mode()
->   * @rproc: single R5 core's corresponding rproc instance
-> @@ -633,6 +739,21 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
->  	r5_core = rproc->priv;
->  	dev = r5_core->dev;
->  
-> +	/*
-> +	 * In lockstep mode, R5 core0 uses TCM of R5 core1 via aliased addresses.
-> +	 * Aliased addresses are contiguous with core0 TCM and embedded in "reg"
-> +	 * property. However, R5 core1 TCM power-domains needs to be requested
-> +	 * from firmware to use R5 core1 TCM. Request core1 TCM power-domains
-> +	 * if TCM is parsed from device-tree.
-> +	 */
-> +	if (of_find_property(r5_core->np, "reg", NULL)) {
-> +		ret = request_core1_tcm_lockstep(rproc);
-> +		if (ret) {
-> +			dev_err(r5_core->dev, "failed to request core1 TCM power-domains\n");
-> +			return ret;
-> +		}
-> +	}
-> +
->  	/* Go through zynqmp banks for r5 node */
->  	num_banks = r5_core->tcm_bank_count;
->  
-> @@ -689,6 +810,9 @@ static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
->  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
->  		zynqmp_pm_release_node(pm_domain_id);
->  	}
-> +
-> +	release_core1_tcm_lockstep(rproc);
-> +
->  	return ret;
->  }
->  
-> @@ -808,6 +932,8 @@ static int zynqmp_r5_rproc_unprepare(struct rproc *rproc)
->  				 "can't turn off TCM bank 0x%x", pm_domain_id);
->  	}
->  
-> +	release_core1_tcm_lockstep(rproc);
-> +
->  	return 0;
->  }
->  
-> @@ -878,6 +1004,95 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
->  	return ERR_PTR(ret);
->  }
->  
-> +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
-> +{
-> +	int i, j, tcm_bank_count, ret, tcm_pd_idx;
-> +	struct of_phandle_args out_args = {0};
-> +	struct zynqmp_r5_core *r5_core;
-> +	struct platform_device *cpdev;
-> +	struct mem_bank_data *tcm;
-> +	struct device_node *np;
-> +	struct resource *res;
-> +	u64 abs_addr, size;
-> +	struct device *dev;
-> +
-> +	for (i = 0; i < cluster->core_count; i++) {
-> +		r5_core = cluster->r5_cores[i];
-> +		dev = r5_core->dev;
-> +		np = r5_core->np;
-> +
-
-Using r5_core->np doesn't work because it deals with the specifics of a single
-subnode when we need to deal with the subnodes of the entire cluster.
-
-
-> +		/* we have address cell 2 and size cell as 2 */
-> +		tcm_bank_count = of_property_count_elems_of_size(np, "reg",
-> +								 4 * sizeof(u32));
-> +		if (tcm_bank_count <= 0) {
-> +			dev_err(dev, "can't get reg property err %d\n", tcm_bank_count);
-> +			return -EINVAL;
-> +		}
-> +
-> +		r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
-> +						  sizeof(struct mem_bank_data *),
-> +						  GFP_KERNEL);
-
-Another problem is that when getting information from the DT, ->tcm_banks is
-always 2 whereas it varies (2 or 4) when using the static mem_bank_data arrays.
-
-We know the current driver works well when using static banks and everything is
-already in place to address the mode of operation (lockstep vs split). As
-such I suggest to reuse all that code by making function
-zynqmp_r5_get_tcm_node_from_dt() return a mem_bank_data array of 4 elements.
-That array would be instantiated using the information found in the DT,
-regardless of the mode of operation.  Once we have that array it could simply be
-inserted in function zynqmp_r5_get_tcm_node() and everything else in the driver
-works the same way.
-
-Note that for that work you will have to set the "reg" values of the second
-core to 0 when in lockstep mode, which is fine because they are not used anyway.
-
-Thanks,
-Mathieu
-
-> +		if (!r5_core->tcm_banks)
-> +			ret = -ENOMEM;
-> +
-> +		r5_core->tcm_bank_count = tcm_bank_count;
-> +		for (j = 0, tcm_pd_idx = 1; j < tcm_bank_count; j++, tcm_pd_idx++) {
-> +			tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
-> +					   GFP_KERNEL);
-> +			if (!tcm)
-> +				return -ENOMEM;
-> +
-> +			r5_core->tcm_banks[j] = tcm;
-> +
-> +			/* Get power-domains id of TCM. */
-> +			ret = of_parse_phandle_with_args(np, "power-domains",
-> +							 "#power-domain-cells",
-> +							 tcm_pd_idx, &out_args);
-> +			if (ret) {
-> +				dev_err(r5_core->dev,
-> +					"failed to get tcm %d pm domain, ret %d\n",
-> +					tcm_pd_idx, ret);
-> +				return ret;
-> +			}
-> +			tcm->pm_domain_id = out_args.args[0];
-> +			of_node_put(out_args.np);
-> +
-> +			/* Get TCM address without translation. */
-> +			ret = of_property_read_reg(np, j, &abs_addr, &size);
-> +			if (ret) {
-> +				dev_err(dev, "failed to get reg property\n");
-> +				return ret;
-> +			}
-> +
-> +			/*
-> +			 * Remote processor can address only 32 bits
-> +			 * so convert 64-bits into 32-bits. This will discard
-> +			 * any unwanted upper 32-bits.
-> +			 */
-> +			tcm->da = (u32)abs_addr;
-> +			tcm->size = (u32)size;
-> +
-> +			cpdev = to_platform_device(dev);
-> +			res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
-> +			if (!res) {
-> +				dev_err(dev, "failed to get tcm resource\n");
-> +				return -EINVAL;
-> +			}
-> +
-> +			tcm->addr = (u32)res->start;
-> +			tcm->bank_name = (char *)res->name;
-> +			res = devm_request_mem_region(dev, tcm->addr, tcm->size,
-> +						      tcm->bank_name);
-> +			if (!res) {
-> +				dev_err(dev, "failed to request tcm resource\n");
-> +				return -EINVAL;
-> +			}
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * zynqmp_r5_get_tcm_node()
->   * Ideally this function should parse tcm node and store information
-> @@ -956,9 +1171,14 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
->  	struct zynqmp_r5_core *r5_core;
->  	int ret, i;
->  
-> -	ret = zynqmp_r5_get_tcm_node(cluster);
-> -	if (ret < 0) {
-> -		dev_err(dev, "can't get tcm node, err %d\n", ret);
-> +	r5_core = cluster->r5_cores[0];
-> +	if (of_find_property(r5_core->np, "reg", NULL))
-> +		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
-> +	else
-> +		ret = zynqmp_r5_get_tcm_node(cluster);
-> +
-> +	if (ret) {
-> +		dev_err(dev, "can't get tcm, err %d\n", ret);
->  		return ret;
->  	}
->  
-> @@ -1099,7 +1319,19 @@ static int zynqmp_r5_cluster_init(struct zynqmp_r5_cluster *cluster)
->  		 * then ignore second child node.
->  		 */
->  		if (cluster_mode == LOCKSTEP_MODE) {
-> -			of_node_put(child);
-> +			/*
-> +			 * Get second core's device node only to use its power-domains.
-> +			 * Also, no need to use of_node_put on first core's device_node
-> +			 * as it is taken care by of_get_next_available_child.
-> +			 */
-> +			r5_cores[i]->lockstep_core1_np =
-> +				of_get_next_available_child(dev_node, child);
-> +
-> +			if (!r5_cores[i]->lockstep_core1_np) {
-> +				ret = -EINVAL;
-> +				goto release_r5_cores;
-> +			}
-> +
->  			break;
->  		}
->  
-> @@ -1158,6 +1390,7 @@ static void zynqmp_r5_cluster_exit(void *data)
->  		r5_core = cluster->r5_cores[i];
->  		zynqmp_r5_free_mbox(r5_core->ipi);
->  		of_reserved_mem_device_release(r5_core->dev);
-> +		of_node_put(r5_core->lockstep_core1_np);
->  		put_device(r5_core->dev);
->  		rproc_del(r5_core->rproc);
->  		rproc_free(r5_core->rproc);
-> -- 
-> 2.25.1
-> 
+SGVsbG8gZm9sa3MsIHdhbnRlZCB0byBnaXZlIG9uZSBtb3JlIGZvbGxvdyB1cCBvbiB0aGlzDQpw
+YXRjaC9kaXNjdXNzaW9uLiBXb3VsZCBhIHJlYXNvbmFibGUgbmV4dCBzdGVwIGZvciBtZQ0KdG8g
+aGVscCBudWRnZSB0aGlzIGZvcndhcmQgYmUgdG8gc3VibWl0IGEgdjEwIGFkZHJlc3NpbmcNCkFu
+ZHkncyBtb3N0IHJlY2VudCBjb2RlIGNvbW1lbnRzPyBBZ2FpbiBob3BpbmcgSSdtIG5vdCBiZWlu
+Zw0KcnVkZSBvciBzdGVwcGluZyBvbiB0b2VzOyBqdXN0IHdhbnQgdG8gbWFrZSBzdXJlIEknbSBk
+b2luZyBteQ0KZGlsbGlnZW5jZSB0byBtb3ZlIHRoaW5ncyBmb3J3YXJkLiBJJ2xsIGFzc3VtZSB0
+aGF0IGdvaW5nIGFoZWFkDQphbmQgc3VibWl0dGluZyBhIHYxMCB3aXRoIHVucmVzb2x2ZWQgZGlz
+Y3Vzc2lvbiBoZXJlIGlzbid0IGENCnRlcnJpYmxlIG9mZmVuc2UgaWYgSSBkb24ndCBlbmQgdXAg
+Z2V0dGluZyBhIHJlc3BvbnNlIGhlcmUgaW4gDQp0aGUgbmV4dCB3ZWVrIG9yIHNvLg0KDQpMZWF2
+aW5nIHNvbWUgbGlua3MgdG8gc29tZSBvZiB0aGUgbW9yZSBrZXkgcG9pbnRzIG9mIHRoZSBkaXNj
+dXNzaW9uDQphY3Jvc3MgdGhlIHZlcnNpb25zIG9mIHRoaXMgcGF0Y2gsIHNpbmNlIGl0J3MgYmVl
+biB+NSBtb250aHMgc2luY2UNCnRoZSBsYXN0IGFjdGl2aXR5IGhlcmUuDQoNCkRpc2N1c3Npb24g
+YmVnYW4gd2l0aCBkaXNjdXNzaW9uIG9mIHVzaW5nIGNoaWxkIG5vZGVzIGJ5IG5hbWUNCmFjcm9z
+cyBEVCB3aXRoIEFDUEksIGZvciBiaW5kaW5nIGZ3bm9kZXMgZm9yIHRoZSBDUDIxMTIncyBJMkMN
+CmFuZCBHUElPIGNvbnRyb2xsZXJzOyBzaW5jZSAgQUNQSSByZXF1aXJlcyB1cHBlcmNhc2UgbmFt
+ZXMgKGFuZA0KbmFtZXMgc2hvdWxkIHNwZWNpZmljYWxseSBub3QgYmUgbWVhbmluZ2Z1bCBpbiBB
+Q1BJKQ0KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsL1klMkY5b08xQUU2R0s2Q1FtcEBzbWls
+ZS5maS5pbnRlbC5jb20vDQoNCkFuZHkgc3VnZ2VzdGVkIEkgdXNlIF9BRFIgdG8gaWRlbnRpZnkg
+dGhlIGNoaWxkIG5vZGUgYnkgaW5kZXgNCmZvciBBQ1BJDQpodHRwczovL2xvcmUua2VybmVsLm9y
+Zy9hbGwvWkFpNE5qcVhUYkxwVmhQb0BzbWlsZS5maS5pbnRlbC5jb20vDQoNCnY5IGltcGxlbWVu
+dGVkIG1hdGNoaW5nIGJ5IGNoaWxkIG5vZGUgbmFtZSBPUiBieSBhZGRyZXNzIGRlcG5kaW5nDQpv
+biB0aGUgdHlwZSBvZiBmaXJtd2FyZSB1c2VkDQpodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwv
+MjAyMzAzMTkyMDQ4MDIuMTM2NC00LWthZWhuZGFuQGdtYWlsLmNvbS8NCg0KU29tZSBhZGRpdGlv
+bmFsIGRpc2N1c3Npb24gb24gd2hldGhlciBtYXRjaGluZyBjaGlsZCBub2RlcyBieSBuYW1lDQpp
+cyB0aGUgYmVzdCBhcHByb2FjaCBldmVuIGZvciB0aGUgRFQgc2lkZQ0KKGFsc28gd2l0aGluIHRo
+ZSBpbi1saW5lIGJvZHkgb2YgdGhpcyBlbWFpbCkNCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2Fs
+bC9aQmhvSHpUcjVsMzh1JTJGa1hAc21pbGUuZmkuaW50ZWwuY29tLw0KDQoNClRoZSBEVCBiaW5k
+aW5nIHBhdGNoIGluIHF1ZXN0aW9uDQpodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyMzAz
+MTkyMDQ4MDIuMTM2NC0yLWthZWhuZGFuQGdtYWlsLmNvbS8NCg0KVGhhbmtzLA0KDQpEYW5ueSBL
+YWVobg0KDQoNCg0KDQpPbiBNb24sIEp1bCAzIDIwMjMgYXQgMTM6NTc6MjIgKzAzMDAgQW5keSBT
+aGV2Y2hlbmtvIHdyaXRlOg0KPiBPbiBNb24sIE1heSAwMSwgMjAyMyBhdCAwNjozNTo0NFBNIC0w
+NTAwLCBEYW5pZWwgS2FlaG4gd3JvdGU6DQo+ID4gT24gTW9uLCBNYXIgMjAsIDIwMjMgYXQgOTox
+MOKAr0FNIEFuZHkgU2hldmNoZW5rbw0KPiA+IDxhbmRyaXkuc2hldmNoZW5rb0BsaW51eC5pbnRl
+bC5jb20+IHdyb3RlOg0KPiA+ID4gT24gTW9uLCBNYXIgMjAsIDIwMjMgYXQgMDg6NDA6MDdBTSAt
+MDUwMCwgRGFuaWVsIEthZWhuIHdyb3RlOg0KPiA+ID4gPiBPbiBNb24sIE1hciAyMCwgMjAyMyBh
+dCA4OjAw4oCvQU0gQW5keSBTaGV2Y2hlbmtvDQo+ID4gPiA+IDxhbmRyaXkuc2hldmNoZW5rb0Bs
+aW51eC5pbnRlbC5jb20+IHdyb3RlOg0KPiA+ID4gPiA+IE9uIE1vbiwgTWFyIDIwLCAyMDIzIGF0
+IDAyOjU4OjA3UE0gKzAyMDAsIEFuZHkgU2hldmNoZW5rbw0KV3JvdGU6DQo+ID4gPiA+ID4gPiBP
+biBTdW4sIE1hciAxOSwgMjAyMyBhdCAwMzo0ODowMlBNIC0wNTAwLCBEYW5ueSBLYWVobg0Kd3Jv
+dGU6DQo+ICtDYzogTml5YXMsIHdobyBpcyB3b3JraW5nIGEgbG90IG9uIGZpbGxpbmcgdGhlIGdh
+cHMgaW4gQUNQSSBpbg0KY29tcGFyaXNvbg0KPiAgICAgIHRvIERUIGluIHRoZSBMaW51eCBrZXJu
+ZWwuIFBlcmhhcHMgaGUgaGFzIHNvbWUgaWRlYXMgb3IgZXZlbg0KYmV0dGVyDQo+ICAgICAgc29s
+dXRpb25zLg0KPiANCj4gDQo+IC4uLg0KPiANCj4gPiA+ID4gPiA+ID4gKyAgIGRldmljZV9mb3Jf
+ZWFjaF9jaGlsZF9ub2RlKCZoZGV2LT5kZXYsIGNoaWxkKSB7DQo+ID4gPiA+ID4gPiA+ICsgICAg
+ICAgICAgIG5hbWUgPSBmd25vZGVfZ2V0X25hbWUoY2hpbGQpOw0KPiA+ID4gPiA+ID4gPiArICAg
+ICAgICAgICByZXQgPQ0KYWNwaV9nZXRfbG9jYWxfYWRkcmVzcyhBQ1BJX0hBTkRMRV9GV05PREUo
+Y2hpbGQpLCAmYWRkcik7DQo+ID4gPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiA+ID4gKyAgICAgICAg
+ICAgaWYgKChuYW1lICYmIHN0cmNtcCgiaTJjIiwgbmFtZSkgPT0gMCkgfHwNCighcmV0ICYmIGFk
+ZHIgPT0gMCkpDQo+ID4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgZGV2aWNlX3NldF9u
+b2RlKCZkZXYtPmFkYXAuZGV2LA0KY2hpbGQpOw0KPiA+ID4gPiA+ID4gPiArICAgICAgICAgICBl
+bHNlIGlmICgobmFtZSAmJiBzdHJjbXAoImdwaW8iLCBuYW1lKSkgPT0gMA0KfHwNCj4gPiA+ID4g
+PiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKCFyZXQgJiYgYWRkciA9
+PSAxKSkNCj4gPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICBkZXYtPmdjLmZ3bm9kZSA9
+IGNoaWxkOw0KPiA+ID4gPiA+ID4gPiArICAgfQ0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+IFBs
+ZWFzZSwgbWFrZSBhZGRyZXNzZXMgZGVmaW5lZCBleHBsaWNpdGx5LiBZb3UgbWF5IGFsc28gZG8N
+Cml0IHdpdGggbm9kZSBuYW1pbmcNCj4gPiA+ID4gPiA+IHNjaGVtYToNCj4gPiA+ID4gPiA+DQo+
+ID4gPiA+ID4gPiAjZGVmaW5lIENQMjExMl9JMkNfQURSICAgICAgICAgICAgICAgIDANCj4gPiA+
+ID4gPiA+ICNkZWZpbmUgQ1AyMTEyX0dQSU9fQURSICAgICAgICAgICAgICAgMQ0KPiA+ID4gPiA+
+ID4NCj4gPiA+ID4gPiA+IHN0YXRpYyBjb25zdCBjaGFyICogY29uc3QgY3AyMTEyX2NlbGxfbmFt
+ZXNbXSA9IHsNCj4gPiA+ID4gPiA+ICAgICAgIFtDUDIxMTJfSTJDX0FEUl0gICAgICAgID0gImky
+YyIsDQo+ID4gPiA+ID4gPiAgICAgICBbQ1AyMTEyX0dQSU9fQURSXSAgICAgICA9ICJncGlvIiwN
+Cj4gPiA+ID4gPiA+IH07DQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gICAgICAgZGV2aWNlX2Zv
+cl9lYWNoX2NoaWxkX25vZGUoJmhkZXYtPmRldiwgY2hpbGQpIHsNCj4gPiA+ID4gPiA+ICAgICAg
+ICAgICAgICAgbmFtZSA9IGZ3bm9kZV9nZXRfbmFtZShjaGlsZCk7DQo+ID4gPiA+ID4gPiAgICAg
+ICAgICAgICAgIGlmIChuYW1lKSB7DQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgICAgICAg
+cmV0ID0gbWF0Y2hfc3RyaW5nKGNwMjExMl9jZWxsX25hbWVzLA0KQVJSQVlfU0laRShjcDIxMTJf
+Y2VsbF9uYW1lcyksIG5hbWUpOw0KPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgICAgICAgIGlm
+IChyZXQgPj0gMCkNCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFk
+ZHIgPSByZXQ7DQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAgIH0gZWxzZQ0KPiA+ID4gPiA+ID4g
+ICAgICAgICAgICAgICAgICAgICAgIHJldCA9DQphY3BpX2dldF9sb2NhbF9hZGRyZXNzKEFDUElf
+SEFORExFX0ZXTk9ERShjaGlsZCksICZhZGRyKTsNCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAg
+aWYgKHJldCA8IDApDQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgLi4uZXJyb3Ig
+aGFuZGxpbmcgaWYgbmVlZGVkLi4uDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gICAgICAgICAg
+ICAgICBzd2l0Y2ggKGFkZHIpIHsNCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgY2FzZSBDUDIx
+MTJfSTJDX0FEUjoNCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgICAgICAgICBkZXZpY2Vfc2V0
+X25vZGUoJmRldi0+YWRhcC5kZXYsDQpjaGlsZCk7DQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAg
+ICAgICAgICAgYnJlYWs7DQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAgIGNhc2UgQ1AyMTEyX0dQ
+SU9fQURSOg0KPiA+ID4gPiA+ID4gICAgICAgICAgICAgICAgICAgICAgIGRldi0+Z2MuZndub2Rl
+ID0gY2hpbGQ7DQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7DQo+ID4g
+PiA+ID4gPiAgICAgICAgICAgICAgIGRlZmF1bHQ6DQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAg
+ICAgICAgICAgLi4uZXJyb3IgaGFuZGxpbmcuLi4NCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAg
+fQ0KPiA+ID4gPiA+ID4gICAgICAgfQ0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gQnR3LCBkb24ndCB5
+b3UgdXNlICJyZWciIHByb3BlcnR5IGZvciB0aGUgY2hpbGQgbm9kZXM/IEl0DQp3b3VsZCBiZSBi
+ZXR0ZXIgZnJvbQ0KPiA+ID4gPiA+IGRlIGZhY3RvIHVzZWQgcGF0dGVybnMgKHdlIGhhdmUgYSBj
+b3VwbGUgb2YgbW9kZSBkcml2ZXJzIHRoYXQNCmhhdmUgYSBjb21tb24NCj4gPiA+ID4gPiBjb2Rl
+IHRvIHJlYWQgInJlZyIgb3IgX0FEUigpIGFuZCB0aGF0IGNvZGUgY2FuIGJlIHNwbGl0IGludG8N
+CmEgaGVscGVyIGFuZCB1c2VkDQo+ID4gPiA+ID4gaGVyZSkuDQo+ID4gPiA+DQo+ID4gPiA+IE5h
+bWVkIG5vZGVzIF9zZWVtXyB0byBiZSBwcmVmZXJyZWQgaW4gRFQgZm9yIHdoZW4gdGhlcmUgaXNu
+J3QgYQ0KbG9naWNhbCAvDQo+ID4gPiA+IG5hdHVyYWwgbnVtYmVyaW5nIHRvIHRoZSBjaGlsZCBu
+b2Rlcy4gQS5lLiBmb3IgVVNCLCByZWcgaXMgdXNlZA0KdG8gc3BlY2lmeQ0KPiA+ID4gPiB3aGlj
+aCBwb3J0LCBmb3IgSTJDLCB3aGljaCBhZGRyZXNzIG9uIHRoZSBidXMsIGJ1dCBmb3IgdHdvDQpw
+YXJhbGxlbCBhbmQNCj4gPiA+ID4gaW5kZXBlbmRlbnQgZnVuY3Rpb25zIG9uIHRoZSBzYW1lIGRl
+dmljZSwgaXQgc2VlbXMgbmFtZWQgbm9kZXMNCndvdWxkIG1ha2UNCj4gPiA+ID4gbW9yZSBzZW5z
+ZSBpbiBEVC4gTWFueSBleGFtcGxlcyBleGlzdCBpbiBtYWlubGluZSB3aGVyZSBuYW1lZA0Kbm9k
+ZXMgYXJlIHVzZWQNCj4gPiA+ID4gaW4gRFQgaW4gdGhpcyB3YXkuDQo+ID4gPg0KPiA+ID4gT2th
+eSwgSSdtIG5vdCBhbiBleHBlcnQgaW4gdGhlIERUIHByZWZlcmFibGUgc2NoZW1hcywgc28gSQ0K
+YmVsaWV2ZSBEVCBwZW9wbGUNCj4gPiA+IHNob3VsZCBhbnN3ZXIgb24gdGhpcy4NCj4gPiANCj4g
+PiBIZWxsbywNCj4gPiANCj4gPiBUaGFua3MgZm9yIGFsbCB0aGUgdGltZSBzcGVudCByZXZpZXdp
+bmcgdGhpcyB0aHVzIGZhci4gRm9sbG93aW5nIHVwDQp0bw0KPiA+IHNlZSB3aGF0IG15IG5leHQg
+c3RlcHMgbWlnaHQgYmUuDQo+ID4gDQo+ID4gSXQgc291bmRzIGxpa2Ugd2UgbWlnaHQgd2FudCBz
+b21lIERUIGZvbGtzIHRvIHdlaWdoIGluIG9uIHRoZQ0Kc3RyYXRlZ3kNCj4gPiB1c2VkIGZvciBp
+ZGVudGlmeWluZyB0aGUgY2hpbGQgSTJDIGFuZCBHUElPIG5vZGVzIGZvciB0aGUgQ1AyMTEyDQo+
+ID4gZGV2aWNlIGJlZm9yZSBtb3ZpbmcgZnVydGhlciB0b3dhcmQgYXBwbHlpbmcgdGhpcy4NCj4g
+PiANCj4gPiBTaW5jZSB0aGUgRFQgbGlzdCBpcyBvbiB0aGlzIHRocmVhZCAoYXMgd2VsbCBhcyBS
+b2IrS3J6eXN0b2YpLCBhbmQNCj4gPiB0aGlzIGhhcyBzYXQgZm9yIGEgbGl0dGxlIHdoaWxlLCBJ
+J20gYXNzdW1pbmcgdGhhdCB0aGUgYmFsbCBpcyBpbg0KbXkNCj4gPiBjb3VydCB0byBzZWVrIG91
+dCBhbiBhbnN3ZXIvb3BpbmlvbiBoZXJlLiAoSSBrbm93IGZvbGtzIGdldCBhIGxvdA0Kb2YNCj4g
+PiBlbWFpbCwgc28gYXBvbG9naWVzIGlmIHRoZSBjb3JyZWN0IG1vdmUgd291bGQgaGF2ZSBiZWVu
+IHRvIHdhaXQgYQ0KYml0DQo+ID4gbG9uZ2VyIGJlZm9yZSBmb2xsb3dpbmcgdXAhIE5vdCBpbnRl
+bmRpbmcgdG8gYmUgcnVkZS4pDQo+ID4gDQo+ID4gV291bGQgaXQgYmUgYXBwcm9wcmlhdGUgLyBl
+eHBlY3RlZCB0aGF0IEkgc2VuZCBhIHNlcGFyYXRlIGVtYWlsDQp0aHJlYWQNCj4gPiB0byB0aGUg
+RFQgbWFpbGluZyBsaXN0IG9uIHRoZWlyIG9waW5pb24gaGVyZT8gT3Igd291bGQgdGhhdCBjcmVh
+dGUNCj4gPiBtb3JlIGNvbmZ1c2lvbi9jb21wbGV4aXR5IGluIGFkZGluZyB5ZXQgYW5vdGhlciB0
+aHJlYWQ/IEkgZGlkDQpjcmVhdGUgYQ0KPiA+IHNlcGFyYXRlIGVtYWlsIHRocmVhZCBmb3IgdGhl
+IGluaXRpYWwgRFQgdnMuIEFDUEkgY29udmVyc2F0aW9uIHdlDQpoYWQNCj4gPiBhYm91dCBhY2Nl
+c3NpbmcgY2hpbGRyZW4gYnkgbmFtZSBvciBpbmRleCBpbiBhIHVuaWZpZWQgd2F5IGR1ZSB0bw0K
+dGhlDQo+ID4gZGlmZmVyZW5jZXMgaW4gdXBwZXIvbG93ZXIgY2FzZSBhbmQgdXNlLWNhc2VzLCBi
+dXQgdGhhdA0KPiA+ICh1bmRlcnN0YW5kYWJseSkgZGlkbid0IHNlZW0gdG8gZ2FpbiBhbnkgdHJh
+Y3Rpb24uDQo+ID4gDQo+ID4gVGhhbmtzIGZvciBhbnkgaW5zaWdodHMhDQo+ID4gDQo+ID4gVGhh
+bmtzLA0KPiA+IERhbm55IEthZWhuDQo+ID4gDQo+ID4gPiA+IE9uZSBleGFtcGxlIGlzIG5ldHdv
+cmsgY2FyZHMgd2hpY2ggcHJvdmlkZSBhbiBtZGlvIGJ1cw0KPiA+ID4gPiBiaW5kIHRocm91Z2gg
+dGhlIGNoaWxkICJtZGlvIi4gT25lIGV4YW1wbGUgb2YgYSBzcGVjaWZpY2FsbHkgYQ0KPiA+ID4g
+PiBjaGlsZCBpMmMgY29udHJvbGxlciBiZWluZyBib3VuZCB0byAiaTJjIiBjYW4gYmUgZm91bmQg
+aW4NCj4gPiA+ID4gcGluZTY0LHBpbmVwaG9uZS1rZXlib2FyZC55YW1sLg0KPiA+ID4gPiBCdXQg
+aXQncyBjZXJ0YWlubHkgcG9zc2libGUgdGhpcyBpc24ndCB0aGUgZGVzaXJlZCBkaXJlY3Rpb24N
+Cm1vdmluZyBmb3J3YXJkDQo+ID4gPiA+IGluIERUIC0tIG15IG9waW5pb24gc2hvdWxkIGRlZmlu
+aXRlbHkgYmUgdGFrZW4gd2l0aCBhIGdyYWluIG9mDQpzYWx0LiBNYXliZQ0KPiA+ID4gPiB0aGlz
+IGlzIHNvbWV0aGluZyBJIHNob3VsZCBmb2xsb3cgdXAgb24gd2l0aCBEVCBmb2xrcyBvbiB0aGF0
+DQpEVCB2cy4gQUNQSQ0KPiA+ID4gPiB0aHJlYWQgbWFkZSBlYXJsaWVyLg0KPiA+ID4gPg0KPiA+
+ID4gPiBPbmUgdGhpbmcgSSBkaWQgbm90aWNlIHdoZW4gbG9va2luZyBhdCB0aGUgbWZkIHN1YnN5
+c3RlbSBpcw0KdGhhdCBtb3N0IERUDQo+ID4gPiA+IGRyaXZlcnMgYWN0dWFsbHkgbWF0Y2ggb24g
+dGhlIGNvbXBhdGlibGUgc3RyaW5nIG9mIHRoZSBjaGlsZA0Kbm9kZXMsIGEuZS4NCj4gPiA+ID4g
+InNpbGFicyxjcDIxMTIiLCAic2lsYWJzLGNwMjExMi1ncGlvIi4gICJzaWxhYnMsY3AyMTEyLWky
+YyIuIFdlDQpjb3VsZA0KPiA+ID4gPiBpbXBsZW1lbnQgdGhhdCBoZXJlLCBidXQgSSB0aGluayB0
+aGF0IHdvdWxkIG1ha2UgbW9yZSBzZW5zZSBpZg0Kd2Ugd2VyZSB0bw0KPiA+ID4gPiBhY3R1YWxs
+eSBzcGxpdCB0aGUgY3AyMTEyIGludG8gbWZkICYgcGxhdGZvcm0gZHJpdmVycywgYW5kDQphZGRp
+dGlvbmFsbHkgc3BsaXQNCj4gPiA+ID4gdGhlIERUIGJpbmRpbmcgYnkgZnVuY3Rpb24uDQo+ID4g
+Pg0KPiA+ID4gSUlSQyAoYnV0IG1pZ2h0IGJlIHZlcnkgd2VsbCBtaXN0YWtlbikgdGhlIGNvbXBh
+dGlibGUgc3RyaW5ncyBmb3INCmNoaWxkcmVuDQo+ID4gPiBhcmUgZGlzY291cmFnZWQuDQo+IA0K
+DQo=
 
