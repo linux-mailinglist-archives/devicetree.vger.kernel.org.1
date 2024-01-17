@@ -1,185 +1,178 @@
-Return-Path: <devicetree+bounces-32823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E885A830BDD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:23:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D12A830BE0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:25:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B3592825C2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:23:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB4E72828EB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C9422609;
-	Wed, 17 Jan 2024 17:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12A4E2262F;
+	Wed, 17 Jan 2024 17:25:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X/6PgKE7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZlAHJZfN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB3C21A0E
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 17:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DFE122618;
+	Wed, 17 Jan 2024 17:25:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705512208; cv=none; b=t5Rb9QBYkyIit17OW+cAV9v/8gXv06ZNubU34Hqko7bA5H3c5HPULQzeZFnsZEe8EqyMLjWrfr+asIbbWcOMNNIELhEuk5lmrxF1x439V0lAbXEsQlNFW60JJ6ArhQGYMEBbpCEVp3iPhxcNW2CglbAyzCoMevzrgu9uivEUvSo=
+	t=1705512346; cv=none; b=ZtkrC5k4KMJlLy7nDyhdSo57SQUMgaN/d0EQV5uQBS75cqC2Jcw+tvkDTIg36/3DCyPbFBqweEDnNcHIX6nYcut1Eq8FqEGdD38xf4h9840sqMqwejlxbV6Bx4gfJqOgQ359NMy2pfYUzOowomBRQ+lPx0FQvKMsWeRBVvip01w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705512208; c=relaxed/simple;
-	bh=ksNwOf1AW+zd0/noaPs2Oap2P6xZdOxTfhNySTwR4Fw=;
+	s=arc-20240116; t=1705512346; c=relaxed/simple;
+	bh=26W2fi/I3gYEO5TQsqjCR4QzAvNJBWa6WX4V8X+dIgk=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
-	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
-	 To:Cc:References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=T1OPWWlks1hUD1Om262ztevf76YZ44z0WnMWme4q2/HYKT0dI3hD9nTaiA9CZfkRB2ObCMUtK/3iX5tV2KAmNmvmpY14/BMxh2lTgf+indYNDxtJ6aCuK1g7nZIJ1OatNpnIJU7OSSX89dgsFHkjQQq8ZHsttNnfyiXhgq0JGns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X/6PgKE7; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40e8d3b32eeso5038105e9.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 09:23:25 -0800 (PST)
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
+	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
+	 Content-Type; b=sFwXtHGa6gwQvantABuC3a/Wq38OluAcpzpWeh+Z1iREQJmATMf151GQ629Ky5RTiGUHejus5V4bay+m7cCOrPqBkZWQWmHSM5yrqCNAk8zH2Sokx27chDeruH10HnV2BtrnTkGfUO8aa2uy0tHozoXlVrSeXRk3/zcKW3Mbf8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZlAHJZfN; arc=none smtp.client-ip=209.85.217.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-467021612acso2656175137.1;
+        Wed, 17 Jan 2024 09:25:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705512204; x=1706117004; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nTCtMquQwSHvUe3rlom2viCrA/hRn2YuWQ9TWaWnJ4g=;
-        b=X/6PgKE7eQrsnbVdcagsXJOdE5QtjMgic8EgXMQe8O8pkDTpq3UhoFaySNclm3Ks9k
-         C1jX3uawqKbWRBKfkFvJaRG9Wo2BeoO5tL+TlRdOy/Ztq6+kvu8C4YUwZOMLRAnDusKc
-         Fn9egyUrNtavCyKvYBtNvKkjVNQHWf/kcC/Y6AnLPLjiv3M6441g6mGrrj14AexsXVdl
-         UJHy72xqDq295SduBDY5i0/cIV3/z4Lkri/tPyTngLouS9WVtVkAxnpd6ZaNNLGkrYXq
-         Wl10OppT3NTw6xvA7aJ7VdVdWGDXcs1ln+qJ+VCf3nxkxQQNiw2OtLaNNOqjfIHMMj+5
-         feyg==
+        d=gmail.com; s=20230601; t=1705512343; x=1706117143; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BjzH4P7XF/Z7lgo69jkWio9jEYkRlOZwcG6M8wtf1ZM=;
+        b=ZlAHJZfN/8Ly8qgur7EhCccEh+HaKwUtBAbANPk0FKyelqbWci0N+p0L3eWecuZ4e9
+         gQfbk0UhPrAWcmQ23rpYnHF53rFR+bzif8oVAShYX7ZljFwbKu96omziIWu34pcXK9Bb
+         NfdMiWYRN6fOe3IzmlqWaJuzaDUiYMBUdbHUkNx7uFTmp6EoKDW/KqCba0Quhg+Tya4C
+         BkMmNwpmJPRRmX+QQiN+GU3a2hkq9g9u3zc1V0ra7Z3eQUQq/taI5tBNejMTctz17VYG
+         /D1MebiSP95ux7bQmHuLD9LI+WdPu3cfmnmsJc4ziaHLyUxmC0/V68F3mxvpNkt+30cQ
+         +XOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705512204; x=1706117004;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nTCtMquQwSHvUe3rlom2viCrA/hRn2YuWQ9TWaWnJ4g=;
-        b=a4nkcgWosXF3k0noxyTexNs91l+I9E5K0pBkp+y4r/KNTDYFLfxtBRrbvVeG0kltS5
-         QBham8q9bRCeXo4+4r/N6DRD2h+uk0frW5xjeKStMEuQI+aLmZiBIjz3Vi3w+uoST+YK
-         Tcb/1baorxceRzLqPErWuMvqZ8e6OGw6Zt5a1jSpTCbqsUSXv/q8heXX7ztk03Wb1Z+t
-         NnqbjHvLTL+chdD0v1mEJCef9V5W9nFEmsSNCyWiFI54QgkgMBOafA9K1/xDHU22mPhd
-         WYeWwCUG4N7saefc+ni1KQMKosdgTKvh21TbMnjtKEZn0890IGlxFcD4BMkzVaw8hs1J
-         rHTg==
-X-Gm-Message-State: AOJu0YyVcjTkMFQZAealftNjs2IstKxpxSX/od/M6C97wUzuhOT4J9wD
-	vJJrpWcFYjO9apSHR6Ycid92VzHK0CWakw==
-X-Google-Smtp-Source: AGHT+IFFlacrehhEntQ4bUfUJOL0yxIor5gjgggfLwRY9ubluouFJBmzUtYn1rnyZRRNO+pA4e2wvw==
-X-Received: by 2002:a05:600c:4d1f:b0:40e:76a3:6e2d with SMTP id u31-20020a05600c4d1f00b0040e76a36e2dmr2960527wmp.4.1705512203552;
-        Wed, 17 Jan 2024 09:23:23 -0800 (PST)
-Received: from [192.168.100.86] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id v21-20020a05600c445500b0040e3bdff98asm26761374wmn.23.2024.01.17.09.23.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jan 2024 09:23:23 -0800 (PST)
-Message-ID: <28e019ce-7612-4b10-8068-17c3fef4dba8@linaro.org>
-Date: Wed, 17 Jan 2024 17:23:22 +0000
+        d=1e100.net; s=20230601; t=1705512343; x=1706117143;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BjzH4P7XF/Z7lgo69jkWio9jEYkRlOZwcG6M8wtf1ZM=;
+        b=IjQfOWiYszUFB0IvaGlRKfHrcLHSq4J6ocVOoOIIkzI3n8Yr+ppykdOp17IBz4NDDR
+         PzkH2GG6zEV7T5hqnKaxynikiGCK1hNHvTBdt/n+wiFk5QT0Ptzsx50a73JXKyzpoCt5
+         FFlpKRIVutpptgticBeTmsMUM3TZwcF3/Ol1qOCKemme2BQJL5Iot3c9pUXA0Ge3/L6P
+         dON7hRwY+2q5InW8a7lemgHPcYa3rk6eMIX70cop8cd0NJpESSXoegaENgeYhEVJtcnz
+         A0TgjCh7vl0p6GnECMhOO2yz/k1ZN+1bna9sLbJSxjTXvmCaQJxZxyK7/a+IePmUannh
+         4tng==
+X-Gm-Message-State: AOJu0YwymkoAW2xdo0mwkIXxXrCxbwavb/h2iZWrZYq8xVoKp2KaL0Cp
+	u6gowBvqfSfCCJXO5TogbQu0Ygd0g2RMRj9PQzs=
+X-Google-Smtp-Source: AGHT+IHq2zmeg53TSnmQvoQ4CfpCRPj7LsRflcF7R5XS39w1ctG2Sfnn2AAL0JKpj3eArMWXOfHc1CHAO8iBUqCdSU8=
+X-Received: by 2002:a67:fc47:0:b0:469:7c82:fcaf with SMTP id
+ p7-20020a67fc47000000b004697c82fcafmr1972649vsq.12.1705512342916; Wed, 17 Jan
+ 2024 09:25:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 13/15] arm64: dts: qcom: pmi632: define USB-C related
- blocks
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
- <20240113-pmi632-typec-v2-13-182d9aa0a5b3@linaro.org>
- <1d0d325d-d15e-4e86-b8e3-9f91b99e78bf@linaro.org>
- <CAA8EJpo7qH43FyvO-N9vFH=6K3rMdPpnGp9w6pGW2cz4bMK+0g@mail.gmail.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <CAA8EJpo7qH43FyvO-N9vFH=6K3rMdPpnGp9w6pGW2cz4bMK+0g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20231206151600.26833-1-quic_pintu@quicinc.com>
+ <20231208203128.GA2646347-robh@kernel.org> <CAOuPNLg90T69USVQ8Ti6c8fXb_XrnaR035in_CbJHmNMUYLqOg@mail.gmail.com>
+ <CAOuPNLj4_pQiAHoER2VJpW_2NEaq8+zF8p1br+tf0Toe1t1UDg@mail.gmail.com>
+ <CAOuPNLh+V1-Uu_rnnbdu7p6DGjHOJf0yJnaxnchwpzh_YyP=_Q@mail.gmail.com> <20240116143509.GA3845101-robh@kernel.org>
+In-Reply-To: <20240116143509.GA3845101-robh@kernel.org>
+From: Pintu Agarwal <pintu.ping@gmail.com>
+Date: Wed, 17 Jan 2024 22:55:31 +0530
+Message-ID: <CAOuPNLhc-U8YzkUAE2aDPUKAhzgXtTTWUC8faU=a62na2gdF_g@mail.gmail.com>
+Subject: Re: [PATCH] of: reserved_mem: fix error log for reserved mem init failure
+To: Rob Herring <robh@kernel.org>
+Cc: vichy.kuo@gmail.com, Pintu Kumar <quic_pintu@quicinc.com>, 
+	linux-kernel@vger.kernel.org, akpm@linux-foundation.org, linux-mm@kvack.org, 
+	frowand.list@gmail.com, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 15/01/2024 10:43, Dmitry Baryshkov wrote:
-> On Mon, 15 Jan 2024 at 12:00, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> On 13.01.2024 21:55, Dmitry Baryshkov wrote:
->>> Define VBUS regulator and the Type-C handling block as present on the
->>> Quacomm PMI632 PMIC.
->>>
->>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>>   arch/arm64/boot/dts/qcom/pmi632.dtsi | 30 ++++++++++++++++++++++++++++++
->>>   1 file changed, 30 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/pmi632.dtsi b/arch/arm64/boot/dts/qcom/pmi632.dtsi
->>> index 4eb79e0ce40a..d6832f0b7b80 100644
->>> --- a/arch/arm64/boot/dts/qcom/pmi632.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/pmi632.dtsi
->>> @@ -45,6 +45,36 @@ pmic@2 {
->>>                #address-cells = <1>;
->>>                #size-cells = <0>;
->>>
->>> +             pmi632_vbus: usb-vbus-regulator@1100 {
->>> +                     compatible = "qcom,pmi632-vbus-reg", "qcom,pm8150b-vbus-reg";
->>> +                     reg = <0x1100>;
->>> +                     status = "disabled";
->>> +             };
->>> +
->>> +             pmi632_typec: typec@1500 {
->>> +                     compatible = "qcom,pmi632-typec";
->>> +                     reg = <0x1500>;
->>> +                     interrupts = <0x2 0x15 0x00 IRQ_TYPE_EDGE_RISING>,
->>> +                                  <0x2 0x15 0x01 IRQ_TYPE_EDGE_BOTH>,
->>> +                                  <0x2 0x15 0x02 IRQ_TYPE_EDGE_RISING>,
->>> +                                  <0x2 0x15 0x03 IRQ_TYPE_EDGE_BOTH>,
->>> +                                  <0x2 0x15 0x04 IRQ_TYPE_EDGE_RISING>,
->>> +                                  <0x2 0x15 0x05 IRQ_TYPE_EDGE_RISING>,
->>> +                                  <0x2 0x15 0x06 IRQ_TYPE_EDGE_BOTH>,
->>> +                                  <0x2 0x15 0x07 IRQ_TYPE_EDGE_RISING>;
->> This differs from the downstream irq types:
->>
->> <0x2 0x15 0x0 IRQ_TYPE_EDGE_BOTH>,
->> <0x2 0x15 0x1 IRQ_TYPE_EDGE_BOTH>,
->> <0x2 0x15 0x2 IRQ_TYPE_EDGE_RISING>,
->> <0x2 0x15 0x3 IRQ_TYPE_EDGE_RISING>,
->> <0x2 0x15 0x4 IRQ_TYPE_EDGE_BOTH>,
->> <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>,
->> <0x2 0x15 0x6 IRQ_TYPE_EDGE_RISING>,
->> <0x2 0x15 0x7 IRQ_TYPE_EDGE_RISING>;
-> 
-> I must admit, I copied the IRQs from the pm8150b rather than from the
-> vendor kernel.
-> 
-> Bryan, any idea which set of flags is more correct?
+On Tue, 16 Jan 2024 at 20:05, Rob Herring <robh@kernel.org> wrote:
+>
+> On Sat, Jan 06, 2024 at 11:31:12PM +0530, Pintu Agarwal wrote:
+> > Hi,
+> >
+> > On Thu, 14 Dec 2023 at 22:47, Pintu Agarwal <pintu.ping@gmail.com> wrote:
+> > >
+> > > On Mon, 11 Dec 2023 at 20:13, Pintu Agarwal <pintu.ping@gmail.com> wrote:
+> > > >
+> > > > Hi,
+> > > >
+> > > > On Sat, 9 Dec 2023 at 02:01, Rob Herring <robh@kernel.org> wrote:
+> > > > >
+> > > > > On Wed, Dec 06, 2023 at 08:46:00PM +0530, Pintu Kumar wrote:
+> > > > > > During fdt_init_reserved_mem() when __reserved_mem_init_node()
+> > > > > > fail we are using pr_info to print error.
+> > > > > >
+> > > > > > So, if we change the loglevel to 4 (or below), this error
+> > > > > > message will be missed.
+> > > > > >
+> > > > > > Thus, change the pr_info to pr_err for fail case.
+> > > > > >
+> > > > > > Signed-off-by: Pintu Kumar <quic_pintu@quicinc.com>
+> > > > > > ---
+> > > > > >  drivers/of/of_reserved_mem.c | 2 +-
+> > > > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > > >
+> > > > > > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+> > > > > > index 7ec94cfcbddb..473665e76b6f 100644
+> > > > > > --- a/drivers/of/of_reserved_mem.c
+> > > > > > +++ b/drivers/of/of_reserved_mem.c
+> > > > > > @@ -334,7 +334,7 @@ void __init fdt_init_reserved_mem(void)
+> > > > > >               if (err == 0) {
+> > > > > >                       err = __reserved_mem_init_node(rmem);
+> > > > > >                       if (err != 0 && err != -ENOENT) {
+> > > > > > -                             pr_info("node %s compatible matching fail\n",
+> > > > > > +                             pr_err("node %s compatible matching fail\n",
+> > > > >
+> > > > > Isn't the message just wrong. If compatible match fails, we return
+> > > > > ENOENT. The failure here would be from the init function.
+> > > > >
+> > > > Okay.
+> > > > You mean to say, if __reserved_mem_init_node fails with default err
+> > > > (ENOENT) then it may not hit this condition.
+> > > > Instead it will hit the 'else' case which is wrong ?
+> > > > Also, the "initfn" inside "__reserved_mem_init_node" may fail in which
+> > > > case also it may return default err.
+> > > >
+> > > > Maybe, the initial author's intention was to free the memory only if
+> > > > the failure type is not the default ENOENT type.
+> > > >
+> > > > This seems to be a different issue.
+> > > > Can we address this separately in a different patch ?
+> > > >
+> > > > And how do we fix this ?
+> > > > One option is to add another "if" condition with just ENOENT error check ?
+> > > > if (err == -ENOENT) {
+> > > >     pr_err("node %s compatible matching fail\n", rmem->name);
+> > > >     return;
+> > > > }
+> > > > Then, correct the existing log with a different message:
+> > > > pr_err("node %s matching reserved mem not found.\n", rmem->name);
+> > > > Or, add one more "if else" condition ?
+> > > > Or, fix the calling function itself : __reserved_mem_init_node ?
+> > > >
+> > >
+> > > Any further comments on this ?
+> >
+> > Any further comments or suggestions on the above ?
+> > Shall we just fix the log message, or correct the if/else case as well ?
+>
+> It looked to me like the original author's intent was this is not an
+> error. Either convince me otherwise or wait for me to study this
+> further. This code gets a lot of drive-by patches and what is "correct"
+> isn't always clear.
+>
+Thank you so much for looking into this.
+Yes, I agree that the author's intention might be to present this as
+an info message to the user.
+But I think he might have not realised that info msg may not be printed always.
+If we change loglevel to 4 (quiet) this info msg may be missed.
+Normally, in the final production system we do this.
+So, ideally, I think, error msg logging is more suitable in either case.
 
-My € says 1:1 with the downstream pmi632.dtsi
+Sure, I will wait for your further findings.
+I will also have a further look and see if I can convince you more
+with another set :)
 
-qcom,typec@1500 {
-     reg = <0x1500 0x100>;
-     interrupts = <0x2 0x15 0x0 IRQ_TYPE_EDGE_BOTH>,
-                  <0x2 0x15 0x1 IRQ_TYPE_EDGE_BOTH>,
-                  <0x2 0x15 0x2 IRQ_TYPE_EDGE_RISING>,
-                  <0x2 0x15 0x3 IRQ_TYPE_EDGE_RISING>,
-                  <0x2 0x15 0x4 IRQ_TYPE_EDGE_BOTH>,
-                  <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>,
-                  <0x2 0x15 0x6 IRQ_TYPE_EDGE_RISING>,
-                  <0x2 0x15 0x7 IRQ_TYPE_EDGE_RISING>;
-
-     interrupt-names = "typec-or-rid-detect-change",
-                       "typec-vpd-detect",
-                       "typec-cc-state-change",
-                       "typec-vconn-oc",
-                       "typec-vbus-change",
-                       "typec-attach-detach",
-                       "typec-legacy-cable-detect",
-                       "typec-try-snk-src-detect";
-};
-
-
+Thanks,
+Pintu
 
