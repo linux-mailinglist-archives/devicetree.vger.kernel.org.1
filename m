@@ -1,247 +1,194 @@
-Return-Path: <devicetree+bounces-32813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A118830AF0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:22:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6303830B4F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:39:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3527328FAE5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:22:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BA7E1F2BE3A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8296B224E3;
-	Wed, 17 Jan 2024 16:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k7iF2jc9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D58225AD;
+	Wed, 17 Jan 2024 16:37:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3833224C2;
-	Wed, 17 Jan 2024 16:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705508546; cv=fail; b=UdjN0Mm6J8WjuFHwtR8p1ot9nvwDCwv1Sag6dDD7tRzLn1BWyvkkEkRTHJbDAf2n9bz33EosN1fGiLes39mgSbtDzsWv9wNuu/AEZwFhNC1aabjRnpUvfH4Ii06Cz0dmCfBCIIQ6X1LgWm0PtAdJH0QLw8xnOdRWxTU25CexIns=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705508546; c=relaxed/simple;
-	bh=uDtBYQxXnajckf5qMYofOs2JbTzwpra1i5RUG9MxWK8=;
-	h=DKIM-Signature:X-IronPort-AV:X-IronPort-AV:Received:X-ExtLoop1:
-	 X-IronPort-AV:X-IronPort-AV:Received:Received:Received:Received:
-	 Received:ARC-Message-Signature:ARC-Authentication-Results:Received:
-	 Received:Date:From:To:CC:Subject:Message-ID:References:
-	 Content-Type:Content-Disposition:In-Reply-To:X-ClientProxiedBy:
-	 MIME-Version:X-MS-PublicTrafficType:X-MS-TrafficTypeDiagnostic:
-	 X-MS-Office365-Filtering-Correlation-Id:
-	 X-MS-Exchange-SenderADCheck:X-MS-Exchange-AntiSpam-Relay:
-	 X-Microsoft-Antispam:X-Microsoft-Antispam-Message-Info:
-	 X-Forefront-Antispam-Report:
-	 X-MS-Exchange-AntiSpam-MessageData-ChunkCount:
-	 X-MS-Exchange-AntiSpam-MessageData-0:
-	 X-MS-Exchange-CrossTenant-Network-Message-Id:
-	 X-MS-Exchange-CrossTenant-AuthSource:
-	 X-MS-Exchange-CrossTenant-AuthAs:
-	 X-MS-Exchange-CrossTenant-OriginalArrivalTime:
-	 X-MS-Exchange-CrossTenant-FromEntityHeader:
-	 X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
-	 X-MS-Exchange-CrossTenant-UserPrincipalName:
-	 X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
-	b=knfDmHlFYKrRdhYrPhYMVWQOwMl4Jd6CRHBLgQ1PmYuuWeXqnODz7MX6mJxwgtU8lAlbgTMJ2S9DS94O0aXl+ybXF/n4up85+KUkB7/gI2dWHfcNQMV3ukeqfKArRM1Hq/O8JcalpN7Rs+6PQV7Jzp2gpu2H9W4skD5IAL20KAA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k7iF2jc9; arc=fail smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1705508545; x=1737044545;
-  h=date:from:to:cc:subject:message-id:references:
-   in-reply-to:mime-version;
-  bh=uDtBYQxXnajckf5qMYofOs2JbTzwpra1i5RUG9MxWK8=;
-  b=k7iF2jc9F8L5K72rbxKa7rLWLjdcJSpemMqpHv0ownyhzJOzodsnpNLy
-   vOWG33FFS0QQYE8mU3Lten+3S/a2zcYClF3U7ru0rzvdKEqBTMArfVsVC
-   /poJuLGgEFiy13W4QiiFUVD4hXHyD6dhDdzYSXj3+I62viW+JNVhwAq2g
-   ZblPosZo50RFlDaafUiR+poijVBFxMFahygpGY+G/DeFJK4KzVlxQLIv8
-   wdgdrflpXLFVgIQwMOMkBG9LBecfW1ubPnuToXiYXpJlh3NJjlNyrP82k
-   JuX5OVq+/EHmZfecy75jVUXKe8DBjR03J5fv2YMi/sFaABbYQ1D9DheFm
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="98860"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
-   d="scan'208";a="98860"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2024 08:22:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="1031385742"
-X-IronPort-AV: E=Sophos;i="6.05,200,1701158400"; 
-   d="scan'208";a="1031385742"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
-  by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 17 Jan 2024 08:22:21 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 17 Jan 2024 08:22:20 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 17 Jan 2024 08:22:19 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 17 Jan 2024 08:22:19 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 17 Jan 2024 08:22:19 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RWYd6d8HWtiIB6TQI4HySqth0X1RlmzDcgg7o1ItJtmf6ZbOPrHkOmpbu59wNz8pBItF3CqAuPsmkm2cT2PSRZBeeHe5O2uLV2CfU4dQhRJiCdqaSncXaiH8hh/4PBQdPdOsibpcnVJwBDdsTw+xLlaNRgtaGsHwOjGoTVnG/qiLjmdjs9+OuoZSF1SvlYnv9TUkhZDBNO1g6+z1IpeGRL3yreAguASpKwCzuHkq2JBa7ooXlYQYOY8rlI3Gt5iIM5r+umaYrKZn0MxHFU2rnbhPFpd/tuhc3dpxqHf3+IPmDcsRCxsTpMdOceG48YN2ZGtlYB1aIVItWzMG13Y5NA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HMUoLZAt5We2LMzokJluy44oVco4gwvDvkf2/mrDrcY=;
- b=h8J1SsYyTMT/enI5Xvjyh3ij8FBWPJ13//J1b8oP0Zqr92nfVe3qTe+WUiLupt42y94tqCRkP2DG2PV4nbgnHTTAU/itMb/rmwRB7UlMVkWNLiUJXwlSiQCKHhZUND9QZKxgvKdvLFiag+7fVTQs0qKwIowGY0m9f09CCx3rV/erVzmKr6ssumd2rmmcBdJxprnT5KiTfscHYYZIpOreUJiexHoftSAustCQNh5fFtRX0ULZ6hroiwFRXvldN4vouEk2DjkUrV09RzZFoWMDj0hbanaKqMRj1LIFU49MTKl8vncts9d3ErPfCSd3eKyVE3fv6K3w86u6W+5QtCNxsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8107.namprd11.prod.outlook.com (2603:10b6:510:256::6)
- by DS0PR11MB7682.namprd11.prod.outlook.com (2603:10b6:8:dc::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.23; Wed, 17 Jan
- 2024 16:22:16 +0000
-Received: from PH8PR11MB8107.namprd11.prod.outlook.com
- ([fe80::6257:f90:c7dd:f0b2]) by PH8PR11MB8107.namprd11.prod.outlook.com
- ([fe80::6257:f90:c7dd:f0b2%4]) with mapi id 15.20.7181.015; Wed, 17 Jan 2024
- 16:22:16 +0000
-Date: Wed, 17 Jan 2024 08:22:11 -0800
-From: Dan Williams <dan.j.williams@intel.com>
-To: Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>, "David
- S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D230F225DC;
+	Wed, 17 Jan 2024 16:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705509461; cv=none; b=k9af4V0jGTTCyXH/sP07hWibvhoQOPMrAktbzrWb9y2MpBDZyCSsYjU99libZqX7nvy29OOQfr5021Tmj7jLI7AK5HW0frD1kGOolpbhC7QXq8OfpHRA4RRVpugnPR6ccvicy/QUHU1D5tsScN66GkFKeg6n3BHiK3xL2vG9aLo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705509461; c=relaxed/simple;
+	bh=pl8tjrmKOS5lUY6LjsQDjtwjBq2zjZttjuXZvCOf3I0=;
+	h=Received:Received:Received:Date:From:To:CC:Subject:Message-ID:
+	 In-Reply-To:References:Organization:X-Mailer:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-Originating-IP:
+	 X-ClientProxiedBy; b=R9vCEEe5DyJE6i+lkbFLUDwS3rV83AnFF6T2EKgfLek83EahOalJZntWuLS7CkVovD1p6qzme0lE26WgWxZkuDF71X3bLwYDAH7iR1Y0qi03/arE/LmMM/PVEEY39jEQSvyjQ68d8TSN4MYjU3pgLeVauYf98h2QjveeA2aoJlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TFWgX6NMqz6J9bQ;
+	Thu, 18 Jan 2024 00:34:48 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
+	by mail.maildlp.com (Postfix) with ESMTPS id 37BE2140AA7;
+	Thu, 18 Jan 2024 00:37:29 +0800 (CST)
+Received: from localhost (10.48.153.213) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 17 Jan
+ 2024 16:37:28 +0000
+Date: Wed, 17 Jan 2024 16:37:25 +0000
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Ceclan Dumitru <mitrutzceclan@gmail.com>
+CC: David Lechner <dlechner@baylibre.com>, <linus.walleij@linaro.org>,
+	<brgl@bgdev.pl>, <andy@kernel.org>, <linux-gpio@vger.kernel.org>, "Lars-Peter
+ Clausen" <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
 	<robh+dt@kernel.org>, Krzysztof Kozlowski
 	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
-	<konrad.dybcio@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, "Will
- Deacon" <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, "Heiko
- Stuebner" <heiko@sntech.de>, Jernej Skrabec <jernej.skrabec@gmail.com>,
-	"Chris Morgan" <macromorgan@hotmail.com>, Linus Walleij
-	<linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>,
-	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman
-	<terry.bowman@amd.com>, Lukas Wunner <lukas@wunner.de>, Huacai Chen
-	<chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, Srini Kandagatla
-	<srinivas.kandagatla@linaro.org>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>
-CC: <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-pci@vger.kernel.org>, Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>
-Subject: RE: [PATCH 4/9] PCI: create platform devices for child OF nodes of
- the port node
-Message-ID: <65a7feb3ea48f_3b8e294bf@dwillia2-xfh.jf.intel.com.notmuch>
-References: <20240117160748.37682-1-brgl@bgdev.pl>
- <20240117160748.37682-5-brgl@bgdev.pl>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240117160748.37682-5-brgl@bgdev.pl>
-X-ClientProxiedBy: MW4PR04CA0320.namprd04.prod.outlook.com
- (2603:10b6:303:82::25) To PH8PR11MB8107.namprd11.prod.outlook.com
- (2603:10b6:510:256::6)
+	Michael Walle <michael@walle.cc>, Andy Shevchenko
+	<andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
+	<chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
+ =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>, Mike Looijmans
+	<mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
+	<hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v11 1/2] dt-bindings: adc: add AD7173
+Message-ID: <20240117163725.00003981@Huawei.com>
+In-Reply-To: <18c239af-71ee-49d8-878e-e1770c3e2d46@gmail.com>
+References: <20231220104810.3179-1-mitrutzceclan@gmail.com>
+	<CAMknhBELp3NQEHE16gHhC96bttoafQOGxx3a_dLZn9o2Ru7y9g@mail.gmail.com>
+	<20240116163003.0000039d@Huawei.com>
+	<18c239af-71ee-49d8-878e-e1770c3e2d46@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8107:EE_|DS0PR11MB7682:EE_
-X-MS-Office365-Filtering-Correlation-Id: 60c9826c-5dfa-4a71-7e02-08dc1778787b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AnKukjZH2k+wRbGKqWbEnYuEvNzQgstEglxqGzBgAAARKtGWL9tUsGh8BTNVDCrU6BDPUXqsZ6hBf4H33Eox80Ll3ASS3GtY32HRFZKYP98r6/qFoOSPkM2HH/jJk6VviHUtR/C11ORpb9v23tkQzcvapvr5obTDKSDx2zxxoLduB5UgibQbchVYe3l3CfoD7R7R7rmftovFNcfK4M0JAmtudheCzhv+BLuHQGd15tfFiEWRVlNcx70LbPyWeCV6i7MjezgAAb678Vvz088D+ise8mnSYcJcAzq4EL/QUTXiPq4sukA5dJ39J8U1IbBS3Mkh5AIskK4QHGrE3KkuwauSrl9KQA8tLYUudeTkM5mHZOog5hwFazENIoBoBk64/kQu2j+PcuVgVYNZs1KcPqbJB15g8fSbAB7bsNwFxnBAFZiNFPKOH/AzNkvVCwQH5GIojHNdNMwZsnDDBwUFGJqE8/vv1PgYKIP5QSVjEBl/Dcx1FfVi7CjJKZuCL7VJo6j2MVA+O/TDAFf5o1UXHiQJtpyrNpt+KeJQ1rT1aNd1Q7aVLnG6AjLIyNPpp0Cia9LBKpZAowdudpBwnXBoptdwP9sPYYd0XcfeptPsZcw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR11MB8107.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(346002)(39860400002)(396003)(136003)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(41300700001)(5660300002)(8676002)(8936002)(2906002)(7406005)(7416002)(66556008)(66476007)(66946007)(316002)(110136005)(6486002)(478600001)(9686003)(26005)(6512007)(6506007)(6666004)(4326008)(38100700002)(82960400001)(921011)(83380400001)(86362001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mMIaePo2uqTD+PltBnwHL9ZeQeAXqCo45ZAwbmjtB2dZ0Pwnqa/Ar1bPEurP?=
- =?us-ascii?Q?T7xACBtNtd1JgPtcjESi2kohliirQwD36+6AxT/BATAiLhHpmcuQQpbD32z6?=
- =?us-ascii?Q?lEmUR64deEt8jmfvHBTH4rrp02upV+QMg9zXu2jAY2e4nael3/oDFxbA5a40?=
- =?us-ascii?Q?e+6AcSYGdpFmp9DUMH1R2B8+a4qsOHu2GvQ/21GHhvHiMiHGxNfIzis/Rlrv?=
- =?us-ascii?Q?My6d6FmAF6g9/c24hpnp15DeqbV6MOiEahUoEZGU70Hy1hzF8dDlN9ExNEP6?=
- =?us-ascii?Q?2gParqu9m/we3PWKMEyQb22hyoyzEQ5STWXhakiDcC8sEq+aeX5qbv16LaLz?=
- =?us-ascii?Q?MCkKwG1YK/o6L1hP0s5bVJOzXN6prXfr9klOk1WHG4UsPH0wvTUjsL3XcMWq?=
- =?us-ascii?Q?x1I+SY567BobSCpqFaHSvHSgGkzy+gQ00tSpAs69tnTVlSb7MD+vNKpfBaAk?=
- =?us-ascii?Q?7mid71+NuaHB+Y4TEoghEeITmpyXw8THTmOwI1uaBiIGB5oMGaQXbLkVqSUo?=
- =?us-ascii?Q?nxGdHFypiEEGnLziQDnG7VqKx5kKPcRzxGjU2tQmpfKIS8QBJg60tU9dVNib?=
- =?us-ascii?Q?LHSo6bnOhjoB0xlmRfip6J9LVylE08A5hnueT9LQ+7oFx3EJc7pfOri98u+j?=
- =?us-ascii?Q?e/wvL3YDimB3QKEJkAn+YB92uZIW0v2pV4wCdzEazlCK6MxqdR8yVFFz0QzV?=
- =?us-ascii?Q?xqUBFi7zm6o/ojS42beN2ZzbIKigG1D9jAUNwf7xtBe3sSs4heZJ6hTvNLPD?=
- =?us-ascii?Q?24PLTYwmzPYQimkUdFy7LLhavgevP7mS6wQZIaQgfdDjPtF5JmvJPXTWpRLy?=
- =?us-ascii?Q?OUJjPsTb2XKgJ/u09MD08nhLH9GKP45d84HO5cVdiUiCJDiYyWXO31mJSQrm?=
- =?us-ascii?Q?4jPdKdpZWSdc45PFqep4bGJj8/2Uo0WiNkkszlh7NPespuGupS+LhAg+OCAq?=
- =?us-ascii?Q?VYUxt1XyqQ7JjyXKqvR6CzdjX5vRmsdxp89GhR5SMs2lBTzcMbrXo/cwWX4y?=
- =?us-ascii?Q?LSd34TRfyEJ53R8oAFn4L0YiwJ8lasp9TCe8mQXvWF7Mg4VP6aZTAtn25XDu?=
- =?us-ascii?Q?MLtKFWOmYRCKdxGiY5wlAcafYW7QVIIUVxaHJBltP6nvKI/W7gddLIkukj2k?=
- =?us-ascii?Q?pD2ux1wVvdDu0AUvgMFWV4b/I1RPAY7Cd4JHaV8aWD9sQhLw7EacYVwe5ElS?=
- =?us-ascii?Q?mavNRmFKviglrsoDD0AuWs0bLKMjjZGW5Y+CvG4PeHGTZ8EZQb3odT7QjSNR?=
- =?us-ascii?Q?vshh7HvkgRepYFGFqYkz9SUaV39U+kzO/mGZu430zzZ9II8Ni+gqvuTonpSV?=
- =?us-ascii?Q?qzhu4HpFlxEghZ66la1P+OPTd8iboiCUJC1qoI5Nzwe5uIhLqXMFmulnpdn6?=
- =?us-ascii?Q?3vzMTshSqMM9H33atyWWiC/uf+7tTyrDywlV3zvVNBrWgvmwxLqSAjAQzxMh?=
- =?us-ascii?Q?DhTOUNJEaeB4nuEjJRjP6mb1zUYohTteiEPLhyG6uqJH5C2S+31/P7d4VcjZ?=
- =?us-ascii?Q?NAjcl8n3XHIMPRpqYIpbhNhl56S3UxWp5QX4SImOmUAGbvNHutEDnJr39bpv?=
- =?us-ascii?Q?jpsAmDwtK6Q/NuekqJ+AgM3YTN77PdrxOMiiKIZQk3DaFagCg/ouQx4xnPwk?=
- =?us-ascii?Q?GA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60c9826c-5dfa-4a71-7e02-08dc1778787b
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8107.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2024 16:22:16.5704
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: y0hb6ffoU59agTQUEH4SlJrOc5hx1liAZAI13dHrJO/QFHSwcDmOG7IDM5uFIl/PZVm8cqTqAxL6782/8zLy6DzYMNc28XgTx7AupdptzrA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7682
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
 
-Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> In order to introduce PCI power-sequencing, we need to create platform
-> devices for child nodes of the port node. They will get matched against
-> the pwrseq drivers (if one exists) and then the actual PCI device will
-> reuse the node once it's detected on the bus.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-[..]
-> diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
-> index d749ea8250d6..77be0630b7b3 100644
-> --- a/drivers/pci/remove.c
-> +++ b/drivers/pci/remove.c
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0
->  #include <linux/pci.h>
->  #include <linux/module.h>
-> +#include <linux/of_platform.h>
->  #include "pci.h"
->  
->  static void pci_free_resources(struct pci_dev *dev)
-> @@ -18,11 +19,11 @@ static void pci_stop_dev(struct pci_dev *dev)
->  	pci_pme_active(dev, false);
->  
->  	if (pci_dev_is_added(dev)) {
-> -
->  		device_release_driver(&dev->dev);
->  		pci_proc_detach_device(dev);
->  		pci_remove_sysfs_dev_files(dev);
->  		of_pci_remove_node(dev);
-> +		of_platform_depopulate(&dev->dev);
->  
->  		pci_dev_assign_added(dev, false);
+On Wed, 17 Jan 2024 14:43:21 +0200
+Ceclan Dumitru <mitrutzceclan@gmail.com> wrote:
 
-Why is pci_stop_dev() not in strict reverse order of
-pci_bus_add_device()? I see that pci_dev_assign_added() was already not
-in reverse "add" order before your change, but I otherwise would have
-expected of_platform_depopulate() before of_pci_remove_node() (assumed
-paired with of_pci_make_dev_node()).
+> On 1/16/24 18:30, Jonathan Cameron wrote:
+> > On Mon, 15 Jan 2024 15:53:39 -0600
+> > David Lechner <dlechner@baylibre.com> wrote:
+> >  =20
+> >> On Wed, Dec 20, 2023 at 4:48=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@=
+gmail.com> wrote: =20
+>=20
+> ...
+>=20
+> >> Sorry for the late reply as I see this has been applied already but...=
+ =20
+> > We have plenty of time.  Rather than dropping the ad7173 from my tree,
+> > I'd prefer to see additional patches on top to tidy up whatever
+> > makes sense from David's feedback.
+> >  =20
+> Alright then.
+>=20
+> ...
+>=20
+> >>
+> >> As discussed in v8 [1] it is not clear what signal this is. Based on
+> >> that discussion, I'm assuming the RDY signal, but how would bindings
+> >> consumers know that without a description since it is not the only
+> >> digital output signal of the chip? And why the ERROR signal was
+> >> omitted here was never addressed AFAICT.
+> >>
+> >> [1]: https://lore.kernel.org/linux-iio/20231217135007.3e5d959a@jic23-h=
+uawei/ =20
+> >=20
+> > I'd forgotten about that.  Adding interrupt-names would be the easiest
+> > way to resolve this.
+> >  =20
+>=20
+> I'll add this, but my curiosity for the long run is: How should
+> differences between what bindings include and what drivers support
+> should be managed and documented?
+
+Drivers almost always support a subset of functionality of the device.
+This isn't much different.  The driver 'should' use interrupt-names
+but it doesn't need to support all the things that the binding says should
+be in there.
+
+Sometimes we document things in a driver, but there isn't any obligation to
+do so and those docs are often out of date.
+
+>=20
+> ...
+>=20
+> >>> +
+> >>> +  refin-supply:
+> >>> +    description: external reference supply, can be used as reference=
+ for conversion.   =20
+> >>
+> >> If I'm understanding correctly, this represents both voltage inputs
+> >> REF+ and REF-, correct? The datasheet says "Reference Input Negative
+> >> Terminal. REF=E2=88=92 can span from AVSS to AVDD1 =E2=88=92 1 V". It =
+seems like they
+> >> should be separate supplies in case REF- is non-zero. Otherwise, how
+> >> can we know what voltage it is? (same comment applies to refin2.) =20
+> >=20
+> > Agreed, in this case these are directly used as references (we recently
+> > had another driver that could take a wide range of negative and positive
+> > inputs but in that case an internal reference was generated that didn't
+> > made it not matter exactly what was being supplied.  Not true here thou=
+gh!
+> >  =20
+> Wouldn't it be alright to specify that the voltage specified here should
+> be the actual difference (REF+)-(REF-)?
+
+How do you establish the offset to apply to single ended channels if you do=
+n't
+know the value of REF- (relative to local ground)?
+
+So no - as the device supports single ended channels the difference isn't
+enough information.  It would probably be fine to do as you say if it
+were a device with only differential channels where all that matters is
+the scaling.
+
+>=20
+> ...
+>=20
+> >>> +required:
+> >>> +  - compatible
+> >>> +  - reg
+> >>> +  - interrupts   =20
+> >>
+> >> Why are interrupts required? What if the pin is not connected?
+> >> =20
+> > Ah. I clearly failed to review this one closely enough.
+> >=20
+> > Absolutely agree that interrupts should never be required.
+> > No need for the driver to work if they aren't, but the binding
+> > shouldn't require them!
+> >=20
+> > Jonathan
+> >  =20
+>=20
+> To make sure that I understand, the driver will not probe without
+> interrupts, but it is alright to make then optional in the bindings?
+
+Yes - it is fine for a driver to only support a subset of functionality
+and fail to probe if that subset isn't what the hardware enables.
+
+>=20
+> This is in the case that someone will want to use this binding and
+> implement reading with polling?
+
+Yes.
+
+J
+
 
