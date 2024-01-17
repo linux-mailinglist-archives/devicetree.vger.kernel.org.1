@@ -1,236 +1,114 @@
-Return-Path: <devicetree+bounces-32893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 016FA830F3E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 23:37:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C0CA830FE2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 00:00:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AAA95287E51
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 22:37:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E7211C212B7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 23:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59D141E872;
-	Wed, 17 Jan 2024 22:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A20AA1E88E;
+	Wed, 17 Jan 2024 23:00:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GbTSq3Mj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WxeT3GBz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3129A1E514;
-	Wed, 17 Jan 2024 22:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B61286B9;
+	Wed, 17 Jan 2024 23:00:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705531058; cv=none; b=CabBVj5AGoqSexZabUlPi6Bcgk6GRA++cAGz4qUiWEvm9ijWUF0oz3ihDW/jIeUXixrmpLuwolq+2yLtCaqe2DBPS78AZPqfRQv7uHuHN5aoVCHFtxSgFooUxIOI6/IIGa1PF4mEmg9ltXyqU+OzVOuGCewuNr/yE4860HvuNBo=
+	t=1705532450; cv=none; b=i7TNyqKFgHzVHCqyq9nQTayf0JtgxKR67IoJachSoH95ywRnjroZbgTdQ9/fpvXCKjgu3koN3GGPAS+x5wm+7x5Iqk3RvSWUMpitSS/3+RyI/0E5KSiqfODvkdNs10Y0YeEo66l91pOqSGM0GUQx8g6ARv/OM7vJIETjjEyHQI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705531058; c=relaxed/simple;
-	bh=Du2DsE2SN6RqPy+w4U7y+zmiClI0d9lq3FbSw61NJXk=;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=esSdZYE47pw+GFMDsxt2ZGpVMwWkitvFZ/VSfQSwL3sqMjxzGooKqCfdciot64UBrz8LPxCtHeBC+kzZ4zNq14R+eHtvTmkyNxD4m/6sNgP9D/i0Q2ixJZr0PmSEaAElPl+2twGbya0T/oZjtzGDdNgkI8L4ZR7BstPMWhIJ26U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GbTSq3Mj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAA47C433C7;
-	Wed, 17 Jan 2024 22:37:37 +0000 (UTC)
+	s=arc-20240116; t=1705532450; c=relaxed/simple;
+	bh=fyXBSC0bnHo3boCpQubXQI92k6WFO1uOlIbnTuqgLD4=;
+	h=Received:DKIM-Signature:Message-ID:Content-Type:MIME-Version:
+	 Content-Transfer-Encoding:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:User-Agent; b=IaBZx9CrwHe7JHXVyjqG3Nf6Glh9LzCsJPfotAucvZiiF8IXXoFV05nMgrIIXp1nac8SrpHABsPiIxnESFWft0xe+fbQwkkYl3TTP8Tn+3b73kytU1JFeWk/T9EO68KQYe1a6wKuy8nrXriUgGCsvAI/40Fhr1T245vaKdzqSWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WxeT3GBz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BAA2C433C7;
+	Wed, 17 Jan 2024 23:00:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705531058;
-	bh=Du2DsE2SN6RqPy+w4U7y+zmiClI0d9lq3FbSw61NJXk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GbTSq3MjSChvkg5XzajifKr70wcLlaRh1dAzw9fKYb0QaJOCSv7OTeHli8yjHXSz+
-	 PIk6q5Goy5W8MNtk7unn4axTIsjHjn2yMOmx68unRwSbIU+MDzvc87y+fqiLcDS/DL
-	 7KzH1RyPUlvjjTo71VPKvZzB7QzRe2ceKD6kqE1AhqfsrPA5lLm6EZ7ifWK7hVqBvv
-	 cak58pSrBTheYbzSAuIrWAAnjACAjUItLMWexwAYc8+zH0oF0oxjeyfIMLnSJTEZj8
-	 K9Riyxi7L4tXqotQaCHUnSrmzwi0/N/Wt6aRDDpBeHQb0h+FSg9GSipYSFXIIlMLyD
-	 DRgO5NCpa/rnA==
-Date: Wed, 17 Jan 2024 16:37:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com,
-	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	nm@ti.com, vigneshr@ti.com, kristo@kernel.org, praneeth@ti.com,
-	a-bhatia1@ti.com, j-luthra@ti.com
-Subject: Re: [RFC PATCH 1/3] dt-bindings: display: ti,am65x-dss: Add support
- for display sharing mode
-Message-ID: <20240117223735.GA3375434-robh@kernel.org>
-References: <20240116134142.2092483-1-devarsht@ti.com>
- <20240116134142.2092483-2-devarsht@ti.com>
- <20240117201342.GA3041972-robh@kernel.org>
+	s=k20201202; t=1705532450;
+	bh=fyXBSC0bnHo3boCpQubXQI92k6WFO1uOlIbnTuqgLD4=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=WxeT3GBztptAaY54E7E/IibQmlI2auDqcjQAJU/gbKcJrpG8pzf4C7/y1Z3dWzZLM
+	 C3E7KEby6UhIR9QxS/hXvDl6n8eBw+MdcCGzH5yULampXTr/OV2rJLG11LvS9RRIYn
+	 YzrKFeKcLsRcvhdr0fNVMSHKSf2pNYsWc1rDfKFpxAjY7Fq70WYgFnxZbaQTF5F5AK
+	 49xUOHmYbNMTvV9nsg29O/JNZUvnx4yb22BH/iUncI2nMgA9h7/UEOvfcq6VTOJbc5
+	 yXO/XavnF5W6YWnqKq5QzKcjtF2A3erD1aVIOVPukufVmT4wvd8LbVFYOul5+8E2zE
+	 tqh93Yr9GR9WQ==
+Message-ID: <c3f239caee806419a8ad0ed45a627947.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240117201342.GA3041972-robh@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240117175448.GB2779523-robh@kernel.org>
+References: <20240112200750.4062441-1-sboyd@kernel.org> <20240112200750.4062441-2-sboyd@kernel.org> <ZaZtbU9hre3YhZam@FVFF77S0Q05N> <434b21afe1899b1567f3617261594842.sboyd@kernel.org> <20240117175448.GB2779523-robh@kernel.org>
+Subject: Re: [PATCH 1/6] arm64: Unconditionally call unflatten_device_tree()
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>, linux-kernel@vger.kernel.org, patches@lists.linux.dev, linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Date: Wed, 17 Jan 2024 15:00:48 -0800
+User-Agent: alot/0.10
 
-On Wed, Jan 17, 2024 at 02:13:42PM -0600, Rob Herring wrote:
-> On Tue, Jan 16, 2024 at 07:11:40PM +0530, Devarsh Thakkar wrote:
-> > Add support for using TI Keystone DSS hardware present in display
-> > sharing mode.
-> > 
-> > TI Keystone DSS hardware supports partitioning of resources between
-> > multiple hosts as it provides separate register space and unique
-> > interrupt line to each host.
-> > 
-> > The DSS hardware can be used in shared mode in such a way that one or
-> > more of video planes can be owned by Linux wherease other planes can be
-> > owned by remote cores.
-> > 
-> > One or more of the video ports can be dedicated exclusively to a
-> > processing core, wherease some of the video ports can be shared between
-> > two hosts too with only one of them having write access.
-> > 
-> > Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
-> > ---
-> >  .../bindings/display/ti/ti,am65x-dss.yaml     | 82 +++++++++++++++++++
-> >  1 file changed, 82 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> > index 55e3e490d0e6..d9bc69fbf1fb 100644
-> > --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> > +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> > @@ -112,6 +112,86 @@ properties:
-> >        Input memory (from main memory to dispc) bandwidth limit in
-> >        bytes per second
-> >  
-> > +  ti,dss-shared-mode:
-> > +    type: boolean
-> > +    description:
-> > +      TI DSS7 supports sharing of display between multiple hosts
-> > +      as it provides separate register space for display configuration and
-> > +      unique interrupt line to each host.
-> 
-> If you care about line breaks, you need '|'. 
-> 
-> > +      One of the host is provided access to the global display
-> > +      configuration labelled as "common" region of DSS allows that host
-> > +      exclusive access to global registers of DSS while other host can
-> > +      configure the display for it's usage using a separate register
-> > +      space labelled as "common1".
-> > +      The DSS resources can be partitioned in such a way that one or more
-> > +      of the video planes are owned by Linux whereas other video planes
-> 
-> Your h/w can only run Linux?
-> 
-> What if you want to use this same binding to define the configuration to 
-> the 'remote processor'? You can easily s/Linux/the OS/, but it all 
-> should be reworded to describe things in terms of the local processor.
-> 
-> > +      can be owned by a remote core.
-> > +      The video port controlling these planes acts as a shared video port
-> > +      and it can be configured with write access either by Linux or the
-> > +      remote core in which case Linux only has read-only access to that
-> > +      video port.
-> 
-> What is the purpose of this property when all the other properties are 
-> required?
-> 
-> > +
-> > +  ti,dss-shared-mode-planes:
-> > +    description:
-> > +      The video layer that is owned by processing core running Linux.
-> > +      The display driver running from Linux has exclusive write access to
-> > +      this video layer.
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [vidl, vid]
-> > +
-> > +  ti,dss-shared-mode-vp:
-> > +    description:
-> > +      The video port that is being used in context of processing core
-> > +      running Linux with display susbsytem being used in shared mode.
-> > +      This can be owned either by the processing core running Linux in
-> > +      which case Linux has the write access and the responsibility to
-> > +      configure this video port and the associated overlay manager or
-> > +      it can be shared between core running Linux and a remote core
-> > +      with remote core provided with write access to this video port and
-> > +      associated overlay managers and remote core configures and drives
-> > +      this video port also feeding data from one or more of the
-> > +      video planes owned by Linux, with Linux only having read-only access
-> > +      to this video port and associated overlay managers.
-> > +
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [vp1, vp2]
-> > +
-> > +  ti,dss-shared-mode-common:
-> > +    description:
-> > +      The DSS register region owned by processing core running Linux.
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [common, common1]
-> > +
-> > +  ti,dss-shared-mode-vp-owned:
-> > +    description:
-> > +      This tells whether processing core running Linux has write access to
-> > +      the video ports enlisted in ti,dss-shared-mode-vps.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 1]
-> 
-> This can be boolean. Do writes abort or just get ignored? The latter can 
-> be probed and doesn't need a property.
-> 
-> > +
-> > +  ti,dss-shared-mode-plane-zorder:
-> > +    description:
-> > +      The zorder of the planes owned by Linux.
-> > +      For the scenario where Linux is not having write access to associated
-> > +      video port, this field is just for
-> > +      informational purpose to enumerate the zorder configuration
-> > +      being used by remote core.
-> > +
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 1]
-> 
-> I don't understand how 0 or 1 defines Z-order.
-> 
-> > +
-> > +dependencies:
-> > +  ti,dss-shared-mode: [ 'ti,dss-shared-mode-planes', 'ti,dss-shared-mode-vp',
-> > +                        'ti,dss-shared-mode-plane-zorder', 'ti,dss-shared-mode-vp-owned']
-> > +  ti,dss-shared-mode-vp: ['ti,dss-shared-mode', 'ti,dss-shared-mode-planes',
-> > +                          'ti,dss-shared-mode-plane-zorder', 'ti,dss-shared-mode-vp-owned']
-> > +  ti,dss-shared-mode-planes: ['ti,dss-shared-mode', 'ti,dss-shared-mode-vp',
-> > +                              'ti,dss-shared-mode-plane-zorder', 'ti,dss-shared-mode-vp-owned']
-> > +  ti,dss-shared-mode-plane-zorder: ['ti,dss-shared-mode-planes', 'ti,dss-shared-mode-vp',
-> > +                                    'ti,dss-shared-mode', 'ti,dss-shared-mode-vp-owned']
-> > +  ti,dss-shared-mode-vp-owned: ['ti,dss-shared-mode-planes', 'ti,dss-shared-mode-vp',
-> > +                                'ti,dss-shared-mode', 'ti,dss-shared-mode-plane-zorder']
-> > +
-> >  allOf:
-> >    - if:
-> >        properties:
-> > @@ -123,6 +203,8 @@ allOf:
-> >          ports:
-> >            properties:
-> >              port@0: false
-> > +            ti,dss-shared-mode-vp:
-> > +            enum: [vp2]
-> 
-> This should throw a warning. You just defined a property called 'enum'.
+Quoting Rob Herring (2024-01-17 09:54:48)
+> On Tue, Jan 16, 2024 at 05:27:18PM -0800, Stephen Boyd wrote:
+> > Quoting Mark Rutland (2024-01-16 03:51:14)
+> > > Hi Stephen,
+> > >=20
+> > > On Fri, Jan 12, 2024 at 12:07:44PM -0800, Stephen Boyd wrote:
+> > > > Call this function unconditionally so that we can populate an empty=
+ DTB
+> > > > on platforms that don't boot with a firmware provided or builtin DT=
+B.
+> > > > There's no harm in calling unflatten_device_tree() unconditionally.
+> > >=20
+> > > For better or worse, that's not true: there are systems the provide b=
+oth a DTB
+> > > *and* ACPI tables, and we must not consume both at the same time as t=
+hose can
+> > > clash and cause all sorts of problems. In addition, we don't want peo=
+ple being
+> > > "clever" and describing disparate portions of their system in ACPI an=
+d DT.
+> > >=20
+> > > It is a very deliberate choice to not unflatten the DTB when ACPI is =
+in use,
+> > > and I don't think we want to reopen this can of worms.
+> >=20
+> > Hmm ok. I missed this part. Can we knock out the initial_boot_params in
+> > this case so that we don't unflatten a DTB when ACPI is in use?
+>=20
+> You mean so we don't unflatten the boot DTB, but instead unflatten the=20
+> empty one, right? That sounds fine.
 
-Indeed it does. Test your bindings before sending.
+Yes. Note, I don't have any ACPI arm64 system on hand to test anything
+with :-(
 
-../Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml:204:35: [error] empty value in block mapp
-ing (empty-values)                                   
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-/home/rob/proj/linux-dt/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml: allOf:0:then:proper
-ties:ports:properties:ti,dss-shared-mode-vp: None is not of type 'object', 'boolean'
-        from schema $id: http://json-schema.org/draft-07/schema#
-/home/rob/proj/linux-dt/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml: allOf:0:then:proper
-ties:ports:properties:enum: ['vp2'] is not of type 'object', 'boolean'
-        from schema $id: http://json-schema.org/draft-07/schema#
-/home/rob/proj/linux-dt/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml: allOf:0:then:proper
-ties:ports:properties: 'enum' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
-        hint: A json-schema keyword was found instead of a DT property name.
-        from schema $id: http://devicetree.org/meta-schemas/keywords.yaml# 
-/home/rob/proj/linux-dt/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml: allOf:0:then:proper
-ties:ports:properties:ti,dss-shared-mode-vp: None is not of type 'object', 'boolean'
-        from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/home/rob/proj/linux-dt/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml: allOf:0:then:proper
-ties:ports:properties:enum: ['vp2'] is not of type 'object', 'boolean'
-        from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+>=20
+> Another thing to check is kexec because it will still need the original=20
+> DTB I think. Though if you are doing ACPI boot and kexec'ing, kexec may=20
+> write out everything needed by the next kernel and the empty DTB would=20
+> work just fine.
+
+Yeah, it looks like dt_is_stub() will keep doing its thing there. The
+empty DTB will have nothing in it and so kexec with ACPI and the empty
+DTB will continue to use ACPI, and then the empty DTB will be added in
+again.
+
+> Of course those users booting with ACPI and then=20
+> kexec'ing to DT boot will be broken. Perhaps that's a feature...
+
+I don't know how this part works. If you kexec to DT boot won't you run
+through startup again and initial_boot_params will have a non-empty DTB
+in it? I'd think this would keep working.
 
