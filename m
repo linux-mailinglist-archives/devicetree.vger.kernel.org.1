@@ -1,300 +1,142 @@
-Return-Path: <devicetree+bounces-32795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1D978309FA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:46:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA4B7830A0B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:53:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A66DB21939
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:46:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 584F91F24933
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:53:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B4B321A0A;
-	Wed, 17 Jan 2024 15:46:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF51D21A10;
+	Wed, 17 Jan 2024 15:53:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="VJ9tAyNx"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="PcSv0otR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4A421A06;
-	Wed, 17 Jan 2024 15:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705506380; cv=fail; b=ov3/j/VI1bA/ioUmtmygpK/WjCIkdRyOxoUuq2dnNQsNI9QEWqLmtIlV9en1od2LtN+qEN1i+mGS+qZvzead9hvIoW9rn2yQkX9atrOTYaD1E3k2j3KPQ7BaRvqiMSEtjM7ilwbV9WNdcTcrDRYvTQBynWZOK11TYkdXSi8SF60=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705506380; c=relaxed/simple;
-	bh=grXRl379SJehrTOAEUgpG6bChQewO/hG6N/WBHND/8M=;
-	h=ARC-Message-Signature:ARC-Authentication-Results:DKIM-Signature:
-	 Received:Received:From:To:CC:Subject:Thread-Topic:Thread-Index:
-	 Date:Message-ID:References:In-Reply-To:Accept-Language:
-	 Content-Language:X-MS-Has-Attach:X-MS-TNEF-Correlator:
-	 x-ms-publictraffictype:x-ms-traffictypediagnostic:
-	 x-ms-office365-filtering-correlation-id:
-	 x-ms-exchange-senderadcheck:x-ms-exchange-antispam-relay:
-	 x-microsoft-antispam:x-microsoft-antispam-message-info:
-	 x-forefront-antispam-report:
-	 x-ms-exchange-antispam-messagedata-chunkcount:
-	 x-ms-exchange-antispam-messagedata-0:Content-Type:
-	 Content-Transfer-Encoding:MIME-Version:X-OriginatorOrg:
-	 X-MS-Exchange-CrossTenant-AuthAs:
-	 X-MS-Exchange-CrossTenant-AuthSource:
-	 X-MS-Exchange-CrossTenant-Network-Message-Id:
-	 X-MS-Exchange-CrossTenant-originalarrivaltime:
-	 X-MS-Exchange-CrossTenant-fromentityheader:
-	 X-MS-Exchange-CrossTenant-id:X-MS-Exchange-CrossTenant-mailboxtype:
-	 X-MS-Exchange-CrossTenant-userprincipalname:
-	 X-MS-Exchange-Transport-CrossTenantHeadersStamped; b=fsnd9LjN6wm+pugSi1cON03EokDnALo1wUctZgaTEk0p/ND5miGt0KLO0NSs5pEYUfnC4md2LxB/mmL4XCbrRjXSCllP111OmtSv8zdaWiCWYROsRO5lOB666uSRxNL2HYZy+bSgZHaM9c7woPWTOpDNigY7OUkdgcSZeTY69P0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=VJ9tAyNx; arc=fail smtp.client-ip=40.107.236.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iAqpmyhRibifw+gTQsh9pXYYyM5MDMQkQ3yBfzpatdtQklM/J226AKxxLMWXvM///9W7i7tcytJo7dPduR9XkxlL+jtZ06dnbF0ZK09bdJ02VIm8WBmzapkhvT6v0jRMy8e62wj5uQilDfqFfnKeawsEDYwwvSG5nIbCoQe7yVIu5o1iL5XntHp8wDKrPAa54vBgajP5/pEElH7Czy3QkuFkJa83TI/UQFXbZINV0Sej5hA0KAuOCnnLg28eyfePWXDPbWN/Z4TxKqROkJpX8nvbzco/348dFkwxdPYJ372ZB6XiCAdsizR6NfDH58U7vxLVTlqH2lj8CVtrIysBFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A4Svi5P+z+IbrTm9D+9sExcWxUeHo6iA6Fs+IFcELBw=;
- b=CAbJFD874jqLUKL9+UshSQXi69U9obSNmJ9NLVeyfgNodmNCwcHPmuUZWk0TPB5JuBIq0fGOydzQkV8043BXn0tssp1n3ROLi5a0QvPTsUVki6D+LQPs18iTFhWipClq+T7c3K5sTWYg36M0AisLyLvmFLrsmJ0Ot3yPdL84+iJeCEo1hd6bnOcplUv25PJwFRphF08HSXQXft8o1WXOj5AxGRxZWvAVMJ6htmGsOXjJjm3mdRJZY+rKoszNLGUi9x9uGQXJDmxsjzcC4mMrmY0x19U1NW5cCIzfQzneYbIPE9sx0nfuFI1O8ts2I1DNskiUlIdGx5uhX1HffrOwsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A4Svi5P+z+IbrTm9D+9sExcWxUeHo6iA6Fs+IFcELBw=;
- b=VJ9tAyNxaNw4pls6/nD9b/9jo1aDdzoabI+66WKABILfumeBGp8SDROWdByTvwuLtyJ7zkN6Ao/iPV7cenbdYj5kOjDfqYo69IgC9llymm0xmztNFaANNgw/QH7H3aEMTR2mr5T57TYcc9aEK83adb2tY0f9KRjz7AebUpMNAOXzQ6NkdhNhliLVshW6XZgOXmHRBRw6fjzfzxsP4tjWlBT4J4O3jIf3/sj8WvWtHD2iJoHcm9G+3bc47KJQ6eOlTwDoUq7mPdqbMXojkIm1LGN2XSGerEI+26eDRSlmjMT6nc4Fgwq9YU82YATEf6ngZRpwSTg+SdDbqRfufhOI7g==
-Received: from IA0PR12MB8906.namprd12.prod.outlook.com (2603:10b6:208:481::9)
- by SA1PR12MB7198.namprd12.prod.outlook.com (2603:10b6:806:2bf::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.26; Wed, 17 Jan
- 2024 15:46:13 +0000
-Received: from IA0PR12MB8906.namprd12.prod.outlook.com
- ([fe80::c1b:dfd5:17ba:bde9]) by IA0PR12MB8906.namprd12.prod.outlook.com
- ([fe80::c1b:dfd5:17ba:bde9%7]) with mapi id 15.20.7181.020; Wed, 17 Jan 2024
- 15:46:13 +0000
-From: Petlozu Pravareshwar <petlozup@nvidia.com>
-To: Rob Herring <robh@kernel.org>
-CC: "thierry.reding@gmail.com" <thierry.reding@gmail.com>, Jonathan Hunter
-	<jonathanh@nvidia.com>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"dmitry.osipenko@collabora.com" <dmitry.osipenko@collabora.com>,
-	"ulf.hansson@linaro.org" <ulf.hansson@linaro.org>, Kartik Rajput
-	<kkartik@nvidia.com>, "cai.huoqing@linux.dev" <cai.huoqing@linux.dev>,
-	Sandipan Patra <spatra@nvidia.com>, "linux-tegra@vger.kernel.org"
-	<linux-tegra@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: RE: [PATCH 2/3] dt-bindings: tegra: pmc: Update scratch as an
- optional aperture
-Thread-Topic: [PATCH 2/3] dt-bindings: tegra: pmc: Update scratch as an
- optional aperture
-Thread-Index: AQHaQHVXi8lSHewdikO4T3WqC1nA87DQWU+AgA3dKoA=
-Date: Wed, 17 Jan 2024 15:46:13 +0000
-Message-ID:
- <IA0PR12MB8906AD9357DBB41BEDC08FA5B5722@IA0PR12MB8906.namprd12.prod.outlook.com>
-References: <20240106075134.3933491-1-petlozup@nvidia.com>
- <20240106075134.3933491-2-petlozup@nvidia.com>
- <20240108195857.GA1959040-robh@kernel.org>
-In-Reply-To: <20240108195857.GA1959040-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR12MB8906:EE_|SA1PR12MB7198:EE_
-x-ms-office365-filtering-correlation-id: 40fa9d2a-5c7b-4465-a9e4-08dc17736f6f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- GRfcCUfLBQXvKOvkd/NKQo6uTKAHkKaj/KL0bfbH5PGhKIyDg2O3hlQaChJ72nYMumlepHCuWuhshGY+av8ZQaB2/z0gAqhCLTX32BhFIABNrXBkYXQ3DD04eUxy44b7SfXkfwKoevpujPnRqPy64mZUmLvYoDvAAf6dBS9eAAjL4AMYCN0CK1gnF6oOTfI1yGTCY4HrvOdNa70434sIVZNeM1XnyZlmlx7v/kxChK5MooBgOvLblIgTg2cR4Ga4UobIazqlRBcRGzD6xmcbA7AfJPRVAJTRk8ZkzlEt9G9lI4ceUL7cTrreZxiyUmnj1F1/WqdaPAVSEOiGNoWKf8Y64U4QzkiO9X/cfkVGWof9NcwDi9ojWa8FV7YfhfoGRsPJd7kCn4beFpeUzoz3rklD/+OJJej9gucH+6y7+igbnUVa1akXEEv2m0BS0aKDEFu1PHmEVi/m0C6iEngEVJEc2qmpTiUTbyIqikdVZNzksyxcAyej15ghXgratiA7QkBdVjN1/DIzP5jzrm2bdOMzlaUlW+pdX8YVVEE0mNv+PjYc00byZ7gUNJPZghwIqgOojSXRAEjJ6pQZpWXLi2wDQC3kBCKDh6c4ps8Rpb+dtLfb+LElS87wK4ZGZa/y
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA0PR12MB8906.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(366004)(396003)(346002)(376002)(136003)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(9686003)(26005)(122000001)(52536014)(7696005)(6506007)(38100700002)(83380400001)(55016003)(71200400001)(66556008)(76116006)(66946007)(478600001)(66446008)(86362001)(6916009)(64756008)(54906003)(316002)(8676002)(8936002)(4326008)(66476007)(38070700009)(41300700001)(33656002)(5660300002)(7416002)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?EqfdjmWEWVPDRTeaPdxyRW6xoa9LnAvke/D27i7WJt67ny1Wt7xBVj+RyDUr?=
- =?us-ascii?Q?LCNIoLsPMkB4GjBKnc9vQfFqEI33QjpB3W1Ocj8pqqT6aHCq6zJoAYG2k5kk?=
- =?us-ascii?Q?H3zg7oScLb94WCmjkI+C56itd8mnegpbNzxgOIHp+FAwbT6jjBdh80DQM9e/?=
- =?us-ascii?Q?Zrxpw3PJ5KFT3xMZENpU4mvsNgRhh1stEtRp3N1b5ueZ/+bZZtanlm8Uz/QH?=
- =?us-ascii?Q?B/GBuhSc9JxTLcxHLc3oM1LQol64LBmy2N7u1WCOgTSagPW/Gj16p6K8FRd6?=
- =?us-ascii?Q?BIeZUzVfmWYtWwGR+/jCoeJMnGQzoZalBQnVpucztDiUQrQA8Zr4Y10VKafr?=
- =?us-ascii?Q?uWtxypKnzlzAmWxGstGtj8A+f+YvTcdj5P3cBk5FnP1vySUbLb0RcnlemDsT?=
- =?us-ascii?Q?+5DVRwX8JCuV5Un4WqMxX8i+qt4eJjJb2CbyvyP3cY9KFvmdFiymSTSqAFZ7?=
- =?us-ascii?Q?Sj+cRsrCyfgNqg3d9NknL8DyTKEhXPkzkx+vgo1zNE5FN3gZORSrkg9s5ffd?=
- =?us-ascii?Q?gdC1XI2cueZSFmt8CAzQBg67SSQ1XMDdliX+Zzz7XJmK6NM2vbzAO+bCs7Jc?=
- =?us-ascii?Q?SCvhw8azGkt0buRr2LmdNVy3Wk00YnDx4GZMOKx5x1l3Gd4tjV3g5dAbToFl?=
- =?us-ascii?Q?YRfkbsAobRzXYa5IEoDlhKHkJXU3p2ujHqetZLhZgaL+0LeBIFZ1n5ftxc0g?=
- =?us-ascii?Q?EKzONcQNTF+n/EuIgaLXRZR1jsrbvj375u8wxzAhOBi9Raxwfzc+hD8p4UOQ?=
- =?us-ascii?Q?SlgQEwR1e+f4hIyTQuZXTd3Mgls672GROVEVGQ5bKAdttDzSN7/EflTA2vZi?=
- =?us-ascii?Q?YN4A6sNMbilbY36mxUiMkOhfzSim/gc8f3qVotz7R0ocNxhsJfkIXsm2N7aV?=
- =?us-ascii?Q?xNKvFh8BquJOTVTFyecdrKAUSg90cQaEt0lBtRD8nK4kBLlCsK9xvuLG6yC9?=
- =?us-ascii?Q?h0hILCW28/GUGIin77q/GYPepOI1c0roYHBdjRI1Zuas3AOxEoRkwS2YE+s5?=
- =?us-ascii?Q?rGSEYJZhjK59HhUST1buGGTmAHqeuLVlSqSIy/pO8VNNylVFrH2l27T/RZ7j?=
- =?us-ascii?Q?PWKrNCELl7BmqXJhmWzRKwAbcR+26PBMBDUpy9pWPx0//FOT84bYOELmwGKh?=
- =?us-ascii?Q?0tIEaULMH+7w0PeKNS0KRqR5M5NMM+tk6XRuedozYNs8chJCosg8DCBLfeVR?=
- =?us-ascii?Q?6o1xitHsUdoNfAafZie7SBj4q0nWxmEt1Dy2DpfsEBsUhRIOjCqOWhT25jze?=
- =?us-ascii?Q?pWo8KYTgz8rYvICH7LspWF03Qt8zqhhWzYWkcw6zAtgXtp7EcuKFp0BP/UqM?=
- =?us-ascii?Q?GnGvfAgZHVzX4GdODBSNGWQ1GVvS1MMmcYR1rXJiA+7QcBdj5rTh7ar0oPFl?=
- =?us-ascii?Q?wbCwhd6+KGNSfBUyyHgOpFuxqTpk24//Xip4Vr2rS9T1hcfKCkjax0fxzt09?=
- =?us-ascii?Q?zQydvjSLgL2WLgWqNzMYs2xd7yqdzuuWMFqV7e9xGNmES2Oq/zGshovXYyyb?=
- =?us-ascii?Q?f9ZBjEBlTFEvFT58otw9n8xXDD6LZIM2BSLxMlJOCwbEmHeHI5+R4qExhdmy?=
- =?us-ascii?Q?1n09D6+xCznERFO/HE1UHJhhq3khFN3meFzBexx7?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E8321A0A;
+	Wed, 17 Jan 2024 15:53:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705506813; cv=none; b=A9/0tpIF1apruAm0b8ZTb2HW413hXBkJE6zwRy1QeicqZF89u4ShDFzVc4WpI6eII7nKZYTzeYRGgZUlbsEtHpsXzQhlZYjQnHAzvYxTmJbjdhhG1lUoZjjbdK1GVDGmnL0H61OZ4ZW0oHc1tOcs+6E9jWMdOGCXlpLB5K+SHEI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705506813; c=relaxed/simple;
+	bh=RN/TRAV+0bm5AnELjwjgmIYkKjf1u9x2nlP5hpU2ebs=;
+	h=Received:DKIM-Signature:Received:Received:Received:Received:
+	 Message-ID:Date:MIME-Version:User-Agent:Subject:To:CC:References:
+	 Content-Language:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:X-EXCLAIMER-MD-CONFIG; b=EVhH3G5SEckwbCHojO0hWFvEcw70CjI/MmwPZm1O9v9AMvYfrazyYxfEYmAXvHQO5zBNNfNxM2sVNsAT9mGQmxYYfWuws1xSx6TGVMFQedWEHuQ2exEkWQiJpqCHVjPrRcvX51pEWC2c0zG/7zibxg82CrGfCokYeUh1zDFNhME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=PcSv0otR; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40HFqhek107121;
+	Wed, 17 Jan 2024 09:52:44 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1705506764;
+	bh=UqoXHpuOsyXayN31wfG4/f1gx1ZHV/XtpeqO3uEEUxI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=PcSv0otRf22cpnWL4ex8dgpTo4kYPE2YfM2FC7uA12j/9tyFYkEgZ2AhY9W2/eqIL
+	 UCcCKSNc2rAQMq34hF8aMVsEK2gtD8n3zgq1B2X+uumQ7rbozLTXHpMAbIth4PU623
+	 ZP/avpnMlwdRxFKiL0uRf9F+iQpxHCSIF8/AviO8=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40HFqh7o004410
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 17 Jan 2024 09:52:43 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 17
+ Jan 2024 09:52:43 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 17 Jan 2024 09:52:43 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40HFqgSs087030;
+	Wed, 17 Jan 2024 09:52:42 -0600
+Message-ID: <55efd488-c6a0-4dca-baea-1fa93d13dd17@ti.com>
+Date: Wed, 17 Jan 2024 09:52:41 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB8906.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40fa9d2a-5c7b-4465-a9e4-08dc17736f6f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2024 15:46:13.7683
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RXlD5+lz1zI/uCgnOlEN1qtPeiLb4pjPjTXu0FInS8IlMJQdgrsBCa0R87SGFEQvd2vkVsZBnPZH7mzJ6JwWpQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7198
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/11] ARM: dts: DRA7xx: Add device tree entry for SGX GPU
+To: Tony Lindgren <tony@atomide.com>
+CC: Frank Binns <frank.binns@imgtec.com>,
+        Matt Coster
+	<matt.coster@imgtec.com>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Adam
+ Ford <aford173@gmail.com>,
+        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?=
+	<bcousson@baylibre.com>,
+        Nishanth Menon <nm@ti.com>, Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Paul Cercueil
+	<paul@crapouillou.net>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-sunxi@lists.linux.dev>, <linux-omap@vger.kernel.org>,
+        <linux-mips@vger.kernel.org>
+References: <20240109171950.31010-1-afd@ti.com>
+ <20240109171950.31010-9-afd@ti.com> <20240110082924.GA5185@atomide.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240110082924.GA5185@atomide.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-> On Sat, Jan 06, 2024 at 07:51:33AM +0000, Petlozu Pravareshwar wrote:
-> > Scratch address space register is used to store reboot reason. For
-> > some Tegra234 systems, the scratch space is not available to store the
-> > reboot reason. This is because scratch region on these systems is not
-> > accessible by the kernel as restricted by the Hypervisor.
-> > Such systems would delist scratch aperture from PMC DT node.
-> >
-> > Accordingly, this change makes "scratch" as an optional aperture for
-> > Tegra234 in PMC dt-binding document.
-> >
-> > Signed-off-by: Petlozu Pravareshwar <petlozup@nvidia.com>
-> > ---
-> >  .../arm/tegra/nvidia,tegra186-pmc.yaml        | 83 +++++++++++++------
-> >  1 file changed, 58 insertions(+), 25 deletions(-)
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-
-> pmc.yaml
-> > b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-
-> pmc.yaml
-> > index 0faa403f68c8..2716610a1a02 100644
-> > ---
-> > a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-
-> pmc.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-
-> pmc.
-> > +++ yaml
-> > @@ -23,12 +23,7 @@ properties:
-> >
-> >    reg-names:
-> >      minItems: 4
-> > -    items:
-> > -      - const: pmc
-> > -      - const: wake
-> > -      - const: aotag
-> > -      - const: scratch
-> > -      - const: misc
-> > +    maxItems: 5
->=20
-> You can just make the 4th entry: enum: [ scratch, misc ]
+On 1/10/24 2:29 AM, Tony Lindgren wrote:
+> * Andrew Davis <afd@ti.com> [240109 17:20]:
+>> --- a/arch/arm/boot/dts/ti/omap/dra7.dtsi
+>> +++ b/arch/arm/boot/dts/ti/omap/dra7.dtsi
+>> @@ -850,12 +850,19 @@ target-module@56000000 {
+>>   					<SYSC_IDLE_SMART>;
+>>   			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+>>   					<SYSC_IDLE_NO>,
+>> -					<SYSC_IDLE_SMART>;
+>> +					<SYSC_IDLE_SMART>,
+>> +					<SYSC_IDLE_SMART_WKUP>;
+> 
+> You probably checked this already.. But just in case, can you please
+> confirm this is intentional. The documentation lists the smart wakeup
+> capability bit as reserved for dra7, maybe the documentation is wrong.
+> 
 
-Agree. I would address this in the next patch.
-Thanks.
+It was an intentional change, although I'm not sure it is correct :)
 
->=20
-> >
-> >    interrupt-controller: true
-> >
-> > @@ -41,25 +36,63 @@ properties:
-> >      description: If present, inverts the PMU interrupt signal.
-> >      $ref: /schemas/types.yaml#/definitions/flag
-> >
-> > -if:
-> > -  properties:
-> > -    compatible:
-> > -      contains:
-> > -        const: nvidia,tegra186-pmc
-> > -then:
-> > -  properties:
-> > -    reg:
-> > -      maxItems: 4
-> > -
-> > -    reg-names:
-> > -      maxItems: 4
-> > -else:
-> > -  properties:
-> > -    reg:
-> > -      minItems: 5
-> > -
-> > -    reg-names:
-> > -      minItems: 5
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: nvidia,tegra186-pmc
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          maxItems: 4
-> > +        reg-names:
-> > +          items:
-> > +            - const: pmc
-> > +            - const: wake
-> > +            - const: aotag
-> > +            - const: scratch
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: nvidia,tegra194-pmc
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          minItems: 5
-> > +        reg-names:
-> > +          items:
-> > +            - const: pmc
-> > +            - const: wake
-> > +            - const: aotag
-> > +            - const: scratch
-> > +            - const: misc
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: nvidia,tegra234-pmc
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          minItems: 4
-> > +          maxItems: 5
-> > +        reg-names:
-> > +          anyOf:
-> > +           - items:
-> > +               - const: pmc
-> > +               - const: wake
-> > +               - const: aotag
-> > +               - const: misc
-> > +           - items:
-> > +               - const: pmc
-> > +               - const: wake
-> > +               - const: aotag
-> > +               - const: scratch
-> > +               - const: misc
-> >
-> >  patternProperties:
-> >    "^[a-z0-9]+-[a-z0-9]+$":
-> > --
-> > 2.17.1
-> >
+This is how we had it in our "evil vendor tree" for years (back when it
+was hwmod based), so when converting these nodes to use "ti,sysc" I noticed
+this bit was set, but as you point out the documentation disagrees.
+
+I'd rather go with what has worked before, but it doesn't seem to
+break anything either way, so we could also break this change out into
+its own patch if you would prefer.
+
+Andrew
+
+> Regards,
+> 
+> Tony
+> 
 
