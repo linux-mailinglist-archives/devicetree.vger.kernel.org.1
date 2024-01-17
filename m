@@ -1,155 +1,359 @@
-Return-Path: <devicetree+bounces-32855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE0B830D32
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:16:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 026ED830D52
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:38:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83A021C20FC1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:16:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DF9C281A63
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D505B249E0;
-	Wed, 17 Jan 2024 19:16:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="r6ve5zD7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 242E3249EA;
+	Wed, 17 Jan 2024 19:38:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79E612421C
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 19:16:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F71A1E877;
+	Wed, 17 Jan 2024 19:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705518987; cv=none; b=ORxpuRNxqVI5ygFX0Pd64RsemfvPmxBCmaj6rXOQCjMpubDjoINBjVAXmdyODuSPChuWyjmnFkgAVl68xfA8JH2lAucbQU8m6fWpLStT5+E2dQWgreYlTcT1s2YnbPpGCeAGHOZD1UmWRoUFCoy7cX8pibW2/ZjOQ5JKAUw1DDA=
+	t=1705520332; cv=none; b=gG7dE7pTB29Nh7+jq1h42q/L9EXLXxix8iI9P4Oc7HGFZgBDk9qBxsKZbIGqaTOnvW7t7sB0XD/gyiWdwiEKiw5NilZTkg7GIu1uI8aR1QSgBIyiQLgjqsAkLfR0gDzP6YM9CYfVUyR4s24YlGaq/83/8XwbnREWR2bAiq2oRP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705518987; c=relaxed/simple;
-	bh=onTL7TdnsjCvGHXrMKju4hSwOmvPGySD2hbEt0TfeAk=;
-	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
-	 Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Autocrypt:Content-Type:Content-Transfer-Encoding:User-Agent:
-	 MIME-Version; b=pDP7XQglq1m+ZyZQ3EfeLU6zR33MXrG9x6sPsO8qObBfA4mPHpgUwJHClqAg+caLYerWzS3RlCtdqVvk6fmOe1aKc/yKfHhrbh3GIX/mYafhIQX8rYFA6Lf2yIALLzTs4aHUdFrUnjOuI6WsVPYmc4kb6kdT8CbGNbe2KTTGrHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=r6ve5zD7; arc=none smtp.client-ip=209.85.222.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
-Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-78339210979so703600585a.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 11:16:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1705518985; x=1706123785; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:cc:to:from:subject:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ogRg9OKr3TtBbn27PlJROK+uQ9hsjKmTfDTYT7Icesk=;
-        b=r6ve5zD7XL5lGTrFPgUoYMrgUUsSu46MDsPFnbxGIUbhBKTeKucgvcZoDNm5EGquxD
-         e5WZn+tgw0v0gHy1F3u+eIR7SUVHxXpcxvSgOBcesiazMT7MpZEmRvahJNFyXw139Yl1
-         wpln0KIj9+gjPVPMPOiITGViltvWEKmUM5dmmwHSvX02O+/Z0DCUdykP+aYOXH+fURUE
-         tuHfGE8xmELy77KFNSXyvFcwaKMu8Skd1jVVDg6SZCELA3/iSQd6Metl/3SDf3zW0IKO
-         By59lQtbAUHL+U6xDFZi7CKnmWgBFseW6+MJURIV42aylBAX/qYuzan0PBw/QCdjzllP
-         u/SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705518985; x=1706123785;
-        h=mime-version:user-agent:content-transfer-encoding:autocrypt
-         :references:in-reply-to:date:cc:to:from:subject:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ogRg9OKr3TtBbn27PlJROK+uQ9hsjKmTfDTYT7Icesk=;
-        b=EVq5oi+Qs9ktRrI3u5QpDzWK5qvKe43QxhUbAIIvvvOl4Bmcq2x2CUON99rUD2du5U
-         KkTALM0OUZRAbpaAwFwaR+cvBmPi1CkdhPNDawHX1d2/8IdRS8zE8O76f9NejV4rBWyn
-         y3Y2PAQbhPl8ETpNh+d1lKkly0uvG3JnQdqct5zdQcBx6mZ+QogC69EEwguJ9Ry2TRTP
-         QZmeny0y9WrNX4gr0Ff+ItQmRjxXQDVCGYxV1BcClXPa/q5dNWeFfwiUe1UGi/1MS3kQ
-         cz1RaR8lpJXr6tbYrVnoHC/Ps8+i5jJpnqRZwg4lGSem5wTCk8gzL/H7/Q4lxSSPFkDz
-         xd3Q==
-X-Gm-Message-State: AOJu0Yxu2nbsmcKL9O1TjtTmM4B/KVh4Dei+TUC69mahfpL50/sNFDNy
-	8MO8ud345EQoXgg73glK5TQ+Q3BPps0M7Q==
-X-Google-Smtp-Source: AGHT+IExD4ARxCYdtDNLXXKK3wVBqruhp2TE7y6AV1ldpW1kqPOB4yyOE9by3LE6Xo8IHL6TwnwP5g==
-X-Received: by 2002:a05:620a:4551:b0:783:3423:c76d with SMTP id u17-20020a05620a455100b007833423c76dmr12230144qkp.1.1705518985398;
-        Wed, 17 Jan 2024 11:16:25 -0800 (PST)
-Received: from nicolas-tpx395.localdomain ([2606:6d00:11:3354::7a9])
-        by smtp.gmail.com with ESMTPSA id w9-20020a05620a148900b0078322355fb7sm4715898qkj.20.2024.01.17.11.16.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jan 2024 11:16:25 -0800 (PST)
-Message-ID: <5490507acc121113e52a8cdddb155fddf6dbb374.camel@ndufresne.ca>
-Subject: Re: [PATCH v3 0/2] [v3]Add hantro g1 video decoder support for
- RK3588
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Jianfeng Liu <liujianfeng1994@gmail.com>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, heiko@sntech.de, 
-	ezequiel@vanguardiasur.com.ar, p.zabel@pengutronix.de, mchehab@kernel.org
-Cc: sfr@canb.auug.org.au, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- sigmaris@gmail.com,  knaerzche@gmail.com, Ezequiel Garcia
- <elezegarcia@gmail.com>
-Date: Wed, 17 Jan 2024 14:16:24 -0500
-In-Reply-To: <20231231151112.3994194-1-liujianfeng1994@gmail.com>
-References: <20231231151112.3994194-1-liujianfeng1994@gmail.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual; keydata=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
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+	s=arc-20240116; t=1705520332; c=relaxed/simple;
+	bh=qQ2aC4nPMxreqaxf3HfplVIIaem0J4U9g997mzbSJjk=;
+	h=Received:Received:Date:From:To:Cc:Subject:Message-ID:References:
+	 MIME-Version:Content-Type:Content-Disposition:In-Reply-To; b=QPKi+JSRPVty+5qVA53iHTEuJEha3GPV7hqXOHxZKH6ogrNXxTinGpn6QQfKhl7nCwfKxOGK4YFZlK+dJS0Oxay5AJ+FCI6AS+lysuHLpILtIrUKUXWd7nxb92Xw4Ttr75f7rfSzhPAqaG2aUDMTKoN4Dm1OH1xPRcFvOMoIIP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 889F111FB;
+	Wed, 17 Jan 2024 11:39:34 -0800 (PST)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2C77F3F766;
+	Wed, 17 Jan 2024 11:38:46 -0800 (PST)
+Date: Wed, 17 Jan 2024 19:38:44 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <ZagsxLBw3eZCpafI@pluto>
+References: <20240104-pinctrl-scmi-v2-0-a9bd86ab5a84@nxp.com>
+ <20240104-pinctrl-scmi-v2-3-a9bd86ab5a84@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240104-pinctrl-scmi-v2-3-a9bd86ab5a84@nxp.com>
 
-Le dimanche 31 d=C3=A9cembre 2023 =C3=A0 23:11 +0800, Jianfeng Liu a =C3=A9=
-crit=C2=A0:
-> This is the v3 version of this series adding hantro g1 video decoder
-> support for rk3588.
->=20
-> RK3588 has Hantro G1 video decoder known as VDPU121 in TRM of RK3588 whic=
-h
-> is capable to decode MPEG2/H.264/VP8 up to 1920x1088. This vpu ip is also
-> found in RK3568.
+On Thu, Jan 04, 2024 at 06:48:47PM +0800, Peng Fan (OSS) wrote:
+> From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+> 
+> Add basic implementation of the SCMI v3.2 pincontrol protocol.
 
-The only concern I have is that we rejected enabling this VPU on RK3399, si=
-nce
-having two H.264 decoders was confusing userspace softwares at the time, ca=
-using
-the slow one to be picked sometimes. I know the selection is not fully
-implemented in GStreamer either, not sure for LibreELEC ffmpeg fork, Chromi=
-um or
-Cros-codec.
+Hi Peng,
 
-Of course, its not a problem now, but only when someone provides an rkvdec2
-driver that enables the much more capable HW decoder. Shall we hold on H.26=
-4
-mainline for now ?
+a few minor remarks below but this LGTM, and in my testing I could not
+find any issue/misbehaviour at the protocol layer (i.e. stressing pinctrl_ops)
 
-Nicolas
+In general, can we stick to 80cols ? since it is how the SCMI stack is
+currently formatted and this patch introduced just few minor lomng lines
+that can be easily wrapped by moving a few params (or return types) on a
+new line....
 
->=20
-> Test results from fluster can be found from thread of v2[1][2].
->=20
-> [1] https://lore.kernel.org/all/CAAXNxMT3f68-ptM7Crhrfmn7iwTyJc9pwz4Beob+=
-5beVODaSHQ@mail.gmail.com
-> [2] https://lore.kernel.org/all/20231230153159.3748580-1-liujianfeng1994@=
-gmail.com
->=20
->=20
-> Changes in v3:
->  - Drop code in hantro_drv.c because hantro g1 vpu in rk3588 is compatibl=
-e
-> with the one in rk3568, only adding devicetree node should work.
->  - Change devicetree node name to video-codec@fdb50000 to match the reg
-> address.
->  - Add dt-bindings rockchip,rk3588-vpu compatible with rockchip,rk3568-vp=
-u
->  - Link to v2: https://lore.kernel.org/all/20231228131617.3411561-1-liuji=
-anfeng1994@gmail.com
->=20
-> Jianfeng Liu (2):
->   arm64: dts: rockchip: Add Hantro G1 VPU support for RK3588
->   dt-bindings: media: rockchip-vpu: Add rk3588 vpu compatible string
->=20
->  .../bindings/media/rockchip-vpu.yaml          |  3 +++
->  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 20 +++++++++++++++++++
->  2 files changed, 23 insertions(+)
->=20
+...but only when this does not render the thing unreadable of course, I
+mean just in the obvious places where it is just a matter of hitting a
+Return :D
 
+> 
+> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> Co-developed-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+
+[nitpick]: I have a silly spelling mistakes on email from checkpatch
+
+CHECK: From:/Signed-off-by: email comments mismatch: 'From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>' != 'Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+
+> ---
+>  MAINTAINERS                           |   6 +
+>  drivers/firmware/arm_scmi/Makefile    |   1 +
+>  drivers/firmware/arm_scmi/driver.c    |   2 +
+>  drivers/firmware/arm_scmi/pinctrl.c   | 930 ++++++++++++++++++++++++++++++++++
+>  drivers/firmware/arm_scmi/protocols.h |   1 +
+>  include/linux/scmi_protocol.h         |  73 +++
+>  6 files changed, 1013 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 0275a2c58f0f..487bff0d44c0 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21322,6 +21322,12 @@ F:	include/linux/sc[mp]i_protocol.h
+>  F:	include/trace/events/scmi.h
+>  F:	include/uapi/linux/virtio_scmi.h
+>  
+> +SYSTEM CONTROL MANAGEMENT INTERFACE (SCMI) PINCTRL DRIVER
+> +M:	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> +L:	linux-arm-kernel@lists.infradead.org
+> +S:	Maintained
+> +F:	drivers/firmware/arm_scmi/pinctrl.c
+> +
+
+I've got to check this with Sudeep since giving exclusive maintainership
+of this bit could lead to troubles if the assigned maintainer becomes
+unresponsive, and it seems this is already the case indeed even before
+this thing is merged. Oleksii and EPAM will anyway maintain authorship
+in any case; I'll check with Sudeep, as said.
+
+>  SYSTEM RESET/SHUTDOWN DRIVERS
+>  M:	Sebastian Reichel <sre@kernel.org>
+>  L:	linux-pm@vger.kernel.org
+> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
+> index a7bc4796519c..8e3874ff1544 100644
+> --- a/drivers/firmware/arm_scmi/Makefile
+> +++ b/drivers/firmware/arm_scmi/Makefile
+> @@ -11,6 +11,7 @@ scmi-transport-$(CONFIG_ARM_SCMI_HAVE_MSG) += msg.o
+>  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_VIRTIO) += virtio.o
+>  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) += optee.o
+>  scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o
+> +scmi-protocols-y += pinctrl.o
+>  scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
+>  
+>  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
+> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
+> index a12afc254afa..4c3752749105 100644
+> --- a/drivers/firmware/arm_scmi/driver.c
+> +++ b/drivers/firmware/arm_scmi/driver.c
+> @@ -3050,6 +3050,7 @@ static int __init scmi_driver_init(void)
+>  	scmi_voltage_register();
+>  	scmi_system_register();
+>  	scmi_powercap_register();
+> +	scmi_pinctrl_register();
+>  
+>  	return platform_driver_register(&scmi_driver);
+>  }
+> @@ -3067,6 +3068,7 @@ static void __exit scmi_driver_exit(void)
+>  	scmi_voltage_unregister();
+>  	scmi_system_unregister();
+>  	scmi_powercap_unregister();
+> +	scmi_pinctrl_unregister();
+>  
+>  	scmi_transports_exit();
+>  
+> diff --git a/drivers/firmware/arm_scmi/pinctrl.c b/drivers/firmware/arm_scmi/pinctrl.c
+> new file mode 100644
+> index 000000000000..aa6e698e7b7c
+> --- /dev/null
+> +++ b/drivers/firmware/arm_scmi/pinctrl.c
+> @@ -0,0 +1,930 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * System Control and Management Interface (SCMI) Pinctrl Protocol
+> + *
+> + * Copyright (C) 2023 EPAM
+
+2023-2024
+
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/scmi_protocol.h>
+> +#include <linux/slab.h>
+> +
+> +#include "common.h"
+> +#include "protocols.h"
+> +
+> +/* Updated only after ALL the mandatory features for that version are merged */
+> +#define SCMI_PROTOCOL_SUPPORTED_VERSION                0x40000
+
+Why 0x40000, this should be 0x10000 I think looking at SCMI Pinctrl on v3.2-bet3,
+BUT there are still other missing (minor) features as of now related to v3.2-bet3
+(that impacts on all protocols like NEGOTIATE_PROTOCOL) and I will add those missing
+feats in the SCMI core shortly in the upcoming weeks.
+
+So, for the moment I would set this to 0x0, and I will bump it up to 0x10000
+when the still missing v3.2-bet3 features are all in, because if not we would
+be lying here saying that we now support Pinctrl 0x10000, while instead
+something is still missing.
+
+> +
+> +#define REG_TYPE_BITS GENMASK(9, 8)
+> +#define REG_CONFIG GENMASK(7, 0)
+> +
+> +#define GET_GROUPS_NR(x)	le32_get_bits((x), GENMASK(31, 16))
+> +#define GET_PINS_NR(x)		le32_get_bits((x), GENMASK(15, 0))
+> +#define GET_FUNCTIONS_NR(x)	le32_get_bits((x), GENMASK(15, 0))
+> +
+> +#define EXT_NAME_FLAG(x)	le32_get_bits((x), BIT(31))
+> +#define NUM_ELEMS(x)		le32_get_bits((x), GENMASK(15, 0))
+> +
+> +#define REMAINING(x)		le32_get_bits((x), GENMASK(31, 16))
+> +#define RETURNED(x)		le32_get_bits((x), GENMASK(11, 0))
+
+[snip]
+
+> +
+> +static int scmi_pinctrl_config_get_all(const struct scmi_protocol_handle *ph,
+> +				       u32 selector,
+> +				       enum scmi_pinctrl_selector_type type,
+> +				       u16 size, u8 *config_types,
+> +				       u32 *config_values)
+
+This function is a bit odd, since you provide a pair of arrays and their
+size to fetch all the results BUT there is no way, agfter the call, to know how
+many valid results have been filled in the array, so it is a bit difficult
+to use properly (given also that 0/0 is a valid config/val pair), BUT on the
+other side I cannot see this being called from anywhere as of now, so I think
+it can be left as it is and maybe will fix in the future when needed.
+
+Another option could be to drop it, but it worked fine anyway when tested, and
+needs only a minor fix (as said above) so I would keep even though unused.
+
+Up to you. No strong opinion since it does not misbehave anyway, it is
+just awkward a bit...
+
+> +{
+> +	int ret;
+> +	void *iter;
+> +	struct scmi_iterator_ops ops = {
+> +		.prepare_message = iter_pinctrl_conf_get_prepare_message,
+> +		.update_state = iter_pinctrl_conf_get_update_state,
+> +		.process_response = iter_pinctrl_conf_get_process_response,
+> +	};
+> +	struct scmi_conf_get_ipriv ipriv = {
+> +		.selector = selector,
+> +		.type = type,
+> +		.all = 1,
+> +		.config_types = config_types,
+> +		.config_values = config_values,
+> +	};
+> +
+> +	if (!config_values || !config_types || type == FUNCTION_TYPE)
+> +		return -EINVAL;
+> +
+> +	ret = scmi_pinctrl_validate_id(ph, selector, type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	iter = ph->hops->iter_response_init(ph, &ops, size, PINCTRL_CONFIG_GET,
+> +					    sizeof(struct scmi_msg_conf_get),
+> +					    &ipriv);
+> +
+> +	if (IS_ERR(iter))
+> +		return PTR_ERR(iter);
+> +
+> +	return ph->hops->iter_response_run(iter);
+> +}
+
+[snip]
+
+>  DECLARE_SCMI_REGISTER_UNREGISTER(reset);
+>  DECLARE_SCMI_REGISTER_UNREGISTER(sensors);
+> diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
+> index f2f05fb42d28..d8e2bb828ee7 100644
+> --- a/include/linux/scmi_protocol.h
+> +++ b/include/linux/scmi_protocol.h
+> @@ -717,6 +717,78 @@ struct scmi_powercap_proto_ops {
+>  					  u32 *power_thresh_high);
+>  };
+>  
+> +enum scmi_pinctrl_selector_type {
+> +	PIN_TYPE = 0,
+> +	GROUP_TYPE,
+> +	FUNCTION_TYPE,
+> +};
+> +
+> +/**
+> + * struct scmi_pinctrl_proto_ops - represents the various operations provided
+> + * by SCMI Pinctrl Protocol
+> + *
+> + * @count_get: returns count of the registered elements in given type
+> + * @name_get: returns name by index of given type
+> + * @group_pins_get: returns the set of pins, assigned to the specified group
+> + * @function_groups_get: returns the set of groups, assigned to the specified
+> + *	function
+> + * @mux_set: set muxing function for groups of pins
+> + * @config_get: returns configuration parameter for pin or group
+> + * @config_set: sets the configuration parameter for pin or group
+> + * @pin_request: aquire pin before selecting mux setting
+> + * @pin_free: frees pin, acquired by request_pin call
+> + */
+> +struct scmi_pinctrl_proto_ops {
+> +	int (*count_get)(const struct scmi_protocol_handle *ph,
+> +			 enum scmi_pinctrl_selector_type type);
+> +	int (*name_get)(const struct scmi_protocol_handle *ph, u32 selector,
+> +			enum scmi_pinctrl_selector_type type, const char **name);
+> +	int (*group_pins_get)(const struct scmi_protocol_handle *ph, u32 selector,
+> +			      const unsigned int **pins, unsigned int *nr_pins);
+> +	int (*function_groups_get)(const struct scmi_protocol_handle *ph, u32 selector,
+> +				   unsigned int *nr_groups, const unsigned int **groups);
+> +	int (*mux_set)(const struct scmi_protocol_handle *ph, u32 selector, u32 group);
+> +	int (*config_get)(const struct scmi_protocol_handle *ph, u32 selector,
+> +			  enum scmi_pinctrl_selector_type type,
+> +			  u8 config_type, u32 *config_value);
+> +	int (*config_get_all)(const struct scmi_protocol_handle *ph,
+> +			      u32 selector,
+> +			      enum scmi_pinctrl_selector_type type, u16 size,
+> +			      u8 *config_types, u32 *config_values);
+> +	int (*config_set)(const struct scmi_protocol_handle *ph, u32 selector,
+> +			  enum scmi_pinctrl_selector_type type,
+> +			  unsigned int nr_configs,
+> +			  u8 *config_type, u32 *config_value);
+> +	int (*pin_request)(const struct scmi_protocol_handle *ph, u32 pin);
+> +	int (*pin_free)(const struct scmi_protocol_handle *ph, u32 pin);
+> +};
+> +
+> +enum scmi_pinctrl_conf_type {
+> +	SCMI_PIN_NONE = 0x0,
+> +	SCMI_PIN_BIAS_BUS_HOLD = 0x1,
+> +	SCMI_PIN_BIAS_DISABLE = 0x2,
+> +	SCMI_PIN_BIAS_HIGH_IMPEDANCE = 0x3,
+> +	SCMI_PIN_BIAS_PULL_UP = 0x4,
+> +	SCMI_PIN_BIAS_PULL_DEFAULT = 0x5,
+> +	SCMI_PIN_BIAS_PULL_DOWN = 0x6,
+> +	SCMI_PIN_DRIVE_OPEN_DRAIN = 0x7,
+> +	SCMI_PIN_DRIVE_OPEN_SOURCE = 0x8,
+> +	SCMI_PIN_DRIVE_PUSH_PULL = 0x9,
+> +	SCMI_PIN_DRIVE_STRENGTH = 0xA,
+> +	SCMI_PIN_INPUT_DEBOUNCE = 0xB,
+> +	SCMI_PIN_INPUT_MODE = 0xC,
+> +	SCMI_PIN_PULL_MODE = 0xD,
+> +	SCMI_PIN_INPUT_VALUE = 0xE,
+> +	SCMI_PIN_INPUT_SCHMITT = 0xF,
+> +	SCMI_PIN_LOW_POWER_MODE = 0x10,
+> +	SCMI_PIN_OUTPUT_MODE = 0x11,
+> +	SCMI_PIN_OUTPUT_VALUE = 0x12,
+> +	SCMI_PIN_POWER_SOURCE = 0x13,
+> +	SCMI_PIN_SLEW_RATE = 0x20,
+> +	SCMI_PIN_OEM_START = 0xC0,
+> +	SCMI_PIN_OEM_END = 0xFF,
+> +};
+
+Can you move this enum above the pinctrl_proto_ops for consistency?
+
+Maybe use it in the ops prototype as the type of config_type param or
+is there a reason to stick with u8 config_type even having the enum ?
+We anyway place a u32 in the message at the end, so it does not seem
+any gain in size.
+
+Thanks,
+Cristian
 
