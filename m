@@ -1,215 +1,187 @@
-Return-Path: <devicetree+bounces-32714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 483308303E6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:48:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4048303ED
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:52:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FE9A1C24AA6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:48:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25495B214B6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:52:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DCC19BA2;
-	Wed, 17 Jan 2024 10:48:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UoCTlZAU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B33E14AA5;
+	Wed, 17 Jan 2024 10:52:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705BE1428D;
-	Wed, 17 Jan 2024 10:48:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF85C1BF31
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705488500; cv=none; b=mPTiNvp0qJweJMbP2XsNc6srFfdV1Gs0VoB6cOg6qQr4vXoX5I5AIlvJZm7AGfMhytWhUcEO4o7MRP0v9CzNJBQtWXlBilZ/YJtS6jJrtXoCWOws+uOgPGrinL0Wbg/twwbm7GACiV099IsAuDe6C+6SGTiywV6gwUhOKDLCnS8=
+	t=1705488724; cv=none; b=Ymuqbu0sNzJqYZUutm4+63BeW63bkULSzSoEjAl3vw4p0j1HI18YCfhF83PJPkENLLiuF9BKWDug7iQT0iCQenTZq7n7qRcgevTM4tAXVxZR6Y6TWA6bRIAFkSAEImoGra0fKrh1UUygpRXm1LzNd2X8swn5zlmDdJBX4YBvaJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705488500; c=relaxed/simple;
-	bh=IRtIPKrPrnPgK7udAFy1ECVgEAhcxlGb0ZzxkDNZeqk=;
-	h=Received:DKIM-Signature:Received:Received:Received:Received:
-	 Message-ID:Date:MIME-Version:User-Agent:CC:Subject:To:References:
-	 Content-Language:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:X-EXCLAIMER-MD-CONFIG; b=EBBHC6bKh3D+kK0X58mZ4+i3lDtBzCbZDqtFD1v2RjYi/g0aVzjORF7jRB1OOcqogM+h+IyhqzoIHVgsj3bhq/GyhmKlcj5YeDMDkNtaTfNJuGPq50hKXstdQ+3Z3RVllTpS4pieq4r3ei/N5Nmudm3MF2hsR4QZ/NMf0Djbdrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UoCTlZAU; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40HAm5aI094593;
-	Wed, 17 Jan 2024 04:48:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1705488485;
-	bh=a9repfQha27ojMZqc1rUcTlZNTIRH7v52A6zYo+wIZE=;
-	h=Date:CC:Subject:To:References:From:In-Reply-To;
-	b=UoCTlZAUXcHhs+tNI1IRq810MUigORiqpXNxg9UbCNzMh4iNTLjr6h9kRgwTDB8uV
-	 DXt+4c8ADDZ8K72aNV0O5Ea+TUsUIJSI5KPAyhztByS/2sa6CCVB1jCn1M6Am0PURu
-	 2kqchHsgc2I+MtWSqNMqBRNaq5mCbwNUZx9KpoLo=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40HAm5vN046838
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 17 Jan 2024 04:48:05 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 17
- Jan 2024 04:48:04 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 17 Jan 2024 04:48:04 -0600
-Received: from [172.24.227.9] (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40HAm0pQ061384;
-	Wed, 17 Jan 2024 04:48:01 -0600
-Message-ID: <a25ea57b-4529-4a4c-9e0b-ccd85b0457d6@ti.com>
-Date: Wed, 17 Jan 2024 16:17:59 +0530
+	s=arc-20240116; t=1705488724; c=relaxed/simple;
+	bh=wxx/RVt1Ce8dhvHdZDzLvR+TT/ZDvDGUMmcgCbwsodA=;
+	h=Received:Received:Received:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To:X-SA-Exim-Connect-IP:X-SA-Exim-Mail-From:
+	 X-SA-Exim-Scanned:X-PTX-Original-Recipient; b=g3DCbWCf7bUdrKkunZDS23ux41OABMtTOqfFTOb9OqVbLHh7HQILg7UP/JjJ0F9oxqhC5CDPZU50zieMShCslQAh0rfxkt14WvYSdq+sTjGuIk9EDWPU8vfVKyT0j/6iCTXvnQbmE2NDEUjN/JT49gsjZKcwtUJsKKfHDwQ2Uvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rQ3WT-0000Z4-Vr; Wed, 17 Jan 2024 11:51:53 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rQ3WS-000RZ9-OT; Wed, 17 Jan 2024 11:51:52 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rQ3WS-001dbj-28;
+	Wed, 17 Jan 2024 11:51:52 +0100
+Date: Wed, 17 Jan 2024 11:51:52 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH v4 2/6] dt-bindings: pwm: amlogic: add new compatible for
+ meson8 pwm type
+Message-ID: <b3a5r4gti67zic6egpwnede7niakn54ewfpmxg4ojm6ye2qopx@rke57jcyuveg>
+References: <20231222111658.832167-1-jbrunet@baylibre.com>
+ <20231222111658.832167-3-jbrunet@baylibre.com>
+ <4rdb2be2bfzak3s4uaizthcdcdwdrxnx4kr2sgn527hvsie3pb@gfqciim7yryz>
+ <1jfrywxnu5.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-CC: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
-        <afd@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: ti,j721e-pci-*: Fix check for
- num-lanes
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240117102526.557006-1-s-vadapalli@ti.com>
- <20240117102526.557006-2-s-vadapalli@ti.com>
- <28fd561a-7c13-48dc-9995-230dc758f257@linaro.org>
-Content-Language: en-US
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <28fd561a-7c13-48dc-9995-230dc758f257@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3bhlfpvugwaqjoz5"
+Content-Disposition: inline
+In-Reply-To: <1jfrywxnu5.fsf@starbuckisacylon.baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hello Krzysztof,
 
-On 17/01/24 16:04, Krzysztof Kozlowski wrote:
-> On 17/01/2024 11:25, Siddharth Vadapalli wrote:
->> The existing implementation for validating the "num-lanes" property
->> based on the compatible(s) doesn't enforce it. Fix it by updating the
->> checks to handle both single-compatible and multi-compatible cases.
->>
->> Fixes: b3ba0f6e82cb ("dt-bindings: PCI: ti,j721e-pci-*: Add checks for num-lanes")
->> Fixes: adc14d44d7cb ("dt-bindings: PCI: ti,j721e-pci-*: Add j784s4-pci-* compatible strings")
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> ---
->>  .../bindings/pci/ti,j721e-pci-ep.yaml         | 26 ++++++++++++++-----
->>  .../bindings/pci/ti,j721e-pci-host.yaml       | 26 ++++++++++++++-----
->>  2 files changed, 38 insertions(+), 14 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
->> index 97f2579ea908..278e0892f8ac 100644
->> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
->> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
->> @@ -68,8 +68,9 @@ allOf:
->>    - if:
->>        properties:
->>          compatible:
-> 
-> Missing contains:, instead of your change.
+--3bhlfpvugwaqjoz5
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I did try the "contains" approach before determining that the implementation in
-this patch is more suitable. Please consider the following:
+Hello Jerome,
 
-For AM64 SoC the primary compatible is "ti,am64-pcie-ep" and fallback compatible
-is "ti,j721e-pcie-ep". For J7200 SoC the primary compatible is
-"ti,j7200-pcie-ep" while the fallback compatible is again "ti,j721e-pcie-ep".
+On Wed, Jan 17, 2024 at 11:16:31AM +0100, Jerome Brunet wrote:
+> On Wed 17 Jan 2024 at 10:58, Uwe Kleine-K=F6nig <u.kleine-koenig@pengutro=
+nix.de> wrote:
+> > [[PGP Signed Part:Undecided]]
+> > Hello,
+> >
+> > On Fri, Dec 22, 2023 at 12:16:50PM +0100, Jerome Brunet wrote:
+> >> diff --git a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml b/=
+Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> >> index a1d382aacb82..eece390114a3 100644
+> >> --- a/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> >> +++ b/Documentation/devicetree/bindings/pwm/pwm-amlogic.yaml
+> >> @@ -21,23 +21,35 @@ properties:
+> >>            - amlogic,meson-g12a-ee-pwm
+> >>            - amlogic,meson-g12a-ao-pwm-ab
+> >>            - amlogic,meson-g12a-ao-pwm-cd
+> >> -          - amlogic,meson-s4-pwm
 
-Therefore, the device-tree nodes for AM64 and J7200 look like:
+Either I still didn't grasp all the details of this change, or removing
+amlogic,meson-s4-pwm in this commit is wrong.
 
-AM64:
-    compatible = "ti,am64-pcie-ep", "ti,j721e-pcie-ep";
-    ...
-    num-lanes = 1;
+> >> +        deprecated: true
+> >>        - items:
+> >>            - const: amlogic,meson-gx-pwm
+> >>            - const: amlogic,meson-gxbb-pwm
+> >> +        deprecated: true
+> >>        - items:
+> >>            - const: amlogic,meson-gx-ao-pwm
+> >>            - const: amlogic,meson-gxbb-ao-pwm
+> >> +        deprecated: true
+> >>        - items:
+> >>            - const: amlogic,meson8-pwm
+> >>            - const: amlogic,meson8b-pwm
+> >> +        deprecated: true
+> >
+> > I think deprecating the old binding and adding a new compatible should
+> > be done in two commits.
+>=20
+> Hi Uwe,
+>=20
+> There was the same comment on v3 and Krzysztof said it should be done
+> like this:
+>=20
+> https://lore.kernel.org/linux-pwm/e127dcef-3149-443a-9a8c-d24ef4054f09@li=
+naro.org
+>=20
+> I tend to agree with Krzysztof on this but, as I previously said,
+> I don't really mind one way or the other. Just have to pick one.
 
-J7200:
-    compatible = "ti,j7200-pcie-ep", "ti,j721e-pcie-ep";
-    ...
-    num-lanes = 4;
+Ah, so the machines that used amlogic,meson-g12a-ee-pwm before are
+supposed to use amlogic,meson-g12-pwm-v2 now. With that understood I
+agree to you and Krzysztof.
 
-This implies that when the check for "num-lanes" is performed on the device-tree
-node for PCIe in J7200, the fallback compatible of "ti,j721e-pcie-ep" within the
-AM64's "compatible: contains:" check will match the schema and it will check the
-existing "num-lanes" being described as "const: 1" against the value in J7200's
-PCIe node resulting in a warning. Therefore, using "contains" will result in
-errors if the check has to be performed for device-tree nodes with fallback
-compatibles. The "items" based approach I have used in this patch ensures that
-the schema matches *only* when both the primary and fallback compatible are
-present in the device-tree node.
+I wonder if me not understanding that is a sign that the commit log
+isn't optimal (or if it's only that I didn't properly read it :-).
+Now that I understood the change better, the commit log is
+understandable, but maybe still make it a bit more explicit that it
+introduces a new way to formalize already supported hardware. Something
+like:
 
-> 
->> -          enum:
->> -            - ti,am64-pcie-ep
->> +          items:
->> +            - const: ti,am64-pcie-ep
->> +            - const: ti,j721e-pcie-ep
-> 
->>      then:
->>        properties:
->>          num-lanes:
->> @@ -78,9 +79,9 @@ allOf:
->>    - if:
->>        properties:
->>          compatible:
->> -          enum:
->> -            - ti,j7200-pcie-ep
->> -            - ti,j721e-pcie-ep
->> +          items:
->> +            - const: ti,j7200-pcie-ep
->> +            - const: ti,j721e-pcie-ep
-> 
-> "Ditto
+	dt-bindings: pwm: amlogic: Add a new binding for meson8 pwm types
 
-Same explanation as above.
+	The binding that is used up to now describe which input the PWM
+	channel multiplexer should pick among its possible parents,
+	which are hardcoded in the driver. This isn't a good binding in
+	the sense that it should describe hardware but not usage.
 
-> 
->>      then:
->>        properties:
->>          num-lanes:
->> @@ -90,8 +91,19 @@ allOf:
->>    - if:
->>        properties:
->>          compatible:
->> -          enum:
->> -            - ti,j784s4-pcie-ep
->> +          items:
->> +            - const: ti,j721e-pcie-ep
->> +    then:
->> +      properties:
->> +        num-lanes:
->> +          minimum: 1
->> +          maximum: 4
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          items:
->> +            - const: ti,j784s4-pcie-ep
-> 
-> Why? Previous code was correct.
+	Add a new binding deprecating the old one that uses clocks in a
+	better way and how clocks are usually used today: The list of
+	clocks describe the inputs of the PWM block as they are realised
+	in hardware.
 
-Though I used "patience diff", for some reason the addition of
-"ti,j721e-pcie-ep" in the check has been treated as the removal of
-"ti,j784s4-pcie-ep" first followed by adding the same later for generating the
-diff in this patch. The diff above is equivalent to the addition of:
+	So deprecate the old bindings and introduce a compatible per SoC
+	family to replace these.
 
-  - if:
-      properties:
-        compatible:
-          items:
-            - const: ti,j721e-pcie-ep
-    then:
-      properties:
-        num-lanes:
-          minimum: 1
-          maximum: 4
+I think I'd understand that better, but that might be because I wrote
+it and it's subjective?
 
--- 
-Regards,
-Siddharth.
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--3bhlfpvugwaqjoz5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWnsUcACgkQj4D7WH0S
+/k5jBgf+K4/2nlwNuhl98wP3lhKs9noKvnoecmlxEqzV+HowMVaRvasoTYxpWZst
+F0kE3hWQF654JB/Whvdb9NVMJHUIfvuok6egBVBC7VKtGKR8sUUUD1vc0CnxV1OE
+tosScnl0r/zPXyFWU6xYPzFHVrnndxBwjvneScCkA8W1hx8eLG3B8pFHFTjsxvOg
+gQtlS46eDfnJ9llQDl1N2iZHdOdfAXqFegZB2RCHmIorS1z86x53Wci/tFvYLH6F
+e6Jn0Nwrf6EPHzQK2FCQZOa9BwFJDZ6NiivNXMSzp4RgCSmNEySOlc4XVBoF4Sh7
+hbnETJ5us1luELfbF4oSg2Y3H8c3Vw==
+=iYzS
+-----END PGP SIGNATURE-----
+
+--3bhlfpvugwaqjoz5--
 
