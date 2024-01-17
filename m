@@ -1,122 +1,142 @@
-Return-Path: <devicetree+bounces-32827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1EFC830C02
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:35:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 448E8830C2A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:41:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 674F11F25B51
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:35:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D487B1F21751
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:41:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23A022615;
-	Wed, 17 Jan 2024 17:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE422263A;
+	Wed, 17 Jan 2024 17:41:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t3wrGeyY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sBevjfMZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95DC22EE0;
-	Wed, 17 Jan 2024 17:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F8222636;
+	Wed, 17 Jan 2024 17:41:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705512918; cv=none; b=IF3FKi+nmdxw178KaLaMuHixoOT8miYVPWnPULZ2o1LJJLtPrAOmrLgVXX0ne4RUvP384J4j7NoX33Vg9WYM7IKhtd28dfScnNhEcBC7Zwp+RgTkXgcj/CrOhcsL0EBwFnQZFPRwRIPAsbKOj+H6CJyUGVbvkF8PL18UB8uYvME=
+	t=1705513277; cv=none; b=i9v6W4pFuy9GGoR7wsfonwnyQDTBhiezlnTvfpUEk1gkbDCVnqslPcf9j1zd/dSAfVhxDfjRQyLzjkdKUgrvJ9bnK8ig39UJwEVpTtiaaaXQSjSnb/mnd7HpMJyKX8ZO5jNqoQZbyoQSwynBqEAuUomNpoftNsekhVISY8cVLzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705512918; c=relaxed/simple;
-	bh=oIWaEsBOlnYHV6T9/6T59q/lnvj4NY3Q1KQGCYH6eYM=;
-	h=Received:DKIM-Signature:Date:Content-Type:
-	 Content-Transfer-Encoding:MIME-Version:From:To:Cc:In-Reply-To:
-	 References:Message-Id:Subject; b=QLF47m0PQ4GLTwJR2J+BAc1dL2C4NZT6m4NJxdGzEh3SdEX8XAIGVKveabG1ElUZvhjuQKUq/tAjY5iUlPzmfkYDdB/KyZWT2F/PoEVBMTMvUVMobEBfFVENw6J4NsOfsMzm8RZjYaZxe+ntUrtWeJC20tDPjyCCQqoPeZFAeKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t3wrGeyY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7A33C433F1;
-	Wed, 17 Jan 2024 17:35:17 +0000 (UTC)
+	s=arc-20240116; t=1705513277; c=relaxed/simple;
+	bh=oMyiDD+Iv9PCZrZI/1gZAt5oqiBycCP8w9pHbV1lWu4=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=PMS3JKNnFYHfb2sZqv6mqdYH8/AjDA9cjUJjUW7HdDjffxC1fXGT+ZPmwsyntJulvkezwz32rs+FEJyrWn9ZuG7Ot11Vq542odLt904cFRtQtoUSHTtndV4XpHrY4TNrQhOtVv7X67Mjq5/rzXREYHn7ZlwNeD6OZ2KvJxFvEsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sBevjfMZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42424C433F1;
+	Wed, 17 Jan 2024 17:41:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705512918;
-	bh=oIWaEsBOlnYHV6T9/6T59q/lnvj4NY3Q1KQGCYH6eYM=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=t3wrGeyYRRSq+Y3cDmSao3YDe/9WSlonS30jRL+IuZsHyTgbn3ZsShXLdXqhabmIw
-	 /XWvp0VT6gM+Bv1zKwwf2wi9Z4e3DyaOKSYdbul3rpWyZJ+4XGFyBMldwgOAEUzo/Y
-	 z7en4KjdO7JIlipgWCOcYsF7Xl0QZBjffAhbLblXSOyWMuG8bieHYPoPC4z//YkfrL
-	 zxAR0z4ELZD6UxZnXiA1gsOWJjPsUGxNRFS+EX1XalkFYd+WqNd9ez75hy1Lf1Z/ea
-	 qAfFdF2Ev9JSlHuwqTPATWlZ3a8p54yrgexRMIb06ELYWGlaoasRQ+b2H68k5Iszn7
-	 JOqIrju7sXu+A==
-Date: Wed, 17 Jan 2024 11:35:16 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1705513276;
+	bh=oMyiDD+Iv9PCZrZI/1gZAt5oqiBycCP8w9pHbV1lWu4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sBevjfMZJTsk0Z3N2eXC9xsiFZfpBm+jywM0ZqHd+H8ixc7g1WKJjwuH6xtzFfBD2
+	 J/2kI0FLLvGFJZN4w8D6tmXCEt4L5wRmZio7hi+UHK1KJfw/mRDpDl7HjqPpnf4RU8
+	 rqMCyz93kzjJHrIZ6uBDtVnNNvb5d0THqQ/RUACMVD+C0WgEmm8rYEyfKMeGoVowR8
+	 p1/w87TVGdRe5AEc1BSDEQn6sv5oXKeQeodwLxz0UzRKhdNjjCtXYfuLpL1qjXbRLk
+	 xD1bt4pTdG61tolFQUqZjEDIqew5YSFbsSGrjl2HSQMbWLPWwKsm4WGRqvZoskDOwi
+	 /d5zpsGQIe1hQ==
+Date: Wed, 17 Jan 2024 11:41:14 -0600
+From: Rob Herring <robh@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>, linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev, linux-um@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com,
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/6] of: Create of_root if no dtb provided by firmware
+Message-ID: <20240117174114.GA2779523-robh@kernel.org>
+References: <20240112200750.4062441-1-sboyd@kernel.org>
+ <20240112200750.4062441-5-sboyd@kernel.org>
+ <20240115203230.GA1439771-robh@kernel.org>
+ <cdaadf62222a705cda198dd96dc7c73d.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Diogo Ivo <diogo.ivo@siemens.com>
-Cc: conor+dt@kernel.org, danishanwar@ti.com, rogerq@kernel.org, 
- devicetree@vger.kernel.org, davem@davemloft.net, kuba@kernel.org, 
- robh+dt@kernel.org, netdev@vger.kernel.org, 
- Jan Kiszka <jan.kiszka@siemens.com>, pabeni@redhat.com, 
- krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, 
- edumazet@google.com
-In-Reply-To: <20240117161602.153233-2-diogo.ivo@siemens.com>
-References: <20240117161602.153233-1-diogo.ivo@siemens.com>
- <20240117161602.153233-2-diogo.ivo@siemens.com>
-Message-Id: <170551291581.2805121.8074468578390457247.robh@kernel.org>
-Subject: Re: [PATCH v2 1/8] dt-bindings: net: Add support for AM65x SR1.0
- in ICSSG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cdaadf62222a705cda198dd96dc7c73d.sboyd@kernel.org>
 
-
-On Wed, 17 Jan 2024 16:14:55 +0000, Diogo Ivo wrote:
-> Silicon Revision 1.0 of the AM65x came with a slightly different ICSSG
-> support: Only 2 PRUs per slice are available and instead 2 additional
-> DMA channels are used for management purposes. We have no restrictions
-> on specified PRUs, but the DMA channels need to be adjusted.
+On Tue, Jan 16, 2024 at 05:18:15PM -0800, Stephen Boyd wrote:
+> Quoting Rob Herring (2024-01-15 12:32:30)
+> > On Fri, Jan 12, 2024 at 12:07:47PM -0800, Stephen Boyd wrote:
+> > > diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> > > index da9826accb1b..9628e48baa15 100644
+> > > --- a/drivers/of/Kconfig
+> > > +++ b/drivers/of/Kconfig
+> > > @@ -54,9 +54,14 @@ config OF_FLATTREE
+> > >       select CRC32
+> > >  
+> > >  config OF_EARLY_FLATTREE
+> > > -     bool
+> > > +     bool "Functions for accessing Flat Devicetree (FDT) early in boot"
+> > 
+> > I think we could instead just get rid of this kconfig option. Or 
+> > always enable with CONFIG_OF (except on Sparc). The only cost of 
+> > enabling it is init section functions which get freed anyways.
 > 
-> Co-developed-by: Jan Kiszka <jan.kiszka@siemens.com>
-> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
-> Signed-off-by: Diogo Ivo <diogo.ivo@siemens.com>
-> ---
-> Changes in v2:
->  - Removed explicit reference to SR2.0
->  - Moved sr1 to the SoC name
->  - Expand dma-names list and adjust min/maxItems depending on SR1.0/2.0
+> Getting rid of it is a more massive change. It can be the default and
+> kept hidden instead? If it can't be selected on Sparc then it should be
+> hidden there anyway.
+
+The easier option is certainly fine for this series. I just don't want 
+it visible.
+
+> > >       select DMA_DECLARE_COHERENT if HAS_DMA && HAS_IOMEM
+> > >       select OF_FLATTREE
+> > > +     help
+> > > +       Normally selected by platforms that process an FDT that has been
+> > > +       passed to the kernel by the bootloader.  If the bootloader does not
+> > > +       pass an FDT to the kernel and you need an empty devicetree that
+> > > +       contains only a root node to exist, then say Y here.
+> > >  
+> > >  config OF_PROMTREE
+> > >       bool
+> [...]
+> > > @@ -195,6 +191,17 @@ static inline int of_node_check_flag(const struct device_node *n, unsigned long
+> > >       return test_bit(flag, &n->_flags);
+> > >  }
+> > >  
+> > > +/**
+> > > + * of_have_populated_dt() - Has DT been populated by bootloader
+> > > + *
+> > > + * Return: True if a DTB has been populated by the bootloader and it isn't the
+> > > + * empty builtin one. False otherwise.
+> > > + */
+> > > +static inline bool of_have_populated_dt(void)
+> > > +{
+> > > +     return of_root != NULL && !of_node_check_flag(of_root, OF_EMPTY_ROOT);
+> > 
+> > Just a side comment, but I think many/all callers of this function could 
+> > just be removed.
+> > 
+> > I don't love new flags. Another possible way to handle this would be 
+> > checking for "compatible" being present in the root node. I guess this 
+> > is fine as-is for now at least.
 > 
->  .../bindings/net/ti,icssg-prueth.yaml         | 29 ++++++++++++++++---
->  1 file changed, 25 insertions(+), 4 deletions(-)
-> 
+> Ok. I can add a check for a compatible property. That's probably better
+> anyway. Should there be a compatible property there to signal that this
+> DT isn't compatible with anything? I worry about DT overlays injecting a
+> compatible string into the root node, but maybe that is already
+> prevented.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I worry about DT overlays injecting anything...
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml:137:1: [error] duplication of key "allOf" in mapping (key-duplicates)
+I don't think it is explicitly forbidden, but I have asked that any 
+general purpose interface to apply overlays be restricted to nodes 
+explicitly allowed (e.g. downstream of a connector node). For now, the 
+places (i.e. drivers) overlays are applied are limited.
 
-dtschema/dtc warnings/errors:
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/ti,icssg-prueth.example.dts'
-Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml:137:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/ti,icssg-prueth.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml:137:1: found duplicate key "allOf" with value "[]" (original value: "[]")
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml: ignoring, error parsing file
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1424: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+We could probably restrict the root node to new nodes only and no new 
+or changed properties.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240117161602.153233-2-diogo.ivo@siemens.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Rob
 
