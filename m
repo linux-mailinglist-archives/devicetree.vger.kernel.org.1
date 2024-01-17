@@ -1,359 +1,339 @@
-Return-Path: <devicetree+bounces-32856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026ED830D52
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:38:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB12830D58
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 20:39:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DF9C281A63
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:38:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBB4B1F21679
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 242E3249EA;
-	Wed, 17 Jan 2024 19:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE5B249F0;
+	Wed, 17 Jan 2024 19:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A5RrOCHq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F71A1E877;
-	Wed, 17 Jan 2024 19:38:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4999024200;
+	Wed, 17 Jan 2024 19:39:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705520332; cv=none; b=gG7dE7pTB29Nh7+jq1h42q/L9EXLXxix8iI9P4Oc7HGFZgBDk9qBxsKZbIGqaTOnvW7t7sB0XD/gyiWdwiEKiw5NilZTkg7GIu1uI8aR1QSgBIyiQLgjqsAkLfR0gDzP6YM9CYfVUyR4s24YlGaq/83/8XwbnREWR2bAiq2oRP8=
+	t=1705520373; cv=none; b=aBaaqjt7X2H/t9AzkP2bTzVnzwiJ/d87OhRt45Nc7MoFyeeUhZ0FpXgkKZnepAyk1qWMj32TFkqcnfXje9eP2+IRabnvSxJsRgUGukLbsmok3U/LbX8SENrR5FqCMIrHuMvUlO2fvcIwkJ4xZUSSCMazJlSeXya07ezp7UiRUBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705520332; c=relaxed/simple;
-	bh=qQ2aC4nPMxreqaxf3HfplVIIaem0J4U9g997mzbSJjk=;
-	h=Received:Received:Date:From:To:Cc:Subject:Message-ID:References:
-	 MIME-Version:Content-Type:Content-Disposition:In-Reply-To; b=QPKi+JSRPVty+5qVA53iHTEuJEha3GPV7hqXOHxZKH6ogrNXxTinGpn6QQfKhl7nCwfKxOGK4YFZlK+dJS0Oxay5AJ+FCI6AS+lysuHLpILtIrUKUXWd7nxb92Xw4Ttr75f7rfSzhPAqaG2aUDMTKoN4Dm1OH1xPRcFvOMoIIP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 889F111FB;
-	Wed, 17 Jan 2024 11:39:34 -0800 (PST)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2C77F3F766;
-	Wed, 17 Jan 2024 11:38:46 -0800 (PST)
-Date: Wed, 17 Jan 2024 19:38:44 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v2 3/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <ZagsxLBw3eZCpafI@pluto>
-References: <20240104-pinctrl-scmi-v2-0-a9bd86ab5a84@nxp.com>
- <20240104-pinctrl-scmi-v2-3-a9bd86ab5a84@nxp.com>
+	s=arc-20240116; t=1705520373; c=relaxed/simple;
+	bh=xUW41l+F6yt3WPTcJFmF0WlaMMfrGbYszW2gpGLTF7c=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
+	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
+	 To:Cc:References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding; b=MNLEzl73a6xofdvX88jOZW0OPQomJ+vwAoi/OnQw0YIwJHr2Rx3Sr1YEkZY7ItshZxRzqNCfw4rFHVAfCkiqYY2ZWFQkbw7WONwRfHIa9Jbe7ZdL2FCwhjgjAHgaYByWMKab4FThRbe0B8xC59gDG0e4SukC6NM54I50HgwP2gk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A5RrOCHq; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40e86a9fc4bso20710575e9.2;
+        Wed, 17 Jan 2024 11:39:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705520369; x=1706125169; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QeuTafQX40/bhE79jlyyxN484RLluokaSda2KNrJ6KI=;
+        b=A5RrOCHqwbhK1AVWjGXTAZruAEXNsic6HA4NbDW9qbxr2arqlruaTzbYaf/HJFI5PW
+         iazMMoxeUwYldJauBXtXSnapYe+Ha2G/8jxjyII9/EF4IoT/HOJXZI6/Lew5uIWqyLBK
+         lI0njmR4Iv7RlfwH7NQi2UtWnAuR5WlrTTu5NLRw7GSUMut5xhtEk+z5RgbnSFtmEsDo
+         gy1ri7SyF+Zb5HUV66KBmpEzU9BC91nZogtC/zpvsfRW97or0bI4nSlkkOH9LerrQPEW
+         OM8eGw2+WvxEXeCEG8IBi7wbPOjB9k+FprT6kB03aUx5t+9oCLRTuhE4QSELxP8UaN9W
+         qudw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705520369; x=1706125169;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QeuTafQX40/bhE79jlyyxN484RLluokaSda2KNrJ6KI=;
+        b=q6Kkt8vXWqpXSuBhRSzbxsfKCSGUPUg7NEnmxDzQpw4Jy549ljoeWOYqXlXveOvebM
+         f9oMZ2Ts0v2f7fNI6MALVa+aQBA44UUGs/qh8e+G9AOYR0Dncm7sLeBwQCVvL5bkphXz
+         SrFOnzncwfGMTlW9nxjbuk0G1qORxmA95YvwBT3s0YGq46GoiozFokwS8uwGuodniI3S
+         x+Pb9Woybsx6OxJYE3tlYxpQI1A5IysHgaHySC0bG/ubJZSj45SLKVZ0TXwmfKOsrh+j
+         zTWcqOly4+9PAV+G0i63++Zyv8q1Qby+//uhBBZOay/by4IBoc7NwTuyihMM7fwLoTWS
+         e11g==
+X-Gm-Message-State: AOJu0YxmHi9K2HdAaYVylU85TAKoL4TEURo1GRLsYtNy0q1nLI0CBWmy
+	OgUpuP/yhqVJRYQSva24MHc=
+X-Google-Smtp-Source: AGHT+IGQ/vgsgMyVvJJZEFczZQRj1bkOBQgeDCIkSAsQdn9ihyhpR1zcD1iO3JBmHov+nZGsYZZC1Q==
+X-Received: by 2002:a05:600c:1392:b0:40e:479d:ce47 with SMTP id u18-20020a05600c139200b0040e479dce47mr4893168wmf.181.1705520369096;
+        Wed, 17 Jan 2024 11:39:29 -0800 (PST)
+Received: from [192.168.0.3] ([69.6.8.124])
+        by smtp.gmail.com with ESMTPSA id y8-20020a5d4ac8000000b00337af95c1d2sm2325448wrs.14.2024.01.17.11.39.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Jan 2024 11:39:28 -0800 (PST)
+Message-ID: <c81af808-d836-4054-b596-4a53b05f4c78@gmail.com>
+Date: Wed, 17 Jan 2024 21:39:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240104-pinctrl-scmi-v2-3-a9bd86ab5a84@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next PATCH RFC v3 1/8] dt-bindings: net: document ethernet
+ PHY package nodes
+Content-Language: en-US
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Robert Marko <robert.marko@sartura.hr>, Andrew Lunn <andrew@lunn.ch>,
+ Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Luo Jie <quic_luoj@quicinc.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20231126015346.25208-1-ansuelsmth@gmail.com>
+ <20231126015346.25208-2-ansuelsmth@gmail.com>
+ <0926ea46-1ce4-4118-a04c-b6badc0b9e15@gmail.com>
+ <659aedb1.df0a0220.35691.1853@mx.google.com>
+ <0f4ec2ff-4ef7-4667-adef-d065cfbc0a91@gmail.com>
+ <65a7210f.df0a0220.d10b2.1162@mx.google.com>
+From: Sergey Ryazanov <ryazanov.s.a@gmail.com>
+In-Reply-To: <65a7210f.df0a0220.d10b2.1162@mx.google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 04, 2024 at 06:48:47PM +0800, Peng Fan (OSS) wrote:
-> From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+Hi Christian,
+
+On 17.01.2024 02:36, Christian Marangi wrote:
+> On Sun, Jan 07, 2024 at 11:49:12PM +0200, Sergey Ryazanov wrote:
+>> Hi Christian,
+>>
+>> On 07.01.2024 20:30, Christian Marangi wrote:
+>>> On Sun, Jan 07, 2024 at 08:00:33PM +0200, Sergey Ryazanov wrote:
+>>>> On 26.11.2023 03:53, Christian Marangi wrote:
+>>>>> Document ethernet PHY package nodes used to describe PHY shipped in
+>>>>> bundle of 4-5 PHY. The special node describe a container of PHY that
+>>>>> share common properties. This is a generic schema and PHY package
+>>>>> should create specialized version with the required additional shared
+>>>>> properties.
+>>>>>
+>>>>> Example are PHY package that have some regs only in one PHY of the
+>>>>> package and will affect every other PHY in the package, for example
+>>>>> related to PHY interface mode calibration or global PHY mode selection.
+>>>>>
+>>>>> The PHY package node MUST declare the base address used by the PHY driver
+>>>>> for global configuration by calculating the offsets of the global PHY
+>>>>> based on the base address of the PHY package and declare the
+>>>>> "ethrnet-phy-package" compatible.
+>>>>>
+>>>>> Each reg of the PHY defined in the PHY package node is absolute and will
+>>>>> reference the real address of the PHY on the bus.
+>>>>>
+>>>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>>>>> ---
+>>>>>     .../bindings/net/ethernet-phy-package.yaml    | 75 +++++++++++++++++++
+>>>>>     1 file changed, 75 insertions(+)
+>>>>>     create mode 100644 Documentation/devicetree/bindings/net/ethernet-phy-package.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy-package.yaml b/Documentation/devicetree/bindings/net/ethernet-phy-package.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..244d4bc29164
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/net/ethernet-phy-package.yaml
+>>>>> @@ -0,0 +1,75 @@
+>>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/net/ethernet-phy-package.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Ethernet PHY Package Common Properties
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Christian Marangi <ansuelsmth@gmail.com>
+>>>>> +
+>>>>> +description:
+>>>>> +  This schema describe PHY package as simple container for
+>>>>> +  a bundle of PHYs that share the same properties and
+>>>>> +  contains the PHYs of the package themself.
+>>>>> +
+>>>>> +  Each reg of the PHYs defined in the PHY package node is
+>>>>> +  absolute and describe the real address of the PHY on the bus.
+>>>>> +
+>>>>> +properties:
+>>>>> +  $nodename:
+>>>>> +    pattern: "^ethernet-phy-package(@[a-f0-9]+)?$"
+>>>>> +
+>>>>> +  compatible:
+>>>>> +    const: ethernet-phy-package
+>>>>> +
+>>>>> +  reg:
+>>>>> +    minimum: 0
+>>>>> +    maximum: 31
+>>>>> +    description:
+>>>>> +      The base ID number for the PHY package.
+>>>>> +      Commonly the ID of the first PHY in the PHY package.
+>>>>> +
+>>>>> +      Some PHY in the PHY package might be not defined but
+>>>>> +      still exist on the device (just not attached to anything).
+>>>>> +      The reg defined in the PHY package node might differ and
+>>>>> +      the related PHY might be not defined.
+>>>>> +
+>>>>> +  '#address-cells':
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  '#size-cells':
+>>>>> +    const: 0
+>>>>> +
+>>>>> +patternProperties:
+>>>>> +  ^ethernet-phy(@[a-f0-9]+)?$:
+>>>>> +    $ref: ethernet-phy.yaml#
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +
+>>>>> +additionalProperties: true
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    mdio {
+>>>>> +        #address-cells = <1>;
+>>>>> +        #size-cells = <0>;
+>>>>> +
+>>>>> +        ethernet-phy-package@16 {
+>>>>> +            #address-cells = <1>;
+>>>>> +            #size-cells = <0>;
+>>>>> +            compatible = "ethernet-phy-package";
+>>>>> +            reg = <0x16>;
+>>>>> +
+>>>>> +            ethernet-phy@16 {
+>>>>> +              reg = <0x16>;
+>>>>> +            };
+>>>>> +
+>>>>> +            phy4: ethernet-phy@1a {
+>>>>> +              reg = <0x1a>;
+>>>>> +            };
+>>>>> +        };
+>>>>> +    };
+>>>>
+>>>> So, we ended up on a design where we use the predefined compatible string
+>>>> 'ethernet-phy-package' to recognize a phy package inside the
+>>>> of_mdiobus_register() function. During the V1 discussion, Vladimir came up
+>>>> with the idea of 'ranges' property usage [1]. Can we use 'ranges' to
+>>>> recognize a phy package in of_mdiobus_register()? IMHO this will give us a
+>>>> clear DT solution. I mean 'ranges' clearly indicates that child nodes are in
+>>>> the same address range as the parent node. Also we can list all child
+>>>> addresses in 'reg' to mark them occupied.
+>>>>
+>>>>     mdio {
+>>>>       ...
+>>>>
+>>>>       ethernet-phy-package@16 {
+>>>>         compatible = "qcom,qca8075";
+>>>>         reg = <0x16>, <0x17>, <0x18>, <0x19>, <0x1a>;
+>>>>         ranges;
+>>>>         ...
+>>>>
+>>>>         ethernet-phy@16 {
+>>>>           reg = <0x16>;
+>>>>         };
+>>>>
+>>>>         ethernet-phy@1a {
+>>>>           reg = <0x1a>;
+>>>>         };
+>>>>       };
+>>>>     };
+>>>>
+>>>> Did you find some issues with the 'ranges' conception?
+>>>
+>>> Nope it's ok but it might pose some confusion with the idea that the
+>>> very first element MUST be THE STARTING ADDR of the PHY package. (people
+>>> might think that it's just the list of the PHYs in the package and
+>>> remove the hardware unconnected ones... but that would be fault of who
+>>> write the DT anyway.)
+>>
+>> Make sense. I do not insist on addresses listing. Mainly I'm thinking of a
+>> proper way to show that child nodes are accessible directly on the parent
+>> bus, and introducing the special compatibility string, while we already have
+>> the 'ranges' property.
+>>
+>> But it's good to know Rob's opinion on whether it is conceptually right to
+>> use 'ranges' here.
+>>
 > 
-> Add basic implementation of the SCMI v3.2 pincontrol protocol.
-
-Hi Peng,
-
-a few minor remarks below but this LGTM, and in my testing I could not
-find any issue/misbehaviour at the protocol layer (i.e. stressing pinctrl_ops)
-
-In general, can we stick to 80cols ? since it is how the SCMI stack is
-currently formatted and this patch introduced just few minor lomng lines
-that can be easily wrapped by moving a few params (or return types) on a
-new line....
-
-...but only when this does not render the thing unreadable of course, I
-mean just in the obvious places where it is just a matter of hitting a
-Return :D
-
+> I wonder if something like this might make sense... Thing is that with
+> the ranges property we would have the define the address in the PHY
+> Package node as offsets...
 > 
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> Co-developed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-
-[nitpick]: I have a silly spelling mistakes on email from checkpatch
-
-CHECK: From:/Signed-off-by: email comments mismatch: 'From: Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>' != 'Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-
-> ---
->  MAINTAINERS                           |   6 +
->  drivers/firmware/arm_scmi/Makefile    |   1 +
->  drivers/firmware/arm_scmi/driver.c    |   2 +
->  drivers/firmware/arm_scmi/pinctrl.c   | 930 ++++++++++++++++++++++++++++++++++
->  drivers/firmware/arm_scmi/protocols.h |   1 +
->  include/linux/scmi_protocol.h         |  73 +++
->  6 files changed, 1013 insertions(+)
+> An example would be
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 0275a2c58f0f..487bff0d44c0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -21322,6 +21322,12 @@ F:	include/linux/sc[mp]i_protocol.h
->  F:	include/trace/events/scmi.h
->  F:	include/uapi/linux/virtio_scmi.h
->  
-> +SYSTEM CONTROL MANAGEMENT INTERFACE (SCMI) PINCTRL DRIVER
-> +M:	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> +L:	linux-arm-kernel@lists.infradead.org
-> +S:	Maintained
-> +F:	drivers/firmware/arm_scmi/pinctrl.c
-> +
+>      mdio {
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> 
+>          ethernet-phy-package@10 {
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+>              compatible = "qcom,qca807x-package";
+>              reg = <0x10>;
+>              ranges = <0x0 0x10 0x5>;
+> 
+>              qcom,package-mode = "qsgmii";
+> 
+>              ethernet-phy@0 {
+>                  reg = <0>;
+> 
+>                  leds {
+> 
+> 		...
+> 
+> With a PHY Package at 0x10, that span 5 address and the child starts at
+> 0x0 offset.
+> 
+> This way we would be very precise on describing the amount of address
+> used by the PHY Package without having to define the PHY not actually
+> connected.
+> 
+> PHY needs to be at an offset to make sense of the ranges first element
+> property (0x0). With a non offset way we would have to have something
+> like
+> 
+> ranges = <0x10 0x10 0x5>;
+> 
+> With the child and tha parent always matching.
+> 
+> (this is easy to handle in the parsing and probe as we will just
+> calculate the real address based on the base address of the PHY package
+> + offset)
 
-I've got to check this with Sudeep since giving exclusive maintainership
-of this bit could lead to troubles if the assigned maintainer becomes
-unresponsive, and it seems this is already the case indeed even before
-this thing is merged. Oleksii and EPAM will anyway maintain authorship
-in any case; I'll check with Sudeep, as said.
+On one hand it makes sense and looks useful for software development. On 
+another, it looks like a violation of the main DT designing rule, when 
+DT should be used to describe that hardware properties, which can not be 
+learnt from other sources.
 
->  SYSTEM RESET/SHUTDOWN DRIVERS
->  M:	Sebastian Reichel <sre@kernel.org>
->  L:	linux-pm@vger.kernel.org
-> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
-> index a7bc4796519c..8e3874ff1544 100644
-> --- a/drivers/firmware/arm_scmi/Makefile
-> +++ b/drivers/firmware/arm_scmi/Makefile
-> @@ -11,6 +11,7 @@ scmi-transport-$(CONFIG_ARM_SCMI_HAVE_MSG) += msg.o
->  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_VIRTIO) += virtio.o
->  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) += optee.o
->  scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o
-> +scmi-protocols-y += pinctrl.o
->  scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
->  
->  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
-> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-> index a12afc254afa..4c3752749105 100644
-> --- a/drivers/firmware/arm_scmi/driver.c
-> +++ b/drivers/firmware/arm_scmi/driver.c
-> @@ -3050,6 +3050,7 @@ static int __init scmi_driver_init(void)
->  	scmi_voltage_register();
->  	scmi_system_register();
->  	scmi_powercap_register();
-> +	scmi_pinctrl_register();
->  
->  	return platform_driver_register(&scmi_driver);
->  }
-> @@ -3067,6 +3068,7 @@ static void __exit scmi_driver_exit(void)
->  	scmi_voltage_unregister();
->  	scmi_system_unregister();
->  	scmi_powercap_unregister();
-> +	scmi_pinctrl_unregister();
->  
->  	scmi_transports_exit();
->  
-> diff --git a/drivers/firmware/arm_scmi/pinctrl.c b/drivers/firmware/arm_scmi/pinctrl.c
-> new file mode 100644
-> index 000000000000..aa6e698e7b7c
-> --- /dev/null
-> +++ b/drivers/firmware/arm_scmi/pinctrl.c
-> @@ -0,0 +1,930 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * System Control and Management Interface (SCMI) Pinctrl Protocol
-> + *
-> + * Copyright (C) 2023 EPAM
+As far as I understand this specific chip, each of embedded PHYs has its 
+own MDIO bus address and not an offset from a main common address. 
+Correct me please, if I am got it wrong.
 
-2023-2024
+> I hope Rob can give more feedback about this, is this what you were
+> thinking with the usage of ranges property?
+> 
+> (this has also the bonus point of introducing some validation in the PHY
+> core code to make sure the right amount of PHY are defined in the
+> package by checking if the number of PHY doesn't exceed the value set in
+> ranges.)
 
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/slab.h>
-> +
-> +#include "common.h"
-> +#include "protocols.h"
-> +
-> +/* Updated only after ALL the mandatory features for that version are merged */
-> +#define SCMI_PROTOCOL_SUPPORTED_VERSION                0x40000
+Yep, I am also would like to hear some clarification from Rob regarding 
+acceptable 'range' property usage and may be some advice on how to 
+specify the size of occupied addresses. Rob?
 
-Why 0x40000, this should be 0x10000 I think looking at SCMI Pinctrl on v3.2-bet3,
-BUT there are still other missing (minor) features as of now related to v3.2-bet3
-(that impacts on all protocols like NEGOTIATE_PROTOCOL) and I will add those missing
-feats in the SCMI core shortly in the upcoming weeks.
-
-So, for the moment I would set this to 0x0, and I will bump it up to 0x10000
-when the still missing v3.2-bet3 features are all in, because if not we would
-be lying here saying that we now support Pinctrl 0x10000, while instead
-something is still missing.
-
-> +
-> +#define REG_TYPE_BITS GENMASK(9, 8)
-> +#define REG_CONFIG GENMASK(7, 0)
-> +
-> +#define GET_GROUPS_NR(x)	le32_get_bits((x), GENMASK(31, 16))
-> +#define GET_PINS_NR(x)		le32_get_bits((x), GENMASK(15, 0))
-> +#define GET_FUNCTIONS_NR(x)	le32_get_bits((x), GENMASK(15, 0))
-> +
-> +#define EXT_NAME_FLAG(x)	le32_get_bits((x), BIT(31))
-> +#define NUM_ELEMS(x)		le32_get_bits((x), GENMASK(15, 0))
-> +
-> +#define REMAINING(x)		le32_get_bits((x), GENMASK(31, 16))
-> +#define RETURNED(x)		le32_get_bits((x), GENMASK(11, 0))
-
-[snip]
-
-> +
-> +static int scmi_pinctrl_config_get_all(const struct scmi_protocol_handle *ph,
-> +				       u32 selector,
-> +				       enum scmi_pinctrl_selector_type type,
-> +				       u16 size, u8 *config_types,
-> +				       u32 *config_values)
-
-This function is a bit odd, since you provide a pair of arrays and their
-size to fetch all the results BUT there is no way, agfter the call, to know how
-many valid results have been filled in the array, so it is a bit difficult
-to use properly (given also that 0/0 is a valid config/val pair), BUT on the
-other side I cannot see this being called from anywhere as of now, so I think
-it can be left as it is and maybe will fix in the future when needed.
-
-Another option could be to drop it, but it worked fine anyway when tested, and
-needs only a minor fix (as said above) so I would keep even though unused.
-
-Up to you. No strong opinion since it does not misbehave anyway, it is
-just awkward a bit...
-
-> +{
-> +	int ret;
-> +	void *iter;
-> +	struct scmi_iterator_ops ops = {
-> +		.prepare_message = iter_pinctrl_conf_get_prepare_message,
-> +		.update_state = iter_pinctrl_conf_get_update_state,
-> +		.process_response = iter_pinctrl_conf_get_process_response,
-> +	};
-> +	struct scmi_conf_get_ipriv ipriv = {
-> +		.selector = selector,
-> +		.type = type,
-> +		.all = 1,
-> +		.config_types = config_types,
-> +		.config_values = config_values,
-> +	};
-> +
-> +	if (!config_values || !config_types || type == FUNCTION_TYPE)
-> +		return -EINVAL;
-> +
-> +	ret = scmi_pinctrl_validate_id(ph, selector, type);
-> +	if (ret)
-> +		return ret;
-> +
-> +	iter = ph->hops->iter_response_init(ph, &ops, size, PINCTRL_CONFIG_GET,
-> +					    sizeof(struct scmi_msg_conf_get),
-> +					    &ipriv);
-> +
-> +	if (IS_ERR(iter))
-> +		return PTR_ERR(iter);
-> +
-> +	return ph->hops->iter_response_run(iter);
-> +}
-
-[snip]
-
->  DECLARE_SCMI_REGISTER_UNREGISTER(reset);
->  DECLARE_SCMI_REGISTER_UNREGISTER(sensors);
-> diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
-> index f2f05fb42d28..d8e2bb828ee7 100644
-> --- a/include/linux/scmi_protocol.h
-> +++ b/include/linux/scmi_protocol.h
-> @@ -717,6 +717,78 @@ struct scmi_powercap_proto_ops {
->  					  u32 *power_thresh_high);
->  };
->  
-> +enum scmi_pinctrl_selector_type {
-> +	PIN_TYPE = 0,
-> +	GROUP_TYPE,
-> +	FUNCTION_TYPE,
-> +};
-> +
-> +/**
-> + * struct scmi_pinctrl_proto_ops - represents the various operations provided
-> + * by SCMI Pinctrl Protocol
-> + *
-> + * @count_get: returns count of the registered elements in given type
-> + * @name_get: returns name by index of given type
-> + * @group_pins_get: returns the set of pins, assigned to the specified group
-> + * @function_groups_get: returns the set of groups, assigned to the specified
-> + *	function
-> + * @mux_set: set muxing function for groups of pins
-> + * @config_get: returns configuration parameter for pin or group
-> + * @config_set: sets the configuration parameter for pin or group
-> + * @pin_request: aquire pin before selecting mux setting
-> + * @pin_free: frees pin, acquired by request_pin call
-> + */
-> +struct scmi_pinctrl_proto_ops {
-> +	int (*count_get)(const struct scmi_protocol_handle *ph,
-> +			 enum scmi_pinctrl_selector_type type);
-> +	int (*name_get)(const struct scmi_protocol_handle *ph, u32 selector,
-> +			enum scmi_pinctrl_selector_type type, const char **name);
-> +	int (*group_pins_get)(const struct scmi_protocol_handle *ph, u32 selector,
-> +			      const unsigned int **pins, unsigned int *nr_pins);
-> +	int (*function_groups_get)(const struct scmi_protocol_handle *ph, u32 selector,
-> +				   unsigned int *nr_groups, const unsigned int **groups);
-> +	int (*mux_set)(const struct scmi_protocol_handle *ph, u32 selector, u32 group);
-> +	int (*config_get)(const struct scmi_protocol_handle *ph, u32 selector,
-> +			  enum scmi_pinctrl_selector_type type,
-> +			  u8 config_type, u32 *config_value);
-> +	int (*config_get_all)(const struct scmi_protocol_handle *ph,
-> +			      u32 selector,
-> +			      enum scmi_pinctrl_selector_type type, u16 size,
-> +			      u8 *config_types, u32 *config_values);
-> +	int (*config_set)(const struct scmi_protocol_handle *ph, u32 selector,
-> +			  enum scmi_pinctrl_selector_type type,
-> +			  unsigned int nr_configs,
-> +			  u8 *config_type, u32 *config_value);
-> +	int (*pin_request)(const struct scmi_protocol_handle *ph, u32 pin);
-> +	int (*pin_free)(const struct scmi_protocol_handle *ph, u32 pin);
-> +};
-> +
-> +enum scmi_pinctrl_conf_type {
-> +	SCMI_PIN_NONE = 0x0,
-> +	SCMI_PIN_BIAS_BUS_HOLD = 0x1,
-> +	SCMI_PIN_BIAS_DISABLE = 0x2,
-> +	SCMI_PIN_BIAS_HIGH_IMPEDANCE = 0x3,
-> +	SCMI_PIN_BIAS_PULL_UP = 0x4,
-> +	SCMI_PIN_BIAS_PULL_DEFAULT = 0x5,
-> +	SCMI_PIN_BIAS_PULL_DOWN = 0x6,
-> +	SCMI_PIN_DRIVE_OPEN_DRAIN = 0x7,
-> +	SCMI_PIN_DRIVE_OPEN_SOURCE = 0x8,
-> +	SCMI_PIN_DRIVE_PUSH_PULL = 0x9,
-> +	SCMI_PIN_DRIVE_STRENGTH = 0xA,
-> +	SCMI_PIN_INPUT_DEBOUNCE = 0xB,
-> +	SCMI_PIN_INPUT_MODE = 0xC,
-> +	SCMI_PIN_PULL_MODE = 0xD,
-> +	SCMI_PIN_INPUT_VALUE = 0xE,
-> +	SCMI_PIN_INPUT_SCHMITT = 0xF,
-> +	SCMI_PIN_LOW_POWER_MODE = 0x10,
-> +	SCMI_PIN_OUTPUT_MODE = 0x11,
-> +	SCMI_PIN_OUTPUT_VALUE = 0x12,
-> +	SCMI_PIN_POWER_SOURCE = 0x13,
-> +	SCMI_PIN_SLEW_RATE = 0x20,
-> +	SCMI_PIN_OEM_START = 0xC0,
-> +	SCMI_PIN_OEM_END = 0xFF,
-> +};
-
-Can you move this enum above the pinctrl_proto_ops for consistency?
-
-Maybe use it in the ops prototype as the type of config_type param or
-is there a reason to stick with u8 config_type even having the enum ?
-We anyway place a u32 in the message at the end, so it does not seem
-any gain in size.
-
-Thanks,
-Cristian
+--
+Sergey
 
