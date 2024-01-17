@@ -1,152 +1,203 @@
-Return-Path: <devicetree+bounces-32623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7188E82FF5F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 04:41:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A3382FF95
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 05:34:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 150EC288A5A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 03:41:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A7891F2503F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 04:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F45863A5;
-	Wed, 17 Jan 2024 03:41:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56AD129A9;
+	Wed, 17 Jan 2024 04:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bv6p26MZ"
+	dkim=pass (2048-bit key) header.d=windriver.com header.i=@windriver.com header.b="Vl/MAyTY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866F9567D
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 03:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705462880; cv=none; b=Ybrq9xo7waTyzVU7a/8C5Y2m5UsWKD7Q3KaDnwmH8SOOz7MbGw2/xqZSMTJG0l6g077tIDNxM+4YIwphOnx48wIxImEE8J/HjpcHbxHxBZTPHSkx1Cd6bTgwVDzfL353PAQEnpqS+eYYqPjXMHWPZGTUtKX9++tlI6mfLzRX0wE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705462880; c=relaxed/simple;
-	bh=EEId0MKcmgt9JlwyzpnkONCbMwG4GyRqNccGKHgGcYM=;
-	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
-	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
-	 Content-Type; b=ttU/2LkcIBLPc5/gG40+gQmO1k5n8Ufeh4TH4OF8UlpLyR1AjmnB+YI3nidHiTFccL7TXB7BEKFTVk8YC/XAcgJTGaew2JtulVfW6fwROPWPjYuBwEK8MFK6J5QxZUYZYndpoxKERgC/M3FKLCyx7AwV3nFo/aVoM6hi0h1XSN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bv6p26MZ; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5ff5be20308so8633107b3.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 19:41:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705462877; x=1706067677; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=phBopZIe8FQ8TfC3rGLxMMXiYtQqVnQSRAWiIxrbEjM=;
-        b=bv6p26MZqLAl/5R/0Y29Rbkgsh48keAAVS4W1Jl0aKWGdzVjyz32pArIO8m16HnQSH
-         wHR7QoJABLDXClabDfiLlhlLHmF9DWUFvENXRWCDI9F1ps9Yw3JBzfJUf0NkRWCctva9
-         AnfS9IZeO9YNrPa7+W5BmeOgCnhqp4jVGCg+pEAqJyuD00gsgqCaDpIJBcDfiS7GZ3E0
-         trN941vl9v8tovIeBHdp3SpIB78Mitp8fYtXVUuxQfJPCUll6InBNXaBPZPz3Uzyn4ye
-         JrTh353fHBVyDR7Z7xszUmkBjLLfp4YkODdQ8bca9Hgomkg6QGshh9gh7Zw37bK8yDNX
-         uMnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705462877; x=1706067677;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=phBopZIe8FQ8TfC3rGLxMMXiYtQqVnQSRAWiIxrbEjM=;
-        b=UIgny6g7eAzYn84cAMWGr4o3055lSQ6QL+dceLASsbl1Rp84ds9PeJQf6JDdI6K+A0
-         OGO+9RXTgVZU8fz+mCLyqm3s7kfe6JXOpcVGwON1Mlkowbwu+VoTtLw6f5FSHyoELVlW
-         iKeHzih12e/g6TRqdSTEQzNYFrPNBR5o91ISbQwaWkCSerrnBJfbymWt2yKPsOZHnzxa
-         dpjnHVoor2ZZ+EkrBUIuIglN1wmOqucu0iqTlQ+MYYbS+oBzlpuD5LgPJUkbVbIUo+Ft
-         m2S4i9ZTrgS5eguB33bTu0BiIfjQ0w4JUW70If+DDs7k1OOj3ZGSvDXD4BK4YW77IJCx
-         vwzA==
-X-Gm-Message-State: AOJu0YwiHDbhMgC6j51HYrBIvR6DNl50Yf9A1gsSGMbC5StKrcqZGLj8
-	wJBZqLnveL/6EObEi4kyDCTsABgUXSlu1dJR9J6DJCeDHIKDvA==
-X-Google-Smtp-Source: AGHT+IGUsoweo6ywE9NuRgmV77Nud0CaiDRCB1/0Ro9u4X0ineqNsXB/m24vmlTNJu02pfPVblJGx7rtTuervD4DCco=
-X-Received: by 2002:a81:af66:0:b0:5fc:17ab:2f0a with SMTP id
- x38-20020a81af66000000b005fc17ab2f0amr91991ywj.13.1705462877532; Tue, 16 Jan
- 2024 19:41:17 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364788BE3;
+	Wed, 17 Jan 2024 04:34:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.166.238
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705466047; cv=fail; b=ggDb/ANNVztcj0+I3zQ4Aq+QQZGVszxyaOBHm6e7cFViOvFBPpXttArP/F6VEsrNtEG+78Vw/XRO8J9swkd/fdQTCNJS0rJFcJGwVKqo2/Gh9ynzDDQpqG6eK592DaQbKs6J/pv4Z5umk97b+N2wWjKak5eWr043qapGdn0pzbU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705466047; c=relaxed/simple;
+	bh=+aHDwuvjW68unOCk16YV/Qi4QoI0DWr73uCD7IZdCwo=;
+	h=Received:DKIM-Signature:Received:ARC-Message-Signature:
+	 ARC-Authentication-Results:Received:Received:From:To:Cc:Subject:
+	 Date:Message-Id:X-Mailer:Content-Transfer-Encoding:Content-Type:
+	 X-ClientProxiedBy:MIME-Version:X-MS-PublicTrafficType:
+	 X-MS-TrafficTypeDiagnostic:X-MS-Office365-Filtering-Correlation-Id:
+	 X-MS-Exchange-SenderADCheck:X-MS-Exchange-AntiSpam-Relay:
+	 X-Microsoft-Antispam:X-Microsoft-Antispam-Message-Info:
+	 X-Forefront-Antispam-Report:
+	 X-MS-Exchange-AntiSpam-MessageData-ChunkCount:
+	 X-MS-Exchange-AntiSpam-MessageData-0:X-OriginatorOrg:
+	 X-MS-Exchange-CrossTenant-Network-Message-Id:
+	 X-MS-Exchange-CrossTenant-AuthSource:
+	 X-MS-Exchange-CrossTenant-AuthAs:
+	 X-MS-Exchange-CrossTenant-OriginalArrivalTime:
+	 X-MS-Exchange-CrossTenant-FromEntityHeader:
+	 X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
+	 X-MS-Exchange-CrossTenant-UserPrincipalName:
+	 X-MS-Exchange-Transport-CrossTenantHeadersStamped:
+	 X-Proofpoint-ORIG-GUID:X-Proofpoint-GUID:
+	 X-Proofpoint-Virus-Version:X-Proofpoint-Spam-Details; b=IY4xQCj/gNNyy10lBqPJPqZ0cjditGmWdzi4Dcf+cCr1AXsvFa8qW/q/xu4dwemAb8nZeAxQn3UrS2rjHILr6XehN7L8vQM8gC9G7KSRjn5WV1hC8OdpmEra9/O+OBzO1FkV8xrQ7VZ9MRjaOKKDCTztvKbg1mxGlJ0gxD5AL98=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=windriver.com; spf=pass smtp.mailfrom=windriver.com; dkim=pass (2048-bit key) header.d=windriver.com header.i=@windriver.com header.b=Vl/MAyTY; arc=fail smtp.client-ip=205.220.166.238
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=windriver.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=windriver.com
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40H4U2Ka018661;
+	Tue, 16 Jan 2024 20:33:49 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=from:to:cc:subject:date:message-id:content-transfer-encoding
+	:content-type:mime-version; s=PPS06212021; bh=omaP+5Bo4VJwmdFoFV
+	cewnAVkHJVTmW2uYFnZauLZ6c=; b=Vl/MAyTYGGmv01Lv9pKmHZYaJ1is5Z8s5e
+	XLVO4fbomR3DF2w1oDq6Y9uAKBOctYtZkfERxhYkBxA37e4Mvt+WJlwPm3ZSDHrc
+	mKiaCIFLG7AuGGBZoIwCrlA2S92QwJ7BtvAHGLzc70u62qMPmEWBOEzmbu5rIoGE
+	FcmvyaQy3pHrN4fKvCEASUbmtOXSqsz8Xem7pTRmer47MaumR4ga4DvuVkxII73v
+	ClM0OtFQ2FPDdMJ8pfVSYyar2nLo8geo7n1nR5BK1ccN3KJCwKhKHoTmUa0DebNp
+	cQpFTIguDz3+3tlvDaTKT5gIFPAE0t2qSkcgudIBYFbD6BtAKr4A==
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2041.outbound.protection.outlook.com [104.47.66.41])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 3vktwkks28-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Jan 2024 20:33:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aUGHUus+LyTnfCPlPgy7ah8eLaI6L81oHlTeSG7vpe2pV0CMMxbBaDgeFPktpxSEiqbOWfXMhEmVRyRHblKN7SR/oqh4ceaa4MG14EyQK+X4fQWryJUU0w/upRtlyfw0xg9akOoK+0YIN1Jjh07ZjJTBgs8G1AHzE6ofunZAOYrTk99nsX5CajM904MyzbXaf8y+Tt/jYGJYR9tkaMZPgnM02BvfSOM//RRyOz0roQPtsqJhCvKFqDNsl+JFhMpYzGRJKJGnn+KZ3R+gVU/JBq4jkVCzeRTDzOWufC4p7PLcsmFtEckKIjfH0Pf6gx3XgzSB98VLhlvFfsmHB/UYmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=omaP+5Bo4VJwmdFoFVcewnAVkHJVTmW2uYFnZauLZ6c=;
+ b=MZIAj+ytq4/Hx8mTSr8iKifH03GlN5OG+5xDP8N++TfBKgvchTiKAzVwzpbWJFMP7BDdLj7Qdd3B6xCnvix3R2kE/e7jAzlyJBUCbTWONd8i/N7x0hAANdzxFo9BzAZqGGGolPwQPufi6naCsJzIq9pZTYaTLcSHav6EMKYz5oD30kLiaAnQDw/kaxKmZehJW34DNFQAxdG5GNSYdorByXtvaqtGGodBQDqcEdCIZCdYR1eLZ0WYaYxG4BEe1ZtoJyJVH/1NBIQAfFTLCexPqQkRtmXwG0eUr+FZWFTzd6GKW1m0/BoKHrstC4tnR4QhxcWPehnT5mSULgUCtRDoiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from SA2PR11MB5193.namprd11.prod.outlook.com (2603:10b6:806:fa::5)
+ by CH0PR11MB5268.namprd11.prod.outlook.com (2603:10b6:610:e3::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.26; Wed, 17 Jan
+ 2024 04:33:43 +0000
+Received: from SA2PR11MB5193.namprd11.prod.outlook.com
+ ([fe80::1f50:d5e1:869c:1709]) by SA2PR11MB5193.namprd11.prod.outlook.com
+ ([fe80::1f50:d5e1:869c:1709%7]) with mapi id 15.20.7181.029; Wed, 17 Jan 2024
+ 04:33:43 +0000
+From: Xulin Sun <xulin.sun@windriver.com>
+To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        xulin.sun@windriver.com
+Subject: [PATCH] ARM: dts: tps65217: add power regulator & backlight drivers support
+Date: Wed, 17 Jan 2024 12:33:23 +0800
+Message-Id: <20240117043323.2008454-1-xulin.sun@windriver.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: TY2PR02CA0052.apcprd02.prod.outlook.com
+ (2603:1096:404:e2::16) To SA2PR11MB5193.namprd11.prod.outlook.com
+ (2603:10b6:806:fa::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240115-lpg-v5-1-3c56f77f9cec@quicinc.com> <CAA8EJpoemnXTmshWrArVOCm0GRSkWZ5tH557nbAjRL1Tgg-Dig@mail.gmail.com>
- <e16f5ff1-9b12-4f90-89d5-f95cbfb859e7@quicinc.com> <6c29ce72-e303-406a-bb75-5b36b0cd8ee4@linaro.org>
- <44ab50c4-c63b-436c-af46-9b4543181446@quicinc.com>
-In-Reply-To: <44ab50c4-c63b-436c-af46-9b4543181446@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 17 Jan 2024 05:41:06 +0200
-Message-ID: <CAA8EJpq8exe6n3OQnreLCsV+BnZKcu24d==rEKup=+n28nnDHw@mail.gmail.com>
-Subject: Re: [PATCH v5] arm64: dts: qcom: qcm6490-idp: Add definition for
- three LEDs
-To: hui liu <quic_huliu@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Andy Gross <agross@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, quic_fenglinw@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PR11MB5193:EE_|CH0PR11MB5268:EE_
+X-MS-Office365-Filtering-Correlation-Id: d6e5a0b0-9041-47eb-13cc-08dc17157c84
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	muhg3a0LBA/DKIcwma3k67jhayilDoH5EjY9HVeRrudp5dYYesyJdTRrFS0SCvDQtzy0a7HsS2Gnh6IDiPkDy+I5CPWXeal3ypyomRJgtFVCefLkyTDRoMT5ZknwK2L0UICTXQCdJP1Ld0T6wBekSpA2eeUTrBR4jewqCq/l7WjM/cQVTSsV27WPuCPekdBmSaY93kvIatEVlyh+dZI6NDtwlXD75ATpxa52Yi+3zYhxXKicOmO+0aZmZ1rkJ6r3hv6/WtGWfeYMjkBmyb2Lo/s4AZ6ZwXNTzuuVguh5grTpg4HQoWPUwGk3vZiv4GFsaLUwSoDGwOdSCmqrS8MloZSpPh9GsPq+4Eab07YmIvgoadv4Clc5ptq2hpjDcqJlGiXPLz2kiDtyApkF8N3UNVGpf8p/Jl4n8RIN5hnoCB1r9dAs6oaZ3pU7tZjUkEUofhDanfbk2f+J93d3qJ2XTPoTsMVbWTq8pF8FXQCNbHd4A0g9o5bUUXFLZ8ccRnlBRBGyfPY2pc581BTkPrGr5Xsf4xCzWlBNAjEPhvq6uMA7Rc251h6J57dkKIl5/lujMqOU/ENR1fqwfJ1rvYaQcJa2797DRKsAOn+Agd9wufsuuClPwestnnY34CIpufTu
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB5193.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(396003)(366004)(136003)(39850400004)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(86362001)(6506007)(6512007)(52116002)(6486002)(38350700005)(36756003)(2616005)(38100700002)(107886003)(66556008)(1076003)(26005)(5660300002)(66476007)(44832011)(4744005)(2906002)(6666004)(66946007)(478600001)(4326008)(316002)(41300700001)(8936002)(8676002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?m4B7MOasJRs4+/jvIT0eRB1i7U1fUAKNc3jGEYogCkA02TpwpCxs47RmL+px?=
+ =?us-ascii?Q?/KhR10dQXuZE+BmobhpSo7B0Z0R+1BY3Jarn7cpGaHAT6YlkwqTfKlUo+Ubw?=
+ =?us-ascii?Q?jYFPZwPkSPuaFcwxKpBHOQJU687q2Ejg00II6ZMMAnhKYWJhumvZ6vrWgC6G?=
+ =?us-ascii?Q?fnRcCutXZ+oUp+oNQax4b76wsxwhlQT2JCp4Ss62rm1AMDk6nA8Ry2IU1NE3?=
+ =?us-ascii?Q?L1sdgJSxg9G2S8WVg4fNV3eHsOu/ChXw5RXW+LfpbUK32BqVMGATRDnaDEo0?=
+ =?us-ascii?Q?y5JqfRisi+mQmzqw9GCrGLZYLrh1zsIzLOxk6qTIGWN1bZ67VdRLwI7ZSkgu?=
+ =?us-ascii?Q?4PscQwRqzOr4j9LHXltmEEkxJTJ897Jr0Tc56iB0NQFhP62q+na6ob2IcBjY?=
+ =?us-ascii?Q?ufsGAE+An/Onw9DP8eiiQAEtywsCvPIisUGVew1dX13itZic4cGdqUdwHcIM?=
+ =?us-ascii?Q?yHke30gR2o8n25QCGmChAc8r7pYiz4zqUn+k9zvYalG+FtI8bSw8eBEdVlA9?=
+ =?us-ascii?Q?iCIQgCcybu1vDDV4gAGYuHFwLSjE2L9ibB+gDhQveRhUN0CnCVXyHL2eSNLU?=
+ =?us-ascii?Q?0s1A1bL572humBVo4ZF248b2wKCynhjx6aqsk7z0q/qR1PXWC4WmLXxzF9mC?=
+ =?us-ascii?Q?BcxC1GYyYr7elqkDLG9wQuz5D8OmF5XUKW276RoNIhE+lEqQaWW6ChNPZiuA?=
+ =?us-ascii?Q?nN8DkKcbVwRI31x0l9xIniqWsuIRIuaZBRRe/K5swGEVq0zjFYkdNbRjvwn3?=
+ =?us-ascii?Q?zF34nmVgtV5PQ1N4U2v7g1YjYwmOakCbEXC3xlKQrDig/U/lUaizRgxVyj3O?=
+ =?us-ascii?Q?Zzof+lQUVnYIZAdN98KIJZKgeo8KGwZsTCsQmf6a4R9d+imGPVKLrLKVCXbh?=
+ =?us-ascii?Q?K5/3tdHvh7aALVfY3BKnh+HQGjovTG6VYofD9xac7NF0Xo2APfFWsNUOtnZ/?=
+ =?us-ascii?Q?fxajJkI0jr7x7wpTO/dvZESOV/3zvR7DUJxpRHO4vce2+GrHmhhfKlsD2BVD?=
+ =?us-ascii?Q?Czc3sYa5L6A3x8lMPSeLbXkJ3nLcDcIw9GSVtbA/XHGl99TDuSHeQDsJTaka?=
+ =?us-ascii?Q?qgbzq0YVupqNGh+AHMEkR5YW3n9xpDrNuAaOPO6TQq3v22W/loGtMQ+qC8+Y?=
+ =?us-ascii?Q?kwNKDonUYztjcYRtbjDL6Q4Zl6FnilzvmcBI1kIHJwTqswjyrNhwlcHY4PBn?=
+ =?us-ascii?Q?wSbgDe9A5wB2PJubnaE9mRk0cEJXVhpP9emwPHoQwXIH721yoBqDs2/YW0Pl?=
+ =?us-ascii?Q?ecnsriSSbr1wEXxqW5Wqy9AadET7XwVVXyBKdfgcW1h2Tarm0Lcodpzy5hW9?=
+ =?us-ascii?Q?O3FH0BuZkJ/6GKJTddfFE5ACqOV1Q7X3dtNuPe3fLZDtSGVhqpyG04o0EWsT?=
+ =?us-ascii?Q?lEdKJtJyKqEqvCM4FSB8IZDQJhIG3dME3Bi/F9SHYmLgTaduqu3vYExumE6w?=
+ =?us-ascii?Q?LiDZMeHJl4rckjNv/A01kkSW6LrMEOt45Y6Wc6Ohb3R+ovQzxsbxljCdJ9hV?=
+ =?us-ascii?Q?7yjlnaSHcY6HWUPvwFkR20iCwBT6TDWhbo9DW9X3UFKJFDPGD2n+vb8UhoCe?=
+ =?us-ascii?Q?pf38wlkRYwbpdfPOwb/F4YPw8csIUUzFwr3FVt7wOVMKd71uIh6+veY1lK+b?=
+ =?us-ascii?Q?LQ=3D=3D?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6e5a0b0-9041-47eb-13cc-08dc17157c84
+X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB5193.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2024 04:33:43.2768
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xNpC2PKGgmu90wH+LSqFmOeCEYjNSX3VUkcs6GKsrXgdODkgXil9pcxDR/rkDM6ifs5ykj/8h3K2+83yc4zycg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5268
+X-Proofpoint-ORIG-GUID: -uSZ62SsHOQpR1uKuCqacQ3XOxtEecr5
+X-Proofpoint-GUID: -uSZ62SsHOQpR1uKuCqacQ3XOxtEecr5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-17_01,2024-01-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ mlxlogscore=374 suspectscore=0 phishscore=0 lowpriorityscore=0 spamscore=0
+ clxscore=1011 malwarescore=0 priorityscore=1501 impostorscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
+ definitions=main-2401170028
 
-On Wed, 17 Jan 2024 at 05:02, hui liu <quic_huliu@quicinc.com> wrote:
->
->
->
-> On 1/15/2024 6:26 PM, Krzysztof Kozlowski wrote:
-> > On 15/01/2024 11:18, hui liu wrote:
-> >>
-> >>
-> >> On 1/15/2024 5:56 PM, Dmitry Baryshkov wrote:
-> >>> On Mon, 15 Jan 2024 at 11:48, Hui Liu via B4 Relay
-> >>> <devnull+quic_huliu.quicinc.com@kernel.org> wrote:
-> >>>>
-> >>>> From: Hui Liu <quic_huliu@quicinc.com>
-> >>>>
-> >>>> Add definition for three LEDs to make sure they can
-> >>>> be enabled base on QCOM LPG LED driver.
-> >>>
-> >>> The "function" property is still placed incorrectly. Posting the next
-> >>> iteration before concluding the discussion on the previous one is not
-> >>> the best idea.
-> >> Do you mean I should update it as below? Seems there is no consumer to
-> >> use the function config, do we need to add now?
-> >
-> > Paste the output of dtbs_check for your board (or CHECK_DTBS=y for your
-> > Makefile target).
-> I checked the dt-binding file of LPG LED, I will update the dts as
-> below, if you think it's correct, I will push v6.
+Support TPS65217 voltage regulator driver and TPS65217 Backlight driver.
+And enable them by default. This will avoid below booting failed
+information:
+tps65217-pmic: Failed to locate of_node [id: -1]
+tps65217-bl: Failed to locate of_node [id: -1]
 
-Is there any reason why you are defining three different LEDs instead
-of multi-led with three components?
+Signed-off-by: Xulin Sun <xulin.sun@windriver.com>
+---
+ arch/arm/boot/dts/tps65217.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
->
-> +&pm8350c_pwm {
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +       status = "okay";
-> +
-> +       led@1 {
-> +               reg = <1>;
-> +               color = <LED_COLOR_ID_RED>;
-> +               function = LED_FUNCTION_STATUS;
-> +       };
-> +
-> +       led@2 {
-> +               reg = <2>;
-> +               color = <LED_COLOR_ID_GREEN>;
-> +               function = LED_FUNCTION_STATUS;
-> +       };
-> +
-> +       led@3 {
-> +               reg = <3>;
-> +               color = <LED_COLOR_ID_BLUE>;
-> +               function = LED_FUNCTION_STATUS;
-> +       };
-> +};
-
-
-
+diff --git a/arch/arm/boot/dts/tps65217.dtsi b/arch/arm/boot/dts/tps65217.dtsi
+index 0d463de5650f..f412e7476660 100644
+--- a/arch/arm/boot/dts/tps65217.dtsi
++++ b/arch/arm/boot/dts/tps65217.dtsi
+@@ -13,6 +13,16 @@ &tps {
+ 	interrupt-controller;
+ 	#interrupt-cells = <1>;
+ 
++	pmic {
++		compatible = "ti,tps65217-pmic";
++		status = "okay";
++	};
++
++	bl {
++		compatible = "ti,tps65217-bl";
++		status = "okay";
++	};
++
+ 	charger {
+ 		compatible = "ti,tps65217-charger";
+ 		interrupts = <0>, <1>;
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
