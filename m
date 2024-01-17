@@ -1,311 +1,245 @@
-Return-Path: <devicetree+bounces-32630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC2EF830025
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 07:30:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58DA7830031
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 07:37:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB6131C238D1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 06:30:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FFCF1C238C2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 06:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE7417F7;
-	Wed, 17 Jan 2024 06:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 790864404;
+	Wed, 17 Jan 2024 06:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cOfLQ74h"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="hgBxX9gg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF279465;
-	Wed, 17 Jan 2024 06:30:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72CDBE4C
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 06:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705473052; cv=none; b=GknHx55k08FhrsIR5uYHORmKSZ6r2TNAXFlFxovg3NGcnqV46z/TmgJqOLoa0IJ4NnFaQTdxh3QB+PAbr+P64g7y1fw4THqV+IiqrThgSNBOXtW0DxZUgGluSYKJ4FG+lI+e27cpEtNrg7F9wcj1Y7cA4GvAA4Wrh9M2BnelTtM=
+	t=1705473464; cv=none; b=dgC8kVLn9MGJ1QAUH1jpFqaHmaLWL8biW1PuQPdX+2itsykQfFaI19q3vKDRM3IHjHur87PraLh01aJbSAhc0ZabYpY65UmnauuKX2pEWeHV6ZAMwYxEdXtZsheBsm6YcK1g2EN7mTw9j9wONAVrU2ePVm39pAjl5iWAjl78Y6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705473052; c=relaxed/simple;
-	bh=4FqIAA4hFzTfbpQcQsbRrq5DJ0JunmKGhHh0MHds120=;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:
-	 Content-Transfer-Encoding:In-Reply-To; b=TWoZR+MH4UI1W4/xvL2u61zJdebAjzRj1Pt7etGXVPIswT7VAzdVxuULN0Q6QKJG/0L+Mpq5+bDF8eGcxFVpnUwefuv/Pofg3WXnb7XI507nbVFFha0XaKZidD/qWW9dCsUeLu3AO9bqXWQEHhU858vce5uE/ACuHdCktAZx3nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cOfLQ74h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F104C433C7;
-	Wed, 17 Jan 2024 06:30:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705473052;
-	bh=4FqIAA4hFzTfbpQcQsbRrq5DJ0JunmKGhHh0MHds120=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cOfLQ74hMct7mz00H2GwjckM/jb7KjGta5N8xBtaTWUXiZIasBMPe1gJEUVT9fgxE
-	 s9jirP4Nnj0dk/7o2CpzogAD48uTIpuXMcAVKNQD/unHlEy+0CQPnKH1EJa8tPtjrK
-	 odxSZN9s5MEPjo7RUT2KDbvaXoz7tPPQ3O2OzwcFc7dIXUPV+vEZtzK0HFLJk2tY09
-	 Cpz4dKnGEY0V6Qe9KZzAzj6BNO/tkHFHr8svBvg7EjG5jSClvNhHuq/2Ft0odSZQ8w
-	 qv4ZMQQFDmPu1Tkf0U1fGT0jOg7xHxJlRRJJKksJyM4Cn9iDDk3FAhXgrmsIxSWMno
-	 DQmPvs/G/UrQw==
-Date: Wed, 17 Jan 2024 12:00:39 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: PCI: qcom,pcie-sm8550: move SM8550 to
- dedicated schema
-Message-ID: <20240117063039.GA8708@thinkpad>
-References: <20240108-dt-bindings-pci-qcom-split-v1-0-d541f05f4de0@linaro.org>
- <20240108-dt-bindings-pci-qcom-split-v1-1-d541f05f4de0@linaro.org>
- <20240116144419.GA3856889-robh@kernel.org>
+	s=arc-20240116; t=1705473464; c=relaxed/simple;
+	bh=LTeE/mqnWiVhvUUWjvdKUrRjy41JL2x7cpg5UntPi/w=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
+	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
+	 Content-Type:Content-Transfer-Encoding; b=HKAcesbCJAYPiQSG5CcNR8xezr5vOQay2F+V/ejcF1/spAYdyM3f5hEr0FXB6zyieEtu32LO/TBI4phXVvrAht1NRtTPDUCFavbRkuSl5Mte2yIEU0xQvOq5DUP8qM3yuPObsP62fITgEVLmqaZGae/p7xQzhSHdOXHQkKrD3A0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=hgBxX9gg; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5f15a1052b3so97896567b3.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 22:37:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1705473461; x=1706078261; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3MjS89mx0sQXy2eTiKmRoWh0TgEsc77yp3/tG8fkBm0=;
+        b=hgBxX9ggpFPAjQaLWUzITDG+iFQ0/t5S7zqEW3eIun443YWPGac9ikSbPDpxRCAXWc
+         ypmk/vcG7cmQTIbcrZBXxmNT2QQZcC1M+jWAzLEVpMWpjBmSCmFUKPSb8DWq/e081FWB
+         FRK9jMJ1DSLn3NFdld3Kj6PGRdIDBBVmOPDahNr01MFac2lHM5r8RjASCiVfG3zrO+wG
+         XefQ6fCBrFjX/aFmLKKv6gywp88DhGpVCncpZQYZ+AOOOVMdT5HM6nu5/mqELJSpnZM6
+         upefClyn35gMHaYPX6NtssZvLLCL7JTaC9MfGfc7/aBokk+cXKnufyPMAzOEAfZTFnvI
+         L+Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705473461; x=1706078261;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3MjS89mx0sQXy2eTiKmRoWh0TgEsc77yp3/tG8fkBm0=;
+        b=KCRkOn66h7Ge2NhxrwSK3nivQbG8m1XXUyxgi5Z0V8riZz/33HBNYFUWViZsvBx4fR
+         O4i3dK8xS+8PaT2JUQfzKUPBf6NJR4SIiTq39Va7kc8seVkJfin2qK/7Q6jXNnLvJGas
+         3RF59hAnfRZFzcUeeaqgm1x1IL6CMZkg5QBaYL7/vONIphNh8uOhBZGVCmOF5jQzPjDU
+         +IS6KKIRUMXSHp26w9DOBr31hTLUMh/99PK87uKSGnjLQa0c+wijVfpC7q+MZZZbz3ET
+         LUA9UWNkywCkt9p7dJ5Larfgot0/cSu7DKZWXMP8GQgNh3vDbhSDh525Ei4gwAqAUSZI
+         vVaQ==
+X-Gm-Message-State: AOJu0YxJ1o3Z0ObKA6XLtt7oM0594vklwiHMXtXXDxfXp63hdymYtyzp
+	L+TAdnx68kppg5Eq/EAU3FRT9zhVNMY/gJmIUAmeyJ+ZofhohQ==
+X-Google-Smtp-Source: AGHT+IFEMyWcAcqOEFbcyT/yrtYZJx8PYnYGhp0KuSEal/fflTbBO9CbsaFUxysMnyygE2daNgRd/NjFO6m06R+oiAo=
+X-Received: by 2002:a25:ab52:0:b0:dc2:3bb2:61 with SMTP id u76-20020a25ab52000000b00dc23bb20061mr367501ybi.90.1705473461632;
+ Tue, 16 Jan 2024 22:37:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240116144419.GA3856889-robh@kernel.org>
+References: <20240116041054.11641-1-nylon.chen@sifive.com> <20240116041054.11641-2-nylon.chen@sifive.com>
+ <CAJM55Z9ZbmbPKaJ8LJ5KyoCW9fAEJaT3Q4PbcadwLNCq1NXbxA@mail.gmail.com> <20240116-custard-drew-9a02e83d538a@wendy>
+In-Reply-To: <20240116-custard-drew-9a02e83d538a@wendy>
+From: Nylon Chen <nylon.chen@sifive.com>
+Date: Wed, 17 Jan 2024 14:37:30 +0800
+Message-ID: <CAHh=Yk_dye_KMXbug1VwYXU0Wm-mZgx_t-oJx1N0uYVByb1z7Q@mail.gmail.com>
+Subject: Re: [v6 1/3] riscv: dts: sifive: unleashed/unmatched: Remove PWM
+ controlled LED's active-low properties
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: Emil Renner Berthing <emil.renner.berthing@canonical.com>, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	robh+dt@kernel.org, u.kleine-koenig@pengutronix.de, thierry.reding@gmail.com, 
+	aou@eecs.berkeley.edu, zong.li@sifve.com, vincent.chen@sifive.com, 
+	linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	nylon7717@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 16, 2024 at 08:44:19AM -0600, Rob Herring wrote:
-> On Mon, Jan 08, 2024 at 03:19:14PM +0100, Krzysztof Kozlowski wrote:
-> > The qcom,pcie.yaml binding file containing all possible Qualcomm SoC
-> > PCIe root complexes gets quite complicated with numerous if:then:
-> > conditions customizing clocks, interrupts, regs and resets.  Adding and
-> > reviewing new devices is difficult, so simplify it by having shared
-> > common binding and file with only one group of compatible devices:
-> > 
-> > 1. Copy all common qcom,pcie.yaml properties (so everything except
-> >    supplies) to a new shared qcom,pcie-common.yaml schema.
-> > 2. Move SM8550 PCIe compatible devices to dedicated binding file.
-> > 
-> > This creates equivalent SM8550 schema file, except missing required
-> > compatible which is actually redundant.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  .../devicetree/bindings/pci/qcom,pcie-common.yaml  |  98 ++++++++++++
-> >  .../devicetree/bindings/pci/qcom,pcie-sm8550.yaml  | 171 +++++++++++++++++++++
-> >  .../devicetree/bindings/pci/qcom,pcie.yaml         |  38 -----
-> >  3 files changed, 269 insertions(+), 38 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> > new file mode 100644
-> > index 000000000000..125136176f93
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-common.yaml
-> > @@ -0,0 +1,98 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pci/qcom,pcie-common.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm PCI Express Root Complex Common Properties
-> > +
-> > +maintainers:
-> > +  - Bjorn Andersson <andersson@kernel.org>
-> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > +
-> > +properties:
-> > +  reg:
-> > +    minItems: 4
-> > +    maxItems: 6
-> > +
-> > +  reg-names:
-> > +    minItems: 4
-> > +    maxItems: 6
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    maxItems: 8
-> > +
-> > +  interrupt-names:
-> > +    minItems: 1
-> > +    maxItems: 8
-> > +
-> > +  iommu-map:
-> > +    minItems: 1
-> > +    maxItems: 16
-> > +
-> > +  clocks:
-> > +    minItems: 3
-> > +    maxItems: 13
-> > +
-> > +  clock-names:
-> > +    minItems: 3
-> > +    maxItems: 13
-> > +
-> > +  dma-coherent: true
-> > +
-> > +  interconnects:
-> > +    maxItems: 2
-> > +
-> > +  interconnect-names:
-> > +    items:
-> > +      - const: pcie-mem
-> > +      - const: cpu-pcie
-> > +
-> > +  phys:
-> > +    maxItems: 1
-> > +
-> > +  phy-names:
-> > +    items:
-> > +      - const: pciephy
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    minItems: 1
-> > +    maxItems: 12
-> > +
-> > +  reset-names:
-> > +    minItems: 1
-> > +    maxItems: 12
-> > +
-> > +  perst-gpios:
-> > +    description: GPIO controlled connection to PERST# signal
-> > +    maxItems: 1
-> > +
-> > +  wake-gpios:
-> > +    description: GPIO controlled connection to WAKE# signal
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupt-map-mask
-> > +  - interrupt-map
-> > +  - clocks
-> > +  - clock-names
-> > +
-> > +anyOf:
-> > +  - required:
-> > +      - interrupts
-> > +      - interrupt-names
-> > +      - "#interrupt-cells"
-> > +  - required:
-> > +      - msi-map
-> > +      - msi-map-mask
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > +
-> > +additionalProperties: true
-> > diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml
-> > new file mode 100644
-> > index 000000000000..b6d025f153bc
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml
-> > @@ -0,0 +1,171 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pci/qcom,pcie-sm8550.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm SM8550 PCI Express Root Complex
-> > +
-> > +maintainers:
-> > +  - Bjorn Andersson <andersson@kernel.org>
-> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > +
-> > +description:
-> > +  Qualcomm SM8550 SoC (and compatible) PCIe root complex controller is based on
-> > +  the Synopsys DesignWare PCIe IP.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: qcom,pcie-sm8550
-> > +      - items:
-> > +          - enum:
-> > +              - qcom,pcie-sm8650
-> > +          - const: qcom,pcie-sm8550
-> > +
-> > +  reg:
-> > +    minItems: 5
-> > +    maxItems: 6
-> > +
-> > +  reg-names:
-> > +    minItems: 5
-> > +    items:
-> > +      - const: parf # Qualcomm specific registers
-> > +      - const: dbi # DesignWare PCIe registers
-> > +      - const: elbi # External local bus interface registers
-> > +      - const: atu # ATU address space
-> > +      - const: config # PCIe configuration space
-> > +      - const: mhi # MHI registers
-> > +
-> > +  clocks:
-> > +    minItems: 7
-> > +    maxItems: 8
-> > +
-> > +  clock-names:
-> > +    minItems: 7
-> > +    items:
-> > +      - const: aux # Auxiliary clock
-> > +      - const: cfg # Configuration clock
-> > +      - const: bus_master # Master AXI clock
-> > +      - const: bus_slave # Slave AXI clock
-> > +      - const: slave_q2a # Slave Q2A clock
-> > +      - const: ddrss_sf_tbu # PCIe SF TBU clock
-> > +      - const: noc_aggr # Aggre NoC PCIe AXI clock
-> > +      - const: cnoc_sf_axi # Config NoC PCIe1 AXI clock
-> > +
-> > +  resets:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  reset-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - const: pci # PCIe core reset
-> > +      - const: link_down # PCIe link down reset
-> > +
-> > +oneOf:
-> > +  - properties:
-> > +      interrupts:
-> > +        maxItems: 1
-> > +      interrupt-names:
-> > +        items:
-> > +          - const: msi
-> > +
-> > +  - properties:
-> > +      interrupts:
-> > +        minItems: 8
-> > +      interrupt-names:
-> > +        items:
-> > +          - const: msi0
-> > +          - const: msi1
-> > +          - const: msi2
-> > +          - const: msi3
-> > +          - const: msi4
-> > +          - const: msi5
-> > +          - const: msi6
-> > +          - const: msi7
-> 
-> How does a given SoC have 1 or 8 interrupts? I guess it is possible. A 
-> comment here would be helpful.
-> 
+Conor Dooley <conor.dooley@microchip.com> =E6=96=BC 2024=E5=B9=B41=E6=9C=88=
+16=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=886:45=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> On Tue, Jan 16, 2024 at 02:20:57AM -0800, Emil Renner Berthing wrote:
+> > Nylon Chen wrote:
+> > > This removes the active-low properties of the PWM-controlled LEDs in
+> > > the HiFive Unmatched device tree.
+> > >
+> > > The reference is hifive-unleashed-a00.pdf[0] and hifive-unmatched-sch=
+ematics-v3.pdf[1].
+> > >
+> > > Link: https://sifive.cdn.prismic.io/sifive/c52a8e32-05ce-4aaf-95c8-7b=
+f8453f8698_hifive-unleashed-a00-schematics-1.pdf [0]
+> > > Link: https://sifive.cdn.prismic.io/sifive/6a06d6c0-6e66-49b5-8e9e-e6=
+8ce76f4192_hifive-unmatched-schematics-v3.pdf [1]
+> > >
+> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Co-developed-by: Zong Li <zong.li@sifve.com>
+> > > Signed-off-by: Zong Li <zong.li@sifve.com>
+> > > Co-developed-by: Vincent Chen <vincent.chen@sifive.com>
+> > > Signed-off-by: Vincent Chen <vincent.chen@sifive.com>
+> > > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
+> > > ---
+> > >  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  8 ++++----
+> > >  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 12 ++++-------=
+-
+> > >  2 files changed, 8 insertions(+), 12 deletions(-)
+> > >
+> > > diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/ar=
+ch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> > > index 900a50526d77..11e7ac1c54bb 100644
+> > > --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> > > +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> > > @@ -49,7 +49,7 @@ led-controller {
+> > >             compatible =3D "pwm-leds";
+> > >
+> > >             led-d1 {
+> > > -                   pwms =3D <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
+> > > +                   pwms =3D <&pwm0 0 7812500 0>;
+> > >                     active-low;
+> > >                     color =3D <LED_COLOR_ID_GREEN>;
+> > >                     max-brightness =3D <255>;
+> > > @@ -57,7 +57,7 @@ led-d1 {
+> > >             };
+> > >
+> > >             led-d2 {
+> > > -                   pwms =3D <&pwm0 1 7812500 PWM_POLARITY_INVERTED>;
+> > > +                   pwms =3D <&pwm0 1 7812500 0>;
+> > >                     active-low;
+> > >                     color =3D <LED_COLOR_ID_GREEN>;
+> > >                     max-brightness =3D <255>;
+> > > @@ -65,7 +65,7 @@ led-d2 {
+> > >             };
+> > >
+> > >             led-d3 {
+> > > -                   pwms =3D <&pwm0 2 7812500 PWM_POLARITY_INVERTED>;
+> > > +                   pwms =3D <&pwm0 2 7812500 0>;
+> > >                     active-low;
+> > >                     color =3D <LED_COLOR_ID_GREEN>;
+> > >                     max-brightness =3D <255>;
+> > > @@ -73,7 +73,7 @@ led-d3 {
+> > >             };
+> > >
+> > >             led-d4 {
+> > > -                   pwms =3D <&pwm0 3 7812500 PWM_POLARITY_INVERTED>;
+> > > +                   pwms =3D <&pwm0 3 7812500 0>;
+> > >                     active-low;
+> > >                     color =3D <LED_COLOR_ID_GREEN>;
+> > >                     max-brightness =3D <255>;
+> > > diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/ar=
+ch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> > > index 07387f9c135c..b328ee80693f 100644
+> > > --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> > > +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> > > @@ -51,8 +51,7 @@ led-controller-1 {
+> > >             compatible =3D "pwm-leds";
+> > >
+> > >             led-d12 {
+> > > -                   pwms =3D <&pwm0 0 7812500 PWM_POLARITY_INVERTED>;
+> > > -                   active-low;
+> > > +                   pwms =3D <&pwm0 0 7812500 0>;
+> >
 
-No, this is due to kernel developers not able to find out the max MSI numbers
-for each platforms out of the Qcom internal documentation.
-
-Let it be for now, I will try to fetch these numbers to make it accurate later.
-
-- Mani
-
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+Hi Emil and Conor, thanks for your feedback.
+>
+>
+> > Here you remove the active-low property, but you don't above. I'm not s=
+ure
+> > what's the right thing to do, but I would have expected the same change=
+ in both
+> > places.
+>
+For this patch, all "active-low" should be deleted. This is my
+mistake. I will fix it in the next version.
+>
+>
+> Just to note, the original version of this that I acked/reviewed removed
+> the property from all led nodes. I then apparently didn't look closely
+> enough at v5 and left acked/reviewed tags on it too. It did not remove
+> the active-low properties but this change was not mentioned in the
+> changelog for the series.
+Sorry Conor, I apologize for any confusion I may have caused.
+>
+> D4 on the unleashed and D12 on the unmatched have the same circuitry
+> (modulo the placement of the series resistor) so I don't get why the
+> property is being removed from only D12.
+>
+> I rescind my ack/review until that is clarified and/or fixed.
+>
+> Thanks,
+> Conor.
+>
+>
+> > >                     color =3D <LED_COLOR_ID_GREEN>;
+> > >                     max-brightness =3D <255>;
+> > >                     label =3D "d12";
+> > > @@ -68,20 +67,17 @@ multi-led {
+> > >                     label =3D "d2";
+> > >
+> > >                     led-red {
+> > > -                           pwms =3D <&pwm0 2 7812500 PWM_POLARITY_IN=
+VERTED>;
+> > > -                           active-low;
+> > > +                           pwms =3D <&pwm0 2 7812500 0>;
+> > >                             color =3D <LED_COLOR_ID_RED>;
+> > >                     };
+> > >
+> > >                     led-green {
+> > > -                           pwms =3D <&pwm0 1 7812500 PWM_POLARITY_IN=
+VERTED>;
+> > > -                           active-low;
+> > > +                           pwms =3D <&pwm0 1 7812500 0>;
+> > >                             color =3D <LED_COLOR_ID_GREEN>;
+> > >                     };
+> > >
+> > >                     led-blue {
+> > > -                           pwms =3D <&pwm0 3 7812500 PWM_POLARITY_IN=
+VERTED>;
+> > > -                           active-low;
+> > > +                           pwms =3D <&pwm0 3 7812500 0>;
+> > >                             color =3D <LED_COLOR_ID_BLUE>;
+> > >                     };
+> > >             };
+> > > --
+> > > 2.42.0
+> > >
+> > >
+> > > _______________________________________________
+> > > linux-riscv mailing list
+> > > linux-riscv@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
 
