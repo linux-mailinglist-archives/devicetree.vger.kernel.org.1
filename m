@@ -1,101 +1,108 @@
-Return-Path: <devicetree+bounces-32841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44DB5830C73
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:07:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05D9C830CA7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 19:22:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED4AD1F221EF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:07:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 577E2B23992
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 18:22:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A8A822EFD;
-	Wed, 17 Jan 2024 18:07:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2E9222F05;
+	Wed, 17 Jan 2024 18:22:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SO2AByMs"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="x2pbTALC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37F9B22EE4;
-	Wed, 17 Jan 2024 18:07:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C883A23747;
+	Wed, 17 Jan 2024 18:22:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705514866; cv=none; b=dz9do20jaZVpP9dzcalWbb+NPe9uhELX2L99RbxuifWCqQWTIwErIk8UV5y25AyfKR/320bfID2w4BMSt0QrU5SU9Zh79CSYuKRwW3rbhgiKtB+7l8yiV31ujXuS4HZWl9j9BRsOy6AQLXKHVzLBz4vk9wfJYfrWjfosEwlC6fI=
+	t=1705515739; cv=none; b=LrsiDYL9v8abxPmWKj5eNqOVsL+oH5YdZ9jSvaWRIbzEiaOQGgx1hQx2aPlyyKu0IYXCvTNH2gz0YpS3EAgYmrEpXawL6abVQox26wLPZDm4B9aT4lzdapln+LW60wMYlEf313r6jbJ/9jHEZgLVXQvYE1HIjaPivK57AfiCEGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705514866; c=relaxed/simple;
-	bh=zB4Z72eSOkfwWI3re8tML42W8mSuDqpHqplPAWzj9UU=;
-	h=Received:DKIM-Signature:From:To:Cc:Subject:References:Date:
-	 In-Reply-To:Message-ID:User-Agent:MIME-Version:Content-Type; b=i5MJgBEKrbbkF1FjSZ8jcyxiWCi7KYPKrhqa75Ai9/H8VZXCOf6gsLbpyrsPxtifvwYfePJf7XRlRPqdiS19rCSwPS54p98N5J0VRWUABTCDnx45QkzeQXd1c314KGcjqmIS29MQGesAkJJ1IeEk156FCLhWXDEvH1DN7uSdsOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SO2AByMs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D0C6C43390;
-	Wed, 17 Jan 2024 18:07:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705514865;
-	bh=zB4Z72eSOkfwWI3re8tML42W8mSuDqpHqplPAWzj9UU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=SO2AByMsKqpphqbxHOmbOpabsDsirCKPTUKmHVZ7YoRfPFQEx0P3KKrtpN5H3O04s
-	 359DXm0XbwWY2qG1D6nzQU0JhHovSacnghZSZzN8IUCuOLpPelFWGtusE3xv9uXUzf
-	 2X4nNGDN+HaQflCae9ukU7Ll532UGWMN8akVh6156xUW2jqHs9kPheCs6CM3RQxeel
-	 PK2JOOh/gEYf0csrk5YFXshV+7CIeyXqoxQvEBtx2R1/qEbU3qZJE3PnEq6vadhfKO
-	 LArOwaa7awIM49nhtk+0CpLLL2uwD3c3ocOo0yQRNrSPk3Uu0qbRzjNd0KCDIXE/9E
-	 4Lr+bnC7SGiPw==
-From: Kalle Valo <kvalo@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: "David S . Miller" <davem@davemloft.net>,  Eric Dumazet
- <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni
- <pabeni@redhat.com>,  Rob Herring <robh+dt@kernel.org>,  Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Bjorn Andersson <andersson@kernel.org>,  Konrad
- Dybcio <konrad.dybcio@linaro.org>,  Catalin Marinas
- <catalin.marinas@arm.com>,  Will Deacon <will@kernel.org>,  Bjorn Helgaas
- <bhelgaas@google.com>,  Heiko Stuebner <heiko@sntech.de>,  Jernej Skrabec
- <jernej.skrabec@gmail.com>,  Chris Morgan <macromorgan@hotmail.com>,
-  Linus Walleij <linus.walleij@linaro.org>,  Geert Uytterhoeven
- <geert+renesas@glider.be>,  Arnd Bergmann <arnd@arndb.de>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  =?utf-8?Q?N=C3=ADcolas?= F . R . A . Prado
- <nfraprado@collabora.com>,  Marek Szyprowski <m.szyprowski@samsung.com>,
-  Peng Fan <peng.fan@nxp.com>,  Robert Richter <rrichter@amd.com>,  Dan
- Williams <dan.j.williams@intel.com>,  Jonathan Cameron
- <Jonathan.Cameron@huawei.com>,  Terry Bowman <terry.bowman@amd.com>,
-  Lukas Wunner <lukas@wunner.de>,  Huacai Chen <chenhuacai@kernel.org>,
-  Alex Elder <elder@linaro.org>,  Srini Kandagatla
- <srinivas.kandagatla@linaro.org>,  Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>,  Abel Vesa <abel.vesa@linaro.org>,
-  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-arm-msm@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
-  linux-pci@vger.kernel.org,  Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 8/9] dt-bindings: wireless: ath11k: describe WCN7850
-References: <20240117160748.37682-1-brgl@bgdev.pl>
-	<20240117160748.37682-9-brgl@bgdev.pl>
-Date: Wed, 17 Jan 2024 20:07:35 +0200
-In-Reply-To: <20240117160748.37682-9-brgl@bgdev.pl> (Bartosz Golaszewski's
-	message of "Wed, 17 Jan 2024 17:07:47 +0100")
-Message-ID: <87v87r4yvs.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1705515739; c=relaxed/simple;
+	bh=3VdOjc3X148qsKr0xLzhVrZ+WN/d9jtjGD8XrGEuK1E=;
+	h=Received:DKIM-Signature:Received:From:To:Cc:Subject:Date:
+	 Message-Id:X-Mailer:MIME-Version:Content-Transfer-Encoding:
+	 X-Mail-ID; b=EPOEJtB8pOMiyuo2x/HBIM5ST9JpxmQXcCz18GtOmSYHJlMYs2Iq/xk82i/iC9XWNClBdmfjsKISsO7HFTAffSC9SYsK8c7wU165Nk7cG3ijT6dtaRE/lnRYYGdXmi8DhkIbEZro09VOygKstz/3ZTKq7LO14z/itCkfVSrdwJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=x2pbTALC; arc=none smtp.client-ip=134.0.28.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+	by mxout2.routing.net (Postfix) with ESMTP id 452265FC7E;
+	Wed, 17 Jan 2024 18:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1705515353;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=faaWm9kKMcck2ImmwhnetGgTDP4WHiKRSvb4Y2er2NM=;
+	b=x2pbTALCTpXpjTlSpbqC3CbYw83ZKHbpjyKWCW5LEU1zrgBGHziOM2hEt9jrSmRH9Q+P8E
+	0CYzL4UsE/VqPJTdzPkoa9ZKjGMQSTcnutw/dA+0cJe+4LCSK2d4LKUqDj4A9iqTyjHtAL
+	Md7Tdrl08PIPHBM4nLUnzRQBceXLJes=
+Received: from frank-G5.. (fttx-pool-217.61.151.254.bambit.de [217.61.151.254])
+	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 367C93601D6;
+	Wed, 17 Jan 2024 18:15:52 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 0/2] Add reset controller to mt7988 infracfg
+Date: Wed, 17 Jan 2024 19:15:43 +0100
+Message-Id: <20240117181545.60355-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 2b681597-9b8b-4c5c-8a97-97f5be73149f
 
-Bartosz Golaszewski <brgl@bgdev.pl> writes:
+From: Frank Wunderlich <frank-w@public-files.de>
 
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->
-> Describe the ath11k variant present on the WCN7850 module.
->
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Infracfg on mt7988 supports reset controller function which is
+needed to get lvts thermal working.
 
-ath12k supports WCN7850 (a Wi-Fi 7 chipset), not ath11k.
+Patches are based on clk-next due to recently added mt7988 clock driver:
+https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git
+
+changes:
+ v3:
+   - start resets on RST0 offset (LVTS is RST1)
+   - rename offset constants with MT7988 prefix (else collision with reset.h)
+ v2:
+   - change value of constant to 0 from 9
+   - add missing SoB and commit-message for binding-patch
+
+
+Frank Wunderlich (2):
+  dt-bindings: reset: mediatek: add MT7988 reset IDs
+  clk: mediatek: add infracfg reset controller for mt7988
+
+ drivers/clk/mediatek/clk-mt7988-infracfg.c    | 23 +++++++++++++++++++
+ .../reset/mediatek,mt7988-resets.h            |  6 +++++
+ 2 files changed, 29 insertions(+)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.34.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
