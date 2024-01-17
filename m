@@ -1,187 +1,175 @@
-Return-Path: <devicetree+bounces-32790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 567988309AF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:26:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 028EA8309C7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:29:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EDF71C217C4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:26:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D922B2291D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 15:29:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D420E21379;
-	Wed, 17 Jan 2024 15:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF244219F1;
+	Wed, 17 Jan 2024 15:29:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aXHsUFqu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GthVqAlu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C68219F1;
-	Wed, 17 Jan 2024 15:26:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871FD21347;
+	Wed, 17 Jan 2024 15:29:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705505199; cv=none; b=dcGezV75UKZVOndlE/gdUJ/zu0Eg1RNEyue+j/0yK0rOQ/wQvRWHDnBaDW3ho4ndn7rx1gVlZb5HSkyGSsIdH81lrPhfEuwioiKyMi96VSfSfk/fbOUl6CttXciDODMOg5tXeBhgBijQa74LvZDWQkQJ/yPeUb59l/82LCv20wg=
+	t=1705505386; cv=none; b=RKdcn+JGqGZVplqRfakXxMef7fFu2LAYB0pqweLiWjdB+q54mJXxZkdqw68T/UplT5Cvrov15cKZ+HwOANsnGbzmMDc0GmBkNiSfDX9NPUnp7/RYM2qVlI6dTSxSAYf1mtMnuz6trk3GuX8iHVGcaxsOdkcytRIjHDAhqVP+xQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705505199; c=relaxed/simple;
-	bh=xAKMrhuiOukQEKS5pJ7/xw71Z9SHcT0YAv7W09qM11Q=;
-	h=Received:DKIM-Signature:Received:Received:Received:Message-ID:
-	 Date:MIME-Version:User-Agent:From:Subject:To:CC:References:
-	 Content-Language:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
-	 X-QCInternal:X-Proofpoint-Virus-Version:X-Proofpoint-GUID:
-	 X-Proofpoint-ORIG-GUID:X-Proofpoint-Virus-Version:
-	 X-Proofpoint-Spam-Details; b=AQO4cTMKOBalrqL6jWvR5MGTlT51kmciqevtUEbgdZEH4gPZ8h+hrL3mTkjlyHbdAWH28JyEqLE/iKlq0bvmcaSMiA+OT6/ocTZA3eBEyFFCqRGBwUlSvEASxvdjajAkCYPB/RvYq/Cu5nlT81sXx3Yqtos2ZyAVD9qB7raKp9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aXHsUFqu; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40H8m6Yw010290;
-	Wed, 17 Jan 2024 15:25:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:from:subject:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=lqcZoRCRAGlCFSFZQ18HYf55C6lUN1QWW7BD4CzZ8SA=; b=aX
-	HsUFquQ7zWim5EAjjnief79OxjVFjrnAbErXMVPMst4Vspq7dZVjFvi3ny7HvNRL
-	YS1dIviKZqwzNGI7bUM+QkR3QVGDBSz673dJMP4ojMhXyudDy6hzMexflckWA7Ab
-	laOnAzB1WFbOg26vG29g13O5cRmAh4Lta4tuxcMouACqQJ1bLbKaVxCgrFV5cHqh
-	je6NDNBfVDwaeb01k5XhGzsfWwEoLfVMuZUlBAxo+MAJPTcMl3F9jfK1IZQOb3XA
-	aG4nZiQ6l2RJ8wWk+Bm2FA9iiY02ymvMBJF29of78DsHM/eyF7r8Izv58PK1xk2N
-	vGgr5MawQGDkGAKO4K4A==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vp6qxhdeg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jan 2024 15:25:53 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40HFPqss004679
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jan 2024 15:25:52 GMT
-Received: from [10.253.79.191] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 17 Jan
- 2024 07:25:41 -0800
-Message-ID: <a7356a9b-fc55-4efc-9266-0cef21730d97@quicinc.com>
-Date: Wed, 17 Jan 2024 23:25:38 +0800
+	s=arc-20240116; t=1705505386; c=relaxed/simple;
+	bh=qxxZ9RjuckhZiHlpj6s0cb/PxO0021+SF6EF75yf3pg=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=ZfluIuJYEpr9IP/Upu9TFGtNYYwPTonP5RyelJm0SGHlcC3XleHkGoxmUI+WDLRMqMiUwoWSVKSI8nfynABJBNZecUiQkvQoJNImzvCvsplianUJoQG0gRNTNyKrs5IFcdQETbynFLbwYsUsYvpdwTx3AND0VIedzTR6hsyRNR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GthVqAlu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45890C433F1;
+	Wed, 17 Jan 2024 15:29:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705505385;
+	bh=qxxZ9RjuckhZiHlpj6s0cb/PxO0021+SF6EF75yf3pg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GthVqAlu8QyItM872HC2zFIziyZXmGUFTUjvYc9wybCEfU0Uji5Q0Z1fLCfOKTyH5
+	 jQmKY5Sp7TYEn2z6YfVz5HUy27zQlKnaxTEYSJu4UpJznLrShbS98wlOlrKH8KRHDo
+	 XEB1ZXUTq1hjgbIIegibTODOMV8tEoIN2MuhyQKgmZHxsPKCLDk4GQLL10Cir11YRx
+	 lJYlsHef/2rCvt4vJAqQBa77Cqj6m1+E+0vEw6uBiAjScWB0kZUMno3rcYuYP/3Hti
+	 RrurJJSDNsDWmy7SSOIerlHNcdrhr55r4i3Od2tkAUKP/WuZ7X6sTPE96jgR7kZDnZ
+	 QQoIjHbGGLSwQ==
+Date: Wed, 17 Jan 2024 15:29:41 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Tim Lunn <tim@feathertop.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Chris Zhong <zyw@rock-chips.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Zhang Qing <zhangqing@rock-chips.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: rockchip: Document rk809 support for
+ rk817 audio codec
+Message-ID: <20240117-motto-uselessly-b27523fac94d@spud>
+References: <20240116132102.3272682-1-tim@feathertop.org>
+ <20240116132102.3272682-2-tim@feathertop.org>
+ <20240116-mangle-parish-93b5cd672d17@spud>
+ <72ed509c-f754-4e65-a65e-130185777c53@feathertop.org>
+ <b798a7cc-c9fd-4bc3-bb14-401e10e4eeb8@linaro.org>
+ <9636bcb9-6b4b-41ef-bcfc-ff39c11d127e@feathertop.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Jie Luo <quic_luoj@quicinc.com>
-Subject: Re: [PATCH net-next 00/20] net: ethernet: Add qcom PPE driver
-To: Christian Marangi <ansuelsmth@gmail.com>
-CC: Jakub Kicinski <kuba@kernel.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <corbet@lwn.net>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>, <linux@armlinux.org.uk>,
-        <shannon.nelson@amd.com>, <anthony.l.nguyen@intel.com>,
-        <jasowang@redhat.com>, <brett.creeley@amd.com>,
-        <rrameshbabu@nvidia.com>, <joshua.a.hay@intel.com>, <arnd@arndb.de>,
-        <geert+renesas@glider.be>, <neil.armstrong@linaro.org>,
-        <dmitry.baryshkov@linaro.org>, <nfraprado@collabora.com>,
-        <m.szyprowski@samsung.com>, <u-kumar1@ti.com>,
-        <jacob.e.keller@intel.com>, <andrew@lunn.ch>, <netdev@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <ryazanov.s.a@gmail.com>,
-        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
-        <quic_soni@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_souravp@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_leiwei@quicinc.com>
-References: <20240110114033.32575-1-quic_luoj@quicinc.com>
- <20240110142428.52026d9e@kernel.org>
- <5ec26378-a5ff-4de3-b69e-806e36907db6@quicinc.com>
- <65a17d68.050a0220.cf6ea.e78b@mx.google.com>
-Content-Language: en-US
-In-Reply-To: <65a17d68.050a0220.cf6ea.e78b@mx.google.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2qgt36U1wFrD4gIUJ3HcrKsz2ZtWJbOK
-X-Proofpoint-ORIG-GUID: 2qgt36U1wFrD4gIUJ3HcrKsz2ZtWJbOK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-17_09,2024-01-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- malwarescore=0 lowpriorityscore=0 priorityscore=1501 mlxlogscore=715
- adultscore=0 impostorscore=0 suspectscore=0 phishscore=0 bulkscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401170111
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="yBdANV7KjVXVo10Z"
+Content-Disposition: inline
+In-Reply-To: <9636bcb9-6b4b-41ef-bcfc-ff39c11d127e@feathertop.org>
 
 
+--yBdANV7KjVXVo10Z
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 1/13/2024 1:56 AM, Christian Marangi wrote:
-> On Thu, Jan 11, 2024 at 11:49:53PM +0800, Jie Luo wrote:
->>
->>
->> On 1/11/2024 6:24 AM, Jakub Kicinski wrote:
->>> On Wed, 10 Jan 2024 19:40:12 +0800 Luo Jie wrote:
->>>> The PPE(packet process engine) hardware block is available in Qualcomm
->>>> IPQ chipsets that support PPE architecture, such as IPQ9574 and IPQ5332.
->>>
->>> What's the relationship between this driver and QCA8084?
->>
->> The PPE (packet processing engine) is the network processing hardware block
->> in QCOM IPQ SoC. It includes the ethernet MAC and UNIPHY(PCS). This driver
->> is the base PPE driver which brings up the PPE and handles MAC/UNIPHY
->> operations. QCA8084 is the external 2.5Gbps 4-port PHY device, which can be
->> connected with PPE integrated MAC by UNIPHY(PCS).
->>
->> Here is the relationship.
->> PPE integrated MAC --- PPE integrated UNIPHY(PCS) --- (PCS)QCA8084.
->>
->>>
->>> In the last month I see separate changes from you for mdio-ipq4019.c,
->>> phy/at803x.c and now this driver (none of which got merged, AFAICT.)
->>> Are you actually the author of this code, or are you just trying
->>> to upstream bunch of vendor code?
->>
->> Yes, Jakub, there are two authors in these patch series, Lei Wei and me.
->> The patches are already ready for some time, the code has been verified
->> on the Qualcomm reference design board. These are not downstream drivers
->> but drivers re-written for upstream.
->>
->>>
->>> Now you're dumping another 10kLoC on the list, and even though this is
->>> hardly your first posting you're apparently not aware of our most basic
->>> posting rules:
->>> https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#tl-dr
->>>
->>> The reviewers are getting frustrated. Please, help us help you.
->>> Stop throwing code at the list and work out a plan with Andrew
->>> and others on how to get something merged...
->>
->> Sorry for trouble caused, will learn about the guidance provided by
->> the review comments, and follow up on the guidance and have the full
->> internal review of the patch updates before pushing the patch series.
-> 
-> I renew my will of helping in any kind of manner in this, I love the
-> intention for EDMAv2 to have an upstream driver instead of SSDK, hoping
-> in the future to also have the same treatement for EDMAv1 (it's really a
-> pitty to have a support hole with ipq807x not supported)
-> 
-> Feel free to send an email or anything, considering this is massive, an
-> extra eye before sending might make things better than reaching (I can
-> already see this) a massive series with at least 20 revision given the
-> complexity of this thing.
-> 
+On Wed, Jan 17, 2024 at 08:58:56PM +1100, Tim Lunn wrote:
+>=20
+> On 1/17/24 20:22, Krzysztof Kozlowski wrote:
+> > On 17/01/2024 10:19, Tim Lunn wrote:
+> > > On 1/17/24 04:06, Conor Dooley wrote:
+> > > > On Wed, Jan 17, 2024 at 12:21:00AM +1100, Tim Lunn wrote:
+> > > > > Rockchip RK809 shares the same audio codec as the rk817 mfd, it i=
+s also
+> > > > > using the same rk817_codec driver. However it is missing from the
+> > > > > bindings.
+> > > > >=20
+> > > > > Update dt-binding documentation for rk809 to include the audio co=
+dec
+> > > > > properties. This fixes the following warning from dtb check:
+> > > > >=20
+> > > > > pmic@20: '#sound-dai-cells', 'assigned-clock-parents', 'assigned-=
+clocks',
+> > > > >      'clock-names', 'clocks', 'codec' do not match any of the reg=
+exes:
+> > > > >      'pinctrl-[0-9]+'
+> > > > >=20
+> > > > > Signed-off-by: Tim Lunn<tim@feathertop.org>
+> > > > > ---
+> > > > >=20
+> > > > > (no changes since v1)
+> > > > >=20
+> > > > >    .../bindings/mfd/rockchip,rk809.yaml          | 30 +++++++++++=
++++++++-
+> > > > >    1 file changed, 29 insertions(+), 1 deletion(-)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk809=
+=2Eyaml b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> > > > > index 839c0521f1e5..bac2e751e2f2 100644
+> > > > > --- a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> > > > > @@ -12,7 +12,7 @@ maintainers:
+> > > > >    description: |
+> > > > >      Rockchip RK809 series PMIC. This device consists of an i2c c=
+ontrolled MFD
+> > > > > -  that includes regulators, an RTC, and power button.
+> > > > > +  that includes regulators, an RTC, a power button, and an audio=
+ codec.
+> > > > >    properties:
+> > > > >      compatible:
+> > > > > @@ -93,6 +93,34 @@ properties:
+> > > > >            unevaluatedProperties: false
+> > > > >        unevaluatedProperties: false
+> > > > > +  clocks:
+> > > > > +    description:
+> > > > > +      The input clock for the audio codec.
+> > > > > +
+> > > > > +  clock-names:
+> > > > > +    description:
+> > > > > +      The clock name for the codec clock.
+> > > > > +    items:
+> > > > > +      - const: mclk
+> > > > You have one clock only, why do you need to have clock-names?
+> > > This is just documenting the existing rk817 codec driver, which is us=
+ing
+> > > the name to get the clock:
+> > >=20
+> > > devm_clk_get(pdev->dev.parent, "mclk");
+> > >=20
+> > > Thus i dont think clock-names can=A0 be removed in this case? atleast=
+ not
+> > > without patching the driver as well?
+> > Your commit msg claims this is for existing driver using rk817_codec. So
+> > what about rk817? It does not use clocks?
+> >=20
+> rk817 uses exactly the same properties as what I included here. i.e it
+> includes both clocks and clock-names.
+> My point above was that I dont think I can just remove the clock-names
+> property as Conor suggested? I could be wrong though.
 
-Thanks Christian for the help. Yes, the EDMAV2 driver will be posted 
-some time after net-next is reopen and after this PPE driver patch 
-series resumes. The EDMAv2 driver will be posted as separate driver 
-series, which depends on this PPE driver. Currently we plan to post the 
-EDMAv2 driver support for IPQ5332 and IPQ9574 firstly. For IPQ807x, it 
-is a driver for an older architecture as you can see, but we will 
-consider this for the future.
+You can't remove it from the rk817 binding, but that doesn't mean you
+should add it here. If the rk817 only has one clock too, then the driver
+could be modified to not rely on the clock names at all. I'd be inclined
+to allow it here since that makes the binding compatible with the
+existing driver for the other device.
 
-We will certainly review it internally before publishing it later for 
-upstream review.
+--yBdANV7KjVXVo10Z
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZafyZAAKCRB4tDGHoIJi
+0hr9AP96djRfCAp8WT+Xh0+AVthBfqn4ug+yWw3y2+LGgfJ1SgD/c4Vmyl2Gq+Yp
+G2XGQ4njjJGSmJYhMHhdhBJnPSRvrAQ=
+=ZR79
+-----END PGP SIGNATURE-----
+
+--yBdANV7KjVXVo10Z--
 
