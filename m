@@ -1,182 +1,88 @@
-Return-Path: <devicetree+bounces-32889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5645B830EFD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 23:02:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5FC9830F17
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 23:13:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C17761F22E27
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 22:02:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D6A428928B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 22:13:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3C9025630;
-	Wed, 17 Jan 2024 22:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB01C26AC2;
+	Wed, 17 Jan 2024 22:12:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NUYBAhrn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hy13pLgU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4147B22F06;
-	Wed, 17 Jan 2024 22:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E05225578;
+	Wed, 17 Jan 2024 22:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705528972; cv=none; b=SEQc/PpGbikuLWnU7SERTNeI3S6ZrEzLWWTMR1fyu56qwKCl3YEc2rKXphVdKQ9e7uEvP4H92z6uIBG2bCfg3ue37ms63CPqmg+8h1KrZ5ylwzIn7ZuFRcHFNCH+vQKF4peg5A0E6PH+k/J3IygT/P8+cCx55Nt247c/PrzbgMo=
+	t=1705529579; cv=none; b=XHBYxfa3ctpyqsnJAFe7zlq2ZmF0FO3qtDnImCBE/scMcJ7f2/XCmGWD7JubUzYRPzOyW2UmBLMMAM/vTw4vCzqYc2hDVmVf/NHLFGp2xI8Pqy6w6SbvR9U1sKVXGbnjhzZgRaosL1dBNKzAPJmllIGtu3B6VHOCcqjay1ycfGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705528972; c=relaxed/simple;
-	bh=kgQKla3MoUXHzzzT31HuzZcE85m0zK9sjA/QXgkGt44=;
-	h=Received:DKIM-Signature:Received:Received:Received:Date:From:To:
-	 CC:Subject:Message-ID:References:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To:X-Originating-IP:X-ClientProxiedBy:
-	 X-QCInternal:X-Proofpoint-Virus-Version:X-Proofpoint-GUID:
-	 X-Proofpoint-ORIG-GUID:X-Proofpoint-Virus-Version:
-	 X-Proofpoint-Spam-Details; b=hDEx9i+zPA71xJ12oM8W3xIq4gdESlGp2KL3JJ6BGuBNa5dGRfF/DBVVqnro2NL9FTnk5qWPg4Nme7eXOa0/1ioeXQg+NSad7T8WppeQthn35qj6NQWBIYzCSAoEfZ8vx3PK7He7MQIwpb3LKQ7+lGReHZ0m9tdkAOmIolv30D8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NUYBAhrn; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40HLXETo010240;
-	Wed, 17 Jan 2024 22:01:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=eMRgKtzrvypX5SjMuARx6
-	mbUyoO003lGGNqle6ArHFQ=; b=NUYBAhrn9gJbrTU9kxsg2eCjvhIWy325Xqaq4
-	WJTekCdzsJZLQCuslVeC5XVEjGiA/HrpY7hVKItQPV1WQ29bWlyScmXmK2pMNFmz
-	iLwanMrlL2UeZ2PuuAZiDEZIHd14BK5u/wAjLcN0hNdqWkdqIabnsao+gZWM+KwA
-	YzdAqT8IGgwXGz0IUsnUVE8vrj0ZArjONycC2yTpnFmAIAnKFTiC8Fwx5HCPSpx+
-	B+xBcQkhVLGUxvuxG16WSUpUeevs+lUagswmxR+P2kSgq3EHkHh148aW1+5mEu1I
-	zj5zYhzZ7H5eWJc6IoSHfmiPt1ztddjvKb93ccuD/Rlbi5E9Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vpdfgsej2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jan 2024 22:01:56 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40HM1t9k001475
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Jan 2024 22:01:55 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 17 Jan 2024 14:01:55 -0800
-Date: Wed, 17 Jan 2024 14:01:53 -0800
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
-	<broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Kishon Vijay
- Abraham I" <kishon@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Heikki
- Krogerus" <heikki.krogerus@linux.intel.com>,
-        Philipp Zabel
-	<p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-phy@lists.infradead.org>
-Subject: Re: [PATCH v2 13/15] arm64: dts: qcom: pmi632: define USB-C related
- blocks
-Message-ID: <20240117220153.GA649327@hu-bjorande-lv.qualcomm.com>
-References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
- <20240113-pmi632-typec-v2-13-182d9aa0a5b3@linaro.org>
- <1d0d325d-d15e-4e86-b8e3-9f91b99e78bf@linaro.org>
+	s=arc-20240116; t=1705529579; c=relaxed/simple;
+	bh=8ZWxxi+E/NaAerdbYPGUdfNwkBPBn68aCAqzPkx21BI=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 Content-Transfer-Encoding:In-Reply-To; b=ftn/e4Pr9tOGc511odpEINn3MTCFACRjPgnuiP7tOTVU5lRDggYLRw5U+Onz47W+DDWxowYNDgbAxB2Om0nX4PKPUBxJbvIQGo9eh3Y4mjRvrzA77AARHu8Plvc3AMUfs+znLf6f8xps1M2deW1DkDxM1nteInBlYogS6g/qg9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hy13pLgU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 366C2C433F1;
+	Wed, 17 Jan 2024 22:12:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705529579;
+	bh=8ZWxxi+E/NaAerdbYPGUdfNwkBPBn68aCAqzPkx21BI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Hy13pLgUCZM9Cr9Mlhi2+r087lFjuBzxKcwWKCE33sdWkqqLlMbZPu0x58lWa3ifS
+	 5sDSXoRLV48G5GqUPuiZ0fmuYWSkfTzXOQB06gLf77s3eXqrMoRgCtcCTfYlpRQ8Kn
+	 2a6DzCbW3u7awNfEEnMqo9fTiPAoY7nQZB4fH+c+89OlNZlYY5+XqEfo0k5EZRPn2L
+	 dlkW/4Z5XU59ZWYYEs4nmEDbCYyKh0bS/UX/8NVkEqyotdLUkYjo326UjqhlL8YiMU
+	 uQ2xFbWNPgyOoD1QoB/zColCTH5h6zP/aNjtFkQEfhrhAaFDcyoztUnIV7AynG9GIF
+	 2judcQFmWvL5Q==
+Date: Wed, 17 Jan 2024 16:12:57 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc: devicetree@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-leds@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Lee Jones <lee@kernel.org>, openwrt-devel@lists.openwrt.org
+Subject: Re: [PATCH] dt-bindings: leds: add FUNCTION defines for per-band
+ WLANs
+Message-ID: <170552957658.3342080.9497026905150979511.robh@kernel.org>
+References: <20240117151736.27440-1-zajec5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1d0d325d-d15e-4e86-b8e3-9f91b99e78bf@linaro.org>
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nmevfx26C7BXCEfOc6jAfSNQG8-LbM15
-X-Proofpoint-ORIG-GUID: nmevfx26C7BXCEfOc6jAfSNQG8-LbM15
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-17_12,2024-01-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- impostorscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1011
- mlxlogscore=621 phishscore=0 malwarescore=0 suspectscore=0
- priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2401170157
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240117151736.27440-1-zajec5@gmail.com>
 
-On Mon, Jan 15, 2024 at 11:00:53AM +0100, Konrad Dybcio wrote:
-> On 13.01.2024 21:55, Dmitry Baryshkov wrote:
-> > Define VBUS regulator and the Type-C handling block as present on the
-> > Quacomm PMI632 PMIC.
-> > 
-> > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/pmi632.dtsi | 30 ++++++++++++++++++++++++++++++
-> >  1 file changed, 30 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/pmi632.dtsi b/arch/arm64/boot/dts/qcom/pmi632.dtsi
-> > index 4eb79e0ce40a..d6832f0b7b80 100644
-> > --- a/arch/arm64/boot/dts/qcom/pmi632.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/pmi632.dtsi
-> > @@ -45,6 +45,36 @@ pmic@2 {
-> >  		#address-cells = <1>;
-> >  		#size-cells = <0>;
-> >  
-> > +		pmi632_vbus: usb-vbus-regulator@1100 {
-> > +			compatible = "qcom,pmi632-vbus-reg", "qcom,pm8150b-vbus-reg";
-> > +			reg = <0x1100>;
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		pmi632_typec: typec@1500 {
-> > +			compatible = "qcom,pmi632-typec";
-> > +			reg = <0x1500>;
-> > +			interrupts = <0x2 0x15 0x00 IRQ_TYPE_EDGE_RISING>,
-> > +				     <0x2 0x15 0x01 IRQ_TYPE_EDGE_BOTH>,
-> > +				     <0x2 0x15 0x02 IRQ_TYPE_EDGE_RISING>,
-> > +				     <0x2 0x15 0x03 IRQ_TYPE_EDGE_BOTH>,
-> > +				     <0x2 0x15 0x04 IRQ_TYPE_EDGE_RISING>,
-> > +				     <0x2 0x15 0x05 IRQ_TYPE_EDGE_RISING>,
-> > +				     <0x2 0x15 0x06 IRQ_TYPE_EDGE_BOTH>,
-> > +				     <0x2 0x15 0x07 IRQ_TYPE_EDGE_RISING>;
-> This differs from the downstream irq types:
+
+On Wed, 17 Jan 2024 16:17:36 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> <0x2 0x15 0x0 IRQ_TYPE_EDGE_BOTH>,
-> <0x2 0x15 0x1 IRQ_TYPE_EDGE_BOTH>,
-> <0x2 0x15 0x2 IRQ_TYPE_EDGE_RISING>,
-> <0x2 0x15 0x3 IRQ_TYPE_EDGE_RISING>,
-> <0x2 0x15 0x4 IRQ_TYPE_EDGE_BOTH>,
-> <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>,
-> <0x2 0x15 0x6 IRQ_TYPE_EDGE_RISING>,
-> <0x2 0x15 0x7 IRQ_TYPE_EDGE_RISING>;
+> Most wireless routers and access points can operate in multiple bands
+> simultaneously. Vendors often equip their devices with per-band LEDs.
+> 
+> Add defines for those very common functions to allow cleaner & clearer
+> bindings.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  include/dt-bindings/leds/common.h | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Interrupt 1, 3, and 6 are level interrupts for which it's reasonable to
-act on both edges. Interrupt 0, 2, 4, 5, and 7 are "pulse interrupts",
-for which it seems reasonable to act on only one of the edges.
+Acked-by: Rob Herring <robh@kernel.org>
 
-To me, Dmitry's proposed version makes more sense than downstream.
-
-Regards,
-Bjorn
-
-> Is it intended?
-> 
-> Thanks a lot for working on this!
-> 
-> Konrad
-> 
 
