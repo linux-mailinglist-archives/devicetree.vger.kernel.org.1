@@ -1,59 +1,76 @@
-Return-Path: <devicetree+bounces-32636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74C33830054
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 08:00:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74135830079
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 08:23:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EFF128522D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 07:00:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 777D01C21927
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 07:23:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898236AA2;
-	Wed, 17 Jan 2024 07:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F058F65;
+	Wed, 17 Jan 2024 07:22:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="aNlV/R4E"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Em/bewgX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02FD8BE76
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 07:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C4AC2E3
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 07:22:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705474831; cv=none; b=fx/awHX4hrRUXtSBAoGMn+y92IK4RfroVF8rSLAMmKlDzZM2rjV4JAL6woM+ovCGAYfJqJLm5KrN5v9ZiaUNuisPOOo61t5IzFx2bdoJLvUsluWoCPllE7vU63EXfNu941x7KkfEQxxwOybSfnxuyR1lXNkmD7qLdCh1xcdjQVQ=
+	t=1705476177; cv=none; b=F6DemHgW5r6s+bQXUOyWjziGmFATunTlruGCUq2P0w5jeuewTDvKSHPAZOEwhNQivDZ4UknLbmKAhiat/mlvVyrcJHDQkhjB5eTaRXzl6g6Z+EWNfOMsmYopPCFzUu4ZywY71gjGM0I8ucbOE5j6eOmvLu/1KTeaqS13OEO4GiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705474831; c=relaxed/simple;
-	bh=nSK+sieiq3qlk5c5O8Fpw7o5HheSCCiiovPA69sWmVU=;
-	h=DKIM-Signature:X-AuditID:Received:Received:Message-ID:Date:
-	 MIME-Version:User-Agent:Subject:Content-Language:To:CC:References:
-	 From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 X-Originating-IP:X-ClientProxiedBy:X-Brightmail-Tracker; b=Py6WxLeOtEgVh9SR4UbJDrJs1NI/axN8crfpLUPHoYFBgwAPp7vJhntR4F1LNW1HiUFtiW7afrgCHjBuyafVvlWHy8NBRO4O7MZVkZVJNuqnH9hDkngfpG91dEIrRG1NcyyukUW398vq1BQ7yxpjJ6pv9kXBJRJlRtUesgMZ6yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=aNlV/R4E; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1705474822; x=1708066822;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=nSK+sieiq3qlk5c5O8Fpw7o5HheSCCiiovPA69sWmVU=;
-	b=aNlV/R4E30WTyffGRYGVWSTIvLu+9JMl2THX+JqencAl35QuiM6054WOGb0w73cc
-	L/v6Pv3KCl7f69byef1XTm+UYPTBncU77HLT5DYFkH+ujfD9z/hW+mha8ZtNSQcz
-	8qKSovyxJPqvkv/vNx8RAFtRThWrh143eJvFOoUQKXA=;
-X-AuditID: ac14000a-fbefe7000000290d-f7-65a77b065fe4
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 7C.6E.10509.60B77A56; Wed, 17 Jan 2024 08:00:22 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 17 Jan
- 2024 08:00:17 +0100
-Message-ID: <979d5a5e-f940-4a0f-a211-694292f15f24@phytec.de>
-Date: Wed, 17 Jan 2024 08:00:15 +0100
+	s=arc-20240116; t=1705476177; c=relaxed/simple;
+	bh=tQ9ArgiEIxDhZiS+bkgzgrxh5erJCH0nJTQEtIK/eEo=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
+	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
+	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding; b=cgkKLOzhIp9NCV1ycVRVqQWECFI/pgK8mpoBo0aY+ZqlRJOEYCz7/jx4qKBJx47YwOQFDP0QSZn4bQ7fRB3kcxsIeq+GahgFgPl1USMyanYvfRmsQJSuhzKgswjlgx6wH2R+f2bsSKGdVKzzUi2nwUZoDp3rktG6cLLcfTpjoGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Em/bewgX; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2cdeb954640so5627431fa.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Jan 2024 23:22:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705476174; x=1706080974; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SOYHVbiUAnjjQrw6HsFcyiBwIfZXDGBhM5yuxq5BenE=;
+        b=Em/bewgXnZV/S6jk3dKi9cybwRALWAiDgjvmm59gMgAN6MUK/AQnvEAvBoePFnOZ0s
+         1Zt9Xh92tfs4ltHNeQMV68y0VUwnk0mOMHtF5d9S+2Qxt9/c0p3gUDJFH4BzwVezYBS7
+         B27kOzBIkcAA+IRzOyvTay9eM/ARyCUx7QG56fqZ3pSm4RqEDh0lwb0qZUYqwUVBZeLy
+         d+LCVGJRv41IwabgFD5lsmXUZSyn7foQ9wfHgfISqgWJZQht3kVq60RN1vJ88T+ub30X
+         N2tYYk+fue+U6e0Dc5MjwsGN/TDcpue94cT3EYH1N2JThnqCqjhhU1kc/UqG8AIlP5rC
+         Z4Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705476174; x=1706080974;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SOYHVbiUAnjjQrw6HsFcyiBwIfZXDGBhM5yuxq5BenE=;
+        b=Dz9nfBdiO6TCkq8+7hX9RkOhQi+SgapMFEqf/vNQax8vljF9FK23Wq7V2deRD1+8lh
+         tzxzKVsZVKiwSXSZpcrAuBkF1ZRlC2xJTI51GeyJd4BxAtqLb2+6psAIBsuh1stGefig
+         Y8rs9YCuT4YuS0SfhM7J4tBcEnpJr2OztNl+vD3geE8PcyotXxskmVPHxXkXiqQ6N8lD
+         nOjrlXChZ5jEd42JClTAhGeOWbopb+uzHVukOW+hKdOt0phfC+Pjlu+wUVH7o9QF+T/G
+         mgVxAQFeCMDXdpJaPVyAnLIvfwjR4m3KCgNh2Fpxrm0j7XcPMjqZmDXbOXL8o9uGJ7Ez
+         JKpg==
+X-Gm-Message-State: AOJu0YyVT6emiVAjKogJ1AVYUJ9LvvYjA8P3nhdwtjBFn2TQvkhOddLK
+	PdFIwma95oXheqwO5MiwlsctlIoqgjo8CJqUoEqKnl/unWI=
+X-Google-Smtp-Source: AGHT+IHVcF0qeMEpqs7uSkwl1gujCZSqpe2AEHAv6VCSRq3gAHW9c+mFiHiyS4ZxEJ6pJzQ5249ZBw==
+X-Received: by 2002:a2e:bd87:0:b0:2cd:cfdb:c2b3 with SMTP id o7-20020a2ebd87000000b002cdcfdbc2b3mr2415461ljq.101.1705476174083;
+        Tue, 16 Jan 2024 23:22:54 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id dj17-20020a05640231b100b00559bb146ecbsm1332043edb.6.2024.01.16.23.22.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Jan 2024 23:22:53 -0800 (PST)
+Message-ID: <18300e5d-364c-4d62-b460-781dc44b8f9c@linaro.org>
+Date: Wed, 17 Jan 2024 08:22:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,234 +78,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: imx93-phycore-segin: Add Phytec i.MX93
- Segin
+Subject: Re: [PATCH 2/6] dt-bindings: PCI: qcom,pcie-sm8450: move SM8450 to
+ dedicated schema
 Content-Language: en-US
-To: Mathieu Othacehe <othacehe@gnu.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Li
- Yang <leoyang.li@nxp.com>, Stefan Wahren <wahrenst@gmx.net>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Christoph Stoidner
-	<c.stoidner@phytec.de>, <upstream@lists.phytec.de>
-References: <20240116113939.17339-1-othacehe@gnu.org>
- <20240116113939.17339-3-othacehe@gnu.org>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240116113939.17339-3-othacehe@gnu.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240108-dt-bindings-pci-qcom-split-v1-0-d541f05f4de0@linaro.org>
+ <20240108-dt-bindings-pci-qcom-split-v1-2-d541f05f4de0@linaro.org>
+ <20240116144832.GA3862516-robh@kernel.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240116144832.GA3862516-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOIsWRmVeSWpSXmKPExsWyRpKBR5etenmqwbz/nBZr9p5jsph/5Byr
-	xcOr/harpu5kseh78ZDZ4lDzASaLTY+vsVp0/VrJbHF51xw2i/N3tzBbtO49wm7xd/smFosX
-	W8Qtut+pWxw/0cnswO+xc9Zddo/Fm/azebRNM/PYtKqTzePOtT1sHpuX1Hv0d7ewemx8t4PJ
-	o/+vgcfnTXIBXFFcNimpOZllqUX6dglcGWvXLGAvuKZXcfjdHqYGxia1LkZODgkBE4nO7tmM
-	XYxcHEICi5kkdj5exwzh3GWUWPryJFMXIwcHr4CNRPP8YpAGFgFVid5Pv9lAbF4BQYmTM5+w
-	gNiiAvIS92/NYAexhQWCJf5u6AezmQXEJW49mc8EMlNEYCOzxNFd+9hAHGaBzYwSj87PBpsk
-	JJAosf3xTbBJbALqEnc2fGMFsTkFzCSunHnJCjHJQmLxm4NQU+Ultr+dwwzRKy/x4tJyFoh3
-	5CWmnXvNDGGHSmz9sp1pAqPwLCTHzkJy1CwkY2chGbuAkWUVo1BuZnJ2alFmtl5BRmVJarJe
-	SuomRlDkijBw7WDsm+NxiJGJg/EQowQHs5IIr7/BslQh3pTEyqrUovz4otKc1OJDjNIcLEri
-	vKs7glOFBNITS1KzU1MLUotgskwcnFINjEsOtkzKT7qTVFJ9SvOZl5XPA1kD458vHum2RHLy
-	978Omb/tua16jZy2hkIx6/xc6RmLhY/ccrqtxanUv2mj7t/yWC5HsWNJPUu3uiUt3bmNo/Pz
-	pM1RjJen28yfJb+4+NHclAMLozJ2vbDk366w2/PjxoB3xj8/5rlecX7+5rfh2p+XQ5Qajymx
-	FGckGmoxFxUnAgClv5ywygIAAA==
 
-Hi,
+On 16/01/2024 15:48, Rob Herring wrote:
+>> +        clock-names:
+>> +          items:
+>> +            - const: pipe # PIPE clock
+>> +            - const: pipe_mux # PIPE MUX
+>> +            - const: phy_pipe # PIPE output clock
+>> +            - const: ref # REFERENCE clock
+>> +            - const: aux # Auxiliary clock
+>> +            - const: cfg # Configuration clock
+>> +            - const: bus_master # Master AXI clock
+>> +            - const: bus_slave # Slave AXI clock
+>> +            - const: slave_q2a # Slave Q2A clock
+>> +            - const: ddrss_sf_tbu # PCIe SF TBU clock
+>> +            - const: aggre1 # Aggre NoC PCIe1 AXI clock
+> 
+> Almost the same list. Combine them and just make the 11th entry "enum: 
+> [aggre0, aggre1]".
 
-would be nice if you could include the author to CC.
+Sure.
 
-CC'ing Christoph.
+Best regards,
+Krzysztof
 
-Regards,
-Wadim
-
-Am 16.01.24 um 12:39 schrieb Mathieu Othacehe:
-> Add DTSI for Phytec i.MX93 System on Module and DTS for Phytec
-> i.MX93 on Segin evaluation board.
->
-> This version comes with:
->   - 1GB LPDDR4 RAM
->   - external SD
->   - debug UART
->   - 1x 100Mbit Ethernet
->
-> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
-> ---
->   arch/arm64/boot/dts/freescale/Makefile        |  1 +
->   .../dts/freescale/imx93-phycore-segin.dts     | 93 +++++++++++++++++++
->   .../boot/dts/freescale/imx93-phycore-som.dtsi | 51 ++++++++++
->   3 files changed, 145 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/freescale/imx93-phycore-segin.dts
->   create mode 100644 arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
->
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 2e027675d7bb..6cb6d9f8783e 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -203,6 +203,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
->   dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
->   dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
->   dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-segin.dtb
->   
->   imx8mm-venice-gw72xx-0x-imx219-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-imx219.dtbo
->   imx8mm-venice-gw72xx-0x-rpidsi-dtbs	:= imx8mm-venice-gw72xx-0x.dtb imx8mm-venice-gw72xx-0x-rpidsi.dtbo
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-segin.dts b/arch/arm64/boot/dts/freescale/imx93-phycore-segin.dts
-> new file mode 100644
-> index 000000000000..2277d97fc3c4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx93-phycore-segin.dts
-> @@ -0,0 +1,93 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2023 PHYTEC Messtechnik GmbH
-> + * Christoph Stoidner <c.stoidner@phytec.de>
-> + * Copyright (C) 2024 Mathieu Othacehe <m.othacehe@gmail.com>
-> + *
-> + */
-> +/dts-v1/;
-> +
-> +#include "imx93-phycore-som.dtsi"
-> +
-> +/{
-> +	model = "PHYTEC phyBOARD-Segin-i.MX93";
-> +	compatible = "phytec,imx93-phycore-segin",
-> +		     "phytec,imx93-phycore-som", "fsl,imx93";
-> +
-> +	chosen {
-> +		stdout-path = &lpuart1;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-> +		regulator-name = "VSD_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +};
-> +
-> +/* Console */
-> +&lpuart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	status = "okay";
-> +};
-> +
-> +/* SD-Card */
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	cd-gpios = <&gpio3 00 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +	no-sdio;
-> +	no-mmc;
-> +};
-> +
-> +/* Watchdog */
-> +&wdog3 {
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX93_PAD_UART1_RXD__LPUART1_RX			0x31e
-> +			MX93_PAD_UART1_TXD__LPUART1_TX			0x31e
-> +		>;
-> +	};
-> +
-> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_RESET_B__GPIO3_IO07		0x31e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CD_B__GPIO3_IO00			0x31e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CLK__USDHC2_CLK			0x178e
-> +			MX93_PAD_SD2_CMD__USDHC2_CMD			0x139e
-> +			MX93_PAD_SD2_DATA0__USDHC2_DATA0		0x138e
-> +			MX93_PAD_SD2_DATA1__USDHC2_DATA1		0x138e
-> +			MX93_PAD_SD2_DATA2__USDHC2_DATA2		0x138e
-> +			MX93_PAD_SD2_DATA3__USDHC2_DATA3		0x139e
-> +			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT		0x51e
-> +		>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-> new file mode 100644
-> index 000000000000..7a9ff998a342
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-> @@ -0,0 +1,51 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2023 PHYTEC Messtechnik GmbH
-> + * Christoph Stoidner <c.stoidner@phytec.de>
-> + * Copyright (C) 2024 Mathieu Othacehe <m.othacehe@gmail.com>
-> + *
-> + */
-> +/dts-v1/;
-> +
-> +#include "imx93.dtsi"
-> +
-> +/{
-> +	model = "PHYTEC phyCORE-i.MX93";
-> +	compatible = "phytec,imx93-phycore-som", "fsl,imx93";
-> +
-> +	reserved-memory {
-> +		ranges;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +	};
-> +};
-> +
-> +/* eMMC */
-> +&usdhc1 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	pinctrl-1 = <&pinctrl_usdhc1>;
-> +	pinctrl-2 = <&pinctrl_usdhc1>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD1_CLK__USDHC1_CLK		0x15fe
-> +			MX93_PAD_SD1_CMD__USDHC1_CMD		0x13fe
-> +			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x13fe
-> +			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x13fe
-> +			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x13fe
-> +			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x13fe
-> +			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x13fe
-> +			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x13fe
-> +			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x13fe
-> +			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x13fe
-> +			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x15fe
-> +		>;
-> +	};
-> +
-> +};
 
