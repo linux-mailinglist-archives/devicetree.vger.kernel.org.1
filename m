@@ -1,194 +1,140 @@
-Return-Path: <devicetree+bounces-32814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6303830B4F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:39:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92139830B5E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:45:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BA7E1F2BE3A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:39:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B08A1F226EF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:45:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D58225AD;
-	Wed, 17 Jan 2024 16:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE50521369;
+	Wed, 17 Jan 2024 16:45:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="kM7tz1pD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D230F225DC;
-	Wed, 17 Jan 2024 16:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E0D9225A4;
+	Wed, 17 Jan 2024 16:45:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705509461; cv=none; b=k9af4V0jGTTCyXH/sP07hWibvhoQOPMrAktbzrWb9y2MpBDZyCSsYjU99libZqX7nvy29OOQfr5021Tmj7jLI7AK5HW0frD1kGOolpbhC7QXq8OfpHRA4RRVpugnPR6ccvicy/QUHU1D5tsScN66GkFKeg6n3BHiK3xL2vG9aLo=
+	t=1705509940; cv=none; b=YtXqddKbOowCt+SG0bd0oA3zUjjpunGTjBQj1D5E09XdKiBEseC+HYxuhAUpUF3m0GNu/k2RgWbQc8XKiRKKmBdPMa/wMHY5KuHpeQvC9Ah0CUKvquJIdEPmW2E0Fr6tUe8l6bKaZVsX/K7QHmwGweErYIzVW+MBEvCzlhJse/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705509461; c=relaxed/simple;
-	bh=pl8tjrmKOS5lUY6LjsQDjtwjBq2zjZttjuXZvCOf3I0=;
-	h=Received:Received:Received:Date:From:To:CC:Subject:Message-ID:
-	 In-Reply-To:References:Organization:X-Mailer:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-Originating-IP:
-	 X-ClientProxiedBy; b=R9vCEEe5DyJE6i+lkbFLUDwS3rV83AnFF6T2EKgfLek83EahOalJZntWuLS7CkVovD1p6qzme0lE26WgWxZkuDF71X3bLwYDAH7iR1Y0qi03/arE/LmMM/PVEEY39jEQSvyjQ68d8TSN4MYjU3pgLeVauYf98h2QjveeA2aoJlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TFWgX6NMqz6J9bQ;
-	Thu, 18 Jan 2024 00:34:48 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 37BE2140AA7;
-	Thu, 18 Jan 2024 00:37:29 +0800 (CST)
-Received: from localhost (10.48.153.213) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Wed, 17 Jan
- 2024 16:37:28 +0000
-Date: Wed, 17 Jan 2024 16:37:25 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Ceclan Dumitru <mitrutzceclan@gmail.com>
-CC: David Lechner <dlechner@baylibre.com>, <linus.walleij@linaro.org>,
-	<brgl@bgdev.pl>, <andy@kernel.org>, <linux-gpio@vger.kernel.org>, "Lars-Peter
- Clausen" <lars@metafoo.de>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Michael Walle <michael@walle.cc>, Andy Shevchenko
-	<andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
-	<chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
- =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>, Mike Looijmans
-	<mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
-	<hvilleneuve@dimonoff.com>, Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v11 1/2] dt-bindings: adc: add AD7173
-Message-ID: <20240117163725.00003981@Huawei.com>
-In-Reply-To: <18c239af-71ee-49d8-878e-e1770c3e2d46@gmail.com>
-References: <20231220104810.3179-1-mitrutzceclan@gmail.com>
-	<CAMknhBELp3NQEHE16gHhC96bttoafQOGxx3a_dLZn9o2Ru7y9g@mail.gmail.com>
-	<20240116163003.0000039d@Huawei.com>
-	<18c239af-71ee-49d8-878e-e1770c3e2d46@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1705509940; c=relaxed/simple;
+	bh=hVbWnNSrHPz6xmHHdaijIuBxcIYaNIZiLi6H6j9b2J8=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=Pn9TlKFYlC2VoL6UcUnQprMtoqEr5D1a/5SDuLf9PFOlOTmGSUOk7NbXyP/vTFa+8OBDqgs+GWacxMEftU5YOMC45lNjvEAUM2HWQ69ELBlJLz7l9j0uaBWEoOf8C4FS2XmReTvNUyuAVI/9CF9HqxKlU8pIiMMhNtbGNXNayJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=kM7tz1pD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 836F9C433F1;
+	Wed, 17 Jan 2024 16:45:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1705509940;
+	bh=hVbWnNSrHPz6xmHHdaijIuBxcIYaNIZiLi6H6j9b2J8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kM7tz1pDpbypmhPtl655KElT8jZAi+laLUKl4QYPvddIPRavpQM/a0i+LU6Qszs+j
+	 EFdz379WU3S/6+gee09gcNF54Sl1uznjojKmOK5BL8nRBXxYoDnQEHOqvIRtpV9i42
+	 DSWx2hFRx4cewa515Or2c+bJxRSarzDFcJB1/3To=
+Date: Wed, 17 Jan 2024 17:45:37 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Peng Fan <peng.fan@nxp.com>, Robert Richter <rrichter@amd.com>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Terry Bowman <terry.bowman@amd.com>, Lukas Wunner <lukas@wunner.de>,
+	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>, linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 4/9] PCI: create platform devices for child OF nodes of
+ the port node
+Message-ID: <2024011707-alibi-pregnancy-a64b@gregkh>
+References: <20240117160748.37682-1-brgl@bgdev.pl>
+ <20240117160748.37682-5-brgl@bgdev.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240117160748.37682-5-brgl@bgdev.pl>
 
-On Wed, 17 Jan 2024 14:43:21 +0200
-Ceclan Dumitru <mitrutzceclan@gmail.com> wrote:
+On Wed, Jan 17, 2024 at 05:07:43PM +0100, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> In order to introduce PCI power-sequencing, we need to create platform
+> devices for child nodes of the port node.
 
-> On 1/16/24 18:30, Jonathan Cameron wrote:
-> > On Mon, 15 Jan 2024 15:53:39 -0600
-> > David Lechner <dlechner@baylibre.com> wrote:
-> >  =20
-> >> On Wed, Dec 20, 2023 at 4:48=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@=
-gmail.com> wrote: =20
->=20
-> ...
->=20
-> >> Sorry for the late reply as I see this has been applied already but...=
- =20
-> > We have plenty of time.  Rather than dropping the ad7173 from my tree,
-> > I'd prefer to see additional patches on top to tidy up whatever
-> > makes sense from David's feedback.
-> >  =20
-> Alright then.
->=20
-> ...
->=20
-> >>
-> >> As discussed in v8 [1] it is not clear what signal this is. Based on
-> >> that discussion, I'm assuming the RDY signal, but how would bindings
-> >> consumers know that without a description since it is not the only
-> >> digital output signal of the chip? And why the ERROR signal was
-> >> omitted here was never addressed AFAICT.
-> >>
-> >> [1]: https://lore.kernel.org/linux-iio/20231217135007.3e5d959a@jic23-h=
-uawei/ =20
-> >=20
-> > I'd forgotten about that.  Adding interrupt-names would be the easiest
-> > way to resolve this.
-> >  =20
->=20
-> I'll add this, but my curiosity for the long run is: How should
-> differences between what bindings include and what drivers support
-> should be managed and documented?
+Ick, why a platform device?  What is the parent of this device, a PCI
+device?  If so, then this can't be a platform device, as that's not what
+it is, it's something else so make it a device of that type,.
 
-Drivers almost always support a subset of functionality of the device.
-This isn't much different.  The driver 'should' use interrupt-names
-but it doesn't need to support all the things that the binding says should
-be in there.
+> They will get matched against
+> the pwrseq drivers (if one exists) and then the actual PCI device will
+> reuse the node once it's detected on the bus.
 
-Sometimes we document things in a driver, but there isn't any obligation to
-do so and those docs are often out of date.
+Reuse it how?
 
->=20
-> ...
->=20
-> >>> +
-> >>> +  refin-supply:
-> >>> +    description: external reference supply, can be used as reference=
- for conversion.   =20
-> >>
-> >> If I'm understanding correctly, this represents both voltage inputs
-> >> REF+ and REF-, correct? The datasheet says "Reference Input Negative
-> >> Terminal. REF=E2=88=92 can span from AVSS to AVDD1 =E2=88=92 1 V". It =
-seems like they
-> >> should be separate supplies in case REF- is non-zero. Otherwise, how
-> >> can we know what voltage it is? (same comment applies to refin2.) =20
-> >=20
-> > Agreed, in this case these are directly used as references (we recently
-> > had another driver that could take a wide range of negative and positive
-> > inputs but in that case an internal reference was generated that didn't
-> > made it not matter exactly what was being supplied.  Not true here thou=
-gh!
-> >  =20
-> Wouldn't it be alright to specify that the voltage specified here should
-> be the actual difference (REF+)-(REF-)?
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  drivers/pci/bus.c    | 9 ++++++++-
+>  drivers/pci/remove.c | 3 ++-
+>  2 files changed, 10 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/bus.c b/drivers/pci/bus.c
+> index 9c2137dae429..8ab07f711834 100644
+> --- a/drivers/pci/bus.c
+> +++ b/drivers/pci/bus.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/errno.h>
+>  #include <linux/ioport.h>
+>  #include <linux/of.h>
+> +#include <linux/of_platform.h>
+>  #include <linux/proc_fs.h>
+>  #include <linux/slab.h>
+>  
+> @@ -342,8 +343,14 @@ void pci_bus_add_device(struct pci_dev *dev)
+>  	 */
+>  	pcibios_bus_add_device(dev);
+>  	pci_fixup_device(pci_fixup_final, dev);
+> -	if (pci_is_bridge(dev))
+> +	if (pci_is_bridge(dev)) {
+>  		of_pci_make_dev_node(dev);
+> +		retval = of_platform_populate(dev->dev.of_node, NULL, NULL,
+> +					      &dev->dev);
 
-How do you establish the offset to apply to single ended channels if you do=
-n't
-know the value of REF- (relative to local ground)?
+So this is a pci bridge device, not a platform device, please don't do
+this, make it a real device of a new type.
 
-So no - as the device supports single ended channels the difference isn't
-enough information.  It would probably be fine to do as you say if it
-were a device with only differential channels where all that matters is
-the scaling.
+thanks,
 
->=20
-> ...
->=20
-> >>> +required:
-> >>> +  - compatible
-> >>> +  - reg
-> >>> +  - interrupts   =20
-> >>
-> >> Why are interrupts required? What if the pin is not connected?
-> >> =20
-> > Ah. I clearly failed to review this one closely enough.
-> >=20
-> > Absolutely agree that interrupts should never be required.
-> > No need for the driver to work if they aren't, but the binding
-> > shouldn't require them!
-> >=20
-> > Jonathan
-> >  =20
->=20
-> To make sure that I understand, the driver will not probe without
-> interrupts, but it is alright to make then optional in the bindings?
-
-Yes - it is fine for a driver to only support a subset of functionality
-and fail to probe if that subset isn't what the hardware enables.
-
->=20
-> This is in the case that someone will want to use this binding and
-> implement reading with polling?
-
-Yes.
-
-J
-
+greg k-h
 
