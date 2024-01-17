@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-32806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1B0830AA0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:12:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85963830AA4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 17:12:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5D901F2913C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:12:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 560381C2606D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 16:12:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2CFB24A1F;
-	Wed, 17 Jan 2024 16:08:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0252563C;
+	Wed, 17 Jan 2024 16:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="QK7JaqDA"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="CKTeIh6F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D33124B5F
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 16:08:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942C525550
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 16:08:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705507722; cv=none; b=mqaomfeyqUBAKosvj/MqUQHx7Fsz1W5FLLdS2VemvOS4sOb6E/PyaVrfPtZ/u9dBsnzVCmGbs5RhYaY/hGFY0ubL4e4IXkhG5nFMykX9ikwZo7SVGJtkwZ9NWRb33cC068zONapuRc7SgWpINDxcuPUBgSFcqaQdpuVQRBlRSmM=
+	t=1705507724; cv=none; b=pjcsvuiBzGzwdyz5FBTqPdFkkZCJbnsizv+iq/Dj68p741ux+QnR9BIgNrLu95jWZGAMbtLMRDvvnrmKLGWAPlKDxFObHsDfIbsOIMGljZhq0YHprLQRhLRkteaen9R3nNRDqkp9vgoHgSYmrmjElsqnJpSrIKYaEURDm8wFU2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705507722; c=relaxed/simple;
-	bh=mM8PwsCjRqxpEKB13QqnWtlTPmsb6ofAXID4BuBezD4=;
+	s=arc-20240116; t=1705507724; c=relaxed/simple;
+	bh=WFyrJs1id+9YZIOtZ6FpABayALnwskaiuM+TVLg1sSM=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:From:
 	 To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding; b=EJD8yeECW8TL65ZdLhr7TBiHR9fkT1fjUhm8prLEboTm4fYkZ6CK+6jR/YFt+DYEZ6wNz76Ow0ZKoIrj43gXeHpE5cWsdW1FQ9WEwLYq9aqxq7/GFx/3rUI9IRDY4p2Fzkz4TCa5bHFhoqJXhJfC62Vnlme4NdieM3QYp3jNjxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=QK7JaqDA; arc=none smtp.client-ip=209.85.221.43
+	 MIME-Version:Content-Transfer-Encoding; b=bKm1UL7eK5FCGGtEDEM9FcC/AvpZkZChafI5XOucOQHUuuzf/R5VNnpmRVMLjHqBUJwevReFFY6EHkCTjHQvZ03ejy1tvvi+hNGtUdzfKToMgg2/mI7a1BaW7BcsxyvqQ03/U9bRqarr3tP42kl5CMtuKLmjufzZZT2L/sHfE84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=CKTeIh6F; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33678156e27so9652640f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 08:08:41 -0800 (PST)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3376555b756so6254083f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 08:08:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1705507719; x=1706112519; darn=vger.kernel.org;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1705507721; x=1706112521; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9KiJFCSMkHl908ixeSikSO3f5Gun1Y9vXqztuxAOHIc=;
-        b=QK7JaqDAX6UeY03/jWwluKciFOE4L7Z5QtbBbJsRWC+y010PQ5RkuSa7L3v3FXLFkZ
-         +tSgLHDiYLvyGfbzKdaoYKrzIDO49cM+ZQ8nhgOfiHJKx40DfnX1+0aPK0FsNALedjOP
-         JqIC25RgMeeUU31utBLG3fsLKCbCYSCaO11r0x8RpW7+jBrx/hmOZ8JkSG5vT0daH1+z
-         1mWxjBcWyxs0Zpf/9AZyBD2Xz1ThUcQS+lq4kFOAcU7ubuvUbHRePdZSWWeBbQUlcO2c
-         UDjoFIgh1/ceEp8738+sR7R0oiVQ5lciXFigpkpJMHjp/wZuaCqAYcY+wgLGvHX42Zim
-         cVAQ==
+        bh=csdPOquKgbyta51Uec8uuMPVMGRbxtZFd+25sTlPk8k=;
+        b=CKTeIh6FgfS8dDceOOxEBjqu3PRAv17lJIOP54BEuwvcxXccpqnOLWxOdzt+YDtDG8
+         wWuTkW1p5J/6jBLzu3E2d1gvi2+C1RwvW/DPuCOW/9gUGW1Wyvz3gJ8N+o3x1yV5OCjf
+         jRUcdN4kfjKmjFz+l+B80tyaLZ4A4rVOy2o35bDf0udWi1E5GAa6ePzCNwI0IIDxdlyJ
+         4V2Wf0+mH5BWdGsyDnHKFalAGUWCh0Xr9km5ZzV64RP6uwr4kmpB0ORuSRmrW+MEYzLn
+         feTz4qru4FCDL5M9Em21tWR+fPqH6J7pmHvwQiHbz2GHR4rD6qEWg4+lBlhPhoZ+ILEl
+         PpuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705507719; x=1706112519;
+        d=1e100.net; s=20230601; t=1705507721; x=1706112521;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9KiJFCSMkHl908ixeSikSO3f5Gun1Y9vXqztuxAOHIc=;
-        b=eWl/7fw6kw5H+OwOvknFOdRlt2/EE5xo9qTSeb89RufUk78AVI4rSyZHP6Seo7xvOq
-         t4wMD4nuIlsoq/gXjzqrGm/v6eDVzbI82aznR3rKvNH95Ww0NpxZs0MWmgJIIhWKxrPJ
-         APyMEvpIoRth73IirwezFi/x4iuLb+EsLsSOwYlkSRV/MT0tuLu7Yr59fnG9oNsicPYS
-         ZhKxONGvy/vsKNmVbbcN6gu9+cYpWwwDg2at2L4QiCrvueRli0yNdNpdm9OPq5bmjm0Q
-         dvgU5S1AHJe/9168SvPkSHea67pDPh7gJdpJB77eh8r7+CfH43voe6ZKYB+m5q903s5f
-         sVMg==
-X-Gm-Message-State: AOJu0Yy7OCqyyw7vmPhwSzCKeO6aW69RICkKqjwFbqRo7ev4k9orytoX
-	3mdIL5fDq1fBbc8A7ky6s0IM3uzxVMVfUQ==
-X-Google-Smtp-Source: AGHT+IE09EQiEo3vEyiN4aUkmSSulxM60vCAFa6QFBzATdMqmCKCemxhHosUEgDD4K1ltVFvSuduEg==
-X-Received: by 2002:adf:e90b:0:b0:336:6bf0:a005 with SMTP id f11-20020adfe90b000000b003366bf0a005mr4715360wrm.92.1705507719524;
-        Wed, 17 Jan 2024 08:08:39 -0800 (PST)
+        bh=csdPOquKgbyta51Uec8uuMPVMGRbxtZFd+25sTlPk8k=;
+        b=TPrbCvgMb69aKuihl/b6XI3joPukKVtKNCKUdFSfq+ig8jQ2YlE8jf5IgixJoTk3uV
+         G4Sa2DDXLDqwymHNMRQQZCI3CSWnNFtsMZEcfhKQNhLm0hnaRbqR+15zj3haUY+P5R++
+         kywdQO7CCn40g3PoxncPlYuTAekPXVZyxzTWqTQKFrOuSEeZlR7UChFV5oIQxZvex5lp
+         TEbNjOXEyxBEDMvAY2bdGFlHH5CqhZvVVrsKi2kAlX1rDpAiFJbx1aB5abqkKV5ieusL
+         G8FZeP1Tc+mEQ8r69dDGXCeRgox3+MYmk9zgmXz9j+8oPkN6iKm9JJzPMp4rkWQ5DlWi
+         itJw==
+X-Gm-Message-State: AOJu0YwVI2gjoR67BPy/g1knaUw5zGntcB09x0lKGsW0xhXH0BkY3kTD
+	+ws41qXCB8GjiZ0cQxLBaAm3h4H7nZeYq0KdVg3tEW7gqlFyGp52rRikCj7Gppw=
+X-Google-Smtp-Source: AGHT+IE8hEEtpTYbJU01ZoUcCZSKPg5Q30PyVE7OMBk7WjjvUlXJokzoqSuozUEKiQC6pE+bjmyMZA==
+X-Received: by 2002:adf:ab09:0:b0:337:7b7a:6540 with SMTP id q9-20020adfab09000000b003377b7a6540mr591631wrc.5.1705507721046;
+        Wed, 17 Jan 2024 08:08:41 -0800 (PST)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:d0b5:43ec:48:baad])
-        by smtp.gmail.com with ESMTPSA id t10-20020a5d6a4a000000b00337b0374a3dsm1972092wrw.57.2024.01.17.08.08.38
+        by smtp.gmail.com with ESMTPSA id t10-20020a5d6a4a000000b00337b0374a3dsm1972092wrw.57.2024.01.17.08.08.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Jan 2024 08:08:39 -0800 (PST)
+        Wed, 17 Jan 2024 08:08:40 -0800 (PST)
 From: Bartosz Golaszewski <brgl@bgdev.pl>
 To: Kalle Valo <kvalo@kernel.org>,
 	"David S . Miller" <davem@davemloft.net>,
@@ -110,9 +110,9 @@ Cc: linux-wireless@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-pci@vger.kernel.org,
 	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 8/9] dt-bindings: wireless: ath11k: describe WCN7850
-Date: Wed, 17 Jan 2024 17:07:47 +0100
-Message-Id: <20240117160748.37682-9-brgl@bgdev.pl>
+Subject: [PATCH 9/9] PCI/pwrseq: add a pwrseq driver for QCA6390
+Date: Wed, 17 Jan 2024 17:07:48 +0100
+Message-Id: <20240117160748.37682-10-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20240117160748.37682-1-brgl@bgdev.pl>
 References: <20240117160748.37682-1-brgl@bgdev.pl>
@@ -126,101 +126,319 @@ Content-Transfer-Encoding: 8bit
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Describe the ath11k variant present on the WCN7850 module.
+Add a PCI power sequencing driver that's capable of correctly powering
+up the ath11k module on QCA6390 and WCN7850 using the PCI pwrseq
+functionality.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+[Neil: add support for WCN7850]
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../net/wireless/qcom,ath11k-pci.yaml         | 41 +++++++++++++++++++
- 1 file changed, 41 insertions(+)
+ drivers/pci/pwrseq/Kconfig              |   8 +
+ drivers/pci/pwrseq/Makefile             |   1 +
+ drivers/pci/pwrseq/pci-pwrseq-qca6390.c | 267 ++++++++++++++++++++++++
+ 3 files changed, 276 insertions(+)
+ create mode 100644 drivers/pci/pwrseq/pci-pwrseq-qca6390.c
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-index c8ec9d313d93..5648c855a122 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
-@@ -18,6 +18,7 @@ properties:
-     enum:
-       - pci17cb,1101  # QCA6390
-       - pci17cb,1103  # WCN6855
-+      - pci17cb,1107  # WCN7850
+diff --git a/drivers/pci/pwrseq/Kconfig b/drivers/pci/pwrseq/Kconfig
+index a721a8a955c3..667c9c121f34 100644
+--- a/drivers/pci/pwrseq/Kconfig
++++ b/drivers/pci/pwrseq/Kconfig
+@@ -5,4 +5,12 @@ menu "PCI Power sequencing drivers"
+ config PCI_PWRSEQ
+ 	bool
  
-   reg:
-     maxItems: 1
-@@ -28,13 +29,25 @@ properties:
-       string to uniquely identify variant of the calibration data for designs
-       with colliding bus and device ids
- 
-+  clocks:
-+    maxItems: 1
++config PCI_PWRSEQ_QCA6390
++	tristate "PCI Power Sequencing driver for QCA6390"
++	select PCI_PWRSEQ
++	default (ATH11K_PCI && ARCH_QCOM)
++	help
++	  Enable support for the PCI power sequencing driver for the
++	  ath11k module of the QCA6390 WLAN/BT chip.
 +
-   enable-gpios:
-     description: GPIO line enabling the ATH11K module when asserted.
-     maxItems: 1
+ endmenu
+diff --git a/drivers/pci/pwrseq/Makefile b/drivers/pci/pwrseq/Makefile
+index 4052b6bb5aa5..5cf8cce01e82 100644
+--- a/drivers/pci/pwrseq/Makefile
++++ b/drivers/pci/pwrseq/Makefile
+@@ -1,3 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0
  
-+  vdd-supply:
-+    description: VDD supply regulator handle
+ obj-$(CONFIG_PCI_PWRSEQ)		+= pwrseq.o
++obj-$(CONFIG_PCI_PWRSEQ_QCA6390)	+= pci-pwrseq-qca6390.o
+diff --git a/drivers/pci/pwrseq/pci-pwrseq-qca6390.c b/drivers/pci/pwrseq/pci-pwrseq-qca6390.c
+new file mode 100644
+index 000000000000..cdf3639ea29f
+--- /dev/null
++++ b/drivers/pci/pwrseq/pci-pwrseq-qca6390.c
+@@ -0,0 +1,267 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Copyright (C) 2023 Linaro Ltd.
++ */
 +
-+  vdddig-supply:
-+    description: VDD_DIG supply regulator handle
++#include <linux/bitmap.h>
++#include <linux/clk.h>
++#include <linux/gpio/consumer.h>
++#include <linux/delay.h>
++#include <linux/device.h>
++#include <linux/mod_devicetable.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/pci-pwrseq.h>
++#include <linux/platform_device.h>
++#include <linux/regulator/consumer.h>
++#include <linux/slab.h>
++#include <linux/types.h>
 +
-   vddio-supply:
-     description: VDD_IO supply regulator handle
- 
-+  vddio12-supply:
-+    description: VDD_IO12 supply regulator handle
++struct pci_pwrseq_qca6390_vreg {
++	const char *name;
++	unsigned int load_uA;
++};
 +
-   vddaon-supply:
-     description: VDD_AON supply regulator handle
- 
-@@ -61,6 +74,18 @@ required:
-   - reg
- 
- allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - pci17cb,1101
-+    then:
-+      properties:
-+        clocks: false
-+        vdd-supply: false
-+        vdddig-supply: false
-+        vddio12-supply: false
-   - if:
-       properties:
-         compatible:
-@@ -69,7 +94,11 @@ allOf:
-               - pci17cb,1103
-     then:
-       properties:
-+        clocks: false
-         enable-gpios: false
-+        vdd-supply: false
-+        vddio12-supply: false
-+        vdddig-supply: false
-         vddio-supply: false
-         vddaon-supply: false
-         vddpmu-supply: false
-@@ -78,6 +107,18 @@ allOf:
-         vddrfa3-supply: false
-         vddpcie1-supply: false
-         vddpcie2-supply: false
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - pci17cb,1107
-+    then:
-+      properties:
-+        vddpmu-supply: false
-+        vddrfa3-supply: false
-+        vddpcie1-supply: false
-+        vddpcie2-supply: false
- 
- additionalProperties: false
- 
++struct pci_pwrseq_qca6390_pdata {
++	struct pci_pwrseq_qca6390_vreg *vregs;
++	size_t num_vregs;
++	unsigned int delay_msec;
++};
++
++struct pci_pwrseq_qca6390_ctx {
++	struct pci_pwrseq pwrseq;
++	const struct pci_pwrseq_qca6390_pdata *pdata;
++	struct regulator_bulk_data *regs;
++	struct gpio_descs *en_gpios;
++	unsigned long *en_gpios_values;
++	struct clk *clk;
++};
++
++static struct pci_pwrseq_qca6390_vreg pci_pwrseq_qca6390_vregs[] = {
++	{
++		.name = "vddio",
++		.load_uA = 20000,
++	},
++	{
++		.name = "vddaon",
++		.load_uA = 100000,
++	},
++	{
++		.name = "vddpmu",
++		.load_uA = 1250000,
++	},
++	{
++		.name = "vddpcie1",
++		.load_uA = 35000,
++	},
++	{
++		.name = "vddpcie2",
++		.load_uA = 15000,
++	},
++	{
++		.name = "vddrfa1",
++		.load_uA = 200000,
++	},
++	{
++		.name = "vddrfa2",
++		.load_uA = 400000,
++	},
++	{
++		.name = "vddrfa3",
++		.load_uA = 400000,
++	},
++};
++
++static struct pci_pwrseq_qca6390_pdata pci_pwrseq_qca6390_of_data = {
++	.vregs = pci_pwrseq_qca6390_vregs,
++	.num_vregs = ARRAY_SIZE(pci_pwrseq_qca6390_vregs),
++	.delay_msec = 16,
++};
++
++static struct pci_pwrseq_qca6390_vreg pci_pwrseq_wcn7850_vregs[] = {
++	{
++		.name = "vdd",
++	},
++	{
++		.name = "vddio",
++	},
++	{
++		.name = "vddio12",
++	},
++	{
++		.name = "vddaon",
++	},
++	{
++		.name = "vdddig",
++	},
++	{
++		.name = "vddrfa1",
++	},
++	{
++		.name = "vddrfa2",
++	},
++};
++
++static struct pci_pwrseq_qca6390_pdata pci_pwrseq_wcn7850_of_data = {
++	.vregs = pci_pwrseq_wcn7850_vregs,
++	.num_vregs = ARRAY_SIZE(pci_pwrseq_wcn7850_vregs),
++	.delay_msec = 50,
++};
++
++static int pci_pwrseq_qca6390_power_on(struct pci_pwrseq_qca6390_ctx *ctx)
++{
++	int ret;
++
++	ret = regulator_bulk_enable(ctx->pdata->num_vregs, ctx->regs);
++	if (ret)
++		return ret;
++
++	ret = clk_prepare_enable(ctx->clk);
++	if (ret)
++		return ret;
++
++	bitmap_fill(ctx->en_gpios_values, ctx->en_gpios->ndescs);
++
++	ret = gpiod_set_array_value_cansleep(ctx->en_gpios->ndescs,
++					     ctx->en_gpios->desc,
++					     ctx->en_gpios->info,
++					     ctx->en_gpios_values);
++	if (ret) {
++		regulator_bulk_disable(ctx->pdata->num_vregs, ctx->regs);
++		return ret;
++	}
++
++	if (ctx->pdata->delay_msec)
++		msleep(ctx->pdata->delay_msec);
++
++	return 0;
++}
++
++static int pci_pwrseq_qca6390_power_off(struct pci_pwrseq_qca6390_ctx *ctx)
++{
++	int ret;
++
++	bitmap_zero(ctx->en_gpios_values, ctx->en_gpios->ndescs);
++
++	ret = gpiod_set_array_value_cansleep(ctx->en_gpios->ndescs,
++					     ctx->en_gpios->desc,
++					     ctx->en_gpios->info,
++					     ctx->en_gpios_values);
++	if (ret)
++		return ret;
++
++	clk_disable_unprepare(ctx->clk);
++
++	return regulator_bulk_disable(ctx->pdata->num_vregs, ctx->regs);
++}
++
++static void devm_pci_pwrseq_qca6390_power_off(void *data)
++{
++	struct pci_pwrseq_qca6390_ctx *ctx = data;
++
++	pci_pwrseq_qca6390_power_off(ctx);
++}
++
++static int pci_pwrseq_qca6390_probe(struct platform_device *pdev)
++{
++	struct pci_pwrseq_qca6390_ctx *ctx;
++	struct device *dev = &pdev->dev;
++	int ret, i;
++
++	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
++	if (!ctx)
++		return -ENOMEM;
++
++	ctx->pdata = of_device_get_match_data(dev);
++	if (!ctx->pdata)
++		return dev_err_probe(dev, -ENODEV,
++				     "Failed to obtain platform data\n");
++
++	if (ctx->pdata->vregs) {
++		ctx->regs = devm_kcalloc(dev, ctx->pdata->num_vregs,
++					 sizeof(*ctx->regs), GFP_KERNEL);
++		if (!ctx->regs)
++			return -ENOMEM;
++
++		for (i = 0; i < ctx->pdata->num_vregs; i++)
++			ctx->regs[i].supply = ctx->pdata->vregs[i].name;
++
++		ret = devm_regulator_bulk_get(dev, ctx->pdata->num_vregs,
++					      ctx->regs);
++		if (ret < 0)
++			return dev_err_probe(dev, ret,
++					     "Failed to get all regulators\n");
++
++		for (i = 0; i < ctx->pdata->num_vregs; i++) {
++			if (!ctx->pdata->vregs[1].load_uA)
++				continue;
++
++			ret = regulator_set_load(ctx->regs[i].consumer,
++						 ctx->pdata->vregs[i].load_uA);
++			if (ret)
++				return dev_err_probe(dev, ret,
++						     "Failed to set vreg load\n");
++		}
++	}
++
++	ctx->clk = devm_clk_get_optional(dev, NULL);
++	if (IS_ERR(ctx->clk))
++		return dev_err_probe(dev, PTR_ERR(ctx->clk),
++				     "Failed to get clock\n");
++
++	ctx->en_gpios = devm_gpiod_get_array_optional(dev, "enable",
++						      GPIOD_OUT_LOW);
++	if (IS_ERR(ctx->en_gpios))
++		return dev_err_probe(dev, PTR_ERR(ctx->en_gpios),
++				     "Failed to get enable GPIOs\n");
++
++	ctx->en_gpios_values = devm_bitmap_zalloc(dev, ctx->en_gpios->ndescs,
++						  GFP_KERNEL);
++	if (!ctx->en_gpios_values)
++		return -ENOMEM;
++
++	ret = pci_pwrseq_qca6390_power_on(ctx);
++	if (ret)
++		return dev_err_probe(dev, ret,
++				     "Failed to power on the device\n");
++
++	ret = devm_add_action_or_reset(dev, devm_pci_pwrseq_qca6390_power_off,
++				       ctx);
++	if (ret)
++		return ret;
++
++	ctx->pwrseq.dev = dev;
++
++	ret = devm_pci_pwrseq_device_enable(dev, &ctx->pwrseq);
++	if (ret)
++		return dev_err_probe(dev, ret,
++				     "Failed to register the pwrseq wrapper\n");
++
++	return 0;
++}
++
++static const struct of_device_id pci_pwrseq_qca6390_of_match[] = {
++	{
++		.compatible = "pci17cb,1101",
++		.data = &pci_pwrseq_qca6390_of_data,
++	},
++	{
++		.compatible = "pci17cb,1107",
++		.data = &pci_pwrseq_wcn7850_of_data,
++	},
++	{ }
++};
++MODULE_DEVICE_TABLE(of, pci_pwrseq_qca6390_of_match);
++
++static struct platform_driver pci_pwrseq_qca6390_driver = {
++	.driver = {
++		.name = "pci-pwrseq-qca6390",
++		.of_match_table = pci_pwrseq_qca6390_of_match,
++	},
++	.probe = pci_pwrseq_qca6390_probe,
++};
++module_platform_driver(pci_pwrseq_qca6390_driver);
++
++MODULE_AUTHOR("Bartosz Golaszewski <bartosz.golaszewski@linaro.org>");
++MODULE_DESCRIPTION("PCI Power Sequencing module for QCA6390");
++MODULE_LICENSE("GPL");
 -- 
 2.40.1
 
