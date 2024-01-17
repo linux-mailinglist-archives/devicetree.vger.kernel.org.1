@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-32711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A168303B7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 246978303B9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 11:36:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EAFDFB20E93
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:35:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74D6EB20EA3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jan 2024 10:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9271C28C;
-	Wed, 17 Jan 2024 10:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCC31401E;
+	Wed, 17 Jan 2024 10:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gucUJfIv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Uffq6d32"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1AD14A81
-	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7B541BF31
+	for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 10:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705487752; cv=none; b=aqk7yO7T2X2PR9z8i9Phz7xBq4Qc3GduKkpLFnApYONz4xM2D+srRcIuWg23c6ziYKQXEoI6Lok6Rimt3anEffO/P0ZtHOcROWKX8DCnu3u9eGCFf20PnhUkzWBAie1lfD92CxHvxvurzZjQuWOQpeUbiDPfI4dOECRi9MaM4gc=
+	t=1705487808; cv=none; b=QPuIQCIisohpfpYygQVBrQtYOI3JMjTBI+osiUMQ3pygUNKBQ/BDQ0pWUk8D7RFNr4Z0DigS0n4usf0TeQ1acjrtRMr4Be2pkOfPDmj1H7zfQ+5RoCGJv3AxuDvsWzpbID2Xx8PX7Qu2NfWqYEea/fWjH0mU1U3C5hVrzTu0v6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705487752; c=relaxed/simple;
-	bh=yYPmz+SXdZKpSy8sg3QZw1TcOaV2Yjvrn1NAzjX5Z6U=;
+	s=arc-20240116; t=1705487808; c=relaxed/simple;
+	bh=9RY3K9hoJiw3Ia8gOpoyb6OqnkDWMJyd4SxhFXHzDos=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
 	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
 	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
 	 To:Cc:References:From:Autocrypt:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=Nz+zA5ehPnBSmXKlyW3SIScAaHzTSNWaRaXXJXSGjG1urILrd2GEbMhB4j8Dc6mPeu0Suf+L2l0m1qYNxfNONnUADONVFMZ4yFIJtbnPs82NDbvrJnizCwtc6oJPoLa0cp+gtdAKi52sMhLxHM4jZUEdHKrF+cdDVU/oJ9ana5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gucUJfIv; arc=none smtp.client-ip=209.85.208.47
+	 Content-Transfer-Encoding; b=omXiEfv+YrC5tITmTrHMFnYpgIc+jb2pZ60vGvxmMr3batKSyxjh92t9WiVYC9LR/vhD4SxZwmae/ecakJYeRfmxMfEQyz2E6Eko6vMbl+5lrlTWqhtqwUhDftajgB+om2QbM1gwh5Hlqd/4+GwcqfJIyXh0gbSv5q/eldnFOFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Uffq6d32; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5592d1bc4fbso3725284a12.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 02:35:50 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-557ad92cabbso10845897a12.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Jan 2024 02:36:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705487749; x=1706092549; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705487805; x=1706092605; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yYPmz+SXdZKpSy8sg3QZw1TcOaV2Yjvrn1NAzjX5Z6U=;
-        b=gucUJfIvWIiQy6vhQ80cZIn1GE804lX47/spS8s3yelBg6bbuCWklMTT98a2JJPK2L
-         3lC9jarum0EdafxDJ5PxC8WpKXB4SVQHoNnU/uaWa0UWnLGlOrerQ/gCEt248nxy8efS
-         9p59DU1XydaSNLANO2llD5PkrmAoOkCJz6TgTIOXcdb3N0oz/Rtc9gQF1KBoDqkiFHRE
-         +sEwMalLzOjmwodKVepM29CQbOYLBRzCkSm+OmchyKQpZigFLU6o+R5j+fDEnH/KbKEy
-         R5neWJ6P/TtJUgfbCZumlYasIwWqSSXbvdYKK0hyBGTrWVkryC4zpgz1VieabevdEfEz
-         cpVw==
+        bh=+oVYct57//SgaXYIT1xJ2fr1lSv8HvmgqL6c7VSVQGQ=;
+        b=Uffq6d32JpTrB93j3Bqetyzhc0eNv4rV4kdJOSOdbu6MDfr5SgaaBBVDAACa1ZTBjy
+         HgCcY9f0ASn9wbaVtmx1JAKDSFSzwT3HFZIwMRK8JJzVIH4kBe3R9SlTLOaATTk9I+tg
+         0o/xwuL/xvrljTKZvxokdjxc1qF1OxxDacOdWr2zRP0bO9XKwMZy63qM7Z0yVELCwF6T
+         2g9lxsJq+5eMRCK7rhWjS4Eg0u4fRBq6b8YSyEna6f/DNQGZokihq+u0wEERANvq7RB9
+         Nm1lOFJcgrSD2czgcAFikgYun8jcdRMdSvfbceXRNi1RvZnjJ3oAFRZQOAbrh5J5pxpn
+         omww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705487749; x=1706092549;
+        d=1e100.net; s=20230601; t=1705487805; x=1706092605;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yYPmz+SXdZKpSy8sg3QZw1TcOaV2Yjvrn1NAzjX5Z6U=;
-        b=RL7pdkNSEgSxaDbHqchb0VEQH+5CuNb94BF2f8Q3oheVMFbEIePNmbqzFjPRsF+D6D
-         QC3sohYIAaDTAmvNNwJ0dGcCIiDrEfRuDa0rogYee0qXBwMvTUSu8ZQO0B9CgsJPu2Er
-         L2JBfehRKuhVnS/G1mjbzQEA/9uUNaqITCY+K3GnSbTG4EOd1YG42nIyUB6U1ctDABKQ
-         K+l8+bCJrcE5SkgOZ6XZ4DgEcRQa0wkWm5yvajG77e/0NUaidslb0zWYz4hujiw7G81m
-         pZ4EigO8gYHP42xjnKphLENpg0XNmB1XbpeYAReYoBxehtDrJimsaVKy6pFHfL8d2vYA
-         lGLw==
-X-Gm-Message-State: AOJu0YxoTjj2kvevaqO+Y5g2iXsUzawyPterlBjD57rH1amNUUESe/ZQ
-	UQePe76FcMlk8ow9BV8kvp7VGVM4Ak7N9Q==
-X-Google-Smtp-Source: AGHT+IFFparVocLcT/Ewr6Do2Q8ZHhCmAY4+XUpMkl95WywBs4t5g9pIuKgR/hDoYBXaWZWD+WDtqQ==
-X-Received: by 2002:a05:6402:1b1a:b0:558:89a5:f5cb with SMTP id by26-20020a0564021b1a00b0055889a5f5cbmr4086795edb.31.1705487749172;
-        Wed, 17 Jan 2024 02:35:49 -0800 (PST)
+        bh=+oVYct57//SgaXYIT1xJ2fr1lSv8HvmgqL6c7VSVQGQ=;
+        b=Wq8HkRYP2b5vjfPB5dpxvpEx1aDjytdxdL4gTH/1pTwwfs4tvsvYOEz0Zg8RBkwARr
+         PIa4Pd1hWirIO9oCDiaifVHTLznoh84q9XnZeh3Pa239mjnDB/0wWjtLy4tWiGgOle/K
+         mOnOYo8juroXEam+T6ZqBcaPTe6aX345PDIOUhgtMtaBdV7LmTewa4Zhiypx02gWU362
+         4MKiRcpd13H8cWjK+HLWTaNco+WCwVn9UNR8fpL7+rcNwltSG3dwGpQkPEe02mPo55+I
+         a9TQXZ2f+HDsQLMFnS47tUDNW317zjJNdgKI1+tSujW4yv5CVNzBhtm16Pbm/VKZ3A4v
+         lDng==
+X-Gm-Message-State: AOJu0YyqoOcoAPZwPwfFCF/rljAJ6dxBA1W8lBav9cTovjM8OBxVPsE+
+	bwxAOSAzEhQROQaK5eWZ/XGq12ZPV2C3DY9gXmfbLG5JPXQ=
+X-Google-Smtp-Source: AGHT+IEH3ZsvDMJWOhhA0L3qCfuLRYgPJHms5OZKnW4u+5xkAe5PXlR40XeG6uiDneNqbtM0wtsVng==
+X-Received: by 2002:aa7:c64c:0:b0:557:6f45:ae21 with SMTP id z12-20020aa7c64c000000b005576f45ae21mr2432823edr.148.1705487805170;
+        Wed, 17 Jan 2024 02:36:45 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id p25-20020a05640210d900b0055746f354d8sm5530161edu.56.2024.01.17.02.35.47
+        by smtp.gmail.com with ESMTPSA id p25-20020a05640210d900b0055746f354d8sm5530161edu.56.2024.01.17.02.36.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Jan 2024 02:35:48 -0800 (PST)
-Message-ID: <4282b248-cb7f-4486-bde6-105a3aed6be2@linaro.org>
-Date: Wed, 17 Jan 2024 11:35:47 +0100
+        Wed, 17 Jan 2024 02:36:44 -0800 (PST)
+Message-ID: <c2c7c1fb-af71-4a5d-9e35-13f6066a2ed6@linaro.org>
+Date: Wed, 17 Jan 2024 11:36:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,8 +78,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: PCI: ti,j721e-pci-*: Add checks for
- max-link-speed
+Subject: Re: [PATCH 3/3] dt-bindings: PCI: ti,j721e-pci-host: Add support for
+ J722S SoC
 Content-Language: en-US
 To: Siddharth Vadapalli <s-vadapalli@ti.com>, bhelgaas@google.com,
  lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
@@ -88,7 +88,7 @@ Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  vigneshr@ti.com, afd@ti.com, srk@ti.com
 References: <20240117102526.557006-1-s-vadapalli@ti.com>
- <20240117102526.557006-3-s-vadapalli@ti.com>
+ <20240117102526.557006-4-s-vadapalli@ti.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,17 +134,59 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240117102526.557006-3-s-vadapalli@ti.com>
+In-Reply-To: <20240117102526.557006-4-s-vadapalli@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 17/01/2024 11:25, Siddharth Vadapalli wrote:
-> Extend the existing compatible based checks for validating and enforcing
-> the "max-link-speed" property.
+> TI's J722S SoC has one instance of a Gen3 Single Lane PCIe controller.
+> The controller on J722S SoC is similar to the one present on TI's AM64
+> SoC, with the difference being that the controller on AM64 SoC supports
+> up to Gen2 link speed while the one on J722S SoC supports Gen3 link speed.
+> 
+> Update the bindings with a new compatible for J722S SoC and enforce checks
+> for "num-lanes" and "max-link-speed".
+> 
+> Technical Reference Manual of J722S SoC: https://www.ti.com/lit/zip/sprujb3
+> 
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> ---
+>  .../devicetree/bindings/pci/ti,j721e-pci-host.yaml  | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> index 005546dc8bd4..b7648f7e73c9 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> @@ -14,6 +14,7 @@ properties:
+>    compatible:
+>      oneOf:
+>        - const: ti,j721e-pcie-host
+> +      - const: ti,j722s-pcie-host
+>        - const: ti,j784s4-pcie-host
+>        - description: PCIe controller in AM64
+>          items:
+> @@ -134,6 +135,18 @@ allOf:
+>            minimum: 1
+>            maximum: 4
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          items:
 
-Based on what? Driver or hardware? Your entire change suggests you
-should just drop it from the binding, because this can be deduced from
-compatible.
+enum
+
+> +            - const: ti,j722s-pcie-host
+> +    then:
+> +      properties:
+> +        max-link-speed:
+> +          const: 3
+> +        num-lanes:
+> +          const: 1
+
+Similarly to previous patch: What is the point of all this? You have
+direct mapping compatible-property, so encode these in the drivers.
 
 Best regards,
 Krzysztof
