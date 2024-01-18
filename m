@@ -1,92 +1,135 @@
-Return-Path: <devicetree+bounces-33043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97604831D58
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:16:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F8A831D80
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:22:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 396E9B25EB8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:16:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72C691C223AA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A7F2C19E;
-	Thu, 18 Jan 2024 16:16:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377732942A;
+	Thu, 18 Jan 2024 16:22:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw21-7.mail.saunalahti.fi (fgw21-7.mail.saunalahti.fi [62.142.5.82])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BCE92C183
-	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 16:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.82
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00A9A2C191;
+	Thu, 18 Jan 2024 16:22:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705594575; cv=none; b=WufS03Gkl+gWgdGJN+bHUp8MGurV4oZ3c9a9+FBpc3dTmXiC85i3pdy1OOFR2eH/JUn18eNuDqt/kA6+YuNgjUqzYWfGynv4Lxalok8CRC17tlS52twzdenKEC/yxy7zLSlND6jzapM739TONXvmoHzW2fw8g4uOMp40m+6G74s=
+	t=1705594941; cv=none; b=V7dfXIGLHngHSHlLQ9h9W++a3ReHopkoVLVUBX+2cTNUH813hLkl7eOUuWw30qxUIhVfyFsCfJa9jMk5wGh2jK6mmwfhIZNxWUlzbcFrFqJI9A58xryAtdy0i2q1bxqNvvH5Izg72ePqg0gu0g6UmmAjUBN2wYWp5k2s7rnTSj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705594575; c=relaxed/simple;
-	bh=uKYABitkPHkMBYpYoEDTqJexD8KYr1iUJcOLrzvoYoA=;
-	h=Received:From:Date:To:Cc:Subject:Message-ID:References:
-	 MIME-Version:Content-Type:Content-Disposition:In-Reply-To; b=O2VFIa4wCya+HGNaT2W124JJILVLOT2UiQdq4g9t225iSviCiidPB2+WwsPXt8V5ce9uNLsUyHp/VzQvhwrLYNOpsu7zPXAgnIIwqXP9cezut6p1Cfzanc61WY55b/7ZrrAaZfVQFOlERJzHTr+TTmJzRlOAK/zzIjkcPg0yWwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.82
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-24-108.elisa-laajakaista.fi [88.113.24.108])
-	by fgw21.mail.saunalahti.fi (Halon) with ESMTP
-	id e194e5ee-b61c-11ee-abf4-005056bdd08f;
-	Thu, 18 Jan 2024 18:16:06 +0200 (EET)
-From: andy.shevchenko@gmail.com
-Date: Thu, 18 Jan 2024 18:16:05 +0200
-To: Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc: broonie@kernel.org, lee@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, vkoul@kernel.org, lgirdwood@gmail.com,
-	yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-	pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 1/6] soundwire: bus: Allow SoundWire peripherals to
- register IRQ handlers
-Message-ID: <ZalOxVZhPkOPvkJ-@surfacebook.localdomain>
-References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
- <20230804104602.395892-2-ckeepax@opensource.cirrus.com>
+	s=arc-20240116; t=1705594941; c=relaxed/simple;
+	bh=qPzK6gVFp3Jx3vDLYl65XpUDJJEvx4TME7a9OfF/BS4=;
+	h=Received:X-Google-DKIM-Signature:X-Gm-Message-State:
+	 X-Google-Smtp-Source:X-Received:Received:Received:X-Received:
+	 MIME-Version:References:In-Reply-To:From:Date:
+	 X-Gmail-Original-Message-ID:Message-ID:Subject:To:Cc:Content-Type:
+	 Content-Transfer-Encoding; b=XjVd89ZtgGLiVF31Xkd82685Bz37z9XjyRLoi7Aj25t2MeO8U+awn03cJA5/v3Q/wNEDuf1JMCVYbilI6wfzZg3kb2jkfHxWJCqeIiThnLAyUhY/FWWwfVhQ6tmJ+nCLVR9KIMVIHrvBTXGhb0XoDFtuUYW/olCBzt1beXW57Go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5f8cf76ef5bso115564427b3.0;
+        Thu, 18 Jan 2024 08:22:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705594938; x=1706199738;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J1ZHBh2IhHUk6R0mb0HwNUYRqWpgjfOFml5hWvgYMDU=;
+        b=gdZlFlMg/+UKTmNa5cZ6eBtX9LavcIF+pE8O+M9s/8xUssjdpxpjvlhpY9Aco4Wh+W
+         DCIJifGShRaTxgrL42LRuyCxCdJxQuhWrXeNyRv93aCCv+8E4D7sL9SXvuJeYhHRSnuh
+         ByWAMtAA1l3ie3cKyMlX396YjrfX7Tbf6sAm9f+w/7wqTM9fHfOaJq8Z55PeO02iI01L
+         z0bWxhAlxA0cZAIfFYMXCWK2GnkT6gYPo5cMw87FWi7nScFujE+JIumpxlSXwsO0UUoG
+         Mdu3qDcz0DfxtddepcWZUuzLszpl0p8ATiajHgA1hMGbmSoPCxCgEAhalc7kfmqvZE+8
+         +Mcw==
+X-Gm-Message-State: AOJu0YwjwYs2jh9hn+V6Pr8NkDkigQzeHNhXQepKXOmcNoy55Q930TfJ
+	t8nfySyz/ZkbZNu6Tj9B2kge9GmzwssR012Mmf0OAuLh6wGmDuGusdI3l//AqeA=
+X-Google-Smtp-Source: AGHT+IHUuGGvnRS3UHcJCDKV6s7skaYjxFy1kjDijpAobnDrNgk8lI82gVuS0UufXdeKFlIMCvW4PQ==
+X-Received: by 2002:a81:de4b:0:b0:5f7:9a2b:fd0a with SMTP id o11-20020a81de4b000000b005f79a2bfd0amr1128415ywl.35.1705594937789;
+        Thu, 18 Jan 2024 08:22:17 -0800 (PST)
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
+        by smtp.gmail.com with ESMTPSA id r124-20020a819a82000000b005e92fd632e0sm6806716ywg.24.2024.01.18.08.22.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Jan 2024 08:22:17 -0800 (PST)
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dc23bf7e5aaso2155921276.0;
+        Thu, 18 Jan 2024 08:22:17 -0800 (PST)
+X-Received: by 2002:a25:748a:0:b0:da0:3bfc:b915 with SMTP id
+ p132-20020a25748a000000b00da03bfcb915mr1030675ybc.11.1705594937194; Thu, 18
+ Jan 2024 08:22:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230804104602.395892-2-ckeepax@opensource.cirrus.com>
+References: <20240112200750.4062441-1-sboyd@kernel.org> <20240112200750.4062441-2-sboyd@kernel.org>
+ <ZaZtbU9hre3YhZam@FVFF77S0Q05N> <CAMuHMdU0qtMeX=7SY+32=30-QGMRniFVCCm217REJ1X+ZNJ=Aw@mail.gmail.com>
+ <ZalCcivD0vXpQfr9@FVFF77S0Q05N.cambridge.arm.com>
+In-Reply-To: <ZalCcivD0vXpQfr9@FVFF77S0Q05N.cambridge.arm.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 18 Jan 2024 17:22:05 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVW+zBU-7OEpsMZKFfkFbyN98jatG0RsLuzZmXKWavNAA@mail.gmail.com>
+Message-ID: <CAMuHMdVW+zBU-7OEpsMZKFfkFbyN98jatG0RsLuzZmXKWavNAA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: Unconditionally call unflatten_device_tree()
+To: Mark Rutland <mark.rutland@arm.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, linux-um@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com, 
+	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, 
+	Frank Rowand <frowand.list@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Fri, Aug 04, 2023 at 11:45:57AM +0100, Charles Keepax kirjoitti:
-> From: Lucas Tanure <tanureal@opensource.cirrus.com>
-> 
-> Currently the in-band alerts for SoundWire peripherals can only
-> be communicated to the driver through the interrupt_callback
-> function. This however is slightly inconvenient for devices that wish
-> to share IRQ handling code between SoundWire and I2C/SPI, the later
-> would normally register an IRQ handler with the IRQ subsystem. However
-> there is no reason the SoundWire in-band IRQs can not also be
-> communicated as an actual IRQ to the driver.
-> 
-> Add support for SoundWire peripherals to register a normal IRQ
-> handler to receive SoundWire in-band alerts, allowing code to be
-> shared across control buses. Note that we allow users to use both the
-> interrupt_callback and the IRQ handler, this is useful for devices
-> which must clear additional chip specific SoundWire registers that are
-> not a part of the normal IRQ flow, or the SoundWire specification.
+Hi Mark,
 
-...
+On Thu, Jan 18, 2024 at 4:23=E2=80=AFPM Mark Rutland <mark.rutland@arm.com>=
+ wrote:
+> On Tue, Jan 16, 2024 at 03:13:42PM +0100, Geert Uytterhoeven wrote:
+> > On Tue, Jan 16, 2024 at 12:51=E2=80=AFPM Mark Rutland <mark.rutland@arm=
+.com> wrote:
+> > > On Fri, Jan 12, 2024 at 12:07:44PM -0800, Stephen Boyd wrote:
+> > > > Call this function unconditionally so that we can populate an empty=
+ DTB
+> > > > on platforms that don't boot with a firmware provided or builtin DT=
+B.
+> > > > There's no harm in calling unflatten_device_tree() unconditionally.
+> > >
+> > > For better or worse, that's not true: there are systems the provide b=
+oth a DTB
+> > > *and* ACPI tables, and we must not consume both at the same time as t=
+hose can
+> > > clash and cause all sorts of problems. In addition, we don't want peo=
+ple being
+> > > "clever" and describing disparate portions of their system in ACPI an=
+d DT.
+> >
+> > We'd get to the latter anyway, when plugging in a USB device where the
+> > circuitry on/behind the USB device is described in DT.
+>
+> I don't understand what you mean there; where is the DT description of th=
+e USB
+> device coming from if the DTB hasn't been unflattened?
 
-> +#include <linux/irqdomain.h>
+Either stored in (FLASH) ROM on the USB device, or loaded from
+/lib/firmware/.  In both cases that would be handled by the USB driver
+for the device.
 
-Added code doesn't use anythitg from above. 
-It can be fulfilled with a forward declaration.
+Gr{oetje,eeting}s,
 
--- 
-With Best Regards,
-Andy Shevchenko
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
