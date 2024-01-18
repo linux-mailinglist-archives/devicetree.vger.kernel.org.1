@@ -1,182 +1,220 @@
-Return-Path: <devicetree+bounces-33091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B5C483220D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 00:01:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14F183221B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 00:03:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6D472846A3
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 23:01:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 273571F21704
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 23:03:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF061DA47;
-	Thu, 18 Jan 2024 23:00:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B711D684;
+	Thu, 18 Jan 2024 23:03:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VHZvUFbw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nk6aAywy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6411D688;
-	Thu, 18 Jan 2024 23:00:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1FE91DA47;
+	Thu, 18 Jan 2024 23:03:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705618857; cv=none; b=a2+59ze0TJgXrhdikgRS6CmCM2r6jhKq0exL4VHURTt2LKjuR6bbsr/M5+c0EpzmuM251Q2aWssbBInFQilPBew9Wvv9nJekPeCE/5zICqIGxSl6PHdrVqJ70eGxBy/OxoHGha1FdkSS2Gidf4jPkOeIbaY76lcXg32JL5VJjj0=
+	t=1705618998; cv=none; b=cXnj2+Ei4GNJjOOwuEWs9aM38OTZ0il03rvOeWJQPS1KO6ixORRsDIhFmY0qbK2AY3jxFfAwyujHNAyroqGjTD3aPCGmd3LOkHgZO8anx5EXddPskXU88Yb9Zhm8RZE+7CJK+95cy/e0VYuEroDEYd9CDIuY1EARPFOyFmf8WEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705618857; c=relaxed/simple;
-	bh=/xgDlirmg//lpL37mmgAf9h0tQ9Ilkkc6guk2v2yVNo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=aNIFzfGGJWua8RobqvZky5ejXkAq3oJrMJiXassH5ZkWSh2j+Qo69lYfLBfGCAtZjhCfnI/tbdmmaJHcKHEmoRulTUYzFdebHYH/gxT7Os/TfL/0QnurzOlZ31wfH/x/HYAaRH+H8yDnbfB1UqDB8UCXpqElFVhUFmzabGt6Pr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VHZvUFbw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40IMr0U0005990;
-	Thu, 18 Jan 2024 23:00:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:to:cc; s=qcppdkim1; bh=OQk
-	BZR1Pnd2c8BBgKIOiMkfkdGGDimI57H9zZTAVK2k=; b=VHZvUFbw5w4e1JAPatk
-	IqivVWKP7iFzhHlCoHFLb+ICMVCTHdZ7wAtIJOCoRmj4RHpsTaJ4P6Y4D31mn51j
-	C90wJLgrNtqaBmmCf4x8RVMr1o+bvdNT/1IM+ToHqWgN/VoLewEkTVRB2tIMgxEV
-	fVH7FREBgzt3zc5HmczQB5wCjikLp3JPppKUhpiU0k/qeGGLGGKauDtcCwcA5+a9
-	xZtlvSfHee1k7ImHsR8dLEFMh/GvQiGSSDadV9GKK2BFms8tR62pTu08/ski9dhA
-	6fWKv/ehvufeJUVI7pp0X6AEopX3y8XgEJZZUaqzdKlTWRd5PYpUkSFBziYJEV68
-	d4A==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vq1s79tkb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Jan 2024 23:00:40 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40IN0dKd015585
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Jan 2024 23:00:39 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 18 Jan
- 2024 15:00:39 -0800
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-Date: Thu, 18 Jan 2024 15:00:23 -0800
-Subject: [PATCH] arm64: dts: qcom: sc8280xp: Introduce additional tsens
- instances
+	s=arc-20240116; t=1705618998; c=relaxed/simple;
+	bh=tDueEf0mYOdG+aCC8zSYpIQRvWAjlO5ZOs1NRXPd51c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hkKytCwIaiGfLFoEQIdH+o/hmbiLqgOHrKI4UP+XUnTUkDvpie7W4Dov3raVOZWmcZf4h6r/OrJkOOgmoE+THEnDMRQbOwhDDm3oJ9cVn+kBkzJ2ZwGNAmjubX/X4wzaK++JVGYLwz2CvmRkJU1Wv3Aa5V3zB3I5l9DWpGfHo4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nk6aAywy; arc=none smtp.client-ip=209.85.160.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-427ca22a680so1273731cf.3;
+        Thu, 18 Jan 2024 15:03:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705618995; x=1706223795; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GyY99aUjw/FofKAReIAGskDK6rAgz6yENKbvjBb0zfs=;
+        b=Nk6aAywyDJLwp3NhKit6hd366A2OYO97IMSksDnxYT0zzLCza5oxMx8UbTrDwyCya/
+         lF0j+qO1eQpHIjWpQW3ObFjH+LrO7buz67h30QO/SBHsFY0AvEpibsYjuNvSMOGOmLTV
+         a1UzyZ6AnrayKsfMxGe/97Yih94ObzseY6KpA27FrZ+A77Mcnj1k/bTC8MBL1YPsgUc/
+         vCTZxnaLWeopIIKB7sPK8yscX46cIbvoC9+QKQ2AzGkWO6PqWFvFEiUmVsLtfRmEqY0E
+         q0VOAmP9sj1BJ+lC5lbdhrY41xe+qx21vPzhSHVTvi5KYT9InX2vKQApKgt+SwjLsokG
+         logw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705618995; x=1706223795;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GyY99aUjw/FofKAReIAGskDK6rAgz6yENKbvjBb0zfs=;
+        b=Kd8GBq9qVDF3zNIKMxd6N7nDGhbrBhhPlr7xAuiuS2gcHXbSQZi3gFFb4pBSvCP+Ve
+         0G8VFv31NKLr6fx9F/0h+Fw4qOYqb9WtmQbAQpnqZeeIGmmOwch6B7npzNQ5Sgb6vHNE
+         Ec0kIBtZMkHl4mLzKOaAUnFUMv5LEgS/lOta1MBB57YfNEo2IPXUh5lQUMrnETsbIMM5
+         +bmn8Va2fxyG5f/akXwyAD1MXM9rczUSjQEfaJ5S5lyaSH4MLsLa68Ys6eAuChFxQ0yi
+         QcAbMYdvr1vfO2daiNmSciTG5aIdtr72pt4QarodDHpdoIs49kNe5iVYuVh+UiTp1rXd
+         0sMg==
+X-Gm-Message-State: AOJu0YyY5bJmB2KdwJ6Kn2YjPZNA5xhzVYtyjAMuu0zmcMKhQg5jJZzC
+	1lgGyo90g5H9Dk2vFvPfqHZqQcZ4T94JUfOLP4m8BWo8K6+Z9nmJ
+X-Google-Smtp-Source: AGHT+IEOliJbiyiCQYLSMyfo06XQ48TVJ8jLZHaJ8slgAVZ5eveV12CzJq0tjpTX/BkZeKyYSUcasQ==
+X-Received: by 2002:a05:622a:1c10:b0:42a:20ab:da20 with SMTP id bq16-20020a05622a1c1000b0042a20abda20mr1020521qtb.52.1705618995652;
+        Thu, 18 Jan 2024 15:03:15 -0800 (PST)
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id gc9-20020a05622a59c900b004181138e0c0sm7195712qtb.31.2024.01.18.15.03.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jan 2024 15:03:14 -0800 (PST)
+Date: Thu, 18 Jan 2024 18:03:12 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: Chen-Yu Tsai <wens@csie.org>, linux-kernel@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rock-pi-e: fix location of
+ snps properties
+Message-ID: <20240118230312.GB14779@localhost>
+References: <20240116204103.29318-1-twoerner@gmail.com>
+ <20240116204103.29318-2-twoerner@gmail.com>
+ <CAGb2v67KfNR_U_Qz85aqY1D0DKE9mo-X_L8MGvT7cdcZGUHVUg@mail.gmail.com>
+ <20240117054705.GA33225@localhost>
+ <852071ad-24e8-40a8-9b10-623abf1dc4bf@kwiboo.se>
+ <df78489b-7546-46ea-b09f-39a80692a962@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240118-sc8280xp-tsens2_3-v1-1-e86bce14f6bf@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAIatqWUC/x3MQQqAIBBA0avErBPUMqyrRITkWLOxcCKE8O5Jy
- 7f4/wXGRMgwNS8kfIjpjBWqbWA7XNxRkK8GLXUvlbKCN6utzJe4GSPrtRPOBD+63vrBGKjdlTB
- Q/p/zUsoH7zomhGMAAAA=
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1705618839; l=2193;
- i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
- bh=/xgDlirmg//lpL37mmgAf9h0tQ9Ilkkc6guk2v2yVNo=;
- b=oGSxLsDFyDQYKE23MHJbR+I4s86iQTna1bXZ/fp7hG8CNfL2uicmNJTNK6SAuki2mPB6ZSISI
- nXd0kZ5ADdBB/sf1mxUdZ1yBUAJudjg+CEHn+nIxvHjZDz7pDwu1Y2G
-X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
- pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: NqR7U-If9g26ntJFdimDY5oP2_dwse_g
-X-Proofpoint-GUID: NqR7U-If9g26ntJFdimDY5oP2_dwse_g
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-18_10,2024-01-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=587 mlxscore=0
- adultscore=0 malwarescore=0 bulkscore=0 priorityscore=1501 spamscore=0
- suspectscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401180155
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <df78489b-7546-46ea-b09f-39a80692a962@kwiboo.se>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-The SC8280XP contains two additional tsens instances, providing among
-other things thermal measurements for the GPU.
+On Thu 2024-01-18 @ 08:31:30 AM, Jonas Karlman wrote:
+> On 2024-01-17 09:15, Jonas Karlman wrote:
+> > On 2024-01-17 06:47, Trevor Woerner wrote:
+> >> On Wed 2024-01-17 @ 12:38:39 PM, Chen-Yu Tsai wrote:
+> >>> On Wed, Jan 17, 2024 at 4:41 AM Trevor Woerner <twoerner@gmail.com> wrote:
+> >>>>
+> >>>> A number of snps (Synopsys) properties are not in their correct location.
+> >>>
+> >>> Nope. If you read the snps,dwmac.yaml binding file, you'll see that these
+> >>> properties have been deprecated. They are properties pertaining to the PHY
+> >>> and should be described under the PHY node. Support for reset GPIOs on PHY
+> >>> devices in phylib has been there since v4.16. The snps prefixed properties
+> >>> were deprecated in v5.3.
+> >>
+> >> If that's the case, then the bindings and the drivers are out of sync in both
+> >> U-Boot and Linux. I discovered this issue while working with older and newer
+> >> revisions of the rock-pi-e board. The first three spins of the rock-pi-e have
+> >> the rtl8211e PHY but the last one (v1.21) has the rtl8211f PHY.
+> >>
+> >> With the existing layout nothing works in U-Boot and in Linux the rtl8211e
+> >> works but not the rtl8211f. With this patch both the rtl8211e and the rtl8211f
+> >> PHYs work using the exact same device trees on both older and newer rock-pi-e
+> >> boards in both U-Boot and Linux.
+> > 
+> > For linux this is probably related to the same chicken-and-egg reset
+> > issue outlined at [1]. The phy is not reset before it is probed and
+> > cannot be probed because it is not reset.
+> > 
+> > As for U-Boot the designware/gmac_rockchip ethernet driver may need some
+> > adjustments to properly integrate with eth-phy uclass to properly reset
+> > the phy described in a ethernet-phy node before it can be probed.
+> > 
+> > Following config options is disabled for rock-pi-e-rk3328 defconfig:
+> > 
+> > # CONFIG_DM_ETH_PHY is not set
+> > # CONFIG_PHY_REALTEK is not set
+> > 
+> > Also the driver needs to be updated to make use eth-phy uclass for it to
+> > work correctly. More similar to how the dwc_eth_qos driver works related
+> > to ethernet phy.
+> 
+> I have just sent out a U-Boot series that fix ethernet on the v1.21
+> revision of the ROCK Pi E board, see [2].
 
-Add these and a GPU thermal-zone.
+Thank you! I have tested your patches both in U-Boot and Linux and they work
+perfectly.
 
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 37 ++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+> Would expect that ethernet also starts to work in linux with those
+> patches applied to U-Boot. I only tested and verified ethernet in U-Boot.
+> 
+> Hopefully someone can take a closer look at the issue on linux side
+> so that it does not need to depend on PHY being reset by the bootloader.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index febf28356ff8..68b5ac0339a0 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -4033,6 +4033,28 @@ tsens1: thermal-sensor@c265000 {
- 			#thermal-sensor-cells = <1>;
- 		};
- 
-+		tsens2: thermal-sensor@c251000 {
-+			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
-+			reg = <0 0x0c251000 0 0x1ff>, /* TM */
-+			      <0 0x0c224000 0 0x8>; /* SROT */
-+			#qcom,sensors = <11>;
-+			interrupts-extended = <&pdc 122 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&pdc 124 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow", "critical";
-+			#thermal-sensor-cells = <1>;
-+		};
-+
-+		tsens3: thermal-sensor@c252000 {
-+			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
-+			reg = <0 0x0c252000 0 0x1ff>, /* TM */
-+			      <0 0x0c225000 0 0x8>; /* SROT */
-+			#qcom,sensors = <5>;
-+			interrupts-extended = <&pdc 123 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&pdc 125 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow", "critical";
-+			#thermal-sensor-cells = <1>;
-+		};
-+
- 		aoss_qmp: power-management@c300000 {
- 			compatible = "qcom,sc8280xp-aoss-qmp", "qcom,aoss-qmp";
- 			reg = <0 0x0c300000 0 0x400>;
-@@ -5212,6 +5234,21 @@ cpu-crit {
- 			};
- 		};
- 
-+		gpu-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+
-+			thermal-sensors = <&tsens2 2>;
-+
-+			trips {
-+				cpu-crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
- 		mem-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
+Yes, as you suspected this is exactly what happened: providing a fix in U-Boot
+caused everything to work again in Linux. It would appear as though Linux is
+expecting the PHY to be reset/setup/configured by the bootloader in the case
+of this board/SoC/PHY.
 
----
-base-commit: 943b9f0ab2cfbaea148dd6ac279957eb08b96904
-change-id: 20240118-sc8280xp-tsens2_3-a5fd9a48d655
-
-Best regards,
--- 
-Bjorn Andersson <quic_bjorande@quicinc.com>
-
+> [2] https://lore.kernel.org/u-boot/20240118071949.927089-1-jonas@kwiboo.se/T/
+> 
+> Regards,
+> Jonas
+> 
+> > 
+> > [1] https://lore.kernel.org/linux-rockchip/47d55aca-bee6-810f-379f-9431649fefa6@kwiboo.se/
+> > 
+> > Regards,
+> > Jonas
+> > 
+> >>
+> >> Comparing the rock-pi-e's dts file with the one from the roc-rk3328-cc board,
+> >> which also uses the layout in this patch, and which also uses the rtl8211e
+> >> external PHY, is what led me in this direction.
+> >>
+> >>>
+> >>> ChenYu
+> >>>
+> >>>> Fixes: b918e81f2145 ("arm64: dts: rockchip: rk3328: Add Radxa ROCK Pi E")
+> >>>> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> >>>> ---
+> >>>>  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts | 10 +++++-----
+> >>>>  1 file changed, 5 insertions(+), 5 deletions(-)
+> >>>>
+> >>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> >>>> index 096cfa19036e..0739b8fec86e 100644
+> >>>> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> >>>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+> >>>> @@ -150,8 +150,11 @@ &gmac2io {
+> >>>>         phy-mode = "rgmii";
+> >>>>         phy-supply = <&vcc_io>;
+> >>>>         pinctrl-names = "default";
+> >>>> -       pinctrl-0 = <&rgmiim1_pins>;
+> >>>> +       pinctrl-0 = <&rgmiim1_pins>, <&eth_phy_reset_pin>;
+> >>>>         snps,aal;
+> >>>> +       snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
+> >>>> +       snps,reset-active-low;
+> >>>> +       snps,reset-delays-us = <0 10000 50000>;
+> >>>>         snps,rxpbl = <0x4>;
+> >>>>         snps,txpbl = <0x4>;
+> >>>>         tx_delay = <0x26>;
+> >>>> @@ -165,13 +168,10 @@ mdio {
+> >>>>
+> >>>>                 rtl8211: ethernet-phy@1 {
+> >>>>                         reg = <1>;
+> >>>> -                       pinctrl-0 = <&eth_phy_int_pin>, <&eth_phy_reset_pin>;
+> >>>> +                       pinctrl-0 = <&eth_phy_int_pin>;
+> >>>>                         pinctrl-names = "default";
+> >>>>                         interrupt-parent = <&gpio1>;
+> >>>>                         interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
+> >>>> -                       reset-assert-us = <10000>;
+> >>>> -                       reset-deassert-us = <50000>;
+> >>>> -                       reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
+> >>>>                 };
+> >>>>         };
+> >>>>  };
+> >>>> --
+> >>>> 2.43.0.76.g1a87c842ece3
+> >>>>
+> 
 
