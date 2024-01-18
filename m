@@ -1,105 +1,187 @@
-Return-Path: <devicetree+bounces-33040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FD10831D38
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:07:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DBB8831D3C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:09:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02CF11F23F63
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:07:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23D5328523E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:09:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F2B828DDB;
-	Thu, 18 Jan 2024 16:07:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB9228E02;
+	Thu, 18 Jan 2024 16:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="TbyIEquI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOOwysb2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE171E88F;
-	Thu, 18 Jan 2024 16:07:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7120D2C18F;
+	Thu, 18 Jan 2024 16:09:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705594055; cv=none; b=fsP6MmQJsgX6oJVe88blqP4nw3TffwOKHY+pB+3hQhLOWvDWYJEBwVn0j9Ft2KfDuh7fF4wwuMW1Cz2F6gfmc9zk9YlAw7ei2shBuLYhDsEzo9DRY2raxu++/Pwb7CDnioaCkJc6n1skghYEvfgWi1MBc+vNoQIsu1pviQLsJEc=
+	t=1705594193; cv=none; b=P2Xnmy0PWtuPAZi2spYaeMG4w1z+0504hZ6QYQYVlC+CywSrz15UkHX9Clv+96g0pZSSqTwGI480Zv63jQuDcuNSQEitlLnMGkphYaq1+Zus3gUtt1LlDy+inXk5sQxg93UDjI937Q88sv7R1w4b2+uV6cI9rV5m+ACcBcCLWKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705594055; c=relaxed/simple;
-	bh=3T7ZxFRZznZp33Uckeh26hwEA7gDX3RAmrrvqu9q1j4=;
-	h=DKIM-Signature:Received:Received:Date:From:To:Cc:Subject:
-	 Message-ID:References:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To:Sender; b=L8bikQ4e+DbJmyBEfaRsuCfOxe3/XW38kteclhbTA0r4lk5wLUDZvlBIa/FXpgbq5DK8jcwzQicZrai1d0CokxxTAzlJkksS/aWdfFeyZIokEpZbHXQN3z71Yx2ucK++4TJmKzpjEwWYIBWvUeNI/1mQA1tbnIy3w37EVlFXQ6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=TbyIEquI; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=kDnqCJc6DdlPkC0AYd50uBaKkZtlxVtjgN6JvECPsPU=; b=TbyIEquIRD1S0207D7QoRD0DZL
-	wLyxrQ/QjWvcHfkRlGyM/4Tdrxxn0s1i1I3VAkS40hYxblU7YWvT1WHTjzjPxQ9Uh3Vuy/T8xnAg/
-	IifACYSU2Gq+h7UzcW8tbSsVybtg1J04beB2tcbE1QTQ3QwXBSaQ6GjyuVhoa98K3XjZetCy4PtAp
-	afDHhcUkrDzMUe/lKBxfAIQkErTweyAL3Nt++bKUeKzABf170xeixEQXstZzOjp1UxuAtpIrWe75o
-	NXXqFBjyESoZwj01ZABE+QFTPwmnCDSkstL7hPTG66NXtI8iGWm+icZHfTzl3zo7MhzDOaGFHYaeW
-	kSr+xOzA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:52464)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rQUvC-0005rd-1f;
-	Thu, 18 Jan 2024 16:07:14 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rQUvA-0005qW-AB; Thu, 18 Jan 2024 16:07:12 +0000
-Date: Thu, 18 Jan 2024 16:07:12 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1705594193; c=relaxed/simple;
+	bh=MhRgs4SfId0IliF1C6eg+0vnzN3x0xDMakUJ9MxoW+U=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=YwcsdmamPZPVCAyTB7FEhzwYObfktm7uiGrpIFY/bYVuCAAdDLRsjsyLFal7+ceKagQXlIKiKOwQBXEtrUa/b4s6kBb/qmp5kxAOhO1XKhQHZqs2x5hu4Ty7sK8NpLhsHGX+8AffnQ0In75j1zgofUt32YjrUYkmEsbyWboH+fU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOOwysb2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 472AEC433F1;
+	Thu, 18 Jan 2024 16:09:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705594193;
+	bh=MhRgs4SfId0IliF1C6eg+0vnzN3x0xDMakUJ9MxoW+U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NOOwysb2saJ3EFaZXFxosNe9UNtVudcOvkatUxZo2Yg8vaqhHUtK/9tyVcFy1UEB7
+	 8ouvns+SVlkqj5JW/fkEFsMu+oAuXKM1duNgSBdY/6pqqFHRJtyh5Ll6k6aYhrt6OS
+	 xvnuZpCM4OlvW+eEZ4RwQGtN+zxu4/lU8ej8CqF0pwUvwXAmu6aFaGc0cWwEYPeGSz
+	 hSxaxzXKm8QSKLtf9zLQlMztOG1FOxiza5lgvxCPem/j5ilDD509LODn7+EVMsaZV3
+	 LxMTTFN21gdQv9C0nlPwjv9Z059wXehasApwVqouWT6G9Sd0qNkp1HbNaXm4m2p7Ng
+	 fJ4+HvnBrf2hA==
+Date: Thu, 18 Jan 2024 16:09:47 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Yazan Shhady <yazan.shhady@solid-run.com>,
-	Jon Nettleton <jon@solid-run.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx6qdl-hummingboard: Add rtc0 and rtc1
- aliases to fix hctosys
-Message-ID: <ZalMsJZKrpwncEDp@shell.armlinux.org.uk>
-References: <20240118-imx6-hb-primary-rtc-v1-1-81b87935c557@solid-run.com>
+	Conor Dooley <conor+dt@kernel.org>, Crt Mori <cmo@melexis.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v6 1/2] dt-bindings: iio: frequency: add admfm2000
+Message-ID: <20240118-steadily-coauthor-de8275118901@spud>
+References: <20240118085856.70758-1-kimseer.paller@analog.com>
+ <20240118085856.70758-2-kimseer.paller@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="L+4Loj8oukG31gb2"
+Content-Disposition: inline
+In-Reply-To: <20240118085856.70758-2-kimseer.paller@analog.com>
+
+
+--L+4Loj8oukG31gb2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240118-imx6-hb-primary-rtc-v1-1-81b87935c557@solid-run.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 18, 2024 at 04:01:10PM +0100, Josua Mayer wrote:
-> HummingBoard has two RTCs, first integrated within SoC that can be used to
-> wake up from sleep - and a second on the carrier board including back-up
-> battery which is intended for keeping time during power-off.
-> 
-> Add aliases for both, ensuring that the battery-backed clock is primary
-> rtc and used by default during boot for restoring system time.
+Hey,
 
-Given that the snvs RTC isn't battery backed, should we even be enabling
-that in DT?
+On Thu, Jan 18, 2024 at 04:58:55PM +0800, Kim Seer Paller wrote:
+> Dual microwave down converter module with input RF and LO frequency
+> ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
+> 8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
+> for each down conversion path.
+>=20
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> ---
+> V5 -> V6: Moved array of switch and attenuation GPIOs to the channel node.
+>           Changed pin coords with friendly names. Removed Reviewed-by tag.
+> V4 -> V5: Added Reviewed-by tag.
+> V3 -> V4: Updated the description of the properties with multiple entries=
+ and
+>           defined the order.
+> V2 -> V3: Adjusted indentation to resolve wrong indentation warning.=20
+>           Changed node name to converter. Updated the descriptions to cla=
+rify
+>           the properties.
+> V1 -> V2: Removed '|' after description. Specified the pins connected to
+>           the GPIOs. Added additionalProperties: false. Changed node name=
+ to gpio.
+>           Aligned < syntax with the previous syntax in the examples.
+>=20
+>  .../bindings/iio/frequency/adi,admfm2000.yaml | 129 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,a=
+dmfm2000.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admfm200=
+0.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
+> new file mode 100644
+> index 000000000000..6f2c91c38666
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
+> @@ -0,0 +1,129 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2023 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/frequency/adi,admfm2000.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ADMFM2000 Dual Microwave Down Converter
+> +
+> +maintainers:
+> +  - Kim Seer Paller <kimseer.paller@analog.com>
+> +
+> +description:
+> +  Dual microwave down converter module with input RF and LO frequency ra=
+nges
+> +  from 0.5 to 32 GHz and an output IF frequency range from 0.1 to 8 GHz.
+> +  It consists of a LNA, mixer, IF filter, DSA, and IF amplifier for each=
+ down
+> +  conversion path.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,admfm2000
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^channel@[0-1]$":
+> +    type: object
+> +    description: Represents a channel of the device.
+> +
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          The channel number.
+> +        minimum: 0
+> +        maximum: 1
+> +
+> +      adi,mode:
+> +        description:
+> +          RF path selected for the channel.
+> +            0 - Direct IF mode
+> +            1 - Mixer mode
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [0, 1]
 
-Also, have you seen any issues such as:
+How come this is an enum, rather than a boolean property such as
+"adi,mixer-mode"?
 
-[    0.933249] rtc-pcf8523 0-0068: failed to set xtal load capacitance: -11
-[    0.933505] rtc-pcf8523: probe of 0-0068 failed with error -11
+Cheers,
+Conor.
 
-which seems to be exhibiting itself on my SolidSense board?
+--L+4Loj8oukG31gb2
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZalNSwAKCRB4tDGHoIJi
+0qUEAP4wbPpsMMqtWJOb6/QiW0MysXXQK+sUEvHTlHRvuvRArwD/ZLMdTg0x8lnf
+WkfJ4ASDBBU6gUzxhaCqkRYPQxWwkQs=
+=GfIu
+-----END PGP SIGNATURE-----
+
+--L+4Loj8oukG31gb2--
 
