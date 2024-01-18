@@ -1,223 +1,186 @@
-Return-Path: <devicetree+bounces-33052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7431F831DC0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:47:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5B09831DC4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:48:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE9DE1F21801
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:47:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31FA01F263F1
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:48:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A65672C1A2;
-	Thu, 18 Jan 2024 16:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ACB02C19B;
+	Thu, 18 Jan 2024 16:48:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=PHYTEC.onmicrosoft.com header.i=@PHYTEC.onmicrosoft.com header.b="AS67EzX5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="An2VdQ+n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2071.outbound.protection.outlook.com [40.107.96.71])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DB428E3A;
-	Thu, 18 Jan 2024 16:47:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.96.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705596435; cv=fail; b=bFUEeFHeOHJKW3MLf3/eGSgT0jaDhAuxzj+InTiHqB7iILC505ytMK4GOVeTtC2i8TqdVqQLl2KkVc3+tRkI72V+LGSxxpwulo1WBp4h50ea5apqEkXKbqv1RvxrTMJUeBnXpGnvBVr2xbz9LAme2z4ystcap1tLkJovmfRNgXQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705596435; c=relaxed/simple;
-	bh=jzglo9ZJZx+S95yj53V/TLcQT7twAXsACGAsYo6T5X8=;
-	h=ARC-Message-Signature:ARC-Authentication-Results:DKIM-Signature:
-	 Received:Received:Message-ID:Date:User-Agent:Subject:
-	 Content-Language:To:Cc:References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:X-ClientProxiedBy:MIME-Version:
-	 X-MS-PublicTrafficType:X-MS-TrafficTypeDiagnostic:
-	 X-MS-Office365-Filtering-Correlation-Id:
-	 X-MS-Exchange-SenderADCheck:X-MS-Exchange-AntiSpam-Relay:
-	 X-Microsoft-Antispam:X-Microsoft-Antispam-Message-Info:
-	 X-Forefront-Antispam-Report:
-	 X-MS-Exchange-AntiSpam-MessageData-ChunkCount:
-	 X-MS-Exchange-AntiSpam-MessageData-0:X-OriginatorOrg:
-	 X-MS-Exchange-CrossTenant-Network-Message-Id:
-	 X-MS-Exchange-CrossTenant-AuthSource:
-	 X-MS-Exchange-CrossTenant-AuthAs:
-	 X-MS-Exchange-CrossTenant-OriginalArrivalTime:
-	 X-MS-Exchange-CrossTenant-FromEntityHeader:
-	 X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
-	 X-MS-Exchange-CrossTenant-UserPrincipalName:
-	 X-MS-Exchange-Transport-CrossTenantHeadersStamped; b=NKaaWF8L2nwKp/MOmMHNT3VlLvFqfWhNVJOIC3UzBTCrthv0vZoa9RBJWAtVx/9chlix8G+p0Le5FtAU4aaV3xC38uPi3Xx9m2ACV2PySXFuVIVIBB/b7MjyNy2GsUodVuYSlLmldUOZ26BoNUD0er540c20jE9aNidaOCixKRc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=PHYTEC.onmicrosoft.com header.i=@PHYTEC.onmicrosoft.com header.b=AS67EzX5; arc=fail smtp.client-ip=40.107.96.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nNTFbTIgu1F0pNxvvHku2STBzSdDaLkJ3Am8jHnonO186rykj+8kFAqkfLxiC1X8huokd7eCHMwDhuBsYIHxsseQhXMyP1Jn2LeLRZlXyplTyHQkDn/b4vxiUMsz6cLKInfXInmCqH1sL4CGJde2K8zspa6uRMjW0Cj0mvNTqJBRVdEQv3UDYmavlw5ezVFJBqJI1VKxigp63tPlvepbAhj+hIq6rt+Nqjk3nsM4CPYKd6uWUTztPUtLG9ll6/kyg4TR39XoiFnIKXcy6DOLDvZqB4hxuDb2O9UVbuQjxRbHh2kgJ1ohk7INRICSqo0cNO40B2Jqje6l/kfuvWiCwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qCmdSty4imZo5LuUs3kNoKp152wEYgFSRKe9anFAgxQ=;
- b=d3EDdexFQ72aDLCmn6+QcLbcOEEqxB0yiHq0Z6NddOrj6PmPnvcf+RrHpyDw0txy2yaqg/N75+Dts3NyZhfooU/4+gVQhEUJNzpm3KAMsXGjfK9mqKff0N3AxxQSW2ZFU6Rj0b5k4ywHslHEtcbU/0jstepbt+J3vGynVw8hOrZiAClHWVD3Asjdm8LxthUwOuMxgC6rjyCqp2dssQhAoozZBDoN8ivEC92kgBNcCT8fIai1gOAMYRlRLueAWKILmcLgJLxN1xXnmmtNqt+cpizSB2H1NlAvBNv6QYjzV32ByPU0xGH1Si12kSMquDg0nJTUQyrkKz+BC+dtRqbFyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
- dkim=pass header.d=phytec.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A90AA2C6A9
+	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 16:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705596494; cv=none; b=oJRayNFpG6+2BFucsHii3cJ27MGkj9reL5hgM/OdD0cM7xrETyi9tn5RmL4w4/IYVZxiOsz3umeR0jSLqXz8mF6lM0GhsH4BysBprfBpaQXZSwt3oJQLgAfFOZsOU7lEfZF589PB+WZvx/GQ9vsLtoqhRCRSZTrRi+gRcIxqcjw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705596494; c=relaxed/simple;
+	bh=miTJdZ7SCOy6yS2ppoUcXHEWRpKJlB39AmULp4lJO4I=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:Date:
+	 From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:In-Reply-To; b=s+/dThR3Qq3KIBRYdWhTJU9ooZNrYG0UdUoZ3T7S0JXngK793nPzAATlnENffkdiF+QVMLaeNRjCjD8CWnaJFCEveFFuBKEzNNHZcODu5OrbDPOqzmUpHIqDIAR1bw+M9B+agLI6WjzLdhmYpMaF91Cu2A+b06bu0mUkuG5WXo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=An2VdQ+n; arc=none smtp.client-ip=209.85.219.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-680a06cc763so77196086d6.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 08:48:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=PHYTEC.onmicrosoft.com; s=selector2-PHYTEC-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qCmdSty4imZo5LuUs3kNoKp152wEYgFSRKe9anFAgxQ=;
- b=AS67EzX5hsyT75rLc4/7vW8ErQu16Xu8B71HhBD54LUINjfZcO+Xg07zF0bbP2Ak1U5S2FSMFALYOCsNKdRyn2HQO1fvaRtzVBPhTy5qQF3NGmJNzRez0BS9q/5JqylYRAeEI9w7YFEvGs9+zwa+U1xgBNiFDvkHPwWcLyGxx2c=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.com;
-Received: from SJ2PR22MB4354.namprd22.prod.outlook.com (2603:10b6:a03:537::8)
- by SN4PR22MB3381.namprd22.prod.outlook.com (2603:10b6:806:21a::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Thu, 18 Jan
- 2024 16:47:10 +0000
-Received: from SJ2PR22MB4354.namprd22.prod.outlook.com
- ([fe80::edcf:d643:f346:23d7]) by SJ2PR22MB4354.namprd22.prod.outlook.com
- ([fe80::edcf:d643:f346:23d7%6]) with mapi id 15.20.7202.020; Thu, 18 Jan 2024
- 16:47:10 +0000
-Message-ID: <11337c52-726b-43f9-8a21-a8b0a13d636f@phytec.com>
-Date: Thu, 18 Jan 2024 08:47:07 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 15/16] arm64: dts: ti: phycore*: Clarify GPL-2.0 as
- GPL-2.0-only
-Content-Language: en-US
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Tero Kristo <kristo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Rob Herring <robh+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Wadim Egorov <w.egorov@phytec.de>
-References: <20240110140903.4090946-1-nm@ti.com>
- <20240110140903.4090946-16-nm@ti.com>
-From: Garrett Giordano <ggiordano@phytec.com>
-In-Reply-To: <20240110140903.4090946-16-nm@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR03CA0169.namprd03.prod.outlook.com
- (2603:10b6:303:8d::24) To SJ2PR22MB4354.namprd22.prod.outlook.com
- (2603:10b6:a03:537::8)
+        d=linaro.org; s=google; t=1705596491; x=1706201291; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2qY+DeL2xbbKxeJ6vpnH6GuksIvi/CNqlOEIOB0QmgY=;
+        b=An2VdQ+nOf1HadjrWZBagZXgdp5zAoj+cBNA4DXhFkvmek0bavGeU4mLRRHAWOdeHj
+         NU6nXVFVjkFq9yOAG0AkhBzYgqkqop2CxPK+68cmDquw+2uTzPkQFVmsjAYeI3XfT//D
+         4jw2J17X5YIoiFhDXP3HzRpHst+QRrEzXtsJf/y28w0GzoPGzTehf1Yn/IkheUVSJvio
+         BUCrW1BQT95ZFg2FlWEcCS9fF3a44ZYu8S27sZero2LiuNwfQbELHkJxfrErB6VFk5Os
+         hB8F/PufwCSf3497CYoISNGD0xUmf3o5P2jokGnbdKj+vNaA3Rc9YkKcVfEX2vO/0y+4
+         b5oA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705596491; x=1706201291;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2qY+DeL2xbbKxeJ6vpnH6GuksIvi/CNqlOEIOB0QmgY=;
+        b=PWyy7SVYT3BgYkCMWutMwAS6t+5kiAgmkFmCWF6KPU1RfsfeU5hjzhJ2LNvdVqhc3+
+         QRZXt2fOgDkNmuv0EiRlr8VEYWCFwUHIeyYAQN8q60uTBL58jllXZdcovncp/vMD89Lc
+         xPZUSqW2RvCGrF8t7wzyXY99IUYAYjxgQ6GffiXcFYaY40HcEpA3bJxdJ7h1+uqudmBq
+         /s7m3LS8lLfx4fPZKOJlM9jxziguJZPIbM7ui239eJz9CBmdUPlysL41I2TE30hoH6DX
+         Scv7svLwCNVb5ewtpiXXfeuOWT8M1P3x0DsIwAizO8QxRIxDviE18BBOZ0f1LbcmnSQu
+         OXig==
+X-Gm-Message-State: AOJu0Yzyj+Y0UxQR8GBewMUguqQ8m1mD5Y4MBwEdYRYZTRSHrC7Sp3cK
+	IJx9IKEx1ucKFW6Necfu87q4wHFNhk9P13CLo9svK9G4h8MCiPHj2lCrlFgMHw==
+X-Google-Smtp-Source: AGHT+IEn43mNc0pGFNA/e9xCmni7wt126V5hRFFctPG+8HTvDg2gAj0BH30hir6ngmcHfGctOmNHdA==
+X-Received: by 2002:ad4:5de3:0:b0:681:77d8:bafe with SMTP id jn3-20020ad45de3000000b0068177d8bafemr1096558qvb.30.1705596491547;
+        Thu, 18 Jan 2024 08:48:11 -0800 (PST)
+Received: from thinkpad ([117.248.2.56])
+        by smtp.gmail.com with ESMTPSA id lb25-20020a056214319900b006819aeb62d6sm108106qvb.136.2024.01.18.08.47.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jan 2024 08:48:11 -0800 (PST)
+Date: Thu, 18 Jan 2024 22:17:55 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Kalle Valo <kvalo@kernel.org>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Peng Fan <peng.fan@nxp.com>, Robert Richter <rrichter@amd.com>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Terry Bowman <terry.bowman@amd.com>, Lukas Wunner <lukas@wunner.de>,
+	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>,
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Abel Vesa <abel.vesa@linaro.org>, linux-wireless@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 0/9] PCI: introduce the concept of power sequencing of
+ PCIe devices
+Message-ID: <20240118164755.GA3253@thinkpad>
+References: <20240117160748.37682-1-brgl@bgdev.pl>
+ <CAL_Jsq+0xb-otvjkbLqB8gNKadVqnigwGB_k+VGrj740Y6wxjg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR22MB4354:EE_|SN4PR22MB3381:EE_
-X-MS-Office365-Filtering-Correlation-Id: f7354464-7e06-4b15-cb57-08dc18451d0c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	v2LxV+f9GTuuNWg4lN9skcPGHA31rl3HdKcOdQlDNB+3ycn/iaN6PDAIINSiip1IC4SqnrwE45WqPaiUxfF/aTV1kKWZjtbJUvku9zxLRW1CCPXZRXWcO1PNSojwwiuDCgeh+pA77Yrl6yFz79I4GeEz6FCvlw7qdmh7SozQ/GXq2mFAQO+fzXYDtpbvxZl+aHSCY/LQpO14XDmvWxk3QUpJQTadKtMb5vAintQh1LU7jzdJ5jUPQRaGZYhuu1JHiKfEfr8K7eW9cLHV9TXEnukNMJ7GRfTr2LDbTEeyDWqc86Lua+tN7snZzw6sOxz6jY55X5FNIYXpJApckoL6E13+mJuP9uyyQ/YXpbgioNw1ZdeT2xPTHxJo2rf68G2wFov4PHb+wid+Y7y/hEJ/USZdTXPtW1aFrvfem0Dk3kHzjZVv6+GNJW6aBjw4k8obZ4YYT4HZmmHL4osdBqNhqYa8FVZ5WC2ebzlaNq5h8v1S75ttzN0bRZk+LEmc1mCXp3qBZk+1bfN6R+BtaoaMH+keu4qPw7L2P0MnthgKxcuDBTGxhrDDYl81khGnNbwagdTFImzqD/mCd5sAv/bg4627RB2dMOiCwjNvGdMdSxFFh0yh+MC7pyBVJAN4gpKIn39JSBrIzuNFRj9Q9PEJnQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR22MB4354.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(396003)(39840400004)(346002)(136003)(230922051799003)(451199024)(1800799012)(186009)(64100799003)(5660300002)(41300700001)(7416002)(2906002)(36756003)(31696002)(110136005)(66946007)(66556008)(66476007)(316002)(86362001)(6512007)(83380400001)(6506007)(53546011)(2616005)(26005)(6486002)(966005)(6666004)(478600001)(8676002)(8936002)(4326008)(38100700002)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VTJ1RWM4MlRnUzhhU2NPQjNWclBrSjQ1RjY5U1dtRUwxMFd2MEdOdS8vQzdC?=
- =?utf-8?B?V2JqbVR2K3pvNVlSL2Z3MWl0M0VLVlE3Zll3Vmh5ZUdiMDhna1c0YnZFTE40?=
- =?utf-8?B?V0pvcVEyWm4ydjNOdWZXc3ZIUFR6UzBjRVZoa1Nqeldlc24vMGkwd0JQbnBG?=
- =?utf-8?B?QVMwb290RXBhVWVQbnAyN29HMXFxbXM5VHlMbG9UWXVVMXVxVUQ4akFFejlp?=
- =?utf-8?B?OWNXQWs2V2hFamNHbVFDcDkzTCs1czlYM2x3OFBDeFFNUDZPZ3UvT0MxMUNq?=
- =?utf-8?B?aHZjc09BOFFBQ3RsWENRcUxjYkFNTys1UkhDWTd2Y3VQakhrRWRwRlUxd0cv?=
- =?utf-8?B?ZnEyUjh2TTY3bkFZS3hxcVdHRU9wK003Nml2TEhzZEFxR0IxWEgwNGFMT3RI?=
- =?utf-8?B?emlqVU9hcTZXblE0cGlPZXlQNDRzSVJQUDhSZG9PdlVPd0lFNkhmbXNEcWJ2?=
- =?utf-8?B?R1dtZVBtYVMrZ29EMTVuTENpSW5lL05GZDYxMWI3VWJyWTlsVFR6eTN4ZXUw?=
- =?utf-8?B?RVJPM3duYnJrUjg3MU1mZFBwUVRod2lHdVdqMTF5bHB3cDd0K09HQXFKY2Rq?=
- =?utf-8?B?R3grUW1SR2wwOGh1VFFoWHBhNDNIUkNUMmozTWJjMDIxeVZJZFdmNHpxOThD?=
- =?utf-8?B?WFlyS0R2Ukp4c2VHTEpuUVRDMUt2d2gxc2Y1c1JQbmwzRjA4MW5mUHpXd3V5?=
- =?utf-8?B?RUpiMjJWamVrQWlvdTIyM3NhLzhNNGFwYnYvTXlnYnVvc1VkSjBNdnBPVTQx?=
- =?utf-8?B?MFZEbW91ejhCYVlKLzJndWVudDFVS2l2V1JUT2c0SnhsNjRDZWUrTWU2aDJM?=
- =?utf-8?B?ejVwWDBLZ2U4c0VzTnhIZCt1bzhxajE0K3g5MytvVy9VT3o3cGZlTDZRVjVC?=
- =?utf-8?B?Um9QZHNvSG5vOFBFckNPMWJJd2dkWERCbWV0RlRFdlB2dVhvWTBlY2pBei9R?=
- =?utf-8?B?a2REdjlkdmR6MldPamNseXZUY1ZsK1ZkNU9yQTdGcHlONHNZSTB3bjZJcGI4?=
- =?utf-8?B?QkhYTUpYMHpyczdrYkhtZkFjeTM5czI5TmRUQmNnVTJ0dWlJMnY1NGhtY0lO?=
- =?utf-8?B?bjF4Z1Zla2k4M20yNHJvbVRYMEJNSG1aVEZvbFlteC91Zm9uZmlEczFTYVJQ?=
- =?utf-8?B?YXhTaVBsSStmelFPaTJCNTZha1B1ZGNnSENGbVcyWUZ2MWdBa1FKVTlvQzJp?=
- =?utf-8?B?bFNiUXgvVXkxTjJ4cmtveEFVRXpxakF5ZkQvRWJUaTA4b3BhNFFPcFYzRWxR?=
- =?utf-8?B?Um9vU3VzMmV3NitnTkdHRjdKcS9xbkM0Z3RQekFOT2ZYa3k2WEdvU3BEV3BN?=
- =?utf-8?B?bHV6VjZFNnVEVEVqbDZ3Z1VCOGVSYVNubzcxdmViRTc5N1labU4wVExFQjBp?=
- =?utf-8?B?YXFRdjMvbTdQalJwblQvcnJyTlAyOEFSaFl4eEdBZzJXdXU3UndGcUM0YmRH?=
- =?utf-8?B?dGRhMEpzMHpMUkFuaEF6RTM4YTNqakNiTkMyc0pxYmRjeC8vNjlJd2I0bUhC?=
- =?utf-8?B?Unh5c3hHYU9HTWs0K3h5aEhrdU1EZmp2R25aS0hnekliZEFhZ29WQ1dxNE1C?=
- =?utf-8?B?TWttWlBYZ3NMcTQvcy9adUhjUjBieUNPYmtTdUM3S2J5QjdwUWozMXB4QnQr?=
- =?utf-8?B?bmdzcXRTSEhDcmRKN0VIR1dRL2VDVmNvVGk2ZHlKdG80Qjd3WGFjUTZFaU9i?=
- =?utf-8?B?ekVWeDd3STd4VGZqT0xMMElISkVDTUNuTDM4RjF2SjB5VzBRa3NmOUtDbThy?=
- =?utf-8?B?NC9tMS90dmpMSkFDR05CbUkvL3ZvdVI2cXBaUGdLR01ITHJONUlFNDh2Z3dQ?=
- =?utf-8?B?NzhEZnJsb01BTTV0TXlGdWs5UU1EZlYxMGNaTFcxTWoyYndhTEh2MkNLdHQx?=
- =?utf-8?B?NHlrWjM1ZXdnQVNMQlpDbnMwRTJFUzdXUEpuaGZZS2VrNEpUbzloc3Y2OVZw?=
- =?utf-8?B?RUtrN3M3M2U2OUJCeithcnkwZ2I1MThLVG1XK1NMUVViM0x4Sm4wKzZQdk9k?=
- =?utf-8?B?SDFVSDhTVW5qQUtvOVkvSW5jYlhWL1lBN3J6REhEMk1jczJXSVlvVnJzYW9D?=
- =?utf-8?B?blNkekRRVmhmTUlYdEo5VEFYQlRqNm5jdFpiVk1TY0N0UDRZUlRhN01lMmp2?=
- =?utf-8?Q?+8Obo8kw5FB1ob4MBpyX05bcW?=
-X-OriginatorOrg: phytec.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f7354464-7e06-4b15-cb57-08dc18451d0c
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR22MB4354.namprd22.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 16:47:09.9979
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uw+HTR1tI56XIR8HcvTLIG8Ecpn0LiSJs0QdYytzG+o+bITJsW2kgfpC4R0NnYwePL/zZMr7TuiCfaKE/ys4pg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR22MB3381
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+0xb-otvjkbLqB8gNKadVqnigwGB_k+VGrj740Y6wxjg@mail.gmail.com>
 
+On Thu, Jan 18, 2024 at 08:29:01AM -0600, Rob Herring wrote:
+> On Wed, Jan 17, 2024 at 10:08 AM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> >
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > The responses to the RFC were rather positive so here's a proper series.
+> 
+> Thanks for tackling this.
+> 
+> > During last year's Linux Plumbers we had several discussions centered
+> > around the need to power-on PCI devices before they can be detected on
+> > the bus.
+> >
+> > The consensus during the conference was that we need to introduce a
+> > class of "PCI slot drivers" that would handle the power-sequencing.
+> >
+> > After some additional brain-storming with Manivannan and the realization
+> > that DT maintainers won't like adding any "fake" nodes not representing
+> > actual devices, we decided to reuse existing PCI infrastructure.
+> 
+> Thank you. :)
+> 
+> > The general idea is to instantiate platform devices for child nodes of
+> > the PCIe port DT node. For those nodes for which a power-sequencing
+> > driver exists, we bind it and let it probe. The driver then triggers a
+> > rescan of the PCI bus with the aim of detecting the now powered-on
+> > device. The device will consume the same DT node as the platform,
+> > power-sequencing device. We use device links to make the latter become
+> > the parent of the former.
+> >
+> > The main advantage of this approach is not modifying the existing DT in
+> > any way and especially not adding any "fake" platform devices.
+> 
+> Suspend/resume has been brought up already, but I disagree we can
+> worry about that later unless there is and always will be no power
+> sequencing during suspend/resume for all devices ever. Given the
+> supplies aren't standard, it wouldn't surprise me if standard PCI
+> power management isn't either. The primary issue I see with this
+> design is we will end up with 2 drivers doing the same power
+> sequencing: the platform driver for initial power on and the device's
+> PCI driver for suspend/resume.
+> 
 
-On 1/10/24 06:09, Nishanth Menon wrote:
-> SPDX identifier GPL-2.0 has been deprecated since license list version
-> 3.0. Use GPL-2.0-only to be specific.
->
-> Cc: Garrett Giordano <ggiordano@phytec.com>
-> Cc: Wadim Egorov <w.egorov@phytec.de>
->
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi          | 2 +-
->   arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts    | 2 +-
->   arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi          | 2 +-
->   arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts | 2 +-
->   4 files changed, 4 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
-> index aa43e7407eee..0c8e79de1c71 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->   /*
->    * Copyright (C) 2022 - 2023 PHYTEC Messtechnik GmbH
->    * Author: Wadim Egorov <w.egorov@phytec.de>
-> diff --git a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
-> index 4bc0134c987d..69b76c18207a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->   /*
->    * Copyright (C) 2022 - 2023 PHYTEC Messtechnik GmbH
->    * Author: Wadim Egorov <w.egorov@phytec.de>
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> index 1678e74cb750..dc76ed1adec7 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->   /*
->    * Copyright (C) 2021 PHYTEC America, LLC - https://www.phytec.com
->    * Author: Matt McKee <mmckee@phytec.com>
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-> index 53b64e55413f..5339aa107865 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts
-> @@ -1,4 +1,4 @@
-> -// SPDX-License-Identifier: GPL-2.0
-> +// SPDX-License-Identifier: GPL-2.0-only
->   /*
->    * Copyright (C) 2021 PHYTEC America, LLC - https://www.phytec.com
->    * Author: Matt McKee <mmckee@phytec.com>
+There are actually 3 drivers need to do their own power management operations:
 
-Acked-by: Garrett Giordano<ggiordano@phytec.com>
+1. PCIe device driver - Handle the PM of the device itself (shutdown, low power)
+2. PCIe pwrseq driver (this one) - Control resources of the PCIe devices
+3. PCIe controller driver - Control resources of PCIe controller and Link
 
+And all of them has different responsibilities, so I do not see an issue with
+that. But what is really important is that all 3 has to work in sync and that's
+quite involved. That's why I thought of dealing with that later.
+
+Moreover, even if driver (2) doesn't do any PM operations now, it won't break
+anything on the currently supported platforms (Qcom). It will be a problem once
+people start adding pwrseq drivers for platforms whose controller drivers are
+already handling the job which is now offloaded by this driver.
+
+- Mani
+
+> Rob
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
