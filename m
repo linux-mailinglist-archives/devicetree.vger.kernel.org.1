@@ -1,365 +1,171 @@
-Return-Path: <devicetree+bounces-32964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F91831653
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 10:59:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C2F83165F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 11:05:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16398B20F2A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:59:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFE7B2855DD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 10:05:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6E520B10;
-	Thu, 18 Jan 2024 09:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA21200CA;
+	Thu, 18 Jan 2024 10:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="ISYZW+ZE"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Hk4CdXV1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B11220B0B;
-	Thu, 18 Jan 2024 09:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E20A02030E;
+	Thu, 18 Jan 2024 10:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705571925; cv=none; b=GXwLr9gOhOG9ZlkEVr3yP41kQuEAbbSouxWyaIKqXJHo4z7Jy8UKBxt2p4bXRgWOCyow92467bxeC7VN02SwVU87/+LegEEHQhT+FD7rNpfLGLHYUJWfA7ouQgYW0+k2VtHpoobxnaLauSBNayeJYTEiVDPyaGv1cWbJfw2Pgos=
+	t=1705572323; cv=none; b=nH4QpuB1oLxP3IOKxi7lCwwT4ZYvnI7u/N4Y/ZbqPcVgmiV09ne9+nOlywjOZNx5p2qYddI0PgHJLLKul0/t0mm8SHO8FuUTdV8th5ezetaTyeeVB2bPB+rymAvdm6oIyA99j2S2exucmOjVDryPFncV8Fwov4olJsf6y0HSs4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705571925; c=relaxed/simple;
-	bh=4lelM5Mu8dIeQYfmmTEIKQSVvC5biNoMtuRcvphtl/U=;
-	h=DKIM-Signature:Received:Message-ID:Date:MIME-Version:User-Agent:
-	 Subject:Content-Language:To:Cc:References:From:Organization:
-	 In-Reply-To:Content-Type:Content-Transfer-Encoding:X-AntiAbuse:
-	 X-AntiAbuse:X-AntiAbuse:X-AntiAbuse:X-AntiAbuse:
-	 X-Get-Message-Sender-Via:X-Authenticated-Sender:X-Source:
-	 X-Source-Args:X-Source-Dir; b=PE0KV42pAWhdyI+iiyDwlnIhJPJZcoKo2p3UIZQ3+I4oAyozfHtfA15Ifa7mCEK1Y+ge+dAamEYTeTV51VsO4RhL52c0IC4pFsdKoa/krGz4vEGvUSuOGA7K2Bhbn0oha9LzlUWiWQhGbh6VzLrjnaDBml3B6Qnlsr8qIOdKWi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=none smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=ISYZW+ZE; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=xsaHQFs/dJguDvAuW/jcuqfX0soPSo8tx8PPeafV9Bc=; b=ISYZW+ZENUQ1jryV33gZCrcbRx
-	9QNFVRF21YdXLvMAxf+uduBooLirnJq7bZPOTjUqvG29BL5f3yJy4Z1F0XwYsm22gOOMourGVeFeA
-	cvOrbXNAUqb51aoj2msmbG0/swBq/+Tvdiy8YxJ9HEQT1/z0ijOlm1JmuGXtORHLnY3e+KK8YsC5K
-	ZkpTYpMkkQxIpMNPeVRWzWItbQ6Nhvtf3U4tkQMta+50ALIEtcBqkLe6ZZ87xjSlh1HuK7NKALAvn
-	fB2gcCprPj65851y4iU+OG/YYy+UE5xfu3RZ8bqz7cS5dO9CtT/Vsv4pxAxdyUM49jFvLKPSJCo5H
-	1GambFdg==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:50934 helo=[192.168.69.116])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1rQPAT-006uBR-39;
-	Thu, 18 Jan 2024 10:58:37 +0100
-Message-ID: <c1ef5c08-1ae9-4a22-8ca9-47673c023e1e@norik.com>
-Date: Thu, 18 Jan 2024 10:58:36 +0100
+	s=arc-20240116; t=1705572323; c=relaxed/simple;
+	bh=HhhsN2WfAyRDBWzaRYUFbUEE/c8KvI4/F0M8cPQbuYY=;
+	h=Received:DKIM-Signature:Received:Received:Received:Received:From:
+	 To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type:X-Originating-IP:
+	 X-ClientProxiedBy:X-Proofpoint-Virus-Version; b=KcxJ2IeSLKWhRCi4giptxim0iXEbX7FLcQy/OAdrynh64eZ6Oz5EMkk8XB1bSuwdVvZrqhqlrfsnHXt+uXeejLWrj6kdGVOw9eunD58HxgTDohiC02uNc2DBbDFjQJwGZatjDTT81J8uFkNsiYNIjYjuwt1wWJJ7g8pPkwbknLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Hk4CdXV1; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40I9gTqq025691;
+	Thu, 18 Jan 2024 11:04:44 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=GKqS8jq
+	xEEpUNyAQ+GwIQ0fVhoXxiu3PF3g7F74mv1g=; b=Hk4CdXV1ksC+LVQ5sYrNcdj
+	YVW3QTCU1pQ2iylO6ets36E5VeU7HqtdnrL0ILbQypQqR+jPshjDtkW4D5rfyV5q
+	pLq68VhMhJAA2uw+LtZKMHJe3qTRD/uChFIAuk1nb9OUiunnd67lHq5GO9eS6wIc
+	xj+P4c3g4h7s7VHYKqn7K/rgJRlIyhl/382Y8hU0TUZ2H4mrA+vlsQNH2uw4lrp6
+	yT3eFVUqOYSXiaoBMQD13BKgy2GM8gQUdBBk0GoYS7PE3pzAdsL7bg3QfI+sEKqI
+	t20zgGKIx1ag/kdUT3sMTpO37/0J50Zk1DW0yjKKnE8Jkj7okdiMcHdP1bLGvOA=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vkmbhg0sp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Jan 2024 11:04:44 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3C8B110007D;
+	Thu, 18 Jan 2024 11:04:44 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2FB2121A223;
+	Thu, 18 Jan 2024 11:04:44 +0100 (CET)
+Received: from localhost (10.201.20.75) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 18 Jan
+ 2024 11:04:43 +0100
+From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        Rob
+ Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Subject: [PATCH v2 0/4] Introduction of a remoteproc tee to load signed firmware
+Date: Thu, 18 Jan 2024 11:04:29 +0100
+Message-ID: <20240118100433.3984196-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx93-phycore-segin: Add Phytec i.MX93
- Segin
-Content-Language: en-US
-To: Mathieu Othacehe <othacehe@gnu.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Li Yang <leoyang.li@nxp.com>, Stefan Wahren <wahrenst@gmx.net>,
- Christoph Stoidner <c.stoidner@phytec.de>, Wadim Egorov <w.egorov@phytec.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de
-References: <20240117074911.7425-1-othacehe@gnu.org>
- <20240117074911.7425-3-othacehe@gnu.org>
-From: Primoz Fiser <primoz.fiser@norik.com>
-Organization: Norik systems d.o.o.
-In-Reply-To: <20240117074911.7425-3-othacehe@gnu.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-18_05,2024-01-17_01,2023-05-22_02
 
-Hi Mathieu,
+Updates from the previous version [1]
+- fix issues reported by kernel test robot,
+- address Rob Herring comment on bindings.
 
-first of all, nice to see an attempt to upstream the board. A bit fast
-though as upstreaming was planned after the official PHYTEC release.
-
-However, there is quite a lot of differences in respect to the
-downstream PHYTEC kernel tree.
-
-I am sure PHYTEC wants to sync here to avoid general confusion.
-
-CC-ing: upstream@list.phytec.de
-
-So lets start:
-
-- the board should be named "imx93-phyboard-segin" instead of
-"imx93-phycore-segin".
-
-PHYTEC naming convention:
-phyCORE -> the SoM
-phyBOARD -> the base board (with the SoM)
+[1] https://lore.kernel.org/linux-arm-kernel/20240115135249.296822-1-arnaud.pouliquen@foss.st.com/T/
 
 
-On 17. 01. 24 08:49, Mathieu Othacehe wrote:
-> Add DTSI for Phytec i.MX93 System on Module and DTS for Phytec
-> i.MX93 on Segin evaluation board.
-> 
-> This version comes with:
->  - 1GB LPDDR4 RAM
->  - external SD
->  - debug UART
->  - 1x 100Mbit Ethernet
+This series proposes the implementation of a remoteproc tee driver to
+communicate with a TEE trusted application responsible for authenticating and
+loading the remoteproc firmware image in an Arm secure context.
 
-Maybe you sync this commit msg + title with downstream commit like so:
+1) Principle:
 
->     arm64: dts: imx93: Add phyBOARD-Segin-i.MX93 support
->     
->     Add basic support for phyBOARD-Segin-i.MX93.
->     Main features are:
->     * Ethernet
->     * SD-Card
->     * UART
->     
+The remoteproc tee driver provides services to communicate with the OP-TEE
+trusted application running on the Trusted Execution Context (TEE).
+The trusted application in TEE manages the remote processor lifecycle:
 
-plus add eMMC to the list if you decided to enable it?
+- authenticating and loading firmware images,
+- isolating and securing the remote processor memories,
+- supporting multi-firmware (e.g., TF-M + Zephyr on a Cortex-M33),
+- managing the start and stop of the firmware by the TEE.
 
+2) Format of the signed image:
 
-> 
-> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |  1 +
->  .../dts/freescale/imx93-phycore-segin.dts     | 93 +++++++++++++++++++
->  .../boot/dts/freescale/imx93-phycore-som.dtsi | 64 +++++++++++++
->  3 files changed, 158 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx93-phycore-segin.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 2e027675d7bb..f078d6ef75f7 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -201,6 +201,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-iris-v2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-segin.dtb
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/src/remoteproc_core.c#L18-L57
 
-Like I said, this has to be renamed to imx93-phyboard-segin.dts as the
-official kit name is "phyBOARD-Segin-i.MX93".
+3) OP-TEE trusted application API:
 
->  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
->  
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-segin.dts b/arch/arm64/boot/dts/freescale/imx93-phycore-segin.dts
-> new file mode 100644
-> index 000000000000..748b779a9dc1
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx93-phycore-segin.dts> @@ -0,0 +1,93 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2023 PHYTEC Messtechnik GmbH
-> + * Christoph Stoidner <c.stoidner@phytec.de>
-> + * Copyright (C) 2024 Mathieu Othacehe <m.othacehe@gmail.com>
-> + *
-> + */
-> +/dts-v1/;
-> +
-> +#include "imx93-phycore-som.dtsi"
-> +
-> +/{
-> +	model = "PHYTEC phyBOARD-Segin-i.MX93";
-> +	compatible = "phytec,imx93-phycore-segin", "phytec,imx93-phycore-som",
-> +		     "fsl,imx93";
-> +
-> +	chosen {
-> +		stdout-path = &lpuart1;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-> +		regulator-name = "VSD_3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/include/ta_remoteproc.h
 
-Order properties here alphabetically like in the downstream kernel.
+4) OP-TEE signature script
 
-Comment applies for the entire patch.
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/scripts/sign_rproc_fw.py
 
-> +	};
-> +};
-> +
-> +/* Console */
-> +&lpuart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	status = "okay";
-> +};
-> +
-> +/* SD-Card */
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	cd-gpios = <&gpio3 00 GPIO_ACTIVE_LOW>;
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +	no-sdio;
-> +	no-mmc;
-> +};
-> +
-
-Please consider adding pinctrl_100mhz and pinctrl_200mhz from the
-downstream kernel which were determined by HW measurements at those
-operating frequencies.
+Example of usage:
+sign_rproc_fw.py --in <fw1.elf> --in <fw2.elf> --out <signed_fw.sign> --key ${OP-TEE_PATH}/keys/default.pem
 
 
-> +/* Watchdog */
-> +&wdog3 {
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	status = "okay";
+5) Impact on User space Application
 
-Remove this pinctrl + status left-over?
+No sysfs impact.the user only needs to provide the signed firmware image
+instead of the ELF image.
 
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX93_PAD_UART1_RXD__LPUART1_RX			0x31e
-> +			MX93_PAD_UART1_TXD__LPUART1_TX			0x31e
 
-Please consider pinctrl settings from the down-stream kernel. They differ.
+For more information about the implementation, a presentation is available here
+(note that the format of the signed image has evolved between the presentation
+and the integration in OP-TEE).
 
-> +		>;
-> +	};
-> +
-> +	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_RESET_B__GPIO3_IO07		0x31e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CD_B__GPIO3_IO00			0x31e
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD2_CLK__USDHC2_CLK			0x178e
-> +			MX93_PAD_SD2_CMD__USDHC2_CMD			0x139e
-> +			MX93_PAD_SD2_DATA0__USDHC2_DATA0		0x138e
-> +			MX93_PAD_SD2_DATA1__USDHC2_DATA1		0x138e
-> +			MX93_PAD_SD2_DATA2__USDHC2_DATA2		0x138e
-> +			MX93_PAD_SD2_DATA3__USDHC2_DATA3		0x139e
-> +			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT		0x51e
-> +		>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-> new file mode 100644
-> index 000000000000..4edff4a50b2b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
-> @@ -0,0 +1,64 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2023 PHYTEC Messtechnik GmbH
-> + * Christoph Stoidner <c.stoidner@phytec.de>
-> + * Copyright (C) 2024 Mathieu Othacehe <m.othacehe@gmail.com>
-> + *
-> + */
-> +/dts-v1/;
-> +
-> +#include "imx93.dtsi"
-> +
-> +/{
-> +	model = "PHYTEC phyCORE-i.MX93";
-> +	compatible = "phytec,imx93-phycore-som", "fsl,imx93";
-> +
-> +	reserved-memory {
-> +		ranges;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			reusable;
-> +			alloc-ranges = <0 0x80000000 0 0x40000000>;
-> +			size = <0 0x10000000>;
-> +			linux,cma-default;
-> +		};
-> +
-> +		ele_reserved: ele-reserved@a4120000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0xa4120000 0 0x100000>;
-> +			no-map;
-> +		};
+https://resources.linaro.org/en/resource/6c5bGvZwUAjX56fvxthxds
 
-Remove ele_reserved if you are not using it anywhere. This only applies
-to vendor kernel at the moment.
+Arnaud Pouliquen (4):
+  remoteproc: Add TEE support
+  dt-bindings: remoteproc: add compatibility for TEE support
+  remoteproc: stm32: create sub-functions to request shutdown and
+    release
+  remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
 
-> +	};
-> +};
-> +
-> +/* eMMC */
-> +&usdhc1 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	pinctrl-1 = <&pinctrl_usdhc1>;
-> +	pinctrl-2 = <&pinctrl_usdhc1>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	status = "okay";
+ .../bindings/remoteproc/st,stm32-rproc.yaml   |  52 ++-
+ drivers/remoteproc/Kconfig                    |   9 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/stm32_rproc.c              | 233 +++++++++--
+ drivers/remoteproc/tee_remoteproc.c           | 393 ++++++++++++++++++
+ include/linux/tee_remoteproc.h                |  99 +++++
+ 6 files changed, 740 insertions(+), 47 deletions(-)
+ create mode 100644 drivers/remoteproc/tee_remoteproc.c
+ create mode 100644 include/linux/tee_remoteproc.h
 
-Currently only default DDR50 is supported.
 
-So no need for 100mhz + 200mhz pinctrls.
+base-commit: 0dd3ee31125508cd67f7e7172247f05b7fd1753a
+-- 
+2.25.1
 
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX93_PAD_SD1_CLK__USDHC1_CLK		0x15fe
-> +			MX93_PAD_SD1_CMD__USDHC1_CMD		0x13fe
-> +			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x13fe
-> +			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x13fe
-> +			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x13fe
-> +			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x13fe
-> +			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x13fe
-> +			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x13fe
-> +			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x13fe
-> +			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x13fe
-> +			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x15fe
-> +		>;
-> +	};
-> +};
-
-BR,
-Primoz
 
