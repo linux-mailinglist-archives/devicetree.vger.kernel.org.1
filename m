@@ -1,146 +1,128 @@
-Return-Path: <devicetree+bounces-33085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2985B832091
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 21:47:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D61F8320FC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 22:44:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9825C1F246ED
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 20:47:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E3F2285B39
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 21:44:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 208542E652;
-	Thu, 18 Jan 2024 20:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1440E31758;
+	Thu, 18 Jan 2024 21:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ljmF7SWf"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="VTg7IMb1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873012E64E;
-	Thu, 18 Jan 2024 20:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BB731741
+	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 21:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705610829; cv=none; b=CifImOqLnaEAJ9iXe2OQmgnsomkgubJmsgNwJqmKrJjlindZ4gSmKPRzQ3ifr5wEU917JvSDvuUFuP3hhJUSktZDi/M1aoXoCgxYAVntXsN5gpOzMUx9zO3dN00CP4reoQEnzE4npV4Qt3tmwZMrRk5ticIkSRotGU0b79zJ0U4=
+	t=1705614257; cv=none; b=bsDcdH7SSaQTZdiTO3I3onYt4IdDa0LV5BdmOzVSV9ucjk/uo6i1Ccmp0JObLjKISfEvnfuUg754zM7UcZD4vSEiukJ50P/YaRwD82GP0jIyUf5nuoRzsp91To+TSP59wOUhSO6PkCoOEkVfwCpFeGf7JsMbqlkr9PXl3Y2YJVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705610829; c=relaxed/simple;
-	bh=YkNMcyCL6Mh/JYKmRd3zfblygFLMWofKD5+zOtT5Eos=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K0DjerWTTLoVsQmbEOrAk5tdgbvxaN4iJrXt3q6uGFjEn/PJq+4Wz+fo/09gQDq9bmx7x2IyuTdbH78+OJrV8RBY8ZFI7mlD3o63T18uHwOyUEoqLqQmKzwLI84F65IPmVSLN1mEDrfrN0m4HxN0LIGIJdT/SOqGNBMjaxdTQWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ljmF7SWf; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55817a12ad8so18502a12.2;
-        Thu, 18 Jan 2024 12:47:07 -0800 (PST)
+	s=arc-20240116; t=1705614257; c=relaxed/simple;
+	bh=dxW94Xo16tN4F2/zNoyofSr34Bz4H0NPwZaMM3AQ/g4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=i2nQEOfMn6O9YfLZZVYyvpVCY7C6RA1L3DOF+u7OEidSJfKSPUxDmZcg+UBD23GGresq3kSAYhiNeN1FPvnyiRKC23cifcs/QQHq8CpvAKI/OlWRuFiky/0yq1B7O/Qt1jlYGlXjrPLE8dRRcvKtywV6TBJgbGrd0gzBWE4hoq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca; spf=none smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=VTg7IMb1; arc=none smtp.client-ip=209.85.219.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ndufresne.ca
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dbedb1ee3e4so155356276.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 13:44:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705610826; x=1706215626; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9HypTLSotTTqKwVsOm+4b1Ez49+TpS5E1yzIiV5X+xQ=;
-        b=ljmF7SWfGms1CQQbwwesMgiSPXjuOmQ4TZUYK5/eUEX6nMErhfQHOpXfERZwp4am0m
-         66UF7B6+wBYXFd7frgSCIErhvP+K9gbOAkxQe2jKOUVSOc/pMwOGim5XwcKNcRrT8xu5
-         4TTci7oGkEx+WRZL5y2gknOkp79n0vJrqnh8RmbStmAfbeI9ZEdYp25064cSCoBtvNVg
-         DDEv+MNkcXtrDmrhuXhvdPRxltO8jVSdU8p/qwKCZpprBKDUQ3M1LxqgabXkU8ye/rHN
-         td00iQFiL8UfsXneXHaaN+KwchIC+4cx5Q11nJh1ajtDELh42YfLI0a9QeBYjuFnRJeq
-         KRNw==
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1705614254; x=1706219054; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:cc:to:from:subject:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dxW94Xo16tN4F2/zNoyofSr34Bz4H0NPwZaMM3AQ/g4=;
+        b=VTg7IMb1zVhXf1QNTbVwResuUQT7OxpH1Szt/hwTVevjSXxgt1byT5LgkjaimG6Jxk
+         dMq9i0nuSRMnpg0YK+/jEWEGmJpV53dM9eQf2S5nl1fhv1mfllveHO9QPd0MRoqkpdeR
+         RRt6gYtpGx1R9I4zZyt3Qpk1UOwXsuWc77JDhbT2K3LIbwGh8TE7QjCQqP1slz+SMgL+
+         hZ53XV2lTjlmnMy1xkPENKT9AF5rGhlJOLl/dpQmxZg/lFcHvpeuQZbzzMUy1m7rSmqa
+         8TugxhTsLNmcbOZ0pzBwhq1tttoeryII+gpqKAm6+mGQ7yz3zi6QEaaRWnWTYOoVOs1l
+         16Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705610826; x=1706215626;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9HypTLSotTTqKwVsOm+4b1Ez49+TpS5E1yzIiV5X+xQ=;
-        b=uzhB/c8UGC7BzxciNMZEN6LZcPqXkdsvestn8T6ntloFLW9Sym0Q5sXz9Ah1F1dTb9
-         ab1W8uYY/XFmpT09D4EKhRt/g/ZX4BrrtCFLFWC91PFaz7LZp6LHaxvWJH73XybRiTUl
-         rH2qpav4+1tOG4cn8mhuEG0u2gNbfU/RFE3rONry10jKtVhQsWvvWUINCVSHAFgdLg8B
-         X1mhc044zi5KSUH286Xx3IkcrzDSHT+h9R7Ag/VXyG+MfuSRoNNuKlMfbupvfiq9bF4m
-         BvhMLtZbVXB3pJH7wSB9mSkxY++HgX63cr2HauUTz9QHRWV5zjy2DQ3+VuO6Q9B/8gsQ
-         2xcg==
-X-Gm-Message-State: AOJu0Yw2xxaaDuqg+xU8Nuuzdi1xf6C1XSly4BzoGs3S4glLvfL/Awsb
-	nG6LuDXxmscJRBs064Y1btP8E2GMO4Jfe+mSg3FpFm9LmEmRVh8rOFwcJKMNmulghQcvTT8E6l3
-	Tlbqv0Fpt7jVV+SSvShFVbJWSAgM=
-X-Google-Smtp-Source: AGHT+IFPg1KQKOiytDCPjzr2bAiXNTOihCNCwnx04ccb1HQOAhoThFdVl8FEgsgHhgV36eaqZcfXVS1cbdKI//lMd9o=
-X-Received: by 2002:a17:906:471a:b0:a2c:7293:af58 with SMTP id
- y26-20020a170906471a00b00a2c7293af58mr906907ejq.79.1705610825460; Thu, 18 Jan
- 2024 12:47:05 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705614254; x=1706219054;
+        h=mime-version:user-agent:content-transfer-encoding:autocrypt
+         :references:in-reply-to:date:cc:to:from:subject:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dxW94Xo16tN4F2/zNoyofSr34Bz4H0NPwZaMM3AQ/g4=;
+        b=intmwlJsbCHqDE9laK5gSCyXa16Yc/hTgJRxkfTOG18+KH0GItNnvuBRfJfTueSs/o
+         06xxGO9ynZ4z18W5ZX92r/+u46zymhYHyEj7h2M4qAHv86pj/Iu/FhMVbtppI46raWVU
+         eghU/oLzITBWA4UR39sPCqQlwBuIeNBy7PNryDl06lJsJLu1A1xiQjq1iD0ZeZQx7gcc
+         aGbs6PWV9e+s88q1pfOFBWylquZJ1hh6JpxXR+qj/jTqQrhZsCezjcUmFE77dh5K82TI
+         NZ6YsnhEt2vZsFJrnvXAK95c4X6j/Fhx6eLMIGW85PpIV1o2fjStbHISCmR8Tps4GQlA
+         F6IA==
+X-Gm-Message-State: AOJu0YxDVpxRd0onxpVZNN8oOO2v2mUbdvtFnODSqKbFWF573fGOsBMZ
+	xg6l1N1gBEYT5z5685dgsDPMXNa/bTeWClugxvzFK0gRdYTZO8siHYtGM716fpA=
+X-Google-Smtp-Source: AGHT+IFTpM/j9s/7BU5IuSX0nDJIeasuF97xldX5n/sHZyCswVJRa7EtsNcn/HwcYXNLgvUGcRpk9Q==
+X-Received: by 2002:a25:d712:0:b0:dbf:22cd:b59d with SMTP id o18-20020a25d712000000b00dbf22cdb59dmr1343391ybg.101.1705614254061;
+        Thu, 18 Jan 2024 13:44:14 -0800 (PST)
+Received: from nicolas-tpx395.localdomain ([2606:6d00:11:3354::7a9])
+        by smtp.gmail.com with ESMTPSA id on32-20020a05621444a000b006819a675e24sm346382qvb.69.2024.01.18.13.44.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jan 2024 13:44:13 -0800 (PST)
+Message-ID: <2f1f5657d0d16821f6fa1366f99b5ee5d8ae7fdc.camel@ndufresne.ca>
+Subject: Re: [PATCH v3 1/2] arm64: dts: rockchip: Add Hantro G1 VPU support
+ for RK3588
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: amazingfate <liujianfeng1994@gmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ ezequiel@vanguardiasur.com.ar, heiko@sntech.de, knaerzche@gmail.com, 
+ krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org, mchehab@kernel.org,
+ p.zabel@pengutronix.de,  robh+dt@kernel.org, sfr@canb.auug.org.au,
+ sigmaris@gmail.com
+Date: Thu, 18 Jan 2024 16:44:12 -0500
+In-Reply-To: <20240118080602.9028-1-liujianfeng1994@gmail.com>
+References: <e01c9ab69f3e120cdb9b70fbacebbab32d5abba4.camel@ndufresne.ca>
+	 <20240118080602.9028-1-liujianfeng1994@gmail.com>
+Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual; keydata=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
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
- <20230804104602.395892-7-ckeepax@opensource.cirrus.com> <Zali4qxdegY7H6eY@surfacebook.localdomain>
- <aec96f5a-b759-48c7-a5ec-bafe3bfa5357@sirena.org.uk>
-In-Reply-To: <aec96f5a-b759-48c7-a5ec-bafe3bfa5357@sirena.org.uk>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 18 Jan 2024 22:46:28 +0200
-Message-ID: <CAHp75Vd6JtW4ddbSPXUp6WgEdBJizjwnS-XZzwLcXWWLxFWp-w@mail.gmail.com>
-Subject: Re: [PATCH v7 6/6] ASoC: cs42l43: Add support for the cs42l43
-To: Mark Brown <broonie@kernel.org>
-Cc: Charles Keepax <ckeepax@opensource.cirrus.com>, lee@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linus.walleij@linaro.org, vkoul@kernel.org, lgirdwood@gmail.com, 
-	yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com, 
-	pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org, 
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 18, 2024 at 8:11=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
-te:
-> On Thu, Jan 18, 2024 at 07:41:54PM +0200, andy.shevchenko@gmail.com wrote=
+Le jeudi 18 janvier 2024 =C3=A0 16:06 +0800, amazingfate a =C3=A9crit=C2=A0=
 :
-> > Fri, Aug 04, 2023 at 11:46:02AM +0100, Charles Keepax kirjoitti:
->
-> > > +   unsigned int hs2 =3D 0x2 << CS42L43_HSDET_MODE_SHIFT;
->
-> > BIT(1) ?
->
-> Given that this is writing a value into a register field called "MODE"
-> it seems very likely that it's an enumeration value rather than a
-> bitmask (and similarly for all the other places where you're making
-> similar comments).  Please think a bit more about the code being
-> commented on when making these minor stylistic comments.
+> Hi Nicolas,
+>=20
+> Wed, 17 Jan 2024 14:13:19 -0500, Nicolas Dufresne wrote:
+> > In general, we ask submitters to share a fluster [0] score (this is jus=
+t to
+> > demonstrate that the integration has been well validated). LibreELEC co=
+mmunity
+> > have patch to enable this ffmpeg fork. I don't expect any surprise here=
+, and you
+> > can just reply to my email here.
+>=20
+> Here are fluster test result with ffmpeg v6.0 patched with v4l2 request p=
+atches
+> from LibreELEC and gstreamer 1.22:
+> https://gist.github.com/amazingfate/1675389df382ff266d6f1318fd4675fd
+>=20
+> I am using Kwiboo's fluster fork[1] to run ffmpeg v4l2 request tests
 
-I read a bit further and have given a comment about this as you put it
-above that they are plain values.
-Please, read my comments in full.
+Thank you very much, these are the expected results for this HW, indicating
+everything works as expected.
 
-...
+Nicolas
 
-> > > +static const char * const cs42l43_jack_text[] =3D {
-> > > +   "None", "CTIA", "OMTP", "Headphone", "Line-Out",
-> > > +   "Line-In", "Microphone", "Optical",
->
-> > Better to have this by power of 2 blocks (seems it's related to the pos=
-sible
-> > values ranges in the HW).
-> > If it's just a coincidence that there are 8 of them, perhaps other (log=
-ical)
-> > grouping is better?
->
-> This is probably well within the realm of driver author taste...
+>=20
+> Jianfeng
+>=20
+> [1] https://github.com/Kwiboo/fluster/tree/v4l2-request
 
-No objection, just a question.
-
-...
-
-> > > +   // Don't use devm as we need to get against the MFD device
->
-> > This is weird...
->
-> This is normal, the splitting into subdevices is often a purely Linux
-> internal thing and not represented in the firmware description so
-> external resources are linked to the top level.
-
-I meant the weirdness of mixing devm_ with non-devm_ in a way that
-->remove() can be broken to the extent of oopses or crashes.
-
---=20
-With Best Regards,
-Andy Shevchenko
 
