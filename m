@@ -1,132 +1,135 @@
-Return-Path: <devicetree+bounces-33093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AE8483221E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 00:07:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AB5A832248
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 00:31:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4803286716
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 23:07:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A82841C21C8B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 23:31:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086BC1D694;
-	Thu, 18 Jan 2024 23:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 121041DA5E;
+	Thu, 18 Jan 2024 23:31:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zly86cSh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hlgh7OZN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C1B28E01;
-	Thu, 18 Jan 2024 23:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EECC41EB37
+	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 23:31:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705619221; cv=none; b=GHu/I0/SzV+onfWvg4rCHlHDWgiAv+d7PlhzGN0wZn4ZhmzmtjgxFa5qUfVCxqNPv1cgmRagBIqw9IqHh2B9irIY/YNruv0dDDTE99OQyEI/nLmwboTePwPenxOTPQnXJgwC0pviIZJivYdSJqEisZD7H+Wr0lBVeJmC1EbKNRk=
+	t=1705620674; cv=none; b=XAehflqax9vRDF+qRhZEpXYQL/kpRdMa8Imy6DqBlBV7d9uK62IPrx95yPdGEWw80CpJlGzNi/CJNjQi4n9fCmV/8jFBVSXwg/ZYSKt4nWTsvGUg6nIccSW55Wb/kVbELdjO0waxmhmMtiNhRbLyqDYNlkTBDMoCz0pMA1Erinw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705619221; c=relaxed/simple;
-	bh=C3czo7khii5HLSj5rEGnLSSs34D6Pt3jnqqN3UEI3zU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bVOISw0sesbEa/SShY/U+Wcj3qz7S6aOcEWMtO0WLuDaRn8VWct7H1+ZbMvM7bl0u2gZdALMLwyUtZ+RI8/xvmD8dSsP0Y5lMyHnrehQmx9Nj/MgiRCvicYERRsrb/1XR0scO9ddNVoErbd0Z66tmFP5VMZRaquEU29IqrgCa7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zly86cSh; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6da4a923b1bso208884b3a.2;
-        Thu, 18 Jan 2024 15:07:00 -0800 (PST)
+	s=arc-20240116; t=1705620674; c=relaxed/simple;
+	bh=IdpU2iFg7IVH1ufjSNd28yuQIldlBMrrkAL0tUwiR3M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MxjwGy+RZTbrjlKSUlkJMfG+98nlzRAzX301J8IggJec3nje3Hacfo2rd6SlOfLHUFuO2xhL9X3Q86rVzqT/E4O691Mwb5IHWYxxPNRRr14oSmIKX3LOxz10alWVOTNL76Dsa8zMEl1cDvDDREWSxrH4Q/bf02EEAKLYVth+cBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hlgh7OZN; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-337cf4eabc9so119210f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 15:31:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705619220; x=1706224020; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=c8f0ZMOFj6e5ONvZJKWhCCfR/uGYAf+8vGREsVvAFMM=;
-        b=Zly86cShpgMt2qwzjksQe+KimTpyD6eemfA7tg9oQUzOFq8kfWl8U4eVHOe5GLPA9N
-         Fr0/mlmuztchay/VY+vUqTZXvya4TVxTfwHT0kLgbhQOgAZDufqhIpM+2FxC4grM2xFR
-         VZOm4gN9cyExuNX3edwzhkMnJfpeAC0gMhQCx/mEJFIsn0S+RipC8urJPsgqtgGSHdI2
-         9roVv/nlS94sRH5/6rbl4QJ4Dfjm2wOLM+Z6J8x7md6Xk1OvtFZSjZ7yLwRNernkUUgi
-         ulMDjKz3KnwQLOJCbmDU18LQ2SH5H1i0MyTT/g+pivbuV2bmE6h+JnTNtuQLNGiV7OtJ
-         2fvA==
+        d=linaro.org; s=google; t=1705620669; x=1706225469; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6v0lpyy987F1ypK0yHFg7YzbqvtCeBq1Ni/3BxFVaP8=;
+        b=Hlgh7OZN+oceDjCX71S1+jjzVWubCpdutpcdapYvU7naFeHNvB8in8IJ+ZP6PcF5GO
+         vSwBK095CeX6m24vzIFg45Jcu+XydbVyCM1pXKttWBRtrL/BjjBd+ft37CBclgAemw4P
+         rTcmU0hlwWQtVxeuZwY9XOJOzVQeEfqh4WcLSN7QY0KLkSPZO80kGLIbsFf8crcMq4xs
+         zTkVa8O1OS0IKUyr0BHBMWSYwcQBflsxRmJ5F8oVD5D5hl09ER8DRzam1lL15Tvppj+J
+         T1zEYKtHAG+xHFX3eAo5MuDrLspS5TfGhDrCJrtU08hbVi9rNglnvVImLr0ybP8ine5+
+         iOFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705619220; x=1706224020;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c8f0ZMOFj6e5ONvZJKWhCCfR/uGYAf+8vGREsVvAFMM=;
-        b=R1Zv61TbbQXa5oEWyi6G66e5KIF+5E0hF2y7JRY0rWmk2DlM+kpoeeDiKDNmK5nsbo
-         MYeZI+IS/dlhe/NXh37nx49URfMC/ucssq9Kx20JN2Qmz0dBdaK1UEH9V6KUL75bIpCR
-         HscHXzoVj0JP4ic398PB6zr2kikErDK1rZTXNzfCrX3StL79RI71BLlggjHzVbNzJ7SZ
-         AYmcKBGuGTeMCB7XAVRTbLDnkMCSuE4JusZ0dzKC+rPHFqBDH+Neg7saqFlZSNVJ1MlM
-         02J30UDSJfkwOJisgpXxevRAcTWfGrG4cW9Yqq7M9mTetv2yDRLqqhJawtOmDcdt8wjf
-         58fw==
-X-Gm-Message-State: AOJu0Yy3P+Q4xF7HWWuZzkRIOvlXd14DpobwzvWMj1HpCMvcQM60se9K
-	GbVCTaDS+iEx6N1YGPIGrMfE67tOez4c9UeKPLc+RWsVPywFrZzw
-X-Google-Smtp-Source: AGHT+IEJ1tudrXxSISfJ6OkeSmt1gjuBMQTyvcMdQURSlaxaQ70Cu1g0KRISL+QXH+NqMAq4WDztVQ==
-X-Received: by 2002:a05:6a20:4294:b0:19b:80f5:3157 with SMTP id o20-20020a056a20429400b0019b80f53157mr1516866pzj.28.1705619219909;
-        Thu, 18 Jan 2024 15:06:59 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:f04f:73f4:b79:a70c])
-        by smtp.gmail.com with ESMTPSA id j38-20020a635526000000b005cf7c4bb938sm2102597pgb.94.2024.01.18.15.06.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Jan 2024 15:06:59 -0800 (PST)
-Date: Thu, 18 Jan 2024 15:06:56 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Doug Anderson <dianders@chromium.org>,
-	Tylor Yang <tylor_yang@himax.corp-partner.google.com>,
-	Tomasz Figa <tfiga@chromium.org>, jingyliang@chromium.org,
-	poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org,
-	jikos@kernel.org, wuxy23@lenovo.com, conor+dt@kernel.org,
-	luolm1@lenovo.com, robh+dt@kernel.org, devicetree@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	poyu_hung@himax.corp-partner.google.com,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	benjamin.tissoires@redhat.com
-Subject: Re: [PATCH v3 0/4] HID: touchscreen: add himax hid-over-spi driver
-Message-ID: <ZamvEAGGiDrQvmFq@google.com>
-References: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
- <6c7d9c92-7616-4fad-806e-44302c33b63c@linaro.org>
- <CAD=FV=X2kZcyeyK1SBcXaViBft4F6XYtA6+JwBqJswU41V9kUQ@mail.gmail.com>
- <9e1233ce-1a6d-443d-873e-6efb3ed0207c@linaro.org>
+        d=1e100.net; s=20230601; t=1705620669; x=1706225469;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6v0lpyy987F1ypK0yHFg7YzbqvtCeBq1Ni/3BxFVaP8=;
+        b=D8qGrusbui/c5TLj56ikYIbULXgTGJhsLrDrGyXuldvl9hdaiuZHHw8HH8yyRISIip
+         rviAjqLaWuLFDRVYyR5fxH0zMJc8/aOXNuqdfTvCJbLHauOPaglRfRLbncE1Vj8JmsiC
+         ldp/Giik34khQ/hu6FQyKMuxxURxTpMbsMpEeMjg+lfQYvKKvVuYoUGyM/MeHgaY8uI4
+         O/0yhuC4Kxnl9iiFyNgsfXjmiVHbnFbgJAta5hXodjl1EUgp1NTnithKYjh2QfPkRT9o
+         qgkW5frdg/vROElBzPrQWDoC+b/iaHvdpsPWdU++DGCOfDrTBjoWexcztGyuvSEI6qWg
+         EjEA==
+X-Gm-Message-State: AOJu0YzGquOh7XRBMm8z/tgWITJcPSH6KydW+OJT3Y37AfjRpLnfh3FJ
+	SU2vlL5vlxJnQ7T1gZZj0fKdLC37LWNPsxrlZHkitZuw4VaKiUwvhy4qRIqtT0KTFUglee5pqDl
+	ThQU=
+X-Google-Smtp-Source: AGHT+IHK8WMSnQ/xm+10s5i+APAOImX+NZ0MsBozts6V6weL9GokHwH2muJibNCsJCflNlRFjDFetQ==
+X-Received: by 2002:adf:cd85:0:b0:337:9b5d:4c68 with SMTP id q5-20020adfcd85000000b003379b5d4c68mr1119632wrj.127.1705620669094;
+        Thu, 18 Jan 2024 15:31:09 -0800 (PST)
+Received: from [10.66.66.2] (9.ip-51-91-159.eu. [51.91.159.9])
+        by smtp.gmail.com with ESMTPSA id q12-20020adfab0c000000b00337d8c40ff7sm973011wrc.3.2024.01.18.15.31.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Jan 2024 15:31:08 -0800 (PST)
+Message-ID: <ce77861a-b362-4ecc-8e92-7fb846c7e508@linaro.org>
+Date: Fri, 19 Jan 2024 00:31:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9e1233ce-1a6d-443d-873e-6efb3ed0207c@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Introduce additional tsens
+ instances
+Content-Language: en-US
+To: Bjorn Andersson <quic_bjorande@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240118-sc8280xp-tsens2_3-v1-1-e86bce14f6bf@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240118-sc8280xp-tsens2_3-v1-1-e86bce14f6bf@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 18, 2023 at 08:07:32AM +0200, Krzysztof Kozlowski wrote:
-> On 17/10/2023 23:41, Doug Anderson wrote:
-> > 
-> > 3. The ChromeOS team is organized much more like the upstream
-> > community than a big hierarchical corporation. Just as it's not easy
-> > for you to control the behavior of other maintainers, it is not
-> > trivial for one person on the team to control what others on the team
-> > will do. We could make an attempt to institute rules like "all patches
-> > must go through internal review before being posted", but as per #2 I
-> > don't think this is a good idea. The ChromeOS team has even less
-> > control over what our partners may or may not do. In general it is
-> > always a struggle to get partners to even start working upstream and
-> > IMO it's a win when I see a partner post a patch. We should certainly
-> > help partners be successful here, but the right way to do that is by
-> > offering them support.
+
+
+On 1/19/24 00:00, Bjorn Andersson wrote:
+> The SC8280XP contains two additional tsens instances, providing among
+> other things thermal measurements for the GPU.
 > 
-> I don't know who is exactly core team, who is partner. I see
-> "google.com" domain, so Google folks are responsible for not wasting
-> time of the community. If Google disagrees, please change the domain so
-> I will understand that and not feel like Google wants to use us all.
+> Add these and a GPU thermal-zone.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 37 ++++++++++++++++++++++++++++++++++
+>   1 file changed, 37 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index febf28356ff8..68b5ac0339a0 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -4033,6 +4033,28 @@ tsens1: thermal-sensor@c265000 {
+>   			#thermal-sensor-cells = <1>;
+>   		};
+>   
+> +		tsens2: thermal-sensor@c251000 {
+> +			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0c251000 0 0x1ff>, /* TM */
+> +			      <0 0x0c224000 0 0x8>; /* SROT */
 
-I think it might help if you think of <company>.corp-partner.google.com
-addresses as gmail.com addresses. People who are using these addresses
-are not employees of Google nor contractors for Google; they work for
-their respective <company>.
+I've previously called for removing these comments that we've been
+copypasting around for years and years, and I'm gonna stand by that :P
 
-The main reason person@<company>.corp-partner.google.com addresses are
-being used for mainline submissions is because it is actually possible
-to set up "git send-email" with them, as their main domain typically
-handled by Exchange and mandates Outlook.
+[...]
 
-Thanks.
+>   
+> +		gpu-thermal {
+> +			polling-delay-passive = <250>;
+> +			polling-delay = <1000>;
 
--- 
-Dmitry
+Hm, did tsens only gain support of non-polled reporting with 8450?
+
+If not, we should definitely update all the relevant SoCs.
+
+Konrad
 
