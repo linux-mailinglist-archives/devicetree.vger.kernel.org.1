@@ -1,162 +1,133 @@
-Return-Path: <devicetree+bounces-32994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27FFD831AB4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 14:38:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5838B831ABF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 14:43:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA34528417F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 13:38:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03E4C1F24FED
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 13:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F18BC2555A;
-	Thu, 18 Jan 2024 13:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A9825571;
+	Thu, 18 Jan 2024 13:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DH05Yrd+"
+	dkim=pass (2048-bit key) header.d=gnu.org header.i=@gnu.org header.b="Cp+PxdUJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from eggs.gnu.org (eggs.gnu.org [209.51.188.92])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00E3925551
-	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 13:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 390B024A0B;
+	Thu, 18 Jan 2024 13:43:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.51.188.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705585110; cv=none; b=lv0FNv/RMEKSwz9S7xdrhq+Wk3245DUaf0xtA/jCY7/QH31v5WFJcqFJTwqW2TXYO5t9Nty3rEWrgc/PgX3EVohKmzYYeyEwN6NIrCXrRNnYZMTffXJxJ+OyKm2mYC9zJFtAG7cHRKaJplh8GEMKhoQXmeIi930zv4DzSaW+r8c=
+	t=1705585398; cv=none; b=de1HJWL55+QTPYA0L4l8GF5+scjNsx/0FQ2oWByJw7FEHIg/+Q1Utj9dST85HUbhIC2/EWve6b5jhV/7DKTaqm/i230+BEIO305ojqIxXlJtcetTF01HGyZmPXsL6vlqsuZJXgm1hGpbA7vI6d3bTIhrx+kVTm/uEmp3Ann7dTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705585110; c=relaxed/simple;
-	bh=Z8Vfb0SGZBAI4P2ZDVDjsMweYGzgqrj6T42o6rn6LT8=;
-	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:MIME-Version:
-	 References:In-Reply-To:From:Date:Message-ID:Subject:To:Cc:
-	 Content-Type; b=bN46k7h9Aon/mRBpj779ELTepQrdwA6f5NKVvfyq0uxvdK3ypBUF5Q91cHNP5T8ruVRcpNpFDhsxVPlTMtL4zElENGfxDbjp0upU0BTYqeAL+L3t6FOOPuABkF7UweNUhV310JmIQV1dlHJz9wr9kaTgzvL7us7j9Ym/hMNjJbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DH05Yrd+; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-db4364ecd6aso8581390276.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 05:38:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705585108; x=1706189908; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=A4oOpN8Y3DEZ3CQYkWBnW0jH3tN+IO9B+O6AmYvwm30=;
-        b=DH05Yrd+eviPoVAB6B24oLBR3HXkeU5u2xFplMd/eJKVEjTbQFcWfKblhPPBAVhSge
-         91oxsLqWmgzYGFRQXjCQlB6iV/zzHOX00JL+x5X9H0N9sEZZ5PkaK3Sx4yR6eY/8jpOw
-         AQ80FHBgKzERMqnBJj8eYI48vXUum/Pl0j5yom3LSrod9R6Bzvw6LnRrPfu7NOU9SjOP
-         0T1Wj7XHW93SQiGpg4vPtmQeh2MqHlX5VP46EaLbxrpsdixHIm/E07xpwK+WCuE053N/
-         ZqBHtpPktZMFhuXeDqpokYYyIofwSEXX+7PxoLfC6KMXnMdsxBJvMzzkGlb7KHkDyl79
-         DMiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705585108; x=1706189908;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A4oOpN8Y3DEZ3CQYkWBnW0jH3tN+IO9B+O6AmYvwm30=;
-        b=gBkU6J1Dho1baiibSjVssuij7qLlUTE8j0DHf+yEZ5Hf0Ef+vyZshvx4xJqIYSbwhv
-         vcd8yQ05ILHUTJ9iMZJVt3TSDmGDLhmczAPO4LBOA15wgArG7z5jmLZUmnv6+FMAxDa1
-         B65ey96LGx46M1HWwx6Sl0tiXB8bZII4IHv2LTRGKgV988Yb3DV/hZdyShHInC6nThHb
-         7dMEyz/l5pVtV/TPVT7K7u2Z3LF1jQ3ASz9nihpDl9PslD9AKi6ha18v5Garm+KMWXK1
-         V6FGv1xrhUmocKB703sUObFyXsKjrhwkQMbeJfdxcMckQc0dQYTfkX9MIJm3bVOb/JcF
-         zfLQ==
-X-Gm-Message-State: AOJu0Yy6wpNJL6Hoc0TKmuS6L/snaPeCpG8XWSW28NeOpkSZPX6Kmb4G
-	U0KjwHuQEp8Wau5JzFUAqxtFzLaOl8PN5RZxab9By+7XzWC0tsgOk5mJaRU1nRhbDND5b237SAB
-	n+VA+35nRymn6BtARcfDW/s+N3xMEp8rykuxtjQ==
-X-Google-Smtp-Source: AGHT+IGdy20i2CdAntPsHqXzGz66RuOXdG6qrXdmHo9xtm2eAIXSW6yR7iTaedJKEXIvZXfSQTfQ1EP5Lws0BWE9adg=
-X-Received: by 2002:a5b:d0b:0:b0:dc2:260d:f00b with SMTP id
- y11-20020a5b0d0b000000b00dc2260df00bmr556118ybp.60.1705585107916; Thu, 18 Jan
- 2024 05:38:27 -0800 (PST)
+	s=arc-20240116; t=1705585398; c=relaxed/simple;
+	bh=Ja9BoTNSArKJ+F58kV7azM46qj6/hpbKD7iIT+NTPeI=;
+	h=Received:DKIM-Signature:From:To:Cc:Subject:In-Reply-To:References:
+	 Date:Message-ID:User-Agent:MIME-Version:Content-Type; b=jB3cjCyj2rnMkF1CrU7hLz1LpbUzJWqLrGzkt9ugyIVNQnmDFIa/DG5FwRs66YjMR1TisMO1/3Pym+6iY4utCB54YafMxAiw5FrnyvblUJOMEE7LbfvjLxNR3Z4jxXzDg0yJDILUxXlRwBaCZIpInq5BnCCaLSWLlZ8M3J4O1b8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gnu.org; spf=pass smtp.mailfrom=gnu.org; dkim=pass (2048-bit key) header.d=gnu.org header.i=@gnu.org header.b=Cp+PxdUJ; arc=none smtp.client-ip=209.51.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gnu.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gnu.org
+Received: from fencepost.gnu.org ([2001:470:142:3::e])
+	by eggs.gnu.org with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.90_1)
+	(envelope-from <othacehe@gnu.org>)
+	id 1rQSfn-0004uE-Cn; Thu, 18 Jan 2024 08:43:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=gnu.org;
+	s=fencepost-gnu-org; h=MIME-Version:Date:References:In-Reply-To:Subject:To:
+	From; bh=efuuIR75Ne4gKzieuxB6GvMLRG+XlSIaY1YCAUIZ41I=; b=Cp+PxdUJgklim1u1yQzh
+	lAjlcVHem0BTU2KRX7KFjrght1MTX21VTE3dmGgvxnfzdkJLElplkm9kPTbpY66pVtoHeyIhkVnkw
+	94O3lDor6XvajCmWc0/MjWDvhXUCoGx65vqOEJipZkM3k5Eyvh+lV53ssImg1I9ldXLsPbLJ/oc01
+	taG0QsaKxKkzk4/WYmVbEiyiO5V4pR/5ZYuLSb0C5BhU50iizWlpDKqJEVZGkdoJQEQ2SIdSVUpsU
+	4AA8RiRj+mdgBo3FG/Txlv+ugq12eBqJdMV/CyAN/kHUqu2+yUk389/9BJ+zFJSGcLO8Ot3bX403Q
+	vfrnyndX3/nCyQ==;
+From: Mathieu Othacehe <othacehe@gnu.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Primoz Fiser <primoz.fiser@norik.com>,  Rob Herring
+ <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Shawn Guo <shawnguo@kernel.org>,  Sascha Hauer <s.hauer@pengutronix.de>,
+  Pengutronix Kernel Team <kernel@pengutronix.de>,  Fabio Estevam
+ <festevam@gmail.com>,  NXP Linux Team <linux-imx@nxp.com>,  Li Yang
+ <leoyang.li@nxp.com>,  Stefan Wahren <wahrenst@gmx.net>,  Christoph
+ Stoidner <c.stoidner@phytec.de>,  Wadim Egorov <w.egorov@phytec.de>,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org,  upstream@lists.phytec.de
+Subject: Re: [PATCH v2 2/2] arm64: dts: imx93-phycore-segin: Add Phytec
+ i.MX93 Segin
+In-Reply-To: <20240118-regretful-viewer-8d7dfc7a0802@spud> (Conor Dooley's
+	message of "Thu, 18 Jan 2024 10:19:23 +0000")
+References: <20240117074911.7425-1-othacehe@gnu.org>
+	<20240117074911.7425-3-othacehe@gnu.org>
+	<c1ef5c08-1ae9-4a22-8ca9-47673c023e1e@norik.com>
+	<20240118-regretful-viewer-8d7dfc7a0802@spud>
+Date: Thu, 18 Jan 2024 14:43:07 +0100
+Message-ID: <87jzo6vjtg.fsf@gnu.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
- <20240113-pmi632-typec-v2-13-182d9aa0a5b3@linaro.org> <1d0d325d-d15e-4e86-b8e3-9f91b99e78bf@linaro.org>
- <20240117220153.GA649327@hu-bjorande-lv.qualcomm.com> <9a24a065-b649-4431-b8fb-78c733c07671@linaro.org>
-In-Reply-To: <9a24a065-b649-4431-b8fb-78c733c07671@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 18 Jan 2024 15:38:16 +0200
-Message-ID: <CAA8EJppEFSy2=GKgkqC3uS15cO51KfxDrHtxHhAnA10kScYKhQ@mail.gmail.com>
-Subject: Re: [PATCH v2 13/15] arm64: dts: qcom: pmi632: define USB-C related blocks
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wesley Cheng <quic_wcheng@quicinc.com>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-
-On Thu, 18 Jan 2024 at 13:17, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
->
->
-> On 1/17/24 23:01, Bjorn Andersson wrote:
-> > On Mon, Jan 15, 2024 at 11:00:53AM +0100, Konrad Dybcio wrote:
-> >> On 13.01.2024 21:55, Dmitry Baryshkov wrote:
-> >>> Define VBUS regulator and the Type-C handling block as present on the
-> >>> Quacomm PMI632 PMIC.
-> >>>
-> >>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >>> ---
-> >>>   arch/arm64/boot/dts/qcom/pmi632.dtsi | 30 ++++++++++++++++++++++++++++++
-> >>>   1 file changed, 30 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/pmi632.dtsi b/arch/arm64/boot/dts/qcom/pmi632.dtsi
-> >>> index 4eb79e0ce40a..d6832f0b7b80 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/pmi632.dtsi
-> >>> +++ b/arch/arm64/boot/dts/qcom/pmi632.dtsi
-> >>> @@ -45,6 +45,36 @@ pmic@2 {
-> >>>             #address-cells = <1>;
-> >>>             #size-cells = <0>;
-> >>>
-> >>> +           pmi632_vbus: usb-vbus-regulator@1100 {
-> >>> +                   compatible = "qcom,pmi632-vbus-reg", "qcom,pm8150b-vbus-reg";
-> >>> +                   reg = <0x1100>;
-> >>> +                   status = "disabled";
-> >>> +           };
-> >>> +
-> >>> +           pmi632_typec: typec@1500 {
-> >>> +                   compatible = "qcom,pmi632-typec";
-> >>> +                   reg = <0x1500>;
-> >>> +                   interrupts = <0x2 0x15 0x00 IRQ_TYPE_EDGE_RISING>,
-> >>> +                                <0x2 0x15 0x01 IRQ_TYPE_EDGE_BOTH>,
-> >>> +                                <0x2 0x15 0x02 IRQ_TYPE_EDGE_RISING>,
-> >>> +                                <0x2 0x15 0x03 IRQ_TYPE_EDGE_BOTH>,
-> >>> +                                <0x2 0x15 0x04 IRQ_TYPE_EDGE_RISING>,
-> >>> +                                <0x2 0x15 0x05 IRQ_TYPE_EDGE_RISING>,
-> >>> +                                <0x2 0x15 0x06 IRQ_TYPE_EDGE_BOTH>,
-> >>> +                                <0x2 0x15 0x07 IRQ_TYPE_EDGE_RISING>;
-> >> This differs from the downstream irq types:
-> >>
-> >> <0x2 0x15 0x0 IRQ_TYPE_EDGE_BOTH>,
-> >> <0x2 0x15 0x1 IRQ_TYPE_EDGE_BOTH>,
-> >> <0x2 0x15 0x2 IRQ_TYPE_EDGE_RISING>,
-> >> <0x2 0x15 0x3 IRQ_TYPE_EDGE_RISING>,
-> >> <0x2 0x15 0x4 IRQ_TYPE_EDGE_BOTH>,
-> >> <0x2 0x15 0x5 IRQ_TYPE_EDGE_RISING>,
-> >> <0x2 0x15 0x6 IRQ_TYPE_EDGE_RISING>,
-> >> <0x2 0x15 0x7 IRQ_TYPE_EDGE_RISING>;
-> >>
-> >
-> > Interrupt 1, 3, and 6 are level interrupts for which it's reasonable to
-> > act on both edges. Interrupt 0, 2, 4, 5, and 7 are "pulse interrupts",
-> > for which it seems reasonable to act on only one of the edges.
-> >
-> > To me, Dmitry's proposed version makes more sense than downstream.
->
-> Thanks a lot for crosschecking!
-
-Is there an ack?
+Content-Type: text/plain
 
 
--- 
-With best wishes
-Dmitry
+Hey,
+
+> Please do not order properties alphabetically. Instead, please read
+> the new documentation on property ordering that makes explicit what
+> has just been convention until now:
+> https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst?h=for-next&id=83a368a3fc8ae8538bccb713dc0cae9eacc04790#n112
+
+Thanks for the link.
+
+I have a question though. Regarding that section:
+
+--8<---------------cut here---------------start------------->8---
+/* SD-Card */
+&usdhc2 {
+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+	pinctrl-0 = <&pinctrl_usdhc2_default>, <&pinctrl_usdhc2_cd>;
+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_cd>;
+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
+	bus-width = <4>;
+	cd-gpios = <&gpio3 00 GPIO_ACTIVE_LOW>;
+	no-sdio;
+	no-mmc;
+	vmmc-supply = <&reg_usdhc2_vmmc>;
+	status = "okay";
+};
+--8<---------------cut here---------------end--------------->8---
+
+The documentation states:
+
+--8<---------------cut here---------------start------------->8---
+Order of Properties in Device Node
+----------------------------------
+
+The following order of properties in device nodes is preferred:
+
+1. "compatible"
+2. "reg"
+3. "ranges"
+4. Standard/common properties (defined by common bindings, e.g. without
+   vendor-prefixes)
+5. Vendor-specific properties
+6. "status" (if applicable)
+7. Child nodes, where each node is preceded with a blank line
+--8<---------------cut here---------------end--------------->8---
+
+All of the properties in my example are falling into the "4" category I
+guess, except for "status" that should come last. Now, how am I supposed
+to order those properties? I had a look to other IMX device trees and it
+is hard to establish a pattern. Pinctrl first, then alphabetical order?
+Anything else?
+
+Thanks for the guidance,
+
+Mathieu
 
