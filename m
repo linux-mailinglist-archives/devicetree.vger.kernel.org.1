@@ -1,110 +1,125 @@
-Return-Path: <devicetree+bounces-33066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1972D831ED8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 19:00:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5ED9831EF9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 19:11:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5DB428ADE4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 18:00:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4645DB24044
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 18:11:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F452D058;
-	Thu, 18 Jan 2024 18:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB432D615;
+	Thu, 18 Jan 2024 18:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C2MabtqU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I1DTRCtl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608F02D784
-	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 18:00:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D057E2D60F;
+	Thu, 18 Jan 2024 18:11:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705600815; cv=none; b=sSLJ0HrXsYXwqqbjG8AWp7krh+Wh/T6DVc40oFeUFRO0ZBZNRtLL72+4EEnnOGvFoRe0M7C0w7+Rk/23nq0v3RSOCXQS21KhPxZCBCnoQagUoSnOY/M8j8WRVYWpivZefhzEVScztVCeLl8odvCq9yftSWvhZ1Cc/TIDGdaJdrY=
+	t=1705601476; cv=none; b=GHyzvA1vlfve3erumj8e3IJPPX5YeG6gXxECsqX5dywfvwufZP5ld/x47z/cSWY/rgy/xyqk6BvLuBqv1DRYwLw1qG6MS6Rx0x17bV1yujpD8d+Vwt18aZcSSIimt1/ENya7FreJMvoI7fxvNUnTEugKzYE8OlkOGOlcDpSxzao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705600815; c=relaxed/simple;
-	bh=inWCW/gcYthgDfo3ImMH23/upt5Xs0yCpW0uDqinTJ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gFZE93YL8A0b4FPfjOXCIW/oWZQh52dQBMMpQygJ6iaQS0yZtTJxwVjOpxGsj7xeldm3HJqw3YFxFdYUrIstR0w0OgnFeig6ZNJb7QmSrdTBFB4D+DVZ+No1V/TFOiRTwTze/7l46ptC6a0IKz1U62C/kVeISTlCTWs8DjFtx8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C2MabtqU; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50e7f58c5fbso17256605e87.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 10:00:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705600812; x=1706205612; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iBqwoxlx4gnnWqnFvaKADZ4JLIY+I21s4gGLYsTualc=;
-        b=C2MabtqUiyrKXhnnhDaHqjeFkq0PteaiMQqtPCh/Aww4OI7vtiLl9KYf3KmEZRr43b
-         QygKIgkg02ZvYJ1IVUdhJZcQZsQc/3cPhh2J50szBG2npVHJMQC9c6PiTKVRXUxMGvgQ
-         1sDirf/uMOl0wGRZgFLEMWlyveHJoEbcbKT6ta2DRnG0W/aT7QnJAwb2j3KkNGMqqwT2
-         ShRwHqscEEU6QY88MIsjLw/4GixywR1eJKgywqyCFi/V2Tr3ipFCQXx3u50r9+Xw7tgV
-         r75xJHymkelcuF8dSYsCHoG9p5r9ANc66cQr/+t3bPSGrgkF1mMV/pKSa4OHyrSi/HGW
-         W1cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705600812; x=1706205612;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iBqwoxlx4gnnWqnFvaKADZ4JLIY+I21s4gGLYsTualc=;
-        b=M6qjuC7XLjbVtv6snbcWVcFgwT4v+LVL2GHKWOgwGiWJpO4GLilDsRZrV6wu1nB6rP
-         VxnCFTURhz4WnYPU+yHXY+t1SI4kkGTfNAcGa4j3F5FzGol0QDLEmqvVxyUfArSGyNMT
-         HdiHDzO60UnxJg5feEm6EJkC1PjvpqMAmXxGkMQ//nfXMtwmZ/Z2IflSemNg5NBYRxF8
-         GnIRu8FYeWTSRWoYlm+2YnEFiSDPhNqGEpF6UQT/cN9jMbtukpj+l4Oa6t5D9/bpTey5
-         AgakWr1hGDNgxOlylXJ3yzzjvCPcrcRLlE92ruFUvrX583Yui3VVkKGONKG4g/l9Ybap
-         e3uQ==
-X-Gm-Message-State: AOJu0Yx7Zc+3Kp5uqpmA9zrsiDAaskQLL8MpLJHpKJP0JrnCKDF6H9Jl
-	eA8+Sq4bawYgFSpqvKJ5ibKUL1y0BNXt3Nts7hrdqfcB1pYedLCvOUaBJEq+zss=
-X-Google-Smtp-Source: AGHT+IEGPOjGHD9Ar9cWEdm17o6nO+I+JA4OZLTIl8Z2GO2P+L5AcbMBNN/pBByZ4phpxTWIBwA2mQ==
-X-Received: by 2002:a05:6512:11c9:b0:50e:6b45:c915 with SMTP id h9-20020a05651211c900b0050e6b45c915mr16575lfr.7.1705600812396;
-        Thu, 18 Jan 2024 10:00:12 -0800 (PST)
-Received: from [172.30.205.26] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id n6-20020ac242c6000000b0050f0d944b3esm656797lfl.140.2024.01.18.10.00.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jan 2024 10:00:11 -0800 (PST)
-Message-ID: <e1c6053e-d26d-4eb4-84ba-b16403fd0ad1@linaro.org>
-Date: Thu, 18 Jan 2024 19:00:09 +0100
+	s=arc-20240116; t=1705601476; c=relaxed/simple;
+	bh=7HxfecGY7uZgdsol1Qo2cUjoPAbeDfayvo1koO5ULvw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tLwE46A8nCcjEB65jw/3NTD1SowDTRw475SfgecWrGRBVreC6EC2/OtmPXJWaOx/PfD+nI/hBvswvk3YC/msxydFJwz6HDtI28JirS/dVrg1QVuMraatTxXV/6jmTnZrG41uCOeROBxb2bSyN8ukugwq5kI5dGbo9uYTQ/UScv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I1DTRCtl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEAFCC433C7;
+	Thu, 18 Jan 2024 18:11:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705601476;
+	bh=7HxfecGY7uZgdsol1Qo2cUjoPAbeDfayvo1koO5ULvw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=I1DTRCtlzWHnBBSXCYXrElu6RGkLsiCfEInH0glYNuO6U5ns1lW8CHrO2gB0d49xi
+	 43DYWUjn70KACnl9rExL4JOXQk1sRGqyWWHl5j6eHUa3fsBDicqSgKmSx2ME4WmzFi
+	 MikB+qb43aBUK30QyHTevkn278Bo0WVDljQ87MDvBcm18cIzKorUuhGppsqm4OBqhe
+	 hlmmFKj07PQIVWLdD0FmuOScqc2P0/JRY/H/9/U4dNHFRDvgVyI9qsiBhUfxMcXe8Q
+	 G/m1LwKEp7Q5KYFiWdH8HF4Y5PoNyw+M8/NNFLg2Vqz5vs+kqYT6mWLyY4zCu/EB62
+	 lyESpAH4u0aYg==
+Date: Thu, 18 Jan 2024 18:11:09 +0000
+From: Mark Brown <broonie@kernel.org>
+To: andy.shevchenko@gmail.com
+Cc: Charles Keepax <ckeepax@opensource.cirrus.com>, lee@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linus.walleij@linaro.org, vkoul@kernel.org,
+	lgirdwood@gmail.com, yung-chuan.liao@linux.intel.com,
+	sanyog.r.kale@intel.com, pierre-louis.bossart@linux.intel.com,
+	alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 6/6] ASoC: cs42l43: Add support for the cs42l43
+Message-ID: <aec96f5a-b759-48c7-a5ec-bafe3bfa5357@sirena.org.uk>
+References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
+ <20230804104602.395892-7-ckeepax@opensource.cirrus.com>
+ <Zali4qxdegY7H6eY@surfacebook.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sdm630: add USB QMP PHY support
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20240116-sdm660-usb3-support-v1-0-2fbd683aea77@linaro.org>
- <20240116-sdm660-usb3-support-v1-3-2fbd683aea77@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240116-sdm660-usb3-support-v1-3-2fbd683aea77@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="97E1gLHhLegY+sZD"
+Content-Disposition: inline
+In-Reply-To: <Zali4qxdegY7H6eY@surfacebook.localdomain>
+X-Cookie: FEELINGS are cascading over me!!!
 
 
+--97E1gLHhLegY+sZD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 1/16/24 02:10, Dmitry Baryshkov wrote:
-> Define USB3 QMP PHY presend on the SDM630 / SDM660 platforms. Enable it by
-> default in the USB3 host, but (for compatibility), force USB 2.0 mode
-> for all defined boards. The boards should opt-in to enable USB 3.0
-> support.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+On Thu, Jan 18, 2024 at 07:41:54PM +0200, andy.shevchenko@gmail.com wrote:
+> Fri, Aug 04, 2023 at 11:46:02AM +0100, Charles Keepax kirjoitti:
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > +	unsigned int hs2 = 0x2 << CS42L43_HSDET_MODE_SHIFT;
 
-wonder if we can make this dynamic, somehow..
+> BIT(1) ?
 
-Konrad
+Given that this is writing a value into a register field called "MODE"
+it seems very likely that it's an enumeration value rather than a
+bitmask (and similarly for all the other places where you're making
+similar comments).  Please think a bit more about the code being
+commented on when making these minor stylistic comments.
+
+> > +static const char * const cs42l43_jack_text[] = {
+> > +	"None", "CTIA", "OMTP", "Headphone", "Line-Out",
+> > +	"Line-In", "Microphone", "Optical",
+
+> Better to have this by power of 2 blocks (seems it's related to the possible
+> values ranges in the HW).
+> If it's just a coincidence that there are 8 of them, perhaps other (logical)
+> grouping is better?
+
+This is probably well within the realm of driver author taste...
+
+> > +	// Don't use devm as we need to get against the MFD device
+
+> This is weird...
+
+This is normal, the splitting into subdevices is often a purely Linux
+internal thing and not represented in the firmware description so
+external resources are linked to the top level.
+
+--97E1gLHhLegY+sZD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWpab0ACgkQJNaLcl1U
+h9C5DAf+O6KGhhljQY7I80+eSBdyZV5AJMoCpfMru36z4haLJoHDqhn+67FC1yql
+1n/AnyJAp3Nl19jHZ4inj+wTpH5+NR0blMMfw0R9FL7jpzbq7b6LgSC+hqfi8vDS
+nY2R6zSnnnOm3HxpKrbxFx82jDnVtZumBuJbfW1kL8tJC52DBVDLOpiY+mPpd4jh
+OUNcrgsFpw3GMcX6GapLflbfqYRvP8BIZtfhYlHkjRiO/aj9THItdd31GnAOzFpK
+R9hyiVdneKaNBHpvRv+XVI355y3eDqACVK6L3ERBXMHDAhXZnBP/n8J/sRJxARn4
+MTeH+5L7hG1IzL3kXWLBUbTnfJl+Hg==
+=mldP
+-----END PGP SIGNATURE-----
+
+--97E1gLHhLegY+sZD--
 
