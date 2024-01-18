@@ -1,140 +1,124 @@
-Return-Path: <devicetree+bounces-32965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63EF0831656
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 11:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 205D983158E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 10:12:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 056EB1F21AEF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 10:00:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF02F1F22545
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C450200AB;
-	Thu, 18 Jan 2024 10:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E4713FF8;
+	Thu, 18 Jan 2024 09:12:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="PVmek7gL"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="JOxknQum"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F6EF1F951;
-	Thu, 18 Jan 2024 10:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 902011F946;
+	Thu, 18 Jan 2024 09:12:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705572008; cv=none; b=EE9YSQuvjT4fho854EW5g91y9ifnxfaOOGN7hy1XJ9oKq5vJMZlQXxDc7sbmZMwG4Fvf6xQhuQat4A+Lf9nYclXdDmd6KL7Dc23Wgbt7ewqEXzAYxGss+rlUh6bL9kA4r7yTBGaw/5WpxwCdSGPIY6ovNj9c+O3MmeKkZuWZ9eY=
+	t=1705569133; cv=none; b=fNBlSFv2EUtGZz1iguA5Yv15ypldPZTidWSQr+sfh7101/dlkd85zYOVMMQ+ojwVT1GmljDQ+caWB/u61nHtfJYyeTf8P7x5GLOm841Ry2EB1I7rtZV115Z/TscK9O4OXOaCHgoSpDJOIezgiib9Yf3ynrhVL5tIgFjEplXCprc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705572008; c=relaxed/simple;
-	bh=RAOiJUGPhFpGAduR+S3IcKXKOBR5tFN824z3zqf00kA=;
-	h=DKIM-Signature:Received:Message-ID:Date:MIME-Version:User-Agent:
-	 Subject:Content-Language:To:Cc:References:From:Organization:
-	 In-Reply-To:Content-Type:Content-Transfer-Encoding:X-AntiAbuse:
-	 X-AntiAbuse:X-AntiAbuse:X-AntiAbuse:X-AntiAbuse:
-	 X-Get-Message-Sender-Via:X-Authenticated-Sender:X-Source:
-	 X-Source-Args:X-Source-Dir; b=fhXcdQJcGQXbG9gaS1qosC3KAy8mxNoQRpmm8DCrRa4b7BgS7G9eIFGWPk/0DtA0dE41rf2H0UIN2ejrQM6lKmdEfY/wNiJwHFqDrfGYRgz7lQ8g80Tl+dwadL7ZEVgUcVI0jLcTOuiAiIVkk1uoe22VkLJxOsK71UQgSP0pb3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=none smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=PVmek7gL; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=jC+MlwHYQ98pnxcnOPbY091oyavdMMM1xHsRUFZPUcs=; b=PVmek7gLqOT9tF+4UMuY4x/Txt
-	XZsdXeAVRrUln32gEaVRoMn/UOZFnjqqNrMySphkSDOFG+vvXkqq8RaUNsVg/T9kUhu8PvOrFBY3L
-	qCqhk/swrIufIvJN/pAfuTvem4HJx2VhcVsPQzJEEfzn458GXRUjDYKIJ5CV9JkheOPdZiVRmbib+
-	8aiLUaWPz3H0sZB8Ft1hLA1wKLVk5O47lfeW9mUB8jzJwwqpgAtm/nkhRssbobnD0042tNsLm82Je
-	z+qvbf9xa5ygEmEkQXKKEWBIAF2OZILJdAjUgt/xcbMKflJsv0eGL7VG6elgzI5ethQy/fg5F4/zo
-	V+kCaF5g==;
-Received: from [89.212.21.243] (port=48642 helo=[192.168.69.116])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1rQOQD-006iK2-1U;
-	Thu, 18 Jan 2024 10:10:48 +0100
-Message-ID: <3719c46f-4576-41f3-bdfa-2ea4c86f4a4a@norik.com>
-Date: Thu, 18 Jan 2024 10:10:47 +0100
+	s=arc-20240116; t=1705569133; c=relaxed/simple;
+	bh=jTOMwYZYOjAXt29qPZUugCW1mNVTtziQZT6XubxjnG0=;
+	h=Received:DKIM-Signature:Received:Received:Received:Received:From:
+	 To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type:X-Originating-IP:
+	 X-ClientProxiedBy:X-Proofpoint-Virus-Version; b=EnUjo+TtLhPYP6Ef1JxaBxRber6Pxi4OkwL8d5y2miwcZxicOD8hXV/T3h6aaUS9CbfDY9aiLeKVrZtwGddbGL2R+UENTFCKc9rkJYdotMPMASUziokoqfP4SCaxFo9tRBLa9PpHP1idorsiecuC5o4s0YVPN5mMbG6lp/vMEx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=JOxknQum; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40I8U27e001957;
+	Thu, 18 Jan 2024 10:11:50 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=selector1; bh=LT44wAO
+	mjaAsg0tliRvC01UNCZUXx9vWqUxQLz5cG+g=; b=JOxknQumFVqkmGPewGIFhcW
+	VgEzl9Eyj6chqTZSrOBSfRA1tK6acLWSJWan3bLlFFCBXhacQiHEZfVZt8UKZ95s
+	KC+fwOHOiNMlxOoYrrQGvUH1Cak3Wd8mf4fNNtzX6gDUL/6RSGpebg335Rxyjqyj
+	463STz6RQ5YXkhOKX80Unal+0eFDnRJ0X5jPC/uxB1tfGujMwvBzv2uBZuG5cuoe
+	4VKBb2nuzRPRetVkkUFDYcm2r9dIEm5iYYpZWEtRRT8y5x8qGgbUCQBKmdli4jnn
+	UnDr+Vgx3GvpRz7+Sj3McIwGyl0zm9W3yUugwA0G8FE4/VM6MAhpLszbF8WI7yg=
+	=
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vkmde7t9u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Jan 2024 10:11:50 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BA15310007D;
+	Thu, 18 Jan 2024 10:11:48 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 56946217B6B;
+	Thu, 18 Jan 2024 10:11:48 +0100 (CET)
+Received: from localhost (10.201.21.102) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 18 Jan
+ 2024 10:11:48 +0100
+From: Valentin Caron <valentin.caron@foss.st.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby
+	<jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Valentin Caron
+	<valentin.caron@foss.st.com>
+Subject: [PATCH v2] dt-bindings: serial: stm32: add power-domains property
+Date: Thu, 18 Jan 2024 10:11:35 +0100
+Message-ID: <20240118091135.3314330-1-valentin.caron@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: Add i.MX93 PHYTEC with
- Segin
-Content-Language: en-US
-To: Mathieu Othacehe <othacehe@gnu.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Li Yang <leoyang.li@nxp.com>, Stefan Wahren <wahrenst@gmx.net>,
- Christoph Stoidner <c.stoidner@phytec.de>, Wadim Egorov <w.egorov@phytec.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240117074911.7425-1-othacehe@gnu.org>
- <20240117074911.7425-2-othacehe@gnu.org>
-From: Primoz Fiser <primoz.fiser@norik.com>
-Organization: Norik systems d.o.o.
-In-Reply-To: <20240117074911.7425-2-othacehe@gnu.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cpanel.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-18_04,2024-01-17_01,2023-05-22_02
 
-Hi Mathieu,
+STM32 serial may be in a power domain.
+Allow a single 'power-domains' entry for STM32 serial devices.
 
-On 17. 01. 24 08:49, Mathieu Othacehe wrote:
-> Add support for i.MX93 PHYTEC with Segin board.
-> 
-> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 228dcc5c7d6f..196935d3abf0 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1275,6 +1275,12 @@ properties:
->            - const: tq,imx93-tqma9352        # TQ-Systems GmbH i.MX93 TQMa93xxCA/LA SOM
->            - const: fsl,imx93
->  
-> +      - description: i.MX93 PHYTEC phyBOARD-Segin
-> +        items:
-> +          - const: phytec,imx93-phycore-segin
-> +          - const: phytec,imx93-phycore-som
-> +          - const: fsl,imx93
-> +
+Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
+---
+Since v1:
+ - Change commit message after Krzysztof review
 
-PHYTEC has the following in their downstream kernel:
+ Documentation/devicetree/bindings/serial/st,stm32-uart.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
->       - description: PHYTEC phyCORE-i.MX93 SoM based boards
->         items:
->           - const: phytec,imx93-phyboard-segin # phyBOARD-Segin with i.MX93
->           - const: phytec,imx93-phycore-som    # phyCORE-i.MX93 SoM
->           - const: fsl,imx93
+diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+index 1df8ffe95fc61..62f97da1b2fd7 100644
+--- a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
+@@ -58,6 +58,9 @@ properties:
+ 
+   wakeup-source: true
+ 
++  power-domains:
++    maxItems: 1
++
+   rx-threshold:
+     description:
+       If value is set to 1, RX FIFO threshold is disabled.
 
-so there will be additional boards based on phyCORE-i.MX93 SoMs just
-like with phyCORE-i.MX8MM.
-
-Please consider fixing this in v3.
-
-
->        - description:
->            Freescale Vybrid Platform Device Tree Bindings
->  
-
+base-commit: 0c84bea0cabc4e2b98a3de88eeb4ff798931f056
+-- 
+2.25.1
 
 
