@@ -1,201 +1,122 @@
-Return-Path: <devicetree+bounces-32938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 650F8831509
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:46:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D666831536
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:57:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89BB31C2213E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 08:46:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D92FE1F22903
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 08:57:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27D58125A6;
-	Thu, 18 Jan 2024 08:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C34D01BDFC;
+	Thu, 18 Jan 2024 08:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="Gw04zt0W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E43C15B;
-	Thu, 18 Jan 2024 08:46:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369F012B6B;
+	Thu, 18 Jan 2024 08:56:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705567565; cv=none; b=Y6+2VoTp/C+xt5SWpyYFIOo9jIK+smeEJxJsvsOtxuib2ZytNITidrMrDgd4n2Dx98eMPLNmLXqii8Hcgdn3W4y2aJYucm2jzTQx/1nIzHUPTO/9faj9qg20apsaG+3Oo4iy8qcCP2HMZgUM8r186WaEjVQooCpMxpQJrNzBJSc=
+	t=1705568211; cv=none; b=om9c3oYFJEPNGniRjTPcq1swSSOe4TE97EOEY/OcFfbGFs3+zT73Pf36SdLfqf5hZN0kwRYU0wab+4rnwGbuTs+xzGYgQSdSCnaWaH6g8/YijBMJMR+xZFBqVdqasFKOVpzXsKlEzBH/vWFwSvdroYPGqO7WJxEkzWPzdrGAVag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705567565; c=relaxed/simple;
-	bh=01BoHNQA6T6yKlyGx8npZBgE/grUaHHDD/eN3XO2uNg=;
-	h=Received:X-Google-DKIM-Signature:X-Gm-Message-State:
-	 X-Google-Smtp-Source:X-Received:Received:Received:X-Received:
-	 MIME-Version:References:In-Reply-To:From:Date:
-	 X-Gmail-Original-Message-ID:Message-ID:Subject:To:Cc:Content-Type:
-	 Content-Transfer-Encoding; b=tr1/PNr4/sJkuBS8JhCC2QXNRBtsIdYGCKspj+hinxAYbtohCq/psW3Op4kpmvEZB78QLhf5hptIqZJ/4paR113avja56nNUzB8I0aRo3Qhf2BqE3kqSyCWAgVxpBQZW4QB6A/jRvzxOrrJg0Qhj/PfTTAb1i89ROowCPvspUUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5f00bef973aso123974157b3.0;
-        Thu, 18 Jan 2024 00:46:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705567562; x=1706172362;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t8e3GAGk3S+G/Tg/kgQzOivmxsVaFHTxxZt1lcCM6Y4=;
-        b=gi7CDr/JP2Ouwy4ye18AAyFCVDgRr2xezi7MWiVpE0pOTMAV6b59dXlWkgPpad5c4E
-         H1RNeQw4OAtGoJsvAagIcdg9Vp80MBZssVlDb9l+8x5+bv7e5f34M5aGHTWupw+FH3iF
-         XhsIMOMDng8cXNJXd7qsLzkaBtUHdlMXzjw3akOz9jHtNpXx9qg2/aS/yi76Ay5mHm9K
-         5Kdo4c4+SkCVzJdMe3RdcWHvKMpspPrf/NmUSh1++8kile5Wxmv70V6qyHj+7zffQkHi
-         OZrW9levWh12CjdlAgJzXDMhOBLo7N7fch4ZsAmM5JHoYwQ38QAmSdc1SLoWYnyPhAgc
-         roSg==
-X-Gm-Message-State: AOJu0Yyi20+M1Nnz5uCRjyzsxmp/ymP67Ps1vHX0nNHb457s0rJvcT5L
-	Ojd9xLdH/ib1ZvUVKd5Zx2mmKbLThipjcHS8ySov9Uvr38PaW9c8Ez/acykvIdY=
-X-Google-Smtp-Source: AGHT+IHvvFI0EKFuaqhwkSaKVT0T/X3GfiuOIV69Pdv26hhCiB1t7P2gv8Ug5DhSfd2xne+cH3H7tA==
-X-Received: by 2002:a0d:d888:0:b0:5ef:902b:7c60 with SMTP id a130-20020a0dd888000000b005ef902b7c60mr472840ywe.25.1705567561767;
-        Thu, 18 Jan 2024 00:46:01 -0800 (PST)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
-        by smtp.gmail.com with ESMTPSA id bf22-20020a05690c029600b005d0fea7ad01sm6444273ywb.122.2024.01.18.00.46.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jan 2024 00:46:01 -0800 (PST)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5f00bef973aso123973997b3.0;
-        Thu, 18 Jan 2024 00:46:01 -0800 (PST)
-X-Received: by 2002:a5b:949:0:b0:dc2:41de:b744 with SMTP id
- x9-20020a5b0949000000b00dc241deb744mr333386ybq.32.1705567560920; Thu, 18 Jan
- 2024 00:46:00 -0800 (PST)
+	s=arc-20240116; t=1705568211; c=relaxed/simple;
+	bh=vULAl46BBydQR4ps2jMZiFaBG2168vzYuRJQjRETXmM=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=nhNn7IN6Skrow6ERuKY+PA5TEFhceeGkqX4dVPv2jRUkiVW3lcZaDf9l5RyUvKv6mRC9bUwstwb659M56L+f6hqpw/9kTAYKJpdxEdR4yVvnFJ13arHjj7r5rviX6FcUnm2qg5NM2pd6+6G/Q1BLHgjUcWhFlU9T1tID16qhWho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=Gw04zt0W; arc=none smtp.client-ip=74.50.62.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 8CA6960547;
+	Thu, 18 Jan 2024 08:55:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1705568209;
+	bh=vULAl46BBydQR4ps2jMZiFaBG2168vzYuRJQjRETXmM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Gw04zt0Wpjy9eWoxk2lS2uRHPyetKndWTDy1xt3tVGx6vKHlNkOkWIOKrTzvdlw/9
+	 66hcjRDA6awFbthpcjUwMl9Ag054ol8J7CDoqS8Ylxom3qRjvEEiO42kKCJd7piKXG
+	 /pBdyyWMFJWk62EFvYAkz/ET12d+9KZ1ZrUe4VIu/KG0WZBdK7YpSKhh2xshMli9/S
+	 gVVlFTKdKDM0zIga8bgoPdDQsFxhXBtVWbkeetqLrliFyg9Pu7b1qV6J7RCc90wGT2
+	 zl6zEaNx93DQC83AFSlIeGXIbiPEfkOHUAzePS1mHU6/9kjkvMvgRKFiAOeMPcANkR
+	 mknuZHXKNV/qg==
+Date: Thu, 18 Jan 2024 10:55:51 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Andrew Davis <afd@ti.com>
+Cc: Frank Binns <frank.binns@imgtec.com>,
+	Matt Coster <matt.coster@imgtec.com>,
+	"H . Nikolaus Schaller" <hns@goldelico.com>,
+	Adam Ford <aford173@gmail.com>,
+	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Paul Cercueil <paul@crapouillou.net>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
+	linux-mips@vger.kernel.org
+Subject: Re: [PATCH 08/11] ARM: dts: DRA7xx: Add device tree entry for SGX GPU
+Message-ID: <20240118085551.GQ5185@atomide.com>
+References: <20240109171950.31010-1-afd@ti.com>
+ <20240109171950.31010-9-afd@ti.com>
+ <20240110082924.GA5185@atomide.com>
+ <55efd488-c6a0-4dca-baea-1fa93d13dd17@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240112200750.4062441-1-sboyd@kernel.org> <20240112200750.4062441-5-sboyd@kernel.org>
- <20240115203230.GA1439771-robh@kernel.org> <cdaadf62222a705cda198dd96dc7c73d.sboyd@kernel.org>
- <20240117174114.GA2779523-robh@kernel.org>
-In-Reply-To: <20240117174114.GA2779523-robh@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 18 Jan 2024 09:45:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXg1Y7mwHKTYi_j7a_XGdMJ7Aa7u5dEv5+xsLe8=BMaRw@mail.gmail.com>
-Message-ID: <CAMuHMdXg1Y7mwHKTYi_j7a_XGdMJ7Aa7u5dEv5+xsLe8=BMaRw@mail.gmail.com>
-Subject: Re: [PATCH 4/6] of: Create of_root if no dtb provided by firmware
-To: Rob Herring <robh@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	linux-kernel@vger.kernel.org, patches@lists.linux.dev, 
-	linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, 
-	devicetree@vger.kernel.org, Simon Glass <sjg@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <55efd488-c6a0-4dca-baea-1fa93d13dd17@ti.com>
 
-Hi Rob,
+* Andrew Davis <afd@ti.com> [240117 15:52]:
+> On 1/10/24 2:29 AM, Tony Lindgren wrote:
+> > * Andrew Davis <afd@ti.com> [240109 17:20]:
+> > > --- a/arch/arm/boot/dts/ti/omap/dra7.dtsi
+> > > +++ b/arch/arm/boot/dts/ti/omap/dra7.dtsi
+> > > @@ -850,12 +850,19 @@ target-module@56000000 {
+> > >   					<SYSC_IDLE_SMART>;
+> > >   			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+> > >   					<SYSC_IDLE_NO>,
+> > > -					<SYSC_IDLE_SMART>;
+> > > +					<SYSC_IDLE_SMART>,
+> > > +					<SYSC_IDLE_SMART_WKUP>;
+> > 
+> > You probably checked this already.. But just in case, can you please
+> > confirm this is intentional. The documentation lists the smart wakeup
+> > capability bit as reserved for dra7, maybe the documentation is wrong.
+> > 
+> 
+> It was an intentional change, although I'm not sure it is correct :)
+> 
+> This is how we had it in our "evil vendor tree" for years (back when it
+> was hwmod based), so when converting these nodes to use "ti,sysc" I noticed
+> this bit was set, but as you point out the documentation disagrees.
+> 
+> I'd rather go with what has worked before, but it doesn't seem to
+> break anything either way, so we could also break this change out into
+> its own patch if you would prefer.
 
-On Wed, Jan 17, 2024 at 6:41=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
-> On Tue, Jan 16, 2024 at 05:18:15PM -0800, Stephen Boyd wrote:
-> > Quoting Rob Herring (2024-01-15 12:32:30)
-> > > On Fri, Jan 12, 2024 at 12:07:47PM -0800, Stephen Boyd wrote:
-> > > > diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> > > > index da9826accb1b..9628e48baa15 100644
-> > > > --- a/drivers/of/Kconfig
-> > > > +++ b/drivers/of/Kconfig
-> > > > @@ -54,9 +54,14 @@ config OF_FLATTREE
-> > > >       select CRC32
-> > > >
-> > > >  config OF_EARLY_FLATTREE
-> > > > -     bool
-> > > > +     bool "Functions for accessing Flat Devicetree (FDT) early in =
-boot"
-> > >
-> > > I think we could instead just get rid of this kconfig option. Or
-> > > always enable with CONFIG_OF (except on Sparc). The only cost of
-> > > enabling it is init section functions which get freed anyways.
-> >
-> > Getting rid of it is a more massive change. It can be the default and
-> > kept hidden instead? If it can't be selected on Sparc then it should be
-> > hidden there anyway.
->
-> The easier option is certainly fine for this series. I just don't want
-> it visible.
->
-> > > >       select DMA_DECLARE_COHERENT if HAS_DMA && HAS_IOMEM
-> > > >       select OF_FLATTREE
-> > > > +     help
-> > > > +       Normally selected by platforms that process an FDT that has=
- been
-> > > > +       passed to the kernel by the bootloader.  If the bootloader =
-does not
-> > > > +       pass an FDT to the kernel and you need an empty devicetree =
-that
-> > > > +       contains only a root node to exist, then say Y here.
-> > > >
-> > > >  config OF_PROMTREE
-> > > >       bool
-> > [...]
-> > > > @@ -195,6 +191,17 @@ static inline int of_node_check_flag(const str=
-uct device_node *n, unsigned long
-> > > >       return test_bit(flag, &n->_flags);
-> > > >  }
-> > > >
-> > > > +/**
-> > > > + * of_have_populated_dt() - Has DT been populated by bootloader
-> > > > + *
-> > > > + * Return: True if a DTB has been populated by the bootloader and =
-it isn't the
-> > > > + * empty builtin one. False otherwise.
-> > > > + */
-> > > > +static inline bool of_have_populated_dt(void)
-> > > > +{
-> > > > +     return of_root !=3D NULL && !of_node_check_flag(of_root, OF_E=
-MPTY_ROOT);
-> > >
-> > > Just a side comment, but I think many/all callers of this function co=
-uld
-> > > just be removed.
-> > >
-> > > I don't love new flags. Another possible way to handle this would be
-> > > checking for "compatible" being present in the root node. I guess thi=
-s
-> > > is fine as-is for now at least.
-> >
-> > Ok. I can add a check for a compatible property. That's probably better
-> > anyway. Should there be a compatible property there to signal that this
-> > DT isn't compatible with anything? I worry about DT overlays injecting =
-a
-> > compatible string into the root node, but maybe that is already
-> > prevented.
->
-> I worry about DT overlays injecting anything...
->
-> I don't think it is explicitly forbidden, but I have asked that any
-> general purpose interface to apply overlays be restricted to nodes
-> explicitly allowed (e.g. downstream of a connector node). For now, the
-> places (i.e. drivers) overlays are applied are limited.
->
-> We could probably restrict the root node to new nodes only and no new
-> or changed properties.
+I agree it's best to stick what is known to work. How about let's add
+the related information to the patch description?
 
-Changing (<wild dream>or appending to</wild dream>) the root
-"compatible" and/or "model" properties is useful in case of large
-extension boards, though.  This is also the case for DTBs created from
-a base DTB and one or more overlays using fdtoverlay.
+Regards,
 
-For the latter, see also the following threads, where you weren't
-(but probably should have been) CCed:
-
-[1] "[PATCH v9 2/2] arm64: boot: Support Flat Image Tree"
-     https://lore.kernel.org/all/20231202035511.487946-3-sjg@chromium.org
-[2] "Proposal: FIT support for extension boards / overlays"
-    https://lore.kernel.org/all/CAPnjgZ06s64C2ux1rABNAnMv3q4W++sjhNGCO_uPMH=
-_9sTF7Mw@mail.gmail.com
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Tony
 
