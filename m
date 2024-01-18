@@ -1,121 +1,148 @@
-Return-Path: <devicetree+bounces-32956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83AD831604
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 10:43:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C9F831618
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 10:45:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9A4E1C24D40
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:43:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99A57288281
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:45:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94AF1D533;
-	Thu, 18 Jan 2024 09:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BB21F922;
+	Thu, 18 Jan 2024 09:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b="Es19nIjp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Qt/oc+Os"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward500a.mail.yandex.net (forward500a.mail.yandex.net [178.154.239.80])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57A3200A5;
-	Thu, 18 Jan 2024 09:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8305C1D533;
+	Thu, 18 Jan 2024 09:45:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705571006; cv=none; b=rGcRiq/Ap6reDlw7caMUYhWonz2NBb2gbhaljS6rhMYfLBhpodrFU/oxhKIyZoT2nxohbUa66oEnMQq67gIa7HclbXHnSH61xIFCV6OQM3NR8VVpQ4Zv6P92hDnEq2k/UITHjMDqt8GdZILVu1Fqma0/LaRT2QQ0cpHVF0FlLRU=
+	t=1705571131; cv=none; b=AuQ2dQ7pc8/uh5RRT/A+SkUxp+wtiwo06E52HvB3oOgmkWJpbC3loLDeQl/V+Qcv35+ZB7ocSJwgZIC+fd2B2YQPvBaU0WAxxeholhQz/rwZ49oQkFffv0dOYfDQgGl2cYE3BF40woMPckVBdQK4qtw22jB0vsvamVW+SXgU+AM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705571006; c=relaxed/simple;
-	bh=eOYgq6vBGLmYMc8CNKKKb0RzNhlbCa5ML+43wchdMZA=;
-	h=Received:Received:X-Yandex-Fwd:DKIM-Signature:Message-ID:Subject:
-	 From:To:Cc:Date:In-Reply-To:References:Content-Type:
-	 Content-Transfer-Encoding:User-Agent:MIME-Version; b=QTL9JxgW6z3tx/MK7L57XfubYZLIybjamZv0+FNyYOEFr4Y6VquFc8P1bUvrjgGFdFFCo2hNWCIFOlXqpO8pl/kdJfM0oJ9Dj798DGFihLdOE5UPLmSymiIKxG2wlIBNS63NwcrALRoG/SCVKVINK5AISCUKBldBp9Yp9deKVg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me; spf=pass smtp.mailfrom=maquefel.me; dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b=Es19nIjp; arc=none smtp.client-ip=178.154.239.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=maquefel.me
-Received: from mail-nwsmtp-smtp-production-main-18.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-18.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1d:5fd0:0:640:c018:0])
-	by forward500a.mail.yandex.net (Yandex) with ESMTP id A8B01616FD;
-	Thu, 18 Jan 2024 12:36:44 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-18.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id baJWEC7aoCg0-7skv82tT;
-	Thu, 18 Jan 2024 12:36:42 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail;
-	t=1705570602; bh=eOYgq6vBGLmYMc8CNKKKb0RzNhlbCa5ML+43wchdMZA=;
-	h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
-	b=Es19nIjpoisIBb6MjPgosN8BBLwA3g37Sg+8/RzikHK2iJGA8I33MTMMnsCeSd95a
-	 FcvuQE7PCMCd9C0Lf3UXj5lju7/29hXhNB61xQrIV3xj6jS+j2ttUffxBAet9gIIDQ
-	 eap9ausw2GyVdWnpZfdMCuPomyP6WRpJQi/KCiZk=
-Authentication-Results: mail-nwsmtp-smtp-production-main-18.vla.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
-Message-ID: <3659cd8be443f632f44f9ad31a214a82f995ed75.camel@maquefel.me>
-Subject: Re: [PATCH v7 00/39] ep93xx device tree conversion
-From: Nikita Shubin <nikita.shubin@maquefel.me>
-To: Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Hartley Sweeten <hsweeten@visionengravers.com>, Alexander Sverdlin
- <alexander.sverdlin@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Lukasz Majewski <lukma@denx.de>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Vinod Koul <vkoul@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Thierry Reding
- <thierry.reding@gmail.com>, Mark Brown <broonie@kernel.org>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
- Raghavendra <vigneshr@ti.com>, Damien Le Moal <dlemoal@kernel.org>,  Sergey
- Shtylyov <s.shtylyov@omp.ru>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Ralf Baechle <ralf@linux-mips.org>, "Wu,
- Aaron" <Aaron.Wu@analog.com>, Lee Jones <lee@kernel.org>, Olof Johansson
- <olof@lixom.net>,  Niklas Cassel <cassel@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-pm@vger.kernel.org,  devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org,  linux-watchdog@vger.kernel.org,
- linux-pwm@vger.kernel.org,  linux-spi@vger.kernel.org,
- netdev@vger.kernel.org, linux-mtd@lists.infradead.org, 
- linux-ide@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-sound@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, Andy Shevchenko
- <andriy.shevchenko@intel.com>, Bartosz Golaszewski
- <bartosz.golaszewski@linaro.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Andrew Lunn <andrew@lunn.ch>, Andy
- Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 18 Jan 2024 12:36:38 +0300
-In-Reply-To: <a54csycouodnmj6qarfel7cvgupaerl7uhrruixuy7uaekqgzw@2whufrjqunme>
-References: <20240118-ep93xx-v7-0-d953846ae771@maquefel.me>
-	 <a54csycouodnmj6qarfel7cvgupaerl7uhrruixuy7uaekqgzw@2whufrjqunme>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 
+	s=arc-20240116; t=1705571131; c=relaxed/simple;
+	bh=FpAQoYQ0nA0k17n6ZCNuiZym9xUzsD8Lt6yFUgKPU+k=;
+	h=Received:DKIM-Signature:Received:Received:Received:Received:From:
+	 To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type:X-EXCLAIMER-MD-CONFIG; b=iZHwZtZ3DpXHspwMra2o9Zo+Go7PsXFtvgAsROAKW7yv67NPPBQIBYkUnNn5L7bDr/LZwMCQOX8/XeheJjWy9oiiQByAODr3QPk8GNEb23ztxtoAN35Cijm0ObPTyu3+YvScVssWGJ+JJxJjmpdMuENCGaE7ZI3cu78MIYYCv/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Qt/oc+Os; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40I9jB2w083037;
+	Thu, 18 Jan 2024 03:45:11 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1705571111;
+	bh=sv7BoNmCqEVqsIvmYySIhKlzmBYY2Dtc6a1WMjCpO3U=;
+	h=From:To:CC:Subject:Date;
+	b=Qt/oc+Os6va7BRTrEbcEqBL4BNG2uqfI3SyJS0/kX609dIsZwaFv42S2ll4qOtCEF
+	 f4Ak6KiEz+Qiho14yCWZdHv08GTOvmk3k2G8KFBRMVJr2mjpmvK0HpEl5mFs7AinNn
+	 JvVMMbLAqnVIIuTWT0z/C7pOUsobmTpD0QSM7qog=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40I9jBN5037115
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 18 Jan 2024 03:45:11 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 18
+ Jan 2024 03:45:10 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 18 Jan 2024 03:45:11 -0600
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40I9j9Ye113454;
+	Thu, 18 Jan 2024 03:45:10 -0600
+From: Chintan Vankar <c-vankar@ti.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
+ Menon <nm@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <afd@ti.com>, <srk@ti.com>,
+        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>, <c-vankar@ti.com>,
+        <danishanwar@ti.com>, <tony@atomide.com>
+Subject: [PATCH v2 0/5] Add CPSW2G and CPSW9G nodes for J784S4
+Date: Thu, 18 Jan 2024 15:14:49 +0530
+Message-ID: <20240118094454.2656734-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hello,
+This series adds device-tree nodes for CPSW2G and CPSW9G instance
+of the CPSW Ethernet Switch on TI's J784S4 SoC. Additionally,
+two device-tree overlays are also added:
+1. QSGMII mode with the CPSW9G instance via the ENET EXPANSION 1
+   connector.
+2. USXGMII mode with MAC Ports 1 and 2 of the CPSW9G instance via
+   ENET EXPANSION 1 and 2 connectors, configured in fixed-link
+   mode of operation at 5Gbps link speed.
 
-On Thu, 2024-01-18 at 10:30 +0100, Uwe Kleine-K=C3=B6nig wrote:
-> Hello,
->=20
-> On Thu, Jan 18, 2024 at 11:20:43AM +0300, Nikita Shubin via B4 Relay
-> wrote:
-> > No major changes since last version (v6) all changes are cometic.
->=20
-> Never saw changes described as "cometic". I guess that means "fast"
-> and
-> "high impact"?
+Similar to Andrew Davis patch at:
+https://lore.kernel.org/r/20231117222930.228688-5-afd@ti.com/ for J721E,
+similar changes are also required for J784S4 to remove dependency on the
+parent node being a syscon node.
 
-"Cosmetic" of course.
+This series combines the v1 series at:
+https://lore.kernel.org/r/20230522092201.127598-1-s-vadapalli@ti.com/
+and the patch for Main CPSW2G node that is present in [PATCH v6 2/5] at:
+https://lore.kernel.org/r/20230721132029.123881-1-j-choudhary@ti.com/
+but dropped in it's next version at:
+https://lore.kernel.org/r/20231019054022.175163-1-j-choudhary@ti.com/
 
-Well i guess it's nice that i hadn't misspelled it like "comedic"...
+Changes from v1 for J784S4 CPSW9G DT Support:
+1. Update serdes_ln_ctrl node in k3-j784s4-main.dtsi
+   to remove dependency on the parent node being a syscon node.
+2. The patch for Main CPSW2G node is combined.
+3. Update description in k3-j784s4-evm-quad-port-eth-exp1.dtso
+   QSGMII overlay file and add product link for QSGMII
+   daughtercard.
+4. Add a comment in k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+   USXGMII overlay file for the serdes_wiz2 node since it uses
+   156.25 MHz clock for USXGMII.
 
->=20
-> SCNR
-> Uwe
->=20
+Changes from v6 for J784S4 Main CPSW2G node: 
+1. Rename node name in k3-j784s4-main.dtsi from
+   main_cpsw2g_pins_default to main_cpsw2g_default_pins,
+   main_cpsw2g_mdio_pins_default to main_cpsw2g_mdio_default_pins
+   and main_phy0 to main_cpsw1_phy0 based on Tony's suggestion at:
+   https://lore.kernel.org/all/20230724045032.GU5194@atomide.com/
+
+Chintan Vankar (1):
+  arm64: dts: ti: k3-j784s4-main: Convert serdes_ln_ctrl node into
+    reg-mux
+
+Siddharth Vadapalli (4):
+  arm64: dts: ti: k3-j784s4: Add Main CPSW2G node
+  arm64: dts: ti: k3-j784s4-main: Add CPSW9G nodes
+  arm64: dts: ti: k3-j784s4: Add overlay to enable QSGMII mode with
+    CPSW9G
+  arm64: dts: ti: k3-j784s4: Add overlay for dual port USXGMII mode
+
+ arch/arm64/boot/dts/ti/Makefile               |  11 +-
+ .../ti/k3-j784s4-evm-quad-port-eth-exp1.dtso  | 146 +++++++++++++
+ .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   |  73 +++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  47 +++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 194 +++++++++++++++++-
+ 5 files changed, 464 insertions(+), 7 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+
+-- 
+2.34.1
 
 
