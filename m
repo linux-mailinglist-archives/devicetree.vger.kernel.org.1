@@ -1,257 +1,153 @@
-Return-Path: <devicetree+bounces-33037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A866831D11
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:57:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB87831D2D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:04:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFB101C23066
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 15:57:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A00D1F23B94
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:04:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A75D28DB3;
-	Thu, 18 Jan 2024 15:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D9528DC8;
+	Thu, 18 Jan 2024 16:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mTahI4Vi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s806ud0K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9A62C194;
-	Thu, 18 Jan 2024 15:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A592C183;
+	Thu, 18 Jan 2024 16:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705593466; cv=none; b=RNb50nnDMqUM9mcC+4VoIBflmAwjqJQ/aYf1EKHlaCBIN1mSuf7KfceOvs1gP/6+pfiZ+br49VJiPW+FBUz3WBehHOjnAsTvr2Mp2Jo7DKuk0EKSeX73hv+upIRMTAynlVnxilOw4qoCRSJ7pDt6wR440ZCj2vhWAnfylLOxfxM=
+	t=1705593867; cv=none; b=qYRRG30Czcf/eNnHRWXmrRVLzc/1ur4yUWv2Y4tyCN1NcCaHDa87X9Dys4dSv9Ih1MHpsscdQhDTsbcDgUoQxJXwSRxZrqcvNzy/2HdE+tjOWYH9hCA2PQSkvxj60xnKsiN/dKBd2b+BgCFZ0O52FMeP3jTWssV1ZKUM3233LVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705593466; c=relaxed/simple;
-	bh=ujmT7stPCKfSLVaJLN4v/5WuxTC7Y3boCc07t+YaJoI=;
-	h=Received:DKIM-Signature:Received:Received:Received:From:To:CC:
-	 Subject:Date:Message-ID:X-Mailer:MIME-Version:
-	 Content-Transfer-Encoding:Content-Type:X-Originating-IP:
-	 X-ClientProxiedBy:X-QCInternal:X-Proofpoint-Virus-Version:
-	 X-Proofpoint-GUID:X-Proofpoint-ORIG-GUID:
-	 X-Proofpoint-Virus-Version:X-Proofpoint-Spam-Details; b=i8LYREUC7nxVN5vv0UDYfaHNJZvklGhD8FUsm7HONhzODFDwn6CG4y5TCLXwk+orbe3UMx6UX2Nj5HlFs5FXN0Nm2Bv3WhW6N9gC6wiW7yO4iv5dcwRFYdRbWpC/9Dazw6YzLvIXd2d7zxwHcF8zf9ky5Lbu3XeQiLTfla2II/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mTahI4Vi; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40ICPtIL011210;
-	Thu, 18 Jan 2024 15:57:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=qcppdkim1; bh=7GBvf+v
-	Fj+0SXE5Pm6Lmtpw4ZYnmUpJ53mUUuWb6ZXM=; b=mTahI4Vij6ndSnl939sGlFP
-	wAYatpzYlhEDZUphHA7diGTg/kShnX9X2ESruwTLnz2LwDlbzAd4HArK2GwJTXQN
-	5Y3B+P8uvSIXDT9nqRvxZKjaiMqxpBX38pRQuUJFTRdk8PhVJBR0LzfgW2GnftvT
-	3+ZJbQmawPpdtUF2A7yTue2AYn/+W1ItRV9TYNIC8tvwpHaiQkOIgWzh1bGPoGyS
-	6yfaO8dCB/pwaZdXOkPhF7zya3VzDCT6cEK9Nbhi7/hRBwW/ZNPfROnbpIqMq2fC
-	bmGYaLHJR1D3BawysMpG1VIgKKf21HRcfgbW7GP0J+yfSqdcK/V6/EV7UQ8lmww=
-	=
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vq403gfe9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Jan 2024 15:57:40 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40IFvdRb031602
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Jan 2024 15:57:39 GMT
-Received: from hu-ninanaik-blr.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 18 Jan 2024 07:57:33 -0800
-From: Ninad Naik <quic_ninanaik@quicinc.com>
-To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_psodagud@quicinc.com>, <quic_kprasan@quicinc.com>,
-        <quic_ymg@quicinc.com>, <kernel@quicinc.com>,
-        Ninad Naik
-	<quic_ninanaik@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: sa8775p: Add new memory map updates to SA8775P
-Date: Thu, 18 Jan 2024 21:27:11 +0530
-Message-ID: <20240118155711.7601-1-quic_ninanaik@quicinc.com>
-X-Mailer: git-send-email 2.42.0
+	s=arc-20240116; t=1705593867; c=relaxed/simple;
+	bh=PzeADkiL6ebFQpxODXk48UDd1lVVQ/gpZ90OWnSrLqQ=;
+	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To:X-Cookie; b=ODXB4ld7uvOkR35ArVXsdjiVkIUF9zkMmBKmoHFd3dVsLZBLFGGZ1z7BbiHwDWUUyf6plmABkGJ9b86HbbVW/tPlQ9ciNuUL+zYj2zRm7MRJ1JweQ21r3U3RSR/yJiuf9Fntw1atW/kDV4v2aBcgxSOMlyljJioR3m6MCXkK7qw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s806ud0K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48B13C433C7;
+	Thu, 18 Jan 2024 16:04:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705593866;
+	bh=PzeADkiL6ebFQpxODXk48UDd1lVVQ/gpZ90OWnSrLqQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s806ud0Kuq+gL6cI32OifNI1pz3HJl4dWlSV3VuGDQAGJQPNUMfE/eXwVRravvsoS
+	 xr13ZTDB2x9D2a/MH1o4QeL5lHS9+YrqirkKcwtLEn4qj9O2Atn3obftzsn6r/oK6H
+	 Wy3E/oSyhFYV2MXKtq9vX5cc4xQ5r/uk6YeCaBIPKBhQa4y9cCrAU6JNftV1cqBc2a
+	 UrxPj14r5pVkPvGa6zGmJNcfEiwz1nZUEPt9MffBsOzCV80Z9pGoqBrNoHK7AzsEm1
+	 AFbNnD5n5vfUtwu/ulZLuHvgtr3LCayH9oy4ric0qNFp4LjU2B12dz5XV00KB8WQek
+	 CFf+l1+mLkAbA==
+Date: Thu, 18 Jan 2024 16:04:20 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 5/5] hwmon: Add support for Amphenol ChipCap 2
+Message-ID: <f5827df7-34fa-4c11-aca9-ecc6c83c512d@sirena.org.uk>
+References: <20240115-topic-chipcap2-v5-0-0cc7a15aeece@gmail.com>
+ <20240115-topic-chipcap2-v5-5-0cc7a15aeece@gmail.com>
+ <226d3abd-e372-4c66-b2b0-cc86e6a4bb27@sirena.org.uk>
+ <30b9ab0c-f3cb-4b5a-a726-de9f7c61769b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: md85JSkaoBfiMxQi9vEzVbT_ot1tw4oD
-X-Proofpoint-ORIG-GUID: md85JSkaoBfiMxQi9vEzVbT_ot1tw4oD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-18_08,2024-01-17_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1011
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 bulkscore=0 phishscore=0
- spamscore=0 adultscore=0 mlxlogscore=540 malwarescore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401180115
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pCbgqIbLtZhTtuRa"
+Content-Disposition: inline
+In-Reply-To: <30b9ab0c-f3cb-4b5a-a726-de9f7c61769b@gmail.com>
+X-Cookie: FEELINGS are cascading over me!!!
 
-New memory map layout changes (by Qualcomm firmware) have brought
-in updates to base addresses and/or size for different memory regions
-like cpcucp_fw, tz-stat, and also introduces new memory regions for
-resource manager firmware. This change brings in these corresponding
-memory map updates to the SA8775P SoC device tree.
 
-Signed-off-by: Ninad Naik <quic_ninanaik@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 103 +++++++++++++++++++++++---
- 1 file changed, 94 insertions(+), 9 deletions(-)
+--pCbgqIbLtZhTtuRa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index a7eaca33d326..20b16fb5f537 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -356,13 +356,18 @@ uefi_log: uefi-log@908b0000 {
- 			no-map;
- 		};
- 
-+		ddr_training_checksum: ddr_training_checksum@908c0000 {
-+			reg = <0x0 0x908c0000 0x0 0x1000>;
-+			no-map;
-+		};
-+
- 		reserved_mem: reserved@908f0000 {
--			reg = <0x0 0x908f0000 0x0 0xf000>;
-+			reg = <0x0 0x908f0000 0x0 0xe000>;
- 			no-map;
- 		};
- 
--		secdata_apss_mem: secdata-apss@908ff000 {
--			reg = <0x0 0x908ff000 0x0 0x1000>;
-+		secdata_apss_mem: secdata-apss@908fe000 {
-+			reg = <0x0 0x908fe000 0x0 0x2000>;
- 			no-map;
- 		};
- 
-@@ -373,8 +378,43 @@ smem_mem: smem@90900000 {
- 			hwlocks = <&tcsr_mutex 3>;
- 		};
- 
--		cpucp_fw_mem: cpucp-fw@90b00000 {
--			reg = <0x0 0x90b00000 0x0 0x100000>;
-+		tz_sail_mailbox_mem: tz-sail-mailbox@90c00000 {
-+			reg = <0x0 0x90c00000 0x0 0x100000>;
-+			no-map;
-+		};
-+
-+		sail_mailbox_mem: sail-ss@90d00000 {
-+			reg = <0x0 0x90d00000 0x0 0x100000>;
-+			no-map;
-+		};
-+
-+		sail_ota_mem: sail-ss@90e00000 {
-+			reg = <0x0 0x90e00000 0x0 0x300000>;
-+			no-map;
-+		};
-+
-+		aoss_backup_mem: aoss-backup@91b00000 {
-+			reg = <0x0 0x91b00000 0x0 0x40000>;
-+			no-map;
-+		};
-+
-+		cpucp_backup_mem: cpucp-backup@91b40000 {
-+			reg = <0x0 0x91b40000 0x0 0x40000>;
-+			no-map;
-+		};
-+
-+		tz_config_backup_mem: tz-config-backup@91b80000 {
-+			reg = <0x0 0x91b80000 0x0 0x10000>;
-+			no-map;
-+		};
-+
-+		ddr_training_data_mem: ddr-training-data@91b90000 {
-+			reg = <0x0 0x91b90000 0x0 0x10000>;
-+			no-map;
-+		};
-+
-+		cdt_data_backup_mem: cdt-data-backup@91ba0000 {
-+			reg = <0x0 0x91ba0000 0x0 0x1000>;
- 			no-map;
- 		};
- 
-@@ -433,14 +473,44 @@ pil_video_mem: pil-video@9fc00000 {
- 			no-map;
- 		};
- 
-+		audio_mdf_mem: audio_mdf_region@ae000000 {
-+			reg = <0x0 0xae000000 0x0 0x1000000>;
-+			no-map;
-+		};
-+
-+		firmware_mem: firmware-region@b0000000 {
-+			reg = <0x0 0xb0000000 0x0 0x800000>;
-+			no-map;
-+		};
-+
- 		hyptz_reserved_mem: hyptz-reserved@beb00000 {
- 			reg = <0x0 0xbeb00000 0x0 0x11500000>;
- 			no-map;
- 		};
- 
--		tz_stat_mem: tz-stat@d0000000 {
--			reg = <0x0 0xd0000000 0x0 0x100000>;
-+		scmi_mem: scmi_region@d0000000 {
-+			no-map;
-+			reg = <0x0 0xd0000000 0x0 0x40000>;
-+		};
-+
-+		firmware_logs_mem: firmware-logs@d0040000 {
-+			no-map;
-+			reg = <0x0 0xd0040000 0x0 0x10000>;
-+		};
-+
-+		firmware_audio_mem: firmware-audio@d0050000 {
-+			no-map;
-+			reg = <0x0 0xd0050000 0x0 0x4000>;
-+		};
-+
-+		firmware_reserved_mem: firmware-reserved@d0054000 {
- 			no-map;
-+			reg = <0x0 0xd0054000 0x0 0x9c000>;
-+		};
-+
-+		firmware_quantum_test_mem: firmware-quantum-test@d00f0000 {
-+			no-map;
-+			reg = <0x0 0xd00f0000 0x0 0x10000>;
- 		};
- 
- 		tags_mem: tags@d0100000 {
-@@ -453,8 +523,23 @@ qtee_mem: qtee@d1300000 {
- 			no-map;
- 		};
- 
--		trusted_apps_mem: trusted-apps@d1800000 {
--			reg = <0x0 0xd1800000 0x0 0x3900000>;
-+		deepsleep_backup_mem: deepsleep_backup@d1800000 {
-+			reg = <0x0 0xd1800000 0x0 0x100000>;
-+			no-map;
-+		};
-+
-+		trusted_apps_mem: trusted-apps@d1900000 {
-+			reg = <0x0 0xd1900000 0x0 0x3800000>;
-+			no-map;
-+		};
-+
-+		tz_stat_mem: tz-stat@db100000 {
-+			reg = <0x0 0xdb100000 0x0 0x100000>;
-+			no-map;
-+		};
-+
-+		cpucp_fw_mem: cpucp-fw@db200000 {
-+			reg = <0x0 0xdb200000 0x0 0x100000>;
- 			no-map;
- 		};
- 	};
--- 
-2.42.0
+On Thu, Jan 18, 2024 at 04:30:37PM +0100, Javier Carrasco wrote:
+> On 18.01.24 14:49, Mark Brown wrote:
+> > On Mon, Jan 15, 2024 at 09:02:25PM +0100, Javier Carrasco wrote:
 
+> >> +static int cc2_enable(struct cc2_data *data)
+> >> +{
+> >> +	int ret;
+
+> >> +	if (regulator_is_enabled(data->regulator))
+> >> +		return 0;
+
+> > This is generally a sign that the regulator API usage is not good, the
+> > driver should not rely on references to the regulator held by anything
+> > else since whatever else is holding the regulator on could turn it off
+> > at any time.  If the driver did the enable itself then it should know
+> > that it did so and not need to query.
+
+> The driver handles a dedicated regulator, but I wanted to account for
+> the cases where the attempts to enable and disable the regulator fail
+> and keep parity. If the disabling attempt fails, will the regulator not
+> stay enabled? In that case, an additional call to regulator_enable would
+> not be required, right?
+> That is the only reason I am using regulator_is_enabled(), but maybe
+> things don't work like that.
+
+With exclusive use you can get away with this, you should have a comment
+for that case though.
+
+> >> +	ret = regulator_enable(data->regulator);
+> >> +	if (ret < 0)
+> >> +		return ret;
+> >> +
+> >> +	/*
+> >> +	 * TODO: the startup-delay-us property of the regulator might be
+> >> +	 * added to the delay (if provided).
+> >> +	 * Currently there is no interface to read its value apart from
+> >> +	 * a direct access to regulator->rdev->constraints->enable_time,
+> >> +	 * which is discouraged like any direct access to the regulator_dev
+> >> +	 * structure. This would be relevant in cases where the startup delay
+> >> +	 * is in the range of milliseconds.
+> >> +	 */
+> >> +	usleep_range(CC2_STARTUP_TIME_US, CC2_STARTUP_TIME_US + 125);
+
+> > Note that the regulator startup delay is the time taken for the
+> > regulator to power up so if the device needs additional delay then that
+> > will always need to be in addition to whatever the regulator is doing.
+
+> What I mean by that is that the device cannot be ready until the
+> regulator powers it up (obvious) plus the start up time of the device
+> itself once it gets powered up. So if a regulator takes for example 1 ms
+> to power up, the sleep function could (and should) wait for 1 ms longer.
+
+No, the sleep function should do nothing of the sort - if any delay is
+neeeded for the regulator it will be handled as part of enabling the
+regulator.  This is not exposed to client drivers because it is
+transparent to them.
+
+--pCbgqIbLtZhTtuRa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWpTAMACgkQJNaLcl1U
+h9CYFgf/Qehv6NdtI4HdY20rddA8XoUZMygn0/H7omFeU3P6JTeybouEpsVlQwuP
+twqa/HzVCKwlguVO4UeqaISzAco4mbMm26jKlAvx+ZBoGjkwkZn68gVjqZ4gNIxD
+Lnt1eLJGRK2B7IpZyTCKLrvuXPuHA6bQSgOy+Pvqnm6Q85kHZ4/mEhg/hQTgMFGZ
+QQRG6SgBDxNBqwWupmokkM4c50nMLCinGFlINiYa2thDWEoeDJH18LD3KUCip4ZU
+q7fjha9GbZj7ddeAEKGXA15B88Wt3P+CXz7Cy/WAHrOfS/Nu/LMCiHG7iOUyhSi3
+CjynkW6339lxeVkd2iURGCqR6g8LQw==
+=mO+x
+-----END PGP SIGNATURE-----
+
+--pCbgqIbLtZhTtuRa--
 
