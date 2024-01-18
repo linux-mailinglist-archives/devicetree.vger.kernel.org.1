@@ -1,303 +1,246 @@
-Return-Path: <devicetree+bounces-32933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94D183148B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:24:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED9F88314C1
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:35:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD91D1C23B1B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 08:24:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99170283B79
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 08:35:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B829B219EC;
-	Thu, 18 Jan 2024 08:23:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6BF61CFA4;
+	Thu, 18 Jan 2024 08:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lTdl3Nn7"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="X5r1MALB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B13E20B1B;
-	Thu, 18 Jan 2024 08:23:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B0361D55E
+	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 08:23:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705566180; cv=none; b=mofRhUMvTk0O+76ecUzJOMOP2uW3/+CSRKn2mc5RO9FCqIumVMvgyZe9BXyXWl9OHa+RgqBv//Ohb4LtADt/ZsziowNrhQ8rJHZNWEqnBvcHiB5bCu0xQDljPYIjHKo695bnW51Wj6AwdzbBf6Kt4i2mZtRp+vt8AeLQPqqkGVc=
+	t=1705566234; cv=none; b=sb5PwmNC/inV1UVTRKUKxP0ck0eDotJ5ChuY6sJl7u3HznC8kf/2OvkcZ7eFzeIIARQ9txAhjF0WiqROa1uNqlmHpqnBqLxlFiyEoxuraf0fOyBMcOHH1zli5giEPfHgWTmXkdB6TtUSZ/gvnvE9eZtB9ZA+V9AXnc8irh9PRJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705566180; c=relaxed/simple;
-	bh=D8xErp0zejwZpfi8Wd+6nBZxa9LPVk/TpSjAq+BHZns=;
-	h=Received:DKIM-Signature:Received:From:Date:Subject:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:Message-Id:References:
-	 In-Reply-To:To:Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:
-	 X-Endpoint-Received:X-Original-From:Reply-To; b=Y9pKPwF9eaKmWJQksx/hvcHs7ER8facowSifFHfSKOJyk19p4vE7IV9QzOqLRrOceCp1UkNSh1e0ye89p+EFl3LOZFtiklSuGtD4K7C7aH/9f+0TYF5mq369WQh8NojLEoYlR4jHvlVnBR5QcFKBd9KKae1BqHHEqUUQnjYUm6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lTdl3Nn7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 43EC3C4E663;
-	Thu, 18 Jan 2024 08:23:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705566180;
-	bh=D8xErp0zejwZpfi8Wd+6nBZxa9LPVk/TpSjAq+BHZns=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lTdl3Nn7MIps0sSdkK1seO+tPZQiScOKfZHvrL+HYICyN2zcMabQ74KHINHNz9QfO
-	 cpjML0d/f+RjpfPajFQXVmd+l0HlKQ53LhGmncb/deuvERHuR3oZh7iCfn9D1tVd2l
-	 aLQu1VFN6T7URXiU8C4dLgjjinvsn1heV/1Ox+rF65qUClUYOr60g4IeBUEg7MZXGN
-	 xvPdKqlu1OIarcfWQ9n2na5o+yFvIupHedKnZbwnLRn5shtoH669PLpmC/JKZ9zFcF
-	 7H+sOlB9bOsIiLmRjua3oD8gDMLV/tpfkyy8zKWcNECv66wym1/X4AiU0h5RsZ3k0n
-	 NWsgvD9+t7CAg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B922C4707B;
-	Thu, 18 Jan 2024 08:23:00 +0000 (UTC)
-From:
- Nikita Shubin via B4 Relay <devnull+nikita.shubin.maquefel.me@kernel.org>
-Date: Thu, 18 Jan 2024 11:21:15 +0300
-Subject: [PATCH v7 32/39] ARM: dts: ep93xx: Add EDB9302 DT
+	s=arc-20240116; t=1705566234; c=relaxed/simple;
+	bh=BdVsw0FTwqzD+KS2xpaOjxHqz260SFBO0mWzXEz7i7M=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:Date:
+	 From:To:Cc:Subject:Message-ID:References:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
+	 User-Agent; b=l3DoPJOu8tf6uvQrbuKT9gT7gHiF3QzYoPMU1bpze+8M5MdUqn+naX3EEiARjPq8GER2UKnke7kUuUCkAUOLPYMrudCP4dDBLTekgJ7YiFWQyEzSq9U8jTQ8BWjatcC7K4esu36ApN7Fb1568OlDO+HDmG9mj7rGjsHDrd6VxZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=X5r1MALB; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5cfa71498feso125832a12.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 00:23:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1705566232; x=1706171032; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=welEo0/WJxuhwoTNRxCpfyX7sfk5voOc4sTxJMWj2Aw=;
+        b=X5r1MALBFW7ed78ST+6HoXg0Nu5rxmHBG0KX6AsJEKoSq2SZPRxGHTBsTjWSBkVVtZ
+         +NWuZRx1AdDpyvlpWruNDuv1aP5EKvr/ry7Qv1wLHXd3BskwZxenyM0neB5tdLWDOBC4
+         vvd290gTbbTRnN+PYblJEHY91cLuP7sEW/DFiUJYSCkUneY5+DZiIxn0h1gDpGQl3KqH
+         Y1OtF50CFf6rnMgQO7uzJdq8GNHs3WHPGImliLbIDNEVIejVXrz5MmrgUKoZvJNEznP+
+         gju2SwU2c+trLu1cHUbTkYSduSnX3Q5ZE+WRW/RsUnwYzSyCs2Wl87AWuaf2BAHA+UkR
+         gACw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705566232; x=1706171032;
+        h=user-agent:in-reply-to:content-transfer-encoding
+         :content-disposition:mime-version:references:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=welEo0/WJxuhwoTNRxCpfyX7sfk5voOc4sTxJMWj2Aw=;
+        b=iXZqTxHXjascqmmzHL9uMiHEshNZmeI6PjV71capCipVEOEVuD+v96I3PwGLzwC4Pg
+         9BSeKpb0qNozyuDFmb7mUwkR4aaKxwxMPCkp7ju/+6ubFYBV2VczJuZBu3UVP1cD34aY
+         zwPXdyUaupfsTqJ8zpERQG+zQtQQNmRVoXG1lB7SKDge3LV93Z//kDlb2BOANSYaagng
+         G/Wg0qXzH52uapvhH/ucw9fJiN+e5kPVYE4Tv7XRoCMGEZ337VfYcCipFwRYz6XwZT5n
+         2MJ/1hVjZlbW4VcayI2j9E526IfZYJkkIV/N47IxFMpS5EcIy3ZpwkSIN+oda+isn8ye
+         CIfw==
+X-Gm-Message-State: AOJu0Yz2S1OjxRJf13siaChM+ylyFXXhdaFmuU8SoeOfHnbCbviWB5Uo
+	ElVLZfyHBBLXOnd+95FXgayC8fa/BsGqhJaZf/xKgtGCy8UXTJeu2uKPZm1IvYs=
+X-Google-Smtp-Source: AGHT+IGaoDDx9aDO0YNH0g7XdpqbNuTcRdbMFDYtV1SQWylCAw0oi0AjU/zcDHvavTfmpNNLtZt26w==
+X-Received: by 2002:a05:6a20:43a7:b0:19b:7e77:7279 with SMTP id i39-20020a056a2043a700b0019b7e777279mr643544pzl.18.1705566232336;
+        Thu, 18 Jan 2024 00:23:52 -0800 (PST)
+Received: from hsinchu15 (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id fc13-20020a056a002e0d00b006d9cf4b56edsm2812458pfb.175.2024.01.18.00.23.49
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 18 Jan 2024 00:23:51 -0800 (PST)
+Date: Thu, 18 Jan 2024 16:23:47 +0800
+From: Nylon Chen <nylon.chen@sifive.com>
+To: alex@ghiti.fr
+Cc: apatel@ventanamicro.com, alexghiti@rivosinc.com,
+	catalin.marinas@arm.com, will@kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, robh+dt@kernel.org,
+	frowand.list@gmail.com, rppt@kernel.org, akpm@linux-foundation.org,
+	anup@brainfault.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-mm@kvack.org, zong.li@sifive.com,
+	nylon7717@gmail.com
+Subject: Re: Fwd: [PATCH v8 0/4] riscv: Use PUD/P4D/PGD pages for the linear
+ mapping
+Message-ID: <20240118082346.GB31078@hsinchu15>
+References: <20230316131711.1284451-1-alexghiti@rivosinc.com>
+ <CAK9=C2XJtSG2d_nsyDv7kU1v7Jj0chdevqrMc0MpJswukcEABA@mail.gmail.com>
+ <CAHVXubhhxpzHDM-n91V_rceY5t_VqLvrwZj3RP_tNL2=F9mqjQ@mail.gmail.com>
+ <CAK9=C2WVOpSqtt8r1U4hnzSZ=cc1PocpukgQjNyahP2XuPhozw@mail.gmail.com>
+ <d0087922-4721-ccf1-80bf-9f74099d0948@ghiti.fr>
+ <CAPqJEFr6MgUyARfbWAo7EeQKLVd4xRJz_LOYN68UC-kPD1Hr5A@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240118-ep93xx-v7-32-d953846ae771@maquefel.me>
-References: <20240118-ep93xx-v7-0-d953846ae771@maquefel.me>
-In-Reply-To: <20240118-ep93xx-v7-0-d953846ae771@maquefel.me>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Nikita Shubin <nikita.shubin@maquefel.me>, 
- Andre Przywara <andre.przywara@arm.com>, 
- Nick Hawkins <nick.hawkins@hpe.com>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Florian Fainelli <f.fainelli@gmail.com>, 
- Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>
-X-Mailer: b4 0.13-dev-e3e53
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1705566176; l=4429;
- i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
- bh=KR6AhAHkrEaDtUcRyLyul6gEHO42boKFUOuHc7e+r74=; =?utf-8?q?b=3DwuV+0MQk1cOb?=
- =?utf-8?q?N1xCUHAGo1n1Qd5UU9Y3p/yt0YxiS8CB75Szf5+h5cMbqZsA7yb5ZpT9RCXH0z2d?=
- qU7VwpvkBeUnkF78CWk3PwPvokks0i2bbpXlurp0iajleTyOQrIx
-X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
- pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
-X-Endpoint-Received:
- by B4 Relay for nikita.shubin@maquefel.me/20230718 with auth_id=65
-X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
-Reply-To: <nikita.shubin@maquefel.me>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPqJEFr6MgUyARfbWAo7EeQKLVd4xRJz_LOYN68UC-kPD1Hr5A@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+> On 3/23/23 15:55, Anup Patel wrote:
+> > On Thu, Mar 23, 2023 at 6:24 PM Alexandre Ghiti <alexghiti@rivosinc.com> wrote:
+> >> Hi Anup,
+> >>
+> >> On Thu, Mar 23, 2023 at 1:18 PM Anup Patel <apatel@ventanamicro.com> wrote:
+> >>> Hi Alex,
+> >>>
+> >>> On Thu, Mar 16, 2023 at 6:48 PM Alexandre Ghiti <alexghiti@rivosinc.com> wrote:
+> >>>> This patchset intends to improve tlb utilization by using hugepages for
+> >>>> the linear mapping.
+> >>>>
+> >>>> As reported by Anup in v6, when STRICT_KERNEL_RWX is enabled, we must
+> >>>> take care of isolating the kernel text and rodata so that they are not
+> >>>> mapped with a PUD mapping which would then assign wrong permissions to
+> >>>> the whole region: it is achieved by introducing a new memblock API.
+> >>>>
+> >>>> Another patch makes use of this new API in arm64 which used some sort of
+> >>>> hack to solve this issue: it was built/boot tested successfully.
+> >>>>
+> >>>> base-commit-tag: v6.3-rc1
+> >>>>
+> >>>> v8:
+> >>>> - Fix rv32, as reported by Anup
+> >>>> - Do not modify memblock_isolate_range and fixes comment, as suggested by Mike
+> >>>> - Use the new memblock API for crash kernel too in arm64, as suggested by Andrew
+> >>>> - Fix arm64 double mapping (which to me did not work in v7), but ends up not
+> >>>>    being pretty at all, will wait for comments from arm64 reviewers, but
+> >>>>    this patch can easily be dropped if they do not want it.
+> >>>>
+> >>>> v7:
+> >>>> - Fix Anup bug report by introducing memblock_isolate_memory which
+> >>>>    allows us to split the memblock mappings and then avoid to map the
+> >>>>    the PUD which contains the kernel as read only
+> >>>> - Add a patch to arm64 to use this newly introduced API
+> >>>>
+> >>>> v6:
+> >>>> - quiet LLVM warning by casting phys_ram_base into an unsigned long
+> >>>>
+> >>>> v5:
+> >>>> - Fix nommu builds by getting rid of riscv_pfn_base in patch 1, thanks
+> >>>>    Conor
+> >>>> - Add RB from Andrew
+> >>>>
+> >>>> v4:
+> >>>> - Rebase on top of v6.2-rc3, as noted by Conor
+> >>>> - Add Acked-by Rob
+> >>>>
+> >>>> v3:
+> >>>> - Change the comment about initrd_start VA conversion so that it fits
+> >>>>    ARM64 and RISCV64 (and others in the future if needed), as suggested
+> >>>>    by Rob
+> >>>>
+> >>>> v2:
+> >>>> - Add a comment on why RISCV64 does not need to set initrd_start/end that
+> >>>>    early in the boot process, as asked by Rob
+> >>>>
+> >>>> Alexandre Ghiti (4):
+> >>>>    riscv: Get rid of riscv_pfn_base variable
+> >>>>    mm: Introduce memblock_isolate_memory
+> >>>>    arm64: Make use of memblock_isolate_memory for the linear mapping
+> >>>>    riscv: Use PUD/P4D/PGD pages for the linear mapping
+> >>> Kernel boot fine on RV64 but there is a failure which is still not
+> >>> addressed. You can see this failure as following message in
+> >>> kernel boot log:
+> >>>      0.000000] Failed to add a System RAM resource at 80200000
+> >> Hmmm I don't get that in any of my test configs, would you mind
+> >> sharing yours and your qemu command line?
+> > Try alexghiti_test branch at
+> > https://github.com/avpatel/linux.git
+> >
+> > I am building the kernel using defconfig and my rootfs is
+> > based on busybox.
+> >
+> > My QEMU command is:
+> > qemu-system-riscv64 -M virt -m 512M -nographic -bios
+> > opensbi/build/platform/generic/firmware/fw_dynamic.bin -kernel
+> > ./build-riscv64/arch/riscv/boot/Image -append "root=/dev/ram rw
+> > console=ttyS0 earlycon" -initrd ./rootfs_riscv64.img -smp 4
+> 
+> 
+> So splitting memblock.memory is the culprit, it "confuses" the resources
+> addition and I can only find hacky ways to fix that...
+Hi Alexandre,
 
-Add device tree for Cirrus EDB9302.
+We encountered the same error as Anup. After adding your patch
+(3335068f87217ea59d08f462187dc856652eea15), we will not encounter the
+error again.
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
----
- arch/arm/boot/dts/cirrus/Makefile           |   1 +
- arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts | 182 ++++++++++++++++++++++++++++
- 2 files changed, 183 insertions(+)
+What I have observed so far is
 
-diff --git a/arch/arm/boot/dts/cirrus/Makefile b/arch/arm/boot/dts/cirrus/Makefile
-index 211a7e2f2115..e6015983e464 100644
---- a/arch/arm/boot/dts/cirrus/Makefile
-+++ b/arch/arm/boot/dts/cirrus/Makefile
-@@ -4,5 +4,6 @@ dtb-$(CONFIG_ARCH_CLPS711X) += \
- dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
- dtb-$(CONFIG_ARCH_EP93XX) += \
-+	ep93xx-edb9302.dtb \
- 	ep93xx-bk3.dtb \
- 	ep93xx-ts7250.dtb
-diff --git a/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-new file mode 100644
-index 000000000000..f015c6b8c802
---- /dev/null
-+++ b/arch/arm/boot/dts/cirrus/ep93xx-edb9302.dts
-@@ -0,0 +1,182 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+/*
-+ * Device Tree file for Cirrus Logic EDB9302 board based on EP9302 SoC
-+ */
-+/dts-v1/;
-+#include "ep93xx.dtsi"
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "cirrus,edb9302", "cirrus,ep9301";
-+	model = "cirrus,edb9302";
-+
-+	chosen {
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		/* should be set from ATAGS */
-+		reg = <0x0000000 0x800000>,
-+		      <0x1000000 0x800000>,
-+		      <0x4000000 0x800000>,
-+		      <0x5000000 0x800000>;
-+	};
-+
-+	sound {
-+		compatible = "audio-graph-card2";
-+		label = "EDB93XX";
-+		links = <&i2s_port>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led-0 {
-+			label = "grled";
-+			gpios = <&gpio4 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led-1 {
-+			label = "rdled";
-+			gpios = <&gpio4 1 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+	};
-+};
-+
-+&adc {
-+	status = "okay";
-+};
-+
-+&ebi {
-+	flash@60000000 {
-+		compatible = "cfi-flash";
-+		reg = <0x60000000 0x1000000>;
-+		bank-width = <2>;
-+	};
-+};
-+
-+&eth0 {
-+	phy-handle = <&phy0>;
-+};
-+
-+&gpio0 {
-+	gpio-ranges = <&syscon 0 153 1>,
-+		      <&syscon 1 152 1>,
-+		      <&syscon 2 151 1>,
-+		      <&syscon 3 148 1>,
-+		      <&syscon 4 147 1>,
-+		      <&syscon 5 146 1>,
-+		      <&syscon 6 145 1>,
-+		      <&syscon 7 144 1>;
-+};
-+
-+&gpio1 {
-+	gpio-ranges = <&syscon 0 143 1>,
-+		      <&syscon 1 142 1>,
-+		      <&syscon 2 141 1>,
-+		      <&syscon 3 140 1>,
-+		      <&syscon 4 165 1>,
-+		      <&syscon 5 164 1>,
-+		      <&syscon 6 163 1>,
-+		      <&syscon 7 160 1>;
-+};
-+
-+&gpio2 {
-+	gpio-ranges = <&syscon 0 115 1>;
-+};
-+
-+/* edb9302 doesn't have GPIO Port D present */
-+&gpio3 {
-+	status = "disabled";
-+};
-+
-+&gpio4 {
-+	gpio-ranges = <&syscon 0 97 2>;
-+};
-+
-+&gpio5 {
-+	gpio-ranges = <&syscon 1 170 1>,
-+		      <&syscon 2 169 1>,
-+		      <&syscon 3 168 1>;
-+};
-+
-+&gpio6 {
-+	gpio-ranges = <&syscon 0 87 2>;
-+};
-+
-+&gpio7 {
-+	gpio-ranges = <&syscon 2 199 4>;
-+};
-+
-+&i2s {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2s_on_ac97_pins>;
-+	status = "okay";
-+	i2s_port: port {
-+		i2s_ep: endpoint {
-+			system-clock-direction-out;
-+			frame-master;
-+			bitclock-master;
-+			mclk-fs = <256>;
-+			dai-format = "i2s";
-+			convert-channels = <2>;
-+			convert-sample-format = "s32_le";
-+			remote-endpoint = <&codec_ep>;
-+		};
-+	};
-+};
-+
-+&mdio0 {
-+	phy0: ethernet-phy@1 {
-+		reg = <1>;
-+		device_type = "ethernet-phy";
-+	};
-+};
-+
-+&spi0 {
-+	cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW
-+		    &gpio0 7 GPIO_ACTIVE_LOW>;
-+	dmas = <&dma1 10 2>, <&dma1 10 1>;
-+	dma-names = "rx", "tx";
-+	status = "okay";
-+
-+	cs4271: codec@0 {
-+		compatible = "cirrus,cs4271";
-+		reg = <0>;
-+		#sound-dai-cells = <0>;
-+		spi-max-frequency = <6000000>;
-+		spi-cpol;
-+		spi-cpha;
-+		reset-gpio = <&gpio0 1 GPIO_ACTIVE_HIGH>;
-+		port {
-+			codec_ep: endpoint {
-+				remote-endpoint = <&i2s_ep>;
-+			};
-+		};
-+	};
-+
-+	at25f1024: eeprom@1 {
-+		compatible = "atmel,at25";
-+		reg = <1>;
-+		address-width = <8>;
-+		size = <0x20000>;
-+		pagesize = <256>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
-+
+- before your patch
+When merging consecutive memblocks, if the memblock types are different,
+they will be merged into reserved
+- after your patch
+When consecutive memblocks are merged, if the memblock types are
+different, they will be merged into memory.
 
--- 
-2.41.0
-
+Such a result will cause the memory location of OpenSBI to be changed
+from reserved to memory. Will this have any side effects?
+> 
+> So given that the arm64 patch with the new API is not pretty and that
+> the simplest solution is to re-merge the memblock regions afterwards
+> (which is done by memblock_clear_nomap), I'll drop the new API and the
+> arm64 patch to use the nomap API like arm64: I'll take advantage of that
+> to clean setup_vm_final which I have wanted to do for a long time.
+> 
+> @Mike Thanks for you reviews!
+> 
+> @Anup Thanks for all your bug reports on this patchset, I have to
+> improve my test flow (it is in the work :)).
+> 
+> 
+> > Regards,
+> > Anup
+> >
+> >> Thanks
+> >>
+> >>> Regards,
+> >>> Anup
+> >>>
+> >>>>   arch/arm64/mm/mmu.c           | 25 +++++++++++------
+> >>>>   arch/riscv/include/asm/page.h | 19 +++++++++++--
+> >>>>   arch/riscv/mm/init.c          | 53 ++++++++++++++++++++++++++++-------
+> >>>>   arch/riscv/mm/physaddr.c      | 16 +++++++++++
+> >>>>   drivers/of/fdt.c              | 11 ++++----
+> >>>>   include/linux/memblock.h      |  1 +
+> >>>>   mm/memblock.c                 | 20 +++++++++++++
+> >>>>   7 files changed, 119 insertions(+), 26 deletions(-)
+> >>>>
+> >>>> --
+> >>>> 2.37.2
+> >>>>
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
