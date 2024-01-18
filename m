@@ -1,251 +1,105 @@
-Return-Path: <devicetree+bounces-32905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A6A8831271
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 06:29:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA010831281
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 06:49:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DEB11C21AA9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 05:29:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80D6A2871B2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 05:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB615612E;
-	Thu, 18 Jan 2024 05:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700788BED;
+	Thu, 18 Jan 2024 05:49:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="ivzVvRFI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mGdytAg/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01olkn2030.outbound.protection.outlook.com [40.92.103.30])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9C796FBC;
-	Thu, 18 Jan 2024 05:29:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.103.30
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705555768; cv=fail; b=iUTGVuM+gdvJ47r1h4eVD/Y8VX3uVVzLBE9gZszrKZExDau1lTn0VdlhSRvQqXl/M9FKrdnZ1nRuj5JA69bQ9D+3T4YCO/+xixv7d7AreN8/Lcn3qjITbE6tI7APkvFOgWTQpGS/AtnExBwn3Zut0b8U85c8RJ/BCjdBp98Z/WU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705555768; c=relaxed/simple;
-	bh=irmwVZqw9LjEd+rW34PVa4D3sTl/MleIolEGDlkCzhE=;
-	h=ARC-Message-Signature:ARC-Authentication-Results:DKIM-Signature:
-	 Received:Received:Message-ID:Date:User-Agent:Subject:From:To:
-	 References:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-	 X-TMN:X-ClientProxiedBy:X-Microsoft-Original-Message-ID:
-	 MIME-Version:X-MS-Exchange-MessageSentRepresentingType:
-	 X-MS-PublicTrafficType:X-MS-TrafficTypeDiagnostic:
-	 X-MS-Office365-Filtering-Correlation-Id:X-Microsoft-Antispam:
-	 X-Microsoft-Antispam-Message-Info:
-	 X-MS-Exchange-AntiSpam-MessageData-ChunkCount:
-	 X-MS-Exchange-AntiSpam-MessageData-0:X-OriginatorOrg:
-	 X-MS-Exchange-CrossTenant-Network-Message-Id:
-	 X-MS-Exchange-CrossTenant-AuthSource:
-	 X-MS-Exchange-CrossTenant-AuthAs:
-	 X-MS-Exchange-CrossTenant-OriginalArrivalTime:
-	 X-MS-Exchange-CrossTenant-FromEntityHeader:
-	 X-MS-Exchange-CrossTenant-Id:
-	 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	 X-MS-Exchange-Transport-CrossTenantHeadersStamped; b=EEQMl++opP3/KHpPzHQqfC5HbjLNNE+rtlsslTkaohXaKegAHzHzXiZ1q94GB+qgCDaBw756g8jAH9e+QAbJSeJT59HzNdtAX6ViKAVjTIDfTDQu7ouh3sctSTvouQjvGsfi0RsTkfwB5mBHoZvmvCiRl7QDUiuBuojSC/qOiqE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=ivzVvRFI; arc=fail smtp.client-ip=40.92.103.30
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fV/t1/S/HItXqiltrsMad4aIzkbqRv7fT8kjsufVknFemwQGo59NfLnSYz5w1/IZRc0gPuIuJS2SIqGanxsFgm7X6XGs+lgS1czYahgt6tB9S/PFvX4j8Qvtf2otswQ6BfOj1SMVIcHLNSr6FG/9yjeQ32tewis4vqoSYbcy93+YpwPeevts2/6U3JY37hTbyL/4QwjToyiyfhBsHh0241pCBn+iSd7RT8ShOHFpoTKs/2x6y91Bu+qlx0TYLuNUWuWfQnrVu4Ef6hgdyZqV9ITpqgubVW+2wuHdshrKZsVZAn6nELBx++Hpj6Y/k+INiBb0XrC0olrIZfbtfpI+6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e2h4G8xrbvBgaMO4F82y9JQEUJGPPo0y5alIn7i3Upc=;
- b=nQsPm7RT4OrFYJB82D6VADoRbe40oq61UvcCzp9vUyQv5aiwll4MW8MDYrSS8hZk5WkeI7BqecZsJnlAFe/OZ7/jzHW1rgg1s9HumJYw23Vm09PuxLGczcckFL1Vz+mweQ9IlBj2XKDg6CLCdQhFVVE8PpLUckZrtzalrq+q2BUPoi802HnpwRFrXvveVst7IO7UT0N6v9RDltJPHC5z98vMJKn+9dLKt1G7L7x13lSScrJG8U3xZx7LJ+ppXb61jWjvL73P5bOtMOnY6KD+Jxqvi0g4riy8sdIJLc7JCSVs10oT67hDZl7jEA8/7xgLKvmJjX0ai/CRdN80ybubOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e2h4G8xrbvBgaMO4F82y9JQEUJGPPo0y5alIn7i3Upc=;
- b=ivzVvRFIdAtw3EGaH9wNbz3p2jXUoRniKBralhG5YY5H+N4ACweuAm7mQBTMoHT4l5g10GVpcRPCpvQPklbKPI6EIDaL4Y4uJxmag05h16NyJknbbv9tbsv3NnV9uQml/3RLMv61SVqKvWmsgxGCPrGccnD/C5ZcwcMDVpkm6nb9DMlGCZlLSlfEkL0b/7tKcjk0BosFUFj78C8LnkzXEhCjIGimpHJaNMOoGPJmUvRkT/kJPfqtgRI2+AyxcMvr0kEG/RRVxQnKImeq7ronjhjpXC/Nw+/A0kz3bFnthYtQpnGgtqJllzMg2vQsbWHMJxsnqNYTAMhwvt3iD3iQQw==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by PN3P287MB2138.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1d4::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Thu, 18 Jan
- 2024 05:29:18 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::6e80:69e1:f2e7:d70d]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::6e80:69e1:f2e7:d70d%3]) with mapi id 15.20.7202.024; Thu, 18 Jan 2024
- 05:29:18 +0000
-Message-ID:
- <MA0P287MB2822FBA18674540BA85035BDFE712@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Thu, 18 Jan 2024 13:29:09 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/5] dt-bindings: soc: sophgo: Add Sophgo system
- control module
-From: Chen Wang <unicorn_wang@outlook.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, chao.wei@sophgo.com,
- conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
- richardcochran@gmail.com, robh+dt@kernel.org, sboyd@kernel.org,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, guoren@kernel.org,
- jszhang@kernel.org, inochiama@outlook.com, samuel.holland@sifive.com
-References: <cover.1705388518.git.unicorn_wang@outlook.com>
- <598b1026fdf9989bc48e5e10d1034b37947d3b80.1705388518.git.unicorn_wang@outlook.com>
- <f4a46311-2e12-458b-98a8-d3caa2c95517@linaro.org>
- <MA0P287MB282232DC6DF6290F5520BA89FE732@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-In-Reply-To: <MA0P287MB282232DC6DF6290F5520BA89FE732@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN: [QWUKPSKxFwTw2iValkzxG5JyU4cffBhb]
-X-ClientProxiedBy: SI2P153CA0009.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:140::18) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <285064b2-e5de-48a1-aef1-26d9e5cdcd72@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29DB78F4F;
+	Thu, 18 Jan 2024 05:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705556992; cv=none; b=J/kaizWAV1L2YMxYiEKjKii3q2DH406irYw/QnXSLD72sSZ/L8BSeJPYN3m7Oe20hJkJInjbCS4ENRd2EAH3H+ro814kTZs9fN6PjigNcYYF3ZOll6ZJOngN9JEkkPV4uyZ+6wK88CZRKdmaVc3YhTDiaUSzq0NdUvjLHS0Bs3Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705556992; c=relaxed/simple;
+	bh=VpKUFfNg/HrPvFXUCiGE71qPbuDU/sf0aYz4C+NnmAU=;
+	h=Received:DKIM-Signature:From:To:Cc:Subject:References:Date:
+	 In-Reply-To:Message-ID:User-Agent:MIME-Version:Content-Type; b=WGtcskfKz5GKz4mekGUbA5usRL5tiBEWtSB6Tchg7cx5FbnkQHIYeS8o5ohrGtHu7D2FRv8vX7UMMpdRkKV3dVfQzgB1JPSn+WIzIEnHIBGnbyDn+bNmm+ku17WBxAX3o/XToxB5/bz9QkmANDFYZltgpZuw7T+CA7fDnyUappg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mGdytAg/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3632EC433A6;
+	Thu, 18 Jan 2024 05:49:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705556991;
+	bh=VpKUFfNg/HrPvFXUCiGE71qPbuDU/sf0aYz4C+NnmAU=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=mGdytAg/rbFbk1cpzazA43EoXsrFTY6KGL7S6PGPYTpHuXImmM/jrLoxSpgG2sfJe
+	 1S5sNO/EA4PFssquqitUBjqZsJuco7+tIbd4QmpdgQECqR7IOmUL2v56972UxANpNo
+	 45xFQNOBdEmO/NHTpvMdzylYa54Na0Qq02Lxj2vmZyy9Yze08jaX++9LcIxey4+HbI
+	 9kH+JBbtqvO+SMlb5NEqKBrEnyw0PeY1toDUy9v3dQYodY5sPk3DKYVe4IaOd6ftBY
+	 WX9zwwqHjxriA0ani2taf+bn+9GJwo3Etn+ZwYf/T+0i1GLr380x5acgN4K8H0l/XL
+	 VvyKkq8aT0GlA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: "David S . Miller" <davem@davemloft.net>,  Eric Dumazet
+ <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo Abeni
+ <pabeni@redhat.com>,  Rob Herring <robh+dt@kernel.org>,  Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  Bjorn Andersson <andersson@kernel.org>,  Konrad
+ Dybcio <konrad.dybcio@linaro.org>,  Catalin Marinas
+ <catalin.marinas@arm.com>,  Will Deacon <will@kernel.org>,  Bjorn Helgaas
+ <bhelgaas@google.com>,  Heiko Stuebner <heiko@sntech.de>,  Jernej Skrabec
+ <jernej.skrabec@gmail.com>,  Chris Morgan <macromorgan@hotmail.com>,
+  Linus Walleij <linus.walleij@linaro.org>,  Geert Uytterhoeven
+ <geert+renesas@glider.be>,  Arnd Bergmann <arnd@arndb.de>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  =?utf-8?Q?N=C3=ADcolas?= F . R . A . Prado
+ <nfraprado@collabora.com>,  Marek Szyprowski <m.szyprowski@samsung.com>,
+  Peng Fan <peng.fan@nxp.com>,  Robert Richter <rrichter@amd.com>,  Dan
+ Williams <dan.j.williams@intel.com>,  Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>,  Terry Bowman <terry.bowman@amd.com>,
+  Lukas Wunner <lukas@wunner.de>,  Huacai Chen <chenhuacai@kernel.org>,
+  Alex Elder <elder@linaro.org>,  Srini Kandagatla
+ <srinivas.kandagatla@linaro.org>,  Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>,  Abel Vesa <abel.vesa@linaro.org>,
+  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-arm-msm@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-pci@vger.kernel.org,  Bartosz Golaszewski
+ <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH 9/9] PCI/pwrseq: add a pwrseq driver for QCA6390
+References: <20240117160748.37682-1-brgl@bgdev.pl>
+	<20240117160748.37682-10-brgl@bgdev.pl>
+Date: Thu, 18 Jan 2024 07:49:41 +0200
+In-Reply-To: <20240117160748.37682-10-brgl@bgdev.pl> (Bartosz Golaszewski's
+	message of "Wed, 17 Jan 2024 17:07:48 +0100")
+Message-ID: <87mst342dm.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN3P287MB2138:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc58cddb-7249-424d-0a83-08dc17e66966
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	2GG1alpgk52Msh+GtGFo2X4bCTPJmiMMivNv6Ddhi6HDMy2zgmXQHpEh0m+csBUUNgcH+d7MxR7ot5G1FnTCLhvAKL86oVIqYFjueBGQm594JnPtQlm8F8C/mtMvZxrDn2q7TcMVYx765EFqdaALNPf61m0NiPT6VURWhJOlXUHERAgk8O4MnIkSGkKAOECavRhmqDscX6x5my3jHFHVXO49e4Vr/10fzoAJr6hVtdiAWKcuWPBYYivoGzJaIUHe8f+wxkPfY/YXvHUKUUgCB9tTMMkGUZVsFPwDmuZgWE2a2TjWQDw0GLHu0z/xR5jntNVHIEdBGhww8JI2BFj4PhSTSUCvLYxpxmHBSWke6QOsab7C5fGDp4SbQgLTPQ/7x2UoWf8/MUVDQaNNQ+EiLn09mWjqPb3z59t55oywSZYsKwbyk5jwRqWmzGePI7TnBU37ot9gd1+R7IHcJe+O6dYccEWXBQAKdr6L5xL+77SyahxrzAkMPct6w919n1OkWdWDbMcaW3DQ9fhXLnaI3VDgeiEpcV1+BXYkQUIrNlrmdmWQRBFUOJtfesimkoSBqqN7H6cgQg4BONYzzc3hyUwU8HppSTK75amUvlKc1XWVbAkCSy5Lk5OS/nWg+5PZBd5JSuJYQ1cV1gQijE34SQ==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZVFvNWNVclhDaTNWcEpvdERZbjAxSzc4aXFxZmFxdTJJb0QrazBUSE5lL0Uy?=
- =?utf-8?B?TVdOVG1Ga08rcHRKZW45RHFLd0pSN2NteWZtb1hYQnF2VzJ4OGRyajFnd0ZT?=
- =?utf-8?B?aDAvbzRibm14dkYwUzYrRE1TeDNlcCtrYzBKMmZxQjBwdnlSelFIUjMyL2J6?=
- =?utf-8?B?Z1dvK2RQUWdJTksyZ2w0MkI2bDBBWGNPcDJYbjlVUGxzWVIwWlJkUStpOXlj?=
- =?utf-8?B?cVl3aWUvZU9OOE14Vk9JM241Q2hVdVBLb0RtMmVVd09xZXB6Z0JyOWl6Wnc1?=
- =?utf-8?B?Y0pYTUtPVnpyUitPYjRsUWtrZnhhR2E4UHVWdXloci9kTFFGallhUlpoVjhJ?=
- =?utf-8?B?TmNWWEFpNmo3cW1RaEg0SVBIR0Z3RWpndkxSbzVVdHRtY3Fsc0RxdUlZRXJo?=
- =?utf-8?B?L2NvNFJmd2NoMWs0SkZlZXBzOHZkMW5yMmhGNnQzYnhvNWxieXBBUGlUczlQ?=
- =?utf-8?B?d0lNU05zOFVWVnkwYnpTLzVsRC9KUHV0cVVkSHF0WGFWdXBOTkdaUDZoVzdp?=
- =?utf-8?B?K1kvMjlZWXdVL2JxbHNCRnYzdHhHS3VuUmNHZnBjNVVIbXMyakV5bVNvbGc1?=
- =?utf-8?B?aXRVemdVc3ZQSW5RMUdieGJEcXFMV2ViQnV1UWJmemN4M0hybk1UdDgzbjR1?=
- =?utf-8?B?b0YzUW81SEpQV2xDbjh3UWc1N1I0ZG84bFdSOVdPV0oxcFExeGZTdFhhVDFU?=
- =?utf-8?B?R3pIc3BlSGlSVG5Va0NtMEc5TUJmRFdlc3lMWWdBZE0yUmtGTHBON3I1WVJK?=
- =?utf-8?B?NXp6U1l4ZTErR3BZdUR5OXFJU0wrc1lYVkFNUFdNbjNTL28rV0k1S2NxUmZ0?=
- =?utf-8?B?Vno4MTVlc1pUWTZnRHoxcnVjSVZ5c3hLT3Z0T0tBRzJGeFFsZXYwQ3pFcC8z?=
- =?utf-8?B?aEl3dTZlbytEdDl3UHFSa3RuVmFWTGd5YlV3ZGlZZWF5L21iaGF3R0hSV2V0?=
- =?utf-8?B?TFBnV2hhejU5SGN1bURLVmIvaWhITCsxeFMydm9BT29kNkQrNnhmalJxNi9B?=
- =?utf-8?B?a2Z6V1lpYjc1dDgycjBkT0Y2SGxDbTFBa2lBS2piYVN3b21WaFV5VU1mcHRm?=
- =?utf-8?B?M0dVOUM3TVlQdllNQWFHMDAxY1Z2dUxtck9HcGFicCtTMmh5MDM4TVFHQlZ3?=
- =?utf-8?B?VDZzU3ZQUmMrK1FLc09vWVhQd05LNjl4Y3FOV3lSSkxpK1drOEt1MXExRkYr?=
- =?utf-8?B?K1hoajV3NWhOMDdEL1pFczlST1pDU0lNaStwd1N4cDZTcWpHLytHbHo1L0Jt?=
- =?utf-8?B?a0lGQWpFYWtMdUIxK3BSOHd5RFVIUXJldy9WT016cUlGMitzNE9vYzFXdUh3?=
- =?utf-8?B?SWhKUE1iYkxvOXkrQlNIK3RwTWlpTTloUU42emFoR2luZXZnVjlJY2pVTTZL?=
- =?utf-8?B?bHRWSHUyNlZyekM5RHR3K0t0cWp2N214dTBUWXJOV1RsVXlZTUNuSnV5RkxC?=
- =?utf-8?B?TDN2a3l5VVZ2VFk0c0N2NzZZbC9Rc3JHSDkyb21sRjBaZFNhRTBPVmoreXpM?=
- =?utf-8?B?b3pub3RhS0F3Lzc5RWV2K0NCRTlLRkt3TWRlZWlyblN1dWxLOHJlb1E5RXhY?=
- =?utf-8?B?L0dvNHNpcS93VElPK1ZlQ3B0aWhOek0vajNuWkFJRjhXTzNlWk5sQnI0YUo1?=
- =?utf-8?Q?PtNo4IvvrZCwAZQucovlx56cnK4/ugAO23uA+0UtDFTw=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc58cddb-7249-424d-0a83-08dc17e66966
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 05:29:17.9188
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB2138
+Content-Type: text/plain
 
+Bartosz Golaszewski <brgl@bgdev.pl> writes:
 
-On 2024/1/16 19:37, Chen Wang wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 >
-> On 2024/1/16 18:06, Krzysztof Kozlowski wrote:
->> On 16/01/2024 08:21, Chen Wang wrote:
->>> From: Chen Wang <unicorn_wang@outlook.com>
->>>
->>> Add documentation to describe Sophgo System Control for SG2042.
->>>
->>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
->>> ---
->>>   .../soc/sophgo/sophgo,sg2042-sysctrl.yaml     | 46 
->>> +++++++++++++++++++
->>>   1 file changed, 46 insertions(+)
->>>   create mode 100644 
->>> Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml 
->>> b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml 
->>>
->>> new file mode 100644
->>> index 000000000000..7b50bb56b4cf
->>> --- /dev/null
->>> +++ 
->>> b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
->>> @@ -0,0 +1,46 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: 
->>> http://devicetree.org/schemas/soc/sophgo/sophgo,sg2042-sysctrl.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Sophgo SG2042 SoC system control
->>> +
->>> +maintainers:
->>> +  - Chen Wang <unicorn_wang@outlook.com>
->>> +
->>> +description:
->>> +  The Sophgo system control is a registers block (SYS_CTRL), 
->>> providing multiple
->>> +  low level platform functions like chip configuration, clock 
->>> control, etc.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: sophgo,sg2042-sysctrl
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clock-controller:
->>> +    # Child node
->> Drop the comment, it is obvious. It cannot be anything else.
->>
->>> +    $ref: /schemas/clock/sophgo,sg2042-sysclk.yaml#
->>> +    type: object
->> Why isn't this merged here? You do not need the child node really...
->> unless the clock inputs are specific to that clock controller and you
->> will have here more devices? But where are they in such case?
-> I don't see more devices will be included later. It should be ok to 
-> merge them into one.
+> Add a PCI power sequencing driver that's capable of correctly powering
+> up the ath11k module on QCA6390 and WCN7850 using the PCI pwrseq
+> functionality.
+>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> [Neil: add support for WCN7850]
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-hi, Krzysztof,
+Here also: ath12k supports WCN7850, not ath11k.
 
-After some double check, I find we will have more devices in 
-system-control. For example, in the SYS_CTRL area, there is also a 
-section of registers used to control the "General Purpose Interrupt". 
-The pcie controller of sg2042 will use this interrupt controller which 
-is defined in SYS_CTRL, we will add it in later work.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Specifically, the distribution (offset) of registers in SYS_CTRL is as 
-follows:
-
-- 0x0C0 ~ 0x0FC: for some PLL clocks :
-
-- ......
-
-- 0x2E0 ~ 0x30C: for General Purpose Interrupt:
-
-- ......
-
-- 0x368 ~ 0x3FC: For some gate clocks
-
-So it seems that it is still necessary to keep the current child node 
-method, and it will also facilitate future expansion.
-
-What do you think, please feel free let me know.
-
-Thanks,
-
-Chen
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
