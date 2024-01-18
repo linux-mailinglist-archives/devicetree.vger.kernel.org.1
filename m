@@ -1,144 +1,165 @@
-Return-Path: <devicetree+bounces-33045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE51831D85
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:23:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2D06831DA2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:38:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0F121C223EC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:23:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8774B23126
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:37:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E718A2C191;
-	Thu, 18 Jan 2024 16:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E2F02C198;
+	Thu, 18 Jan 2024 16:37:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ej/9Pa+5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ACA325639;
-	Thu, 18 Jan 2024 16:23:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B947E25770;
+	Thu, 18 Jan 2024 16:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705595023; cv=none; b=mxw5Ho+UUjdybnxF1XbEHAunk2TqojqdJb1nelVlipmlPNA8TRaK1d8qqNFD7UktKOl/E2uuwskOxQDIt8jrNqFKQjP9uInpoXavu40CQNlasuryp1DCvH7SfmPk5b/pcBCzQuVzTxLv7kFGGfxf0fWY6JBF+obhViABefM5IEY=
+	t=1705595866; cv=none; b=Z51lSxNLtyQCfKkggQAdhXSAk0OQHDGcolEB0mAzvGp7SJmaxFxLySCFFh3piL5q+oeF0fenKNX+gBsWbKLbPIRO8SzGRWnexXyx7z9h3T7NuBodn7m6j67bxecZf/ZWVDJgCeQQt34rBXZQD1TlcFMLuaeHzQ3XrV2i2tt2j6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705595023; c=relaxed/simple;
-	bh=qKUUpq7MmCfdf2J5CKyKj1so4YJl9z164uDR3Riq3eE=;
-	h=Received:X-Google-DKIM-Signature:X-Gm-Message-State:
-	 X-Google-Smtp-Source:X-Received:Received:Received:X-Received:
-	 MIME-Version:References:In-Reply-To:From:Date:
-	 X-Gmail-Original-Message-ID:Message-ID:Subject:To:Cc:Content-Type:
-	 Content-Transfer-Encoding; b=ZYUGZdoCHDY7dZ5uGgOxcIlbim7SkTzbxZOy8WcdN/9RiBSpPpHFM4B76LcG8Gf2mL6MeDMXLQE6Z5HasZkFFYpBfzhJ3vJG8+RwJF3Y73gp1w3Np2PO81vVSGVN10F/+EfqDjNBBt91t0sMpK3WR3DlGp6UxxJfeXAnu+DnjBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1705595866; c=relaxed/simple;
+	bh=CqRZXXHBP5AumSjroWZ4SDntcmMBc1STE9z4wE3SeYg=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
+	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
+	 To:Cc:References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding; b=qk2dzEWg0c/8q8fVTmZW1MA7xld5RA19fVRM2Bh3bmFVNIHM/527sMxNGAVOOq6JXL7x+3K3z+/guEfPtxEQ7VjS6uFKoZ7UvkCbdw4ar/Ffe9Ax9yAdpDhD2Xh2lqDC/25icQuJoWVaUM8EbyeJx4/NLtnNB756kaXB0Vzb7gI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ej/9Pa+5; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-59883168a83so3637943eaf.2;
-        Thu, 18 Jan 2024 08:23:42 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55a45a453eeso415643a12.0;
+        Thu, 18 Jan 2024 08:37:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705595863; x=1706200663; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KVFO3/auyr2zJ09RykGkElEusljuvXTip3QuV7SQMtI=;
+        b=ej/9Pa+55AwBGTrla1o342fmjOBrAsqQMzdfhqHB1Q1J7NYhInVqBt0k6p3vxszsLt
+         Nan+5sYfzxphHCAiey407PAKfuZTD6h62Bk/J3ntHi2+bWjAUQBaq6ujrh0zgoYqTKlV
+         bgaYSqo6cPoWShNrxhKn1XxpuzAnjEA2mqotnolLFckvzr+ux+tMWFk8k8hsN3wiAoam
+         hCXJHo9MgP9rJpksJBDizeqmkQTw3zxoanUHkTTxFXI74kmFvIsEwRJOyafkrpiRWi74
+         ilWqR61qDUO8Kwjp+ovfcbJ26jsqM5u1wQ9wVqwPzZzXN3Kwrl9mJFOh1vS84hV9z4yg
+         0H5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705595021; x=1706199821;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Si052lwaQIxGIdPAiTDPdKrWDfItm8neDWdgcw4uLug=;
-        b=OKtKg4yW6qcaxMV8Upy2dr8ufsHZQbU6+4ItZdU4/HbfhaiMZvk/tRU55mPIJ6Vauj
-         DJQzhF5kxg8khsJBHF7SGEoaXx1OxIJ+Csz5t5pvN47RZD8lYd8madwbseIPMwdJAotb
-         kwIl1iVZZmwEX7LqxAdZbFJY4YH6nx/wTzvEBAcQbfe+EN3s7kDeY5v+XSdnaHs7GZuz
-         EKiHyoNMRfAz2klUwhoVM3J8DgG2jCmMpjt2XqTczNgUk8CmvFugDtz8ghPoFyjrzubZ
-         ocJI585um1URGeB+hDOSyZjNkRCKTZEdzD08w2vZcWI78KFIgIv6XAVSDEOc2fboxn9D
-         oBlg==
-X-Gm-Message-State: AOJu0Ywhx/NZZSRKqv2SAjSKRGkVXhVHa/jfR7f8uggBKL/i7KBGMKwR
-	6x9UflYxyScpt8N9gAGVoP1BcLqJ1FyRh1v7kBAYXMq4kO3DQaInFp3mMEntsC8=
-X-Google-Smtp-Source: AGHT+IG5OpLj9N6MRZERf9tKjBublm2tKbmkW8OqtHfel5kNHuhm/ZnulimPIeb17pjjb5mfgqSS8w==
-X-Received: by 2002:a05:6359:2f42:b0:176:e7a:2b4 with SMTP id rr2-20020a0563592f4200b001760e7a02b4mr580611rwb.31.1705595021135;
-        Thu, 18 Jan 2024 08:23:41 -0800 (PST)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id j79-20020a819252000000b005ff969b84fcsm156256ywg.116.2024.01.18.08.23.40
+        d=1e100.net; s=20230601; t=1705595863; x=1706200663;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KVFO3/auyr2zJ09RykGkElEusljuvXTip3QuV7SQMtI=;
+        b=hnFp8foAgpGDhWxDyXxb0Xjl0RqaoNtb3qls0UlmP6V3zMRT+kCTNVaZBJRkvvIF2o
+         cx5KL09IAR0WyfT5ZoFb4lBq65VXunMa8/fXIn7Yv5BWV7CDqiLbF/4CpYbO25PN7yK5
+         /Aar0j0ic1WTGC9H4994S4upht6Z8Efr+FeXpAmaL+KhTYFVshmzh8a+Usr96EvkA1fj
+         Nvd+WzTlYEMpnTmMPXUhUhSqYWM1WJ1XvUjrKzNU+yzQNoB6anaU/G+8dnZKG73mfzlg
+         xIwyK6NGf0mUTRpqjkGa068nJWA63AEd0fRaNqZypXD0O39YQVHKGPWvpDEERpcEngNx
+         sIOQ==
+X-Gm-Message-State: AOJu0YxuoKFGXsiW/t+tbV+ijeI4wFmV8mmKzniQs3xVjIZyEWfYdyPJ
+	Cj0GW5HtUKIX7cr6RG+dthji1jU/CaSIA3zv+EOJXR8aKv+9+XiL
+X-Google-Smtp-Source: AGHT+IGmmSj1HFKso+s8SBpt8kTu2SA0tT9uau1LDNDju0OkIf9aqhbm9nL1AdrqqMjc66bTVsmo3w==
+X-Received: by 2002:aa7:cd64:0:b0:55a:380a:fbca with SMTP id ca4-20020aa7cd64000000b0055a380afbcamr464232edb.20.1705595862786;
+        Thu, 18 Jan 2024 08:37:42 -0800 (PST)
+Received: from [192.168.100.74] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id a14-20020a05640213ce00b00559ba291d82sm3322508edx.82.2024.01.18.08.37.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jan 2024 08:23:40 -0800 (PST)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5f3da7ba2bfso117220847b3.3;
-        Thu, 18 Jan 2024 08:23:40 -0800 (PST)
-X-Received: by 2002:a0d:c201:0:b0:5f4:97a:ac87 with SMTP id
- e1-20020a0dc201000000b005f4097aac87mr963234ywd.60.1705595019879; Thu, 18 Jan
- 2024 08:23:39 -0800 (PST)
+        Thu, 18 Jan 2024 08:37:42 -0800 (PST)
+Message-ID: <6a823a1d-262a-4c59-8144-7283dcb5172b@gmail.com>
+Date: Thu, 18 Jan 2024 17:37:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240112200750.4062441-1-sboyd@kernel.org> <20240112200750.4062441-2-sboyd@kernel.org>
- <ZaZtbU9hre3YhZam@FVFF77S0Q05N> <434b21afe1899b1567f3617261594842.sboyd@kernel.org>
- <ZalDM90KoQ2Il0j7@FVFF77S0Q05N.cambridge.arm.com>
-In-Reply-To: <ZalDM90KoQ2Il0j7@FVFF77S0Q05N.cambridge.arm.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 18 Jan 2024 17:23:28 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXkwDA4WAe5qYujeP0sF+h-950GZNkg+6kERr6SSmfz6A@mail.gmail.com>
-Message-ID: <CAMuHMdXkwDA4WAe5qYujeP0sF+h-950GZNkg+6kERr6SSmfz6A@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: Unconditionally call unflatten_device_tree()
-To: Mark Rutland <mark.rutland@arm.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	patches@lists.linux.dev, linux-um@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com, 
-	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, 
-	Frank Rowand <frowand.list@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 5/5] hwmon: Add support for Amphenol ChipCap 2
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20240115-topic-chipcap2-v5-0-0cc7a15aeece@gmail.com>
+ <20240115-topic-chipcap2-v5-5-0cc7a15aeece@gmail.com>
+ <226d3abd-e372-4c66-b2b0-cc86e6a4bb27@sirena.org.uk>
+ <30b9ab0c-f3cb-4b5a-a726-de9f7c61769b@gmail.com>
+ <f5827df7-34fa-4c11-aca9-ecc6c83c512d@sirena.org.uk>
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <f5827df7-34fa-4c11-aca9-ecc6c83c512d@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Mark,
 
-On Thu, Jan 18, 2024 at 4:27=E2=80=AFPM Mark Rutland <mark.rutland@arm.com>=
- wrote:
-> On Tue, Jan 16, 2024 at 05:27:18PM -0800, Stephen Boyd wrote:
-> > Quoting Mark Rutland (2024-01-16 03:51:14)
-> > > On Fri, Jan 12, 2024 at 12:07:44PM -0800, Stephen Boyd wrote:
-> > > > Call this function unconditionally so that we can populate an empty=
- DTB
-> > > > on platforms that don't boot with a firmware provided or builtin DT=
-B.
-> > > > There's no harm in calling unflatten_device_tree() unconditionally.
-> > >
-> > > For better or worse, that's not true: there are systems the provide b=
-oth a DTB
-> > > *and* ACPI tables, and we must not consume both at the same time as t=
-hose can
-> > > clash and cause all sorts of problems. In addition, we don't want peo=
-ple being
-> > > "clever" and describing disparate portions of their system in ACPI an=
-d DT.
-> > >
-> > > It is a very deliberate choice to not unflatten the DTB when ACPI is =
-in use,
-> > > and I don't think we want to reopen this can of worms.
-> >
-> > Hmm ok. I missed this part. Can we knock out the initial_boot_params in
-> > this case so that we don't unflatten a DTB when ACPI is in use?
->
-> Why is that better than just not calling unflatten_device_tree(), as we d=
-o
-> today?
->
-> The cover letter says this is all so that we can run DT tests for the clk
-> framework; why can't that just depend on the system being booted with DT =
-rather
-> than ACPI? We have other tests which are architecture and/or configuratio=
-n
-> dependent...
+On 18.01.24 17:04, Mark Brown wrote:
+> On Thu, Jan 18, 2024 at 04:30:37PM +0100, Javier Carrasco wrote:
+>> On 18.01.24 14:49, Mark Brown wrote:
+>>> On Mon, Jan 15, 2024 at 09:02:25PM +0100, Javier Carrasco wrote:
+> 
+>>>> +static int cc2_enable(struct cc2_data *data)
+>>>> +{
+>>>> +	int ret;
+> 
+>>>> +	if (regulator_is_enabled(data->regulator))
+>>>> +		return 0;
+> 
+>>> This is generally a sign that the regulator API usage is not good, the
+>>> driver should not rely on references to the regulator held by anything
+>>> else since whatever else is holding the regulator on could turn it off
+>>> at any time.  If the driver did the enable itself then it should know
+>>> that it did so and not need to query.
+> 
+>> The driver handles a dedicated regulator, but I wanted to account for
+>> the cases where the attempts to enable and disable the regulator fail
+>> and keep parity. If the disabling attempt fails, will the regulator not
+>> stay enabled? In that case, an additional call to regulator_enable would
+>> not be required, right?
+>> That is the only reason I am using regulator_is_enabled(), but maybe
+>> things don't work like that.
+> 
+> With exclusive use you can get away with this, you should have a comment
+> for that case though.
+> 
+I will add a comment to clarify it.
+>>>> +	ret = regulator_enable(data->regulator);
+>>>> +	if (ret < 0)
+>>>> +		return ret;
+>>>> +
+>>>> +	/*
+>>>> +	 * TODO: the startup-delay-us property of the regulator might be
+>>>> +	 * added to the delay (if provided).
+>>>> +	 * Currently there is no interface to read its value apart from
+>>>> +	 * a direct access to regulator->rdev->constraints->enable_time,
+>>>> +	 * which is discouraged like any direct access to the regulator_dev
+>>>> +	 * structure. This would be relevant in cases where the startup delay
+>>>> +	 * is in the range of milliseconds.
+>>>> +	 */
+>>>> +	usleep_range(CC2_STARTUP_TIME_US, CC2_STARTUP_TIME_US + 125);
+> 
+>>> Note that the regulator startup delay is the time taken for the
+>>> regulator to power up so if the device needs additional delay then that
+>>> will always need to be in addition to whatever the regulator is doing.
+> 
+>> What I mean by that is that the device cannot be ready until the
+>> regulator powers it up (obvious) plus the start up time of the device
+>> itself once it gets powered up. So if a regulator takes for example 1 ms
+>> to power up, the sleep function could (and should) wait for 1 ms longer.
+> 
+> No, the sleep function should do nothing of the sort - if any delay is
+> neeeded for the regulator it will be handled as part of enabling the
+> regulator.  This is not exposed to client drivers because it is
+> transparent to them.
+That sounds great. Then there is no need for the comment altogether and
+the TODO will go away.
 
-There is definitely a merit in running (platform-independent) DT tests
-on any platform, whether the platform actually uses DT to boot or not.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Thank you again and best regards,
+Javier Carrrasco
 
