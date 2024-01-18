@@ -1,107 +1,236 @@
-Return-Path: <devicetree+bounces-33068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23EDA831F2B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 19:37:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F85831F3C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 19:49:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0D96289D18
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 18:37:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5FD4AB2399A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 18:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5772D638;
-	Thu, 18 Jan 2024 18:37:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8921B2E3E8;
+	Thu, 18 Jan 2024 18:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="T1tN/aj+"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="RF1atSkW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F482D797;
-	Thu, 18 Jan 2024 18:37:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22EB51E4A9;
+	Thu, 18 Jan 2024 18:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705603029; cv=none; b=R0qseoOojybk3E8qn5EbYDJrjn99cw+/qpvQzDQkRHjyy4lmr/XdFRVmeZ64avq3XY2h7duI/kUZa1F2f4B3/Xhs1ZSWFL6Utr/1r56J4mwxOjWCe632hUNLOPr6BQjUql71kE6yUHFOa67Zwu7nXL/mvrxTlSpAKed1x74w+YU=
+	t=1705603741; cv=none; b=gsUZGu7MYyatwuoKswRHBE+AdS4yb6EHXgcXfvzNpo1nDuCloCQCrf/Nx31iNuPmzcMqEIt507vwfEN6rOPBiIsySbu0bqjbiTiWM61LlHTQYa4brwamE1rhER2WXHay+2hGkVsLiIpUUDcnLLs/vq/kZk7DCMVyxR+wboJKEak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705603029; c=relaxed/simple;
-	bh=B12x5CU3LJAATEvwezybaFPvAgE1iCNB0PAo3tZON0Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=gpTGdWjtM6DU3iT/v53Krqfzr6RI2nu7xSyyRWkDVOE2XMPsKr0hjYFp69MNaZjRCedJszuBjJuO4HmFeIYXy9wtYz8OybCp0o4Hijsp3OawNksIERJxgdPjCouMuEnv3S55skp8I+vlr0Yk0wvZu5SgL3M3mjIfY0IiVfcwHvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=T1tN/aj+; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705603026;
-	bh=B12x5CU3LJAATEvwezybaFPvAgE1iCNB0PAo3tZON0Y=;
-	h=Date:From:To:Cc:Subject:From;
-	b=T1tN/aj+jOtqsSFJBIUGFabkBd+Gj6AIapWW+uI7ctwXpcFOY3P9CrOYWSsAWR0wQ
-	 rAgdU8RV7LFieTsYwb5lhSKh64lF8XybTXPoepaFemc4CBuvwgPh7Xg/ROd3IDKcdK
-	 vkHOhW46eH4DXdOBCX3DRgjKckb7VYvaYfQcXYi+cJ4MMrC3fWnuMakG2MB9XF8x0Q
-	 fKx0fK2REDa0nGx2arEVJjLNAUqpAMpl6YUTVx6FE+2sbLOngGffeCWasFLlJdls9x
-	 bKqXovIjuuw9l1E/+w5Ow7Bc0mB9xHlGWyHATrTZ92aJ2oGav87yvE66XP6FpJTgur
-	 Hh3/ytjo04XHw==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EFFA83782079;
-	Thu, 18 Jan 2024 18:37:02 +0000 (UTC)
-Date: Thu, 18 Jan 2024 15:36:30 -0300
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Chunfeng Yun <chunfeng.yun@mediatek.com>,
-	Chen-Yu Tsai <wenst@chromium.org>
-Subject: Probe failure of usb controller @11290000 on MT8195 after
- next-20231221
-Message-ID: <9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano>
+	s=arc-20240116; t=1705603741; c=relaxed/simple;
+	bh=JQjiFVULmEML58lsdDXgZq1OZra7IlxMDt66yWR6Em4=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=pwDL+oDMh8ex1P5SFElUVfZylhRbhtdx2fMsnzsGuQ4gNfRTkoq/mTZLTstyxeWfeUfJdVK6DpwpqLmtlm6dbdQHWM3j7JB0m8j81g1FE+vv5kZXLwqAfiMfisTgHeD8pKkLgBfnk2/4kkOOxtcHYIkEPKdxvf7CPjlbLHnzyi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=RF1atSkW; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1705603735;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/hihwF0J7BfIK6RvrjCa3XMzS4nEYJZcotMhLsDWzew=;
+	b=RF1atSkW9W7u05pqa5iEaev9NFGTGqziTJruMnSh+9Qs1daCAJVliDKQZlmee4KItbtvKn
+	BR7CQVW8wNXgtOLjtEMjCV7ZCPv/e7XXTyXc3Ijx5E84tAuhRahtXqMb76Oe7cBmCrZIps
+	5wDLXf8GlPpnTNT3w5fK9JEJDYRQWbB7JiHsPy+lHDWr81JF6AKjFwnaXXclZ/UcbPAqud
+	yjm8dR3/Fkv0RaZ4hUvcycXC6Hj7LFxQdMlqNwPpc0cAQ8wlKhzHFfgXMkCc6myZXO+6+U
+	HFOE46VYX/n0xWIZYI5w0IlzQMK3KmBemVjw5my1wTLUaxXM+Jvy7XpScmPylg==
+Date: Thu, 18 Jan 2024 19:48:52 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel
+ <sebastian.reichel@collabora.com>, Cristian Ciocaltea
+ <cristian.ciocaltea@collabora.com>, Christopher Obbard
+ <chris.obbard@collabora.com>, =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?=
+ <szucst@iit.uni-miskolc.hu>, Shreeya Patel <shreeya.patel@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>, Chris Morgan
+ <macromorgan@hotmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: enable built-in thermal monitoring
+ on rk3588
+In-Reply-To: <CABjd4Yw5wTLyK5OPw2S-ipPVCw7RTUeF2J0RgH-Vyis-ng8rTw@mail.gmail.com>
+References: <20240106222357.23835-1-alchark@gmail.com>
+ <e0302da12345e5539583b2c96d747592@manjaro.org>
+ <CABjd4Yw5wTLyK5OPw2S-ipPVCw7RTUeF2J0RgH-Vyis-ng8rTw@mail.gmail.com>
+Message-ID: <d7f2f25071a4d7c72bd286b11836dce7@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi,
+On 2024-01-08 14:41, Alexey Charkov wrote:
+> Hello Dragan,
 
-KernelCI has identified a failure in the probe of one of the USB controllers on
-the MT8195-Tomato Chromebook [1]:
+Hello Alexey! :)
 
-[   16.336840] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
-[   16.337081] xhci-mtk 11290000.usb: xHCI Host Controller
-[   16.337093] xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
-[   16.357114] xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
-[   16.357119] xhci-mtk 11290000.usb: can't setup: -110
-[   16.357128] xhci-mtk 11290000.usb: USB bus 5 deregistered
-[   16.359484] xhci-mtk: probe of 11290000.usb failed with error -110
+I apologize for my delayed response.  It took me almost a month to
+nearly fully recover from some really nasty flu that eventually went
+into my lungs.  It was awful and I'm still not back to my 100%. :(
 
-A previous message [2] suggests that a force-mode phy property that has been
-merged might help with addressing the issue, however it's not clear to me how,
-given that the controller at 1129000 uses a USB2 phy and the phy driver patch
-only looks for the property on USB3 phys.
+> Thanks a lot for your review and comments! Some reflections below.
 
-Worth noting that the issue doesn't always happen. For instance the test did
-pass for next-20240110 and then failed again on today's next [3]. But it does
-seem that the issue was introduced, or at least became much more likely, between
-next-20231221 and next-20240103, given that it never happened out of 10 runs
-before, and after that has happened 5 out of 7 times.
+Thank you for your work and for your detailed response.  Please see my
+comments below, which apply to your v2 submission as a well, to which
+I'll respond separately a bit later.
 
-Note: On the Tomato Chromebook specifically this USB controller is not connected
-to anything.
+> On Sun, Jan 7, 2024 at 2:54â€¯AM Dragan Simic <dsimic@manjaro.org> wrote:
+>> On 2024-01-06 23:23, Alexey Charkov wrote:
+>> > Include thermal zones information in device tree for rk3588 variants
+>> > and enable the built-in thermal sensing ADC on RADXA Rock 5B
+>> >
+>> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+>> > ---
+>> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> > b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> > index 8aa0499f9b03..8235991e3112 100644
+>> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> > @@ -10,6 +10,7 @@
+>> >  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+>> >  #include <dt-bindings/phy/phy.h>
+>> >  #include <dt-bindings/ata/ahci.h>
+>> > +#include <dt-bindings/thermal/thermal.h>
+>> >
+>> >  / {
+>> >       compatible = "rockchip,rk3588";
+>> > @@ -2112,6 +2113,148 @@ tsadc: tsadc@fec00000 {
+>> >               status = "disabled";
+>> >       };
+>> >
+>> > +     thermal_zones: thermal-zones {
+>> > +             soc_thermal: soc-thermal {
+>> 
+>> It should be better to name it cpu_thermal instead.  In the end, 
+>> that's
+>> what it is.
+> 
+> The TRM document says the first TSADC channel (to which this section
+> applies) measures the temperature near the center of the SoC die,
+> which implies not only the CPU but also the GPU at least. RADXA's
+> kernel for Rock 5B also has GPU passive cooling as one of the cooling
+> maps under this node (not included here, as we don't have the GPU node
+> in .dtsi just yet). So perhaps naming this one cpu_thermal could be
+> misleading?
 
-[1] https://linux.kernelci.org/test/case/id/659ce3506673076a8c52a428/
-[2] https://lore.kernel.org/all/239def9b-437b-9211-7844-af4332651df0@mediatek.com/
-[3] https://linux.kernelci.org/test/case/id/65a8c66ee89acb56ac52a405/
+Ah, I see now, thanks for reminding;  it's all described on page 1,372
+of the first part of the RK3588 TRM v1.0.
 
-Thanks,
-Nícolas
+Having that in mind, I'd suggest that we end up naming it 
+package_thermal.
+The temperature near the center of the chip is usually considered to be
+the overall package temperature;  for example, that's how the 
+user-facing
+CPU temperatures are measured in the x86_64 world.
+
+>> > +                     trips {
+>> > +                             threshold: trip-point-0 {
+>> 
+>> It should be better to name it cpu_alert0 instead, because that's what
+>> other newer dtsi files already use.
+> 
+> Reflecting on your comments here and below, I'm thinking that maybe it
+> would be better to define only the critical trip point for the SoC
+> overall, and then have alerts along with the respective cooling maps
+> separately for A76-0,1, A76-2,3, A55-0,1,2,3? After all, given that we
+> have more granular temperature measurement here than in previous RK
+> chipsets it might be better to only throttle the "offending" cores,
+> not the full package.
+> 
+> What do you think?
+> 
+> Downstream DT doesn't follow this approach though, so maybe there's
+> something I'm missing here.
+
+I agree, it's better to fully utilize the higher measurement granularity
+made possible by having multiple temperature sensors available.
+
+I also agree that we should have only the critical trip defined for the
+package-level temperature sensor.  Let's have the separate temperature
+measurements for the CPU (sub)clusters do the thermal throttling, and
+let's keep the package-level measurement for the critical shutdowns 
+only.
+IIRC, some MediaTek SoC dtsi already does exactly that.
+
+Of course, there are no reasons not to have the critical trips defined
+for the CPU (sub)clusters as well.
+
+>> > +                                     temperature = <75000>;
+>> > +                                     hysteresis = <2000>;
+>> > +                                     type = "passive";
+>> > +                             };
+>> > +                             target: trip-point-1 {
+>> 
+>> It should be better to name it cpu_alert1 instead, because that's what
+>> other newer dtsi files already use.
+>> 
+>> > +                                     temperature = <85000>;
+>> > +                                     hysteresis = <2000>;
+>> > +                                     type = "passive";
+>> > +                             };
+>> > +                             soc_crit: soc-crit {
+>> 
+>> It should be better to name it cpu_crit instead, because that's what
+>> other newer dtsi files already use.
+> 
+> Seems to me that if I define separate trips for the three groups of
+> CPU cores as mentioned above this would better stay as soc_crit, as it
+> applies to the whole die rather than the CPU cluster alone. Then
+> 'threshold' and 'target' will go altogether, and I'll have separate
+> *_alert0 and *_alert1 per CPU group.
+
+It should perhaps be the best to have "passive", "hot" and "critical"
+trips defined for all three CPU groups/(sub)clusters, separately of
+course, to have even higher granularity when it comes to the resulting
+thermal throttling.
+
+>> > +                                     hysteresis = <2000>;
+>> > +                                     type = "critical";
+>> > +                             };
+>> > +                     };
+>> > +                     cooling-maps {
+>> > +                             map0 {
+>> > +                                     trip = <&target>;
+>> 
+>> Shouldn't &threshold (i.e. &cpu_alert0) be referenced here instead?
+>> 
+>> > +                                     cooling-device = <&cpu_l0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> 
+>> Shouldn't all big CPU cores be listed here instead?
+> 
+> I guess if a separate trip point is defined for cpu_l0,1,2,3 then it
+> would need to throttle at 75C, and then cpu_b0,1 and cpu_b2,3 at 85C
+> each. Logic being that if a sensor stacked in the middle of a group of
+> four cores shows 75C then one of the four might well be in abnormal
+> temperature range already (85+), while sensors next to only two big
+> cores each will likely show temperatures similar to the actual core
+> temperature.
+
+I think we shouldn't make any assumptions of how the CPU cores heat up
+and affect each other, because we don't really know the required 
+details.
+Instead, we should simply define the reasonable values for the 
+"passive",
+"hot" and "critical" trips, and leave the rest to the standard thermal
+throttling logic.  I hope you agree.
+
+In the end, that's why we have separate thermal sensors available.
 
