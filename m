@@ -1,232 +1,187 @@
-Return-Path: <devicetree+bounces-33006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48438831BED
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:01:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85386831BFC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:07:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC75C284D29
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 15:01:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1587B222BA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 15:07:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F9401E495;
-	Thu, 18 Jan 2024 15:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DB21DA39;
+	Thu, 18 Jan 2024 15:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="mOz2tg6b"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hjk1SxoK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2074.outbound.protection.outlook.com [40.107.8.74])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC4039B;
-	Thu, 18 Jan 2024 15:01:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.74
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705590096; cv=fail; b=T322AErdM5YhlmmbihmJuVLQiZOwmVX3PQLKhW0Lbw8580M9UYO5L3BbuflROEnHli1t9n3P2r0bZXuDqzvkxhIOS4R9HMz1aYK5VNfX4c4Jz3Q9zOBioHMVlYj3yRFKwovZOhywaV+MWQg/xbygNU7QD1ILFrNYcdN/sstHifQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705590096; c=relaxed/simple;
-	bh=4HtGUIYWHi5XW9P6QpsQ5JUoEBMkTUkJpK92mCtE2XI=;
-	h=ARC-Message-Signature:ARC-Authentication-Results:DKIM-Signature:
-	 Received:Received:From:Date:Subject:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:X-B4-Tracking:To:Cc:X-Mailer:
-	 X-ClientProxiedBy:MIME-Version:X-MS-PublicTrafficType:
-	 X-MS-TrafficTypeDiagnostic:X-MS-Office365-Filtering-Correlation-Id:
-	 X-MS-Exchange-SenderADCheck:X-MS-Exchange-AntiSpam-Relay:
-	 X-Microsoft-Antispam:X-Microsoft-Antispam-Message-Info:
-	 X-Forefront-Antispam-Report:
-	 X-MS-Exchange-AntiSpam-MessageData-ChunkCount:
-	 X-MS-Exchange-AntiSpam-MessageData-0:X-OriginatorOrg:
-	 X-MS-Exchange-CrossTenant-Network-Message-Id:
-	 X-MS-Exchange-CrossTenant-AuthSource:
-	 X-MS-Exchange-CrossTenant-AuthAs:
-	 X-MS-Exchange-CrossTenant-OriginalArrivalTime:
-	 X-MS-Exchange-CrossTenant-FromEntityHeader:
-	 X-MS-Exchange-CrossTenant-Id:X-MS-Exchange-CrossTenant-MailboxType:
-	 X-MS-Exchange-CrossTenant-UserPrincipalName:
-	 X-MS-Exchange-Transport-CrossTenantHeadersStamped; b=MQ+3INi922RAZEvfUHVihgqOYSaH1w3Jbnz3ybDxw7nu4JSiGE4ZJb1nsYkVfObdZrzoPDY6B4az/4Pmekxa+tFGBnIU1nofwSBPIYuHLZgVdpw70cJpwgyuMHN/fQMHBgLZ5mAlYBlBhIgDtnK8yRsy19L5e72FtxIUpgbePrA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=mOz2tg6b; arc=fail smtp.client-ip=40.107.8.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bywqv2pCDPKus3gpfHBdl9igNZOY+hCw7UU8txI+Mw5FyhKSaCobJIRxEkONDVTdfHAfDnORKeNbFwHfSL2/ZEudfV5P1Hd+n9ws0SukT0RTNYSQgSKloGBLoLghrYYj+MENObz088l3NrikH/tFLhQM1vGPmWCKH5zltIUqAhZLUA7JvrzcTX8mcM/wZjqaMLjdxJJPcV1ChZKaclzTYlMkSSoI7e7gAJSXHj9dhp9Q0UIrewdPRBsdFNgmmaWHxsmAbo7V2cbTJqka5YMUtcdj7RpFVNzT7j1GONcct3POGlrlBjm88F1k+uedJJoube4WybDPHw8OHHz/Fq0qGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rSL13OySgps+fz6qHc7H95AzCwGqwCdrvTQ6XAjwsYU=;
- b=DhSJqzlUD0qPzuz7OLNtcNfU4k8GRVdLhYZsbxwYrtJGPB+j0bL+0+ZEi05ZyLoArp3l0Vwr3KJtfKjAwyveJluXnD9q+tcZy1AwRgaTQ3ChMacmyS9sZ9ZjOvADF2fbaMK7uSHcbbo624GSNEL1XDSvLq+yrAaEICkJVBTRyQzqB9jjJdU0RH1ounXSm+f1DcPckghM8pcMt0WDPsnhgXonhJt79N2bsBQHNzYWJCZl3cVK45R3RJ3/vJzqg6dMckUVL7bS+19+IvuwgvAzrnQ3fYSCvKFJLc6lM6GAOuMQUkd3jX02ct6RmVnb1TzIjl0jEu4CvyI41EZ845vWHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rSL13OySgps+fz6qHc7H95AzCwGqwCdrvTQ6XAjwsYU=;
- b=mOz2tg6blVFMZ69L70ZPhxVVb5ITSEeu0qmg0I6hfIOMj7qrE8WIBlE3c8TqdOw2428awVMSqgHQ6vBrGr6vSjhl0sQqxZgaVisqR6R4fTNc2CTE+WE9fpPO7baaS8AtPhVhFCzmxL975lywSeLOY/QvVl+1IENlI/Fzj2fMVGI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=solid-run.com;
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
- by PAXPR04MB8752.eurprd04.prod.outlook.com (2603:10a6:102:20e::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.23; Thu, 18 Jan
- 2024 15:01:29 +0000
-Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::1ca2:718f:8566:763e]) by AS8PR04MB8963.eurprd04.prod.outlook.com
- ([fe80::1ca2:718f:8566:763e%4]) with mapi id 15.20.7202.024; Thu, 18 Jan 2024
- 15:01:29 +0000
-From: Josua Mayer <josua@solid-run.com>
-Date: Thu, 18 Jan 2024 16:01:10 +0100
-Subject: [PATCH] ARM: dts: imx6qdl-hummingboard: Add rtc0 and rtc1 aliases
- to fix hctosys
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240118-imx6-hb-primary-rtc-v1-1-81b87935c557@solid-run.com>
-X-B4-Tracking: v=1; b=H4sIADU9qWUC/x3MQQqAIBBA0avIrBtQkYquEi0sp5qFFWNEEd49a
- fkW/7+QSJgSdOoFoYsT71uBqRRMq98WQg7FYLV12pgWOd41riMewtHLg3JOqF0TXDOHmryHUh5
- CM9//tR9y/gBqbKWBZQAAAA==
-To: Russell King <linux@armlinux.org.uk>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: Yazan Shhady <yazan.shhady@solid-run.com>, 
- Jon Nettleton <jon@solid-run.com>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: FR3P281CA0083.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1f::21) To AS8PR04MB8963.eurprd04.prod.outlook.com
- (2603:10a6:20b:42e::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA4AB219ED;
+	Thu, 18 Jan 2024 15:07:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705590456; cv=none; b=QTuvDK9VPpF4fyhi99p/mZTEMxIJL3cqZkEmFeZ2GI+SHtsBaPqSmsKMQPLsuL4v1ec7YMCUF8L1utoskGlzxAekg363qF9uE2gXe2af30Q8SXf91rF12TnZwL+xZaI+LGMUOhg/kmUBxT+48ouT180ADDQKgQWDc9nhJdFwyzI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705590456; c=relaxed/simple;
+	bh=4tB02AMUBJK7rHcK/xsmatsNFewXliZ/lexSfh8yP5s=;
+	h=Received:DKIM-Signature:Received:Received:Received:Received:
+	 Message-ID:Date:MIME-Version:User-Agent:Subject:To:CC:References:
+	 Content-Language:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy:
+	 X-Proofpoint-Virus-Version; b=QnXIcnCA6eIxmuSOP76MOUoIxAaaUkk7GdIr4HlS+gBis+duksKdB8EWCWMNrBW3xnQccpF/bCf4DW1vW4i5TW3mCXbp+ZWCYsnVWUp6BXn6Mac+i0aIiLPVg+dLbaLo+iAPRRQQQDhJIXIGPqG069ecPB6wnlOz3/QnMIgJZMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hjk1SxoK; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40I9TAE3019271;
+	Thu, 18 Jan 2024 16:07:00 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=vFS8aLbSD8UDCY9TOifRYsHJeeKAdBfSeHqJo15h+XE=; b=hj
+	k1SxoKdho21gk5m3VLBVzAdy/FjHWE056pqHiLzLfWpZCEIISMzeVSPZhyJlXSiK
+	T/iztAfeC+pDsEG+RaIJoWcktjKHTYxyAUA0EIhUtASSdY75fF9KpcHuIeyxptz5
+	yNAuIju3xlnz9AcuobI8TDbHzwsgxoS7H98pUzvnLYg+zEI5Lf4Y/veWxCxK2uyF
+	BX0C++Lc944BDb2KJlnE7hkQ3MVNb25g86Xp0z7hwlqvr/GL0PpwkGPp6J4CijY2
+	5HRlyijy2SIXx04MfgCX56XRrNvT+tkVzqwOhvI92fdJrQU9ZuMKV5BF50/OhoFJ
+	jGlD2Vu+KM3saGZbQ+aw==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vkmfyssw3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 18 Jan 2024 16:07:00 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E3CB110007D;
+	Thu, 18 Jan 2024 16:06:57 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D222322FA3A;
+	Thu, 18 Jan 2024 16:06:57 +0100 (CET)
+Received: from [10.129.178.37] (10.129.178.37) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 18 Jan
+ 2024 16:06:57 +0100
+Message-ID: <23be859d-e757-4b59-b4ca-acf9b4dd1f9e@foss.st.com>
+Date: Thu, 18 Jan 2024 16:06:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8963:EE_|PAXPR04MB8752:EE_
-X-MS-Office365-Filtering-Correlation-Id: 22138f2f-75fc-49f5-df35-08dc183659ef
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	HlOun0LN4dKnrqV1Opnh/sdPpkp5OU2ps0/0kD9NiHYACtKHrj++noZNEG/U9SW/Hv9LYdo+2Vg+W19e3lWUu4kvvmnPC56RWdEHhY9ZftKUGSgfadqizPczhIQhDFiVByeSaumpQIAsZZAY9Nk0rcqn4Z5FjrV8jy0VcrifLBdecZRTdiPfIN2Xvq8XeaOxacHEjXVB1JS+j6EiQX9cOAtWEWoqrPIMjidfJpOXdqakDjHdRNBvYx0Ke3D8jvUGqO4zM2ZzhCV9PD9HSdq/Eoav23+Ia/pTmGbaLXISMJFCe4lneaHnb9F8bWZrIYkkMA2z0/FCGOWYUCEATfakdm1XKvDM/lz+jTaXS39d9mDwCcp+jstwzHvD9jux2I3D88/O9vGaWggaa/VCsDTptANYV8LRsxclcdHt4zVYmPlgvpugYIdVSH9/xfdNZBy2zwozkz9QOXAfABcx31wYdYT1dUukXfSAXvWS9M3Yu+w6u/gPvibThlKWGEZbHLZUvbPgacvaziANROO/s+08PBraPn7jhQjLFtFz37VmqXOc/OQgsQvLeooSWT86K5q784aLH106/fcoeTk67rqt6L/4gqmwnMNSy1kBbGWtZLSoLluoMV9Ci2dvTS3AKK52mBPXu5BCnBfXNI3hB7pgIw==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(39840400004)(396003)(136003)(376002)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(8676002)(8936002)(5660300002)(4326008)(66946007)(7416002)(66556008)(316002)(66476007)(2906002)(107886003)(26005)(54906003)(2616005)(38350700005)(86362001)(36756003)(110136005)(6506007)(6512007)(6666004)(6486002)(478600001)(52116002)(41300700001)(38100700002)(83380400001)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Z0NHZ3grelVBT3R0SThMLzNwWkNONkVZNTZoN3Qwd09YakZSdjk2YnB6V0Mw?=
- =?utf-8?B?TkxqL3ZLVXFtR3VJOVY2T2VlNWs1VXMrZkczUmRNOFF5N2lESWl4Z09uZkFR?=
- =?utf-8?B?eTN2cVkyQ0NRb0JJR1FHNVhIKzNHcHJZcmdKallkdmxXbTR6bTBBQlFrUjE0?=
- =?utf-8?B?UnpvUXoxUHozSDBUZGFTVWtodlhZUWxoMXN5aHdjNGh3aWtnZzZScmxqYmp6?=
- =?utf-8?B?YjZNR0svdG1YbWgzUDEyQlJ6RTlhNFpMcUhLYkdTeGNFc1NmMzVVYlNJQy9M?=
- =?utf-8?B?VUw3L01udSsyYmNjTCt0Zlg0RzNDMzNxMjAzNnRzZGwxNVVFVmJKNGZDbTVK?=
- =?utf-8?B?WGcrLzVCbjNMaks5UFBiQnhrL0hYaEZCSzJIK01HOWI0Nm91U1daTXE0dnNE?=
- =?utf-8?B?UXZvbzNXbENKTkJsbm5iUmZRN0hodnhYOTRWMTRyQVJiS00rblhqNmUydXU0?=
- =?utf-8?B?VWMwS2pHeTVMWFpSbGtrcWdvd2JQT2FUcUs4cnVLdUZJRFhKWUpudHNGMWwv?=
- =?utf-8?B?eWdmRDBGVEtPMkNtQnhudVJ6RFg4YnRDQW5BeE1tZEI1QlBkbzY4REZja1Vo?=
- =?utf-8?B?dXlvdFlEL1B1NGZnRVV4aTZTOVM4MzZOd2YvWlg4TEJOQTI4THFOemZiMVNw?=
- =?utf-8?B?ZUdreW1VZ0Y3eFR5cDB2YStabFludURPTUdWQTAzZytjVlptcGw0QXh2SlJQ?=
- =?utf-8?B?bEdwdVNaT2ZKcHVmRUMvS3pJZUZSQWlWeStFd3Vja0ttWlJUT3dTZkpBb3ZW?=
- =?utf-8?B?Zmcra0dVNnJxVlpSMm40aEpldHcyYWRjenRzVTFvTUNmR2tmUGxxaVovelB3?=
- =?utf-8?B?MDQxQ2xFT1V5U2twWEYwa0J0SHkrMTk4SzFnWEc4RXVoT2piRWF3Z2tYWmJx?=
- =?utf-8?B?YjM4c2NPWlZoQ29VOGFkNEN5a2N6R3NHNTV2T2d2bmREb0UvOUN0SzBJdS9B?=
- =?utf-8?B?Wk1GYU9lLzd5T2ppMEM5eUF3NzVpa2RzSXZhRDdjMHI5NWJOZ3B6MVRSNTVD?=
- =?utf-8?B?Y1JRWGd4K3V6WGo3eFhJdkFDcE9EM081YTZBUWtKZTZBdmlXVW85aWU1OGVw?=
- =?utf-8?B?UngzM2kxK0RXY1VPdXRUUFVKdExFd3FJRTB2SThHN3BoSnFzYnp0SXNoanNB?=
- =?utf-8?B?My9Tbi9LUjZaZ2hyM0dHZ3BlMTNCTGJ0MWVIWUFPeEZjeGJhcWpQVmU4TWor?=
- =?utf-8?B?RVBVdVVrcHFkU2Rtd3ZPcFA3MEtIc3lodjd6dG1BRXNDN1hJZFhpdDFJT21y?=
- =?utf-8?B?SC9DMFRTRENHUUpHOURQVGYzbzc3OUZVTFZSVlYxanlPTXdHY09jUEJEZk9F?=
- =?utf-8?B?UUtZNlYwWWRJamxyOGF2eFYwRklwU0F3Y04xVE96VVZKWXpMZWxPNjhaWFIr?=
- =?utf-8?B?Wm1TVUtRaGQwT0Y5MkZEeG1CTE1DbkhQRldOSzN5WndDc1lRelk0UFNEWTE0?=
- =?utf-8?B?WUtwQTRqNzI2eDN2Q2tMYjlVTTNSRFUrNGplcW1NNG1TNmV6cWdqWjBhdXds?=
- =?utf-8?B?U2VUbTM1MHBoM2xFSWZrTk1LczFCTFBMeTJVaGtNSHhyY3hlK0d4Uk1CWG0w?=
- =?utf-8?B?TXNleEhVWWN4SkgvMHd3bkRSeWJzVzN4V3hldGZLSUw2RGg1eFFjV01GSkdh?=
- =?utf-8?B?OVZNUjQ4QlZMcGR4eXNDQU1HMTBnQ1c0NytYTjZ6OVJlUVdwMnpCazdTYlhN?=
- =?utf-8?B?Rys5ck9rdkFqMDZqNmJiVEZZa3hQM013RXVhN2RraDNtMmViZFdkS1J4YTI3?=
- =?utf-8?B?ZHVvNVdEVnRXcXNLei8xcHpMOWsxNm9UZUJ6Yk1mVWFjWGJFbnRtSWdtQmE4?=
- =?utf-8?B?MzlJNFBSbTN2dFlYT0Y4VDB1YXdOZTBYM1hNc0VYR2hqRWYxVFQrR3Z1Q3U3?=
- =?utf-8?B?REIxS3J4bStJUDlMTzY0Z2NoNXFINGV2THVrMlNzVE1PVzNYOHYwUEpjRHZD?=
- =?utf-8?B?dVRvZGJTeklJai9VK2RjeGxmWkxnbVRFaXZHaC96U01mZzNHY3hWTGhFNm5U?=
- =?utf-8?B?UHFHUW8zUFdWRGU0bTF4VG80Z1REZ01Xd1dIcTJVL3BXNDdUN3ZOTXliMkdu?=
- =?utf-8?B?Ykg0OVJCWGM0K3ZRbUVPbkl2cEpSb21XeXhwNEFBODRnNHFPWVJqdnBMMTNC?=
- =?utf-8?Q?DiZ/BtrZDwaSsgzRQ3VMZUTp4?=
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22138f2f-75fc-49f5-df35-08dc183659ef
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2024 15:01:29.7788
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 69XVKPZ0Xt5I9dHfS9ybRnHeldhpma1F4Y2Uf5air8qUi+IYWS4nZzCCkVvHNyra5eU/9guhVtYoX/W5dwcnmA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8752
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] dt-bindings: display: add dt-bindings for STM32
+ LVDS device
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>
+CC: Yannick Fertre <yannick.fertre@foss.st.com>,
+        Philippe Cornu
+	<philippe.cornu@foss.st.com>,
+        David Airlie <airlied@gmail.com>, Daniel Vetter
+	<daniel@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240115132009.101718-1-raphael.gallais-pou@foss.st.com>
+ <20240115132009.101718-2-raphael.gallais-pou@foss.st.com>
+ <20240115154659.GA815331-robh@kernel.org>
+ <3479c5d7-a9c3-40cf-a415-b8324f160ec7@foss.st.com>
+ <e42818b2-8826-48f8-b9bd-35cbf464a08f@linaro.org>
+Content-Language: en-US
+From: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+In-Reply-To: <e42818b2-8826-48f8-b9bd-35cbf464a08f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-18_08,2024-01-17_01,2023-05-22_02
 
-HummingBoard has two RTCs, first integrated within SoC that can be used to
-wake up from sleep - and a second on the carrier board including back-up
-battery which is intended for keeping time during power-off.
 
-Add aliases for both, ensuring that the battery-backed clock is primary
-rtc and used by default during boot for restoring system time.
+On 1/16/24 08:42, Krzysztof Kozlowski wrote:
+> On 15/01/2024 17:51, Raphael Gallais-Pou wrote:
+>> On 1/15/24 16:46, Rob Herring wrote:
+>>> On Mon, Jan 15, 2024 at 02:20:04PM +0100, Raphael Gallais-Pou wrote:
+>>>> Add "st,stm32mp25-lvds" compatible.
+>>>>
+> A nit, subject: drop second/last, redundant "dt-bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>
+>>>> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+>>>> ---
+>>>> Depends on: "dt-bindings: stm32: add clocks and reset binding for
+>>>> 	    stm32mp25 platform" by Gabriel Fernandez
+>>>>
+>>>> Changes in v3:
+>>>> 	- Clarify commit dependency
+>>>> 	- Fix includes in the example
+>>>> 	- Fix YAML
+>>>> 	- Add "clock-cells" description
+>>>> 	- s/regroups/is composed of/
+>>>> 	- Changed compatible to show SoC specificity
+>>>>
+>>>> Changes in v2:
+>>>> 	- Switch compatible and clock-cells related areas
+>>>> 	- Remove faulty #include in the example.
+>>>> 	- Add entry in MAINTAINERS
+>>>> ---
+>>>>  .../bindings/display/st,stm32-lvds.yaml       | 119 ++++++++++++++++++
+>>> Filename matching compatible.
+>> Hi Rob,
+>>
+>>
+>> I was unsure about this.
+>>
+>> The driver will eventually support several SoCs with different compatibles,
+>> wouldn't this be more confusing ?
+> No. "Eventually" might never happen.
+>
+>> I also wanted to keep the similarity with the "st,stm32-<ip>.yaml" name for the
+>> DRM STM drivers. Would that be possible ?
+> But why? The consistency we want is the filename matching compatible,
+> not matching other filenames. If you have here multiple devices,
+> document them *now*.
 
-Fixes keeping time across power-cycle observed on Debian,
-which sets RTC_HCTOSYS_DEVICE="rtc0".
 
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
- arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard.dtsi  | 7 ++++++-
- arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard2.dtsi | 5 +++++
- 2 files changed, 11 insertions(+), 1 deletion(-)
+Hi Krzysztof,
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard.dtsi
-index bfade7149080..a955c77cd499 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard.dtsi
-@@ -41,6 +41,11 @@
- #include <dt-bindings/sound/fsl-imx-audmux.h>
- 
- / {
-+	aliases {
-+		rtc0 = &carrier_rtc;
-+		rtc1 = &snvs_rtc;
-+	};
-+
- 	/* Will be filled by the bootloader */
- 	memory@10000000 {
- 		device_type = "memory";
-@@ -187,7 +192,7 @@ &i2c1 {
- 	status = "okay";
- 
- 	/* Pro baseboard model */
--	rtc@68 {
-+	carrier_rtc: rtc@68 {
- 		compatible = "nxp,pcf8523";
- 		reg = <0x68>;
- 	};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard2.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard2.dtsi
-index 0883ef99cded..e6017f9bf640 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard2.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-hummingboard2.dtsi
-@@ -41,6 +41,11 @@
- #include <dt-bindings/sound/fsl-imx-audmux.h>
- 
- / {
-+	aliases {
-+		rtc0 = &pcf8523;
-+		rtc1 = &snvs_rtc;
-+	};
-+
- 	/* Will be filled by the bootloader */
- 	memory@10000000 {
- 		device_type = "memory";
+|There is no multiple devices, so I will stick to the "st,stm32mp25-lvds"
+pattern for now.|
 
----
-base-commit: 0dd3ee31125508cd67f7e7172247f05b7fd1753a
-change-id: 20240118-imx6-hb-primary-rtc-047d47fd6eaa
+>
+>>
+>> Regards,
+>>
+>> Raphaël
+> I hope you did not ignore rest of the comments... We expect some sort of
+> "ack/ok/I'll fix/whatever" message and you wrote nothing further.
 
-Sincerely,
--- 
-Josua Mayer <josua@solid-run.com>
+Although I did not acknowledged what has been said previously, I always take
+into account every comment on my patches.  I understand that it can lead to some confusion.  So rest assured that I did not
+ignore Rob's and Dmitry's review.
 
+
+Regards,
+
+Raphaël
+
+>
+> Best regards,
+> Krzysztof
+>
 
