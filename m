@@ -1,187 +1,145 @@
-Return-Path: <devicetree+bounces-33041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DBB8831D3C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:09:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25AE0831D53
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:15:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23D5328523E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:09:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D59BA28555C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:15:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB9228E02;
-	Thu, 18 Jan 2024 16:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D5028DDA;
+	Thu, 18 Jan 2024 16:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOOwysb2"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RQ+1uv5x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7120D2C18F;
-	Thu, 18 Jan 2024 16:09:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE892E3E8;
+	Thu, 18 Jan 2024 16:14:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705594193; cv=none; b=P2Xnmy0PWtuPAZi2spYaeMG4w1z+0504hZ6QYQYVlC+CywSrz15UkHX9Clv+96g0pZSSqTwGI480Zv63jQuDcuNSQEitlLnMGkphYaq1+Zus3gUtt1LlDy+inXk5sQxg93UDjI937Q88sv7R1w4b2+uV6cI9rV5m+ACcBcCLWKU=
+	t=1705594478; cv=none; b=HN0uaRFNpYLrAYAwuIiX9hxIweqehA5gvMAQsdTJQAAPcPTaGA2gF0gwu2/VHqwdkWwVWu1YbwwZD0e6i8BC9/3zQK9KogDb5/Nfyl1lmfYEnBSeQy+FLDjl1ln5XqrO5aOM7kLNRhLoeuN0fiG2xmUP/eeZytIgkTBSCqIhbbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705594193; c=relaxed/simple;
-	bh=MhRgs4SfId0IliF1C6eg+0vnzN3x0xDMakUJ9MxoW+U=;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=YwcsdmamPZPVCAyTB7FEhzwYObfktm7uiGrpIFY/bYVuCAAdDLRsjsyLFal7+ceKagQXlIKiKOwQBXEtrUa/b4s6kBb/qmp5kxAOhO1XKhQHZqs2x5hu4Ty7sK8NpLhsHGX+8AffnQ0In75j1zgofUt32YjrUYkmEsbyWboH+fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOOwysb2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 472AEC433F1;
-	Thu, 18 Jan 2024 16:09:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705594193;
-	bh=MhRgs4SfId0IliF1C6eg+0vnzN3x0xDMakUJ9MxoW+U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NOOwysb2saJ3EFaZXFxosNe9UNtVudcOvkatUxZo2Yg8vaqhHUtK/9tyVcFy1UEB7
-	 8ouvns+SVlkqj5JW/fkEFsMu+oAuXKM1duNgSBdY/6pqqFHRJtyh5Ll6k6aYhrt6OS
-	 xvnuZpCM4OlvW+eEZ4RwQGtN+zxu4/lU8ej8CqF0pwUvwXAmu6aFaGc0cWwEYPeGSz
-	 hSxaxzXKm8QSKLtf9zLQlMztOG1FOxiza5lgvxCPem/j5ilDD509LODn7+EVMsaZV3
-	 LxMTTFN21gdQv9C0nlPwjv9Z059wXehasApwVqouWT6G9Sd0qNkp1HbNaXm4m2p7Ng
-	 fJ4+HvnBrf2hA==
-Date: Thu, 18 Jan 2024 16:09:47 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Crt Mori <cmo@melexis.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v6 1/2] dt-bindings: iio: frequency: add admfm2000
-Message-ID: <20240118-steadily-coauthor-de8275118901@spud>
-References: <20240118085856.70758-1-kimseer.paller@analog.com>
- <20240118085856.70758-2-kimseer.paller@analog.com>
+	s=arc-20240116; t=1705594478; c=relaxed/simple;
+	bh=OWJUIlewldnhlZ2AChJ/wqce0X7gESh3qoR1yipsHrM=;
+	h=Received:DKIM-Signature:Received:Received:Received:Received:
+	 Message-ID:Date:MIME-Version:User-Agent:Subject:To:CC:References:
+	 Content-Language:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:X-EXCLAIMER-MD-CONFIG; b=mZZFicBqPi2/xoq3r34H+PzPPbIwUod47ItOP9g5SfOKUPZFEFeBGiN+SMC1OjsHl4wuI/VkUalKfGexijaCltZoMyWKlI0NxvLtjqAtUfk/p51BUH6TS3lOso8ygUQICE45J5B3kvpJ6htKiQjb6QU4qCFdS5NU+qZOwNi6aB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RQ+1uv5x; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40IGEIXt054990;
+	Thu, 18 Jan 2024 10:14:18 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1705594459;
+	bh=O+AzhLX1Qjz+NgbNfuUYk2TlA6YH0ew00AyhB6CMsZU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=RQ+1uv5x0K/hjJoCY1DZHu7rVt2cbqnK/UTnqP0CpjE4+LMBg80mK2/80QcNx0UI5
+	 PRV1DyfKlGHCsy9MYo8ioT7gYNOdUxF2fDKE+o/L3bIWwJ+SDEy3nsZ4I4T2Zfy00j
+	 ZHsuWtY/ZJ8HVC+M7j5RbmYnl1ZjlYH9iM4HqRJI=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40IGEIW6014540
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 18 Jan 2024 10:14:18 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 18
+ Jan 2024 10:14:18 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 18 Jan 2024 10:14:18 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40IGEHix097023;
+	Thu, 18 Jan 2024 10:14:17 -0600
+Message-ID: <eaa10f7c-4c8e-4330-b156-8f0edbdaabdf@ti.com>
+Date: Thu, 18 Jan 2024 10:14:17 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="L+4Loj8oukG31gb2"
-Content-Disposition: inline
-In-Reply-To: <20240118085856.70758-2-kimseer.paller@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] arm64: dts: ti: k3-j784s4-main: Convert
+ serdes_ln_ctrl node into reg-mux
+To: Chintan Vankar <c-vankar@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>, <danishanwar@ti.com>,
+        <tony@atomide.com>
+References: <20240118094454.2656734-1-c-vankar@ti.com>
+ <20240118094454.2656734-2-c-vankar@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240118094454.2656734-2-c-vankar@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-
---L+4Loj8oukG31gb2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey,
-
-On Thu, Jan 18, 2024 at 04:58:55PM +0800, Kim Seer Paller wrote:
-> Dual microwave down converter module with input RF and LO frequency
-> ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
-> 8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
-> for each down conversion path.
->=20
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+On 1/18/24 3:44 AM, Chintan Vankar wrote:
+> This removes a dependency on the parent node being a syscon node.
+> Convert from mmio-mux to reg-mux adjusting node name and properties
+> as needed.
+> 
+> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
 > ---
-> V5 -> V6: Moved array of switch and attenuation GPIOs to the channel node.
->           Changed pin coords with friendly names. Removed Reviewed-by tag.
-> V4 -> V5: Added Reviewed-by tag.
-> V3 -> V4: Updated the description of the properties with multiple entries=
- and
->           defined the order.
-> V2 -> V3: Adjusted indentation to resolve wrong indentation warning.=20
->           Changed node name to converter. Updated the descriptions to cla=
-rify
->           the properties.
-> V1 -> V2: Removed '|' after description. Specified the pins connected to
->           the GPIOs. Added additionalProperties: false. Changed node name=
- to gpio.
->           Aligned < syntax with the previous syntax in the examples.
->=20
->  .../bindings/iio/frequency/adi,admfm2000.yaml | 129 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 136 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,a=
-dmfm2000.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admfm200=
-0.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
-> new file mode 100644
-> index 000000000000..6f2c91c38666
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
-> @@ -0,0 +1,129 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2023 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/frequency/adi,admfm2000.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ADMFM2000 Dual Microwave Down Converter
-> +
-> +maintainers:
-> +  - Kim Seer Paller <kimseer.paller@analog.com>
-> +
-> +description:
-> +  Dual microwave down converter module with input RF and LO frequency ra=
-nges
-> +  from 0.5 to 32 GHz and an output IF frequency range from 0.1 to 8 GHz.
-> +  It consists of a LNA, mixer, IF filter, DSA, and IF amplifier for each=
- down
-> +  conversion path.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,admfm2000
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^channel@[0-1]$":
-> +    type: object
-> +    description: Represents a channel of the device.
-> +
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        description:
-> +          The channel number.
-> +        minimum: 0
-> +        maximum: 1
-> +
-> +      adi,mode:
-> +        description:
-> +          RF path selected for the channel.
-> +            0 - Direct IF mode
-> +            1 - Mixer mode
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [0, 1]
+>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> index f2b720ed1e4f..56c8eaad6324 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+> @@ -52,12 +52,12 @@ serdes_ln_ctrl: mux-controller@4080 {
+>   			compatible = "reg-mux";
 
-How come this is an enum, rather than a boolean property such as
-"adi,mixer-mode"?
+Seems this was already a "reg-mux", so the commit message is a bit
+off, you are not converting from "mmio-mux" here.
 
-Cheers,
-Conor.
+Thinking about this, if this was already a "reg-mux" then this node
+was likely broken by my reg-mux update as it doubles the offset (reg
+is offset 0x4080 which adds to the already offset in masks). I did
+check for this before sending my patch, but seems this one node
+was added after I sent it, but before it was taken. Re-checking
+this is the only instance of this issue, and this patch fixes the
+issue.
 
---L+4Loj8oukG31gb2
-Content-Type: application/pgp-signature; name="signature.asc"
+So you should reword the commit message to include that this is
+actually a fix and add:
 
------BEGIN PGP SIGNATURE-----
+Fixes: 2765149273f4 ("mux: mmio: use reg property when parent device is not a syscon")
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZalNSwAKCRB4tDGHoIJi
-0qUEAP4wbPpsMMqtWJOb6/QiW0MysXXQK+sUEvHTlHRvuvRArwD/ZLMdTg0x8lnf
-WkfJ4ASDBBU6gUzxhaCqkRYPQxWwkQs=
-=GfIu
------END PGP SIGNATURE-----
+looks good to me otherwise:
 
---L+4Loj8oukG31gb2--
+Acked-by: Andrew Davis <afd@ti.com>
+
+>   			reg = <0x00004080 0x30>;
+>   			#mux-control-cells = <1>;
+> -			mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1 select */
+> -					<0x4088 0x3>, <0x408c 0x3>, /* SERDES0 lane2/3 select */
+> -					<0x4090 0x3>, <0x4094 0x3>, /* SERDES1 lane0/1 select */
+> -					<0x4098 0x3>, <0x409c 0x3>, /* SERDES1 lane2/3 select */
+> -					<0x40a0 0x3>, <0x40a4 0x3>, /* SERDES2 lane0/1 select */
+> -					<0x40a8 0x3>, <0x40ac 0x3>; /* SERDES2 lane2/3 select */
+> +			mux-reg-masks = <0x0 0x3>, <0x4 0x3>, /* SERDES0 lane0/1 select */
+> +					<0x8 0x3>, <0xc 0x3>, /* SERDES0 lane2/3 select */
+> +					<0x10 0x3>, <0x14 0x3>, /* SERDES1 lane0/1 select */
+> +					<0x18 0x3>, <0x1c 0x3>, /* SERDES1 lane2/3 select */
+> +					<0x20 0x3>, <0x24 0x3>, /* SERDES2 lane0/1 select */
+> +					<0x28 0x3>, <0x2c 0x3>; /* SERDES2 lane2/3 select */
+>   			idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>,
+>   				      <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
+>   				      <J784S4_SERDES0_LANE2_IP3_UNUSED>,
 
