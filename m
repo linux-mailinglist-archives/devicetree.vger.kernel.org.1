@@ -1,125 +1,107 @@
-Return-Path: <devicetree+bounces-33067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5ED9831EF9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 19:11:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23EDA831F2B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 19:37:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4645DB24044
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 18:11:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0D96289D18
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 18:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB432D615;
-	Thu, 18 Jan 2024 18:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5772D638;
+	Thu, 18 Jan 2024 18:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I1DTRCtl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="T1tN/aj+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D057E2D60F;
-	Thu, 18 Jan 2024 18:11:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F482D797;
+	Thu, 18 Jan 2024 18:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705601476; cv=none; b=GHyzvA1vlfve3erumj8e3IJPPX5YeG6gXxECsqX5dywfvwufZP5ld/x47z/cSWY/rgy/xyqk6BvLuBqv1DRYwLw1qG6MS6Rx0x17bV1yujpD8d+Vwt18aZcSSIimt1/ENya7FreJMvoI7fxvNUnTEugKzYE8OlkOGOlcDpSxzao=
+	t=1705603029; cv=none; b=R0qseoOojybk3E8qn5EbYDJrjn99cw+/qpvQzDQkRHjyy4lmr/XdFRVmeZ64avq3XY2h7duI/kUZa1F2f4B3/Xhs1ZSWFL6Utr/1r56J4mwxOjWCe632hUNLOPr6BQjUql71kE6yUHFOa67Zwu7nXL/mvrxTlSpAKed1x74w+YU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705601476; c=relaxed/simple;
-	bh=7HxfecGY7uZgdsol1Qo2cUjoPAbeDfayvo1koO5ULvw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tLwE46A8nCcjEB65jw/3NTD1SowDTRw475SfgecWrGRBVreC6EC2/OtmPXJWaOx/PfD+nI/hBvswvk3YC/msxydFJwz6HDtI28JirS/dVrg1QVuMraatTxXV/6jmTnZrG41uCOeROBxb2bSyN8ukugwq5kI5dGbo9uYTQ/UScv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I1DTRCtl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEAFCC433C7;
-	Thu, 18 Jan 2024 18:11:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705601476;
-	bh=7HxfecGY7uZgdsol1Qo2cUjoPAbeDfayvo1koO5ULvw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I1DTRCtlzWHnBBSXCYXrElu6RGkLsiCfEInH0glYNuO6U5ns1lW8CHrO2gB0d49xi
-	 43DYWUjn70KACnl9rExL4JOXQk1sRGqyWWHl5j6eHUa3fsBDicqSgKmSx2ME4WmzFi
-	 MikB+qb43aBUK30QyHTevkn278Bo0WVDljQ87MDvBcm18cIzKorUuhGppsqm4OBqhe
-	 hlmmFKj07PQIVWLdD0FmuOScqc2P0/JRY/H/9/U4dNHFRDvgVyI9qsiBhUfxMcXe8Q
-	 G/m1LwKEp7Q5KYFiWdH8HF4Y5PoNyw+M8/NNFLg2Vqz5vs+kqYT6mWLyY4zCu/EB62
-	 lyESpAH4u0aYg==
-Date: Thu, 18 Jan 2024 18:11:09 +0000
-From: Mark Brown <broonie@kernel.org>
-To: andy.shevchenko@gmail.com
-Cc: Charles Keepax <ckeepax@opensource.cirrus.com>, lee@kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, linus.walleij@linaro.org, vkoul@kernel.org,
-	lgirdwood@gmail.com, yung-chuan.liao@linux.intel.com,
-	sanyog.r.kale@intel.com, pierre-louis.bossart@linux.intel.com,
-	alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 6/6] ASoC: cs42l43: Add support for the cs42l43
-Message-ID: <aec96f5a-b759-48c7-a5ec-bafe3bfa5357@sirena.org.uk>
-References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
- <20230804104602.395892-7-ckeepax@opensource.cirrus.com>
- <Zali4qxdegY7H6eY@surfacebook.localdomain>
+	s=arc-20240116; t=1705603029; c=relaxed/simple;
+	bh=B12x5CU3LJAATEvwezybaFPvAgE1iCNB0PAo3tZON0Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=gpTGdWjtM6DU3iT/v53Krqfzr6RI2nu7xSyyRWkDVOE2XMPsKr0hjYFp69MNaZjRCedJszuBjJuO4HmFeIYXy9wtYz8OybCp0o4Hijsp3OawNksIERJxgdPjCouMuEnv3S55skp8I+vlr0Yk0wvZu5SgL3M3mjIfY0IiVfcwHvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=T1tN/aj+; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705603026;
+	bh=B12x5CU3LJAATEvwezybaFPvAgE1iCNB0PAo3tZON0Y=;
+	h=Date:From:To:Cc:Subject:From;
+	b=T1tN/aj+jOtqsSFJBIUGFabkBd+Gj6AIapWW+uI7ctwXpcFOY3P9CrOYWSsAWR0wQ
+	 rAgdU8RV7LFieTsYwb5lhSKh64lF8XybTXPoepaFemc4CBuvwgPh7Xg/ROd3IDKcdK
+	 vkHOhW46eH4DXdOBCX3DRgjKckb7VYvaYfQcXYi+cJ4MMrC3fWnuMakG2MB9XF8x0Q
+	 fKx0fK2REDa0nGx2arEVJjLNAUqpAMpl6YUTVx6FE+2sbLOngGffeCWasFLlJdls9x
+	 bKqXovIjuuw9l1E/+w5Ow7Bc0mB9xHlGWyHATrTZ92aJ2oGav87yvE66XP6FpJTgur
+	 Hh3/ytjo04XHw==
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EFFA83782079;
+	Thu, 18 Jan 2024 18:37:02 +0000 (UTC)
+Date: Thu, 18 Jan 2024 15:36:30 -0300
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Chen-Yu Tsai <wenst@chromium.org>
+Subject: Probe failure of usb controller @11290000 on MT8195 after
+ next-20231221
+Message-ID: <9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="97E1gLHhLegY+sZD"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <Zali4qxdegY7H6eY@surfacebook.localdomain>
-X-Cookie: FEELINGS are cascading over me!!!
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
---97E1gLHhLegY+sZD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+KernelCI has identified a failure in the probe of one of the USB controllers on
+the MT8195-Tomato Chromebook [1]:
 
-On Thu, Jan 18, 2024 at 07:41:54PM +0200, andy.shevchenko@gmail.com wrote:
-> Fri, Aug 04, 2023 at 11:46:02AM +0100, Charles Keepax kirjoitti:
+[   16.336840] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
+[   16.337081] xhci-mtk 11290000.usb: xHCI Host Controller
+[   16.337093] xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
+[   16.357114] xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
+[   16.357119] xhci-mtk 11290000.usb: can't setup: -110
+[   16.357128] xhci-mtk 11290000.usb: USB bus 5 deregistered
+[   16.359484] xhci-mtk: probe of 11290000.usb failed with error -110
 
-> > +	unsigned int hs2 = 0x2 << CS42L43_HSDET_MODE_SHIFT;
+A previous message [2] suggests that a force-mode phy property that has been
+merged might help with addressing the issue, however it's not clear to me how,
+given that the controller at 1129000 uses a USB2 phy and the phy driver patch
+only looks for the property on USB3 phys.
 
-> BIT(1) ?
+Worth noting that the issue doesn't always happen. For instance the test did
+pass for next-20240110 and then failed again on today's next [3]. But it does
+seem that the issue was introduced, or at least became much more likely, between
+next-20231221 and next-20240103, given that it never happened out of 10 runs
+before, and after that has happened 5 out of 7 times.
 
-Given that this is writing a value into a register field called "MODE"
-it seems very likely that it's an enumeration value rather than a
-bitmask (and similarly for all the other places where you're making
-similar comments).  Please think a bit more about the code being
-commented on when making these minor stylistic comments.
+Note: On the Tomato Chromebook specifically this USB controller is not connected
+to anything.
 
-> > +static const char * const cs42l43_jack_text[] = {
-> > +	"None", "CTIA", "OMTP", "Headphone", "Line-Out",
-> > +	"Line-In", "Microphone", "Optical",
+[1] https://linux.kernelci.org/test/case/id/659ce3506673076a8c52a428/
+[2] https://lore.kernel.org/all/239def9b-437b-9211-7844-af4332651df0@mediatek.com/
+[3] https://linux.kernelci.org/test/case/id/65a8c66ee89acb56ac52a405/
 
-> Better to have this by power of 2 blocks (seems it's related to the possible
-> values ranges in the HW).
-> If it's just a coincidence that there are 8 of them, perhaps other (logical)
-> grouping is better?
-
-This is probably well within the realm of driver author taste...
-
-> > +	// Don't use devm as we need to get against the MFD device
-
-> This is weird...
-
-This is normal, the splitting into subdevices is often a purely Linux
-internal thing and not represented in the firmware description so
-external resources are linked to the top level.
-
---97E1gLHhLegY+sZD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWpab0ACgkQJNaLcl1U
-h9C5DAf+O6KGhhljQY7I80+eSBdyZV5AJMoCpfMru36z4haLJoHDqhn+67FC1yql
-1n/AnyJAp3Nl19jHZ4inj+wTpH5+NR0blMMfw0R9FL7jpzbq7b6LgSC+hqfi8vDS
-nY2R6zSnnnOm3HxpKrbxFx82jDnVtZumBuJbfW1kL8tJC52DBVDLOpiY+mPpd4jh
-OUNcrgsFpw3GMcX6GapLflbfqYRvP8BIZtfhYlHkjRiO/aj9THItdd31GnAOzFpK
-R9hyiVdneKaNBHpvRv+XVI355y3eDqACVK6L3ERBXMHDAhXZnBP/n8J/sRJxARn4
-MTeH+5L7hG1IzL3kXWLBUbTnfJl+Hg==
-=mldP
------END PGP SIGNATURE-----
-
---97E1gLHhLegY+sZD--
+Thanks,
+Nícolas
 
