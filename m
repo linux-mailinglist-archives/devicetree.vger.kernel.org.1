@@ -1,165 +1,191 @@
-Return-Path: <devicetree+bounces-33048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2D06831DA2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:38:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30E60831DAE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:38:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8774B23126
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:37:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91E3BB234BE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:38:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E2F02C198;
-	Thu, 18 Jan 2024 16:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 209AD2C1B2;
+	Thu, 18 Jan 2024 16:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ej/9Pa+5"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="EbJEgVdG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B947E25770;
-	Thu, 18 Jan 2024 16:37:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 919D02C19F
+	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 16:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705595866; cv=none; b=Z51lSxNLtyQCfKkggQAdhXSAk0OQHDGcolEB0mAzvGp7SJmaxFxLySCFFh3piL5q+oeF0fenKNX+gBsWbKLbPIRO8SzGRWnexXyx7z9h3T7NuBodn7m6j67bxecZf/ZWVDJgCeQQt34rBXZQD1TlcFMLuaeHzQ3XrV2i2tt2j6Q=
+	t=1705595913; cv=none; b=Qqf0TXnff8ZFTM/WiyKOm7pwQlIsESgy5J89+hzTW//fj76TWYT6WSaty4BA6r6lZsaf991n1D3cnPAe5m8ZrtNXK1A4EvGOerP2JYWwIjC5cFmyXRNvyqT2mGxikbuTnM290TcGgdkh/WYi3Dhi0BPdBKgqtmxEg/ZDlcOTn88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705595866; c=relaxed/simple;
-	bh=CqRZXXHBP5AumSjroWZ4SDntcmMBc1STE9z4wE3SeYg=;
+	s=arc-20240116; t=1705595913; c=relaxed/simple;
+	bh=tESaceZsQLu3ExMxs9ZefEewpbweG6jrY8i9oCAW0pY=;
 	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
-	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
-	 Message-ID:Date:MIME-Version:User-Agent:Subject:Content-Language:
-	 To:Cc:References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding; b=qk2dzEWg0c/8q8fVTmZW1MA7xld5RA19fVRM2Bh3bmFVNIHM/527sMxNGAVOOq6JXL7x+3K3z+/guEfPtxEQ7VjS6uFKoZ7UvkCbdw4ar/Ffe9Ax9yAdpDhD2Xh2lqDC/25icQuJoWVaUM8EbyeJx4/NLtnNB756kaXB0Vzb7gI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ej/9Pa+5; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55a45a453eeso415643a12.0;
-        Thu, 18 Jan 2024 08:37:44 -0800 (PST)
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:From:
+	 In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:To:Cc:
+	 Content-Type:Content-Transfer-Encoding; b=HmH1KecKppo71EUkNhpzCqx1k1Rir59i+CR5/cw++HJBXMD56aMCxp6x1iC53vWsQnq8Aar+mHY8ndj/n812fw4TzOU3/I1DNZapcXpruwbmR7lv6jxAGugOpIaJKdk2sLnsROnk0sLIYdydhGeDI+M5B4vSO4fLfD3xhuCIPGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=EbJEgVdG; arc=none smtp.client-ip=209.85.217.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-467a7a376d5so2565573137.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 08:38:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705595863; x=1706200663; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KVFO3/auyr2zJ09RykGkElEusljuvXTip3QuV7SQMtI=;
-        b=ej/9Pa+55AwBGTrla1o342fmjOBrAsqQMzdfhqHB1Q1J7NYhInVqBt0k6p3vxszsLt
-         Nan+5sYfzxphHCAiey407PAKfuZTD6h62Bk/J3ntHi2+bWjAUQBaq6ujrh0zgoYqTKlV
-         bgaYSqo6cPoWShNrxhKn1XxpuzAnjEA2mqotnolLFckvzr+ux+tMWFk8k8hsN3wiAoam
-         hCXJHo9MgP9rJpksJBDizeqmkQTw3zxoanUHkTTxFXI74kmFvIsEwRJOyafkrpiRWi74
-         ilWqR61qDUO8Kwjp+ovfcbJ26jsqM5u1wQ9wVqwPzZzXN3Kwrl9mJFOh1vS84hV9z4yg
-         0H5g==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1705595910; x=1706200710; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:references
+         :mime-version:in-reply-to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lDcDvEBa0ZL9S0MNvY5nML1juKi6GtvSEwqNpJNBubQ=;
+        b=EbJEgVdGh93UWOBZFuB5+c2sOdMhwGRvLBkRL5TWN2ud3Yod/8zfvP0D3p2xfazOhr
+         nP/NzVct+n1wSudt5T2MLF7VMZfyZ8w6UqQ9/UTrSMVaYIkIlTk940gE09MTIUHxb2id
+         EcS6nrRK2ykTIGxmrFxrjgNJ8PgkhtWco9FF04JFrQtyplY9+EuhiMKGqZ+o2qxkIKF/
+         jmwqY2NlB+BpmANtSDN0ie+TLaIJgn6h/3iTyQYQGDBkMHcKP7XODnZyb7eK9HrnyuIw
+         78MK/9zWdjpzv2ijFEPGJzJJThGu7v/1eJV/8USyw9aDRBv09JWaB0Y5dyXxSOIFvztg
+         xi+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705595863; x=1706200663;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KVFO3/auyr2zJ09RykGkElEusljuvXTip3QuV7SQMtI=;
-        b=hnFp8foAgpGDhWxDyXxb0Xjl0RqaoNtb3qls0UlmP6V3zMRT+kCTNVaZBJRkvvIF2o
-         cx5KL09IAR0WyfT5ZoFb4lBq65VXunMa8/fXIn7Yv5BWV7CDqiLbF/4CpYbO25PN7yK5
-         /Aar0j0ic1WTGC9H4994S4upht6Z8Efr+FeXpAmaL+KhTYFVshmzh8a+Usr96EvkA1fj
-         Nvd+WzTlYEMpnTmMPXUhUhSqYWM1WJ1XvUjrKzNU+yzQNoB6anaU/G+8dnZKG73mfzlg
-         xIwyK6NGf0mUTRpqjkGa068nJWA63AEd0fRaNqZypXD0O39YQVHKGPWvpDEERpcEngNx
-         sIOQ==
-X-Gm-Message-State: AOJu0YxuoKFGXsiW/t+tbV+ijeI4wFmV8mmKzniQs3xVjIZyEWfYdyPJ
-	Cj0GW5HtUKIX7cr6RG+dthji1jU/CaSIA3zv+EOJXR8aKv+9+XiL
-X-Google-Smtp-Source: AGHT+IGmmSj1HFKso+s8SBpt8kTu2SA0tT9uau1LDNDju0OkIf9aqhbm9nL1AdrqqMjc66bTVsmo3w==
-X-Received: by 2002:aa7:cd64:0:b0:55a:380a:fbca with SMTP id ca4-20020aa7cd64000000b0055a380afbcamr464232edb.20.1705595862786;
-        Thu, 18 Jan 2024 08:37:42 -0800 (PST)
-Received: from [192.168.100.74] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
-        by smtp.gmail.com with ESMTPSA id a14-20020a05640213ce00b00559ba291d82sm3322508edx.82.2024.01.18.08.37.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Jan 2024 08:37:42 -0800 (PST)
-Message-ID: <6a823a1d-262a-4c59-8144-7283dcb5172b@gmail.com>
-Date: Thu, 18 Jan 2024 17:37:40 +0100
+        d=1e100.net; s=20230601; t=1705595910; x=1706200710;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:references
+         :mime-version:in-reply-to:from:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=lDcDvEBa0ZL9S0MNvY5nML1juKi6GtvSEwqNpJNBubQ=;
+        b=A0WZ1dcjCVZXg6hHYpmQ3Xj795Uqp39aAuvB411T3Kr5XumBUlFhN+q9/c8w7dQb2D
+         wydnST/eb9kx+Fs62VysEzcLVMACOF+ZkPgti4ulqKverOKOWYHALINaYvBWzFvBQHV0
+         uRyPX8ZYJfc1gSWfbGY8iIS9X6x1R4hKP4A0ujCYqO34eGAn9i6D+T6aeaQXDOTm3654
+         j8ZcOCMI5xBAZLs1QfbAZTKPYCfBW7YOT0KHOoUR9EzJn13Iu6Dpah+TscmsD506V6AP
+         uw150RsbTM5vm6a6Qy9KgxF3II53GjElOIpd5vjd33hxbmRrioi3JePjzpl2OMsuxoXS
+         Lpnw==
+X-Gm-Message-State: AOJu0YwXIfIsic1WVVEQYvlTvKdZd40ajCG6jXKJth7xIZIFfYtYJgca
+	NLp96Os7uh+RKSwBLbur+4oavL0rgqrWChye8ddPr8vW29FO1ZkkDS1IhYrA9b1HszlbwHJAxqm
+	daWcbzHloTOCtKv6x0FNzy4N8qWWCEcOPi5W58A==
+X-Google-Smtp-Source: AGHT+IFSPL8gB6IrZ9EKth3bABJWxmPIrQSPD2/Da0JPMgsi4X69cecm94Y73oSYciD9hUyudoSJNj+KFSgVI5DkYDg=
+X-Received: by 2002:a67:f24f:0:b0:468:67f:b067 with SMTP id
+ y15-20020a67f24f000000b00468067fb067mr855033vsm.35.1705595910409; Thu, 18 Jan
+ 2024 08:38:30 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 18 Jan 2024 08:38:29 -0800
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <CAL_Jsq+0xb-otvjkbLqB8gNKadVqnigwGB_k+VGrj740Y6wxjg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/5] hwmon: Add support for Amphenol ChipCap 2
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20240115-topic-chipcap2-v5-0-0cc7a15aeece@gmail.com>
- <20240115-topic-chipcap2-v5-5-0cc7a15aeece@gmail.com>
- <226d3abd-e372-4c66-b2b0-cc86e6a4bb27@sirena.org.uk>
- <30b9ab0c-f3cb-4b5a-a726-de9f7c61769b@gmail.com>
- <f5827df7-34fa-4c11-aca9-ecc6c83c512d@sirena.org.uk>
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <f5827df7-34fa-4c11-aca9-ecc6c83c512d@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240117160748.37682-1-brgl@bgdev.pl> <CAL_Jsq+0xb-otvjkbLqB8gNKadVqnigwGB_k+VGrj740Y6wxjg@mail.gmail.com>
+Date: Thu, 18 Jan 2024 08:38:29 -0800
+Message-ID: <CAMRc=MeV6hrPGkxjg4qnK6xH2_5LhjCLtijxEFJGiikW-P2OJg@mail.gmail.com>
+Subject: Re: [PATCH 0/9] PCI: introduce the concept of power sequencing of
+ PCIe devices
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
+	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
+	Lukas Wunner <lukas@wunner.de>, Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, 18 Jan 2024 15:29:01 +0100, Rob Herring <robh+dt@kernel.org> said:
+> On Wed, Jan 17, 2024 at 10:08=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.=
+pl> wrote:
+>
 
-On 18.01.24 17:04, Mark Brown wrote:
-> On Thu, Jan 18, 2024 at 04:30:37PM +0100, Javier Carrasco wrote:
->> On 18.01.24 14:49, Mark Brown wrote:
->>> On Mon, Jan 15, 2024 at 09:02:25PM +0100, Javier Carrasco wrote:
-> 
->>>> +static int cc2_enable(struct cc2_data *data)
->>>> +{
->>>> +	int ret;
-> 
->>>> +	if (regulator_is_enabled(data->regulator))
->>>> +		return 0;
-> 
->>> This is generally a sign that the regulator API usage is not good, the
->>> driver should not rely on references to the regulator held by anything
->>> else since whatever else is holding the regulator on could turn it off
->>> at any time.  If the driver did the enable itself then it should know
->>> that it did so and not need to query.
-> 
->> The driver handles a dedicated regulator, but I wanted to account for
->> the cases where the attempts to enable and disable the regulator fail
->> and keep parity. If the disabling attempt fails, will the regulator not
->> stay enabled? In that case, an additional call to regulator_enable would
->> not be required, right?
->> That is the only reason I am using regulator_is_enabled(), but maybe
->> things don't work like that.
-> 
-> With exclusive use you can get away with this, you should have a comment
-> for that case though.
-> 
-I will add a comment to clarify it.
->>>> +	ret = regulator_enable(data->regulator);
->>>> +	if (ret < 0)
->>>> +		return ret;
->>>> +
->>>> +	/*
->>>> +	 * TODO: the startup-delay-us property of the regulator might be
->>>> +	 * added to the delay (if provided).
->>>> +	 * Currently there is no interface to read its value apart from
->>>> +	 * a direct access to regulator->rdev->constraints->enable_time,
->>>> +	 * which is discouraged like any direct access to the regulator_dev
->>>> +	 * structure. This would be relevant in cases where the startup delay
->>>> +	 * is in the range of milliseconds.
->>>> +	 */
->>>> +	usleep_range(CC2_STARTUP_TIME_US, CC2_STARTUP_TIME_US + 125);
-> 
->>> Note that the regulator startup delay is the time taken for the
->>> regulator to power up so if the device needs additional delay then that
->>> will always need to be in addition to whatever the regulator is doing.
-> 
->> What I mean by that is that the device cannot be ready until the
->> regulator powers it up (obvious) plus the start up time of the device
->> itself once it gets powered up. So if a regulator takes for example 1 ms
->> to power up, the sleep function could (and should) wait for 1 ms longer.
-> 
-> No, the sleep function should do nothing of the sort - if any delay is
-> neeeded for the regulator it will be handled as part of enabling the
-> regulator.  This is not exposed to client drivers because it is
-> transparent to them.
-That sounds great. Then there is no need for the comment altogether and
-the TODO will go away.
+[snip]
 
-Thank you again and best regards,
-Javier Carrrasco
+>
+>> The general idea is to instantiate platform devices for child nodes of
+>> the PCIe port DT node. For those nodes for which a power-sequencing
+>> driver exists, we bind it and let it probe. The driver then triggers a
+>> rescan of the PCI bus with the aim of detecting the now powered-on
+>> device. The device will consume the same DT node as the platform,
+>> power-sequencing device. We use device links to make the latter become
+>> the parent of the former.
+>>
+>> The main advantage of this approach is not modifying the existing DT in
+>> any way and especially not adding any "fake" platform devices.
+>
+> Suspend/resume has been brought up already, but I disagree we can
+> worry about that later unless there is and always will be no power
+> sequencing during suspend/resume for all devices ever. Given the
+> supplies aren't standard, it wouldn't surprise me if standard PCI
+> power management isn't either. The primary issue I see with this
+> design is we will end up with 2 drivers doing the same power
+> sequencing: the platform driver for initial power on and the device's
+> PCI driver for suspend/resume.
+>
+> Rob
+>
+
+I admit that I don't have any HW where I could test it but I my thinking wa=
+s
+that with the following relationships between the devices:
+
+                  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+                  =E2=94=82                     =E2=94=82
+                  =E2=94=82   PCI Port device   =E2=94=82
+                  =E2=94=82                     =E2=94=82
+                  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+                      =E2=94=82           =E2=94=82
+                      =E2=94=82           =E2=94=82
+                      =E2=94=82           =E2=94=82
+=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =E2=94=82
+=E2=94=82                           =E2=94=82     =E2=94=82
+=E2=94=82   QCA6390 pwrseq device   =E2=94=82     =E2=94=82
+=E2=94=82                           =E2=94=82     =E2=94=82
+=E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=98     =E2=94=82
+                      =E2=94=82           =E2=94=82
+                      =E2=94=82           =E2=94=82
+                      =E2=94=82           =E2=94=82
+                =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+                =E2=94=82                     =E2=94=82
+                =E2=94=82  ath11k_pci device  =E2=94=82
+                =E2=94=82                     =E2=94=82
+                =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+
+the PM subsystem would handle the dependencies automatically and correctly
+setup the sequence for suspend and resume. Also: the PCI ath11k driver does
+not deal with the kind of resources that the power sequencing platform driv=
+er
+handles: regulators, GPIOs and clocks.
+
+I agree, it would be useful to have a working case of handling suspend/resu=
+me
+with this code though.
+
+Bartosz
 
