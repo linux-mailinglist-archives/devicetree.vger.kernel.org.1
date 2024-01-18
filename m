@@ -1,117 +1,135 @@
-Return-Path: <devicetree+bounces-33016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E898831CA0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:32:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CAD831DB8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:42:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F0001C20CB7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 15:32:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4ED5B24AB5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DEDE28DA1;
-	Thu, 18 Jan 2024 15:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766FD24B3D;
+	Thu, 18 Jan 2024 16:42:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oYgMK7mK"
+	dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b="kD4T8i6h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from egress-ip43a.ess.de.barracuda.com (egress-ip43a.ess.de.barracuda.com [18.185.115.202])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC1A23741;
-	Thu, 18 Jan 2024 15:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339BD2C843
+	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 16:42:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.185.115.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705591893; cv=none; b=BQHvGt9VNMoPxBsnVS+hV1kENEdrGIIfQIdin2+sdInt2woo0uWeF4bUhNsklj21G6B7t/+loo3YGzybzT87Le45ekDHOL5tv+pggAbgNlI8PIud3PqP0C2Gmr1YBgHRq4FskoRkEzBSVwvhVpL8lK2DEXirGrb0fR3riHHHMNQ=
+	t=1705596132; cv=none; b=FWe7yiq7hYAdr3TTqGtE1zYV90WKGGbB7HR+kAURBg+FQJV4jIYJGRkTD+BqSvuFnRhIbHOUvT6EFmUiQQsvgDxtGCDDLoDDnv3ZmVkHg5/D262OFxY73e0VuTgVUIWUIPXGylsBEC1rF/oo5QI16Ir8tiLVCUPdQsZwmZbzV4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705591893; c=relaxed/simple;
-	bh=4wA+UWwUt1juxH0gO+qlw0qBSnENNfKQfAfESA3JOVA=;
-	h=Received:DKIM-Signature:Date:From:To:Cc:Subject:Message-ID:
-	 References:MIME-Version:Content-Type:Content-Disposition:
-	 In-Reply-To; b=nbvf4eG2WQ3vV1Ba56cdPbhZdWTiLqtwPnLEvUaZK0ntf4OzdcFfWd4zdPGuLa9cIM6BVDdCzypCY7hMpMdy/AUTnxJ7rZTlLV6kH5hEBNNxecr0E3xIvmTrFRb9yqR6nWVkzSk7J3LKzK1dt0G0nkSLhdbVDecmTIGjIgM+Ss8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oYgMK7mK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A758C433F1;
-	Thu, 18 Jan 2024 15:31:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705591892;
-	bh=4wA+UWwUt1juxH0gO+qlw0qBSnENNfKQfAfESA3JOVA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oYgMK7mKWk4ZpaH3EseK8Uu7+VHlxzes9YSDMKw0MQl6vDz0aE35z9l5zA3rAJHxy
-	 BsMNnOdU+x1zZVU5ULw4Vi++4+idxP+fxaG4rDIVsNy0FceRSO1rQZ1d9c14jWDNB3
-	 VDjGwfjyA/qljuvGO80OcVYJV44ejuOioTJ6QpooEQkxKNn5zMXO0DG1ZGkDY21vs2
-	 lC3EVqEUqTc5/+e8ceuNyI/SV87N55LGVlxR7gw6+Ar7IueUmvo7ELbdeYy9R3OR1u
-	 aBeUpNP3Xwd53UP2qVMZAEDmGH1Ag1xLa9UCQlATBEv9FG6HnJaQ/Hea1i9hhhKBnO
-	 L3p63L2WnYYIg==
-Date: Thu, 18 Jan 2024 15:31:26 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: conor.dooley@microchip.com, sam@ravnborg.org, bbrezillon@kernel.org,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	lee@kernel.org, thierry.reding@gmail.com,
-	u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
-	linux4microchip@microchip.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: display: convert Atmel's HLCDC to DT
- schema
-Message-ID: <20240118-unscathed-flail-be2e49abc56d@spud>
-References: <20240118092612.117491-1-dharma.b@microchip.com>
- <20240118092612.117491-2-dharma.b@microchip.com>
+	s=arc-20240116; t=1705596132; c=relaxed/simple;
+	bh=+y5fUEkd5+zzoxl0HWIsvFG0uwPbNdaHmGmzGann5z0=;
+	h=Received:Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Received:X-Google-Smtp-Source:X-Received:
+	 Received:From:X-Google-Original-From:To:Cc:Subject:Date:Message-Id:
+	 X-Mailer:MIME-Version:Content-Transfer-Encoding:X-BESS-ID:
+	 X-BESS-VER:X-BESS-Apparent-Source-IP:X-BESS-Parts:
+	 X-BESS-Outbound-Spam-Score:X-BESS-Outbound-Spam-Report:
+	 X-BESS-Outbound-Spam-Status:X-BESS-BRTS-Status; b=Z3V2aL7DFg7oGSVGyVICYCE4iMeE1y5DSZ1OSYWHnGlsVBWeLQjqekugy91WnccIZM9sRoJqICaIjQJQRMpD/Ytl2R807bV6iEqB2Cups+lfSjzMYS6MvBsVvY0T0jJNu9dLWrm8fL4EwleQakhTCO51IF0eBjVhktH4+qSLscM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com; spf=pass smtp.mailfrom=mistralsolutions.com; dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b=kD4T8i6h; arc=none smtp.client-ip=18.185.115.202
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mistralsolutions.com
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71]) by mx-outbound14-230.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Thu, 18 Jan 2024 16:42:07 +0000
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6819ae59b38so3808576d6.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 08:42:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google; t=1705596127; x=1706200927; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o8p6tnemlAQdnLlr6kCUPw8u4bTJQ9vaiCBP/sDK8h8=;
+        b=kD4T8i6hNnRsttrWeVWaplWNCVM6Jw1z/GS0FATXFrpiv+6xotXdfwj45hBOII1Cbx
+         4lnRYAEEm+wE17UdvULyYjNpJ1k143GaOyRUimdc+n6pvGhTZIpXtEKP7MTStgZztq2n
+         KZNC+JMJMjz0+zz6i2mqbbuboUdqg5ZSY7v/4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705596127; x=1706200927;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o8p6tnemlAQdnLlr6kCUPw8u4bTJQ9vaiCBP/sDK8h8=;
+        b=HPIkKlcEO5SOCYuSG9YxDMhtNxrnlmqxky5EqYJTp+XwVBg/pS4ScK4cztp3DlSw+V
+         qlhOvZ4bGVAzY72H87h/ZZkpskh8XoztYiJw/Ety7DeH7nO6PemxFMJPev40Ctwibrl9
+         FofR5VL36X975LLvRGNbc4zj7j7k52n8QDxoNU5+kifQes4CMUkSieRPQkszmN7xeTSz
+         74C3/9dMpXc64OOEiT7AE+6YjkYrU9VDLZPRS9MNvIlTZNB3xy+L74eKDBQe01nODkRC
+         K2zvo5ZqC+cvBknO47IXFygPPInAZ7GTGUek0zp/bpm3wYeueSN34q+r33IXt9PUXsvo
+         ii+w==
+X-Gm-Message-State: AOJu0YypH7F0f0hunM+4402K+W8XLBbwETFOKizbKSG9AigOd4JzMalt
+	wduO5nt2Okc57VfWRwy7/MVhix7qTePKU277lbX72MLC1P+oNufahDTFapmIs8hI7dKpnubfY3E
+	pZ96m+RNJnmjBFJdozhhYKQaCCiR/HB/A36FyHUgpfLcAvaPaC4sIVZqH6t7iNyzGk8flE73IWQ
+	Ew7BKIxA2zTYT2JbFHUw==
+X-Received: by 2002:a17:903:2289:b0:1d7:ad3:6318 with SMTP id b9-20020a170903228900b001d70ad36318mr1058204plh.23.1705592152662;
+        Thu, 18 Jan 2024 07:35:52 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEMhD19NwdQ6O2/f85sTtPnPbTyrLlNxaAEf9pNnH3bnZq+ODPClOncwHC663UDceOhebj/zA==
+X-Received: by 2002:a17:903:2289:b0:1d7:ad3:6318 with SMTP id b9-20020a170903228900b001d70ad36318mr1058187plh.23.1705592152360;
+        Thu, 18 Jan 2024 07:35:52 -0800 (PST)
+Received: from LAP559U.mistral.in ([106.51.69.35])
+        by smtp.gmail.com with ESMTPSA id kf13-20020a17090305cd00b001d0ca40158dsm1535207plb.280.2024.01.18.07.35.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jan 2024 07:35:52 -0800 (PST)
+From: sabiya.d@mistralsolutions.com
+X-Google-Original-From: sabiya.d@ti.com
+To: nm@ti.com,
+	vigneshr@ti.com,
+	kristo@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linus.walleij@linaro.org
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	u-kumar1@ti.com,
+	sabiya.d@mistralsolutions.com,
+	Dasnavis Sabiya <sabiya.d@ti.com>
+Subject: [PATCH 0/2] Add CAN and OSPI support for AM69-SK platform
+Date: Thu, 18 Jan 2024 21:05:22 +0530
+Message-Id: <20240118153524.4135901-1-sabiya.d@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="uK+u7gbhbDVqB0jo"
-Content-Disposition: inline
-In-Reply-To: <20240118092612.117491-2-dharma.b@microchip.com>
+Content-Transfer-Encoding: 8bit
+X-BESS-ID: 1705596127-303814-17310-3738-1
+X-BESS-VER: 2019.1_20240103.1634
+X-BESS-Apparent-Source-IP: 209.85.219.71
+X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyMTMEMjKAYsZGRobJJkbJlk
+	DSwsLCPCU1NTUtzSA11SzJwMzCxEKpNhYA43mfqkAAAAA=
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.253602 [from 
+	cloudscan10-177.eu-central-1a.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+	0.00 NO_REAL_NAME           HEADER: From: does not include a real name 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO, NO_REAL_NAME
+X-BESS-BRTS-Status:1
 
+From: Dasnavis Sabiya <sabiya.d@ti.com>
 
---uK+u7gbhbDVqB0jo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi All,
 
-On Thu, Jan 18, 2024 at 02:56:10PM +0530, Dharma Balasubiramani wrote:
-> Convert the existing DT binding to DT schema of the Atmel's HLCDC display
-> controller.
->=20
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> ---
-> changelog
-> v2 -> v3
-> - Remove '|' in description, as there is no formatting to preserve.
-> - Ref video-interfaces as endpoint.
-> - Remove ref and description for bus-width.
-> - Add new line before the child node in example.
+This series adds support for the below interfaces on AM69-SK platform:
+-  CAN support on both MCU and MAIN domains
+-  OSPI NOR flash support
 
-> - Remove 'example 2', as it is not required for just one additional prope=
-rty.
+Dasnavis Sabiya (2):
+  arm64: dts: ti: k3-am69-sk: Enable CAN interfaces for AM69 SK board
+  arm64: dts: ti: k3-am69-sk: Add support for OSPI flash
 
-Rob's comment on the previous version was:
-| Just 1 extra property doesn't justify 2 examples.
-|=20
-| In any case, drop the partial examples and just have 1 complete example=
-=20
-| in the MFD binding schema.
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts | 166 ++++++++++++++++++++++++++
+ 1 file changed, 166 insertions(+)
 
+-- 
+2.34.1
 
---uK+u7gbhbDVqB0jo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZalETQAKCRB4tDGHoIJi
-0oMyAP9+Ll8fdXViDHTVjFHNGPWzChucZsZdKY7aRr7jkFYBhAD/Qt7JIQGWHJ89
-hYQiygsvwed2ijEO9ueMCNp10XQMzw4=
-=FSle
------END PGP SIGNATURE-----
-
---uK+u7gbhbDVqB0jo--
 
