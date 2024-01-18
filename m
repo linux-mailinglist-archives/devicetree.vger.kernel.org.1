@@ -1,148 +1,126 @@
-Return-Path: <devicetree+bounces-33088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60BBB83213C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 23:00:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC45283215D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 23:07:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FBC71F23AC7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 22:00:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF10E1C22ECB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 22:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3068E31752;
-	Thu, 18 Jan 2024 22:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C43B31753;
+	Thu, 18 Jan 2024 22:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="SNygzZwl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f6NCM36u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E460F2E848;
-	Thu, 18 Jan 2024 22:00:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 590122E848;
+	Thu, 18 Jan 2024 22:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705615225; cv=none; b=AM38J6gQvGzdqSptVER+eQHj+M1nDgFKmJzcNRu6y6vCDt9n+muAfGppZOWQuEFRM6hIlP+M/G9wZ6b1I8u1M7m+JMk9BKEWs0FLjyrXFeFyheAbu8Xdw9TYAAdhkShaPAVqePlebFj6w9k3dW4IM0jZdQC1IKEgn3tUpzwqnLc=
+	t=1705615627; cv=none; b=dzUmWikykFz3Us46h16OW1GUADna+bXJed/u9XdVjrz6nQzQ+fzlHROID0iamIM8k/MPoe6unBv/R0l9mTC5Lo0c7cujVYhPwCrVIyJH5jxV03aBszgNVals6mzd+MJZhHOyFmKyCXtf5FUQcb3rYkWyQRODZaHas1F4pj0iSOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705615225; c=relaxed/simple;
-	bh=wLvsv08eBZtYU7ZaISCpiqBuWqPFTTvXPV3fWg3VUvE=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=lvDJxyU9HM6+fdVtRvQo6+oxCZiuedCRNgase7XSvxTwsUKfgaFa/1uo5eJWAzPRKBURFNG/rzCeTOhzWwLFOLFZ6sudaKKJhweynEn8B8SRP/qx4//VfFzZLihrUcmfFGxOGs9zt9wvLokKN6GvGGftTqer32u5tmbYFBqbEGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=SNygzZwl; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-	s=s31663417; t=1705615201; x=1706220001; i=frank-w@public-files.de;
-	bh=wLvsv08eBZtYU7ZaISCpiqBuWqPFTTvXPV3fWg3VUvE=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:
-	 References;
-	b=SNygzZwl8NfRCJswcMPa1qVnqtVMkWjHZFA8tBNg4DXhCdz2eroL9vQ3dbkRQ/Ni
-	 aj7x406MCWWHhVcekTs/Ba8hCs6VsigS3bFLa1UwnMyk9lZb7ZHDs6OflttwxQZJ1
-	 nvMcMdnSzcOJUDp64TZx7g1ThNYgkiRnReat+IQ/bbSTQiwLese2F6/Yy4n6AfZqu
-	 gmhRIf+u9XOcljJqD2OF1TUDfuqTQTlfbriHhNvPkS7AOI+kzGMjt/mwM4/X2Rfu6
-	 c1yQPaB5n2/OnV+dJphPqXqt3kLdC6X8XD+PmvnlPO3LY2ljEiGTyAe+HAgqvQqHx
-	 Ir5lZe60hBiIPyD3DQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.159.198] ([217.61.159.198]) by web-mail.gmx.net
- (3c-app-gmx-bap21.server.lan [172.19.172.91]) (via HTTP); Thu, 18 Jan 2024
- 23:00:00 +0100
+	s=arc-20240116; t=1705615627; c=relaxed/simple;
+	bh=iseU8jQdo5TbasDTsLDq2FqVB/V3B0OwmtPqZ4AdvHM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f4J63nFtowQhI4lXfXEcNvnqpZVe+P1TtXEnhdlMAx5sj71WlMPncXRDofiPfvcb3WR/V/uZ9L08CqFR5f8BfwkIPo5rtiU8ml9PoySes8J7hd9jIfo4E10frsROMj3/gDtdoHzWcCojPrzKobO9R83eX0Hu6BXpuLRV7r3R6Qw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f6NCM36u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 596ECC433F1;
+	Thu, 18 Jan 2024 22:07:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705615626;
+	bh=iseU8jQdo5TbasDTsLDq2FqVB/V3B0OwmtPqZ4AdvHM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f6NCM36uAeF0IfTRbUH03Lri3cCsoKdvkLTwbchpoXLnitcPpd2hQvJji/o3GJod9
+	 FVsOKYovvKJDaYreDsXBWTluZtFP5GoI6bAR+GGtV7JHSdpUd303Qj0bmzYzNX0V1s
+	 +wSwD8JbKfT/moIH/rGvb2peKnPGeoeRhrPa57Qho/NdTgQpG/TyPa4+HuQ3k6BA4O
+	 9RK6KXgdBsb9Mtu0RrVHfyNQjAm8BEKErTj6Q9H38l9ubDqPgFndwYsRpcKVBMXorN
+	 j1gY6KZB3CaOyOabqW28lhoKZxU/V0KufzcJ9hlvOLMTIDS6WMWXJvCYEYYVDspYy3
+	 W8yfgeaCBxdhg==
+Date: Thu, 18 Jan 2024 22:07:00 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Charles Keepax <ckeepax@opensource.cirrus.com>, lee@kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linus.walleij@linaro.org, vkoul@kernel.org,
+	lgirdwood@gmail.com, yung-chuan.liao@linux.intel.com,
+	sanyog.r.kale@intel.com, pierre-louis.bossart@linux.intel.com,
+	alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 6/6] ASoC: cs42l43: Add support for the cs42l43
+Message-ID: <b1889bb0-2b9f-477c-80d3-a636b9017ea4@sirena.org.uk>
+References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
+ <20230804104602.395892-7-ckeepax@opensource.cirrus.com>
+ <Zali4qxdegY7H6eY@surfacebook.localdomain>
+ <aec96f5a-b759-48c7-a5ec-bafe3bfa5357@sirena.org.uk>
+ <CAHp75Vd6JtW4ddbSPXUp6WgEdBJizjwnS-XZzwLcXWWLxFWp-w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-afc4f48e-65e1-46ee-a78b-1d670cc0f310-1705615200900@3c-app-gmx-bap21>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: Conor Dooley <conor@kernel.org>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <linux@fw-web.de>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Sam Shih <sam.shih@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-Subject: Aw: Re: [PATCH v3 1/2] dt-bindings: reset: mediatek: add MT7988
- reset IDs
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 18 Jan 2024 23:00:00 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20240118-calcium-krypton-3c787b8d1912@spud>
-References: <20240117184111.62371-1-linux@fw-web.de>
- <20240117184111.62371-2-linux@fw-web.de>
- <20240118-calcium-krypton-3c787b8d1912@spud>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:i7cKlr7pbBOeeo2MJju4eygi1kMNVyLIp+PFrgFTenIkemr6mJ/6zZ1a/Lg1H9bvFTdMp
- TI7kGYsJ+UQM26RzgcW7nABwCLt3D1kj+LOIj9a0Cq6nZrtefigXaCJBaeV3x/mcPy6KsMB7kXU9
- dM0jDKxM9ibIjtGnclsOb0Mqoog2SEyR9Cko1fqakeMUdslD4rpxVB2ypJfppjPFxuXFdFYGPzQP
- 6O3N8pLs7UnnLzru6iS1jFdOxB0t/+rjiqYhxiD96PppyYlpd6CUzg/T4yYBP9pq3BNDAGSOm9e5
- ik=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:Gzu+rTj6VvA=;AFUqbzs2KLld0OIuq1bzMhSKPgl
- Kd7wJWth+9/ff1+bN2OyVvlJR0rjHQ7GcdSOu5Gg2jgh331Cni4J64RQFLkLC/EaHwzxmS2Uz
- XL44FMFv8vE4oCmSOzKtD24Nr1ISiK9JraRdcY5PZPfIDv122vBbvsk3DHmEjbM+q9fjkMb+q
- YmREoZ5tY3k9jH3P9QMpN3UYxARaUzCezNsWzSsRDitvRXFPI9fyn9SYTqT9tRfC1Uh9cnCyW
- m6plg3l/HV2u/4ItKFKwD/yX8o6kNWsy6th/2u0qO4+EDzy7hMz96zo4kkzFTzjzPdATfYYG/
- CcQ65Cxeo/Q3IDz/NmtvkpGq7/d+hIR3pNHpweLsy50DWTic+PHXlQ+wc4c3JxdIY/+eJgar9
- 9dSDWS6xBkRSUzCX26dPWzEowUPPaKtAPl0kkQY9BLoXZmlM1LuzV3oHW0TpGiPXsVR6bPWw+
- nhxlc2CGClYR2an6957v3MOMdYtqbNnanhl79XeoEMFIqgqHYiDPrO834OqDPg4AM6b6qIVF1
- WR7gsIYRWrdXsS+lhb/FHdIOt+wwG8hBHQ6ihMBrnrUSgm8xTWHEJM+v6a4U3ZQYLeQPEUJn7
- omzxu8D1RDFlLgxRO9viMu0N/xh0Qr9W2niMCedv4y4VEjFJMhxK+ygXRKjwzastXE3TYNJea
- WlA+RXaGs7BDFDEXjBV1DJDzATdgGqXq8AnOW9CtWyrrirW9TJpTV0IRbj6No/L8d5pqf01oj
- E8+0bhGoBMcdz8f6cL6gqxMCoGGAH1tVzG9IlVljibVUcGPRy8IhPXyxK5yFok+EerEmSq2tL
- b5i84Et/qC1kETeXvhxKK7ew==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="71ujX23WTb2DYuTK"
+Content-Disposition: inline
+In-Reply-To: <CAHp75Vd6JtW4ddbSPXUp6WgEdBJizjwnS-XZzwLcXWWLxFWp-w@mail.gmail.com>
+X-Cookie: FEELINGS are cascading over me!!!
+
+
+--71ujX23WTb2DYuTK
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-> Gesendet: Donnerstag, 18. Januar 2024 um 17:49 Uhr
-> Von: "Conor Dooley" <conor@kernel.org>
-> On Wed, Jan 17, 2024 at 07:41:10PM +0100, Frank Wunderlich wrote:
-> > From: Frank Wunderlich <frank-w@public-files.de>
-> >
-> > Add reset constants for using as index in driver and dts.
-> >
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> > ---
-> > v3:
-> > - add pcie reset id as suggested by angelo
-> >
-> > v2:
-> >  - add missing commit message and SoB
-> >  - change value of infrareset to 0
-> > ---
-> >  include/dt-bindings/reset/mediatek,mt7988-resets.h | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/incl=
-ude/dt-bindings/reset/mediatek,mt7988-resets.h
-> > index 493301971367..0eb152889a89 100644
-> > --- a/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> > +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> > @@ -10,4 +10,10 @@
-> >  /* ETHWARP resets */
-> >  #define MT7988_ETHWARP_RST_SWITCH		0
-> >
-> > +/* INFRA resets */
-> > +#define MT7988_INFRA_RST0_PEXTP_MAC_SWRST	0
-> > +#define MT7988_INFRA_RST1_THERM_CTRL_SWRST	1
->
-> These are just "random" numbers, why not continue the numbering from the
-> ETHWARP?
+On Thu, Jan 18, 2024 at 10:46:28PM +0200, Andy Shevchenko wrote:
+> On Thu, Jan 18, 2024 at 8:11=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
+rote:
+> > On Thu, Jan 18, 2024 at 07:41:54PM +0200, andy.shevchenko@gmail.com wro=
+te:
+> > > Fri, Aug 04, 2023 at 11:46:02AM +0100, Charles Keepax kirjoitti:
 
-i can do...basicly these consts are used in DTS and driver only as index.
+> > > > +   unsigned int hs2 =3D 0x2 << CS42L43_HSDET_MODE_SHIFT;
 
-@angelo what do you think? I though also in leaving some space to allow gr=
-ouping RST0 and RST1
-when more consts are added, else the numbers are mixed up.
+> > > BIT(1) ?
 
-so e.g. let RST0 start at 20 and RST1 at 40 (or even higher, because RST0 =
-and RST1 can have up to 32 resets).
-That will allow adding more reset constants between my values and having r=
-aising numbers.
+> > Given that this is writing a value into a register field called "MODE"
+> > it seems very likely that it's an enumeration value rather than a
+> > bitmask (and similarly for all the other places where you're making
+> > similar comments).  Please think a bit more about the code being
+> > commented on when making these minor stylistic comments.
 
-regards Frank
+> I read a bit further and have given a comment about this as you put it
+> above that they are plain values.
+> Please, read my comments in full.
+
+I did eventually find that while going through the other comments but
+given that the earlier ones hadn't been revised and it was all a bunch
+of different fields it still seemed useful to highlight, if nothing else
+it was a little unclear that your later comment applied to all the
+fields you were asking for updates to.
+
+In general in a case like this where the code is already in tree it does
+seem like it'd be better to just write patche for the stylistic issues.
+
+--71ujX23WTb2DYuTK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWpoQMACgkQJNaLcl1U
+h9CCeQf+I21xMOQThraPXK85uU2p913UhGWbaP7HY9FD+DAulq1voxw9sDv5OoFD
+ciLzUlxTW5AGYUk1xAKqSHaxLf7PYAztwmpSXO3NBY9khrbEbBTNpcylDRzKgrQx
+ZhQAbiD54n6wKFCn6efN+Rh+8xXxP+XvRd2Dh8CVeWydMoRQaKs8GB0SnXr32F3M
+irPxz+pFuUEi6uYVqn4FPY3nowFTSqTiL3AzjtfXsK1MTl2MDlwcJdld0jr6bCk3
+GzrjYt+MDyyjj2Gk7LzEvNrZfgggAOH3KCNttfwRL9yO/bV7981VyOmdbzA7wxPL
+yQVLQLMim55rdMKYjPcsaLFGmCTEfA==
+=A+RS
+-----END PGP SIGNATURE-----
+
+--71ujX23WTb2DYuTK--
 
