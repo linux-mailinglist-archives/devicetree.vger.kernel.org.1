@@ -1,53 +1,52 @@
-Return-Path: <devicetree+bounces-33057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B31F8831E21
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 18:06:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBE63831E54
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 18:22:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64D83284268
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:06:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39090B251BA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 17:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D882C849;
-	Thu, 18 Jan 2024 17:06:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 318A62C841;
+	Thu, 18 Jan 2024 17:22:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fgw20-7.mail.saunalahti.fi (fgw20-7.mail.saunalahti.fi [62.142.5.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C1A82C6B1
-	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 17:06:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.142.5.81
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6011B2C843;
+	Thu, 18 Jan 2024 17:22:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705597577; cv=none; b=TQfCXIGFnfvYG1bEYPPPnzabFDsKJMHCmUg0/mbhYBpe1kRohmZ/eV9fl6APcYnWcReE4mkguQYbwRlrAR9j0QyN75UXcBOYt1lb/f4MFfzgIapCND5MVGhG+nK0h6ig7CQjnM3XtxlpG9YIAaU7VxMRQEfjXscmzgq7dP9OBQA=
+	t=1705598552; cv=none; b=WubPC9J3r/M4QJOcgCAAUO3N88Fb2PTHjcfajqfMygbR1PML0pJef7mTOn+IWC46Vp9/Sz0Ht5uTvY7SUzajB+gbWO9sgoIxO2OREg8FrLc+M9RCsDOBfw48s4OgCEKhlIaPzp+oUnltLTUANK4Zn6uqKeDa9zzO+G15UJX+aWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705597577; c=relaxed/simple;
-	bh=zwlAmsr3jy9o0CUfZAf7n0+dthoLludbuSbP800F6PU=;
-	h=Received:From:Date:To:Cc:Subject:Message-ID:References:
-	 MIME-Version:Content-Type:Content-Disposition:In-Reply-To; b=mf2ayu0LoStm4c3hI88/hu2tIVv7wMZTmq479OWFuwYetx2p7iylMKiPkZxMbztxcDQcjxdDBseBS1hKFyIltKQ8/XPGPMCB4C61gksUmm2/e6zpnbIHrvtgZGTpXYOkPNUSSjsCxrbL6lYFl1SjSgvA0NZzhG/5Gx+D1m5BR7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=62.142.5.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-Received: from localhost (88-113-24-108.elisa-laajakaista.fi [88.113.24.108])
-	by fgw20.mail.saunalahti.fi (Halon) with ESMTP
-	id e241a668-b623-11ee-b3cf-005056bd6ce9;
-	Thu, 18 Jan 2024 19:06:13 +0200 (EET)
-From: andy.shevchenko@gmail.com
-Date: Thu, 18 Jan 2024 19:06:13 +0200
-To: Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc: broonie@kernel.org, lee@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linus.walleij@linaro.org, vkoul@kernel.org, lgirdwood@gmail.com,
-	yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-	pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 5/6] spi: cs42l43: Add SPI controller support
-Message-ID: <ZalahZkCrBm-BXwz@surfacebook.localdomain>
-References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
- <20230804104602.395892-6-ckeepax@opensource.cirrus.com>
+	s=arc-20240116; t=1705598552; c=relaxed/simple;
+	bh=uh/ZegrayGjehc4ODdNQcSBJrpivXNQEjMOnrwqqNrw=;
+	h=Received:Received:Date:From:To:Cc:Subject:Message-ID:References:
+	 MIME-Version:Content-Type:Content-Disposition:In-Reply-To; b=VW0KgaxEiJFPWJ9qbflHzT13D9pMMjgnsymPC2V0+roHW8SVAdbdC1DfbXF4487PE5gnSUdSstbrDfWoIKaaT2w96lBhmMdd1Tt7lirNiTQLROLJZR3EiTubtn0xLOpB3JpuUYbFVVVe/LkLIDXrJu9vMCmf+f/z+fyP1PQygpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D3F861042;
+	Thu, 18 Jan 2024 09:23:12 -0800 (PST)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7C00C3F5A1;
+	Thu, 18 Jan 2024 09:22:24 -0800 (PST)
+Date: Thu, 18 Jan 2024 17:22:21 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: <cristian.marussi@arm.com>, <andersson@kernel.org>,
+	<konrad.dybcio@linaro.org>, <jassisinghbrar@gmail.com>,
+	Sudeep Holla <sudeep.holla@arm.com>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
+	<conor+dt@kernel.org>, Amir Vajid <avajid@quicinc.com>
+Subject: Re: [RFC 3/7] firmware: arm_scmi: Add QCOM vendor protocol
+Message-ID: <ZaleTVhYlUj6iufT@bogus>
+References: <20240117173458.2312669-1-quic_sibis@quicinc.com>
+ <20240117173458.2312669-4-quic_sibis@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,101 +55,232 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230804104602.395892-6-ckeepax@opensource.cirrus.com>
+In-Reply-To: <20240117173458.2312669-4-quic_sibis@quicinc.com>
 
-Fri, Aug 04, 2023 at 11:46:01AM +0100, Charles Keepax kirjoitti:
-> From: Lucas Tanure <tanureal@opensource.cirrus.com>
+On Wed, Jan 17, 2024 at 11:04:54PM +0530, Sibi Sankar wrote:
+> From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
 > 
-> The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
-> (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
-> for portable applications. It provides a high dynamic range, stereo
-> DAC for headphone output, two integrated Class D amplifiers for
-> loudspeakers, and two ADCs for wired headset microphone input or
-> stereo line input. PDM inputs are provided for digital microphones.
+> SCMI QCOM vendor protocol provides interface to communicate with SCMI
+> controller and enable vendor specific features like bus scaling capable
+> of running on it.
 > 
-> The SPI component incorporates a SPI controller interface for
-> communication with other peripheral components.
-
-...
-
-> +		while (buf < block) {
-> +			const u8 *word = min(buf + sizeof(u32), block);
-> +			int pad = (buf + sizeof(u32)) - word;
+> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+> Co-developed-by: Amir Vajid <avajid@quicinc.com>
+> Signed-off-by: Amir Vajid <avajid@quicinc.com>
+> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  drivers/firmware/arm_scmi/Kconfig            |  11 ++
+>  drivers/firmware/arm_scmi/Makefile           |   1 +
+>  drivers/firmware/arm_scmi/qcom_scmi_vendor.c | 160 +++++++++++++++++++
+>  include/linux/qcom_scmi_vendor.h             |  36 +++++
+>  4 files changed, 208 insertions(+)
+>  create mode 100644 drivers/firmware/arm_scmi/qcom_scmi_vendor.c
+>  create mode 100644 include/linux/qcom_scmi_vendor.h
+> 
+> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
+> index aa5842be19b2..86b5d6c18ec4 100644
+> --- a/drivers/firmware/arm_scmi/Kconfig
+> +++ b/drivers/firmware/arm_scmi/Kconfig
+> @@ -180,4 +180,15 @@ config ARM_SCMI_POWER_CONTROL
+>  	  called scmi_power_control. Note this may needed early in boot to catch
+>  	  early shutdown/reboot SCMI requests.
+>
+> +config QCOM_SCMI_VENDOR_PROTOCOL
+> +	tristate "Qualcomm Technologies, Inc. Qcom SCMI vendor Protocol"
+> +	depends on ARM || ARM64 || COMPILE_TEST
+> +	depends on ARM_SCMI_PROTOCOL
+> +	help
+> +	  The SCMI QCOM vendor protocol provides interface to communicate with SCMI
+> +	  controller and enable vendor specific features like bus scaling.
 > +
-> +			while (buf < word) {
-> +				val >>= BITS_PER_BYTE;
-> +				val |= FIELD_PREP(GENMASK(31, 24), *buf);
+
+I assume it will include all the Qualcomm specific vendor protocol
+handling here. Not sure how it it implemented across different platforms
+and but I already assume different platforms will use same protocol id
+for different things and this implementation will abstract all those
+details.
+
+> diff --git a/drivers/firmware/arm_scmi/qcom_scmi_vendor.c b/drivers/firmware/arm_scmi/qcom_scmi_vendor.c
+> new file mode 100644
+> index 000000000000..878b99f0d1ef
+> --- /dev/null
+> +++ b/drivers/firmware/arm_scmi/qcom_scmi_vendor.c
+> @@ -0,0 +1,160 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2024, The Linux Foundation. All rights reserved.
+> + */
 > +
-> +				buf++;
-> +			}
-
-Is this a reinvented way of get_unaligned_*() APIs?
-
-> +			val >>= pad * BITS_PER_BYTE;
+> +#include <linux/qcom_scmi_vendor.h>
 > +
-> +			regmap_write(regmap, CS42L43_TX_DATA, val);
-> +		}
-
-...
-
-> +			while (buf < word) {
-> +				*buf = FIELD_GET(GENMASK(7, 0), val);
+> +#include "common.h"
 > +
-> +				val >>= BITS_PER_BYTE;
-> +				buf++;
-> +			}
+> +#define	EXTENDED_MSG_ID			0
 
-put_unaligned_*() ?
+This gives me no clue what this means ?
 
-...
+> +#define	SCMI_MAX_TX_RX_SIZE		128
+> +#define	PROTOCOL_PAYLOAD_SIZE		16
+> +#define	SET_PARAM			0x10
 
-> +	/* select another internal CS, which doesn't exist, so CS 0 is not used */
-> +	if (spi_get_csgpiod(spi, 0))
-> +		spi_config1 |= 1 << CS42L43_SPI_SS_SEL_SHIFT;
+I assume these are the actual message IDs ? Any idea why 0x0-0xF is skipped ?
+I assume atleast the required 0x0-0x2 are implemented.
 
-BIT() ?
+> +#define	GET_PARAM			0x11
+> +#define	START_ACTIVITY			0x12
+> +#define	STOP_ACTIVITY			0x13
 
-> +	if (spi->mode & SPI_CPOL)
-> +		spi_config1 |= CS42L43_SPI_CPOL_MASK;
-> +	if (spi->mode & SPI_CPHA)
-> +		spi_config1 |= CS42L43_SPI_CPHA_MASK;
-> +	if (spi->mode & SPI_3WIRE)
-> +		spi_config1 |= CS42L43_SPI_THREE_WIRE_MASK;
+In general, good to add description of these in the implementation here
+or under Documentation or a pointer to the url where I can get the info.
+If documenting within the kernel, please use SCMI spec format as it may
+be easy to follow the same pattern even in the vendor protocols.
 
-...
-
-> +	if (is_of_node(fwnode))
-> +		fwnode = fwnode_get_named_child_node(fwnode, "spi");
-
-You can actually drop these is_of_node() tests and use another variable. In
-ACPI there can't be child node in small letters.
-
-But main problem here (and in another driver where the similar is used) that
-you bumped reference count for fwnode. I haven't seen where you drop it back.
-Have you tested rmmod/modprobe in a loop?
-
-...
-
-> +	devm_pm_runtime_enable(priv->dev);
-
-No error check? Why?
-
-...
-
-> +	ret = devm_spi_register_controller(priv->dev, priv->ctlr);
-> +	if (ret) {
-> +		pm_runtime_disable(priv->dev);
-
-Ah! Are you sure you properly simulated faults when testing this code?
-
-> +		dev_err(priv->dev, "Failed to register SPI controller: %d\n", ret);
-> +	}
+> +
+> +static int qcom_scmi_set_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +			       u32 param_id, size_t size)
+> +{
+> +	int ret = -EINVAL;
+> +	struct scmi_xfer *t;
+> +	u32 *msg;
+> +
+> +	if (!ph || !ph->xops)
+> +		return ret;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, SET_PARAM, size + PROTOCOL_PAYLOAD_SIZE,
+> +				      SCMI_MAX_TX_RX_SIZE, &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	msg = t->tx.buf;
+> +	*msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+> +	*msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+> +	*msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+> +	*msg++ = cpu_to_le32(param_id);
+> +	memcpy(msg, buf, size);
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	ph->xops->xfer_put(ph, t);
 > +
 > +	return ret;
+> +}
+> +
+> +static int qcom_scmi_get_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +			       u32 param_id, size_t tx_size, size_t rx_size)
+> +{
+> +	int ret = -EINVAL;
+> +	struct scmi_xfer *t;
+> +	u32 *msg;
+> +
+> +	if (!ph || !ph->xops || !buf)
+> +		return ret;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, GET_PARAM, tx_size + PROTOCOL_PAYLOAD_SIZE,
+> +				      SCMI_MAX_TX_RX_SIZE, &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	msg = t->tx.buf;
+> +	*msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+> +	*msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+> +	*msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+> +	*msg++ = cpu_to_le32(param_id);
+> +	memcpy(msg, buf, tx_size);
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	if (t->rx.len > rx_size) {
+> +		pr_err("SCMI received buffer size %zu is more than expected size %zu\n",
+> +		       t->rx.len, rx_size);
+> +		return -EMSGSIZE;
+> +	}
+> +	memcpy(buf, t->rx.buf, t->rx.len);
+> +	ph->xops->xfer_put(ph, t);
+> +
+> +	return ret;
+> +}
+> +
+> +static int qcom_scmi_start_activity(const struct scmi_protocol_handle *ph,
+> +				    void *buf, u64 algo_str, u32 param_id, size_t size)
+> +{
+> +	int ret = -EINVAL;
+> +	struct scmi_xfer *t;
+> +	u32 *msg;
+> +
+> +	if (!ph || !ph->xops)
+> +		return ret;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, START_ACTIVITY, size + PROTOCOL_PAYLOAD_SIZE,
+> +				      SCMI_MAX_TX_RX_SIZE, &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	msg = t->tx.buf;
+> +	*msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+> +	*msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+> +	*msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+> +	*msg++ = cpu_to_le32(param_id);
+> +	memcpy(msg, buf, size);
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	ph->xops->xfer_put(ph, t);
+> +
+> +	return ret;
+> +}
+> +
+> +static int qcom_scmi_stop_activity(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
+> +				   u32 param_id, size_t size)
+> +{
+> +	int ret = -EINVAL;
+> +	struct scmi_xfer *t;
+> +	u32 *msg;
+> +
+> +	if (!ph || !ph->xops)
+> +		return ret;
+> +
+> +	ret = ph->xops->xfer_get_init(ph, STOP_ACTIVITY, size + PROTOCOL_PAYLOAD_SIZE,
+> +				      SCMI_MAX_TX_RX_SIZE, &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	msg = t->tx.buf;
+> +	*msg++ = cpu_to_le32(EXTENDED_MSG_ID);
+> +	*msg++ = cpu_to_le32(algo_str & GENMASK(31, 0));
+> +	*msg++ = cpu_to_le32((algo_str & GENMASK(63, 32)) >> 32);
+> +	*msg++ = cpu_to_le32(param_id);
+> +	memcpy(msg, buf, size);
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	ph->xops->xfer_put(ph, t);
+> +
+> +	return ret;
+> +}
+> +
+> +static struct qcom_scmi_vendor_ops qcom_proto_ops = {
+> +	.set_param = qcom_scmi_set_param,
+> +	.get_param = qcom_scmi_get_param,
+> +	.start_activity = qcom_scmi_start_activity,
+> +	.stop_activity = qcom_scmi_stop_activity,
+> +};
+> +
+> +static int qcom_scmi_vendor_protocol_init(const struct scmi_protocol_handle *ph)
+> +{
+> +	u32 version;
+> +
+> +	ph->xops->version_get(ph, &version);
+> +
+> +	dev_info(ph->dev, "qcom scmi version %d.%d\n",
+> +		 PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct scmi_protocol qcom_scmi_vendor = {
+> +	.id = QCOM_SCMI_VENDOR_PROTOCOL,
+
+As Cristian might have pointed out, this will conflict and we need better
+matching to ensure each vendor and protocols with each implementation has
+unique matching mechanism so that only one match occurs per protocol on
+any platform.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Regards,
+Sudeep
 
