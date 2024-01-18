@@ -1,95 +1,91 @@
-Return-Path: <devicetree+bounces-33009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E7E5831C2B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:17:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D82EB831C39
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 16:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A29151C22348
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 15:17:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34E771F22A02
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 15:21:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C614E1E88F;
-	Thu, 18 Jan 2024 15:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0241F95F;
+	Thu, 18 Jan 2024 15:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hb+bApsU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kUsk2a8R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 163AF1E87D;
-	Thu, 18 Jan 2024 15:17:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.134.136.100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CE81E520;
+	Thu, 18 Jan 2024 15:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705591050; cv=none; b=Hi5X0BvpgUxWLZFP3RJAXNUJOwlaMWpt2o8q6oFUiApXZ3KWKeIEYjwJe/g1RqYkEAKeUCuh4ALa+6NTdZywgCTdQMm/AeTl8xVkCLgfRWEF4bUeCH5oK3wYucGQV5xbtsBDrz/ot3RfYeIJsBByGoZx2Kmd2o0fry4Kn3HH1S0=
+	t=1705591270; cv=none; b=TanGCXTYM+SUJL6v544ROMm1t2qGLIxXU2G9A/tb/N0dJAF63nXlYa30EzSzDvLgYsKRlejtAQxvTB6Oy1YpBhii7S55rQjNoRG0qEwS9fRqaJNlvlRMgH52OZYC0UFkzuglynUmJxJNyfduZKr/EGCs2FiaDgaFJIhGQ1V388g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705591050; c=relaxed/simple;
-	bh=+kFrRhjHpv40nvSzG/vyhe0ms38QkgFWWNV2IL9QDBA=;
-	h=DKIM-Signature:X-IronPort-AV:X-IronPort-AV:Received:X-ExtLoop1:
-	 X-IronPort-AV:X-IronPort-AV:Received:Received:Date:From:To:Cc:
-	 Subject:Message-ID:References:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=IzWuvo6+PQhTlEdpgqRzBdFGY7orbO/GjY9Y8TQ2cEtyQ7aA6zziSMwsOYBl68q0ZCZdRY8eo586wEVLNDnIT7rnoNiSuxRdzKMIRs+XxgAl8VZxpjv4K9r1Tz5v7yLLTxN8aHeIdHVQZDW1qeG16khPG6jY4dgwoVdXNKIqX00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hb+bApsU; arc=none smtp.client-ip=134.134.136.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1705591049; x=1737127049;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+kFrRhjHpv40nvSzG/vyhe0ms38QkgFWWNV2IL9QDBA=;
-  b=hb+bApsU7OftD90cqpsJZF2UNQTy53rMGGPzd0Rjx0c2C7c4GRxaufOY
-   nVFJw0lhJSP3U0p99r9muSDFSBFnF0RA8hKKCxH6Paqo4mddcgqpprnBq
-   wawDuAjSA5etnDj7we/fj/obtzKM7/doVd07E/jY61IckV1Vdn8vvJ21l
-   JZs/PxBEpfk4jayI8rbUdiWicGagZLUS3SW8s3/awF2h9Op0YRhuxkqLu
-   H62NiGZIGjONrTjgKL0jU0toz2vtJJqi1d5XWaq351m5GVUtTU9KvUW+g
-   hpXsjlx2HBaqY2DDpyLx8medeWvZtAGQBvnCyJnvALawYISuj2Yq/NTtk
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="466852643"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; 
-   d="scan'208";a="466852643"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jan 2024 07:17:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10956"; a="784826988"
-X-IronPort-AV: E=Sophos;i="6.05,203,1701158400"; 
-   d="scan'208";a="784826988"
-Received: from lkp-server01.sh.intel.com (HELO 961aaaa5b03c) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 18 Jan 2024 07:17:20 -0800
-Received: from kbuild by 961aaaa5b03c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rQU8r-000356-1C;
-	Thu, 18 Jan 2024 15:17:17 +0000
-Date: Thu, 18 Jan 2024 23:16:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Alexander Graf <graf@amazon.com>, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-trace-kernel@vger.kernel.org,
-	linux-mm@kvack.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, kexec@lists.infradead.org,
-	linux-doc@vger.kernel.org, x86@kernel.org,
-	Eric Biederman <ebiederm@xmission.com>,
-	"H . Peter Anvin" <hpa@zytor.com>,
-	Andy Lutomirski <luto@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Tom Lendacky <thomas.lendacky@amd.com>,
-	Ashish Kalra <ashish.kalra@amd.com>,
-	James Gowans <jgowans@amazon.com>,
-	Stanislav Kinsburskii <skinsburskii@linux.microsoft.com>,
-	arnd@arndb.de, pbonzini@redhat.com, madvenka@linux.microsoft.com,
-	Anthony Yznaga <anthony.yznaga@oracle.com>,
-	Usama Arif <usama.arif@bytedance.com>,
-	David Woodhouse <dwmw@amazon.co.uk>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v3 13/17] tracing: Recover trace buffers from kexec
- handover
-Message-ID: <202401182318.vEGddOt1-lkp@intel.com>
-References: <20240117144704.602-14-graf@amazon.com>
+	s=arc-20240116; t=1705591270; c=relaxed/simple;
+	bh=Q0uFvttzQM/xHVr4MGjxmmaHruyejoVLaVqpqT0uaag=;
+	h=Received:DKIM-Signature:X-Google-DKIM-Signature:
+	 X-Gm-Message-State:X-Google-Smtp-Source:X-Received:Received:
+	 Message-ID:X-Google-Original-Message-ID:Date:From:To:Cc:Subject:
+	 References:MIME-Version:Content-Type:Content-Disposition:
+	 In-Reply-To; b=Tv4qGy1atsbsLH1ncxfiQ8LHKUT31oqv2iNaIzMkVb9sMd8w1mHOE1TI6Wz2/tvII++hIdE7XPPZHTWIR7HTkKJdg6cCi+yA9NyLhDLn1hvKPIwSPAR9kBzYLcVR+NwexSFgQuRPNjjifpJahAdYfweU9poxMVuQsJ/F2C+xAHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kUsk2a8R; arc=none smtp.client-ip=209.85.161.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-598699c0f1eso5576460eaf.2;
+        Thu, 18 Jan 2024 07:21:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705591268; x=1706196068; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=OxhHEuq4UoGKdyKSn2yl78F78p0BZYUw4RlptfBHAvk=;
+        b=kUsk2a8RDT1YAP8m5T1T8iNxsWv+OLM2mGXah0rT6FP7wkLzx/a/M4i0SNZzctAUYe
+         49hbXWgzvnIOdrx+ufsF1jSO0GkAoZQJfFHep6b6UKsZ5ZAEAOHJ2KpXoTjwSA08lYdr
+         RmMyQ1JFaWRuin3b70vLzMCfmj7LdxP7OXXE0Jf4p4Bn7Id/k/UsrzLV6mF6qChkEnmT
+         0rWwwysUMx645WDd6uXIZk1ITMAgEoj1s/0o9x0j6p012v2wiSiJDv6KYE1XdNWjMOPD
+         crKtxQYTFVgHESQ2vdvI4jLYYbnygzmpBHQRsfvEmVtaZIrytulxwY7uXfQ/8T0m36nK
+         zLSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705591268; x=1706196068;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OxhHEuq4UoGKdyKSn2yl78F78p0BZYUw4RlptfBHAvk=;
+        b=IY6S3lwVptffGQQaG6C8NkBAiwiGzdW6Bf0cm9vAJy6HEwoul6XA3Iy7soZYIO1P4f
+         qzbcKidcJ+JVVfqh4RQ5OzW3EGNQexItgb3gzGdvRAP8EWtCKGX/9SiSdoY+r0QuztNk
+         PeJzNTPljM1qfdfx4Ry/1fjb8cRNNw8zHov3L8OEYJssYPni22IItXHsmU9hkscUCcBg
+         mjfhLmR8gR+kZa9S5ynRtzHEB7CgH22XuEKnewgLQ3htDQjetKps+ZVXMitucfF+VM3s
+         CtpM5/aKSEJPcSh0xGeNnyd2JUgS0qrkvPDX/pTMUS+f7ox5GFYWnI0VJnL5zxfpFeZv
+         mb9A==
+X-Gm-Message-State: AOJu0Ywjti83+Zz3+sjtevJu3miEv8MDOSxauGDkG3bUhIDPkBzxwAFD
+	nn9C2NsN7qE0B6XCswaHfY8LB9lDMxx0uHrzUfUwzUdU1lydvKiU
+X-Google-Smtp-Source: AGHT+IH2BMhuQTwBXDYh4UyL8nSz7XvomyAtA2Fr7aMNO58k/+nLRU4T0sdfg/HjRYFAFfIrnghpBw==
+X-Received: by 2002:a4a:b149:0:b0:596:eb1:1014 with SMTP id e9-20020a4ab149000000b005960eb11014mr900095ooo.5.1705591267916;
+        Thu, 18 Jan 2024 07:21:07 -0800 (PST)
+Received: from neuromancer. ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id z11-20020a4a304b000000b005990c400db8sm1187106ooz.46.2024.01.18.07.21.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jan 2024 07:21:07 -0800 (PST)
+Message-ID: <65a941e3.4a0a0220.673cc.7147@mx.google.com>
+X-Google-Original-Message-ID: <ZalB4pIwnLf/zz2I@neuromancer.>
+Date: Thu, 18 Jan 2024 09:21:06 -0600
+From: Chris Morgan <macroalpha82@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Tim Lunn <tim@feathertop.org>, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Chris Zhong <zyw@rock-chips.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Zhang Qing <zhangqing@rock-chips.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: rockchip: Document rk809 support for
+ rk817 audio codec
+References: <20240116132102.3272682-1-tim@feathertop.org>
+ <20240116132102.3272682-2-tim@feathertop.org>
+ <20240116-mangle-parish-93b5cd672d17@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,120 +94,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240117144704.602-14-graf@amazon.com>
+In-Reply-To: <20240116-mangle-parish-93b5cd672d17@spud>
 
-Hi Alexander,
+On Tue, Jan 16, 2024 at 05:06:34PM +0000, Conor Dooley wrote:
+> On Wed, Jan 17, 2024 at 12:21:00AM +1100, Tim Lunn wrote:
+> > Rockchip RK809 shares the same audio codec as the rk817 mfd, it is also
+> > using the same rk817_codec driver. However it is missing from the
+> > bindings.
+> > 
+> > Update dt-binding documentation for rk809 to include the audio codec
+> > properties. This fixes the following warning from dtb check:
+> > 
+> > pmic@20: '#sound-dai-cells', 'assigned-clock-parents', 'assigned-clocks',
+> >    'clock-names', 'clocks', 'codec' do not match any of the regexes:
+> >    'pinctrl-[0-9]+'
+> > 
+> > Signed-off-by: Tim Lunn <tim@feathertop.org>
+> > ---
+> > 
+> > (no changes since v1)
+> > 
+> >  .../bindings/mfd/rockchip,rk809.yaml          | 30 ++++++++++++++++++-
+> >  1 file changed, 29 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> > index 839c0521f1e5..bac2e751e2f2 100644
+> > --- a/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+> > @@ -12,7 +12,7 @@ maintainers:
+> >  
+> >  description: |
+> >    Rockchip RK809 series PMIC. This device consists of an i2c controlled MFD
+> > -  that includes regulators, an RTC, and power button.
+> > +  that includes regulators, an RTC, a power button, and an audio codec.
+> >  
+> >  properties:
+> >    compatible:
+> > @@ -93,6 +93,34 @@ properties:
+> >          unevaluatedProperties: false
+> >      unevaluatedProperties: false
+> >  
+> > +  clocks:
+> > +    description:
+> > +      The input clock for the audio codec.
+> > +
+> > +  clock-names:
+> > +    description:
+> > +      The clock name for the codec clock.
+> > +    items:
+> > +      - const: mclk
+> 
+> You have one clock only, why do you need to have clock-names?
+> 
+> Otherwise,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Cheers,
+> Conor.
 
-kernel test robot noticed the following build warnings:
+The codec driver currently looks for a clock named "mclk".
 
-[auto build test WARNING on linus/master]
-[cannot apply to tip/x86/core arm64/for-next/core akpm-mm/mm-everything v6.7 next-20240118]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thank you,
+Chris.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Alexander-Graf/mm-memblock-Add-support-for-scratch-memory/20240117-225136
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20240117144704.602-14-graf%40amazon.com
-patch subject: [PATCH v3 13/17] tracing: Recover trace buffers from kexec handover
-config: i386-randconfig-061-20240118 (https://download.01.org/0day-ci/archive/20240118/202401182318.vEGddOt1-lkp@intel.com/config)
-compiler: ClangBuiltLinux clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240118/202401182318.vEGddOt1-lkp@intel.com/reproduce)
+> 
+> > +
+> > +  '#sound-dai-cells':
+> > +    description:
+> > +      Needed for the interpretation of sound dais.
+> > +    const: 0
+> > +
+> > +  codec:
+> > +    description: |
+> > +      The child node for the codec to hold additional properties. If no
+> > +      additional properties are required for the codec, this node can be
+> > +      omitted.
+> > +    type: object
+> > +    additionalProperties: false
+> > +    properties:
+> > +      rockchip,mic-in-differential:
+> > +        type: boolean
+> > +        description:
+> > +          Describes if the microphone uses differential mode.
+> > +
+> >  allOf:
+> >    - if:
+> >        properties:
+> > -- 
+> > 2.40.1
+> > 
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401182318.vEGddOt1-lkp@intel.com/
 
-sparse warnings: (new ones prefixed by >>)
-   kernel/trace/ring_buffer.c:1105:32: sparse: sparse: incorrect type in return expression (different base types) @@     expected restricted __poll_t @@     got int @@
-   kernel/trace/ring_buffer.c:1105:32: sparse:     expected restricted __poll_t
-   kernel/trace/ring_buffer.c:1105:32: sparse:     got int
-   kernel/trace/ring_buffer.c:4955:9: sparse: sparse: context imbalance in 'ring_buffer_peek' - different lock contexts for basic block
-   kernel/trace/ring_buffer.c:5041:9: sparse: sparse: context imbalance in 'ring_buffer_consume' - different lock contexts for basic block
-   kernel/trace/ring_buffer.c:5421:17: sparse: sparse: context imbalance in 'ring_buffer_empty' - different lock contexts for basic block
-   kernel/trace/ring_buffer.c:5451:9: sparse: sparse: context imbalance in 'ring_buffer_empty_cpu' - different lock contexts for basic block
->> kernel/trace/ring_buffer.c:5937:82: sparse: sparse: non size-preserving integer to pointer cast
-   kernel/trace/ring_buffer.c:5939:84: sparse: sparse: non size-preserving integer to pointer cast
 
-vim +5937 kernel/trace/ring_buffer.c
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
-  5896	
-  5897	static int rb_kho_replace_buffers(struct ring_buffer_per_cpu *cpu_buffer,
-  5898					     struct rb_kho_cpu *kho)
-  5899	{
-  5900		bool first_loop = true;
-  5901		struct list_head *tmp;
-  5902		int err = 0;
-  5903		int i = 0;
-  5904	
-  5905		if (!IS_ENABLED(CONFIG_FTRACE_KHO))
-  5906			return -EINVAL;
-  5907	
-  5908		if (kho->nr_mems != cpu_buffer->nr_pages * 2)
-  5909			return -EINVAL;
-  5910	
-  5911		for (tmp = rb_list_head(cpu_buffer->pages);
-  5912		     tmp != rb_list_head(cpu_buffer->pages) || first_loop;
-  5913		     tmp = rb_list_head(tmp->next), first_loop = false) {
-  5914			struct buffer_page *bpage = (struct buffer_page *)tmp;
-  5915			const struct kho_mem *mem_bpage = &kho->mem[i++];
-  5916			const struct kho_mem *mem_page = &kho->mem[i++];
-  5917			const uint64_t rb_page_head = 1;
-  5918			struct buffer_page *old_bpage;
-  5919			void *old_page;
-  5920	
-  5921			old_bpage = __va(mem_bpage->addr);
-  5922			if (!bpage)
-  5923				goto out;
-  5924	
-  5925			if ((ulong)old_bpage->list.next & rb_page_head) {
-  5926				struct list_head *new_lhead;
-  5927				struct buffer_page *new_head;
-  5928	
-  5929				new_lhead = rb_list_head(bpage->list.next);
-  5930				new_head = (struct buffer_page *)new_lhead;
-  5931	
-  5932				/* Assume the buffer is completely full */
-  5933				cpu_buffer->tail_page = bpage;
-  5934				cpu_buffer->commit_page = bpage;
-  5935				/* Set the head pointers to what they were before */
-  5936				cpu_buffer->head_page->list.prev->next = (struct list_head *)
-> 5937					((ulong)cpu_buffer->head_page->list.prev->next & ~rb_page_head);
-  5938				cpu_buffer->head_page = new_head;
-  5939				bpage->list.next = (struct list_head *)((ulong)new_lhead | rb_page_head);
-  5940			}
-  5941	
-  5942			if (rb_page_entries(old_bpage) || rb_page_write(old_bpage)) {
-  5943				/*
-  5944				 * We want to recycle the pre-kho page, it contains
-  5945				 * trace data. To do so, we unreserve it and swap the
-  5946				 * current data page with the pre-kho one
-  5947				 */
-  5948				old_page = kho_claim_mem(mem_page);
-  5949	
-  5950				/* Recycle the old page, it contains data */
-  5951				free_page((ulong)bpage->page);
-  5952				bpage->page = old_page;
-  5953	
-  5954				bpage->write = old_bpage->write;
-  5955				bpage->entries = old_bpage->entries;
-  5956				bpage->real_end = old_bpage->real_end;
-  5957	
-  5958				local_inc(&cpu_buffer->pages_touched);
-  5959			} else {
-  5960				kho_return_mem(mem_page);
-  5961			}
-  5962	
-  5963			kho_return_mem(mem_bpage);
-  5964		}
-  5965	
-  5966	out:
-  5967		return err;
-  5968	}
-  5969	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
