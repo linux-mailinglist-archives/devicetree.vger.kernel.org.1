@@ -1,124 +1,151 @@
-Return-Path: <devicetree+bounces-32947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-32948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 205D983158E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 10:12:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 584F183159C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 10:17:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF02F1F22545
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:12:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE59A1F261D0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jan 2024 09:17:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E4713FF8;
-	Thu, 18 Jan 2024 09:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B262D13FEF;
+	Thu, 18 Jan 2024 09:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="JOxknQum"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="HJg9pC/o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 902011F946;
-	Thu, 18 Jan 2024 09:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5FB200AB
+	for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 09:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705569133; cv=none; b=fNBlSFv2EUtGZz1iguA5Yv15ypldPZTidWSQr+sfh7101/dlkd85zYOVMMQ+ojwVT1GmljDQ+caWB/u61nHtfJYyeTf8P7x5GLOm841Ry2EB1I7rtZV115Z/TscK9O4OXOaCHgoSpDJOIezgiib9Yf3ynrhVL5tIgFjEplXCprc=
+	t=1705569424; cv=none; b=qeo0QeKcDEpKPJX4M/iHFSAoT5w8wEuEEgfXPn+h2EmR5pijDCsxMteEpSGNk4bGzNRRfk225OJLCluvf9Nuqs5W44fWhhmbgOk3U75+1cQ8CHRXk7UCVi/AltQLLTe9+Grb9dTECqCpisltvUPWGxvcR+o4+Z6LDk7RHJ6zyu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705569133; c=relaxed/simple;
-	bh=jTOMwYZYOjAXt29qPZUugCW1mNVTtziQZT6XubxjnG0=;
-	h=Received:DKIM-Signature:Received:Received:Received:Received:From:
-	 To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
-	 Content-Transfer-Encoding:Content-Type:X-Originating-IP:
-	 X-ClientProxiedBy:X-Proofpoint-Virus-Version; b=EnUjo+TtLhPYP6Ef1JxaBxRber6Pxi4OkwL8d5y2miwcZxicOD8hXV/T3h6aaUS9CbfDY9aiLeKVrZtwGddbGL2R+UENTFCKc9rkJYdotMPMASUziokoqfP4SCaxFo9tRBLa9PpHP1idorsiecuC5o4s0YVPN5mMbG6lp/vMEx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=JOxknQum; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40I8U27e001957;
-	Thu, 18 Jan 2024 10:11:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding:content-type; s=selector1; bh=LT44wAO
-	mjaAsg0tliRvC01UNCZUXx9vWqUxQLz5cG+g=; b=JOxknQumFVqkmGPewGIFhcW
-	VgEzl9Eyj6chqTZSrOBSfRA1tK6acLWSJWan3bLlFFCBXhacQiHEZfVZt8UKZ95s
-	KC+fwOHOiNMlxOoYrrQGvUH1Cak3Wd8mf4fNNtzX6gDUL/6RSGpebg335Rxyjqyj
-	463STz6RQ5YXkhOKX80Unal+0eFDnRJ0X5jPC/uxB1tfGujMwvBzv2uBZuG5cuoe
-	4VKBb2nuzRPRetVkkUFDYcm2r9dIEm5iYYpZWEtRRT8y5x8qGgbUCQBKmdli4jnn
-	UnDr+Vgx3GvpRz7+Sj3McIwGyl0zm9W3yUugwA0G8FE4/VM6MAhpLszbF8WI7yg=
-	=
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vkmde7t9u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 18 Jan 2024 10:11:50 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BA15310007D;
-	Thu, 18 Jan 2024 10:11:48 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 56946217B6B;
-	Thu, 18 Jan 2024 10:11:48 +0100 (CET)
-Received: from localhost (10.201.21.102) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 18 Jan
- 2024 10:11:48 +0100
-From: Valentin Caron <valentin.caron@foss.st.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Valentin Caron
-	<valentin.caron@foss.st.com>
-Subject: [PATCH v2] dt-bindings: serial: stm32: add power-domains property
-Date: Thu, 18 Jan 2024 10:11:35 +0100
-Message-ID: <20240118091135.3314330-1-valentin.caron@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1705569424; c=relaxed/simple;
+	bh=lVkjC/ZLl8R8eZuIiDN/2uM+qjLm5gj/0S4GI1CxecM=;
+	h=DKIM-Signature:X-AuditID:Received:Received:Received:From:To:CC:
+	 Subject:Thread-Topic:Thread-Index:Date:Message-ID:References:
+	 In-Reply-To:Accept-Language:Content-Language:X-MS-Has-Attach:
+	 X-MS-TNEF-Correlator:x-originating-ip:Content-Type:
+	 Content-Transfer-Encoding:MIME-Version:X-Brightmail-Tracker; b=TNUBHvclYE4Dl2UT3k6zTHkMWEjNgZWptWUIAY7ClctKQOzVbDUOWQETmViiy/vIXQXsK6K+o/jrw6nNtUVSQKPGNlHiOOm/1jSpzX4SgL//hwYVpL6My3OpruUKkrwfwwtvdm7I3CO5NJpo4rqm5B1EXopWF/LYXCUvENnTfX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=HJg9pC/o; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1705569413; x=1708161413;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=lVkjC/ZLl8R8eZuIiDN/2uM+qjLm5gj/0S4GI1CxecM=;
+	b=HJg9pC/oK/5Z6z4KBLX3Bn1XB49OSt6HEY73Qf9j9wbjwxI29Dd/xokm/0Brsqko
+	WmE3jyWzHTtoddLRdbR9wq26cpsvaFNDIRWZrUV7TxCwFuRo4GtziVUEr2PGrCFs
+	K+1oCwbXvXU/tTpwYXr8ElIV+2ts0KYuXRf4mjU7Txw=;
+X-AuditID: ac14000a-fadff7000000290d-df-65a8ec851e3a
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 91.A4.10509.58CE8A56; Thu, 18 Jan 2024 10:16:53 +0100 (CET)
+Received: from Berlix.phytec.de (172.25.0.12) by Berlix.phytec.de
+ (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 18 Jan
+ 2024 10:16:53 +0100
+Received: from Berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2507.006;
+ Thu, 18 Jan 2024 10:16:53 +0100
+From: Wadim Egorov <W.Egorov@phytec.de>
+To: Conor Dooley <conor@kernel.org>
+CC: "lee@kernel.org" <lee@kernel.org>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "miquel.raynal@bootlin.com"
+	<miquel.raynal@bootlin.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "upstream@lists.phytec.de"
+	<upstream@lists.phytec.de>
+Subject: AW: [PATCH] dt-bindings: mfd: ti,am3359-tscadc: Make dmas & dma-names
+ optional
+Thread-Topic: [PATCH] dt-bindings: mfd: ti,am3359-tscadc: Make dmas &
+ dma-names optional
+Thread-Index: AQHaSVgzUZ+jpApWjkav8+Rj3OKhUrDfSofH
+Date: Thu, 18 Jan 2024 09:16:52 +0000
+Message-ID: <759974970efd4042989e5ffb77c129b1@phytec.de>
+References: <20240117052104.747333-1-w.egorov@phytec.de>,<20240117-moistness-directory-e3dc0cd1c7c0@spud>
+In-Reply-To: <20240117-moistness-directory-e3dc0cd1c7c0@spud>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-18_04,2024-01-17_01,2023-05-22_02
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOIsWRmVeSWpSXmKPExsWyRpKBR7f1zYpUg01LRS3W7D3HZLFy6io2
+	i/lHzrFa9L14yGyxo20hi8XlXXPYLA6372O1aN17hN2i+526A6fHvDXVHptWdbJ53Lm2h82j
+	v7uF1ePzJrkA1igum5TUnMyy1CJ9uwSujNsPVAvO81QcfNXH0sB4i6uLkZNDQsBEYtmS06xd
+	jFwcQgKLmSROn3gN5dxnlPj55wszhLOBUWJRbx8zSAubgLrExL8nWEFsEQFliStrZzGCFDEL
+	7GOWaHn/HKxIWCBSYtKvKWwQRVESjW1T2CFsI4m9fxaDNbMIqEo0Lr/ICGLzClhIPDjxlKWL
+	kQNoW6bExfn8IGFOAVuJ47dvgI1hFJCV2LDhPNh4ZgFxiU3PvrNCvCAgsWQPRFxCQFTi5eN/
+	UHF5iRO3pjFB1OtILNj9iQ3C1pZYtvA1M8RaQYmTM5+wTGAUm4Vk7CwkLbOQtMxC0rKAkWUV
+	o1BuZnJ2alFmtl5BRmVJarJeSuomRlBkijBw7WDsm+NxiJGJg/EQowQHs5IIr7/BslQh3pTE
+	yqrUovz4otKc1OJDjNIcLErivKs7glOFBNITS1KzU1MLUotgskwcnFINjNH6V3naJEPeKkyf
+	naUvzddRPtHF4a3A/Y6LR1g3avedZToVEZC/40DJxzufT3c5Fc1iLmRkub+875l3zfMzHwwP
+	qqh18ezV2Tsp/UzV/SSzGfMfeGxtPW01Jcjr+izXnVWNPn9j1V8fNfm+b9mRgB/zjp26Yp8S
+	wimQnsXQUtjI8U5K0ORjnhJLcUaioRZzUXEiAN7w7we6AgAA
 
-STM32 serial may be in a power domain.
-Allow a single 'power-domains' entry for STM32 serial devices.
+Please ignore, a similar patch was already accepted
 
-Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
----
-Since v1:
- - Change commit message after Krzysztof review
+https://lore.kernel.org/linux-arm-kernel/20231124045019.21003-1-s-k6@ti.com=
+/T/
+________________________________________
+Von: Conor Dooley <conor@kernel.org>
+Gesendet: Mittwoch, 17. Januar 2024 16:16:45
+An: Wadim Egorov
+Cc: lee@kernel.org; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; =
+conor+dt@kernel.org; miquel.raynal@bootlin.com; devicetree@vger.kernel.org;=
+ linux-kernel@vger.kernel.org; upstream@lists.phytec.de
+Betreff: Re: [PATCH] dt-bindings: mfd: ti,am3359-tscadc: Make dmas & dma-na=
+mes optional
 
- Documentation/devicetree/bindings/serial/st,stm32-uart.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+On Wed, Jan 17, 2024 at 06:21:04AM +0100, Wadim Egorov wrote:
+> The driver does not require dmas or dma-names to be configured for the
+> ADC to work properly. Remove dmas and dma-names from the required
+> property list.
 
-diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-index 1df8ffe95fc61..62f97da1b2fd7 100644
---- a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-@@ -58,6 +58,9 @@ properties:
- 
-   wakeup-source: true
- 
-+  power-domains:
-+    maxItems: 1
-+
-   rx-threshold:
-     description:
-       If value is set to 1, RX FIFO threshold is disabled.
+You say "the driver" - I assume that this is the linux driver. What
+about drivers for other operating systems?
 
-base-commit: 0c84bea0cabc4e2b98a3de88eeb4ff798931f056
--- 
-2.25.1
+Thanks,
+Conor.
 
+>
+> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+> ---
+>  Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml | 2 --
+>  1 file changed, 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml =
+b/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
+> index 23a63265be3c..70b5dfce07d2 100644
+> --- a/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/ti,am3359-tscadc.yaml
+> @@ -61,8 +61,6 @@ required:
+>    - interrupts
+>    - clocks
+>    - clock-names
+> -  - dmas
+> -  - dma-names
+>
+>  additionalProperties: false
+>
+> --
+> 2.25.1
+>
 
