@@ -1,224 +1,129 @@
-Return-Path: <devicetree+bounces-33238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D34B832A3E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:20:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D82CF832A78
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:28:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8243F1C2321E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:20:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16FE71C23210
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4AD524D6;
-	Fri, 19 Jan 2024 13:20:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NvuVbFJF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E7955C05;
+	Fri, 19 Jan 2024 13:25:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B694524BB;
-	Fri, 19 Jan 2024 13:20:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB11155794
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 13:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705670427; cv=none; b=RnZa5AXQBygkQUqmtRtSkue4NE9/soNGNB+13v6EMsHj6sdQXQLRvKpfbVWALjXjr/jp8DDPbuHmz0Yg14tmwoOrpaOck6FN1Czdr5T6eLfnuNNZwtDkMnJtj5BBISZ0wy0w1h0/HnYRsCn4SLETD7xVzVKTtZjY0PmjyJLXCJk=
+	t=1705670749; cv=none; b=WRk7cmfI99cHviEl3P8Li3O0K3AiLPaC+oNJAxWplI1qqGq6q00R/wPNL99MARr434v3uQ6Y9A6CS3q1+RV+KOGAtxaC/gTwemC5p7XOI/tn/lkx7MNwYYX61tT+Rhxuo3CWn/nuXbQbM6crJcU4MKxoIMAZLWzYJkcl9FkMPf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705670427; c=relaxed/simple;
-	bh=ElJ/OCsOrIp+TTmifUSJD0/f8uRrKubB7ZceV1y38rI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=uO7UHqvj77Q7xS3F+QSyiEPZr8fztNdKYa/C3h/K3eHkbRBU3roDHsQxigbejNBrm4T3/bwnerXb3Fe0sT+f4iCdD60I8NOZNCiHBueYyxdOsaKX9yJQpDCdsoKcIBEDbPg4nzuor6Q+aSKF1efMR6rJ1+KBt3VrSZGDudOBMQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NvuVbFJF; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40JDKEnr121209;
-	Fri, 19 Jan 2024 07:20:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1705670414;
-	bh=/5N8KpYypf0t30Zg/oKI7dNIkXHHpGYh04I2FGal8YU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=NvuVbFJFUEWKecl1ysFBIc0/9OwlGAaEUP4WMKQtZ4XcY5xTXonRIK0g8WpnDW7dP
-	 xkgK3sn+H/U6dPbPYmaf+S85tEiV9YJi34QQZTZsRIsdOUB92NL3/B60BZLi6vaIPa
-	 7RnvIc3dQADCW8QSOVpTZf6fTywqMrbWwMRpF6Lc=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40JDKEf0108410
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 19 Jan 2024 07:20:14 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 19
- Jan 2024 07:20:14 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 19 Jan 2024 07:20:14 -0600
-Received: from [10.249.141.75] ([10.249.141.75])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40JDKAQf020766;
-	Fri, 19 Jan 2024 07:20:10 -0600
-Message-ID: <5605f593-8526-46b8-9a71-4cbbf013e96e@ti.com>
-Date: Fri, 19 Jan 2024 18:50:09 +0530
+	s=arc-20240116; t=1705670749; c=relaxed/simple;
+	bh=SnlmRY4YzKLUEZW36LRtIOn/V1xJIwJfrgcpZ0DRfw0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qZMNWlNFwcBVVxL589JueQI//m+DYUPsemB/bqSUv8D86X0C6u/cH5fF+Y++4W2NIRwckBeZul3PRr6UMGNRpkaxYED/oSa27vAwZRo4XjSeqOzxXr0/4ZUthL1CxXobXaXLJynzi51a77m3ZFzxuKlE8sjmbS2+G8m0uJsmmvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rQos7-00074E-C1; Fri, 19 Jan 2024 14:25:23 +0100
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rQos6-000viF-4D; Fri, 19 Jan 2024 14:25:22 +0100
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rQos6-00F97X-0B;
+	Fri, 19 Jan 2024 14:25:22 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Sebastian Reichel <sre@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	=?UTF-8?q?S=C3=B8ren=20Andersen?= <san@skov.dk>
+Subject: [RFC PATCH v1 0/7] Introduction of PSCR Framework and Related Components
+Date: Fri, 19 Jan 2024 14:25:14 +0100
+Message-Id: <20240119132521.3609945-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am69-sk: Enable CAN interfaces for
- AM69 SK board
-To: <sabiya.d@mistralsolutions.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Dasnavis Sabiya <sabiya.d@ti.com>
-References: <20240118153524.4135901-1-sabiya.d@ti.com>
- <20240118153524.4135901-2-sabiya.d@ti.com>
-Content-Language: en-US
-From: "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20240118153524.4135901-2-sabiya.d@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hello all,
 
-On 1/18/2024 9:05 PM, sabiya.d@mistralsolutions.com wrote:
-> From: Dasnavis Sabiya <sabiya.d@ti.com>
->
-> AM69 SK board has several CAN bus interfaces on both MCU and MAIN domains.
-> This enables the CAN interfaces on MCU and MAIN domain.
->
-> Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am69-sk.dts | 85 +++++++++++++++++++++++++++
->   1 file changed, 85 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> index 370980eb59b0..feb571a5a0f5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> @@ -29,6 +29,10 @@ aliases {
->   		i2c0 = &wkup_i2c0;
->   		i2c3 = &main_i2c0;
->   		ethernet0 = &mcu_cpsw_port1;
-> +		can0 = &mcu_mcan0;
-> +		can1 = &mcu_mcan1;
-> +		can2 = &main_mcan6;
-> +		can3 = &main_mcan7;
+This patch series introduces the Power State Change Reasons (PSCR)
+tracking framework and its related components into the kernel. The PSCR
+framework is designed for systems where traditional methods of storing
+power state change reasons, like PMICs or watchdogs, are inadequate. It
+provides a structured way to store reasons for system shutdowns and
+reboots, such as under-voltage or software-triggered events, in
+non-volatile hardware storage.
 
+These changes are critical for systems requiring detailed postmortem
+analysis and where immediate power-down scenarios limit traditional
+storage options. The framework also assists bootloaders and early-stage
+system components in making informed recovery decisions.
 
-AFAIK, can sub system does not support aliasing.
+Oleksij Rempel (7):
+  dt-bindings: power: reset: add generic PSCR binding trackers
+  power: reset: Introduce PSCR Tracking Framework for Non-Volatile
+    Storage
+  dt-bindings: power: reset: add bindings for NVMEM hardware storing
+    PSCR Data
+  nvmem: provide consumer access to cell size metrics
+  power: reset: add PSCR NVMEM Driver for Storing Power State Change
+    Reasons
+  regulator: set Power State Change Reason before
+    hw_protection_shutdown()
+  thermal: core: set Power State Change Reason before
+    hw_protection_shutdown()
 
-IMO, you can remove these.
+ .../bindings/power/reset/pscr-nvmem.yaml      |  54 ++++
+ .../devicetree/bindings/power/reset/pscr.yaml |  51 ++++
+ drivers/nvmem/core.c                          |  25 ++
+ drivers/power/reset/Kconfig                   |  30 ++
+ drivers/power/reset/Makefile                  |   2 +
+ drivers/power/reset/pscr-nvmem.c              | 100 +++++++
+ drivers/power/reset/pscr.c                    | 259 ++++++++++++++++++
+ drivers/regulator/core.c                      |   6 +
+ drivers/thermal/thermal_core.c                |   2 +
+ include/linux/nvmem-consumer.h                |   7 +
+ include/linux/pscr.h                          |  40 +++
+ 11 files changed, 576 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/pscr-nvmem.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/reset/pscr.yaml
+ create mode 100644 drivers/power/reset/pscr-nvmem.c
+ create mode 100644 drivers/power/reset/pscr.c
+ create mode 100644 include/linux/pscr.h
 
+-- 
+2.39.2
 
->   	};
->   
->   	memory@80000000 {
-> @@ -321,6 +325,31 @@ tfp410_out: endpoint {
->   			};
->   		};
->   	};
-> +
-> +	transceiver1: can-phy0 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +
-> +	transceiver2: can-phy1 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +
-> +	transceiver3: can-phy2 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +
-> +	transceiver4: can-phy3 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +	};
-> +
->   };
->   
->   &main_pmx0 {
-> @@ -429,6 +458,20 @@ hdmi_hpd_pins_default: hdmi-hpd-default-pins {
->   			J784S4_IOPAD(0x000, PIN_INPUT, 7) /* (AN35) EXTINTN.GPIO0_0 */
->   		>;
->   	};
-> +
-> +	main_mcan6_pins_default: main-mcan6-default-pins {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x098, PIN_INPUT, 0) /* (AH36) MCAN6_RX */
-> +			J784S4_IOPAD(0x094, PIN_OUTPUT, 0) /* (AG35) MCAN6_TX */
-> +		>;
-> +	};
-> +
-> +	main_mcan7_pins_default: main-mcan7-default-pins {
-> +		pinctrl-single,pins = <
-> +			J784S4_IOPAD(0x0A0, PIN_INPUT, 0) /* (AD34) MCAN7_RX */
-> +			J784S4_IOPAD(0x09C, PIN_OUTPUT, 0) /* (AF35) MCAN7_TX */
-> +		>;
-> +	};
->   };
->   
->   &wkup_pmx2 {
-> @@ -525,6 +568,20 @@ hdmi_pdn_pins_default: hdmi-pdn-default-pins {
->   			J784S4_WKUP_IOPAD(0x090, PIN_INPUT, 7) /* (H37) WKUP_GPIO0_14 */
->   		>;
->   	};
-> +
-> +	mcu_mcan0_pins_default: mcu-mcan0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J784S4_WKUP_IOPAD(0x054, PIN_INPUT, 0) /* (F38) MCU_MCAN0_RX */
-> +			J784S4_WKUP_IOPAD(0x050, PIN_OUTPUT, 0) /* (K33) MCU_MCAN0_TX */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan1_pins_default: mcu-mcan1-default-pins {
-> +		pinctrl-single,pins = <
-> +			J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (K36) WKUP_GPIO0_5.MCU_MCAN1_RX */
-> +			J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0)/* (H35) WKUP_GPIO0_4.MCU_MCAN1_TX */
-> +		>;
-> +	};
->   };
->   
->   &wkup_pmx3 {
-> @@ -988,3 +1045,31 @@ dp0_out: endpoint {
->   		};
->   	};
->   };
-> +
-> +&mcu_mcan0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_mcan0_pins_default>;
-> +	phys = <&transceiver1>;
-> +};
-> +
-> +&mcu_mcan1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_mcan1_pins_default>;
-> +	phys = <&transceiver2>;
-> +};
-> +
-> +&main_mcan6 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan6_pins_default>;
-> +	phys = <&transceiver3>;
-> +};
-> +
-> +&main_mcan7 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan7_pins_default>;
-> +	phys = <&transceiver4>;
-> +};
 
