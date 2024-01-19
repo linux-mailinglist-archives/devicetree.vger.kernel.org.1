@@ -1,212 +1,240 @@
-Return-Path: <devicetree+bounces-33167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAE13832778
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:12:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61900832785
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:17:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3C26286517
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:12:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFEF01F237C0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46BAC3C460;
-	Fri, 19 Jan 2024 10:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B053C47B;
+	Fri, 19 Jan 2024 10:17:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="S5mpO+Pn"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="xoV+DeqE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC52633CE9;
-	Fri, 19 Jan 2024 10:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A990DDA5;
+	Fri, 19 Jan 2024 10:17:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705659134; cv=none; b=X0QyMt2g115W1egxqa54b5ArUPniKW6cXW+ESQG37x4flJJ9F3D/CMzxJ72vf8KVsC8k0Apv1yqxwqMHH+fk8uuigRvlXQ7WxoJq4Z01j0oJ43tLMB8VwFMM620FpqcBS/hmTlnlbym5uxE3rpi7IZTlNff62OqjGR8ZezEJkXU=
+	t=1705659455; cv=none; b=sRnCtluJPQaQhqcFOE2q4Y9u+30z5lz+U39L7p9w6RkvWwsa9rAqyVhw5klhZz/2oUh7xMRpWgIT8u1LTZgFhr/guYJSwZwastVBiCUIIhfhhAN4I+YhaMJlTXNQmpoCR+5B8BddqPYXp/El7NhcKAPaSC9pHSIR7hJU9mSqtrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705659134; c=relaxed/simple;
-	bh=pPgdHvSriwxHc/qVKbO7UzGkeDKyDZRe4cbhpzTYujQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b/xwuTg2Vv5mt/TbB+rol2P/1vwNL8ega3EGvivBvf8W2Qti8F0SUmYSGatwCrVZVQLio+GGZpusFYj4bYtGCjZQHkWJFrE5KVTFxO54P41I3/Bhym0oheVx4FKOpnWM28vX6gvoemgPZt2OaU49aeQZXBQUixUd4IJ39AdN4xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=S5mpO+Pn; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1705659100; x=1706263900; i=wahrenst@gmx.net;
-	bh=pPgdHvSriwxHc/qVKbO7UzGkeDKyDZRe4cbhpzTYujQ=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=S5mpO+PnwG2hFcGzc90ZiRlYzYU4zCusfEU5m7C2Z17IHlU6QQUZvfWeIOUoq1ge
-	 YqCU2dmsrDBJUIdbYSY597dqcOFEvL0Lg6e0r0hIbd54jnwpnvul13F2KeJRz02Cq
-	 wmR/K1f/mWuDGOw85T26gDv9KwlayImmPXl2KrxGzzepatLER9Tz7E+Qa+J98I9Vm
-	 bbNiwCqrqWu32o2Q0P9/6un1Rrg6hC25q8K19f5h6Z9pk1cjb71i53zl3B31odssq
-	 OU//86i40/APPMVRmJhHptQZ+UqQjRfaZXutyx3zZZYIQJjDN45RwqD1HNrQS6bfL
-	 egqJAANzndpeZRx2hA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M6UZv-1rTFsj0SZl-006sRa; Fri, 19
- Jan 2024 11:11:40 +0100
-Message-ID: <282689a1-a189-4320-9d70-c6d38dc56d9d@gmx.net>
-Date: Fri, 19 Jan 2024 11:11:39 +0100
+	s=arc-20240116; t=1705659455; c=relaxed/simple;
+	bh=+LtMZPOF1yo585gqDoaAA6wOBqB5Aivtv5s5vcPOK50=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tZgQggmxaIBhZGPqiYcwvztH04qeQ76aP/dy1q2F/ZW2GOITmLUk6xgfsNHoXvSg+cMbbyNxQsT8KkKlCvoBJoKYnH7TefkEY2S16NUcB0vuArxuGPipXsraI7tCLo4EpP3OA32REhblT4c3CoTiZS/IFQHb8WKfRh/+l82v2m4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=xoV+DeqE; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1705659453; x=1737195453;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+LtMZPOF1yo585gqDoaAA6wOBqB5Aivtv5s5vcPOK50=;
+  b=xoV+DeqE3CUXdy9URhQDrHmi8k+DbWw6DW7QFEgyuC22WxnMn7oJCnG8
+   s9FetOukohBy7Kks+rOAaRAcEFSyDKBxr0FF3tpeGZvnU6rsCiJ7+9rtb
+   /RMpbH7id1llCfK3YyXIMKep2HrLYdd4tM3x9+8fR7uHpbwtiO5DACAL7
+   g1wAxD7+KoLBRGhGApgsakHy2S9vKFFz9p6IAqxmH3c+J9cDZxNCVUE5W
+   cq9EzMZhGghFIeg3KXL6XfFBpRfjz2TedigQiNjkrJ6xVCnWmXGTruLMm
+   pK2gA1x33p9xf98ja9jQwOQO/pLt9Kbqe1UcSdv6/vIZH7fGi1r7iN21e
+   g==;
+X-CSE-ConnectionGUID: K82mF02xSm2dPv+Ypq+eGQ==
+X-CSE-MsgGUID: vERtogOnTAm69wiMAgHXnw==
+X-IronPort-AV: E=Sophos;i="6.05,204,1701154800"; 
+   d="asc'?scan'208";a="245712682"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Jan 2024 03:17:26 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 19 Jan 2024 03:17:25 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 19 Jan 2024 03:17:23 -0700
+Date: Fri, 19 Jan 2024 10:16:46 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+CC: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Emil
+ Renner Berthing <kernel@esmil.dk>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Jack
+ Zhu <jack.zhu@starfivetech.com>, <linux-media@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: media: starfive: Match driver and
+ yaml property names
+Message-ID: <20240119-despair-festival-59ab2d4d896b@wendy>
+References: <20240119100639.84029-1-changhuang.liang@starfivetech.com>
+ <20240119100639.84029-2-changhuang.liang@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: imx93: Add phyBOARD-Segin-i.MX93
- support
-Content-Language: en-US
-To: Mathieu Othacehe <othacehe@gnu.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- Li Yang <leoyang.li@nxp.com>, Primoz Fiser <primoz.fiser@norik.com>,
- Christoph Stoidner <c.stoidner@phytec.de>, Wadim Egorov <w.egorov@phytec.de>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240119092835.21462-1-othacehe@gnu.org>
- <20240119092835.21462-3-othacehe@gnu.org>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20240119092835.21462-3-othacehe@gnu.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="BFH1MedVdG7X979+"
+Content-Disposition: inline
+In-Reply-To: <20240119100639.84029-2-changhuang.liang@starfivetech.com>
+
+--BFH1MedVdG7X979+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:XOZBdDM+fVsaVwg8mdmPffxeAkal+bFknzlkGv95cPyWXEqgHPJ
- V2Vdkd+cYo7if3xGXmrqaDgyefzSWUB7/5SyZFGsaJSXxQMeHVKXmEqObHXfZx+BD8g6Lsz
- 3rfrep1o+Nn/mQ/hOi7aO3sK/Ef3npvIll98YPWnub1Z4sPuUjUwFT11L8cDmVTdlDHwkGP
- 6mbuJ2P5utz53OLrKy7uw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:Dl2WFl0MeEI=;p9I/P7lWP6yIw/ADFPDR+TyYgHO
- /jvBROKifOTUzs0/8+bFoD29xshg3ypyJVtRHMe6D6nmPClI0GjFBd4KDwL055IhN3oCfE2Jh
- yNvIUdW6dI2LelRE6BpsJwLe+JtjpLPYYSik2i1rREB6j2/9Fq/dKVxrKJZB00ANshiuBDylu
- qqm5jciz6F5OTFs5Vavmgmy09q0MvF/4C9qmGg5UwW2Frg9llUTUP9LWda1f4bRc7v432si8S
- ClmGwgV/2MqFAYnwl8zmpBWrYUWaFSSoCyVJBH5PFsVtc6UvyCojbTJQobHvsM+cQZh0gjnfX
- v3FkUIXQXWRvc4fZkWYUH0uvAl8SllJ7DcYRrfudicdi+jkFVjaxZpsCLP07bj1J1NooQMIyS
- PtT9oa31Cin4+szWd49ompWq4ajayA5eLz0llsTMUll370Yez1kbp2pTxjmIkBnaRyNnVakh3
- /pzvY2rI6foBFJ6gy/xq05BBRCK5ao6KVIgINknZ6tXGohbw6LCBtfacuhzUxqqID6dawjFOR
- /+1YfyWXHRDVfh6OF363sKlZPInRIRkY/FocN7JBd7sw3VU4UDvXhAUpJcquEgkmkWqqvgRRw
- /Tkimu4kWdPNmaKFQmwTPUSf4PLUnFMzMsffCRrYWrzWpc4m/rCkKEAzEkbC48wHqtGBvV4Yt
- KZGxMGG3476qJA/l8VFvEMx1lFnJTFjrUdLIWluR+ZTFERQWkNWxAZMk81KQA60q/sUPT5QbS
- HpptbctXgtutRiJQXAeUTHR8JH9vYNvAk3AHQko+b0+9svBRqqLmBwrxiO4+ul8Kc8l0ce+ra
- gV1RaYn7JY53mu847J1pDQ5fevxBfVNdEiHZG/RegEya/8q/Rwm7Se/Bdwcub0wPJsbAXlUgw
- AXnCJwl/o7hGSVrkVfd20/pAtyrA1s1klHby0Dxyy2/RA9F80bqw273znVZPiXXkgUMfahl7u
- FKtHow==
 
-Hi Mathieu,
+On Fri, Jan 19, 2024 at 02:06:38AM -0800, Changhuang Liang wrote:
+> Drop some unused properties for clocks, resets and interrupts for
+> StarFive JH7110 camera subsystem.
 
-[dropped upstream@list.phytec.de because of unavailability]
+What do you mean "unused"?
 
-Am 19.01.24 um 10:28 schrieb Mathieu Othacehe:
-> Add basic support for phyBOARD-Segin-i.MX93.
-> Main features are:
-> * SD-Card
-> * UART
-> * I2C
-> * eMMC
->
-> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
+Do these clocks etc exist but are not used by the driver?
+
+Or do they not exist at all?
+
+The two are very different!
+
+Thanks,
+Conor.
+
+>=20
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> Reviewed-by: Jack Zhu <jack.zhu@starfivetech.com>
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
 > ---
->   arch/arm64/boot/dts/freescale/Makefile        |   1 +
->   .../dts/freescale/imx93-phyboard-segin.dts    | 119 ++++++++++++++++++
->   .../boot/dts/freescale/imx93-phycore-som.dtsi |  56 +++++++++
->   3 files changed, 176 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-segin.=
-dts
->   create mode 100644 arch/arm64/boot/dts/freescale/imx93-phycore-som.dts=
-i
->
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dt=
-s/freescale/Makefile
-> index 2e027675d7bb..65db918c821c 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -201,6 +201,7 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8qxp-colibri-iris-v2.=
-dtb
->   dtb-$(CONFIG_ARCH_MXC) +=3D imx8qxp-mek.dtb
->   dtb-$(CONFIG_ARCH_MXC) +=3D imx8ulp-evk.dtb
->   dtb-$(CONFIG_ARCH_MXC) +=3D imx93-11x11-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) +=3D imx93-phyboard-segin.dtb
->   dtb-$(CONFIG_ARCH_MXC) +=3D imx93-tqma9352-mba93xxca.dtb
->   dtb-$(CONFIG_ARCH_MXC) +=3D imx93-tqma9352-mba93xxla.dtb
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts b/ar=
-ch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-> new file mode 100644
-> index 000000000000..b256c5e42550
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
-> @@ -0,0 +1,119 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2023 PHYTEC Messtechnik GmbH
-> + * Christoph Stoidner <c.stoidner@phytec.de>
-> + * Copyright (C) 2024 Mathieu Othacehe <m.othacehe@gmail.com>
-> + *
-> + */
-> +/dts-v1/;
-> +
-> +#include "imx93-phycore-som.dtsi"
-> +
-> +/{
-> +	model =3D "PHYTEC phyBOARD-Segin-i.MX93";
-> +	compatible =3D "phytec,imx93-phyboard-segin", "phytec,imx93-phycore-so=
-m",
-> +		     "fsl,imx93";
-> +
-> +	chosen {
-> +		stdout-path =3D &lpuart1;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible =3D "regulator-fixed";
-> +		enable-active-high;
-> +		gpio =3D <&gpio3 7 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&pinctrl_reg_usdhc2_vmmc>;
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		regulator-name =3D "VSD_3V3";
-> +	};
-> +};
-> +
-> +/* Console */
-> +&lpuart1 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pinctrl_uart1>;
-> +	status =3D "okay";
-> +};
-> +
-> +/* eMMC */
-> +&usdhc1 {
-> +	no-1-8-v;
-> +};
-> +
-> +/* SD-Card */
-> +&usdhc2 {
-> +	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 =3D <&pinctrl_usdhc2_default>, <&pinctrl_usdhc2_cd>;
-> +	pinctrl-1 =3D <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_cd>;
-> +	pinctrl-2 =3D <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_cd>;
-> +	bus-width =3D <4>;
-> +	cd-gpios =3D <&gpio3 00 GPIO_ACTIVE_LOW>;
-just a nit:
+>  .../bindings/media/starfive,jh7110-camss.yaml | 31 +++++--------------
+>  1 file changed, 8 insertions(+), 23 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-cams=
+s.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+> index c66586d90fa2..2504381058b3 100644
+> --- a/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+> @@ -4,14 +4,14 @@
+>  $id: http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> =20
+> -title: Starfive SoC CAMSS ISP
+> +title: StarFive SoC CAMSS ISP
+> =20
+>  maintainers:
+>    - Jack Zhu <jack.zhu@starfivetech.com>
+>    - Changhuang Liang <changhuang.liang@starfivetech.com>
+> =20
+>  description:
+> -  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. =
+It
+> +  The StarFive CAMSS ISP is a Camera interface for StarFive JH7110 SoC. =
+It
+>    consists of a VIN controller (Video In Controller, a top-level control=
+ unit)
+>    and an ISP.
+> =20
+> @@ -28,26 +28,21 @@ properties:
+>        - const: isp
+> =20
+>    clocks:
+> -    maxItems: 7
+> +    maxItems: 3
+> =20
+>    clock-names:
+>      items:
+> -      - const: apb_func
+>        - const: wrapper_clk_c
+> -      - const: dvp_inv
+> -      - const: axiwr
+> -      - const: mipi_rx0_pxl
+>        - const: ispcore_2x
+>        - const: isp_axi
+> =20
+>    resets:
+> -    maxItems: 6
+> +    maxItems: 5
+> =20
+>    reset-names:
+>      items:
+>        - const: wrapper_p
+>        - const: wrapper_c
+> -      - const: axird
+>        - const: axiwr
+>        - const: isp_top_n
+>        - const: isp_top_axi
+> @@ -57,7 +52,7 @@ properties:
+>        - description: JH7110 ISP Power Domain Switch Controller.
+> =20
+>    interrupts:
+> -    maxItems: 4
+> +    maxItems: 3
+> =20
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+> @@ -125,34 +120,24 @@ examples:
+>          reg =3D <0x19840000 0x10000>,
+>                <0x19870000 0x30000>;
+>          reg-names =3D "syscon", "isp";
+> -        clocks =3D <&ispcrg 0>,
+> -                 <&ispcrg 13>,
+> -                 <&ispcrg 2>,
+> -                 <&ispcrg 12>,
+> -                 <&ispcrg 1>,
+> +        clocks =3D <&ispcrg 13>,
+>                   <&syscrg 51>,
+>                   <&syscrg 52>;
+> -        clock-names =3D "apb_func",
+> -                      "wrapper_clk_c",
+> -                      "dvp_inv",
+> -                      "axiwr",
+> -                      "mipi_rx0_pxl",
+> +        clock-names =3D "wrapper_clk_c",
+>                        "ispcore_2x",
+>                        "isp_axi";
+>          resets =3D <&ispcrg 0>,
+>                   <&ispcrg 1>,
+> -                 <&ispcrg 10>,
+>                   <&ispcrg 11>,
+>                   <&syscrg 41>,
+>                   <&syscrg 42>;
+>          reset-names =3D "wrapper_p",
+>                        "wrapper_c",
+> -                      "axird",
+>                        "axiwr",
+>                        "isp_top_n",
+>                        "isp_top_axi";
+>          power-domains =3D <&pwrc 5>;
+> -        interrupts =3D <92>, <87>, <88>, <90>;
+> +        interrupts =3D <92>, <87>, <90>;
+> =20
+>          ports {
+>              #address-cells =3D <1>;
+> --=20
+> 2.25.1
+>=20
+>=20
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-s/00/0/
-> +	no-mmc;
-> +	no-sdio;
-> +	vmmc-supply =3D <&reg_usdhc2_vmmc>;
-> +	status =3D "okay";
-> +};
-> +
->
+--BFH1MedVdG7X979+
+Content-Type: application/pgp-signature; name="signature.asc"
 
-According to the documentation there are GPIOs accessible. Those on the
-expansion header X16 could be named via gpio-line-name this makes it
-easier to access via libgpiod. Also there seems to be LEDs and switches
-on the phyBOARD.
+-----BEGIN PGP SIGNATURE-----
 
-Best regards
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZapMDgAKCRB4tDGHoIJi
+0lzdAP0XhGNQY1wQcLpLFfEc/Sj9meIVrA/jD1GxiMXgdQqWnQD/QUG80+qLfwIm
+6Glfk4ikQIoSAIG9e230u0TETuQEkQg=
+=ngD+
+-----END PGP SIGNATURE-----
+
+--BFH1MedVdG7X979+--
 
