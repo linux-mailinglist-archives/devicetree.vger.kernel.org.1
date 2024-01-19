@@ -1,69 +1,71 @@
-Return-Path: <devicetree+bounces-33285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EDE8832D73
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:45:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21934832D85
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:54:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6377F2848EE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:45:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E5771C24375
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:54:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE185576E;
-	Fri, 19 Jan 2024 16:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D7E5577D;
+	Fri, 19 Jan 2024 16:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uDqtfRJA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kYj2yylc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0125A54FB9;
-	Fri, 19 Jan 2024 16:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACCA855779;
+	Fri, 19 Jan 2024 16:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705682729; cv=none; b=kf6WgA/enbHnoMFfteuQF3OmH8xoN6U/MD2Ih74IYUVHKvGInnsD6X/KBALCFINX/dCdJkzFOIJHOeBQMBSfPHfyKd0Vrla2viNFKivMPZ89KvmbmJfQ7KUpI5vVsYkc6v5rlrbvIcksCMf0ovTrDXf+jcOo3OzUbbThh2rVulY=
+	t=1705683282; cv=none; b=Arb032wR+mT3ca9KJb/eke2V3OIA0TDqhOi0Sb0FOUp/2zbm1TuSMUumOIFDm4dCkA0CBaUmRjsMQX84/W6/bxWlvkhEMs7u5w5CjD6J7HGQN3PKwcFA4y0DvU6Ekr3gpbYgPrrT3IgNasRtgBrq6e5vrXKhVwhIDUs7quUUbus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705682729; c=relaxed/simple;
-	bh=4xiZyQ+P1Xz0x+4FTwkxMPkSXfVCdC8v1T9pR7kkqfY=;
+	s=arc-20240116; t=1705683282; c=relaxed/simple;
+	bh=VF1Z6l0IbpzY9s0IFYKQ4DO9qjHRXBU3M4HJxWlGq40=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JjVgp81Nn7cLGZ6JGPiUfHlLOO+p8l3KgOKZu43fSmp0QRDLbnnDNRYbdQC7tAXfH5IagCuxbgSPt4hv21dw5rmZvIZfQN7JvDYpOVrvSuLo4ZAajlVCIGFq6G1wAVS4IejMa7IMrUyLQtpYM9MsbMzb02VRL5Xvgz6i11FgMKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uDqtfRJA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 908A6C43390;
-	Fri, 19 Jan 2024 16:45:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Uy8jJDkzqNAOExvTUJr7KBXuCxDdAAYzoapPevmCRYhAdJCHyweGryXDBdpZPCFsIYA9jQfMfTn+tJV5xQ5aJCh0QckJoPnBaaQgtOC8R1Y0ep7/zskWQz+63j5rW2FoPOeFH6b9DwI7MTKSQWVyyWZXUl7ATw1oXRSHWz45b6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kYj2yylc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F08DBC433C7;
+	Fri, 19 Jan 2024 16:54:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705682728;
-	bh=4xiZyQ+P1Xz0x+4FTwkxMPkSXfVCdC8v1T9pR7kkqfY=;
+	s=k20201202; t=1705683282;
+	bh=VF1Z6l0IbpzY9s0IFYKQ4DO9qjHRXBU3M4HJxWlGq40=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uDqtfRJANZKxjE6iTqUTIFLbR/GJhoBYF58gPKgdTKvz+AYQ3CcZrUml5a5yERwg8
-	 w59B9f6CKwtP6q6KMv18GT6DYLzOAmUJ/YXLDSEaa7w7g800H4zQjBFXMXbi3j37le
-	 bI73E3mVPdGWQOIkYQLM6aZbrazixI+1rUSIWHtx2+Csz33O8Iyz9uWWe3NuTM0ak4
-	 lG+At1EnPMfj6qtiZY1Ye5JxxS5nsBphTDgul2FNO7rnhersaTkgX4txc1EBu+aeKc
-	 ExyX+rVSAOy6GxGBG7/0x0as+CNRGz6VZamNCtt00HON59y45/XxnZeQ+jLS3S//dC
-	 fzkWPZY2B6baQ==
-Date: Fri, 19 Jan 2024 16:45:22 +0000
+	b=kYj2yylcbYD0c/JE4Hkfjkc9xVn3OuvjAl1IxoAQv88c9FbUcsW8FkiubfOGa7kW4
+	 bpLFNFo5DrzbuwvaxdtBITnaSPmXF4DLNMsN0hkMYeZM7HTCfY+mSny39OG/E93wtv
+	 XVw79kvP+kXZE8ofANGnqejrywYEibHBF9CrcMgMtufb5lJyc66CXH0uuPXLMZTLsh
+	 Wsye1bhUr+FUrCsQcMvkGlirmSqb8c164AsRfouFc3j7rG+uy2MhUrlwNOXu81kgBB
+	 o6vQfFaGZB8RIOeAlcqswaD310RW6h8Ozr5hyvtR1djAKFu48XIZcSTV5j7JsyqAgT
+	 JYcWLk6pOocpg==
+Date: Fri, 19 Jan 2024 16:54:36 +0000
 From: Conor Dooley <conor@kernel.org>
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	"Paller, Kim Seer" <KimSeer.Paller@analog.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
-	Jason-ch Chen <jason-ch.chen@mediatek.com>,
-	Johnson Wang <johnson.wang@mediatek.com>,
-	Singo Chang <singo.chang@mediatek.com>,
-	Nancy Lin <nancy.lin@mediatek.com>,
-	Shawn Sung <shawn.sung@mediatek.com>,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v3 3/3] dt-bindings: soc: mediatek: Change
- mediatek,gce-events to refernece
-Message-ID: <20240119-amaretto-gauging-5f745a1b1335@spud>
-References: <20240119063224.29671-1-jason-jh.lin@mediatek.com>
- <20240119063224.29671-4-jason-jh.lin@mediatek.com>
+	Conor Dooley <conor+dt@kernel.org>, Crt Mori <cmo@melexis.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v6 1/2] dt-bindings: iio: frequency: add admfm2000
+Message-ID: <20240119-mammary-another-f060e43bcdf7@spud>
+References: <20240118085856.70758-1-kimseer.paller@analog.com>
+ <20240118085856.70758-2-kimseer.paller@analog.com>
+ <20240118-steadily-coauthor-de8275118901@spud>
+ <PH0PR03MB71410860593D3C7253B200FCF9702@PH0PR03MB7141.namprd03.prod.outlook.com>
+ <0f32caa9a11305333f1f18b97c97d775f4a5bb9a.camel@gmail.com>
+ <20240119-squad-unflawed-934627f0e394@wendy>
+ <dd3051170bc9724ca7e2884344dee3bc7b8f0a85.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,37 +73,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="1LR1bW8RJGTFo223"
+	protocol="application/pgp-signature"; boundary="9HBH4EAVsLhP8n6J"
 Content-Disposition: inline
-In-Reply-To: <20240119063224.29671-4-jason-jh.lin@mediatek.com>
+In-Reply-To: <dd3051170bc9724ca7e2884344dee3bc7b8f0a85.camel@gmail.com>
 
 
---1LR1bW8RJGTFo223
+--9HBH4EAVsLhP8n6J
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 19, 2024 at 02:32:24PM +0800, Jason-JH.Lin wrote:
-> Change mediatek,gce-events property to reference mediatek,gce-props.yaml
-> instead of defining itself.
+> > > Hmmm, How is the enum easier than a boolean property :)? I guess the =
+device has a
+> > > default mode. So, if it is Direct IF mode you have 'adi,mixer-mode' t=
+o enable
+> > > that
+> > > mode and that's it. So the code is pretty much just:
+> > >=20
+> > > if (device_property_read_bool()) {
+> >=20
+> > device_property_present() is preferred I think.
+> >=20
 >=20
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> Hmm, don't want to start an argument but I'm not sure either :). I would =
+argue that
+> device_property_read_bool() has more users (according to git grep - and i=
+f I did not
+> mess the grep) and it pretty much wraps device_property_present(). So, if=
+ there was
+> no value in it's "meaning" we would/should stop using it and eventually d=
+rop it...
+> Anyways, not really a big deal.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+If there's an actually boolean property that can have a true/false
+value, but testing for presence alone device_property_present() is
+the more accurate function to use.
 
-Cheers,
-Conor.
-
---1LR1bW8RJGTFo223
+--9HBH4EAVsLhP8n6J
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaqnIgAKCRB4tDGHoIJi
-0lW2AQCNJ+Q40bd9LrGWCRk8PNKTOTd7knertR3kHCdXzQusnQD+I6A52S2rMCYj
-tJEIlcYZgCfxGjoaD1PG+JlJwlzFbwY=
-=94Oq
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaqpTAAKCRB4tDGHoIJi
+0rEOAP9G83tYMDwHe1/1SOd5SpfVPcFG+kAljyMoNIrOdxisAgD7BEnEbR6UIAWO
+ci9GeMpBvOEMHO1eTPxQz6drAG7c1wk=
+=+I9X
 -----END PGP SIGNATURE-----
 
---1LR1bW8RJGTFo223--
+--9HBH4EAVsLhP8n6J--
 
