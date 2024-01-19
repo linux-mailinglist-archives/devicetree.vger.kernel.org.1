@@ -1,162 +1,201 @@
-Return-Path: <devicetree+bounces-33215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 173C983292E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 12:50:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C87BB832938
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 12:52:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2759286212
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:50:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44E9C1F22BA0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723134EB4C;
-	Fri, 19 Jan 2024 11:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC204F1E3;
+	Fri, 19 Jan 2024 11:52:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="CNGj36zX"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="afNvk1oU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE76D4CB5C;
-	Fri, 19 Jan 2024 11:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 427CE4EB4C
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 11:52:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705665006; cv=none; b=a6IsCTr05Nt4fj4GZPNsz0vkLU2XISirFQolORKXBhsgrS+p1hnQPWn0NlTEDjzu0Ri8McKiqiz/1yDw/VlkV9XJHq3FjhPAGU+qXoOiVqdzBre4AyjSxzposclZmoRkX2YOUFRUwPPdSKoPzrYBijK27A47vcvKjbQ2PCM4SjE=
+	t=1705665134; cv=none; b=WkxyNBkM3BYp/nIVxQ0wfACnXRT1QVZ7N2cX654EBN5rC5m6S6brpWkrO4N0JiFw5vvhtipvE+T76Tc3mffr9fuPSO8rQGvDWn1EmyXSIBz0oQUmq6HyIq5emqxX1+6elAA/valX+eU4VfxdZ5UC/pphprytNE68pYhDZQmx2h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705665006; c=relaxed/simple;
-	bh=s9L1qJwsp4OAkf5SryxRyzJmBumOjZ70oxKuHDq5NsA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IgcLl8onDdzo3RM+vHvFFQ++rIhMQSzCjp1rpQcKTg6wXH7YURJQNEBicnsIgg0HdaYRnsYAkMx9A4WQW7onXs0rFAx9X4OThNLS1kyJMPI8tdtaSBsG2gSgBt7sMUCJ6vE+Ciy+3TaJK/nNy48vttz7TLXAirUAL+gehdjiVDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=CNGj36zX; arc=none smtp.client-ip=67.231.152.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40JAUOEC006784;
-	Fri, 19 Jan 2024 05:49:19 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=PODMain02222019; bh=7HmR5LukPFENdAY
-	Knf4Yvibno9UDj7vaugDLawgj4Rw=; b=CNGj36zXSShnUf0vSbvu+L4Eh3M/acH
-	vAwqfSbGuDdUaflB+OkBh/clU8F511tKAI1vJh6BzZgs829EmjHjj9MrbiX25WmA
-	pElomK/vEAgdm35tcl9wPHe4GDowVdLnomVz7IFUDeTym7GhnmqtOD4BMHgfZNjZ
-	qEg7gJ74QX0AFICSLNW+0TIN1/K+4NdGsd58+HJbtfzlqpWFj/QkfzCDXyLcyGE2
-	OSIssmpIUFzprG8q7ucyTVikkqXLQkpADlRA9xJUzoBE3SZuBoYVSgPDF4Zhi4IE
-	tIhriXygpoP+JOOrYqZDVx9SFJ5XZDM/+yF9je+/ToXPQcIwHdAO2jw==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3vkqtn8ne8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Jan 2024 05:49:19 -0600 (CST)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 19 Jan
- 2024 11:49:17 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.40 via Frontend Transport; Fri, 19 Jan 2024 11:49:17 +0000
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 4C11A15B9;
-	Fri, 19 Jan 2024 11:49:17 +0000 (UTC)
-Date: Fri, 19 Jan 2024 11:49:17 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: <andy.shevchenko@gmail.com>
-CC: <broonie@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linus.walleij@linaro.org>, <vkoul@kernel.org>, <lgirdwood@gmail.com>,
-        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
-        <pierre-louis.bossart@linux.intel.com>, <alsa-devel@alsa-project.org>,
-        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 5/6] spi: cs42l43: Add SPI controller support
-Message-ID: <20240119114917.GB16899@ediswmail.ad.cirrus.com>
-References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
- <20230804104602.395892-6-ckeepax@opensource.cirrus.com>
- <ZalahZkCrBm-BXwz@surfacebook.localdomain>
+	s=arc-20240116; t=1705665134; c=relaxed/simple;
+	bh=L/Fc06LLs/rGZJoI3sRZIJrlufKv5PaKYitAV+6n9QY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JhciuOKORMPC9lvwUaxBEWX5dPx0Mu1r2RJHLSMDWARMgHpB3HqnlZKv71KFDycEcWA92ImBfphHrgOyoXAcofDc1CZYV+Ltf/7Vegxg+Kg3s3WFTNfsJnjMSTH9OqDcfyCXzIbSF7iurTG1SlcPnIc40DeHzMun7dNjvRu5mn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=afNvk1oU; arc=none smtp.client-ip=209.85.222.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-7d2e15193bbso67962241.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 03:52:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1705665132; x=1706269932; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=scQQNQ5xR79QdIxgg95WyhVE0qz02vfpeEac+jED8n0=;
+        b=afNvk1oUnQ19qYmNfiBN0essEgUXat59gy72RjkVeS20wdU1gBqWOrEffQNMb2kswW
+         cMwBoAps3H3BLxBX0r/zfrw6sdlVAkn1ps6YTUpz0hP4VVfXJUyc5mahKpA1BRm9nYyY
+         7Mx9Rhe/cxicQ4YsF6KI10G1Ezcd+EajAHZBEa/ufPqgbqz/xv1lv4PNdVghiGkjHupm
+         aoIPlV3td+icGePMWUtXF4dj+UjP1icTn+1amOYEfjuDWqaa4vu9yTOTzmsa7AtG5mQ2
+         9oKvl2+QmQzD6rY0a5ZrU3wmVz/D4Ulctb07VURqpvZZRHr8Lhm3WWEmyS//g9PjQ1CH
+         1JzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705665132; x=1706269932;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=scQQNQ5xR79QdIxgg95WyhVE0qz02vfpeEac+jED8n0=;
+        b=GMfOAdY+liSZk6Mw5CwQtj8KM2yC7qO+El4FOhDWeTO5REoEKyjgJFzXP82uuyjIpR
+         XieYa8z8s3Ge8xlVD45ocLffh8po+xzJ0/+XeFvOmQF1UuDDF1Rkd7nkp/KH6fwVcEk5
+         MaqZUdMZtyWdqSkUn82EQr+QmGO+Asu5tmdvhd7BlREHpjMstm7Nxi7SUkP4cKepOPye
+         0CawWp14CQG0adyBZVjYXOv4dTdPfs3YFToZ/xJocTVPrzA6KAoDsJj0e2WmTqhpQwJQ
+         JyrUVw0UsQkGM8fu0vsWO2uoEB2B0xZaslDNJaIz+E9jgednjHOc7ui+a0Kr6vC8vz6f
+         fD9w==
+X-Gm-Message-State: AOJu0YxESTXJk3MqPhhIABT9Ij9hwupb37NxdRoabneZ9Ls64rVDHCdo
+	X7h0ZrOFr5xNe1P3ZF5rKpqjGHagCoDwj+bWrJc0IAq8IVcL9m/55NsXpdWvZLzmSmWCREELYva
+	QABl+cjkvuPULUtcgBjGxHqAP3Tf6grkn8tG6ZA==
+X-Google-Smtp-Source: AGHT+IFiXIk+YOAa2fYWVkFEFaJXqh/QhAez3rJdhcrCmsvPK+NsvJEO/O+MaokryJjfgFi1QEfe5UKWEheWp/KRPaY=
+X-Received: by 2002:a67:f945:0:b0:468:90e:2c8e with SMTP id
+ u5-20020a67f945000000b00468090e2c8emr1903776vsq.35.1705665132098; Fri, 19 Jan
+ 2024 03:52:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZalahZkCrBm-BXwz@surfacebook.localdomain>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-ORIG-GUID: ohyvYjG1e8LtKWvMGVOYufhV_Sssc_Ns
-X-Proofpoint-GUID: ohyvYjG1e8LtKWvMGVOYufhV_Sssc_Ns
-X-Proofpoint-Spam-Reason: safe
+References: <20240117160748.37682-1-brgl@bgdev.pl> <CAA8EJpoQfPqoMVyTmUjPs4c1Uc-p4n7zNcG+USNjXX0Svp362w@mail.gmail.com>
+ <CAA8EJpqyK=pkjEofWV595tp29vjkCeWKYr-KOJh_hBiBbkVBew@mail.gmail.com>
+In-Reply-To: <CAA8EJpqyK=pkjEofWV595tp29vjkCeWKYr-KOJh_hBiBbkVBew@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 19 Jan 2024 12:52:00 +0100
+Message-ID: <CAMRc=McUZh0jhjMW7H6aVKbw29WMCQ3wdkVAz=yOZVK5wc45OA@mail.gmail.com>
+Subject: Re: [PATCH 0/9] PCI: introduce the concept of power sequencing of
+ PCIe devices
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
+	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
+	Lukas Wunner <lukas@wunner.de>, Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 18, 2024 at 07:06:13PM +0200, andy.shevchenko@gmail.com wrote:
-> Fri, Aug 04, 2023 at 11:46:01AM +0100, Charles Keepax kirjoitti:
-> > +		while (buf < block) {
-> > +			const u8 *word = min(buf + sizeof(u32), block);
-> > +			int pad = (buf + sizeof(u32)) - word;
-> > +
-> > +			while (buf < word) {
-> > +				val >>= BITS_PER_BYTE;
-> > +				val |= FIELD_PREP(GENMASK(31, 24), *buf);
-> > +
-> > +				buf++;
-> > +			}
-> 
-> Is this a reinvented way of get_unaligned_*() APIs?
-> 
-> > +			val >>= pad * BITS_PER_BYTE;
-> > +
-> > +			regmap_write(regmap, CS42L43_TX_DATA, val);
-> > +		}
-> 
-> ...
-> 
-> > +			while (buf < word) {
-> > +				*buf = FIELD_GET(GENMASK(7, 0), val);
-> > +
-> > +				val >>= BITS_PER_BYTE;
-> > +				buf++;
-> > +			}
-> 
-> put_unaligned_*() ?
-> 
+On Thu, Jan 18, 2024 at 7:53=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
 
-Alas as it has been a while I have forgetten the exact context
-here and this one will take a little more time. I will try to
-find some spare time to work out if that would actual do the same
-thing, I have a vague feeling there was something here.
+[snip]
 
-> ...
-> 
-> > +	if (is_of_node(fwnode))
-> > +		fwnode = fwnode_get_named_child_node(fwnode, "spi");
-> 
-> You can actually drop these is_of_node() tests and use another variable. In
-> ACPI there can't be child node in small letters.
-> 
+> >
+> > I'd still like to see how this can be extended to handle BT power up,
+> > having a single entity driving both of the BT and WiFI.
+> >
+> > The device tree changes behave in exactly the opposite way: they
+> > define regulators for the WiFi device, while the WiFi is not being
+> > powered by these regulators. Both WiFi and BT are powered by the PMU,
+> > which in turn consumes all specified regulators.
+>
+> Some additional justification, why I think that this should be
+> modelled as a single instance instead of two different items.
+>
+> This is from msm-5.10 kernel:
+>
+>
+> =3D=3D=3D=3D=3D CUT HERE =3D=3D=3D=3D=3D
+> /**
+>  * cnss_select_pinctrl_enable - select WLAN_GPIO for Active pinctrl statu=
+s
+>  * @plat_priv: Platform private data structure pointer
+>  *
+>  * For QCA6490, PMU requires minimum 100ms delay between BT_EN_GPIO off a=
+nd
+>  * WLAN_EN_GPIO on. This is done to avoid power up issues.
+>  *
+>  * Return: Status of pinctrl select operation. 0 - Success.
+>  */
+> static int cnss_select_pinctrl_enable(struct cnss_plat_data *plat_priv)
+> =3D=3D=3D=3D=3D CUT HERE =3D=3D=3D=3D=3D
+>
+>
+> Also see the bt_configure_gpios() function in the same kernel.
+>
 
-is_of_node feels pretty clear what the intent is, rather than
-relying on nodes not existing etc.
+You are talking about a different problem. Unfortunately we're using
+similar naming here but I don't have a better alternative in mind.
 
-> But main problem here (and in another driver where the similar is used) that
-> you bumped reference count for fwnode. I haven't seen where you drop it back.
-> Have you tested rmmod/modprobe in a loop?
-> 
+We have two separate issues: one is powering-up a PCI device so that
+it can be detected and the second is dealing with a device that has
+multiple modules in it which share a power sequence. The two are
+independent and this series isn't trying to solve the latter.
 
-Yeah it should drop the reference will add that.
+But I am aware of this and so I actually have an idea for a
+generalized power sequencing framework. Let's call it pwrseq as
+opposed to pci_pwrseq.
 
-> > +	devm_pm_runtime_enable(priv->dev);
-> 
-> No error check? Why?
+Krzysztof is telling me that there cannot be any power sequencing
+information contained in DT. Also: modelling the PMU in DT would just
+over complicate stuff for now reason. We'd end up having the PMU node
+consuming the regulators but it too would need to expose regulators
+for WLAN and BT or be otherwise referenced by their nodes.
 
-Happy to add one.
+So I'm thinking that the DT representation should remain as it is:
+with separate WLAN and BT nodes consuming resources relevant to their
+functionality (BT does not need to enable PCIe regulators). Now how to
+handle the QCA6490 model you brought up? How about pwrseq drivers that
+would handle the sequence based on compatibles?
 
-> > +	ret = devm_spi_register_controller(priv->dev, priv->ctlr);
-> > +	if (ret) {
-> > +		pm_runtime_disable(priv->dev);
-> 
-> Ah! Are you sure you properly simulated faults when testing this code?
+We'd add a new subsystem at drivers/pwrseq/. Inside there would be:
+drivers/pwrseq/pwrseq-qca6490.c. The pwrseq framework would expose an
+API to "sub-drivers" (in this case: BT serdev driver and the qca6490
+power sequencing driver). Now the latter goes:
 
-This one has already been fixed.
+struct pwrseq_desc *pwrseq =3D pwrseq_get(dev);
 
-Thanks,
-Charles
+And the pwrseq subsystem matches the device's compatible against the
+correct, *shared* sequence. The BT driver can do the same at any time.
+The pwrseq driver then gets regulators, GPIOs, clocks etc. and will be
+responsible for dealing with them.
+
+In sub-drivers we now do:
+
+ret =3D pwrseq_power_on(pwrseq);
+
+or
+
+ret =3D pwrseq_power_off(pwrseq);
+
+in the sub-device drivers and no longer interact with each regulator
+on our own. The pwrseq subsystem is now in charge of adding delays
+etc.
+
+That's only an idea and I haven't done any real work yet but I'm
+throwing it out there for discussion.
+
+Bartosz
+
+[snip]
 
