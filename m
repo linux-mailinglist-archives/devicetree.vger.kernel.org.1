@@ -1,103 +1,167 @@
-Return-Path: <devicetree+bounces-33251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D92FC832AED
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 15:07:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8368B832B07
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 15:11:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A6DFB20FD8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:07:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A57531C235AA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 274E75380D;
-	Fri, 19 Jan 2024 14:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A87154645;
+	Fri, 19 Jan 2024 14:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ufaO3X1M"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="vZcfMALE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDA9537FC;
-	Fri, 19 Jan 2024 14:07:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B4253E17
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 14:11:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705673247; cv=none; b=bpWLyVLihjVHwX4MZLWmJI2mW68BtpmDwDejrho2exmtPyng3j9rseOLqDbtn9CW8xTR4JaeM6fBGUc5bEnoCFJW49cTQP+wPQtQBUpJcVUDokZGHGT9elo+G0vxXUz0fR0Gq3P0T2fKuJCc6t6v54D/qi6lAb4Vr/Rcdwteo/U=
+	t=1705673490; cv=none; b=a4BAQ2phYvUqEYCv8me3zYbY84JwKmp/IWp4dyor+c8qRYEx5p+1RMfVtU4Gzmh1AhrcZLadRRTneKN1vBMX3T1hIS9W/U4YKTYLMLcrza72QnjIGxgUVURtwN1BN4lu1WvFl6n9i4lBe2Luw4cyEY30vd0KEykOOueahWZ+vOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705673247; c=relaxed/simple;
-	bh=mC2DXqdjEQC66exVDQPqaBRO3tMoWAaPPIKH8mIOQvE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Owh6JKaec6KkoThyJz1zkhzBEeZNiyu52SwEHKGQJffRcuOF6go5WSsyIbvMCbiEkxf3R9FM/1314r3qKyBJMdCU3jOelcMfrbVsZStDkUBL9TfzVY9UlmsBnpMmNY6vOYs/i+39AhB7gfOJZCMSocekYlZyliP88SbSXyudTJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ufaO3X1M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6D53C433F1;
-	Fri, 19 Jan 2024 14:07:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705673246;
-	bh=mC2DXqdjEQC66exVDQPqaBRO3tMoWAaPPIKH8mIOQvE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ufaO3X1MTWwDkyXWZKBoxgKn7aCg9nHlDWZjGZKfGaY6vrsNjBFSeiNYXa31tAviv
-	 7pIX7VMk0MJGBy8mIJ6sQqfUY77RBPB55RDba9QD3AAYXNXFRgoW/I+z6DIeJYklbt
-	 43ZskenGMSJn0neHKZ95l4Ms2joUjgufrHZMxn/hMR9NI26/jk3Jx7sUbVZxkfeyn0
-	 /v+QtLv2rNtLWbPWaTE0pDIcZQXMgzMfkhiyndYRQCU7vO0YSS5LIu/nO6wEVMk9PB
-	 v+s5j4xem+XNmFvxJH1RnjqSSqX/RibEZQnGS1IlctPul1z9UFREEzGFCQ1A5MqfZt
-	 zT+zriz43aK0g==
-Date: Fri, 19 Jan 2024 14:07:22 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	=?iso-8859-1?Q?S=F8ren?= Andersen <san@skov.dk>
-Subject: Re: [RFC PATCH v1 6/7] regulator: set Power State Change Reason
- before hw_protection_shutdown()
-Message-ID: <ZaqCGgd77rs3yq59@finisterre.sirena.org.uk>
-References: <20240119132521.3609945-1-o.rempel@pengutronix.de>
- <20240119132521.3609945-7-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1705673490; c=relaxed/simple;
+	bh=TqPHp6thk907FTTvm3tboLNknd3v+aqQVcopEpXBIu8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uZLreJBVk3fRXoooleNgNG3xvoKld8JeWH9YNgfyjaxwWCh3oivIwUVbPG1f0AOA9M5FsNYaf5naeKrgcvZV3TpB6HSIV3ZKrxO76HyDp6n3cl6Fly+6P8wpH368XTl/vMWBoSNBBCan1WE0QtrYIrwtQm4hfbIdtvBVrTfiFic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=vZcfMALE; arc=none smtp.client-ip=209.85.210.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-6dddf7ea893so396460a34.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 06:11:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1705673488; x=1706278288; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Yve1j093zhPAT03KqE6u8/WuOBcMWVIgTCIkj2nZNFY=;
+        b=vZcfMALEiskUtPprj7p5P4EcBDWlLP3gVBs2HaeH1PzrhMuVWYf0jccfRpjlgrxzfJ
+         edC+w5lLW/B9yohTi5nklamyrZ5Auhq6RmboTNN+hi3COglPggs0JsdM7TqaX0ngZ821
+         VAm2Ue41HJB7YeEWJUGJxRF+rv2pKIMA2ffrPJeMDoGkB1qLPMrEgNRzeZ0Nh6cCKH41
+         UWpH/yMzHRlforjcjL2NFunLWFKap6JoIe8EouBGNdBw7Am8wdKmDudp74wCOiGyzw/Q
+         m03Pp7nM3sUTchSfg6zqlRcSHxwMg4DgyUvVX2YxW2qUklqjXTC9fJzaeXeXk4Sbn6L7
+         Xc7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705673488; x=1706278288;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Yve1j093zhPAT03KqE6u8/WuOBcMWVIgTCIkj2nZNFY=;
+        b=TSxA6PrdW9jj/FjLz8qDMeb+V320eMe5zCpyCbrHO87ECtXPAoQvZA18LdDvd8xvrS
+         TXZ4azRVUtzm5FJmzwGuwy9zV1K+G3DkPrgYPrAHYDDl0gTKL9sz7WiHRmMPSeVoNLas
+         mkhwGuULrAqebmmMg5yl2w3HtILqnm2gMazcv69Df6GNZEwfG5PISxbkvDOD4F1IyY1C
+         M3oqQVCM0KGIaOBRmuFGE7+YBTJUn//zOymaFkRaHQsrqD2CL1Dx1WZXJc6OtN8S9nKQ
+         3TDmJ6dEsWGx0XACgjlmBEsonzGF9jICXq70rkI0fXRpYivtbAbUYxk4i6FzeI1uX1r+
+         xLsg==
+X-Gm-Message-State: AOJu0YxyJtbTML/wi3K96x8GAkUNaOrmItQP4f7Aeoax7j4qYnlHstT6
+	qLhEdVqBHgWJpQgvhYyqqNVauyOkHxFbSaggJ+tC49OZrqut+plQfV0SUx/1JaQEsQfOUvDvLNY
+	6xfuPHz2Bl4q39CHgjWCDzqLQLhN11Sn60e7i+A==
+X-Google-Smtp-Source: AGHT+IEzKXt1iaQ6NmzAsJq/01qfzT3pF8iI8eJNn96nqR6Ib5KEm8Td2wQBXRzywiLI+5x36vj8wMIivUvhBtXqPv4=
+X-Received: by 2002:a05:6870:548c:b0:20e:364b:eba9 with SMTP id
+ f12-20020a056870548c00b0020e364beba9mr2008699oan.9.1705673488006; Fri, 19 Jan
+ 2024 06:11:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Q0ELjM8ZH/7s+wG5"
-Content-Disposition: inline
-In-Reply-To: <20240119132521.3609945-7-o.rempel@pengutronix.de>
-X-Cookie: You might have mail.
+References: <20240117160748.37682-1-brgl@bgdev.pl> <CAA8EJpoQfPqoMVyTmUjPs4c1Uc-p4n7zNcG+USNjXX0Svp362w@mail.gmail.com>
+ <CAA8EJpqyK=pkjEofWV595tp29vjkCeWKYr-KOJh_hBiBbkVBew@mail.gmail.com>
+ <CAMRc=McUZh0jhjMW7H6aVKbw29WMCQ3wdkVAz=yOZVK5wc45OA@mail.gmail.com>
+ <CAA8EJprFV6SS_dGF8tOHcBG+y8j74vO0B40Y=e7Kj1-ZThNqPA@mail.gmail.com>
+ <CAMRc=MdOALzkDtpnbqF16suShvP5apGYy4LTQ4dTc3r9Rbb1kg@mail.gmail.com> <CAA8EJpr=PMdOWzp8fahL9e9QC-qgS=hSaTqT1XdUs8Dvvsxqgg@mail.gmail.com>
+In-Reply-To: <CAA8EJpr=PMdOWzp8fahL9e9QC-qgS=hSaTqT1XdUs8Dvvsxqgg@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Fri, 19 Jan 2024 15:11:16 +0100
+Message-ID: <CAMRc=McdXC8zP4_+a3hBijVLXmLFakfjdXjzPOwaNsPCwPT36w@mail.gmail.com>
+Subject: Re: [PATCH 0/9] PCI: introduce the concept of power sequencing of
+ PCIe devices
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
+	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
+	Lukas Wunner <lukas@wunner.de>, Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Jan 19, 2024 at 3:07=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
 
---Q0ELjM8ZH/7s+wG5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[snip]
 
-On Fri, Jan 19, 2024 at 02:25:20PM +0100, Oleksij Rempel wrote:
+> > >
+> >
+> > Alright, so let's imagine we do model the PMU on the device tree. It wo=
+uld
+> > look something like this:
+> >
+> > qca6390_pmu: pmic@0 {
+> >         compatible =3D "qcom,qca6390-pmu";
+> >
+> >         bt-gpios =3D <...>;
+> >         wlan-gpios =3D <...>;
+> >
+> >         vdd-supply =3D <&vreg...>;
+> >         ...
+> >
+> >         regulators-0 {
+> >                 vreg_x: foo {
+> >                         ...
+> >                 };
+> >
+> >                 ...
+> >         };
+> > };
+> >
+> > Then the WLAN and BT consume the regulators from &qca6390_pmu. Obviousl=
+y we
+> > cannot go:
+> >
+> > wlan {
+> >         pwrseq =3D &qca6390_pmu;
+> > };
+> >
+> > But it's enough to:
+> >
+> > wlan {
+> >         vdd-supply =3D <&vreg_x>;
+> > };
+>
+> I'm not sure this will fly. This means expecting that regulator
+> framework is reentrant, which I think is not the case.
+>
 
-> Store the state change reason to some black box, for later
-> investigation.
+Oh maybe I didn't make myself clear. That's the DT representation of
+HW. With pwrseq, the BT or ATH11K drivers wouldn't use the regulator
+framework. They would use the pwrseq framework and it could use the
+phandle of the regulator to get into the correct pwrseq device without
+making Rob and Krzysztof angry.
 
-Reviewed-by: Mark Brown <broonie@kernel.org>
+Bart
 
---Q0ELjM8ZH/7s+wG5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWqghoACgkQJNaLcl1U
-h9AqSQf/efBnzcrtjCJBKoNUTCFbiQ0DyNwDETiS+2ZruZjaSBcs7oxxPMuRyjxR
-nKcdtnG+U7hx1iD7o2hEJbTkxELEg9Zxf4RYfd9sIgzTA4KfuVRrsGd7AAqFM6hS
-/2bqpyennzYcbcom8RrNC+CLggjskFNS5W/fICtswq2L3dOrJ8IE7G2FKzEezWAH
-FFyUQSYM5TYee/Rnl/upEpmJAt0tgrshue0MSRfCmpL6WbmZW7pJhIzlDOeVeWKy
-CXQywnBxVMHyEpch/2DqlqWOUQXHLYJ2us1pLmINFt7ybc5QjAxZWhzL4T4Hj6Se
-pNFoMGrP2Vj42CPLvlPCv/5BNQcSew==
-=7Tuc
------END PGP SIGNATURE-----
-
---Q0ELjM8ZH/7s+wG5--
+[snip]
 
