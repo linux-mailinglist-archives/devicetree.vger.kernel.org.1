@@ -1,347 +1,149 @@
-Return-Path: <devicetree+bounces-33148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0A48326A2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:27:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 490548326B0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:28:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F0C11C231A5
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 09:27:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00E762846D9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 09:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4472B22318;
-	Fri, 19 Jan 2024 09:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0956E3BB5F;
+	Fri, 19 Jan 2024 09:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="dLSkOKMb"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="1ET+SY7K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C67E28E06
-	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 09:27:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD3E3BB3B;
+	Fri, 19 Jan 2024 09:28:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705656435; cv=none; b=HrX1j/BvqxfuPgtcxOAGrrJmkyZ+RudO0/VYPiTYp21LZ8KINU9C0sKjB4E8Ung1F+ZG3+GNvkz/1E6a3xydGHxcByijNm13s0C/hU8/VH92W2OgSUBBhL+zHCEnzRzEPf1Oa4rZ+vdxeIArLDQFdHaA/ZknPqb/GkvMAc0+xMo=
+	t=1705656515; cv=none; b=Il83y/2jQ6BuQEAFX1PCKAY3Bnau+u0EJBM+A8u61xlMURa5A4bp9yCe27KI/NwbxryC69v0Wijaxuwzzm26ZOcsWDbsfV8/P843RvR0gpFl0gGdKcGABCrhwIXYHeOna/MHrZaPxSU3F9STOFFsRHzW3E1yqdmRiWRGd6yLyRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705656435; c=relaxed/simple;
-	bh=Zyl+3TykfwIq/us1dz5F3GDNHUhcesXp1Emt+brcBpg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LK+OdDL/ZqcAK7Hz0HvHOqzKx5wVA7vaLw6ZHZsBOn54oD/xxuH/Q3DUsZXdr48EycFIRvCRQT3EpMWjueHFBgDR50VeoSn9HuuNCX83hBihEeIpQbXf6bXc5iLVM3yavW4I0PZtH13VXUFePejrPRNC3+rvEULduvtfGbdtRnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=dLSkOKMb; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dc261316b0dso514552276.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 01:27:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1705656431; x=1706261231; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PX3oyvjTSeaEmMA7BmGcrPiugjRL8juVncN6NIp0Uhw=;
-        b=dLSkOKMbe6lsyXqUTxif3AT6U2BBDreuoyQ6jSJTregI+n6FSsEXESvPRU6TwVNYif
-         +K6tEd2IpuE5y9I3EyFv8DRRSh42ssNj3uaFBVYQFW73BEESgaFDCodGLT3//KNBKTId
-         x8bdCdZEgQWD1vz7d1oIAMUTdP+RNH8/J3lyaYBVNiWor59Ia4ZxOCXEntecoCizeg1C
-         b6fT7g/7ViWQH3RFrecjPLTngvL5xfoHUfuG7509FgiRETFRqvoHe4qlolGR2eA3jPBW
-         FbwyqwysmnJU/RYFM04QdcX958wG3kDKbWNOZUerfyUzQTa2BdhO7V2c3jn6iEynayft
-         qydg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705656431; x=1706261231;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PX3oyvjTSeaEmMA7BmGcrPiugjRL8juVncN6NIp0Uhw=;
-        b=vjrXFByH9l7tBbl6/XS7tjnOPL72TrCILtMARYUwp85t08bzmXe7a3Ox5mfK1EB9mg
-         R74JJpd8o+SEFox/OzbL5xYvnx1l97CfQ7jm/IkwqOyexd7LVTtwXY4t0mnXdRdTZS8L
-         rnreo1f+vw4OF4hS5JkHqLdyNRwL7/lcD8zKJ9E7GkUgVyIR9sHBAc4iRvP2oWj0OqaQ
-         SaOse2zvvlToaIEyjsznXFh81EwqHN5S59XbcLfvNf0Ch6IA+s3lTZCEdFydmqbmyrjL
-         7oDmP8Ai8X4oBBn+bdxhNutt2pkh53qmieEyABLQPt2xRv8N2GInCaUY9fJW7WxeZX0S
-         QHbg==
-X-Gm-Message-State: AOJu0YwP1pA159k64aiB3DcDsoqGIjB3tw7upY6kFaqteHrNhHnwBu2o
-	GXQEsUudiTnFRWYVUctKfL4UTjhm6G6NhBb4nMPqzUPYP+O+30fmpmmdmE9dPMCOcUDzz8rK3U4
-	rFFsmCLIwGbsNyuHmNxveCk0Oc0SdS0ApUQt63w==
-X-Google-Smtp-Source: AGHT+IFnB4ZjPfFgAynVnG8PcS3bLndBbDG8SKTtMgiDYr+D8XJYREVe4SCkVUjmR+ve+2tw/4wEl6cj595gux0wucE=
-X-Received: by 2002:a25:1003:0:b0:dc2:65e7:b616 with SMTP id
- 3-20020a251003000000b00dc265e7b616mr463094ybq.74.1705656431151; Fri, 19 Jan
- 2024 01:27:11 -0800 (PST)
+	s=arc-20240116; t=1705656515; c=relaxed/simple;
+	bh=Lhbql/RT2O/SWJDfGJ70KFwReffC1OnjFnXgYb8Q0nI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XBdZj1KnAHjMaj4FCHRpPfVsLZ0EqHMDsdoK8CR5+8/Bn3IDtmHKWbNcCtvJYNnKsLvsFsSb/fmOKqcjh17JXyYdPFx/lePoQQd8im8JfpkPV3qPuavzvMrdr2QcdVgC3ZfZ2kRUD1lARz652Z6EBVqqI8/tfNEMJZovx/+K8Ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=1ET+SY7K; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705656512;
+	bh=Lhbql/RT2O/SWJDfGJ70KFwReffC1OnjFnXgYb8Q0nI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=1ET+SY7K7XySrZyuXVekgjjQz1L29u/gNLqq8DRykljix0PWXmKfCEhw7nx8qOQ9T
+	 qsth7UfW62Bg7siz/4nbAHpv/9b+QzVskY/tbaGfAIDKdBtFM8s8gPGfeH30eaWBMT
+	 p78Or/RanDDOJ9pVaJRFXez0D/eQCOMTI0CkMcNft+Y+EAEz6uARYxmzOGvXdQUa+K
+	 wbBxmjxAnSCk+77vnE2m6CaqGTCBEf9BiVcAPHvhTf4X/43ayWEOiT576soOJy1bvV
+	 pN/d0B4adJc+4EPa2Mbo14esown6eDPApaz2KdD3h8gFT+VWGFcO+ZrqnI95sa5Wa9
+	 NC7iCNCmReOYg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4B65837811F1;
+	Fri, 19 Jan 2024 09:28:31 +0000 (UTC)
+Message-ID: <43f946cc-07e1-48c5-9b31-40fc9bc93037@collabora.com>
+Date: Fri, 19 Jan 2024 10:28:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230316131711.1284451-1-alexghiti@rivosinc.com>
- <CAK9=C2XJtSG2d_nsyDv7kU1v7Jj0chdevqrMc0MpJswukcEABA@mail.gmail.com>
- <CAHVXubhhxpzHDM-n91V_rceY5t_VqLvrwZj3RP_tNL2=F9mqjQ@mail.gmail.com>
- <CAK9=C2WVOpSqtt8r1U4hnzSZ=cc1PocpukgQjNyahP2XuPhozw@mail.gmail.com>
- <d0087922-4721-ccf1-80bf-9f74099d0948@ghiti.fr> <CAPqJEFr6MgUyARfbWAo7EeQKLVd4xRJz_LOYN68UC-kPD1Hr5A@mail.gmail.com>
- <20240118082346.GB31078@hsinchu15> <CAHVXubiQ5N+ngdy=Fk3j-hS_KkOEg272b++-hB4-oGeSSZKtNQ@mail.gmail.com>
-In-Reply-To: <CAHVXubiQ5N+ngdy=Fk3j-hS_KkOEg272b++-hB4-oGeSSZKtNQ@mail.gmail.com>
-From: Nylon Chen <nylon.chen@sifive.com>
-Date: Fri, 19 Jan 2024 17:26:59 +0800
-Message-ID: <CAHh=Yk-WCMbNWg7UCbXtZZzPmOHnh1-pv4fqykwnpJGtwTcc=A@mail.gmail.com>
-Subject: Re: Fwd: [PATCH v8 0/4] riscv: Use PUD/P4D/PGD pages for the linear mapping
-To: Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc: alex@ghiti.fr, apatel@ventanamicro.com, catalin.marinas@arm.com, 
-	will@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, robh+dt@kernel.org, frowand.list@gmail.com, 
-	rppt@kernel.org, akpm@linux-foundation.org, anup@brainfault.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-mm@kvack.org, zong.li@sifive.com, nylon7717@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: Aw: Re: [PATCH v3 1/2] dt-bindings: reset: mediatek: add MT7988
+ reset IDs
+Content-Language: en-US
+To: Frank Wunderlich <frank-w@public-files.de>,
+ Conor Dooley <conor@kernel.org>
+Cc: Frank Wunderlich <linux@fw-web.de>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sam Shih <sam.shih@mediatek.com>,
+ Daniel Golle <daniel@makrotopia.org>, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20240117184111.62371-1-linux@fw-web.de>
+ <20240117184111.62371-2-linux@fw-web.de>
+ <20240118-calcium-krypton-3c787b8d1912@spud>
+ <trinity-afc4f48e-65e1-46ee-a78b-1d670cc0f310-1705615200900@3c-app-gmx-bap21>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <trinity-afc4f48e-65e1-46ee-a78b-1d670cc0f310-1705615200900@3c-app-gmx-bap21>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Alexandre Ghiti <alexghiti@rivosinc.com> =E6=96=BC 2024=E5=B9=B41=E6=9C=881=
-8=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:01=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Hi Nylon,
-Hi Alexandre, thanks for your feedback,
->
-> On Thu, Jan 18, 2024 at 9:23=E2=80=AFAM Nylon Chen <nylon.chen@sifive.com=
-> wrote:
-> >
-> > > On 3/23/23 15:55, Anup Patel wrote:
-> > > > On Thu, Mar 23, 2023 at 6:24=E2=80=AFPM Alexandre Ghiti <alexghiti@=
-rivosinc.com> wrote:
-> > > >> Hi Anup,
-> > > >>
-> > > >> On Thu, Mar 23, 2023 at 1:18=E2=80=AFPM Anup Patel <apatel@ventana=
-micro.com> wrote:
-> > > >>> Hi Alex,
-> > > >>>
-> > > >>> On Thu, Mar 16, 2023 at 6:48=E2=80=AFPM Alexandre Ghiti <alexghit=
-i@rivosinc.com> wrote:
-> > > >>>> This patchset intends to improve tlb utilization by using hugepa=
-ges for
-> > > >>>> the linear mapping.
-> > > >>>>
-> > > >>>> As reported by Anup in v6, when STRICT_KERNEL_RWX is enabled, we=
- must
-> > > >>>> take care of isolating the kernel text and rodata so that they a=
-re not
-> > > >>>> mapped with a PUD mapping which would then assign wrong permissi=
-ons to
-> > > >>>> the whole region: it is achieved by introducing a new memblock A=
-PI.
-> > > >>>>
-> > > >>>> Another patch makes use of this new API in arm64 which used some=
- sort of
-> > > >>>> hack to solve this issue: it was built/boot tested successfully.
-> > > >>>>
-> > > >>>> base-commit-tag: v6.3-rc1
-> > > >>>>
-> > > >>>> v8:
-> > > >>>> - Fix rv32, as reported by Anup
-> > > >>>> - Do not modify memblock_isolate_range and fixes comment, as sug=
-gested by Mike
-> > > >>>> - Use the new memblock API for crash kernel too in arm64, as sug=
-gested by Andrew
-> > > >>>> - Fix arm64 double mapping (which to me did not work in v7), but=
- ends up not
-> > > >>>>    being pretty at all, will wait for comments from arm64 review=
-ers, but
-> > > >>>>    this patch can easily be dropped if they do not want it.
-> > > >>>>
-> > > >>>> v7:
-> > > >>>> - Fix Anup bug report by introducing memblock_isolate_memory whi=
-ch
-> > > >>>>    allows us to split the memblock mappings and then avoid to ma=
-p the
-> > > >>>>    the PUD which contains the kernel as read only
-> > > >>>> - Add a patch to arm64 to use this newly introduced API
-> > > >>>>
-> > > >>>> v6:
-> > > >>>> - quiet LLVM warning by casting phys_ram_base into an unsigned l=
-ong
-> > > >>>>
-> > > >>>> v5:
-> > > >>>> - Fix nommu builds by getting rid of riscv_pfn_base in patch 1, =
-thanks
-> > > >>>>    Conor
-> > > >>>> - Add RB from Andrew
-> > > >>>>
-> > > >>>> v4:
-> > > >>>> - Rebase on top of v6.2-rc3, as noted by Conor
-> > > >>>> - Add Acked-by Rob
-> > > >>>>
-> > > >>>> v3:
-> > > >>>> - Change the comment about initrd_start VA conversion so that it=
- fits
-> > > >>>>    ARM64 and RISCV64 (and others in the future if needed), as su=
-ggested
-> > > >>>>    by Rob
-> > > >>>>
-> > > >>>> v2:
-> > > >>>> - Add a comment on why RISCV64 does not need to set initrd_start=
-/end that
-> > > >>>>    early in the boot process, as asked by Rob
-> > > >>>>
-> > > >>>> Alexandre Ghiti (4):
-> > > >>>>    riscv: Get rid of riscv_pfn_base variable
-> > > >>>>    mm: Introduce memblock_isolate_memory
-> > > >>>>    arm64: Make use of memblock_isolate_memory for the linear map=
-ping
-> > > >>>>    riscv: Use PUD/P4D/PGD pages for the linear mapping
-> > > >>> Kernel boot fine on RV64 but there is a failure which is still no=
-t
-> > > >>> addressed. You can see this failure as following message in
-> > > >>> kernel boot log:
-> > > >>>      0.000000] Failed to add a System RAM resource at 80200000
-> > > >> Hmmm I don't get that in any of my test configs, would you mind
-> > > >> sharing yours and your qemu command line?
-> > > > Try alexghiti_test branch at
-> > > > https://github.com/avpatel/linux.git
-> > > >
-> > > > I am building the kernel using defconfig and my rootfs is
-> > > > based on busybox.
-> > > >
-> > > > My QEMU command is:
-> > > > qemu-system-riscv64 -M virt -m 512M -nographic -bios
-> > > > opensbi/build/platform/generic/firmware/fw_dynamic.bin -kernel
-> > > > ./build-riscv64/arch/riscv/boot/Image -append "root=3D/dev/ram rw
-> > > > console=3DttyS0 earlycon" -initrd ./rootfs_riscv64.img -smp 4
-> > >
-> > >
-> > > So splitting memblock.memory is the culprit, it "confuses" the resour=
-ces
-> > > addition and I can only find hacky ways to fix that...
-> > Hi Alexandre,
-> >
-> > We encountered the same error as Anup. After adding your patch
-> > (3335068f87217ea59d08f462187dc856652eea15), we will not encounter the
-> > error again.
-> >
-> > What I have observed so far is
-> >
-> > - before your patch
-> > When merging consecutive memblocks, if the memblock types are different=
-,
-> > they will be merged into reserved
-> > - after your patch
-> > When consecutive memblocks are merged, if the memblock types are
-> > different, they will be merged into memory.
-> >
-> > Such a result will cause the memory location of OpenSBI to be changed
-> > from reserved to memory. Will this have any side effects?
->
-> I guess it will end up in the memory pool and pages from openSBI
-> region will be allocated, so we should see very quickly bad stuff
-> happening (either PMP violation or M-mode ecall never
-> returning/trapping/etc).
->
-> But I don't observe the same thing, I always see the openSBI region
-> being reserved:
->
-> reserved[0x0] [0x0000000080000000-0x000000008007ffff],
-> 0x0000000000080000 bytes flags: 0x0
->
-> Can you elaborate a bit more about "When consecutive memblocks are
-> merged, if the memblock types are different, they will be merged into
-> memory"? Where/when does this merge happen? Can you give me a config
-> file and a kernel revision so that I can take a look?
-Ok, If you want to reproduce the same results you just need to modify OpenS=
-BI
+Il 18/01/24 23:00, Frank Wunderlich ha scritto:
+>> Gesendet: Donnerstag, 18. Januar 2024 um 17:49 Uhr
+>> Von: "Conor Dooley" <conor@kernel.org>
+>> On Wed, Jan 17, 2024 at 07:41:10PM +0100, Frank Wunderlich wrote:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> Add reset constants for using as index in driver and dts.
+>>>
+>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>> ---
+>>> v3:
+>>> - add pcie reset id as suggested by angelo
+>>>
+>>> v2:
+>>>   - add missing commit message and SoB
+>>>   - change value of infrareset to 0
+>>> ---
+>>>   include/dt-bindings/reset/mediatek,mt7988-resets.h | 6 ++++++
+>>>   1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
+>>> index 493301971367..0eb152889a89 100644
+>>> --- a/include/dt-bindings/reset/mediatek,mt7988-resets.h
+>>> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
+>>> @@ -10,4 +10,10 @@
+>>>   /* ETHWARP resets */
+>>>   #define MT7988_ETHWARP_RST_SWITCH		0
+>>>
+>>> +/* INFRA resets */
+>>> +#define MT7988_INFRA_RST0_PEXTP_MAC_SWRST	0
+>>> +#define MT7988_INFRA_RST1_THERM_CTRL_SWRST	1
+>>
+>> These are just "random" numbers, why not continue the numbering from the
+>> ETHWARP?
+> 
+> i can do...basicly these consts are used in DTS and driver only as index.
+> 
+> @angelo what do you think? I though also in leaving some space to allow grouping RST0 and RST1
+> when more consts are added, else the numbers are mixed up.
+> 
+> so e.g. let RST0 start at 20 and RST1 at 40 (or even higher, because RST0 and RST1 can have up to 32 resets).
+> That will allow adding more reset constants between my values and having raising numbers.
 
-[ lib/sbi/sbi_domain.c ]
-+#define TEST_SIZE 0x200000
+The resets are organized on a per-reset-controller basis, so, the ETHWARP
+reset controller's first reset is RST_SWITCH, the second one is RST_something_else,
+etc. while the first reset of the INFRA reset controller is PEXTP_MAC_SWRST.
 
--                                 (scratch->fw_size - scratch->fw_rw_offset=
-),
-+                                 (TEST_SIZE - scratch->fw_rw_offset),
+That's why ETHWARP has a reset index 0 and INFRA also starts at 0.
+I think that the numbering is good as it is, and having one driver start at index 5
+while the other starts at index 12 would only overcomplicate registering the resets
+in each driver, or waste bytes by making unnecessarily large arrays, for (imo) no
+good reason.
 
-In addition, you can insert checks in the kernel merged function
-[ mm/memblock.c ]
-static void __init_memblock memblock_merge_regions(struct memblock_type *ty=
-pe)
-        while (i < type->cnt - 1) {
-         ...
-                /* move forward from next + 1, index of which is i + 2 */
-                memmove(next, next + 1, (type->cnt - (i + 2)) * sizeof(*nex=
-t));
-                type->cnt--;
-        }
-+       pr_info("Merged memblock_type: cnt =3D %lu, max =3D %lu,
-total_size =3D 0x%llx\n",type->cnt, type->max, type->total_size);
-+       for (i =3D 0; i < type->cnt; i++) {
-+               const char *region_type =3D
-memblock_is_memory(type->regions[i].base) ? "memory" : "reserve";
-+               pr_info("Region %d: base =3D 0x%llx, size =3D 0x%llx, type
-=3D %s\n", i, type->regions[i].base, type->regions[i].size,
-region_type);
-+       }
- }
-This is kernel boot log
-- before your patch
-...
-[    0.000000] OF: fdt: Reserving memory: base =3D 0x80000000, size =3D 0x2=
-00000
-[    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size =3D=
- 0x1628501
-[    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1600000, type =3D =
-reserve
-...
+This is one header, but it should "in theory" be more than one... so we would have
+one for each hardware block - but that'd make the reset directory over-crowded, as
+other MediaTek SoCs have got even more resets in even more hardware blocks than the
+MT7988. That'd be something like ~4 reset headers per SoC (and will increase with
+newer ones)...
+...and this is why we have one binding header for resets.
 
-- after your patch
-...
-[    0.000000] OF: fdt: Reserving memory: base =3D 0x80000000, size =3D 0x2=
-00000
-[    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size =3D=
- 0x180c42e
-[    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1800000, type =3D =
-memory
-...
-[    0.000000] Failed to add a system RAM resource at 80200000
-...
->
-> Thanks,
->
-> Alex
->
-> > >
-> > > So given that the arm64 patch with the new API is not pretty and that
-> > > the simplest solution is to re-merge the memblock regions afterwards
-> > > (which is done by memblock_clear_nomap), I'll drop the new API and th=
-e
-> > > arm64 patch to use the nomap API like arm64: I'll take advantage of t=
-hat
-> > > to clean setup_vm_final which I have wanted to do for a long time.
-> > >
-> > > @Mike Thanks for you reviews!
-> > >
-> > > @Anup Thanks for all your bug reports on this patchset, I have to
-> > > improve my test flow (it is in the work :)).
-> > >
-> > >
-> > > > Regards,
-> > > > Anup
-> > > >
-> > > >> Thanks
-> > > >>
-> > > >>> Regards,
-> > > >>> Anup
-> > > >>>
-> > > >>>>   arch/arm64/mm/mmu.c           | 25 +++++++++++------
-> > > >>>>   arch/riscv/include/asm/page.h | 19 +++++++++++--
-> > > >>>>   arch/riscv/mm/init.c          | 53 +++++++++++++++++++++++++++=
-+-------
-> > > >>>>   arch/riscv/mm/physaddr.c      | 16 +++++++++++
-> > > >>>>   drivers/of/fdt.c              | 11 ++++----
-> > > >>>>   include/linux/memblock.h      |  1 +
-> > > >>>>   mm/memblock.c                 | 20 +++++++++++++
-> > > >>>>   7 files changed, 119 insertions(+), 26 deletions(-)
-> > > >>>>
-> > > >>>> --
-> > > >>>> 2.37.2
-> > > >>>>
-> > > > _______________________________________________
-> > > > linux-riscv mailing list
-> > > > linux-riscv@lists.infradead.org
-> > > > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> > >
-> > > _______________________________________________
-> > > linux-riscv mailing list
-> > > linux-riscv@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
+On the topic of leaving space to allow grouping RST0/RST1: -> No. <-
+The indices have to start from zero and have to be sequential, with no holes.
+
+Cheers,
+Angelo
+
 
