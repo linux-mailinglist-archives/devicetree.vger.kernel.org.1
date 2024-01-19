@@ -1,145 +1,140 @@
-Return-Path: <devicetree+bounces-33316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E400832E35
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 18:31:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18A74832E42
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 18:37:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01DBB2881A8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:31:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6334B21836
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:37:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 465B955E79;
-	Fri, 19 Jan 2024 17:31:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3eVaqJV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85FC356469;
+	Fri, 19 Jan 2024 17:37:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A93E55C05;
-	Fri, 19 Jan 2024 17:31:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9A895577D;
+	Fri, 19 Jan 2024 17:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.53.165.186
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705685500; cv=none; b=u7NZkcTE3BrpOhGH92e7EMtdkW0TTBDqehWpwKvrdzrNMOCBbB7aU8oF2MmN7w64LCfDYNnhUJZtiWMJitIDM+UX83MClA+JgKMGHpLz4ak2yDldhY/yf3br0WUIa4CJMdP/H9Kk6qVRvcXkwjkdq1W+k+KrGnqyNVle04n/Clw=
+	t=1705685821; cv=none; b=EwseZnIf4esj+M+FhGE9r51xDrB6FaP+jwQu3XZE6ghQamgP3ieiVyo0MJS5jZ9Gzt8eKG0w0FKxR4wV+6k2PAQiywnJae3QhVhL9MaavnnhOtxFMwyVVbktQKML+PUhw5qOg4sSyhVo9OZKUCQ0kSxic2wjkCQVl1wKRAHz1qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705685500; c=relaxed/simple;
-	bh=bx3dBEafVwA3lVJVceH0Td6l7zSsuteDOXP4YqQuYQQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=iQEERUECthgDV8UCBEucyUFsDBFu2J5lIFktbBfo1qYn/Av9KusCpcjtJ/w/N00OY2Ekmc2oQWfx5dBioi2oQLFjWngGvW7Zpto/BNkaQ3qUK2JXPMT8sLKrnH40nDmplUjCChXvEp6p8CFFkBSF2d3rBHxsKHeQucCsnyL1qC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3eVaqJV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3592AC433F1;
-	Fri, 19 Jan 2024 17:31:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705685499;
-	bh=bx3dBEafVwA3lVJVceH0Td6l7zSsuteDOXP4YqQuYQQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=d3eVaqJVId8F9SFx2HE7+VtBKBkeoTgOSnCfGcnutVGB8Amu2/NnAr53RHpdJW2cI
-	 HsrCHES1ME2ZiCgLk6EGJZ08QqQamaNwM/dbaSfc1oas1ONNVAI1XEH7Pp3sMe+nQ6
-	 k4w/PAWIWW0rY38M5L0JQwavF9MGjRS/YOEUv5ktyVRdMAslB6F1gZ3sH0a0qDJ8b3
-	 4K29qSzZG6hn5jyt1VLBc2obJvJVFWAQOwauaeBIZ7MUe7eRZKL0jExT4NydchuIVx
-	 SdTIokkHWVIE0KAg0DXmhikeel9INExRR1RqCK0mijGX2qrUNINUVGexcvi5zp43iP
-	 w2pZNvgaL6SZw==
-Date: Fri, 19 Jan 2024 11:31:37 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vidya Sagar <vidyas@nvidia.com>
-Cc: robh@kernel.org, lpieralisi@kernel.org, kw@linux.com,
-	bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, will@kernel.org, frowand.list@gmail.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	treding@nvidia.com, jonathanh@nvidia.com, kthota@nvidia.com,
-	mmaddireddy@nvidia.com, sagar.tv@gmail.com,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH V2 2/2] PCI: Add support for "preserve-boot-config"
- property
-Message-ID: <20240119173137.GA180921@bhelgaas>
+	s=arc-20240116; t=1705685821; c=relaxed/simple;
+	bh=hpvlFjQYQ+F7RT5mW2r1opu6+5eS/F7pSSdF5Mk80LU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KBz2+zs0zZ+9tjjAzEZ7c1htTqo+Voi7GLAKa3dOQx2Nbc8psw7cUe3M+YHYYbyPzzz0XsbhAw7ucyfHkvYM7RvUUmqhyWzxM6HleAYYdJYUBhAwyjsLhHBtrS4KCkG6+CaWxxyXoMpj3r96LPtBnWKXc8Up4Q1FS33toe8Sij0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr; spf=pass smtp.mailfrom=skole.hr; arc=none smtp.client-ip=161.53.165.186
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
+Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id 6A1FE86959;
+	Fri, 19 Jan 2024 18:36:50 +0100 (CET)
+From: Duje =?utf-8?B?TWloYW5vdmnEhw==?= <duje.mihanovic@skole.hr>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <daniel.thompson@linaro.org>,
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+ Karel Balej <balejk@matfyz.cz>, ~postmarketos/upstreaming@lists.sr.ht,
+ dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] backlight: Add Kinetic KTD2801 driver
+Date: Fri, 19 Jan 2024 18:36:15 +0100
+Message-ID: <3283558.44csPzL39Z@radijator>
+In-Reply-To: <51576fbb-c7dd-4ee8-a77f-ae7f62b254ab@wanadoo.fr>
+References:
+ <20240118-ktd2801-v2-0-425cf32e0769@skole.hr>
+ <20240118-ktd2801-v2-2-425cf32e0769@skole.hr>
+ <51576fbb-c7dd-4ee8-a77f-ae7f62b254ab@wanadoo.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5e8f6c52-6149-42c0-affb-d8b072a77956@nvidia.com>
+Autocrypt: addr=duje.mihanovic@skole.hr;
+ keydata=
+ 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
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jan 15, 2024 at 08:02:56PM +0530, Vidya Sagar wrote:
-> On 1/12/2024 10:28 PM, Bjorn Helgaas wrote:
-> > On Wed, Jan 10, 2024 at 08:37:25AM +0530, Vidya Sagar wrote:
-> > > Add support for "preserve-boot-config" property that can be used to
-> > > selectively (i.e. per host bridge) instruct the kernel to preserve the
-> > > boot time configuration done by the platform firmware.
-> > > 
-> > > Reported-by: kernel test robot <lkp@intel.com>
-> > > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> > > ---
-> > > V2:
-> > > * Addressed issues reported by kernel test robot <lkp@intel.com>
-> > > 
-> > >   drivers/pci/controller/pci-host-common.c |  5 ++++-
-> > >   drivers/pci/of.c                         | 18 ++++++++++++++++++
-> > >   drivers/pci/probe.c                      |  2 +-
-> > >   include/linux/of_pci.h                   |  6 ++++++
-> > >   4 files changed, 29 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/pci/controller/pci-host-common.c b/drivers/pci/controller/pci-host-common.c
-> > > index 6be3266cd7b5..d3475dc9ec44 100644
-> > > --- a/drivers/pci/controller/pci-host-common.c
-> > > +++ b/drivers/pci/controller/pci-host-common.c
-> > > @@ -68,13 +68,16 @@ int pci_host_common_probe(struct platform_device *pdev)
-> > > 
-> > >        of_pci_check_probe_only();
-> > > 
-> > > +     bridge->preserve_config =
-> > > +             of_pci_check_preserve_boot_config(dev->of_node);
-> > 
-> > Thanks for leveraging the existing "preserve_config" support for the
-> > ACPI _DSM.  Is pci_host_common_probe() the best place for this?  I
-> > think there are many DT platform drivers that do not use
-> > pci_host_common_probe(), so I wonder if there's a more generic place
-> > to put this.
->
-> My understanding is that pci_host_common_probe() is mainly used in
-> systems where the firmware would have taken care of all the platform
-> specific initialization and giving the ECAM and 'ranges' info through DT
-> for the Linux kernel to go ahead and perform the enumeration. This is
-> similar to ACPI way of handing over the system from firmware to the OS.
-> 
-> If PCIe controllers are getting initialized in the kernel itself, then
-> pci_host_probe() is called directly from the respective host controller
-> drivers which is the case with all the DesignWare based implementations
-> including Tegra194 and Tegra234. In those systems, since the controllers
-> themselves have come up and gotten initialized in the kernel, resource
-> assignment has to happen anyway.
+On Friday, January 19, 2024 6:29:21 PM CET Christophe JAILLET wrote:
+> Le 18/01/2024 =C3=A0 18:32, Duje Mihanovi=C4=87 a =C3=A9crit :
+> > Add driver for the Kinetic KTD2801 backlight driver.
+> >=20
+> > Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
+> >=20
+> > ---
+>=20
+> ...
+>=20
+> > +	ktd2801->gpiod =3D devm_gpiod_get(dev, "ctrl", GPIOD_OUT_HIGH);
+> > +	if (IS_ERR(ktd2801->gpiod))
+> > +		return dev_err_probe(dev, PTR_ERR(dev),
+>=20
+> PTR_ERR(ktd2801->gpiod); ?
 
-acpi_pci_root_create() sets "preserve_config" based on the
-DSM_PCI_PRESERVE_BOOT_CONFIG _DSM for all ACPI host bridges.
+Good catch, I'll fix it in v3.
 
-Similarly, I think we should set "preserve_config" based on the DT
-"preserve-boot-config" property for *all* DT-based host bridges,
-regardless of where the controller init happens.
+Regards,
+=2D-
+Duje
 
-  acpi_pci_root_create
-    pci_create_root_bus
-      pci_alloc_host_bridge
-      pci_register_host_bridge
-    acpi_evaluate_dsm_typed(DSM_PCI_PRESERVE_BOOT_CONFIG)  <--
-    pci_scan_child_bus
 
-  pci_host_common_probe
-+   of_pci_check_preserve_boot_config       <-- proposed
-    pci_host_probe
-      pci_scan_root_bus_bridge
-        pci_register_host_bridge
-          pci_set_bus_of_node
-        pci_scan_child_bus
 
-Maybe we should do both in pci_register_host_bridge()?  E.g., make a
-function that sets "preserve_config" based on either the ACPI _DSM or
-the DT property, whichever is appropriate, and call it from
-pci_register_host_bridge()?
-
-Bjorn
 
