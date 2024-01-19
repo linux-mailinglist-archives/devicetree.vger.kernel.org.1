@@ -1,157 +1,125 @@
-Return-Path: <devicetree+bounces-33140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A0C832618
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:02:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 574EA832654
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:12:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37CFD285B65
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 09:02:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D0DDDB2414B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 09:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CC01DDC3;
-	Fri, 19 Jan 2024 09:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B27522073;
+	Fri, 19 Jan 2024 09:12:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WONBx0ye"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="z3P4C5rp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B3F1E896
-	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 09:02:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D99288CE;
+	Fri, 19 Jan 2024 09:12:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705654968; cv=none; b=sqboGhqPzSRGababzqMoSBAYp7EbWxssGD4wmiP6bfvqdh+FNFf+7szpfYXJC1Loor7mxZcfs/tlCX1y/rk3Bk51sV9YbERpKOC7N193mvb95CK2EJjNplMhIg97O1WiGGDRwttb8niCQawBE+IfnOakzirYLuT7bxc+TBFNXPQ=
+	t=1705655532; cv=none; b=Ie7iCQRIeQtNd1PoyOOxY6EgaRTWIcXHOGA7WtVW1CGkcM3rLvBa75g6Uo4zJDyQxZ+d/Jp1oFi0EkLpnblzY+SLD1GqbbnjsZhFeGPaI7v5/sUEnI/rIsefbBQGURsaCMkNEpaI47Pj1gbEVAWgd2aXMGVKRpWjdi89jnD0eIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705654968; c=relaxed/simple;
-	bh=lOoZ5uIL1BqcoJqAFT0gF4hhM+tlUGk5b5N66uLo8Rc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tMdIo9NVe0hhqHKpUgIVR/7XNpmzHNUsJdPVIM+aMwhFCXhQP2tnsJ2jNEv1tS/ixFVKmgLyFZmngjhD6bIFr0xJ+/GdpXS8mhJvFbQbrmWkxgEvWZEBhoL6vDXYaVUE/IxR7bl/uUnQs+7a3UUo6BoXUYHmYUPVaGt3JGAdgdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WONBx0ye; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-5ff88cbbcceso4978837b3.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 01:02:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705654966; x=1706259766; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vXly0SHrTSjZSuXQftpHAjjIbPZkzzkklwoOCCBALEY=;
-        b=WONBx0ye2AI7HV2E3qYiAayqbw5VFhhNchQu0VedOwZjWMsJ/HjJ9KyiNDGZp3JCLc
-         lUrbsUUjI7i9193HhDFwbFbcw+7/wjM097QopAfvb+0KWOdkQkKC1M4zAPEte5IvCVAK
-         0zYPoc07JtzgVm0cc+jps8UulPAr28Gxmh0p3Rzoc43SYDtcmdIKSFMgYkCKOJGPJ7aE
-         xT3/jOdVLbnA4h8Y6NkXU5ITfyq5AnAdk53NxjmY+EEE7q2usrWrL3l21Va9C8umLAU5
-         R4x4hCl5mz1MqSRmPQX2TLgXBu7ElhqrxeWZ74ZAON3yFWo77IpPVrfhIgEYPwnKIzNy
-         1pwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705654966; x=1706259766;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vXly0SHrTSjZSuXQftpHAjjIbPZkzzkklwoOCCBALEY=;
-        b=GaVS1cHZK+oWKxNOCJwsrEH7nuQQxZNG6U9dYtqVo8sWsNcsb861j4KlO+d31jqn0n
-         1BkVpi05hCI36QlCbDQhKCY4Menc8JLS+yIYeK42ps+2XRdFqLSEbSpBUW4VLF5LgUaw
-         awegmHVsIRAMhSH0JIUTnGso2VhqW7YnnXpakwFYjhKSUFp43hfcheecuJllRkPM0zZ6
-         iMk/ER7AiLalHvYwBxHQPijimsefeM+bindIKpFw8bLm8Ds1q0IfqXtEoAgVxLwHCGPq
-         q5SuglMGiUhf+ZSnpW2394qrbhPTJMjRGbc7ZRr5/EHpO+RPuSb0+zv5XxlvhEcuIzvU
-         H/gg==
-X-Gm-Message-State: AOJu0Yz+Y90QhIBA8mIrhgw8ZBowwtvVSo14jsRThPuFubRA82/qEXZb
-	qevtMEHYPAvwzVhpcMsUuKFRsjxlwEszdFO/i/zS3V4OVvT7e1rf+uLhjhHl02bErKJ0fykOiFj
-	md6ApkwA2DlD6TVou35DQksJ7uA29crhy4i4qxQ==
-X-Google-Smtp-Source: AGHT+IGH1HSlU2Qbeu2oYJg1QQ66XV+gD85BDZ/Gx+YWlz8o2e1bGKpsP6SO+/FVBt2P1/njmI/71ZCnpvbytP0Ju9U=
-X-Received: by 2002:a81:6941:0:b0:5ff:50c2:e120 with SMTP id
- e62-20020a816941000000b005ff50c2e120mr2342756ywc.36.1705654964498; Fri, 19
- Jan 2024 01:02:44 -0800 (PST)
+	s=arc-20240116; t=1705655532; c=relaxed/simple;
+	bh=eNiJDJdYOUFmY5BTiqxpKfPXrwPImnQUYyFSWE2ZSJU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xflol//8rya1nkfqxS16TN4Oajd3vOxDGkkLQ1DvmkWlXkR+gYztNGV0yzKEdXbZSW5bR2PqCKua2d/V7j+MfrBVV3eqsHCKjrfgk/RsLG7lXFniXB5pq3q6VuGygErAp43gFswTGB4CTwExmqIZlfjoF8i8CmFgK3LdCO8zpto=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=z3P4C5rp; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705655528;
+	bh=eNiJDJdYOUFmY5BTiqxpKfPXrwPImnQUYyFSWE2ZSJU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=z3P4C5rpP4oH8MIrinLyBrZZZVLTwMNTKhUsEGxFrEAxX+qZsgt5wWovv3/SVw2fJ
+	 53XvZEQw3il/d9gtLpvQSnizwlBvKTmsszvqKYNG83lTWXA6MrWTUyyjVKlAArjymv
+	 yO8ffqW/6ynmiRhzqgVKPkPGtNvckK4eclAEexsP6mERqMYFkBEEWy1kejIJzeu22i
+	 RNpIa3zUaqQ7Ey8iWdTTVqueKPYTtEDWHEZWJPcsXvtBdFWWogxjKerYn+99eleMix
+	 e9og5Y4g/y6kVL+iLJVQScKWbw69vm1urU+qXOw/NNkLLgF203sYOqQl7hIv1MRFsn
+	 5SrxTe6HPTWGA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 419BA3781182;
+	Fri, 19 Jan 2024 09:12:08 +0000 (UTC)
+Message-ID: <064935d8-fbda-4eda-b013-8c8fc63b561c@collabora.com>
+Date: Fri, 19 Jan 2024 10:12:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240118-ktd2801-v2-0-425cf32e0769@skole.hr> <20240118-ktd2801-v2-2-425cf32e0769@skole.hr>
-In-Reply-To: <20240118-ktd2801-v2-2-425cf32e0769@skole.hr>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 19 Jan 2024 10:02:33 +0100
-Message-ID: <CACRpkdaUvmmbGUyQ-L_u8c73=Oz+qE88GXd1=cUY7r+PPttJbw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] backlight: Add Kinetic KTD2801 driver
-To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <daniel.thompson@linaro.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Helge Deller <deller@gmx.de>, Karel Balej <balejk@matfyz.cz>, ~postmarketos/upstreaming@lists.sr.ht, 
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: Probe failure of usb controller @11290000 on MT8195 after
+ next-20231221
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com, Macpaul Lin <macpaul.lin@mediatek.com>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Chen-Yu Tsai <wenst@chromium.org>
+References: <9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Duje,
+Il 18/01/24 19:36, Nícolas F. R. A. Prado ha scritto:
+> Hi,
+> 
+> KernelCI has identified a failure in the probe of one of the USB controllers on
+> the MT8195-Tomato Chromebook [1]:
+> 
+> [   16.336840] xhci-mtk 11290000.usb: uwk - reg:0x400, version:104
+> [   16.337081] xhci-mtk 11290000.usb: xHCI Host Controller
+> [   16.337093] xhci-mtk 11290000.usb: new USB bus registered, assigned bus number 5
+> [   16.357114] xhci-mtk 11290000.usb: clocks are not stable (0x1003d0f)
+> [   16.357119] xhci-mtk 11290000.usb: can't setup: -110
+> [   16.357128] xhci-mtk 11290000.usb: USB bus 5 deregistered
+> [   16.359484] xhci-mtk: probe of 11290000.usb failed with error -110
+> 
+> A previous message [2] suggests that a force-mode phy property that has been
+> merged might help with addressing the issue, however it's not clear to me how,
+> given that the controller at 1129000 uses a USB2 phy and the phy driver patch
+> only looks for the property on USB3 phys.
+> 
+> Worth noting that the issue doesn't always happen. For instance the test did
+> pass for next-20240110 and then failed again on today's next [3]. But it does
+> seem that the issue was introduced, or at least became much more likely, between
+> next-20231221 and next-20240103, given that it never happened out of 10 runs
+> before, and after that has happened 5 out of 7 times.
+> 
+> Note: On the Tomato Chromebook specifically this USB controller is not connected
+> to anything.
+> 
+> [1] https://linux.kernelci.org/test/case/id/659ce3506673076a8c52a428/
+> [2] https://lore.kernel.org/all/239def9b-437b-9211-7844-af4332651df0@mediatek.com/
+> [3] https://linux.kernelci.org/test/case/id/65a8c66ee89acb56ac52a405/
+> 
+> Thanks,
+> Nícolas
 
-thanks for your patch!
+Hey Nícolas,
 
-On Thu, Jan 18, 2024 at 6:33=E2=80=AFPM Duje Mihanovi=C4=87 <duje.mihanovic=
-@skole.hr> wrote:
+I wonder if this is happening because of async probe... I have seen those happening
+once in a (long) while on MT8186 as well with the same kind of flakiness and I am
+not even able to reproduce anymore.
 
-> Add driver for the Kinetic KTD2801 backlight driver.>
-> Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
+For MT8195 Tomato, I guess we can simply disable that controller without any side
+effects but, at the same time, I'm not sure that this would be the right thing to
+do in this case.
 
-Add some commit message?
+Besides, the controller at 11290000 is the only one that doesn't live behind MTU3,
+but I don't know if that can ring any bell....
 
-> +#include <linux/backlight.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/of.h>
-
-I don't think you need <linux/of.h>, the compatible table works without
-that (is in the device driver core).
-
-> +/* These values have been extracted from Samsung's driver. */
-> +#define KTD2801_EXPRESSWIRE_DETECT_DELAY_US    150
-> +#define KTD2801_EXPRESSWIRE_DETECT_US          270
-> +#define KTD2801_LOW_BIT_HIGH_TIME_US           5
-> +#define KTD2801_LOW_BIT_LOW_TIME_US            (4 * KTD2801_HIGH_BIT_LOW=
-_TIME_US)
-> +#define KTD2801_HIGH_BIT_LOW_TIME_US           5
-> +#define KTD2801_HIGH_BIT_HIGH_TIME_US          (4 * KTD2801_HIGH_BIT_LOW=
-_TIME_US)
-> +#define KTD2801_DATA_START_US                  5
-> +#define KTD2801_END_OF_DATA_LOW_US             10
-> +#define KTD2801_END_OF_DATA_HIGH_US            350
-> +#define KTD2801_PWR_DOWN_DELAY_US              2600
-> +
-> +#define KTD2801_DEFAULT_BRIGHTNESS     100
-> +#define KTD2801_MAX_BRIGHTNESS         255
-> +
-> +struct ktd2801_backlight {
-> +       struct backlight_device *bd;
-> +       struct gpio_desc *gpiod;
-> +       bool was_on;
-> +};
-> +
-> +static int ktd2801_update_status(struct backlight_device *bd)
-> +{
-> +       struct ktd2801_backlight *ktd2801 =3D bl_get_data(bd);
-> +       u8 brightness =3D (u8) backlight_get_brightness(bd);
-> +
-> +       if (backlight_is_blank(bd)) {
-> +               gpiod_set_value(ktd2801->gpiod, 0);
-> +               udelay(KTD2801_PWR_DOWN_DELAY_US);
-
-That's 2600 us, a pretty long delay in a hard loop or delay timer!
-
-Can you use usleep_range() instead, at least for this one?
-
-> +       for (int i =3D 0; i < 8; i++) {
-> +               u8 next_bit =3D (brightness & 0x80) >> 7;
-
-I would just:
-
-#include <linux/bits.h>
-
-bool next_bit =3D !!(brightness & BIT(7));
-
-Yours,
-Linus Walleij
+Cheers,
+Angelo
 
