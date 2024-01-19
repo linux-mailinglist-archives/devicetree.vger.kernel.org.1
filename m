@@ -1,314 +1,196 @@
-Return-Path: <devicetree+bounces-33247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 024E4832A98
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:35:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C6D832ABB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:48:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 701D11F2422F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:35:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3ED85B249A9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:48:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425E2537EB;
-	Fri, 19 Jan 2024 13:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57DEE537EB;
+	Fri, 19 Jan 2024 13:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="qkLmQzVh"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="M/5PkVYJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2083.outbound.protection.outlook.com [40.107.104.83])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739DB52F7D
-	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 13:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705671341; cv=none; b=duUI62/FvyrORsGpODuiusNH/dV7i59O5sdyctxZVgXtfMH8xVmAU7B8eBxetpxOPIXbCePYQuE4ZyLWRBnLuqb1dvOF2aZo4oFNrxgdWs8KFUUK8z9twXbgWKv0xokMusjPK2NpqNvT0bHS61P3g5lJ3ML5447h9uorDPCXhQw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705671341; c=relaxed/simple;
-	bh=yiI86I5gHRG/HoqT9qSoOayumgDBCDCKPfF6rOc+WW4=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=amx68HQl8njv1lSwlwSHyDMt5BuSKuERqljMtAuTiSQFGaFXf3CxyXTMlwHx1qerYpv9X1n/2voOBYoL3dqihRuoaNZJUpdi8KeRQz/ElDHrn8T6+tmD1ahCAn2M+G6SVIIW2JaJZEntigYBSG33wHrGUD0WqoNYGWyd7VNBmMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=qkLmQzVh; arc=none smtp.client-ip=209.85.222.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-7d2dfa80009so129200241.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 05:35:39 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFD054BFA;
+	Fri, 19 Jan 2024 13:46:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.83
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705671994; cv=fail; b=DJ15XZhC61AkL5DcdNSeDnqj0cP9tkHUVt8JCSxgCRxWgzT5VL7gexjTgKhyVR/+jiqKW3O4dYUkFoBsReXLQtUvsXpGilbwLtCbaYx4Tr3vBDTl1qp7JrMsuTZkVJKqITaSrHcFCojl9sqTJYGVmvPFd4/sFh2/xESP3hfPX0U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705671994; c=relaxed/simple;
+	bh=INPGQcR5gxhiW2l3QGgvF/fcFUp9JYdDX3tCCIgi72w=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Uex92YpiSS+bXzMleue0rayoqJ+m+nliVaQO4UPf3sEkMs1Sh+t2AIp5qJUqt8giJOQ0Kdwm534KyqV428ZZ523d3ezRHdgeOQMfGkmc4d6hA9oiRvNzWGxXej99YHVxk5EiFj8tvHpj2MYLbGK+rlI4z/j1SArwQGUWZh/lw0k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=M/5PkVYJ; arc=fail smtp.client-ip=40.107.104.83
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NIUwqqAfM7+mNrL8nNAcDQkxaSQdFD3KnPpJqYh+jDrY8WhIZifH3AKR5HeTTTKSInV751TG/jUN0IrurM5Ee5+eF/n0Q+AH8KuGqMD0l7/ptq92xXq6U4R3K+rwBP5uAzD/wOwRtBrB4BdpkPUqPtSSEjaY2zLOHCNLpX1hhTyc+9/zwfMief2krE7ZrtbpLK9qEjSW40H+EyAojEVU2879cnyFHQS5JW7KqFiOAi5HKpzK5KuoSJj2e4oYafLt3SDQxNaMfH6/QaQnNq8anVhkkwE4n1G3swb56qktQxhS/QYPiT3P90y0paqP9UgSSElRMx7RgHlcCPsQfN2jiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=INPGQcR5gxhiW2l3QGgvF/fcFUp9JYdDX3tCCIgi72w=;
+ b=QsH2Ht1ycOujXawnipYRwnUJIrlHddiOv/8lMlFBspFMFGul8SXB4/qgWF53gDsuWzVwCj5HCirnYnnw0pFavyxtsnFVS2ZaKBRVwDOlikzVkwyurMR185vo2Dr9whkgECKHhAjI3XufCiC1aaxkKaUVCmnUCG4m5ncdR61D2i9lbo/zzHGq6rZ7EuiXRK2u2Kv1xyq/42OnrgullFpaOPMQ18T7NxHpdJUNb/4fdPepRLr6pXTKQTOG0UCFZW253cGi8dFcYZOBaF4SUFeRpItYc6ZkyD70BQVpOnNl8Cz7PfNiviBRU/6Fe89foI2XOqpSlkj/c9iVyhKQLRdAlw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1705671338; x=1706276138; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:references
-         :mime-version:in-reply-to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MFcJPX/tMH3HP3YK+mAZ7w3k83QON/otK7FNXqhhh5I=;
-        b=qkLmQzVhdtKfz3bqdIVoErhWKMcX4s7BV0eBzcCf6YcMB1AFT16DrIGzqldNnIz/JS
-         CLGHAyIkII5lHmcrw54+79BuOAwqBRwyrUeu8p+IEl+20IR5TzhEoD7qgreCOwLsVE1q
-         MYNesH6DT/eN3K1gd8UYVFdjvyGm2Ez2zXK6dv0ZLx898JxbNApJZBbZSZHHk/K02HfL
-         iaCCIzdJ7FJzUXRU+tJYyAiE0d+iz2Cq8Po9sVLyYYM6ShVPbViCUN4QMm1PRMd+siLT
-         hbSoraOLhHqsb/GF+d0MQRU0ns5+5qTZ8iQLfmYnhcT7t1RXriNXZRSyOigEbrG3QlbN
-         SOOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705671338; x=1706276138;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:references
-         :mime-version:in-reply-to:from:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=MFcJPX/tMH3HP3YK+mAZ7w3k83QON/otK7FNXqhhh5I=;
-        b=wFN8DjCVkBGsSad9f9TdDzb1clqeIwsYZzwWdyrTbVWiVUHjn+C5uQeKvcaGJ/Mblz
-         TyPYlYVemCWCrttchnx5LyTcD/Vl6vtJn6mQuYJFWQ9eLy4RNQ2ss0jnHabl0DcgcT4u
-         tIXiJ7w7j4FWqbq48lKmme/OQszTh5zQR7q0TMIu8euh0FYhznCa+Xq9yakcMXDntR3j
-         Avhx8/Z7IK0T0puwjYRmj/G6v9tND6KGoSM/hPC1eyIATIXsQcfNFNG5/FP+AOKp0sqr
-         M9XKKxYx6oUHAKS2NYX/NTSqJ1ETNZSZexOixeO94VbwaUJyo+DgKd16DY6KO6HJMN3g
-         4zjA==
-X-Gm-Message-State: AOJu0YxNFVpa3Et0uePduQ5m4jPAu7UxV41zoTqw6cFLhdCIaQ/Z+5Gz
-	L65h/1D/6GPSoxxrnYW4AR/F66SHHH4JzM+Rnc0ErjQtF8oOiKEtIXDYMySWbtj0c39krBgP/xM
-	9l/Zj3jNN33s/HuWevWBP4LygJgrd/INbNox0vg==
-X-Google-Smtp-Source: AGHT+IHtiAlznGMHxXmouh4A2/+guzqh7G9NE3arpc3+6Xsoj6ApH5/MO/HpkzGmPXPrTZ7lEuSC3GsYcrm1POCp6n4=
-X-Received: by 2002:ac5:cd93:0:b0:4b7:8d7c:346f with SMTP id
- i19-20020ac5cd93000000b004b78d7c346fmr1888914vka.9.1705671338177; Fri, 19 Jan
- 2024 05:35:38 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 19 Jan 2024 05:35:37 -0800
-From: brgl@bgdev.pl
-In-Reply-To: <CAA8EJprFV6SS_dGF8tOHcBG+y8j74vO0B40Y=e7Kj1-ZThNqPA@mail.gmail.com>
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=INPGQcR5gxhiW2l3QGgvF/fcFUp9JYdDX3tCCIgi72w=;
+ b=M/5PkVYJsXJYyM5JXzl2ZIAhJ3LSiGP7OY07G+feXWTOUvnmNv+Q1pG4UA25XNQk/zN1Kzqkg6EwsmHwjs1w6osgM9Nixh7mkIqzLMg0SmW4M6t+KNBeHiIOKUgTW4BR6khEglEzctmK1dqIu12roM95jbW9+w/uM0Lp99CkJI8=
+Received: from AS8PR04MB8963.eurprd04.prod.outlook.com (2603:10a6:20b:42e::18)
+ by GVXPR04MB9879.eurprd04.prod.outlook.com (2603:10a6:150:11c::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7181.21; Fri, 19 Jan
+ 2024 13:46:27 +0000
+Received: from AS8PR04MB8963.eurprd04.prod.outlook.com
+ ([fe80::1ca2:718f:8566:763e]) by AS8PR04MB8963.eurprd04.prod.outlook.com
+ ([fe80::1ca2:718f:8566:763e%4]) with mapi id 15.20.7202.024; Fri, 19 Jan 2024
+ 13:46:26 +0000
+From: Josua Mayer <josua@solid-run.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Yazan Shhady
+	<yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: imx6qdl-hummingboard: Add rtc0 and rtc1 aliases
+ to fix hctosys
+Thread-Topic: [PATCH] ARM: dts: imx6qdl-hummingboard: Add rtc0 and rtc1
+ aliases to fix hctosys
+Thread-Index: AQHaSh83Bz2MXkS5bUKUDFs8xYpYK7DfvIwAgAFPfoCAABuCAA==
+Date: Fri, 19 Jan 2024 13:46:26 +0000
+Message-ID: <24c24b0b-da49-4452-b6ad-64c4c2d20e11@solid-run.com>
+References: <20240118-imx6-hb-primary-rtc-v1-1-81b87935c557@solid-run.com>
+ <ZalMsJZKrpwncEDp@shell.armlinux.org.uk>
+ <79f9bd25-a05f-43b2-8d93-5d51adae1824@solid-run.com>
+In-Reply-To: <79f9bd25-a05f-43b2-8d93-5d51adae1824@solid-run.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR04MB8963:EE_|GVXPR04MB9879:EE_
+x-ms-office365-filtering-correlation-id: 5cce7069-a91d-4c2c-6866-08dc18f5088e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ tIM6OPVjRYXEXFqVgL041KGo2EdkOp1FVTItYD3PwIcqQQoeZxiE7d0DtRkLm9xT9ddABk6Q0XrS7J4I40j/pMeDo+IG71dyLIDzy2cI0CrhgI9SReo8jH2O6ymkRGsd3t6WyMvILR9zZegb41iQu6xv4QjPnqRP9vVFFGZP1TTyUvttuK4opGAwz7b6XaLTUQCDgfZXQECbTQKtJUp6IPlpMoGlAWyZE+b2AhlJF/J69JHgE+z47JGjDzsONQvNqn70G5h9xmYRA+MK+2xjtYlCb5o9IAuJieZq0aqNxNQqtWwQSKA3mjlZ0pP60wuJKpwcVseH8pNukEexjckq6LUre1OfVHxBRFj6i3eVuAt6EYMe5JQOGPT/c8k0CwrQeuWHbb08K/JOB8413SKwdCkvJIrz6ecBEqATkpQuBCwLMkVTyFBiIFB7u2aV+c7qR1ATf17MA3WRao+N88GDCKafvxz2CvdVlv7S72ABY4e3ooEdm0HQGAst6WEkc6Zzc5C8Nqm9sWULvmZXKhEhiBkhfq8ElUYWjKHaz01KkHrWEjX6Y9Me4uPNOSsdyPA4i2sD2ETJF/2q7O3lyNxPBm/z2pLOHlwQJ+QCoEriBMHYJXbcccrRf8GCPEvDi6s2xxwDtWkkz0DC2AJfFh8+Dfz3PnOfyIUnIV4gbB4FIikDmFFCP6EBsT8VgwxrXrModM26DeryPVRZOU6lRlc1CA==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8963.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(366004)(396003)(39830400003)(346002)(230173577357003)(230273577357003)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(31686004)(6512007)(71200400001)(83380400001)(6506007)(26005)(38100700002)(36756003)(2616005)(31696002)(86362001)(2906002)(6486002)(4326008)(41300700001)(122000001)(316002)(7416002)(478600001)(66556008)(5660300002)(38070700009)(8936002)(91956017)(76116006)(8676002)(66946007)(6916009)(66476007)(64756008)(66446008)(54906003)(32563001)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?d1Q5RWgxeGxlSlhQWE9hMFJ4VVEwKzN1a1BFVEhtY3lLcHU1UmFGZlBBK1JP?=
+ =?utf-8?B?N1I1Z2xnSFVwMDVZcWZZUHU2V3BWVmduREVKZ3JrVlJ5M20vWFdkamlvbkpJ?=
+ =?utf-8?B?RGRMa3JCcmxDcmhVSWNEZnh0cDZ2R05Gd21PSU53K3pBOWVJcTlLanJTei9M?=
+ =?utf-8?B?RTE1WHFTQzlXOGo1SmZPTzFybVdxWFVxWnpmcEVtK1V4TGRmRUNGdE5mditj?=
+ =?utf-8?B?SnArYVgwTEZEYy9SazZXUlFiYXEzMHJTRDNtOHdRZlpvMmVyTGJwc3gwUkE2?=
+ =?utf-8?B?bVpEK0NuOHhYNm53YXppVk5WNkpSbHhBaVZ5cGVLOS8zVVVXUUJ1bjVocklE?=
+ =?utf-8?B?MjMrcGo2cDFjOXdYaFpVUGd4S2NLWmZlZDhLajQzRkppNzRuQkwrc09nSkRE?=
+ =?utf-8?B?czdzSENQL0VFYWg0Q1lwYWVvcytUaW1RakRTT0RuNGxCbEs3SWN0YyswNzF5?=
+ =?utf-8?B?U1g4TXdwZmROdUFRemsxUWZCOFJLRDE2bEJsSlkva1FnSHdOQlZqMk9kLzZF?=
+ =?utf-8?B?T0dNVTlOVmsvT3lxek9ZWDRUbVhGd2lmdGZBU2pKdkhQalV2UWFBbTloUkc4?=
+ =?utf-8?B?UjhBWUlCYUpXcEhoWVd3d3Zzbkk0T3VJYU1WbVFoWXc0VkJjTHdtVXBvQzJr?=
+ =?utf-8?B?NjV6Z3dJSkJBem94cmdHTE81d2MyVXhkRkpTRlJNSkdjN01kSUpqcW5oTUUr?=
+ =?utf-8?B?ZmduMzk1V2FlaDMzTk1ORjNPY3pUVmNVWElraU1Xa2tqNlBSOGtCNC9XTnVM?=
+ =?utf-8?B?N28renptbklKb1VOa2FUL0pKV09rdHBJSElLKzdtRkFLSTYwczBSclFBSllF?=
+ =?utf-8?B?ZU5WMTFlN2t2VVVmemttWTVWd0RtVW41dVpVdGtqc3NyTVN0QWZHTGM0NkZT?=
+ =?utf-8?B?ZnFnZndmVnQvM2lNMS8yQ1FsQThicmlJem4vU25FdmYrYzNmY3FGRnVLb3Jx?=
+ =?utf-8?B?Qk9uMEhLdXJoaEJMSys4QnNnVFpXejFDQXB5Y0hMTnFYUmIyRUd3dmxYZnJs?=
+ =?utf-8?B?R01MNzhITEFQQ0tWOHV1L0hHMHBHQVpVY3U3aWYyaDgyS1oxN3p4ZWc5NkVk?=
+ =?utf-8?B?dENXVllXM1lTTjhNTG9rNFNhWFR3QzEwd2ZTdnZ0TERiZ2pqSEo1VytiYjZC?=
+ =?utf-8?B?SW1uZ1B0U0RnQTUxaHNvS2xOdHBsaUNIb0tUZ05BWTN2SXZZYWR2eDMvbTkz?=
+ =?utf-8?B?cWJ3M0lBUS9iUkFIYnNrU2ZCbFRXYzVlTXUvYys4TVYvbUVxa0RDbkxFMXdY?=
+ =?utf-8?B?YXA4eEJDaFFPSHZycEFIbCtEamxDUVR0d05HVG1lc1RWQzZpcXJZSng3VDdI?=
+ =?utf-8?B?bVVVN0x6b3Bmd1lzbVZZYnFPdDBwSXZORDhORUR4L1J1aXd6cldXNFJkWjZx?=
+ =?utf-8?B?bjRIb0VxV09zYmJhRzFnWjE0WFFXQmtZa1BKU2FZVkhkTSs5bFY4Sjc2NnpE?=
+ =?utf-8?B?V2laa2lQMUNzd0ZXTVowM3NXRlBSck5IQmQ3bXZZQ2hnaU15cGhEbE55RllJ?=
+ =?utf-8?B?Rm1PRzdFWllESlIzU3djdk9oWXNucHJEaS9XaUVyMG5Tb1puV29va2RsZGtt?=
+ =?utf-8?B?YzFLUVJ6UXpWS0FaWnRWZERsazA5VzFpMStZZVVoZlZ0U2JuK21JQVZXbnNO?=
+ =?utf-8?B?bnovbEFZaW5KVFdKc1p2NzVCSHZzMDFGeVVXQjdsVHZSc2RRR2VoREM1WjFt?=
+ =?utf-8?B?R1lCYThPUEFIa3pZc2YvU2dNTDBoMmdWMFlqTFdkcmNldkJ2WnRuK2RCYU94?=
+ =?utf-8?B?MTQ1c2VjaTBodEFHS1EyMDFIYlAvZXYzWjRtSDhqY2cyMnlBSVh0b2o3S2ZP?=
+ =?utf-8?B?RGlzRjQxc2I1Tkhya1JRQmFoU28zM3lSRVZ0aDREY280aVMrR1VjWVc5N2M0?=
+ =?utf-8?B?QTNCTXAxdzNhaHBBUWVKdmVVc2xxdXg5eTFrZnhsT3pNMUdaZ2JBRC9hSE9n?=
+ =?utf-8?B?ZDhIeG56WG1kMEluMTlsYVB5WnZ1NHRhbi9JcVJvWDdxK2tDVlpONWw4QmEr?=
+ =?utf-8?B?Q0VSNVN1VVNpLytFWVJ5TXYyUU96UHVNS3RYYS93S2hhSUViWkdKY1B2M2Vz?=
+ =?utf-8?B?YWhWZWkyMUR6aVY1MXZUTkU0dE1LNWxRTkYrZmtDVzJEdUFIeE0rdnZoZmlG?=
+ =?utf-8?Q?/zkEokwwLiMmBgU0ztfbts64b?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C7084AF3BD91354BAF8F85D893D2A743@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240117160748.37682-1-brgl@bgdev.pl> <CAA8EJpoQfPqoMVyTmUjPs4c1Uc-p4n7zNcG+USNjXX0Svp362w@mail.gmail.com>
- <CAA8EJpqyK=pkjEofWV595tp29vjkCeWKYr-KOJh_hBiBbkVBew@mail.gmail.com>
- <CAMRc=McUZh0jhjMW7H6aVKbw29WMCQ3wdkVAz=yOZVK5wc45OA@mail.gmail.com> <CAA8EJprFV6SS_dGF8tOHcBG+y8j74vO0B40Y=e7Kj1-ZThNqPA@mail.gmail.com>
-Date: Fri, 19 Jan 2024 05:35:37 -0800
-Message-ID: <CAMRc=MdOALzkDtpnbqF16suShvP5apGYy4LTQ4dTc3r9Rbb1kg@mail.gmail.com>
-Subject: Re: [PATCH 0/9] PCI: introduce the concept of power sequencing of
- PCIe devices
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
-	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
-	Lukas Wunner <lukas@wunner.de>, Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8963.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5cce7069-a91d-4c2c-6866-08dc18f5088e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2024 13:46:26.8880
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: p0UIWdyilu5Tz4nhmW+3T7Le2FXHSs16zYRqGZlwO3wDBkMmVgZ9DGpskX26NfN5zmkhOWYXTIgmtcc6bQIJLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9879
 
-On Fri, 19 Jan 2024 13:31:53 +0100, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> said:
-> On Fri, 19 Jan 2024 at 13:52, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->>
->> On Thu, Jan 18, 2024 at 7:53=E2=80=AFPM Dmitry Baryshkov
->> <dmitry.baryshkov@linaro.org> wrote:
->> >
->>
->> [snip]
->>
->> > >
->> > > I'd still like to see how this can be extended to handle BT power up=
-,
->> > > having a single entity driving both of the BT and WiFI.
->> > >
->> > > The device tree changes behave in exactly the opposite way: they
->> > > define regulators for the WiFi device, while the WiFi is not being
->> > > powered by these regulators. Both WiFi and BT are powered by the PMU=
-,
->> > > which in turn consumes all specified regulators.
->> >
->> > Some additional justification, why I think that this should be
->> > modelled as a single instance instead of two different items.
->> >
->> > This is from msm-5.10 kernel:
->> >
->> >
->> > =3D=3D=3D=3D=3D CUT HERE =3D=3D=3D=3D=3D
->> > /**
->> >  * cnss_select_pinctrl_enable - select WLAN_GPIO for Active pinctrl st=
-atus
->> >  * @plat_priv: Platform private data structure pointer
->> >  *
->> >  * For QCA6490, PMU requires minimum 100ms delay between BT_EN_GPIO of=
-f and
->> >  * WLAN_EN_GPIO on. This is done to avoid power up issues.
->> >  *
->> >  * Return: Status of pinctrl select operation. 0 - Success.
->> >  */
->> > static int cnss_select_pinctrl_enable(struct cnss_plat_data *plat_priv=
-)
->> > =3D=3D=3D=3D=3D CUT HERE =3D=3D=3D=3D=3D
->> >
->> >
->> > Also see the bt_configure_gpios() function in the same kernel.
->> >
->>
->> You are talking about a different problem. Unfortunately we're using
->> similar naming here but I don't have a better alternative in mind.
->>
->> We have two separate issues: one is powering-up a PCI device so that
->> it can be detected and the second is dealing with a device that has
->> multiple modules in it which share a power sequence. The two are
->> independent and this series isn't trying to solve the latter.
->
-> I see it from a different angle: a power up of the WiFi+BT chips. This
-> includes devices like wcn3990 (which have platform + serial parts) and
-> qca6390 / qca6490 / wcn6750 / etc. (which have PCI and serial parts).
->
-> From my point of view, the PCIe-only part was nice for an RFC, but for
-> v1 I have expected to see a final solution that we can reuse for
-> wcn3990.
->
-
-The submodules are represented as independent devices on the DT and I don't
-think this will change. It's not even possible as they operate on different
-buses so it's not like we can MFD it with a top-level platform device and t=
-wo
-sub-nodes of which one is PCI and another serdev. With that in mind, I'm
-insisting that there are two separate issues and a generic power sequencing
-can be built on top of the PCI-specific pwrseq added here.
-
->>
->> But I am aware of this and so I actually have an idea for a
->> generalized power sequencing framework. Let's call it pwrseq as
->> opposed to pci_pwrseq.
->>
->> Krzysztof is telling me that there cannot be any power sequencing
->> information contained in DT. Also: modelling the PMU in DT would just
->> over complicate stuff for now reason. We'd end up having the PMU node
->> consuming the regulators but it too would need to expose regulators
->> for WLAN and BT or be otherwise referenced by their nodes.
->
-> Yes. And it is a correct representation of the device. The WiFi and BT
-> parts are powered up by the outputs from PMU. We happen to have three
-> different pieces (WiFi, BT and PMU) squashed on a single physical
-> device.
->
-
-Alright, so let's imagine we do model the PMU on the device tree. It would
-look something like this:
-
-qca6390_pmu: pmic@0 {
-	compatible =3D "qcom,qca6390-pmu";
-
-	bt-gpios =3D <...>;
-	wlan-gpios =3D <...>;
-
-	vdd-supply =3D <&vreg...>;
-	...
-
-	regulators-0 {
-		vreg_x: foo {
-			...
-		};
-
-		...
-	};
-};
-
-Then the WLAN and BT consume the regulators from &qca6390_pmu. Obviously we
-cannot go:
-
-wlan {
-	pwrseq =3D &qca6390_pmu;
-};
-
-But it's enough to:
-
-wlan {
-	vdd-supply =3D <&vreg_x>;
-};
-
-But the pwrseq driver for "qcom,qca6390-pmu" could map BT and WLAN compatib=
-les
-to the correct power sequence and then the relevant drivers could enable it
-using pwrseq_power_on().
-
-But that comes back to what I'm doing here: the PCI part for ath11k still
-needs the platform driver that will trigger the power sequence and that cou=
-ld
-be the PCI pwrseq driver for which the framework is introduced in this seri=
-es.
-
-As I said: the two are largely orthogonal.
-
->>
->> So I'm thinking that the DT representation should remain as it is:
->> with separate WLAN and BT nodes consuming resources relevant to their
->> functionality (BT does not need to enable PCIe regulators).
->
-> Is it so? The QCA6390 docs clearly say that all regulators should be
-> enabled before asserting BT_EN / WLAN_EN. See the powerup timing
-> diagram and the t2 note to that diagram.
->
-
-Fair enough.
-
->> Now how to
->> handle the QCA6490 model you brought up? How about pwrseq drivers that
->> would handle the sequence based on compatibles?
->
-> The QCA6490 is also known as WCN6855. So this problem applies to
-> Qualcomm sm8350 / sm8450 platforms.
->
-> And strictly speaking I don't see any significant difference between
-> QCA6390 and WCN6855. The regulators might be different, but the
-> implementation should be the same.
->
->>
->> We'd add a new subsystem at drivers/pwrseq/. Inside there would be:
->> drivers/pwrseq/pwrseq-qca6490.c. The pwrseq framework would expose an
->> API to "sub-drivers" (in this case: BT serdev driver and the qca6490
->> power sequencing driver). Now the latter goes:
->>
->> struct pwrseq_desc *pwrseq =3D pwrseq_get(dev);
->>
->> And the pwrseq subsystem matches the device's compatible against the
->> correct, *shared* sequence. The BT driver can do the same at any time.
->> The pwrseq driver then gets regulators, GPIOs, clocks etc. and will be
->> responsible for dealing with them.
->>
->> In sub-drivers we now do:
->>
->> ret =3D pwrseq_power_on(pwrseq);
->>
->> or
->>
->> ret =3D pwrseq_power_off(pwrseq);
->>
->> in the sub-device drivers and no longer interact with each regulator
->> on our own. The pwrseq subsystem is now in charge of adding delays
->> etc.
->>
->> That's only an idea and I haven't done any real work yet but I'm
->> throwing it out there for discussion.
->
-> I've been there and I had implemented it in the same way, but rather
-> having the pwrseq as a primary device in DT and parsing end-devices
-> only as a fallback / compatibility case.
->
-
-Would you mind posting an example DT code here? I'm not sure if I understan=
-d
-what "primary device" means in this context.
-
-Bartosz
-
->
->
-> --
-> With best wishes
-> Dmitry
->
+QW0gMTkuMDEuMjQgdW0gMTM6MDcgc2NocmllYiBKb3N1YSBNYXllcjoNCj4gQW0gMTguMDEuMjQg
+dW0gMTc6MDcgc2NocmllYiBSdXNzZWxsIEtpbmcgKE9yYWNsZSk6DQo+PiBPbiBUaHUsIEphbiAx
+OCwgMjAyNCBhdCAwNDowMToxMFBNICswMTAwLCBKb3N1YSBNYXllciB3cm90ZToNCj4+PiBIdW1t
+aW5nQm9hcmQgaGFzIHR3byBSVENzLCBmaXJzdCBpbnRlZ3JhdGVkIHdpdGhpbiBTb0MgdGhhdCBj
+YW4gYmUgdXNlZCB0bw0KPj4+IHdha2UgdXAgZnJvbSBzbGVlcCAtIGFuZCBhIHNlY29uZCBvbiB0
+aGUgY2FycmllciBib2FyZCBpbmNsdWRpbmcgYmFjay11cA0KPj4+IGJhdHRlcnkgd2hpY2ggaXMg
+aW50ZW5kZWQgZm9yIGtlZXBpbmcgdGltZSBkdXJpbmcgcG93ZXItb2ZmLg0KPj4+DQo+Pj4gQWRk
+IGFsaWFzZXMgZm9yIGJvdGgsIGVuc3VyaW5nIHRoYXQgdGhlIGJhdHRlcnktYmFja2VkIGNsb2Nr
+IGlzIHByaW1hcnkNCj4+PiBydGMgYW5kIHVzZWQgYnkgZGVmYXVsdCBkdXJpbmcgYm9vdCBmb3Ig
+cmVzdG9yaW5nIHN5c3RlbSB0aW1lLg0KPj4gR2l2ZW4gdGhhdCB0aGUgc252cyBSVEMgaXNuJ3Qg
+YmF0dGVyeSBiYWNrZWQsIHNob3VsZCB3ZSBldmVuIGJlIGVuYWJsaW5nDQo+PiB0aGF0IGluIERU
+Pw0KPiBJbiBpbXg2cWRsLmR0c2kgaXQgaXMgbm90IGRpc2FibGVkLg0KPiBBY2NvcmRpbmcgdG8g
+Sm9uIGl0IGlzIHVzZWZ1bCBiZWNhdXNlIGl0IGNhbiB3YWtlIHVwIHRoZSBzb2MgZnJvbSBzbGVl
+cCwNCj4gd2hlcmVhcyB0aGUgZXh0ZXJuYWwgcnRjIGNhbid0Lg0KPj4gQWxzbywgaGF2ZSB5b3Ug
+c2VlbiBhbnkgaXNzdWVzIHN1Y2ggYXM6DQo+Pg0KPj4gWyAgICAwLjkzMzI0OV0gcnRjLXBjZjg1
+MjMgMC0wMDY4OiBmYWlsZWQgdG8gc2V0IHh0YWwgbG9hZCBjYXBhY2l0YW5jZTogLTExDQo+PiBb
+ICAgIDAuOTMzNTA1XSBydGMtcGNmODUyMzogcHJvYmUgb2YgMC0wMDY4IGZhaWxlZCB3aXRoIGVy
+cm9yIC0xMQ0KPj4NCj4+IHdoaWNoIHNlZW1zIHRvIGJlIGV4aGliaXRpbmcgaXRzZWxmIG9uIG15
+IFNvbGlkU2Vuc2UgYm9hcmQ/DQo+IE5vdCBvbiBteSBIdW1taW5nQm9hcmQgR2F0ZSBSZXYuIDEu
+NC4sIGJ1dCBpbmRlZWQgb24gbXkgc29saWRzZW5zZQ0KPiB1bml0IHRvbywgd2hpY2ggaXMgcHJv
+YmFibHkgc2FtZSBhZ2UgYXMgeW91cnMuDQo+IE9ubHkgdGVzdGVkwqBpbXg2ZGwtaHVtbWluZ2Jv
+YXJkMi1lbW1jLXNvbS12MTUuZHRiLA0KPiBidXQgc29saWRzZW5zZSBvbmUgc2hvdWxkIG1ha2Ug
+bm8gZGlmZmVyZW5jZS4NCg0KSSB3YXMgcmVhZGluZyBjb250cm9sIHJlZ2lzdGVycyAxLTM6DQpk
+ZWJpYW5Ac3ItaW14Njp+JCBzdWRvIGkyY2dldCAteSAtYSAtZiAwIDB4NjggMHgwMA0KMHgwMA0K
+ZGViaWFuQHNyLWlteDY6fiQgc3VkbyBpMmNnZXQgLXkgLWEgLWYgMCAweDY4IDB4MDENCjB4MDAN
+CmRlYmlhbkBzci1pbXg2On4kIHN1ZG8gaTJjZ2V0IC15IC1hIC1mIDAgMHg2OCAweDAyDQoweDA0
+DQoNCl5eIFRoaXMgbWVhbnMgbG93IHZvbHRhZ2Ugb24gYmFjayB1cCBiYXR0ZXJ5DQoNCkFmdGVy
+IGEgZmV3IHBvd2VyLWN5Y2xlcyB0aGF0IGVycm9yIHdlbnQgYXdheS4NCldoeSBwY2Y4NTIzX2xv
+YWRfY2FwYWNpdGFuY2Ugd291bGQgZXZlciByZXR1cm4gRUFHQUlOIEkgZG9uJ3Qgc2VlLg0KDQpJ
+biBhbnkgY2FzZSBub3cgdGhhdCBwcm9iZSBzdWNjZWVkZWQsIEkgcmVhZCB0aGVzZSB2YWx1ZXM6
+DQoweDgwDQoweDAwDQoweDA0DQoNCkFuZCBjb25zZXF1ZW50bHkgd2hlbiB0cnlpbmcgdG8gcmVh
+ZCBvciB3cml0ZSB0aW1lIEkgcmVjZWl2ZQ0KWyDCoMKgODguODQ0MDM4XSBydGMtcGNmODUyMyAw
+LTAwNjg6IGxvdyB2b2x0YWdlIGRldGVjdGVkLCB0aW1lIGlzIHVucmVsaWFibGUNCg0KQXBwYXJl
+bnRseSBhbGwgb2YgbXkgSHVtbWluZ0JvYXJkLTIgLyBTb2xpZFNlbnNlIGhhdmUgY29tcGxldGVs
+eQ0KZHJhaW5lZCB0aGVpciBiYWNrdXAgYmF0dGVyaWVzIHRvIDAuMVYgb3ZlciB0aGUgcGFzdCA0
+IHllYXJzDQp3aGlsZSBub3QgaW4gdXNlLg0KRllJIHJlcGxhY2VtZW50IHBhcnQgaXMgTVM2MjFU
+Lg0KDQpMb25nIHN0b3J5IHNob3J0IEkgZG9uJ3QgdGhpbmsgdGhlIEVBR0FJTiBkdXJpbmcgcHJv
+YmUgaXMgcmVsYXRlZA0KdG8gYWRkaW5nIGFsaWFzZXMuDQpIT1dFVkVSIGltbyBwY2Y4NTIzX3By
+b2JlIHNob3VsZCByZXR1cm4gYW4gZXJyb3Igd2hlbg0KcGNmODUyM19sb2FkX2NhcGFjaXRhbmNl
+IGZhaWxzLg0KDQo=
 
