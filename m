@@ -1,238 +1,241 @@
-Return-Path: <devicetree+bounces-33223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD312832988
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:32:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E788329C7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:55:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1C991C20AD3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 12:32:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC8E51F21070
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 12:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9ADE31A61;
-	Fri, 19 Jan 2024 12:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2D051C36;
+	Fri, 19 Jan 2024 12:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V1/LYnTw"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gi25NXZo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33DAF4EB41
-	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 12:32:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C2FC4F1F6;
+	Fri, 19 Jan 2024 12:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705667527; cv=none; b=aFJ/9qHuZttA7Ys7yvqwU/vAfgdaWckXxVVcly1Jvhp/oS0qXkbNM/3ZlQbieZPWsFPkFBVLxn+50Fuf17eGmoMC9kUiS1KaPpMq+MfoXGU2SO7dMSnvS0+FiyGcllhFQMvc2UlGn8E/6bFy3bzDbx2GUGR6xnZAg53oYwqsfpk=
+	t=1705668922; cv=none; b=kQ8Ie/gpswicmm+YroAlOWDjB/WWkZdvr39o52mgSi/04M0mAclxoHejgLjtg+plRQvvPLDLb2kvbtwai3hKsvXqkSn82nm6jwKla3UGdbxoQkDzqLnc6r60CtZr3B/eHkH6ny7HgN33Jc1vj+FvT/B3iLWLszRCJsyNkBVxVKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705667527; c=relaxed/simple;
-	bh=I0UZfjlfi2E6U7pmjX/HhVBMtbSsDUbWol5BCeCBZhs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V2fFBzwHpEIri1joP76j2yCzMgm1h3MBXzrh5XjElHpwQwAEJm0fmEINLBM0jQ55xWeF6wsKuQ6co7g7y5KGAbZcOl0d5VRgIM7nwLybEdYapWPclu9OQ6DMlm/f7l2tjhEYf/SXMvth1BVjhvVFORir5k5Tj8aS89Fnu3/M0jc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V1/LYnTw; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-5ff9ba70977so6653027b3.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 04:32:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705667525; x=1706272325; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ffjuk5UUhf2ajhXazA1TZbNijQJTawfOkhzxR9sRdg0=;
-        b=V1/LYnTw529sx6xKDy+lxEaAzYcL+//TVJyrgv7aPGLAWtHTUx6SJzRmdjZJtH9DMG
-         K3tvZ7h5ggUhiWgn+V9ZsPkSmkAr1letpe0WpJbQM0fCeQ8Prs4Pn1KW2qLaipIIofLo
-         HZhpP5olkRUApDUpCQhig6SKYI45CLJJrR9lwbcRcV8Us7sisZBM+bTRomNJeL/fSSqK
-         3ATJtzS/wVsj32xzxEjaWEDn37cIUSKLUorLEX8vl2GjB1gd/wKVwrt0ns5tsWYQfi2a
-         NuQXgw+unAPNG7UrUS8MnL7Jtnmmzn/+EVBaJX/mtI9hhXSzhLHpwNKkAfXLE9ASjYVM
-         rzKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705667525; x=1706272325;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ffjuk5UUhf2ajhXazA1TZbNijQJTawfOkhzxR9sRdg0=;
-        b=DNgmSVQsPBVIt7TLZDmb0aft6Qig+6hrDi2OwldTb2LfIPsveisYtf9SubGwiqaJcN
-         ezi8SVyUeq+NkiwRcJsgLbpbChqpWhxsiAi2Ie4IVEpY8d8Yvyf6mF3PwcXS0F5QtrTf
-         F7nlXi/lCOP3IJjj6A1WxO5hRVMGlUxR4qDYwH00GuHlgIq/nDaWDo6G2wtGPuxa97h4
-         e9Y1tu7JBSfzd7OwDwz7Ivs6Wcwz2lbw7+lgadb3HbxGJhYvrj0B7VTzA9z/lLRdaviW
-         ad89JdNX1XzpN6ubqKla+iIzbSsiyxXd9xy/HKSPQNfgAYuL7IrvJw+soZQlK8RiOV8G
-         60HA==
-X-Gm-Message-State: AOJu0YyNik8X+euat46k0o1OrkYOsa8/kEyN1ElNGTEzuLm78BM3JMwg
-	WJE8mhYJ9SOa/4f4Mxda4VHc51Y3SMojgU346LEj2MQbvjI9/JQt6NQXEZeLc2/QiIEa1QmWoxn
-	d5Js69GyhHfQZu4X8nP0UDMiZtikdfxRAuByR6w==
-X-Google-Smtp-Source: AGHT+IHzWY0Jg7Cbw032GIQItsk8GMJ1egjxjW1I4qO2drEBWMBFSWUWUH+O4Oj0Le9R6bky8UA9z26DkZt+clJZEBE=
-X-Received: by 2002:a81:4a83:0:b0:5fc:b5d4:f1cf with SMTP id
- x125-20020a814a83000000b005fcb5d4f1cfmr2465344ywa.35.1705667525159; Fri, 19
- Jan 2024 04:32:05 -0800 (PST)
+	s=arc-20240116; t=1705668922; c=relaxed/simple;
+	bh=EjVFyi70iDYG2czWyG5owoqc7kRO3Kwh6/BYrb/3DaE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KLTHVw8KHY3kRS1Ns+P1Z96W7V4ZuR00Ts4tC4AXxLZbvbVk6nt51m6oscsjjTsX2wnLcFlMvd1YAY5RdDOM4G38dV9gi1OC7/sAFEe+vrAhpwWMJSGncj/WXDrT0i3lefBlx5cpNAVbY2d6kEba4JOEk6C94kTN+yNc0cmWhNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gi25NXZo; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705668918;
+	bh=EjVFyi70iDYG2czWyG5owoqc7kRO3Kwh6/BYrb/3DaE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gi25NXZozg2EM16pBusHJ8U/66PZA9mP1CBI+PoTceS7c0uK1LlgS86/LDw5NgbjA
+	 9rVrgra8maMORZaM6gsp/xxGfsUoqwBbJwCX9XGFUI5z8cb8fp4q1Gbixcj9oXX6MO
+	 OiKUG2exK0dBaEwiu1LH6s3es0NnBoc43mpSkO+Ait5tkIkP7JLlYKBOiMy/2HkzP6
+	 LSz24OcAeADWbq50K8CPlr/sNIZvtV5AfQsVFp98SrSLQEzyUlAX/V6MUCcXBMDID7
+	 k9NhAsBQ8qEpi/sRgMm4rCabeCUOSgzWVP+KVaIRasak67GsGncaBfMfkXCn7Ub4Fg
+	 8ICsFEPKfP/3w==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B767037803EE;
+	Fri, 19 Jan 2024 12:55:17 +0000 (UTC)
+Message-ID: <8834d309-19f2-466f-aed4-ab0f9e2df02d@collabora.com>
+Date: Fri, 19 Jan 2024 13:55:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240117160748.37682-1-brgl@bgdev.pl> <CAA8EJpoQfPqoMVyTmUjPs4c1Uc-p4n7zNcG+USNjXX0Svp362w@mail.gmail.com>
- <CAA8EJpqyK=pkjEofWV595tp29vjkCeWKYr-KOJh_hBiBbkVBew@mail.gmail.com> <CAMRc=McUZh0jhjMW7H6aVKbw29WMCQ3wdkVAz=yOZVK5wc45OA@mail.gmail.com>
-In-Reply-To: <CAMRc=McUZh0jhjMW7H6aVKbw29WMCQ3wdkVAz=yOZVK5wc45OA@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 19 Jan 2024 14:31:53 +0200
-Message-ID: <CAA8EJprFV6SS_dGF8tOHcBG+y8j74vO0B40Y=e7Kj1-ZThNqPA@mail.gmail.com>
-Subject: Re: [PATCH 0/9] PCI: introduce the concept of power sequencing of
- PCIe devices
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
-	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
-	Lukas Wunner <lukas@wunner.de>, Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-pci@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] usb: typec: mux: Add ITE IT5205 Alternate Mode
+ Passive MUX driver
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ heikki.krogerus@linux.intel.com, matthias.bgg@gmail.com,
+ neil.armstrong@linaro.org, andersson@kernel.org, nathan@kernel.org,
+ luca.weiss@fairphone.com, tianping.fang@mediatek.com,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, kernel@collabora.com
+References: <20240119104550.140061-1-angelogioacchino.delregno@collabora.com>
+ <20240119104550.140061-3-angelogioacchino.delregno@collabora.com>
+ <CAA8EJprroFtKvCeZtP_FySr5d6v4dogYQKFQvzPJLpwWBuMrKw@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAA8EJprroFtKvCeZtP_FySr5d6v4dogYQKFQvzPJLpwWBuMrKw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, 19 Jan 2024 at 13:52, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->
-> On Thu, Jan 18, 2024 at 7:53=E2=80=AFPM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
->
-> [snip]
->
-> > >
-> > > I'd still like to see how this can be extended to handle BT power up,
-> > > having a single entity driving both of the BT and WiFI.
-> > >
-> > > The device tree changes behave in exactly the opposite way: they
-> > > define regulators for the WiFi device, while the WiFi is not being
-> > > powered by these regulators. Both WiFi and BT are powered by the PMU,
-> > > which in turn consumes all specified regulators.
-> >
-> > Some additional justification, why I think that this should be
-> > modelled as a single instance instead of two different items.
-> >
-> > This is from msm-5.10 kernel:
-> >
-> >
-> > =3D=3D=3D=3D=3D CUT HERE =3D=3D=3D=3D=3D
-> > /**
-> >  * cnss_select_pinctrl_enable - select WLAN_GPIO for Active pinctrl sta=
-tus
-> >  * @plat_priv: Platform private data structure pointer
-> >  *
-> >  * For QCA6490, PMU requires minimum 100ms delay between BT_EN_GPIO off=
- and
-> >  * WLAN_EN_GPIO on. This is done to avoid power up issues.
-> >  *
-> >  * Return: Status of pinctrl select operation. 0 - Success.
-> >  */
-> > static int cnss_select_pinctrl_enable(struct cnss_plat_data *plat_priv)
-> > =3D=3D=3D=3D=3D CUT HERE =3D=3D=3D=3D=3D
-> >
-> >
-> > Also see the bt_configure_gpios() function in the same kernel.
-> >
->
-> You are talking about a different problem. Unfortunately we're using
-> similar naming here but I don't have a better alternative in mind.
->
-> We have two separate issues: one is powering-up a PCI device so that
-> it can be detected and the second is dealing with a device that has
-> multiple modules in it which share a power sequence. The two are
-> independent and this series isn't trying to solve the latter.
+Il 19/01/24 12:44, Dmitry Baryshkov ha scritto:
+> On Fri, 19 Jan 2024 at 12:46, AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> The ITE IT5202 is a USB Type-C Alternate Mode Passive MUX, used for
+>> muxing the SBU lines of a Type-C port with DisplayPort altmode and
+>> also providing an orientation switch.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   drivers/usb/typec/mux/Kconfig  |  10 ++
+>>   drivers/usb/typec/mux/Makefile |   1 +
+>>   drivers/usb/typec/mux/it5205.c | 292 +++++++++++++++++++++++++++++++++
+>>   3 files changed, 303 insertions(+)
+>>   create mode 100644 drivers/usb/typec/mux/it5205.c
+>>
+>> diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
+>> index d2cb5e733e57..399c7b0983df 100644
+>> --- a/drivers/usb/typec/mux/Kconfig
+>> +++ b/drivers/usb/typec/mux/Kconfig
+>> @@ -36,6 +36,16 @@ config TYPEC_MUX_INTEL_PMC
+>>            control the USB role switch and also the multiplexer/demultiplexer
+>>            switches used with USB Type-C Alternate Modes.
+>>
+>> +config TYPEC_MUX_IT5205
+>> +       tristate "ITE IT5205 Type-C USB Alt Mode Passive MUX driver"
+>> +       depends on I2C
+>> +       select REGMAP_I2C
+>> +       help
+>> +         Driver for the ITE IT5205 Type-C USB Alternate Mode Passive MUX
+>> +         which provides support for muxing DisplayPort and sideband signals
+>> +         on a common USB Type-C connector.
+>> +         If compiled as a module, the module will be named it5205.
+>> +
+>>   config TYPEC_MUX_NB7VPQ904M
+>>          tristate "On Semiconductor NB7VPQ904M Type-C redriver driver"
+>>          depends on I2C
+>> diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
+>> index 57dc9ac6f8dc..bb96f30267af 100644
+>> --- a/drivers/usb/typec/mux/Makefile
+>> +++ b/drivers/usb/typec/mux/Makefile
+>> @@ -4,6 +4,7 @@ obj-$(CONFIG_TYPEC_MUX_FSA4480)         += fsa4480.o
+>>   obj-$(CONFIG_TYPEC_MUX_GPIO_SBU)       += gpio-sbu-mux.o
+>>   obj-$(CONFIG_TYPEC_MUX_PI3USB30532)    += pi3usb30532.o
+>>   obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)      += intel_pmc_mux.o
+>> +obj-$(CONFIG_TYPEC_MUX_IT5205)         += it5205.o
+>>   obj-$(CONFIG_TYPEC_MUX_NB7VPQ904M)     += nb7vpq904m.o
+>>   obj-$(CONFIG_TYPEC_MUX_PTN36502)       += ptn36502.o
+>>   obj-$(CONFIG_TYPEC_MUX_WCD939X_USBSS)  += wcd939x-usbss.o
+>> diff --git a/drivers/usb/typec/mux/it5205.c b/drivers/usb/typec/mux/it5205.c
+>> new file mode 100644
+>> index 000000000000..99203b8a086d
+>> --- /dev/null
+>> +++ b/drivers/usb/typec/mux/it5205.c
+>> @@ -0,0 +1,292 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * ITE IT5205 Type-C USB alternate mode passive mux
+>> + *
+>> + * Copyright (c) 2020 MediaTek Inc.
+>> + * Copyright (c) 2024 Collabora Ltd.
+>> + *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> + *
+>> + */
+>> +#include <linux/i2c.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/module.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/mutex.h>
+>> +#include <linux/of_platform.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/usb/typec.h>
+>> +#include <linux/usb/typec_mux.h>
+>> +#include <linux/usb/typec_dp.h>
+>> +#include <linux/regulator/consumer.h>
+>> +#include <linux/gpio/consumer.h>
+>> +#include <linux/gpio.h>
+>> +#include <linux/usb/tcpm.h>
+> 
+> I'd say, it is a usual custom to sort this list.
+> 
 
-I see it from a different angle: a power up of the WiFi+BT chips. This
-includes devices like wcn3990 (which have platform + serial parts) and
-qca6390 / qca6490 / wcn6750 / etc. (which have PCI and serial parts).
+Oh, whoops. Totally forgot to do that, sorry - thanks for pointing that out!
+Done for v2.
 
-From my point of view, the PCIe-only part was nice for an RFC, but for
-v1 I have expected to see a final solution that we can reuse for
-wcn3990.
+> [skipped]
+> 
+>> +
+>> +static int it5205_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
+>> +{
+>> +       struct it5205 *it = typec_mux_get_drvdata(mux);
+>> +       u8 val;
+>> +
+>> +       switch (state->mode) {
+>> +       case TYPEC_STATE_USB:
+>> +               val = IT5205_USB;
+>> +               break;
+>> +       case TYPEC_DP_STATE_C:
+>> +               fallthrough;
+>> +       case TYPEC_DP_STATE_E:
+>> +               val = IT5205_DP;
+>> +               break;
+>> +       case TYPEC_DP_STATE_D:
+>> +               val = IT5205_DP_USB;
+>> +               break;
+>> +       case TYPEC_STATE_SAFE:
+>> +               fallthrough;
+>> +       default:
+>> +               val = 0;
+>> +               break;
+>> +       }
+> 
+> Please add a check for state->altmode. All states at TYPEC_STATE_MODAL
+> and above (which includes TYPEC_DP_STATE_[CDE]) are only relevant with
+> connection to the particular typec->altmode SVID.
+> 
 
->
-> But I am aware of this and so I actually have an idea for a
-> generalized power sequencing framework. Let's call it pwrseq as
-> opposed to pci_pwrseq.
->
-> Krzysztof is telling me that there cannot be any power sequencing
-> information contained in DT. Also: modelling the PMU in DT would just
-> over complicate stuff for now reason. We'd end up having the PMU node
-> consuming the regulators but it too would need to expose regulators
-> for WLAN and BT or be otherwise referenced by their nodes.
+Done for v2.
 
-Yes. And it is a correct representation of the device. The WiFi and BT
-parts are powered up by the outputs from PMU. We happen to have three
-different pieces (WiFi, BT and PMU) squashed on a single physical
-device.
+>> +
+>> +       return regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
+>> +                                 IT5205_DP_USB_CTRL_MASK, val);
+>> +}
+>> +
+>> +static irqreturn_t it5205_irq_handler(int irq, void *data)
+>> +{
+>> +       struct it5205 *it = data;
+>> +       int ret;
+>> +       u32 val;
+>> +
+>> +       ret = regmap_read(it->regmap, IT5205_REG_ISR, &val);
+>> +       if (ret)
+>> +               return IRQ_NONE;
+>> +
+>> +       if (val & IT5205_ISR_CSBU_OVP) {
+>> +               dev_warn(&it->client->dev, "Overvoltage detected!\n");
+> 
+> Will it cut the voltage automatically?
+> 
 
->
-> So I'm thinking that the DT representation should remain as it is:
-> with separate WLAN and BT nodes consuming resources relevant to their
-> functionality (BT does not need to enable PCIe regulators).
+As far as I understand, yes.
+Unfortunately, there's no datasheet.
 
-Is it so? The QCA6390 docs clearly say that all regulators should be
-enabled before asserting BT_EN / WLAN_EN. See the powerup timing
-diagram and the t2 note to that diagram.
-
-> Now how to
-> handle the QCA6490 model you brought up? How about pwrseq drivers that
-> would handle the sequence based on compatibles?
-
-The QCA6490 is also known as WCN6855. So this problem applies to
-Qualcomm sm8350 / sm8450 platforms.
-
-And strictly speaking I don't see any significant difference between
-QCA6390 and WCN6855. The regulators might be different, but the
-implementation should be the same.
-
->
-> We'd add a new subsystem at drivers/pwrseq/. Inside there would be:
-> drivers/pwrseq/pwrseq-qca6490.c. The pwrseq framework would expose an
-> API to "sub-drivers" (in this case: BT serdev driver and the qca6490
-> power sequencing driver). Now the latter goes:
->
-> struct pwrseq_desc *pwrseq =3D pwrseq_get(dev);
->
-> And the pwrseq subsystem matches the device's compatible against the
-> correct, *shared* sequence. The BT driver can do the same at any time.
-> The pwrseq driver then gets regulators, GPIOs, clocks etc. and will be
-> responsible for dealing with them.
->
-> In sub-drivers we now do:
->
-> ret =3D pwrseq_power_on(pwrseq);
->
-> or
->
-> ret =3D pwrseq_power_off(pwrseq);
->
-> in the sub-device drivers and no longer interact with each regulator
-> on our own. The pwrseq subsystem is now in charge of adding delays
-> etc.
->
-> That's only an idea and I haven't done any real work yet but I'm
-> throwing it out there for discussion.
-
-I've been there and I had implemented it in the same way, but rather
-having the pwrseq as a primary device in DT and parsing end-devices
-only as a fallback / compatibility case.
+>> +
+>> +               /* Reset CSBU */
+>> +               regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
+>> +                                  IT5205_CSBUSR_SWITCH, 0);
+>> +               regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
+>> +                                  IT5205_CSBUSR_SWITCH, IT5205_CSBUSR_SWITCH);
+>> +       }
+>> +
+>> +       return IRQ_HANDLED;
+>> +}
+> 
+> The rest LGTM
+> 
+> 
 
 
 
---=20
-With best wishes
-Dmitry
 
