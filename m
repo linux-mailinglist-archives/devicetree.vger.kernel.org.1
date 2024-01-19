@@ -1,68 +1,70 @@
-Return-Path: <devicetree+bounces-33349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02874833076
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 22:52:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB6B833079
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 22:52:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34CDD1C21855
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 21:52:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EA5E1C21BAD
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 21:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A335789C;
-	Fri, 19 Jan 2024 21:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F15258109;
+	Fri, 19 Jan 2024 21:52:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Nbj2O4R3"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BLKvuwuh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4FD355780
-	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 21:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240EB54FAD
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 21:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705701160; cv=none; b=RMLKHm7TRFrYLQXnUdAfhh7UBPTLYwMk1+2Ui6tTipJsLsxMpXwpe0n3spxH8hkf/0W7/fHxB59zgUNSpRU1MFE5HoQ07sWwIhPDbetHtKqW35bMHNgLP4XfpckuD6mz+VDjf6deJcw44n6lunzznWPZq9Ok/b4Qu1Kny3YpJeE=
+	t=1705701170; cv=none; b=YW8RZHsNdc+Q2RVv+/H44YobWqUy/OoyQAozVZLv5GkR041alUa4sKIn3yEtJBTec4reNsiyZ48QIERvKH/jjqejoelIlSaRWUkT4v6aTWNmKE6f8ZqD4yL658HhgE0K8jKMi9l+TGf02SrLoesrzESpCKNc42FNUMtCC0qY37g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705701160; c=relaxed/simple;
-	bh=vMHpWO/QYEYL5mBygZeH4+A8BA8znBrl7J3Z2+2ledE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VaP+5gCrQFUL4iZozj2lx5q6nIJr+olL/3030qcS+CF0yZ1nPPbhMrVCaYjbIzZC4FCtaSGqCpK/JAVOL68ummZ+Ho/wRcIwLLhmCKzaumofBD0QiX/gf9QV8cfgs2OfFTZzqPI19yUd9sMmUYAs68j0Si78Wbp67xA67BfGsZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Nbj2O4R3; arc=none smtp.client-ip=209.85.222.170
+	s=arc-20240116; t=1705701170; c=relaxed/simple;
+	bh=d9jaxlVL00j9oz8DAd6eYbWzOIbN5WdPFOpblbPNcpw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=YYrbftV84gbCO1b5w//5aAZqVLUhYHdoQcesyn54h+ZUluqdgUPBBztnoxIdsCdJXovRSn5TNeeJnijc/2dq4nSbnJKyDfuqiLT+1FXb/8iwIC9f6LQaNB7CtR61/uVwo6Pt5sXRCFzty/zn7TutwWjO7OsI4QprWOnRVfDwZsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=BLKvuwuh; arc=none smtp.client-ip=209.85.222.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7838d1176b4so15051985a.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 13:52:38 -0800 (PST)
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-7832c90a937so17162585a.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 13:52:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1705701157; x=1706305957; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oK5JfnFjUnPI3L0y0Aa2Q4btTFp3M7GIq/C+XWsHPDA=;
-        b=Nbj2O4R3TYQX6BNYzzIeImPYqnuuJngcZla03Ovx6YRi6IsxckpfWC5nWGoChmBFBx
-         6O4G9Ls/O523QXWvPzeNeXWSiFns/ku92KEqRGyh6kT+mXYB6PLN0Nfoakj3XRgIEmCL
-         Ugvs3956e5oYqaQYR5qnG72Fr+nyOHsmTRsyI=
+        d=broadcom.com; s=google; t=1705701168; x=1706305968; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NxvMQQ7cw2gsLCcsoE9goayQo/WJyflLSF+p9kOGvCY=;
+        b=BLKvuwuhy5Aq/se1O7kF3anRZU1dkBMIJcqbx6H2WXi1OvibLFgR2LD6q0evk4rZQR
+         ATDVI4lkQSSJrIT/bT3dn3avBIsJqc//DQU0FhV2ikl05YkpAcFuhI7gfyeSsRyPFtUQ
+         SG15591LPfPhIcLgYLU/MgmmEKUQSULu5RsZE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705701157; x=1706305957;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oK5JfnFjUnPI3L0y0Aa2Q4btTFp3M7GIq/C+XWsHPDA=;
-        b=PcHawOaw/nk7NvVJ+KSFrSd7aWqh6U4TLOdWS+PyZuHweuWyH23n07KsZZiRccXsVG
-         enMqzXGdZwaKOSSM2OOddsw17Pvjqc8zCtVXyGAI5pRPGC/RNlyaAc29+HDkuNXxqsn8
-         AQAHaRBLKEb2Cj1upgfGe4wnG/3HzCMJUhAe42iVP4ycDHzYIkDxNQ3rxmnHVUzFGx1u
-         OC95p2zd2OyOwJY1vQiTK0fuC4cpxcK3LRtdZ0R1jOKYomolWIVSFVzGVRlPo6FkJzLC
-         ztntCeC6cScQlP4INx+yBOhTjLChII7aKyj7HEL6zS0b1zl1T1+3KcgcdY90d/7G2OJ4
-         mjcQ==
-X-Gm-Message-State: AOJu0YxLCgGraKC0JlY4DbSEcRJnntV8xLNZJwrQLqcpYZK8tsS4i3HF
-	xYvVrZVdySjzLkpqQYx+So6GuKAbSV1IdFMxi5aOaP8I8X6rX4sW2PWJ/MNPDA==
-X-Google-Smtp-Source: AGHT+IGZbRKEeocIbWCL2fcCda6LWbsu1WPCHHpOlC+CSAAPaAt3hyLSRR/40E6PY6YNjqTVyk2u2A==
-X-Received: by 2002:a05:6214:5089:b0:685:3dbd:1566 with SMTP id kk9-20020a056214508900b006853dbd1566mr377663qvb.6.1705701157591;
-        Fri, 19 Jan 2024 13:52:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705701168; x=1706305968;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NxvMQQ7cw2gsLCcsoE9goayQo/WJyflLSF+p9kOGvCY=;
+        b=m1Cm0iV0Ir46DS/IWXSJhIy3W3Rq7An4qQZC5L7hDJuHfcWdSKwCq3WuHdHxH9JlI6
+         +qK5gaqnd3yUDEs9VNB7EKwGUM1i6v++lLbnBWWlT8C7sIRYEn/552cWhD9GGKAJdA6N
+         LvqanAVztQhN2MiTSh9enftDnnHzbvaZD6sZlcy7yl6/iIojmM63ypzP5aRFtA7tTF4i
+         ouURHGCDUoZKBRauzeuNxkHQrxYQs1rUw0TUcDMDNADG7pmNQr8m5bkc8ovWc24ILbzB
+         sF/OXoOg+zfRIMNZMDOl03NPsNqvukUJHNuhUpj0AXtzNPqCWevtlSDaJcqKq/nDM/SX
+         NeeA==
+X-Gm-Message-State: AOJu0YxP0puXCXaHJL3jqkYH9A5k2dnP6DXbIxfsMqLuNKnpQ/JcMoMy
+	S/2PBseJu2Uf2/Abp3yyJl5iWtaQ7Maw+sc70dzU/um/pu4yQgiC775lqqjSNA==
+X-Google-Smtp-Source: AGHT+IEwqcV9NPYWlpUvbEJCOUcZWbtvV7l4qVpfN4myRi+kOJ5mYU3cTq53LuDpFAtnInmfd2cNnA==
+X-Received: by 2002:a05:620a:28c3:b0:783:8057:44e9 with SMTP id l3-20020a05620a28c300b00783805744e9mr1070631qkp.2.1705701167791;
+        Fri, 19 Jan 2024 13:52:47 -0800 (PST)
 Received: from lbrmn-mmayer.ric.broadcom.net ([192.19.161.248])
-        by smtp.gmail.com with ESMTPSA id i3-20020ad44ba3000000b0068198012890sm55854qvw.66.2024.01.19.13.52.36
+        by smtp.gmail.com with ESMTPSA id r1-20020a05620a03c100b007815c45cdc5sm53272qkm.95.2024.01.19.13.52.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jan 2024 13:52:37 -0800 (PST)
+        Fri, 19 Jan 2024 13:52:47 -0800 (PST)
 Received: by lbrmn-mmayer.ric.broadcom.net (Postfix, from userid 1000)
-	id 6FC23890; Fri, 19 Jan 2024 13:52:35 -0800 (PST)
+	id DBDFA892; Fri, 19 Jan 2024 13:52:45 -0800 (PST)
 From: Markus Mayer <mmayer@broadcom.com>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Florian Fainelli <florian.fainelli@broadcom.com>,
@@ -71,10 +73,12 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 Cc: Markus Mayer <mmayer@broadcom.com>,
 	Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
 	Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: [PATCH v2 0/5] memory: brcmstb_dpfe: support DPFE API v4
-Date: Fri, 19 Jan 2024 13:52:23 -0800
-Message-ID: <20240119215231.758844-1-mmayer@broadcom.com>
+Subject: [PATCH v2 1/5] dt-bindings: memory: remove generic compatible string brcm,dpfe-cpu
+Date: Fri, 19 Jan 2024 13:52:24 -0800
+Message-ID: <20240119215231.758844-2-mmayer@broadcom.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240119215231.758844-1-mmayer@broadcom.com>
+References: <20240119215231.758844-1-mmayer@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,44 +87,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-It has become necessary to distinguish between the various DPFE API
-versions by version number. Having just chip-specific compatible strings
-no longer meeting our needs. Furthermore, the generic compatible string
-"brcm,dpfe-cpu" is being removed as it doesn't serve any actual purpose.
-Finally, a new DPFE API version, v4, needs to be supported by the
-driver.
+The generic compatible string "brcm,dpfe-cpu" is removed from the
+binding as it does not provide any actual benefit.
 
-To select between the different API versions, a new compatible string
-format is being introduced: brcm,dpfe-cpu-v<N> where <N> represents the
-API version number.
+Signed-off-by: Markus Mayer <mmayer@broadcom.com>
+---
+ .../devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml  | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-This approach is needed, because the API version has changed in the past
-for some chip, which means it cannot be derived reliably just based on
-the chip name.
-
-We rely on the boot firmware to populate Device Tree with the proper
-compatible string for the correct DPFE API version. The boot firmware
-already has this information and can easily pass it to the kernel in
-this manner.
-
-Changes since v1:
-  - remove compatible string brcm,dpfe-cpu
-  - add compatible strings brcm,bcm7278-dpfe-cpu, brcm,bcm7211-dpfe-cpu
-  - add "description" section to the binding
-  - drop patch that contained API probing and detection code
-  - tweak and clarify a few code comments
-
-Markus Mayer (5):
-  dt-bindings: memory: remove generic compatible string brcm,dpfe-cpu
-  dt-bindings: memory: add two chip-specific compatible string
-  dt-bindings: memory: additional compatible strings for Broadcom DPFE
-  memory: brcmstb_dpfe: introduce version-specific compatible strings
-  memory: brcmstb_dpfe: support DPFE API v4
-
- .../memory-controllers/brcm,dpfe-cpu.yaml     | 24 ++++++++++-
- drivers/memory/brcmstb_dpfe.c                 | 41 ++++++++++++++++++-
- 2 files changed, 62 insertions(+), 3 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml b/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
+index 08cbdcddfead..e2b990e4a792 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
+@@ -16,7 +16,6 @@ properties:
+       - enum:
+           - brcm,bcm7271-dpfe-cpu
+           - brcm,bcm7268-dpfe-cpu
+-      - const: brcm,dpfe-cpu
+ 
+   reg:
+     items:
+@@ -40,7 +39,7 @@ additionalProperties: false
+ examples:
+   - |
+     dpfe-cpu@f1132000 {
+-        compatible = "brcm,bcm7271-dpfe-cpu", "brcm,dpfe-cpu";
++        compatible = "brcm,bcm7271-dpfe-cpu";
+         reg = <0xf1132000 0x180>,
+               <0xf1134000 0x1000>,
+               <0xf1138000 0x4000>;
 -- 
 2.43.0
 
