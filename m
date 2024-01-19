@@ -1,130 +1,132 @@
-Return-Path: <devicetree+bounces-33277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9761E832D20
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:27:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A90C8832D2C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:32:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38B37B2464F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:27:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68A56283E9F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FB854FB7;
-	Fri, 19 Jan 2024 16:27:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11BCC1F60B;
+	Fri, 19 Jan 2024 16:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mK3yMiGj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gwNaC6E6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E262E54760
-	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 16:27:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83841DFCE;
+	Fri, 19 Jan 2024 16:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705681655; cv=none; b=fbe5sDe7PCAHJpqf55mEYkXybwgq6emRMkh50S3eNyDqf5e/9Ne+oTv/049Nvji9GuXbi+dRkuwDsdifQbz4YYnqW1bi7gw+tW4Wn8vO7ZG4bduZlnifUaLysUVDgv8i8C2OSWp2bMXcg5iJAnioZact48hMp9qzHIqyr3x7xi4=
+	t=1705681964; cv=none; b=B8kTgOyrf8olHPDrsNf7NGqEpkDehISF9jPda9cbjr5KP7xE7DwZlpO/DC+KbHqREDMGZ1kEceBk2Ctcg2xWhBwWRh+wWif1bBG1l0sNXFJn3LEbkdDYmy7vaWOH6dcTuuKMYPKwfR3iMcxwMMWpDIuir0eh3Ei90s+g2JXbvQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705681655; c=relaxed/simple;
-	bh=kkWYKcL9oT4VufYrCMQAS2UWPSnN7a4PSvDgPkTT1Og=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=U2r46GD4tKP5NvULyCVfN4dwjS+i0ayc440zQjyOq+4Fs+B+8wyqP4BeGQyvUo2145ZquMfydXjo7oxBtnno9lJ3S7ckB/UbM6ER1V/p3gWEIvuIB3VBxmcsmn5/WmTVGt36PHn7/rhcsVHfg4bZLSonVBLAxXSbOqrkNhrvqPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mK3yMiGj; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-5c6bd3100fcso535261a12.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 08:27:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705681652; x=1706286452; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/wDiJilyv3/HsVDsNR/fLAo3Wov0N9tZ0IfMd0xcH4g=;
-        b=mK3yMiGjr9cL5ZFCCTn7feferawm4/3b1hV+F1Zw8pZfHg1P/CYIVYym3jsSWHsBeo
-         f/FhVm5KxxXDbsawDtfCD7n0yMqCMDjOcwAbsQqNmg3moo/ItqajvJqBE60Rq9D0PDnd
-         PzCxyiRg82eZM6K3vTytVDXm/ZINqsh4AKV1G0KP7NU1sjoiTzrO5HaOIWd/zxzUR+Lh
-         1PXDthXi8Cy/xi1att6yqy315vD1lZEQB0Sj1ZdgKBRmyVeOEY53AaUoXC8GtY1/ZE8y
-         /N721c0+9RtMCM1dFgqJFzYw8OqtoitZXxvkEpsPLExwrJ8loPzllxZ0exJIYPiownjj
-         UzgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705681652; x=1706286452;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/wDiJilyv3/HsVDsNR/fLAo3Wov0N9tZ0IfMd0xcH4g=;
-        b=cVbX97uyyErUCupZcxmjoLBg3DXrpx9z8E++YoI7Srke2ArOfrDr6eDbOAfn/bE51I
-         lOh7PoSjvG9J7fHx4rBk16fmG7aCVKefhKw1cG6mjm40wWA/FkoksyNpTuv6YL6iYBcA
-         2nZpjlaA3QhOFDJRqewLb7MduqJcs+Grklej7xbQM1OxD4uf4pUVU/cSjaail/99aX+6
-         zL4WXpwemqGdFki9dUlL3pKYXlPFOqwIbMaVaDhs7Wytp8gINEUehhgTTxjtiot8HWQ3
-         3103fcmE5eHjpja93q61NNgrxiqkoQwHuYfNHon4ONjNKceMyc4L8g/9OL5pRMGwJmCW
-         P49A==
-X-Gm-Message-State: AOJu0YwHAbKl8FTm+C86MQDcl/H4JomxstB7iR+1i/Qxgl+exNi+xmT7
-	+DW5rFFvvM2hZSHQ6ycwyKETDT1Ibt5yZQPtYn7cPBHi5Z8vBJyWIL/Ho0QLp4DG0AMdcSiYa+w
-	qRKnEXSjTRAuttvmpacdiEJ+QQ7m9kQou4X1Hig==
-X-Google-Smtp-Source: AGHT+IHtPQv47KroEyd47og/vmNUBP9tj7tQ2QErTVBbhe87+ZNUoPqiRqCBKf1f63X/+C9w5wA5YZt8cjCJ625Ozrg=
-X-Received: by 2002:a17:90a:6286:b0:290:bd1:7d37 with SMTP id
- d6-20020a17090a628600b002900bd17d37mr22504pjj.47.1705681652237; Fri, 19 Jan
- 2024 08:27:32 -0800 (PST)
+	s=arc-20240116; t=1705681964; c=relaxed/simple;
+	bh=Uyi+TQxKZEL1bmpstEqg5Fp2tSvzVnztn39cu+KNpTE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=diOZGM9LcIOsQkNgZqMQecMRrLsmjY8kiK2j2pp1SMrZclTAF6OQDNHksvu2gLrzI9xqh8ox9I+xTZ0q11b3kTMobSbCN6OpfxYgSEtiiNmSXnJcxW46/64/78SPOpa4ftmlZ8qe2m7QPAlFtW5j3Og5wNBzgp2rurOXmh3Z/oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gwNaC6E6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47119C433C7;
+	Fri, 19 Jan 2024 16:32:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705681963;
+	bh=Uyi+TQxKZEL1bmpstEqg5Fp2tSvzVnztn39cu+KNpTE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gwNaC6E6Cwo4i9yG9KcL+67C4UHTf8i7iJ8C0KnIHDMYWmRhaRc8kGrPgwnoHaQ3m
+	 qoMU8FXzdXnmyVpEs9vIPr1bTtk/NXSzoZvPB06jMm0dBJ7UJ58Hc3eZbmNJ7jCu/P
+	 vRo+l6JjPbmG3JEwYHfEH+nV35saGfHcllxorLDiuCoBoWP4lZ+otMvV8OGYXZ8mu4
+	 VDpTK2ccBqS27gqC4hZUAOWhH988jlQnWbVirQQBj7+lKfNEdtxiGU4r2EmMgAMU4H
+	 CrsmCk6rMRfPr5XVSqMZf1+66Gd4gP7Oz+bVU5qEZX4XVGdQy9qT+ysr1yLS2y3FQ+
+	 xOp3qXwSYiidQ==
+Date: Fri, 19 Jan 2024 16:32:37 +0000
+From: Conor Dooley <conor@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunfeng.yun@mediatek.com, gregkh@linuxfoundation.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com, linux@roeck-us.net,
+	heikki.krogerus@linux.intel.com, cy_huang@richtek.com,
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: mt6360-tcpc: Drop
+ interrupt-names
+Message-ID: <20240119-eldest-discharge-e2d3812be0a9@spud>
+References: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240119104526.1221243-1-tudor.ambarus@linaro.org> <20240119104526.1221243-2-tudor.ambarus@linaro.org>
-In-Reply-To: <20240119104526.1221243-2-tudor.ambarus@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Fri, 19 Jan 2024 10:27:21 -0600
-Message-ID: <CAPLW+4kxTUUTrXWOtoBvMFHa+cyRBba_JvLNuKny-rsStbgmSg@mail.gmail.com>
-Subject: Re: [PATCH v2 01/19] tty: serial: samsung: fix tx_empty() to return TIOCSER_TEMT
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	andre.draszik@linaro.org, kernel-team@android.com, peter.griffin@linaro.org, 
-	willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ToI4F3JwM2kTOdm/"
+Content-Disposition: inline
+In-Reply-To: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
+
+
+--ToI4F3JwM2kTOdm/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 19, 2024 at 4:45=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
-.org> wrote:
->
-> The core expects for tx_empty() either TIOCSER_TEMT when the tx is
-> empty or 0 otherwise. s3c24xx_serial_txempty_nofifo() might return
-> 0x4, and at least uart_get_lsr_info() tries to clear exactly
-> TIOCSER_TEMT (BIT(1)). Fix tx_empty() to return TIOCSER_TEMT.
->
-> Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+On Fri, Jan 19, 2024 at 10:41:04AM +0100, AngeloGioacchino Del Regno wrote:
+> This IP has only one interrupt, hence interrupt-names is not necessary
+> to have.
+> Since there is no user yet, simply remove interrupt-names.
+
+I'm a bit confused chief. Patch 2 in this series removes a user of this
+property from a driver, so can you explain how this statement is true?
+
+Maybe I need to drink a few cans of Monster and revisit this patchset?
+
+Thanks,
+Conor.
+
 > ---
-
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-
->  drivers/tty/serial/samsung_tty.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsun=
-g_tty.c
-> index 71d17d804fda..6fdb32b83346 100644
-> --- a/drivers/tty/serial/samsung_tty.c
-> +++ b/drivers/tty/serial/samsung_tty.c
-> @@ -987,11 +987,10 @@ static unsigned int s3c24xx_serial_tx_empty(struct =
-uart_port *port)
->                 if ((ufstat & info->tx_fifomask) !=3D 0 ||
->                     (ufstat & info->tx_fifofull))
->                         return 0;
+>  .../devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml        | 5 -----
+>  1 file changed, 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.y=
+aml b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+> index 053264e60583..339bc9c00ac0 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+> @@ -22,10 +22,6 @@ properties:
+>    interrupts:
+>      maxItems: 1
+> =20
+> -  interrupt-names:
+> -    items:
+> -      - const: PD_IRQB
 > -
-> -               return 1;
-> +               return TIOCSER_TEMT;
->         }
->
-> -       return s3c24xx_serial_txempty_nofifo(port);
-> +       return s3c24xx_serial_txempty_nofifo(port) ? TIOCSER_TEMT : 0;
->  }
->
->  /* no modem control lines */
-> --
-> 2.43.0.429.g432eaa2c6b-goog
->
+>    connector:
+>      type: object
+>      $ref: ../connector/usb-connector.yaml#
+> @@ -58,7 +54,6 @@ examples:
+>          tcpc {
+>            compatible =3D "mediatek,mt6360-tcpc";
+>            interrupts-extended =3D <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
+> -          interrupt-names =3D "PD_IRQB";
+> =20
+>            connector {
+>              compatible =3D "usb-c-connector";
+> --=20
+> 2.43.0
+>=20
+
+--ToI4F3JwM2kTOdm/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaqkJQAKCRB4tDGHoIJi
+0re0AP9LNbikp4X8ttFLgxTITUwV8RZsxGtpIStRXArzEiJQtwD+JNTZjIHT5i09
+CSekQiT3QUgqZzXuCTtm+oiY2IL76Ak=
+=mjGn
+-----END PGP SIGNATURE-----
+
+--ToI4F3JwM2kTOdm/--
 
