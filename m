@@ -1,291 +1,183 @@
-Return-Path: <devicetree+bounces-33288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F02C5832D96
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:59:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18E89832DA7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 18:04:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F2BB28105D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:59:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 876E61F21482
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4604A5578A;
-	Fri, 19 Jan 2024 16:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35E25579D;
+	Fri, 19 Jan 2024 17:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="Fk4/K4wz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nSXISuze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FC83222;
-	Fri, 19 Jan 2024 16:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 856674C624;
+	Fri, 19 Jan 2024 17:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705683584; cv=none; b=gf17X4mTGsIoaUSpjznDOLnCqoJ1p/nlIJ8P1J/U/IDzBfj9flk0RNcnebihwHGMfBdHmF8hfrm8+vuZoAr/ZEp/yL23S/AZtGNIpQ1RPa/V0TEHo6JvnmZG5xGrVD0oeo9X0MyDwrtg2S99zqP7J6l5I5XY6+Vev77NT4DhyMQ=
+	t=1705683882; cv=none; b=Z+NSAc3g+P+l+LSBGu9huLZjomy8ZnrjPC+CjEHpJB/tld0cyWVxMP6mpGEz72hWb8u0NErsewLmIFnRPY528syL8uN7Kn2fss7jP3LRh4rDjI/RDkeCbjfjCMG6/kxBJWHIEeQNszFnrQZ61cGqeo/zzaAwOYOBoCJvQOqJaQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705683584; c=relaxed/simple;
-	bh=/RTX58XL94ocwmizyKYw7r77E3GtN+fp1k8zVgqC6ko=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tFAOKBeMUcEPg5KdPkDwT+Q4FdV3a+Rm+qPOPsfidvOpO3BNBoSxB5ijEL0+ebFejyz++hERyuGKOPmVNjlQlJHGWW/vRGKSqC7AowhscOUthyZrePI/teOwoaqfyxETiMhz08epLdbUqKvOm83Yg72BUt7xuUFR8ZjB9x5ir8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=Fk4/K4wz; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40J6jRvp022386;
-	Fri, 19 Jan 2024 10:59:22 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=PODMain02222019; bh=qbiM0GYn8wffxO9
-	+row5DznyRflJJj1eUICpy3tT4Yg=; b=Fk4/K4wzwAjRsqOkOd/Ra4ITbwvHBWI
-	iK8aTjIrGh8FhyB0WC8fz/SeJv7UTo83o1i2cy/uDLejTFtTLem19Iu75lY0kaCc
-	HV3iuwCzkue4QoFSqwe+YCNU7jJkGCpqNGKrT8rrTmj9N4OGR8pC+3hzyh9Hfh91
-	KQyb2doSchlq5vLT83dtleKzknafMDF9Po7m5RyNxvo6ADlPVlrL10FUSEpZjer2
-	yXBcu2zJk9BdTAweJuWVcbadeKOat1DyFLZ+n1i6YrFuo6/VgOfgZRYIAJJPh7Gv
-	dwOBjY4cIpngPhC9kfqOx1th8+aIi1ZZBQOM1n9hpSHvGM/SDv18pmg==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3vkrt1gyjw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 19 Jan 2024 10:59:22 -0600 (CST)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 19 Jan
- 2024 16:59:17 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.40 via Frontend
- Transport; Fri, 19 Jan 2024 16:59:17 +0000
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id D522A475;
-	Fri, 19 Jan 2024 16:59:17 +0000 (UTC)
-Date: Fri, 19 Jan 2024 16:59:17 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: <andy.shevchenko@gmail.com>
-CC: <broonie@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linus.walleij@linaro.org>, <vkoul@kernel.org>, <lgirdwood@gmail.com>,
-        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
-        <pierre-louis.bossart@linux.intel.com>, <alsa-devel@alsa-project.org>,
-        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 6/6] ASoC: cs42l43: Add support for the cs42l43
-Message-ID: <20240119165917.GC16899@ediswmail.ad.cirrus.com>
-References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
- <20230804104602.395892-7-ckeepax@opensource.cirrus.com>
- <Zali4qxdegY7H6eY@surfacebook.localdomain>
+	s=arc-20240116; t=1705683882; c=relaxed/simple;
+	bh=tvfI8kzKELJg8x51eYsi4QeGQs90pS6wbtnENBmug60=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gUknaLLRdW3AxTA6m9QXy6uaXExEnI1jFb0waMMSJrjXaO9Tnnsf4at7dwahNEHqBJNXbRjjVozPcnqbbUZEaX0jl4eCUuiSSEgcK0XGOuToltvFsRnsRx6oKcHwjploMSY7KPMV+cYbnFYuR3rsdiM2ldg76lamcXfzI1ChrEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nSXISuze; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96F17C433C7;
+	Fri, 19 Jan 2024 17:04:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705683882;
+	bh=tvfI8kzKELJg8x51eYsi4QeGQs90pS6wbtnENBmug60=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nSXISuze5qHDFLd+8VIc670Qh4sfOq0Q9HsJU09eHWdo6qBL7KyIFvRN2hMPNHC9e
+	 nzytI2kZ3IeSWiAJ5mOsLjDjIrb+/C9B6vdVWUBGoiLP/M4Irl7kQpf5QmGvM/N3uJ
+	 n5HJ/AXMY+SxfLpeBQHGjk8ljy23nTkpZDvTxjYWggOytjqPJJnw+UREkmID1xhhAb
+	 UdsCtNvnu7laUhbyDOU8nJKxaN4vm3Rx5FET/e8eIj0RcUgt2p1djP+DUI2Pva1Bpb
+	 KYJ9Pp0e8//x5vSyoCLH0qCmBEGJl7HcQPzvqzUKwPIx5DQNMxZvhNaYLqeqqUsKCi
+	 aKCikeAxBareA==
+Date: Fri, 19 Jan 2024 17:04:36 +0000
+From: Conor Dooley <conor@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	Frank Wunderlich <linux@fw-web.de>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sam Shih <sam.shih@mediatek.com>,
+	Daniel Golle <daniel@makrotopia.org>, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: Re: Aw: Re: [PATCH v3 1/2] dt-bindings: reset: mediatek: add MT7988
+ reset IDs
+Message-ID: <20240119-dupe-obligate-707b3a01b356@spud>
+References: <20240117184111.62371-1-linux@fw-web.de>
+ <20240117184111.62371-2-linux@fw-web.de>
+ <20240118-calcium-krypton-3c787b8d1912@spud>
+ <trinity-afc4f48e-65e1-46ee-a78b-1d670cc0f310-1705615200900@3c-app-gmx-bap21>
+ <43f946cc-07e1-48c5-9b31-40fc9bc93037@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="hqUNFAuri8IfMYKy"
 Content-Disposition: inline
-In-Reply-To: <Zali4qxdegY7H6eY@surfacebook.localdomain>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: b67HD8x2PDCOH9BQnW9KX6IsD3Or_uUa
-X-Proofpoint-ORIG-GUID: b67HD8x2PDCOH9BQnW9KX6IsD3Or_uUa
-X-Proofpoint-Spam-Reason: safe
+In-Reply-To: <43f946cc-07e1-48c5-9b31-40fc9bc93037@collabora.com>
 
-On Thu, Jan 18, 2024 at 07:41:54PM +0200, andy.shevchenko@gmail.com wrote:
-> Fri, Aug 04, 2023 at 11:46:02AM +0100, Charles Keepax kirjoitti:
-> > +static const unsigned int cs42l43_accdet_us[] = {
-> > +	20, 100, 1000, 10000, 50000, 75000, 100000, 200000
-> 
-> + comma.
-> 
-> > +};
-> > +
-> > +static const unsigned int cs42l43_accdet_db_ms[] = {
-> > +	0, 125, 250, 500, 750, 1000, 1250, 1500
-> 
-> Ditto.
-> 
 
-Can do.
+--hqUNFAuri8IfMYKy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > +		device_property_read_u32_array(cs42l43->dev, "cirrus,buttons-ohms",
-> > +					       priv->buttons, ret);
-> 
-> Strictly speaking this might fail, better to check the error code again.
-> 
+On Fri, Jan 19, 2024 at 10:28:30AM +0100, AngeloGioacchino Del Regno wrote:
+> Il 18/01/24 23:00, Frank Wunderlich ha scritto:
+> > > Gesendet: Donnerstag, 18. Januar 2024 um 17:49 Uhr
+> > > Von: "Conor Dooley" <conor@kernel.org>
+> > > On Wed, Jan 17, 2024 at 07:41:10PM +0100, Frank Wunderlich wrote:
+> > > > From: Frank Wunderlich <frank-w@public-files.de>
+> > > >=20
+> > > > Add reset constants for using as index in driver and dts.
+> > > >=20
+> > > > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > > > ---
+> > > > v3:
+> > > > - add pcie reset id as suggested by angelo
+> > > >=20
+> > > > v2:
+> > > >   - add missing commit message and SoB
+> > > >   - change value of infrareset to 0
+> > > > ---
+> > > >   include/dt-bindings/reset/mediatek,mt7988-resets.h | 6 ++++++
+> > > >   1 file changed, 6 insertions(+)
+> > > >=20
+> > > > diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/i=
+nclude/dt-bindings/reset/mediatek,mt7988-resets.h
+> > > > index 493301971367..0eb152889a89 100644
+> > > > --- a/include/dt-bindings/reset/mediatek,mt7988-resets.h
+> > > > +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
+> > > > @@ -10,4 +10,10 @@
+> > > >   /* ETHWARP resets */
+> > > >   #define MT7988_ETHWARP_RST_SWITCH		0
+> > > >=20
+> > > > +/* INFRA resets */
+> > > > +#define MT7988_INFRA_RST0_PEXTP_MAC_SWRST	0
+> > > > +#define MT7988_INFRA_RST1_THERM_CTRL_SWRST	1
+> > >=20
+> > > These are just "random" numbers, why not continue the numbering from =
+the
+> > > ETHWARP?
+> >=20
+> > i can do...basicly these consts are used in DTS and driver only as inde=
+x.
+> >=20
+> > @angelo what do you think? I though also in leaving some space to allow=
+ grouping RST0 and RST1
+> > when more consts are added, else the numbers are mixed up.
+> >=20
+> > so e.g. let RST0 start at 20 and RST1 at 40 (or even higher, because RS=
+T0 and RST1 can have up to 32 resets).
+> > That will allow adding more reset constants between my values and havin=
+g raising numbers.
+>=20
+> The resets are organized on a per-reset-controller basis, so, the ETHWARP
+> reset controller's first reset is RST_SWITCH, the second one is RST_somet=
+hing_else,
+> etc. while the first reset of the INFRA reset controller is PEXTP_MAC_SWR=
+ST.
+>=20
+> That's why ETHWARP has a reset index 0 and INFRA also starts at 0.
+> I think that the numbering is good as it is, and having one driver start =
+at index 5
+> while the other starts at index 12 would only overcomplicate registering =
+the resets
+> in each driver, or waste bytes by making unnecessarily large arrays, for =
+(imo) no
+> good reason.
+>=20
+> This is one header, but it should "in theory" be more than one... so we w=
+ould have
+> one for each hardware block - but that'd make the reset directory over-cr=
+owded, as
+> other MediaTek SoCs have got even more resets in even more hardware block=
+s than the
+> MT7988. That'd be something like ~4 reset headers per SoC (and will incre=
+ase with
+> newer ones)...
+> ...and this is why we have one binding header for resets.
 
-Yeah should probably add an error check there.
+That's okay. The commit message leaves me, who clearly isn't a mediatek
+guy, with no information as to why these are not one contiguous set.
+IMO being for different reset controllers entirely is fine.
 
-> > +	int timeout_ms = ((2 * priv->detect_us) / 1000) + 200;
-> 
-> USEC_PER_MSEC ?
-> 
+> On the topic of leaving space to allow grouping RST0/RST1: -> No. <-
+> The indices have to start from zero and have to be sequential, with no ho=
+les.
 
-Can do.
+Agreed.
 
-> > +	BUILD_BUG_ON(ARRAY_SIZE(cs42l43_jack_override_modes) !=
-> > +		     ARRAY_SIZE(cs42l43_jack_text) - 1);
-> 
-> Use static_assert() instead.
-> 
+--hqUNFAuri8IfMYKy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I am happy either way, but for my own education what is the
-reason to prefer static_assert here, is it just to be able to use
-== rather than !=? Or is there in general a preference to use
-static_assert, there is no obvious since BUILD_BUG_ON is being
-deprecated?
+-----BEGIN PGP SIGNATURE-----
 
-> > +static void cs42l43_mask_to_slots(struct cs42l43_codec *priv, unsigned int mask, int *slots)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < CS42L43_ASP_MAX_CHANNELS; ++i) {
-> > +		int slot = ffs(mask) - 1;
-> > +
-> > +		if (slot < 0)
-> > +			return;
-> > +
-> > +		slots[i] = slot;
-> > +
-> > +		mask &= ~(1 << slot);
-> > +	}
-> 
-> for_each_set_bit() ?
-> 
-> > +	if (mask)
-> > +		dev_warn(priv->dev, "Too many channels in TDM mask\n");
-> > +}
-> 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaqrpAAKCRB4tDGHoIJi
+0kpNAP0fXJ5CKQv/dcdDfDwM6QxpaHDnXco2vvD9zatS35PP3QEAyXeJjQ1mosMC
+HzNIVUEk3x7CKsrxFYlJvszPHJz8fAs=
+=leay
+-----END PGP SIGNATURE-----
 
-Can do.
-
-> > +static int cs42l43_decim_get(struct snd_kcontrol *kcontrol,
-> > +			     struct snd_ctl_elem_value *ucontrol)
-> > +{
-> > +	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
-> > +	struct cs42l43_codec *priv = snd_soc_component_get_drvdata(component);
-> > +	int ret;
-> > +
-> > +	ret = cs42l43_shutter_get(priv, CS42L43_STATUS_MIC_SHUTTER_MUTE_SHIFT);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +	else if (!ret)
-> 
-> Reundant 'else'
-> 
-> > +		ucontrol->value.integer.value[0] = ret;
-> > +	else
-> > +		ret = cs42l43_dapm_get_volsw(kcontrol, ucontrol);
-> 
-> and why not positive check?
-> 
-> > +	return ret;
-> 
-> Or even simply as
-> 
-> 	if (ret > 0)
-> 		ret = cs42l43_dapm_get_volsw(kcontrol, ucontrol);
-> 	else if (ret == 0)
-> 		ucontrol->value.integer.value[0] = ret;
-> 
-> 	return ret;
-
-Yeah will update, that is definitely neater.
-
-> > +	while (freq > cs42l43_pll_configs[ARRAY_SIZE(cs42l43_pll_configs) - 1].freq) {
-> > +		div++;
-> > +		freq /= 2;
-> > +	}
-> 
-> fls() / fls_long()?
-
-Apologies but I might need a little bit more of a pointer here.
-We need to scale freq down to under 3.072MHz and I am struggling
-a little to see how to do that with fls.
-
-> > +	// Don't use devm as we need to get against the MFD device
-> 
-> This is weird...
-> 
-> > +	priv->mclk = clk_get_optional(cs42l43->dev, "mclk");
-> > +	if (IS_ERR(priv->mclk)) {
-> > +		dev_err_probe(priv->dev, PTR_ERR(priv->mclk), "Failed to get mclk\n");
-> > +		goto err_pm;
-> > +	}
-> > +
-> > +	ret = devm_snd_soc_register_component(priv->dev, &cs42l43_component_drv,
-> > +					      cs42l43_dais, ARRAY_SIZE(cs42l43_dais));
-> > +	if (ret) {
-> > +		dev_err_probe(priv->dev, ret, "Failed to register component\n");
-> > +		goto err_clk;
-> > +	}
-> > +
-> > +	pm_runtime_mark_last_busy(priv->dev);
-> > +	pm_runtime_put_autosuspend(priv->dev);
-> > +
-> > +	return 0;
-> > +
-> > +err_clk:
-> > +	clk_put(priv->mclk);
-> > +err_pm:
-> > +	pm_runtime_put_sync(priv->dev);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int cs42l43_codec_remove(struct platform_device *pdev)
-> > +{
-> > +	struct cs42l43_codec *priv = platform_get_drvdata(pdev);
-> > +
-> > +	clk_put(priv->mclk);
-> 
-> You have clocks put before anything else, and your remove order is broken now.
-> 
-> To fix this (in case you may not used devm_clk_get() call), you should drop
-> devm calls all way after the clk_get(). Do we have
-> snd_soc_register_component()? If yes, use it to fix.
-> 
-> I believe you never tested rmmod/modprobe in a loop.
-> 
-
-Hmm... will need to think this through a little bit, so might take
-a little longer on this one. But I guess this only becomes a problem
-if you attempt to remove the driver whilst you are currently playing
-audio, and I would expect the card tear down would stop the clock
-running before we get here.
-
-> > +static const struct dev_pm_ops cs42l43_codec_pm_ops = {
-> > +	SET_RUNTIME_PM_OPS(NULL, cs42l43_codec_runtime_resume, NULL)
-> > +};
-> 
-> Why not new PM macros?
-> 
-
-Already been updated in another patch.
-
-> > +		.pm	= &cs42l43_codec_pm_ops,
-> 
-> pm_sleep_ptr()?
-> 
-
-Can do.
-
-> > +#include <linux/clk.h>
-> > +#include <linux/device.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/soundwire/sdw.h>
-> > +#include <linux/types.h>
-> > +#include <sound/cs42l43.h>
-> > +#include <sound/pcm.h>
-> > +#include <sound/soc-jack.h>
-> 
-> This block is messed up. Some headers can be replaced by forward declarations,
-> some are missing... Please, follow IWYU principle.
-> 
-> > +#ifndef CS42L43_ASOC_INT_H
-> > +#define CS42L43_ASOC_INT_H
-> 
-> Why not guarding other inclusions? It makes build slower!
-> 
-
-Will shuffle these headers around as well.
-
-Thanks,
-Charles
+--hqUNFAuri8IfMYKy--
 
