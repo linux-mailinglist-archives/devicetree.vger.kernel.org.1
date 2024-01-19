@@ -1,218 +1,147 @@
-Return-Path: <devicetree+bounces-33110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F1B483243F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 06:31:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23ADE832444
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 06:36:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 14797B21A9A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 05:31:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C060283482
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 05:36:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6585C4A0A;
-	Fri, 19 Jan 2024 05:31:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D99A44A08;
+	Fri, 19 Jan 2024 05:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ym0SRi9b"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M8nWbyiV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B24D33E8;
-	Fri, 19 Jan 2024 05:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3972946AD
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 05:36:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705642284; cv=none; b=PslY5hAbWMdn4uaOxMWI8nnBGCIHbGCga6YfsW9uvc92vpBT0li20GoU84j7cgbfH4zNH7xrjn9MSvr1A/GC72oe1CwYc8EAgsg5xWU3Rg1B56dG6jshJZtXHHKMnwyPQbtbsuqxTheoq2PoWtdXWCxpOhA0Q4D78sswU3BFseY=
+	t=1705642589; cv=none; b=me17edkJbL33tu6TgCvfOGdFlgtO43jSBfYWJL/Fdl1/s9Yv1XNYdrnpBg281RZA1V/JQ3HmWnPMYRXZUkLvpk9CqmtLXhOJeYIe0q+E4N5geXfJ2viMhhb/gqiWfZPdzxo/Ab42jRscrHQSuoi/cM6myvzII4CO1d/IrCJosNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705642284; c=relaxed/simple;
-	bh=VHGkACZlwq00PJqJZlvL7qdl0HgNxOydalnwk1CkmpM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GDGFWEWkyn2fVZrNBmpGq45BKgAC4UNm3d68+7vlALh2ptvziH6qOZ7t9D0abdDLVR77YA8YaMCh4KDtukHpZ8t+4ggN/bY1YAE7b+20P1AL+gt7MCf+JPmKvCsHaHQbQdUZCoGZlX/LirvaJVK5OC9DT+ZhnUYidQ89KAfHYx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ym0SRi9b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFB15C433C7;
-	Fri, 19 Jan 2024 05:31:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705642283;
-	bh=VHGkACZlwq00PJqJZlvL7qdl0HgNxOydalnwk1CkmpM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Ym0SRi9bpZGYF9ZwJwS6elsuvnuMCmLUz6vSw49/A3+dYVndBQbajVqkTR/linNSB
-	 bv1Lij+x8i5xDR74H91ma/WrQPSwQjdXxYyXf6A77TqswnH7cuK6WvgVrosCeJS8lX
-	 YT8JVAHNCP+zRKQv8CdmL3cp/8dBIX1XpU3HIRtqvYAQaNKXlqHmUp0RbMPMT2V4TL
-	 0OnnumdhfmGXE051ctQd/fMKWMpPTr/bpZPuZJO7CW4XP8+6OTq8o6lBDrNzGdFJDD
-	 QwpNiX/LkcGTD+ECx7A9XzRaXnruKcvqcM+RjNv1EZusNCFvB1bPP+wT+bUikTddX8
-	 5ZaF1yMaAAl9w==
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-6dde173384aso283658a34.1;
-        Thu, 18 Jan 2024 21:31:23 -0800 (PST)
-X-Gm-Message-State: AOJu0YyddSyJ9jm4yk1wy1Ib8IJvxjiW2MoSGiUv6au7aa68UH3s3c3V
-	hIdyP7sXD35W7BBFiL1wbi/8ExZ9VgJnFJgAD4gepYaKBmlXQK6IgazVSMF1mokaKww+e4Bt2XZ
-	uQbjqNbLa68PhGzy6zZ/9+5XPkiM=
-X-Google-Smtp-Source: AGHT+IE2ZQgCxYssk5elr40472Msh5T70My4sP5XlHue3f7m0F5jAC1SL9WeR84fJBN+0PAFcmsBVveUS2BSNK24dq8=
-X-Received: by 2002:a05:6871:3743:b0:210:8fee:d921 with SMTP id
- np3-20020a056871374300b002108feed921mr2228969oac.116.1705642283212; Thu, 18
- Jan 2024 21:31:23 -0800 (PST)
+	s=arc-20240116; t=1705642589; c=relaxed/simple;
+	bh=UovGzvb+o3TQm+lhjDvRfALrmTsObXHmB90BgTkj5mI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eHtRIV1Se+z0nS7mkF4kFtWBZ32NYCimGYvKNxtpILtJz00qYznEsP2s4I4V+Og8s4p8xgx/12XkHHDgFmRe8M8H5UFLfNozJWTXMyKBGOQuaJoL1dyBk1yxuYxiUP76jgk/y3da3CBjkgNkEe6rKYYk0zaFKtly5/emXt2/pB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M8nWbyiV; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e8801221cso3557965e9.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Jan 2024 21:36:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705642586; x=1706247386; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2ojAQrKurCVDTpDyr9Ud8UUA59iisRxNip7GO8MCjIo=;
+        b=M8nWbyiV3JVQFiqHOTnAgiA21RbmosLbk4Oz6t9/b6rgOIJUcDuiQXUW1/URtYWkY3
+         BBQfoWsGSNLEf8LJ3mom1/sMPIxVsP4O+JL/KE1EWV/zqxbzNIgv+pb33TE6i/S0Y60d
+         xwBRV5QQn0VBWp8v6T3H6f5jRS6i9ps55M4wB4zEoiJ7zhIzTT3YSoyau7aEhMJCzipd
+         59TDAyJrTvgZ9Oewgo6Pg4MTomCoiJULVDaieGqUAmH56+X3Ylznom42CSzKgYorqK4j
+         kXUCbwbAT0ZV8KMvJfpN/vjD2NipIqw+58jsDnepOo1BzPakL0VKz9U2RRnu3ONLE/yG
+         7tvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705642586; x=1706247386;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2ojAQrKurCVDTpDyr9Ud8UUA59iisRxNip7GO8MCjIo=;
+        b=UGVkWZ9HZCjB8onCfuXzmYyeC4iN/efWUsYM5WlWuuJVXhQpB7B9IyMRtt3xoKZvmI
+         jsnBoVlUkGD0sB8lw6CF5VJKnw3nKmtNwlqi9SsIWvO+0Pl/fI6L7ExICxJujS74shNt
+         8aTfnN+UDGnUIsiynrRpHFXVE1Brf4sohGGaIT3hnAxbgFrd9DNKaMu62pqFswhjJY0a
+         +3dYnGKTdWO7f++8YUAEaxi0ZZHe6P2iUlP7z9/5MzAg1mec1LtFxTVc5AXio31QKt7D
+         5w0RGU54u2QJ/fvR/RGdUGBnomc+3iz0dXh9fFgU0vA6wC+PGPNTusLeKctkTyshp5Mu
+         wEnA==
+X-Gm-Message-State: AOJu0Yx7ys3M/u5x2SGf6AvCDFHLDerZF1kaObtHDKEIS61bJMwd1dV3
+	G2+8nirPaJjd11DFVZQGTtML74y19TmAUxAdWGjz6Gf27oGutQHRJr6WQLW4JRY=
+X-Google-Smtp-Source: AGHT+IHrVI4oY2pMxT9TBfDrffE6L2KwXvHH72Vz5VkiemXhVD26PJJFGqJUEoXqdWldgAqugJlPlw==
+X-Received: by 2002:a05:600c:1990:b0:40e:50ac:d24e with SMTP id t16-20020a05600c199000b0040e50acd24emr1438421wmq.13.1705642586217;
+        Thu, 18 Jan 2024 21:36:26 -0800 (PST)
+Received: from localhost ([102.140.209.237])
+        by smtp.gmail.com with ESMTPSA id l6-20020a7bc346000000b0040d81ca11casm27067641wmj.28.2024.01.18.21.36.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Jan 2024 21:36:25 -0800 (PST)
+Date: Fri, 19 Jan 2024 08:36:21 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: dregan@broadcom.com
+Cc: dregan@mail.com, miquel.raynal@bootlin.com, richard@nod.at,
+	vigneshr@ti.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	computersforpeace@gmail.com, kdasu.kdev@gmail.com,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com,
+	tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
+	william.zhang@broadcom.com, anand.gore@broadcom.com,
+	kursad.oney@broadcom.com, florian.fainelli@broadcom.com,
+	rafal@milecki.pl, bcm-kernel-feedback-list@broadcom.com,
+	andre.przywara@arm.com, baruch@tkos.co.il,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 05/10] mtd: rawnand: brcmnand: Add BCMBCA read data
+ bus interface
+Message-ID: <4b3f4316-0da4-4fde-a806-7b579948db50@moroto.mountain>
+References: <20240118195356.133391-1-dregan@broadcom.com>
+ <20240118195356.133391-6-dregan@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240109120738.346061-1-masahiroy@kernel.org> <20240109120738.346061-3-masahiroy@kernel.org>
- <20240117145216.GA2296118-robh@kernel.org>
-In-Reply-To: <20240117145216.GA2296118-robh@kernel.org>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Fri, 19 Jan 2024 14:30:47 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAS3nQjQ8-4HEGfnRbgWSmLrT5EHFzXs-YXjfB7LRHO8ZA@mail.gmail.com>
-Message-ID: <CAK7LNAS3nQjQ8-4HEGfnRbgWSmLrT5EHFzXs-YXjfB7LRHO8ZA@mail.gmail.com>
-Subject: Re: [PATCH 2/4] kbuild: simplify dtbs_install by reading the list of
- compiled DTBs
-To: Rob Herring <robh@kernel.org>
-Cc: linux-kbuild@vger.kernel.org, devicetree@vger.kernel.org, 
-	Simon Glass <sjg@chromium.org>, Nathan Chancellor <nathan@kernel.org>, 
-	Nick Desaulniers <ndesaulniers@google.com>, Nicolas Schier <nicolas@fjasle.eu>, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240118195356.133391-6-dregan@broadcom.com>
 
-On Wed, Jan 17, 2024 at 11:52=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
->
-> On Tue, Jan 09, 2024 at 09:07:35PM +0900, Masahiro Yamada wrote:
-> > Retrieve the list of *.dtb(o) files from arch/*/boot/dts/dtbs-list
-> > instead of traversing the directory tree again.
->
-> Don't you need dtbs-list in .gitignore?
+On Thu, Jan 18, 2024 at 11:53:51AM -0800, dregan@broadcom.com wrote:
+> diff --git a/drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c b/drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c
+> index 3e2f3b79788d..e97e13ae246c 100644
+> --- a/drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c
+> +++ b/drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c
+> @@ -26,6 +26,18 @@ enum {
+>  	BCMBCA_CTLRDY		= BIT(4),
+>  };
+>  
+> +#if defined(CONFIG_ARM64)
+> +#define ALIGN_REQ		8
+> +#else
+> +#define ALIGN_REQ		4
+> +#endif
+> +
+> +static inline bool bcmbca_nand_is_buf_aligned(void *flash_cache,  void *buffer)
+> +{
+> +	return IS_ALIGNED((uintptr_t)buffer, ALIGN_REQ) &&
+> +				IS_ALIGNED((uintptr_t)flash_cache, ALIGN_REQ);
+> +}
+> +
+>  static bool bcmbca_nand_intc_ack(struct brcmnand_soc *soc)
+>  {
+>  	struct bcmbca_nand_soc *priv =
+> @@ -56,6 +68,20 @@ static void bcmbca_nand_intc_set(struct brcmnand_soc *soc, bool en)
+>  	brcmnand_writel(val, mmio);
+>  }
+>  
+> +static void bcmbca_read_data_bus(struct brcmnand_soc *soc,
+> +				 void __iomem *flash_cache,  u32 *buffer, int fc_words)
+> +{
+> +	/*
+> +	 * memcpy can do unaligned aligned access depending on source
+> +	 * and dest address, which is incompatible with nand cache. Fallback
+> +	 * to the memcpy for io version
+> +	 */
+> +	if (bcmbca_nand_is_buf_aligned((void *)flash_cache, buffer))
+> +		memcpy((void *)buffer, (void *)flash_cache, fc_words * 4);
+> +	else
+> +		memcpy_fromio((void *)buffer, flash_cache, fc_words * 4);
+> +}
 
+This comment is confusing or maybe the if statement is reversed...
+We're falling back to memcpy_fromio() for the unaligned accesses but the
+comment says we're falling back to memcpy().
 
-Yes.
+regards,
+dan carpenter
 
-
-1/4 added it.
-
-
-
-
-
-
-
-
-
-
-
-
-> >
-> > Please note that 'make dtbs_install' installs *.dtb(o) files directly
-> > added to dtb-y because scripts/Makefile.dtbinst installs $(dtb-y)
-> > without expanding the -dtbs suffix.
-> >
-> > This commit preserves this behavior.
-> >
-> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> > ---
-> >
-> >  Makefile                 |  2 +-
-> >  scripts/Kbuild.include   |  6 ------
-> >  scripts/Makefile.dtbinst | 32 ++++++++++++++++++--------------
-> >  3 files changed, 19 insertions(+), 21 deletions(-)
-> >
-> > diff --git a/Makefile b/Makefile
-> > index db7f9e34a24e..dae6825b8082 100644
-> > --- a/Makefile
-> > +++ b/Makefile
-> > @@ -1407,7 +1407,7 @@ endif
-> >  dtbs_check: dtbs
-> >
-> >  dtbs_install:
-> > -     $(Q)$(MAKE) $(dtbinst)=3D$(dtstree) dst=3D$(INSTALL_DTBS_PATH)
-> > +     $(Q)$(MAKE) -f $(srctree)/scripts/Makefile.dtbinst obj=3D$(dtstre=
-e)
-> >
-> >  ifdef CONFIG_OF_EARLY_FLATTREE
-> >  all: dtbs
-> > diff --git a/scripts/Kbuild.include b/scripts/Kbuild.include
-> > index 7778cc97a4e0..2f331879816b 100644
-> > --- a/scripts/Kbuild.include
-> > +++ b/scripts/Kbuild.include
-> > @@ -113,12 +113,6 @@ endef
-> >  # $(Q)$(MAKE) $(build)=3Ddir
-> >  build :=3D -f $(srctree)/scripts/Makefile.build obj
-> >
-> > -###
-> > -# Shorthand for $(Q)$(MAKE) -f scripts/Makefile.dtbinst obj=3D
-> > -# Usage:
-> > -# $(Q)$(MAKE) $(dtbinst)=3Ddir
-> > -dtbinst :=3D -f $(srctree)/scripts/Makefile.dtbinst obj
-> > -
-> >  ###
-> >  # Shorthand for $(Q)$(MAKE) -f scripts/Makefile.clean obj=3D
-> >  # Usage:
-> > diff --git a/scripts/Makefile.dtbinst b/scripts/Makefile.dtbinst
-> > index 4405d5b67578..67956f6496a5 100644
-> > --- a/scripts/Makefile.dtbinst
-> > +++ b/scripts/Makefile.dtbinst
-> > @@ -8,32 +8,36 @@
-> >  #   $INSTALL_PATH/dtbs/$KERNELRELEASE
-> >  # =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-> >
-> > -src :=3D $(obj)
-> > -
-> >  PHONY :=3D __dtbs_install
-> >  __dtbs_install:
-> >
-> >  include include/config/auto.conf
-> >  include $(srctree)/scripts/Kbuild.include
-> > -include $(kbuild-file)
-> >
-> > -dtbs    :=3D $(addprefix $(dst)/, $(dtb-y) $(if $(CONFIG_OF_ALL_DTBS),=
-$(dtb-)))
-> > -subdirs :=3D $(addprefix $(obj)/, $(subdir-y) $(subdir-m))
-> > -
-> > -__dtbs_install: $(dtbs) $(subdirs)
-> > -     @:
-> > +dst :=3D $(INSTALL_DTBS_PATH)
-> >
-> >  quiet_cmd_dtb_install =3D INSTALL $@
-> >        cmd_dtb_install =3D install -D $< $@
-> >
-> > -$(dst)/%.dtb: $(obj)/%.dtb
-> > +$(dst)/%: $(obj)/%
-> >       $(call cmd,dtb_install)
-> >
-> > -$(dst)/%.dtbo: $(obj)/%.dtbo
-> > -     $(call cmd,dtb_install)
-> > +dtbs :=3D $(patsubst $(obj)/%,%,$(call read-file, $(obj)/dtbs-list))
-> >
-> > -PHONY +=3D $(subdirs)
-> > -$(subdirs):
-> > -     $(Q)$(MAKE) $(dtbinst)=3D$@ dst=3D$(if $(CONFIG_ARCH_WANT_FLAT_DT=
-B_INSTALL),$(dst),$(patsubst $(obj)/%,$(dst)/%,$@))
-> > +ifdef CONFIG_ARCH_WANT_FLAT_DTB_INSTALL
-> > +
-> > +define gen_install_rules
-> > +$(dst)/%: $(obj)/$(1)%
-> > +     $$(call cmd,dtb_install)
-> > +endef
-> > +
-> > +$(foreach d, $(sort $(dir $(dtbs))), $(eval $(call gen_install_rules,$=
-(d))))
-> > +
-> > +dtbs :=3D $(notdir $(dtbs))
-> > +
-> > +endif # CONFIG_ARCH_WANT_FLAT_DTB_INSTALL
-> > +
-> > +__dtbs_install: $(addprefix $(dst)/, $(dtbs))
-> > +     @:
-> >
-> >  .PHONY: $(PHONY)
-> > --
-> > 2.40.1
-> >
-
-
-
---=20
-Best Regards
-Masahiro Yamada
 
