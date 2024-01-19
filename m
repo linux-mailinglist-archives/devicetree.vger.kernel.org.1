@@ -1,111 +1,238 @@
-Return-Path: <devicetree+bounces-33320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5182832E8A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 18:59:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F76832E9D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 19:05:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1458B1C24295
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:59:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F3132884BD
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 18:04:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7A155E76;
-	Fri, 19 Jan 2024 17:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28DD556447;
+	Fri, 19 Jan 2024 18:04:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BHPVPXhO"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="S0vcNdiB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA2156445;
-	Fri, 19 Jan 2024 17:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1DD1E525
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 18:04:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705687157; cv=none; b=bJk/sEWnAq+oTzt3Vyd6z4p09d0s/J36iF/Z8uX/Kmf9W9X1yjE6sVkRzcaC5gdfYXGCruwi67QffvXol7cvJexQz033Ih3wpLwClHlqe7WNW41diYDvKa6OV0CBQApPAcvnjNe0+uosebRaPMqQc/Ppe3uRWo6RYX3mNSg8wTg=
+	t=1705687493; cv=none; b=U+rL7No23y9JRWt8EVdPWpjYgikw/qIcUGwrWWg5XHIJDABaUAQcuI76ZtZjgiSnNpCAR9BAmYxkeneNiWKvnFAw7i9ghr6baxirTQKmNz9Wp6INRs916mEnPooTX8Uv0WZDWYVZvitNO8rbVZRNZh+gAqd7MSvdaFOePZYAFYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705687157; c=relaxed/simple;
-	bh=dsWHy6JnTZszNamI0/QSn3jdjPlxnYv/iLVIegPI6d0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iQc/JPFVRnOC5RLstK/i3gED+yBTJp3CvDufG2wvnIXPxWSBkYMg/GlxRItqk2B+iVsOKMvv5OPkdmzeQWpA/n+6s+4oCjT2fecDjRz292558bWCYIo9p8oyCHPxR8UE5/NwW+XOFBnTJIGYwri17/XtSqOZVcJcpdmRoJ31Onc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BHPVPXhO; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1705687156; x=1737223156;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dsWHy6JnTZszNamI0/QSn3jdjPlxnYv/iLVIegPI6d0=;
-  b=BHPVPXhOAZHOugZCqwvDgqRddiUrGvzTP4heCcUKhfF3KEPRvDOQRUnk
-   WXYrLwHRvix2ND4dlz8ZM5SbjHdrKDb1DHw8vB53qsCUi6Kuz5fvyjbQ+
-   IwUMWgpmSym8nqum3f/sYcXexLpdzDmFX8PEIVy4K5VtO3ykpTzHnzYZD
-   GYHySpZLZOMoKA68+U15gc5wQ4n9I+GXMGIIfsaXYb24ZOyWIwmg5fh/W
-   ++XC4ykqlyCDDQ/IepX6FCwaxVxdRVPXT5S4qadmqukWoPzn8zTQZIPjs
-   wLIZxq/IhDI3Zo7nifPTJuSnfYOlAWQT7vdKikIofYn4qnOz+/G2DMhNv
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="7500981"
-X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; 
-   d="scan'208";a="7500981"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2024 09:59:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,204,1701158400"; 
-   d="scan'208";a="713160"
-Received: from lkp-server01.sh.intel.com (HELO 961aaaa5b03c) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 19 Jan 2024 09:59:11 -0800
-Received: from kbuild by 961aaaa5b03c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rQt93-0004KW-1x;
-	Fri, 19 Jan 2024 17:59:09 +0000
-Date: Sat, 20 Jan 2024 01:58:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dragan Cvetic <dragan.cvetic@amd.com>, arnd@arndb.de,
-	gregkh@linuxfoundation.org, michal.simek@xilinx.com,
-	linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	mark.rutland@arm.com, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	git@amd.com
-Subject: Re: [PATCH 1/2] dt-bindings: misc: xlnx,sd-fec: convert bindings to
- yaml
-Message-ID: <202401200159.p9T2rwq9-lkp@intel.com>
-References: <20240116111135.3059-2-dragan.cvetic@amd.com>
+	s=arc-20240116; t=1705687493; c=relaxed/simple;
+	bh=bgRl/1mV6nCC7/8mewHFNbsL8Mf2QbeyvLGUeQ1kYI0=;
+	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=uZRiml9hIqje6ZupUa/shozOwxI5sR+BOnfhuxUoWTcYTbGzsydDQ0Dhfc2ThcHcPmNb51C8vMWk3AYyiVdPYHVfPpKAABAWInbq/8iMl/7PSYuCfYH2IP7cVAZ8m2vU/3Eu/dpWUmW8K04ggDTEKvPGjWHB2vzMxzM9eqKMC4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=S0vcNdiB; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-1d45f182fa2so9205265ad.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 10:04:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1705687490; x=1706292290; darn=vger.kernel.org;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=9OnOpw09nk9GsaCfgt51J6PR/mB2ZPOCBoQWiPEwKGU=;
+        b=S0vcNdiBYVCvvo0zDlK0Y8fxcQ5ZHI0/ONB3Sm9ZAwKJt1n0dGewELOqPoi1LwUYRH
+         7JzRs/OFzPLVSR7w6xV1MMwopwHFBbiZ2VzxiQd39jis5X0+q7YTP/IeUTjbt3PV5jFi
+         4BC4O+LZRhtu4MD8IqctscSLDPEpfRcn68E3Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705687490; x=1706292290;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9OnOpw09nk9GsaCfgt51J6PR/mB2ZPOCBoQWiPEwKGU=;
+        b=anm4qpNvwoeBENnI+i31gD4T4Mi9K9cBd+mBJjTUVh0nZpdmWh6hdq4EUn+UQX9pEA
+         dVqhHPwoLwvP8gV4s2qH39s6Ztfmsd+ynP+tA0L+myo1QuGmPYTy8tyOqOTAQmcUSFw1
+         Maye6DfipBaqO8JKZJgK2hDwAXm23c0egW/ajs2kb+135lypMIrY2fh9AoOIW5uKum7q
+         SPg9iTmU5ZEilDlAV/jdkLarLw0fUaplZ4SRxf/Qpk27sAEpOTWvy6xY1idQNaPZXnfz
+         FS6gvCmy0oT7la/T2ksNHmVxGabuvUva+Sq5vBKmdnNbsghZkgdsiqjiis69B8C+pDR/
+         y/jA==
+X-Gm-Message-State: AOJu0YycmAwg7ONq9IU/+w5N4VsvStxPxUgWpTJAUwOnWP5bvDOj6jjg
+	eMeXXbwFXIthgieblxn+y3jUfT4YRN0Z67+azNacKrFjYAiuG3m+X0PdX6gWTA==
+X-Google-Smtp-Source: AGHT+IHXUxTE1TDvyZbks48OoPrImAzVoDuqMzay6upKNKHqc4tOpJRXE8j7pVhUiO8JAdt9xGwnCA==
+X-Received: by 2002:a17:902:d4c3:b0:1d7:1ef5:d325 with SMTP id o3-20020a170902d4c300b001d71ef5d325mr376859plg.34.1705687490137;
+        Fri, 19 Jan 2024 10:04:50 -0800 (PST)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id lc11-20020a170902fa8b00b001d40cc2c9c3sm3322709plb.35.2024.01.19.10.04.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 19 Jan 2024 10:04:48 -0800 (PST)
+Subject: Re: [PATCH v2 05/10] mtd: rawnand: brcmnand: Add BCMBCA read data bus
+ interface
+To: Dan Carpenter <dan.carpenter@linaro.org>, dregan@broadcom.com
+Cc: dregan@mail.com, miquel.raynal@bootlin.com, richard@nod.at,
+ vigneshr@ti.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, computersforpeace@gmail.com, kdasu.kdev@gmail.com,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com,
+ tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
+ anand.gore@broadcom.com, kursad.oney@broadcom.com,
+ florian.fainelli@broadcom.com, rafal@milecki.pl,
+ bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com,
+ baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org
+References: <20240118195356.133391-1-dregan@broadcom.com>
+ <20240118195356.133391-6-dregan@broadcom.com>
+ <4b3f4316-0da4-4fde-a806-7b579948db50@moroto.mountain>
+From: William Zhang <william.zhang@broadcom.com>
+Message-ID: <61f3cc1e-66f4-86d7-659b-9ff1219b4274@broadcom.com>
+Date: Fri, 19 Jan 2024 10:04:46 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240116111135.3059-2-dragan.cvetic@amd.com>
+In-Reply-To: <4b3f4316-0da4-4fde-a806-7b579948db50@moroto.mountain>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="000000000000f8709b060f505047"
 
-Hi Dragan,
+--000000000000f8709b060f505047
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
+Hi,
 
-[auto build test WARNING on soc/for-next]
-[also build test WARNING on robh/for-next linus/master v6.7 next-20240119]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 01/18/2024 09:36 PM, Dan Carpenter wrote:
+> On Thu, Jan 18, 2024 at 11:53:51AM -0800, dregan@broadcom.com wrote:
+>> diff --git a/drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c b/drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c
+>> index 3e2f3b79788d..e97e13ae246c 100644
+>> --- a/drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c
+>> +++ b/drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c
+>> @@ -26,6 +26,18 @@ enum {
+>>   	BCMBCA_CTLRDY		= BIT(4),
+>>   };
+>>   
+>> +#if defined(CONFIG_ARM64)
+>> +#define ALIGN_REQ		8
+>> +#else
+>> +#define ALIGN_REQ		4
+>> +#endif
+>> +
+>> +static inline bool bcmbca_nand_is_buf_aligned(void *flash_cache,  void *buffer)
+>> +{
+>> +	return IS_ALIGNED((uintptr_t)buffer, ALIGN_REQ) &&
+>> +				IS_ALIGNED((uintptr_t)flash_cache, ALIGN_REQ);
+>> +}
+>> +
+>>   static bool bcmbca_nand_intc_ack(struct brcmnand_soc *soc)
+>>   {
+>>   	struct bcmbca_nand_soc *priv =
+>> @@ -56,6 +68,20 @@ static void bcmbca_nand_intc_set(struct brcmnand_soc *soc, bool en)
+>>   	brcmnand_writel(val, mmio);
+>>   }
+>>   
+>> +static void bcmbca_read_data_bus(struct brcmnand_soc *soc,
+>> +				 void __iomem *flash_cache,  u32 *buffer, int fc_words)
+>> +{
+>> +	/*
+>> +	 * memcpy can do unaligned aligned access depending on source
+>> +	 * and dest address, which is incompatible with nand cache. Fallback
+>> +	 * to the memcpy for io version
+>> +	 */
+>> +	if (bcmbca_nand_is_buf_aligned((void *)flash_cache, buffer))
+>> +		memcpy((void *)buffer, (void *)flash_cache, fc_words * 4);
+>> +	else
+>> +		memcpy_fromio((void *)buffer, flash_cache, fc_words * 4);
+>> +}
+> 
+> This comment is confusing or maybe the if statement is reversed...
+> We're falling back to memcpy_fromio() for the unaligned accesses but the
+> comment says we're falling back to memcpy().
+> 
+Yes that's a typo. Fallback to memcpy_fromio when unalgined.  Will 
+update the comments in v3. Thanks!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dragan-Cvetic/dt-bindings-misc-xlnx-sd-fec-convert-bindings-to-yaml/20240116-191349
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git for-next
-patch link:    https://lore.kernel.org/r/20240116111135.3059-2-dragan.cvetic%40amd.com
-patch subject: [PATCH 1/2] dt-bindings: misc: xlnx,sd-fec: convert bindings to yaml
-reproduce: (https://download.01.org/0day-ci/archive/20240120/202401200159.p9T2rwq9-lkp@intel.com/reproduce)
+> regards,
+> dan carpenter
+> 
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401200159.p9T2rwq9-lkp@intel.com/
+--000000000000f8709b060f505047
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-All warnings (new ones prefixed by >>):
-
->> Warning: Documentation/misc-devices/xilinx_sdfec.rst references a file that doesn't exist: linux-xlnx/Documentation/devicetree/bindings/misc/xlnx,sd-fec.txt
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHG99h/evlbXjkEiueEHtlGjPoyC
+Y5F4U8avZ/jNl85GMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0
+MDExOTE4MDQ1MFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCtDfAtQjyUkzgplV+Yv01ykYQ71ciHLUddlKZojRXpNqcS
+oVItDODTro/zUThq2dyqp2tzm8ieZXHMHgNI/kAZdZxGDRLeTOm9v/9g0Fo1qmpILG4EQmlv5uEy
+L8H42hHNhdhXZGWY3dIJUs9EnECzrAWfB2LCO0US8b879LkcUFJnlj00Ozk4KJrsrlvkLcSde9+8
+ghVd1JO0E1y8LIQ1ka7gG6UrDdZsHguOHUVPKINuBf5ATeuXgGClnDaslsC1jl53dri2K7YPBKq7
+IMa4xJnufHtfoOf/01wHSp9KPPxv6LnYmlNm6o096DjTEs+ta0i4iwnddqF0Xcl1FnPP
+--000000000000f8709b060f505047--
 
