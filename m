@@ -1,260 +1,211 @@
-Return-Path: <devicetree+bounces-33130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F01283259B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 09:20:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D158325A4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 09:21:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C569E287903
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 08:20:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4372C1C22638
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 08:21:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1ABDDD4;
-	Fri, 19 Jan 2024 08:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B8E1D684;
+	Fri, 19 Jan 2024 08:21:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iEMVNWWc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VC4qEhkr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69B61F5E6;
-	Fri, 19 Jan 2024 08:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40457DDD2
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 08:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705652406; cv=none; b=IYJS8Lo4GEIIr8X63kHtGiV1+Zl3bSX6PRTSHAYRPV1kCl+sB6wUH5G3RDVSoWDCdkLygMnz9eInsMB+4gYBILeT8AxCUfJgm0sJ2euKHsTTcOQHehetbm90vKPVFjeZcDY7VNqZiSGNCRqh0eJmKD7GdFMptl06q2Bez8h8lqk=
+	t=1705652496; cv=none; b=MT0h3nueXu+iS3d4ZGpv+kR0SXBOGRnQJJdKQmz3iKGQjFmM/pmyAPBY/m5f7HyOx65hJo1Rs0Jx1qPsd5Wc3kok6FMGzE0r4e/zkVnKbAhdR8TOrgSPvFnO/xEySeYGl5OSQIuHiEih4OSNGwA1L0DhQnztFWt7VAonF83Af9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705652406; c=relaxed/simple;
-	bh=hFt0zTpCZQ0fcZH0knVkNJSLARQZkEOuOozfO1PQzvk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=c8tVGf7VF3V8l1RXd5bRwsDgRdKvJerZ51Kuq3K9EaHXqB21u8TMSR8xg2XYu2UAJHRFE79y4sJevLNafzoYJhC4b/s18ceNh6xLQ0836Q7nbGIbObfg0Eg5HzEjY9aHGs4tytdKs7Vwg61mRqiIzE9FGI2yhfOqyq/12kRAQiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iEMVNWWc; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a293f2280c7so50580066b.1;
-        Fri, 19 Jan 2024 00:20:04 -0800 (PST)
+	s=arc-20240116; t=1705652496; c=relaxed/simple;
+	bh=zn3EF8QerR5hBzBmKIvNp2U4qAYqmyg0w+hUZQ6N5FY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uCBdNFnZfSminJcW6TqOY786//cQHgPYA2Uvd1YUIOB/85mVHo4tXLIuyPGIitZckk43L9PxVt6n1nB2/Q0W0E8BN7zeamgQxitfxQRwCQnmDQOvyJN3xn/zJaaAx/0hFEuxPZbsFtd00zN3Y1RL5A6ukacf3WXK1ncftOAIaqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VC4qEhkr; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6db0fdd2b8fso374524b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 00:21:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705652403; x=1706257203; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=lsR+tvff2CxAiZo34B7B8Rp+iXMZjWM108KbbjhVJjU=;
-        b=iEMVNWWc5MMRGokrIDeFaTnIVyY+mfgvrE/Ln/BVoYrMdw/e/vV1k/V9fyIGj1btHJ
-         kXWcgbVZLry1owsMlehN33XBJ9aHIwqib4xg8c685PGWlbgfTeTOrNWqQSERAPFv1PKo
-         an1B4MRmuQ4ie4T3YFvI0VUcPJjvVVdc+jCD9a5qcCpQ8PF/gOsDQQtE6NbQ4F6OUuBI
-         zP3U+qx1JjT9QLRhvAwA2xk98oiVsFLTX7obmlOyNK0MPD8BfkZrir8psJs1oit7RdVE
-         8AIf+U/vdtCltwpUiPIm+EodQqINknyqAKfLEc+rwEA53v9wukPb7WNhl77ZnR9AzgU/
-         OqVA==
+        d=linaro.org; s=google; t=1705652494; x=1706257294; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vzKTnHwxbCMPGZQPhDaxWJVi4qnGS8BV5+OJPh3a1F0=;
+        b=VC4qEhkr7rfthC+D7enZsbF0+jmBeD3Tn4YEj8znBMR7y8Jj7g0u5LNhgollg8QRh6
+         VaqVAQEFlhm6k3wJ6q5j7ycu4VVHobxeFxBkWOqwWoUsC77jHqyOAGGN2Iq6kuLqUlNg
+         gP91h9cyLEV0F0nRrmA03C8JdHXItg01YcM4uGcpd4rCT38COEWzWeKYkVUO0nnOC46e
+         aUyc55F/3+OIzJK85v/izuB6pjgZ0u2m20ZIzKQjQM1UqVKhokV0fP//vDWP+g//u95N
+         M6NkMkqXDDfRONLOE03z5RmxGdi6c/o3VYO6AtJLogSjNzGEJjpK3Vvm2hYBfHsRpFEg
+         5bGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705652403; x=1706257203;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lsR+tvff2CxAiZo34B7B8Rp+iXMZjWM108KbbjhVJjU=;
-        b=anrE4Q3suReInIvThDJxGf+6UCSIGs0hqMeO8NgR1NbCUFypjdOb2UBAnwv3B8fBR0
-         BzbFsnVKngDhXrKtR2X6+AbKkNvbO0wH0Gpg9UIm84ZjCYze89ScRVCQkaRvR99TR2zw
-         k0mFyn2svfgGANDMuQH0siTlR6pzdzD91qcriEppsGRNpfL1B0MxprZC5EkwJZG4fQip
-         Dr/+RxUQ77UuzPmNRvN93gLoK5L7pNHsim6LSmX6eZLPCRILShtfQicZnLxOr8XXgTv8
-         L/RlIl4Npt+LrVZHzaEIWDCiBQA3XmlIm9SJrgiv2p+5tKjMwTB2k4aGnDwnxalfbINL
-         P2hg==
-X-Gm-Message-State: AOJu0YymQe+tnr0bqEBk5pwlXtBXpY6+OhuiBP6vfUyjdGSOdUqHH93k
-	Wo23iE3Si3iaY+V+Vp4HvzyoeBrxQ1KOll7P0f1uqQyZJxSfYKZw
-X-Google-Smtp-Source: AGHT+IFUQIABA97/qbaltUDYCF8bxq90AhedbqLqcAOZYYjG89W9tASZQCsvcezLrSwzM1fVauZ0gA==
-X-Received: by 2002:a17:907:d386:b0:a2f:76b8:6956 with SMTP id vh6-20020a170907d38600b00a2f76b86956mr120109ejc.25.1705652402674;
-        Fri, 19 Jan 2024 00:20:02 -0800 (PST)
-Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
-        by smtp.gmail.com with ESMTPSA id wb3-20020a170907d50300b00a2cc6398083sm8981998ejc.10.2024.01.19.00.20.02
+        d=1e100.net; s=20230601; t=1705652494; x=1706257294;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vzKTnHwxbCMPGZQPhDaxWJVi4qnGS8BV5+OJPh3a1F0=;
+        b=Qk+3UnvHtr7hA26nugMbDOfwNj0uDwA6le5vCA4TanAgJfSN1m/UJIpdIFDSqXlE23
+         cfMjP+UU1MvOhSzTFHVwSaJQmIcxBANQIN2OAdL8KB23zX5THN/mnN+RU8y5sfLMXHgh
+         jf51+rm16b0E0eqcTqkAk7EnOY78rv8BDUoNaYD01gVGR+VDGirx9XPbU0QPCJ0ImphW
+         BRhY2Bfygaadv3JIhv1S+HvvF2BgqnFkkCqtaqzB9hUiWtWOkzduA9tfAjGGX4Vpzixe
+         VZNlJfCJ1OR7w1+yP87fBgqQJwFixkkLSG5qFxHMIdC/1p2bjMu8ebLA0NztttpZlpF7
+         0yvA==
+X-Gm-Message-State: AOJu0YxzsIT1JFZ5ahDJx0cm4Ze+rZIQkIXb+yKNxiZVZVIIwiwQkpsZ
+	s58870ky9myd1usXcsn2QArNwt4FEkQNsyqPRvkwmc9MdqsrTkTsEcIY3kS33A==
+X-Google-Smtp-Source: AGHT+IGtKsOMu6fz5BnJN92myr8axyoZasZEJtgQOOfeJp65T4qLjy6ks0VOBpseItPjFwP+nFnowA==
+X-Received: by 2002:a17:902:e5ce:b0:1d7:14ad:dc61 with SMTP id u14-20020a170902e5ce00b001d714addc61mr1504246plf.70.1705652494560;
+        Fri, 19 Jan 2024 00:21:34 -0800 (PST)
+Received: from thinkpad ([117.248.2.56])
+        by smtp.gmail.com with ESMTPSA id q4-20020a170902c9c400b001d71c6df049sm848181pld.210.2024.01.19.00.21.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jan 2024 00:20:02 -0800 (PST)
-Message-ID: <0f32caa9a11305333f1f18b97c97d775f4a5bb9a.camel@gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: iio: frequency: add admfm2000
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>, Conor Dooley
-	 <conor@kernel.org>
-Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>, 
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Jonathan
- Cameron <jic23@kernel.org>,  Lars-Peter Clausen <lars@metafoo.de>,
- "Hennerich, Michael" <Michael.Hennerich@analog.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Crt Mori <cmo@melexis.com>, Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Fri, 19 Jan 2024 09:20:01 +0100
-In-Reply-To: <PH0PR03MB71410860593D3C7253B200FCF9702@PH0PR03MB7141.namprd03.prod.outlook.com>
-References: <20240118085856.70758-1-kimseer.paller@analog.com>
-	 <20240118085856.70758-2-kimseer.paller@analog.com>
-	 <20240118-steadily-coauthor-de8275118901@spud>
-	 <PH0PR03MB71410860593D3C7253B200FCF9702@PH0PR03MB7141.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
+        Fri, 19 Jan 2024 00:21:34 -0800 (PST)
+Date: Fri, 19 Jan 2024 13:51:27 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: krzysztof.kozlowski@linaro.org, bhelgaas@google.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+	helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+	kw@linux.com, l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+	shawnguo@kernel.org
+Subject: Re: [PATCH v8 02/16] PCI: imx6: Simplify phy handling by using
+ IMX6_PCIE_FLAG_HAS_PHYDRV
+Message-ID: <20240119082127.GE2866@thinkpad>
+References: <20240108232145.2116455-1-Frank.Li@nxp.com>
+ <20240108232145.2116455-3-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240108232145.2116455-3-Frank.Li@nxp.com>
 
-Hi Kim,
+On Mon, Jan 08, 2024 at 06:21:31PM -0500, Frank Li wrote:
+> Add IMX6_PCIE_FLAG_HAS_PHYDRV bitmask define for drvdata::flags. Reduce
+> switch-case structure for handling phy.
+> 
 
-On Fri, 2024-01-19 at 00:30 +0000, Paller, Kim Seer wrote:
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: Friday, January 19, 2024 12:10 AM
-> > To: Paller, Kim Seer <KimSeer.Paller@analog.com>
-> > Cc: linux-iio@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; Jonathan Cameron <jic23@kernel.org>; Lars-Peter
-> > Clausen <lars@metafoo.de>; Hennerich, Michael
-> > <Michael.Hennerich@analog.com>; Rob Herring <robh+dt@kernel.org>;
-> > Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> > <conor+dt@kernel.org>; Crt Mori <cmo@melexis.com>; Linus Walleij
-> > <linus.walleij@linaro.org>; Bartosz Golaszewski <brgl@bgdev.pl>
-> > Subject: Re: [PATCH v6 1/2] dt-bindings: iio: frequency: add admfm2000
-> >=20
-> > [External]
-> >=20
-> > Hey,
-> >=20
-> > On Thu, Jan 18, 2024 at 04:58:55PM +0800, Kim Seer Paller wrote:
-> > > Dual microwave down converter module with input RF and LO frequency
-> > > ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 t=
-o
-> > > 8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
-> > > for each down conversion path.
-> > >=20
-> > > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> > > ---
-> > > V5 -> V6: Moved array of switch and attenuation GPIOs to the channel =
-node.
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Changed pin co=
-ords with friendly names. Removed Reviewed-by tag.
-> > > V4 -> V5: Added Reviewed-by tag.
-> > > V3 -> V4: Updated the description of the properties with multiple ent=
-ries and
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 defined the or=
-der.
-> > > V2 -> V3: Adjusted indentation to resolve wrong indentation warning.
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Changed node n=
-ame to converter. Updated the descriptions to clarify
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the properties=
-.
-> > > V1 -> V2: Removed '|' after description. Specified the pins connected=
- to
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the GPIOs. Add=
-ed additionalProperties: false. Changed node name to
-> > gpio.
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Aligned < synt=
-ax with the previous syntax in the examples.
-> > >=20
-> > > =C2=A0.../bindings/iio/frequency/adi,admfm2000.yaml | 129 +++++++++++=
-+++++++
-> > > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 7 +
-> > > =C2=A02 files changed, 136 insertions(+)
-> > > =C2=A0create mode 100644
-> > Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
-> > >=20
-> > > diff --git
-> > a/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
-> > b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
-> > > new file mode 100644
-> > > index 000000000000..6f2c91c38666
-> > > --- /dev/null
-> > > +++
-> > b/Documentation/devicetree/bindings/iio/frequency/adi,admfm2000.yaml
-> > > @@ -0,0 +1,129 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +# Copyright 2023 Analog Devices Inc.
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iio/frequency/adi,admfm2000.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: ADMFM2000 Dual Microwave Down Converter
-> > > +
-> > > +maintainers:
-> > > +=C2=A0 - Kim Seer Paller <kimseer.paller@analog.com>
-> > > +
-> > > +description:
-> > > +=C2=A0 Dual microwave down converter module with input RF and LO fre=
-quency
-> > ranges
-> > > +=C2=A0 from 0.5 to 32 GHz and an output IF frequency range from 0.1 =
-to 8 GHz.
-> > > +=C2=A0 It consists of a LNA, mixer, IF filter, DSA, and IF amplifier=
- for each down
-> > > +=C2=A0 conversion path.
-> > > +
-> > > +properties:
-> > > +=C2=A0 compatible:
-> > > +=C2=A0=C2=A0=C2=A0 enum:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,admfm2000
-> > > +
-> > > +=C2=A0 '#address-cells':
-> > > +=C2=A0=C2=A0=C2=A0 const: 1
-> > > +
-> > > +=C2=A0 '#size-cells':
-> > > +=C2=A0=C2=A0=C2=A0 const: 0
-> > > +
-> > > +patternProperties:
-> > > +=C2=A0 "^channel@[0-1]$":
-> > > +=C2=A0=C2=A0=C2=A0 type: object
-> > > +=C2=A0=C2=A0=C2=A0 description: Represents a channel of the device.
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0 additionalProperties: false
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0 properties:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 The channel n=
-umber.
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minimum: 0
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maximum: 1
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,mode:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description:
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RF path selec=
-ted for the channel.
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0=
- - Direct IF mode
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1=
- - Mixer mode
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml=
-#/definitions/uint32
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum: [0, 1]
-> >=20
-> > How come this is an enum, rather than a boolean property such as
-> > "adi,mixer-mode"?
->=20
-> I used an enum, perhaps because it was easier to implement. However, this
-> could be changed if a boolean property might be more suitable in this cas=
-e.
-> Is that the preferred option?
->=20
+"Since some i.MX platforms make use of the separate PHY driver, use
+IMX6_PCIE_FLAG_HAS_PHYDRV flag to identify them and get the reference to PHY
+from DT. This simplifies the code."
 
-Hmmm, How is the enum easier than a boolean property :)? I guess the device=
- has a
-default mode. So, if it is Direct IF mode you have 'adi,mixer-mode' to enab=
-le that
-mode and that's it. So the code is pretty much just:
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-if (device_property_read_bool()) {
-	/* enable mixer mode */
-}
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Also remember that from a bindings point of view being easier to implement =
-or not in
-the driver does not matter much. Take for an example, properties with well =
-know units
-like 'microamp'. It would be much easier to just have an enum with the devi=
-ce
-register values but that's not how we should do it since it wouldn't be int=
-uitive at
-all for people reading devicetrees.
+- Mani
 
-- Nuno S=C3=A1
+> ---
+> 
+> Notes:
+>     Change from v7 to v8:
+>     - renmae IMX6_PCIE_FLAG_HAS_PHY to IMX6_PCIE_FLAG_HAS_PHYDRV
+>     Change from v6 to v7:
+>     - none
+>     Change from v4 to v5:
+>     - none, Keep IMX6_PCIE_FLAG_HAS_PHY to indicate dts mismatch when platform
+>     require phy suppport.
+>     
+>     Change from v1 to v3:
+>     - none
+> 
+>  drivers/pci/controller/dwc/pci-imx6.c | 24 +++++++++++++++++-------
+>  1 file changed, 17 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 4912c6b08ecf8..adc90099ec7f8 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -60,6 +60,9 @@ enum imx6_pcie_variants {
+>  #define IMX6_PCIE_FLAG_IMX6_PHY			BIT(0)
+>  #define IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE	BIT(1)
+>  #define IMX6_PCIE_FLAG_SUPPORTS_SUSPEND		BIT(2)
+> +#define IMX6_PCIE_FLAG_HAS_PHYDRV			BIT(3)
+> +
+> +#define imx6_check_flag(pci, val)     (pci->drvdata->flags & val)
+>  
+>  #define IMX6_PCIE_MAX_CLKS       6
+>  
+> @@ -1277,6 +1280,13 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (imx6_check_flag(imx6_pcie, IMX6_PCIE_FLAG_HAS_PHYDRV)) {
+> +		imx6_pcie->phy = devm_phy_get(dev, "pcie-phy");
+> +		if (IS_ERR(imx6_pcie->phy))
+> +			return dev_err_probe(dev, PTR_ERR(imx6_pcie->phy),
+> +					     "failed to get pcie phy\n");
+> +	}
+> +
+>  	switch (imx6_pcie->drvdata->variant) {
+>  	case IMX7D:
+>  		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+> @@ -1306,11 +1316,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  			return dev_err_probe(dev, PTR_ERR(imx6_pcie->apps_reset),
+>  					     "failed to get pcie apps reset control\n");
+>  
+> -		imx6_pcie->phy = devm_phy_get(dev, "pcie-phy");
+> -		if (IS_ERR(imx6_pcie->phy))
+> -			return dev_err_probe(dev, PTR_ERR(imx6_pcie->phy),
+> -					     "failed to get pcie phy\n");
+> -
+>  		break;
+>  	default:
+>  		break;
+> @@ -1458,14 +1463,17 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  	},
+>  	[IMX8MM] = {
+>  		.variant = IMX8MM,
+> -		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> +		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND |
+> +			 IMX6_PCIE_FLAG_HAS_PHYDRV |
+> +			 IMX6_PCIE_FLAG_HAS_APP_RESET,
+>  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+>  		.clk_names = imx6_3clks_bus_pcie_aux,
+>  		.clks_cnt = ARRAY_SIZE(imx6_3clks_bus_pcie_aux),
+>  	},
+>  	[IMX8MP] = {
+>  		.variant = IMX8MP,
+> -		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+> +		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND |
+> +			 IMX6_PCIE_FLAG_HAS_PHYDRV,
+>  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+>  		.clk_names = imx6_3clks_bus_pcie_aux,
+>  		.clks_cnt = ARRAY_SIZE(imx6_3clks_bus_pcie_aux),
+> @@ -1479,6 +1487,7 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  	},
+>  	[IMX8MM_EP] = {
+>  		.variant = IMX8MM_EP,
+> +		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+>  		.clk_names = imx6_3clks_bus_pcie_aux,
+> @@ -1486,6 +1495,7 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  	},
+>  	[IMX8MP_EP] = {
+>  		.variant = IMX8MP_EP,
+> +		.flags = IMX6_PCIE_FLAG_HAS_PHYDRV,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+>  		.clk_names = imx6_3clks_bus_pcie_aux,
+> -- 
+> 2.34.1
+> 
 
+-- 
+மணிவண்ணன் சதாசிவம்
 
