@@ -1,360 +1,226 @@
-Return-Path: <devicetree+bounces-33219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F27B83294D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 12:58:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D9CA832953
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:05:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3FC61C2345F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:58:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8E8E1F24E64
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 12:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 734E24F1E8;
-	Fri, 19 Jan 2024 11:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 365974F1E6;
+	Fri, 19 Jan 2024 12:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="OsvDJ6HB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37BE524B5E;
-	Fri, 19 Jan 2024 11:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1FAB4EB27;
+	Fri, 19 Jan 2024 12:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705665508; cv=none; b=thqRwpgIJposqS6p81sGoAaxE4+9vW46wLoC/ipdlCezjBLDKvbgIDRKNFjsf7Qx4/IWiaT1R01bIsCijCR4zlX/BlybYejaLNWVHEiit7hmBvEFG8hYwsOCPMmFri1hNyR+GsfJKteDNENWemBbG9fViAe3+j3FiHJ7MQOx+bU=
+	t=1705665896; cv=none; b=h+UzrfrGgAmuS3M0/GA0YooA801pobhrDulRp1Svs6Kv0sQsWCoAs+MkwKPc92zZAGdCGS1uRsozKlMeLHhaDYEIrLgjPKBZctI0hPv88HbIz6/0xT3zbaGxk2vHV0pGiVIYv8q1BcZCip5FA8IS0u2DSUUIvmRgr8TXi/RBXOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705665508; c=relaxed/simple;
-	bh=yXwiRAsMr8h7baj7xy5yFVaOTTD+HkQfavgGqVB2GXw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b4bpdEhYxP3DeHrC4EGGvGDaUDB1hTyq30kF3pTacPaODBEmiNp6twBiqlbkTxWUrq5QB/PLNJ4JFjpJs2uyCJ9eGn+ttlPyXcoy0ttgVryfuH+prXKFDL3n4yB7ZELtZb+EnNjoCRY4q2TunibtDHR6Qhpw+zveI1/6Bcw0qQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CC70E1042;
-	Fri, 19 Jan 2024 03:59:09 -0800 (PST)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 15A8E3F73F;
-	Fri, 19 Jan 2024 03:58:19 -0800 (PST)
-Message-ID: <7831e83e-9c26-412a-b78a-ed58ee02c5b1@arm.com>
-Date: Fri, 19 Jan 2024 11:58:16 +0000
+	s=arc-20240116; t=1705665896; c=relaxed/simple;
+	bh=j6iDGS0RH2zPYPqLFo5vTY1M1nOg2boEqT3Tjpt4eYs=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hrPJQcqsEC2uy9PQXOtAkXZmWqdqiwIuh6+H6sN6Z9hyoHWqZ5R+szXSuFrV6QPSikHVT0XjWR/frIDe0u45sBTOihOq7W3JEJJcydsVI45vBHet2HYa/yNl3ecDcjfW1852oT4t5D4RbFizqNTolkiO5H/4YnZ8JQL+C4aL9ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=OsvDJ6HB; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1705665893; x=1737201893;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=j6iDGS0RH2zPYPqLFo5vTY1M1nOg2boEqT3Tjpt4eYs=;
+  b=OsvDJ6HBNaFV7Fe4cRWy+Es8ve9VMExVo/CKWciLVLkVUsJJLC2G03LM
+   4l0XKm88oJs07VGIPT/OzD3vdTLr+j5eM2iShRzHZTRd2yQa1qWG+dzlL
+   TYj5SK2DRk8diNE476Juay3dlyHar/xV7ojjuSMN+lt8boOf/HkAiz857
+   rOxLYE0fTwg7+qNr6PpPBDw9EWc8ZLF1i2S6gqTDTQWymI/THFHfbPfjj
+   NzM5JE1lDesPpZabm3KjaDrbg1UFsHaAShKGveHFr+ZQ8Y55uNy2KDzFv
+   2ck5Im72zEeK4ktbCPoUOr6SxI6BdaO0mcCAJxI8VBml5zgk52Ulu0idq
+   g==;
+X-CSE-ConnectionGUID: A5LlJf7nQL6xcXZAQ6I1bw==
+X-CSE-MsgGUID: tkta2MrESBqXD4cPHCDwpQ==
+X-IronPort-AV: E=Sophos;i="6.05,204,1701154800"; 
+   d="asc'?scan'208";a="14994207"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Jan 2024 05:04:52 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 19 Jan 2024 05:04:24 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex02.mchp-main.com (10.10.85.144)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 19 Jan 2024 05:04:20 -0700
+Date: Fri, 19 Jan 2024 12:03:43 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: <Dharma.B@microchip.com>
+CC: <conor@kernel.org>, <sam@ravnborg.org>, <bbrezillon@kernel.org>,
+	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+	<tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<lee@kernel.org>, <thierry.reding@gmail.com>,
+	<u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>,
+	<Linux4Microchip@microchip.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
+ schema format
+Message-ID: <20240119-character-mardi-43571d7fe7d5@wendy>
+References: <20240118092612.117491-1-dharma.b@microchip.com>
+ <20240118092612.117491-4-dharma.b@microchip.com>
+ <20240118-recent-glorified-fd35d72e006e@spud>
+ <c33868c8-dc42-4800-885c-5e5f24c2044e@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/10] coresight-tpdm: Add pattern registers support
- for CMB
-Content-Language: en-US
-To: Tao Zhang <quic_taozha@quicinc.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Konrad Dybcio <konradybcio@gmail.com>, Mike Leach <mike.leach@linaro.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Trilok Soni <quic_tsoni@quicinc.com>, Song Chai <quic_songchai@quicinc.com>,
- linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1705634583-17631-1-git-send-email-quic_taozha@quicinc.com>
- <1705634583-17631-8-git-send-email-quic_taozha@quicinc.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1705634583-17631-8-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="a0WqJfirCmr9EVhF"
+Content-Disposition: inline
+In-Reply-To: <c33868c8-dc42-4800-885c-5e5f24c2044e@microchip.com>
 
-On 19/01/2024 03:23, Tao Zhang wrote:
-> Timestamps are requested if the monitor’s CMB data set unit input
-> data matches the value in the Monitor CMB timestamp pattern and mask
-> registers (M_CMB_TPR and M_CMB_TPMR) when CMB timestamp enabled
-> via the timestamp insertion enable register bit(CMB_TIER.PATT_TSENAB).
-> The pattern match trigger output is achieved via setting values into
-> the CMB trigger pattern and mask registers (CMB_XPR and CMB_XPMR).
-> After configuring a pattern through these registers, the TPDM subunit
-> will assert an output trigger every time it receives new input data
-> that matches the configured pattern value. Values in a given bit
-> number of the mask register correspond to the same bit number in
-> the corresponding pattern register.
-> 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> ---
->   .../testing/sysfs-bus-coresight-devices-tpdm  | 30 ++++++
->   drivers/hwtracing/coresight/coresight-tpdm.c  | 98 ++++++++++++++++++-
->   drivers/hwtracing/coresight/coresight-tpdm.h  | 39 ++++++++
->   3 files changed, 166 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> index 3ae21ccf3f29..898aee81e20d 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> @@ -184,3 +184,33 @@ Description:	(Write) Set the data collection mode of CMB tpdm. Continuous
->   		Accepts only one of the 2 values -  0 or 1.
->   		0 : Continuous CMB collection mode.
->   		1 : Trace-on-change CMB collection mode.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/cmb_trig_patt/xpr[0:1]
-> +Date:		March 2023
-> +KernelVersion	6.7
+--a0WqJfirCmr9EVhF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This must be fixed to 6.9 now and also move the year to 2024. Rest looks 
-fine.
+On Fri, Jan 19, 2024 at 03:32:49AM +0000, Dharma.B@microchip.com wrote:
+> On 18/01/24 9:10 pm, Conor Dooley wrote:
+> > On Thu, Jan 18, 2024 at 02:56:12PM +0530, Dharma Balasubiramani wrote:
+> >> Convert the atmel,hlcdc binding to DT schema format.
+> >>
+> >> Adjust the clock-names property to clarify that the LCD controller exp=
+ects
+> >> one of these clocks (either sys_clk or lvds_pll_clk to be present but =
+not
+> >> both) along with the slow_clk and periph_clk. This alignment with the =
+actual
+> >> hardware requirements will enable accurate device tree configuration f=
+or
+> >> systems using the HLCDC IP.
+> >>
+> >> Signed-off-by: Dharma Balasubiramani<dharma.b@microchip.com>
+> >> ---
+> >> changelog
+> >> v2 -> v3
+> >> - Rename hlcdc-display-controller and hlcdc-pwm to generic names.
+> >> - Modify the description by removing the unwanted comments and '|'.
+> >> - Modify clock-names simpler.
+> >> v1 -> v2
+> >> - Remove the explicit copyrights.
+> >> - Modify title (not include words like binding/driver).
+> >> - Modify description actually describing the hardware and not the driv=
+er.
+> >> - Add details of lvds_pll addition in commit message.
+> >> - Ref endpoint and not endpoint-base.
+> >> - Fix coding style.
+> >> ...
+> >>   .../devicetree/bindings/mfd/atmel,hlcdc.yaml  | 97 +++++++++++++++++=
+++
+> >>   .../devicetree/bindings/mfd/atmel-hlcdc.txt   | 56 -----------
+> >>   2 files changed, 97 insertions(+), 56 deletions(-)
+> >>   create mode 100644 Documentation/devicetree/bindings/mfd/atmel,hlcdc=
+=2Eyaml
+> >>   delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-hlcdc=
+=2Etxt
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml b/=
+Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
+> >> new file mode 100644
+> >> index 000000000000..eccc998ac42c
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
+> >> @@ -0,0 +1,97 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id:http://devicetree.org/schemas/mfd/atmel,hlcdc.yaml#
+> >> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Atmel's HLCD Controller
+> >> +
+> >> +maintainers:
+> >> +  - Nicolas Ferre<nicolas.ferre@microchip.com>
+> >> +  - Alexandre Belloni<alexandre.belloni@bootlin.com>
+> >> +  - Claudiu Beznea<claudiu.beznea@tuxon.dev>
+> >> +
+> >> +description:
+> >> +  The Atmel HLCDC (HLCD Controller) IP available on Atmel SoCs expose=
+s two
+> >> +  subdevices, a PWM chip and a Display Controller.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - atmel,at91sam9n12-hlcdc
+> >> +      - atmel,at91sam9x5-hlcdc
+> >> +      - atmel,sama5d2-hlcdc
+> >> +      - atmel,sama5d3-hlcdc
+> >> +      - atmel,sama5d4-hlcdc
+> >> +      - microchip,sam9x60-hlcdc
+> >> +      - microchip,sam9x75-xlcdc
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  interrupts:
+> >> +    maxItems: 1
+> >> +
+> >> +  clocks:
+> >> +    maxItems: 3
+> > Hmm, one thing I probably should have said on the previous version, but
+> > I missed somehow: It would be good to add an items list to the clocks
+> > property here to explain what the 3 clocks are/are used for - especially
+> > since there is additional complexity being added here to use either the
+> > sys or lvds clocks.
+> May I inquire if this approach is likely to be effective?
+>=20
+>    clocks:
+>      items:
+>        - description: peripheral clock
+>        - description: generic clock or lvds pll clock
+>            Once the LVDS PLL is enabled, the pixel clock is used as the
+>            clock for LCDC, so its GCLK is no longer needed.
+>        - description: slow clock
+>      maxItems: 3
 
-Suzuki
+Hmm that sounds very suspect to me. "Once the lvdspll is enabled the
+generic clock is no longer needed" sounds like both clocks can be provided
+to the IP on different pins and their provision is not mutually
+exclusive, just that the IP will only actually use one at a time. If
+that is the case, then this patch is nott correct and the binding should
+allow for 4 clocks, with both the generic clock and the lvds pll being
+present in the DT at the same time.
 
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(RW) Set/Get the value of the trigger pattern for the CMB
-> +		subunit TPDM.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/cmb_trig_patt/xpmr[0:1]
-> +Date:		March 2023
-> +KernelVersion	6.7
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(RW) Set/Get the mask of the trigger pattern for the CMB
-> +		subunit TPDM.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpr[0:1]
-> +Date:		March 2023
-> +KernelVersion	6.7
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(RW) Set/Get the value of the pattern for the CMB subunit TPDM.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpmr[0:1]
-> +Date:		March 2023
-> +KernelVersion	6.7
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(RW) Set/Get the mask of the pattern for the CMB subunit TPDM.
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-> index b55aee65a856..079c875ad667 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-> @@ -66,6 +66,26 @@ static ssize_t tpdm_simple_dataset_show(struct device *dev,
->   			return -EINVAL;
->   		return sysfs_emit(buf, "0x%x\n",
->   				drvdata->dsb->msr[tpdm_attr->idx]);
-> +	case CMB_TRIG_PATT:
-> +		if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
-> +			return -EINVAL;
-> +		return sysfs_emit(buf, "0x%x\n",
-> +			drvdata->cmb->trig_patt[tpdm_attr->idx]);
-> +	case CMB_TRIG_PATT_MASK:
-> +		if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
-> +			return -EINVAL;
-> +		return sysfs_emit(buf, "0x%x\n",
-> +			drvdata->cmb->trig_patt_mask[tpdm_attr->idx]);
-> +	case CMB_PATT:
-> +		if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
-> +			return -EINVAL;
-> +		return sysfs_emit(buf, "0x%x\n",
-> +			drvdata->cmb->patt_val[tpdm_attr->idx]);
-> +	case CMB_PATT_MASK:
-> +		if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
-> +			return -EINVAL;
-> +		return sysfs_emit(buf, "0x%x\n",
-> +			drvdata->cmb->patt_mask[tpdm_attr->idx]);
->   	}
->   	return -EINVAL;
->   }
-> @@ -118,6 +138,30 @@ static ssize_t tpdm_simple_dataset_store(struct device *dev,
->   			ret = size;
->   		}
->   		break;
-> +	case CMB_TRIG_PATT:
-> +		if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
-> +			drvdata->cmb->trig_patt[tpdm_attr->idx] = val;
-> +			ret = size;
-> +		}
-> +		break;
-> +	case CMB_TRIG_PATT_MASK:
-> +		if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
-> +			drvdata->cmb->trig_patt_mask[tpdm_attr->idx] = val;
-> +			ret = size;
-> +		}
-> +		break;
-> +	case CMB_PATT:
-> +		if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
-> +			drvdata->cmb->patt_val[tpdm_attr->idx] = val;
-> +			ret = size;
-> +		}
-> +		break;
-> +	case CMB_PATT_MASK:
-> +		if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
-> +			drvdata->cmb->patt_mask[tpdm_attr->idx] = val;
-> +			ret = size;
-> +		}
-> +		break;
->   	default:
->   		break;
->   	}
-> @@ -279,10 +323,32 @@ static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
->   
->   static void tpdm_enable_cmb(struct tpdm_drvdata *drvdata)
->   {
-> -	u32 val;
-> +	u32 val, i;
->   
->   	if (tpdm_has_cmb_dataset(drvdata)) {
-> +		/* Configure pattern registers */
-> +		for (i = 0; i < TPDM_CMB_MAX_PATT; i++) {
-> +			writel_relaxed(drvdata->cmb->patt_val[i],
-> +				drvdata->base + TPDM_CMB_TPR(i));
-> +			writel_relaxed(drvdata->cmb->patt_mask[i],
-> +				drvdata->base + TPDM_CMB_TPMR(i));
-> +			writel_relaxed(drvdata->cmb->trig_patt[i],
-> +				drvdata->base + TPDM_CMB_XPR(i));
-> +			writel_relaxed(drvdata->cmb->trig_patt_mask[i],
-> +				drvdata->base + TPDM_CMB_XPMR(i));
-> +		}
-> +
->   		val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
-> +		/*
-> +		 * Set to 0 for continuous CMB collection mode,
-> +		 * 1 for trace-on-change CMB collection mode.
-> +		 */
-> +		if (drvdata->cmb->trace_mode)
-> +			val |= TPDM_CMB_CR_MODE;
-> +		else
-> +			val &= ~TPDM_CMB_CR_MODE;
-> +
-> +		/* Set the enable bit of CMB control register to 1 */
->   		val |= TPDM_CMB_CR_ENA;
->   
->   		/* Set the enable bit of CMB control register to 1 */
-> @@ -886,6 +952,22 @@ static struct attribute *tpdm_dsb_msr_attrs[] = {
->   	NULL,
->   };
->   
-> +static struct attribute *tpdm_cmb_trig_patt_attrs[] = {
-> +	CMB_TRIG_PATT_ATTR(0),
-> +	CMB_TRIG_PATT_ATTR(1),
-> +	CMB_TRIG_PATT_MASK_ATTR(0),
-> +	CMB_TRIG_PATT_MASK_ATTR(1),
-> +	NULL,
-> +};
-> +
-> +static struct attribute *tpdm_cmb_patt_attrs[] = {
-> +	CMB_PATT_ATTR(0),
-> +	CMB_PATT_ATTR(1),
-> +	CMB_PATT_MASK_ATTR(0),
-> +	CMB_PATT_MASK_ATTR(1),
-> +	NULL,
-> +};
-> +
->   static struct attribute *tpdm_dsb_attrs[] = {
->   	&dev_attr_dsb_mode.attr,
->   	&dev_attr_dsb_trig_ts.attr,
-> @@ -932,6 +1014,18 @@ static struct attribute_group tpdm_cmb_attr_grp = {
->   	.is_visible = tpdm_cmb_is_visible,
->   };
->   
-> +static struct attribute_group tpdm_cmb_trig_patt_grp = {
-> +	.attrs = tpdm_cmb_trig_patt_attrs,
-> +	.is_visible = tpdm_cmb_is_visible,
-> +	.name = "cmb_trig_patt",
-> +};
-> +
-> +static struct attribute_group tpdm_cmb_patt_grp = {
-> +	.attrs = tpdm_cmb_patt_attrs,
-> +	.is_visible = tpdm_cmb_is_visible,
-> +	.name = "cmb_patt",
-> +};
-> +
->   static const struct attribute_group *tpdm_attr_grps[] = {
->   	&tpdm_attr_grp,
->   	&tpdm_dsb_attr_grp,
-> @@ -940,6 +1034,8 @@ static const struct attribute_group *tpdm_attr_grps[] = {
->   	&tpdm_dsb_patt_grp,
->   	&tpdm_dsb_msr_grp,
->   	&tpdm_cmb_attr_grp,
-> +	&tpdm_cmb_trig_patt_grp,
-> +	&tpdm_cmb_patt_grp,
->   	NULL,
->   };
->   
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
-> index 2af92c270ed1..8cb8a9b35384 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
-> @@ -11,12 +11,23 @@
->   
->   /* CMB Subunit Registers */
->   #define TPDM_CMB_CR		(0xA00)
-> +/*CMB subunit timestamp pattern registers*/
-> +#define TPDM_CMB_TPR(n)		(0xA08 + (n * 4))
-> +/*CMB subunit timestamp pattern mask registers*/
-> +#define TPDM_CMB_TPMR(n)	(0xA10 + (n * 4))
-> +/*CMB subunit trigger pattern registers*/
-> +#define TPDM_CMB_XPR(n)		(0xA18 + (n * 4))
-> +/*CMB subunit trigger pattern mask registers*/
-> +#define TPDM_CMB_XPMR(n)	(0xA20 + (n * 4))
->   
->   /* Enable bit for CMB subunit */
->   #define TPDM_CMB_CR_ENA		BIT(0)
->   /* Trace collection mode for CMB subunit */
->   #define TPDM_CMB_CR_MODE	BIT(1)
->   
-> +/*Patten register number*/
-> +#define TPDM_CMB_MAX_PATT		2
-> +
->   /* DSB Subunit Registers */
->   #define TPDM_DSB_CR		(0x780)
->   #define TPDM_DSB_TIER		(0x784)
-> @@ -151,6 +162,22 @@
->   		tpdm_simple_dataset_rw(msr##nr,			\
->   		DSB_MSR, nr)
->   
-> +#define CMB_TRIG_PATT_ATTR(nr)					\
-> +		tpdm_simple_dataset_rw(xpr##nr,			\
-> +		CMB_TRIG_PATT, nr)
-> +
-> +#define CMB_TRIG_PATT_MASK_ATTR(nr)				\
-> +		tpdm_simple_dataset_rw(xpmr##nr,		\
-> +		CMB_TRIG_PATT_MASK, nr)
-> +
-> +#define CMB_PATT_ATTR(nr)					\
-> +		tpdm_simple_dataset_rw(tpr##nr,			\
-> +		CMB_PATT, nr)
-> +
-> +#define CMB_PATT_MASK_ATTR(nr)					\
-> +		tpdm_simple_dataset_rw(tpmr##nr,		\
-> +		CMB_PATT_MASK, nr)
-> +
->   /**
->    * struct dsb_dataset - specifics associated to dsb dataset
->    * @mode:             DSB programming mode
-> @@ -186,9 +213,17 @@ struct dsb_dataset {
->   /**
->    * struct cmb_dataset
->    * @trace_mode:       Dataset collection mode
-> + * @patt_val:         Save value for pattern
-> + * @patt_mask:        Save value for pattern mask
-> + * @trig_patt:        Save value for trigger pattern
-> + * @trig_patt_mask:   Save value for trigger pattern mask
->    */
->   struct cmb_dataset {
->   	u32			trace_mode;
-> +	u32			patt_val[TPDM_CMB_MAX_PATT];
-> +	u32			patt_mask[TPDM_CMB_MAX_PATT];
-> +	u32			trig_patt[TPDM_CMB_MAX_PATT];
-> +	u32			trig_patt_mask[TPDM_CMB_MAX_PATT];
->   };
->   
->   /**
-> @@ -225,6 +260,10 @@ enum dataset_mem {
->   	DSB_PATT,
->   	DSB_PATT_MASK,
->   	DSB_MSR,
-> +	CMB_TRIG_PATT,
-> +	CMB_TRIG_PATT_MASK,
-> +	CMB_PATT,
-> +	CMB_PATT_MASK
->   };
->   
->   /**
+I vaguely recall internal discussion about this problem some time back
+but the details all escape me.
 
+Thanks,
+Conor.
+
+--a0WqJfirCmr9EVhF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaplHwAKCRB4tDGHoIJi
+0lj2AP9K84iq37Rz1ulvFhMipsNqhqMxklWv5GvyAq1ZD/lqSwEAq0vY9saiWwW2
+ah0UOybo+9cGrmPqOmpiVe3FFc6voAU=
+=dla+
+-----END PGP SIGNATURE-----
+
+--a0WqJfirCmr9EVhF--
 
