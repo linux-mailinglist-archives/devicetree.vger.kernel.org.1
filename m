@@ -1,124 +1,291 @@
-Return-Path: <devicetree+bounces-33287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21934832D85
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:54:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02C5832D96
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:59:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E5771C24375
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:54:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F2BB28105D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:59:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D7E5577D;
-	Fri, 19 Jan 2024 16:54:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4604A5578A;
+	Fri, 19 Jan 2024 16:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kYj2yylc"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="Fk4/K4wz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACCA855779;
-	Fri, 19 Jan 2024 16:54:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FC83222;
+	Fri, 19 Jan 2024 16:59:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705683282; cv=none; b=Arb032wR+mT3ca9KJb/eke2V3OIA0TDqhOi0Sb0FOUp/2zbm1TuSMUumOIFDm4dCkA0CBaUmRjsMQX84/W6/bxWlvkhEMs7u5w5CjD6J7HGQN3PKwcFA4y0DvU6Ekr3gpbYgPrrT3IgNasRtgBrq6e5vrXKhVwhIDUs7quUUbus=
+	t=1705683584; cv=none; b=gf17X4mTGsIoaUSpjznDOLnCqoJ1p/nlIJ8P1J/U/IDzBfj9flk0RNcnebihwHGMfBdHmF8hfrm8+vuZoAr/ZEp/yL23S/AZtGNIpQ1RPa/V0TEHo6JvnmZG5xGrVD0oeo9X0MyDwrtg2S99zqP7J6l5I5XY6+Vev77NT4DhyMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705683282; c=relaxed/simple;
-	bh=VF1Z6l0IbpzY9s0IFYKQ4DO9qjHRXBU3M4HJxWlGq40=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uy8jJDkzqNAOExvTUJr7KBXuCxDdAAYzoapPevmCRYhAdJCHyweGryXDBdpZPCFsIYA9jQfMfTn+tJV5xQ5aJCh0QckJoPnBaaQgtOC8R1Y0ep7/zskWQz+63j5rW2FoPOeFH6b9DwI7MTKSQWVyyWZXUl7ATw1oXRSHWz45b6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kYj2yylc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F08DBC433C7;
-	Fri, 19 Jan 2024 16:54:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705683282;
-	bh=VF1Z6l0IbpzY9s0IFYKQ4DO9qjHRXBU3M4HJxWlGq40=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kYj2yylcbYD0c/JE4Hkfjkc9xVn3OuvjAl1IxoAQv88c9FbUcsW8FkiubfOGa7kW4
-	 bpLFNFo5DrzbuwvaxdtBITnaSPmXF4DLNMsN0hkMYeZM7HTCfY+mSny39OG/E93wtv
-	 XVw79kvP+kXZE8ofANGnqejrywYEibHBF9CrcMgMtufb5lJyc66CXH0uuPXLMZTLsh
-	 Wsye1bhUr+FUrCsQcMvkGlirmSqb8c164AsRfouFc3j7rG+uy2MhUrlwNOXu81kgBB
-	 o6vQfFaGZB8RIOeAlcqswaD310RW6h8Ozr5hyvtR1djAKFu48XIZcSTV5j7JsyqAgT
-	 JYcWLk6pOocpg==
-Date: Fri, 19 Jan 2024 16:54:36 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	"Paller, Kim Seer" <KimSeer.Paller@analog.com>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Crt Mori <cmo@melexis.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v6 1/2] dt-bindings: iio: frequency: add admfm2000
-Message-ID: <20240119-mammary-another-f060e43bcdf7@spud>
-References: <20240118085856.70758-1-kimseer.paller@analog.com>
- <20240118085856.70758-2-kimseer.paller@analog.com>
- <20240118-steadily-coauthor-de8275118901@spud>
- <PH0PR03MB71410860593D3C7253B200FCF9702@PH0PR03MB7141.namprd03.prod.outlook.com>
- <0f32caa9a11305333f1f18b97c97d775f4a5bb9a.camel@gmail.com>
- <20240119-squad-unflawed-934627f0e394@wendy>
- <dd3051170bc9724ca7e2884344dee3bc7b8f0a85.camel@gmail.com>
+	s=arc-20240116; t=1705683584; c=relaxed/simple;
+	bh=/RTX58XL94ocwmizyKYw7r77E3GtN+fp1k8zVgqC6ko=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tFAOKBeMUcEPg5KdPkDwT+Q4FdV3a+Rm+qPOPsfidvOpO3BNBoSxB5ijEL0+ebFejyz++hERyuGKOPmVNjlQlJHGWW/vRGKSqC7AowhscOUthyZrePI/teOwoaqfyxETiMhz08epLdbUqKvOm83Yg72BUt7xuUFR8ZjB9x5ir8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=Fk4/K4wz; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40J6jRvp022386;
+	Fri, 19 Jan 2024 10:59:22 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=PODMain02222019; bh=qbiM0GYn8wffxO9
+	+row5DznyRflJJj1eUICpy3tT4Yg=; b=Fk4/K4wzwAjRsqOkOd/Ra4ITbwvHBWI
+	iK8aTjIrGh8FhyB0WC8fz/SeJv7UTo83o1i2cy/uDLejTFtTLem19Iu75lY0kaCc
+	HV3iuwCzkue4QoFSqwe+YCNU7jJkGCpqNGKrT8rrTmj9N4OGR8pC+3hzyh9Hfh91
+	KQyb2doSchlq5vLT83dtleKzknafMDF9Po7m5RyNxvo6ADlPVlrL10FUSEpZjer2
+	yXBcu2zJk9BdTAweJuWVcbadeKOat1DyFLZ+n1i6YrFuo6/VgOfgZRYIAJJPh7Gv
+	dwOBjY4cIpngPhC9kfqOx1th8+aIi1ZZBQOM1n9hpSHvGM/SDv18pmg==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3vkrt1gyjw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 19 Jan 2024 10:59:22 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 19 Jan
+ 2024 16:59:17 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.40 via Frontend
+ Transport; Fri, 19 Jan 2024 16:59:17 +0000
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+	by ediswmail.ad.cirrus.com (Postfix) with ESMTP id D522A475;
+	Fri, 19 Jan 2024 16:59:17 +0000 (UTC)
+Date: Fri, 19 Jan 2024 16:59:17 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: <andy.shevchenko@gmail.com>
+CC: <broonie@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linus.walleij@linaro.org>, <vkoul@kernel.org>, <lgirdwood@gmail.com>,
+        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
+        <pierre-louis.bossart@linux.intel.com>, <alsa-devel@alsa-project.org>,
+        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 6/6] ASoC: cs42l43: Add support for the cs42l43
+Message-ID: <20240119165917.GC16899@ediswmail.ad.cirrus.com>
+References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
+ <20230804104602.395892-7-ckeepax@opensource.cirrus.com>
+ <Zali4qxdegY7H6eY@surfacebook.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9HBH4EAVsLhP8n6J"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <dd3051170bc9724ca7e2884344dee3bc7b8f0a85.camel@gmail.com>
+In-Reply-To: <Zali4qxdegY7H6eY@surfacebook.localdomain>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: b67HD8x2PDCOH9BQnW9KX6IsD3Or_uUa
+X-Proofpoint-ORIG-GUID: b67HD8x2PDCOH9BQnW9KX6IsD3Or_uUa
+X-Proofpoint-Spam-Reason: safe
 
+On Thu, Jan 18, 2024 at 07:41:54PM +0200, andy.shevchenko@gmail.com wrote:
+> Fri, Aug 04, 2023 at 11:46:02AM +0100, Charles Keepax kirjoitti:
+> > +static const unsigned int cs42l43_accdet_us[] = {
+> > +	20, 100, 1000, 10000, 50000, 75000, 100000, 200000
+> 
+> + comma.
+> 
+> > +};
+> > +
+> > +static const unsigned int cs42l43_accdet_db_ms[] = {
+> > +	0, 125, 250, 500, 750, 1000, 1250, 1500
+> 
+> Ditto.
+> 
 
---9HBH4EAVsLhP8n6J
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Can do.
 
-> > > Hmmm, How is the enum easier than a boolean property :)? I guess the =
-device has a
-> > > default mode. So, if it is Direct IF mode you have 'adi,mixer-mode' t=
-o enable
-> > > that
-> > > mode and that's it. So the code is pretty much just:
-> > >=20
-> > > if (device_property_read_bool()) {
-> >=20
-> > device_property_present() is preferred I think.
-> >=20
->=20
-> Hmm, don't want to start an argument but I'm not sure either :). I would =
-argue that
-> device_property_read_bool() has more users (according to git grep - and i=
-f I did not
-> mess the grep) and it pretty much wraps device_property_present(). So, if=
- there was
-> no value in it's "meaning" we would/should stop using it and eventually d=
-rop it...
-> Anyways, not really a big deal.
+> > +		device_property_read_u32_array(cs42l43->dev, "cirrus,buttons-ohms",
+> > +					       priv->buttons, ret);
+> 
+> Strictly speaking this might fail, better to check the error code again.
+> 
 
-If there's an actually boolean property that can have a true/false
-value, but testing for presence alone device_property_present() is
-the more accurate function to use.
+Yeah should probably add an error check there.
 
---9HBH4EAVsLhP8n6J
-Content-Type: application/pgp-signature; name="signature.asc"
+> > +	int timeout_ms = ((2 * priv->detect_us) / 1000) + 200;
+> 
+> USEC_PER_MSEC ?
+> 
 
------BEGIN PGP SIGNATURE-----
+Can do.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaqpTAAKCRB4tDGHoIJi
-0rEOAP9G83tYMDwHe1/1SOd5SpfVPcFG+kAljyMoNIrOdxisAgD7BEnEbR6UIAWO
-ci9GeMpBvOEMHO1eTPxQz6drAG7c1wk=
-=+I9X
------END PGP SIGNATURE-----
+> > +	BUILD_BUG_ON(ARRAY_SIZE(cs42l43_jack_override_modes) !=
+> > +		     ARRAY_SIZE(cs42l43_jack_text) - 1);
+> 
+> Use static_assert() instead.
+> 
 
---9HBH4EAVsLhP8n6J--
+I am happy either way, but for my own education what is the
+reason to prefer static_assert here, is it just to be able to use
+== rather than !=? Or is there in general a preference to use
+static_assert, there is no obvious since BUILD_BUG_ON is being
+deprecated?
+
+> > +static void cs42l43_mask_to_slots(struct cs42l43_codec *priv, unsigned int mask, int *slots)
+> > +{
+> > +	int i;
+> > +
+> > +	for (i = 0; i < CS42L43_ASP_MAX_CHANNELS; ++i) {
+> > +		int slot = ffs(mask) - 1;
+> > +
+> > +		if (slot < 0)
+> > +			return;
+> > +
+> > +		slots[i] = slot;
+> > +
+> > +		mask &= ~(1 << slot);
+> > +	}
+> 
+> for_each_set_bit() ?
+> 
+> > +	if (mask)
+> > +		dev_warn(priv->dev, "Too many channels in TDM mask\n");
+> > +}
+> 
+
+Can do.
+
+> > +static int cs42l43_decim_get(struct snd_kcontrol *kcontrol,
+> > +			     struct snd_ctl_elem_value *ucontrol)
+> > +{
+> > +	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
+> > +	struct cs42l43_codec *priv = snd_soc_component_get_drvdata(component);
+> > +	int ret;
+> > +
+> > +	ret = cs42l43_shutter_get(priv, CS42L43_STATUS_MIC_SHUTTER_MUTE_SHIFT);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +	else if (!ret)
+> 
+> Reundant 'else'
+> 
+> > +		ucontrol->value.integer.value[0] = ret;
+> > +	else
+> > +		ret = cs42l43_dapm_get_volsw(kcontrol, ucontrol);
+> 
+> and why not positive check?
+> 
+> > +	return ret;
+> 
+> Or even simply as
+> 
+> 	if (ret > 0)
+> 		ret = cs42l43_dapm_get_volsw(kcontrol, ucontrol);
+> 	else if (ret == 0)
+> 		ucontrol->value.integer.value[0] = ret;
+> 
+> 	return ret;
+
+Yeah will update, that is definitely neater.
+
+> > +	while (freq > cs42l43_pll_configs[ARRAY_SIZE(cs42l43_pll_configs) - 1].freq) {
+> > +		div++;
+> > +		freq /= 2;
+> > +	}
+> 
+> fls() / fls_long()?
+
+Apologies but I might need a little bit more of a pointer here.
+We need to scale freq down to under 3.072MHz and I am struggling
+a little to see how to do that with fls.
+
+> > +	// Don't use devm as we need to get against the MFD device
+> 
+> This is weird...
+> 
+> > +	priv->mclk = clk_get_optional(cs42l43->dev, "mclk");
+> > +	if (IS_ERR(priv->mclk)) {
+> > +		dev_err_probe(priv->dev, PTR_ERR(priv->mclk), "Failed to get mclk\n");
+> > +		goto err_pm;
+> > +	}
+> > +
+> > +	ret = devm_snd_soc_register_component(priv->dev, &cs42l43_component_drv,
+> > +					      cs42l43_dais, ARRAY_SIZE(cs42l43_dais));
+> > +	if (ret) {
+> > +		dev_err_probe(priv->dev, ret, "Failed to register component\n");
+> > +		goto err_clk;
+> > +	}
+> > +
+> > +	pm_runtime_mark_last_busy(priv->dev);
+> > +	pm_runtime_put_autosuspend(priv->dev);
+> > +
+> > +	return 0;
+> > +
+> > +err_clk:
+> > +	clk_put(priv->mclk);
+> > +err_pm:
+> > +	pm_runtime_put_sync(priv->dev);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int cs42l43_codec_remove(struct platform_device *pdev)
+> > +{
+> > +	struct cs42l43_codec *priv = platform_get_drvdata(pdev);
+> > +
+> > +	clk_put(priv->mclk);
+> 
+> You have clocks put before anything else, and your remove order is broken now.
+> 
+> To fix this (in case you may not used devm_clk_get() call), you should drop
+> devm calls all way after the clk_get(). Do we have
+> snd_soc_register_component()? If yes, use it to fix.
+> 
+> I believe you never tested rmmod/modprobe in a loop.
+> 
+
+Hmm... will need to think this through a little bit, so might take
+a little longer on this one. But I guess this only becomes a problem
+if you attempt to remove the driver whilst you are currently playing
+audio, and I would expect the card tear down would stop the clock
+running before we get here.
+
+> > +static const struct dev_pm_ops cs42l43_codec_pm_ops = {
+> > +	SET_RUNTIME_PM_OPS(NULL, cs42l43_codec_runtime_resume, NULL)
+> > +};
+> 
+> Why not new PM macros?
+> 
+
+Already been updated in another patch.
+
+> > +		.pm	= &cs42l43_codec_pm_ops,
+> 
+> pm_sleep_ptr()?
+> 
+
+Can do.
+
+> > +#include <linux/clk.h>
+> > +#include <linux/device.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/soundwire/sdw.h>
+> > +#include <linux/types.h>
+> > +#include <sound/cs42l43.h>
+> > +#include <sound/pcm.h>
+> > +#include <sound/soc-jack.h>
+> 
+> This block is messed up. Some headers can be replaced by forward declarations,
+> some are missing... Please, follow IWYU principle.
+> 
+> > +#ifndef CS42L43_ASOC_INT_H
+> > +#define CS42L43_ASOC_INT_H
+> 
+> Why not guarding other inclusions? It makes build slower!
+> 
+
+Will shuffle these headers around as well.
+
+Thanks,
+Charles
 
