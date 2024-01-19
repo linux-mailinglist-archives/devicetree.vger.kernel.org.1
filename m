@@ -1,159 +1,127 @@
-Return-Path: <devicetree+bounces-33348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95BDD833059
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 22:35:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02874833076
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 22:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36C871F240A2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 21:35:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34CDD1C21855
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 21:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3860158200;
-	Fri, 19 Jan 2024 21:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A335789C;
+	Fri, 19 Jan 2024 21:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="GjhB6wRa";
-	dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="5hc1wO07"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Nbj2O4R3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailrelay6-1.pub.mailoutpod2-cph3.one.com (mailrelay6-1.pub.mailoutpod2-cph3.one.com [46.30.211.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8DC54BE3
-	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 21:34:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.30.211.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4FD355780
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 21:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705700100; cv=none; b=ju5SLLUWmmgnTnytQf7b49NChEP97a+E0Ck8ZLzmtbVw9FGz9YG5Bk1s9MEICoLhFFmolVipj9q59PZX8Kf+LerrNdp0NY0Q3JZaNvn3XH8j1qRnejGeq6vcIFosXgC6IUJcd6DX7BAQp7Aq0JJ03eloYgGiJKjlubQFzIGkDPg=
+	t=1705701160; cv=none; b=RMLKHm7TRFrYLQXnUdAfhh7UBPTLYwMk1+2Ui6tTipJsLsxMpXwpe0n3spxH8hkf/0W7/fHxB59zgUNSpRU1MFE5HoQ07sWwIhPDbetHtKqW35bMHNgLP4XfpckuD6mz+VDjf6deJcw44n6lunzznWPZq9Ok/b4Qu1Kny3YpJeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705700100; c=relaxed/simple;
-	bh=UNNRJRbDTngtJ5Pl/++i0CkHx4pdPunpIhyAAGeoHB8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q3luCX10OyqU7rj34xIwAkbIq6lGeo+vWWjA+rXLfGJXTOt/0Av1l/UaoCIiYRWyZ3m8MpSPxDo25tlWhn1r3dq399opUD8kAGvw4DxyRikzOD0ARTS6HTHDPFSlYIB9QUgk2zD3AfFv8GDNWrUfDc9U5H52Ms8n7Ztr2xhZBzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org; spf=none smtp.mailfrom=ravnborg.org; dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=GjhB6wRa; dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=5hc1wO07; arc=none smtp.client-ip=46.30.211.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ravnborg.org
+	s=arc-20240116; t=1705701160; c=relaxed/simple;
+	bh=vMHpWO/QYEYL5mBygZeH4+A8BA8znBrl7J3Z2+2ledE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VaP+5gCrQFUL4iZozj2lx5q6nIJr+olL/3030qcS+CF0yZ1nPPbhMrVCaYjbIzZC4FCtaSGqCpK/JAVOL68ummZ+Ho/wRcIwLLhmCKzaumofBD0QiX/gf9QV8cfgs2OfFTZzqPI19yUd9sMmUYAs68j0Si78Wbp67xA67BfGsZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Nbj2O4R3; arc=none smtp.client-ip=209.85.222.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7838d1176b4so15051985a.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 13:52:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ravnborg.org; s=rsa2;
-	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-	 from:date:from;
-	bh=pO8iBfnjG9hH6vbSRTnXqbEv232F90DY50ha8PvFEd8=;
-	b=GjhB6wRaysDcllp1zsaNynkQl6JNvD+hw2s6dm55JB+H5rGwsfSuOcZwCpp/lTxl/tW2aDNE3z5MN
-	 cCvOWaF/N+ToEspVuSSnuBo8lOkUaVrjwSwe9Mao6GtlEfGoyVttyZq4CzBCuxJBNVPwITHT+XDF/d
-	 xCmbQtnQjMmh5WAe3LGVVn7hMkGrIbRdPEifGr3r3e5Vk0aYqyWLs8EoJEg0BLnf0pRNxtqOpifSLP
-	 DVUq8fj27NFfrJ8Zz/XqxG80zSTseJDWRryFpPf4WZbhGKwSVmENvDTHhLLoa0JpcuEViBFLJCmpXh
-	 r9GP2gowfi3qn7OXJhAZxLkYdx+O+5g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-	d=ravnborg.org; s=ed2;
-	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-	 from:date:from;
-	bh=pO8iBfnjG9hH6vbSRTnXqbEv232F90DY50ha8PvFEd8=;
-	b=5hc1wO07ZIzFI0AGFuC0N6Bpa19KNWG4JJyX/eWazj1u2M5PzREmbIABVmM0wXHM4e5cZxcwJvtgo
-	 tXdJqTLCQ==
-X-HalOne-ID: 6d92ffab-b712-11ee-b81e-dfbeffc51846
-Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-	by mailrelay6.pub.mailoutpod2-cph3.one.com (Halon) with ESMTPSA
-	id 6d92ffab-b712-11ee-b81e-dfbeffc51846;
-	Fri, 19 Jan 2024 21:33:48 +0000 (UTC)
-Date: Fri, 19 Jan 2024 22:33:47 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Dharma.B@microchip.com
-Cc: Linux4Microchip@microchip.com, linux-pwm@vger.kernel.org,
-	alexandre.belloni@bootlin.com, dri-devel@lists.freedesktop.org,
-	Nicolas.Ferre@microchip.com, Conor.Dooley@microchip.com,
-	thierry.reding@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-	claudiu.beznea@tuxon.dev, airlied@gmail.com, lee@kernel.org,
-	u.kleine-koenig@pengutronix.de, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, tzimmermann@suse.de, mripard@kernel.org,
-	robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	bbrezillon@kernel.org, linux-kernel@vger.kernel.org,
-	daniel@ffwll.ch
-Subject: Re: [PATCH v3 0/3] Convert Microchip's HLCDC Text based DT bindings
- to JSON schema
-Message-ID: <20240119213347.GA304371@ravnborg.org>
-References: <20240118092612.117491-1-dharma.b@microchip.com>
- <20240118193040.GA223383@ravnborg.org>
- <e308b833-8cfe-41c0-954e-f1470108394a@microchip.com>
+        d=broadcom.com; s=google; t=1705701157; x=1706305957; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oK5JfnFjUnPI3L0y0Aa2Q4btTFp3M7GIq/C+XWsHPDA=;
+        b=Nbj2O4R3TYQX6BNYzzIeImPYqnuuJngcZla03Ovx6YRi6IsxckpfWC5nWGoChmBFBx
+         6O4G9Ls/O523QXWvPzeNeXWSiFns/ku92KEqRGyh6kT+mXYB6PLN0Nfoakj3XRgIEmCL
+         Ugvs3956e5oYqaQYR5qnG72Fr+nyOHsmTRsyI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705701157; x=1706305957;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oK5JfnFjUnPI3L0y0Aa2Q4btTFp3M7GIq/C+XWsHPDA=;
+        b=PcHawOaw/nk7NvVJ+KSFrSd7aWqh6U4TLOdWS+PyZuHweuWyH23n07KsZZiRccXsVG
+         enMqzXGdZwaKOSSM2OOddsw17Pvjqc8zCtVXyGAI5pRPGC/RNlyaAc29+HDkuNXxqsn8
+         AQAHaRBLKEb2Cj1upgfGe4wnG/3HzCMJUhAe42iVP4ycDHzYIkDxNQ3rxmnHVUzFGx1u
+         OC95p2zd2OyOwJY1vQiTK0fuC4cpxcK3LRtdZ0R1jOKYomolWIVSFVzGVRlPo6FkJzLC
+         ztntCeC6cScQlP4INx+yBOhTjLChII7aKyj7HEL6zS0b1zl1T1+3KcgcdY90d/7G2OJ4
+         mjcQ==
+X-Gm-Message-State: AOJu0YxLCgGraKC0JlY4DbSEcRJnntV8xLNZJwrQLqcpYZK8tsS4i3HF
+	xYvVrZVdySjzLkpqQYx+So6GuKAbSV1IdFMxi5aOaP8I8X6rX4sW2PWJ/MNPDA==
+X-Google-Smtp-Source: AGHT+IGZbRKEeocIbWCL2fcCda6LWbsu1WPCHHpOlC+CSAAPaAt3hyLSRR/40E6PY6YNjqTVyk2u2A==
+X-Received: by 2002:a05:6214:5089:b0:685:3dbd:1566 with SMTP id kk9-20020a056214508900b006853dbd1566mr377663qvb.6.1705701157591;
+        Fri, 19 Jan 2024 13:52:37 -0800 (PST)
+Received: from lbrmn-mmayer.ric.broadcom.net ([192.19.161.248])
+        by smtp.gmail.com with ESMTPSA id i3-20020ad44ba3000000b0068198012890sm55854qvw.66.2024.01.19.13.52.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jan 2024 13:52:37 -0800 (PST)
+Received: by lbrmn-mmayer.ric.broadcom.net (Postfix, from userid 1000)
+	id 6FC23890; Fri, 19 Jan 2024 13:52:35 -0800 (PST)
+From: Markus Mayer <mmayer@broadcom.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Markus Mayer <mmayer@broadcom.com>,
+	Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
+	Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/5] memory: brcmstb_dpfe: support DPFE API v4
+Date: Fri, 19 Jan 2024 13:52:23 -0800
+Message-ID: <20240119215231.758844-1-mmayer@broadcom.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e308b833-8cfe-41c0-954e-f1470108394a@microchip.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Dharma,
+It has become necessary to distinguish between the various DPFE API
+versions by version number. Having just chip-specific compatible strings
+no longer meeting our needs. Furthermore, the generic compatible string
+"brcm,dpfe-cpu" is being removed as it doesn't serve any actual purpose.
+Finally, a new DPFE API version, v4, needs to be supported by the
+driver.
 
-On Fri, Jan 19, 2024 at 08:41:04AM +0000, Dharma.B@microchip.com wrote:
-> Hi Sam,
-> On 19/01/24 1:00 am, Sam Ravnborg wrote:
-> > [You don't often get email from sam@ravnborg.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> > 
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > Hi Dharma et al.
-> > 
-> > On Thu, Jan 18, 2024 at 02:56:09PM +0530, Dharma Balasubiramani wrote:
-> >> Converted the text bindings to YAML and validated them individually using following commands
-> >>
-> >> $ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/
-> >> $ make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/
-> >>
-> >> changelogs are available in respective patches.
-> >>
-> >> Dharma Balasubiramani (3):
-> >>    dt-bindings: display: convert Atmel's HLCDC to DT schema
-> >>    dt-bindings: atmel,hlcdc: convert pwm bindings to json-schema
-> >>    dt-bindings: mfd: atmel,hlcdc: Convert to DT schema format
-> > 
-> > I know this is a bit late to ask - sorry in advance.
-> > 
-> > The binding describes the single IP block as a multi functional device,
-> > but it is a single IP block that includes the display controller and a
-> > simple pwm that can be used for contrast or backlight.
-> yes.
-> > 
-> > If we ignore the fact that the current drivers for hlcdc uses an mfd
-> > abstraction, is this then the optimal way to describe the HW?
-> > 
-> > 
-> > In one of my stale git tree I converted atmel lcdc to DT, and here
-> Are you referring the "bindings/display/atmel,lcdc.txt"?
-Correct.
+To select between the different API versions, a new compatible string
+format is being introduced: brcm,dpfe-cpu-v<N> where <N> represents the
+API version number.
 
-> > I used:
-> > 
-> > +  "#pwm-cells":
-> > +    description:
-> > +      This PWM chip use the default 3 cells bindings
-> > +      defined in ../../pwm/pwm.yaml.
-> > +    const: 3
-> > +
-> > +  clocks:
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    maxItems: 2
-> > +    items:
-> > +      - const: lcdc_clk
-> > +      - const: hclk
-> > 
-> > This proved to be a simple way to describe the HW.
-> > 
-> > To make the DT binding backward compatible you likely need to add a few
-> > compatible that otherwise would have been left out - but that should do
-> > the trick.
-> again you mean the compatibles from atmel,lcdc binding?
+This approach is needed, because the API version has changed in the past
+for some chip, which means it cannot be derived reliably just based on
+the chip name.
 
-If the new binding describes the full IP, as I suggest, then I assume
-you need to add the compatible "atmel,hlcdc-pwm" to be backward
-compatible. Otherwise users assuming the old binding will fail to find
-the pwm info. I am not sure how important this is - but at least then
-the device trees can be updated out of sync with the current users.
+We rely on the boot firmware to populate Device Tree with the proper
+compatible string for the correct DPFE API version. The boot firmware
+already has this information and can easily pass it to the kernel in
+this manner.
 
-I hope this explains what I tried to say, otherwise do not hesitate to
-get back to me.
+Changes since v1:
+  - remove compatible string brcm,dpfe-cpu
+  - add compatible strings brcm,bcm7278-dpfe-cpu, brcm,bcm7211-dpfe-cpu
+  - add "description" section to the binding
+  - drop patch that contained API probing and detection code
+  - tweak and clarify a few code comments
 
-	Sam
+Markus Mayer (5):
+  dt-bindings: memory: remove generic compatible string brcm,dpfe-cpu
+  dt-bindings: memory: add two chip-specific compatible string
+  dt-bindings: memory: additional compatible strings for Broadcom DPFE
+  memory: brcmstb_dpfe: introduce version-specific compatible strings
+  memory: brcmstb_dpfe: support DPFE API v4
+
+ .../memory-controllers/brcm,dpfe-cpu.yaml     | 24 ++++++++++-
+ drivers/memory/brcmstb_dpfe.c                 | 41 ++++++++++++++++++-
+ 2 files changed, 62 insertions(+), 3 deletions(-)
+
+-- 
+2.43.0
+
 
