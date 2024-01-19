@@ -1,109 +1,131 @@
-Return-Path: <devicetree+bounces-33279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A43832D3A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:34:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5412D832D43
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:35:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 313081C24158
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:34:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8742D1C2449E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:35:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76BA555767;
-	Fri, 19 Jan 2024 16:34:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02767433A1;
+	Fri, 19 Jan 2024 16:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aZG+yPfp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout1.hostsharing.net (bmailout1.hostsharing.net [83.223.95.100])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0886E1F60B;
-	Fri, 19 Jan 2024 16:34:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.223.95.100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF8E54F83;
+	Fri, 19 Jan 2024 16:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705682057; cv=none; b=M7+aqLle61XINW/PZGZX4mYE0JckDjyoV7CNpFYIsxDF6FCG2bJEZ1RvnnFn088p7xfZ2ZhbwAgB+YTHgwh7SbcdBo66Vik2WQnOsoaJN587ha22UNu9ImSkepWzmvyAXbOk3Z0Rc8MEBlMuAs/nGibJa4UQTdN7zfHU+ind/c4=
+	t=1705682128; cv=none; b=f81B8XLUfhh/Z/yCVEk3JaFDd9MqGMoQmTFQ9TLLzXOAe3sOfNetjp+YOv0ne+PnRBhcD1g2sJB7WuwOBNYOhSliIYTx4vA5wqgCEAQeeIWKzQdtPaZGfqGlACABrcqJmOQQ3H1krQqWsdGh5ZvGotwiPOYQp0oyxxq1WVCqa7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705682057; c=relaxed/simple;
-	bh=D2LgJwRjxJYglnLH2h53TIEgwBrE9PHOgnordbiozD8=;
+	s=arc-20240116; t=1705682128; c=relaxed/simple;
+	bh=tKOxeGFjeKoiekCBWLj47nmpwstbrJvnMnXHaaRAOmY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nkDUpOo0f8dj+RbGMsa8WS2tGpE639ruip02XLo4cyx+rZx37U7ANOtFuX9crAslmdOf3ADFjOLDgbg/gBWgrdnhbGgdF3s+5OMctd3030L6qjpNdJtctGfMm8kk3OBobUWo7PoIcElmiMoRJkTuR83zMauMntlBRK1+aYmmEjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de; spf=none smtp.mailfrom=h08.hostsharing.net; arc=none smtp.client-ip=83.223.95.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout1.hostsharing.net (Postfix) with ESMTPS id 6E25130006284;
-	Fri, 19 Jan 2024 17:34:05 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 50F591D3C6; Fri, 19 Jan 2024 17:34:05 +0100 (CET)
-Date: Fri, 19 Jan 2024 17:34:05 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=tRJnPJ20UWVYV91Dpat7V4GM41F9/F84RzwwKRH5F1HzhwmZS1nvjxBaElFbNHZ1iZdTC0DltUSh6SSVHtVSGaWig+QcaUA3eaxefhlnp743NyK0uLuNB9UhBfLjF8LKj4Vwb1y2xjRW3gWvacd5kJE+wtiuc0Bm6v+J94TenK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aZG+yPfp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8E90C433C7;
+	Fri, 19 Jan 2024 16:35:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705682127;
+	bh=tKOxeGFjeKoiekCBWLj47nmpwstbrJvnMnXHaaRAOmY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aZG+yPfpPvhKMdntDIhG7aCcn22TX1D5D3K6nCHtISZDHnOMVTL8XtkqQUNxVbLdq
+	 LhTaixTd60/x0ZPNU6y0uiKwdbHISXVZ3eiZ5D2Upvd0qOkFN5ftTfyFUwS83xge19
+	 zdxBXIsfoZVcOYTh0estRoF5vTrbL+va8UJ7IYQ4y4jbX8JEJeGS2YOU0qOp0JnV1d
+	 ZAQcvCOg6/0qV4nHluu2laIn4+HMmLQroK1ifu2GOMlGcpPks0WK/moiaSWLI6FxAg
+	 xld64AuD6U8yJ/DPn4YJFwDkthQs356SWRje27PanjEGe/2ad9F4pz+3jdTp8vkEK+
+	 ETK0TKpxFn/3w==
+Date: Fri, 19 Jan 2024 16:35:21 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Mathieu Othacehe <othacehe@gnu.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	=?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado <nfraprado@collabora.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Peng Fan <peng.fan@nxp.com>, Robert Richter <rrichter@amd.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Terry Bowman <terry.bowman@amd.com>,
-	Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>,
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Abel Vesa <abel.vesa@linaro.org>, linux-wireless@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 0/9] PCI: introduce the concept of power sequencing of
- PCIe devices
-Message-ID: <20240119163405.GA32506@wunner.de>
-References: <20240117160748.37682-1-brgl@bgdev.pl>
- <CAA8EJpoQfPqoMVyTmUjPs4c1Uc-p4n7zNcG+USNjXX0Svp362w@mail.gmail.com>
- <CAA8EJpqyK=pkjEofWV595tp29vjkCeWKYr-KOJh_hBiBbkVBew@mail.gmail.com>
- <CAMRc=McUZh0jhjMW7H6aVKbw29WMCQ3wdkVAz=yOZVK5wc45OA@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Primoz Fiser <primoz.fiser@norik.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Christoph Stoidner <c.stoidner@phytec.de>,
+	Wadim Egorov <w.egorov@phytec.de>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@list.phytec.de
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: fsl: Add phyBOARD-Segin-i.MX93
+Message-ID: <20240119-art-impromptu-11de2ccb2664@spud>
+References: <20240119092835.21462-1-othacehe@gnu.org>
+ <20240119092835.21462-2-othacehe@gnu.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="w2icVjWluU6E8Ba6"
+Content-Disposition: inline
+In-Reply-To: <20240119092835.21462-2-othacehe@gnu.org>
+
+
+--w2icVjWluU6E8Ba6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMRc=McUZh0jhjMW7H6aVKbw29WMCQ3wdkVAz=yOZVK5wc45OA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 19, 2024 at 12:52:00PM +0100, Bartosz Golaszewski wrote:
-> We have two separate issues: one is powering-up a PCI device so that
-> it can be detected
+On Fri, Jan 19, 2024 at 10:28:34AM +0100, Mathieu Othacehe wrote:
+> Add support for phyBOARD-Segin-i.MX93 board.
+>=20
+> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
 
-Just wondering, I note in really_probe() we configure the pin controller,
-active the pm_domain etc before probing a driver.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Would it make sense for the issue you mention above to similarly
-amend pci_scan_device() to enable whatever clocks or regulators
-are described in the devicetree as providers for the given PCI device?
+Cheers,
+Conor.
 
-Thanks,
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
+on/devicetree/bindings/arm/fsl.yaml
+> index 228dcc5c7d6f..b6c523d02d29 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1275,6 +1275,12 @@ properties:
+>            - const: tq,imx93-tqma9352        # TQ-Systems GmbH i.MX93 TQM=
+a93xxCA/LA SOM
+>            - const: fsl,imx93
+> =20
+> +      - description: PHYTEC phyCORE-i.MX93 SoM based boards
+> +        items:
+> +          - const: phytec,imx93-phyboard-segin # phyBOARD-Segin with i.M=
+X93
+> +          - const: phytec,imx93-phycore-som    # phyCORE-i.MX93 SoM
+> +          - const: fsl,imx93
+> +
+>        - description:
+>            Freescale Vybrid Platform Device Tree Bindings
+> =20
+> --=20
+> 2.41.0
+>=20
 
-Lukas
+--w2icVjWluU6E8Ba6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaqkyQAKCRB4tDGHoIJi
+0hWRAP9dRermiyMXJ2IRHf29ldKI6uDQ99VWYrnnOLSa0Ti5jwEAhw2ZKr/FOj11
+hMuS4wrkJDv4Kxref9R9S9ncwNPpjgg=
+=olU5
+-----END PGP SIGNATURE-----
+
+--w2icVjWluU6E8Ba6--
 
