@@ -1,82 +1,113 @@
-Return-Path: <devicetree+bounces-33153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7DCA8326C0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:32:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 187638326D5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:41:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61350284B19
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 09:32:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4EDC282338
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 09:41:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 159463C062;
-	Fri, 19 Jan 2024 09:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD5673C08A;
+	Fri, 19 Jan 2024 09:41:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gnu.org header.i=@gnu.org header.b="qJyVTM0J"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="4TpAef1m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from eggs.gnu.org (eggs.gnu.org [209.51.188.92])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5FB83222;
-	Fri, 19 Jan 2024 09:31:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.51.188.92
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BCEE8F4E;
+	Fri, 19 Jan 2024 09:41:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705656716; cv=none; b=jQwrxHnz+/RPr9TvEd9drTPmHbvNng8KBcO+y2dbRRGczeNDFtJ8+jti0nFXM8eFx9/665aj1AuWTc41FyJUJFbzv7J5FgSFLEArHzOT16qfuFfsm5VUVc/jKUhCc3oBMT2lV2Bvp5T6GGRzmqw9fxTQIZlxziq6R88Vm3xHJPE=
+	t=1705657272; cv=none; b=ria8YcpI40T19Edc20Ta5Gy71hPUDZP3y3ZFka/UAWYlwvpdzEeKkeQxxRhjhh/SYbq3expPhY93OtHzzU7fXrK1o/JFiPVnkRqe6k1rC5On7E8pBv/e3onxm4D4KfIOpDFU/1kybnht79xxPqZitsRoS7h4A9cA12EkTpsr79s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705656716; c=relaxed/simple;
-	bh=jfc1fKf0XR2vJEJRDRpRq080VPy7M39owZIDub4aX70=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=aS5ZES9r8b2Ij5CR1hNcrK+4UPxept9iRUFgDbOX9HJur0L0oB1PRQL/R+TYVlyMCmVWNXEOEM8Aztms2i65RxaSMS+gM/79oH+fIe8XR3EolYBzAU/q5mPKJH6cCPzeXjrd9nygOQFB/ZjzSN0VLAMHfDrVecsjxFVBZw2k7do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gnu.org; spf=pass smtp.mailfrom=gnu.org; dkim=pass (2048-bit key) header.d=gnu.org header.i=@gnu.org header.b=qJyVTM0J; arc=none smtp.client-ip=209.51.188.92
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gnu.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gnu.org
-Received: from fencepost.gnu.org ([2001:470:142:3::e])
-	by eggs.gnu.org with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.90_1)
-	(envelope-from <othacehe@gnu.org>)
-	id 1rQlE8-00047a-7H; Fri, 19 Jan 2024 04:31:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=gnu.org;
-	s=fencepost-gnu-org; h=MIME-Version:Date:References:In-Reply-To:Subject:To:
-	From; bh=jfc1fKf0XR2vJEJRDRpRq080VPy7M39owZIDub4aX70=; b=qJyVTM0JUsrs9DrgDWCO
-	Kk1xj7Yvc0JhM5+uQ+icdohrCTlCe54id6HZo1qdit5iLbai/8J1LTS1RYEUyKm0L8Cp8mQZiXEOs
-	kLfSDBp9tTtiicW6B0smrhUbSFKqtQk3e6bd3dP/goYraYTIbjGCxOXP6o+9+f3XohqUX0sIxVLxH
-	ZYu8Ox76K0VxsPuwQqpuPCi0+KQkUyqbbdi5uUtnxgP+fgI6fS+XdoBJuGRTjGfScTOjbfx8nM3oS
-	b8xzxSXdKhJrGW/Vk5Vq+BHqyZIUiQ64ae5fWifDpWJ+zzCwxkIhVpdujdd2XGMSaSzJaGRJMLylk
-	x8qPUu3P45EgYg==;
-From: Mathieu Othacehe <othacehe@gnu.org>
-To: Rob Herring <robh+dt@kernel.org> ,Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Shawn Guo <shawnguo@kernel.org>,  Sascha Hauer <s.hauer@pengutronix.de>,
-  Pengutronix Kernel Team <kernel@pengutronix.de>,  Fabio Estevam
- <festevam@gmail.com>,  NXP Linux Team <linux-imx@nxp.com>,  Li Yang
- <leoyang.li@nxp.com>,  Stefan Wahren <wahrenst@gmx.net>
-Cc: devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 0/2] Add Variscite VAR-SOM-MX93 support
-In-Reply-To: <20240108110241.8555-1-othacehe@gnu.org> (Mathieu Othacehe's
-	message of "Mon, 8 Jan 2024 12:02:39 +0100")
-References: <20240108110241.8555-1-othacehe@gnu.org>
-Date: Fri, 19 Jan 2024 10:31:49 +0100
-Message-ID: <87mst1654q.fsf@gnu.org>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1705657272; c=relaxed/simple;
+	bh=0cDiESFvb7qa9miqI4BzCZ+472VCEQGuIk9jkGeCoRw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=orS3RZ97xnUKvDl5wo5r8Tc4WXciFg0HRmQN4DIyJ5WM54TcTrJmenpqlEKRe5U7j4RT8Vvi/fN6nPI6ZWXkBreToLNded/cPzgBsG+wZ971ZkvruIqKv9N057m+u2V60HCbZsh5rLXvcnZERlQzU6T9fgBmHqpTG4aQyFIqwGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=4TpAef1m; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705657269;
+	bh=0cDiESFvb7qa9miqI4BzCZ+472VCEQGuIk9jkGeCoRw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=4TpAef1mYqd/vXLVqPxRe+vRI+fmsaz79QlIT5ypjuDI09RFBTsEZM6vwSCyZRpfC
+	 JW7ULhVzEtdRVphkjqkhLQpFGtHSXq/e5nbCAbCv//33K4hFSZM9ApTPMwguJ6oVRp
+	 A3d5MekwJLbfuZ5xzzPG6GreWj980WVOH86OHxtcMw5ADzYrzGROfjVGSFYledLfQv
+	 u7BPKoGXRGUmAU94knmOFR6rd/7reWdgPl3jLGkzRcswBjwXNnXZfpKUqpY6OcpUMW
+	 Ffq8KkJ6EISw7LxSVAkMnAggqT4Bw8sfgv9ugvw6GY0OHBbClbDKtGcgR4uezKmaVe
+	 HRAeHRMDAhWiQ==
+Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7088D37811F1;
+	Fri, 19 Jan 2024 09:41:08 +0000 (UTC)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: chunfeng.yun@mediatek.com
+Cc: gregkh@linuxfoundation.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	linux@roeck-us.net,
+	heikki.krogerus@linux.intel.com,
+	cy_huang@richtek.com,
+	linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: usb: mt6360-tcpc: Drop interrupt-names
+Date: Fri, 19 Jan 2024 10:41:04 +0100
+Message-ID: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
+This IP has only one interrupt, hence interrupt-names is not necessary
+to have.
+Since there is no user yet, simply remove interrupt-names.
 
-Hey,
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ .../devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml        | 5 -----
+ 1 file changed, 5 deletions(-)
 
-> This is a v7 adding support for the Variscite VAR-SOM-MX93 SoM on Symphony
-> Board.
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+index 053264e60583..339bc9c00ac0 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mt6360-tcpc.yaml
+@@ -22,10 +22,6 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
+-  interrupt-names:
+-    items:
+-      - const: PD_IRQB
+-
+   connector:
+     type: object
+     $ref: ../connector/usb-connector.yaml#
+@@ -58,7 +54,6 @@ examples:
+         tcpc {
+           compatible = "mediatek,mt6360-tcpc";
+           interrupts-extended = <&gpio26 3 IRQ_TYPE_LEVEL_LOW>;
+-          interrupt-names = "PD_IRQB";
+ 
+           connector {
+             compatible = "usb-c-connector";
+-- 
+2.43.0
 
-Friendly ping :) Is there something else that I can do here?
-
-Thanks,
-
-Mathieu
 
