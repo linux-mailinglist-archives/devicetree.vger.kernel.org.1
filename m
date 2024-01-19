@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-33172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE3FB8327C7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:45:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D620A8327C9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:45:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57E43284066
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:45:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0664B1C21154
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CDA54C612;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA794C61E;
 	Fri, 19 Jan 2024 10:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WhkE8z2L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M8PDrjNL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 002F94C3BF
-	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 10:45:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A0664C3C9
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 10:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705661133; cv=none; b=PQ1om/Cj4hwrb/7wxGJwPdDEFYnE98Md3cUea2i+aseCkb0xzl2tGUepVAV5zKB8fgeB70ARgxIkqqa3gIAj7iJaO3/jc8kytmFobx/ki9ZXWCSXVKEl5iM2SuMpWoD48kSmQ/XPrDQxN88ZEWKVhUqC6pHqrRgLsnPfXmJwrQY=
+	t=1705661133; cv=none; b=KtlH+9xdYf/MLdWS5r32aCJYgY2hqd0jHw5HCs9ui1Qn5wm7dzF6swYziZyvSCYDSTrAGHf0cdn5y8CJzVlH2jCZtvYlcMspJHPXRa2TI+GYTBaj45s7wEAPhNp1BNFVb7ZgdubOJUNfPTK/AfM1XSBW0oqGvrCHMJPYq7L399E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1705661133; c=relaxed/simple;
-	bh=t7gRYgG5bMRtFTVmk9IzLAC+h3lcEvsViPIBwnpUPb8=;
+	bh=37jpLv6HsDjfq58UT+g6uG00C2Y7+aRvCtuRbHaslLY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K+LO8paUNlnd2Bf78uzj8FjTKf4zwY1JtXj4uO0l0YV7TiQTuFUzO6Ga17dA/wIqMP7Qsr93kuAaTKkbGmY21fNjXJHHiVHK++o5+thgfz6oTxcdsM+lbnr581VxwXBHWhuHy9VWB/IyXqJYG8Qk7ZFTmWYzFos893PvwyHBqkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WhkE8z2L; arc=none smtp.client-ip=209.85.128.45
+	 MIME-Version; b=U+/HUqBDtfTQeGP8/r/wqZR2dKVYppoeAJLFOIvXW2WpQz5YHuGEKAtHJrwU1DyNQoaV/7PJG8e5Knrj07hzODPfHjr1LjWPern2BdRdOZYq9rjhzzkMX2g9OIBfSmMgM1BpYmh/c7NYpVqm/SN9R0vtUMoEKzeZC9wz3O9MCms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M8PDrjNL; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40e87d07c07so7155935e9.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 02:45:31 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40ea084ec14so867405e9.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 02:45:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705661130; x=1706265930; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705661131; x=1706265931; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4JVTKruPLtxL591cRzZcEtaSDrfblTI6Ru/0UXyWKbE=;
-        b=WhkE8z2LZ3XLGVEFQPjgSScKrabwDOlbkk2JQB5HCq65Ztqd1w+1c3s+s1Vmu9rBv0
-         Yr3Pp/2oc4eaiaZcCtySlSLf/nnqc2wqvM9uk5WCUTdlBossWZU4EvopMm0LCXt1qssq
-         685FcRO0coYPFOJqGMOYbqpfpYkWLOmUjpjF6KQXoHenhB0hgdO/t2rblOt20FAyr7Lw
-         mSync90pBPoUY7iB6gQibDHoCkmuhheDbpqZoalnTpTvdcYbsi1yh0uXp9I65xAnN9MG
-         K5T+vA/cFnbgWnzMWIvNqvpBVg1FzoCLrURfQJez2evjbnx7CsP1Aqo30rIbMl3wLM9l
-         M0/Q==
+        bh=H74QYBuoWbNPw1IrHpaPtV5Fr/Jo8QfnPV+pn460u7Q=;
+        b=M8PDrjNLebLy9eSHsN/cvhQ311/guZHaF8bjFlOIRwXxQKwsyXEMETqssTV61V/RS0
+         qm7SwmDz8dzpqMG0mIm8vnlJNo1GYSlkePKjkvxIDCrvcDvsfmT8u38AKclWqPuIVr8n
+         5kH1R4gZl+YhxNTH2zqIlWXy46HhW3+GDcmkGKB1+2W3WAKLfrDJn/JndgWoY3AMVmzm
+         HdDdpYgrciw22SFl5612fNrP+dqIi/MSg+GOZEdTNQYJt/VUxviYyF3UeeMHsHJrVnLL
+         kOQDSMtqc8Sx2SIkUPXcTxt8xf6hvI+0qdtqXhOqOoz1+sLsRqM9pZidz8vTMYDIdytt
+         nXdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705661130; x=1706265930;
+        d=1e100.net; s=20230601; t=1705661131; x=1706265931;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4JVTKruPLtxL591cRzZcEtaSDrfblTI6Ru/0UXyWKbE=;
-        b=W33XM/ZJKjquwwnugOY0jbt9b5q+B+Xhk4yH1VVOZMQ1hCyT8ZVYMQ0+j95NprjWce
-         SX6zvP3GQsD/IxsjnXgc06+aZxQBaD4CsI5EflORTakyOfoSNh64iMPcWfFCsy8HETfN
-         0ZV+qzfusvQ29sLQTC+uypnrbQ8Slluf8RjKPwumVfZXh/uuy9IbD9Y3onaPCkgghgjZ
-         hL/oWN0YU3gzJiKzCbY0poCMMbocaDpfQIOtfPtTcPi3g1TXVBSTVXmLJ+9ttbWraoiu
-         VirvzXFO2hXDQErMGkIzjAnD5T+Mfd+n28gdMNhFOn2RNmYHhS1v3MBAwdPRyIpCoD+z
-         pHHA==
-X-Gm-Message-State: AOJu0YykiAAf9UKNgwqDfqkoVvgDS7yIt44HlNuKJY6nVDNThy0kastR
-	WWmXsp2a6PpcaRjAVjXKQK5nrrUgMT/6CBPPZ/j5E6XfJn73TfvzLYbDNwwBOrg=
-X-Google-Smtp-Source: AGHT+IF68W0CE7/RmrCIDeyTMK59Z+AGRACrkjEoAPxJPcDwNgTNmegWpv1XXTv4rh9h1rjoCKS7Hg==
-X-Received: by 2002:a05:600c:5106:b0:40e:9699:141e with SMTP id o6-20020a05600c510600b0040e9699141emr932166wms.54.1705661130155;
+        bh=H74QYBuoWbNPw1IrHpaPtV5Fr/Jo8QfnPV+pn460u7Q=;
+        b=aUy+QyCErJ1H2XeLss/ABXyQU7Ettn0V4wlDc4+3V7IZ/rdkhu+khQfvibZR3tv4/n
+         35JpPfR0R93XbKF9lUe7u7olaHvkNULkvZe+mh4PEej+aihFrrUkse9N3mT/qna87gAm
+         j83VaNG8R3ZIfFiN0nY73BCkwLQwiDdrka1Evni81BDE9/tIlwq4NmbLNX+NhvFdVj32
+         45+YeJyqf4dOn4sYAJixS68AD5Va0ha8YxqrbtTofj2+RNrdMQ40Ip8h6mZrL6S+RWye
+         1Ggvu1tQwHYpiF4Ld4Rb6FLlIDj+BuT8B8Sx5JCADuW2UeQ1uiAfEN6gr3lviQLAXkvt
+         ljBg==
+X-Gm-Message-State: AOJu0YxouYUoxs3X6LFBQHceytcc1YRS0aEv8Vv/YptA04TrU02X2SVX
+	gGvNvVNi56iofcNM3oPl3/YA38UXOg6hfzeJlXkJAcTJN9w2uau5xwwj0ROZ1CQ=
+X-Google-Smtp-Source: AGHT+IGe2DxncF/tdHEyEyQetNG3qty4lJaRlXD9UVpv8DePV8y20R67SD2hJpbDmH4wko4vUgqtqQ==
+X-Received: by 2002:a05:600c:2152:b0:40e:6587:edc8 with SMTP id v18-20020a05600c215200b0040e6587edc8mr1512939wml.91.1705661130766;
         Fri, 19 Jan 2024 02:45:30 -0800 (PST)
 Received: from ta2.c.googlers.com.com (88.140.78.34.bc.googleusercontent.com. [34.78.140.88])
-        by smtp.gmail.com with ESMTPSA id fm16-20020a05600c0c1000b0040ea10178f3sm77470wmb.21.2024.01.19.02.45.29
+        by smtp.gmail.com with ESMTPSA id fm16-20020a05600c0c1000b0040ea10178f3sm77470wmb.21.2024.01.19.02.45.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Jan 2024 02:45:29 -0800 (PST)
+        Fri, 19 Jan 2024 02:45:30 -0800 (PST)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
 To: gregkh@linuxfoundation.org,
 	jirislaby@kernel.org,
@@ -83,10 +83,11 @@ Cc: alim.akhtar@samsung.com,
 	peter.griffin@linaro.org,
 	semen.protsenko@linaro.org,
 	willmcvicker@google.com,
-	Tudor Ambarus <tudor.ambarus@linaro.org>
-Subject: [PATCH v2 01/19] tty: serial: samsung: fix tx_empty() to return TIOCSER_TEMT
-Date: Fri, 19 Jan 2024 10:45:08 +0000
-Message-ID: <20240119104526.1221243-2-tudor.ambarus@linaro.org>
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 02/19] dt-bindings: serial: samsung: do not allow reg-io-width for gs101
+Date: Fri, 19 Jan 2024 10:45:09 +0000
+Message-ID: <20240119104526.1221243-3-tudor.ambarus@linaro.org>
 X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
 In-Reply-To: <20240119104526.1221243-1-tudor.ambarus@linaro.org>
 References: <20240119104526.1221243-1-tudor.ambarus@linaro.org>
@@ -98,35 +99,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The core expects for tx_empty() either TIOCSER_TEMT when the tx is
-empty or 0 otherwise. s3c24xx_serial_txempty_nofifo() might return
-0x4, and at least uart_get_lsr_info() tries to clear exactly
-TIOCSER_TEMT (BIT(1)). Fix tx_empty() to return TIOCSER_TEMT.
+All gs101 serial ports are restricted to 32-bit register accesses.
+This requirement will be inferred from the compatible. Do not allow
+the reg-io-width property for the google,gs101-uart compatible.
 
-Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
+Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 ---
- drivers/tty/serial/samsung_tty.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/serial/samsung_uart.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-index 71d17d804fda..6fdb32b83346 100644
---- a/drivers/tty/serial/samsung_tty.c
-+++ b/drivers/tty/serial/samsung_tty.c
-@@ -987,11 +987,10 @@ static unsigned int s3c24xx_serial_tx_empty(struct uart_port *port)
- 		if ((ufstat & info->tx_fifomask) != 0 ||
- 		    (ufstat & info->tx_fifofull))
- 			return 0;
--
--		return 1;
-+		return TIOCSER_TEMT;
- 	}
+diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+index 133259ed3a34..0f0131026911 100644
+--- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
++++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+@@ -143,6 +143,8 @@ allOf:
+     then:
+       required:
+         - samsung,uart-fifosize
++      properties:
++        reg-io-width: false
  
--	return s3c24xx_serial_txempty_nofifo(port);
-+	return s3c24xx_serial_txempty_nofifo(port) ? TIOCSER_TEMT : 0;
- }
+ unevaluatedProperties: false
  
- /* no modem control lines */
 -- 
 2.43.0.429.g432eaa2c6b-goog
 
