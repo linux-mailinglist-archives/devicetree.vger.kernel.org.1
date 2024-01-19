@@ -1,169 +1,123 @@
-Return-Path: <devicetree+bounces-33195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB47D832839
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:55:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D9A83285D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 12:09:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B67BD1C21599
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:55:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A82071F22AFB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:09:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130A74CB27;
-	Fri, 19 Jan 2024 10:53:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3A94CB26;
+	Fri, 19 Jan 2024 11:08:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="avoTUk8W"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="sBbtETSC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F8F4C632;
-	Fri, 19 Jan 2024 10:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CF424C615
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 11:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705661612; cv=none; b=ic35RpKix/Ykja2iPIb68g6mTmlrKYyx07V1hH9MqMR6zklUGdxg0eFj49F2cWwHDe03c5BC463GIWqz77r8qZ86bYvGOQdRYjcTFWWMfZfNPisg5R/0OIf4QaNIsEC5aHnGWFM7BgYsxGHgeukKaRcmnABSZ3ZNU+GeYiidMLo=
+	t=1705662531; cv=none; b=pisgOtO0gUPuzuZMW+9biiaHpoXsy5A3Z0T68pncLR5927BO00HY6zN3KJiJjt0qdTj2qJR5PLaKWP645z1HrWkr8vThex+7eQAMhb+MIzN/60s7x0FvIwXm7gu1PMcGBakEQL5TdqBKuZlrQFSF/rhGI3eHwDM6DiCnBhwRQBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705661612; c=relaxed/simple;
-	bh=CFyBN3hM6Icm5piROwxSXNJbjOUUSK0D7k+x7CC40aU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EusJohIYDrIfFluJ6kYlaAvrXu+4UXB7Fx3qL58YeeVjpI5T8JBAXmOoWpWpPRNrPJw66Z1EhKxJCTtYWkkAE4Y7HzWYm3bLmbUkdozCcF0Jd+dRz7xXX17qZT64OAlDQFKd0Ejc0jYkT3tueiFcwCtsM8SxS3gq2uCN37y3ToA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=avoTUk8W; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705661608;
-	bh=CFyBN3hM6Icm5piROwxSXNJbjOUUSK0D7k+x7CC40aU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=avoTUk8WRN/wl1do+O2nS/ru8pUagCwo4abnUWi1pX+a2UJBgBv/QnAf8ajcp/IRX
-	 rn7dvUSc6EWvANhphTJmt3tJaslmfHGyXq05qKFHILrnX3hQzV8EDK5PszgnmTvIc0
-	 M5cyBnu2ZLRTuJiqyIMvEUKNkiNoaLuuxpMNbf05/XvhVJjmy7Ji9Vbo7Bft8JW14f
-	 rkJZIpie5RTHZdSfoOCkWnrJ92vqbz34HZwxTy8EGfJ9Wts8CCASh/jwXUovDOgaBm
-	 Ee3tMs5+O+EndXRO7krQWzoKAKnYRoMF3o78oqyfHjMMBbHUdJg2MbzZLNApmb8gg1
-	 ZNvAuD/5vERSA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 5EC20378202D;
-	Fri, 19 Jan 2024 10:53:27 +0000 (UTC)
-Message-ID: <30dca707-2b48-4309-8567-8c1297a75db5@collabora.com>
-Date: Fri, 19 Jan 2024 11:53:26 +0100
+	s=arc-20240116; t=1705662531; c=relaxed/simple;
+	bh=M/khVo5w/QaYGS2KbY7GMVMAto7oj95Xs/13fc8sOY8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sQS0tP0hYMbDBNk508p6ChpR6Iu6llYgUxbFL1PfayRjWLe21/aHDsrLOQYC6HA452p1Vos63C6tNPh7L5MYSww4ow6CSr56U63e5YYZvF7OrxUZ2OvmXE8diZobYUV1Ggq3mDK5h9lctVn7XXRXIv4Vse7cK36mImiIcV+h8Qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=sBbtETSC; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a293f2280c7so67858766b.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 03:08:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1705662526; x=1706267326; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AkX7t6l4nQ/vCuey8Au/m+51v8pi/S+y8K9YAi1mcOo=;
+        b=sBbtETSCA9TEQml4IBa4FeUc3Xjox6F7SbRHlbteJh1DEDoqzIZv643gZcCvcj+Yzj
+         LLCkoutZt/jJRKFxG8/C0CyOE1ln1AX1WuATccrJcMEI1qe2BEUbx7uAe1tpX4eBx/UB
+         c+mLWt2yMycQ/Fy8ZyCwrpb8cOeOuWAsDNhQK5GA7gZ1mYw3Z+98oCn/NeZASelg7jxl
+         Ib3Bfnt20fne+diFtxY9fmnzLohEMEtlbS+iPOKjhsv2nQIdjbvhzsbjeT1zmdN/Rov8
+         6G4OhZ+QzPYl9Ncy37eW1aHoW59Xfutypx7nBzzv4Yv9hj/0/QhwiMa+dxNVewwqg+BA
+         LCyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705662526; x=1706267326;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AkX7t6l4nQ/vCuey8Au/m+51v8pi/S+y8K9YAi1mcOo=;
+        b=j6K45tJN2cY1UQOr6v4YwB+PA1oLvtujPXujR3K49A155O4IslJrya004d42XCGKWi
+         ELnHH2gU6RP+AIBa4OvHINcajRseyormxMTbnshVeur00ONlVz0s0dDUmthk0lOM1Xwz
+         W/udEe/MY1LJ+Bal2d9jl1SZF8pzS8bu3VDx/j5ZA2qlPJ4F2bjvR9yn5IzThCRUABDF
+         lcEiArgHYwOOfl1+xv4h+EbI+Za08AwoUz9SVfh0eUN+b01hUnt3O0v+folHLUv+hC/y
+         YQtSadNSg465a/E4Zx9dHjMjqiN+fMsptA+hchPjxIeFpuqIu/ckUgLBH/3rzoPei3Jb
+         PC5w==
+X-Gm-Message-State: AOJu0YxAvHjp5Uufhz4v9K0sfM2FHaZcGCjZT+FpSkoATpcYJQNHkRPD
+	HvbS3iFTsEfucmPfUW64B/xUn1UAPwfvFLkr4HzK1BJRMM8bpc5lHu6bWVXzbeY=
+X-Google-Smtp-Source: AGHT+IEvKUBsNi++IWYFwDCr/xbC/i0gr1neZ+xh2X5zRMqR6tKq5tdCp7hVArBGP391ED1MdvZVbg==
+X-Received: by 2002:a17:906:6dcc:b0:a2f:d59:d9cb with SMTP id j12-20020a1709066dcc00b00a2f0d59d9cbmr617650ejt.177.1705662526094;
+        Fri, 19 Jan 2024 03:08:46 -0800 (PST)
+Received: from blaptop.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id h20-20020a170906261400b00a28d438a1b0sm10091661ejc.83.2024.01.19.03.08.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jan 2024 03:08:45 -0800 (PST)
+From: Alexandre Bailon <abailon@baylibre.com>
+To: rafael@kernel.org,
+	daniel.lezcano@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: rui.zhang@intel.com,
+	lukasz.luba@arm.com,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Alexandre Bailon <abailon@baylibre.com>
+Subject: [PATCH v2 0/3] thermal: Add support of multiple sensors
+Date: Fri, 19 Jan 2024 12:08:39 +0100
+Message-ID: <20240119110842.772606-1-abailon@baylibre.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: Add mediatek,gce-props.yaml
-Content-Language: en-US
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, Jason-ch Chen <jason-ch.chen@mediatek.com>,
- Johnson Wang <johnson.wang@mediatek.com>,
- Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
- Shawn Sung <shawn.sung@mediatek.com>,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20240119063224.29671-1-jason-jh.lin@mediatek.com>
- <20240119063224.29671-2-jason-jh.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240119063224.29671-2-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 19/01/24 07:32, Jason-JH.Lin ha scritto:
-> Add mediatek,gce-props.yaml for common GCE properties that is used for
-> both mailbox providers and consumers. We place the common property
-> "mediatek,gce-events" in this binding currently.
-> 
-> The property "mediatek,gce-events" is used for GCE event ID corresponding
-> to a hardware event signal sent by the hardware or a sofware driver.
-> If the mailbox providers or consumers want to manipulate the value of
-> the event ID, they need to know the specific event ID.
-> 
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> ---
->   .../bindings/mailbox/mediatek,gce-props.yaml  | 52 +++++++++++++++++++
->   1 file changed, 52 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-props.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-props.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-props.yaml
-> new file mode 100644
-> index 000000000000..68b519ff089f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-props.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/mediatek,gce-props.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Global Command Engine Common Propertes
-> +
-> +maintainers:
-> +  - Houlong Wei <houlong.wei@mediatek.com>
-> +
-> +description:
-> +  The Global Command Engine (GCE) is an instruction based, multi-threaded,
-> +  single-core command dispatcher for MediaTek hardware. The Command Queue
-> +  (CMDQ) mailbox driver is a driver for GCE, implemented using the Linux
-> +  mailbox framework. It is used to receive messages from mailbox consumers
-> +  and configure GCE to execute the specified instruction set in the message.
-> +  We use mediatek,gce-mailbox.yaml to define the properties for CMDQ mailbox
-> +  driver. A device driver that uses the CMDQ driver to configure its hardware
-> +  registers is a mailbox consumer. The mailbox consumer can request a mailbox
-> +  channel corresponding to a GCE hardware thread to send a message, specifying
-> +  that the GCE thread to configure its hardware. The mailbox provider can also
-> +  reserved a mailbox channel to configure GCE hardware register by the spcific
-> +  GCE thread. This binding defines the common GCE properties for both mailbox
-> +  provider and consumers.
-> +
-> +properties:
-> +  mediatek,gce-events:
-> +    description:
-> +      GCE has an event table in SRAM, consisting of 1024 event IDs (0~1023).
-> +      Each event ID has a boolean event value with the default value 0.
-> +      The property mediatek,gce-events is used to obtain the event IDs.
-> +      Some gce-events are hardware-bound and cannot be changed by software.
-> +      For instance, in MT8195, when VDO0_MUTEX is stream done, VDO_MUTEX will
-> +      send an event signal to GCE, setting the value of event ID 597 to 1.
-> +      Similarly, in MT8188, the value of event ID 574 will be set to 1 when
-> +      VOD0_MUTEX is stream done.
-> +      On the other hand, some gce-events are not hardware-bound and can be
-> +      changed by software. For example, in MT8188, we can set the value of
-> +      event ID 855, which is not bound to any hardware, to 1 when the driver
-> +      in the secure world completes a task. However, in MT8195, event ID 855
-> +      is already bound to VDEC_LAT1, so we need to select another event ID to
-> +      achieve the same purpose. This event ID can be any ID that is not bound
-> +      to any hardware and is not yet used in any software driver.
-> +      To determine if the event ID is bound to the hardware or used by a
-> +      software driver, refer to the GCE header
-> +      include/dt-bindings/gce/<chip>-gce.h of each chip.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 1024
+Following this comment [1], this updates thermal_of to support multiple
+sensors.
 
-maxItems: 1024 seems to be a bit too many... this means that one devicetree node
-may have up to 1024 gce events, which is impossible! If a driver needed all of
-the 1024 events, this means that it's not an user of the GCE, but the GCE itself!
+This has some limitations:
+- A sensor must have its own termal zone, even if it is also registered
+  inside a thermal zone supporting multiple sensors.
+- Only support weighted average
 
-Imagine seeing a devicetree node with 1024 array entries for mediatek,gce-events...
+Changes in v2:
+- Rebased on 6.7
+- Seperated generic multi sensor and dt specfic code
+- Simplified the code
+- Drop min / max and only do weighted average (seems more adequate for IPA)
 
-I'd set that to a more sensible value of 32 - eventually we can extend it later,
-if ever needed.
+[1]: https://patchwork.kernel.org/comment/24723927/
 
-Besides, nice job about all this documentation of the GCE and its events: love it!
+Alexandre Bailon (3):
+  dt-bindings: thermal: Restore the thermal-sensors property
+  thermal: Add support of multi sensors to thermal_core
+  thermal: Add support of multi sensors to thermal_of
 
-Cheers,
-Angelo
+ .../bindings/thermal/thermal-zones.yaml       |   5 +-
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/thermal_core.h                |   7 +
+ drivers/thermal/thermal_multi.c               | 178 ++++++++++++++++++
+ drivers/thermal/thermal_of.c                  | 139 ++++++++++++++
+ 5 files changed, 327 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/thermal/thermal_multi.c
+
+-- 
+2.41.0
 
 
