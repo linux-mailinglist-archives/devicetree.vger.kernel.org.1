@@ -1,131 +1,135 @@
-Return-Path: <devicetree+bounces-33271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144A6832CEB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:11:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AC34832CF8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:14:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C15A92885B8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:11:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1DE1B2353D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:14:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7CE54BFF;
-	Fri, 19 Jan 2024 16:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6950854F90;
+	Fri, 19 Jan 2024 16:14:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uf+AudPq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QcdvfmmW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D38F152F84;
-	Fri, 19 Jan 2024 16:11:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A2752F84;
+	Fri, 19 Jan 2024 16:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705680706; cv=none; b=JogeslxgAwlPgLsvtjM4qH6sb0Fg1STgCD+T9egYozvIwMJ439Qs058EmOCB+DlvVUEtnTR5j9RWUopcQuUJyQmZRZBhALf9q89hf5hGaQgq+eq+XaxoMEmCAV6bYj1cGr5Rj+zUpwOOk+x4vnZSu59arBSyUN+KUI7olbpWEa0=
+	t=1705680879; cv=none; b=PZhxs1GtTcgCn06MQT7SEYPMQyss9VoV2remSPHUGkgoHTHFA7bZkr9Mpg3WBQ7BdXnp+Yh6y+k6qv2yiGkelTjfqa6lRNB+kBqZpaAHKB8YJM84YE4dnnlTRxgXFwv91j22RaTmaj6npV3ApF0IiSYw2TOJUg0KvgwPEz8OolY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705680706; c=relaxed/simple;
-	bh=+skD1Cd21Cux1rhwy4Loe+zv/a/MyUJx8jCiWv0gWcQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lUS/mKvKwvQgE4OIWzjqweE5mLlsPUJTd7/5Z99ecUbp3FMPbVeII14WtBmFC5e3h2wQccld59YOhEzjajposMVAtGmo82Gk0wLwBKsDUXvr2zabpTwH0AbgRxHMzas7ZDsRhGkTXoBgyLPPvPfepLgWaXmqEUaLAQU89oB8uG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uf+AudPq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8066C43390;
-	Fri, 19 Jan 2024 16:11:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705680706;
-	bh=+skD1Cd21Cux1rhwy4Loe+zv/a/MyUJx8jCiWv0gWcQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Uf+AudPqoPRw2CG/rHV1Kffa3eWl6QKRrqtmSoJe9FVdMskVAu0ugBpCxGhggmZyS
-	 9Oq3ASqWG10ShScumrsntAokrOUy34wthJ+/oGg1Vv/JsS88Zso0Jl+dsQK5ADd+L1
-	 QvQrUk5klEGzWqpB4XBqHqhdF0DMcPh1N3GMW2X+EY6N2gjnjQmajySm6UHobM+7/W
-	 Hb6nQ4wtI+HgaekBxElXPGdSiYzEXc6pjcxdgUdiwCpIcwfLyRIXkyszTb1odu0RDb
-	 ikgxeONpT8Vzjtt4SJNRFkfi4W0T4H9hnmT1mf22OqNY0WqFJv3ZJ3+oqGBgm6HLgw
-	 IFRS6UAIhLrTQ==
-Date: Fri, 19 Jan 2024 16:11:37 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Ghennadi Procopciuc (OSS)" <ghennadi.procopciuc@oss.nxp.com>
-Cc: Chester Lin <chester62515@gmail.com>, Andreas Farber <afaerber@suse.de>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, NXP S32 Linux Team <s32@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
-	Ciprian Costea <ciprianmarian.costea@nxp.com>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: s32g: add uSDHC clock IDs
-Message-ID: <20240119-magnetic-racing-0adf8e5fbd4a@spud>
-References: <20240119130231.2854146-1-ghennadi.procopciuc@oss.nxp.com>
- <20240119130231.2854146-2-ghennadi.procopciuc@oss.nxp.com>
+	s=arc-20240116; t=1705680879; c=relaxed/simple;
+	bh=B7zL9FKEcp0/CRVmWRJ5gFi5msLCspc37+NygTzDgY0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jIbfP/aYotjH4xerXVw1PZHaeQmle6kiZJkPSVpNcBsSxW8Ht+xZZgKHlHt/MAssUVUvEAjBLf4kob8H6VdSHGVWRvpW2pre7UaRu3q2LQmN26TuHH7tTS6slVp/QaIqjK3VpZ9iKiQK+1VGE/igL5znhZmkJuwUnLVdO1JzXoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QcdvfmmW; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2cceb5f0918so10728961fa.2;
+        Fri, 19 Jan 2024 08:14:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705680876; x=1706285676; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MZS8+douymIyp/G1h1ov9Y1Rdr9Hj7ajOnwayf3/aT4=;
+        b=QcdvfmmWnWT5SWNEH4cP5iREbv7+7NCWtkapfyv8jthPS8j6pccMPtsCA6t5vQd2/E
+         uO7FGzjqqih9qUTh/6W3ADQLlQUKAmRXBNqYjsCwtPLuNLsliivi/dxXCtaTdaeJ67vP
+         bPG2/eR4+VWAnKEQcAI1R8974g+H8XCExAcGTVWBR/6ondAoodYgU8Y2FFne6f1gXTzb
+         QOIikTiSLHNqguW84maKn9TVoe/OLfLVcYuwm4OiOntS5rU2dJnAIqZV9mlXX4i/J6mG
+         rY7/0NcRQ9SJQyrwM76MegJro2IivCTxMXVVQFtQ6qTWsTu2G0zwBUk2ZZUYvHceIkKe
+         Z1Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705680876; x=1706285676;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MZS8+douymIyp/G1h1ov9Y1Rdr9Hj7ajOnwayf3/aT4=;
+        b=jPGzuB6on8DKfuK5DZodh/An3kHmi2jNc3GZVIlsWMeKpBeVBe4VwlpnzJND/HpJcf
+         O3cg/D3wi8uDDNZxVNrG0mNKqsQS8gALgpmdhYkt+HpFKrUEav7Y5r5rYv9BtVlgqjNq
+         iUacDy4AxxddKL6aKXr/BgB7PEoiWvHKNtUof0gGSaNSi6J+gU+9dcGH0gqnty+DskBN
+         +IuNlh452J9MJIYYBqEOWtAzk4HBIgzOUK6VFi+Dk1wQc9I4Vl2t7puVJcgiemjihleZ
+         f7KvdAbSTtUgfk5AAUsLmCkuZlPgqHwpAQxfupvCvia5j+cb4SnLaWTZvUI9w687c68c
+         FWOA==
+X-Gm-Message-State: AOJu0YwPR/CdJZb83fyXxWn2HjAoP7sO65Slob+sOLxll9+bgsBHRzll
+	OHd5PD2c+13walH1SlbySRSZCgeFpWlh7geAotaT437aiIMQhPCAbKjWwlGiWiZXM6bKzesvso9
+	6OxXlavGDLbQrrv9AD82x8Vj0j84=
+X-Google-Smtp-Source: AGHT+IG4AWmyvk46hSLjREkIbqUt4PdjznNPm5PSf/hR21IX91v4MVnC382ND6Wc/ywvktNtzGzpa2ROJvpEuxdLURM=
+X-Received: by 2002:ac2:446e:0:b0:50e:7be8:46fd with SMTP id
+ y14-20020ac2446e000000b0050e7be846fdmr519933lfl.208.1705680875590; Fri, 19
+ Jan 2024 08:14:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IwcdJ08lEQ0ScTZl"
-Content-Disposition: inline
-In-Reply-To: <20240119130231.2854146-2-ghennadi.procopciuc@oss.nxp.com>
-
-
---IwcdJ08lEQ0ScTZl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
+ <20230804104602.395892-7-ckeepax@opensource.cirrus.com> <Zali4qxdegY7H6eY@surfacebook.localdomain>
+ <aec96f5a-b759-48c7-a5ec-bafe3bfa5357@sirena.org.uk> <CAHp75Vd6JtW4ddbSPXUp6WgEdBJizjwnS-XZzwLcXWWLxFWp-w@mail.gmail.com>
+ <b1889bb0-2b9f-477c-80d3-a636b9017ea4@sirena.org.uk>
+In-Reply-To: <b1889bb0-2b9f-477c-80d3-a636b9017ea4@sirena.org.uk>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 19 Jan 2024 18:13:59 +0200
+Message-ID: <CAHp75Ve=SR_M5NGtu50Eu1Gw_g8mGfk1RAub22QZn3rwGNw+ug@mail.gmail.com>
+Subject: Re: [PATCH v7 6/6] ASoC: cs42l43: Add support for the cs42l43
+To: Mark Brown <broonie@kernel.org>
+Cc: Charles Keepax <ckeepax@opensource.cirrus.com>, lee@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linus.walleij@linaro.org, vkoul@kernel.org, lgirdwood@gmail.com, 
+	yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com, 
+	pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org, 
+	patches@opensource.cirrus.com, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 19, 2024 at 03:02:28PM +0200, Ghennadi Procopciuc (OSS) wrote:
-> From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
->=20
-> Add the SCMI clock IDs for the uSDHC controller present on
-> S32G SoCs.
->=20
-> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
-> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> ---
->  include/dt-bindings/clock/s32g-scmi-clock.h | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->  create mode 100644 include/dt-bindings/clock/s32g-scmi-clock.h
->=20
-> diff --git a/include/dt-bindings/clock/s32g-scmi-clock.h b/include/dt-bin=
-dings/clock/s32g-scmi-clock.h
-> new file mode 100644
-> index 000000000000..739f98a924c3
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/s32g-scmi-clock.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause) */
-> +/*
-> + * Copyright 2020-2024 NXP
-> + */
-> +#ifndef _DT_BINDINGS_SCMI_CLK_S32G_H
-> +#define _DT_BINDINGS_SCMI_CLK_S32G_H
-> +
-> +/* uSDHC */
-> +#define S32G_SCMI_CLK_USDHC_AHB		31
-> +#define S32G_SCMI_CLK_USDHC_MODULE	32
-> +#define S32G_SCMI_CLK_USDHC_CORE	33
-> +#define S32G_SCMI_CLK_USDHC_MOD32K	34
+On Fri, Jan 19, 2024 at 12:07=E2=80=AFAM Mark Brown <broonie@kernel.org> wr=
+ote:
+> On Thu, Jan 18, 2024 at 10:46:28PM +0200, Andy Shevchenko wrote:
+> > On Thu, Jan 18, 2024 at 8:11=E2=80=AFPM Mark Brown <broonie@kernel.org>=
+ wrote:
+> > > On Thu, Jan 18, 2024 at 07:41:54PM +0200, andy.shevchenko@gmail.com w=
+rote:
+> > > > Fri, Aug 04, 2023 at 11:46:02AM +0100, Charles Keepax kirjoitti:
+>
+> > > > > +   unsigned int hs2 =3D 0x2 << CS42L43_HSDET_MODE_SHIFT;
+>
+> > > > BIT(1) ?
+>
+> > > Given that this is writing a value into a register field called "MODE=
+"
+> > > it seems very likely that it's an enumeration value rather than a
+> > > bitmask (and similarly for all the other places where you're making
+> > > similar comments).  Please think a bit more about the code being
+> > > commented on when making these minor stylistic comments.
+>
+> > I read a bit further and have given a comment about this as you put it
+> > above that they are plain values.
+> > Please, read my comments in full.
+>
+> I did eventually find that while going through the other comments but
+> given that the earlier ones hadn't been revised and it was all a bunch
+> of different fields it still seemed useful to highlight, if nothing else
+> it was a little unclear that your later comment applied to all the
+> fields you were asking for updates to.
 
-Why do these numbers not start at 0?
+Yeah, I was thinking about that during the review, that's why I first
+commented and then concluded that those comments are kinda bogus.
 
---IwcdJ08lEQ0ScTZl
-Content-Type: application/pgp-signature; name="signature.asc"
+> In general in a case like this where the code is already in tree it does
+> seem like it'd be better to just write patche for the stylistic issues.
 
------BEGIN PGP SIGNATURE-----
+Sure. I believe Charles will address some of them, if not all.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaqfOQAKCRB4tDGHoIJi
-0m6QAQDkyHsKFGP8Nx5njMmo5n45oTbiIFTNGOPzdthdFHkyAgEA7YBexbTeR4Lj
-zdvAD8t9m+g3o/zvlGrCYsXaDDCNkAc=
-=2Ek4
------END PGP SIGNATURE-----
-
---IwcdJ08lEQ0ScTZl--
+--=20
+With Best Regards,
+Andy Shevchenko
 
