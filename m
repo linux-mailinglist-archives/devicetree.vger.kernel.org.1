@@ -1,87 +1,186 @@
-Return-Path: <devicetree+bounces-33357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D93048330C7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 23:34:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A8B8330DD
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 23:47:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D7F61F22EA3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 22:34:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A224286A8A
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 22:47:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779E255E63;
-	Fri, 19 Jan 2024 22:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A7356B8E;
+	Fri, 19 Jan 2024 22:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TJLMTo9q"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="5I8brMRs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498C41DDD7;
-	Fri, 19 Jan 2024 22:34:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3610A56456;
+	Fri, 19 Jan 2024 22:47:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705703680; cv=none; b=rIshqCdZCDxdciorJHODwvcSL/KJTs5z7UOrx5n2RT/zMox+WGvXGmAJa3TI/9gZpeDHK4W3x6Fr4C0HTZOH4gj0J1yt4C9QVoEdCMge5c2xHndcy+fi+F5vt5q2TzOUTMGeiRXe+HLW4IUHElFfD8Kq+eko962u0Q605lTHbic=
+	t=1705704444; cv=none; b=rJk1UiaJEWBtDj9cEw0tf/ciOx7qiymHFHqa6WS37rHGEINb4HKDuUJ6uDQPnq04koYbFlSTHfOsmkzqH78fUkbMqqhbh5mbSbBZfLWExJpidy48gtQnsUT8eAluuwm7KwUoGh/XJAHT+Rl9W30ofGcAn5Sv1vfZGMhFd9n8gdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705703680; c=relaxed/simple;
-	bh=Tb/IF/3dnB+KD/SYWtRz1VcIoMLT0oJr5xplyBvSeDA=;
+	s=arc-20240116; t=1705704444; c=relaxed/simple;
+	bh=VjppsFpbyCWxgORJcPpUoA4qYbTq4NNlOZd+L1VwhMw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b4NBpCd8aI/96m7ZNLxeIGr0IqO9oJzxuetNdrrL9G3pKlWdFTWQ5duAAS4qtIQ6yMbk6tDq7Sj1+FQ9gBc2Tro5Pib2MBe+fldEzBHcfndoio8gP/5qzS5kDFCKvoXtl37Wr7J/To5XBZs0o5fmDtQjKX+3po85jAs2hLF3gyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TJLMTo9q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E509EC433F1;
-	Fri, 19 Jan 2024 22:34:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705703680;
-	bh=Tb/IF/3dnB+KD/SYWtRz1VcIoMLT0oJr5xplyBvSeDA=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=pM9XZilf5ZJfzg/slvOPkVBjcV6AyIqubk2cHjMGr6eKxXfhomtIGMfsWl1U55Odf6OU6W3WdohdKx3jNbel92aqcT7xCygs0SsT4LJ62eE9v4CPCjKhceb6b8FhMnaePtkVlXm6zxbHy8mLGUm/all6n9CoBEJIVYgl5s3SXho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=5I8brMRs; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705704438;
+	bh=VjppsFpbyCWxgORJcPpUoA4qYbTq4NNlOZd+L1VwhMw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TJLMTo9q1wdgV+lwBQQZfmMaHmb+B3Dwm40qcJizh2E0tvM8XDVz6lGc+iQRDLv2c
-	 XNIH1IxPk9itUI7VrfrFyqR/r8Iis7FR6mPqEv1INxM9ZU3a0RHppz8/JOhx5Bslrn
-	 x83geQtdq2nOc8pKLTyCi08aqDW5++JVubQJ+GRFB0zr/I+8WZ1ok1oa7yGT33frcI
-	 ueg0LgzeQ+CRz8CWx9q9RsyJn2GGs8DrBUTt2pUbXhuWmNeHJzofE1fDcPjPcdxPL7
-	 jLxZ3HEnIn7MYi9whncFoWK80jhz8Z1Tf48Q8xAsiwEMhkswW5EVpCWrAS6bjzIi6U
-	 67fudl0y9QIsQ==
-Date: Fri, 19 Jan 2024 16:34:37 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	quic_skananth@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>, vireshk@kernel.org,
-	Brian Masney <bmasney@redhat.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@linaro.org>, linux-pci@vger.kernel.org,
-	quic_nitegupt@quicinc.com, Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Johan Hovold <johan+linaro@kernel.org>, quic_vbadigan@quicinc.com,
-	Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v6 1/6] dt-bindings: PCI: qcom: Add interconnects path as
- required property
-Message-ID: <170570367676.1246878.13604821231091886465.robh@kernel.org>
-References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
- <20240112-opp_support-v6-1-77bbf7d0cc37@quicinc.com>
+	b=5I8brMRsyz14hP+kX8WRzO8EbIC5sNnul5fNCCC0rUXq6NdphWWXy4m28JaUND2sR
+	 XeK/RCtp/nJn5FdwzHYqBT8bdDZtaAGagm1r2Sxv0qJuMOhks7Q+zGvU0+FPTwPxfJ
+	 6res/AScL1rWZMnoyneFaD1DswIJfvtN2wlZVFGFh8roBcPB3rIRV84H7UoulIzpwB
+	 9qgweRcUDOohiNPOppHAaje9XVZIoTM0qiC+CT3i+SjnW5pPKfBIlo0eSXVBtqq4Ek
+	 tIUDD/BvzJEzzqY9TbKs871vMvLc0vFV8wstEPdcSxOqtox0qWhZHYEC9hIrVq8CQk
+	 BhsPshCEW5RAg==
+Received: from mercury (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id BEE4A37813C4;
+	Fri, 19 Jan 2024 22:47:18 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id 2FE2510609DF; Fri, 19 Jan 2024 23:47:18 +0100 (CET)
+Date: Fri, 19 Jan 2024 23:47:18 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Johan Jonker <jbx6244@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Andy Yan <andy.yan@rock-chips.com>, Algea Cao <algea.cao@rock-chips.com>, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH 3/3] phy: rockchip: Add Samsung HDMI/DP Combo PHY driver
+Message-ID: <eodlujrytdm6gugcbaz3efnjvgg7sbvsqedwllmleh4ar6e7cr@3ejicokdjzcd>
+References: <20240119193806.1030214-1-cristian.ciocaltea@collabora.com>
+ <20240119193806.1030214-4-cristian.ciocaltea@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="h4tpubuhecincak7"
+Content-Disposition: inline
+In-Reply-To: <20240119193806.1030214-4-cristian.ciocaltea@collabora.com>
+
+
+--h4tpubuhecincak7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240112-opp_support-v6-1-77bbf7d0cc37@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
 
+Hi Cristian,
 
-On Fri, 12 Jan 2024 19:52:00 +0530, Krishna chaitanya chundru wrote:
-> Add the interconnects path as required property for sm8450 platform.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+On Fri, Jan 19, 2024 at 09:38:03PM +0200, Cristian Ciocaltea wrote:
+> Add driver for the Rockchip HDMI/eDP TX Combo PHY found on RK3588 SoC.
+>=20
+> The PHY is based on a Samsung IP block and supports HDMI 2.1 TMDS, FRL
+> and eDP links.  The maximum data rate is 12Gbps (HDMI 2.1 FRL), while
+> the minimum is 250Mbps (HDMI 2.1 TMDS).
+>=20
+> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
+> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 > ---
->  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+The driver has multiple sequences looking like this (this is just one
+example of many):
 
+> +	hdptx_write(hdptx, CMN_REG0087, 0x04);
+> +	hdptx_write(hdptx, CMN_REG0089, 0x00);
+> +	hdptx_write(hdptx, CMN_REG008A, 0x55);
+> +	hdptx_write(hdptx, CMN_REG008B, 0x25);
+> +	hdptx_write(hdptx, CMN_REG008C, 0x2c);
+> +	hdptx_write(hdptx, CMN_REG008D, 0x22);
+> +	hdptx_write(hdptx, CMN_REG008E, 0x14);
+> +	hdptx_write(hdptx, CMN_REG008F, 0x20);
+> +	hdptx_write(hdptx, CMN_REG0090, 0x00);
+> +	hdptx_write(hdptx, CMN_REG0091, 0x00);
+> +	hdptx_write(hdptx, CMN_REG0092, 0x00);
+> +	hdptx_write(hdptx, CMN_REG0093, 0x00);
+> +	hdptx_write(hdptx, CMN_REG0095, 0x00);
+> +	hdptx_write(hdptx, CMN_REG0097, 0x02);
+> +	hdptx_write(hdptx, CMN_REG0099, 0x04);
+> +	hdptx_write(hdptx, CMN_REG009A, 0x11);
+> +	hdptx_write(hdptx, CMN_REG009B, 0x00);
+
+Instead of the repetitive calls to regmap_write, it's better to do
+it like this:
+
+static const struct reg_sequence some_init_seq[] =3D {
+	REG_SEQ0(CMN_REG0087, 0x04),
+	REG_SEQ0(CMN_REG0089, 0x00),
+	REG_SEQ0(CMN_REG008A, 0x55),
+	REG_SEQ0(CMN_REG008B, 0x25),
+	REG_SEQ0(CMN_REG008C, 0x2c),
+	REG_SEQ0(CMN_REG008D, 0x22),
+	REG_SEQ0(CMN_REG008E, 0x14),
+	REG_SEQ0(CMN_REG008F, 0x20),
+	REG_SEQ0(CMN_REG0090, 0x00),
+	REG_SEQ0(CMN_REG0091, 0x00),
+	REG_SEQ0(CMN_REG0092, 0x00),
+	REG_SEQ0(CMN_REG0093, 0x00),
+	REG_SEQ0(CMN_REG0095, 0x00),
+	REG_SEQ0(CMN_REG0097, 0x02),
+	REG_SEQ0(CMN_REG0099, 0x04),
+	REG_SEQ0(CMN_REG009A, 0x11),
+	REG_SEQ0(CMN_REG009B, 0x00),
+};
+
+regmap_multi_reg_write(hdptx->regmap, some_init_seq, ARRAY_SIZE(some_init_s=
+eq));
+
+> +static const struct of_device_id rockchip_hdptx_phy_of_match[] =3D {
+> +	{ .compatible =3D "rockchip,rk3588-hdptx-phy", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, rockchip_hdptx_phy_of_match);
+> +
+> +static struct platform_driver rockchip_hdptx_phy_driver =3D {
+> +	.probe  =3D rockchip_hdptx_phy_probe,
+> +	.driver =3D {
+> +		.name =3D "rockchip-hdptx-phy",
+> +		.pm =3D &rockchip_hdptx_phy_pm_ops,
+> +		.of_match_table =3D of_match_ptr(rockchip_hdptx_phy_of_match),
+
+Remove of_match_ptr(). It's a nop, since the driver depends on OF.
+
+Greetings,
+
+-- Sebastian
+
+--h4tpubuhecincak7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmWq++sACgkQ2O7X88g7
++pod7w//ThYbzmy1lztKq6Q/lBLNvHn771BBP8vGzErGsecU6e8sAv4yc8kjOk1X
+Tj3MAlMP9jrl35kNCouj55qupzaaUO4+kWxKWGSB9M0J2uwPPlnxWBghYrvlLqpU
+OpqdyhA2lY27WXb4opiG5WlO4fCka2gPvCmVaEgsRBzvGm8pE5XAEh6wFKyu1nQb
+3rKNhUxDyvE6xsEub1qA6EU4LUz+L5MgnewjZgUo9tXQ8sXZtCnzmio89mjKXxqy
+YZRJJeeMQo2lRD9CSMrrunqRMxfr++EAVfNabqjl6LeCj2LYUyquBVLrl5UWEgyl
+U0I1OanUHZf6bnSxjq4MWQXzsvGJFT8u0WaBExHeFMmiza1u9UOw/OojOsiYgipy
+82ZjkGUwrRRPFG9MR4gnFOAj6QRVcmGiuWcTpN7btyzYxkJok5mC3EJApnEhuSpQ
+q/3/RJ/twqXnmXM0sBVk83SFak8A7JkqIQvpLdAYmpykyzp6jB03CpXsE+LCBQD1
+BgHgTPwwYmd7cQPJO2hjMPYkxXDYYbPHCw+83UHmcDrA/AKO0cv75Y1Rvdtb/AxR
+8W3h5yOHNL3azY7kwDuVyCBaozX5e0+cyMeDSmj3BA6QsygUKvij7oo4GGX1lH+w
+AHedQgPgS8/v36Fe80myNNj/9bq691npdqKlsVJXXRIMI8mFL+w=
+=833U
+-----END PGP SIGNATURE-----
+
+--h4tpubuhecincak7--
 
