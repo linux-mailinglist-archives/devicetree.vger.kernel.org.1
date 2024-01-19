@@ -1,165 +1,178 @@
-Return-Path: <devicetree+bounces-33364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5615583316B
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 00:22:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8169833194
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 00:32:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D494BB210B2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 23:22:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 587F01F21BB7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 23:32:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5ABF58AD0;
-	Fri, 19 Jan 2024 23:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E83159159;
+	Fri, 19 Jan 2024 23:32:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="eWAWNFYl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cXNx4Ijx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 198285789B;
-	Fri, 19 Jan 2024 23:22:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141721E48E;
+	Fri, 19 Jan 2024 23:32:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705706551; cv=none; b=KSpEIpvXIVwBjuEW5HJCaaVtyvTU0S6w2/CYSXMXP1cBm3mUXi/QMmooL8UJixuP9zcSBIx+K1PLS+xiC5C1orIxu6uDiqhXNcA0xuR2kKOckTm/xWkiwwZLCRNCAf59f9ObG4u0vsKf3faOUX02ysQBFCEdx4XiROn17GkXdpo=
+	t=1705707154; cv=none; b=D+eVO16eTUFLJkE6/LOvZZcBzZqRdMCzhTlwsR5r2hb2vbUVJiFzjisBY5cIRsuouaTLTa0NRfmnedoTNUcthyuYByxx2gt984H+WBGGTzCwj9PfX24P8HoXXBLvgnys/FDUMvAP1zI4y4wBsIzp5q1bck2dBua8Ywdaz3BIPBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705706551; c=relaxed/simple;
-	bh=5FsT8mgZflGaTw8AtvFQX7BxaQeZrNKpxYcDl51lLWo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MTnr3eVY1jCZgHNVJ0+SmZgAH6Rbjq1ePnpbvRwpjxrHI0spUpZvDHIiFqKVP4xAEmyGV5jFAsVEPiAyrOn4VVRx1bExJPoofuJ/fGDElsavJ2OOwLSLtQjsog5Vpsygf+M8YRSjvHJV+MvZ5fewoJQYjBm4bapv/XSZGAnbDAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=eWAWNFYl; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705706548;
-	bh=5FsT8mgZflGaTw8AtvFQX7BxaQeZrNKpxYcDl51lLWo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eWAWNFYlMthDefVPwaJFw+GmCB9DaGkA+I2dNr8mDFSRzHd8eCZ1UebtpHcfhC1c3
-	 xM9UhD7GlORXQ5UcGn2mIiu6YtGswlqgnBEaQmYbhWp/U7+dANqiqn/eoM4a2uhXXx
-	 Ui0B8734lUWgtarFWvfDgem/lp94h0tI4UDDsecmEjRhYstUBpSljR8818nBzhlTsp
-	 uaOd03JRj+ODh/yg9AQoJLdz6bBYMyhZqeOo0ngRkea8OQs54gYh6Q0HT4j7dWaFYX
-	 NFl6InhbX0bhT/lqFa3bkzxw8boMKBWLk5PNnH7XUtKHKWAUBm6xALd8Ly0KMP0qY9
-	 MAVYNW3oRZGIw==
-Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 01D26378143B;
-	Fri, 19 Jan 2024 23:22:26 +0000 (UTC)
-Message-ID: <f4ab86cb-158a-48e4-af63-6b13e15a7823@collabora.com>
-Date: Sat, 20 Jan 2024 01:22:25 +0200
+	s=arc-20240116; t=1705707154; c=relaxed/simple;
+	bh=0njnpt+axtxNz55+YBb6DRGhAstP7ROSY1y8ZGxyMYA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZNPCWgLmx/C+4WJd51y/sSjdHVeneFvFFQ5PdRDoTwA+c32IoWAwtOPA2hD6OAQhJEHGgKVZzZtNpWHdZWVcRXc1c+tD7gfFu+K0ir8ejWbN+k1vLe8ZVOr3tWdOTaRDUO+Igqah/Rk4mHvlWxnFF2uRGHlxUEp2xLi6d/oKmhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cXNx4Ijx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E681C433F1;
+	Fri, 19 Jan 2024 23:32:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705707153;
+	bh=0njnpt+axtxNz55+YBb6DRGhAstP7ROSY1y8ZGxyMYA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cXNx4IjxStlOSl6cCEUs5p74oQm2K/C9FtBsTFIwE1sYXlWA5rpF2UQlm8B5pKGmP
+	 hVdPHLeWEn6plevX6SykFB7TBmsIHwclB3ixC1cYqFrkbO5WATNV3ELg41/nIi/3DP
+	 4Vp5ZVO1XYGEq00yGQyHNWug5VDWR3VIvpALDCs8HwX3T42/EylEkPgHRLZV2fxzYe
+	 aWNTn9IzyeTHK13xO03eZba8+xG/RC/sANUhEKHYr90VCmptLROLfYewzBoe3IR1Gj
+	 eBzF9CG5nEc/afr/XupJK5Gb4QxNjzdgW75GEDzU+ihqPPzRSUWTQomHsO0z4zoLqA
+	 pFQqiD7BXQP3Q==
+Date: Fri, 19 Jan 2024 17:32:31 -0600
+From: Rob Herring <robh@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+	git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Moritz Fischer <mdf@kernel.org>, Tom Rix <trix@redhat.com>,
+	Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: fpga: Convert fpga-region binding to yaml
+Message-ID: <20240119233231.GA1290941-robh@kernel.org>
+References: <4d87561dcbfab9e4818d7ad99caf89938774a839.1705491050.git.michal.simek@amd.com>
+ <20240117214722.GA3176505-robh@kernel.org>
+ <1aa2c865-3a9b-441a-ba61-b551f3f7a832@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] phy: rockchip: Add Samsung HDMI/DP Combo PHY driver
-Content-Language: en-US
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Johan Jonker <jbx6244@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andy.yan@rock-chips.com>,
- Algea Cao <algea.cao@rock-chips.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel@collabora.com
-References: <20240119193806.1030214-1-cristian.ciocaltea@collabora.com>
- <20240119193806.1030214-4-cristian.ciocaltea@collabora.com>
- <eodlujrytdm6gugcbaz3efnjvgg7sbvsqedwllmleh4ar6e7cr@3ejicokdjzcd>
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <eodlujrytdm6gugcbaz3efnjvgg7sbvsqedwllmleh4ar6e7cr@3ejicokdjzcd>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1aa2c865-3a9b-441a-ba61-b551f3f7a832@amd.com>
 
-Hi Sebastian,
+On Thu, Jan 18, 2024 at 01:34:16PM +0100, Michal Simek wrote:
+> 
+> 
+> On 1/17/24 22:47, Rob Herring wrote:
+> > On Wed, Jan 17, 2024 at 12:30:58PM +0100, Michal Simek wrote:
+> > > Convert the generic fpga region DT binding to json-schema.
+> > > There are some differences compare to txt version.
+> > > 1. DT overlay can't be described in example that's why directly include
+> > > information from overlay to node which was referenced. It is visible in
+> > > example with /* DT Overlay contains: &... */
+> > > 
+> > > 2. All example have been rewritten to be simpler and describe only full
+> > > reconfiguration and partial reconfiguration with one bridge.
+> > > Completely drop the case where fpga region can inside partial
+> > > reconfiguration region which is already described in description
+> > > 
+> > > 3. Fixed some typos in descriptions compare to txt version but most of it
+> > > is just c&p from txt file.
+> > > 
+> > > Signed-off-by: Michal Simek <michal.simek@amd.com>
 
-On 1/20/24 00:47, Sebastian Reichel wrote:
-> Hi Cristian,
-> 
-> On Fri, Jan 19, 2024 at 09:38:03PM +0200, Cristian Ciocaltea wrote:
->> Add driver for the Rockchip HDMI/eDP TX Combo PHY found on RK3588 SoC.
->>
->> The PHY is based on a Samsung IP block and supports HDMI 2.1 TMDS, FRL
->> and eDP links.  The maximum data rate is 12Gbps (HDMI 2.1 FRL), while
->> the minimum is 250Mbps (HDMI 2.1 TMDS).
->>
->> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
->> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
->> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->> ---
-> 
-> The driver has multiple sequences looking like this (this is just one
-> example of many):
-> 
->> +	hdptx_write(hdptx, CMN_REG0087, 0x04);
->> +	hdptx_write(hdptx, CMN_REG0089, 0x00);
->> +	hdptx_write(hdptx, CMN_REG008A, 0x55);
->> +	hdptx_write(hdptx, CMN_REG008B, 0x25);
->> +	hdptx_write(hdptx, CMN_REG008C, 0x2c);
->> +	hdptx_write(hdptx, CMN_REG008D, 0x22);
->> +	hdptx_write(hdptx, CMN_REG008E, 0x14);
->> +	hdptx_write(hdptx, CMN_REG008F, 0x20);
->> +	hdptx_write(hdptx, CMN_REG0090, 0x00);
->> +	hdptx_write(hdptx, CMN_REG0091, 0x00);
->> +	hdptx_write(hdptx, CMN_REG0092, 0x00);
->> +	hdptx_write(hdptx, CMN_REG0093, 0x00);
->> +	hdptx_write(hdptx, CMN_REG0095, 0x00);
->> +	hdptx_write(hdptx, CMN_REG0097, 0x02);
->> +	hdptx_write(hdptx, CMN_REG0099, 0x04);
->> +	hdptx_write(hdptx, CMN_REG009A, 0x11);
->> +	hdptx_write(hdptx, CMN_REG009B, 0x00);
-> 
-> Instead of the repetitive calls to regmap_write, it's better to do
-> it like this:
-> 
-> static const struct reg_sequence some_init_seq[] = {
-> 	REG_SEQ0(CMN_REG0087, 0x04),
-> 	REG_SEQ0(CMN_REG0089, 0x00),
-> 	REG_SEQ0(CMN_REG008A, 0x55),
-> 	REG_SEQ0(CMN_REG008B, 0x25),
-> 	REG_SEQ0(CMN_REG008C, 0x2c),
-> 	REG_SEQ0(CMN_REG008D, 0x22),
-> 	REG_SEQ0(CMN_REG008E, 0x14),
-> 	REG_SEQ0(CMN_REG008F, 0x20),
-> 	REG_SEQ0(CMN_REG0090, 0x00),
-> 	REG_SEQ0(CMN_REG0091, 0x00),
-> 	REG_SEQ0(CMN_REG0092, 0x00),
-> 	REG_SEQ0(CMN_REG0093, 0x00),
-> 	REG_SEQ0(CMN_REG0095, 0x00),
-> 	REG_SEQ0(CMN_REG0097, 0x02),
-> 	REG_SEQ0(CMN_REG0099, 0x04),
-> 	REG_SEQ0(CMN_REG009A, 0x11),
-> 	REG_SEQ0(CMN_REG009B, 0x00),
-> };
-> 
-> regmap_multi_reg_write(hdptx->regmap, some_init_seq, ARRAY_SIZE(some_init_seq));
+[...]
 
-Thanks for the hint!  Will try to make use of this as much as possible.
-
->> +static const struct of_device_id rockchip_hdptx_phy_of_match[] = {
->> +	{ .compatible = "rockchip,rk3588-hdptx-phy", },
->> +	{}
->> +};
->> +MODULE_DEVICE_TABLE(of, rockchip_hdptx_phy_of_match);
->> +
->> +static struct platform_driver rockchip_hdptx_phy_driver = {
->> +	.probe  = rockchip_hdptx_phy_probe,
->> +	.driver = {
->> +		.name = "rockchip-hdptx-phy",
->> +		.pm = &rockchip_hdptx_phy_pm_ops,
->> +		.of_match_table = of_match_ptr(rockchip_hdptx_phy_of_match),
+> > > +additionalProperties: true
+> > 
+> > Why? This should only be used if another schema is going to include this
+> > one. That's not the case here.
 > 
-> Remove of_match_ptr(). It's a nop, since the driver depends on OF.
+> In v2 we discussed this with Krzysztof. I used pattern properties from
+> simple-bus.yaml in v2.
+> 
+> https://lore.kernel.org/all/b2dd8bcd-1e23-4b68-b7b7-c01b034fc1fe@linaro.org/
 
-Right, will drop it in v2.
+You didn't answer his question. You just picked up 
+'additionalProperties: true' which is easy because it avoids 'problems'.
 
-Regards,
-Cristian
+His question was is this a common schema referenced by other schemas? If 
+so, then use 'additionalProperties: true'. But it is not. You've 
+defined exactly what 'compatible' must be and that means it can't be a 
+common schema.
+
+> 
+> > 
+> > 'type: object' would be acceptable here as that says only nodes can be
+> > added.
+> 
+> What do you think should be patternProperties in this case?
+
+You are the one with FPGAs, what do you need?
+
+
+> I played with it a little bit but all nodes with @ are likely object type.
+
+'@' is only allowed in node names, so it's more than just likely.
+
+> But what to do with others?
+> There are nodes as you see in examples like fixed-factor-clock nodes which
+> are also object type.
+
+Then the node names can be anything and you should use what I suggested.
+
+> Standard property like firmware-name or encrypted-fpga-config are coming via
+> overlay for sure. Others are not permitted. That's why others then listed
+> properties likely must be type object. Is there an elegant way to encode it?
+
+Sorry, I don't follow. You should list every possible property, then the 
+only thing left are nodes and my suggestion covers them. If there's a 
+pattern to the node names, then you can use patternProperties.
+
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    /*
+> > > +     * Full Reconfiguration without Bridges with DT overlay
+> > > +     */
+> > > +    fpga_region0: fpga-region {
+> > 
+> > Drop unused labels.
+> 
+> Actually it is kind of used. I kept it to be able to reference something in
+> comment below.
+
+Okay. Kind of outside the scope of examples and schema as I mentioned.
+
+
+> > > +      compatible = "fpga-region";
+> > > +      #address-cells = <1>;
+> > > +      #size-cells = <1>;
+> > > +      fpga-mgr = <&fpga_mgr0>;
+> > > +
+> > > +      /* DT Overlay contains: &fpga_region0 */
+> > > +      firmware-name = "zynq-gpio.bin";
+> > > +      gpio@40000000 {
+> > > +        compatible = "xlnx,xps-gpio-1.00.a";
+> > > +        reg = <0x40000000 0x10000>;
+> > 
+> > This example implies this is a translatable address, but the lack of
+> > 'ranges' in the parent prevents that. In turn, that means unit-addresses
+> > should be accepted in the parent node name as well.
+> 
+> v1 contains ranges property and it was removed based on Krzysztof comment
+> that fpga-region has no unit address that's why ranges shouldn't be used.
+> 
+> https://lore.kernel.org/all/c3c92468-a1db-498b-b4a2-7926b84cb5ea@linaro.org/
+
+Plain "ranges;" does not have a unit-address. But really, you should 
+allow a non-empty ranges too and therefore allow for a unit-address.
+
+Rob
 
