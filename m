@@ -1,203 +1,281 @@
-Return-Path: <devicetree+bounces-33233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15A4F832A27
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:14:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3308F832A2E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:16:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B99EB283F91
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:14:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 744D71F218C8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:16:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DF6524B7;
-	Fri, 19 Jan 2024 13:14:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="qWjqKg/O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DFB64F1EA;
+	Fri, 19 Jan 2024 13:16:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5681B3C467;
-	Fri, 19 Jan 2024 13:14:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C9852F7D;
+	Fri, 19 Jan 2024 13:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705670085; cv=none; b=NvVS7WLlMgFUI5Ih8zt2T5uWahSm4vnsBe+jIsqbwnsYWTuEeAbYfoe1x2xLlcZtzmUzlgrcsZ8YhM4lLoVTcuqGM8hKaNASyNJ6eYb4qUmJraoDo/JCBlPc/vx4ZVOUbEvBx8hABXZJwEdYwi4Q8MbvKXmuMIy9IXI/oni/rSs=
+	t=1705670178; cv=none; b=lgEChTswFiVa/Nz9qPL3OL5lpZVXM5wrRP30Nlph1BkymontV4cMSc4CoV/GpzLP8/dJa/R9pwhQTjXvV7xdjmJJJa9uYWbnvleSH+k1fiKdW5hh9Jj2QVoRiqUw/CzwEPHzxLObQoDl7aqBvaQ2Ax1v+6ZjvSmkltmgwuOMQos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705670085; c=relaxed/simple;
-	bh=allHfdLuykCl8Tg8ovI4lhyewPlE2kSFzObLQeJtgTE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YVcxRNEtUtYpkaRhSoWxDo1WTAgO12K9B2kLqm1kyOFPPO2n9Po/YOgvRQSotP9x7ouMD6X8QavvurHWX+RekPz9ss0rV0Fs7HbXTfCk7Svg7/GQMjE3u6VzPVbcF1bPjbreVi+EYY0cFI7not0ZopRLvmPy28QmNiPYX2rjYqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=qWjqKg/O; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40JDE56C129521;
-	Fri, 19 Jan 2024 07:14:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1705670046;
-	bh=0p0YDW3jHe9RSxkQ7uT75oHghaehNTE0glSu3aemViw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=qWjqKg/Ox1CNNQtPGOXTL/rli3f0mfUk6L4/m4SoJ4Edx4mhiXdMm/2bctz3ru67N
-	 aKnrSHS9GzgJKfHkv8V8k913q0UIWV7TmPUH5affwHMx30/zTAcAGeIxWYDxOhK3fR
-	 a9m+Vvzc7SvDy2ZCDvaasN6AEgKaPjMhmJAYDouA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40JDE5gV082162
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 19 Jan 2024 07:14:05 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 19
- Jan 2024 07:14:05 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 19 Jan 2024 07:14:05 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40JDE5P8012848;
-	Fri, 19 Jan 2024 07:14:05 -0600
-Date: Fri, 19 Jan 2024 07:14:05 -0600
-From: Nishanth Menon <nm@ti.com>
-To: <sabiya.d@mistralsolutions.com>
-CC: <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
-        Dasnavis Sabiya
-	<sabiya.d@ti.com>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am69-sk: Add support for OSPI
- flash
-Message-ID: <20240119131405.xumvsbgvqzgh4vje@defrost>
-References: <20240118153524.4135901-1-sabiya.d@ti.com>
- <20240118153524.4135901-3-sabiya.d@ti.com>
+	s=arc-20240116; t=1705670178; c=relaxed/simple;
+	bh=kcLkyySanaripxr4heKCeCGgPE5w7W+62Vy2xj7e8DM=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=c9e4NBmgfSU1EkOqijazaoLJd3EZYkSnJY+kq0pJQXJE/gtJsm7E7eXXqpUEDR0dXQHonuniSszFpcOnGXifj+rGZsmdQFmybHzbfeCO095RdxSPN50LCcvmFlnPxV5nDIl3GXTY3T49rqDS7BtO/rtaQXoXUayWfRgBI4u2IFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875a8b.versanet.de ([83.135.90.139] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rQoiZ-0006YU-Ke; Fri, 19 Jan 2024 14:15:31 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Christopher Obbard <chris.obbard@collabora.com>,
+ =?utf-8?B?VGFtw6FzIFN6xbFjcw==?= <szucst@iit.uni-miskolc.hu>,
+ Shreeya Patel <shreeya.patel@collabora.com>,
+ Alexey Charkov <alchark@gmail.com>, Kever Yang <kever.yang@rock-chips.com>,
+ Jagan Teki <jagan@edgeble.ai>, Chris Morgan <macromorgan@hotmail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Alexey Charkov <alchark@gmail.com>
+Subject:
+ Re: [PATCH v2] arm64: dts: rockchip: enable built-in thermal monitoring on
+ rk3588
+Date: Fri, 19 Jan 2024 14:15:30 +0100
+Message-ID: <6579508.YiXZdWvhHV@diego>
+In-Reply-To: <20240109192608.5981-1-alchark@gmail.com>
+References:
+ <20240106222357.23835-1-alchark@gmail.com>
+ <20240109192608.5981-1-alchark@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240118153524.4135901-3-sabiya.d@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 21:05-20240118, sabiya.d@mistralsolutions.com wrote:
-> From: Dasnavis Sabiya <sabiya.d@ti.com>
+Am Dienstag, 9. Januar 2024, 20:19:47 CET schrieb Alexey Charkov:
+> Include thermal zones information in device tree for rk3588 variants
+> and enable the built-in thermal sensing ADC on RADXA Rock 5B
 > 
-> AM69 SK has S28HS512T OSPI flash connected to MCU OSPI0.
-> Enable support for the same. Also describe the partition
-> information according to the offsets in the bootloader.
-> 
-> Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 81 +++++++++++++++++++++++++++
->  1 file changed, 81 insertions(+)
+> Changes in v2:
+>  - Dropped redundant comments
+>  - Included all CPU cores in cooling maps
+>  - Split cooling maps into more granular ones utilizing TSADC
+>    channels 1-3 which measure temperature by separate CPU clusters
+>    instead of channel 0 which measures the center of the SoC die
+
+all of what Dragan wrote and additionally,
+please don't post v2 patches as reply to earlier versions.
+It confuses tooling like "b4" when trying to retrieve patches.
+
+
+Thanks
+Heiko
+
+> ---
+>  .../boot/dts/rockchip/rk3588-rock-5b.dts      |   4 +
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 151 ++++++++++++++++++
+>  2 files changed, 155 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> index feb571a5a0f5..f368105942eb 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
-> @@ -474,6 +474,25 @@ J784S4_IOPAD(0x09C, PIN_OUTPUT, 0) /* (AF35) MCAN7_TX */
->  	};
->  };
->  
-> +&wkup_pmx0 {
-> +	bootph-all;
-> +	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J784S4_WKUP_IOPAD(0x000, PIN_OUTPUT, 0) /* (E32) MCU_OSPI0_CLK */
-> +			J784S4_WKUP_IOPAD(0x02c, PIN_OUTPUT, 0) /* (A32) MCU_OSPI0_CSn0 */
-> +			J784S4_WKUP_IOPAD(0x00c, PIN_INPUT, 0) /* (B33) MCU_OSPI0_D0 */
-> +			J784S4_WKUP_IOPAD(0x010, PIN_INPUT, 0) /* (B32) MCU_OSPI0_D1 */
-> +			J784S4_WKUP_IOPAD(0x014, PIN_INPUT, 0) /* (C33) MCU_OSPI0_D2 */
-> +			J784S4_WKUP_IOPAD(0x018, PIN_INPUT, 0) /* (C35) MCU_OSPI0_D3 */
-> +			J784S4_WKUP_IOPAD(0x01c, PIN_INPUT, 0) /* (D33) MCU_OSPI0_D4 */
-> +			J784S4_WKUP_IOPAD(0x020, PIN_INPUT, 0) /* (D34) MCU_OSPI0_D5 */
-> +			J784S4_WKUP_IOPAD(0x024, PIN_INPUT, 0) /* (E34) MCU_OSPI0_D6 */
-> +			J784S4_WKUP_IOPAD(0x028, PIN_INPUT, 0) /* (E33) MCU_OSPI0_D7 */
-> +			J784S4_WKUP_IOPAD(0x008, PIN_INPUT, 0) /* (C34) MCU_OSPI0_DQS */
-> +		>;
-> +	};
-> +};
-> +
->  &wkup_pmx2 {
->  	bootph-all;
->  	pmic_irq_pins_default: pmic-irq-default-pins {
-> @@ -1073,3 +1092,65 @@ &main_mcan7 {
->  	pinctrl-0 = <&main_mcan7_pins_default>;
->  	phys = <&transceiver4>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> index a5a104131403..f9d540000de3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -772,3 +772,7 @@ &usb_host1_ehci {
+>  &usb_host1_ohci {
+>  	status = "okay";
 >  };
 > +
-> +&ospi0 {
-> +	bootph-all;
-
-Only on the leaf nodes please.
-
+> +&tsadc {
 > +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> index 8aa0499f9b03..8d54998d0ecc 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -10,6 +10,7 @@
+>  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+>  #include <dt-bindings/phy/phy.h>
+>  #include <dt-bindings/ata/ahci.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>  
+>  / {
+>  	compatible = "rockchip,rk3588";
+> @@ -2112,6 +2113,156 @@ tsadc: tsadc@fec00000 {
+>  		status = "disabled";
+>  	};
+>  
+> +	thermal_zones: thermal-zones {
+> +		/* sensor near the center of the whole chip */
+> +		soc_thermal: soc-thermal {
+> +			polling-delay-passive = <20>;
+> +			polling-delay = <1000>;
+> +			sustainable-power = <2100>;
+> +			thermal-sensors = <&tsadc 0>;
 > +
-> +	flash@0 {
-> +		bootph-all;
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0x0>;
-> +		spi-tx-bus-width = <8>;
-> +		spi-rx-bus-width = <8>;
-> +		spi-max-frequency = <25000000>;
-> +		cdns,tshsl-ns = <60>;
-> +		cdns,tsd2d-ns = <60>;
-> +		cdns,tchsh-ns = <60>;
-> +		cdns,tslch-ns = <60>;
-> +		cdns,read-delay = <4>;
-> +
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			partition@0 {
-> +				label = "ospi.tiboot3";
-> +				reg = <0x0 0x80000>;
+> +			trips {
+> +				soc_crit: soc-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
 > +			};
+> +		};
 > +
-> +			partition@80000 {
-> +				label = "ospi.tispl";
-> +				reg = <0x80000 0x200000>;
+> +		/* sensor between A76 cores 0 and 1 */
+> +		bigcore0_thermal: bigcore0-thermal {
+> +			polling-delay-passive = <20>;
+> +			polling-delay = <1000>;
+> +			thermal-sensors = <&tsadc 1>;
+> +
+> +			trips {
+> +				bigcore0_alert: bigcore0-alert {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				bigcore0_crit: bigcore0-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
 > +			};
-> +
-> +			partition@280000 {
-> +				label = "ospi.u-boot";
-> +				reg = <0x280000 0x400000>;
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&bigcore0_alert>;
+> +					cooling-device =
+> +						<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					contribution = <1024>;
+> +				};
 > +			};
+> +		};
 > +
-> +			partition@680000 {
-> +				label = "ospi.env";
-> +				reg = <0x680000 0x40000>;
+> +		/* sensor between A76 cores 2 and 3 */
+> +		bigcore2_thermal: bigcore2-thermal {
+> +			polling-delay-passive = <20>;
+> +			polling-delay = <1000>;
+> +			thermal-sensors = <&tsadc 2>;
+> +
+> +			trips {
+> +				bigcore2_alert: bigcore2-alert {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				bigcore2_crit: bigcore2-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
 > +			};
-> +
-> +			partition@6c0000 {
-> +				label = "ospi.env.backup";
-> +				reg = <0x6c0000 0x40000>;
+> +			cooling-maps {
+> +				map1 {
+> +					trip = <&bigcore2_alert>;
+> +					cooling-device =
+> +						<&cpu_b2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_b3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					contribution = <1024>;
+> +				};
 > +			};
+> +		};
 > +
-> +			partition@800000 {
-> +				label = "ospi.rootfs";
-> +				reg = <0x800000 0x37c0000>;
+> +		/* sensor between the four A55 cores */
+> +		little_core_thermal: littlecore-thermal {
+> +			polling-delay-passive = <20>;
+> +			polling-delay = <1000>;
+> +			thermal-sensors = <&tsadc 3>;
+> +
+> +			trips {
+> +				littlecore_alert: littlecore-alert {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				littlecore_crit: littlecore-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
 > +			};
+> +			cooling-maps {
+> +				map2 {
+> +					trip = <&littlecore_alert>;
+> +					cooling-device =
+> +						<&cpu_l0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_l1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_l2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_l3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					contribution = <1024>;
+> +				};
+> +			};
+> +		};
 > +
-> +			partition@3fc0000 {
-> +				label = "ospi.phypattern";
-> +				reg = <0x3fc0000 0x40000>;
+> +		/* sensor near the PD_CENTER power domain */
+> +		center_thermal: center-thermal {
+> +			polling-delay-passive = <20>;
+> +			polling-delay = <1000>;
+> +			thermal-sensors = <&tsadc 4>;
+> +
+> +			trips {
+> +				center_crit: center-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		gpu_thermal: gpu-thermal {
+> +			polling-delay-passive = <20>;
+> +			polling-delay = <1000>;
+> +			thermal-sensors = <&tsadc 5>;
+> +
+> +			trips {
+> +				gpu_crit: gpu-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		npu_thermal: npu-thermal {
+> +			polling-delay-passive = <20>;
+> +			polling-delay = <1000>;
+> +			thermal-sensors = <&tsadc 6>;
+> +
+> +			trips {
+> +				npu_crit: npu-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <2000>;
+> +					type = "critical";
+> +				};
 > +			};
 > +		};
 > +	};
-> +};
-> -- 
-> 2.34.1
+> +
+>  	saradc: adc@fec10000 {
+>  		compatible = "rockchip,rk3588-saradc";
+>  		reg = <0x0 0xfec10000 0x0 0x10000>;
 > 
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
+
+
 
