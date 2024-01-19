@@ -1,194 +1,482 @@
-Return-Path: <devicetree+bounces-33338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CE0B832FDB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 21:36:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B26E832FDE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 21:39:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6248C1C2434F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 20:36:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7876A1C23764
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 20:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A500156B94;
-	Fri, 19 Jan 2024 20:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF8695647D;
+	Fri, 19 Jan 2024 20:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n7jT12MR"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="ijdbeDA4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2052.outbound.protection.outlook.com [40.107.7.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4D853E3E
-	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 20:35:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705696560; cv=none; b=P/yg5GGiKnnqYdP3hYc9M5W9YYW69fTe7+F2dVfyxCeYSIAa8VxiRqas+fOuI2I55jeudiQh0UZB5HekhSWr+Bqt85fTvxauW8xwlx1PhcdJBS7aadGBaEtWp90vHdjHBaUE8wgzLzd2WTwhjzc0ESn3RkEyG0TGkkY8c7+IGNU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705696560; c=relaxed/simple;
-	bh=Da350K6foabEPR3XP9PM6t2zVSKNbvcdZb6h5pOnBBs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SMZ0yuUoT5eDmHI4GC5vfWDoeaNeQIQ7HkLYZTatTbJphAbEkzfdNR0UexPl7hyfXm8+ALV4t2QXzLQL0hknp2vFrpkAHJ0zuLwPR3j7s5zE9o5SICmf2j97SPXREtDc6jXfX5fKRiZUEFIvBxKSwsplI39xNQN/mJgNUCL/5pU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n7jT12MR; arc=none smtp.client-ip=209.85.219.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dc256e97e0aso887776276.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 12:35:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705696554; x=1706301354; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Yq6a9Wcfb/K9SZpzYXbOmT6slrxaKFYZPaGPVB9JuHM=;
-        b=n7jT12MRk3fQmY7MxYU97LT2Pv1d1dQAohLf0H9jFM45PeHPIhrzpJVG9nZdHvvBGp
-         9lEueBxCel2KY9Mg45uLLbBrnZs26e6nsH3Hn911wGrq2P82YAO+q8njGkTLlEqjw+2p
-         vmnAawlWyoQGIyqM5hVhKE62AsRFAE5ccNSGuRoqo9RwcuTV7dbQi7zM21YMlp9UqQQ/
-         NY3qvcSMVT6n4Q7+CAfNy/l+o/eU9ei5989RLLQRJ6f7NSRwoUWMfm0ThkkBThgOuI3+
-         1Mt+UGUw3AuiGDn9baHkAxF5fGIFa6NlkNGBQGcelyCTJhRPti7PDFmx9AHvtd2huzlv
-         6ktQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705696554; x=1706301354;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Yq6a9Wcfb/K9SZpzYXbOmT6slrxaKFYZPaGPVB9JuHM=;
-        b=uqvKOW0NSfej2yzjFwL7nxNL1RJxy+KtJonNvaCso7KJH8a9nxrWGJXsXt21ZS44j2
-         lLcLS25gYi9MnSY7SdF5ez6v1jYhLyTCQ/wXz76m27AJXfTjPO+2ggh0mauWEWig3TrD
-         HGVI2pmivCptYvn9nAF4NkuKQrXhQfBzaTdtIYPzAJEVWUlqWgTt3sReVHN+j6qfYUgl
-         egl0/2ekltylBVffTI2loy0ukD66P1dxv/po8gwTXGlF99uFxRCupOcpCDxIgdR6oS0b
-         HjZ/DzwBw/cRe8mNtw6G1aQ7BqIt7+GorUYuSm8Q3eWruS1darV4dIOZTc5tSd4AgN9A
-         VcYw==
-X-Gm-Message-State: AOJu0YylxWROPwoHka2Ox8x4F7lYeANxOsTcpKzoxTlzjSHuT4oLHstK
-	PrM+E1defMEXOnLIcFDREWeiBRTvn5b0diqpDybBSWlLE3xoxo1ob2UBscRIUCNjd5xg9onVfBK
-	v3R7CR4QKdGPUocy3izDtl9vBEYx/ZM2+8/qd/+H3j0ROl4O1ky8=
-X-Google-Smtp-Source: AGHT+IFpl97msSR+YJehEn5UzAbLewmm99ALCb9KjvcHZAfQ8hZT0KmzSnhQw5CEYuMghLfLzqVEDKDbl5HBgXy/yZE=
-X-Received: by 2002:a25:6947:0:b0:dc2:645d:163c with SMTP id
- e68-20020a256947000000b00dc2645d163cmr447161ybc.6.1705696554265; Fri, 19 Jan
- 2024 12:35:54 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D07156454;
+	Fri, 19 Jan 2024 20:39:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705696782; cv=fail; b=pT2+1BtuRiXwsWqrIVs9y4xqDmeVsbt6xLCkafKEMDnyW80kp+GTeOaWdMV2MtEHlkXhCxeMu2KCgC2H1lT4Ex5jmIXonVgntYmOW1+tziG+4xdk+dOWJn41/V3DG9kz2+7S0UBLdOYmoCTwbcsOF4u+v9Z86kX4x2b3234Q3Tg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705696782; c=relaxed/simple;
+	bh=i8yIb2pckXd0pA/BLwTMxgqLvLEigjQ1snB5ZR98ppg=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=cS06SSi2dRLFTfImf4t8noscjyyjWz9eKnJ2VhDloEpGxA/YYPI9cx78Odj7sQifOZzfsPawoX8YX/ow0eNNKIA6TxuDkqr75DPJcaFEWcXAHhUkGwvtFYXMfFu7CU0Cwa51cv6wumGd+n5MROTPNgrDQrPDys93M1B/ZleXYEY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=ijdbeDA4; arc=fail smtp.client-ip=40.107.7.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k5UqKrgoSOk3CytrVVJz4JF2zgEfgxJPUlTQbnBIHtzpZC5R6m3lIAdWRJfqBUd+KBnu3ISI7LmkP/tLBqsH2Mw/hqxwE7XS9NUjKkVYxFvzmFPy+PWoykkT2IkT+3ZLtcxoKGx6V7eIKQOjsZz0PmCRwZLteLbhZbV7621D266ljxW2mAq/UoGHUrqfP1//iOUcgNNofjZkost8tHi5Y/W+iqYwxYF0xmRPLaSvuOvZ7sJCZNCXjSdp2qx97iXgQcasEuoZZIbrRI+bhK9oHJyhtWrAvWQ0m18SemrCyWCoMRoC6x2ydg6olFAoS+OVU5n7fjVYEzW2Ih0A1O2tKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j8R5CzkSlQLdefDpVhN8H22X2D9SrSyWakrAIjmeD60=;
+ b=W0ZlY8BB/kpkwefNZwllsLzN0gZ1X59MjDyeNr15n8yta+13xhCNVncZg4VI1huYKDlfg5YYUAinpoR4Ppu+hH/P6KLXGZdgZGs7OI0m8pZHw9wUwRWuU8Uka0b76+pfRphGF3L35M19IhJc1C11F0E70RtlJ/kQ+qdjRCo48OlwmPGQ1OCS4dmCxqzXhaC0hN90we2X7Wgh8i5eW2NFthzigKYwreMhHrWbk8xNYxssf3D37e/yx0gY4Hc8+8JCxpaJG9q3VPrumypLPfoTU+yRgF0AI/S+S1x3lFCgy8qTXWUcP9epe6C2Tlz9bAhxnpHwYVONFJ5MfOdNCO30Eg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j8R5CzkSlQLdefDpVhN8H22X2D9SrSyWakrAIjmeD60=;
+ b=ijdbeDA44KVhxTqEstKmpASiEBrh4TulPuQC5oBGUunBMXEUKGRDYB/kn33do1RQYb1RRy9eanmEIbvY5BA59ME9dVzwnkQZRV0cBS4xCnhZZgQJy699d7gaAcDGKJyBPEZpyWjXCG6cqNs8ecbN1Hib/FMp2P71MlSE3ZEvOPs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI1PR04MB6990.eurprd04.prod.outlook.com (2603:10a6:803:138::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Fri, 19 Jan
+ 2024 20:39:35 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::b8af:bfe5:dffd:59a9]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::b8af:bfe5:dffd:59a9%4]) with mapi id 15.20.7202.027; Fri, 19 Jan 2024
+ 20:39:35 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	"Aneesh Kumar K.V" <aneesh.kumar@kernel.org>,
+	"Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
+	Ran Wang <ran.wang_1@nxp.com>,
+	Zhao Chenhui <chenhui.zhao@freescale.com>,
+	Li Yang <leoyang.li@nxp.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linuxppc-dev@lists.ozlabs.org (open list:LINUX FOR POWERPC (32-BIT AND 64-BIT)),
+	linux-kernel@vger.kernel.org (open list)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/4] powerpc: dts: add power management nodes to FSL chips
+Date: Fri, 19 Jan 2024 15:38:54 -0500
+Message-Id: <20240119203911.3143928-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR13CA0234.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::29) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240118155711.7601-1-quic_ninanaik@quicinc.com>
- <rq2dnfh6ctn5gbf3o3op5ywxx7zhx6r5sh5ykautye56o3p4dg@rjttk3rr65ld> <20240119191144.GR3013251@hu-bjorande-lv.qualcomm.com>
-In-Reply-To: <20240119191144.GR3013251@hu-bjorande-lv.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 19 Jan 2024 22:35:43 +0200
-Message-ID: <CAA8EJppLNFReZn1HK_radSkKkf5L584fx3FCuqG0FoUt4+H=nw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Add new memory map updates to SA8775P
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Eric Chanudet <echanude@redhat.com>, Ninad Naik <quic_ninanaik@quicinc.com>, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	quic_psodagud@quicinc.com, quic_kprasan@quicinc.com, quic_ymg@quicinc.com, 
-	kernel@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI1PR04MB6990:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0cc88c99-7159-47ad-7e74-08dc192ebf19
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	got6kiY1cAKXgHEzHI72uLp7T5y+UCjfbe3vk85DTDdwuSYwzs3XLAOOmIZG4QhAnCIQXrMht4/eSMabO2girHCg8iJ0YCr7SMZ8hWMOf/B8afSf0nboA2o4ukC0mKQj+1KNFdm/D0fUnBpqrDhhyaNLNAdYcVhDWjzgIeb2Tc/YqU1X6bkvDQMQpPniaBdz8vbTpxivuq5uqSS2scTx+CIk2G6QwHJPMBlp8+j/Sj4SJX+aQNIvYyv8kh389v0u51DeM93KWHR9q6/ZAGMD+4tsY7ktOl5SGmPZpcGQda71+zVKYgULBHtwKzGGyqHMK5X4M973E31bFIwMC92BhTDQvAqo5KG9cDIYHOrx76HcYa2Jt/u8t09qzbDs0t+62GzBxJF+CZHb9KTEs0FCmaUz0UKXYb27oi566S8Q/+jpJd2zhWBjv8uG7mj8u8nApJQmZaMlKre6kgKp7axoF67doa/wAzRKE0rv0tGZAavgP+we2sDgE9mIQvpM6fauzVNLSJdIaYaD9ZOdv9GpyNKm6TDOV5ygyCzM3SZ3RmcV0Qs2lFcHXBiosJkui1uUhRhlB+85V5n4FRPWZaqwlbOzIohaQl0OfEOJIqt8vxpV3vi9WBy7VjJr/B8Qhxo/sKkAHc0Av3yFL5Z328pDNA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(366004)(346002)(39860400002)(136003)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(6666004)(2616005)(6512007)(6506007)(26005)(1076003)(52116002)(5660300002)(41300700001)(7416002)(83380400001)(2906002)(4326008)(6486002)(478600001)(316002)(66556008)(66476007)(110136005)(66946007)(921011)(8676002)(8936002)(86362001)(36756003)(38100700002)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?oxsv7Y6Tlb/mFEmaUKr/uVUBvasf8uOwKvL7i3zj7ZPqxpSKL5xYZXUB04Nm?=
+ =?us-ascii?Q?XgpZBt+PH5D6CaWZrsfBJUlMBeZNFY2HJZu4198CjnToFuY9qlD0//Qsi2jm?=
+ =?us-ascii?Q?mx1f+Hai11DA95t+pozqfhbUdp+ckHOQwt95zNUDZEQ4NoXQLABrYEhqDPWy?=
+ =?us-ascii?Q?NrpNyfmajP+NNPTe7g7kvJJrSEJLGlHEpRklsZVI6R9+NUaQbMQQMrFHJ7DZ?=
+ =?us-ascii?Q?8Nf2Q2eMixsIYu5J43g/O3vTSZOWT0xBJVDlGDFhIBh3Vpr7SCJk01ySnLlR?=
+ =?us-ascii?Q?Y81RVsbGn3bg1xynsupdyrZASa7hysVJ8evzCrmZqw52L4YkDNH33j2O98qo?=
+ =?us-ascii?Q?Ccper8Ug+eQcYpuAkdtys1MQwaTndHGGzEhnyODLT2do5dtH+iYCJJE4fVaX?=
+ =?us-ascii?Q?a94uhMw4VR4mJk4r9ljE2XKABIA6UJ11deA1OY8ZVYpSQskJcO9tu3jtRGoE?=
+ =?us-ascii?Q?pKkAItgLd7TvhPF/G/yl3hhkCfMSxPw9uC+JnXCqIrPdMWsCzQUoXrfNwtQk?=
+ =?us-ascii?Q?7NDFupojBjzJ1mEZ4QO13xRUk8Z1fpbvtVEIMEYY+ij3GtO/Htag0LpPx1cI?=
+ =?us-ascii?Q?+mzufb9kqkZLpGet28Pyt5Cne7lKgYpEi9ywhmn1wLNnaWApBXu5EKJtrEiJ?=
+ =?us-ascii?Q?jnp041wf6YgsKevqjGkyCrylNPvUm4gWCFsYhCIjP0xfoJwC6MUpyFshh64p?=
+ =?us-ascii?Q?3XNZi2yVaJ6lNalaJnwiutD18IJMBxwkP6wZUiSAKdoBRkLSxmEgm78G05Jd?=
+ =?us-ascii?Q?tjuflUCjQrVMbW6WEXNwBrYWdnKrzlbYIteu26LNx5Y3p7go31uYnv5vGAyQ?=
+ =?us-ascii?Q?eO96sAga31tdDRbAy4bs03PO5Z2+t1RFEebehLuJ9cSN39CQE8PbpL/2ge5D?=
+ =?us-ascii?Q?s7j0CadMQZSi6/TGOdcUbAfoJ+tPP/5PPISHJFOGV803OXJd+oANF6SsVCa8?=
+ =?us-ascii?Q?L+t9aSZQEQwsRZaiF2zAa4YWxwAERf3/AZti5iUzOiw77NCfrXaakpaxIz7q?=
+ =?us-ascii?Q?6SE3anoNl6iRjkFG3Fh7rlartV2d3OVhCWc41KlK/5BDQLvwAqkXxkKOGYfr?=
+ =?us-ascii?Q?6DusEzulDkLUJ2QiYQHTQvj1eF85qNmhjSUqW6xfNXhj8VhdUsUBsu9RCv1t?=
+ =?us-ascii?Q?sq2rNvm3gmkTkwBM+tctZ8Haq9V8UszV+ADJzCEUjYMfgbAN76gnv06fe3ED?=
+ =?us-ascii?Q?dB+6p24AArU7ZbORXfTcNuE/Wjv2Ut1+TKKQ9Alm4tQT0j4hmIk2s1xd+NvB?=
+ =?us-ascii?Q?RiDJbL//CAKYC979xdGSvgDHdK8QwT/nvl5XUEZvioz8UbP+AhQw+YVJFwRn?=
+ =?us-ascii?Q?Duyy93J5HRIyCp3OM+LGLErhN97oZD97dZOtYSeAOlfRGdWSBNTPZYPae0la?=
+ =?us-ascii?Q?MWtB0Wpd4/OPwtvrJpH0jhVTQ/7ALfwM6OZF74wK2wROE0t0wOxz03Qd7AJj?=
+ =?us-ascii?Q?V/2n0kCbU9SMf/+YwWFerp0OnTgfmClgI7X8WL3vsAY370UDDSSMDUeTMB9S?=
+ =?us-ascii?Q?GUWdZNIpHlgtNvtEoYbmHTd4Rx4Ctqm5BCADWlQIkqf3vw5KCA+hme8BbAaF?=
+ =?us-ascii?Q?2EzREQHDX2mMM9ZZQ4stg//YcdWcVJ4cSbwR++ca?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0cc88c99-7159-47ad-7e74-08dc192ebf19
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2024 20:39:34.9006
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qI99F5A8G776ZbuvcBHAMMI8U0ST5dsAHR7zWuwBVw9qru+VQBZXk5X30QPNwPlGAgZVzZxcZuqKKFZxgqMcpQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6990
 
-On Fri, 19 Jan 2024 at 21:12, Bjorn Andersson <quic_bjorande@quicinc.com> w=
-rote:
->
-> On Thu, Jan 18, 2024 at 06:58:19PM -0500, Eric Chanudet wrote:
-> > On Thu, Jan 18, 2024 at 09:27:11PM +0530, Ninad Naik wrote:
-> > > New memory map layout changes (by Qualcomm firmware) have brought
-> > > in updates to base addresses and/or size for different memory regions
-> > > like cpcucp_fw, tz-stat, and also introduces new memory regions for
-> > > resource manager firmware. This change brings in these corresponding
-> > > memory map updates to the SA8775P SoC device tree.
-> > >
-> > > Signed-off-by: Ninad Naik <quic_ninanaik@quicinc.com>
-> >
-> > With next-20240118, without this patch, running "./memtester 32G"[1]
-> > crashed the board quickly during the mlock:
-> >
-> > [   42.144892] Internal error: synchronous external abort: 000000009600=
-0010 [#1] PREEMPT SMP
->
-> Sounds like just passing "memtest=3D1" on the kernel command line (with
-> CONFIG_MEMTEST=3Dy) would trip this...
->
-> > [   42.153316] Modules linked in: r8153_ecm cdc_ether usbnet marvell dw=
-mac_qcom_ethqos stmmac_platform r8152 rfkill stmmac crct10dif_ce qcom_spmi_=
-temp_alarm pcs_xpcs nvmem_qcom_spmi_sdam qcom_stats i2c_qcom_geni qcom_pon =
-spi_geni_qcom qcom_wdt socinfo phy_qcom_sgmii_eth nvmem_reboot_mode phy_qco=
-m_qmp_usb gpucc_sa8775p phy_qcom_snps_femto_v2 phy_qcom_qmp_pcie qcom_rng d=
-rm fuse backlight ipv6
-> > [   42.188566] CPU: 3 PID: 472 Comm: memtester Not tainted 6.7.0-next-2=
-0240118-00001-g10a3c9d045cf #169
-> > [   42.197944] Hardware name: Qualcomm SA8775P Ride (DT)
-> > [   42.203138] pstate: 80400005 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BT=
-YPE=3D--)
-> > [   42.210292] pc : clear_page+0x18/0x58
-> > [   42.214063] lr : clear_huge_page+0x84/0x1a0
-> > [   42.218370] sp : ffff800081ef3a30
-> > [   42.221776] x29: ffff800081ef3a30 x28: 0000000000000000 x27: 0000000=
-000210009
-> > [   42.229108] x26: 0000000000000000 x25: fffffc6abc053380 x24: ffff000=
-000000000
-> > [   42.236439] x23: 0000000000000000 x22: 0000000000000000 x21: 0000006=
-a89b87f80
-> > [   42.243770] x20: 00000000000001fe x19: fffffc6a89b80000 x18: ffff800=
-081ef3d18
-> > [   42.251101] x17: 0000000000000068 x16: 0000000000000001 x15: 0000000=
-0000001c2
-> > [   42.258431] x14: 0000000000000002 x13: fffffc6a89b90008 x12: 0000000=
-000000001
-> > [   42.265761] x11: 0000000000440dc0 x10: 0000000000000100 x9 : ffffc57=
-0ba60c604
-> > [   42.273090] x8 : 0000000000000030 x7 : ffff554053756000 x6 : ffff800=
-081ef39f0
-> > [   42.280420] x5 : 0000000000000130 x4 : ffffc570bd029ae0 x3 : ffff554=
-053756000
-> > [   42.287752] x2 : 0000000000000004 x1 : 0000000000000040 x0 : ffff1aa=
-26e1ff000
-> > [   42.295083] Call trace:
-> > [   42.297607]  clear_page+0x18/0x58
-> > [   42.301015]  do_huge_pmd_anonymous_page+0x254/0x8f8
-> > [   42.306036]  __handle_mm_fault+0x728/0x1548
-> > [   42.310338]  handle_mm_fault+0x70/0x290
-> > [   42.314281]  __get_user_pages+0x144/0x3c0
-> > [   42.318404]  populate_vma_page_range+0x7c/0xc8
-> > [   42.322972]  __mm_populate+0xc8/0x1d8
-> > [   42.326736]  do_mlock+0x194/0x2d0
-> > [   42.330144]  __arm64_sys_mlock+0x20/0x38
-> > [   42.334178]  invoke_syscall+0x50/0x120
-> > [   42.338034]  el0_svc_common.constprop.0+0xc8/0xf0
-> > [   42.342874]  do_el0_svc+0x24/0x38
-> > [   42.346284]  el0_svc+0x34/0xb8
-> > [   42.349425]  el0t_64_sync_handler+0x120/0x130
-> > [   42.353906]  el0t_64_sync+0x190/0x198
-> > [   42.357674] Code: 37200121 12000c21 d2800082 9ac12041 (d50b7420)
-> > [   42.363932] ---[ end trace 0000000000000000 ]---
-> >
-> > With next-20240118 and this patch, memtester continues through the
-> > test-suite.
-> >
->
-> But the commit message says that this is a new memory map, not that it
-> fixes critical shortcomings in the existing definition.
->
-> If that's the case the commit message needs to be updated so that we can
-> get this into v6.8-rc and the stable kernel (and do we really need all
-> those changes for that?).
+From: Ran Wang <ran.wang_1@nxp.com>
 
-This kind of change sets a very bad precedent. This way old kernels
-become incompatible with the updated firmware. For me it looks like
-Linux kernel suddenly being unable to boot after the BIOS upgrade.
-Generally memory map updates should be disallowed after the board hits
-the production and the DT is published and merged. There can be other
-users of DT. BSD systems, U-Boot. We spend sensible efforts in making
-sure that DT is an ABI: newer kernel remain compatible with older DT
-files. We expect the same kind of efforts from device manufacturers.
+Enable Power Management feature on device tree, including MPC8536,
+MPC8544, MPC8548, MPC8572, P1010, P1020, P1021, P1022, P2020, P2041,
+P3041, T104X, T1024.
 
-I think unless there is a good reason, the memory map update should be
-reverted on the Qualcomm side as a breaking change.
-If this kind of update is absolutely necessary, it might be better to
-define a new set of board files utilising the new memory map, marking
-existing DT files as legacy.
+Signed-off-by: Zhao Chenhui <chenhui.zhao@freescale.com>
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ arch/powerpc/boot/dts/fsl/mpc8536si-post.dtsi | 14 ++++++++++++--
+ arch/powerpc/boot/dts/fsl/mpc8544si-post.dtsi |  2 ++
+ arch/powerpc/boot/dts/fsl/mpc8548si-post.dtsi |  2 ++
+ arch/powerpc/boot/dts/fsl/mpc8572si-post.dtsi |  2 ++
+ arch/powerpc/boot/dts/fsl/p1010si-post.dtsi   | 14 ++++++++++++++
+ arch/powerpc/boot/dts/fsl/p1020si-post.dtsi   |  5 +++++
+ arch/powerpc/boot/dts/fsl/p1021si-post.dtsi   |  5 +++++
+ arch/powerpc/boot/dts/fsl/p1022si-post.dtsi   |  7 +++++--
+ arch/powerpc/boot/dts/fsl/p2020si-post.dtsi   | 17 +++++++++++++----
+ arch/powerpc/boot/dts/fsl/pq3-power.dtsi      | 19 +++++++++++++++++++
+ arch/powerpc/boot/dts/fsl/t1024rdb.dts        |  2 +-
+ arch/powerpc/boot/dts/fsl/t1040rdb.dts        |  2 +-
+ arch/powerpc/boot/dts/fsl/t1042rdb.dts        |  2 +-
+ arch/powerpc/boot/dts/fsl/t1042rdb_pi.dts     |  2 +-
+ 14 files changed, 83 insertions(+), 12 deletions(-)
+ create mode 100644 arch/powerpc/boot/dts/fsl/pq3-power.dtsi
 
---=20
-With best wishes
-Dmitry
+diff --git a/arch/powerpc/boot/dts/fsl/mpc8536si-post.dtsi b/arch/powerpc/boot/dts/fsl/mpc8536si-post.dtsi
+index 41935709ebe87..fba40a1bccc04 100644
+--- a/arch/powerpc/boot/dts/fsl/mpc8536si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/mpc8536si-post.dtsi
+@@ -199,6 +199,10 @@ L2: l2-cache-controller@20000 {
+ 
+ /include/ "pq3-dma-0.dtsi"
+ /include/ "pq3-etsec1-0.dtsi"
++	enet0: ethernet@24000 {
++		fsl,wake-on-filer;
++		fsl,pmc-handle = <&etsec1_clk>;
++	};
+ /include/ "pq3-etsec1-timer-0.dtsi"
+ 
+ 	usb@22000 {
+@@ -222,9 +226,10 @@ ptp_clock@24e00 {
+ 	};
+ 
+ /include/ "pq3-etsec1-2.dtsi"
+-
+-	ethernet@26000 {
++	enet2: ethernet@26000 {
+ 		cell-index = <1>;
++		fsl,wake-on-filer;
++		fsl,pmc-handle = <&etsec3_clk>;
+ 	};
+ 
+ 	usb@2b000 {
+@@ -249,4 +254,9 @@ global-utilities@e0000 {
+ 		reg = <0xe0000 0x1000>;
+ 		fsl,has-rstcr;
+ 	};
++
++/include/ "pq3-power.dtsi"
++	power@e0070 {
++		compatible = "fsl,mpc8536-pmc", "fsl,mpc8548-pmc";
++	};
+ };
+diff --git a/arch/powerpc/boot/dts/fsl/mpc8544si-post.dtsi b/arch/powerpc/boot/dts/fsl/mpc8544si-post.dtsi
+index b68eb119faef3..ea7416af7ee3e 100644
+--- a/arch/powerpc/boot/dts/fsl/mpc8544si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/mpc8544si-post.dtsi
+@@ -188,4 +188,6 @@ global-utilities@e0000 {
+ 		reg = <0xe0000 0x1000>;
+ 		fsl,has-rstcr;
+ 	};
++
++/include/ "pq3-power.dtsi"
+ };
+diff --git a/arch/powerpc/boot/dts/fsl/mpc8548si-post.dtsi b/arch/powerpc/boot/dts/fsl/mpc8548si-post.dtsi
+index 579d76cb8e329..dddb7374508d6 100644
+--- a/arch/powerpc/boot/dts/fsl/mpc8548si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/mpc8548si-post.dtsi
+@@ -156,4 +156,6 @@ global-utilities@e0000 {
+ 		reg = <0xe0000 0x1000>;
+ 		fsl,has-rstcr;
+ 	};
++
++/include/ "pq3-power.dtsi"
+ };
+diff --git a/arch/powerpc/boot/dts/fsl/mpc8572si-post.dtsi b/arch/powerpc/boot/dts/fsl/mpc8572si-post.dtsi
+index 49294cf36b4e6..40a6cff770327 100644
+--- a/arch/powerpc/boot/dts/fsl/mpc8572si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/mpc8572si-post.dtsi
+@@ -193,4 +193,6 @@ global-utilities@e0000 {
+ 		reg = <0xe0000 0x1000>;
+ 		fsl,has-rstcr;
+ 	};
++
++/include/ "pq3-power.dtsi"
+ };
+diff --git a/arch/powerpc/boot/dts/fsl/p1010si-post.dtsi b/arch/powerpc/boot/dts/fsl/p1010si-post.dtsi
+index ccda0a91abf00..b540e58ff79e7 100644
+--- a/arch/powerpc/boot/dts/fsl/p1010si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/p1010si-post.dtsi
+@@ -183,9 +183,23 @@ sdhc@2e000 {
+ /include/ "pq3-etsec2-1.dtsi"
+ /include/ "pq3-etsec2-2.dtsi"
+ 
++	enet0: ethernet@b0000 {
++		fsl,pmc-handle = <&etsec1_clk>;
++	};
++
++	enet1: ethernet@b1000 {
++		fsl,pmc-handle = <&etsec2_clk>;
++	};
++
++	enet2: ethernet@b2000 {
++		fsl,pmc-handle = <&etsec3_clk>;
++	};
++
+ 	global-utilities@e0000 {
+ 		compatible = "fsl,p1010-guts";
+ 		reg = <0xe0000 0x1000>;
+ 		fsl,has-rstcr;
+ 	};
++
++/include/ "pq3-power.dtsi"
+ };
+diff --git a/arch/powerpc/boot/dts/fsl/p1020si-post.dtsi b/arch/powerpc/boot/dts/fsl/p1020si-post.dtsi
+index 642dc3a83d0e3..cc4c7461003bb 100644
+--- a/arch/powerpc/boot/dts/fsl/p1020si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/p1020si-post.dtsi
+@@ -163,14 +163,17 @@ sdhc@2e000 {
+ 
+ /include/ "pq3-etsec2-0.dtsi"
+ 	enet0: enet0_grp2: ethernet@b0000 {
++		fsl,pmc-handle = <&etsec1_clk>;
+ 	};
+ 
+ /include/ "pq3-etsec2-1.dtsi"
+ 	enet1: enet1_grp2: ethernet@b1000 {
++		fsl,pmc-handle = <&etsec2_clk>;
+ 	};
+ 
+ /include/ "pq3-etsec2-2.dtsi"
+ 	enet2: enet2_grp2: ethernet@b2000 {
++		fsl,pmc-handle = <&etsec3_clk>;
+ 	};
+ 
+ 	global-utilities@e0000 {
+@@ -178,6 +181,8 @@ global-utilities@e0000 {
+ 		reg = <0xe0000 0x1000>;
+ 		fsl,has-rstcr;
+ 	};
++
++/include/ "pq3-power.dtsi"
+ };
+ 
+ /include/ "pq3-etsec2-grp2-0.dtsi"
+diff --git a/arch/powerpc/boot/dts/fsl/p1021si-post.dtsi b/arch/powerpc/boot/dts/fsl/p1021si-post.dtsi
+index 407cb5fd0f5ba..378195db9fca5 100644
+--- a/arch/powerpc/boot/dts/fsl/p1021si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/p1021si-post.dtsi
+@@ -159,14 +159,17 @@ sdhc@2e000 {
+ 
+ /include/ "pq3-etsec2-0.dtsi"
+ 	enet0: enet0_grp2: ethernet@b0000 {
++		fsl,pmc-handle = <&etsec1_clk>;
+ 	};
+ 
+ /include/ "pq3-etsec2-1.dtsi"
+ 	enet1: enet1_grp2: ethernet@b1000 {
++		fsl,pmc-handle = <&etsec2_clk>;
+ 	};
+ 
+ /include/ "pq3-etsec2-2.dtsi"
+ 	enet2: enet2_grp2: ethernet@b2000 {
++		fsl,pmc-handle = <&etsec3_clk>;
+ 	};
+ 
+ 	global-utilities@e0000 {
+@@ -174,6 +177,8 @@ global-utilities@e0000 {
+ 		reg = <0xe0000 0x1000>;
+ 		fsl,has-rstcr;
+ 	};
++
++/include/ "pq3-power.dtsi"
+ };
+ 
+ &qe {
+diff --git a/arch/powerpc/boot/dts/fsl/p1022si-post.dtsi b/arch/powerpc/boot/dts/fsl/p1022si-post.dtsi
+index 093e4e3ed3689..6ac21e81344ad 100644
+--- a/arch/powerpc/boot/dts/fsl/p1022si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/p1022si-post.dtsi
+@@ -225,11 +225,13 @@ sdhc@2e000 {
+ /include/ "pq3-etsec2-0.dtsi"
+ 	enet0: enet0_grp2: ethernet@b0000 {
+ 		fsl,wake-on-filer;
++		fsl,pmc-handle = <&etsec1_clk>;
+ 	};
+ 
+ /include/ "pq3-etsec2-1.dtsi"
+ 	enet1: enet1_grp2: ethernet@b1000 {
+ 		fsl,wake-on-filer;
++		fsl,pmc-handle = <&etsec2_clk>;
+ 	};
+ 
+ 	global-utilities@e0000 {
+@@ -238,9 +240,10 @@ global-utilities@e0000 {
+ 		fsl,has-rstcr;
+ 	};
+ 
++/include/ "pq3-power.dtsi"
+ 	power@e0070 {
+-		compatible = "fsl,mpc8536-pmc", "fsl,mpc8548-pmc";
+-		reg = <0xe0070 0x20>;
++		compatible = "fsl,p1022-pmc", "fsl,mpc8536-pmc",
++				"fsl,mpc8548-pmc";
+ 	};
+ 
+ };
+diff --git a/arch/powerpc/boot/dts/fsl/p2020si-post.dtsi b/arch/powerpc/boot/dts/fsl/p2020si-post.dtsi
+index 81b9ab2119be6..d410082d21c0f 100644
+--- a/arch/powerpc/boot/dts/fsl/p2020si-post.dtsi
++++ b/arch/powerpc/boot/dts/fsl/p2020si-post.dtsi
+@@ -178,6 +178,10 @@ usb@22000 {
+ 		compatible = "fsl-usb2-dr-v1.6", "fsl-usb2-dr";
+ 	};
+ /include/ "pq3-etsec1-0.dtsi"
++	enet0: ethernet@24000 {
++		fsl,pmc-handle = <&etsec1_clk>;
++
++	};
+ /include/ "pq3-etsec1-timer-0.dtsi"
+ 
+ 	ptp_clock@24e00 {
+@@ -186,7 +190,15 @@ ptp_clock@24e00 {
+ 
+ 
+ /include/ "pq3-etsec1-1.dtsi"
++	enet1: ethernet@25000 {
++		fsl,pmc-handle = <&etsec2_clk>;
++	};
++
+ /include/ "pq3-etsec1-2.dtsi"
++	enet2: ethernet@26000 {
++		fsl,pmc-handle = <&etsec3_clk>;
++	};
++
+ /include/ "pq3-esdhc-0.dtsi"
+ 	sdhc@2e000 {
+ 		compatible = "fsl,p2020-esdhc", "fsl,esdhc";
+@@ -202,8 +214,5 @@ global-utilities@e0000 {
+ 		fsl,has-rstcr;
+ 	};
+ 
+-	pmc: power@e0070 {
+-		compatible = "fsl,mpc8548-pmc";
+-		reg = <0xe0070 0x20>;
+-	};
++/include/ "pq3-power.dtsi"
+ };
+diff --git a/arch/powerpc/boot/dts/fsl/pq3-power.dtsi b/arch/powerpc/boot/dts/fsl/pq3-power.dtsi
+new file mode 100644
+index 0000000000000..6af12401004db
+--- /dev/null
++++ b/arch/powerpc/boot/dts/fsl/pq3-power.dtsi
+@@ -0,0 +1,19 @@
++// SPDX-License-Identifier: (GPL-2.0+)
++/*
++ * Copyright 2024 NXP
++ */
++
++power@e0070 {
++	compatible = "fsl,mpc8548-pmc";
++	reg = <0xe0070 0x20>;
++
++	etsec1_clk: soc-clk@24 {
++		fsl,pmcdr-mask = <0x00000080>;
++	};
++	etsec2_clk: soc-clk@25 {
++		fsl,pmcdr-mask = <0x00000040>;
++	};
++	etsec3_clk: soc-clk@26 {
++		fsl,pmcdr-mask = <0x00000020>;
++	};
++};
+diff --git a/arch/powerpc/boot/dts/fsl/t1024rdb.dts b/arch/powerpc/boot/dts/fsl/t1024rdb.dts
+index 270aaf631f2ab..7d003e07a9fb2 100644
+--- a/arch/powerpc/boot/dts/fsl/t1024rdb.dts
++++ b/arch/powerpc/boot/dts/fsl/t1024rdb.dts
+@@ -91,7 +91,7 @@ nand@1,0 {
+ 		board-control@2,0 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+-			compatible = "fsl,t1024-cpld";
++			compatible = "fsl,t1024-cpld", "fsl,deepsleep-cpld";
+ 			reg = <3 0 0x300>;
+ 			ranges = <0 3 0 0x300>;
+ 			bank-width = <1>;
+diff --git a/arch/powerpc/boot/dts/fsl/t1040rdb.dts b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
+index dd3aab81e9dea..4347924e9aa7e 100644
+--- a/arch/powerpc/boot/dts/fsl/t1040rdb.dts
++++ b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
+@@ -104,7 +104,7 @@ phy_qsgmii_7: ethernet-phy@b {
+ 
+ 	ifc: localbus@ffe124000 {
+ 		cpld@3,0 {
+-			compatible = "fsl,t1040rdb-cpld";
++			compatible = "fsl,t104xrdb-cpld", "fsl,deepsleep-cpld";
+ 		};
+ 	};
+ };
+diff --git a/arch/powerpc/boot/dts/fsl/t1042rdb.dts b/arch/powerpc/boot/dts/fsl/t1042rdb.dts
+index 3ebb712224cbe..099764322b33c 100644
+--- a/arch/powerpc/boot/dts/fsl/t1042rdb.dts
++++ b/arch/powerpc/boot/dts/fsl/t1042rdb.dts
+@@ -68,7 +68,7 @@ phy_sgmii_2: ethernet-phy@3 {
+ 
+ 	ifc: localbus@ffe124000 {
+ 		cpld@3,0 {
+-			compatible = "fsl,t1042rdb-cpld";
++			compatible = "fsl,t104xrdb-cpld", "fsl,deepsleep-cpld";
+ 		};
+ 	};
+ };
+diff --git a/arch/powerpc/boot/dts/fsl/t1042rdb_pi.dts b/arch/powerpc/boot/dts/fsl/t1042rdb_pi.dts
+index 8ec3ff45e6fc7..b10cab1a347bf 100644
+--- a/arch/powerpc/boot/dts/fsl/t1042rdb_pi.dts
++++ b/arch/powerpc/boot/dts/fsl/t1042rdb_pi.dts
+@@ -41,7 +41,7 @@ / {
+ 
+ 	ifc: localbus@ffe124000 {
+ 		cpld@3,0 {
+-			compatible = "fsl,t1042rdb_pi-cpld";
++			compatible = "fsl,t104xrdb-cpld", "fsl,deepsleep-cpld";
+ 		};
+ 	};
+ 
+-- 
+2.34.1
+
 
