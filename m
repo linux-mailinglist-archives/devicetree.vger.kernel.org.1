@@ -1,70 +1,63 @@
-Return-Path: <devicetree+bounces-33272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDBCC832CF3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:14:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1E0F832D01
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 17:18:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E357282122
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:14:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D082B21EA8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 16:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 511EC54F83;
-	Fri, 19 Jan 2024 16:14:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0624154F92;
+	Fri, 19 Jan 2024 16:18:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GTfpgvYQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q+eThb5l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2518A55760;
-	Fri, 19 Jan 2024 16:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC8654BE3;
+	Fri, 19 Jan 2024 16:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705680859; cv=none; b=R0CtIgDordARuTfZhz5puCAh5n0yP93eIBpZc2tcU4iXw8lwbK0msauxWxUq13BjYHAvPcOd73i2g3l2cFCO4k5W7wtPhWuJG5uH7XNJU92qeau4VmiBl3L9XxiL5xLDj45yJd9Yz40I9cQYaAohHiBDM2R1YLJ15RP3L8Un9Vw=
+	t=1705681109; cv=none; b=hIrBbSg/aU07lQAzSjMKF0nczF2OIBLYdSBYGhtvz3QHlHS0h2gw+2sEhlnfIsMfvxHoT0KJLohrTMDxKQ+anfl+jODEgZD/9BJAFcyVxieE1+qPFfvDQCOzxWzLEItD8j1/msMHw7f+HlVR/OfEx14r6HumBKH9/MpsrvA3e1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705680859; c=relaxed/simple;
-	bh=FTiyumdDUu3LG/iF+VkzG7r/ahERdxQdR7At/f8SshE=;
+	s=arc-20240116; t=1705681109; c=relaxed/simple;
+	bh=PSbkzYeX811ItSViusyC1PoucHT5C5dbiK5s5R+//Rc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N1Cm6oNayWf2hKdB5CjfDG84id9uTDcfoWS5XDUt0pryWP9fePcp7wyB4KKt9XxiTn2w9j55I13Nl57Zle4zJIQ+nVESq2gIavtSc0ssYzcA74O2swT3VzdNd9h0imi9/grrkYxp0ent5EdzgWPEogLI84Se6Ujiko87RZjfuRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GTfpgvYQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 930A6C43390;
-	Fri, 19 Jan 2024 16:14:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EMNL98MLnMnzFAyTqacEIyuKV+nRBl+Bwja1KRpgPhXMdWvuzEf2SbsItpRQB/Yo552QgbkbdDlJnv3uqJhNIsL1mX3tKHILvOsMVVTBYqulVUlEzorROTdZ+Mlu2CQnKIqKYJnBwy1yvzkl85IUfpiJknp5Yak/afo11+8ZtUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q+eThb5l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82990C433F1;
+	Fri, 19 Jan 2024 16:18:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705680858;
-	bh=FTiyumdDUu3LG/iF+VkzG7r/ahERdxQdR7At/f8SshE=;
+	s=k20201202; t=1705681109;
+	bh=PSbkzYeX811ItSViusyC1PoucHT5C5dbiK5s5R+//Rc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GTfpgvYQliKoCICox/GA4UF2qAAxQTCC01Jg+KSo0KX0XdqZoq4jYqxseI7HESkTO
-	 4vEuUO1984PbcN8UQaD+CcMp5kYGwNe937aToDNy5E6XRcQvUj2iPKj1WqG6hIeDB6
-	 hUwt2sXl37wkfEc7LzkFIxoRM1zrUU74jvIjYtt70gq5M+nubkMjR1ifH38iY/TQ4h
-	 d3ViRA6fvtLvQNHzdlzY6NQ38FJZiVHdHAeRaan5oJEr7MLGLkDBC2PhSBEPcbubhb
-	 +yA16381Zz+VRROSh0ZHPsHAk7KUUtSocsgI9I7FEH7IlvQLmzzNynMv9QohE//pDj
-	 V+4QBJ2XxE56Q==
-Date: Fri, 19 Jan 2024 16:14:12 +0000
+	b=Q+eThb5l7sEce6revVcLqp76lCDQtAaJ13L1qS3uyNOLaVIjk42HLfg7St84Sepo4
+	 HYKvID3ToWBuU7kgFePrtxOZiYym0AC+CEHF5lX5XKd6rdkWawE5a3aLVWOM/LLAAn
+	 0SsJMQzA3AZiZzcel+jVKQWRL3kAisE3rsj6rYNyN6A+GYhIwCi0SmG6VljIaHfs7O
+	 UWzdqbTkifDCK5J4Y6Y26PK0m6CRH64IndM41XNPTCGjkGEW8WSuKrtOhv1+Ocs9XA
+	 inTTLSs6EY8SYEBdGr1HEHgfWaXjTFsr4EdGp2fvBOWwmj8qQjPjim8wNXrPx7RMps
+	 2clVHKzWPOxbg==
+Date: Fri, 19 Jan 2024 16:18:23 +0000
 From: Conor Dooley <conor@kernel.org>
-To: "Ghennadi Procopciuc (OSS)" <ghennadi.procopciuc@oss.nxp.com>
-Cc: Chester Lin <chester62515@gmail.com>, Andreas Farber <afaerber@suse.de>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, NXP S32 Linux Team <s32@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
-	Ciprian Costea <ciprianmarian.costea@nxp.com>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: s32g: add uSDHC clock IDs
-Message-ID: <20240119-cattle-antarctic-432fa8e1c0ef@spud>
-References: <20240119130231.2854146-1-ghennadi.procopciuc@oss.nxp.com>
- <20240119130231.2854146-2-ghennadi.procopciuc@oss.nxp.com>
- <20240119-magnetic-racing-0adf8e5fbd4a@spud>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	heikki.krogerus@linux.intel.com, matthias.bgg@gmail.com,
+	dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
+	andersson@kernel.org, nathan@kernel.org, luca.weiss@fairphone.com,
+	tianping.fang@mediatek.com, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Introduce ITE IT5205 Alt. Mode
+ Passive MUX
+Message-ID: <20240119-remedial-unripe-2a3a46b4f117@spud>
+References: <20240119125812.239197-1-angelogioacchino.delregno@collabora.com>
+ <20240119125812.239197-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,68 +65,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qUpbBLVWlyJG4s+w"
+	protocol="application/pgp-signature"; boundary="9xj4ieRRilZigVCK"
 Content-Disposition: inline
-In-Reply-To: <20240119-magnetic-racing-0adf8e5fbd4a@spud>
+In-Reply-To: <20240119125812.239197-2-angelogioacchino.delregno@collabora.com>
 
 
---qUpbBLVWlyJG4s+w
+--9xj4ieRRilZigVCK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 19, 2024 at 04:11:37PM +0000, Conor Dooley wrote:
-> On Fri, Jan 19, 2024 at 03:02:28PM +0200, Ghennadi Procopciuc (OSS) wrote:
-> > From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> >=20
-> > Add the SCMI clock IDs for the uSDHC controller present on
-> > S32G SoCs.
-> >=20
-> > Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
-> > Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > ---
-> >  include/dt-bindings/clock/s32g-scmi-clock.h | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> >  create mode 100644 include/dt-bindings/clock/s32g-scmi-clock.h
-> >=20
-> > diff --git a/include/dt-bindings/clock/s32g-scmi-clock.h b/include/dt-b=
-indings/clock/s32g-scmi-clock.h
-> > new file mode 100644
-> > index 000000000000..739f98a924c3
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/s32g-scmi-clock.h
-> > @@ -0,0 +1,14 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause) */
-> > +/*
-> > + * Copyright 2020-2024 NXP
-> > + */
-> > +#ifndef _DT_BINDINGS_SCMI_CLK_S32G_H
-> > +#define _DT_BINDINGS_SCMI_CLK_S32G_H
-> > +
-> > +/* uSDHC */
-> > +#define S32G_SCMI_CLK_USDHC_AHB		31
-> > +#define S32G_SCMI_CLK_USDHC_MODULE	32
-> > +#define S32G_SCMI_CLK_USDHC_CORE	33
-> > +#define S32G_SCMI_CLK_USDHC_MOD32K	34
+On Fri, Jan 19, 2024 at 01:58:11PM +0100, AngeloGioacchino Del Regno wrote:
+> Introduce a binding for the ITE IT5205 Alternate Mode Passive MUX,
+> used for connecting, disconnecting and switching orientation and
+> control the SBU signals for alternate modes on USB Type-C ports.
 >=20
-> Why do these numbers not start at 0?
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  .../devicetree/bindings/usb/ite,it5205.yaml   | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/ite,it5205.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/ite,it5205.yaml b/Docu=
+mentation/devicetree/bindings/usb/ite,it5205.yaml
+> new file mode 100644
+> index 000000000000..36ec4251b5f2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/ite,it5205.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ITE IT5202 Type-C USB Alternate Mode Passive MUX
+> +
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +  - Tianping Fang <tianping.fang@mediatek.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: ite,it5205
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vcc-supply:
+> +    description: Power supply for VCC pin (3.3V)
+> +
+> +  mode-switch:
+> +    description: Flag the port as possible handle of altmode switching
+> +    type: boolean
+> +
+> +  orientation-switch:
+> +    description: Flag the port as possible handler of orientation switch=
+ing
+> +    type: boolean
+> +
+> +  ite,ovp-enable:
+> +    description: Enable Over Voltage Protection functionality
+> +    type: boolean
 
-Ah, because these are the SCMI IDs directly. If these are numbers that
-are in the TRM, just use the numbers directly - there's no need to
-create bindings for that.
+Bitta devil's advocacy perhaps, but why is this DT property? Is it not
+known whether or not this is supported based on the compatible, and
+whether or not to enable it is a decision for the operating system to
+make?
 
-
-
---qUpbBLVWlyJG4s+w
+--9xj4ieRRilZigVCK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaqf1AAKCRB4tDGHoIJi
-0h34AP9TixDJ6YFjXe+5v6wxO9hgfYPUCpxkmHGGn4w/+waszQD/Wzjy8sz++98r
-s+IkN7/DXavVamW4wy7pnsZC9nJwFgI=
-=XE+5
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZaqgzwAKCRB4tDGHoIJi
+0jXTAP9VDbyyEoQ1CABhFZkzTHaAveF6g22etA5lGD8yD7UudAEAxgJII9jVF6rG
+10llZjO0yQjzZMumgGCQmHPSOQo7uQs=
+=ASpH
 -----END PGP SIGNATURE-----
 
---qUpbBLVWlyJG4s+w--
+--9xj4ieRRilZigVCK--
 
