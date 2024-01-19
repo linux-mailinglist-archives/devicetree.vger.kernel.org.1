@@ -1,240 +1,232 @@
-Return-Path: <devicetree+bounces-33168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61900832785
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:17:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1984D8327CA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 11:45:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFEF01F237C0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:17:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73A8F1F244E4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 10:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B053C47B;
-	Fri, 19 Jan 2024 10:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90294C61D;
+	Fri, 19 Jan 2024 10:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="xoV+DeqE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yr5BHQUv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A990DDA5;
-	Fri, 19 Jan 2024 10:17:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1C83C465
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 10:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705659455; cv=none; b=sRnCtluJPQaQhqcFOE2q4Y9u+30z5lz+U39L7p9w6RkvWwsa9rAqyVhw5klhZz/2oUh7xMRpWgIT8u1LTZgFhr/guYJSwZwastVBiCUIIhfhhAN4I+YhaMJlTXNQmpoCR+5B8BddqPYXp/El7NhcKAPaSC9pHSIR7hJU9mSqtrc=
+	t=1705661133; cv=none; b=J2fqta/WTDy+B/xfzVoV9K1VF24Cqsk4AH1EBv36whlS2bJ3L4j3E0zPWIB9sl7AAK6KMC1CPEOzFhk33yFb6IzVZVTRqnhMYqtGWm1tUsfLDDaOgDIrSVBEpi0NBak2XQ0fGoaZu/f/qIw2+lMXWC311lvcMeffKIKsi6AcQjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705659455; c=relaxed/simple;
-	bh=+LtMZPOF1yo585gqDoaAA6wOBqB5Aivtv5s5vcPOK50=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tZgQggmxaIBhZGPqiYcwvztH04qeQ76aP/dy1q2F/ZW2GOITmLUk6xgfsNHoXvSg+cMbbyNxQsT8KkKlCvoBJoKYnH7TefkEY2S16NUcB0vuArxuGPipXsraI7tCLo4EpP3OA32REhblT4c3CoTiZS/IFQHb8WKfRh/+l82v2m4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=xoV+DeqE; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1705659453; x=1737195453;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+LtMZPOF1yo585gqDoaAA6wOBqB5Aivtv5s5vcPOK50=;
-  b=xoV+DeqE3CUXdy9URhQDrHmi8k+DbWw6DW7QFEgyuC22WxnMn7oJCnG8
-   s9FetOukohBy7Kks+rOAaRAcEFSyDKBxr0FF3tpeGZvnU6rsCiJ7+9rtb
-   /RMpbH7id1llCfK3YyXIMKep2HrLYdd4tM3x9+8fR7uHpbwtiO5DACAL7
-   g1wAxD7+KoLBRGhGApgsakHy2S9vKFFz9p6IAqxmH3c+J9cDZxNCVUE5W
-   cq9EzMZhGghFIeg3KXL6XfFBpRfjz2TedigQiNjkrJ6xVCnWmXGTruLMm
-   pK2gA1x33p9xf98ja9jQwOQO/pLt9Kbqe1UcSdv6/vIZH7fGi1r7iN21e
-   g==;
-X-CSE-ConnectionGUID: K82mF02xSm2dPv+Ypq+eGQ==
-X-CSE-MsgGUID: vERtogOnTAm69wiMAgHXnw==
-X-IronPort-AV: E=Sophos;i="6.05,204,1701154800"; 
-   d="asc'?scan'208";a="245712682"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Jan 2024 03:17:26 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 19 Jan 2024 03:17:25 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Fri, 19 Jan 2024 03:17:23 -0700
-Date: Fri, 19 Jan 2024 10:16:46 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-CC: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Emil
- Renner Berthing <kernel@esmil.dk>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Jack
- Zhu <jack.zhu@starfivetech.com>, <linux-media@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 1/2] dt-bindings: media: starfive: Match driver and
- yaml property names
-Message-ID: <20240119-despair-festival-59ab2d4d896b@wendy>
-References: <20240119100639.84029-1-changhuang.liang@starfivetech.com>
- <20240119100639.84029-2-changhuang.liang@starfivetech.com>
+	s=arc-20240116; t=1705661133; c=relaxed/simple;
+	bh=Y7aeOp/gxG3jICTGUpmQmRYwTDiJcl8e8TBB5K8DFGo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mtzCJcbvGYaNyoTyKb4WSiacPQwdzuIgFG4kkI4wtZgg83vRtx9c5ogoAmowe9n3ZEJV3Ed5fE9zPJ2657EyMObpF7vAan8qWVHlkP9lDVYJGNmF1WIo0HgkC8nuXWhzjNVeg/GVzn174R5PZV0EkumCP43zxp1QPxKgUHFNL9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yr5BHQUv; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40e9101b5f9so6679945e9.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 02:45:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705661129; x=1706265929; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TRxs0NWwWxBVnyJFL82XUAw/ceJBDe/nczpSFhzocgU=;
+        b=Yr5BHQUver3h5+LRM44PSOFNRoVHuODqYLgmovtrz+7CchQHReSa4KHWkcIprDFM6B
+         iaPppVy6ADa1o7n238j/R2h7Xe2SpZTjYjv0Dm50dhZeJSNwXNB6mv+/xgKO+nAPf+ln
+         6r83Dp78DBjD1FHnTscjoIodjAfPlHDALzDoJ7Ry0BVsfEfb8G5TdZVh8ZNEcuydn1X/
+         uJ2wRo8w/oa06ycgk6RzBBfAvet9zCkXrraX4Cb9qjwPT/t7QLoV3Ek134z4M2BpvkJw
+         3A80ffQIBchFVrsGe8xIjUiGC9maBL0MWoCznr4y5Kz+w/JA6D7AvGAP5JlDYinVZc8c
+         78KA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705661129; x=1706265929;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TRxs0NWwWxBVnyJFL82XUAw/ceJBDe/nczpSFhzocgU=;
+        b=kWSf2ym0LEUxiGIg68Fz+QdvkmHupvaQgrs5FH6uBuapG+t+XVyK4L/g3lkuuAm9Qt
+         WYMdl7wrnbBl16Iqd17C2txQQOotpM5SPfFShmia+iI6yqWluOKHeq08YrtzJViKnlwo
+         wlLWlh9ukpmRL+rwNaxTM4JpIMpxwy+kVFVhh1g3fU08d/XLmkDxjbgnxnlnzN9XkJ+I
+         lU3z8sMBi+maBQv+jdD/SjVF1lQTr58SGmAybK5eSDOgwunJS026mnXDKITKr38JKjPl
+         aqcvcWX9+GCjZndpDnrBJZlpCFTpNXh4meSLQk+CO3jieC4q/FVz0DFgVjyMP02fLDs8
+         LADg==
+X-Gm-Message-State: AOJu0YztHKSX1n4oAFxoSMmSyC9hxYhUW76kowRxa1jUXV+EhC+e1mqT
+	vYjw/3pJZ1R5TFYLhII8GHqowHKXaB/KQk91gtG0YvVjULQX+iy8wb+3vboSDyY=
+X-Google-Smtp-Source: AGHT+IFjSCHISAyQZXPRew6O4KYFv6iza6RGr4KnVm5escIqDFiLDADJBjJJc7J7sedhZIcv7t1OAg==
+X-Received: by 2002:a7b:c8ce:0:b0:40e:956b:7447 with SMTP id f14-20020a7bc8ce000000b0040e956b7447mr1014191wml.131.1705661129567;
+        Fri, 19 Jan 2024 02:45:29 -0800 (PST)
+Received: from ta2.c.googlers.com.com (88.140.78.34.bc.googleusercontent.com. [34.78.140.88])
+        by smtp.gmail.com with ESMTPSA id fm16-20020a05600c0c1000b0040ea10178f3sm77470wmb.21.2024.01.19.02.45.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jan 2024 02:45:29 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: gregkh@linuxfoundation.org,
+	jirislaby@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: alim.akhtar@samsung.com,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	andre.draszik@linaro.org,
+	kernel-team@android.com,
+	peter.griffin@linaro.org,
+	semen.protsenko@linaro.org,
+	willmcvicker@google.com,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v2 00/19] serial: samsung: gs101 updates and winter cleanup
+Date: Fri, 19 Jan 2024 10:45:07 +0000
+Message-ID: <20240119104526.1221243-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BFH1MedVdG7X979+"
-Content-Disposition: inline
-In-Reply-To: <20240119100639.84029-2-changhuang.liang@starfivetech.com>
+Content-Transfer-Encoding: 8bit
 
---BFH1MedVdG7X979+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v2:
+- put as first patch in the series the patch that fixes tx_empty()
+  to return TIOCSER_TEMT. Did that so that it can be easily backported
+  to the stable kernels without other dependencies. Add fixes tag for
+  the same patch.
+- follow with a dt-bindings patch that was missed in the initial submission.
+  Krzysztof asked to be queued through the tty tree.
+- split a 81 length line in 2 lines in patch
+  ``tty: serial: samsung: don't compare with zero an if (bitwise expression)``
+  Update the commit message.
+- drop extra ``!!`` on methods already returning bool
+- update commit message and be more verbose in the patch that shrinks
+  the clock selection to 8 clocks.
+- use bool for has_divslot instead of bitfield. We don't expect more
+  flags soon that would bypass the first cacheline of
+  ``struct s3c24xx_uart_info``. Bitfields operations incur performance
+  penalty when set or read as compared to direct types, bool shall be
+  fine for now.
 
-On Fri, Jan 19, 2024 at 02:06:38AM -0800, Changhuang Liang wrote:
-> Drop some unused properties for clocks, resets and interrupts for
-> StarFive JH7110 camera subsystem.
 
-What do you mean "unused"?
+Hi,
 
-Do these clocks etc exist but are not used by the driver?
+The patch set is intended for v6.9 and is expected to be queued through
+Greg's tty tree.
 
-Or do they not exist at all?
+The patch set includes updates for GS101 so that we infer the IO type
+from the compatible. This is because the GS101 Peripheral Blocks, which
+include the serial, only allow 32-bit register accesses. So instead of
+specifying the reg-io-width = 4 property everywhere, deduce the iotype
+from the compatible. The GS101 patches were previously proposed at:
+Link: https://lore.kernel.org/linux-arm-kernel/20240109125814.3691033-1-tudor.ambarus@linaro.org/
 
-The two are very different!
+The patch set includes some cleanup changes that started as a
+consequence of trying to reduce the memory footprint of the
+``struct s3c24xx_uart_info``. For arm32 the struct was not as bad
+defined as for arm64, because all its members could fit in the same
+cacheline. But for arm64 we started from:
 
-Thanks,
-Conor.
+struct s3c24xx_uart_info {
+	const char  *              name;                 /*     0     8 */
+	enum s3c24xx_port_type     type;                 /*     8     4 */
+	unsigned int               port_type;            /*    12     4 */
+	unsigned int               fifosize;             /*    16     4 */
 
->=20
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-> Reviewed-by: Jack Zhu <jack.zhu@starfivetech.com>
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  .../bindings/media/starfive,jh7110-camss.yaml | 31 +++++--------------
->  1 file changed, 8 insertions(+), 23 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/media/starfive,jh7110-cams=
-s.yaml b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> index c66586d90fa2..2504381058b3 100644
-> --- a/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
-> @@ -4,14 +4,14 @@
->  $id: http://devicetree.org/schemas/media/starfive,jh7110-camss.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> =20
-> -title: Starfive SoC CAMSS ISP
-> +title: StarFive SoC CAMSS ISP
-> =20
->  maintainers:
->    - Jack Zhu <jack.zhu@starfivetech.com>
->    - Changhuang Liang <changhuang.liang@starfivetech.com>
-> =20
->  description:
-> -  The Starfive CAMSS ISP is a Camera interface for Starfive JH7110 SoC. =
-It
-> +  The StarFive CAMSS ISP is a Camera interface for StarFive JH7110 SoC. =
-It
->    consists of a VIN controller (Video In Controller, a top-level control=
- unit)
->    and an ISP.
-> =20
-> @@ -28,26 +28,21 @@ properties:
->        - const: isp
-> =20
->    clocks:
-> -    maxItems: 7
-> +    maxItems: 3
-> =20
->    clock-names:
->      items:
-> -      - const: apb_func
->        - const: wrapper_clk_c
-> -      - const: dvp_inv
-> -      - const: axiwr
-> -      - const: mipi_rx0_pxl
->        - const: ispcore_2x
->        - const: isp_axi
-> =20
->    resets:
-> -    maxItems: 6
-> +    maxItems: 5
-> =20
->    reset-names:
->      items:
->        - const: wrapper_p
->        - const: wrapper_c
-> -      - const: axird
->        - const: axiwr
->        - const: isp_top_n
->        - const: isp_top_axi
-> @@ -57,7 +52,7 @@ properties:
->        - description: JH7110 ISP Power Domain Switch Controller.
-> =20
->    interrupts:
-> -    maxItems: 4
-> +    maxItems: 3
-> =20
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
-> @@ -125,34 +120,24 @@ examples:
->          reg =3D <0x19840000 0x10000>,
->                <0x19870000 0x30000>;
->          reg-names =3D "syscon", "isp";
-> -        clocks =3D <&ispcrg 0>,
-> -                 <&ispcrg 13>,
-> -                 <&ispcrg 2>,
-> -                 <&ispcrg 12>,
-> -                 <&ispcrg 1>,
-> +        clocks =3D <&ispcrg 13>,
->                   <&syscrg 51>,
->                   <&syscrg 52>;
-> -        clock-names =3D "apb_func",
-> -                      "wrapper_clk_c",
-> -                      "dvp_inv",
-> -                      "axiwr",
-> -                      "mipi_rx0_pxl",
-> +        clock-names =3D "wrapper_clk_c",
->                        "ispcore_2x",
->                        "isp_axi";
->          resets =3D <&ispcrg 0>,
->                   <&ispcrg 1>,
-> -                 <&ispcrg 10>,
->                   <&ispcrg 11>,
->                   <&syscrg 41>,
->                   <&syscrg 42>;
->          reset-names =3D "wrapper_p",
->                        "wrapper_c",
-> -                      "axird",
->                        "axiwr",
->                        "isp_top_n",
->                        "isp_top_axi";
->          power-domains =3D <&pwrc 5>;
-> -        interrupts =3D <92>, <87>, <88>, <90>;
-> +        interrupts =3D <92>, <87>, <90>;
-> =20
->          ports {
->              #address-cells =3D <1>;
-> --=20
-> 2.25.1
->=20
->=20
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+	/* XXX 4 bytes hole, try to pack */
 
---BFH1MedVdG7X979+
-Content-Type: application/pgp-signature; name="signature.asc"
+	long unsigned int          rx_fifomask;          /*    24     8 */
+	long unsigned int          rx_fifoshift;         /*    32     8 */
+	long unsigned int          rx_fifofull;          /*    40     8 */
+	long unsigned int          tx_fifomask;          /*    48     8 */
+	long unsigned int          tx_fifoshift;         /*    56     8 */
+	/* --- cacheline 1 boundary (64 bytes) --- */
+	long unsigned int          tx_fifofull;          /*    64     8 */
+	unsigned int               def_clk_sel;          /*    72     4 */
 
------BEGIN PGP SIGNATURE-----
+	/* XXX 4 bytes hole, try to pack */
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZapMDgAKCRB4tDGHoIJi
-0lzdAP0XhGNQY1wQcLpLFfEc/Sj9meIVrA/jD1GxiMXgdQqWnQD/QUG80+qLfwIm
-6Glfk4ikQIoSAIG9e230u0TETuQEkQg=
-=ngD+
------END PGP SIGNATURE-----
+	long unsigned int          num_clks;             /*    80     8 */
+	long unsigned int          clksel_mask;          /*    88     8 */
+	long unsigned int          clksel_shift;         /*    96     8 */
+	long unsigned int          ucon_mask;            /*   104     8 */
+	unsigned int               has_divslot:1;        /*   112: 0  4 */
 
---BFH1MedVdG7X979+--
+	/* size: 120, cachelines: 2, members: 16 */
+	/* sum members: 104, holes: 2, sum holes: 8 */
+	/* sum bitfield members: 1 bits (0 bytes) */
+	/* padding: 4 */
+	/* bit_padding: 31 bits */
+	/* last cacheline: 56 bytes */
+};
+
+and after the cleaning we get to:
+struct s3c24xx_uart_info {
+	const char  *              name;                 /*     0     8 */
+	enum s3c24xx_port_type     type;                 /*     8     4 */
+	unsigned int               port_type;            /*    12     4 */
+	unsigned int               fifosize;             /*    16     4 */
+	u32                        rx_fifomask;          /*    20     4 */
+	u32                        rx_fifoshift;         /*    24     4 */
+	u32                        rx_fifofull;          /*    28     4 */
+	u32                        tx_fifomask;          /*    32     4 */
+	u32                        tx_fifoshift;         /*    36     4 */
+	u32                        tx_fifofull;          /*    40     4 */
+	u32                        clksel_mask;          /*    44     4 */
+	u32                        clksel_shift;         /*    48     4 */
+	u32                        ucon_mask;            /*    52     4 */
+	u8                         def_clk_sel;          /*    56     1 */
+	u8                         num_clks;             /*    57     1 */
+	u8                         iotype;               /*    58     1 */
+	bool                       has_divslot;          /*    59     1 */
+
+	/* size: 64, cachelines: 1, members: 17 */
+	/* padding: 4 */
+};
+
+Also note that sorting the include files in alphabetic order in the
+driver revealed some problems that were fixed with the following
+patches:
+Link: https://lore.kernel.org/linux-arm-kernel/20240110074007.4020016-1-tudor.ambarus@linaro.org/
+Link: https://lore.kernel.org/linux-kernel/20240109141045.3704627-1-tudor.ambarus@linaro.org/
+
+Cheers,
+ta
+
+Tudor Ambarus (19):
+  tty: serial: samsung: fix tx_empty() to return TIOCSER_TEMT
+  dt-bindings: serial: samsung: do not allow reg-io-width for gs101
+  tty: serial: samsung: prepare for different IO types
+  tty: serial: samsung: set UPIO_MEM32 iotype for gs101
+  tty: serial: samsung: add gs101 earlycon support
+  tty: serial: samsung: sort headers alphabetically
+  tty: serial: samsung: explicitly include <linux/types.h>
+  tty: serial: samsung: use u32 for register interactions
+  tty: serial: samsung: remove braces on single statement block
+  tty: serial: samsung: move open brace '{' on the next line
+  tty: serial: samsung: drop superfluous comment
+  tty: serial: samsung: make max_count unsigned int
+  tty: serial: samsung: don't compare with zero an if (bitwise
+    expression)
+  tty: serial: samsung: return bool for s3c24xx_serial_txempty_nofifo()
+  tty: serial: samsung: return bool for s3c24xx_serial_console_txrdy()
+  tty: serial: samsung: change return type for
+    s3c24xx_serial_rx_fifocnt()
+  tty: serial: samsung: shrink the clock selection to 8 clocks
+  tty: serial: samsung: change has_divslot type to bool
+  tty: serial: samsung: shrink memory footprint of ``struct
+    s3c24xx_uart_info``
+
+ .../bindings/serial/samsung_uart.yaml         |   2 +
+ drivers/tty/serial/samsung_tty.c              | 245 ++++++++++--------
+ 2 files changed, 141 insertions(+), 106 deletions(-)
+
+-- 
+2.43.0.429.g432eaa2c6b-goog
+
 
