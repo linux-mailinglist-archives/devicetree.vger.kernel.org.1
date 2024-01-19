@@ -1,146 +1,356 @@
-Return-Path: <devicetree+bounces-33250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F38B832ADA
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:59:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F6A832AF1
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 15:07:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FBDF1F217C1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:59:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06C111C21657
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:07:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 892E352F94;
-	Fri, 19 Jan 2024 13:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1978553E2B;
+	Fri, 19 Jan 2024 14:07:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="keRfYpmP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yNRXDiiY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866AC3C493;
-	Fri, 19 Jan 2024 13:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4600C53E20
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 14:07:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705672757; cv=none; b=W5b7QO7FnDrv1GzneR2fH3FyFi4hn304FiQA74B+y0qdHUWHVTTzEboIrl1fl+je7Y3shHUF7H7txevYvUFftZ2Q4j22ZFW59COcSrLYhv3Cl//h5ibx+YbYaJNsZsC1i6xvukkEvbc0mFxvax0Qs+NM64DX6CLDwfks1zKjzfg=
+	t=1705673251; cv=none; b=Z1cqkORdp4CEWtNTMvGkeMG9gJrgeeesHySvnGzFdC9D0s6gR/3t0c7aA/Qe7ThIyVRtlw2dAyQozEFUNjlWrB3EGKLl/mN+oOiQKhnb03eLLsbtnlgnvSuc997RM0bzEc0WQF3R2nVI1F1M2BQakzO5S69dP1mW8b5fYHWI6E4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705672757; c=relaxed/simple;
-	bh=p/40/RTB9UjKxi9Od0nRasdxiGZ7GyKTbdCW/49cFRw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nZ0nrGyIeqf7MxkeIYm3rqTqnJm0THYbr5bwmosvjU2/p7RDj7rq9h/lFUQW4VO0g5opNxJPz3TIwP3WpG+tjwk7832A9x/ZRPQ249wKyDvYt4qp+GEL741lKCG75Qa8jYZN+iCnYIWCWXiZ0sJcCnQ4sf34ClJ5jUaQqEurm90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=keRfYpmP; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1705672755; x=1737208755;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=p/40/RTB9UjKxi9Od0nRasdxiGZ7GyKTbdCW/49cFRw=;
-  b=keRfYpmPCBsUlwvAwV0v6lFCDEl3YrCd92IolPf05EAhKBpsrCwcNwZp
-   xSsNriZSQ/Y6QY5KUvUmyFH1hTP61SruJi5JGb5nWuxdlP3toKltKCEM3
-   uX9xF6SNafZrEpnwmtI73HVn8nYawy3fVXGy2R3zr9pLdmquQAoqd9LbT
-   hQi0U/v/0hanyUis/WyyJB8KnR8FLFcpkypbbiwaW2ubgvJBs8sS0RQIi
-   IJp7wPVBBCupwVC7V2BWePIVInQcNItmEuvmFMqDg2APwppuGl4O0DTuB
-   avsm8laH3aVTiSIfeve+eg2Wz5uwcPz/15alJwH8xHUn9nq+gcs7eoPDW
-   A==;
-X-CSE-ConnectionGUID: s9DSPa5yT/2lOC1K8aydzA==
-X-CSE-MsgGUID: 5xml2/pvTuq3Y5CpQ8hwdw==
-X-IronPort-AV: E=Sophos;i="6.05,204,1701154800"; 
-   d="asc'?scan'208";a="16217918"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Jan 2024 06:59:12 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 19 Jan 2024 06:59:00 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Fri, 19 Jan 2024 06:58:57 -0700
-Date: Fri, 19 Jan 2024 13:58:21 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-CC: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Emil
- Renner Berthing <kernel@esmil.dk>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Jack
- Zhu <jack.zhu@starfivetech.com>, "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-Subject: Re: =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggdjEgMS8y?=
- =?utf-8?Q?=5D_dt-bindings?= =?utf-8?Q?=3A?= media: starfive: Match driver
- and yaml property names
-Message-ID: <20240119-preamble-calm-7724e17fcebc@wendy>
-References: <20240119100639.84029-1-changhuang.liang@starfivetech.com>
- <20240119100639.84029-2-changhuang.liang@starfivetech.com>
- <20240119-despair-festival-59ab2d4d896b@wendy>
- <SHXPR01MB0671E2150D9A2707F12E0901F270A@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
+	s=arc-20240116; t=1705673251; c=relaxed/simple;
+	bh=W7VlGr/pUhSjMTOKO8U+EN3WTfaEJ1F6LduBG3wg8zQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TApV1XwDgK0hCNNvclrRqxnBqHiL0cIekdud+ri/2Yf8cHuczUlhUk4s/FTLmyrUNlg70VKiGHTdFqNABSmAgk9AYYNGhPGoeRIOqQiKYpYkCbCM7aeyN8lDwgcFLi+pcAMeZVYbY6qj2kL4uq79nYzCKUsNzoz18MrZ0kcV5AE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yNRXDiiY; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-5ed10316e22so7408787b3.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 06:07:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705673248; x=1706278048; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=buk4fXAQxtFB8rM3poCtERMP9p3lY+Uw087Jo7Ewjck=;
+        b=yNRXDiiYmPZZ2VLPPPbO0bBQZY/xzRQHR7NCHZCUqWX2otdjzm6uum2QVgdjNHQfUX
+         lcbaDtEnp+fJiKgaVHaErGSmAu1i4s/Dzbo/v02TsAUG10aovzcggWYpEk1GY+Iiw9Xx
+         vAVPey4BzDww/22moIWJcz4nUyHl0ecDGfcHMCm+y8p0IT1j4JLsF8w31PmFMQv9Wd0L
+         Dd8Thi28QUe7QRv9du4DOHgHbvcjp6tFjkZxqKbFP4YuOQoD1U5urUVAtuaGeCtHbhiG
+         2tSDjfwdC763CpdBz6oh+NiYPbLYiV84ukldIPDcxAn3Nz3JzhUaUhuSX9BgaETd3ITR
+         n4JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705673248; x=1706278048;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=buk4fXAQxtFB8rM3poCtERMP9p3lY+Uw087Jo7Ewjck=;
+        b=u5uMmCIQYHxsfSgZNinuPf5ztJnee/OpWJAyx3JStkJodQoqUxRzjm5z2m5DzZSveW
+         6a3SU7Ymq+T+xV7Fip/+55pmGOxf2YslwKDBsx8h87zVC+OwfTGTPGiy1CfGxO11/59t
+         I9jnLToynBbthkHxQI4T7uDp9bmxRm1yX76s49iR4YrdqA47R1G3szpkIFAinpk1cdb5
+         zkQ3NU0DlinttmVuOwuUN5e65lNRF8zesAS8fTwa+hh+REDbVDQkfGwn+XbI9O87qFGj
+         4/LhAf1pVFWDs+PF/SRr+YrDEw1MeXVD04KmGe7A5mlDTRco9Gw9IYShHyeFHGVdDZuV
+         sA2w==
+X-Gm-Message-State: AOJu0Yw7lX679X1s3mkcREv0absNliELGjpFokCTSuSAIOXqX2GOAKCd
+	JP2nDCqW6zNpy/acOVE9qNv1qfEtEHM4mb9yfM6TBtsFZX7zZYJdEhypsUlgZZmY0d9j9bJsU/u
+	xAfMJsacwyCSYXTmH0ErZn6L1MYRt3gSdWeqmoA==
+X-Google-Smtp-Source: AGHT+IFmqIskvUyQCVk6zycWvl/Efv5A6xlnyIt0UcdF3dtHDc9MLGxqVG3NGXwYjxwTWdhnQVEuXgXU9ayI9wSQK+Q=
+X-Received: by 2002:a0d:c201:0:b0:5ff:6173:e98e with SMTP id
+ e1-20020a0dc201000000b005ff6173e98emr2257479ywd.63.1705673248180; Fri, 19 Jan
+ 2024 06:07:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="FEb8PAW5xTtdkNzj"
-Content-Disposition: inline
-In-Reply-To: <SHXPR01MB0671E2150D9A2707F12E0901F270A@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
-
---FEb8PAW5xTtdkNzj
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+References: <20240117160748.37682-1-brgl@bgdev.pl> <CAA8EJpoQfPqoMVyTmUjPs4c1Uc-p4n7zNcG+USNjXX0Svp362w@mail.gmail.com>
+ <CAA8EJpqyK=pkjEofWV595tp29vjkCeWKYr-KOJh_hBiBbkVBew@mail.gmail.com>
+ <CAMRc=McUZh0jhjMW7H6aVKbw29WMCQ3wdkVAz=yOZVK5wc45OA@mail.gmail.com>
+ <CAA8EJprFV6SS_dGF8tOHcBG+y8j74vO0B40Y=e7Kj1-ZThNqPA@mail.gmail.com> <CAMRc=MdOALzkDtpnbqF16suShvP5apGYy4LTQ4dTc3r9Rbb1kg@mail.gmail.com>
+In-Reply-To: <CAMRc=MdOALzkDtpnbqF16suShvP5apGYy4LTQ4dTc3r9Rbb1kg@mail.gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 19 Jan 2024 16:07:17 +0200
+Message-ID: <CAA8EJpr=PMdOWzp8fahL9e9QC-qgS=hSaTqT1XdUs8Dvvsxqgg@mail.gmail.com>
+Subject: Re: [PATCH 0/9] PCI: introduce the concept of power sequencing of
+ PCIe devices
+To: brgl@bgdev.pl
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Arnd Bergmann <arnd@arndb.de>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Peng Fan <peng.fan@nxp.com>, 
+	Robert Richter <rrichter@amd.com>, Dan Williams <dan.j.williams@intel.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, Terry Bowman <terry.bowman@amd.com>, 
+	Lukas Wunner <lukas@wunner.de>, Huacai Chen <chenhuacai@kernel.org>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Abel Vesa <abel.vesa@linaro.org>, 
+	linux-wireless@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-pci@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 19, 2024 at 12:57:22PM +0000, Changhuang Liang wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> Hi , Conor
->=20
-> > =E4=B8=BB=E9=A2=98: Re: [PATCH v1 1/2] dt-bindings: media: starfive: Ma=
-tch driver and yaml
-> > property names
+On Fri, 19 Jan 2024 at 15:35, <brgl@bgdev.pl> wrote:
+>
+> On Fri, 19 Jan 2024 13:31:53 +0100, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> said:
+> > On Fri, 19 Jan 2024 at 13:52, Bartosz Golaszewski <brgl@bgdev.pl> wrote=
+:
+> >>
+> >> On Thu, Jan 18, 2024 at 7:53=E2=80=AFPM Dmitry Baryshkov
+> >> <dmitry.baryshkov@linaro.org> wrote:
+> >> >
+> >>
+> >> [snip]
+> >>
+> >> > >
+> >> > > I'd still like to see how this can be extended to handle BT power =
+up,
+> >> > > having a single entity driving both of the BT and WiFI.
+> >> > >
+> >> > > The device tree changes behave in exactly the opposite way: they
+> >> > > define regulators for the WiFi device, while the WiFi is not being
+> >> > > powered by these regulators. Both WiFi and BT are powered by the P=
+MU,
+> >> > > which in turn consumes all specified regulators.
+> >> >
+> >> > Some additional justification, why I think that this should be
+> >> > modelled as a single instance instead of two different items.
+> >> >
+> >> > This is from msm-5.10 kernel:
+> >> >
+> >> >
+> >> > =3D=3D=3D=3D=3D CUT HERE =3D=3D=3D=3D=3D
+> >> > /**
+> >> >  * cnss_select_pinctrl_enable - select WLAN_GPIO for Active pinctrl =
+status
+> >> >  * @plat_priv: Platform private data structure pointer
+> >> >  *
+> >> >  * For QCA6490, PMU requires minimum 100ms delay between BT_EN_GPIO =
+off and
+> >> >  * WLAN_EN_GPIO on. This is done to avoid power up issues.
+> >> >  *
+> >> >  * Return: Status of pinctrl select operation. 0 - Success.
+> >> >  */
+> >> > static int cnss_select_pinctrl_enable(struct cnss_plat_data *plat_pr=
+iv)
+> >> > =3D=3D=3D=3D=3D CUT HERE =3D=3D=3D=3D=3D
+> >> >
+> >> >
+> >> > Also see the bt_configure_gpios() function in the same kernel.
+> >> >
+> >>
+> >> You are talking about a different problem. Unfortunately we're using
+> >> similar naming here but I don't have a better alternative in mind.
+> >>
+> >> We have two separate issues: one is powering-up a PCI device so that
+> >> it can be detected and the second is dealing with a device that has
+> >> multiple modules in it which share a power sequence. The two are
+> >> independent and this series isn't trying to solve the latter.
 > >
-> > On Fri, Jan 19, 2024 at 02:06:38AM -0800, Changhuang Liang wrote:
-> > > Drop some unused properties for clocks, resets and interrupts for
-> > > StarFive JH7110 camera subsystem.
+> > I see it from a different angle: a power up of the WiFi+BT chips. This
+> > includes devices like wcn3990 (which have platform + serial parts) and
+> > qca6390 / qca6490 / wcn6750 / etc. (which have PCI and serial parts).
 > >
-> > What do you mean "unused"?
+> > From my point of view, the PCIe-only part was nice for an RFC, but for
+> > v1 I have expected to see a final solution that we can reuse for
+> > wcn3990.
 > >
-> > Do these clocks etc exist but are not used by the driver?
+>
+> The submodules are represented as independent devices on the DT and I don=
+'t
+> think this will change. It's not even possible as they operate on differe=
+nt
+> buses so it's not like we can MFD it with a top-level platform device and=
+ two
+> sub-nodes of which one is PCI and another serdev. With that in mind, I'm
+> insisting that there are two separate issues and a generic power sequenci=
+ng
+> can be built on top of the PCI-specific pwrseq added here.
+>
+> >>
+> >> But I am aware of this and so I actually have an idea for a
+> >> generalized power sequencing framework. Let's call it pwrseq as
+> >> opposed to pci_pwrseq.
+> >>
+> >> Krzysztof is telling me that there cannot be any power sequencing
+> >> information contained in DT. Also: modelling the PMU in DT would just
+> >> over complicate stuff for now reason. We'd end up having the PMU node
+> >> consuming the regulators but it too would need to expose regulators
+> >> for WLAN and BT or be otherwise referenced by their nodes.
 > >
-> > Or do they not exist at all?
+> > Yes. And it is a correct representation of the device. The WiFi and BT
+> > parts are powered up by the outputs from PMU. We happen to have three
+> > different pieces (WiFi, BT and PMU) squashed on a single physical
+> > device.
 > >
-> > The two are very different!
+>
+> Alright, so let's imagine we do model the PMU on the device tree. It woul=
+d
+> look something like this:
+>
+> qca6390_pmu: pmic@0 {
+>         compatible =3D "qcom,qca6390-pmu";
+>
+>         bt-gpios =3D <...>;
+>         wlan-gpios =3D <...>;
+>
+>         vdd-supply =3D <&vreg...>;
+>         ...
+>
+>         regulators-0 {
+>                 vreg_x: foo {
+>                         ...
+>                 };
+>
+>                 ...
+>         };
+> };
+>
+> Then the WLAN and BT consume the regulators from &qca6390_pmu. Obviously =
+we
+> cannot go:
+>
+> wlan {
+>         pwrseq =3D &qca6390_pmu;
+> };
+>
+> But it's enough to:
+>
+> wlan {
+>         vdd-supply =3D <&vreg_x>;
+> };
 
-> These clocks etc exist but are not used by the driver.
+I'm not sure this will fly. This means expecting that regulator
+framework is reentrant, which I think is not the case.
 
-That's not an acceptable reason for removing them from the binding. If
-they exist, they should be documented, regardless of whether the driver
-makes use of them. NAK.
+> But the pwrseq driver for "qcom,qca6390-pmu" could map BT and WLAN compat=
+ibles
+> to the correct power sequence and then the relevant drivers could enable =
+it
+> using pwrseq_power_on().
+>
+> But that comes back to what I'm doing here: the PCI part for ath11k still
+> needs the platform driver that will trigger the power sequence and that c=
+ould
+> be the PCI pwrseq driver for which the framework is introduced in this se=
+ries.
+>
+> As I said: the two are largely orthogonal.
 
-Also, your mail didn't end up on LKML, so there's something wrong with
-your setup.
+I'm fine with that as long as it stays as an RFC. We need to fix both
+issues before committing qca6390 power up support.
 
-Thanks,
-Conor.
+>
+> >>
+> >> So I'm thinking that the DT representation should remain as it is:
+> >> with separate WLAN and BT nodes consuming resources relevant to their
+> >> functionality (BT does not need to enable PCIe regulators).
+> >
+> > Is it so? The QCA6390 docs clearly say that all regulators should be
+> > enabled before asserting BT_EN / WLAN_EN. See the powerup timing
+> > diagram and the t2 note to that diagram.
+> >
+>
+> Fair enough.
+>
+> >> Now how to
+> >> handle the QCA6490 model you brought up? How about pwrseq drivers that
+> >> would handle the sequence based on compatibles?
+> >
+> > The QCA6490 is also known as WCN6855. So this problem applies to
+> > Qualcomm sm8350 / sm8450 platforms.
+> >
+> > And strictly speaking I don't see any significant difference between
+> > QCA6390 and WCN6855. The regulators might be different, but the
+> > implementation should be the same.
+> >
+> >>
+> >> We'd add a new subsystem at drivers/pwrseq/. Inside there would be:
+> >> drivers/pwrseq/pwrseq-qca6490.c. The pwrseq framework would expose an
+> >> API to "sub-drivers" (in this case: BT serdev driver and the qca6490
+> >> power sequencing driver). Now the latter goes:
+> >>
+> >> struct pwrseq_desc *pwrseq =3D pwrseq_get(dev);
+> >>
+> >> And the pwrseq subsystem matches the device's compatible against the
+> >> correct, *shared* sequence. The BT driver can do the same at any time.
+> >> The pwrseq driver then gets regulators, GPIOs, clocks etc. and will be
+> >> responsible for dealing with them.
+> >>
+> >> In sub-drivers we now do:
+> >>
+> >> ret =3D pwrseq_power_on(pwrseq);
+> >>
+> >> or
+> >>
+> >> ret =3D pwrseq_power_off(pwrseq);
+> >>
+> >> in the sub-device drivers and no longer interact with each regulator
+> >> on our own. The pwrseq subsystem is now in charge of adding delays
+> >> etc.
+> >>
+> >> That's only an idea and I haven't done any real work yet but I'm
+> >> throwing it out there for discussion.
+> >
+> > I've been there and I had implemented it in the same way, but rather
+> > having the pwrseq as a primary device in DT and parsing end-devices
+> > only as a fallback / compatibility case.
+> >
+>
+> Would you mind posting an example DT code here? I'm not sure if I underst=
+and
+> what "primary device" means in this context.
 
---FEb8PAW5xTtdkNzj
-Content-Type: application/pgp-signature; name="signature.asc"
+ qca_pwrseq: qca-pwrseq {
+  compatible =3D "qcom,qca6390-pwrseq";
 
------BEGIN PGP SIGNATURE-----
+  #pwrseq-cells =3D <1>;
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZap//AAKCRB4tDGHoIJi
-0jW2AP9Bp7EjUTpBTrdQLP7B4nOmzqnt6gXBTDDnZd6H416uMgEApGygc1Eeq1gd
-yDqYrR/umDrmC2JDspWdkwzShFgVXgQ=
-=HLIX
------END PGP SIGNATURE-----
+  vddaon-supply =3D <&vreg_s6a_0p95>;
+  vddpmu-supply =3D <&vreg_s2f_0p95>;
+  vddrfa1-supply =3D <&vreg_s2f_0p95>;
+  vddrfa2-supply =3D <&vreg_s8c_1p3>;
+  vddrfa3-supply =3D <&vreg_s5a_1p9>;
+  vddpcie1-supply =3D <&vreg_s8c_1p3>;
+  vddpcie2-supply =3D <&vreg_s5a_1p9>;
+  vddio-supply =3D <&vreg_s4a_1p8>;
 
---FEb8PAW5xTtdkNzj--
+  bt-enable-gpios =3D <&tlmm 21 GPIO_ACTIVE_HIGH>;
+  wifi-enable-gpios =3D <&tlmm 20 GPIO_ACTIVE_HIGH>;
+  swctrl-gpios =3D <&tlmm 124 GPIO_ACTIVE_HIGH>;
+ };
+
+&uart6 {
+ status =3D "okay";
+ bluetooth {
+  compatible =3D "qcom,qca6390-bt";
+  clocks =3D <&sleep_clk>;
+
+  bt-pwrseq =3D <&qca_pwrseq 1>;
+ };
+};
+
+See https://lore.kernel.org/linux-arm-msm/20211006035407.1147909-13-dmitry.=
+baryshkov@linaro.org/
+
+--=20
+With best wishes
+Dmitry
 
