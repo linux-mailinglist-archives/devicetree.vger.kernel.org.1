@@ -1,169 +1,254 @@
-Return-Path: <devicetree+bounces-33128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40012832533
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 08:45:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3E95832589
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 09:17:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C39161F23D45
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 07:45:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83592286816
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 08:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C63D531;
-	Fri, 19 Jan 2024 07:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18814DDCB;
+	Fri, 19 Jan 2024 08:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="MVptqaE+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GCiUmNiH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB5BD51E;
-	Fri, 19 Jan 2024 07:45:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705650325; cv=fail; b=DWpNVOQcz2yVXfoUS8JTll1dZuZG9xy5940WAzj+8V4cxonN+9NC3/2fW240WWyhO4kJZWytWJUhkcG5gU/KKktc6zPxcw09/DPfSWLra5dboCuVMinoyQzLSV2xj54wdY/WCXqWVNnAZBxm8OX2IlGwWUriwFDUL3VFNX5Lvnc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705650325; c=relaxed/simple;
-	bh=gYBgZ/cpMoKrRAHOde9UxyTR8fislYrrHpH0m+FiBwg=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iMfr/2thw/YCgFdBWsZX+4xBFskLmtnMzBW+YFo3cQ8jerG06WzwGtPdAxdZ9NbQJZifgoRAcdmBl3+/hvUKIq9aec36d1x8xbRapSmp7HY5s9M0PnjNpM63Uk4g2wXjs8AUA8DnS7/4O5DapQV85+CecQDzxJaBA3VL0tmAO3I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=MVptqaE+; arc=fail smtp.client-ip=40.107.236.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NEuAxHRtVmQPU5ePVPpItZ8SiWwrDmmuvJ1GX1kls6euv07IFUCWfjjxN0dqxm2OTWpa764tpMDvRWNo6ZUIotm9QUB+TQ+bPXufCgr/dUs0gTiPqC2h3hWqdLZhOmlygyNSl1u1WbJHD7x1ws5Sfna3C4w1NVGx+wo3ssQu/Kk9aUMVVYRv9Ylq/LnQO2VQ2o4Kc4SCigh7T6kCu4pXdzz7wBAW5eZO8+h+LaefIG2rz1tb7SnSfWgwG98ARK8nAZsfoSmDBoi20NLEyrHjBRwIymonZS0gKagDF4WoF3ZsacmkCdh7AAAMU37oOzmBxRYobSYFfonURhLjuCB34A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8r8YrP1yEO7N2MteRrR0X9A1NcJ2Y+O8PiLJqA4XH9E=;
- b=P9ovhrQCE/4W3BCkrwVrI93wl8a/8WdXxG227jDIn+BALMcV2o6YuRe8/Ijg1oBCQGFoR0ZpGse6BXmvhv+qxNIH0/MXSbUHbG1O+kpuW7xLjoomaYvoODbZ/43IXvDZiXsQf1H4MnZxCMpsPoxbDxaMiNKSmkM67bkm9KW9DWsFshPc09+CUiL0EzLkZdwJC5CxGTvJdmKLmKFzfeHEMKAWaly02NyPdZao9y3vTEtw6mxzwqyEDcqGe8wMHQnI+vYuhkyKdgXE0Ce/SuwTtD27iP8QEQp25LPPOIjb0GGhc+f8VbOZz9AFtWDvYAU2cobUwdVgKIyixl9MKy8HVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8r8YrP1yEO7N2MteRrR0X9A1NcJ2Y+O8PiLJqA4XH9E=;
- b=MVptqaE+cmfnNBYB/uAcfzqkL3KkWCxoIgKTF6Voa7yxKSwRC2B3jWo53LdGyeI6EHvm82LE7c2dGmSniisnb5owz6a4HcJcwgbzIXiI0FZBGsgIlTvcm/CRmNHG5qxau/JEgY0rjwTa9Uv4uHEadp6Ylqkl6+S68KErpeE+pnA=
-Received: from CY8PR19CA0009.namprd19.prod.outlook.com (2603:10b6:930:44::14)
- by BY5PR12MB4306.namprd12.prod.outlook.com (2603:10b6:a03:206::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.26; Fri, 19 Jan
- 2024 07:45:17 +0000
-Received: from CY4PEPF0000E9CD.namprd03.prod.outlook.com
- (2603:10b6:930:44:cafe::af) by CY8PR19CA0009.outlook.office365.com
- (2603:10b6:930:44::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24 via Frontend
- Transport; Fri, 19 Jan 2024 07:45:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000E9CD.mail.protection.outlook.com (10.167.241.140) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7181.14 via Frontend Transport; Fri, 19 Jan 2024 07:45:16 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 19 Jan
- 2024 01:45:06 -0600
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Fri, 19 Jan
- 2024 01:44:35 -0600
-Received: from xhdradheys41.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.34 via Frontend
- Transport; Fri, 19 Jan 2024 01:44:32 -0600
-From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-To: <vkoul@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<michal.simek@amd.com>
-CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<git@amd.com>, Abin Joseph <abin.joseph@amd.com>, Radhey Shyam Pandey
-	<radhey.shyam.pandey@amd.com>
-Subject: [PATCH] dt-bindings: dmaengine: xilinx_dma: Remove DMA client binding
-Date: Fri, 19 Jan 2024 13:14:30 +0530
-Message-ID: <1705650270-503536-1-git-send-email-radhey.shyam.pandey@amd.com>
-X-Mailer: git-send-email 2.1.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC20DDA2
+	for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 08:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705652233; cv=none; b=HRLVw79ltwyjvruz5hrakHmqD1qlg7U7UYQlbwQCqyl8cbgny4pK774gQS2nBlbZgkYunn5kL7U5kDA7aRl+jesrvcTBWfLBgn8lslpvcpGGEwv22JNSs5daixX/uQOAjrAZUjrAwHjzWo82iKabfQh84U3th/nwgHP+8GR4l38=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705652233; c=relaxed/simple;
+	bh=oKKbj+jvfOiHePyNHPvlPksDgVHym+JYEXU4x7rTGMg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GoMyFUQ+vYiYchBBQU3Ex59rr4QLtMGWA5tzYM8zb4g1KdJRvo2ipAl6cuJ/AjpHXc9FcqPDL6vLaMmLTD5E6N5C0H4o4aLLETnss1TT3rwbvsjU3RbXzXO5zEmt5mpcl+SdU6ABUls3DHTr5JMFrSF+uduuCgOao3+jT5BtK4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GCiUmNiH; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-517ab9a4a13so417670a12.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jan 2024 00:17:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705652231; x=1706257031; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=CKeQxr74v0/RAxO8TgttZrcsw2Yx0+jcWvQmI1Qe2Zw=;
+        b=GCiUmNiHqUl724sarO7rz1kosw2/m9Vmq+DUpQv/gfja+Frk0tGcgM8ybrfERKzSTL
+         szei/DpG+JN6B1gTo8IitHYfHmGVRm2nA+UaGKuaE309WPj5NzuZSDK/v0QKRHBJnd4Z
+         eZoo2tWQIXpRfPwwhcrAW+rM7TBz+dCkh0OaSeAhghhWQUuEaZC1X+lv4qbxRIySPV1b
+         8BUH5zsjlmQX7lGPYD9TycxFNFuQ5k0mPeZF9ufiPg8Ubb4sV3vxlT8tUHDt/EqKcHTw
+         kFuHacbvPO8poDCMCgzh6+/hiNay0Z6hGrAsapsRpOFaSE2gSh//zfIb37mF23+L4824
+         Uc1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705652231; x=1706257031;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CKeQxr74v0/RAxO8TgttZrcsw2Yx0+jcWvQmI1Qe2Zw=;
+        b=JfU67U4GG5j86t8ffymyy4LsYkCIv5q9PnlfNlQ1N1sMGeZ+RDGTtPGq+bTcYiLnYo
+         cckgxi8+9MI6/uP99qvBpGjOM6xHZ2XIAqsHYlW4DPUZBPTjDpcgRTLg7bOUlzUmXqUA
+         5h5BuMM3ra2ZjzaijyQ7VfbvxIgOzcLG1fZHCh5b4mwPULInPxKE59nyUYuEXDNiwVHq
+         6mLJPAQvUEe9nDamIug3T2nIWUp707r8Q28tSDbyYO60xx2+++iMx0kENJKvN5P1TRsH
+         xV/qXch5a7yhbyDJMBaBThPLfdUKrcVEIszayRmqERr64+2F3U33MkJfroMkh6xFauny
+         4lhg==
+X-Gm-Message-State: AOJu0YzpvwhZtysbU6UEvoTGayiFFSGcjBfDrw12CLoaFauC/bXbBWgR
+	2dr3SXlc/SlJHKvzj1EzcC5oARk43tzh5imXoeC4nV7h6Hv0/ZSZtg2XSN50lw==
+X-Google-Smtp-Source: AGHT+IGS5Ltk1U1ZHIZAH9/TpF9urtmkWgrvxjyopbIMgOLF9edEyr5g7jMcF0En2+zgNlJcEzObqA==
+X-Received: by 2002:a05:6a20:7fa4:b0:19a:21b8:ab6a with SMTP id d36-20020a056a207fa400b0019a21b8ab6amr2476870pzj.27.1705652230687;
+        Fri, 19 Jan 2024 00:17:10 -0800 (PST)
+Received: from thinkpad ([117.248.2.56])
+        by smtp.gmail.com with ESMTPSA id fb30-20020a056a002d9e00b006d9af8c25easm4506321pfb.84.2024.01.19.00.17.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Jan 2024 00:17:10 -0800 (PST)
+Date: Fri, 19 Jan 2024 13:47:00 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: krzysztof.kozlowski@linaro.org, bhelgaas@google.com,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+	helgaas@kernel.org, hongxing.zhu@nxp.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+	kw@linux.com, l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
+	shawnguo@kernel.org
+Subject: Re: [PATCH v8 01/16] PCI: imx6: Simplify clock handling by using
+ clk_bulk*() function
+Message-ID: <20240119081700.GD2866@thinkpad>
+References: <20240108232145.2116455-1-Frank.Li@nxp.com>
+ <20240108232145.2116455-2-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9CD:EE_|BY5PR12MB4306:EE_
-X-MS-Office365-Filtering-Correlation-Id: a361d57f-46a2-4128-9c33-08dc18c2943d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	CdjQ1uxhlx+q17EM6Pj9MVD4r8U6Vn9mUozCSBWZiZymKnhT3XsqPrOWCUR375yfqI7ajFMUIRCms0zrRkT4hT9ywNlhx1MpTsfLq4lw59E1I7ZPSyAsNt1bDejYk1H1uYCXC26CpF2WlXjpqMAj2uXhh7e0K72N66TCbMQ4RqrXoDN1Gh7+jDYoDnD3MxDVkCbQcJXwtPm84RjUAjlD3LUBDpSGQ24URKh+osp/2ruPnAk9sjgVw2QbI8wZM+nkR5BWi0XYzBjelOQI6LJjxrbXl4K64RonCdWnB7URrHElm1KhZPjUaVvEQXtlhcgySJxn+XXSeslUcZkwMiXJ3COYYbqTJWvASVketx9+s41SeI2xcHtw/ApYoYtgH8IthuavTqtSnrKDcLsaHZtoVTrhhXU/W0vn7FMNkosHH6mS3mFiUb+K7aFjaLZ2MV1Z6dxLuv7dV5JZFxD2nTo6ZEE0Wg4MyqcCBVpxeFi41imlXad0KDUB16YYDIR+ynIvA7sllQbGo7/vbXJZSyirjJJllGxmhSm7tiIMjUROzk1e8A3OMsSJhJqChplNJ61b1QYpOTk2Z1ikHwkZ9Er4PkRIPP3FVY2+N1d8gbPe2OtCaUu3LrDwLSX3rZPmMiYts79Ojh8Mvmoo3QUaCdCFdhKqgNw3zYusZ5THcqt8aUnOrgpe5rSsB+OL4zckQqHDS/H8Cc66mm19xrDEywbIZ6+0cwopqAVdstSTrLZwnwsTBSldNwDdreE/Vcubyt/xOqUtpN9qmZfJTQPXb9HGYQ==
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(346002)(136003)(39860400002)(376002)(230922051799003)(451199024)(82310400011)(1800799012)(64100799003)(186009)(40470700004)(46966006)(36840700001)(336012)(426003)(26005)(2616005)(36756003)(4326008)(8676002)(8936002)(86362001)(316002)(6636002)(54906003)(2906002)(5660300002)(70206006)(70586007)(110136005)(41300700001)(478600001)(83380400001)(36860700001)(47076005)(40460700003)(40480700001)(81166007)(82740400003)(356005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2024 07:45:16.8461
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a361d57f-46a2-4128-9c33-08dc18c2943d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CY4PEPF0000E9CD.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4306
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240108232145.2116455-2-Frank.Li@nxp.com>
 
-From: Abin Joseph <abin.joseph@amd.com>
+On Mon, Jan 08, 2024 at 06:21:30PM -0500, Frank Li wrote:
+> Refector the clock handling logic. Add 'clk_names' define in drvdata. Use
+> clk_bulk*() api simplify the code.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
 
-It is not required to document dma consumer binding and its
-example inside dma producer binding, so remove it.
+One comment below. With that addressed,
 
-Signed-off-by: Abin Joseph <abin.joseph@amd.com>
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
----
-I am working on txt to yaml binding conversion and will send out
-as followup patch.
----
- .../bindings/dma/xilinx/xilinx_dma.txt        | 23 -------------------
- 1 file changed, 23 deletions(-)
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-diff --git a/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt b/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt
-index 590d1948f202..b567107270cb 100644
---- a/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt
-+++ b/Documentation/devicetree/bindings/dma/xilinx/xilinx_dma.txt
-@@ -109,26 +109,3 @@ axi_vdma_0: axivdma@40030000 {
- 		xlnx,datawidth = <0x40>;
- 	} ;
- } ;
--
--
--* DMA client
--
--Required properties:
--- dmas: a list of <[Video DMA device phandle] [Channel ID]> pairs,
--	where Channel ID is '0' for write/tx and '1' for read/rx
--	channel. For MCMDA, MM2S channel(write/tx) ID start from
--	'0' and is in [0-15] range. S2MM channel(read/rx) ID start
--	from '16' and is in [16-31] range. These channels ID are
--	fixed irrespective of IP configuration.
--
--- dma-names: a list of DMA channel names, one per "dmas" entry
--
--Example:
--++++++++
--
--vdmatest_0: vdmatest@0 {
--	compatible ="xlnx,axi-vdma-test-1.00.a";
--	dmas = <&axi_vdma_0 0
--		&axi_vdma_0 1>;
--	dma-names = "vdma0", "vdma1";
--} ;
+> 
+> Notes:
+>     Change from v7 to v8
+>     - update comment message
+>     - using ARRAY_SIZE to count clk_names.
+>     Change from v6 to v7
+>     - none
+>     Change from v4 to v5
+>     - update commit message
+>     - direct using clk name list, instead of macro
+>     - still keep caculate clk list count because sizeof return pre allocated
+>     array size.
+>     
+>     Change from v3 to v4
+>     - using clk_bulk_*() API
+>     Change from v1 to v3
+>     - none
+>     
+>     Change from v4 to v5
+>     - update commit message
+>     - direct using clk name list, instead of macro
+>     - still keep caculate clk list count because sizeof return pre allocated
+>     array size.
+>     
+>     Change from v3 to v4
+>     - using clk_bulk_*() API
+>     Change from v1 to v3
+>     - none
+> 
+>  drivers/pci/controller/dwc/pci-imx6.c | 144 ++++++++++----------------
+>  1 file changed, 54 insertions(+), 90 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 74703362aeec7..4912c6b08ecf8 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+
+[...]
+
+>  
+> +static const char * const
+> +imx6_3clks_bus_pcie_phy[] = {"pcie_bus", "pcie", "pcie_phy"};
+> +static const char * const
+> +imx6_3clks_bus_pcie_aux[] = {"pcie_bus", "pcie", "pcie_aux"};
+> +static const char * const
+> +imx6_4clks_bus_pcie_phy_aux[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"};
+> +static const char * const
+> +imx6_4clks_bus_pcie_phy_axi[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_inbound_axi"};
+> +
+
+Use platform names for defining the array. Like,
+
+imx6q_clks[]
+imx6sx_clks[]
+imx8mq_clks[]
+imx8mm_clks[]
+
+and reuse them for other platforms as well. This gives an idea of how the clocks
+got inherited from some base platforms.
+
+- Mani
+
+>  static const struct imx6_pcie_drvdata drvdata[] = {
+>  	[IMX6Q] = {
+>  		.variant = IMX6Q,
+> @@ -1477,6 +1421,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  			 IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE,
+>  		.dbi_length = 0x200,
+>  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> +		.clk_names = imx6_3clks_bus_pcie_phy,
+> +		.clks_cnt = ARRAY_SIZE(imx6_3clks_bus_pcie_phy),
+>  	},
+>  	[IMX6SX] = {
+>  		.variant = IMX6SX,
+> @@ -1484,6 +1430,8 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  			 IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE |
+>  			 IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> +		.clk_names = imx6_4clks_bus_pcie_phy_axi,
+> +		.clks_cnt = ARRAY_SIZE(imx6_4clks_bus_pcie_phy_axi),
+>  	},
+>  	[IMX6QP] = {
+>  		.variant = IMX6QP,
+> @@ -1492,40 +1440,56 @@ static const struct imx6_pcie_drvdata drvdata[] = {
+>  			 IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.dbi_length = 0x200,
+>  		.gpr = "fsl,imx6q-iomuxc-gpr",
+> +		.clk_names = imx6_3clks_bus_pcie_phy,
+> +		.clks_cnt = ARRAY_SIZE(imx6_3clks_bus_pcie_phy),
+>  	},
+>  	[IMX7D] = {
+>  		.variant = IMX7D,
+>  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.gpr = "fsl,imx7d-iomuxc-gpr",
+> +		.clk_names = imx6_3clks_bus_pcie_phy,
+> +		.clks_cnt = ARRAY_SIZE(imx6_3clks_bus_pcie_phy),
+>  	},
+>  	[IMX8MQ] = {
+>  		.variant = IMX8MQ,
+>  		.gpr = "fsl,imx8mq-iomuxc-gpr",
+> +		.clk_names = imx6_4clks_bus_pcie_phy_aux,
+> +		.clks_cnt = ARRAY_SIZE(imx6_4clks_bus_pcie_phy_aux),
+>  	},
+>  	[IMX8MM] = {
+>  		.variant = IMX8MM,
+>  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> +		.clk_names = imx6_3clks_bus_pcie_aux,
+> +		.clks_cnt = ARRAY_SIZE(imx6_3clks_bus_pcie_aux),
+>  	},
+>  	[IMX8MP] = {
+>  		.variant = IMX8MP,
+>  		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
+>  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+> +		.clk_names = imx6_3clks_bus_pcie_aux,
+> +		.clks_cnt = ARRAY_SIZE(imx6_3clks_bus_pcie_aux),
+>  	},
+>  	[IMX8MQ_EP] = {
+>  		.variant = IMX8MQ_EP,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mq-iomuxc-gpr",
+> +		.clk_names = imx6_4clks_bus_pcie_phy_aux,
+> +		.clks_cnt = ARRAY_SIZE(imx6_4clks_bus_pcie_phy_aux),
+>  	},
+>  	[IMX8MM_EP] = {
+>  		.variant = IMX8MM_EP,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mm-iomuxc-gpr",
+> +		.clk_names = imx6_3clks_bus_pcie_aux,
+> +		.clks_cnt = ARRAY_SIZE(imx6_3clks_bus_pcie_aux),
+>  	},
+>  	[IMX8MP_EP] = {
+>  		.variant = IMX8MP_EP,
+>  		.mode = DW_PCIE_EP_TYPE,
+>  		.gpr = "fsl,imx8mp-iomuxc-gpr",
+> +		.clk_names = imx6_3clks_bus_pcie_aux,
+> +		.clks_cnt = ARRAY_SIZE(imx6_3clks_bus_pcie_aux),
+>  	},
+>  };
+>  
+> -- 
+> 2.34.1
+> 
+
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
