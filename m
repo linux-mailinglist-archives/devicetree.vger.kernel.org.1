@@ -1,432 +1,183 @@
-Return-Path: <devicetree+bounces-33227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB00E8329D4
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:59:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69EE58329FE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 14:03:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 883B0284812
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 12:59:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F46A1C230B8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jan 2024 13:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9400537F8;
-	Fri, 19 Jan 2024 12:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2325052F8C;
+	Fri, 19 Jan 2024 13:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="N2P9Sc6B"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="MJmvtxPH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2086.outbound.protection.outlook.com [40.107.241.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246DF524BF;
-	Fri, 19 Jan 2024 12:58:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705669102; cv=none; b=GR+Zb2C+AZPOwozmJPV2igG341NvsobSn95BbtJAlkjD3B98UtXhRaXzwI/E8CDUWnLIqYuyawHjbLT7z72KuBPTELRGnksTPwaAKo6xowFlFzuU+ubcMH1Igr8nQgCeEVNiN9/M4IAJf5aUM6/pM4/TkpPlqHHv6K1s09qd1HA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705669102; c=relaxed/simple;
-	bh=bRnM9eljKI9massoRsV14doqnV7kMIldV5Ltjnszp4I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VrDiO671Ljs0LRm7RDkeFuPbXbuaO6wcvHRUXdd2FowALrFBYlWB29WBsLG9MGlBKSDMveMc0mmE29kjIutpqIjfUAiq3T47nBGlSw6JX2SBtfg7rlKSOu7mKLzWVF55/nPUaEXGTbDG4P1Egf/MEjWXI8wqa6hWZW3cTUjrL+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=N2P9Sc6B; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705669099;
-	bh=bRnM9eljKI9massoRsV14doqnV7kMIldV5Ltjnszp4I=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=N2P9Sc6BGA+TNzE9uQk4cQTWX9iyv+LBSg0ELkU1/f1Qd4Ug3tYuDmM3bJO5P9wn7
-	 iT8ClB2U3NTMPOgMNw/Y5EMVFIcP4EzKXtCpXH4MpTxffTuA9AQsoicDMskiRy5zpO
-	 dRbb7JWm7W+OC9Nj465yM9A4SJnwUFEuaPSB5MV0K/F513GFuDdIhMbs+WpcVYInxy
-	 rVuNFucuoXm4vdRyRsvx7JfESOXOyX39eqzzE6GVNglUNcQZpQGTtqTYQGwSXYaN7P
-	 raDJTMOOiWQeRe322exIU3drq5kNmBf4+sui9a0Gtwu/01eLhw64fyFoxUr0MEswBL
-	 bshMMphGXwDdA==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 331E4378207E;
-	Fri, 19 Jan 2024 12:58:18 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: gregkh@linuxfoundation.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heikki.krogerus@linux.intel.com,
-	matthias.bgg@gmail.com,
-	dmitry.baryshkov@linaro.org,
-	neil.armstrong@linaro.org,
-	andersson@kernel.org,
-	nathan@kernel.org,
-	luca.weiss@fairphone.com,
-	tianping.fang@mediatek.com,
-	linux-usb@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F92524AC;
+	Fri, 19 Jan 2024 13:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.86
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705669362; cv=fail; b=cz66itZWkCyRee55kzPPtiUbAjuxCkSM1n1vsfhz2hw0/rb223nmfm4jLqXt6cBvn7/GOpgsGd9K6WMGi5hN+hMKxWC3jy7vW1iF7YdbtNjUpDpLiETJQpqatwIMCLHmhvxtmnqMv1XlhtbnuMcS5qblDDsEMneVwuw5z6r6Evk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705669362; c=relaxed/simple;
+	bh=dufGRm08dn6P14n8z14Y9ejM7BC+Zy7xeEmoL56GC0Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=uqorRbKW3NQ2CCiCyHCIwicggLAksfUeFbugWDFQx7H4L8jOpj2KKD+k1Ok0HLMR7hwtVaNE+grvbDGhqYFp6d2bdMFZSOtV2YtpuNBUr64CbMa4FTnSOqlq2WgYU8uUBJWU1q01r5M99u/a1wY3Gt9CB4S/m93y9SgO3AnBkJs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=MJmvtxPH; arc=fail smtp.client-ip=40.107.241.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=al4JlDLwfOotfLDRuGdPOaGSEmSj2cPh8n+09B914ONgz1qcUnCIbYUQ0rxAmsSb9Cyxgdv2+absoARl8Kj8wjNR18EiECNh0UHLKqL8ROAx6lH+XU5j37CkYR7qc9fLGQk3bxLAZTDUIgPF6qE6S5in4RIFXXa6L9B2jU1h1p4BTUS9DCinJd7CJNrZ/a0vXqZoEYfk+mq6LI5RojiKhpNmRKlbY53BqbxuE12rv7LmibiClHtzq2hyeuSahnEyhA+Rx/8xSUXd3Gtg3RKgilHOha22w3qiFunabtgJx8i/wWxCQCbCV4g94+6kHjBtpDhWhSEroofj8sis8BMNuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EMKT9FxSdrOmdFtAK+E9CRrYwTOkIiRz1YWLC5FGxn0=;
+ b=K8vpiR6RmHPYg1ZqepQeOYeef2QBW76lTpMs58oEu+bFhV2SCsLKCi2W2ky+/eLwwEttL7IMMBpJnCskcz6xM5mSnnNTdGgD/FirgfVs4hzBXUf3UEaYyGMPV0r662rpMb2yowL3OTR1dEtf3XwrPV2DDp3fzOqt2IMBKYQYl2cAEwWHGHbZEU15sZ+dCj2nVL5fa7/EE5Uc9hdZkFNy0QLa+UPd0gMqDMQzmD9iMC2AWRKW7Xg3u6lMv5dM6E9DjaETw7X3OyitEd0l3NUrdN7nw3U7XJu1lkWOZmq+NghOhiQGXbD5IAykHdBMY65I9twaCTSv4qzQ4F2nADYUAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EMKT9FxSdrOmdFtAK+E9CRrYwTOkIiRz1YWLC5FGxn0=;
+ b=MJmvtxPHHrKmJsyWMMoG1gWKutIuLu7RajNm0laeObEG/kgrb9s/yjDIsQFGWKP0phUCrR3VTvcp9bfKXEbdqIzyv3YmJcZ8t4tGIOiGeC4XzGlZ3HBFEfSY72hnOpW2X1uawdt7Oi79wYzWGUg+nu9VcBuyU1/snNknrAjAUP0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU2PR04MB8582.eurprd04.prod.outlook.com (2603:10a6:10:2d9::24)
+ by DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Fri, 19 Jan
+ 2024 13:02:35 +0000
+Received: from DU2PR04MB8582.eurprd04.prod.outlook.com
+ ([fe80::9398:2b64:8350:3ace]) by DU2PR04MB8582.eurprd04.prod.outlook.com
+ ([fe80::9398:2b64:8350:3ace%7]) with mapi id 15.20.7202.024; Fri, 19 Jan 2024
+ 13:02:34 +0000
+From: "Ghennadi Procopciuc (OSS)" <ghennadi.procopciuc@oss.nxp.com>
+To: Chester Lin <chester62515@gmail.com>,
+	Andreas Farber <afaerber@suse.de>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	ghennadi.procopciuc@oss.nxp.com
+Cc: NXP S32 Linux Team <s32@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v2 2/2] usb: typec: mux: Add ITE IT5205 Alternate Mode Passive MUX driver
-Date: Fri, 19 Jan 2024 13:58:12 +0100
-Message-ID: <20240119125812.239197-3-angelogioacchino.delregno@collabora.com>
+	linux-clk@vger.kernel.org,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+Subject: [PATCH 0/3] add uSDHC and SCMI nodes to the S32G2 SoC
+Date: Fri, 19 Jan 2024 15:02:27 +0200
+Message-ID: <20240119130231.2854146-1-ghennadi.procopciuc@oss.nxp.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240119125812.239197-1-angelogioacchino.delregno@collabora.com>
-References: <20240119125812.239197-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR08CA0268.eurprd08.prod.outlook.com
+ (2603:10a6:803:dc::41) To DU2PR04MB8582.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d9::24)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8582:EE_|DU2PR04MB8951:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3a580253-218e-4315-849f-08dc18eee761
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	9AUfwC5LluzmnWjzpDpJNYPVv/kfQyt2VViqRcp7/OOFXETqsaE3UaXSDIfLl7fhBL4oLTuj1hKQHrEOTDk6NHgiZrXgq+dIlf5zt/X2b8sGKmdM90KqpPuEIb8lYook/qJICJ1qCfyDMQrvqihzsFDa1yLzjzWYlMMgiUnvY3geIskd5z0SdqZpp5e+anSO3tN0t0mmo6plkJTpWvTMauzFC8040VVJWag75wcS3PDGGCRMilQpYCGfoiqytgANstzZVJe0FMp86gsO9bOeywg4CWsOAAsyDk66o8q6kUt1Dnc+7OetOAX1311avVfUGCQ6F7rquvcIdRDP8aSfZBDU0s3cLAZu49QXB5EwI7Y2Jmiq8eY9kGxOwOzAZ4y9bzuhAk0CDi5kDyEmJZJLjTxiVxqZ3KHHW1HDeWXLxsNBVFuGBBy/4gvnT/BD3ngddXtBmcASpxsB1q0loEBAQfujoVPsek7BMEvIu00sluO1Bkx0Cda21wZEqHXnWUPG8jxQ+TDmzUOV4DToWLJE6rCck3EXoK9rDPImXI4NPgMvRBWnha+iolt36b3OuXL9bRqovhkSqF3H0+jnJXNyQsq6XbMP4LqZFwJUNsF4RW8=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8582.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(136003)(346002)(366004)(376002)(396003)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(6506007)(6666004)(6512007)(1076003)(26005)(2616005)(38100700002)(86362001)(8676002)(6486002)(2906002)(83380400001)(41300700001)(966005)(4326008)(4744005)(110136005)(5660300002)(921011)(8936002)(478600001)(7416002)(66946007)(66556008)(66476007)(316002)(54906003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?d2x4ZUF5VzVHbjQzTTlnTUR1RE9TSTJDMzg0YWcxSG5tNWQxTHBFN1pVNm11?=
+ =?utf-8?B?dk9NLzc1STZ3eXErR1o0S0dhYUFoVnRBM2ZDYU9IQWFoM2loemRwdGtFYUpk?=
+ =?utf-8?B?V1ZvVVZGMUkrWnlDU00yUWYzYXhmQXU3T0Zjbi94dE14OWR5UEIrMlhOUW1K?=
+ =?utf-8?B?SnEzR3puM21VUHovQU5RbkhtRGNOalZMQXJPOXVhUEJWSTBqWHlIK1FXWUJ1?=
+ =?utf-8?B?Zk9UaVpyUTJjUjMxdTZkc0tiQTN3Mk8vaEhsMGdFOVIwUTZlVk5FS1BlTlZy?=
+ =?utf-8?B?VDE0MDFxTFRJdUVZRlFrclRieUUvdmRhZUJxWE8rclRPUWR0NXF3TGZRcFNt?=
+ =?utf-8?B?TU5rMDVWMkdNQnpQeWtIbEtHR3RuTlFCN3BIcEp6QVNVZG5rSzRzWWpVOEh1?=
+ =?utf-8?B?WU9iNFM3OUU5ZWVpTjgzRG9GVnRSSkhnNmhrRGNKOUg5TGhzM2FFdjlUMHgr?=
+ =?utf-8?B?dWpNa1luNkMvZ29HbDBSY05EQVdycVF1YUdwUjNpQXdpSXZiMnhXTXQ5V2xp?=
+ =?utf-8?B?c0ZDOUQ3cHR4RFBtaFdzTHA5RWRGVXphc0RWRFhJTENVTGtsLzB5WDJoK2lV?=
+ =?utf-8?B?OXJLdWhrdVhMb3BhWWdWMktGR09WTVJHNDViZWJ5VHpkdUc3dHhib0JWc3VB?=
+ =?utf-8?B?dlBhWDRYYWZhOHRQM1FXaVZLT21TaURwMC8yeS9LUm1HaWpTcE55eVhJY2wx?=
+ =?utf-8?B?VmR5UHhsdFNRbkN6VW8rMWtRcjdHY0JrdVFrQ0FkZ3hMUUx6Zzh3WmhaeVJR?=
+ =?utf-8?B?WXZNd2Y4Q2RCMExsVnRWbEVOK2MwVDNEOHpCcmFwUS9TQTQ1WE5uaE1wdSti?=
+ =?utf-8?B?cHROOEVwMFZPVURmSHE4emhQWFlJLzAvME5NVEFRakRiZ0xoVFNUL0xSMlU1?=
+ =?utf-8?B?aUljeFlxWE43L2JhcEgwbVZyRlhhVkFkMXp2dktsRnpyWmRDWUw0c3dPKzkx?=
+ =?utf-8?B?VWwwOUx5SWdKMUpVYU91ZW04V2w3QWJ2RGQwSDBPa1N1Vmg1bDZHN00yc3NN?=
+ =?utf-8?B?NWJwNHBIYkpoMzdrUjU2aElDU01hOE5mb0J2NjVKRjdlZUhTQ1RvczR1V0k3?=
+ =?utf-8?B?WXpLaDE0ZTNPbm5xd05KL2pUVGlhWldmOWFaRlBaaDFpZnVqTTBLYkhHQkls?=
+ =?utf-8?B?WXRqcGh4NEkwTnh4QXRvYU5tc2RaamhuQ1BSZm5YRlFISHBWZ0lIU2t5Z1ZR?=
+ =?utf-8?B?M0xxZnZGYmJJSlpOdVExME13c1A5U1dUcXRZQlJXUXdESjMyY0NCTWhiNjZz?=
+ =?utf-8?B?WEpKUXVQRzhMT0hLdmg1dVBUQmQ4T21sUnJmL2wyUUU2K0hDaXpiYWtucXNO?=
+ =?utf-8?B?VEVWNHdiS3I1ZUFsMlBHRmI0ZmdCQ1RtSzZYVmJMWG9XeTkwSjFsTlRIM0J4?=
+ =?utf-8?B?dXZNUFJCT0xjSlExRDNJQ0RPeDFYbUZoZEZEVEFraC9pQUdaR1ovQmh5dHla?=
+ =?utf-8?B?a29TZEFRUm5aOThwaGpiNkN5ekRhL3Bud3k1ZUxWMzhCd2lqQWxKZ2hCWXM1?=
+ =?utf-8?B?K0hkNnN3RUxzUHRDOS90Sit6bzJQOXJOeWlkcjByWFJxU3JDdUFNRXJVN1Vu?=
+ =?utf-8?B?S3cyN0ZBSUdQWm9SVHlNekZmQy9NNFV1Znk5TE95OXBNYXNUUGNuVkxFMjB3?=
+ =?utf-8?B?UlgxaGhsK1l4eVpUS040SUlmRzUvNERmc0E2WkdzRlBYUEF5RFR3amRkbEli?=
+ =?utf-8?B?b0lzZldyKzdFNkQvckxxWGFWNFh0TXNUdVp6aG91dGpnWVdIN1JFVElqVGxw?=
+ =?utf-8?B?RkxCYlBwTkJTTytlL21CbnEwUG1KUFZCZ1ZYeXlOKzB4dzBYYU0yQ0pIQlAr?=
+ =?utf-8?B?ampsUDk4NVFLRHk5SXVjbVArd1BRcnJOWGVlTStCMmhPUXZocmZPRDh2Zmt4?=
+ =?utf-8?B?U213UmsyL3p0cEdHemsvaDBQMEZOS1FHeWlXZkEyVXpsa081UjlvUnpQNk9C?=
+ =?utf-8?B?eFRqWllGSTVxVmZIRW5ta0JRVjZGRXVEcEl2L0F5RGpEVHpxQTFBOUFRYU5X?=
+ =?utf-8?B?NGhnZUNGS3ZPRXF4WFJKVXlkOGRLa3pYK0ppbnYyeDVhTGhvN3NQKzZ1U0lu?=
+ =?utf-8?B?cHhlTzZJRVJ1dVU3cUgzREgrWmNFYmV3N0pPSzZ6RnB5S09makwxV3p3T0JO?=
+ =?utf-8?B?cTgzZFc5N3ZtNE9jSzdzYytNTTQzZWNkdFhlNDhzY09zS0RKTVEyS28zemZL?=
+ =?utf-8?B?WlE9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3a580253-218e-4315-849f-08dc18eee761
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8582.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2024 13:02:34.4218
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: peGu20PhrxMA8gDLfF6rxDwNHeSOLPxqkVrEEF+iHvggrB8H25mbjV4jdgHa8Omcamz04PjLC+ttvsmeK2cIv8tC+LSYaSY9LVVZKeAXThQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8951
 
-The ITE IT5202 is a USB Type-C Alternate Mode Passive MUX, used for
-muxing the SBU lines of a Type-C port with DisplayPort altmode and
-also providing an orientation switch.
+From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/usb/typec/mux/Kconfig  |  10 ++
- drivers/usb/typec/mux/Makefile |   1 +
- drivers/usb/typec/mux/it5205.c | 294 +++++++++++++++++++++++++++++++++
- 3 files changed, 305 insertions(+)
- create mode 100644 drivers/usb/typec/mux/it5205.c
+This patchset adds device tree support for S32G2 SCMI firmware and uSDHC
+node. The SCMI clock IDs are based on a downstream version of the TF-A
+stored on GitHub [0].
 
-diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-index d2cb5e733e57..399c7b0983df 100644
---- a/drivers/usb/typec/mux/Kconfig
-+++ b/drivers/usb/typec/mux/Kconfig
-@@ -36,6 +36,16 @@ config TYPEC_MUX_INTEL_PMC
- 	  control the USB role switch and also the multiplexer/demultiplexer
- 	  switches used with USB Type-C Alternate Modes.
- 
-+config TYPEC_MUX_IT5205
-+	tristate "ITE IT5205 Type-C USB Alt Mode Passive MUX driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Driver for the ITE IT5205 Type-C USB Alternate Mode Passive MUX
-+	  which provides support for muxing DisplayPort and sideband signals
-+	  on a common USB Type-C connector.
-+	  If compiled as a module, the module will be named it5205.
-+
- config TYPEC_MUX_NB7VPQ904M
- 	tristate "On Semiconductor NB7VPQ904M Type-C redriver driver"
- 	depends on I2C
-diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-index 57dc9ac6f8dc..bb96f30267af 100644
---- a/drivers/usb/typec/mux/Makefile
-+++ b/drivers/usb/typec/mux/Makefile
-@@ -4,6 +4,7 @@ obj-$(CONFIG_TYPEC_MUX_FSA4480)		+= fsa4480.o
- obj-$(CONFIG_TYPEC_MUX_GPIO_SBU)	+= gpio-sbu-mux.o
- obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
- obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
-+obj-$(CONFIG_TYPEC_MUX_IT5205)		+= it5205.o
- obj-$(CONFIG_TYPEC_MUX_NB7VPQ904M)	+= nb7vpq904m.o
- obj-$(CONFIG_TYPEC_MUX_PTN36502)	+= ptn36502.o
- obj-$(CONFIG_TYPEC_MUX_WCD939X_USBSS)	+= wcd939x-usbss.o
-diff --git a/drivers/usb/typec/mux/it5205.c b/drivers/usb/typec/mux/it5205.c
-new file mode 100644
-index 000000000000..b68535f80ceb
---- /dev/null
-+++ b/drivers/usb/typec/mux/it5205.c
-@@ -0,0 +1,294 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ITE IT5205 Type-C USB alternate mode passive mux
-+ *
-+ * Copyright (c) 2020 MediaTek Inc.
-+ * Copyright (c) 2024 Collabora Ltd.
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ *
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/usb/tcpm.h>
-+#include <linux/usb/typec.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
-+
-+#define IT5205_REG_CHIP_ID(x)	(0x4 + (x))
-+#define IT5205FN_CHIP_ID	0x35323035 /* "5205" */
-+
-+/* MUX power down register */
-+#define IT5205_REG_MUXPDR        0x10
-+#define IT5205_MUX_POWER_DOWN    BIT(0)
-+
-+/* MUX control register */
-+#define IT5205_REG_MUXCR         0x11
-+#define IT5205_POLARITY_INVERTED BIT(4)
-+#define IT5205_DP_USB_CTRL_MASK  GENMASK(3, 0)
-+#define IT5205_DP                0x0f
-+#define IT5205_DP_USB            0x03
-+#define IT5205_USB               0x07
-+
-+/* Vref Select Register */
-+#define IT5205_REG_VSR            0x10
-+#define IT5205_VREF_SELECT_MASK   GENMASK(5, 4)
-+#define IT5205_VREF_SELECT_3_3V   0x00
-+#define IT5205_VREF_SELECT_OFF    0x20
-+
-+/* CSBU Over Voltage Protection Register */
-+#define IT5205_REG_CSBUOVPSR      0x1e
-+#define IT5205_OVP_SELECT_MASK    GENMASK(5, 4)
-+#define IT5205_OVP_3_90V          0x00
-+#define IT5205_OVP_3_68V          0x10
-+#define IT5205_OVP_3_62V          0x20
-+#define IT5205_OVP_3_57V          0x30
-+
-+/* CSBU Switch Register */
-+#define IT5205_REG_CSBUSR         0x22
-+#define IT5205_CSBUSR_SWITCH      BIT(0)
-+
-+/* Interrupt Switch Register */
-+#define IT5205_REG_ISR            0x25
-+#define IT5205_ISR_CSBU_MASK      BIT(4)
-+#define IT5205_ISR_CSBU_OVP       BIT(0)
-+
-+struct it5205 {
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	struct typec_switch_dev *sw;
-+	struct typec_mux_dev *mux;
-+};
-+
-+static int it5205_switch_set(struct typec_switch_dev *sw, enum typec_orientation orientation)
-+{
-+	struct it5205 *it = typec_switch_get_drvdata(sw);
-+
-+	switch (orientation) {
-+	case TYPEC_ORIENTATION_NORMAL:
-+		regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
-+				   IT5205_POLARITY_INVERTED, 0);
-+		break;
-+	case TYPEC_ORIENTATION_REVERSE:
-+		regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
-+				   IT5205_POLARITY_INVERTED, IT5205_POLARITY_INVERTED);
-+		break;
-+	case TYPEC_ORIENTATION_NONE:
-+		fallthrough;
-+	default:
-+		regmap_write(it->regmap, IT5205_REG_MUXCR, 0);
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int it5205_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
-+{
-+	struct it5205 *it = typec_mux_get_drvdata(mux);
-+	u8 val;
-+
-+	if (state->mode >= TYPEC_STATE_MODAL &&
-+	    state->alt->svid != USB_TYPEC_DP_SID)
-+		return -EINVAL;
-+
-+	switch (state->mode) {
-+	case TYPEC_STATE_USB:
-+		val = IT5205_USB;
-+		break;
-+	case TYPEC_DP_STATE_C:
-+		fallthrough;
-+	case TYPEC_DP_STATE_E:
-+		val = IT5205_DP;
-+		break;
-+	case TYPEC_DP_STATE_D:
-+		val = IT5205_DP_USB;
-+		break;
-+	case TYPEC_STATE_SAFE:
-+		fallthrough;
-+	default:
-+		val = 0;
-+		break;
-+	}
-+
-+	return regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
-+				  IT5205_DP_USB_CTRL_MASK, val);
-+}
-+
-+static irqreturn_t it5205_irq_handler(int irq, void *data)
-+{
-+	struct it5205 *it = data;
-+	int ret;
-+	u32 val;
-+
-+	ret = regmap_read(it->regmap, IT5205_REG_ISR, &val);
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	if (val & IT5205_ISR_CSBU_OVP) {
-+		dev_warn(&it->client->dev, "Overvoltage detected!\n");
-+
-+		/* Reset CSBU */
-+		regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
-+				   IT5205_CSBUSR_SWITCH, 0);
-+		regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
-+				   IT5205_CSBUSR_SWITCH, IT5205_CSBUSR_SWITCH);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void it5205_enable_ovp(struct it5205 *it)
-+{
-+	/* Select Vref 3.3v */
-+	regmap_update_bits(it->regmap, IT5205_REG_VSR,
-+			   IT5205_VREF_SELECT_MASK, IT5205_VREF_SELECT_3_3V);
-+
-+	/* Trigger OVP at 3.68V */
-+	regmap_update_bits(it->regmap, IT5205_REG_CSBUOVPSR,
-+			   IT5205_OVP_SELECT_MASK, IT5205_OVP_3_68V);
-+
-+	/* Unmask OVP interrupt */
-+	regmap_update_bits(it->regmap, IT5205_REG_ISR,
-+			   IT5205_ISR_CSBU_MASK, 0);
-+
-+	/* Enable CSBU Interrupt */
-+	regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
-+			   IT5205_CSBUSR_SWITCH, IT5205_CSBUSR_SWITCH);
-+}
-+
-+static const struct regmap_config it5205_regmap = {
-+	.max_register = 0x2f,
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+};
-+
-+static int it5205_probe(struct i2c_client *client)
-+{
-+	struct typec_switch_desc sw_desc = { };
-+	struct typec_mux_desc mux_desc = { };
-+	struct device *dev = &client->dev;
-+	struct it5205 *it;
-+	u32 val, chipid = 0;
-+	int i, ret;
-+
-+	it = devm_kzalloc(dev, sizeof(*it), GFP_KERNEL);
-+	if (!it)
-+		return -ENOMEM;
-+
-+	ret = devm_regulator_get_enable(dev, "vcc");
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get regulator\n");
-+
-+	it->client = client;
-+
-+	it->regmap = devm_regmap_init_i2c(client, &it5205_regmap);
-+	if (IS_ERR(it->regmap))
-+		return dev_err_probe(dev, PTR_ERR(it->regmap),
-+				     "Failed to init regmap\n");
-+
-+	/* IT5205 needs a long time to power up after enabling regulator */
-+	msleep(50);
-+
-+	/* Unset poweroff bit */
-+	ret = regmap_write(it->regmap, IT5205_REG_MUXPDR, 0);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to set power on\n");
-+
-+	/* Read the 32 bits ChipID */
-+	for (i = 3; i >= 0; i--) {
-+		ret = regmap_read(it->regmap, IT5205_REG_CHIP_ID(i), &val);
-+		if (ret)
-+			return ret;
-+
-+		chipid |= val << (i * 8);
-+	}
-+
-+	if (chipid != IT5205FN_CHIP_ID)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Unknown ChipID 0x%x\n", chipid);
-+
-+	/* Initialize as USB mode with default (non-inverted) polarity */
-+	ret = regmap_write(it->regmap, IT5205_REG_MUXCR, IT5205_USB);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Cannot set mode to USB\n");
-+
-+	sw_desc.drvdata = it;
-+	sw_desc.fwnode = dev_fwnode(dev);
-+	sw_desc.set = it5205_switch_set;
-+
-+	it->sw = typec_switch_register(dev, &sw_desc);
-+	if (IS_ERR(it->sw))
-+		return dev_err_probe(dev, PTR_ERR(it->sw),
-+				     "failed to register typec switch\n");
-+
-+	mux_desc.drvdata = it;
-+	mux_desc.fwnode = dev_fwnode(dev);
-+	mux_desc.set = it5205_mux_set;
-+
-+	it->mux = typec_mux_register(dev, &mux_desc);
-+	if (IS_ERR(it->mux)) {
-+		typec_switch_unregister(it->sw);
-+		return dev_err_probe(dev, PTR_ERR(it->mux),
-+				     "failed to register typec mux\n");
-+	}
-+
-+	i2c_set_clientdata(client, it);
-+
-+	if (of_property_read_bool(dev->of_node, "ite,ovp-enable") && client->irq) {
-+		it5205_enable_ovp(it);
-+
-+		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-+						it5205_irq_handler,
-+						IRQF_ONESHOT, dev_name(dev), it);
-+		if (ret) {
-+			typec_mux_unregister(it->mux);
-+			typec_switch_unregister(it->sw);
-+			return dev_err_probe(dev, ret, "Failed to request irq\n");
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static void it5205_remove(struct i2c_client *client)
-+{
-+	struct it5205 *it = i2c_get_clientdata(client);
-+
-+	typec_mux_unregister(it->mux);
-+	typec_switch_unregister(it->sw);
-+}
-+
-+static const struct i2c_device_id it5205_table[] = {
-+	{ "it5205" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(i2c, it5205_table);
-+
-+static const struct of_device_id it5205_of_table[] = {
-+	{ .compatible = "ite,it5205" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, it5205_match_table);
-+
-+static struct i2c_driver it5205_driver = {
-+	.driver = {
-+		.name = "it5205",
-+		.of_match_table = it5205_of_table,
-+	},
-+	.probe = it5205_probe,
-+	.remove = it5205_remove,
-+	.id_table = it5205_table,
-+};
-+module_i2c_driver(it5205_driver);
-+
-+MODULE_AUTHOR("Tianping Fang <tianping.fang@mediatek.com>");
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("ITE IT5205 alternate mode passive MUX driver");
-+MODULE_LICENSE("GPL");
+I can send the patches individually if you prefer that instead of
+submitting them all at once. 
+
+[0] https://github.com/nxp-auto-linux/arm-trusted-firmware
+
+Ghennadi Procopciuc (3):
+  dt-bindings: clock: s32g: add uSDHC clock IDs
+  arm64: dts: s32g: add SCMI firmware node
+  arm64: dts: s32g: add uSDHC node
+
+ arch/arm64/boot/dts/freescale/s32g2.dtsi      | 40 ++++++++++++++++++-
+ .../arm64/boot/dts/freescale/s32g274a-evb.dts |  6 ++-
+ .../boot/dts/freescale/s32g274a-rdb2.dts      |  6 ++-
+ include/dt-bindings/clock/s32g-scmi-clock.h   | 14 +++++++
+ 4 files changed, 63 insertions(+), 3 deletions(-)
+ create mode 100644 include/dt-bindings/clock/s32g-scmi-clock.h
+
 -- 
 2.43.0
 
