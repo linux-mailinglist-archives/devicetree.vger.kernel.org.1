@@ -1,81 +1,50 @@
-Return-Path: <devicetree+bounces-33413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B026E8335DC
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 20:20:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98069833643
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 22:12:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 096ADB21DE7
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 19:20:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D80FB23274
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 21:12:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46D610979;
-	Sat, 20 Jan 2024 19:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716BE18022;
+	Sat, 20 Jan 2024 21:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZEIdAZto"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d6RpqXL/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA9715483;
-	Sat, 20 Jan 2024 19:19:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485E91772B;
+	Sat, 20 Jan 2024 21:09:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705778384; cv=none; b=YgzNhxKCR+/5l/5DOpZaQLe2uY/EKsQBbyc13oUiGYxrH/X2BW4OH7Jo9qLhx4SZRQkBTHSLS0xbalx/UENi8dcB1EFxbGxRgFOG+nRcuuSZlugJjet3iVt88n/U4qwtlcvQv3JUHtfMJfw1b7Q2S6UnngIlj6+byCzNkg6EKME=
+	t=1705784999; cv=none; b=EsC7VGWt0FchA3ApYShZm16jZj16U2bXjLMBvGTW/m0vZtovnic0c4SnZmNW+eBCGaaK0bqP/K6fG9syaYFkM3SmVvQswFzHb757iF9YVbfHzrvxOI3gGp3xavtSW6o3mS04lg0eGKRPjykOXmdTuJ/EY9VnTKvSUYz+n1Jxgp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705778384; c=relaxed/simple;
-	bh=HDJDZ7O9mdNe/Y3AxDRfD6+ErhPOkpfNXxy4R/TlEVM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ogRWjDNNwKP5CGssWTYHnTGhTV1aTm/pwhWKG13bo6Qpm3oKn1S0arjGLGFlZB2pjdBm6konhctQlQuPo9kf6i/AjUTkx0ScdOnK/L+/jJo36WAF7+nMoMPMFoMXiumZ2LPgQjMPbFJT68cJQ4DaP0hhYhGMpbyhJQJD3UkAIPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZEIdAZto; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40KJ0AMg022742;
-	Sat, 20 Jan 2024 19:19:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=JAN4K8Xa62IAsqf/M72hM6xabS3g3wSCJxBQxVgkqKM=; b=ZE
-	IdAZtoebL4M0rVhhS7kOf/RVEbUVc6UUgH1e1fk4WpHrJSjZ7qCIlAdC4bc7nW3V
-	QyLMbaXWAL4kAg1YKBOzFN3CrH3ff0Di01WZdf0TO5f1RXcGJhrsqkBZz9h8d7/e
-	0BbaNgi1L60G/odI01NLjekO3ca/csiUnHs7iJ00RtUQNwLanAAn8+A8QxgnYJML
-	SvSUQJTxduKkWuST9mHaNd2pdubOo1YNi2IBAbsDeiz/1OOPu990GZ+xldmB5TKI
-	w8NQaZiAFBCP238vmeqThK8qxHi0rMoXGn9+1kaAnNmthDpF1dOZnwiqmRR/vtqz
-	2FR582XDUdcAYhr302HQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vr6d7gxkn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 20 Jan 2024 19:19:39 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40KJJcYd023063
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 20 Jan 2024 19:19:38 GMT
-Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sat, 20 Jan 2024 11:19:34 -0800
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Johan Hovold
-	<johan+linaro@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, Krishna Kurapati <quic_kriskura@quicinc.com>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: Add missing interrupts for qcs404/ipq5332
-Date: Sun, 21 Jan 2024 00:49:04 +0530
-Message-ID: <20240120191904.15408-5-quic_kriskura@quicinc.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20240120191904.15408-1-quic_kriskura@quicinc.com>
-References: <20240120191904.15408-1-quic_kriskura@quicinc.com>
+	s=arc-20240116; t=1705784999; c=relaxed/simple;
+	bh=q+nub84U23nvD+cn7YvgYkoUGFiaXs85dZdXJ4xFhpU=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=qA5VpQA/38RgucgfkOaby+7+Xd7ylNGR8Eqsnl3aEyH3CR62PSGkKZh7BcvhOppkM/yf9H3yZx6VI52DGMmdfP7VTKQ7wr9Xf9/QSfCXmt98/J42FBqG7pFMZeAtvKYInHWfxmI4qZ3w/A3tp7KH6G6OXh3lYd226Sdwkfnt13Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d6RpqXL/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BECB1C433F1;
+	Sat, 20 Jan 2024 21:09:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705784998;
+	bh=q+nub84U23nvD+cn7YvgYkoUGFiaXs85dZdXJ4xFhpU=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=d6RpqXL/1LZrgglNCxscGX37U9C04RSJDlu9mrU8bupnby5ZS4JKTlFT4eeYAlWsC
+	 Rq9sXv9czypfWp6lI5AP8UmCHdyVB/BU1/0vRAbpo3oUfmrKIDev9To7g+kagjcGwt
+	 DPecFerWRld02oOeW9OUjgHXT8uCI5bt1XlZX7+o/HaLB4YZb058QLztbDYN6wjLmk
+	 rtaf91Q6Gp2xnO1AdFujjlrTfI6f1N4QzRCUm47BRCqcSpvyzqYt6Um9rrSsiIzMLt
+	 AW3dUIOZalnqBPYOn0FSC8c7gz007wJU4RrazDsq/0hR8JM06FSCGxYcYRQKLNlv00
+	 rvSGfy6pM1SUw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id AE98BD8C96C;
+	Sat, 20 Jan 2024 21:09:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,87 +52,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: EK0SSNQfUE-BVe2KJPcrquvVNK8qoj0B
-X-Proofpoint-ORIG-GUID: EK0SSNQfUE-BVe2KJPcrquvVNK8qoj0B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-20_04,2024-01-19_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- lowpriorityscore=0 phishscore=0 clxscore=1015 suspectscore=0
- malwarescore=0 mlxscore=0 adultscore=0 priorityscore=1501 spamscore=0
- mlxlogscore=286 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401200157
+Subject: Re: [PATCH v1] riscv: dts: sophgo: remove address-cells from intc node
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <170578499871.24348.8897896227923136554.git-patchwork-notify@kernel.org>
+Date: Sat, 20 Jan 2024 21:09:58 +0000
+References: <20231024-maternity-slang-fd3dcfb211c0@spud>
+In-Reply-To: <20231024-maternity-slang-fd3dcfb211c0@spud>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org, conor.dooley@microchip.com,
+ chao.wei@sophgo.com, unicorn_wang@outlook.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 
-For qcs404 and ipq5332, certain interrupts are missing in DT.
-Add them to ensure they are in accordance to bindings.
+Hello:
 
-The interrupts added enable remote wakeup functionality for these SoCs.
+This patch was applied to riscv/linux.git (fixes)
+by Conor Dooley <conor.dooley@microchip.com>:
 
-Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
----
- arch/arm64/boot/dts/qcom/ipq5332.dtsi |  8 ++++++--
- arch/arm64/boot/dts/qcom/qcs404.dtsi  | 16 ++++++++++++++++
- 2 files changed, 22 insertions(+), 2 deletions(-)
+On Tue, 24 Oct 2023 09:20:35 +0100 you wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> A recent submission [1] from Rob has added additionalProperties: false
+> to the interrupt-controller child node of RISC-V cpus, highlighting that
+> the new cv1800b DT has been incorrectly using #address-cells.
+> It has no child nodes, so #address-cells is not needed. Remove it.
+> 
+> [...]
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-index 42e2e48b2bc3..770d9c2fb456 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-@@ -320,8 +320,12 @@ usb: usb@8af8800 {
- 			compatible = "qcom,ipq5332-dwc3", "qcom,dwc3";
- 			reg = <0x08af8800 0x400>;
- 
--			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "hs_phy_irq";
-+			interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 53 IRQ_TYPE_EDGE_BOTH>,
-+				     <GIC_SPI 52 IRQ_TYPE_EDGE_BOTH>;
-+			interrupt-names = "pwr_event",
-+					  "dp_hs_phy_irq",
-+					  "dm_hs_phy_irq";
- 
- 			clocks = <&gcc GCC_USB0_MASTER_CLK>,
- 				 <&gcc GCC_SNOC_USB_CLK>,
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index 2f2eeaf2e945..a05d0234f7fc 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -675,6 +675,14 @@ usb3: usb@7678800 {
- 			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
- 					  <&gcc GCC_USB30_MASTER_CLK>;
- 			assigned-clock-rates = <19200000>, <200000000>;
-+
-+			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 319 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pwr_event",
-+					  "hs_phy_irq",
-+					  "qusb2_phy";
-+
- 			status = "disabled";
- 
- 			usb3_dwc3: usb@7580000 {
-@@ -704,6 +712,14 @@ usb2: usb@79b8800 {
- 			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
- 					  <&gcc GCC_USB_HS_SYSTEM_CLK>;
- 			assigned-clock-rates = <19200000>, <133333333>;
-+
-+			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pwr_event",
-+					  "hs_phy_irq",
-+					  "qusb2_phy";
-+
- 			status = "disabled";
- 
- 			usb@78c0000 {
+Here is the summary with links:
+  - [v1] riscv: dts: sophgo: remove address-cells from intc node
+    https://git.kernel.org/riscv/c/e80ed63affc9
+
+You are awesome, thank you!
 -- 
-2.42.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
