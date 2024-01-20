@@ -1,321 +1,249 @@
-Return-Path: <devicetree+bounces-33381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3CC833330
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 09:11:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51600833340
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 09:41:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9ABF01C21395
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 08:11:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6179B23198
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 08:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A9A92106;
-	Sat, 20 Jan 2024 08:11:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E08192112;
+	Sat, 20 Jan 2024 08:40:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="NfSPNg20"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="bWoKSBay"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2049.outbound.protection.outlook.com [40.107.101.49])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753E62105
-	for <devicetree@vger.kernel.org>; Sat, 20 Jan 2024 08:11:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.101.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705738262; cv=fail; b=NL7OPgYEcrDOwYYsm/Unl1RrMeDI+9AVGApaLMs/0yKE/NJww5kO2ecCxJkklVPJGDTCPvckIF+9awiW64o60QK/V0MHS6kGOnmXgogo7vNHE8qFmFVyC2E3rtQqXvPh6+cLNMlWMp/ZmmsKsWF+a8KvTCV9VKLYnI/U4MI3/nA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705738262; c=relaxed/simple;
-	bh=blRM4AaIiLhTJ0gUwyIN0FLEh2dMSwSO/R9NbiASueo=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=H8/JfdPjf5ifdDBsDeoKIVvz+r3bMjGgKzwZ7CjqYPlccci48ED3XePUYYX6tj54k47NB//kCzNm+2ITduBFLSOHb6+sfO6muAK770N74UaCLtdYqCwJ5S5cmjS9HY8vU97onG9qTHf3BIKVM+N2p2oLO2O+yW6tt5Me9Chy10g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=NfSPNg20; arc=fail smtp.client-ip=40.107.101.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MW7alRstFQqX7LryAYw65C66d2fJjOp/xNJ1lapJPEkydsVSEUhhPDl0ogb85EvuXTaxiQwEC/oWDgxyhcvUQ2WNJEL2roydIgpBfGB6F1A5Emvxh417hArDwIobCdt9m+zuZRCYJXUiQWcX9NAvM/9iy4X9U+98sEIRn2Wusjb7ODdfWwNFcyfDxdol5TsZvcwnTKeT9gxFdF90kvsAdauFctleku4O/BSzaDXea2jYO+q0UxVPGBtyARj54LRP7DlhjrjtpUl+rpqQuPbVMnbh0OlnBGopWSJL3oJtkM5lNYgIOujm7RovDNPKFQNspeGCX6l6lWi6f2DOB8RCWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mlspw/y2/cgVNCD8YPmt7RjDubah3j7/wvq/VMdwDRQ=;
- b=Azka1/MditjSIFQ1rWpIWy1ecyv2XGFO8s8DHi5QIe2872OhpzwZ23GDK9jkJA8LhJ7s6vfOzTEl710xqrHGm+MO804V313VVj1cgje5+tlVDziwsFNlWajG4L4k6xoIplWdwHIjFZ+Bh+qcX9aHhT7DRXJ4ogarhib8//WqfjFT8E1OtTRFDaJF6oXZX4MorVB6UXgbmSNrzQ7HiO315gH6Ahb7WyQXEoOHQIVI27a2wLjUM1AsEs6OjGo7pFNR5grIh9M0lefNWqTYZ7Aqt8t4/TwUY5RnOPbYdE+Nwx1Azwewy6FsjPnFk7F/FcF8k3xx8UmGhPo8Iti/KCE82A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mlspw/y2/cgVNCD8YPmt7RjDubah3j7/wvq/VMdwDRQ=;
- b=NfSPNg20AGW4lxxwoiWnAP5F3EsLM7uMTMvDUj0cSAa9kNNFfdTHtu7ighhxMCpJxIjLK7x2+wE4pGnDyc654MT5rKWtB4N5H5ANxzGf44s+zePZiQniD0Hyxtna7BAXMWkYdgc2S+IxLGWilY24jwWAHI9Qc8+OXY19YmfmN2woGPkqifRhCrZToDulpfMGcz7ohF7AMVZ6+yQBroHniU6kTgwQoDP/vvmxzbT9UGdXJn3MtrvPlGgWGJE1XVvpAfqz9xbw1e5xvZJwS4nPk8fMvfKm+fhgT39YM3Q+GiLYYreQ6fd0TMBDdAKx5f6fdCqw71F7wNs5uztXdkwYzA==
-Received: from SJ0PR12MB5676.namprd12.prod.outlook.com (2603:10b6:a03:42e::8)
- by LV8PR12MB9407.namprd12.prod.outlook.com (2603:10b6:408:1f9::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.24; Sat, 20 Jan
- 2024 08:10:57 +0000
-Received: from SJ0PR12MB5676.namprd12.prod.outlook.com
- ([fe80::e2a0:1cd7:a9f5:86a2]) by SJ0PR12MB5676.namprd12.prod.outlook.com
- ([fe80::e2a0:1cd7:a9f5:86a2%5]) with mapi id 15.20.7202.026; Sat, 20 Jan 2024
- 08:10:57 +0000
-From: Besar Wicaksono <bwicaksono@nvidia.com>
-To: Robin Murphy <robin.murphy@arm.com>, "will@kernel.org" <will@kernel.org>
-CC: "mark.rutland@arm.com" <mark.rutland@arm.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "suzuki.poulose@arm.com"
-	<suzuki.poulose@arm.com>, "ilkka@os.amperecomputing.com"
-	<ilkka@os.amperecomputing.com>, Yifei Wan <YWan@nvidia.com>, Richard Wiley
-	<rwiley@nvidia.com>
-Subject: RE: [PATCH v2 5/5] perf/arm_cspmu: Add devicetree support
-Thread-Topic: [PATCH v2 5/5] perf/arm_cspmu: Add devicetree support
-Thread-Index: AQHaLqr/7IbpFwV4TkiRRTCZEE1e6bDiic+A
-Date: Sat, 20 Jan 2024 08:10:57 +0000
-Message-ID:
- <SJ0PR12MB5676E1722FFB67D7FD64F8C6A0772@SJ0PR12MB5676.namprd12.prod.outlook.com>
-References: <cover.1702571292.git.robin.murphy@arm.com>
- <6858523689a214543224495fee22f9e31be2f767.1702571292.git.robin.murphy@arm.com>
-In-Reply-To:
- <6858523689a214543224495fee22f9e31be2f767.1702571292.git.robin.murphy@arm.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR12MB5676:EE_|LV8PR12MB9407:EE_
-x-ms-office365-filtering-correlation-id: f5a36b35-4bcd-4848-79a6-08dc198f54a8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- PvCU1V9X7AomIgYw0GSyV5nme3BEjtbc4XbavfefCaVmSjiIpx39AjJ6HnZKf7h1tpdO/JDQ7ia+HKL0+z2wjBGPbVuySDaNRD2+h9QY+4ksuOY5ElPqHEl79e/C6kXXss6e0InND6BugwMGk5XRhTx4uY7CBWvYjvL96kTbW+VNmhdMbDdT3VyGMnY2+TuVRC+epRf+CSYzt5N6kFMuiMQ04hKXkw1tCsdRZ+xy4PKYTXWDqSmPBr/y888DB/uAAYZfwSjHxQ5P8yk9k2vOuU0uF7wTuOcjTr6uVey6USK7TlF9Z+RZrdWQ3ve1uOdl8F+u+SPkgHgqUZNpPAtdfM2OCOH8fm94gHbH2EgMIuGdA3c5TajiSdwzJsG2RS3XfS/UVcxSad5CErhWI9TTldC8Qn5Ip2b8uFlIDBi1XQkpgyMlX6urbudy7x9dPuzgQVSDSk/mJpsK8mC7OAjsu21JZvMUZc8HSJE5z8YrE48/wzI0S2ifAtcs239mRBDKMkL3V7hgnPoRjMTd6Upovn33z7hE/VlTWDy0cG9aVg12wGLQTGq41A2PndQDvT1L60wsPpJhP+1nATIB02LFXcoXfJcC+14BlmM0C7nKjlPPY8gdJPUBhNnlFoa/tG275z4wAubESHgvGQFXgydVd2uOUlYn00O0Nz3TPkHDK0c=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR12MB5676.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(366004)(39860400002)(136003)(346002)(230922051799003)(230173577357003)(230273577357003)(64100799003)(451199024)(186009)(1800799012)(8936002)(4326008)(316002)(64756008)(53546011)(122000001)(38100700002)(2906002)(41300700001)(86362001)(33656002)(66476007)(66556008)(26005)(110136005)(76116006)(7696005)(9686003)(54906003)(66946007)(6506007)(66446008)(71200400001)(478600001)(83380400001)(5660300002)(8676002)(107886003)(52536014)(55016003)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?GRZ34m15yNB50F9YuxZGbMfeFfHZ6psY2vhYvi+MzGZE0T+D0TsJzrCaFNs0?=
- =?us-ascii?Q?8/2lqovodv8qj11jA3HRmzP4uAxVHQAES1l+FOpcRcCzd85QsuA+IQ/cZTBL?=
- =?us-ascii?Q?Nq9hLdwdivnRsxgIJREgHz+7W25/sbxevM1L7xhAkuaPmclV6kr2LgFkcGCF?=
- =?us-ascii?Q?8pbhRmxRscQDooIXYFMjngsGQTgTjY+jyMfHs/sMgu3mJBxoXxalEhgn+kgg?=
- =?us-ascii?Q?NMTspBSrDBYk/VlnjyUjNyWCSWgVK0eQV9V36bHwVNwNWQMuXoQwTFCf/B8K?=
- =?us-ascii?Q?p9h1nHGdkkuFXPPOx0QwnXZIT3dUmNrEcLH5vXvZTjlwVa+k9f3ZWcTTJR5l?=
- =?us-ascii?Q?cR48h2AgA9bGOYziA8AytSMrsqN2Khy1Gn9CcmEY+d0JC4om5NLS319PewN1?=
- =?us-ascii?Q?/VJ8tzCfZ71PLixFFWdBQVUhTR2v9xc8FsieICLMUMtn4afKb9x853/O7wDz?=
- =?us-ascii?Q?VvbuqkmHsDif6jzBDUvwVhDba8sdgwNrqZHHJaI8QAtWDXj9uN7JZbaLebco?=
- =?us-ascii?Q?h9iHoYtK1h88bDpe+NabwyBPkcpY0Nim8MkZBxbZwEZ/OJ0yW+mr2vv5Pt8v?=
- =?us-ascii?Q?X9gTOtLgx2kD5YBg0xfZfQSRPzCBMsOtlpHfJ/p3mPS2UZ2kpN9YOL+zbego?=
- =?us-ascii?Q?1xGXsiixMl+oYOHZ1GdoHvTAyum/NQXOGEmlepYBH3GYnSG6SiMHZNnprPug?=
- =?us-ascii?Q?ububM08DfnBdGETaNB/j+yAEv4bhZt0AElPC3JXxSmVVOYHuhsWInQZRoDNf?=
- =?us-ascii?Q?24KRJqb75WQhYECoMAj+pA+BUZLB5CJvbqIFJhHXt6Gv/4LnehKHIttHW9/U?=
- =?us-ascii?Q?ipCT+tIe8vyhCheaG2qXFQndY+fHtV6OjFs0HoxBoGjzQf52KqK9/OUgzbcM?=
- =?us-ascii?Q?z2yugcLtAeAtwECr5ksuoDTxQqZc5DRQFkg7S8TOez7ImU//VBa5hjI8SE0m?=
- =?us-ascii?Q?6DzzCIY3/GnGt28QQKBWEmxFVTD64ItPnrabNGNSlSOfm2QzYB1ZDTdiA4UH?=
- =?us-ascii?Q?GYWQBmgdC5bG2BnEj8rLhZZtc77T2NPog8DtWCLV+Tc6448UTkIPiA/lU86s?=
- =?us-ascii?Q?mJiVJg689aUVIU2PkVQk01ssU4+2HgqTD03f4+SJJQq6jLvaYLjBhA0Cb/Fz?=
- =?us-ascii?Q?daeSKPwuv3QqVvw3Yfoh7Ab9YVqZW2AYsuaDTWn6RKnr26JbSIyEV9rHxNuG?=
- =?us-ascii?Q?zF/SCUADCAyEa+Y0eqxAERsLhpL6J9iCbHkHrX8voOI3HSk9WumtYBo/ndGA?=
- =?us-ascii?Q?6WF8M2pC+IOH4nt3ZHO2J+qKeZxwJoZDvkCK6+BgHfs7eGpECEY/1HZ4I0y6?=
- =?us-ascii?Q?6MwJ1XoUMgUKaJgE/4+WGb+4UvS9Q4wFg+M1RYnUrmpkrdaD/XaT1WX/d/qC?=
- =?us-ascii?Q?cGFO4jtGKqXjCOVgKOuQIqLMykuQmslhMe/UCXf0GxAr+3dLetL5lQQuTFiZ?=
- =?us-ascii?Q?v6s5tq0fr1WImNwG/65FFoTqdoPZ5lR2MIpHcNjMpMf/Gi3Ci+5FcFlNrl9G?=
- =?us-ascii?Q?gVyFSPTISzjfgVKwhXp+5G91ZITMyse+ezWp/5FlFWf1YFwdj3ovUUa+xLhT?=
- =?us-ascii?Q?giDSb4J99/0tF0JO08t9qaFT/1ISR7app0dWInqI?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 893A0111E;
+	Sat, 20 Jan 2024 08:40:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705740054; cv=none; b=Dl4z0r+Ul8b7nRb/MpVKVJaWT7a7RPBqL9S4hQ01DGF+HR7DBY89a/suFr3OxCOM0VHlG5C+1ZYAAI6KVFxHeGtI/inR7O6eRrI1I7u66LeggCU7X5JUBXn9UjtCmYNXw1BuDwR8VAiY5eU+MZVQQ8FeIwrcFREoaZibCHpCDp0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705740054; c=relaxed/simple;
+	bh=PujlbN1ea6U50e6lljNM6FfqQ3iJJRc2+Lo8+ghyRjE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=k+NrJKvVnuCIdHMpzKYfIT5n31sQVPM92/uUR4v5pZOLC1xCd5+wDfQdRLMRTGTiilqIXbhP761EpH2keWUSTMFAfLgqu1bMIQ27uBZzyBZZiGw/KacvbqfRakGYG8vzn07yqzDggNnYusz0yuOr5ZPY9Vqkpb9PgXdFy+xe2Dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=bWoKSBay; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 968134a6b76f11eea2298b7352fd921d-20240120
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=C31ZLci8ETcyZV0fXrsxl7MNMeUaMNLOpGVSDJNflsM=;
+	b=bWoKSBayGe+F15uMPKHqrdgXfxRgtGlzJkQMYPoK0kkVPxwWbu8TNaBQhzDE8D1YLP9Oow2+dS9vX0aZrm4eCErZMGxlQxavKruGV0OpGOECnLYGrQaPueLCLUuYvpzx+Ws509+bQjRq3voTgZkKKN7LU4SAiGoVI7RtOWVvwKw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.36,REQID:4193110a-be52-4942-a4e8-09b2bf021dd1,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:6e16cf4,CLOUDID:26be5f2f-1ab8-4133-9780-81938111c800,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: 968134a6b76f11eea2298b7352fd921d-20240120
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 882358297; Sat, 20 Jan 2024 16:40:38 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sat, 20 Jan 2024 16:40:37 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sat, 20 Jan 2024 16:40:36 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
+	"Irui Wang" <irui.wang9@mediatek.com>
+CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, "Yunfei
+ Dong" <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 1/2] media: mediatek: vcodec: adding lock to protect decoder context list
+Date: Sat, 20 Jan 2024 16:40:34 +0800
+Message-ID: <20240120084035.22486-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB5676.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5a36b35-4bcd-4848-79a6-08dc198f54a8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2024 08:10:57.1002
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Lc9PB0qq8CSFZVN3VQ8+3sbgmKBnx8KPcbibPvg7pWHWc5GhoZagxWjiR46UMpcZLTCaYKLNbvM/x/J3Mk80Jw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9407
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--10.418800-8.000000
+X-TMASE-MatchedRID: 9p0QI/+vVwnUzvcPSorAlMNrWpY804TG5Y0kb0hqatxh2fnHe1cil9Qt
+	cQ4PjYUQWKuGHPyQzf50EP8QGYj3VpDE8A8BMmXzmqt7FrgJsRCwR/wKmchi2aBp/T5dSs2Tyla
+	ny27BLVxTCsaPIKnQPh9RiBf6acKHHEYRI8dNra762mDKTRDEUr8+q17GFLKRjNEMFREyl14RNx
+	2gZ6nN89Ow0Ro6UpZXiCbNFKe75Fjp+5uxX4D6T3TnOygHVQpOfLPKYyLDlAeFmddrIUs34gUzj
+	+gqhStRpC9vRu7WqSBhesC82wLQK41kmDYSNG7nSHCU59h5KrEP4vBWNr0zgZsoi2XrUn/JUTdY
+	/mdfTXtJKW4mDlJsMSAHAopEd76vNswBTrdoX7BFG8PlEtDcOUF8r1LeElXJYHtyMfWJ5O1eXx3
+	H+wW2dg==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--10.418800-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	60635968CA4794ABAE2CBA09C3D498410DD291BF3B6AF3DF8AD44D8BAFE5CEF82000:8
+X-MTK: N
 
-Hi Robin,
+The ctx_list will be deleted when scp getting unexpected behavior, then the
+ctx_list->next will be NULL, the kernel driver maybe access NULL pointer in
+function vpu_dec_ipi_handler when going through each context, then reboot.
 
-Please see my comment inline.
+Need to add lock to protect the ctx_list to make sure the ctx_list->next isn't
+NULL pointer.
 
-> -----Original Message-----
-> From: Robin Murphy <robin.murphy@arm.com>
-> Sent: Thursday, December 14, 2023 10:31 AM
-> To: will@kernel.org
-> Cc: mark.rutland@arm.com; linux-arm-kernel@lists.infradead.org;
-> devicetree@vger.kernel.org; suzuki.poulose@arm.com;
-> ilkka@os.amperecomputing.com; Besar Wicaksono
-> <bwicaksono@nvidia.com>; Yifei Wan <YWan@nvidia.com>; Richard Wiley
-> <rwiley@nvidia.com>
-> Subject: [PATCH v2 5/5] perf/arm_cspmu: Add devicetree support
->=20
-> External email: Use caution opening links or attachments
->=20
->=20
-> Hook up devicetree probing support. For now let's hope that people
-> implement PMIIDR properly and we don't need an override property or
-> match data mechanism.
->=20
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
-> v2: Use APMT node to distinguish ACPI; adjust for binding change
-> ---
->  drivers/perf/arm_cspmu/arm_cspmu.c | 63 ++++++++++++++++++++++++-
-> -----
->  1 file changed, 52 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/perf/arm_cspmu/arm_cspmu.c
-> b/drivers/perf/arm_cspmu/arm_cspmu.c
-> index b64de4d800c7..6c76c135a0cf 100644
-> --- a/drivers/perf/arm_cspmu/arm_cspmu.c
-> +++ b/drivers/perf/arm_cspmu/arm_cspmu.c
-> @@ -27,6 +27,7 @@
->  #include <linux/io-64-nonatomic-lo-hi.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> +#include <linux/of.h>
->  #include <linux/perf_event.h>
->  #include <linux/platform_device.h>
->=20
-> @@ -310,6 +311,10 @@ static const char *arm_cspmu_get_name(const
-> struct arm_cspmu *cspmu)
->=20
->         dev =3D cspmu->dev;
->         apmt_node =3D arm_cspmu_apmt_node(dev);
-> +       if (!apmt_node)
+Hardware name: Google juniper sku16 board (DT)
+pstate: 20400005 (nzCv daif +PAN -UAO -TCO BTYPE=--)
+pc : vpu_dec_ipi_handler+0x58/0x1f8 [mtk_vcodec_dec]
+lr : scp_ipi_handler+0xd0/0x194 [mtk_scp]
+sp : ffffffc0131dbbd0
+x29: ffffffc0131dbbd0 x28: 0000000000000000
+x27: ffffff9bb277f348 x26: ffffff9bb242ad00
+x25: ffffffd2d440d3b8 x24: ffffffd2a13ff1d4
+x23: ffffff9bb7fe85a0 x22: ffffffc0133fbdb0
+x21: 0000000000000010 x20: ffffff9b050ea328
+x19: ffffffc0131dbc08 x18: 0000000000001000
+x17: 0000000000000000 x16: ffffffd2d461c6e0
+x15: 0000000000000242 x14: 000000000000018f
+x13: 000000000000004d x12: 0000000000000000
+x11: 0000000000000001 x10: fffffffffffffff0
+x9 : ffffff9bb6e793a8 x8 : 0000000000000000
+x7 : 0000000000000000 x6 : 000000000000003f
+x5 : 0000000000000040 x4 : fffffffffffffff0
+x3 : 0000000000000020 x2 : ffffff9bb6e79080
+x1 : 0000000000000010 x0 : ffffffc0131dbc08
+Call trace:
+vpu_dec_ipi_handler+0x58/0x1f8 [mtk_vcodec_dec (HASH:6c3f 2)]
+scp_ipi_handler+0xd0/0x194 [mtk_scp (HASH:7046 3)]
+mt8183_scp_irq_handler+0x44/0x88 [mtk_scp (HASH:7046 3)]
+scp_irq_handler+0x48/0x90 [mtk_scp (HASH:7046 3)]
+irq_thread_fn+0x38/0x94
+irq_thread+0x100/0x1c0
+kthread+0x140/0x1fc
+ret_from_fork+0x10/0x30
+Code: 54000088 f94ca50a eb14015f 54000060 (f9400108)
+---[ end trace ace43ce36cbd5c93 ]---
+Kernel panic - not syncing: Oops: Fatal exception
+SMP: stopping secondary CPUs
+Kernel Offset: 0x12c4000000 from 0xffffffc010000000
+PHYS_OFFSET: 0xffffffe580000000
+CPU features: 0x08240002,2188200c
+Memory Limit: none
 
-I got a segmentation fault due to null pointer access when calling
-arm_cspmu_apmt_node in device tree environment. arm_cspmu_apmt_node
-doesn't check a null platform data before dereferencing.
-Snipet from arm_cspmu_apmt_node:
-                return *(struct acpi_apmt_node **)dev_get_platdata(dev);
+'Fixes: 655b86e52eac ("media: mediatek: vcodec: Fix possible invalid memory access for decoder")'
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+---
+ .../platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c      | 4 ++--
+ .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c    | 5 +++++
+ .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h    | 2 ++
+ drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c | 2 ++
+ 4 files changed, 11 insertions(+), 2 deletions(-)
 
-> +               return devm_kasprintf(dev, GFP_KERNEL, PMUNAME "_%u",
-> +                                     atomic_fetch_inc(&pmu_idx[0]));
-> +
->         pmu_type =3D apmt_node->type;
->=20
->         if (pmu_type >=3D ACPI_APMT_NODE_TYPE_COUNT) {
-> @@ -425,7 +430,7 @@ static int arm_cspmu_init_impl_ops(struct
-> arm_cspmu *cspmu)
->         };
->=20
->         /* Firmware may override implementer/product ID from PMIIDR */
-> -       if (apmt_node->impl_id)
-> +       if (apmt_node && apmt_node->impl_id)
->                 cspmu->impl.pmiidr =3D apmt_node->impl_id;
->=20
->         /* Find implementer specific attribute ops. */
-> @@ -940,7 +945,14 @@ static struct arm_cspmu *arm_cspmu_alloc(struct
-> platform_device *pdev)
->         platform_set_drvdata(pdev, cspmu);
->=20
->         apmt_node =3D arm_cspmu_apmt_node(dev);
-> -       cspmu->has_atomic_dword =3D apmt_node->flags &
-> ACPI_APMT_FLAGS_ATOMIC;
-> +       if (apmt_node) {
-> +               cspmu->has_atomic_dword =3D apmt_node->flags &
-> ACPI_APMT_FLAGS_ATOMIC;
-> +       } else {
-> +               u32 width =3D 0;
-> +
-> +               device_property_read_u32(dev, "reg-io-width", &width);
-> +               cspmu->has_atomic_dword =3D (width =3D=3D 8);
-> +       }
->=20
->         return cspmu;
->  }
-> @@ -1133,11 +1145,6 @@ static int arm_cspmu_acpi_get_cpus(struct
-> arm_cspmu *cspmu)
->                 }
->         }
->=20
-> -       if (cpumask_empty(&cspmu->associated_cpus)) {
-> -               dev_dbg(cspmu->dev, "No cpu associated with the PMU\n");
-> -               return -ENODEV;
-> -       }
-> -
->         return 0;
->  }
->  #else
-> @@ -1147,9 +1154,36 @@ static int arm_cspmu_acpi_get_cpus(struct
-> arm_cspmu *cspmu)
->  }
->  #endif
->=20
-> +static int arm_cspmu_of_get_cpus(struct arm_cspmu *cspmu)
-> +{
-> +       struct of_phandle_iterator it;
-> +       int ret, cpu;
-> +
-> +       of_for_each_phandle(&it, ret, dev_of_node(cspmu->dev), "cpus", NU=
-LL,
-> 0) {
-> +               cpu =3D of_cpu_node_to_id(it.node);
-> +               if (cpu < 0)
-> +                       continue;
-> +               cpumask_set_cpu(cpu, &cspmu->associated_cpus);
-> +       }
-> +       return ret;
-
-The ret gives -ENOENT after finish iterating "cpus". I think we could retur=
-n 0
-or void since there is a check for empty associated_cpus down the line.
-
-Thanks,
-Besar
-
-> +}
-> +
->  static int arm_cspmu_get_cpus(struct arm_cspmu *cspmu)
->  {
-> -       return arm_cspmu_acpi_get_cpus(cspmu);
-> +       int ret =3D 0;
-> +
-> +       if (arm_cspmu_apmt_node(cspmu->dev))
-> +               ret =3D arm_cspmu_acpi_get_cpus(cspmu);
-> +       else if (device_property_present(cspmu->dev, "cpus"))
-> +               ret =3D arm_cspmu_of_get_cpus(cspmu);
-> +       else
-> +               cpumask_copy(&cspmu->associated_cpus, cpu_possible_mask);
-> +
-> +       if (!ret && cpumask_empty(&cspmu->associated_cpus)) {
-> +               dev_dbg(cspmu->dev, "No cpu associated with the PMU\n");
-> +               ret =3D -ENODEV;
-> +       }
-> +       return ret;
->  }
->=20
->  static int arm_cspmu_register_pmu(struct arm_cspmu *cspmu)
-> @@ -1246,11 +1280,18 @@ static const struct platform_device_id
-> arm_cspmu_id[] =3D {
->  };
->  MODULE_DEVICE_TABLE(platform, arm_cspmu_id);
->=20
-> +static const struct of_device_id arm_cspmu_of_match[] =3D {
-> +       { .compatible =3D "arm,coresight-pmu" },
-> +       {}
-> +};
-> +MODULE_DEVICE_TABLE(of, arm_cspmu_of_match);
-> +
->  static struct platform_driver arm_cspmu_driver =3D {
->         .driver =3D {
-> -                       .name =3D DRVNAME,
-> -                       .suppress_bind_attrs =3D true,
-> -               },
-> +               .name =3D DRVNAME,
-> +               .of_match_table =3D arm_cspmu_of_match,
-> +               .suppress_bind_attrs =3D true,
-> +       },
->         .probe =3D arm_cspmu_device_probe,
->         .remove =3D arm_cspmu_device_remove,
->         .id_table =3D arm_cspmu_id,
-> --
-> 2.39.2.101.g768bb238c484.dirty
+diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c
+index 9f6e4b59455d..9a11a2c24804 100644
+--- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c
++++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c
+@@ -58,12 +58,12 @@ static void mtk_vcodec_vpu_reset_dec_handler(void *priv)
+ 
+ 	dev_err(&dev->plat_dev->dev, "Watchdog timeout!!");
+ 
+-	mutex_lock(&dev->dev_mutex);
++	mutex_lock(&dev->dev_ctx_lock);
+ 	list_for_each_entry(ctx, &dev->ctx_list, list) {
+ 		ctx->state = MTK_STATE_ABORT;
+ 		mtk_v4l2_vdec_dbg(0, ctx, "[%d] Change to state MTK_STATE_ABORT", ctx->id);
+ 	}
+-	mutex_unlock(&dev->dev_mutex);
++	mutex_unlock(&dev->dev_ctx_lock);
+ }
+ 
+ static void mtk_vcodec_vpu_reset_enc_handler(void *priv)
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+index f47c98faf068..2073781ccadb 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c
+@@ -268,7 +268,9 @@ static int fops_vcodec_open(struct file *file)
+ 
+ 	ctx->dev->vdec_pdata->init_vdec_params(ctx);
+ 
++	mutex_lock(&dev->dev_ctx_lock);
+ 	list_add(&ctx->list, &dev->ctx_list);
++	mutex_unlock(&dev->dev_ctx_lock);
+ 	mtk_vcodec_dbgfs_create(ctx);
+ 
+ 	mutex_unlock(&dev->dev_mutex);
+@@ -311,7 +313,9 @@ static int fops_vcodec_release(struct file *file)
+ 	v4l2_ctrl_handler_free(&ctx->ctrl_hdl);
+ 
+ 	mtk_vcodec_dbgfs_remove(dev, ctx->id);
++	mutex_lock(&dev->dev_ctx_lock);
+ 	list_del_init(&ctx->list);
++	mutex_unlock(&dev->dev_ctx_lock);
+ 	kfree(ctx);
+ 	mutex_unlock(&dev->dev_mutex);
+ 	return 0;
+@@ -404,6 +408,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+ 	for (i = 0; i < MTK_VDEC_HW_MAX; i++)
+ 		mutex_init(&dev->dec_mutex[i]);
+ 	mutex_init(&dev->dev_mutex);
++	mutex_init(&dev->dev_ctx_lock);
+ 	spin_lock_init(&dev->irqlock);
+ 
+ 	snprintf(dev->v4l2_dev.name, sizeof(dev->v4l2_dev.name), "%s",
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+index 849b89dd205c..85b2c0d3d8bc 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
++++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
+@@ -241,6 +241,7 @@ struct mtk_vcodec_dec_ctx {
+  *
+  * @dec_mutex: decoder hardware lock
+  * @dev_mutex: video_device lock
++ * @dev_ctx_lock: the lock of context list
+  * @decode_workqueue: decode work queue
+  *
+  * @irqlock: protect data access by irq handler and work thread
+@@ -282,6 +283,7 @@ struct mtk_vcodec_dec_dev {
+ 	/* decoder hardware mutex lock */
+ 	struct mutex dec_mutex[MTK_VDEC_HW_MAX];
+ 	struct mutex dev_mutex;
++	struct mutex dev_ctx_lock;
+ 	struct workqueue_struct *decode_workqueue;
+ 
+ 	spinlock_t irqlock;
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
+index 82e57ae983d5..da6be556727b 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c
+@@ -77,12 +77,14 @@ static bool vpu_dec_check_ap_inst(struct mtk_vcodec_dec_dev *dec_dev, struct vde
+ 	struct mtk_vcodec_dec_ctx *ctx;
+ 	int ret = false;
+ 
++	mutex_lock(&dec_dev->dev_ctx_lock);
+ 	list_for_each_entry(ctx, &dec_dev->ctx_list, list) {
+ 		if (!IS_ERR_OR_NULL(ctx) && ctx->vpu_inst == vpu) {
+ 			ret = true;
+ 			break;
+ 		}
+ 	}
++	mutex_unlock(&dec_dev->dev_ctx_lock);
+ 
+ 	return ret;
+ }
+-- 
+2.18.0
 
 
