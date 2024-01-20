@@ -1,119 +1,118 @@
-Return-Path: <devicetree+bounces-33407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC7B833558
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 17:14:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5EA8335C7
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 20:11:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B07061F222BD
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 16:14:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EFD76B210A5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 19:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7A0107A9;
-	Sat, 20 Jan 2024 16:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30D3617C6;
+	Sat, 20 Jan 2024 19:10:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PuWW2Qdo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="b6qv0YjJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CCA01078D;
-	Sat, 20 Jan 2024 16:14:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53D038E;
+	Sat, 20 Jan 2024 19:10:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705767267; cv=none; b=gvHaOLfhrYXJbIsH7v9LJXtJLXgmWVnh6wK0i8XLhjkBSoeDpFtXPh2Qw8jforKipjlGUY0Q3B0wP6jCq9iT+lpodgnfE0jzCk6RqW6IMzRYIWMqjrFOhgA1i8QVVvaYk8HKdKffuCjUwsUaxk9b3YzlJlKDy44S0zuQj3QCWmI=
+	t=1705777854; cv=none; b=DK4NBWNpgkgYQhGfQD3U6tvHwEh/fPs01BkmZBz/E7ibRS4eLV+PBe+NBmqq9cTu7HrU1CFY6BJzgSNnFuGdPrwHyz4/OP8firXe4UlmIYDEjVUqQ5r4cd09W445bLy2NpigGv3A82Elxl3N6gtN8M6t6E2j/kTbvyA/gyLCuuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705767267; c=relaxed/simple;
-	bh=3j+/C4jBF5YM3bpknW9hCVPHcnBnTMWzqP9GyKMDxao=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VnFaDlgGj7SSYQ1dyEt5KV+KCDj2For156aIoJ1PpqtubhQ6v6DC92UWCLB3ThaSBlu5RKTB4pguH/A7UFLNy+BDAgGhmeayPkZlHugyPwE5Sdxt+ER5N1ZfEWhE/x6gy1kczRcLesPv+Yp2RpXUXRZG8YZbbAF3bniMblQPkuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PuWW2Qdo; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40ea948fe3fso927145e9.0;
-        Sat, 20 Jan 2024 08:14:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705767264; x=1706372064; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AsRomkLitq2pOiV7IIgul49mE1iK5bxxrTr0pwfbKxo=;
-        b=PuWW2QdoKoXU9RmJgZKMavIXhpndxiwBAbJmty6Fo5pFVU9jKqWUp34I0/330Z+2lW
-         CHHdiS3OtKiN9Mv1OW+lnOVb79r0+pJCA/BRU+PKiHJWsuMyffZX9hnbEux0XRCfXZfJ
-         Ab9Kw7hSzNgD97afwW/1itA8/8aLA07zhT0bRTe1tMC1rlybVHg0FB7KthF7Q8u0MPbs
-         ZHv90/4lWkYcUzDSJvzi5zgwtP7Hb7pu5Zhy/tMtFDrwJh1r9vpfxloHZTFYahfmsCOv
-         gRub3mccmH6uAzv5+1PrOKG0SNNRl88Lu+k+lhiBRTpNuARyBuk1rKMA8IbWoiwRV4J3
-         CCLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705767264; x=1706372064;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AsRomkLitq2pOiV7IIgul49mE1iK5bxxrTr0pwfbKxo=;
-        b=V9CJ37xYCWXWcbUNfgQ46OQGEiVvYQbDZGxKItR5wGwArcIUAFYhlSl1gh40lBxidE
-         SJ983Acn8FBp70BvQaEqaSF4mwHGcDN4F/oloHvWQWKFRUqvbbhWIQ6S1so71BrnA/Hi
-         N/3uLYI0B/IY7u1mMGXIYSAsRQfNdogeXg1tEPaeC76yRbblxKELUNT9GxWfXB2CykI/
-         5Vtc4MkY6GYKGipGAX4uzEsxEOzIfOdBSAVw0KvgCG+cfJc4tF9+cF3bNr+ZafzXkeyU
-         BzGM0qi2f1RetFrf58My+UDfLIM1zsj7PvyQQR7RUeOLYMWvZKnG1Dh55VC6ccSEKSDG
-         hccA==
-X-Gm-Message-State: AOJu0YzOsk81Uss/aMZMHDTQ1njDYLknUHv9QTawBeN31TZvfhxGGz5R
-	elU70gFM2ixHHoBrH/Uhic5181Pu/HugbcZ8c6Dic+tr/m3fLciu
-X-Google-Smtp-Source: AGHT+IHh3ZkpT9C7+0YrlrpkRX5oWFsCSV7A3DdnMmABdmNlmh2CgGEZerc4uu3CXoVpxT3aRyFY4A==
-X-Received: by 2002:a05:600c:a48:b0:40d:885a:55e with SMTP id c8-20020a05600c0a4800b0040d885a055emr817958wmq.143.1705767263484;
-        Sat, 20 Jan 2024 08:14:23 -0800 (PST)
-Received: from ?IPV6:2a02:8389:41cf:e200:f5df:1797:cf1:de92? (2a02-8389-41cf-e200-f5df-1797-0cf1-de92.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:f5df:1797:cf1:de92])
-        by smtp.gmail.com with ESMTPSA id b3-20020a0564021f0300b005545dffa0bdsm12081218edb.13.2024.01.20.08.14.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 Jan 2024 08:14:23 -0800 (PST)
-Message-ID: <b349fd4a-c7e3-44f8-9908-2abe24bbd69e@gmail.com>
-Date: Sat, 20 Jan 2024 17:14:21 +0100
+	s=arc-20240116; t=1705777854; c=relaxed/simple;
+	bh=5b67qNmT8ovdAlyPlZflP/DjhI48KrRa1Ytn1JLEqSc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rR8KYv8FlI6xppV1a/qFFAD/6G7dU4G4n3VqqpWgyRa0VDfpr280zh4YtjIFuL3W6H5Adw6t4ov2L/X837e5Mm+OqGAUKWQg9rPRa9nOLmHD2Xpbg8nOKQXtSNNldARIpfBnLJBhoQc/wwEt7+UUCcGhnJBosqSFYL2YIx3PdJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=b6qv0YjJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40KJAngH013169;
+	Sat, 20 Jan 2024 19:10:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=otwob6cs32dG5UDBoNGyI022yD3cQ7raIIQ+IY6hiuw=; b=b6
+	qv0YjJngwpemfiacBkBK9Jjlb+aIjC4edF3nQKVTyXpJi+Qqnvby5pKEAL2Gw0Re
+	J6cG+8X6CDkWY44HFJm+eXxKyDmqqgC16mqV0J2O5MqjhATr+j0L/lxz1K7TLTYR
+	FKgBhzPxWpmC+vBjQCAS2PkQXkzXHnf24QMyxOR0kkSo/WpAi86I7Ubl6q32FTew
+	QLNXVVmkcP+noyIviqjSJ4QyR/Ulw5YglK8q9WpjDRPoKuHgMKNIU/Wr1W7CY4Se
+	MSL315PTjbEH6QdJ+bDOkm0Cvn/szs0yOqpvhq7d2s+cxGOUaWQ5WpO60C9+OICt
+	bAHChT7CN4ayQRoq9X0g==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vr6d7gxam-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 20 Jan 2024 19:10:48 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40KJAmRm012906
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 20 Jan 2024 19:10:48 GMT
+Received: from [10.110.32.149] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sat, 20 Jan
+ 2024 11:10:44 -0800
+Message-ID: <6e40dd60-884f-be23-0052-d14f7194f844@quicinc.com>
+Date: Sat, 20 Jan 2024 11:10:32 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/4] iio: humidity: Add driver for ti HDC302x humidity
- sensors
-To: Lars-Peter Clausen <lars@metafoo.de>, Li peiyu <579lpy@gmail.com>,
- jic23@kernel.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231211122201.9598-1-579lpy@gmail.com>
- <20231211122940.9791-1-579lpy@gmail.com>
- <d9a84e5b-9e23-4aa9-8e58-0bb9f2b224d7@metafoo.de>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/2] dt-bindings: hwinfo: Introduce board-id
 Content-Language: en-US
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <d9a84e5b-9e23-4aa9-8e58-0bb9f2b224d7@metafoo.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Amrit Anand <quic_amrianan@quicinc.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
+        Elliot Berman
+	<quic_eberman@quicinc.com>
+References: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
+ <1705749649-4708-2-git-send-email-quic_amrianan@quicinc.com>
+From: Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <1705749649-4708-2-git-send-email-quic_amrianan@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BBVM5LgkdQB1AVt_q61z26E9NFLJB9RV
+X-Proofpoint-ORIG-GUID: BBVM5LgkdQB1AVt_q61z26E9NFLJB9RV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-20_04,2024-01-19_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 phishscore=0 clxscore=1011 suspectscore=0
+ malwarescore=0 mlxscore=0 adultscore=0 priorityscore=1501 spamscore=0
+ mlxlogscore=436 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401200156
 
-On 20.01.24 05:17, Lars-Peter Clausen wrote:
-> On 12/11/23 04:29, Li peiyu wrote:
->> Add support for HDC302x integrated capacitive based relative
->> humidity (RH) and temperature sensor.
->> This driver supports reading values, reading the maximum and
->> minimum of values and controlling the integrated heater of
->> the sensor.
->>
->> Co-developed-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->> Signed-off-by: Li peiyu <579lpy@gmail.com>
->> ---
->>   MAINTAINERS                    |   8 +
->>   drivers/iio/humidity/Kconfig   |  12 +
->>   drivers/iio/humidity/Makefile  |   1 +
->>   drivers/iio/humidity/hdc3020.c | 473 +++++++++++++++++++++++++++++++++
-> I was just trying to use this driver. Somehow the Makefile and Kconfig
-> changes were lost when the patch was applied to the IIO tree.
+On 1/20/2024 3:20 AM, Amrit Anand wrote:
+> From: Elliot Berman <quic_eberman@quicinc.com>
 > 
-> 
-Apparently only the driver code was added. The new entry in the
-MAINTAINERS file is also missing.
+> Device manufacturers frequently ship multiple boards or SKUs under a
+> single software package. These software packages will ship multiple
+> devicetree blobs and require some mechanism to pick the correct DTB for
+> the board the software package was deployed. Introduce a common
+> definition for adding board identifiers to device trees. board-id
+> provides a mechanism for bootloaders to select the appropriate DTB which
+> is vendor/OEM-agnostic.
 
-Best regards,
-Javier Carrasco
+Please extend CC list to more architectures? linux-arm-kernel, risc-v etc; since
+the proposal below is not specific to ARM but any architecture is using the 
+devicetree. 
+
+-- 
+---Trilok Soni
+
 
