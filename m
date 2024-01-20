@@ -1,147 +1,146 @@
-Return-Path: <devicetree+bounces-33391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE3BC8333B6
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 11:59:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E164F8333D5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 12:21:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 789101F22041
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 10:59:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B0932811A2
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jan 2024 11:21:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88724D53C;
-	Sat, 20 Jan 2024 10:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0ECBDDBC;
+	Sat, 20 Jan 2024 11:21:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PXBBKmqp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HAhICGxJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC08D304;
-	Sat, 20 Jan 2024 10:59:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EFAADDAD;
+	Sat, 20 Jan 2024 11:21:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705748383; cv=none; b=XYXfDhRpsC9O5o/wmKJuNlxG2foRlIAKsyHEPQZmsZa3jn/Cy1wcY/QEdJBOLi5PnTd9qIa9x/IZpqbpxRDH/8ewORapv8uYEsKOmBT5nvx++1qx1RXIjkWZ/IM/wMUvoQTFA6EBzx2mz4SjYWTyv44K+z9tJb1uxC8OoelU38w=
+	t=1705749676; cv=none; b=A3xGjlCPOgy1ZW8eflzqR0ntp+uWNsL3qAnvkryARffsKwsBx7iX6BIdys3BBefezQixW3iEX6ABdqTnpglNYZFojpmzK3BfdnkU2fbWeR49JYU8oQbLcEKhmT7J8ypszndfANazd9ME7z9mz3tFreWSfw7YOJY3ZkkX/vdTYps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705748383; c=relaxed/simple;
-	bh=Ilz1xWtpSY/qvW9bs/VOcsKSKWgmpOf2n2Djbw5kftI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=epWKp+ual42zyZJJrGiqzK8WXVI5ToaOR5v8Gq5i3OnNbqdflO8KperQyLme2+Btla0kFGfyIJoM9nqaO3rgS6pFa31ATnCXBKl0nonYV+kvBf7WLEECq7kLEcxzUktMh9J+3HX5vjC1xuUB7QkpQ9wEaFnWkABzMlBL5ChuKPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PXBBKmqp; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1705748382; x=1737284382;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Ilz1xWtpSY/qvW9bs/VOcsKSKWgmpOf2n2Djbw5kftI=;
-  b=PXBBKmqpeCaYVZt2FyP8ghem0pJt5T2YB7Y7lCQokplZvK4dHxKWsILj
-   h4Y0NcFMwhPuwANf5xTqyyJX15CmkHcwL/S/tFQ2ea/NwC7kkKA6jAuIZ
-   aHGyOTio8q3J1VYzETbhMCjxyeD4ybavBApC9EO5wNs9Lqfl2m+WVLGEp
-   jEbpu2V5B1vkab2cMqqJZPfehme+CSy5sgR3ehsDaTsHbS2aRirs9YXIf
-   kZttgqRKsJmnx6YGEL/7qeHyvwM76GY5GRned35zky9sjkcChLVqIbPHK
-   NYUJXXZBmUcIVY/ebY8PJiD5OQ6XYxb9MwYlpObr7qnv4opE6PSm25zeX
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="14281719"
-X-IronPort-AV: E=Sophos;i="6.05,207,1701158400"; 
-   d="scan'208";a="14281719"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2024 02:59:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10957"; a="904388816"
-X-IronPort-AV: E=Sophos;i="6.05,207,1701158400"; 
-   d="scan'208";a="904388816"
-Received: from lkp-server01.sh.intel.com (HELO 961aaaa5b03c) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 20 Jan 2024 02:59:36 -0800
-Received: from kbuild by 961aaaa5b03c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rR94Y-00051W-1d;
-	Sat, 20 Jan 2024 10:59:34 +0000
-Date: Sat, 20 Jan 2024 18:58:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	gregkh@linuxfoundation.org
-Cc: oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	heikki.krogerus@linux.intel.com, matthias.bgg@gmail.com,
-	dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
-	andersson@kernel.org, nathan@kernel.org, luca.weiss@fairphone.com,
-	tianping.fang@mediatek.com, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, kernel@collabora.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v2 2/2] usb: typec: mux: Add ITE IT5205 Alternate Mode
- Passive MUX driver
-Message-ID: <202401201835.bmry790M-lkp@intel.com>
-References: <20240119125812.239197-3-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1705749676; c=relaxed/simple;
+	bh=2dcc0Yyrj14lg85ApEViidIZ5aShvEHIjZ0J7cIXKJY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=d/L7mvLtidSP0+uOGCpbeQXvE+zFL5zhg28+JT0Ays6htS1cJVIOVy/Dt0gqAbPSOVdg+zfbTsSlHcJlmhLFgSQsurJRYA+LBbhsh9hu4CbkmyiLihPv3RgVI0S2/7tEFovE4lpzF2UIll5FbTHC5pUF5tSe0D4YqhloxcolU+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HAhICGxJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40KBKXuQ018175;
+	Sat, 20 Jan 2024 11:21:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=zvMn6sx6QAeXlTZWaI1EwsfMy/pABV7n7RhDItQ16Tw=; b=HA
+	hICGxJK6XXAJ/aZ10xh5YakeIh+6ERouBW2s3gdJPcrfAAYnhqIoO546rc3RkBHh
+	fpnL82H94QSxFWXwN0eUXnQgOgKxldiROOZxFp3i8boTXxxRDfv/Qi9JdLX+635m
+	ecdIEIMyA4L/kK3zTjRkZn4JmNmtJHCfiNCmbCNUL8mxTidpaWzsap0LtGG9E4Py
+	XI/jlkVSW5HDlbzfDw0RuWhNJz4CnU2DTWCe7A49ZPc6qbIFCXC4RO53NsdqjaEs
+	pVPN4tLAkxc9eMOlHVUxq7JDtqCtaSmjMPuuy6KYjoqleq1kz6XuvjfsezEs4NcX
+	iLpBn1W4bfb5C9zawB5Q==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vr6xn0dmq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 20 Jan 2024 11:21:11 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40KBLA5I029786
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 20 Jan 2024 11:21:10 GMT
+Received: from hu-amrianan-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sat, 20 Jan 2024 03:21:04 -0800
+From: Amrit Anand <quic_amrianan@quicinc.com>
+To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
+        Amrit Anand
+	<quic_amrianan@quicinc.com>
+Subject: [PATCH 0/2] Add board-id support for multiple DT selection 
+Date: Sat, 20 Jan 2024 16:50:47 +0530
+Message-ID: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240119125812.239197-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UkIywPEtXl5UCY0aLF4TeZU-cP1wl5VU
+X-Proofpoint-ORIG-GUID: UkIywPEtXl5UCY0aLF4TeZU-cP1wl5VU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-20_04,2024-01-19_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1011 mlxscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
+ phishscore=0 malwarescore=0 suspectscore=0 bulkscore=0 mlxlogscore=656
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401200092
 
-Hi AngeloGioacchino,
+Device manufacturers frequently ship multiple boards or SKUs under a
+single software package. These software packages will ship multiple
+devicetree blobs and require some mechanism to pick the correct DTB for
+the board the software package was deployed. Introduce a common
+definition for adding board identifiers to device trees. board-id
+provides a mechanism for bootloaders to select the appropriate DTB which
+is vendor/OEM-agnostic.
 
-kernel test robot noticed the following build errors:
+Isn't that what the compatible property is for?
+-----------------------------------------------
+The compatible property can be used for board matching, but requires
+bootloaders and/or firmware to maintain a database of possible strings
+to match against or have complex compatible string matching. Compatible
+string matching becomes complicated when there are multiple versions of
+board: the device tree selector should recognize a DTB that cares to
+distinguish between v1/v2 and a DTB that doesn't make the distinction.
+An eeprom either needs to store the compatible strings that could match
+against the board or the bootloader needs to have vendor-specific
+decoding logic for the compatible string. Neither increasing eeprom
+storage nor adding vendor-specific decoding logic is desirable.
 
-[auto build test ERROR on usb/usb-testing]
-[also build test ERROR on usb/usb-next usb/usb-linus robh/for-next westeri-thunderbolt/next linus/master v6.7 next-20240119]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The solution proposed here is simpler to implement and doesn't require
+updating firmware or bootloader for every new board.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-usb-Introduce-ITE-IT5205-Alt-Mode-Passive-MUX/20240119-210119
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-patch link:    https://lore.kernel.org/r/20240119125812.239197-3-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v2 2/2] usb: typec: mux: Add ITE IT5205 Alternate Mode Passive MUX driver
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20240120/202401201835.bmry790M-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240120/202401201835.bmry790M-lkp@intel.com/reproduce)
+How is this better than Qualcomm's qcom,msm-id/qcom,board-id?
+-------------------------------------------------------------
+The selection process for devicetrees was Qualcomm-specific and not
+useful for other devices and bootloaders that were not developed by
+Qualcomm because a complex algorithm was used to implement. Board-ids
+provide a matching solution that can be implemented by bootloaders
+without introducing vendor-specific code. Qualcomm uses three
+devicetree properties: msm-id (interchangeably: soc-id), board-id, and
+pmic-id.  This does not scale well for use casese which use identifiers,
+for example, to distinguish between a display panel. For a display
+panel, an approach could be to add a new property: display-id, but now
+bootloaders need to be updated to also read this property. We want to
+avoid requiring to update bootloaders with new hardware identifiers: a
+bootloader need only recognize the identifiers it can handle.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401201835.bmry790M-lkp@intel.com/
+Amrit Anand (1):
+  dt-bindings: hwinfo: Add Qualcomm's board-id types
 
-All errors (new ones prefixed by >>):
+Elliot Berman (1):
+  dt-bindings: hwinfo: Introduce board-id
 
-   In file included from include/linux/device/driver.h:21,
-                    from include/linux/device.h:32,
-                    from include/linux/acpi.h:14,
-                    from include/linux/i2c.h:13,
-                    from drivers/usb/typec/mux/it5205.c:12:
->> drivers/usb/typec/mux/it5205.c:278:25: error: 'it5205_match_table' undeclared here (not in a function); did you mean 'it5205_of_table'?
-     278 | MODULE_DEVICE_TABLE(of, it5205_match_table);
-         |                         ^~~~~~~~~~~~~~~~~~
-   include/linux/module.h:244:15: note: in definition of macro 'MODULE_DEVICE_TABLE'
-     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
-         |               ^~~~
->> include/linux/module.h:244:21: error: '__mod_of__it5205_match_table_device_table' aliased to undefined symbol 'it5205_match_table'
-     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
-         |                     ^~~~~~
-   drivers/usb/typec/mux/it5205.c:278:1: note: in expansion of macro 'MODULE_DEVICE_TABLE'
-     278 | MODULE_DEVICE_TABLE(of, it5205_match_table);
-         | ^~~~~~~~~~~~~~~~~~~
-
-
-vim +278 drivers/usb/typec/mux/it5205.c
-
-   273	
-   274	static const struct of_device_id it5205_of_table[] = {
-   275		{ .compatible = "ite,it5205" },
-   276		{ /* sentinel */ }
-   277	};
- > 278	MODULE_DEVICE_TABLE(of, it5205_match_table);
-   279	
+ .../devicetree/bindings/hwinfo/board-id.yaml       | 53 +++++++++++++
+ .../devicetree/bindings/hwinfo/qcom,board-id.yaml  | 86 ++++++++++++++++++++++
+ include/dt-bindings/arm/qcom,ids.h                 | 68 +++++++++++++++--
+ 3 files changed, 199 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwinfo/board-id.yaml
+ create mode 100644 Documentation/devicetree/bindings/hwinfo/qcom,board-id.yaml
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.7.4
+
 
