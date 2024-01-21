@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-33432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19A8B83548B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 06:18:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 784CF83548E
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 06:18:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C1091C210D3
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 05:18:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F182C1F2205E
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 05:18:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393EC364AF;
-	Sun, 21 Jan 2024 05:17:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED40364CF;
+	Sun, 21 Jan 2024 05:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="OuGh2J4U"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="HU/Tvzsn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D35364AA
-	for <devicetree@vger.kernel.org>; Sun, 21 Jan 2024 05:17:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5A6364AB
+	for <devicetree@vger.kernel.org>; Sun, 21 Jan 2024 05:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705814275; cv=none; b=s0buK+LjbmDu7Btnka8cPwvcRtflVghvDbmZsI3ftp5/0/pXIDn+vIqtaSRrJ2LYUIub5nyoEMegtRQRXo+z3X/p2n2YKBo4eH7jhyt/FxficCXG2DT0A/ekzO5DrBTxx5+xxmLb4BdgPdBu8Pys4KEmjtrv4qS+Tw2lsp+DKuo=
+	t=1705814280; cv=none; b=j6IiWczBp92ILk/YMAG+jzdTCs2Uhi/kSfP3LIo/SuQrnK0SrPkSJJ/EqyCwsFGXysr7K12fkQjlkpniwVARxtSz8dCO8ePXl/ufeqqYpCnYHO48rtg8vOK2ObJInxq1FKFxZ3tnRPYwuaoePavN2AwwHhJidAPf5wZW2Live7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705814275; c=relaxed/simple;
-	bh=78a/C/pLLexCT+VsDPwJ1QXzt1+JPkuSS1hne9CUx0M=;
+	s=arc-20240116; t=1705814280; c=relaxed/simple;
+	bh=9PPgyl4c02AhR7tsdj/3jHF5jJWRSgTdQEG0MfhuJW4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=PHXof+KQuMkbQGTpIpXM/fF/8BUV/6slM3CZNIiZ4rflcGPxanZufTxSfENYM3g9o2wS8T5GOcyjQXIxe7taApJ6LDf1USQSTIcOWiaAgQactbY+GpZ9GWsZs0COfLbNmydP8BRpH1r9yH/HhvmA+pm638x3hCIKNDRTfKKKNTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=OuGh2J4U; arc=none smtp.client-ip=209.85.210.45
+	 MIME-Version; b=gSWtfjrpNSX8RYOIARSBlVO3mJ6rUljB1PyIjU2i+TzNKD32GPN5f76j+8aEh9Pfa+Km92tQcuToXCY5kiVRt3FohefjQDcPaf4duBt4ZO2A0n7rtcwpJLfnSIpkwqBj/gHVY11LdH//Hi4i0AEHJTDPoUNtw1xcJMWeMu0BoJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=HU/Tvzsn; arc=none smtp.client-ip=209.85.210.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tweaklogic.com
-Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6dddfdc3244so1647754a34.1
-        for <devicetree@vger.kernel.org>; Sat, 20 Jan 2024 21:17:53 -0800 (PST)
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6d9f94b9186so2228741b3a.0
+        for <devicetree@vger.kernel.org>; Sat, 20 Jan 2024 21:17:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1705814273; x=1706419073; darn=vger.kernel.org;
+        d=tweaklogic.com; s=google; t=1705814278; x=1706419078; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MUAl0p/EaTR1Qi6adL+zlZovqox3AbpG6qG1zKPGgTM=;
-        b=OuGh2J4UZ3I/1Q4K/TvETIejK5An/Doufeix7f++6i5I9+9SnH+S9R/DYV4ciUFllL
-         Re3iFK/TsPuARU7fM9hRjVQplnJj1OeiCdyqNVErIlFbpfzpJfUXICV6KHQBAcJCOiKl
-         NpnGSp3IUuFyNV0mpy1+9qjmdzD0DU0V+CkotxfupcFvf5eAvyqBmLVK6pCngELVh7y6
-         WcdmTn1rw8RbrbrIUBA7KWToDrVC5vodzJQySBZ2HgM1MXpZajTZR9yFjfUXiWWYQi4h
-         leFM9juYHBixxwPgQe1aMzyS/W6vOTMSgQf5hV1t3C0+Rnrpdp5Ha3OGB7AhkZKZHE1I
-         nLIA==
+        bh=IbZe2AzIkKy+l4ATOd5FQ3m1RMu6EicdGaUIFG7TJls=;
+        b=HU/TvzsnK5Fq+1Re4RIUSjQogNCvsbQ/PcWz66oY/FNGgUZkO6WYaALZMeTH5uMHp4
+         BcnGJ12iXlEjsD5Ck527bHmP8wMyRIWUGSlXC/ToZFyhL92Yqk8JDhQGSeWrbEv82ZN8
+         dX8etNCuRenb+Z4qWmcZh6Be4OFXV/vm2Bed1vYJ+NnI8Awf5V5g0Pzh4ivSSkVovDsj
+         arA0i2CuagxyoSq0jjh5hMyn3eohYk5dFkvxLIaGLsE2j0HH4cGvd1A82lcSH2CQKJHz
+         DPftZ9/SX8tJgn+B/MEFrI3hHHE0QhaGFu73Ubz32F88jXrDmkoPgW2OhguH7rzMle+O
+         1NYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705814273; x=1706419073;
+        d=1e100.net; s=20230601; t=1705814278; x=1706419078;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MUAl0p/EaTR1Qi6adL+zlZovqox3AbpG6qG1zKPGgTM=;
-        b=XV0L4CpKF9jfYvyJ0ex5tqevb4BBNl28mAET+ML1UtY437+JDbFtBIl/MqGFWPvWKJ
-         AZ2VALiJwGx2lr4K/2DP14PXLtI22eTED9GXw351mJBeMBLPKwf+gqdJO36mWFZVjZC+
-         z3LdG1O6Ud1/PHl/gOTrf2dwNeXa+bA7R2dOkRu7y6UCFnq4TLMj8YE1eiXCNP5iQme5
-         /5NcVp91mUV5GgvO7WGedWp5gwQ1uItAGuoVMAZEDNWUaRPViOcsuRsgdPh9jv1uNDT/
-         /C4B6M4xYKaZnJDxb4aLqbWC5eL+1OGGdEjtiYFcwl5SyTUkEaaGDgmN7EEV6Lqu/ShB
-         LqnQ==
-X-Gm-Message-State: AOJu0YxfD7F73WGgWtjwSvanqRq/otLhGmN3Rs25fqasbj3p2xNLbmMg
-	0JlZkszVyyiW8Evjsj9O1gMe+P7BXwZVpCR4WuTE9uXEn1AP+CqEsaVtGg3TT1I=
-X-Google-Smtp-Source: AGHT+IE1u90tTGCO4HO4Guo7qKAPp4C4EQnQnSCUs0HWpzcRQ0TPib30itAIyPaqyVI1zFjhaFwCDQ==
-X-Received: by 2002:a05:6830:3b0b:b0:6d9:db33:39a5 with SMTP id dk11-20020a0568303b0b00b006d9db3339a5mr2452993otb.75.1705814272957;
-        Sat, 20 Jan 2024 21:17:52 -0800 (PST)
+        bh=IbZe2AzIkKy+l4ATOd5FQ3m1RMu6EicdGaUIFG7TJls=;
+        b=p/y+YVg0Y/7GgTyjWJer+aog2F2Ete4M88WTGDSYlbGB8YAVIoQl6y/qYDWsB8xsVH
+         wQ9AqCWZAqNWJMizkuilR9BcT+vdG9Ozvu11GfaE0ESMYwBhl6UMvraQxgDGuD6yEBZc
+         si9cLpDxdso1IlPIIhnglTap9E1fbIf1z2BwI7R9oDdhCakwFPWEEMO0pe+djCiW56I1
+         5zxIeNin+XdNlEIFX6aSMuvpMIU5bJhRV6hXH8nDV51RXnIJ17dvmE8e8Puy4jlduQ3a
+         /x0CcqQMrgCxd4sqfkMhrqQHIE7Jdc4cYhXDXojdykUcHsOZJadfbfX0PjjC+8OiiDBV
+         3CFA==
+X-Gm-Message-State: AOJu0YwydXufC5GfY6JsgBBP8CcI+b0lreqMBl5YKhi7mO7v7iCCmXJa
+	3j0JxGQHrf9QBu4sk48sWmeGA0+s23Y5Tvbr1hBDIuAK1PCH0oZ+YitLz2jOGhI=
+X-Google-Smtp-Source: AGHT+IFevGHaPKM+SIBslDZEahr4PU5NhW4eEVPcS+/9n12nXetRoXAFD6wxA8n1WRWV1BaAFBZizA==
+X-Received: by 2002:aa7:9d1e:0:b0:6da:b959:3782 with SMTP id k30-20020aa79d1e000000b006dab9593782mr3416555pfp.35.1705814278565;
+        Sat, 20 Jan 2024 21:17:58 -0800 (PST)
 Received: from localhost.localdomain (2403-580d-82f4-0-3fa1-f9ce-6074-3bab.ip6.aussiebb.net. [2403:580d:82f4:0:3fa1:f9ce:6074:3bab])
-        by smtp.gmail.com with ESMTPSA id f6-20020a056a000b0600b006d96d034befsm7547196pfu.30.2024.01.20.21.17.47
+        by smtp.gmail.com with ESMTPSA id f6-20020a056a000b0600b006d96d034befsm7547196pfu.30.2024.01.20.21.17.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Jan 2024 21:17:52 -0800 (PST)
+        Sat, 20 Jan 2024 21:17:58 -0800 (PST)
 From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
 To: Jonathan Cameron <jic23@kernel.org>,
 	Lars-Peter Clausen <lars@metafoo.de>,
@@ -83,9 +83,9 @@ Cc: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
 	linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 1/3] dt-bindings: iio: light: Squash APDS9300 and APDS9960 schemas
-Date: Sun, 21 Jan 2024 15:47:32 +1030
-Message-Id: <20240121051735.32246-2-subhajit.ghosh@tweaklogic.com>
+Subject: [PATCH v5 2/3] dt-bindings: iio: light: Avago APDS9306
+Date: Sun, 21 Jan 2024 15:47:33 +1030
+Message-Id: <20240121051735.32246-3-subhajit.ghosh@tweaklogic.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
 References: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
@@ -97,108 +97,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Squashing Avago (Broadcom) APDS9300 and APDS9960 schemas into one
-file and removing the other. This is done as per the below review:
-Link: https://lore.kernel.org/all/4e785d2e-d310-4592-a75a-13549938dcef@linaro.org/
-
-This patch series adds the driver support and device tree binding schemas
-for APDS9306 Ambient Light Sensor. It was pointed out in earlier reviews
-that the schemas for APDS9300 and APDS9960 looks similar and should be
-merged. This particular patch does the first operation of merging
-APDS9300 and APDS9960 schema files.
+Adding device tree support for APDS9306 Ambient Light Sensor.
+Updating datasheet hyperlinks.
+Adding interrupt definition macro and header file.
+Adding vdd-supply property.
 
 Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
 ---
 v2 -> v5:
- - Removed 'required' for Interrupts and 'oneOf' for compatibility strings
-   as per below reviews:
+ - Implemented changes as per previous reviews:
    Link: https://lore.kernel.org/lkml/20231028142944.7e210eb6@jic23-huawei/
    Link: https://lore.kernel.org/lkml/22e9e5e9-d26a-46e9-8986-5062bbfd72ec@linaro.org/
 ---
- .../bindings/iio/light/avago,apds9300.yaml    | 11 +++--
- .../bindings/iio/light/avago,apds9960.yaml    | 44 -------------------
- 2 files changed, 7 insertions(+), 48 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
+ .../bindings/iio/light/avago,apds9300.yaml        | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-index 206af44f2c43..c610780346e8 100644
+index c610780346e8..bee73a590424 100644
 --- a/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
 +++ b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-@@ -4,17 +4,20 @@
+@@ -4,19 +4,21 @@
  $id: http://devicetree.org/schemas/iio/light/avago,apds9300.yaml#
  $schema: http://devicetree.org/meta-schemas/core.yaml#
  
--title: Avago APDS9300 ambient light sensor
-+title: Avago Gesture/RGB/ALS/Proximity sensors
+-title: Avago Gesture/RGB/ALS/Proximity sensors
++title: Avago (Broadcom) Gesture/RGB/ALS/Proximity sensors
  
  maintainers:
--  - Jonathan Cameron <jic23@kernel.org>
-+  - Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+   - Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
  
  description: |
--  Datasheet at https://www.avagotech.com/docs/AV02-1077EN
-+  Datasheet: https://www.avagotech.com/docs/AV02-1077EN
-+  Datasheet: https://www.avagotech.com/docs/AV02-4191EN
+-  Datasheet: https://www.avagotech.com/docs/AV02-1077EN
+-  Datasheet: https://www.avagotech.com/docs/AV02-4191EN
++  Datasheet: https://docs.broadcom.com/doc/AV02-1077EN
++  Datasheet: https://docs.broadcom.com/doc/AV02-4191EN
++  Datasheet: https://docs.broadcom.com/doc/AV02-4755EN
  
  properties:
    compatible:
--    const: avago,apds9300
-+    enum:
-+      - avago,apds9300
-+      - avago,apds9960
+     enum:
+       - avago,apds9300
++      - avago,apds9306
+       - avago,apds9960
  
    reg:
+@@ -25,6 +27,8 @@ properties:
+   interrupts:
      maxItems: 1
-diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml b/Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
-deleted file mode 100644
-index f06e0fda5629..000000000000
---- a/Documentation/devicetree/bindings/iio/light/avago,apds9960.yaml
-+++ /dev/null
-@@ -1,44 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/iio/light/avago,apds9960.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Avago APDS9960 gesture/RGB/ALS/proximity sensor
--
--maintainers:
--  - Matt Ranostay <matt.ranostay@konsulko.com>
--
--description: |
--  Datasheet at https://www.avagotech.com/docs/AV02-4191EN
--
--properties:
--  compatible:
--    const: avago,apds9960
--
--  reg:
--    maxItems: 1
--
--  interrupts:
--    maxItems: 1
--
--additionalProperties: false
--
--required:
--  - compatible
--  - reg
--
--examples:
--  - |
--    i2c {
--        #address-cells = <1>;
--        #size-cells = <0>;
--
--        light-sensor@39 {
--            compatible = "avago,apds9960";
--            reg = <0x39>;
--            interrupt-parent = <&gpio1>;
--            interrupts = <16 1>;
--        };
--    };
--...
+ 
++  vdd-supply: true
++
+ additionalProperties: false
+ 
+ required:
+@@ -33,6 +37,8 @@ required:
+ 
+ examples:
+   - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
+     i2c {
+         #address-cells = <1>;
+         #size-cells = <0>;
+@@ -41,7 +47,8 @@ examples:
+             compatible = "avago,apds9300";
+             reg = <0x39>;
+             interrupt-parent = <&gpio2>;
+-            interrupts = <29 8>;
++            interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
++            vdd-supply = <&regulator_3v3>;
+         };
+     };
+ ...
 -- 
 2.34.1
 
