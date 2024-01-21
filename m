@@ -1,159 +1,107 @@
-Return-Path: <devicetree+bounces-33465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D03835660
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 16:38:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2DE983566A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 16:41:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 191B31F22290
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 15:38:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0BFC1C20D1C
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 15:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEBF1381D4;
-	Sun, 21 Jan 2024 15:37:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10967376E9;
+	Sun, 21 Jan 2024 15:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SBvRefTY"
+	dkim=pass (1024-bit key) header.d=rong.moe header.i=i@rong.moe header.b="1yQxYeHB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12D6376F2;
-	Sun, 21 Jan 2024 15:37:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705851430; cv=none; b=irg6hoi4KB+EvdOW+V+eqDXzKkU1awS5yKdiNrDQWzci8X0b/244YELK6W9lxyEGUcmQ9Y8TMn/3Q4zTtD9cu7ggyKp8bbTtFjBuVVFQoL15PfsVMkYAq3ni1f2KeC6KQg0BHDtH2KK9KkGK+4AJ6GqjmnKrHh2dB4tszWRq2s0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705851430; c=relaxed/simple;
-	bh=o9DRoMRGJgeYTuVP+aksfA+RBrVuOJIIhu/hq2XJfI0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Rl2NsICS5HETmikOb3+ci7jd6XFKidxn8arm+irxtWyk2mFarxkmM7f8H30/AYasKg12YXH6gbOtBRcTW5XLPL1AVsDX89k/7Bqtbil5sIBiIEwuQiEOLbYdyXU6qkkFlwA9XscTC3RjfSwMyeEAcqnqa/dQs3iyMQoNsqRB8NI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SBvRefTY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57B25C43394;
-	Sun, 21 Jan 2024 15:37:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705851430;
-	bh=o9DRoMRGJgeYTuVP+aksfA+RBrVuOJIIhu/hq2XJfI0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=SBvRefTYDQ7oSyrQ4357cr1D35GquD/G2yLcSCK8Xw3v6g7TQuAPDZGY9ORMNDMIm
-	 oxdjBVMXp5F/Uzzg2TaCVupdsE1mjLsFY3sVNbuV0VnV5FPX1R/Jlm7qOn1+uOVVmE
-	 PgW01O/ZIbcrZIK6yMW1uGddRfamFTjFTTNBKPBip5Z5sUBdK64wgpRmVFpBj5BWaD
-	 iGg+bFW4HkhLj+17hIYQqtA1fDdatj33+TujNPYXnDAdA/Fu+yfnQ8DaINgtH40fUt
-	 L/92GG/5UQnf5J0AVquGA6IJ2COnVgued/gd8CF5sEKmNtTh8Cye3Jki164J5eevum
-	 zu9OFQ81DvoSQ==
-Date: Sun, 21 Jan 2024 15:36:55 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Marek Vasut
- <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Matt Ranostay <matt@ranostay.sg>, Stefan
- Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] dt-bindings: iio: light: Avago APDS9306
-Message-ID: <20240121153655.5f734180@jic23-huawei>
-In-Reply-To: <20240121051735.32246-3-subhajit.ghosh@tweaklogic.com>
-References: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
-	<20240121051735.32246-3-subhajit.ghosh@tweaklogic.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.40; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE9C2AF08;
+	Sun, 21 Jan 2024 15:40:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705851657; cv=pass; b=N7FfEBSElyBJPm0pEEaZyKEcUW8f8EZWCzeCDH3vZ08lxj7fI3EW4+8flKl8qGQCv+4JDIW37ryIpoE7Yvx0hFs6XrRrugtadk/PctKeJUTJXngifL1R8BklpI2tH9v3isue+yF/XgbuLEM/yrXlRKd6b7wxSo07ic9/cmgzjAU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705851657; c=relaxed/simple;
+	bh=mcendhX41sLs3hGLvmwWKBRU/OfkcRs07IVpU5ByxiA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ozee5k0bHuGFRoJQO1CMoAjWPP54Oi2TrId6POWATt1goeYO+tKyLOo7lkgRzWZTLl994IkhOz/h4HRgT7SweaDvj9LbYScmpG7hszoqXP3EWoKRoANXRTtO8Hb6RzaWU6KYT09ukpkGpV4tVSqIgjMtNMAzgIghZfaiyZLUvNA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rong.moe; spf=pass smtp.mailfrom=rong.moe; dkim=pass (1024-bit key) header.d=rong.moe header.i=i@rong.moe header.b=1yQxYeHB; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rong.moe
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rong.moe
+Delivered-To: i@rong.moe
+ARC-Seal: i=1; a=rsa-sha256; t=1705851651; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=mICfz4Sy6jTWD8NaaOpMpzZhluNbfajlV68oCHh+mRsYfrbHvXHTPM6ckzXmh5ZNRQjA1I0cnYuFzut4mS3q+CCq0vB6QrFxpg4Q70d9MeNJHuSjmO1V4iC1rD3LuSVJyzs1s4NbNLh/Zi09qu8C20/pffPh9X/qlJT5XD+tG9M=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1705851651; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=FaXSxE+DeKQ1uc12aiGNQ3/0/j+vJ58Dysn2cELGty0=; 
+	b=auAtIJBzvcGlNt1ry9eybAOhWczJB+8Yccqjr60z+MEHLi8mohPRUORBZHgl4DUahKrjGOpeS4Wa6aThHcdcMFCZDSPr4yQP7iJlu0Dk9C4axW7KbcCCL5HGPGM2QtdL0SSKBk3NyDIrCsw+yCxMA0m9kpibrhdYlItQVy5KVp8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=rong.moe;
+	spf=pass  smtp.mailfrom=i@rong.moe;
+	dmarc=pass header.from=<i@rong.moe>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1705851651;
+	s=zmail; d=rong.moe; i=i@rong.moe;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=FaXSxE+DeKQ1uc12aiGNQ3/0/j+vJ58Dysn2cELGty0=;
+	b=1yQxYeHBvS4YwF4I9Jkz1pfbqJFXMqXcttGDzr5CkBtQlZizdSgezfy8Ma06bPhd
+	kAm/qpYJeoSDVZf8jAp1YPvJ3wn4ssweCenGNkNZvwwnI1R53kBOlCpDhoCA1Sl+T6v
+	/txWSJsjwc7O9Nj98EQ0PcFa+wDQ7uwszN7fjAWs=
+Received: from tb.lan (182.118.232.129 [182.118.232.129]) by mx.zohomail.com
+	with SMTPS id 1705851648585954.8646897778475; Sun, 21 Jan 2024 07:40:48 -0800 (PST)
+From: Rong Zhang <i@rong.moe>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Rong Zhang <i@rong.moe>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH 0/4] ARM: dts: qcom: msm8974: Add Samsung Galaxy S5 China support
+Date: Sun, 21 Jan 2024 23:39:55 +0800
+Message-ID: <20240121154010.168440-1-i@rong.moe>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On Sun, 21 Jan 2024 15:47:33 +1030
-Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
+Samsung Galaxy S5 has some variants, currently, the only supported one
+is klte. Samsung Galaxy S5 China (kltechn) is the China edition of
+klte, and it has minor difference compared to klte. It can mostly work
+with klte device tree, with only LEDs and WiFi not working.
 
-> Adding device tree support for APDS9306 Ambient Light Sensor.
-> Updating datasheet hyperlinks.
-> Adding interrupt definition macro and header file.
+This patchset adds support for kltechn by fixing up the GPIO pins for
+the /i2c-gpio-led node (a corresponding label, "i2c_led_gpio", is also
+added), and adding the brcm,board-type property in the wifi@1 node of
+the klte device tree to allow loading the same firmware on all klte*
+variants.
 
-This is an unrelated change, so should probably be in a separate patch.
+Rong Zhang (4):
+  ARM: dts: qcom: msm8974-samsung-klte: Add label on /i2c-gpio-led
+  ARM: dts: qcom: msm8974-samsung-klte: Pin brcm,board-type in wifi
+  dt-bindings: arm: qcom: add Samsung Galaxy S5 China (kltechn)
+  ARM: dts: qcom: msm8974: Add device tree for Samsung Galaxy S5 China
 
-> Adding vdd-supply property.
+ Documentation/devicetree/bindings/arm/qcom.yaml  |  1 +
+ arch/arm/boot/dts/qcom/Makefile                  |  1 +
+ .../dts/qcom/qcom-msm8974pro-samsung-klte.dts    |  8 +++++++-
+ .../dts/qcom/qcom-msm8974pro-samsung-kltechn.dts | 16 ++++++++++++++++
+ 4 files changed, 25 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-kltechn.dts
 
-This one is reasonable to have in same patch as the new device addition
-as, whilst I assume it's valid for the existing devices, you are adding it
-to incorporate something that device also has.
-Could also be a separate precursor patch.
 
-> 
-> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> ---
-> v2 -> v5:
->  - Implemented changes as per previous reviews:
->    Link: https://lore.kernel.org/lkml/20231028142944.7e210eb6@jic23-huawei/
->    Link: https://lore.kernel.org/lkml/22e9e5e9-d26a-46e9-8986-5062bbfd72ec@linaro.org/
-> ---
->  .../bindings/iio/light/avago,apds9300.yaml        | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-> index c610780346e8..bee73a590424 100644
-> --- a/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-> +++ b/Documentation/devicetree/bindings/iio/light/avago,apds9300.yaml
-> @@ -4,19 +4,21 @@
->  $id: http://devicetree.org/schemas/iio/light/avago,apds9300.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Avago Gesture/RGB/ALS/Proximity sensors
-> +title: Avago (Broadcom) Gesture/RGB/ALS/Proximity sensors
->  
->  maintainers:
->    - Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
->  
->  description: |
-> -  Datasheet: https://www.avagotech.com/docs/AV02-1077EN
-> -  Datasheet: https://www.avagotech.com/docs/AV02-4191EN
-> +  Datasheet: https://docs.broadcom.com/doc/AV02-1077EN
-> +  Datasheet: https://docs.broadcom.com/doc/AV02-4191EN
-> +  Datasheet: https://docs.broadcom.com/doc/AV02-4755EN
-
-Old links seem to still work, so why the change?
-
->  
->  properties:
->    compatible:
->      enum:
->        - avago,apds9300
-> +      - avago,apds9306
->        - avago,apds9960
->  
->    reg:
-> @@ -25,6 +27,8 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  vdd-supply: true
-> +
->  additionalProperties: false
->  
->  required:
-> @@ -33,6 +37,8 @@ required:
->  
->  examples:
->    - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
->      i2c {
->          #address-cells = <1>;
->          #size-cells = <0>;
-> @@ -41,7 +47,8 @@ examples:
->              compatible = "avago,apds9300";
->              reg = <0x39>;
->              interrupt-parent = <&gpio2>;
-> -            interrupts = <29 8>;
-> +            interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
-> +            vdd-supply = <&regulator_3v3>;
->          };
->      };
->  ...
+base-commit: 7a396820222d6d4c02057f41658b162bdcdadd0e
+-- 
+2.43.0
 
 
