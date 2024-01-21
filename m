@@ -1,160 +1,228 @@
-Return-Path: <devicetree+bounces-33484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB3A8356F6
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 18:02:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 728D8835700
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 18:08:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 420931C209DE
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 17:02:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 000C21F21A81
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 17:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7163A39FC4;
-	Sun, 21 Jan 2024 16:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63E06381A4;
+	Sun, 21 Jan 2024 17:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kedyQlzD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="APOKnkrz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD73C39879;
-	Sun, 21 Jan 2024 16:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369BB12E4C;
+	Sun, 21 Jan 2024 17:08:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705856367; cv=none; b=m6Mf3zJdZodOLCPPaQvHDXseNs1YA3mv/ioDWJbgKpZ+MPai+K8RNdwJE1AY7z5kvGQa1KX64pCl07gsnXNkrVo3hUBVJJpKWN81GDIzYQXpB4VOH+ErwVBCL6NykxQB18fHzfjZvp5hbqvvhhK2jXt9saxtuavZzlGED1ksO5A=
+	t=1705856895; cv=none; b=Lio+MrUwzNnDgGzsWo/DH6h6zGB1JbFJxGbAC/UYlfWSfXIOuzJzaCPpXWbUMfFxREM+GdGR3X7m7oLn1X1lYo5kYm9u4pJlV7V9l3dKIq8hge/sq8MxW7t/ECsFQZ2BKfP2JdxgQyM7bEuwnaB4Teg3QWHPvoisbKuo8iFY60s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705856367; c=relaxed/simple;
-	bh=qd6aa7QiaWspQR3ZEJA6WWRFbT5cIeORtS7lzfdU0Is=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RNP4oL3CPX3b17qlN/2jcOUcr1STd32XFpi5CO3bBuVwz6dBB5Et9r9PxKktrErz3seA/xLQkCR3hiADLB2J5A/tbh/YtbJAapn4GCPty27hTkE08x3AY90nQzeFLmjFZVl8f/Ggz3j+9iJyF0UPgpbqnW4U31kJPgzBdVtZg64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kedyQlzD; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40e8801221cso24261045e9.1;
-        Sun, 21 Jan 2024 08:59:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705856364; x=1706461164; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gK5nK5PwrUn57SfZW8dbKzVdKzftzCnA6l6yN9PxC7A=;
-        b=kedyQlzDRde5ZC9i3GxBdTnCx4tccoqBnBdcuk5iEjkrnoMCYRL2U+rWmhJpyNXM3h
-         h96zsy4+rz1+SS30fXFBHTghBsz3ZR5PfnB9LXbeEkISiPKiBZFVJD3oqYpskhWgCTl0
-         1TCCOKl6OV69X7biy2QXO54k5u/etEXWlRYTm9yTZ2ll+rooloOwfY+mfLGzmyQy5MiO
-         W/3pdryJZA6CNbeUzolrRXSkNyOmfT6x1HxdHXw9QCXILC+dlgz8vvCJxnCn91gDWp/r
-         ySJpa01DDDbFG4IuS+I4mAvWlloHcwX9xZeReyJBjjvAqqVO92wrp2MlcoLPRZtFT8yL
-         Prug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705856364; x=1706461164;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gK5nK5PwrUn57SfZW8dbKzVdKzftzCnA6l6yN9PxC7A=;
-        b=HAdNLtnoKHwD59fuq2pYlOMcMEh3Sq66Z0oFtw+nUw8zWWyP87zQo0wL+MIcwbnWtY
-         VgASpNRQEnGklFDGQmCsffWwdUilGbzDR1elhfo6pA8j70IcN50vpMnztsfgYqS/nU9T
-         Mp3r2FZE6KpKN6glvQHIGosE7QHJRfnCNNDJuN8AzvjRuG4YF/ElaqyW5LlwaxZiWYH3
-         oEdu6jwFDYe7FXg7R04rEuoe4baOSHy2pHaJck5RymKUddsPtcvsmxBWOUh1OArR3/2I
-         4/mmBANEy/jIZw+T10PLHC90loG3S0XyOo1SW4oX4nAW+D7D2dfdWQMWix1zncnWm7ZM
-         Jf8g==
-X-Gm-Message-State: AOJu0Yx/kbt/nN+8mMR6yqHXtzxj6/tVipqveWCQR8x48ikjwEgGRVWU
-	9Rg0qksWnw1B9kbriKuJkRp9ddpER9/lbpqSahzk1WN4ul3StyE5Z7COsS6W
-X-Google-Smtp-Source: AGHT+IFsVH6k6ajfNQ3Ngf6ihWQLiw+5zO5HU7ToHaJReIYrKn3JxVQHaGOVUIXkWbhe2r1Bm4y/AA==
-X-Received: by 2002:adf:e58d:0:b0:337:c4d0:3ce9 with SMTP id l13-20020adfe58d000000b00337c4d03ce9mr1889216wrm.87.1705856363900;
-        Sun, 21 Jan 2024 08:59:23 -0800 (PST)
-Received: from david-ryuzu.localdomain ([178.26.111.181])
-        by smtp.googlemail.com with ESMTPSA id q5-20020adff505000000b00339214d70b5sm6541115wro.85.2024.01.21.08.59.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Jan 2024 08:59:23 -0800 (PST)
-From: David Wronek <davidwronek@gmail.com>
-Date: Sun, 21 Jan 2024 17:57:48 +0100
-Subject: [PATCH v4 8/8] arm64: dts: qcom: Add support for Xiaomi Redmi Note
- 9S
+	s=arc-20240116; t=1705856895; c=relaxed/simple;
+	bh=u5ZvBZF1pXrSm3zSNAXlVdGjYuhQd8XRplQ92G8rl4Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NYfitejLQoQ05LeIu+HrKK+plPi11Wsgz7GNJLQ5wykcwzMmIOC7RQZSIL/qu83BUT/Pu7K++f+M6f+IXKbWn/HY8TF1XvEG8/Ssr4JRmGFXEhwPJaA1HWfhIdGWNoDuHBj142USEwfiXBbKj6A+2akuvlGwH6s90oPXRGfGj4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=APOKnkrz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22202C433F1;
+	Sun, 21 Jan 2024 17:08:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705856894;
+	bh=u5ZvBZF1pXrSm3zSNAXlVdGjYuhQd8XRplQ92G8rl4Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=APOKnkrz1DiOLwSBPul7WIjqj3auIgLuDNDmCshFkurIqLuMvuIIoPdvhHuEUUC68
+	 w+WqhMUDP4vYHtNVs1Ic7pIdVGIvq6G0FqLtTSjuyb3b7xoGwi2r5PEDkuDmoVH5kh
+	 +NJjaB53WjUOXCIbDgus3JzHZXt/Hl+BDIpcQo8iMKDi5p+OisXatKD6LqniUfoPXr
+	 C/YPSQkm8kssCo1hCbdNOYo47Ej61Wcf98/D+1CXf02KxB0FRwHm5yyn2IiejsDlXP
+	 zwKKAzN6PoA6DFVYPcFgAP8ffd9WvxakuTmSUC01j2eCtFAZj2j/L9683O2zp+Y3Xr
+	 DoKtWuOjGmkEQ==
+Date: Sun, 21 Jan 2024 17:07:59 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Ceclan Dumitru
+ <dumitru.ceclan@analog.com>
+Subject: Re: [PATCH v4 3/5] iio: amplifiers: hmc425a: move conversion logic
+Message-ID: <20240121170759.7e4488dd@jic23-huawei>
+In-Reply-To: <20240117125124.8326-4-mitrutzceclan@gmail.com>
+References: <20240117125124.8326-1-mitrutzceclan@gmail.com>
+	<20240117125124.8326-4-mitrutzceclan@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.40; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240121-sm7125-upstream-v4-8-f7d1212c8ebb@gmail.com>
-References: <20240121-sm7125-upstream-v4-0-f7d1212c8ebb@gmail.com>
-In-Reply-To: <20240121-sm7125-upstream-v4-0-f7d1212c8ebb@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Herbert Xu <herbert@gondor.apana.org.au>, 
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
- Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>, 
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
- cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org, 
- ~postmarketos/upstreaming@lists.sr.ht, David Wronek <davidwronek@gmail.com>, 
- Joe Mason <buddyjojo06@outlook.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1705856354; l=1769;
- i=davidwronek@gmail.com; s=20240121; h=from:subject:message-id;
- bh=sSzRKjO93UpTlJ8GvJQsTstGtWQctFuueHqgHmEaLmI=;
- b=KrhjqRs6MaRVLwt8z7GQUu3O8KHdE2udwZmCwSHa9BL7BkdLOzrrS2oaMXY4HjKggisfo+hCq
- zVjPjqKqSTMCv+Zem4h0Jtp8mBbAA6H2PjTlO1wTwkBIfA2u1sKOQjF
-X-Developer-Key: i=davidwronek@gmail.com; a=ed25519;
- pk=PJIYyFK3VrK6x+9W6ih8IGSJ5dxRXHiYay+gG1qQzqs=
 
-From: Joe Mason <buddyjojo06@outlook.com>
+On Wed, 17 Jan 2024 14:51:12 +0200
+Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:
 
-Add a device tree for the Xiaomi Redmi Note 9S (curtana) phone, based on
-sm7125-xiaomi-common.dtsi.
+> Move gain-dB<->code conversion logic from read_raw and write_raw to
+> hmc425a_gain_dB_to_code() and hmc425a_code_to_gain_dB().
+> 
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Some comments inline
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Joe Mason <buddyjojo06@outlook.com>
-Signed-off-by: David Wronek <davidwronek@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile                  |  1 +
- arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts | 16 ++++++++++++++++
- 2 files changed, 17 insertions(+)
+Jonathan
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 39889d5f8e12..2e6984bbbb83 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -210,6 +210,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-curtana.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-joyeuse.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts
-new file mode 100644
-index 000000000000..12f517a8492c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-curtana.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023, Joe Mason <buddyjojo06@outlook.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sm7125-xiaomi-common.dtsi"
-+
-+/ {
-+	model = "Xiaomi Redmi Note 9S";
-+	compatible = "xiaomi,curtana", "qcom,sm7125";
-+
-+	/* required for bootloader to select correct board */
-+	qcom,board-id = <0x20022 1>;
-+};
+> ---
+>  drivers/iio/amplifiers/hmc425a.c | 102 ++++++++++++++++++-------------
+>  1 file changed, 59 insertions(+), 43 deletions(-)
+> 
+> diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/hmc425a.c
+> index ed4d72922696..e1162a500daf 100644
+> --- a/drivers/iio/amplifiers/hmc425a.c
+> +++ b/drivers/iio/amplifiers/hmc425a.c
+> @@ -56,35 +56,72 @@ static int hmc425a_write(struct iio_dev *indio_dev, u32 value)
+>  	return 0;
+>  }
+>  
+> +static int hmc425a_gain_dB_to_code(struct hmc425a_state *st, int val, int val2, int *code)
+> +{
+> +	struct hmc425a_chip_info *inf = st->chip_info;
+> +	int gain, temp;
+> +
+> +	if (val < 0)
+> +		gain = (val * 1000) - (val2 / 1000);
+> +	else
+> +		gain = (val * 1000) + (val2 / 1000);
+> +
+> +	if (gain > inf->gain_max || gain < inf->gain_min)
+> +		return -EINVAL;
+> +
+> +	switch (st->type) {
+> +	case ID_HMC425A:
+> +		*code = ~((abs(gain) / 500) & 0x3F);
 
--- 
-2.43.0
+In the next patch I point out that this should be data or callbacks in in
+the st->chip_info structure, not encoded in code here based on st->type (which
+I want you to get rid of!)
+
+> +		return 0;
+> +	case ID_HMC540S:
+> +		*code = ~((abs(gain) / 1000) & 0xF);
+> +		return 0;
+> +	case ID_ADRF5740:
+> +		temp = (abs(gain) / 2000) & 0xF;
+> +		*code = temp & BIT(3) ? temp | BIT(2) : temp;
+
+Given you are moving the code, a comment here might be nice as it's unusual
+(bits are 2DB, 4DB, 8DB and another 8DB)
+
+> +		return 0;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int hmc425a_code_to_gain_dB(struct hmc425a_state *st, int *val, int *val2)
+> +{
+> +	int code, gain;
+> +
+> +	code = st->gain;
+> +	switch (st->type) {
+> +	case ID_HMC425A:
+> +		gain = ~code * -500;
+> +		break;
+> +	case ID_HMC540S:
+> +		gain = ~code * -1000;
+> +		break;
+> +	case ID_ADRF5740:
+> +		code = code & BIT(3) ? code & ~BIT(2) : code;
+> +		gain = code * -2000;
+> +		break;
+> +	}
+> +
+> +	*val = gain / 1000;
+> +	*val2 = (gain % 1000) * 1000;
+> +
+> +	return 0;
+> +}
+> +
+>  static int hmc425a_read_raw(struct iio_dev *indio_dev,
+>  			    struct iio_chan_spec const *chan, int *val,
+>  			    int *val2, long m)
+>  {
+>  	struct hmc425a_state *st = iio_priv(indio_dev);
+> -	int code, gain = 0;
+>  	int ret;
+>  
+>  	mutex_lock(&st->lock);
+>  	switch (m) {
+>  	case IIO_CHAN_INFO_HARDWAREGAIN:
+> -		code = st->gain;
+> -
+> -		switch (st->type) {
+> -		case ID_HMC425A:
+> -			gain = ~code * -500;
+> -			break;
+> -		case ID_HMC540S:
+> -			gain = ~code * -1000;
+> +		ret = hmc425a_code_to_gain_dB(st, val, val2);
+> +		if (ret)
+>  			break;
+> -		case ID_ADRF5740:
+> -			code = code & BIT(3) ? code & ~BIT(2) : code;
+> -			gain = code * -2000;
+> -			break;
+> -		}
+> -
+> -		*val = gain / 1000;
+> -		*val2 = (gain % 1000) * 1000;
+> -
+>  		ret = IIO_VAL_INT_PLUS_MICRO_DB;
+>  		break;
+>  	default:
+> @@ -100,36 +137,15 @@ static int hmc425a_write_raw(struct iio_dev *indio_dev,
+>  			     int val2, long mask)
+>  {
+>  	struct hmc425a_state *st = iio_priv(indio_dev);
+> -	struct hmc425a_chip_info *inf = st->chip_info;
+> -	int code = 0, gain;
+> -	int ret;
+> -
+> -	if (val < 0)
+> -		gain = (val * 1000) - (val2 / 1000);
+> -	else
+> -		gain = (val * 1000) + (val2 / 1000);
+> -
+> -	if (gain > inf->gain_max || gain < inf->gain_min)
+> -		return -EINVAL;
+> -
+> -	switch (st->type) {
+> -	case ID_HMC425A:
+> -		code = ~((abs(gain) / 500) & 0x3F);
+> -		break;
+> -	case ID_HMC540S:
+> -		code = ~((abs(gain) / 1000) & 0xF);
+> -		break;
+> -	case ID_ADRF5740:
+> -		code = (abs(gain) / 2000) & 0xF;
+> -		code = code & BIT(3) ? code | BIT(2) : code;
+> -		break;
+> -	}
+> +	int code = 0, ret;
+>  
+>  	mutex_lock(&st->lock);
+>  	switch (mask) {
+>  	case IIO_CHAN_INFO_HARDWAREGAIN:
+> +		ret = hmc425a_gain_dB_to_code(st, val, val2, &code);
+> +		if (ret)
+> +			break;
+>  		st->gain = code;
+> -
+>  		ret = hmc425a_write(indio_dev, st->gain);
+>  		break;
+>  	default:
 
 
