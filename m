@@ -1,282 +1,125 @@
-Return-Path: <devicetree+bounces-33491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBFE083574D
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 19:57:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C288835768
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 20:44:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 259201F2175B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 18:57:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB4011F21835
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 19:44:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9393038385;
-	Sun, 21 Jan 2024 18:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A038338393;
+	Sun, 21 Jan 2024 19:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XQ4nQryc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WFb512zS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8D63374FC;
-	Sun, 21 Jan 2024 18:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EEB4374EB;
+	Sun, 21 Jan 2024 19:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705863426; cv=none; b=ZR3Mm/WHTWfN6bQcbJu6BE61m0lwDvOOhjbwtZSlKQ8JW4gyCz41ja1o/DYFQsebOvY9QZ6Y9FsKGhHghiaTrumlJT1ey5tHDvQW8IRhSJFoPED8TPn+nPytk2+FSZHkYjZ0bWqYMSfUg4o2BmEcoIT6dCcTJ7BVWmQycgQrJak=
+	t=1705866281; cv=none; b=LcTGM/wp8GeDtbjC64ahVk+eqDVQZo2Lj32cbvYbfxbcgjpCHRKWzH6os3viPGxHZf6msIZ1G5ojj8gofQfcRYjeHEv8/jQJDLxn0Hd8cuNRMaPxNmTRxMzMIgR4m0xzD2lwz2MBWQ5004OGc2k78q02HSC8YMQ94YWMwDETvpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705863426; c=relaxed/simple;
-	bh=Bdn7qDe8/Sz5W1tIz1blcNpXVkpZFJhPhA80wWB91cg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=T3TG+oBf4nWfWViNtZwbKXy52acmQeObIdjhsQFdc9NGpU8XQp38xEx2DFl+SZV0rcQ3aQrdFAG+oTmh/CnZfMNOdhUiUV9bvLIHQRMBjSSX3jJaklGadN0t6kTcyUw5jMB+OFQOduDSWXLw5E4EK4r+twZXwqiJU+IwlLDYTg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XQ4nQryc; arc=none smtp.client-ip=209.85.218.48
+	s=arc-20240116; t=1705866281; c=relaxed/simple;
+	bh=FgERju/0//bdfNQmRwUlS2ZC4bK0PMzYrsC31E28Ofo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BxGOO4eOI65CB/EeK9kFXa/DEpF0HFizmQGcIcfTMdh+NSDZzlOWG+fmW31zGpW/Om799Bd6o1fV+hCxxrWyVplqcRNjF5kP7wArc3s8JqNTAfF2n229F0yGX+DTjm7svRXBXfSrmV/UvsJ/4TqjinEktlNNnwj+82893A4jKgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WFb512zS; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a2dd05e02ffso229421766b.3;
-        Sun, 21 Jan 2024 10:57:04 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a2d7e2e7fe0so417324366b.1;
+        Sun, 21 Jan 2024 11:44:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705863423; x=1706468223; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YAC/MAs8sDhQ2A52cnBwttm+Y/uqCzYoFUfLNS1dkik=;
-        b=XQ4nQrycJoyifO8dnq5Tf5tqTAaz0mMjkCkqFlwqGhsnYr6FycgPpm98cvqkyCE/Nh
-         pG5igAwVOUCaAbMM7EJoa7Red9u/BFc9viMWV2NPu8Q/LmtMRwXWTwv5U+6Nk8Joke+f
-         nVZ1wgXF4dweyDnLHoEORoOYdnpWO8/IZkRs5tfniHKICtz48s8M/zUra2oJonpX43EF
-         pUQX5YkRPrF7hhca2P/ykveKO9yAqx55IfPwWVcpowrQYO3fvOsO9MgeyqAQZ0eStSjA
-         rjgAwcAJWcI/j34q1PUbOzG8aVRxSDCt/tm3rD3OrWgzEvYr4Wuc6JVHJxBjnUGg5SIM
-         KwjA==
+        d=gmail.com; s=20230601; t=1705866278; x=1706471078; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=b7qx5rqlh0FWuE9XG787u8jZCcutzKDjwwsd5hGee8k=;
+        b=WFb512zSiu4vLUolHSfo/dQPOAgXNkDXlDiJoPj5l5EIYVx1xPClJ5QEI3PJmdJA+P
+         6AHhFsS/oUrDGknMkWPgjmqgy0XKD72X2z0Sv76zjM90g80Q/fJv3ZGxoJmxXD1x7Iti
+         CG8eZ2OE49GUQ/lzwclctK5bHwwFEYMcQJ0neJJ+LHPQiscOUYZ8k/2RA+HUGmgACGne
+         7SBdjX1NsaCyGaj8HESqkF1re9i2f/l+iXNyysRoKh6Zpb1vpc9fcF+0DQLKQsEUmst0
+         HkFnmEBnTl46WwpVYAo0nodbxok/vX/JNsE8MT9suWU3wkoK/BrHGa3zUrZs8oFisHsx
+         yGfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705863423; x=1706468223;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YAC/MAs8sDhQ2A52cnBwttm+Y/uqCzYoFUfLNS1dkik=;
-        b=dxAVB7Bt3oWFRBHJUpJao7xbOssH5uHVKwcRhJ3ezimFvAW4H5fU6w1kVbNFiTml/7
-         iTs474tXl4l3zuV1Jyu5UV6vvnnsJ2p2fo+cLScMq66NpznPFRKdFougZBCrdOoY/TLV
-         xlCmiGcSXlvwwRWsBRihHulzxG0fsSmT8n8wEcRkksPTASPR4Tk74gFX8lGhe2hk+Br3
-         VvlA0Yczyq2I9ckpaX6uugOuBWusTQOIeoSbfNvgZN5gH8avPDoKN1IXyr3BAmFd676U
-         Kgf28EmxN8OJkD496HXsH1sw9yqoHSSkxUZqQ3f2Gzz8vBGv2hWYEknSoRwfcvuCXsNh
-         YnCA==
-X-Gm-Message-State: AOJu0Yxqv+i7u7Oyel0PJQMQFCEFIgbPDuNbS01KlXNPECmm0hdcTgEH
-	5Grl9fOY1sljeLZ9VM14AA0A9YNvIaphkdxur2QcFgaScYuXiz3JD4uOuvWX6C/9Sn2IeDr+ym3
-	KVHkGBoaU2+pZQo90nMVCI/HWYbY=
-X-Google-Smtp-Source: AGHT+IHJ9Z0SOxpKbs/ZPvQclFjb6eD3X8+HhpiS5bGel15Xf65B+skTcyZhBnwK8JlmDS0HUQcto76rF196oyc9rsg=
-X-Received: by 2002:a17:906:1399:b0:a30:4618:8252 with SMTP id
- f25-20020a170906139900b00a3046188252mr197053ejc.186.1705863422591; Sun, 21
- Jan 2024 10:57:02 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705866278; x=1706471078;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b7qx5rqlh0FWuE9XG787u8jZCcutzKDjwwsd5hGee8k=;
+        b=qENdKixN8xJLWGKCOYSu40MRD9RL8PmBgnutW+aatiRg5+UKchsioWGhvMTfZ1pI9K
+         RERD0dRwrMqcFwAS+DAYQjYnuinYBQSZkJxhwsGfJIJGCi4st3H8xmeN1g5Anwbd2yYJ
+         xVhmdSSL5xLTmHPpxwRRkjZnWUzyUfpCRgMnt7iAe2WCeFTnaWYIC0khiLH+Nq72CGYB
+         M4Nx12ajjVcMnQYoxxspz48iWaOQRZbcJ5quZSx+pxzBsF14WhLeHvxO8RPN3ckDwP0j
+         dtyBVhuylCwUx5EXdOp28fsriW46PoAWeWCTARq7FQkhHjccv4+FzhLVOm6wLbiD8cbM
+         BRzw==
+X-Gm-Message-State: AOJu0YxaILFm7WWCdRmAQL4cQYUOvw6q9jtYh0d+KWUjQGoj1BOsQrHo
+	IrAuz/5lEOxbo+P4jASlHCrGFe0lmCC5y7RFFx1MhwqlyJIrhNhat3xXYW2AnmE=
+X-Google-Smtp-Source: AGHT+IEUIwjgDLvSlIepivXTVds4fmOThAhEeE2VQdGUMP1Ux128ZnPqqT0eEiqb7+oRPEbs1BTjsg==
+X-Received: by 2002:a17:906:70d6:b0:a2d:468c:3845 with SMTP id g22-20020a17090670d600b00a2d468c3845mr3183703ejk.35.1705866278086;
+        Sun, 21 Jan 2024 11:44:38 -0800 (PST)
+Received: from localhost.localdomain (byv51.neoplus.adsl.tpnet.pl. [83.30.41.51])
+        by smtp.gmail.com with ESMTPSA id k6-20020a170906128600b00a2b0b0fc80esm12547134ejb.193.2024.01.21.11.44.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Jan 2024 11:44:37 -0800 (PST)
+From: Adam Skladowski <a39.skl@gmail.com>
+To: 
+Cc: phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht,
+	Adam Skladowski <a39.skl@gmail.com>,
+	Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/8] MSM8976 MDSS/GPU/WCNSS support
+Date: Sun, 21 Jan 2024 20:40:58 +0100
+Message-Id: <20240121194221.13513-1-a39.skl@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240106222357.23835-1-alchark@gmail.com> <e0302da12345e5539583b2c96d747592@manjaro.org>
- <CABjd4Yw5wTLyK5OPw2S-ipPVCw7RTUeF2J0RgH-Vyis-ng8rTw@mail.gmail.com> <d7f2f25071a4d7c72bd286b11836dce7@manjaro.org>
-In-Reply-To: <d7f2f25071a4d7c72bd286b11836dce7@manjaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Sun, 21 Jan 2024 22:56:49 +0400
-Message-ID: <CABjd4Yz11D8ThcT-oCWsQf9jL2idChFYSRYVVu3KNnzwoOwkKQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: enable built-in thermal monitoring
- on rk3588
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
-	Christopher Obbard <chris.obbard@collabora.com>, =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <szucst@iit.uni-miskolc.hu>, 
-	Shreeya Patel <shreeya.patel@collabora.com>, Kever Yang <kever.yang@rock-chips.com>, 
-	Chris Morgan <macromorgan@hotmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 18, 2024 at 10:48=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> =
-wrote:
->
-> On 2024-01-08 14:41, Alexey Charkov wrote:
-> > Hello Dragan,
->
-> Hello Alexey! :)
->
-> I apologize for my delayed response.  It took me almost a month to
-> nearly fully recover from some really nasty flu that eventually went
-> into my lungs.  It was awful and I'm still not back to my 100%. :(
+This patch series provide support for display subsystem, gpu
+and also adds wireless connectivity subsystem support.
 
-Ouch, I hope you get well soon!
+Adam Skladowski (8):
+  arm64: dts: qcom: msm8976: Add IOMMU nodes
+  dt-bindings: dsi-controller-main: Document missing msm8976 compatible
+  dt-bindings: msm: qcom,mdss: Include ommited fam-b compatible
+  arm64: dts: qcom: msm8976: Add MDSS nodes
+  dt-bindings: drm/msm/gpu: Document AON clock for A506/A510
+  arm64: dts: qcom: msm8976: Add Adreno GPU
+  arm64: dts: qcom: msm8976: Declare and wire SDC pins
+  arm64: dts: qcom: msm8976: Add WCNSS node
 
-> > Thanks a lot for your review and comments! Some reflections below.
->
-> Thank you for your work and for your detailed response.  Please see my
-> comments below, which apply to your v2 submission as a well, to which
-> I'll respond separately a bit later.
->
-> > On Sun, Jan 7, 2024 at 2:54=E2=80=AFAM Dragan Simic <dsimic@manjaro.org=
-> wrote:
-> >> On 2024-01-06 23:23, Alexey Charkov wrote:
-> >> > Include thermal zones information in device tree for rk3588 variants
-> >> > and enable the built-in thermal sensing ADC on RADXA Rock 5B
-> >> >
-> >> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> >> > ---
-> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> >> > b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> >> > index 8aa0499f9b03..8235991e3112 100644
-> >> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> >> > @@ -10,6 +10,7 @@
-> >> >  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> >> >  #include <dt-bindings/phy/phy.h>
-> >> >  #include <dt-bindings/ata/ahci.h>
-> >> > +#include <dt-bindings/thermal/thermal.h>
-> >> >
-> >> >  / {
-> >> >       compatible =3D "rockchip,rk3588";
-> >> > @@ -2112,6 +2113,148 @@ tsadc: tsadc@fec00000 {
-> >> >               status =3D "disabled";
-> >> >       };
-> >> >
-> >> > +     thermal_zones: thermal-zones {
-> >> > +             soc_thermal: soc-thermal {
-> >>
-> >> It should be better to name it cpu_thermal instead.  In the end,
-> >> that's
-> >> what it is.
-> >
-> > The TRM document says the first TSADC channel (to which this section
-> > applies) measures the temperature near the center of the SoC die,
-> > which implies not only the CPU but also the GPU at least. RADXA's
-> > kernel for Rock 5B also has GPU passive cooling as one of the cooling
-> > maps under this node (not included here, as we don't have the GPU node
-> > in .dtsi just yet). So perhaps naming this one cpu_thermal could be
-> > misleading?
->
-> Ah, I see now, thanks for reminding;  it's all described on page 1,372
-> of the first part of the RK3588 TRM v1.0.
->
-> Having that in mind, I'd suggest that we end up naming it
-> package_thermal.
-> The temperature near the center of the chip is usually considered to be
-> the overall package temperature;  for example, that's how the
-> user-facing
-> CPU temperatures are measured in the x86_64 world.
+ .../display/msm/dsi-controller-main.yaml      |   2 +
+ .../devicetree/bindings/display/msm/gpu.yaml  |   6 +-
+ .../bindings/display/msm/qcom,mdss.yaml       |   1 +
+ arch/arm64/boot/dts/qcom/msm8976.dtsi         | 610 +++++++++++++++++-
+ 4 files changed, 613 insertions(+), 6 deletions(-)
 
-Sounds good, will rename in v3!
+-- 
+2.43.0
 
-> >> > +                     trips {
-> >> > +                             threshold: trip-point-0 {
-> >>
-> >> It should be better to name it cpu_alert0 instead, because that's what
-> >> other newer dtsi files already use.
-> >
-> > Reflecting on your comments here and below, I'm thinking that maybe it
-> > would be better to define only the critical trip point for the SoC
-> > overall, and then have alerts along with the respective cooling maps
-> > separately for A76-0,1, A76-2,3, A55-0,1,2,3? After all, given that we
-> > have more granular temperature measurement here than in previous RK
-> > chipsets it might be better to only throttle the "offending" cores,
-> > not the full package.
-> >
-> > What do you think?
-> >
-> > Downstream DT doesn't follow this approach though, so maybe there's
-> > something I'm missing here.
->
-> I agree, it's better to fully utilize the higher measurement granularity
-> made possible by having multiple temperature sensors available.
->
-> I also agree that we should have only the critical trip defined for the
-> package-level temperature sensor.  Let's have the separate temperature
-> measurements for the CPU (sub)clusters do the thermal throttling, and
-> let's keep the package-level measurement for the critical shutdowns
-> only.
-> IIRC, some MediaTek SoC dtsi already does exactly that.
->
-> Of course, there are no reasons not to have the critical trips defined
-> for the CPU (sub)clusters as well.
-
-I think I'll also add a board-specific active cooling mechanism on the
-package level in the next iteration, given that Rock 5B has a PWM fan
-defined as a cooling device. That will go in the separate patch that
-updates rk3588-rock-5b.dts (your feedback to v2 of this patch is also
-duly noted, thank you!)
-
-> >> > +                                     temperature =3D <75000>;
-> >> > +                                     hysteresis =3D <2000>;
-> >> > +                                     type =3D "passive";
-> >> > +                             };
-> >> > +                             target: trip-point-1 {
-> >>
-> >> It should be better to name it cpu_alert1 instead, because that's what
-> >> other newer dtsi files already use.
-> >>
-> >> > +                                     temperature =3D <85000>;
-> >> > +                                     hysteresis =3D <2000>;
-> >> > +                                     type =3D "passive";
-> >> > +                             };
-> >> > +                             soc_crit: soc-crit {
-> >>
-> >> It should be better to name it cpu_crit instead, because that's what
-> >> other newer dtsi files already use.
-> >
-> > Seems to me that if I define separate trips for the three groups of
-> > CPU cores as mentioned above this would better stay as soc_crit, as it
-> > applies to the whole die rather than the CPU cluster alone. Then
-> > 'threshold' and 'target' will go altogether, and I'll have separate
-> > *_alert0 and *_alert1 per CPU group.
->
-> It should perhaps be the best to have "passive", "hot" and "critical"
-> trips defined for all three CPU groups/(sub)clusters, separately of
-> course, to have even higher granularity when it comes to the resulting
-> thermal throttling.
-
-I looked through drivers/thermal/rockchip_thermal.c, and it doesn't
-seem to provide any callback for the "hot" trip as part of its struct
-thermal_zone_device_ops, so I guess it would be redundant in our case
-here? I couldn't find any generic mechanism to react to "hot" trips,
-and they seem to be purely driver-specific, thus no-op in case of
-Rockchips - or am I missing something?
-
-> >> > +                                     hysteresis =3D <2000>;
-> >> > +                                     type =3D "critical";
-> >> > +                             };
-> >> > +                     };
-> >> > +                     cooling-maps {
-> >> > +                             map0 {
-> >> > +                                     trip =3D <&target>;
-> >>
-> >> Shouldn't &threshold (i.e. &cpu_alert0) be referenced here instead?
-> >>
-> >> > +                                     cooling-device =3D <&cpu_l0 TH=
-ERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> >>
-> >> Shouldn't all big CPU cores be listed here instead?
-> >
-> > I guess if a separate trip point is defined for cpu_l0,1,2,3 then it
-> > would need to throttle at 75C, and then cpu_b0,1 and cpu_b2,3 at 85C
-> > each. Logic being that if a sensor stacked in the middle of a group of
-> > four cores shows 75C then one of the four might well be in abnormal
-> > temperature range already (85+), while sensors next to only two big
-> > cores each will likely show temperatures similar to the actual core
-> > temperature.
->
-> I think we shouldn't make any assumptions of how the CPU cores heat up
-> and affect each other, because we don't really know the required
-> details.
-> Instead, we should simply define the reasonable values for the
-> "passive",
-> "hot" and "critical" trips, and leave the rest to the standard thermal
-> throttling logic.  I hope you agree.
->
-> In the end, that's why we have separate thermal sensors available.
-
-Indeed! I'll add extra "passive" alerts though (at 75C) to enable the
-power allocation governor to initialize its PID parameters calculation
-before the control temperature setpoint gets hit (per Daniel's
-feedback under separate cover).
-
-Thanks again for your review and comments on this one!
-
-Best regards,
-Alexey
 
