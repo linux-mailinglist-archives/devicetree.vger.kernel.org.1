@@ -1,149 +1,463 @@
-Return-Path: <devicetree+bounces-33462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1411E835638
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 16:07:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3029835644
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 16:24:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F20BCB22718
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 15:07:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34EE01F22DF7
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 15:24:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 527C1374C9;
-	Sun, 21 Jan 2024 15:07:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2CC5376FC;
+	Sun, 21 Jan 2024 15:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKGaIqp7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B362628C;
-	Sun, 21 Jan 2024 15:07:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.53.165.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5962376F9;
+	Sun, 21 Jan 2024 15:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705849659; cv=none; b=QwSMA+LM3dzLLNDGghxD0XjhOaezfF5tvYkaa/JODC4Ovut13MQvRbZGXB5FSyTCLdCTPnawKl5pcIYsKQ87jJnwP15I0DB4fYsyMSWkXBkkAbhqIaBpQN8anINKK9mN/nY5SbzlZ/HGVLqIijniOc/LPiI/3FDvGX8OsrHeJcY=
+	t=1705850626; cv=none; b=nBR84E3VWd19hVAFNlvprudGWcT51AKHRU++N3jgmF/IK9YFGOK8OOx3U41X0taEzwqKs8wbGMaEMfyCWKYudN6dqqdNRZhgfMu0BEZwhm+G4/t+CQUiGUuQGInSOjPB2OVCnIZLk43qxhVuHav4/TkHVSr5vmXDIuPJJsmoxY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705849659; c=relaxed/simple;
-	bh=0vf7nfJn7HrAvHOdgIzLADBW0X0/fBnQZXV99GsYa28=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gdvGtpdH3a/lQ3458lwPnn2upS575sA1TNNRklx5x0CuGQvD79qby1wFkK5BH5p1+CS79zNhDVsVCPgxq28Bbh37m53B/32PHp5u+TmwJHCze/GyEl3gHIp9p+tCqllppUDwnLzZNl0+HRQFJdXb/5mhz0i6QAt+dk/2SwFmVYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr; spf=pass smtp.mailfrom=skole.hr; arc=none smtp.client-ip=161.53.165.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
-Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-	by mx.skole.hr (mx.skole.hr) with ESMTP id 4374282E39;
-	Sun, 21 Jan 2024 16:07:31 +0100 (CET)
-From: Duje =?utf-8?B?TWloYW5vdmnEhw==?= <duje.mihanovic@skole.hr>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <daniel.thompson@linaro.org>,
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
- Karel Balej <balejk@matfyz.cz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] leds: ktd2692: move ExpressWire code to library
-Date: Sun, 21 Jan 2024 16:06:53 +0100
-Message-ID: <5747658.DvuYhMxLoT@radijator>
-In-Reply-To:
- <CACRpkdZJyY9oYMt3TvDEGthN-Wvz3t_40t9P-VsgTKCJQaD=pw@mail.gmail.com>
-References:
- <20240120-ktd2801-v3-0-fe2cbafffb21@skole.hr>
- <20240120-ktd2801-v3-1-fe2cbafffb21@skole.hr>
- <CACRpkdZJyY9oYMt3TvDEGthN-Wvz3t_40t9P-VsgTKCJQaD=pw@mail.gmail.com>
+	s=arc-20240116; t=1705850626; c=relaxed/simple;
+	bh=I+TOzNlF8BsYvQRLwfXF3Qc4VhWjN4rpwB0FrCUvUEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bV3G3H2uBxPwtpJ073GsuKWmC5hzN8AmajnCtGsgXxKTCFJWSWH/tB0UHUHV/TkXhMOYoHTrplYEhWa7av0h9NEHKQVq7KTGlb0ttPJ6/4uzGQ6JhJDN7yCaChb0g6ng9/xTxqTgbOJiokwvgqrXsudoKd7TzXRcQecyZWBfqOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKGaIqp7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95D64C43394;
+	Sun, 21 Jan 2024 15:23:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705850626;
+	bh=I+TOzNlF8BsYvQRLwfXF3Qc4VhWjN4rpwB0FrCUvUEk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=AKGaIqp7ByPbF1lwHNZamCzNJm3mskEW5ZzeCTy2H/+5gACl3vuKdHOVjXXabluQB
+	 IJ9jfwD4m2aljOtJgdtVo1SkaCFUa2gv4VlQ+Ph9NwPlsyy3hvtcNmMTITOUByLDDk
+	 U8Nr25xagBM7p8S+/U8koXBUfzqXxg3Bz0vNxug1VMvf8FkEd7xB3SOSP0PgH6aaMf
+	 no+giNnyDVpkfWKXzn0D2LJs7o5jwD+VIcv/YjFnfmMIhEZBmG+0dnD6MemSKqe88N
+	 U8Dvnr+mD7hDg2NIuRczEX2L0I0m6Yfe18CEmx1cP8ToY+ICS38mt8EZL4q9hW9gaQ
+	 37oUZgKYftBsw==
+Date: Sun, 21 Jan 2024 15:23:32 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>, Marek Vasut
+ <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>, Javier Carrasco
+ <javier.carrasco.cruz@gmail.com>, Matt Ranostay <matt@ranostay.sg>, Stefan
+ Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] iio: light: Add support for APDS9306 Light
+ Sensor
+Message-ID: <20240121152332.6b15666a@jic23-huawei>
+In-Reply-To: <20240121051735.32246-4-subhajit.ghosh@tweaklogic.com>
+References: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
+	<20240121051735.32246-4-subhajit.ghosh@tweaklogic.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.40; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Autocrypt: addr=duje.mihanovic@skole.hr;
- keydata=
- mQINBGBhuA8BEACtpIbYNfUtQkpVqgHMPlcQR/vZhB7VUh5S32uSyerG28gUxFs2be//GOhSHv+
- DilYp3N3pnTdu1NPGD/D1bzxpSuCz6lylansMzpP21Idn3ydqFydDTduQlvY6nqR2p5hndQg6II
- pmVvNZXLyP2B3EE1ypdLIm6dJJIZzLm6uJywAePCyncRDJY0J7mn7q8Nwzd6LG74D8+6+fKptFS
- QYI8Ira7rLtGZHsbfO9MLQI/dSL6xe8ZTnEMjQMAmFvsd2M2rAm8YIV57h/B8oP5V0U4/CkHVho
- m+a2p0nGRmyDeluQ3rQmX1/m6M5W0yBnEcz5yWgVV63zoZp9EJu3NcZWs22LD6SQjTV1X8Eo999
- LtviIj2rIeCliozdsHwv3lN0BzTg9ST9klnDgY0eYeSY1lstwCXrApZCSBKnz98nX9CuuZeGx0b
- PHelxzHW/+VtWu1IH5679wcZ7J/kQYUxhhk+cIpadRiRaXgZffxd3Fkv4sJ8gP0mTU8g6UEresg
- lm9kZKYIeKpaKreM7f/WadUbtpkxby8Tl1qp24jS1XcFTdnjTo3YB2i2Rm9mAL2Bun9rNSwvDjE
- fjMt5D5I+CIpIshaQwAXwRTBJHHAfeEt62C1FQRQEMAksp4Kk1s2UpZkekZzNn48BnwWq75+kEj
- tuOtJIQGWTEHBgMG9dBO6OwARAQABtClEdWplIE1paGFub3ZpxIcgPGR1amUubWloYW5vdmljQH
- Nrb2xlLmhyPokCTgQTAQgAOAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBFPfnU2cP+EQ+
- zYteJoRnrBCLZbhBQJg01LLAAoJEJoRnrBCLZbhMwoQAJBNKdxLxUBUYjLR3dEePkIXmY27++cI
- DHGmoSSTu5BWqlw9rKyDK8dGxTOdc9Pd4968hskWhLSwmb8vTgNPRf1qOg2PROdeXG34pYc2DEC
- 0qfzs19jGE+fGE4QnvPCHBe5fkT2FPCBmNShxZc1YSkhHjpTIKHPAtX1/eIYveNK2AS/jpl23Uh
- hG9wsR2+tlySPNjAtYOnXxWDIUex8Vsj2a2PBXNVS3bRDeKmtSHuYo7JrQZdDc0IJiRm0BiLEOI
- ehTtcYqYr1Ztw7VNN2Mop/JG2nlxXNaQmyaV6kF/tuaqn1DJQcb0OxjAXEUMaICYJOwS9HSt26n
- uwo8dUiUPLQTih/wm6tyu2xrgMwqVT5jiKIssSS+7QNTsmldubRSYjFT49vwkVoUQ6Z3UO6BVdd
- f3OG4meE0S5uQc7Moebq67ILxfQ8XsDvdvEliVuHh89GAlQOttTpc6lNk8gCWQ+LFLvS66/6LFz
- mK1X4zC7K/V6B2xlP4ZIa3IC9QIGuQaRsVBbbiGB3CNgh0Sabsfs4cDJ7zzG1jE7Y4R9uYvdSFj
- Liq5SFlaswQ+LRl9sgzukEBTmNjdDVhufMY2jxtcMtck978E1W1zrg94iVl5E0HQZcpFHCZjRZX
- Fa42yPsvVkFwy4IEht9UJacMW9Hkq5BFHsdToWmg7RY8Mh04rszTiQJUBBMBCAA+AhsDBQsJCAc
- CBhUKCQgLAgQWAgMBAh4BAheAFiEEU9+dTZw/4RD7Ni14mhGesEItluEFAmCVBxAFCQXW6YEACg
- kQmhGesEItluFXIg//QnqY5RrQ1pLw2J51UwFec4hFMFJ6MixI9/YgizsRd2QLM7Cyi+ljkaHFQ
- mO4O5p0RsbF/2cc4u1D+MhQJGl6Ch6bdHoiWFrNUexgBUmflr4ekpI+GIFzikl6JTYHcRfkjobj
- 0Tmr8zWoxzcdFhrzGn5/6AH3GxudpUr6WQD5iDSe43T7ZcY8zHfD+9zcsZ2LHhRhpHU0q+ERQw+
- Rnh7C3urXlrAlFzuKuPh2tHT76glRaledJ8cK34vHNi73TYpsFy4tfhAPhHwBogtjBf63jBOd/E
- S6wuYpKwcfNXo9EuEpJzJOitFwOvAra5AbCE+N/C/IOu2aFeOyu2SbHro06+Eyf/jy1A2t+LgLb
- E5cZu5ETyicfpN8L7m7wTTXTSx0NhETNWfgV95RUI6WIW5N4OCOVo8d/GOMVEYqMoDZndQin9B3
- lDgojyagdzhXljP2BqavKdnPWbcKQ+JViR+e7EjLWVifgZkAvEhyirbTKYsgKkaRxoQP68U0bEy
- ukygDZRdzBmWaZPqBOzA5AH+OYiYVzzFqdBAHr2+z4mTN6W0td7CFDRAS2RzQApO3B1QH408Ke9
- Oy69HwG+gdlfwloN6JTvgr5vQc8T6e3iC3Be/guLyW5UbLPxyFHimznVOizDYbZO1QSZMqk4G9I
- gA8e05P8dxEQJUsdZFtDdNPOYm5Ag0EYGG4DwEQAMD0bO0u9apmI1WOk41IdU1Hc76HLUA9jsiB
- ffA9yZ1OpnFEIAwSeUO8PFK7W5YPdRreNsUvMmBiLJid9y0tW5sACjSrH+amCQl0hJ3KlEkr+Vu
- Wga1a+Ye0qzg87bQae769RhwzEPvQvvNoTxTtvT5Alg2p3JSv5d/wC2Tu9IoFKkDAIoCFsvytuZ
- r2LuH3oK57oThhbEogYXR7YJ0JIwVg7nOQXnqpUTzxkh/73FKN6Bx01m37pB3wTe8w3w8r8WOip
- oRU+aPWhafDNFrdyBfSVOAw3fmX9yAfFfZo4w9OTdkrLLdK6SmX7mqiMstoZnvZIpLRk/L0ZNrJ
- 8fAVD+fEcpUiCoKwiiY0QFCWumMXITeD4zlo/Y6lQKhUp6EY0kcjG1D7n5sBR5oQcsC9PlH9a12
- L+tNIfljayiEVobmkPwGf5p3sxOqeks6WWoB9+ZIk888kQdI/b7VA/86QvsTqubpJtr5uVNtyyj
- ZYTBHFnEGcA5+Rs2K/8TWFYDEBZiybfpCxrYT2RdTF7ef2wQZAiNZhzaEwxr7S4YTFuCwwqaKLt
- vckGv2fsFUy3qe28tw93oCNQxSqgOq6RD0HfblViXeioyP1nWVLAx6paS7d38TT6cz0HJCtOMFn
- S+UpJDv2x3gReCPBoqRx7LV4aYMyGy4pzwes+yO87hxULtw/ABEBAAGJAjYEGAEIACAWIQRT351
- NnD/hEPs2LXiaEZ6wQi2W4QUCYGG4DwIbDAAKCRCaEZ6wQi2W4de4D/0aCxE4dTmO1xQ6BDXlKp
- DCegk8dIqrxK8Edbdq9/WGSO6Js0QfIL50IHAR739FbScT4+oSObeg0ap9kCGfW0AXGZaU82Ed1
- 5u+MzgksHE+t8cgULTKjqqt+PXq0yxZfLwI9itTa3zE2d6Uxd4Vzq77jjQuDL6o3zM6BQTJGYxx
- S6mELElcnMlo9lIZKzCAHaIkkMlMNBfvm8Q92aCuQ75xjWhis9K9lyV9cQZfu8AyP4zMGFk50Z5
- tEF2UFylqKu+v8FZiezviwu9NsZegIY4DRaPWF5GWmFhYU4e9gBFG5xhEoIlO+etu1nSE1UJk+r
- mvJL20uKNUPnhXTJaQTzACpA1/2FqDnOUUx8qOYqmHMlFuy2qUh/QHShjc2AtngTFZrzAnGz6ni
- lRl32b7p8N+KaO4u2UGmGOwd/CuCzr2DxGomUSyCwOta7vOxator+NPK48roa417gBZ6ZFRplma
- ExicLFSnwBdGC3NnDa+yoRHKXHVSDfkb/FEhWuN/1tTZ96uxVYtHcln+snB2N6/hwmrOon2cHNu
- UeTLcrVyqI0Qz8JT4ksGxkxziO2L/e0O/xUp9mLAswixWt8+BMz/3sIJbdAPBVyt5QbHzWR6aID
- B5cQ1aQwZB8n7yt8B0sd/uIQItYu2urJ9gVAJkaEDms8+vbtOM4totXk5swwGxRg==
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sunday, January 21, 2024 3:35:46 PM CET Linus Walleij wrote:
-> > +extern void expresswire_power_off(struct expresswire_common_props 
-*props);
-> > +extern void expresswire_enable(struct expresswire_common_props *props);
-> > +extern void expresswire_start(struct expresswire_common_props *props);
-> > +extern void expresswire_end(struct expresswire_common_props *props);
-> > +extern void expresswire_set_bit(struct expresswire_common_props *props,
-> > bool bit);
-> I would skip the keyword "extern" since it is default I think even
-> checkpatch complains about it these days?
+On Sun, 21 Jan 2024 15:47:34 +1030
+Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
 
-Doesn't seem to, I tried it myself:
+> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
+> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
+> channel approximates the response of the human-eye providing direct
+> read out where the output count is proportional to ambient light levels.
+> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
+> caused by artificial light sources. Hardware interrupt configuration is
+> optional. It is a low power device with 20 bit resolution and has
+> configurable adaptive interrupt mode and interrupt persistence mode.
+> The device also features inbuilt hardware gain, multiple integration time
+> selection options and sampling frequency selection options.
+> 
+> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
+> Scales, Gains and Integration time implementation.
+> 
+> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+> ---
+> v2 -> v5:
 
-$ git format-patch HEAD~3
-0001-leds-ktd2692-move-ExpressWire-code-to-library.patch
-0002-dt-bindings-backlight-add-Kinetic-KTD2801-binding.patch
-0003-backlight-Add-Kinetic-KTD2801-backlight-support.patch
-$ ./scripts/checkpatch.pl 0001-leds-ktd2692-move-ExpressWire-code-to-
-library.patch            
-total: 0 errors, 0 warnings, 291 lines checked
-
-0001-leds-ktd2692-move-ExpressWire-code-to-library.patch has no obvious style 
-problems and is ready for submission.
-
-I'll keep that in mind if a v4 is needed though.
-
-Regards,
---
-Duje
+Why did you jump to v5?  Some internal or private reviews perhaps?
+Better for those tracking on the list if you just used v3.
 
 
+>  - Removed scale attribute for Intensity channel:
+>    Link: https://lore.kernel.org/all/20231204095108.22f89718@jic23-huawei/
+> 
+>  - Dropped caching of hardware gain, repeat rate and integration time and
+>    updated code as per earlier reviews.
+>    Link: https://lore.kernel.org/lkml/20231028142944.7e210eb6@jic23-huawei/
+
+...
+
+A few, mostly very minor comments inline to add to Christophe's review.
+
+Thanks,
+
+Jonathan
+
+> diff --git a/drivers/iio/light/apds9306.c b/drivers/iio/light/apds9306.c
+> new file mode 100644
+> index 000000000000..8ed5899050ed
+> --- /dev/null
+> +++ b/drivers/iio/light/apds9306.c
+> @@ -0,0 +1,1315 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * APDS-9306/APDS-9306-065 Ambient Light Sensor
+> + * I2C Address: 0x52
+> + * Datasheet: https://docs.broadcom.com/doc/AV02-4755EN
+> + *
+> + * Copyright (C) 2023 Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+
+Given you are still changing it, feel free to include 2024!
+
+> + */
+...
+> +static const int apds9306_repeat_rate_freq[][2] = {
+> +	{40, 0},
+> +	{20, 0},
+> +	{10, 0},
+> +	{5,  0},
+> +	{2,  0},
+> +	{1,  0},
+> +	{0, 500000},
+Prefer
+	{ 40, 0 },
+etc and whilst I don't really like forcing alignment like this, if you
+are going to do it be consistent.  The last 50000 is one space too far to the
+left I think.
+
+
+> +};
+> +static_assert(ARRAY_SIZE(apds9306_repeat_rate_freq) ==
+> +		APDS9306_NUM_REPEAT_RATES);
+> +
+> +static const int apds9306_repeat_rate_period[] = {
+> +	25000, 50000, 100000, 200000, 500000, 1000000, 2000000,
+> +};
+> +static_assert(ARRAY_SIZE(apds9306_repeat_rate_period) ==
+> +		APDS9306_NUM_REPEAT_RATES);
+> +
+> +/**
+> + * struct apds9306_data - apds9306 private data and registers definitions
+> + *
+> + * @dev:	Pointer to the device structure
+> + * @gts:	IIO Gain Time Scale structure
+> + * @mutex:	Lock for protecting register access, adc reads and power
+
+ADC.  I guess the double comment is to keep checkpatch happy?
+
+Just ignore it being dumb as you have a comment up here and put all the info
+here rather than splitting it up like this.
+
+> + * @regmap:	Regmap structure pointer
+> + * @regfield_sw_reset:	Reg: MAIN_CTRL, Field: SW_Reset
+> + * @regfield_en:	Reg: MAIN_CTRL, Field: ALS_EN
+> + * @regfield_intg_time:	Reg: ALS_MEAS_RATE, Field: ALS Resolution/Bit Width
+> + * @regfield_repeat_rate:	Reg: ALS_MEAS_RATE, Field: ALS Measurement Rate
+> + * @regfield_gain:	Reg: ALS_GAIN, Field: ALS Gain Range
+> + * @regfield_int_src:	Reg: INT_CFG, Field: ALS Interrupt Source
+> + * @regfield_int_thresh_var_en:	Reg: INT_CFG, Field: ALS Var Interrupt Mode
+> + * @regfield_int_en:	Reg: INT_CFG, Field: ALS Interrupt Enable
+> + * @regfield_int_persist_val:	Reg: INT_PERSISTENCE, Field: ALS_PERSIST
+> + * @regfield_int_thresh_var_val:	Reg: ALS_THRSH_VAR, Field: ALS_THRES_VAR
+> + * @nlux_per_count:	nano lux per ADC count for a particular model
+> + * @read_data_available:	Flag set by IRQ handler for ADC data available
+> + */
+> +struct apds9306_data {
+> +	struct device *dev;
+> +	struct iio_gts gts;
+> +	/*
+> +	 * Protects device settings changes where some calculations are required
+> +	 * before or after setting or getting the raw settings values from regmap
+> +	 * writes or reads respectively.
+> +	 */
+> +	struct mutex mutex;
+> +
+> +	struct regmap *regmap;
+> +	struct regmap_field *regfield_sw_reset;
+> +	struct regmap_field *regfield_en;
+> +	struct regmap_field *regfield_intg_time;
+> +	struct regmap_field *regfield_repeat_rate;
+> +	struct regmap_field *regfield_gain;
+> +	struct regmap_field *regfield_int_src;
+> +	struct regmap_field *regfield_int_thresh_var_en;
+> +	struct regmap_field *regfield_int_en;
+> +	struct regmap_field *regfield_int_persist_val;
+> +	struct regmap_field *regfield_int_thresh_var_val;
+> +
+> +	int nlux_per_count;
+> +	int read_data_available;
+> +};
+
+> +
+> +static struct iio_event_spec apds9306_event_spec_als[] = {
+> +	{
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_RISING,
+> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
+> +	}, {
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.dir = IIO_EV_DIR_FALLING,
+> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
+> +	}, {
+> +		.type = IIO_EV_TYPE_THRESH,
+> +		.mask_shared_by_all = BIT(IIO_EV_INFO_PERIOD),
+> +	}, {
+> +		.type = IIO_EV_TYPE_THRESH_ADAPTIVE,
+> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
+> +			BIT(IIO_EV_INFO_ENABLE),
+> +	}, {
+> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
+
+What's the intent of this final entry?
+The type will default to IIO_EV_TYPE_THRESH anyway but if that
+the intent you should specify it.   There isn't an 'obvious'
+default for type in the same way there sort of is for dir
+(as it's either direction).
+
+> +	},
+> +};
+
+> +
+
+> +
+> +static int apds9306_runtime_power_on(struct device *dev)
+> +{
+> +	int ret;
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret < 0)
+> +		dev_err(dev, "runtime resume failed: %d\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int apds9306_runtime_power_off(struct device *dev)
+> +{
+> +	pm_runtime_mark_last_busy(dev);
+> +	pm_runtime_put_autosuspend(dev);
+> +
+> +	return 0;
+> +}
+
+I'm not entirely convinced these two wrappers are worthwhile given they
+aren't that common used and locally obscure what is going on when
+it could be apparent at the few call sites.
+
+
+
+> +static int apds9306_read_event_config(struct iio_dev *indio_dev,
+> +				      const struct iio_chan_spec *chan,
+> +				      enum iio_event_type type,
+> +				      enum iio_event_direction dir)
+> +{
+> +	struct apds9306_data *data = iio_priv(indio_dev);
+> +	int int_en, int_ch, ret;
+> +
+> +	guard(mutex)(&data->mutex);
+> +
+> +	switch (type) {
+> +	case IIO_EV_TYPE_THRESH:
+> +		ret = regmap_field_read(data->regfield_int_src, &int_ch);
+
+int_ch is a not particularly informative name.
+
+event_ch_is_light perhaps? 
+
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_field_read(data->regfield_int_en, &int_en);
+> +		if (ret)
+> +			return ret;
+> +		if (chan->type == IIO_LIGHT)
+> +			return int_en & int_ch;
+> +		else if (chan->type == IIO_INTENSITY)
+> +			return int_en & !int_ch;
+> +		return -EINVAL;
+> +	case IIO_EV_TYPE_THRESH_ADAPTIVE:
+> +		ret = regmap_field_read(data->regfield_int_thresh_var_en, &int_en);
+> +		if (ret)
+> +			return ret;
+> +		return int_en;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int apds9306_write_event_config(struct iio_dev *indio_dev,
+> +				       const struct iio_chan_spec *chan,
+> +				       enum iio_event_type type,
+> +				       enum iio_event_direction dir,
+> +				       int state)
+> +{
+> +	struct apds9306_data *data = iio_priv(indio_dev);
+> +	int ret, val;
+> +
+> +	state = !!state;
+> +
+> +	guard(mutex)(&data->mutex);
+> +
+> +	switch (type) {
+> +	case IIO_EV_TYPE_THRESH:
+> +		/*
+> +		 * If interrupt is enabled, the channel is set before enabling
+> +		 * the interrupt. In case of disable, no need to switch
+> +		 * channels. In case of different channel is selected while
+> +		 * interrupt in on, just change the channel.
+> +		 */
+> +		if (state) {
+> +			if (chan->type == IIO_LIGHT)
+> +				val = 1;
+> +			else if (chan->type == IIO_INTENSITY)
+> +				val = 0;
+> +			else
+> +				return -EINVAL;
+
+Blank line here and similar.
+
+> +			ret = regmap_field_write(data->regfield_int_src, val);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +		ret = regmap_field_read(data->regfield_int_en, &val);
+> +		if (ret)
+> +			return ret;
+> +		if (val == state)
+> +			return 0;
+
+Blank line.  Basically add one whenever a block of related code ends.
+
+> +		ret = regmap_field_write(data->regfield_int_en, state);
+> +		if (ret)
+> +			return ret;
+> +		if (state)
+> +			return apds9306_runtime_power_on(data->dev);
+> +		return apds9306_runtime_power_off(data->dev);
+> +	case IIO_EV_TYPE_THRESH_ADAPTIVE:
+> +		return regmap_field_write(data->regfield_int_thresh_var_en, state);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+>
+
+..
+
+> +static void apds9306_powerdown(void *ptr)
+> +{
+> +	struct apds9306_data *data = (struct apds9306_data *)ptr;
+> +	int ret;
+> +
+> +	ret = regmap_field_write(data->regfield_int_thresh_var_en, 0);
+> +	if (ret)
+> +		return;
+
+blank line here ideally.
+
+> +	ret = regmap_field_write(data->regfield_int_en, 0);
+> +	if (ret)
+> +		return;
+> +
+> +	apds9306_power_state(data, false);
+> +}
+
+...
+
+> +
+> +static int apds9306_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct apds9306_data *data;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	data = iio_priv(indio_dev);
+> +
+> +	mutex_init(&data->mutex);
+> +
+> +	data->regmap = devm_regmap_init_i2c(client, &apds9306_regmap);
+> +	if (IS_ERR(data->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(data->regmap),
+> +				     "regmap initialization failed\n");
+> +
+> +	data->dev = dev;
+> +	i2c_set_clientdata(client, indio_dev);
+> +
+> +	ret = apds9306_regfield_init(data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "regfield initialization failed\n");
+> +
+> +	ret = devm_regulator_get_enable(dev, "vdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable regulator\n");
+> +
+> +	indio_dev->name = "apds9306";
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	if (client->irq) {
+> +		indio_dev->info = &apds9306_info;
+> +		indio_dev->channels = apds9306_channels_with_events;
+> +		indio_dev->num_channels =
+> +				ARRAY_SIZE(apds9306_channels_with_events);
+> +		ret = devm_request_threaded_irq(dev, client->irq, NULL,
+> +				apds9306_irq_handler, IRQF_ONESHOT,
+> +					"apds9306_event", indio_dev);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "failed to assign interrupt.\n");
+> +	} else {
+> +		indio_dev->info = &apds9306_info_no_events;
+> +		indio_dev->channels = apds9306_channels_without_events;
+> +		indio_dev->num_channels = ARRAY_SIZE(apds9306_channels_without_events);
+> +	}
+> +
+> +	ret = apds9306_pm_init(data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed pm init\n");
+> +
+> +	ret = apds9306_device_init(data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to init device\n");
+> +
+> +	ret = devm_add_action_or_reset(dev, apds9306_powerdown, data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to add action or reset\n");
+> +
+> +	ret = devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed iio device registration\n");
+> +
+> +	pm_runtime_put_autosuspend(dev);
+
+Where is the matching get?  I don't recall any of the pm functions 
+leaving us with the reference count raised except for the where it is
+called out in the function name.
+
+The runtime pm reference counters are protected against underflowing so this
+probably just has no impact.  Still good to only have it if necessary and if
+you do need the power to be on until this point, force it to do so by
+an appropriate pm_runtime_get().
+
+
+> +
+> +	return 0;
+> +}
 
 
