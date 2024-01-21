@@ -1,127 +1,192 @@
-Return-Path: <devicetree+bounces-33456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D198355DB
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 13:56:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE968355F2
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 14:33:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2540D1C2127B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 12:56:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97C121F23434
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 13:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025C137155;
-	Sun, 21 Jan 2024 12:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C05937169;
+	Sun, 21 Jan 2024 13:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iLnJaiiR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lEiJlW4C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C08E3714C;
-	Sun, 21 Jan 2024 12:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.55.52.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A1F36AFA;
+	Sun, 21 Jan 2024 13:33:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705841802; cv=none; b=B9VjdIvinCsJEV2CokidbTwQBKjPkvLKDmLH6FrMjyYn0J6QM4AwPFJokxDJTqvAfHdLfFRG1/lyiPMymxjQnhsCJScHorOKc0tGWU7wtkDg3BGmsvi2SepbLMPWyOECT+jtMTOgbxVE5H0X156Tnyi5199Lb7hxKTYWHUXU93w=
+	t=1705843983; cv=none; b=bBV1S1NIAyq7MCWSD66n7V1+ZDdmzIYOQ5SoSHE5w7U5NpztrVlskFEVeDfPensv9EO3aXWDxriAFWfgHo/N0PX5vjSU8Ghv0a63qAO10JrdBAt7wUAhwzIDGEdKrYYrL/EAfe3QnV6MDivE/4sg1MtGwmkl8sm+Q8mY6bJ+O7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705841802; c=relaxed/simple;
-	bh=MFggLcNb6FnJrDnaHyePScPjFRJI9rDwfH1smuryGOk=;
+	s=arc-20240116; t=1705843983; c=relaxed/simple;
+	bh=WO1X2k3Tcsgw0LmomtyLLfnR3lITak/6PftppiXMzfE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IT4R6yM6BR0qN+/ZhZe6Ke3iI4zfvzWGEPc3ZDtCtooedqa33HMousfqGCOFvRdQLPZgAKtJIjTYoC8BZENysYmNieSaRnEFhEVv29AB4yVfhTaazwGxJvSN163u+PYwwJRXOIpcOxbCXRgqInLPXh/4cdXEWQP1xSIfI3/DtIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iLnJaiiR; arc=none smtp.client-ip=192.55.52.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1705841801; x=1737377801;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=MFggLcNb6FnJrDnaHyePScPjFRJI9rDwfH1smuryGOk=;
-  b=iLnJaiiRmIhyDDCleVG7b8ssVVRutUbiFfgfd/SG/ZNIgjTnKaMr1nss
-   GK7vUeRQXpcPZjuwVlkE2FzJBU9r4Bkh4aGOTLxDsobrgZZNc6UzWyYTr
-   ZApZRT9+cvgjQSXC9717wxpmpEypztyvPjEWDfKSwmdDM9UDILza7tsxD
-   AqFCUR2mK/e2nW6ZbCuEUWdY0WtMnEalfjK3uF8NLzqAnulp2V9lZeUMP
-   ehvDX1N0Qgsz3igAEBS87ulg7W7tC4pg/XqcZRjK2ZcEgmtBrn1OArOVj
-   5p+JM6n0PJ8KQDYYWz/WXsRGapklzp9KO9R1xkZRC2xScB0JEWOJhVOns
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10959"; a="398185464"
-X-IronPort-AV: E=Sophos;i="6.05,209,1701158400"; 
-   d="scan'208";a="398185464"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2024 04:56:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10959"; a="875746374"
-X-IronPort-AV: E=Sophos;i="6.05,209,1701158400"; 
-   d="scan'208";a="875746374"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by FMSMGA003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2024 04:56:36 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rRXJn-0000000Fcoe-0D1r;
-	Sun, 21 Jan 2024 14:52:55 +0200
-Date: Sun, 21 Jan 2024 14:52:54 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: subhajit.ghosh@tweaklogic.com, anshulusr@gmail.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, javier.carrasco.cruz@gmail.com,
-	jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	lars@metafoo.de, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, marex@denx.de, matt@ranostay.sg,
-	mazziesaccount@gmail.com, robh+dt@kernel.org,
-	stefan.windfeldt-prytz@axis.com
-Subject: Re: [PATCH v5 3/3] iio: light: Add support for APDS9306 Light Sensor
-Message-ID: <Za0TpiKjDD27Vh_x@smile.fi.intel.com>
-References: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
- <20240121051735.32246-4-subhajit.ghosh@tweaklogic.com>
- <8a7f03b6-caca-4fbb-8093-0ba87bd2e850@wanadoo.fr>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BL7arqdsKN4ltM4ddA0WHYFi7WqV6rmvVPWc1xb9IcI0FgGchxoHn8KmvD7gVZ7csa4QrmuySQ3V9nTukwsdX63WGuc/itjqfU4ek73z7TE7Nm8zfaAqIBfYVPo1LibDRF+GffM8gwRWbLnzMgcwQceGGSAtgb4q4CgIeGgSrLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lEiJlW4C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5A2CC433F1;
+	Sun, 21 Jan 2024 13:32:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705843982;
+	bh=WO1X2k3Tcsgw0LmomtyLLfnR3lITak/6PftppiXMzfE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lEiJlW4Ca6fCl+Hnb5vYRfKXJdy+BoFzAQG23LXdeWDtfxunfmF0DEIjpCgGOrZ71
+	 VyhUcjAcrnGmrZQj6KoEf2Tc4hrhna0AB2n8+nwqmRJRb85CNOzuOuGGp+X5F9O6Z7
+	 7LtMmjELbNZcLMK06mu3+Z3mTXa9+H6fpBm7q/BPfVl47C1M65D+qirtmyAW3XiYn4
+	 qjHaCGf+VcYGpKz2+eEPCKfTNOIPQrGiMC2t1N/seOgzfViYZfFOzeC5MOYAkqGE8I
+	 KVIRMgHsny5TGcndhvECpwmAWQwwUs937cmzJEiI9emplhCXwmiOaev85HLgk2/SAP
+	 80fltvf5UuLUQ==
+Date: Sun, 21 Jan 2024 13:32:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>, Andreas Farber <afaerber@suse.de>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, NXP S32 Linux Team <s32@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+	Ciprian Costea <ciprianmarian.costea@nxp.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: s32g: add uSDHC clock IDs
+Message-ID: <20240121-statutory-endurance-6d03d7e734c9@spud>
+References: <20240119130231.2854146-1-ghennadi.procopciuc@oss.nxp.com>
+ <20240119130231.2854146-2-ghennadi.procopciuc@oss.nxp.com>
+ <20240119-magnetic-racing-0adf8e5fbd4a@spud>
+ <20240119-cattle-antarctic-432fa8e1c0ef@spud>
+ <75a16ac3-39eb-4874-9100-d605b2cfadfc@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="j8ddR5K2BQkdwnI0"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8a7f03b6-caca-4fbb-8093-0ba87bd2e850@wanadoo.fr>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Sun, Jan 21, 2024 at 10:22:50AM +0100, Christophe JAILLET wrote:
-> Le 21/01/2024 à 06:17, Subhajit Ghosh a écrit :
-
-...
-
-> > +#define APDS9306_ALS_THRES_VAL_MAX	(BIT(20) - 1)
-> > +#define APDS9306_ALS_THRES_VAR_VAL_MAX	(BIT(3) - 1)
-> > +#define APDS9306_ALS_PERSIST_VAL_MAX	(BIT(4) - 1)
-> 
-> Nit: GENMASK()?
-
-I think no, these are plain numbers given in the form of BIT(x) - 1 to show the
-HW limit on the values (in bits).
-
-...
-
-> > +	intg_time = iio_gts_find_int_time_by_sel(&data->gts, intg_time_idx);
-> > +	if (intg_time < 0)
-> > +		delay = apds9306_repeat_rate_period[repeat_rate_idx];
-> 
-> 'delay' is always overwritten by the line below.
-
-Seems like entire conditional here is not needed as it's implied in the max().
-And max() should take both signed or unsigned types, different types might have
-a side effect.
-
-> > +	/*
-> > +	 * Whichever is greater - integration time period or
-> > +	 * sampling period.
-> > +	 */
-> > +	delay = max(intg_time,
-> > +		    apds9306_repeat_rate_period[repeat_rate_idx]);
-
--- 
-With Best Regards,
-Andy Shevchenko
+In-Reply-To: <75a16ac3-39eb-4874-9100-d605b2cfadfc@oss.nxp.com>
 
 
+--j8ddR5K2BQkdwnI0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jan 19, 2024 at 11:25:57PM +0200, Ghennadi Procopciuc wrote:
+> On 1/19/24 18:14, Conor Dooley wrote:
+> > On Fri, Jan 19, 2024 at 04:11:37PM +0000, Conor Dooley wrote:
+> >> On Fri, Jan 19, 2024 at 03:02:28PM +0200, Ghennadi Procopciuc (OSS) wr=
+ote:
+> >>> From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> >>>
+> >>> Add the SCMI clock IDs for the uSDHC controller present on
+> >>> S32G SoCs.
+> >>>
+> >>> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+> >>> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> >>> ---
+> >>>  include/dt-bindings/clock/s32g-scmi-clock.h | 14 ++++++++++++++
+> >>>  1 file changed, 14 insertions(+)
+> >>>  create mode 100644 include/dt-bindings/clock/s32g-scmi-clock.h
+> >>>
+> >>> diff --git a/include/dt-bindings/clock/s32g-scmi-clock.h b/include/dt=
+-bindings/clock/s32g-scmi-clock.h
+> >>> new file mode 100644
+> >>> index 000000000000..739f98a924c3
+> >>> --- /dev/null
+> >>> +++ b/include/dt-bindings/clock/s32g-scmi-clock.h
+> >>> @@ -0,0 +1,14 @@
+> >>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause) */
+> >>> +/*
+> >>> + * Copyright 2020-2024 NXP
+> >>> + */
+> >>> +#ifndef _DT_BINDINGS_SCMI_CLK_S32G_H
+> >>> +#define _DT_BINDINGS_SCMI_CLK_S32G_H
+> >>> +
+> >>> +/* uSDHC */
+> >>> +#define S32G_SCMI_CLK_USDHC_AHB		31
+> >>> +#define S32G_SCMI_CLK_USDHC_MODULE	32
+> >>> +#define S32G_SCMI_CLK_USDHC_CORE	33
+> >>> +#define S32G_SCMI_CLK_USDHC_MOD32K	34
+> >>
+> >> Why do these numbers not start at 0?
+> >=20
+> > Ah, because these are the SCMI IDs directly. If these are numbers that
+> > are in the TRM, just use the numbers directly - there's no need to
+> > create bindings for that.
+> >=20
+>=20
+> Hi Conor,
+>=20
+> I appreciate you taking the time to review the proposed changes. I
+> wanted to clarify that the IDs mentioned in the header are SCMI IDs
+> exported by the TF-A and are utilized by the second patch of this
+> series. These IDs are for the uSDHC controller to control its clocks. As
+> other SoCs use this model, I have included all the necessary IDs in a
+> dedicated header file:
+> - rk3588s     (arch/arm64/boot/dts/rockchip/rk3588s.dtsi:97 [0])
+> - stm32mp157c (arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts:73 [1])
+> - stm32mp131  (arch/arm/boot/dts/st/stm32mp131.dtsi:1372 [2])
+>=20
+> Should I remove the header and use raw numbers in the uSDHC node?
+
+IMO, yes. There's no abstraction/binding being created here if they're
+the SCMI IDs.
+
+Thanks,
+conor.
+
+> For
+> example:
+> > +		usdhc0: mmc@402f0000 {
+> > +			compatible =3D "nxp,s32g2-usdhc";
+> > +			reg =3D <0x402f0000 0x1000>;
+> > +			interrupts =3D <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&clks 32>,
+> > +				 <&clks 31>,
+> > +				 <&clks 33>;
+> > +			clock-names =3D "ipg", "ahb", "per";
+> > +			bus-width =3D <8>;
+> > +			status =3D "disabled";
+> > +		};
+>=20
+> [0]
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/a=
+rch/arm64/boot/dts/rockchip/rk3588s.dtsi#n97
+> [1]
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/a=
+rch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts#n73
+> [2]
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/a=
+rch/arm/boot/dts/st/stm32mp131.dtsi#n1372
+>=20
+> --=20
+> Regards,
+> Ghennadi
+>=20
+
+--j8ddR5K2BQkdwnI0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa0dCAAKCRB4tDGHoIJi
+0tbDAP9C3Ddt9YZ9DP7wBYaBEycx/ESvtGWww99gkrH/japApgD+JACED+ImvaAK
+GI58nfW2LBnYdiQEN0HZ6OvxWPwZtw0=
+=dtqZ
+-----END PGP SIGNATURE-----
+
+--j8ddR5K2BQkdwnI0--
 
