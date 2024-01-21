@@ -1,179 +1,172 @@
-Return-Path: <devicetree+bounces-33503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7652E83581D
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 23:24:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5904083581E
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 23:25:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 213A7B209FA
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 22:24:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF1DBB209FA
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 22:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE79838DFE;
-	Sun, 21 Jan 2024 22:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 333CC38F86;
+	Sun, 21 Jan 2024 22:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="EZYyzEc+"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="IfSO81QN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2065.outbound.protection.outlook.com [40.107.6.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD4DF38F80
-	for <devicetree@vger.kernel.org>; Sun, 21 Jan 2024 22:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705875873; cv=none; b=iLI3HUHQ8XmEdROut6AWV2e3sVaS3a8FHg6AZgBRpC/J9xzK5AMME3bKxnwzAxnj291HNwTE4YWxz34V9PcHk1zBiGJnHs7781HL4sYExKPdk1plUNrP7wh0MhFPhmbX28mxWtk/kK1ZzLcaIhdWYTMx37QA/Xb8fZbVT9AemT4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705875873; c=relaxed/simple;
-	bh=zmLBwVsFh47BvSJ4RqsSCHBL+dzCT4pfaKMB5Ybt0G8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=RlEquqFf5b2AkPDHZMJ7LPQwUhoEKCYRBXGbXKv5QtIdpWCUERxMomLTKnFXp+3AfZmBzofZe/cM93GQ8p0751kB0EgYu+9M9pPdLEaPMn7h1WjdgVmdUhdvcvYPlowM923U25Pv8QExlA9bVaQHxQu+uMPx7mL+0QR7j8O/N78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=EZYyzEc+; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234BF38DE7;
+	Sun, 21 Jan 2024 22:24:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705875893; cv=fail; b=HQ42j9+t99cvhFnhXWHRyLWHLxn1I6VlikM7lPMT05N7LRuMSyBXgI/97ImWFHeEyJFQsdFPzZ3H4CONGexzxjwkga5dNSlvo64CPa5P+yKA5ylnzQQbpn4nNhAuw+vHNNMXgxSlTCylKBA+qHRXWPdFKetFLZA0ifSdWWJyKQg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705875893; c=relaxed/simple;
+	bh=UZbK0F4GYapwC5GnfiWRWtb/RKBmxqcRn80ohg9mt0Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=LJgt9pdBY9viH3Cis7Swd0vd23VjN19lOj+9lRv4jsCJk/IE2K1lxNVbk0kyctVie5AgAHlh3Gp/LzGK3WPr4QOfyfv7E7VIGdlyTCKjFevr8DdFvN0Fg3I3wclhFYErzvXZDya67InsCSEhQxITeDXm10oig0o8xb/clAvzujc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=IfSO81QN; arc=fail smtp.client-ip=40.107.6.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gOkpZl9ZH7GP2TUFtLwiHxBce9nW6zFbXrus0ebkAtKT7wqYAQXmSKnILsJ2ULRoNl6jF0/+/paMECuwENAwS4UDIWHfOOgAul7IMNEdMC2TgEKpTnfU1ZDwgdJoyy9Ya1rP1SqcDrXV/V38KvcIo0FcXeGMvOVULoaT13OzrCPpO8BieRjyGy3Lrrc1A0CbiHaRHnx6OAYIPqCHWi44OCORYFCG1uMuteovYnrBjcqLaPe8hq1f08DVGwsnUwxPIkgkMOiDnEnwMCGwAhxMK3aWxgoPZV9PN7uSAePw/TAuMsIBqtCkpdvn6NhMmNVo43r3PaFbWz+Hn90dXLzRgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=thkdAMXk+T5jFDijiZX4Z1FVddyobFgdaE7WeZlKSBI=;
+ b=OqYLuPzCQUDIvZA3vl3w3iDjBbqgEa1F+9UIqH+Z0J0qcqtkI/uVAKcZseoDG2WFxyqDYZAnd+FSH9KGFNY8LvPRnCjOa1dAhFWseZBsIS7H3PiAViST7UNqOp3Uz8AJenYt0wVqHI3+TiiyU1w1wqvGmPkGyZrPHEDshO10B7/EtNwuYN1xnPkVyuavaISgtLsyW616v26iZ8POnb0E9e1MyXhaYw+D25y83RbKWU9KNMboDVUQpFvEwvqltHl1K9d6raUfZiDgcwp1esfWuUJfFNmPQmtuHA+YFclT/RB6K0b5DKRnq2Ly6BnhRyGYWj9Vppvvi6Ycgxw6s47vLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=thkdAMXk+T5jFDijiZX4Z1FVddyobFgdaE7WeZlKSBI=;
+ b=IfSO81QNevwbEZBQd6nYLkpvurCMjqkUDnfj91H70QKZ2kiQraA/ktCNjQuZRiUuiJqULdEfTnjc86DwUXocYuGgyxKTjF7zdk0MPy2DFPj8nLr7xrk8KHPImtOtvRFijLUSeFR3NngqAdKobGmFcGJPONlKFEg792In3CDH8Do=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PAXPR04MB9074.eurprd04.prod.outlook.com (2603:10a6:102:227::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.31; Sun, 21 Jan
+ 2024 22:24:47 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7202.031; Sun, 21 Jan 2024
+ 22:24:47 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: frank.li@nxp.com,
+	mathias.nyman@intel.com
+Cc: Thinh.Nguyen@synopsys.com,
+	balbi@kernel.org,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	mark.rutland@arm.com,
+	pku.leo@gmail.com,
+	ran.wang_1@nxp.com,
+	robh+dt@kernel.org,
+	sergei.shtylyov@cogentembedded.com,
+	imx@lists.linux.dev
+Subject: [PATCH v2 0/3] USB: dwc:  Add workaround for host mode VBUS glitch when boot
+Date: Sun, 21 Jan 2024 17:24:25 -0500
+Message-Id: <20240121222428.3396428-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BY5PR17CA0063.namprd17.prod.outlook.com
+ (2603:10b6:a03:167::40) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1705875861;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kYA0pVXUhDWGX0wz9mAK8CAo2C1eDwH/XgizBFFD7ac=;
-	b=EZYyzEc+1Bp6FHWD9jLmPtp0ZZDrDLF19MYwhOX+K3sNl2zwLMHPBvz1TdwiFH/ANEHmp4
-	eEGv2ewLmpabT7XMaA2VSPfwYRp9oj+XurX2bOKl5hpfdmqLE9R+QAf3KqC4nO9M/i9vZ/
-	8XZIT0UmCQASwF3mJd+7bxopwWPogmcSlFYlE4oaqym2IqNG69TXOsa/Gd8kgoHH1RBjH1
-	6FrOQi6C1SfTSe+3IKCIYcqPrvaM9jAWTU4yM199nq6rtoV6FTHeNvofhUVmmp9kMc5E91
-	kQ/PK2pFQrzO3TsROYZvhJCFALmns72jva7NpBsF9XsWnf7569lC1Z9cKvKz5w==
-Date: Sun, 21 Jan 2024 23:24:21 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Shantur Rathore <i@shantur.com>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dts: rockpro64: Remove usb regulator-always-on
-In-Reply-To: <CABEcMwU-pDTXZrc0qGZ1Or+Msb91uEVYh7SYM4nOfRKb8xB3mw@mail.gmail.com>
-References: <20231222141616.508073-1-i@shantur.com>
- <72f608668d619bda1cc620ce11eb3e40@manjaro.org>
- <CABEcMwWEru2DYnd-Y3qWbEp25unVd96TogSnQ+-L+NXKS3_pZQ@mail.gmail.com>
- <10691234.0AQdONaE2F@diego> <b666a1ac31ee761e7c86f65cb1914cf0@manjaro.org>
- <CABEcMwU-pDTXZrc0qGZ1Or+Msb91uEVYh7SYM4nOfRKb8xB3mw@mail.gmail.com>
-Message-ID: <18b48da2368dbd7af20b5440d8621d86@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB9074:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ea9af4c-8b76-4d81-d6f9-08dc1acfc675
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	0r2iCx7RjOu4esFKZ4Giv3CWvMkbIknrPD7UZg5ouCgJH3rgCwz39ZXz2G/Ft0DnMLnZjyLAITXDbYhuRoWmVJh7RNqc1uKReIJKYw/hVEs42Ngb1u2XJmpugahTliM+Ftk3sbXUBeVf/pPX1EWQuUF2g39meNyx9BHt9SJy9pDI52U5X5HcHRLbdq4sO8Z1F/KraETFpwHRTdq1zZ0pca75ui4ZQ04z7GCIfGZUkGvNICEAx3kwj1MDrgjuFv7ICfSY7dShr/vfiao8LUjfxPjOpMz7xflAWfxYxeGbJI4QVPIK86YKHxJOH1muwKI8IIej39NHPUH24Uw8BBSU/wECs4opx8vndpz0faS6Fzl+v+DTXpurT6lRvqlnNuWXuub99+BHb8EMkzAx4YiYwClv+CmavHzqxskXFN7cpSa/VRA0rilEGl883ZkJQbEPTPBFfIHi/E/Aft0e4+temEWceRJxazUozJ6Y4rLnc9E2L0muOHcY9lLe7mkA2PSNO3cai+7b5laMszTe8ZqGya/+B9Hn2N4rwiaZAo+pOViXr6oLJB1SZKjr8hAdgWD+fFZMyFHC7XSxiO+Odf00IauF4wsQW8GxJ1KoMVRkt9n+01NhTnW4Uccwobe2FNFkkdmIyDxQ+PyM7SUmeK1AUoB0/OleIVB9gzP/VgrPY1A=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(136003)(396003)(39860400002)(376002)(230922051799003)(230273577357003)(230173577357003)(186009)(1800799012)(64100799003)(451199024)(86362001)(8936002)(4326008)(8676002)(316002)(66556008)(66476007)(66946007)(36756003)(5660300002)(6506007)(6486002)(2906002)(41300700001)(52116002)(4744005)(7416002)(38100700002)(38350700005)(83380400001)(26005)(1076003)(2616005)(6512007)(6666004)(478600001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?Q3e6lqyFlMf1v15vlnQaP61ix0eGHojo2/tNcbuy/06o3UIVWjbHCmHWmPhx?=
+ =?us-ascii?Q?VM/tIb0/FIEiOJxV9E5uA4K584SSYPWZeuKvv6T/qWbH1w/VgXPVCOTxIxr3?=
+ =?us-ascii?Q?yoCfE51s93rWtmLtP1V3ZGNw3u/yGtWzp0xxlsiDkxFzG89Ahjnza203og5Y?=
+ =?us-ascii?Q?4O3eBk0OVMrkQuDdDGDXfH8kQpmsTERGnbc7sSsN3qvF7k+Z0rPuqpgta6V3?=
+ =?us-ascii?Q?pJWeYyBC6/O7pKUiHytOkE90slaRD1jiX4RMA0E4tzm9nxh8az2LxO0qlipi?=
+ =?us-ascii?Q?NgI3GHZtyKT5iV1HedwsONMmQDELvfPDlA+JMu3r/Ui+0gU4YevxHnPXrjf1?=
+ =?us-ascii?Q?s/w0iTe3M3k2whkFsWi+EXI98Wd1el3kXfJLWVuL3Phr1zEt5lUUt2x4j5MQ?=
+ =?us-ascii?Q?6puWJBN4Yg07OI3bNMpI8SH29NttjydjulVqytjW3NTnLnMhlf2zJ9+j5Wmj?=
+ =?us-ascii?Q?wFnnDhqeSkM3svWphD9jsvyfgH86gL6Xt0SKiRma49OkZEGTtjxSL4E+OYFR?=
+ =?us-ascii?Q?eRa5DKmAcjbP5EJtNkgG29UF4nTO5lsXSu+Nd8KUYvxsk9c6K80EBDMLdjWn?=
+ =?us-ascii?Q?bMELtVLtJFJhKeSlGEfE7iZWW5CFZSKyxeEVbB14gHn9AQ2zs0qQ/95zQPrH?=
+ =?us-ascii?Q?0twmPfL9QjUNICWMSvCmEpeYftnPiDgye8tZByPksFViz3HP9t7LielYiAaq?=
+ =?us-ascii?Q?DvCiK4h6Qtz4G/uogjzhu8K8kZdoeN0NoAki3EkRAdtiVhyF9TJXn+W0t8D9?=
+ =?us-ascii?Q?kCVMCNgfvhMuiL4kwYnY3smbqIVAPqQfdvzSJFBr6lFIVGT2BpFqjFhLfWBF?=
+ =?us-ascii?Q?/0K0R2DN59wh56/AzIeXvleHQ9cv/Pc6x7QG5nW9XZBqxbSm/Cc/U44qZpS5?=
+ =?us-ascii?Q?eTfyL6ndWopWYod0lH6MZJA2feptsKdQjJJX7Md5/WLItKuqSunaod8R86kh?=
+ =?us-ascii?Q?LpUJHnXOdYA8dATUsj8ANaa4vm7bM/1mUjUq+4KP+SGWCpJh3/0sfxUOYTtc?=
+ =?us-ascii?Q?eTHCj57KfUxPmA9VfJK4339IXsMP2yWOFx28pxJvq9aQqwTVsS6tsB3Nrh1j?=
+ =?us-ascii?Q?vVjvqP+Yf5bWFYhGD0LDg1Zw1M9kvvIGmwm/6x48apfGxOieydQlhRIjsKm9?=
+ =?us-ascii?Q?oZO2gNZ9b1a7DE1jxPiS49b7zS2S5V+8tf8Wr+nBW/KbWq5KLvOqNpYIoIot?=
+ =?us-ascii?Q?SSRfXt4VFAvQkWv6ickGYb1e0+f9ImYAVH+VpDX4OByGKgxSQNf4JrqsuPl/?=
+ =?us-ascii?Q?5xZrGHildOq/JEwJ/fwNokQ5eUQRcDUJo6AYSCgYnIXwVbW1XqrhCauHiJIF?=
+ =?us-ascii?Q?ViFwquV+ZH0bBEg7iwfFPfokwtO7MBU4v1A5KYHIAgHuG+sS3Yd/UWGQfzFk?=
+ =?us-ascii?Q?c853Hehg27HU/ZGgi4Z1uzuyMoPKBypT4gxvBO9CXm7t9eg7ym0wZ+UoxwqS?=
+ =?us-ascii?Q?FvcN5mlMunY/CABA0MaqPCwIBDcyQUY3uXkjq5UbLq94Mqysb//viHpGKhqi?=
+ =?us-ascii?Q?ELY6+LeVXAaBnPT8H+CIFAvpxy5RHnWdfOCyhToHWgFlsu2erkLrjuSoRe1Z?=
+ =?us-ascii?Q?eXdbJiC+L8VfesB0hw4=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ea9af4c-8b76-4d81-d6f9-08dc1acfc675
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2024 22:24:47.3592
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0BviCV8h7YoviBYM3K84vjHDWEGxlvMUquK0zWEFCn9vkTlz2yqO/lcK6PuVjUO7rfUz+8TiO+nVTiLnirutvQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9074
 
-Hello Shantur,
+Change from v1 to v2:
+- splite xhci.h to xchi-port.h and xhci-caps.h to shared marco.
+- add quirk subfix
+- fixed checkpatch error with --strict.
 
-On 2024-01-21 23:12, Shantur Rathore wrote:
-> On Mon, Jan 8, 2024 at 2:47 PM Dragan Simic <dsimic@manjaro.org> wrote:
->> On 2024-01-08 13:29, Heiko Stübner wrote:
->> > Am Montag, 8. Januar 2024, 13:11:17 CET schrieb Shantur Rathore:
->> >> On Thu, Jan 4, 2024 at 9:50 AM Dragan Simic <dsimic@manjaro.org> wrote:
->> >> > On 2024-01-04 10:44, Shantur Rathore wrote:
->> >> > > On Fri, Dec 29, 2023 at 10:08 PM Heiko Stübner <heiko@sntech.de> wrote:
->> >> > >> Am Freitag, 22. Dezember 2023, 15:16:16 CET schrieb Shantur Rathore:
->> >> > >> > USB port regulators should be controlled by PHYs
->> >> > >> > so we remove always-on property and let PHYs manage the
->> >> > >> > regulator.
->> >> > >> >
->> >> > >> > phy-supply isn't sconfugred for the TypeC port and now that we are
->> >> > >>                 ^^ configured ?
->> >> > >>
->> >> > >> > removing regulator-always-on, we need to fix the phy-supply
->> >> > >> > so the PHYs are able to turn power to type-c port.
->> >> > >> >
->> >> > >> > Series-version: 2
->> >> > >> >
->> >> > >> > Signed-off-by: Shantur Rathore <i@shantur.com>
->> >> > >> > ---
->> >> > >> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 3 +--
->> >> > >> >  1 file changed, 1 insertion(+), 2 deletions(-)
->> >> > >> >
->> >> > >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> >> > >> > index bca2b50e0a..f7273f7990 100644
->> >> > >> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> >> > >> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
->> >> > >> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
->> >> > >> >               pinctrl-names = "default";
->> >> > >> >               pinctrl-0 = <&vcc5v0_host_en>;
->> >> > >> >               regulator-name = "vcc5v0_host";
->> >> > >> > -             regulator-always-on;
->> >> > >> >               vin-supply = <&vcc5v0_usb>;
->> >> > >> >       };
->> >> > >> >
->> >> > >> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
->> >> > >> >               pinctrl-names = "default";
->> >> > >> >               pinctrl-0 = <&vcc5v0_typec_en>;
->> >> > >> >               regulator-name = "vcc5v0_typec";
->> >> > >> > -             regulator-always-on;
->> >> > >> >               vin-supply = <&vcc5v0_usb>;
->> >> > >> >       };
->> >> > >> >
->> >> > >> > @@ -859,6 +857,7 @@ &u2phy0 {
->> >> > >> >       status = "okay";
->> >> > >> >
->> >> > >> >       u2phy0_otg: otg-port {
->> >> > >> > +             phy-supply = <&vcc5v0_typec>;
->> >> > >> >               status = "okay";
->> >> > >> >       };
->> >> > >>
->> >> > >> Just to explain for me, what is supplying the "other" OTG port
->> >> > >>         u2phy1_otg: otg-port {}
->> >> > >>
->> >> > >> in u2phy1 ... this one is status okay, but does not have any phy
->> >> > >> supply?
->> >> > >>
->> >> > > In RockPro64 there is only 1 USB-C OTG port and the other port
->> >> > > is a USB-3.0 port.
->> >> > > To be honest, I am not 100% sure how this all works, as I understand
->> >> > > the USB3.0 port is wired to the second TypeC Phy.
->> >> > >
->> >> > > Maybe Dragan has more info on this.
->> >> >
->> >> > I'll have it checked and tested in detail, of course, but I have to
->> >> > recover from this nasty flu first.  Unfortunately, it has rendeded me
->> >> > unable to even think straight.
->> >>
->> >> Hope you feel better soon.
->> >> It would be awesome if we can get this in while the current merge
->> >> window is open.
->> >
->> > just a small comment regarding timing. All regular development changes
->> > need to be finished and in linux-next _before_ the merge-window opens.
->> >
->> > As this is not a fix it will go to 6.9 anyway - hence no need to rush.
->> 
->> Ah, yes, I keep forgetting that the current merge window basically 
->> goes
->> one more kernel version into the past. :)  Thank you for the
->> clarification.
-> 
-> Hope you are feeling better.
-> Just to update, my patch has been dropped in u-boot in expectation of
-> it being fixed here.
+left one warning to align existed code style.
 
-Yes, I saw that message on the U-Boot mailing list.  Frankly, that's the
-usual way, i.e. having the DT issues fixed in the Linux kernel first, 
-and
-then synced back to U-Boot.
+CHECK: Alignment should match open parenthesis
++	dwc->host_vbus_glitches_quirk = device_property_read_bool(dev,
++				"snps,host-vbus-glitches-quirk");
 
-> Do you foresee it happening anytime soon?
+Frank Li (1):
+  XHCI: Separate PORT and CAPs macros into dedicated file
 
-Unfortunately, I've been unable to focus well enough to be able to work 
-on
-this, as a result of still recovering from the _nasty_ flu. :(  Though, 
-I've
-been also getting gradually better, thankfully, so while crossing all my
-fingers and knocking on wood at the same time, :) I'd dare to say that 
-I'm
-expecting to be able to work on this in the next few days.
+Ran Wang (2):
+  dt-bindings: usb: dwc3: Add snps,host-vbus-glitches-quirk avoid vbus
+    glitch
+  usb: dwc3: Add workaround for host mode VBUS glitch when boot
 
-I apologize for the delays.  Bear with me, please! :)
+ .../devicetree/bindings/usb/snps,dwc3.yaml    |   7 +
+ drivers/usb/dwc3/core.c                       |   3 +
+ drivers/usb/dwc3/core.h                       |   2 +
+ drivers/usb/dwc3/host.c                       |  48 ++++
+ drivers/usb/host/xhci-caps.h                  |  85 ++++++
+ drivers/usb/host/xhci-port.h                  | 176 ++++++++++++
+ drivers/usb/host/xhci.h                       | 262 +-----------------
+ 7 files changed, 324 insertions(+), 259 deletions(-)
+ create mode 100644 drivers/usb/host/xhci-caps.h
+ create mode 100644 drivers/usb/host/xhci-port.h
+
+-- 
+2.34.1
+
 
