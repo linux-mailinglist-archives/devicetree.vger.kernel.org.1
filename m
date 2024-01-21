@@ -1,189 +1,222 @@
-Return-Path: <devicetree+bounces-33502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA1CA83580F
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 23:13:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3345283582F
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 23:26:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48F461F217F0
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 22:13:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9086B20941
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 22:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4440C38DE2;
-	Sun, 21 Jan 2024 22:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=shantur-com.20230601.gappssmtp.com header.i=@shantur-com.20230601.gappssmtp.com header.b="uKsHEfWH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EAB338F86;
+	Sun, 21 Jan 2024 22:26:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAFF2383B8
-	for <devicetree@vger.kernel.org>; Sun, 21 Jan 2024 22:13:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD7638F88;
+	Sun, 21 Jan 2024 22:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705875193; cv=none; b=DgZMItJVWRl9dS780wqznpRX42yf1Ey+nDHls20CXg/quisDAEG2lsEmuFTRfDWvbZhDYfukFp6N6PshF0tcIzSNKWTyZHCSRkbsXp46k0woVNxQqva0fNPldB35tz+Q4MTg4DeNCWILW0HV+wCJOtWIE+/pOnDCXt/aY+Tb37o=
+	t=1705876004; cv=none; b=r0EJfmmifEElQyMwWOxozIi64e4EWSd4hAQKWV8nr5xOr1DEi+ejYRspUO+9YJu8SBHp/f0rWuUUE5ELnsDTwhhFHcpbE5rPQGPNeFeo+jVnehmhOTZPJTydUACLwVgJFeaoU8XSGwiHpqonOCsIHFTi7UisbWykBrN59g9kQcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705875193; c=relaxed/simple;
-	bh=0G62XaxapcJaNB/6Zz4nC4aNQ2KdVOE0ydT8Ix8mff4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VNDUzLMP08Sw7h+8NY/lDeDKKG8pivtMRCzppjHgAhCqpse2olnt+Hw0iPgt44fAJo2ZdymfdxXuuzMCmrbdUfHPLM7ZWwUX28rjZC1hHlzTfPGbM8e2gZ/5UMYXRxQNnOdc/722J0a8qC7V2X7tRNOFniGblFkJyp9Cbf1DORA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shantur.com; spf=none smtp.mailfrom=shantur.com; dkim=pass (2048-bit key) header.d=shantur-com.20230601.gappssmtp.com header.i=@shantur-com.20230601.gappssmtp.com header.b=uKsHEfWH; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shantur.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=shantur.com
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7831389c7daso256278385a.2
-        for <devicetree@vger.kernel.org>; Sun, 21 Jan 2024 14:13:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shantur-com.20230601.gappssmtp.com; s=20230601; t=1705875190; x=1706479990; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VepHfkFUQi5Ztbvh0v7iqmXPYzszpDFD5MuXkxYNeM0=;
-        b=uKsHEfWHJ7KJ0ROf0VVKHaQEirTSFSXeBOJwVwOInCKFGupn3c8wQWWqQxuc4ETDLi
-         SaDXxUKkCXZLcEZPMxfH55jGNgD+Xg2oKmS4zC1FtUv64FHpLn8kWEq06N3tMqvT1ieQ
-         SfbtVeSkJzt1zMjfgGwpmQ8kwzERlSovFkInoA/BChBCtM/myg8skuZE56qm34KSTntr
-         SLoY4d/5776l9W0EWtlt/PLjRs+1z4o1CkQ5vS3gzRerEfZ/cIJraJjWD2WeJT75H7JD
-         Fxvqut/pkr/Uv4wqkXNLXGQKzxmdJSwwKHaxm9dqJf3fErGBKZFGUm8ZiIwtkTT6WUIs
-         +E0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705875190; x=1706479990;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VepHfkFUQi5Ztbvh0v7iqmXPYzszpDFD5MuXkxYNeM0=;
-        b=mT8m/sJHOH98ljurOoBWHt5fAwWnT5NDQJ6sA6ZCEM7yix38TC6u2IYqcCCS40TTy8
-         7MQzG/D7xF2H5DfQd9sYLlyqGfPnYGjbtpgznhxMzfx+qF/oYU1bu1UZriv2LFpXmymf
-         1TVkBwo5TgXbWf9VPHt4O5DJmYPIX3n/B49tgs+ZSnZyZFRC/At6PlXDQp6S251JnI1u
-         vajmWipQkSwXZORduPEFWuzUwJoXri+uja3n0rj4mBKk0jWYkfXTRvx/AForl3KYN4Sp
-         JjbC6XqPoob21rFsMc8/rVjza2uXKY5dIu97xeovRWXh1klTdMA0Ge+wvnmilogX3q+c
-         wwQA==
-X-Gm-Message-State: AOJu0YxP91l5orxp1kcd9tIfojGcm78Jfkbvz4qrzJDfCT0gHz/VeP9W
-	NTVV3b26AZu0JO3Qxc+/Iu3ISChXYB2jKZqGRaLDsKOFBxeHwF3E0j1BllZBfBovtXcoxRI/24c
-	GIGY9TUpvS3+4/GqCeC/ZEbAmpiG+zTmQfpZZqA==
-X-Google-Smtp-Source: AGHT+IGxoCZ7N4AlTl4Cty7IqnIIfBlU2/ZbSssJ8mWcaIqv4e99vprsv0UhiTLHjMXmIww9aWp1benDZSm4d2df8kA=
-X-Received: by 2002:a05:6214:f26:b0:685:8b1e:600c with SMTP id
- iw6-20020a0562140f2600b006858b1e600cmr4877959qvb.83.1705875190617; Sun, 21
- Jan 2024 14:13:10 -0800 (PST)
+	s=arc-20240116; t=1705876004; c=relaxed/simple;
+	bh=PXYpMSGdthUXJnhoTPbS8CoFfCy2vmnLSPU/3dNRZrE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dGtilTPPdC0zSxZMVhJIziFyQgnvcpPXadbXPbtOO7sRO8fdAJDOVRXIYp/2nN3kyrl2wYo4/q8xM1fKzcMqz9KYxz7UVPJzFIHk2vcpBNeeYW8Zq/rUSLL2F2iB2ch3UmGmjslb/Nn6OzQYIURTy7IOIb2p/VkrONSqyl7R24U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 101771FF15;
+	Sun, 21 Jan 2024 23:16:42 +0100 (CET)
+Date: Sun, 21 Jan 2024 23:16:40 +0100
+From: Marijn Suijten <marijn.suijten@somainline.org>
+To: Adam Skladowski <a39.skl@gmail.com>
+Cc: phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+	Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: msm8976: Declare and wire SDC pins
+Message-ID: <umllfip5rqeo5q65jbvdpisy5yaxpl54j4zdhi2hisdha5da4y@lwf2mjxuhiga>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>, 
+	Adam Skladowski <a39.skl@gmail.com>, phone-devel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht, Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240121194221.13513-1-a39.skl@gmail.com>
+ <20240121194221.13513-8-a39.skl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231222141616.508073-1-i@shantur.com> <72f608668d619bda1cc620ce11eb3e40@manjaro.org>
- <CABEcMwWEru2DYnd-Y3qWbEp25unVd96TogSnQ+-L+NXKS3_pZQ@mail.gmail.com>
- <10691234.0AQdONaE2F@diego> <b666a1ac31ee761e7c86f65cb1914cf0@manjaro.org>
-In-Reply-To: <b666a1ac31ee761e7c86f65cb1914cf0@manjaro.org>
-From: Shantur Rathore <i@shantur.com>
-Date: Sun, 21 Jan 2024 22:12:59 +0000
-Message-ID: <CABEcMwU-pDTXZrc0qGZ1Or+Msb91uEVYh7SYM4nOfRKb8xB3mw@mail.gmail.com>
-Subject: Re: [PATCH v2] dts: rockpro64: Remove usb regulator-always-on
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240121194221.13513-8-a39.skl@gmail.com>
 
-HI Dragan,
+On 2024-01-21 20:41:05, Adam Skladowski wrote:
+> Declare pinctrls for SDC pins and wire them to consumers.
+> 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
 
-On Mon, Jan 8, 2024 at 2:47=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> wr=
-ote:
->
-> On 2024-01-08 13:29, Heiko St=C3=BCbner wrote:
-> > Am Montag, 8. Januar 2024, 13:11:17 CET schrieb Shantur Rathore:
-> >> On Thu, Jan 4, 2024 at 9:50=E2=80=AFAM Dragan Simic <dsimic@manjaro.or=
-g>
-> >> wrote:
-> >> > On 2024-01-04 10:44, Shantur Rathore wrote:
-> >> > > On Fri, Dec 29, 2023 at 10:08=E2=80=AFPM Heiko St=C3=BCbner <heiko=
-@sntech.de> wrote:
-> >> > >> Am Freitag, 22. Dezember 2023, 15:16:16 CET schrieb Shantur Ratho=
-re:
-> >> > >> > USB port regulators should be controlled by PHYs
-> >> > >> > so we remove always-on property and let PHYs manage the
-> >> > >> > regulator.
-> >> > >> >
-> >> > >> > phy-supply isn't sconfugred for the TypeC port and now that we =
-are
-> >> > >>                 ^^ configured ?
-> >> > >>
-> >> > >> > removing regulator-always-on, we need to fix the phy-supply
-> >> > >> > so the PHYs are able to turn power to type-c port.
-> >> > >> >
-> >> > >> > Series-version: 2
-> >> > >> >
-> >> > >> > Signed-off-by: Shantur Rathore <i@shantur.com>
-> >> > >> > ---
-> >> > >> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 3 +--
-> >> > >> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> >> > >> >
-> >> > >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi=
- b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > >> > index bca2b50e0a..f7273f7990 100644
-> >> > >> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > >> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> > >> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
-> >> > >> >               pinctrl-names =3D "default";
-> >> > >> >               pinctrl-0 =3D <&vcc5v0_host_en>;
-> >> > >> >               regulator-name =3D "vcc5v0_host";
-> >> > >> > -             regulator-always-on;
-> >> > >> >               vin-supply =3D <&vcc5v0_usb>;
-> >> > >> >       };
-> >> > >> >
-> >> > >> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
-> >> > >> >               pinctrl-names =3D "default";
-> >> > >> >               pinctrl-0 =3D <&vcc5v0_typec_en>;
-> >> > >> >               regulator-name =3D "vcc5v0_typec";
-> >> > >> > -             regulator-always-on;
-> >> > >> >               vin-supply =3D <&vcc5v0_usb>;
-> >> > >> >       };
-> >> > >> >
-> >> > >> > @@ -859,6 +857,7 @@ &u2phy0 {
-> >> > >> >       status =3D "okay";
-> >> > >> >
-> >> > >> >       u2phy0_otg: otg-port {
-> >> > >> > +             phy-supply =3D <&vcc5v0_typec>;
-> >> > >> >               status =3D "okay";
-> >> > >> >       };
-> >> > >>
-> >> > >> Just to explain for me, what is supplying the "other" OTG port
-> >> > >>         u2phy1_otg: otg-port {}
-> >> > >>
-> >> > >> in u2phy1 ... this one is status okay, but does not have any phy
-> >> > >> supply?
-> >> > >>
-> >> > > In RockPro64 there is only 1 USB-C OTG port and the other port
-> >> > > is a USB-3.0 port.
-> >> > > To be honest, I am not 100% sure how this all works, as I understa=
-nd
-> >> > > the USB3.0 port is wired to the second TypeC Phy.
-> >> > >
-> >> > > Maybe Dragan has more info on this.
-> >> >
-> >> > I'll have it checked and tested in detail, of course, but I have to
-> >> > recover from this nasty flu first.  Unfortunately, it has rendeded m=
-e
-> >> > unable to even think straight.
-> >>
-> >> Hope you feel better soon.
-> >> It would be awesome if we can get this in while the current merge
-> >> window is open.
-> >
-> > just a small comment regarding timing. All regular development changes
-> > need to be finished and in linux-next _before_ the merge-window opens.
-> >
-> > As this is not a fix it will go to 6.9 anyway - hence no need to rush.
->
-> Ah, yes, I keep forgetting that the current merge window basically goes
-> one more kernel version into the past. :)  Thank you for the
-> clarification.
+Where'd the original sign-offs go?
 
-Hope you are feeling better.
-Just to update, my patch has been dropped in u-boot in expectation of
-it being fixed here.
+https://lore.kernel.org/linux-arm-msm/20221214232049.703484-1-marijn.suijten@somainline.org/
 
-Do you foresee it happening anytime soon?
+Thanks taking taking care of this SoC though.  My SM8976 Suzu device finally
+emitted the magic smoke after rebasing on the latest MSM8976 patches, and will
+need board repairs or a replacement before patches can be tested again :(
 
-Kind regards,
-Shantur
+- Marijn
+
+> ---
+>  arch/arm64/boot/dts/qcom/msm8976.dtsi | 100 ++++++++++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8976.dtsi b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> index 765c90ac14cb..5a7be93a0115 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8976.dtsi
+> @@ -771,6 +771,96 @@ blsp2_i2c4_sleep: blsp2-i2c4-sleep-state {
+>  				drive-strength = <2>;
+>  				bias-disable;
+>  			};
+> +
+> +			sdc1_default: sdc1-default-state {
+> +				clk-pins {
+> +					pins = "sdc1_clk";
+> +					drive-strength = <16>;
+> +					bias-disable;
+> +				};
+> +
+> +				cmd-pins {
+> +					pins = "sdc1_cmd";
+> +					drive-strength = <10>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "sdc1_data";
+> +					drive-strength = <10>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				rclk-pins {
+> +					pins = "sdc1_rclk";
+> +					bias-pull-down;
+> +				};
+> +			};
+> +
+> +			sdc1_sleep: sdc1-sleep-state {
+> +				clk-pins {
+> +					pins = "sdc1_clk";
+> +					drive-strength = <2>;
+> +					bias-disable;
+> +				};
+> +
+> +				cmd-pins {
+> +					pins = "sdc1_cmd";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "sdc1_data";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				rclk-pins {
+> +					pins = "sdc1_rclk";
+> +					bias-pull-down;
+> +				};
+> +			};
+> +
+> +			sdc2_default: sdc2-default-state {
+> +				clk-pins {
+> +					pins = "sdc2_clk";
+> +					drive-strength = <16>;
+> +					bias-disable;
+> +				};
+> +
+> +				cmd-pins {
+> +					pins = "sdc2_cmd";
+> +					drive-strength = <10>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "sdc2_data";
+> +					drive-strength = <10>;
+> +					bias-pull-up;
+> +				};
+> +			};
+> +
+> +			sdc2_sleep: sdc2-sleep-state {
+> +				clk-pins {
+> +					pins = "sdc2_clk";
+> +					drive-strength = <2>;
+> +					bias-disable;
+> +				};
+> +
+> +				cmd-pins {
+> +					pins = "sdc2_cmd";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "sdc2_data";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +			};
+>  		};
+>  
+>  		gcc: clock-controller@1800000 {
+> @@ -1246,6 +1336,11 @@ sdhc_1: mmc@7824900 {
+>  				 <&gcc GCC_SDCC1_APPS_CLK>,
+>  				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>  			clock-names = "iface", "core", "xo";
+> +
+> +			pinctrl-0 = <&sdc1_default>;
+> +			pinctrl-1 = <&sdc1_sleep>;
+> +			pinctrl-names = "default", "sleep";
+> +
+>  			status = "disabled";
+>  		};
+>  
+> @@ -1262,6 +1357,11 @@ sdhc_2: mmc@7864900 {
+>  				 <&gcc GCC_SDCC2_APPS_CLK>,
+>  				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>  			clock-names = "iface", "core", "xo";
+> +
+> +			pinctrl-0 = <&sdc2_default>;
+> +			pinctrl-1 = <&sdc2_sleep>;
+> +			pinctrl-names = "default", "sleep";
+> +
+>  			status = "disabled";
+>  		};
+>  
+> -- 
+> 2.43.0
+> 
 
