@@ -1,58 +1,66 @@
-Return-Path: <devicetree+bounces-33905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 815838370A6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:48:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE3B28370E1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:51:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 743F11C28B80
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:48:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1697928DBC2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:51:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F2340BFC;
-	Mon, 22 Jan 2024 18:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33BDE3E481;
+	Mon, 22 Jan 2024 18:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFH6ERSa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aZVtshFo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00213E474;
-	Mon, 22 Jan 2024 18:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 028253D99D;
+	Mon, 22 Jan 2024 18:18:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705947312; cv=none; b=ox3NRb0LSUwJo308mZ6SVAp4VDGTADYU65DoMSL9fUNPPL4KSvdAyqvhuEb24MOjqxwbuvymAq4WcQX67SxWyEHINecTjCwcNTcOEJDYAjHt4FhhSC+0GWY5Fl6yekdo+OHMzZAgcJ69IO0kFf2TFmchJRQRuReTVdxC+2N9hL4=
+	t=1705947499; cv=none; b=ak2Az8aBRxEeTiBmyz9E79qbRVvPFQ08I+Ky1u1791seyrF9a11pOKziAFsYAVzSOunjZOQjThmCfshHVXtmeUliIEAXa9lbqzZQT9kdWXdo/KuEZCCYmTXgl2TtIfVmPs1ADSuZ4cFHFtuDVN/LET6O6Dgb2gbYALOJs2MCz2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705947312; c=relaxed/simple;
-	bh=5C6exGsza/X9DUjMWBVUbMQ8kIAdM/dB4GnTMkspNvg=;
+	s=arc-20240116; t=1705947499; c=relaxed/simple;
+	bh=2usFrpfFbvgtllKuc13YKWjWHiLTD42R7HKFi/spe1M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ABdTO+hevpqrU46SddQBuAnx/RVNeUysT7JsdgK3j+k3uq1wbR/u55iJ1zgP6dPXZCCdA/odbhbjlj6RQZwXQGbUoMjQqeRFlAn8KdSj16vjFfFkzOfwwhTG29x+GbuR8qb2pkIPaSI4gwT9Eg3qy72Uvoa5libcA3PI1y2cNnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFH6ERSa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7914C433F1;
-	Mon, 22 Jan 2024 18:15:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FFmxQtwEqg8g6rUuZCY4C+NvxBlDMrbC/8fTPOV1rQ3rgHNvO7Gxr+s6jJ06/1cP6bypP0bOr6ExH2IRIvwNXeeSL+heRj9fizEA6GtjSGt/KuH/EfyGGxZR9Rb0qjryeePUWfeDiZuPW9ub/qOd3qcBe3hRESDlIjJ3tAQqIog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aZVtshFo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9208C433F1;
+	Mon, 22 Jan 2024 18:18:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705947312;
-	bh=5C6exGsza/X9DUjMWBVUbMQ8kIAdM/dB4GnTMkspNvg=;
+	s=k20201202; t=1705947498;
+	bh=2usFrpfFbvgtllKuc13YKWjWHiLTD42R7HKFi/spe1M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JFH6ERSazTj7JSLmqipaSOie1Xtw42+N/ydXvMtTYFTdI/xdEmwl8spUQrD9xEteI
-	 sJbHLiw+QOjxZU5e4ldpPhlW7guyekXTNG/U2KFDuhwUqTSoiMCAjsB1oNMenhqwG3
-	 vxAJVbKuQPkxuclBO7fm1OmmcpMAUmSB72t68Y9DpEJ/rIQrvggqjGDAR71AxjbN5W
-	 yn45wlO9Zcjv4p2RhIkV+FmCfp1I1T7qgPKngZGfM4QtJ+r5fQqbWOCPiEWz6OALVh
-	 e+wgfqn9Vr2LbO/XqpfJf0JNrl3ETT6/5usALK9UfgSatJMVABZVYyOD0GYgJ81RGA
-	 Dv8QWnwfvLxAw==
-Date: Mon, 22 Jan 2024 18:15:07 +0000
+	b=aZVtshFoH3qE8Y19hWmbNEnsrrQWORDUdoLvMqOpB8fuKw/mgCKX3F0AiOC5lDjD/
+	 ip/FkCB0CCepVd83zeSbnpw476NSnJXYQZAkKcwACqPdF8vBthzE0RsLnzJ01we9Ic
+	 ICmqpLjOU3sIMMQp1LVNs6Hpg6hZchZVa+2RMVgF7qTI5Ht5FDOtbuMeqxVD2gh1k9
+	 GbkOACxvO3PIHVNWRIIBJljZbAIDi3UQ10E0gUKi+Xq+SNqTL7lBEGZ4lw9YcDKeLt
+	 R4kS3B/h3x+DF05EQPPty7N61T7BmGXFz7POhZptSwXs6bR3MUkKBUjMf9YIOgMY7K
+	 tAEp+jU0a7CtQ==
+Date: Mon, 22 Jan 2024 18:18:12 +0000
 From: Conor Dooley <conor@kernel.org>
-To: marius.cristea@microchip.com
-Cc: jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-	jdelvare@suse.com, linux@roeck-us.net, linux-hwmon@vger.kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-sound@vger.kernel.org, dmaengine@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: adding support for PAC193X
-Message-ID: <20240122-fernlike-resolute-b16772806147@spud>
-References: <20240122084712.11507-1-marius.cristea@microchip.com>
- <20240122084712.11507-2-marius.cristea@microchip.com>
+Subject: Re: [PATCH 4/7] dt-bindings: dma: allwinner,sun50i-a64-dma: Add
+ compatible for H616
+Message-ID: <20240122-resemble-nearness-60dafde2e25d@spud>
+References: <20240122170518.3090814-1-wens@kernel.org>
+ <20240122170518.3090814-5-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,200 +68,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qi0TL78qGZaNp8GQ"
+	protocol="application/pgp-signature"; boundary="uMkVNq/eMDtdcPET"
 Content-Disposition: inline
-In-Reply-To: <20240122084712.11507-2-marius.cristea@microchip.com>
+In-Reply-To: <20240122170518.3090814-5-wens@kernel.org>
 
 
---qi0TL78qGZaNp8GQ
+--uMkVNq/eMDtdcPET
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hey Marius,
-
-On Mon, Jan 22, 2024 at 10:47:11AM +0200, marius.cristea@microchip.com wrot=
-e:
-> From: Marius Cristea <marius.cristea@microchip.com>
+On Tue, Jan 23, 2024 at 01:05:15AM +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 >=20
-> This is the device tree schema for iio driver for
-> Microchip PAC193X series of Power Monitors with Accumulator.
+> The DMA controllers found on the H616 and H618 are the same as the one
+> found on the H6. The only difference is the DMA endpoint (DRQ) layout.
 >=20
-> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
-
-I like how this is looking now. I have two minor comments that if you
-resend for some other reason you could change, but otherwise:
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
+> Since the number of channels and endpoints are described with additional
+> generic properties, just add a new H616-specific compatible string and
+> fallback to the H6 one.
+>=20
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 > ---
->  .../bindings/iio/adc/microchip,pac1934.yaml   | 120 ++++++++++++++++++
->  1 file changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,p=
-ac1934.yaml
+>  .../bindings/dma/allwinner,sun50i-a64-dma.yaml    | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.=
-yaml b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> new file mode 100644
-> index 000000000000..cd9cb2a71566
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/microchip,pac1934.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/microchip,pac1934.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip PAC1934 Power Monitors with Accumulator
-> +
-> +maintainers:
-> +  - Marius Cristea <marius.cristea@microchip.com>
-> +
-> +description: |
-> +  This device is part of the Microchip family of Power Monitors with
-> +  Accumulator.
-> +  The datasheet for PAC1931, PAC1932, PAC1933 and PAC1934 can be found h=
-ere:
-> +    https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/Produ=
-ctDocuments/DataSheets/PAC1931-Family-Data-Sheet-DS20005850E.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,pac1931
-> +      - microchip,pac1932
-> +      - microchip,pac1933
-> +      - microchip,pac1934
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  slow-io-gpios:
-> +    description: |
+> diff --git a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-d=
+ma.yaml b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.ya=
+ml
+> index ec2d7a789ffe..e5693be378bd 100644
+> --- a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
+> @@ -28,6 +28,9 @@ properties:
+>        - items:
+>            - const: allwinner,sun8i-r40-dma
+>            - const: allwinner,sun50i-a64-dma
+> +      - items:
+> +          - const: allwinner,sun50i-h616-dma
+> +          - const: allwinner,sun50i-h6-dma
+> =20
+>    reg:
+>      maxItems: 1
+> @@ -59,10 +62,14 @@ required:
+>  if:
+>    properties:
+>      compatible:
+> -      enum:
+> -        - allwinner,sun20i-d1-dma
+> -        - allwinner,sun50i-a100-dma
+> -        - allwinner,sun50i-h6-dma
+> +      oneOf:
+> +        - enum:
+> +            - allwinner,sun20i-d1-dma
+> +            - allwinner,sun50i-a100-dma
+> +            - allwinner,sun50i-h6-dma
+> +        - items:
+> +            - const: allwinner,sun50i-h616-dma
+> +            - const: allwinner,sun50i-h6-dma
 
-This...
+Instead of introducing this complexity, could you instead use "contains"
+here? Unless I am missing soemthing, you can achieve the same thing here
+with:
+|if:
+|  properties:
+|    compatible:
+|      constains:
+|        enum:
+|          - allwinner,sun20i-d1-dma
+|          - allwinner,sun50i-a100-dma
+|          - allwinner,sun50i-h6-dma
 
-> +      A GPIO used to trigger a change is sampling rate (lowering the chi=
-p power
-> +      consumption). If configured in SLOW mode, if this pin is forced hi=
-gh,
-> +      sampling rate is forced to eight samples/second. When it is forced=
- low,
-> +      the sampling rate is 1024 samples/second unless a different sample=
- rate
-> +      has been programmed.
-> +
-> +patternProperties:
-> +  "^channel@[1-4]+$":
-> +    type: object
-> +    $ref: adc.yaml
-> +    description: |
-
-=2E..and this...
-
-> +        Represents the external channels which are connected to the ADC.
-> +
-> +    properties:
-> +      reg:
-> +        items:
-> +          minimum: 1
-> +          maximum: 4
-> +
-> +      shunt-resistor-micro-ohms:
-> +        description: |
-
-=2E..and this | are not needed here as you have no formatting to preserve.
-
-> +          Value in micro Ohms of the shunt resistor connected between
-> +          the SENSE+ and SENSE- inputs, across which the current is meas=
-ured.
-> +          Value is needed to compute the scaling of the measured current.
-> +
-> +    required:
-> +      - reg
-> +      - shunt-resistor-micro-ohms
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        pac193x: power-monitor@10 {
-
-This "pac193x" label is not used and should be removed.
-
-Thanks,
-Conor.
-
-> +            compatible =3D "microchip,pac1934";
-> +            reg =3D <0x10>;
-> +
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            channel@1 {
-> +                reg =3D <0x1>;
-> +                shunt-resistor-micro-ohms =3D <24900000>;
-> +                label =3D "CPU";
-> +            };
-> +
-> +            channel@2 {
-> +                reg =3D <0x2>;
-> +                shunt-resistor-micro-ohms =3D <49900000>;
-> +                label =3D "GPU";
-> +            };
-> +
-> +            channel@3 {
-> +                reg =3D <0x3>;
-> +                shunt-resistor-micro-ohms =3D <75000000>;
-> +                label =3D "MEM";
-> +                bipolar;
-> +            };
-> +
-> +            channel@4 {
-> +                reg =3D <0x4>;
-> +                shunt-resistor-micro-ohms =3D <100000000>;
-> +                label =3D "NET";
-> +                bipolar;
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> --=20
-> 2.34.1
->=20
-
---qi0TL78qGZaNp8GQ
+--uMkVNq/eMDtdcPET
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa6wqwAKCRB4tDGHoIJi
-0q6hAP0QD1uLecPK8JtF9dahFAlvXtAIK2MF/bEG/+d2xCVPwAD+NitieK6tvevt
-VhVPZLPjU6FN4abGu0j2yODLo75rmQg=
-=CcoM
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa6xZAAKCRB4tDGHoIJi
+0uhrAQCnxXs/YZMWmhTaL2/x37/8c6V1hW8i0Fcy+4pF/j9FagD+PzvoVb1uq4Xb
+caz2uxuyDai5nYCpKQMlFDgQp1wcIgs=
+=u1wG
 -----END PGP SIGNATURE-----
 
---qi0TL78qGZaNp8GQ--
+--uMkVNq/eMDtdcPET--
 
