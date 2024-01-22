@@ -1,204 +1,205 @@
-Return-Path: <devicetree+bounces-33555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30DD0835ADA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:16:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CCDF835AEA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56F6E1C23D6E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 06:16:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B262D285B8B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 06:22:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3470B5697;
-	Mon, 22 Jan 2024 06:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807F76122;
+	Mon, 22 Jan 2024 06:22:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="fXGNWFDp"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ySbi0Bup"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2083.outbound.protection.outlook.com [40.107.104.83])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44CDFFBE7;
-	Mon, 22 Jan 2024 06:15:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705904122; cv=fail; b=okALCF49OI5zsQfCI/nuIuSvbgAlbILMzC17asYohzklf1Tuuyjcl0U1V7s+Ub90sv6NhgdJnnUkMLCF8o45Kdzj1LVbALTS5PFd3KivS0d7Z1+x649+NslcCw51/Uyq+jBnXegv1ORWnC7MIv3ncSn+++9IVktw5nPOLXqPPZo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705904122; c=relaxed/simple;
-	bh=OLG9wG9LUNbqZgE7A6vouI4hKE6Or0wu0XkTbvbXM/U=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=K1gmsKSkCdLREVE0zCw/tuiTgdUUKkG1gHbOrhNmetWXhq3Hdi5kV7mSjofgt6TA9qXJpiD2av+2iju3KphBCPY3i5Fnt0fDg6mv6QPW9LljVmLkxKWUW3qT+7aX5l2k54mhEptJNocxrSP3I45bet9H0K70FoTgwJxoTz4kawA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=fXGNWFDp; arc=fail smtp.client-ip=40.107.104.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Vr4QqslISUzM7TSBNkf83aRcV/3Y3xqUh6mn1DZaAaBgp9QQMtDmdWnjTPHpuwE5d+RMhiV5nHG7O6AsPbjTRqnbdSU7/3PEEu6jmWEB0G+IRSwvbjgT9QTQ8s5OLtwIPjI8Y5mVyQF22zt6tWgcqb1fS4sPyS0YScWTIu7EbRGQC0V6cq/lZOqQAbo93myM4Pyrbm3VtBGGRO5uxvAbWWax6QLMGZ9dTod0gHBO8oeq5IZ5DUnvnvIYkitLimlDqfPB+sLfNgRFV0C65Mswm8KLfF1ThUEHvsgUWc/53PNY+aER1NgnR3I7ybv5AYidl0DSX5qr/roglg8PmNshbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S00LkTCO5ug4Wk2kAzcZUF6yq0Qq/+Ds7+Kxe0oX3wY=;
- b=HkoHwdZ10NEwJROrZ4G8piznTz+74TB/Pwp1H9gfULFkqbz9O+IUViCX4pMWazrUoRVsHXRoP2wjwf9SXNT2QH5kLyCoA1Ck6uV1KP0ADTUFIuParuw6F5bTfC7FsidYDhfzOd5Q5w0WsxFhbDfKvlC8W7H4B89YUcxk9rBprZzK5bge7KWgHp1qSpICs83ehlzJhFDhO7IK3MRk+XOm3Iu4eMUmysE5DMKOeQrG0V73Dq/5FLKskvmwgR9L9jp0I8qEGbMF8kbaIwGxQUt2jClqpF7MjZ4AkhuZrgY/dndM4X+5YoFVM1Y8p/Wtcwb5qom/FT7iNX81jo4a+xzpqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S00LkTCO5ug4Wk2kAzcZUF6yq0Qq/+Ds7+Kxe0oX3wY=;
- b=fXGNWFDpPIHryX+KHqLLikLzglGVyvCUw8Hl6Q13KLY4cW3AX3bIDqQ7TGPAMAe9Bj43SO7NJIsSuyMfeoG9dvp9fGY9yhrLnX1RNJtqLnWnu8JaW/TuMZnh+wFbb6zodhHbuMy2TlX+7HK0uFXyORntHxZVIHWpCA9HXbUVcvk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AS8PR04MB7991.eurprd04.prod.outlook.com (2603:10a6:20b:289::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
- 2024 06:15:17 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::c499:8cef:9bb1:ced6]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::c499:8cef:9bb1:ced6%3]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
- 06:15:17 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Mon, 22 Jan 2024 14:19:25 +0800
-Subject: [PATCH v2 3/3] mailbox: imx: support i.MX95 ELE/V2X MU
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240122-imx-mailbox-v2-3-7b3c80333b92@nxp.com>
-References: <20240122-imx-mailbox-v2-0-7b3c80333b92@nxp.com>
-In-Reply-To: <20240122-imx-mailbox-v2-0-7b3c80333b92@nxp.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1705904372; l=1750;
- i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
- bh=0B4VqTwtXtRr4S+gF9oNw8ppit14PJMMR/X9Pho1nAU=;
- b=6/Y4PilE0iGqExizKj2SGLsapcs3S3CBDLyoANg4NG0ZmEb1Ayh5qHAJq9bs8xpqJmIH7XVFL
- oHrjtEShkEDDjL21nANa9vQoP7xczhaqgVvegMFnphq4FRSoMKftuEb
-X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
- pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
-X-ClientProxiedBy: SI2PR02CA0007.apcprd02.prod.outlook.com
- (2603:1096:4:194::23) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E67E544;
+	Mon, 22 Jan 2024 06:22:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705904574; cv=none; b=VC2/Hld4+tCIUbTIH1jIe2z43zaa9WO9GuOdoyKy8mwYjGq7yQpHYQeZPivcvTejOq6CGgbHQ141gzYidaYZOIjK5ZuQVIa86yfsDTnwUAjoTa4V4IXA2wC7Cwz5jUsJ65wi73eUTEtp/FUEDv232qP4t7TCqV5uMhQqOd5g6ME=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705904574; c=relaxed/simple;
+	bh=CzhiHN6u0gpFlsap7Hp3kow/s+0QRoaF21t02f0p+KM=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Xvh6Sa5AU9uzCx7vk4z7iyTKCLoeq7GkmVlb1MMKgzu6y5guiO1Enkw5QqQ7JpaZg+YgRMVC0yTdChAIKXK5S3kDg0GL5Vs4XpyA45H9ef/PSzCWsbenUejYs+3S6rNqAUlyuzSAF1CIu8EjzfR44WJjPbijltgdfFUILxXa3ZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ySbi0Bup; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AS8PR04MB7991:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6a816271-624b-48ed-6e09-08dc1b1180e0
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	rs2HSsXjnE1TU9XtmStwNgJRd2Dq78P8xnQ4Hovs8Cftzg7/zRbBRZZuVu1vP/GlXmJU2OKZgvqb7TG45wePRUPuZeYHwVUtowNvtnfCN/hhciSCcHp/Esm47tGGXDL8qdrF4L56WX+IWOtksO/59f+UtBiHaVhXJelbwOHm8jjx6m74AmCUG6uQpHvJrF/Wz6yru6cK9YDV+iIPfhSt2HZPB+D61L8UznAbNm7CKuWqvt5JesOMnkEvLW2v6yrzr6hvwIhkC182vAOfc585+ME0DaoHMZcdpfXZg5ZE96WsaYeyTY4drKtXLKc2oN6hD6r2iHeieB7BsCGspCqgzkFF7vFueYA3N8/f96JwQp2cTwzG0OLA1kcYY0js8w2qpODc4llAwDfW1cMiTBtBFmV+MgFYVyBShWZAhJ1JVDl4EfxkyfoDmsGZJWu6HYApmF6jj2mnBY9CnG5uuwBh50vFIk92ccAi0xWiA488veGSMrfog6P1zvOe1AEHk8rUeLy6lix4PjMkL+2lh4c6+Zf4ICHD4vuMlKFURIAXwET4vXBrQA2dKEd+fJ7pkzoScVfSalCG/5+OASUJOktrRhkEUiCAUKPN/9EcNu7WaA6bLrp5bG4FYIvKo3P/CAs2vTMWHzmH7RHATTxtV2O/5A==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(136003)(366004)(396003)(346002)(39860400002)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(6666004)(6512007)(6506007)(15650500001)(5660300002)(66556008)(66476007)(66946007)(52116002)(38100700002)(8676002)(8936002)(9686003)(4326008)(2906002)(7416002)(6486002)(316002)(110136005)(478600001)(26005)(83380400001)(921011)(86362001)(41300700001)(36756003)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?L1M0TzZ1dGZJeVZIL1RoYlF1cEtUT0J6KzQvTDhZdjRaVkh6RHFxODNIRlZv?=
- =?utf-8?B?NkNKRU5GQzlSZFRrMnlJdWljN1ZRbWJwT3pwNVVWOEVWY0haellQOFlNd29r?=
- =?utf-8?B?MEY3eit5UUhyUVNDejRtb1BpVWFrTVgzejlwVit0N1Bob3Y3eTE0emcrOUhW?=
- =?utf-8?B?Z1ZSMUhvd3pGcG9IYkpTOHEvTlA2UG1KeU05R2JCaHdmK3NDWFZmT0ppRC9q?=
- =?utf-8?B?NkFNcUFwZGJaRExzVitCZnQyV04ydzdGN3g4ODVBVUc5bGFNb3hOQ1lJZEZQ?=
- =?utf-8?B?VXJHUkZzUTVodW5qN2ZadzBkQkowTEVIcjNaVkdSYXlDbEtTNEo5SVlHYk94?=
- =?utf-8?B?M2pvb21tdXVLbmJ5QjE3M1dWTC94UjhJY20yRzNxZ05lWG5qekdVOHpsSUIy?=
- =?utf-8?B?UGExT21vaUxLZ1ZYVzZjRXFIR3ZZNDJtbXAwUWsxVjJFaU1OMzYyaU4vc3k3?=
- =?utf-8?B?OVZVTmhzbkpVT0Y2SE1LdDdJdWpCWVNjUlV0MzN3TnVpaHRUQ1JXZmQ4U3Fz?=
- =?utf-8?B?VC9Sa0ZFWHF1U1VoR1Y4M09wTVRwd3BIaStwVGV1Q08yUnNhNmw4T20vVU1h?=
- =?utf-8?B?TUh5c0NUNDhkSisvM0hrM1Y0NGtnQXhjaUo3TG4wVmNRTHYvb0FxZ3k5RVEy?=
- =?utf-8?B?Y1BWSzE4c1czQy94c2g3Sm1YVXFoQm5BRG1lOWQwcDFvYnIxZ3luR0lYdkRS?=
- =?utf-8?B?RUFHWUpmODg4NmNyQUlrRjh5RjdSMVJ3aWdsdis5b1lmeEtGNjltcFI2bDBw?=
- =?utf-8?B?VVY2blJuZDlXTWdXS1c0dGZZTGxLNWZiTDB6RSs0OWtub2FTR3BZbWNRMDE4?=
- =?utf-8?B?ektyaUlPSWV3Y3RSZkZEcUdOMEtjUEd2ZnhUNm42anpPNkhyVGc1WFRXRXh3?=
- =?utf-8?B?VTAzeHdqNG84d1VBaWZ0WXhuai9YZlBnck5Ta1JmcFMycDZtOXpueG5RODBS?=
- =?utf-8?B?VHhDOVVjQ2hQOW13T0ppelRad01BSmNJNlVYNS9KT0xPVGg1a1JuSENETWlU?=
- =?utf-8?B?V2xwR0ljT0tpTEZCL1YyMW8xSmFBRkprU3JpNkNyY3ZuSzNMWlljZHZMQTBz?=
- =?utf-8?B?dlVWNVp0WHFwTWczSmN1NFVxL012b010N3BKRGVWb2xLMk9xRlRKVGZaT0hI?=
- =?utf-8?B?R0ZvZTRINEdXWGRaL3NZaU9iamZ2Mzc2NUxUSVFFM3E2MWZ4Q0JaRE1Jdlc4?=
- =?utf-8?B?VFVXQjRJWEtmS29zZ0lScUNnNDVTemxpLzJnVWlYd0pzVVlSVEgrMmtrYS9l?=
- =?utf-8?B?MUhZdzVVUjFXcUIyTEY3MjRzdEFhVTZOZnhZeS9FVWZQY0c0RGo1R2c0WlRO?=
- =?utf-8?B?T3NoZTR2d1ZhdjVPejIyMEMvNkphRER2aU92U2REN2lybWkzY0tkN1ZIdllF?=
- =?utf-8?B?aUZqaGxKRTUvUDdqWU5yNERWSjN5OURNM2pHR0R2akFGZ04xSFpMYnhWSDF3?=
- =?utf-8?B?Y0V5QVR1cWdYMHp2OUg0OE9nWWlzWHFoN2Q3dWNUNHdLSUNPRDhzYVpVeXV3?=
- =?utf-8?B?K0VnTE51QXIwMDZzMVdhQklJcjExZEs2SXNhNWM4M09MaGsrMEYzb1p0U084?=
- =?utf-8?B?OUwxZ21tUEc4aTRBL290OUJCeWxQYWRDeU9DUElvM1lwN1Fzc1dzZ1Z0aWZa?=
- =?utf-8?B?aHNITFV0bnBTODhZSFNIQm1JSitncFFURy9PUVNXVkdSRm0wc3VENlV2cmll?=
- =?utf-8?B?N1NFcUhmZkFvV3dLaEJHVDN4elRyMis0cms4L0RKOEx5UzZsV1NOWldiZkV6?=
- =?utf-8?B?QnNYQjN2Y1lNQUcvN3ZBZU0zNlRkRGZZV0ZlZGpSTzRlRUxZdjlpL0JpZWMy?=
- =?utf-8?B?U21jMG9CTnVUUXlzQW5acnhueDdjRi9BR20xVGM5R25FQy83aVIzOVNsdmI2?=
- =?utf-8?B?K0E5VytwQ29pSHFKN1V5VGJHQ3VFbDRQSFVtdkp5T1dFNjF0U1F0cjFPVkh2?=
- =?utf-8?B?NlFlZ2Z3OTluQVlpL2tCSCtOc09VQmtpbERvaERmNXQ2VzFoSzd0WW5yeitu?=
- =?utf-8?B?WmpNTWx5c051MW03MzgwanBkR0M5bVdvSjZSY0NnaFNhQ3lHRllQOXBlc0NU?=
- =?utf-8?B?R0x5aUhYYkluMy9CY01TaVZDUFRaSW9RSk9GUnNnZ1ppVmFLbFh6TzRyL0ZC?=
- =?utf-8?Q?CZUUldXQF/gAQygaCg2Ig/H7R?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a816271-624b-48ed-6e09-08dc1b1180e0
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2024 06:15:17.1581
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /M4NLGZhUJQmpp87H8Yq32zV6p+SwTWgXlYpeUrXO9Xnp0UfGLBGTuhPbr1eV2K0d2Pl8ZpE+yQ2dEoF/1VuDg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7991
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1705904568;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NGW+mj+q9tiz/KdV2tQu1Nhq7mIgOYFGcF0u7JC10Do=;
+	b=ySbi0BupnyQJqV5I0AfVFTNF97XV7NaLZohRQwdLCMBg6d4a6rzdpaii3BHac/f6BAubei
+	KKX0rKndatvwgHUerkUzCB5slKXgdQRXxL4kIDBGuICo/BognxOxgtuuUj3GVLIkVDKxTu
+	uDIS0btQT7zg3P4yCfHreo1pqt2rvYVfhF6lRUXW9qo2FjMhIGM9kCA6iriHeSkadgyaBZ
+	byeXgk49myFXSh3fgyfzIGO/yiAHKbpt8FnoUgeEarSQOl4Qz9kEYtXgaEgsRJeWoli/iH
+	BYr6T9K/nHaw8YNdg74dXTzxnHHPuLfl6FjBsVCIpbU2GJlaoMSCJyfBzUAFyg==
+Date: Mon, 22 Jan 2024 07:22:48 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel
+ <sebastian.reichel@collabora.com>, Cristian Ciocaltea
+ <cristian.ciocaltea@collabora.com>, Christopher Obbard
+ <chris.obbard@collabora.com>, =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?=
+ <szucst@iit.uni-miskolc.hu>, Shreeya Patel <shreeya.patel@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>, Chris Morgan
+ <macromorgan@hotmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: enable built-in thermal monitoring
+ on rk3588
+In-Reply-To: <CABjd4Yy91MAd2wALp4KQiEub9OyxU+MR+ti5KA_c+yvZT5xaqQ@mail.gmail.com>
+References: <20240106222357.23835-1-alchark@gmail.com>
+ <e0302da12345e5539583b2c96d747592@manjaro.org>
+ <CABjd4Yw5wTLyK5OPw2S-ipPVCw7RTUeF2J0RgH-Vyis-ng8rTw@mail.gmail.com>
+ <d7f2f25071a4d7c72bd286b11836dce7@manjaro.org>
+ <CABjd4Yz11D8ThcT-oCWsQf9jL2idChFYSRYVVu3KNnzwoOwkKQ@mail.gmail.com>
+ <f5c05015e042b11a51a9af26c35f18ed@manjaro.org>
+ <CABjd4Yy91MAd2wALp4KQiEub9OyxU+MR+ti5KA_c+yvZT5xaqQ@mail.gmail.com>
+Message-ID: <81a5410c3dbedbd4fe9ce60ab236700c@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-From: Peng Fan <peng.fan@nxp.com>
+On 2024-01-22 07:03, Alexey Charkov wrote:
+> On Mon, Jan 22, 2024 at 8:55 AM Dragan Simic <dsimic@manjaro.org> 
+> wrote:
+>> On 2024-01-21 19:56, Alexey Charkov wrote:
+>> > On Thu, Jan 18, 2024 at 10:48 PM Dragan Simic <dsimic@manjaro.org> wrote:
+>> >> On 2024-01-08 14:41, Alexey Charkov wrote:
+>> >> > On Sun, Jan 7, 2024 at 2:54 AM Dragan Simic <dsimic@manjaro.org> wrote:
+>> >> >> On 2024-01-06 23:23, Alexey Charkov wrote:
+>> >> >> > Include thermal zones information in device tree for rk3588 variants
+>> >> >> > and enable the built-in thermal sensing ADC on RADXA Rock 5B
+>> >> >> >
+>> >> >> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+>> >> >> > ---
+>> >> >> > +                     trips {
+>> >> >> > +                             threshold: trip-point-0 {
+>> >> >>
+>> >> >> It should be better to name it cpu_alert0 instead, because that's what
+>> >> >> other newer dtsi files already use.
+>> >> >
+>> >> > Reflecting on your comments here and below, I'm thinking that maybe it
+>> >> > would be better to define only the critical trip point for the SoC
+>> >> > overall, and then have alerts along with the respective cooling maps
+>> >> > separately for A76-0,1, A76-2,3, A55-0,1,2,3? After all, given that we
+>> >> > have more granular temperature measurement here than in previous RK
+>> >> > chipsets it might be better to only throttle the "offending" cores,
+>> >> > not the full package.
+>> >> >
+>> >> > What do you think?
+>> >> >
+>> >> > Downstream DT doesn't follow this approach though, so maybe there's
+>> >> > something I'm missing here.
+>> >>
+>> >> I agree, it's better to fully utilize the higher measurement
+>> >> granularity
+>> >> made possible by having multiple temperature sensors available.
+>> >>
+>> >> I also agree that we should have only the critical trip defined for
+>> >> the
+>> >> package-level temperature sensor.  Let's have the separate temperature
+>> >> measurements for the CPU (sub)clusters do the thermal throttling, and
+>> >> let's keep the package-level measurement for the critical shutdowns
+>> >> only.  IIRC, some MediaTek SoC dtsi already does exactly that.
+>> >>
+>> >> Of course, there are no reasons not to have the critical trips defined
+>> >> for the CPU (sub)clusters as well.
+>> >
+>> > I think I'll also add a board-specific active cooling mechanism on the
+>> > package level in the next iteration, given that Rock 5B has a PWM fan
+>> > defined as a cooling device. That will go in the separate patch that
+>> > updates rk3588-rock-5b.dts (your feedback to v2 of this patch is also
+>> > duly noted, thank you!)
+>> 
+>> Great, thanks.  Sure, making use of the Rock 5B's support for 
+>> attaching
+>> a PWM-controlled cooling fan is the way to go.
+>> 
+>> Just to reiterate a bit, any "active" trip points belong to the board
+>> dts file(s), because having a cooling fan is a board-specific feature.
+>> As a note, you may also want to have a look at the RockPro64 dts(i)
+>> files, for example;  the RockPro64 also comes with a cooling fan
+>> connector and the associated PWM fan control logic.
+> 
+> Thanks for the pointer! There is also a helpful doc within devicetree
+> bindings descriptions, although it sits under hwmon which was a bit
+> confusing to me. I've already tested it locally (by adding to the
+> board dts), and it spins up and down quite nicely, and even modulates
+> the fan speed swiftly when the load changes - yay!
 
-Add i.MX95 ELE/V2X MU support, its register layout is same as
-i.MX8ULP, but the Parameter registers would show different
-TR/RR. Since the driver already supports get TR/RR from Parameter
-registers, not hardcoding the number, this patch just add
-the compatible entry to reuse i.MX8ULP S4 cfg data.
+Nice!  Also, isn't it like magic? :)  To me, turning LEDs on/off and
+controlling fans acts as some kind of a "bridge" between the virtual
+and the real world. :)
 
-To use the internal SRAM, need populate its sub-nodes.
+As a suggestion, it would be good to test with a couple of different
+fans, to make sure that the PWM values work well for more that one fan
+model.  The Rock 5B requires a 5 V fan, if I'm not mistaken?
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- drivers/mailbox/imx-mailbox.c | 5 +++++
- 1 file changed, 5 insertions(+)
+>> >> >> > +                                     temperature = <75000>;
+>> >> >> > +                                     hysteresis = <2000>;
+>> >> >> > +                                     type = "passive";
+>> >> >> > +                             };
+>> >> >> > +                             target: trip-point-1 {
+>> >> >>
+>> >> >> It should be better to name it cpu_alert1 instead, because that's what
+>> >> >> other newer dtsi files already use.
+>> >> >>
+>> >> >> > +                                     temperature = <85000>;
+>> >> >> > +                                     hysteresis = <2000>;
+>> >> >> > +                                     type = "passive";
+>> >> >> > +                             };
+>> >> >> > +                             soc_crit: soc-crit {
+>> >> >>
+>> >> >> It should be better to name it cpu_crit instead, because that's what
+>> >> >> other newer dtsi files already use.
+>> >> >
+>> >> > Seems to me that if I define separate trips for the three groups of
+>> >> > CPU cores as mentioned above this would better stay as soc_crit, as it
+>> >> > applies to the whole die rather than the CPU cluster alone. Then
+>> >> > 'threshold' and 'target' will go altogether, and I'll have separate
+>> >> > *_alert0 and *_alert1 per CPU group.
+>> >>
+>> >> It should perhaps be the best to have "passive", "hot" and "critical"
+>> >> trips defined for all three CPU groups/(sub)clusters, separately of
+>> >> course, to have even higher granularity when it comes to the resulting
+>> >> thermal throttling.
+>> >
+>> > I looked through drivers/thermal/rockchip_thermal.c, and it doesn't
+>> > seem to provide any callback for the "hot" trip as part of its struct
+>> > thermal_zone_device_ops, so I guess it would be redundant in our case
+>> > here? I couldn't find any generic mechanism to react to "hot" trips,
+>> > and they seem to be purely driver-specific, thus no-op in case of
+>> > Rockchips - or am I missing something?
+>> 
+>> That's a good question.  Please, let me go through the code in detail,
+>> and I'll get back with an update soon.  Also, please wait a bit with
+>> sending the v3, until all open questions are addressed.
+> 
+> Of course. Thank you for taking the time to dig through this one with 
+> me!
 
-diff --git a/drivers/mailbox/imx-mailbox.c b/drivers/mailbox/imx-mailbox.c
-index f2a21baded29..8506f92c0238 100644
---- a/drivers/mailbox/imx-mailbox.c
-+++ b/drivers/mailbox/imx-mailbox.c
-@@ -15,6 +15,7 @@
- #include <linux/mailbox_controller.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/suspend.h>
-@@ -907,6 +908,8 @@ static int imx_mu_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	of_platform_populate(dev->of_node, NULL, NULL, dev);
-+
- 	pm_runtime_enable(dev);
- 
- 	ret = pm_runtime_resume_and_get(dev);
-@@ -1018,6 +1021,8 @@ static const struct of_device_id imx_mu_dt_ids[] = {
- 	{ .compatible = "fsl,imx8ulp-mu", .data = &imx_mu_cfg_imx8ulp },
- 	{ .compatible = "fsl,imx8ulp-mu-s4", .data = &imx_mu_cfg_imx8ulp_s4 },
- 	{ .compatible = "fsl,imx93-mu-s4", .data = &imx_mu_cfg_imx93_s4 },
-+	{ .compatible = "fsl,imx95-mu-ele", .data = &imx_mu_cfg_imx8ulp_s4 },
-+	{ .compatible = "fsl,imx95-mu-v2x", .data = &imx_mu_cfg_imx8ulp_s4 },
- 	{ .compatible = "fsl,imx8-mu-scu", .data = &imx_mu_cfg_imx8_scu },
- 	{ .compatible = "fsl,imx8-mu-seco", .data = &imx_mu_cfg_imx8_seco },
- 	{ },
-
--- 
-2.37.1
-
+I'm glad to help.  It's important to have working thermal throttling on
+the supported RK3588-based boards.
 
