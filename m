@@ -1,110 +1,136 @@
-Return-Path: <devicetree+bounces-33578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53653835C64
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:18:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90014835C85
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:25:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2739BB22FB2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:18:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46E4C1F27B5C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:25:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B5E420DDA;
-	Mon, 22 Jan 2024 08:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85E5C20DE9;
+	Mon, 22 Jan 2024 08:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gVeE8TLa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s1URRlGj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964CA210E0
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 08:18:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B50120DE1;
+	Mon, 22 Jan 2024 08:24:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705911489; cv=none; b=UhXvsTj5GjquOAtakBRtlC/1Tel/vwfGpA1obEQQAWw9WCftrHXsdFTSMm6SeGaIHQtWaxKth2CDmTmvXS5qkpgLAQ4hcoRYkbgKi6GcUZBaWkJMKxNWeo2z/p0n8ZSuVHAVkoLA0O/9ENuzOmZ+brxhq7pKUq7kA+M4OlkWFl4=
+	t=1705911897; cv=none; b=PR4Z5Cxx15WZOXvYHGLWVHsCb96Jo/LjlkJywC7slLJYUpqCML97F/VAkbqCNC6r/hSKrJfr2nBa5FjsxPUxnZ6xjULgikkfxIhzF0C7C9+dvBGRqv+PAoUMoI1fAIzQjAarCwMoyrnLrTdD6vgArcO5NYt+5uoBku4Zg+Y8vpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705911489; c=relaxed/simple;
-	bh=TuCnBVR88ntymG76CNyDH8bqX5RV/3GbHvDE2cVI+k0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=guA7P4H+FXFN+HMnt5dhprQSV2nWWALvdM2QUQWbMFSqnq7cPhbLAPw7JPucvvA7Dw6Kcj1S3O3ssCr0FjmqmCjCDZzyzgkzh9QaesN7ctnJ1A39hpKIFnjJkIG7cQyn1OYUgcU9LQZXrdA8zXLrsvtQp4vYYqZ1iXGJN50Qcl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gVeE8TLa; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50e7d6565b5so3297847e87.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 00:18:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1705911485; x=1706516285; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TuCnBVR88ntymG76CNyDH8bqX5RV/3GbHvDE2cVI+k0=;
-        b=gVeE8TLaUNQRDxyF2WTF1vJiy3iqct0QQj0FFL9nit8OHr3tOiSvr5PafROA8m9P8W
-         uxUIt65ddDIfefLPxFsix1DpSRt4SWRGlNy9o/ZeakcUEdYDAQFKuPD0RtbiNDaRVTDV
-         arsS2i2a+VdL98kuW2+9FRLC5Q1RoRE1HU5W8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705911485; x=1706516285;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TuCnBVR88ntymG76CNyDH8bqX5RV/3GbHvDE2cVI+k0=;
-        b=SikIYN0AMI996gTJ7NlXmjHRo4RLxlq+o2OHGx2KcLNRmeL+NupS3F/EEx9kFPtl2G
-         4hujsilCg9ExAIsuTOjpMG3GDc6ab6il5uDs1UEyJ0biEKrvfRfRp83GHZjgHjVOtOft
-         md7BAlfbZFmBIAXFAZ8xySzTBTZ9vm5R//Y7686Y/zQweUTKPK13NbEVICJukY18FZLf
-         jSoeoGTbGel5tDC46dt5YiviStpU/kzstVA14nY3NQWNPBMBU3cXiR8+yWzh0AFgqqfm
-         xAaUNyMEpSFxYwnm6wk473zp+HAdcCIYA+arn9tjpPc7hGPEZMksLjUN1dhgyCSLQZYd
-         vmrQ==
-X-Gm-Message-State: AOJu0Yz3dOJB7QH9710+nJYCX/Fj88L5fvXyaRDtNkhnohGWXxzHUw5l
-	w4jdGK/nm4f2sknC+Mxvq6f0/JDH7U0dWunZQ7w2/k1BJhhnx0Rv51zc/XKtU8V47uk9jKKcY9D
-	9aZFtHI3OwBYSgo746q6rcrn3y5bp4uI7yjQt
-X-Google-Smtp-Source: AGHT+IHqFkBn13JB/hRuAs3sSSx+yTST7ZFxRuIjTeHxb63T26OccgYLsj9ML0Hpe1WxHZ/X75r0bu3mEBfMQsY40Y8=
-X-Received: by 2002:a05:6512:3d1c:b0:50e:3f2e:c726 with SMTP id
- d28-20020a0565123d1c00b0050e3f2ec726mr1762337lfv.87.1705911485563; Mon, 22
- Jan 2024 00:18:05 -0800 (PST)
+	s=arc-20240116; t=1705911897; c=relaxed/simple;
+	bh=drF9HS0qNEy+0/grGYgRcmiwZBDcpQyCv996fd/G5Uw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uXKt000/T8Aa0YK9G8y4fBcRSBYqzRdbizfGdwT8s+5WzCSeZ0E/sKuDmQZ3JJP6OQ2gFg2BLVcBen7QSVWwTn8R9nEEwWNFLEd4YTIhF3U136KeLe1xL2uiO2JkqsRp0Mx4HsMqREkgS9jeJV5e+BZ7uSBwG0Sh6WBe9JXe43g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s1URRlGj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C09E8C433C7;
+	Mon, 22 Jan 2024 08:24:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705911896;
+	bh=drF9HS0qNEy+0/grGYgRcmiwZBDcpQyCv996fd/G5Uw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s1URRlGjJA38bXP5Tqq7X0QiPyWe3UraXQYziiFt47585KnHSGCL0jFjJwEmzttNe
+	 i2sGsduyPw2Sg1I6HXBlaiQ3g9W51qyA8zeUoJFdgwPA8Cm7eSnjqMH/eVdgQlyoXw
+	 0McCO5WsZwHz4i1coBWQBIgcnyJR2yFipOTrLmYtOth4Y9xXxJoaDrMC8fzMKnmxaX
+	 UkGde0+cJfWZ21larnsTS7hcRJ+jZUe36eTbgWWA0sJTX0msi+zXPEUToMVXZjTpRx
+	 RbW16AveJ/rfSy4EPmMpApjuHanWfaPCZU4CE/3jzTjygb0GjWBB4q5iPKBcCf+H2+
+	 S9s+9RrCs2Rhw==
+Date: Mon, 22 Jan 2024 08:24:51 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jack Zhu <jack.zhu@starfivetech.com>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: =?utf-8?B?5Zue5aSNOiDlm57lpI06IFtQQVRD?=
+ =?utf-8?Q?H_v1_1=2F2=5D_dt-bindings?= =?utf-8?Q?=3A?= media: starfive: Match
+ driver and yaml property names
+Message-ID: <20240122-uncivil-almost-631137081fd9@spud>
+References: <20240119100639.84029-1-changhuang.liang@starfivetech.com>
+ <20240119100639.84029-2-changhuang.liang@starfivetech.com>
+ <20240119-despair-festival-59ab2d4d896b@wendy>
+ <SHXPR01MB0671E2150D9A2707F12E0901F270A@SHXPR01MB0671.CHNPR01.prod.partner.outlook.cn>
+ <20240119-preamble-calm-7724e17fcebc@wendy>
+ <BJXPR01MB0662E6EEEEF888BD90A1FCE5F275A@BJXPR01MB0662.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231213150435.4134390-1-wenst@chromium.org> <20231213150435.4134390-2-wenst@chromium.org>
- <d16723a6-5602-4fa8-9cfc-589846b75f5b@gmail.com>
-In-Reply-To: <d16723a6-5602-4fa8-9cfc-589846b75f5b@gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 22 Jan 2024 16:17:54 +0800
-Message-ID: <CAGXv+5FVOb_X02ovGgwZ=5YpipiCfO9SKD5hOrx9eweps9bB+Q@mail.gmail.com>
-Subject: Re: [PATCH v4 1/9] dt-bindings: arm: mediatek: Sort entries by SoC
- then board compatibles
-To: Matthias Brugger <matthias.bgg@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Eugen Hristev <eugen.hristev@collabora.com>, Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="691fbi7YiHqy5KOf"
+Content-Disposition: inline
+In-Reply-To: <BJXPR01MB0662E6EEEEF888BD90A1FCE5F275A@BJXPR01MB0662.CHNPR01.prod.partner.outlook.cn>
+
+
+--691fbi7YiHqy5KOf
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 22, 2024 at 4:02=E2=80=AFPM Matthias Brugger <matthias.bgg@gmai=
-l.com> wrote:
-> On 13/12/2023 16:04, Chen-Yu Tsai wrote:
-> > Some of the new MediaTek board entries were inserted in a chronological
-> > order, or just randomly. This makes it harder to search for an entry.
-> >
-> > Sort the entries by first grouping by SoC, then sorting by board
-> > compatible strings. Also add a comment at the top asking people to do
-> > the same.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
->
-> Does not apply cleanly, would you mind to rebase the whole series onto v6=
-.8-rc1.
+On Mon, Jan 22, 2024 at 01:33:56AM +0000, Changhuang Liang wrote:
+>=20
+> > On Fri, Jan 19, 2024 at 12:57:22PM +0000, Changhuang Liang wrote:
+> > > EXTERNAL EMAIL: Do not click links or open attachments unless you know
+> > > the content is safe
+> > >
+> > > Hi , Conor
+> > >
+> > > > =E4=B8=BB=E9=A2=98: Re: [PATCH v1 1/2] dt-bindings: media: starfive=
+: Match driver
+> > > > and yaml property names
+> > > >
+> > > > On Fri, Jan 19, 2024 at 02:06:38AM -0800, Changhuang Liang wrote:
+> > > > > Drop some unused properties for clocks, resets and interrupts for
+> > > > > StarFive JH7110 camera subsystem.
+> > > >
+> > > > What do you mean "unused"?
+> > > >
+> > > > Do these clocks etc exist but are not used by the driver?
+> > > >
+> > > > Or do they not exist at all?
+> > > >
+> > > > The two are very different!
+> >=20
+> > > These clocks etc exist but are not used by the driver.
+> >=20
+> > That's not an acceptable reason for removing them from the binding. If =
+they
+> > exist, they should be documented, regardless of whether the driver make=
+s use
+> > of them. NAK.
+>=20
+> If so, how to avoid the warning of dtbs_check.
 
-Sure. There's still a bit of discussion on patch 6. After that is resolved
-I'll send a v5 which will also address some review comments.
+By also adding the clocks, resets and interrupts to the dts.
 
-ChenYu
+--691fbi7YiHqy5KOf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa4mUwAKCRB4tDGHoIJi
+0h/FAP9OymvQKrw2lHv7pji+pa6/xaJNsKHlv4dCxUXnS+SjUgD+ItSiNki3Vypi
+yxKXpfp0nWKwBR7x5uxNdhSO9OoXtQs=
+=tSBw
+-----END PGP SIGNATURE-----
+
+--691fbi7YiHqy5KOf--
 
