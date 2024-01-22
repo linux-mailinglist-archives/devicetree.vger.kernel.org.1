@@ -1,118 +1,116 @@
-Return-Path: <devicetree+bounces-33714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A7D88361CE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:34:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E5938361BB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:32:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66B09B236A3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:32:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 496F61C21999
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:32:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7EC34655A;
-	Mon, 22 Jan 2024 11:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8233B2A6;
+	Mon, 22 Jan 2024 11:20:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uEZXiBk2"
+	dkim=pass (2048-bit key) header.d=smile-fr.20230601.gappssmtp.com header.i=@smile-fr.20230601.gappssmtp.com header.b="LfbbG201"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D9546547
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 11:19:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009F43A8E0
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 11:20:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705922368; cv=none; b=pM7CAIk4yOEMMYodQrm6e00iM2+4RL4pDUj3BkRW24gY4/WBDZlOnWilikUH0qHWpAvs2Ure4ha1pfPxw6SqKlEoLlBUoAYKBzOfjChgDXpHUYLGIwaXcHZfTzbeqAwhI4lmwmS4r4BHFPwTqOBLa0Y5ZzEv9oFkiat4Fls95wQ=
+	t=1705922459; cv=none; b=UJ63G7euDuqw9+PJjKztg8CcRetqlesZYoF7Y0EuEL/Ve0/KveSo3EFaRsNNykS3vYp5CB/xh+TkwkrZh4a5kb7FxXgu0n1/ZWCdxlBTes7s5QHMlpSLsjnwmv2m1kWdQT9WZEwcDg6Vw3p4kY0W964frXWlKBn1SjQZJH9akoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705922368; c=relaxed/simple;
-	bh=jNHCWw3WjlkSEZRJ7ufnyaZwg0nsdc0yG/XIpjumcQQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Skfeh6WvnBw6jnACvYpUel9jW5NmjqrDJ5TK6ZYeGD3ny6iEU7EcerRaTrfeCsQ9hk5IiAurfw98GhB/UpMyhi6YeOdnDc443P+b4pbOY4OryyH1pfdmOLGshMuuH9OoWiAXaX7cTtDqMBXG/JbNNJ5q/mJjIJChwJHJdKZq54s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uEZXiBk2; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-da7ea62e76cso2209883276.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 03:19:25 -0800 (PST)
+	s=arc-20240116; t=1705922459; c=relaxed/simple;
+	bh=me6p/OKvDglGBw9mvdYiyo+bS5a2wn8BwggaJ28XARw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ocXWcsWdAJ+bow6jkbGX/e6XlusznBQwaTWyA4qThCWuxDAtlLhZunu26HQ//7hdMIHyFwwRF0TnJ9QCAzXJic52Wyl/j5mouiG626ao2qgZ0YuI4Md6vbdTK1a9Sa5r+8Bm8/MagpSBCDb/1Yu72lqA21nAS67zVABQHdEdfCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (2048-bit key) header.d=smile-fr.20230601.gappssmtp.com header.i=@smile-fr.20230601.gappssmtp.com header.b=LfbbG201; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=smile.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40e87d07c07so39003305e9.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 03:20:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705922365; x=1706527165; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DjGNrBbtJ6ZdRNqm2CfKscefqbyQaHrbwOzpcX0gGKI=;
-        b=uEZXiBk2UBGP+ahT97hrxlHsQ7i1mcF2SzyueXdi3wu0xOORi6jY6LQ88dkormG9B6
-         /Vdk761j2XB7rBKUtJrtnpTpBjKAgYjYzv9PPEdDOnbPYoSk86nACzbh+UdrT+6EK3vK
-         aMyPZZa859/GBSrNL5cwIaiO3ZRn+Cfz3PqK7j9SIF4Sg8Kq6b02GJ5zE++YZd4oYgE6
-         rpKehkpTbmE2QBkO1wKlxHsBjvGv06YXZk9p+WTsZwWUNdp8+tmhms2bjoLGWS8Zqo68
-         Z+7Vaith6hxgb1yqzSsXw+g2o7dXI7xeNUMJ+NYnfNwifIH3acvDyUPBOXqjruqzXRzI
-         ai6g==
+        d=smile-fr.20230601.gappssmtp.com; s=20230601; t=1705922455; x=1706527255; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jlqe1/+a0OpvnCfjOm9NQe3CEd+0psKx+OdGCZhqSIE=;
+        b=LfbbG201QJ1UyW31On2FZagYIfrkajQ9a4F2dK22yMOWK9lJ1mJhYR9JoypbFhVcbb
+         H+QiJS2PofxRzSLVg0m03JUb0dJHNRS0EVcVbp9geAHC7AUqD5JASYPEw7fyQQcapHGA
+         ms5eomunoplJ3CY3DfBqBCqYR7oAGoSg0/bGSh/325GxIj+cdti+Q5Gk73Tqs2+kAyla
+         JRMNNby3tjVAxPUwuAwG7+nzLUt4mUD5EbHcFNQ5dmfuNnzLnpJ+1/LDF248Y1c6amps
+         CvSle8UhIYiS/T7TfHhIwzGAIQEfd3uugj+tzpkVrYWVW09BNeekcUAJ2awEcwVIGA1k
+         OBRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705922365; x=1706527165;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1705922455; x=1706527255;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DjGNrBbtJ6ZdRNqm2CfKscefqbyQaHrbwOzpcX0gGKI=;
-        b=GS8ZA7QWwTurZI4hJIUSS4hFB1IVkFnUq5BlHtNS6LllLFlA+FUW2/l/9ksEYNv9l1
-         Nx3DcC9aRexcoRWspYfpPlRDtiSXD/RNDcxEiLmDAHZFXcSZROcZIyUr8WjUKxxKxXJ4
-         qlUFMcw1thtTIaqoLXqeDopbBDtHMIiOeapbb3G6XnweEuky7OscdtBKRr8+cyRSxnvv
-         Hj4ARm1Er6E+YpVcNxFuvly3V4wTO6SsylhrQdfOymI9g9+2sslozQNh8NAIffz7zrCn
-         iC0ElFtrVgrKuG2rzwKq2bJjBHaVx7SrtDaY/A3+RLI88yEsGnOVUZTzLLJus62/+1c2
-         AsKA==
-X-Gm-Message-State: AOJu0Yzz9fMaQYg71uk5a35m+phKUTB7jy/pj2wkIcW6C4S9ftxcgq+a
-	x6ujPbia01JEgNRCz7uoERz3IA/9ZiAgDnnYR8Ln3NJou4HSTdG6we/Aq7FEGH59kmdzJHJRVk8
-	olzVdY03HPdUHDtBtGDOgt1qaNzN4lw+HjzHQ1g==
-X-Google-Smtp-Source: AGHT+IETeFU7o/bacSqz6mq7P8PAhi+QJN5FuxtRzOe4hfEbxRCFRPWqRvzeRZJuP4XQwexHHRuWXgq1GBOPJoErIzU=
-X-Received: by 2002:a25:360d:0:b0:dc2:6600:4eac with SMTP id
- d13-20020a25360d000000b00dc266004eacmr1369699yba.116.1705922365085; Mon, 22
- Jan 2024 03:19:25 -0800 (PST)
+        bh=jlqe1/+a0OpvnCfjOm9NQe3CEd+0psKx+OdGCZhqSIE=;
+        b=knaw3fe8se21d47uRQDOhhfW2xFaGOEsY6h/GB1MjMhUemuT9OHve8Xi77FGJEDXEp
+         hH9AIf2KRvYGdp3lbhppo/ysOzsQAYSH8ECN69g0hyjeCGTJT9ZDRtE6ihcy1yiq3fDT
+         mFonQ5gdJpUT2gSGEWsZsmkwtlxhj/LI8YwMQgIpFtOdtw4nUIfXaRskEZ3VnvX/k4YH
+         qRHNPmVpoKp/PgoObFMgdHsoLY78hgG+c2xhVKrsZsR29ueq3czCM+j/uVRrE3cJv7O4
+         K8p/jUHc4Rownewhh8gLUWJWhTyBw2y66UtzSUa096GGN02xj+YXXaXJYWipB1E66HLh
+         /72Q==
+X-Gm-Message-State: AOJu0Yx034VMvtZZaaa1oG+3YalRekukW3IGsACgshlNNlYJDcmAXpl8
+	BoyjwthwvSE8idRb4B3IJU1djrOJxEJffu6vk7KgiJ4UYuPd2wukSA7lAxkrPtQ=
+X-Google-Smtp-Source: AGHT+IHvfkw2smn9cmfM1OhegGUtFLf/D7oCxwZ1nWibdK7qw3IxMx70WNUOJvwiLIg/QPSO+SNCwg==
+X-Received: by 2002:a05:600c:4506:b0:40e:b179:5806 with SMTP id t6-20020a05600c450600b0040eb1795806mr268817wmo.174.1705922455263;
+        Mon, 22 Jan 2024 03:20:55 -0800 (PST)
+Received: from P-NTS-Evian.home (2a01cb05945b7e009bdc688723a24f31.ipv6.abo.wanadoo.fr. [2a01:cb05:945b:7e00:9bdc:6887:23a2:4f31])
+        by smtp.gmail.com with ESMTPSA id w18-20020a05600c475200b0040d2d33312csm39204614wmo.2.2024.01.22.03.20.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jan 2024 03:20:55 -0800 (PST)
+From: Romain Naour <romain.naour@smile.fr>
+To: linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Romain Naour <romain.naour@skf.com>
+Subject: [PATCH 1/3] arch/arm/boot/dts/dra7-l4.dtsi: add missing unit addresse
+Date: Mon, 22 Jan 2024 12:19:46 +0100
+Message-ID: <20240122111948.416444-1-romain.naour@smile.fr>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231222165355.1462740-1-peter.griffin@linaro.org>
- <20231222165355.1462740-2-peter.griffin@linaro.org> <4cc6df4c-504c-499f-be83-3b40d1ee6240@linaro.org>
-In-Reply-To: <4cc6df4c-504c-499f-be83-3b40d1ee6240@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 22 Jan 2024 11:19:13 +0000
-Message-ID: <CADrjBPo6YqxDAKUe629Z3e0MtmEgyTqEzVLLc1bZ8xJe_dw5SQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: timer: exynos4210-mct: Add
- google,gs101-mct compatible
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	daniel.lezcano@linaro.org, tglx@linutronix.de, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
-	cw00.choi@samsung.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel-team@android.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+From: Romain Naour <romain.naour@skf.com>
 
-On Mon, 22 Jan 2024 at 11:00, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/12/2023 17:53, Peter Griffin wrote:
-> > Add dedicated google,gs101-mct compatible to the dt-schema for
-> > representing mct timer of the Google Tensor gs101 SoC.
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  .../devicetree/bindings/timer/samsung,exynos4210-mct.yaml       | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
->
-> I applied remaining two patches. Let me know if I should grab this.
+phy_gmii_sel node have 'reg' so it must have unit address.
 
-If you have applied
-  clk: samsung: gs101: register cmu_misc clocks early
-  arm64: dts: exynos: gs101: define Multi Core Timer (MCT) node
+Fixes:
+Warning (unit_address_vs_reg): /ocp/interconnect@4a000000/segment@0/target-module@2000/scm@0/scm_conf@0/phy-gmii-sel: node has a reg or ranges property, but no unit name
 
-then if you can also take this one that would be great.
+Signed-off-by: Romain Naour <romain.naour@skf.com>
+---
+ arch/arm/boot/dts/ti/omap/dra7-l4.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-kind regards,
+diff --git a/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi b/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi
+index 5733e3a4ea8e..6e67d99832ac 100644
+--- a/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi
++++ b/arch/arm/boot/dts/ti/omap/dra7-l4.dtsi
+@@ -80,7 +80,7 @@ pbias_mmc_reg: pbias_mmc_omap5 {
+ 						};
+ 					};
+ 
+-					phy_gmii_sel: phy-gmii-sel {
++					phy_gmii_sel: phy-gmii-sel@554 {
+ 						compatible = "ti,dra7xx-phy-gmii-sel";
+ 						reg = <0x554 0x4>;
+ 						#phy-cells = <1>;
+-- 
+2.43.0
 
-Peter
 
