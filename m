@@ -1,148 +1,142 @@
-Return-Path: <devicetree+bounces-33882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08BFB836F17
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:09:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D53B0836F4C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:12:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B426828BEC0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:09:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 779341F2337C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17D53FE21;
-	Mon, 22 Jan 2024 17:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F1E5A0F2;
+	Mon, 22 Jan 2024 17:37:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W8QhUiIs"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="GxcCDIxd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1BBA3FB36;
-	Mon, 22 Jan 2024 17:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A66B66B50;
+	Mon, 22 Jan 2024 17:37:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705944930; cv=none; b=oN/0Dyu+SJtg+3bq4/7ROEfOOTkuDj+MKA4JPkiA6PtkGTyXiZdMzaDv0/fdtYmvQV6omWuDF5phujBPRqdzeB4ph8WtJBQUbqGqqMRX0phaACeNGrNzricar7oHZb4s8GQtdzX1paJgcP9fIDbCC/A7davcti+jfGpVDIeQn28=
+	t=1705945056; cv=none; b=InSuGj+sut7AB6e3+oqh7dHsAVJtIco/4MeUg/7HmLS2IPgyFYRBtcTrlZLrfp3LVSqhcS6Oxn+xAIUVQWBWIE+m7pjU0jRe/HBRAsAJHwiuy1GE1QPMzGf+qEo1XRI0RCIjyQyO8xJLoooNNObEwayx0/amNCxk6Lr/jkNjd40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705944930; c=relaxed/simple;
-	bh=XfQM0Oq8bhchKaV3+vsc5joKpUAvSeJRZhoVmelAvR0=;
+	s=arc-20240116; t=1705945056; c=relaxed/simple;
+	bh=8WYz4IV5sJnk5aen6jbAq+q3NiEqFAzxRle76P/6Bcg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c1G1IH0K2dQtPKxeyXus5Fq+/G6TTeiAR27/BDrk/VnkHn2gW869Tis+WE/JdctKq6GwSTYG5NZaIzkKbSKAANbXH9RQtE9To8jCZWKW0kSkJvsIUcyg4zEcw5QxIDmcweIul06Oa5wDZzVoRjwbnrdrNyTygmxx55GCZ/rZvb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W8QhUiIs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A599EC433F1;
-	Mon, 22 Jan 2024 17:35:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705944930;
-	bh=XfQM0Oq8bhchKaV3+vsc5joKpUAvSeJRZhoVmelAvR0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W8QhUiIsbnGzfIxc6KFXpmIaDt3BUwNKWwmu0bYNI4ZHXrIN9FdllQuxQDUOpLkUO
-	 Lh/1oHxgfXg3Vs6ej9AxQwA5Bf1FqP3rg4zPq7Alk9NpK2WvnwGqB7P2nNgwBp3Cuu
-	 5wMpQQe5uJZGgM1kUtuvRJAxEOlcOFGBwWQqC2EpCQWpjUPwJKvkCfK2gnL+sIZxzR
-	 fRZdcuEIoWHeGZ9NW8qNtH/ubZIgFetySsKWr0AgSpOzFicCeKhyJuTYIFIyO6qGHE
-	 3+95CO3njR9+Zhy/bTD/gWvWwgPcwpeL+aj4THbNA/UbgkmlU/rTQd5HB1Y+EVZkE3
-	 dDcfXYQuVaaRg==
-Date: Mon, 22 Jan 2024 17:35:24 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
-Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Crt Mori <cmo@melexis.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: iio: frequency: add admfm2000
-Message-ID: <20240122-postbox-slimy-248a2e521896@spud>
-References: <20240122090228.28363-1-kimseer.paller@analog.com>
- <20240122-legible-fossil-25349ef9ad6c@spud>
- <PH0PR03MB7141A46C8DD0041775CD0E96F9752@PH0PR03MB7141.namprd03.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bHEUgjEpNrcwO2M4nSU0PXdsHvawUl8PF2rt599eW0kBLAmpmp/EB6JbKdoUzf+vdGyCBNXFc+MeLNgssLZCy89vN88LncP5E0AvxVRFtOfC8ZcJw+xgTOxyO9nm5E7I2XEJ3qXwcXWXsdJeNDJ3hV8CAASyi7YsGmbUvY7D7rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=GxcCDIxd; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Tpq99Xn3oyUQ1UeFUe2J523sJUHds2quY0PBRgIFX08=; b=GxcCDIxdcwixCbMs9SgULyWG0E
+	wCMQM9VlMDAwLQxTgpHTEnRfE7msH3WejKCDAHDyw87vHsUC+aNXNRD5jNUUHo0qapTZA38hZrvJZ
+	53K0QFJlwd5MNlRh0P8e6SnP37AmP2XpUWXxNWqzhwcI/X3UQ95Ykmav1x5+PGmO4et3HnLPPxJ0m
+	Ovo2XLa+Jaq5M5MgSObj3Z+PHWiB4+DorhpvG0pA59gH/tQGUs3xQUfmp57dswHCfYH54aZiBnGwQ
+	aGo7q/CvW8kcAt7Ga7nDj7uHEPQQsZl1YGmuv0vUAqKgOCyJXWhLwIOjPfq76ejYFSQo4GqGevKVU
+	rqsU1+RQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56168)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rRyEA-0001Ho-0p;
+	Mon, 22 Jan 2024 17:36:54 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rRyE0-0001CD-Mi; Mon, 22 Jan 2024 17:36:44 +0000
+Date: Mon, 22 Jan 2024 17:36:44 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Lei Wei <quic_leiwei@quicinc.com>
+Cc: Luo Jie <quic_luoj@quicinc.com>, agross@kernel.org,
+	andersson@kernel.org, konrad.dybcio@linaro.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, corbet@lwn.net, catalin.marinas@arm.com,
+	will@kernel.org, p.zabel@pengutronix.de, shannon.nelson@amd.com,
+	anthony.l.nguyen@intel.com, jasowang@redhat.com,
+	brett.creeley@amd.com, rrameshbabu@nvidia.com,
+	joshua.a.hay@intel.com, arnd@arndb.de, geert+renesas@glider.be,
+	neil.armstrong@linaro.org, dmitry.baryshkov@linaro.org,
+	nfraprado@collabora.com, m.szyprowski@samsung.com, u-kumar1@ti.com,
+	jacob.e.keller@intel.com, andrew@lunn.ch, netdev@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, ryazanov.s.a@gmail.com,
+	ansuelsmth@gmail.com, quic_kkumarcs@quicinc.com,
+	quic_suruchia@quicinc.com, quic_soni@quicinc.com,
+	quic_pavir@quicinc.com, quic_souravp@quicinc.com,
+	quic_linchen@quicinc.com
+Subject: Re: [PATCH net-next 18/20] net: ethernet: qualcomm: Add PPE MAC
+ support for phylink
+Message-ID: <Za6nrICG8gjwTsJ9@shell.armlinux.org.uk>
+References: <20240110114033.32575-1-quic_luoj@quicinc.com>
+ <20240110114033.32575-19-quic_luoj@quicinc.com>
+ <ZZ6LGiSde4hHM+6j@shell.armlinux.org.uk>
+ <fc9c3e08-a83c-4748-89e4-8b7b0c62da7f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MCbfwdcDBzV4nvA+"
-Content-Disposition: inline
-In-Reply-To: <PH0PR03MB7141A46C8DD0041775CD0E96F9752@PH0PR03MB7141.namprd03.prod.outlook.com>
-
-
---MCbfwdcDBzV4nvA+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <fc9c3e08-a83c-4748-89e4-8b7b0c62da7f@quicinc.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Mon, Jan 22, 2024 at 11:06:08AM +0000, Paller, Kim Seer wrote:
-> > > +      adi,mixer-mode:
-> > > +        description:
-> > > +          Enable mixer mode.
-> > > +        type: boolean
-> > > +
-> > > +      switch-gpios:
-> > > +        description: |
-> > > +          GPIOs to select the RF path for the channel.
-> > > +          SW-CH1   CTRL-A   CTRL-B
-> > > +          SW-CH2   CTRL-A   CTRL-B    CH1 Status        CH2 Status
-> > > +                   1        0         Direct IF mode    Mixer mode
-> > > +                   0        1         Mixer mode        Direct IF mo=
-de
-> >=20
-> > I cannot make sense of this table you have here, the double header row =
-you
-> > have going on is hard to follow. There's also no mention here of what h=
-appens
-> > when both GPIOs are 0 or both GPIO are 1. Are these configurations perm=
-itted?
->=20
-> I also feel that it's quite hard to understand without the gridlines. In =
-the preliminary
-> datasheet, it's a switch control table, and I'm trying to replicate the w=
-ay it is presented.
->=20
-> On the table, each channel has control pins (CTRL-A and CTRL-B). For a mi=
-xer mode
-> configuration on channel 1, CTRL-A GPIO should be 0, and CTRL-B GPIO shou=
-ld be 1.
-> It's not permitted when both GPIOs are 0 or both GPIOs are 1. The state f=
-or the GPIO
-> should strictly follow the truth table.
->=20
-> I'm considering making it much easier to understand by creating two separ=
-ate tables for
-> each channel, just like the example below. Or is it preferred if it could=
- be discussed in=20
-> a sort of paragraph form?
->=20
-> SW-CH1   CTRL-A   CTRL-B    CH1 Status            CH2 Status
-> 	   1              0              Direct IF mode     Mixer
->=20
-> SW-CH2   CTRL-A   CTRL-B    CH1 Status            CH2 Status
->           	    0            1               Direct IF mode     Mixer
+On Mon, Jan 22, 2024 at 11:01:26PM +0800, Lei Wei wrote:
+> 
+> 
+> On 1/10/2024 8:18 PM, Russell King (Oracle) wrote:
+> > On Wed, Jan 10, 2024 at 07:40:30PM +0800, Luo Jie wrote:
+> > > @@ -352,6 +1230,12 @@ static int ppe_port_maxframe_set(struct ppe_device *ppe_dev,
+> > >   }
+> > >   static struct ppe_device_ops qcom_ppe_ops = {
+> > > +	.phylink_setup = ppe_phylink_setup,
+> > > +	.phylink_destroy = ppe_phylink_destroy,
+> > > +	.phylink_mac_config = ppe_phylink_mac_config,
+> > > +	.phylink_mac_link_up = ppe_phylink_mac_link_up,
+> > > +	.phylink_mac_link_down = ppe_phylink_mac_link_down,
+> > > +	.phylink_mac_select_pcs = ppe_phylink_mac_select_pcs,
+> > >   	.set_maxframe = ppe_port_maxframe_set,
+> > >   };
+> > 
+> > Why this extra layer of abstraction? If you need separate phylink
+> > operations, why not implement separate phylink_mac_ops structures?
+> > 
+> 
+> This PPE driver will serve as the base driver for higher level drivers
+> such as the ethernet DMA (EDMA) driver and the DSA switch driver.
 
-I think it would be sufficient to cut down the original table to
-something like:
- CTRL-A   CTRL-B    CH1 Status        CH2 Status
- 1        0         Direct IF mode    Mixer mode
- 0        1         Mixer mode        Direct IF mode
+Why not have the higher level drivers provide a pointer to the
+appropriate phylink_mac_ops structure? Having extra levels of
+indirection makes my future maintenance of phylink harder (I'm already
+bugged by DSA doing this, and it's a right pain.)
 
-And state that the configurations where A =3D=3D B are not permitted.
+For example, if one of your higher level drivers needs the mac_prepare
+or mac_finish functionality, you have to add a shim, extra function
+pointers and so on.
 
---MCbfwdcDBzV4nvA+
-Content-Type: application/pgp-signature; name="signature.asc"
+If I need to add an extra parameter to a method, then I have to fix
+up your shim layer _as well_ as all the called methods - in other
+words, it adds extra maintenance burden.
 
------BEGIN PGP SIGNATURE-----
+It also makes detecting whether an implementation provides something
+or not harder - see the problems when mac_select_pcs() was introduced
+and rather than testing to see whether the method is populated, we
+have to call the method with a dummy value to discover whether the
+sub-driver implements it or not. Honestly, I would really like to get
+rid of DSA's phylink_mac_ops shim layer.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa6nXAAKCRB4tDGHoIJi
-0gftAP40Y10Z/PEZG3hrDgMfGcEP2C/NdkdxryZWr/keJTMJ6gEAhZHQWc5ETow6
-nk4YRriQIquAgLUZulArlOI5DOOyWw4=
-=ZKhg
------END PGP SIGNATURE-----
-
---MCbfwdcDBzV4nvA+--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
