@@ -1,129 +1,306 @@
-Return-Path: <devicetree+bounces-33795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08C578365E1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 15:54:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB9E836681
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 16:03:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC2F1281A14
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 14:54:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E1ED1F2418D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 15:03:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F40F3D574;
-	Mon, 22 Jan 2024 14:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97AED4779C;
+	Mon, 22 Jan 2024 14:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rong.moe header.i=i@rong.moe header.b="P9Bq6stV"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HMTL1w52"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2153C3D56D;
-	Mon, 22 Jan 2024 14:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705935266; cv=pass; b=Z9yXAWEgpT4lAQxTRTuBKG1sq5aZ1uPew8UEj3HzAzRlCJ2SFxHWcVaFGAr8el3Rq+cMl18rOFFitidlqz81OZWLoc8Vlg2kQxob65xwh17wHl2aC96HXMFVTBaovIEFAoseeRn04QTEWseSWn/WQWYxMwi93QlfEzhTqa3sUP0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705935266; c=relaxed/simple;
-	bh=fy3UHK6HOYrFTv/m0+PoNLYHH9w80aFHo8m1KKsHCRw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=pLwFfQwFcJgJVw6qN2OZaSJNP5AZSM/ZcB8q8LYtXSkRin4PV45QTJ6Z3YCnq5P66wD0hndWr7H7Ud2iqa5TrEv173mY51oO+XvYHvPHj9GafXKW1cO9EcPxzGBxYCw+q1H/H3VgEvQFt0QGPalqugXOUCF+AvaKiiQ73F+A/UI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rong.moe; spf=pass smtp.mailfrom=rong.moe; dkim=pass (1024-bit key) header.d=rong.moe header.i=i@rong.moe header.b=P9Bq6stV; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rong.moe
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rong.moe
-Delivered-To: uwu@icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1705935261; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=POtGExCcsDaAKCEYOWxA3C5glNplyfPlW0kISEnw+r9ensVcP1FWPNYuzxY3A6r1Cua5iEXcQxIKecS0oaFZsAzQoBV1I3AQ0ofm4faDiZE9apibTLOy+S2Vfw6U1TwWOI/VJyjQRJZzj+jTr11QnBtdPuQqcC2599sS4hsL/V4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1705935261; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=nJiBhLPvPsrIOjSvCVoQ6mqDO5KXSL8mgOu7VVMPH9U=; 
-	b=RYi02WdsYISJI9NpufgawTye8yTFj6dMdh222JmtLv+SESAFeHewnRMbvnpfIaN0Q5PazSAbGHy0KTrlgWeV8mNxa5FprIUuLowza8s+ZlBATkag8wr+B0CVcx1d3k6U1voIQ38mWkcM12JE0/2xbwnwAsf3SXzSyNNVDThppgA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=rong.moe;
-	spf=pass  smtp.mailfrom=i@rong.moe;
-	dmarc=pass header.from=<i@rong.moe>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1705935261;
-	s=zmail; d=rong.moe; i=i@rong.moe;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=nJiBhLPvPsrIOjSvCVoQ6mqDO5KXSL8mgOu7VVMPH9U=;
-	b=P9Bq6stVrRlSWa5pBpusGJ6lvjrgtYRPRtAERoKkNoIKM0++NmX4fFMSzJ0oci8Z
-	iFSAYAmqDiEp3foKqsbU5/5M61oAsbcVZDkK0fzxBtfArY/6rR+V0qYI1SGCLjujRTs
-	uZFzPfTq9lP5ZXhYBnqSylgRE1XtEHMHNxgAb8yg=
-Received: from tb.lan (182.118.232.146 [182.118.232.146]) by mx.zohomail.com
-	with SMTPS id 1705935258651526.4153199298788; Mon, 22 Jan 2024 06:54:18 -0800 (PST)
-Message-ID: <3647c5f823260865eb870ff1ce45c787bcaec256.camel@rong.moe>
-Subject: Re: [PATCH 1/4] ARM: dts: qcom: msm8974-samsung-klte: Add label on
- /i2c-gpio-led
-From: Rong Zhang <i@rong.moe>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
-Date: Mon, 22 Jan 2024 22:54:08 +0800
-In-Reply-To: <73d75a74-71db-43c7-935a-65423159ce42@linaro.org>
-References: <20240121154010.168440-1-i@rong.moe>
-	 <20240121154010.168440-2-i@rong.moe>
-	 <73d75a74-71db-43c7-935a-65423159ce42@linaro.org>
-Autocrypt: addr=i@rong.moe; prefer-encrypt=mutual;
- keydata=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
-	cMTsfqztU+orM
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3-1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8215146535;
+	Mon, 22 Jan 2024 14:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705935380; cv=none; b=Sp3uO1DrHOIBY8FFOdLMz9NnkELi30maDqZv41nbojV7Q8odrVcHBOfYnZHnyer0telERzsgQ4yGpQXcXBaubfko878Mw0Q1lvb2ULe6MB6O0Nr3mTQPvDTIQx4gAj+H74F8GNQhYWJTjey9FlTrytgRbm0pvOb74+bIGVboJI4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705935380; c=relaxed/simple;
+	bh=tseWQ+TXhuYGKRBWR8R0RrEZEs9EXXRyjbdZGTywX+Y=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oTy0oY5gE9aZU0JE4sZ+60wLRHLkTPcLUSZif2Ze+7ggfrc07Ua5dymtF6ulKWGbYgTSHfc8RIWUQe7ZYAB8+1O1zdyKz+I5S/milnwo0XwVftgVPCxLNGmcjvlTX75dFReMjuh3NbDQkxZ0/ZlwSU5xHXOikfydqL0NYreBQbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HMTL1w52; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40MEthx5045395;
+	Mon, 22 Jan 2024 08:55:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1705935343;
+	bh=mCzh9yt7kMY1MpZtUBHO4MH/an5Hfn5JHx44oH9oldg=;
+	h=From:To:CC:Subject:Date;
+	b=HMTL1w52Z2LAmw21r8upUfo7oOAah+du0Z4Ht0uzVdIlgf/6xKEuwXalX2K24292j
+	 /X7v6HbRh4OS5lkIxX0cpCg10MV5Do9UKhFzzclCcYM2HTrn9fag0OFenNqAa+S5g3
+	 cPDVodW2zIokJLC7NXIONyodweYKv0+kllSlIAC8=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40MEthX5126190
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 22 Jan 2024 08:55:43 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
+ Jan 2024 08:55:43 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 22 Jan 2024 08:55:43 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40MEthel021988;
+	Mon, 22 Jan 2024 08:55:43 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Nishanth Menon <nm@ti.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Ayush Singh <ayushdevel1325@gmail.com>,
+        Chao Zeng <chao.zeng@siemens.com>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Esteban Blanc
+	<eblanc@baylibre.com>,
+        Garrett Giordano <ggiordano@phytec.com>,
+        Guillaume La
+ Roque <glaroque@baylibre.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        Jason
+ Kridner <jkridner@beagleboard.org>,
+        Jerome Neanne <jneanne@baylibre.com>,
+        Julien Panis <jpanis@baylibre.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Le Jin <le.jin@siemens.com>,
+        Matthias
+ Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Peng Fan <peng.fan@nxp.com>, Pierre Gondois <pierre.gondois@arm.com>,
+        Robert Nelson
+	<robertcnelson@gmail.com>,
+        Rob Herring <robh@kernel.org>, Roger Quadros
+	<rogerq@kernel.org>,
+        Ronald Wahl <ronald.wahl@raritan.com>,
+        Sarah Walker
+	<sarah.walker@imgtec.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Tony Lindgren <tony@atomide.com>, Wadim Egorov <w.egorov@phytec.de>
+Subject: [PATCH V2 00/16] arm64: dts: ti: Additional licensing and clarification
+Date: Mon, 22 Jan 2024 08:55:23 -0600
+Message-ID: <20240122145539.194512-1-nm@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Mon, 2024-01-22 at 10:48 +0100, Krzysztof Kozlowski wrote:
-> On 21/01/2024 16:39, Rong Zhang wrote:
-> > Some variants of klte, e.g., the China edition (kltechn), have minor
-> > differences to differentiate them from klte. This includes the GPIO pin=
-s
-> > connected to /i2c-gpio-led.
-> >=20
-> > A label is added on /i2c-gpio-led to allow DT of other variants to
-> > reference it conveniently. Considering both LEDs and a GPIO expander ar=
-e
-> > connected to the node, it is named "i2c_led_gpio".
-> >=20
-> > Signed-off-by: Rong Zhang <i@rong.moe>
-> > ---
-> >  arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts b/=
-arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts
-> > index b93539e2b87e..013946ccda0f 100644
-> > --- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts
-> > +++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts
-> > @@ -77,7 +77,7 @@ touchkey@20 {
-> >  		};
-> >  	};
-> > =20
-> > -	i2c-gpio-led {
-> > +	i2c_led_gpio: i2c-gpio-led {
->=20
-> This does not make much sense on its own. 6 commit msg lines just to add
-> a label. Squash it.
+Thank you all for the detailed acks on various patches on V1,
+consolidated all of these with V2 and noted some missing acks below.
+Since it has been 12 days since I posted v1 and v6.8-rc1 is now
+tagged, looks like a good time to refresh the series.
 
-Will squash it into "[PATCH 4/4] ARM: dts: qcom: msm8974: Add device
-tree for Samsung Galaxy S5 China".
+As part of my 2023 LPC talk[1] about the difficulty in ensuring
+device tree is same across multiple s/w ecosystems, I mentioned about
+Licensing, and Rob had indicated that other SoC vendors have MIT
+license option that allows co-existance with Apache.
 
-Thanks,
-Rong
+So, bunch of internal paper work later (during which GPL-2.0-only
+had to be retained due to certain user community), here is the
+update to sync TI K3 device trees with addition of MIT license in
+addition to existing GPL-2.0 license.
+
+After querying BeagleBoard Foundation folks, they'd also like to
+follow suit, so those platforms have been added to the list as well.
+
+While at this, clarify existing licenses to be compatible with latest
+SPDX specifications for iot2050 and phycore.
+
+Verdin platforms look already sane, so no action required there.
+
+The CC list is based on (Since I am representing @ti.com for this
+series):
+git log --no-merges --pretty="%ae" $files|grep -v "@ti.com"|sort -u
+
+Requesting Acked by from the CC list at the earliest so that we can
+merge this for next baseline. - patches 6, 8 and 10 need some
+love.
+
+- "Alexander A. Klimov" <grandmaster@al2klimov.de> (patch #6, #8)
+- Rob Herring <robh@kernel.org> (patch #6)
+- Peng Fan <peng.fan@nxp.com> (patch #8)
+- Jerome Neanne <jneanne@baylibre.com> (patch #8, #10)
+
+Changes since V1:
+* Just picked up acks, most patches are clean now except for 6, 8 and
+  10.
+* As requested, Switched Phytec license from GPL2.0-only to Adding MIT
+  along with it.
+
+V1: https://lore.kernel.org/all/20240110140903.4090946-1-nm@ti.com/
 
 
-> Best regards,
-> Krzysztof
->=20
+Cc: "Alexander A. Klimov" <grandmaster@al2klimov.de>
+Cc: Ayush Singh <ayushdevel1325@gmail.com>
+Cc: Chao Zeng <chao.zeng@siemens.com>
+Cc: Christian Gmeiner <christian.gmeiner@gmail.com>
+Cc: Esteban Blanc <eblanc@baylibre.com>
+Cc: Garrett Giordano <ggiordano@phytec.com>
+Cc: Guillaume La Roque <glaroque@baylibre.com>
+Cc: Jan Kiszka <jan.kiszka@siemens.com>
+Cc: Jason Kridner <jkridner@beagleboard.org>
+Cc: Jerome Neanne <jneanne@baylibre.com>
+Cc: Julien Panis <jpanis@baylibre.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Le Jin <le.jin@siemens.com>
+Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pierre Gondois <pierre.gondois@arm.com>
+Cc: Robert Nelson <robertcnelson@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Roger Quadros <rogerq@kernel.org>
+Cc: Ronald Wahl <ronald.wahl@raritan.com>
+Cc: Sarah Walker <sarah.walker@imgtec.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Tony Lindgren <tony@atomide.com>
+Cc: Wadim Egorov <w.egorov@phytec.de>
+
+Nishanth Menon (16):
+  arm64: dts: ti: Use https for urls
+  arm64: dts: ti: k3-am62a7: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-am625: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-am62p: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-am64: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-am65: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-j7200: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-j721e: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-j721s2: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-j784s4: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-pinctrl: Add MIT license along with GPL-2.0
+  arm64: dts: ti: k3-serdes: Add MIT license along with GPL-2.0
+  arm64: dts: ti: beagle*: Add MIT license along with GPL-2.0
+  arm64: dts: ti: phycore*: Add MIT license along with GPL-2.0
+  arm64: dts: ti: iot2050*: Clarify GPL-2.0 as GPL-2.0-only
+  arm64: dts: ti: Makefile: Clarify GPL-2.0 as GPL-2.0-only
+
+ arch/arm64/boot/dts/ti/Makefile                           | 2 +-
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts                  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi                  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi                   | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62-phycore-som.dtsi           | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi               | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi                | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62.dtsi                       | 4 ++--
+ .../boot/dts/ti/k3-am625-beagleplay-csi2-ov5640.dtso      | 4 ++--
+ .../boot/dts/ti/k3-am625-beagleplay-csi2-tevi-ov5640.dtso | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts            | 6 +++---
+ arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dts     | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am625-sk.dts                    | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am625.dtsi                      | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi                 | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi                  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi              | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi               | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62a.dtsi                      | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts                   | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62a7.dtsi                     | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi                 | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi                  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62p-thermal.dtsi              | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi               | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62p.dtsi                      | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts                   | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62p5.dtsi                     | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi            | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso       | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-ov5640.dtso       | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-tevi-ov5640.dtso  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso        | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi                  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi                   | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am64-phycore-som.dtsi           | 6 +++---
+ arch/arm64/boot/dts/ti/k3-am64-thermal.dtsi               | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-am64.dtsi                       | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts                   | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-rdk.dts  | 6 +++---
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts                    | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am642.dtsi                      | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg1.dtsi    | 2 +-
+ arch/arm64/boot/dts/ti/k3-am65-iot2050-common-pg2.dtsi    | 2 +-
+ arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi        | 2 +-
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi                  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi                   | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi                | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am65.dtsi                       | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am652.dtsi                      | 4 ++--
+ .../arm64/boot/dts/ti/k3-am6528-iot2050-basic-common.dtsi | 2 +-
+ arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dts    | 2 +-
+ arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dts        | 2 +-
+ .../dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am654-base-board.dts            | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso               | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am654-idk.dtso                  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi   | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-am654.dtsi                      | 4 ++--
+ .../boot/dts/ti/k3-am6548-iot2050-advanced-common.dtsi    | 2 +-
+ arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-m2.dts  | 2 +-
+ arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dts | 2 +-
+ arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dts     | 2 +-
+ arch/arm64/boot/dts/ti/k3-am68-sk-base-board.dts          | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am68-sk-som.dtsi                | 4 ++--
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts                     | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts     | 4 ++--
+ .../arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi                 | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi           | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi               | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi              | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi                      | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts        | 8 ++++----
+ arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts     | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-evm-gesi-exp-board.dtso   | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-evm-pcie0-ep.dtso         | 4 ++--
+ .../arm64/boot/dts/ti/k3-j721e-evm-quad-port-eth-exp.dtso | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi                 | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi           | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts                    | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-som-p0.dtsi               | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi              | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-j721e.dtsi                      | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts    | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721s2-evm-pcie1-ep.dtso        | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi                | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi          | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi              | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi             | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-j721s2.dtsi                     | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts                  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi                | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi          | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j784s4-thermal.dtsi             | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-j784s4.dtsi                     | 4 ++--
+ arch/arm64/boot/dts/ti/k3-pinctrl.h                       | 4 ++--
+ arch/arm64/boot/dts/ti/k3-serdes.h                        | 4 ++--
+ 99 files changed, 210 insertions(+), 183 deletions(-)
+
+
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+
+
+[1] https://www.youtube.com/watch?v=kr-Yd56so9M
+    https://lpc.events/event/17/contributions/1547/
+-- 
+2.43.0
 
 
