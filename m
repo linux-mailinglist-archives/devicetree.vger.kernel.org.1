@@ -1,75 +1,73 @@
-Return-Path: <devicetree+bounces-33742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB2E0836339
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:29:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C452183633E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:30:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2746A1F2166E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:29:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73F922901D7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE5C3BB36;
-	Mon, 22 Jan 2024 12:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE28C29D11;
+	Mon, 22 Jan 2024 12:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UB8Xm8U4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vH7XUDhO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31B733BB21
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 12:29:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F1D3A8D5
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 12:30:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705926561; cv=none; b=c7u07YVufcTnb9/okJkAYvZZF9HUcOmnIzKsmNgzm0nU5hOVZSxTSmr36PQ4G/8/CHQ2EZ/ObwPDsnlEIaTNww3tU09gE6xqyPrXxJX83BmpmTtVyY7t17bFeTC2BB0b8zRFNpS/rx0k/7MYA9oqwolZuTtbEumvXIQxCIspe/Q=
+	t=1705926619; cv=none; b=UbEuJR2PlVX1zoSm69SAIvsIhWaAGZJR8/rLf/tmaFn9xI/jc5s9jdECucm5jnCkiqcURubHDZPb3rhs5PX+m0556t3lZoNs64DYCwG0VdhyDZi7tXuKahN/EtYzyr0QvT7nGtFFD15OKqSmK32aKR1/TG4Eljw6FLoTWJZfM9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705926561; c=relaxed/simple;
-	bh=SxZgIRQrD8QpnF8i8KFIjov6oKyEUrDFXnEsGFUSUzw=;
+	s=arc-20240116; t=1705926619; c=relaxed/simple;
+	bh=AW+vqoCuOZ639tXlFHzzqUsJLsYmwWPLjZMlkphvPoI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e7n9RGMSFFXyRDOlePrSD6ciFloyBL9siuCbIgXN1A2CFImF50hBN7z/IDlCz1GpFVZLkZ9mu8TWwB5oRJHOdg09YCDvp445wX8D3TE6vNygxS4sG+rQqptkb+sgd259bjKLm1hjDUfxsJnuTDdYf6OpiLw2ON/+3wWyB5iSFro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UB8Xm8U4; arc=none smtp.client-ip=209.85.208.43
+	 In-Reply-To:Content-Type; b=FLZ9HbGJ8Jy7nNTDpxa+yR6n9WzdwY0PEp4wXRJHw0E7qlfk5zokFJ6zrqfIfEh9KgCZdk8e7AlYRv9SgEfQVfipU3Cfz0ybr728secgm+qSJcwf3mpBXBfukgHaUzhqC8kNBmmuUoUD6Kmcn+slbb+DTT6NooK61FQjre1PQeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vH7XUDhO; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55a035669d5so3537221a12.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 04:29:19 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55a3a875f7fso3407258a12.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 04:30:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705926558; x=1706531358; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=SxHCi2GuLqGB59bFq50r0MZWHcYIwjtHICtzKLfAak0=;
-        b=UB8Xm8U4xSHmGMVK87FUTjRXqpNeZyknFRAMC23l16mt7Pf5FHRDNKc0WbdAeh6ZSN
-         8I+uwKVh1EDSdhxJneWEV9+21oSpJDEuqqb84pDtJY/M1dUfQa0OZji9mRcHkaLErXer
-         PnAWjup1ALUdZ8seprCGEWGNaFZRQtJLbSCaiWlR9edOHQrFZr4uOd0eOF++ItgWBz5E
-         L7EFlygMakEKRCyUwl9mN3H/MZvscTGke/39IdS31sBfjQIOfzuv9d9zQ8fRqRMumc+a
-         Nct3eq5NyIU3FTDlR3vsOFTe72x4ALTzVkYzbn5FUjV2QBF9WQKFHPIbzMYd4caxTyJn
-         jPSw==
+        d=linaro.org; s=google; t=1705926616; x=1706531416; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AW+vqoCuOZ639tXlFHzzqUsJLsYmwWPLjZMlkphvPoI=;
+        b=vH7XUDhO1V/iWTltykpIi819r+Snb8YnIYh74o/8vHJZtwMGAX6ujR48iHCpH/wzty
+         FzdiIET+mndv06udnHBL3wFdQxIBQpiI60lBdoPrr9jMRccApl3ahrBHp9lXBNS73aUa
+         gck24zvluDDrj1zq2WCX7G332756cHkC6/qEdK4i7aEj9JN1mdiwqYP4ZFHzBY5l93AU
+         XLyK1tXXASft6aIqF9fDXeyrWrylwL+pWzlodfElreKAOTiQozF+iVtYxfuadvJP2953
+         G6Rss8cY0ZyXhKAUX/Cc1s6/WXWEWCgOmqggzU7MDMoO2v1hHgVvD/Gm9rkZd/VJZLsw
+         ATmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705926558; x=1706531358;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SxHCi2GuLqGB59bFq50r0MZWHcYIwjtHICtzKLfAak0=;
-        b=YMEPg1pJi/eqxBx12KqWjwIJpH2ddsvbE0kbV86z02GDaK8boEmL+Nx2nOhHHzJXwm
-         pot9imVYLhQJ3yTi8klSAcgjcsc9jxBnxFTgKxqVkjT7Ql9AQU86DbwMQ/D+hY0d2TDN
-         Xf91AwjTljlgkmhdrw4R2hUBeiTWb9SAdx97rVbxL/6/YZ9p8EgCWCyayiyGIbuEvr/3
-         WXxPTcqGTgHtHGPL4obRGg+Z4iXjobcG/uI4hM6aeH3BLrjGM951LtBH8shLt4Liodcj
-         30vmM3qDHT8AGLgGnOQvls1m7Pxml35UiJvYjUK2U/nYGHLEDbx4NQY5/SVo8tbnpL35
-         PJNA==
-X-Gm-Message-State: AOJu0YxEwWetSANsPfWHVj+X/cHWQG7K+iF/n6EM/HXcutDEcynwB+Im
-	CD9rZ9s2LT4U/LgroZWKnkW5hNKb+KmkDAy2awpza7ZjOWYpteQbS8fMRFtm/aY9q+9VLrThjV0
-	QL/o=
-X-Google-Smtp-Source: AGHT+IHTHFkbGvxLEdvkPeQaKm8/4xqPb0ajjXIoNc/O86cyd3aEh2UVLFjamdOtuBqSQqUfac6Mug==
-X-Received: by 2002:a50:9ead:0:b0:55a:d2b6:ecd8 with SMTP id a42-20020a509ead000000b0055ad2b6ecd8mr1588526edf.14.1705926558360;
-        Mon, 22 Jan 2024 04:29:18 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705926616; x=1706531416;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AW+vqoCuOZ639tXlFHzzqUsJLsYmwWPLjZMlkphvPoI=;
+        b=GE9cs8k6dkG+HxQZ05oIO0UMfVxZHHvpPfvt0ohFlTvr6n64+Jg9F4GrGjbPz+ybLZ
+         Gy5fUEEEMUAVZxz7nBwP3MPhroBGpVEgF0UUC8GBIa2LH2edmm3t7W2VlMKwzPRozvL8
+         gwckkClipFWh7cD2Z7I4B0AmEJwIz/VwcmZRuMA9Cs9JxrpEK4DoSWny+63fnzF6JoM9
+         56iqU3dgVsGMrhosh7ys+nh+9uyoyFimTW08kbMBLE/i2ENIY6ronx74vAI4ammBYzH3
+         qfP26OplYffHURZ3IW93oEwuzgtekm5LOOhUi7HcUt/IwaCIU1czwZjl3BSkfoPbnJHa
+         2EQA==
+X-Gm-Message-State: AOJu0YzC6vCiqPRu5V6xfW3Los53tqEPgQGrspBQsKamhitFeB1KU2rp
+	Un9CFqQTj7ZMOvWMCEk/buf1j342D2LKW5GF3e2oZ/0U/rd9yIhH4TdZzeLzqfY=
+X-Google-Smtp-Source: AGHT+IEp6Ax6UnOc0NHoPe5FxdVDDhE4mBB0B+HBqmG3ybOEskSgNV0NuA6zdZnFXrOdLNZ37F1gEQ==
+X-Received: by 2002:a05:6402:510c:b0:55c:2394:7c40 with SMTP id m12-20020a056402510c00b0055c23947c40mr1175485edd.20.1705926616548;
+        Mon, 22 Jan 2024 04:30:16 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id g35-20020a056402322300b0055a5ea4462bsm4157514eda.52.2024.01.22.04.29.15
+        by smtp.gmail.com with ESMTPSA id g35-20020a056402322300b0055a5ea4462bsm4157514eda.52.2024.01.22.04.30.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 04:29:17 -0800 (PST)
-Message-ID: <34a421e3-b11f-4e61-b894-0b42a1330d8f@linaro.org>
-Date: Mon, 22 Jan 2024 13:29:14 +0100
+        Mon, 22 Jan 2024 04:30:15 -0800 (PST)
+Message-ID: <345a3c41-6b31-4545-85ba-4a62ab98e611@linaro.org>
+Date: Mon, 22 Jan 2024 13:30:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,30 +75,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] ASoC: dt-bindings: xmos,xvf3500: add bindings for
- XMOS XVF3500
-To: Javier Carrasco <javier.carrasco@wolfvision.net>,
+Subject: Re: [PATCH v5 2/3] dt-bindings: iio: light: Avago APDS9306
+Content-Language: en-US
+To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
- linux-usb@vger.kernel.org
-References: <20240115-feature-xvf3500_driver-v1-0-ed9cfb48bb85@wolfvision.net>
- <20240115-feature-xvf3500_driver-v1-2-ed9cfb48bb85@wolfvision.net>
- <333c2986-c7c2-4a46-90cf-b59ae206e55a@linaro.org>
- <96abddcc-fa65-4f27-84fe-2281fe0fcf1c@wolfvision.net>
- <644f7f02-405d-47fb-bc72-4d54e897255f@linaro.org>
- <5db4b898-93d5-446f-bfed-b57847f9967a@wolfvision.net>
- <435f502c-1e1b-4d40-8dcc-34487905d69c@linaro.org>
- <b7f76546-9998-43e0-abff-a4e73817dbae@wolfvision.net>
- <47bdc31c-50d2-4d33-9339-5132b6364539@linaro.org>
- <16027339-0a82-4dd1-86aa-19fda6e23f88@wolfvision.net>
- <aeeb0dfb-87e2-4024-9d4a-0b9529477315@linaro.org>
- <b888d958-4eb0-4c1f-ace6-b2b85faa5113@wolfvision.net>
-Content-Language: en-US
+ Conor Dooley <conor+dt@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
+ <20240121051735.32246-3-subhajit.ghosh@tweaklogic.com>
+ <a317aeaf-6b4c-43c9-b5d6-78d93ba6f9af@linaro.org>
+ <478fc1b0-aba4-4f36-bdb6-bf5fc7eb8609@tweaklogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -146,96 +139,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <b888d958-4eb0-4c1f-ace6-b2b85faa5113@wolfvision.net>
+In-Reply-To: <478fc1b0-aba4-4f36-bdb6-bf5fc7eb8609@tweaklogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2024 08:29, Javier Carrasco wrote:
-> On 15.01.24 21:43, Krzysztof Kozlowski wrote:
->> On 15/01/2024 20:43, Javier Carrasco wrote:
->>> On 15.01.24 19:11, Krzysztof Kozlowski wrote:
->>>> On 15/01/2024 17:24, Javier Carrasco wrote:
->>>>> Do you mean that the XVF3500 should not be represented as a platform
->>>>> device and instead it should turn into an USB device represented as a
->>>>> node of an USB controller? Something like this (Rockchip SoC):
->>>>>
->>>>> &usb_host1_xhci {
->>>>> 	...
->>>>>
->>>>> 	xvf3500 {
->>>>> 		...
->>>>> 	};
->>>>> };
->>>>>
->>>>> Did I get you right or is that not the correct representation? Thank you
->>>>> again.
->>>>
->>>> I believe it should be just like onboard hub. I don't understand why
->>>> onboard hub was limited to hub, because other USB devices also could be
->>>> designed similarly by hardware folks :/
->>>>
->>>> And if we talk about Linux drivers, then your current solution does not
->>>> support suspend/resume and device unbind.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>>
->>> Actually this series is an attempt to get rid of a misuse of the
->>> onboard_usb_hub driver by a device that is not a HUB, but requires the
->>> platform-part of that driver for the initialization.
+On 22/01/2024 11:07, Subhajit Ghosh wrote:
+> On 22/1/24 20:21, Krzysztof Kozlowski wrote:
+>> On 21/01/2024 06:17, Subhajit Ghosh wrote:
+>>> Adding device tree support for APDS9306 Ambient Light Sensor.
+>>> Updating datasheet hyperlinks.
+>>> Adding interrupt definition macro and header file.
+>>> Adding vdd-supply property.
 >>
->> That's just naming issue, isn't it?
->>
->>>
->>> What would be the best approach to provide support upstream? Should I
->>> turn this driver into a generic USB driver that does what the
->>> platform-part of the onboard HUB does? Or are we willing to accept
->>
->> No, because you did not solve the problems I mentioned. This is neither
->> accurate hardware description nor proper Linux driver model handling PM
->> and unbind.
->>
-> You mentioned the PM handling twice, but I am not sure what you mean.
-> The driver provides callbacks for SIMPLE_DEV_PM_OPS, which I tested in
-> freeze and memory power states with positive results. On the other hand,
-> I suppose that you insisted for a good reason, so I would be grateful if
-> you could show me what I am doing wrong. The macro pattern was taken
-> from other devices under sound/, which also check CONFIG_PM_SLEEP,
-> but maybe I took a bad example or missed something.
+>> Why? Do other devices have it?
+> Are you referring to vdd-supply? No, I guess, haven't checked actually.
+> If other devices don't have, can you suggest the best way to handle that?
 
-You have two Linux devices: USB device and platform device. The platform
-device controls power of USB device. If platform device goes to some
-variant of sleep (PRM, system PM) before the USB device, how will USB
-device react? Will it work? I doubt.
-
-You have no ordering / dependencies / device links between these devices
-thus possible problems.
-
->>> non-HUB devices in the onboard_usb_hub driver even though it supports
->>> more operations?
->>>
->>> I am adding linux-usb to this thread in case someone has other suggestions.
->>
->> I don't see any difference between this device and onboard hub. The
->> concept and the problem is the same. Therefore either treat it as as
->> onboard hub or come with USB-version of PCI power sequencing.
->>
-> I have nothing against adding this device to onboard_usb_hub as long as
-> it is valid upstream, so no conflicts arise with new additions to the
-> list (which was the trigger for all of this with v6.7). That is
-
-I am sorry, but we talk here only about upstream. I don't know therefore
-what "valid upstream" means. You cannot send a patch which is "not valid
-upstream". I mean, technically you can, but this would be waste of our
-time and receive rather annoyed responses.
-
-> obviously the most trivial solution and as you said, it is justs a
-> naming issue because the power sequence is not HUB-specific.
-
-I would ack it. Others? No clue, I also do not remember full story
-behind onboard USB hub and why it was called "hub" instead of "onboard
-USB device".
+Commit msg should explain that. I assume all devices need it, so just
+like Jonathan suggested: this might be separate patch.
 
 Best regards,
 Krzysztof
