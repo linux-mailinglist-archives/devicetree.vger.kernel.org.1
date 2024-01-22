@@ -1,218 +1,219 @@
-Return-Path: <devicetree+bounces-33516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39126835857
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 23:57:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 571298358D9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 01:04:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D75952818E4
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jan 2024 22:57:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF5541F227C3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 00:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CBC036139;
-	Sun, 21 Jan 2024 22:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80836195;
+	Mon, 22 Jan 2024 00:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=shantur-com.20230601.gappssmtp.com header.i=@shantur-com.20230601.gappssmtp.com header.b="UYx7Hsdo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JwXseGBQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 682431DDC3
-	for <devicetree@vger.kernel.org>; Sun, 21 Jan 2024 22:57:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA9E362
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 00:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705877833; cv=none; b=hgGqbCEMw4m+YW2YNXzr6EJbwQPTQd0sMWcvCIswnXkr+VJD+1IN8F+DC3LPskKcaFX8lVkR35wB4uFc3xd5PPjzWliG0GtbD3WX10FJEyLThziMmgqPKK/pG21BzvTiAOgMp1l2FyHWbpm6CRPPhKZU/Q9eZVqMGDvMGJdOqi8=
+	t=1705881883; cv=none; b=ovlkK6LJFY70LWtziX/1EBJBlimhFGX8HWbreaLTXbnp4RFi9bOwpislYtL8UHBC1d1KWqSa48LYQv0SjocebdkNd0g/fGXzk5VGD4bAuo3PUVHkNmNa54zbsAoHjlDVccTr1yZkKXvefL+A/ahClEWP/ceSeThG18FNhvbdEXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705877833; c=relaxed/simple;
-	bh=cgZ5ysUZFWfL2yJu6wt2ND90oEx+DS2j5MeDpXsLens=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bn8bIloqK5WVj09oum1wgSwfLKj/Hi9KTyLMIzD7stZhSk9HSUjIfkz0btCxSqHYYGWzRMkYya5f+z5aHu+pj4FXZgW8OoiVlgjTaDkpBpw1hgUqRZgmQKK0KFDWloqLqyNOpR2cKmAiCfgv+p1G4KZ7TtRLMmcwhcJfry99yjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shantur.com; spf=none smtp.mailfrom=shantur.com; dkim=pass (2048-bit key) header.d=shantur-com.20230601.gappssmtp.com header.i=@shantur-com.20230601.gappssmtp.com header.b=UYx7Hsdo; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=shantur.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=shantur.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-4b7e0f53437so496522e0c.1
-        for <devicetree@vger.kernel.org>; Sun, 21 Jan 2024 14:57:11 -0800 (PST)
+	s=arc-20240116; t=1705881883; c=relaxed/simple;
+	bh=/ULamA22NiwL3lkm0oOrpcSQqP16Wr27ft5NeIDulhs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o9XTF3fVQ6W8Np7Ns0VUEH00YIfaOFSD8tthHLNwV7wI5zPLPlEbOMAll22qowTd5HSqBpLKVtheHUw/sxt9eHQ+e7RkCfLbniToB3eW1Hwd9BPPh7wR4youQoE7R9gvq3cpZGRxZjrqKtQtvidd0CAZbHSCpGfd6rwnIv06Zk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JwXseGBQ; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-338aca547d9so2073019f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 21 Jan 2024 16:04:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shantur-com.20230601.gappssmtp.com; s=20230601; t=1705877830; x=1706482630; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3nIhznf2h9PpvWK5/Dbn9QHP5caRPajJwXiPd6lkHO0=;
-        b=UYx7Hsdoa2G8JRpAURMA/XkUrKoB/b3lCLUoPhZ4Z7fzEmAaT9kL6c044JDDw7bR1z
-         9tz+obO6fLXOj5rdUlAnQ/LHA6On8hGOJ+GGlOzn4h5as4ezssh9fJDcFcWor7BoFwA9
-         onyi7IbcCQYmaB4Sx0ZwzF7iYx1El7nOxI8bORi9w20XzwayfekMmpaSsfWsR/E/b96O
-         aJO0+w0Hk4lZCISUEuxMC3zDJBzO573HquXzqHb86Mgw9oUFnss78bNdWBANojtql9SN
-         W0mMCrLDRLAY8Yo5zfFTI7/nPQrlW8HQlKGWB6bNrGv4CBfL8aRClOFKNr46R6Yigl/S
-         Olbw==
+        d=linaro.org; s=google; t=1705881880; x=1706486680; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zlEZyotr7lQewRwJXfl4AVVs7IqSe9mLqbTp7FrGZ4c=;
+        b=JwXseGBQ1lfhoj/2oIPD/uz7JZmGVkY3Gi9DpR0CpCTrm5C2DgKaMYuooL52eInCrf
+         XG3jRickLoKGv+l1IuIwYN7PxkdSjkg4fkd6GcbKdb0o/rYloe78thufRw+MgVAngdRb
+         iOTveASUzW0n3rqamvKflf8CX1aT1b/kcLK2jxVOPjEcJP19VYObuY3MPqQyyjs3SmSc
+         tA31wmLi20vL4S+kaF5sKuhtdUEmqkhXmdlV5VJkorjmM/Laim0xV8rh12hi7qhoOpwC
+         39mF0FF2+28cJVxHT8Su2wPjQr0xoJywz+JdZH/uvXYJRsktBG86hHMVCkJ63Ltt0ZKV
+         gpcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705877830; x=1706482630;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3nIhznf2h9PpvWK5/Dbn9QHP5caRPajJwXiPd6lkHO0=;
-        b=vpWxAe+7945FtmGQY70vzQkc+6IXTbWWGdQenIUt9hrgi785K1PDDP6CRDTLHg7Aiu
-         T8XU8666+ZPiyDAqL0ktQZMFmX/gsTKDXUSDdOqP8DvXfp+YQuOWAfIliLoxGTY4b56T
-         FFwCXDHPJ95N6KuAAUVp+7ZT4luIN4jrmwliquu504LjH+CxyuQqF7+hlHw5Brz58tg9
-         oBshDymYW9HoGYunbOJcm+oqFhMLoYzYJ//qETh6yAKuSP9cW+DFHAlMXFkEURGOaj9d
-         G9vl4OM8Z4LkelogxLKfyciy5QwVU+Ixy3jfiOIFzddDGtx8ghI5fwDn+xV6MNQQwmXz
-         RMhQ==
-X-Gm-Message-State: AOJu0YyTdcJN36HlC5qNOG94TKrCAQpmJ/VGz0vIf9faXAxQmy+iuEkg
-	jFPG7841qKpqBscor3fPCYrt9Vc5asgiGqoSmgeSdzTsQ36uoinDFwI3jUYofPN+/EicQqGdhAQ
-	HrJ0IvJLby6EtYz7rIM2Ynb7qtHIJAv906AT5nA==
-X-Google-Smtp-Source: AGHT+IGFtF6VkotjMrzG+mk/aqjQSbwfWiBlIzDY+TYgWBlGtoJ/gIyOe/XlUVC4/TVXAf0arfMrYheZwE+Il9zup5M=
-X-Received: by 2002:a1f:ee47:0:b0:4b6:f0c7:62e4 with SMTP id
- m68-20020a1fee47000000b004b6f0c762e4mr511746vkh.12.1705877830153; Sun, 21 Jan
- 2024 14:57:10 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705881880; x=1706486680;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zlEZyotr7lQewRwJXfl4AVVs7IqSe9mLqbTp7FrGZ4c=;
+        b=G+LE+bRf4i+YF/QLlI521New4M9TU14tVBanv3R14lxQfhSq7bKPHgD4fdiGo/yuZX
+         0w4mgw5NOiy2Hfj6IORDX+lEgLQOoMly1+n1ROprabBkrGpZEUijprk7Zf1iqbNnoCFC
+         tXjMTnGA4bZbaRCytsUHY0iS91vQdQ7UsbsiG8/7TOFPIAJGTUzxpW1yMCHeL7SWbyOj
+         S/8c5CEgA/j8HNsdkG3w6Jt/b5iIA5Z67v7UQIH8rZJfVgmIQQTnSK+/ilcb54RJiQQ5
+         V1RpKC9NRbmAWfQSisG8I7VMsIj2gNKBUDJiSmb2Fm8jpn8P2iq6aRMpCY32uReY0Q+w
+         bsPA==
+X-Gm-Message-State: AOJu0YyjzRmv66qQyG+Gc5ZzXm+P+IwKJZvh+JqCRgWru2DtCrs3L7Ye
+	YlNHtYX7/AIah4j2KqQyHkVghBeGa8LFZENCqUdNSXaFA3uanz4sxRzWayIEmZI=
+X-Google-Smtp-Source: AGHT+IGRUcJnOFsQp7DY+zsXgFaLMfVCir7fUcEIhdDpS5U3lN7oKicfCyySWRw9DEHt6YVffn2IfQ==
+X-Received: by 2002:a05:6000:142:b0:337:d4ca:d754 with SMTP id r2-20020a056000014200b00337d4cad754mr910481wrx.263.1705881879492;
+        Sun, 21 Jan 2024 16:04:39 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:371e:2a86:62f0:bc48? ([2a05:6e02:1041:c10:371e:2a86:62f0:bc48])
+        by smtp.googlemail.com with ESMTPSA id s15-20020a5d6a8f000000b00336898daceasm10011000wru.96.2024.01.21.16.04.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 21 Jan 2024 16:04:39 -0800 (PST)
+Message-ID: <e45f72c2-0b5b-44dd-ad39-e7e5bd17ae26@linaro.org>
+Date: Mon, 22 Jan 2024 01:04:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231222141616.508073-1-i@shantur.com> <72f608668d619bda1cc620ce11eb3e40@manjaro.org>
- <CABEcMwWEru2DYnd-Y3qWbEp25unVd96TogSnQ+-L+NXKS3_pZQ@mail.gmail.com>
- <10691234.0AQdONaE2F@diego> <b666a1ac31ee761e7c86f65cb1914cf0@manjaro.org>
- <CABEcMwU-pDTXZrc0qGZ1Or+Msb91uEVYh7SYM4nOfRKb8xB3mw@mail.gmail.com> <18b48da2368dbd7af20b5440d8621d86@manjaro.org>
-In-Reply-To: <18b48da2368dbd7af20b5440d8621d86@manjaro.org>
-From: Shantur Rathore <i@shantur.com>
-Date: Sun, 21 Jan 2024 22:56:59 +0000
-Message-ID: <CABEcMwWH+DjZtZdawXZSdd=u-zKnr7Re-urJyomRMyBxxHc-WQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dts: rockpro64: Remove usb regulator-always-on
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: rockchip: enable built-in thermal
+ monitoring on rk3588
+Content-Language: en-US
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Christopher Obbard <chris.obbard@collabora.com>,
+ =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <szucst@iit.uni-miskolc.hu>,
+ Shreeya Patel <shreeya.patel@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>, Jagan Teki <jagan@edgeble.ai>,
+ Chris Morgan <macromorgan@hotmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240106222357.23835-1-alchark@gmail.com>
+ <20240109192608.5981-1-alchark@gmail.com>
+ <c517f26c-34bc-4b99-b744-8e2549cd28b5@linaro.org>
+ <CABjd4YxYpsvf+ghHTn1z8TAZxQb-2dFOQaVSm8zHKSSWOokqww@mail.gmail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <CABjd4YxYpsvf+ghHTn1z8TAZxQb-2dFOQaVSm8zHKSSWOokqww@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jan 21, 2024 at 10:24=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> =
-wrote:
->
-> Hello Shantur,
->
-> On 2024-01-21 23:12, Shantur Rathore wrote:
-> > On Mon, Jan 8, 2024 at 2:47=E2=80=AFPM Dragan Simic <dsimic@manjaro.org=
-> wrote:
-> >> On 2024-01-08 13:29, Heiko St=C3=BCbner wrote:
-> >> > Am Montag, 8. Januar 2024, 13:11:17 CET schrieb Shantur Rathore:
-> >> >> On Thu, Jan 4, 2024 at 9:50=E2=80=AFAM Dragan Simic <dsimic@manjaro=
-.org> wrote:
-> >> >> > On 2024-01-04 10:44, Shantur Rathore wrote:
-> >> >> > > On Fri, Dec 29, 2023 at 10:08=E2=80=AFPM Heiko St=C3=BCbner <he=
-iko@sntech.de> wrote:
-> >> >> > >> Am Freitag, 22. Dezember 2023, 15:16:16 CET schrieb Shantur Ra=
-thore:
-> >> >> > >> > USB port regulators should be controlled by PHYs
-> >> >> > >> > so we remove always-on property and let PHYs manage the
-> >> >> > >> > regulator.
-> >> >> > >> >
-> >> >> > >> > phy-supply isn't sconfugred for the TypeC port and now that =
-we are
-> >> >> > >>                 ^^ configured ?
-> >> >> > >>
-> >> >> > >> > removing regulator-always-on, we need to fix the phy-supply
-> >> >> > >> > so the PHYs are able to turn power to type-c port.
-> >> >> > >> >
-> >> >> > >> > Series-version: 2
-> >> >> > >> >
-> >> >> > >> > Signed-off-by: Shantur Rathore <i@shantur.com>
-> >> >> > >> > ---
-> >> >> > >> >  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 3 +--
-> >> >> > >> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> >> >> > >> >
-> >> >> > >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.d=
-tsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> >> > >> > index bca2b50e0a..f7273f7990 100644
-> >> >> > >> > --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> >> > >> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> >> >> > >> > @@ -192,7 +192,6 @@ vcc5v0_host: vcc5v0-host-regulator {
-> >> >> > >> >               pinctrl-names =3D "default";
-> >> >> > >> >               pinctrl-0 =3D <&vcc5v0_host_en>;
-> >> >> > >> >               regulator-name =3D "vcc5v0_host";
-> >> >> > >> > -             regulator-always-on;
-> >> >> > >> >               vin-supply =3D <&vcc5v0_usb>;
-> >> >> > >> >       };
-> >> >> > >> >
-> >> >> > >> > @@ -203,7 +202,6 @@ vcc5v0_typec: vcc5v0-typec-regulator {
-> >> >> > >> >               pinctrl-names =3D "default";
-> >> >> > >> >               pinctrl-0 =3D <&vcc5v0_typec_en>;
-> >> >> > >> >               regulator-name =3D "vcc5v0_typec";
-> >> >> > >> > -             regulator-always-on;
-> >> >> > >> >               vin-supply =3D <&vcc5v0_usb>;
-> >> >> > >> >       };
-> >> >> > >> >
-> >> >> > >> > @@ -859,6 +857,7 @@ &u2phy0 {
-> >> >> > >> >       status =3D "okay";
-> >> >> > >> >
-> >> >> > >> >       u2phy0_otg: otg-port {
-> >> >> > >> > +             phy-supply =3D <&vcc5v0_typec>;
-> >> >> > >> >               status =3D "okay";
-> >> >> > >> >       };
-> >> >> > >>
-> >> >> > >> Just to explain for me, what is supplying the "other" OTG port
-> >> >> > >>         u2phy1_otg: otg-port {}
-> >> >> > >>
-> >> >> > >> in u2phy1 ... this one is status okay, but does not have any p=
-hy
-> >> >> > >> supply?
-> >> >> > >>
-> >> >> > > In RockPro64 there is only 1 USB-C OTG port and the other port
-> >> >> > > is a USB-3.0 port.
-> >> >> > > To be honest, I am not 100% sure how this all works, as I under=
-stand
-> >> >> > > the USB3.0 port is wired to the second TypeC Phy.
-> >> >> > >
-> >> >> > > Maybe Dragan has more info on this.
-> >> >> >
-> >> >> > I'll have it checked and tested in detail, of course, but I have =
-to
-> >> >> > recover from this nasty flu first.  Unfortunately, it has rendede=
-d me
-> >> >> > unable to even think straight.
-> >> >>
-> >> >> Hope you feel better soon.
-> >> >> It would be awesome if we can get this in while the current merge
-> >> >> window is open.
-> >> >
-> >> > just a small comment regarding timing. All regular development chang=
-es
-> >> > need to be finished and in linux-next _before_ the merge-window open=
-s.
-> >> >
-> >> > As this is not a fix it will go to 6.9 anyway - hence no need to rus=
-h.
-> >>
-> >> Ah, yes, I keep forgetting that the current merge window basically
-> >> goes
-> >> one more kernel version into the past. :)  Thank you for the
-> >> clarification.
-> >
-> > Hope you are feeling better.
-> > Just to update, my patch has been dropped in u-boot in expectation of
-> > it being fixed here.
->
-> Yes, I saw that message on the U-Boot mailing list.  Frankly, that's the
-> usual way, i.e. having the DT issues fixed in the Linux kernel first,
-> and
-> then synced back to U-Boot.
->
-> > Do you foresee it happening anytime soon?
->
-> Unfortunately, I've been unable to focus well enough to be able to work
-> on
-> this, as a result of still recovering from the _nasty_ flu. :(  Though,
-> I've
-> been also getting gradually better, thankfully, so while crossing all my
-> fingers and knocking on wood at the same time, :) I'd dare to say that
-> I'm
-> expecting to be able to work on this in the next few days.
->
-> I apologize for the delays.  Bear with me, please! :)
 
-You are fast in replies. Thanks for that.
+Hi Alexey,
 
-I hope you feel 100% soon and no worries I was just checking.
 
-Regards,
-Shantur
+On 21/01/2024 20:57, Alexey Charkov wrote:
+> On Fri, Jan 19, 2024 at 8:21 PM Daniel Lezcano
+> <daniel.lezcano@linaro.org> wrote:
+> Hello Daniel,
+> 
+> Thanks a lot for your review and comments! Please see some reflections below.
+> 
+>> On 09/01/2024 20:19, Alexey Charkov wrote:
+>>> Include thermal zones information in device tree for rk3588 variants
+>>> and enable the built-in thermal sensing ADC on RADXA Rock 5B
+>>>
+>>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+>>> ---
+>>> Changes in v2:
+>>>    - Dropped redundant comments
+>>>    - Included all CPU cores in cooling maps
+>>>    - Split cooling maps into more granular ones utilizing TSADC
+>>>      channels 1-3 which measure temperature by separate CPU clusters
+>>>      instead of channel 0 which measures the center of the SoC die
+>>> ---
+>>>    .../boot/dts/rockchip/rk3588-rock-5b.dts      |   4 +
+>>>    arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 151 ++++++++++++++++++
+>>>    2 files changed, 155 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>>> index a5a104131403..f9d540000de3 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>>> @@ -772,3 +772,7 @@ &usb_host1_ehci {
+>>>    &usb_host1_ohci {
+>>>        status = "okay";
+>>>    };
+>>> +
+>>> +&tsadc {
+>>> +     status = "okay";
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>>> index 8aa0499f9b03..8d54998d0ecc 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>>> @@ -10,6 +10,7 @@
+>>>    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+>>>    #include <dt-bindings/phy/phy.h>
+>>>    #include <dt-bindings/ata/ahci.h>
+>>> +#include <dt-bindings/thermal/thermal.h>
+>>>
+>>>    / {
+>>>        compatible = "rockchip,rk3588";
+>>> @@ -2112,6 +2113,156 @@ tsadc: tsadc@fec00000 {
+>>>                status = "disabled";
+>>>        };
+>>>
+>>> +     thermal_zones: thermal-zones {
+>>> +             /* sensor near the center of the whole chip */
+>>> +             soc_thermal: soc-thermal {
+>>> +                     polling-delay-passive = <20>;
+>>
+>> There is no mitigation set for this thermal zone. It is pointless to
+>> specify a passive polling.
+> 
+> Indeed, it makes sense to me. There seems to be a catch though in that
+> the driver calls the generic thermal_of_zone_register during the
+> initial probe, which expects both of those polling delays to be
+> present in the device tree, otherwise it simply refuses to add the
+> respective thermal zone, see drivers/thermal/thermal_of.c:502
+
+Usually:
+
+polling-delay-passive = <0>;
+polling-delay = <0>;
+
+cf:
+
+git grep "polling-delay = <0>" arch/arm64/boot/dts
+
+>>> +                     polling-delay = <1000>;
+>>
+>> The driver is interrupt driven. No need to poll.
+> 
+> Same here as above
+> 
+>>> +                     sustainable-power = <2100>;
+>>
+>> There is no mitigation with this thermal zone. Specifying a sustainable
+>> power does not make sense.
+> 
+> Thanks, will drop this in v3!
+> 
+>>> +                     thermal-sensors = <&tsadc 0>;
+>>> +
+>>> +                     trips {
+>>> +                             soc_crit: soc-crit {
+>>> +                                     temperature = <115000>;
+>>> +                                     hysteresis = <2000>;
+>>
+>> This trip point leads to a system shutdown / reboot. It is not necessary
+>> to specify a hysteresis.
+> 
+> Similar to the above, the generic thermal_of code refuses to add the
+> trip point if it has no hysteresis property defined (regardless of the
+> trip type), see drivers/thermal/thermal_of.c:109
+
+hysteresis = <0>;
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
 
