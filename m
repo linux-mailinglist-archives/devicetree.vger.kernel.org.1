@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-33788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64AE68365BE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 15:44:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E807E8365A2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 15:39:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5253DB29C3E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 14:39:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98EC5284F5A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 14:39:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A138B3D553;
-	Mon, 22 Jan 2024 14:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4613A3D567;
+	Mon, 22 Jan 2024 14:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="UTEfWBjD"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="eo8SYT0D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA463D967
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 14:39:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DAA83D968
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 14:39:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705934356; cv=none; b=hmoOLs7AHZUEvy5gVaIqOJGI+FUP4h4gZlRwkFWhypxSk5kSY4XxORT+RK9czakw6o0G6jSkw3uxIpXg/nyNsyPMtaksD/XKt0zK93h4MH6UNAUfYxHKjlidnjC7nZWBK4CNWyS8znwFcVek86g785suiGiHOscRRJwH2ih/Rmk=
+	t=1705934374; cv=none; b=Zm769XI81y+zS5lS9zeMNkOX/hOVfNZhO2k/DCMEnwiQHbAZ4cSeAt7J2p2nwfvfVqmAPVb7b68wCs9yrcgf+904f1FvIG7XlvIVvNTaeGF7ur/RNeXyMgbyCQvNjdVUPqP53k8MavcN8Rc1L+XYw1bnIYlxvr0accWk7HCBp64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705934356; c=relaxed/simple;
-	bh=8IL3W8YacvqnzsFiKFtRldVqCRnV0Oht1oPxo8dTD3w=;
+	s=arc-20240116; t=1705934374; c=relaxed/simple;
+	bh=HdyUZf62kgjNhc07s/teq5GSlhwGxXpPTINVlGw5Xm4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oGyAiFZRxv1t4lOjX27+g7379UC8k8tHHOkXlLLIZqOFO2tZl9SBsaf9ZRAa+w8YtsQTv8nPuC5F8V/JO89XntEZL+nBDMtfjEZsDh6okPqLPTjPb0LQKBhuFDz3ywfgrvBJ1KoPMvSU9Cs/3OTqNpnlaXSPuZriK0I9JOI4CDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=UTEfWBjD; arc=none smtp.client-ip=209.85.221.49
+	 In-Reply-To:Content-Type; b=OjdaKTu1n7s48v/rmpkuykNbow+aBtOHff0y29sEA4ECLy387I3Tqaac0vloz+Lmot36VfOmHueYXmWlPlR2kEk7fyDNJ09bcF1ookHnEtNu4lVktUg+la4/5uQBgYaVI3ejW8gfD61V7vbkVyYZihp44Ie+4/8s6K11+0g3WHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=eo8SYT0D; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3392ba29845so1719538f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 06:39:14 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40e8801221cso32439375e9.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 06:39:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1705934353; x=1706539153; darn=vger.kernel.org;
+        d=suse.com; s=google; t=1705934370; x=1706539170; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KomsthGC22mRSAkX7VZrGaLAUK3A/nZYKDyItscvw7o=;
-        b=UTEfWBjDC8fGQ2xR+/lgWGFlHToH4V55LsBq5I3OjIUPxKF+WCRN01H0/qLwZTNj9X
-         zuWwz1YjB1js3FZfy4jpl9czYEYu0wYcNuTQ+oPjeDYg3YJrYz5+5fI2IW7AA9jmFoi8
-         lIE0URN27DdIxS4gyGPHrn5gGvCdEoydI0IKypMZOn7W+o0DOyCAByQ1j0vnolPR1fEY
-         P/hSMN7TJIHKG3nsaLp8x/S92J640IpzP/QguSS02R/2mZggaAIWsnDAKzX5MWP2f24J
-         QwBu9AD3IQvA+dVieHAP3DeZ3Sb9ZJMOGfAPEjA9L20z8WpZ/Z7Uw+j9bRqwRMowVdja
-         UKHA==
+        bh=B8lvCubU57aNIM2sBEUNaYeXXZI+ZZd7zrjhp/AYVOA=;
+        b=eo8SYT0DNNiQsm027pSKU3nSMDRwfnrAA/2YKL/H+1WIYe96LXC/Fe/UyMITAd3Fuw
+         pcIp0m1sZoy+g2P6KY3t45f54Mp9ivj7Bbij1aw792NQzM280HgIXkLoUKvsZphfNuzb
+         B1JKpcVpl/L+ZOIUX9qWoawGMNGJf9lgY98yGF+cN7ercwWptJUzp3vYrwxzVrpoQPxz
+         B42QMZ2ZUEuzeIROt3mEjKhIhZzjb8o1IvZEXOzDjtErBwA46u9hKEVIgAGxQm5NfmOE
+         odcofmsXQo21ziQNsiTUCHsjO/v8W6Bil9MLC/AN5jo/DyWL47NzBwFjQG6cFe1zute3
+         nNGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705934353; x=1706539153;
+        d=1e100.net; s=20230601; t=1705934370; x=1706539170;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KomsthGC22mRSAkX7VZrGaLAUK3A/nZYKDyItscvw7o=;
-        b=nECkfqaKnNiMIW8OZJ3eR2yiNo+uBxox1Y8Ll67s1HqQmh2u7hCD3o+Tf5ChEBlnIH
-         1Eizj3VEmJbvacAWyOnZk/8+1wmI7iDscff6fL/3XWRnlNM9B/IISgNFtc/GbP7S/23c
-         qZOKaMmnc+AjsDy38sip8qav0AV0zAmAcG1Km7a+nsRD979KLj6SJ+7NgkXlXz9MHzZ5
-         RhW/WVEydtVMDvLcQtMd1pFB6mkYnqGkpSdh+eybiHx9lBlcTW8bZ/vsKFJhmAs7Ha/z
-         cX6evcOtc7RvgIUU8Ia8wmdbkFhnOcMYve77Ah9RatxBszOECTS9ECfaIpLgrUXCcxYS
-         6SkQ==
-X-Gm-Message-State: AOJu0YxIHj9/Sck1NOsErdbVf7iWILlE15P7+WA3hRuqSOkJBu0UoEjr
-	t7L39qjUV/fFrUrhDATjylOx6jgM6Jdui4+/BoNJ92ffXMQT5rrxSokFBeFdZeg=
-X-Google-Smtp-Source: AGHT+IH0T9XrNxjHsrWV1LVB3l7ok5A/XsRgwZGk2Xy7qKflvrF0yi5ysolbDDo1UUUQh5NAxz8Eyw==
-X-Received: by 2002:adf:ed10:0:b0:337:c888:6d45 with SMTP id a16-20020adfed10000000b00337c8886d45mr1537577wro.155.1705934352758;
-        Mon, 22 Jan 2024 06:39:12 -0800 (PST)
+        bh=B8lvCubU57aNIM2sBEUNaYeXXZI+ZZd7zrjhp/AYVOA=;
+        b=fWo/aizH+L0/NlZaLn55EE/jPExm7uM5Ym6tP8cnnSg2mV2KLVCjYBLpw9KPO3cjVB
+         yPfkh+ip8BQ5y7uIy+KlDWmAtJGygsJTl1T2XKOXX4bYorrZFgelMpMVRvdhYuOwzbQH
+         kmlByc0F/tWMs7X5BOwG1u3nE5jfv651EBe2VK2J6ZEbQTQgtACxmB6REaOU2kO42+vJ
+         EkGFIrXi0ZOleu7OnMjLHXxkoEDy/TV24J8PRXnun8t8ouAf4K6b5Ud5tCjedhWNrg8a
+         QRKjkOoDRXC/TEfPp2jHp5kMUmSn8cClp/LZHgKPrlPQyuymfDJ//FnjHRc9WRv7pttC
+         4Kww==
+X-Gm-Message-State: AOJu0YxiVQbX3TlXSX79h/OmcKL4P6tS3S5wAw1aSTVD1QXADJkMJ69k
+	eyOPfb/TBuXIgGTwE2KVK6a3Sl8vBqxboXq3X2va2yYPtKB+oUZ2yQcYUPHx8sg=
+X-Google-Smtp-Source: AGHT+IEdsqyOsPosFvOf94mD/UiOTrBNPGiAbDkqL6dHgwHaSf32EOQ4SCLbaCzVosKC4SbAD4vuog==
+X-Received: by 2002:a5d:4243:0:b0:339:35e8:f9 with SMTP id s3-20020a5d4243000000b0033935e800f9mr956516wrr.123.1705934369759;
+        Mon, 22 Jan 2024 06:39:29 -0800 (PST)
 Received: from [192.168.2.177] ([207.188.161.188])
-        by smtp.gmail.com with ESMTPSA id w15-20020adfec4f000000b00338a3325331sm9111017wrn.69.2024.01.22.06.39.11
+        by smtp.gmail.com with ESMTPSA id w15-20020adfec4f000000b00338a3325331sm9111017wrn.69.2024.01.22.06.39.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 06:39:12 -0800 (PST)
-Message-ID: <94742ebd-bc3a-4726-9ba7-5954203e4da1@suse.com>
-Date: Mon, 22 Jan 2024 15:39:09 +0100
+        Mon, 22 Jan 2024 06:39:29 -0800 (PST)
+Message-ID: <372ed255-85b7-4f18-a28e-82e18171f7e3@suse.com>
+Date: Mon, 22 Jan 2024 15:39:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,7 +75,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: s32g: add SCMI firmware node
+Subject: Re: [PATCH v2 2/2] arm64: dts: s32g: add uSDHC node
 Content-Language: en-US, ca-ES, es-ES
 To: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
  Chester Lin <chester62515@gmail.com>, Andreas Farber <afaerber@suse.de>,
@@ -89,9 +89,9 @@ Cc: NXP S32 Linux Team <s32@nxp.com>,
  NXP Linux Team <linux-imx@nxp.com>, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-clk@vger.kernel.org, Ghennadi Procopciuc
- <ghennadi.procopciuc@nxp.com>, Catalin Udma <catalin-dan.udma@nxp.com>
+ <ghennadi.procopciuc@nxp.com>, Ciprian Costea <ciprianmarian.costea@nxp.com>
 References: <20240122140602.1006813-1-ghennadi.procopciuc@oss.nxp.com>
- <20240122140602.1006813-2-ghennadi.procopciuc@oss.nxp.com>
+ <20240122140602.1006813-3-ghennadi.procopciuc@oss.nxp.com>
 From: Matthias Brugger <mbrugger@suse.com>
 Autocrypt: addr=mbrugger@suse.com; keydata=
  xsFNBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
@@ -136,7 +136,7 @@ Autocrypt: addr=mbrugger@suse.com; keydata=
  LV6nybxdRG/jp8ZQdQQixPA9azZDzuTu+NjKtzIA5qtfZfmm8xC+kAwAMZ/ZnfCsKwN0bbnD
  YfO3B5Q131ASmu0kbwY03Mw4PhxDzZNrt4a89Y95dq5YkMtVH2Me1ZP063cFCCYCkvEAK/C8
  PVrr2NoUqi/bxI8fFQJD1jVj8K0=
-In-Reply-To: <20240122140602.1006813-2-ghennadi.procopciuc@oss.nxp.com>
+In-Reply-To: <20240122140602.1006813-3-ghennadi.procopciuc@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -145,69 +145,80 @@ Content-Transfer-Encoding: 7bit
 On 22/01/2024 15:06, Ghennadi Procopciuc wrote:
 > From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
 > 
-> Linux controls the clocks over SCMI on S32G SoCs. Therefore,
-> add the SCMI device tree node and the reserved region for SCMI
-> messages.
+> Add the uSDHC node for the boards that are based on S32G SoCs.
 > 
-> Signed-off-by: Catalin Udma <catalin-dan.udma@nxp.com>
+> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
 > Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
 
 Reviewed-by: Matthias Brugger <mbrugger@suse.com>
 
 > ---
->   arch/arm64/boot/dts/freescale/s32g2.dtsi | 27 +++++++++++++++++++++++-
->   1 file changed, 26 insertions(+), 1 deletion(-)
+>   arch/arm64/boot/dts/freescale/s32g2.dtsi        | 10 ++++++++++
+>   arch/arm64/boot/dts/freescale/s32g274a-evb.dts  |  6 +++++-
+>   arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts |  6 +++++-
+>   3 files changed, 20 insertions(+), 2 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> index 5ac1cc9ff50e..ef1a1d61f2ba 100644
+> index ef1a1d61f2ba..fc19ae2e8d3b 100644
 > --- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
 > +++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> @@ -3,7 +3,7 @@
->    * NXP S32G2 SoC family
->    *
+> @@ -138,6 +138,16 @@ uart2: serial@402bc000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		usdhc0: mmc@402f0000 {
+> +			compatible = "nxp,s32g2-usdhc";
+> +			reg = <0x402f0000 0x1000>;
+> +			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clks 32>, <&clks 31>, <&clks 33>;
+> +			clock-names = "ipg", "ahb", "per";
+> +			bus-width = <8>;
+> +			status = "disabled";
+> +		};
+> +
+>   		gic: interrupt-controller@50800000 {
+>   			compatible = "arm,gic-v3";
+>   			reg = <0x50800000 0x10000>,
+> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+> index 9118d8d2ee01..00070c949e2a 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+> +++ b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
+> @@ -1,7 +1,7 @@
+>   // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>   /*
 >    * Copyright (c) 2021 SUSE LLC
-> - * Copyright (c) 2017-2021 NXP
-> + * Copyright 2017-2021, 2024 NXP
+> - * Copyright (c) 2019-2021 NXP
+> + * Copyright 2019-2021, 2024 NXP
 >    */
 >   
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -14,6 +14,18 @@ / {
->   	#address-cells = <2>;
->   	#size-cells = <2>;
+>   /dts-v1/;
+> @@ -32,3 +32,7 @@ memory@80000000 {
+>   &uart0 {
+>   	status = "okay";
+>   };
+> +
+> +&usdhc0 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+> index e05ee854cdf5..b3fc12899cae 100644
+> --- a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+> +++ b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
+> @@ -1,7 +1,7 @@
+>   // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>   /*
+>    * Copyright (c) 2021 SUSE LLC
+> - * Copyright (c) 2019-2021 NXP
+> + * Copyright 2019-2021, 2024 NXP
+>    */
 >   
-> +	reserved-memory  {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
+>   /dts-v1/;
+> @@ -38,3 +38,7 @@ &uart0 {
+>   &uart1 {
+>   	status = "okay";
+>   };
 > +
-> +		scmi_buf: shm@d0000000 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x0 0xd0000000 0x0 0x80>;
-> +			no-map;
-> +		};
-> +	};
-> +
->   	cpus {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> @@ -77,6 +89,19 @@ timer {
->   	};
->   
->   	firmware {
-> +		scmi {
-> +			compatible = "arm,scmi-smc";
-> +			arm,smc-id = <0xc20000fe>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			shmem = <&scmi_buf>;
-> +
-> +			clks: protocol@14 {
-> +				reg = <0x14>;
-> +				#clock-cells = <1>;
-> +			};
-> +		};
-> +
->   		psci {
->   			compatible = "arm,psci-1.0";
->   			method = "smc";
+> +&usdhc0 {
+> +	status = "okay";
+> +};
 
