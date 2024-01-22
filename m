@@ -1,184 +1,159 @@
-Return-Path: <devicetree+bounces-33879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39D6836FF5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:30:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC252836F0C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:08:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13E78B2C359
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:07:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C8A01F27F2C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646F955C3A;
-	Mon, 22 Jan 2024 17:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 370B856743;
+	Mon, 22 Jan 2024 17:33:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WMMM/Gej"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="nPj3rQHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE51665BA3;
-	Mon, 22 Jan 2024 17:32:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA0065BCF;
+	Mon, 22 Jan 2024 17:33:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705944724; cv=none; b=BsEWzRktE7prQruUvozpdGpYQv4bE/bkIMam0ggB8Dw74vC2Qu99c5NtyItubygFhA3DvRRarl4a3grTadGyAzEpIK6F8rEHyNLF8/nU+2loBH6cSvYVl0VfSjh9OeblTQ5g1V+hMxjuDHlbwwdY1zSlRMuG8htesONru8upQRA=
+	t=1705944802; cv=none; b=YzRAIjVnKjplk/8dFvKfGE+eq7xrsa6AO5IK4YBcGuH3FMlcTlVyksZlkEb7ZLLl9JrSB7CyON8qE+9rqQ30xwWJ/cWXAkE+PnRHpUY2uNjWJ7upfKycfUYxL1Gzpp4nWMKESExb+NR0mRfPsRYGL+BKimyb3Vyzqux1wtK/KKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705944724; c=relaxed/simple;
-	bh=PLLdunxeYvO/kADnB7/MVmlZyft705svQ9X6HGOvVyg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GxW+0DR6hvw1WRus3hmIH/BysVwbDLYPBzKaJRDYHnwFC9pJxV0dJV4SArVQsrX7uomfK/ijcuveL4aaJpqF1WrSTZVOpklcmHSWwyNVIyBoFVnH3T8zoLaYrsQo/Eg9uXjqEU44aWrFyP5ZLcGckS4c6VqBgsuNy4AXmfsBpIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WMMM/Gej; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1d70a986c4aso12284725ad.2;
-        Mon, 22 Jan 2024 09:32:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705944722; x=1706549522; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=7yb9FdfO6K0ON4aZtJnJ2ZytMkXhmFGKBCJMdJaPFRo=;
-        b=WMMM/GejdB7HfqD8j9tKqtZqXHQQrCTfcVj4yLNsGuBkoUuVX6wYk7BpgBi7KZVkv0
-         j3jV78UbEfWn1l8jSBUJRUT4KnaPAbNoClEuTdyAkx/IfJD0DOt/MGecziyPvSackW7H
-         kEgNdEKSV/feb9OLSj6hNVLyzrZunIcZ8ZrjQ/A8OeX2O4vh4Iidfg1YmopkW+Os6txZ
-         2SezNQy0gkJesHuVaP2BbADOO7bRst/vVlOqF8lAfBLXiCMdySvUOqKpmTLr+fi+FuTg
-         HAjZjJEvUn1XZ8pXFWmZr6cG5p8peHiNsRF5R6er8te07ru4xZWFxbmdGsg2IXsZ/dGe
-         UFKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705944722; x=1706549522;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7yb9FdfO6K0ON4aZtJnJ2ZytMkXhmFGKBCJMdJaPFRo=;
-        b=w+MUKwT1JE0ZU6VwfXY+zJhraYt1bmpQq6/X/2O1fC/RBfnVT7wSxJir4mra9YQzKk
-         MEGx81bPEXeNT+KbDx15g5IlRlZcRB1yCMwxJbtv6n9WxenlGAwDlJPLe3w4uj3u2XZg
-         kEXsdHqldZfRbFUmrGDqhl/MutvGK/9eQTkdZwdcuwLUknTOW8SZxIdqf6u6Iy4jL+F/
-         GLQclGD/CHly33JUZKXOtfLLvBpWyJKZhLIVkHsOorZ2zJDiuIMjb8qwQNe2CG97Ozc9
-         A90O72Gs9yi0n9caFjtdEKYWA0ZEygdeSw+uWPjlhuB4QNT1zaxFxRjjrq6jGk9q772k
-         ftCw==
-X-Gm-Message-State: AOJu0YxOyCTJA0Dth6wbdY95OXOEi5iyNiz63J7nc6wSHEZo/55Xgn5Q
-	+e5sO2dPvCJmvMcKSTrOD5UWPe2A3THgDG40aiJcAgeY6R8o4qId
-X-Google-Smtp-Source: AGHT+IHgrcFz7P82ixmtguteJa3w8fRJDNyyha+XDeGEaz1Bk3ts/ZtLlcizCJ3WP9J9jTc89X+JRg==
-X-Received: by 2002:a17:902:da91:b0:1d7:4e2:592b with SMTP id j17-20020a170902da9100b001d704e2592bmr2616895plx.103.1705944722171;
-        Mon, 22 Jan 2024 09:32:02 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id t3-20020a170902a5c300b001d755ec4bc0sm1770461plq.241.2024.01.22.09.32.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 09:32:01 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <c857cdd4-459b-41ae-b4bb-0da45e461335@roeck-us.net>
-Date: Mon, 22 Jan 2024 09:31:59 -0800
+	s=arc-20240116; t=1705944802; c=relaxed/simple;
+	bh=14d93NgQ7WaShPCrTEgxGGfCgwchSDNqbHuU6YhNWiU=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=c8BGz4DU5zRIQcbc5F8YtYzJUD+tgtvjrujg5RQ4vH7KyNjHbu5o8oOYrEreM7J86l3XFGvpKkc7OpOyipjLndJ/Zl9U6NRKAGDkVZ7oEC8KYVRLq8T7A+U5WmHJSVEgoa7TpftTwME7SxEma+vFvGtXSiSIkZnCWsbMkecuV24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=nPj3rQHg; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/10] watchdog: rzg2l_wdt: Check return status of
- pm_runtime_put()
-Content-Language: en-US
-To: Claudiu <claudiu.beznea@tuxon.dev>, wim@linux-watchdog.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240122111115.2861835-1-claudiu.beznea.uj@bp.renesas.com>
- <20240122111115.2861835-4-claudiu.beznea.uj@bp.renesas.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240122111115.2861835-4-claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1705944796;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=mKbnuh2h0PgDQC33RKrscO7YxrGHfOAB3fAT8BQBrEE=;
+	b=nPj3rQHgAr0Ii8SDx8QS8QRKwwrRLk/eHPSMua7vhZYj3qBZVLqwSw5jltWhLlVCP50RPA
+	p5rQRwWF/VZY95QxUaGOWwznvQrLCaJrmo6mIkFi0MIR+/asO+qpxUWXUc9wYYEVP5JjXf
+	VT7ftUqIUyWHjAbONtVFaN2HhdkLUbwD6FVAe79bLxxBAwLoqUBIGL7QHvTaP9rRi/UcVi
+	JqwHeewzbdfQGamZmL0LVe74ri4pNa82dP8LK/pAplzpinI7qSCOCcIEIyoIX52jUxDSld
+	Oy9uHI8JXfRVrhhG/MUki3/U9WDbD5GezpzNqUuZgxWPvMl4Igkd1inWvTPPCw==
+Date: Mon, 22 Jan 2024 18:33:14 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel
+ <sebastian.reichel@collabora.com>, Cristian Ciocaltea
+ <cristian.ciocaltea@collabora.com>, Christopher Obbard
+ <chris.obbard@collabora.com>, =?UTF-8?Q?Tam=C3=A1s_Sz=C5=B1cs?=
+ <szucst@iit.uni-miskolc.hu>, Shreeya Patel <shreeya.patel@collabora.com>,
+ Kever Yang <kever.yang@rock-chips.com>, Chris Morgan
+ <macromorgan@hotmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: enable built-in thermal monitoring
+ on rk3588
+In-Reply-To: <CABjd4Yxw_wgjRRO12Zjy75=CA_uuucexVnhVRt3fURJFYQqYSw@mail.gmail.com>
+References: <20240106222357.23835-1-alchark@gmail.com>
+ <e0302da12345e5539583b2c96d747592@manjaro.org>
+ <CABjd4Yw5wTLyK5OPw2S-ipPVCw7RTUeF2J0RgH-Vyis-ng8rTw@mail.gmail.com>
+ <d7f2f25071a4d7c72bd286b11836dce7@manjaro.org>
+ <CABjd4Yz11D8ThcT-oCWsQf9jL2idChFYSRYVVu3KNnzwoOwkKQ@mail.gmail.com>
+ <f5c05015e042b11a51a9af26c35f18ed@manjaro.org>
+ <CABjd4Yy91MAd2wALp4KQiEub9OyxU+MR+ti5KA_c+yvZT5xaqQ@mail.gmail.com>
+ <81a5410c3dbedbd4fe9ce60ab236700c@manjaro.org>
+ <CABjd4YwxoPrKRPmjn-eWsU1N5fXCjAbnRwfKD9DLKgeL2=vHrA@mail.gmail.com>
+ <a15edb98c32ca79b75bd4eaf64734561@manjaro.org>
+ <CABjd4Yxw_wgjRRO12Zjy75=CA_uuucexVnhVRt3fURJFYQqYSw@mail.gmail.com>
+Message-ID: <c762d5d87189a77d62111b4f5a8c8166@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 1/22/24 03:11, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 2024-01-22 15:20, Alexey Charkov wrote:
+> On Mon, Jan 22, 2024 at 11:57 AM Dragan Simic <dsimic@manjaro.org> 
+> wrote:
+>> On 2024-01-22 08:36, Alexey Charkov wrote:
+>> > On Mon, Jan 22, 2024 at 10:22 AM Dragan Simic <dsimic@manjaro.org> wrote:
+>> >> As a suggestion, it would be good to test with a couple of different
+>> >> fans, to make sure that the PWM values work well for more that one fan
+>> >> model.  The Rock 5B requires a 5 V fan, if I'm not mistaken?
+>> >
+>> > It is 5V, yes. I only have one fan to try though, and I simply relied
+>> > on the PWM values that are already defined in the upstream
+>> > rk3588-rock-5b.dts. They don't look ideal for my particular fan,
+>> > because the lowest non-zero cooling state currently uses a PWM value
+>> > of 95, which doesn't always make it spin up. But in the end it doesn't
+>> > seem to matter that much, because that tiny fan needs to spin at full
+>> > 255 whenever all eight cores are loaded (and even then it can only
+>> > balance the temperature at around 60.5С), and when the load is lighter
+>> > (such as during various ./configure runs) it just switches off
+>> > completely as the temperature goes down to 46C even with the fan not
+>> > spinning.
+>> 
+>> I see, 5 V fans unfortunately aren't very common.  I'm not sure why
+>> Radxa opted for 5 V there;  maybe the goal was to use Raspberry Pi 5 V
+>> fans, but using those tiny fans doesn't make much sense, IMHO.
+>> 
+>> I think you can freely adjust the PWM values a bit to make your fan
+>> start reliably at the lowest state, regardless of how rarely that 
+>> state
+>> will be used.  See, if your fan doesn't spin up reliably with the 
+>> current
+>> lowest state, chances for other fan models not to spin up are quite
+>> high.  IOW, it's better to play safe there, if you agree.
+>> 
+>> What kind of heatsink are you using with your Rock 5B?  Ah yes, and
+>> what's the actual model of the fan you're using?
 > 
-> pm_runtime_put() may return an error code. Check its return status.
+> I use Radxa's 4012 heatsink-fan assembly that comes as an add-on
+> option when buying the board itself from Allnet. I guess I'll include
+> slightly adjusted PWM values in the rk3588-rock-5b.dts patch to better
+> represent my fan's "preferred" range (in my experience a PWM value of
+> around 120 is the reliable lower end - it would continue spinning
+> below that point but won't always start without being pushed manually)
+
+Sure, just go ahead.  You're using an official active cooling solution
+for the Rock 5B, so adjusting the PWM values a bit to make the fan start
+up reliably is even more warranted.
+
+>> > I don't currently use the GPU/NPU/VPU though - maybe those would
+>> > produce more moderate load which could benefit from spinning the fan
+>> > at medium speeds.
+>> 
+>> Perhaps, but it will need to be tested at some point.  Have you tried
+>> loading only one or two CPU cores?
 > 
-> Fixes: 2cbc5cd0b55f ("watchdog: Add Watchdog Timer driver for RZ/G2L")
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->   drivers/watchdog/rzg2l_wdt.c | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
-> index 4ab9e7c5e771..0554965027cd 100644
-> --- a/drivers/watchdog/rzg2l_wdt.c
-> +++ b/drivers/watchdog/rzg2l_wdt.c
-> @@ -144,9 +144,13 @@ static int rzg2l_wdt_start(struct watchdog_device *wdev)
->   static int rzg2l_wdt_stop(struct watchdog_device *wdev)
->   {
->   	struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
-> +	int ret;
->   
->   	rzg2l_wdt_reset(priv);
-> -	pm_runtime_put(wdev->parent);
-> +
-> +	ret = pm_runtime_put(wdev->parent);
-> +	if (ret < 0)
-> +		return ret;
->   
->   	return 0;
->   }
+> I do see the full range of PWM values being used, including
+> intermediate ones. It doesn't go zero to hero :) My point was more
+> about the default fan not being super mighty vs. the full package
+> thermal output, which will likely mean that intermediate values are
+> rarely used. But I'll double check with more varied loads to make sure
+> it behaves in a sensible way (especially given that I'll be testing
+> purely interrupt-driven operation per Daniel's guidance in the other
+> sub-thread).
 
-A simple
-	return pm_runtime_put();
-might do.
+I see, thanks for the clarification. :)  The 4012 fan and heatsink seem
+rather tiny; [1]  a more beefy assembly, with more thermal mass, larger
+fin surface and a fan that pushes a bit more air across its RPM range,
+would probably result in a noticeably broader use of the intermediate
+PWM values.
 
-However, one question: Given that pm_runtime_put() returns -ENOSYS if
-CONFIG_PM is disabled, that means the driver will depend on CONFIG_PM=y.
-Assuming this is intentional, would it make sense to explicitly declare
-that dependency in Kconfig ? It doesn't seem to make any sense to build
-the driver if it won't work anyway.
-
-Thanks,
-Guenter
-
+[1] 
+https://shop.allnetchina.cn/products/active-heat-sink-for-visionfive-sbc
 
