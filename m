@@ -1,115 +1,118 @@
-Return-Path: <devicetree+bounces-33955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A7CA83773D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 00:01:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C76837794
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 00:14:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4375A288696
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 23:01:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 748AE1C24DF3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 23:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BED2495FC;
-	Mon, 22 Jan 2024 23:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 495484BA85;
+	Mon, 22 Jan 2024 23:14:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DDKUAU0K"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TVRE0u/k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A7F495F7;
-	Mon, 22 Jan 2024 23:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46624BA8C;
+	Mon, 22 Jan 2024 23:14:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705964405; cv=none; b=pl5jo2ZKRcVH4bg0Kk1qUaV7+8tLikfjOK5eK2OoeSlqYxme908/gYV5LZUJlquuq7e6nxNXmqkRQjYLURZqTUaJwHl880KowpEjSLWLqmzFyVopail0Q2wVauuPH1jNwe39jKGj5T6QNZbag/5rnwbpxk8ZCYfacvry1F5WrSU=
+	t=1705965268; cv=none; b=GrDxpaw2v/RK635fR/dmtGX+Y6qkkJVVQmcvWM9y7DQb/w4FsYpucA+OydvlBr4Hymvpw/YGtFQicohnWZK1QkYgh2Xiwn483B2RTWQHjbq5ei1Tk0hlQLMl/dyX3kDHmdQfsFV5THOlG4IZ2jUWP8pcOcGtVpEbXrTZFJuRBN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705964405; c=relaxed/simple;
-	bh=4g6ByT2Cjr1ZUCYpcGnj0nFwDlrTTGSfGWGcOG7bnAc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=uuYN9ZsF3s6GoQe4l3mZuk1Ahjckk33UTl6nJSGKhQeUhVkXRDZKkyx4dsUVYSJ7hpVxPMpJj7565REp7bmop/ALZEKmBnMG8mRFEf5khtLTKiCXvNQQCWrsevwXB/Xf3932ZeT2d6XOr0zU8sBBwCv3FmIXOdh38tIqDByAYHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DDKUAU0K; arc=none smtp.client-ip=209.85.222.178
+	s=arc-20240116; t=1705965268; c=relaxed/simple;
+	bh=J+Nv+hdqVF+im3TfXxoL+5ny+DELxKOVdeT8dwnwp+w=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HIGuohYQVrsWZiUkEdfPUO6hnGzoN9fcz4Qck7kxtaB3q2VvKiXmYxldeI7Gl1MBHYTdDvWznbxkufc/BKYj6dradW4oI+gk0Q38tIKYTtrLb5IeV8DFcyBCwHObFNKhEi3w2o2BnOWL5EK7PG22YwPUZYsdLOrvFAj88jq8huQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TVRE0u/k; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7831806c51bso361581685a.1;
-        Mon, 22 Jan 2024 15:00:03 -0800 (PST)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33924df7245so2579525f8f.0;
+        Mon, 22 Jan 2024 15:14:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705964402; x=1706569202; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zDQ3kSgI1n12mI5nrn3g+XPsCvC4mRPQnsGuoeezvgE=;
-        b=DDKUAU0K9fPC66j8+MSioCiR60+wwS23XoA8mPDft4zwSPGXJp04IYYDw3w/GcYTMw
-         2zY6RC8OfcfH+fwXw/++k+PA446bPIho04RKTkP/biRkjDiorhtMHJ697GEhuaQn5b3q
-         XbDGAQNj769lfEZ2J4t19eGQrlBaIKbH82AG/12iQt21M7VJYKVP8wQgs7qUOMun/bBE
-         PwZ0jJOl8gjTdW6poWJ9/bl1dXJ3RyIOF9XNzEhUVtKGVmiFzH08b8z4H3MSMDVScjmH
-         WBU29CPpZvli80/Ff5C+gwEKzScd0XjkbC6s1izePVve495KnGoVmMRm3WWf0x+Ng6Tw
-         Fcag==
+        d=gmail.com; s=20230601; t=1705965265; x=1706570065; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=LDR/kvoyAv+Kg1rNifyUzWqNwxfd+kAINIMhGDItT0k=;
+        b=TVRE0u/kPy6Oto43hmclYfWFqysgvVjLxjBzWWiQY43ZnyV9GotAAw3R0/N2xwx/Zy
+         bhizyCUpc6uDgkMqxYTT6w3SEL0affwYOc1PKf2O65dzo8RPXbBPYKriGLdjrCHbMT2y
+         VfbSGYwO7cesF30isvaf2ku/xTKNO6NDyopHydHHtuL3QqkzRxlZndx7Vez1Ie6tmgHO
+         Fh5mpbcUhvFvxQrGH1iE80zpxCe5OwLM0cgWFEw8r70mfqYYSOtD7gnw+kEr2LlfgArb
+         kpglwToM2KOX92hsI6h3Azhm680IH6ZfcV4G1Er8Ful489uUhSDU7MHJAK0O+Noc0xfX
+         TeGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705964402; x=1706569202;
-        h=content-transfer-encoding:content-language:cc:to:subject:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zDQ3kSgI1n12mI5nrn3g+XPsCvC4mRPQnsGuoeezvgE=;
-        b=UATR+VlHym9g1Iju5NK8fIalHVA0Y5HSsR9NDhwKTETQISk2MN/3JpV+Gg3fE/nnfj
-         ZEyeu7IV+Bx6TqzKOsv3heGPI9tO2qfznsmus+Y1+aaadtMQ+DVczwPdsVlupDSfexgL
-         ZEgyUd/yNmcyXBSXOZMkGkQ7py3nUpeJkxzshKq6O9SI17JvgUcrLGVcNohLtAXaqx7w
-         Em1fVTBpGMGjlpSWu2I7VZHPZ/2Bg4p6wpZNeP1UroCZsqJw1ktEMAdQufVBS+c55wVV
-         ZSn6XcKdGnTKDBm0e3a1VMU3+pgASXCybLdhX234tgHGVJGQse0Tmw4QZ3YhsWkW6v+3
-         ER1A==
-X-Gm-Message-State: AOJu0Yx7VKF3KNMq5y1uSY5BRGXoIv7nq8eZ/FrWHDn67XukuW/GX/X6
-	TBRNzGwJrPLtgywQgx/qVsdNagILzTy5U/IVPGZew0c4/jtRv6dHH/PcrBAy
-X-Google-Smtp-Source: AGHT+IGJkTlFEHNn6yJK6JzzM5/LvZ7r1bv8G+xBy9qdytZ6LJMjNamlDx6fOM91VLg3VDlFLNnWEQ==
-X-Received: by 2002:a05:620a:f06:b0:783:792c:966 with SMTP id v6-20020a05620a0f0600b00783792c0966mr7149725qkl.65.1705964402450;
-        Mon, 22 Jan 2024 15:00:02 -0800 (PST)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id t10-20020a05620a004a00b007838702be74sm2524649qkt.104.2024.01.22.15.00.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 15:00:02 -0800 (PST)
-Message-ID: <acc4ff4b-811a-4a6d-8f58-9d8da3be40bb@gmail.com>
-Date: Mon, 22 Jan 2024 23:59:59 +0100
+        d=1e100.net; s=20230601; t=1705965265; x=1706570065;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LDR/kvoyAv+Kg1rNifyUzWqNwxfd+kAINIMhGDItT0k=;
+        b=PeeQb/DX5GNJ/4tzQVo+ZHUfLOkeUeoiY2U3o+4mD3/gvCWf1v+LqeUUanrK47fbJn
+         gzoAclL+y6Yl1E+HLRb3cEvt1wrqEhWfcsWDe/a1uUEz5fWNU2xPDsvYIT58E5PxkLRy
+         85GT7EfPREEV2iGUe+9B+ytmQkAi8gITDiJrLGm9/e3rGYx8wADf4qav6wksORABpboF
+         cpb9w+Xa3tm0mDglsVR+3DrzzN6IH0LLo4ghDIEq282H1Qmfjqzv0xbsaYZAiXnKxfrT
+         VK6uZHVBqbS5Oowsg2WTMrzPTXq6jYsutZKqGt6wR/YGQu6l3aBWk9LbYwgHRRphdHte
+         AQ7Q==
+X-Gm-Message-State: AOJu0YyQy68uSURb/ukTXfTV5P9qeoneTbkJj3t/X7nRGH7P6wlLxxAU
+	YTJADY9Lu7ANIYaqFraeIMrmNQvFozu6gIrDWdyrKi2pplWsDyCt
+X-Google-Smtp-Source: AGHT+IGho5OTYN6HS7J0wQiT0HOnK/Y9tWkjndbiJS4yvlyAFVhGQdAemOhOpY7G9T7boXgjdjTt/Q==
+X-Received: by 2002:adf:f811:0:b0:337:c097:db9f with SMTP id s17-20020adff811000000b00337c097db9fmr2745493wrp.17.1705965264410;
+        Mon, 22 Jan 2024 15:14:24 -0800 (PST)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id m28-20020a056000181c00b00339280c57e4sm7465215wrh.102.2024.01.22.15.14.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jan 2024 15:14:24 -0800 (PST)
+Message-ID: <65aef6d0.050a0220.54d73.c4e9@mx.google.com>
+X-Google-Original-Message-ID: <Za72zG-qUjeoywrd@Ansuel-xps.>
+Date: Tue, 23 Jan 2024 00:14:20 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Jakub Kicinski <kuba@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	=?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+	Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org
+Subject: Re: [net-next PATCH v9 0/5] net: phy: generic polarity + LED support
+ for qca808x
+References: <20240105142719.11042-1-ansuelsmth@gmail.com>
+ <20240108191427.6455185a@kernel.org>
+ <edfd300f-224f-4ce6-930c-d9419a2077ab@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Johan Jonker <jbx6244@gmail.com>
-Subject: [PATCH v1] spi: dt-bindings: spi-rockchip: restrict num-cs
-To: broonie@kernel.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, heiko@sntech.de, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <edfd300f-224f-4ce6-930c-d9419a2077ab@lunn.ch>
 
-In the driver spi-rockchip.c max_native_cs is limited to 4 and the
-default num-cs property is 1. Restrict num-cs in spi-rockchip.yaml.
+On Tue, Jan 09, 2024 at 02:55:26PM +0100, Andrew Lunn wrote:
+> > Looks like we're missing some tags from DTB maintainers here.
+> > Andrew, is there some urgency in getting this merged or can we
+> > defer until v6.9?
+>
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+Should I send a new version now that net-next is open again or it's ok?
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-index e4941e9212d1..00d555bcbad3 100644
---- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-@@ -65,6 +65,11 @@ properties:
-       - const: tx
-       - const: rx
-
-+  num-cs:
-+    default: 1
-+    minimum: 1
-+    maximum: 4
-+
-   rx-sample-delay-ns:
-     default: 0
-     description:
---
-2.39.2
-
+-- 
+	Ansuel
 
