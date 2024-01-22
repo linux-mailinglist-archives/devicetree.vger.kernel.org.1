@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-33747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A111836358
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:37:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36DDF836359
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:37:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1943DB29D75
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:35:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53AFB1C21970
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F18E3C07B;
-	Mon, 22 Jan 2024 12:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 081E538FA1;
+	Mon, 22 Jan 2024 12:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b="HD+7xI35"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EHLCpe/L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from egress-ip43a.ess.de.barracuda.com (egress-ip43a.ess.de.barracuda.com [18.185.115.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8A23A1D6
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 12:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.185.115.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC6B38392;
+	Mon, 22 Jan 2024 12:37:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705926895; cv=none; b=mLUsh5+JcjMuUzu1SynDPiLWeSzUN6Wcg0iYJwPQX/4KhI5biiDXYCkNwdAx0qNUP9jomBSf6o3y2nLX5Fok7DhOhpfdm2N3RxiKD9tkiH0bfn6CS7EvHJJnGbv7cZzR+j6thNZ9mRIclSVjqDhBfNJVn7MlSc4KzAyTo4jhx2I=
+	t=1705927043; cv=none; b=eTct6ifZPdt7uixQW7ViSYG55q2NoGjiN3oXR8xP+TtTFHNpzT17nKR6QuDH5vFZD1hW69W4GPcNOcbHTnzcz1QR8z7+++2sPOJIJtlOmI7IIZyN+JYAkwNZmBXV3VhUnNAFJlcsfffeyzSFFkVkNaDc33xNCF4BHhbOmsG2HdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705926895; c=relaxed/simple;
-	bh=DQMdq5kXfeU9rmi3XcU3mcsUUsgpZDqBl6MHRQPrBCk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=jHIYDpu/ehbTyy/v/n9Paqgr47Huw5dEiHGIjX+zutDsPUxyZIHylRgnnsYYePRx9db7WY/mcSq1maegd9KA+P9qrMuCJZdu5ehsBAsRk+yPb05dOB0aTMiptRI63mcTrZmtaey49dTJd7MeLFtkbdDmSkXKm/3M8wL84nTucEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com; spf=pass smtp.mailfrom=mistralsolutions.com; dkim=pass (1024-bit key) header.d=mistralsolutions.com header.i=@mistralsolutions.com header.b=HD+7xI35; arc=none smtp.client-ip=18.185.115.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mistralsolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mistralsolutions.com
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198]) by mx-outbound8-173.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 22 Jan 2024 12:34:50 +0000
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-1d7251589b3so9240535ad.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 04:34:51 -0800 (PST)
+	s=arc-20240116; t=1705927043; c=relaxed/simple;
+	bh=bpxM3RStjvD61WzsBU6kT2NOhtFk8N6MEyotM4Ym22k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p2TT4GqbGj3JBIHCb2Bp86704PJpOxAvrXyyH6HzNl8ZGlIuJY/em2yUzeBeBo5Sh+CBsYaYrhaHAzK0DtaU8CqqgBRGpTDkNfQGyihTppE9E5XK8m93C/TPZqAbdhZawNeeJ44XEhEOdq41Q9hPJ8BcRC5i1yOhe3wKwRBgsCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EHLCpe/L; arc=none smtp.client-ip=209.85.210.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6dbd7f1a300so1433629b3a.1;
+        Mon, 22 Jan 2024 04:37:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1705926890; x=1706531690; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4MwBAcrKdbC6/FKS38nrflJIvsjmnyFlJx07vNmPMm4=;
-        b=HD+7xI35WkBfQ4IGglOIXqOJ0OAL4PW1gGAjCRT92lvNcFUo1rw8jtZ5Tmn2HwXDy0
-         lXLV0Mp8vz+d+/hN5gxx7L2Y+VQmDq4hTyu68z0qo14epuGMdMHZLK3wdaW1DH5n6C/W
-         vE+nqXXB/yGrwodZ7pTlIc2PoR0FzcBc9S0oE=
+        d=gmail.com; s=20230601; t=1705927042; x=1706531842; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3lSn2MWXdNHAKKYN20GWKP0NyTBXGMz5ougI0ZHeluE=;
+        b=EHLCpe/L+j9L7ezTzq61peN305+789kR/2LyEzbtWuUb+NxmutsxiQkiFxM8d2aVap
+         57YUgop2MKNsFgOwcpnR/kzy/5XKkkisnfFv2Ws6rLgaMyuavoHVetxRCdNmYMqZfE9M
+         OmvwE06vyvsJ/oA18SwcqeO3x2FZ+3aF2ZeVCELfIB1BxucGXuyxhSeHQetx8yE4Vq1A
+         IKP0Y8p5pZDQFAfSUMWVos1tTDXrFqiP3maJZIbXCx+vh3BWiNmyF28o1rwnzmp4QGQz
+         ZoZSkTal9skgRCy3wyDa5tps8YIU8CHPAXGnzqnrwymBK8AvfzKMffqJmODo0LdqyTWD
+         KtXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705926890; x=1706531690;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4MwBAcrKdbC6/FKS38nrflJIvsjmnyFlJx07vNmPMm4=;
-        b=GpkNHUgyi9UMC72uW5C+65uFohxfHE3p5KDFiuUZAWFuPDv5RqegTC1LQKD9lb0WbB
-         ANSt528FDaIjwR4odz0jHvvnXtQQBCvjpPu4WMmQeJ0FvRuCR9nBxPhf5DEK/D+dRR5+
-         nT1ZbWenYYC/Dbuf9QpC7isIoflwnH6gOrID3TNF67XDKCUevpY59gBbwcGONaFiX7uw
-         xHI8c+qVKhKgDTIt5e9nkRz621PFzdsYwu4u7opWE8Hw9WYYbRPrArD5NYNTc0jlk7A1
-         ILDYw9tXmxhfQMOI3BvJMAp04MBrFGRIsbfVDTKdDylMzIYzfisLStWBAsX/R0ZZjYJ3
-         Y4jQ==
-X-Gm-Message-State: AOJu0YxfM2iW2FB9WqL4crniNbGR7Scprye8FX/qEfHiCuVXAwdQp/bu
-	vYv++MKnA5UfLLeM1snffncaOv0Ht6scj7OjP1Mcdyjq+D0bu6dUcJeoMMvUL9LdisOto0lZiSJ
-	vpq6DFpw2732O47L6+JTD1BxcaYGrXwhVntBSlpUO7rF327XCOXEyEjQMJZcTeitr3B4PbU54oE
-	jPbdERWkLbeDJj+2beLA==
-X-Received: by 2002:a17:903:22c4:b0:1d7:601f:a093 with SMTP id y4-20020a17090322c400b001d7601fa093mr393879plg.96.1705926889814;
-        Mon, 22 Jan 2024 04:34:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFEHy0PlP28nl2vOLylSR6SvUWTHUX9rdWPrekvnmVR+eT+Rlsn5GKb2Mr5IgvGFPwKuHuM6A==
-X-Received: by 2002:a17:903:22c4:b0:1d7:601f:a093 with SMTP id y4-20020a17090322c400b001d7601fa093mr393868plg.96.1705926889516;
-        Mon, 22 Jan 2024 04:34:49 -0800 (PST)
-Received: from LAP568U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id f15-20020a170902684f00b001d721386cc2sm5372148pln.84.2024.01.22.04.34.46
+        d=1e100.net; s=20230601; t=1705927042; x=1706531842;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3lSn2MWXdNHAKKYN20GWKP0NyTBXGMz5ougI0ZHeluE=;
+        b=shQqiyPle3BZ3Iez5j+END5FEx1wi9dYZpbmAFmS4Kb3XfjVjHDrz2F9TihTkl+Jxa
+         /1gTvbwG263fbbOlliDpvaVrBQ+Q51mgwhJAhTaZqYFLUNXZ3btoQJ/Z8YWVES+fgY9n
+         zJiXnGVRhXUgIDxpYN1AOsbTXAa/eXxdmhH/gdUr2mbKWvNwfDR0j5ERY1nw908XyAOZ
+         h0lZOutJUwegjYUlfVqg8hwb8ibJqQVIAyOY2+67nYtZYWhCoWEoK4fjjPISLkabah1Z
+         Kqn4IMXxSsAVYfGe6ad7QPKM5hOwgtBEFKA62hqv9zOrt32RpWFvDQZXTIMwn6hB8VIn
+         L3AQ==
+X-Gm-Message-State: AOJu0YzYI68T/enON4JElnKFLyNHOs58KtYEhA6/W/b43k82mZnjR7Fp
+	ZgyW9iqwBa9qRU3+yE3tLIdn2p5CySZ5Ml0VDIXXdpt4hkKeY1ah
+X-Google-Smtp-Source: AGHT+IFVmQXiROx88TY1ca3O5wEcfWhZWvXngQMo0u9K7Q3dTjxCK+cRBPReoEWHw1gnygPYgSJtZg==
+X-Received: by 2002:a05:6a00:198c:b0:6db:db2e:46f0 with SMTP id d12-20020a056a00198c00b006dbdb2e46f0mr3156551pfl.53.1705927041974;
+        Mon, 22 Jan 2024 04:37:21 -0800 (PST)
+Received: from hdebian.corp.toradex.com ([201.82.41.210])
+        by smtp.gmail.com with ESMTPSA id t19-20020a056a0021d300b006d9be753ac7sm9452933pfj.108.2024.01.22.04.37.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jan 2024 04:34:49 -0800 (PST)
-From: Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To: Vignesh Raghavendra <vigneshr@ti.com>
-Cc: linux-arm-kernel@lists.infradead.org,
+        Mon, 22 Jan 2024 04:37:21 -0800 (PST)
+From: Hiago De Franco <hiagofranco@gmail.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH 2/2] arm: configs: omap5: Enable support for DCAN devices
-Date: Mon, 22 Jan 2024 18:04:36 +0530
-Message-Id: <20240122123436.11269-3-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20240122123436.11269-1-sinthu.raja@ti.com>
-References: <20240122123436.11269-1-sinthu.raja@ti.com>
+	Hiago De Franco <hiago.franco@toradex.com>
+Subject: [PATCH v1 0/2] nxp: imx: Add support for Apalis Evaluation Board v1.2
+Date: Mon, 22 Jan 2024 09:34:58 -0300
+Message-ID: <20240122123526.43400-1-hiagofranco@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,43 +88,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1705926890-302221-12673-6670-1
-X-BESS-VER: 2019.1_20240103.1634
-X-BESS-Apparent-Source-IP: 209.85.214.198
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyMzcHMjKAYkaJaamGFokmpu
-	YGpokWRklGqcZp5qYWiWnGFoZJBmYWSrWxAKPwg9BAAAAA
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.253679 [from 
-	cloudscan19-122.eu-central-1b.ess.aws.cudaops.com]
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status:1
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+From: Hiago De Franco <hiago.franco@toradex.com>
 
-Enable configs CAN_C_CAN and CAN_C_CAN_PLATFORM as module to add support
-for C_CAN/D_CAN devices connected to the platform bus.
+This patch series introduces support for the new Apalis Evaluation Board
+v1.2. With the introduction of v1.2, a common dtsi file, containing 
+shared configurations for both apalis-eval.dts and apalis-eval-v1.2.dts,
+has been created. The eval and eval-v1.2 dts files will now capture the
+differences between these two boards. Additionally, updates have been
+made to nxp/imx/Makefile and arm/fsl.yaml to accommodate these changes.
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
- arch/arm/configs/multi_v7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+Hiago De Franco (2):
+  dt-bindings: arm: fsl: Add toradex,apalis_imx6q-eval-v1.2 board
+  arm: dts: nxp: imx: Add support for Apalis Evaluation Board v1.2
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 07d52c079eb0..87b2c6136e72 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -1305,3 +1305,5 @@ CONFIG_PRINTK_TIME=y
- CONFIG_MAGIC_SYSRQ=y
- CONFIG_DEBUG_FS=y
- CONFIG_SPI_TI_QSPI=y
-+CONFIG_CAN_C_CAN=m
-+CONFIG_CAN_C_CAN_PLATFORM=m
+ .../devicetree/bindings/arm/fsl.yaml          |   3 +-
+ arch/arm/boot/dts/nxp/imx/Makefile            |   1 +
+ .../dts/nxp/imx/imx6q-apalis-eval-v1.2.dts    | 198 ++++++++++++++++++
+ .../boot/dts/nxp/imx/imx6q-apalis-eval.dts    | 108 +---------
+ .../boot/dts/nxp/imx/imx6q-apalis-eval.dtsi   | 120 +++++++++++
+ 5 files changed, 323 insertions(+), 107 deletions(-)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-apalis-eval-v1.2.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-apalis-eval.dtsi
+
 -- 
-2.36.1
+2.43.0
 
 
