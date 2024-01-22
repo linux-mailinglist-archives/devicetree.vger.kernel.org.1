@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-33898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6FC8836FEE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C82783700E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:33:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 168461C2907B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:29:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F7051C28A98
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B21951C25;
-	Mon, 22 Jan 2024 18:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426785EE68;
+	Mon, 22 Jan 2024 18:06:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p31vfK3S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+44kknI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E259553E18;
-	Mon, 22 Jan 2024 18:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4825F55F;
+	Mon, 22 Jan 2024 18:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705946482; cv=none; b=jUTVN4XEe5txGtljnv7JSSLWWHAqnjwpiJXLSJvAcrJNBXAhN35lfv0V02jwYXdkFp8z2pI2A9ANfQiMEI9KfPP/dWITrSSE5q8M8JD0oo+73/RasEYQy7pBRijLS2kVNV29eLS7cGBHrSBSwW71GAouRFMrNP+7QpRkttu7vhw=
+	t=1705946782; cv=none; b=rZTynsweiSFzK6R05MsrQZIQPK4TLtUBFg8qSWMS3ExMC84eRDkg8ucGNLYU5XAO8VqD03lMLZbnkhuaEvm9ZLTmf4HV+xqCcSh99ucejJpZg2hwgG/bqeAH/AkDaUgdkIVhWlXlc6KNRC7f/OGbQ0O/ti7uc4E87Y4WMx3Isdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705946482; c=relaxed/simple;
-	bh=oEbbC2q8F+AF5T397yDBPdDm6rnnpagXKXo3DxyprZQ=;
+	s=arc-20240116; t=1705946782; c=relaxed/simple;
+	bh=qrDyQthPZZTKjHUK3BaRkyooNaTHr0ABooQXcmIORQo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pu4eVOasi3zcTobfqyHSJ65aSDnzqX/yGrkWMe7/8j4R0sZB/M5dql8sXuim1oOVzMkFPrAhoOUoLnqdk7uSe0nkUmXm0vvHT5J0Zh5aVYGoXQxztD4ps3kliLkBVOsmTqa1qTG0Tr633IhX5GwueHsBD2iEAh2WPo6xWw+6MFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p31vfK3S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5793C43390;
-	Mon, 22 Jan 2024 18:01:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=g6yi8ZnfdrBMCoHz5f9GstOrzKMXXGhnSYcVze57s2uRthl9YFBYjCg7vM/jiYm8Y6XOyE52FYq6P6B+fHQ3cpclokdzCr+tffnh46qCvl3kkZs4M1Y/f7xmImC6Tdk9UU/wHYguYHemK1lpIk+66s8/8x4a/o+PD7rIGo5AP7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+44kknI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8585BC43394;
+	Mon, 22 Jan 2024 18:06:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705946481;
-	bh=oEbbC2q8F+AF5T397yDBPdDm6rnnpagXKXo3DxyprZQ=;
+	s=k20201202; t=1705946781;
+	bh=qrDyQthPZZTKjHUK3BaRkyooNaTHr0ABooQXcmIORQo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p31vfK3SVEwVWGy0cxtiYygJLuWHKJBYZu7xOHxVjG8KP+mp3Uvi3Y/6pJ1jo1Cp0
-	 biFPvU5XjWR/c8YkX5BEdpY3t59I6rW/TCGwe2VPVlboWGtV4gihKee2N95GDIkp+L
-	 XhlgkAGmHCZCVaPvXDkUpkVZQ2bldl+UmdV5s4iCaQB9x6b2FdMDNJsDsqDqhq4kDO
-	 RYvan+wEjYsmLppfsMxuJ+9ywQeI4a5bag4vgsMazZtQ1HlLSZCQeQztlh4hn8+4Rx
-	 kSHKQJTtfT1PYnxs5Tl7SeN9FnaxpuIVH4Lgb43FVHVRkXwzShZYXymmF3oiPdTddT
-	 ttSYie78V8X3A==
-Date: Mon, 22 Jan 2024 18:01:15 +0000
+	b=P+44kknIgGDYv8m/O3mTLyLItJU55Rtb5gFxpjypN10+/ZEXGmmUxwRQjHAlIv/c8
+	 pCx0E/U3QajTejHTcF2O5VxBnLVdEJk2prnWp/3xXGkmB7utitaBIFr5iO5jAsE/o3
+	 OYyTteZjco9WgFPR7gamNwaqutu65BfUGewtFzsysjuGvFz5rfu8Oy7rGRn2Y8iY5s
+	 AQomliXDiCxgKi/N0Q6nJgCeGbSdkfy8phy9qTsdPfsX+mzHX8EWdGhp2EB8PGQEYx
+	 oMwD7KsIVosusXZljtvb6a+JtUyEJzDwUmhfaTbIMPnlDOqZxmTcVLEm/mXIypHtJx
+	 miGEozKLymj3w==
+Date: Mon, 22 Jan 2024 18:06:15 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Mathieu Othacehe <othacehe@gnu.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-	Primoz Fiser <primoz.fiser@norik.com>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Christoph Stoidner <c.stoidner@phytec.de>,
-	Wadim Egorov <w.egorov@phytec.de>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: gpio: gpio-vf610: add gpio-line-names
-Message-ID: <20240122-earmuff-naming-b3a09908d14a@spud>
-References: <20240122095306.14084-1-othacehe@gnu.org>
- <20240122095306.14084-3-othacehe@gnu.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	heikki.krogerus@linux.intel.com, matthias.bgg@gmail.com,
+	dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
+	andersson@kernel.org, nathan@kernel.org, luca.weiss@fairphone.com,
+	tianping.fang@mediatek.com, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Introduce ITE IT5205 Alt. Mode
+ Passive MUX
+Message-ID: <20240122-delouse-popsicle-a6f94cce9fb4@spud>
+References: <20240119125812.239197-1-angelogioacchino.delregno@collabora.com>
+ <20240119125812.239197-2-angelogioacchino.delregno@collabora.com>
+ <20240119-remedial-unripe-2a3a46b4f117@spud>
+ <9605c20a-12ad-49ad-8114-d59f2f772514@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,64 +67,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="vjIPSd7XCLzMGIkr"
+	protocol="application/pgp-signature"; boundary="nmjJ86xFFhBOL+Dl"
 Content-Disposition: inline
-In-Reply-To: <20240122095306.14084-3-othacehe@gnu.org>
+In-Reply-To: <9605c20a-12ad-49ad-8114-d59f2f772514@collabora.com>
 
 
---vjIPSd7XCLzMGIkr
+--nmjJ86xFFhBOL+Dl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 22, 2024 at 10:53:05AM +0100, Mathieu Othacehe wrote:
-> Describe common "gpio-line-names" property to fix dtbs_check warnings
-> like:
+On Mon, Jan 22, 2024 at 11:27:11AM +0100, AngeloGioacchino Del Regno wrote:
+> Il 19/01/24 17:18, Conor Dooley ha scritto:
+> > On Fri, Jan 19, 2024 at 01:58:11PM +0100, AngeloGioacchino Del Regno wr=
+ote:
+> > > Introduce a binding for the ITE IT5205 Alternate Mode Passive MUX,
+> > > used for connecting, disconnecting and switching orientation and
+> > > control the SBU signals for alternate modes on USB Type-C ports.
+> > >=20
+> > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@=
+collabora.com>
+> > > ---
+> > >   .../devicetree/bindings/usb/ite,it5205.yaml   | 72 ++++++++++++++++=
++++
+> > >   1 file changed, 72 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/usb/ite,it5205=
+=2Eyaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/usb/ite,it5205.yaml b/=
+Documentation/devicetree/bindings/usb/ite,it5205.yaml
+> > > new file mode 100644
+> > > index 000000000000..36ec4251b5f2
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
+> > > @@ -0,0 +1,72 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/usb/ite,it5205.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: ITE IT5202 Type-C USB Alternate Mode Passive MUX
+> > > +
+> > > +maintainers:
+> > > +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.=
+com>
+> > > +  - Tianping Fang <tianping.fang@mediatek.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: ite,it5205
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  vcc-supply:
+> > > +    description: Power supply for VCC pin (3.3V)
+> > > +
+> > > +  mode-switch:
+> > > +    description: Flag the port as possible handle of altmode switchi=
+ng
+> > > +    type: boolean
+> > > +
+> > > +  orientation-switch:
+> > > +    description: Flag the port as possible handler of orientation sw=
+itching
+> > > +    type: boolean
+> > > +
+> > > +  ite,ovp-enable:
+> > > +    description: Enable Over Voltage Protection functionality
+> > > +    type: boolean
+> >=20
+> > Bitta devil's advocacy perhaps, but why is this DT property? Is it not
+> > known whether or not this is supported based on the compatible, and
+> > whether or not to enable it is a decision for the operating system to
+> > make?
+> >=20
+> >=20
 >=20
-> /home/mathieu/linux/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dt=
-b:
-> gpio@43830000: 'gpio-line-names' does not match any of the regexes:
-> '^.+-hog(-[0-9]+)?$', 'pinctrl-[0-9]+' from schema $id:
-> http://devicetree.org/schemas/gpio/gpio-vf610.yaml#
->=20
-> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
+> AFAIK, not all board designs can use the OVP. On some, this may be unstab=
+le - the
+> use case where this can be safely enabled is when there's nothing in betw=
+een the
+> mux and the controller, and between the mux and the port.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Okay, if it varies based on the configuration that makes sense. Perhaps
+in the future consider mentioning stuff like that in the commit message.
 
-Cheers,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
 Conor.
 
-> ---
->  Documentation/devicetree/bindings/gpio/gpio-vf610.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml b/Doc=
-umentation/devicetree/bindings/gpio/gpio-vf610.yaml
-> index a27f92950257..7230ba1a386a 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
-> @@ -50,6 +50,7 @@ properties:
->      const: 2
-> =20
->    gpio-controller: true
-> +  gpio-line-names: true
-> =20
->    clocks:
->      items:
-> --=20
-> 2.41.0
->=20
-
---vjIPSd7XCLzMGIkr
+--nmjJ86xFFhBOL+Dl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa6tawAKCRB4tDGHoIJi
-0u47APwMrEzzVWM0oQscLmV+zo/2+o2UzPHxSk3CEgmvDLnVGwEA8bDPZyO2/lhI
-DGlTeOilh65nzS752iylG9w07c5a5wY=
-=xD75
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa6ulwAKCRB4tDGHoIJi
+0teFAQDYntozsnG0qrbeJtl0OkXFU7kXZH/5/2m68HTIZLIOKQEA0vZa72Ejv9TG
+DZbeNEl/1O99qdsZnvfvk/zLcQdjyQ4=
+=xdmh
 -----END PGP SIGNATURE-----
 
---vjIPSd7XCLzMGIkr--
+--nmjJ86xFFhBOL+Dl--
 
