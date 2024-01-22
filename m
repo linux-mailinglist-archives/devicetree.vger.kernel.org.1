@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-33573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BFD0835C4F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:08:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75862835C58
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12D661F2104A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:08:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0341C1F216FF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4401A5BA;
-	Mon, 22 Jan 2024 08:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6431B26D;
+	Mon, 22 Jan 2024 08:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NsyE6qUe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Shl3N3x7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB7C218AE4
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 08:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D90851A5BA
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 08:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705910908; cv=none; b=ofPXDiQskKP8fw7Bq5wQ/1RtTCnH5t48vV7ukGjFIBHwaHO4MOGjYnX2PdQnYXtXzJCyOG9rpRtHD8UyqF6ak+YPyQyaBsOTVLY0EA9Ik2zKQIR0ZzwVyIeMPyL8H4PHQ2WUr7W2XoRhg/8tR2O+IyM70Ay3RU+bE6+YLRV+LnQ=
+	t=1705911036; cv=none; b=uHC1SkhA68FEFnHoof8kDostm12RmLAoddswSsRarqXChxeZlp6aFBdI40g+PuyKdvXWjJ8DBKkYeXF1ZqedebbKEld92A3DhF2gWHPQufiVbBpH0Y0ZrDkKRBlUuGtkX5G+YFJpOym26KSdgjBFBcgMDCSPuRzggM1r37UHve4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705910908; c=relaxed/simple;
-	bh=JJ1inQIP5uiqCQ2ktxCodtSUjm7NkRAfTdl5UMOjwFs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qC6PWks+bppOJh5ZKoMlhvWwga6q63qqCNs2BnzpNC4XAI5QgCyBA5ykYhyYU/77VDPOXJhehms7J81PaKRDEN82YzBTVU2l2T9iYbH+SY1JOWB9AsKGkEedhgm9n+Es7hrr3WwXFQufagkW+AbTb59QirkYhsC1VdZS/TZ+ji8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NsyE6qUe; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1705911036; c=relaxed/simple;
+	bh=4AnFFHs4L2etbgi2lL/rzxE/qe0JIVFa02Bny/FL0DE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=lVYhiu+hw/9RNf+lfHkctybye+ZwZNXXTwi7dtTE3U1IgYEg9Th8pgk22G+32H//NRBIoeRVsnZDFDXYNJNxZr8w4Td2kiJC2bbxY2S0IU4kAOtlulmJJtj0vBZp1frUjF1nqpwjsRZXTwi8FABNCrQh2WPdRscgRsCiwPIoWTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Shl3N3x7; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40e60e137aaso32431725e9.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 00:08:26 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40e60e135a7so28984635e9.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 00:10:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705910905; x=1706515705; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1705911033; x=1706515833; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ljxRrYk3P84s9G/mrheKlxc/t+X1N0QJvAOyGscIczc=;
-        b=NsyE6qUeq23jqVAFh43pmQ0uQ/qKRHIjFfq39/49uVyZppgkt0k3JohgCq/Z3PSu4l
-         wBtv4L6Kt6ofxllCuVN++ze+lETHPZqgVglySBUDFiRsRShTzW5Q3TTqokR9s35hZZyk
-         CPcg5e1SuJcumJpAZT6pIZdNT3VFbOkWeaTCOlWUtnlcSaUiQzZIGPfyj2fxrJjhsNls
-         RgZYpbXi4Fa9HLYkWp0fyxUF98dS43zCP4LpQGDV8pr+1/IwKojMyjXn3m2lNykj7SRJ
-         POxsE8wKMVG2yIWPRwNITBpUtuzIecHXSHRKhP6jaBYbgeoAGVCpmjuRYOPAMfad9tOI
-         ebqA==
+        bh=MbaUIqrMbMzTbi1xbIh7iOYXgE0LxrEe6wcimnzPid8=;
+        b=Shl3N3x7OcZn6vi90K3zb1ieONQMz60djjcmdMYj11crzQISX6WA/HY6gpSay15yRD
+         yEaq77dRPLCF5J6E0yk6e5KPehBANJrbGgKQ5n+/kHgcmj+u7KG1xpO5BpJH9BDLVRns
+         x87FFmUl9PxcK29vtH+r2Msy5useK7djsiTg5/WxaEyeooV+LM+geos3QP+G63lZHDgN
+         LLr2eaGNNKUPQdcCXpEg3A4XiXEHDo5fZ1pBi271aT9ZhQ8gfzLk8U/B/KUKzGYRyN2S
+         xnQFY8STJaUtameUQkCp80ZVtTvqknbZe53yTIw8FO6inojgKOf3O4t95VmLqt/tI0hm
+         kt7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705910905; x=1706515705;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1705911033; x=1706515833;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ljxRrYk3P84s9G/mrheKlxc/t+X1N0QJvAOyGscIczc=;
-        b=VRmzzWVrf+Oh1TCImH1+Kh8x5YIshO/ya6km0D5e+wAJAXbTnTojHfgaUrfTLehFWR
-         iQFbA1hCMjXsOFrkUOfJXoQk8gMlZhhsyBZ0fysaJ6dHWUVgOMrv6u+PJVlG/cYSsv3V
-         ukpcNfKNV29BgGhjMtbvrdWs71bBvXNrxzvSdrGYtw4D5FASeK7F+LOLpnODXxujthOK
-         m/9P9Pgj1R/f3vjOtmIcHEY+0U1vFU35P9y9eANS7PcAOQLJGBk7N8vbeX/Hkk4djTE2
-         cH+wtbp3gyrRCPIS1M1M0DnvZNi+1iMMj94TWadAOmUhfo4A/Lnc/3XY487bQfoiFt8h
-         3ohQ==
-X-Gm-Message-State: AOJu0YzW5CevshbHWi/oOXelLN7m/WjSpwTGGwC36Rp/rs0YDJpGiz0T
-	o/WY6vXELq4k7VNasjQfwXMWlUx7xUMQyv6t0BM7KpwazUcCUk6ZfGJWYQk7Jrg=
-X-Google-Smtp-Source: AGHT+IHUaQRzlvIdl9RygGOemyjUeJK+jz3LnrAoFb9NTzVpbM1JlXQ7Uo3ldRvnYWuQc97RiIadPg==
-X-Received: by 2002:a05:600c:332a:b0:40e:5aa7:769d with SMTP id q42-20020a05600c332a00b0040e5aa7769dmr1981343wmp.143.1705910905064;
-        Mon, 22 Jan 2024 00:08:25 -0800 (PST)
+        bh=MbaUIqrMbMzTbi1xbIh7iOYXgE0LxrEe6wcimnzPid8=;
+        b=eatR8pTQ9G4tfImamQpuS5+6zQdxhINEYlTzIP5ODiSXyogbAmf1DmRoJH9jD81D08
+         RsnCRPOa1DstgACbSfZXc60gR/11W9pWNtJ2EzJTBpqVzn+wnpGZnKhbHZiigZETbpyz
+         lDLjDsFY/BlwedMJvNu4hsMvykztSL1wez+xlKe2n9UUCr++YE6VolmMk7FeM1UjwVT+
+         kucMCTF7YoczI+jZqQfn4UGURMmJVH4hA00xdlc+AtWxoR739WINlT2C1y/J9TORaZqg
+         nZ6bhI2o4kNAhjyz8dnufmwQoBjyohqExdmTgxVF6lCmdbFXTc8cfmRQ2YgyEHawH8pj
+         Bz7A==
+X-Gm-Message-State: AOJu0Yxl17CtXCy+KEVG/X2n0px9px6WsXjIEECpXeU07cshzY5/iAWd
+	GkMSn6aqO60oW0cUbes+mwNXXfpeo9UHlE0wgeoVLbcghA0LOKvnWEz5jHhtKRU=
+X-Google-Smtp-Source: AGHT+IF4zVESZieddWNU7+k8H1J80F/kOzh4atr1ez8O2h+FXPc5tEeCGo/qorFc5eG8W9X+yLPltg==
+X-Received: by 2002:a05:600c:2108:b0:40e:40fc:6d43 with SMTP id u8-20020a05600c210800b0040e40fc6d43mr2407442wml.98.1705911033033;
+        Mon, 22 Jan 2024 00:10:33 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id n19-20020a05600c501300b0040e813f1f31sm22576287wmr.25.2024.01.22.00.08.23
+        by smtp.gmail.com with ESMTPSA id bh11-20020a05600c3d0b00b0040eabc7cfacsm3912080wmb.16.2024.01.22.00.10.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 00:08:24 -0800 (PST)
-Message-ID: <5a2f292d-efdf-4647-89ce-e4f5d28c7192@linaro.org>
-Date: Mon, 22 Jan 2024 09:08:23 +0100
+        Mon, 22 Jan 2024 00:10:32 -0800 (PST)
+Message-ID: <c9feb32f-1efb-4613-94c9-9d6bb0f45366@linaro.org>
+Date: Mon, 22 Jan 2024 09:10:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,20 +75,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] HID: touchscreen: add himax hid-over-spi driver
+Subject: Re: [PATCH v8 2/5] dt-bindings: soc: sophgo: Add Sophgo system
+ control module
 Content-Language: en-US
-To: Tomasz Figa <tfiga@chromium.org>
-Cc: Tylor Yang <tylor_yang@himax.corp-partner.google.com>,
- Doug Anderson <dianders@chromium.org>, jingyliang@chromium.org,
- poyuan_chang@himax.corp-partner.google.com, hbarnor@chromium.org,
- jikos@kernel.org, wuxy23@lenovo.com, conor+dt@kernel.org, luolm1@lenovo.com,
- robh+dt@kernel.org, dmitry.torokhov@gmail.com, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, poyu_hung@himax.corp-partner.google.com,
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
- benjamin.tissoires@redhat.com
-References: <20231017091900.801989-1-tylor_yang@himax.corp-partner.google.com>
- <6c7d9c92-7616-4fad-806e-44302c33b63c@linaro.org>
- <CAAFQd5AN-1FTHZcE1Eja0Jd4iqpDocZSz19F44RxqtvKs6ikeQ@mail.gmail.com>
+To: Chen Wang <unicorn_wang@outlook.com>, Chen Wang <unicornxw@gmail.com>,
+ aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com,
+ robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
+ xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
+ inochiama@outlook.com, samuel.holland@sifive.com
+References: <cover.1705388518.git.unicorn_wang@outlook.com>
+ <598b1026fdf9989bc48e5e10d1034b37947d3b80.1705388518.git.unicorn_wang@outlook.com>
+ <f4a46311-2e12-458b-98a8-d3caa2c95517@linaro.org>
+ <MA0P287MB282232DC6DF6290F5520BA89FE732@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <MA0P287MB2822FBA18674540BA85035BDFE712@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,81 +137,85 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAAFQd5AN-1FTHZcE1Eja0Jd4iqpDocZSz19F44RxqtvKs6ikeQ@mail.gmail.com>
+In-Reply-To: <MA0P287MB2822FBA18674540BA85035BDFE712@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 22/01/2024 05:57, Tomasz Figa wrote:
-> Hi Krzysztof,
+On 18/01/2024 06:29, Chen Wang wrote:
 > 
-> On Wed, Oct 18, 2023 at 2:08 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+> On 2024/1/16 19:37, Chen Wang wrote:
 >>
->> On 17/10/2023 11:18, Tylor Yang wrote:
->>> Hello,
+>> On 2024/1/16 18:06, Krzysztof Kozlowski wrote:
+>>> On 16/01/2024 08:21, Chen Wang wrote:
+>>>> From: Chen Wang <unicorn_wang@outlook.com>
+>>>>
+>>>> Add documentation to describe Sophgo System Control for SG2042.
+>>>>
+>>>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+>>>> ---
+>>>>   .../soc/sophgo/sophgo,sg2042-sysctrl.yaml     | 46 
+>>>> +++++++++++++++++++
+>>>>   1 file changed, 46 insertions(+)
+>>>>   create mode 100644 
+>>>> Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
+>>>>
+>>>> diff --git 
+>>>> a/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml 
+>>>> b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml 
+>>>>
+>>>> new file mode 100644
+>>>> index 000000000000..7b50bb56b4cf
+>>>> --- /dev/null
+>>>> +++ 
+>>>> b/Documentation/devicetree/bindings/soc/sophgo/sophgo,sg2042-sysctrl.yaml
+>>>> @@ -0,0 +1,46 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: 
+>>>> http://devicetree.org/schemas/soc/sophgo/sophgo,sg2042-sysctrl.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Sophgo SG2042 SoC system control
+>>>> +
+>>>> +maintainers:
+>>>> +  - Chen Wang <unicorn_wang@outlook.com>
+>>>> +
+>>>> +description:
+>>>> +  The Sophgo system control is a registers block (SYS_CTRL), 
+>>>> providing multiple
+>>>> +  low level platform functions like chip configuration, clock 
+>>>> control, etc.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: sophgo,sg2042-sysctrl
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clock-controller:
+>>>> +    # Child node
+>>> Drop the comment, it is obvious. It cannot be anything else.
 >>>
->>> This patch series adds the driver for Himax HID-over-SPI touchscreen ICs.
->>> This driver takes a position in [1], it intends to take advantage of SPI
->>> transfer speed and HID interface.
->>>
->>
->> Dear Google/Chromium folks,
->>
->> As a multi-billion company I am sure you can spare some small amount of
->> time/effort/money for internal review before using community for this
->> purpose. I mean reviewing trivial issues, like coding style, or just
->> running checkpatch. You know, the obvious things.
->>
->> There is no need to use expensive time of community reviewers to review
->> very simple mistakes, the ones which we fixed in Linux kernel years ago
->> (also with automated tools). You can and you should do it, before
->> submitting drivers for community review.
->>
->> Thanks in advance.
+>>>> +    $ref: /schemas/clock/sophgo,sg2042-sysclk.yaml#
+>>>> +    type: object
+>>> Why isn't this merged here? You do not need the child node really...
+>>> unless the clock inputs are specific to that clock controller and you
+>>> will have here more devices? But where are they in such case?
+>> I don't see more devices will be included later. It should be ok to 
+>> merge them into one.
 > 
-> First of all, I can understand your sentiment towards some of the
-> patches being in a very rough shape. As a community we have large
-> volumes of patches to review and it would be really helpful if new
-> contributors followed some basic simple steps, as described in our
-> "Submitting patches" page...
-
-I don't really understand why responding to something which is three
-months old. Anyway, I talked with Doug on Plumbers about it so things
-are more or less clarified, however since two Google folks responded,
-let me continue.
-
+> hi, Krzysztof,
 > 
-> That said, it's not a fair assumption that there are no steps taken to
-> offload the upstream reviewers community by the corporate
-> contributors. We usually do have basic internal pre-reviews for
-> patches coming from partners and even a pre-review bot (CoP) that can
-
-Good to know.
-
-> automate some of the checks such as checkpatch or bisectability. But
-> as others said in this thread, we don't control our partners and they
-> are free to send the patches just directly to the mailing lists if
-> they want to do so. In a similar way, not everyone in ChromeOS is
-> super experienced with upstream submissions, so sometimes they may not
-> be aware of the best practices, etc.
+> After some double check, I find we will have more devices in 
+> system-control. For example, in the SYS_CTRL area, there is also a 
+> section of registers used to control the "General Purpose Interrupt". 
+> The pcie controller of sg2042 will use this interrupt controller which 
+> is defined in SYS_CTRL, we will add it in later work.
 > 
-> I haven't seen the patch in question, but I'd assume it's more like an
-> exception rather than a usual pattern, so I'd appreciate it if we
 
-Unfortunately that's the pattern. I was complaining few times about very
-poor quality of some patches from some partners before writing that email.
-
-Just to clarify: all the complains are about missing basic stuff, like
-running basic tools. They don't even require internal review by humans.
-
-> could avoid aggressive responses like that and try to solve the
-> problems in a more productive way. Just a simple response with a link
-> to https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-> wouldn't really cost you much, or actually even less than the entire
-> litany in this email.
-
-Simple response to docs don't work. Docs are quite long and contributors
-questioned here just don't read them in details.
+I expect then all devices to be documented.
 
 Best regards,
 Krzysztof
