@@ -1,155 +1,141 @@
-Return-Path: <devicetree+bounces-33719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797878361F2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:37:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F2EF83620E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:39:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 223DC1F2619E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:37:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B337B1C26B7F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D813FB3B;
-	Mon, 22 Jan 2024 11:27:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A20DE44383;
+	Mon, 22 Jan 2024 11:31:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="vlCUKnsh"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="s/eGIi4O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4C73B290
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 11:27:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D56234439B;
+	Mon, 22 Jan 2024 11:31:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705922862; cv=none; b=sVaLM7boWlQyDkRdemZWKr4ebmrKXAYtKSonJ42uFdPoOU4BiTfHX7rS24SqtDxsh7sdW+ntjtJlPMWH1AO9LY/Y5MAg184bCwOsIFIsrEwdubw2I8G9dLgCBE87eN2dVY76Kf4bsdnu6ZFO2w95NX1E3+DOGpYxYvUe7v97ry0=
+	t=1705923069; cv=none; b=Qvk9zyFj9ELYgLAd4A2BD9iJjsj/sGXpoWR9K2CEvCdlODgHZZCAoCaGscJaJkplH7YQv/WElBpBrh68yJYi/+rdyB8gzPpKRXGRNGJX6kuKeDMTW9uCdAeQf3b0Rr0tedJt7F4wRyqla8hTr7c8rfURfsWs94Lg+Rj/86/A7ko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705922862; c=relaxed/simple;
-	bh=1/YALr6F0ESKpBAGOERlcLO4YyaHn1XV7HKiN2JojMQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=GLk3S0QtPeoG7XX2aAZw8OmfKwBs2yMAh4+1IZT4TLe5RUvU2mVHLbcL/B7tnyQ+ulMKIZ3MMq+o0d5tHvEZyAMAPi1IpjyIrc5S8j5ufZHLQcrw5+7F2ebzryPvscpxXrJjGtEBPy13am1K8URPz/4lzplS3ygbkeOxFZEx4+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=vlCUKnsh; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a293f2280c7so318195266b.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 03:27:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1705922859; x=1706527659; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WIgV/QMkOZJ0bf7IGnZFc3jEnAkXvM5i+7Bl0Lz57H0=;
-        b=vlCUKnshZ6oqYxu+ZjhrB1+/WDo+nslor1Aw1PRTzc0KP+tU4hufZmPe0RSl7/vh1S
-         lFumDICxwtcqJLUf0lieaIULeKNRmN8JHltw54m6AQjUXlPuO617aJLV+6XzeyLLLAAM
-         8vhkGL7c+/ag4k19yeDSjqyGzXXH+QKXhEa+9e6xM5FwqzCV8HlfBJsEDdI0oJIQwTah
-         MG2kh+zMZdGbRVa+VoX0rfZLG9B8TW4BC7xcHt9/GxvS5dzabYCU9NCTFimbTZmC7jLD
-         v13ghABKakH5Fwri/sSgfiafKtwZIxDaqfaW+8Q7U71zfKgYAV7TdQfJU7g3fWVd2AuJ
-         TL2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705922859; x=1706527659;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WIgV/QMkOZJ0bf7IGnZFc3jEnAkXvM5i+7Bl0Lz57H0=;
-        b=Lc7YHE3mf8KsapoqhPVV6iNwAXWbPMlUDUtGYHm+JyZmliLTUCa8zGA4vYNJyKXsQ9
-         F04K+4gjZZgRzk60OcXBgIMsGp3EGPJW1sUfUkP9wAvP4OScYFAJIWSc8eVsByo038c7
-         4Ii1posMDr/Q5s5nW9GmUgGObnnZZa+inngpmsMb9kjtPBohcIDlIhykTphN6sNpMFOo
-         sGV+/1PqxoWapd2FiL3tQAT1cl7J9F219DvwrRBShuy+prVWkV3EJL4zsUG/x7mRvG84
-         wnflJ55ilv+uEyOdXQ8LUm9+VoEtTdnlZJN0JzDJT8YCBIOTbGAkPj+PimDxbKbQCRIo
-         ovrw==
-X-Gm-Message-State: AOJu0YxloYJ1fis/UIgxGNYy+cYlx0W5yF48uOjj4zxg4LhS6G1e5qkc
-	ajmMdEOfdXoLAUPSojo/kRIBugCnZbkCM73jpIGmiKKBDrHKek639E9nwgSE+rQ=
-X-Google-Smtp-Source: AGHT+IFNlq6X29oAt8M85jJiLwH2VUAOWjj165S6OihyHQSXyUfaN5CoDfj1ih9bZ1mSWEGWyb48sg==
-X-Received: by 2002:a17:906:6c85:b0:a2a:35fd:d48b with SMTP id s5-20020a1709066c8500b00a2a35fdd48bmr1037397ejr.266.1705922859113;
-        Mon, 22 Jan 2024 03:27:39 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id d14-20020a170906c20e00b00a298e2f6b3csm13247972ejz.213.2024.01.22.03.27.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 03:27:38 -0800 (PST)
+	s=arc-20240116; t=1705923069; c=relaxed/simple;
+	bh=4tCrzUC+/YgxObX8hzrHBOPIJAA1eJDa7iglCGdrgKg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hO19NobB8x46TITIduBBfU6XibYbNcLt1PH5zMXU2zUofIZ6ydVdQ78v+0OUxjkH9a5HIBQfnb5iux6Zl7w75BfqO8odeCC5Z7m0AQvS45SbK4Ocw7xx+EJTZrcqAli/8JejpGU6zOo3AWLQ4ApNd+7xLRB8VvdGnXQxH208M6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=s/eGIi4O; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40MBUvvC121154;
+	Mon, 22 Jan 2024 05:30:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1705923057;
+	bh=dzEoq5dLrijjQejs3RrwVn51yH4SqPJoQUpFjXavDyo=;
+	h=From:To:CC:Subject:Date;
+	b=s/eGIi4Ogz4bVRI+XTm2F46nKL8tF5sRBsgQ7lBHlwGdo04lNPJYP1nATBT1rlvUE
+	 sM2BVx1INP14YeMdbpJg+agWbRbbHWhJpfLaQNPmmcdeCMjSffFpCi6dKMAgQApc4L
+	 VulnGX/Exa4E5c7JgKXaE8ETCZ6W/nJfVlnkNM+0=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40MBUv57054692
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 22 Jan 2024 05:30:57 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
+ Jan 2024 05:30:57 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 22 Jan 2024 05:30:57 -0600
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40MBUvNY115874;
+	Mon, 22 Jan 2024 05:30:57 -0600
+Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 40MBUufF021315;
+	Mon, 22 Jan 2024 05:30:57 -0600
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Tero
+ Kristo <kristo@kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
+        Roger
+ Quadros <rogerq@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+Subject: [PATCH v3 0/3] Add AM64x ICSSG Ethernet support
+Date: Mon, 22 Jan 2024 17:00:42 +0530
+Message-ID: <20240122113045.1711818-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 22 Jan 2024 12:27:38 +0100
-Message-Id: <CYL76M5KT424.G3BC6JX74XVN@fairphone.com>
-Cc: "Jessica Zhang" <quic_jesszhan@quicinc.com>, "Sam Ravnborg"
- <sam@ravnborg.org>, "David Airlie" <airlied@gmail.com>, "Daniel Vetter"
- <daniel@ffwll.ch>, "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>, "Thomas Zimmermann"
- <tzimmermann@suse.de>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>, "Konrad
- Dybcio" <konrad.dybcio@linaro.org>, "Andy Gross" <agross@kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/4] drm/panel: Add driver for DJN HX83112A LCD panel
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: <neil.armstrong@linaro.org>, "Linus Walleij" <linus.walleij@linaro.org>
-X-Mailer: aerc 0.15.2
-References: <20240110-fp4-panel-v2-0-8ad11174f65b@fairphone.com>
- <20240110-fp4-panel-v2-2-8ad11174f65b@fairphone.com>
- <CACRpkdaWTfPDCin_L6pefHsokjNyO8Mo6hWPdzPLLi1EUkKUuA@mail.gmail.com>
- <CYBZEZ4IM6IL.VR04W7933VI@fairphone.com>
- <CACRpkdZQbVXfBa70nhDOqfWPbsh-6DgX-uvZOxr19pzMmF2giQ@mail.gmail.com>
- <CYCLSCKPPBOC.1B1MP3VOOC0Q8@fairphone.com>
- <cdc18e2a-b7eb-4b54-a513-481148fb3b0d@linaro.org>
- <CYCMVXHYVDCI.HVH1TR8MWEUK@fairphone.com>
- <CACRpkdacS9ojXUuogygkz6xxCf3mMq6GG_75sze8ukUu=rxVyw@mail.gmail.com>
- <f99d363c-d4a6-44b3-8057-3925f8dac1d5@linaro.org>
-In-Reply-To: <f99d363c-d4a6-44b3-8057-3925f8dac1d5@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Fri Jan 12, 2024 at 11:26 AM CET,  wrote:
-> On 12/01/2024 11:23, Linus Walleij wrote:
-> > On Fri, Jan 12, 2024 at 10:52=E2=80=AFAM Luca Weiss <luca.weiss@fairpho=
-ne.com> wrote:
-> >=20
-> >> Since there's zero indication Truly is involved in this panel in my
-> >> documentation - much less the number 5P65 - I'm not going to add that.
->
-> Ack
->
-> >=20
-> > OK then, I fold, thanks for looking into it.
-> > Keep the Himax hx83112a file name and symbols.
-> >=20
-> >> So in short this panel is the model 9A-3R063-1102B from DJN, which use=
-s
-> >> a Himax HX83112A driver IC.
-> >=20
-> > So compatible =3D "djn,9a-3r063-1102b" since the setup sequences for
-> > hx83112a are clearly for this one display?
->
-> Yep let's settle on that!
+Hi All,
 
-It's clear to me to use "djn,9a-3r063-1102b" in the driver now but what
-about dts?
+This series adds support for ICSSG ethernet on AM64x. 
+This series is based on the latest next-20231211 linux-next.
 
-Currently here in v2 we have this:
-compatible =3D "fairphone,fp4-hx83112a-djn", "himax,hx83112a";
+AM64x EVM has three ethernet ports. One is dedicated to CPSW and one is
+dedicated to ICSSG1. The remaining port is muxed between CPSW and ICSSG1
+ICSSG1 ports. The ICSSG1 node is added in the k3-am642-evm.dts. By default
+the muxed port is used by CPSW so 2nd ICSSG1 port is disabled in the
+k3-am642-evm.dts. But overlay k3-am642-evm-icssg1-dualemac.dtso can be
+applied to use muxed port as ICSSG1.
 
-Should this just become this?
-compatible =3D "djn,9a-3r063-1102b";
+This is the v3 of the series [v1].
 
-Or e.g. this?
-compatible =3D "djn,9a-3r063-1102b", "himax,hx83112a";
+Changes from v2 to v3:
+*) No functional changes.
+*) Rebased on latest linux-next (next-20240122) after 6.8-rc1.
 
-Or something else completely? Do we have some documentation / best
-practises around this maybe?
+Changes from v1 to v2:
+*) Fixed aliases section in k3-am642-evm.dts
+*) Fixed firmware-names in k3-am642-evm.dts
+*) Changed icssg1_phy1 to ethernet-phy@f from ethernet-phy@0 as suggested
+   by Andrew L.
+*) Changed makefile to handle overlays using CONFIG_OF_ALL_DTBS as
+   suggested by Nishant and Andrew Davis.
+*) Fixed aliases section in k3-am642-evm-icssg1-dualemac.dtso
+*) Fixed pinctrl in k3-am642-evm-icssg1-dualemac.dtso
+*) Updated commit message of patch 3/3 of the series to warn about adding
+   label name to 'mdio-mux-1' node.
 
-Regards
-Luca
+[v1] https://lore.kernel.org/all/20231207081917.340167-1-danishanwar@ti.com/
+[v2] https://lore.kernel.org/all/20231212165832.3933335-1-danishanwar@ti.com/
 
->
-> Thanks,
-> Neil
->
-> >=20
-> > Yours,
-> > Linus Walleij
+Thanks and Regards,
+MD Danish Anwar
+
+MD Danish Anwar (2):
+  arm64: dts: ti: k3-am642-evm: add ICSSG1 Ethernet support
+  arm64: dts: ti: k3-am642-evm: add overlay for icssg1 2nd port
+
+Suman Anna (1):
+  arm64: dts: ti: k3-am64-main: Add ICSSG IEP nodes
+
+ arch/arm64/boot/dts/ti/Makefile               |   5 +
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |  24 ++++
+ .../dts/ti/k3-am642-evm-icssg1-dualemac.dtso  |  75 +++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       | 104 +++++++++++++++++-
+ 4 files changed, 207 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg1-dualemac.dtso
+
+base-commit: 319fbd8fc6d339e0a1c7b067eed870c518a13a02
+-- 
+2.34.1
 
 
