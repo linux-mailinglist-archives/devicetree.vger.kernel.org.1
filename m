@@ -1,119 +1,153 @@
-Return-Path: <devicetree+bounces-33672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93FF6835FE3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:41:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51DDF836013
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:51:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C619D1C24CD3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:41:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C3041F212C2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C4F3A1C6;
-	Mon, 22 Jan 2024 10:41:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F903A1DD;
+	Mon, 22 Jan 2024 10:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z8uwKABG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QIxaTDia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEA9208C1
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 10:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A1E18C38
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 10:50:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705920086; cv=none; b=fqPiEdc2w6d01ADSMwKCeUVU0xh2pBg/rKkA4NHj+kJwvCjaDtq8I+qbXazWbEjpWYpaarLLvPubX3tZ4shRc11nvnKYXQWufzGC05/NbsaKYjDJL2muiD20npiJq5ZKYXt9tdYvvYd9o1/RIA5X2z0JzddSQcwPWX6sKM8l9rM=
+	t=1705920660; cv=none; b=n/L3kZkTcyCTClsQiidzNJHtob3R+T3DrVsUrNd6AjaPS27jSD0Rc6PqOOCfNsO6HuOjruu2Wj/obMf2HywbvAr3rsDlNZ3kyB/v3hfF60eW0dRPsIPCBQFThQBFwQsfmDQZ9KGh5DrL+2HtZA7+n2GkYPjvgrEMU3ewq0knKL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705920086; c=relaxed/simple;
-	bh=HZ0Hdg/F68IPYAxwGbTZxdDbtscFYuGai9J7k/bcoEo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=XEr1aVGYg2yGUp7/cl9sYK7rZnnOHkPqhMcqNBM3Plh/zmknB4MDEsmEXVv7PpF1tmVwYGSU5/09jOfDEPNHtPVW0Dky6AZRi7+dGnW7NIaiP8EqQcsUzBWp3Vc2v+4TJD3O84lvXVSC7vrqy1LJFmAJICK1Uftwlc6yWCOqcFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z8uwKABG; arc=none smtp.client-ip=209.85.128.42
+	s=arc-20240116; t=1705920660; c=relaxed/simple;
+	bh=dFQKRV53d41l5dL/sSIuuPKf5MGyxVfeQ8gHMWfsGu4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f7XKfvbY8mqx/5GBWRShCFHi7PRMl0xrw3b/a+AWFTgX1AMF9urO2fjqeOF18dst57v4HhwEz9b4S0veS++8ncEvsl4qoTGJMLzp2LJijLzMicj/03vdNxMGw1oZmviaTIH8gncYMzZOUslxR2HUELy6BM/DFe+YDUauZYvm+Bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QIxaTDia; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40e9d4ab5f3so33069075e9.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 02:41:23 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a2eb5c4dad6so210491466b.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 02:50:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705920082; x=1706524882; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tJBEU9hHJcfzWOiHAuwhZ3FGFs6n9fqS4Ii6C+nRlzU=;
-        b=Z8uwKABGOicDo2gIUJJG6UDuqdfLX/HOwze7vvb5eBEh9LsyFpodxnrd1nk/Ct6akW
-         /GEY8AZKC4isW9BjGtlwvzLZ7XIYTOqgASSht2nnuJ4kPhsW1mU+j+/z04VFHh6QdXW+
-         2evjzBiP3SHkOHSB0ZNgllM509UD2qJy0ZLIZuXkUip/NpIMaJ9qJTfHDj3prZl0EW4t
-         yR6FfPAxWAqOUuNfJZZ88JY6kXi0N4kEkuFqbGduj3+vy4w0J+qJQ9hfSGf4NKOlO8oi
-         RmBmLknFf3DNVWF82HcmZ21Uec5JDkEuP8npkYzDK/rEOAkyKc/P6fKugmtN+LGttP/X
-         FlQg==
+        d=linaro.org; s=google; t=1705920657; x=1706525457; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=M8yvXevL9licw83jHDt/PBzBsdwg08SwRbA4+7IDl1s=;
+        b=QIxaTDia3CjFJDjmzdwZ/4ziRpu6wYW3A0CJFqw/NlTrwGSxFv7jgpjigEid9ASMP2
+         6VXqvnAZ7EXhz7tHQQyUk9hDbTKt81f4Lyb+q6kf1ew5ZYqW3Nny65MRxVXBfVE1BjLD
+         kddNwbAoTj1iH9aboXI3qdpKr6IHQRdstl+uJuQ49e3+v3ToJxU/GTbw7L0Ri4XGbHKf
+         qvArg1OdXqJ0Gilcr37MdGsepbg7e9s8kA4txeJcc329C5MTfX8swYvKxMg7VeA9J6tQ
+         9P/Lwr7NsOLHx7DRJ9hDILBTnK2DPd572CHP6/8jPrcPuSh3kb6LQWt3oyeB2tE8knFS
+         Katg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705920082; x=1706524882;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tJBEU9hHJcfzWOiHAuwhZ3FGFs6n9fqS4Ii6C+nRlzU=;
-        b=ejrWC9qRN91KUygGhLTX3ZYUYZDAlOnwiUTLZDhoZjYg+4HJfnq9hE0oHR6tU2Rzps
-         eQ3kJn7C4EhRtc7Yolrz+Eqihl2EhBiB5MTrH/iTBZiFcdZhks5cN8Y6gFQdrOHvrcpg
-         PgIclz2hqF7CyTDm9Jh76U060NATBhfNpyXuS1l4kgsNnNK34iQUX289c6GLSBOnOpW3
-         sKilQP87E8zv1bnunxl47X4pmtnCcs9JHCzK0gLylG2S+Dbc0g7SGf5d9/JSenyG2EfE
-         KwcNW4TBmsjXTCCcQgvveT0hEtDGBv9bKRNrueZS1F4Q51za005do5ypo33chPs88R28
-         9IAA==
-X-Gm-Message-State: AOJu0YzwX/ve0v7u6Y/9sQDWNtxLdyhpMh7FUcBUdAvC++LiUrz0UP5P
-	m7Flrh2st+AKQ/J75XGuntsEIrCj+KhVinui/oVXcrb2Pbn4aJZBSxM/DZ2fuTk=
-X-Google-Smtp-Source: AGHT+IHIKMd1D6GufkmdDAUEkH6X9Zo/gAkdVkY6970R1/IWSOsKtCHbix6qN81ySf5gXV1iFmui+w==
-X-Received: by 2002:a05:600c:4286:b0:40e:596a:985b with SMTP id v6-20020a05600c428600b0040e596a985bmr2207230wmc.160.1705920082126;
-        Mon, 22 Jan 2024 02:41:22 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id fc11-20020a05600c524b00b0040e86fbd772sm20129483wmb.38.2024.01.22.02.41.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jan 2024 02:41:21 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, 
- peter.griffin@linaro.org, Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org, 
- alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
- cw00.choi@samsung.com, semen.protsenko@linaro.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, andre.draszik@linaro.org, 
- kernel-team@android.com, willmcvicker@google.com
-In-Reply-To: <20240109114908.3623645-1-tudor.ambarus@linaro.org>
-References: <20240109114908.3623645-1-tudor.ambarus@linaro.org>
-Subject: Re: [PATCH v2 0/3] GS101: rename cmu_misc clock-names
-Message-Id: <170592008004.38238.17769921542052483911.b4-ty@linaro.org>
-Date: Mon, 22 Jan 2024 11:41:20 +0100
+        d=1e100.net; s=20230601; t=1705920657; x=1706525457;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M8yvXevL9licw83jHDt/PBzBsdwg08SwRbA4+7IDl1s=;
+        b=MbVle0n/38cTb1jlz2gbW5DidzgL0/yLvl3iIlZUzfXu7duCc/pMs/towYeFWyVM+O
+         upAnLhCEqPpkMCLi/t92e7/dFkLC8gJtAK1f4xRTH6DPAoV4ajjIGPUeM5nKp+5X6pAb
+         SIYZxloKL/dBkZ1vpH5loITLjKjMZ5SCwutx89wb05BTO2LpuqMFOwJqiS+lOA4Qm6hg
+         RUFSyHEYcaHnUiIAz17eHDDfa1scfjCVW/SuWJzAyv/MgFbFNZFQm8tXlail5gLu90za
+         CVHwmgWdyTPqkpMHU5ofgxn07u6izDJXCu4lnwZ93ZW9bXYeG4qGi+Nq/bp1AFjOwuS3
+         5rtQ==
+X-Gm-Message-State: AOJu0YyAyF27FyoqoiMDwmnKCXtAWEc4O4bl+uoN7+fgRED3PK3Kz9Bg
+	05RIHYG/qzFBbeVj5Mf1zfAilBaIZYGG0ZwvsHEoQr5jKunhE4doZy2sV7kBpc0=
+X-Google-Smtp-Source: AGHT+IGm2Ud+3TjJVbH3MlgByCMSKS5V1U79UJiHNFQrN71oS9MCtY8unE+1Rpl4Rlkh4BPFhMPOOQ==
+X-Received: by 2002:a17:906:268e:b0:a2c:6bea:58a8 with SMTP id t14-20020a170906268e00b00a2c6bea58a8mr2086541ejc.37.1705920657106;
+        Mon, 22 Jan 2024 02:50:57 -0800 (PST)
+Received: from [192.168.231.132] (178235179218.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.218])
+        by smtp.gmail.com with ESMTPSA id qa18-20020a170907869200b00a2f168ca475sm5177494ejc.140.2024.01.22.02.50.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jan 2024 02:50:56 -0800 (PST)
+Message-ID: <1635b0e5-df47-4918-be83-edc27c59d8cf@linaro.org>
+Date: Mon, 22 Jan 2024 11:50:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] ARM: dts: qcom: msm8974: Add device tree for Samsung
+ Galaxy S5 China
+To: Rong Zhang <i@rong.moe>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+References: <20240121154010.168440-1-i@rong.moe>
+ <20240121154010.168440-5-i@rong.moe>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240121154010.168440-5-i@rong.moe>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.4
 
-
-On Tue, 09 Jan 2024 11:49:05 +0000, Tudor Ambarus wrote:
-> Rename the cmu_misc clock-names to just "bus" and "sss" because
-> naming is local to the module, so cmu_misc is implied. As the bindings
-> and the device tree have not made a release yet (v6.8), comply with the
-> renamed clocks in the device tree and the clock driver.
+On 21.01.2024 16:39, Rong Zhang wrote:
+> This device has little difference compared to Samsung Galaxy S5 (klte),
+> so the device tree is based on qcom-msm8974pro-samsung-klte.dts. The
+> only difference is the gpio pins of i2c_led_gpio. With pins corrected,
+> the LEDs and WiFi are able to work properly.
 > 
-> The patch set is expected to be queued through Krzysztof's tree as he
-> was the one that queued all the previous gs101 patches.
-> 
-> [...]
+> Signed-off-by: Rong Zhang <i@rong.moe>
+> ---
 
-Applied, thanks!
+Looks like you didn't change the brcm,board-type though?
 
-[1/3] dt-bindings: clock: gs101: rename cmu_misc clock-names
-      https://git.kernel.org/krzk/linux/c/1755c4b0372a2cf1e7124956b8cfebcb51083208
-[2/3] arm64: dts: exynos: gs101: comply with the new cmu_misc clock names
-      https://git.kernel.org/krzk/linux/c/80c86ff6800b857c8008cebe7b8d22a6e574e68d
-[3/3] clk: samsung: clk-gs101: comply with the new dt cmu_misc clock names
-      https://git.kernel.org/krzk/linux/c/d76c762e7ee04af79e1c127422e0bbcb5f123018
+[...]
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-kltechn.dts
+> @@ -0,0 +1,16 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +#include "qcom-msm8974pro-samsung-klte.dts"
 
+It's customary not to include .dts files, instead split the common parts
+into e.g. qcom-msm8974pro-samsung-klte-common.dtsi and include this in
+both the existing and the new one.
+
+Konrad
 
