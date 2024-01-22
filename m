@@ -1,214 +1,348 @@
-Return-Path: <devicetree+bounces-33534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2AD8359E2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 04:52:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47C4D835A0F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 05:28:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 893E72819E9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 03:52:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FEAD1C2145F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 04:28:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EFAD1865;
-	Mon, 22 Jan 2024 03:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3252F3F;
+	Mon, 22 Jan 2024 04:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="y+aGMEeK";
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="pWp5RX+o"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Uf6XMN9Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3001849;
-	Mon, 22 Jan 2024 03:52:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.154.123
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705895574; cv=fail; b=KPM3Dsoe9nzhuzg8d1d2d2UMsFjYnbYK6kOzOXi+n3S4DaQpncVnrQ32Lktw+LJOCMq/RNH4Y/qnUCf4618+CdT6+OWF/uj/Nz10+P/6ywqe4cXcalzU2KaJ+NfpoooLTroTdA9WLEMBfWjrZmPDai7Eb1bpBZ9NLa8NlHm9YVo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705895574; c=relaxed/simple;
-	bh=M+Q/FyyBuiAQ42PGRGLme5onMQ+nOLOtMT/C4QAq5O0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ooXJ8vya0FokM4yX+dNEXMvnLY9A8/wiWs6GIuYvJrn5wGzdLtPG0iE9zWetudyMERyRb9xIquz4s3MeaZgUzkEy5Fp1thfM1pVGP+xjo369Dw7C2YE6vn6pcRwKZt1rzaKYoaVtNWkaEoNH80LzZCGkvXpKF83PdXIR+eK2gt4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=y+aGMEeK; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=pWp5RX+o; arc=fail smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1705895572; x=1737431572;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=M+Q/FyyBuiAQ42PGRGLme5onMQ+nOLOtMT/C4QAq5O0=;
-  b=y+aGMEeKg+7w2wRDNMuOsVZDaE9svi7rxRQoszOrMDBrZ53vYmSq7IyD
-   D38rBoegHgym7uYN5uanZQSJ6OME6eX5ydJkB7379iHQjBarku5suK5WP
-   OePuiLxu5ZT6tS0o8dV35d54yHPaR93K/GRdJGdRa9WTibQwTllYbCqeg
-   ndm9lCGoQQGjj59yfK8RarWB8E+ydV4nOrEyL+jJCrR6AqtbswS3ZsF9E
-   XyVvAhq9oPQxMM+9vxE17eiY8l8U5iWmp5sIhiw++MHJPtnS1Y3iWwvXy
-   mVnvxffr7y8MDXVk/GqZs9sz7FZzHIL0iIlZoD1jWVQ1vpbhNU5NMy1QA
-   g==;
-X-CSE-ConnectionGUID: oDbiBdFPR/+pl/c7ThsXog==
-X-CSE-MsgGUID: 0UxZBR52QYWDCU6j3pUDoQ==
-X-IronPort-AV: E=Sophos;i="6.05,211,1701154800"; 
-   d="scan'208";a="15559752"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Jan 2024 20:52:50 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 21 Jan 2024 20:52:20 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.250)
- by email.microchip.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Sun, 21 Jan 2024 20:52:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kjrXeBLZDQ1tMbzoLHf4VXtQ8hQgVABA+/O7FoDdZ6bll2FK2tq6z5pQnLVRYdn6oZnZaD2EldnES6Zdhhhs15hVHbMAFhHSDhBSoLyvBVytgxIhAbZqmeaPvGvIJXF4LL6ARfazFzrE+boHtPbH+m9pq0dCRNmHe6XXyP3dvgHpbILgQqTa00fSG5BbhR411aJ6y8/00VchasPc7yJevwS7Bt9PGI8O5901YnLFEF5J3U5DhvhDNINhuThpnXcPozv8Q9OkaGQxDYp4Mx6wQuq+LgkGkbGoXAKdWba5/nN3gdYJ82xCd8nM4e7J3VLd4r9/3RqGj8pofrJAw18g5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M+Q/FyyBuiAQ42PGRGLme5onMQ+nOLOtMT/C4QAq5O0=;
- b=Xo2qMOyxnbUndPzw2NpmmmrQTImxT51552Vkf9kS7Ciq4DLMK8kftk/dwz5DEhyrmv8yJi7gBb+zZ1vdYazZWuyd10q39HYjFG8wqUVICvnxdLGtEXR7hP8YCRH1icJOvxefJvNLsJC1k5PHCs9dz4UL5w7Unuqo6lTlM01UvsCvtl40a+rzszqbpHfb8lXCfEByY+NF7x6Bt72zaeiKqVzF7T7ZElznDiXrrdO+n4gZ+2hshHXfK9m7O46oUkAUWJB6CvRcN8ZnV0UoeAfGleiJ33/7nZ7gIyVwvG9Oi8+dOf1IPlB00Yuv2bgt8mhePCQxw0bTRxpUoVLPWF1obg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M+Q/FyyBuiAQ42PGRGLme5onMQ+nOLOtMT/C4QAq5O0=;
- b=pWp5RX+osxSv86AGI7ETzMVWDOgxzuC0tPem3ScXK1uVQJ1m0/MV+gi0Emmrd/Lk+uauw7cTVC4dsAJ/ON7yExHhNLN2VNmGBW/WUraFAWVjZRF/UtTvSGpF8u6X1GNbYvUILRBseQNnllftHoHJiKD38VyY9/u2/OjLHbWAomatWQQLo/Bd3GwkTgYPuBsdgW4uuzE2sD/1z1TxsZBhdjVPhFrUdIfYRIZrn4l5A3wljuNfK0KtWaDYY+r965B/21k56D83lKq0fryMp/2GORuVJPgWYv7pTT4ndP4XXSUVQaAcqtA3zCIcDH/4RLxK6Zc9/Xk+Os582jYpZrvB3A==
-Received: from PH7PR11MB6451.namprd11.prod.outlook.com (2603:10b6:510:1f4::16)
- by CY5PR11MB6367.namprd11.prod.outlook.com (2603:10b6:930:39::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
- 2024 03:52:17 +0000
-Received: from PH7PR11MB6451.namprd11.prod.outlook.com
- ([fe80::80b9:80a3:e88a:57ee]) by PH7PR11MB6451.namprd11.prod.outlook.com
- ([fe80::80b9:80a3:e88a:57ee%3]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
- 03:52:17 +0000
-From: <Dharma.B@microchip.com>
-To: <sam@ravnborg.org>, <robh@kernel.org>
-CC: <Linux4Microchip@microchip.com>, <linux-pwm@vger.kernel.org>,
-	<alexandre.belloni@bootlin.com>, <dri-devel@lists.freedesktop.org>,
-	<Nicolas.Ferre@microchip.com>, <Conor.Dooley@microchip.com>,
-	<thierry.reding@gmail.com>, <krzysztof.kozlowski+dt@linaro.org>,
-	<claudiu.beznea@tuxon.dev>, <airlied@gmail.com>, <lee@kernel.org>,
-	<u.kleine-koenig@pengutronix.de>, <devicetree@vger.kernel.org>,
-	<conor+dt@kernel.org>, <tzimmermann@suse.de>, <mripard@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <bbrezillon@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <daniel@ffwll.ch>
-Subject: Re: [PATCH v3 0/3] Convert Microchip's HLCDC Text based DT bindings
- to JSON schema
-Thread-Topic: [PATCH v3 0/3] Convert Microchip's HLCDC Text based DT bindings
- to JSON schema
-Thread-Index: AQHaSfBtFpABnI0MwEGuolZ8EVFW4bDf9cIAgAGYQICAASXzAIAChPKA
-Date: Mon, 22 Jan 2024 03:52:17 +0000
-Message-ID: <6c6e4ddc-b3df-484e-961f-6efbd52defd6@microchip.com>
-References: <20240118092612.117491-1-dharma.b@microchip.com>
- <20240118193040.GA223383@ravnborg.org>
- <20240119195151.GB938671-robh@kernel.org>
- <20240120132356.GA345206@ravnborg.org>
-In-Reply-To: <20240120132356.GA345206@ravnborg.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB6451:EE_|CY5PR11MB6367:EE_
-x-ms-office365-filtering-correlation-id: 7abb4529-2189-487c-2f56-08dc1afd8723
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: SBsJaf0k1DeA+Bc86V7RSoD/52ygmEwKzva5IImUkiJ2x28ZtDZk4DEGkgadCUiBeyvxIgONPOaVi6tSxZQ8xmca04q77xY1+4SWwKzQXd3ppPveSjll1cS9IaqNqj1StXYPMmhqHG3SIXYUIXu459k71CXsCAIiG0wRnO+FQHfWWFuDUAvhhX+RLoYRcHkuZZAoPyhRAVQVWBcZF6Up0uRrd89HW6KAgV7hFeS6ojZiZZGe9ctcNkIjWbICezuWs+t77TIgWckfPmdcicT7cq/2Fx+0tMTTzm43OBzaKGWiwoDCg0ikuveURshBRW5Uncg4ea1pHyVg4yLYd5BQeasgeMZMfbMHuPhMIkEe2eY2yynrOjDqr0ofGH6/XMl4tHItvzFMlEaDM5f7bw+V2GjOcJvDRtgeaUQRRUUj/kBzYWaFiPX0rJr4cveuo/zpcgKBpZgrlnuxSj36RhuqPmVYd4qbe7Ntia5gvbTTSEEXzWqhZYCtnQsVFy48BBGP4kFA1aPBLJbGK4Qxr8JvmTtu8YhMuaqM2Lyd0lLH5Kh/hmfUfFJ6vBHv0FgSRLEANw+iV36XMt1NzNV1aJLjBWg8KLX8mKf6f7OhquQA/70UMaEmyZbNWFKVcV0eJrZBPQx560ha/arX4NBZR3Yvqj+g8AYd4FolxeTwPsLY7QtCZPAtRMLUdvo9JcQat4jyGco5MfO4UulYh4Rd3b1uHbfLvpMxOgYXf+HWzqh7Mho=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB6451.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(136003)(396003)(346002)(39860400002)(376002)(230473577357003)(230922051799003)(230273577357003)(230173577357003)(230373577357003)(1800799012)(451199024)(186009)(64100799003)(2616005)(26005)(6506007)(6512007)(71200400001)(53546011)(83380400001)(122000001)(5660300002)(7416002)(966005)(4326008)(8936002)(41300700001)(8676002)(2906002)(6486002)(91956017)(478600001)(316002)(64756008)(66946007)(66476007)(66446008)(76116006)(54906003)(110136005)(66556008)(31696002)(86362001)(36756003)(38100700002)(38070700009)(31686004)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?a25ndG5zRXEvOG1zeWZWdnZabnhaS1VRbXV4UVZGbjVHY2FNT3BIeTRsMFFR?=
- =?utf-8?B?QnY5bnhucXJPTFFRN28zbUU0cnNrU0dEOXBsRDM2Um5JbEZsZHNuODIrWVFY?=
- =?utf-8?B?Znc0WWxjMHFMczkra1ZubXVtN21IYVJuZE9Nekw2eWlmUFExSGsveERjcmFS?=
- =?utf-8?B?UHptK0czd290MXo3bHJzcEhZcG4yVkdCOVRqVWJ0SmhMckIrTitoL21sZERJ?=
- =?utf-8?B?SjlBcG9tUXVXWDE0bVYvWml3MTYrY2pNNmprWkN1Y1B1TmN3SWxpZlhVb1ZS?=
- =?utf-8?B?ckZ1WU44dE5sUFVpV25DZDd4OWdic29wdWI3MTZoVEo4TjEwdGxvbjRmUE5H?=
- =?utf-8?B?dlo4TXJ2MElMVDJCRkVreFR4cW1qQ1hmaVhxNk9tL1ZjVDVzMGY1SVZYQzNk?=
- =?utf-8?B?SEwrL3I3SVdoeDNZWnJHL2VETUdSb2RRMWZ1WE5kcjVXQ0xTR2hRZUpGWGJo?=
- =?utf-8?B?bkN2THZLVFFTeXFaMWdOZlkwRFBCQjA5dUNYWm5Gb0dJVGRlajR3YTV6Y1Ra?=
- =?utf-8?B?dVlLQ1IzL0s1bzVDYzN4VTArbUVmMHZ4NW9tL3k0bWRicFRKQjh3S2FqS1Jh?=
- =?utf-8?B?a3hSMTI5NWJ5R3JKMVVzd29hYnBkWXBQK1BpMWpjY204YXNRUEo3NHE4RTdY?=
- =?utf-8?B?NU9DMGk0Y2RoWGtXbFBjM2NoOWFFUnloWHRGbmp1YTVsVHQwVHZ4K3NkWVZt?=
- =?utf-8?B?dnZJbkc3ZmJvUlFtNjBFd1A1RWdvTElIeThubFVCaXpHTUJJbnhyNTNETit2?=
- =?utf-8?B?QVU4VnJRWTlBVGRHZ2NhM3grSWpUSlVMRk9sazBmYkFPUTBEZmt2QU9Qbkk0?=
- =?utf-8?B?L2x1cTFZMUEyVGE3Q1BpMDdWT1kwNFJBNFl6ZW50M2ZVQXRIQi9YVmNwM1dE?=
- =?utf-8?B?OERnU3QwYTlRQ3E1WUdTNUQvYTlrYzhwdXZFbjAwWUpuS1JweTNaOGM0S1k3?=
- =?utf-8?B?eEhPazAvNkJPMkQ4T1V0aEcrUWR0OUh6RE9JbDhyQUdpckQvREhualhGdHh5?=
- =?utf-8?B?dkV6TlVBRy8xSkgycTdscWg1WDdpcWZhVEZLWGxiR3drakNjMHYrWldMZ1dj?=
- =?utf-8?B?RGN4VmVIOFgzMzJnQVExWVJ1WXdsc2c2NDFiZFlSR3Y4Z0psRk5TTHFxNGFB?=
- =?utf-8?B?ZzJLNi9UMWo1UWJvVnp6ejhwQldqTC9pK1I5RnNwdmZuSGh1VWlsajBiWmFV?=
- =?utf-8?B?NWh0RGZXUmdzOFZka3ByZUVqdnN3Rzg4aVJ5VGVzcXVXTVpRZ3paM0p6QlVM?=
- =?utf-8?B?M3Q4Q1pQY1ljYy9jOXZCK1hvVWhOa3RMYlpGM0ZQS3F4clJZZmdjOCt2a2g4?=
- =?utf-8?B?QVpjZW83N3oyc2R4YVNNTG5PeC82YU1GZGhHTVV6OEhhQ3B4MlJkMGwySkhR?=
- =?utf-8?B?VlduZXorZnJTWkRmcUFLTVdBejVoSWNUK3JGR29sUXRFTVFJaHZiRDFFMmRi?=
- =?utf-8?B?TzhGNCtMQ0dtR0Z3SEk2Tzg0bE5Da2tqUmRpZ3B4YURCcHVHKzhqY1ZwOXg5?=
- =?utf-8?B?WTBYY29zMzhHNGwwYVFvdUNIU0srUGZtV2p0Rk1jWkZUTVBCUWp3cWFDdHVX?=
- =?utf-8?B?R2dxQmlJRVdxUTNDeG5QaFVuZjd4VmRUWjEzSjFhSUd5KzhualhjUFhkc0Ft?=
- =?utf-8?B?VTdkVE9qcWV2VXBVblZKWEIyb3FSVlh1NlVJeFJ3VnJYWGk3MGJnMStkUTE4?=
- =?utf-8?B?VjdISlp4L1ovUlBvUm8yRkhxV01ZWjFDVGpuQWVDTFBhS0FwNVp5ckR4a3o5?=
- =?utf-8?B?d1N5VHFWQW1VdXNiNHVoT2kxS0lERnl4UVQvQm5Ob3Z4RkQ1U3VuOXExZGtJ?=
- =?utf-8?B?d1FSUG5ZNnUvVVdwT0s1dUVRYThDaHNLM0JtMDRxY2FBNnVFTXhTbktiUlZQ?=
- =?utf-8?B?U0V3ay93VDdWT2RSeHhmcDRiOFc5UDRhVHRjRy9kRW5yUFErVEJ4Qm9wbVhT?=
- =?utf-8?B?MkdpclhFWWZvL2NSYWtNZE4zQi96bXU1L3gvWnVwNUg4VnkvSEc4ZGx5bnNp?=
- =?utf-8?B?bXRvcElHN2dhd0VGRytiTmhzVktHMmNEeTdtNkY2Zk9DdEJwWStKOENBZmty?=
- =?utf-8?B?S09LM0t3QnE1S0x1MVBCZXptK2UySEZ4U21WTTd3Y1UraGJnVjVZcXpuYkEz?=
- =?utf-8?Q?9cUVbdizp3TqfvIfCLUoayb2H?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0AD9BFEBA31C1740B06BA30A3FD9430F@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D61C01FA4;
+	Mon, 22 Jan 2024 04:28:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705897715; cv=none; b=e60N5nvhAJKHhksDhH7Hmosr/LvOKeFepJOsXm7GDqw7Y8avnv+PZBfxkJ2Kmdy49h8lxOyBMmraIDgs2CV8FZN8NF1+atuLJczJ74c09p6zDFCBAihe1weM+FgGMI/4ZPUatC//Nrrr8/shK3ahs9gFp5XddP4GEduPCP9asxs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705897715; c=relaxed/simple;
+	bh=iTJ5ee9D5agnD2LUZGf0MO1wNuOhpwyecBIu9nEkJ1M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jl/SuXK11vDPkkZqVpcpBsJf6O/d6IHElSeQftBJsyeHDfwdYZMyp74ZreuGTIHSrSJND8uiTMBzPBzS2LcTR727cbpLTZANe3BpYxg5qrLLDeIWmAH/08KginYIabMuIfsXd0IdGlL7Ska5rxfGiuEeks5Kn384v79W0vKjVK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Uf6XMN9Q; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40M3FnBQ024746;
+	Mon, 22 Jan 2024 04:28:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=SWSIaUcwhz1CkhaFtligyerXIHA1GcLsOm0A+Zdzk4M=; b=Uf
+	6XMN9Q77BNalROzterq/PxZZcpzqC5dhBBcYRbAB9bxEbx89qnUxU0eaxjgtRWIz
+	vhgtb0uCmyHwg60EbHpve0x/Day7JlNz+jyMnCY/Hy/3Sz7h8zPIKNGv3qj4WAoG
+	6tLx97RP4jycLckOG8gdPLGlIIZcVENLYs043ff3RaWA1O/jsf/lQ9xI4rBGGbQm
+	PI1yxIJwc4XBvwtK5lLQikTU04l3zlJNA7J664hl2F6K9JJ5x6uvhZ1mJMAZ7CRd
+	l3BCCBBQsRvF+UmYzBbf0ToeWHAJayx9rL2LAQSt6HrB1AHCkdok1t3CoRLpbdC2
+	LgKGHjPrHUMWKZEWq2pg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vr7fd2t83-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Jan 2024 04:28:06 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40M4S5tP028199
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Jan 2024 04:28:05 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 21 Jan
+ 2024 20:28:01 -0800
+Message-ID: <5a2bf1ba-d22b-4227-87d2-7e94f2a60866@quicinc.com>
+Date: Mon, 22 Jan 2024 12:27:58 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6451.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7abb4529-2189-487c-2f56-08dc1afd8723
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2024 03:52:17.5487
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Zx0YVW152UBrY22HphHV6xE9cpcylKUiJzcYGWGwv/ObGjRFqpKT4Sa7mQ2Skr+jV2RWeDQ1cYjimxMcqo9dJg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6367
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 06/10] coresight-tpdm: Add support to configure CMB
+Content-Language: en-US
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Alexander Shishkin
+	<alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC: Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>,
+        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <andersson@kernel.org>
+References: <1705634583-17631-1-git-send-email-quic_taozha@quicinc.com>
+ <1705634583-17631-7-git-send-email-quic_taozha@quicinc.com>
+ <03e056cd-bdbc-4807-b86c-0f5b554aac73@arm.com>
+From: Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <03e056cd-bdbc-4807-b86c-0f5b554aac73@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FIhu7WPMHp7AleXzwq9Xgbtv1PKx2qX3
+X-Proofpoint-ORIG-GUID: FIhu7WPMHp7AleXzwq9Xgbtv1PKx2qX3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-21_04,2024-01-19_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxlogscore=999 mlxscore=0
+ phishscore=0 adultscore=0 malwarescore=0 clxscore=1015 suspectscore=0
+ impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2311290000 definitions=main-2401220029
 
-T24gMjAvMDEvMjQgNjo1MyBwbSwgU2FtIFJhdm5ib3JnIHdyb3RlOg0KPiBbWW91IGRvbid0IG9m
-dGVuIGdldCBlbWFpbCBmcm9tIHNhbUByYXZuYm9yZy5vcmcuIExlYXJuIHdoeSB0aGlzIGlzIGlt
-cG9ydGFudCBhdCBodHRwczovL2FrYS5tcy9MZWFybkFib3V0U2VuZGVySWRlbnRpZmljYXRpb24g
-XQ0KPiANCj4gRVhURVJOQUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFj
-aG1lbnRzIHVubGVzcyB5b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IEhpIFNhbSAmIFJv
-YiwNCj4gSGkgRGhhcm1hICYgUm9iLg0KPiANCj4+PiBUbyBtYWtlIHRoZSBEVCBiaW5kaW5nIGJh
-Y2t3YXJkIGNvbXBhdGlibGUgeW91IGxpa2VseSBuZWVkIHRvIGFkZCBhIGZldw0KPj4+IGNvbXBh
-dGlibGUgdGhhdCBvdGhlcndpc2Ugd291bGQgaGF2ZSBiZWVuIGxlZnQgb3V0IC0gYnV0IHRoYXQg
-c2hvdWxkIGRvDQo+Pj4gdGhlIHRyaWNrLg0KPj4+DQo+Pj4gVGhlIGN1cnJlbnQgYXRtZWwgaGxj
-ZGMgZHJpdmVyIHRoYXQgaXMgc3BsaXQgaW4gdGhyZWUgaXMgSU1PIGFuDQo+Pj4gb3Zlci1lbmdp
-bmVlcmluZywgYW5kIHRoZSBkcml2ZXIgY291bGQgYmVuZWZpdCBtZXJnaW5nIGl0IGFsbCBpbiBv
-bmUuDQo+Pj4gQW5kIHRoZSBiaW5kaW5nIHNob3VsZCBub3QgcHJldmVudCB0aGlzLg0KPj4NCj4+
-IEkgYWdyZWUgb24gYWxsIHRoaXMsIGJ1dCBhIGNvbnZlcnNpb24gaXMgbm90IHJlYWxseSB0aGUg
-dGltZSB0byByZWRlc2lnbg0KPj4gdGhpbmdzLiBUcnVzdCBtZSwgSSd2ZSB3YW50ZWQgdG8gb24g
-bG90cyBvZiBjb252ZXJzaW9ucy4gSXQgc2hvdWxkIGJlDQo+PiBwb3NzaWJsZSB0byBzaW1wbGlm
-eSB0aGUgZHJpdmVyIHNpZGUgd2hpbGUga2VlcGluZyB0aGUgRFQgYXMtaXMuIEp1c3QNCj4+IG1h
-a2UgdGhlIGRpc3BsYXkgZHJpdmVyIGJpbmQgdG8gdGhlIE1GRCBub2RlIGluc3RlYWQuIEFmdGVy
-IHRoYXQsIHRoZW4NCj4+IG9uZSBjb3VsZCBsb29rIGF0IGZsYXR0ZW5pbmcgZXZlcnl0aGluZyB0
-byAxIG5vZGUuDQo+IA0KPiBVbmRlcnN0b29kIGFuZCB0aGlua2luZyBhIGJpdCBhYm91dCBpdCBm
-dWxseSBhZ3JlZWQgYXMgd2VsbC4NCj4gRGhhcm1hIC0gcGxlYXNlIHNlZSBteSBjb21tZW50cyBv
-bmx5IGFzIGlkZWFzIGZvciB0aGUgZnV0dXJlLCBhbmQNCj4gaWdub3JlIHRoZW0gaW4gdGhpcyBm
-aW5lIHJld3JpdGUgeW91IGRvLg0KPiANCj4gICAgICAgICAgU2FtDQpCYXNlZCBvbiB5b3VyIGlu
-c2lnaHRzLCBJJ20gY29udGVtcGxhdGluZyB0aGUgZGVjaXNpb24gdG8gbWVyZ2UgUGF0Y2ggMiAN
-CltQV00gYmluZGluZ10gd2l0aCBQYXRjaCAzW01GRCBiaW5kaW5nXS4gSXQgc2VlbXMgcmVkdW5k
-YW50IGdpdmVuIHRoYXQgDQp3ZSBhbHJlYWR5IGhhdmUgYSBQV00gbm9kZSBleGFtcGxlIGluIHRo
-ZSBNRkQgYmluZGluZy4NCg0KSW5zdGVhZCBvZiBpbnRyb2R1Y2luZyBhIG5ldyBQV00gYmluZGlu
-ZywNCiAgIHB3bToNCiAgICAgJHJlZjogL3NjaGVtYXMvcHdtL2F0bWVsLGhsY2RjLXB3bS55YW1s
-DQoNCkkgd2lsbCB1cGRhdGUgdGhlIGV4aXN0aW5nIE1GRCBiaW5kaW5nIGFzIGZvbGxvd3M6DQoN
-CnByb3BlcnRpZXM6DQogICBjb21wYXRpYmxlOg0KICAgICBjb25zdDogYXRtZWwsaGxjZGMtcHdt
-DQoNCiAgICIjcHdtLWNlbGxzIjoNCiAgICAgY29uc3Q6IDMNCg0KcmVxdWlyZWQ6DQogICAtIGNv
-bXBhdGlibGUNCiAgIC0gIiNwd20tY2VsbHMiDQoNCi0tIA0KV2l0aCBCZXN0IFJlZ2FyZHMsDQpE
-aGFybWEgQi4NCg0K
+
+On 1/19/2024 7:53 PM, Suzuki K Poulose wrote:
+> On 19/01/2024 03:22, Tao Zhang wrote:
+>> TPDM CMB subunits support two forms of CMB data set element creation:
+>> continuous and trace-on-change collection mode. Continuous change
+>> creates CMB data set elements on every CMBCLK edge. Trace-on-change
+>> creates CMB data set elements only when a new data set element differs
+>> in value from the previous element in a CMB data set. Set CMB_CR.MODE
+>> to 0 for continuous CMB collection mode. Set CMB_CR.MODE to 1 for
+>> trace-on-change CMB collection mode.
+>>
+>> Reviewed-by: James Clark <james.clark@arm.com>
+>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>> Signed-off-by: Jinlong Mao <quic_jinlmao@quicinc.com>
+>> ---
+>>   .../testing/sysfs-bus-coresight-devices-tpdm  | 14 +++++
+>>   drivers/hwtracing/coresight/coresight-tpdm.c  | 61 +++++++++++++++++++
+>>   drivers/hwtracing/coresight/coresight-tpdm.h  | 12 ++++
+>>   3 files changed, 87 insertions(+)
+>>
+>> diff --git 
+>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
+>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>> index 4dd49b159543..3ae21ccf3f29 100644
+>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>> @@ -170,3 +170,17 @@ Contact:    Jinlong Mao (QUIC) 
+>> <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_t
+>>   Description:
+>>           (RW) Set/Get the MSR(mux select register) for the DSB subunit
+>>           TPDM.
+>> +
+>> +What: /sys/bus/coresight/devices/<tpdm-name>/cmb_mode
+>> +Date:        March 2023
+>> +KernelVersion    6.7
+>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
+>> (QUIC) <quic_taozha@quicinc.com>
+>> +Description:    (Write) Set the data collection mode of CMB tpdm. 
+>> Continuous
+>> +        change creates CMB data set elements on every CMBCLK edge.
+>> +        Trace-on-change creates CMB data set elements only when a new
+>> +        data set element differs in value from the previous element
+>> +        in a CMB data set.
+>> +
+>> +        Accepts only one of the 2 values -  0 or 1.
+>> +        0 : Continuous CMB collection mode.
+>> +        1 : Trace-on-change CMB collection mode.
+>> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
+>> b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> index 424a2f724d82..b55aee65a856 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+>> @@ -137,6 +137,18 @@ static umode_t tpdm_dsb_is_visible(struct 
+>> kobject *kobj,
+>>       return 0;
+>>   }
+>>   +static umode_t tpdm_cmb_is_visible(struct kobject *kobj,
+>> +                   struct attribute *attr, int n)
+>> +{
+>> +    struct device *dev = kobj_to_dev(kobj);
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +
+>> +    if (drvdata && tpdm_has_cmb_dataset(drvdata))
+>> +        return attr->mode;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>>   static umode_t tpdm_dsb_msr_is_visible(struct kobject *kobj,
+>>                          struct attribute *attr, int n)
+>>   {
+>> @@ -161,6 +173,9 @@ static void tpdm_reset_datasets(struct 
+>> tpdm_drvdata *drvdata)
+>>           drvdata->dsb->trig_ts = true;
+>>           drvdata->dsb->trig_type = false;
+>>       }
+>> +
+>> +    if (tpdm_has_cmb_dataset(drvdata))
+>
+> This could simply be gated on drvdata->cmb for extra safety ?
+>
+>     if (drvdata->cmb)
+Sure, can I also use "if (drvdata->dsb) " instead of "if 
+(tpdm_has_dsb_dataset(drvdata))" and update in the same patch?
+>
+>> +        memset(drvdata->cmb, 0, sizeof(struct cmb_dataset));
+>>   }
+>>     static void set_dsb_mode(struct tpdm_drvdata *drvdata, u32 *val)
+>> @@ -389,6 +404,12 @@ static int tpdm_datasets_setup(struct 
+>> tpdm_drvdata *drvdata)
+>>           if (!drvdata->dsb)
+>>               return -ENOMEM;
+>>       }
+>> +    if (tpdm_has_cmb_dataset(drvdata) && (!drvdata->cmb)) {
+>> +        drvdata->cmb = devm_kzalloc(drvdata->dev,
+>> +                        sizeof(*drvdata->cmb), GFP_KERNEL);
+>> +        if (!drvdata->cmb)
+>> +            return -ENOMEM;
+>> +    }
+>>       tpdm_reset_datasets(drvdata);
+>>         return 0;
+>> @@ -727,6 +748,35 @@ static ssize_t dsb_trig_ts_store(struct device 
+>> *dev,
+>>   }
+>>   static DEVICE_ATTR_RW(dsb_trig_ts);
+>>   +static ssize_t cmb_mode_show(struct device *dev,
+>> +                 struct device_attribute *attr,
+>> +                 char *buf)
+>> +{
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +
+>> +    return sysfs_emit(buf, "%x\n",
+>> +              drvdata->cmb->trace_mode);
+>
+> minor nit: Don't need to split the line here. Also, for completeness, 
+> you need to read it under spinlock, use guard() to unlock implicitly.
+
+Sure, I will not split the line here in the next patch series.
+
+I didn't add spinlock here because the show function only read the value.
+
+Do you mean I need to add the spinlock to all of the show function?
+
+>
+>> +
+>> +}
+>> +
+>> +static ssize_t cmb_mode_store(struct device *dev,
+>> +                  struct device_attribute *attr,
+>> +                  const char *buf,
+>> +                  size_t size)
+>> +{
+>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +    unsigned long trace_mode;
+>> +
+>> +    if ((kstrtoul(buf, 0, &trace_mode)) || (trace_mode & ~1UL))
+>
+> minor nit: drop () around kstrtoul()
+
+Sure, I will update in the next patch series.
+
+
+Best,
+
+Tao
+
+>
+> Rest looks fine.
+>
+> Suzuki
+>
+>> +        return -EINVAL;
+>> +
+>> +    spin_lock(&drvdata->spinlock);
+>> +    drvdata->cmb->trace_mode = trace_mode;
+>> +    spin_unlock(&drvdata->spinlock);
+>> +    return size;
+>> +}
+>> +static DEVICE_ATTR_RW(cmb_mode);
+>> +
+>>   static struct attribute *tpdm_dsb_edge_attrs[] = {
+>>       &dev_attr_ctrl_idx.attr,
+>>       &dev_attr_ctrl_val.attr,
+>> @@ -843,6 +893,11 @@ static struct attribute *tpdm_dsb_attrs[] = {
+>>       NULL,
+>>   };
+>>   +static struct attribute *tpdm_cmb_attrs[] = {
+>> +    &dev_attr_cmb_mode.attr,
+>> +    NULL,
+>> +};
+>> +
+>>   static struct attribute_group tpdm_dsb_attr_grp = {
+>>       .attrs = tpdm_dsb_attrs,
+>>       .is_visible = tpdm_dsb_is_visible,
+>> @@ -872,6 +927,11 @@ static struct attribute_group tpdm_dsb_msr_grp = {
+>>       .name = "dsb_msr",
+>>   };
+>>   +static struct attribute_group tpdm_cmb_attr_grp = {
+>> +    .attrs = tpdm_cmb_attrs,
+>> +    .is_visible = tpdm_cmb_is_visible,
+>> +};
+>> +
+>>   static const struct attribute_group *tpdm_attr_grps[] = {
+>>       &tpdm_attr_grp,
+>>       &tpdm_dsb_attr_grp,
+>> @@ -879,6 +939,7 @@ static const struct attribute_group 
+>> *tpdm_attr_grps[] = {
+>>       &tpdm_dsb_trig_patt_grp,
+>>       &tpdm_dsb_patt_grp,
+>>       &tpdm_dsb_msr_grp,
+>> +    &tpdm_cmb_attr_grp,
+>>       NULL,
+>>   };
+>>   diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
+>> b/drivers/hwtracing/coresight/coresight-tpdm.h
+>> index a442d9c6e4ac..2af92c270ed1 100644
+>> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
+>> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
+>> @@ -14,6 +14,8 @@
+>>     /* Enable bit for CMB subunit */
+>>   #define TPDM_CMB_CR_ENA        BIT(0)
+>> +/* Trace collection mode for CMB subunit */
+>> +#define TPDM_CMB_CR_MODE    BIT(1)
+>>     /* DSB Subunit Registers */
+>>   #define TPDM_DSB_CR        (0x780)
+>> @@ -181,6 +183,14 @@ struct dsb_dataset {
+>>       bool            trig_type;
+>>   };
+>>   +/**
+>> + * struct cmb_dataset
+>> + * @trace_mode:       Dataset collection mode
+>> + */
+>> +struct cmb_dataset {
+>> +    u32            trace_mode;
+>> +};
+>> +
+>>   /**
+>>    * struct tpdm_drvdata - specifics associated to an TPDM component
+>>    * @base:       memory mapped base address for this component.
+>> @@ -190,6 +200,7 @@ struct dsb_dataset {
+>>    * @enable:     enable status of the component.
+>>    * @datasets:   The datasets types present of the TPDM.
+>>    * @dsb         Specifics associated to TPDM DSB.
+>> + * @cmb         Specifics associated to TPDM CMB.
+>>    * @dsb_msr_num Number of MSR supported by DSB TPDM
+>>    */
+>>   @@ -201,6 +212,7 @@ struct tpdm_drvdata {
+>>       bool            enable;
+>>       unsigned long        datasets;
+>>       struct dsb_dataset    *dsb;
+>> +    struct cmb_dataset    *cmb;
+>>       u32            dsb_msr_num;
+>>   };
+>
+> _______________________________________________
+> CoreSight mailing list -- coresight@lists.linaro.org
+> To unsubscribe send an email to coresight-leave@lists.linaro.org
 
