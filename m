@@ -1,434 +1,240 @@
-Return-Path: <devicetree+bounces-33683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DDBE8360BB
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:13:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 659E9836110
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:20:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CFD4282924
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:13:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B1BA1C2580A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F539405EC;
-	Mon, 22 Jan 2024 11:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5886F3A8DB;
+	Mon, 22 Jan 2024 11:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="YVahK3+z"
+	dkim=pass (1024-bit key) header.d=analog.onmicrosoft.com header.i=@analog.onmicrosoft.com header.b="s3yUnW4R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DBA43FE36;
-	Mon, 22 Jan 2024 11:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705921496; cv=none; b=bG6/cX1kLn9kNmTKpxM4d0gu+WCeuNYEgE6IRM5nvMb6CeYIh5lTCJ+86y4qyQFjXaid5VCPyzK8ha9cTWTbTZGUSwLXUt3jzW3Ds0YAmUZodQ/2CM3p1Ym40/v8y7ndnFOYYHHHmuPKK9cssYLLEwGBsQDJcPsvfq4RUSpBnys=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705921496; c=relaxed/simple;
-	bh=0zQkqLtn79o0lyqbEw47gxFTbI/GITrO28ITGThAX0o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mnRTE89LVxcCWcE+K5giZ6PyII3dNE28a4Idmp7vyXE/uKX2d/XijtT7sWT/KNg2tCLbdWSDtH9MonyD4xf8e40QlTr/SuoRIfp3tQBssrpNDv5E19fEzd5vxAfp6AuzgNNfvFyZ/1khM19oVY+ys2nMu6j336tOAvHWIqUmBcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=YVahK3+z; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705921492;
-	bh=0zQkqLtn79o0lyqbEw47gxFTbI/GITrO28ITGThAX0o=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=YVahK3+znmzpTZY4URp2ARJReTX1JdlNFnjYrlNvErYZ+5tQlDnMWi997UiVFJQmn
-	 fLS2qIhX1nUyngrvVfTtvRQyc5mdyS/GeNU1HeKtdYkcxk+119xmJI/K9uoIXn1NAW
-	 9nN/4SRcAi70vWEFjYscBWjX/Z+C+8N+sR3gHcD/7sWYAH1z89x/+EV9Z8/yujXgNM
-	 bekApc+n9jC01kC4UCMmX234UEpMBEfQSZTcz5vuuXG8iYDnlag470WzEtR1pnyoab
-	 oHU+Tz2nZ9LS/OqfAMTD6mpmUIwvxhwUyiBY0jjEHShIHXL/nnri2ToHziwSt2DZJr
-	 QYUoOFRJccmLw==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7807F3781FE3;
-	Mon, 22 Jan 2024 11:04:51 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: gregkh@linuxfoundation.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	heikki.krogerus@linux.intel.com,
-	matthias.bgg@gmail.com,
-	dmitry.baryshkov@linaro.org,
-	neil.armstrong@linaro.org,
-	andersson@kernel.org,
-	nathan@kernel.org,
-	luca.weiss@fairphone.com,
-	tianping.fang@mediatek.com,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v3 2/2] usb: typec: mux: Add ITE IT5205 Alternate Mode Passive MUX driver
-Date: Mon, 22 Jan 2024 12:04:46 +0100
-Message-ID: <20240122110446.140226-3-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240122110446.140226-1-angelogioacchino.delregno@collabora.com>
-References: <20240122110446.140226-1-angelogioacchino.delregno@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D494A989;
+	Mon, 22 Jan 2024 11:06:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.135.77
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705921603; cv=fail; b=P33jmsk31Owclfz3qkALFYFjMxuof7k+X+eIHPS06RRhwhpESUrBSMrbgiR85tqbCvhEGAdSGIHrAejOEB3+p8aTyyjgm6LsEn+ca2K3PpBgSTPDOfekwGiN4RQUJ6ELvOz5yo4Qu3BsUBzwSmfQX/K2nE8sVlsRUrFDJmFpUQk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705921603; c=relaxed/simple;
+	bh=faW5RWR/u+kxBc8TMstJMbmhQEca0faOuPgH9ZY+viU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=T0OCrk6INpjYErXjn9zOA1aMJR2pgaBc6QC9eTMHYxfkEQkaqY/YOlMdhH1KAhmGkusmIVTGgPY2MS02UQRAxCmRNoVLKQdqPkI/b56ZY7ooKg4UEpqw2yUS4cgb5iikh/k4AbK2vHSK2OpAyHZexXtd8BBxAR3ke1nPzRExqAU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (1024-bit key) header.d=analog.onmicrosoft.com header.i=@analog.onmicrosoft.com header.b=s3yUnW4R; arc=fail smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40M9EpAs006472;
+	Mon, 22 Jan 2024 06:06:11 -0500
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2101.outbound.protection.outlook.com [104.47.70.101])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3vrby6xs0t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Jan 2024 06:06:11 -0500 (EST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Dx5BOw9UN41ec/qYlqGDmIzSGyEAP/JlMfvse0bcJGSLEtNmKFvvxchDlRZBgB8G+/GZZjD/8ofBaTbR+lWJJ+S5N7uX7Pqq/lw32q489NdafSAoeR2npW2WhQl+ewusCrKOPpTCnTtxDMSvlhmaOZBHKr6tooFwcHOqCeZ3WKoD9phr71DY8S7zFqjm8zWaIM19HuEKAw1z2J/IXYzaYE9xZ6FkoEDgvRuZIGqqS7z4TTPUnxYR6tBZWj6Dnh05HoLi7PbVBGvBnd60UzLsU9D2MrOXMexXc7u7Y8JNJtVo4L+xM8D+3hDi4mgmt2pjT0iilvBYr7Uy8flbmkEXjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hTdDsnpSRPVep3uIBzQy61Fyqo3QljuM7USY9eytxfo=;
+ b=OqhbonjaFPt0yLD9bDYiXM/Q46/oRJ4TqlPvYOlYVNZQ6VG1mVHRLOn+SOzKA9bY79y5nXg/Cl6Q4VdCNSNXWdsp22NLXwtMELxRZqEYqCkVG0UJWRw3k10ZlbydhQQuVh5/5PJuszfTW3yMOZ6woAf7WLw3juWi0/fdJLZcAnpXBFmV3wHEnuY1TA4PZXiOhp1fgJ5FXN6/YEiXn64HjRI97um+wZf5XiOSXZcLHQ9pg8C94E3QkKY21TRTqJAWX7R2vssU88WLu0fv0QCRNHwK8OkHP/4Ay8QHOIxgdAjc3PyYc6eXNRuCNUk2yxOO+jdvePxaTTeNK1bolLxSAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hTdDsnpSRPVep3uIBzQy61Fyqo3QljuM7USY9eytxfo=;
+ b=s3yUnW4Ru1LcH63qs3or73LKE9zsyUaWc+qvPUguO5HqRHTFqUduHGD3wMjB/sKLp6gaA9meJs13DoJ/hh8JP7jdMxE2EEUuTd7ULXaF/TtDgUlen3sU6CdUuua24qEtYmPiuBTP+6948Icg1kJM3BvO9Qvh1tVsqNhvwi/7C34=
+Received: from PH0PR03MB7141.namprd03.prod.outlook.com (2603:10b6:510:296::20)
+ by SN4PR03MB6750.namprd03.prod.outlook.com (2603:10b6:806:211::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
+ 2024 11:06:08 +0000
+Received: from PH0PR03MB7141.namprd03.prod.outlook.com
+ ([fe80::ad49:e4d6:441b:28cb]) by PH0PR03MB7141.namprd03.prod.outlook.com
+ ([fe80::ad49:e4d6:441b:28cb%5]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
+ 11:06:08 +0000
+From: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+To: Conor Dooley <conor@kernel.org>
+CC: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jonathan
+ Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Hennerich,
+ Michael" <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Crt Mori <cmo@melexis.com>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?iso-8859-1?Q?Nuno_S=E1?= <noname.nuno@gmail.com>
+Subject: RE: [PATCH v7 1/2] dt-bindings: iio: frequency: add admfm2000
+Thread-Topic: [PATCH v7 1/2] dt-bindings: iio: frequency: add admfm2000
+Thread-Index: AQHaTRHL38sLnWxA1EGaHMlrfAP5/LDllQgAgAAHLsA=
+Date: Mon, 22 Jan 2024 11:06:08 +0000
+Message-ID: 
+ <PH0PR03MB7141A46C8DD0041775CD0E96F9752@PH0PR03MB7141.namprd03.prod.outlook.com>
+References: <20240122090228.28363-1-kimseer.paller@analog.com>
+ <20240122-legible-fossil-25349ef9ad6c@spud>
+In-Reply-To: <20240122-legible-fossil-25349ef9ad6c@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: 
+ =?iso-8859-1?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNca3BhbGxlcj?=
+ =?iso-8859-1?Q?JcYXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZi?=
+ =?iso-8859-1?Q?ODRiYTI5ZTM1Ylxtc2dzXG1zZy0zYzgzNWNjMS1iOTE2LTExZWUtYWFjZS?=
+ =?iso-8859-1?Q?0xNDc1NWIzNWRkYzhcYW1lLXRlc3RcM2M4MzVjYzMtYjkxNi0xMWVlLWFh?=
+ =?iso-8859-1?Q?Y2UtMTQ3NTViMzVkZGM4Ym9keS50eHQiIHN6PSIzNjI4IiB0PSIxMzM1MD?=
+ =?iso-8859-1?Q?M5NTE2NjA5NjQwMTkiIGg9IjJtOWRDSnpnR3ZraFIwZC95RzB4R21iRHJC?=
+ =?iso-8859-1?Q?MD0iIGlkPSIiIGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk?=
+ =?iso-8859-1?Q?5DZ1VBQUVvQ0FBQ3oyTnorSWszYUFkbENJNERJWnZxRjJVSWpnTWhtK29V?=
+ =?iso-8859-1?Q?REFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFIQUFBQURhQVFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFFQUFRQUJBQUFBbEdUR1ZnQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBSjRBQUFCaEFHUUFhUUJmQUhNQVpRQmpBSFVBY2dCbEFGOEFjQUJ5QU?=
+ =?iso-8859-1?Q?c4QWFnQmxBR01BZEFCekFGOEFaZ0JoQUd3QWN3QmxBRjhBWmdCdkFITUFh?=
+ =?iso-8859-1?Q?UUIwQUdrQWRnQmxBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUVBQUFBQUFBQUFBZ0FBQUFBQW5nQU?=
+ =?iso-8859-1?Q?FBR0VBWkFCcEFGOEFjd0JsQUdNQWRRQnlBR1VBWHdCd0FISUFid0JxQUdV?=
+ =?iso-8859-1?Q?QVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURFQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FBQUFBQUNlQUFBQVlRQmtB?=
+ =?iso-8859-1?Q?R2tBWHdCekFHVUFZd0IxQUhJQVpRQmZBSEFBY2dCdkFHb0FaUUJqQUhRQW?=
+ =?iso-8859-1?Q?N3QmZBSFFBYVFCbEFISUFNZ0FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-1?Q?QUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21ldGE+?=
+x-dg-rorf: true
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH0PR03MB7141:EE_|SN4PR03MB6750:EE_
+x-ms-office365-filtering-correlation-id: c65b4c97-f7e1-4d33-db53-08dc1b3a22e6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ Mm2idhapaI+c5T9ro9qLHhebwzsWm2pQiGEEmAiJJ+YrEJESGWh8gzC7/gPOuipNmBEVjz7MWiwa4xMfVo4K67seQJLcxZtggJnxJROfjcahyqReubanUXYj3aZVF7jI8btQV6pzWEuBVgxns2lqeQZjv54eOXXGUrjiYgEZ7Enq++LoRXBA2th1xYgG0eiHP4Y5KQva0zL2Rr5QltbaqZ6YAshXhzKvVcHl4a6h3Kd16W25hVdKmLzFcVhd2gIHGXvFRtzZE49LaCFvvfojJH56qUFNXhUfbnpoLVBM7GtNVmC52S+pHefSGIM9ua6s6Vf06SgvcRsf2YbTxj5j33PlWWHx+7VEmNRnJbbLQqCAyChEx9taCrJJVpFRIxEZgpC4d4xYSzXM7j2a85pKQLjSUcoN8A3y3Oa/qkLzf9BfHIdyY1Q9+G2ek3ug+OLh6xdnseUtMovWC0/1kLhlwdGhzyAbe7I3WJniClBBBP6KjBXwzCmJY6i3R8AMA1GxtCesqMmpN/KfZGQ/y0hf4CpBihMgfWa/MlaiM8pr0GRC9spoUNdvRoURXX0ICkDnkMRJCgHgCb1Mhi63pMhYbDkfs35BFCZpeBfPzqgu0kmfXJs4abcROfJCdf7EE6Q3
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR03MB7141.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(366004)(396003)(136003)(346002)(376002)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(8676002)(52536014)(8936002)(5660300002)(7416002)(4326008)(33656002)(2906002)(316002)(86362001)(54906003)(66946007)(66556008)(76116006)(66476007)(66446008)(64756008)(38070700009)(478600001)(38100700002)(6916009)(122000001)(7696005)(9686003)(6506007)(71200400001)(83380400001)(26005)(41300700001)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?kJ1I6SSqsnh6fBTkSZjEBKx5BFAnbtL0+a7BDYQXWB8i41Zml3+HQyi8lI?=
+ =?iso-8859-1?Q?+d8pBgdHKzCUGxS+WsE3iUpmNL0jOISxvGcR8jC9HLYTtIO6ceakA2nTZm?=
+ =?iso-8859-1?Q?8Payj0rOyQeUDQxzfWMQSbBlMNvzwBSbHmRrGABj1qIK4Yly/8iaOU6syV?=
+ =?iso-8859-1?Q?qxrHQwKhlNStxB3xheDVeHIZjmlPEQSJ3AluVZX5HAkZN8SuQewm/cTBzu?=
+ =?iso-8859-1?Q?YToxBJcJH3Dw069rNJEAK73OMtK6QayFkkvS6c47LafxLlxKBaVb0Q/9nN?=
+ =?iso-8859-1?Q?H0ezTyxtzGmxE4CnJpl0/Wkl+d/5n2EFSW8fUZnoHojG9xNSuv8sNVq2so?=
+ =?iso-8859-1?Q?RXWgdKcj1wLf0k+FB7B7qw6tcGDqx6r1Sn7gX22+L2DgNS6w25LYKAksVM?=
+ =?iso-8859-1?Q?vOZO3B+UArzpMo++JOUc+tLqN9FfKJ7WF7Cqb8tikyc8J/hcFAUbBhsPbU?=
+ =?iso-8859-1?Q?in9WYNuEPhnMdfQS0xHv4tgxzVvn5sYhwKWBY9SD3vANwUZZHrj7Mue41Q?=
+ =?iso-8859-1?Q?6iJvNnVujJg8h4YR1i6gbL24DcnKzzjSnJ/wsgzLPVeimBh7asreuEEuYE?=
+ =?iso-8859-1?Q?DXbtdyJ7HZGMX8uU26YiC/+0S8edMzDuzgnN+Qlj3AIba62/lSi3pmRa4/?=
+ =?iso-8859-1?Q?BpWFRAunqhE+xsJ3qe/0saQFa0RlY7KmISKwp5zphWqr/3t0g+aSKG92np?=
+ =?iso-8859-1?Q?oa4/+W5ihZdtSwb7DQbw2LLhPOcWPH4buLPSjeYp2+tCR6Bz3epmzJ2F3X?=
+ =?iso-8859-1?Q?cBMYrj+pKJYKdTNKM17gsm+Z6XPRcwySQSYT7Uqgl7EVi2CWo4Prau6Six?=
+ =?iso-8859-1?Q?wdT1+dNpDDrzSZ+jBDPktIRD9SgF+7uBXZwaMESe9tP12blRxpc8KkKCAR?=
+ =?iso-8859-1?Q?opdeCWh+gJmk83Z2P/Id3q/T8sT9yAyi4X8aqVC+7OrPCgbJjnJsU/x4OQ?=
+ =?iso-8859-1?Q?I7PdGPqhOf4LbNdNn8KeL6W/f2RtblhjHkQLl07AvfMhzivcyNOfUrPv9J?=
+ =?iso-8859-1?Q?Slr2Z4mTLEHpY/cux5ky4L8xN61WcHfKUK1R3USoQlT8UDd/mtspxhw/mn?=
+ =?iso-8859-1?Q?e3e17kCAE5eaAta24vRrcvL/ymnrQnl+9cY7hTOspfeTbfmDA8kEwcYwX0?=
+ =?iso-8859-1?Q?1ra80YJvrKg/c6npgQUE6oNxngG839tzJpedMAlhZk+WqSepGNbKxumwF8?=
+ =?iso-8859-1?Q?kKzn3n1OVsTtTM54NfAwJ7PgLBFHJIcFdBGyb8IbJmOC91ytBleErLbbPX?=
+ =?iso-8859-1?Q?hgWqjHgP1JEh05wtsChqMO+b1TgZaXEQypo5u4XCxfLbc0mAxODIlfamWG?=
+ =?iso-8859-1?Q?5P+ELia8cSE1qqVvGFFhlaJrmlii4VWyrJrx2NxGc9jnftSMpLPuc1dCTo?=
+ =?iso-8859-1?Q?KyxWmjTSnOi0xn3WFdBufnT/5YQWqTA+TfQQyjeVbCjfTgViDpPpc4nkzc?=
+ =?iso-8859-1?Q?pBGRhVpvmWprCmJa+R0q8kTyOdUduz60dnFpmz5Wxz5ZWM0kxrAx9QPfpi?=
+ =?iso-8859-1?Q?YeJQz8QwP5MTZGtg5VQOsUXv7qL7Txmuhmv1K4uulKbmz4NfUaWxKzl17f?=
+ =?iso-8859-1?Q?4UCpfXtptaGLy8I6cCHsut4/jxNm9z7oAYa/D0Yi9VX+Kw2raUl382sv0P?=
+ =?iso-8859-1?Q?yMCpnPsnX2UIVJimBgkiltKnEY2FKtLjnk?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR03MB7141.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c65b4c97-f7e1-4d33-db53-08dc1b3a22e6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2024 11:06:08.6867
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZIKiefBJ85sfQtZXFmjAKIbyY/aOAmv+W2E/xbxRLYcca7IANWr8JZrOYz+YT8p0KE8PQ3YEvQBL3kr0+tvA+EXj0I0U1m+fGe+KX5Q4+eM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR03MB6750
+X-Proofpoint-GUID: BksP4qGj7YGOpP0_6MQHapVcC5I3a4gA
+X-Proofpoint-ORIG-GUID: BksP4qGj7YGOpP0_6MQHapVcC5I3a4gA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-22_01,2024-01-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ spamscore=0 adultscore=0 mlxscore=0 suspectscore=0 bulkscore=0
+ mlxlogscore=980 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2311290000 definitions=main-2401220079
 
-The ITE IT5202 is a USB Type-C Alternate Mode Passive MUX, used for
-muxing the SBU lines of a Type-C port with DisplayPort altmode and
-also providing an orientation switch.
+> > +      adi,mixer-mode:
+> > +        description:
+> > +          Enable mixer mode.
+> > +        type: boolean
+> > +
+> > +      switch-gpios:
+> > +        description: |
+> > +          GPIOs to select the RF path for the channel.
+> > +          SW-CH1   CTRL-A   CTRL-B
+> > +          SW-CH2   CTRL-A   CTRL-B    CH1 Status        CH2 Status
+> > +                   1        0         Direct IF mode    Mixer mode
+> > +                   0        1         Mixer mode        Direct IF mode
+>=20
+> I cannot make sense of this table you have here, the double header row yo=
+u
+> have going on is hard to follow. There's also no mention here of what hap=
+pens
+> when both GPIOs are 0 or both GPIO are 1. Are these configurations permit=
+ted?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/usb/typec/mux/Kconfig  |  10 ++
- drivers/usb/typec/mux/Makefile |   1 +
- drivers/usb/typec/mux/it5205.c | 294 +++++++++++++++++++++++++++++++++
- 3 files changed, 305 insertions(+)
- create mode 100644 drivers/usb/typec/mux/it5205.c
+I also feel that it's quite hard to understand without the gridlines. In th=
+e preliminary
+datasheet, it's a switch control table, and I'm trying to replicate the way=
+ it is presented.
 
-diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-index d2cb5e733e57..399c7b0983df 100644
---- a/drivers/usb/typec/mux/Kconfig
-+++ b/drivers/usb/typec/mux/Kconfig
-@@ -36,6 +36,16 @@ config TYPEC_MUX_INTEL_PMC
- 	  control the USB role switch and also the multiplexer/demultiplexer
- 	  switches used with USB Type-C Alternate Modes.
- 
-+config TYPEC_MUX_IT5205
-+	tristate "ITE IT5205 Type-C USB Alt Mode Passive MUX driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Driver for the ITE IT5205 Type-C USB Alternate Mode Passive MUX
-+	  which provides support for muxing DisplayPort and sideband signals
-+	  on a common USB Type-C connector.
-+	  If compiled as a module, the module will be named it5205.
-+
- config TYPEC_MUX_NB7VPQ904M
- 	tristate "On Semiconductor NB7VPQ904M Type-C redriver driver"
- 	depends on I2C
-diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-index 57dc9ac6f8dc..bb96f30267af 100644
---- a/drivers/usb/typec/mux/Makefile
-+++ b/drivers/usb/typec/mux/Makefile
-@@ -4,6 +4,7 @@ obj-$(CONFIG_TYPEC_MUX_FSA4480)		+= fsa4480.o
- obj-$(CONFIG_TYPEC_MUX_GPIO_SBU)	+= gpio-sbu-mux.o
- obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
- obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
-+obj-$(CONFIG_TYPEC_MUX_IT5205)		+= it5205.o
- obj-$(CONFIG_TYPEC_MUX_NB7VPQ904M)	+= nb7vpq904m.o
- obj-$(CONFIG_TYPEC_MUX_PTN36502)	+= ptn36502.o
- obj-$(CONFIG_TYPEC_MUX_WCD939X_USBSS)	+= wcd939x-usbss.o
-diff --git a/drivers/usb/typec/mux/it5205.c b/drivers/usb/typec/mux/it5205.c
-new file mode 100644
-index 000000000000..5535932e42cd
---- /dev/null
-+++ b/drivers/usb/typec/mux/it5205.c
-@@ -0,0 +1,294 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ITE IT5205 Type-C USB alternate mode passive mux
-+ *
-+ * Copyright (c) 2020 MediaTek Inc.
-+ * Copyright (c) 2024 Collabora Ltd.
-+ *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-+ *
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/usb/tcpm.h>
-+#include <linux/usb/typec.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
-+
-+#define IT5205_REG_CHIP_ID(x)	(0x4 + (x))
-+#define IT5205FN_CHIP_ID	0x35323035 /* "5205" */
-+
-+/* MUX power down register */
-+#define IT5205_REG_MUXPDR        0x10
-+#define IT5205_MUX_POWER_DOWN    BIT(0)
-+
-+/* MUX control register */
-+#define IT5205_REG_MUXCR         0x11
-+#define IT5205_POLARITY_INVERTED BIT(4)
-+#define IT5205_DP_USB_CTRL_MASK  GENMASK(3, 0)
-+#define IT5205_DP                0x0f
-+#define IT5205_DP_USB            0x03
-+#define IT5205_USB               0x07
-+
-+/* Vref Select Register */
-+#define IT5205_REG_VSR            0x10
-+#define IT5205_VREF_SELECT_MASK   GENMASK(5, 4)
-+#define IT5205_VREF_SELECT_3_3V   0x00
-+#define IT5205_VREF_SELECT_OFF    0x20
-+
-+/* CSBU Over Voltage Protection Register */
-+#define IT5205_REG_CSBUOVPSR      0x1e
-+#define IT5205_OVP_SELECT_MASK    GENMASK(5, 4)
-+#define IT5205_OVP_3_90V          0x00
-+#define IT5205_OVP_3_68V          0x10
-+#define IT5205_OVP_3_62V          0x20
-+#define IT5205_OVP_3_57V          0x30
-+
-+/* CSBU Switch Register */
-+#define IT5205_REG_CSBUSR         0x22
-+#define IT5205_CSBUSR_SWITCH      BIT(0)
-+
-+/* Interrupt Switch Register */
-+#define IT5205_REG_ISR            0x25
-+#define IT5205_ISR_CSBU_MASK      BIT(4)
-+#define IT5205_ISR_CSBU_OVP       BIT(0)
-+
-+struct it5205 {
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	struct typec_switch_dev *sw;
-+	struct typec_mux_dev *mux;
-+};
-+
-+static int it5205_switch_set(struct typec_switch_dev *sw, enum typec_orientation orientation)
-+{
-+	struct it5205 *it = typec_switch_get_drvdata(sw);
-+
-+	switch (orientation) {
-+	case TYPEC_ORIENTATION_NORMAL:
-+		regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
-+				   IT5205_POLARITY_INVERTED, 0);
-+		break;
-+	case TYPEC_ORIENTATION_REVERSE:
-+		regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
-+				   IT5205_POLARITY_INVERTED, IT5205_POLARITY_INVERTED);
-+		break;
-+	case TYPEC_ORIENTATION_NONE:
-+		fallthrough;
-+	default:
-+		regmap_write(it->regmap, IT5205_REG_MUXCR, 0);
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int it5205_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
-+{
-+	struct it5205 *it = typec_mux_get_drvdata(mux);
-+	u8 val;
-+
-+	if (state->mode >= TYPEC_STATE_MODAL &&
-+	    state->alt->svid != USB_TYPEC_DP_SID)
-+		return -EINVAL;
-+
-+	switch (state->mode) {
-+	case TYPEC_STATE_USB:
-+		val = IT5205_USB;
-+		break;
-+	case TYPEC_DP_STATE_C:
-+		fallthrough;
-+	case TYPEC_DP_STATE_E:
-+		val = IT5205_DP;
-+		break;
-+	case TYPEC_DP_STATE_D:
-+		val = IT5205_DP_USB;
-+		break;
-+	case TYPEC_STATE_SAFE:
-+		fallthrough;
-+	default:
-+		val = 0;
-+		break;
-+	}
-+
-+	return regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
-+				  IT5205_DP_USB_CTRL_MASK, val);
-+}
-+
-+static irqreturn_t it5205_irq_handler(int irq, void *data)
-+{
-+	struct it5205 *it = data;
-+	int ret;
-+	u32 val;
-+
-+	ret = regmap_read(it->regmap, IT5205_REG_ISR, &val);
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	if (val & IT5205_ISR_CSBU_OVP) {
-+		dev_warn(&it->client->dev, "Overvoltage detected!\n");
-+
-+		/* Reset CSBU */
-+		regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
-+				   IT5205_CSBUSR_SWITCH, 0);
-+		regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
-+				   IT5205_CSBUSR_SWITCH, IT5205_CSBUSR_SWITCH);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void it5205_enable_ovp(struct it5205 *it)
-+{
-+	/* Select Vref 3.3v */
-+	regmap_update_bits(it->regmap, IT5205_REG_VSR,
-+			   IT5205_VREF_SELECT_MASK, IT5205_VREF_SELECT_3_3V);
-+
-+	/* Trigger OVP at 3.68V */
-+	regmap_update_bits(it->regmap, IT5205_REG_CSBUOVPSR,
-+			   IT5205_OVP_SELECT_MASK, IT5205_OVP_3_68V);
-+
-+	/* Unmask OVP interrupt */
-+	regmap_update_bits(it->regmap, IT5205_REG_ISR,
-+			   IT5205_ISR_CSBU_MASK, 0);
-+
-+	/* Enable CSBU Interrupt */
-+	regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
-+			   IT5205_CSBUSR_SWITCH, IT5205_CSBUSR_SWITCH);
-+}
-+
-+static const struct regmap_config it5205_regmap = {
-+	.max_register = 0x2f,
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+};
-+
-+static int it5205_probe(struct i2c_client *client)
-+{
-+	struct typec_switch_desc sw_desc = { };
-+	struct typec_mux_desc mux_desc = { };
-+	struct device *dev = &client->dev;
-+	struct it5205 *it;
-+	u32 val, chipid = 0;
-+	int i, ret;
-+
-+	it = devm_kzalloc(dev, sizeof(*it), GFP_KERNEL);
-+	if (!it)
-+		return -ENOMEM;
-+
-+	ret = devm_regulator_get_enable(dev, "vcc");
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get regulator\n");
-+
-+	it->client = client;
-+
-+	it->regmap = devm_regmap_init_i2c(client, &it5205_regmap);
-+	if (IS_ERR(it->regmap))
-+		return dev_err_probe(dev, PTR_ERR(it->regmap),
-+				     "Failed to init regmap\n");
-+
-+	/* IT5205 needs a long time to power up after enabling regulator */
-+	msleep(50);
-+
-+	/* Unset poweroff bit */
-+	ret = regmap_write(it->regmap, IT5205_REG_MUXPDR, 0);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to set power on\n");
-+
-+	/* Read the 32 bits ChipID */
-+	for (i = 3; i >= 0; i--) {
-+		ret = regmap_read(it->regmap, IT5205_REG_CHIP_ID(i), &val);
-+		if (ret)
-+			return ret;
-+
-+		chipid |= val << (i * 8);
-+	}
-+
-+	if (chipid != IT5205FN_CHIP_ID)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Unknown ChipID 0x%x\n", chipid);
-+
-+	/* Initialize as USB mode with default (non-inverted) polarity */
-+	ret = regmap_write(it->regmap, IT5205_REG_MUXCR, IT5205_USB);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Cannot set mode to USB\n");
-+
-+	sw_desc.drvdata = it;
-+	sw_desc.fwnode = dev_fwnode(dev);
-+	sw_desc.set = it5205_switch_set;
-+
-+	it->sw = typec_switch_register(dev, &sw_desc);
-+	if (IS_ERR(it->sw))
-+		return dev_err_probe(dev, PTR_ERR(it->sw),
-+				     "failed to register typec switch\n");
-+
-+	mux_desc.drvdata = it;
-+	mux_desc.fwnode = dev_fwnode(dev);
-+	mux_desc.set = it5205_mux_set;
-+
-+	it->mux = typec_mux_register(dev, &mux_desc);
-+	if (IS_ERR(it->mux)) {
-+		typec_switch_unregister(it->sw);
-+		return dev_err_probe(dev, PTR_ERR(it->mux),
-+				     "failed to register typec mux\n");
-+	}
-+
-+	i2c_set_clientdata(client, it);
-+
-+	if (of_property_read_bool(dev->of_node, "ite,ovp-enable") && client->irq) {
-+		it5205_enable_ovp(it);
-+
-+		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-+						it5205_irq_handler,
-+						IRQF_ONESHOT, dev_name(dev), it);
-+		if (ret) {
-+			typec_mux_unregister(it->mux);
-+			typec_switch_unregister(it->sw);
-+			return dev_err_probe(dev, ret, "Failed to request irq\n");
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static void it5205_remove(struct i2c_client *client)
-+{
-+	struct it5205 *it = i2c_get_clientdata(client);
-+
-+	typec_mux_unregister(it->mux);
-+	typec_switch_unregister(it->sw);
-+}
-+
-+static const struct i2c_device_id it5205_table[] = {
-+	{ "it5205" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(i2c, it5205_table);
-+
-+static const struct of_device_id it5205_of_table[] = {
-+	{ .compatible = "ite,it5205" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, it5205_of_table);
-+
-+static struct i2c_driver it5205_driver = {
-+	.driver = {
-+		.name = "it5205",
-+		.of_match_table = it5205_of_table,
-+	},
-+	.probe = it5205_probe,
-+	.remove = it5205_remove,
-+	.id_table = it5205_table,
-+};
-+module_i2c_driver(it5205_driver);
-+
-+MODULE_AUTHOR("Tianping Fang <tianping.fang@mediatek.com>");
-+MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
-+MODULE_DESCRIPTION("ITE IT5205 alternate mode passive MUX driver");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+On the table, each channel has control pins (CTRL-A and CTRL-B). For a mixe=
+r mode
+configuration on channel 1, CTRL-A GPIO should be 0, and CTRL-B GPIO should=
+ be 1.
+It's not permitted when both GPIOs are 0 or both GPIOs are 1. The state for=
+ the GPIO
+should strictly follow the truth table.
 
+I'm considering making it much easier to understand by creating two separat=
+e tables for
+each channel, just like the example below. Or is it preferred if it could b=
+e discussed in=20
+a sort of paragraph form?
+
+SW-CH1   CTRL-A   CTRL-B    CH1 Status            CH2 Status
+	   1              0              Direct IF mode     Mixer
+
+SW-CH2   CTRL-A   CTRL-B    CH1 Status            CH2 Status
+          	    0            1               Direct IF mode     Mixer
+
+Best regards,
+Kim
 
