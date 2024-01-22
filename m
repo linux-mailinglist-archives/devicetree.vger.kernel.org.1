@@ -1,64 +1,59 @@
-Return-Path: <devicetree+bounces-33867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED999836E1F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:46:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D04DC836E29
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:47:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C5F21C231F2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:46:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 709851F271A5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8013DBB0;
-	Mon, 22 Jan 2024 17:09:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB3B3EA6F;
+	Mon, 22 Jan 2024 17:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A2snNYWM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YZkpTLFA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7F583DBAE;
-	Mon, 22 Jan 2024 17:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88ED63D574;
+	Mon, 22 Jan 2024 17:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705943396; cv=none; b=NaCz5zV8ZZJjruAVisocSskQPDtGs2eM2HAEpiGNgCYUmZcVj3qX5nZA4V2ujvA826GNVPgy0J7FFVJ9/PvtZmVgTxqaTMSEppIcg5XMQJsRWJAmt9Fs2SWRWtzjDoW1iH1r+lgNOLw51suQ4e8tcg9VqyzZy1C5UEMECSCB8gM=
+	t=1705943507; cv=none; b=LIPLh67CZ/OruEm+lAoWI2ZGDgzR6TPRfDh0vDubo8qR4pn7mN5Nu2foLtOX17qxkrdAzFA1Xbu3Z7MZqnevG7O3pkEOovQoPUUCPEoO/uulZcuP7mbJud9XfFvkzb/Wg4LFG8ddILcIwCif/p84SK937C9/zrjHUqt60Nxvkvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705943396; c=relaxed/simple;
-	bh=t2lzAIQ/wgiQPWzdfyeH8NuB4LMXlxLjxCYsI2QGApc=;
+	s=arc-20240116; t=1705943507; c=relaxed/simple;
+	bh=k2CNr7LmlyvVXOsB5EVe+VkohS7bN+gdLn1ISX7JPAc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QmQhPzG8wZUuIsZAnHxXoFMQZXAH211fbsGuCcN6PfjQc4XEPkhrBmpt9dvrNbXM5dPyuPJLN9kvD1BEgiLIYAcZO/xodehbyE/ijTKVfmioZrho2UCOuHAw3AmXQuQT7hw34duKRyY5wPSeTkf8dM7zo5Qgla7GfqtA8SLbcns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A2snNYWM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADCC5C43399;
-	Mon, 22 Jan 2024 17:09:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=B70n11btw2D4DfJbgD0Sr2orjcEpwxoBL7tEXgTEDXqG9zwaf9RycV6Qc4OCXhqS8s62aOYcZlIivG91YIBq0etf9ogEN6Bc4rAENex8d8XYfTAv1bhiaXbo6wx6gQyNqUU6ILeEdCZJ2km0sVps2HDFgf7qaQ5vR1gNQC+DtW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YZkpTLFA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21528C433F1;
+	Mon, 22 Jan 2024 17:11:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705943396;
-	bh=t2lzAIQ/wgiQPWzdfyeH8NuB4LMXlxLjxCYsI2QGApc=;
+	s=k20201202; t=1705943507;
+	bh=k2CNr7LmlyvVXOsB5EVe+VkohS7bN+gdLn1ISX7JPAc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A2snNYWMIXDvqOW9DSsiBFnfFglhNTMmq9sWG5U3u9yl5Z1grQnACfmMRT9lf/RUJ
-	 yU3zqtX7bU4B6ELEQttqkZRVfCKkO6iq1u2ZpzcFoJZU/UH/nrmqAAukK+fjjzq+8N
-	 Ycz5JBtPVuwFDtU2tcW9WZo5vG5e4RQSiM2LoFz1MpvSMx/cWVjldubQacLg28xnqw
-	 KWOlTe7XpXZbxMxV4Xs829bra/gshHYAEElmrvU8Fq5cgmqt7xYQi2QHFQwAC6W+iI
-	 Cq4rGO/4x1wvTiewOX9eM03hlg/cGUfoKUcbMSAz3Trg074FXEKwozLSQI8+vdtddp
-	 bZbLNtxcSZKbQ==
-Date: Mon, 22 Jan 2024 17:09:51 +0000
+	b=YZkpTLFA+pv+dgKqXR9AKm6w3m8oGZBo9CYsV2MjFkuFTlRkpxq0CZi9hv61X2ksV
+	 Rddh+8mZ/qNkvmkcbExmoCdkcyfo73hPBxwfH4MCrwLxxQPbDgKKycN1F+fVg86miX
+	 JPADKsGiGAosrC5OtVM8cQ71vY9bLj7Y7Uq4tFQZ3KrX6zEA979ufjpr4AxJdJrRMU
+	 oR6BR3tmtJgD+2YKl8p6dtFknwSOhVP8Jfykp1KuFVnmxryR90/ri12NpMSFGgEu9o
+	 vimmRptoqTTTSkGryEpDIHD4/KJzA9u6zVJJf2f+CmvmmwI62JHKWRcstXnEmV3WIs
+	 LD1E0rUhO98Mg==
+Date: Mon, 22 Jan 2024 17:11:42 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Hiago De Franco <hiagofranco@gmail.com>
-Cc: Shawn Guo <shawnguo@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	Rob Herring <robh+dt@kernel.org>,
+To: Romain Naour <romain.naour@smile.fr>
+Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+	=?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+	Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Hiago De Franco <hiago.franco@toradex.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: fsl: Add
- toradex,apalis_imx6q-eval-v1.2 board
-Message-ID: <20240122-unfiled-cruelly-2ee24a8d8116@spud>
-References: <20240122123526.43400-1-hiagofranco@gmail.com>
- <20240122123526.43400-2-hiagofranco@gmail.com>
+	Romain Naour <romain.naour@skf.com>
+Subject: Re: [PATCH 1/3] arch/arm/boot/dts/dra7-l4.dtsi: add missing unit
+ addresse
+Message-ID: <20240122-extending-identical-9609420a1baa@spud>
+References: <20240122111948.416444-1-romain.naour@smile.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,57 +61,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BUnWwTpzDy0Sk/a/"
+	protocol="application/pgp-signature"; boundary="RXiEXhniTINmF+T+"
 Content-Disposition: inline
-In-Reply-To: <20240122123526.43400-2-hiagofranco@gmail.com>
+In-Reply-To: <20240122111948.416444-1-romain.naour@smile.fr>
 
 
---BUnWwTpzDy0Sk/a/
+--RXiEXhniTINmF+T+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 22, 2024 at 09:34:59AM -0300, Hiago De Franco wrote:
-> From: Hiago De Franco <hiago.franco@toradex.com>
+On Mon, Jan 22, 2024 at 12:19:46PM +0100, Romain Naour wrote:
+> From: Romain Naour <romain.naour@skf.com>
 >=20
-> Add the toradex,apalis_imx6q-eval-v1.2 compatible string for version 1.2
-> of the Apalis Evaluation Board.
+> phy_gmii_sel node have 'reg' so it must have unit address.
 >=20
-> Version v1.2 includes the following changes compared to v1.1:
->=20
-> - 8-bit MMC connector replaced with a 4-bit uSD connector.
-> - Audio codec NAU88C22 added.
-> - M24C02 EEPROM i2c added.
-> - MIPI-CSI-2 connector directly to the board added.
-> - PCIe switch PEX8605 removed and PCIe now is routed directly to Mini
->   PCIe connector.
-> - Power measurement IC INA219 added.
-> - Replaced DVI with HDMI connector.
-> - Single-channel USB to UART converter replaced with four-channel USB
->   to UART/JTAG.
-> - Temperature sensor TMP75 added.
->=20
-> Please note that version v1.0 (which reached EOL) is compatible with
-> v1.1, therefore toradex,apalis_imx6q-eval compatible string should be
-> used for both v1.0 and v1.1.
->=20
-> Signed-off-by: Hiago De Franco <hiago.franco@toradex.com>
+> Fixes:
+> Warning (unit_address_vs_reg): /ocp/interconnect@4a000000/segment@0/targe=
+t-module@2000/scm@0/scm_conf@0/phy-gmii-sel: node has a reg or ranges prope=
+rty, but no unit name
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Does checkpatch not complain about this "Fixes" tag?
 
-Cheers,
+Also, for all patches in your series, the subject is odd. Running
+`git log` on the files you're changing is a good idea to get off to a
+good start with a subject line.
+
+Thanks,
 Conor.
 
---BUnWwTpzDy0Sk/a/
+>=20
+> Signed-off-by: Romain Naour <romain.naour@skf.com>
+
+--RXiEXhniTINmF+T+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa6hXwAKCRB4tDGHoIJi
-0lUrAQDaGHf9wC1apPqofEVDUhZIOpU2zo3bsdGjY8rebT8U/AD/R7iUArog2/s/
-XkkNjs30GLr+ut34UoHxIxBhVahngAs=
-=A/No
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa6hzgAKCRB4tDGHoIJi
+0mBYAP9F0/plPjdvLISSoKlEHcy1+P5CxGl1+LcAx0sbH0/A5wEA4brQffVEo11j
+RGG89Yn1GXt4+7Bjw5+TjlCij9k5mQI=
+=7sJx
 -----END PGP SIGNATURE-----
 
---BUnWwTpzDy0Sk/a/--
+--RXiEXhniTINmF+T+--
 
