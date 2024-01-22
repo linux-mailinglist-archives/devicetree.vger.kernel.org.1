@@ -1,415 +1,283 @@
-Return-Path: <devicetree+bounces-33536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79259835A13
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 05:34:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BBAF835A21
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 05:54:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAE561F22397
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 04:34:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 599BA1C21951
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 04:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7B01103;
-	Mon, 22 Jan 2024 04:34:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93BA4A2D;
+	Mon, 22 Jan 2024 04:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dwItzClG"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="tVWcpxZn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2061.outbound.protection.outlook.com [40.107.244.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99102A28;
-	Mon, 22 Jan 2024 04:34:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705898057; cv=none; b=h97yfIOGyLxhyz2c877IAYJ6SX8cKiqsjH3Iz+SpWCZbjqJHeLFQf7POiXtT4jULJlndxofpBwGOyBDbfA37ke2ql4ebgj/hWZA2uIcG+zzKeRCGdiSTeds+B7m/o6aWrguADbcmovj8tE/aukSNFPe6kjrkXOvCSaRXkTwDfBc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705898057; c=relaxed/simple;
-	bh=EcM4W5cWjiApVuERDIaz6QqNO+H4lrJafvcv0TIs9TQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fMnN3GomFtErqHjesru/JqzHwfFXftE3d7diExS8uh3YY9SwP10gfdKZjyhBkmgFR8x4v9yXv0VffvjhmX7LePIE5hBWx1pbGLtfYy2eqKN4xELIjw6GDB9Y8Ma9Ir6uV+uB9qSMq4YNBIllrWrsjRFJkVIJL3+6eujZ/rYy5vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dwItzClG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40M2Oir7026785;
-	Mon, 22 Jan 2024 04:33:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=9Z5agxXwT4WRQD6vI8ZTAIr+cWtfp8yYSCcymwOt4kI=; b=dw
-	ItzClGU5FtgpvClx2oHbBB9t9mz9eohtCl2k2zPlAk7sjT7ifyA0WL0cogMN2FYy
-	bv36PRFP4rN8RJalwHKR5ZfVT9GZwcK8XQss3nYXZUqUQt7CGUCq4CR6hYVDl9NX
-	C7a0Wi48EIsnnaD4l56roQ2IZaAmp84v0egJ2nna1Dz47tg5xr88rKT7USgTL98X
-	zU1vuc0rzGkvhv65M0cGiCcvGCTdYEH/DTuqb05Eg6yjpn2wN7MTNb9LT0k3WuqE
-	83huDKmGXIHAFLGdVJB9aEOQj10K1D+Z+2e13LJbCCIAiEal5u0wN3C1ym5UvObw
-	fGwNhxft0CZa3wyEmWrw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vr5gpjxsg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 04:33:56 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40M4XttW003973
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 04:33:55 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 21 Jan
- 2024 20:33:50 -0800
-Message-ID: <d0d93f06-f0bc-4692-81d3-d748c866fec0@quicinc.com>
-Date: Mon, 22 Jan 2024 12:33:48 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4676E4A32;
+	Mon, 22 Jan 2024 04:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.61
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705899258; cv=fail; b=QuPEyobrVxNQs+q71g+HGe6WCfw7eD8fuGke8od/XlFoLV4JEwJWF+3hfJC3IlQSvjUXMBgczatKLOaC5Px+5Q2VIs5A82truUCdWc5FXd6AQFAREAgDSKN1zSrlN4LlEJ1yaG6gqOjLFJSG0t5I6XUKPwItsqUi/cek10zIeHg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705899258; c=relaxed/simple;
+	bh=9FdOws/LbObpmn6GafFjzc1gzEJPNWYVZcQWXNfEZyI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=l4vbSAUFoGEScaLENlboET6G+vBXRH16/18FuY5NvEIesSRtgXVDxUBjEohIGgEFpnN4rawr5RPnwLoLWXdYFsIPpWMWMVYHmqcFGzE3PSEmXJ9EhwCFMIpS2CeYjAyrP55jRi5rKDVmnZkAZbJggAcGLYDuj16+x/gXISHrgmQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=tVWcpxZn; arc=fail smtp.client-ip=40.107.244.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=h7SHZbG3ZgdddO12hdal6VrHxq7cvav+zStWAyE7uGX5WgYeqavYNR+qrwuidZ8CuqYYV7wm9/aBA3SCJDMlKgHdGUhM1o5JL+5DNC3DbOTsu8xguY+geSg/mHcfnbTY9yevRrjYNmVsOs3zZ0c/fVtd//aPwUIkvTHuYllJ4K7BiY8I78/JIHWnn3S4GieVMT5mwk0crOlqSw7CLGCzcsvsNPi3WZrBwbijiHlIL/EkNGVt+rVdlYruLOyO0NcSmDuSN2/qGiT6zAURXFT2FMENvDHKrrp4wg8ekqBTyGo3ndMsjtX8IfxveIFovTgIBH65tPrWq3jppvGbbg7DNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8QxcTLxSJkfLPHPszdtKAxpBW7LaE0zLZKeRdfs1ro8=;
+ b=YJf5czgknL2eZdaUtTQVwU3hdbd+SPOL15rUv3yoYzEmLwGSVcbS8/ETnYL+6CA1j6fFcByNL6yB/k6aP+1Km0TdpxAj3XSLusir4UraAW3vZXT1G8tt497fgrSaNknvoUgos4VZ86vwQ/XeILlSN9DwLGTJSD/0+yMaz0d8ZmUZ7IJSFv2yQfCoDb6LpCe5Rqhvqpuutv7bjrFWuhULHNpWvU/VFAtlSSCAYMBZdkX6MareFr38SBaYu8VAZz+HMsV+Ysb5IPUqllJXVEb/Op6uaQp/T6mQia4HE1DIFQhrEM7IowcX3/FM+bXJWGJlBgJ03fxhf3lWDBw972199Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8QxcTLxSJkfLPHPszdtKAxpBW7LaE0zLZKeRdfs1ro8=;
+ b=tVWcpxZn1XqpvyhjAltXCpYwSVF8OESjqkaOCl4XdBoKUe6E2LiY0YzUTPUeVgn7BDQ4E2dVETVO+M/ecJZfpxttstKvQDA76s3YZV86rNOME89iaXa6B5TGVn8R36feaqyPnOIfgDESS0q+LXCWOuqCyh24k/GsgyRVT6p/Kw8=
+Received: from MN2PR12MB4333.namprd12.prod.outlook.com (2603:10b6:208:1d3::23)
+ by CY5PR12MB6647.namprd12.prod.outlook.com (2603:10b6:930:40::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
+ 2024 04:54:12 +0000
+Received: from MN2PR12MB4333.namprd12.prod.outlook.com
+ ([fe80::affa:d167:8c9f:76d1]) by MN2PR12MB4333.namprd12.prod.outlook.com
+ ([fe80::affa:d167:8c9f:76d1%4]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
+ 04:54:12 +0000
+From: "Mehta, Piyush" <piyush.mehta@amd.com>
+To: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>, "dlemoal@kernel.org"
+	<dlemoal@kernel.org>, "cassel@kernel.org" <cassel@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "linus.walleij@linaro.org"
+	<linus.walleij@linaro.org>, "brgl@bgdev.pl" <brgl@bgdev.pl>, "Simek, Michal"
+	<michal.simek@amd.com>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, "Sayyed, Mubin"
+	<mubin.sayyed@amd.com>, "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+CC: "linux-ide@vger.kernel.org" <linux-ide@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-usb@vger.kernel.org"
+	<linux-usb@vger.kernel.org>, "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH] dt-bindings: xilinx: replace Piyush Mehta maintainership
+Thread-Topic: [PATCH] dt-bindings: xilinx: replace Piyush Mehta maintainership
+Thread-Index: AQHaSsvSSnpmMxSc+EyR1P4Gwr3GubDlR8IA
+Date: Mon, 22 Jan 2024 04:54:12 +0000
+Message-ID:
+ <MN2PR12MB43338F6C15D6952B01A3265488752@MN2PR12MB4333.namprd12.prod.outlook.com>
+References: <1705664181-722937-1-git-send-email-radhey.shyam.pandey@amd.com>
+In-Reply-To: <1705664181-722937-1-git-send-email-radhey.shyam.pandey@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN2PR12MB4333:EE_|CY5PR12MB6647:EE_
+x-ms-office365-filtering-correlation-id: 05d0cada-720c-4226-f3b4-08dc1b062d26
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ n/4OLth2PsuOAFMat+HHCAF6nAVRKkshbzYPwfv54dJbFtbhkn70vLNJaT/QzJ5x5yEACLjVp+QCEfMleVUSJAjVNsiaEmY3+Mwcfwbr/9bfrb4ieyiSN/damSenTVYzMwXqByaEPpHTsohoaWWFgaUd05EUGLO/UUD1OGd7xQv7257TDLf8uKvoUVfbKCSGkQUs0rvaM2h/TfWkt4n5Lby8B9/0e6KEDutQGhUCmd9uoHyczHIvtn4fTvWyqvDif4ZiUps8BBdfY5ImrJSR/A0S5p0xaWOaBN5AMU+qPyAZ81rTagSVRY8YBsHwTefkWN6Ksyqzcvd3tqWnsCBgGKfZWknTsemARuZprvVsZdrX5N40RjRI0fC+JeefIYG1DPwJtolORWAhOqjs+Oe1bmasjG3UxI2VHKNgxjozvnahjHQex2VDqlKyPPLaDsNMY9hfebgyfxeVCZipyDDdD2TZXkEUQ4e+fPJmPyc78s46jM6x/cMr0721MfeFdTPef4xIlmc63DayX+7H39UvIs1aDK9+nMbpqgaSzsUI0688tjg+P4rfUHjFM3wA1kOHDfr34hEob6RCvAIIhqIRMJqijQKAXxhkalkTnzkIOQ3KyMQ6n6lwWlr8r8cphHZ/
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB4333.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(396003)(366004)(39860400002)(136003)(230922051799003)(1800799012)(451199024)(64100799003)(186009)(41300700001)(26005)(921011)(55016003)(38070700009)(6506007)(9686003)(7696005)(53546011)(71200400001)(83380400001)(478600001)(38100700002)(122000001)(966005)(8676002)(110136005)(33656002)(2906002)(54906003)(64756008)(66446008)(66476007)(6636002)(76116006)(66556008)(66946007)(316002)(86362001)(5660300002)(7416002)(4326008)(52536014)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?IiU7f/Ne4DJmip8mke2QxBrRaHBjIN6sjITRSwgKf+urcCf91O8wZL4vOL/0?=
+ =?us-ascii?Q?c2QE1tk+4eUmjel7G6DcVcL+AtJw+ZaTNUwrH4l3Bi/ZbgCSf5TBdrdX3Nz7?=
+ =?us-ascii?Q?+mgSJfrEr2tiCuIzYNyQQlZruA0bUaVN+uJ2PbOTbhyxTNtbKXRGsyNeADVL?=
+ =?us-ascii?Q?ovsLd7sCpdUgdtTMHbmGBfYVHAtihY3cgq6UunxBapy6hkoK60fNgXX2MdSz?=
+ =?us-ascii?Q?feORw1bIW8lmorDybqjLrJJ0IjH/8eJz1dLCkJmGh/khjvSJMifp+HslkA8R?=
+ =?us-ascii?Q?mBKBKKXBjGn2YaAhQZZu6DnunB4j+mQbro2z3ohLl2RzkZyyAjbVTQr9xnP/?=
+ =?us-ascii?Q?HXPunEONK3XGOxK52oDrObF2FRQK1eAc1HPt19xDZ7VXdm82x5ERrGCZKfnX?=
+ =?us-ascii?Q?dND8mt6RlQ/qdpJq2xwsMpqD3meY0XSc90ryDb1FaztObCJORPyyRCXwQ0xJ?=
+ =?us-ascii?Q?79uOHT045cyha0IzEen/vATmFeGzD8Zl7xNw7tKtN5XOdKHVG56HKNo4IMKg?=
+ =?us-ascii?Q?8AjwCan5GqYI2FI2iumADJazLhX9c1InpTcHGVKNa8cYaS11S/rBoN6b1Jo0?=
+ =?us-ascii?Q?YTsC/Vbr2AKfepDCS/kDSznUmXxlF88Wff9JIuMNcq5FWe5Kcz768x1UbhPA?=
+ =?us-ascii?Q?R6Lq/oB8LWGv0cwq5u9RZ9D1qJ43YQY72A9GExb1kJ6wEKSl67QHBUdvHWgM?=
+ =?us-ascii?Q?FBL6bxQX9pdi3f9IpkBp7Hy522yiIpdqOts4ZFnUZv7FXsS87dtIEGTfjTAc?=
+ =?us-ascii?Q?Ibm/wpVuYNqKDo2ncgfUnmJa51XySv/Lk69Iy7J3PojeXtRJqlClNvUda+nQ?=
+ =?us-ascii?Q?icMW/TsH8xZ4UGG9Lx7XsyweOElh/wctmt/5+zLpyB6FP+fw1Ykel7IVp172?=
+ =?us-ascii?Q?yBKubR7Yi0poZ/5+rEJnHeL1SJ75cUfZjVCzdcbo3JNGIjfcBhKSTxQzERwF?=
+ =?us-ascii?Q?BxExWgXQqyCGGIN4s6w4SkhqVhR+RNGSKbZall0lup37Ggd2XNdGuaKd8ePl?=
+ =?us-ascii?Q?n6JLqaZUJS+vDFQd8V534PmBGVCYPC2AzKrYcYP7n+MY/mmh8UxAw2ZX3HcG?=
+ =?us-ascii?Q?AoE0UdxrLb054Nu58Uvx+8fAdli0iQ/8S78rpSBluDklkD9Iie9Co+16m1Qn?=
+ =?us-ascii?Q?fyCsmW2gmxXLBpul4yCB87CwytsB9+3XvZcC3dvOhL8CAxQlyqehB9wH+Yfu?=
+ =?us-ascii?Q?i2u2i4CCgvG1kTEQpWVHB0sMv9A5LdNe/a98Kj50hCfQ43UUC485ASKP8n+z?=
+ =?us-ascii?Q?yzVBSM/oMLCMbCvaddcMpeMRBsGk8/d+R/wHvSP4+HPAm1oRZAb7eiTsqdx7?=
+ =?us-ascii?Q?Khr8a4m0TYKqTWEZQvECvi503eV/6JPTOrHBKj0uj/iLpV26uYLIY5GEo8Px?=
+ =?us-ascii?Q?nEd7CYhqS9HNgmE7M910C6ILoxE72E88npyq1DOqV3jvU1LPNSrtXCyu3EM3?=
+ =?us-ascii?Q?M0ZJ9baiBC6cHcCob/sKfj1rWZY0nzVupawJsFJTafbAs5hgDGa+fN1Uv0fj?=
+ =?us-ascii?Q?4ksHquklc050Np/5ceKgqg1T4iEOO741PQmhasG2+9oo+mrF7yuGvdF+C/y5?=
+ =?us-ascii?Q?LIeFE+jKC0bf4lHhd/M=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/10] coresight-tpdm: Add pattern registers support
- for CMB
-Content-Language: en-US
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Jinlong Mao <quic_jinlmao@quicinc.com>, Leo Yan <leo.yan@linaro.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang
-	<quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>
-References: <1705634583-17631-1-git-send-email-quic_taozha@quicinc.com>
- <1705634583-17631-8-git-send-email-quic_taozha@quicinc.com>
- <7831e83e-9c26-412a-b78a-ed58ee02c5b1@arm.com>
-From: Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <7831e83e-9c26-412a-b78a-ed58ee02c5b1@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: CXB7EOqNnOqn6jdzi-vYisJ2pU6P2oma
-X-Proofpoint-ORIG-GUID: CXB7EOqNnOqn6jdzi-vYisJ2pU6P2oma
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-21_04,2024-01-19_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 suspectscore=0 adultscore=0 clxscore=1015 mlxscore=0
- malwarescore=0 impostorscore=0 mlxlogscore=999 lowpriorityscore=0
- spamscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401220030
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4333.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05d0cada-720c-4226-f3b4-08dc1b062d26
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2024 04:54:12.0798
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dA6M1btzE98zZH2oKWQjKnSM3hWCI9HEWUGZ5s/tWeVbZcCoIDCdwZcyBT5vYTYv
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6647
 
+> -----Original Message-----
+> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> Sent: Friday, January 19, 2024 5:06 PM
+> To: dlemoal@kernel.org; cassel@kernel.org; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+> linus.walleij@linaro.org; brgl@bgdev.pl; Simek, Michal
+> <michal.simek@amd.com>; p.zabel@pengutronix.de;
+> gregkh@linuxfoundation.org; Mehta, Piyush <piyush.mehta@amd.com>;
+> Sayyed, Mubin <mubin.sayyed@amd.com>; Pandey, Radhey Shyam
+> <radhey.shyam.pandey@amd.com>
+> Cc: linux-ide@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-gpio@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-usb@vger.kernel.org; git (AMD-Xilinx)
+> <git@amd.com>
+> Subject: [PATCH] dt-bindings: xilinx: replace Piyush Mehta maintainership
+>=20
+> As Piyush is leaving AMD, he handed over ahci-ceva, ZynqMP Mode Pin GPIO
+> controller, Zynq UltraScale+ MPSoC and Versal reset, Xilinx SuperSpeed
+> DWC3 USB SoC controller, Microchip USB5744 4-port Hub Controller and Xili=
+nx
+> udc controller maintainership duties to Mubin and Radhey.
+>=20
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 
-On 1/19/2024 7:58 PM, Suzuki K Poulose wrote:
-> On 19/01/2024 03:23, Tao Zhang wrote:
->> Timestamps are requested if the monitor’s CMB data set unit input
->> data matches the value in the Monitor CMB timestamp pattern and mask
->> registers (M_CMB_TPR and M_CMB_TPMR) when CMB timestamp enabled
->> via the timestamp insertion enable register bit(CMB_TIER.PATT_TSENAB).
->> The pattern match trigger output is achieved via setting values into
->> the CMB trigger pattern and mask registers (CMB_XPR and CMB_XPMR).
->> After configuring a pattern through these registers, the TPDM subunit
->> will assert an output trigger every time it receives new input data
->> that matches the configured pattern value. Values in a given bit
->> number of the mask register correspond to the same bit number in
->> the corresponding pattern register.
->>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> ---
->>   .../testing/sysfs-bus-coresight-devices-tpdm  | 30 ++++++
->>   drivers/hwtracing/coresight/coresight-tpdm.c  | 98 ++++++++++++++++++-
->>   drivers/hwtracing/coresight/coresight-tpdm.h  | 39 ++++++++
->>   3 files changed, 166 insertions(+), 1 deletion(-)
->>
->> diff --git 
->> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
->> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> index 3ae21ccf3f29..898aee81e20d 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> @@ -184,3 +184,33 @@ Description:    (Write) Set the data collection 
->> mode of CMB tpdm. Continuous
->>           Accepts only one of the 2 values -  0 or 1.
->>           0 : Continuous CMB collection mode.
->>           1 : Trace-on-change CMB collection mode.
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/cmb_trig_patt/xpr[0:1]
->> +Date:        March 2023
->> +KernelVersion    6.7
->
-> This must be fixed to 6.9 now and also move the year to 2024. Rest 
-> looks fine.
+Acked-by: Piyush Mehta <piyush.mehta@amd.com>
 
-Sure, I will update in the next patch series.
+> ---
+>  Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml      | 3 ++-
+>  .../devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml     | 3 ++-
+>  Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml | 3 ++-
+>  Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml         | 3 ++-
+>  Documentation/devicetree/bindings/usb/microchip,usb5744.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/usb/xlnx,usb2.yaml           | 3 ++-
+>  6 files changed, 12 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> index b29ce598f9aa..9952e0ef7767 100644
+> --- a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> +++ b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Ceva AHCI SATA Controller
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  description: |
+>    The Ceva SATA controller mostly conforms to the AHCI interface with so=
+me
+> diff --git a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-
+> modepin.yaml b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-
+> modepin.yaml
+> index b1fd632718d4..bb93baa88879 100644
+> --- a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-
+> modepin.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-
+> modepin.ya
+> +++ ml
+> @@ -12,7 +12,8 @@ description:
+>    PS_MODE). Every pin can be configured as input/output.
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.ya=
+ml
+> b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+> index 49db66801429..1f1b42dde94d 100644
+> --- a/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Zynq UltraScale+ MPSoC and Versal reset
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  description: |
+>    The Zynq UltraScale+ MPSoC and Versal has several different resets.
+> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> index bb373eb025a5..00f87a558c7d 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Xilinx SuperSpeed DWC3 USB SoC controller
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> index 6d4cfd943f58..445183d9d6db 100644
+> --- a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> @@ -16,8 +16,9 @@ description:
+>    USB 2.0 traffic.
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+>    - Michal Simek <michal.simek@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> b/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> index 868dffe314bc..a7f75fe36665 100644
+> --- a/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Xilinx udc controller
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  properties:
+>    compatible:
+> --
+> 2.34.1
 
-
-Best,
-
-Tao
-
->
-> Suzuki
->
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (RW) Set/Get the value of the trigger pattern for the CMB
->> +        subunit TPDM.
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/cmb_trig_patt/xpmr[0:1]
->> +Date:        March 2023
->> +KernelVersion    6.7
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (RW) Set/Get the mask of the trigger pattern for the CMB
->> +        subunit TPDM.
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpr[0:1]
->> +Date:        March 2023
->> +KernelVersion    6.7
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (RW) Set/Get the value of the pattern for the CMB subunit TPDM.
->> +
->> +What: /sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpmr[0:1]
->> +Date:        March 2023
->> +KernelVersion    6.7
->> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
->> (QUIC) <quic_taozha@quicinc.com>
->> +Description:
->> +        (RW) Set/Get the mask of the pattern for the CMB subunit TPDM.
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index b55aee65a856..079c875ad667 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -66,6 +66,26 @@ static ssize_t tpdm_simple_dataset_show(struct 
->> device *dev,
->>               return -EINVAL;
->>           return sysfs_emit(buf, "0x%x\n",
->>                   drvdata->dsb->msr[tpdm_attr->idx]);
->> +    case CMB_TRIG_PATT:
->> +        if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
->> +            return -EINVAL;
->> +        return sysfs_emit(buf, "0x%x\n",
->> +            drvdata->cmb->trig_patt[tpdm_attr->idx]);
->> +    case CMB_TRIG_PATT_MASK:
->> +        if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
->> +            return -EINVAL;
->> +        return sysfs_emit(buf, "0x%x\n",
->> + drvdata->cmb->trig_patt_mask[tpdm_attr->idx]);
->> +    case CMB_PATT:
->> +        if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
->> +            return -EINVAL;
->> +        return sysfs_emit(buf, "0x%x\n",
->> +            drvdata->cmb->patt_val[tpdm_attr->idx]);
->> +    case CMB_PATT_MASK:
->> +        if (tpdm_attr->idx >= TPDM_CMB_MAX_PATT)
->> +            return -EINVAL;
->> +        return sysfs_emit(buf, "0x%x\n",
->> +            drvdata->cmb->patt_mask[tpdm_attr->idx]);
->>       }
->>       return -EINVAL;
->>   }
->> @@ -118,6 +138,30 @@ static ssize_t tpdm_simple_dataset_store(struct 
->> device *dev,
->>               ret = size;
->>           }
->>           break;
->> +    case CMB_TRIG_PATT:
->> +        if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
->> +            drvdata->cmb->trig_patt[tpdm_attr->idx] = val;
->> +            ret = size;
->> +        }
->> +        break;
->> +    case CMB_TRIG_PATT_MASK:
->> +        if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
->> + drvdata->cmb->trig_patt_mask[tpdm_attr->idx] = val;
->> +            ret = size;
->> +        }
->> +        break;
->> +    case CMB_PATT:
->> +        if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
->> +            drvdata->cmb->patt_val[tpdm_attr->idx] = val;
->> +            ret = size;
->> +        }
->> +        break;
->> +    case CMB_PATT_MASK:
->> +        if (tpdm_attr->idx < TPDM_CMB_MAX_PATT) {
->> +            drvdata->cmb->patt_mask[tpdm_attr->idx] = val;
->> +            ret = size;
->> +        }
->> +        break;
->>       default:
->>           break;
->>       }
->> @@ -279,10 +323,32 @@ static void tpdm_enable_dsb(struct tpdm_drvdata 
->> *drvdata)
->>     static void tpdm_enable_cmb(struct tpdm_drvdata *drvdata)
->>   {
->> -    u32 val;
->> +    u32 val, i;
->>         if (tpdm_has_cmb_dataset(drvdata)) {
->> +        /* Configure pattern registers */
->> +        for (i = 0; i < TPDM_CMB_MAX_PATT; i++) {
->> +            writel_relaxed(drvdata->cmb->patt_val[i],
->> +                drvdata->base + TPDM_CMB_TPR(i));
->> +            writel_relaxed(drvdata->cmb->patt_mask[i],
->> +                drvdata->base + TPDM_CMB_TPMR(i));
->> +            writel_relaxed(drvdata->cmb->trig_patt[i],
->> +                drvdata->base + TPDM_CMB_XPR(i));
->> + writel_relaxed(drvdata->cmb->trig_patt_mask[i],
->> +                drvdata->base + TPDM_CMB_XPMR(i));
->> +        }
->> +
->>           val = readl_relaxed(drvdata->base + TPDM_CMB_CR);
->> +        /*
->> +         * Set to 0 for continuous CMB collection mode,
->> +         * 1 for trace-on-change CMB collection mode.
->> +         */
->> +        if (drvdata->cmb->trace_mode)
->> +            val |= TPDM_CMB_CR_MODE;
->> +        else
->> +            val &= ~TPDM_CMB_CR_MODE;
->> +
->> +        /* Set the enable bit of CMB control register to 1 */
->>           val |= TPDM_CMB_CR_ENA;
->>             /* Set the enable bit of CMB control register to 1 */
->> @@ -886,6 +952,22 @@ static struct attribute *tpdm_dsb_msr_attrs[] = {
->>       NULL,
->>   };
->>   +static struct attribute *tpdm_cmb_trig_patt_attrs[] = {
->> +    CMB_TRIG_PATT_ATTR(0),
->> +    CMB_TRIG_PATT_ATTR(1),
->> +    CMB_TRIG_PATT_MASK_ATTR(0),
->> +    CMB_TRIG_PATT_MASK_ATTR(1),
->> +    NULL,
->> +};
->> +
->> +static struct attribute *tpdm_cmb_patt_attrs[] = {
->> +    CMB_PATT_ATTR(0),
->> +    CMB_PATT_ATTR(1),
->> +    CMB_PATT_MASK_ATTR(0),
->> +    CMB_PATT_MASK_ATTR(1),
->> +    NULL,
->> +};
->> +
->>   static struct attribute *tpdm_dsb_attrs[] = {
->>       &dev_attr_dsb_mode.attr,
->>       &dev_attr_dsb_trig_ts.attr,
->> @@ -932,6 +1014,18 @@ static struct attribute_group tpdm_cmb_attr_grp 
->> = {
->>       .is_visible = tpdm_cmb_is_visible,
->>   };
->>   +static struct attribute_group tpdm_cmb_trig_patt_grp = {
->> +    .attrs = tpdm_cmb_trig_patt_attrs,
->> +    .is_visible = tpdm_cmb_is_visible,
->> +    .name = "cmb_trig_patt",
->> +};
->> +
->> +static struct attribute_group tpdm_cmb_patt_grp = {
->> +    .attrs = tpdm_cmb_patt_attrs,
->> +    .is_visible = tpdm_cmb_is_visible,
->> +    .name = "cmb_patt",
->> +};
->> +
->>   static const struct attribute_group *tpdm_attr_grps[] = {
->>       &tpdm_attr_grp,
->>       &tpdm_dsb_attr_grp,
->> @@ -940,6 +1034,8 @@ static const struct attribute_group 
->> *tpdm_attr_grps[] = {
->>       &tpdm_dsb_patt_grp,
->>       &tpdm_dsb_msr_grp,
->>       &tpdm_cmb_attr_grp,
->> +    &tpdm_cmb_trig_patt_grp,
->> +    &tpdm_cmb_patt_grp,
->>       NULL,
->>   };
->>   diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
->> b/drivers/hwtracing/coresight/coresight-tpdm.h
->> index 2af92c270ed1..8cb8a9b35384 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
->> @@ -11,12 +11,23 @@
->>     /* CMB Subunit Registers */
->>   #define TPDM_CMB_CR        (0xA00)
->> +/*CMB subunit timestamp pattern registers*/
->> +#define TPDM_CMB_TPR(n)        (0xA08 + (n * 4))
->> +/*CMB subunit timestamp pattern mask registers*/
->> +#define TPDM_CMB_TPMR(n)    (0xA10 + (n * 4))
->> +/*CMB subunit trigger pattern registers*/
->> +#define TPDM_CMB_XPR(n)        (0xA18 + (n * 4))
->> +/*CMB subunit trigger pattern mask registers*/
->> +#define TPDM_CMB_XPMR(n)    (0xA20 + (n * 4))
->>     /* Enable bit for CMB subunit */
->>   #define TPDM_CMB_CR_ENA        BIT(0)
->>   /* Trace collection mode for CMB subunit */
->>   #define TPDM_CMB_CR_MODE    BIT(1)
->>   +/*Patten register number*/
->> +#define TPDM_CMB_MAX_PATT        2
->> +
->>   /* DSB Subunit Registers */
->>   #define TPDM_DSB_CR        (0x780)
->>   #define TPDM_DSB_TIER        (0x784)
->> @@ -151,6 +162,22 @@
->>           tpdm_simple_dataset_rw(msr##nr,            \
->>           DSB_MSR, nr)
->>   +#define CMB_TRIG_PATT_ATTR(nr)                    \
->> +        tpdm_simple_dataset_rw(xpr##nr,            \
->> +        CMB_TRIG_PATT, nr)
->> +
->> +#define CMB_TRIG_PATT_MASK_ATTR(nr)                \
->> +        tpdm_simple_dataset_rw(xpmr##nr,        \
->> +        CMB_TRIG_PATT_MASK, nr)
->> +
->> +#define CMB_PATT_ATTR(nr)                    \
->> +        tpdm_simple_dataset_rw(tpr##nr,            \
->> +        CMB_PATT, nr)
->> +
->> +#define CMB_PATT_MASK_ATTR(nr)                    \
->> +        tpdm_simple_dataset_rw(tpmr##nr,        \
->> +        CMB_PATT_MASK, nr)
->> +
->>   /**
->>    * struct dsb_dataset - specifics associated to dsb dataset
->>    * @mode:             DSB programming mode
->> @@ -186,9 +213,17 @@ struct dsb_dataset {
->>   /**
->>    * struct cmb_dataset
->>    * @trace_mode:       Dataset collection mode
->> + * @patt_val:         Save value for pattern
->> + * @patt_mask:        Save value for pattern mask
->> + * @trig_patt:        Save value for trigger pattern
->> + * @trig_patt_mask:   Save value for trigger pattern mask
->>    */
->>   struct cmb_dataset {
->>       u32            trace_mode;
->> +    u32            patt_val[TPDM_CMB_MAX_PATT];
->> +    u32            patt_mask[TPDM_CMB_MAX_PATT];
->> +    u32            trig_patt[TPDM_CMB_MAX_PATT];
->> +    u32            trig_patt_mask[TPDM_CMB_MAX_PATT];
->>   };
->>     /**
->> @@ -225,6 +260,10 @@ enum dataset_mem {
->>       DSB_PATT,
->>       DSB_PATT_MASK,
->>       DSB_MSR,
->> +    CMB_TRIG_PATT,
->> +    CMB_TRIG_PATT_MASK,
->> +    CMB_PATT,
->> +    CMB_PATT_MASK
->>   };
->>     /**
->
 
