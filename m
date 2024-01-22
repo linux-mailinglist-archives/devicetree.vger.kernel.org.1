@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-33564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F8A2835C0B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:53:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B3A835C13
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:55:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3A0A1C21631
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:53:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59304B2589A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85839168A7;
-	Mon, 22 Jan 2024 07:52:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3DB1B268;
+	Mon, 22 Jan 2024 07:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aPSsR1OQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="khVfk36o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33F81AAC9;
-	Mon, 22 Jan 2024 07:52:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06021A71B;
+	Mon, 22 Jan 2024 07:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705909977; cv=none; b=VM5aOap8dCL6oDfHGdfQDvfn1CZyq3+4/RC7zVOCwlKq25GjlQ34ZE4lYaWSjBr0nvSzPzSZGykUCce4/YgV/16JcJ5V/xSFlV3EvxtftoCEPBsHGIkm2mrgXGn1tktOhPnuo3gwppQxu687Y/EL1m122F1gzak3x9KvCTkqHBc=
+	t=1705910080; cv=none; b=Txjrff/J/bqDTTWf70D1GaNYrM2zIJske1Td2oLN8FMCUiAeZxdfEaMx+yRTth/uREJyE5gvh+fkIqvpnVlE9rpPhmKjWdT/46/Kaoq5/gk5UmNrLUBJsBL4rnjI4ifjpRphfFlA8oi/01PjQluetv9QHIr9/bCQ9hF7nwCxC84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705909977; c=relaxed/simple;
-	bh=4fsuFatDJf5eq+VZeQwEjq1x1pdlrxwMgJEQmPhWH9U=;
+	s=arc-20240116; t=1705910080; c=relaxed/simple;
+	bh=bg1c/cvshfSUWUxEN92SDIwzLHl9kyDOekX8mUVZHAk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oDk69TVqMmZkSaH556rllFQSdo0APnJjJ8YrmI4C983r/0EpWMIu+pQn6atFTwcKv6wpxObTGjoF7RcCz5L5QLfPOGTU3Udamth/I8iiDsJWBERoj7HsnSB1Bd4eGYjtVggIH6AvGGkELJuxlnN4CZrU2zZqKxDNIzsF352lDtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aPSsR1OQ; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:Content-Type; b=mv3XwUOqq6llLnqROazaZHi434M0GwYoJa0NaINZB4CO+uZshRhuqy6wW1xutOw0iiHArV8QTOqm8ltCyQ9lN7Qu9wIY4H13LzjrGPtP+nclUY8907YNiAThtqAmUTdzz9HbkIF6sOcQLnODNMTVsLMkGaL2nyTWUx5zUB8Yg3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=khVfk36o; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40e800461baso35150935e9.3;
-        Sun, 21 Jan 2024 23:52:55 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3367a304091so3192057f8f.3;
+        Sun, 21 Jan 2024 23:54:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705909974; x=1706514774; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1705910077; x=1706514877; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xq2E337IRcW0cWdNtXuyvIv8Cc8tASWsvBm9h/Ky4Zc=;
-        b=aPSsR1OQUozgrrJWeRTzV/ZhYk6fEiGfOykK+iyEFkZlWEZ0QPDvJpPwL4qVs+mes9
-         dKUBCvJXr9wVbPde/Mgbe2NCNvCTBsgQ94wP2wv504LgPJIR3zxdvoTZaXb5LortCKXW
-         pZkdKUOsXGGV56lexlKC1hloniRu3rHN/Yw9IzIGY6qUKqwF+qKe9vnqtVeQLtJoEsAx
-         mlcb/kmauxrMUN9Uz2EYFydsUNu0sgEyzNXZOzII/mC8AvgJHfAN0cQivqabb6fInJCe
-         LTXxusOyvNI3ry0NBPE2j99DhKEV+2bC6prsHXWnA9WmkCcY6cxboAMKaQnC/7tTd8b4
-         NNpg==
+        bh=RabbX6Gki8udX9fVIXmTnIqe6Awyq5G6O4BYZpPJAwo=;
+        b=khVfk36oks5VDOCsSHYrN+qegAiwgAABcy5ODfLRn+nlKSaH3W8Gh0K9Jod+O5jDZx
+         7kWSq3p3ejholcOieOpEJEnCIS0+n/Pxgi2IUc4RW1QP/UIhYBrPjviZjpHo0Ps0AWny
+         wrMnQRFjp8hoAL5tGzCG0KSRk2NCOW9e+Kx3F6o6xjveEwy2nPxmyO/TWBVNyXpni6Ng
+         h4bfHSOFRb0uOqDY9H8nZPC2jWBjnPsO8cIzwakrTnn4ARmLOkyAH4LXfG8xD+FBgMpB
+         ljvQ0czuIkpgmMO/m6t6sM/BqE5F38E9AFIGUrnjuFptv9GBzUE2dYt59aoCy947B7wu
+         IDiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705909974; x=1706514774;
+        d=1e100.net; s=20230601; t=1705910077; x=1706514877;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xq2E337IRcW0cWdNtXuyvIv8Cc8tASWsvBm9h/Ky4Zc=;
-        b=wtUgGixMKAhMMSinFWMhARxzAE65u1HLk0Y48wiFSISJTGUPM25uLYiV/PTCrP9dmt
-         amcfyrL+MuHKB6rGvHB4iUmrrdGiNalk3jkWoF5t8GltyEOHHuymg/QmFLUpB3KS2pmb
-         6TW4NUAQuLv4FR7iWhFxYc87ad3WUYuR0Fnsgx0HYS7kSLHDlc/fG63lKvYU2gvcIFlT
-         MY7lWv3ipj1w1VLzb2aMsXSzOYnoFPxwLgbkDhrGgqIWztvD9+TgCryZEzIMoz2M/nyw
-         We5SWnrMHhNfpi/2nr1C/8UyIL1KS7MMF9owg0oAH+Mj4OpYM/CLzJnslXz5W7IrqV8D
-         MXRg==
-X-Gm-Message-State: AOJu0YyFtiI7qaK4sDRPgtmiDywItjnDea7jGwgLF9LcRRPL522Np4+x
-	HYgI2bVgX9CH492BdarZWPe3fWzg1pqjq4N9zhnCzyV2JLif9Sd9
-X-Google-Smtp-Source: AGHT+IFJHGkQRJaf19kskcpBx7XRwZ3XpSWByp8JSPuZ+7TlwGl7DNPYEZ42exxLImc8MW6iW7JxMA==
-X-Received: by 2002:a05:600c:3d8f:b0:40e:872f:d09f with SMTP id bi15-20020a05600c3d8f00b0040e872fd09fmr1024225wmb.121.1705909973812;
-        Sun, 21 Jan 2024 23:52:53 -0800 (PST)
+        bh=RabbX6Gki8udX9fVIXmTnIqe6Awyq5G6O4BYZpPJAwo=;
+        b=amhflFGZEPbX2xMwhAhZb2ForrT4nMLTKCWn9UVcG/8xgXxgu+rH14rJVuQsBQVukD
+         KyR6KeI7Zh/L+l1xD4iAHIcTV/MuzwKiRrDeILJKnz10RlTgYU0ofD8/yJSjadCCaM9x
+         RRGiCQsMkGtfNEkEePHuJUy6Q+GjUyxwxatw8wjrAGaOGI2O2NjPVbZHnXfCebZbe8hi
+         FJSkdHLiQLi8rSgklHmftzo06r+aHeEeNuk9hp5Aga5bFmJ7MuXEsTg9TzTjbipIn8by
+         AV2rdNwioh/GhXFFLgMp8FE4gMG0DH9heEi0OEExOVG6ySHDz/vFNWixL76+LwHt6Hjz
+         VN+w==
+X-Gm-Message-State: AOJu0YxwhnMWXswrmpLKDxA/8hoeblhq4BfrK8Oycnkm9aIL/jNSGGFh
+	XSb2rygC+OOq0Z+jPuV1GSWJ2IOpnq01TH+onnQh/bJjMz0E3BbS8yE7CkOb
+X-Google-Smtp-Source: AGHT+IFUXMwoASwaT08yq7oCYxK7JHY4M48Muo93TI2g9XhuhCgYy//a3jzYQTs3TsQAwjAFmBA33g==
+X-Received: by 2002:a7b:cb8f:0:b0:40e:55a5:85f0 with SMTP id m15-20020a7bcb8f000000b0040e55a585f0mr1493445wmi.87.1705910076812;
+        Sun, 21 Jan 2024 23:54:36 -0800 (PST)
 Received: from [192.168.2.177] ([207.188.161.188])
-        by smtp.gmail.com with ESMTPSA id f7-20020adff8c7000000b0033921c383b2sm7841170wrq.67.2024.01.21.23.52.52
+        by smtp.gmail.com with ESMTPSA id p21-20020a05600c359500b0040e3488f16dsm37761046wmq.12.2024.01.21.23.54.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Jan 2024 23:52:52 -0800 (PST)
-Message-ID: <c5898964-819e-473f-94ac-61503db50a0f@gmail.com>
-Date: Mon, 22 Jan 2024 08:52:51 +0100
+        Sun, 21 Jan 2024 23:54:35 -0800 (PST)
+Message-ID: <115ec234-64b8-4dc0-8db2-aa1e81b4f3db@gmail.com>
+Date: Mon, 22 Jan 2024 08:54:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,17 +75,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: usb: mtu3: Add MT8195 MTU3 ip-sleep
- support
+Subject: Re: [PATCH 1/2] dt-bindings: media: mediatek-jpeg-encoder: change max
+ ioomus count
 Content-Language: en-US, ca-ES, es-ES
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- chunfeng.yun@mediatek.com
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20240112133222.240038-1-angelogioacchino.delregno@collabora.com>
+To: Eugen Hristev <eugen.hristev@collabora.com>, Rob Herring <robh@kernel.org>
+Cc: bin.liu@mediatek.com, angelogioacchino.delregno@collabora.com,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20231227130812.148914-1-eugen.hristev@collabora.com>
+ <20240109032731.GA2578937-robh@kernel.org>
+ <94beea2a-c4b9-4241-bbfe-8c57ca50fbf7@collabora.com>
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  xsFNBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
@@ -130,38 +130,40 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20240112133222.240038-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <94beea2a-c4b9-4241-bbfe-8c57ca50fbf7@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 12/01/2024 14:32, AngeloGioacchino Del Regno wrote:
-> Of the four USB controllers present on the MediaTek MT8195 SoC, three
-> of them (0, 2 and 3) are behind MTU3: add wakeup controls for them.
+On 15/01/2024 04:57, Eugen Hristev wrote:
+> On 1/9/24 05:27, Rob Herring wrote:
+>> On Wed, Dec 27, 2023 at 03:08:11PM +0200, Eugen Hristev wrote:
+>>> MT8186 has 4 iommus in the list, to cope with this situation, adjust
+>>> the maxItems to 4 (instead of previous 2).
+>>> Add also minItems as 1 since iommus are mandatory, to avoid warning
+>>> on the example.
+>>
+>> maxItems alone means minItems is the same size. If IOMMU is required,
+>> then 'required' is where that is defined. Is there a case where 1 IOMMU
+>> is valid? If so, what h/w has this case.
+>>
+>> Rob
+>>
+>>
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
->   Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml | 5 ++++-
->   1 file changed, 4 insertions(+), 1 deletion(-)
+> Hello Rob,
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-> index a59d91243ac8..d4e187c78a0b 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtu3.yaml
-> @@ -185,7 +185,10 @@ properties:
->               2 - used by mt2712 etc, revision 2 with following IPM rule;
->               101 - used by mt8183, specific 1.01;
->               102 - used by mt8192, specific 1.02;
-> -          enum: [1, 2, 101, 102]
-> +            103 - used by mt8195, IP0, specific 1.03;
-> +            105 - used by mt8195, IP2, specific 1.05;
-> +            106 - used by mt8195, IP3, specific 1.06;
-> +          enum: [1, 2, 101, 102, 103, 105, 106]
->   
->     mediatek,u3p-dis-msk:
->       $ref: /schemas/types.yaml#/definitions/uint32
+> Without setting a minItems , the example in the binding fails, because it has just
+> 2 items, while the maxItems is now 4.
+> I set minItems as 1 to avoid restricting any kind of hardware to have at least 2
+> items, but if you claim that previously, maxItems=minItems=2 , I will change this to 2.
+> Is that fine with you ?
+> 
+
+I think that's what you should do yes. If in the future there shows up a 
+platform with just one iommu, then we can fix that.
+
+Regards,
+Matthias
 
