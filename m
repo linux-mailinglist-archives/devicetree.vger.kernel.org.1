@@ -1,169 +1,125 @@
-Return-Path: <devicetree+bounces-33558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A7B2835B2E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:44:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D788835B33
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:45:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B826D287434
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 06:44:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 406461F21279
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 06:45:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15FCA6AD9;
-	Mon, 22 Jan 2024 06:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F538836;
+	Mon, 22 Jan 2024 06:45:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gy3CLvRw"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VxAozyKk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB19F500;
-	Mon, 22 Jan 2024 06:44:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D80BBF9C4;
+	Mon, 22 Jan 2024 06:45:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705905867; cv=none; b=Zm8uQ0faxIjUeRp9P+TVPoR0+odT8vhYCi4QyhFrdVz5z/8HWdtzgbKwt8TTxQ8l3zOVOIX5BgDtZcR/3Ek+RvhwXYH7TVP1q51ADrO73hBQRd1ut3JVeH3YLw1oRMgAOhnN38q6DXUCZJNB7/jHyheqTlnkWTKO3n2NNGNqzzI=
+	t=1705905917; cv=none; b=Y3uwBgVZG4DIcP1LgPoHekRFbWPscZEMyIclkQwhulWH+7xnHO7+VbM45oq6g6xNf4rr3+MzpKg6ZGpxsoH+wEofxSJbZ/DJBOD2PS6dZkOOUbvCoUlcCYNTZVpcM26ge6l8Oau96FlJFjEMQCZq/FA7WE0JWzwsvptufTlmy2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705905867; c=relaxed/simple;
-	bh=ldrUB48xZDazzp/AyajgHeXxDyEX8P50st74ShQc4Ks=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AS8kc08U0aaqjXL9oCVwpJI9X7vCUVx4tP4TLb4xY473t7X8+TJXatE2YUs6AwuExH++N2uXYYphZ033e+4FQA/wvqk4pGXvgPUVYolvYpdwwCqNnwz6wnXxajCwHATLCB0L0hr4Oa9wq5EUQCjly8gtXqyFRcURWndIJCVhw9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gy3CLvRw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 55E1EC433F1;
-	Mon, 22 Jan 2024 06:44:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705905866;
-	bh=ldrUB48xZDazzp/AyajgHeXxDyEX8P50st74ShQc4Ks=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=Gy3CLvRwcu6Dbp557Flou6m4aXwteg8Q0YtxqvxEJ84338lRhwyi+hYRtS91Unz8n
-	 pluK8+0UJbPidwN818gA8ty4DYszd3HzspIcWTe4Z8OCsgbWvzvTIiCNlnz/nZ3mIE
-	 5FMo3lINSWUM2/K/eZmOuEV4fLGn7FdfiY1HnOFyBYd8vYPfaam/86iFcItCJ9L4kl
-	 cll8ALoLzoOBFXD3sFgr3aUQ1oMmGyqcV6d5rtsmMrIQ+yAbEh3Dx/360kGRrhz/8O
-	 3JRBHvEiZ2gS9VzRFL94S7cjhM90WtEP9r2yivYgq07ARtiteU/CpqPs4HR3DMhGFg
-	 28GR3+dzK6H7w==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3139BC47DAF;
-	Mon, 22 Jan 2024 06:44:26 +0000 (UTC)
-From: Hui Liu via B4 Relay <devnull+quic_huliu.quicinc.com@kernel.org>
-Date: Mon, 22 Jan 2024 14:43:24 +0800
-Subject: [PATCH v6] arm64: dts: qcom: qcm6490-idp: Add definition for three
- LEDs
+	s=arc-20240116; t=1705905917; c=relaxed/simple;
+	bh=u4jJaaRIZOlrsFr7eaMTItXjgdXSz580j+gTB9Sm8es=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kLgV/xnSOPZzlhSNCXs78vNk2eDAG2zi/qh4mpaXh6MlV6JSF5UIWeoY1Z2CTkpae256Y2BtGZiL0LXUDxcpil7zxZV0t6TG/6aznPuWb+sItG7uorXeoIShCN/NhTj1Mm0H3bRtmJMNhTS48sW9M89jeEYiu3BdjEcVHv05Rew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VxAozyKk; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40M6j3OW033655;
+	Mon, 22 Jan 2024 00:45:03 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1705905903;
+	bh=Mtz0KU1wEit+CTv62UpJDF7oKSsLQo5fLRospjPQq74=;
+	h=From:To:CC:Subject:Date;
+	b=VxAozyKkUPgpZy4QTknPBolpPP9BBl+dTJftKnMz7jBpiHtYFb4a30T1RnjoJWfWG
+	 AWmrhDZ9oydyQIUN2vbaHpDPqXRIiAiR6YXxeV1zElJu3kHV51KiMbd4eGRdbOc1co
+	 XMTy/qq9FEHWHGyuT8Q7WAep9oBJBYg3bEDRCptc=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40M6j2tQ012528
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 22 Jan 2024 00:45:03 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
+ Jan 2024 00:45:02 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 22 Jan 2024 00:45:01 -0600
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40M6ivkB127922;
+	Mon, 22 Jan 2024 00:44:58 -0600
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <vigneshr@ti.com>, <afd@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v2] dt-bindings: PCI: ti,j721e-pci-host: Add support for J722S SoC
+Date: Mon, 22 Jan 2024 12:14:57 +0530
+Message-ID: <20240122064457.664542-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240122-lpg-v6-1-219737cf5beb@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAIwOrmUC/2WOzU7DMBAGX6XyuUZe/6XlxHsghJz1OrHUJq1dL
- FCUd8cJVCXi+Ek7szOxTClSZs+7iSUqMcdxqMPudwx7N3TEo6+bSSEVSDD8dOm4ds571egDgGP
- 18pIoxM/V8vpWd0jjmd/6RO7BAgh+xfH8fiKfeZEcuELnIbQtWuNerh8R44BP9WRR9jHfxvS1d
- hW1iLcJRVWBJulbgdYHEzaCJaLoO6UFgPyhdKVQC6GFtPZg2/+U+Uv9/jJrrLGhacIRCbfUPM/
- f4giaEkcBAAA=
-To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Hui Liu <quic_huliu@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1705905864; l=2220;
- i=quic_huliu@quicinc.com; s=20230823; h=from:subject:message-id;
- bh=n8xSHABdt74JEuBzHLY4lYbQGqDaAeo36uTk0NjptXM=;
- b=wTFFnqsHbmf742D/Tk8UBK4kYpSU/L6zoS1MROwEWFyqlYR6qVPBWNWUW7G4QbS2h5T1ra/Tg
- HsC3P6C/DzoCzhq/xfwBkNuCxRRPU2QMgMe+zELya+sidiZeDOvxW3S
-X-Developer-Key: i=quic_huliu@quicinc.com; a=ed25519;
- pk=1z+A50UnTuKe/FdQv2c0W3ajDsJOYddwIHo2iivhTTA=
-X-Endpoint-Received:
- by B4 Relay for quic_huliu@quicinc.com/20230823 with auth_id=80
-X-Original-From: Hui Liu <quic_huliu@quicinc.com>
-Reply-To: <quic_huliu@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Hui Liu <quic_huliu@quicinc.com>
+TI's J722S SoC has one instance of a Gen3 Single-Lane PCIe controller.
+The controller on J722S SoC is similar to the one present on TI's AM64
+SoC, with the difference being that the controller on AM64 SoC supports
+up to Gen2 link speed while the one on J722S SoC supports Gen3 link speed.
 
-Add definition for three LEDs to make sure they can
-be enabled base on QCOM LPG LED driver.
+Update the bindings with a new compatible for J722S SoC.
 
-Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
+Technical Reference Manual of J722S SoC: https://www.ti.com/lit/zip/sprujb3
+
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 ---
-Changes in v6:
-- Updated the seperate LEDs nodes to multi-led setting.
-- Link to v5: https://lore.kernel.org/r/20240115-lpg-v5-1-3c56f77f9cec@quicinc.com
 
-Changes in v5:
-- Rephrased commit text, replaced qcs6490-idp to qcm6490-idp.
-- Removed the unnecessary full.
-- Link to v4: https://lore.kernel.org/r/20240112-lpg-v4-1-c4004026686b@quicinc.com
+Hello,
 
-Changes in v4:
-- Removed "label" definition and added "function" definition.
-- Link to v3: https://lore.kernel.org/r/20231215-lpg-v3-1-4e2db0c6df5f@quicinc.com
+This patch is based on linux-next tagged next-20240122.
 
-Changes in v3:
-- Rephrased commit text and updated the nodes to qcm6490-idp board file.
-- Link to v2: https://lore.kernel.org/all/20231110-qcom_leds-v2-1-3cad1fbbc65a@quicinc.com/
+v1:
+https://lore.kernel.org/r/20240117102526.557006-1-s-vadapalli@ti.com/
+Changes since v1:
+- Dropped patches 1/3 and 2/3 of the v1 series as discussed in the v1
+  thread.
+- Updated patch 3/3 which is the v1 for this patch by dropping the checks
+  for the "num-lanes" property and "max-link-speed" property since the PCI
+  driver already validates the "num-lanes" property.
 
-Changes in v2:
-- Rephrased commit text and updated the nodes to board file.
-- Link to v1: https://lore.kernel.org/r/20231108-qcom_leds-v1-1-c3e1c8572cb0@quicinc.com
----
- arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Regards,
+Siddharth.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-index 37c91fdf3ab9..c9e7ddcbd259 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include "sc7280.dtsi"
- #include "pm7325.dtsi"
-@@ -414,6 +415,33 @@ vreg_bob_3p296: bob {
- 	};
- };
- 
-+&pm8350c_pwm {
-+	status = "okay";
-+
-+	multi-led {
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@1 {
-+			reg = <1>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+
-+		led@2 {
-+			reg = <2>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@3 {
-+			reg = <3>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+	};
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
+ Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
----
-base-commit: 17cb8a20bde66a520a2ca7aad1063e1ce7382240
-change-id: 20231215-lpg-4aadd374811a
-
-Best regards,
+diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+index b7a534cef24d..a7b5c4ce2744 100644
+--- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
++++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+@@ -14,6 +14,7 @@ properties:
+   compatible:
+     oneOf:
+       - const: ti,j721e-pcie-host
++      - const: ti,j722s-pcie-host
+       - const: ti,j784s4-pcie-host
+       - description: PCIe controller in AM64
+         items:
 -- 
-Hui Liu <quic_huliu@quicinc.com>
+2.34.1
 
 
