@@ -1,226 +1,283 @@
-Return-Path: <devicetree+bounces-33668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C138B835FAE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:29:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 824CC835FBF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:32:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7180F28CA71
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:29:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A71811C250D6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 318C13A1C9;
-	Mon, 22 Jan 2024 10:28:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 609AA374F1;
+	Mon, 22 Jan 2024 10:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zzImZ57Q"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="bxFFjgOU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2068.outbound.protection.outlook.com [40.107.94.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B63F3B782
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 10:28:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705919292; cv=none; b=OMyGxyPInY4KEkB6u8sQ7drLSlaKbcsyg5VaSngzf9q8irXAyEhu++xKRlkhLns4k+te3I7CpVZ/NpoDWlAl53Hk/t1VaoKk8aVMOKsg5neZIWwLBzor2tahAFx7qnmDVRgUgG6vcmzDrfyqW8fXTd1F/oouVfiordHueCpVw80=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705919292; c=relaxed/simple;
-	bh=vBIE41DUABMzuSycmktCw+6jZ56ZuxnAcG4FIrlwI+M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WPQx+62v4Iy0jzVeOp0YR685T9/wuwDFLKqHIO0rl2gqKDSCDLsxmDWEP7JSt0kUf6+owAWkTHlM7dix1rqbecPIEIYkFpbGU7NqI8UB6bmMfoXfks3QYUgC6yRpUB1eOABN50GUTE9yTC1YL2+N7g7qqq/le+kbPdbUGwjcaaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zzImZ57Q; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-337d90030bfso2643271f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 02:28:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705919287; x=1706524087; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=cTCtw5roejauRZb1rW/DubsmSIQ5L20XK+iYbkTVegQ=;
-        b=zzImZ57QX/bpTF/L4To311Ve/zqhohbDwdNcjW+APzzlug+Si3r1pwvmakgRr8Wt3p
-         PZClsgEw0IG6A679xyaGI9Thb6mSd9XTAUD2CGN0tFdU5Jz5dl/SZlqN1zgj4XxC5yVS
-         RrpGWr+JrQdvRrtk4KkDejKz6TbMYqKTNomaP09V2bd3mJIHanK0FpXJZ+Oy+I0M4Uxn
-         AsS5YMQSVSJEt2YTf1v9G6O4Thoc5ecedAmgnN2scx/cyY0SI27E4bfFRvrsmLTGvHEV
-         RgfrpHKJAIXbvaXUz4Zaq8RcaziE9JRM1KNFOx9RT+guvP58EQnVGX+PYzOa+jqoQIKf
-         Sk8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705919287; x=1706524087;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cTCtw5roejauRZb1rW/DubsmSIQ5L20XK+iYbkTVegQ=;
-        b=RmHVbDQ/NB2KLc5FO+fZ3Uwpz3IlL3OIH+/otzdrATi+R0Da/Y3/ompTzUEO/zRTST
-         9P/RqLp7wzznajcBmyENOtsW3dU5DfSnbQ/31GQ4mOtcSZkse69gJL58+x5efNrXe6Y9
-         Vy+5DRxjaKJ+6cpj6u+XZ66RUFUZS79gPkZG4VkwM1Qea/7MHpz01dRXTEx/IHZMBAuZ
-         vquBCru7p6jhHn0MkRSp2xvZjzTyx57K6VyXabGN0BaZwgiAD/0tgItTniJQIyu2WezX
-         VjBp8Kj3ZM2hJAuzxLEENf8QgPXOhg5sELh68qEIHc//Sy9p7JEmNZa32jW+2d/spcOP
-         euUA==
-X-Gm-Message-State: AOJu0YxgOAH4QAeVT0Hn8uHIwaKjW+HR2GYNfNzZRjfOh1/0oNu0N8Px
-	ozp3nPCh/FOaam1kLcV46hFVs4k47B1WJg8UP9tdp7e4zMm5DCsfzllkAVXRcBs=
-X-Google-Smtp-Source: AGHT+IFJN44C0XBmIhDGOu0CvPL9d8S5H/kcyzcz9lspP4Nm5ugoGJW4ka/39Dgy0iB6yMbk94G+Nw==
-X-Received: by 2002:a05:6000:104:b0:337:ac2c:cfd9 with SMTP id o4-20020a056000010400b00337ac2ccfd9mr1170855wrx.196.1705919287545;
-        Mon, 22 Jan 2024 02:28:07 -0800 (PST)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id n17-20020a5d67d1000000b003392f229b60sm3819885wrw.40.2024.01.22.02.28.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jan 2024 02:28:07 -0800 (PST)
-Date: Mon, 22 Jan 2024 10:28:05 +0000
-From: Daniel Thompson <daniel.thompson@linaro.org>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Karel Balej <balejk@matfyz.cz>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] backlight: Add Kinetic KTD2801 backlight support
-Message-ID: <20240122102805.GB8596@aspen.lan>
-References: <20240120-ktd2801-v3-0-fe2cbafffb21@skole.hr>
- <20240120-ktd2801-v3-3-fe2cbafffb21@skole.hr>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3368F2AE90;
+	Mon, 22 Jan 2024 10:32:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705919530; cv=fail; b=RjVnyZZ8/JfMnmfJb8gA43UqbNi+5vd0amTz277avfNgAOhUGDO0QgvWi/SJaapT97t1pVdmKIcTbqRkp11YD5nJ93CBsZG8ShdiysdrvG0SuJCzfQrEDHAbnx5znbYKBxbqpqtVTcFwT+beqVGLwIy0ZQ8c151MOK0sR9YiS60=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705919530; c=relaxed/simple;
+	bh=C0jcUvlbYSexw2p84QEP5pHujKKRytl9U+sM5BrH30k=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Jcx6jYReufJaF6EUnd8u2W6+gJLDNObKuV+LwEBRSYrKvxTH/QvbhpqPrrcqICheoNCv+48Le7IlJSat23vyAw35Dh67xcpmKBnEDDxVG53U5XWCNvMXXFCTRZKy6Bx1RP3k1QY3eiEcr3PJPI1xyMssNsrnztY6EP7l3hzo5K8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=bxFFjgOU; arc=fail smtp.client-ip=40.107.94.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eCbKXgdDCFyiaXh+hyJxRL7F5Rupppxo8XDHxSQx4dFQKIHD/18DBp4I9pPQ7o14IyYrI57vRB37HkVGDfgo7Zsq1WG42OGDpjSA1DRZEPKpNC5LSxJ9XKEjp9/9kyaIA+l/SVBqY5wYth+JWIwUIGROlBQ9g6St81FDLT8NVyL+PO0CKlhyGb5K9G28390waUjlPUTxNWuj+yWYRyu4/KceDYjrMlyFPiEKiOS8JwSewqMPauVvf/2/vYaGic5afg2QvklIlMkb0tUK+S8MdPr3uumIEvJGKZ5i6tJEZ/LYZ5JKVSMAkOwMX0zQIYRMMY/uoMlwIQ2+uJS8fAX8iA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bC73+wYHjIOkN9LZwFnzu7iowRybV7KPW50bgjX7ROA=;
+ b=MKQUvDrg7m6JorTin2i1IopILXQqzuwiyx+pra7eVTxJDt17dzxKgXscL/dsI1HWxzL2IHhfCSC1NY8TBC139H3oxEikLis1J7Tr6orRiMwKmFgwl5jaSEt1bfreoaP+jQs4lyWdv3P/7Mk+p3vsvBsYCROkYqnaCT7SIbdVwOghDHW4B6S/hz+DVs39RIBAM5HSWpcmLyKFcOSMhlP576O/DgEe4/e24NXulPEezgw+mPYiLhPkyf4cp4C9k8Lt1N2J9EhpeKXeFbcijqSZWaLGiaK+BfaPlbCTcU9Vs+6oEa73Ym9H+YMqRhl9GsmnoC2MnjF/IgpS4fkJaJ1bMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bC73+wYHjIOkN9LZwFnzu7iowRybV7KPW50bgjX7ROA=;
+ b=bxFFjgOUHOvjhVCzifNogVxaOMHErFBuVuczcFIpfxYkIjJgwLyEAIgHDC/2Ykt/YJLDkNTAcWOjYnwtqI5X7rj3hTpGeAu7pMdBlzbELGYV3y7dLL+tNw+UwsOvh8AUVTwRNC9BBg3oKf+qZDnC5xNKTOGJoM0KU4UIrUwd5uM=
+Received: from DM4PR12MB5938.namprd12.prod.outlook.com (2603:10b6:8:69::9) by
+ CH2PR12MB4875.namprd12.prod.outlook.com (2603:10b6:610:35::24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7202.32; Mon, 22 Jan 2024 10:32:01 +0000
+Received: from DM4PR12MB5938.namprd12.prod.outlook.com
+ ([fe80::2436:a622:c7ca:cbcb]) by DM4PR12MB5938.namprd12.prod.outlook.com
+ ([fe80::2436:a622:c7ca:cbcb%4]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
+ 10:32:01 +0000
+From: "Sayyed, Mubin" <mubin.sayyed@amd.com>
+To: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>, "dlemoal@kernel.org"
+	<dlemoal@kernel.org>, "cassel@kernel.org" <cassel@kernel.org>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "linus.walleij@linaro.org"
+	<linus.walleij@linaro.org>, "brgl@bgdev.pl" <brgl@bgdev.pl>, "Simek, Michal"
+	<michal.simek@amd.com>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, "Mehta, Piyush"
+	<piyush.mehta@amd.com>, "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
+CC: "linux-ide@vger.kernel.org" <linux-ide@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-usb@vger.kernel.org"
+	<linux-usb@vger.kernel.org>, "git (AMD-Xilinx)" <git@amd.com>
+Subject: RE: [PATCH] dt-bindings: xilinx: replace Piyush Mehta maintainership
+Thread-Topic: [PATCH] dt-bindings: xilinx: replace Piyush Mehta maintainership
+Thread-Index: AQHaSsvSozYxmIi7AkmoVI8kTsLKPbDlpl8Q
+Date: Mon, 22 Jan 2024 10:32:01 +0000
+Message-ID:
+ <DM4PR12MB59388E96AFBE5C1AD3A7C9FF9D752@DM4PR12MB5938.namprd12.prod.outlook.com>
+References: <1705664181-722937-1-git-send-email-radhey.shyam.pandey@amd.com>
+In-Reply-To: <1705664181-722937-1-git-send-email-radhey.shyam.pandey@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR12MB5938:EE_|CH2PR12MB4875:EE_
+x-ms-office365-filtering-correlation-id: 23e7ea79-c137-42c5-32ab-08dc1b355eb4
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ TFrhBBMnGZeHrf8xH0ToqazzC+oklNOzn9Czlw/SosxfaoT2lnETrMgvfrIaoWvqq71eRqORmw3KCkUhFrcDzMG7rLezqY3jJYcJn99zsC5tEqwYEl7jaisciLdrBU1AXL7kQx5i7N1g/3WFcfhJlHsw7vCik1k/CUMVJTONJtKB7yfGGofirL/krn0GVZ2DsWG9UZ4S4djw+/neN7davcfLeDPxNAUqejqgLjKri1sTphyTh0KkJX1ZA0IsuNZIVVHKHe6L2SX0bnDYUA3AAgQdAVf2OEZ1dJUybux2ZfLbF765rm8xuMDGAGudljbWVsgBOeJlGoDHuYE3VQkAMc9se/t5z1dy4pJLgLNHkEBIVNSVYo97eGzvx7Kff/QC4p+g9aRlen8n5FSzUy1aK6/R4/QgwCQInFPG70cITcdGDO5uqzaBF/ZXkAhUS5QzCaZswwcblW1xa5aTTDYrlaN9u44tuLIEA2Mr4ah563fMESHvmFtev6e8hVz0aWfXh/kkGRVTMjTtCzHZI/1ZswxVazfde7hkJ5IU85dsdxfmtYivZC05MPAazm6tQyw1Xe8ihyXj/tHiiEe9L6oTfnsuSv8ejuz42F4xHKMmOr2mMFYqw+Ok7OP/LE5rHbB0
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5938.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(376002)(39860400002)(366004)(396003)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(921011)(38070700009)(7696005)(6506007)(53546011)(122000001)(71200400001)(478600001)(966005)(55016003)(9686003)(316002)(8676002)(8936002)(4326008)(52536014)(38100700002)(76116006)(54906003)(110136005)(64756008)(66446008)(66946007)(6636002)(66476007)(66556008)(83380400001)(26005)(86362001)(41300700001)(33656002)(5660300002)(2906002)(7416002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?SATEIX7X+jgRdRxXOtXdYt1v67jKHnZZxJyFyBUpzny0jyAPBjJEERZQCvvo?=
+ =?us-ascii?Q?JLYKTBRA0p5pED1HBzVBZlW/BAa46Y+1ho0jhDkGGDY5UPqjt0ncaGxkHUY5?=
+ =?us-ascii?Q?NdcavuJRVMCHjPbWmodrVDsbH9+4hR0fzRSOIn5oL93SYZmAWqTiT/ChtDfC?=
+ =?us-ascii?Q?ui6eKEk4CpKr1tuPcC4wGNz48TZoexHtOB2VOoyvRXuXlmct1yz85qV0yGxq?=
+ =?us-ascii?Q?ZA3mtarOJdCRiZDpX6S11AaAjhO/fKvFjAVHjudVrPnEYq73fcAcVhhn6MIl?=
+ =?us-ascii?Q?FYftv9WApNWaOu8CebrZ2NiMef1vilsYFGQgtVUF+evUhUoAz2RmG2EBYgqG?=
+ =?us-ascii?Q?P4RshIIaQzx8jERNA5N0K9jlr8+86AVwsSgYhltXqsn3U/8NsDNX7GQtMoUl?=
+ =?us-ascii?Q?lHiUty4ozmEyAflD6xEp5bnOLmoLRjLWd02M2FpjofHpNKs69splAWcoc8y1?=
+ =?us-ascii?Q?RGObphxbMvacP2gG0A5uQQWJtY4xJXxMAUEDXtRNExyXflED6Hy+3KJ0U1eZ?=
+ =?us-ascii?Q?PesdF75D6vf7MxE6fZL2ONnZf6ir5o2hGHbEeMYLqaeiREJpSzYdI57MHHzE?=
+ =?us-ascii?Q?5x5GzctD0E5cJJJoX2TH5aAVk4YngwjzmOmjjn+IgK0ZcHH2H9Li5N4ruwgv?=
+ =?us-ascii?Q?pKJsoA/lfwUjN+Ezy7QX0cuXGUUrxTWzM0SysAkd7njnumVlr9Twy7txs+TT?=
+ =?us-ascii?Q?0z0vikP3PLpedxgY5RuPJHrkYQzZxeMi28KoPZNnqwP2chSiDTZWQnrVZvWx?=
+ =?us-ascii?Q?Bku/qkJiQ4T5wYLfApt0u7Bl5jy5XHp1KbGFlVI6B2HqxEPVY38eqrDFNr0Q?=
+ =?us-ascii?Q?qfmQCA898j5okPxkfe7Xvmu2VESOHF9bb+r0WNfYF5oFY3vqY5GnH2BSTeVG?=
+ =?us-ascii?Q?kY/gOyxjUmc/PLeN6Kw37XCAV5rLQKBCeLjCL9CNDztyJ1Ej3jg00dZbxh/g?=
+ =?us-ascii?Q?TTecOEtme9iqjK24o0P8pZkyY7U1UWYKXgl2n/OE/6CCmCYlIq1KWgUnNmbU?=
+ =?us-ascii?Q?TQ3xdQaEycq9kb1AfDs670S8mIMPqNMwzXv8mCSgir2KDhd4IJ7qTqcSPBuI?=
+ =?us-ascii?Q?ZqUhqZ5x7TYeXWm9cDm0/eaIQppgbf16dwVECDKEiImNBqmYlhKUiiu5yLVK?=
+ =?us-ascii?Q?JCg2JHLw0IXFk3aWo9GumrN6ly8f8YE7OmgPQsdMg8RvSfFLOkPWuwvOc6LA?=
+ =?us-ascii?Q?8LYsWY2130GGx/5suA9DCKhBMO2+oOd2XUhzWvGxSOAenlTAsiSPY4ByXp3h?=
+ =?us-ascii?Q?URgVOKhQHlNZ7V04I6APGKP29cehoDQnpOTeW4h1GWaxyVi8bzhtRfJQb+dn?=
+ =?us-ascii?Q?p4+T3HoQaG7gTTz/7ILLS8/DfLFmlqwPqwVQKB6fY1ngTfDujdb/iZxz/cCB?=
+ =?us-ascii?Q?Ze5+AyXN9ipZQiU0xNbnPq3MqyVdfKdtZrTVFrOPHpaSDmSBQurTkLjAftCs?=
+ =?us-ascii?Q?/DUgn8pnfJNQiwGRL8DcenxSwJHwgd0aKIqRkF0JNGgMtAVryef2GpsNddZs?=
+ =?us-ascii?Q?F0I03QLXqDRP+YTR+fIKaCZ+9MYcPgCfOTV//fPORYlylwGYD0MdsOPron1Y?=
+ =?us-ascii?Q?qME0+vSchA/bLsswwYg=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240120-ktd2801-v3-3-fe2cbafffb21@skole.hr>
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5938.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 23e7ea79-c137-42c5-32ab-08dc1b355eb4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2024 10:32:01.5765
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: X8EwNoiF+NF5gh9YOm7Zxt3PBMInuwetlP2ulmQamAkv83RMBrk5fF8LzoUDtfa1pA7b6Orxe4Tr8L94z7Yr+g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4875
 
-On Sat, Jan 20, 2024 at 10:26:45PM +0100, Duje Mihanović wrote:
-> KTD2801 is a LED backlight driver IC found in samsung,coreprimevelte.
-> The brightness can be set using PWM or the ExpressWire protocol. Add
-> support for the KTD2801.
->
-> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+> -----Original Message-----
+> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> Sent: Friday, January 19, 2024 5:06 PM
+> To: dlemoal@kernel.org; cassel@kernel.org; robh+dt@kernel.org;
+> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+> linus.walleij@linaro.org; brgl@bgdev.pl; Simek, Michal
+> <michal.simek@amd.com>; p.zabel@pengutronix.de;
+> gregkh@linuxfoundation.org; Mehta, Piyush <piyush.mehta@amd.com>;
+> Sayyed, Mubin <mubin.sayyed@amd.com>; Pandey, Radhey Shyam
+> <radhey.shyam.pandey@amd.com>
+> Cc: linux-ide@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-gpio@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-usb@vger.kernel.org; git (AMD-Xilinx)
+> <git@amd.com>
+> Subject: [PATCH] dt-bindings: xilinx: replace Piyush Mehta maintainership
+>=20
+> As Piyush is leaving AMD, he handed over ahci-ceva, ZynqMP Mode Pin GPIO
+> controller, Zynq UltraScale+ MPSoC and Versal reset, Xilinx SuperSpeed
+> DWC3 USB SoC controller, Microchip USB5744 4-port Hub Controller and Xili=
+nx
+> udc controller maintainership duties to Mubin and Radhey.
+>=20
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Acked-by: Mubin Sayyed <mubin.sayyed@amd.com>
 
-As Linus W. said, this is looking really nice now. Thanks!
+Thanks,
+Mubin
+> ---
+>  Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml      | 3 ++-
+>  .../devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml     | 3 ++-
+>  Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml | 3 ++-
+>  Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml         | 3 ++-
+>  Documentation/devicetree/bindings/usb/microchip,usb5744.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/usb/xlnx,usb2.yaml           | 3 ++-
+>  6 files changed, 12 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> index b29ce598f9aa..9952e0ef7767 100644
+> --- a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> +++ b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Ceva AHCI SATA Controller
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  description: |
+>    The Ceva SATA controller mostly conforms to the AHCI interface with so=
+me
+> diff --git a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-
+> modepin.yaml b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-
+> modepin.yaml
+> index b1fd632718d4..bb93baa88879 100644
+> --- a/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-
+> modepin.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/xlnx,zynqmp-gpio-
+> modepin.ya
+> +++ ml
+> @@ -12,7 +12,8 @@ description:
+>    PS_MODE). Every pin can be configured as input/output.
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.ya=
+ml
+> b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+> index 49db66801429..1f1b42dde94d 100644
+> --- a/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+> +++ b/Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Zynq UltraScale+ MPSoC and Versal reset
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  description: |
+>    The Zynq UltraScale+ MPSoC and Versal has several different resets.
+> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> index bb373eb025a5..00f87a558c7d 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Xilinx SuperSpeed DWC3 USB SoC controller
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> index 6d4cfd943f58..445183d9d6db 100644
+> --- a/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> +++ b/Documentation/devicetree/bindings/usb/microchip,usb5744.yaml
+> @@ -16,8 +16,9 @@ description:
+>    USB 2.0 traffic.
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+>    - Michal Simek <michal.simek@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> b/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> index 868dffe314bc..a7f75fe36665 100644
+> --- a/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/xlnx,usb2.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Xilinx udc controller
+>=20
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>=20
+>  properties:
+>    compatible:
+> --
+> 2.34.1
 
-Just a couple of nits below.
-
-
-> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-> index 51387b1ef012..585a5a713759 100644
-> --- a/drivers/video/backlight/Kconfig
-> +++ b/drivers/video/backlight/Kconfig
-> @@ -183,6 +183,14 @@ config BACKLIGHT_KTD253
->  	  which is a 1-wire GPIO-controlled backlight found in some mobile
->  	  phones.
->
-> +config BACKLIGHT_KTD2801
-> +	tristate "Backlight Driver for Kinetic KTD2801"
-> +	depends on GPIOLIB || COMPILE_TEST
-
-As patch 1 feedback, seems odd for the client to be responsible for
-this. It should be managed in LEDS_EXPRESSWIRE.
-
-
-> +	select LEDS_EXPRESSWIRE
-> +	help
-> +	  Say Y to enable the backlight driver for the Kinetic KTD2801 1-wire
-> +	  GPIO-controlled backlight found in Samsung Galaxy Core Prime VE LTE.
-> +
->  config BACKLIGHT_KTZ8866
->  	tristate "Backlight Driver for Kinetic KTZ8866"
->  	depends on I2C
-> diff --git a/drivers/video/backlight/ktd2801-backlight.c b/drivers/video/backlight/ktd2801-backlight.c
-> new file mode 100644
-> index 000000000000..7b9d1a93aa71
-> --- /dev/null
-> +++ b/drivers/video/backlight/ktd2801-backlight.c
-> @@ -0,0 +1,143 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Datasheet:
-> + * https://www.kinet-ic.com/uploads/web/KTD2801/KTD2801-04b.pdf
-> + */
-> +#include <linux/backlight.h>
-> +#include <linux/bits.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/leds-expresswire.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +
-> +/* These values have been extracted from Samsung's driver. */
-> +#define KTD2801_EXPRESSWIRE_DETECT_DELAY_US	150
-> +#define KTD2801_EXPRESSWIRE_DETECT_US		270
-> +#define KTD2801_SHORT_BITSET_US			5
-> +#define KTD2801_LONG_BITSET_US			(3 * KTD2801_SHORT_BITSET_US)
-> +#define KTD2801_DATA_START_US			5
-> +#define KTD2801_END_OF_DATA_LOW_US		10
-> +#define KTD2801_END_OF_DATA_HIGH_US		350
-> +#define KTD2801_PWR_DOWN_DELAY_US		2600
-
-These are a little pointless now. They are all single use constants
-and have little documentary value.
-
-The lack of documentary value is because, for example,
-KTD2801_EXPRESSWIRE_DETECT_DELAY_US, is assigned to a structure
-field called detect_delay_us.
-
-Likewise I doubt that explicitly stating that long_bitset_us is 3x
-bigger than short_bitset_us is important for future driver maintainance.
-
-
-> +
-> +#define KTD2801_DEFAULT_BRIGHTNESS	100
-> +#define KTD2801_MAX_BRIGHTNESS		255
-> +
-> +const struct expresswire_timing ktd2801_timing = {
-> +	.poweroff_us = KTD2801_PWR_DOWN_DELAY_US,
-> +	.detect_delay_us = KTD2801_EXPRESSWIRE_DETECT_DELAY_US,
-> +	.detect_us = KTD2801_EXPRESSWIRE_DETECT_US,
-> +	.data_start_us = KTD2801_DATA_START_US,
-> +	.short_bitset_us = KTD2801_SHORT_BITSET_US,
-> +	.long_bitset_us = KTD2801_LONG_BITSET_US,
-> +	.end_of_data_low_us = KTD2801_END_OF_DATA_LOW_US,
-> +	.end_of_data_high_us = KTD2801_END_OF_DATA_HIGH_US
-> +};
-> +
-> +struct ktd2801_backlight {
-> +	struct expresswire_common_props props;
-> +	struct backlight_device *bd;
-> +	bool was_on;
-> +};
-> +
-> +static int ktd2801_update_status(struct backlight_device *bd)
-> +{
-> +	struct ktd2801_backlight *ktd2801 = bl_get_data(bd);
-> +	u8 brightness = (u8) backlight_get_brightness(bd);
-> +
-> +	if (backlight_is_blank(bd)) {
-> +		expresswire_power_off(&ktd2801->props);
-> +		ktd2801->was_on = false;
-> +		return 0;
-> +	}
-> +
-> +	if (!ktd2801->was_on) {
-> +		expresswire_enable(&ktd2801->props);
-> +		ktd2801->was_on = true;
-> +	}
-> +
-> +	expresswire_start(&ktd2801->props);
-> +
-> +	for (int i = 7; i >= 0; i--)
-> +		expresswire_set_bit(&ktd2801->props, !!(brightness & BIT(i)));
-
-The !! is redundant... but, as previous feedback, I think writing a u8
-should be in the library code anyway.
-
-> +	expresswire_end(&ktd2801->props);
-> +	return 0;
-> +}
-> +
-> <snip>
-
-
-Daniel.
 
