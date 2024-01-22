@@ -1,115 +1,135 @@
-Return-Path: <devicetree+bounces-33851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86111836DBC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:38:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1E8836F1E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:10:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEF641C2781A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:38:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BE01B27CD5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:38:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E113E462;
-	Mon, 22 Jan 2024 16:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D93040C19;
+	Mon, 22 Jan 2024 16:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rWyy2bYK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D5kwTiZ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B581E3D962;
-	Mon, 22 Jan 2024 16:50:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8007440C1F
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 16:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705942252; cv=none; b=YG90NTH4cIAfD12dE6vtN8ATswIy7yb2oMwMmR1XfG6RFRlr2O3mZKe13Wdvcc+LHUAU75MiGNzVeFAAH567NjWElO/uAClEvDIXbNRBBiGeNuyMeAcBIhEQAyPbBYsLnMT6c5RCdAtd/ox4b4HvpGtbmy7Iwms6yjZ7z+09T0k=
+	t=1705942288; cv=none; b=U74yps34XKQYmH+6kZwu1Cr/D15BioeLO0A6+Ea4eIdjgFlBli66ETVatIHuKDlRK2hFFkqbYayR5eLSm5+tmfyMbNOq/HuAZ+2TScTOfvXkL/EeY7SL2SkXoxm8XNJA8LllBt2MrUsJl677thnWAhgb1RMyRLfnfVcc2TrcMD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705942252; c=relaxed/simple;
-	bh=+bB1PovhDMEo3TwLJkit0WLf/1rP/pbwEtJbQCjHpL0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hECdPJSW4jIWGupYed8eACe5bQVgZlp+P8knhx6EBYw1aqYyw6S9Tl6SZ+OBOjF1P2n51vO7oQGA2NsHxHMrQQBPIqD3Gc43soJHjJ0otqVXNZ0C5dirjOoQ/xN3fqcLMcMy/6xQVWpZNrkqx8nOHLh49Ob3y6rSqUMlHluiSRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rWyy2bYK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 473EDC433F1;
-	Mon, 22 Jan 2024 16:50:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705942252;
-	bh=+bB1PovhDMEo3TwLJkit0WLf/1rP/pbwEtJbQCjHpL0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rWyy2bYKk1m7E5oo7lRG12UXFBp0dQYKRE3U+A0tBxlphR4yQV2/P4BqftWjwP22c
-	 puYbvHbN4zy8mzkHE0RnkHtt9QwGMsI5ifMWUqqFlIuRmnWH4rUdqoCRlppBElnSS0
-	 aR8wqAt0i8xB8jyWZ0CcJVtbDxl6n078cKQWoEp5xMMpvQbocAo1odZS/DMn64nHBu
-	 hCKcmobd6veUyFLtYCexbvpH2yMC18AiyjSBx3s3N0FhUBWtlbhxbLdXI2uKLyf8B1
-	 NreGz4jAjbQLNHuFs71v15V0GfXduQjAkfsQfnjCSoqQRIrG9v0McljMUkXdD5XJ7c
-	 iM48v4lieUHlw==
-From: Conor Dooley <conor@kernel.org>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-pwm@vger.kernel.org,
-	William Qiu <william.qiu@starfivetech.com>
-Cc: conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
+	s=arc-20240116; t=1705942288; c=relaxed/simple;
+	bh=+b00yzntzNaMOB3fvEhCtmlXhPID8D+X7olNpK8KzM0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PkdyHrLWUfXcE8PCzS7/EeCq1EptGlzuvihX3iSKuEsRu+Wi7jtywrk76ju696RbDbpsA6CLKU+mJ4MFBx0u7a38/DZ/4ShVRmg4JeaaorxpwwvFJTGwiHrytEsu/fkJ2iH46qczWGv0E/L5v+0fCTrGS/A+tGb5unMq2pog4Tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D5kwTiZ4; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40e8801221cso33913845e9.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 08:51:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705942284; x=1706547084; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9Xb3P5uW0KtHlr1gJq8gbLgJiB2wQ8rCJWCXkjGJUtQ=;
+        b=D5kwTiZ4WknU5u/XVuRikr5TCLZs5eeF4JPi3cVFBFoFsn5EkN2mtcEdJs6tJ79+ah
+         rFFL+8RfHJCsQlpUlKSs8b8YjHYZHBZtWqdPxjBEHij2i2iwlFqTx8dCukYmKNh1mfKi
+         ruOHbInznOWxkVx/kNH+QYTaetdQf8WSgf3tydOtfpu/4qC7SNDQHwJ5ErMnw6g9f2gV
+         PfuXdE0qr5lEVl82kO5hPnn67VAyVMHRAlqpFkVqRW2/U+qXVGy1ZyH4VIA61nXav+iQ
+         QwZMWFE1prBMzKu7A7pm1MDQi2QfHSxLUiI1MjF3l+WqZOtKyrkuGuXwtlbObvsBEtay
+         UxGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705942284; x=1706547084;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9Xb3P5uW0KtHlr1gJq8gbLgJiB2wQ8rCJWCXkjGJUtQ=;
+        b=eL1aLqAh8vftggHLlucQuvvGvhj3aynIdpwWInouhSGB+Mt3h7kQfS5vQL7xVOcHbM
+         TvCJ7GeIXIHaqZ7iXND9m03SqqQ5NJZmk1bj84u0+Ys9/rndd3gxhHHrjmoHtDLbKFl5
+         WzVDihIlAqsT2tkvC8p10pMKJebdw++OwqGpiHCY+GKLcDRI3HyIauq4UL42eegps9+9
+         z9AXVH9iECMOASzTgUGVq7UeATnJUQ2cIdBs8jpx/qoc3l2+rVtn106WemEfDcTcjQHn
+         d9qUiclOTbPJcFTi9QSAIRNc3IWHYyW8VKsGuqliR+RvnWulmreeNnsWZ0BSJILWhP24
+         fcgQ==
+X-Gm-Message-State: AOJu0YwaM6ySagihkQOS03ChQn18OZKM6b/Sr4TkVhOFuOI/aLLcEJ55
+	YFCQWDUod0DK2N+z4hmzthGNUS8carPmNN7qqJ/8YIvpui5zPRxb+aeEXrPtN4w=
+X-Google-Smtp-Source: AGHT+IEe3ZCJOUFqqCaZfXUenFubOiJGjr88xxBaUX1UAuvcpYxGpx+soMDWnfmXjkm1SCbpuxpXaQ==
+X-Received: by 2002:a05:600c:b9a:b0:40e:a9c0:31fe with SMTP id fl26-20020a05600c0b9a00b0040ea9c031femr1882939wmb.68.1705942284282;
+        Mon, 22 Jan 2024 08:51:24 -0800 (PST)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id iv11-20020a05600c548b00b0040d8ff79fd8sm39802749wmb.7.2024.01.22.08.51.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jan 2024 08:51:23 -0800 (PST)
+Date: Mon, 22 Jan 2024 16:51:22 +0000
+From: Daniel Thompson <daniel.thompson@linaro.org>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	=?utf-8?q?Emil_Renner_Berthing_=3Ckernel=40esmil=2Edk=3E=2C_Rob_Herring_?=@web.codeaurora.org,
-	=?utf-8?q?=3Crobh+dt=40kernel=2Eorg=3E=2C_Thierry_Reding_=3Cthierry=2Eredin?=@web.codeaurora.org,
-	=?utf-8?q?g=40gmail=2Ecom=3E=2C_Philipp_Zabel_=3Cp=2Ezabel=40pengutronix=2E?=@web.codeaurora.org,
-	=?utf-8?q?de=3E=2C_Krzysztof_Kozlowski_=3Ckrzysztof=2Ekozlowski+dt=40linaro?=@web.codeaurora.org,
-	=?utf-8?q?=2Eorg=3E=2C_Conor_Dooley_=3Cconor+dt=40kernel=2Eorg=3E=2C_Uwe_Kl?=@web.codeaurora.org,
-	=?utf-8?q?eine-K=C3=B6nig_=3Cu=2Ekleine-koenig=40pengutronix=2Ede=3E=2C_Hal?=@web.codeaurora.org,
-	=?utf-8?q?_Feng_=3Chal=2Efeng=40starfivetech=2Ecom=3E=2C_Paul_Walmsley_=3Cp?=@web.codeaurora.org,
-	=?utf-8?q?aul=2Ewalmsley=40sifive=2Ecom=3E=2C_Palmer_Dabbelt_=3Cpalmer=40da?=@web.codeaurora.org,
-	=?utf-8?q?bbelt=2Ecom=3E=2C_Albert_Ou_=3Caou=40eecs=2Eberkeley=2Eedu=3E?=@web.codeaurora.org
-Subject: Re: (subset) [PATCH v10 0/4] StarFive's Pulse Width Modulation driver support
-Date: Mon, 22 Jan 2024 16:50:25 +0000
-Message-ID: <20240122-twitter-scroll-75416c5bbd27@spud>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231222094548.54103-1-william.qiu@starfivetech.com>
-References: <20231222094548.54103-1-william.qiu@starfivetech.com>
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Karel Balej <balejk@matfyz.cz>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] backlight: Add Kinetic KTD2801 backlight support
+Message-ID: <20240122165122.GB8815@aspen.lan>
+References: <20240120-ktd2801-v3-0-fe2cbafffb21@skole.hr>
+ <20240120-ktd2801-v3-3-fe2cbafffb21@skole.hr>
+ <20240122102805.GB8596@aspen.lan>
+ <1783156.VLH7GnMWUR@radijator>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=886; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=U5aoRofgZ8k5FULkpvol3351Ekn65QH83qMdqdxrcpo=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKnr5lyIuKvztKtyh0bUbQX3q2IfYxjX3XVzk91Wltgt8 2npA8nzHaUsDGIcDLJiiiyJt/tapNb/cdnh3PMWZg4rE8gQBi5OAZiIqiDDP/O1rm78cby6Cslf TPv+Bf28knuKST25f+H8+nS1Mqd5tYwMZ57MPD1v0dKrlpG8PBdaDJfb3Tn4dhrrkVTeH0/ObXi jxAQA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1783156.VLH7GnMWUR@radijator>
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Mon, Jan 22, 2024 at 05:24:56PM +0100, Duje Mihanović wrote:
+> On Monday, January 22, 2024 11:28:05 AM CET Daniel Thompson wrote:
+> > On Sat, Jan 20, 2024 at 10:26:45PM +0100, Duje Mihanović wrote:
+> > > diff --git a/drivers/video/backlight/ktd2801-backlight.c
+> > > b/drivers/video/backlight/ktd2801-backlight.c new file mode 100644
+> > > index 000000000000..7b9d1a93aa71
+> > > --- /dev/null
+> > > <snip>
+> > > +/* These values have been extracted from Samsung's driver. */
+> > > +#define KTD2801_EXPRESSWIRE_DETECT_DELAY_US	150
+> > > +#define KTD2801_EXPRESSWIRE_DETECT_US		270
+> > > +#define KTD2801_SHORT_BITSET_US			5
+> > > +#define KTD2801_LONG_BITSET_US			(3 *
+> KTD2801_SHORT_BITSET_US)
+> > > +#define KTD2801_DATA_START_US			5
+> > > +#define KTD2801_END_OF_DATA_LOW_US		10
+> > > +#define KTD2801_END_OF_DATA_HIGH_US		350
+> > > +#define KTD2801_PWR_DOWN_DELAY_US		2600
+> >
+> > These are a little pointless now. They are all single use constants
+> > and have little documentary value.
+> >
+> > The lack of documentary value is because, for example,
+> > KTD2801_EXPRESSWIRE_DETECT_DELAY_US, is assigned to a structure
+> > field called detect_delay_us.
+> >
+> > Likewise I doubt that explicitly stating that long_bitset_us is 3x
+> > bigger than short_bitset_us is important for future driver maintainance.
+>
+> Does this apply for ktd2692 as well?
 
-On Fri, 22 Dec 2023 17:45:44 +0800, William Qiu wrote:
-> This patchset adds initial rudimentary support for the StarFive
-> Pulse Width Modulation controller driver. And this driver will
-> be used in StarFive's VisionFive 2 board.The first patch add
-> Documentations for the device and Patch 2 adds device probe for
-> the module.
-> 
-> Changes v9->v10:
-> - Rebased to v6.7rc6.
-> - Dropped unuseful dependency.
-> - Added error handling.
-> 
-> [...]
+I think so, yes... but I won't get in the way if you (or anyone else)
+decides otherwise.
 
-Applied to riscv-dt-for-next, thanks!
 
-[1/4] dt-bindings: pwm: Add bindings for OpenCores PWM Controller
-      https://git.kernel.org/conor/c/2529085831b0
-[3/4] riscv: dts: starfive: jh7100: Add PWM node and pins configuration
-      https://git.kernel.org/conor/c/26c3112c10f8
-[4/4] riscv: dts: starfive: jh7110: Add PWM node and pins configuration
-      https://git.kernel.org/conor/c/92df97487208
-
-Thanks,
-Conor.
+Daniel.
 
