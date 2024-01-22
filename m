@@ -1,108 +1,96 @@
-Return-Path: <devicetree+bounces-33868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D04DC836E29
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:47:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333FC836E2C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:47:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 709851F271A5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:47:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEBDE1F26C72
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB3B3EA6F;
-	Mon, 22 Jan 2024 17:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C79824A9A6;
+	Mon, 22 Jan 2024 17:12:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YZkpTLFA"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="L+GO/3uS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88ED63D574;
-	Mon, 22 Jan 2024 17:11:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F5D44B5A5;
+	Mon, 22 Jan 2024 17:12:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705943507; cv=none; b=LIPLh67CZ/OruEm+lAoWI2ZGDgzR6TPRfDh0vDubo8qR4pn7mN5Nu2foLtOX17qxkrdAzFA1Xbu3Z7MZqnevG7O3pkEOovQoPUUCPEoO/uulZcuP7mbJud9XfFvkzb/Wg4LFG8ddILcIwCif/p84SK937C9/zrjHUqt60Nxvkvo=
+	t=1705943526; cv=none; b=jEfGRw0BBWmRMbQOD9g/usGNnujADEQ1BLLQxT9AGU4vYxlLPPND3ycQ58XB3VwGPCF4FcmK5ui0WvgrXyQGNo0Q0/gC/36sk2/DDjE+a9SDkrs94ztCNv8i/BdpX733wW11otHwPPBq2VHnXcKxGbJEU4jLDVRReP2vgEray5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705943507; c=relaxed/simple;
-	bh=k2CNr7LmlyvVXOsB5EVe+VkohS7bN+gdLn1ISX7JPAc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B70n11btw2D4DfJbgD0Sr2orjcEpwxoBL7tEXgTEDXqG9zwaf9RycV6Qc4OCXhqS8s62aOYcZlIivG91YIBq0etf9ogEN6Bc4rAENex8d8XYfTAv1bhiaXbo6wx6gQyNqUU6ILeEdCZJ2km0sVps2HDFgf7qaQ5vR1gNQC+DtW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YZkpTLFA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21528C433F1;
-	Mon, 22 Jan 2024 17:11:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705943507;
-	bh=k2CNr7LmlyvVXOsB5EVe+VkohS7bN+gdLn1ISX7JPAc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YZkpTLFA+pv+dgKqXR9AKm6w3m8oGZBo9CYsV2MjFkuFTlRkpxq0CZi9hv61X2ksV
-	 Rddh+8mZ/qNkvmkcbExmoCdkcyfo73hPBxwfH4MCrwLxxQPbDgKKycN1F+fVg86miX
-	 JPADKsGiGAosrC5OtVM8cQ71vY9bLj7Y7Uq4tFQZ3KrX6zEA979ufjpr4AxJdJrRMU
-	 oR6BR3tmtJgD+2YKl8p6dtFknwSOhVP8Jfykp1KuFVnmxryR90/ri12NpMSFGgEu9o
-	 vimmRptoqTTTSkGryEpDIHD4/KJzA9u6zVJJf2f+CmvmmwI62JHKWRcstXnEmV3WIs
-	 LD1E0rUhO98Mg==
-Date: Mon, 22 Jan 2024 17:11:42 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Romain Naour <romain.naour@smile.fr>
-Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-	=?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-	Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Romain Naour <romain.naour@skf.com>
-Subject: Re: [PATCH 1/3] arch/arm/boot/dts/dra7-l4.dtsi: add missing unit
- addresse
-Message-ID: <20240122-extending-identical-9609420a1baa@spud>
-References: <20240122111948.416444-1-romain.naour@smile.fr>
+	s=arc-20240116; t=1705943526; c=relaxed/simple;
+	bh=a8vk6hZ3TOAkzn/ackfXsaq39NTBfLHYum8B7uhs3mA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rqIP/m2r/yiZKEl6sXdzWSWXNF6aVFiQ+QtUC/bBHUI9WpthmghIP3Xnqa1u2ZbXp+ljg/73/I5S1WqflY3BGV7404+y4UCKsVmbF1iEQ0Oa7e2KHrpcIbumeEGaTdkpwjLS74csQgWy4yGDQ2kIl8hEoT9ypEEHrkD4PpAANCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=L+GO/3uS; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1705943514; bh=a8vk6hZ3TOAkzn/ackfXsaq39NTBfLHYum8B7uhs3mA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=L+GO/3uS3c16vczNT28Ht/QB0UoI9Lsp6ivS59/FsmIngripMJe9p6CjPKDogNDNF
+	 8feWcbEEenUneCg6blD6o9Nr3Ma7CqrGOrC8vzeOlPZtDMe+tpumKx2b4cUCQmlulP
+	 GmZqLEVSv2BXkDDHPf1I3pg021odHjAbWDjQp9R0=
+From: Luca Weiss <luca@z3ntu.xyz>
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: qcom: msm8926-htc-memul: Add rmtfs memory node
+Date: Mon, 22 Jan 2024 18:11:53 +0100
+Message-ID: <12366609.O9o76ZdvQC@z3ntu.xyz>
+In-Reply-To: <e57f3274-46a8-4c42-af29-ff2009127886@linaro.org>
+References:
+ <20240121-memul-rmtfs-v1-1-e9da29b1f856@z3ntu.xyz>
+ <e57f3274-46a8-4c42-af29-ff2009127886@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RXiEXhniTINmF+T+"
-Content-Disposition: inline
-In-Reply-To: <20240122111948.416444-1-romain.naour@smile.fr>
-
-
---RXiEXhniTINmF+T+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Mon, Jan 22, 2024 at 12:19:46PM +0100, Romain Naour wrote:
-> From: Romain Naour <romain.naour@skf.com>
+On Montag, 22. J=E4nner 2024 11:53:33 CET Konrad Dybcio wrote:
+> On 21.01.2024 11:21, Luca Weiss wrote:
+> > Add the rmtfs-mem node which was part of one of the "unknown" memory
+> > reservation. Split that one, make sure the reserved-memory in total
+> > still covers the same space.
+> >=20
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
 >=20
-> phy_gmii_sel node have 'reg' so it must have unit address.
+> Could you please test dynamic rmtfs alloc, which should be possible
+> on some (most?) boards after 9265bc6bce6919c771970e5a425a66551a1c78a0?
+
+To be honest, I'd like to not continue to experiment with reserved-memory o=
+n=20
+this board, I've already spent way too much time figuring out how to not ma=
+ke=20
+the phone crash under some circumstances, and now it seems relatively stabl=
+e.
+I might've even put my eMMC into some weird read-only mode where any write =
+to=20
+it just weirdly fails (also original software) by writing to random locatio=
+ns=20
+in the RAM (or well, what Linux thought was non-special RAM).
+
+Regards
+Luca
+
 >=20
-> Fixes:
-> Warning (unit_address_vs_reg): /ocp/interconnect@4a000000/segment@0/targe=
-t-module@2000/scm@0/scm_conf@0/phy-gmii-sel: node has a reg or ranges prope=
-rty, but no unit name
+> Konrad
 
-Does checkpatch not complain about this "Fixes" tag?
 
-Also, for all patches in your series, the subject is odd. Running
-`git log` on the files you're changing is a good idea to get off to a
-good start with a subject line.
 
-Thanks,
-Conor.
 
->=20
-> Signed-off-by: Romain Naour <romain.naour@skf.com>
-
---RXiEXhniTINmF+T+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa6hzgAKCRB4tDGHoIJi
-0mBYAP9F0/plPjdvLISSoKlEHcy1+P5CxGl1+LcAx0sbH0/A5wEA4brQffVEo11j
-RGG89Yn1GXt4+7Bjw5+TjlCij9k5mQI=
-=7sJx
------END PGP SIGNATURE-----
-
---RXiEXhniTINmF+T+--
 
