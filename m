@@ -1,140 +1,257 @@
-Return-Path: <devicetree+bounces-33653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A81C835F1E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:08:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D448A835F2A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:10:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7ABB2883CE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:08:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 473A91F26462
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10D2B3A28E;
-	Mon, 22 Jan 2024 10:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 048AD39FFD;
+	Mon, 22 Jan 2024 10:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="OfRjt8QW"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="U8J5KzZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2068.outbound.protection.outlook.com [40.107.105.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2FB33A1DD
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 10:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705918063; cv=none; b=S3srCMvJ9bAzXfprC6gsApSK7Qbw1BJGvrmAOM7k4BXo/wOL06zCIlq1X1R5IMdiInbnflH3wX6RyXPuj8BZE8wxY0PuHUgZY+aG9Gh3Q3X6VCexuy06yO79URXc0FiklTRJ71RlOjiaWzS7i95bLjgsQ0vC8yEop8y+yhukNpU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705918063; c=relaxed/simple;
-	bh=7hfseNti4KOg7rK9baauGbMNt7pApk4b65kBVK61lRM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XiEPnuFpRFnoUJSfddO579KsjRRGvziFZuL8of250LRfBIyHMCqYnAyl9FS1UaInC7m4Qpu0oyOa5mdZqty6J432VSxEbbmUnAkyLdg+9/oF/fYGcFuvKOScc85rKirQFWM8G9OWK+etw0N7wqliH/CClciGW4ye54V0f6Q44sY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=OfRjt8QW; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tweaklogic.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6db9e52bbccso1392161b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 02:07:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1705918060; x=1706522860; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7SZ6TVtvqO7xS+FN5Shbzs8pDYcUTB61xRBtZe0By+M=;
-        b=OfRjt8QWrGSQCDS9EbbbtG+FrNaVTL6vPTnUtshkgbUB19HjnZEumH4sKuKYnaN1Zx
-         FsLKoKGueE/+xeL9S0a/cGimMfbRuPbC/wnRry43IaV1n9NxGSfhnyJkMLEueO1q+z59
-         CmNev0L+hFeNv9F3GW+7LBImF9OY5yVBZmshcXSecGloHjovUvtrAzyKomeEDinJ6h3n
-         HrEK9glHVQLoQsZd4JJzoq6nr5uiOsY9rar0li+QnkYMILC/v82Rp/9XkqKuIftvIu13
-         6QY6vADYa8GXc9M5LKyNY8fDS21KwImF6NozidqSiSf5LdtGiPilsBELp8DcUMFNHtIS
-         Tekw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705918060; x=1706522860;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7SZ6TVtvqO7xS+FN5Shbzs8pDYcUTB61xRBtZe0By+M=;
-        b=J3UhUgL43Q4ExDhipqcSt3JhgK5KP/D9s0Mp/Did+sXkZVzufIYgR4toHsZyD5DryB
-         NhPKfnKpkWs0vXN1SrXlZFKP+UV5JcIU3qYrQLoK95eil85pct0M//roK2WD0dAu7/li
-         U/1f35iy+1QKPVIgiIwz/wE4c9NntIoo+I4SrH10y0/r4ajWDfw9tZwyRX7FVeFRxrIv
-         zz0JnPihmhOvG5MdVaDw2ZDewgv5NpBCuCVoy/O8XJm1XjfMmEBwSM6nP1OT2hsPlzPQ
-         Pm9l64ov3gq3HelEb7uitnYrCmAheH80mscuIFVFjcyY1n+6LeN8JK2ZL/2cKZv/jh0q
-         in+Q==
-X-Gm-Message-State: AOJu0Yx4R+qSJSRY8TzZZRJcttnoaLNvSKU2mpduV7SADX8g+r3/MVqC
-	xW6Ps04TcXt3NlhKFNy0+/vAXhq8V8lnowK9SSLLRR8rIBkb8vnasloFWhy7qBd4/+W6hGjAC6s
-	5
-X-Google-Smtp-Source: AGHT+IFOmDwDqyifPwJRFILel0xXFOZg55zuqJ0ufInqRPYJxdwGgQjTGWuazVH1pqkRIehl9L8Msw==
-X-Received: by 2002:a17:903:1251:b0:1d7:657:8ab1 with SMTP id u17-20020a170903125100b001d706578ab1mr1864860plh.76.1705918060314;
-        Mon, 22 Jan 2024 02:07:40 -0800 (PST)
-Received: from [192.168.20.11] ([180.150.112.156])
-        by smtp.gmail.com with ESMTPSA id w14-20020a170902a70e00b001d75c26e857sm811322plq.288.2024.01.22.02.07.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 02:07:39 -0800 (PST)
-Message-ID: <478fc1b0-aba4-4f36-bdb6-bf5fc7eb8609@tweaklogic.com>
-Date: Mon, 22 Jan 2024 20:37:32 +1030
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4B339AF1;
+	Mon, 22 Jan 2024 10:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705918207; cv=fail; b=IhQXGld3ofenD4K1OjOGUp4dD/NjVECVj7VOFe7cMGoJx2E6WDVWdE2Vr6f0swU+hVcNylza4sGD89yauwgT/+m5pbGzifei2yiursMlcgkO5s6Apfh5TTWP8+fFyVtv5ClnYfGWbATDRraykSxtrWhuJhJAFzOJE/Alb+1neIQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705918207; c=relaxed/simple;
+	bh=DgnHhAeuPKomJe/QxCutrKX2JgpLhB5ayO5AKZqyuDE=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=TQu1t7UKKGFw1da/nn2mRsJwlqEuhAg6RVMorKYVy5HR9Ez8ZBwLKzvGI6/Ex1GgdRA/LdGVrZT5OujXClKHPJwh+sBcMn2NJd6JAjgX2rvRJIIc0+okDX52WyKfssT8Y1QGCsRPR43eKjF08wr8yE3Idn0lMOa4vpjNsAO6Bp0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=U8J5KzZM; arc=fail smtp.client-ip=40.107.105.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SWHosaNwSeYsQHDTmTKsbyD4WarXEWlPBOxcYEc5z0j/Hd2UUIL6HJwf422PKV6CE8YDub8PC1soWw+A9W4CDsviHHMHRvI1P2X5bmZ7LGWUYmUb07WGgJK2WYgV78n3hNXai5RA42szS671eM14xKkLOr+n2djvhvOTftnPouN2X59gli/F2fzcxzyn8c5xcvswyO46v78cQrhtFEM6eYhv7CrAH9VSiHphMeZ9rqWvK17z7uCM07twMNxIjWZp+v0Jo0IdztRiX9RiAJ7EyE19ZYlgF3fw2GxSuxH+79TsjyoJCBT8hDuBBsrUqcUOZsqCMJfuh9+6rR8Ydg7U7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SKjv8fcNG8+3r+Wh9tWwIcRYr52KrKqUdeEwOIQ5VEM=;
+ b=HcZ9Iu6+vR7c7RN5+Y1Isbc704Owt/u21zKafmxy1M0AUUZfZXM8qCLwNdEYDOlZgG/BqQcLDqNP6XGnHTsQilzDsszGwaCJeMPxDIu8iwbyrpcPJLCVxHn5O1fIHeo8Wy5sehCaiz+HD2x5iyBHpqoNWMM9ii5/ir0BgvED1ZgK/JLdNRmXNc/+/nCV1p19TZXgKHgfXPv/3xZbkHiBzvnB/iGqTeQIyUAsAhtlIMEa0F4sP79v4TqAzidqj82MCmk4UYMBEbrRZDoY59hfXk6U6yVznDVd2mr8+9OZKzCyTSxSFViCjgBFNW9XhTrHLrfQDvfIZemhPYjuPoP/sw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SKjv8fcNG8+3r+Wh9tWwIcRYr52KrKqUdeEwOIQ5VEM=;
+ b=U8J5KzZMH8PuCgr0kPDoSmLC0Za6iZv81ow+K2/kIm5w4UJwSWIz7GQVkrB7+XzYGin1qp624LSExyqBYHk71V0n5yAB0vUvDVQShutXsdSHEU0JOcyCd2zfbLkD5J8SjdnJmyaTustT3iKsM79wzYdIF05bSKahMQSq8jgfr98=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU2PR04MB8582.eurprd04.prod.outlook.com (2603:10a6:10:2d9::24)
+ by VE1PR04MB7486.eurprd04.prod.outlook.com (2603:10a6:800:1b2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
+ 2024 10:10:01 +0000
+Received: from DU2PR04MB8582.eurprd04.prod.outlook.com
+ ([fe80::195c:9861:96a1:56ed]) by DU2PR04MB8582.eurprd04.prod.outlook.com
+ ([fe80::195c:9861:96a1:56ed%4]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
+ 10:10:01 +0000
+Message-ID: <f45e02bb-1353-4c03-9a3d-294c3b78e8dd@oss.nxp.com>
+Date: Mon, 22 Jan 2024 12:09:56 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: clock: s32g: add uSDHC clock IDs
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>
+Cc: Chester Lin <chester62515@gmail.com>, Andreas Farber <afaerber@suse.de>,
+ Matthias Brugger <mbrugger@suse.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, NXP S32 Linux Team <s32@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ NXP Linux Team <linux-imx@nxp.com>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, Ghennadi Procopciuc
+ <ghennadi.procopciuc@nxp.com>, Ciprian Costea <ciprianmarian.costea@nxp.com>
+References: <20240119130231.2854146-1-ghennadi.procopciuc@oss.nxp.com>
+ <20240119130231.2854146-2-ghennadi.procopciuc@oss.nxp.com>
+ <20240119-magnetic-racing-0adf8e5fbd4a@spud>
+ <20240119-cattle-antarctic-432fa8e1c0ef@spud>
+ <75a16ac3-39eb-4874-9100-d605b2cfadfc@oss.nxp.com>
+ <20240121-statutory-endurance-6d03d7e734c9@spud>
+From: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+In-Reply-To: <20240121-statutory-endurance-6d03d7e734c9@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0212.eurprd06.prod.outlook.com
+ (2603:10a6:802:2c::33) To DU2PR04MB8582.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d9::24)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] dt-bindings: iio: light: Avago APDS9306
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Matt Ranostay <matt@ranostay.sg>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
- <20240121051735.32246-3-subhajit.ghosh@tweaklogic.com>
- <a317aeaf-6b4c-43c9-b5d6-78d93ba6f9af@linaro.org>
-From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <a317aeaf-6b4c-43c9-b5d6-78d93ba6f9af@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8582:EE_|VE1PR04MB7486:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5b2d2b3a-fe25-464d-792b-08dc1b324b75
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	GGGx/SWf08E+Uv06Ahyn/ni4eLP6HlTh8DT5EnIMCQG49s8092/GdN68UQKXCR035C662d4IHNUU0yOi+QjxoxwsXb2yt65s3EaoCb4pynNDGKk3xTXNTzeDQTw7ZrRfNb8uqrCJ5O3Pum3Wy2Pn26B6UAg8g139eECrD13yYsfr2nd8npBrjCgMavvi2K42nbf/Cm6HBmzD31jkbLf8sg86ZISJjMxg2Z7MaH8dVuKAtSa5Et5XABLMnYozlIVO6MWgMzOQ2Ghj+2FNOnuljx6cf9j5tn7ArOeL7E+wMxd+5NfxnR44iR0QGE3SrYnGMZ4eESMeOEz6Gd2HLuF8h1Ag1nRehyHTuH5tlbmCk/watxKihaQIPzBpVNoiDyMsH9U+VYggHR4Rf7swjeRDr768UvFnX8iZ4BJE4d4lXbIIAPaJCByJvMirK4wotD+20WAJEsilSAF4L/Q/2XrF9XOflmZ2nyfsd1pWvF2JHyX6dqe05mawHcEqFY/20xnHUnxMNGlpOyO8Y4PIKwWSa48QXx4A1df0ATbMj4AR4MOQ0iSPu6PEo8zSrhbLR2kDYAtCecYYa2FBDhHbosvqBebnAmjsr4vPnjf6xpJNmcR0irEoxxrI6HBxOJd+G8BidIh0dSL++Ed9V8GOC6wIAw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8582.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(346002)(396003)(376002)(39860400002)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(2616005)(26005)(6506007)(6512007)(6666004)(53546011)(83380400001)(5660300002)(7416002)(44832011)(6486002)(4326008)(2906002)(41300700001)(8936002)(8676002)(966005)(316002)(478600001)(6916009)(66946007)(66556008)(54906003)(66476007)(86362001)(31696002)(38100700002)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TWQ5SmdDV1p1eU90WWlnZnRQcEcxSzN4Mzk2dW1zNjJ3bGRVWHpOZEgwWng3?=
+ =?utf-8?B?K0N4eU5nYnlNYllSUXdnR21IVThrTzdTK0lwcmlocXJRZTNZSmJCU1BSblln?=
+ =?utf-8?B?K0dVYkYxTmVSVEpPS2lnSjRVR29ycGROZmQwUmJEWlZxQWtYT3VZaWUzVWxy?=
+ =?utf-8?B?OWJPd3BSWjM1K2dsUkxSeDNkQWFGdmxqb1RQYVBFa1doOUwxbWhHdnV2TWxj?=
+ =?utf-8?B?T1ZGdmxQNkV1alc2MGVjZ011Zk9DTFp2aFErUERYMjRlVlM5cHlwTWhKR2VD?=
+ =?utf-8?B?TDEybzNwdVgyai81WGpQZUs4aTByck41azJrSWc1aHlhQ0FYMzJNSHBGeHpD?=
+ =?utf-8?B?SXZFRlhyWUlnNGpEUHBoUW9aNjlHdWVieUNqaVRwdUVWNzI0TTlKKzlOWmVk?=
+ =?utf-8?B?a0F1MGI5V0ZtK3RUbVRBKzl6cU9QeWZ0TGlkOWcrOVJNcE5qK1IrSU1SMzV4?=
+ =?utf-8?B?bEVRYlV2dDlBRXQ3OVVkQTlqbkJmanlJRmYvZlNjdUgycnd0NThMZ1k2ZTYr?=
+ =?utf-8?B?eWl4WGF4ZlQ3eTh2SHB6UndaT2ZidGhoczQwajNGOUN0Z3prSVR5R0ltS3BM?=
+ =?utf-8?B?S2V6SWU3dlBWaDk3OXZKTGVLZXIrT3dyVXdLd3E1S2E4RTBYN2VuZWJqY2dy?=
+ =?utf-8?B?SU81M1hla2liTVFDcmFBd1J0ZUYvUGRkOUNSb0pQSTNCRU93M3V3K3RoMlhX?=
+ =?utf-8?B?VVVEYzh0MVFMMElmTzhOWXE5NjlTVDd5M1JkYkxVZ001VmpvY1JJNmkzSE5t?=
+ =?utf-8?B?dVdQckh0Vi9WYUdnMkdvMFhpOWVUMjhIY2NDMnorTTB5WUdkeklpZmVjRTZX?=
+ =?utf-8?B?cHhEMlBYajd0UXYxRTNPQmw0Tkg5bWRRWSs0SlBQcE1sVHlFRm9CdE52ck13?=
+ =?utf-8?B?dUUvbDZscVdVVGJjcmtvOW1vMGY0MGlSU0hTWlRUZEFBT3JnRlhaYUR0VHBz?=
+ =?utf-8?B?YmtUR1JqM1hCYmt2bnMyVndURHE4UkxDazV3Ykw4bVAzWnQ5OGY4a05YMDJU?=
+ =?utf-8?B?R2xTTytpc3pFSUNZUTQrMHdBbjZnb21MYVpZeHJnV1FNREN0d2lBckhLZDhT?=
+ =?utf-8?B?RXhsMHY5MnFsbE9WMUpWODN2WnNnVyt3SGR4bmhCTzJtYXE2alJIVjgySktw?=
+ =?utf-8?B?a0VHeUNsWlBNWmxZV3BndHY5ZHkwWGxKc05ZbHJPa0lYTE80bzEvYXZRRHhp?=
+ =?utf-8?B?YUVkOHZKL3JCSjZlMmo1Tk84VFRjekJtWFNHQVpGeUpqR25uSzl6ZXF1alg0?=
+ =?utf-8?B?VHNYZXRGY2Z4cHVXdVNmT3hPOGZpVUV2dVdHVUt1RkpRTXpNakRSN1pyNVJN?=
+ =?utf-8?B?WFJGck5xa2VCL3dsRUNCcnc3Y20zZ1pMZlRVMUlqNnJvTWNqYi96SXhoSk8v?=
+ =?utf-8?B?MmQvSVlKUnArKzF3QzNPenpMVnpQYm15RThRRVFLT1RIQVVrdm9TeExFTVoy?=
+ =?utf-8?B?d29SM0FCbU9MUlB3QVF5V0d4QnFvMXNCRTNNZmdtNU02dXlKdjhOaTZlZkhB?=
+ =?utf-8?B?NEU1YnptVDJHRVRCRzB2N3VONVd1NU5FcmIyUG5YZmQrUmE2eW1BZjA3ZUVo?=
+ =?utf-8?B?TnBpTjh0aVVyZjQrTEpiODF6aU4rOSs1VUN2VTJEYXIyUEJxOGU0RmVIWmtQ?=
+ =?utf-8?B?YWc2d0VJZTFLZGs5aXVWUGpuaGpRSDJTalVrTTEweTVZd1JJWVBRd28rWk1H?=
+ =?utf-8?B?L2hTOUQwS0VOVFN2bk96RndSRi93VjN5dVI2UTBWZkNmOU9GQktsSXpZdGk5?=
+ =?utf-8?B?dWdldElLcVdqODJ3U2EyNVUvQVh1VmVDdUZZVnd6TjVZN3FzSEdFZ01Hd1Zv?=
+ =?utf-8?B?NXVTVXVKaUdMQ3FNMklnTHZjZE1peGpGdkpkaFI3RHQ3aTdWOTFZY05uYkdD?=
+ =?utf-8?B?ZENERUcrRFhZVjNoMHlqbFB0Zkh5aWVQamladUd4L3RPYjBkSkI0VkJidXVL?=
+ =?utf-8?B?R0h2Z2lJUnJkTTV4RWk2aTJyZTBCZ2IvdWJvMWkydnZvWWdJZkJreGdQbitD?=
+ =?utf-8?B?VmZ2QXFNYXFlWWVXVkFab3lNdmp5b0Q0RVd3NW14Q0puVExlaTlDVVo2dU1m?=
+ =?utf-8?B?VGdrTWh1L3JTM2NXNjcwUWxjSFZyUHlybmM2S0cwVDlHTEE4bEMxenZ1Q0R6?=
+ =?utf-8?B?cDJ0VDlNbStwaUhmMldvbWNDOE5rWXFxY1NLaldpUTZJYkw2cTZZMnp6RXpZ?=
+ =?utf-8?B?ZlE9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b2d2b3a-fe25-464d-792b-08dc1b324b75
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8582.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2024 10:10:01.3774
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aomZAklnT1UK3xLXiN2gHDX0gGIIXTXUt5BX+1UStiu+hHBNTx59lYoARcrbFz1Y1fLCvwB6ue+YLrhkXvuPFnkw9pogkgU3c+T2SUkUWYk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7486
 
-On 22/1/24 20:21, Krzysztof Kozlowski wrote:
-> On 21/01/2024 06:17, Subhajit Ghosh wrote:
->> Adding device tree support for APDS9306 Ambient Light Sensor.
->> Updating datasheet hyperlinks.
->> Adding interrupt definition macro and header file.
->> Adding vdd-supply property.
+On 1/21/24 15:32, Conor Dooley wrote:
+> On Fri, Jan 19, 2024 at 11:25:57PM +0200, Ghennadi Procopciuc wrote:
+>> On 1/19/24 18:14, Conor Dooley wrote:
+>>> On Fri, Jan 19, 2024 at 04:11:37PM +0000, Conor Dooley wrote:
+>>>> On Fri, Jan 19, 2024 at 03:02:28PM +0200, Ghennadi Procopciuc (OSS) wrote:
+>>>>> From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+>>>>>
+>>>>> Add the SCMI clock IDs for the uSDHC controller present on
+>>>>> S32G SoCs.
+>>>>>
+>>>>> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+>>>>> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+>>>>> ---
+>>>>>  include/dt-bindings/clock/s32g-scmi-clock.h | 14 ++++++++++++++
+>>>>>  1 file changed, 14 insertions(+)
+>>>>>  create mode 100644 include/dt-bindings/clock/s32g-scmi-clock.h
+>>>>>
+>>>>> diff --git a/include/dt-bindings/clock/s32g-scmi-clock.h b/include/dt-bindings/clock/s32g-scmi-clock.h
+>>>>> new file mode 100644
+>>>>> index 000000000000..739f98a924c3
+>>>>> --- /dev/null
+>>>>> +++ b/include/dt-bindings/clock/s32g-scmi-clock.h
+>>>>> @@ -0,0 +1,14 @@
+>>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause) */
+>>>>> +/*
+>>>>> + * Copyright 2020-2024 NXP
+>>>>> + */
+>>>>> +#ifndef _DT_BINDINGS_SCMI_CLK_S32G_H
+>>>>> +#define _DT_BINDINGS_SCMI_CLK_S32G_H
+>>>>> +
+>>>>> +/* uSDHC */
+>>>>> +#define S32G_SCMI_CLK_USDHC_AHB		31
+>>>>> +#define S32G_SCMI_CLK_USDHC_MODULE	32
+>>>>> +#define S32G_SCMI_CLK_USDHC_CORE	33
+>>>>> +#define S32G_SCMI_CLK_USDHC_MOD32K	34
+>>>>
+>>>> Why do these numbers not start at 0?
+>>>
+>>> Ah, because these are the SCMI IDs directly. If these are numbers that
+>>> are in the TRM, just use the numbers directly - there's no need to
+>>> create bindings for that.
+>>>
+>>
+>> Hi Conor,
+>>
+>> I appreciate you taking the time to review the proposed changes. I
+>> wanted to clarify that the IDs mentioned in the header are SCMI IDs
+>> exported by the TF-A and are utilized by the second patch of this
+>> series. These IDs are for the uSDHC controller to control its clocks. As
+>> other SoCs use this model, I have included all the necessary IDs in a
+>> dedicated header file:
+>> - rk3588s     (arch/arm64/boot/dts/rockchip/rk3588s.dtsi:97 [0])
+>> - stm32mp157c (arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts:73 [1])
+>> - stm32mp131  (arch/arm/boot/dts/st/stm32mp131.dtsi:1372 [2])
+>>
+>> Should I remove the header and use raw numbers in the uSDHC node?
 > 
-> Why? Do other devices have it?
-Are you referring to vdd-supply? No, I guess, haven't checked actually.
-If other devices don't have, can you suggest the best way to handle that?
+> IMO, yes. There's no abstraction/binding being created here if they're
+> the SCMI IDs.
 > 
-> 
->>   required:
->> @@ -33,6 +37,8 @@ required:
->>   
->>   examples:
->>     - |
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
->>       i2c {
->>           #address-cells = <1>;
->>           #size-cells = <0>;
->> @@ -41,7 +47,8 @@ examples:
->>               compatible = "avago,apds9300";
->>               reg = <0x39>;
->>               interrupt-parent = <&gpio2>;
->> -            interrupts = <29 8>;
->> +            interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
-> 
-> Separate change.
-Understood.
-> 
-> Best regards,
-> Krzysztof
-> 
+> Thanks,
+> conor.
+
+Thank you for letting me know. I will make sure to include this change
+in the second version of the patchset.
+
+>> For
+>> example:
+>>> +		usdhc0: mmc@402f0000 {
+>>> +			compatible = "nxp,s32g2-usdhc";
+>>> +			reg = <0x402f0000 0x1000>;
+>>> +			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+>>> +			clocks = <&clks 32>,
+>>> +				 <&clks 31>,
+>>> +				 <&clks 33>;
+>>> +			clock-names = "ipg", "ahb", "per";
+>>> +			bus-width = <8>;
+>>> +			status = "disabled";
+>>> +		};
+>>
+>> [0]
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3588s.dtsi#n97
+>> [1]
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/st/stm32mp157c-ed1-scmi.dts#n73
+>> [2]
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/st/stm32mp131.dtsi#n1372
+>>
+>> -- 
+>> Regards,
+>> Ghennadi
+>>
+
+-- 
 Regards,
-Subhajit Ghosh
+Ghennadi
 
 
