@@ -1,178 +1,102 @@
-Return-Path: <devicetree+bounces-33661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50520835F5E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:20:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78417835F62
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:21:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEBD41F2172D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:20:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABB721C218EA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:21:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5CBC3A8E7;
-	Mon, 22 Jan 2024 10:19:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 389CC3A1BC;
+	Mon, 22 Jan 2024 10:20:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WtQICkc8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WCN+kmIt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB5693A8EE
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 10:19:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03E923A1B4;
+	Mon, 22 Jan 2024 10:20:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705918772; cv=none; b=hh3AVz6JfIR7JA8UEZhoCWfe4i/Xh4Hqg3wkq4Hxo/EI+JLZYBn1Zqf2U/eRXRrlNuOPCRYLkWuEnPPzUWNLMEmTdoitAezRFqrMfB56o4ieb2EVqfhbBKCPaRlXPNd+wZNuBOVNeL7fw98lEkyPZuvXiPenJsLagMAbCaND5e0=
+	t=1705918816; cv=none; b=fckRmGiyeqzr6YaRp+6NdTZUjSPnmJMW17T9DpxECnCr6lxIEArSAzdz/Dr+fG2jsue+GAgPc9f/j+C6goL5eUVzeVOZph5zArrYrpT1FVSUkqTRfKO97VhIsNGOGqVnd70D2Cq2WXw73VBhLTN+g0aNQK7o8dPtIWT1NTv6EOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705918772; c=relaxed/simple;
-	bh=/SNLHHN7xOHjhgf5Ka2VMBrDa6pANZCIGYnQJH8RKpA=;
+	s=arc-20240116; t=1705918816; c=relaxed/simple;
+	bh=FkzVe6iZBWVXTveesPrlVI7IQutkxNDUXYFU5aqWMVc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bKoPEls+zbaRyuKHSPzoIQWhA+b8oiEKWWbQoFqKE5boWkB11+2hBqcJkAjrUFpkknb2LBzStxW3LprnkvKW+Mq8+XOO4nsAE9fK+Vm3fIiKTRp+eiTgL3oMry56lH6+6LvIoMT0EZdQKAX1FYqZGf1IH8PNZL6rRMMFoj0Z3SA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WtQICkc8; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-337d32cd9c1so2691664f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 02:19:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705918769; x=1706523569; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6CUlLsOEJCO3o0htEYr8Lbj/bayNpoeF4Yah4if4kLc=;
-        b=WtQICkc8gaYMT3ZMfWqXR1v+0Gf5KtlFeiUD0rSgSx1nNdGnGlNSiQoENFBZDtuSYq
-         Vh4ac5BIzGlq+mCzcF5KE8sMLXnrc7ELMooSqig/dh8wzf6GNTJs4QmwFvegB37gEJv2
-         fInxTyv3cuKkKkYhS4+wJHJeSZqYaTzhJQfoyReb4l6VQpSJNrmbor2NWKf5vzXT61ER
-         oky1p/zXf5u8pkjGH23oAg33Yd3/gwThAjN7XAZWKSkb40qIEHJxY6aF/Jz43P83fX4k
-         N9an9FzAJFBiXe0MOsKBR8DQ6jJXWm2gT5pEcEn0m8zDPBHsXGbZLv1FMXqmiqk9GrwA
-         QRPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705918769; x=1706523569;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6CUlLsOEJCO3o0htEYr8Lbj/bayNpoeF4Yah4if4kLc=;
-        b=q/Yv90ucc57Yzs2Mz3cpbxUH7JSwZTrGwS3URpG6btJJT+87EpEO7EnK4y51RYar9M
-         t5buvIuhfNkVPVJBZISmTMjOKRMdAGtwp4fDVbor1dny3hTvcsp+YWo39/KGDPmzZ1wZ
-         leOAD0/wX0GPDVww2jwSmEigqMFFUh4KgdNMT5+N9KeHgT5zyvK+WY5Qoy0bmawvlc8l
-         hUy+MRNtdyl74w1AB9T3RD3tI3t8U1PvMq1i3N7gh49pku8K8/V+UsZSANPGLyhBeHmQ
-         tCusKnkhhmxbGEjCtz/uj9xTOreLj8d6fsG4AEn7CygeiqVS/LMf+oexZr0Wlb7LGW3o
-         06eA==
-X-Gm-Message-State: AOJu0Yyv7dGkxOx6aBc5YhMtqQ+jGKPn6hXjOAnT/MGxiCVk6fnA+r6k
-	etSDIXLas1pdDHhXe0a7tiik4sGVHaroOILUjIdKQe2uB/KMTpYsusEdveutn7w=
-X-Google-Smtp-Source: AGHT+IGiXCkeFT62mIizDAGCPWlt7/MMpjwMRYs+WW2Kwg136ect9locc0HoNUSbJlXRnS59IcBghQ==
-X-Received: by 2002:a05:600c:5486:b0:40e:7c23:898d with SMTP id iv6-20020a05600c548600b0040e7c23898dmr2156961wmb.102.1705918769050;
-        Mon, 22 Jan 2024 02:19:29 -0800 (PST)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id iv11-20020a05600c548b00b0040d8ff79fd8sm38663573wmb.7.2024.01.22.02.19.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jan 2024 02:19:28 -0800 (PST)
-Date: Mon, 22 Jan 2024 10:19:26 +0000
-From: Daniel Thompson <daniel.thompson@linaro.org>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Karel Balej <balejk@matfyz.cz>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] leds: ktd2692: move ExpressWire code to library
-Message-ID: <20240122101926.GA8596@aspen.lan>
-References: <20240120-ktd2801-v3-0-fe2cbafffb21@skole.hr>
- <20240120-ktd2801-v3-1-fe2cbafffb21@skole.hr>
+	 Content-Type:Content-Disposition:In-Reply-To; b=tfAoKkDDdrLH//K5Jqs9BDC/HJKHjmT23ZJ0/aLu9upVgj5EEfsWA8DBjpHSekbPUeDPK/lp8CdCvVR4yWKwlB74pMjp7Ajk5PdvpoiLyN69iqa5y7J62ev6HroUQtoIQ1o0OATacuMI3XVFBo+OPbO+qAw5R4U1SZYrkqli8wo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WCN+kmIt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B185EC433F1;
+	Mon, 22 Jan 2024 10:20:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705918815;
+	bh=FkzVe6iZBWVXTveesPrlVI7IQutkxNDUXYFU5aqWMVc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WCN+kmItAJWSkCtB/80pBy8D9uLLLmmD+JgGzxn3Ig5NUh2IM9sAdEOioezdjdVwY
+	 ficQmt3nkGye3JD/MCFO24MZQ5dyWjNbqE4FHzM98XLjsl2irpI6Iq6Kf6q6A8S7Wl
+	 g8i0ra7aEzTr6LBstET/PFfg0EewtfAS8nYIiIklUr+CQz4pyLYsf2QPrxANar8abg
+	 YLXeBEyHq0zAgWz8Bf/OGxJx2Z2YDTwq21jp7Duk0tSfATRE6lrsbgcNFvxrZ7Pxx0
+	 kl55o7e11dKLco9mlv3koYQhjHNxrY5PgUzLFUiNyLKwtdoUCoB8/JQJ5RAaj8c01z
+	 GKkdjuuQpr/kg==
+Date: Mon, 22 Jan 2024 11:20:02 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: dlemoal@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	linus.walleij@linaro.org, brgl@bgdev.pl, michal.simek@amd.com,
+	p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+	piyush.mehta@amd.com, mubin.sayyed@amd.com,
+	linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+	git@amd.com
+Subject: Re: [PATCH] dt-bindings: xilinx: replace Piyush Mehta maintainership
+Message-ID: <Za5BUkkd8SymC6lT@x1-carbon>
+References: <1705664181-722937-1-git-send-email-radhey.shyam.pandey@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240120-ktd2801-v3-1-fe2cbafffb21@skole.hr>
+In-Reply-To: <1705664181-722937-1-git-send-email-radhey.shyam.pandey@amd.com>
 
-On Sat, Jan 20, 2024 at 10:26:43PM +0100, Duje Mihanović wrote:
-> The ExpressWire protocol is shared between at least KTD2692 and KTD2801
-> with slight differences such as timings and the former not having a
-> defined set of pulses for enabling the protocol (possibly because it
-> does not support PWM unlike KTD2801). Despite these differences the
-> ExpressWire handling code can be shared between the two, so move it into
-> a library in preparation for adding KTD2801 support.
->
-> Suggested-by: Daniel Thompson <daniel.thompson@linaro.org>
-> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+On Fri, Jan 19, 2024 at 05:06:21PM +0530, Radhey Shyam Pandey wrote:
+> As Piyush is leaving AMD, he handed over ahci-ceva, ZynqMP Mode Pin GPIO
+> controller, Zynq UltraScale+ MPSoC and Versal reset, Xilinx SuperSpeed
+> DWC3 USB SoC controller, Microchip USB5744 4-port Hub Controller and
+> Xilinx udc controller maintainership duties to Mubin and Radhey.
+> 
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 > ---
->  MAINTAINERS                       |  7 +++
->  drivers/leds/Kconfig              |  3 ++
->  drivers/leds/Makefile             |  3 ++
->  drivers/leds/flash/Kconfig        |  1 +
->  drivers/leds/flash/leds-ktd2692.c | 91 +++++++++++----------------------------
->  drivers/leds/leds-expresswire.c   | 59 +++++++++++++++++++++++++
->  include/linux/leds-expresswire.h  | 35 +++++++++++++++
->  7 files changed, 132 insertions(+), 67 deletions(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a7c4cf8201e0..87b12d2448a0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7902,6 +7902,13 @@ S:	Maintained
->  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/linkinjeon/exfat.git
->  F:	fs/exfat/
->
-> +EXPRESSWIRE PROTOCOL LIBRARY
-> +M:	Duje Mihanović <duje.mihanovic@skole.hr>
-> +L:	linux-leds@vger.kernel.org
-> +S:	Maintained
-> +F:	drivers/leds/leds-expresswire.c
-> +F:	include/linux/leds-expresswire.h
-> +
->  EXT2 FILE SYSTEM
->  M:	Jan Kara <jack@suse.com>
->  L:	linux-ext4@vger.kernel.org
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index 6292fddcc55c..d29b6823e7d1 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -181,6 +181,9 @@ config LEDS_EL15203000
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called leds-el15203000.
->
-> +config LEDS_EXPRESSWIRE
-> +	bool
-> +
+>  Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml      | 3 ++-
+>  .../devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml     | 3 ++-
+>  Documentation/devicetree/bindings/reset/xlnx,zynqmp-reset.yaml | 3 ++-
+>  Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml         | 3 ++-
+>  Documentation/devicetree/bindings/usb/microchip,usb5744.yaml   | 3 ++-
+>  Documentation/devicetree/bindings/usb/xlnx,usb2.yaml           | 3 ++-
+>  6 files changed, 12 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> index b29ce598f9aa..9952e0ef7767 100644
+> --- a/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> +++ b/Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml
+> @@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Ceva AHCI SATA Controller
+>  
+>  maintainers:
+> -  - Piyush Mehta <piyush.mehta@amd.com>
+> +  - Mubin Sayyed <mubin.sayyed@amd.com>
+> +  - Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>  
+>  description: |
+>    The Ceva SATA controller mostly conforms to the AHCI interface with some
 
-Shouldn't there be a "select GPIOLIB" here? It seems odd to make the
-clients responsible for the dependencies.
-
-BTW there seems to be very little consistency across the kernel between
-"depends on GPIOLIB" and "select GPIOLIB".. but select is marginally
-more popular (283 vs. 219 in the kernel I checked).
-
-
-> diff --git a/drivers/leds/flash/leds-ktd2692.c b/drivers/leds/flash/leds-ktd2692.c
-> index 598eee5daa52..8c17de3d621f 100644
-> --- a/drivers/leds/flash/leds-ktd2692.c
-> +++ b/drivers/leds/flash/leds-ktd2692.c
->  <snip>
->  static void ktd2692_expresswire_write(struct ktd2692_context *led, u8 value)
->  {
->  	int i;
->
-> -	ktd2692_expresswire_start(led);
-> +	expresswire_start(&led->props);
->  	for (i = 7; i >= 0; i--)
-> -		ktd2692_expresswire_set_bit(led, value & BIT(i));
-> -	ktd2692_expresswire_end(led);
-> +		expresswire_set_bit(&led->props, value & BIT(i));
-> +	expresswire_end(&led->props);
->  }
-
-Is there any reason not to have an expresswire_write_u8() method in the
-library code? It is a concept that appears in both drivers.
-
-
-Daniel.
+For ata:
+Acked-by: Niklas Cassel <cassel@kernel.org>
 
