@@ -1,168 +1,261 @@
-Return-Path: <devicetree+bounces-33614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162F8835DB7
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:12:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56900835DE9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:17:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C397C285BEC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:12:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 070E4283487
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B39139846;
-	Mon, 22 Jan 2024 09:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E324039AC8;
+	Mon, 22 Jan 2024 09:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="B8tEs1gy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvgfRLDT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2083.outbound.protection.outlook.com [40.107.21.83])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADC7E39840;
-	Mon, 22 Jan 2024 09:12:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705914732; cv=fail; b=qYScOCrV+e9bmY/SA7d8FbOVcxvnxJPmIDiMQG/5lkWAVFqtV0PZAt3r1VavOT7xM22z0vQ1onYaJg1/Oi+TWdzBwJCECu7M6a39vviMhAR8NzNJXth0k3nyUdzJkiZeMkdBD8r66Mw1tgz+my7EVSSfkQ5qfpcrVbmWmlP6khQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705914732; c=relaxed/simple;
-	bh=Bwiv8coIO7FMMbRqEfGmDCzwUpR3gkpmTlyS8dvghHk=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=cYzQU0pIYcT1br4yn0/bZGiB6oH+Xqi6X5laH3Y7MoN48uazOvCd4myr2v2vtzrU8Bx8lp5N95akeMLxnXoPZVFvqlZBIPBP/zvPjpKkgWvhArpmJb9s7H2fi+BX8OrthiYK1MdmgX+rByH37Qad7LEHDTckFt9YjCzxau5Ktek=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=B8tEs1gy; arc=fail smtp.client-ip=40.107.21.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iC/AbNJJzaUoHvFqOgEQLcSB3yOnsxODBR1YbomOAt8UI3b0KkyyjlNbCC2o7DfNel8Pz62cHoCVVpwavd2K4gXVr6JhSeMWuNlxEON3IY4a1Umc4Di8xHQKanWk+pncJ7d5E3idkHU0LcX8brqASwU+KsGfsqEIcNiDN8wWdVHPbwVpnOur0l7ifk0joxu3QGHIgY/7GGyb4RLn/7xKSBZ7tK0KNSi82+oPNioTdnsE/t2+1aJtlGxbpVfruBpmM+NqAnTKZB4yWZNQ/3uNWMBznhQ0F5tT/7+Tvnnn18JwPTiCoc7nzpGbbxGAeRl8vyYmpr1hvQR04sR5Zcr+MA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xmZ/5DV9ibX9URl8WZpWtNCVlvrbEDYpiZA4VVs/voo=;
- b=YfVmM2bTY0MvgQefZuxlp5tHN81MIqHvWweg7Xf0t4c82xlWt5jccXCcqECcW1UqkI3AIJBOzxr3HW9DNBAiDzWWsVsuXPdarn1rVgBj+mVUSJkQC4pG2dpVSrA+QuIZfq/gFe/4RFJ4OeyadTMMIc1VZxK3gxxl67/nlaoNE8c7lGW79gLHYISgQ1leXvvETkjwzI8Jiv4HLzx35z/zWiCaAqSt5N40MdmW4kGujiJUWM9L4buAjndv7Z1z+H+R7xvv6qH+LjvoqWRFhROnxvnywd/b1OPLWBwhkzf+kGTNpcuuGDYK1Mjyw5SoSr7jH8p35GDbb/TB77NIT8hMuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xmZ/5DV9ibX9URl8WZpWtNCVlvrbEDYpiZA4VVs/voo=;
- b=B8tEs1gyXfx0hX0f9lQzF7/nD0HTZ/vSeLsHZR25gv7ft5qepZzk1TZGaP9WSjmToAmbxgmZaoSxH0NMHOE+egRhFBTmiD/FVYzbrL62AJNIqxs10zpn0P8tgjTRdMq8oazONGCaG+1o3vAFok9sGiYwJUp+HJDAnnbW1k8KVwE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by PAWPR04MB10056.eurprd04.prod.outlook.com (2603:10a6:102:38d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
- 2024 09:12:07 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::c499:8cef:9bb1:ced6]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::c499:8cef:9bb1:ced6%3]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
- 09:12:07 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To: ulf.hansson@linaro.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Cc: shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: add i.MX95 compatible string
-Date: Mon, 22 Jan 2024 17:16:23 +0800
-Message-Id: <20240122091623.2078089-1-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI1PR02CA0032.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::12) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94BC3984F;
+	Mon, 22 Jan 2024 09:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705915020; cv=none; b=jmZSiIpd6d+7GvZMGbNoILHd2fd8YjLmNDlCXmXWvRgnZQXLLNpc7MLVREw84ZoKhyG7NFWESgPUCLhUAVHjmul0o0tRw9crTpGzcdyGQDlY7YHB2iEr35axy5e24pHgyJFaDjMJkVLW40ZqFIQFfJDmCCWO0mKZvFNI7fyj8Zw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705915020; c=relaxed/simple;
+	bh=O0zUoL0uiBX5x9ypl74qZkXUXOnXX3J9rjb6Fig41B0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V8AYnNM1iG6C6FuKoFuXHrfKVVJaaVTWhwBac6c9yjuUCJHvcLQREqixH/qweJcwkfO7Vp8vOh8PnBRz7ED9fxpzd7F4zVE38CBnU9USqDnKFaQw9pIoxdUY3HRWm7YNZA2v45S4Gap6PEeKJer2WFKf5vgKW4MMIKRMp05tJPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvgfRLDT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 839A7C43390;
+	Mon, 22 Jan 2024 09:16:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705915020;
+	bh=O0zUoL0uiBX5x9ypl74qZkXUXOnXX3J9rjb6Fig41B0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XvgfRLDTcWaxrwgqM0+Q4FJzTVBAMpxVF/SD4Jwugk3lpw2omNaK6Gpsa9xrO8jUb
+	 IfBMr612gRCKl0iFjt1DtBv3T64CRUOQAJ/3iGU4XJkdrqJLPaTaj+q0nU54Q5h0gH
+	 xgbfbEwMTwhvgxbdk/d7QDgab+Pl0bVAqF6/hILgxBlmxYox98RLOY7a3iAnFm820K
+	 vpI4M/HwiKbLAeRILyXkkxCUufg7APD9EmHyGBbVgR+0tojWfwo4+MpCN4u59Hf5B8
+	 I2itgs/7FGPMbc5wkhh3XWGv8ZeNvGFlfctHORHP2T8qNqpNqW8s+skVoyPVm5uoCM
+	 Y7N0kMQYmrEnA==
+Date: Mon, 22 Jan 2024 09:16:53 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dharma.B@microchip.com
+Cc: Conor.Dooley@microchip.com, sam@ravnborg.org, bbrezillon@kernel.org,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	lee@kernel.org, thierry.reding@gmail.com,
+	u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
+	Linux4Microchip@microchip.com
+Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
+ schema format
+Message-ID: <20240122-stark-duress-2f59294dcf27@spud>
+References: <20240118092612.117491-1-dharma.b@microchip.com>
+ <20240118092612.117491-4-dharma.b@microchip.com>
+ <20240118-recent-glorified-fd35d72e006e@spud>
+ <c33868c8-dc42-4800-885c-5e5f24c2044e@microchip.com>
+ <20240119-character-mardi-43571d7fe7d5@wendy>
+ <da60f9f3-f955-4a87-a020-5710185953c0@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|PAWPR04MB10056:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b01a4db-77de-4ee6-954b-08dc1b2a34ef
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	ik4NCUGwiAu9/nAAdVj2vkhVEAjqAQE/0hvyVaRrgm3kL1urAnKWf2bc3d2MOmOr36Pdb77xoZQ2ydfp+QvvVRP++/JJ9/B7gQkZwG0U2oW5P7mNEB10xLl0nTjnYxRziNXpn+0vx22eV0QzlAoV0fmCguvOBSeGxI6tWvj+ilyr0gGva0DQYvBVT1DZtaILG5vDYt36n6vxSaqHu4IPDtOenZ0lPOxV1NIEEZ3nYEIhRbJYv3loMp/txH/pczXurVljN+yMMY9Y91uVfXdOUwku/vhgCVeKhTPWl1+7B1MIpHKIumYbljpeH26QcvkfcXv+jNp1oUaLVlXPdwS87VaVuiM4244dJyj7kvAmVRdx6A7gvaN1MptWcgRkdUsztZmnEG6uWATeu98TQ+lZE8Di7VFnQnLOdtpEa1rR8yYlTQJ3rdPDnXYAt8KC838MWS0zx3Umj0x6xDAjvN3qlDB/hEp6nPPV73yU/h1/Lmtyg21zE8ASI4GFEkvLcborOeXF21m1wLF/gvvjVO/qmkyUY/6uONP7/Cr2keaoJU9wRxVZ5+tV8wIz0qcoYLUFNA3eloM2LabxbkSsqSBvumhjCKAnDo38p0LT+Nlo4Uh1SMeYG3W5geboWBAWRsml
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(346002)(136003)(396003)(366004)(39860400002)(230922051799003)(451199024)(1800799012)(64100799003)(186009)(6506007)(316002)(6512007)(52116002)(6666004)(8676002)(8936002)(6486002)(66556008)(66476007)(66946007)(2616005)(26005)(1076003)(83380400001)(41300700001)(2906002)(4326008)(5660300002)(7416002)(4744005)(478600001)(86362001)(38350700005)(38100700002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?l/2wJ0ga8OsbcSmb98MDCnC55I9IBZrnce9PEtlVVU2U5xnyJWJxExe3e37m?=
- =?us-ascii?Q?hmfKQSElqniu8lnCrHi+r0iv7EVVAlyG9xv061GLkZPlpy5T+jSxPuCBkYMv?=
- =?us-ascii?Q?UIwrStbsyWlk1VF7TBVQ4wx2xYBWPItTfAbOQek7371Ax6q22STFWL2F04Ef?=
- =?us-ascii?Q?OLRcAhcjcfAruD64XngfGjjGMN6dJWxnOY7Rdj/bZl8pHmTYervXd24vXxYR?=
- =?us-ascii?Q?9i2VebfJJDbbg1ATUG1i7kFn/YMC0ZMYuRYZpPXy72uHjQxN5EahgsOr+3cC?=
- =?us-ascii?Q?dXf3m5BdpLUh0m0Q0sXI+RaiNVqjrGKPma3Mq4aW04+1sq3gkKlVaH9d5DeU?=
- =?us-ascii?Q?DQJ3Xnf+lf/ewtwsHYLxG9UJTobzX1FXuUm0YynXJOOAotu6ZDvMIIYHCA/Z?=
- =?us-ascii?Q?xbnUGBaecG8uJl1NCnYk2vc06PJSsPxRnMZtn9uzLrNlKjtGsErCKStC76sO?=
- =?us-ascii?Q?zlvXepLwzXF/TM0oRC+4uTcqMNSoZE0vc8teVMe6fBHqqB3pTKdITey4Of1A?=
- =?us-ascii?Q?1zs6Z/D9r09ntAzfjD/DgxphwhXsgqLmn+81d1wq7wHBW7o6h+i02cCZpQtD?=
- =?us-ascii?Q?CqLHATOOIGaFpudsCe2YOr2ddiW6YT8ukaiz66xvcLcMyM5A6MLxJM1PcF34?=
- =?us-ascii?Q?Rp4TZY1KZtHDBCt8p7LMnbgRoJVyxzDjIWFHqaWrlZ/JTYuYNoPzO5R/wZWh?=
- =?us-ascii?Q?XDmq5JIPpWdDtaISfHard6qTQ8bArotbK9N2qsrDH40Og3lPgB+Tbdjj/4VE?=
- =?us-ascii?Q?7s4XLsBh8G0DC1e8p78YEQgBX2CkwNTq1DVu4+9ywxaC2sLXGh50BIsubtO7?=
- =?us-ascii?Q?TH19fxg3pE3t6wv+bRB893GZw/hvGvOn2kIyagiNo9P4fDGdUAZ/6dfqzwvX?=
- =?us-ascii?Q?w3NjxhOnB/EKW/zZ/upMKSkMY6x0c04Ugz7Kwtz2GzqGKzP6oZB7Yt8Du1lM?=
- =?us-ascii?Q?x8WYFkN2jvHTEnHNN1xyS6x5hgolqWkQiRuRTl8U7vOzxWv6ZZhulv+hFnHC?=
- =?us-ascii?Q?c9bOeHkaMVGvEoTSFmUkBJZLJenuZxY8Z0HDA3fF2aXdZqKZjDFzkjU8r6d5?=
- =?us-ascii?Q?GxtztiAWyQk5O/hYbxEhzgeg3yxhc6x4tYPDPRwWQxi3lbKtY7vUY0dOHjfO?=
- =?us-ascii?Q?PMXtIEVUy81BRwiXDJmZPHCexE3Xyj05GqMRLXoR9k7sBUlCoD7rNm6HiCVd?=
- =?us-ascii?Q?6szvZV7jHBVyJELW0/w60zvLCkM9nPzgZgfP933Ir5tg8Pg2plhiWrDNqpbb?=
- =?us-ascii?Q?gRrF2GWHxSDxbF/KW6zPI/goUa2Z2LjMQ+DR2tDm4m6+vt1uVigtl9UBq5xd?=
- =?us-ascii?Q?iFIKVsUlfedF2oB1+9Chs+dO+uUHqGGjuStaCjd87Z4j60hUd2kGVraDLeVo?=
- =?us-ascii?Q?M92sz5hJeVJssUIOX83JOod9w3aGMnF/sEDM4D5/N0tkzdGCcoxumYOIxCA1?=
- =?us-ascii?Q?QJx0GCRMS1BDP/PYkSPou1M+i4qTSC1mCE6fxE0HCJbEPeN1sU+hSbcpfL4q?=
- =?us-ascii?Q?BBqDxxIsQJvNvLbw4PE+K59BzpcaYTkBEAmePJQjRSXsHo4wcmxwLFLSjO9j?=
- =?us-ascii?Q?8LJ8Xba6ylrLvThyRhDmTu49tFivzzpQCVo412z6?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b01a4db-77de-4ee6-954b-08dc1b2a34ef
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2024 09:12:07.3443
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Vx6nOQGg1H9Rw+uOt1FInRkMweekVSeFFwTQRh7MxJB40akGvgN9nzzE/5SYaQT/lO4J7RaMc5mEtzVj7nVrog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB10056
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="fSFFnBC92FdCkh8G"
+Content-Disposition: inline
+In-Reply-To: <da60f9f3-f955-4a87-a020-5710185953c0@microchip.com>
 
-From: Peng Fan <peng.fan@nxp.com>
 
-Same as i.MX93, add i.MX95 SDHC which is compatible with i.MX8MM USDHC.
+--fSFFnBC92FdCkh8G
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On Mon, Jan 22, 2024 at 03:38:41AM +0000, Dharma.B@microchip.com wrote:
+> Hi Conor,
+> On 19/01/24 5:33 pm, Conor Dooley - M52691 wrote:
+> > On Fri, Jan 19, 2024 at 03:32:49AM +0000, Dharma.B@microchip.com wrote:
+> >> On 18/01/24 9:10 pm, Conor Dooley wrote:
+> >>> On Thu, Jan 18, 2024 at 02:56:12PM +0530, Dharma Balasubiramani wrote:
+> >>>> Convert the atmel,hlcdc binding to DT schema format.
+> >>>>
+> >>>> Adjust the clock-names property to clarify that the LCD controller e=
+xpects
+> >>>> one of these clocks (either sys_clk or lvds_pll_clk to be present bu=
+t not
+> >>>> both) along with the slow_clk and periph_clk. This alignment with th=
+e actual
+> >>>> hardware requirements will enable accurate device tree configuration=
+ for
+> >>>> systems using the HLCDC IP.
+> >>>>
+> >>>> Signed-off-by: Dharma Balasubiramani<dharma.b@microchip.com>
+> >>>> ---
+> >>>> changelog
+> >>>> v2 -> v3
+> >>>> - Rename hlcdc-display-controller and hlcdc-pwm to generic names.
+> >>>> - Modify the description by removing the unwanted comments and '|'.
+> >>>> - Modify clock-names simpler.
+> >>>> v1 -> v2
+> >>>> - Remove the explicit copyrights.
+> >>>> - Modify title (not include words like binding/driver).
+> >>>> - Modify description actually describing the hardware and not the dr=
+iver.
+> >>>> - Add details of lvds_pll addition in commit message.
+> >>>> - Ref endpoint and not endpoint-base.
+> >>>> - Fix coding style.
+> >>>> ...
+> >>>>    .../devicetree/bindings/mfd/atmel,hlcdc.yaml  | 97 ++++++++++++++=
++++++
+> >>>>    .../devicetree/bindings/mfd/atmel-hlcdc.txt   | 56 -----------
+> >>>>    2 files changed, 97 insertions(+), 56 deletions(-)
+> >>>>    create mode 100644 Documentation/devicetree/bindings/mfd/atmel,hl=
+cdc.yaml
+> >>>>    delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-hl=
+cdc.txt
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml =
+b/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
+> >>>> new file mode 100644
+> >>>> index 000000000000..eccc998ac42c
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
+> >>>> @@ -0,0 +1,97 @@
+> >>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id:http://devicetree.org/schemas/mfd/atmel,hlcdc.yaml#
+> >>>> +$schema:http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: Atmel's HLCD Controller
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Nicolas Ferre<nicolas.ferre@microchip.com>
+> >>>> +  - Alexandre Belloni<alexandre.belloni@bootlin.com>
+> >>>> +  - Claudiu Beznea<claudiu.beznea@tuxon.dev>
+> >>>> +
+> >>>> +description:
+> >>>> +  The Atmel HLCDC (HLCD Controller) IP available on Atmel SoCs expo=
+ses two
+> >>>> +  subdevices, a PWM chip and a Display Controller.
+> >>>> +
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    enum:
+> >>>> +      - atmel,at91sam9n12-hlcdc
+> >>>> +      - atmel,at91sam9x5-hlcdc
+> >>>> +      - atmel,sama5d2-hlcdc
+> >>>> +      - atmel,sama5d3-hlcdc
+> >>>> +      - atmel,sama5d4-hlcdc
+> >>>> +      - microchip,sam9x60-hlcdc
+> >>>> +      - microchip,sam9x75-xlcdc
+> >>>> +
+> >>>> +  reg:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  interrupts:
+> >>>> +    maxItems: 1
+> >>>> +
+> >>>> +  clocks:
+> >>>> +    maxItems: 3
+> >>> Hmm, one thing I probably should have said on the previous version, b=
+ut
+> >>> I missed somehow: It would be good to add an items list to the clocks
+> >>> property here to explain what the 3 clocks are/are used for - especia=
+lly
+> >>> since there is additional complexity being added here to use either t=
+he
+> >>> sys or lvds clocks.
+> >> May I inquire if this approach is likely to be effective?
+> >>
+> >>     clocks:
+> >>       items:
+> >>         - description: peripheral clock
+> >>         - description: generic clock or lvds pll clock
+> >>             Once the LVDS PLL is enabled, the pixel clock is used as t=
+he
+> >>             clock for LCDC, so its GCLK is no longer needed.
+> >>         - description: slow clock
+> >>       maxItems: 3
+> >=20
+> > Hmm that sounds very suspect to me. "Once the lvdspll is enabled the
+> > generic clock is no longer needed" sounds like both clocks can be provi=
+ded
+> > to the IP on different pins and their provision is not mutually
+> > exclusive, just that the IP will only actually use one at a time. If
+> > that is the case, then this patch is nott correct and the binding should
+> > allow for 4 clocks, with both the generic clock and the lvds pll being
+> > present in the DT at the same time.
+> >=20
+> > I vaguely recall internal discussion about this problem some time back
+> > but the details all escape me.
+>=20
+> Let's delve deeper into the clock configuration for LCDC_PCK.
+>=20
+> Considering the flexibility of the design, it appears that both clocks,=
+=20
+> sys_clk (generic clock) and lvds_pll_clk, can indeed be provided to the=
+=20
+> IP simultaneously. The crucial aspect, however, is that the IP will=20
+> utilize only one of these clocks at any given time. This aligns with the=
+=20
+> specific requirements of the application, where the choice of clock=20
+> depends on whether the LVDS interface or MIPI/DSI is in use.
 
-diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-index 82eb7a24c857..f3c5aa64affc 100644
---- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-@@ -55,8 +55,9 @@ properties:
-           - enum:
-               - fsl,imx8mn-usdhc
-               - fsl,imx8mp-usdhc
--              - fsl,imx93-usdhc
-               - fsl,imx8ulp-usdhc
-+              - fsl,imx93-usdhc
-+              - fsl,imx95-usdhc
-           - const: fsl,imx8mm-usdhc
-       - items:
-           - enum:
--- 
-2.37.1
+If both clocks can physically be provided to the IP then both of them
+should be in the dt. The hcldc appears to me to be a part of the SoC and
+the clock routing to the IP is likely fixed.
 
+> To ensure proper configuration of the pixel clock period, we need to=20
+> distinctly identify which clocks are being utilized. For instance, in=20
+> the LVDS interface scenario, the lvds_pll_clk is essential, resulting in=
+=20
+> LCDC_PCK being set to the source clock. Conversely, in the MIPI/DSI=20
+> case, the LCDC GCLK is required, leading to LCDC_PCK being defined as=20
+> source clock/CLKDIV+2.
+>=20
+> Considering the potential coexistence of sys_clk and lvds_pll_clk in the=
+=20
+> Device Tree (DT), we may need to introduce an additional flag in the DT.=
+=20
+> This flag could serve as a clear indicator of whether the LVDS interface=
+=20
+> or MIPI/DSI is being employed. As we discussed to drop this flag and=20
+> just have any one of the clocks I believe that this approach provides a=
+=20
+> sensible and scalable solution, allowing for a comprehensive=20
+> representation of the clocking configuration.
+
+This is probably a question for the folks on the DRM or media side of
+things, but is it not possible to determine based on the endpoint what
+protocol is required?
+I know that on the media side of things there's an endpoint property
+that can be used to specific the bus-type - is there an equivalent
+property for DRM stuff?
+
+Cheers,
+Conor.
+
+--fSFFnBC92FdCkh8G
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa4yhQAKCRB4tDGHoIJi
+0sMDAP0c3HEL+1Ig0hd1OqjdKgyyXhWgUHymexBR+pGPnteR8AEArSSf7rMlOQn2
+Mx+/ZN+8H7ncpBa1xwIKSYBKhCK7sQk=
+=l0SJ
+-----END PGP SIGNATURE-----
+
+--fSFFnBC92FdCkh8G--
 
