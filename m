@@ -1,100 +1,99 @@
-Return-Path: <devicetree+bounces-33828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C2A836C45
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:00:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 360FF836C51
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:02:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D81841F26834
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:00:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF71F1F22FEC
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DDE35FDA7;
-	Mon, 22 Jan 2024 15:37:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADD5160261;
+	Mon, 22 Jan 2024 15:40:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOp3+M5E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eBcIivUw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0439B3D964;
-	Mon, 22 Jan 2024 15:37:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814C3482F4;
+	Mon, 22 Jan 2024 15:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705937858; cv=none; b=ldx0GKHMEN9t+Ja0YiU4FdV4C0BaQcblDQ5w+jeTcJwPPWDM9DB80ydpN1evAEXaqCxP3YEwZVWt6gEkVgBr6vbIAP5IJ0BTWbYCBXcqtA+aQzya9UNMXsVRFcRl1o14HQrq2Y2OX4yDpOxRfxne3NP8s/WdtG+FbWYVcVcnL1Y=
+	t=1705938047; cv=none; b=aff84I0hHNV7lJFYOnpBGXFivy+nd4CG/XzWZoYVA2uONyBG18qGOd7hF2Q3jmH7gDmp5JuMxqjudD63ddExAFMTi1bF/K3q2WLA+W12yHeJ0N+jdu4Kjo/WErcdZaY13NINdurLb7l/Fsxycbb0vpJQQVtUDYAOuCCU2cBaXQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705937858; c=relaxed/simple;
-	bh=oBkjXBXywzjerQXQYtvSV+LBIW1ORwRpbrfQQwoYB2E=;
+	s=arc-20240116; t=1705938047; c=relaxed/simple;
+	bh=Llm/bGfvWQJffn+yLnx+hItsLkbnebNnRSSuJm4Okcw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A8rZTw4QEVWl1b+YuUoXn1BpxnBKPQg863C4zHUwGj0pQasz/GXi2w1YA4zgfr8Bu1ycS3c/2elUJWnhyZHswQLZvTBdgY/VbjUB65hdDitAwnFYLRlfJkTpyR9N0hDOBrfOPLPZq+45vMsS3MGCxb++qCIdzMTa86QBWnq5v4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OOp3+M5E; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D0AC43390;
-	Mon, 22 Jan 2024 15:37:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qlNLLtrWKCfrouOG6hgkr7j79Mdx7XsWg3HZPDkDsfzdJiTENwl12Qfi9rHk/zdCOa4MH6iXg4579Ignom308goOl+n4y06WESnDXPUx4v5f47eDmdGvUaGd8hj+RXE0/e+1wAtmzbA44dnToBvaqyv/Aik+e7jdAWdmoal+cr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eBcIivUw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B2D5C433F1;
+	Mon, 22 Jan 2024 15:40:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705937857;
-	bh=oBkjXBXywzjerQXQYtvSV+LBIW1ORwRpbrfQQwoYB2E=;
+	s=k20201202; t=1705938045;
+	bh=Llm/bGfvWQJffn+yLnx+hItsLkbnebNnRSSuJm4Okcw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OOp3+M5ExlBpu2XAfqTPJujqofACALy6nLkBZcu3UeAE36+7AOEm3smCQwyrbxkzD
-	 4YVxyQPpqObAQVOijruVpr+qp/KX4zi25G8RsjoXQhR4dET4N6PC5sWTt7jee4iVAF
-	 vgQOPYWWowRERDUbfAbuW8wlz10PLsiwbDo5sDLSxwLM9viBXCqGSujO2zocUsAnyJ
-	 dGtNlsC5E+y/J31iAgJ7Ccr/FNKyTwdK1aqy5E6lYyfLcvS4+0bjlx+m2TIIedmdRj
-	 B9y3EbaKLloJycviIdIuZXCMm+WvBAy3DSQNAho6e8PP/FdI76+6byxncuMr0USyLG
-	 GhpO2mymUs4hA==
-Date: Mon, 22 Jan 2024 09:37:35 -0600
+	b=eBcIivUwryCQqSYxtZlJ8Oe2XaMcPw4Dx/pkOKR2BY7QuNUR8r1ujbcqep1cqsz3S
+	 yzUNej2CKbZo4BSc4IufGYJC1SYfkyKwmOkLangoQBjH/7jfqezvjPQAbW7fdtctYB
+	 Dp9xIXCF8DMXTNcD9o0qwmykFOnZj7NTMomaYt5HFeTdmzrGnEbsFoFDb0XQpYKo7o
+	 BOgxsiHQ8zsEFWvYEGSMMxI2wAe0BM2VDr4caw4W+ea5Si6FSnRwRhmXRe30UCMBcN
+	 lU7Zo8lSiuNFmFb6QSESrmzDsK9eIblcXm8CvRDXN+0gYiOuPhSlzp8/s8u365L0h1
+	 fZNb51RXbr55g==
+Date: Mon, 22 Jan 2024 09:40:43 -0600
 From: Rob Herring <robh@kernel.org>
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/8] dt-bindings: adc: ad9467: add new io-backend
- property
-Message-ID: <20240122153735.GB601827-robh@kernel.org>
-References: <20240119-iio-backend-v6-0-189536c35a05@analog.com>
- <20240119-iio-backend-v6-1-189536c35a05@analog.com>
- <170568455280.599772.1565973986432310014.robh@kernel.org>
+To: =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>
+Cc: Shuah Khan <shuah@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+	devicetree@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@collabora.com,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v2] kselftest: dt: Stop relying on dirname to improve
+ performance
+Message-ID: <20240122154043.GC601827-robh@kernel.org>
+References: <20240122-dt-kselftest-dirname-perf-fix-v2-1-f1630532fd38@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <170568455280.599772.1565973986432310014.robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240122-dt-kselftest-dirname-perf-fix-v2-1-f1630532fd38@collabora.com>
 
-On Fri, Jan 19, 2024 at 11:15:54AM -0600, Rob Herring wrote:
+On Mon, Jan 22, 2024 at 11:29:18AM -0300, Nícolas F. R. A. Prado wrote:
+> When walking directory trees, instead of looking for specific files and
+> running dirname to get the parent folder, traverse all folders and
+> ignore the ones not containing the desired files. This avoids the need
+> to call dirname inside the loop, which drastically decreases run time:
+> Running locally on a mt8192-asurada-spherion, which reports 160 test
+> cases, has gone from 5.5s to 2.9s, while running remotely with an
+> nfsroot has gone from 13.5s to 5.5s.
 > 
-> On Fri, 19 Jan 2024 17:00:47 +0100, Nuno Sa wrote:
-> > The ad9467 will make use of the new IIO backend framework which is a
-> > provider - consumer interface where IIO backends provide services to
-> > consumers. As such, and being this device a consumer,  add the new
-> > generic io-backend property to the bindings.
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> >  Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
+> This change has a side-effect, which is that the root DT node now
+> also shows in the output, even though it isn't expected to bind to a
+> driver. However there shouldn't be a matching driver for the board
+> compatible, so the end result will be just an extra skipped test:
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> ok 1 / # SKIP
 > 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml: io-backends: missing type definition
+> Reported-by: Mark Brown <broonie@kernel.org>
+> Closes: https://lore.kernel.org/all/310391e8-fdf2-4c2f-a680-7744eb685177@sirena.org.uk
+> Fixes: 14571ab1ad21 ("kselftest: Add new test for detecting unprobed Devicetree devices")
+> Tested-by: Mark Brown <broonie@kernel.org>
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+> Changes in v2:
+> - Tweaked commit message
+> - Added trailer tags
+> - Rebased on 6.8-rc1
+> ---
+>  tools/testing/selftests/dt/test_unprobed_devices.sh | 13 +++++++------
+>  1 file changed, 7 insertions(+), 6 deletions(-)
 
-Are you going to update the GH PR so I can apply adding io-backends?
+Applied, thanks.
 
 Rob
-
 
