@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-33930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10C0837438
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 21:44:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36286837457
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 21:46:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A14FD1F266CA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 20:44:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFFD91F2A259
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 20:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A19D47A7C;
-	Mon, 22 Jan 2024 20:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6457B495E4;
+	Mon, 22 Jan 2024 20:44:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWvoqp4K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vt5Hgc4+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F72047F6F;
-	Mon, 22 Jan 2024 20:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E415495DF;
+	Mon, 22 Jan 2024 20:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705956263; cv=none; b=O97qIVpY5Xg7+5NJsibKz4FEd8osyZhyDpRmSfAcREDiQ6DWAj8ByoKbM60kpDSkE+N0GoOsl/hx4dH1JRoHi0Ol6BwD11e6bTdVlCR4zoZQOU6h2OmiLUQfY43SI0mGecyELwF4IvKSqdZbyreiD8yxGSjA5ICic/lTLQpAKHI=
+	t=1705956280; cv=none; b=SlFuX1mEKn+SOwxIGd3m9/AlyvF5oUrfWD095GEHsajdmvSKYIggDpYv9ylxAlozkFj5sbRybY4ZV27dNcHYP44JsF78lFNF91ayA3+JJTTBpyCFNp/Bd3K39hZ7Xddm4mMyqxZxpdpOXmmTw/VZ85rPF1hgQbS5XMbT1vD8dz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705956263; c=relaxed/simple;
-	bh=jHahJBNOqmpxsRa3jIC+1XUQhYkCmY2XrppesnzXsns=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=TXrNxt6j5dyZUbYbff7gWhFLRs1COjmxhGYDoik4G0KvNuP4d+nyZyTcmdw35Vibx44i07dtzZ2LI80pcl8/dkP3+gaNSkPhtGtVM46+3zuRvwANVkHojveAKv8TFxmDTzMD8T0h+9NAcegQEv80WviINSH8vhMne2OAyXYgci0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWvoqp4K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EF45C43390;
-	Mon, 22 Jan 2024 20:44:19 +0000 (UTC)
+	s=arc-20240116; t=1705956280; c=relaxed/simple;
+	bh=PeIl/ehh+Zh7UoFmAl9FwVNaJ2HBqHlBBURFLXdEfiM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=AuJpnywd8JCs3knBazBMFba2KWGMEd8Md2hne9wXvCsrNkkLYk9aQRRkq5TSpj4BPghcEvXzOv/14SOJ6l2OqttRa+1gSivAyERNmi/9sBGP6Ons9jII2ejkTBvNuHDrnAhXGF71ZfyMijONDP+nZ52Tu0LTwiWCu9HKcmMT+cY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vt5Hgc4+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F880C43399;
+	Mon, 22 Jan 2024 20:44:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705956262;
-	bh=jHahJBNOqmpxsRa3jIC+1XUQhYkCmY2XrppesnzXsns=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=PWvoqp4K/BSNf38aC031IAIAGvnawluui5ppROC72eOoP60pdyF1a1GwutIp0XJun
-	 QhmRWGJjkX7a0NYQQL8DLh+Ia5f5+X8L8ctO9WaZ8uIG215wxpE27CvYw4EilCUN3L
-	 E9H+xcKGmq32P79671o0+eXHdOm3vVIi5pIenMcYURyq0Q4soYwq5Hjuw43lRjz0Rw
-	 EjR3S5UQr9grqDMROnI3/eegu7gSW3xG5eqL1XGUnbbAyOYK6wOdiUfCEhCcdaybKt
-	 IDqTL3GZe4+rY7rbVlbXEJ3VTQenQ12EPtMjRjav90PSAkruylijxR3Epy0W2AxU3H
-	 tV+SWwIVLeu7g==
+	s=k20201202; t=1705956279;
+	bh=PeIl/ehh+Zh7UoFmAl9FwVNaJ2HBqHlBBURFLXdEfiM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Vt5Hgc4+U6tiA2MbikPCABygUv7RDGh0qHoOe+iQ2dVce0W9HJ4DnNcX9bvJ3y+rZ
+	 w3LL8xoVNKdfzV4iH2kt9N44EAPqIzr0MgPx1Yowo8XN37cn/6RL7utqBoBpGS7Ks0
+	 8igUSlX0d0YuXGXumeOPE5vAAzAHpzYyst190s6f8x2deobYnLdKKonR4aD/VVemXz
+	 3sqUEE3fXQmx8J3HC8JPHwf24npM49S7jMJvOeog8GmcJxyPVwKum7qvbEIeitlHM7
+	 KJn+DCU8sr7OG+sa+yKzXrz7Km0XFOSgQssaKcc0p2YIRasc9xqtp6SxibHzgh0mw0
+	 uwpW5InLKdAyQ==
 From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
- shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com, 
- nicoleotsuka@gmail.com, perex@perex.cz, tiwai@suse.com, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, 
- linuxppc-dev@lists.ozlabs.org, Chancel Liu <chancel.liu@nxp.com>
-In-Reply-To: <20240112054331.3244104-1-chancel.liu@nxp.com>
-References: <20240112054331.3244104-1-chancel.liu@nxp.com>
-Subject: Re: [PATCH v2 0/3] ASoC: Support SAI and MICFIL on i.MX95 platform
-Message-Id: <170595625937.145475.18065779265515755326.b4-ty@kernel.org>
-Date: Mon, 22 Jan 2024 20:44:19 +0000
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20240104-tps65132-v2-1-6c77fe2f4787@apitzsch.eu>
+References: <20240104-tps65132-v2-1-6c77fe2f4787@apitzsch.eu>
+Subject: Re: [PATCH v2] dt-bindings: regulator: Convert ti,tps65132 to YAML
+Message-Id: <170595627803.145638.1453622208828773553.b4-ty@kernel.org>
+Date: Mon, 22 Jan 2024 20:44:38 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,36 +59,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.13-dev-5c066
 
-On Fri, 12 Jan 2024 14:43:28 +0900, Chancel Liu wrote:
-> Support SAI and MICFIL on i.MX95 platform
+On Thu, 04 Jan 2024 23:40:40 +0100, André Apitzsch wrote:
+> Convert TI TPS65132 bindings from .txt to .yaml format.
 > 
-> changes in v2
-> - Remove unnecessary "item" in fsl,micfil.yaml
-> - Don't change alphabetical order in fsl,sai.yaml
 > 
-> Chancel Liu (3):
->   ASoC: dt-bindings: fsl,sai: Add compatible string for i.MX95 platform
->   ASoC: fsl_sai: Add support for i.MX95 platform
->   ASoC: dt-bindings: fsl,micfil: Add compatible string for i.MX95
->     platform
-> 
-> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/3] ASoC: dt-bindings: fsl,sai: Add compatible string for i.MX95 platform
-      commit: 52523f70fdf9b2cb0bfd1999eba4aa3a30b04fa6
-[2/3] ASoC: fsl_sai: Add support for i.MX95 platform
-      commit: 2f2d78e2c29347a96268f6f34092538b307ed056
-[3/3] ASoC: dt-bindings: fsl,micfil: Add compatible string for i.MX95 platform
-      commit: 20d2719937cf439602566a8f041d3208274abc01
+[1/1] dt-bindings: regulator: Convert ti,tps65132 to YAML
+      commit: a6ffa02ba7a28fe1bba06eacb224554d89a1cd4d
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
