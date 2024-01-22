@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-33812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E47836652
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 16:01:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778888365E8
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 15:56:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 063FE1C21D5A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 15:01:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 059E6282FAE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 14:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D081D44393;
-	Mon, 22 Jan 2024 14:56:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BD583D572;
+	Mon, 22 Jan 2024 14:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fx/aDYPh"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Sr3GRr+F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4A7E41232;
-	Mon, 22 Jan 2024 14:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8092A3CF45;
+	Mon, 22 Jan 2024 14:55:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705935376; cv=none; b=qvzzAjLRO4RajrxrqEpDSac6TTdgOvkvglnw7B0EMMwrqjK/SzxJATriNRExak1KF4DExfNC+qfZvx6Qebj2mpfOzfjIMuSgVoSKy215BSlcZBIlaqMDOEIlB42HNC7opZf1s3tTRKNTPPT/1BkUEtSY1SkAg6be9ITVDnL5a4Y=
+	t=1705935360; cv=none; b=QybjGWQ2bpGCjqu4g8gzBLO5K1dauPKoqMnPphbBQh1HzgZ2ld2KpLJ4zLrGikPM4Vn34KcwYj5XXz2dkOK18228VUvd8QJGsRuzcw5WQBX7Tz4XPj2ZGRt3sOsCvDg2pGfraO8OylkGhW2ruqktt7VsH6iVjl70L4FIwQHDWNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705935376; c=relaxed/simple;
-	bh=eoes7x/bKOV6Let0lFwVK/mRboNEG2eZf+NgoVlz7e4=;
+	s=arc-20240116; t=1705935360; c=relaxed/simple;
+	bh=PAbio/agq2JeBhY0Nz4bvSnf/3VVn121onf6wpKJeuE=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VZSkLWqtJVos6LA4U1dCxtKTKXx/87c5VOwX485KwIWtQPiFBxEv/Q1OV+VHK+jyl7raZii2fIVvhX2fesBmFd+Q27rNVAb/MUoRc6mrMUT0dxv42XHevNRY2zNgNNE75EEu4EMAODJQ2cOz/gM7O0DzgQtXggD29wvTC3vgCow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fx/aDYPh; arc=none smtp.client-ip=198.47.19.142
+	 MIME-Version:Content-Type; b=VvCOtLE/oFRwAId1IAq3bMgPAKB22frqqC2sgOOgMPqHknMAL9wqrgbm76eUAX9V11nSUTlShVO0isLQmkfHmi/Dnpa90UuWS+Im4ta1UkMIN9EhLyngIcAq3DzuzLKEEyAoKoxlYZ3hoHrlRBtuQdwA5X3k33FN9lQgSiIfoyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Sr3GRr+F; arc=none smtp.client-ip=198.47.23.248
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40MEtim6068526;
-	Mon, 22 Jan 2024 08:55:44 -0600
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40MEtjJq045424;
+	Mon, 22 Jan 2024 08:55:45 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1705935344;
-	bh=XivmqVx03hmiLabFfMgTUunogacbx4P7WI8MlIj0TNA=;
+	s=ti-com-17Q1; t=1705935345;
+	bh=boGJjrJeLQa81r8lwI4Pesuw8g6i+d8lW/ce2StQqcI=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=fx/aDYPh01i3C3IjxRHpm3iCRfRNCCCmjYDGZVB0IbFpa7Cvlzw4NYiwtrYEGGwbh
-	 QRlUVlotbAj/vejCQtrdmeQ/dZuXjA6d5TMaZIj55qOpGeoUlGimoIfrPbZBqBmnLT
-	 beCeyxtYv+SJj7uIHXh2ne4yKwnopp0gqjqPW6zU=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40MEtirG012931
+	b=Sr3GRr+FaQuVJfRnQp7qlDf/0mHs80XW8ngxabCgZEE4G0X1bzKFZzFZ1Ve8marH8
+	 oPeHQ76MoVEAlZNclSKh1KmkCoami8M3sHSn/1o6j0Pwx2mBNeuMWJ4/C+WV8a8sop
+	 vtToqxVpcL4L7MsrNP3kagwbmR9T0eakgcr4Uiuc=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40MEtjuw005343
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 22 Jan 2024 08:55:44 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 22 Jan 2024 08:55:45 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
- Jan 2024 08:55:43 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2024 08:55:44 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Mon, 22 Jan 2024 08:55:43 -0600
 Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40MEthue022000;
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40MEthh2022003;
 	Mon, 22 Jan 2024 08:55:43 -0600
 From: Nishanth Menon <nm@ti.com>
 To: Tero Kristo <kristo@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
@@ -62,20 +62,15 @@ CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring
 	<robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Nishanth Menon <nm@ti.com>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Matthias Schiffer
-	<matthias.schiffer@ew.tq-group.com>,
-        Pierre Gondois <pierre.gondois@arm.com>, Rob Herring <robh@kernel.org>,
-        Tomi Valkeinen
-	<tomi.valkeinen@ideasonboard.com>,
+        Nishanth Menon <nm@ti.com>, Esteban Blanc <eblanc@baylibre.com>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Pierre Gondois
+	<pierre.gondois@arm.com>,
         Tony Lindgren <tony@atomide.com>
-Subject: [PATCH V2 06/16] arm64: dts: ti: k3-am65: Add MIT license along with GPL-2.0
-Date: Mon, 22 Jan 2024 08:55:29 -0600
-Message-ID: <20240122145539.194512-7-nm@ti.com>
+Subject: [PATCH V2 07/16] arm64: dts: ti: k3-j7200: Add MIT license along with GPL-2.0
+Date: Mon, 22 Jan 2024 08:55:30 -0600
+Message-ID: <20240122145539.194512-8-nm@ti.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240122145539.194512-1-nm@ti.com>
 References: <20240122145539.194512-1-nm@ti.com>
@@ -101,208 +96,131 @@ While at this, update the TI copyright year to sync with current year
 to indicate license change (and add it at least for one file which was
 missing TI copyright).
 
-Cc: "Alexander A. Klimov" <grandmaster@al2klimov.de>
-Cc: Jan Kiszka <jan.kiszka@siemens.com>
+Cc: Esteban Blanc <eblanc@baylibre.com>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 Cc: Pierre Gondois <pierre.gondois@arm.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 Cc: Tony Lindgren <tony@atomide.com>
 
-Acked-by: Jan Kiszka <jan.kiszka@siemens.com>
+Acked-by: Esteban Blanc <eblanc@baylibre.com>
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 Acked-by: Pierre Gondois <pierre.gondois@arm.com>
-Acked-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 Acked-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
 Changes Since v1:
-* Picked up acks.
+* Picked up acks - all acks recieved
 
-Pending acks:
- - "Alexander A. Klimov" <grandmaster@al2klimov.de>
- - Rob Herring <robh@kernel.org>
+V1: https://lore.kernel.org/r/20240110140903.4090946-8-nm@ti.com
 
-V1: https://lore.kernel.org/r/20240110140903.4090946-7-nm@ti.com
+ arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts      | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi                  | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi            | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi                | 4 ++--
+ arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi               | 5 ++++-
+ arch/arm64/boot/dts/ti/k3-j7200.dtsi                       | 4 ++--
+ 7 files changed, 16 insertions(+), 13 deletions(-)
 
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi                     | 4 ++--
- arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi                      | 4 ++--
- arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi                   | 4 ++--
- arch/arm64/boot/dts/ti/k3-am65.dtsi                          | 4 ++--
- arch/arm64/boot/dts/ti/k3-am652.dtsi                         | 4 ++--
- .../dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso     | 4 ++--
- arch/arm64/boot/dts/ti/k3-am654-base-board.dts               | 4 ++--
- arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso                  | 4 ++--
- arch/arm64/boot/dts/ti/k3-am654-idk.dtso                     | 4 ++--
- arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi      | 5 ++++-
- arch/arm64/boot/dts/ti/k3-am654.dtsi                         | 4 ++--
- 11 files changed, 24 insertions(+), 21 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index fcea54465636..e55a8c891bc9 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -1,8 +1,8 @@
--// SPDX-License-Identifier: GPL-2.0
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
- /*
-  * Device Tree Source for AM6 SoC Family Main Domain peripherals
-  *
-- * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- #include <dt-bindings/phy/phy-am654-serdes.h>
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-index ecd7356f3315..6ff3ccc39fb4 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi
-@@ -1,8 +1,8 @@
--// SPDX-License-Identifier: GPL-2.0
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
- /*
-  * Device Tree Source for AM6 SoC Family MCU Domain peripherals
-  *
-- * Copyright (C) 2016-2020 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
- &cbass_mcu {
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-index f037b36243ce..37527890ddea 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-@@ -1,8 +1,8 @@
--// SPDX-License-Identifier: GPL-2.0
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
- /*
-  * Device Tree Source for AM6 SoC Family Wakeup Domain peripherals
-  *
-- * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
- &cbass_wakeup {
-diff --git a/arch/arm64/boot/dts/ti/k3-am65.dtsi b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-index 4d7b6155a76b..c59baebc5a25 100644
---- a/arch/arm64/boot/dts/ti/k3-am65.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65.dtsi
-@@ -1,8 +1,8 @@
--// SPDX-License-Identifier: GPL-2.0
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
- /*
-  * Device Tree Source for AM6 SoC Family
-  *
-- * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
- #include <dt-bindings/gpio/gpio.h>
-diff --git a/arch/arm64/boot/dts/ti/k3-am652.dtsi b/arch/arm64/boot/dts/ti/k3-am652.dtsi
-index 0f22e00faa90..cbb3caaf82c3 100644
---- a/arch/arm64/boot/dts/ti/k3-am652.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am652.dtsi
-@@ -1,8 +1,8 @@
--// SPDX-License-Identifier: GPL-2.0
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
- /*
-  * Device Tree Source for AM65 SoC family in Dual core configuration
-  *
-- * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
- #include "k3-am65.dtsi"
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso b/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso
-index 4209d991eb6b..364c57b3b3a0 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board-rocktech-rk101-panel.dtso
-@@ -1,10 +1,10 @@
--// SPDX-License-Identifier: GPL-2.0
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
- /**
-  * OLDI-LCD1EVM Rocktech integrated panel and touch DT overlay for AM654-EVM.
-  * Panel Link: https://www.digimax.it/en/tft-lcd/20881-RK101II01D-CT
-  * AM654 LCD EVM: https://www.ti.com/tool/TMDSLCD1EVM
-  *
-- * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
- /dts-v1/;
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index 822c288d2797..5109e1bf68d0 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+index cee2b4b0eb87..1c87271971f3 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
 @@ -1,6 +1,6 @@
 -// SPDX-License-Identifier: GPL-2.0
 +// SPDX-License-Identifier: GPL-2.0-only OR MIT
  /*
-- * Copyright (C) 2016-2020 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
- /dts-v1/;
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-index ec8cf20ca3ac..0a6e75265ba9 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am654-icssg2.dtso
-@@ -1,8 +1,8 @@
--// SPDX-License-Identifier: GPL-2.0
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
- /**
-  * DT overlay for IDK application board on AM654 EVM
-  *
-- * Copyright (C) 2018-2023 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2018-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
- /dts-v1/;
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-idk.dtso b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
-index 150428dfce6f..8bdb87fcbde0 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-am654-idk.dtso
-@@ -1,8 +1,8 @@
--// SPDX-License-Identifier: GPL-2.0
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
- /**
-  * DT overlay for IDK application board on AM654 EVM
-  *
-- * Copyright (C) 2018-2023 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2018-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- 
- /dts-v1/;
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
-index 9021c738056b..de5a2ed907a7 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am654-industrial-thermal.dtsi
-@@ -1,4 +1,7 @@
--// SPDX-License-Identifier: GPL-2.0
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
+- * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
 + * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
+  */
  
- #include <dt-bindings/thermal/thermal.h>
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso b/arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso
+index 32d905235ed7..6432ca08ee8e 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso
++++ b/arch/arm64/boot/dts/ti/k3-j7200-evm-quad-port-eth-exp.dtso
+@@ -1,9 +1,9 @@
+-// SPDX-License-Identifier: GPL-2.0
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
+ /**
+  * DT Overlay for CPSW5G in QSGMII mode using J7 Quad Port ETH EXP Add-On Ethernet Card with
+  * J7200 board.
+  *
+- * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
++ * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
+  */
  
-diff --git a/arch/arm64/boot/dts/ti/k3-am654.dtsi b/arch/arm64/boot/dts/ti/k3-am654.dtsi
-index 888567b921f0..bb77c8454734 100644
---- a/arch/arm64/boot/dts/ti/k3-am654.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am654.dtsi
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index da67bf8fe703..2d9eda7b3132 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
 @@ -1,8 +1,8 @@
 -// SPDX-License-Identifier: GPL-2.0
 +// SPDX-License-Identifier: GPL-2.0-only OR MIT
  /*
-  * Device Tree Source for AM6 SoC family in Quad core configuration
+  * Device Tree Source for J7200 SoC Family Main Domain peripherals
   *
-- * Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
+- * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
++ * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
   */
  
- #include "k3-am65.dtsi"
+ / {
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+index 60b26374ae0c..7596ecc0f683 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+@@ -1,8 +1,8 @@
+-// SPDX-License-Identifier: GPL-2.0
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
+ /*
+  * Device Tree Source for J7200 SoC Family MCU/WAKEUP Domain peripherals
+  *
+- * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
++ * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
+  */
+ 
+ &cbass_mcu_wakeup {
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+index ea47f10d393a..7a06797b5e80 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+@@ -1,6 +1,6 @@
+-// SPDX-License-Identifier: GPL-2.0
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
+ /*
+- * Copyright (C) 2020-2021 Texas Instruments Incorporated - https://www.ti.com/
++ * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
+index e7e3a643a6f0..2d22a95a6fdb 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
+@@ -1,4 +1,7 @@
+-// SPDX-License-Identifier: GPL-2.0
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++/*
++ * Copyright (C) 2023-2024 Texas Instruments Incorporated - https://www.ti.com/
++ */
+ 
+ #include <dt-bindings/thermal/thermal.h>
+ 
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
+index ef73e6d7e858..d411911fdf71 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
+@@ -1,8 +1,8 @@
+-// SPDX-License-Identifier: GPL-2.0
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
+ /*
+  * Device Tree Source for J7200 SoC Family
+  *
+- * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
++ * Copyright (C) 2020-2024 Texas Instruments Incorporated - https://www.ti.com/
+  */
+ 
+ #include <dt-bindings/interrupt-controller/irq.h>
 -- 
 2.43.0
 
