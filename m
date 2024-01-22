@@ -1,75 +1,73 @@
-Return-Path: <devicetree+bounces-33889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B79C4836F6F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:15:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D0C4836F76
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:16:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD7D91C28793
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:15:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B38C5294A1C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:16:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E03141769;
-	Mon, 22 Jan 2024 17:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968B346539;
+	Mon, 22 Jan 2024 17:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yog+BDAp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A5zbWg3p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D104F4642C;
-	Mon, 22 Jan 2024 17:39:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84924642C;
+	Mon, 22 Jan 2024 17:40:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705945172; cv=none; b=iPn+4zrKq9hIzR4DRxtkbY5V9X/bYxXq/HtLTM98RetPqebqeBe0oHLhufLcAty2qeacnTAZbLsLpKe+MlHNGGdf6nYcn0f+PYqJhhlSQhTMtxe1srJxjXTMvtw8cLJuYPe78Uqspy851Caz4YIThxSNnUUKA+wb1KyIy4vwpxo=
+	t=1705945251; cv=none; b=UrpvB2KG0/ANgLqbvn6zeAEFnYWaIkgOIa2OgWx7xJWXGVBFXD06pfbadPdjTAjdpVyKQn5yYxetrbsffmw9bUNFvgt+eGu6BMHWtiOVQHNoLXBSZVPSb7D3zB2X82zV1Fj9iwKxMrmvFXhbSlg2oQhlwCHrBaB6ksrVsNIitXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705945172; c=relaxed/simple;
-	bh=hfCd1Y5oYmxXeZ+dlaZix8KLaxz5lElV/rFBFaBiI98=;
+	s=arc-20240116; t=1705945251; c=relaxed/simple;
+	bh=z0YX+nshrLb1ARNNrOWMxFE3wzzsiMY5HD6g7Q/E/UE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GuLw/iJZ9jcN3QUBvqA5CVOh5wwND/OsG6NN0wQPYeeWUdQ7i2LBvoq+6BlU3MERV8a7C1RvEwgZhvUmfw+Mx/V5tILbs6kxKX2NQaXQhc3uvAXAKv8+Z3VQpMjxaKkkUlx9SPBVYVbAkxKdYoW231U5yjUy0RdTQpDyWXrvR7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yog+BDAp; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	 In-Reply-To:Content-Type; b=Sv1bCIe+WFI70Rz74JOfVp/zwhigWHzo9hzWj6HxNopW/djQDQJoZPYooTlf9bOuB07jrIYwFjKBJ3g3MObtphNUdVoozVD0H+ORB0ywAgSHeTITBBwfeLaSWMfYHwjm9485oEZQq933RiTpAp7FQhdpnksOacAOeMRmDWaYy9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A5zbWg3p; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1d74dce86f7so10233225ad.2;
-        Mon, 22 Jan 2024 09:39:30 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a2a17f3217aso328201566b.2;
+        Mon, 22 Jan 2024 09:40:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705945170; x=1706549970; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=iRlYTVmwRF54QEgOCDB+moTbTPswdx4GRYVGmNIHl68=;
-        b=Yog+BDAp9WKLRGP3QHvNKVUpxA5sGv1LmgSBhB/nDyV0JuOL9lieXlK5yEgTXpZwVm
-         MzQjyRkmlrBfbBihDY1zbi5Z1V5vLgblztnAMwjUpLo0mveaK/N0zPSAuL1Rkj4XIJw4
-         CvklL654x0b8YKmb6dpzRVWfD7bWXZ4ddbZC/QsIaRlMXG9djUslDBhUaawKLArXn8O5
-         15NE3C/ah38VvVYbNQvd5XBnWrfOwL7cMlMXlXkDo5Q/nEKmBRBNJrHCMsUY+mCqQ04+
-         1e6SR9letSfo9T9izEdwiYMUAlkXNoKxWzA4sce3W7ovU6/vthuEG5zKHR70TDCCUW4G
-         QCDg==
+        d=gmail.com; s=20230601; t=1705945248; x=1706550048; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dg8I5JcHrRlXUy9GUlV4Auo+UENFvpBlf45H7DNqd2g=;
+        b=A5zbWg3pG1scupMA+GwI83zK/RnroWgLrxfqiG304MJkYsGvjY8fTrFFcEOUpoEl9y
+         DuZe1N5BZU7bt9z1vzlZFOsSwyLpYHUQnTQVsOTwQJXAIj/pItx/lIRkn8HMV6bvgzGL
+         z5aTWiayPpQz84tSGM9HM/USQW7lOElRl8/a2IZ26Cify9KUU5BpkCsltGHNkIzMk94n
+         f16FVNPy92jCeliRcCpg1RmmLpC9KV+xzPSIFRpQO9gdUYb9dI9lqXpstgE0fIAZnw7/
+         QeCU50jlaMjPURu1Ks1+vaOmQ1vY0PSA5PBUyuNAUPKwMtAPqXkD43iBNr0hqoxePucY
+         OCyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705945170; x=1706549970;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iRlYTVmwRF54QEgOCDB+moTbTPswdx4GRYVGmNIHl68=;
-        b=WSgBpLU3Y+yU9DY4OkC6XbhvRxGX50KEyH+4mojTWZ+7RSzi4KfFwC5xBc7QGdBxp4
-         MD5DOkFZ1GBVPLdUnlbh7YMNp30VEeofu7M6cfo0P1BN8XhqvB1ZU1tdsHeYfYa9mGSy
-         3Tg4FZBSXuiiPJ8qnju8LoFVIlDT4lyS0Gr1CpzdMSQ+xCaEEVSE9A8IzY9l+LxdPbh9
-         wcaN3klzpqx+EH/D3TkGd1GVCYGl3mcNS8EqXzV+EmE/qq1cJQBunfSX807qoytG0KG1
-         4MwZ8pdS0Dvwh4iasE43vEKr2BYk9ErDdt/olU12tXl6+sCKeC9bX465v1F4jbufGi5w
-         PXSg==
-X-Gm-Message-State: AOJu0Yx+zHKjBc3RHANpcOV3ll1mfTvFAumGcoL3zbY1hDixHo+DaHPe
-	MEQxROeqpIBUT83L6B16zkFYIGlmym4oeKKJqXGMBdAc1najlw1L
-X-Google-Smtp-Source: AGHT+IFdOn4FdPrIQ0ppWcJpcTrHrmkNQ2x1tWtSGsVJVEb3zvx0+1VfIsNOGwNuwwtazqcsdF25Kw==
-X-Received: by 2002:a17:903:25d1:b0:1d7:ebe:9d4e with SMTP id jc17-20020a17090325d100b001d70ebe9d4emr4423977plb.92.1705945170002;
-        Mon, 22 Jan 2024 09:39:30 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id v20-20020a170902f0d400b001d74cee458asm2317033pla.107.2024.01.22.09.39.28
+        d=1e100.net; s=20230601; t=1705945248; x=1706550048;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dg8I5JcHrRlXUy9GUlV4Auo+UENFvpBlf45H7DNqd2g=;
+        b=fPvIDi245ZJgpY8E+Sylri3CDW12Fwk6+fvgeJbMR6l6Ha1aZJdsM8zmQOkjN291pS
+         OfPEQdpUnaHYYIr7FmuaDzHfWHDSZAMRT3clvfnn/Nui2CzFAGIVTK2ETtRvHT+lzWO1
+         oXNxViKwpEgKtyESo4oITR3nqaGoqcIjneCgpLwWuEzZALAE+IF0zFnyAgPk0VwcAd5f
+         Wx1OBQnCzj4JJ0dewhiW0n7V+DT1+OUp/dqJxuWudKhse8tNVTLwtF0eXGmYd7K4ZOko
+         5oqB39Ba174zxEnrnPNi/x84B5EqZ9Sdp7JTX2ezhy+3kWoU9SblMLu6zu8aVXWV/jE/
+         UFvw==
+X-Gm-Message-State: AOJu0YxojYgpueUoKy7/K1+g2cuCYD/8HY3DChPmwVQNSoYyMBOSkkSS
+	S+xxTmFihFgUU9Z7IVf2wO901W75udIQ1glSxpznTpk4AysMTJY8
+X-Google-Smtp-Source: AGHT+IFx6SIU847X6czNf31z+hKTviMy+yuipEXqcOFLhPZbLoNL5KT2/P9O4hOGrFtB2Z4tFJvI/Q==
+X-Received: by 2002:a17:907:1601:b0:a2f:c791:7739 with SMTP id cw1-20020a170907160100b00a2fc7917739mr2615956ejd.30.1705945247871;
+        Mon, 22 Jan 2024 09:40:47 -0800 (PST)
+Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.googlemail.com with ESMTPSA id t19-20020a1709067c1300b00a2ca9d38654sm12642103ejo.85.2024.01.22.09.40.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 09:39:29 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <a5a807c1-76ef-4cf7-a2cf-bc432c420ded@roeck-us.net>
-Date: Mon, 22 Jan 2024 09:39:27 -0800
+        Mon, 22 Jan 2024 09:40:47 -0800 (PST)
+Message-ID: <311fa703-7dbc-41d2-bfde-85dd7cb20657@gmail.com>
+Date: Mon, 22 Jan 2024 18:40:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,137 +75,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/10] watchdog: rzg2l_wdt: Add suspend/resume support
+Subject: Re: [PATCH] dt-bindings: rtc: convert MT2717 RTC to the json-schema
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Eddie Huang <eddie.huang@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
+ Ran Bi <ran.bi@mediatek.com>, linux-rtc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20240122124949.29577-1-zajec5@gmail.com>
+ <1c4e14f7-ca34-4433-96cb-0ba6d6c6906d@gmail.com>
 Content-Language: en-US
-To: Claudiu <claudiu.beznea@tuxon.dev>, wim@linux-watchdog.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240122111115.2861835-1-claudiu.beznea.uj@bp.renesas.com>
- <20240122111115.2861835-8-claudiu.beznea.uj@bp.renesas.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240122111115.2861835-8-claudiu.beznea.uj@bp.renesas.com>
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <1c4e14f7-ca34-4433-96cb-0ba6d6c6906d@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 1/22/24 03:11, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 22.01.2024 14:19, Matthias Brugger wrote:
+> On 22/01/2024 13:49, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> This helps validating DTS files. Introduced changes:
+>> 1. Reworded title
+>> 2. Dropper redundant properties descriptions
+>> 3. Added required #include and adjusted "reg" in example
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>>   .../bindings/rtc/mediatek,mt2712-rtc.yaml     | 39 +++++++++++++++++++
+>>   .../devicetree/bindings/rtc/rtc-mt2712.txt    | 14 -------
+>>   2 files changed, 39 insertions(+), 14 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/rtc/mediatek,mt2712-rtc.yaml
+>>   delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-mt2712.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/rtc/mediatek,mt2712-rtc.yaml b/Documentation/devicetree/bindings/rtc/mediatek,mt2712-rtc.yaml
 > 
-> The RZ/G3S supports deep sleep states where power to most of the IP blocks
-> is cut off. To ensure proper working of the watchdog when resuming from
-> such states, the suspend function is stopping the watchdog and the resume
-> function is starting it. There is no need to configure the watchdog
-> in case the watchdog was stopped prior to starting suspend.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->   drivers/watchdog/rzg2l_wdt.c | 26 ++++++++++++++++++++++++++
->   1 file changed, 26 insertions(+)
-> 
-> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
-> index 9333dc1a75ab..186796b739f7 100644
-> --- a/drivers/watchdog/rzg2l_wdt.c
-> +++ b/drivers/watchdog/rzg2l_wdt.c
-> @@ -279,6 +279,7 @@ static int rzg2l_wdt_probe(struct platform_device *pdev)
->   	priv->wdev.timeout = WDT_DEFAULT_TIMEOUT;
->   
->   	watchdog_set_drvdata(&priv->wdev, priv);
-> +	dev_set_drvdata(dev, priv);
->   	ret = devm_add_action_or_reset(&pdev->dev, rzg2l_wdt_pm_disable, &priv->wdev);
->   	if (ret)
->   		return ret;
-> @@ -300,10 +301,35 @@ static const struct of_device_id rzg2l_wdt_ids[] = {
->   };
->   MODULE_DEVICE_TABLE(of, rzg2l_wdt_ids);
->   
-> +static int rzg2l_wdt_suspend_late(struct device *dev)
-> +{
-> +	struct rzg2l_wdt_priv *priv = dev_get_drvdata(dev);
-> +
-> +	if (!watchdog_active(&priv->wdev))
-> +		return 0;
-> +
-> +	return rzg2l_wdt_stop(&priv->wdev);
-> +}
-> +
-> +static int rzg2l_wdt_resume_early(struct device *dev)
-> +{
-> +	struct rzg2l_wdt_priv *priv = dev_get_drvdata(dev);
-> +
-> +	if (!watchdog_active(&priv->wdev))
-> +		return 0;
-> +
-> +	return rzg2l_wdt_start(&priv->wdev);
-> +}
-> +
-> +static const struct dev_pm_ops rzg2l_wdt_pm_ops = {
-> +	LATE_SYSTEM_SLEEP_PM_OPS(rzg2l_wdt_suspend_late, rzg2l_wdt_resume_early)
-> +};
-> +
->   static struct platform_driver rzg2l_wdt_driver = {
->   	.driver = {
->   		.name = "rzg2l_wdt",
->   		.of_match_table = rzg2l_wdt_ids,
-> +		.pm = pm_ptr(&rzg2l_wdt_pm_ops),
+> In this schema can easily fit "mediatek,mt7622-rtc", so how about renaming it and add reference for that RTC as well?
 
-I think this will create a build error if CONFIG_PM=n because rzg2l_wdt_pm_ops
-will be unused but is not marked with __maybe_unused. But then the driver won't be
-operational with CONFIG_PM=n, so I really wonder if it makes sense to include any
-such conditional code instead of making the driver depend on CONFIG_PM.
+I see your point but by looking at existing Linux drivers:
+drivers/rtc/rtc-mt2712.c
+drivers/rtc/rtc-mt7622.c
+it seems like quite different hardware blocks.
 
-I really don't think it is desirable to suggest that the driver would work with
-CONFIG_PM=n if that isn't really true.
+Different registers, different programming, clk in MT7622.
 
-Guenter
+Should they really share a YAML binding just because they use similar
+properties?
 
->   	},
->   	.probe = rzg2l_wdt_probe,
->   };
-
+-- 
+Rafał Miłecki
 
