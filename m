@@ -1,147 +1,156 @@
-Return-Path: <devicetree+bounces-33924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 344D0837371
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 21:02:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC168373B4
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 21:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9A0928FEE3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 20:02:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A03531C2736D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 20:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EEC3FE5C;
-	Mon, 22 Jan 2024 20:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D236D46532;
+	Mon, 22 Jan 2024 20:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ku04iBsZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OpWIrWI8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82EBF41211;
-	Mon, 22 Jan 2024 20:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA45C41779;
+	Mon, 22 Jan 2024 20:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705953770; cv=none; b=k2jBnjywqGOJBtea72M3dBDzaktC4x5XcRfaapxClNSKFUefrhlFxTkqVdeMXj11X+RORtO7Kni0doT4MNJ96AWABLW61fkh/lcy6TBozbUwnf18CUmZcVda71hVtKBR5Dz2nvpvpXFJPbs3BTVWND7O0R3cWHCOzEizYxTIYc4=
+	t=1705955292; cv=none; b=fVtOp2ByIbIty71QaMUtbsk34ZMOMXCdNNwIZkLG4FOv5cjtWQnL2LChrWJuKwnZb0EWgN8RwPtA7JDulI5cG2KQlEfAdesDOyVbTwCD42PlS0PdjgNV3FtRuRJORs/S4QcDMdX2VOTD8wwyS4n+6UvXknlbDloAZrRHuRNIuss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705953770; c=relaxed/simple;
-	bh=FLUBN9TYId6XVZQWq5MCtfeoUtIV7Y6P9FSEaFzhmcY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jf4rmqa7EOCGesK3PoWgIcdRlSpi68PusBU+xH7WRsYtNtJAnwBEN1YBYfRd2uiX4IlyoZcxrP80UzX1YVaW+15/BTe5+gZFicdI+4A7JmoVfAASG9ECQiKgiiWG1BR/OTzGeV4vzYejuzJiXoCNZg6YLUiu8hHbNPg+rU7QlFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ku04iBsZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40MIbVUo027950;
-	Mon, 22 Jan 2024 20:02:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=TPkdkprz2NpaLMZB/kp7f
-	qFVk1n/96xgiPAavAIvYew=; b=ku04iBsZYlfim/g13zkwsTcwLnWmHuqc9lgDp
-	TGYmrEJyOZ3hCIhWQA3gr88ayTMwEOAefx0XX56np87z5wSmpXPt8Z9nknPWkCrN
-	tB1PpO8bJN7YI3KifBK1btX5kqIdvh6aUVwo74YK+XguWZwdDjTJTylGO2JDIJ2J
-	/rT/AxcvXvqhnpJ6GaExsvlVDzgJJsUZRJQMra4BeiFGbZVlZb0EH1lCAuXqHl5p
-	qQ8zqX4xkWN9oozpy/oHE9y09hjygvI4kd9s4PGEtOOsc54MO08t8JQ/BHbeMy1X
-	EfCdT5weWCca1MO1NnhSs0mfXTYh6w9mzmet+dY7wz7A1OroQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vskn19ura-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 20:02:42 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40MK2f9C019044
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 20:02:41 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 22 Jan 2024 12:02:38 -0800
-Date: Mon, 22 Jan 2024 12:02:37 -0800
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Brian Masney <bmasney@redhat.com>
-CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Eric Chanudet
-	<echanude@redhat.com>,
-        Ninad Naik <quic_ninanaik@quicinc.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_psodagud@quicinc.com>, <quic_kprasan@quicinc.com>,
-        <quic_ymg@quicinc.com>, <kernel@quicinc.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Add new memory map updates to
- SA8775P
-Message-ID: <20240122200237.GB2936378@hu-bjorande-lv.qualcomm.com>
-References: <20240118155711.7601-1-quic_ninanaik@quicinc.com>
- <rq2dnfh6ctn5gbf3o3op5ywxx7zhx6r5sh5ykautye56o3p4dg@rjttk3rr65ld>
- <20240119191144.GR3013251@hu-bjorande-lv.qualcomm.com>
- <CAA8EJppLNFReZn1HK_radSkKkf5L584fx3FCuqG0FoUt4+H=nw@mail.gmail.com>
- <Za5xj8S3Gs7N-UUc@x1>
+	s=arc-20240116; t=1705955292; c=relaxed/simple;
+	bh=uN71bCXA30X74Or5WgrlOA05l7pdmTn+Pla2tjReuL4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a+ffVVeNSyLu/KxTdq6/jKj2AFeWodS8PUgP+hnUh+lTL1vog/aYGsurBi7O2bg6wChuPezVjW28u3GkC9Eo2lk6w8ZKca9tA85nc0QA/tH30VuppHxjrX8us7hMcVpA7C0e5xKH6c4EgtXjExW8dFzgMG0O5Y782eq03xtlDjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OpWIrWI8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F62BC43390;
+	Mon, 22 Jan 2024 20:28:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705955292;
+	bh=uN71bCXA30X74Or5WgrlOA05l7pdmTn+Pla2tjReuL4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OpWIrWI8IvL33sZXeUcci+95ckE29z3Ua0TF4vFRsXSi0rKw5kl/vVirmZDQZMXWO
+	 BQsBhzKnIaj4ketTFRUktRInU6T0CA5xBRL9XhQcBCwuPn0McCk7lSW2SauJ1+MbKb
+	 FiOS98LPdjjKD8iz7uY5BZvs3wVNBh/Qs8xBESa/SPKJsn6uo8hpFBQ+xFRpOgc2E+
+	 tfJuxLVBUJPYdKMke4TbEgYPU67dvPykeLNOf1vjgTYDYmdeQOEU0ivEhG5YJOQX16
+	 GYElEYrWLuJ3BgzM+naOhNOznl/B9Rd9tb5acbOR32KrJD9qAKeWHbTN2Yonb6JziD
+	 qkwZanZdN4lQQ==
+Date: Mon, 22 Jan 2024 20:28:06 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Seven Lee <wtli@nuvoton.com>
+Cc: lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	robh+dt@kernel.org, conor+dt@kernel.org, YHCHuang@nuvoton.com,
+	KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, SJLIN0@nuvoton.com,
+	scott6986@gmail.com, supercraig0719@gmail.com, dardar923@gmail.com
+Subject: Re: [PATCH 2/2] ASoC: nau8325: new driver
+Message-ID: <820c5ff7-4329-46b0-9981-607b1593deb5@sirena.org.uk>
+References: <20240122095650.60523-1-wtli@nuvoton.com>
+ <20240122095650.60523-2-wtli@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="QAZjW4H1wKCsCURa"
 Content-Disposition: inline
-In-Reply-To: <Za5xj8S3Gs7N-UUc@x1>
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: OQy-qypaDbAk7_CO1Ob59gew1Sfu6ZUD
-X-Proofpoint-ORIG-GUID: OQy-qypaDbAk7_CO1Ob59gew1Sfu6ZUD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-22_09,2024-01-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- mlxlogscore=500 priorityscore=1501 impostorscore=0 phishscore=0
- spamscore=0 lowpriorityscore=0 clxscore=1011 adultscore=0 bulkscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401220143
+In-Reply-To: <20240122095650.60523-2-wtli@nuvoton.com>
+X-Cookie: Nice guys don't finish nice.
 
-On Mon, Jan 22, 2024 at 08:45:51AM -0500, Brian Masney wrote:
-> Hi Dmitry,
-> 
-> On Fri, Jan 19, 2024 at 10:35:43PM +0200, Dmitry Baryshkov wrote:
-> > This kind of change sets a very bad precedent. This way old kernels
-> > become incompatible with the updated firmware. For me it looks like
-> > Linux kernel suddenly being unable to boot after the BIOS upgrade.
-> > Generally memory map updates should be disallowed after the board hits
-> > the production and the DT is published and merged. There can be other
-> > users of DT. BSD systems, U-Boot. We spend sensible efforts in making
-> > sure that DT is an ABI: newer kernel remain compatible with older DT
-> > files. We expect the same kind of efforts from device manufacturers.
-> > 
-> > I think unless there is a good reason, the memory map update should be
-> > reverted on the Qualcomm side as a breaking change.
-> > If this kind of update is absolutely necessary, it might be better to
-> > define a new set of board files utilising the new memory map, marking
-> > existing DT files as legacy.
-> 
-> This is on a development board that's not in production yet, so
-> personally I think this change is fine. It's in all of our best
-> interests to have SoC vendors push their code upstream early, even if
-> it means that later on we need to make memory map changes like this.
-> 
 
-The problem I have with the patch is that I don't know which precedence
-it sets, because the commit message indicates that we have a new
-firmware version, while Eric's report lacks this information.
+--QAZjW4H1wKCsCURa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-As long as everyone with access to the hardware agrees that breaking
-backwards compatibility is the right thing to do, I'm not against it.
+On Mon, Jan 22, 2024 at 05:56:50PM +0800, Seven Lee wrote:
 
-But then again, if the support is under active development, why would
-anyone run a stable@ kernel on this thing?
-Or are you asking for it to be included in v6.8-rc, so that you guys
-have a "stable" tree to do further development (with this patch) on?
+> +++ b/sound/soc/codecs/nau8325.c
+> @@ -0,0 +1,896 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * nau8325.c -- Nuvoton NAU8325 audio codec driver
+> + *
 
-> Once this is in production, then I agree with you that changes like
-> this should be avoided if possible.
-> 
+Please use a C++ comment for the whole block to make things look more
+consistent.
 
-Agreed
+> +static int nau8325_clkdet_put(struct snd_kcontrol *kcontrol,
+> +			      struct snd_ctl_elem_value *ucontrol)
+> +{
+> +	struct soc_mixer_control *mc =
+> +		(struct soc_mixer_control *)kcontrol->private_value;
+> +	struct snd_soc_component *component =
+> +		snd_soc_kcontrol_component(kcontrol);
+> +	struct nau8325 *nau8325 = snd_soc_component_get_drvdata(component);
+> +	unsigned int max = mc->max, min = mc->min, val;
+> +	unsigned int mask = (1 << fls(max)) - 1;
 
-Regards,
-Bjorn
+AFAICT this will only work well if max is 1, just hard code that.
+
+> +
+> +	val = (ucontrol->value.integer.value[0] + min) & mask;
+> +	nau8325->clock_detection = val;
+> +
+> +	if (nau8325->clock_detection)
+> +		regmap_update_bits(nau8325->regmap, NAU8325_R40_CLK_DET_CTRL,
+> +				   NAU8325_CLKPWRUP_DIS, 0);
+> +	else
+> +		regmap_update_bits(nau8325->regmap, NAU8325_R40_CLK_DET_CTRL,
+> +				   NAU8325_CLKPWRUP_DIS, NAU8325_CLKPWRUP_DIS);
+> +
+> +	return nau8325->clock_detection;
+> +}
+
+Please use mixer-test to verify that your controls conform to the
+expected API, the return value here is not what's expected - it should
+be a negative value for an error, 0 for no change and 1 for change.
+
+> +	SOC_SINGLE_EXT("Clock Detection", SND_SOC_NOPM, 0, 1, 0,
+> +		       nau8325_clkdet_get, nau8325_clkdet_put),
+
+Shouldn't this be a Switch?
+
+> +	SOC_SINGLE("ALC Enable", NAU8325_R2E_ALC_CTRL3,
+> +		   NAU8325_ALC_EN_SFT, 1, 0),
+
+ALC Switch.
+
+> +static int nau8325_powerup_event(struct snd_soc_dapm_widget *w,
+> +				 struct snd_kcontrol *kcontrol, int event)
+> +{
+> +	struct snd_soc_component *component =
+> +		snd_soc_dapm_to_component(w->dapm);
+> +	struct nau8325 *nau8325 = snd_soc_component_get_drvdata(component);
+> +
+> +	if (nau8325->clock_detection)
+> +		return 0;
+> +
+
+What happens if someone enables clock detection while things are powered
+up?
+
+--QAZjW4H1wKCsCURa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWuz9UACgkQJNaLcl1U
+h9BQjgf/QLIx/6Vn2gRBlBNbQfnoOasSe3itaUJwtDJ6sVFgb6jjZT0ZlOww4+rf
+TX08tOTbrDHhWqh2RCuxxAFCHG9Uu0TYl46QikJIRfZSP/1dWtdY4dptsv+n5Kgh
+UQDmnDiewqFaR4mlDBzgzmeDL+Gfr8L+ucedfTpRpwl7YNv1/Mwubh5U/oDGLGVB
++2O7QQ8OKWpdUW4XRvH3Rdh7GYrtx0YUPn+Yicp7wOnyKg7qs1OEvpTBpAQVPPvT
+LpE2I+3swtCjetn2maB+cPUgDcOKL6hu9rIj/alple3YU5ux+il+PiJDlfTD5H1C
+XNimTSNbAm/gNjZbrUQbShQj05Upcg==
+=+I7g
+-----END PGP SIGNATURE-----
+
+--QAZjW4H1wKCsCURa--
 
