@@ -1,142 +1,100 @@
-Return-Path: <devicetree+bounces-33827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B304C836C42
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:00:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C2A836C45
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:00:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37E381F267AB
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:00:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D81841F26834
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:00:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2353F47A6B;
-	Mon, 22 Jan 2024 15:37:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DDE35FDA7;
+	Mon, 22 Jan 2024 15:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e3FV9Bp9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OOp3+M5E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858F9481C1
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 15:37:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0439B3D964;
+	Mon, 22 Jan 2024 15:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705937832; cv=none; b=nFXGTMn+PZ8dhAnfoUEb9XUp8e0+0eRXJfTYHuBAGGN20r2yImrcH8+mikmDXHFaMhmLEBvCdFBQzLPespNN1OVOBab/VR3ozttSBdZbPzLKNKqCs8y6q15fAu5ogcIzjOJWzZ4tDkzVN0n+KjODBX6VFOD7tv6yPJwgRg6rRY0=
+	t=1705937858; cv=none; b=ldx0GKHMEN9t+Ja0YiU4FdV4C0BaQcblDQ5w+jeTcJwPPWDM9DB80ydpN1evAEXaqCxP3YEwZVWt6gEkVgBr6vbIAP5IJ0BTWbYCBXcqtA+aQzya9UNMXsVRFcRl1o14HQrq2Y2OX4yDpOxRfxne3NP8s/WdtG+FbWYVcVcnL1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705937832; c=relaxed/simple;
-	bh=M1IexsZpjIC9NupxqqOEPzt1ds4YpinCNH1anLwZUqw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=fbSnD8YYd+XKtoxyGkfoElWZD2GKDMfGMY8kiPcPhxDu6o2P891Qkjk7szQ7Edzq4sKMMTyCmWTt7MHrkuwkBZfVt01hyUWtf/v9j9v/GHW6/CJ13gz2sBQTv0TVhZ4CFUHUos60/N8scp+WNMbFjkIjR1vfwteVgwpgXDBKEFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e3FV9Bp9; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-339261a6ec2so1901785f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 07:37:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705937829; x=1706542629; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E7/rVREoWbpjFsjzxitxG0salXyfYR/fC5ds6J+XLfA=;
-        b=e3FV9Bp9i/p9EoM2Y6atekGOYqqIQxl8bW2xGp6+19ZPxPmgd4Rz3AxIQYLTUU7hSr
-         eyBtLcLtUprSfafmfNFNN4yxL+3iqcIQRxRXfMoTVhg+Kkwhw3gSKrnH73bTShlZ7Sd/
-         V9JAUGkRpUbcbrwstoKWY6YVNmn5ruF43dcR2JhRwHPxt/fuMVJSYDZKNUzVbWJNnW34
-         II3v4v18bNILMl/MEI7yPj0gVyc4lSYhMufekd0IZY4oDqlRZM/VpPasejv3TQaMWGn3
-         Cxn7bdzDMOJ5/GdMAJfrNPrXFW3qJUqn19Bm1AYY3ejANeeCxR1m0df73URzMWPGh2Iq
-         1WmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705937829; x=1706542629;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=E7/rVREoWbpjFsjzxitxG0salXyfYR/fC5ds6J+XLfA=;
-        b=EbEFQJu+9KK1tgpi5Hgcpk7FRzm+NqgxUSfRn7xoaWuGv1T1kFl1JI2ihLORk9VUXt
-         3AkzIe/eNzHE+D7SA8BZzX7ZvoUcCA1YJ4pVIr+LVuZLGuEj/pmiAaaF0xmVDyHK1QXV
-         ClhgEn070O8Teqkd5Uvgt/Sx9mC1IRZ3QeBweGxCu56N2POnr7IIEfqquDZWw39Qkn6h
-         xRVB3u3H7lMr87s0k/FKRDrUcX4WRvn+2LlgZkLNgMl2RoLWIrIRDgTWGDuVzJU6OhKR
-         sS6c1oo201V6Z91NGy4kAv5YlLvKHFc2sYiBjDZex18snX2Bc3Zt/RnMpX7N00C2VElI
-         5GlQ==
-X-Gm-Message-State: AOJu0YwSCPCmNC0aFAvJb1NVR8I2k0Goc6Or1k/GZIc52zDtNNVvcL/Q
-	bqyHtruknjSv0U3j6WrKIYEJ44uX4M4loWr8WfQSWaS7nyJRrfgnUqpgInWDnyw=
-X-Google-Smtp-Source: AGHT+IGogGxunI3h0nfni+qTIywi+Ay2Sm785g29lG7w5Xw5Ouok8yKjNQSi0dcKXtFi/XKBXaLQ9g==
-X-Received: by 2002:a05:6000:1888:b0:339:372e:7711 with SMTP id a8-20020a056000188800b00339372e7711mr1351027wri.55.1705937828664;
-        Mon, 22 Jan 2024 07:37:08 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:bc76:9408:4feb:c26b? ([2a01:e0a:982:cbb0:bc76:9408:4feb:c26b])
-        by smtp.gmail.com with ESMTPSA id q4-20020adfab04000000b00337d603fd01sm11049536wrc.66.2024.01.22.07.37.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 07:37:08 -0800 (PST)
-Message-ID: <b7b0eb97-b37f-4a72-b418-88b37a0320aa@linaro.org>
-Date: Mon, 22 Jan 2024 16:37:07 +0100
+	s=arc-20240116; t=1705937858; c=relaxed/simple;
+	bh=oBkjXBXywzjerQXQYtvSV+LBIW1ORwRpbrfQQwoYB2E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A8rZTw4QEVWl1b+YuUoXn1BpxnBKPQg863C4zHUwGj0pQasz/GXi2w1YA4zgfr8Bu1ycS3c/2elUJWnhyZHswQLZvTBdgY/VbjUB65hdDitAwnFYLRlfJkTpyR9N0hDOBrfOPLPZq+45vMsS3MGCxb++qCIdzMTa86QBWnq5v4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OOp3+M5E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D0AC43390;
+	Mon, 22 Jan 2024 15:37:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705937857;
+	bh=oBkjXBXywzjerQXQYtvSV+LBIW1ORwRpbrfQQwoYB2E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OOp3+M5ExlBpu2XAfqTPJujqofACALy6nLkBZcu3UeAE36+7AOEm3smCQwyrbxkzD
+	 4YVxyQPpqObAQVOijruVpr+qp/KX4zi25G8RsjoXQhR4dET4N6PC5sWTt7jee4iVAF
+	 vgQOPYWWowRERDUbfAbuW8wlz10PLsiwbDo5sDLSxwLM9viBXCqGSujO2zocUsAnyJ
+	 dGtNlsC5E+y/J31iAgJ7Ccr/FNKyTwdK1aqy5E6lYyfLcvS4+0bjlx+m2TIIedmdRj
+	 B9y3EbaKLloJycviIdIuZXCMm+WvBAy3DSQNAho6e8PP/FdI76+6byxncuMr0USyLG
+	 GhpO2mymUs4hA==
+Date: Mon, 22 Jan 2024 09:37:35 -0600
+From: Rob Herring <robh@kernel.org>
+To: Nuno Sa <nuno.sa@analog.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/8] dt-bindings: adc: ad9467: add new io-backend
+ property
+Message-ID: <20240122153735.GB601827-robh@kernel.org>
+References: <20240119-iio-backend-v6-0-189536c35a05@analog.com>
+ <20240119-iio-backend-v6-1-189536c35a05@analog.com>
+ <170568455280.599772.1565973986432310014.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550: Use GIC-ITS for PCIe0 and PCIe1
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240122-topic-sm8550-upstream-pcie-its-v1-1-aff5d0d7d6dd@linaro.org>
- <fcb3c92e-df59-4135-83c7-2850f537e57c@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <fcb3c92e-df59-4135-83c7-2850f537e57c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <170568455280.599772.1565973986432310014.robh@kernel.org>
 
-On 22/01/2024 16:34, Konrad Dybcio wrote:
-> On 22.01.2024 16:28, Neil Armstrong wrote:
->> Both PCIe0 and PCIe1 controllers are capable of signalling the MSIs
->> received from endpoint devices to the CPU using GIC-ITS MSI controller.
->> Add support for it.
->>
->> Currently, BDF (0:0.0) and BDF (1:0.0) are enabled and with the
->> msi-map-mask of 0xff00, all the 32 devices under these two busses can
->> share the same Device ID.
+On Fri, Jan 19, 2024 at 11:15:54AM -0600, Rob Herring wrote:
 > 
-> Copypasta! you didn't actually add these :P
+> On Fri, 19 Jan 2024 17:00:47 +0100, Nuno Sa wrote:
+> > The ad9467 will make use of the new IIO backend framework which is a
+> > provider - consumer interface where IIO backends provide services to
+> > consumers. As such, and being this device a consumer,  add the new
+> > generic io-backend property to the bindings.
+> > 
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > ---
+> >  Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml: io-backends: missing type definition
 
-Oops thx for spotting, sending a v2!
+Are you going to update the GH PR so I can apply adding io-backends?
 
-Neil
-
-> 
-> Konrad
-> 
-> 
+Rob
 
 
