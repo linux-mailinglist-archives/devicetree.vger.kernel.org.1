@@ -1,63 +1,73 @@
-Return-Path: <devicetree+bounces-33816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B417A836846
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 16:31:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9FAD836A8A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:30:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4540B1F247FE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 15:31:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9960FB22AA4
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 16:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0304D46B88;
-	Mon, 22 Jan 2024 15:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34DA131727;
+	Mon, 22 Jan 2024 15:13:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LLE5PCUi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m+pPdXxF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 667BA46559;
-	Mon, 22 Jan 2024 15:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2BB4130E2C
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 15:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705935763; cv=none; b=osobGjl2zqOXpPDGfJ9mIRGUBmOVoKIgb9m8A39qIjhZHsySttnQUzkV9EUKAgo5W3hLKzgZDfbERIo3/S4Zk7zCQs0UeHkUv/0fF0+jijd2JqZKjk3GkUIqifpmZWMU3KM5ch68bC3vs0w6gZa8EM80yLheETi2XEMmkWhhR8Y=
+	t=1705936407; cv=none; b=oOinejmKTCFe6kun3OJR64V3BY2g7IV3+U05IuflrJtKSj30YI2lFXB+iVUDV0C7b68bWLk+98wxCLdwVeyLwKqyTj3kRPy/qpcpSZdLuHtHQfJGrTswvSQqWfI+8nsi+0kvH7a6Xl2MVM+Xbs2DVfJw4CISsv6g9CBm166luoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705935763; c=relaxed/simple;
-	bh=8bGFmix80U9/t8wZwLZ5Rw+q5Uz4pSAAPOUtF8Qbh94=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=GhLIvtxxxHKnAUWxvWGXwoNlRMigW6piUH2xXbbfIgMhyTnybgm1s4gspC+cLD2q6yQBVsi0O6FVq5w8aTTIm+eW2Jk9jcc6oHSYWxIcBB2AgeSZ4Ec+Jm4o85ETzCn4laps2/Gd3+UtPKLmwVlkUMfLRorejL2DgZxoAlVfxy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LLE5PCUi; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40MEEKRt023856;
-	Mon, 22 Jan 2024 15:01:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:from:subject:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=HQT4IJbpgLyZu2gWdGASTg7GGU/7nlJGfQLF+O8FORE=; b=LL
-	E5PCUiZBDKg8XqVuua7R999Yh9pC48m4tqG18SD1WAx0xYI+itnKZPLYT8clKoV1
-	9moXCOpKjo/n/9ZtvP1MRVOL5QfrxYO2RqrF0v8cucDiLRw5tOJnDo/xLq2cbRtr
-	9JyTOEdnirWWl/NG1i43JA7jnaNP3+HTPwGyJ94Td+MdK0mvgnCHw5oOMtc0xgDN
-	fiA8nMxxoI/X9LoDFpMjBo2VOomcTwaHZNrk+OdEzQ+37l5EyBaQ8jV5j94d99mX
-	ZJ1sUdS60CwKF5Wnc+IIUceB2UB0aHHc26pw0vkUK4i9yHY1EcYiPGzOyzd6U0cc
-	vtQESgHJVipbP86uichg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vsq7w0n1t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 15:01:39 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40MF1c2U009224
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 15:01:38 GMT
-Received: from [10.253.15.239] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 22 Jan
- 2024 07:01:28 -0800
-Message-ID: <fc9c3e08-a83c-4748-89e4-8b7b0c62da7f@quicinc.com>
-Date: Mon, 22 Jan 2024 23:01:26 +0800
+	s=arc-20240116; t=1705936407; c=relaxed/simple;
+	bh=56AXuFbyDotBIe0zRySCPe31hcHy1morlPgUrVeQcq8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=swXmmmsKeqZwyB0Kx/qf5zmP5QCUwNCMX6hJE/bqx8sQvEzlwWiqt6cAzYm4BEmeOa+cGsrwXybhfcNSjZhFFtTE07PhZlxnPyutpR8+yPhK2JpOClQyIoVCsgmzYF3PxN4vYx/A7cumUDVKq9X/bTilz30dUsPWsSzko5QPQSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m+pPdXxF; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3392b12dd21so1587263f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 07:13:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705936403; x=1706541203; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tlxi8b8oDDKokQlPnmcikOTjVRP/PxK9QnUm6yUSqlc=;
+        b=m+pPdXxFwEUWzYHp79xR17vD6km0z/jVH97JPLEH9eRR9QPn9TfaxfCIvzIBdjIWzM
+         S8fwQlxKNMcOBvTeAELGjZ0lg6w2BqkjUwJI188NpriVVkVcNY7tfJSJ4Q9C0vIj9Bja
+         hjNbQ3G8JnxmfBtFURC8UZqkICOs9gu3ATnqKLEQU/ePu4nIGsYVDa2X+oMOszBFou65
+         p8ppKraCyeIaHuuNOSn6nDbkpjvv6c9iWSanXF+fdStA50/u2b7tWxzpxKCWh5LftEw7
+         XNoSi34QjwdTuqhMm5Vh/Xs9uNo7QHPf+PXDW1FqwYMZd1SveCeDZC0UyCdlwFpKIFnE
+         1UlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705936403; x=1706541203;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tlxi8b8oDDKokQlPnmcikOTjVRP/PxK9QnUm6yUSqlc=;
+        b=ASFf39IxxHqmGxr54cIRMkZHGJqphXQI11gUv3L7fnv+hkfrO2p3q3OM9nL/xvcax0
+         o8sTxPWLBlLwxfYZEMuJhpzz5FsSkq1L9KSpNSeiw7FcG6OKO6bQxAxO4F7Rl9KKyxX6
+         Kssq5R9wMX6mPYt92gPrbU2KzufTohajEATfQ6JPcMq+coQB4+j8NwbkGnLxXwKD9XYv
+         W5vd/pl31gyfEDHmUAeI1gY1UZmPpNWtjh0OvSxHu5e/7SDTfcTvETZfaX1dlkFh6tKf
+         17xJiOH0xAoGGr1NsvTmzgai7Rl7/CfrM+/pB2o/8CAmP9AWOcvYuoQeOd/tiwB75hDE
+         kscA==
+X-Gm-Message-State: AOJu0Yykx1Y+NGF3cDYCfyQCUdoutnYeZI5c5a8VTh3S3Jwcf7HEhAaO
+	+5x94XHMo4/U329Hv9F1dg7mNqD5mw5F+jBZj7DqqtEIiAswEmFoc2Pf0HTfUZE=
+X-Google-Smtp-Source: AGHT+IEM9J0zPraq2oeR7eo9w3rrNO8V+Yb011gp82GAmVJDBG8jXmExKleS8/vEVAFlRW83rHWPig==
+X-Received: by 2002:a5d:5886:0:b0:337:9b43:bb4e with SMTP id n6-20020a5d5886000000b003379b43bb4emr2846308wrf.74.1705936403055;
+        Mon, 22 Jan 2024 07:13:23 -0800 (PST)
+Received: from [192.168.100.48] ([37.228.218.3])
+        by smtp.gmail.com with ESMTPSA id b16-20020a5d5510000000b0033924c2fadfsm7216881wrv.17.2024.01.22.07.13.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jan 2024 07:13:22 -0800 (PST)
+Message-ID: <3f68ee9d-13fd-4818-b6b4-b3c26bf998ed@linaro.org>
+Date: Mon, 22 Jan 2024 15:13:26 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,110 +75,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Lei Wei <quic_leiwei@quicinc.com>
-Subject: Re: [PATCH net-next 18/20] net: ethernet: qualcomm: Add PPE MAC
- support for phylink
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Luo Jie
-	<quic_luoj@quicinc.com>
-CC: <agross@kernel.org>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <shannon.nelson@amd.com>,
-        <anthony.l.nguyen@intel.com>, <jasowang@redhat.com>,
-        <brett.creeley@amd.com>, <rrameshbabu@nvidia.com>,
-        <joshua.a.hay@intel.com>, <arnd@arndb.de>, <geert+renesas@glider.be>,
-        <neil.armstrong@linaro.org>, <dmitry.baryshkov@linaro.org>,
-        <nfraprado@collabora.com>, <m.szyprowski@samsung.com>,
-        <u-kumar1@ti.com>, <jacob.e.keller@intel.com>, <andrew@lunn.ch>,
-        <netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <ryazanov.s.a@gmail.com>, <ansuelsmth@gmail.com>,
-        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
-        <quic_soni@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_souravp@quicinc.com>, <quic_linchen@quicinc.com>
-References: <20240110114033.32575-1-quic_luoj@quicinc.com>
- <20240110114033.32575-19-quic_luoj@quicinc.com>
- <ZZ6LGiSde4hHM+6j@shell.armlinux.org.uk>
+Subject: Re: [PATCH 6/6] media: venus: core: Add SC8280XP resource struct
 Content-Language: en-US
-In-Reply-To: <ZZ6LGiSde4hHM+6j@shell.armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: rEqqTzP-nAa7s86SsOJYcDTm33YE2naW
-X-Proofpoint-ORIG-GUID: rEqqTzP-nAa7s86SsOJYcDTm33YE2naW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-22_05,2024-01-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 spamscore=0 clxscore=1015 suspectscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 impostorscore=0
- mlxlogscore=742 phishscore=0 mlxscore=0 classifier=spam adjust=0
- reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401220102
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>, Andy Gross <agross@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
+ <20230731-topic-8280_venus-v1-6-8c8bbe1983a5@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230731-topic-8280_venus-v1-6-8c8bbe1983a5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-
-On 1/10/2024 8:18 PM, Russell King (Oracle) wrote:
-> On Wed, Jan 10, 2024 at 07:40:30PM +0800, Luo Jie wrote:
->> +static void ppe_phylink_mac_link_up(struct ppe_device *ppe_dev, int port,
->> +				    struct phy_device *phy,
->> +				    unsigned int mode, phy_interface_t interface,
->> +				    int speed, int duplex, bool tx_pause, bool rx_pause)
->> +{
->> +	struct phylink_pcs *pcs = ppe_phylink_mac_select_pcs(ppe_dev, port, interface);
->> +	struct ppe_uniphy *uniphy = pcs_to_ppe_uniphy(pcs);
->> +	struct ppe_port *ppe_port = ppe_port_get(ppe_dev, port);
->> +
->> +	/* Wait uniphy auto-negotiation completion */
->> +	ppe_uniphy_autoneg_complete_check(uniphy, port);
+On 04/08/2023 21:09, Konrad Dybcio wrote:
+> Add SC8280XP configuration data and related compatible.
 > 
-> Way too late...
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/media/platform/qcom/venus/core.c | 45 ++++++++++++++++++++++++++++++++
+>   1 file changed, 45 insertions(+)
 > 
+> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> index 5f285ae75e9d..32591b624a36 100644
+> --- a/drivers/media/platform/qcom/venus/core.c
+> +++ b/drivers/media/platform/qcom/venus/core.c
 
+Reviewing this series, I think my input here has not been helpful or 
+correct.
 
-Yes agree, this will be removed. If inband autoneg is used, 
-.pcs_get_state should report the link status.  Then this function call 
-should not be needed and should be removed.
+1. Declaring encoders/decoders in dts or yaml is wrong, accepted.
 
->> @@ -352,6 +1230,12 @@ static int ppe_port_maxframe_set(struct ppe_device *ppe_dev,
->>   }
->>   
->>   static struct ppe_device_ops qcom_ppe_ops = {
->> +	.phylink_setup = ppe_phylink_setup,
->> +	.phylink_destroy = ppe_phylink_destroy,
->> +	.phylink_mac_config = ppe_phylink_mac_config,
->> +	.phylink_mac_link_up = ppe_phylink_mac_link_up,
->> +	.phylink_mac_link_down = ppe_phylink_mac_link_down,
->> +	.phylink_mac_select_pcs = ppe_phylink_mac_select_pcs,
->>   	.set_maxframe = ppe_port_maxframe_set,
->>   };
-> 
-> Why this extra layer of abstraction? If you need separate phylink
-> operations, why not implement separate phylink_mac_ops structures?
-> 
+2. We can make a platform choice to hard-code that here in the
+    platform declarations.
 
-This PPE driver will serve as the base driver for higher level drivers
-such as the ethernet DMA (EDMA) driver and the DSA switch driver. The
-ppe_device_ops is exported to these higher level drivers, to allow 
-access to PPE operations. For example, the EDMA driver (ethernet 
-netdevice driver to be pushed for review after the PPE driver) will use 
-the phylink_setup/destroy ops for managing netdevice to PHY linkage. The 
-set_maxframe op is also to be used by the EDMA driver during MTU change 
-operation on the ethernet port.
+3. Remove the requirement from yaml for sc8280xp to declare decoder
+    encoder
 
-I also mentioned it in the section "Exported PPE Device Operations" in 
-PPE driver documentation:
-https://lore.kernel.org/netdev/20240110114033.32575-2-quic_luoj@quicinc.com/
+3. Profit.
 
-Whereas the PPE DSA switch driver is expected to use the phylink_mac 
-ops. However，we will remove the phylink_mac ops from this patch now 
-since it is currently unused.
+Existing dtb all, literally all do the same thing first block decoder, 
+second block encoder.
 
+Rather than perform extensive surgery to venus to remediate the original 
+yaml sin - hard-code decoder/encoder into platform code and deprecate 
+the legacy over time.
+
+Yes that means fixing to block 0 as decoder and block 1 as encoder but 
+that is the defacto situation we have now, we may as well make it dejure.
+
+---
+bod
 
