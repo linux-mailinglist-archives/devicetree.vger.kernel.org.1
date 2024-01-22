@@ -1,129 +1,147 @@
-Return-Path: <devicetree+bounces-33724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5937183622C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:42:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B5B83623A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:43:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C5061C24AEE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:42:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A5CC1F28347
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:43:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997063AC2D;
-	Mon, 22 Jan 2024 11:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 267DA3B2BF;
+	Mon, 22 Jan 2024 11:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x9zFhEFR"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="GqZUmf2R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E8E3B196
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 11:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C9B3B295
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 11:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705923336; cv=none; b=K1c8k3m7NUDLJOHq/puY12rzw/8RulkVd+lkEGwDW+fLJXOWGcr7RH3nBtpJ6XPEvWnX/vADDH3yjMGDxSpHyOU+EWYWksPWIMN/qTg2Qh5KGHRKgN613QVDMlN4JDCfE9WWc3uHjYLLvUO/ROYnjlqmoXFy8UMfOS13NFctd7M=
+	t=1705923572; cv=none; b=dmucvYUS876W2akeFFgyqAxpPc8eeCYpPNokCiC0DfHdLk1aE11VGEzaaD6zgd58Fjrrv14SkFr0VcXtUcw6Z/DfvuPiuRCd7STKpcmBcpUna84uyf3Pp7lBxSG3ZPB2SGA3JI6jXnH7KemiVND/0bF//rE3N5quqjb3GnTKuvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705923336; c=relaxed/simple;
-	bh=MKhp81vARlwnJymH/8tghIShD/bDEWbnCKTlx0FV08M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PifJGZZSmStTv0Fq9yozcwoW6uxpECunLf0U5sBvXA0xy3OQXv/Lvtq8amzeQotRTqrTpKFBNMS0WGFN7UazROHBY3kUucIo9Q374nMlOav+3UXMfm2GrcaNMTh+9iCZ27UKN7mr6JAeOlO7sN0W4myTqlvRZK1zy6CfNyDSEoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x9zFhEFR; arc=none smtp.client-ip=209.85.219.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-68687ff4038so9155176d6.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 03:35:34 -0800 (PST)
+	s=arc-20240116; t=1705923572; c=relaxed/simple;
+	bh=hDOlhtMQCv0ZUcTnLwP3plzcjZq49aIywW1xbB/0o9c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gn5bwZj9lTnzNE6uVkeojIduUL0jSKvBUXTORI7ZSq5aLVxpYOSws8+nI8zp2dG4ix+SuYxM7l1ncU0/DpPtvdzPGBvgaooGKszqF7Q2VOS58PjA4u89RlvaXLGQ9dgZxrjX+GqmenHj2wFX1B8aerYHWPh5WDWdErAV4JwshNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=GqZUmf2R; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tweaklogic.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6dbd7f1a300so1381087b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 03:39:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705923334; x=1706528134; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zp69NjIciMowFkuRsLGhE3n0Q0pkwwaucBTFCSL5onM=;
-        b=x9zFhEFROzvkm4Ru5Gq13L0nJXA3FyGCSifSUNwwzeKxL1CE0aPaJIIpICDzIuB/hO
-         whqIU4Mn2Wt6/ug5QsG/TYXHaA34+SWf/gJ9oHzUf5+V2Z+SkSTEBBfcH84ToxFudQ3I
-         E7fNVnwm+6Aa5qNjIixW/eWiPklIHOEEbPYWIoY21nrtbBX53fdkoTST3PTQoh3k2X/r
-         eSj994rm94QIYd86EYFw3Bps40KfGrodioWbegUtzH2uP4sMQWoRgSmkvggRhmZk9jiW
-         EaUjxWPHeyQhDwKg/VOOd7oqCOgAaKXM5OvWn8Yb9zN8Yaxp3kIBBFXN3O5VRoHi96Hv
-         qp/Q==
+        d=tweaklogic.com; s=google; t=1705923570; x=1706528370; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1EUmMR17Pa8J0jAlZypSL6+g8Srm5M13PwsXUfYUP9Y=;
+        b=GqZUmf2RS2u6G9DLvItocko9fkEd5HGlK2QxF64DnFsavfFjh7Y7K5eByT1uxwyFdn
+         6MatjOdQn4Pj6bg8UIbwXaCCHppufkxOGA31S5Rl5SktWyXwRhh5NLZ8QeE0nMh1u+q1
+         D7WZRcAgqcZHL6yDUEgSSx0Kd0AZcnaKzvnM7+Y6CGOrXO2zPBdmVwCc0RPqVPbRO/f+
+         rKZzZtWprWZBWoGRSprcV0vSc/OnpVRMBDMCz0njR39tk+Yrl/wKUbvrC8aTZfIlwTO2
+         NN6raBM6mtiH2DkFXlpqeZIhEwUT+HcduMK9VpGv4Sb1RrJum52J2qjoNWz30u9fyY2Z
+         y5BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705923334; x=1706528134;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Zp69NjIciMowFkuRsLGhE3n0Q0pkwwaucBTFCSL5onM=;
-        b=KGl1T4VIDfqztjUhmRTcMtlKEMAHuZ78e9Ktqot8g3opHbsAYuVBCgkuvrDhiCQoL5
-         yAYYzbP8qa8Z44Rl0/M+L/FZiAcQTyTzbm95n8zp04gw4fGbZ0W3IHz4dYH9SvSoxH5M
-         F8y1PWNTKGbV20KQEayUM31cWvLKXfa4XQi21nOcvcnsG31cz0qYpA8Wr9alZBUpJ3EY
-         uBLCoFiAyqc4leWRalXchJxo3wAf9jJeu+5eH80nMqe3w9LLC33E/bNmSn5GHHePxeQB
-         mvQ/g2Uu0Ain4p6lyZtRevMYMMPua69cUMCksQ8gWaMXOb2k6Bu2Q9M+Q9qfzy9k7Ywp
-         Ga1A==
-X-Gm-Message-State: AOJu0YzidHT8FEbe39sfw8xUPTMGDraSP6yEHMsQJ3r+UgL//njzCNxB
-	0PvqoLWbPZQT0xvRzgASzPp57hX3rvGy9/TrLRB68kCjDd7I2H0LBgHF6KfZqxyQ9SurlfP542P
-	aNOFxrGkm8Z/EVcWTZVgLNIwYEI5eew1Oza78NQ==
-X-Google-Smtp-Source: AGHT+IFfbt1twZUvmT8z7VGChIkCgPKQHHxqBGrS63BoCbyR/vAH+owtPtC2Qv6lTuo0zS3m2FS7umRwUXkd5pMbv8Q=
-X-Received: by 2002:ad4:5baa:0:b0:686:94cf:d742 with SMTP id
- 10-20020ad45baa000000b0068694cfd742mr792478qvq.122.1705923333904; Mon, 22 Jan
- 2024 03:35:33 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705923570; x=1706528370;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1EUmMR17Pa8J0jAlZypSL6+g8Srm5M13PwsXUfYUP9Y=;
+        b=uh2I3JnvVUrLsNDRESWjCNJQ4HBDHxOIWRGlPJaBExgYJ3WAKiZbvpzqyUEt+FkT2U
+         KxtqCVnYU2JPnYcKmy+tEkubkM+iH6TJ130z7IuzX3+xYvBYN1rP4FaDlydmS9rkb/AQ
+         WCEu2knJwLbTVesc1feweOR7xbyZCwNisyxthg+3xpVEeP1ZkOvPPjVl9PpCxukvzpz3
+         SxSQIRQZZCfA71/ipy50ejT/J7X+D+i2MIVKmpM7NpW3lbpr6QXJY7ES+utGWpCexuwm
+         UTjcUkvsXHnWi6G9WLjb3TKYFSZ3S0Dsni5FCa90JHgApbsqyq1pdwFVpXo7f6xiQ+LZ
+         k1+g==
+X-Gm-Message-State: AOJu0YyIaS9xHamdx6YgFJE7llh574ERioERRYfq9B2t2wvnxMMiL62J
+	CKHyfP3gq1BOCVuTFxtDDcTA0ytdj5D1Cd7ZtW4iI6VdLP1nUi5L6r+zkl6amSM=
+X-Google-Smtp-Source: AGHT+IHely7tfA2gE24XEktiw5Yd+K8wVvpQCBuJfsIqOfhQT8xeJ7ethlDWbTCHUoq/dgyt2d1N7g==
+X-Received: by 2002:a05:6a00:a86:b0:6db:ad5c:80b8 with SMTP id b6-20020a056a000a8600b006dbad5c80b8mr5839715pfl.7.1705923569747;
+        Mon, 22 Jan 2024 03:39:29 -0800 (PST)
+Received: from [192.168.20.11] ([180.150.112.156])
+        by smtp.gmail.com with ESMTPSA id t187-20020a6281c4000000b006d99125b114sm9817341pfd.65.2024.01.22.03.39.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jan 2024 03:39:29 -0800 (PST)
+Message-ID: <05727e6f-3355-4572-96e4-0b2ac4d8dca7@tweaklogic.com>
+Date: Mon, 22 Jan 2024 22:09:19 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231222165355.1462740-1-peter.griffin@linaro.org>
- <20231222165355.1462740-2-peter.griffin@linaro.org> <4cc6df4c-504c-499f-be83-3b40d1ee6240@linaro.org>
- <CADrjBPo6YqxDAKUe629Z3e0MtmEgyTqEzVLLc1bZ8xJe_dw5SQ@mail.gmail.com> <f4901720-9df8-4433-976a-47d60da49f69@linaro.org>
-In-Reply-To: <f4901720-9df8-4433-976a-47d60da49f69@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 22 Jan 2024 11:35:20 +0000
-Message-ID: <CADrjBPrPjkiPCxLj2D4YVXxGuSinWtzQO0CkDM5-5scd_Nx5ng@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: timer: exynos4210-mct: Add
- google,gs101-mct compatible
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	daniel.lezcano@linaro.org, tglx@linutronix.de, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
-	cw00.choi@samsung.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel-team@android.com, 
-	tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/3] iio: light: Add support for APDS9306 Light Sensor
+Content-Language: en-US
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc: andriy.shevchenko@linux.intel.com, anshulusr@gmail.com,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ javier.carrasco.cruz@gmail.com, jic23@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, marex@denx.de,
+ matt@ranostay.sg, mazziesaccount@gmail.com, robh+dt@kernel.org,
+ stefan.windfeldt-prytz@axis.com
+References: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
+ <20240121051735.32246-4-subhajit.ghosh@tweaklogic.com>
+ <8a7f03b6-caca-4fbb-8093-0ba87bd2e850@wanadoo.fr>
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <8a7f03b6-caca-4fbb-8093-0ba87bd2e850@wanadoo.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+On 21/1/24 19:52, Christophe JAILLET wrote:
+> Le 21/01/2024 à 06:17, Subhajit Ghosh a écrit :
+>> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
+>> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
+>> channel approximates the response of the human-eye providing direct
+>> read out where the output count is proportional to ambient light levels.
+>> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
+>> caused by artificial light sources. Hardware interrupt configuration is
+>> optional. It is a low power device with 20 bit resolution and has
+>> configurable adaptive interrupt mode and interrupt persistence mode.
+>> The device also features inbuilt hardware gain, multiple integration time
+>> selection options and sampling frequency selection options.
+>>
+>> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
+>> Scales, Gains and Integration time implementation.
+>>
+>> Signed-off-by: Subhajit Ghosh <subhajit.ghosh-ojZBjWEdjYKukZHgTAicrQ@public.gmane.org>
+>> ---
+> 
+> Hi,
+> 
+> a few nits and a few real comment/question below.
+> 
+> Just my 2c.
+> 
+> CJ
+> ...
 
-On Mon, 22 Jan 2024 at 11:21, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/01/2024 12:19, Peter Griffin wrote:
-> > Hi Krzysztof,
-> >
-> > On Mon, 22 Jan 2024 at 11:00, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 22/12/2023 17:53, Peter Griffin wrote:
-> >>> Add dedicated google,gs101-mct compatible to the dt-schema for
-> >>> representing mct timer of the Google Tensor gs101 SoC.
-> >>>
-> >>> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> >>> ---
-> >>>  .../devicetree/bindings/timer/samsung,exynos4210-mct.yaml       | 2 ++
-> >>>  1 file changed, 2 insertions(+)
-> >>>
-> >>
-> >> I applied remaining two patches. Let me know if I should grab this.
-> >
-> > If you have applied
-> >   clk: samsung: gs101: register cmu_misc clocks early
-> >   arm64: dts: exynos: gs101: define Multi Core Timer (MCT) node
-> >
-> > then if you can also take this one that would be great.
->
-> I know that you want it, but what I meant:
-> If Daniel acks it or if Daniel does not take it in some reasonable time,
-> ping me. Reasonable time starts from rc1 :)
+>> +
+>> +static int apds9306_read_event(struct iio_dev *indio_dev,
+>> +                   const struct iio_chan_spec *chan,
+>> +                   enum iio_event_type type,
+>> +                   enum iio_event_direction dir,
+>> +                   enum iio_event_info info,
+>> +                   int *val, int *val2)
+>> +{
+>> +    struct apds9306_data *data = iio_priv(indio_dev);
+>> +    int ret;
+> 
+> Other functions below that look really similar have a:
+>     guard(mutex)(&data->mutex);
+> 
+> Is it needed here?
+You are right, don't think so. Regmap lock is being used.
+I will review the locking mechanism. Acknowledging all other comments.
 
-Right I see, thanks :)
+Thanks for the review.
 
-Peter.
+Regards,
+Subhajit Ghosh
+
 
