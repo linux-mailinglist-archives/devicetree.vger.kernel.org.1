@@ -1,217 +1,111 @@
-Return-Path: <devicetree+bounces-33731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05B168362BE
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:01:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 409DA8362D6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:12:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6FD6299500
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:01:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A1A71C21E00
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:12:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A62E03AC0C;
-	Mon, 22 Jan 2024 12:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1853BB3C;
+	Mon, 22 Jan 2024 12:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="crZf+19Z";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="oVwMn2EH";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="crZf+19Z";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="oVwMn2EH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qrwm6BJP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F18B4A32;
-	Mon, 22 Jan 2024 12:01:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6E43BB32
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 12:12:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705924877; cv=none; b=HYn6Fld/u5VDTOtbXIQSkMxRMXTfcKfuDtzf405/IgjYnYBl8DhVwgcbZ1EXWUKt20bQdJJVS0Fh8d5iR0oevAqhA6YI93OF87LPOcFvINfn5N/p9mTWQPiAfjcvOgGz784VTw/kLz/pKIsZS0OJyX/94oIaYTZJvUHt/D5mADQ=
+	t=1705925522; cv=none; b=YrsZlcyC4oyu36br1SGObghYOUwKc1d5BlCnadiBzYF53TUtvVoO79YHgcHI6Vy9eJ0jtOWNdCbifjjbAesJkttJf/cZlZSc2x4xAF/hGUFKdRmrx/yGTJNQBn+iVR1H/y0M5KDMNS3ylwu0sWDQ2N+7+qfhBuefHdLeGuMhaLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705924877; c=relaxed/simple;
-	bh=1VtZtnBWb4cvksXRELD4PkgDoJHhj3TooLPlCa7TUj0=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t3h2wAKS+hdieVM14OYUY7q5XR0z5RW3YTr11OneibkFMe7Hqz57ohsPjEKqrdF4O6cvtZsciYBLsD5DzyImMkt/7W6kKylr9WDGQ62blXlrhmBf0K1BB9izQ2Fq7pQ6u6Jv90KPh6apMUniAXYh1tQOtd/Rri6kXEZbF25OjIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=crZf+19Z; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=oVwMn2EH; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=crZf+19Z; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=oVwMn2EH; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 6E6AD1FBF2;
-	Mon, 22 Jan 2024 12:01:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1705924874; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qMTRRXWQCFQ+HDsmVj133R1M7Raw2++cnrvtPOKdrR8=;
-	b=crZf+19ZMQnOUKvQs5CwJcR8/aITXl8l3kdZm5Ocb1HO8EHROEMb0n5IfUplI7kI9qji3q
-	PFrUwXMN+WZaTzomo1SDMqOnFSnjXElzR4uHHv7WkZz+nT9v1lot03ofsjApAgAotiMn3N
-	pFoLoXqmLwOTzUhRW4acHTNRNNlKvpc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1705924874;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qMTRRXWQCFQ+HDsmVj133R1M7Raw2++cnrvtPOKdrR8=;
-	b=oVwMn2EHSXIrGZ/JkxD/yh5MULH4xI9yMHh2MzYg9fACakFIpCnWZxMzDnlh8k8E7PwzXN
-	iMju2STgp4DJ5zDg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1705924874; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qMTRRXWQCFQ+HDsmVj133R1M7Raw2++cnrvtPOKdrR8=;
-	b=crZf+19ZMQnOUKvQs5CwJcR8/aITXl8l3kdZm5Ocb1HO8EHROEMb0n5IfUplI7kI9qji3q
-	PFrUwXMN+WZaTzomo1SDMqOnFSnjXElzR4uHHv7WkZz+nT9v1lot03ofsjApAgAotiMn3N
-	pFoLoXqmLwOTzUhRW4acHTNRNNlKvpc=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1705924874;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qMTRRXWQCFQ+HDsmVj133R1M7Raw2++cnrvtPOKdrR8=;
-	b=oVwMn2EHSXIrGZ/JkxD/yh5MULH4xI9yMHh2MzYg9fACakFIpCnWZxMzDnlh8k8E7PwzXN
-	iMju2STgp4DJ5zDg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id EF660139A2;
-	Mon, 22 Jan 2024 12:01:13 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([10.150.64.162])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id rwHYOAlZrmWKJQAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Mon, 22 Jan 2024 12:01:13 +0000
-Date: Mon, 22 Jan 2024 13:01:13 +0100
-Message-ID: <87ede9y3ue.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: Re: [PATCH 2/3] ASoC: dt-bindings: xmos,xvf3500: add bindings for XMOS XVF3500
-In-Reply-To: <b888d958-4eb0-4c1f-ace6-b2b85faa5113@wolfvision.net>
-References: <20240115-feature-xvf3500_driver-v1-0-ed9cfb48bb85@wolfvision.net>
-	<20240115-feature-xvf3500_driver-v1-2-ed9cfb48bb85@wolfvision.net>
-	<333c2986-c7c2-4a46-90cf-b59ae206e55a@linaro.org>
-	<96abddcc-fa65-4f27-84fe-2281fe0fcf1c@wolfvision.net>
-	<644f7f02-405d-47fb-bc72-4d54e897255f@linaro.org>
-	<5db4b898-93d5-446f-bfed-b57847f9967a@wolfvision.net>
-	<435f502c-1e1b-4d40-8dcc-34487905d69c@linaro.org>
-	<b7f76546-9998-43e0-abff-a4e73817dbae@wolfvision.net>
-	<47bdc31c-50d2-4d33-9339-5132b6364539@linaro.org>
-	<16027339-0a82-4dd1-86aa-19fda6e23f88@wolfvision.net>
-	<aeeb0dfb-87e2-4024-9d4a-0b9529477315@linaro.org>
-	<b888d958-4eb0-4c1f-ace6-b2b85faa5113@wolfvision.net>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	s=arc-20240116; t=1705925522; c=relaxed/simple;
+	bh=XsjrwFUbPagjf42Y9qmXToMWE70jnXHEmc8i9mZpqmE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nSzBsYDpkcIOLDmtFCpmj3qEt5khmIyTocY5RMCpfwY3hQXny9dDtrRZBT5W3NC+n+7Bp6EmKyz5eESI48RoTwCmflLFdJP5kNAxUjRRd4gcpUbxZxlZxwMedGmWp/hKai7ShnIetc14exO8p2l/XM5e0h5nCZL4B3ay4JON/OI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qrwm6BJP; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e7e2e04f0so34503525e9.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 04:12:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705925519; x=1706530319; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JZISQUpNOr22c4fKmEuMChAKwdEFwddCk4q6QmgaO8M=;
+        b=Qrwm6BJPQMrg/yf+dB6DqVc63A3X/YXFuFsXUchGmEdtnF0CoE9EkuJOU+uonbw0ot
+         ZvxTPM0Y99+Z92I26CqD8T85SBF56LaXey4dfMyVlWbLB9WrTfmEX02VoOTCc2/S2Sg+
+         yDKOjoS4hwFdu+Z4KVAD/d3ImKhspswD+6jDK3g+vrO98j8gVkh3V4x4yHqrPcFqeuWF
+         cw9ZJ7rqcmURhwpTaZEuYkk7evH5nMDnGSWXEuVq1deKnEyIDAxIFNM2jQ3PSK4dtUNV
+         PEcSnSj/TKAWdSDHGWdHnpZUTccyZyMqs3YcQ1p5UHVtkmasx4KKpPTRUBfx4ERTPzwc
+         +SOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705925519; x=1706530319;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JZISQUpNOr22c4fKmEuMChAKwdEFwddCk4q6QmgaO8M=;
+        b=i2bdxVg3yMYnabelXDzoa8iP4ZTxNNjuAY9XQ0DLo1DZxpCsYHB5zzQfqBWOZaoJE4
+         HUVt9JYOeknATNdQ6luVoXf9NNyHwC1tdvCKz/w3V6O9tUkJVdRc5+TAzKejqF33rcFy
+         EZ1tTpTOe49Bs43H3LZb243GXm0OmnUCT+FBsrzFyYNJEMqpAnFWJGtihXSOE2C0b8hv
+         N7wEMkiN4NUIQlMzSQEE1etiXBXsLYcXJkPARQtvkL0H7rF9Lzsr/hcOretgl4VwaP8Z
+         dX0sBxWwob5PN7h64WxYUmExZawPIAhMkbGmhFkTwhd6ulLuDkMjBCpF1ytcW5IATMq9
+         Cgtg==
+X-Gm-Message-State: AOJu0YywAa2ZshsuwIaRWaBXKdbheWR5XULvpfVz7G+/SXJE8NAv5+6p
+	Uv3y6t4zVElfCrAlFq625yADxwaiqaoMXXOnRSgMURPpjnhoXGgkZx1pKuyFKOg=
+X-Google-Smtp-Source: AGHT+IGCG5Khoe/1oQjX1DFLwPQkaYesrnTTQ5bk157a5/61v0MK6kfoRoDLbJ0mfk1ZEGN224EOGw==
+X-Received: by 2002:a05:600c:2d52:b0:40e:47de:d804 with SMTP id a18-20020a05600c2d5200b0040e47ded804mr2091816wmg.63.1705925519179;
+        Mon, 22 Jan 2024 04:11:59 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:371e:2a86:62f0:bc48? ([2a05:6e02:1041:c10:371e:2a86:62f0:bc48])
+        by smtp.googlemail.com with ESMTPSA id c11-20020a05600c0a4b00b0040d53588d94sm42839717wmq.46.2024.01.22.04.11.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jan 2024 04:11:58 -0800 (PST)
+Message-ID: <e4288d81-cd0c-41cf-989f-85ce10d5904e@linaro.org>
+Date: Mon, 22 Jan 2024 13:11:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-Authentication-Results: smtp-out2.suse.de;
-	none
-X-Spam-Level: 
-X-Spam-Score: -1.80
-X-Spamd-Result: default: False [-1.80 / 50.00];
-	 ARC_NA(0.00)[];
-	 RCVD_VIA_SMTP_AUTH(0.00)[];
-	 BAYES_HAM(-3.00)[100.00%];
-	 FROM_HAS_DN(0.00)[];
-	 TO_DN_SOME(0.00)[];
-	 FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	 NEURAL_HAM_LONG(-1.00)[-1.000];
-	 TAGGED_RCPT(0.00)[dt];
-	 MIME_GOOD(-0.10)[text/plain];
-	 R_RATELIMIT(0.00)[to_ip_from(RL17rwhuxjdu7o3ion8yncd616)];
-	 RCVD_COUNT_THREE(0.00)[3];
-	 DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	 NEURAL_HAM_SHORT(-0.20)[-1.000];
-	 TO_MATCH_ENVRCPT_SOME(0.00)[];
-	 RCPT_COUNT_TWELVE(0.00)[14];
-	 MID_CONTAINS_FROM(1.00)[];
-	 FUZZY_BLOCKED(0.00)[rspamd.com];
-	 FROM_EQ_ENVFROM(0.00)[];
-	 MIME_TRACE(0.00)[0:+];
-	 FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org];
-	 RCVD_TLS_ALL(0.00)[];
-	 SUSPICIOUS_RECIPS(1.50)[]
-X-Spam-Flag: NO
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: timer: exynos4210-mct: Add
+ google,gs101-mct compatible
+Content-Language: en-US
+To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de, conor+dt@kernel.org,
+ alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com,
+ cw00.choi@samsung.com, mturquette@baylibre.com, sboyd@kernel.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel-team@android.com,
+ tudor.ambarus@linaro.org, andre.draszik@linaro.org,
+ semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com
+References: <20231222165355.1462740-1-peter.griffin@linaro.org>
+ <20231222165355.1462740-2-peter.griffin@linaro.org>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20231222165355.1462740-2-peter.griffin@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, 16 Jan 2024 08:29:04 +0100,
-Javier Carrasco wrote:
+On 22/12/2023 17:53, Peter Griffin wrote:
+> Add dedicated google,gs101-mct compatible to the dt-schema for
+> representing mct timer of the Google Tensor gs101 SoC.
 > 
-> On 15.01.24 21:43, Krzysztof Kozlowski wrote:
-> > On 15/01/2024 20:43, Javier Carrasco wrote:
-> >> On 15.01.24 19:11, Krzysztof Kozlowski wrote:
-> >>> On 15/01/2024 17:24, Javier Carrasco wrote:
-> >>>> Do you mean that the XVF3500 should not be represented as a platform
-> >>>> device and instead it should turn into an USB device represented as a
-> >>>> node of an USB controller? Something like this (Rockchip SoC):
-> >>>>
-> >>>> &usb_host1_xhci {
-> >>>> 	...
-> >>>>
-> >>>> 	xvf3500 {
-> >>>> 		...
-> >>>> 	};
-> >>>> };
-> >>>>
-> >>>> Did I get you right or is that not the correct representation? Thank you
-> >>>> again.
-> >>>
-> >>> I believe it should be just like onboard hub. I don't understand why
-> >>> onboard hub was limited to hub, because other USB devices also could be
-> >>> designed similarly by hardware folks :/
-> >>>
-> >>> And if we talk about Linux drivers, then your current solution does not
-> >>> support suspend/resume and device unbind.
-> >>>
-> >>> Best regards,
-> >>> Krzysztof
-> >>>
-> >>
-> >> Actually this series is an attempt to get rid of a misuse of the
-> >> onboard_usb_hub driver by a device that is not a HUB, but requires the
-> >> platform-part of that driver for the initialization.
-> > 
-> > That's just naming issue, isn't it?
-> > 
-> >>
-> >> What would be the best approach to provide support upstream? Should I
-> >> turn this driver into a generic USB driver that does what the
-> >> platform-part of the onboard HUB does? Or are we willing to accept
-> > 
-> > No, because you did not solve the problems I mentioned. This is neither
-> > accurate hardware description nor proper Linux driver model handling PM
-> > and unbind.
-> > 
-> You mentioned the PM handling twice, but I am not sure what you mean.
-> The driver provides callbacks for SIMPLE_DEV_PM_OPS, which I tested in
-> freeze and memory power states with positive results. On the other hand,
-> I suppose that you insisted for a good reason, so I would be grateful if
-> you could show me what I am doing wrong. The macro pattern was taken
-> from other devices under sound/, which also check CONFIG_PM_SLEEP,
-> but maybe I took a bad example or missed something.
 
-FWIW, the patterns in sound/ are somewhat outdated and need to be
-refreshed.  Nowadays one should use DEFINE_SIMPLE_DEV_PM_OPS() instead
-(that should work without ifdef).
+Applied, thanks
 
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-thanks,
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
-Takashi
 
