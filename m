@@ -1,219 +1,354 @@
-Return-Path: <devicetree+bounces-33517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 571298358D9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 01:04:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37FDE835924
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 02:28:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF5541F227C3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 00:04:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00975B2140F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 01:28:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80836195;
-	Mon, 22 Jan 2024 00:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA722376;
+	Mon, 22 Jan 2024 01:28:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JwXseGBQ"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="HH0MCKNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2064.outbound.protection.outlook.com [40.107.104.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA9E362
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 00:04:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705881883; cv=none; b=ovlkK6LJFY70LWtziX/1EBJBlimhFGX8HWbreaLTXbnp4RFi9bOwpislYtL8UHBC1d1KWqSa48LYQv0SjocebdkNd0g/fGXzk5VGD4bAuo3PUVHkNmNa54zbsAoHjlDVccTr1yZkKXvefL+A/ahClEWP/ceSeThG18FNhvbdEXE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705881883; c=relaxed/simple;
-	bh=/ULamA22NiwL3lkm0oOrpcSQqP16Wr27ft5NeIDulhs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o9XTF3fVQ6W8Np7Ns0VUEH00YIfaOFSD8tthHLNwV7wI5zPLPlEbOMAll22qowTd5HSqBpLKVtheHUw/sxt9eHQ+e7RkCfLbniToB3eW1Hwd9BPPh7wR4youQoE7R9gvq3cpZGRxZjrqKtQtvidd0CAZbHSCpGfd6rwnIv06Zk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JwXseGBQ; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-338aca547d9so2073019f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Jan 2024 16:04:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705881880; x=1706486680; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zlEZyotr7lQewRwJXfl4AVVs7IqSe9mLqbTp7FrGZ4c=;
-        b=JwXseGBQ1lfhoj/2oIPD/uz7JZmGVkY3Gi9DpR0CpCTrm5C2DgKaMYuooL52eInCrf
-         XG3jRickLoKGv+l1IuIwYN7PxkdSjkg4fkd6GcbKdb0o/rYloe78thufRw+MgVAngdRb
-         iOTveASUzW0n3rqamvKflf8CX1aT1b/kcLK2jxVOPjEcJP19VYObuY3MPqQyyjs3SmSc
-         tA31wmLi20vL4S+kaF5sKuhtdUEmqkhXmdlV5VJkorjmM/Laim0xV8rh12hi7qhoOpwC
-         39mF0FF2+28cJVxHT8Su2wPjQr0xoJywz+JdZH/uvXYJRsktBG86hHMVCkJ63Ltt0ZKV
-         gpcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705881880; x=1706486680;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zlEZyotr7lQewRwJXfl4AVVs7IqSe9mLqbTp7FrGZ4c=;
-        b=G+LE+bRf4i+YF/QLlI521New4M9TU14tVBanv3R14lxQfhSq7bKPHgD4fdiGo/yuZX
-         0w4mgw5NOiy2Hfj6IORDX+lEgLQOoMly1+n1ROprabBkrGpZEUijprk7Zf1iqbNnoCFC
-         tXjMTnGA4bZbaRCytsUHY0iS91vQdQ7UsbsiG8/7TOFPIAJGTUzxpW1yMCHeL7SWbyOj
-         S/8c5CEgA/j8HNsdkG3w6Jt/b5iIA5Z67v7UQIH8rZJfVgmIQQTnSK+/ilcb54RJiQQ5
-         V1RpKC9NRbmAWfQSisG8I7VMsIj2gNKBUDJiSmb2Fm8jpn8P2iq6aRMpCY32uReY0Q+w
-         bsPA==
-X-Gm-Message-State: AOJu0YyjzRmv66qQyG+Gc5ZzXm+P+IwKJZvh+JqCRgWru2DtCrs3L7Ye
-	YlNHtYX7/AIah4j2KqQyHkVghBeGa8LFZENCqUdNSXaFA3uanz4sxRzWayIEmZI=
-X-Google-Smtp-Source: AGHT+IGRUcJnOFsQp7DY+zsXgFaLMfVCir7fUcEIhdDpS5U3lN7oKicfCyySWRw9DEHt6YVffn2IfQ==
-X-Received: by 2002:a05:6000:142:b0:337:d4ca:d754 with SMTP id r2-20020a056000014200b00337d4cad754mr910481wrx.263.1705881879492;
-        Sun, 21 Jan 2024 16:04:39 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:371e:2a86:62f0:bc48? ([2a05:6e02:1041:c10:371e:2a86:62f0:bc48])
-        by smtp.googlemail.com with ESMTPSA id s15-20020a5d6a8f000000b00336898daceasm10011000wru.96.2024.01.21.16.04.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Jan 2024 16:04:39 -0800 (PST)
-Message-ID: <e45f72c2-0b5b-44dd-ad39-e7e5bd17ae26@linaro.org>
-Date: Mon, 22 Jan 2024 01:04:38 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3963536B;
+	Mon, 22 Jan 2024 01:28:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.64
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705886911; cv=fail; b=Ir1LT1RO2xqHSgQUXy95Da51bWqjZHmRDSH7IvDUDYg5f9xsYJe0icuWyhhUX53PtBdsqh8MjEZsGPd5/aisBOiVCdv44QNYN4fkFizEgrxarlO/rR7vCTvv7I2TPiGYLfp4mTxj9rMe6+rVUtJyH1ubvMHyAd2C42Y8cdvVYsU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705886911; c=relaxed/simple;
+	bh=KAjZzW8y5ifayoQEg5qU4WNmGImGX09WMk+57+BsJew=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=stfyCLwJfBqWqlq4sw7WobLaMUDXkI3+5YknhQ/tLsy4aeTqS2C1bWYXqWkMxgV9vRJHQ/ii/QjkYv+4f5nQSQ/h5IVNA+bdP8t0aLzW4Dm08hSmpQwFD5CU9rcW8yczYlPjbzzML16DOrA50+bvjU3XcZWYYP1sIy5y3kJ7OaA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=HH0MCKNc; arc=fail smtp.client-ip=40.107.104.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gStIAp1sipcrBKTWIomBH+OydGaHjE5ngWFjvxC0P7V/GDCwepByrL5bYrFQDk/dxn/oTpKQQb6GD/UT6TmfoS6693zrzbY8IWorEaApUzXFnfdyPjwPN4vcWZGoWfXYYhadmwmIG5OdVTlXQtTeXn2iI/26reK1K/5exA6Mx58CDsU4Nf7UIaU/XK7syBI9+XaIYy0CsGHwqVkjLloFIrVA7BSrHc0ftFaYHjeWheXkXhjqx4VWBjQ0bXoSCHEf/RpclP5m+jc9E6w3Oj6PVwb/9Bv2UIwQtHaU3gYodKmobPUXBu/Lnr+bD23QMkmCnM3yLVOrabPjye9Z8AjN6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h/PgLaDBQ9WUmTgxku5OLWypIBNIZfSg+ILOlPV4Am8=;
+ b=Lsqury5mUbLf3nLJCoFLryYusUwmWSsosxGgJp4IhXlNErKoavwwHumS7G6fLxYYwrpt0K8vSuBVUkywdcn8cYGk4sF1/tYZvVzEYVNrnjRQAx1GtT0w5fO131tKWvF2P3/W4EG3UcWURdbLoSI9nwki8qCJfhcF3QHGHXf7LUnC1O0Cuv1mLEU+UwrO+uNHkxY7CeDqDXv4um6nP67CusCaMxF5+eL5nNbckYLO/qdkNzQaBPo80fzz/k2riqdRJU5pKYBfSvSviwOX61b3nSl8hU6rYg1PJ+JxKDec2PY7iv6RusKZrn4eTXn8+28u2HVmprQXNLDF1WXGQYaWNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h/PgLaDBQ9WUmTgxku5OLWypIBNIZfSg+ILOlPV4Am8=;
+ b=HH0MCKNcjPV49xRcF7lVvChyXK2cAjxr5YofNngjJ4X6ZkFsEbzKn+ygeLV4cXGYHwxvtPCecaf+PEvTHXPjBckcrLYpv5Ojr/1aUlRyU38Q8bQ5szvUJpQ1S6H0cZQ8VV6xOLRNZpEfO+O6Gf+DVdLqiMvjcc8XUJPnS4tb5Co=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM8PR04MB8019.eurprd04.prod.outlook.com (2603:10a6:20b:24b::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
+ 2024 01:28:26 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c499:8cef:9bb1:ced6]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c499:8cef:9bb1:ced6%3]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
+ 01:28:25 +0000
+From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	abelvesa@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: devicetree@vger.kernel.org,
+	linux-imx@nxp.com,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2] dt-bindings: clock: support NXP i.MX95
+Date: Mon, 22 Jan 2024 09:32:39 +0800
+Message-Id: <20240122013239.1434383-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR01CA0141.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:8f::21) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: rockchip: enable built-in thermal
- monitoring on rk3588
-Content-Language: en-US
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Christopher Obbard <chris.obbard@collabora.com>,
- =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <szucst@iit.uni-miskolc.hu>,
- Shreeya Patel <shreeya.patel@collabora.com>,
- Kever Yang <kever.yang@rock-chips.com>, Jagan Teki <jagan@edgeble.ai>,
- Chris Morgan <macromorgan@hotmail.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240106222357.23835-1-alchark@gmail.com>
- <20240109192608.5981-1-alchark@gmail.com>
- <c517f26c-34bc-4b99-b744-8e2549cd28b5@linaro.org>
- <CABjd4YxYpsvf+ghHTn1z8TAZxQb-2dFOQaVSm8zHKSSWOokqww@mail.gmail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <CABjd4YxYpsvf+ghHTn1z8TAZxQb-2dFOQaVSm8zHKSSWOokqww@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AM8PR04MB8019:EE_
+X-MS-Office365-Filtering-Correlation-Id: e714e10a-f45d-498b-0492-08dc1ae96de9
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ZZkqd+tPskr7V1ghykHPefP883MjFt4TlLr0WTUsxgKtFsvH+7hJYVE0ZL7T2/fkv+DdO79SymkE/vjGkGxr0xM8Lv/o7VtXIgux0KUtwsYucwUmzviWcHNHYTzcwUynOZbhEISeON8Db2Mv9DRGv92+nM9Uz1UCVnA4yet1h77O07NJLZVlYbcNC4a5vnRciN1XdsraqabBHdZKVLScF+eq/zEKMx7J9VaHQtMTWGNDLWyPfjq/bIu4Wx1zkCXSB5L4auHBxyKFBqR5p1PnD05oSGB73K9OpHvOZq+WE2rjgUY3vsSP1X8ZRxSzPTxNIFQESkrNuNDElLuYGdBZZoRppqLvkwjurDSl+1LXOQXyRn/E+Vs4ftGl9FFqzjKI8AR17ZTBO4ICn7EWcOkOLHJpT1nOrhb2STHh9QXNvW4OGPpBpKwDGjIW4WP5Avb8zjQ0OeYeMEC/cgA5bneLQPtIZDjJ2li9M8+/luHAnxmnVWFmOthyPObUwo98r78UsIWBTp5v1jrIPTHIVVy1FUXwKzXkMWgClKSZg6AXezZDpZxur96k42/0eISi1FnU7AVc5vH7rFuxsXxlkKFsP4Hr8lsiU4d1IibcB643TOgf+xx4kjjZdBYbnQ+fIYT1FXDV+gf47TOkmaz9sJUftA==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(346002)(39860400002)(396003)(136003)(230922051799003)(451199024)(186009)(64100799003)(1800799012)(6506007)(1076003)(26005)(52116002)(2616005)(6666004)(6512007)(38100700002)(86362001)(38350700005)(8936002)(41300700001)(4326008)(8676002)(6486002)(2906002)(5660300002)(83380400001)(7416002)(921011)(316002)(478600001)(66556008)(66476007)(66946007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?cjBDQEn/dJklSdjzgXg2TNt6haacBeop4IxIyl34U36wbR4hADn3dGFd7m2I?=
+ =?us-ascii?Q?MHy9QUyjVGA14wkS/9e/9k8+9jNG5gCp88nmM+gHDgUVSVfzs+rK5FimAGvm?=
+ =?us-ascii?Q?yBOOXPoWNYSQABYCE5+GiXofdUROgSVebEYIdeCV2Hbr5uShNBnIFZDxXY6c?=
+ =?us-ascii?Q?4AjfQ3hMPXxYjx/6a+mLlCX4zHpO6efLaI8xACv+L22csc1JdhNT/frDdc9y?=
+ =?us-ascii?Q?fo4gl4A4fkdy+laT2wZN7xMv1Hfth2j9taNyE8iETUstv714FSqqOxjoeks/?=
+ =?us-ascii?Q?xCERLfaN1joTFF+lEeZfmBw2yg13NPPyozr4ejuMi9cl1U8qvsfer0UA+txS?=
+ =?us-ascii?Q?xIIWaljcaIHu1ZHv6kbNppaj3IWxFE/Cnq+ZDqQ8ZwEt4ErV/ou8ViVXktLk?=
+ =?us-ascii?Q?euFVuVk1Pdsnbski6wmjSdKLdEoqTbwLC29xhmZwUXJ3f6HYpgjbl45M6RUo?=
+ =?us-ascii?Q?49mzRuTlSwLnpORtDiXJVEueeDvI7KTR7N1BV/eKjeOpsCBAg0Dr1ovkR3rz?=
+ =?us-ascii?Q?YMqlCRGZgQEZW0RXZHFiM4am7kcFKoqvD22gH+28WU5AabD1vtgFa+8+pIFE?=
+ =?us-ascii?Q?yJkCXtdWMtxkV68w5vTSglWsrPCU3AOh8+twj2lZ0E8DfiWJfKOc7my3mMA+?=
+ =?us-ascii?Q?LdqcLKf7wG1HghddUIBN/JBKTSAUpqnDKBzB7lRSsiwDMBqahenJq1M5Axk3?=
+ =?us-ascii?Q?wDhjbYTIt74T+es2WvOjXsawq9NDE+ZwzBgXlr/FQjkYpubrG75XWzfcEcZy?=
+ =?us-ascii?Q?ryLB62Yp7Oha36jFb/Qwmnc4gaERuVTjUuNwcuuubKrF2WoXUE7P2TwjVKvS?=
+ =?us-ascii?Q?9TKapZSUWP8Vyen4N828FNSweOnBGU9b1YxsJVbw355wApiAqSUQah1yfQRV?=
+ =?us-ascii?Q?skQvPEnZMO9fCd6igHFYi/hLDhQd8eFUpViGERnrCxgku7FQdaoVWcFWCTuI?=
+ =?us-ascii?Q?Yg3l4pkYBGezGdCOqwN51TXXGICwQZmph6VvtAEV+X6e0AgDS2yUMNApue4A?=
+ =?us-ascii?Q?1Lf6oAuvMOVVUln/U39O2jGJCqVf12lcNZCnnYSFo7rOBraVBbXjwHs/A5af?=
+ =?us-ascii?Q?EW1adSOim1xoWfvM49CA/06HFt3ibhQ0M86hedoxbw1AKGM2BkS49SjpAR7Q?=
+ =?us-ascii?Q?iF758oKMVZrfM2ZSDxFOVDvP3swrBh9JJ7GsqQgyiwQVioK+mpf2tPCs2BFL?=
+ =?us-ascii?Q?lgB+gILmNMkqROZ1ZJkXhjK3fr8P3jvaDmde8KUZUEsSnnhLsEB0PKd1Navp?=
+ =?us-ascii?Q?XKNT+3sbxjLDqbu6pPCO/oZc8F6zUW36pgxr+pkSLWbRnmS7yoa02B0xdTPG?=
+ =?us-ascii?Q?RKUAulkpfWlodmtIJhrZNFuZ3Nuh97RUAYb3uTmZ0wtm2yBaHQtR337zEJzl?=
+ =?us-ascii?Q?TIj3eQ/O7ruAxvrAYYiDPWFgsoMMkOVZLdQt5DV+rX8sZd/czjMkIu2qEKWH?=
+ =?us-ascii?Q?8rYQkTQX2IUU7uNGFeL7ypebpEb3sl/+tKdM1W2oE5BiqsiyWTSIoWfaFySq?=
+ =?us-ascii?Q?TLrPZmM2GLYpLboMhXaJTtXqnkZchvovJkouX8SHs8k/1xSJ/q1lkcj16Bo2?=
+ =?us-ascii?Q?WGytONjD9hMtmKM3nC6aZzRKrBSvD/NmsvPCybZa?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e714e10a-f45d-498b-0492-08dc1ae96de9
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2024 01:28:25.9232
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c76EYi2elZ4t84+HP1pOiLFw88BNdw8ygMKllYnIK4ihVl9iCcPyWVbmgDkcDTOpejQTX2khZvN7ThwwmX2tLg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB8019
 
+From: Peng Fan <peng.fan@nxp.com>
 
-Hi Alexey,
+Add i.MX95 clock dt-binding header file
 
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
 
-On 21/01/2024 20:57, Alexey Charkov wrote:
-> On Fri, Jan 19, 2024 at 8:21 PM Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
-> Hello Daniel,
-> 
-> Thanks a lot for your review and comments! Please see some reflections below.
-> 
->> On 09/01/2024 20:19, Alexey Charkov wrote:
->>> Include thermal zones information in device tree for rk3588 variants
->>> and enable the built-in thermal sensing ADC on RADXA Rock 5B
->>>
->>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->>> ---
->>> Changes in v2:
->>>    - Dropped redundant comments
->>>    - Included all CPU cores in cooling maps
->>>    - Split cooling maps into more granular ones utilizing TSADC
->>>      channels 1-3 which measure temperature by separate CPU clusters
->>>      instead of channel 0 which measures the center of the SoC die
->>> ---
->>>    .../boot/dts/rockchip/rk3588-rock-5b.dts      |   4 +
->>>    arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 151 ++++++++++++++++++
->>>    2 files changed, 155 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> index a5a104131403..f9d540000de3 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> @@ -772,3 +772,7 @@ &usb_host1_ehci {
->>>    &usb_host1_ohci {
->>>        status = "okay";
->>>    };
->>> +
->>> +&tsadc {
->>> +     status = "okay";
->>> +};
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->>> index 8aa0499f9b03..8d54998d0ecc 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->>> @@ -10,6 +10,7 @@
->>>    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
->>>    #include <dt-bindings/phy/phy.h>
->>>    #include <dt-bindings/ata/ahci.h>
->>> +#include <dt-bindings/thermal/thermal.h>
->>>
->>>    / {
->>>        compatible = "rockchip,rk3588";
->>> @@ -2112,6 +2113,156 @@ tsadc: tsadc@fec00000 {
->>>                status = "disabled";
->>>        };
->>>
->>> +     thermal_zones: thermal-zones {
->>> +             /* sensor near the center of the whole chip */
->>> +             soc_thermal: soc-thermal {
->>> +                     polling-delay-passive = <20>;
->>
->> There is no mitigation set for this thermal zone. It is pointless to
->> specify a passive polling.
-> 
-> Indeed, it makes sense to me. There seems to be a catch though in that
-> the driver calls the generic thermal_of_zone_register during the
-> initial probe, which expects both of those polling delays to be
-> present in the device tree, otherwise it simply refuses to add the
-> respective thermal zone, see drivers/thermal/thermal_of.c:502
+V2:
+ Typo: SENTINEL -> ELE
 
-Usually:
+ include/dt-bindings/clock/nxp,imx95-clock.h | 187 ++++++++++++++++++++
+ 1 file changed, 187 insertions(+)
+ create mode 100644 include/dt-bindings/clock/nxp,imx95-clock.h
 
-polling-delay-passive = <0>;
-polling-delay = <0>;
-
-cf:
-
-git grep "polling-delay = <0>" arch/arm64/boot/dts
-
->>> +                     polling-delay = <1000>;
->>
->> The driver is interrupt driven. No need to poll.
-> 
-> Same here as above
-> 
->>> +                     sustainable-power = <2100>;
->>
->> There is no mitigation with this thermal zone. Specifying a sustainable
->> power does not make sense.
-> 
-> Thanks, will drop this in v3!
-> 
->>> +                     thermal-sensors = <&tsadc 0>;
->>> +
->>> +                     trips {
->>> +                             soc_crit: soc-crit {
->>> +                                     temperature = <115000>;
->>> +                                     hysteresis = <2000>;
->>
->> This trip point leads to a system shutdown / reboot. It is not necessary
->> to specify a hysteresis.
-> 
-> Similar to the above, the generic thermal_of code refuses to add the
-> trip point if it has no hysteresis property defined (regardless of the
-> trip type), see drivers/thermal/thermal_of.c:109
-
-hysteresis = <0>;
-
-
+diff --git a/include/dt-bindings/clock/nxp,imx95-clock.h b/include/dt-bindings/clock/nxp,imx95-clock.h
+new file mode 100644
+index 000000000000..de7af0f29f09
+--- /dev/null
++++ b/include/dt-bindings/clock/nxp,imx95-clock.h
+@@ -0,0 +1,187 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
++/*
++ * Copyright 2024 NXP
++ */
++
++#ifndef __DT_BINDINGS_CLOCK_IMX95_H
++#define __DT_BINDINGS_CLOCK_IMX95_H
++
++/* The index should match i.MX95 SCMI Firmware */
++#define IMX95_CLK_32K                       1
++#define IMX95_CLK_24M                       2
++#define IMX95_CLK_FRO                       3
++#define IMX95_CLK_SYSPLL1_VCO               4
++#define IMX95_CLK_SYSPLL1_PFD0_UNGATED      5
++#define IMX95_CLK_SYSPLL1_PFD0              6
++#define IMX95_CLK_SYSPLL1_PFD0_DIV2         7
++#define IMX95_CLK_SYSPLL1_PFD1_UNGATED      8
++#define IMX95_CLK_SYSPLL1_PFD1              9
++#define IMX95_CLK_SYSPLL1_PFD1_DIV2         10
++#define IMX95_CLK_SYSPLL1_PFD2_UNGATED      11
++#define IMX95_CLK_SYSPLL1_PFD2              12
++#define IMX95_CLK_SYSPLL1_PFD2_DIV2         13
++#define IMX95_CLK_AUDIOPLL1_VCO             14
++#define IMX95_CLK_AUDIOPLL1                 15
++#define IMX95_CLK_AUDIOPLL2_VCO             16
++#define IMX95_CLK_AUDIOPLL2                 17
++#define IMX95_CLK_VIDEOPLL1_VCO             18
++#define IMX95_CLK_VIDEOPLL1                 19
++#define IMX95_CLK_RESERVED20                20
++#define IMX95_CLK_RESERVED21                21
++#define IMX95_CLK_RESERVED22                22
++#define IMX95_CLK_RESERVED23                23
++#define IMX95_CLK_ARMPLL_VCO                24
++#define IMX95_CLK_ARMPLL_PFD0_UNGATED       25
++#define IMX95_CLK_ARMPLL_PFD0               26
++#define IMX95_CLK_ARMPLL_PFD1_UNGATED       27
++#define IMX95_CLK_ARMPLL_PFD1               28
++#define IMX95_CLK_ARMPLL_PFD2_UNGATED       29
++#define IMX95_CLK_ARMPLL_PFD2               30
++#define IMX95_CLK_ARMPLL_PFD3_UNGATED       31
++#define IMX95_CLK_ARMPLL_PFD3               32
++#define IMX95_CLK_DRAMPLL_VCO               33
++#define IMX95_CLK_DRAMPLL                   34
++#define IMX95_CLK_HSIOPLL_VCO               35
++#define IMX95_CLK_HSIOPLL                   36
++#define IMX95_CLK_LDBPLL_VCO                37
++#define IMX95_CLK_LDBPLL                    38
++#define IMX95_CLK_EXT1                      39
++#define IMX95_CLK_EXT2                      40
++
++#define IMX95_CCM_NUM_CLK_SRC               41
++
++#define IMX95_CLK_ADC                      (IMX95_CCM_NUM_CLK_SRC + 0)
++#define IMX95_CLK_TMU                      (IMX95_CCM_NUM_CLK_SRC + 1)
++#define IMX95_CLK_BUSAON                   (IMX95_CCM_NUM_CLK_SRC + 2)
++#define IMX95_CLK_CAN1                     (IMX95_CCM_NUM_CLK_SRC + 3)
++#define IMX95_CLK_I3C1                     (IMX95_CCM_NUM_CLK_SRC + 4)
++#define IMX95_CLK_I3C1SLOW                 (IMX95_CCM_NUM_CLK_SRC + 5)
++#define IMX95_CLK_LPI2C1                   (IMX95_CCM_NUM_CLK_SRC + 6)
++#define IMX95_CLK_LPI2C2                   (IMX95_CCM_NUM_CLK_SRC + 7)
++#define IMX95_CLK_LPSPI1                   (IMX95_CCM_NUM_CLK_SRC + 8)
++#define IMX95_CLK_LPSPI2                   (IMX95_CCM_NUM_CLK_SRC + 9)
++#define IMX95_CLK_LPTMR1                   (IMX95_CCM_NUM_CLK_SRC + 10)
++#define IMX95_CLK_LPUART1                  (IMX95_CCM_NUM_CLK_SRC + 11)
++#define IMX95_CLK_LPUART2                  (IMX95_CCM_NUM_CLK_SRC + 12)
++#define IMX95_CLK_M33                      (IMX95_CCM_NUM_CLK_SRC + 13)
++#define IMX95_CLK_M33SYSTICK               (IMX95_CCM_NUM_CLK_SRC + 14)
++#define IMX95_CLK_MQS1                     (IMX95_CCM_NUM_CLK_SRC + 15)
++#define IMX95_CLK_PDM                      (IMX95_CCM_NUM_CLK_SRC + 16)
++#define IMX95_CLK_SAI1                     (IMX95_CCM_NUM_CLK_SRC + 17)
++#define IMX95_CLK_ELE                      (IMX95_CCM_NUM_CLK_SRC + 18)
++#define IMX95_CLK_TPM2                     (IMX95_CCM_NUM_CLK_SRC + 19)
++#define IMX95_CLK_TSTMR1                   (IMX95_CCM_NUM_CLK_SRC + 20)
++#define IMX95_CLK_CAMAPB                   (IMX95_CCM_NUM_CLK_SRC + 21)
++#define IMX95_CLK_CAMAXI                   (IMX95_CCM_NUM_CLK_SRC + 22)
++#define IMX95_CLK_CAMCM0                   (IMX95_CCM_NUM_CLK_SRC + 23)
++#define IMX95_CLK_CAMISI                   (IMX95_CCM_NUM_CLK_SRC + 24)
++#define IMX95_CLK_MIPIPHYCFG               (IMX95_CCM_NUM_CLK_SRC + 25)
++#define IMX95_CLK_MIPIPHYPLLBYPASS         (IMX95_CCM_NUM_CLK_SRC + 26)
++#define IMX95_CLK_MIPIPHYPLLREF            (IMX95_CCM_NUM_CLK_SRC + 27)
++#define IMX95_CLK_MIPITESTBYTE             (IMX95_CCM_NUM_CLK_SRC + 28)
++#define IMX95_CLK_A55                      (IMX95_CCM_NUM_CLK_SRC + 29)
++#define IMX95_CLK_A55MTRBUS                (IMX95_CCM_NUM_CLK_SRC + 30)
++#define IMX95_CLK_A55PERIPH                (IMX95_CCM_NUM_CLK_SRC + 31)
++#define IMX95_CLK_DRAMALT                  (IMX95_CCM_NUM_CLK_SRC + 32)
++#define IMX95_CLK_DRAMAPB                  (IMX95_CCM_NUM_CLK_SRC + 33)
++#define IMX95_CLK_DISPAPB                  (IMX95_CCM_NUM_CLK_SRC + 34)
++#define IMX95_CLK_DISPAXI                  (IMX95_CCM_NUM_CLK_SRC + 35)
++#define IMX95_CLK_DISPDP                   (IMX95_CCM_NUM_CLK_SRC + 36)
++#define IMX95_CLK_DISPOCRAM                (IMX95_CCM_NUM_CLK_SRC + 37)
++#define IMX95_CLK_DISPUSB31                (IMX95_CCM_NUM_CLK_SRC + 38)
++#define IMX95_CLK_DISP1PIX                 (IMX95_CCM_NUM_CLK_SRC + 39)
++#define IMX95_CLK_DISP2PIX                 (IMX95_CCM_NUM_CLK_SRC + 40)
++#define IMX95_CLK_DISP3PIX                 (IMX95_CCM_NUM_CLK_SRC + 41)
++#define IMX95_CLK_GPUAPB                   (IMX95_CCM_NUM_CLK_SRC + 42)
++#define IMX95_CLK_GPU                      (IMX95_CCM_NUM_CLK_SRC + 43)
++#define IMX95_CLK_HSIOACSCAN480M           (IMX95_CCM_NUM_CLK_SRC + 44)
++#define IMX95_CLK_HSIOACSCAN80M            (IMX95_CCM_NUM_CLK_SRC + 45)
++#define IMX95_CLK_HSIO                     (IMX95_CCM_NUM_CLK_SRC + 46)
++#define IMX95_CLK_HSIOPCIEAUX              (IMX95_CCM_NUM_CLK_SRC + 47)
++#define IMX95_CLK_HSIOPCIETEST160M         (IMX95_CCM_NUM_CLK_SRC + 48)
++#define IMX95_CLK_HSIOPCIETEST400M         (IMX95_CCM_NUM_CLK_SRC + 49)
++#define IMX95_CLK_HSIOPCIETEST500M         (IMX95_CCM_NUM_CLK_SRC + 50)
++#define IMX95_CLK_HSIOUSBTEST50M           (IMX95_CCM_NUM_CLK_SRC + 51)
++#define IMX95_CLK_HSIOUSBTEST60M           (IMX95_CCM_NUM_CLK_SRC + 52)
++#define IMX95_CLK_BUSM7                    (IMX95_CCM_NUM_CLK_SRC + 53)
++#define IMX95_CLK_M7                       (IMX95_CCM_NUM_CLK_SRC + 54)
++#define IMX95_CLK_M7SYSTICK                (IMX95_CCM_NUM_CLK_SRC + 55)
++#define IMX95_CLK_BUSNETCMIX               (IMX95_CCM_NUM_CLK_SRC + 56)
++#define IMX95_CLK_ENET                     (IMX95_CCM_NUM_CLK_SRC + 57)
++#define IMX95_CLK_ENETPHYTEST200M          (IMX95_CCM_NUM_CLK_SRC + 58)
++#define IMX95_CLK_ENETPHYTEST500M          (IMX95_CCM_NUM_CLK_SRC + 59)
++#define IMX95_CLK_ENETPHYTEST667M          (IMX95_CCM_NUM_CLK_SRC + 60)
++#define IMX95_CLK_ENETREF                  (IMX95_CCM_NUM_CLK_SRC + 61)
++#define IMX95_CLK_ENETTIMER1               (IMX95_CCM_NUM_CLK_SRC + 62)
++#define IMX95_CLK_MQS2                     (IMX95_CCM_NUM_CLK_SRC + 63)
++#define IMX95_CLK_SAI2                     (IMX95_CCM_NUM_CLK_SRC + 64)
++#define IMX95_CLK_NOCAPB                   (IMX95_CCM_NUM_CLK_SRC + 65)
++#define IMX95_CLK_NOC                      (IMX95_CCM_NUM_CLK_SRC + 66)
++#define IMX95_CLK_NPUAPB                   (IMX95_CCM_NUM_CLK_SRC + 67)
++#define IMX95_CLK_NPU                      (IMX95_CCM_NUM_CLK_SRC + 68)
++#define IMX95_CLK_CCMCKO1                  (IMX95_CCM_NUM_CLK_SRC + 69)
++#define IMX95_CLK_CCMCKO2                  (IMX95_CCM_NUM_CLK_SRC + 70)
++#define IMX95_CLK_CCMCKO3                  (IMX95_CCM_NUM_CLK_SRC + 71)
++#define IMX95_CLK_CCMCKO4                  (IMX95_CCM_NUM_CLK_SRC + 72)
++#define IMX95_CLK_VPUAPB                   (IMX95_CCM_NUM_CLK_SRC + 73)
++#define IMX95_CLK_VPU                      (IMX95_CCM_NUM_CLK_SRC + 74)
++#define IMX95_CLK_VPUDSP                   (IMX95_CCM_NUM_CLK_SRC + 75)
++#define IMX95_CLK_VPUJPEG                  (IMX95_CCM_NUM_CLK_SRC + 76)
++#define IMX95_CLK_AUDIOXCVR                (IMX95_CCM_NUM_CLK_SRC + 77)
++#define IMX95_CLK_BUSWAKEUP                (IMX95_CCM_NUM_CLK_SRC + 78)
++#define IMX95_CLK_CAN2                     (IMX95_CCM_NUM_CLK_SRC + 79)
++#define IMX95_CLK_CAN3                     (IMX95_CCM_NUM_CLK_SRC + 80)
++#define IMX95_CLK_CAN4                     (IMX95_CCM_NUM_CLK_SRC + 81)
++#define IMX95_CLK_CAN5                     (IMX95_CCM_NUM_CLK_SRC + 82)
++#define IMX95_CLK_FLEXIO1                  (IMX95_CCM_NUM_CLK_SRC + 83)
++#define IMX95_CLK_FLEXIO2                  (IMX95_CCM_NUM_CLK_SRC + 84)
++#define IMX95_CLK_FLEXSPI1                 (IMX95_CCM_NUM_CLK_SRC + 85)
++#define IMX95_CLK_I3C2                     (IMX95_CCM_NUM_CLK_SRC + 86)
++#define IMX95_CLK_I3C2SLOW                 (IMX95_CCM_NUM_CLK_SRC + 87)
++#define IMX95_CLK_LPI2C3                   (IMX95_CCM_NUM_CLK_SRC + 88)
++#define IMX95_CLK_LPI2C4                   (IMX95_CCM_NUM_CLK_SRC + 89)
++#define IMX95_CLK_LPI2C5                   (IMX95_CCM_NUM_CLK_SRC + 90)
++#define IMX95_CLK_LPI2C6                   (IMX95_CCM_NUM_CLK_SRC + 91)
++#define IMX95_CLK_LPI2C7                   (IMX95_CCM_NUM_CLK_SRC + 92)
++#define IMX95_CLK_LPI2C8                   (IMX95_CCM_NUM_CLK_SRC + 93)
++#define IMX95_CLK_LPSPI3                   (IMX95_CCM_NUM_CLK_SRC + 94)
++#define IMX95_CLK_LPSPI4                   (IMX95_CCM_NUM_CLK_SRC + 95)
++#define IMX95_CLK_LPSPI5                   (IMX95_CCM_NUM_CLK_SRC + 96)
++#define IMX95_CLK_LPSPI6                   (IMX95_CCM_NUM_CLK_SRC + 97)
++#define IMX95_CLK_LPSPI7                   (IMX95_CCM_NUM_CLK_SRC + 98)
++#define IMX95_CLK_LPSPI8                   (IMX95_CCM_NUM_CLK_SRC + 99)
++#define IMX95_CLK_LPTMR2                   (IMX95_CCM_NUM_CLK_SRC + 100)
++#define IMX95_CLK_LPUART3                  (IMX95_CCM_NUM_CLK_SRC + 101)
++#define IMX95_CLK_LPUART4                  (IMX95_CCM_NUM_CLK_SRC + 102)
++#define IMX95_CLK_LPUART5                  (IMX95_CCM_NUM_CLK_SRC + 103)
++#define IMX95_CLK_LPUART6                  (IMX95_CCM_NUM_CLK_SRC + 104)
++#define IMX95_CLK_LPUART7                  (IMX95_CCM_NUM_CLK_SRC + 105)
++#define IMX95_CLK_LPUART8                  (IMX95_CCM_NUM_CLK_SRC + 106)
++#define IMX95_CLK_SAI3                     (IMX95_CCM_NUM_CLK_SRC + 107)
++#define IMX95_CLK_SAI4                     (IMX95_CCM_NUM_CLK_SRC + 108)
++#define IMX95_CLK_SAI5                     (IMX95_CCM_NUM_CLK_SRC + 109)
++#define IMX95_CLK_SPDIF                    (IMX95_CCM_NUM_CLK_SRC + 110)
++#define IMX95_CLK_SWOTRACE                 (IMX95_CCM_NUM_CLK_SRC + 111)
++#define IMX95_CLK_TPM4                     (IMX95_CCM_NUM_CLK_SRC + 112)
++#define IMX95_CLK_TPM5                     (IMX95_CCM_NUM_CLK_SRC + 113)
++#define IMX95_CLK_TPM6                     (IMX95_CCM_NUM_CLK_SRC + 114)
++#define IMX95_CLK_TSTMR2                   (IMX95_CCM_NUM_CLK_SRC + 115)
++#define IMX95_CLK_USBPHYBURUNIN            (IMX95_CCM_NUM_CLK_SRC + 116)
++#define IMX95_CLK_USDHC1                   (IMX95_CCM_NUM_CLK_SRC + 117)
++#define IMX95_CLK_USDHC2                   (IMX95_CCM_NUM_CLK_SRC + 118)
++#define IMX95_CLK_USDHC3                   (IMX95_CCM_NUM_CLK_SRC + 119)
++#define IMX95_CLK_V2XPK                    (IMX95_CCM_NUM_CLK_SRC + 120)
++#define IMX95_CLK_WAKEUPAXI                (IMX95_CCM_NUM_CLK_SRC + 121)
++#define IMX95_CLK_XSPISLVROOT              (IMX95_CCM_NUM_CLK_SRC + 122)
++#define IMX95_CLK_SEL_EXT                  (IMX95_CCM_NUM_CLK_SRC + 123 + 0)
++#define IMX95_CLK_SEL_A55C0                (IMX95_CCM_NUM_CLK_SRC + 123 + 1)
++#define IMX95_CLK_SEL_A55C1                (IMX95_CCM_NUM_CLK_SRC + 123 + 2)
++#define IMX95_CLK_SEL_A55C2                (IMX95_CCM_NUM_CLK_SRC + 123 + 3)
++#define IMX95_CLK_SEL_A55C3                (IMX95_CCM_NUM_CLK_SRC + 123 + 4)
++#define IMX95_CLK_SEL_A55C4                (IMX95_CCM_NUM_CLK_SRC + 123 + 5)
++#define IMX95_CLK_SEL_A55C5                (IMX95_CCM_NUM_CLK_SRC + 123 + 6)
++#define IMX95_CLK_SEL_A55P                 (IMX95_CCM_NUM_CLK_SRC + 123 + 7)
++#define IMX95_CLK_SEL_DRAM                 (IMX95_CCM_NUM_CLK_SRC + 123 + 8)
++#define IMX95_CLK_SEL_TEMPSENSE            (IMX95_CCM_NUM_CLK_SRC + 123 + 9)
++
++#endif	/* __DT_BINDINGS_CLOCK_IMX95_H */
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+2.37.1
 
 
