@@ -1,74 +1,66 @@
-Return-Path: <devicetree+bounces-33932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBB00837472
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 21:48:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2667983748D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 21:51:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 989092873F6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 20:48:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58E2B1C26D39
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 20:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A42647F59;
-	Mon, 22 Jan 2024 20:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A195C47A47;
+	Mon, 22 Jan 2024 20:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="w72KG6Dw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tlVgspKR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE6F47E8;
-	Mon, 22 Jan 2024 20:47:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796103D3A7;
+	Mon, 22 Jan 2024 20:51:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705956427; cv=none; b=W1yxUg+qwcwfpBNKxudFrioJxHkvTGGMJjZivRqkXODTDLVYq/2KqjvZ7KeoLTtF6BvneOG26v3DCTXXWavWkU4rPTPlRMagE38xSDKqd93pPKfvHBBsoYaBXs+KBnP1xONdSnGETcjJMyMQk09t8d7J3Q2EYhgXHjfQ+Kw6dV0=
+	t=1705956664; cv=none; b=Aocf2QCE+RLkE2yPe5E/hzdonIlER+UfXx2pumEumwvEOQ/ILGUeUGd8yu1X60sOXhM5Pr3Gd7ZKFxEuCrut2CqzGBVmKt1nXzjPLMFzIla4SSCmeoL8qAJLcpP+iQHcslpxB6Kb2eOe1wJx2iWq2pxc+rC7qozv/awN/VY5fs0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705956427; c=relaxed/simple;
-	bh=xhoSg7HCiJB8nm0GytlBZuAs5wdKZX1yo/OegtNKoH4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=T/YOphgoGhcANUtaEY/oqZzaX+Vmnlcad24MFqtHMDlv7LwMYtwnrdOh0ZxDQTz79bJek+4Y2D46wsEwqFTej2E0q3Gusjxxyjh4I3WUZUCCahOAky02BnqDIPcfrc0aBk8nDtMHmVSYRGX4uEushUngGSnAOgws77rTUe96ik8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=w72KG6Dw; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id E182C8785F;
-	Mon, 22 Jan 2024 21:47:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1705956422;
-	bh=JxBtzlcpgR9/Ek6eHU9p5BsUP/L8XPN5FuVoVVQTYTw=;
+	s=arc-20240116; t=1705956664; c=relaxed/simple;
+	bh=cD2X26TCLky80GPoDVS7IZ4B/2/aC8m0TzrgrR2pAl4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=agOyMJW6dFivkecC00edG3epAaV1ybEoIQVO06jq4UAS7J8eAvHQvYoV2BHLjIWJlwExz6knrU8i7O0x8+NTi4F3BlBYoh2UpSto/gukkXiothCRlITEbvXB4quWmhGg2JrbNv4UbTd+Aa1fJTjoM2BFWDSrFhvlMeFnGvHUxU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tlVgspKR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2388EC433F1;
+	Mon, 22 Jan 2024 20:51:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705956664;
+	bh=cD2X26TCLky80GPoDVS7IZ4B/2/aC8m0TzrgrR2pAl4=;
 	h=From:To:Cc:Subject:Date:From;
-	b=w72KG6DwouCrNqJd8AreYW6NfPC3VAxDJuG2XBRUo4+51bOUKzV6cCbjOfPcHjmSZ
-	 bDfsVCUMg3irOy0aSwynaP3q9Mp4yjkz+XYswsAMeKeEi8PqITG4U9kwmmZCn9Ow64
-	 vE+kPNVqkNyAEYiziN2XYvaGB40hXq41F0E/296AisZVdvNy4ZgZwu3a0BwfLu0HTj
-	 UieZSxkZJObJ43ZJg+G7Nj9LafFy9H5bOYh8HvP8EzP6QuVtIXRKD9jp9/OZUVA25V
-	 M4CuTEZfP8FlOvzJf5kLRqzKhhE12brD63tn5lJE7R03Ph3Xqf1G0WIOAqjXuoWu69
-	 UUXNBYM02cwhg==
-From: Marek Vasut <marex@denx.de>
-To: netdev@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>,
-	"David S. Miller" <davem@davemloft.net>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jakub Kicinski <kuba@kernel.org>,
+	b=tlVgspKRLXT64aZlDEUrm580u6cSI3uGk3uXztzHuCUOuIn1ir55bWdzRhWh6mqcz
+	 DXBawWcQ8oeo4s7uzmXKf13oB9svg3exL+hNwzEqGeLb4txve2/s5geRtfYIZvk+tP
+	 kJWBh92NpvpZWha4whVzLj0wJAhXIsiYXFaVPVIawBuTO3oTMiMJQILUBHoKysEvM8
+	 TbNhlKyBJJr735OnqYcZokBoomnYkvQVKSe+kgt7ugkYhK0C8b1d4iQycS0cfy8wAE
+	 onPk31WX93H5xNgrLAboH21GZiStC0nF2lH0BghVJCFjLGLp5f8BWdBPe4P2iJPVPE
+	 cO5RpXyAmhBmA==
+From: Rob Herring <robh@kernel.org>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Lee Jones <lee@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Pavel Machek <pavel@ucw.cz>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Rob Herring <robh+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>
+Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: [PATCH] [RFC] net: phy: broadcom: Add DT LED configuration support
-Date: Mon, 22 Jan 2024 21:45:51 +0100
-Message-ID: <20240122204650.344794-1-marex@denx.de>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: display: nxp,tda998x: Fix 'audio-ports' constraints
+Date: Mon, 22 Jan 2024 14:49:58 -0600
+Message-ID: <20240122204959.1665970-1-robh@kernel.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -76,191 +68,48 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-The BCM54213E and similar PHYs have extensive LED configuration
-capabilities -- the PHY has two LEDs, either of the two LEDs can
-be configured to 1 of 16 functions (speed, TX, RX, activity, on,
-off, quality, ... multi-color) used to drive single-color LED.
-The multi-color mode is special, it provides 16 more sub-modes
-used to drive multi-color LED.
+The constraints for 'audio-ports' don't match the description. There can
+be 1 or 2 DAI entries and each entry is exactly 2 values. Also, the
+values' sizes are 32-bits, not 8-bits. Move the size constraints to the
+outer dimension (number of DAIs) and add constraints on inner array
+values.
 
-The current configuration -- both LEDs configured as multi-color,
-with both LEDs multi-color sub-mode set to link activity indicator,
-is not suitable for all systems in which this PHY is used.
-
-Attempt to implement a way to describe the LED configuration in DT.
-
-Use Documentation/devicetree/bindings/net/ethernet-phy.yaml leds {}
-subnode of the PHY DT node, describe both LEDs present on this PHY
-as single LEDs within the leds {} subnode. Each described LED is a
-subnode of its own, the description uses standard LED subsystem
-bindings from Documentation/devicetree/bindings/leds/common.yaml .
-
-The DT description of the LED configuration can look for example
-like this:
-
-"
-ethernet-phy@1 {
-...
-	leds {
-		#address-cells = <1>;
-		#size-cells = <0>;
-
-		led@0 {
-			reg = <0>;
-			function = LED_FUNCTION_ACTIVITY;
-		};
-
-		led@1 {
-			reg = <1>;
-			function = LED_FUNCTION_SPEED_2;
-		};
-	};
-};
-"
-
-Implement parsing code in the broadcom PHY driver to detemine desired
-LED configuration from DT. In case the leds {} subnode is present, the
-parser code iterates over its subnodes and for each led@N subnode it
-parses the following properties:
-
-- reg - LED ID, either 0 or 1, used to identify the LED on the PHY
-- function - LED single-color function (speed, TX, RX, multi-color...),
-             uses LED subsystem LED_FUNCTION_* string. The parser in
-	     the driver maps this to register setting.
-- function-enumerator - In case function is set to "multi-color",
-                        the multi-color function number. The parser
-			in the driver uses this value directly for
-			the multi-color configuration register.
-
-Once the properties are parsed, the LED configuration registers of the
-PHY are programmed.
-
-The current list of LED subsystem LED_FUNCTION_* does not cover the
-entire list of possible single-color LED functions of this PHY, add
-example extension for "link speed 1" and "link speed 2" setting into
-the leds/common.h header file.
-
-The function-enumerator should probably not be a number, but maybe
-some sort of macro specific to this PHY ? I would like to avoid new
-broadcom PHY specific DT properties.
-
-Signed-off-by: Marek Vasut <marex@denx.de>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Eric Dumazet <edumazet@google.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Lee Jones <lee@kernel.org>
-Cc: Paolo Abeni <pabeni@redhat.com>
-Cc: Pavel Machek <pavel@ucw.cz>
-Cc: Rafał Miłecki <rafal@milecki.pl>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: devicetree@vger.kernel.org
-Cc: linux-leds@vger.kernel.org
-Cc: netdev@vger.kernel.org
----
- drivers/net/phy/broadcom.c        | 56 +++++++++++++++++++++++++++----
- include/dt-bindings/leds/common.h |  2 ++
- 2 files changed, 52 insertions(+), 6 deletions(-)
+ .../devicetree/bindings/display/bridge/nxp,tda998x.yaml    | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/phy/broadcom.c b/drivers/net/phy/broadcom.c
-index 312a8bb35d780..9250cd45b0b24 100644
---- a/drivers/net/phy/broadcom.c
-+++ b/drivers/net/phy/broadcom.c
-@@ -407,20 +407,64 @@ static int bcm54xx_config_init(struct phy_device *phydev)
+diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
+index 21d995f29a1e..b8e9cf6ce4e6 100644
+--- a/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
+@@ -29,19 +29,22 @@ properties:
  
- 	/* For non-SFP setups, encode link speed into LED1 and LED3 pair
- 	 * (green/amber).
--	 * Also flash these two LEDs on activity. This means configuring
--	 * them for MULTICOLOR and encoding link/activity into them.
-+	 * By default, flash these two LEDs on activity. This means
-+	 * configuring them for MULTICOLOR and encoding link/activity
-+	 * into them, but let user reconfigure this via DT.
- 	 * Don't do this for devices on an SFP module, since some of these
- 	 * use the LED outputs to control the SFP LOS signal, and changing
- 	 * these settings will cause LOS to malfunction.
- 	 */
- 	if (!phy_on_sfp(phydev)) {
--		val = BCM54XX_SHD_LEDS1_LED1(BCM_LED_SRC_MULTICOLOR1) |
--			BCM54XX_SHD_LEDS1_LED3(BCM_LED_SRC_MULTICOLOR1);
-+		struct device_node *np = phydev->mdio.dev.of_node;
-+		struct device_node *leds, *led = NULL;
-+		u8 mode[2] = { BCM_LED_SRC_MULTICOLOR1, BCM_LED_SRC_MULTICOLOR1 };
-+		u8 mcmode[2] = { BCM_LED_MULTICOLOR_LINK_ACT, BCM_LED_MULTICOLOR_LINK_ACT };
-+		const char *func;
-+		u32 val, enumerator;
-+		int ret;
-+
-+		leds = of_find_node_by_name(np, "leds");
-+		if (leds) {
-+			for_each_available_child_of_node(leds, led) {
-+				ret = of_property_read_u32(led, "reg", &val);
-+				if (ret < 0 || val >= 2)
-+					continue;
-+
-+				ret = of_property_read_string(led, "function", &func);
-+				if (ret)
-+					continue;
-+
-+				if (!strcmp(func, LED_FUNCTION_TX))
-+					mode[val] = BCM_LED_SRC_XMITLED;
-+				else if (!strcmp(func, LED_FUNCTION_RX))
-+					mode[val] = BCM_LED_SRC_RCVLED;
-+				else if (!strcmp(func, LED_FUNCTION_ACTIVITY))
-+					mode[val] = BCM_LED_SRC_ACTIVITYLED;
-+				else if (!strcmp(func, LED_FUNCTION_SPEED_1))
-+					mode[val] = BCM_LED_SRC_LINKSPD1;
-+				else if (!strcmp(func, LED_FUNCTION_SPEED_2))
-+					mode[val] = BCM_LED_SRC_LINKSPD2;
-+				/* Add other LED settings here */
-+
-+				ret = of_property_read_string(led, "function", &func);
-+				if (ret)
-+					continue;
-+
-+				ret = of_property_read_u32(led, "function-enumerator", &enumerator);
-+				if (ret || enumerator >= 16)
-+					continue;
-+
-+				mcmode[val] = enumerator;
-+			}
-+		}
-+
-+		val = BCM54XX_SHD_LEDS1_LED1(mode[0]) |
-+			BCM54XX_SHD_LEDS1_LED3(mode[1]);
- 		bcm_phy_write_shadow(phydev, BCM54XX_SHD_LEDS1, val);
+   audio-ports:
+     description:
+-      Array of 8-bit values, 2 values per DAI (Documentation/sound/soc/dai.rst).
++      Array of 2 values per DAI (Documentation/sound/soc/dai.rst).
+       The implementation allows one or two DAIs.
+       If two DAIs are defined, they must be of different type.
+     $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    minItems: 1
++    maxItems: 2
+     items:
+-      minItems: 1
+       items:
+         - description: |
+             The first value defines the DAI type: TDA998x_SPDIF or TDA998x_I2S
+             (see include/dt-bindings/display/tda998x.h).
++          enum: [ 1, 2 ]
+         - description:
+             The second value defines the tda998x AP_ENA reg content when the
+             DAI in question is used.
++          maximum: 0xff
  
- 		val = BCM_LED_MULTICOLOR_IN_PHASE |
--			BCM54XX_SHD_LEDS1_LED1(BCM_LED_MULTICOLOR_LINK_ACT) |
--			BCM54XX_SHD_LEDS1_LED3(BCM_LED_MULTICOLOR_LINK_ACT);
-+			BCM54XX_SHD_LEDS1_LED1(mcmode[0]) |
-+			BCM54XX_SHD_LEDS1_LED3(mcmode[1]);
- 		bcm_phy_write_exp(phydev, BCM_EXP_MULTICOLOR, val);
- 	}
- 
-diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-index 9a0d33d027fff..83d09508841b6 100644
---- a/include/dt-bindings/leds/common.h
-+++ b/include/dt-bindings/leds/common.h
-@@ -102,5 +102,7 @@
- #define LED_FUNCTION_WAN "wan"
- #define LED_FUNCTION_WLAN "wlan"
- #define LED_FUNCTION_WPS "wps"
-+#define LED_FUNCTION_SPEED_1 "speed-1"
-+#define LED_FUNCTION_SPEED_2 "speed-2"
- 
- #endif /* __DT_BINDINGS_LEDS_H */
+   '#sound-dai-cells':
+     enum: [ 0, 1 ]
 -- 
 2.43.0
 
