@@ -1,216 +1,152 @@
-Return-Path: <devicetree+bounces-33833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D7E7836C77
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:06:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60386836CA3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:13:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D454280DD8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:06:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17CD71F26B7E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:13:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23B9495FD;
-	Mon, 22 Jan 2024 15:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C723262A00;
+	Mon, 22 Jan 2024 16:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bizdc4Mi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ighTOgn5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A9B84A986;
-	Mon, 22 Jan 2024 15:51:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E19629FC;
+	Mon, 22 Jan 2024 16:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705938684; cv=none; b=YUYN5fig9K8quQg9mNv4RLaxUTujxGmKOYcesvNZpC8yrpy6bE4YZg5Iadi50pVNPvS7QIyJXz9gU/4Z2PCyGXBAbfNdUL+e5eAvcN6Wggtwri/mGjoT9/O0uO7SKYRxYKVjKLQ54TbEbGDRn46f2V4Tl7zdl+2sz1BeAcWU7wk=
+	t=1705939321; cv=none; b=B2tBCWHf8qGs/Yozrra4RJUznYM2qCROjNPW9FLkMOxA45sBueYBXta2/Swy4EvSAFs4e6j/fObN/jeyn6pGK48wJ+8vwLB7QVtgHqMLPYDPpENZpMN3TqV8m3BkdKpa7Zoqb5VTq8iICmYreZKEje7vhYerax6zlgpoKQUxMUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705938684; c=relaxed/simple;
-	bh=lZj1NhD+BrgwByiozIOGjYtEGNtDXVvBjToxv7HKJbE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IbhN3g3OKyrDzNBDGKyYpj+tey9C7zMXuyeCfraHkoCMT9s7gV/e2T9nCCACf884jB4M2pW2d8voFEnTmbbtj+EQ0QaGWED3qZcOszGTvmkP5q2oyINU0auDhYjl3FUVFKzf/0lBH6z7KgBIoSBGhXnokf6mn4uV6L7pN/ntBFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bizdc4Mi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04596C43399;
-	Mon, 22 Jan 2024 15:51:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705938683;
-	bh=lZj1NhD+BrgwByiozIOGjYtEGNtDXVvBjToxv7HKJbE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Bizdc4MiGP8lgs0tziWkCzRzJtmMsaJNe+Plj1W5AqETf+BmoUwlhS/lba3O0FQmx
-	 p5Asrr0WKBpxw3/2dAznrAvHFzL05R1A4XsCGu4QIFJgMO5hdNRpq8gdymmbWbXw18
-	 35N1UuvXGEARt3G2eZDIjW/wFIsDJNk6c+NFxcJQw+gZI4ttkKRAHMC6BnQtUv7XOZ
-	 UhL1k6LP3ouY7Uru+1roEovQOdv5fOmbqH0ImwV2upImEfnkcoBKx51Ygr5mSss/jO
-	 mlxH9YJRnB2udActExYA8hJCv3/3YpS9/kYzi4GxB4vxI3dnY7CNbuXKPFrZh2oDfb
-	 uZqeiDD/1O4kA==
-Message-ID: <10a88fc6-2c4c-4f77-850f-f15b21a8ed49@kernel.org>
-Date: Mon, 22 Jan 2024 16:51:16 +0100
+	s=arc-20240116; t=1705939321; c=relaxed/simple;
+	bh=fB4hCCEFRfqdFSuceI9EmlUzYOLltu5OB2IYDnk8/Mo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=MW+FzA6hZnhxTLBYW3AUEjT4p96FQX5oNnUQ9OI8pZzbDRlBgYPZThz9N/iKX2qfNDORhI+D9rO0AkzuMPk8Bpmw1UjFcKW/uKkAe3b915ac+ihfMDnMx0WAqnIYMy7gL9tl2L9Xm2Xnp2cXRk6sLbShIs7ib3AhrbIpZ8Yd5Cg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ighTOgn5; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so325378366b.0;
+        Mon, 22 Jan 2024 08:01:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705939318; x=1706544118; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=fB4hCCEFRfqdFSuceI9EmlUzYOLltu5OB2IYDnk8/Mo=;
+        b=ighTOgn5tB7ejx3gLray1Ld8yvM91496AAaNy+6PRMokCGE7IgMmM+9veNgVIJSw7X
+         lncom/kxkS99fHMPIAQ+5c54ISrBnOM0a4+5w9DWBbqa9aD5ozu9/hU9ew9leUl0I2id
+         L0ccP7wsA5pJb2MGHZJmPhmLFDsHjzZK2PR2j4TzrCfYgWTk8p7/vAVNGGAEA5Zg/uts
+         991jdDSoQrugiofd+i/1+vnASSFyoT4IV3IXG5K/b4r+z+lDs4GBxX3WvBDKYbFne3kS
+         95Xniq0XE3RJPJRqgtn1/xx7b9SScxChCYAaR+tEv6gac+chz1zH9OlqGgsQ98vJ0wVq
+         tYXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705939318; x=1706544118;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fB4hCCEFRfqdFSuceI9EmlUzYOLltu5OB2IYDnk8/Mo=;
+        b=VrXPqcumgfk3PHYTFcJyEWwewQX3e38RCL10KNvVoQs7VfAMypia/TQyadKxoeIdL3
+         cOqO5ssqzCBdUDyKHpJGXcmX4BKpmzJziNUAvx+lPOUgYWy+G050SuNMT4R1p1FMVbq1
+         O6rqxWXsuotp/O42/+R/5oB0XNbBb0RCj//duF4qf1yQfPtLXNzawi9sraKsizZQSAVw
+         YQEkA2LKpRc9Y8N4cR8iHjfd912tCJjL0eIV9E9rn0055NcWSEI0gNQZMyxug7aaQwS8
+         iqfCSNBsBieaWpk8rpw8jRP0/a+MiZf8NUUM/4zFoiIxBSma6oBvrmTnWwLGWXAiDavJ
+         y1Uw==
+X-Gm-Message-State: AOJu0YwYw+vPO3OxSF2T0wLJbqywwRF7dEYgTOwT1mJJF0pLXfcoO3fz
+	hToWgM0EwFJ+LFoHcULgpNp13hsK/kxqWoK0petsROZK0w2cnBNx
+X-Google-Smtp-Source: AGHT+IGmtbUb7I0SxeN7awPnbdPnq/+DoV6AI4BG6yQs58SQH9sgfmmhcdPXNqDOvT2G6J1nZJvWyw==
+X-Received: by 2002:a17:906:ae8d:b0:a30:461f:b424 with SMTP id md13-20020a170906ae8d00b00a30461fb424mr1027374ejb.136.1705939317985;
+        Mon, 22 Jan 2024 08:01:57 -0800 (PST)
+Received: from ?IPv6:2001:a61:3456:4e01:6ae:b55a:bd1d:57fc? ([2001:a61:3456:4e01:6ae:b55a:bd1d:57fc])
+        by smtp.gmail.com with ESMTPSA id d15-20020a170906c20f00b00a2ae7fb3fc6sm13598699ejz.93.2024.01.22.08.01.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jan 2024 08:01:57 -0800 (PST)
+Message-ID: <a9e31bf39a04426fead96ffdb086c8c4b92fedd9.camel@gmail.com>
+Subject: Re: [PATCH v6 1/8] dt-bindings: adc: ad9467: add new io-backend
+ property
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,  Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Olivier Moysan
+ <olivier.moysan@foss.st.com>,  devicetree@vger.kernel.org
+Date: Mon, 22 Jan 2024 17:01:57 +0100
+In-Reply-To: <20240122153735.GB601827-robh@kernel.org>
+References: <20240119-iio-backend-v6-0-189536c35a05@analog.com>
+	 <20240119-iio-backend-v6-1-189536c35a05@analog.com>
+	 <170568455280.599772.1565973986432310014.robh@kernel.org>
+	 <20240122153735.GB601827-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 (3.50.3-1.fc39) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: display: bridge: add sam9x7-lvds
- compatible
-Content-Language: en-US
-To: Dharma Balasubiramani <dharma.b@microchip.com>,
- manikandan.m@microchip.com, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: linux4microchip@microchip.com
-References: <20240122082947.21645-1-dharma.b@microchip.com>
- <20240122082947.21645-2-dharma.b@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240122082947.21645-2-dharma.b@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 22/01/2024 09:29, Dharma Balasubiramani wrote:
-> Add the 'sam9x7-lvds' compatible binding, which describes the
-> Low Voltage Differential Signaling (LVDS) Controller found on Microchip's
-> sam9x7 series System-on-Chip (SoC) devices. This binding will be used to
-> define the properties and configuration for the LVDS Controller in DT.
-> 
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> ---
->  .../display/bridge/microchip,sam9x7-lvds.yaml | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/microchip,sam9x7-lvds.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/microchip,sam9x7-lvds.yaml b/Documentation/devicetree/bindings/display/bridge/microchip,sam9x7-lvds.yaml
-> new file mode 100644
-> index 000000000000..8c2c5b858c85
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/microchip,sam9x7-lvds.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/microchip,sam9x7-lvds.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip SAM9X7 LVDS Controller
+On Mon, 2024-01-22 at 09:37 -0600, Rob Herring wrote:
+> On Fri, Jan 19, 2024 at 11:15:54AM -0600, Rob Herring wrote:
+> >=20
+> > On Fri, 19 Jan 2024 17:00:47 +0100, Nuno Sa wrote:
+> > > The ad9467 will make use of the new IIO backend framework which is a
+> > > provider - consumer interface where IIO backends provide services to
+> > > consumers. As such, and being this device a consumer,=C2=A0 add the n=
+ew
+> > > generic io-backend property to the bindings.
+> > >=20
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > > ---
+> > > =C2=A0Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 4 +=
++++
+> > > =C2=A01 file changed, 4 insertions(+)
+> > >=20
+> >=20
+> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
+k'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >=20
+> > yamllint warnings/errors:
+> >=20
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-
+> > ci/linux/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml: io-=
+backends:
+> > missing type definition
+>=20
+> Are you going to update the GH PR so I can apply adding io-backends?
+>=20
+>=20
 
-What is the "X"?
+Yes, I can do that. I was thinking you preferred to have the second user so=
+ I was
+planning in updating only after sending out that series (or Olivier if he e=
+nds up
+sending his series first).
 
-> +
-> +maintainers:
-> +  - Dharma Balasubiramani <dharma.b@microchip.com>
-> +
-> +description: |
+Olivier already gave his ack in [1], but I guess you would also like Jonath=
+an's ack
+on that PULL right?
 
-Do not need '|' unless you need to preserve formatting.
+Jonathan,
+would that be something you can do? The pull is in [2]... Maybe give your
+comments/review in there if any.
 
-> +  The Low Voltage Differential Signaling Controller (LVDSC) manages data
-> +  format conversion from the LCD Controller internal DPI bus to OpenLDI
-> +  LVDS output signals. LVDSC functions include bit mapping, balanced mode
-> +  management, and serializer.
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,sam9x7-lvds
 
-What is "x"? Wildcard? Then no, don't use it and instead use proper SoC
-version number.
+[2]: https://github.com/devicetree-org/dt-schema/pull/120
+[1]: https://lore.kernel.org/linux-iio/4b1ffdc4-edce-4a69-a30b-45c29741dc2c=
+@foss.st.com/
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Peripheral Bus Clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: gclk
-> +    minItems: 1
-
-No, you just said you have one clock.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/at91.h>
-> +    #include <dt-bindings/dma/at91.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-
-This header is not used. Include only used ones (and missing interrupt).
-
-> +
-> +    lvds-controller@f8060000 {
-> +      compatible = "microchip,sam9x7-lvds";
-> +      reg = <0xf8060000 0x100>;
-> +      interrupts = <56 IRQ_TYPE_LEVEL_HIGH 0>;
-
-What is "0"?
-
-> +      clocks = <&pmc PMC_TYPE_PERIPHERAL 56>;
-> +      clock-names = "pclk";
-> +    };
-
-Best regards,
-Krzysztof
+- Nuno S=C3=A1
 
 
