@@ -1,136 +1,124 @@
-Return-Path: <devicetree+bounces-33817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9FAD836A8A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:30:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D4A8836A6F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:27:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9960FB22AA4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 16:16:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55E5E285ABE
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 16:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D34DA131727;
-	Mon, 22 Jan 2024 15:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m+pPdXxF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CF913D514;
+	Mon, 22 Jan 2024 15:15:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from m-r1.th.seeweb.it (m-r1.th.seeweb.it [5.144.164.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2BB4130E2C
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 15:13:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F69913D4ED
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 15:15:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705936407; cv=none; b=oOinejmKTCFe6kun3OJR64V3BY2g7IV3+U05IuflrJtKSj30YI2lFXB+iVUDV0C7b68bWLk+98wxCLdwVeyLwKqyTj3kRPy/qpcpSZdLuHtHQfJGrTswvSQqWfI+8nsi+0kvH7a6Xl2MVM+Xbs2DVfJw4CISsv6g9CBm166luoY=
+	t=1705936553; cv=none; b=XBXVnN5Gg5k0lgyk8B5hJcJDTcU8WvRqwCS4MHj8FG5OLsth435m7PcVweGDVomZaUVxmmib14do3Y3mg7zYiDkbL+j3ddtHCbfIdOTMu2y4AGGLAuj6njTe3XiFfb2LhU4xPilH6TEBBI93OSbKrez2jPcx8kZlEO5WpbVTASQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705936407; c=relaxed/simple;
-	bh=56AXuFbyDotBIe0zRySCPe31hcHy1morlPgUrVeQcq8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=swXmmmsKeqZwyB0Kx/qf5zmP5QCUwNCMX6hJE/bqx8sQvEzlwWiqt6cAzYm4BEmeOa+cGsrwXybhfcNSjZhFFtTE07PhZlxnPyutpR8+yPhK2JpOClQyIoVCsgmzYF3PxN4vYx/A7cumUDVKq9X/bTilz30dUsPWsSzko5QPQSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m+pPdXxF; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3392b12dd21so1587263f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 07:13:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705936403; x=1706541203; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tlxi8b8oDDKokQlPnmcikOTjVRP/PxK9QnUm6yUSqlc=;
-        b=m+pPdXxFwEUWzYHp79xR17vD6km0z/jVH97JPLEH9eRR9QPn9TfaxfCIvzIBdjIWzM
-         S8fwQlxKNMcOBvTeAELGjZ0lg6w2BqkjUwJI188NpriVVkVcNY7tfJSJ4Q9C0vIj9Bja
-         hjNbQ3G8JnxmfBtFURC8UZqkICOs9gu3ATnqKLEQU/ePu4nIGsYVDa2X+oMOszBFou65
-         p8ppKraCyeIaHuuNOSn6nDbkpjvv6c9iWSanXF+fdStA50/u2b7tWxzpxKCWh5LftEw7
-         XNoSi34QjwdTuqhMm5Vh/Xs9uNo7QHPf+PXDW1FqwYMZd1SveCeDZC0UyCdlwFpKIFnE
-         1UlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705936403; x=1706541203;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tlxi8b8oDDKokQlPnmcikOTjVRP/PxK9QnUm6yUSqlc=;
-        b=ASFf39IxxHqmGxr54cIRMkZHGJqphXQI11gUv3L7fnv+hkfrO2p3q3OM9nL/xvcax0
-         o8sTxPWLBlLwxfYZEMuJhpzz5FsSkq1L9KSpNSeiw7FcG6OKO6bQxAxO4F7Rl9KKyxX6
-         Kssq5R9wMX6mPYt92gPrbU2KzufTohajEATfQ6JPcMq+coQB4+j8NwbkGnLxXwKD9XYv
-         W5vd/pl31gyfEDHmUAeI1gY1UZmPpNWtjh0OvSxHu5e/7SDTfcTvETZfaX1dlkFh6tKf
-         17xJiOH0xAoGGr1NsvTmzgai7Rl7/CfrM+/pB2o/8CAmP9AWOcvYuoQeOd/tiwB75hDE
-         kscA==
-X-Gm-Message-State: AOJu0Yykx1Y+NGF3cDYCfyQCUdoutnYeZI5c5a8VTh3S3Jwcf7HEhAaO
-	+5x94XHMo4/U329Hv9F1dg7mNqD5mw5F+jBZj7DqqtEIiAswEmFoc2Pf0HTfUZE=
-X-Google-Smtp-Source: AGHT+IEM9J0zPraq2oeR7eo9w3rrNO8V+Yb011gp82GAmVJDBG8jXmExKleS8/vEVAFlRW83rHWPig==
-X-Received: by 2002:a5d:5886:0:b0:337:9b43:bb4e with SMTP id n6-20020a5d5886000000b003379b43bb4emr2846308wrf.74.1705936403055;
-        Mon, 22 Jan 2024 07:13:23 -0800 (PST)
-Received: from [192.168.100.48] ([37.228.218.3])
-        by smtp.gmail.com with ESMTPSA id b16-20020a5d5510000000b0033924c2fadfsm7216881wrv.17.2024.01.22.07.13.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 07:13:22 -0800 (PST)
-Message-ID: <3f68ee9d-13fd-4818-b6b4-b3c26bf998ed@linaro.org>
-Date: Mon, 22 Jan 2024 15:13:26 +0000
+	s=arc-20240116; t=1705936553; c=relaxed/simple;
+	bh=JLs25aczWYuLmQs1zTJgP5QEDQhbdQ+gViZDEdCvxFQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DDOIM1bklddXexZYd1zZtVCnqX9nRZHMZI8fMcpaypr+ZIIkqKzP2CnaCrnms0Ly5ufxL7BbHD7E2MimvkkYsZSJqaf+0ezDeoHhy4avbpeaO6JucTOfdiz3e2Ksd+8P9k7tdPAuk/7yBwA4he0Vxm5qf9XkAgx+v/FDcH8RSBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
+Received: from SoMainline.org (82-72-63-87.cable.dynamic.v4.ziggo.nl [82.72.63.87])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by m-r1.th.seeweb.it (Postfix) with ESMTPSA id C1AFE20046;
+	Mon, 22 Jan 2024 16:15:48 +0100 (CET)
+Date: Mon, 22 Jan 2024 16:15:47 +0100
+From: Marijn Suijten <marijn.suijten@somainline.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
+	Luca Weiss <luca@z3ntu.xyz>, Adam Skladowski <a39.skl@gmail.com>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Martin Botka <martin.botka@somainline.org>, 
+	Jami Kettunen <jami.kettunen@somainline.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: Re: [PATCH v2 6/6] arm64: dts: qcom: msm8956-loire: Add SD Card
+ Detect to SDC2 pin states
+Message-ID: <quqkqv4eer7tmubvsqkbuwammqaa5qqxojedsh42ryax3laah7@v7khc2cq4eti>
+References: <20240121-msm8976-dt-v2-0-7b186a02dc72@somainline.org>
+ <20240121-msm8976-dt-v2-6-7b186a02dc72@somainline.org>
+ <9d3623f8-697b-44ab-a9eb-9d2d305b0e5c@collabora.com>
+ <iatieesr52v5au4kkovw3gc34tn3snt454grq7le66oar6x7t4@4jfwxgxov36v>
+ <48946c81-dad0-4e2d-9569-5fbac1675bb6@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/6] media: venus: core: Add SC8280XP resource struct
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org>
- <20230731-topic-8280_venus-v1-6-8c8bbe1983a5@linaro.org>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230731-topic-8280_venus-v1-6-8c8bbe1983a5@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <48946c81-dad0-4e2d-9569-5fbac1675bb6@collabora.com>
 
-On 04/08/2023 21:09, Konrad Dybcio wrote:
-> Add SC8280XP configuration data and related compatible.
+On 2024-01-22 15:59:37, AngeloGioacchino Del Regno wrote:
+> Il 22/01/24 14:49, Marijn Suijten ha scritto:
+> > On 2024-01-22 12:48:27, AngeloGioacchino Del Regno wrote:
+> >> Il 21/01/24 23:33, Marijn Suijten ha scritto:
+> >>> In addition to the SDC2 pins, set the SD Card Detect pin in a sane state
+> >>> to be used as an interrupt when an SD Card is slotted in or removed.
+> >>>
+> >>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> >>> ---
+> >>>    arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi | 17 +++++++++++++++++
+> >>>    1 file changed, 17 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi b/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
+> >>> index b0b83edd3627..75412e37334c 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
+> >>> @@ -264,10 +264,27 @@ &sdhc_1 {
+> >>>    	status = "okay";
+> >>>    };
+> >>>    
+> >>> +&sdc2_off_state {
+> >>> +	sd-cd-pins {
+> >>> +		pins = "gpio100";
+> >>> +		function = "gpio";
+> >>> +		drive-strength = <2>;
+> >>> +		bias-disable;
+> >>> +	};
+> >>
+> >> Are you sure that you really don't want card detect during system suspend?
+> > 
+> > Does it make a difference if the rest of pinctrl and the SDHCI controller are
+> > also turned off?
+> > 
+> >> You could simply add a sdc2-cd-pins out of sdc2_{on,off}_state and add use it for
+> >> both default and sleep.
+> > 
+> > This sounds close to what Konrad suggested by using a new block wit its own
+> > label rather than extending the existing state.
+> > 
+> >> pinctrl-0 = <&sdc2_on_state>, <&sdc2_card_det_n>;
+> >> pinctrl-1 = <&sdc2_off_state>;
+> > 
+> > You said both, but it's not in pinctrl-1 here?  (And might unselect bias-pull-up
+> > implicitly instead of explicitly selecting bias-disable via an off node?)
+> > 
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   drivers/media/platform/qcom/venus/core.c | 45 ++++++++++++++++++++++++++++++++
->   1 file changed, 45 insertions(+)
+> I meant to add it to both, sorry.
 > 
-> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> index 5f285ae75e9d..32591b624a36 100644
-> --- a/drivers/media/platform/qcom/venus/core.c
-> +++ b/drivers/media/platform/qcom/venus/core.c
+> In any case, take the typo'ed example as a simplification of your first version :-)
 
-Reviewing this series, I think my input here has not been helpful or 
-correct.
+Okay, I'll resend a version that creates a new pinctrl node and applies it to both cases.
 
-1. Declaring encoders/decoders in dts or yaml is wrong, accepted.
+Unfortunately I can no longer test and confirm that it makes a difference
+to have the card-detect IRQ always biased, even while the SDHCI controller
+is "asleep" or off, so I'll trust your word for it.  If I remember correctly
+downstream turns it off as well?
 
-2. We can make a platform choice to hard-code that here in the
-    platform declarations.
-
-3. Remove the requirement from yaml for sc8280xp to declare decoder
-    encoder
-
-3. Profit.
-
-Existing dtb all, literally all do the same thing first block decoder, 
-second block encoder.
-
-Rather than perform extensive surgery to venus to remediate the original 
-yaml sin - hard-code decoder/encoder into platform code and deprecate 
-the legacy over time.
-
-Yes that means fixing to block 0 as decoder and block 1 as encoder but 
-that is the defacto situation we have now, we may as well make it dejure.
-
----
-bod
+- Marijn
 
