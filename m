@@ -1,218 +1,276 @@
-Return-Path: <devicetree+bounces-33541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C48835A98
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 06:57:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28051835ACB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:03:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AED31F21D3F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 05:57:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB5C228263B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 06:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4108C5257;
-	Mon, 22 Jan 2024 05:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712945672;
+	Mon, 22 Jan 2024 06:03:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mPk/Z4kv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CPqsJP+M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD335667;
-	Mon, 22 Jan 2024 05:57:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4BD525E;
+	Mon, 22 Jan 2024 06:03:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705903044; cv=none; b=ICoKJv956RwEi1o6RI3YDgwpJ1mq1KOFZsN2VyfsE+pUoQOsv/tLrpS0AcfL7pwttMD2Mv1On4FmgIkb+g5aZeek08Qj8w29nNsXR++XVQHi26Iqx5Yrl9hfi6QQeTCAuIH9XBE5GfTKr0Biee3x0wQqrWln0KlLoHUrIn/QHKU=
+	t=1705903423; cv=none; b=eLPeOoPq0Vk296gByj6uxtW7ix/8H7IpfIeAoNKvotm4bI8paqVhZBDALIaCODWWgCjZly/B9P3k9YDg+ErBOtlw1sS2ELsHT5/a8mtVwTUhbGSqt0XuuCyVXMDtuPa4EufcGPvkNOOnPkwejIC+gPIs7qm8r1yJKa7GSnFzKSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705903044; c=relaxed/simple;
-	bh=tp4JlQSpqF7YVv6UlYVYHQprrGoJsNWCQt1u+rfyTqY=;
+	s=arc-20240116; t=1705903423; c=relaxed/simple;
+	bh=QcdBJu2BJtc1XmUGRo3LhTTt1NXTGmBq79M02ma8ots=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NGwVCoQcUD/L0kQaVtgSO4CkzxFOSGro3fBaEoYhTfd5OHqS+JqWu67CKjrNyMXunWZ87E/f2ccua3Ku5J9ey/wc/SG29OFiuVPgJAsA2mudiO5GsMV0hOQp6pCkaHDViXXl2Rq3KIEN1VaAqYCgg1l2BZGBTgK1NvOLZtAHmks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mPk/Z4kv; arc=none smtp.client-ip=209.85.128.51
+	 To:Cc:Content-Type; b=dQ8FyZ3SclB9FAZeSpfKJYMAhajiBDfRA7B2Sg0yl3Z9usKmlE3vKjNYSqv9lO+ZlH51C5rCkH30LukGu5NtBf84t0tmm94Vsb5VFNhITgUHr5Um7y8uEtbS+Ju4z26azBN++OqYzEa2UaUhYVa2/NqVVcEH4pTjGOPZlyHc6sM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CPqsJP+M; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40e87d07c07so36071765e9.1;
-        Sun, 21 Jan 2024 21:57:22 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a271a28aeb4so278342266b.2;
+        Sun, 21 Jan 2024 22:03:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705903041; x=1706507841; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1705903420; x=1706508220; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7MTYZForVvLZ2hb0Ye49WxTmxEl3DOOa/vhUliBrzGQ=;
-        b=mPk/Z4kvxJ7zXvDg3erVc0CwFjbxrL55Gz4bnudcWf/FkzL1G5hQMmeFR+DKQKLqKP
-         hyCB8VNRR1ofSkSWWFQRLVLERFFQsFxTXccqf/5p9pz9vBhDxMPBOtmMMMvEV9WXQQyH
-         2PKYN3UYe6YswTH2hb60TFklAkaWYt3l9YhN8R/yG1xw2BLWhcfpfE6VLLHsmGAzz1Xx
-         0ruJLwEiW+/JcFpvqCSplRLdnC2/NcH5N0EyZi6q/GsSbDBld/lsK33TKGl5QzP2zGyR
-         XbckhMb/FiQIN1vEfzREqnd3km771zU8bqIrqFeM9t9aANTHRoCmHQGetqh8WcBoMa4u
-         zcWg==
+        bh=45sTye5gJqnIY3vvFsAZwYWClF4GnpV+u4KU1/fpkwU=;
+        b=CPqsJP+MOiusoVQcy5tMlTSNVoaFtzK0M6/5sMHxwUIpnJtJJ46ezrMgzF9g74C9Op
+         wnRuRYWaXYUfcG7dB7wgZfyTPpxyEsqzYuu52copp/CMBgDBzoChdl5IdXcBd2R5su1C
+         +MEDBmhEEUzfkeeLcueDlDWZzKa/qppMRHi3z4Pp3MX54k9PPVH/dLGbGKq4KzPQA9Rr
+         tBh9uwF1dZpbu25zrYnC0zm+2d1ZIpKZIzHvEtA6Wg57zDsXEd0NErVWQzwY1E5mAj6x
+         orSzOcmGf1zS7G9hM4XmHY89BQXJf3k6JJuHl1c9yWcYCZJy61Ldc+P8CDVztCKXuSDy
+         3wdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705903041; x=1706507841;
+        d=1e100.net; s=20230601; t=1705903420; x=1706508220;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7MTYZForVvLZ2hb0Ye49WxTmxEl3DOOa/vhUliBrzGQ=;
-        b=iiepJEm1pna7XyReFIk4OZb8hPVg9S+6Qf6KL9/gNGwaitkvYgiDI9Ro4ccJOzwJ1b
-         50c6p317CX2Nu0ct6xfZJrQZ5WDK/05fWwkR+SbV/w+eWQH4dbzwxKBiS2haYN90Zo9B
-         SIULASaG8IqGTFOHTbFheuYMjrUII0gXV1Yp8DNICRtiaE/pHMJkZmQCYyc9YD03pSs3
-         3I7oJaMF4n1V8LKGAYl3kgfjkvtZZFEG4tQqxlQ2q3SIYdIBigoGtJTm949iKF9TmQZW
-         jPzEqkOybPhygwCmJJlEIhfHnGzoBfYRX3tPt19sEUQDB/ZP7CCeBHq8yor7d9UH1AUn
-         SwTQ==
-X-Gm-Message-State: AOJu0Ywc95jhskftdXHtLiQ7AR8WU1NMkDMrUI/GW/JBRUgHcW0CA6A2
-	rIrxqhkTOBwyPQ1mgmYQrAhym9UOq25c8nfXzgQqPRujWWhlSH+N+ED5Bdxc5F8E2rLQupDSc8B
-	aMREFloACMcTvxWbleCNun4b1KvA=
-X-Google-Smtp-Source: AGHT+IFGYBIivqZ62ulzHX/smTjXQMJkimNwpt40QKZKF3Q0PXUrtMTpMu7iUstJl6HpzLg6Hcm7DHGwZH6T22Pbz5U=
-X-Received: by 2002:a05:600c:290c:b0:40e:6ea4:bf57 with SMTP id
- i12-20020a05600c290c00b0040e6ea4bf57mr2212703wmd.126.1705903040462; Sun, 21
- Jan 2024 21:57:20 -0800 (PST)
+        bh=45sTye5gJqnIY3vvFsAZwYWClF4GnpV+u4KU1/fpkwU=;
+        b=fZUv1yLGvMh33OJgOOviAPSouFVRcWZq7p5Y2BrtXoXdP8Y8LJ7GP2TvfRjsrJmEKy
+         2Bbr1wsu8TyS3R2NlkkTAMQTjXmvWZiriy4b1KQno18U7MQYsZtv56r7posnBwpPhaX3
+         fdOoYqR/unrth7RrzAi8tmA9fObxx0d6qMz2qn9pSYcbobmZsvgnaxuDK2H6tTcnxbaK
+         Gs3lgBhGqGHhdhoAUBbvqT56VFaw7qyNogk4uPUDNPtOIaZroqiTpyaY7g85CO2b7d1j
+         /BTzpDysj83pveUQdF1Frah2rRNcotz8fC7cHh3DODeMcLcn89kdGMDLgjdxp5qbJI+s
+         eIow==
+X-Gm-Message-State: AOJu0YwBRt1ugXHjCqQlNxX3UxuJtAzldvc1peThXK+bk/Al6SHXj5/P
+	HUNzXH+KwV1VPPCyaEuseq+0uaNvPyMKnxKVDWeW4YRPYwEebrm3piG96fHw06DR3r8OUkStAZ2
+	T/VnwRnDe2RBGL2DlJ5pZRpkemqI=
+X-Google-Smtp-Source: AGHT+IHxs6LgpnXwTp1mswrCVo/K2UyvcupYHiBMwvPrFEjVXOvTmS9l0o9hpQ1r9DNTZJF9MEUMT5fSxCH078QK25s=
+X-Received: by 2002:a17:906:dfcc:b0:a2d:a5c4:fc1d with SMTP id
+ jt12-20020a170906dfcc00b00a2da5c4fc1dmr1702750ejc.12.1705903419375; Sun, 21
+ Jan 2024 22:03:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240106222357.23835-1-alchark@gmail.com> <20240109192608.5981-1-alchark@gmail.com>
- <c517f26c-34bc-4b99-b744-8e2549cd28b5@linaro.org> <CABjd4YxYpsvf+ghHTn1z8TAZxQb-2dFOQaVSm8zHKSSWOokqww@mail.gmail.com>
- <e45f72c2-0b5b-44dd-ad39-e7e5bd17ae26@linaro.org>
-In-Reply-To: <e45f72c2-0b5b-44dd-ad39-e7e5bd17ae26@linaro.org>
+References: <20240106222357.23835-1-alchark@gmail.com> <e0302da12345e5539583b2c96d747592@manjaro.org>
+ <CABjd4Yw5wTLyK5OPw2S-ipPVCw7RTUeF2J0RgH-Vyis-ng8rTw@mail.gmail.com>
+ <d7f2f25071a4d7c72bd286b11836dce7@manjaro.org> <CABjd4Yz11D8ThcT-oCWsQf9jL2idChFYSRYVVu3KNnzwoOwkKQ@mail.gmail.com>
+ <f5c05015e042b11a51a9af26c35f18ed@manjaro.org>
+In-Reply-To: <f5c05015e042b11a51a9af26c35f18ed@manjaro.org>
 From: Alexey Charkov <alchark@gmail.com>
-Date: Mon, 22 Jan 2024 09:57:08 +0400
-Message-ID: <CABjd4YyL1ZwNOJrWPwZtc7=e4h18a9tQOnuKP6soy=iTHv-WEA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: enable built-in thermal
- monitoring on rk3588
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Date: Mon, 22 Jan 2024 10:03:27 +0400
+Message-ID: <CABjd4Yy91MAd2wALp4KQiEub9OyxU+MR+ti5KA_c+yvZT5xaqQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: enable built-in thermal monitoring
+ on rk3588
+To: Dragan Simic <dsimic@manjaro.org>
 Cc: Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
 	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
 	Christopher Obbard <chris.obbard@collabora.com>, =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <szucst@iit.uni-miskolc.hu>, 
 	Shreeya Patel <shreeya.patel@collabora.com>, Kever Yang <kever.yang@rock-chips.com>, 
-	Jagan Teki <jagan@edgeble.ai>, Chris Morgan <macromorgan@hotmail.com>, devicetree@vger.kernel.org, 
+	Chris Morgan <macromorgan@hotmail.com>, devicetree@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
 	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 22, 2024 at 4:04=E2=80=AFAM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
+On Mon, Jan 22, 2024 at 8:55=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> w=
+rote:
 >
+> Hello Alexey,
 >
-> Hi Alexey,
->
->
-> On 21/01/2024 20:57, Alexey Charkov wrote:
-> > On Fri, Jan 19, 2024 at 8:21=E2=80=AFPM Daniel Lezcano
-> > <daniel.lezcano@linaro.org> wrote:
-> > Hello Daniel,
+> On 2024-01-21 19:56, Alexey Charkov wrote:
+> > On Thu, Jan 18, 2024 at 10:48=E2=80=AFPM Dragan Simic <dsimic@manjaro.o=
+rg>
+> > wrote:
+> >> On 2024-01-08 14:41, Alexey Charkov wrote:
+> >> I apologize for my delayed response.  It took me almost a month to
+> >> nearly fully recover from some really nasty flu that eventually went
+> >> into my lungs.  It was awful and I'm still not back to my 100%. :(
 > >
-> > Thanks a lot for your review and comments! Please see some reflections =
-below.
-> >
-> >> On 09/01/2024 20:19, Alexey Charkov wrote:
-> >>> Include thermal zones information in device tree for rk3588 variants
-> >>> and enable the built-in thermal sensing ADC on RADXA Rock 5B
-> >>>
-> >>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> >>> ---
-> >>> Changes in v2:
-> >>>    - Dropped redundant comments
-> >>>    - Included all CPU cores in cooling maps
-> >>>    - Split cooling maps into more granular ones utilizing TSADC
-> >>>      channels 1-3 which measure temperature by separate CPU clusters
-> >>>      instead of channel 0 which measures the center of the SoC die
-> >>> ---
-> >>>    .../boot/dts/rockchip/rk3588-rock-5b.dts      |   4 +
-> >>>    arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 151 ++++++++++++++=
-++++
-> >>>    2 files changed, 155 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/a=
-rm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >>> index a5a104131403..f9d540000de3 100644
-> >>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >>> @@ -772,3 +772,7 @@ &usb_host1_ehci {
-> >>>    &usb_host1_ohci {
-> >>>        status =3D "okay";
-> >>>    };
-> >>> +
-> >>> +&tsadc {
-> >>> +     status =3D "okay";
-> >>> +};
-> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/b=
-oot/dts/rockchip/rk3588s.dtsi
-> >>> index 8aa0499f9b03..8d54998d0ecc 100644
-> >>> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> >>> @@ -10,6 +10,7 @@
-> >>>    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> >>>    #include <dt-bindings/phy/phy.h>
-> >>>    #include <dt-bindings/ata/ahci.h>
-> >>> +#include <dt-bindings/thermal/thermal.h>
-> >>>
-> >>>    / {
-> >>>        compatible =3D "rockchip,rk3588";
-> >>> @@ -2112,6 +2113,156 @@ tsadc: tsadc@fec00000 {
-> >>>                status =3D "disabled";
-> >>>        };
-> >>>
-> >>> +     thermal_zones: thermal-zones {
-> >>> +             /* sensor near the center of the whole chip */
-> >>> +             soc_thermal: soc-thermal {
-> >>> +                     polling-delay-passive =3D <20>;
+> > Ouch, I hope you get well soon!
+>
+> Thank you, let's hope so.  It's been really exhausting. :(
+>
+> >> > On Sun, Jan 7, 2024 at 2:54=E2=80=AFAM Dragan Simic <dsimic@manjaro.=
+org> wrote:
+> >> >> On 2024-01-06 23:23, Alexey Charkov wrote:
+> >> >> > Include thermal zones information in device tree for rk3588 varia=
+nts
+> >> >> > and enable the built-in thermal sensing ADC on RADXA Rock 5B
+> >> >> >
+> >> >> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> >> >> > ---
+> >> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >> >> > b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >> >> > index 8aa0499f9b03..8235991e3112 100644
+> >> >> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >> >> > @@ -10,6 +10,7 @@
+> >> >> >  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> >> >> >  #include <dt-bindings/phy/phy.h>
+> >> >> >  #include <dt-bindings/ata/ahci.h>
+> >> >> > +#include <dt-bindings/thermal/thermal.h>
+> >> >> >
+> >> >> >  / {
+> >> >> >       compatible =3D "rockchip,rk3588";
+> >> >> > @@ -2112,6 +2113,148 @@ tsadc: tsadc@fec00000 {
+> >> >> >               status =3D "disabled";
+> >> >> >       };
+> >> >> >
+> >> >> > +     thermal_zones: thermal-zones {
+> >> >> > +             soc_thermal: soc-thermal {
+> >> >>
+> >> >> It should be better to name it cpu_thermal instead.  In the end,
+> >> >> that's what it is.
+> >> >
+> >> > The TRM document says the first TSADC channel (to which this section
+> >> > applies) measures the temperature near the center of the SoC die,
+> >> > which implies not only the CPU but also the GPU at least. RADXA's
+> >> > kernel for Rock 5B also has GPU passive cooling as one of the coolin=
+g
+> >> > maps under this node (not included here, as we don't have the GPU no=
+de
+> >> > in .dtsi just yet). So perhaps naming this one cpu_thermal could be
+> >> > misleading?
 > >>
-> >> There is no mitigation set for this thermal zone. It is pointless to
-> >> specify a passive polling.
+> >> Ah, I see now, thanks for reminding;  it's all described on page 1,372
+> >> of the first part of the RK3588 TRM v1.0.
+> >>
+> >> Having that in mind, I'd suggest that we end up naming it
+> >> package_thermal.
+> >> The temperature near the center of the chip is usually considered to
+> >> be
+> >> the overall package temperature;  for example, that's how the
+> >> user-facing
+> >> CPU temperatures are measured in the x86_64 world.
 > >
-> > Indeed, it makes sense to me. There seems to be a catch though in that
-> > the driver calls the generic thermal_of_zone_register during the
-> > initial probe, which expects both of those polling delays to be
-> > present in the device tree, otherwise it simply refuses to add the
-> > respective thermal zone, see drivers/thermal/thermal_of.c:502
+> > Sounds good, will rename in v3!
 >
-> Usually:
+> Thanks, I'm glad you agree.
 >
-> polling-delay-passive =3D <0>;
-> polling-delay =3D <0>;
+> >> >> > +                     trips {
+> >> >> > +                             threshold: trip-point-0 {
+> >> >>
+> >> >> It should be better to name it cpu_alert0 instead, because that's w=
+hat
+> >> >> other newer dtsi files already use.
+> >> >
+> >> > Reflecting on your comments here and below, I'm thinking that maybe =
+it
+> >> > would be better to define only the critical trip point for the SoC
+> >> > overall, and then have alerts along with the respective cooling maps
+> >> > separately for A76-0,1, A76-2,3, A55-0,1,2,3? After all, given that =
+we
+> >> > have more granular temperature measurement here than in previous RK
+> >> > chipsets it might be better to only throttle the "offending" cores,
+> >> > not the full package.
+> >> >
+> >> > What do you think?
+> >> >
+> >> > Downstream DT doesn't follow this approach though, so maybe there's
+> >> > something I'm missing here.
+> >>
+> >> I agree, it's better to fully utilize the higher measurement
+> >> granularity
+> >> made possible by having multiple temperature sensors available.
+> >>
+> >> I also agree that we should have only the critical trip defined for
+> >> the
+> >> package-level temperature sensor.  Let's have the separate temperature
+> >> measurements for the CPU (sub)clusters do the thermal throttling, and
+> >> let's keep the package-level measurement for the critical shutdowns
+> >> only.  IIRC, some MediaTek SoC dtsi already does exactly that.
+> >>
+> >> Of course, there are no reasons not to have the critical trips defined
+> >> for the CPU (sub)clusters as well.
+> >
+> > I think I'll also add a board-specific active cooling mechanism on the
+> > package level in the next iteration, given that Rock 5B has a PWM fan
+> > defined as a cooling device. That will go in the separate patch that
+> > updates rk3588-rock-5b.dts (your feedback to v2 of this patch is also
+> > duly noted, thank you!)
 >
-> cf:
+> Great, thanks.  Sure, making use of the Rock 5B's support for attaching
+> a PWM-controlled cooling fan is the way to go.
 >
-> git grep "polling-delay =3D <0>" arch/arm64/boot/dts
+> Just to reiterate a bit, any "active" trip points belong to the board
+> dts
+> file(s), because having a cooling fan is a board-specific feature.  As a
+> note, you may also want to have a look at the RockPro64 dts(i) files,
+> for
+> example;  the RockPro64 also comes with a cooling fan connector and the
+> associated PWM fan control logic.
 
-Indeed, thanks a lot for the pointer! Somehow it slipped my attention.
-Will test and amend accordingly.
+Thanks for the pointer! There is also a helpful doc within devicetree
+bindings descriptions, although it sits under hwmon which was a bit
+confusing to me. I've already tested it locally (by adding to the
+board dts), and it spins up and down quite nicely, and even modulates
+the fan speed swiftly when the load changes - yay!
 
-> >>> +                     polling-delay =3D <1000>;
+> >> >> > +                                     temperature =3D <75000>;
+> >> >> > +                                     hysteresis =3D <2000>;
+> >> >> > +                                     type =3D "passive";
+> >> >> > +                             };
+> >> >> > +                             target: trip-point-1 {
+> >> >>
+> >> >> It should be better to name it cpu_alert1 instead, because that's w=
+hat
+> >> >> other newer dtsi files already use.
+> >> >>
+> >> >> > +                                     temperature =3D <85000>;
+> >> >> > +                                     hysteresis =3D <2000>;
+> >> >> > +                                     type =3D "passive";
+> >> >> > +                             };
+> >> >> > +                             soc_crit: soc-crit {
+> >> >>
+> >> >> It should be better to name it cpu_crit instead, because that's wha=
+t
+> >> >> other newer dtsi files already use.
+> >> >
+> >> > Seems to me that if I define separate trips for the three groups of
+> >> > CPU cores as mentioned above this would better stay as soc_crit, as =
+it
+> >> > applies to the whole die rather than the CPU cluster alone. Then
+> >> > 'threshold' and 'target' will go altogether, and I'll have separate
+> >> > *_alert0 and *_alert1 per CPU group.
 > >>
-> >> The driver is interrupt driven. No need to poll.
+> >> It should perhaps be the best to have "passive", "hot" and "critical"
+> >> trips defined for all three CPU groups/(sub)clusters, separately of
+> >> course, to have even higher granularity when it comes to the resulting
+> >> thermal throttling.
 > >
-> > Same here as above
-> >
-> >>> +                     sustainable-power =3D <2100>;
-> >>
-> >> There is no mitigation with this thermal zone. Specifying a sustainabl=
-e
-> >> power does not make sense.
-> >
-> > Thanks, will drop this in v3!
-> >
-> >>> +                     thermal-sensors =3D <&tsadc 0>;
-> >>> +
-> >>> +                     trips {
-> >>> +                             soc_crit: soc-crit {
-> >>> +                                     temperature =3D <115000>;
-> >>> +                                     hysteresis =3D <2000>;
-> >>
-> >> This trip point leads to a system shutdown / reboot. It is not necessa=
-ry
-> >> to specify a hysteresis.
-> >
-> > Similar to the above, the generic thermal_of code refuses to add the
-> > trip point if it has no hysteresis property defined (regardless of the
-> > trip type), see drivers/thermal/thermal_of.c:109
+> > I looked through drivers/thermal/rockchip_thermal.c, and it doesn't
+> > seem to provide any callback for the "hot" trip as part of its struct
+> > thermal_zone_device_ops, so I guess it would be redundant in our case
+> > here? I couldn't find any generic mechanism to react to "hot" trips,
+> > and they seem to be purely driver-specific, thus no-op in case of
+> > Rockchips - or am I missing something?
 >
-> hysteresis =3D <0>;
+> That's a good question.  Please, let me go through the code in detail,
+> and I'll get back with an update soon.  Also, please wait a bit with
+> sending the v3, until all open questions are addressed.
 
-Makes sense, thank you! Will amend accordingly.
+Of course. Thank you for taking the time to dig through this one with me!
 
 Best regards,
 Alexey
