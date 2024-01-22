@@ -1,126 +1,193 @@
-Return-Path: <devicetree+bounces-33727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 556E583627B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:49:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45D1A836283
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:50:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CF2B1C22B58
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:49:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6B171F2893D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D3A93CF7C;
-	Mon, 22 Jan 2024 11:45:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6591C3D0B5;
+	Mon, 22 Jan 2024 11:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zWxKn8xx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="emBBdGaB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED213B2BF
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 11:45:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6243C48D;
+	Mon, 22 Jan 2024 11:48:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705923915; cv=none; b=APkE3b0GnOrjNTAdeSH381ZxG3lo6fYBAeG7QKpavSayupABUlY+LxOZH/+tp+aIfBsiamVOhaXRhphcdyDzydOeSNQgf8s5+lcms+S0VsZkT2FS10Syf8GVuW8Wcowcli5BEqTRDKvU9nUJoH4eZn1apHZ9Xj2xgVsJKDAfXzY=
+	t=1705924099; cv=none; b=tEV4Y6prV4GUX3vtw0xZXShM6ICFgOVn9ZdCJq8HUlnDle3kNarTOXUUCw0+Ilvkey3VFC4GyvE67TZGuw3HvGYzQkMYG+Ge7vXUbg1bq079phqR+Lyn66TobNjg/+mtNT2XyUsv8oUEgXMwXr6mwBaqbrthQ0u/OoOF6rkcBR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705923915; c=relaxed/simple;
-	bh=lNk8/+YTvlnfK1x79FWZ3OiIUBaRcAopuEESDKbbhg0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fgHKbZml3g/oeFYXvxJq8vNYvjUQj2GHxVBQiAPCAp5WkW6MKgrMBWiSOvCajs142Wav4msKOI4Qozkqn/XdNG8wH421OGcH7p9IjLhL/yw4ymSzTc3Tp7XNwG4enOxPstK9SMYoN+DZVfoPfThzoNZonRF9O/mO5XWqRKThYkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zWxKn8xx; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2cd2f472665so28286851fa.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 03:45:12 -0800 (PST)
+	s=arc-20240116; t=1705924099; c=relaxed/simple;
+	bh=IW8JAQINhJrqE1I8Cqc2nNPE7CIP0vSa0LewGZv1Lhw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PHMP+wBkGVgM6knCKzEnE7Xrrp/iaaQxn4MJPu00IkDMyvMCv2PQLDsjwPPyGmc2TwxhgVzwLQU0d3hjYr3yuwgwlIQOfPMEfpB6vv95LQGNOgQZpv55wpi2lrPR4etxS5B8y0a4EtI7L+GT0hopTJXw+07EICqnRBh/7S3Kk1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=emBBdGaB; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2906b859560so462252a91.1;
+        Mon, 22 Jan 2024 03:48:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705923911; x=1706528711; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MlootliIImGlh84z0DhVWuVBO4CkhtyLIhApMQlxbRw=;
-        b=zWxKn8xx6xslFkxtM1K6EVdWCleVZuX9PAGJzJXVtPgKfUUiT+LB7ez1jk7UdTKuSt
-         oza1+yTqFEdbB6GYXvUizKCccEXtJZIObhYY1smhfl2ZAHW7yPoT9Y5kyF+PKq+UGcVT
-         C65YBoD/I3Ok2kRHbiO3T69nhpWWPrt+SN126ZJj/FRck3fwc2mIJqw3m6HaQEgOmesr
-         lCtedSINutXtq9ajMvacoAFN9JrvrTDVaf1SQjS9sTYb8JG6hcxivdLCMrfx+D6qtqq0
-         bDLnYHrZLpcvkKag2cqFuCWTZteWcJp/gLeo1XkENIBhH9OjPRCnX/kvQ0HQZHyM78+i
-         ggiQ==
+        d=gmail.com; s=20230601; t=1705924097; x=1706528897; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jmCR5Hs59/0vtuduKlpgs+GpqISPKERHfnKxl2Hek7k=;
+        b=emBBdGaBODMIJVvk/QT3kDAWOwKliB0VqbHe9V84cud2Zi83uMLexEF/4u8bNKfFQh
+         wx36EJbj2TLB+mcNN0y05t6BfvL70A2G3Yq8OOB8Fz16pn1c53XUoKOese+oUuQW8MwD
+         U0EJUl2Q14cKJ2T4veXWwoNjQsDTxL40FPpbIcMrL7FPgrEKAW9Dciuc0KwNazEcNyv3
+         FLJ/DfORNkJ2kt5jY/EiPliAJ8fQIFTW7ZI7hkDSVIdJB+YJOUOphfQZo2Zd/I2R0tS/
+         J7Ix86SmTPGTvxTf3sovnBxNNqaCDXszg2Gpt+++f2plrkY9Ipc5qV/5GZv5G/0/Czlg
+         G/jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705923911; x=1706528711;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MlootliIImGlh84z0DhVWuVBO4CkhtyLIhApMQlxbRw=;
-        b=A7w/sTwm37WD0arZwi0u/Z6kOKC0OKC9fvPrmUITN0DrvKTepp1NWNZj3/nAYoDL29
-         9E+hUxmLnfiX2OS9rWSPq0LuezXEK4SnqfIgUarz8OeNm3WZ+jhixDuToVtjmgcK+Vv2
-         3GrczuTQQ8nULtkWQ0FMaK290iFhAjMUa04aBQjFEP+oFH6aSnXLAvnuj/6mzLWUwN98
-         FwutYjxiNVLiCgq82H2SGkEinWHo/qyecQiS9cOlhU4qG8U7s6mqo3cay5r3BkwfBXeb
-         U09Awl6mcS71vLSel8SFblY0wEznQXWLTHv7efYYAojBhj80QoVEJ2AfyQr+RvJbULy8
-         JKUw==
-X-Gm-Message-State: AOJu0YyhyEh90SVo/DEX//46Ml54mSuvvNUn7UW/cmbn05CAkz+NT1Qj
-	g9otXsqat/1srwwzi6Civrqh9OiiKrYvqudbu07IoYMjrd9AgMoboz3O+Fzh1r0=
-X-Google-Smtp-Source: AGHT+IH2FeXD6oQJdkJS5SvzUH5/K5ozG3MkC44wqGNtEOcPAyITe2L5mLRZdSkg2/vRi4OQQGWBLw==
-X-Received: by 2002:a19:4f4c:0:b0:50e:9c17:24c8 with SMTP id a12-20020a194f4c000000b0050e9c1724c8mr1560705lfk.7.1705923910798;
-        Mon, 22 Jan 2024 03:45:10 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id cw16-20020a170907161000b00a2ebd9e0de7sm6400402ejd.31.2024.01.22.03.45.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 03:45:10 -0800 (PST)
-Message-ID: <657e013c-29c9-477d-bc01-381dd995e853@linaro.org>
-Date: Mon, 22 Jan 2024 11:45:08 +0000
+        d=1e100.net; s=20230601; t=1705924097; x=1706528897;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jmCR5Hs59/0vtuduKlpgs+GpqISPKERHfnKxl2Hek7k=;
+        b=pKshwOo39tkWU7vo1Q5fm8Y61N8izsqwtKHvdCZNEcmhhTS+PpGrLm6qUISv+WDI5p
+         wBRudUraafqAXLQoXZnh1xpYRor3tzFGmSCIHLfXrCQg8EAgGoRD8RIGdX1ZKsajwh0e
+         KaZ3MOoReiJt4/36SpDkCSycXVvfkoGlPkjOivdMNJibnXXkYY+E2FzUvXtL39yAt9He
+         uG0ck8F15PAPT9JS8tMSXPzjU33Ae31I02yuwrKFNuICVmemPrmNbVQ0jETk2UBVbuil
+         ABCEp8Zlw7D2/6AdQMuvAF9uwAg2t1uNp2muSdRzfQ5JTluLgB2Lw8pV3Xa73p5fqj1M
+         NRTg==
+X-Gm-Message-State: AOJu0YwMm6iSvtEVwlmysHmLMN1jfBBK/l5GJM4lrZKbyWb+KUMD/qyF
+	Xgis6Ci7LSDIgXD2m4YMoHyyC84TFKXs4mVDrFgBv2voHwhJnddfXRx+csnfe7kFzRKRtChmhRn
+	55hJDx56kEwPlQUdaDHthswQ0IeI=
+X-Google-Smtp-Source: AGHT+IHbJKr0+ESj/7wEsolCjUfhmX5aIfeStUtaEjVhlvaoVw+P+Od3BmO0j+0slKfHsE4bNUCILoUPH2kUJuGqtHk=
+X-Received: by 2002:a17:90a:fe95:b0:290:b5b2:b90c with SMTP id
+ co21-20020a17090afe9500b00290b5b2b90cmr333726pjb.58.1705924097190; Mon, 22
+ Jan 2024 03:48:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/8] clk: samsung: gs101: add support for cmu_peric0
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: andi.shyti@kernel.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com,
- tomasz.figa@gmail.com, cw00.choi@samsung.com,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- andre.draszik@linaro.org, semen.protsenko@linaro.org,
- willmcvicker@google.com, kernel-team@android.com
-References: <20240119111132.1290455-1-tudor.ambarus@linaro.org>
- <20240119111132.1290455-4-tudor.ambarus@linaro.org>
- <0b825e9b-b921-4ad6-a4bd-a55645877e9c@linaro.org>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <0b825e9b-b921-4ad6-a4bd-a55645877e9c@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240118195356.133391-1-dregan@broadcom.com> <20240118195356.133391-2-dregan@broadcom.com>
+In-Reply-To: <20240118195356.133391-2-dregan@broadcom.com>
+From: Jonas Gorski <jonas.gorski@gmail.com>
+Date: Mon, 22 Jan 2024 12:48:05 +0100
+Message-ID: <CAOiHx=k2Wn+UaVFbB-n2XKmFuBss4LKmLSW45YME07z=7zg0ww@mail.gmail.com>
+Subject: Re: [PATCH v2 01/10] dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
+To: dregan@broadcom.com
+Cc: dregan@mail.com, miquel.raynal@bootlin.com, richard@nod.at, 
+	vigneshr@ti.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, computersforpeace@gmail.com, kdasu.kdev@gmail.com, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com, 
+	tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com, 
+	william.zhang@broadcom.com, anand.gore@broadcom.com, kursad.oney@broadcom.com, 
+	florian.fainelli@broadcom.com, rafal@milecki.pl, 
+	bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com, 
+	baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org, 
+	dan.carpenter@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi,
 
+On Thu, 18 Jan 2024 at 20:56, <dregan@broadcom.com> wrote:
+>
+> From: William Zhang <william.zhang@broadcom.com>
+>
+> Update the descriptions to reflect different families of broadband SoC and
+> use the general name bcmbca for ARM based SoC.
+>
+> Add brcm,nand-use-wp property to have an option for disabling this
+> feature on broadband board design that does not use write protection.
+>
+> Add brcm,nand-ecc-use-strap to get ecc setting from board boot strap for
+> broadband board designs because they do not specify ecc setting in dts
+> but rather using the strap setting.
+>
+> Remove the requirement of interrupts property to reflect the driver
+> code. Also add myself to the list of maintainers.
+>
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> Reviewed-by: David Regan <dregan@broadcom.com>
+> ---
+> Changes in v2:
+> - Revert the new compatible string nand-bcmbca
+> - Drop the BCM63168 compatible fix to avoid any potential ABI
+> incompatibility issue
+> - Simplify the explanation for brcm,nand-use-wp
+> - Keep the interrupt name requirement when interrupt number is specified
+> ---
+>  .../bindings/mtd/brcm,brcmnand.yaml           | 36 +++++++++++++++----
+>  1 file changed, 30 insertions(+), 6 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> index f57e96374e67..56176ec1a992 100644
+> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> @@ -9,6 +9,7 @@ title: Broadcom STB NAND Controller
+>  maintainers:
+>    - Brian Norris <computersforpeace@gmail.com>
+>    - Kamal Dasu <kdasu.kdev@gmail.com>
+> +  - William Zhang <william.zhang@broadcom.com>
+>
+>  description: |
+>    The Broadcom Set-Top Box NAND controller supports low-level access to raw NAND
+> @@ -18,9 +19,10 @@ description: |
+>    supports basic PROGRAM and READ functions, among other features.
+>
+>    This controller was originally designed for STB SoCs (BCM7xxx) but is now
+> -  available on a variety of Broadcom SoCs, including some BCM3xxx, BCM63xx, and
+> -  iProc/Cygnus. Its history includes several similar (but not fully register
+> -  compatible) versions.
+> +  available on a variety of Broadcom SoCs, including some BCM3xxx, MIPS based
+> +  Broadband SoC (BCM63xx), ARM based Broadband SoC (BCMBCA) and iProc/Cygnus.
+> +  Its history includes several similar (but not fully register compatible)
+> +  versions.
+>
+>    -- Additional SoC-specific NAND controller properties --
+>
+> @@ -53,7 +55,7 @@ properties:
+>                - brcm,brcmnand-v7.2
+>                - brcm,brcmnand-v7.3
+>            - const: brcm,brcmnand
+> -      - description: BCM63138 SoC-specific NAND controller
+> +      - description: BCMBCA SoC-specific NAND controller
+>          items:
+>            - const: brcm,nand-bcm63138
+>            - enum:
+> @@ -65,7 +67,7 @@ properties:
+>            - const: brcm,nand-iproc
+>            - const: brcm,brcmnand-v6.1
+>            - const: brcm,brcmnand
+> -      - description: BCM63168 SoC-specific NAND controller
+> +      - description: BCM63xx SoC-specific NAND controller
 
-On 1/22/24 11:13, Krzysztof Kozlowski wrote:
-> On 19/01/2024 12:11, Tudor Ambarus wrote:
->> CMU_PERIC0 is the clock management unit used for the peric0 block which
->> is used for USI and I3C. Add support for all cmu_peric0 clocks but
->> CLK_GOUT_PERIC0_IP (not enough info in the datasheet).
->>
->> Few clocks are marked as critical because when either of them is
->> disabled, the system hangs even if their clock parents are enabled.
->>
->> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
->> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->> ---
->>  drivers/clk/samsung/clk-gs101.c | 583 ++++++++++++++++++++++++++++++++
->>  1 file changed, 583 insertions(+)
->>
-> 
-> This does not apply. Please rebase on my samsung for-next or next
-> linux-next and resend.
-> 
+Only the BCM63268 family has a v4.0 NAND controller with support for
+ONFI and raw access; BCM6368 has a v2.1, and BCM6328 and BCM6362 have
+a v2.2.
 
-Oh, yes. I rebased, did a boot test and then sent v5 at:
-https://lore.kernel.org/linux-arm-kernel/20240122114113.2582612-1-tudor.ambarus@linaro.org/T/#u
+So claiming this is a generic binding is wrong; you would need to add
+the appropriate variants first. Or add another one for the BCM6368
+NAND v2.x controllers, which is missing. You can find them used in
+arch/mips/boot/dts/brcm/bcm63{28,62,68}.dtsi.
 
-Thanks!
-ta
+>          items:
+>            - const: brcm,nand-bcm63168
+>            - const: brcm,nand-bcm6368
+
+Also bcm63168's v4.0 has a different register layout than bcm6368's
+v2.x, so claiming brcm.nand-bcm6368 as compatible here is a bit weird.
+It works because the register layout used is derived from the
+"brcm,brcmnand-vX.Y" compatible, and the driver attaching to
+'brcm,nand-bcm6368" only uses the shared interrupt registers which are
+identical, the layout only diverges after that.
+
+But then again these aren't really used as compatibles in the original
+sense, and more like tags which describe different parts of the
+controller, and the combination is the whole unique "compatible". Not
+sure if this is how compatibles are supposed to be used. /rant.
+
+Best Regards,
+Jonas
 
