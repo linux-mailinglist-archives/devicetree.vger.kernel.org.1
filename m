@@ -1,186 +1,180 @@
-Return-Path: <devicetree+bounces-33822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B163836BF4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:54:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC382836C24
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:58:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50C291C26187
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 16:54:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D8251F26081
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 16:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8549D5D754;
-	Mon, 22 Jan 2024 15:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b6KeyaG6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2756E5FB86;
+	Mon, 22 Jan 2024 15:32:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8325D4644E
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 15:28:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530C15F55A
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 15:31:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705937335; cv=none; b=oMVrSr/+pSzuDM5Xgb3KoWlfQB0q9zq3SEAyjYLbGOWXNJ0SHDF63I11ES38EwMmg5ftGjdVSGTGAygNh2e3V87JoIDQPdVmOn02usPNe68Q2n0ZwA3YsIP73H+JNED6nvOHEBFufvYe9EAWUwcom7a9n4DH9u1znAidU+KsxpE=
+	t=1705937521; cv=none; b=Fi63MD3IFbCDiSlaKtxryd1+GpyoNufNgNoCpFAuDQIYEDbT5RPmJsv0L7x4qIPU6qVH4kjHFFW20npyrF/eKGQ0mMEjw2W3MLskLpv81QQeu33pn4/STD1WH79oGr+hXV+PZ6s1sxP9vubqL2EMsbsiFDff3IGw/fRbLGq7D64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705937335; c=relaxed/simple;
-	bh=l8DqD788iInGk6LnlOXtjCiSFZvQVgCM8sX5J6AWk68=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pP61GwOyphZblICQCmyMMDA0jbW3u3tSxefyswDbciWufSWRJ/H6MuT4s3oMF91X+M9/qOLhBEl4hOvFkchKBvNznbsAgLAv0uRf7MMj+eWUumsVwiq1rhKp1pE+MTrrgkFIvz2CLwDW6jf0bkeiOVHmr+5jr2I545Nb6G/VzBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b6KeyaG6; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-337d05b8942so3790283f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 07:28:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705937331; x=1706542131; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wbn9IuYcAeVOqjLgKES/xOH3myWCWw+mtzvjZ2nN6Fo=;
-        b=b6KeyaG6U+ubhxB8zNNtwHXiukyQQ5hjz+Tl9OpdZdCdjMokuGIWpHGPACLPN7QDDe
-         S26akOk7RH1zEXiZEnaeyoV3ZEGyujURe5rLi3Oqz3JKPiMIyjiJ5urEpgwZrph2iDh7
-         1R3Q1H8B3fNJhtJq5eM/cHxaIxpu2/m6/yBElvpKk4sH6FDDiyKt0YuhGKzaxW4pOoue
-         JFTQ9iLMMI7b8O0zMVlr+HpYycYEDr6xO1F/W8EOtyms1j5XMZbXxRc0Ex/yxQy+HA5V
-         JAQhmtTQ3q9cir9/S3o5k6L7hAvoMzmHOJnt4nwTIQ+PQ0VkahlHACEwFvjN0/NJmFHF
-         LP+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705937331; x=1706542131;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wbn9IuYcAeVOqjLgKES/xOH3myWCWw+mtzvjZ2nN6Fo=;
-        b=A/c8MHV5Njh9490Xnh+paJtlLXp1btZ3wSflVNw2x+HQrAlPpo0D41gdH42eNidPKR
-         nhOp7D0Mxx/0LmSMmy4WTvb49ykb0yBl02Gbv1gAx0002MDqZuJ97fxwAi3UWULRL8WQ
-         NbkbISIw6e2snolR30/vTgg2KP4bmzwi3gt9l6sU2tkiqYiUelSZQnBfe1LhIaqBO0Le
-         sq+lgvysX/ODu3xReG2Mi5UD0ikbOYo087jzqkloCCOvOYj2jNlPJNp+vWAbxWgfe5y6
-         gxIWIjA2cbm1UqfnRkNS6//5poQGy93oWin00sYrnvMWejYs9L79f7S7LNuB9C5FgNGM
-         XNTQ==
-X-Gm-Message-State: AOJu0YzZRLbHSrV8ehDvOFGhJ8VFkAay57wJDjoV3vyWdDix6b+41tZK
-	mPPqrgu+qX2yVYFG+iI5IFd9FBYgNpl06biJ4/f95Z1SnNczgoe/gQ5GgNmOk5o=
-X-Google-Smtp-Source: AGHT+IGbwuFVheg49B4s7Ohhr7Jj9Z6GGxO1mWJtMWP4da+qoLRh0C9OaYmBjCdzUfa7bKeSPCCXiQ==
-X-Received: by 2002:adf:f84c:0:b0:336:7674:dbbe with SMTP id d12-20020adff84c000000b003367674dbbemr2553185wrq.74.1705937330748;
-        Mon, 22 Jan 2024 07:28:50 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id f11-20020adff98b000000b00337d5cd0d8asm10954160wrr.90.2024.01.22.07.28.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jan 2024 07:28:50 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 22 Jan 2024 16:28:46 +0100
-Subject: [PATCH] arm64: dts: qcom: sm8550: Use GIC-ITS for PCIe0 and PCIe1
+	s=arc-20240116; t=1705937521; c=relaxed/simple;
+	bh=xsriZU0yMbSL2wG0OpL2voDoCjBcXV3m+2jsk8TrIEA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aCCYfayVCncXaOCUPTdycXlBs4jySuC2isGKKE83X7Ya8RhlBjjQruBYlMUHJVF/I0J5TEZRnx1Nio4uI/bg97kAt1wE8PuarLDqyZSfUBAG7U8mkQ77OrVgQLNeU9uzkLvEU7m3U4d66+SNnk6V/+lM07f0NFhEDAjIxuRR1EE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1rRwGs-0001yO-Ae; Mon, 22 Jan 2024 16:31:34 +0100
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1rRwGr-001d3P-D0; Mon, 22 Jan 2024 16:31:33 +0100
+Received: from pengutronix.de (unknown [172.20.34.65])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id E63BB27B74D;
+	Mon, 22 Jan 2024 15:31:32 +0000 (UTC)
+Date: Mon, 22 Jan 2024 16:31:32 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-riscv@lists.infradead.org, 
+	Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, 
+	Wolfgang Grandegger <wg@grandegger.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: can: mpfs: add missing required clock
+Message-ID: <20240122-pogo-reputable-b1d06ae1f1f1-mkl@pengutronix.de>
+References: <20240122-catty-roast-d3625dbb02fe@spud>
+ <20240122-breeder-lying-0d3668d98886@spud>
+ <20240122-surely-crimp-ba4a8c55106d-mkl@pengutronix.de>
+ <20240122-cruelly-dainty-002081f0beb2@spud>
+ <20240122-smokeless-ion-63e4148c22e5-mkl@pengutronix.de>
+ <20240122-uncoated-cherub-a29cba1c0035@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240122-topic-sm8550-upstream-pcie-its-v1-1-aff5d0d7d6dd@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAK2JrmUC/x2NQQqAIBAAvxJ7bkGlovpKdChdaw+VuBZB9Pek4
- 8Aw84BQZBLoiwciXSx87Bl0WYBdp30hZJcZjDKV0sZgOgJblK2ta4VnkBRp2jBYzmYSVI2v5kY
- 7T52DHAmRPN//YBjf9wMQcz25cAAAAA==
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5184;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=l8DqD788iInGk6LnlOXtjCiSFZvQVgCM8sX5J6AWk68=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlromxqTTwupaHyZuUAOE1ffIOaXSfxkXJa8vp8OeK
- bswjWXOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZa6JsQAKCRB33NvayMhJ0ZuhD/
- 9l84hzVJz7HL18IPmn83XOuk7laeNZ9A9HBRiFN9uyuxM2MCrdGkej9qUWZor4gM23jwWAuEOszQMb
- 5NqpaFkQG3yUB/1IZRCnu+NumBvvuME/yRRA1FGkx9+oxnHXQVsqoWBD3QQQg/x7x5XZb8e76hNIxZ
- h0HMiea5j+QzW4nNsH4BYCW5OfCHxxb3EEuW5/lQfZQJxUSxxiP/MAHn0bBUYvjmq9TczsoS7Vqu7L
- FbsA8L0/B/dc3GBAzyKgEs0D46oBtu2mP5EPOR2NB+36JIQSMtlfopORG2tduhZU3bQM+bUbM8Zx2t
- NBBLiRhp1aqlkt+PS8GwgNwpRXmEcOb7+ZiTzOwb9Ol1fI3ERKq5+FSxnodzmXIkHCxg2sTbUi+cYn
- 4tXf5GhO8lm+Vu4JLT+sDAYh6gt1k2Cjhj2A3z5BkpLStbK7sK4ztewkOMMpbTVfdph5MQ5xpHGrKO
- FkbT6OorIBvKyMJ7eJfkQueBcgbMFHh0ijKNrV45svEZNfvg/6agaL0IxPihopC0aOCBf2bh3U1K1A
- /DwDWCZiX4K38Ff1s+KXlPI2NU6/AWH9gTxd7YGqPnDKLM1J0gN3eVxHUqbjlZyeVx3NSovCLk6Lra
- ppmx2ZNJ+AcNisTMkcs3bVHSZPJT7lHigapN38YJszH+8tx2M8fm+7dTVt/g==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fzilfxiuysgrcoiy"
+Content-Disposition: inline
+In-Reply-To: <20240122-uncoated-cherub-a29cba1c0035@spud>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Both PCIe0 and PCIe1 controllers are capable of signalling the MSIs
-received from endpoint devices to the CPU using GIC-ITS MSI controller.
-Add support for it.
 
-Currently, BDF (0:0.0) and BDF (1:0.0) are enabled and with the
-msi-map-mask of 0xff00, all the 32 devices under these two busses can
-share the same Device ID.
+--fzilfxiuysgrcoiy
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The GIC-ITS MSI implementation provides an advantage over internal MSI
-implementation using Locality-specific Peripheral Interrupts (LPI) that
-would allow MSIs to be targeted for each CPU core.
+On 22.01.2024 14:56:09, Conor Dooley wrote:
+> On Mon, Jan 22, 2024 at 03:46:04PM +0100, Marc Kleine-Budde wrote:
+> > On 22.01.2024 14:21:04, Conor Dooley wrote:
+> > > On Mon, Jan 22, 2024 at 02:13:16PM +0100, Marc Kleine-Budde wrote:
+> > > > On 22.01.2024 12:19:50, Conor Dooley wrote:
+> > > > > From: Conor Dooley <conor.dooley@microchip.com>
+> > > > >=20
+> > > > > The CAN controller on PolarFire SoC has an AHB peripheral clock _=
+and_ a
+> > > > > CAN bus clock. The bus clock was omitted when the binding was wri=
+tten,
+> > > > > but is required for operation. Make up for lost time and add it.
+> > > > >=20
+> > > > > Cautionary tale in adding bindings without having implemented a r=
+eal
+> > > > > user for them perhaps.
+> > > > >=20
+> > > > > Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs C=
+AN controller")
+> > > > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > > ---
+> > > > >  .../devicetree/bindings/net/can/microchip,mpfs-can.yaml     | 6 =
+++++--
+> > > > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/net/can/microchip,=
+mpfs-can.yaml b/Documentation/devicetree/bindings/net/can/microchip,mpfs-ca=
+n.yaml
+> > > > > index 45aa3de7cf01..01e4d4a54df6 100644
+> > > > > --- a/Documentation/devicetree/bindings/net/can/microchip,mpfs-ca=
+n.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/net/can/microchip,mpfs-ca=
+n.yaml
+> > > > > @@ -24,7 +24,9 @@ properties:
+> > > > >      maxItems: 1
+> > > > > =20
+> > > > >    clocks:
+> > > > > -    maxItems: 1
+> > > > > +    items:
+> > > > > +      - description: AHB peripheral clock
+> > > > > +      - description: CAN bus clock
+> > > >=20
+> > > > What about adding clock-names, so that the order can be checked
+> > > > automatically?
+> > >=20
+> > > I don't personally care for doing so, but if your heart is set on hav=
+ing
+> > > them, then sure.
+> >=20
+> > Usually the CAN driver needs to have the clock rate of the clocks that
+> > the basis for the CAN bus clock. Looking at the clocks description it's
+> > probably the 2nd one.
+> >=20
+> > With clock-names we can automatically check that the 2nd clock is always
+> > the CAN clock.
+>=20
+> I think we already had this discussion on v1, where I said that the
+> binding requires the clocks to be in that order, regardless of whether
+> or not clock-names is provided. You feel more strongly about it than I
+> do, so I will add them when I get around to sending a v3.
 
-Like SM8450, the IDs are swapped, but works fine on PCIe0 and PCIe1.
+Yes, this discussion sounded very familiar to me, never mind. Keep it as
+is, and let's get this binding and the CAN driver upstream!
 
-WiFi PCIe Device on SM8550-QRD using GIC-ITS:
-218:          0          4          0          0          0          0          0          0   ITS-MSI 524288 Edge      bhi
-219:          0          0          5          0          0          0          0          0   ITS-MSI 524289 Edge      mhi
-220:          0          0          0         33          0          0          0          0   ITS-MSI 524290 Edge      mhi
-221:          0          0          0          0          3          0          0          0   ITS-MSI 524291 Edge      ce0
-222:          0          0          0          0          0          1          0          0   ITS-MSI 524292 Edge      ce1
-223:          0          0          0          0          0          0         38          0   ITS-MSI 524293 Edge      ce2
-224:          0          0          0          0          0          0          0         31   ITS-MSI 524294 Edge      ce3
-225:          0          0          0          0          0          0          0          0   ITS-MSI 524295 Edge      ce5
-226:          0          0          0          0          0          0          0          0   ITS-MSI 524296 Edge      DP_EXT_IRQ
-227:          0          0          0          0          0          0          0          0   ITS-MSI 524297 Edge      DP_EXT_IRQ
-228:          0          0          0          0          0          0          0          0   ITS-MSI 524298 Edge      DP_EXT_IRQ
-229:          0          0          0          0          0          0          0          0   ITS-MSI 524299 Edge      DP_EXT_IRQ
-230:          0          0          0          0          0          0          0          0   ITS-MSI 524300 Edge      DP_EXT_IRQ
-231:          0          0          0          0          0          0          0          0   ITS-MSI 524301 Edge      DP_EXT_IRQ
-232:          0          0          0          0          0          0          0          0   ITS-MSI 524302 Edge      DP_EXT_IRQ
+regards,
+Marc
 
-NVMe in SM8550-HDK M.2 Slot using GIC-ITS:
-212:          0          0         22          0          0          0          0          0   ITS-MSI 134742016 Edge      nvme0q0
-213:     133098          0          0          0          0          0          0          0   ITS-MSI 134742017 Edge      nvme0q1
-214:          0     139450          0          0          0          0          0          0   ITS-MSI 134742018 Edge      nvme0q2
-215:          0          0     139476          0          0          0          0          0   ITS-MSI 134742019 Edge      nvme0q3
-216:          0          0          0      69767          0          0          0          0   ITS-MSI 134742020 Edge      nvme0q4
-217:          0          0          0          0      80368          0          0          0   ITS-MSI 134742021 Edge      nvme0q5
-218:          0          0          0          0          0      77315          0          0   ITS-MSI 134742022 Edge      nvme0q6
-219:          0          0          0          0          0          0      73022          0   ITS-MSI 134742023 Edge      nvme0q7
-220:          0          0          0          0          0          0          0     329993   ITS-MSI 134742024 Edge      nvme0q8
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+--fzilfxiuysgrcoiy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index ee1ba5a8c8fc..9860bda3be1d 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1742,6 +1742,9 @@ pcie0: pcie@1c00000 {
- 					<&gem_noc MASTER_APPSS_PROC 0 &cnoc_main SLAVE_PCIE_0 0>;
- 			interconnect-names = "pcie-mem", "cpu-pcie";
- 
-+			/* Entries are reversed due to the unusual ITS DeviceID encoding */
-+			msi-map = <0x0 &gic_its 0x1401 0x1>,
-+				  <0x100 &gic_its 0x1400 0x1>;
- 			iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
- 				    <0x100 &apps_smmu 0x1401 0x1>;
- 
-@@ -1838,6 +1841,9 @@ pcie1: pcie@1c08000 {
- 					<&gem_noc MASTER_APPSS_PROC 0 &cnoc_main SLAVE_PCIE_1 0>;
- 			interconnect-names = "pcie-mem", "cpu-pcie";
- 
-+			/* Entries are reversed due to the unusual ITS DeviceID encoding */
-+			msi-map = <0x0 &gic_its 0x1481 0x1>,
-+				  <0x100 &gic_its 0x1480 0x1>;
- 			iommu-map = <0x0   &apps_smmu 0x1480 0x1>,
- 				    <0x100 &apps_smmu 0x1481 0x1>;
- 
+-----BEGIN PGP SIGNATURE-----
 
----
-base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
-change-id: 20240122-topic-sm8550-upstream-pcie-its-06f4b61dfe9d
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmWuilEACgkQvlAcSiqK
+BOhCkggAgyHW5AL32kouESoPfzIRkhef/gYpfWj8j5zEKyJ0Honmyt+im5UgOIjS
+etZAqb+sORwDFrLXzPb+BIS4GXyCldkukOcvfgFxvfGAkaxf6ci+keV4UgyMpsgG
+3/yXN/x2it5yA1idu/i8QdLjElTeq7Yoj18nfGbbSE7VzNK3Vh9PD/fR+Eq07wNE
+x3bFsh1YaBU2PeiGYYK08pR6PkPcmQHYRQFOhMxgpWJ72NnPinG8MuQuNtHwlcLh
+YnhmjeBgjEOUF35I+WSZ0056QeeAF7vbmrdAtWIUN2yygsVTbrvDGnZL45ynfFUC
+Xlu+5O2ZopqsqunltpKOZTLJ6Prdbw==
+=vqnx
+-----END PGP SIGNATURE-----
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
-
+--fzilfxiuysgrcoiy--
 
