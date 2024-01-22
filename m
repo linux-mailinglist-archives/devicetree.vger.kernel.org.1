@@ -1,111 +1,255 @@
-Return-Path: <devicetree+bounces-33732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 409DA8362D6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:12:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F19188362E2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:14:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A1A71C21E00
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:12:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F6AB28BFB6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1853BB3C;
-	Mon, 22 Jan 2024 12:12:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qrwm6BJP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 536233B196;
+	Mon, 22 Jan 2024 12:14:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6E43BB32
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 12:12:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABE03BB21
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 12:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705925522; cv=none; b=YrsZlcyC4oyu36br1SGObghYOUwKc1d5BlCnadiBzYF53TUtvVoO79YHgcHI6Vy9eJ0jtOWNdCbifjjbAesJkttJf/cZlZSc2x4xAF/hGUFKdRmrx/yGTJNQBn+iVR1H/y0M5KDMNS3ylwu0sWDQ2N+7+qfhBuefHdLeGuMhaLM=
+	t=1705925677; cv=none; b=sOotfUvHKKEDnpkt/3QcK1UKgVGa68NBQdw3VwiTyn08nqGJvAnPx2rDaIQ0k+8h8dGb/V991XIdW/LV/xdWcaYaB9iZ5KNL03kSxaamMaMO/83/E6NBvKMTD8E5wnWckXLQnndP3GDBk72vvQ3fLycbNVY/E0RqgJiuZXlfGHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705925522; c=relaxed/simple;
-	bh=XsjrwFUbPagjf42Y9qmXToMWE70jnXHEmc8i9mZpqmE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nSzBsYDpkcIOLDmtFCpmj3qEt5khmIyTocY5RMCpfwY3hQXny9dDtrRZBT5W3NC+n+7Bp6EmKyz5eESI48RoTwCmflLFdJP5kNAxUjRRd4gcpUbxZxlZxwMedGmWp/hKai7ShnIetc14exO8p2l/XM5e0h5nCZL4B3ay4JON/OI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qrwm6BJP; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e7e2e04f0so34503525e9.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 04:12:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705925519; x=1706530319; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JZISQUpNOr22c4fKmEuMChAKwdEFwddCk4q6QmgaO8M=;
-        b=Qrwm6BJPQMrg/yf+dB6DqVc63A3X/YXFuFsXUchGmEdtnF0CoE9EkuJOU+uonbw0ot
-         ZvxTPM0Y99+Z92I26CqD8T85SBF56LaXey4dfMyVlWbLB9WrTfmEX02VoOTCc2/S2Sg+
-         yDKOjoS4hwFdu+Z4KVAD/d3ImKhspswD+6jDK3g+vrO98j8gVkh3V4x4yHqrPcFqeuWF
-         cw9ZJ7rqcmURhwpTaZEuYkk7evH5nMDnGSWXEuVq1deKnEyIDAxIFNM2jQ3PSK4dtUNV
-         PEcSnSj/TKAWdSDHGWdHnpZUTccyZyMqs3YcQ1p5UHVtkmasx4KKpPTRUBfx4ERTPzwc
-         +SOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705925519; x=1706530319;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JZISQUpNOr22c4fKmEuMChAKwdEFwddCk4q6QmgaO8M=;
-        b=i2bdxVg3yMYnabelXDzoa8iP4ZTxNNjuAY9XQ0DLo1DZxpCsYHB5zzQfqBWOZaoJE4
-         HUVt9JYOeknATNdQ6luVoXf9NNyHwC1tdvCKz/w3V6O9tUkJVdRc5+TAzKejqF33rcFy
-         EZ1tTpTOe49Bs43H3LZb243GXm0OmnUCT+FBsrzFyYNJEMqpAnFWJGtihXSOE2C0b8hv
-         N7wEMkiN4NUIQlMzSQEE1etiXBXsLYcXJkPARQtvkL0H7rF9Lzsr/hcOretgl4VwaP8Z
-         dX0sBxWwob5PN7h64WxYUmExZawPIAhMkbGmhFkTwhd6ulLuDkMjBCpF1ytcW5IATMq9
-         Cgtg==
-X-Gm-Message-State: AOJu0YywAa2ZshsuwIaRWaBXKdbheWR5XULvpfVz7G+/SXJE8NAv5+6p
-	Uv3y6t4zVElfCrAlFq625yADxwaiqaoMXXOnRSgMURPpjnhoXGgkZx1pKuyFKOg=
-X-Google-Smtp-Source: AGHT+IGCG5Khoe/1oQjX1DFLwPQkaYesrnTTQ5bk157a5/61v0MK6kfoRoDLbJ0mfk1ZEGN224EOGw==
-X-Received: by 2002:a05:600c:2d52:b0:40e:47de:d804 with SMTP id a18-20020a05600c2d5200b0040e47ded804mr2091816wmg.63.1705925519179;
-        Mon, 22 Jan 2024 04:11:59 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:371e:2a86:62f0:bc48? ([2a05:6e02:1041:c10:371e:2a86:62f0:bc48])
-        by smtp.googlemail.com with ESMTPSA id c11-20020a05600c0a4b00b0040d53588d94sm42839717wmq.46.2024.01.22.04.11.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 04:11:58 -0800 (PST)
-Message-ID: <e4288d81-cd0c-41cf-989f-85ce10d5904e@linaro.org>
-Date: Mon, 22 Jan 2024 13:11:57 +0100
+	s=arc-20240116; t=1705925677; c=relaxed/simple;
+	bh=EdlZn7jiQ1mMb/8Kan94EYiiuYd/nwjj3bd8Pvobfc8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XybaY6hoE801APoeXGM2EG8PwfGMHJOIhV6OWw17NbEgcS8PTVq7Wy0/J6tzC0DlAwYFRb20lzQR8kLYH31PRYehZAoAFA883N1uCLWx6PjfFB5Ac3G83eJUfA0XOwQt2kA3WNmN8gTcod2aB5Rjb1M+Qs4r9N8KoEje/jxu+B0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1rRtBt-0001Ez-7i; Mon, 22 Jan 2024 13:14:13 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1rRtBp-001al3-I5; Mon, 22 Jan 2024 13:14:09 +0100
+Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1rRtBp-001Bwe-En; Mon, 22 Jan 2024 13:14:09 +0100
+Date: Mon, 22 Jan 2024 13:14:09 +0100
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Johan Jonker <jbx6244@gmail.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Algea Cao <algea.cao@rock-chips.com>, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH 3/3] phy: rockchip: Add Samsung HDMI/DP Combo PHY driver
+Message-ID: <20240122121409.GW4700@pengutronix.de>
+References: <20240119193806.1030214-1-cristian.ciocaltea@collabora.com>
+ <20240119193806.1030214-4-cristian.ciocaltea@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: timer: exynos4210-mct: Add
- google,gs101-mct compatible
-Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de, conor+dt@kernel.org,
- alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com,
- cw00.choi@samsung.com, mturquette@baylibre.com, sboyd@kernel.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel-team@android.com,
- tudor.ambarus@linaro.org, andre.draszik@linaro.org,
- semen.protsenko@linaro.org, saravanak@google.com, willmcvicker@google.com
-References: <20231222165355.1462740-1-peter.griffin@linaro.org>
- <20231222165355.1462740-2-peter.griffin@linaro.org>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20231222165355.1462740-2-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240119193806.1030214-4-cristian.ciocaltea@collabora.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 22/12/2023 17:53, Peter Griffin wrote:
-> Add dedicated google,gs101-mct compatible to the dt-schema for
-> representing mct timer of the Google Tensor gs101 SoC.
+On Fri, Jan 19, 2024 at 09:38:03PM +0200, Cristian Ciocaltea wrote:
+> Add driver for the Rockchip HDMI/eDP TX Combo PHY found on RK3588 SoC.
 > 
+> The PHY is based on a Samsung IP block and supports HDMI 2.1 TMDS, FRL
+> and eDP links.  The maximum data rate is 12Gbps (HDMI 2.1 FRL), while
+> the minimum is 250Mbps (HDMI 2.1 TMDS).
+> 
+> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
+> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  drivers/phy/rockchip/Kconfig                  |    8 +
+>  drivers/phy/rockchip/Makefile                 |    1 +
+>  .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 2045 +++++++++++++++++
+>  3 files changed, 2054 insertions(+)
+>  create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+> 
+> diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
+> index 94360fc96a6f..95666ac6aa3b 100644
+> --- a/drivers/phy/rockchip/Kconfig
+> +++ b/drivers/phy/rockchip/Kconfig
+> @@ -83,6 +83,14 @@ config PHY_ROCKCHIP_PCIE
+>  	help
+>  	  Enable this to support the Rockchip PCIe PHY.
+>  
+> +config PHY_ROCKCHIP_SAMSUNG_HDPTX
+> +	tristate "Rockchip Samsung HDMI/DP Combo PHY driver"
+> +	depends on (ARCH_ROCKCHIP || COMPILE_TEST) && OF
+> +	select GENERIC_PHY
+> +	help
+> +	  Enable this to support the Rockchip HDMI/DP Combo PHY
+> +	  with Samsung IP block.
+> +
+>  config PHY_ROCKCHIP_SNPS_PCIE3
+>  	tristate "Rockchip Snps PCIe3 PHY Driver"
+>  	depends on (ARCH_ROCKCHIP && OF) || COMPILE_TEST
+> diff --git a/drivers/phy/rockchip/Makefile b/drivers/phy/rockchip/Makefile
+> index 7eab129230d1..3d911304e654 100644
+> --- a/drivers/phy/rockchip/Makefile
+> +++ b/drivers/phy/rockchip/Makefile
+> @@ -8,6 +8,7 @@ obj-$(CONFIG_PHY_ROCKCHIP_INNO_HDMI)	+= phy-rockchip-inno-hdmi.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_INNO_USB2)	+= phy-rockchip-inno-usb2.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY)	+= phy-rockchip-naneng-combphy.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_PCIE)		+= phy-rockchip-pcie.o
+> +obj-$(CONFIG_PHY_ROCKCHIP_SAMSUNG_HDPTX)	+= phy-rockchip-samsung-hdptx.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_SNPS_PCIE3)	+= phy-rockchip-snps-pcie3.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_TYPEC)	+= phy-rockchip-typec.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_USB)		+= phy-rockchip-usb.o
+> diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+> new file mode 100644
+> index 000000000000..d8171ea5ce2b
+> --- /dev/null
+> +++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+> @@ -0,0 +1,2045 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2021-2022 Rockchip Electronics Co., Ltd.
+> + * Copyright (c) 2024 Collabora Ltd.
+> + *
+> + * Author: Algea Cao <algea.cao@rock-chips.com>
+> + * Author: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> + */
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/rational.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +
+> +#define GRF_HDPTX_CON0			0x00
+> +#define HDPTX_I_PLL_EN			BIT(7)
+> +#define HDPTX_I_BIAS_EN			BIT(6)
+> +#define HDPTX_I_BGR_EN			BIT(5)
+> +#define GRF_HDPTX_STATUS		0x80
+> +#define HDPTX_O_PLL_LOCK_DONE		BIT(3)
+> +#define HDPTX_O_PHY_CLK_RDY		BIT(2)
+> +#define HDPTX_O_PHY_RDY			BIT(1)
+> +#define HDPTX_O_SB_RDY			BIT(0)
+> +
+> +#define CMN_REG0000			0x0000
 
-Applied, thanks
+These register names are not particularly helpful. Maybe use a
+
+#define CMN_REG(x)			((x) * 4)
+
+Instead?
+
+> +
+> +static int hdptx_lcpll_frl_mode_config(struct rockchip_hdptx_phy *hdptx,
+> +				       u32 rate)
+> +{
+> +	u32 bit_rate = rate & DATA_RATE_MASK;
+> +	u8 color_depth = (rate & COLOR_DEPTH_MASK) ? 1 : 0;
+> +	const struct lcpll_config *cfg = lcpll_cfg;
+> +
+> +	for (; cfg->bit_rate != ~0; cfg++)
+> +		if (bit_rate == cfg->bit_rate)
+> +			break;
+
+You could use ARRAY_SIZE() to iterate over the array and save the extra
+entry at the end. Likewise for the other arrays used in the driver.
+
+> +
+> +	if (cfg->bit_rate == ~0)
+> +		return -EINVAL;
+> +
+
+> +static int rockchip_hdptx_phy_power_on(struct phy *phy)
+> +{
+> +	struct rockchip_hdptx_phy *hdptx = phy_get_drvdata(phy);
+> +	int bus_width = phy_get_bus_width(hdptx->phy);
+> +	int bit_rate = bus_width & DATA_RATE_MASK;
+
+What is going on here? bus_width is set to 8 in probe() using
+phy_set_bus_width(), but the value you pull out of phy_get_bus_width()
+is expected to contain the bit_rate and several other flags.
+
+It looks like you are tunneling flags from some other driver using this
+field. Isn't there a better way to accomplish this? If not, I think this
+needs some explanation.
+
+At least the variable should be renamed. it's called "bus_width" and it's
+passed to functions like hdptx_lcpll_frl_mode_config() which has this
+parameter named "rate" which is quite confusing.
+
+Sascha
+
+> +	int ret;
+> +
+> +	dev_dbg(hdptx->dev, "%s bus_width=%x rate=%d\n",
+> +		__func__, bus_width, bit_rate);
+> +
+> +	ret = pm_runtime_resume_and_get(hdptx->dev);
+> +	if (ret) {
+> +		dev_err(hdptx->dev, "Failed to resume phy: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (bus_width & HDMI_EARC_MASK)
+> +		hdptx->earc_en = true;
+> +	else
+> +		hdptx->earc_en = false;
+> +
+> +	if (bus_width & HDMI_MODE_MASK) {
+> +		if (bit_rate > 24000000)
+> +			ret = hdptx_lcpll_frl_mode_config(hdptx, bus_width);
+> +		else
+> +			ret = hdptx_ropll_frl_mode_config(hdptx, bus_width);
+> +	} else {
+> +		ret = hdptx_ropll_tmds_mode_config(hdptx, bus_width);
+> +	}
+> +
+> +	if (ret)
+> +		pm_runtime_put(hdptx->dev);
+> +
+> +	return ret;
+> +}
+> +
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
