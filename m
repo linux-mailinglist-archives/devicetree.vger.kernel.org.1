@@ -1,116 +1,141 @@
-Return-Path: <devicetree+bounces-33685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01CA2836126
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:22:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B766836134
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:23:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A85A81F22207
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:22:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C65B828746D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C95843D565;
-	Mon, 22 Jan 2024 11:09:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C8823D99B;
+	Mon, 22 Jan 2024 11:11:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="aqNLgk52"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDB53D555;
-	Mon, 22 Jan 2024 11:09:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25E83B190
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 11:11:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705921749; cv=none; b=nvxORgkV0VBKatS26GFx20zPECbI2sDw+hQVfn9zqeQ9ffW9rrkZgxvt+u4GNadu5tQJ08JhlSZMjvMow/yrBd1ENXzO/c+mEZeAvyJ1HD8NZI8WwKjDcjDDEen61BWwOBVH8N0KZaF20vdrgC3xlHumzVPCBjMGloVqOQRIq3U=
+	t=1705921902; cv=none; b=RR2zkms+dFzfT9ob7TW7Y/CUTZOwM6z7bQuxbAeo9OaLKvFt+GNTpEo2gzgm7S2+xjkGk4ls6dAzX0JYWPR3Wfyh13e9U/ngWRZ9SkmPbCUamiHezUUtn2fXgqv0uzEXXZRhBqmirbZqXyjLkUReuUuNR1GI3xS6FepOwYikOjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705921749; c=relaxed/simple;
-	bh=RAHCPa5LLeS2+X/yJSngT097aqPs0WTNZ+ONX6kPsPg=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BHLd/qNB6I7OBy6wqbTFqnzJF4C9XfV1T1Q7Mw9SdcOMm06ffNf/NHMFA1O3eifRQeediWN9VZ72fzD+LPxvZTfgiUoNUlNMmJC59CHZXmz7A2zjBnblzRYpBKSx4NCw6z7tTBNwzKFuWpUYqF3xhnc1rIDT9lzqD4yOhRzTnoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TJS815ZyBz6J9gC;
-	Mon, 22 Jan 2024 19:06:09 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id D1921140A90;
-	Mon, 22 Jan 2024 19:09:03 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Mon, 22 Jan
- 2024 11:09:03 +0000
-Date: Mon, 22 Jan 2024 11:09:02 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Ceclan Dumitru <mitrutzceclan@gmail.com>
-CC: Jonathan Cameron <jic23@kernel.org>, <linus.walleij@linaro.org>,
-	<brgl@bgdev.pl>, <andy@kernel.org>, <linux-gpio@vger.kernel.org>, "Lars-Peter
- Clausen" <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Michael Walle <michael@walle.cc>, Andy Shevchenko
-	<andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
-	<chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
- =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>, Mike Looijmans
-	<mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
-	<hvilleneuve@dimonoff.com>, David Lechner <dlechner@baylibre.com>, "Ceclan
- Dumitru" <dumitru.ceclan@analog.com>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v12 2/2] iio: adc: ad7173: add AD7173 driver
-Message-ID: <20240122110902.00004357@Huawei.com>
-In-Reply-To: <57ea42b3-106b-4361-8d07-4e1656bf6e58@gmail.com>
-References: <20240118125001.12809-1-mitrutzceclan@gmail.com>
-	<20240118125001.12809-2-mitrutzceclan@gmail.com>
-	<20240121155041.3fc1a85d@jic23-huawei>
-	<57ea42b3-106b-4361-8d07-4e1656bf6e58@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1705921902; c=relaxed/simple;
+	bh=UxyTRYJrjqQ5DKtv4x7xt8N6ofKWsaiz0ZFqC7P9iQA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MRDERvDw89hmrt5dn0As/givSDOq/gUfMEQFPurc6fVw7mIsPnd5qALSA/o24m4rzWeaT7jvTeZM8FOb+uThWT1dWrgBU5ioT6yDfSCaVPvQ2MN4jnCJPrm2roT0aN+wxovgDjr0bogFsw7giu7q2lSM+NJPRVs8ZavOZq49b0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=aqNLgk52; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55a50649ff6so3144190a12.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 03:11:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1705921899; x=1706526699; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2+NuF+IrheqV39DhurkeC/NdqjCC1Krg29+Aw27A90o=;
+        b=aqNLgk5275sDX48SHiN/znMn0nYhbuic4/hP5/FA/YaBtKuZ4/P3q/fT6ZwvhH1W65
+         rfJTwX0UwvOl6iedQ2JoKWw+THqznadPcRevqKCXVp2sM6lLGAAgiAl4gsp2ieDWfSZ4
+         OpsuDDBjks/qq8E/q+1NlJws5QX92jzKFhcMPfCUZVPulSXb/cSr8gMi8PhNyBBhFVXE
+         gjWD+gEGkYqdsQjPPYn5sTRB9uxbc3hWF5AJoVGdhFYnPuSc2gfiC0w99HRzuDCrHCIJ
+         oxqhSgZYK1ZT5IL+Ho68Si0XmB9tBjZYiv5txVqL3JttSqTAnjonY25tFEDDKxAFveeN
+         LTtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705921899; x=1706526699;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2+NuF+IrheqV39DhurkeC/NdqjCC1Krg29+Aw27A90o=;
+        b=mhmoTjmBjMc9dIlJKxd2kVTyrlPNTi6m9tGdeRw0Ek0lyG/DM+oWARjQWG4yX1k5nb
+         2r7o5GKIzmeMs1gURzWC5dFIe2g0x2GcoqWcJa+UoaxrsPDbv3OujEx9H38eGVipIJ5j
+         pq6MYGvf6nbObQOm1Qmr3ato6Jc9BbwUIfZ/b7HX7q7lihMsElmstxY7NlJz0ZVvDcEB
+         AD6xCRdcz+tMu8LSjBQtLjvmeWEm1Do+H/leiLtJuEaVo8iRJIsWKrzrkwl7ktMsbBx/
+         VSOe8lTuSMWkRKK+fZ0ppV314s2Xn4uMpWs5AGNWjlb7bIMsJm0suhuzMZ6KHNUW6txG
+         zo+A==
+X-Gm-Message-State: AOJu0YzikBxNbD47Emhvy/m5ZvVQ/4OwohQZ0UAXkoKjkW4QwcWbjxAX
+	E7qeRBzukiW2vdJD9rn2yAXsdZkB030Cv64hCpsT6OrKWQvTzxOEVAKwQyEg3+w=
+X-Google-Smtp-Source: AGHT+IHTI3lS82Shzhgaq78IcSLYXJWf0bXqAjyhj0u6OR9ZSFyNceOlihdHtJoisQ6VBe9RQdQutw==
+X-Received: by 2002:aa7:c618:0:b0:55a:8430:834d with SMTP id h24-20020aa7c618000000b0055a8430834dmr1650512edq.65.1705921898698;
+        Mon, 22 Jan 2024 03:11:38 -0800 (PST)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.135])
+        by smtp.gmail.com with ESMTPSA id t34-20020a056402242200b0055823c2ae17sm14194241eda.64.2024.01.22.03.11.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jan 2024 03:11:38 -0800 (PST)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: wim@linux-watchdog.org,
+	linux@roeck-us.net,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	p.zabel@pengutronix.de,
+	biju.das.jz@bp.renesas.com
+Cc: linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	claudiu.beznea@tuxon.dev,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH 00/10] watchdog: rzg2l_wdt: Add support for RZ/G3S
+Date: Mon, 22 Jan 2024 13:11:05 +0200
+Message-Id: <20240122111115.2861835-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Content-Transfer-Encoding: 8bit
 
-On Mon, 22 Jan 2024 12:02:35 +0200
-Ceclan Dumitru <mitrutzceclan@gmail.com> wrote:
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-> On 1/21/24 17:50, Jonathan Cameron wrote:
-> >> +	ret = devm_ad_sd_setup_buffer_and_trigger(dev, indio_dev);  
-> > If the error interrupt is provided either first, or as the only interrupt
-> > this is going to use the wrong one.
-> > 
-> > Probably need to have a variant of that which takes an explicit irq so that
-> > figuring out which irq is relevant becomes a driver problem rather than the
-> > library having a go based on spi->irq.  
-> 
-> Would it be acceptable to check if spi->irq interrupt number is equal to
-> fwnode_irq_get_byname(dev_fwnode(dev), "rdy")?
+Hi,
 
-That would be a good start and probably cover most cases.
-> 
-> If not, a message could be passed that specifies either that "rdy" is
-> needed or that it must be placed first.
+Series adds watchdog support for Renesas RZ/G3S (R9A08G045) SoC.
 
-If you are mandating the order, that should possibly be reflected in the binding.
-If this was hard to fix, I'd be fine with leaving for when someone runs into
-a case where they have it ordered the other way around, but given it seems simple
-to fix up probably better to just do it and avoid having to remember anything
-about it later.
+Patches do the following:
+- patch 1/10 adds clock and reset support for watchdog
+- patches 2-6/10 adds fixes and cleanup for the watchdog driver
+- patch 7/10 adds suspend to RAM to the watchdog driver (to be used by
+  RZ/G3S)
+- patch 8/10 documents the RZ/G3S support
+- patches 9-10/10 add device tree support
 
-> 
-> 
-> Another alternative would be adding irq to ad_sigma_delta_info so a
-> driver could specify the desired interrupt to be used for conversions.
-> 
+It is expected that the clock and device tree support will go through
+Geert's tree while the rest of the patches through the watchdog tree.
 
-That works.  Make it optional so if value is 0 use spi->irq as before so
-that you don't need to modify the other drivers.
+Thank you,
+Claudiu Beznea
 
+Claudiu Beznea (10):
+  clk: renesas: r9a08g045: Add clock and reset support for watchdog
+  watchdog: rzg2l_wdt: Use pm_runtime_resume_and_get()
+  watchdog: rzg2l_wdt: Check return status of pm_runtime_put()
+  watchdog: rzg2l_wdt: Remove reset de-assert on probe/stop
+  watchdog: rzg2l_wdt: Remove comparison with zero
+  watchdog: rzg2l_wdt: Rely on the reset driver for doing proper reset
+  watchdog: rzg2l_wdt: Add suspend/resume support
+  dt-bindings: watchdog: renesas,wdt: Document RZ/G3S support
+  arm64: dts: renesas: r9a08g045: Add watchdog node
+  arm64: dts: renesas: rzg3s-smarc-som: Enable the watchdog interface
 
-Jonathan
+ .../bindings/watchdog/renesas,wdt.yaml        |   1 +
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  14 +++
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     |   5 +
+ drivers/clk/renesas/r9a08g045-cpg.c           |   3 +
+ drivers/watchdog/rzg2l_wdt.c                  | 100 ++++++++++--------
+ 5 files changed, 76 insertions(+), 47 deletions(-)
 
+-- 
+2.39.2
 
 
