@@ -1,124 +1,98 @@
-Return-Path: <devicetree+bounces-33835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EA3A836CAC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:14:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59261836CB3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:14:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE8C31F26B71
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:14:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8929C1C25A40
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:14:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB7A3EA95;
-	Mon, 22 Jan 2024 16:03:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731D04D59A;
+	Mon, 22 Jan 2024 16:04:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eamRYZ0M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YO8HccBY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 896C93EA8F;
-	Mon, 22 Jan 2024 16:03:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49AF53EA8A;
+	Mon, 22 Jan 2024 16:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705939418; cv=none; b=p8bvF2UgXZ7bS8cTig4j0d8St9ozBheIZ76mYzeZrxXZgdD01baHqt2/Jsb8L0Ce9tpKX5El+Rk6P33E9tTgVkWsFOd/vXlCtHt+IrFCKsPaYFwEyt5gytLdbb6A5/9SwSe4158m+gaODX/5hAsbbrlSKNrMbB5mNsmf0DT2c48=
+	t=1705939463; cv=none; b=NcrSzmGapqYey+CK7KrT+KLORfWyAjzHx4RVWB/uvDNuHHmztOQeepefAbZcG6d316WNNHNd7KzA0Lq/wuYvWLpxz95NsErEvWE3jyyMjfHuzhpr9kTxsjaID5PS8sb+dSFb2HpH3YifyafQy8Pa621zVVBTkfqnPnbD5u5eXZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705939418; c=relaxed/simple;
-	bh=QGXSD/SDVZivoaMa5ArrDzQaQVGkjfhExyjmEzM5iSw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qLKpjeiFoZKilOuvdodKsaf2qNE8HF9fhBS1khBE5w14ZwnvXcZQAXhxqco1yUsZnnzLTbb0TtwvQnaAcCff52nMkrE+D1Vb1HD5YPemSWtvmly+yKJ7bh0vYrCOh1INz/0rersByvwFyKI/eV+iX07DRSrVKU/q6zOdiPUKZT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eamRYZ0M; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40MDmuNs009117;
-	Mon, 22 Jan 2024 16:03:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Yv75h0rlM5YC4o4po53BdQlfr7U8O8sgTrQ4h1Po+Es=; b=ea
-	mRYZ0MKgpcgI6QupiqOlapXMPYmY4KFLiXOPdzNM081H5pZKf0Pi6GxzDFEfJsfF
-	6AqQWCc1bp2E0aVbx+AgOHSVfLn3YYHpWiyke5KpB7KaT6kOltYsfMkx+BQkDe/p
-	zWLnvOYs4G6i9jhQ7iMkYdRjLaarHv3fREAGmWDgJ6OZmQF/q4ynB5yeurxylJRS
-	6SlXf6ab5XnYLL15ymTsi96U59QD+8nzr3JHpgcRW28iL20ZWhsbEa48RdTVZm02
-	IGcaiPykh7Et0DX5c2u9QEfOqe66eg/DL06c/cUjAV2pLzotX7g+x3qV+4XMWBTx
-	EvRYz30WXQkCr+UZ5NJQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vssjwrae9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 16:03:20 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40MG3JmS017379
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 16:03:19 GMT
-Received: from [10.216.24.76] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 22 Jan
- 2024 08:03:14 -0800
-Message-ID: <ac35936e-2fc0-4ca5-b746-25fa0e31afac@quicinc.com>
-Date: Mon, 22 Jan 2024 21:33:08 +0530
+	s=arc-20240116; t=1705939463; c=relaxed/simple;
+	bh=qLSgpbBBjjg35owhN/n1BlJHspH8+vAvlKmDPma2+BA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fsX+Vvj2J/cGARBs7VKH4mCCJYW1Vz2al6YyimPnuGj8bfOEtnkUNjiazMtaG1wxFyxkMXZMo3fokLyYYfpvgPtOw0vjkKhBBRS529Rkcc0Txjfy35C8bazWcsbwEnq4j0J7aVmNDRu/GiRtJK3Tk7A9X64Jyu/yagKMOKYgbwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YO8HccBY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9465AC433F1;
+	Mon, 22 Jan 2024 16:04:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705939462;
+	bh=qLSgpbBBjjg35owhN/n1BlJHspH8+vAvlKmDPma2+BA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YO8HccBYFKH8Refu6bMmvbllXSeC0OF/Efvh/rVL0L6W9YV0Fqse3g36Jhh8enxa8
+	 avDc+ZvDTR4gXd4Apqd93gGxsC2E73xQanifhYh4+ovSHe5/cfNIePcaJFo8vtW8Rd
+	 UwJuxO3+dKAumwrow+VsBmGMHfTk0Nc9IzdxyY6rdeTY4nOE3HbIWOGbn7VhqlX3E8
+	 kByuuqEcUtCdrm6Xn+t7eTC/QbXzmdmR6h8OkeENMFm+oGRu0AsUurZSZT4ou9l7yU
+	 Ts34s+romNCTlZefwEMLKEIYUdIWuAEh7IOdaH0cgG4ezmgEzNadC15vpqMUXPyiTx
+	 H6fKjzHZP1ZvA==
+Date: Mon, 22 Jan 2024 10:04:20 -0600
+From: Rob Herring <robh@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Aymeric Aillet <aymeric.aillet@iot.bzh>,
+	Yusuke Goda <yusuke.goda.sx@renesas.com>
+Subject: Re: [PATCH v5 resend 0/4] drivers: clk: renesas: ignore all clocks
+ which are assigned to non-Linux system
+Message-ID: <20240122160420.GE601827-robh@kernel.org>
+References: <87edeqgfbu.wl-kuninori.morimoto.gx@renesas.com>
+ <CAMuHMdV1GLYZGn_TgYbxfPakkLpUNTsP5hsEk9tUqLzpb5wOdQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq5018-rdp432-c2: correct board name
-To: Ziyang Huang <hzyitc@outlook.com>, <agross@kernel.org>
-CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <TYZPR01MB55564BE24CE8718DBD4644A2C9762@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-Content-Language: en-US
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <TYZPR01MB55564BE24CE8718DBD4644A2C9762@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: AaEfHXUF4EUAUeiBAKduXP-CvRT9BGnR
-X-Proofpoint-ORIG-GUID: AaEfHXUF4EUAUeiBAKduXP-CvRT9BGnR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-22_06,2024-01-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- lowpriorityscore=0 priorityscore=1501 adultscore=0 mlxlogscore=511
- mlxscore=0 suspectscore=0 clxscore=1011 phishscore=0 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401220110
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdV1GLYZGn_TgYbxfPakkLpUNTsP5hsEk9tUqLzpb5wOdQ@mail.gmail.com>
 
-
-
-On 1/21/2024 6:22 PM, Ziyang Huang wrote:
-> According to Qualcomm document:
->    MP03.1 is RDP404
->    RDP432 is MP03.5
+On Fri, Jan 12, 2024 at 03:21:41PM +0100, Geert Uytterhoeven wrote:
+> Hi Morimoto-san, Rob,
 > 
-> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
-> ---
->   arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> On Wed, Jan 10, 2024 at 2:14 AM Kuninori Morimoto
+> <kuninori.morimoto.gx@renesas.com> wrote:
+> > This is v5 resend of ignoring non Linux system assinged device.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-> index 074b78d7939c..f7e8b5af6b44 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-> @@ -1,6 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
->   /*
-> - * IPQ5018 MP03.1-C2 board device tree source
-> + * IPQ5018 MP03.5-C2 board device tree source
+> Thanks for the update!
+> 
+> > v5 resend
+> >         - add Acked-by from Rob
+> 
+> You mean Reviewed-by?
+> With an Acked-by, I wouldn't have to ask the next question ;-)
+> 
+> Rob: How to proceed:
+>   1. I give my Acked-by, you merge the series?
+>   2. You give your Acked-by, I merge the series?
+>   3. We do the immutable branch dance?
+>        a. You apply 1-3 to an immutable branch
+>        b. I merge the immutable branch and apply 4.
+> 
+> You get to choose, as there are more DT than renesas-clk patches ;-)
 
+You can take it. I don't give Reviewed-by nor Acked-by if I plan to 
+apply it.
 
-I suggest to use the RDP number itself here...
-
-
->    *
->    * Copyright (c) 2023 The Linux Foundation. All rights reserved.
->    */
+Rob
 
