@@ -1,156 +1,100 @@
-Return-Path: <devicetree+bounces-33925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC168373B4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 21:28:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B1A983740A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 21:40:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A03531C2736D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 20:28:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54293290287
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 20:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D236D46532;
-	Mon, 22 Jan 2024 20:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OpWIrWI8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 319D747A55;
+	Mon, 22 Jan 2024 20:40:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from luna.linkmauve.fr (luna.linkmauve.fr [82.65.109.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA45C41779;
-	Mon, 22 Jan 2024 20:28:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E4047A53;
+	Mon, 22 Jan 2024 20:40:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=82.65.109.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705955292; cv=none; b=fVtOp2ByIbIty71QaMUtbsk34ZMOMXCdNNwIZkLG4FOv5cjtWQnL2LChrWJuKwnZb0EWgN8RwPtA7JDulI5cG2KQlEfAdesDOyVbTwCD42PlS0PdjgNV3FtRuRJORs/S4QcDMdX2VOTD8wwyS4n+6UvXknlbDloAZrRHuRNIuss=
+	t=1705956045; cv=none; b=I4zcP04Sy2lKyrs8kPw0xmFzE3aszcoLu1MpXZuKeFS5WhTAVHyi0utibevmuO6egU2x0WX1hOrpxldltjEneT3oexjYpbdn9q+FQvt1yhT9OlqDOBgm6mIjsimRlyasY4Cqusij/1jnEOrseqdPD5dK4GpT/VZ7GGK3DHAiZqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705955292; c=relaxed/simple;
-	bh=uN71bCXA30X74Or5WgrlOA05l7pdmTn+Pla2tjReuL4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a+ffVVeNSyLu/KxTdq6/jKj2AFeWodS8PUgP+hnUh+lTL1vog/aYGsurBi7O2bg6wChuPezVjW28u3GkC9Eo2lk6w8ZKca9tA85nc0QA/tH30VuppHxjrX8us7hMcVpA7C0e5xKH6c4EgtXjExW8dFzgMG0O5Y782eq03xtlDjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OpWIrWI8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F62BC43390;
-	Mon, 22 Jan 2024 20:28:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705955292;
-	bh=uN71bCXA30X74Or5WgrlOA05l7pdmTn+Pla2tjReuL4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OpWIrWI8IvL33sZXeUcci+95ckE29z3Ua0TF4vFRsXSi0rKw5kl/vVirmZDQZMXWO
-	 BQsBhzKnIaj4ketTFRUktRInU6T0CA5xBRL9XhQcBCwuPn0McCk7lSW2SauJ1+MbKb
-	 FiOS98LPdjjKD8iz7uY5BZvs3wVNBh/Qs8xBESa/SPKJsn6uo8hpFBQ+xFRpOgc2E+
-	 tfJuxLVBUJPYdKMke4TbEgYPU67dvPykeLNOf1vjgTYDYmdeQOEU0ivEhG5YJOQX16
-	 GYElEYrWLuJ3BgzM+naOhNOznl/B9Rd9tb5acbOR32KrJD9qAKeWHbTN2Yonb6JziD
-	 qkwZanZdN4lQQ==
-Date: Mon, 22 Jan 2024 20:28:06 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Seven Lee <wtli@nuvoton.com>
-Cc: lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	robh+dt@kernel.org, conor+dt@kernel.org, YHCHuang@nuvoton.com,
-	KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, SJLIN0@nuvoton.com,
-	scott6986@gmail.com, supercraig0719@gmail.com, dardar923@gmail.com
-Subject: Re: [PATCH 2/2] ASoC: nau8325: new driver
-Message-ID: <820c5ff7-4329-46b0-9981-607b1593deb5@sirena.org.uk>
-References: <20240122095650.60523-1-wtli@nuvoton.com>
- <20240122095650.60523-2-wtli@nuvoton.com>
+	s=arc-20240116; t=1705956045; c=relaxed/simple;
+	bh=bAPGFNo77+D9kNCksfSqKSycd65DXYyf8t7nE08TAF8=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tTwujwy2xOJRUpq4iubghjK2rT1ZvYvh6yUsfF9WjEUL8YuDucwQAq3I4A4AV0QSx0jkaSSVPxnwBowgr8pJPFiDhmo56UTrMPOD6aj44QEreJDurYAdLqd5yl+a6LSSB3F2jb6X8CUPYVR2uGnKKZnnmYddxZf5xQER8k7t90Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linkmauve.fr; spf=pass smtp.mailfrom=linkmauve.fr; arc=none smtp.client-ip=82.65.109.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linkmauve.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linkmauve.fr
+Received: by luna.linkmauve.fr (Postfix, from userid 1000)
+	id 79E38DDADBF; Mon, 22 Jan 2024 21:35:14 +0100 (CET)
+From: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	=?UTF-8?q?Tam=C3=A1s=20Sz=C5=B1cs?= <szucst@iit.uni-miskolc.hu>,
+	Christopher Obbard <chris.obbard@collabora.com>,
+	Shreeya Patel <shreeya.patel@collabora.com>,
+	John Clark <inindev@gmail.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Subject: [PATCH 0/2] Add the thermal zones of the rk3588 to its dts
+Date: Mon, 22 Jan 2024 21:34:56 +0100
+Message-ID: <20240122203502.3311520-1-linkmauve@linkmauve.fr>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="QAZjW4H1wKCsCURa"
-Content-Disposition: inline
-In-Reply-To: <20240122095650.60523-2-wtli@nuvoton.com>
-X-Cookie: Nice guys don't finish nice.
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+The driver got added back in 45d7b3867a5cabb97fc31f16122cda8540c3a30c,
+but the dts never got updated, so here it is!
 
---QAZjW4H1wKCsCURa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I’ve added it to the rk3588s because that’s where most of the
+definitions are, but I’ve only tested on a rk3588 so maybe there are
+subtle changes.
 
-On Mon, Jan 22, 2024 at 05:56:50PM +0800, Seven Lee wrote:
+The rk3588 TRM also documents slightly different values (in part 1
+section 14.5.3) than the driver, but I’ve left the values alone since I
+have no way to determine which one is (more) correct.
 
-> +++ b/sound/soc/codecs/nau8325.c
-> @@ -0,0 +1,896 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * nau8325.c -- Nuvoton NAU8325 audio codec driver
-> + *
+Only the CPU is properly mapped, as neither the GPU nor the NPU have
+been added to the dts for now, I’ve left some TODOs there.
 
-Please use a C++ comment for the whole block to make things look more
-consistent.
+All of the thermal zones report almost the same value on my rock-5b
+board, I’m not sure if this is due to a programming error or if this is
+to be expected.  For instance, after running for a while, all of the
+zones report 44384 m℃, despite having used neither the GPU nor the NPU.
 
-> +static int nau8325_clkdet_put(struct snd_kcontrol *kcontrol,
-> +			      struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct soc_mixer_control *mc =
-> +		(struct soc_mixer_control *)kcontrol->private_value;
-> +	struct snd_soc_component *component =
-> +		snd_soc_kcontrol_component(kcontrol);
-> +	struct nau8325 *nau8325 = snd_soc_component_get_drvdata(component);
-> +	unsigned int max = mc->max, min = mc->min, val;
-> +	unsigned int mask = (1 << fls(max)) - 1;
+Additionally, the alert and crit temperatures have been arbitrarily
+chosen based on other dts files, not based on any knowledge of the
+thermal behaviours of this specific SoC.
 
-AFAICT this will only work well if max is 1, just hard code that.
+Emmanuel Gil Peyrot (2):
+  arm64: dts: rockchip: Add the rk3588 thermal zones
+  arm64: dts: rockchip: Enable the tsadc on Rock-5B
 
-> +
-> +	val = (ucontrol->value.integer.value[0] + min) & mask;
-> +	nau8325->clock_detection = val;
-> +
-> +	if (nau8325->clock_detection)
-> +		regmap_update_bits(nau8325->regmap, NAU8325_R40_CLK_DET_CTRL,
-> +				   NAU8325_CLKPWRUP_DIS, 0);
-> +	else
-> +		regmap_update_bits(nau8325->regmap, NAU8325_R40_CLK_DET_CTRL,
-> +				   NAU8325_CLKPWRUP_DIS, NAU8325_CLKPWRUP_DIS);
-> +
-> +	return nau8325->clock_detection;
-> +}
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |   4 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 181 ++++++++++++++++++
+ 2 files changed, 185 insertions(+)
 
-Please use mixer-test to verify that your controls conform to the
-expected API, the return value here is not what's expected - it should
-be a negative value for an error, 0 for no change and 1 for change.
+-- 
+2.43.0
 
-> +	SOC_SINGLE_EXT("Clock Detection", SND_SOC_NOPM, 0, 1, 0,
-> +		       nau8325_clkdet_get, nau8325_clkdet_put),
-
-Shouldn't this be a Switch?
-
-> +	SOC_SINGLE("ALC Enable", NAU8325_R2E_ALC_CTRL3,
-> +		   NAU8325_ALC_EN_SFT, 1, 0),
-
-ALC Switch.
-
-> +static int nau8325_powerup_event(struct snd_soc_dapm_widget *w,
-> +				 struct snd_kcontrol *kcontrol, int event)
-> +{
-> +	struct snd_soc_component *component =
-> +		snd_soc_dapm_to_component(w->dapm);
-> +	struct nau8325 *nau8325 = snd_soc_component_get_drvdata(component);
-> +
-> +	if (nau8325->clock_detection)
-> +		return 0;
-> +
-
-What happens if someone enables clock detection while things are powered
-up?
-
---QAZjW4H1wKCsCURa
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWuz9UACgkQJNaLcl1U
-h9BQjgf/QLIx/6Vn2gRBlBNbQfnoOasSe3itaUJwtDJ6sVFgb6jjZT0ZlOww4+rf
-TX08tOTbrDHhWqh2RCuxxAFCHG9Uu0TYl46QikJIRfZSP/1dWtdY4dptsv+n5Kgh
-UQDmnDiewqFaR4mlDBzgzmeDL+Gfr8L+ucedfTpRpwl7YNv1/Mwubh5U/oDGLGVB
-+2O7QQ8OKWpdUW4XRvH3Rdh7GYrtx0YUPn+Yicp7wOnyKg7qs1OEvpTBpAQVPPvT
-LpE2I+3swtCjetn2maB+cPUgDcOKL6hu9rIj/alple3YU5ux+il+PiJDlfTD5H1C
-XNimTSNbAm/gNjZbrUQbShQj05Upcg==
-=+I7g
------END PGP SIGNATURE-----
-
---QAZjW4H1wKCsCURa--
 
