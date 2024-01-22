@@ -1,136 +1,226 @@
-Return-Path: <devicetree+bounces-33651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47700835F0D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:06:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 794C9835F1B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:07:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B21F1C22DF9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:06:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B72A1C24517
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:07:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E33239FEC;
-	Mon, 22 Jan 2024 10:04:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B063A1C2;
+	Mon, 22 Jan 2024 10:07:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="I3B1Yr6z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OG0f6K9+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E658939FE2
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 10:04:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EED439FEB;
+	Mon, 22 Jan 2024 10:07:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705917848; cv=none; b=QGe0MomWpyHxQQe6MxiS+1BKMe7cVy44UIWUQR2FJ35Xw6sw51dV2zIbHIz7oOUgQ2+idGQR/eXDMQauZSfT6b+49sqjnASRHG87wgVJeOM4mIND37PefmcEDFmuMZN15KpqjA5OVophXXBcosFtjzZF6/8c1qJhBlGfYgRnibk=
+	t=1705918058; cv=none; b=QZSZhDz9WgNpAxE0inXJE/Uvae+mo6wEN9RLSb7iAezGA97PKgsOQ3fZRn6zQhA6EAj5u+HfkBcq2pOJSUNqmkBRWFcCazxDbh61N7QkRXLePTw/lePAl2/zBGD983KSMhA7ewiQBwBIycyJic7qg8wAZEmx8KlYWrmZaayjfUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705917848; c=relaxed/simple;
-	bh=M8pszskSh+59GT3YDDj2kTESCkFAakxa2ZaO1j5Q8Pg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GfzMQ43of+BfpTcRuCsVwyAB0JGLPDVzuhxhecR7+1UPNaswzXg/FjoC2cS3RDjq9GfTi5Yp0QIb3Q2WJbOUGWox+w+2QehPuO1GcfMDWXTH3GacLZsQPm0iiHN/ETquG+tV4ff23SHe8dMwROkNnONmtYBknMHrdERAkfVMmDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=I3B1Yr6z; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tweaklogic.com
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-5cf22a89a54so1162384a12.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 02:04:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1705917846; x=1706522646; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ni6n5pqeZznTel6GtkjfHQ44EXROGMS+h3Fg1e6uKRc=;
-        b=I3B1Yr6znb0vi9wz6wOHqDEKrWZP4rkZCZrZSss4+GiNn+XV4XipHkyIbOIA9Bn3zL
-         i8MfXuHCIfKW0DtoovkckjFYvFDsxEf4bOOhPwi6OtcRMSvBtiVp0RibjWkXecDK+Xjz
-         OxoeEDryvbw9LfBdgOfJpHG/KJbxfqB/yBUtDLDuGIdTzB1tHziZCB3/EItXa6db5eTW
-         5IwA1/HW0HV3Nf0OoZS2f7FRCwdmtuoh1L6/tfGM6tukbf1PueulY867b38NKdADcqR9
-         ojkTBqlnbXgSisnPc3blTR0AboVe4fSrISKq38IBosCLr17mRu/XQjun8zPBjXtnNjc1
-         gjkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705917846; x=1706522646;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ni6n5pqeZznTel6GtkjfHQ44EXROGMS+h3Fg1e6uKRc=;
-        b=oFddHnR7kHJ+e+XeCHGYlqLUfiAgCFaeyjyPesaPZGQ+4dpKskigcNtn0h8LGl81h4
-         pqkC2HGlbWFcVH3DcjecooxXIAHusZwRMLbMsJQfi5NhZlihfhmCG4vVKhGHUJpW3SYk
-         Pc0roGo55qIBSa9p4yP9BWopg+saXNjf8vUcJJyKEwWQeI9M8ifEtnWgpfLD+LFux4Bx
-         Dm88ShZFZfrzQe+WY9cFdi5QJW4Ec0JNEHbYGwO2rfNSoq2JZrxYhIXJdIapmX/Pu4yT
-         5RXpeKGAR1/U4X6WOUoNRnb8CF+kVhP88CyQed/6Tt1Q0CthrrbEvTczBui1PBREqVAD
-         pGzw==
-X-Gm-Message-State: AOJu0YzUb9LEv6qDaK7LEoKeYyl9T8TJ8bmH+rAHcFyUw5WsfTtPRO7d
-	Bzvh71OHZekbxR1GPaMwW5O97u0g/sHtSVLi3cfNSMiqra7IvsotNBHyBUyjOTI=
-X-Google-Smtp-Source: AGHT+IFWhdobP+x4boZi7f4u5ncKwhvFSizCjj2v4j7C2QB2eYDiA0ptZEh6KxLq9DgxXVQGvcYSPQ==
-X-Received: by 2002:a05:6a20:9388:b0:199:b189:eb93 with SMTP id x8-20020a056a20938800b00199b189eb93mr1581609pzh.100.1705917846321;
-        Mon, 22 Jan 2024 02:04:06 -0800 (PST)
-Received: from [192.168.20.11] ([180.150.112.156])
-        by smtp.gmail.com with ESMTPSA id d11-20020a17090b004b00b0028cef021d45sm9304508pjt.17.2024.01.22.02.04.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 02:04:05 -0800 (PST)
-Message-ID: <4031ee3e-9db5-4e36-8833-2f7fd6fad3ca@tweaklogic.com>
-Date: Mon, 22 Jan 2024 20:33:58 +1030
+	s=arc-20240116; t=1705918058; c=relaxed/simple;
+	bh=0DBCtBL7EIQT2jBc+2uIH7Ya0F0CfhR/U4M8QK0l2zQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jbxdbNku1oHTGNl+qRHokns26DjAgtyC4MbmFe00GSxGZL1BPs8KE3A1DKApWpKVNvMl7NRR5hYMGz2mYvesD9Lxeow0i/64yXQxrCRG2vL+E8vf1uTXp1TZMifl2J28vxX40ibuxdEYud/tDO2ZWu7F7/xqwUANZ5/89tpVFY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OG0f6K9+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40M5brQI028656;
+	Mon, 22 Jan 2024 10:07:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=C/vkJQ/dVUcxOvXvJM0Z+onrH+j+Sst7yDaKR3InxDY=; b=OG
+	0f6K9+9hUXEorDjkYrkxoF1fdAHr7iQrAH82gOHnJwdJad2ESCBUgLaeE77aqxF3
+	z2S2FvBq5Z+O6MjB3OaFPC2jpqss3t+NKsYKmItDd5l73ESgtW+Y3MPICegflLRv
+	nmBoGHgq28G4ep/wc/CNfL8GODnPlzjGqIyO5WdlRVgTKG2X76LteIyvhOHPdDzW
+	Q5KfQuGI05kXp0nF1txktrUIaS6I+nx0pBsjhoswPFzKlXo4eP0udHgfmSdPySG7
+	8dObQ098YhzN20TmfpVFVdHVM0m+xzqlmlUABgkS8QrlvPQzGL3r9dCnWyF3+1yw
+	20OsKnVcra+cipViU3zA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vr54wum0b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Jan 2024 10:07:25 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40MA7OlM029669
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Jan 2024 10:07:24 GMT
+Received: from [10.216.25.125] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 22 Jan
+ 2024 02:07:17 -0800
+Message-ID: <391f8f48-d1f5-702d-20d4-ae8b8a7ace58@quicinc.com>
+Date: Mon, 22 Jan 2024 15:37:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] dt-bindings: iio: light: Avago APDS9306
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 2/2] dt-bindings: hwinfo: Add Qualcomm's board-id types
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
+        Elliot Berman
+	<quic_eberman@quicinc.com>
+References: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
+ <1705749649-4708-3-git-send-email-quic_amrianan@quicinc.com>
+ <54426665-90c5-4355-a174-f512004e11e5@linaro.org>
 Content-Language: en-US
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Matt Ranostay <matt@ranostay.sg>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240121051735.32246-1-subhajit.ghosh@tweaklogic.com>
- <20240121051735.32246-3-subhajit.ghosh@tweaklogic.com>
- <20240121153655.5f734180@jic23-huawei>
-From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <20240121153655.5f734180@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Amrit Anand <quic_amrianan@quicinc.com>
+In-Reply-To: <54426665-90c5-4355-a174-f512004e11e5@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _nwZ8vsPmPDLgjgNQrNUDMbBvQBAACKm
+X-Proofpoint-GUID: _nwZ8vsPmPDLgjgNQrNUDMbBvQBAACKm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-21_04,2024-01-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 mlxlogscore=999 clxscore=1015 suspectscore=0 mlxscore=0
+ adultscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0 malwarescore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401220072
 
-On 22/1/24 02:06, Jonathan Cameron wrote:
-> On Sun, 21 Jan 2024 15:47:33 +1030
-> Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
-> 
->> Adding device tree support for APDS9306 Ambient Light Sensor.
->> Updating datasheet hyperlinks.
->> Adding interrupt definition macro and header file.
-> 
-> This is an unrelated change, so should probably be in a separate patch.
-Understood.
-> 
->> Adding vdd-supply property.
-> 
-> This one is reasonable to have in same patch as the new device addition
-> as, whilst I assume it's valid for the existing devices, you are adding it
-> to incorporate something that device also has.
-> Could also be a separate precursor patch.
-> 
+
+On 1/20/2024 7:02 PM, Konrad Dybcio wrote:
+> On 20.01.2024 12:20, Amrit Anand wrote:
+>> Qualcomm based DT uses two or three different identifiers. The SoC
+>> based idenfier which signifies chipset and the revision for those
+>> chipsets. The board based identifier is used to distinguish different
+>> boards (e.g. IDP, MTP) along with the different types of same boards.
+>> The PMIC attached to the board can also be used as a identifier for
+>> device tree.
 >>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> Signed-off-by: Amrit Anand <quic_amrianan@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/hwinfo/qcom,board-id.yaml  | 86 ++++++++++++++++++++++
+>>   include/dt-bindings/arm/qcom,ids.h                 | 68 +++++++++++++++--
+>>   2 files changed, 146 insertions(+), 8 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/hwinfo/qcom,board-id.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwinfo/qcom,board-id.yaml b/Documentation/devicetree/bindings/hwinfo/qcom,board-id.yaml
+>> new file mode 100644
+>> index 0000000..807f134
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwinfo/qcom,board-id.yaml
+>> @@ -0,0 +1,86 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hwinfo/qcom,board-id.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: QCOM Board Identifier for Devicetree Selection
+>> +
+>> +maintainers:
+>> +  - Amrit Anand <quic_amrianan@quicinc.com>
+>> +  - Elliot Berman <quic_eberman@quicinc.com>
+>> +
+>> +description: |
+> The '|'s are unnecessary in both commits, IIRC they're used for
+> preserving formatting which we don't really need for non-styled
+> plaintext
+Sure, will do.
+>> +  Qualcomm uses two and sometimes three hardware identifiers to describe
+>> +  its boards
+>> +      - a SoC identifier is used to match chipsets (e.g. sm8550 vs sm8450)
+>> +      - a board identifier is used to match board form factor (e.g. MTP, QRD,
+>> +        ADP, CRD)
+>> +      - a PMIC identifier is occasionally used when different PMICs are used
+>> +        for a given board/SoC combination.
+>> +  Each field and helper macros are defined at::
+>> +      - include/dt-bindings/arm/qcom,ids.h
+>> +
+>> +  For example,
+>> +    / {
+>> +        #board-id-cells = <2>;
+>> +        board-id = <456 0>, <457 0>, <10 0>;
+>> +        board-id-types = "qcom,soc-id", "qcom,soc-id", "qcom,board-id";
+>> +     }
+>> +
+>> +allOf:
+>> +  - $ref: board-id.yaml#
+>> +
+>> +properties:
+>> +  board-id:
+>> +    minItems: 2
+> I believe some older platforms match exclusively based on socid, so
+> perhaps 1 would be okay as well.
+>
+> [...]
 
->>   
->>   description: |
->> -  Datasheet: https://www.avagotech.com/docs/AV02-1077EN
->> -  Datasheet: https://www.avagotech.com/docs/AV02-4191EN
->> +  Datasheet: https://docs.broadcom.com/doc/AV02-1077EN
->> +  Datasheet: https://docs.broadcom.com/doc/AV02-4191EN
->> +  Datasheet: https://docs.broadcom.com/doc/AV02-4755EN
-> 
-> Old links seem to still work, so why the change?
-My bad. I will revert to keep things simple. No reason, just thought of updating.
+Ok, considering legacy targets we can make it 1.
 
-Thanks for the review.
+But i think ideally it should always be recommended to have a board ID 
+associated with a SoC ID, correct me if my understanding is wrong.
 
-Regards,
-Subhajit Ghosh
+>> +examples:
+>> +   - |
+>> +     #include <dt-bindings/arm/qcom,ids.h>
+>> +     / {
+>> +         model = "Qualcomm Technologies, Inc. sc7280 IDP SKU1 platform";
+>> +         compatible = "qcom,sc7280-idp", "google,senor", "qcom,sc7280";
+>> +
+>> +         #board-id-cells = <2>;
+>> +         board-id = <QCOM_SOC_ID(SC7280) QCOM_SOC_REVISION(1)>,
+>> +                    <QCOM_SOC_ID(SC7280) QCOM_SOC_REVISION(2)>,
+>> +                    <QCOM_BOARD_ID(IDP, 1, 0) QCOM_BOARD_SUBTYPE(UFS, ANY, 1)>;
+>> +         board-id-types = "qcom,soc-id",
+>> +                          "qcom,soc-id",
+>> +                          "qcom,board-id";
+> So, would the matching here would be:
+>
+> loop over disctinct board-id-types
+> 	check if there's at least 1 match for all of them
+> 		use this dtb if that's the case
+>
+> stop booting / "best guess match"
+>
+> ?
+>
+> [...]
+
+Yes, But the "if" checking would have preference in place.
+The preference logic would look something like this,
+
+First will check for SoC-ID, if we have an exact match for SoC-ID then 
+will proceed for board-ID match. Otherwise the DT would be discarded.
+Once (exact) board-ID found, will proceed for subtype , pmic and so on.
+Exact match and best match logic is used. Parameters like SoC-ID, 
+board-ID are required to be best matched. Other few fields follow best 
+match logic and best of the DT can be picked.
+
+>> +#define QCOM_BOARD_ID_MTP		0x8
+>> +#define QCOM_BOARD_ID_DRAGONBOARD	0x10
+>> +#define QCOM_BOARD_ID_QRD		0x11
+>> +#define QCOM_BOARD_ID_HDK		0x1F
+>> +#define QCOM_BOARD_ID_ATP		0x21
+>> +#define QCOM_BOARD_ID_IDP		0x22
+>> +#define QCOM_BOARD_ID_SBC		0x24
+>> +#define QCOM_BOARD_ID_QXR		0x26
+>> +#define QCOM_BOARD_ID_CRD		0x28
+> Missing ADP/QCP/Ride (if they're separate)
+
+Sure, will update. Would need to work with teams.
+
+Thanks,
+Amrit.
 
 
