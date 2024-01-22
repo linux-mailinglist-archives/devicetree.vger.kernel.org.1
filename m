@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-33601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BE51835D75
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:58:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76518835D83
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:01:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CE89280E45
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:58:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE7D0B28B9C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:01:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEFCB39FC4;
-	Mon, 22 Jan 2024 08:57:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C638F38FAA;
+	Mon, 22 Jan 2024 09:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gHVIqYgH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FwEkjkBm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5371E39AEA;
-	Mon, 22 Jan 2024 08:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E99139AD1;
+	Mon, 22 Jan 2024 09:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705913836; cv=none; b=jhjYMD74OgSaOPohefE/LzKntGRJEBIkBWLuafzOJUxQBZFoeficU2WpbrPBxxMfKIOy2J9Ge8TUKr/FHOVpG0SWK7w1yWs9EyNTLUw1HDxm3iqmoVmUAqN0vgYudKZLoqasnzNwRsJrZIXmXbMNvq7SOMXw1kjkVBgGm39zNn4=
+	t=1705914029; cv=none; b=QJ5Klbm6ix8mDK9du3GoucSuYNbPVpHHu+qZ5V8WYcdiF+cLWdGn1Hic1URcPNCOL0Q9Ha2DTsMo0VFXfg9Kriv6EDBsPUI6ys0buktF8MFEvEIEPxSHH+aFoWPV3TwpuZJXTxqXkDlh8Xbi+LRAc6ZqzjH0AGt41vqpjF7GKQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705913836; c=relaxed/simple;
-	bh=DZdxQzVzfHrKANIN7+0mhcd4gKztKEpFjrLdWtyyBjo=;
+	s=arc-20240116; t=1705914029; c=relaxed/simple;
+	bh=rZe7E8uWF2oeAIbZG2u1TFjJAX1klDazcb6lUv/hnEs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ATCvl/X1rrguEjaTmjHjDlSIQUeC1Mm5wFMybebTlYiXdhKUGNHbJaGQwNTedtro4JpBdMdavp690Io/6zNe+hjrKVzHX8/RNyhTFsq/IOaCdhtms1vGJE7jmXNighORldCVR1X+CwgeI0eElPGypOIAfVOOhZ08vTYlkwaHDWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gHVIqYgH; arc=none smtp.client-ip=209.85.128.42
+	 In-Reply-To:Content-Type; b=Ey2OviouHUIAnZhlmP9jQMUigKhl1K8HBq5j5XLsTPnZT4poywLpFXfW+0KdfHOFu4/wMtKGLeRGKxt+EgFuQ9ycVkD6/PNHPc+jJKr/CkGDqTcMHYKF04tFyzoQkdy6bFW7+iUr/mxdpXoleMeBOlbQOOdSi56yxfWcGbAQGqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FwEkjkBm; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40eb033c192so1424095e9.0;
-        Mon, 22 Jan 2024 00:57:14 -0800 (PST)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-337b8da1f49so2658726f8f.0;
+        Mon, 22 Jan 2024 01:00:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705913833; x=1706518633; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1705914026; x=1706518826; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=w1+TRGt25MpNfEoS3hXoxH/tN7Awcod+oM5fMO5D3jc=;
-        b=gHVIqYgH8dcud1vWnPY7mB3JSQXJEV/UsNO4FZAn9czkUsZ7FIKqKSsvv/0W4dnURY
-         r4uEYBRAdfqss6/9etVRmhREtKaAbpUke83UwG4//OILXht6L76cXtEU1dQBuTY65HX5
-         N4kb1SIhaKvkiLGKZ1JdBvT39gE3jNBhF7r2L7TVP7YpItJCEykGCXLZ/S0QNStVyn5j
-         zdawaGfVshEtHcqdGTTOcd4P261htXKBPBL2WKkdxgXSmELMyGvH85jJGhN78+eyhZUn
-         SxwFmKALkLazagsSkI//38RikJNdYSeeCVwB58YtplGmfdt3POsim1uuveYQBtFlsFF8
-         vr4A==
+        bh=S9CnsRjAPHv/Nr7rgukGQuH99DHSYEoAqMdSIVVUY+Y=;
+        b=FwEkjkBmuW196qYOR/hE/YPsxyLMzy/QHHfNF3TczfVav3jl/sg6WPbse5J+Ep7Im+
+         IpZHvePxaWlXTGvEG8GPTG4wpbbTlWB8OIuanucbLi6ky8aCE8QdVFJRJSealAGUUu3G
+         fpBiexW9fz+DnO54k/USm3PFQtvw18NRY8/iPFUZdre7mw4CqPsf9Fun1Gv1D9pGlgcr
+         L48yahs/cdrakaqDZAl1GkjH5blZhNbHLD+uoTRvWcvGsDo6zCA9B5oU8l+fQ1IoVlb/
+         rOEorTqGsV0+lKh536hduYaYGi8FfKdpXgJ7FOwRHQS41xTQxTOlGEvOIDCmnq3wLq8t
+         z4iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705913833; x=1706518633;
+        d=1e100.net; s=20230601; t=1705914026; x=1706518826;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w1+TRGt25MpNfEoS3hXoxH/tN7Awcod+oM5fMO5D3jc=;
-        b=uZxIvlTHvbdC6PjJhPKgV/so5BFT+2MLkw2OgrGAtSgca6tmLGDH/ni6E1Gda7Gdxt
-         Qmjajen5X9jo7e7d2Yyd1OHkpRo79ngPuk/tPdjVSRzlxoChA1A8fRBeZasU3aqLFI3T
-         Tt37FCcX63l2HlKDvNbbhuBcnRB22/7RCTRiwxuJU1heuLVVtxTRJ6PeE10ipNzaBB1p
-         aATWFPt7JJSiAfFVMJCOiuxZrilihW3rUs8J14LzEbF1BbRgRY9u7Sk4h5Jr9x9vWmyf
-         6yo6IL1wUXHbzxIJneHnr1qroNZJpPdM8Zv0ontifKxiPKm6Ah3+W0AduugHt/mB+aLf
-         sUKQ==
-X-Gm-Message-State: AOJu0YweXQx8pYLEKtd4N+wyAfffjM8q2HtgNLZrgP9UVhSsyR+Gvuds
-	KULLBfSmmNkbbTTdJ4S1kBWRpQPxBNM0W3ZCiZu4qY3SrzWKgvjI
-X-Google-Smtp-Source: AGHT+IHTPThDUzVUHUWazCjWo+HmxmUbfHP07K3tx1bQtUkViBI9fvhJQ7xyJRZWWrJ9IqRbxqlZig==
-X-Received: by 2002:a05:600c:6a8e:b0:40e:4ad9:90df with SMTP id jl14-20020a05600c6a8e00b0040e4ad990dfmr1813366wmb.158.1705913833292;
-        Mon, 22 Jan 2024 00:57:13 -0800 (PST)
+        bh=S9CnsRjAPHv/Nr7rgukGQuH99DHSYEoAqMdSIVVUY+Y=;
+        b=SZkAxIo63GUqewP+vl9u70RNoKmXfMYvyfLntc/+V53i3CU6CskMBCqIBTj+YZ6iu3
+         gh9X68Qen2e5hJIt5wGKlB2DemBauJUdatMByMLssJOLjxtKLhhA9rHojkKAWrcERBXz
+         EtmmasSKioIySLABctocc6pduxUeco7Y1OZub67wWPV0/SWGNbe+iiB/BNHgWvl1pA9v
+         4MPWotcvfqmX2j1PvC4kjikZjbyWrJ4x9K/WBKXrvFFLICxDy5bTwp7wWlsPBa//hdzH
+         Rx51X92UdmAfGXhNKg7UPenPPEE53MQQWZmoPoTt5SYt2UIiGyZTP8s8maon9kzAZYX0
+         6H3Q==
+X-Gm-Message-State: AOJu0YwzDu4HMmNgZ1124v8zEzrs1BzQciqKBDiwKXM7dvaiy+p193WC
+	V0K6wXepMMc00kADeZFdJ1UrzsmygBZ4GzOSWpjTGX/HGpmgGx73
+X-Google-Smtp-Source: AGHT+IFigjk8QEIScQfJdOPaOe1xp96gJJ5P2wdqcKKm0Eh6ljtVPlN/VbmQeEXIMjCF+bLmHxmHRA==
+X-Received: by 2002:adf:e5d2:0:b0:337:cc89:9e58 with SMTP id a18-20020adfe5d2000000b00337cc899e58mr1108905wrn.150.1705914026359;
+        Mon, 22 Jan 2024 01:00:26 -0800 (PST)
 Received: from [192.168.2.177] ([207.188.161.188])
-        by smtp.gmail.com with ESMTPSA id s8-20020a05600c45c800b0040e527602c8sm42479485wmo.9.2024.01.22.00.57.11
+        by smtp.gmail.com with ESMTPSA id b5-20020a5d4d85000000b00337d5aa55cdsm10241908wru.53.2024.01.22.01.00.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 00:57:12 -0800 (PST)
-Message-ID: <0d3c2713-6da5-4e7c-8568-180df6e424d7@gmail.com>
-Date: Mon, 22 Jan 2024 09:57:11 +0100
+        Mon, 22 Jan 2024 01:00:25 -0800 (PST)
+Message-ID: <85138fef-8b85-439c-aa74-d0e74bfe84e8@gmail.com>
+Date: Mon, 22 Jan 2024 10:00:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,23 +75,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: mediatek: add MT7988 LVTS
- reset ID
+Subject: Re: [PATCH V2 0/3] mt7988: initial DT changes
 Content-Language: en-US, ca-ES, es-ES
-To: Frank Wunderlich <linux@fw-web.de>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>,
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
- Sam Shih <sam.shih@mediatek.com>, Daniel Golle <daniel@makrotopia.org>,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org
-References: <20240105162056.43266-1-linux@fw-web.de>
- <20240105162056.43266-2-linux@fw-web.de>
+Cc: Daniel Golle <daniel@makrotopia.org>, Hsin-Yi Wang <hsinyi@chromium.org>,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ jason-ch chen <Jason-ch.Chen@mediatek.com>,
+ Macpaul Lin <macpaul.lin@mediatek.com>,
+ =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+ Sean Wang <sean.wang@mediatek.com>,
+ Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>
+References: <20240108085228.4727-1-zajec5@gmail.com>
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  xsFNBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
@@ -136,40 +137,37 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20240105162056.43266-2-linux@fw-web.de>
+In-Reply-To: <20240108085228.4727-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 
 
-On 05/01/2024 17:20, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On 08/01/2024 09:52, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Add reset constant for using as index in driver and dts.
+> This work is based on linux-next content and was successfully verified
+> using "dtbs_check". It's initial code for MT7988A that will get extended
+> as we get more bindings available (pinctrl is big blocker right now).
 > 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
-> v2:
->   - add missing commit message and SoB
->   - change value of infrareset to 0
-> ---
->   include/dt-bindings/reset/mediatek,mt7988-resets.h | 4 ++++
->   1 file changed, 4 insertions(+)
+> AngeloGioacchino, Matthias: is this something you could queue in
+> git://git.kernel.org/pub/scm/linux/kernel/git/mediatek/linux
+> for v6.9?
 > 
-> diff --git a/include/dt-bindings/reset/mediatek,mt7988-resets.h b/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> index 493301971367..0216eeb249c7 100644
-> --- a/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> +++ b/include/dt-bindings/reset/mediatek,mt7988-resets.h
-> @@ -10,4 +10,8 @@
->   /* ETHWARP resets */
->   #define MT7988_ETHWARP_RST_SWITCH		0
->   
-> +/* INFRA resets */
-> +#define MT7988_INFRA_RST0_THERM_CTRL_SWRST	0
-> +
->   #endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT7988 */
-> +
+
+Series applied, thanks!
+
+> Rafał Miłecki (3):
+>    dt-bindings: arm64: mediatek: Add MT7988A and BPI-R4
+>    arm64: dts: mediatek: Add initial MT7988A and BPI-R4
+>    arm64: dts: mediatek: mt7988: add clock controllers
+> 
+>   .../devicetree/bindings/arm/mediatek.yaml     |   4 +
+>   arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+>   .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  |  11 ++
+>   arch/arm64/boot/dts/mediatek/mt7988a.dtsi     | 136 ++++++++++++++++++
+>   4 files changed, 152 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> 
 
