@@ -1,73 +1,63 @@
-Return-Path: <devicetree+bounces-33755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B2B78363CA
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:57:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 064348363D1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 13:58:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEA85282A56
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:57:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C9911F23EBC
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:58:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D09C3BB3A;
-	Mon, 22 Jan 2024 12:56:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94B03BB52;
+	Mon, 22 Jan 2024 12:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="miNlrR4q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AI3+L+0c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE351EEF7
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 12:56:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0583A1C6;
+	Mon, 22 Jan 2024 12:58:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705928218; cv=none; b=J3353EdKd69uaAwB0PI/bGy/Q7qRWZ14p9w2FAuazbdpuA2JkBcisH/zY19gRpMCKQHcd4SE6dkSlGFypThWsh8k81lnrMlsTJANUIi/38yjQxPbsEkL00uAX6uboOi5ZCZThMSs29mKnRD+/hXMkR6JCqh2gUVoKI9uToCOcNE=
+	t=1705928326; cv=none; b=SISWKg5KvMY3yONVuApzeWCCRxau9mfjoKXV1wqi7p8nN+mg0ZDahxjynnOx577elyyCB0uYX/fwxZFTTQM9HpSESYWnEyLsXcA4H9Kt9uenRg0zw9RHFsI9nJAqHYBL+lhE4xw/jav5IeJkzAk7Q7S0ptXJhT2a9VQNJ8CXIPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705928218; c=relaxed/simple;
-	bh=BlS0demiSe1JnEnaX+WGuznDALy44iWE0Vz39zYNSps=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=c6cWMzWspA1weYbWNRphUimClkbU7ff9eY4l9P4CRz4/1osHeuFUr+ruMHEnTu7pDnpd5WlCWHcJ/r/b80qlG5SZU4wS7OJMTurwDR3ow8mp4EI1NywJzqs5/ZaDjkNHq0zwO6lubmiV+CrDvXYQqd4CjVgAiivTOMGE+xMvFfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=miNlrR4q; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40e8d3b29f2so37839005e9.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 04:56:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705928215; x=1706533015; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ihKeGnpC90MvY5sKmPc9CdNDaRZxILAyOx5j+zn8IjQ=;
-        b=miNlrR4q1hGokJr1OzaLsOiABblBee6PCT8lrTN+XrVrEgr1CjDhkRBZktivuzXucE
-         ZxTIb3Dx700i0Mx6C8ESxfIB7yAbYel2JR9JZ6TozgV8MGR9K4xXQhy92TciMYqAymhA
-         79igvr6t3ZzkKrTOpB+F0wv/eusnc4uLhTifzhahHu1UQnKviXl5u5pxL2V50ipKGloH
-         Ke4qZmjdtc2PHzJtzzLSV4u+NG+cNYccB0WuvoeWxk/qEIC1iBTk36zByeaYoKqCzZqM
-         5ozPkC5ri5HJ2eGaALbTiLT0oOdUHbxZbnPSJ5De4MQmj4YvHzYy2hSIe+TJHL81oles
-         h+VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705928215; x=1706533015;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ihKeGnpC90MvY5sKmPc9CdNDaRZxILAyOx5j+zn8IjQ=;
-        b=a+QXEaCaOSpf7Cm37UTVwJovxN/O8NpnSHdURoRLRBklZyWY8StoKZfM/CRwFg2u6D
-         jfhhPTrYanhdKTivvl46aPe8qHF9+cfgBN/wDJ/WVQQMrBX2osE/ffqHHFdBFX2SIEqX
-         PjStDWFozG6T3uKkw18pOtoZ89xu4TrI+kLkiYtBWyju6vfOq92VFEYWDjWm0XQ9OofZ
-         4A5QRzXfajhB+b76LtDy9clgvXCNPoD6SxKpkXkzihJPKbUBFNE9Dko79P474vi3FqEe
-         vQfTXRu4Whi8gj7Zc+kQ+no6KftyrDxORM0sipuhcaxjDlwPVnDjXH5kbfgJwWEvjkhV
-         uK1Q==
-X-Gm-Message-State: AOJu0YwVsHS0h7jN8zDvnOC7B6U3KM1FGzQdrlByNstT/sg8LTFrORV8
-	baawbFoxNLsrMIwz0G6uwre1fgcFqttK2bGDox7FJUjDYHHzzLlenJVUeEGtBo4=
-X-Google-Smtp-Source: AGHT+IEzCfGBrUXua9u+W8n3UjUn/hXCIVAZeFTB8AqYsN7xWeNVTmRrpd8Rjd5nRs+yUifIshxJ5w==
-X-Received: by 2002:a05:600c:4fc5:b0:40e:9d77:ae00 with SMTP id o5-20020a05600c4fc500b0040e9d77ae00mr1679900wmq.254.1705928214891;
-        Mon, 22 Jan 2024 04:56:54 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id bg42-20020a05600c3caa00b0040e3733a32bsm42573762wmb.41.2024.01.22.04.56.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 04:56:54 -0800 (PST)
-Message-ID: <7d87c455-7af5-4339-9088-6015d5847e88@linaro.org>
-Date: Mon, 22 Jan 2024 13:56:51 +0100
+	s=arc-20240116; t=1705928326; c=relaxed/simple;
+	bh=HFZqcUV95VG1QYVSxv5cz6r1X1VcMnGpM8zbzpiW+y8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=brhFnWGqLa6jJZRCmNkoFQFLlsCnvgghrktglgXa2atRA97wzpqE/rhCNLFofjNlZvbeXjMaxRwEaJ155LH3DxE4yCdj5UH775HL+naqlpe98krff6OtZw9IXPHGp5wDYhGqzjCh7XycbQ+qJMjKkorHcb66RduzREGWaCqq2M4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AI3+L+0c; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40M42PxT013123;
+	Mon, 22 Jan 2024 12:58:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=uhFlIPVA8pV+lRHjhhGe3aypD6SMO/ddDP706VtvdYg=; b=AI
+	3+L+0cttCB9J6c8qasc3uH9QOpEQY3odQmc8HsWovMy9khvOeb3wJWoSujcXRxAx
+	0xAxGfr+RxvVGbp88WLP/EIsYA27yWhNi8gGQwc1gB43sqZqe+Ty7xcnfcJohasV
+	gxUt01DJ7wsCRAY2AxZ0jgEcDyywiSzGxFwO7mkOr7vRBaaPTSYO5mUKpITtoVDV
+	8moZdHAFnzJBJZoPV+hKo5ltfbFipDy6GDDlF2e4lDXVcu9RARwIKB+c0x1HAOn1
+	DXa00ECgBZmJ0ngYXMRLzJDohxepoPVpM2tfYkNRM3TbKYL+Ga4EpFAuzp0jA5rY
+	kkZfOcjSmwBTOLdl60WQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vr6xn4044-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Jan 2024 12:58:41 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40MCweqG020607
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Jan 2024 12:58:40 GMT
+Received: from [10.253.14.163] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 22 Jan
+ 2024 04:58:36 -0800
+Message-ID: <17117e8a-e808-4908-985f-932232b1e6ea@quicinc.com>
+Date: Mon, 22 Jan 2024 20:58:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,118 +65,69 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/5] dt-bindings: soc: sophgo: Add Sophgo system
- control module
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: ipq9574: Add PPE device tree node
 Content-Language: en-US
-To: Chen Wang <unicorn_wang@outlook.com>, Chen Wang <unicornxw@gmail.com>,
- aou@eecs.berkeley.edu, chao.wei@sophgo.com, conor@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
- palmer@dabbelt.com, paul.walmsley@sifive.com, richardcochran@gmail.com,
- robh+dt@kernel.org, sboyd@kernel.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, haijiao.liu@sophgo.com,
- xiaoguang.xing@sophgo.com, guoren@kernel.org, jszhang@kernel.org,
- inochiama@outlook.com, samuel.holland@sifive.com
-References: <cover.1705388518.git.unicorn_wang@outlook.com>
- <598b1026fdf9989bc48e5e10d1034b37947d3b80.1705388518.git.unicorn_wang@outlook.com>
- <f4a46311-2e12-458b-98a8-d3caa2c95517@linaro.org>
- <MA0P287MB282232DC6DF6290F5520BA89FE732@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
- <MA0P287MB2822FBA18674540BA85035BDFE712@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
- <c9feb32f-1efb-4613-94c9-9d6bb0f45366@linaro.org>
- <MA0P287MB2822BCB4E43BCB495FCF9069FE752@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <MA0P287MB2822BCB4E43BCB495FCF9069FE752@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
+        <quic_soni@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_souravp@quicinc.com>, <quic_linchen@quicinc.com>,
+        <quic_leiwei@quicinc.com>
+References: <20240110112059.2498-1-quic_luoj@quicinc.com>
+ <20240110112059.2498-2-quic_luoj@quicinc.com>
+ <a42718a9-d0f9-47d9-9ee8-fb520ed2a7a8@linaro.org>
+ <de0ad768-05fa-4bb1-bcbc-0adb28cb2257@quicinc.com>
+ <CAA8EJppeQdB4W8u0ux16pxBBwF_fpt1j-5aC0f849n9_iaaYtQ@mail.gmail.com>
+ <6fc9e65a-709a-4923-b0b3-7c460199417a@quicinc.com>
+ <84366aa2-e51e-4bce-a9d5-2420f1d9db0c@linaro.org>
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <84366aa2-e51e-4bce-a9d5-2420f1d9db0c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Y5YKXXsMobSKxNPKclEV3TvBAd4GDU69
+X-Proofpoint-ORIG-GUID: Y5YKXXsMobSKxNPKclEV3TvBAd4GDU69
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-22_02,2024-01-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ clxscore=1015 mlxscore=0 impostorscore=0 spamscore=0 lowpriorityscore=0
+ phishscore=0 malwarescore=0 suspectscore=0 bulkscore=0 mlxlogscore=914
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401220091
 
-On 22/01/2024 11:11, Chen Wang wrote:
->>>>>> +    $ref: /schemas/clock/sophgo,sg2042-sysclk.yaml#
->>>>>> +    type: object
->>>>> Why isn't this merged here? You do not need the child node really...
->>>>> unless the clock inputs are specific to that clock controller and you
->>>>> will have here more devices? But where are they in such case?
->>>> I don't see more devices will be included later. It should be ok to
->>>> merge them into one.
->>> hi, Krzysztof,
+
+
+On 1/12/2024 10:51 PM, Krzysztof Kozlowski wrote:
+> On 12/01/2024 15:40, Jie Luo wrote:
 >>>
->>> After some double check, I find we will have more devices in
->>> system-control. For example, in the SYS_CTRL area, there is also a
->>> section of registers used to control the "General Purpose Interrupt".
->>> The pcie controller of sg2042 will use this interrupt controller which
->>> is defined in SYS_CTRL, we will add it in later work.
+>>>   From the first glance, the bindings do not follow upstream principles.
+>>> You have all the settings (tdm, port config, etc) in the DT, while
+>>> they should instead go to the driver. Well, unless you expect that the
+>>> board might need to override them.
 >>>
->> I expect then all devices to be documented.
+>> Hi Dmitry,
+>> The TDM configuration varies per SoC type, since the ethernet port
+>> capabilities of the SoCs vary. So we will have two different TDM
+>> configurations for IPQ5332 and IPQ9574 SoC. The driver also will
+>> need to support future SoC, so we choose to configure this from the
+>> DTSI. The same reason applies to the port scheduler config as well.
 > 
-> hi, Krzysztof.
+> Your statements here confirm Dmitry suggestion, so these are not board
+> specific and should go to the driver. Please read again Dmitry's sentences.
 > 
-> First, I'm very sorry for having double-checked with you for this system 
-> controller and child node issue, but this time I'm sure there should be 
-> no more child nodes except the clock and interrupt controllers, though 
-> there are some other registers in SYS_CTRL section, but we will not use 
-> them till now.
+> Best regards,
+> Krzysztof
 > 
-> One question, when you say "to be documented", do you mean I need write 
-> binding/yaml files for other child node? But they exceed the scope of 
-> this patchset (this patchset is for clock support only). That's why I 
 
-That's not true. The scope of this patch is to add DT binding
-description for your device. If you choose any other scope, I don't
-agree and I am not going to provide positive review.
-
-> suggest just add clock-controller in this patchset and to add the 
-> interrupt controller in another patchset for pcie support. This 
-> mechanism should be suitable for our expansion.
-
-How then are you going to solve the requirement: "DO attempt to make
-bindings complete even"?
-
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L17
-
-Best regards,
-Krzysztof
-
+Sure, we will update the driver to configure the TDM depending on the 
+SoC need.
 
