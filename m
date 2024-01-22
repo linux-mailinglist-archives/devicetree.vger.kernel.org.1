@@ -1,98 +1,142 @@
-Return-Path: <devicetree+bounces-33837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59261836CB3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:14:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2555836CFA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:21:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8929C1C25A40
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:14:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54D36B31A01
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731D04D59A;
-	Mon, 22 Jan 2024 16:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FB4664CD2;
+	Mon, 22 Jan 2024 16:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YO8HccBY"
+	dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="HZRfxWW7";
+	dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="bKfCDk0H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailrelay4-1.pub.mailoutpod3-cph3.one.com (mailrelay4-1.pub.mailoutpod3-cph3.one.com [46.30.211.243])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49AF53EA8A;
-	Mon, 22 Jan 2024 16:04:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91E1864CC2
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 16:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.30.211.243
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705939463; cv=none; b=NcrSzmGapqYey+CK7KrT+KLORfWyAjzHx4RVWB/uvDNuHHmztOQeepefAbZcG6d316WNNHNd7KzA0Lq/wuYvWLpxz95NsErEvWE3jyyMjfHuzhpr9kTxsjaID5PS8sb+dSFb2HpH3YifyafQy8Pa621zVVBTkfqnPnbD5u5eXZ0=
+	t=1705939546; cv=none; b=sxYBFYzdk43oxslr431myprvaXQbTBJVURBHsLJRRxlFmnGihynXPufWR9JGYIraZGdjZc2SHXfgp9jKFHyEIu99RghQPJow5DpteNQXh4KLFhvmyiO7GqbwirI92Yzy/6zpGpAwEE5hcLrYJ3VmztxqV2+u93/FWPs378EuM+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705939463; c=relaxed/simple;
-	bh=qLSgpbBBjjg35owhN/n1BlJHspH8+vAvlKmDPma2+BA=;
+	s=arc-20240116; t=1705939546; c=relaxed/simple;
+	bh=z9kt8zQbM3eNnFmXEo3654lPUSRiE75PpypTs9NBlKs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fsX+Vvj2J/cGARBs7VKH4mCCJYW1Vz2al6YyimPnuGj8bfOEtnkUNjiazMtaG1wxFyxkMXZMo3fokLyYYfpvgPtOw0vjkKhBBRS529Rkcc0Txjfy35C8bazWcsbwEnq4j0J7aVmNDRu/GiRtJK3Tk7A9X64Jyu/yagKMOKYgbwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YO8HccBY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9465AC433F1;
-	Mon, 22 Jan 2024 16:04:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705939462;
-	bh=qLSgpbBBjjg35owhN/n1BlJHspH8+vAvlKmDPma2+BA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YO8HccBYFKH8Refu6bMmvbllXSeC0OF/Efvh/rVL0L6W9YV0Fqse3g36Jhh8enxa8
-	 avDc+ZvDTR4gXd4Apqd93gGxsC2E73xQanifhYh4+ovSHe5/cfNIePcaJFo8vtW8Rd
-	 UwJuxO3+dKAumwrow+VsBmGMHfTk0Nc9IzdxyY6rdeTY4nOE3HbIWOGbn7VhqlX3E8
-	 kByuuqEcUtCdrm6Xn+t7eTC/QbXzmdmR6h8OkeENMFm+oGRu0AsUurZSZT4ou9l7yU
-	 Ts34s+romNCTlZefwEMLKEIYUdIWuAEh7IOdaH0cgG4ezmgEzNadC15vpqMUXPyiTx
-	 H6fKjzHZP1ZvA==
-Date: Mon, 22 Jan 2024 10:04:20 -0600
-From: Rob Herring <robh@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Aymeric Aillet <aymeric.aillet@iot.bzh>,
-	Yusuke Goda <yusuke.goda.sx@renesas.com>
-Subject: Re: [PATCH v5 resend 0/4] drivers: clk: renesas: ignore all clocks
- which are assigned to non-Linux system
-Message-ID: <20240122160420.GE601827-robh@kernel.org>
-References: <87edeqgfbu.wl-kuninori.morimoto.gx@renesas.com>
- <CAMuHMdV1GLYZGn_TgYbxfPakkLpUNTsP5hsEk9tUqLzpb5wOdQ@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lf/3uD5MQkLVDL1qVem8ed+5bzI3/PkouSauVW765xTMTcRnXoZ7eCUjckPbeb2lwRt3qEfCL+XSt/nFFFiZRUi9+Q9t56Yao/B+0yuwIcEW9AfXVEMkj98SIKRd2XuEEDVkY9p/WjiImSJ8nG758RyT/WSUphEx8AJba7mOL6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org; spf=none smtp.mailfrom=ravnborg.org; dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=HZRfxWW7; dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=bKfCDk0H; arc=none smtp.client-ip=46.30.211.243
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ravnborg.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ravnborg.org; s=rsa2;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=xAGeSXO7EYCYJmljPUEN1rFUpiw71f4rCC8gSgFu1n8=;
+	b=HZRfxWW7RKvIzlLrWQDFVCTBUG5Jn1GeeZVFbfHhTfHQ1bK6ANABb9Ao3YCp7+9OkCan+DgMbN0gB
+	 7Z6KlrAcBHvLa52KHKbxsUqobDFzMYHyLl6dfJGWrIEFQIKuMaMeLya7L4Eh72a62yQva2BsUtXYIi
+	 +gdaDjCy4jtdh6K9Xj57QU5JN2kgd5whs5nSSgDF4oLqiLpM91y1BC+FQTSm91Qy+iPBuudeeBL0By
+	 3oqdvR5O2eBoJfSzKzc2UkKgr4HXz9su5ap3kEIpK0h0Q+C7KIITFpAYbR3Qv8tCLRpzgdQthfnm38
+	 QbWPO99YbFnwplbHV2K64bQXu/dELTQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+	d=ravnborg.org; s=ed2;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=xAGeSXO7EYCYJmljPUEN1rFUpiw71f4rCC8gSgFu1n8=;
+	b=bKfCDk0HafSg+g3RaIu9TrzIt2gHb++4e++SaoHzG8BuWLN7Mzyav7YHusF+tvo7FeLOMboYIg9IK
+	 gXQFr1jBg==
+X-HalOne-ID: ee3a7b61-b93f-11ee-a7a3-9f04b458b84a
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+	by mailrelay4.pub.mailoutpod3-cph3.one.com (Halon) with ESMTPSA
+	id ee3a7b61-b93f-11ee-a7a3-9f04b458b84a;
+	Mon, 22 Jan 2024 16:04:34 +0000 (UTC)
+Date: Mon, 22 Jan 2024 17:04:33 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Dharma.B@microchip.com
+Cc: robh@kernel.org, Linux4Microchip@microchip.com,
+	linux-pwm@vger.kernel.org, alexandre.belloni@bootlin.com,
+	dri-devel@lists.freedesktop.org, Nicolas.Ferre@microchip.com,
+	Conor.Dooley@microchip.com, thierry.reding@gmail.com,
+	krzysztof.kozlowski+dt@linaro.org, claudiu.beznea@tuxon.dev,
+	airlied@gmail.com, lee@kernel.org, u.kleine-koenig@pengutronix.de,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	tzimmermann@suse.de, mripard@kernel.org,
+	linux-arm-kernel@lists.infradead.org, bbrezillon@kernel.org,
+	linux-kernel@vger.kernel.org, daniel@ffwll.ch
+Subject: Re: [PATCH v3 0/3] Convert Microchip's HLCDC Text based DT bindings
+ to JSON schema
+Message-ID: <20240122160433.GB511247@ravnborg.org>
+References: <20240118092612.117491-1-dharma.b@microchip.com>
+ <20240118193040.GA223383@ravnborg.org>
+ <20240119195151.GB938671-robh@kernel.org>
+ <20240120132356.GA345206@ravnborg.org>
+ <6c6e4ddc-b3df-484e-961f-6efbd52defd6@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdV1GLYZGn_TgYbxfPakkLpUNTsP5hsEk9tUqLzpb5wOdQ@mail.gmail.com>
+In-Reply-To: <6c6e4ddc-b3df-484e-961f-6efbd52defd6@microchip.com>
 
-On Fri, Jan 12, 2024 at 03:21:41PM +0100, Geert Uytterhoeven wrote:
-> Hi Morimoto-san, Rob,
+Hi Dharma,
+On Mon, Jan 22, 2024 at 03:52:17AM +0000, Dharma.B@microchip.com wrote:
+> On 20/01/24 6:53 pm, Sam Ravnborg wrote:
+> > [You don't often get email from sam@ravnborg.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> > 
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > Hi Sam & Rob,
+> > Hi Dharma & Rob.
+> > 
+> >>> To make the DT binding backward compatible you likely need to add a few
+> >>> compatible that otherwise would have been left out - but that should do
+> >>> the trick.
+> >>>
+> >>> The current atmel hlcdc driver that is split in three is IMO an
+> >>> over-engineering, and the driver could benefit merging it all in one.
+> >>> And the binding should not prevent this.
+> >>
+> >> I agree on all this, but a conversion is not really the time to redesign
+> >> things. Trust me, I've wanted to on lots of conversions. It should be
+> >> possible to simplify the driver side while keeping the DT as-is. Just
+> >> make the display driver bind to the MFD node instead. After that, then
+> >> one could look at flattening everything to 1 node.
+> > 
+> > Understood and thinking a bit about it fully agreed as well.
+> > Dharma - please see my comments only as ideas for the future, and
+> > ignore them in this fine rewrite you do.
+> > 
+> >          Sam
+> Based on your insights, I'm contemplating the decision to merge Patch 2 
+> [PWM binding] with Patch 3[MFD binding]. It seems redundant given that 
+> we already have a PWM node example in the MFD binding.
 > 
-> On Wed, Jan 10, 2024 at 2:14 AM Kuninori Morimoto
-> <kuninori.morimoto.gx@renesas.com> wrote:
-> > This is v5 resend of ignoring non Linux system assinged device.
+> Instead of introducing a new PWM binding,
+>    pwm:
+>      $ref: /schemas/pwm/atmel,hlcdc-pwm.yaml
 > 
-> Thanks for the update!
+> I will update the existing MFD binding as follows:
 > 
-> > v5 resend
-> >         - add Acked-by from Rob
+> properties:
+>    compatible:
+>      const: atmel,hlcdc-pwm
 > 
-> You mean Reviewed-by?
-> With an Acked-by, I wouldn't have to ask the next question ;-)
+>    "#pwm-cells":
+>      const: 3
 > 
-> Rob: How to proceed:
->   1. I give my Acked-by, you merge the series?
->   2. You give your Acked-by, I merge the series?
->   3. We do the immutable branch dance?
->        a. You apply 1-3 to an immutable branch
->        b. I merge the immutable branch and apply 4.
+> required:
+>    - compatible
+>    - "#pwm-cells"
 > 
-> You get to choose, as there are more DT than renesas-clk patches ;-)
+As already commented, this looks nice.
+But as Rob said, this should be a 1:1 conversion from text to yaml,
+and then clean-up can come in the second step.
 
-You can take it. I don't give Reviewed-by nor Acked-by if I plan to 
-apply it.
-
-Rob
+	Sam
 
