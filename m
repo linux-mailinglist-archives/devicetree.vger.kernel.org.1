@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-33609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3E8835DA5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:08:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCF25835DAA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 10:09:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10FA71C24181
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:08:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C6B9284D8F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD4B3839A;
-	Mon, 22 Jan 2024 09:08:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83E2538DED;
+	Mon, 22 Jan 2024 09:09:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ahn3+TU8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cGvltBow"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975FF17BD3
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 09:08:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DACC139AC0
+	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 09:09:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705914485; cv=none; b=X7VmLHWSb4Ww9clj+kcjk3+rbgDdGLqZJIeHpS/Ssopm18QQFDsR9qL6v/cEhhFqkmK8E/zVPwuxlOgIvF2m6VaVJXTkCpRzTC9BErthdhIajD1Kmx6tV+o36OgO4XVBwbbUrS8PeEwGhySHcG26JVQ3WCTJP46Gyk9ARXIPdIA=
+	t=1705914577; cv=none; b=G1lwWD7zkBLjfISgzVsLu+AwFEoE2RUpGW5397eo3tvEIUMlYWz3Owp7x7rWS9RGxiGPA4+fzG7VmKcj5JdO1hyJ/lBMLTdfX7LAuTl3MVQ58rJItmLqi61KMNB4LV8ICaNQDTTCFl/M+cPoAdYviR6S9XX/Ykvj7xDEpZlpq5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705914485; c=relaxed/simple;
-	bh=N2BGPbLZMbr5FTgP6usL9l2DhLxB3rh58aJbKCqTZT4=;
+	s=arc-20240116; t=1705914577; c=relaxed/simple;
+	bh=ZjxpmiOF/55LK+7U4df1fBhWZhaQgH+sYpQTXNzHKjc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LwC5cWEr2OU9QRAWHJYVVf1hh1oYSaDYA/8I2iqLW08uL0O0IpMXZUYJc7/p+61zwJTSfWlaZpGw8QYSZ++nlmlG361waVev9fe3HHQhHLU+BGJscGuhxD0Ct7InPfKQWk+zPBNuWxGegX55tcXCxDcUtlFaqsuw+vpsqz/ux7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ahn3+TU8; arc=none smtp.client-ip=209.85.208.169
+	 In-Reply-To:Content-Type; b=d5zUg+J11GZteVAs3aMtjQ5pFULEdbqLAdKgHxUJ+DDpSb9BVabzuAE3QyqMGGf8wQF7PxBxoh+rWWTR8iztDz8A8irBtrNglrBnCap12wzO+H5NaQPyEgf8NE1wxdnGE5d/iKAkLxEbWNn6S8uyjesqtXrHPV4BtLe/6FdtsyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cGvltBow; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2cddb11b2e2so34352001fa.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 01:08:03 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40d6b4e2945so35688625e9.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 01:09:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705914482; x=1706519282; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1705914574; x=1706519374; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xIyqXvY9FI8LQ6DAWc+kw1xWcm3h/hj3La4mo8cVDW0=;
-        b=ahn3+TU8DkBPum9Kkx/ubW9wyofMBdsjsDadoKeoxjOBe0WUq7nXGaUeXeMe1UjckH
-         qzzrosxe6zdHiv9nyVpFuAgFCfZdI927rpUZe+PdRsbR71i2I8abfrWWeoGMi0fUFt8J
-         X5fqFcPXUcW0htY0kkvV/GFIlF0vEeNGjzZPbUTqv2e0E9t2b6JsVR0VfaBGG2ZCr7A8
-         iZLAoz3QH4mYrkXwjstEAF24ls1jGGr4/wX5cU23ptK6AbAFjA3xD2zsLxcWE9mR7b1b
-         Td4ntUWtBiT7j4o+eoat0vM0kglfEuiKR5PkTRJRvNjsJYzfKB+k757cD9ez8/FtiQqb
-         MV/w==
+        bh=d+6NtehlE2YN5KHdi255JL8RfTzLeESAqmv+ObRwbO0=;
+        b=cGvltBow/WDh8xvKnM0aJIKVLYXS4888MdAyhcWLMrFyoyigwGIu34tKGc5A55LQZT
+         RphrftkH5KqYlH9q/JBjlP136SM62+7R2xQNCylQ7CsIW7sf2tZRJm6AbLXPK9CglBW3
+         aHsX7l1GfAQsGa8OLZ3hIO237VFsacsqoq7jkRzOPgk0iCKF8xNt+m0uxcwrMu5X7+b0
+         T9waB8VIK6FuoxjDC/217N6dEQ5wrV0o9YcOuyuVRdT1R7KLMXV2Sz1SKJTXBQk9nWCO
+         dh+ozzb+jUbkMA7OnN+LawSTc0By3xOA3QQ/3G5N0NG02EBl11Wz5aBzDuFFqMDbOsaD
+         IeWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705914482; x=1706519282;
+        d=1e100.net; s=20230601; t=1705914574; x=1706519374;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xIyqXvY9FI8LQ6DAWc+kw1xWcm3h/hj3La4mo8cVDW0=;
-        b=RWdwfx/ScsAz3gyiUJznV3mCtmKB3HX0byVslO7s7IMNn7HjnJ+LpNIfEHSLisNaOk
-         Ry211cOBrZIIA1AtPxhxcuoDZNr4NVkid2oswyAF6uOP/YPjfm8cJ9qwEMHmxJTihJEJ
-         JLZQj6sOa3zCRQJ2UFdWpxEPcXlERXX78fG/PsAfQlXt1kSPvfToHf9mWn74ZDCeo6og
-         iMDSQYIxzGlwqGOE6eHrOY4WtpBRPGqcIwTb1pDDarTQ4HWGgNIHPV0cFuoPZdSyDG1C
-         w6wRrm3Wzq6RBGH/ircYQbmoC2o9EYy+XIBevCbzXjA+CD+sX80/cE1KL8DtJyg96ThP
-         EzoQ==
-X-Gm-Message-State: AOJu0YwawAVmyPlZDwvqRc6Mhw9HshWkVeTlpOVNTjTqXea/r0LKix9p
-	PclsSajw2BFb3sLuxM18bNMmVgBg/yJ72qLVDv7IMlnev6CXw6S6
-X-Google-Smtp-Source: AGHT+IG8LvE5vuQut+03t7wrw+Hk6qgBu1ovVTmu7z5M0yRS93Pk3w89uOplLPlbm5bsAWtmxecksg==
-X-Received: by 2002:a2e:a587:0:b0:2cd:e926:92da with SMTP id m7-20020a2ea587000000b002cde92692damr1935608ljp.88.1705914481375;
-        Mon, 22 Jan 2024 01:08:01 -0800 (PST)
+        bh=d+6NtehlE2YN5KHdi255JL8RfTzLeESAqmv+ObRwbO0=;
+        b=uNMu4U4ey781raOjU0dbktRtvQTtHDYabAqmrN8k3qei3dnl1ojX+PfjZUp1izcXsE
+         EawTEkHmOJ3EHb0/zuvKFblTat8qrZuwTKkK4+pPAOyU/2pb8n0/4pITk/vX5C9ikw0z
+         JppSwHy9N99QTDkeP69U/umTJhhcMbUwvYObU83BUlwoGbd+CVVpPjNIWBC22UbKu5Zk
+         8haY5dZOCyExgjGHOgVo/L+sHXvYhGHQ6zyu9BEzAYmHRJqJrSM1h3o026fWvfVG5/5H
+         E5yOOmV5n+/N9zGcrPNrpz5saNXL6uO3Z35ugzLh9CIl6+leNLfjcU5WxdAkB1R7tjDk
+         O82Q==
+X-Gm-Message-State: AOJu0YwuJBi38C6Ho8gGgofaVR2lDlihpakQzCmoJPKFMUvLTsGxvi7+
+	wMC7jZjNp4A7hxUf9H2SWGVRm2Ab2PeSTVj7eCZIKAv4lTIWTMqw
+X-Google-Smtp-Source: AGHT+IED5WE2zRlpHFEiddYQxsfqkQkCmJFKGimc/D55M9zN5wtFkL3QYG8rtXjZg+mb6yOyRQ/+hg==
+X-Received: by 2002:a05:600c:3b86:b0:40e:aeaa:5cfb with SMTP id n6-20020a05600c3b8600b0040eaeaa5cfbmr273006wms.265.1705914573929;
+        Mon, 22 Jan 2024 01:09:33 -0800 (PST)
 Received: from [192.168.2.177] ([207.188.161.188])
-        by smtp.gmail.com with ESMTPSA id y8-20020a5d4ac8000000b00337af95c1d2sm13255827wrs.14.2024.01.22.01.07.59
+        by smtp.gmail.com with ESMTPSA id y8-20020a5d4ac8000000b00337af95c1d2sm13255827wrs.14.2024.01.22.01.09.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 01:08:00 -0800 (PST)
-Message-ID: <d3149b71-56af-4d93-a576-85f0eea9c262@gmail.com>
-Date: Mon, 22 Jan 2024 10:07:59 +0100
+        Mon, 22 Jan 2024 01:09:32 -0800 (PST)
+Message-ID: <999e2726-9135-4628-b7dd-1dd7aae376d1@gmail.com>
+Date: Mon, 22 Jan 2024 10:09:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,8 +75,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt7986: drop crypto's
- unneeded/invalid clock name
+Subject: Re: [PATCH 1/2] arm64: dts: mediatek: mt7986: fix SPI bus width
+ properties
 Content-Language: en-US, ca-ES, es-ES
 To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
@@ -87,7 +87,7 @@ Cc: Sam Shih <sam.shih@mediatek.com>,
  Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
  =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20231116132411.7665-1-zajec5@gmail.com>
+References: <20231116130952.5099-1-zajec5@gmail.com>
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  xsFNBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
@@ -132,41 +132,59 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20231116132411.7665-1-zajec5@gmail.com>
+In-Reply-To: <20231116130952.5099-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
 
 
-On 16/11/2023 14:24, Rafał Miłecki wrote:
+On 16/11/2023 14:09, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> According to the "inside-secure,safexcel-eip97" binding "clock-names" is
-> required only if there are two clocks specified. If present the first
-> name must by "core".
+> This fixes SPI setup and resolves following validation errors:
+> arch/arm64/boot/dts/mediatek/mt7986a-rfb.dtb: spi_nand@0: Unevaluated properties are not allowed ('spi-rx-buswidth', 'spi-tx-buswidth' were unexpected)
+>          from schema $id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
+> arch/arm64/boot/dts/mediatek/mt7986b-rfb.dtb: spi_nand@0: Unevaluated properties are not allowed ('spi-rx-buswidth', 'spi-tx-buswidth' were unexpected)
+>          from schema $id: http://devicetree.org/schemas/mtd/spi-nand.yaml#
 > 
-> Name "infra_eip97_ck" is invalid and was probably just a typo. Drop it.
-> 
-> Fixes: ecc5287cfe53 ("arm64: dts: mt7986: add crypto related device nodes")
-> Cc: Sam Shih <sam.shih@mediatek.com>
+> Fixes: 885e153ed7c1 ("arm64: dts: mt7986: add spi related device nodes")
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-
-Applied, thanks.
-
 > ---
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 1 -
->   1 file changed, 1 deletion(-)
+
+Both patches applied now. Thanks!
+
+>   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 4 ++--
+>   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 4 ++--
+>   2 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index 24eda00e320d..017168453ec5 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -234,7 +234,6 @@ crypto: crypto@10320000 {
->   				     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
->   			interrupt-names = "ring0", "ring1", "ring2", "ring3";
->   			clocks = <&infracfg CLK_INFRA_EIP97_CK>;
-> -			clock-names = "infra_eip97_ck";
->   			assigned-clocks = <&topckgen CLK_TOP_EIP_B_SEL>;
->   			assigned-clock-parents = <&apmixedsys CLK_APMIXED_NET2PLL>;
->   			status = "disabled";
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> index 3ef371ca254e..bcb3ebb85d70 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> @@ -241,8 +241,8 @@ spi_nand: spi_nand@0 {
+>   		compatible = "spi-nand";
+>   		reg = <0>;
+>   		spi-max-frequency = <10000000>;
+> -		spi-tx-buswidth = <4>;
+> -		spi-rx-buswidth = <4>;
+> +		spi-tx-bus-width = <4>;
+> +		spi-rx-bus-width = <4>;
+>   	};
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+> index dde190442e38..48fe50e67177 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+> @@ -156,8 +156,8 @@ spi_nand: spi_nand@0 {
+>   		compatible = "spi-nand";
+>   		reg = <0>;
+>   		spi-max-frequency = <10000000>;
+> -		spi-tx-buswidth = <4>;
+> -		spi-rx-buswidth = <4>;
+> +		spi-tx-bus-width = <4>;
+> +		spi-rx-bus-width = <4>;
+>   	};
+>   };
+>   
 
