@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-33560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D949F835B84
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:21:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67446835B96
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:29:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52C151F21B85
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:21:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD9871F21D1A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 885CDF4FE;
-	Mon, 22 Jan 2024 07:21:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914F3FBED;
+	Mon, 22 Jan 2024 07:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yn24y9u+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DhPWwvvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F5FDF54;
-	Mon, 22 Jan 2024 07:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 065E3F9C8;
+	Mon, 22 Jan 2024 07:29:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705908070; cv=none; b=mbA6ajFgmHpfWIsOLCiKI0P9dhCZJ8+WMdtIzQo2xxgfR+xgVwCFE9yYJXuvKyemVgTKzylUh/tr4SJv9eitRZ6p8mNN6tVtG8U6RGjkmx4fNKMLTF6K7IPJxgsXTs7Y/4Q7VJXArcrY082txb/TIYJS3B51UQkpM+9iz/oAPyY=
+	t=1705908542; cv=none; b=iCbxhhE7J8xi6197gZZG7SsQ8pQTllCRXYEYCAaeVIEv8adhXfC6mDugJ0zRoh5AyOKrbgsMO0+SYqwSCwhNbhmST81PniR1cqFtMiDVEcd1m+Lbs3I3Z14nv1NvCSL41w80BdcnGu4YKvQ5wb5SV5r2ZK3oGUUokowP9EgcZQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705908070; c=relaxed/simple;
-	bh=QGBSrTkTEzZNL7ZqFhZ+QkNfueNiptTWKimZ4YEt/n4=;
+	s=arc-20240116; t=1705908542; c=relaxed/simple;
+	bh=mjVuk28xGKx++YNM88arr39E7aC+e8ExFCRToXn8ZhM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AGaBvj8erg08W7F5/NcTIM1ZTSj1wW9w+6BzTYVmYSal54E8OXp9ikNk/fxy9ZGXCBYBkmw6k/hCe2+X8YOPrcG/+8rSLPwk6QpLosy27jQZu5ekATs3JW7GCT3Wo7uOgGTZwA3wJ6MO8K2KsKkynv44/Q2ATh/QiGILM3sWFaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yn24y9u+; arc=none smtp.client-ip=209.85.221.52
+	 In-Reply-To:Content-Type; b=c7E+mTl5+0FncmLrURntwmJO+Z/JyTqaDzoICbN4EoiGvgaIQX8QQ29sozzaoXMeCYCQxCJVViQPn3AbdiJukz5fX3GXmQ8D2XK1bXcYToopilxX6zgZl1F2HeNEVlgqp6j9u8hrYQxR4/YyFx5Mu9QLa0Xfxh+ANCfPO3abgTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DhPWwvvh; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-337b8da1f49so2595384f8f.0;
-        Sun, 21 Jan 2024 23:21:08 -0800 (PST)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40e800461baso34971295e9.3;
+        Sun, 21 Jan 2024 23:29:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705908067; x=1706512867; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1705908539; x=1706513339; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=N2xoYW3vwrZLwzBr/kjmxRicWAWxAyGeYufVkjpsFQ0=;
-        b=Yn24y9u+4cTfKD1QaHpwlw8PAz7Btf4jKJGkz2vk57WmTDi4dKDPWk/Ww+xTV+NuZ7
-         W4Lmjzl7rMWVdGYV63W0g+cEnDbBXQfFREmfS5SbTVfZ5Dd+BHnYUzE77xXgzzqtcRU8
-         uyfnagQ9zU3XDNEhMAtcVd8O+/bbHjQpu0YyvkHDE6DFulrIROsfp8wR8Skqo2XxAawt
-         jimdGI0VNxHD4GKAByj944Z6t4sYGO/uZKaeGQ7EE8pQyVdkI8A+svkBpmmf7nH+z5bG
-         6y9GIoo5mYLbeSHzeLrAXn4uXbnaJwVp56/8MyacWLtBVcN1JGJdyeMhY9IrY5VVu2z/
-         fS+Q==
+        bh=lCnmdq66XmjZoBv44BM5Iul1c6YAS75MAAm26+CD69Q=;
+        b=DhPWwvvh3w/INTPcwVKX2jfLX8AVOLlsaXk/wBMvD/ViGAclTJjBsWYNB1Bbw0/Bps
+         gtia6mQx/oBDiqEQo6sp3Kc+oMpETK0s5oTgKlOgP4vKz341CIwxGxe4gZ0z6hWtldLg
+         0nji1k2xxfCGoIH0q3xEZow9j1kY6bZR0mJbyATRID3j+yIWD8sReAEUElVSCi31i9yj
+         VFEa3vxgLwg1Z2eid3V/rZjKJiIIgu2uBdZ0eC3DI/4sfbJq2sFELcCLuU0ZY7ZBo+Uv
+         AjlQV99yv0UAjezN4wmkXY3p26Zcq2kmDcMQLIPsm3mp3fuOc4DBVEZtPsgfWHelRgOf
+         kP6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705908067; x=1706512867;
+        d=1e100.net; s=20230601; t=1705908539; x=1706513339;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N2xoYW3vwrZLwzBr/kjmxRicWAWxAyGeYufVkjpsFQ0=;
-        b=VLCr/BleCTmD7p7ytoTzKCMtSg0/zFJIGryShf4y24YuOE7DwDLiFI1JLo3wYvL8ak
-         JyOyhG421clT8yORsAPoznIL8Qa9PCj9u/dh3yn/cRJpPqr2Hmrz/ZkARcid8zKuf814
-         da5KCyFZBiPtYW89GHM9mFIXT0YhY/reqPRqguQ/0KYsmtFRuySj4H6CXtXlVivQYmOZ
-         rNNBaTbKhSNeCY/h2tTxv0qEPE4uki5Fwqc6p+nfxEXRTGIXwPr6pl4zfsCc5Rv+xy8n
-         VbkSP1Ma0iDfCB5t2AeizaHpU2ELtENmKtGTUBAAtmXPdf7YD/ZxLOPlqmWBwWiz+a4A
-         dUkw==
-X-Gm-Message-State: AOJu0YzFJ7VwayRHXfqkGImGlo54Qlw+hwBXUtBgV6xZmAU4zZjpjLBy
-	EyzBHCOvDD6jJmjAnsJfdPF9Dx40vjigixsyiZBuaf0vVs2PXcrOayMVJsEM
-X-Google-Smtp-Source: AGHT+IFSdUHlPehFk6CdUCFbPc3w/j9QMSEf6x4Izkgt7TGsdoGsXe6HzAKCTiDDW48G4vqg/r18rA==
-X-Received: by 2002:a5d:5752:0:b0:337:a76c:84fb with SMTP id q18-20020a5d5752000000b00337a76c84fbmr954441wrw.38.1705908066561;
-        Sun, 21 Jan 2024 23:21:06 -0800 (PST)
+        bh=lCnmdq66XmjZoBv44BM5Iul1c6YAS75MAAm26+CD69Q=;
+        b=ppIIEI+dyav1loCuF3HTAM0i+xPWScV+X91xVL/TfVzDDHum61qrBtx0P/UGAD78xh
+         RTYswY3HXdkwE2Pin98AnVG9m7uScBP2Htxz64OQ7cBnKseb2nqexXK5mk5YK2V/ZSXb
+         NOwI9ytKvdITUFfMzcu3YajajSFo9hjjUPwijA+6mHM9jkOmTbP75QbBnj7DWfvrhF2w
+         eK8ylzlsLRZgIMXClhpY8co6N3bv61912b0FelUq0/sM0ygCLZU/TbvpZaRueK0dXm6v
+         OK1KIed1X4xBRladhtC6k8+g2cRv33BT5QWdu3CPZqMwnHPk3VzkKPTa7Ob9o82fjEBA
+         AXVg==
+X-Gm-Message-State: AOJu0YxHlxSIxbrkA5URrGmBl7W4lz/Vuf3WB6i0GiUYx/H89AvRy1m4
+	dCvy4ovSigo1EfUb2CerjLGNpDpecEng7LRXOE+mJ6IbuNZEKwrP
+X-Google-Smtp-Source: AGHT+IFDqWE0bKaWplinhKBKsebEIUM6fNGea7VOyi6s7g6ktFVDEYnKaJ3WD+0OmZgk6Q9UKMAAcw==
+X-Received: by 2002:a05:600c:2213:b0:40e:702c:3430 with SMTP id z19-20020a05600c221300b0040e702c3430mr943239wml.212.1705908539067;
+        Sun, 21 Jan 2024 23:28:59 -0800 (PST)
 Received: from [192.168.2.177] ([207.188.161.188])
-        by smtp.gmail.com with ESMTPSA id d12-20020adfe88c000000b00337be3b02aasm13076149wrm.100.2024.01.21.23.21.04
+        by smtp.gmail.com with ESMTPSA id c2-20020a5d4cc2000000b003392d3dcf60sm3912210wrt.88.2024.01.21.23.28.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Jan 2024 23:21:05 -0800 (PST)
-Message-ID: <a0716d15-3956-4555-9bea-c6032579027d@gmail.com>
-Date: Mon, 22 Jan 2024 08:21:04 +0100
+        Sun, 21 Jan 2024 23:28:58 -0800 (PST)
+Message-ID: <035bd556-f9a3-4255-907f-5e119f94c976@gmail.com>
+Date: Mon, 22 Jan 2024 08:28:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,21 +75,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: mt8183: Move CrosEC base detection node to
- kukui-based DTs
+Subject: Re: [PATCH 04/15] arm64: dts: mediatek: radxa-nio-12l: Add external
+ MT6360 PMIC on I2C6
 Content-Language: en-US, ca-ES, es-ES
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Enric Balletbo i Serra <eballetbo@kernel.org>,
- Ikjoon Jang <ikjn@chromium.org>, Stephen Boyd <swboyd@chromium.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-mediatek@lists.infradead.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, wenst@chromium.org, hsinyi@chromium.org,
+ nfraprado@collabora.com, macpaul.lin@mediatek.com, sean.wang@mediatek.com,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com
-References: <20240116-mt8183-kukui-cbas-remove-v3-1-055e21406e86@collabora.com>
- <720dc418-16f7-473c-b33c-f0c9786c02e2@collabora.com>
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+References: <20240112094632.66310-1-angelogioacchino.delregno@collabora.com>
+ <20240112094632.66310-5-angelogioacchino.delregno@collabora.com>
+ <6a1d612a-200e-4868-8577-49de933cf2bb@linaro.org>
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  xsFNBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
@@ -134,117 +133,25 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <720dc418-16f7-473c-b33c-f0c9786c02e2@collabora.com>
+In-Reply-To: <6a1d612a-200e-4868-8577-49de933cf2bb@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 
 
-On 17/01/2024 11:14, AngeloGioacchino Del Regno wrote:
-> Il 16/01/24 22:38, Nícolas F. R. A. Prado ha scritto:
->> The cbas node is used to describe base detection functionality in the
->> ChromeOS EC, which is used for units that have a detachable keyboard and
->> thus rely on this functionality to switch between tablet and laptop
->> mode.
+On 16/01/2024 09:16, Krzysztof Kozlowski wrote:
+> On 12/01/2024 10:46, AngeloGioacchino Del Regno wrote:
+>> In preparation for adding the power tree for this board, add a node for
+>> the MT6360 PMIC, connected to I2C6.
 >>
->> Despite the original commit having added the cbas node to the
->> mt8183-kukui.dtsi, not all machines that include it are detachables. In
->> fact all machines that include from mt8183-kukui-jacuzzi.dtsi are either
->> clamshells (ie normal laptops) or convertibles, meaning the keyboard can
->> be flipped but not detached. The detection for the keyboard getting
->> flipped is handled by the driver bound to the keyboard-controller node
->> in the EC.
->>
->> Move the base detection node from the base kukui dtsi to the dtsis where
->> all machines are detachables, and thus actually make use of the node.
->>
->> Fixes: 4fa8492d1e5b ("arm64: dts: mt8183: add cbas node under cros_ec")
->> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > 
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
+> Why do you add new device in pieces? Logical change is "new device", not
 
-Applied, thanks!
+Well we have done that in the past, so somehow for MediaTek tree that's ok to 
+do. From my personal maintainer position it's easier to review 15 small patches 
+then one or two huge ones.
 
->> ---
->> Changes in v3:
->> - Instead of deleting the node in jacuzzi, moved the node from kukui to
->>    the dtsis including kukui that are detachables
->>
->> Changes in v2:
->> - Moved cbas node removal to jacuzzi dtsi
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi | 4 ++++
->>   arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi | 4 ++++
->>   arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi  | 4 ++++
->>   arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi        | 4 ----
->>   4 files changed, 12 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi 
->> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
->> index b6a9830af269..bfb9e42c8aca 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
->> @@ -360,6 +360,10 @@ pen_eject {
->>   };
->>   &cros_ec {
->> +    cbas {
->> +        compatible = "google,cros-cbas";
->> +    };
->> +
->>       keyboard-controller {
->>           compatible = "google,cros-ec-keyb-switches";
->>       };
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi 
->> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
->> index 306c95166f3f..5c1bf6a1e475 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
->> @@ -339,6 +339,10 @@ touch_pin_reset: pin_reset {
->>   };
->>   &cros_ec {
->> +    cbas {
->> +        compatible = "google,cros-cbas";
->> +    };
->> +
->>       keyboard-controller {
->>           compatible = "google,cros-ec-keyb-switches";
->>       };
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi 
->> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
->> index 382e4c6d7191..0f5fa893a774 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
->> @@ -343,6 +343,10 @@ rst_pin {
->>   };
->>   &cros_ec {
->> +    cbas {
->> +        compatible = "google,cros-cbas";
->> +    };
->> +
->>       keyboard-controller {
->>           compatible = "google,cros-ec-keyb-switches";
->>       };
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi 
->> b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
->> index 5506de83f61d..66eb099e15f0 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
->> @@ -937,10 +937,6 @@ usbc_extcon: extcon0 {
->>               google,usb-port-id = <0>;
->>           };
->> -        cbas {
->> -            compatible = "google,cros-cbas";
->> -        };
->> -
->>           typec {
->>               compatible = "google,cros-ec-typec";
->>               #address-cells = <1>;
->>
->> ---
->> base-commit: 0f067394dd3b2af3263339cf7183bdb6ee0ac1f8
->> change-id: 20240116-mt8183-kukui-cbas-remove-657b62aeced6
->>
->> Best regards,
-> 
+Regards,
+Matthias
 
