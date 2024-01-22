@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-33567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7E82835C2F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:59:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B16835C37
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 09:03:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BE40B27C9B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 07:59:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 059A9286287
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 08:03:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E9217C80;
-	Mon, 22 Jan 2024 07:58:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0A517C8B;
+	Mon, 22 Jan 2024 08:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W3mrroVC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iSeWhYHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FD3521357;
-	Mon, 22 Jan 2024 07:58:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7DA17C68;
+	Mon, 22 Jan 2024 08:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705910325; cv=none; b=bi7y/zlpO116FxAUuvkRZtMiEpgkLB9/DSnRtyDk6u+FuKNSpTy2lTHX8tG26IGYqP6pYe6bfxTA/bojls2p6xUCJz7kmJKtsewpEDoBE9gXIaxoFRiQrFFNv3NbWOyntd8RVlD/Z4uaO8Oi6Eq+6tDSQgGjk6l2swGvsDKhu70=
+	t=1705910581; cv=none; b=KwidRjN/8oNCYyYvUckE0TzwGgvV/7MUS6e7hhgBaLcm4Kjx79PMjQDaB1kx2xTkjzdpiVa3l0rupJPs9/3MVX9rPUqm/NrISr+x7r+ngl/5t6Z4s0QEce/PAhqBnY5RmNA7McO2wlOni4Zg7xGZPnltJI3g2HW5OzcXHrcQCqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705910325; c=relaxed/simple;
-	bh=+3IAS6+W/qcg3J4V0kzEHae3ZXvyn9+YYU9OGB9iGxY=;
+	s=arc-20240116; t=1705910581; c=relaxed/simple;
+	bh=WCL2HAPFSfzn/qaSLH4XXDInqiOUekK9lc9KWvkOr9U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q0BhLHTsbZeIGrtPcu77AnvCZwoiXjEs1ZZomAPxo/Z7Fs9mRqeZPYIshi/hgNaBfjKLJ7H1St9V0Lw1rkuSpsSPUCDd4fatCz9jQevgTMwLCH+D3VJYuiBXGJOufZBry/abZp4zd2Cpsb44E0iyjO+oMqekDOJ3+fh98Pkdx78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W3mrroVC; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:Content-Type; b=K+hVp34bUeBwF7Y0Y1J1ghtvyRX6xQynYkM6pqrMBfN09+5txs5edZk083bXex+25KizpVHzGrFP8Lp4NLU71sVAHN6gAdFWhHPJHWbxjQMi7hN3zUZZaw9UhCkmFKtco03hVCR8ou13mJL43eI3L5fWoGB+t0T13KgbBuScGdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iSeWhYHO; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40e9d4ab5f3so31721505e9.2;
-        Sun, 21 Jan 2024 23:58:43 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-336c8ab0b20so2865759f8f.1;
+        Mon, 22 Jan 2024 00:02:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705910322; x=1706515122; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1705910578; x=1706515378; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9nVtX6sIVg5JIaktwIHIF/8UXqbp4BOA0LlFNe3QMMA=;
-        b=W3mrroVCVzq6cHnNodR1YKWta7bOeJmp4f9429iusQzgYwPy4OXxPqmbb3u0qR+eQI
-         ZgYx1k46HU/WlFpHpAvpmCDs9gVhQOI9gSrt4CpenNdNNl7Ss1508FsWA4Wc2C2BUvUX
-         fSufYx4o3mPXeHE74kZ4zH+0t64EOt4FHzYuwp95JFFa8Gs3s8CB8cCXOvZWuo3qTtUs
-         wGFpNTUqM88/SPIvy/35YF3VZe2UESINGh3y5s9pp2HhiWRUAY3qv9xVuYa/TFs8te7c
-         MFfMVhPYj2zo/8nzD16BzIi1bZvICag3AIig9OzI1gzSOiNNu6kN59LNT0PUbbC8hKk8
-         6W+g==
+        bh=gQQhKweIL/MfaRqaUUsl9viWbACAS6aXTW7gfUp7M7k=;
+        b=iSeWhYHOzdaQLISrQm7r4+8uIEub4k4cXbINumB3nNPVlnRLZ60i/fpdjATZQ0l2+I
+         7P0sFWSwPPrgT2bHKgfYQBjHDbGbFk+OgE23FEXq3GJ6OCPEMkAx3N4M5x7zKIJ7KtM7
+         ZkAAgSb51nn5r3LKjUDBBCcwmpe+8kN9sX38xVBWHOz9yUYiydN8s5oPTpiBmmeysZAX
+         yGkD+faZYd8z5A4r1RKHipW4vygaRnWs+j5SIXZuRipFdtS9Oe78wSna2ZU/aDzN+pqy
+         GLlaFWMf4G46m4qDLmV2ky845222hIM44HzKHZQJNvsIxgmyZq5H/zs+MmVZK9/NnO/z
+         Yymw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705910322; x=1706515122;
+        d=1e100.net; s=20230601; t=1705910578; x=1706515378;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9nVtX6sIVg5JIaktwIHIF/8UXqbp4BOA0LlFNe3QMMA=;
-        b=LZ9/ZKGCaXzUBc8bKFwKoM95HgAHxssSbnjhQwKDFdidOumBw3T/w1zX5njeexq/hn
-         RiOPKy4DMxfQCGmJtXtAuumtqPlvJUVe3J3HZBs5LmLziofbrvNyW2nxsgpEndZatbez
-         oT2iRyLqpSuEM9wYGMNrwij2degmpjWXnklLsMWPFscjJO8DzXGzdgLooLkI4EJDbRoY
-         VRpDuxFykeCe78PIFKmG2/gVxTckR9Ijfzp+RJWPip5YFsCDgzqWIIHMoT/gYdV/Y7xo
-         WR011mHpr1Q19NN22NP3EZtTCKj2lvjIzWgPwFWgq8jt284KxzGGSnIHiQeNjjJ+ha5U
-         JrHA==
-X-Gm-Message-State: AOJu0YwJ84dq9Uau6+9tUool4iIIxDCUILEh5EhNa+7HuPkn6ETGPoGK
-	G7Ri7cRGPzmFvJbB2qeygX2HgkyipHqcxBXDB87ph4jWPsSih3snvkq+rbQg
-X-Google-Smtp-Source: AGHT+IFtddpIUtG+IVjYJjKBn8rjq14p00XlUywXjdfxArHpyN/4Lwp/RrZ0YgkMrSEcgdjBXUlEDw==
-X-Received: by 2002:a05:600c:2353:b0:40e:8999:6c45 with SMTP id 19-20020a05600c235300b0040e89996c45mr2020997wmq.83.1705910321514;
-        Sun, 21 Jan 2024 23:58:41 -0800 (PST)
+        bh=gQQhKweIL/MfaRqaUUsl9viWbACAS6aXTW7gfUp7M7k=;
+        b=UmMUKOP/K3NBBuNKgF5bmjhgLKPmAtvMBMO1Mi2rMak0cFr2KPfBnRwsXAdyuWiDSk
+         NMLeEy8LaZpO7UxYEgp+u94PiLzKicTl5q/Th6ZB8oLK8nlQ0EFthguygo35Rn+UlDZk
+         puz7/AgiZhrwWOvB/eMxUIcz5VujVndZGDq2bVzHLzqngaHlu0PxkYSTIAR+a69f2/xy
+         Vwjq2zhf+EmUsFlkBj7rlytPu7f3PFBe0cQ1tdNNY21RE5UEMtCLbY50ZFwq2uiv/nBq
+         ICYVBwl4YwtkLIkKoVBn1uiTqZKrLJEQPsHh6CPagVSe9uWIorEn71qqxBfByyjzyX5Z
+         WfCA==
+X-Gm-Message-State: AOJu0YzXhp6+y8IouhWZHAeiIavsnIEkzg+nq5dsFNCzYSZ7pR1FZFs/
+	StsLUKjcEdAaLgmLPH7Bsh6nynd0v/jmgSU4AZUwLqJT9hLtz//m
+X-Google-Smtp-Source: AGHT+IG9+JuJqbT2TuU8J7qhPDQqp/HN08f8j/6H+CK0ZJJJOenew6gN7m8yBjpTbDcLQA3dWIudrA==
+X-Received: by 2002:adf:fa04:0:b0:337:c528:c0e8 with SMTP id m4-20020adffa04000000b00337c528c0e8mr2558951wrr.49.1705910577824;
+        Mon, 22 Jan 2024 00:02:57 -0800 (PST)
 Received: from [192.168.2.177] ([207.188.161.188])
-        by smtp.gmail.com with ESMTPSA id l34-20020a05600c1d2200b0040e89ade84bsm17815626wms.4.2024.01.21.23.58.39
+        by smtp.gmail.com with ESMTPSA id b13-20020a05600010cd00b003392c1f40acsm4527284wrx.28.2024.01.22.00.02.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 21 Jan 2024 23:58:40 -0800 (PST)
-Message-ID: <5bf2910f-c184-4681-a474-69bea8ee7b71@gmail.com>
-Date: Mon, 22 Jan 2024 08:58:39 +0100
+        Mon, 22 Jan 2024 00:02:56 -0800 (PST)
+Message-ID: <d16723a6-5602-4fa8-9cfc-589846b75f5b@gmail.com>
+Date: Mon, 22 Jan 2024 09:02:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,17 +75,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] usb: mtu3: Add MT8195 MTU3 ip-sleep wakeup support
+Subject: Re: [PATCH v4 1/9] dt-bindings: arm: mediatek: Sort entries by SoC
+ then board compatibles
 Content-Language: en-US, ca-ES, es-ES
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- chunfeng.yun@mediatek.com
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20240112133222.240038-1-angelogioacchino.delregno@collabora.com>
- <20240112133222.240038-2-angelogioacchino.delregno@collabora.com>
+To: Chen-Yu Tsai <wenst@chromium.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Eugen Hristev <eugen.hristev@collabora.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20231213150435.4134390-1-wenst@chromium.org>
+ <20231213150435.4134390-2-wenst@chromium.org>
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  xsFNBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
@@ -130,81 +132,201 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20240112133222.240038-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231213150435.4134390-2-wenst@chromium.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 12/01/2024 14:32, AngeloGioacchino Del Regno wrote:
-> Add support for the ip-sleep wakeup functionality on the three MTU3
-> controllers found on the MT8195 SoC.
+On 13/12/2023 16:04, Chen-Yu Tsai wrote:
+> Some of the new MediaTek board entries were inserted in a chronological
+> order, or just randomly. This makes it harder to search for an entry.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   drivers/usb/mtu3/mtu3_host.c | 31 +++++++++++++++++++++++++++++++
->   1 file changed, 31 insertions(+)
+> Sort the entries by first grouping by SoC, then sorting by board
+> compatible strings. Also add a comment at the top asking people to do
+> the same.
 > 
-> diff --git a/drivers/usb/mtu3/mtu3_host.c b/drivers/usb/mtu3/mtu3_host.c
-> index 9f2be22af844..85f49e00e8db 100644
-> --- a/drivers/usb/mtu3/mtu3_host.c
-> +++ b/drivers/usb/mtu3/mtu3_host.c
-> @@ -34,6 +34,19 @@
->   #define WC0_SSUSB0_CDEN		BIT(6)
->   #define WC0_IS_SPM_EN		BIT(1)
->   
-> +/* mt8195 */
-> +#define PERI_WK_CTRL0_8195	0x04
-> +#define WC0_IS_P_95		BIT(30)	/* polarity */
-> +#define WC0_IS_C_95(x)		((u32)(((x) & 0x7) << 27))
-> +#define WC0_IS_EN_P3_95		BIT(26)
-> +#define WC0_IS_EN_P2_95		BIT(25)
-> +#define WC0_IS_EN_P1_95		BIT(24)
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Not used, shouldn't we drop that?
+Does not apply cleanly, would you mind to rebase the whole series onto v6.8-rc1.
 
 Regards,
 Matthias
 
-> +
-> +#define PERI_WK_CTRL1_8195	0x20
-> +#define WC1_IS_C_95(x)		((u32)(((x) & 0xf) << 28))
-> +#define WC1_IS_P_95		BIT(12)
-> +#define WC1_IS_EN_P0_95		BIT(6)
-> +
->   /* mt2712 etc */
->   #define PERI_SSUSB_SPM_CTRL	0x0
->   #define SSC_IP_SLEEP_EN	BIT(4)
-> @@ -44,6 +57,9 @@ enum ssusb_uwk_vers {
->   	SSUSB_UWK_V2,
->   	SSUSB_UWK_V1_1 = 101,	/* specific revision 1.01 */
->   	SSUSB_UWK_V1_2,		/* specific revision 1.02 */
-> +	SSUSB_UWK_V1_3,		/* mt8195 IP0 */
-> +	SSUSB_UWK_V1_5 = 105,	/* mt8195 IP2 */
-> +	SSUSB_UWK_V1_6,		/* mt8195 IP3 */
->   };
->   
->   /*
-> @@ -70,6 +86,21 @@ static void ssusb_wakeup_ip_sleep_set(struct ssusb_mtk *ssusb, bool enable)
->   		msk = WC0_SSUSB0_CDEN | WC0_IS_SPM_EN;
->   		val = enable ? msk : 0;
->   		break;
-> +	case SSUSB_UWK_V1_3:
-> +		reg = ssusb->uwk_reg_base + PERI_WK_CTRL1_8195;
-> +		msk = WC1_IS_EN_P0_95 | WC1_IS_C_95(0xf) | WC1_IS_P_95;
-> +		val = enable ? (WC1_IS_EN_P0_95 | WC1_IS_C_95(0x1)) : 0;
-> +		break;
-> +	case SSUSB_UWK_V1_5:
-> +		reg = ssusb->uwk_reg_base + PERI_WK_CTRL0_8195;
-> +		msk = WC0_IS_EN_P2_95 | WC0_IS_C_95(0x7) | WC0_IS_P_95;
-> +		val = enable ? (WC0_IS_EN_P2_95 | WC0_IS_C_95(0x1)) : 0;
-> +		break;
-> +	case SSUSB_UWK_V1_6:
-> +		reg = ssusb->uwk_reg_base + PERI_WK_CTRL0_8195;
-> +		msk = WC0_IS_EN_P3_95 | WC0_IS_C_95(0x7) | WC0_IS_P_95;
-> +		val = enable ? (WC0_IS_EN_P3_95 | WC0_IS_C_95(0x1)) : 0;
-> +		break;
->   	case SSUSB_UWK_V2:
->   		reg = ssusb->uwk_reg_base + PERI_SSUSB_SPM_CTRL;
->   		msk = SSC_IP_SLEEP_EN | SSC_SPM_INT_EN;
+> ---
+> Changes since v3:
+> - Collected reviewed-by from Angelo
+> Changes since v2:
+> - none
+> Changes since v1:
+> - Collected ack from Conor
+> ---
+>   .../devicetree/bindings/arm/mediatek.yaml     | 123 +++++++++---------
+>   1 file changed, 62 insertions(+), 61 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index a5999b3afc35..60337b439744 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -17,6 +17,7 @@ properties:
+>       const: '/'
+>     compatible:
+>       oneOf:
+> +      # Sort by SoC (last) compatible, then board compatible
+>         - items:
+>             - enum:
+>                 - mediatek,mt2701-evb
+> @@ -129,71 +130,10 @@ properties:
+>             - enum:
+>                 - mediatek,mt8173-evb
+>             - const: mediatek,mt8173
+> -      - items:
+> -          - enum:
+> -              - mediatek,mt8183-evb
+> -          - const: mediatek,mt8183
+> -      - description: Google Hayato rev5
+> -        items:
+> -          - const: google,hayato-rev5-sku2
+> -          - const: google,hayato-sku2
+> -          - const: google,hayato
+> -          - const: mediatek,mt8192
+> -      - description: Google Hayato
+> -        items:
+> -          - const: google,hayato-rev1
+> -          - const: google,hayato
+> -          - const: mediatek,mt8192
+> -      - description: Google Spherion rev4 (Acer Chromebook 514)
+> -        items:
+> -          - const: google,spherion-rev4
+> -          - const: google,spherion
+> -          - const: mediatek,mt8192
+> -      - description: Google Spherion (Acer Chromebook 514)
+> -        items:
+> -          - const: google,spherion-rev3
+> -          - const: google,spherion-rev2
+> -          - const: google,spherion-rev1
+> -          - const: google,spherion-rev0
+> -          - const: google,spherion
+> -          - const: mediatek,mt8192
+> -      - description: Acer Tomato (Acer Chromebook Spin 513 CP513-2H)
+> -        items:
+> -          - enum:
+> -              - google,tomato-rev2
+> -              - google,tomato-rev1
+> -          - const: google,tomato
+> -          - const: mediatek,mt8195
+> -      - description: Acer Tomato rev3 - 4 (Acer Chromebook Spin 513 CP513-2H)
+> -        items:
+> -          - const: google,tomato-rev4
+> -          - const: google,tomato-rev3
+> -          - const: google,tomato
+> -          - const: mediatek,mt8195
+> -      - items:
+> -          - enum:
+> -              - mediatek,mt8186-evb
+> -          - const: mediatek,mt8186
+> -      - items:
+> -          - enum:
+> -              - mediatek,mt8192-evb
+> -          - const: mediatek,mt8192
+> -      - items:
+> -          - enum:
+> -              - mediatek,mt8195-demo
+> -              - mediatek,mt8195-evb
+> -          - const: mediatek,mt8195
+>         - description: Google Burnet (HP Chromebook x360 11MK G3 EE)
+>           items:
+>             - const: google,burnet
+>             - const: mediatek,mt8183
+> -      - description: Google Krane (Lenovo IdeaPad Duet, 10e,...)
+> -        items:
+> -          - enum:
+> -              - google,krane-sku0
+> -              - google,krane-sku176
+> -          - const: google,krane
+> -          - const: mediatek,mt8183
+>         - description: Google Cozmo (Acer Chromebook 314)
+>           items:
+>             - const: google,cozmo
+> @@ -244,6 +184,13 @@ properties:
+>                 - google,kodama-sku32
+>             - const: google,kodama
+>             - const: mediatek,mt8183
+> +      - description: Google Krane (Lenovo IdeaPad Duet, 10e,...)
+> +        items:
+> +          - enum:
+> +              - google,krane-sku0
+> +              - google,krane-sku176
+> +          - const: google,krane
+> +          - const: mediatek,mt8183
+>         - description: Google Willow (Acer Chromebook 311 C722/C722T)
+>           items:
+>             - enum:
+> @@ -251,10 +198,64 @@ properties:
+>                 - google,willow-sku1
+>             - const: google,willow
+>             - const: mediatek,mt8183
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8183-evb
+> +          - const: mediatek,mt8183
+>         - items:
+>             - enum:
+>                 - mediatek,mt8183-pumpkin
+>             - const: mediatek,mt8183
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8186-evb
+> +          - const: mediatek,mt8186
+> +      - description: Google Hayato
+> +        items:
+> +          - const: google,hayato-rev1
+> +          - const: google,hayato
+> +          - const: mediatek,mt8192
+> +      - description: Google Hayato rev5
+> +        items:
+> +          - const: google,hayato-rev5-sku2
+> +          - const: google,hayato-sku2
+> +          - const: google,hayato
+> +          - const: mediatek,mt8192
+> +      - description: Google Spherion (Acer Chromebook 514)
+> +        items:
+> +          - const: google,spherion-rev3
+> +          - const: google,spherion-rev2
+> +          - const: google,spherion-rev1
+> +          - const: google,spherion-rev0
+> +          - const: google,spherion
+> +          - const: mediatek,mt8192
+> +      - description: Google Spherion rev4 (Acer Chromebook 514)
+> +        items:
+> +          - const: google,spherion-rev4
+> +          - const: google,spherion
+> +          - const: mediatek,mt8192
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8192-evb
+> +          - const: mediatek,mt8192
+> +      - description: Acer Tomato (Acer Chromebook Spin 513 CP513-2H)
+> +        items:
+> +          - enum:
+> +              - google,tomato-rev2
+> +              - google,tomato-rev1
+> +          - const: google,tomato
+> +          - const: mediatek,mt8195
+> +      - description: Acer Tomato rev3 - 4 (Acer Chromebook Spin 513 CP513-2H)
+> +        items:
+> +          - const: google,tomato-rev4
+> +          - const: google,tomato-rev3
+> +          - const: google,tomato
+> +          - const: mediatek,mt8195
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8195-demo
+> +              - mediatek,mt8195-evb
+> +          - const: mediatek,mt8195
+>         - items:
+>             - enum:
+>                 - mediatek,mt8365-evk
 
