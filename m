@@ -1,188 +1,111 @@
-Return-Path: <devicetree+bounces-33829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E1D7836CBD
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:15:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CF95836C67
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:04:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C869AB3128D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:00:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 237041F26B48
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:04:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC4F482CD;
-	Mon, 22 Jan 2024 15:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E59487B5;
+	Mon, 22 Jan 2024 15:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HdS7dzKc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fu5qJG7R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5713E482C9
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 15:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07122487AC;
+	Mon, 22 Jan 2024 15:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705937905; cv=none; b=rO6v6pi3F91JUTOxWwdbFkPgYK+XNmokVEHuo3UDxTBtnxlYcxgmykx0/8uobjPj3L1IBBMsiMD71pRVANathLYCcIZi6KxgM1IIrtYBpycb88swVQLg0DzHHKcJ9q+9fgvOQOBwauMSVm4oPoa2EOAsnO0pA2P7nVF70gbRsIo=
+	t=1705938431; cv=none; b=Kq9GZcIWcEEihMYmyXr6a4V2ssSqibDasTkZN9oUht3/qefhZ81V55p7QVKF65USCiY8dmad7SHZ7NikgjyvUiMLvWdvTyTOfVqOKGmvzrq4YRxg033GyYLHYwWUdhWhEiYMn3/bYsy9FW9vb7ajXMscEzDoQakV5UVKmjZ4snw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705937905; c=relaxed/simple;
-	bh=JrTlR1yh1kUdkwX7KafITLJvsRjLZG25nzdjxKTbheM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=TyVEY7crss5bZTLNM8QueyqFcV9oPZDqSKln4Op2QwyVtHxxsWhSqGZlJy0d49Aac34MFOXi9iHws6I7CAaENv4UG7yJWoXIjSSK7I0J6VljgOSxlnmOfLJgM1BbqwSsuWnGLHzcRuhkUDst9thYFHdZZq5gaVRMkBVzkShF22w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HdS7dzKc; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40e9d4ab5f3so36121255e9.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 07:38:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705937901; x=1706542701; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wjrEpWeMJdq09/Vth3t/64U8dNgnTEbo+R/yOccaErE=;
-        b=HdS7dzKcRiF18BSJIuqaayov2/RNaqOKRLp+sMT0eYiq45sT+r/AxHBXRcm/KaWbL+
-         SGDpcuGIOWKA42pfhTZty785ww9UsLRop2TadwxpcUEQA4XXEgXqbuf4KiQ2NBebfDb+
-         aedeJOEoL6w9tCI2ktWUoaBt4JB/U3HcSySceib8X9mBU9v7FkSn4AgvWyrEEJxnZnPr
-         gS4gahNqWuuu/m+v5tnM9Hh7Q5xjUMhnzTNrKFzBxoO+Yu8406VZl3gMdohjljrfO6+5
-         V/FfcZY6JSOVnyur7MkH4dJjtlF4omuYYSz8DS6S/xFhVwEOsmMZQjYbEkCM1swn1uTN
-         sxgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705937901; x=1706542701;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wjrEpWeMJdq09/Vth3t/64U8dNgnTEbo+R/yOccaErE=;
-        b=LosjpQcYCntnz0QISHdnsT8lJyXVIiivRswdgN5QlV+bG7v5aoT8pBE5Ua/tYpDHg5
-         VYJzwZ0LYGQKTx9jzIUKRQQ9jg7q/Pkd+ySsDpYeP4GZwKB1kkd3pHt+3lhIZKxcRI1W
-         zpmKCEcCb/j8PwfUAiavR71xw1mbhPiPK7ABoBxASyerNqoM8BnZodET4i1cuD0zCagH
-         nnAaODMn8m6YwlvezqMEcDub6nILTdjB4OQS2Bia5ZW4yv7+fq8UdUQEJ3UE1oPmFqWa
-         rjeecIW97r44NnoiGBbcGDSpeVhjDcHR3qBMuWnbNgnloHbBq43cU4mW0ZBRLk0RhNOz
-         dDgA==
-X-Gm-Message-State: AOJu0YziLWam0dvsamuU0wnPjJ9TSOHk88oJajR7eGzR5/e+KwLLD0kQ
-	66oozjqAwsr53B/XjZ5DvQXCZG5Gb+rpDhCzx4giTSiIntUBAFUslofkq9qf38w=
-X-Google-Smtp-Source: AGHT+IHtTraeTNo/j0x8myQ20pblTIX4ITUkbtxQP7MBf8dxu4qn14b7VISoC/ZpBbAhfDC9W4fc2w==
-X-Received: by 2002:a05:600c:3d0e:b0:40e:6272:b5ac with SMTP id bh14-20020a05600c3d0e00b0040e6272b5acmr2456111wmb.99.1705937901536;
-        Mon, 22 Jan 2024 07:38:21 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id h5-20020a05600c314500b0040e5e21cd7bsm38969066wmo.11.2024.01.22.07.38.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Jan 2024 07:38:21 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 22 Jan 2024 16:38:17 +0100
-Subject: [PATCH v2] arm64: dts: qcom: sm8550: Use GIC-ITS for PCIe0 and
- PCIe1
+	s=arc-20240116; t=1705938431; c=relaxed/simple;
+	bh=MeeGlkv76uplWomLg9ocLHv3pnCOcFvMEIpYsPtsuKo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ff+cJ1jD+dphummLsMBjhywVh3YGumIoHrZqxKhkIm0iUyjARHFuPcxy+G5kNvqy3bL3+CKKzEzXp2eWgoqs1HfM2BFV7F+xEKhwdQs2Igm/eR6VXi5umAeonLQrFh9q1khebXEtKelbnUZRgWVEFo7LIFx/xFnWXW/jaA1DGbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fu5qJG7R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEB36C43390;
+	Mon, 22 Jan 2024 15:47:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1705938430;
+	bh=MeeGlkv76uplWomLg9ocLHv3pnCOcFvMEIpYsPtsuKo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fu5qJG7RkhmQ6jgIor5MANwY+t4GvT6yVQsN1DGTMGXKHe9StM1utWQISbbVvd4ac
+	 B1juEMTY3B1GRWCbOe25U9Rr5uCnTDL1xmJ/yWTVXfPM0zCCKa3j9/sQiZCxGooeM9
+	 iMjZ65xo3ahoMRi85ydV+lr0KflLGBU98Ga5NC+ueAdxgXb5eMu34ild0NwwsR7sf0
+	 oAueXHeCXhks5ui/INetc73O1gkav8kikNXkXqCDAmWWe8iNDwYl1KfxKfVoez11Mq
+	 HXJlAKaAHDgVSvShgmDTArxM1ApWambu8Ki5e2/6suTJWJNyQAGcsC93zGNmh4aeJ/
+	 PeL9/w6ECTJwg==
+Date: Mon, 22 Jan 2024 15:47:04 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 2/7] dt-bindings: can: mpfs: add missing required clock
+Message-ID: <20240122-duplicate-nutrient-0edf5dfc9c93@spud>
+References: <20240122-catty-roast-d3625dbb02fe@spud>
+ <20240122-breeder-lying-0d3668d98886@spud>
+ <20240122-surely-crimp-ba4a8c55106d-mkl@pengutronix.de>
+ <20240122-cruelly-dainty-002081f0beb2@spud>
+ <20240122-smokeless-ion-63e4148c22e5-mkl@pengutronix.de>
+ <20240122-uncoated-cherub-a29cba1c0035@spud>
+ <20240122-pogo-reputable-b1d06ae1f1f1-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240122-topic-sm8550-upstream-pcie-its-v2-1-b3398d86d1f1@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAOiLrmUC/42NTQ6CMBBGr0Jm7Zi2AfxZeQ/DojItTCK0mVaiI
- dzdyglcvi9f3lshOWGX4FqtIG7hxGEuYA4V9KOdB4dMhcEoUyttDOYQucc0nZtG4SumLM5OGHs
- uz5xQtb5+tJq8uxAUSRTn+b0H7l3hkVMO8tl7i/6tf6sXjRqt9w0pOlFLdHvybCUcgwzQbdv2B
- T+q/zjNAAAA
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5170;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=JrTlR1yh1kUdkwX7KafITLJvsRjLZG25nzdjxKTbheM=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlrovsPRxor1Hb6gKIHm7/1VE8wAxfG+GPN7tPdRLq
- gi5kiLKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZa6L7AAKCRB33NvayMhJ0eNKD/
- 0QNbjFpU19ERNfyesK5PgMCelH/N0ULCkVyAa7cNkmn3jifkrCzPpzeEKfw4GAATXqXtI4yUIrOK2f
- bR1dfmFS7t4Ic/7UOxexZvXc3PxDnsNKYMfHy1boBX7L50KMbGltkFBcjmxVl9fzFuqvGCCXs9s45D
- BAeP+LMARQoRwO6ZH9yF1hSuzn1lfKeNp1sewRCOKwqdyaTZewaPLbdta/a5y6A6N7DrBcBK9+Kiv7
- uSLrObdLqqHr1nr8qQv51yIiow8McbTLBei3Dh5zlbPpjlIyz6ke1D5d7fT/b7iz0LsCmp7uchh4Wg
- 4/0ouBntvNsRSqcADXrk6iDiM6FRzcU8Cwi9vVOKpVTpgSlK7e5pG+9VrrfkXXN92AJRRQuQdJEjeL
- BwnjApD01zGK8/wmMrPE6GGp77P9BLct3rkWgPCLmMT/q6CxvCkmgp5izblVd7MRYZDC2m9wmOe9Vv
- 2dKjrIj97/rExnM3SVuDSQI7fNFx0sa9qlcttEyREDIREulBlo53QbEq7i7QqLjTG8u6MRctarVc2b
- LS9tswl3cGtOVPUwb0BwCZLGGcC76hLeO4mdNbR4wByvDw3nLcm6ixaPWCqKxljyK88IUbrH66dTRM
- /GFJB+0UAI9B5hAOg6x/pGlu8j6av2nxStOpNJ7g8aR3Lji3QrrWvJnrKGZQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ZlbIajEJ0GsLUYlg"
+Content-Disposition: inline
+In-Reply-To: <20240122-pogo-reputable-b1d06ae1f1f1-mkl@pengutronix.de>
 
-Both PCIe0 and PCIe1 controllers are capable of signalling the MSIs
-received from endpoint devices to the CPU using GIC-ITS MSI controller.
-Add support for it.
 
-The GIC-ITS MSI implementation provides an advantage over internal MSI
-implementation using Locality-specific Peripheral Interrupts (LPI) that
-would allow MSIs to be targeted for each CPU core.
+--ZlbIajEJ0GsLUYlg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Like SM8450, the IDs are swapped, but works fine on PCIe0 and PCIe1.
+On Mon, Jan 22, 2024 at 04:31:32PM +0100, Marc Kleine-Budde wrote:
+> let's get this binding and the CAN driver upstream!
 
-WiFi PCIe Device on SM8550-QRD using GIC-ITS:
-218:          0          4          0          0          0          0          0          0   ITS-MSI 524288 Edge      bhi
-219:          0          0          5          0          0          0          0          0   ITS-MSI 524289 Edge      mhi
-220:          0          0          0         33          0          0          0          0   ITS-MSI 524290 Edge      mhi
-221:          0          0          0          0          3          0          0          0   ITS-MSI 524291 Edge      ce0
-222:          0          0          0          0          0          1          0          0   ITS-MSI 524292 Edge      ce1
-223:          0          0          0          0          0          0         38          0   ITS-MSI 524293 Edge      ce2
-224:          0          0          0          0          0          0          0         31   ITS-MSI 524294 Edge      ce3
-225:          0          0          0          0          0          0          0          0   ITS-MSI 524295 Edge      ce5
-226:          0          0          0          0          0          0          0          0   ITS-MSI 524296 Edge      DP_EXT_IRQ
-227:          0          0          0          0          0          0          0          0   ITS-MSI 524297 Edge      DP_EXT_IRQ
-228:          0          0          0          0          0          0          0          0   ITS-MSI 524298 Edge      DP_EXT_IRQ
-229:          0          0          0          0          0          0          0          0   ITS-MSI 524299 Edge      DP_EXT_IRQ
-230:          0          0          0          0          0          0          0          0   ITS-MSI 524300 Edge      DP_EXT_IRQ
-231:          0          0          0          0          0          0          0          0   ITS-MSI 524301 Edge      DP_EXT_IRQ
-232:          0          0          0          0          0          0          0          0   ITS-MSI 524302 Edge      DP_EXT_IRQ
+FWIW, the driver seems to be in a good state (or as good as it can to
+someone unaware of the goings on of CAN). Hopefully the author gets
+a chance to send it out soon.
 
-NVMe in SM8550-HDK M.2 Slot using GIC-ITS:
-212:          0          0         22          0          0          0          0          0   ITS-MSI 134742016 Edge      nvme0q0
-213:     133098          0          0          0          0          0          0          0   ITS-MSI 134742017 Edge      nvme0q1
-214:          0     139450          0          0          0          0          0          0   ITS-MSI 134742018 Edge      nvme0q2
-215:          0          0     139476          0          0          0          0          0   ITS-MSI 134742019 Edge      nvme0q3
-216:          0          0          0      69767          0          0          0          0   ITS-MSI 134742020 Edge      nvme0q4
-217:          0          0          0          0      80368          0          0          0   ITS-MSI 134742021 Edge      nvme0q5
-218:          0          0          0          0          0      77315          0          0   ITS-MSI 134742022 Edge      nvme0q6
-219:          0          0          0          0          0          0      73022          0   ITS-MSI 134742023 Edge      nvme0q7
-220:          0          0          0          0          0          0          0     329993   ITS-MSI 134742024 Edge      nvme0q8
+Cheers,
+Conor.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
-Changes in v2:
-- fixed commit msg
-- Link to v1: https://lore.kernel.org/r/20240122-topic-sm8550-upstream-pcie-its-v1-1-aff5d0d7d6dd@linaro.org
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index ee1ba5a8c8fc..9860bda3be1d 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1742,6 +1742,9 @@ pcie0: pcie@1c00000 {
- 					<&gem_noc MASTER_APPSS_PROC 0 &cnoc_main SLAVE_PCIE_0 0>;
- 			interconnect-names = "pcie-mem", "cpu-pcie";
- 
-+			/* Entries are reversed due to the unusual ITS DeviceID encoding */
-+			msi-map = <0x0 &gic_its 0x1401 0x1>,
-+				  <0x100 &gic_its 0x1400 0x1>;
- 			iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
- 				    <0x100 &apps_smmu 0x1401 0x1>;
- 
-@@ -1838,6 +1841,9 @@ pcie1: pcie@1c08000 {
- 					<&gem_noc MASTER_APPSS_PROC 0 &cnoc_main SLAVE_PCIE_1 0>;
- 			interconnect-names = "pcie-mem", "cpu-pcie";
- 
-+			/* Entries are reversed due to the unusual ITS DeviceID encoding */
-+			msi-map = <0x0 &gic_its 0x1481 0x1>,
-+				  <0x100 &gic_its 0x1480 0x1>;
- 			iommu-map = <0x0   &apps_smmu 0x1480 0x1>,
- 				    <0x100 &apps_smmu 0x1481 0x1>;
- 
+--ZlbIajEJ0GsLUYlg
+Content-Type: application/pgp-signature; name="signature.asc"
 
----
-base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
-change-id: 20240122-topic-sm8550-upstream-pcie-its-06f4b61dfe9d
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa6N+AAKCRB4tDGHoIJi
+0h2VAP4w9AGyt9LMjr1fxyGbb5m1B484LsXBg9uqxe4Tx/FZsQD9GwDu25MWq/sI
+nV0HlY2+IRQ8+nMMpcWLtXqwCGwB0w4=
+=MXC9
+-----END PGP SIGNATURE-----
 
+--ZlbIajEJ0GsLUYlg--
 
