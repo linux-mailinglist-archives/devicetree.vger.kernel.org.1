@@ -1,216 +1,261 @@
-Return-Path: <devicetree+bounces-33846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24559836D8C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 18:34:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4772836F64
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 19:14:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FFD01F25DB6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:34:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BBFBB33D2F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 17:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9B357319;
-	Mon, 22 Jan 2024 16:37:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="MJWIm1R9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8993FE53;
+	Mon, 22 Jan 2024 16:48:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0436E3FB26
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 16:37:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DFE33FE4C;
+	Mon, 22 Jan 2024 16:48:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705941465; cv=none; b=KFib6vgapjuHJpO//S87p9PQffASNZ4gSzoEhEzIYmQ8sD+ifsBrCKL2iznrbe8PQ3zqkVAAZiWz1tWZQUVZ0jWFxryyqhPi6LMfvFj3Qm/FDnG0qVTPajtao+n2mrsViqyq+CBsGrfEUcZJy/4hiU+1Bz1SBSV+K8YQNLXcTOw=
+	t=1705942104; cv=none; b=PJC+ZelxLG7lq4NEZZHymrnh1794KCWbpHDW39XNm4UqN2Fa6+zK/xzgfojQ4renizRjxS+0ezwrpY4vYG0AYiSvCV9hYzuxQ0UGgVLnvRZq1gHPwyaEfcxqrwPoiCV6+QD2CHbTLVUzON5j4M1fzb6dPtIauSIWfL2ttYG6fNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705941465; c=relaxed/simple;
-	bh=KkOoN25GD1zzuzfVfZSNgclmXPCJPP4I5NuDmXIDH+A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DeSALCyskwdKh60+tGnqzcmfuFeIDXzdCCcGHTbQ4X0omd5zOOopsi+Ns6eI7pJ7Q99MtCmN9zGMFmTO4WdN8Yf+DUUp1mo7/A7X1bCbNIpMiEV+2gXvewJv2G6RE6h/IRxrg0/UDV75OS4r30owQvpKii+25dsskme12b23tX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=MJWIm1R9; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705941462;
-	bh=KkOoN25GD1zzuzfVfZSNgclmXPCJPP4I5NuDmXIDH+A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MJWIm1R99j/gT3CHZ4+0pNq7T9D2ISy2D1Zekzf1KUxR6jcnNh1/up5HPJcmTWP11
-	 fnL7+1bn/YD3VhmcGWEDyZxMQfCGjTE11XL0+kW7o3Uu9d7tgrwkHl+JfTIGiOxc9m
-	 EUcI2lHpNcMrx/vByWK4kDmUxIlQACXEfX3VmmNdUUNKA5DSOcKY/rdGfjZ/opnfwk
-	 mx3dz1jPNnfTQlcdzCutqGuQJ6KAfg8bLX+S49gvUY+a8bV1UybiT0yxdASQacYDxb
-	 khg1+Iz8LSQAqrOCjDa4XHk5lndl+TXjZFpNduXKOjIHX5inlZAPPHv5hY7HDkoS6i
-	 PYrd+Hj2A27jw==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bbrezillon)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 26E543781492;
-	Mon, 22 Jan 2024 16:37:41 +0000 (UTC)
-Date: Mon, 22 Jan 2024 17:37:39 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Liviu Dudau <Liviu.Dudau@arm.com>, dri-devel@lists.freedesktop.org,
- "Marty E . Plummer" <hanetzer@startmail.com>, =?UTF-8?B?Q2zDqW1lbnQgUMOp?=
- =?UTF-8?B?cm9u?= <peron.clem@gmail.com>, Nicolas Boichat
- <drinkcat@chromium.org>, Neil Armstrong <neil.armstrong@linaro.org>, Faith
- Ekstrand <faith.ekstrand@collabora.com>, Daniel Stone
- <daniels@collabora.com>, Steven Price <steven.price@arm.com>, Robin Murphy
- <robin.murphy@arm.com>, kernel@collabora.com, Heiko Stuebner
- <heiko@sntech.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 13/14] dt-bindings: gpu: mali-valhall-csf: Add
- support for Arm Mali CSF GPUs
-Message-ID: <20240122173739.0e0d7120@collabora.com>
-In-Reply-To: <ZXBUGhL6utV15-Yx@e110455-lin.cambridge.arm.com>
-References: <20231204173313.2098733-1-boris.brezillon@collabora.com>
-	<20231204173313.2098733-14-boris.brezillon@collabora.com>
-	<20231205204827.GA3761421-robh@kernel.org>
-	<ZXBUGhL6utV15-Yx@e110455-lin.cambridge.arm.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1705942104; c=relaxed/simple;
+	bh=K3Bi/OyBeuvWkRZrH27CCLUqQjQcsYfticBxPlCQToU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZabGSQgfz+WbxXYVmAkhCcnYghBiNdAStvVtp/J4Np+OhMfr6iuRrcoX62BrcTBKR0X936a15v99dhs2QV/Ogi4/9XyNPpKjrawX1aiT/aIZwme4wQ9ES95LH5zmk4NwUY/Z3gdscRx8ddVSweB+D0HTJDK9Nu7VrFU2awaH3II=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.05,211,1701097200"; 
+   d="scan'208";a="195225881"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 23 Jan 2024 01:43:12 +0900
+Received: from localhost.localdomain (unknown [10.226.92.211])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0384B400387B;
+	Tue, 23 Jan 2024 01:43:06 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH v16 1/5] dt-bindings: display: Document Renesas RZ/G2L DU bindings
+Date: Mon, 22 Jan 2024 16:42:53 +0000
+Message-Id: <20240122164257.56326-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240122164257.56326-1-biju.das.jz@bp.renesas.com>
+References: <20240122164257.56326-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
+The RZ/G2L LCD controller is composed of Frame Compression Processor
+(FCPVD), Video Signal Processor (VSPD), and Display Unit (DU).
 
-We didn't hear back from you, so I assumed you were happy with Liviu's
-explanations and sent a v4 with just the s/space/tab/ formatting fix.
-Please let us know if you have any concerns with v4 binding docs.
+The DU module supports the following hardware features
+− Display Parallel Interface (DPI) and MIPI LINK Video Interface
+− Display timing master
+− Generates video timings
+− Selecting the polarity of output DCLK, HSYNC, VSYNC, and DE
+− Supports Progressive
+− Input data format (from VSPD): RGB888, RGB666
+− Output data format: same as Input data format
+− Supporting Full HD (1920 pixels x 1080 lines) for MIPI-DSI Output
+− Supporting WXGA (1280 pixels x 800 lines) for Parallel Output
 
-Thanks,
+This patch documents the DU module found on RZ/G2L LCDC.
 
-Boris
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+---
+v15->v16:
+ * No change.
+v14->v15:
+ * No change.
+v13->v14:
+ * No change.
+v12->v13:
+ * No change.
+v11->v12:
+ * Dropped quotes in ref handle for renesas,vsps property.
+ * Retained tags as it is trivial change.
+v10->v11:
+ * No change
+v9->v10:
+ * Added Rb tag from Laurent
+ * Updated the commit description.
+ * Updated description of the port by dropping the text "specified in
+   Documentation/devicetree/bindings/graph.txt."
+ * Dropped empty endpoint from example.
+v8->v9:
+ * No change
+v7->v8:
+ * No change
+v6->v7:
+ * No change
+v5->v6:
+ * No change.
+v4->v5:
+ * Added Rb tag from Rob.
+v3->v4:
+ * Changed compatible name from renesas,du-r9a07g044->renesas,r9a07g044-du
+ * started using same compatible for RZ/G2{L,LC}
+v3: New patch
+---
+ .../bindings/display/renesas,rzg2l-du.yaml    | 121 ++++++++++++++++++
+ 1 file changed, 121 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
 
-On Wed, 6 Dec 2023 10:59:38 +0000
-Liviu Dudau <Liviu.Dudau@arm.com> wrote:
+diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+new file mode 100644
+index 000000000000..c0ad194c538d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+@@ -0,0 +1,121 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/renesas,rzg2l-du.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/G2L Display Unit (DU)
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
++
++description: |
++  These DT bindings describe the Display Unit embedded in the Renesas RZ/G2L
++  and RZ/V2L SoCs.
++
++properties:
++  compatible:
++    enum:
++      - renesas,r9a07g044-du # RZ/G2{L,LC}
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Main clock
++      - description: Register access clock
++      - description: Video clock
++
++  clock-names:
++    items:
++      - const: aclk
++      - const: pclk
++      - const: vclk
++
++  resets:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    description: |
++      The connections to the DU output video ports are modeled using the OF
++      graph bindings. The number of ports and their assignment are
++      model-dependent. Each port shall have a single endpoint.
++
++    patternProperties:
++      "^port@[0-1]$":
++        $ref: /schemas/graph.yaml#/properties/port
++        unevaluatedProperties: false
++
++    required:
++      - port@0
++
++    unevaluatedProperties: false
++
++  renesas,vsps:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      items:
++        - description: phandle to VSP instance that serves the DU channel
++        - description: Channel index identifying the LIF instance in that VSP
++    description:
++      A list of phandle and channel index tuples to the VSPs that handle the
++      memory interfaces for the DU channels.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++  - power-domains
++  - ports
++  - renesas,vsps
++
++additionalProperties: false
++
++examples:
++  # RZ/G2L DU
++  - |
++    #include <dt-bindings/clock/r9a07g044-cpg.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    display@10890000 {
++        compatible = "renesas,r9a07g044-du";
++        reg = <0x10890000 0x10000>;
++        interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
++                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
++                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
++        clock-names = "aclk", "pclk", "vclk";
++        resets = <&cpg R9A07G044_LCDC_RESET_N>;
++        power-domains = <&cpg>;
++
++        renesas,vsps = <&vspd0 0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                endpoint {
++                    remote-endpoint = <&dsi0_in>;
++                };
++            };
++            port@1 {
++                reg = <1>;
++            };
++        };
++    };
++
++...
+-- 
+2.25.1
 
-> Hi Rob,
-> 
-> Thanks for reviewing this!
-> 
-> On Tue, Dec 05, 2023 at 02:48:27PM -0600, Rob Herring wrote:
-> > On Mon, Dec 04, 2023 at 06:33:06PM +0100, Boris Brezillon wrote:  
-> > > From: Liviu Dudau <liviu.dudau@arm.com>
-> > > 
-> > > Arm has introduced a new v10 GPU architecture that replaces the Job Manager
-> > > interface with a new Command Stream Frontend. It adds firmware driven
-> > > command stream queues that can be used by kernel and user space to submit
-> > > jobs to the GPU.
-> > > 
-> > > Add the initial schema for the device tree that is based on support for
-> > > RK3588 SoC. The minimum number of clocks is one for the IP, but on Rockchip
-> > > platforms they will tend to expose the semi-independent clocks for better
-> > > power management.
-> > > 
-> > > v3:
-> > > - Cleanup commit message to remove redundant text
-> > > - Added opp-table property and re-ordered entries
-> > > - Clarified power-domains and power-domain-names requirements for RK3588.
-> > > - Cleaned up example
-> > > 
-> > > Note: power-domains and power-domain-names requirements for other platforms
-> > > are still work in progress, hence the bindings are left incomplete here.
-> > > 
-> > > v2:
-> > > - New commit
-> > > 
-> > > Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
-> > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Conor Dooley <conor+dt@kernel.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > ---
-> > >  .../bindings/gpu/arm,mali-valhall-csf.yaml    | 147 ++++++++++++++++++
-> > >  1 file changed, 147 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> > > new file mode 100644
-> > > index 000000000000..d72de094c8ea
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-> > > @@ -0,0 +1,147 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/gpu/arm,mali-valhall-csf.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: ARM Mali Valhall GPU
-> > > +
-> > > +maintainers:
-> > > +  - Liviu Dudau <liviu.dudau@arm.com>
-> > > +  - Boris Brezillon <boris.brezillon@collabora.com>
-> > > +
-> > > +properties:
-> > > +  $nodename:
-> > > +    pattern: '^gpu@[a-f0-9]+$'
-> > > +
-> > > +  compatible:
-> > > +    oneOf:  
-> > 
-> > Don't need oneOf.  
-> 
-> This has come up on the review of the previous version. We're planning on adding support for more
-> SoCs once the initial panthor driver gets merged, but I don't think it's worth advertising it now.
-> Krzyszof raised the same point and then agreed to keep it, as seen here[1].
-> 
-> >   
-> > > +      - items:
-> > > +          - enum:
-> > > +              - rockchip,rk3588-mali
-> > > +          - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    items:
-> > > +      - description: Job interrupt
-> > > +      - description: MMU interrupt
-> > > +      - description: GPU interrupt
-> > > +
-> > > +  interrupt-names:
-> > > +    items:
-> > > +      - const: job
-> > > +      - const: mmu
-> > > +      - const: gpu
-> > > +
-> > > +  clocks:
-> > > +    minItems: 1
-> > > +    maxItems: 3  
-> > 
-> > The function of each clock based on just the names below aren't too 
-> > evident. 'core' is, but then what is 'stacks'? Please add some 
-> > descriptions.
-> >   
-> The names match the hardware architecture, where the core clock powers
-> most of the GPU, the 'stacks' clock is for shader core stacks and the
-> 'coregroup' is used by stacks and tilers. All this is defined as "logical
-> power domains" and the implementer of the IP can decide to map them to
-> individual physical power domains or to group everything into a minimum of
-> one power domain. Hence the flexibility in describing the hardware.
-> 
-> As for describing what the function of each power domain is, I'm afraid we
-> need to keep it at "matches the architecture" for now and I will look into
-> what more information can be added later. At the high level, the more
-> power domains you have the more you can fine tune the power consumption of
-> the GPU.
-> 
-> > I expect there is better visibility into what's correct here than we had 
-> > on earlier h/w. IOW, I don't want to see different clocks for every SoC. 
-> > Same applies to power-domains.  
-> 
-> Afraid that's up to the SoC implementation to decide how they wire the
-> power domains. Hardware is capable to automatically powering up the domains
-> needed, as long as the relevant clocks are provided.
-> 
 
