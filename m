@@ -1,328 +1,288 @@
-Return-Path: <devicetree+bounces-33530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 799578359B4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 04:20:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F062A8359CA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 04:39:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C074281F46
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 03:20:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21C831C2212C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 03:39:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8683315D0;
-	Mon, 22 Jan 2024 03:20:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4630817F8;
+	Mon, 22 Jan 2024 03:39:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bKKVicJS"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="PRWY4V4l";
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="EWu0r069"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D89615AF;
-	Mon, 22 Jan 2024 03:19:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705893600; cv=none; b=ojnLPv3u+Gnc4AZFtqEhse8Dt151bo/PuY7vA38Ebnn1S3TqhK3uJJxu7aZgkIy/QJyDoyTZ2X11eY5VH9tVxgEPaHcLmOufTDwK6ffehMgN8WPXmx2DvLIbo5lgv04ltxQUXCHSWKYUFrXST2uyyxqUhX5m9+Y6m4WVq37zuIU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705893600; c=relaxed/simple;
-	bh=cY1wVjEMWZ1DYvKj2pMaUFi3kHcC2bJDTzZC3Dm5kF0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ueNSMjviOtl0FsT1Epu57JMa8coZRvGiQM86d3oSo2mnP31zrpaElnwcnPR0u5BmzzIu3HuZ4Rtz4yKw5Yz+lFvt5RX+mKG4wCYwvKbDbOg/M0YBiGA6DSC9UTk00RC9NdBHjnhnpxUE9V6nJ4BmkTOC/37yM6wDVTPWa1JxcUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bKKVicJS; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40M2tO8v003598;
-	Mon, 22 Jan 2024 03:19:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=w4rDROPXwKsplXymG58iW1n9fNi7MH1ioYD4EPLQUxQ=; b=bK
-	KVicJSZZQ7V8PcwN3gU4M3czgbXCoIoDTll4Q9YZLagS+d5GAwxDQmlgYjWDl6Ec
-	7GEBcEK2DQxOCOlFrGyEPVdHX4pp5BNVxZrGZQQHuimn4bJXoLa8tsEWAZeKZo4e
-	1IxkFMNalw3Ky/o/Zt7S8La11m++Z+nOcwetLYOfQe69Ivccb71mYsDkQEXfYZnZ
-	jMscTvFdvbrP/KeFdL2bb2B14ZymW/chKEaWOcXuJYRkDMD0VnBdOg0z2zxuuDQ2
-	Z+6wFz9Kv4FgXRRHCPMKPRzIuRvSzQTFEb0LoFcqNTxSFAuZ+7ydyzO+8p5Zv8ec
-	mbbup3cdPDshrZ5XcXxQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vr5s4ttjc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 03:19:42 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40M3Jf8F022493
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 22 Jan 2024 03:19:41 GMT
-Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 21 Jan
- 2024 19:19:36 -0800
-Message-ID: <19790e4c-0217-4ebd-b98a-69f0887ec408@quicinc.com>
-Date: Mon, 22 Jan 2024 11:19:34 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68E151849;
+	Mon, 22 Jan 2024 03:39:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.154.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705894754; cv=fail; b=Gi0yt5XJnVuP7PjcsAF8QEL4gUYlRvu9w5FBPmXCB3kiZnCzlvlNth/CYbF+YlhAVjDFWZ4YPdVZ/RoGIq1deLz0WpD0xhcph0IyOesEW75Ah0CIiT+2XiER5/7Y6oebDBKt1moIpfphR76txpsaRwv3EvbZXTTk4lJnf4TDtCw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705894754; c=relaxed/simple;
+	bh=6P4lyqvwH9IK+Hf/n+ho682h7RCPlUPkDkvIyKmVRpw=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=jujngF71P/hiWE16b2UNuCfrLjGTgebdDliVdtko7bEx2d2gmjYXy0mfE8/eW4um+dpXd+zhsb288S5v7LvpZ+uqpO5phU4FIleLGUy7dqMMs8B7DCZ3b75hQ7ODpvp2m1IlJhb5hq4rx9bb8QosehbREwX0OQYCHSfio1Zm8zk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=PRWY4V4l; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=EWu0r069; arc=fail smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1705894751; x=1737430751;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=6P4lyqvwH9IK+Hf/n+ho682h7RCPlUPkDkvIyKmVRpw=;
+  b=PRWY4V4lc/9Ge2rOXS4jS77ptngYDFx5HpekXqqaqVKg6UctxVigtr1s
+   5HykqYEzDsl2JEGnHOkbjCH1XzuguXFJS2nIlH9xQLajGly+6X+5scgnR
+   FnKpWDC+81jWzUT9uliPnEPm2Dp/CgGlhghXlripdfLfudKEgP8vsSv4/
+   L2nACjY7bpw8WhJrQH+Lh7v9r0kgPpz3VMPIOXMxeAcnZXlDpfZX1OEig
+   okPUClFg6UHCboLegsew9zwLttnXmwmn6c4TcI957GjIvip0PjLYXIUrt
+   2h3qyc8c6ZcAssik5qvZloHBHRHCknnCIkDua+QguzWmHaZ4j3LrbSITa
+   g==;
+X-CSE-ConnectionGUID: QVc0DboYQwK2IFM2JgkuMA==
+X-CSE-MsgGUID: 7K/lbZYBT1mvQuCbTERZtA==
+X-IronPort-AV: E=Sophos;i="6.05,211,1701154800"; 
+   d="scan'208";a="15559356"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 21 Jan 2024 20:39:01 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Sun, 21 Jan 2024 20:38:45 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (10.10.215.250)
+ by email.microchip.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Sun, 21 Jan 2024 20:38:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=S5vz6xxePaThetVCkqg3rLHl4q4dH5XcpKz4koU44oqVg+e8cTGDfZJ8wpLvCYXk9gv34wBJuqFAxPtlUjh70i27892oJYV7z30ikoIoaMBGeW4WxDmQRz9pEiexb2Naw8bpjSkNd0Q6JFGveBDtJtQIaxZNLmuhJ5KWUCOiR/gbngZFcXXEPg6n9F4TD+ZVoh6lKRSqHAsLiOjloNT6gYk9vd7rhQ3MFhOz2CGkY5bgVfVde6bG/YdrzoSflJFSUYrFmYSnH9qZWoO9VUHpKi7AX62/OPFVfx4BCqzOZTK64y/KVVPRlbTRRwUicPzVdaUlToTLh803DFM5dJW9yw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6P4lyqvwH9IK+Hf/n+ho682h7RCPlUPkDkvIyKmVRpw=;
+ b=K9UdxCJd/tZ5B1JzvxLzozDrPb3foUwo+1UwqHXGxU3LHpg6mTqOHyJvi+ApAVtxxqFc1Au/j0C9S8+GaG7akNc19E0IkeTKdycjcNgZqJZ27stR+5qP9zwpZWOHK6bQ3YI+DDKai8NIndMqSzkkuEvLRV3TjVIUSYijN7y6bScPemFef1+pPWUmrILGY1oEPl3noF1q+MaQvndlloa4kXdT1z3/oUAzUrYP4+5UuYmDOHs5oi70VuWW05r7WKE1Pu/viWDXNpTdYJZW1D/zQEAH+1wIvwfQIxVZyMs3ySDEpVEf5SG+8lIChbM4pQi5Z+h5MjBmwdruxCBXZC8I5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6P4lyqvwH9IK+Hf/n+ho682h7RCPlUPkDkvIyKmVRpw=;
+ b=EWu0r069GzjDqPMXa3DwMmONvIeiuovyXZAzXvI4ZkiI6Fz9MXTaU1HdlMTjX2/iBDsjPh2YPwzky6//9DZvJOhdZiDEZ6xv2gs6TnYWTKdXHF3wtybCwZ4UAES/HnCo7UXdQdxp3sxWN+3wwtN9YBI6sFaVgmxAKD+cOLFiNQ0H5UtlMMLJoRQ4GUYlrYxzaRqcEoLwHXTV+4yEXZu+qEbm57T1tDwBMGnWaIbis/dGlTDn7R1WbMKFwJplysCSPZKM27MXkl68liWUHewuBMSOHFKeplCf2Jnz6hDNUzWu4h9xIZ3lbCt26RoDcgdmYDlnvxNQ0Hvf5xojbgv0cw==
+Received: from PH7PR11MB6451.namprd11.prod.outlook.com (2603:10b6:510:1f4::16)
+ by BL1PR11MB5352.namprd11.prod.outlook.com (2603:10b6:208:311::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Mon, 22 Jan
+ 2024 03:38:43 +0000
+Received: from PH7PR11MB6451.namprd11.prod.outlook.com
+ ([fe80::80b9:80a3:e88a:57ee]) by PH7PR11MB6451.namprd11.prod.outlook.com
+ ([fe80::80b9:80a3:e88a:57ee%3]) with mapi id 15.20.7202.031; Mon, 22 Jan 2024
+ 03:38:41 +0000
+From: <Dharma.B@microchip.com>
+To: <Conor.Dooley@microchip.com>
+CC: <conor@kernel.org>, <sam@ravnborg.org>, <bbrezillon@kernel.org>,
+	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+	<tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<lee@kernel.org>, <thierry.reding@gmail.com>,
+	<u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>,
+	<Linux4Microchip@microchip.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
+ schema format
+Thread-Topic: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
+ schema format
+Thread-Index: AQHaSfB9G+vm5oXSwEmW6mjsJvC8kbDftWKAgADHFQCAAI7AgIAEKeOA
+Date: Mon, 22 Jan 2024 03:38:41 +0000
+Message-ID: <da60f9f3-f955-4a87-a020-5710185953c0@microchip.com>
+References: <20240118092612.117491-1-dharma.b@microchip.com>
+ <20240118092612.117491-4-dharma.b@microchip.com>
+ <20240118-recent-glorified-fd35d72e006e@spud>
+ <c33868c8-dc42-4800-885c-5e5f24c2044e@microchip.com>
+ <20240119-character-mardi-43571d7fe7d5@wendy>
+In-Reply-To: <20240119-character-mardi-43571d7fe7d5@wendy>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB6451:EE_|BL1PR11MB5352:EE_
+x-ms-office365-filtering-correlation-id: 13afbc10-466e-42eb-510c-08dc1afba0c3
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: q2vYK2OQSty47RKj5mdZP2Zhd7XHmyYtaY/HF/BI2PfurA3yAPZenRFZWM2sNQbWzvXyrbp98S8m99ZQ/JcXXocnXHouwiTsIsBq///UsmR7Ee8QIg5vDnip8AgCF3UvqIWuk+I7b51i71+T1YVhFVF30SHh+FoAUQ1QdK9s2Z0PhV2KquzyQVCDs0BfNMm29rbBW6wb05YvigFkER2TX356Pzr8MVGi5f4arc3s+5SmNQfXHP2cGlmohIz3NImMmxbYgxQ9cL1NytjEHbBZEuQBRogq8woSm8eh54/yIrL0LNfdxmAfw91ceZ4ZPtolxB7InzLrd9HRzRtvvstQp7Wj3djrB7ct3XkJAP9p7BJMmX3ERmYMrev0stZdjxpsNkverwuuanX/+9nErVDSNwzp+c/jJWlUII2YIlwLF4P82ejvSsWBaxyQaOZTikfvheM2dhWuamVMSdCXctZAnsSfyyQNFW/I4aRbR1stxDcdef2Br0uH+4dXAG+nsGIkwjEyba+HvMAyC0VoLL48wzxv2wG9GcbE+pK2B/4zvUNk/wRhDesXqGccRYMCV+WHKsseqjJVKUiGhqsQhxqwsQVTavEpEYmKb31P9KOfgDgtL3I6i76oQcKc2bdMPwQ8p8OPEwI4hQkLqsPnQEbVnoF/bYcHJkoO0gTfKBwcW3cEttdwTA9cBHtnDDrTCZlZ
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB6451.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(136003)(396003)(366004)(376002)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(31686004)(38070700009)(66476007)(2906002)(5660300002)(66946007)(6636002)(91956017)(64756008)(66446008)(6486002)(66556008)(37006003)(76116006)(54906003)(7416002)(6512007)(26005)(71200400001)(316002)(478600001)(6506007)(8936002)(4326008)(6862004)(8676002)(53546011)(2616005)(107886003)(122000001)(83380400001)(38100700002)(36756003)(86362001)(31696002)(41300700001)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?V2paUVNLY0QyM2VaN1ducG5nQnRoc3ZUNTNlcjNwenBLQWZ0WU00dlBwMUZq?=
+ =?utf-8?B?TC9WNnZOV3lyeXd3Qml0TGgzbFhsZnpHOXg5bEk1eHlRMHBYMkhwdUlOQUFG?=
+ =?utf-8?B?RGZFc0pISlRUckhNSlMvYTdlcXd5WTZETlVtUWdGM2Mvd3JCUW92dmltMDlC?=
+ =?utf-8?B?aHZodGlpcmJHSllTb1A1a3JDY2Rvcm8wTGUzSlFEUUdBSzRMenZhOUMyRk5j?=
+ =?utf-8?B?Z0IyYVA5SEhwcW5YRGlXTy9UTTJLMlJrS1FWazQyY0hpaEZ4UU13RE1kZ0J4?=
+ =?utf-8?B?cDdlL1dDQUJsMTczZUVUZ0daZTZXR3RRNnBEMjFZSnpERlVrNUxvT2VhNktT?=
+ =?utf-8?B?TTJmRWxRanA5Q0VLVlNpQ0UxclNjNUtncGc1eVFVSExPa0ZtRVJ3dS81aWIy?=
+ =?utf-8?B?MVoxMmxNbmlOd0hFOXNNNVowMHNYbzhoc2hmNjNHazVFVDFFQzlIYURRQjI5?=
+ =?utf-8?B?eFBaMXRVVExMM21xdXZ3WWxHVi9Hak5ScUE0bjZHdFJETThYTHpndDFvTmtH?=
+ =?utf-8?B?NUpHenFVTEVHbzc1MStkb0pOelZaY0dMdzlNZm8xRVBxMStTWmVneVA4OFhp?=
+ =?utf-8?B?eWVad3R4SDMzT2M2a0hRZzVPYW5yalE1Z3lPVXZwQU9hNGN0NXgzaUwrSjlZ?=
+ =?utf-8?B?MzM4dWtSVTV6UGhUSDRyQ3VCL0lvMW85KzFlTVRqZHd0TWpMaURPVjlLWFdT?=
+ =?utf-8?B?b1VpY0NibU5WNS9NNUZJNDBTS2Vidjduc2d6dzIrNWNZdCtHVWVmTlllRW51?=
+ =?utf-8?B?RVlYTWoxTm1pNVlXRkIycjZDLzJ5ZzF5SFllTW9MTHBEZDNZeXI3YXpPeVNq?=
+ =?utf-8?B?Z1RhbWVDRkNHekFVRGRoZDg1VlY3S3NwUHFnbThvU2hVVkg1ZnZyRUJZbjVH?=
+ =?utf-8?B?bDUxZldEL3dFWmZFKzZjZWNUUUtkTlp0V0piUjR1ZENtd2RRbWNFTlB5RG1s?=
+ =?utf-8?B?ZUE0RFd2NE1YRDUveDV5TmVEamQ4Q0N4YzQrQVNNdEYvc013Z3A5WjZxWnRp?=
+ =?utf-8?B?bjhPMEUxclViWlNoMThUcjVNd2FJMmdIYTAyVE13V29qd3dGTU1FM0o5QUtI?=
+ =?utf-8?B?d2pFL3J3MnoxMDlFdi9sZlRRWDBuSkE1czErRU9qRzA2TitHUHpqM3FrcTMx?=
+ =?utf-8?B?a2ptbVRqN2tiK3FFQ0VubUJyTzM1ZzJxVUVQZDU2eGtFL0t6ZmhHaS9DTkFw?=
+ =?utf-8?B?ejUweTVwNUNHS2FPMndKbkE0bnJTU0RRY25zNERSdDVCYjdtVkxuOE5vR05j?=
+ =?utf-8?B?YkxUN015ZWZkNnZybkhIT3Z3MlF3UTF3NkFQZWg2ZEQ2bEZ0UHdqNHdwTi9N?=
+ =?utf-8?B?RmRETGQ1SFhWVjhRRytyT29UOGxPNmxlTEM1VmZXb2p4ZzIrdkREVjB3ZjVz?=
+ =?utf-8?B?NDAvcDFEZS91QVRoRlltcFZIbUtnYlV4cTd0cHZkeDdRbThUUjV1Tm5yOGdt?=
+ =?utf-8?B?TVNrQjlneFgwaU9KNTRIRkNzQmw5cGFVY3I5aTkvK0VYcTN4eFBqa0lzYURU?=
+ =?utf-8?B?TXdLOEo4TDlxNmFTcHlXY1J3dVFlOXV4cVBSa3M4aVFKNDduQ25xVGM4WTJ3?=
+ =?utf-8?B?eldUQ1VrK3lLUU9LQjBRRXpLcVFadW5qZjhFWnRlSFFsRG1EVFRGY1ZyUHE3?=
+ =?utf-8?B?QVNNREx4bkcvcG5PNGlObWtiM0RoTytLWm0wcTlDOExIYXBKanBqREJsY1JC?=
+ =?utf-8?B?MWJaeHJTZEE5Yzc3WTZVM24wdWVyZHhxVmUrV3hUVzV6MHIweThSSW9NZkFT?=
+ =?utf-8?B?Z1djNEVlOGJsOUxjU0ZPbHlGanYvdzVPZjRlTmxHTFdQRENPTkFJQ0xwUjIr?=
+ =?utf-8?B?MS85NzJZdU1Ddm53Vll5M3pqYXRDSWVQSmMvNFVNcHJvZkdaOVA5TmZZd3dB?=
+ =?utf-8?B?VjU3SUxMQi9FMDBXelhDclg0UlVTYzdIT2p2SXY4NkpYb09nMkp0V0NHN05N?=
+ =?utf-8?B?QzQwRnN0dFRzS2lkelRFNVVYVVAwSTgvdmljVUpRYnd6SktRTzZ5R3FwL2do?=
+ =?utf-8?B?TStZdHRXajYxUFZPR0RjUGsxc1lWUGdzK2lpbWp3a3FOOGZ3dGNQT2ttUDlB?=
+ =?utf-8?B?U24zYko0U3AwaVBoeHpqTzNXb3hWZ251UDFwU1ovZW9DcVV4cExHNmpQVW4x?=
+ =?utf-8?Q?MKPw60hoCMPtLJ0W4o8Th0LNM?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3050872FAB0E8F4DAE4DC0254D833AC8@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 05/10] coresight-tpda: Add support to configure CMB
- element
-Content-Language: en-US
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC: Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>,
-        Song Chai <quic_songchai@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <andersson@kernel.org>
-References: <1705634583-17631-1-git-send-email-quic_taozha@quicinc.com>
- <1705634583-17631-6-git-send-email-quic_taozha@quicinc.com>
- <78b998a4-1760-4442-8b49-3aa07271785e@arm.com>
-From: Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <78b998a4-1760-4442-8b49-3aa07271785e@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 30TqhmTWjE-xgNBf0umeSC-sjJrkseEX
-X-Proofpoint-GUID: 30TqhmTWjE-xgNBf0umeSC-sjJrkseEX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-21_04,2024-01-19_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- spamscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0 adultscore=0
- mlxlogscore=843 priorityscore=1501 impostorscore=0 malwarescore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401220022
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6451.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13afbc10-466e-42eb-510c-08dc1afba0c3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2024 03:38:41.5616
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bEQkULzIcS6E2K8XFycx8keucKMfn6GLGcgS8IgXggCXHVWoa2cV9x7jeungiLEYbdFvqewm7jsU0kSDLCce2w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5352
 
-
-On 1/19/2024 7:47 PM, Suzuki K Poulose wrote:
-> On 19/01/2024 03:22, Tao Zhang wrote:
->> Read the CMB element size from the device tree. Set the register
->> bit that controls the CMB element size of the corresponding port.
->>
->> Reviewed-by: James Clark <james.clark@arm.com>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-tpda.c | 123 +++++++++++--------
->>   drivers/hwtracing/coresight/coresight-tpda.h |   6 +
->>   2 files changed, 79 insertions(+), 50 deletions(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
->> b/drivers/hwtracing/coresight/coresight-tpda.c
->> index 4ac954f4bc13..987a69428c93 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->> @@ -18,6 +18,7 @@
->>   #include "coresight-priv.h"
->>   #include "coresight-tpda.h"
->>   #include "coresight-trace-id.h"
->> +#include "coresight-tpdm.h"
->>     DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
->>   @@ -28,24 +29,57 @@ static bool coresight_device_is_tpdm(struct 
->> coresight_device *csdev)
->>               CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM);
->>   }
->>   +static void tpdm_clear_element_size(struct coresight_device *csdev)
->> +{
->> +    struct tpda_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
->> +
->> +    drvdata->dsb_esize = 0;
->> +    drvdata->cmb_esize = 0;
->> +}
->> +
->> +static void tpda_set_element_size(struct tpda_drvdata *drvdata, u32 
->> *val)
->> +{
->> +
->> +    if (drvdata->dsb_esize == 64)
->> +        *val |= TPDA_Pn_CR_DSBSIZE;
->> +    else if (drvdata->dsb_esize == 32)
->> +        *val &= ~TPDA_Pn_CR_DSBSIZE;
->> +
->> +    if (drvdata->cmb_esize == 64)
->> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x2);
->> +    else if (drvdata->cmb_esize == 32)
->> +        *val |= FIELD_PREP(TPDA_Pn_CR_CMBSIZE, 0x1);
->> +    else if (drvdata->cmb_esize == 8)
->> +        *val &= ~TPDA_Pn_CR_CMBSIZE;
->> +}
->> +
->>   /*
->> - * Read the DSB element size from the TPDM device
->> + * Read the element size from the TPDM device. One TPDM must have at 
->> least one of the
->> + * element size property.
->>    * Returns
->> - *    The dsb element size read from the devicetree if available.
->> - *    0 - Otherwise, with a warning once.
->> + *    0 - The element size property is read
->> + *    Others - Cannot read the property of the element size
->>    */
->> -static int tpdm_read_dsb_element_size(struct coresight_device *csdev)
->> +static int tpdm_read_element_size(struct tpda_drvdata *drvdata,
->> +                  struct coresight_device *csdev)
->>   {
->> -    int rc = 0;
->> -    u8 size = 0;
->> +    int rc = -EINVAL;
->> +    struct tpdm_drvdata *tpdm_data = 
->> dev_get_drvdata(csdev->dev.parent);
->> +
->> +    if (tpdm_has_dsb_dataset(tpdm_data)) {
->> +        rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->> +                "qcom,dsb-element-size", &drvdata->dsb_esize);
->> +    }
->> +    if (tpdm_has_cmb_dataset(tpdm_data)) {
->> +        rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->> +                "qcom,cmb-element-size", &drvdata->cmb_esize);
->> +    }
->>   -    rc = fwnode_property_read_u8(dev_fwnode(csdev->dev.parent),
->> -            "qcom,dsb-element-size", &size);
->>       if (rc)
->>           dev_warn_once(&csdev->dev,
->> -            "Failed to read TPDM DSB Element size: %d\n", rc);
->> +            "Failed to read TPDM Element size: %d\n", rc);
->>   -    return size;
->> +    return rc;
->>   }
->>     /*
->> @@ -56,11 +90,12 @@ static int tpdm_read_dsb_element_size(struct 
->> coresight_device *csdev)
->>    * Parameter "inport" is used to pass in the input port number
->>    * of TPDA, and it is set to -1 in the recursize call.
->>    */
->> -static int tpda_get_element_size(struct coresight_device *csdev,
->> +static int tpda_get_element_size(struct tpda_drvdata *drvdata,
->> +                 struct coresight_device *csdev,
->>                    int inport)
->>   {
->> -    int dsb_size = -ENOENT;
->> -    int i, size;
->> +    int rc = 0;
->> +    int i;
->>       struct coresight_device *in;
->>         for (i = 0; i < csdev->pdata->nr_inconns; i++) {
->> @@ -69,30 +104,26 @@ static int tpda_get_element_size(struct 
->> coresight_device *csdev,
->>               continue;
->>             /* Ignore the paths that do not match port */
->> -        if (inport > 0 &&
->> +        if (inport >= 0 &&
->>               csdev->pdata->in_conns[i]->dest_port != inport)
->>               continue;
->>             if (coresight_device_is_tpdm(in)) {
->> -            size = tpdm_read_dsb_element_size(in);
->> +            if ((drvdata->dsb_esize) || (drvdata->cmb_esize))
->> +                return -EEXIST;
->> +            rc = tpdm_read_element_size(drvdata, in);
->> +            if (rc)
->> +                return rc;
->>           } else {
->>               /* Recurse down the path */
->> -            size = tpda_get_element_size(in, -1);
->> -        }
->> -
->> -        if (size < 0)
->> -            return size;
->> -
->> -        if (dsb_size < 0) {
->> -            /* Found a size, save it. */
->> -            dsb_size = size;
->> -        } else {
->> -            /* Found duplicate TPDMs */
->> -            return -EEXIST;
->> +            rc = tpda_get_element_size(drvdata, in, -1);
->> +            if (rc)
->> +                return rc;
->>           }
->>       }
->>   -    return dsb_size;
->> +
->> +    return rc;
->>   }
->>     /* Settings pre enabling port control register */
->> @@ -109,7 +140,7 @@ static void tpda_enable_pre_port(struct 
->> tpda_drvdata *drvdata)
->>   static int tpda_enable_port(struct tpda_drvdata *drvdata, int port)
->>   {
->>       u32 val;
->> -    int size;
->> +    int rc;
->>         val = readl_relaxed(drvdata->base + TPDA_Pn_CR(port));
->>       /*
->> @@ -117,29 +148,21 @@ static int tpda_enable_port(struct tpda_drvdata 
->> *drvdata, int port)
->>        * Set the bit to 0 if the size is 32
->>        * Set the bit to 1 if the size is 64
->>        */
->> -    size = tpda_get_element_size(drvdata->csdev, port);
->> -    switch (size) {
->> -    case 32:
->> -        val &= ~TPDA_Pn_CR_DSBSIZE;
->> -        break;
->> -    case 64:
->> -        val |= TPDA_Pn_CR_DSBSIZE;
->> -        break;
->> -    case 0:
->> -        return -EEXIST;
->> -    case -EEXIST:
->> +    tpdm_clear_element_size(drvdata->csdev);
->> +    rc = tpda_get_element_size(drvdata, drvdata->csdev, port);
->> +    if (!rc && ((drvdata->dsb_esize) || (drvdata->cmb_esize))) {
->
-> minor nit: Drop unnecessary () around the drvdata member access.
->
->     if (!rc && (drvdata->dsb_esize || drvdata->cmb_esize))
-Sure, I will update in the next patch series.
->
->> +        tpda_set_element_size(drvdata, &val);
->> +        /* Enable the port */
->> +        val |= TPDA_Pn_CR_ENA;
->> +        writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
->> +    } else if (rc == -EEXIST)
->>           dev_warn_once(&drvdata->csdev->dev,
->> -            "Detected multiple TPDMs on port %d", -EEXIST);
->> -        return -EEXIST;
->> -    default:
->> -        return -EINVAL;
->> -    }
->> -
->> -    /* Enable the port */
->> -    val |= TPDA_Pn_CR_ENA;
->> -    writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
->> +                  "Detected multiple TPDMs on port %d", -EEXIST);
->
-> s/-EEXIST/port ?
-
-Sure, I will update in the next patch series.
-
-
-Best,
-
-Tao
-
->
-> Rest looks fine to me.
->
-> Suzuki
->
-> _______________________________________________
-> CoreSight mailing list -- coresight@lists.linaro.org
-> To unsubscribe send an email to coresight-leave@lists.linaro.org
+SGkgQ29ub3IsDQpPbiAxOS8wMS8yNCA1OjMzIHBtLCBDb25vciBEb29sZXkgLSBNNTI2OTEgd3Jv
+dGU6DQo+IE9uIEZyaSwgSmFuIDE5LCAyMDI0IGF0IDAzOjMyOjQ5QU0gKzAwMDAsIERoYXJtYS5C
+QG1pY3JvY2hpcC5jb20gd3JvdGU6DQo+PiBPbiAxOC8wMS8yNCA5OjEwIHBtLCBDb25vciBEb29s
+ZXkgd3JvdGU6DQo+Pj4gT24gVGh1LCBKYW4gMTgsIDIwMjQgYXQgMDI6NTY6MTJQTSArMDUzMCwg
+RGhhcm1hIEJhbGFzdWJpcmFtYW5pIHdyb3RlOg0KPj4+PiBDb252ZXJ0IHRoZSBhdG1lbCxobGNk
+YyBiaW5kaW5nIHRvIERUIHNjaGVtYSBmb3JtYXQuDQo+Pj4+DQo+Pj4+IEFkanVzdCB0aGUgY2xv
+Y2stbmFtZXMgcHJvcGVydHkgdG8gY2xhcmlmeSB0aGF0IHRoZSBMQ0QgY29udHJvbGxlciBleHBl
+Y3RzDQo+Pj4+IG9uZSBvZiB0aGVzZSBjbG9ja3MgKGVpdGhlciBzeXNfY2xrIG9yIGx2ZHNfcGxs
+X2NsayB0byBiZSBwcmVzZW50IGJ1dCBub3QNCj4+Pj4gYm90aCkgYWxvbmcgd2l0aCB0aGUgc2xv
+d19jbGsgYW5kIHBlcmlwaF9jbGsuIFRoaXMgYWxpZ25tZW50IHdpdGggdGhlIGFjdHVhbA0KPj4+
+PiBoYXJkd2FyZSByZXF1aXJlbWVudHMgd2lsbCBlbmFibGUgYWNjdXJhdGUgZGV2aWNlIHRyZWUg
+Y29uZmlndXJhdGlvbiBmb3INCj4+Pj4gc3lzdGVtcyB1c2luZyB0aGUgSExDREMgSVAuDQo+Pj4+
+DQo+Pj4+IFNpZ25lZC1vZmYtYnk6IERoYXJtYSBCYWxhc3ViaXJhbWFuaTxkaGFybWEuYkBtaWNy
+b2NoaXAuY29tPg0KPj4+PiAtLS0NCj4+Pj4gY2hhbmdlbG9nDQo+Pj4+IHYyIC0+IHYzDQo+Pj4+
+IC0gUmVuYW1lIGhsY2RjLWRpc3BsYXktY29udHJvbGxlciBhbmQgaGxjZGMtcHdtIHRvIGdlbmVy
+aWMgbmFtZXMuDQo+Pj4+IC0gTW9kaWZ5IHRoZSBkZXNjcmlwdGlvbiBieSByZW1vdmluZyB0aGUg
+dW53YW50ZWQgY29tbWVudHMgYW5kICd8Jy4NCj4+Pj4gLSBNb2RpZnkgY2xvY2stbmFtZXMgc2lt
+cGxlci4NCj4+Pj4gdjEgLT4gdjINCj4+Pj4gLSBSZW1vdmUgdGhlIGV4cGxpY2l0IGNvcHlyaWdo
+dHMuDQo+Pj4+IC0gTW9kaWZ5IHRpdGxlIChub3QgaW5jbHVkZSB3b3JkcyBsaWtlIGJpbmRpbmcv
+ZHJpdmVyKS4NCj4+Pj4gLSBNb2RpZnkgZGVzY3JpcHRpb24gYWN0dWFsbHkgZGVzY3JpYmluZyB0
+aGUgaGFyZHdhcmUgYW5kIG5vdCB0aGUgZHJpdmVyLg0KPj4+PiAtIEFkZCBkZXRhaWxzIG9mIGx2
+ZHNfcGxsIGFkZGl0aW9uIGluIGNvbW1pdCBtZXNzYWdlLg0KPj4+PiAtIFJlZiBlbmRwb2ludCBh
+bmQgbm90IGVuZHBvaW50LWJhc2UuDQo+Pj4+IC0gRml4IGNvZGluZyBzdHlsZS4NCj4+Pj4gLi4u
+DQo+Pj4+ICAgIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9hdG1lbCxobGNkYy55YW1sICB8
+IDk3ICsrKysrKysrKysrKysrKysrKysNCj4+Pj4gICAgLi4uL2RldmljZXRyZWUvYmluZGluZ3Mv
+bWZkL2F0bWVsLWhsY2RjLnR4dCAgIHwgNTYgLS0tLS0tLS0tLS0NCj4+Pj4gICAgMiBmaWxlcyBj
+aGFuZ2VkLCA5NyBpbnNlcnRpb25zKCspLCA1NiBkZWxldGlvbnMoLSkNCj4+Pj4gICAgY3JlYXRl
+IG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvYXRtZWws
+aGxjZGMueWFtbA0KPj4+PiAgICBkZWxldGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL21mZC9hdG1lbC1obGNkYy50eHQNCj4+Pj4NCj4+Pj4gZGlmZiAtLWdp
+dCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvYXRtZWwsaGxjZGMueWFt
+bCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvYXRtZWwsaGxjZGMueWFt
+bA0KPj4+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPj4+PiBpbmRleCAwMDAwMDAwMDAwMDAuLmVj
+Y2M5OThhYzQyYw0KPj4+PiAtLS0gL2Rldi9udWxsDQo+Pj4+ICsrKyBiL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvYXRtZWwsaGxjZGMueWFtbA0KPj4+PiBAQCAtMCwwICsx
+LDk3IEBADQo+Pj4+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCBPUiBCU0Qt
+Mi1DbGF1c2UpDQo+Pj4+ICslWUFNTCAxLjINCj4+Pj4gKy0tLQ0KPj4+PiArJGlkOmh0dHA6Ly9k
+ZXZpY2V0cmVlLm9yZy9zY2hlbWFzL21mZC9hdG1lbCxobGNkYy55YW1sIw0KPj4+PiArJHNjaGVt
+YTpodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4+Pj4gKw0K
+Pj4+PiArdGl0bGU6IEF0bWVsJ3MgSExDRCBDb250cm9sbGVyDQo+Pj4+ICsNCj4+Pj4gK21haW50
+YWluZXJzOg0KPj4+PiArICAtIE5pY29sYXMgRmVycmU8bmljb2xhcy5mZXJyZUBtaWNyb2NoaXAu
+Y29tPg0KPj4+PiArICAtIEFsZXhhbmRyZSBCZWxsb25pPGFsZXhhbmRyZS5iZWxsb25pQGJvb3Rs
+aW4uY29tPg0KPj4+PiArICAtIENsYXVkaXUgQmV6bmVhPGNsYXVkaXUuYmV6bmVhQHR1eG9uLmRl
+dj4NCj4+Pj4gKw0KPj4+PiArZGVzY3JpcHRpb246DQo+Pj4+ICsgIFRoZSBBdG1lbCBITENEQyAo
+SExDRCBDb250cm9sbGVyKSBJUCBhdmFpbGFibGUgb24gQXRtZWwgU29DcyBleHBvc2VzIHR3bw0K
+Pj4+PiArICBzdWJkZXZpY2VzLCBhIFBXTSBjaGlwIGFuZCBhIERpc3BsYXkgQ29udHJvbGxlci4N
+Cj4+Pj4gKw0KPj4+PiArcHJvcGVydGllczoNCj4+Pj4gKyAgY29tcGF0aWJsZToNCj4+Pj4gKyAg
+ICBlbnVtOg0KPj4+PiArICAgICAgLSBhdG1lbCxhdDkxc2FtOW4xMi1obGNkYw0KPj4+PiArICAg
+ICAgLSBhdG1lbCxhdDkxc2FtOXg1LWhsY2RjDQo+Pj4+ICsgICAgICAtIGF0bWVsLHNhbWE1ZDIt
+aGxjZGMNCj4+Pj4gKyAgICAgIC0gYXRtZWwsc2FtYTVkMy1obGNkYw0KPj4+PiArICAgICAgLSBh
+dG1lbCxzYW1hNWQ0LWhsY2RjDQo+Pj4+ICsgICAgICAtIG1pY3JvY2hpcCxzYW05eDYwLWhsY2Rj
+DQo+Pj4+ICsgICAgICAtIG1pY3JvY2hpcCxzYW05eDc1LXhsY2RjDQo+Pj4+ICsNCj4+Pj4gKyAg
+cmVnOg0KPj4+PiArICAgIG1heEl0ZW1zOiAxDQo+Pj4+ICsNCj4+Pj4gKyAgaW50ZXJydXB0czoN
+Cj4+Pj4gKyAgICBtYXhJdGVtczogMQ0KPj4+PiArDQo+Pj4+ICsgIGNsb2NrczoNCj4+Pj4gKyAg
+ICBtYXhJdGVtczogMw0KPj4+IEhtbSwgb25lIHRoaW5nIEkgcHJvYmFibHkgc2hvdWxkIGhhdmUg
+c2FpZCBvbiB0aGUgcHJldmlvdXMgdmVyc2lvbiwgYnV0DQo+Pj4gSSBtaXNzZWQgc29tZWhvdzog
+SXQgd291bGQgYmUgZ29vZCB0byBhZGQgYW4gaXRlbXMgbGlzdCB0byB0aGUgY2xvY2tzDQo+Pj4g
+cHJvcGVydHkgaGVyZSB0byBleHBsYWluIHdoYXQgdGhlIDMgY2xvY2tzIGFyZS9hcmUgdXNlZCBm
+b3IgLSBlc3BlY2lhbGx5DQo+Pj4gc2luY2UgdGhlcmUgaXMgYWRkaXRpb25hbCBjb21wbGV4aXR5
+IGJlaW5nIGFkZGVkIGhlcmUgdG8gdXNlIGVpdGhlciB0aGUNCj4+PiBzeXMgb3IgbHZkcyBjbG9j
+a3MuDQo+PiBNYXkgSSBpbnF1aXJlIGlmIHRoaXMgYXBwcm9hY2ggaXMgbGlrZWx5IHRvIGJlIGVm
+ZmVjdGl2ZT8NCj4+DQo+PiAgICAgY2xvY2tzOg0KPj4gICAgICAgaXRlbXM6DQo+PiAgICAgICAg
+IC0gZGVzY3JpcHRpb246IHBlcmlwaGVyYWwgY2xvY2sNCj4+ICAgICAgICAgLSBkZXNjcmlwdGlv
+bjogZ2VuZXJpYyBjbG9jayBvciBsdmRzIHBsbCBjbG9jaw0KPj4gICAgICAgICAgICAgT25jZSB0
+aGUgTFZEUyBQTEwgaXMgZW5hYmxlZCwgdGhlIHBpeGVsIGNsb2NrIGlzIHVzZWQgYXMgdGhlDQo+
+PiAgICAgICAgICAgICBjbG9jayBmb3IgTENEQywgc28gaXRzIEdDTEsgaXMgbm8gbG9uZ2VyIG5l
+ZWRlZC4NCj4+ICAgICAgICAgLSBkZXNjcmlwdGlvbjogc2xvdyBjbG9jaw0KPj4gICAgICAgbWF4
+SXRlbXM6IDMNCj4gDQo+IEhtbSB0aGF0IHNvdW5kcyB2ZXJ5IHN1c3BlY3QgdG8gbWUuICJPbmNl
+IHRoZSBsdmRzcGxsIGlzIGVuYWJsZWQgdGhlDQo+IGdlbmVyaWMgY2xvY2sgaXMgbm8gbG9uZ2Vy
+IG5lZWRlZCIgc291bmRzIGxpa2UgYm90aCBjbG9ja3MgY2FuIGJlIHByb3ZpZGVkDQo+IHRvIHRo
+ZSBJUCBvbiBkaWZmZXJlbnQgcGlucyBhbmQgdGhlaXIgcHJvdmlzaW9uIGlzIG5vdCBtdXR1YWxs
+eQ0KPiBleGNsdXNpdmUsIGp1c3QgdGhhdCB0aGUgSVAgd2lsbCBvbmx5IGFjdHVhbGx5IHVzZSBv
+bmUgYXQgYSB0aW1lLiBJZg0KPiB0aGF0IGlzIHRoZSBjYXNlLCB0aGVuIHRoaXMgcGF0Y2ggaXMg
+bm90dCBjb3JyZWN0IGFuZCB0aGUgYmluZGluZyBzaG91bGQNCj4gYWxsb3cgZm9yIDQgY2xvY2tz
+LCB3aXRoIGJvdGggdGhlIGdlbmVyaWMgY2xvY2sgYW5kIHRoZSBsdmRzIHBsbCBiZWluZw0KPiBw
+cmVzZW50IGluIHRoZSBEVCBhdCB0aGUgc2FtZSB0aW1lLg0KPiANCj4gSSB2YWd1ZWx5IHJlY2Fs
+bCBpbnRlcm5hbCBkaXNjdXNzaW9uIGFib3V0IHRoaXMgcHJvYmxlbSBzb21lIHRpbWUgYmFjaw0K
+PiBidXQgdGhlIGRldGFpbHMgYWxsIGVzY2FwZSBtZS4NCg0KTGV0J3MgZGVsdmUgZGVlcGVyIGlu
+dG8gdGhlIGNsb2NrIGNvbmZpZ3VyYXRpb24gZm9yIExDRENfUENLLg0KDQpDb25zaWRlcmluZyB0
+aGUgZmxleGliaWxpdHkgb2YgdGhlIGRlc2lnbiwgaXQgYXBwZWFycyB0aGF0IGJvdGggY2xvY2tz
+LCANCnN5c19jbGsgKGdlbmVyaWMgY2xvY2spIGFuZCBsdmRzX3BsbF9jbGssIGNhbiBpbmRlZWQg
+YmUgcHJvdmlkZWQgdG8gdGhlIA0KSVAgc2ltdWx0YW5lb3VzbHkuIFRoZSBjcnVjaWFsIGFzcGVj
+dCwgaG93ZXZlciwgaXMgdGhhdCB0aGUgSVAgd2lsbCANCnV0aWxpemUgb25seSBvbmUgb2YgdGhl
+c2UgY2xvY2tzIGF0IGFueSBnaXZlbiB0aW1lLiBUaGlzIGFsaWducyB3aXRoIHRoZSANCnNwZWNp
+ZmljIHJlcXVpcmVtZW50cyBvZiB0aGUgYXBwbGljYXRpb24sIHdoZXJlIHRoZSBjaG9pY2Ugb2Yg
+Y2xvY2sgDQpkZXBlbmRzIG9uIHdoZXRoZXIgdGhlIExWRFMgaW50ZXJmYWNlIG9yIE1JUEkvRFNJ
+IGlzIGluIHVzZS4NCg0KVG8gZW5zdXJlIHByb3BlciBjb25maWd1cmF0aW9uIG9mIHRoZSBwaXhl
+bCBjbG9jayBwZXJpb2QsIHdlIG5lZWQgdG8gDQpkaXN0aW5jdGx5IGlkZW50aWZ5IHdoaWNoIGNs
+b2NrcyBhcmUgYmVpbmcgdXRpbGl6ZWQuIEZvciBpbnN0YW5jZSwgaW4gDQp0aGUgTFZEUyBpbnRl
+cmZhY2Ugc2NlbmFyaW8sIHRoZSBsdmRzX3BsbF9jbGsgaXMgZXNzZW50aWFsLCByZXN1bHRpbmcg
+aW4gDQpMQ0RDX1BDSyBiZWluZyBzZXQgdG8gdGhlIHNvdXJjZSBjbG9jay4gQ29udmVyc2VseSwg
+aW4gdGhlIE1JUEkvRFNJIA0KY2FzZSwgdGhlIExDREMgR0NMSyBpcyByZXF1aXJlZCwgbGVhZGlu
+ZyB0byBMQ0RDX1BDSyBiZWluZyBkZWZpbmVkIGFzIA0Kc291cmNlIGNsb2NrL0NMS0RJVisyLg0K
+DQpDb25zaWRlcmluZyB0aGUgcG90ZW50aWFsIGNvZXhpc3RlbmNlIG9mIHN5c19jbGsgYW5kIGx2
+ZHNfcGxsX2NsayBpbiB0aGUgDQpEZXZpY2UgVHJlZSAoRFQpLCB3ZSBtYXkgbmVlZCB0byBpbnRy
+b2R1Y2UgYW4gYWRkaXRpb25hbCBmbGFnIGluIHRoZSBEVC4gDQpUaGlzIGZsYWcgY291bGQgc2Vy
+dmUgYXMgYSBjbGVhciBpbmRpY2F0b3Igb2Ygd2hldGhlciB0aGUgTFZEUyBpbnRlcmZhY2UgDQpv
+ciBNSVBJL0RTSSBpcyBiZWluZyBlbXBsb3llZC4gQXMgd2UgZGlzY3Vzc2VkIHRvIGRyb3AgdGhp
+cyBmbGFnIGFuZCANCmp1c3QgaGF2ZSBhbnkgb25lIG9mIHRoZSBjbG9ja3MgSSBiZWxpZXZlIHRo
+YXQgdGhpcyBhcHByb2FjaCBwcm92aWRlcyBhIA0Kc2Vuc2libGUgYW5kIHNjYWxhYmxlIHNvbHV0
+aW9uLCBhbGxvd2luZyBmb3IgYSBjb21wcmVoZW5zaXZlIA0KcmVwcmVzZW50YXRpb24gb2YgdGhl
+IGNsb2NraW5nIGNvbmZpZ3VyYXRpb24uDQo+IA0KPiBUaGFua3MsDQo+IENvbm9yLg0KDQotLSAN
+CldpdGggQmVzdCBSZWdhcmRzLA0KRGhhcm1hIEIuDQoNCg==
 
