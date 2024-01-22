@@ -1,143 +1,178 @@
-Return-Path: <devicetree+bounces-33786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BFD7836575
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 15:32:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A4E83656D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 15:31:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF2881C23072
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 14:32:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 168BA281DB0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 14:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B823D3BD;
-	Mon, 22 Jan 2024 14:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00D5B3D57D;
+	Mon, 22 Jan 2024 14:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="uJ9xhqvT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IxMn83hm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2EBB3D3B9;
-	Mon, 22 Jan 2024 14:32:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9C73D56E;
+	Mon, 22 Jan 2024 14:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705933965; cv=none; b=IP8vwbw3Pp4rpGDFsKEzdKiK2tnORgGFdHZ3f54zfjQGS+kRZSZLzCkoPhOss58WmTxJAtGfrNE+zlZQfRdC5xvo5xp3j6aqcNr8B43zBUMQEzNHcBJC6oLH5TxL5u+/oh/ccKsiZAJpynRLDJv4mWHnpv4OXimTCtlFpyv7K+w=
+	t=1705933880; cv=none; b=NycN6NL8SbLryULX/lgPd+Y3jEDTF2IQIX0QB4kWO+R+5gMnN9/Ubsz30iWkWxwqKmeM+HiXNfBTUEKxwjeAmOCU7vRrXxHZqKdDTvUsG0YSoMEut5fl9FIRgdFgxgfX6iMZ7FkM1/yV8ks0QB9xGSoWBPasbZnaikdKJqm+GXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705933965; c=relaxed/simple;
-	bh=ox9ARHAWa5hbH1NGqyR8MHwCiVjffoCVe3hbDOh/RVo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=HPIL5s9IBt4YQRTUYOEXaJj0EPsVGmqp0rggqq875pB6W30+RvOrQoTOda+yNf5Z/NzKfAy2zs9wLr78QqeN/EykKD/utPGHTU2FnzO95FCtVGAiAKZpgr5ytxT5T92ZLvCRDvF7t4ZIKTdgOLuuDtuCZ3HC3gsIyWxmUM5jjzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=uJ9xhqvT; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1705933961;
-	bh=ox9ARHAWa5hbH1NGqyR8MHwCiVjffoCVe3hbDOh/RVo=;
-	h=From:Date:Subject:To:Cc:From;
-	b=uJ9xhqvTww+cYoh9HhMp9tDM9PN+9baaqNJbjFcoDAT5KdbFEGQ7EtZ734huHcDm0
-	 YrSDUqcMtwfCWOV7MfjF3yKcs6UO/oSlOc9jC8jqHuSBdOaH4ROu7wgf0LK68WzFL1
-	 GyXGUvxlwrgmC56uXza3ilSvAD0dEnnsKKKsnbVQ64AP3T1APnzolX/dEtffwnHAXZ
-	 OkmZ66ztc/1a7S/Tta7TacpaqwFi1FcZmvsEFVCzUT5v5MgEhfuxgfo9T2G0DIRqrJ
-	 uFNSrAJ7bCiyiS54z1tUYctF2rURNhzHEYd+j0TKtdoxR06LJNx2cGWwT5TkM6V/DG
-	 i+1ahFYFQuy/Q==
-Received: from [192.168.0.47] (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id BC7D03781477;
-	Mon, 22 Jan 2024 14:32:38 +0000 (UTC)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Mon, 22 Jan 2024 11:29:18 -0300
-Subject: [PATCH v2] kselftest: dt: Stop relying on dirname to improve
- performance
+	s=arc-20240116; t=1705933880; c=relaxed/simple;
+	bh=5534V6lHT7b3TtGG2QWKvu4mP1JeauyYWUBJvnXGqfo=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ndbgka3QSp2jWTDCz12DqAYisSGURiD0iTNWSTuCqBmD7Az5yzBHHDqIe0MNFsREsCswVlpdhtJ4tKQmRL/UA5DZ5nTmqYiO/6Ds5KLx+XGmBwLsZ8vUjtS1QDfycZLZw7yPDHssh5VtKTm1Zel/8pvC5R0hYnLZdm/c5hebzE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IxMn83hm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40MEBCva001216;
+	Mon, 22 Jan 2024 14:31:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:subject:date:message-id:in-reply-to:references
+	:mime-version:content-type; s=qcppdkim1; bh=XpjkMMKePFkA/dKoK41E
+	QFyIy6K2tQwE34XDn+uOUr8=; b=IxMn83hm6mXy1YHUflwBEZahQTvBpCk+wIDs
+	UWb/Aa/u/n07qNEfLonKogTLB/gjN+W7lPPNKFmax2fV8rLQlMTSWjLvuG5UlWso
+	poaOaVJ1wmBasVNrQ3UfQABiJ/25QQ19yAzIQrdxgeafRPlPvTZ5nOZbsW3/bPsP
+	o0drNpQvWwJ6wiXxCZpbIY8C4yKYVX4slbhLJHj14TKMj73T5EIeLgYz3VoNQoXj
+	LN4JEv4oe2fN1QAKwrjyyemYv0ChJ29oIHnaW9uMppAyCAsATu8xnV92QsR8F/Ds
+	2NP075o9BcXMJIWlnfVxuT7jQCX4y+bYD6cEAejJ9VFZbmcg9Q==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vssw9g1e4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Jan 2024 14:31:16 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40MEVF4e002418
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 22 Jan 2024 14:31:15 GMT
+Received: from hu-okukatla-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 22 Jan 2024 06:31:12 -0800
+From: Odelu Kukatla <quic_okukatla@quicinc.com>
+To: <georgi.djakov@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad
+ Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [3/4] dt-bindings: interconnect: Add clock property to enable QOS on SC7280
+Date: Mon, 22 Jan 2024 20:00:29 +0530
+Message-ID: <20240122143030.11904-4-quic_okukatla@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20240122143030.11904-1-quic_okukatla@quicinc.com>
+References: <20240122143030.11904-1-quic_okukatla@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240122-dt-kselftest-dirname-perf-fix-v2-1-f1630532fd38@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAL17rmUC/zXMTQrCMBBA4auUWTslP63WrryHuEiTiQ22SZkEE
- UrvbhBcfm/xdsjEgTKMzQ5M75BDihXq1ICdTXwSBlcNSqhOSKXQFXxlWnyhXNAFjmYl3Ig9+vD
- Bi7OdknR2fhJQHxtTzb///VHtOa1YZibzv2qpxCC1vvZ92w166CVKjJ7Nxsalm03LYqbEprVph
- eP4AvQCsDaxAAAA
-To: Rob Herring <robh+dt@kernel.org>, Shuah Khan <shuah@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel@collabora.com, Mark Brown <broonie@kernel.org>, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.12.4
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BUfOUhV7cOIJPoAbwVjVtfCqh8-Cn7VJ
+X-Proofpoint-ORIG-GUID: BUfOUhV7cOIJPoAbwVjVtfCqh8-Cn7VJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-22_05,2024-01-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ phishscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0 spamscore=0
+ malwarescore=0 clxscore=1011 impostorscore=0 suspectscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401220098
 
-When walking directory trees, instead of looking for specific files and
-running dirname to get the parent folder, traverse all folders and
-ignore the ones not containing the desired files. This avoids the need
-to call dirname inside the loop, which drastically decreases run time:
-Running locally on a mt8192-asurada-spherion, which reports 160 test
-cases, has gone from 5.5s to 2.9s, while running remotely with an
-nfsroot has gone from 13.5s to 5.5s.
+Added clock property to enable clocks required for accessing
+qos registers.
 
-This change has a side-effect, which is that the root DT node now
-also shows in the output, even though it isn't expected to bind to a
-driver. However there shouldn't be a matching driver for the board
-compatible, so the end result will be just an extra skipped test:
-
-ok 1 / # SKIP
-
-Reported-by: Mark Brown <broonie@kernel.org>
-Closes: https://lore.kernel.org/all/310391e8-fdf2-4c2f-a680-7744eb685177@sirena.org.uk
-Fixes: 14571ab1ad21 ("kselftest: Add new test for detecting unprobed Devicetree devices")
-Tested-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Change-Id: Ie0478cc7ae9742742e2389cfa37ee57bab1aa320
+Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
 ---
-Changes in v2:
-- Tweaked commit message
-- Added trailer tags
-- Rebased on 6.8-rc1
----
- tools/testing/selftests/dt/test_unprobed_devices.sh | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ .../interconnect/qcom,sc7280-rpmh.yaml        | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
-diff --git a/tools/testing/selftests/dt/test_unprobed_devices.sh b/tools/testing/selftests/dt/test_unprobed_devices.sh
-index b07af2a4c4de..7fae90293a9d 100755
---- a/tools/testing/selftests/dt/test_unprobed_devices.sh
-+++ b/tools/testing/selftests/dt/test_unprobed_devices.sh
-@@ -33,8 +33,8 @@ if [[ ! -d "${PDT}" ]]; then
- fi
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
+index b135597d9489..758a6e924037 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
+@@ -53,10 +53,50 @@ allOf:
+       required:
+         - reg
  
- nodes_compatible=$(
--	for node_compat in $(find ${PDT} -name compatible); do
--		node=$(dirname "${node_compat}")
-+	for node in $(find ${PDT} -type d); do
-+		[ ! -f "${node}"/compatible ] && continue
- 		# Check if node is available
- 		if [[ -e "${node}"/status ]]; then
- 			status=$(tr -d '\000' < "${node}"/status)
-@@ -46,10 +46,11 @@ nodes_compatible=$(
- 
- nodes_dev_bound=$(
- 	IFS=$'\n'
--	for uevent in $(find /sys/devices -name uevent); do
--		if [[ -d "$(dirname "${uevent}")"/driver ]]; then
--			grep '^OF_FULLNAME=' "${uevent}" | sed -e 's|OF_FULLNAME=||'
--		fi
-+	for dev_dir in $(find /sys/devices -type d); do
-+		[ ! -f "${dev_dir}"/uevent ] && continue
-+		[ ! -d "${dev_dir}"/driver ] && continue
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sc7280-aggre1-noc
++    then:
++      properties:
++        clocks:
++          items:
++            - description: aggre UFS PHY AXI clock
++            - description: aggre USB3 PRIM AXI clock
 +
-+		grep '^OF_FULLNAME=' "${dev_dir}"/uevent | sed -e 's|OF_FULLNAME=||'
- 	done
- 	)
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sc7280-aggre2-noc
++    then:
++      properties:
++        clocks:
++          items:
++            - description: RPMH CC IPA clock
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,sc7280-aggre1-noc
++              - qcom,sc7280-aggre2-noc
++    then:
++      required:
++        - clocks
++    else:
++      properties:
++        clocks: false
++
+ unevaluatedProperties: false
  
-
----
-base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
-change-id: 20240122-dt-kselftest-dirname-perf-fix-7dc421e6dfb0
-
-Best regards,
+ examples:
+   - |
++    #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+     interconnect {
+         compatible = "qcom,sc7280-clk-virt";
+         #interconnect-cells = <2>;
+@@ -69,3 +109,12 @@ examples:
+         #interconnect-cells = <2>;
+         qcom,bcm-voters = <&apps_bcm_voter>;
+     };
++
++    interconnect@16e0000 {
++        reg = <0x016e0000 0x1c080>;
++        compatible = "qcom,sc7280-aggre1-noc";
++        #interconnect-cells = <2>;
++        qcom,bcm-voters = <&apps_bcm_voter>;
++        clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
++                 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
++    };
 -- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
 
