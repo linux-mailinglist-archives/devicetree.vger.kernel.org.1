@@ -1,193 +1,135 @@
-Return-Path: <devicetree+bounces-33728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45D1A836283
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:50:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6741E83628C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 12:50:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6B171F2893D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:50:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10210292064
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 11:50:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6591C3D0B5;
-	Mon, 22 Jan 2024 11:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611C63D0D8;
+	Mon, 22 Jan 2024 11:48:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="emBBdGaB"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="rQdEXeE6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6243C48D;
-	Mon, 22 Jan 2024 11:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6A9B3D3B6;
+	Mon, 22 Jan 2024 11:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705924099; cv=none; b=tEV4Y6prV4GUX3vtw0xZXShM6ICFgOVn9ZdCJq8HUlnDle3kNarTOXUUCw0+Ilvkey3VFC4GyvE67TZGuw3HvGYzQkMYG+Ge7vXUbg1bq079phqR+Lyn66TobNjg/+mtNT2XyUsv8oUEgXMwXr6mwBaqbrthQ0u/OoOF6rkcBR4=
+	t=1705924112; cv=none; b=AIdCycMQrlsM8hjBlleivNd1wLdFx3y2YSu5CTrJInGNnlHmMEnY0Gu5++IBKcoKre9oVsfKSzmLjIB7JES5hD7cjOhUSTTq4smu7m/9fy6t4IaeYeAbkxkTwUtFhIFzU3+SJCJx1aIX3anzi0pRiC1HkmPCJhi6IdXTq7jLS8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705924099; c=relaxed/simple;
-	bh=IW8JAQINhJrqE1I8Cqc2nNPE7CIP0vSa0LewGZv1Lhw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PHMP+wBkGVgM6knCKzEnE7Xrrp/iaaQxn4MJPu00IkDMyvMCv2PQLDsjwPPyGmc2TwxhgVzwLQU0d3hjYr3yuwgwlIQOfPMEfpB6vv95LQGNOgQZpv55wpi2lrPR4etxS5B8y0a4EtI7L+GT0hopTJXw+07EICqnRBh/7S3Kk1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=emBBdGaB; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2906b859560so462252a91.1;
-        Mon, 22 Jan 2024 03:48:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1705924097; x=1706528897; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jmCR5Hs59/0vtuduKlpgs+GpqISPKERHfnKxl2Hek7k=;
-        b=emBBdGaBODMIJVvk/QT3kDAWOwKliB0VqbHe9V84cud2Zi83uMLexEF/4u8bNKfFQh
-         wx36EJbj2TLB+mcNN0y05t6BfvL70A2G3Yq8OOB8Fz16pn1c53XUoKOese+oUuQW8MwD
-         U0EJUl2Q14cKJ2T4veXWwoNjQsDTxL40FPpbIcMrL7FPgrEKAW9Dciuc0KwNazEcNyv3
-         FLJ/DfORNkJ2kt5jY/EiPliAJ8fQIFTW7ZI7hkDSVIdJB+YJOUOphfQZo2Zd/I2R0tS/
-         J7Ix86SmTPGTvxTf3sovnBxNNqaCDXszg2Gpt+++f2plrkY9Ipc5qV/5GZv5G/0/Czlg
-         G/jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705924097; x=1706528897;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jmCR5Hs59/0vtuduKlpgs+GpqISPKERHfnKxl2Hek7k=;
-        b=pKshwOo39tkWU7vo1Q5fm8Y61N8izsqwtKHvdCZNEcmhhTS+PpGrLm6qUISv+WDI5p
-         wBRudUraafqAXLQoXZnh1xpYRor3tzFGmSCIHLfXrCQg8EAgGoRD8RIGdX1ZKsajwh0e
-         KaZ3MOoReiJt4/36SpDkCSycXVvfkoGlPkjOivdMNJibnXXkYY+E2FzUvXtL39yAt9He
-         uG0ck8F15PAPT9JS8tMSXPzjU33Ae31I02yuwrKFNuICVmemPrmNbVQ0jETk2UBVbuil
-         ABCEp8Zlw7D2/6AdQMuvAF9uwAg2t1uNp2muSdRzfQ5JTluLgB2Lw8pV3Xa73p5fqj1M
-         NRTg==
-X-Gm-Message-State: AOJu0YwMm6iSvtEVwlmysHmLMN1jfBBK/l5GJM4lrZKbyWb+KUMD/qyF
-	Xgis6Ci7LSDIgXD2m4YMoHyyC84TFKXs4mVDrFgBv2voHwhJnddfXRx+csnfe7kFzRKRtChmhRn
-	55hJDx56kEwPlQUdaDHthswQ0IeI=
-X-Google-Smtp-Source: AGHT+IHbJKr0+ESj/7wEsolCjUfhmX5aIfeStUtaEjVhlvaoVw+P+Od3BmO0j+0slKfHsE4bNUCILoUPH2kUJuGqtHk=
-X-Received: by 2002:a17:90a:fe95:b0:290:b5b2:b90c with SMTP id
- co21-20020a17090afe9500b00290b5b2b90cmr333726pjb.58.1705924097190; Mon, 22
- Jan 2024 03:48:17 -0800 (PST)
+	s=arc-20240116; t=1705924112; c=relaxed/simple;
+	bh=nRr2BPtGcBu5pcM6iVkEYQLLgGdpvWXGhuM0c/DPEgs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pLgHqzzGtq59nJ8/jnnyMGOBieciwP8Dpb/TXZTaCmeXu24EndTGOlQJ7SIRUkG4JizcsGi/8gZ9RxW43sh20Wdt0TYYayF1fp/ULFlzEGw2+MoHAURA+tg5YZUjCCw1KxLQQ41qOD21WIqbiritB07UImk34B4lwtIQW/gI42A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=rQdEXeE6; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1705924108;
+	bh=nRr2BPtGcBu5pcM6iVkEYQLLgGdpvWXGhuM0c/DPEgs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rQdEXeE6APfjlEqIznt/dRrwf0AmmPXSLMDIE+pr6elKrQhWHhX4/Rr7hFXN623zu
+	 zumK2YP9SI3rRcXJbA/mrzV/H7qUzjLoz4oonwVokvoo/Z9G6P131J+KK2rih7oRWL
+	 o2ZRqtjLTILNqW4JBlUdDBumWGtT6zL9uHpoOwqfY9kXhwW5iXkp1i/kUIrt/WjM7B
+	 qfXuHcpgQ+kUbtxwzJxmZYoTHobyIb68o5tCx9Q9k8O6N6RNqi0HdgfYmNaFJoBupl
+	 ys0IlGRgOUODL8YcCrUr8wxihHLLpIrs5b6x4eQLnmhqz3cQXd1n4D8XhbRdVRaov6
+	 ktRhQctjjVs1Q==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id EA8F237810CD;
+	Mon, 22 Jan 2024 11:48:27 +0000 (UTC)
+Message-ID: <9d3623f8-697b-44ab-a9eb-9d2d305b0e5c@collabora.com>
+Date: Mon, 22 Jan 2024 12:48:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240118195356.133391-1-dregan@broadcom.com> <20240118195356.133391-2-dregan@broadcom.com>
-In-Reply-To: <20240118195356.133391-2-dregan@broadcom.com>
-From: Jonas Gorski <jonas.gorski@gmail.com>
-Date: Mon, 22 Jan 2024 12:48:05 +0100
-Message-ID: <CAOiHx=k2Wn+UaVFbB-n2XKmFuBss4LKmLSW45YME07z=7zg0ww@mail.gmail.com>
-Subject: Re: [PATCH v2 01/10] dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
-To: dregan@broadcom.com
-Cc: dregan@mail.com, miquel.raynal@bootlin.com, richard@nod.at, 
-	vigneshr@ti.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, computersforpeace@gmail.com, kdasu.kdev@gmail.com, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com, 
-	tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com, 
-	william.zhang@broadcom.com, anand.gore@broadcom.com, kursad.oney@broadcom.com, 
-	florian.fainelli@broadcom.com, rafal@milecki.pl, 
-	bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com, 
-	baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org, 
-	dan.carpenter@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: msm8956-loire: Add SD Card
+ Detect to SDC2 pin states
+Content-Language: en-US
+To: Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, Luca Weiss <luca@z3ntu.xyz>,
+ Adam Skladowski <a39.skl@gmail.com>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, Martin Botka <martin.botka@somainline.org>,
+ Jami Kettunen <jami.kettunen@somainline.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240121-msm8976-dt-v2-0-7b186a02dc72@somainline.org>
+ <20240121-msm8976-dt-v2-6-7b186a02dc72@somainline.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240121-msm8976-dt-v2-6-7b186a02dc72@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On Thu, 18 Jan 2024 at 20:56, <dregan@broadcom.com> wrote:
->
-> From: William Zhang <william.zhang@broadcom.com>
->
-> Update the descriptions to reflect different families of broadband SoC and
-> use the general name bcmbca for ARM based SoC.
->
-> Add brcm,nand-use-wp property to have an option for disabling this
-> feature on broadband board design that does not use write protection.
->
-> Add brcm,nand-ecc-use-strap to get ecc setting from board boot strap for
-> broadband board designs because they do not specify ecc setting in dts
-> but rather using the strap setting.
->
-> Remove the requirement of interrupts property to reflect the driver
-> code. Also add myself to the list of maintainers.
->
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
-> Reviewed-by: David Regan <dregan@broadcom.com>
+Il 21/01/24 23:33, Marijn Suijten ha scritto:
+> In addition to the SDC2 pins, set the SD Card Detect pin in a sane state
+> to be used as an interrupt when an SD Card is slotted in or removed.
+> 
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 > ---
-> Changes in v2:
-> - Revert the new compatible string nand-bcmbca
-> - Drop the BCM63168 compatible fix to avoid any potential ABI
-> incompatibility issue
-> - Simplify the explanation for brcm,nand-use-wp
-> - Keep the interrupt name requirement when interrupt number is specified
-> ---
->  .../bindings/mtd/brcm,brcmnand.yaml           | 36 +++++++++++++++----
->  1 file changed, 30 insertions(+), 6 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> index f57e96374e67..56176ec1a992 100644
-> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-> @@ -9,6 +9,7 @@ title: Broadcom STB NAND Controller
->  maintainers:
->    - Brian Norris <computersforpeace@gmail.com>
->    - Kamal Dasu <kdasu.kdev@gmail.com>
-> +  - William Zhang <william.zhang@broadcom.com>
->
->  description: |
->    The Broadcom Set-Top Box NAND controller supports low-level access to raw NAND
-> @@ -18,9 +19,10 @@ description: |
->    supports basic PROGRAM and READ functions, among other features.
->
->    This controller was originally designed for STB SoCs (BCM7xxx) but is now
-> -  available on a variety of Broadcom SoCs, including some BCM3xxx, BCM63xx, and
-> -  iProc/Cygnus. Its history includes several similar (but not fully register
-> -  compatible) versions.
-> +  available on a variety of Broadcom SoCs, including some BCM3xxx, MIPS based
-> +  Broadband SoC (BCM63xx), ARM based Broadband SoC (BCMBCA) and iProc/Cygnus.
-> +  Its history includes several similar (but not fully register compatible)
-> +  versions.
->
->    -- Additional SoC-specific NAND controller properties --
->
-> @@ -53,7 +55,7 @@ properties:
->                - brcm,brcmnand-v7.2
->                - brcm,brcmnand-v7.3
->            - const: brcm,brcmnand
-> -      - description: BCM63138 SoC-specific NAND controller
-> +      - description: BCMBCA SoC-specific NAND controller
->          items:
->            - const: brcm,nand-bcm63138
->            - enum:
-> @@ -65,7 +67,7 @@ properties:
->            - const: brcm,nand-iproc
->            - const: brcm,brcmnand-v6.1
->            - const: brcm,brcmnand
-> -      - description: BCM63168 SoC-specific NAND controller
-> +      - description: BCM63xx SoC-specific NAND controller
+>   arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi b/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
+> index b0b83edd3627..75412e37334c 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire.dtsi
+> @@ -264,10 +264,27 @@ &sdhc_1 {
+>   	status = "okay";
+>   };
+>   
+> +&sdc2_off_state {
+> +	sd-cd-pins {
+> +		pins = "gpio100";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
 
-Only the BCM63268 family has a v4.0 NAND controller with support for
-ONFI and raw access; BCM6368 has a v2.1, and BCM6328 and BCM6362 have
-a v2.2.
+Are you sure that you really don't want card detect during system suspend?
 
-So claiming this is a generic binding is wrong; you would need to add
-the appropriate variants first. Or add another one for the BCM6368
-NAND v2.x controllers, which is missing. You can find them used in
-arch/mips/boot/dts/brcm/bcm63{28,62,68}.dtsi.
+You could simply add a sdc2-cd-pins out of sdc2_{on,off}_state and add use it for
+both default and sleep.
 
->          items:
->            - const: brcm,nand-bcm63168
->            - const: brcm,nand-bcm6368
+pinctrl-0 = <&sdc2_on_state>, <&sdc2_card_det_n>;
+pinctrl-1 = <&sdc2_off_state>;
 
-Also bcm63168's v4.0 has a different register layout than bcm6368's
-v2.x, so claiming brcm.nand-bcm6368 as compatible here is a bit weird.
-It works because the register layout used is derived from the
-"brcm,brcmnand-vX.Y" compatible, and the driver attaching to
-'brcm,nand-bcm6368" only uses the shared interrupt registers which are
-identical, the layout only diverges after that.
+Cheers,
+Angelo
 
-But then again these aren't really used as compatibles in the original
-sense, and more like tags which describe different parts of the
-controller, and the combination is the whole unique "compatible". Not
-sure if this is how compatibles are supposed to be used. /rant.
+> +};
+> +
+>   &sdc2_on_state {
+>   	clk-pins {
+>   		drive-strength = <10>;
+>   	};
+> +
+> +	sd-cd-pins {
+> +		pins = "gpio100";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		input-enable;
+> +		bias-pull-up;
+> +	};
+>   };
+>   
+>   &sdhc_2 {
+> 
 
-Best Regards,
-Jonas
+
 
