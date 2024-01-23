@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-34047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58E498388E0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:27:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F8A58388E6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:27:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DE731C229B5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:27:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A83BEB24C39
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CC656B77;
-	Tue, 23 Jan 2024 08:26:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2BA58102;
+	Tue, 23 Jan 2024 08:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RQv+7Y4h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HcJaLV5R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790D756755
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:26:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C57DF57334
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:27:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705998418; cv=none; b=etgSDBsKTIpq15E3o2Wp/n6PO/0qFJgeJameMwgbfPFMZd/jECOdUZCjEjW8MAb8pdO0ayvmAUOhqB98qkZDeR4hDRoIdEKSpydOmGLpepU/eXLhDviNAQDxedxN8K6gBXXcypfgUEQ1I8vkJvBEq8joRsCNovUDBX+KWR3ZbFU=
+	t=1705998423; cv=none; b=iA11DCa0gxy9BMoPN6/OVACqo6fR/ZFDgXckrn+s3wZJFepEjc7qzN4QE+3FEn+XBDunaFgKROi4qZMEYca3r45GDOLI5BgrcuG2TMAVr5RYPy+E0MCIDjDXfWoHVLXjI7mJBhI3vHHcnhLPq9dfIPeyuEm6VC8lvIqWbh3cIZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705998418; c=relaxed/simple;
-	bh=gyBjskUUgyqNv8rwW6zx0rQrf2+nhvIWFtqh6AsHQc4=;
+	s=arc-20240116; t=1705998423; c=relaxed/simple;
+	bh=hOzajdIbPUvogAB4a+NHcHPIBtoNpA8D53bdCFuXjwk=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=c0wv1WPA3W2YLYXeH3qCT2dStGoieK9/MFW3ukFNQBZIIjEEnYLLVg/56rD0zeYKlmAF3g5HXNBHfztzNqvyXWGFK9DXLdZ/Ke4/0DGe4xfDepXUyd5vXpmmUKcrXTkLi+UYek3Oo5rUPYWjFLa9OTOtQuXcMbiNUTH5rIzL1eU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RQv+7Y4h; arc=none smtp.client-ip=209.85.221.41
+	 In-Reply-To:Content-Type; b=t40AS6fKreS0RjNsLwUev86/OKs6rGCT2LstX6D0AfzE9OXnxPheEQfIc5KNP8aK2K2T6up3IMBPqrlZtuJ2A6wTyrlFM6WnxH/jqDrKZi9+h6bHMqakDHaG+XnzFmgp7uZkdkP+h4u14sZZkXm/ScVzeAQxuXw5ubKgGkbpwZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HcJaLV5R; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-337d32cd9c1so3599792f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 00:26:56 -0800 (PST)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-33934567777so2144666f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 00:27:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705998415; x=1706603215; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1705998420; x=1706603220; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1sSwGWy/QrnduCPAoeBshLrsXwnSCbH111QA86hYtAM=;
-        b=RQv+7Y4hQHpXKpbWn9pkEM4XC2+4GyD9HEEYDgZTBKUv+f52jlP356dC8+7lzeuPX8
-         q54lULGeVyHgPqudsqEmck/u78rK9t/dYcLtxKUdH1UaWu52kS//Rk3lgKzrL6NsNf27
-         776zMwzwXrOVRO2elFPLICzuXb2BmgBYlXhfI1gljoB8x1S9TEn5e1z9mnwPt4LS57Dt
-         6PtqF/CtmEMi4mu0FFc7WOAxkSvKVZ7VSDFFxYGa8cp0A7oPUFupVUF0lAlNC/9v1GhP
-         Wkk3i8pMPNK/REzwW2O49uDU2HpuFfYzFqJ/OEEE9uwP5uJ4X4ucXr8UA+P1o5JcwLzJ
-         dhrg==
+        bh=EAph0qO9sNSpveQZgrpubslobSSKkmBrDs3KCa8HQ+M=;
+        b=HcJaLV5RFg/kSXXu29GaD8VXODAQ58mMlMla20t26OJhF4q7XCHrb8034zdjQcarr1
+         8j21TTjSpNkaw47/nWDcm/WvdUeuYL/0CModBOYptnrJZwn7zJpEqKB3wtmHzWs3GFEM
+         4Z29HF/kmVoKBzlVahUZd0IGhNHc5P7YONysYF6q5M8ndubc4Nju6S2RxSRgf1qSemI7
+         Z63aj+L0ywHpkqUWO/zsrROdel5vG2U3GMxqnIju7JRTmqb0TJb1G4tXlUiyHEnF2J3s
+         C7PLUiFktNw4UKt3SXWMRRNKs28vJTAnc8nX+p/gBMzTYjdDEckMkyAH1nVS0FNfSQ0+
+         xPvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705998415; x=1706603215;
+        d=1e100.net; s=20230601; t=1705998420; x=1706603220;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=1sSwGWy/QrnduCPAoeBshLrsXwnSCbH111QA86hYtAM=;
-        b=bYTKP08amCc3j5VisehDGensE7PfhRuku+OsXMfqtJCj46er6kaQoQKLOLt1nmUX6x
-         wbNo6X1IOYwXEQ/BJ4QS0CifHoWY2lKGhCTN3loHFXIedBQckl0Vs/ol3V9juFg1FN5l
-         cjsCCu4NQdOMgsZr5lFO9/hKVdhABRI30ZOYpXip+f+R9f7+nr84GWA+x2sb3XaPjDTA
-         FzZFtdNyejqmGOm1zpsKBh2QIEzSbD+RHIWdJ51rjMvuI0LL71MO1Msnty8xRzWd0UwL
-         YcN23O51pyvM+Pt4iOBGXW2ooQZu93lhC5zdcv4Iq6hbacHMUEsYD7e+GrTPZc9npVuy
-         KYcA==
-X-Gm-Message-State: AOJu0Yxt3/UImvNw1PwQeL5WQHZbphwrllsEtvzlGPWWdnxaQ7W1/qj/
-	xF5F47AcqOasvmBxbmwQ+TLOupiGrbucUkG62zijptWrGiPQKumHDG7m3UGzo50=
-X-Google-Smtp-Source: AGHT+IHKgXV6S+D78FrKjV8f0OQsntHrIAkMRhmBXOvdwwbZanoY848HGqooBbcBwwzIRXDneJXe9Q==
-X-Received: by 2002:a5d:6751:0:b0:337:989c:15c with SMTP id l17-20020a5d6751000000b00337989c015cmr3002451wrw.90.1705998414761;
-        Tue, 23 Jan 2024 00:26:54 -0800 (PST)
+        bh=EAph0qO9sNSpveQZgrpubslobSSKkmBrDs3KCa8HQ+M=;
+        b=X/cubn2sl6ElTahGy4Ktw71O27IR+SmDylFuSf1SQ4/ypmIqqeUCqkZqWMelZaoxGq
+         hsz2+jNglO/ljRFFDMLzDJV37P+K5R7nWiMVyg39ykJMNM+HZlE2x/C/lldntP1F8rxy
+         qLEd8UTwE876gYb+LsqMC9JiBSqJuNDiy84VTGPCWsEDxiHQ6Hh0hj//ZjStOQt4J4Cc
+         DmpDsrDTtkcdlmI5/zuGpor7rurflk0N+pJE1d1OmDROGEzHJApfM+qJQ8BP7oZcOUat
+         n0xFNPImp8wPNRnI75jFFj8uNbYibUOakipXcNkWZDH4YedrZQm+KkNz/5NFJlHZG4Io
+         dkdw==
+X-Gm-Message-State: AOJu0YzflsBfnUQDW+Lith090sMUijZdg4sKTZ3qndX38sJivdMSusLa
+	AAUiqfYJ8Dswhh77m+lj9og4voJPythdMw0bacr/uDsisXV4y4sQGSfJWc1X5ZPPiDau8lUqx17
+	Fj611aw==
+X-Google-Smtp-Source: AGHT+IGaXeK8SOUX6knHj2BfjvB4E5Y7g/FV3ibLaVxRfSPNAUqt0fIOvo+HheGFEQJaw1OyGoXhBg==
+X-Received: by 2002:adf:ffcd:0:b0:337:be0b:766e with SMTP id x13-20020adfffcd000000b00337be0b766emr3211904wrs.63.1705998419968;
+        Tue, 23 Jan 2024 00:26:59 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:e70d:72be:6c73:25c2? ([2a01:e0a:982:cbb0:e70d:72be:6c73:25c2])
-        by smtp.gmail.com with ESMTPSA id f10-20020adfe90a000000b003392c3141a8sm7016192wrm.11.2024.01.23.00.26.53
+        by smtp.gmail.com with ESMTPSA id f10-20020adfe90a000000b003392c3141a8sm7016192wrm.11.2024.01.23.00.26.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 00:26:54 -0800 (PST)
-Message-ID: <ac81dba8-e58c-45ad-a512-f7af17c1462b@linaro.org>
-Date: Tue, 23 Jan 2024 09:26:54 +0100
+        Tue, 23 Jan 2024 00:26:59 -0800 (PST)
+Message-ID: <5a4b3712-2af4-491e-8a64-2916d87071fc@linaro.org>
+Date: Tue, 23 Jan 2024 09:26:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +80,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8650-qrd: add PM8010 regulators
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8650-mtp: add PM8010 regulators
 Content-Language: en-US, fr
 To: quic_fenglinw@quicinc.com, kernel@quicinc.com,
  Bjorn Andersson <andersson@kernel.org>,
@@ -89,7 +90,7 @@ To: quic_fenglinw@quicinc.com, kernel@quicinc.com,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com
 References: <20240123-sm8650_pm8010_support-v1-0-dec2224d5740@quicinc.com>
- <20240123-sm8650_pm8010_support-v1-2-dec2224d5740@quicinc.com>
+ <20240123-sm8650_pm8010_support-v1-1-dec2224d5740@quicinc.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -115,25 +116,25 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20240123-sm8650_pm8010_support-v1-2-dec2224d5740@quicinc.com>
+In-Reply-To: <20240123-sm8650_pm8010_support-v1-1-dec2224d5740@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 23/01/2024 07:42, Fenglin Wu via B4 Relay wrote:
 > From: Fenglin Wu <quic_fenglinw@quicinc.com>
 > 
-> Add PM8010 regulator device nodes for sm8650-qrd board.
+> Add PM8010 regulator device nodes for sm8650-mtp board.
 > 
 > Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
 > ---
->   arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 118 ++++++++++++++++++++++++++++++++
+>   arch/arm64/boot/dts/qcom/sm8650-mtp.dts | 118 ++++++++++++++++++++++++++++++++
 >   1 file changed, 118 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-> index 592a67a47c78..361894fa201a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-> @@ -436,6 +436,124 @@ vreg_l3i_1p2: ldo3 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+> index 9d916edb1c73..3791971efee6 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+> @@ -428,6 +428,124 @@ vreg_l3i_1p2: ldo3 {
 >   						   RPMH_REGULATOR_MODE_HPM>;
 >   		};
 >   	};
@@ -260,20 +261,5 @@ On 23/01/2024 07:42, Fenglin Wu via B4 Relay wrote:
 >   &dispcc {
 > 
 
-[    2.847268] vreg_l2m_1p056: Setting 1056000-1056000uV
-[    2.852186] vreg_l2n_1p056: Setting 1056000-1056000uV
-[    2.858879] vreg_l3m_2p8: Setting 2800000-2800000uV
-[    2.863483] vreg_l3n_1p8: Setting 1800000-1800000uV
-[    2.866798] vreg_l4m_2p8: Setting 2800000-2800000uV
-[    2.870018] vreg_l4n_1p8: Setting 1800000-1800000uV
-[    2.876182] vreg_l5m_1p8: Setting 1800000-1800000uV
-[    2.881297] vreg_l5n_2p8: Setting 2800000-2800000uV
-[    2.886532] vreg_l6m_2p8: Setting 2800000-2800000uV
-[    2.891332] vreg_l6n_2p8: Setting 2800000-2800000uV
-[    2.896519] vreg_l7m_2p96: Setting 2960000-2960000uV
-[    2.900919] vreg_l7n_3p3: Setting 3304000-3304000uV
-
-
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
 
