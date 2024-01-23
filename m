@@ -1,111 +1,117 @@
-Return-Path: <devicetree+bounces-34413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 227F6839ABF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:04:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F25839AF5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:21:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1205B1C21FA9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:04:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03A4B1F21BFF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:21:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B15A29434;
-	Tue, 23 Jan 2024 21:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 347FD2C682;
+	Tue, 23 Jan 2024 21:21:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="VhEfb8xu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hzEbAWf5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD231A27A;
-	Tue, 23 Jan 2024 21:04:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2EB82C1AE
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 21:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706043876; cv=none; b=aUR/XuvdNC7sevQv7OWXd25eV5wMI6GPWmIpbxDEC4wi+NAXgxR4hoatvtWexr+X68zaMZMj2+Xf7TfDNh+g6aX3EGvbFgCE4lGAdXN6TLSFOZOlzbkXt2oI7bdhAs0IGC5uqS3D3hgePWXWTZX3eq80XwOpX/VQf2ko+/Vov/0=
+	t=1706044880; cv=none; b=IV6icwIK8lorT8RHjm9NRzCaHi/PWindnUdE+pvBzMkrLKJ3opibRYkNmqDh6BJuQXgeEoWbUG19AKu8ZjLV2XYu/2M8fCrk2vG21taWkY72l0xGMq55kXPkTyiSw0ROTgwKBm5wu85ypjZyQCCebTbzLZRrH6v0m1po3nZWcYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706043876; c=relaxed/simple;
-	bh=iUZ9ff9Sy/VGyfLsHpEtkeYzZrimjw/PLUyxTEaxB+8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=loWzWMLJ+hh6vpKC2OYiCB1/VXpOK3G67ZFMOojgPYhprTvogiG6oDRcUYl1DcCy3rUR6W+e8B2secijNPCWH/0mDZzGiTov31ymfyPcI8TBFWji1Nk3XplEebJJvRBGsxd5wumUUvBSO1irt1+HKnbVaw24oRBpoYg2hZTLR9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=VhEfb8xu; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1706043867; bh=iUZ9ff9Sy/VGyfLsHpEtkeYzZrimjw/PLUyxTEaxB+8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=VhEfb8xuK6Z+e0ASbBsRCW8WXFX3p/aLRwG3yVVu1N6eWhIG0/9JKrS7F1NBQBOxC
-	 IeWZ+v1tqDX4Yiw2SYzJj1Ez8aN/464YRdXYpfU2meZAZsSV8T15puoTzCdaYuX+2z
-	 zMqQnTjKY5NwCjIHsV9DCYzc0S4o9CYCvokFNr3w=
-From: Luca Weiss <luca@z3ntu.xyz>
-Date: Tue, 23 Jan 2024 22:03:57 +0100
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8953: add reset for display
- subsystem
+	s=arc-20240116; t=1706044880; c=relaxed/simple;
+	bh=6ZcFAGxsXfBuE3ga46oXJ6I/U3rBa9vgh9Zg57GzUrQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iR86XItwPCkaMyCPtcJaNn9JYYSLmaLmUoDFvw4Ju4hfcMhKuDmn0kW+Gp3Ro4+bCGY9JyIVo+qj7CqQZvhGDbN2lO1K3M4IIb8KknaQ6n0YEpKElSBcOV4DbG/ieAodYQ3zaW8JA8A2BOdpy2oQkehpIpguViIv2Fdyjkj/zJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hzEbAWf5; arc=none smtp.client-ip=209.85.210.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6dc20b4595bso3613241a34.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 13:21:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706044878; x=1706649678; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AHAGkFwxLewCCCdzfxQpaTguak4yI4GrECprCWhB9r8=;
+        b=hzEbAWf5IvUUZBkA61rO3zcp7b31W5OgVTIsso7KAQ9S2z8QhNa2sGs6bLK8SeJxQ5
+         2SMsp6uZrRI5jC2keq779xNWqETFzdBRuwxpMXZaUGkX53ck6hui/+FR2WKJELSNXMvm
+         ebNj6+q4fQAmSrm9viI4GujIkTesHNNTWX1Hqb8YjLsXnTWjngyAlz6jkpPvdmdul6W6
+         yah4uO1QH9+EY/mrMwqtjbBwVIN1ejrh07AglBWzkrU+L+RIgmSiGSesnU5mj1Rdb8tj
+         FHfz8KRgnJNWXhQ/nWkSVzZdlk+kmx20FUMaluZthv5wmSNs3dxBWJ7m2BYFu2eNzvul
+         Xvpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706044878; x=1706649678;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AHAGkFwxLewCCCdzfxQpaTguak4yI4GrECprCWhB9r8=;
+        b=jfW3tYY8/VRHaGGv2AxH4wH46zWLEx2lT00hLQT8AxZahWb/NfaXYVruT1uJPjg8gA
+         MnN7S+3zUFl68bsK90tN+c2TuEgpQJSZTw4Tcng9JtafcjdLZgThWW6OVpwlsd2uIOsb
+         1d6wFgzc+5Q4RNAKgDuSbLkmw8lOVITizvUbuKv/M2BrFVvqpC18if/mzl49b3qEm5LB
+         TFghX/igLK3v5aWOiIB6beaoR3XmGudbfY5BYUqiddO9EaTZhZMU+6lvS6atoCBnwsEA
+         BAKqzpgIwTm91EVB4eDaUcCJhhMd/EyPRIv9ZpUUdKujuQnf20iWlSAYkuj2VmFg6qF6
+         +5CA==
+X-Gm-Message-State: AOJu0YxbJiHop75znN7xd1bVS6fY6wfrrRzcSLE7mf9dMm2OTENyxFCV
+	pQBV3VW/RJ4GhX13iTnsJzvQtkZ9DW4uaWJ94crayLR1U7ZTD1NO9AsOeSy5
+X-Google-Smtp-Source: AGHT+IGkxYUjValEXECGEiPKxSkIveHC+S7J1r3MOep0Caq0PQhXCD5g8WzFDheWBpkldInCCYB4hQ==
+X-Received: by 2002:a05:6830:1e0e:b0:6dd:de84:2626 with SMTP id s14-20020a0568301e0e00b006ddde842626mr573131otr.58.1706044877797;
+        Tue, 23 Jan 2024 13:21:17 -0800 (PST)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id w2-20020a9d4502000000b006dc6e40ba97sm2265770ote.72.2024.01.23.13.21.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jan 2024 13:21:17 -0800 (PST)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/4] Add Support for RK3566 Anbernic RG-ARC
+Date: Tue, 23 Jan 2024 15:21:07 -0600
+Message-Id: <20240123212111.202146-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240123-msm8953-mdss-reset-v1-3-bb8c6d3ce897@z3ntu.xyz>
-References: <20240123-msm8953-mdss-reset-v1-0-bb8c6d3ce897@z3ntu.xyz>
-In-Reply-To: <20240123-msm8953-mdss-reset-v1-0-bb8c6d3ce897@z3ntu.xyz>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca@z3ntu.xyz>, Vladimir Lypak <vladimir.lypak@gmail.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=774; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=2eGHbPBMdO+UgME/Y6wGkZ+t0vRvxXHXtjw6rDrXCQA=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlsCnY8IywGYM0+ByxpNlLjwe0KF31yb0R24nKo
- 3uRQqntBqiJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZbAp2AAKCRBy2EO4nU3X
- VkT4D/wPDY9u4kI772wMuV+JU85Ok3ODvWBeV65f2Aj5mic3HAOfGFQzvBnED3RY5v68/T5t0iN
- hpHpxQvletMss+auTI4T/PXBF8JsFCfoQY3mn+eGFJQil2NrXrqfhQjeRNGT4b0X1aBtFQ+EQDY
- HU82Mfq2R5GophhKMW0oa0RhCX2w1D2LVcTAg8hU2/ygTKCQ6zK34kkgyJMZAVBmhBocTFu1F49
- IUU2js0Irq4RN2gN1TDiOqDo9uOGLkAh0jLCoSve4YsnmPx67PB8WpkIJS0RGVxOwPtAM7lD2yc
- 0j+0Z8CPikioyLaogYNma9RHo1FliEADpTsmVMDeKCp5fh4ddE4ZO5GAKgCr7ecDWHUb+z+OWNg
- xWVzaq5WiRYo1LFM8BNjlN4+Ko8uQ1MiMG0/N0zEYlvd942mAuD5t9rARfbPbMgXL5WRQuFVb7a
- wjlKLpaduvTnNpyz0KUb4425j3IAj5AL+Eo5dhginLcKUMeaC60S6wVVljPN/nqV1RJgtti5W1A
- 2xc2pEp1E4RYZlpJZ2hAHpH3TRhba0zzoWDpnQXCWA9vIHO1bPQdXJZx/7wT2sM5e25HCF+YQcb
- hXQXRl1Bzr8PaqnxkhUf7I49TnAuis8Kfp6VnyKucUqfiupwurZXgYt1O4AooMO7ZQnmTMuTd+n
- dsEgawnrk5b2QCA==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+Content-Transfer-Encoding: 8bit
 
-From: Vladimir Lypak <vladimir.lypak@gmail.com>
+From: Chris Morgan <macromorgan@hotmail.com>
 
-With this reset we can avoid situations like IRQ storms from DSI host
-before it even started probing (because boot-loader left DSI IRQs on).
+Add support for the Anbernic RG-ARC S and RG-ARC D handheld gaming
+console.
 
-Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm64/boot/dts/qcom/msm8953.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Chris Morgan (4):
+  arm64: dts: rockchip: Move device specific properties
+  dt-bindings: arm: rockchip: Add Anbernic RG-Arc
+  clk: rockchip: rk3568: Add PLL rate for 128MHz
+  arm64: dts: rockchip: add Anbernic RG-ARC S and RG-ARC D
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-index ad2f8cf9c966..dcb5c98b793c 100644
---- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-@@ -859,6 +859,8 @@ mdss: display-subsystem@1a00000 {
- 				      "vsync",
- 				      "core";
- 
-+			resets = <&gcc GCC_MDSS_BCR>;
-+
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
+ .../devicetree/bindings/arm/rockchip.yaml     |  31 +--
+ arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+ .../dts/rockchip/rk3566-anbernic-rg-arc-d.dts |  42 ++++
+ .../dts/rockchip/rk3566-anbernic-rg-arc-s.dts |  19 ++
+ .../dts/rockchip/rk3566-anbernic-rg-arc.dtsi  | 237 ++++++++++++++++++
+ .../dts/rockchip/rk3566-anbernic-rg353x.dtsi  |  74 ++++++
+ .../dts/rockchip/rk3566-anbernic-rg503.dts    |  74 ++++++
+ .../dts/rockchip/rk3566-anbernic-rgxx3.dtsi   |  74 ------
+ drivers/clk/rockchip/clk-rk3568.c             |   1 +
+ 9 files changed, 458 insertions(+), 96 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg-arc-d.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg-arc-s.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg-arc.dtsi
 
 -- 
-2.43.0
+2.34.1
 
 
