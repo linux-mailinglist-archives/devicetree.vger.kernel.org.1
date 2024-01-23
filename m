@@ -1,183 +1,243 @@
-Return-Path: <devicetree+bounces-33997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15DB1838668
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 05:47:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF116838709
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 06:54:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4872E1C23D48
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 04:47:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B584A1C215EE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 05:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CC3A38;
-	Tue, 23 Jan 2024 04:47:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D23C2582;
+	Tue, 23 Jan 2024 05:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oagS0n7u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W2/50smJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EC6C4400;
-	Tue, 23 Jan 2024 04:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3AE7538D
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 05:54:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705985220; cv=none; b=H6LbZbQQDZ/i/JEkSl1qh6UyPC69Kegm3o8J4W17h8SoezxuCfLpDWzbdfTS9sEgVq2PAKQFTBK43J4ggu34D1hz+tS5N4CRKUsewPmfyI0UxayEXD03L2cobn1jNUGZNob72BpGvytg5HVVBAxuKWVq1Z13N/uge882YZdoA7s=
+	t=1705989286; cv=none; b=mcb928dfhaxA9KVK1tCsLkwr/S5aNfmHkvZGROXq4gAKZHSIecqPJjN4mTRFuUM1i42sfbPa2hhpXu+5rb0a1Mk80WURNECSZX3rcI1bQXosygCNpwA654968i1P7o8AM3qjXGXcvO1gdGxyVfHMXqBN8WAjQfZ2YdSax+T/sro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705985220; c=relaxed/simple;
-	bh=K85h1uIVAI2yS1PUV8EPwIVpnUVo14WfZ2GVpIaRSx4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aR+JBcil+9CWivNvuGc1HXst+dpgVyRkdCZ9s8L4MyKozCyqMfxdOyw1+9psBNSOv9caDG4LBS6tsg4MEQZ+CalcUWthfCH2zZl0tnXmrem+1EJ9Yg9gR709wiy+dzzFJPi8vwXM86RtrumNtGHgwR19/rLHX60YXSAF0uFx5rY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oagS0n7u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5A3AC433F1;
-	Tue, 23 Jan 2024 04:46:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1705985219;
-	bh=K85h1uIVAI2yS1PUV8EPwIVpnUVo14WfZ2GVpIaRSx4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oagS0n7uvpLTWhnxg1wIncNlNwSerWJDfFgQt7HXv8+dICMLDLo6Duj4IeujOGwzR
-	 4XBH3KTN49MgfLM5sr8iIbLJkW0N7St3Xi2GGqiSS40hwxJ35+jUteEOcWc8XgXLam
-	 Y/G8xAZJOQM03FZbgzj3Uca84+VAZotwcawlM6OpG7HalgEhKKDpf7RLElPAdgf6/m
-	 1ZwQPmDypYO0CRGggkZl03K3Qkky7IPUII00wmBZ5ApPjXbeJA3F8j4y3D2FE+wjFT
-	 YOiZ77zOC6OBMaX0dZGLlzG2AVvZjM9JIPP0HI3ok1S+IOQI8bcXhUTZ9w1o/5ZI2m
-	 /2Wwox/ufHV/A==
-Date: Mon, 22 Jan 2024 22:46:56 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Abel Vesa <abel.vesa@linaro.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [RFC] arm64: dts: qcom: qrb5165-rb5: model the PMU of the QCA6391
-Message-ID: <u5kvv3iip552yb5ykc4t2arfry2t7f34hwmemd7z6qfw677fs6@ldlwoycyacrm>
-References: <20240122182158.69183-1-brgl@bgdev.pl>
+	s=arc-20240116; t=1705989286; c=relaxed/simple;
+	bh=IedhDM4GAuyddYPNOKsFk25CuXoaKMq8SB+p+rm05Ns=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R9U5SKeY78nPDkIBq4Q+a8FCGLXfzwjXbsEhrh1AzD9T+VaDO2kR70FcefhjCbs964yuN++kIaHQWga0cI2Xw1BryvHdZyYeyUwulgM3bjbddr6XYG6iA0TC0jbI9H1fwGElYV3we2eYieI9spY6H/ZdXrHbVf5/imJZ9AeBR58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W2/50smJ; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dafe04717baso3181111276.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 21:54:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1705989284; x=1706594084; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=u8hawjzB2k/6IB+JEpXxKhO9XrlUEkw5XU7npCHNlns=;
+        b=W2/50smJ7g0a9s11jBUA/jpTzQg+jHuPNuFwHuUML8/9mFqQGKzm1O4V0F6ugZn/zT
+         Vrw5AOXF1T/0bL6ZtYbNsRYAuSe0XeP4rqPao3M7pKjPQ7j7wf+F78jiF1/+EO8hMUv4
+         ZvtANuzuJ5ZzRK9qP3DIznNxh8+VhHoTb8UCf17UbYprLUCYpsaBYC8xleF/EsEcM3ft
+         8or0LedG1ncP3k4+ztl+gcYilAVUVp/wceQh/FVuWDOqu1OOoRnfl1DS6ff0cEKuywzF
+         MPtYkaIamzCgfZN1YV/2yjA68GuIY+1kDnJUDZypm1VJzAWocPEqZaKypSHMz1dy+fdp
+         vvUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705989284; x=1706594084;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u8hawjzB2k/6IB+JEpXxKhO9XrlUEkw5XU7npCHNlns=;
+        b=emWTrb/oG7/mGWTfUtkS4IHXVlL0gQI6zzKMp6Z3hn3kbMGGUJyYQ0yv7bCqrSfpk2
+         l2ACPg13U/aGU7aZ4ksoeVoRFIIqw4P41lO/g9A1zMNS0d6KOJeDYoHI9F8EzLsdLSR7
+         jqa2idJ42vEAYviSYA1ouR9S1DENUTfWsT/9GZyOI1EXDyZKJD+Lz7W1kJUP8fAHjsDu
+         K6Qa3tihOxFNvpZUhnzMYvgBFY66b71fHv5qfdhPTW7wxwOieeyrLrZlBqbP3QfbXtZe
+         E/G8Adm5g6y/6KUEnUoPpq58Ut5ugcOvYANWLnV+PuCfRsrU3yvPuuR9TpoeoQlCZhVu
+         1Nlg==
+X-Gm-Message-State: AOJu0YwayXstZMNFzCmi3Hz/+8KfJHdsOVSAZu8inNh6L0hzzUDg659e
+	RougQLSXvE268S1lKOVXQ0kTDWokfYiKS0uq82yrZbSD7nGF1VaWvI4KtU9fQasIj0lJnrw8Kzr
+	B6rDcDFzELGAVgk9hEbTu5LTruQxp3T/6Zm1kuA==
+X-Google-Smtp-Source: AGHT+IEkxjJVSmq8MCL28lHXYMwlDP3mgapIAK5Xu0TtkhiywDgxtPNfu93BAvUfYkW7Q68B6qXYcAIV7ZDcCeSW0js=
+X-Received: by 2002:a25:ab30:0:b0:dc2:2acf:ce48 with SMTP id
+ u45-20020a25ab30000000b00dc22acfce48mr2888085ybi.126.1705989283779; Mon, 22
+ Jan 2024 21:54:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240122182158.69183-1-brgl@bgdev.pl>
 In-Reply-To: <20240122182158.69183-1-brgl@bgdev.pl>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 23 Jan 2024 07:54:32 +0200
+Message-ID: <CAA8EJprWddrEH+Wmh4SExPygSVz6+WpSX-MDQ+hev1gov74rng@mail.gmail.com>
+Subject: Re: [RFC] arm64: dts: qcom: qrb5165-rb5: model the PMU of the QCA6391
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Abel Vesa <abel.vesa@linaro.org>, Alex Elder <elder@linaro.org>, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jan 22, 2024 at 07:21:58PM +0100, Bartosz Golaszewski wrote:
+On Mon, 22 Jan 2024 at 20:22, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+>
 > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
+>
 > I'm limiting the audience of this compared to the PCI power sequencing
 > series as I wanted to run the DT part by the maintainers before I commit
 > to a doomed effort.
-> 
-
-With linux-arm-msm and deviectree in there, you have a fairly big
-limited audience... I think if anything, your proposal is doomed by the
-lack of a proper commit message describing what this is.
-
-Below you'll find some questions/feedback based on our previous
-discussions on the topic, although I'm not able to understand the
-motivations behind what you propose - or even fully what it is that
-you're proposing.
-
+>
 > Here is the DT representation of the QCA6390's PMU with its inputs and
 > outputs. If I were to implement the pwrseq framework that would be able
 > to assign the relevant pwrseq data to the consumer based on the actual
 > regulators and not abstract bt-pwrseq or wlan-pwrseq properties - would
 > that fly with you?
-> 
-
-Why do you need to make up this intermediate/fake "PMU" thing? The
-regulators are reference counted already.
-
+>
 > We'd need to deprecate the existing BT bindings but unfortunately they
 > are already described as consuming the host PMIC regulators in bindings.
-> 
-
-I was under the impression that the supplies in the bluetooth binding
-are the supply pads of the chip. Where the power to those pads come from
-is not a property of the binding.
-
-So what you need to do is describe why the pads suddenly changed.
-
+>
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+My main concern is whether this is going to pass the regulator
+subsystem locking. Basically you have a driver for regulators, which
+will itself call into the regulator subsytem. It might be reentrant.
+Or it might not.
+
 > ---
 >  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 129 +++++++++++++++++++++--
 >  arch/arm64/boot/dts/qcom/sm8250.dtsi     |  10 ++
 >  2 files changed, 128 insertions(+), 11 deletions(-)
-> 
+>
 > diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
 > index cd0db4f31d4a..c9b1600c57ef 100644
 > --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
 > +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
 > @@ -108,6 +108,88 @@ lt9611_3v3: lt9611-3v3 {
->  		regulator-always-on;
->  	};
->  
-> +	qca6390_pmu: pmu@0 {
-
-This is not a thing.
-
-> +		compatible = "qcom,qca6390-pmu";
+>                 regulator-always-on;
+>         };
+>
+> +       qca6390_pmu: pmu@0 {
+> +               compatible = "qcom,qca6390-pmu";
 > +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
 > +
-> +		vddaon-supply = <&vreg_s6a_0p95>;
-> +		vddpmu-supply = <&vreg_s2f_0p95>;
-> +		vddrfa1-supply = <&vreg_s2f_0p95>;
-> +		vddrfa2-supply = <&vreg_s8c_1p3>;
-> +		vddrfa3-supply = <&vreg_s5a_1p9>;
-> +		vddpcie1-supply = <&vreg_s8c_1p3>;
-> +		vddpcie2-supply = <&vreg_s5a_1p9>;
-> +		vddio-supply = <&vreg_s4a_1p8>;
+> +               vddaon-supply = <&vreg_s6a_0p95>;
+> +               vddpmu-supply = <&vreg_s2f_0p95>;
+> +               vddrfa1-supply = <&vreg_s2f_0p95>;
+> +               vddrfa2-supply = <&vreg_s8c_1p3>;
+> +               vddrfa3-supply = <&vreg_s5a_1p9>;
+> +               vddpcie1-supply = <&vreg_s8c_1p3>;
+> +               vddpcie2-supply = <&vreg_s5a_1p9>;
+> +               vddio-supply = <&vreg_s4a_1p8>;
 > +
-> +		bt-enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-> +		wifi-enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-> +		swctrl-gpios = <&tlmm 124 GPIO_ACTIVE_HIGH>;
-
-Are these collected here because we still have convinced ourselves that
-they need to be handled from a common place, or did you actually find
-some documentation you can point to that shows this is necessary?
-
+> +               bt-enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
+> +               wifi-enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
+> +               swctrl-gpios = <&tlmm 124 GPIO_ACTIVE_HIGH>;
 > +
-> +		regulators {
-> +			vreg_pmu_rfa_cmn: ldo0 {
-> +				regulator-name = "vreg_pmu_rfa_cmn";
-> +				regulator-min-microvolt = <760000>;
-> +				regulator-max-microvolt = <840000>;
-
-These limits should be applied to &vreg_s2f_0p95 (although I'm just
-guessing how this maps to the upstream supply...
-
-> +			};
-[..]
+> +               regulators {
+> +                       vreg_pmu_rfa_cmn: ldo0 {
+> +                               regulator-name = "vreg_pmu_rfa_cmn";
+> +                               regulator-min-microvolt = <760000>;
+> +                               regulator-max-microvolt = <840000>;
+> +                       };
+> +
+> +                       vreg_pmu_aon_0p59: ldo1 {
+> +                               regulator-name = "vreg_pmu_aon_0p59";
+> +                               regulator-min-microvolt = <540000>;
+> +                               regulator-max-microvolt = <840000>;
+> +                       };
+> +
+> +                       vreg_pmu_wlcx_0p8: ldo2 {
+> +                               regulator_name = "vreg_pmu_wlcx_0p8";
+> +                               regulator-min-microvolt = <760000>;
+> +                               regulator-max-microvolt = <840000>;
+> +                       };
+> +
+> +                       vreg_pmu_wlmx_0p85: ldo3 {
+> +                               regulator-name = "vreg_pmu_wlmx_0p85";
+> +                               regulator-min-microvolt = <810000>;
+> +                               regulator-max-microvolt = <890000>;
+> +                       };
+> +
+> +                       vreg_pmu_btcmx_0p85: ldo4 {
+> +                               regulator-name = "vreg_pmu_btcmx_0p85";
+> +                               regulator-min-microvolt = <810000>;
+> +                               regulator-max-microvolt = <890000>;
+> +                       };
+> +
+> +                       vreg_pmu_rfa_0p8: ldo5 {
+> +                               regulator-name = "vreg_pmu_rfa_0p8";
+> +                               regulator-min-microvolt = <760000>;
+> +                               regulator-max-microvolt = <840000>;
+> +                       };
+> +
+> +                       vreg_pmu_rfa_1p2: ldo6 {
+> +                               regulator-name = "vreg_pmu_rfa_1p2";
+> +                               regulator-min-microvolt = <1187000>;
+> +                               regulator-max-microvolt = <1313000>;
+> +                       };
+> +
+> +                       vreg_pmu_rfa_1p7: ldo7 {
+> +                               regulator_name = "vreg_pmu_rfa_1p7";
+> +                               regulator-min-microvolt = <1710000>;
+> +                               regulator-max-microvolt = <1890000>;
+> +                       };
+> +
+> +                       vreg_pmu_pcie_0p9: ldo8 {
+> +                               regulator_name = "vreg_pmu_pcie_0p9";
+> +                               regulator-min-microvolt = <870000>;
+> +                               regulator-max-microvolt = <970000>;
+> +                       };
+> +
+> +                       vreg_pmu_pcie_1p8: ldo9 {
+> +                               regulator_name = "vreg_pmu_pcie_1p8";
+> +                               regulator-min-microvolt = <1710000>;
+> +                               regulator-max-microvolt = <1890000>;
+> +                       };
+> +               };
+> +       };
+> +
+>         thermal-zones {
+>                 conn-thermal {
+>                         polling-delay-passive = <0>;
 > @@ -734,6 +816,24 @@ &pcie0_phy {
->  	vdda-pll-supply = <&vreg_l9a_1p2>;
+>         vdda-pll-supply = <&vreg_l9a_1p2>;
 >  };
->  
+>
 > +&pcieport0 {
-> +	wifi@0 {
-> +		compatible = "pci17cb,1101";
-
-Does this compatible somehow bind to a entity that knows what to do with
-the regulators below?
-
-> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +       wifi@0 {
+> +               compatible = "pci17cb,1101";
+> +               reg = <0x10000 0x0 0x0 0x0 0x0>;
 > +
-> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-> +		vddaon-supply = <&vreg_pmu_aon_0p59>;
-> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-> +		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-> +		vddrfa0-supply = <&vreg_pmu_rfa_0p8>;
-> +		vddrfa1-supply = <&vreg_pmu_rfa_1p2>;
-> +		vddrfa2-supply = <&vreg_pmu_rfa_1p7>;
-> +		vddpcie0-supply = <&vreg_pmu_pcie_0p9>;
-> +		vddpcie1-supply = <&vreg_pmu_pcie_1p8>;
-> +	};
-> +};
+> +               vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
+> +               vddaon-supply = <&vreg_pmu_aon_0p59>;
+> +               vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> +               vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
+> +               vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
+> +               vddrfa0-supply = <&vreg_pmu_rfa_0p8>;
+> +               vddrfa1-supply = <&vreg_pmu_rfa_1p2>;
+> +               vddrfa2-supply = <&vreg_pmu_rfa_1p7>;
+> +               vddpcie0-supply = <&vreg_pmu_pcie_0p9>;
+> +               vddpcie1-supply = <&vreg_pmu_pcie_1p8>;
 
-Regards,
-Bjorn
+This really feels like an overkill, All those voltages are handled by
+the PMU itself, rather than being requested by the WiFi or BT drivers.
+
+> +       };
+> +};
+> +
+>  &pcie1 {
+>         status = "okay";
+>  };
+
+-- 
+With best wishes
+Dmitry
 
