@@ -1,173 +1,197 @@
-Return-Path: <devicetree+bounces-34361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C49A8397FA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 19:41:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0584E839809
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 19:42:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FCB81C27007
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:41:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 713211F2588E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8671481AD3;
-	Tue, 23 Jan 2024 18:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6272C823C7;
+	Tue, 23 Jan 2024 18:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hjoGIbtT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QgzdAMJf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA00D7FBC5
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 18:41:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CF2823BC;
+	Tue, 23 Jan 2024 18:42:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706035297; cv=none; b=Viv+inmd4cRVFSXq3C4pP/RLc07abLnqCpdkWG0Ocp0I3osTUDpFpt6YCqGvlxXCF2igaJC3ZMAzvNzZA1H/9P0A/wTdDWCdx/+eomyO+vP5rYi++i/O/hBb9pGRxSe38HTAWI2PdtC3zXLcJlcwONd7zqJmzhIDDgz6RG68yBU=
+	t=1706035353; cv=none; b=UcW17QE3e4b0YTpj/rFzozsLa/taHMsmz635zN2JIKxklu1Tm2K80kCe+S57uzj45Pbq2mU/jlc8hVtu8/YgP1TORrZ2IM/ZdJ0JXHRYYdgDU7glCqGfrH3hvjh1PSUd7kZ4jsWETV7I5Or1XbRXk8lFbCu2OQlJfL8bipntkH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706035297; c=relaxed/simple;
-	bh=5Z8UwiAp5u+3S5PaC31HB/zFb6BCfvOQCRiQrc3xwks=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FFW/rvtD159NmgHN1QohdqK211u14NreGsEL1HgXaV6jHm/2akzKNIDZXy1CnjX3ED+z9/HXwr2vRvEY9I6zY7vY2wbOmGSURdL5fZafYcLEFyqtFsXbhqYtJ3awclZIqky9/LKPf2oJCtRMuo6s1mHBOzt3o/v4+ZRcWPRlRj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hjoGIbtT; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-50e7b273352so4886511e87.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 10:41:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706035294; x=1706640094; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AaVxPRhE878jN2DUtSbnFzkKwVO+PgXSHCcaR8B9SpU=;
-        b=hjoGIbtTOJmHxl27IKEN+ePrXYEAsoL+dEmIQ3n27iEOi3iClm+oD9vBiibRSS2YN4
-         JwpRj3KwgQDaItKApIgDWyAYBdlLcBW7d+JW4+HYTffmeZQiZ5dMKu97nHK6+xnEqBlH
-         b4OJRapomm/e2CMDcAHrfmlzS+Iba/fdmg697ZdtIvJB7bnmwFpAKMPEP/zcxWhllXAt
-         85GmlpTgBX1+s0567MYE2S7E05ldzulhJ5m58LbGSRd/+l2LmWUEi2SBufudeoeBMvzI
-         uPMyCozQjiAiuLhxB0KK5AHr0t34OW8Qw1hLJG9EB6kxRPOZJlj3zgL3hY+UPzJY3K0Y
-         zPOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706035294; x=1706640094;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AaVxPRhE878jN2DUtSbnFzkKwVO+PgXSHCcaR8B9SpU=;
-        b=lfNv0W1UJ0BeJhxT8pSrddkwJievVQ5o92XKeVR9F+WMNypZe4wq+bgJ9Fg5RxvzMt
-         gGrfyMlk1WFU3KvoL6fzBwOf1U0dFzLW0ReiTyOgOG/2ZFcW4djj0oumtvxnGj6Dzis2
-         +NNV5elMgorJrj0IdySF3WLUwh92JQ/EJeklQT81pGMXbSC+VmgMmx1S6GiZcFat/L5w
-         Nm73ptHA9Np1wqnJTbKII7c9cURyGohxD/Oejq+6QuhdENExwt34VofXYg460HJsKiUo
-         ReGwLRAmX9jVh8VVBFWvA97UFwSNpkNmIAiETQAUElPv7axcP5+/SNYy9HjRJXAZsf7l
-         vO0g==
-X-Gm-Message-State: AOJu0Yx1zRxYqyVPXlGFITxziJvWjsU8E1Q4w/s6+8KTOsZgQ6u5Pojp
-	GnkWQvVrGaaLB6rnHMuhRMr3RjYAa53Km5shplWEUEaPEtSuvMQYXoVTjZtIs5c=
-X-Google-Smtp-Source: AGHT+IEeNhdjfGuNIfFu6QbvEdd52qRS+kK74/wdD+medJbFXjkwOG5DE5nv7ekWn7JcO3XLfBr6hA==
-X-Received: by 2002:a05:6512:3da4:b0:510:c7d:8cdf with SMTP id k36-20020a0565123da400b005100c7d8cdfmr483021lfv.101.1706035293715;
-        Tue, 23 Jan 2024 10:41:33 -0800 (PST)
-Received: from [172.30.205.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id ep26-20020a056512485a00b00510091c44a6sm40347lfb.165.2024.01.23.10.41.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 10:41:33 -0800 (PST)
-Message-ID: <b8d6ff55-cf1c-4f37-b2ac-a27a1fa4559d@linaro.org>
-Date: Tue, 23 Jan 2024 19:41:31 +0100
+	s=arc-20240116; t=1706035353; c=relaxed/simple;
+	bh=L5CiyhJ7VmjD8jqZZfrKBqOIr3FlCEqBLQ1Y4nvSv68=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GNqlk3FRi3/UtTaGrCsKRUWX3FPxRNl2EtitgI9ONcXL4l+kPkhjV73jAShLAGLeJPY/u6oeRcIXOG5GvSCuVJXBrE3c3EvLJGhAcReIcei4ktTBfozbhGck69GFajJ6rcQZrZP1QL3D4o+nx9L/94l2jX8AD3OI91qYXjd7tQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QgzdAMJf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87EC4C433F1;
+	Tue, 23 Jan 2024 18:42:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706035352;
+	bh=L5CiyhJ7VmjD8jqZZfrKBqOIr3FlCEqBLQ1Y4nvSv68=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QgzdAMJfpJGkJP1P9EMq4+0ZzDYohgQmMHPDjUvtqtXyx5DMV15NtBUl0PnG1XST9
+	 beJUdItmGbSaGAIfuZG2DyrcA8oukAqMR7wItzJ3+ut+2T4cV7PJXhKK3ItVmSYw7f
+	 l5nrwQ5CJ64qBT8arwFKilK9Q4E2zkIvTRjRXCgUIh1i9YHKA60Z6IHTgVPOolfIUa
+	 gV0QJ/uxDzFuz/6byKUvH7hH9BD18SrRJtyaERw9At4bbXpPEkoVerXMD1Ny5/2pmk
+	 kzdc153g6ZoydVJyXhi2HUbk5LgyBYuhb0ElD4/fKbP84+7bP3XKPGuOkvAUI7fhrg
+	 NTUHIMlpHqwCg==
+Date: Tue, 23 Jan 2024 18:42:27 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: thinh.nguyen@synopsys.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	balbi@kernel.org, devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	mark.rutland@arm.com, mathias.nyman@intel.com, pku.leo@gmail.com,
+	sergei.shtylyov@cogentembedded.com
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add system bus request info
+Message-ID: <20240123-nanometer-atlantic-6465b270043a@spud>
+References: <20240123170206.3702413-1-Frank.Li@nxp.com>
+ <20240123-poking-geography-33be2b5ae578@spud>
+ <Za/8J8MDJaZEPEKO@lizhi-Precision-Tower-5810>
+ <20240123-anew-lilly-0d645bdbfb30@spud>
+ <Za//LX9U6QG5A5NW@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc8280xp: Fix PCIe PHY
- power-domains
-Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Johan Hovold <johan@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20231227-topic-8280_pcie_dts-v1-0-13d12b1698ff@linaro.org>
- <20231227-topic-8280_pcie_dts-v1-1-13d12b1698ff@linaro.org>
- <ZY6sh8nlEUyEfL0u@hovoldconsulting.com> <20231229170334.GA9098@thinkpad>
- <20240122172528.GE3176@thinkpad> <Za6ns-xhN3N-cmIr@hovoldconsulting.com>
- <20240123170614.GH19029@thinkpad>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240123170614.GH19029@thinkpad>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="gjo83bA3bLxaSiQd"
+Content-Disposition: inline
+In-Reply-To: <Za//LX9U6QG5A5NW@lizhi-Precision-Tower-5810>
 
 
+--gjo83bA3bLxaSiQd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 1/23/24 18:06, Manivannan Sadhasivam wrote:
-> On Mon, Jan 22, 2024 at 06:36:51PM +0100, Johan Hovold wrote:
->> On Mon, Jan 22, 2024 at 10:55:28PM +0530, Manivannan Sadhasivam wrote:
->>> On Fri, Dec 29, 2023 at 10:33:34PM +0530, Manivannan Sadhasivam wrote:
->>>> On Fri, Dec 29, 2023 at 12:24:55PM +0100, Johan Hovold wrote:
->>>>> On Wed, Dec 27, 2023 at 11:28:26PM +0100, Konrad Dybcio wrote:
->>>>>> The PCIe GDSCs are only related to the RCs. The PCIe PHYs on the other
->>>>>> hand, are powered by VDD_MX and their specific VDDA_PHY/PLL regulators.
->>>>>
->>>>> No, that does not seem to be entirely correct. I added the power-domains
->>>>> here precisely because they were needed to enable the PHYs.
->>>>>
->>>>> This is something I stumbled over when trying to figure out how to
->>>>> add support for the second lane pair (i.e. four-lane mode), and I just
->>>>> went back and confirmed that this is still the case.
->>>>>
->>>>> If you try to enable one of these PHYs without the corresponding GDSC
->>>>> being enabled, you end up with:
->>>>>
->>>>> [   37.709324] ------------[ cut here ]------------
->>>>> [   37.718196] gcc_pcie_3b_aux_clk status stuck at 'off'
->>>>> [   37.718205] WARNING: CPU: 4 PID: 482 at drivers/clk/qcom/clk-branch.c:86 clk_branch_wait+0x144/0x15c
->>>>> 	
->>>>
->>>> Technically this patch is correct. PHYs are backed by MX domain only and not
->>>> GDSCs. Only the controllers (PCIe, UFS, USB) are backed by GDSCs. The fact that
->>>> you are seeing issue with PCIe Aux clock suggests me that this clock may not be
->>>> applicable to the PHY but it needs to be enabled for working of the PHY somehow.
->>>> I'll try to find the details on how exactly it is needed.
->>>>
->>>> But if I get the answer like, "This clock is also sourced to PHY directly", then
->>>> we may need to add dual power domain for PHY (both GDSC and MX).
->>>>
->>>
->>> So I answer I got from Qcom is that this clock is only applicable to the PCIe
->>> controller and not PHYs. On some platforms, there is a separate PCIE_PHY_AUX_CLK
->>> coming from GCC that is used during L1SS state. I think that caused confusion
->>> while adding PHY support for followup platforms and folks just used PCIE_AUX_CLK
->>> since they couldn't find the actual PCIE_PHY_AUX_CLK.
->>
->> Thanks for sorting that out.
->>
->>> I've prepared a series to fix this mess, but I want to know how you end up
->>> seeing the above "clk status stuck at off" issue. Is there an actual usecase for
->>> powering up PHY without controller or you just experimented with it?
->>
->> As I mentioned, I ran into this when experimenting with how to enable
->> the "companion" PHY for four-lane support. There shouldn't be any use
->> case for it (apart from using it to determine that the current
->> description of the PHY resources is incomplete or incorrect).
->>
-> 
-> Ok. I tested by enabling the PHY clocks during qmp_pcie_clk_init() without
-> PCIE_GDSC. It worked for one instance of the PHY which doesn't have
-> PCIE_PHY_AUX_CLK, but for the PHY instance with this clock, I saw the same "clk
-> stuck" issue. Then checking the internal documentation revealed that this clock
-> needs PCIE_GDSC to become functional >.<
-> 
-> So to conclude, PCIE_AUX_CLK belongs to the controller and it needs GDSC. And
-> PCIE_PHY_AUX_CLK belongs to the PHY and it also needs GDSC.
-> 
-> I will just submit a series to remove the PCIE_AUX_CLK from PHY nodes. Then
-> in another series, I'll remove the GDSC for PHY instances that do not require
-> PCIE_PHY_AUX_CLK.
-> 
-> Hope this makes sense.
+On Tue, Jan 23, 2024 at 01:02:21PM -0500, Frank Li wrote:
+> On Tue, Jan 23, 2024 at 05:51:48PM +0000, Conor Dooley wrote:
+> > On Tue, Jan 23, 2024 at 12:49:27PM -0500, Frank Li wrote:
+> > > On Tue, Jan 23, 2024 at 05:27:13PM +0000, Conor Dooley wrote:
+> > > > On Tue, Jan 23, 2024 at 12:02:05PM -0500, Frank Li wrote:
+> > > > > Add device tree binding allow platform overwrite default value of=
+ *REQIN in
+> > > > > GSBUSCFG0.
+> > > >=20
+> > > > Why might a platform actually want to do this? Why does this need t=
+o be
+> > > > set at the board level and being aware of which SoC is in use is not
+> > > > sufficient for the driver to set the correct values?
+> > >=20
+> > > In snps,dwc3.yaml, there are already similary proptery, such as
+> > > snps,incr-burst-type-adjustment. Use this method can keep whole dwc3 =
+usb
+> > > driver keep consistent. And not all platform try enable hardware
+> > > dma_cohenrence. It is configable for difference platform.
+> >=20
+> > When you say "platform", what do you mean? I understand that term to
+> > mean a combination of board, soc and firmware.
+>=20
+> In my company's environment, "platform" is "board". I will use "board" in
+> future. Is it big difference here?
 
-Thanks, Mani
+Nah, that's close enough that it makes no difference here.
 
-Konrad
+I'd still like an explanation for why a platform would need to actually
+set these properties though, and why information about coherency cannot
+be determined from whether or not the boss the usb controller is on is
+communicated to be dma coherent via the existing devicetree properties
+for that purpose.
+
+Thanks,
+Conor.
+
+> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > ---
+> > > > >  .../devicetree/bindings/usb/snps,dwc3.yaml    | 36 +++++++++++++=
+++++++
+> > > > >  1 file changed, 36 insertions(+)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml=
+ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > > > > index 8f5d250070c78..43e7fea3f6798 100644
+> > > > > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > > > > @@ -439,6 +439,42 @@ properties:
+> > > > >      items:
+> > > > >        enum: [1, 4, 8, 16, 32, 64, 128, 256]
+> > > > > =20
+> > > > > +  snps,des-wr-reqinfo:
+> > > > > +    description: Value for DESEWRREQIN of GSBUSCFG0 register.
+> > > > > +      ----------------------------------------------------------=
+------
+> > > > > +       MBUS_TYPE| bit[3]       |bit[2]       |bit[1]     |bit[0]
+> > > > > +      ----------------------------------------------------------=
+------
+> > > > > +       AHB      |Cacheable     |Bufferable   |Privilegge |Data
+> > > > > +       AXI3     |Write Allocate|Read Allocate|Cacheable  |Buffer=
+able
+> > > > > +       AXI4     |Allocate Other|Allocate     |Modifiable |Buffer=
+able
+> > > > > +       AXI4     |Other Allocate|Allocate     |Modifiable |Buffer=
+able
+> > > > > +       Native   |Same as AXI   |Same as AXI  |Same as AXI|Same a=
+s AXI
+> > > > > +      ----------------------------------------------------------=
+------
+> > > > > +      The AHB, AXI3, AXI4, and PCIe busses use different names f=
+or certain
+> > > > > +      signals, which have the same meaning:
+> > > > > +      Bufferable =3D Posted
+> > > > > +      Cacheable =3D Modifiable =3D Snoop (negation of No Snoop)
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > > > > +    maxItem: 15
+> > > > > +
+> > > > > +  snps,des-rd-reqinfo:
+> > > > > +    description: Value for DESRDREQIN of GSBUSCFG0 register. ref
+> > > > > +      snps,des-wr-reqinfo
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > > > > +    maxItem: 15
+> > > > > +
+> > > > > +  snps,dat-wr-reqinfo:
+> > > > > +    description: Value for DATWRREQIN of GSBUSCFG0 register. ref
+> > > > > +      snps,des-wr-reqinfo
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > > > > +    maxItem: 15
+> > > > > +
+> > > > > +  snps,des-wr-reqinfo:
+> > > > > +    description: Value for DATWRREQIN of GSBUSCFG0 register. ref
+> > > > > +      snps,des-wr-reqinfo
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint8
+> > > > > +    maxItem: 15
+> > > > > +
+> > > > >    num-hc-interrupters:
+> > > > >      maximum: 8
+> > > > >      default: 1
+> > > > > --=20
+> > > > > 2.34.1
+> > > > >=20
+> > >=20
+> > >=20
+>=20
+>=20
+
+--gjo83bA3bLxaSiQd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbAIkwAKCRB4tDGHoIJi
+0l5GAP93pP2+n9c7Ngq/2+2ZuBy0n/72VkccR8Xbv37y/t5J7AEA8kXs+aWNxxUF
+VyPexfs8f5y1gAB5zsysERG64YvLhgk=
+=ndMa
+-----END PGP SIGNATURE-----
+
+--gjo83bA3bLxaSiQd--
 
