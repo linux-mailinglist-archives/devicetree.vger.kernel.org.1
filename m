@@ -1,167 +1,102 @@
-Return-Path: <devicetree+bounces-34175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE83838E6C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:23:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E955F838E95
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:32:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D4761F25100
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:23:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A20D228B259
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7849F5DF19;
-	Tue, 23 Jan 2024 12:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF7D5EE87;
+	Tue, 23 Jan 2024 12:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JGz9NGCn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LGJxTBq1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BF65DF11;
-	Tue, 23 Jan 2024 12:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40ACD5EE81;
+	Tue, 23 Jan 2024 12:32:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706012604; cv=none; b=khDumpZmk62FRbo40IyGWF90Iv9r3fCzZoonQWZG/mNb4Uh1iAwhLdrrlAr7gDebY22dqjYA0X4l75pOjC6YylWusJ2Lq1E99vXtEE497vmL3+yNM3UUfuXZ90uDdQTWarmFrgh2NYfvBDH6wf2DV97q9PAsPi+XeOwdecdh/pk=
+	t=1706013128; cv=none; b=PWu2/Y35D6tWoN1KvHoDe7Kg1Z/Zq+AQcMt6NnY/Y+WZoldmto8DLAcfjaADtDA6wcEVw+qNohM5rOe+w73LsLxt8HXzQrqScq5M/xFs4KQ1FThIWQo8g0VVny47mVXaBVaywGv7ciPTPmK/wO+jMfilF91LLxcv3YeQA2eklMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706012604; c=relaxed/simple;
-	bh=81Rq969C5fC2gwndSCJqbGyzbfJ1wYlS4kuBnSDBHgM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=jcmmRmbAke1gQhgQl+SEt47DWWAJC5Fzfp9YYElkxStMmTpNQB7igOhMNUBpbeq7O+xUQRjtVP0kEE+CwoCMTnrowCfzbY7I3slFE5nk9ND4zKbYlyk+MA95sX9tvCdRGaIDHR01U6U9Lsq0/2ZENs66np5dFzxwJA64SYhnxww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JGz9NGCn; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55a3a875f7fso4622854a12.3;
-        Tue, 23 Jan 2024 04:23:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706012601; x=1706617401; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=0aT0YmN+E9RIm6EBLaUbj2bmTaqy7pebRlFTaUr3D2Y=;
-        b=JGz9NGCnniuAM+DPmb+XqjWLKMTj29KHdVuv8KfXvDgfBPsGz4q5t6xDoHYmyMRSdt
-         3sE2BZ3iIMUTi3y6GJ5QgpOwxXwO5BlfLSBeYFFnzW9a7x87/qvsgxMXPsYapDLPJIE1
-         qL7mimPP1MRjkofJPQqX7Z/KfNOMwv9zAxfPUGSkKDJ9f3s89WxDmiD8uw4sVe8G5Xm1
-         IYt9HChq2kb+4ZtPueXP8H6AMA1HhJHtAouEKrDMlJqRmdrHtYL1AWZMdOt4q/ab1D+B
-         Zj8Ne5ZwIvL+UrDVh+vCg8e2IJQ5PCJ3I7jAbcIwMFKTc3p6Hvm4HnkGZEDWMmQ+u8Bt
-         EE5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706012601; x=1706617401;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0aT0YmN+E9RIm6EBLaUbj2bmTaqy7pebRlFTaUr3D2Y=;
-        b=q3D/e9lUQiPXbjV6a+aOKUIxMVEshrk680uYp429B1I+bx4XGPi3xKKNz6UANSqO87
-         AtoKR7Y8Z84VHXaPjiAuc2/YilkrP5vgq2dGUxOAgI3TpHHASN3H/Z2OyFaPaPOIDc/L
-         xQxSfZNqtdfwqlmspnkfoumeKXL1vfrC6FSqkxACafqF7yqWSlewr9MMU8hWMY7WXup7
-         aKqY9T3Mayby0RZUkeM7na3yJ/Gf9vd+WruVoetgQ2UUXibGBb4HulfQQntErG3Dd0WR
-         nARmhI89k/3JvrCBUOWNjMHSaClRFFYKUSQMjl3QpDXu2Mf3BKGN4GLw4Oyp9JrRB1cS
-         qRiQ==
-X-Gm-Message-State: AOJu0Yw48c0eONcPQZQCEfQ3KSNl2737lymMTTqQud8SVEubrLwtCWDp
-	B8RqTdIj2e07nEiyGosXsKhp+H33MOnlGasmuISEmIg/ktoui+mn
-X-Google-Smtp-Source: AGHT+IGA3HrSeLV+JUbWs+DXbEXmOPvoc09OHj5n0LVd6cRvKKc77CwwjGVeefJBo43iRrx7MpMG9w==
-X-Received: by 2002:a17:907:c312:b0:a2a:3101:c9c7 with SMTP id tl18-20020a170907c31200b00a2a3101c9c7mr99810ejc.123.1706012600578;
-        Tue, 23 Jan 2024 04:23:20 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id ce2-20020a170906b24200b00a26a0145c5esm14292308ejb.116.2024.01.23.04.23.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 04:23:20 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: marvell: reorder crypto interrupts on Armada SoCs
-Date: Tue, 23 Jan 2024 13:22:58 +0100
-Message-Id: <20240123122258.24218-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+	s=arc-20240116; t=1706013128; c=relaxed/simple;
+	bh=eIaoqD1aP7q0tX+n/D0HYnrED9MuTgaiRPG9ItAjvf0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=HepSbw7MquwgX4L5Ndh1WGGynEggjD/npVgoetpP1okdCr6igLZmdzsnt3Lga6AUgOChx85VidYp0WwXMqNP7h/9I1VJC6fpCwGHM6x37wdm/XSD6iX9lw+vh9ATd2IWnEOl1GyyfGYmZbfl+b8zu+kp3CE0sikuaZhiSwcIevk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LGJxTBq1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABAA6C43609;
+	Tue, 23 Jan 2024 12:32:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706013127;
+	bh=eIaoqD1aP7q0tX+n/D0HYnrED9MuTgaiRPG9ItAjvf0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=LGJxTBq1W2wWu4ZanyaeSUle/YNC4Jsv286s4YxLoJJLAykd0LAlI94hB8j9qIkIw
+	 3fc74pBHUz6/6Qvl+olZv9+/n6LH8fF2EayeEmA1LOT8QD+WPnTPEKd1AKveniRPre
+	 2GgI4m8Jly9hcnsCpn3YWdNjsFk3aOAol6eQ1jZ7fM4okaoGgFbxNTv2CMSZ4SH1tl
+	 hAb+ZZwWpsq4ei6edMwvwkJTZ0GJ/xbtaY9QxVL8l3aQP83E873KGTbCOTiEBaBfok
+	 X2bOGpiUqrEC8rLNgDb0hgz+Ci0nNSJIYTI/b65wTBrApIGwj5s3/ZXzTvQ/FpKCSY
+	 r2fa8rM87VamA==
+From: Mark Brown <broonie@kernel.org>
+To: conor+dt@kernel.org, robh+dt@kernel.org, 
+ krzysztof.kozlowski+dt@linaro.org, han.xu@nxp.com, haibo.chen@nxp.com, 
+ "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: yogeshgaur.83@gmail.com, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Peng Fan <peng.fan@nxp.com>
+In-Reply-To: <20240122091510.2077498-1-peng.fan@oss.nxp.com>
+References: <20240122091510.2077498-1-peng.fan@oss.nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: spi: fsl-lpspi: support i.MX95 LPSPI
+Message-Id: <170601312541.19682.3072980412481035227.b4-ty@kernel.org>
+Date: Tue, 23 Jan 2024 12:32:05 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-5c066
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, 22 Jan 2024 17:15:09 +0800, Peng Fan (OSS) wrote:
+> Add i.MX95 LPSPI compatible string, same as i.MX93 compatible with
+> i.MX7ULP
+> 
+> 
 
-Match order specified in binding documentation. It says "mem" should be
-the last interrupt.
+Applied to
 
-This fixes:
-arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:0: 'ring0' was expected
-        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
-arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:1: 'ring1' was expected
-        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
-arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:2: 'ring2' was expected
-        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
-arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:3: 'ring3' was expected
-        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
-arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:4: 'eip' was expected
-        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
-arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:5: 'mem' was expected
-        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/marvell/armada-37xx.dtsi  | 10 +++++-----
- arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 10 +++++-----
- 2 files changed, 10 insertions(+), 10 deletions(-)
+Thanks!
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-index e300145ad1a6..1cc3fa1c354d 100644
---- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-@@ -431,14 +431,14 @@ xor11 {
- 			crypto: crypto@90000 {
- 				compatible = "inside-secure,safexcel-eip97ies";
- 				reg = <0x90000 0x20000>;
--				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
--					     <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
-+				interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
--					     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
--				interrupt-names = "mem", "ring0", "ring1",
--						  "ring2", "ring3", "eip";
-+					     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-+					     <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "ring0", "ring1", "ring2",
-+						  "ring3", "eip", "mem";
- 				clocks = <&nb_periph_clk 15>;
- 			};
- 
-diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-index 4ec1aae0a3a9..7e595ac80043 100644
---- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-@@ -511,14 +511,14 @@ CP11X_LABEL(sdhci0): mmc@780000 {
- 		CP11X_LABEL(crypto): crypto@800000 {
- 			compatible = "inside-secure,safexcel-eip197b";
- 			reg = <0x800000 0x200000>;
--			interrupts = <87 IRQ_TYPE_LEVEL_HIGH>,
--				<88 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts = <88 IRQ_TYPE_LEVEL_HIGH>,
- 				<89 IRQ_TYPE_LEVEL_HIGH>,
- 				<90 IRQ_TYPE_LEVEL_HIGH>,
- 				<91 IRQ_TYPE_LEVEL_HIGH>,
--				<92 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "mem", "ring0", "ring1",
--				"ring2", "ring3", "eip";
-+				<92 IRQ_TYPE_LEVEL_HIGH>,
-+				<87 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "ring0", "ring1", "ring2", "ring3",
-+					  "eip", "mem";
- 			clock-names = "core", "reg";
- 			clocks = <&CP11X_LABEL(clk) 1 26>,
- 				 <&CP11X_LABEL(clk) 1 17>;
--- 
-2.35.3
+[1/2] dt-bindings: spi: fsl-lpspi: support i.MX95 LPSPI
+      commit: 6685d552a0cc3a86e10dbe6d98e1b51717a27a63
+[2/2] dt-bindings: spi: nxp-fspi: support i.MX93 and i.MX95
+      commit: 18ab9e9e8889ecba23a5e8b7f8924f09284e33d8
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
