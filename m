@@ -1,124 +1,263 @@
-Return-Path: <devicetree+bounces-34122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D566A838B55
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:04:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F0F3838B67
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:09:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F8CC28F8B9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:04:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2E191F27081
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D92975A0F4;
-	Tue, 23 Jan 2024 10:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C10255A0FC;
+	Tue, 23 Jan 2024 10:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="dW4tmYxu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FCwqVxRq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82E2157870
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 10:04:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2570E57311;
+	Tue, 23 Jan 2024 10:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706004280; cv=none; b=AJDTSq3dEGdddCikYeHD50UrM1yDj1Of3dEvzJYsNDq/v37ZmW1nerGW2D90AppsVKdLPEYeTyEmH7XHAAPfMC39q9AdxfxpkzW4k9ckAwh91isR3CuFpGxSK1q4vZ0mGoc2kDlCzqOMjzInT3ZRhnnr5i05ZLUfwA1EXyoESCY=
+	t=1706004573; cv=none; b=dLzRgHyjTqfQerL6l7OHJESviE/texYLA60atC7gcNbAVslVr8z+PHa9SN9JFD9TUG32N82HchSJ4a0nO1Sd4xy9GPx8RzVENCW7NpEK66KOLrlaQcH/e5SrlGPF8mbOyh0GOJ2Mrw0Idj57SA4h1toV5fbSlu6qibjtDBuFV74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706004280; c=relaxed/simple;
-	bh=5vAc5dMR/Gkgelph0J80OaJPM3bIt5m4U43XM9yf3lk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TfXJ3YifUDCPm/q6fgOyK4LBFaFU6sPJtRv54oTdIBHRQZ5SnZt6+NcprD/q0cqZNjPgADVuoftHjyInsRJsCyAPfGyoauVJcZG/WhZnYr5znmtcbTTgUahbxg/rTsFRfHXTdodlpfMR1lPt8f+eNtGgItjtyR5tkg3NbBDLqAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=dW4tmYxu; arc=none smtp.client-ip=209.85.217.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4681f304691so961766137.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 02:04:39 -0800 (PST)
+	s=arc-20240116; t=1706004573; c=relaxed/simple;
+	bh=bkc6dtM8tWOn6AoyPD8ER51XkxCtb7qLJw9BAEpIsDU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V0Au1YvHgwT6EfG25H5Nrwf+rFXN4HpFH+HlaX4KZVM5La3k20aWUHJBBgBAAnHq7kStq4B1bQw85JzClFMFtR+RhCy9/+6uE7n8xQ23LHtpLmtd1XKFLiyxESVbhzw56bdfWHqrGt5WIYDEYxphzGvYwLv7CYq4dMIY+/st4fA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FCwqVxRq; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6d9b37f4804so3058666b3a.1;
+        Tue, 23 Jan 2024 02:09:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1706004278; x=1706609078; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5vAc5dMR/Gkgelph0J80OaJPM3bIt5m4U43XM9yf3lk=;
-        b=dW4tmYxuZb2rn3K9uG5fmNHwHHvUMv+X86L2Jt0dPPcaDJ4QDCJUi/gsj5/QvLOJoI
-         mtzFsZzLOT697oI9xtrrMdxpJpxyMpAgO1L9slgWz7qwk+Cn3ZFK4hPGaVG5tfz5LRGH
-         s8S6TrnTyROExZX4b2tplmSMe6ePhHkvi+pHvVsjsf3G5h3lIEdUhl2DMy+coh1b7f1a
-         HIMoTWuplUhyHhInIxooS0TtOz0dt6FkmjJZAyOKA/8nxBWr4B/NvUwmisJlMuaoe6qu
-         11le9/fA/93btOu6tUv8yMMkCLa78Fel+zWeOov3HteFSnpDwfQms+nl3RaZdiy+7/A1
-         jVEQ==
+        d=gmail.com; s=20230601; t=1706004570; x=1706609370; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=vF3YAHXTJJCMn28KdzwGiFf2RissWmiYZiWxD+NZ6vM=;
+        b=FCwqVxRqp8BR3oGRU32hmgkbS5LWeC+XnhztlkLtp8r8Rn+T2/51tVIKZ5TCbumW6y
+         7bBNOxDDHnjq9ADxQg8NLTKojzWZMtFtfhSaNM22ScAnHEu/berGofyZJY0m732409Hv
+         GmgjME/z6UsZxAX2JtoOpFEw7CkGZNxedZs11+lVO36xBwLxOKcTopR/0g98KGqzNyQY
+         NFtvC3mN/H5pUBaYxENkPiQsewv1pw2bwkvg4hCvVOnjwkJBGeOTwTgcUzmQJvBuIRBe
+         d9LBi+ATcGYSd8oXZ4L2MsAqkqZ7zVxrFQ2zdxMG1vT72PW9zmsMXrqhYutNhRuMLP6W
+         m7Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706004278; x=1706609078;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5vAc5dMR/Gkgelph0J80OaJPM3bIt5m4U43XM9yf3lk=;
-        b=pv31jTDZY9O7zFE1oQxjlQ63Vxbj1+kr2nQRLwYWwElBOmog7Wx6lBjF+cmDMnLoJy
-         ZXKqD8+5Pl3erNOY0aCZ+Op3z2YCSq0R4c3wu1r/SDMCnUNlHnUufY1g+JLyzMDtdRxS
-         mwyc5+bJ94K/YTjrRDDhO1dQmMdNecRSrHhezmyIIVPMGDK79IjBpamxDtD+ofHtHhf2
-         zuEk6TrC/pe9ybYK2MWIZmmya6WAyHLaQrTtZYbl5q+gJDYzROp7EMOZvxqObLimkmI3
-         prRpVC3sDxnbv3PCeHf1mAXLxX465vXyjp9GuUttCHRSIDmyQ29lh6E7RzoE4v6Iaba4
-         2YJQ==
-X-Gm-Message-State: AOJu0Yz5mDRBRrOJbu2lENRgz6BEmgGzro4zr+++9QWzQqbRyHhtYPn6
-	+HAkMY2kdBWCnnQddO/WXbGJvPvKxvKonmddaYI3GxHbp8FtI45MPedvvmixfqxB+Oa+4ZEs3Ic
-	OgyLxs7Jj6ym2FxuiZ9FbLd8mjnrsEhbRGO8D1A==
-X-Google-Smtp-Source: AGHT+IHq+QhUDao5htbMwHdTS/OmUBt1hcN5E3DzlhYEGpGpjAeJ0k25WMpPPgDCK2so5vWCJusvRWnjPsYbXp0LbXU=
-X-Received: by 2002:a67:eb8d:0:b0:469:b6a3:453f with SMTP id
- e13-20020a67eb8d000000b00469b6a3453fmr1561108vso.13.1706004278362; Tue, 23
- Jan 2024 02:04:38 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706004570; x=1706609370;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vF3YAHXTJJCMn28KdzwGiFf2RissWmiYZiWxD+NZ6vM=;
+        b=aRtj2/SM6cEc60l0s75P02kwKZWgK9RrPwKxMg0meGL3T1afiLSBxxgYGb8RPsvYdp
+         HHMvuBYVnXEUOCAwj9YXpz8bARVlC6mjj1PYB3rFKAzqs1cy8wOJqZnmjwZV1cqoJegu
+         b5B78An3tizTaNK3+aE9k8zOrNZ3wRgYH/7L2SvReRIuDDtfxoUBCWOH677Z3VnupjPM
+         tWV2QOVRFmRLsQSVro6AkTBLGuV8UZQo9CGOk/xfTpuucKNhbVcvL9mW2QicZuhcNAMK
+         Dlr/JlOr8XXpi+gu6SjdNhQrea+66fXHxionUoLl5bq+TVe7F4xe1+G/mS8c73kMVAHA
+         ZjWw==
+X-Gm-Message-State: AOJu0YwH0oVsuAsiQhXn4lMntw9bRoq6UGNdk2jv3gNApxQrEMxnyJWe
+	g0LSFOqH296AzoQfMfGTG+nmQzdd7IgtdaSLi9lFQUwLFL0O1k9S
+X-Google-Smtp-Source: AGHT+IHIAWmYLuWi422JcyW3PtuAK24g0dKpE66t9z7rcaaTrk3zHZtgNgaldXuzgg7lQzJgv++RUg==
+X-Received: by 2002:a05:6a21:3399:b0:19a:fe9c:e870 with SMTP id yy25-20020a056a21339900b0019afe9ce870mr7692900pzb.12.1706004570347;
+        Tue, 23 Jan 2024 02:09:30 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id y2-20020a63e242000000b005cd78f13608sm9752654pgj.13.2024.01.23.02.09.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 02:09:29 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <d879634e-c329-4eef-928f-f296535f8838@roeck-us.net>
+Date: Tue, 23 Jan 2024 02:09:27 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240122182158.69183-1-brgl@bgdev.pl> <98925264-badb-4954-b542-9287a0c7d184@linaro.org>
-In-Reply-To: <98925264-badb-4954-b542-9287a0c7d184@linaro.org>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 23 Jan 2024 11:04:27 +0100
-Message-ID: <CAMRc=Mc+GNoi57eTQg71DXkQKjdaoAmCpB=h2ndEpGnmdhVV-Q@mail.gmail.com>
-Subject: Re: [RFC] arm64: dts: qcom: qrb5165-rb5: model the PMU of the QCA6391
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, 
-	Alex Elder <elder@linaro.org>, Srini Kandagatla <srinivas.kandagatla@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/10] watchdog: rzg2l_wdt: Add suspend/resume support
+Content-Language: en-US
+To: claudiu beznea <claudiu.beznea@tuxon.dev>, wim@linux-watchdog.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240122111115.2861835-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240122111115.2861835-8-claudiu.beznea.uj@bp.renesas.com>
+ <a5a807c1-76ef-4cf7-a2cf-bc432c420ded@roeck-us.net>
+ <2af40ace-2779-45a0-a244-e7e9e5cc510c@tuxon.dev>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <2af40ace-2779-45a0-a244-e7e9e5cc510c@tuxon.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 23, 2024 at 9:30=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/01/2024 19:21, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > I'm limiting the audience of this compared to the PCI power sequencing
-> > series as I wanted to run the DT part by the maintainers before I commi=
-t
-> > to a doomed effort.
-> >
-> > Here is the DT representation of the QCA6390's PMU with its inputs and
-> > outputs. If I were to implement the pwrseq framework that would be able
-> > to assign the relevant pwrseq data to the consumer based on the actual
-> > regulators and not abstract bt-pwrseq or wlan-pwrseq properties - would
-> > that fly with you?
-> >
-> > We'd need to deprecate the existing BT bindings but unfortunately they
-> > are already described as consuming the host PMIC regulators in bindings=
-.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->
-> Please provide lore link to the binding.
->
-> Best regards,
-> Krzysztof
->
+On 1/22/24 23:13, claudiu beznea wrote:
+> 
+> 
+> On 22.01.2024 19:39, Guenter Roeck wrote:
+>> On 1/22/24 03:11, Claudiu wrote:
+>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>
+>>> The RZ/G3S supports deep sleep states where power to most of the IP blocks
+>>> is cut off. To ensure proper working of the watchdog when resuming from
+>>> such states, the suspend function is stopping the watchdog and the resume
+>>> function is starting it. There is no need to configure the watchdog
+>>> in case the watchdog was stopped prior to starting suspend.
+>>>
+>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>> ---
+>>>    drivers/watchdog/rzg2l_wdt.c | 26 ++++++++++++++++++++++++++
+>>>    1 file changed, 26 insertions(+)
+>>>
+>>> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
+>>> index 9333dc1a75ab..186796b739f7 100644
+>>> --- a/drivers/watchdog/rzg2l_wdt.c
+>>> +++ b/drivers/watchdog/rzg2l_wdt.c
+>>> @@ -279,6 +279,7 @@ static int rzg2l_wdt_probe(struct platform_device *pdev)
+>>>        priv->wdev.timeout = WDT_DEFAULT_TIMEOUT;
+>>>          watchdog_set_drvdata(&priv->wdev, priv);
+>>> +    dev_set_drvdata(dev, priv);
+>>>        ret = devm_add_action_or_reset(&pdev->dev, rzg2l_wdt_pm_disable,
+>>> &priv->wdev);
+>>>        if (ret)
+>>>            return ret;
+>>> @@ -300,10 +301,35 @@ static const struct of_device_id rzg2l_wdt_ids[] = {
+>>>    };
+>>>    MODULE_DEVICE_TABLE(of, rzg2l_wdt_ids);
+>>>    +static int rzg2l_wdt_suspend_late(struct device *dev)
+>>> +{
+>>> +    struct rzg2l_wdt_priv *priv = dev_get_drvdata(dev);
+>>> +
+>>> +    if (!watchdog_active(&priv->wdev))
+>>> +        return 0;
+>>> +
+>>> +    return rzg2l_wdt_stop(&priv->wdev);
+>>> +}
+>>> +
+>>> +static int rzg2l_wdt_resume_early(struct device *dev)
+>>> +{
+>>> +    struct rzg2l_wdt_priv *priv = dev_get_drvdata(dev);
+>>> +
+>>> +    if (!watchdog_active(&priv->wdev))
+>>> +        return 0;
+>>> +
+>>> +    return rzg2l_wdt_start(&priv->wdev);
+>>> +}
+>>> +
+>>> +static const struct dev_pm_ops rzg2l_wdt_pm_ops = {
+>>> +    LATE_SYSTEM_SLEEP_PM_OPS(rzg2l_wdt_suspend_late,
+>>> rzg2l_wdt_resume_early)
+>>> +};
+>>> +
+>>>    static struct platform_driver rzg2l_wdt_driver = {
+>>>        .driver = {
+>>>            .name = "rzg2l_wdt",
+>>>            .of_match_table = rzg2l_wdt_ids,
+>>> +        .pm = pm_ptr(&rzg2l_wdt_pm_ops),
+>>
+>> I think this will create a build error if CONFIG_PM=n because rzg2l_wdt_pm_ops
+>> will be unused but is not marked with __maybe_unused.
+> 
+> The necessity of __maybe_unused has been removed along with the
+> introduction of LATE_SYSTEM_SLEEP_PM_OPS() and friends (and
+> *SET_*LATE_SYSTEM_SLEEP_PM_OPS along with the other helpers were marked
+> deprecated for that) and we can use pm_ptr() along with
+> LATE_SYSTEM_SLEEP_PM_OPS() to avoid build errors you mentioned.
+> 
+> FYI, I just build the driver with CONFIG_PM=n and all good.
+> 
 
-This is the one:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
-umentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+Ok, but are you sure you did ? You just mentioned earlier that CONFIG_PM
+is set automatically through ARCH_RZG2L.
 
-Bart
+>> But then the driver
+>> won't be
+>> operational with CONFIG_PM=n, so I really wonder if it makes sense to
+>> include any
+>> such conditional code instead of making the driver depend on CONFIG_PM.
+> 
+> That's true. The driver wouldn't work if the CONFIG_PM=n but then it
+> depends on COMPILE_TEST which is exactly for this (just to compile test it
+> for platforms that don't support it). I see many watchdog drivers depends
+> on COMPILE_TEST.
+> 
+> Give this, please let me know would you like me to proceed with it.
+> 
+
+FWIW, COMPILE_TEST dependencies on watchdog drivers fails for most of them.
+Regarding pm_ptr(), it is there for practical reasons and not associated with
+COMPILE_TEST. Again, if the driver depends on CONFIG_PM to work, using constructs
+such as pm_ptr() just hides that and creates the impression that it would work
+without it. I do not think that is a good idea. You can use something like
+
+	depends on (ARCH_RENESAS && PM) || COMPILE_TEST
+
+to make that explicit. Even if not, I _really_ don't see the point in using
+pm_ptr() even without above dependency. What do you see as its benefit ?
+
+Thanks,
+Guenter
+
+> Thank you,
+> Claudiu Beznea
+> 
+>>
+>> I really don't think it is desirable to suggest that the driver would work
+>> with
+>> CONFIG_PM=n if that isn't really true.
+>>
+>> Guenter
+>>
+>>>        },
+>>>        .probe = rzg2l_wdt_probe,
+>>>    };
+>>
+
 
