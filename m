@@ -1,231 +1,122 @@
-Return-Path: <devicetree+bounces-34037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F1848388A4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:14:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E98338388C0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:21:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA4E41F27183
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:14:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F1D0B2455D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E3456472;
-	Tue, 23 Jan 2024 08:14:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE11D56752;
+	Tue, 23 Jan 2024 08:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H24+KO6I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JZ2He0UL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE0656463
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:14:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 404C556741;
+	Tue, 23 Jan 2024 08:21:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705997660; cv=none; b=dluHwterA3yVK0FJ3vcdri0kRIvt2ZwZ8vuEB7d7RpdPUgEp6uBYHmxx8WSxXesLizO54KATzn2FxPF49oDG8Y+mcygxHhDmHxO9BmP1uy05lfy1AEDf1dnM2SCdtDPIma4pr+wrRjjbM0UoXLwOJwQUk3j5j8LdA6HBz+J9zCM=
+	t=1705998104; cv=none; b=WEb4O/OcM1nZ2EJXOFwyhJa3srZk8EogXDLhKorT+D3pmKX3CJbBr+hOWK7THJf4xGf3E0D1aoRca2KUYB2K9mMq/oBLnbs5/iLtXhVnVKm1SkJ+wC8XsMAwXo1ZR+QgYfoM8V9uGDHG82NEuW5vuMuNmx670CNfQM9zssKpShc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705997660; c=relaxed/simple;
-	bh=QX5dXGPVFC2GlgMSYCYr4vitUrAfk3lD43zb+xwiNbA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=thB/e3n49dSEsj34eYmMkYym8fLA2rGMcF1uuPLDARFsOzFNk8X9KatIHLDqIjwjY8LX/ytDqKX9PsE1mgncd3wKJBeb2S2bVUpkT8A9zQpgLC7IpKp4ChK3MT95bb5mQRemb9ub6eARa2LTrfB9JwryAjM3IuykvpKNPPToyCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H24+KO6I; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-33926ccbc80so2406764f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 00:14:18 -0800 (PST)
+	s=arc-20240116; t=1705998104; c=relaxed/simple;
+	bh=h5Mtvm9/njbeiueNCib+RM+5uzF7as2WgQNuvCZscA0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=LuQ1dTPypQuWhqfpwreHdR4121i6bcj5+z9ewA3PKqX8BTo+geShaD+drdcb9zFCOh9Brg2+Q9lXJpMuL2+QV2PVXgrJs1bcp5fje4K4cTpl5BtPkPuiS4583dJ6tNGGO9TR3f0/mke1Q1LqbZOrEdwDtzHJlv/Y9QFlX5zAjVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JZ2He0UL; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-50e7e55c0f6so4548297e87.0;
+        Tue, 23 Jan 2024 00:21:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705997656; x=1706602456; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bGTW2KjPX1DyoVAx6boPY1syN6WdPLTcHzvIcsq/rwE=;
-        b=H24+KO6IP3RdeeMyQs4CySKnv4y40foqQyyMc1QUm5jprjq1J1egoUpO/YB1+fu48t
-         aQ3JgrVDxoDY/ZXiduGXN2jvYM2dwCqWfRHAAxCwVr0rekZRFs1rMDNGvzkUyjt3gGrm
-         cFbcQxEadeiXNbgTXL6vZSeF+kv/g587zMZPgNnfaDo1cFkP77YQFAp/SWUNQrWafqhx
-         XsVhwnRJ8D3NZAQ660yVTR9iKa4FWNOlfVY2H7rPiRBopuALAeyjTFrqb7tPR5RYzZY6
-         WtF7StPbCdmApC+1xpmi+Ie7zg1EnYkOOXmHFEJqrry4HUU3FU14xoA/pVPFIUoGcd7o
-         jaWg==
+        d=gmail.com; s=20230601; t=1705998101; x=1706602901; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e5IbYX72GKDgKEeebQF3JWpFaouRh1FyJnCJ8FxmRXQ=;
+        b=JZ2He0ULim5tKedwrOsaph4lPJtaxd+ckyvS9iptiav3rusbFM0mA+KLC/NpvzBKHc
+         tGzuWUN0/ey29jBhzwQrU6wW54Gp716ASzZ2XUntinEJdQrJ19a3ZcWJV86S4cEJBKNp
+         06J+J/k4WF9jPb7CkOyay39BkdW2sWluxDmDOEM7t0/7yH5No0g/xumFebQsaV862vjl
+         6QW1Am7bsZgMs0jqS24YTySeSaESUkdCccYBtpn3I0mm1rGEBFH7W2PLUTikpUmxPmcO
+         LyHuxSgAq7dybcu7FYXiQ0uvYAtQN0QqSSW7OgdOOBZ3sZeUjA3JngjqCd5kOHm6PQ3k
+         FN8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705997656; x=1706602456;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bGTW2KjPX1DyoVAx6boPY1syN6WdPLTcHzvIcsq/rwE=;
-        b=bbdIp36TKMLVB3XX1clGnmpXm6KjFU/Yj3YL9NOqIuRpgH6VTdJ646kivlrcNNEn/N
-         Aw2qDH2Y2vd/Bih1w3VjQ3EcInKDPBj/eUwZVHkxSOlz3iyOeRnjJen+5roYs2fSYJa0
-         KUHNtwknQwKOz6YiAHjwt+EKelAlnq0wy+TXgHiKk+C4vgArPLjygq6EU6kg64rkWEfh
-         4G2i2O7hKuJ6DXKV4j/2R/Z+pX5W0SC9rhUgnviuxWIH40lfa+FyZmZ+RRGlwuinEkKh
-         aeyFXEXeeOb1sqTnlQZKPp8jjmEW28Obgr0EaMB7mlGOoa0gmztDUjNOSRCnV2nbt7Rb
-         6F2g==
-X-Gm-Message-State: AOJu0YwwVus9E+yfY6AZ2vw8w3kAS6CwwSKHFtdGkDu2cIcg20xLmHnB
-	LoYGeSJLsuJmzV5LQKf2GqUKvFrYzhuwku7EN9SawTjizet40NX75nDiFXsenMg=
-X-Google-Smtp-Source: AGHT+IGXenXglCIvo7MSzk/Hn2hfrsplt/zhr0Yqu2V33WH+ieHTcrkTeB9PUKWHLbxYTG/OVRwouQ==
-X-Received: by 2002:a5d:456f:0:b0:337:b636:8e3 with SMTP id a15-20020a5d456f000000b00337b63608e3mr3130251wrc.47.1705997656646;
-        Tue, 23 Jan 2024 00:14:16 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id t4-20020a5d42c4000000b003392c3141absm7105622wrr.1.2024.01.23.00.14.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 00:14:16 -0800 (PST)
-Message-ID: <a60e90c7-deeb-4680-b055-340fbd51cb48@linaro.org>
-Date: Tue, 23 Jan 2024 09:14:14 +0100
+        d=1e100.net; s=20230601; t=1705998101; x=1706602901;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e5IbYX72GKDgKEeebQF3JWpFaouRh1FyJnCJ8FxmRXQ=;
+        b=a3+f47Tx8ziX7WPUHh38LClJBDr3vwka/wiKZl+KKnitKmAyP0Uq4XDeZzrunpjGlD
+         NAJi2h4EJic7kndX8ZIBRd1u9BCnly4zL0jlLoN2g9IPaluOAqzAz6iXF5eQbrOFwTbi
+         as7XK4vi0AwezN3R+xUtUPq82tltolYMM+LLYouqT9hTKlyzn7JMDtdbVWEvrlkid5j2
+         KvNg+u8b+lKvl0bAsZxfYmkR1XS44lB9MUClnx1WxTxS6mgxySvdtfb+D/cy+qk+hyDF
+         PWQXQ7HEKFKtveel+UHkvULtQGtIxqOKqjsKgPk7+J7b+YjkMySop9uDnvAuGEJq4mVW
+         s1sQ==
+X-Gm-Message-State: AOJu0YwrCt+G+fPU6BOpCcBEcVJkeR5hAzsLsPUD7Tzmh9qdThB+DEOf
+	/jST11Q/p3XzV3RpwrDYkNZjXxvpnu4Rok2dh8V7p+ydlTRfE0E7
+X-Google-Smtp-Source: AGHT+IGW98fsghFfKlw+hkN3TgO1Gz02ckvGCA+O1HdiFcvUycwq8dljNadfhv7w5DjrFW/E7/gJmA==
+X-Received: by 2002:a05:6512:31c9:b0:50e:2e5d:10a8 with SMTP id j9-20020a05651231c900b0050e2e5d10a8mr1214541lfe.133.1705998100946;
+        Tue, 23 Jan 2024 00:21:40 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id u11-20020a056402110b00b00558aa40f914sm14810435edv.40.2024.01.23.00.21.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jan 2024 00:21:40 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Russell King <linux@armlinux.org.uk>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 0/3] dt-bindings: arm: mediatek: convert MT7622-related bindings to the json-schema
+Date: Tue, 23 Jan 2024 09:20:57 +0100
+Message-Id: <20240123082100.7334-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: mailbox: fsl,mu: add i.MX95
- Generic/ELE/V2X MU compatible
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-References: <20240122-imx-mailbox-v2-0-7b3c80333b92@nxp.com>
- <20240122-imx-mailbox-v2-1-7b3c80333b92@nxp.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240122-imx-mailbox-v2-1-7b3c80333b92@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 22/01/2024 07:19, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX95 Generic, Secure Enclave and V2X Message Unit compatible string.
-> And some MUs has internal RAMs for SCMI shared buffer usage.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/mailbox/fsl,mu.yaml        | 50 +++++++++++++++++++++-
->  1 file changed, 48 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> index 12e7a7d536a3..d10c6fed291b 100644
-> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> @@ -29,10 +29,14 @@ properties:
->        - const: fsl,imx8ulp-mu
->        - const: fsl,imx8-mu-scu
->        - const: fsl,imx8-mu-seco
-> -      - const: fsl,imx93-mu-s4
->        - const: fsl,imx8ulp-mu-s4
-> +      - const: fsl,imx93-mu-s4
-> +      - const: fsl,imx95-mu-ele
-> +      - const: fsl,imx95-mu-v2x
->        - items:
-> -          - const: fsl,imx93-mu
-> +          - enum:
-> +              - fsl,imx93-mu
-> +              - fsl,imx95-mu
->            - const: fsl,imx8ulp-mu
->        - items:
->            - enum:
-> @@ -95,6 +99,17 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  ranges: true
-> +
-> +  "#address-cells": true
-> +
-> +  "#size-cells": true
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Please narrow the addressing.
+There are more MediaTek bindings to convert but for now I focused on
+those used by MT7622.
 
-> +
-> +patternProperties:
-> +  "^sram@[a-z0-9]+":
+Rafał Miłecki (3):
+  dt-bindings: arm: mediatek: convert hifsys to the json-schema
+  dt-bindings: arm: mediatek: convert PCIESYS to the json-schema
+  dt-bindings: arm: mediatek: convert SSUSBSYS to the json-schema
 
-Use proper regex for unit address.  a-f
+ .../bindings/arm/mediatek/mediatek,hifsys.txt | 26 ---------
+ .../arm/mediatek/mediatek,mt2701-hifsys.yaml  | 54 +++++++++++++++++++
+ .../arm/mediatek/mediatek,mt7622-pciesys.yaml | 47 ++++++++++++++++
+ .../mediatek/mediatek,mt7622-ssusbsys.yaml    | 47 ++++++++++++++++
+ .../arm/mediatek/mediatek,pciesys.txt         | 25 ---------
+ .../arm/mediatek/mediatek,ssusbsys.txt        | 25 ---------
+ 6 files changed, 148 insertions(+), 76 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,hifsys.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt2701-hifsys.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-pciesys.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-ssusbsys.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,pciesys.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,ssusbsys.txt
 
-> +    $ref: /schemas/sram/sram.yaml#
-> +    unevaluatedProperties: false
-> +
->  required:
->    - compatible
->    - reg
-> @@ -134,3 +149,34 @@ examples:
->          interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
->          #mbox-cells = <2>;
->      };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    mu2: mailbox@445b0000 {
-> +        #address-cells = <1>;
-
-Please follow order of properties as written in DTS coding style.
-
-> +        #size-cells = <1>;
-> +        compatible = "fsl,imx95-mu", "fsl,imx8ulp-mu";
-> +        reg = <0x445b0000 0x10000>;
-> +        interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
-> +        ranges;
-> +        #mbox-cells = <2>;
-> +
-> +        sram@445b1000 {
-> +            compatible = "mmio-sram";
-> +            reg = <0x445b1000 0x400>;
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            ranges = <0x0 0x445b1000 0x400>;
-
-Same here.
-
-
-Best regards,
-Krzysztof
+-- 
+2.35.3
 
 
