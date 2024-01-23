@@ -1,243 +1,248 @@
-Return-Path: <devicetree+bounces-33998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF116838709
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 06:54:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F3C083871B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 07:08:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B584A1C215EE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 05:54:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3BA51F23D31
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 06:08:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D23C2582;
-	Tue, 23 Jan 2024 05:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E554EB34;
+	Tue, 23 Jan 2024 06:08:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W2/50smJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k2lbURai"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3AE7538D
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 05:54:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23DB04EB25;
+	Tue, 23 Jan 2024 06:08:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705989286; cv=none; b=mcb928dfhaxA9KVK1tCsLkwr/S5aNfmHkvZGROXq4gAKZHSIecqPJjN4mTRFuUM1i42sfbPa2hhpXu+5rb0a1Mk80WURNECSZX3rcI1bQXosygCNpwA654968i1P7o8AM3qjXGXcvO1gdGxyVfHMXqBN8WAjQfZ2YdSax+T/sro=
+	t=1705990095; cv=none; b=keunLUJ/pfquFpOk71kJ1EkNKT7kryRdVYEBZct6YP4vOQh6cNMrElvVSSfgqUpIZd5bUb51War6awrYeXkzH3cZI13RAMTY2TcxOJi5kTqESLqv5kPzIVDHg/xbyJ9QB4VPqAgAnvOyI1Yd6/6O2u7YxNPTp2OAXPu4g0CIbps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705989286; c=relaxed/simple;
-	bh=IedhDM4GAuyddYPNOKsFk25CuXoaKMq8SB+p+rm05Ns=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R9U5SKeY78nPDkIBq4Q+a8FCGLXfzwjXbsEhrh1AzD9T+VaDO2kR70FcefhjCbs964yuN++kIaHQWga0cI2Xw1BryvHdZyYeyUwulgM3bjbddr6XYG6iA0TC0jbI9H1fwGElYV3we2eYieI9spY6H/ZdXrHbVf5/imJZ9AeBR58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W2/50smJ; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dafe04717baso3181111276.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 21:54:44 -0800 (PST)
+	s=arc-20240116; t=1705990095; c=relaxed/simple;
+	bh=XjjPu5c8trVSir5vPeosEclGyGek+TDgQ5alu3svLpM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=gDJwRucNvW3Yr2TeD6TdRLpA4fZ9g3gaET1blxzPvl8JVwfF5xYHXB9XzI5poaErc/WV85wuxtIUutQHmjvaVO+eNWqEvV4xIxcAxpA6H6dG5sphdqHd0WPNIh83QJZQIRdcm+SgdOwC4wsJV8TgYvxnTMuM+FDKmDTpN+OgAnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k2lbURai; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-50eaabc36bcso4180190e87.2;
+        Mon, 22 Jan 2024 22:08:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705989284; x=1706594084; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=u8hawjzB2k/6IB+JEpXxKhO9XrlUEkw5XU7npCHNlns=;
-        b=W2/50smJ7g0a9s11jBUA/jpTzQg+jHuPNuFwHuUML8/9mFqQGKzm1O4V0F6ugZn/zT
-         Vrw5AOXF1T/0bL6ZtYbNsRYAuSe0XeP4rqPao3M7pKjPQ7j7wf+F78jiF1/+EO8hMUv4
-         ZvtANuzuJ5ZzRK9qP3DIznNxh8+VhHoTb8UCf17UbYprLUCYpsaBYC8xleF/EsEcM3ft
-         8or0LedG1ncP3k4+ztl+gcYilAVUVp/wceQh/FVuWDOqu1OOoRnfl1DS6ff0cEKuywzF
-         MPtYkaIamzCgfZN1YV/2yjA68GuIY+1kDnJUDZypm1VJzAWocPEqZaKypSHMz1dy+fdp
-         vvUA==
+        d=gmail.com; s=20230601; t=1705990092; x=1706594892; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=t4qORfUlpEqFlYNvW/x/uQF2RSEyUxdmLIwXBI7kmUk=;
+        b=k2lbURaiTWqeXexJZFKLaYMBzWLAcZGrFyMo8edVPeKdGcdY89qecgtt73qMKiAKB4
+         Naq5k2C729Q/rbbyluzKlkwh8VdUEG0UReggKQ3bubWZLUN5iuFD+h4mIfGoOhOW8jIY
+         TJcKCJMwb2RCeU+Jdt+AjI6lM1izvPu7h8lfZCsK6/eYz0Jbxt3dz3hHJ06/pPikvTzh
+         ryeEL7QYlG2QPS4Zo5tGXsYsMq8+5mMVBLd4E5ImdpJ+t/jtiADyxQpYMLu5c8N23E8q
+         K1oWOYcd7ipk8kvtYRbU/eW1TohXWd9+HlzGd7W78V3NgFWEttOKQL/YjDcqvsKpxdEN
+         tG2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705989284; x=1706594084;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1705990092; x=1706594892;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=u8hawjzB2k/6IB+JEpXxKhO9XrlUEkw5XU7npCHNlns=;
-        b=emWTrb/oG7/mGWTfUtkS4IHXVlL0gQI6zzKMp6Z3hn3kbMGGUJyYQ0yv7bCqrSfpk2
-         l2ACPg13U/aGU7aZ4ksoeVoRFIIqw4P41lO/g9A1zMNS0d6KOJeDYoHI9F8EzLsdLSR7
-         jqa2idJ42vEAYviSYA1ouR9S1DENUTfWsT/9GZyOI1EXDyZKJD+Lz7W1kJUP8fAHjsDu
-         K6Qa3tihOxFNvpZUhnzMYvgBFY66b71fHv5qfdhPTW7wxwOieeyrLrZlBqbP3QfbXtZe
-         E/G8Adm5g6y/6KUEnUoPpq58Ut5ugcOvYANWLnV+PuCfRsrU3yvPuuR9TpoeoQlCZhVu
-         1Nlg==
-X-Gm-Message-State: AOJu0YwayXstZMNFzCmi3Hz/+8KfJHdsOVSAZu8inNh6L0hzzUDg659e
-	RougQLSXvE268S1lKOVXQ0kTDWokfYiKS0uq82yrZbSD7nGF1VaWvI4KtU9fQasIj0lJnrw8Kzr
-	B6rDcDFzELGAVgk9hEbTu5LTruQxp3T/6Zm1kuA==
-X-Google-Smtp-Source: AGHT+IEkxjJVSmq8MCL28lHXYMwlDP3mgapIAK5Xu0TtkhiywDgxtPNfu93BAvUfYkW7Q68B6qXYcAIV7ZDcCeSW0js=
-X-Received: by 2002:a25:ab30:0:b0:dc2:2acf:ce48 with SMTP id
- u45-20020a25ab30000000b00dc22acfce48mr2888085ybi.126.1705989283779; Mon, 22
- Jan 2024 21:54:43 -0800 (PST)
+        bh=t4qORfUlpEqFlYNvW/x/uQF2RSEyUxdmLIwXBI7kmUk=;
+        b=dpFgV8gnETedHrhwx1fK+HL+45YbSO0XnAhifwWGJqqu54D0vTTSwO5d4mCAiWUKM9
+         Jk5afUgSZq5XEQVoVW4VdfIi+WAwd6Y5gtrY8HK+5ZEJttIpwyv1QannB2r+SqfItfmN
+         +MwmlbgVk98xrxFrokP4kYKROP/WXekjnQ2JxRx1o8gb6n0Ji0gfL4FbHa25BRznGnAr
+         EcwnR6iQNQBTkeODWdkT6Ko6v4p1XC/FqVPpKgmXv32CNl+xNHga2C4XydSxFzEg35PH
+         NM/V0wjDdOf2QiplNUehg6r5WrDUsTG5RfuhSzSK6yo8Tr/lMK2IcNmo4qLTMR9OzWKT
+         ipyw==
+X-Gm-Message-State: AOJu0YzLcx3WxzkB7hzzeV57VWU9OZwMN93Z2bZifndk4yl4yG9RR3Eu
+	hbV7R+OcR4AvlGby/rLB+f+qHr9SLLDdAVuhPoPU+y7twv+ekWY4
+X-Google-Smtp-Source: AGHT+IG6xtqGKymYk8+JRle5ViKMEL/w01zGchfO3OMVWOXeHFp4ZehD2KI0mPvKHeRC4vXp91HPXA==
+X-Received: by 2002:a05:6512:3c94:b0:50e:8d0c:5eeb with SMTP id h20-20020a0565123c9400b0050e8d0c5eebmr2981468lfv.85.1705990091798;
+        Mon, 22 Jan 2024 22:08:11 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id 23-20020a170906311700b00a269b4692a9sm11727880ejx.84.2024.01.22.22.08.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jan 2024 22:08:11 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: interrupt-controller: convert MediaTek sysirq to the json-schema
+Date: Tue, 23 Jan 2024 07:08:04 +0100
+Message-Id: <20240123060804.32254-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240122182158.69183-1-brgl@bgdev.pl>
-In-Reply-To: <20240122182158.69183-1-brgl@bgdev.pl>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 23 Jan 2024 07:54:32 +0200
-Message-ID: <CAA8EJprWddrEH+Wmh4SExPygSVz6+WpSX-MDQ+hev1gov74rng@mail.gmail.com>
-Subject: Re: [RFC] arm64: dts: qcom: qrb5165-rb5: model the PMU of the QCA6391
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Abel Vesa <abel.vesa@linaro.org>, Alex Elder <elder@linaro.org>, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, 22 Jan 2024 at 20:22, Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->
-> I'm limiting the audience of this compared to the PCI power sequencing
-> series as I wanted to run the DT part by the maintainers before I commit
-> to a doomed effort.
->
-> Here is the DT representation of the QCA6390's PMU with its inputs and
-> outputs. If I were to implement the pwrseq framework that would be able
-> to assign the relevant pwrseq data to the consumer based on the actual
-> regulators and not abstract bt-pwrseq or wlan-pwrseq properties - would
-> that fly with you?
->
-> We'd need to deprecate the existing BT bindings but unfortunately they
-> are already described as consuming the host PMIC regulators in bindings.
->
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+From: Rafał Miłecki <rafal@milecki.pl>
 
-My main concern is whether this is going to pass the regulator
-subsystem locking. Basically you have a driver for regulators, which
-will itself call into the regulator subsytem. It might be reentrant.
-Or it might not.
+This helps validating DTS files.
 
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 129 +++++++++++++++++++++--
->  arch/arm64/boot/dts/qcom/sm8250.dtsi     |  10 ++
->  2 files changed, 128 insertions(+), 11 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index cd0db4f31d4a..c9b1600c57ef 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -108,6 +108,88 @@ lt9611_3v3: lt9611-3v3 {
->                 regulator-always-on;
->         };
->
-> +       qca6390_pmu: pmu@0 {
-> +               compatible = "qcom,qca6390-pmu";
-> +
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
-> +
-> +               vddaon-supply = <&vreg_s6a_0p95>;
-> +               vddpmu-supply = <&vreg_s2f_0p95>;
-> +               vddrfa1-supply = <&vreg_s2f_0p95>;
-> +               vddrfa2-supply = <&vreg_s8c_1p3>;
-> +               vddrfa3-supply = <&vreg_s5a_1p9>;
-> +               vddpcie1-supply = <&vreg_s8c_1p3>;
-> +               vddpcie2-supply = <&vreg_s5a_1p9>;
-> +               vddio-supply = <&vreg_s4a_1p8>;
-> +
-> +               bt-enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
-> +               wifi-enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-> +               swctrl-gpios = <&tlmm 124 GPIO_ACTIVE_HIGH>;
-> +
-> +               regulators {
-> +                       vreg_pmu_rfa_cmn: ldo0 {
-> +                               regulator-name = "vreg_pmu_rfa_cmn";
-> +                               regulator-min-microvolt = <760000>;
-> +                               regulator-max-microvolt = <840000>;
-> +                       };
-> +
-> +                       vreg_pmu_aon_0p59: ldo1 {
-> +                               regulator-name = "vreg_pmu_aon_0p59";
-> +                               regulator-min-microvolt = <540000>;
-> +                               regulator-max-microvolt = <840000>;
-> +                       };
-> +
-> +                       vreg_pmu_wlcx_0p8: ldo2 {
-> +                               regulator_name = "vreg_pmu_wlcx_0p8";
-> +                               regulator-min-microvolt = <760000>;
-> +                               regulator-max-microvolt = <840000>;
-> +                       };
-> +
-> +                       vreg_pmu_wlmx_0p85: ldo3 {
-> +                               regulator-name = "vreg_pmu_wlmx_0p85";
-> +                               regulator-min-microvolt = <810000>;
-> +                               regulator-max-microvolt = <890000>;
-> +                       };
-> +
-> +                       vreg_pmu_btcmx_0p85: ldo4 {
-> +                               regulator-name = "vreg_pmu_btcmx_0p85";
-> +                               regulator-min-microvolt = <810000>;
-> +                               regulator-max-microvolt = <890000>;
-> +                       };
-> +
-> +                       vreg_pmu_rfa_0p8: ldo5 {
-> +                               regulator-name = "vreg_pmu_rfa_0p8";
-> +                               regulator-min-microvolt = <760000>;
-> +                               regulator-max-microvolt = <840000>;
-> +                       };
-> +
-> +                       vreg_pmu_rfa_1p2: ldo6 {
-> +                               regulator-name = "vreg_pmu_rfa_1p2";
-> +                               regulator-min-microvolt = <1187000>;
-> +                               regulator-max-microvolt = <1313000>;
-> +                       };
-> +
-> +                       vreg_pmu_rfa_1p7: ldo7 {
-> +                               regulator_name = "vreg_pmu_rfa_1p7";
-> +                               regulator-min-microvolt = <1710000>;
-> +                               regulator-max-microvolt = <1890000>;
-> +                       };
-> +
-> +                       vreg_pmu_pcie_0p9: ldo8 {
-> +                               regulator_name = "vreg_pmu_pcie_0p9";
-> +                               regulator-min-microvolt = <870000>;
-> +                               regulator-max-microvolt = <970000>;
-> +                       };
-> +
-> +                       vreg_pmu_pcie_1p8: ldo9 {
-> +                               regulator_name = "vreg_pmu_pcie_1p8";
-> +                               regulator-min-microvolt = <1710000>;
-> +                               regulator-max-microvolt = <1890000>;
-> +                       };
-> +               };
-> +       };
-> +
->         thermal-zones {
->                 conn-thermal {
->                         polling-delay-passive = <0>;
-> @@ -734,6 +816,24 @@ &pcie0_phy {
->         vdda-pll-supply = <&vreg_l9a_1p2>;
->  };
->
-> +&pcieport0 {
-> +       wifi@0 {
-> +               compatible = "pci17cb,1101";
-> +               reg = <0x10000 0x0 0x0 0x0 0x0>;
-> +
-> +               vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-> +               vddaon-supply = <&vreg_pmu_aon_0p59>;
-> +               vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> +               vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-> +               vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-> +               vddrfa0-supply = <&vreg_pmu_rfa_0p8>;
-> +               vddrfa1-supply = <&vreg_pmu_rfa_1p2>;
-> +               vddrfa2-supply = <&vreg_pmu_rfa_1p7>;
-> +               vddpcie0-supply = <&vreg_pmu_pcie_0p9>;
-> +               vddpcie1-supply = <&vreg_pmu_pcie_1p8>;
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../mediatek,mt6577-sysirq.yaml               | 85 +++++++++++++++++++
+ .../interrupt-controller/mediatek,sysirq.txt  | 44 ----------
+ 2 files changed, 85 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
 
-This really feels like an overkill, All those voltages are handled by
-the PMU itself, rather than being requested by the WiFi or BT drivers.
-
-> +       };
-> +};
-> +
->  &pcie1 {
->         status = "okay";
->  };
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml b/Documentation/devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml
+new file mode 100644
+index 000000000000..e1a379c052e4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/mediatek,mt6577-sysirq.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/mediatek,mt6577-sysirq.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek sysirq
++
++description:
++  MediaTek SOCs sysirq support controllable irq inverter for each GIC SPI
++  interrupt.
++
++maintainers:
++  - Matthias Brugger <matthias.bgg@gmail.com>
++
++properties:
++  compatible:
++    oneOf:
++      - const: mediatek,mt6577-sysirq
++      - items:
++          - enum:
++              - mediatek,mt2701-sysirq
++              - mediatek,mt2712-sysirq
++              - mediatek,mt6580-sysirq
++              - mediatek,mt6582-sysirq
++              - mediatek,mt6589-sysirq
++              - mediatek,mt6592-sysirq
++              - mediatek,mt6755-sysirq
++              - mediatek,mt6765-sysirq
++              - mediatek,mt6779-sysirq
++              - mediatek,mt6795-sysirq
++              - mediatek,mt6797-sysirq
++              - mediatek,mt7622-sysirq
++              - mediatek,mt7623-sysirq
++              - mediatek,mt7629-sysirq
++              - mediatek,mt8127-sysirq
++              - mediatek,mt8135-sysirq
++              - mediatek,mt8173-sysirq
++              - mediatek,mt8183-sysirq
++              - mediatek,mt8365-sysirq
++              - mediatek,mt8516-sysirq
++          - const: mediatek,mt6577-sysirq
++
++  reg:
++    minItems: 1
++    maxItems: 2
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    $ref: "arm,gic.yaml#/properties/#interrupt-cells"
++
++required:
++  - reg
++  - interrupt-controller
++  - "#interrupt-cells"
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt6797-sysirq
++    then:
++      properties:
++        reg:
++          minItems: 2
++    else:
++      properties:
++        reg:
++          maxItems: 1
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    interrupt-controller@10200620 {
++        compatible = "mediatek,mt6797-sysirq", "mediatek,mt6577-sysirq";
++        reg = <0x10220620 0x20>,
++              <0x10220690 0x10>;
++        interrupt-parent = <&gic>;
++        interrupt-controller;
++        #interrupt-cells = <3>;
++    };
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt b/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
+deleted file mode 100644
+index 3ffc60184e44..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/mediatek,sysirq.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-MediaTek sysirq
+-
+-MediaTek SOCs sysirq support controllable irq inverter for each GIC SPI
+-interrupt.
+-
+-Required properties:
+-- compatible: should be
+-	"mediatek,mt8516-sysirq", "mediatek,mt6577-sysirq": for MT8516
+-	"mediatek,mt8183-sysirq", "mediatek,mt6577-sysirq": for MT8183
+-	"mediatek,mt8173-sysirq", "mediatek,mt6577-sysirq": for MT8173
+-	"mediatek,mt8135-sysirq", "mediatek,mt6577-sysirq": for MT8135
+-	"mediatek,mt8127-sysirq", "mediatek,mt6577-sysirq": for MT8127
+-	"mediatek,mt7622-sysirq", "mediatek,mt6577-sysirq": for MT7622
+-	"mediatek,mt7623-sysirq", "mediatek,mt6577-sysirq": for MT7623
+-	"mediatek,mt7629-sysirq", "mediatek,mt6577-sysirq": for MT7629
+-	"mediatek,mt6795-sysirq", "mediatek,mt6577-sysirq": for MT6795
+-	"mediatek,mt6797-sysirq", "mediatek,mt6577-sysirq": for MT6797
+-	"mediatek,mt6779-sysirq", "mediatek,mt6577-sysirq": for MT6779
+-	"mediatek,mt6765-sysirq", "mediatek,mt6577-sysirq": for MT6765
+-	"mediatek,mt6755-sysirq", "mediatek,mt6577-sysirq": for MT6755
+-	"mediatek,mt6592-sysirq", "mediatek,mt6577-sysirq": for MT6592
+-	"mediatek,mt6589-sysirq", "mediatek,mt6577-sysirq": for MT6589
+-	"mediatek,mt6582-sysirq", "mediatek,mt6577-sysirq": for MT6582
+-	"mediatek,mt6580-sysirq", "mediatek,mt6577-sysirq": for MT6580
+-	"mediatek,mt6577-sysirq": for MT6577
+-	"mediatek,mt2712-sysirq", "mediatek,mt6577-sysirq": for MT2712
+-	"mediatek,mt2701-sysirq", "mediatek,mt6577-sysirq": for MT2701
+-	"mediatek,mt8365-sysirq", "mediatek,mt6577-sysirq": for MT8365
+-- interrupt-controller : Identifies the node as an interrupt controller
+-- #interrupt-cells : Use the same format as specified by GIC in arm,gic.txt.
+-- reg: Physical base address of the intpol registers and length of memory
+-  mapped region. Could be multiple bases here. Ex: mt6797 needs 2 reg, others
+-  need 1.
+-
+-Example:
+-	sysirq: intpol-controller@10200620 {
+-		compatible = "mediatek,mt6797-sysirq",
+-			     "mediatek,mt6577-sysirq";
+-		interrupt-controller;
+-		#interrupt-cells = <3>;
+-		interrupt-parent = <&gic>;
+-		reg = <0 0x10220620 0 0x20>,
+-		      <0 0x10220690 0 0x10>;
+-	};
 -- 
-With best wishes
-Dmitry
+2.35.3
+
 
