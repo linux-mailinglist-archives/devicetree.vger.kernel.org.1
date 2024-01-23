@@ -1,159 +1,175 @@
-Return-Path: <devicetree+bounces-34107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD30838A5E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:33:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30F85838AD8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2372A1F26554
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:33:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FA3B1F23A15
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD20D59B54;
-	Tue, 23 Jan 2024 09:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0734D5D741;
+	Tue, 23 Jan 2024 09:45:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RmYaGF1Y"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SRf6BcNk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEBBB59B4C;
-	Tue, 23 Jan 2024 09:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F4B5FDB3
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:45:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706002407; cv=none; b=n/kS31Z2KOPvCjIylzTXtTDteetasoMmJzQY0zaLVPbiEHnPqJaBBp4MnElCfZfORwFPHN8J1lWKnQ7T7ZpYQFa+WmLtbnaRDwCRCUFT1FooJ22KYm7C5A7Ii+2zmNSRkHlfmxN6jcQjCsg/OU4coN0uj8denvhBPB5quxpmd7c=
+	t=1706003135; cv=none; b=EITqS+aXGpWpzUvekFYflActYo+OcdfLYziL3OYD/WBZCwM/CJdJJRWLuwqfpFoM3wzEDOuS0GcwSOk9mOnkkOfRaEtfTiS8YzPEZSXWQiQPFKdKf6duqOtpPZlVAuBF0hEoRpBJl0cXN/o0gfCA6UXkVwZMXsI4yzzHpKQMWA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706002407; c=relaxed/simple;
-	bh=tUV9HeYaIlBPoxnsQQp32B4Sy5G/GzhwU1EEi/HJ3HE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LaFfbfVNZWU0vz/pQVJLuHzx+cORRBWaD1fi/YxdofwVylnfVaoeHOKG9zo5r5uen9XV1U7QOMXIrwZwe/YnkTFdFgASqgmvrP1ClgK+xCjpORJNmrLBA6y3vCNPlj+9LC8aj71pAHLPVtAfuYC7+ygK3tLZSl9nFRSby1MBFO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RmYaGF1Y; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40N7MUfQ010744;
-	Tue, 23 Jan 2024 09:33:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=LTfonBMvnMBR44qAE8QB5c/aqCnkCTT8Mrrh/XXED9o=; b=Rm
-	YaGF1YQ496OaN+QiCMoPOtu2QkqktvVXFRaYPFGIHjmgTsuTTkbC0QJ14IZ9N++Z
-	/nnpDWeQ0GKouFANAA9T+xCZi404flJ1/mujpUxu8KJex5VgB5AmJQ1G8DoXshxa
-	cuFOPSl9VPbDPh/yfwjWOyacF37o+5v4JKeMrJMfm6MAvB80WbkMxdC2fmfnxcUC
-	puEcFKlsqaIcmOdnMB58gL401GVsqJYWyOqXhyBD2bAs9EwW9nxlvvvLkEDdv8CE
-	4cHsm3wAYdOcnU0n7Dbj05ElXAeqoreKXthQFmpoLa4q62so+HCX87QF63PYHFUD
-	3xw1AsBsMs2Q4tIJvz8w==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vt8140cu1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 09:33:17 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40N9XGOZ014957
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 09:33:16 GMT
-Received: from [10.216.0.128] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 23 Jan
- 2024 01:33:11 -0800
-Message-ID: <e993b237-46fb-3a0b-dc91-41e27ea0ab98@quicinc.com>
-Date: Tue, 23 Jan 2024 15:03:03 +0530
+	s=arc-20240116; t=1706003135; c=relaxed/simple;
+	bh=odkxBY8FHAysxrkRcY9fITRfwH8TqSDhGBgzysz/3Xk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=uwJxZb+0oxmlFWstu81f0WBlqSb+i9mf12ZlYUmieeqdf2KSljugdpWhCpT8i/cPvx7USNsoYlV8FdzMsGlNpiURDQsPpOz8SsGaCX2gr5WM8fVE4rcTVYousFRiuSP4VMDqZrgXPUzanfswaATGAX/9+lRt95QH/nrAqQCwU8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SRf6BcNk; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-339261a6ec2so2569403f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 01:45:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706003132; x=1706607932; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=u4+mDft7U4+grrKWrx4KfPJ3Se1pTXr+hv+2847ZCNk=;
+        b=SRf6BcNkcwC27XOOfKeVTKU7GmBbr+AW7gUm8atwjSpa0Z7PnmxQ+rA5OVq84Zk6/S
+         DPKqxNMKeT11oxliTyzZbA7JF3wh5DIM8CawupE99/QW6sWVUtaOJRrtvfkn9BtcT5O/
+         9+1xTcvAJ4Hkvpd2U86buqnVaOSxgXTD1htJbsSl11fJoBQoISjL0C6wvmQ8ZXXS54aq
+         5JPhCCvEEaThL+GF24XV4zuWfmk2rUQkZNZX9pvcVeAOpcVX/DeRxm5FVjxr6b6oJyMm
+         KHD0HZfwppFaQq68EjqFEouIeObIBO3AGxrWbqkkfyDADwID+SIv785wBiJb5y8IA5XA
+         Az9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706003132; x=1706607932;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u4+mDft7U4+grrKWrx4KfPJ3Se1pTXr+hv+2847ZCNk=;
+        b=UcTUjpVDSDZCfyKeNB3X5WEWFqgne1vYCajl4yta20KPcmD4SZrsfPBTLKIIW6278c
+         e9PzfI+C5ixmSfgvN/O/3ednwMsoHJs4or8VkHMpcFHBvprBTMW9xCsJJourg242beJq
+         qlL1lh83E39TxqZTdlXIkrsS52GLzsz/S25w5DhZiGcRMxvZLuStfjSol4W5DOqE5WWo
+         eqRijjkxkHx95l/DRL7mYJqscSwJmEBebO6yCFKBXwvxCDm0/KbyN54bggmf+Oay3AiF
+         RscSe6ybjFzjJEgVPr67DYUOkdq/h5clny1r9ELMcqoxmivxqAdHICxsVrBSq+iP7hzY
+         Q8eQ==
+X-Gm-Message-State: AOJu0Yz7IePVv6ZfvG/6dpjuegpVJP1ZBSBTlPhnEt1YUHlBYS6GEbcC
+	6SqzkhWW29lHxCwAxE357+OWnQDIzDYRoOL4mfaPLokOqmrwh/qLeu218E4tDyayQu6M6DY+oHU
+	Y
+X-Google-Smtp-Source: AGHT+IGeUk4uevU136+WqgA6qK2GCWU3c+cQQnNPm3FHUaU5vvheb5Io6OPMK7/kyI6zteDSYvzpug==
+X-Received: by 2002:a5d:4903:0:b0:337:bc26:5d43 with SMTP id x3-20020a5d4903000000b00337bc265d43mr3398320wrq.4.1706003132548;
+        Tue, 23 Jan 2024 01:45:32 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id d12-20020adfe88c000000b00337be3b02aasm15889985wrm.100.2024.01.23.01.45.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 01:45:32 -0800 (PST)
+Message-ID: <e19f2aa5-5040-4cab-8c67-557436883e40@linaro.org>
+Date: Tue, 23 Jan 2024 10:45:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v6 01/12] clk: qcom: branch: Add a helper for setting the
- enable bit
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Marijn Suijten <marijn.suijten@somainline.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Johan Hovold
-	<johan+linaro@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20230717-topic-branch_aon_cleanup-v6-0-46d136a4e8d0@linaro.org>
- <20230717-topic-branch_aon_cleanup-v6-1-46d136a4e8d0@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: memory-controllers: narrow regex for unit
+ address to hex numbers
+To: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Dmitry Osipenko <digetx@gmail.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20240123083517.21091-1-krzysztof.kozlowski@linaro.org>
+ <a00a3d5f-9d96-4886-9ebe-4e2962667ab3@nvidia.com>
 Content-Language: en-US
-From: Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <20230717-topic-branch_aon_cleanup-v6-1-46d136a4e8d0@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <a00a3d5f-9d96-4886-9ebe-4e2962667ab3@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -9zgUxEza7hK566H9pMD3G5V06JJNCFs
-X-Proofpoint-ORIG-GUID: -9zgUxEza7hK566H9pMD3G5V06JJNCFs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-23_04,2024-01-23_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 mlxlogscore=999 clxscore=1011 impostorscore=0 malwarescore=0
- suspectscore=0 bulkscore=0 adultscore=0 phishscore=0 mlxscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2311290000 definitions=main-2401230069
 
-
-
-On 1/13/2024 8:20 PM, Konrad Dybcio wrote:
-> We hardcode some clocks to be always-on, as they're essential to the
-> functioning of the SoC / some peripherals. Add a helper to do so
-> to make the writes less magic.
+On 23/01/2024 10:20, Jon Hunter wrote:
 > 
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   drivers/clk/qcom/clk-branch.h | 7 +++++++
->   1 file changed, 7 insertions(+)
+> On 23/01/2024 08:35, Krzysztof Kozlowski wrote:
+>> Regular expression used to match the unit address part should not allow
+>> non-hex numbers.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   .../bindings/memory-controllers/nvidia,tegra20-emc.yaml         | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+>> index f54e553e6c0e..71896cb10692 100644
+>> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+>> @@ -145,7 +145,7 @@ patternProperties:
+>>     "^emc-table@[0-9]+$":
+>>       $ref: "#/$defs/emc-table"
+>>   
+>> -  "^emc-tables@[a-z0-9-]+$":
+>> +  "^emc-tables@[a-f0-9-]+$":
+>>       type: object
+>>       properties:
+>>         reg:
 > 
-> diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
-> index 8ffed603c050..0514bc43100b 100644
-> --- a/drivers/clk/qcom/clk-branch.h
-> +++ b/drivers/clk/qcom/clk-branch.h
-> @@ -64,6 +64,7 @@ struct clk_mem_branch {
->   #define CBCR_FORCE_MEM_PERIPH_OFF	BIT(12)
->   #define CBCR_WAKEUP			GENMASK(11, 8)
->   #define CBCR_SLEEP			GENMASK(7, 4)
-> +#define CBCR_CLOCK_ENABLE		BIT(0)
->   
->   static inline void qcom_branch_set_force_mem_core(struct regmap *regmap,
->   						  struct clk_branch clk, bool on)
-> @@ -98,6 +99,12 @@ static inline void qcom_branch_set_sleep(struct regmap *regmap, struct clk_branc
->   			   FIELD_PREP(CBCR_SLEEP, val));
->   }
->   
-> +static inline void qcom_branch_set_clk_en(struct regmap *regmap, u32 cbcr)
-> +{
-> +	regmap_update_bits(regmap, cbcr, CBCR_CLOCK_ENABLE,
-> +			   CBCR_CLOCK_ENABLE);
-> +}
-> +
-
-Could you please help me understand how this helper function is useful?
-Seems like this is just for reducing parameters compared to 
-regmap_update_bits(). But anyhow the same is being done in the existing
-clock controller drivers with a comment which explains the functionality.
-
-Thanks & Regards,
-Imran
-
->   extern const struct clk_ops clk_branch_ops;
->   extern const struct clk_ops clk_branch2_ops;
->   extern const struct clk_ops clk_branch_simple_ops;
 > 
+> Thanks! We could add the fixes tag ...
+> 
+> Fixes: de3d7018372c dt-bindings: memory: tegra20: emc: Convert to schema
+
+There is no bug here, really. At least no bug with impact, because dtc
+won't allow DTS with non-hex numbers.
+
+Best regards,
+Krzysztof
+
 
