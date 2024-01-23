@@ -1,164 +1,200 @@
-Return-Path: <devicetree+bounces-34014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5051E8387B8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:00:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC7728387C1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:03:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBA03B22926
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 07:00:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D8CAB22F0D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 07:03:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0452D50267;
-	Tue, 23 Jan 2024 07:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43C95026B;
+	Tue, 23 Jan 2024 07:02:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="H0Vb5mTz"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Q5XO73gX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2061.outbound.protection.outlook.com [40.107.22.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF9EA362;
-	Tue, 23 Jan 2024 07:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705993232; cv=fail; b=mNTeoJmMqS3THIf6y9eC8p8OFabppZE9HNASWNol6MNmEavn9N8zl4uh6AR8EvajCZ1r3PlaMLwkdWjmXq1w+WHOogUPAN3/d/gC+omXnzEUKv4Cvl5sYKR0PczBoicn6P8k1aJApZZEnpgMiAu5loc5KROv/zNpXgcxLDO0zYI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705993232; c=relaxed/simple;
-	bh=pjDLIC2uSW2/mg3cFIINp5jumP8KBnn/hnpA5bywKDQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=aPIR14K3C0j8N2xfye5gON/0sJJC8R9GU4UunjIW12ae2m+bl5O9LnTMT/BG6O0QamffnxDOOY9KC8FxzJkWUNseAgJLq8Hwf+xSEKPEVdn9Di2CU5tuaCOVkM4nMZnLKKeb6mcEOmPlZ5Q3M8KYQ3vOh/J1Kaz1X/a3u4L/Vh4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=H0Vb5mTz; arc=fail smtp.client-ip=40.107.22.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UL+1SNcwLmjw1yX/6bvlMtBPXjrVc7hj99Lcgn9Ce6069T1SmJG1999mcgWaUkLai8v2b6MoL51bQa7r1lZJRCPHrzL/Fm6GCKFrb09YvFKTGoDkl3GbpO2QMh3Rj0CQ6HlqVOPYPRYldlENr1yForpZMSwGA33/Va5SaW//nHt2znaU69nZkfCnr2500QqmIQIJ7kYT7odUSbl8nfMIRPg1OOqSj70qIYjS1vVx7ma26l3qHDFF//bRDPnIc9lU6io/BJMOIn8N8sXCpj+MWgLp2J0/s5/GIynSMePG3UU2nZM4FE/ZAZO970iIYdX6DRa+khGMPBcRMB3XdSAyBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pjDLIC2uSW2/mg3cFIINp5jumP8KBnn/hnpA5bywKDQ=;
- b=VkhW36DG8+vmEYFjpuvG0bAWiivCKA/IB4jbINmBMjkh+ciiKzA8gcFsQXJMaezg43XTXCtUETEkhCkEoXGRhrWARU26cXmUVicC8kKR94GLeReWwa6FZ0sfEOwXcaJvXbpf5MrBsvWgpgOkulzLDHAPaZMgH6xsWsgVrCxTt/Cx2NMXF//gR7+8yS0X7ZT7cXC27F8e1DqNB/fMz8YnFnIOBGwpSVa19zLhB6AInlQHg43OLNv2oa4ypJGYE3+EiqGqob0YP8/+ZeblHqItuwxve1T8TI2wLJQ3K6Qh7PTeVzRA7s0+LwbkSqNijCMOo2A6vuiPwFEZYOE6q4xXPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pjDLIC2uSW2/mg3cFIINp5jumP8KBnn/hnpA5bywKDQ=;
- b=H0Vb5mTzglfSU+32Hg3IWE/54ilfYozrkuTGQeKGzBMUBFJhNWm4x4eU9fdkiNRE9XTYeS+topm4BYFeU8PafnBKB76W11YgueqYDGUMT4EXeyP9GdCwg/1emDjdX0PLjSGngt9s+6CogR2GxEOxaYsQ9Z4WLPpabAl173/UiHQ=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AM9PR04MB8713.eurprd04.prod.outlook.com (2603:10a6:20b:43c::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.36; Tue, 23 Jan
- 2024 07:00:28 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::c499:8cef:9bb1:ced6]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::c499:8cef:9bb1:ced6%3]) with mapi id 15.20.7202.031; Tue, 23 Jan 2024
- 07:00:28 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Jakub Kicinski <kuba@kernel.org>, Marc Kleine-Budde <mkl@pengutronix.de>
-CC: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, "wg@grandegger.com"
-	<wg@grandegger.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "edumazet@google.com"
-	<edumazet@google.com>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH] dt-bindings: can: fsl,flexcan: add i.MX95 compatible
- string
-Thread-Topic: [PATCH] dt-bindings: can: fsl,flexcan: add i.MX95 compatible
- string
-Thread-Index: AQHaTRM/wbiiEv9ixEO2u0SZ0nixIrDloMCAgACwDYCAAKhyIA==
-Date: Tue, 23 Jan 2024 07:00:27 +0000
-Message-ID:
- <DU0PR04MB941750744E86A1656009B7BE88742@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240122091738.2078746-1-peng.fan@oss.nxp.com>
-	<20240122-skilled-wimp-4bc1769bf235-mkl@pengutronix.de>
- <20240122125631.4c54eba1@kernel.org>
-In-Reply-To: <20240122125631.4c54eba1@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AM9PR04MB8713:EE_
-x-ms-office365-filtering-correlation-id: 441dc93b-f6b6-4eb7-eb5e-08dc1be0fb1e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- scZdciPPzkj4iZif8lCp5fGmweYDp+kkbYhJJMQQTXG9BLNXG6QLYW8Q1Bnmz/7PwqCgc7j9lFhblgHDGzIydD/w1siaZFndRpSS1mar1/XNSbhpRCxxxk0DOnEqd4QrIwIZfSkCpF/zV8sqqYdQIhffN2zBDhNVNw7ufowLVvkjCLlDkE9M2RaStZ56nWI2DwfzrFft8iJvyyz6ftWLm6zHEzbfR6uchRvP67+jOyZBS2nBdbKTpaJjREV7zhPsUN8ESUOrVojD436Uue3xhz0nwAPB7K99k3E13zUN+q1gFCdOujDLvtzOVYh/SimAKS79OVpR7D5VEBXeW/qNIa21G+KjQ+p/X2zBJsQPtLNYQs6F+gLyGXgym/RMX9iGaO/1e8qVj77OiHp/qp6+tBa+GuqafVGRzDfakkH/wgPTYf8daJ7l8YrOQxxM1nhnPGbx+wpubXi0WlPiFQpnTXSJmqppb5jFLGOhzReBWRSrV38UBGGKOlywqCmSshocbiCyRsyGkve6y+7OBAk5eQG35RrI6jlS68VJKIHygAViR5D+8/KfgNkQaI34ljUgqBl8rq0kawNe4yaJT0ZwjzZXsIyqKij3GdcscpMB1R30/9aw6ofk6cLFZCu1LPgy
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(39860400002)(366004)(136003)(346002)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(38070700009)(55016003)(8676002)(4326008)(9686003)(44832011)(8936002)(5660300002)(316002)(71200400001)(76116006)(110136005)(7696005)(66476007)(6506007)(64756008)(66946007)(54906003)(66556008)(66446008)(478600001)(26005)(52536014)(122000001)(38100700002)(4744005)(2906002)(7416002)(86362001)(41300700001)(33656002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?cM3UDx6eTpFA0zMpI2lBejiSbPUpC57E7kQnFltSyWlJ/JP5F2q81EUAV+6+?=
- =?us-ascii?Q?wJuLldOQFuqZCecSxHqenVLu1otqFnquB6zzGFJ8u2G5gDtD5JWOV4GAe421?=
- =?us-ascii?Q?u48z4tIr3WHfINSvIFLIl0TgUXysx9kdnFKuKuEJ58WPHZRnLuQKL7s0SP9N?=
- =?us-ascii?Q?vQuJTjVrWUJW2mldW21mux6rKYshCXqyNwepUMwEJmry+0hRUUiuJUsLHSVq?=
- =?us-ascii?Q?oS/K67tCAVI3K/Qi7S7wCFpv1J1LtVxvfJL+j5/L2bv4mIH+e6pQFiTB30JF?=
- =?us-ascii?Q?bSbg9fjeYkSUNFOMjzxdgj27m7zK5E1J+H0RA+HouLBp6Q4TvtxEvLbrhWoq?=
- =?us-ascii?Q?1Gexyo9Q72Ao5xBAf2PVHG3txL2I/M100zZDyn4SDK3OoWxBiytPgRUmKypO?=
- =?us-ascii?Q?DnuaotcaNZdJDtMm+3rBjFjENNc9xVBYy/AHA9SuesVjMeHv9JadqoRTYHx5?=
- =?us-ascii?Q?3RhDmhxN2AdHgNpf2RfBp1dp968zUVnYCNK314YQVyYCM0PGaNuNy2HVrB01?=
- =?us-ascii?Q?mnIxooZcnqbctaDp+IpSXU5MY0WoWJvEwGv1BnEEX6eF/3K9gHl7ganJeqHH?=
- =?us-ascii?Q?u4h+Rsm1DsOV4i2Zb0W2HYXmYvflnF9O3YZJlClSMRLQ0ddZbch1bWJ38jBk?=
- =?us-ascii?Q?xLeoxNWxRXlBS0Pwb6cxtzJEbZnudsd1IgS4HLHh1TO7f2ya9azxSI1bceT/?=
- =?us-ascii?Q?h3uOMyGq6OBKnKPGQj0BGEiRYO1jn3d+2knkJAXzFbh+qBRmjBYF70IAJ0nE?=
- =?us-ascii?Q?WpJfLGHHCOvo8VTVY07SbpE3KjOnL5ZwOLJURSqs5tGcMjHKhpC7+Cd4gGnt?=
- =?us-ascii?Q?SX1LvXPwOIawn0He797++WMyTRbt1xLxZewNvoTC8rM7oVolBz87k8/OdJ7s?=
- =?us-ascii?Q?mLdsc6S0eotPvcukZhSBCgjdx3SjLl07VisEeN3j5c8ovgdw/jJYqokJDAY+?=
- =?us-ascii?Q?q0mibU1mHmYCIi/jKsv5AS70YjujOVHVvwDmGiz1NjnLUcLuFcjB/pnIgFSw?=
- =?us-ascii?Q?l5vG9VJC4jt5aznLw7L94t72taJMU8KvzAqc+dpLOvC7AkgFUwjpkJ1s/DZB?=
- =?us-ascii?Q?GpwavQ94nfqJdDAl9MmycnzOqINayUkO6RzxPMRQe1DIydlQDOs2roCcoq+L?=
- =?us-ascii?Q?PHhHRpPeO7Yrr9DOOoR7UpWbIHWKBLAZXz6Geln1xbl6bBwBFsUIPqJUnNlD?=
- =?us-ascii?Q?wJU9xYzhzYnKXvpa8jzT7K3swasjjZjidNp3OAyyXeELxW0B2yntfK0bHkmy?=
- =?us-ascii?Q?trWcd7pkh7RYd1FKOM6nObFUNVEGrI7EacZNCRZeTU1tl2nF4gAJ0xv11ekO?=
- =?us-ascii?Q?CdNUDp8oC6xAZfAafZd7p2kwct5QS0QiuqA5sNndvsGQNBnL2I8EIrkncTSq?=
- =?us-ascii?Q?EJ9FiuAvJIGmi8eK6DjN1Enhw7JLATYZSiQKYzIeF0c7WfnAcFTLT/TrAr3y?=
- =?us-ascii?Q?7rJmAgNbFAqBxXjZilliIstJqfWLjYG6Rx2KeWwyi4q2/qkHOHf/2oXD6s4T?=
- =?us-ascii?Q?nw0zPohj3hUMpHwJTO1xYqnOlsXQkdGhJ3/egrRJ6rXz1wuFdOKxcvgfwZcb?=
- =?us-ascii?Q?7XUw6q+be2hX7FTYgcE=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E6155E5F
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705993362; cv=none; b=CaxfW1Yn1L/ikaH9q3cj6pAsllQTsKS06sx16abwzASoqdgh/wSBlyzxCei8jJ1Ij1+V6ZSwy64QPy9LVepf9VnGtDzicmC9yalF9sRdFUeBtpzTEnuEHWqAFx3+uNvXM4BuzndIGsoL01O8cqlVU7RG+Gsz+7wk+/SpgnQDUps=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705993362; c=relaxed/simple;
+	bh=umk0ZPnWTL0b4WUNFY7XpYAosoBwjT3rA5b6SOxM+0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eidDyF8BkYpsKM2KCcaSXpWkkFSJeYuEhr4/3enJX5BpkiIRhXTLJYQ4rP2W09lEsMN3yIcaldOG+k6lQxTR9DtfRMoFxcq7+NwZ6XYZADLaNlL2mVLCZOMUYcG5HbfATCbWhHETrbPvMpbsXDpxz1ejbRApt9++Ef7aAgkNjoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Q5XO73gX; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3387ef9fc62so3745379f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 23:02:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1705993358; x=1706598158; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0HA3HgAJbahgUJBX1gJ3AzroSL9tqmUD02YJ2gg4LNI=;
+        b=Q5XO73gX+U2nlb9u59i4ZhawUFU0/aOalOflTpE5G0EqqxrXQ0v119F96LsSe7ohiC
+         w/u4kj1Ci8lLFZNqnUFSbrr4b80XzBdUisbIdwRPNJ+ZdJIeOGK6XmwimsLH6on8A6mI
+         xBI0d5TqhipvbFwbkY1JL2jHKJtJ8pMmJLxuhriz+B92AlYnYzNE6Foqkg9vyE+lRqOw
+         KHAz4gKoqrm3bqJfo5ytjZF3LT3tr2C0ukmbzPNEPhGMfEaH39UviY+WeHnIiT/F/dZz
+         qXH3kz08EjJ25wWvXLGhAdgdDJcGdCBYraNWjWqo265YOsxQNQk88Ij3bYh0Otz/eiK1
+         3dWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705993358; x=1706598158;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0HA3HgAJbahgUJBX1gJ3AzroSL9tqmUD02YJ2gg4LNI=;
+        b=aNamqWpmDuIPVCvHa5hwBYKp23kc6PxiCPxtMIlswUVvtdhlY2k91HtQqeDv6CMrc4
+         oodk36U1rjd6Pa1OyVH6wjsBbH6N4b2dGxoIpZl3urmU8hQ9a+hezels5hS4aFLiD1Ga
+         dGkwfUJRgxS1KLOvqQ0AsU3UmdTXfxopbsre1Woru5U3X8ZWMrb7YJCnM3CkkU8zWceY
+         JMSp187AYx4dAi5W2EUl2LgJc/XsEZi7Bl/YaaWKBoiovHdrpHt5Zt4sCb5hMHpB7e4A
+         tZ9vtwfHvaTb5MiJl984YvzjbJvQiwc5NYGgHebEyk9YqmpSQee9WPXodzeNSH8t5QW4
+         3JDA==
+X-Gm-Message-State: AOJu0Yyww/5RH1oAsxD07Z/wMnVfDBhvLzJSATImfp4C6EXcszlN47Yy
+	bPYNlQVT90xlwC/O4iyA3rnZDXLRwgAsJhLc/pWEmeBSBYK132RDNQIOXjqhV2o=
+X-Google-Smtp-Source: AGHT+IFS5K2uIygufmipIXH0vhHz5DAndNr0whIooxvibYTJnGVc1IlHqA+kcq/xwxH4E4Cnt7O3Xg==
+X-Received: by 2002:a05:6000:4cc:b0:339:35a4:7caa with SMTP id h12-20020a05600004cc00b0033935a47caamr1569042wri.54.1705993358156;
+        Mon, 22 Jan 2024 23:02:38 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.135])
+        by smtp.gmail.com with ESMTPSA id q7-20020adffec7000000b0033926505eafsm8410992wrs.32.2024.01.22.23.02.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Jan 2024 23:02:37 -0800 (PST)
+Message-ID: <92db308f-075c-4799-9777-5bc14438ce68@tuxon.dev>
+Date: Tue, 23 Jan 2024 09:02:35 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 441dc93b-f6b6-4eb7-eb5e-08dc1be0fb1e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2024 07:00:27.8935
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BBqiuQ6FnqBpSKpAFLhQBSmxuDNhx17QfLYQKffdsLiaql9VvMQpbYCAEIqwpZPTweiLgyu4UiR5tiSP4RzHmw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8713
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/10] watchdog: rzg2l_wdt: Check return status of
+ pm_runtime_put()
+Content-Language: en-US
+To: Guenter Roeck <linux@roeck-us.net>, wim@linux-watchdog.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, p.zabel@pengutronix.de, biju.das.jz@bp.renesas.com
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240122111115.2861835-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240122111115.2861835-4-claudiu.beznea.uj@bp.renesas.com>
+ <c857cdd4-459b-41ae-b4bb-0da45e461335@roeck-us.net>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <c857cdd4-459b-41ae-b4bb-0da45e461335@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-> Subject: Re: [PATCH] dt-bindings: can: fsl,flexcan: add i.MX95 compatible
-> string
->=20
-> On Mon, 22 Jan 2024 11:26:25 +0100 Marc Kleine-Budde wrote:
-> > > Add i.MX95 flexcan which is compatible i.MX93 flexcan
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> >
-> > Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
->=20
-> Hm, you don't apply CAN DTB patches?
 
-Nope. I am preparing dt-binding first, then post the i.MX95 SoC
-dtsi. The CAN will be in the i.MX95 SOC dtsi file, not a
-single patch only for CAN node.
 
-Thanks,
-Peng.
+On 22.01.2024 19:31, Guenter Roeck wrote:
+> On 1/22/24 03:11, Claudiu wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> pm_runtime_put() may return an error code. Check its return status.
+>>
+>> Fixes: 2cbc5cd0b55f ("watchdog: Add Watchdog Timer driver for RZ/G2L")
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>   drivers/watchdog/rzg2l_wdt.c | 6 +++++-
+>>   1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/watchdog/rzg2l_wdt.c b/drivers/watchdog/rzg2l_wdt.c
+>> index 4ab9e7c5e771..0554965027cd 100644
+>> --- a/drivers/watchdog/rzg2l_wdt.c
+>> +++ b/drivers/watchdog/rzg2l_wdt.c
+>> @@ -144,9 +144,13 @@ static int rzg2l_wdt_start(struct watchdog_device
+>> *wdev)
+>>   static int rzg2l_wdt_stop(struct watchdog_device *wdev)
+>>   {
+>>       struct rzg2l_wdt_priv *priv = watchdog_get_drvdata(wdev);
+>> +    int ret;
+>>         rzg2l_wdt_reset(priv);
+>> -    pm_runtime_put(wdev->parent);
+>> +
+>> +    ret = pm_runtime_put(wdev->parent);
+>> +    if (ret < 0)
+>> +        return ret;
+>>         return 0;
+>>   }
+> 
+> A simple
+>     return pm_runtime_put();
+> might do.
+
+pm_runtime_put() may return 1 if the device is already suspended though
+this call trace:
+
+pm_runtime_put() ->
+   __pm_runtime_idle() ->
+       rpm_idle() ->
+           rpm_suspend() ->
+               rpm_check_suspend_allowed() [1]
+
+That return value is not considered error thus I wanted to consider it
+here, too.
+
+[1]
+https://elixir.bootlin.com/linux/latest/source/drivers/base/power/runtime.c#L278
+
+> 
+> However, one question: Given that pm_runtime_put() returns -ENOSYS if
+> CONFIG_PM is disabled, that means the driver will depend on CONFIG_PM=y.
+
+Indeed, the driver depends on CONFIG_PM=y for proper working. It is for
+devices selecting ARCH_RZG2L and RZ/V2M (ARM64 based uarch) which select
+CONFIG_PM=y:
+https://elixir.bootlin.com/linux/latest/source/drivers/soc/renesas/Kconfig#L45
+
+The driver is written with CONFIG_PM=y dependency in mind (e.g. the clocks
+are enabled though runtime PM APIs).
+
+> Assuming this is intentional, would it make sense to explicitly declare
+> that dependency in Kconfig ? It doesn't seem to make any sense to build
+> the driver if it won't work anyway.
+
+The dependency exists there for ARCH_RZG2L and RZ/V2M devices but not
+directly and it is not strict (in the sense that we allow to build the
+driver w/o CONFIG_PM (I think this is good to check build on different
+configurations, the COMPILE_TEST is there anyway in [1]) ). E.g.:
+
+RENESAS_RZG2LWDT depends on ARCH_RENESAS [1]
+ARCH_RENESAS is the ARMv8 uarch flag [2]
+SOC_RENESAS is set if ARCH_RENESAS [3]
+ARCH_RZG2L is visible only if SOC_RENESAS [4]
+ARCH_RZG2L selects PM [5]
+RZ/V2M selects PM [6]
+
+Please let me know what do you think about it?
+
+Thank you,
+Claudiu Beznea
+
+
+[1]
+https://elixir.bootlin.com/linux/latest/source/drivers/watchdog/Kconfig#L913
+[2]
+https://elixir.bootlin.com/linux/latest/source/arch/arm64/Kconfig.platforms#L273
+[3]
+https://elixir.bootlin.com/linux/latest/source/drivers/soc/renesas/Kconfig#L2
+[4]
+https://elixir.bootlin.com/linux/latest/source/drivers/soc/renesas/Kconfig#L9
+[5]
+https://elixir.bootlin.com/linux/latest/source/drivers/soc/renesas/Kconfig#L45
+[6]
+https://elixir.bootlin.com/linux/latest/source/drivers/soc/renesas/Kconfig#L328
+
+
+> 
+> Thanks,
+> Guenter
+> 
 
