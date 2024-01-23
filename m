@@ -1,138 +1,123 @@
-Return-Path: <devicetree+bounces-34274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 822C5839411
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:02:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE39A839412
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:02:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A72201C25BB6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:02:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 942EC28CEA1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3758560DF8;
-	Tue, 23 Jan 2024 16:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA34612CE;
+	Tue, 23 Jan 2024 16:02:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iGKUnXy5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JlFPkc9h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1B3B61664;
-	Tue, 23 Jan 2024 16:02:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D185FDC6;
+	Tue, 23 Jan 2024 16:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706025745; cv=none; b=QlKFeNfnk/FVOvVIkdCWhUm3dDki/BQNZX1/r6CK1SmTifCLLovvY/yYkTiZOiV7LxE5eQPyrpo6Ii30WEdBrd8baEZYjrjg3LxNeLrwI6hZKxta9j89cwpNyCAPfl7rLSLxrZRcj2hdi4PvrawfU1zw2TX6SR86LV+JDN4nEFI=
+	t=1706025760; cv=none; b=JVXyYb23SqCXlcqFMzy0S6ppJqadYDbABLYFX21RTqejAfCKmVjBuBHpjM52o0pN1dBxTNKcjM6uWxFQvE1RDhd8h6MKPfY8K+kHCY1GF7+5HRv9p4r+cYJ1vdN+v3Ri67tGxRVmwrjSCz6uImc4TPwC48ZEZynMS5VZ0ub+7G8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706025745; c=relaxed/simple;
-	bh=mqXIVAaMWkBymnpjWI+yTbHmqPo9c4SupuEU7emq97I=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=frI1nhf2i7NlNZdEdyfj2mfHuZMJBHin+ARuCG8oD0AX+A1tH0hB26wF/DNwEa7ZJ1NBz/wvvLbffBm1W+70PzlmnCmXFugMh2SaOi6ExZRvP5d/F8MvVMaF9fGrtY9auqgEU+GJafjNzzZnO7mbyX89zexbCD30TL8DdvS9GaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iGKUnXy5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40NFHigr019375;
-	Tue, 23 Jan 2024 16:02:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=s64+VzjI/2aDl5Kiv7zx7
-	/HXW3omEWEwUPFe39rFxrE=; b=iGKUnXy5P7w1cnHM6mn73HU5KN8TdMwa5w6V1
-	Z56bF6UwoM0zehuLmExlaLNWekaeDUntiHDWWAwV34Ptt0ImnNnk1cDxdqLtafnX
-	AU8fmpEvHilmPWwyHMezRhDz7CbQ4IjtNX37OQN0pGjuO4nxi3u9YpoKYPOTRjds
-	MaBaYlqDla8MiS2BM9g3hBACKpUJ27wsWbw5ImpCGXyXDdnRM4orj54fDNsWr8Aq
-	COcYCUqhqG/C4jcXENiATNo2Ut+ThdBnSOBRPgoDMALFfaTDllL6AI+KzWnqyo7n
-	6ZceFfWNpHqFD3lfFUMAMjTJ2ySv48YpvkqyUv3YCaYfZflJw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vt9un9506-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 16:02:14 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40NG27Yi007210
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 16:02:07 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 23 Jan 2024 08:02:05 -0800
-Date: Tue, 23 Jan 2024 08:02:03 -0800
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Trilok Soni <quic_tsoni@quicinc.com>, Brian Masney <bmasney@redhat.com>,
-        Eric Chanudet <echanude@redhat.com>,
-        Ninad Naik <quic_ninanaik@quicinc.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_psodagud@quicinc.com>, <quic_kprasan@quicinc.com>,
-        <quic_ymg@quicinc.com>, <kernel@quicinc.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Add new memory map updates to
- SA8775P
-Message-ID: <20240123160203.GF2936378@hu-bjorande-lv.qualcomm.com>
-References: <20240118155711.7601-1-quic_ninanaik@quicinc.com>
- <rq2dnfh6ctn5gbf3o3op5ywxx7zhx6r5sh5ykautye56o3p4dg@rjttk3rr65ld>
- <20240119191144.GR3013251@hu-bjorande-lv.qualcomm.com>
- <CAA8EJppLNFReZn1HK_radSkKkf5L584fx3FCuqG0FoUt4+H=nw@mail.gmail.com>
- <Za5xj8S3Gs7N-UUc@x1>
- <20240122200237.GB2936378@hu-bjorande-lv.qualcomm.com>
- <884f92ac-4d1a-9f0c-29ad-9d5833f10863@quicinc.com>
- <CAA8EJpq74G7Et=vuc-K0y_wKCEiM0=YVyb7TcosAnbvOFMWDMg@mail.gmail.com>
+	s=arc-20240116; t=1706025760; c=relaxed/simple;
+	bh=6iomC1fv6XGKLh/5wOuoJeeMuD80o9yncgsidbFuLPY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qoYl/2J4Vnriz0328eE7wrOyOuaBdUGv9tgs1JAq/l31Q5PmxE2eRd1rznYh4aZlNSMWF1wqermFCPAd55SzvaXibDfGqe0yytSJM4l8h09Cp4kUIBXLyUk8ZSSAobQV4hpHIsx4SfmP8oQDkd+BzrZTCVpQU/Mdzx0gqaF1Pnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JlFPkc9h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9407C433C7;
+	Tue, 23 Jan 2024 16:02:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706025759;
+	bh=6iomC1fv6XGKLh/5wOuoJeeMuD80o9yncgsidbFuLPY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JlFPkc9haUkscVMtVhapVvG6jz3mm5RZ2lNLMQhlD1+86UeJMJaqI55N9V0vLKhDw
+	 8SJ5O2/qLzEVJXuWPFpG1OvnJCkYz5T/MZsr+7sgnE6X3jcYcQ2qJ4bFtx5M7f7VfB
+	 Nd8X66vzboN900SwkbUmgr5sm0weT+qJukLW2GmxdcH4txTtH+A6KmF2p/+iSLdm+v
+	 skGSO11YE0/JMP6Vl80Omwb+oP30YcJiDliuloOrum4AMUpML5Oz+pLHC6gbZrORXM
+	 O9jGkSmNMp9KUnrTM6t2dtVv9X7SOX5GBKQt+3kNfyc2ZEU8ycNI0W9Cy+SK+bVZLZ
+	 d09blVTbqdnnQ==
+Date: Tue, 23 Jan 2024 16:02:34 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: Seven Lee <wtli@nuvoton.com>, lgirdwood@gmail.com,
+	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+	conor+dt@kernel.org, YHCHuang@nuvoton.com, KCHSU0@nuvoton.com,
+	CTLIN0@nuvoton.com, SJLIN0@nuvoton.com, scott6986@gmail.com,
+	supercraig0719@gmail.com, dardar923@gmail.com
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: Added schema for "nuvoton,nau8325"
+Message-ID: <20240123-brewery-roving-b9ebc70468f4@spud>
+References: <20240122095650.60523-1-wtli@nuvoton.com>
+ <20240122-daunting-woof-19fac5689bb2@spud>
+ <04945799-eded-42f9-b8fa-8907be44c400@sirena.org.uk>
+ <20240123-bottle-elevating-9fbba5424014@spud>
+ <185f3912-5a92-4ef2-aac4-0df8363d8727@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="CZOKZjrI+J1e9HlH"
 Content-Disposition: inline
-In-Reply-To: <CAA8EJpq74G7Et=vuc-K0y_wKCEiM0=YVyb7TcosAnbvOFMWDMg@mail.gmail.com>
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: MBmTK3WH6ViE9vrIhZkVhUzPmCRksBvI
-X-Proofpoint-GUID: MBmTK3WH6ViE9vrIhZkVhUzPmCRksBvI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-23_09,2024-01-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=812 mlxscore=0
- impostorscore=0 phishscore=0 adultscore=0 malwarescore=0 spamscore=0
- lowpriorityscore=0 suspectscore=0 bulkscore=0 classifier=spam adjust=0
- reason=mlx scancount=1 engine=8.19.0-2311290000
- definitions=main-2401230118
+In-Reply-To: <185f3912-5a92-4ef2-aac4-0df8363d8727@sirena.org.uk>
 
-On Tue, Jan 23, 2024 at 08:23:37AM +0200, Dmitry Baryshkov wrote:
-> On Tue, 23 Jan 2024 at 04:58, Trilok Soni <quic_tsoni@quicinc.com> wrote:
-> > On 1/22/2024 12:02 PM, Bjorn Andersson wrote:
-[..]
-> > As Brian M mentioned earlier, we want soc vendors to submit the support
-> > for their SOCs and platforms on top it as early as possible and it means
-> > such memory map changes will continue. Even memory map changes
-> > continue even few months after the commercial s/w release in certain cases
-> > due to critical bugs were found in some usecases which warrants the changes.
-> 
-> So, can one handle such changes? Are we going to publish a list of
-> kernels to be used with the corresponding firmware images? Then what
-> if the developer wants to update just the kernel? Just to get this or
-> that non-platform-related feature. Or vice versa, what if the user is
-> stuck with an older kernel because some driver gets broken in the main
-> branch (which unfortunately happens sometimes)  Or what if the memory
-> map patch gets backported via the AUTOSEL process?
-> Unlike the Qualcomm binary distributions, the firmware and the kernel
-> version are no longer connected.
-> 
-> That's why I keep on saying that memory map is an ABI. If it gets
-> changed, it is a completely new, incompatible platform.
 
-This is only a problem because we think the DeviceTree is a part of the
-kernel. If we actually tied the DeviceTree to the firmware - as it was
-intended - different firmware versions could come with different memory
-map.
+--CZOKZjrI+J1e9HlH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The one exception would be any remoteproc/pil firmware that is not
-relocatable, as these are distributed together with the OS (in some
-form) and not the boot/security/etc firmware.
+On Tue, Jan 23, 2024 at 01:06:45PM +0000, Mark Brown wrote:
+> On Tue, Jan 23, 2024 at 08:34:03AM +0000, Conor Dooley wrote:
+> > On Mon, Jan 22, 2024 at 07:40:51PM +0000, Mark Brown wrote:
+> > > On Mon, Jan 22, 2024 at 06:00:14PM +0000, Conor Dooley wrote:
+> > > > On Mon, Jan 22, 2024 at 05:56:49PM +0800, Seven Lee wrote:
+>=20
+> > > > > +    enum:
+> > > > > +      - 0 # VDDA
+> > > > > +      - 1 # VDDA*1.5/1.8V
+> > > > > +      - 2 # VDDA*1.6/1.8V
+> > > > > +      - 3 # VDDA*1.7/1.8V
+>=20
+> > > > I would also rather than this enum was used to have sensible values=
+ for
+> > > > the enum itself (which I suppose means strings here), rather than t=
+he
+> > > > register values. Seeing "nuvoton,dac-vref =3D <2>" in a devicetree =
+is not
+> > > > very meaningful IMO.
+>=20
+> > > Do you have a concrete suggestion for how to more clearly write these
+> > > directly?
+>=20
+> > I would use what's been given as the explanation comments for each of
+> > the current enum values in the patch.
+>=20
+> Given that none of *, / nor . are usable in defines that's going to need
+> a bit of massaging...
 
-Regards,
-Bjorn
+At the end of the day, if it is too painful on the driver, then I'll
+live with another enum. This is one of the worse cases of this sort of
+enum that is clearly a bunch of register values, given there's not a
+"nice" explanation for them.
+
+--CZOKZjrI+J1e9HlH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa/jCAAKCRB4tDGHoIJi
+0rzSAP9jk8KYC7hIX1HdXqnBFVDfINXYg5zeasUhnLdvnkiJNwEA63S74iCvYyqD
+L2y649pIe19v3rQ2TUGetH88CEsCxgI=
+=VtcS
+-----END PGP SIGNATURE-----
+
+--CZOKZjrI+J1e9HlH--
 
