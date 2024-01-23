@@ -1,431 +1,193 @@
-Return-Path: <devicetree+bounces-34271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7023F8393D8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:55:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 763A28393E9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:58:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD87E1F235A1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:55:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2534128215B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7779B60BA1;
-	Tue, 23 Jan 2024 15:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080C160ED7;
+	Tue, 23 Jan 2024 15:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vhQErZlx"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tX8vMTM1";
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="fJG41TKS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70CB660B9C
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:55:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706025324; cv=none; b=X5kCBgIlS0UKRoNBEByJHsrabHlFk6O//nHd49Gh2vsGxV9SNd0mLI0TBV4Tvt4MvOVAVA4hvzyf/S+zt1INKowGM+FkmEGIHfqFx/QvTGhaG8MxbmCPaRCU97P1f+IvAsYnUPqyHgGTbef+5uz3c4jHZEoyUvYZnNZ82EP81x8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706025324; c=relaxed/simple;
-	bh=90Sqy3oqcG58CRvQQ5Q8ou0x/wbc3VZnYOvFbL2VNok=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pyG5jYEd3s2mF7rsgvh/nvsFbVDc/bLSas8I5ZoyEGi6iYCS1oQ2NJ7KtB8xrk3Yfah/du77b7U+WBlfzj/IZvk74y6S3gofwkxRzecmREZIvufE66Qa12On/2N2BAHy2Zh8SJbCG/4rEu/1D5qA0/lsTbIDv24ol1GIeElb9LM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vhQErZlx; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-337d5480a6aso4300506f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:55:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706025320; x=1706630120; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fbmGUCtpvGsX2MG2T5Vsy8zkaT6VJaj+LUjlkN2ktUw=;
-        b=vhQErZlxbDc9bDmAje57lkPubw8J1vnxy6QDU8s+/8W6RAKzat0Wd8LjOJHt/UEjqO
-         WgxNKgg5eZJTG2TrU4Xymmqmmn/ydO/bddfRc802MEIVToTxelTZM0jSDJb0VJmc9xy/
-         CuduGgr8jHzqHm50s+zyI/4bY8ZnzybdcnlsGs+wWi//GPd16fJOMKwGDluwHlYyVi8A
-         hEVEKJjAmdELFmp/czMZTptTKnSiduZ+Qpw+DDd8xd/gLkd9n4CA1X+Zs71eTq/BqYny
-         0SVs61ltBfKy0E/LyOcVjbkYysRXS3G2ZR5DSsYLnogbiUtwo/fUA7EAe6NIMnB6ehgP
-         IObg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706025320; x=1706630120;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fbmGUCtpvGsX2MG2T5Vsy8zkaT6VJaj+LUjlkN2ktUw=;
-        b=Xgns695wnhg1XFEwhVO28AlTbZPSTl4yJ1ZKme+40TqeMdy5YRoHst/H/P9XnXm7UA
-         SP/w+U/QCBAP/FqmsWg0E4EPFyFaO2D2JkaEttRxHWVRSLQkB7bYI+XrBjzqnrA/9gGG
-         8SxUVEv6LKe6faIT0mE4fAmPYmxCMtqdz+jXfLTLKYv3rNYmbomApl6+iLajDmmz7fFO
-         H06avfwsrxiGg5aEo1WcOzKsgBMEytvdtxQzQHbDTK/yZMTh90spIvKozUU4hgWTT8gD
-         uNzonjDhuB7TWGx1D9Jq6ihL+ru4DM741mzoO0MJJXU74Si97G+BenNz8DuziEjoMbvr
-         AyaQ==
-X-Gm-Message-State: AOJu0YwgB9ZSzI30ZesZY8upA0EqO8QstSd2ll2TJxTQ1rr8BrXKVf6T
-	soLIqOKTJMEOYBvd5KyoE1gw+pRa6z8GWKdnB8/rumKDh7PTofmQLW1uBS5ahdtGCQkRQLYpHVv
-	O
-X-Google-Smtp-Source: AGHT+IG+R/C8YCaDFTa18cfX2wQwa06wkBpx0UU0UGrHPYEN8yENQ938bOZZytXwaxWJImBcA2FazA==
-X-Received: by 2002:a5d:640a:0:b0:339:37a2:732a with SMTP id z10-20020a5d640a000000b0033937a2732amr1950015wru.29.1706025320515;
-        Tue, 23 Jan 2024 07:55:20 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id w15-20020adfec4f000000b00338a3325331sm11730174wrn.69.2024.01.23.07.55.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 07:55:20 -0800 (PST)
-Message-ID: <2f168df8-218f-40a0-9371-56d330120b4d@linaro.org>
-Date: Tue, 23 Jan 2024 16:55:18 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4892060BA6;
+	Tue, 23 Jan 2024 15:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.154.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706025497; cv=fail; b=HKWOskcDTO3mFAxbrCGrYboNoFijX6NPgDku8WT6mvEV8ge+uprTcHpCQetX2KEeY6d81+THL4LWvM12s1CzopiK48ojmVEvoFxT6gHyWANnJe3Y5JNZbR0J1Tx84gyd+6Z16s2PXsTroBYnkwyzuhFq3pTFAh4m/UWSdx9m1uw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706025497; c=relaxed/simple;
+	bh=ImOBPRuEZmEsy/he26AvHLVcSZk7cg2vGTnVG/EkmIM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=I5uBKyOvMLWKTAgAKeo3HLVzs6oBwWMSI3jsGeJDs5r/zClo0Ksu9RMau++lei8lXASMAlxrSnHnAe8WIfw80NS5yXUxT4wcsunoNWLrkNlpLmXzOPBd5Z+graFEOmmH5bn6CBpC2gkz15GIT8nAu4POpE9xUv0mn9dCbVQ5jCA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tX8vMTM1; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=fJG41TKS; arc=fail smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1706025495; x=1737561495;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=ImOBPRuEZmEsy/he26AvHLVcSZk7cg2vGTnVG/EkmIM=;
+  b=tX8vMTM1Vgd6arlOtvwSqn1enJ+VI7e9qzOzcrt9GtgF/yhsw60Km5sG
+   /hOJlReTTta2++vz1qCoS0D50LvEgdGikLUCFtLinJ1W+9TWqpPn3Cpt3
+   MBQjjDoyrs3iMCtwvV9EXESu3O7k7eRCC/2e0msFmNvINpr4B6X4FBIJl
+   21lnPIe9YicAy3joZaSBxCSZxR7dd/ujfCnyVtJCRMgfDr+xtJ8n0j3JL
+   ke85A7mWa/OMkSIiVYblok8iZiIN9tR92gpB9058ZjF8zrabOourD+6fa
+   jZVUn/alDQOFcnv20Y68kMH8PvrLWFafzEJKNKiH+ZlmpYjf3RroM70u2
+   A==;
+X-CSE-ConnectionGUID: +PmCFk8SRhCAtYHC52/N9g==
+X-CSE-MsgGUID: MMUHGGZLSkicRQJiUuo/jQ==
+X-IronPort-AV: E=Sophos;i="6.05,214,1701154800"; 
+   d="scan'208";a="15651732"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Jan 2024 08:58:13 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 23 Jan 2024 08:58:03 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (10.10.215.250)
+ by email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Tue, 23 Jan 2024 08:58:02 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cDXzku0vCqmDRZHCwZU5FxmCEeB4sgb0bkv043b5qbu0U24h9Gm1LYWGFzCJn4i7cQaWd8sQmTR5p+MT3DAIjtS1Ayu3KywBVRrFyhvDcOEo5Y6Lzk5f7cS1waEGnlyH58EO2NVOeI4DkSAtc+goIGEgyikp+oSniY1gPJBKgTEp8NIrMlNoL7hmm6yNN+BxKueicGkKYFxqxIUCA0wHCbYPsoEXTA0+6I1bIEecyUyl7F/WyQCVizdOD8S+DZYXv0jJZWXi7rj0V3gRIBAgP9wNQhSefEWpEP9HKiVlFKr5srz3WKYn74pCRafudc7tySscYJm1Ij7juAEvaE+vGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ImOBPRuEZmEsy/he26AvHLVcSZk7cg2vGTnVG/EkmIM=;
+ b=KZm6KEHbTEFj7kJxD9lgJ6lvpmVoMtUD3PiVTfHF2sTl7LSyj1Bl23ARauUj8Uq35qJKOwORxYQ2wmLwaNFTmG9hgfctdH97lxTvjqdn9eGnvH4YMP08RDcdrDV2M3KX/jE+z/TLnc99IG5f3qRgjQi3GX/0JG6WhSXy2+1JjyVsM2Wy1xtO2Zws/FX8tKwMpFCo0NpikJVMg+U3Hp3qPp1zOjpqiYNApBEm9sb47PNZ84EsDz2WWygg6i9c6gdyWxaee5oSAa+/SO7+hjkkfWvMIFtSv7Udeuq4rRePrBpCi8CKiIHcQNSkzVyzfKOJ/uWyMb0iRkjuuuiCRxJIzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ImOBPRuEZmEsy/he26AvHLVcSZk7cg2vGTnVG/EkmIM=;
+ b=fJG41TKSc3KRQuVgYYgMgyWMhoaGKH0nvhvzohjp9tvW/pZAyv/Ztxrl8RCKyHr7GohCA+B5Ky7ALB0wGa8aY4VGu6Ii54cBLZVcqXC2c+Bj8t0TTIGv+depMk4qTC3TdcjavxnlZXjg8lkxMTVMyEPWuDCPNvxTe5AbOhIItEW2onjAZXzb+6i6zHJoB6tRIv4WTekuk8RvQS+BgfQRwWvn55kbpI0y6DQEZahcvvxODllxQHey69Ik/hfSjTMFW4Sb9N+kY573JfKcnZXY83FjkoQn1jNQ+K1eR8Bc9En2h1aJ6+LAJYOoXTsaETKEKTwWv69/LX6S4/B6XneScA==
+Received: from PH7PR11MB8033.namprd11.prod.outlook.com (2603:10b6:510:246::12)
+ by SN7PR11MB6825.namprd11.prod.outlook.com (2603:10b6:806:2a0::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22; Tue, 23 Jan
+ 2024 15:58:00 +0000
+Received: from PH7PR11MB8033.namprd11.prod.outlook.com
+ ([fe80::18cb:134a:e51a:2ce4]) by PH7PR11MB8033.namprd11.prod.outlook.com
+ ([fe80::18cb:134a:e51a:2ce4%7]) with mapi id 15.20.7202.035; Tue, 23 Jan 2024
+ 15:58:00 +0000
+From: <Arun.Ramadoss@microchip.com>
+To: <dev@pschenker.ch>, <netdev@vger.kernel.org>
+CC: <olteanv@gmail.com>, <andrew@lunn.ch>,
+	<krzysztof.kozlowski+dt@linaro.org>, <Woojung.Huh@microchip.com>,
+	<davem@davemloft.net>, <philippe.schenker@impulsing.ch>, <marex@denx.de>,
+	<pabeni@redhat.com>, <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
+	<edumazet@google.com>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+	<f.fainelli@gmail.com>
+Subject: Re: [PATCH net-next v1 2/2] net: dsa: Add KSZ8567 switch support
+Thread-Topic: [PATCH net-next v1 2/2] net: dsa: Add KSZ8567 switch support
+Thread-Index: AQHaTgMsflnxEOU4Y0yCNyYf2jg+G7DnjhYA
+Date: Tue, 23 Jan 2024 15:58:00 +0000
+Message-ID: <605c219739760b1f4ef5fa47216fc3d5d8bc8c46.camel@microchip.com>
+References: <20240123135014.614858-1-dev@pschenker.ch>
+	 <20240123135014.614858-2-dev@pschenker.ch>
+In-Reply-To: <20240123135014.614858-2-dev@pschenker.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.36.5-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB8033:EE_|SN7PR11MB6825:EE_
+x-ms-office365-filtering-correlation-id: d13c0f3c-a81a-435b-b634-08dc1c2c1323
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: IdzbSpXd7YqE+siC1pPnkk8i6cHKxthvdoEyF5bLWkY6T/96R311/sko2pXcy5nOMFVzBEGiPtyceq0GqfLy1TvHvZgNDZxUGnrbDAO3Fj6aAzIkzK0YajKsDT7j93ABAXOWIknSxEOZImnOMM+pnH9l9bKWVzzjT89Nkc4KBC7z17g2pKZrC8yMa/kVLghDpFmhLim+AEl6cSD7eb0GKjRLOwpNDa9td9xAWQr3SrBPX9SJ95zmc549AZdZue1xNtBQ1BssgumVVi5jYxcBW3dkUJ6OEi0VXwGkUvHB/CDyrP/7G/vjy9CmHoFpxZPGoawzzcqFF+FeXRFpY8dmVMZAZjOsXVq0ONcG/RjG4dcqInbrPDH2apW/XKLPM8IPGrdwD8H7h/OpTIWYJ4FVRdr7j0N5X8qeYgF2EnofbZfmOl9i2Ft8zZ8FzTDZQxwjhOH3eti+Krkh869xBltR+DATk815c5QGzZrQ8VaJVaaMR6NBY5j6YE5v6m5OTqEiVM9UJiPG5f3qVtzcpKhTsIhf0SGea0IwxGtt5QHBAzYW9a4DmvL0SaatDqOgGRV8YNqRiykztd8OTr4PS/o7QRtqsEW4v/uhsHfUVoj8DJFEF1afi9Yi29J4KRBobtElb+Pq3ooHdkhTYH3SsZqV5t4pNbiO5Qk4n/aU8SkEznQ=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB8033.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(396003)(366004)(39860400002)(376002)(346002)(230922051799003)(230273577357003)(230173577357003)(64100799003)(186009)(1800799012)(451199024)(6512007)(66476007)(54906003)(64756008)(76116006)(66556008)(66446008)(66946007)(91956017)(110136005)(2616005)(316002)(5660300002)(478600001)(26005)(6506007)(6486002)(71200400001)(83380400001)(38070700009)(36756003)(2906002)(4744005)(41300700001)(122000001)(38100700002)(86362001)(8936002)(8676002)(4326008)(7416002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZlltYU9HRFJMVUlqb3QxK0tsckRvWGkvZ1ZoUGRFa3B3YXNENWRHZDR5UTlj?=
+ =?utf-8?B?Yll5UThFLzFCN2NTd1RwRzVpcE0zSXpnaDNSU2xQRGpRTTVYV05teEtNVGth?=
+ =?utf-8?B?WXA1YXFjWDBFTTZiSGhpMlNzRjRIR2VzK0ErdXhHS1l5RDFxMzlnMno5OFBH?=
+ =?utf-8?B?ZlNMZUkwSkdnRXNoQmFPL05LTkF6SjJ4U25taExjbXl6eDNnMHhtYzR0V0xG?=
+ =?utf-8?B?MXFtNk9kQTlqajhxK0hka2NzS2RTRFZaVFhMeGlBNXdlaGdha1BpbWd1Q1pI?=
+ =?utf-8?B?dmZzMWhIOWV3RU1TYmlIQm5RUFhGRUlqRkNmTU1DdUs2Tlk2SnI1R1Nialp6?=
+ =?utf-8?B?bGJmNEZrcXQyNVpKWnZJRGtlekRIRjZqc3h2MFR4Sk1TQlZYUFRyQW9UWG1z?=
+ =?utf-8?B?OXNhTkhRT0ZQNEttVVgyOHJLckxrRW80MWJUN3RiVTBCWlZWeVR3QjRxU3FF?=
+ =?utf-8?B?V0d2V2ZDRHlYSDhmWDkycjBnMU4zMGJMeVFsSHZsVkJMcGRkYktVbzNJalhU?=
+ =?utf-8?B?RFB1QWsvQWZKVFhIOFI4ZEVEMU5CV0RwZ1dDUlRVOXlYS0YxVmQ0WDYrc2Fq?=
+ =?utf-8?B?bSt5c2dMMVhnVG5HbExUQ05oTzBPQTJWWUNpMGRjOStuKzAybW01UnF3QndD?=
+ =?utf-8?B?cTRheU5zRldhcGVEbko2amtML3FhcVEwYllucElsZlF0RmsyQmp1SFNwU2t4?=
+ =?utf-8?B?ZUxBaXhrNStWMXUxWkM3cGJFMVNxdzhUM1lSRnYzbTdIS24zVFlUbmh4aHJC?=
+ =?utf-8?B?Ulk1aWVaL1RBb1pNZlU5dTU0NkRnd0VEYkVvQXpobVo0c3NxZ3h4Q0FiekU0?=
+ =?utf-8?B?VEgrdWFLN3JlSkJ5ZlJ6UmEyVGlONXZtRlhCalhmMVh4eVZUc1MwOXNpdGRH?=
+ =?utf-8?B?MjE0NjRKbUVSSTRUek5WYlFOY3NZZVhlRWtyRzdidUswL0U1ZmhRRU1WZ2tS?=
+ =?utf-8?B?M3JxN3VWcUxYRTM4WCtkYjZ0R3JkQXlJYWZ1YVJsZVBiaEZka0hJa0hsV24w?=
+ =?utf-8?B?QmdveHBINVF1dVU5L1VDTnY5WGR0YlJ5dGNFdGNQQzJJZEFZVU9VVGVvaEo4?=
+ =?utf-8?B?bnNEeUJmOVQyNHNwa2lvTTNEZ0tvTmMzWWgvelRNZW1LZTl4WDIvMjVkNWEr?=
+ =?utf-8?B?RVhjY3B4cVZXTVVlZTFLRFZNYnVFb2lZMGhGSEtEZWRhZjBIL0hXL1pHVUZy?=
+ =?utf-8?B?K2F5S3N5eWs4VXMvWWZLMit2LzVPYnVXWExQMVpzdnNmY3JZVkRJaC8yZEJX?=
+ =?utf-8?B?OTgrYWFZWWczL3kralk2SlFobldleU5ONzFEamJDTnRNSDBTa08wTWc2SmpD?=
+ =?utf-8?B?NlNzbXhZdzJMVFo2VnBhcTJCenM4czJlcWFxTm1SdVh1azNFWkt3L1NERVNq?=
+ =?utf-8?B?NExhUXFHbitGUmduZWo1WlQ3Zm1JckJnVVIrWVowZHVzMjdJZC8xanVQVStF?=
+ =?utf-8?B?SEFXTjlYTDYxRXA1dW1id3BuY2hVYkdNK055VkFsTnVrVW5IcDdyYk5hNlU3?=
+ =?utf-8?B?S2pja05YTG9DMyt6WVIvN0FGS1ByUkxyOGo4TlBnQVRiYklUVEE4UEZXZzhp?=
+ =?utf-8?B?Nk1jZ1RWSXNPNzhQb05aQlMvOGZQclU2L2dzTXFhcFJXSU9nMm44RHBpZXAv?=
+ =?utf-8?B?aFNPQXRhMmtUcmZjTkxaVGhST3JmWW9yaTNXSHlvWDE1SlBQakt3dnpOOVJO?=
+ =?utf-8?B?RnNhSWNWOE1xQUIwYzJLMmRMR2IwenY5OFhoeWdlTmx0S1VUVCs3TTA1OXRY?=
+ =?utf-8?B?UHVHWXVjdXhOUFcrR3cyOE9nUEs1K3Q0a3JnRTJ5YTlhK29TM0xhUHJ2S05W?=
+ =?utf-8?B?ZjBiekdZa0c5V1lwcEZZeG56Y3NCcFhrYlJCUmtsOHNuWlpGdDl5U05sQXo1?=
+ =?utf-8?B?UnFwRWhtbzNxWnliVkp3OVRBSDZnRFFnREVEM3BwYVJDREEyazdOak1kS1lp?=
+ =?utf-8?B?RVlqaHpjYmxtTU1YbUVQenMvaVMwS0lTampIazFPaldSSEY5WTlBRS96dkhY?=
+ =?utf-8?B?TXNPem5HUXhvMlgzOWZJazAwaGFqS204UTA0WWxCVVM0Mjc3ZUFpbnQ4Q0tq?=
+ =?utf-8?B?QXROUFkvZnN6V1F2alFsVzRYcmtjMGxDRC9zRTBwM0RkSW1XWjRMdE5GTEVs?=
+ =?utf-8?B?VHZpWGJ1MG95V2t2ZG14aTNYVUc4UjRoOFlIMVgwOFk5bDd3eUdNOU02Q21x?=
+ =?utf-8?B?UWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <CAB79411C3D027448A314C394776BB47@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: regulator: microchip,mcp16502: convert to
- YAML
-Content-Language: en-US
-To: Andrei Simion <andrei.simion@microchip.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- claudiu.beznea@tuxon.dev, lgirdwood@gmail.com, broonie@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240123154525.157448-1-andrei.simion@microchip.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240123154525.157448-1-andrei.simion@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8033.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d13c0f3c-a81a-435b-b634-08dc1c2c1323
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2024 15:58:00.4584
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uDUWaXqX/A69wrRgODNtMifShdfx9X+BWQucjAOlcBdsby79gqPdZJ4qtAhrefxoXS1q7xTk9lnNsZUDvcVOtGwO9IoR3Wd3st7S3KOMSoU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6825
 
-On 23/01/2024 16:45, Andrei Simion wrote:
-> Convert devicetree binding mcp16502-regulator.txt to YAML format.
-> 
-> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
-
-Reverse subject prefixes. See: `git log --oneline -- DIRECTORY_OR_FILE`
-on the directory your patch is touching.
-
-
-> ---
->  .../bindings/regulator/mcp16502-regulator.txt | 144 --------------
->  .../regulator/microchip,mcp16502.yaml         | 182 ++++++++++++++++++
->  2 files changed, 182 insertions(+), 144 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
->  create mode 100644 Documentation/devicetree/bindings/regulator/microchip,mcp16502.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt b/Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
-> deleted file mode 100644
-> index 451cc4e86b01..000000000000
-> --- a/Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
-> +++ /dev/null
-> @@ -1,144 +0,0 @@
-> -MCP16502 PMIC
-> -
-> -Required properties:
-> -- compatible: "microchip,mcp16502"
-> -- reg: I2C slave address
-> -- lpm-gpios: GPIO for LPM pin. Note that this GPIO *must* remain high during
-> -	     suspend-to-ram, keeping the PMIC into HIBERNATE mode; this
-> -	     property is optional;
-> -- regulators: A node that houses a sub-node for each regulator within
-> -              the device. Each sub-node is identified using the node's
-> -              name. The content of each sub-node is defined by the
-> -              standard binding for regulators; see regulator.txt.
-> -
-> -Regulators of MCP16502 PMIC:
-> -1) VDD_IO	- Buck (1.2 - 3.7 V)
-> -2) VDD_DDR	- Buck (0.6 - 1.85 V)
-> -3) VDD_CORE	- Buck (0.6 - 1.85 V)
-> -4) VDD_OTHER	- BUCK (0.6 - 1.85 V)
-> -5) LDO1		- LDO  (1.2 - 3.7 V)
-> -6) LDO2		- LDO  (1.2 - 3.7 V)
-> -
-> -Regulator modes:
-> -2 - FPWM: higher precision, higher consumption
-> -4 - AutoPFM: lower precision, lower consumption
-> -
-> -Each regulator is defined using the standard binding for regulators.
-> -
-> -Example:
-> -
-> -mcp16502@5b {
-> -	compatible = "microchip,mcp16502";
-> -	reg = <0x5b>;
-> -	status = "okay";
-> -	lpm-gpios = <&pioBU 7 GPIO_ACTIVE_HIGH>;
-> -
-> -	regulators {
-> -		VDD_IO {
-> -			regulator-name = "VDD_IO";
-> -			regulator-min-microvolt = <1200000>;
-> -			regulator-max-microvolt = <3700000>;
-> -			regulator-initial-mode = <2>;
-> -			regulator-allowed-modes = <2>, <4>;
-> -			regulator-always-on;
-> -
-> -			regulator-state-standby {
-> -				regulator-on-in-suspend;
-> -				regulator-mode = <4>;
-> -			};
-> -
-> -			regulator-state-mem {
-> -				regulator-off-in-suspend;
-> -				regulator-mode = <4>;
-> -			};
-> -		};
-> -
-> -		VDD_DDR {
-> -			regulator-name = "VDD_DDR";
-> -			regulator-min-microvolt = <600000>;
-> -			regulator-max-microvolt = <1850000>;
-> -			regulator-initial-mode = <2>;
-> -			regulator-allowed-modes = <2>, <4>;
-> -			regulator-always-on;
-> -
-> -			regulator-state-standby {
-> -				regulator-on-in-suspend;
-> -				regulator-mode = <4>;
-> -			};
-> -
-> -			regulator-state-mem {
-> -				regulator-on-in-suspend;
-> -				regulator-mode = <4>;
-> -			};
-> -		};
-> -
-> -		VDD_CORE {
-> -			regulator-name = "VDD_CORE";
-> -			regulator-min-microvolt = <600000>;
-> -			regulator-max-microvolt = <1850000>;
-> -			regulator-initial-mode = <2>;
-> -			regulator-allowed-modes = <2>, <4>;
-> -			regulator-always-on;
-> -
-> -			regulator-state-standby {
-> -				regulator-on-in-suspend;
-> -				regulator-mode = <4>;
-> -			};
-> -
-> -			regulator-state-mem {
-> -				regulator-off-in-suspend;
-> -				regulator-mode = <4>;
-> -			};
-> -		};
-> -
-> -		VDD_OTHER {
-> -			regulator-name = "VDD_OTHER";
-> -			regulator-min-microvolt = <600000>;
-> -			regulator-max-microvolt = <1850000>;
-> -			regulator-initial-mode = <2>;
-> -			regulator-allowed-modes = <2>, <4>;
-> -			regulator-always-on;
-> -
-> -			regulator-state-standby {
-> -				regulator-on-in-suspend;
-> -				regulator-mode = <4>;
-> -			};
-> -
-> -			regulator-state-mem {
-> -				regulator-off-in-suspend;
-> -				regulator-mode = <4>;
-> -			};
-> -		};
-> -
-> -		LDO1 {
-> -			regulator-name = "LDO1";
-> -			regulator-min-microvolt = <1200000>;
-> -			regulator-max-microvolt = <3700000>;
-> -			regulator-always-on;
-> -
-> -			regulator-state-standby {
-> -				regulator-on-in-suspend;
-> -			};
-> -
-> -			regulator-state-mem {
-> -				regulator-off-in-suspend;
-> -			};
-> -		};
-> -
-> -		LDO2 {
-> -			regulator-name = "LDO2";
-> -			regulator-min-microvolt = <1200000>;
-> -			regulator-max-microvolt = <3700000>;
-> -			regulator-always-on;
-> -
-> -			regulator-state-standby {
-> -				regulator-on-in-suspend;
-> -			};
-> -
-> -			regulator-state-mem {
-> -				regulator-off-in-suspend;
-> -			};
-> -		};
-> -
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/regulator/microchip,mcp16502.yaml b/Documentation/devicetree/bindings/regulator/microchip,mcp16502.yaml
-> new file mode 100644
-> index 000000000000..13a6806b4604
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/microchip,mcp16502.yaml
-> @@ -0,0 +1,182 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/microchip,mcp16502.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MCP16502 - High-Performance PMIC
-> +
-> +maintainers:
-> +  - Andrei Simion <andrei.simion@microchip.com>
-> +
-> +description: The MCP16502 is an optimally integrated PMIC compatible
-
-Line break after "description:"
-
-> +  with Microchip's eMPUs(Embedded Microprocessor Units), requiring
-> +  Dynamic Voltage Scaling (DVS) with the use of High-Performance mode (HPM).
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,mcp16502
-> +
-> +  lpm-gpios:
-> +    description: GPIO for LPM pin.
-> +      Note that this GPIO must remain high during
-> +      suspend-to-ram, keeping the PMIC into HIBERNATE mode;
-> +    maxItems: 1
-> +
-> +  reg:
-> +    description: I2C slave address
-
-Drop description, it's obvious.
-
-> +    maxItems: 1
-> +
-> +  regulators:
-> +    type: object
-
-additionalProperties: false
-
-> +    description: List of regulators and its properties.
-> +      A node that houses a sub-node for each regulator within
-> +      the device. Each sub-node is identified using the node's
-> +      name. The content of each sub-node is defined by the
-> +      standard binding for regulators;
-> +
-> +    patternProperties:
-> +      "^(VDD_(IO|CORE|DDR|OTHER)|LDO[1-2])$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +
-> +        properties:
-> +          regulator-name:
-> +            pattern: "^(VDD_(IO|CORE|DDR|OTHER)|LDO[1-2])$"
-
-regulator-name should not be enforced. Does driver actually require it?
-
-> +
-> +          regulator-allowed-modes:
-> +            description: Supported modes
-> +              2 - FPWM higher precision, higher consumption
-> +              4 - AutoPFM lower precision, lower consumption
-> +            items:
-> +              enum: [2, 4]
-
-What about initial-mode?
-
-> +
-> +        unevaluatedProperties: false
-
-Please put this one just after $ref: regulator.yaml
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - regulators
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c@600 {
-
-Instead:
-
-i2c {
-
-> +      reg = <0x600 0x100>;
-
-Drop
-
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      mcp16502@5b {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-E.g. pmic
-
-> +          compatible = "microchip,mcp16502";
-> +          reg = <0x5b>;
-> +
-> +          regulators {
-> +                  VDD_IO {
-
-Use 4 spaces for example indentation.
-
-> +                          regulator-name = "VDD_IO";
-> +                          regulator-min-microvolt = <3300000>;
-> +                          regulator-max-microvolt = <3300000>;
-> +                          regulator-initial-mode = <2>;
-> +                          regulator-allowed-modes = <2>, <4>;
-> +                          regulator-always-on;
-> +
-
-
-Best regards,
-Krzysztof
-
+SGkgUGhpbGlwcGUsDQoNCk9uIFR1ZSwgMjAyNC0wMS0yMyBhdCAxNDo1MCArMDEwMCwgUGhpbGlw
+cGUgU2NoZW5rZXIgd3JvdGU6DQo+IEVYVEVSTkFMIEVNQUlMOiBEbyBub3QgY2xpY2sgbGlua3Mg
+b3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91DQo+IGtub3cgdGhlIGNvbnRlbnQgaXMgc2Fm
+ZQ0KPiANCj4gRnJvbTogUGhpbGlwcGUgU2NoZW5rZXIgPHBoaWxpcHBlLnNjaGVua2VyQGltcHVs
+c2luZy5jaD4NCj4gDQo+IFRoaXMgY29tbWl0IGludHJvZHVjZXMgc3VwcG9ydCBmb3IgdGhlIEtT
+Wjg1NjcsIGEgcm9idXN0IDctcG9ydA0KPiBFdGhlcm5ldCBzd2l0Y2guIFRoZSBLU1o4NTY3IGZl
+YXR1cmVzIHR3byBSR01JSS9NSUkvUk1JSSBpbnRlcmZhY2VzLA0KPiBlYWNoIGNhcGFibGUgb2Yg
+Z2lnYWJpdCBzcGVlZHMsIGNvbXBsZW1lbnRlZCBieSBmaXZlIDEwLzEwMCBNYnBzDQo+IE1BQy9Q
+SFlzLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogUGhpbGlwcGUgU2NoZW5rZXIgPHBoaWxpcHBlLnNj
+aGVua2VyQGltcHVsc2luZy5jaD4NCg0KS1NaODU2NyBzd2l0Y2ggaXMgc2ltaWxhciB0byBLU1o5
+ODk3L0tTWjk1NjcgZXhjZXB0IHRoYXQgaW50ZXJuYWwgcGh5cw0KYXJlIHdpdGhvdXQgZ2lnYWJp
+dCBjYXBhYmlsaXR5Lg0KU28gYWRkIEtTWjg1NjcgcmVsYXRlZCB1cGRhdGVzIGFkamFjZW50IHRv
+IEtTWjk1NjcuIFNvIGl0IHdpbGwgYmUNCmdyb3VwZWQgdG9nZXRoZXIgYW5kIGVhc2llciB0byB1
+cGRhdGUgaW4gY2FzZSBuZXcgZmVhdHVyZXMgYXJlIGFkZGVkIHRvDQp0aGlzIHN3aXRjaCBmYW1p
+bHkuDQoNCg0K
 
