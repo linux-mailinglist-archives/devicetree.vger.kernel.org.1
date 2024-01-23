@@ -1,130 +1,126 @@
-Return-Path: <devicetree+bounces-33977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797DB837E88
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 02:40:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D8428381C0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 03:12:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 202221F291E7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 01:40:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D038E1C23B8F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 02:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F203513AA32;
-	Tue, 23 Jan 2024 00:44:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E189950A7A;
+	Tue, 23 Jan 2024 01:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ODO6Ek93"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8446F5732A;
-	Tue, 23 Jan 2024 00:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698484879F;
+	Tue, 23 Jan 2024 01:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705970649; cv=none; b=o98KmMWx1IDkIufgHE7xrbLQwZADTQEuU8mXy8sPg2aNNK78h+x5Vn/w/QD1Hu9K/FY3GiIc218WcSwj/OZtJ0q7iWj3vLlxi/41MopvCX3THii+h1MAYKTbtV3b3kX0tL+S5OjkzSr0ZxAta+1PGuk26OqI6QB4q16TYUPMIqg=
+	t=1705973078; cv=none; b=sLc0ESrB3hmGErfdIFVVEbZIRnuRgdnQCQz96jsJN3oS4hDc8OiQWDmvW9OAXRcX86ouTfiMwcS/1KeguQQTnJGzes9Gyl6SKn/7v2Fkma0jWaHTdbGKADFE3VUGF8ttWfCpIS3W+oOwPw3hynBZ7MCGlEzX7l8+ToVcDtnvph0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705970649; c=relaxed/simple;
-	bh=EqkaQAa8ngABIEr8F8P6NKP5vlleTQIiI2bXwG/sbHc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GsxutwFL+0jsx5L42lSYs0r1qJnpuNouwD8J36uFs7JyGHDgHTObIeTvQ2CafcE2nOtLokve0Rc+TMD3g04oljdwDozxqGbB2RZWzTmyDBu6H4dsiWotTJLVB3Ic4K/7wtwt2oGy85JDsNg9xp8Vio0enJ3K+qpfSaXoC6yJmVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 91A0E1FB;
-	Mon, 22 Jan 2024 16:44:52 -0800 (PST)
-Received: from minigeek.lan (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A275B3F73F;
-	Mon, 22 Jan 2024 16:44:04 -0800 (PST)
-Date: Tue, 23 Jan 2024 00:43:15 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai
- <wens@csie.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-sound@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/7] arm64: dts: allwinner: h616: Add SPDIF device node
-Message-ID: <20240123004315.068adcba@minigeek.lan>
-In-Reply-To: <20240122170518.3090814-8-wens@kernel.org>
-References: <20240122170518.3090814-1-wens@kernel.org>
-	<20240122170518.3090814-8-wens@kernel.org>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1705973078; c=relaxed/simple;
+	bh=4X+e/5eRr0/1QKFCJvN2/ZWmTmsoQ4uSniacJzukbrk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gGiPE7Fc9f4j3qjS4Qm6WJGkL/Bud4f1R4cdzsw5nN4QM4cC+TjjVwTqxSLO8gxB6ADLvfEV521QtKX6OtpGeTY0OIvuZMTeY69OS0Miw1IzaWAUm9Lx9EAeIlWnohw8Y+FJf8kPbwnhpGaOVXE1bqRNt6Df4k3p8bKPk+cvpPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ODO6Ek93; arc=none smtp.client-ip=209.85.210.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6e0eb1cf1f5so843519a34.3;
+        Mon, 22 Jan 2024 17:24:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1705973076; x=1706577876; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L2t04bRrjEPqvRZY9vsZb+gHmac8X05fevidcqS/qug=;
+        b=ODO6Ek93/eKBHfdR0+8nBKP65Xenlijagga0RSdYPcHM9TdWOcMIk7cq3kQ0cFnI0x
+         UpvdpGF0CUEr8DMmoUnGdIbWyD+fftWG8kV3HvztzCfVSOj6HdQkNQjkFEGXqWGNvwS/
+         OPjeH+ok79D62Vl+LZTG0fL+uDhw541y4eBp1XANuSSHyA3oFqYbRBMMMXsudia4lpd7
+         UKmC+ofKv721aDEv0oTICzpPJ58/56i+ugaqfAD2oyE+/ve/WRj7e27GU7HxUik0rogA
+         csbpG8C7tmBu47hv/2tks7sp0Qlb0Bty8JzAgizFFLTplDDrjFkWk3bp2c4SG8LyccN3
+         ptBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1705973076; x=1706577876;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L2t04bRrjEPqvRZY9vsZb+gHmac8X05fevidcqS/qug=;
+        b=isRWMmoOCY9HGG+j7ZcTDNWoqxDe+sdgghFULy3C6eo2HsDcn3mYz1KoLcbVEh1RR6
+         k/gPGbVBJdGuog4DqHyGHrWRDtrSRmFyJFIoubxWonuoC46KIPFmuEn8qV2sAGwMNWy0
+         2/4Zj467WqG7MOah8nRbpNeP77oYjxaI9uZPqC2fEqUak4+NJkNpL5ENq3wsYklx5TGS
+         a8PL6n5f+y/93BJo+qQtZ4xIiNz4B4iyZulGbVLMelRDJnycZRqScWkxQiuoCadt8/bP
+         QVw5ywGnIqvSNAu5gJuEaqvN6XBrGnTDbxyNm7/s+kh01xYjizenKwV+a2gaSaOuF5cd
+         sUbQ==
+X-Gm-Message-State: AOJu0YxOUm9/oU9ffiQdBPiWkYTmXGn/diHECkEDFm1XuAKmRwHtoqTi
+	is2FFfdO9D4vjMdlo8T/c4vcTjwarDD8XG5eoi/71GbO2xuh+KqDk5sAzLhWOzl3M6/Pa2YPoh0
+	9e6Eybk2YvvfyVz0hGUco201TDZI=
+X-Google-Smtp-Source: AGHT+IHyY3YAlXk1zADzHlDpVnX/XjnGBBzGqQKcyHspAZ/1NjdilCVSUG/kGR3Z1882PQbbKMdzT6m2GOHS5+Vb+Lk=
+X-Received: by 2002:a05:6870:d1d5:b0:214:8a13:2025 with SMTP id
+ b21-20020a056870d1d500b002148a132025mr29115oac.96.1705973075749; Mon, 22 Jan
+ 2024 17:24:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20240122080631.2880-1-qiujingbao.dlmu@gmail.com>
+ <20240122080631.2880-2-qiujingbao.dlmu@gmail.com> <CAJM55Z_DFox9c_eDeHtx9H+9e4A6pjkCkt7po94j_mu-tQWywg@mail.gmail.com>
+In-Reply-To: <CAJM55Z_DFox9c_eDeHtx9H+9e4A6pjkCkt7po94j_mu-tQWywg@mail.gmail.com>
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Date: Tue, 23 Jan 2024 09:24:24 +0800
+Message-ID: <CAJRtX8SiVazctKcmbrM3qhooQ9J_yuSAuUAh-nSW+sk8NWKv2g@mail.gmail.com>
+Subject: Re: [PATCH v7 3/3] riscv: dts: sophgo: add rtc dt node for CV1800
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: alexandre.belloni@bootlin.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, chao.wei@sophgo.com, 
+	unicorn_wang@outlook.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	dlan@gentoo.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 23 Jan 2024 01:05:18 +0800
-Chen-Yu Tsai <wens@kernel.org> wrote:
-
-Hi,
-
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> The H616 SoC has an SPDIF transmitter hardware block, which has the same
-> layout as the one in the H6, minus the receiver side.
-> 
-> Add a device node for it, and a default pinmux.
+On Mon, Jan 22, 2024 at 9:25=E2=80=AFPM Emil Renner Berthing
+<emil.renner.berthing@canonical.com> wrote:
 >
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> Jingbao Qiu wrote:
+> > Add the rtc device tree node to cv1800 SoC.
+> >
+> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> > ---
+> >  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/=
+dts/sophgo/cv1800b.dtsi
+> > index df40e87ee063..0cd7eb9a3048 100644
+> > --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> > @@ -119,5 +119,12 @@ clint: timer@74000000 {
+> >                       reg =3D <0x74000000 0x10000>;
+> >                       interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_in=
+tc 7>;
+> >               };
+> > +
+> > +             rtc: rtc@5025000 {
+> > +                     compatible =3D "sophgo,cv1800-rtc";
+> > +                     reg =3D <0x5025000 0x2000>;
+> > +                     interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     clocks =3D <&osc>;
+> > +             };
+>
+> Before this patch it looks like the nodes are sorted by their address,
+> but this would break it.
 
-Compared the details against the manual, the clock driver, and the
-binding, they match:
+Thanks, I will fix it.
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> index a0268439f3be..fd4c080b8e62 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-> @@ -253,6 +253,11 @@ spi1_cs0_pin: spi1-cs0-pin {
->  				function = "spi1";
->  			};
->  
-> +			spdif_tx_pin: spdif-tx-pin {
-> +				pins = "PH4";
-> +				function = "spdif";
-> +			};
-> +
->  			uart0_ph_pins: uart0-ph-pins {
->  				pins = "PH0", "PH1";
->  				function = "uart0";
-> @@ -550,6 +555,21 @@ mdio0: mdio {
->  			};
->  		};
->  
-> +		spdif: spdif@5093000 {
-> +			compatible = "allwinner,sun50i-h616-spdif";
-> +			reg = <0x05093000 0x400>;
-> +			interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_SPDIF>, <&ccu CLK_SPDIF>;
-> +			clock-names = "apb", "spdif";
-> +			resets = <&ccu RST_BUS_SPDIF>;
-> +			dmas = <&dma 2>;
-> +			dma-names = "tx";
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&spdif_tx_pin>;
-> +			#sound-dai-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
->  		usbotg: usb@5100000 {
->  			compatible = "allwinner,sun50i-h616-musb",
->  				     "allwinner,sun8i-h3-musb";
-
+Best regards,
+Jingbao Qiu
 
