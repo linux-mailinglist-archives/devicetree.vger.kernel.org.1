@@ -1,226 +1,119 @@
-Return-Path: <devicetree+bounces-34437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0182E839B69
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:48:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 272AC839B6F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:51:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A611B28CE6A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:48:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D306B28528C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3D0C3CF5B;
-	Tue, 23 Jan 2024 21:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13523E47F;
+	Tue, 23 Jan 2024 21:51:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F/Co6aqA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gGZ4b20x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29DD34D5BF;
-	Tue, 23 Jan 2024 21:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1757F4E1BC
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 21:51:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706046493; cv=none; b=be5XEnuG+eflRaE7NQvSjkWlrlNafB8J8etH0MDSGXe1ekNO2JJovgp+FWG185LORWbK8oquNmPEr5kMu74P1OOrFq8LKUt5xLYeatlEFKppLzxM7QKR7N6bvU5qIiUjSSrIdTjeKP2uwRUi71g4fhOpvUrFg5jNBFl4rAwIsVI=
+	t=1706046665; cv=none; b=Wn596d6c37i1+JbrSBgKtXbIMV4aZk6VrwHyMj4umabnjejykH/xIjoGdOeQjTknwREgE2el/Mvwwy1GZaSOIX8L2lVyJNGmDcH5x25Wg2f2qesoXMl66Xpk3kwSRB+Hj7/2GWWxTdsTexMv4+qewVbkghQ79ZPPc/CORcF9e0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706046493; c=relaxed/simple;
-	bh=cot/RLa5B+VvYdjsSjzRhdQNUXnW5oMxtw+aZzsx/eQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=k1CKlPiJ1hyKYtGOgGCrvMUGvv+A7txELCoGQubQvHm/3RwiEDu0vlb63dkgqH0TxWBurc0+SYAGnrPnbK2ngp9W4QVoowBqf5TbXu1PsqD831uwiBUi0On4SSgNM3EtR6gvqrJ+ShY6RFMfSAkQby3jn5SIz18wQd0NURVSTlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F/Co6aqA; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-50eabd1c701so5413449e87.3;
-        Tue, 23 Jan 2024 13:48:11 -0800 (PST)
+	s=arc-20240116; t=1706046665; c=relaxed/simple;
+	bh=YrH0Mk72e0Geo0pjj83tbehqhSDH4BMYk+a62Q7MQhA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eAmq6A0AP7l6381mZhlt3M7VqrjaW5gkzIlTZyG2NoMOrcfC5TPgITEPDnMW0YlESDO368/WsieD4ZVq58hw8PoZKKYRzsV9FzxMq4LNL/KhXhsNvDBWzFG4bvBjziafvjvXQsPx0Gq/Oq2h1AaGwP0DI7EITyYhqjq/puWYVGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gGZ4b20x; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5ff7a8b5e61so42162357b3.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 13:51:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706046490; x=1706651290; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hxTUu07Tw3JZQ4EBg2GvG/6CFogECC0naJLXgFJuN6s=;
-        b=F/Co6aqAvuJqfeuTjTuu87DQGc9AEEvs/vOkBdY5dDnOWmA0qGN9mCEls1xTGUQoRw
-         V4pmAK4601QdSnwIV74zEsD2HxTGRVBKk9A+8gAplBtLx+zZiLwvBPfrH23eLNdK2Upp
-         uZguPYQAI5D+p7jyTox4OLsDDJf067J7nv62ZLLsqFcjODapSKtPBESmyO+UmwHXRxXR
-         rp+P8HCOnS1ugTJcTNhrTygMxK6lPcxDNYqNtN0KtQUL1wxRlKDNma1voOFlHIs7uASZ
-         +HNZA4L+QesAlwEAZQYSgX1Uc/3wVn6TRyhoN27EFtP4gc8J4FZyV/2yFyPRy8GXfb7c
-         dvdg==
+        d=linaro.org; s=google; t=1706046663; x=1706651463; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YrH0Mk72e0Geo0pjj83tbehqhSDH4BMYk+a62Q7MQhA=;
+        b=gGZ4b20x2KsL6YqGrYbzNuqtbRXedQJ/EIfYLe8umOPGLlqm+ItAygcSwPCXxyGaHT
+         iKSranz1YnxydmwXF5Wq6zF9cNEpjQcVZT5l8b4ym9Mx40Xo2ekqz3c8c4U5cOtw8AUt
+         rbP6VEJLePDNQCqwVSjZFJDUMFQ/o36XMv5oWBqPs5Y/c8RKuS/lfqxV0rYHi8n+kRJK
+         SZ3HWSqT5GZD6CLEsy3neC6zOFahYlE/0xi7nu/8GJCpHh/Tv1ejucKYu5nkBLvYA8tZ
+         SkrEXnWwWm7dKNcCEBNsFzPcMiGf/BJsoAqPGeQOUUi4lVprfA+9uZdQ4d7JFYsdZAPh
+         yAnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706046490; x=1706651290;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hxTUu07Tw3JZQ4EBg2GvG/6CFogECC0naJLXgFJuN6s=;
-        b=F/NIBHgJ/80miEuAFf6JVDdxDq4au8XI8FUpE6jb8T5M9g1i8SENCE/Pjp7anYcirJ
-         2Mr9+SFkrVaq9Z1wlGsJJpo3bWwEj62ZynaPCiz6CLWhDsRFPIbfOBfj3Dqf5c5wO3bn
-         r5mWRcRAjJnajquzsRj4eNpv7Ru7fDRkPOrNq022h/WfyyYRgDtcHp8vZTBC4gM5VxXH
-         J1RG6qkJ325lNEjxzI9R0BOgLlZvDd3h6g2EQjV1Mscii61I75m9CkzENE/MV8WVPSBF
-         yIFD+8JRggjl0x/2f2pAHFj5ZylK85q6GAISN/jhT5wbPJl61rLcBWPZcqyqYjD0AOMq
-         Ddjg==
-X-Gm-Message-State: AOJu0Yy84J6f5Xj5JEQrugxpI4QOxc7U4vWvbSARdKNKjVg33ILLrFE7
-	I/GuCJzIPkGg9+drjRuy7Ti+E472yjhVE/B9fhCFiqW2vFM0gJud
-X-Google-Smtp-Source: AGHT+IHZ4f7jIFRNJ+6G/KFQ8DhBSxZWT2NG2LD0URxwP0fjG+Ik3wpsd03v9PwttJz5KM4uopPA3g==
-X-Received: by 2002:a05:6512:ba5:b0:50e:8e74:6406 with SMTP id b37-20020a0565120ba500b0050e8e746406mr4251539lfv.36.1706046489310;
-        Tue, 23 Jan 2024 13:48:09 -0800 (PST)
-Received: from localhost.localdomain ([2a05:3580:f312:6c01:1b8f:2a1b:d18:1951])
-        by smtp.gmail.com with ESMTPSA id z7-20020ac24187000000b005100c6c925csm133993lfh.88.2024.01.23.13.48.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 13:48:08 -0800 (PST)
-From: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Ondrej Jirman <megi@xff.cz>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Pavel Machek <pavel@ucw.cz>,
-	Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Cc: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-Subject: [PATCH] arm64: dts: sun50i-a64-pinephone: Add front/back cameras
-Date: Wed, 24 Jan 2024 00:47:29 +0300
-Message-ID: <20240123214729.2852346-1-andrej.skvortzov@gmail.com>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1706046663; x=1706651463;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YrH0Mk72e0Geo0pjj83tbehqhSDH4BMYk+a62Q7MQhA=;
+        b=EIuHHdTZmdHUg6rSbQ4HDVN1BvxoGAjFyIeiSbnrCeakI+YQed9q8HwlPYGQqUMhcJ
+         KkSnVj6ZvpBzTqoxDIu40wB6fMTEf3xI+U+MHlFKcpYqLEY83bytlQDKb0nri6BCy4Hx
+         fHt6h//DaFIZVt6HPSDLUYpyeq9rHT+Ym7RHmdY2MedE/011O9Mz4e+GXP/iyFr9/jaA
+         06gpSZcc0ZySOxKCULN+fdYa+ia9e3FXEjpcZA/hRQnFTi5uEpAPiSfkU/D4EcT++HtC
+         WIGKCe1bpD4wGcpnf8GLl36KkNt56qbJLj9rRw1a/XqbwUIAyXQBGWDU5ZWEJlXtUM5O
+         zGnQ==
+X-Gm-Message-State: AOJu0YwGfRM5YTCMceVKw7xSDIJyJQrkMhSZYeLIMRgFOe679Oe6qbsc
+	zd370fTd4foio9CTjdAkOxSUyph+u1mhpd3FukZPyfGDotgeNlq7e35LeiX290wekwI6yTVd+oR
+	1adcyhqWejaDD+pfAvw0CCFT9wBLnOl9kd4+BDgCiqPH7zZbASQStew==
+X-Google-Smtp-Source: AGHT+IH2FMDyN6ueLjCPaNNWCV3PAu2KG9eyC8NO3af4YSd+wriNlJ4CtEruIB9dItADoNu4VsAUQ6vmhPFfv7oQ1QY=
+X-Received: by 2002:a81:a24d:0:b0:5ff:483d:d156 with SMTP id
+ z13-20020a81a24d000000b005ff483dd156mr5784703ywg.23.1706046663155; Tue, 23
+ Jan 2024 13:51:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240121103505.26475-1-kimseer.paller@analog.com>
+ <20240121103505.26475-3-kimseer.paller@analog.com> <CAMRc=MeGVAO8Fr4U5ai-OgEmX5gXeddLDKyRC+FQia1TH64m+Q@mail.gmail.com>
+ <PH0PR03MB7141E0C8822D4887E04A3F06F9742@PH0PR03MB7141.namprd03.prod.outlook.com>
+In-Reply-To: <PH0PR03MB7141E0C8822D4887E04A3F06F9742@PH0PR03MB7141.namprd03.prod.outlook.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 23 Jan 2024 22:50:52 +0100
+Message-ID: <CACRpkdYePmAmrZN=GS58muzhxPUPKkenbgPQZmcct-0G5Ohc_g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] gpio: gpio-adg1414: New driver
+To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Ondřej Jirman <megi@xff.cz>
+Hi Kim,
 
-Pinephone has OV5640 back camera and GC2145 front camera. Add support
-for both.
+On Tue, Jan 23, 2024 at 11:31=E2=80=AFAM Paller, Kim Seer
+<KimSeer.Paller@analog.com> wrote:
 
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
----
- .../dts/allwinner/sun50i-a64-pinephone.dtsi   | 91 +++++++++++++++++++
- 1 file changed, 91 insertions(+)
+> > Locking here is simple enough that you could use the SPI regmap and
+> > get it to do the serialization for you. And then you could possibly
+> > reuse the gpio-regmap abstraction and get an even smaller footprint.
+>
+> I could not seem to figure out how to use the SPI regmap in this case.
+> Since the number of daisy-chained devices depends on the length of
+> data transferred with continuous transaction, I could not determine
+> how to implement that using the SPI regmap. Or maybe I misunderstood
+> the statement. However, is it still acceptable to use the current approac=
+h?
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-index 87847116ab6d..4104a136ff75 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-@@ -36,6 +36,15 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	i2c_csi: i2c-csi {
-+		compatible = "i2c-gpio";
-+		sda-gpios = <&pio 4 13 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>; /* PE13 */
-+		scl-gpios = <&pio 4 12 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>; /* PE12 */
-+		i2c-gpio,delay-us = <3>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -124,6 +133,36 @@ &cpu3 {
- 	cpu-supply = <&reg_dcdc2>;
- };
- 
-+&csi {
-+	pinctrl-0 = <&csi_pins>, <&csi_mclk_pin>;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi_ov5640_ep: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&ov5640_ep>;
-+			bus-width = <8>;
-+			hsync-active = <1>; /* Active high */
-+			vsync-active = <0>; /* Active low */
-+			data-active = <1>;  /* Active high */
-+			pclk-sample = <1>;  /* Rising */
-+		};
-+
-+		csi_gc2145_ep: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&gc2145_ep>;
-+			bus-width = <8>;
-+			hsync-active = <1>;
-+			vsync-active = <1>;
-+			data-active = <1>;
-+			pclk-sample = <1>;
-+		};
-+	};
-+};
-+
- &dai {
- 	status = "okay";
- };
-@@ -158,6 +197,58 @@ &ehci1 {
- 	status = "okay";
- };
- 
-+&i2c_csi {
-+	gc2145: front-camera@3c {
-+		compatible = "galaxycore,gc2145";
-+		reg = <0x3c>;
-+		clocks = <&ccu CLK_CSI_MCLK>;
-+		clock-names = "xclk";
-+		avdd-supply = <&reg_dldo3>;
-+		dvdd-supply = <&reg_aldo1>;
-+		iovdd-supply = <&reg_eldo3>;
-+		reset-gpios = <&pio 4 16 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>; /* PE16 */
-+		powerdown-gpios = <&pio 4 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>; /* PE17 */
-+		rotation = <270>;
-+		orientation = <0>;
-+
-+		port {
-+			gc2145_ep: endpoint {
-+				remote-endpoint = <&csi_gc2145_ep>;
-+				bus-width = <8>;
-+				hsync-active = <1>;
-+				vsync-active = <1>;
-+				data-active = <1>;
-+				pclk-sample = <1>;
-+			};
-+		};
-+	};
-+
-+	ov5640: rear-camera@4c {
-+		compatible = "ovti,ov5640";
-+		reg = <0x4c>;
-+		clocks = <&ccu CLK_CSI_MCLK>;
-+		clock-names = "xclk";
-+		AVDD-supply = <&reg_dldo3>;
-+		DOVDD-supply = <&reg_aldo1>; /* shared with AFVCC */
-+		DVDD-supply = <&reg_eldo3>;
-+		reset-gpios = <&pio 3 3 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>; /* PD3 */
-+		powerdown-gpios = <&pio 2 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>; /* PC0 */
-+		rotation = <90>;
-+		orientation = <1>;
-+
-+		port {
-+			ov5640_ep: endpoint {
-+				remote-endpoint = <&csi_ov5640_ep>;
-+				bus-width = <8>;
-+				hsync-active = <1>; /* Active high */
-+				vsync-active = <0>; /* Active low */
-+				data-active = <1>;  /* Active high */
-+				pclk-sample = <1>;  /* Rising */
-+			};
-+		};
-+	};
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
--- 
-2.43.0
+You just override or wrap with your own read/write callbacks if necessary
+by defining a custom static struct regmap_bus.
 
+For example in drivers/gpu/drm/panel/panel-ilitek-ili9322.c
+I do this.
+
+It may not save a lot of code in this case but it's still worth it because
+we understand what regmap_read/write/update_bits do and reading
+and understanding adg1414_set/get cognitively require more from us
+as maintainers.
+
+Yours,
+Linus Walleij
 
