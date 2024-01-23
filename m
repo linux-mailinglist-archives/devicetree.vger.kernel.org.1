@@ -1,55 +1,73 @@
-Return-Path: <devicetree+bounces-34146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 516C4838CFA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:09:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E7DC838D0A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:11:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE0BF1F23880
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:09:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9280C1C22798
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:11:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A2DD5D747;
-	Tue, 23 Jan 2024 11:08:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE40D5D737;
+	Tue, 23 Jan 2024 11:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WHSJGS+3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PZ7NFDik"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6AC5F545;
-	Tue, 23 Jan 2024 11:08:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482245FB8A
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 11:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706008108; cv=none; b=ZDWCZlYcwbk4AKRIHFCumxrjge64zVNi9erBTg8PZbxOrkAY01kKqctkQ0TyaDcJJ9v4hQzwi6WSIl1lizpph4/suta/GvJvVshGBwhn1u8ps147WZHwkFUOUrZkaAOs4ACUj7s8jQOs/eaDDciK48DQ42Mr2LLlWZ8vHVfVuV8=
+	t=1706008190; cv=none; b=ddH0C+aOrrjpzBqoBEsEJrI8HTzhSIHH/sCMdWfb8RVMtfIv4sW1yJot0hD2tMXg8y38TOBGg8a0xCpJIG3vCD4x9q6265XJyqkYB3UID9y1R0ASPOovEKNpF770KalDBVkv/gdNNJ9ccjMM4M158l7DtX82c6/E3ac8PGfAvOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706008108; c=relaxed/simple;
-	bh=ePXcq+3ZYklh/Ja9ctOyMj+QSXTswOpfPk1EoxnOuU4=;
+	s=arc-20240116; t=1706008190; c=relaxed/simple;
+	bh=o+lGwSiL0/7ZhlJK6sNMEAhxlS1WWUMmQvT5gavzsBg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XDms6oNGBbjbFBZHEAKQNWfIG0IgacaoqLLB5DXsD/kfL98f8GT72xgVUuQLbwOfDybIceb37hwjuxOt+2KuvBgs5MIiRCWfUDw5Nb0Qp1f7P7v5hGcSBy24dGUmWc49M6LZDfXdOAWzL4nbRZ6vhZzWbHNqjT8ghwywzSnqxlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WHSJGS+3; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706008104;
-	bh=ePXcq+3ZYklh/Ja9ctOyMj+QSXTswOpfPk1EoxnOuU4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WHSJGS+3u3ESf596ATW3fy0qn2TXktoZ06Uz5ewlpPDDesf2vkDWRY4ohIN1UQU2G
-	 5B520CKex7b/cjHF4YzApi0HsCnwDLfu0N+MKHaV46OWWbL7gXjFGzyr5AI4fmGfWh
-	 LX18pgHn3sZeYDx4HtAsZEdZYMYxgp4QcMBqWqUqFOknwhl961AP9qy1cAJVtjJc0X
-	 Vcu4x/GdUBD21iP3eOWCTWDpw6UxTaUYmGGDLVjM39+ofyez/vvdu3roY7Rm3Q/Jax
-	 jyYby5c7HcVd0z+yH2F21B1DAQqEPuLaVEEaDHmvwzwUcnTt7BEr1sxywPg17uY8mG
-	 rUE1GE3yzdgSw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 0FEB437820AA;
-	Tue, 23 Jan 2024 11:08:23 +0000 (UTC)
-Message-ID: <7aa0df3d-ae9d-414d-ad7f-ed7588e70f3e@collabora.com>
-Date: Tue, 23 Jan 2024 12:08:22 +0100
+	 In-Reply-To:Content-Type; b=pXWTxMRS40hQWQidp/mLRD3kME+fKaWqcp6UNGvXvdIIDraF/s5QKNmMwQuliFgzOSyKxO85bK7ZW57XoA0/TBZZ3v5PMfoWpwSQeMbhK/aockzoJTQDh3gQfhUNU1mPrxIWJaxnCjU7dNEek5vHhcBnK5505tKSsjUpHq9gz1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PZ7NFDik; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-337cf4eabc9so3393776f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 03:09:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706008187; x=1706612987; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=saChjE5934f5E63zbgUdcL7IVIHk3zxmNuY4UswKNwI=;
+        b=PZ7NFDikSKqHhkCqsT3vM1TpPfCdEHdx0VrH6MNPVImmYaGX+TkWN9RDiqaOKA58Qv
+         HWFvlY97vBnvFW2gWYjCQ8zpoEUU4UMR4Pix43ogvffLcaPfB3nxbcze8CK5zm6kdk4W
+         9PEkLTJDuWqSfr3qNJ/YVfPzk0u5ynZ6jA+YUb13iROHfK8oYJCgno6sIqeNiZO58wAi
+         T6OOAUBp6gxFVSQQXL+iBqcf/6//b7LX3lHMxugsgoxmYWAkhirEbAwxpGyv7hUJT0XA
+         xp5PTKkHY+Fsbc9isszLeaUF8x/4bK+pAu2YgI5TtupDL6wsuMWimKjR4tndcbqmRZ+E
+         B4iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706008187; x=1706612987;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=saChjE5934f5E63zbgUdcL7IVIHk3zxmNuY4UswKNwI=;
+        b=NfWjY5Mgp9anjjs4DL4Km/KgXWsGt5ng1wDyrwk2i7dMKqZkXgiv7gAqKWgIuGGTLx
+         m2Q9OEv5YiLdNkwbdT/OinI7LjNS3PMMefZ7OofuuuX/uOqyf1Em6cj/w8jT4RrMl7Qr
+         sGXR1cfeGUajUKEHyPnf49ejPZqIMXf7ZarVMBHOWNwsPWAoBxj2bOsKXnHd/qKaGfMT
+         mHYqdw/J1CovWoXIxtpRY9kuO8X4mhpRMh+DmYCHfw5+0SWOnyfTA3wm1s1f0H37aqBK
+         UIQycaqcaSeTnT+sBQ8yvvXLKc+bBseVH3kASiL0uuJpV9mhtyrPVxzwrVTRSPtsgn6m
+         2Fjw==
+X-Gm-Message-State: AOJu0Yzhtql5MaxFnTDEey+4BPU2xRb13SW7Ri16z85cRtVfNUxyClDL
+	GO9tmCz28/uxI9eddOIq9JMNB2d2IunvL9gi/zAXs5pQB9hnp1owecsCmtzvrp0=
+X-Google-Smtp-Source: AGHT+IENIfxNapkGjdNnGoC5nbQiWcKNaXL452T8QGuptfa68QxmjyQwJvD3kTUJ7yFEKluscF7zwA==
+X-Received: by 2002:adf:f210:0:b0:336:6ba1:556d with SMTP id p16-20020adff210000000b003366ba1556dmr2806898wro.84.1706008187503;
+        Tue, 23 Jan 2024 03:09:47 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id f11-20020adff98b000000b00337d5cd0d8asm12922259wrr.90.2024.01.23.03.09.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 03:09:47 -0800 (PST)
+Message-ID: <b350d7c1-8da7-4212-bae2-b06201fd2568@linaro.org>
+Date: Tue, 23 Jan 2024 12:09:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,147 +75,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] kselftest: devices: Add sample board file for XPS
- 13 9300
+Subject: Re: [PATCH 1/9] dt-bindings: watchdog: samsung-wdt: deprecate
+ samsung,syscon-phandle
 Content-Language: en-US
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Shuah Khan <shuah@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Bjorn Helgaas <bhelgaas@google.com>
-Cc: kernelci@lists.linux.dev, kernel@collabora.com,
- Tim Bird <Tim.Bird@sony.com>, linux-pci@vger.kernel.org,
- David Gow <davidgow@google.com>, linux-kselftest@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Doug Anderson <dianders@chromium.org>,
- linux-usb@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
- Dan Carpenter <dan.carpenter@linaro.org>, Guenter Roeck
- <groeck@chromium.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240122-discoverable-devs-ksft-v4-0-d602e1df4aa2@collabora.com>
- <20240122-discoverable-devs-ksft-v4-3-d602e1df4aa2@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240122-discoverable-devs-ksft-v4-3-d602e1df4aa2@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux@roeck-us.net,
+ wim@linux-watchdog.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+ jaewon02.kim@samsung.com, chanho61.park@samsung.com,
+ semen.protsenko@linaro.org
+Cc: kernel-team@android.com, tudor.ambarus@linaro.org,
+ andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ linux-fsd@tesla.com, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+References: <20240122225710.1952066-1-peter.griffin@linaro.org>
+ <20240122225710.1952066-2-peter.griffin@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240122225710.1952066-2-peter.griffin@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Il 22/01/24 19:53, Nícolas F. R. A. Prado ha scritto:
-> Add a sample board file describing the file's format and with the list
-> of devices expected to be probed on the XPS 13 9300 machine as an
-> example x86 platform.
+On 22/01/2024 23:57, Peter Griffin wrote:
+> The watchdog driver no longer requires a phandle to obtain a regmap
+> to the PMU registers. So mark this as deprecated.
 > 
-> Test output:
-> 
-> TAP version 13
-> Using board file: boards/Dell Inc.,XPS 13 9300.yaml
-> 1..22
-> ok 1 /pci-controller/14.0/usb2-controller/9/camera.device
-> ok 2 /pci-controller/14.0/usb2-controller/9/camera.0.driver
-> ok 3 /pci-controller/14.0/usb2-controller/9/camera.1.driver
-> ok 4 /pci-controller/14.0/usb2-controller/9/camera.2.driver
-> ok 5 /pci-controller/14.0/usb2-controller/9/camera.3.driver
-> ok 6 /pci-controller/14.0/usb2-controller/10/bluetooth.device
-> ok 7 /pci-controller/14.0/usb2-controller/10/bluetooth.0.driver
-> ok 8 /pci-controller/14.0/usb2-controller/10/bluetooth.1.driver
-> ok 9 /pci-controller/2.0/gpu.device
-> ok 10 /pci-controller/2.0/gpu.driver
-> ok 11 /pci-controller/4.0/thermal.device
-> ok 12 /pci-controller/4.0/thermal.driver
-> ok 13 /pci-controller/12.0/sensors.device
-> ok 14 /pci-controller/12.0/sensors.driver
-> ok 15 /pci-controller/14.3/wifi.device
-> ok 16 /pci-controller/14.3/wifi.driver
-> ok 17 /pci-controller/1d.0/0.0/ssd.device
-> ok 18 /pci-controller/1d.0/0.0/ssd.driver
-> ok 19 /pci-controller/1d.7/0.0/sdcard-reader.device
-> ok 20 /pci-controller/1d.7/0.0/sdcard-reader.driver
-> ok 21 /pci-controller/1f.3/audio.device
-> ok 22 /pci-controller/1f.3/audio.driver
-> Totals: pass:22 fail:0 xfail:0 xpass:0 skip:0 error:0
-> 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
 > ---
->   .../devices/boards/Dell Inc.,XPS 13 9300.yaml      | 40 ++++++++++++++++++++++
->   1 file changed, 40 insertions(+)
+>  .../devicetree/bindings/watchdog/samsung-wdt.yaml | 15 +--------------
+>  1 file changed, 1 insertion(+), 14 deletions(-)
 > 
-> diff --git a/tools/testing/selftests/devices/boards/Dell Inc.,XPS 13 9300.yaml b/tools/testing/selftests/devices/boards/Dell Inc.,XPS 13 9300.yaml
-> new file mode 100644
-> index 000000000000..ff932eb19f0b
-> --- /dev/null
-> +++ b/tools/testing/selftests/devices/boards/Dell Inc.,XPS 13 9300.yaml	
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# This is the device definition for the XPS 13 9300.
-> +# The filename "Dell Inc.,XPS 13 9300" was chosen following the format
-> +# "Vendor,Product", where Vendor comes from
-> +# /sys/devices/virtual/dmi/id/sys_vendor, and Product comes from
-> +# /sys/devices/virtual/dmi/id/product_name.
-> +#
-> +# See google,spherion.yaml for more information.
+> diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> index 77a5ddd0426e..3970d6bf8576 100644
+> --- a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> @@ -56,6 +56,7 @@ properties:
+>      description:
+>        Phandle to the PMU system controller node (in case of Exynos5250,
+>        Exynos5420, Exynos7, Exynos850 and gs101).
+> +    deprecated: true
 
-What if - instead of taking google,spherion.yaml as an example - you create a new
-file named something like
+I don't see how your driver handles probe or suspend ordering, so I
+don't think this is correct approach.
 
-"example,device.yaml"
+Handling of the watchdog requires poking PMU, thus the watchdog device
+node must have reference to the PMU node. Removing it from DTS makes the
+hardware representation incomplete, beside mentioned driver issue.
 
-that would be a fantasy device, bringing examples for all .. or most of .. the
-currently supported types/devices?
-
-You would also move the nice documentation that you wrote in spherion.yaml to the
-new example,device.yaml and ask to refer to that instead in all of the real device
-specific definitions.
-
-# SPDX-License-Identifier: GPL-2.0 <--- (GPL-2.0 OR MIT) like device trees perhaps?
-#
-# This is the device definition for the Example Device
-# The filename "Example Device" was chosen following the format
-# "Vendor,Product", where:
-#  - Vendor is "Example" and comes from /sys/devices/virtual/dmi/id/sys_vendor
-#  - Product is "Device" and comes from /sys/devices/virtual/dmi/id/product_name
-#
-# ....the rest of the blurb goes here
-#
-
-- type : .... this that the other
-   devices:
-     - the least amount of device descriptions that you can use for documenting how
-       to write this stuff :-)
-
-Anything against that?
-
-Cheers,
-Angelo
-
-> +#
-> +- type: pci-controller
-> +  # This machine has a single PCI host controller so it's valid to not have any
-> +  # key to identify the controller. If it had more than one controller, the UID
-> +  # of the controller from ACPI could be used to distinguish as follows:
-> +  #acpi-uid: 0
-> +  devices:
-> +    - path: 14.0
-> +      type: usb-controller
-> +      usb-version: 2
-> +      devices:
-> +        - path: 9
-> +          name: camera
-> +          interfaces: [0, 1, 2, 3]
-> +        - path: 10
-> +          name: bluetooth
-> +          interfaces: [0, 1]
-> +    - path: 2.0
-> +      name: gpu
-> +    - path: 4.0
-> +      name: thermal
-> +    - path: 12.0
-> +      name: sensors
-> +    - path: 14.3
-> +      name: wifi
-> +    - path: 1d.0/0.0
-> +      name: ssd
-> +    - path: 1d.7/0.0
-> +      name: sdcard-reader
-> +    - path: 1f.3
-> +      name: audio
-> 
+Best regards,
+Krzysztof
 
 
