@@ -1,201 +1,272 @@
-Return-Path: <devicetree+bounces-34399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E858399FC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:07:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 130AA839A11
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:13:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D3B41C27283
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:07:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95CF91F22E2D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E5E282D8D;
-	Tue, 23 Jan 2024 20:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F214F82D91;
+	Tue, 23 Jan 2024 20:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyYcwTIr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AUFvj68+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E4582D89;
-	Tue, 23 Jan 2024 20:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C753150276;
+	Tue, 23 Jan 2024 20:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706040445; cv=none; b=lORvcEz1Mz3YSIULpDg9JMZY3LvbdxQvfaOeFxQjWX5/r7EJ9wKKaFevTS0pLloPyXZiqbpjKyZYFrwUWzd4W2Zj9XGCq3WFMj7njjcu+jTHZepDZ8Wi4lSO/YaqlcibLKtandql47sdEFGSZl0fsnZiKkOU9tJVmbGlLyWgopg=
+	t=1706040798; cv=none; b=kS5og9xGRDPj34O5Y/nVQOmDpFqeNIaBaVMyekb8K9A8C53WA7JXwTC9kzW7OcT/57Lfgz4deVfVYXFX4wIjuNq56/ZHDiaQLc4/OkJYFjbNXVkmQG/nUvmCk4xEQHPztX2TmOGV3xm/7EPcSv8awMotX9afp209bHYQT7pnzm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706040445; c=relaxed/simple;
-	bh=qrTeZ90kKPIGHQj7Duz55R7K3bWxn9tvPLy0f4FBIh8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uAMUWPpCCI5S2jkxCjDL4u6jtnKx3xk+FYMnHSffuJTVP9PrhG+6TA6Zad5/hB9sjhvkTPHiCalFvqg9SKPQ1JGGrXTdIi6QlTPfmmZpqGlRE23oeZsxQxSQ7T65B1SAzvPvlHmy11BXX88dASPGsssjF4eowtoPrWvkMDz6Lyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyYcwTIr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03F66C433C7;
-	Tue, 23 Jan 2024 20:07:21 +0000 (UTC)
+	s=arc-20240116; t=1706040798; c=relaxed/simple;
+	bh=pi03UgEe3I8Y1AABCY6ECn63w3R2NG8aaETp+FeROkc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VEnkSh2ctnxDGRJ4B6Rtpm1L4I5rKebbQVprpI+1qY5sGUdiXGk4k3QHWqCnuXvqrbNW3sMXOCAHNTRqgP/zOfPQrffpJVQ+8Em0ZRGvpEhR4QziPshegCiL6dYiFm0hB9hzm1nUIe+khtSu9HGKiPDdpGjuxtNtFCCQ04GLRwY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AUFvj68+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6B9AC433C7;
+	Tue, 23 Jan 2024 20:13:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706040444;
-	bh=qrTeZ90kKPIGHQj7Duz55R7K3bWxn9tvPLy0f4FBIh8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lyYcwTIr2hK9QPWsLjktNe77EKjomPt43dViYbpzFU8v2prv6n22QxXcwo57Dyxx7
-	 +jeXGJyVro1ruwRCVSZztVV37pWrdeJ7OZNq+R1HciKQttk4O0fUbQr01bpayzMZlX
-	 KmOgx2l9400a9/bcNO4Fc+QQ2uvZtCCbegwBRQw9TC6dSigsbt2MhJZe+g5jU4SrLM
-	 btaa43cP2JaYQU8ABAXfS47B2NNJW2undFZY9mDFdvWHn0yYYfx37db1dUOW53aSR0
-	 Z9BQKlPHQ5hVByEIQmFOZy9F04dELGFTEBSeEdkGXoesNGVYD7ZnLaYBfWijZKkWE2
-	 utvXdqqKeWy1g==
-Message-ID: <9185e0b8-5e72-4b53-830b-bc2fb99ad76a@kernel.org>
-Date: Tue, 23 Jan 2024 22:07:17 +0200
+	s=k20201202; t=1706040798;
+	bh=pi03UgEe3I8Y1AABCY6ECn63w3R2NG8aaETp+FeROkc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=AUFvj68+PlEQlAL1OjBmIp7/r04ae7VChrDLYP72S6y8GORvuzyMiTOTENKNkhyNn
+	 QDDs9w+uNNifScWlw0xllKg+dV2ZFIuZy3+gdQYBtSeZllgI0osaFY2tv8DVzSI9sV
+	 pu/yQZZtCT6z25c6Z7KhWoHF3DUn33siUVsEQ65+Q3/JY0iOcBCE54+V57yKKy7bnK
+	 luCGR1/+k3JGUMdQ62k8qEy4eOiOtCjn3wO9IHGf950itCaCgwk4eSrQFrzASX15p+
+	 iyJzTIDg6zycFKTsgLt+8cl+AVVEkY/q3B+x/flk14z8kjTlkJAJA4l1GNlKIvFV0i
+	 LIKzxmw3R3ZRw==
+From: Roger Quadros <rogerq@kernel.org>
+To: nm@ti.com,
+	vigneshr@ti.com
+Cc: afd@ti.com,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	srk@ti.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v3] arm64: dts: ti: am642-evm: Add overlay for NAND expansion card
+Date: Tue, 23 Jan 2024 22:13:12 +0200
+Message-Id: <20240123201312.23187-1-rogerq@kernel.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: ti: am642-evm: Add overlay for NAND
- expansion card
-To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>
-Cc: vigneshr@ti.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, srk@ti.com, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Siddharth Vadapalli <s-vadapalli@ti.com>
-References: <20230920133450.54226-1-rogerq@kernel.org>
- <20230920133450.54226-3-rogerq@kernel.org>
- <20230920135802.3ej2wcuaruqjidel@uncouth>
- <e8f26137-1284-4f45-a74d-a0a5f2aa2f93@kernel.org>
- <20230920164424.rrjvm6nvtv4ysyrw@unreal>
- <c7ec6ccd-37de-244d-0b3b-cb5d13bae539@ti.com>
- <6f2b38f8-1962-46f2-a095-b1eaf99ed407@kernel.org>
- <f79f521b-bfaf-27d2-f152-2f2f21d6f2b7@ti.com>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <f79f521b-bfaf-27d2-f152-2f2f21d6f2b7@ti.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hi,
+The NAND expansion card plugs in over the HSE (High Speed Expansion)
+connector. Add support for it.
 
-On 21/09/2023 20:23, Andrew Davis wrote:
-> On 9/21/23 6:37 AM, Roger Quadros wrote:
->> On 20/09/2023 20:06, Andrew Davis wrote:
->>> On 9/20/23 11:44 AM, Nishanth Menon wrote:
->>>> On 18:18-20230920, Roger Quadros wrote:
->>>>>
->>>>>
->>>>> On 20/09/2023 16:58, Nishanth Menon wrote:
->>>>>> On 16:34-20230920, Roger Quadros wrote:
->>>>>>> The NAND expansion card plugs in over the HSE (High Speed Expansion)
->>>>>>> connector. Add support for it.
->>>>>>>
->>>>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->>>>>>> ---
->>>>>>>    arch/arm64/boot/dts/ti/Makefile               |   1 +
->>>>>>>    arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso | 140 ++++++++++++++++++
->>>>>>>    2 files changed, 141 insertions(+)
->>>>>>>    create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
->>>>>>>
->>>>>>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
->>>>>>> index 06d6f264f292..ece74085a6be 100644
->>>>>>> --- a/arch/arm64/boot/dts/ti/Makefile
->>>>>>> +++ b/arch/arm64/boot/dts/ti/Makefile
->>>>>>> @@ -29,6 +29,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62p5-sk.dtb
->>>>>>>      # Boards with AM64x SoC
->>>>>>>    dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
->>>>>>> +dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtbo
->>>>>>>    dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
->>>>>>>    dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
->>>>>>>    dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
->>>>>>
->>>>>> Also see https://lore.kernel.org/all/20230911165610.GA1362932-robh@kernel.org/
->>>>>>
->>>>>> you may not get the dtbo installed when doing make dtbs_install
->>>>>>
->>>>>> [...]
->>>>>>
->>>>>
->>>>> $ v8make dtbs_install INSTALL_DTBS_PATH=/tmp
->>>>>     INSTALL /tmp/ti/k3-am625-beagleplay.dtb
->>>>>     INSTALL /tmp/ti/k3-am625-phyboard-lyra-rdk.dtb
->>>>>     INSTALL /tmp/ti/k3-am625-sk.dtb
->>>>>     INSTALL /tmp/ti/k3-am625-verdin-nonwifi-dahlia.dtb
->>>>>     INSTALL /tmp/ti/k3-am625-verdin-nonwifi-dev.dtb
->>>>>     INSTALL /tmp/ti/k3-am625-verdin-nonwifi-yavia.dtb
->>>>>     INSTALL /tmp/ti/k3-am625-verdin-wifi-dahlia.dtb
->>>>>     INSTALL /tmp/ti/k3-am625-verdin-wifi-dev.dtb
->>>>>     INSTALL /tmp/ti/k3-am625-verdin-wifi-yavia.dtb
->>>>>     INSTALL /tmp/ti/k3-am62-lp-sk.dtb
->>>>>     INSTALL /tmp/ti/k3-am62x-sk-hdmi-audio.dtbo
->>>>>     INSTALL /tmp/ti/k3-am62a7-sk.dtb
->>>>>     INSTALL /tmp/ti/k3-am62p5-sk.dtb
->>>>>     INSTALL /tmp/ti/k3-am642-evm.dtb
->>>>>     INSTALL /tmp/ti/k3-am642-evm-nand.dtbo
->>>>> ^^^^
->>>>>     INSTALL /tmp/ti/k3-am642-phyboard-electra-rdk.dtb
->>>>>     INSTALL /tmp/ti/k3-am642-sk.dtb
->>>>>
->>>>>
->>>>> What did I miss?
->>>>
->>>> I missed it, actually. See Rob's comment:
->>>> https://lore.kernel.org/all/CAL_Jsq+GR3hP6hFvFn2z5aXvSXnh9butD3aKZ-y_XJgx0_YPTw@mail.gmail.com/
->>>>
->>>> Having orphan dtbo is apparently frowned upon
->>>>
->>>
->>> And if you apply these overlays to the base DTB then it gets
->>> symbols added automatically, no need for your patch [1/2] here.
->>>
->>
->> Is this OK?
->>
->>     k3-am642-evm-nand-dtbs := k3-am642-evm.dtb k3-am642-evm-nand.dtbo
->>     dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtb
->>
->> So patch 1 is not required in this case but we have an
->> extra dtb file which is not really required.
->>
-> 
-> While I agree we will end up with several pre-overlayed DTB files
-> that are arguably not required as they could be later built/applied,
-> until we find a better way to check at build time these overlays
-> need applied to something as a test.
-> 
->> I have 2 more issues to point out
->>
->> 1)
->> With existing examples e.g. J7200 EVM
->> wouldn't  k3-j7200-evm.dtb include the k3-j7200-evm-quad-port-eth-exp.dtbo?
->> Is this what we really want?
->>
->> likewise for k3-j721e-evm.dtb and k3-am654-gp-evm.dtb
->>
-> 
-> Yes, that is the idea, the base-board.dtb is just the raw main board, but
-> the "EVM" when you buy it comes with the quad-port daughtercard attached.
-> That is what we consider the "EVM" and the DTB names match that.
-> 
->> 2)
->> Another issue (unrelated to this change) is the below warning:
->>
->>     arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (avoid_default_addr_size): /fragment@3/__overlay__: Relying on default #address-cells value
->>     arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso:65.8-140.3: Warning (avoid_default_addr_size): /fragment@3/__overlay__: Relying on default #size-cells value
->>
->> This is because we use the 'ranges' property in the gpmc0 node
->> and the compiler doesn't know the #address/size-cells of the
->> parent node.
->>
->> Is there a trick to specify it in the dtso file?
->>
-> 
-> Hmm, seems like a tricky one. Do you really need to do the ranges here?
-> Could you use the default `ranges;` for gpmc0? Then do the range translation
-> down inside the nand node to keep the partition addresses sane.
+We add the ranges property to the GPMC node instead of the NAND
+overlay file to prevent below warnings.
 
-I think we need to go down this route.
+/fragment@3/__overlay__: Relying on default #address-cells value
+/fragment@3/__overlay__: Relying on default #size-cells value
 
-Your suggestion about using ranges in gpmc0 node in the EVM DT file is
-fine I guess as for this board there is no other use case for GPMC.
-So it should be OK to reserve Chip Select0 address space at k3-am642-evm.dts
+As GPMC is dedicated for NAND use on this board, it should be OK.
 
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
+---
+
+Notes:
+    Changelog:
+    v3:
+    - Fix dtc warning by moving ranges property into the GPMC node
+    - update licence to GPL-2.0-only OR MIT and Copyright year to 2024
+    - don't drop k3-am642-evm.dtb target from Makefile
+    
+    v2:
+    - Don't leave k3-am642-evm-nand.dtbo as an orphan. Make k3-am642-evm-nand.dtb
+    with the overlay applied on the base board.
+
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso | 139 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |   4 +
+ 3 files changed, 145 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
+
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index 52c1dc910308..cb03d0013fca 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -38,6 +38,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-hdmi-audio.dtbo
+ 
+ # Boards with AM64x SoC
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
++k3-am642-evm-nand-dtbs := k3-am642-evm.dtb k3-am642-evm-nand.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
+new file mode 100644
+index 000000000000..3d1c2111ec88
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
+@@ -0,0 +1,139 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++/**
++ * DT overlay for HSE NAND expansion card on AM642 EVM
++ *
++ * Copyright (C) 2021-2024 Texas Instruments Incorporated - https://www.ti.com/
++ */
++
++/dts-v1/;
++/plugin/;
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include "k3-pinctrl.h"
++
++&main_pmx0 {
++	gpmc0_pins_default: gpmc0-pins-default {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x0094, PIN_INPUT, 7) /* (T19) GPMC0_BE1n.GPIO0_36 */
++
++			AM64X_IOPAD(0x003c, PIN_INPUT, 0) /* (T20) GPMC0_AD0 */
++			AM64X_IOPAD(0x0040, PIN_INPUT, 0) /* (U21) GPMC0_AD1 */
++			AM64X_IOPAD(0x0064, PIN_INPUT, 0) /* (R16) GPMC0_AD10 */
++			AM64X_IOPAD(0x0068, PIN_INPUT, 0) /* (W20) GPMC0_AD11 */
++			AM64X_IOPAD(0x006c, PIN_INPUT, 0) /* (W21) GPMC0_AD12 */
++			AM64X_IOPAD(0x0070, PIN_INPUT, 0) /* (V18) GPMC0_AD13 */
++			AM64X_IOPAD(0x0074, PIN_INPUT, 0) /* (Y21) GPMC0_AD14 */
++			AM64X_IOPAD(0x0078, PIN_INPUT, 0) /* (Y20) GPMC0_AD15 */
++			AM64X_IOPAD(0x0044, PIN_INPUT, 0) /* (T18) GPMC0_AD2 */
++			AM64X_IOPAD(0x0048, PIN_INPUT, 0) /* (U20) GPMC0_AD3 */
++			AM64X_IOPAD(0x004c, PIN_INPUT, 0) /* (U18) GPMC0_AD4 */
++			AM64X_IOPAD(0x0050, PIN_INPUT, 0) /* (U19) GPMC0_AD5 */
++			AM64X_IOPAD(0x0054, PIN_INPUT, 0) /* (V20) GPMC0_AD6 */
++			AM64X_IOPAD(0x0058, PIN_INPUT, 0) /* (V21) GPMC0_AD7 */
++			AM64X_IOPAD(0x005c, PIN_INPUT, 0) /* (V19) GPMC0_AD8 */
++			AM64X_IOPAD(0x0060, PIN_INPUT, 0) /* (T17) GPMC0_AD9 */
++			AM64X_IOPAD(0x0098, PIN_INPUT_PULLUP, 0) /* (W19) GPMC0_WAIT0 */
++			AM64X_IOPAD(0x009c, PIN_INPUT_PULLUP, 0) /* (Y18) GPMC0_WAIT1 */
++			AM64X_IOPAD(0x00a8, PIN_OUTPUT_PULLUP, 0) /* (R19) GPMC0_CSn0 */
++			AM64X_IOPAD(0x00ac, PIN_OUTPUT_PULLUP, 0) /* (R20) GPMC0_CSn1 */
++			AM64X_IOPAD(0x00b0, PIN_OUTPUT_PULLUP, 0) /* (P19) GPMC0_CSn2 */
++			AM64X_IOPAD(0x00b4, PIN_OUTPUT_PULLUP, 0) /* (R21) GPMC0_CSn3 */
++			AM64X_IOPAD(0x007c, PIN_OUTPUT, 0) /* (R17) GPMC0_CLK */
++			AM64X_IOPAD(0x0084, PIN_OUTPUT, 0) /* (P16) GPMC0_ADVn_ALE */
++			AM64X_IOPAD(0x0088, PIN_OUTPUT, 0) /* (R18) GPMC0_OEn_REn */
++			AM64X_IOPAD(0x008c, PIN_OUTPUT, 0) /* (T21) GPMC0_WEn */
++			AM64X_IOPAD(0x0090, PIN_OUTPUT, 0) /* (P17) GPMC0_BE0n_CLE */
++			AM64X_IOPAD(0x00a0, PIN_OUTPUT_PULLUP, 0) /* (N16) GPMC0_WPn */
++			AM64X_IOPAD(0x00a4, PIN_OUTPUT, 0) /* (N17) GPMC0_DIR */
++		>;
++	};
++};
++
++&main_gpio0 {
++	gpio0-36 {
++		gpio-hog;
++		gpios = <36 0>;
++		input;
++		line-name = "GPMC0_MUX_DIR";
++	};
++};
++
++&elm0 {
++	status = "okay";
++};
++
++&gpmc0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&gpmc0_pins_default>;
++	#address-cells = <2>;
++	#size-cells = <1>;
++
++	nand@0,0 {
++		compatible = "ti,am64-nand";
++		reg = <0 0 64>;		/* device IO registers */
++		interrupt-parent = <&gpmc0>;
++		interrupts = <0 IRQ_TYPE_NONE>, /* fifoevent */
++			     <1 IRQ_TYPE_NONE>;	/* termcount */
++		rb-gpios = <&gpmc0 0 GPIO_ACTIVE_HIGH>;	/* gpmc_wait0 */
++		ti,nand-xfer-type = "prefetch-polled";
++		ti,nand-ecc-opt = "bch8";	/* BCH8: Bootrom limitation */
++		ti,elm-id = <&elm0>;
++		nand-bus-width = <8>;
++		gpmc,device-width = <1>;
++		gpmc,sync-clk-ps = <0>;
++		gpmc,cs-on-ns = <0>;
++		gpmc,cs-rd-off-ns = <40>;
++		gpmc,cs-wr-off-ns = <40>;
++		gpmc,adv-on-ns = <0>;
++		gpmc,adv-rd-off-ns = <25>;
++		gpmc,adv-wr-off-ns = <25>;
++		gpmc,we-on-ns = <0>;
++		gpmc,we-off-ns = <20>;
++		gpmc,oe-on-ns = <3>;
++		gpmc,oe-off-ns = <30>;
++		gpmc,access-ns = <30>;
++		gpmc,rd-cycle-ns = <40>;
++		gpmc,wr-cycle-ns = <40>;
++		gpmc,bus-turnaround-ns = <0>;
++		gpmc,cycle2cycle-delay-ns = <0>;
++		gpmc,clk-activation-ns = <0>;
++		gpmc,wr-access-ns = <40>;
++		gpmc,wr-data-mux-bus-ns = <0>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "NAND.tiboot3";
++				reg = <0x00000000 0x00200000>;	/* 2M */
++			};
++			partition@200000 {
++				label = "NAND.tispl";
++				reg = <0x00200000 0x00200000>;	/* 2M */
++			};
++			partition@400000 {
++				label = "NAND.tiboot3.backup";	/* 2M */
++				reg = <0x00400000 0x00200000>;	/* BootROM looks at 4M */
++			};
++			partition@600000 {
++				label = "NAND.u-boot";
++				reg = <0x00600000 0x00400000>;	/* 4M */
++			};
++			partition@a00000 {
++				label = "NAND.u-boot-env";
++				reg = <0x00a00000 0x00040000>;	/* 256K */
++			};
++			partition@a40000 {
++				label = "NAND.u-boot-env.backup";
++				reg = <0x00a40000 0x00040000>;	/* 256K */
++			};
++			partition@a80000 {
++				label = "NAND.file-system";
++				reg = <0x00a80000 0x3f580000>;
++			};
++		};
++	};
++};
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+index 8c5651d2cf5d..9c7ed3fd361d 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+@@ -731,3 +731,7 @@ &main_mcan1 {
+ 	pinctrl-0 = <&main_mcan1_pins_default>;
+ 	phys = <&transceiver2>;
+ };
++
++&gpmc0 {
++	ranges = <0 0 0x00 0x51000000 0x01000000>; /* CS0 space. Min partition = 16MB */
++};
+
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
 -- 
-cheers,
--roger
+2.34.1
+
 
