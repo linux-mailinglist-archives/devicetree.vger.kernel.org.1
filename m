@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-34137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3DCB838CBF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:02:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A0B838CC3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:02:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 423DF1F2537C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:02:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB40B1C23C5B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:02:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27615D907;
-	Tue, 23 Jan 2024 11:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147DB5DF0B;
+	Tue, 23 Jan 2024 11:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zYVlCkWN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QlJ69giK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41CF65D749
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 11:01:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E405D8F4
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 11:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706007719; cv=none; b=VDTCu0RyJ90/yaMlYes/kf5vpDEKgGGs3iXhlcGDRgG5rmEOe1mTosdjF1nwZfOPl7Nc5wfjWju9DtPXV5b/D2+aVpmHdeZHu2/KdYOAiaCblO2OWeftLLv6gIProhLGIz7qW7N8Xn8LEUWAwl5H+6SewBzEEYEOCxbNTlwsY2A=
+	t=1706007721; cv=none; b=SwZPMZYh406CtkpW9eihBPc68BeiGjxKyYQpiBInnLm/hLJJ4MV0H6Qq90YukMxaylqkvqUCQwrM+mtYWgt3x4lAJsEQQzgxStoz/dGT1ZP5D2ao82dA6Fxm11BjYUdnXheu3RZvjut7/q3IjphuEl6yGuzivqSeXvzNZi0H3+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706007719; c=relaxed/simple;
-	bh=tx4kyU5130JQklcMT0u/f9UNERWWdQSXmZjEXww6BvQ=;
+	s=arc-20240116; t=1706007721; c=relaxed/simple;
+	bh=/CkEifXleqORHXziAdmpldWh5oXwSgN+s+9gvFqQvKs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rALChQEO+wi3q1XG/5AV5YXFemheR+7WTz901aNkMKbabgEc42qRZe0O0igPKvFCoDRYqxc5McUzrqjlEXex1CVee45AMOHBphJjQMwm5YeRtsccBHYnvx0GsAAqxPAIcvB6TIGgZzPF/TAEorJI+eNLVve1NoYbBiYEluJah5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zYVlCkWN; arc=none smtp.client-ip=209.85.208.54
+	 In-Reply-To:To:Cc; b=cDgf2xKcNG3OQOJZmGmtWNHFL6g0YsS3LiGVBfP5nKX4rGVcWdZYxaKDAiciaq5kuC1VjkkWSIXL6qgjFmizNJ71lt1D7cZuLYCAFdE6RWYk8cfapAmXV4bO66rHaeGwJFw3DNjyok4KKYOdFhzb90XplnTI3FIAot2k7uGhjQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QlJ69giK; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-55a8fb31fc2so3230642a12.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 03:01:57 -0800 (PST)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-55ad2a47b7aso3040925a12.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 03:01:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706007716; x=1706612516; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706007717; x=1706612517; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OoXONBUAbVlHo3DHcqRibgt90d5J3XAE3xf2yCRQRgw=;
-        b=zYVlCkWNPYawKN7IoI8VgT1rzKhfOD09jmmhyQPDv9r4rWoVekQzWG8Uepqahf6Oq/
-         DPPgLUw9y47nsjlAADIehrI/gvWjpbD/lOWYKbv57wKm6FzSJUVbnMDZLmOKWhBdU2uD
-         dxyOxFMdEH9jDbAErkbG4KQMwkKk7mUzCRAkZJglxK9mwPUqfmGGWCiY3la9fU2HWdSP
-         V084E8OMBnEhi3NZcELS3yqdYA1M6MqCRCEd6FQMrLnEXJMBNock2x6ktjTvL3ZC5ODt
-         ck6PVq0ww7h3QFviQmSaa8h+gPT30RjxlC6Mg4GOdQFFqr2Hoq8Nk8ER/4H+tzNKQDCI
-         e2MA==
+        bh=FdCKpdS0D45OzqZldZIE12nHqIULmFpfvIH2gs8ymq8=;
+        b=QlJ69giKfE1IPEIcsLOXLIEJVQxFqpdxiVX7JHpzDmAhHypKoJvKwVLph/X9qiH9Dq
+         qeEK1pwwspNiRsSmq5eP3pdH/UTaNUL4JdsSVtR+BdSSACyPwX9GZpd5fKxC85+C92/A
+         ErFR/0BA/8pmtXY8im8bflTWqTLvc0ZUo6qjcHPhYxzyfVGZ1AmLCXyVqRLHykTwoSsZ
+         DxQ7WhoyzYQXkA1KKMg93y0LNgCW42SybaibmDDvE3Q3QEW/yNp3fpZdQ5V18zU7Yrql
+         /Y2C4s3qFs4kK+RFJS/6UEM6q1aMh1bEdXdymja4ygX3G+/5VK4X6ZrNm9YGcXW4eemt
+         1nZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706007716; x=1706612516;
+        d=1e100.net; s=20230601; t=1706007717; x=1706612517;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OoXONBUAbVlHo3DHcqRibgt90d5J3XAE3xf2yCRQRgw=;
-        b=urVkI9Znv/GfErhGhFatN86W4bgClPnLOE3TWk1YCjvH9hGLd4aM1sy9yyb0N7nI6+
-         pphOwm4cjnb44ifj15m6D5BgmZjW/RdoytwfbE+94cofIm+Vt34HBW28B9cGcmwidIwK
-         er2p8cYMjR2QvPESyswNvpnMPJxWF8ZpXZjXB6gf8gNIMyaZYidS5jrjg7FaCz+yPN5M
-         YgRFsvZZKXHjpXV9DLMiobOWjtGUn8d0d4UdqCutT29JTB3r31wrEC5D752zUDeAfEtv
-         srSeJuVzp4ykMBduWWhFntvjd6AIDc+6YIyt1rayvYtGRYacP8Wm1WQ+qxg8KhHL6jKa
-         4gCA==
-X-Gm-Message-State: AOJu0Yxp/XL/C9zCaG7eb8eQ85zIx5SfcjMG64Oa72pok3UP8IRwnHZB
-	7ds64hxWlMMkbpsnEk6pbqQhc4SmaC6KeBJYEQoKct1Eb/w/5aLwP4KoSfHIRxQzXveIHRLHAik
-	o
-X-Google-Smtp-Source: AGHT+IEfNsk9L0g4s8vJfsvbAiDMdVUeTODmP1Xq5n/ArwSkMIfm+DJiXWeNiKAXlwf6dlyMlVT4LA==
-X-Received: by 2002:aa7:d957:0:b0:55a:2f50:53f3 with SMTP id l23-20020aa7d957000000b0055a2f5053f3mr856010eds.38.1706007716196;
-        Tue, 23 Jan 2024 03:01:56 -0800 (PST)
+        bh=FdCKpdS0D45OzqZldZIE12nHqIULmFpfvIH2gs8ymq8=;
+        b=pmTM5bm5RT8iWzXvCkt3Xz+CNRmrMTyzycSZyKD8cdthYMbk5eUoB8UJrlJ2w4lEvn
+         CyyXhNrTnynRe+hRYThCQb+exztaqLFzstgw4GoKOZ2FnvNvLkdQy0Gzw4d6iI1PA8Uc
+         AaE+Huzv2JyoQfMDUTT2d10gNniFXDryRTBrIkShgE7hQC1SKh/WiGaOYroL5Bjrp1SU
+         +Be+vcffOfN9+UBQcqjCFBZ+dYvm1gOUAbPQeJBsgW6Y66FXVNzVvvKr2/qs9nlarloA
+         X+HNDM4GqgOsQ2e5MRP/xix58t2zP3Q+l51Lam9Td2GbzEXJGxPqXKWgJGnNc0qU8uF5
+         mhYg==
+X-Gm-Message-State: AOJu0YxZShC9P+v72ObN2ECej1BCff+aqBFfa323bhFmNsrlNFI5629k
+	oFQbmiP7bDYcyT3tHDhnhm/Fzx6aW190sDy0hqRk7f7gH+twp23gNFcgADGw/zd/vt/TW45SH8N
+	E
+X-Google-Smtp-Source: AGHT+IEAp5/kpyqF7kdWlEllU+KTpxK6lTHQ7SnK7GBxCftSDufq/AkmtmLLpZYg6Kx+aFccaLY7zA==
+X-Received: by 2002:a05:6402:70b:b0:559:fbdf:6d79 with SMTP id w11-20020a056402070b00b00559fbdf6d79mr444881edx.114.1706007717478;
+        Tue, 23 Jan 2024 03:01:57 -0800 (PST)
 Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id fg7-20020a056402548700b005593c83bdafsm11430074edb.45.2024.01.23.03.01.55
+        by smtp.gmail.com with ESMTPSA id fg7-20020a056402548700b005593c83bdafsm11430074edb.45.2024.01.23.03.01.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 03:01:55 -0800 (PST)
+        Tue, 23 Jan 2024 03:01:57 -0800 (PST)
 From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 23 Jan 2024 13:01:17 +0200
-Subject: [PATCH v4 03/11] arm64: dts: qcom: x1e80100: Add QMP AOSS node
+Date: Tue, 23 Jan 2024 13:01:18 +0200
+Subject: [PATCH v4 04/11] arm64: dts: qcom: x1e80100: Add ADSP/CDSP
+ remoteproc nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240123-x1e80100-dts-missing-nodes-v4-3-072dc2f5c153@linaro.org>
+Message-Id: <20240123-x1e80100-dts-missing-nodes-v4-4-072dc2f5c153@linaro.org>
 References: <20240123-x1e80100-dts-missing-nodes-v4-0-072dc2f5c153@linaro.org>
 In-Reply-To: <20240123-x1e80100-dts-missing-nodes-v4-0-072dc2f5c153@linaro.org>
 To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
@@ -89,56 +90,142 @@ To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1072; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=uhruz9tzEahNH2F+362SSx/RVU2PIo0lL6mu3SYOWPA=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlr5yToeDIe65tkiekRwtNNDg9NvyXARy78Tt9B
- MX4UJ45ziiJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZa+ckwAKCRAbX0TJAJUV
- VtDSD/44xZDfbuKEB4OsZ1TuVrZQKx4E9T5MuSJ5hti61vAcN3uScdvhdvtIylm6N+wigqirf7I
- c8IKg3O27M1khiTz1DRxv2aanSJb8NNM5h6nBlJEzO4ibo9fP7fPw1umaj5hrv6/BlZuN3b4k51
- 70V/IjWS7J5Uu0Uk18uL2lfHP2RVB2aNmJeUu9mygtQ/qzMAoNGo4AVGOk6jVuV41PJd/ymzD/o
- lL5gMEu1jxnxFbaDx4QFiVnjMrnjUm0TAT972/n8eKrEOkqmV2gW+7xHDwZy8rO0e59f7nOZXDz
- 8z5kbuhqltQcEndxO6RF33QPLNhi4axH0pNER8jG4Ngkout0U2pIEvkvRx1VZNUqi2KNkXXNKrp
- td+tOzjZDEGS0CTa96IcNeQEojaxN2Ke64/lbHAas8qG09g0jxTS/lEZ5YG0OKogyOhRKaYob8I
- NQfKH/FwKCCLJBmL4z/IsU9MfR9jFRxsxohEfzgJUgmq93jCokE1YNf0WQirqfIn9JjPDQqLaNS
- nj6gF5k11tf8Do0YQBIbceK+VO0u6ju9uuVex/aWgVK9swh8XHj2bxXZA7ARVV2PumKEpa26L0R
- bohvWRJTMNZmps4KZTVtufjmdx3nP+BiUt40BN008MxQCZs3VZJ67mDsKnxOVB0s22Syfjz+LeJ
- 0Oemeqfm9m6YJgQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3444; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=txP4AHtEswNBnh9k8vWLwY0OKLMEo7V+8Porur91vK8=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlr5yUWuEHTfdNDYMO2dpBfEJOrO3GuP5fVnggZ
+ fnoSK0wHCWJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZa+clAAKCRAbX0TJAJUV
+ VtnqEADAWJDlkmbf4IHqZFuxJsnNk14299pK/ufBBs6f8h8hRZsk9XU4lREDOO4Pl3d/3x0lAtY
+ NKF3oRUd2w6ZcahYbb5I614nRjHwYpj6Gkq93ZTEOERXyWHQ+9r+yZnq0+fO1zXi1NSPoozNP4j
+ BIJVXL9qA5XGryWiQIFyn9Q52X0zo7fFYwSq0ilFZXUfJiLqTPJCrzspOiqI3OTTFxr+5N6KTxJ
+ V/vu0Td0agurrd00J2mKScx1+WaX3Hg7I9um4FDiI1FqPiiioi23nCUq8HMlciPUayVI60IoZpW
+ X3LQRlTzEmxGTd1+MMA2aRBPvZUFcVM6KAoRXhsZuuTT38ML6WNnblI3Urte3bnpyaqT1qLD0Pm
+ 8gGqNJdNiHmRaNKzkP7NQjQ/wa0t+efYB2C+nMmJ1rKdvAXWvO3LtqqkSiJI2VmajpsbUc1Qg1q
+ n8kpBQXb9pF7fv1pv6VPEzyzrrR1c8ugqDjzNpQHFf7MkX+Fse13tF1X1j9Pqt2PMCUeZ5YHayG
+ G9XyyMlXTCvGGWpIJtd63susnOxgZEQtVPGp4SeqIiXBwTVYdE0xYJgv5JlBM0GxvbynWX5OIXf
+ J9UZGhlGMFhJAXpWB8z/juscpHAwbXPmOuVeLbZzOqcYd5yNFBszBk5Vn4unGINAwbI+xpEXRZB
+ H/3IqjzO5Cq6ZVQ==
 X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
 From: Sibi Sankar <quic_sibis@quicinc.com>
 
-Add a node for the QMP AOSS.
+Add ADSP and CDSP remoteproc nodes on X1E80100 platforms.
 
 Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 98 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 98 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 1210351b6538..3790d99eb298 100644
+index 3790d99eb298..be69e71b7f53 100644
 --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
 +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -2663,6 +2663,18 @@ pdc: interrupt-controller@b220000 {
- 			interrupt-controller;
+@@ -3590,6 +3590,104 @@ system-cache-controller@25000000 {
+ 				    "llcc_broadcast_base";
+ 			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
  		};
- 
-+		aoss_qmp: power-management@c300000 {
-+			compatible = "qcom,x1e80100-aoss-qmp", "qcom,aoss-qmp";
-+			reg = <0 0x0c300000 0 0x400>;
-+			interrupt-parent = <&ipcc>;
-+			interrupts-extended = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP
-+						     IRQ_TYPE_EDGE_RISING>;
-+			mboxes = <&ipcc IPCC_CLIENT_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
 +
-+			#clock-cells = <0>;
++		remoteproc_adsp: remoteproc@30000000 {
++			compatible = "qcom,x1e80100-adsp-pas";
++			reg = <0 0x30000000 0 0x100>;
++
++			interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_adsp_in 3 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "wdog",
++					  "fatal",
++					  "ready",
++					  "handover",
++					  "stop-ack";
++
++			clocks = <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "xo";
++
++			power-domains = <&rpmhpd RPMHPD_LCX>,
++					<&rpmhpd RPMHPD_LMX>;
++			power-domain-names = "lcx",
++					     "lmx";
++
++			interconnects = <&lpass_lpicx_noc MASTER_LPASS_PROC QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++
++			memory-region = <&adspslpi_mem>,
++					<&q6_adsp_dtb_mem>;
++
++			qcom,qmp = <&aoss_qmp>;
++
++			qcom,smem-states = <&smp2p_adsp_out 0>;
++			qcom,smem-state-names = "stop";
++
++			status = "disabled";
++
++			glink-edge {
++				interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
++							     IPCC_MPROC_SIGNAL_GLINK_QMP
++							     IRQ_TYPE_EDGE_RISING>;
++				mboxes = <&ipcc IPCC_CLIENT_LPASS
++						IPCC_MPROC_SIGNAL_GLINK_QMP>;
++
++				label = "lpass";
++				qcom,remote-pid = <2>;
++			};
 +		};
 +
++		remoteproc_cdsp: remoteproc@32300000 {
++			compatible = "qcom,x1e80100-cdsp-pas";
++			reg = <0 0x32300000 0 0x1400000>;
 +
- 		tlmm: pinctrl@f100000 {
- 			compatible = "qcom,x1e80100-tlmm";
- 			reg = <0 0x0f100000 0 0xf00000>;
++			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_cdsp_in 0 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_cdsp_in 1 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_cdsp_in 2 IRQ_TYPE_EDGE_RISING>,
++					      <&smp2p_cdsp_in 3 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "wdog",
++					  "fatal",
++					  "ready",
++					  "handover",
++					  "stop-ack";
++
++			clocks = <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "xo";
++
++			power-domains = <&rpmhpd RPMHPD_CX>,
++					<&rpmhpd RPMHPD_MXC>,
++					<&rpmhpd RPMHPD_NSP>;
++			power-domain-names = "cx",
++					     "mxc",
++					     "nsp";
++
++			interconnects = <&nsp_noc MASTER_CDSP_PROC QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++
++			memory-region = <&cdsp_mem>,
++					<&q6_cdsp_dtb_mem>;
++
++			qcom,qmp = <&aoss_qmp>;
++
++			qcom,smem-states = <&smp2p_cdsp_out 0>;
++			qcom,smem-state-names = "stop";
++
++			status = "disabled";
++
++			glink-edge {
++				interrupts-extended = <&ipcc IPCC_CLIENT_CDSP
++							     IPCC_MPROC_SIGNAL_GLINK_QMP
++							     IRQ_TYPE_EDGE_RISING>;
++				mboxes = <&ipcc IPCC_CLIENT_CDSP
++						IPCC_MPROC_SIGNAL_GLINK_QMP>;
++
++				label = "cdsp";
++				qcom,remote-pid = <5>;
++			};
++		};
+ 	};
+ 
+ 	timer {
 
 -- 
 2.34.1
