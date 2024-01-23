@@ -1,412 +1,369 @@
-Return-Path: <devicetree+bounces-34150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0DA4838D25
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:16:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98545838D34
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:17:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7278D281957
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:16:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44082282B6D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDE65D8E6;
-	Tue, 23 Jan 2024 11:15:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C57C65D73A;
+	Tue, 23 Jan 2024 11:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="R3vVvDrI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bxAGskvY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D669A5D8E3;
-	Tue, 23 Jan 2024 11:15:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0EC5D720
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 11:17:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706008543; cv=none; b=de6dImS3Uc9ufWsoKU/O9IYxjV5siBYOeq4Rn92d8EjE3x9y2lEclwWfTLCJF0lh/mIEcVMjNnuaLjRISawiNzv/8kS9GGhacnEtJsrrWjkUcvC5RFqPTZRCZHV0IIO1GzNbdZSzQdNjjaWtHfr9BV+p9SJy5M90ikdo2bZLMp0=
+	t=1706008627; cv=none; b=qK16LFi6wz23qOyZf6YgVdyqou3kRVdwAGazmnv3HFky4yzbWZR5JnwPyWlCcGvlA4tO3P7PyP+2X+CJGLRwonO2qRmONiVJPj4pK9q6kzczHlux3L5MlXaSwNddLWwTy6C+FxsumRdiRGUVfnVqs5LjnoZ9SVcH75abjudLE80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706008543; c=relaxed/simple;
-	bh=CQ7tFTTrMu33i0T+tPoAxNwOmkHva4ezG2UGpbm12ZI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TbA+ibRgdJvVzbmmf29rfwBFo8MLyeIVKfSKjTarrHZMGyHU4opIH5mjD2jalVM5LJGDNNB7IVY+PEcrWUpIXeuhHFNDReIZrQNM+W7Nnm7A29PEWLRg+XaWpI458RgrAJsnoDzL/aZ1DdvoarzcWnhz0LtGrwUc0yP3he/G9l0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=R3vVvDrI; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40NBEnQD008311;
-	Tue, 23 Jan 2024 05:14:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706008489;
-	bh=zk2vPEHry0BmB+vqIbKpDwwWZQyauRfgfOziNQ6D3K4=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=R3vVvDrIAUP2aScn40NFAkO80XNzE6HzCco+omq9bNL/zwdHBEDzTGxkZACGteRCe
-	 5u408G1ROsV5CvO7lkKTwVdfN0WTidITRxvrw+BcCDn1+vkyZnxMYmjwnqbGzP9cBZ
-	 Q8f+4brlT0iZrC0D9VpVsd7gD1fJ5MaA2idbabBg=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40NBEnlO098291
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 23 Jan 2024 05:14:49 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 23
- Jan 2024 05:14:48 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 23 Jan 2024 05:14:49 -0600
-Received: from LT5CG31242FY.dhcp.ti.com (lt5cg31242fy.dhcp.ti.com [10.85.14.124])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40NBEHxT083823;
-	Tue, 23 Jan 2024 05:14:42 -0600
-From: Shenghao Ding <shenghao-ding@ti.com>
-To: <broonie@kernel.org>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>
-CC: <robh+dt@kernel.org>, <andriy.shevchenko@linux.intel.com>,
-        <kevin-lu@ti.com>, <baojun.xu@ti.com>, <devicetree@vger.kernel.org>,
-        <lgirdwood@gmail.com>, <perex@perex.cz>,
-        <pierre-louis.bossart@linux.intel.com>, <13916275206@139.com>,
-        <linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <liam.r.girdwood@intel.com>, <soyer@irl.hu>, <jkhuang3@ti.com>,
-        <tiwai@suse.de>, <pdjuandi@ti.com>, <j-mcpherson@ti.com>,
-        <navada@ti.com>, Shenghao Ding <shenghao-ding@ti.com>
-Subject: [PATCH v1 4/4] ASoc: dt-bindings: Create yaml file for pcm6240 codec driver
-Date: Tue, 23 Jan 2024 19:14:10 +0800
-Message-ID: <20240123111411.850-4-shenghao-ding@ti.com>
-X-Mailer: git-send-email 2.33.0.windows.2
-In-Reply-To: <20240123111411.850-1-shenghao-ding@ti.com>
-References: <20240123111411.850-1-shenghao-ding@ti.com>
+	s=arc-20240116; t=1706008627; c=relaxed/simple;
+	bh=yzIpgSarbLnkTu1ruIWuQf/KD1Y53tWgm7gNTofFOMA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C+iZyG2SpJ/bsq8qa/4hgN9ElI1oC9alb0wqKopk54z/OkoStFum/7l+omqMbL06nNvn8Rz6yiZdSMtIxxEpndpvQ8W6t4G9ExKMn8lqTpjE/ns+V05UQJFGoof2mVh3du6fuMkEMx+SZ5bSYeGZKjil+O0hXtG8slUboy5lP2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bxAGskvY; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e87d07c07so53024295e9.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 03:17:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706008624; x=1706613424; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zjP6iJ/yX6dQK3yxWU3uAXRBZwEHVZpEGxhPfzJdMQA=;
+        b=bxAGskvY3e0s2n6jcVsGbADv3zVC0fWrq/e34WBfR4rhbr26URlJzqC+gZywrFfvJB
+         BAt7MVoLymWSDkCj6basRnh7i9ZcEgdVE2gpTVVMxBiqfAi9533OAeoe4eE+9nF1u3aJ
+         5phBzU8ACV6yWTycmymSISrVvEeLLsKcd3ZPWScXOfFB5i7Da76f+t1kH3xa5L8zR2FB
+         ZATX//ATzL/eKK7/Eui+kieXJa1fFLV5djhtfRWf2IfSQcv38zs1ZJdxVVlVyGAVCLgZ
+         eLSYjrDfML207LvnxXS+6l9u9KteGwlgIcQYsm10XKq0/lIY7QtHxb7/xXJVFMgdjmNL
+         s32A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706008624; x=1706613424;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zjP6iJ/yX6dQK3yxWU3uAXRBZwEHVZpEGxhPfzJdMQA=;
+        b=GYgn8WcD1/5DM3gnSHI9Q24TzEYyt9id8arj42TXsCZ7t13Bv16nLif9Os1d6FXHJU
+         96gAUkE7igdRTHSym4qz6AQhLgYuOyuOfsEqr6PwM+mHg+77/tUlq2jIocz6i5FOC4se
+         z4szS6265T4b1rkbQlV2/dNoNdr0OA6XVebNSAcOX67YbFvtbehOX8CgXL+eNdC0jTTl
+         +VGc0SHV9wxfI69nzdioYxznmY5lgRIyPMoFurZN0yH5rdrrBLLaM5Ia7wPqvlhGz4V1
+         35waurP3q6qbgiq7dZWkHqhTsuc1CUt3NnC2h4uCPB+8JZXgfMoPOj/FnCWSryUTouYF
+         5XUQ==
+X-Gm-Message-State: AOJu0Yw5gawdKZ+yHMr6OMxkGExC3cawwquTSLn2KnHP3i5DhoweMJMG
+	eI+UBQ3epwbvbvKLkgrKczLDhmD4Js30aKedh0RcLUBUvibx4PSe7nDVjm4cwxI=
+X-Google-Smtp-Source: AGHT+IGi4oRmEbEte4U8kteyuUXQDR6c8dGS8ONy9WyBOQRr1Fq1GgBagTCnaGeXaQtCiJP+kwrZsw==
+X-Received: by 2002:a05:600c:474b:b0:40e:4672:5227 with SMTP id w11-20020a05600c474b00b0040e46725227mr25481wmo.96.1706008624158;
+        Tue, 23 Jan 2024 03:17:04 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id w18-20020a05600c475200b0040d2d33312csm42650785wmo.2.2024.01.23.03.17.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 03:17:03 -0800 (PST)
+Message-ID: <26b9a75c-3721-4d7a-985e-772d9f67e6d5@linaro.org>
+Date: Tue, 23 Jan 2024 12:17:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/9] soc: samsung: exynos-pmu: Add
+ exynos_pmu_update/read/write APIs and SoC quirks
+Content-Language: en-US
+To: Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux@roeck-us.net,
+ wim@linux-watchdog.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
+ jaewon02.kim@samsung.com, chanho61.park@samsung.com,
+ semen.protsenko@linaro.org
+Cc: kernel-team@android.com, tudor.ambarus@linaro.org,
+ andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
+ linux-fsd@tesla.com, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+References: <20240122225710.1952066-1-peter.griffin@linaro.org>
+ <20240122225710.1952066-3-peter.griffin@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240122225710.1952066-3-peter.griffin@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-PCM6240 driver implements a flexible and configurable setting for register
-and filter coefficients, to one, two or even multiple PCM6240 Family Audio
-chips.
+On 22/01/2024 23:57, Peter Griffin wrote:
+> Newer Exynos SoCs have atomic set/clear bit hardware for PMU registers as
+> these registers can be accessed by multiple masters. Some platforms also
+> protect the PMU registers for security hardening reasons so they can't be
+> written by normal world and are only write acessible in el3 via a SMC call.
 
-Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
 
----
-Change in v1:
- - Create yaml file for pcm6240 codec driver
----
- .../devicetree/bindings/sound/ti,pcm6240.yaml | 303 ++++++++++++++++++
- 1 file changed, 303 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
+Typo? accessible?
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-new file mode 100644
-index 000000000000..59fd48aa4445
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,pcm6240.yaml
-@@ -0,0 +1,303 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 - 2024 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,pcm6240.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments PCM6240 Family Audio ADC/DAC/Router
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+
-+description: |
-+  The PCM6240 Family driver offer a flexible architecture to set the device
-+  number, registers and params for different filters in a bin file.
-+
-+  Specifications about the audio chip can be found at:
-+    https://www.ti.com/lit/gpn/tlv320adc3120
-+    https://www.ti.com/lit/gpn/tlv320adc5120
-+    https://www.ti.com/lit/gpn/tlv320adc6120
-+    https://www.ti.com/lit/gpn/dix4192
-+    https://www.ti.com/lit/gpn/pcm1690
-+    https://www.ti.com/lit/gpn/pcm3120-q1
-+    https://www.ti.com/lit/gpn/pcm3140-q1
-+    https://www.ti.com/lit/gpn/pcm5120-q1
-+    https://www.ti.com/lit/gpn/pcm6120-q1
-+    https://www.ti.com/lit/gpn/pcm6260-q1
-+    https://www.ti.com/lit/gpn/pcm9211
-+    https://www.ti.com/lit/gpn/pcmd3140
-+    https://www.ti.com/lit/gpn/pcmd3180
-+    https://www.ti.com/lit/gpn/taa5212
-+    https://www.ti.com/lit/gpn/tad5212
-+
-+properties:
-+  compatible:
-+    description: |
-+      ti,adc3120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 106-dB SNR.
-+
-+      ti,adc5120: 2-Channel, 768-kHz, Burr-BrownTM Audio ADC with 120-dB SNR.
-+
-+      ti,adc6120: Stereo-channel, 768-kHz, Burr-Brown™ audio analog-to-
-+      digital converter (ADC) with 123-dB SNR.
-+
-+      ti,pcm1690: 113dB SNR, 24-Bit, 192-kHz Sampling, Enhanced Multi-Level
-+      ?S, Eight-Channel Audio Digital-to-Analog Converter with Differential
-+      Outputs.
-+
-+      ti,pcm3120: Automotive, stereo, 106-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm3140: Automotive, Quad-Channel, 768-kHz, Burr-BrownTM Audio ADC
-+      with 106-dB SNR.
-+
-+      ti,pcm5120: Automotive, stereo, 120-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm5140: Automotive, Quad-Channel, 768-kHz, Burr-BrownTM Audio ADC
-+      with 120-dB SNR.
-+
-+      ti,pcm6120: Automotive, stereo, 123-dB SNR, 768-kHz, low-power
-+      software-controlled audio ADC.
-+
-+      ti,pcm6140: Automotive, Quad-Channel, 768-kHz, Burr-BrownTM Audio ADC
-+      with 123-dB SNR.
-+
-+      ti,pcm6240: Automotive 4-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm6260: Automotive 6-ch audio ADC with integrated programmable mic
-+      bias, boost and input diagnostics.
-+
-+      ti,pcm9211: 216-kHz Digital Audio Interface Transceiver (DIX)
-+      With Stereo ADC and Routing.
-+
-+      ti,pcmd3140: Four-channel PDM-input to TDM or I�S output converter.
-+
-+      ti,pcmd3180: Eight-channel pulse-density-modulation input to TDM or
-+      I�S output converter.
-+
-+      ti,taa5212: Low-power high-performance stereo audio ADC with 118-dB
-+      dynamic range.
-+
-+      ti,tad5212: Low-power stereo audio DAC with 120-dB dynamic range.
-+    enum:
-+      - ti,adc3120
-+      - ti,adc5120
-+      - ti,adc6120
-+      - ti,dix4192
-+      - ti,pcm1690
-+      - ti,pcm3120
-+      - ti,pcm3140
-+      - ti,pcm5120
-+      - ti,pcm5140
-+      - ti,pcm6120
-+      - ti,pcm6140
-+      - ti,pcm6240
-+      - ti,pcm6260
-+      - ti,pcm9211
-+      - ti,pcmd3140
-+      - ti,pcmd3180
-+      - ti,pcmd512x
-+      - ti,taa5212
-+      - ti,taa5412
-+      - ti,tad5212
-+      - ti,tad5412
-+
-+  reg:
-+    description:
-+      I2C address, in multiple pcmdevices case, all the i2c address
-+      aggregate as one Audio Device to support multiple audio slots.
-+    maxItems: 4
-+    minItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      A GPIO line handling reset of the chip. As the line is active high,
-+      it should be marked GPIO_ACTIVE_HIGH.
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Invalid only for ti,pcm1690 because of no INT pin.
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,pcm1690
-+    then:
-+      properties:
-+        reg:
-+          description:
-+            I2C address, in multiple pcmdevices case, all the i2c address
-+            aggregate as one Audio Device to support multiple audio slots.
-+          maxItems: 4
-+          minItems: 1
-+          items:
-+            minimum: 0x4c
-+            maximum: 0x4f
-+        interrupts: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,pcm3140
-+              - ti,pcm5140
-+              - ti,pcm6140
-+              - ti,pcmd3180
-+    then:
-+      properties:
-+        reg:
-+          description:
-+            I2C address, in multiple pcmdevices case, all the i2c address
-+            aggregate as one Audio Device to support multiple audio slots.
-+          maxItems: 4
-+          minItems: 1
-+          items:
-+            minimum: 0x4c
-+            maximum: 0x4f
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,adc3120
-+              - ti,adc5120
-+              - ti,adc6120
-+              - ti,pcm3120
-+              - ti,pcm5120
-+              - ti,pcm6120
-+              - ti,pcmd3140
-+    then:
-+      properties:
-+        reg:
-+          description:
-+            I2C address.
-+          maxItems: 1
-+          items:
-+            maximum: 0x4e
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,dix4192
-+    then:
-+      properties:
-+        reg:
-+          description:
-+            I2C address, in multiple pcmdevices case, all the i2c address
-+            aggregate as one Audio Device to support multiple audio slots.
-+          maxItems: 4
-+          minItems: 1
-+          items:
-+            minimum: 0x70
-+            maximum: 0x73
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,pcm6240
-+              - ti,pcm6260
-+    then:
-+      properties:
-+        reg:
-+          description:
-+            I2C address, in multiple pcmdevices case, all the i2c address
-+            aggregate as one Audio Device to support multiple audio slots.
-+          maxItems: 4
-+          minItems: 1
-+          items:
-+            minimum: 0x48
-+            maximum: 0x4b
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,pcm9211
-+    then:
-+      properties:
-+        reg:
-+          description:
-+            I2C address, in multiple pcmdevices case, all the i2c address
-+            aggregate as one Audio Device to support multiple audio slots.
-+          maxItems: 4
-+          minItems: 1
-+          items:
-+            minimum: 0x40
-+            maximum: 0x43
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,taa5212
-+              - ti,taa5412
-+              - ti,tad5212
-+              - ti,tad5412
-+    then:
-+      properties:
-+        reg:
-+          description:
-+            I2C address, in multiple pcmdevices case, all the i2c address
-+            aggregate as one Audio Device to support multiple audio slots.
-+          maxItems: 4
-+          minItems: 1
-+          items:
-+            minimum: 0x50
-+            maximum: 0x53
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example for two devices with interrupt support */
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     two: pcmdevice@48 {
-+       compatible = "ti,pcm6240";
-+       reg = <0x48>, /* primary-device */
-+            <0x4b>; /* secondary-device */
-+       #sound-dai-cells = <0>;
-+       reset-gpios = < &gpio1 10 GPIO_ACTIVE_HIGH >;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <15>;
-+     };
-+   };
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example for one device without interrupt support*/
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     one: pcmdevice@4c {
-+       compatible = "ti,pcmd3180";
-+       reg = <0x4c>;
-+       #sound-dai-cells = <0>;
-+       reset-gpios = < &gpio1 10 GPIO_ACTIVE_HIGH >;
-+     };
-+   };
-+...
--- 
-2.34.1
+> 
+> Add support for both of these usecases using SoC specific quirks that are
+> determined from the DT compatible string.>
+> Drivers which need to read and write PMU registers should now use these
+> new exynos_pmu_*() APIs instead of obtaining a regmap using
+> syscon_regmap_lookup_by_phandle()
+> 
+> Depending on the SoC specific quirks, the exynos_pmu_*() APIs will access
+> the PMU register in the appropriate way.
+> 
+> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> ---
+>  drivers/soc/samsung/exynos-pmu.c       | 209 ++++++++++++++++++++++++-
+>  drivers/soc/samsung/exynos-pmu.h       |   4 +
+>  include/linux/soc/samsung/exynos-pmu.h |  28 ++++
+>  3 files changed, 234 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/soc/samsung/exynos-pmu.c b/drivers/soc/samsung/exynos-pmu.c
+> index 250537d7cfd6..e9e933ede568 100644
+> --- a/drivers/soc/samsung/exynos-pmu.c
+> +++ b/drivers/soc/samsung/exynos-pmu.c
+> @@ -5,6 +5,7 @@
+>  //
+>  // Exynos - CPU PMU(Power Management Unit) support
+>  
+> +#include <linux/arm-smccc.h>
+>  #include <linux/of.h>
+>  #include <linux/of_address.h>
+>  #include <linux/mfd/core.h>
+> @@ -12,29 +13,204 @@
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/delay.h>
+> +#include <linux/regmap.h>
+>  
+>  #include <linux/soc/samsung/exynos-regs-pmu.h>
+>  #include <linux/soc/samsung/exynos-pmu.h>
+>  
+>  #include "exynos-pmu.h"
+>  
+> +/**
+> + * DOC: Quirk flags for different Exynos PMU IP-cores
+> + *
+> + * This driver supports multiple Exynos based SoCs, each of which might have a
+> + * different set of registers and features supported.
+> + *
+> + * Quirk flags described below serve the purpose of telling the driver about
+> + * mentioned SoC traits, and can be specified in driver data for each particular
+> + * supported device.
+> + *
+> + * %QUIRK_HAS_ATOMIC_BITSETHW: PMU IP has special atomic bit set/clear HW
+> + * to protect against PMU registers being accessed from multiple bus masters.
+> + *
+> + * %QUIRK_PMU_ALIVE_WRITE_SEC: PMU registers are *not* write accesible from
+> + * normal world. This is found on some SoCs as a security hardening measure. PMU
+> + * registers on these SoCs can only be written via a SMC call and registers are
+> + * checked by EL3 firmware against an allowlist before the write can procede.
+> + * Note: This quirk should only be set for platforms whose el3 firmware
+> + * implements the TENSOR_SMC_PMU_SEC_REG interface below.
+> + */
+> +
+> +#define QUIRK_HAS_ATOMIC_BITSETHW		BIT(0)
+> +#define QUIRK_PMU_ALIVE_WRITE_SEC		BIT(1)
+> +
+> +#define PMUALIVE_MASK GENMASK(14, 0)
+> +
+>  struct exynos_pmu_context {
+>  	struct device *dev;
+>  	const struct exynos_pmu_data *pmu_data;
+> +	struct regmap *pmureg;
+> +	void __iomem *pmu_base_addr;
+> +	phys_addr_t pmu_base_pa;
+> +	/* protect PMU reg atomic update operations */
+> +	spinlock_t update_lock;
+>  };
+>  
+> -void __iomem *pmu_base_addr;
+>  static struct exynos_pmu_context *pmu_context;
+>  
+> +/*
+> + * Some SoCs are configured so that PMU_ALIVE registers can only be written
+> + * from el3. As Linux needs to write some of these registers, the following
+> + * SMC register read/write/read,write,modify interface is used.
+> + *
+> + * Note: This SMC interface is known to be implemented on gs101 and derivative
+> + * SoCs.
+> + */
+> +#define TENSOR_SMC_PMU_SEC_REG			(0x82000504)
+> +#define TENSOR_PMUREG_READ			0
+> +#define TENSOR_PMUREG_WRITE			1
+> +#define TENSOR_PMUREG_RMW			2
+
+These are tensor specific...
+
+> +
+> +int set_priv_reg(phys_addr_t reg, u32 val)
+
+...but this not...
+
+> +{
+> +	struct arm_smccc_res res;
+> +
+> +	arm_smccc_smc(TENSOR_SMC_PMU_SEC_REG,
+
+... and this is again.
+
+Some naming should be clarified, e.g. tensor specific functions should
+have some prefix as well, e.g. tensor_writel(), tensor_cmpxchg() or
+something similar.
+
+
+> +		      reg,
+> +		      TENSOR_PMUREG_WRITE,
+> +		      val, 0, 0, 0, 0, &res);
+> +
+> +	if (res.a0)
+> +		pr_warn("%s(): SMC failed: %lu\n", __func__, res.a0);
+> +
+> +	return (int)res.a0;
+> +}
+> +
+> +int rmw_priv_reg(phys_addr_t reg, u32 mask, u32 val)
+> +{
+> +	struct arm_smccc_res res;
+> +
+> +	arm_smccc_smc(TENSOR_SMC_PMU_SEC_REG,
+> +		      reg,
+> +		      TENSOR_PMUREG_RMW,
+> +		      mask, val, 0, 0, 0, &res);
+> +
+> +	if (res.a0)
+> +		pr_warn("%s(): SMC failed: %lu\n", __func__, res.a0);
+> +
+> +	return (int)res.a0;
+> +}
+> +
+> +/*
+> + * For SoCs that have set/clear bit hardware (as indicated by
+> + * QUIRK_HAS_ATOMIC_BITSETHW) this function can be used when
+> + * the PMU register will be accessed by multiple masters.
+> + *
+> + * For example, to set bits 13:8 in PMU reg offset 0x3e80
+> + * exynos_pmu_set_bit_atomic(0x3e80, 0x3f00, 0x3f00);
+> + *
+> + * To clear bits 13:8 in PMU offset 0x3e80
+> + * exynos_pmu_set_bit_atomic(0x3e80, 0x0, 0x3f00);
+> + */
+> +static inline void exynos_pmu_set_bit_atomic(unsigned int offset,
+> +					     u32 val, u32 mask)
+> +{
+> +	unsigned long flags;
+> +	unsigned int i;
+> +
+> +	spin_lock_irqsave(&pmu_context->update_lock, flags);
+> +	for (i = 0; i < 32; i++) {
+> +		if (mask & BIT(i)) {
+> +			if (val & BIT(i)) {
+> +				offset |= 0xc000;
+> +				pmu_raw_writel(i, offset);
+> +			} else {
+> +				offset |= 0x8000;
+> +				pmu_raw_writel(i, offset);
+> +			}
+> +		}
+> +	}
+> +	spin_unlock_irqrestore(&pmu_context->update_lock, flags);
+> +}
+> +
+> +int exynos_pmu_update_bits(unsigned int offset, unsigned int mask,
+> +			   unsigned int val)
+> +{
+> +	if (pmu_context->pmu_data &&
+> +	    pmu_context->pmu_data->quirks & QUIRK_PMU_ALIVE_WRITE_SEC)
+> +		return rmw_priv_reg(pmu_context->pmu_base_pa + offset,
+> +				    mask, val);
+> +
+> +	return regmap_update_bits(pmu_context->pmureg, offset, mask, val);
+> +}
+> +EXPORT_SYMBOL(exynos_pmu_update_bits);
+
+You need kerneldoc for all exported functions.
+
+Also, EXPORT_SYMBOL_GPL
+
+> +
+>  void pmu_raw_writel(u32 val, u32 offset)
+>  {
+> -	writel_relaxed(val, pmu_base_addr + offset);
+> +	if (pmu_context->pmu_data &&
+> +	    pmu_context->pmu_data->quirks & QUIRK_PMU_ALIVE_WRITE_SEC)
+> +		return (void)set_priv_reg(pmu_context->pmu_base_pa + offset,
+> +					  val);
+> +
+> +	return writel_relaxed(val, pmu_context->pmu_base_addr + offset);
+>  }
+>  
+
+...
+
+> diff --git a/drivers/soc/samsung/exynos-pmu.h b/drivers/soc/samsung/exynos-pmu.h
+> index 1c652ffd79b4..570c6e4dc8c3 100644
+> --- a/drivers/soc/samsung/exynos-pmu.h
+> +++ b/drivers/soc/samsung/exynos-pmu.h
+> @@ -25,8 +25,12 @@ struct exynos_pmu_data {
+>  	void (*pmu_init)(void);
+>  	void (*powerdown_conf)(enum sys_powerdown);
+>  	void (*powerdown_conf_extra)(enum sys_powerdown);
+> +	u32 quirks;
+>  };
+>  
+> +int set_priv_reg(phys_addr_t reg, u32 val);
+> +int rmw_priv_reg(phys_addr_t reg, u32 mask, u32 val);
+
+Why these are in the header?
+
+Best regards,
+Krzysztof
 
 
