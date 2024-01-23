@@ -1,224 +1,431 @@
-Return-Path: <devicetree+bounces-34268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47C4F8393B1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:51:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9C98393C0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94E201F2A89C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:51:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8105F1C26136
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:52:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD18B60246;
-	Tue, 23 Jan 2024 15:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BF1760251;
+	Tue, 23 Jan 2024 15:47:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tfKYRcwV"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="m65fAOIO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E585460878
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:44:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE3A60243;
+	Tue, 23 Jan 2024 15:47:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706024699; cv=none; b=qfa53oH1DUQjVu6gcox8L58OTDmDZT4LRwylzz34EUgGzyvKCN+LCwj5MJQSdVkv9mVa0pf3GBirQnB4oq7iA0bOl4SIUyFuyn0J/XRX0NPnR/8gBLz6mMDfMx0itG5jtKZqlhnwqVgtOcOf3BKEEcSXBzZQueemcVsZcrZLoYU=
+	t=1706024839; cv=none; b=nOUXul3FxLaFP/D48y/HGsB5TvN2SBNA/7LUSlj5+2kFulx5Z8XRlquV7VEJWzbdxgR5GNmVSFj/vOf3QwOdeeqUlOtvRkFGdAnlA3ugPTsMM/U7cHxCM9zUcnkZLVpfHonVHCRe2ZVq+88Q4uK4OSxSHy1hVzU7cK9aOkXnqvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706024699; c=relaxed/simple;
-	bh=v66z/6SqbUGnxW01A6EAcko38iSDYwdZ7F36jFF1++U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DxO8sjuaG4kzf89foiT7UfdnXMMAQImIdogbCFAijL2Snup4a9fk/j+y4MceNx5ifqifc8Wz/VGFyMVGF1iypY2xP4ehRCIujJE5vUu1djDeOSdzVoiRzQQbN0CI+cissRCLcgu5CxfwtgTsLpThRsHJ6Pv/m5IIJnKU6EVc3Is=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tfKYRcwV; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40e8fec0968so57721135e9.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:44:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706024696; x=1706629496; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fw8HiKqsvLnNZBoBe2w58hvINNLUyhw5JoLm2QBqfBU=;
-        b=tfKYRcwVkixgLVqM/G50oFO0iCTzYv/qTx9PGl3Sq60FGUJVCQldd5HkMzGwmOlZNt
-         CtzlDTkT10hgjA1D8B9Nh2gejBPlbJU0h444iLVmavBYgu2G0aoY2NJGAYPUOjjvPxpU
-         SXAbfH6G+dE/Lj80MCv99xPCSLX3BIdYKDsZodyT6ibGF7Y10ge3Tp0WXWjL5yI+Q9zf
-         12WZ/oHvTxYWRQdNoElprtKG3/eCzUyJmbfrd/CZ2/vM4PkeSdMMkS9kz8mlcVBvIAiN
-         wGoa8ZUADrh/Hh0iVCjDd21S5ZwbCBtWs0S2h+TxcY5Vnaf9uBh5QrmpK8o5iN8Y0Uhd
-         KSmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706024696; x=1706629496;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fw8HiKqsvLnNZBoBe2w58hvINNLUyhw5JoLm2QBqfBU=;
-        b=d0Y2twvtwJixvYZ0mBpnEXYsNuwfdpoZBqYiEjLlVRqYlngutZKALq0509iQfxl7Bx
-         Yr3JVHILbz+V4iqaDqM0M3SN6J4dvyaSjR5ofSCfamBGjLzVFmZU2yifVn/JJQvgTvsn
-         hoeuQG/nk6VUjoqVjAFU9xOlvZZ8gNOJ5tcGK1ZjC3crh0qq9+TOcCXe/WuRXudONGuS
-         SbX+C2aBa4y/8b6YmrMFaAjg+55jssa6R/Z2QIltDFpJnAe3xKg5u0LFxoBdOtH0r3IE
-         thxQYXbQJ2sYxGeI44gdrJXBIKKz3VKsdCE2lA0zw6MDf3giOkglyg8xH+bvs+H+qE0u
-         rDiw==
-X-Gm-Message-State: AOJu0YwEQxPZsudF5kv3txuv7jxC10kvUpCb+FPGTtXkKJI5kTPn2WzA
-	yzJ5pafk4vNUefStXmY6JxcZ5Mv3dtqP1Eu7/DjF77quusgE8L7nVHd75KHjqI4=
-X-Google-Smtp-Source: AGHT+IHLMgFndLZi5jz+e/VjdAkL90bxzQ3xFK2TXeY0BSXFOkpzbbQ3Qa4tKoIUoS/Mxa+Gmldvng==
-X-Received: by 2002:a05:600c:2409:b0:40e:b177:8dd5 with SMTP id 9-20020a05600c240900b0040eb1778dd5mr241750wmp.228.1706024696177;
-        Tue, 23 Jan 2024 07:44:56 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id w18-20020a05600c475200b0040d2d33312csm43415670wmo.2.2024.01.23.07.44.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 07:44:55 -0800 (PST)
-Message-ID: <07cb226c-19d6-41b4-9af8-a3bad0ba7a5b@linaro.org>
-Date: Tue, 23 Jan 2024 16:44:53 +0100
+	s=arc-20240116; t=1706024839; c=relaxed/simple;
+	bh=91oeKKxHbhbyRcQw6MYpCH6wNS8RWmaWPd1EESRYLUE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DxHtjGhTRQsrO8IPz+H6Nl3zTgBypaCjBwU27O7n7AJJtH13i6nAfUgpl67U9HwZl9sXH+PH6+VebFjCGElFvwhCh5I/+itLQqa8cDP+R67WfeDhyT9Gg2xdjJOQZAJzngTh2Fxl/XQ5VnCzs1JVW5LYcaxKnNlANlJZaEuUXJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=m65fAOIO; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1706024837; x=1737560837;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=91oeKKxHbhbyRcQw6MYpCH6wNS8RWmaWPd1EESRYLUE=;
+  b=m65fAOIOGML9nwyAo/EEhzE5ohbLb3ZXo7627LPgTXGdDhLLlJl59edk
+   unFjBC8MQyb2atgAL8cmL853XPvaYDce2NFjAPxSpcZFnx3/teU4Z29Zh
+   gD4erRjJ07naminzc3vPS/Eq+cc855+cEVJhT83P+B/PJK1Nk8bmR5e3F
+   qnFfBTCSuhAO5JTy2exYmnvCthrzrGEys0/z5BFN/r+hKdmkflsCuw0ei
+   hqmNKb8vvha7+fkqsfovij8CZvOOUS74GuD9Cz7nNVNFh9qi6kiOqx6AH
+   0f58crXViJLYlspdnQYL9bg5ss2/v0vvC9cVY2XX8dK73n8Y2qhZq3eP9
+   Q==;
+X-CSE-ConnectionGUID: RQnQrX+dS7qJcQ63qv9bpg==
+X-CSE-MsgGUID: XJN7E3QCSZ21bEdCicAh7w==
+X-IronPort-AV: E=Sophos;i="6.05,214,1701154800"; 
+   d="scan'208";a="16414313"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Jan 2024 08:47:15 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 23 Jan 2024 08:46:59 -0700
+Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Tue, 23 Jan 2024 08:46:57 -0700
+From: Andrei Simion <andrei.simion@microchip.com>
+To: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <claudiu.beznea@tuxon.dev>, <lgirdwood@gmail.com>,
+	<broonie@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Andrei Simion
+	<andrei.simion@microchip.com>
+Subject: [PATCH] dt-bindings: regulator: microchip,mcp16502: convert to YAML
+Date: Tue, 23 Jan 2024 17:45:25 +0200
+Message-ID: <20240123154525.157448-1-andrei.simion@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] arm64: dts: qcom: qrb5165-rb5: model the PMU of the QCA6391
-Content-Language: en-US
-To: Bjorn Andersson <andersson@kernel.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>, Alex Elder <elder@linaro.org>,
- Srini Kandagatla <srinivas.kandagatla@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20240122182158.69183-1-brgl@bgdev.pl>
- <u5kvv3iip552yb5ykc4t2arfry2t7f34hwmemd7z6qfw677fs6@ldlwoycyacrm>
- <CAMRc=MeT08vUUqJmtVCP=kSUrbsoKFHP6gHgJPtqztC593oGpQ@mail.gmail.com>
- <2d36zymagbran5m7ggcmy2zmtpt7xpefgys7rebbwydz5bpux2@svlv75ctdow5>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <2d36zymagbran5m7ggcmy2zmtpt7xpefgys7rebbwydz5bpux2@svlv75ctdow5>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 23/01/2024 16:34, Bjorn Andersson wrote:
-> On Tue, Jan 23, 2024 at 10:22:33AM +0100, Bartosz Golaszewski wrote:
->> On Tue, Jan 23, 2024 at 5:47 AM Bjorn Andersson <andersson@kernel.org> wrote:
->>>
->>> On Mon, Jan 22, 2024 at 07:21:58PM +0100, Bartosz Golaszewski wrote:
->>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>>
->>>> I'm limiting the audience of this compared to the PCI power sequencing
->>>> series as I wanted to run the DT part by the maintainers before I commit
->>>> to a doomed effort.
->>>>
->>>
->>> With linux-arm-msm and deviectree in there, you have a fairly big
->>> limited audience... I think if anything, your proposal is doomed by the
->>> lack of a proper commit message describing what this is.
->>>
->>
->> By limiting I meant compared to the PCI power sequencing series but
->> you're right, I should have linked that series in here. In any case -
->> this is not intended for upstream, I literally wanted input on whether
->> this representation is correct before I send a PoC of the pwrseq
->> subsystem using it.
->>
->>> Below you'll find some questions/feedback based on our previous
->>> discussions on the topic, although I'm not able to understand the
->>> motivations behind what you propose - or even fully what it is that
->>> you're proposing.
->>>
->>>> Here is the DT representation of the QCA6390's PMU with its inputs and
->>>> outputs. If I were to implement the pwrseq framework that would be able
->>>> to assign the relevant pwrseq data to the consumer based on the actual
->>>> regulators and not abstract bt-pwrseq or wlan-pwrseq properties - would
->>>> that fly with you?
->>>>
->>>
->>> Why do you need to make up this intermediate/fake "PMU" thing? The
->>> regulators are reference counted already.
->>>
->>
->> Dmitry insists that for QCA6490 we *do* need to implement a proper
->> power sequencing with delays between enabling WLAN and BT GPIOs.
->>
->> See: https://lore.kernel.org/netdev/CAA8EJpqyK=pkjEofWV595tp29vjkCeWKYr-KOJh_hBiBbkVBew@mail.gmail.com/
->>
-> 
-> I had not seen that comment before, would have been excellent to include
-> in your "problem description".
-> 
->> Even though the regulators are reference counted, this is not enough.
->> Dmitry tried to implement a power sequencing framework some time ago
->> but the main complaint was that explicit properties like bt-pwrseq are
->> not a right fit for DT as they don't represent hardware. We still need
->> to centralize the control over the shared resources though but what I
->> want to propose is doing that with a more realistic representation of
->> HW and just reusing phandle connections between DT nodes to retrieve
->> the correct pwrseq struct in the driver. But this is implementation
->> detail and before I want to clear the HW representation with DT
->> maintainers.
->>
-> 
-> In my view Dmitry had at least one proposal, that was rejected, where he
-> represented the qca6390 package as a thing in DeviceTree.
-> 
->> Dmitry is also correct in pointing out that It's also simply an
->> incorrect representation of what is on the board as the PMU is a
->> discrete module, has its inputs and outputs, even though they're
->> inside the package.
->>
-> 
-> I'm not sure what you're trying to say here. There's no "PMU module" on
-> the board, it's a block within the QCA6390. But perhaps that's what
-> you're also saying?
+Convert devicetree binding mcp16502-regulator.txt to YAML format.
 
-While the board does not have, the board schematics have it, e.g. RB5.
-Also QCA datasheet (at least the one on RB5) describes relationships
-between the external supplies, feeding PMU in my understanding, and
-internal supplies, coming from PMU to specific blocks.
+Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+---
+ .../bindings/regulator/mcp16502-regulator.txt | 144 --------------
+ .../regulator/microchip,mcp16502.yaml         | 182 ++++++++++++++++++
+ 2 files changed, 182 insertions(+), 144 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/microchip,mcp16502.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt b/Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
+deleted file mode 100644
+index 451cc4e86b01..000000000000
+--- a/Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
++++ /dev/null
+@@ -1,144 +0,0 @@
+-MCP16502 PMIC
+-
+-Required properties:
+-- compatible: "microchip,mcp16502"
+-- reg: I2C slave address
+-- lpm-gpios: GPIO for LPM pin. Note that this GPIO *must* remain high during
+-	     suspend-to-ram, keeping the PMIC into HIBERNATE mode; this
+-	     property is optional;
+-- regulators: A node that houses a sub-node for each regulator within
+-              the device. Each sub-node is identified using the node's
+-              name. The content of each sub-node is defined by the
+-              standard binding for regulators; see regulator.txt.
+-
+-Regulators of MCP16502 PMIC:
+-1) VDD_IO	- Buck (1.2 - 3.7 V)
+-2) VDD_DDR	- Buck (0.6 - 1.85 V)
+-3) VDD_CORE	- Buck (0.6 - 1.85 V)
+-4) VDD_OTHER	- BUCK (0.6 - 1.85 V)
+-5) LDO1		- LDO  (1.2 - 3.7 V)
+-6) LDO2		- LDO  (1.2 - 3.7 V)
+-
+-Regulator modes:
+-2 - FPWM: higher precision, higher consumption
+-4 - AutoPFM: lower precision, lower consumption
+-
+-Each regulator is defined using the standard binding for regulators.
+-
+-Example:
+-
+-mcp16502@5b {
+-	compatible = "microchip,mcp16502";
+-	reg = <0x5b>;
+-	status = "okay";
+-	lpm-gpios = <&pioBU 7 GPIO_ACTIVE_HIGH>;
+-
+-	regulators {
+-		VDD_IO {
+-			regulator-name = "VDD_IO";
+-			regulator-min-microvolt = <1200000>;
+-			regulator-max-microvolt = <3700000>;
+-			regulator-initial-mode = <2>;
+-			regulator-allowed-modes = <2>, <4>;
+-			regulator-always-on;
+-
+-			regulator-state-standby {
+-				regulator-on-in-suspend;
+-				regulator-mode = <4>;
+-			};
+-
+-			regulator-state-mem {
+-				regulator-off-in-suspend;
+-				regulator-mode = <4>;
+-			};
+-		};
+-
+-		VDD_DDR {
+-			regulator-name = "VDD_DDR";
+-			regulator-min-microvolt = <600000>;
+-			regulator-max-microvolt = <1850000>;
+-			regulator-initial-mode = <2>;
+-			regulator-allowed-modes = <2>, <4>;
+-			regulator-always-on;
+-
+-			regulator-state-standby {
+-				regulator-on-in-suspend;
+-				regulator-mode = <4>;
+-			};
+-
+-			regulator-state-mem {
+-				regulator-on-in-suspend;
+-				regulator-mode = <4>;
+-			};
+-		};
+-
+-		VDD_CORE {
+-			regulator-name = "VDD_CORE";
+-			regulator-min-microvolt = <600000>;
+-			regulator-max-microvolt = <1850000>;
+-			regulator-initial-mode = <2>;
+-			regulator-allowed-modes = <2>, <4>;
+-			regulator-always-on;
+-
+-			regulator-state-standby {
+-				regulator-on-in-suspend;
+-				regulator-mode = <4>;
+-			};
+-
+-			regulator-state-mem {
+-				regulator-off-in-suspend;
+-				regulator-mode = <4>;
+-			};
+-		};
+-
+-		VDD_OTHER {
+-			regulator-name = "VDD_OTHER";
+-			regulator-min-microvolt = <600000>;
+-			regulator-max-microvolt = <1850000>;
+-			regulator-initial-mode = <2>;
+-			regulator-allowed-modes = <2>, <4>;
+-			regulator-always-on;
+-
+-			regulator-state-standby {
+-				regulator-on-in-suspend;
+-				regulator-mode = <4>;
+-			};
+-
+-			regulator-state-mem {
+-				regulator-off-in-suspend;
+-				regulator-mode = <4>;
+-			};
+-		};
+-
+-		LDO1 {
+-			regulator-name = "LDO1";
+-			regulator-min-microvolt = <1200000>;
+-			regulator-max-microvolt = <3700000>;
+-			regulator-always-on;
+-
+-			regulator-state-standby {
+-				regulator-on-in-suspend;
+-			};
+-
+-			regulator-state-mem {
+-				regulator-off-in-suspend;
+-			};
+-		};
+-
+-		LDO2 {
+-			regulator-name = "LDO2";
+-			regulator-min-microvolt = <1200000>;
+-			regulator-max-microvolt = <3700000>;
+-			regulator-always-on;
+-
+-			regulator-state-standby {
+-				regulator-on-in-suspend;
+-			};
+-
+-			regulator-state-mem {
+-				regulator-off-in-suspend;
+-			};
+-		};
+-
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/regulator/microchip,mcp16502.yaml b/Documentation/devicetree/bindings/regulator/microchip,mcp16502.yaml
+new file mode 100644
+index 000000000000..13a6806b4604
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/microchip,mcp16502.yaml
+@@ -0,0 +1,182 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/microchip,mcp16502.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MCP16502 - High-Performance PMIC
++
++maintainers:
++  - Andrei Simion <andrei.simion@microchip.com>
++
++description: The MCP16502 is an optimally integrated PMIC compatible
++  with Microchip's eMPUs(Embedded Microprocessor Units), requiring
++  Dynamic Voltage Scaling (DVS) with the use of High-Performance mode (HPM).
++
++properties:
++  compatible:
++    const: microchip,mcp16502
++
++  lpm-gpios:
++    description: GPIO for LPM pin.
++      Note that this GPIO must remain high during
++      suspend-to-ram, keeping the PMIC into HIBERNATE mode;
++    maxItems: 1
++
++  reg:
++    description: I2C slave address
++    maxItems: 1
++
++  regulators:
++    type: object
++    description: List of regulators and its properties.
++      A node that houses a sub-node for each regulator within
++      the device. Each sub-node is identified using the node's
++      name. The content of each sub-node is defined by the
++      standard binding for regulators;
++
++    patternProperties:
++      "^(VDD_(IO|CORE|DDR|OTHER)|LDO[1-2])$":
++        type: object
++        $ref: regulator.yaml#
++
++        properties:
++          regulator-name:
++            pattern: "^(VDD_(IO|CORE|DDR|OTHER)|LDO[1-2])$"
++
++          regulator-allowed-modes:
++            description: Supported modes
++              2 - FPWM higher precision, higher consumption
++              4 - AutoPFM lower precision, lower consumption
++            items:
++              enum: [2, 4]
++
++        unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - regulators
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c@600 {
++      reg = <0x600 0x100>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      mcp16502@5b {
++          compatible = "microchip,mcp16502";
++          reg = <0x5b>;
++
++          regulators {
++                  VDD_IO {
++                          regulator-name = "VDD_IO";
++                          regulator-min-microvolt = <3300000>;
++                          regulator-max-microvolt = <3300000>;
++                          regulator-initial-mode = <2>;
++                          regulator-allowed-modes = <2>, <4>;
++                          regulator-always-on;
++
++                          regulator-state-standby {
++                                  regulator-on-in-suspend;
++                                  regulator-mode = <4>;
++                          };
++
++                          regulator-state-mem {
++                                  regulator-off-in-suspend;
++                                  regulator-mode = <4>;
++                          };
++                  };
++
++                  VDD_DDR {
++                          regulator-name = "VDD_DDR";
++                          regulator-min-microvolt = <1350000>;
++                          regulator-max-microvolt = <1350000>;
++                          regulator-initial-mode = <2>;
++                          regulator-allowed-modes = <2>, <4>;
++                          regulator-always-on;
++
++                          regulator-state-standby {
++                                  regulator-on-in-suspend;
++                                  regulator-mode = <4>;
++                          };
++
++                          regulator-state-mem {
++                                  regulator-on-in-suspend;
++                                  regulator-mode = <4>;
++                          };
++                  };
++
++                  VDD_CORE {
++                           regulator-name = "VDD_CORE";
++                           regulator-min-microvolt = <1150000>;
++                           regulator-max-microvolt = <1150000>;
++                           regulator-initial-mode = <2>;
++                           regulator-allowed-modes = <2>, <4>;
++                           regulator-always-on;
++
++                           regulator-state-standby {
++                                    regulator-on-in-suspend;
++                                    regulator-mode = <4>;
++                           };
++
++                           regulator-state-mem {
++                                    regulator-off-in-suspend;
++                                    regulator-mode = <4>;
++                           };
++                  };
++
++                  VDD_OTHER {
++                           regulator-name = "VDD_OTHER";
++                           regulator-min-microvolt = <1050000>;
++                           regulator-max-microvolt = <1250000>;
++                           regulator-initial-mode = <2>;
++                           regulator-allowed-modes = <2>, <4>;
++                           regulator-always-on;
++
++                           regulator-state-standby {
++                                    regulator-on-in-suspend;
++                                    regulator-mode = <4>;
++                           };
++
++                           regulator-state-mem {
++                                    regulator-off-in-suspend;
++                                    regulator-mode = <4>;
++                           };
++                  };
++
++                  LDO1 {
++                           regulator-name = "LDO1";
++                           regulator-min-microvolt = <1800000>;
++                           regulator-max-microvolt = <1800000>;
++                           regulator-always-on;
++
++                           regulator-state-standby {
++                                    regulator-on-in-suspend;
++                           };
++
++                           regulator-state-mem {
++                                    regulator-off-in-suspend;
++                           };
++                 };
++
++                 LDO2 {
++                           regulator-name = "LDO2";
++                           regulator-min-microvolt = <1200000>;
++                           regulator-max-microvolt = <3700000>;
++                           regulator-always-on;
++
++                           regulator-state-standby {
++                                    regulator-on-in-suspend;
++                           };
++
++                           regulator-state-mem {
++                                    regulator-off-in-suspend;
++                           };
++                  };
++             };
++        };
++    };
+-- 
+2.34.1
 
 
