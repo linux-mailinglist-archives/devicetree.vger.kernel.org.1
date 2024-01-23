@@ -1,73 +1,57 @@
-Return-Path: <devicetree+bounces-34042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8798388CE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:22:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 335088388D6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:25:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79BA62883DD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:22:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6AD99B22132
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:25:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC10358124;
-	Tue, 23 Jan 2024 08:21:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06AFE56741;
+	Tue, 23 Jan 2024 08:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WtTViEB1"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="AvIxWKxq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 191DD5733D
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:21:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3F858AA7
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705998111; cv=none; b=IuEd1EX8NDUyc2tb/6TPlgSq2vqs9Q65BrkKKrb4ELbF/himEMor2LwVvIjh4dPkQmurZPKiRPK+XS8KId9G8T0BPvugQULzicntwanF6otkso0g27nVDNTn7t0Nk3E4ycQyjuG8Utrk58ENlJxbG3EXjh/Kti5/mVKvpm8FEo8=
+	t=1705998320; cv=none; b=gHnQlrhw8mpFNcH/DMAjxL197hHdlClXunNhelBE7zgS/BihgRfEi/glT1HiHhyIoec8Q52ySNvDf48GUy5/XhQEe5HgMIBLPkdJn+0LiyBaOMl6HLOZmyNO3tKMkD149TWTpUBb2XIi7VfTtpdnHlhKGDl6ZcGc48a9h/E7C/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705998111; c=relaxed/simple;
-	bh=yLmCf3LZn4vpBl6Mi3X/E4/QwFaBbTAwx3SO0oARWpE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aOl7EHelgXqjQHOmCYzlBofqTHA8aZmpgf4wYj/QGOjpMcNn5U0j7ns8COcpIE9YUVi67DpuLtyMwu0Lw3oEp23VERcp+JCa1JUom72SFHpTApzEItEn+zWbOMiQRJea+EE5W/6x8gtrafgQoKVZCNNRuiWL8DiA3b4+lWWbMxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WtTViEB1; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-339237092dcso2834176f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 00:21:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705998108; x=1706602908; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Zhs/3EXWuNywd5myI2R42csthImnPa9FJe9iZYIsfrA=;
-        b=WtTViEB1j+0E5AzBwH0m5FlcIqcTIXjOtIp6GP72G8A8jf8sE8Q84736oGM6GMDM8r
-         E5XhDeto7dH/z9hFl189iEeZUGZuCrr2MLllH8bmBUiAr+HZXig/3v3/K9UYqOHhhUWc
-         RojB55CMh+2hwQefzwPXdayPjT4p/53UiL9mhG3hXMjvlxN6wqclMbn2kKeZQ+bPAWK1
-         swGnk6ataniKii90vkyZrp5zuxRoVIkL3XO3Xeoc4F0ua7ZT/XspeamiCF+XEtBtURaM
-         9wBfFR4qkvCLWE5OZiS11J5QQrO6BrgjNfITlfcAL5xPGUUjUINTGtncFEqHTnUlmmsE
-         fsDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705998108; x=1706602908;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zhs/3EXWuNywd5myI2R42csthImnPa9FJe9iZYIsfrA=;
-        b=mJI3N56ptA0hsWlOnM6bhi+9LxiYF+FTQwuGHp3rat+mh/VLYZjT1gPJPC7dW/lh5j
-         GnM4CRI7p66F7qnSxKN0BVLBfckmAB0w95KbeFrH5wlBPfHRFzBxXCshwSq024BYJPXn
-         UQDRrSphtDvTqPVMUBvhYHWFePxZ/PCB61byFu6KdT3f00pEotVzRgpsUm7BiEgQ3Azd
-         cqAnVdyrr1bMY1ZAmkF8f5tFRC54OuOM3wk+SOYG50OD8CxncwH1ha3lmSMsZpKbw7nR
-         iJrA4ep3+5AyErNeiXLsp6XUWqGXcocCuVDwb8KndCg/gLDNri2vShUQTIqh2M+n7lH2
-         Pk0g==
-X-Gm-Message-State: AOJu0YxCnxbVWRyoz8SCen19+JOSJWztPrXijBY+4vjI2HBhJfjGC/40
-	UObLOnTU/c6SO4ZpTn/CEVIWepD1uAGLsguwaRiY8gtQLIqmeJRJMAol/GCc4W0=
-X-Google-Smtp-Source: AGHT+IFMNKBfaxHkYhIDB96hpHah0NfQUDbzn+gQCywMAWzaKl5qJMw4Fbz2etGtoM+OwlUljrSozw==
-X-Received: by 2002:a05:6000:18cc:b0:337:610f:56f7 with SMTP id w12-20020a05600018cc00b00337610f56f7mr3269725wrq.127.1705998108301;
-        Tue, 23 Jan 2024 00:21:48 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id h10-20020adff4ca000000b0033925aa222dsm8715975wrp.57.2024.01.23.00.21.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 00:21:47 -0800 (PST)
-Message-ID: <05d8a712-a527-4892-aee1-4b52c21c3d32@linaro.org>
-Date: Tue, 23 Jan 2024 09:21:46 +0100
+	s=arc-20240116; t=1705998320; c=relaxed/simple;
+	bh=etjXrtofZrDV7jBubmxLdBFLPOXo39bwSTLp7eQHX9s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nRKjNnB1lWqPeMWAPYn4QYmR30GhCkRMBVIiX/wQmebnE73rhgkAF/48XIhhKENHwnx3Suy+Jq6dVyh799sws0plfNROVjhuiIsf58vytYqua/Cyjp5A2/Ecn82qjDTYnfAVTcZVEBWCo0TE0d9VRb3QewqSOilgocP7KgSExio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=AvIxWKxq; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1705998314; x=1708590314;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=etjXrtofZrDV7jBubmxLdBFLPOXo39bwSTLp7eQHX9s=;
+	b=AvIxWKxq8PhntOWM8+uwD/o9U2cZsZ3VGOeRXRdcZFXH28QR6bMJOShrLRtNTCsp
+	K2I5PY2Tb7ek8KNTpZAhH3K3zEhST4Dkc33DSiUGJ8UzopGWz9m7QjD2raD8JQAO
+	r0ZwcTJycO/VovNK2tq/c/O/Y8XhBzx4LVJTlxUCyWM=;
+X-AuditID: ac14000a-fbefe7000000290d-3d-65af77e97bd8
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 6E.39.10509.9E77FA56; Tue, 23 Jan 2024 09:25:14 +0100 (CET)
+Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 23 Jan
+ 2024 09:25:08 +0100
+Message-ID: <7944bd80-32d7-4ac3-9c0a-806394262f1c@phytec.de>
+Date: Tue, 23 Jan 2024 09:25:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,82 +59,179 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Fix spelling mistake in
- 'tesla,fsd-clock.yaml'
+Subject: Re: [PATCH v4 3/3] arm64: dts: imx93: Add phyBOARD-Segin-i.MX93
+ support
 Content-Language: en-US
-To: Varada Pavani <v.pavani@samsung.com>, mturquette@baylibre.com,
- sboyd@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, s.nawrocki@samsung.com, tomasz.figa@gmail.com
-Cc: linux-samsung-soc@vger.kernel.org, alim.akhtar@samsung.com,
- aswani.reddy@samsung.com, pankaj.dubey@samsung.com
-References: <CGME20231219115856epcas5p371abeb4264f60309e597b90954e6d58c@epcas5p3.samsung.com>
- <20231219115834.65720-1-v.pavani@samsung.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20231219115834.65720-1-v.pavani@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To: Stefan Wahren <wahrenst@gmx.net>, Mathieu Othacehe <othacehe@gnu.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Li Yang
+	<leoyang.li@nxp.com>, Primoz Fiser <primoz.fiser@norik.com>, Christoph
+ Stoidner <c.stoidner@phytec.de>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>
+References: <20240122095306.14084-1-othacehe@gnu.org>
+ <20240122095306.14084-4-othacehe@gnu.org>
+ <537266fe-0bf7-4208-a9f3-ae27f462c6ed@phytec.de>
+ <85fe8c8b-ea08-4f24-9a06-33a5678c1a0a@gmx.net>
+From: Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <85fe8c8b-ea08-4f24-9a06-33a5678c1a0a@gmx.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMIsWRmVeSWpSXmKPExsWyRpKBR/dV+fpUg2ev+C3W7D3HZDH/yDlW
+	i4dX/S1WTd3JYtH34iGzxaHmA0wWmx5fY7Xo+rWS2eLyrjlsFufvbmG2ONH1kNWide8Rdou/
+	2zexWLzYIm7R/U7d4viJTmYHAY+ds+6yeyzetJ/No22amcemVZ1sHneu7WHz2Lyk3qO/u4XV
+	4/vXDaweG9/tYPLo/2vg8XmTXAB3FJdNSmpOZllqkb5dAlfGsb77zAXfVCu67l9ma2B8Id/F
+	yMkhIWAi8ervPtYuRi4OIYHFTBIzO98wQjh3GSWOLV/NBFLFK2Aj8atvKjuIzSKgKrHo8C1m
+	iLigxMmZT1hAbFEBeYn7t2aA1QgLBElsOP6XDcRmFhCXuPVkPhPIUBGBdhaJ+7smsIM4zAJt
+	jBJTJ7xhg1h3lFFi1ZolYC1sAuoSdzZ8YwWxOQWsJc7secoCMcpCYvGbg+wQtrxE89bZYGcI
+	AdkvLi1ngXhIXmLaudfMEHaoxNYv25kmMArPQnLtLCRXzUIydhaSsQsYWVYxCuVmJmenFmVm
+	6xVkVJakJuulpG5iBEW0CAPXDsa+OR6HGJk4GA8xSnAwK4nw3pBclyrEm5JYWZValB9fVJqT
+	WnyIUZqDRUmcd3VHcKqQQHpiSWp2ampBahFMlomDU6qB0ere+r3HHA9YPT+/6veUnHVL392z
+	7FuyZMHiUxFrRKVK571oX/+8TXBp3KEvLl96lW/WZ8sqm5hrJGhU73s4bZXBv1lG+rqPFWfd
+	P3T2sqL4709WrcZiof+rT7TO3vOmd9ZftxnBE7dduL/sXKW3hqnj1NdMlRtOzbNNnNfZrWIm
+	9M3Hs07hGZ8SS3FGoqEWc1FxIgDcpkT11gIAAA==
 
-On 19/12/2023 12:58, Varada Pavani wrote:
-> Fix typo 'inteernal' to 'internal' in 'Documentation/devicetree/
-> bindings/clock/tesla,fsd-clock.yaml'.
-> 
-> Signed-off-by: Varada Pavani <v.pavani@samsung.com>
-> ---
->  Documentation/devicetree/bindings/clock/tesla,fsd-clock.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Applied with subject fixed.
+Am 23.01.24 um 08:42 schrieb Stefan Wahren:
+> Hi Wadim,
+>
+> Am 23.01.24 um 07:11 schrieb Wadim Egorov:
+>> Hey Mathieu,
+>>
+>> Am 22.01.24 um 10:53 schrieb Mathieu Othacehe:
+>>> Add basic support for phyBOARD-Segin-i.MX93.
+>>> Main features are:
+>>> * eMMC
+>>> * Ethernet
+>>> * SD-Card
+>>> * UART
+>>>
+>>> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
+>>> ---
+>>>   arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>>>   .../dts/freescale/imx93-phyboard-segin.dts    | 141 
+>>> ++++++++++++++++++
+>>>   .../boot/dts/freescale/imx93-phycore-som.dtsi | 127 ++++++++++++++++
+>>>   3 files changed, 269 insertions(+)
+>>>   create mode 100644
+>>> arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>>>   create mode 100644
+>>> arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/Makefile
+>>> b/arch/arm64/boot/dts/freescale/Makefile
+>>> index 2e027675d7bb..65db918c821c 100644
+>>> --- a/arch/arm64/boot/dts/freescale/Makefile
+>>> +++ b/arch/arm64/boot/dts/freescale/Makefile
+>>> @@ -201,6 +201,7 @@ dtb-$(CONFIG_ARCH_MXC) +=
+>>> imx8qxp-colibri-iris-v2.dtb
+>>>   dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
+>>>   dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
+>>>   dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
+>>> +dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
+>>>   dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
+>>>   dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
+>>>   diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>>> b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>>> new file mode 100644
+>>> index 000000000000..5433c33d1322
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>>> @@ -0,0 +1,141 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Copyright (C) 2023 PHYTEC Messtechnik GmbH
+>>> + * Author: Wadim Egorov <w.egorov@phytec.de>, Christoph Stoidner
+>>> <c.stoidner@phytec.de>
+>>> + * Copyright (C) 2024 Mathieu Othacehe <m.othacehe@gmail.com>
+>>> + *
+>>> + * Product homepage:
+>>> + * phyBOARD-Segin carrier board is reused for the i.MX93 design.
+>>> + *
+>>> https://www.phytec.de/produkte/single-board-computer/phyboard-segin-imx6ul/ 
+>>>
+>>> + */
+>>> +
+>>> +#include "imx93-phycore-som.dtsi"
+>>> +
+>>> +/{
+>>> +    model = "PHYTEC phyBOARD-Segin-i.MX93";
+>>> +    compatible = "phytec,imx93-phyboard-segin",
+>>> "phytec,imx93-phycore-som",
+>>> +             "fsl,imx93";
+>>> +
+>>> +    chosen {
+>>> +        stdout-path = &lpuart1;
+>>> +    };
+>>> +
+>>> +    reg_usdhc2_vmmc: regulator-usdhc2 {
+>>> +        compatible = "regulator-fixed";
+>>> +        enable-active-high;
+>>> +        gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
+>>> +        pinctrl-names = "default";
+>>> +        pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
+>>> +        regulator-min-microvolt = <3300000>;
+>>> +        regulator-max-microvolt = <3300000>;
+>>> +        regulator-name = "VCC_SD";
+>>> +    };
+>>> +};
+>>> +
+>>> +/* GPIOs */
+>>> +&gpio1 {
+>>> +    pinctrl-names = "default";
+>>> +    pinctrl-0 = <&pinctrl_gpio1>;
+>>
+>> You are doing more than you describing in your changes log.
+>> Here you are forcing a gpio-only functionality for the X16 header. But
+>> the pins we route down to the X16 expansion connector can be also used
+>> differently.
+>
+> i think the word "forcing" is little bit hard in this case. It doesn't
+> define a gpio-hog.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
+You are defaulting it to be a GPIO.
 
-Best regards,
-Krzysztof
+>
+>> Typically we provide device tree overlays for different use cases on
+>> this expansion connectors.
+>
+> Can you please explain why the device tree overlays cannot overwrite the
+> pinmuxing?
 
+It can, and it should. Thats why I mentioned to use different overlays 
+for different use cases.
+I think it is nicer to have a board only defining it's static components.
+At this point we do not know what users will use the expansion connector 
+for.
+Adding this kind of functionality with overlays follows the idea of 
+defining components where they are actually used/implemented: soc, 
+som/board level.
+You can find a few of the adapters we provide as dtsi files in
+   arch/arm/boot/dts/nxp/imx/*peb*
+Nowadays we have overlays and can use them instead.
+
+
+>
+>>
+>> Please drop the muxing.
+>>
+>> Same applies for the gpio names.
+> What's the problem with defining gpio line names for user friendliness?
+> The Raspberry Pi has also an expansion header, all the pins can be muxed
+> to different functions but still have gpio line names.
+
+This may cause confusion if you use overlays defining other 
+functionalities as the names you define.
+
+Regards,
+Wadim
+
+
+>
+> Best regards
 
