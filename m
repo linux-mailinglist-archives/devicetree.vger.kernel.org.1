@@ -1,250 +1,96 @@
-Return-Path: <devicetree+bounces-34407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3946839A74
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:43:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C459839A8E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:50:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20CB5B2B783
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:43:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25D5E282202
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE6E14C7B;
-	Tue, 23 Jan 2024 20:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FDA14C81;
+	Tue, 23 Jan 2024 20:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="BerJpIr9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NvZm30Ik"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F3125C9A
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 20:43:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38ED14403;
+	Tue, 23 Jan 2024 20:50:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706042607; cv=none; b=FL65p1ftOYSkVxZXauQhCYOvxMbvloRkp2INn0Nt2TpuKJOv8Fzw7BwSVT64YKwCXoGk8YtbIIAyxvKhzkmn3eIOa9SpXOFNn81/E0Yd7GQZ0eqVRBT7tPX40uv7NULaRvxgJ+6cvqZe7t5OGUBlzUGTMltb/WGPFhsimW80Obs=
+	t=1706043034; cv=none; b=e0l2HGqi66jeLGuWq1ny9+g+NJ0pVHDqlbtcxG4aaCaslXDf8ntRpzENoFCxX6F3Lm5qUHd5ioVyvXAVkk0KIZ0pGljQ8cbdkC3G4iR4dZ4O7PO8BXqxyVvcNg3QzZaQp6dt8ya9ZwXGySqYFeOcBwPpdVKw+LKTSa0TuHyG9VA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706042607; c=relaxed/simple;
-	bh=8zLb3neS6Jp/AkbUTNX1TpH766GVQBf7lcwO9rCjoBc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=WyG21ckmtSCkGmPHPh5Jj4BwutSxLsmQhie8SBrmZUUcPFEI7XEnG5P3ugMOkjF5yRaw1yTmkcGhMhqlZ310j3PNRw1xcmtTsvE8oWzVWznR4FOZjlOrpo9WSeT7qrbfNDdOmpqfHhsM3qE08kWj54IgdQv51hEBtlboLJ56zuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=BerJpIr9; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50e7abe4be4so6490042e87.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 12:43:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1706042603; x=1706647403; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NMSor2++UrWhWLE+cIF0EC+iv6dUmbHHRQ/GWZRHrpE=;
-        b=BerJpIr921pS77kpFdigTv24vAL9gpNUefKRSOEo7u8kZVjudXVrSX1rfZFrExDJtH
-         5u82bp/ReLPKVK/1cFpbQx8StMmzrcLq8b8HbEDKjv0ykjgr0tbj6FsTPcxKr0gEKfT9
-         MA8YJuT7R6GbUo66EIa0sMFDgTTyauOmwjvIMa4xxX5XY2VQVlby6EvGAIJU//xhsPQ9
-         8t9jYUMz+8cZ86nDHmoc2cYbbeUhzzczB9hZ7qA41yqtd5vAsq+iPAXIuEIOY2PIs97t
-         HQrsnGEQhooFMVvWfGAH+w7VU0vuPzRAajuPn25WM7IbRzpl6H4o6XraFYov47Dli/BW
-         q4yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706042603; x=1706647403;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NMSor2++UrWhWLE+cIF0EC+iv6dUmbHHRQ/GWZRHrpE=;
-        b=XfxlfqJKnIfmAUwRYxihevqvDmH1lYjSrlH74CUk4AIXmFzLgYtsNWo5Q5gwCSZ19o
-         eRw86qp9dziHsFE2k5je0lEyI33Y/vUg3ILp4BLMhHc4Cyh8TVjy6f2ejbGly2UqZM0R
-         Dq7fmkr/6p19aMJyWGWc+ZoeqQEDDBYE5xG4myn+pHhzKfm7wiV96dcnOfQFypcRE2IG
-         QC/r2i5PyyLq08osvz+Yk/JbT/QCMZ7/XGO82ackgYn4SGQWBc1L3MaTUFAn48HbjrkA
-         CgI+Kpn+E5Mx9gFRqs4TAdvDLBsnFW2SubrCiY/4VqGhChH6r/XKyYHlI5otCFBuvg+I
-         cCMA==
-X-Gm-Message-State: AOJu0YwW6b6p3PSwkMY6zz6EWOfWxsuwycgo7lxYg/QrBlG3O6fWXaOL
-	GsOD5GOVDgiDa8Qm49wVKAUX/Ad/mRc9uixv1CaUZPFtgB5v4O+MPlGHNJR1sxc=
-X-Google-Smtp-Source: AGHT+IEynibo4PgeAij/DM9j4I9iRxSq3WbKkq9FXriiAtlBZCHQna1z27SSGVHIa03u7+oQUhY0FA==
-X-Received: by 2002:a05:6512:12d5:b0:50f:1c90:d3d5 with SMTP id p21-20020a05651212d500b0050f1c90d3d5mr3882137lfg.24.1706042603327;
-        Tue, 23 Jan 2024 12:43:23 -0800 (PST)
-Received: from localhost (mobiledyn-62-240-134-198.mrsn.at. [62.240.134.198])
-        by smtp.gmail.com with ESMTPSA id vg10-20020a170907d30a00b00a3109a492d4sm115755ejc.20.2024.01.23.12.43.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 12:43:23 -0800 (PST)
+	s=arc-20240116; t=1706043034; c=relaxed/simple;
+	bh=MYddOfrG4LOTcyvzHKRcFXsA6OLpJzlhOr/O3WNYetY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p7L1wpskossdvv9QIMxHIMcctG8ThpIgZSAUOQorI2+cMW7i4nLucUw/tBYMb8T72nB1fnCsPN4m/A9tRrYzp4+BsQ6w/w51AIofwtaC9nWVHmhPP/J9uPABQFB+WAJb61q85PGRtirD3zqHhO0mMfFTS/z0tzf+qxW0PeRGCxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NvZm30Ik; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80ACCC433F1;
+	Tue, 23 Jan 2024 20:50:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706043033;
+	bh=MYddOfrG4LOTcyvzHKRcFXsA6OLpJzlhOr/O3WNYetY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NvZm30IkyvfCAZlVER5qlDaInlsI0WB1/yuf1au0OGjfmgUAKZC85cm7qSrDyfes5
+	 Eq3BDkTQQUsiv6oRNzKe2XffR3Mlop4TKkO0FBYr1jfk4b6kZ3Y4GsG39upbsgkSk1
+	 /oe39y8OzmTCo9hRmNkPjLrL54FoGz6mxWzeWVQoSv9Dx+PqRn503/LtbaC3jp5ceA
+	 xhlThuRnkWFyfsAuV76+wjGpNUV2WU98x5SP9pUbWp5HxZq4KOunZ9fdiquKMOuKzm
+	 xmiSCeJFJdnK2mUhTpQMk7rynrPBORDBwJXZ2ASK+JMJ9d/l7PgG5Tv+jlRV2REBjX
+	 ZHv9Emql5iB0A==
+Date: Tue, 23 Jan 2024 14:50:31 -0600
+From: Rob Herring <robh@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: daniel.lezcano@linaro.org, tglx@linutronix.de,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/2] dt-bindings: timer: nxp,sysctr-timer: support i.MX95
+Message-ID: <20240123205031.GA1890036-robh@kernel.org>
+References: <20240122092225.2083191-1-peng.fan@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 23 Jan 2024 21:43:20 +0100
-Message-Id: <CYMDMMXUICGY.21UIRWVXMLART@fairphone.com>
-Subject: Re: [PATCH v2 00/15] usb: typec: qcom-pmic-typec: enable support
- for PMI632 PMIC
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Liam
- Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob
- Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Wesley Cheng" <quic_wcheng@quicinc.com>, "Bryan O'Donoghue"
- <bryan.odonoghue@linaro.org>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Vinod Koul" <vkoul@kernel.org>, "Kishon
- Vijay Abraham I" <kishon@kernel.org>, "Guenter Roeck" <linux@roeck-us.net>,
- "Heikki Krogerus" <heikki.krogerus@linux.intel.com>, "Philipp Zabel"
- <p.zabel@pengutronix.de>
-Cc: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-usb@vger.kernel.org>, <linux-phy@lists.infradead.org>, "Vladimir
- Zapolskiy" <vladimir.zapolskiy@linaro.org>
-X-Mailer: aerc 0.15.2
-References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
-In-Reply-To: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240122092225.2083191-1-peng.fan@oss.nxp.com>
 
-On Sat Jan 13, 2024 at 9:55 PM CET, Dmitry Baryshkov wrote:
-> The Qualcomm PMI632 PMIC (found on Qualcomm Robotics RB2 platform)
-> doesn't support USB Power Delivery. However this PMIC still supports
-> handling of the Type-C port (orientation detection, etc). Reuse exiting
-> qcom-pmic-typec driver to support Type-C related functionality of this
-> PMIC. Use this to enable USB-C connector support on the RB2 platform.
-
-Hi Dmitry,
-
-I'm happy to report that testing this series on v6.8-rc1 kernel on
-sdm632-fairphone-fp3 shows that USB role switching is working with this!
-
-It's not extensive testing but plugging in a USB stick and USB headphone
-jack dongle in both directions show up in dmesg as expected, and
-afterwards also USB networking gadget still works to ssh into the
-device.
-
-My .dts part is a bit different to your RB2 dts since
-sdm632-fairphone-fp3 doesn't support USB 3.0, only USB 2.0, but
-otherwise looks pretty similar. I'll send a patch for that once your
-series has landed.
-
-Not sure on which patches it makes sense, but have my:
-
-Tested-by: Luca Weiss <luca.weiss@fairphone.com> # sdm632-fairphone-fp3
-
-And for reference:
-
-Only thing I've noticed here is "Host supports USB 3.0 SuperSpeed" which
-is half true, to my knowledge SDM632 does support USB 3.0 but it's not
-hooked up (for some reason) on most MSM8953/SDM632-based devices.
-
-[   22.986096] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[   22.986273] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 1
-[   22.990847] xhci-hcd xhci-hcd.1.auto: hcc params 0x0230f665 hci version =
-0x100 quirks 0x0000000002000010
-[   22.998260] xhci-hcd xhci-hcd.1.auto: irq 57, io mem 0x07000000
-[   23.007684] xhci-hcd xhci-hcd.1.auto: xHCI Host Controller
-[   23.013435] xhci-hcd xhci-hcd.1.auto: new USB bus registered, assigned b=
-us number 2
-[   23.019029] xhci-hcd xhci-hcd.1.auto: Host supports USB 3.0 SuperSpeed
-[   23.027696] hub 1-0:1.0: USB hub found
-[   23.033167] hub 1-0:1.0: 1 port detected
-[   23.037538] usb usb2: We don't know the algorithms for LPM for this host=
-, disabling LPM.
-[   23.041853] hub 2-0:1.0: USB hub found
-[   23.049034] hub 2-0:1.0: 1 port detected
-[   23.120301] qcom,pmic-typec 200f000.spmi:pmic@2:typec@1500: vbus vsafe5v=
- fail
-[   23.845537] usb 1-1: new high-speed USB device number 2 using xhci-hcd
-[   23.995466] usb-storage 1-1:1.0: USB Mass Storage device detected
-[   23.996166] scsi host0: usb-storage 1-1:1.0
-[   25.022547] scsi 0:0:0:0: Direct-Access     SanDisk  Ultra            1.=
-00 PQ: 0 ANSI: 6
-[   25.023926] sd 0:0:0:0: [sda] 60062500 512-byte logical blocks: (30.8 GB=
-/28.6 GiB)
-[   25.030873] sd 0:0:0:0: [sda] Write Protect is off
-[   25.037204] sd 0:0:0:0: [sda] Mode Sense: 43 00 00 00
-[   25.042395] sd 0:0:0:0: [sda] Write cache: disabled, read cache: enabled=
-, doesn't support DPO or FUA
-[   25.070314]  sda: sda1 sda2 sda3
-[   25.071050] sd 0:0:0:0: [sda] Attached SCSI removable disk
-
-
-[   31.347094] usb 1-1: USB disconnect, device number 2
-[   31.364973] xhci-hcd xhci-hcd.1.auto: remove, state 4
-[   31.365149] usb usb2: USB disconnect, device number 1
-[   31.370427] xhci-hcd xhci-hcd.1.auto: USB bus 2 deregistered
-[   31.374236] xhci-hcd xhci-hcd.1.auto: remove, state 1
-[   31.379906] usb usb1: USB disconnect, device number 1
-[   31.475790] xhci-hcd xhci-hcd.1.auto: USB bus 1 deregistered
-
-Regards
-Luca
-
-
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Mon, Jan 22, 2024 at 05:22:24PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> i.MX95 System counter module has similar design as i.MX93, so add
+> fallback compatible with nxp,sysctr-timer
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> Changes in v2:
-> - Split qcom_pmic_typec_pdphy_set_roles() changes to separate patch
->   (Konrad)
-> - Simplified devm_kzalloc / sizeof() argument (Konrad)
-> - Made start / stop callbacks mandatory (Bryan)
-> - Reworked Type-C port handling into a backend similar to PD PHY (Bryan)
-> - Made more qcom-pmic-typec data static const (Bryan)
-> - Squashed usbc PHY single-lane removal patch (Konrad)
-> - Further usbc PHY cleanup (Konrad)
-> - Fixed order of DT properties in pmi632.dtsi (Konrad)
-> - Instead of specifying bogus PDOs for the port, specify pd-disable and
->   typec-power-opmode properties for the connector
-> - Moved orientation-switch / usb-dual-role properties to sm6115.dtsi
->   (Konrad)
-> - Linked usb_dwc3_ss and usb_qmpphy_usb_ss_in
-> - Link to v1: https://lore.kernel.org/r/20240113-pmi632-typec-v1-0-de7dfd=
-459353@linaro.org
->
-> ---
-> Dmitry Baryshkov (14):
->       dt-bindings: regulator: qcom,usb-vbus-regulator: add support for PM=
-I632
->       dt-bindings: usb: qcom,pmic-typec: add support for the PMI632 block
->       dt-bindings: phy: qcom,msm8998-qmp-usb3-phy: split from sc8280xp PH=
-Y schema
->       dt-bindings: phy: qcom,msm8998-qmp-usb3-phy: support USB-C data
->       usb: typec: tcpm: fix the PD disabled case
->       usb: typec: qcom-pmic-typec: fix arguments of qcom_pmic_typec_pdphy=
-_set_roles
->       usb: typec: qcom-pmic-typec: allow different implementations for th=
-e PD PHY
->       usb: typec: qcom-pmic-typec: allow different implementations for th=
-e port backend
->       usb: typec: qcom-pmic-typec: add support for PMI632 PMIC
->       phy: qcom: qmp-usb: split USB-C PHY driver
->       phy: qcom: qmp-usb: drop dual-lane handling
->       phy: qcom: qmp-usbc: add support for the Type-C handling
->       arm64: dts: qcom: pmi632: define USB-C related blocks
->       arm64: dts: qcom: qrb4210-rb2: enable USB-C port handling
->
-> Vladimir Zapolskiy (1):
->       arm64: dts: qcom: sm6115: drop pipe clock selection
->
->  .../bindings/phy/qcom,msm8998-qmp-usb3-phy.yaml    |  171 +++
->  .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        |   22 -
->  .../regulator/qcom,usb-vbus-regulator.yaml         |    9 +-
->  .../devicetree/bindings/usb/qcom,pmic-typec.yaml   |   28 +-
->  arch/arm64/boot/dts/qcom/pmi632.dtsi               |   30 +
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts           |   50 +-
->  arch/arm64/boot/dts/qcom/sm6115.dtsi               |   44 +-
->  drivers/phy/qualcomm/Makefile                      |    2 +-
->  drivers/phy/qualcomm/phy-qcom-qmp-usb.c            |  323 +-----
->  drivers/phy/qualcomm/phy-qcom-qmp-usbc.c           | 1169 ++++++++++++++=
-++++++
->  drivers/usb/typec/tcpm/qcom/Makefile               |    3 +-
->  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.c      |  254 +----
->  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec.h      |   27 +
->  .../usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.c    |  157 ++-
->  .../usb/typec/tcpm/qcom/qcom_pmic_typec_pdphy.h    |   94 +-
->  .../typec/tcpm/qcom/qcom_pmic_typec_pdphy_stub.c   |   80 ++
->  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c |  290 ++++-
->  drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.h |  172 +--
->  drivers/usb/typec/tcpm/tcpm.c                      |    3 +-
->  19 files changed, 2058 insertions(+), 870 deletions(-)
-> ---
-> base-commit: 9e21984d62c56a0f6d1fc6f76b646212cfd7fe88
-> change-id: 20240112-pmi632-typec-4c7533092387
->
-> Best regards,
+>  .../devicetree/bindings/timer/nxp,sysctr-timer.yaml         | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.yaml b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.yaml
+> index 2b9653dafab8..4f0b660d5ce3 100644
+> --- a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.yaml
+> +++ b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.yaml
+> @@ -18,7 +18,11 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    const: nxp,sysctr-timer
+> +    oneOf:
+> +      - const: nxp,sysctr-timer
+> +      - items:
+> +          - const: nxp,imx95-sysctr-timer
+> +          - const: nxp,sysctr-timer
 
+Based on the driver changes, imx95 is not compatible with the existing 
+hardware. Different register layout equals not compatible.
+
+Rob
 
