@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-33995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6891838642
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 05:10:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C5EF838657
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 05:25:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ECCE28CEE7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 04:10:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1AFB91F26782
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 04:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34B9185B;
-	Tue, 23 Jan 2024 04:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6E2185A;
+	Tue, 23 Jan 2024 04:25:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="aEqI77XQ";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="QfHAgxVb"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="rU9DX3UA";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="wuRjf3WX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705E61848;
-	Tue, 23 Jan 2024 04:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F541848;
+	Tue, 23 Jan 2024 04:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.111.4.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705983048; cv=none; b=SCUb495OxRSl61ylaMw2nZiiu53+6ZRhNkPXf+YzRQ2YJBmDghuj7R7JIs8xvE8vfMasEGuqu+vbn2wis6sBjt6re7jCw4XLC6w/5b2GU+EzJtOU7nk0kTn0PtSRfZ49EAln+07PoK6BQA1Gc511iE4UaNjt0+jJaxvLvc1IEnA=
+	t=1705983945; cv=none; b=i1i+RhMNkEPlKcILdGSLl/b3xHbkfAIrxKN17moRI8h1PptvCBfWwJTguAkKBICECNbEXay3EikVC7Sae2JsC/VfrdRMSq/mqPsEs4k4Gl9s7Z4hO4R2L06rWk5Re9BEWtBthKXYKFsGAbu8yeUoau65OX7EXu5G4XQtqK7ZOJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705983048; c=relaxed/simple;
-	bh=e1iANXCHAFFGWI13ZwKAwHSge9np6yGnnnIPoEx3lBo=;
+	s=arc-20240116; t=1705983945; c=relaxed/simple;
+	bh=v3oy5NdlG5MHxk2w2nXjXNbvl7QH5t23LPLqkF6IHL8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kZy/j0b/EqPtEibfg6YauNquEUkBCH4o9Pgi3pD3Od7N1FnzautFTftBNsQ+WBBcT5AShgpHE71gP+l3izRRZ1MXfykPSC7HOHiKhnRx8tj4UiBVRaf7vq1xUgmnskibAoeXD6GgRXMcDLnbjpKDePU8LlqYqv4xHTknXj9TB2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=aEqI77XQ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=QfHAgxVb; arc=none smtp.client-ip=66.111.4.26
+	 In-Reply-To:Content-Type; b=KLYkKHT0bf3kKIfkSC9pApap4PbwiyPIOqmYcjdNdk1ZYmdWOuBUKoUPxCgxfGdIT1zIvsuNXLFFx+um9TPQ9pH9rKbeOe0v/YpJY95HxQQj7BeOWo5m1XRcNDbfAe1ijSUA/gcdZAsAVNSFhXRV5AnyH/MWcMWSgf6XyXB5avA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=rU9DX3UA; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=wuRjf3WX; arc=none smtp.client-ip=66.111.4.26
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.nyi.internal (Postfix) with ESMTP id 52A0E5C02FF;
-	Mon, 22 Jan 2024 23:10:45 -0500 (EST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+	by mailout.nyi.internal (Postfix) with ESMTP id 960D15C0318;
+	Mon, 22 Jan 2024 23:25:42 -0500 (EST)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 22 Jan 2024 23:10:45 -0500
+  by compute2.internal (MEProxy); Mon, 22 Jan 2024 23:25:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
 	 h=cc:cc:content-transfer-encoding:content-type:content-type
 	:date:date:from:from:in-reply-to:in-reply-to:message-id
 	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
-	 t=1705983044; x=1706069444; bh=X1AxwnZE1mN7IbTs9hN/G30XDwpnHhRi
-	KWHtMsjJUm0=; b=aEqI77XQJ4u07KvVtt6AD42ntSY7SPwR7QWMDRv/EFaSGfbd
-	Dtk1PhZ+JxLzzsw809IdtRzqNM4BTLeZLaNxRDQGfS7SwMe5Pi2lTapAYet7P0SX
-	DHYpMQbwe7kr7oosX+5hY5409EO+7Ue6W5jCxBFvOb3MJBt5NEGlt6neUKOcxfgb
-	zYt8/ysAbh3mkirJ0acAZhpXgI/1M2DjJpXU1l/l5ktSyH8y3lI6xB4PDXSfuHbe
-	ivzfyZsZyoSVukzOpLmXezsaaiBjmJTv7DZpnDR8TH6evmj06usThJDjaQh2IFqi
-	yv1f49ILCXV6vsPjRWLU/4U+gxTtHDIfj1DZQA==
+	 t=1705983942; x=1706070342; bh=45+1oXceGikZvQxwJfaaf8EGXsa5wr/Q
+	8SOh/sMefXo=; b=rU9DX3UA6Ldi7CBk/PlLyV0Txp9+MdMKn9eR2Qs+X+tvvqWd
+	dk9/lOw9dCssfusMnld5S/+LfhwDNakIintK71RDpHfp/pgUrC6MQgBCTsqwwOGv
+	1AOIuwPa4tgl2EvRAOmzRSVT6GgI/PlYsDAYQl//aSliNumw6i6x8xyaYnqa/FKV
+	pY1YleSkBO4FwXIbxv2syLFJBWHjBovXcPhmKCO8gEaVXKi5Zih3g6qDF1UyURjb
+	KeC85MHvHmABa/PON7OykZpKPg4eGcx4ra7keOi4ILjh078uIZRmYAtibvgKsb3+
+	7AqZrnYy2QYrCTYOSrSqz/pix2pViUPToSm8Gw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:content-type:date:date:feedback-id:feedback-id
 	:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1705983044; x=
-	1706069444; bh=X1AxwnZE1mN7IbTs9hN/G30XDwpnHhRiKWHtMsjJUm0=; b=Q
-	fHAgxVbCVfHB8lh5RXJqESKdEPFJzwdgtykuZLFvo2eSgc07a8tXMKYM25PBzvw9
-	ksL1+MnLbNauyYa/E6pmv3hUIICLycJ8M7Uxfh1f5WM8OQuA6mGIspL4sD74upcJ
-	D4adpI4r6/1iC7E4NUWB0BOCEGY+rj7L6WeZPa81NcK97JExSpP+7M94uPHKCuGL
-	Hb1Tg9g07jEFmUbOU2o0VKWc+ZTdiSZtKXXMh32rLcCoE2M96gev3/I29LYnQG1x
-	OtglSD2mZ6xoaIpQPIj2yovrY7TzbNIEC5Q/WEmU/84A5PVCgMP/TiuLEzdGLZZx
-	XocCV4fr5OaqQN6Ktcotw==
-X-ME-Sender: <xms:QzyvZY47fvbmwvwVakG6Y3PISRlTm1pSxFQpGmukHDv5aNJYa8UGdQ>
-    <xme:QzyvZZ4LH7AUz3tEzWaDY5tS5DaofqSEXl8FLzAfGaf0CZTReddMgN5Xm0d4gu_OY
-    CpaKLd2Dg>
-X-ME-Received: <xmr:QzyvZXc-sJLEjVCubf5yYB0amMFwc96MK1008N-vn-3hPjh9hBIPC1xFGe64SgRJV-iEo7upeMlpjrKeldqiAolGJ966qCI6AlRRTg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdekjedgieeiucetufdoteggodetrfdotf
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1705983942; x=
+	1706070342; bh=45+1oXceGikZvQxwJfaaf8EGXsa5wr/Q8SOh/sMefXo=; b=w
+	uRjf3WX+KkUa1Yhniz0KKiJ6n2X83yveTNlB6o6OofO3BlN3fr71wJLSd56qXZm0
+	gT3HdgL9W9eYbOE6SPzZtf6GUuEamYPBOmpX9eJ9ej6YmH8EhF9TB9dhvFz7Vy/x
+	WE0wO1LN+r317f1H+QFgeebuJIUFeZhedRZyzpqld6O21CsiHheswzkssqnS8wuH
+	FcykcBJVKNpi5zZnOE0NSd6XMKJz3J4zBhGs7p+W23W3rmvZlI9ySYOV4VDdlszj
+	u+BmYaoOVLPDXQI3jJmaQrHdVSF+VS0ABO6gC+EvppZwmqo+MClcZxIOvY+x3nQO
+	wJqul1S1gpdKzZbClEt4g==
+X-ME-Sender: <xms:xj-vZez8bhCJTDZK5KxpbJqvM64DwozZ5xZPzkeYhe7KBPk8tzyQ7g>
+    <xme:xj-vZaTUA9DpUOj23hcmKqLVEvAdrP4Jw609l7veT7cGGvO0a1T-QgbA9_3FTN7Yy
+    4Cmjp2aJw>
+X-ME-Received: <xmr:xj-vZQU6PTnnUof_aVallJWT2Udea7q5cOgr4oN1EKXAVBuCLDkHLzim2FFLSOCxtYZNpTu1mIL6g-unhopgDb3LXHFGqyAvkSLUZA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdekjedgieelucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefvihhm
     ucfnuhhnnhcuoehtihhmsehfvggrthhhvghrthhophdrohhrgheqnecuggftrfgrthhtvg
-    hrnhepueegfefgveeuiedtheffgfefveejkeetiefhhfdvjeevlefhueekudeuleeghfek
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhimh
-    esfhgvrghthhgvrhhtohhprdhorhhg
-X-ME-Proxy: <xmx:QzyvZdLuwNmW7gtVIa2fKi7ijGvsnYQ5oG7Jym2PmuV4agGah-dLXg>
-    <xmx:QzyvZcIfko-yFUUatPPba4w-m3MtsRa1okumhLC-th_aLwMPe9_QgA>
-    <xmx:QzyvZextfm3wQD7NLq3YFSAzM5eK0s_yW-kVgxJ5cQWPxoX5oK7fuw>
-    <xmx:RDyvZazTe1eN29OyB8mkpFbtZBqGKAmMZtr_5wsC_x1VgoHIVEGQ0w>
+    hrnhepheejjeeuueejfeektdfhteelffdvjedviefhhfefieelleeiueeitdfhheektdeh
+    necuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomhepthhimhesfhgvrghthhgvrhhtohhprdhorhhg
+X-ME-Proxy: <xmx:xj-vZUiesXhZuOQAS1bu9jVn6lLI6Hw9_iJBMaHJbbZXhGn9Ciiz1g>
+    <xmx:xj-vZQDZeI7b224Zv0_dZR68SQuqxxsN2pes7yCjLuykcPMDCsooNA>
+    <xmx:xj-vZVIBUcn_y9SS8UiliUPvpkqQ8_7zfE47Qg8iU5g6t9dD0PFrfg>
+    <xmx:xj-vZZIMUlcXooeuUvt8pGWecGuASUYxKnCm_Dkp2ANQaiFxmtN_Sw>
 Feedback-ID: i1f8241ce:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 22 Jan 2024 23:10:38 -0500 (EST)
-Message-ID: <93d775df-af84-44ff-870e-f720a33ddf34@feathertop.org>
-Date: Tue, 23 Jan 2024 15:10:35 +1100
+ 22 Jan 2024 23:25:37 -0500 (EST)
+Message-ID: <9e5cace9-8725-45a4-a55f-f996a561c9a4@feathertop.org>
+Date: Tue, 23 Jan 2024 15:25:35 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,8 +89,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: rockchip: rk809: Document audio codec
- properties
+Subject: Re: [PATCH v3 3/3] dt-bindings: rockchip: rk809: Document audio codec
+ clock
 Content-Language: en-US
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  linux-rockchip@lists.infradead.org, conor.dooley@microchip.com,
@@ -101,45 +101,45 @@ Cc: linux-arm-kernel@lists.infradead.org, Chris Zhong <zyw@rock-chips.com>,
  Lee Jones <lee@kernel.org>, Zhang Qing <zhangqing@rock-chips.com>,
  linux-kernel@vger.kernel.org
 References: <20240120135529.899403-1-tim@feathertop.org>
- <20240120135529.899403-3-tim@feathertop.org>
- <04ccf5f5-1f02-42f9-b1fc-b781c54d7ae9@linaro.org>
+ <20240120135529.899403-4-tim@feathertop.org>
+ <2e9ae099-18a3-4e22-8868-931d41c81f3f@linaro.org>
 From: Tim Lunn <tim@feathertop.org>
-In-Reply-To: <04ccf5f5-1f02-42f9-b1fc-b781c54d7ae9@linaro.org>
+In-Reply-To: <2e9ae099-18a3-4e22-8868-931d41c81f3f@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
 
-On 1/22/24 19:14, Krzysztof Kozlowski wrote:
+On 1/22/24 19:16, Krzysztof Kozlowski wrote:
 > On 20/01/2024 14:55, Tim Lunn wrote:
 >> Rockchip RK809 shares the same audio codec block as the rk817 mfd, and
->> is compatible with the existing rk817_codec driver.
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
-Ok I will check this.
->
->> This patch introduces to the binding the standard property #sound-dai-cells
->> and also an optional codec child node to hold codec specific properties.
->> Currently there is only one property in this node however the downstream
->> driver shows a number of other properties that are supported by the codec
->> hardware, that could be implemented in the future. This maintains the
->> existing driver ABI and keeps consistency with the rk817 bindings.
-> So you are adding a new node? Just for one property? No, just put it
-> into parent node.
-The existing upstream codec driver parses the property from the "codec" 
-sub-node, if I
-move it to the parent node here, I will need to patch the codec driver 
-to search in both locations,
-so as to not break the rk817 bindings.  If that is preferred, I can do 
-it that way.
->
-> Downstream driver does not matter at all in that aspect.
->
-The codec hardware supports additional properties but they are not 
-implemented currently in
-upstream driver.
+> What rk817 has anything to do with this?
 
+The existing codec driver in linux already is from the rk817 and thus 
+called rk817, however
+that driver is also compatible with the codec in rk809.
 
+>
+>> is compatible with the existing rk817_codec driver. This patch
+> Please do not use "This commit/patch/change", but imperative mood. See
+> longer explanation here:
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+I will check this as well.
+>
+>> introduces the clock required for the audio codec.
+>>
+>> This clock provides the I2S master clock for the audio data. The codec
+>> driver finds the clock by the name "mclk" and will fail to register if
+>> this is missing. Clock-names is kept here to keep  compatibility with the
+>> exisitng driver ABI and also to be consistent with the rk817 binding.
+> Typo.
+>
+> Also, what consistency with rk817 driver?
+The rk817 codec driver that  already exists in mainline linux tree.
+>
+> I really do not understand which problem you are solving here.
+I will fix the typo and try to clarify commit message further.
+>
+>
 >
 > Best regards,
 > Krzysztof
