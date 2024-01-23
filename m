@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-34226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D11D839219
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:08:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE23839232
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:11:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F9581C21265
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:08:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7772CB26609
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D789D5FBAE;
-	Tue, 23 Jan 2024 15:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68FDA5F55B;
+	Tue, 23 Jan 2024 15:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OyeOlW59"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wUTA0JaM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487855FBAA
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:07:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A25F2605A3
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:09:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706022460; cv=none; b=nrNSyDTKpV9sajitHJYEtYCjmCI9WycXBBsH6r1bcCRA/IEXEzfUkYMxgkvRudqrirFc1bZ6LwQXCt9Ckwy2fhfGBg6D+am/WEASwLZ3E3nfyYfbm1D83rsfrTOonUnJg/O1ZJybOI1iHVj8ORnM2D3uYZZ974JJdKAJu3iUAqA=
+	t=1706022578; cv=none; b=sy1XGUDb2+7/8ySm0DoQS/aqmjiUCEp38UujYN/XKhzkaf3tt/374kvSFyPky+HWkWM1E/6CHNI9pFniItmtzeS1zy9L2RiaZf91Upp+iFWlJbYR5WbgWkRsdz/LVco8msoAmLATZpDbdH8bcOUKoGcRkXygIBHqJNhNgu1zLu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706022460; c=relaxed/simple;
-	bh=mHO6wOYkQ9uvvHrdU0hkocgK8bYDPoqCHtILZtWStNQ=;
+	s=arc-20240116; t=1706022578; c=relaxed/simple;
+	bh=FC12r15c8qoJ56xscNoWLmRKP8OG5vLxG6qsu5FpU0A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Tnt6hGL3p6lOlND58gZmImE+/lC6LZlWnEUr04CxSroGhrpl8oSDYq59RqJlo0dhroiwO54xARG7OOarBWmr1Ckgsa/x+/8ICevfkzZ1MjYahYdFd047vHgysABt/YYIzTRmHrzzT4R21j2oP6HdqWx9gNCmAkKM4lOmwlUAg+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OyeOlW59; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:Content-Type; b=A0gD1gudsvR6Dog/tx3wbrSsTchfV5lhcUrsn71rSDwu6v4Rl+TK5mnXtKX96jbxstOn57tadUMhQ/K/pnjE4uie+M6rPxXbT1fXovAqdphuPtk6Gxl2YhLUOScQ7gRWmerbz3//nrmTCIpYJ0rTwgLVi/08Pu5A00Xcu6p/YU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wUTA0JaM; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40ebf373130so6517385e9.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:07:39 -0800 (PST)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-337b8da1f49so3935696f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:09:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706022457; x=1706627257; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706022575; x=1706627375; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=x/UqkQBxw5JOuIjrIL6bmMCRMSSB1fyU93WfLZsklEs=;
-        b=OyeOlW59OVYH7XC6u4j+Xz6m26bddntIRM97swbHxgdKEG4Kjk0wz5SIqhQ+1ocJEj
-         v86NRXe8IPFjLKPBDA4HNi8Py4GxuCVJzkZsjsDaNk/sJF4yKXDtCVYx6OAIN+EoZ+vD
-         AmvyNDfrOXWrzqr1px2ivH6pAimoP+raxZr2PTlSdri9rlRDF1d9OlL4bnsQW9QjQ+pD
-         hRw38qBPfiOouPZ2ALEatv9YL3pPJKsIwKIMLQM1qVC6AJ8bykJOvKY7txUZoC5kCcPR
-         3/upqNRwImPYMUqphc5yU/vYaij4Asj/4NY4bTDrX2/+Na3WVoWOj3066Nq1Kd2t5nLR
-         t7CQ==
+        bh=E0YK6sTszqN6wf/65nVYY49AEDvllrXDOsB5a2JLKho=;
+        b=wUTA0JaM1WU8KGDDtpJ/3rswlgtqMdU/OyuAcNriP+tSe3WLyWmKhFaL13SoKiKgxf
+         KMsALtVmnFZe82AuS2sF348cH6IITxeGLmBHXXAfAd9pFEFSvv7OeMyAI40+dVyqhbZa
+         ycL/VuqjYCT35h3YolCkMrr6t4IJqA6INb/X6CJzQwaGoMplOydaSs2fS5I+IqHDl4Vy
+         bdnwcRJ0cb6SkVyIPYaOycsBVCSWTHh3RwBhoylU8xAZTVHoPCd9uEGSl9Gb0ndCBUrm
+         BEGThT48vSthzKSQErMnv2oo0v5Et+FthaUSR3vNFqnyEgawXkhmeAkWcHv/0Ugeq7wf
+         /x/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706022457; x=1706627257;
+        d=1e100.net; s=20230601; t=1706022575; x=1706627375;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x/UqkQBxw5JOuIjrIL6bmMCRMSSB1fyU93WfLZsklEs=;
-        b=NaSn8Q+8TgKZqwFp2bbK9nAFB3On8teUmZzdYCWc+8eWeshTLIDeX/WMirOSYvsknH
-         ZRkMDv+gKaM67w2daDigHoaAvp+v/9Gg39gOw0Qsvs5xctT3ojO9r7zZ48IrFKJdDVLP
-         3Am6r+qiJOzLctN2Aij0lRmNRO+aZdjAbnWgfdqYna+l54Uy+++VaPRLZ2lZdDdV9wJG
-         pnyyDFWy/XOaVHYiaAxuJ2ZdwgAUSB7wi1Aws87S60solsQpYgkSLppXZNYnt2eYe977
-         WyEuYo7pyFWd3zKQwPm7854eHOF7VOdFNuoJE8cKuDiKGWYR1wQdiUujeAJu9/T+GFbQ
-         dmow==
-X-Gm-Message-State: AOJu0YzrAc/pKNs/9qy5+Dka2kz2cTE1XZq+RjtfEKig+XT44JvQc8wv
-	4Z9iXZX/KElMOn8TgUzSRG+xxzVAYsNbfapjxiUQIXjpCWT01u5Bn9QEv9RAD+0=
-X-Google-Smtp-Source: AGHT+IFRQW2M7Oh4ffeCnA1DMn8CRgZ5p8ScNdenBAz5pIAHDu5QDaUqqxrD3duP1+69q34z1wkjOQ==
-X-Received: by 2002:a05:600c:2e42:b0:40e:52ce:f05 with SMTP id q2-20020a05600c2e4200b0040e52ce0f05mr558144wmf.70.1706022457525;
-        Tue, 23 Jan 2024 07:07:37 -0800 (PST)
+        bh=E0YK6sTszqN6wf/65nVYY49AEDvllrXDOsB5a2JLKho=;
+        b=Rodd7SS2UhnwwGYgay0y88sbiypS0osIw+Gsz4p4dxoTVXACvUqo7+a5rry71dmiS0
+         tjzJfgWjApjlzJqbY5aEip/w09F3Mb7CEGOlWFNKMgxpFBrRsKLEuqk1gnrNN6DMx1Qo
+         JSVINM0OdSYOvurMhd4HP2Rx4JVpXGirDJiOYiWJalJzO/ieXNfAkMAuLN8FyCWqqnKp
+         +28AZZViOSXzRZ/cMdOBdUzCwV63K6tzCFJNQx4GMa/SlB64h7YLxW9wJvFbCoKPqoqX
+         UTfDO2dlrdTJAIMfH7CaItMyJhxTXwVpMLF1qFGBNLpGDwZGbOpcanUByLrs7ulA6YAu
+         3pDA==
+X-Gm-Message-State: AOJu0YzutoSH5yVi+PajfO/Ur+GAYDff5OYZ+NbMeRc5n4O4hwsIaS1p
+	u1fxQUnLPbdOzI5vEsLJsnykDEAH6zA7+avnxD9Eg1MAQdFMXLEojFD150V1+ys=
+X-Google-Smtp-Source: AGHT+IHUeqf9aiTISpJgFGpaVzshf9D6yund4OvXIARA/X68tz51m0R6JFCIJH1A5WBFEyFsP9ieoQ==
+X-Received: by 2002:adf:f283:0:b0:337:aa17:c8a8 with SMTP id k3-20020adff283000000b00337aa17c8a8mr2130906wro.213.1706022574849;
+        Tue, 23 Jan 2024 07:09:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id y6-20020adfee06000000b003392be82b25sm8026083wrn.86.2024.01.23.07.07.36
+        by smtp.gmail.com with ESMTPSA id q12-20020adfab0c000000b00337d8c40ff7sm12599140wrc.3.2024.01.23.07.09.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 07:07:37 -0800 (PST)
-Message-ID: <7afbabca-e0bb-48a9-8c5a-7582f7ae3a6e@linaro.org>
-Date: Tue, 23 Jan 2024 16:07:35 +0100
+        Tue, 23 Jan 2024 07:09:34 -0800 (PST)
+Message-ID: <08903b30-b321-4f13-b8a7-ddd31a94ca5e@linaro.org>
+Date: Tue, 23 Jan 2024 16:09:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,30 +75,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: support NXP i.MX95
+Subject: Re: [RFC] arm64: dts: qcom: qrb5165-rb5: model the PMU of the QCA6391
 Content-Language: en-US
-To: Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "abelvesa@kernel.org" <abelvesa@kernel.org>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- dl-linux-imx <linux-imx@nxp.com>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240121114623.1418597-1-peng.fan@oss.nxp.com>
- <273a80a7-2a60-4490-9c3c-c33dc14be9e7@linaro.org>
- <DU0PR04MB9417A8F4230D2C7C76D1550988742@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <78e296fb-a3dc-4e00-94bc-91dab7294887@linaro.org>
- <DU0PR04MB94173B34D426181D285B995088742@DU0PR04MB9417.eurprd04.prod.outlook.com>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Abel Vesa <abel.vesa@linaro.org>, Alex Elder <elder@linaro.org>,
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20240122182158.69183-1-brgl@bgdev.pl>
+ <98925264-badb-4954-b542-9287a0c7d184@linaro.org>
+ <CAMRc=Mc+GNoi57eTQg71DXkQKjdaoAmCpB=h2ndEpGnmdhVV-Q@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -144,43 +135,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <DU0PR04MB94173B34D426181D285B995088742@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <CAMRc=Mc+GNoi57eTQg71DXkQKjdaoAmCpB=h2ndEpGnmdhVV-Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/01/2024 14:59, Peng Fan wrote:
->> Subject: Re: [PATCH] dt-bindings: clock: support NXP i.MX95
+On 23/01/2024 11:04, Bartosz Golaszewski wrote:
+> On Tue, Jan 23, 2024 at 9:30 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> On 23/01/2024 14:08, Peng Fan wrote:
->>> Hi Conor, Krzysztof
+>> On 22/01/2024 19:21, Bartosz Golaszewski wrote:
+>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 >>>
->>> I replied you both here.
+>>> I'm limiting the audience of this compared to the PCI power sequencing
+>>> series as I wanted to run the DT part by the maintainers before I commit
+>>> to a doomed effort.
 >>>
->>>> Subject: Re: [PATCH] dt-bindings: clock: support NXP i.MX95
->>>>
->>>> On 21/01/2024 12:46, Peng Fan (OSS) wrote:
->>>>> From: Peng Fan <peng.fan@nxp.com>
->>>>>
->>>>> Add i.MX95 clock dt-binding header file
->>>>>
->>>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>>>
->>>> This should be squashed with respective binding patch.
+>>> Here is the DT representation of the QCA6390's PMU with its inputs and
+>>> outputs. If I were to implement the pwrseq framework that would be able
+>>> to assign the relevant pwrseq data to the consumer based on the actual
+>>> regulators and not abstract bt-pwrseq or wlan-pwrseq properties - would
+>>> that fly with you?
 >>>
->>> i.MX95 use SCMI firmware, the SCP processor handles
->>> clock/power/pinmux/reset/performance and etc.
+>>> We'd need to deprecate the existing BT bindings but unfortunately they
+>>> are already described as consuming the host PMIC regulators in bindings.
 >>>
->>> I just add the index that SCMI exports, and Linux/UBoot will use the
->>> index and go through SCMI to do real HW configuration.
->>>
->>> In such case, should I still add HW information in a yaml binding doc?
->>> I am not sure what should be added if yes.
+>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 >>
->> Then why do you need it in the binding? I don't see any use of this.
+>> Please provide lore link to the binding.
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> ok, should I just add the clk index header in same folder as soc dtsi?
+> This is the one:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
 
-I don't know yet. How are these being used, except SCMI firmware?
+This does not describe your PMU node. Maybe lack of the binding was
+intentional? In such case I missed it from commit msg...
+
 
 Best regards,
 Krzysztof
