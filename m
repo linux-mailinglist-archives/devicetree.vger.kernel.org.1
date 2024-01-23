@@ -1,78 +1,117 @@
-Return-Path: <devicetree+bounces-34460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 734DF839C3A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 23:30:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30310839C60
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 23:38:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B1BB283494
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:30:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D82672847F9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ABC64F8A9;
-	Tue, 23 Jan 2024 22:30:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80B4952F96;
+	Tue, 23 Jan 2024 22:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MNWj2e2K"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gV1vZT+g"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4797347F5D;
-	Tue, 23 Jan 2024 22:30:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515D76ADE;
+	Tue, 23 Jan 2024 22:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706049038; cv=none; b=GpX14rPu0iVijeVSmayI9j/3cRbGbkNLNv9o0ISok94jO/EfNDnoYqaVBxDSvgOfaf44hHMXb20YSOQXEwAigkGvsHXvDbJYqhnp6f6eYspouTrPf75PUn0N/JkjVQwM9keySxJ/BLp+LqqN/RSztrwigk26BF6t6EFBURROJh8=
+	t=1706049502; cv=none; b=TaLl6C22GVY44ql2ZmalaN449xNa1qG+UYP2+muD5ODOJ89vV+eLFsCBcyExOgxIuFNmRLXOf4JSInzr8iCU+EY0nOg2RVMmKUaCT+fz4CoK0QYgiKs2dA57ac5yeKytBh73mr7AQ+eB2aEzVibkx666FTOcNanhgeYrnge07Lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706049038; c=relaxed/simple;
-	bh=7kKINHb5Nt5WfKDy0Peg36VTWJrVWe+U4ainCLwsCCA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LT9JtuNMyJN8D9txxtROJBW9qMufgoiur/c4EjqL/lJ5kOXQut6s66ACsUKUY3Add8NfQKujl4JrpWpOC9uIOKUtCOYFtIIGhnTN7BdpCeHvwiNnhCbjAF+7a5A97uxFdsLUjt0S1W5n6JN6y3nucQwkr3ZmQWS08NUkSI2xUPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MNWj2e2K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0777BC433F1;
-	Tue, 23 Jan 2024 22:30:36 +0000 (UTC)
+	s=arc-20240116; t=1706049502; c=relaxed/simple;
+	bh=/DMGv7HfPRC+XJk0/nfDyPf+n+rMzldKRmicjf3Yozc=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=lsATQxwCDdYpJqpsF8tN9KeUgadzQafnxg8taKHXMUajX3ztjgVQx9oQ6R9mik3aCf506b4yln2gYfeub5/Hx8m0fsGaBy7Kv/1gcACEcpTaH3vGw+L6+RQkhj3JCCL4fhQM8+KLf12zrEgvuuPDqV2bA81K7gHKhWR3Ji5phUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gV1vZT+g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3719C433F1;
+	Tue, 23 Jan 2024 22:38:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706049037;
-	bh=7kKINHb5Nt5WfKDy0Peg36VTWJrVWe+U4ainCLwsCCA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MNWj2e2KF5kboOy/ZwF+ZoQHyhJlhtd06op6ThgR3s5Z9AgIZZ0wgx0Xmpw+SfMfK
-	 tvTcZWn8C9bLwIu9Lo25Xf4meDgFN4QpbN6lODh37YNDgOrvObge5IrLf1OZypR4d7
-	 Jf6GLy71Ag0nPcCad4n+RquDWnEL+sIEAfWdbyzkdvJRtVUNReB+gbrZSru6fuL86W
-	 6OPSSjrFuzDHjFazCvld5KWpaL5vnDlfZMx+rLAKh6iEKduz933fhsHu67NL5v2nuF
-	 bgscNY2QVJyUWJkc/fOGH4p1AREA6/+lxV8xzaTVcnWhwRxrK1itQFT5bnDja9FtWV
-	 CFKHQIXWwtuKg==
-Date: Tue, 23 Jan 2024 23:30:33 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: broonie@kernel.org, arnd@arndb.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, alim.akhtar@samsung.com, 
-	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-arch@vger.kernel.org, 
-	andre.draszik@linaro.org, peter.griffin@linaro.org, semen.protsenko@linaro.org, 
-	kernel-team@android.com, willmcvicker@google.com
-Subject: Re: [PATCH 06/21] spi: s3c64xx: remove else after return
-Message-ID: <hanxpspn5sogibyku5hl45vukin4qgjrmizoxfdzfobz5td5t6@3bgmrtg5mgsp>
-References: <20240123153421.715951-1-tudor.ambarus@linaro.org>
- <20240123153421.715951-7-tudor.ambarus@linaro.org>
+	s=k20201202; t=1706049501;
+	bh=/DMGv7HfPRC+XJk0/nfDyPf+n+rMzldKRmicjf3Yozc=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=gV1vZT+gAFjlN9VtnZ6Lum9jgUx7VAoDhiGadatbjAQF1BMQd0ZFbBQ3ZK67EA6L8
+	 wps5Ngks/NSUtIv1qyNhmUp+YBGGMfabpFVMmUOexiU3Q8wzCzq0DbqNNU8bNh1Bzn
+	 yMS/yrmZX6+PwE055zv64PTnm7+NWKLbYR1t0A+BXKHyivTK0xrYAgkWbXBduStiEy
+	 eHV6/R8VoT9x6lIntBdIAg91B//Z9oa64dieNE2TMLPgdZBh0KGoD1L6DEkFo9o3m5
+	 4cQW25G3SN24YlwsjPnUmW5BdRt9gqg5OKOaYxJ7OWURoKgHNvKvE2bDXMU3mY9TLm
+	 v9tt6dPQg8JIA==
+Date: Tue, 23 Jan 2024 16:38:20 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240123153421.715951-7-tudor.ambarus@linaro.org>
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: conor.culhane@silvaco.com, linux-serial@vger.kernel.org, 
+ zbigniew.lukwinski@linux.intel.com, joe@perches.com, imx@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org, 
+ frank.li@nxp.com, devicetree@vger.kernel.org, miquel.raynal@bootlin.com, 
+ alexandre.belloni@bootlin.com, gregkh@linuxfoundation.org, 
+ jirislaby@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ krzysztof.kozlowski@linaro.org
+In-Reply-To: <20240123212549.3858137-3-Frank.Li@nxp.com>
+References: <20240123212549.3858137-1-Frank.Li@nxp.com>
+ <20240123212549.3858137-3-Frank.Li@nxp.com>
+Message-Id: <170604949961.2185792.3557017002643301182.robh@kernel.org>
+Subject: Re: [PATCH v3 2/8] dt-bindings: i3c: svc: add proptery mode
 
-Hi Tudor,
 
-On Tue, Jan 23, 2024 at 03:34:05PM +0000, Tudor Ambarus wrote:
-> Else case is not needed after a return, remove it.
+On Tue, 23 Jan 2024 16:25:43 -0500, Frank Li wrote:
+> Add proptery 'mode' to distinguish work at 'controller' or 'target' mode.
 > 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> 
+> Notes:
+>     Change from v2 to v3
+>         - using 'mode' distringuish master and target mode
+> 
+>  .../devicetree/bindings/i3c/silvaco,i3c-master.yaml   | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
 
-Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Thanks,
-Andi
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml:26:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
+./Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml:30:9: [error] syntax error: mapping values are not allowed here (syntax)
+
+dtschema/dtc warnings/errors:
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/i3c/silvaco,i3c-master.example.dts'
+Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml:30:9: mapping values are not allowed in this context
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/i3c/silvaco,i3c-master.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml:30:9: mapping values are not allowed in this context
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/silvaco,i3c-master.yaml: ignoring, error parsing file
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240123212549.3858137-3-Frank.Li@nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
