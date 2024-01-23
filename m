@@ -1,178 +1,150 @@
-Return-Path: <devicetree+bounces-34009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FDB283874B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 07:23:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F05B838780
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 07:35:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FBE128DAAA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 06:23:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA114289CA3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 06:35:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10DE5024F;
-	Tue, 23 Jan 2024 06:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C09A5025C;
+	Tue, 23 Jan 2024 06:31:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PDFAXC7I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W8ZdrT00"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59A8650249
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 06:23:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A5563611E;
+	Tue, 23 Jan 2024 06:31:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705991030; cv=none; b=XkJWndrfU2R61FMC2F1mB6LiItHrNDnLXAvybVbMVd+4DHW2yiLhqwNkeUsOFOLLl50TE8saWJ5KHUtMvGS5JUS9gKRNe+s4JhAzNQvaMOzXCKBRbscvnnF5kqZOjTrYxPGrH9+3mD3M9W35qKPTdFtEG+E2BiUvdMiW08ziVEQ=
+	t=1705991516; cv=none; b=O861rSgKYESw4gHmCRDvvniAPUlnTNWxTSLD7/9ab19lXiIEaf2nrYWaeL7siADbp6uhAck1aKgmZNPuVYemFq7whFq10XwaQDe8C8jLaWc59V9DQK0D2z4Y/2VExKA41gtSYMD8GACebrr7EaMRI0QvH9mAZzXvp+5iSq7fp/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705991030; c=relaxed/simple;
-	bh=7WuyaHlE5zXhuxVaWnpwdo70Vp81yukPfArs5DsxNak=;
+	s=arc-20240116; t=1705991516; c=relaxed/simple;
+	bh=hKkJeIyQxJp17hHSYN2luEiqd63jZiE86WMV2UkbhiI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bWb9K6IRLIhkGA7Zy9Bcddt1XYLK3Pjts7Qwwb1DJsedxXrzoCc2WBgMaKZ3rnqkA3lDhkqNOdxdluoHLqZ45H/EQEfg7/MeLNmyRAcM74AmwOWarUxPZLc/tU3e4WvtK3bm8RY7hPrNPBbU91BeDXhJZasREn+f6zX8YtszWRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PDFAXC7I; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5ffd5620247so20487497b3.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 22:23:49 -0800 (PST)
+	 To:Cc:Content-Type; b=Wu2XOeblgx0mRS7dTJ/8kncCQG2WGy3JS+7xoiQnigwjPJxckKT4D7b8PSN5BBIX+Dc435LBxeQEjF6IGIElWpQUtG36mv7b4LkNeeh+FOtU2dbl8qB3R05svAYlLzk1FGQd917JppOuVZ2UVFxc2/2skwVw+zi2fuA++dzDGiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W8ZdrT00; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a293f2280c7so409459366b.1;
+        Mon, 22 Jan 2024 22:31:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705991028; x=1706595828; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=q10a65nOeuzWQYq/rqdY1dYbV4U7Emp0GE7K5TT2nbU=;
-        b=PDFAXC7IGP3RYfEpgW/4mkMtM2GNKuIMHo6gEtOJa4iU+4IyvTx6AmyLLBOC8R1kBG
-         gnSOJ9Enfi5MDnBQiosCN4XOdvuG43MGD0H73nsggnoWDnZUtXT1jK5OVH9RDyNyePZK
-         XQS7O+c0ksbA+OSMpoAg0JrJ6fmGc4nCvl627NbdIRrI0guhm9P1Kdx7pzBBQg5ozZkI
-         hWDJA/132cvzNYayvoHNqsz+sKOhkx4m/SsMpUmkrCWpE6fbIYXaS5JaVuslZu2NEs26
-         1GfwpKRsN0CDI2B6lmgpMauZYfsp0KTMBbbPnEr7XcstHNpguXKcU7AK0G4Rjf9Pl228
-         mrsg==
+        d=gmail.com; s=20230601; t=1705991512; x=1706596312; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LiegNsczaU/U+xs19FgETokvnebxdn1/j3gX8xGr8wk=;
+        b=W8ZdrT00LlMV2uW04x+Zqbz0azFbPI+njKidQNPj3/tI8uOhvjnJjIoJV6DeJJvWJJ
+         CAbDOQJpEFIoOEvWW6hsaiaaFatx3HfnwqoVd71fkXk7ob9yp3QNXu7nOX2Aiakunc10
+         RfrA7ymtqRvcVxeZKwd/wTPFL+Fmz7vyyERaZONXkX9gOZ7Dvq124t17lzhWplPg2Slo
+         3zbKgSxUUBq4Lk84VipbPuCBLZ/GSi6p3jnpqp53KIbDFABXoWNNvAW64NNc0W9LblPx
+         TCaMveVENC4hVnMTH2Ts4rTwvkrRcEDcuCaRpLrHNh8Mn3F87G4UnitB2fP3IU+Uyxn+
+         KRYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705991028; x=1706595828;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q10a65nOeuzWQYq/rqdY1dYbV4U7Emp0GE7K5TT2nbU=;
-        b=UC5s7DVOkrbZVc/HLSZPPCfkrX1ZDTqg9V/9JXy726k7Gy52m62qJ0c1RQrUURhoEh
-         31kaeF8es5267IFDUT3vuBM9rCGjhi40z6yIWPS5wM56ZwPxHmjNJhjcPMkn9U+PeeHq
-         0Mpfqp7aDR6Vx1u+UyaujmvmmMii5AwJ8sivVe/to8MPOP2KjBbAn89tta1L3lqeGFm0
-         n1q0JKRKXTTjQEtgbRBUgXYIXRaIJ8I6/gUgP38UWUECaxBtHZBJRsRQfXPFCOAQQDcN
-         0eOTffxS5Dc1gd3Sy+7xWToQwtDInKmUCh6gza+SslEhM5p2/Pt4NFfkdIzg5oIQvyoP
-         ctNw==
-X-Gm-Message-State: AOJu0YzkN177uOSXO/1R2VD8H//ShBdmy6h6U83sCO1mnecC/9IAzrrV
-	oozAdB1ntlcG3e0XV/Myovir4tuda2IjHMmywcyB1bnE5C2ZZ9oPqsRecqe9/F459tBX7Qci8OH
-	YfwMsd+Pu+zNGXYROiu+yxF1OhDT/n4vG/zLjyg==
-X-Google-Smtp-Source: AGHT+IHojWdQNPRMKYfO/m1tZ+9E0Y2EjyizhhfEpvdUBqP/U5/pjTMhSJnd52qL/JRMfFvx3PuFRCMxfthbn17acP0=
-X-Received: by 2002:a81:89c1:0:b0:5f7:d06c:7464 with SMTP id
- z184-20020a8189c1000000b005f7d06c7464mr4514994ywf.61.1705991028091; Mon, 22
- Jan 2024 22:23:48 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705991512; x=1706596312;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LiegNsczaU/U+xs19FgETokvnebxdn1/j3gX8xGr8wk=;
+        b=cuM22YDb0rX9kseTum5hI8gQgZ6FDAov27PM0d9pH6JBiLzynL87BUo56uHpXzhkyM
+         owLoVtBmbThr//CCwVLO2r12/6JTW51wthwsbvmNZGj2fjUAaAF+1N09V6aBm18vuDYI
+         59UCY0kWnigZh71KfpEG0pUIWagEAL8MI/PT66ZA3GrFtE7Sxdcb6R9pg/ipY+8sfF0T
+         R2aNwAwE93EwGXd+6Upr0UKhh8HQN9KCU+Ftx65I0f4p4nSL1UIyNRAe7J7i4W/2nCrF
+         vuFMjXu8Pp8Bg900nmNw2MuXG+GmqdlaWT8+HY0m2oMzQy230wd9sm4nW90OFUSlMVC4
+         I7JQ==
+X-Gm-Message-State: AOJu0YzKkT2927HykjUgu9uZtswaw4BRet49umaAzEFD3tBPBomRREt2
+	X7iOIe0GCKxH8U5O1SY7Zh5sfo0prgtcjWDym8Sh0a3bHCmrMsrTeF2Pd/4eDE7VKYo29ngaHqZ
+	mF/WPABdCrAzfEwH9WdaH1+sMK04=
+X-Google-Smtp-Source: AGHT+IH0aD3xHVclLbZ/H4ZUYjO3fWFMmmqZWeW5/xbnkp7PG+R1tbM/DjYGvO0K0W0BfhaQhU6Sv6vDvQBK9LN5oQc=
+X-Received: by 2002:a17:907:a782:b0:a26:ee0d:1c02 with SMTP id
+ vx2-20020a170907a78200b00a26ee0d1c02mr2034600ejc.39.1705991512469; Mon, 22
+ Jan 2024 22:31:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240118155711.7601-1-quic_ninanaik@quicinc.com>
- <rq2dnfh6ctn5gbf3o3op5ywxx7zhx6r5sh5ykautye56o3p4dg@rjttk3rr65ld>
- <20240119191144.GR3013251@hu-bjorande-lv.qualcomm.com> <CAA8EJppLNFReZn1HK_radSkKkf5L584fx3FCuqG0FoUt4+H=nw@mail.gmail.com>
- <Za5xj8S3Gs7N-UUc@x1> <20240122200237.GB2936378@hu-bjorande-lv.qualcomm.com> <884f92ac-4d1a-9f0c-29ad-9d5833f10863@quicinc.com>
-In-Reply-To: <884f92ac-4d1a-9f0c-29ad-9d5833f10863@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 23 Jan 2024 08:23:37 +0200
-Message-ID: <CAA8EJpq74G7Et=vuc-K0y_wKCEiM0=YVyb7TcosAnbvOFMWDMg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Add new memory map updates to SA8775P
-To: Trilok Soni <quic_tsoni@quicinc.com>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, Brian Masney <bmasney@redhat.com>, 
-	Eric Chanudet <echanude@redhat.com>, Ninad Naik <quic_ninanaik@quicinc.com>, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	quic_psodagud@quicinc.com, quic_kprasan@quicinc.com, quic_ymg@quicinc.com, 
-	kernel@quicinc.com
+References: <20240122203502.3311520-1-linkmauve@linkmauve.fr>
+ <20240122203502.3311520-2-linkmauve@linkmauve.fr> <c2963862-9d22-438a-8357-eccf14fead7d@linaro.org>
+ <Za7npejeTD4i9y2h@desktop>
+In-Reply-To: <Za7npejeTD4i9y2h@desktop>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 23 Jan 2024 10:31:41 +0400
+Message-ID: <CABjd4YwM8wPGth=n97JRbaNCuPNRjs6uNUFVdRgu3_OAYQdxWg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Add the rk3588 thermal zones
+To: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+	=?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <szucst@iit.uni-miskolc.hu>, 
+	Christopher Obbard <chris.obbard@collabora.com>, Shreeya Patel <shreeya.patel@collabora.com>, 
+	John Clark <inindev@gmail.com>, Dragan Simic <dsimic@manjaro.org>, 
+	Chris Morgan <macromorgan@hotmail.com>, Andy Yan <andy.yan@rock-chips.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 23 Jan 2024 at 04:58, Trilok Soni <quic_tsoni@quicinc.com> wrote:
+On Tue, Jan 23, 2024 at 2:09=E2=80=AFAM Emmanuel Gil Peyrot
+<linkmauve@linkmauve.fr> wrote:
 >
-> On 1/22/2024 12:02 PM, Bjorn Andersson wrote:
-> > On Mon, Jan 22, 2024 at 08:45:51AM -0500, Brian Masney wrote:
-> >> Hi Dmitry,
-> >>
-> >> On Fri, Jan 19, 2024 at 10:35:43PM +0200, Dmitry Baryshkov wrote:
-> >>> This kind of change sets a very bad precedent. This way old kernels
-> >>> become incompatible with the updated firmware. For me it looks like
-> >>> Linux kernel suddenly being unable to boot after the BIOS upgrade.
-> >>> Generally memory map updates should be disallowed after the board hits
-> >>> the production and the DT is published and merged. There can be other
-> >>> users of DT. BSD systems, U-Boot. We spend sensible efforts in making
-> >>> sure that DT is an ABI: newer kernel remain compatible with older DT
-> >>> files. We expect the same kind of efforts from device manufacturers.
-> >>>
-> >>> I think unless there is a good reason, the memory map update should be
-> >>> reverted on the Qualcomm side as a breaking change.
-> >>> If this kind of update is absolutely necessary, it might be better to
-> >>> define a new set of board files utilising the new memory map, marking
-> >>> existing DT files as legacy.
-> >>
-> >> This is on a development board that's not in production yet, so
-> >> personally I think this change is fine. It's in all of our best
-> >> interests to have SoC vendors push their code upstream early, even if
-> >> it means that later on we need to make memory map changes like this.
-> >>
+> On Mon, Jan 22, 2024 at 09:52:10PM +0100, Daniel Lezcano wrote:
 > >
-> > The problem I have with the patch is that I don't know which precedence
-> > it sets, because the commit message indicates that we have a new
-> > firmware version, while Eric's report lacks this information.
+> > Hi Emmanuel,
+>
+> Hi Daniel,
+>
 > >
-> > As long as everyone with access to the hardware agrees that breaking
-> > backwards compatibility is the right thing to do, I'm not against it.
-> >
-> > But then again, if the support is under active development, why would
-> > anyone run a stable@ kernel on this thing?
-> > Or are you asking for it to be included in v6.8-rc, so that you guys
-> > have a "stable" tree to do further development (with this patch) on?
+> > please sync up with Alexey Charkov (added in Cc) who is doing a similar
+> > configuration [1] which was reviewed.
 >
-> I agree with what Bjorn is mentioning here. Why we are freezing the kernel version
-> here/commit of it here. Memory map can change during the active development
-> and this target is under active development.
+> Oh, I wasn=E2=80=99t aware of this work, it seems there is nothing this s=
+eries
+> add over Alexey=E2=80=99s so I will drop it.
 >
-> New board file approach doesn't work - since how do you select the new
-> board file? Both old and new board file will still point to the same
-> platform type and version.
+> Is there a document tracking your upstreaming work?  I was planning on
+> sending a series enabling the VEPU121 hardware encoders next, but if
+> you=E2=80=99re also working on it I can drop it too (although I don=E2=80=
+=99t see any
+> series from a quick search).  I=E2=80=99ve now subscribed to the linux-ro=
+ckchip
+> mailing list so I shouldn=E2=80=99t miss any new series.
 
-The developer knows which firmware version is used. So the user can
-select the correct DT file manually. There is no need to pack all
-files together.
-Also it might be nice to bump the platform version when performing
-such drastic changes.
+Hi Emmanuel!
 
->
-> We also saw recently that IOT SOCs which are similar to in some
-> sense Mobile SOCs are having the different map. The same almost
-> same SOCs used in the different product segments like Chrome
-> and Mobile and IOT can have different memory map as well. The good
-> part there was that they had different soc-id and it will be easier
-> to differentiate them.
+I'm currently in a rather more ad-hoc contribution mode, so there is
+no tracking document. Here are the things I have in the making:
+ - Wire up the GPIO pin that drives WLAN enable signal in the M.2 key
+E slot as an rfkill device to make WiFi modules usable on Rock 5B.
+Applied locally, tested, submitted [1], not yet reviewed or applied
+upstream
+ - Add thermal zones managed by the TSADC to RK3588 (the series Daniel
+referred to). Applied locally, tested, submitted [2], working on v3 to
+incorporate the feedback
+ - Wire up the PWM fan as an active cooling device managed by the
+thermal code. Applied locally, tested, will submit as part of v3
+thermal zones code
+ - Add OPP data for CPUs on RK3588 to enable runtime CPU frequency
+scaling. Applied locally, testing now, not yet submitted
 
-Having device-specific memory maps is also fine.
+I also wanted to wire up the display outputs for Rock 5B, given that
+VOP support has been recently enabled on RK3588, but haven't yet
+started on that one. I haven't touched the hardware encoders either,
+so please go ahead with sending those :-)
 
->
-> As Brian M mentioned earlier, we want soc vendors to submit the support
-> for their SOCs and platforms on top it as early as possible and it means
-> such memory map changes will continue. Even memory map changes
-> continue even few months after the commercial s/w release in certain cases
-> due to critical bugs were found in some usecases which warrants the changes.
+Best regards,
+Alexey
 
-So, can one handle such changes? Are we going to publish a list of
-kernels to be used with the corresponding firmware images? Then what
-if the developer wants to update just the kernel? Just to get this or
-that non-platform-related feature. Or vice versa, what if the user is
-stuck with an older kernel because some driver gets broken in the main
-branch (which unfortunately happens sometimes)  Or what if the memory
-map patch gets backported via the AUTOSEL process?
-Unlike the Qualcomm binary distributions, the firmware and the kernel
-version are no longer connected.
-
-That's why I keep on saying that memory map is an ABI. If it gets
-changed, it is a completely new, incompatible platform.
-
--- 
-With best wishes
-Dmitry
+[1] https://lore.kernel.org/linux-rockchip/20240106202650.22310-1-alchark@g=
+mail.com/
+[2] https://lore.kernel.org/linux-rockchip/20240109192608.5981-1-alchark@gm=
+ail.com/
 
