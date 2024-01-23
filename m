@@ -1,177 +1,227 @@
-Return-Path: <devicetree+bounces-34196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BCF78390AE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:59:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C42718390EA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:13:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 907AD1C20862
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:59:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7392628781C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:13:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624915F578;
-	Tue, 23 Jan 2024 13:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46FD5F856;
+	Tue, 23 Jan 2024 14:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="WQmoMJbA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m1WsWUtB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2042.outbound.protection.outlook.com [40.107.20.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DC6C5F565;
-	Tue, 23 Jan 2024 13:59:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706018392; cv=fail; b=ndSyKfS5gUfsUmtp5o4NKRr+46veU8rFVO4ZkXLWvAF6XxsoVfrN7kYqS7TbLfKoBhcalXFnUd1sHB6VFFrY7jODlaQhq3hLvNdRPASb7p/AQCTR4PkqC5bNi5iZ5DkcXkvhq58k9Zlqr0hOOzSk1Zvc2i9Z9Rfog+pAA/h3bU4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706018392; c=relaxed/simple;
-	bh=buWegNqA7sC+ZWR5eiqU1b4NbCmUPQpDgbr4prN3QOw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=nyncTxpgEcbHG/tCTtREQREHp+yi04VwjrMfUWMW+WX8ZKZT1gYzukHkyCdPr5QRlyJNis6DcNy7Ps/rU5tVVe9yEMd11ZpB6tuC1s46qKTr/eEyMfxxbzUu2FkNofdmlDKNuSRNVww4vVb+h7778F+bAnVGNUNyepxgCjmPJSI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=WQmoMJbA; arc=fail smtp.client-ip=40.107.20.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IvZLV5e0YbjrEEsh3R3soqNkMgY0d+sS6afAaVGmO08bohgdEdupgKBXM8tUwZ8Ymm5HxMjeDyCom/VPfOitOEn3PyDsV2ex5Q8sVC9IJ3Q52lIW7lob8qA6Twa2iyj2gJ4zTQQvqfX+Ung2rd14EaAKFU9UAmuXN6d/PmGI1xP0AHSTnwGA3sFEi32cKBwAIfsm+qADrU5M+aEcMjPSsEqdc4oNUvCSf94jm011aTHLwv/r+/YVX8J5NOCXN+JntQEwKHSixh5lryXB8cmITp3tBpqxVrdmw3Ll/g6ZGuePBkRu5G535O8MKubX/EB7eYAcaP9h7rSctmnucKvgOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=buWegNqA7sC+ZWR5eiqU1b4NbCmUPQpDgbr4prN3QOw=;
- b=CwZF41CSNB6Xv8+4d/UvoP5ueEZUQR+U4XGJgD8DQ2ZzvXNXoT+why+tdPm7XZD/Sam76AsflW/IlqqjoXM4ICel2z3InqeKALuLARAKrHoqYdpOEHNPtXjE0D5L6TYWIdTzPAvkHKBAJAlZLlceJTS8UfhBQ3rWGoXteA/BFPSkcHYGpFXkksCxR+cXhr3o2Rf7Yr03J5S6xkRCf4imBnsuJFSrwxlAoP83Ok/Js3I/dqijwVMeAx2eecifN3LoGlJV3Sxm+QIfPlljVdPnp6EisDNJLrGAE7GzT18HGxYHM3mZRkVX1n4AHvT8epF+7A7YhPhJ5bXZmEjzaN06+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=buWegNqA7sC+ZWR5eiqU1b4NbCmUPQpDgbr4prN3QOw=;
- b=WQmoMJbA+jy7tphSgrkrFWZesF8xYDj0R7LIJNVPV19NGzMJF/QsPtkjxMx3Yx9nSvEmWAlpj51FTp6aR+JC1NnQdklQPifKcX4X6iEbnp0X6mnL1h3OmlZkWDogSRNMgIsqpeGH04e7+6mJ0ewGQO/j8kgl3IxTXDi2fcpncAQ=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by AS1PR04MB9360.eurprd04.prod.outlook.com (2603:10a6:20b:4da::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.33; Tue, 23 Jan
- 2024 13:59:46 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::c499:8cef:9bb1:ced6]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::c499:8cef:9bb1:ced6%3]) with mapi id 15.20.7202.031; Tue, 23 Jan 2024
- 13:59:46 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "abelvesa@kernel.org"
-	<abelvesa@kernel.org>, "mturquette@baylibre.com" <mturquette@baylibre.com>,
-	"sboyd@kernel.org" <sboyd@kernel.org>, "shawnguo@kernel.org"
-	<shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
-	<festevam@gmail.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, dl-linux-imx
-	<linux-imx@nxp.com>, "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH] dt-bindings: clock: support NXP i.MX95
-Thread-Topic: [PATCH] dt-bindings: clock: support NXP i.MX95
-Thread-Index: AQHaTF7dbf3fZzQpTkKKhWtWHavxlrDlm5UAgAHFORCAAA4YAIAAANsw
-Date: Tue, 23 Jan 2024 13:59:46 +0000
-Message-ID:
- <DU0PR04MB94173B34D426181D285B995088742@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20240121114623.1418597-1-peng.fan@oss.nxp.com>
- <273a80a7-2a60-4490-9c3c-c33dc14be9e7@linaro.org>
- <DU0PR04MB9417A8F4230D2C7C76D1550988742@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <78e296fb-a3dc-4e00-94bc-91dab7294887@linaro.org>
-In-Reply-To: <78e296fb-a3dc-4e00-94bc-91dab7294887@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AS1PR04MB9360:EE_
-x-ms-office365-filtering-correlation-id: 815630d9-d159-4b4c-710b-08dc1c1b8ef2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- q+mQz9UxQvLtVikjdzOB/bRbRDxVH12kQ0guXa5MESVEGcJ5VCM4FurQMge3f5bps7ZZEyutPylsOAJIoVvyzhebVrd4wp+ebGwEVcyKJVw04sbmpgpnJmd6z/NwrDIgLCZq98uoMxlRjQ4aLj/J6oL8KR8J+Rk2esvHqiGvisyAe86ONegaLt9FZwSiFwhMP+zb4uLwmnWtM3da1JKLqKL33m9nftYDQDTgDVUO+qNlFkbJWur1yHwu3ohLYRkyQyeM1SMWX0nIlKzj+L5G7YDL72NY/+m3ThJJxcpg2+EFDWfGESOcOMmpepE8e9X5Zw6/m0ebkPE25c0YgnqEUChSh82Iv7sOnn1XTOFf6UkoV+oSuXr87IqMRK6DALNTmgeZ9uTMDBlfXzmPa1tPE9X72Dv3tOn3fkiIcpKnAKMZY3IoRfmrShB/I/X8vnFllgfeCVxDnruvZgysaLIFs65qcV48IOX2TlyvP5Z8vEKMJitxT6x1ai1G6gn4yFxjUOVJUCWJ0EQkwA7v8Y+ftoci/2tv4z0GrSCmjbf4+9OzMNp+qMRPVB+rCD1cCoy9jJ2oFSubChBvMqgNoJBPQCe01ccNKIMMc4Hlp4GzRRVcRbln+GUL7gVyBI8GoSbiGfrNq7C/DbN2nXmvg15u4A==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(39860400002)(396003)(346002)(366004)(136003)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(55016003)(71200400001)(6506007)(53546011)(9686003)(7696005)(26005)(86362001)(38100700002)(33656002)(921011)(122000001)(41300700001)(38070700009)(478600001)(44832011)(5660300002)(83380400001)(7416002)(2906002)(54906003)(52536014)(8936002)(110136005)(66476007)(8676002)(64756008)(66446008)(76116006)(66556008)(4326008)(66946007)(316002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?bkI5MmxOWGovZGN1VENOeHJYdDlFSlBIaUpUWVE2MG4zeiszS2VCcXlva1lM?=
- =?utf-8?B?VHBvZ0NsN2V4SDNTbFZRa2RNbGhZRmpKTzRzVEpGS0NhRHl2OHdkV1VFNWMz?=
- =?utf-8?B?QXRPUTZrSzNtTzFtNUZJWVZISmJLdXhRL211YjJoejd0a2FzbmpXK01HRWlD?=
- =?utf-8?B?QWhLRzJUTjllYVNoL2c1UzZORklwQ2pRVGJzOTA5VzhEbDlxTHdhWmdSeExZ?=
- =?utf-8?B?dmI4cFV4Mk9FbFgxZm9RakkrMEtZdnR6b0NpK0cydFcyMnRHd3NOdk8vTU1H?=
- =?utf-8?B?V2ZrOHNTM1RqUFJvSGxMU25MUmh1aWpHbGxUeDNGdzFXNFU2S0QyQ3dNMWpR?=
- =?utf-8?B?U2gxRXRrMFF1UmxLOEpwV0JZMTEwNTUzakFJU2RJYkU5QVVJOEQ5UUh4Sm1P?=
- =?utf-8?B?T1I2VE1aUnRlZlpGYnJodWpsNmphRkZVNFowWHhiSVdBQXNFQWhoaGl2MUpT?=
- =?utf-8?B?NVdkZXRucnJmd1AxNEY3RWFvWnFVVGRPQWZINmJYQzg5eG5uNFJEeHVYQlpN?=
- =?utf-8?B?L2QvS1hibXMrMFZmSW1WcXcwaWw1QjFkaEJDRVVuRG12TVVET3c3V205a2lW?=
- =?utf-8?B?eEVhWlFBMUt5c3dCRXpKSGgxb1IxMWxveThuTVlGM3VzbnllTFVlbTd5ZWo3?=
- =?utf-8?B?UWlteEF0Q2kreTFzZWJ0NS9XcTFmYmxvelZ6WnF3QWVpSWNGZ2tBZk8wQkRa?=
- =?utf-8?B?RnUrRGdmRFNiaTlnMkRWMDMzTm95RURXcmt0aVo3UG9rVnJJVmt6TGJNZnBM?=
- =?utf-8?B?RGNNUXRkR3RxTkJaczQ1cmJrdVZmMWZlSU5jZkFmTmkrS2JqQ3FnKzJLallN?=
- =?utf-8?B?aXdVN0hmSHR5dklnODRMNUtvS1JteENDbHFqK0R5eWxCeWl3RVgza2ZYT2JR?=
- =?utf-8?B?aU1KOENDSW91ZWxGdTkxcERjZHZUUEZiTVk1Yzd2YU9hMmtnOGNNMGxoTVNK?=
- =?utf-8?B?UnBSemlJVFB3cUdqVHhHcEo3VEtSb1ZLb0l3VVJuWGRQWUdkVVpWZVZFTTRM?=
- =?utf-8?B?d0RIdUJYZU41d2ExZTFQU0JmZVlWVFQvL2NJeG1YQllrK1AxZEpmb25qTTV1?=
- =?utf-8?B?UW84U3hkdFFuZEsrK2ZJZG9tSmFzbnF1djA2cUc4RTh1VVdRTHhvWk1pRloz?=
- =?utf-8?B?dkdwOEFpRVdaM0NxRG1ZdTI2ZDNhS0t1SjA5NU9SeXptaGIwUVdmUy9hRjhi?=
- =?utf-8?B?Z2JIZjdTTkQrQ201eXJNUHJDSkoyM0c5TjNuRGZnTTQ5NXFTanNXb05PdE0v?=
- =?utf-8?B?MUVCcUc1anpMa2hvTVBtZmc0OXRRREs2dUhtTXFXS1RpTklnTE9EVzlLUnVq?=
- =?utf-8?B?cEhOeTBwblQyaHJLUTRzOGVzZW1iU0VNOUljcXlZUVhhbnVjeCsybVNvOXQ3?=
- =?utf-8?B?aU9KNUpiZ2RYakl2TVMzbEZtbzBpK2dNU0lsWTEvREZGOVZCWktIdTdua2RE?=
- =?utf-8?B?NHhtTmxjUy9qQ3FQamJaRVdML2FUMXFGK0RLSGRMN2xyYVNIbzRQYmZGZkxt?=
- =?utf-8?B?ZEk4elFjV2x2cmdGbVlCV1RYNVE4U0JFbU9uOVdFb3p6cXpqVENLcTlhVU1U?=
- =?utf-8?B?UnVWUUNpVkFlMXd0TzdJWGhsampzL21wVkkvNm9VVFZDOVNadE5BL3RXOWVC?=
- =?utf-8?B?U2JhN2lMTjE2L1luZm5JY3VFTnFFbUo1Unk2SURPa3FES2h5cGR0WTdDdmlh?=
- =?utf-8?B?cXFLTlpkRlE4S25NVkdwSVl2NCtDMnVPRnlCTGFKMGNHSy9ETnU4OE9rc2dS?=
- =?utf-8?B?RHNtWk5HS2lwQnNNcUI0YmRIcHhYVE1FcXFaQnZSR1BNTUhJZnBFdFFyTEJE?=
- =?utf-8?B?N0FoRmFPZXBBWUN1YTM1bUJhaHg2emkvVWVqQ3FpUXdvcG9uMy9IL1VldkFF?=
- =?utf-8?B?MjFyQm0yclVmZ1JBWHYvYlVybmxUQklvMEtQTk9xbnJCWnp0SENsK3JVYjZl?=
- =?utf-8?B?Zkd0NHNha0k3eHhzNkxBek9CdDVBTXM0UHBBQmUvRmFRSGc5VEY4Ynd0dSto?=
- =?utf-8?B?em13SVZNbTN5UUpqeTA4MFVSTkJsVllYVXdSVTRlTi9VNzJJRWEvT293Zklm?=
- =?utf-8?B?ZitzanBrckVlYXoyR2F6OWxWT2JxTzVqSnR0YmQwU3RaV1d6TjczWnRIQU84?=
- =?utf-8?Q?Msm8=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F5C5F84C
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 14:13:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706019216; cv=none; b=JOrEuGGcorvK5ToRt64I4wm0jwV8C7Zv5qrLDULMCJWV7PzlKONHPitYDvf3HBdkiQdLibShlGUVeql4I0rLejlmt84lIuPScIz1s/8nTYx7ehWKcDzeE9aH99XJCChAhlkTtad31Wm4XAq+b9Xno5jkO4sfcOy2TEZoJoewG2M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706019216; c=relaxed/simple;
+	bh=59g27bt8e6S4r2ETTP2EkFw+s31TUQk1QwcJu0PCIT0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JbUvTJ3N+6Sch/vgGa+QCaq/S0Ugznqh5w9tyvhIL6BANRIasVs9b6uAOGK47tMXaUbhCSmCe/a2FukIGlG+Dcoef4cJSi88ZHIG2YgIRYBrD6I+ZDYyyYiqdvozPh6NhhPpQGbMx08orwsKK4w6STnqsSkulSKoTboOdRZkDuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m1WsWUtB; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-337d05b8942so5003657f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 06:13:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706019213; x=1706624013; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3wc/JiN8Loe+9s5GeVUhog8zNaIeXcbf5dgRtXCIKt4=;
+        b=m1WsWUtBOZ3TLoIvheeBvT4it6wBWUHe8ixOLD89llU1NNcf5h4ZcOwYYulY+OICHi
+         nPomRrMDlpFANNvoHYMsjSLNvFGOCmwk5AtQxPpw/DQaRUUtUpH2E+lMR3eU5nKfOoO6
+         hemdG1YsMfWUmfzzlSCZq15OT8fKVQ8Z/hTGdCdAhP6TekHA91oQTJXVp+SHDDUEIKAE
+         srWuNuMp8HxcTi83zPlGGekT82JQqWc2dwXhd4mZD+mAY9AgbHhzGzOJmiDbPdEkBxwh
+         yhORHiURN9oxQBxFyVp4Pk25gv++QYOZNEgXIFyhmZRDLAoUhZ02bgzyCCVIW71Kg2EY
+         Rocw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706019213; x=1706624013;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3wc/JiN8Loe+9s5GeVUhog8zNaIeXcbf5dgRtXCIKt4=;
+        b=RRE874PJLPzYUR7EzUjy4y3IAf8OjcMuV8YY3PGsTX5L00bjyQeQwZJ3IUreUgboiK
+         yfOwEmhlo1+eHBJAFrP/fK2vf5RaAd+wZ98hgHVIBwNnFnU5oEaffy5T3Qwdmh0GMJ8R
+         pmzwuzCAhdB2FZVkuWcNF5mVWPRp9K/H8cNaszRLR1Aet/Lc6dTx3v2nIqLlrZpNrOwr
+         fUW+7bP5/QBMcnVWRCkpDPkbJoz+peIpZoG4X/BjsTXtMnY9UFOSRmh23s9Y+tg7xGrK
+         rnLbEiQcdx9cHMwZB/V7YGY9qRfQOkB8wTR6WMwWR6MTbyvdIjaXyS8x87h4voJDNCf2
+         I1hQ==
+X-Gm-Message-State: AOJu0YzG7EsNC+u3BVBor+MQKcVzkBV23DN2SXeeKFv+Hjkfi6sqgUiH
+	3rq/Sq3JwZjz4LhBshAzgNNkNtjVWedXC7bJT1kfxghBZiICZ+9VVA4fCkGaT7Y=
+X-Google-Smtp-Source: AGHT+IGUwHiuIN/rr3Sfo3cQy+gFNAVnhehKWEZSRNQVxSnP0gfdhi5FegVHP6kGfQJRsqXageDuDw==
+X-Received: by 2002:a5d:4e0f:0:b0:336:6dad:2c71 with SMTP id p15-20020a5d4e0f000000b003366dad2c71mr3605582wrt.111.1706019213110;
+        Tue, 23 Jan 2024 06:13:33 -0800 (PST)
+Received: from krzk-bin.. ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id r8-20020adfe688000000b00337d97338b0sm12132298wrm.76.2024.01.23.06.13.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jan 2024 06:13:32 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	linux-arm-msm@vger.kernel.org,
+	alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Sean Anderson <sean.anderson@seco.com>
+Subject: [PATCH v4 0/6] reset: gpio: ASoC: shared GPIO resets
+Date: Tue, 23 Jan 2024 15:13:05 +0100
+Message-Id: <20240123141311.220505-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 815630d9-d159-4b4c-710b-08dc1c1b8ef2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2024 13:59:46.7178
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: flYFuJGfJHh2C2v7isXtRJKeIyuETFxg0z8IszBEtsgft+01/K21OXBSgJ/MX5FiHxOIv5IbA9bWzA8IgrTRLQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9360
+Content-Transfer-Encoding: 8bit
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIXSBkdC1iaW5kaW5nczogY2xvY2s6IHN1cHBvcnQgTlhQIGku
-TVg5NQ0KPiANCj4gT24gMjMvMDEvMjAyNCAxNDowOCwgUGVuZyBGYW4gd3JvdGU6DQo+ID4gSGkg
-Q29ub3IsIEtyenlzenRvZg0KPiA+DQo+ID4gSSByZXBsaWVkIHlvdSBib3RoIGhlcmUuDQo+ID4N
-Cj4gPj4gU3ViamVjdDogUmU6IFtQQVRDSF0gZHQtYmluZGluZ3M6IGNsb2NrOiBzdXBwb3J0IE5Y
-UCBpLk1YOTUNCj4gPj4NCj4gPj4gT24gMjEvMDEvMjAyNCAxMjo0NiwgUGVuZyBGYW4gKE9TUykg
-d3JvdGU6DQo+ID4+PiBGcm9tOiBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gPj4+DQo+
-ID4+PiBBZGQgaS5NWDk1IGNsb2NrIGR0LWJpbmRpbmcgaGVhZGVyIGZpbGUNCj4gPj4+DQo+ID4+
-PiBTaWduZWQtb2ZmLWJ5OiBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gPj4NCj4gPj4g
-VGhpcyBzaG91bGQgYmUgc3F1YXNoZWQgd2l0aCByZXNwZWN0aXZlIGJpbmRpbmcgcGF0Y2guDQo+
-ID4NCj4gPiBpLk1YOTUgdXNlIFNDTUkgZmlybXdhcmUsIHRoZSBTQ1AgcHJvY2Vzc29yIGhhbmRs
-ZXMNCj4gPiBjbG9jay9wb3dlci9waW5tdXgvcmVzZXQvcGVyZm9ybWFuY2UgYW5kIGV0Yy4NCj4g
-Pg0KPiA+IEkganVzdCBhZGQgdGhlIGluZGV4IHRoYXQgU0NNSSBleHBvcnRzLCBhbmQgTGludXgv
-VUJvb3Qgd2lsbCB1c2UgdGhlDQo+ID4gaW5kZXggYW5kIGdvIHRocm91Z2ggU0NNSSB0byBkbyBy
-ZWFsIEhXIGNvbmZpZ3VyYXRpb24uDQo+ID4NCj4gPiBJbiBzdWNoIGNhc2UsIHNob3VsZCBJIHN0
-aWxsIGFkZCBIVyBpbmZvcm1hdGlvbiBpbiBhIHlhbWwgYmluZGluZyBkb2M/DQo+ID4gSSBhbSBu
-b3Qgc3VyZSB3aGF0IHNob3VsZCBiZSBhZGRlZCBpZiB5ZXMuDQo+IA0KPiBUaGVuIHdoeSBkbyB5
-b3UgbmVlZCBpdCBpbiB0aGUgYmluZGluZz8gSSBkb24ndCBzZWUgYW55IHVzZSBvZiB0aGlzLg0K
-DQpvaywgc2hvdWxkIEkganVzdCBhZGQgdGhlIGNsayBpbmRleCBoZWFkZXIgaW4gc2FtZSBmb2xk
-ZXIgYXMgc29jIGR0c2k/DQoNClRoYW5rcywNClBlbmcuDQoNCg0KPiANCj4gQmVzdCByZWdhcmRz
-LA0KPiBLcnp5c3p0b2YNCg0K
+Hi,
+
+Patch #2 (cpufreq: do not open-code of_phandle_args_equal()) and patch #4
+(reset: Instantiate reset GPIO controller for shared reset-gpios) depend on OF
+change (patch #1).
+
+Changes in v4
+=============
+1. New patches:
+   of: add of_phandle_args_equal() helper
+   cpufreq: do not open-code of_phandle_args_equal()
+
+2. reset-gpio.c:
+   - Drop unneeded comment (Bartosz), add Rb tag.
+   - Do not assign of_node.
+
+3. reset/core.c:
+   - Implement most of Bartosz feedback (I responded to one which I did not
+     implement) and comments from Philipp.
+   - Expect either rcdev->of_args or rcdev->of_node.
+   - Drop __reset_gpios_args_match() and use common helper (Philipp).
+   - Move declarations of automatic-cleanup variables in
+     __reset_add_reset_gpio_lookup() to place of use (Bartosz).
+   - Separate gpio_device_get_label() and kstrdup() (Philipp).
+   - Correct doc for __reset_add_reset_gpio_device(), rewrite few comments.
+   - Drop unneeded "r" variable in __reset_find_rcdev() (Philipp).
+   - Drop of_phandle_args initialization in __of_reset_control_get (Philipp).
+   - Check if CONFIG_RESET_GPIO is enabled before trying to look up reset-gpios.
+
+4. Drop Chris' patch: "i2c: muxes: pca954x: Allow sharing reset GPIO", because
+   discussion is on going.
+
+Changes in v3
+=============
+1. reset-gpio.c:
+  - Add reset_gpio_of_xlate (Philipp).
+  - reset_gpio_of_args_put->reset_gpio_of_node_put (Philipp).
+  - Expect via platdata of_phandle_args.
+  - Do not call device_set_node() to attach itself to reset consumer
+    (the final device).  This was questionable idea in the first place.
+    Bartosz suggested to use GPIO_LOOKUP to solve this.
+
+2. reset/core.c, implement Philipp's feedback. That was a lot:
+  - Commit msg fixes.
+  - Add new platform_device earlier, when reset core found "reset-gpios" but
+    not "resets".
+  - Do not overwrite of_phandle_args.
+  - Expect matching .of_reset_n_cells.
+  - Pass of_phandle_args as platdata to reset-gpio.
+  - Rename reset_gpio_device->reset_gpio_lookup and others. Fix few comments
+    and code cleanup pointed on review.
+  - From Bartosz:
+    Use GPIO_LOOKUP and a lot of cleanup.h in __reset_add_reset_gpio_lookup().
+
+3. Include here Chris' patch: "i2c: muxes: pca954x: Allow sharing reset GPIO".
+
+Changes in v2
+=============
+1. wsa884x.c: add missing return in wsa884x_get_reset(), correct comment.
+2. qcom,wsa8840.yaml: fix oneOf syntax.
+3. reset-gpio.c:
+   - Fix smatch warning on platdata evaluation.
+   - Parse GPIO args and store them in rc.of_args.
+4. reset/core.c:
+   - Revise approach based on Bartosz comments: parse the reset-gpios phandle
+     with arguments, do not use deprecated API and do not rely on gpio_desc
+     pointer.
+   - Create a list of instantiated platform devices to avoid any duplicates.
+   - After creating reset-gpio platform device, try to get new reset controller
+     or return EPROBE_DEFER.
+   - Drop the "cookie" member and add new "of_args" to "struct
+     reset_controller_dev".
+
+Description
+===========
+
+We have at least few cases where hardware engineers decided to use one
+powerdown/shutdown/reset GPIO line for multiple devices:
+
+1. WSA884x (this and previous patch):
+https://lore.kernel.org/all/b7aeda24-d638-45b7-8e30-80d287f498f8@sirena.org.uk/
+2. https://lore.kernel.org/all/20231027033104.1348921-1-chris.packham@alliedtelesis.co.nz/
+3. https://lore.kernel.org/lkml/20191030120440.3699-1-peter.ujfalusi@ti.com/
+4. https://lore.kernel.org/all/20211018234923.1769028-1-sean.anderson@seco.com/
+5. https://social.treehouse.systems/@marcan/111268780311634160
+
+I try to solve my case, hopefuly Chris' (2), partially Sean's (4) and maybe
+Hectors (5), using Rob's suggestion:
+
+https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/
+
+Best regards,
+Krzysztof
+
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Sean Anderson <sean.anderson@seco.com>
+
+Krzysztof Kozlowski (6):
+  of: Add of_phandle_args_equal() helper
+  cpufreq: do not open-code of_phandle_args_equal()
+  reset: gpio: Add GPIO-based reset controller
+  reset: Instantiate reset GPIO controller for shared reset-gpios
+  ASoC: dt-bindings: qcom,wsa8840: Add reset-gpios for shared line
+  ASoC: codecs: wsa884x: Allow sharing reset GPIO
+
+ .../bindings/sound/qcom,wsa8840.yaml          |  11 +-
+ MAINTAINERS                                   |   5 +
+ drivers/reset/Kconfig                         |   9 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/core.c                          | 213 ++++++++++++++++--
+ drivers/reset/reset-gpio.c                    | 119 ++++++++++
+ include/linux/cpufreq.h                       |   3 +-
+ include/linux/of.h                            |  16 ++
+ include/linux/reset-controller.h              |   4 +
+ sound/soc/codecs/wsa884x.c                    |  53 ++++-
+ 10 files changed, 408 insertions(+), 26 deletions(-)
+ create mode 100644 drivers/reset/reset-gpio.c
+
+-- 
+2.34.1
+
 
