@@ -1,171 +1,116 @@
-Return-Path: <devicetree+bounces-34340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B85718396EF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:52:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46AF78396F8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:53:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68F8328727A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:52:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79FB11C226D3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2263A8120A;
-	Tue, 23 Jan 2024 17:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C3C81AA0;
+	Tue, 23 Jan 2024 17:52:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fTzbS7Rx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nYlwAX+n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9D4180020;
-	Tue, 23 Jan 2024 17:51:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D258D8005F;
+	Tue, 23 Jan 2024 17:52:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706032314; cv=none; b=O11roFyplGljMlkv2Om4nJ8fxutEgjqHX+xwEzlMITiXKCXGEl7Ay+foMM6ktyogu5zIdmzXNZDcAs/4cq0860DR1ITSj7GwTqaYzoZnjoxiZkV1Mrtt2+QfO+5k3unf6xb6fTFlpAEnKXw6Vjn5RrVVZYHN54UXBGrXT0v/6l4=
+	t=1706032367; cv=none; b=rsn+v/7wbItuzF6GJ+lop/3spmziBU9tuPGKPGm2pCQstXkvZUZjdE9BinspMo+LCAqnJc7uc+nc0zzXWGJHAAGInBtZGRlut3DlHshtJuxxV5Bu8alYpKCe03Gh5PTS6untBx1fZI/rrkGYtVOsAJ+Xz9PofLkxWa8e//Fdh5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706032314; c=relaxed/simple;
-	bh=DUrySEkASJXrQsX7gXqyvxTHWOTdXS9Ah3TVqTfEIos=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZDMFqwhsZMNOJ2M+IBbH5Kggi4ysFH1JxeWVol+1962LAF5l2ccrwnotWFNhTRMaby5kbn9pZhtBMz/qhJm1WmNExm0i2OECheDkSS/0vDCpcyrxOyGHqHNiMXZoftx76sB3C9BscGCmDJlgTm4tMer52Tu/eDwdAxRDl0bAOco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fTzbS7Rx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 609AAC433F1;
-	Tue, 23 Jan 2024 17:51:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706032313;
-	bh=DUrySEkASJXrQsX7gXqyvxTHWOTdXS9Ah3TVqTfEIos=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fTzbS7RxhUEMQtHxBRWpVfuu8+SCjvta5g+ipYJozKjuaOxcx9fhk8sWPFaAhQ9lZ
-	 k0442yIf6304QIov2YfOuUiIuFhg33fp+2QGCJR6w7sELyeybxpkmPIjJ4NypR3dCL
-	 lUfuexFpe9Z1/k4JWaeHeM0b/fAN8lG3m/qlD2FhWxDIY1bUgACswsHsPWAOB2F6GC
-	 PZyQu3Vqb0rNm5+4DinoKx6p6E7tYAvkToIGoE4RLZwSsLVd2dSjqKhcINbv3/6TxA
-	 00KGaHmBMkqVzCx6F58ikjdT4K2xVGBWJr/WhG9LY8oiIVYGSnZrC7LhlJGcWK+4Lk
-	 0mX3wqMmcC55Q==
-Date: Tue, 23 Jan 2024 17:51:48 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: thinh.nguyen@synopsys.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	balbi@kernel.org, devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	mark.rutland@arm.com, mathias.nyman@intel.com, pku.leo@gmail.com,
-	sergei.shtylyov@cogentembedded.com
-Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add system bus request info
-Message-ID: <20240123-anew-lilly-0d645bdbfb30@spud>
-References: <20240123170206.3702413-1-Frank.Li@nxp.com>
- <20240123-poking-geography-33be2b5ae578@spud>
- <Za/8J8MDJaZEPEKO@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1706032367; c=relaxed/simple;
+	bh=ODSh1qtbG1bbM6CR7/IPiC9+vleF+a/NSYhW27DI1Gw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FjQT6LXhI4dUZDanRTWn4KJr5T3J4PSQbiKDhlvNnk9RXA5NWWQtdEcu2SZEKqaL1tF6OVj1OCXxHrXvmR57XLwzXeIbgzn9Hb0LKPoJ/1vPHjR77PiWqTn99e+bQz8xeQQdLjSNWxQW9CVsTAZH8c8Tx2pdbwHIdefHZ3QZVd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nYlwAX+n; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e775695c6so45257155e9.3;
+        Tue, 23 Jan 2024 09:52:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706032364; x=1706637164; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hCFDtyr7qd7xHPm6qu+8wvTk3uDcROtuqsSzfcIUekg=;
+        b=nYlwAX+nks14ELHpcKQFM83hgLtffpQLp+MCElkdyNk+brPsVufEIWxASFLcc7YwL9
+         86XdyehvSBOtZnxzBF7Qx7l7cx8L1sUkm7xoDdPCaAX/4vdlcsY0xOZEiagf8xMxc/tS
+         WCI+WEDQTi+nODVEr/evOW49p3TSndQ4J5mG4WOAFUqd6U0ke+tJ7/e19JwzT6X5erW3
+         UWZa+yPKZjK5cMtXVyD9usy9F4mApVU+z+MaS67GUfK2MqMcK7bSbZNu4YFsHAPRAbZF
+         2QUAeJEwhf+xMlMwq2dR2v7tHTiQFX1cTcGTZ32VtXIIPAkNqYVWJQ9RUPfhi1Hqbtnw
+         TI7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706032364; x=1706637164;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hCFDtyr7qd7xHPm6qu+8wvTk3uDcROtuqsSzfcIUekg=;
+        b=EFcey2opbbVE5bjN4NB5uhii4/x0UAwrkB292GjFjEHY2o5nBkiq7iQv1IvfDqeiwi
+         IvkF0gS3/pII5DF3nqxRGaZYi4YqoESaQnpY1iPCaXZufCrsmeBuWi0hbKYAV8Xm3zk9
+         swlMlzRZU9Ua5WS6TcO5SUEX5bd4c+9Yj2M+NIZOPY6jkTrCzxBM9Z3i1xjZNvbkX1QU
+         mpbuWUB1Tm6mQucHFe23795Ug2BIeCSyOSW75Pue123LkD8HZqnS9WHOlYFaHRDYBZy9
+         FRpMcEHec2wpGxRDYTZ04+RhihGrdLUgU+IwIZfgqVHfy47tHJySKkBupxlCtvvtz3IY
+         7Tbg==
+X-Gm-Message-State: AOJu0Yxv6D58Xip1r9aUbi6G/rbp8yQ1Qto3ji6XSzS2F1ZMM/stlBro
+	s34rK+1yF9HUEYVbmuNmnfcSUcyAC5iexo8erFJLExsjZbxy+1Us
+X-Google-Smtp-Source: AGHT+IFLLxpjWeVimFPeA0MfQxF3KfPqSXqkgvuKucKNZCdN75cq8KsxjdqW/L6iAutpuqHKjQj9nA==
+X-Received: by 2002:a05:600c:a003:b0:40e:6227:175e with SMTP id jg3-20020a05600ca00300b0040e6227175emr856538wmb.61.1706032363904;
+        Tue, 23 Jan 2024 09:52:43 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-14-70.dynamic.telemach.net. [86.58.14.70])
+        by smtp.gmail.com with ESMTPSA id i19-20020a05600c355300b0040e76b60235sm32151725wmq.8.2024.01.23.09.52.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jan 2024 09:52:43 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-sound@vger.kernel.org, dmaengine@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH 5/7] arm64: dts: allwinner: h6: Add RX DMA channel for SPDIF
+Date: Tue, 23 Jan 2024 18:52:42 +0100
+Message-ID: <22159747.EfDdHjke4D@jernej-laptop>
+In-Reply-To: <20240122170518.3090814-6-wens@kernel.org>
+References:
+ <20240122170518.3090814-1-wens@kernel.org>
+ <20240122170518.3090814-6-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="5XYrnAPk+u2li9K1"
-Content-Disposition: inline
-In-Reply-To: <Za/8J8MDJaZEPEKO@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Dne ponedeljek, 22. januar 2024 ob 18:05:16 CET je Chen-Yu Tsai napisal(a):
+> From: Chen-Yu Tsai <wens@csie.org>
+> 
+> The SPDIF hardware found on the H6 supports both transmit and receive
+> functions. However it is missing the RX DMA channel.
+> 
+> Add the SPDIF hardware block's RX DMA channel. Also remove the
+> by-default pinmux, since the end device can choose to implement
+> either or both functionalities.
+> 
+> Fixes: f95b598df419 ("arm64: dts: allwinner: Add SPDIF node for Allwinner H6")
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
 
 
---5XYrnAPk+u2li9K1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jan 23, 2024 at 12:49:27PM -0500, Frank Li wrote:
-> On Tue, Jan 23, 2024 at 05:27:13PM +0000, Conor Dooley wrote:
-> > On Tue, Jan 23, 2024 at 12:02:05PM -0500, Frank Li wrote:
-> > > Add device tree binding allow platform overwrite default value of *RE=
-QIN in
-> > > GSBUSCFG0.
-> >=20
-> > Why might a platform actually want to do this? Why does this need to be
-> > set at the board level and being aware of which SoC is in use is not
-> > sufficient for the driver to set the correct values?
->=20
-> In snps,dwc3.yaml, there are already similary proptery, such as
-> snps,incr-burst-type-adjustment. Use this method can keep whole dwc3 usb
-> driver keep consistent. And not all platform try enable hardware
-> dma_cohenrence. It is configable for difference platform.
-
-When you say "platform", what do you mean? I understand that term to
-mean a combination of board, soc and firmware.
-
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/usb/snps,dwc3.yaml    | 36 +++++++++++++++++=
-++
-> > >  1 file changed, 36 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/D=
-ocumentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > > index 8f5d250070c78..43e7fea3f6798 100644
-> > > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > > @@ -439,6 +439,42 @@ properties:
-> > >      items:
-> > >        enum: [1, 4, 8, 16, 32, 64, 128, 256]
-> > > =20
-> > > +  snps,des-wr-reqinfo:
-> > > +    description: Value for DESEWRREQIN of GSBUSCFG0 register.
-> > > +      --------------------------------------------------------------=
---
-> > > +       MBUS_TYPE| bit[3]       |bit[2]       |bit[1]     |bit[0]
-> > > +      --------------------------------------------------------------=
---
-> > > +       AHB      |Cacheable     |Bufferable   |Privilegge |Data
-> > > +       AXI3     |Write Allocate|Read Allocate|Cacheable  |Bufferable
-> > > +       AXI4     |Allocate Other|Allocate     |Modifiable |Bufferable
-> > > +       AXI4     |Other Allocate|Allocate     |Modifiable |Bufferable
-> > > +       Native   |Same as AXI   |Same as AXI  |Same as AXI|Same as AXI
-> > > +      --------------------------------------------------------------=
---
-> > > +      The AHB, AXI3, AXI4, and PCIe busses use different names for c=
-ertain
-> > > +      signals, which have the same meaning:
-> > > +      Bufferable =3D Posted
-> > > +      Cacheable =3D Modifiable =3D Snoop (negation of No Snoop)
-> > > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > > +    maxItem: 15
-> > > +
-> > > +  snps,des-rd-reqinfo:
-> > > +    description: Value for DESRDREQIN of GSBUSCFG0 register. ref
-> > > +      snps,des-wr-reqinfo
-> > > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > > +    maxItem: 15
-> > > +
-> > > +  snps,dat-wr-reqinfo:
-> > > +    description: Value for DATWRREQIN of GSBUSCFG0 register. ref
-> > > +      snps,des-wr-reqinfo
-> > > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > > +    maxItem: 15
-> > > +
-> > > +  snps,des-wr-reqinfo:
-> > > +    description: Value for DATWRREQIN of GSBUSCFG0 register. ref
-> > > +      snps,des-wr-reqinfo
-> > > +    $ref: /schemas/types.yaml#/definitions/uint8
-> > > +    maxItem: 15
-> > > +
-> > >    num-hc-interrupters:
-> > >      maximum: 8
-> > >      default: 1
-> > > --=20
-> > > 2.34.1
-> > >=20
->=20
->=20
-
---5XYrnAPk+u2li9K1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa/8swAKCRB4tDGHoIJi
-0tRwAP9r1mGJcSdOfVMegDS+Ns3RRr/Kzo7ZdGQ1DPmmog12XAEAi/GTOWWWPSj3
-36ussaCCWX9H1N3Gt6LJ1x0kC72Ubgk=
-=FRdh
------END PGP SIGNATURE-----
-
---5XYrnAPk+u2li9K1--
 
