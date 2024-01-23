@@ -1,227 +1,194 @@
-Return-Path: <devicetree+bounces-33957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD4728377CE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 00:47:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 798158378B0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 01:24:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 115A328880D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jan 2024 23:47:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08F9D1F25611
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 00:24:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD354E1BC;
-	Mon, 22 Jan 2024 23:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19AE6A3F;
+	Tue, 23 Jan 2024 00:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="CUA/IHDH"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="aVWtJ99k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2116.outbound.protection.outlook.com [40.107.113.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A569E4E1A2
-	for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 23:47:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705967270; cv=none; b=RRyasQB6CtXB4/fchskiMWDHB5AoPfjwFb/3ozOvx8XLL6RtpxeQ0oM9Gg/VES1k1zJd7bK6wyheKHLUKBJlbw5NUz14ymT8/v2Lmk8ceaK+JVQ5YLvmQaCut3WyGxfsrBDrnq3Uz5N576E+THzPoMR5NyiFFImBAYqMG8mgc3Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705967270; c=relaxed/simple;
-	bh=ZzC9LBvpvhi6E6Vl1gXAk49qSXkRaajCdiC8yc/weXs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VwUydcIR8IsfMigwAaeb+erBskWBfFz71ntF1rR7FVRoT/0pordEWlWYoSTjyd7oKu+fThOjUzHzOs1ioB8w/mcRLWB7xsqZ55OX03yqK3h9/enQBv63UEKQcKoafW4GYt7p+61rDo65m7vC5xI51RX198zQHq9vTVNOdnTWw5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=CUA/IHDH; arc=none smtp.client-ip=209.85.222.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7831386ee01so313075085a.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 15:47:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1705967267; x=1706572067; darn=vger.kernel.org;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=n1EI0aP5LX5Wk/aTNIPUzsevSSWa3LXzntT+HbHItV0=;
-        b=CUA/IHDHnztvivoqeV3wxfQWGQMyfFTbX52XqqsG2oLxh9vXkq0H5BES6kI2qwv+yH
-         uXzsErREWcCQMOqXbyKjPf0Zo/3RY49FN3q+65orJZtrhYuKHR8fRDkGU9aerAOdkTI+
-         RI9tnB6eYpZkAbs5svEb9lDAWREiDiUDpNSYo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705967267; x=1706572067;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n1EI0aP5LX5Wk/aTNIPUzsevSSWa3LXzntT+HbHItV0=;
-        b=Y6q/MHXWO4JdJyJRIQEcyPxWOCfjMm2j6436B6guO/aXrtvPae5scSv9ev8VSS/zzI
-         5nDDfPhPSqk5wkZd8DeAdxhcSPaosi3f67H6Czva/VCMkmP32tFWYsCNVKGxNyZALSj2
-         GQbbWBtkU6gz6bLxGIYyDZlCYKeQprP1SBqqw4LZZ1jficaioqNFPYv/ecklASKUfDqF
-         vb/3GYe3XBAR2o8QjohaaPrPFHOS8DJgmBxrpWhHj3d57PMbkF/+UxiJAtzLM0M3EOAY
-         1aSHl+yv1F7Uxqvmu79srubUQma/By7tjsLkKv151NqOdIkdOvUGYbLIl3zCC3zdrqLK
-         gAeA==
-X-Gm-Message-State: AOJu0Ywr+lPI3s+hUB6h6n9OPTcf/zF3hoKVwvT3lMS/dCmPQL9B1Onc
-	sTtimY5sBk2zghB8fYq3q5iOA9Xrg4h+x3FzigHV+KlRhRgcqWIeE7EoKfdSYw==
-X-Google-Smtp-Source: AGHT+IHIY+YgryUz53Z1kHNUdYATs6I3P6p+8BOPeYV1/WUIy/DZi9d49i6FOzAYIfdBkS2xoHXTXA==
-X-Received: by 2002:a05:620a:1032:b0:783:6260:cae4 with SMTP id a18-20020a05620a103200b007836260cae4mr5341501qkk.154.1705967267326;
-        Mon, 22 Jan 2024 15:47:47 -0800 (PST)
-Received: from [192.168.52.129] ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id qp16-20020a05620a389000b00783574d5017sm2582945qkn.19.2024.01.22.15.47.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Jan 2024 15:47:45 -0800 (PST)
-Message-ID: <8f837a36-b33d-4335-b19d-b16b61b80ce3@broadcom.com>
-Date: Mon, 22 Jan 2024 15:47:42 -0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93C17E9;
+	Tue, 23 Jan 2024 00:03:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.113.116
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1705968204; cv=fail; b=olTvt1YakIV7lBWhxkd9inMyAtPXO54RmsHpz3SoF8VA99aca7sv2L6wK0ohbq/7KhYkHVDzpN3wd5/DNh9Vt2S0NJmzdbuWozFelwmMpvSOqId0rE2cvXVtsgtQektmW691KY7877ZmRFthc6M1Rkpna/jT6yTISJ0M6NQm/pw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1705968204; c=relaxed/simple;
+	bh=AWlPsis86sut0v8jaAJ8OMCmJRsYem1f7SUYftT1XSE=;
+	h=Message-ID:From:To:Cc:Subject:Content-Type:Date:MIME-Version; b=ujY9GKjt4ubQOvxpuzwMC5LBymW8lMS0Huj9rce/I3t34ZJ52ygitd2xMoQ8b8G2FPn6cpWro/S45Y1nJ3X0NBVsX+VBLmcHSyaHyXhB5AlsFvDz8MJ+kOd29DvYNG7sR1Y+xayfSYjUCg1eXAuTYowVtIahCAhmLG7vOMoDPp8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=aVWtJ99k; arc=fail smtp.client-ip=40.107.113.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P14iL2nks+WJxqU7+C8jOzjC1GfhWyMa4AYP316bcQlPCrsWVq6b4b2jiyTJVpfFfL0r0rQQ+xugrtVuTlMf6DtIsmRpcrc/33w38lKatZbZN3WYY4C6PV4DDPKA91EHnricnZRe4ZzNYPqDkOSu3w+FLd76Ogwx2wkfdfLq4Xq/KONVS9t8DwCH17ZRiEBdUt+u2a3njk1/PTz8/IkcHrrgNPZ5G/TD9cHtkdj52clt7vDkKfgjXDPSSH/OipJ/FRqx3T/vkgJiqgrzvMvqTajVmbGzisrjiOScHNJH7dUm6B1F4fefyUAYUF5bjtsnw0jY8B/euQXZ7r2XG9XAlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8Vy4mrzmgrIKlrR4afwyTIpk1jDGLbWBYYAp4vUWyFM=;
+ b=KSrguvSSblxLCK+nNk3vlHVz+xmQ44irtn5nDuO4LM/G2TEm0z/qXBVIrrxc9p7MHAQCk9wr5kFybZqOHXQ7UYDMQO9sz1AYgmTQsvB8JAXxXVt/Md3dGykM/ad/WKU1yNu2rw8eSFndVt6KYrwgOIRDu5QhINwNZHxi6Q1WGL5ZHpJvRV0zXr258LzZrwMOnTSEumoNEyGNe+IQU3D5LGDOyRve3z/XeRz0iVPyQygjlMNdoqaezhJWT4vNZuXp/QE6wKgm5/39Q9YdvTmIkc+zGtFblMQ52zcXd82Lt+pyPm1pW/srY6EDM1qjPjgg5k9UTszVk83Lbp3SFSHxEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8Vy4mrzmgrIKlrR4afwyTIpk1jDGLbWBYYAp4vUWyFM=;
+ b=aVWtJ99kwaoMds5ChxYQ7RMZ8sQv8AZ3W2uwP5604OdJxqBayKMWx+kIcOwXZGrG4WGwX4jV42zuipaaRqjUXpWqi4lMWNTGfaqi7Kd7ARFYoTfPwn2Q9+UZgdCYpYonHLon+DviRG0NbzBelCvu3uippgkAZbgE+rAI4z7xTJA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TY1PR01MB10899.jpnprd01.prod.outlook.com
+ (2603:1096:400:320::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.15; Tue, 23 Jan
+ 2024 00:03:17 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::ce8:8f5e:99a0:aba4]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::ce8:8f5e:99a0:aba4%2]) with mapi id 15.20.7228.020; Tue, 23 Jan 2024
+ 00:03:17 +0000
+Message-ID: <87jzo0uda2.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: =?ISO-8859-1?Q?=22Uwe_Kleine-K=C3=B6nig=22?=
+ <u.kleine-koenig@pengutronix.de>, Daniel Vetter <daniel@ffwll.ch>, David
+ Airlie <airlied@gmail.com>, Frank Rowand <frowand.list@gmail.com>, Helge
+ Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>, Laurent Pinchart
+ <laurent.pinchart@ideasonboard.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Mark Brown
+ <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Maxime
+ Ripard <mripard@kernel.org>, Michal Simek <michal.simek@amd.com>, Rob
+ Herring <robh+dt@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Takashi Iwai <tiwai@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org, linux-sound@vger.kernel.org
+Subject: [PATCH 00/13] of: property: add port base loop
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 23 Jan 2024 00:03:17 +0000
+X-ClientProxiedBy: TYCP301CA0009.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:386::7) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/10] dt-bindings: mtd: brcmnand: Updates for bcmbca
- SoCs
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, dregan@broadcom.com,
- miquel.raynal@bootlin.com
-Cc: dregan@mail.com, richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- computersforpeace@gmail.com, kdasu.kdev@gmail.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com,
- tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
- anand.gore@broadcom.com, kursad.oney@broadcom.com,
- florian.fainelli@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- andre.przywara@arm.com, baruch@tkos.co.il,
- linux-arm-kernel@lists.infradead.org, dan.carpenter@linaro.org
-References: <20240118195356.133391-1-dregan@broadcom.com>
- <20240118195356.133391-2-dregan@broadcom.com>
- <12d06516e5f1310b508c5d8136131787@milecki.pl>
-From: William Zhang <william.zhang@broadcom.com>
-In-Reply-To: <12d06516e5f1310b508c5d8136131787@milecki.pl>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000fe2200060f9174d7"
-
---000000000000fe2200060f9174d7
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Hi
-
-On 1/22/24 10:57, Rafał Miłecki wrote:
-> On 2024-01-18 20:53, dregan@broadcom.com wrote:
->> @@ -111,6 +113,17 @@ properties:
->>        earlier versions of this core that include WP
->>      type: boolean
->>
->> +  brcm,nand-use-wp:
->> +    description:
->> +      Use this property to indicate if board design uses
->> +      controller's write protection feature and connects its
->> +      NAND_WPb pin to nand chip's WP_L pin. Driver defaults to
->> +      use this feature when this property does not exist.
->> +      Set to 0 if WP pins are not connected and feature is not
->> +      used. Set to 1 if WP pins are connected and feature is used.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [0, 1]
->> +
->>  patternProperties:
->>    "^nand@[a-f0-9]$":
->>      type: object
-> 
-> Please take a look at:
-> [PATCH 1/2] dt-bindings: mtd: brcmnand: add "no-wp" property
-> https://lore.kernel.org/linux-mtd/20211109115215.5bcef0db@xps13/T/
-> 
-> Miquel suggested a generic property applicable to all raw NANDs for
-> such purpose. Unfortunately I dropped the ball on that.
-> 
-This is already added in this commit 
-https://github.com/torvalds/linux/commit/cb57fae479be41d1233f5a49d4760de9a5692b6e. 
-But brcmnand nand controller has dedicated pin for WP and don't use 
-GPIO.  So it does not apply to here.  Basically brcmnand controller 
-handle the WP inside the controller and its driver.
-
-brcm,nand-has-wp is SoC level flag and it actually is only needed for 
-some rare earlier versions of the controller.  I don't want to break 
-that so I added this board level flag brcm,nand-use-wp for per board 
-control of the WP pin usage.  As you know many BCMBCA reference boards 
-(like the 4908 based) do not connect WP pin so customer follow the same. 
-You can use this flag in the Asus GT-AC5300 board dts as you intended to 
-address in your patch.
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TY1PR01MB10899:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a91ef51-fac0-4cf0-4ecb-08dc1ba6b3e6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	dUUc0LjTjXrowKZuAQIynfucNvy/IpYGDrlS5+ZkdLDYX4jhcgRYyq0HGg5ax+Fs+Qnr7iC7EmKLl83FNWeKaZ4N7/2sdaGfICqkG5sfyVinR5Yl3zZCIT+dp9u+eEbIReNRxEwhsqRjXy0nfhBxgGmPO7Hwyr2Q0v811ZvRUmX1JfIx6E5KlWi5Rj0r9qdWlPSe91WYzs97Ja/kz3GocSlDMIddhtFXTwKRHlr0A13Sd1rwUT9WZTVHZNLOMTOMeDUZK5LKX8LLPxqvkQ8VW5dkATCYVkF9d3HWwdnJjcXyeA3ZD3MCVl3sX5AuSkKD5DdbijO8PSDpf9rZqRYuHzbF9orODUF+rL5fyyepUzwVZYBtpt1nUJgWVgNIFeVedOjQyH0dMD0iSNfBZoSmZz3CE357Lig2vonhoKUbB4VWHdBC478r6LLbfEK/+l5i+dhKl1TftUZ6Nl8Vu5PH9M1UfHnMYrfJnfc5/G7IGL7Ki+z2IsHDl/5LCXrKVKlfn24Uh5A5//MpdYqF+bE/JRd5m7HRsGHYCIGK1WWKdjKWohNOOSforav5dfSlpD9rMilz0tNZj0GbeNIlLb50mvr37qoRf9ZopAeHe6cmlNPVF2qDdXUs7bbaabLcwoX7
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(366004)(346002)(136003)(39860400002)(396003)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(83380400001)(8936002)(52116002)(316002)(66946007)(8676002)(2616005)(6512007)(4326008)(110136005)(478600001)(6486002)(2906002)(6506007)(66476007)(41300700001)(7416002)(5660300002)(38100700002)(921011)(36756003)(66556008)(86362001)(38350700005)(26005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?zC6LkZZkcFsvBJus+D+hpKE/YVKXXTY150LFPUdWhdupi/O6memVKdjsXMW/?=
+ =?us-ascii?Q?Xu/h2zPIcnvGOaQtQVTls32GT3N+QnNgbxJrQwBe6HrQKtknaEkLtHG4UJRY?=
+ =?us-ascii?Q?80+I/XEpsbmHC0V6DzmxucEcrIRzuSe9tpb1RXR4SgxsOp3bL5hxbov0zuyx?=
+ =?us-ascii?Q?4UDpnaAzo6PtZ/WtaW429VH6qbztwBUkuZuDodLI3MVMtNUy/rvq7RdP2tzJ?=
+ =?us-ascii?Q?6eFLRxxy9YKuiRhBYjk1qNDvyOUw5f04hx+/wtMmYJPzBkGZXjx+lMshKNCV?=
+ =?us-ascii?Q?/BbY6fg49SUED53h/qZ/+6riFwFr7zWCIdw90tulgujw2tPmJMt9FEHVBDly?=
+ =?us-ascii?Q?JZ5vQMuZSiwHgqot95qWYGi1rOI2yeJqh8BErsGEW/Y3DwecVkCJFbm/mPkE?=
+ =?us-ascii?Q?mu7eRhrlMr0FHfFfVsrxysKd4CveqHnw9m0N9XcQkc+K72cPAlYJSjgQ29OR?=
+ =?us-ascii?Q?I94Jkfh9/MicwjwvAfMEOtL3Idklz6W+Ck+Yr8V7J5AqnFpUgATF0xkvjIRY?=
+ =?us-ascii?Q?5moop5gvsDh6JKxNaTl7DZiZFyqi+aPMaZZ7GgydpjDJd2bpIaI2iH3iKKGS?=
+ =?us-ascii?Q?vDIlp6bqus66fmwTuK90agkBcOPxExL/TnNvFgDIDmfzP3whnr8J9/CSCjgv?=
+ =?us-ascii?Q?W3RTGoLLfp67Ftp+rcDVx4EuZYaG4TLheF+bzQygTKmPNgdzZK6UIiHA32Y9?=
+ =?us-ascii?Q?gZtz3OPJ9iKOuufqpCvHOJmfgRj3YCm99R5BP54wey3wHg0tKelAG9kLSV+n?=
+ =?us-ascii?Q?qDq+H4v94vLyeyjO3oRyB/cDa0W4cE4xgEhNtJuRFHKrgnmCHXiPZmJOlNmE?=
+ =?us-ascii?Q?VRCq5vipxSKjA9NcV1RhTrJWGAAhIXOJV192g7odi88JnGN1DeKVFhJx6tqW?=
+ =?us-ascii?Q?z9fdXpOrzWMybTNubean6sB1UoOGJhtYhpoO6IkpU8Nh4PTy198ZCDnkd9bt?=
+ =?us-ascii?Q?n1lh2XfqkhprVgjUuBopJziDDPGj28QO4j04SutDgX/ylTtUqeG53/go+sTC?=
+ =?us-ascii?Q?Mh2i39AUI86izUV8vtrFDNHFsBqEsywsvqPBH/H18/7uabAn7rjFfflAlSXY?=
+ =?us-ascii?Q?fpTo+XwS3MgYNDmabVnlpzL4X8jnLWDip8epBqm9p2EyM83m7ujzvbG/jV5T?=
+ =?us-ascii?Q?ban7La80NlxTJbjYqM9jiqbbs7/Y+d/QkG2Z8jqufqRmhvChJBAFp5JM578b?=
+ =?us-ascii?Q?2KV3AgmQmgSG6kmeXVLxJUclUVPkMvRYVzgxQb4DumbY0MV6eCAyBxZnQOqk?=
+ =?us-ascii?Q?H/7GioVjUaP9B0OUGV6CSLANaNjOZECvIxfEJbi3hH0oEdBFtnWEgweLCLQl?=
+ =?us-ascii?Q?v0xFL7LE+bbbB3iYEa1t3nY2XA10jrwhrwUS14JksKUy7FN5m/bPcIV7cBPq?=
+ =?us-ascii?Q?RdDdwAJ5o5AKhoTnvUXiox8nL90exqEbdHw+XVu73Y9vXZNAIyKHG6TtIcAY?=
+ =?us-ascii?Q?Cqqh9PCyZGk4zqYnpM3WgQmChQ9ZUXGiRUWA/LmSjhlbkFH7Opd+h5UwpQTX?=
+ =?us-ascii?Q?8P3wMOUonfuCcsqqSahqiYgHIKJRp+yQli+3+4puYg97Nk+MnpRepBsYWzFF?=
+ =?us-ascii?Q?IeZrHVwODC5A1AYq3FeybRA6HN4PkwTn7paAaZMsiqKJAzR65RbZikjdiTJF?=
+ =?us-ascii?Q?NLu7gOR69sDj6hz7sMArjpQ=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a91ef51-fac0-4cf0-4ecb-08dc1ba6b3e6
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2024 00:03:17.7885
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: O4eaAdkTXd4Mdh6w+sjs5xumt4bLw0chvnrgB2jklacNHC047aRGWrsUQCCBfd79Cxuz95F7Np4c+Gsyw/c72CGywB7tDM6/sLj15Pq3P2Z99Bufb6KULyKxOFeu+jP1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB10899
 
 
---000000000000fe2200060f9174d7
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+Hi Rob
 
-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
-YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
-6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
-xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
-VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
-/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
-0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
-urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
-JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIF4uLu7y0W/PYjJLA84CLUzzBdLh
-idin6NiTCxjPcM/QMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0
-MDEyMjIzNDc0N1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQC6vrRnYVt/VGu+cvwbiNLlO9UJGdArgri3cKL9UjGZNiNb
-JqJkc9VSMHzmnHnRxQkrQUrxdd5ANYBs1MlYVxFmRIGzKd1Z8hhMoTkS/elo8fZXc1gGmaz46H2M
-sFb8yyFQSG6WCwoPBct1R4FS969fE7/K7G6dUOclQF1vNU1uJb9IeP7dIv3ctsDLVjWUx19jKU/v
-/NLrkT3n0K0Tfy61abXeD8PtF8hM+eSz8XFGdb4XqJqvcq5rvKRvC7l8xkzS/Z1Sfm5SnVVJdvjr
-EBESX1IrqxgsI5n9vOzLtaU/35aozwjfdSdLz/EdYgjbOslqrl7WW5l0fQMCVxF9zeGM
---000000000000fe2200060f9174d7--
+We have endpoint base functions
+	- of_graph_get_next_endpoint()
+	- of_graph_get_endpoint_count()
+	- for_each_endpoint_of_node()
+
+But to handling "port" base things, it is not useful. We want to have
+"port" base functions, too. This patch-set adds it.
+
+Because current existing drivers couldn't use "port" base functions,
+it were implemented in a different way. This patch-set doesn't try
+to full-replace to avoid unknown bug, try easy / quick replace only
+for now, but easy to know how "port" base functions are needed.
+
+Because I can't test the driver which I can't use, non-ASoC drivers
+needs Tested-by, Acked-by.
+
+Kuninori Morimoto (13):
+  of: property: add port base loop
+  of: property: use of_graph_get_next_port() on of_graph_get_next_endpoint()
+  of: property: add of_graph_get_next_endpoint_raw()
+  drm: omapdrm: use of_graph_get_next_endpoint_raw()
+  media: xilinx-tpg: use of_graph_get_next_endpoint_raw()
+  ASoC: audio-graph-card.c: use of_graph_get_next_endpoint_raw()
+  ASoC: audio-graph-card2: use of_graph_get_next_port()
+  ASoC: audio-graph-card2.c: use of_graph_get_next_endpoint_raw()
+  ASoC: test-component: use for_each_port_of_node()
+  fbdev: omapfb: use of_graph_get_remote_port()
+  fbdev: omapfb: use of_graph_get_next_port()
+  fbdev: omapfb: use of_graph_get_next_endpoint_raw()
+  fbdev: omapfb: use of_graph_get_next_endpoint()
+
+ drivers/gpu/drm/omapdrm/dss/dpi.c             |   2 +-
+ drivers/gpu/drm/omapdrm/dss/sdi.c             |   2 +-
+ drivers/media/platform/xilinx/xilinx-tpg.c    |   2 +-
+ drivers/of/property.c                         |  92 +++++++++++++---
+ drivers/video/fbdev/omap2/omapfb/dss/dpi.c    |   2 +-
+ drivers/video/fbdev/omap2/omapfb/dss/dsi.c    |   2 +-
+ drivers/video/fbdev/omap2/omapfb/dss/dss-of.c | 101 +-----------------
+ drivers/video/fbdev/omap2/omapfb/dss/dss.c    |   8 +-
+ drivers/video/fbdev/omap2/omapfb/dss/hdmi4.c  |   2 +-
+ drivers/video/fbdev/omap2/omapfb/dss/hdmi5.c  |   2 +-
+ drivers/video/fbdev/omap2/omapfb/dss/sdi.c    |   2 +-
+ drivers/video/fbdev/omap2/omapfb/dss/venc.c   |   2 +-
+ include/linux/of_graph.h                      |  23 ++++
+ include/video/omapfb_dss.h                    |  11 --
+ sound/soc/generic/audio-graph-card.c          |   2 +-
+ sound/soc/generic/audio-graph-card2.c         |  31 ++----
+ sound/soc/generic/test-component.c            |   2 +-
+ 17 files changed, 126 insertions(+), 162 deletions(-)
+
+-- 
+2.25.1
+
 
