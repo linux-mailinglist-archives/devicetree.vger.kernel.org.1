@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-34156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89CE0838D5F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:25:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D635838D64
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:27:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A498E1C2069E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:25:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E82102862E6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54155D745;
-	Tue, 23 Jan 2024 11:25:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C780E5D749;
+	Tue, 23 Jan 2024 11:27:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f67hjU82"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i+NPTAWX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F23C5D74A
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 11:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5A35D747
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 11:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706009139; cv=none; b=FeGD9CkJDgDLmi1Xw/aHa77RfC6veRt+7bjPKSZeV6gp4fRgTdJI3Jri4LhCkv8M88OdWvQjHja3kC9kdKzVBoF1iDIymWgywr+L+pZ7xAj3ddpsF9LNd9dZlxD3mtIY7vae8Jpi+6Ouo2219KTUWH6DlUa+n5fR1Z9wFSR38Gc=
+	t=1706009249; cv=none; b=RKaFBt7avfwLaaX7r3rKKD7xh5xHDSJnAmkM32EDITvzv30m691lqMPfYxxPIeUgvHgxZ64MSVzKJqgADTM2rNVA7Pxhn85UaQOptPGOtViNzcskious0FrnC9rQ9CcVROBwuPEHnXUMQg9wcdJ2QnnKvk8wgIs1TzODcIGBrDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706009139; c=relaxed/simple;
-	bh=wYumhNh40zvaqJnlirZhJjynOHSXtyBShcxc4yIxkxQ=;
+	s=arc-20240116; t=1706009249; c=relaxed/simple;
+	bh=/33j38LPRnHKd/+MO/KQQGKo803l5Kti1xI5KMgNgWw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q2wtk/vqrB3gv0awZUgXvn+sX8Fletwati4No2EfM+gpHcvS/2pf30p6iWGL0NQdZnsFygLZMdiBEjAPbbHyL93DXHyhneY3QdNfTQJHcRrqeLusRKAy63yGU/ascnbOaiJZD1eyyVMOnElgG6VtDUZYPuepJ3+OypXXWrV+dWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f67hjU82; arc=none smtp.client-ip=209.85.128.41
+	 In-Reply-To:Content-Type; b=lRdj6rf3mCp6/F5pB/8eVK73xNjupR6nWT0nab5WswrbpqL4ddkcFOg5K5t+16lheEkwl57LCjRW4ZUxPGF83cGLxbJ/Ze2qaTr8S7WDRIniX37MnNxjlehkNpFs4FNw+KtEHMWYf67cRVT1Ubs18R8bjF3huD9FBDCSmII55co=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i+NPTAWX; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40ebf373130so3893075e9.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 03:25:37 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40e9d4ab5f3so45300685e9.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 03:27:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706009136; x=1706613936; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706009246; x=1706614046; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8zBBf/j8UaqFMIEjNVpf8BjIjinm+gPNeFEeWOU24Ag=;
-        b=f67hjU82muLN2AaXeEQzzxV0zTHDVrgho4X1oGRzdafB1SIiChlkImOhFQM3C50bJ3
-         hHMbf3b5KTynllPnZ4ez/oPInh1IguIQzNOfNP7sh9yNteSy7BXMwx1L6weEeNG8FHIZ
-         w3n+NJ9AUike/oPetEk3bpKltnT6Bt+oH9JQbSVK/Ne23MadpsDmcSLB0OHwybbbRBSG
-         XF8SyEvzAWlbahkyvkinTpYBdk2RI/J7Gpp9bY3brDRszrplLY0MmOwBvrLsIo3ppZI2
-         GbL2vRJ2RKUQLqMNiZOEnrb+lMXRByoN1vA9HubrgkhlXvVkayZLe3ovBhUaLbnnB132
-         59Xw==
+        bh=Jdr/bVVgf5pebqUeKfsq+IHIZtC1h589Gu8Dwms7Pvo=;
+        b=i+NPTAWXWnaFRsB4gr/nMAernieSGi+UAywAz+qd3rwxO6TkFQ59kSC5+I2Zqg4eHR
+         uu5OV58SIU+9l1LAp8NjbTYvhAYxh3NQMUe4fiW3le63fXiu1oVh8UyzTvhjDeukCMVQ
+         kqTmvPkqzWgYc4L4irSELmtJ4u0HthVbcUP7SNVs90qdKCIYRwp1MLHwu12mKMSsK8QU
+         BhuATounc21T0mDDfUC4YcbNDaXNHVgatF/LV5Ay6j1Q1lzCh1ipH6jBKyI+NyGT6lZ9
+         /pSzrOfka8WbUdrEv2ohyX1L+Bz+jRU9z4YqM5bpNQikp7+Ht+WJDsUee8cupYoKlseS
+         yZKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706009136; x=1706613936;
+        d=1e100.net; s=20230601; t=1706009246; x=1706614046;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8zBBf/j8UaqFMIEjNVpf8BjIjinm+gPNeFEeWOU24Ag=;
-        b=qpHIU0+BdZnW06iOJhaaB9XLN/MbepLyCZ4ce8zV9Z+buhRiRr34gWsGy7PB2UvK/9
-         Wb0DqRH/Qp5W+h7qLYKasM6Wqy4E8ZxeBxIxXDucwrwTed3WmNSntqzKjZnCnWoJNZEi
-         9+52ZziMBvSl7+djjlUXwqqk+w+kGXQRsHKCQJbOcKKGPnuyq/UkgpmJwVNGOCuwoMvM
-         IlLwrWNQTewUyyizAPos7K499MKNcJWzTofE55OQ2VN0i9NNuFhN0FBITbXaPhMA5whe
-         VYBmPeNP9WRO4zhDxmkxEtnKYBE8ZsUeFSWBIHMsAo2Oz55Bk86msidfk+ye5W/jCUnp
-         bimA==
-X-Gm-Message-State: AOJu0YyidpUpxEiLSrrXUQdgUoLrhAOSyrIHQorIAhPy0VpzgYtlXEff
-	4PEwh5NZCAaJOkOojwdThiprQr79bQQAoncQ70pGgjU3KwaMv2011oKJl6wPydY=
-X-Google-Smtp-Source: AGHT+IF4f3Zyr+QsPiWN2dwrl90pAiKTc6oBZklUyrXvX7nfl8aWjrkSDDdBA21hKwTLTmapcqDySw==
-X-Received: by 2002:a05:600c:35d1:b0:40d:30fe:a7d with SMTP id r17-20020a05600c35d100b0040d30fe0a7dmr414037wmq.109.1706009135813;
-        Tue, 23 Jan 2024 03:25:35 -0800 (PST)
+        bh=Jdr/bVVgf5pebqUeKfsq+IHIZtC1h589Gu8Dwms7Pvo=;
+        b=Ei+Wy3fE8QflM4UX67xXQpQRnw6A3AyDRZM8d6j+QjatVHPU4Vh3b6JCPU1veFF9fl
+         +ZkDzb4fOO2jzfac1IGdtdSlrSjtJ1Y6h8J4X+ZFYbDgjf5Sd+LPlVvHIWmp4ROqZwbD
+         XcYaYoTinveeDtYPZ06Vm4BMiUqHOG4QdtnqzDxit62/74rtRIAsZMZ2+54DJ23kaCAD
+         r/uqJrGihYcHpK8oh/J2M7rvDWY1R+iqgge9bDSXAle9IjQw2DJyn7TnVOqxSuxPYMvQ
+         HIQ1EEwEjA3cM1RHswLnG5TV4/6KWp+8fjDPnI+7D9ggtc4okRHeGGEBCV57EHmTtzrn
+         LIiA==
+X-Gm-Message-State: AOJu0YwiHd6qY3JUTaX43XaB8CXivKc6zv/wNyKgTceGNZjfro5wb+1B
+	h5N8YiXolZnE6056WwbiVuDe6r5kicAfJ5/r4DtoXiht80Mui0wNGonWLhGewcY=
+X-Google-Smtp-Source: AGHT+IHi22g0cvpix/xMgtvI1JV3ctHg2uuWcTVdUGImBWsxn+xgtcEMJBT9umzPgdRODBG7MkZeiQ==
+X-Received: by 2002:a05:600c:19d3:b0:40e:7b39:183b with SMTP id u19-20020a05600c19d300b0040e7b39183bmr35163wmq.42.1706009246319;
+        Tue, 23 Jan 2024 03:27:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id j8-20020a05600c190800b0040d7b340e07sm42361437wmq.45.2024.01.23.03.25.33
+        by smtp.gmail.com with ESMTPSA id n22-20020a05600c4f9600b0040e53f24ceasm42043394wmq.16.2024.01.23.03.27.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 03:25:35 -0800 (PST)
-Message-ID: <08809d8b-a474-42e8-8a25-edc94e7d9723@linaro.org>
-Date: Tue, 23 Jan 2024 12:25:33 +0100
+        Tue, 23 Jan 2024 03:27:25 -0800 (PST)
+Message-ID: <82c54849-afad-4b82-818d-186db9b5cd0f@linaro.org>
+Date: Tue, 23 Jan 2024 12:27:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,19 +75,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/4] ASoc: pcm6240: Add compile item for pcm6240 codec
- driver
+Subject: Re: [PATCH v2 2/7] dt-bindings: can: mpfs: add missing required clock
 Content-Language: en-US
-To: Shenghao Ding <shenghao-ding@ti.com>, broonie@kernel.org,
- conor+dt@kernel.org
-Cc: robh+dt@kernel.org, andriy.shevchenko@linux.intel.com, kevin-lu@ti.com,
- baojun.xu@ti.com, devicetree@vger.kernel.org, lgirdwood@gmail.com,
- perex@perex.cz, pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- liam.r.girdwood@intel.com, soyer@irl.hu, jkhuang3@ti.com, tiwai@suse.de,
- pdjuandi@ti.com, j-mcpherson@ti.com, navada@ti.com
-References: <20240123111411.850-1-shenghao-ding@ti.com>
- <20240123111411.850-3-shenghao-ding@ti.com>
+To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ Wolfgang Grandegger <wg@grandegger.com>,
+ Marc Kleine-Budde <mkl@pengutronix.de>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, linux-can@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240122-catty-roast-d3625dbb02fe@spud>
+ <20240122-breeder-lying-0d3668d98886@spud>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,23 +139,27 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240123111411.850-3-shenghao-ding@ti.com>
+In-Reply-To: <20240122-breeder-lying-0d3668d98886@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/01/2024 12:14, Shenghao Ding wrote:
-> PCM6240 driver implements a flexible and configurable setting for register
-> and filter coefficients, to one, two or even multiple PCM6240 Family Audio
-> chips.
+On 22/01/2024 13:19, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: Shenghao Ding <shenghao-ding@ti.com>
+> The CAN controller on PolarFire SoC has an AHB peripheral clock _and_ a
+> CAN bus clock. The bus clock was omitted when the binding was written,
+> but is required for operation. Make up for lost time and add it.
 > 
+> Cautionary tale in adding bindings without having implemented a real
+> user for them perhaps.
+> 
+> Fixes: c878d518d7b6 ("dt-bindings: can: mpfs: document the mpfs CAN controller")
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
-> Change in v1:
->  - Add compile item for pcm6240 codec driver
+>  .../devicetree/bindings/net/can/microchip,mpfs-can.yaml     | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 
-So before you added dead code? No, please add a working code, so squash
-the patches.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
