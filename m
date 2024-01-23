@@ -1,132 +1,158 @@
-Return-Path: <devicetree+bounces-34294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBC33839592
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:59:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AF6C839598
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:01:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 295581C2667C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:59:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7970028BC1F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:00:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 628A7823B3;
-	Tue, 23 Jan 2024 16:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 031277FBD9;
+	Tue, 23 Jan 2024 16:58:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="voqO2XvU"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="gplF/fd+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB38760DC6
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 16:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913747FBB4;
+	Tue, 23 Jan 2024 16:58:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706028840; cv=none; b=hG/PCe7mg/ZrphKGTn1JBeTCZAsC3pHgHXnwaG1TJz2RGCwdeqW5d5vpEGESzBSoPDTpjooxiSu7XlFS7lmprxz17StzyBOctqxxh+RdYLzsaFShtZUEJzI9FmKmA1zuF7sHz0ThYYniJ+8g1gO7lBXDOcdmfui59dtvMZlee9I=
+	t=1706029128; cv=none; b=ZxIxsD2NeiUXU6setlfzD1UnIyT1V7U2+0EB2W+7iZaCKgvs+VQDIEGxcTBvLdMCCGCeSbScrWgI1i95Amip4xFbLyRgvQrsw2p428S6RDyrDCdL57FYYH+CDg24mVq9wZn/mgd5nTaWLWWPRlwGx1Cy/gew9Cz5dOjWT34qlws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706028840; c=relaxed/simple;
-	bh=pooQ69oU2DoOocMMkeJ4cpqIQG2BPmnIao2wByNaHUI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gj6B0qBA6zb4FdGpZA4/+p8DqxSEw2ogEZg6ndejFJgYJaqP4zX3MAwVzZXZ6jVvANpT7g+DKq0xdotCRODwJYHatLez8XEC+QzdiU07F1vQgpRPB8bo1QB68OFYwRjKCdsAU2QT3hVcx2iPmJITxeNCYYJSZ+LMm04WmJtny+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=voqO2XvU; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5ff7dd8d7ceso39692387b3.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:53:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706028838; x=1706633638; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=w7Kpr4OnTCJukmd6IPUzA5zkXhmfPHzmd2uoemc3Jdk=;
-        b=voqO2XvU0xmSWWfJt9LGbijZ1wC5J5sbxo+wF0ufNsI6va4x+SZ0YSCafc0yKkM73b
-         3Er8Nab1E1+Igbph1iDoeybupfjE8hFfMVeJspfU8MuWSHlfTAfcbg1zph9VDQ2a4MWL
-         Cac4jg9idfOBPU3IKvxVYxjIs9L1BZuxN7cIhYjtMtpgHXYydRXoB5U5i6HsGxfqKU/y
-         m1tyM6b1E9YqzJQ2+VOu3Mup6U3Tao0AEeeqYurQXg+GOh+zCLMZWfWpYXM9H65XBzsv
-         jSXoraQyghJcGktdl7lXRL1X/wzfA5cYlhz+32VlhD+6QnxgdZW3vk0vdYlg6wWkpDIH
-         NqPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706028838; x=1706633638;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w7Kpr4OnTCJukmd6IPUzA5zkXhmfPHzmd2uoemc3Jdk=;
-        b=uYTXGzZLkwll0It4ofTZYE2y/d6lRnegxjYf+nY0S/h6BGyr8Zs5+1oEcq49iIMllH
-         rM1aqe8AxSe5eOtNMHIayj5O0j4K+ag1qh2tj8yOW56bHicomgHy7JSgTRvtc0dlXncG
-         AyCnIUZCMb3z4KpVvVbJjk/x2UZvcmHv7rXglqT3pm/OhsNJF8wIwfnxwwOvhn4/t3fX
-         M/I/NM82D2Gbr9lA48XJ+L/8LwNvFZ05f2MdsGkE3xPBq96Tht+YgdTbbGTI1fosHtBF
-         5ZyoDUZHN5qCEUJUPpStDKix5ghLvFhlGeS3K8TlEhtrtYLdUUTQVqXBoEH97q3SVWv/
-         6y0g==
-X-Gm-Message-State: AOJu0Yxp8Uj0RCBf68AWbN7P018Hydt2T+k+sBKWZkQvndoOe8ZjkMWu
-	q3gndEqIvw7ZM9LTjD0Eyvtnbjv/1ZOARtHJE/OfBr1/j8Uaobeb+fH2Jlld3JIosiwzZQafdEr
-	iwBcXsCN6pHbxZin0wFNP0K4cXKZQeHixw9JPAQ==
-X-Google-Smtp-Source: AGHT+IG6yH0HyJuDZxDw1e1dK7G/Xy5v2cIQbXYLFfwffB4lOyIXbr2o9XW/hXlmMP+niub/q0gByneRaxyxeM/Hosc=
-X-Received: by 2002:a81:7c87:0:b0:5ff:9128:d314 with SMTP id
- x129-20020a817c87000000b005ff9128d314mr4701207ywc.105.1706028837907; Tue, 23
- Jan 2024 08:53:57 -0800 (PST)
+	s=arc-20240116; t=1706029128; c=relaxed/simple;
+	bh=n9chiGVZ7ikmTakMXFC2zYvUDAvG9Y4v6GvQ/j4rxME=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=oFhYCiZwQuF1X9oPh9B33njNBrSQfvT4BwM34vjW/xXr1HQledxcGOkCZ55xV4D1d2sQ2MG31yi/SaNAE471+ifaE/8BlekRJf/5vwDyg3QddA19MCiOTZerMXcusEZSmrWz7hpje+DoNdcoQBz2p4ixstXd+MTCOmnYhlhVrbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=gplF/fd+; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id E52DB12000C;
+	Tue, 23 Jan 2024 19:58:40 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru E52DB12000C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1706029120;
+	bh=X6dDhX7s4UWSn6jo6T+Mv0rP4UhHPB3J5T7leAbh0jE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=gplF/fd+jZDMpCENjMNbi19L6oCuvWZ6IfkfAuIm/AfZeE4+1CoWdfpS58Er7XaIi
+	 ADyaU7LXC/8fYknIAsitNsTT6CYrwCPCMYAiwjOIfrYu8IoLzshHC2edFCB3OlnHSA
+	 Ry+iIxOWjDAoZR+0Rp7SlbbTRNEQlc2KGIHHZZ0ZW///DUmUzOMcyN40eCCYUlg0ob
+	 HmSiSLXNezQI4LinwVrO/upIcMI6sCVpCqIpAWdJipNTJH5CioPwEU36431tg3j1no
+	 xm74ks2Xp3p0tsxiRbik+ZsB8I8yqK95xjr+sivhYwt6WLx1gGktG4GWoB60Z6crBA
+	 IXSGMS6BLuj7Q==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue, 23 Jan 2024 19:58:40 +0300 (MSK)
+Received: from user-A520M-DS3H.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 23 Jan 2024 19:58:40 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <neil.armstrong@linaro.org>, <clabbe@baylibre.com>,
+	<herbert@gondor.apana.org.au>, <davem@davemloft.net>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<khilman@baylibre.com>, <jbrunet@baylibre.com>,
+	<martin.blumenstingl@googlemail.com>
+CC: <linux-crypto@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <kernel@salutedevices.com>, Alexey
+ Romanov <avromanov@salutedevices.com>
+Subject: [PATCH v2 00/20] Support more Amlogic SoC families in crypto driver
+Date: Tue, 23 Jan 2024 19:58:11 +0300
+Message-ID: <20240123165831.970023-1-avromanov@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240118155711.7601-1-quic_ninanaik@quicinc.com>
- <rq2dnfh6ctn5gbf3o3op5ywxx7zhx6r5sh5ykautye56o3p4dg@rjttk3rr65ld>
- <20240119191144.GR3013251@hu-bjorande-lv.qualcomm.com> <CAA8EJppLNFReZn1HK_radSkKkf5L584fx3FCuqG0FoUt4+H=nw@mail.gmail.com>
- <Za5xj8S3Gs7N-UUc@x1> <20240122200237.GB2936378@hu-bjorande-lv.qualcomm.com>
- <884f92ac-4d1a-9f0c-29ad-9d5833f10863@quicinc.com> <CAA8EJpq74G7Et=vuc-K0y_wKCEiM0=YVyb7TcosAnbvOFMWDMg@mail.gmail.com>
- <20240123160203.GF2936378@hu-bjorande-lv.qualcomm.com>
-In-Reply-To: <20240123160203.GF2936378@hu-bjorande-lv.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 23 Jan 2024 18:53:46 +0200
-Message-ID: <CAA8EJprd3QibK=5JJEo=EKgRwXsveAhD+S0ZPJDoNCmgz-axAw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Add new memory map updates to SA8775P
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Trilok Soni <quic_tsoni@quicinc.com>, Brian Masney <bmasney@redhat.com>, 
-	Eric Chanudet <echanude@redhat.com>, Ninad Naik <quic_ninanaik@quicinc.com>, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	quic_psodagud@quicinc.com, quic_kprasan@quicinc.com, quic_ymg@quicinc.com, 
-	kernel@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 182874 [Jan 23 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/01/23 15:06:00
+X-KSMG-LinksScanning: Clean, bases: 2024/01/23 10:08:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/01/23 13:53:00 #23383939
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Tue, 23 Jan 2024 at 18:02, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
->
-> On Tue, Jan 23, 2024 at 08:23:37AM +0200, Dmitry Baryshkov wrote:
-> > On Tue, 23 Jan 2024 at 04:58, Trilok Soni <quic_tsoni@quicinc.com> wrote:
-> > > On 1/22/2024 12:02 PM, Bjorn Andersson wrote:
-> [..]
-> > > As Brian M mentioned earlier, we want soc vendors to submit the support
-> > > for their SOCs and platforms on top it as early as possible and it means
-> > > such memory map changes will continue. Even memory map changes
-> > > continue even few months after the commercial s/w release in certain cases
-> > > due to critical bugs were found in some usecases which warrants the changes.
-> >
-> > So, can one handle such changes? Are we going to publish a list of
-> > kernels to be used with the corresponding firmware images? Then what
-> > if the developer wants to update just the kernel? Just to get this or
-> > that non-platform-related feature. Or vice versa, what if the user is
-> > stuck with an older kernel because some driver gets broken in the main
-> > branch (which unfortunately happens sometimes)  Or what if the memory
-> > map patch gets backported via the AUTOSEL process?
-> > Unlike the Qualcomm binary distributions, the firmware and the kernel
-> > version are no longer connected.
-> >
-> > That's why I keep on saying that memory map is an ABI. If it gets
-> > changed, it is a completely new, incompatible platform.
->
-> This is only a problem because we think the DeviceTree is a part of the
-> kernel. If we actually tied the DeviceTree to the firmware - as it was
-> intended - different firmware versions could come with different memory
-> map.
+Hello!
 
-Yes, up to some point. Because then DT gets incorporated into U-Boot...
+This patchset expand the funcionality of the Amlogic
+crypto driver by adding support for more SoC families:
+AXG, G12A, G12B, SM1, A1, S4.
 
-> The one exception would be any remoteproc/pil firmware that is not
-> relocatable, as these are distributed together with the OS (in some
-> form) and not the boot/security/etc firmware.
+Also specify and enable crypto node in device tree
+for reference Amlogic devices.
+
+Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+custom tests and trcypt module.
+
+---
+
+Changes V1 -> V2:
+
+- Rebased over linux-next.
+- Adjusted device tree bindings description.
+- A1 and S4 dts use their own compatible, which is a G12 fallback.
+
+V1: https://lore.kernel.org/all/20240110201216.18016-1-avromanov@salutedevices.com/
+
+Alexey Romanov (20):
+  drivers: crypto: meson: don't hardcode IRQ count
+  drivers: crypto: meson: make CLK controller optional
+  drviers: crypto: meson: add platform data
+  drivers: crypto: meson: add MMIO helpers
+  drivers: crypto: meson: move get_engine_number()
+  drivers: crypto: meson: drop status field from meson_flow
+  drivers: crypto: meson: move algs definition and cipher API to
+    cipher.c
+  drivers: crypto: meson: cleanup defines
+  drivers: crypto: meson: process more than MAXDESCS descriptors
+  drivers: crypto: meson: avoid kzalloc in engine thread
+  drivers: crypto: meson: introduce hasher
+  drivers: crypto: meson: add support for AES-CTR
+  drivers: crypto: meson: use fallback for 192-bit keys
+  drivers: crypto: meson: add support for G12-series
+  drivers: crypto: meson: add support for AXG-series
+  dt-bindings: crypto: meson: add new compatibles
+  arch: arm64: dts: meson: a1: add crypto node
+  arch: arm64: dts: meson: s4: add crypto node
+  arch: arm64: dts: meson: g12: add crypto node
+  arch: arm64: dts: meson: axg: add crypto node
+
+ .../bindings/crypto/amlogic,gxl-crypto.yaml   |  31 +-
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   7 +
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   6 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |   6 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   6 +
+ drivers/crypto/amlogic/Makefile               |   2 +-
+ drivers/crypto/amlogic/amlogic-gxl-cipher.c   | 602 ++++++++++++------
+ drivers/crypto/amlogic/amlogic-gxl-core.c     | 281 ++++----
+ drivers/crypto/amlogic/amlogic-gxl-hasher.c   | 452 +++++++++++++
+ drivers/crypto/amlogic/amlogic-gxl.h          | 115 +++-
+ 10 files changed, 1165 insertions(+), 343 deletions(-)
+ create mode 100644 drivers/crypto/amlogic/amlogic-gxl-hasher.c
 
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
