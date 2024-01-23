@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-34222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CDC5839203
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:05:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0BBD83920A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:06:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5A0A1C22A5C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:05:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 604E828CF9B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:06:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F1F5FBA0;
-	Tue, 23 Jan 2024 15:04:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DEF05F853;
+	Tue, 23 Jan 2024 15:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TzUFckTy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uv0nDCxj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0935FB8C
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6535941A85
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:06:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706022266; cv=none; b=DaahrO6deZPCqthhp0aDY27JAmBAQWHubsoG1TSUU8qmTOaBHA/iQ5sG8rFw1nE2lkrmi7M3jSSKQQp/ZNgubiGVNYIOaHXioBP35XH7cRcYQXFkDnRL42ZET76yc+n7S8CqiNc40M1EWdafYbbAtQD0hZUOKFjvpgyWv/n2H+s=
+	t=1706022402; cv=none; b=OjlcRjMQMAKStjw5uQQlP059Q3sXZVoap81u1z+cN5zN7kfeKdDrZ+2Kxe8AlyMR29hxj0/DGTEkpzzLvmInnuhM00J8oBKmq52a2fTb0lluEf9dROvOIb93SafeWEENKkLPqdTKfjcixkVmWtyz6f+5XXXjLOjXriYq2gZhmSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706022266; c=relaxed/simple;
-	bh=Tu3cqFci8WaHOnBtzOdldpyunWVYVzEczy4GoS0Ccys=;
+	s=arc-20240116; t=1706022402; c=relaxed/simple;
+	bh=Rzv9vebhz47fokP7LiSSzv96GDQrjjYMuUYW7jzviPg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fj3OUtVhYLDi3q2vpxoR+KT1Tx3n7Tn8hR9oqQE5QDAvSqNsjUKKM6s3m+6JVn24HNiaSRDHYJ+zhXG862ThlK2TSjsrNG7uhrqLGkezntxdZ24Xpsd53Q0v6Umc2nihLQsFAPofjedRXfvTc+zln9xzv5cFYheiCra7F0xbTwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TzUFckTy; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:Content-Type; b=Ux4+yu0kqTCeRU1Imflri929eUmEScHWGY4vVWH54DQc/7IIx0dZ6BT9SpxlLabzAH5jNOYyT13abBzZuUNDkPDu/Kt1BGO3aar3bWYgS4PASXMtUI2RHsYwiNVVyQGzQAy8k0vaHI3uM/7C/XI7FRG6xi2KlWSnhvvJFCgWkH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uv0nDCxj; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40e80046264so56112105e9.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:04:24 -0800 (PST)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-337d99f9cdfso3920035f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:06:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706022263; x=1706627063; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=D1fi6zHbgrXmr+/grPY97P7k3iob9AFkPeQ4v7MnMa8=;
-        b=TzUFckTybv6fzLsg/F0o2YJhyXBWLTWw2i623GGk3YLxqCYxrQXpDIxfbKTe+9ZI1B
-         Y9Rq7wfxSjKKeksnb6aq034vVO3SzhK2CwKO/ylbDz4cnBteccMmpi8ciaDXTFvRnqPJ
-         fjltADxb42OfNR0H4ULL49VMIHh2PDz93JmIwy09wSLJQNVKuRyp8dLEzXTi2/u6fXaq
-         C8uJEsKD6HiCAgH1/o0YTwfoFk2iA5Avdz1azairNwxQNng7tvfLXkzccPJ0aGx8kMW/
-         H1ZutVW3ba4YDJ2zlSML8efHb9D5vERYQoPvFIJUwoHtcghYyHYCwAl63Xl0Zgjns2EF
-         UBQw==
+        d=linaro.org; s=google; t=1706022398; x=1706627198; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1zO5Gerp3x7bTpsg9KpkTY28DYtOnGCMLOCBNBnjsd4=;
+        b=uv0nDCxjKthCa36/rNpe9GyoB/R38O9Qw+8OvhTo0moruND7OV76V+T2vQCMdGK8P/
+         3D4Sc57wsRlpFcSwt8jSM+AHEwCcJvoqPkVQ7Q7mX1C41hUSTu6qZN0EWGZqDAbwn+n2
+         wSsAR685UonZmLFvvS8HOwWc7NIMPajcuMsrrZWiLdT4CY/YnI3NVkfRktnKsdq1s+UH
+         Ijk8YYlvZVgMxRkvij8BCBeZw0SxPW02OFBsDz3mtgWpSK7KIGrALf1bGKI2OC0YYEQb
+         vMt5yA/B0T6vt1hNm+U4ufFF/N/C00P6iWMHkMNpEja1a66IFTzlr74BXh8GsAlXYywq
+         jIRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706022263; x=1706627063;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D1fi6zHbgrXmr+/grPY97P7k3iob9AFkPeQ4v7MnMa8=;
-        b=RMUVkRIsTYk5F/ooFjGlfmxHaiiE0SWseZZrwvJExqwsJWRJZMZGUHHy4A7qJuPlB5
-         k9z7MmsQ12nGPFHJhn3HQ6LUxEHJesZEAJOS7YPswijb/E3LvrSEr8M5FDKDVEzXWiIv
-         GhmaG1j9QoBFIwviQJcVE54983rYwQ33UZNba+MAIeYS1UL9sc2NLsYJ6AHxo61OXdrw
-         9lu97OD16i2wz9FjV2XMRm/Eo+E5toiT8NAJ1R79DgRhTTExiREe08WJA6003JY5Mgmo
-         NBbvpLd6vAH4ZAlwyvPPZN20F9DFF4uVqIaGPTxtijMIeM8/VluplpjwjZX4B47PfrL2
-         3ucQ==
-X-Gm-Message-State: AOJu0YxPKcvLJJjbmBsaO1+8FyTs1g0RuKOf4EULScudZWp1U1CJUtjg
-	ryHf+oCHAAiNZZcV+DMpTelahbvczKbGnwqKAjEaD6LS9Ol53HkOHxggyyFXjts=
-X-Google-Smtp-Source: AGHT+IHG1+N4DXUX6qaUZ5kW5x9YZdj37viEablJvTV/ZnuDBzsiR/mSJHZj/NPoGJYg20ErecOWRA==
-X-Received: by 2002:a05:600c:584a:b0:40e:6e67:36ac with SMTP id ka10-20020a05600c584a00b0040e6e6736acmr246141wmb.52.1706022263266;
-        Tue, 23 Jan 2024 07:04:23 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706022398; x=1706627198;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1zO5Gerp3x7bTpsg9KpkTY28DYtOnGCMLOCBNBnjsd4=;
+        b=mgZ6VDipDUoErujWZkPtRvpD0bBX/Ci5Lm/LoGvlLDxATNprtnUS/0fy8X0tTCI+qL
+         s+B7f7Y712LeYNQ9txz7QFTP5n3Ox9z4Qf7GkUM0eqLG5WrVV/UuXnE3KaXHuvNa7YnB
+         H2M2h1/6z+u8Fyt7DuweI5oAMuynz0PlH+aoRL6eV7lpsQZyOIs7c8uOAFPwYFvbg43B
+         v0PqzOTkAOFxw074E95mlF+DcSg3GG3dXWiLUytQ7herDb/WIKktALiMBQDSeyTMIiPJ
+         V2PJQiDdnno3KeFmnE1VVDvudH9qp4Wle1A7YYskcADaMCv8MmDLeCYsJM3ev/qp5RZO
+         BjZQ==
+X-Gm-Message-State: AOJu0Yz+/uMCZ+N0++ygCVDNwYcpA+rPWTyXI0YNucamvmIViTpnxVUh
+	7NeW58xkjmBREi8R7j5NIcxsqCCKpjz9C7bzFY9S9/11upRkuNA9PioCzi3Xjhc=
+X-Google-Smtp-Source: AGHT+IHy3ot08fJzZ8QEE1/0yRjbwjyL7FHwkxJnn/3pfaMDfS3G4gmL90KNOb3CPtMJufjQL/PXnw==
+X-Received: by 2002:adf:fdc7:0:b0:336:6aa4:b62c with SMTP id i7-20020adffdc7000000b003366aa4b62cmr3376483wrs.49.1706022398471;
+        Tue, 23 Jan 2024 07:06:38 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id t8-20020adff048000000b003366c058509sm8526482wro.23.2024.01.23.07.04.19
+        by smtp.gmail.com with ESMTPSA id y6-20020adfee06000000b003392be82b25sm8026083wrn.86.2024.01.23.07.06.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 07:04:22 -0800 (PST)
-Message-ID: <17fac295-5043-411e-8f1e-32f78ffe4027@linaro.org>
-Date: Tue, 23 Jan 2024 16:04:18 +0100
+        Tue, 23 Jan 2024 07:06:38 -0800 (PST)
+Message-ID: <96190db7-96c9-4d5b-b327-b75d09a3013a@linaro.org>
+Date: Tue, 23 Jan 2024 16:06:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,21 +75,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 4/4] ASoc: dt-bindings: Create yaml file for pcm6240
- codec driver
-To: Mark Brown <broonie@kernel.org>
-Cc: Shenghao Ding <shenghao-ding@ti.com>, conor+dt@kernel.org,
- robh+dt@kernel.org, andriy.shevchenko@linux.intel.com, kevin-lu@ti.com,
- baojun.xu@ti.com, devicetree@vger.kernel.org, lgirdwood@gmail.com,
- perex@perex.cz, pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- liam.r.girdwood@intel.com, soyer@irl.hu, jkhuang3@ti.com, tiwai@suse.de,
- pdjuandi@ti.com, j-mcpherson@ti.com, navada@ti.com
-References: <20240123111411.850-1-shenghao-ding@ti.com>
- <20240123111411.850-4-shenghao-ding@ti.com>
- <92c1a3f3-6b3b-47cb-a4bf-0d20e4af95e5@linaro.org>
- <9ed437f8-e429-4694-bffc-15931d57a48b@sirena.org.uk>
+Subject: Re: [PATCH v3 1/4] dt-bindings: mailbox: fsl,mu: add i.MX95
+ Generic/ELE/V2X MU compatible
 Content-Language: en-US
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+References: <20240123-imx-mailbox-v3-0-ed932945e0bf@nxp.com>
+ <20240123-imx-mailbox-v3-1-ed932945e0bf@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,69 +134,63 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <9ed437f8-e429-4694-bffc-15931d57a48b@sirena.org.uk>
+In-Reply-To: <20240123-imx-mailbox-v3-1-ed932945e0bf@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 23/01/2024 16:01, Mark Brown wrote:
-> On Tue, Jan 23, 2024 at 12:25:04PM +0100, Krzysztof Kozlowski wrote:
->> On 23/01/2024 12:14, Shenghao Ding wrote:
+On 23/01/2024 15:38, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
->>> ---
->>> Change in v1:
->>>  - Create yaml file for pcm6240 codec driver
+> Add i.MX95 Generic, Secure Enclave and V2X Message Unit compatible string.
+> And some MUs has internal RAMs for SCMI shared buffer usage.
 > 
->> I don't understand. v1 is the first version. Against what is this change?
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/mailbox/fsl,mu.yaml        | 50 +++++++++++++++++++++-
+>  1 file changed, 48 insertions(+), 2 deletions(-)
 > 
-> This appears to be a perfectly clear description of the contents of the
-> first version, it's a change against the tree before the patch is
-> applied.  It's a bit unusual to include a per version changelog on the
-> first version but not a problem.
-> 
->>> +    enum:
->>> +      - ti,adc3120
->>> +      - ti,adc5120
->>> +      - ti,adc6120
->>> +      - ti,dix4192
->>> +      - ti,pcm1690
->>> +      - ti,pcm3120
->>> +      - ti,pcm3140
->>> +      - ti,pcm5120
->>> +      - ti,pcm5140
->>> +      - ti,pcm6120
->>> +      - ti,pcm6140
->>> +      - ti,pcm6240
->>> +      - ti,pcm6260
->>> +      - ti,pcm9211
->>> +      - ti,pcmd3140
->>> +      - ti,pcmd3180
->>> +      - ti,pcmd512x
->>> +      - ti,taa5212
->>> +      - ti,taa5412
->>> +      - ti,tad5212
->>> +      - ti,tad5412
-> 
->> And none of them are compatible with something?
-> 
-> No idea about these specific chips but that would be entirely normal for
-> CODECs, even where things are subsets there's often some tweaks needed
-> to initialisation or whatever.
+> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> index 12e7a7d536a3..569fabc5285c 100644
+> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> @@ -29,10 +29,14 @@ properties:
+>        - const: fsl,imx8ulp-mu
+>        - const: fsl,imx8-mu-scu
+>        - const: fsl,imx8-mu-seco
+> -      - const: fsl,imx93-mu-s4
+>        - const: fsl,imx8ulp-mu-s4
+> +      - const: fsl,imx93-mu-s4
+> +      - const: fsl,imx95-mu-ele
+> +      - const: fsl,imx95-mu-v2x
+>        - items:
+> -          - const: fsl,imx93-mu
+> +          - enum:
+> +              - fsl,imx93-mu
+> +              - fsl,imx95-mu
+>            - const: fsl,imx8ulp-mu
+>        - items:
+>            - enum:
+> @@ -95,6 +99,17 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  ranges: true
+> +
+> +  "#address-cells": true
+> +
+> +  "#size-cells": true
+> +
+> +patternProperties:
+> +  "^sram@[a-z0-9]+":
 
-I want to double check with the author.
+This is a friendly reminder during the review process.
 
-> 
->>> +     two: pcmdevice@48 {
-> 
->> Node names should be generic. See also an explanation and list of
->> examples (not exhaustive) in DT specification:
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> Please be more specific about what you're looking to see there.
-> pcmdevice doesn't seem particularly more specific than something like
-> dsp, it certainly seems within what the text describes.
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
-pcm, codec, audio-codec
-"device" seems redundant, because almost everything is some sort of device.
+Thank you.
 
 Best regards,
 Krzysztof
