@@ -1,107 +1,154 @@
-Return-Path: <devicetree+bounces-34061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB7783890C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:34:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2A26838911
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:35:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 222141F25DDE
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:34:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C11F1F26084
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D1B5A0ED;
-	Tue, 23 Jan 2024 08:32:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE18433A3;
+	Tue, 23 Jan 2024 08:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="jU5CfT80"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="C2jQQpBZ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="V4Pn7sZ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F2255914C;
-	Tue, 23 Jan 2024 08:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 091625C60C;
+	Tue, 23 Jan 2024 08:33:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.147.123.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705998777; cv=none; b=sIxAp1KTIOH8t+FOr6LEHIZTHQXJsC2U9gMTgNCx1P/s/M35C7cgmFBMh5e6bfMOBm+99J4LoDTsoHtgt7kJS/ewG+1Aqr2L5W8Gu5HZ9VwYy5Kex1wYza/4oLMlTOcJsktdUdf38/mfZYl8M8PI4jjymtQoNfWhf2xXhJMr73s=
+	t=1705998796; cv=none; b=uZW5GWyJJNR/VA+NEjeckehyMWibMCoitS+WHAThXT/JlUyz5rTHsu+7MygLDr6idT1wSpkk4dclR8fTd+HSfDxfusyp2qME95oMLkmHJBnFO7TxEU29Zli68RXzc4oM/6DsGdD+81HZCbJpy/SBPGj0P24sKVkl8Akk6FKX6xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705998777; c=relaxed/simple;
-	bh=w0dxjFqQ8zn2yUDvgz8hDY7YiqyUIy+jKDWe65fPdMA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=k2ZWQ5s7suFKmd3746VYqf10e86Ss6Bs5pl1n5Cp70PpxEkuGeN1RYn24nrWLMgihpwgVOZzwPLlzgDtFUpIcWoaORJtdFQftLb4eR9KJEOh6G7HUNNBGTsd2e34/hui5pTL3/fZCd7Wp1vl2glGepN8UNKSuUsTezaNrKbceBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=jU5CfT80; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1705998777; x=1737534777;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=w0dxjFqQ8zn2yUDvgz8hDY7YiqyUIy+jKDWe65fPdMA=;
-  b=jU5CfT80pvQ3H2dova4dI8ykCvdJjjv2VW1Tab3jZrqCLVGRXK6IGtTC
-   u54DwoUg16UdzvivzSFaQLm/67Jv4RdYdQTsSySYlPdnuo2pCR61mCcVR
-   pTtHt5ve2wnY55nfkPL6AiKR4I/o+vc+rp6MDD/LsSeoxAf+YTxjxGs3q
-   CmgyyFj9Hz9J9N7u4mGHBGl+TviO1BL8H0Kh5WbdVjrJBXOWVyVIyT82Q
-   H2nMvT0R54H6VUjh2PZkm6w2R8JcKjM/ZzVLAF6Cj9W3cn1XrexG9GMtQ
-   CccgdEGZawmzdg2zOia88GyvnvDGRNxIV1JPjA2VjGniE2Ca8OoGp/I1p
-   Q==;
-X-CSE-ConnectionGUID: 8Z0MiRbqTTiGlgq+aKWHzg==
-X-CSE-MsgGUID: cAO7RWtvSVamJ62rejuhUQ==
-X-IronPort-AV: E=Sophos;i="6.05,213,1701154800"; 
-   d="scan'208";a="15154468"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Jan 2024 01:32:53 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 23 Jan 2024 01:32:44 -0700
-Received: from virtualbox.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 23 Jan 2024 01:32:42 -0700
-From: Mihai Sain <mihai.sain@microchip.com>
-To: <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-CC: Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH 8/8] ARM: dts: microchip: sama5d2_xplained: Add power-supply property for sdmmc0 node
-Date: Tue, 23 Jan 2024 10:31:58 +0200
-Message-ID: <20240123083158.7339-9-mihai.sain@microchip.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240123083158.7339-1-mihai.sain@microchip.com>
-References: <20240123083158.7339-1-mihai.sain@microchip.com>
+	s=arc-20240116; t=1705998796; c=relaxed/simple;
+	bh=3W4oCTdv0FXEFahQwcsqyn/FRaGXMhdpGJXywPb64hs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tI4RrlFP+RXUPggQLr+/msHpj4VvCCecNyphyqrtUYFUjjGxHxnKuHVWJ5UHNgXb0z95FSqs6wZYUtaNscRH2vVQz7p2Uf8HynFDBYxRcLQKCAxqNlMMx6qWSKrW1Awrt5/euW6LC+s/ce99kWircaUuMnrAmQ8/LOJ4QL7JjF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=C2jQQpBZ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=V4Pn7sZ3; arc=none smtp.client-ip=64.147.123.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+	by mailout.west.internal (Postfix) with ESMTP id 08B923200AC2;
+	Tue, 23 Jan 2024 03:33:11 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Tue, 23 Jan 2024 03:33:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1705998791; x=1706085191; bh=3W4oCTdv0FXEFahQwcsqyn/FRaGXMhdp
+	GJXywPb64hs=; b=C2jQQpBZjiTlZxWq/nsAQj9sYzK41RT2t7QgkgSFBK4et80H
+	cWUSkh3GUxz8Yc4v2Ta6ftvzxdhXQvJgzJQsvame6l1FQDBpFa0/inRr9Er0C4tr
+	xgJ+zIXKSLbq0yT3MZB+00qwAaH+7BgvcWffyo1gCwLRUG7gjgsZ7AsUOV2U04JI
+	2oZQJve/0aC+KIiaQB8XhVjbLsbsyaV003up94jneDia7d+f7rt/AE0Y+HEZ9nQa
+	/CLyHQeVSmxz1iI59QWA3QjTCChkUXaDQRI+vBp0mhPDhwXyl5fNsczOEvs/9o/j
+	FA2+TeCv9/UBeO64N5k665gj75NOOcMpWfhSSw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1705998791; x=
+	1706085191; bh=3W4oCTdv0FXEFahQwcsqyn/FRaGXMhdpGJXywPb64hs=; b=V
+	4Pn7sZ34NQuv4MvbyKMEzfMWGVvQvHt+AP4RDfQZSC2Jl9cix8jQXRWHCzbtui86
+	HQu2zbSIZbznekkJqZYteWG845W9sT9l3XTkC8HFPrwATMCTkCrOR5lCs6lVlyW9
+	uI4+dEBochgxzIRBeA7mW/A2qajKecew1AGwo9Lg0a9RPxxvlGMVDH3me/zFTHJ5
+	f1AEq+Z0OPnDoA4tn1vt+wJLp11c92Ab6gCjkDre1/r8YTP9heze+25pqLcrTV4Z
+	yPYHeQq8g9RdUjojFnrs/K1dq5ygmS/9uhRnYb1wH6XNT0xU+a1dtfSTHOSKVmSo
+	uscZQ2OA8w2t6pP+OmU+w==
+X-ME-Sender: <xms:xnmvZcMl1U8ryt4MaF4-8iy-uaNV4ypxh02D1mCwyW4gNBB1C9OPpw>
+    <xme:xnmvZS9iaK-FcP9UkD2fnAM6SJPTA2vIdNbCoQyHJU8_0Q6Yjg1wspIBzS6K5XjEV
+    4qJW5mHow>
+X-ME-Received: <xmr:xnmvZTRgXLT7LfaB0o6w7GZf4M_rEPxoaOxDp0HkFSJ4ENw2Gr6MPvWLMA6KE1kVpPWxsmaquwRr4Hnd5ClvdtVylRq1W0qQnVS6EQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdekjedguddujecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomhepvfhi
+    mhcunfhunhhnuceothhimhesfhgvrghthhgvrhhtohhprdhorhhgqeenucggtffrrghtth
+    gvrhhnpeeugeefgfevueeitdehfffgfeevjeekteeihffhvdejveelhfeukeduueelgefh
+    keenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehtih
+    hmsehfvggrthhhvghrthhophdrohhrgh
+X-ME-Proxy: <xmx:xnmvZUsal9bpM_dW-cDt-Bp_pG7XDWNL2hLqf5OedLxVnlRHKFQNUg>
+    <xmx:xnmvZUdYXaMHXAXwfqjClkA9d1JIU2_oCm_Yky1m43itPAOMvMMz4A>
+    <xmx:xnmvZY38aOA0TCd6K94oCp5QkkZOcT_3aEiHiS1_33qy0ZrWeMyUUQ>
+    <xmx:x3mvZY1MG1s_IJhE35Inxb_9OYgFMbEtSzCkW_kLz7T-auOOAcgfHg>
+Feedback-ID: i1f8241ce:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 23 Jan 2024 03:33:05 -0500 (EST)
+Message-ID: <9cb6ae6b-15df-4467-b1b4-e0efd61c0d8f@feathertop.org>
+Date: Tue, 23 Jan 2024 19:33:02 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] dt-bindings: rockchip: rk809: Document audio codec
+ properties
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-rockchip@lists.infradead.org, conor.dooley@microchip.com,
+ robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, Chris Zhong <zyw@rock-chips.com>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lee Jones <lee@kernel.org>, Zhang Qing <zhangqing@rock-chips.com>,
+ linux-kernel@vger.kernel.org
+References: <20240120135529.899403-1-tim@feathertop.org>
+ <20240120135529.899403-3-tim@feathertop.org>
+ <04ccf5f5-1f02-42f9-b1fc-b781c54d7ae9@linaro.org>
+ <93d775df-af84-44ff-870e-f720a33ddf34@feathertop.org>
+ <0b0a4c9f-0549-4566-a900-b1d7de5838d5@linaro.org>
+From: Tim Lunn <tim@feathertop.org>
+In-Reply-To: <0b0a4c9f-0549-4566-a900-b1d7de5838d5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-The sdmmc0 controller is powered from 3.3V regulator.
-Add vmmc-supply and vqmmc-supply properties to sdmmc0 node.
 
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
----
- arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
-index 6680031387e8..9b7e56790a5a 100644
---- a/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d2_xplained.dts
-@@ -67,6 +67,8 @@ sdmmc0: sdio-host@a0000000 {
- 			pinctrl-0 = <&pinctrl_sdmmc0_default>;
- 			non-removable;
- 			mmc-ddr-3_3v;
-+			vmmc-supply = <&vdd_3v3_reg>;
-+			vqmmc-supply = <&vdd_3v3_reg>;
- 			status = "okay";
- 		};
- 
--- 
-2.43.0
-
+On 1/23/24 18:37, Krzysztof Kozlowski wrote:
+> On 23/01/2024 05:10, Tim Lunn wrote:
+>> On 1/22/24 19:14, Krzysztof Kozlowski wrote:
+>>> On 20/01/2024 14:55, Tim Lunn wrote:
+>>>> Rockchip RK809 shares the same audio codec block as the rk817 mfd, and
+>>>> is compatible with the existing rk817_codec driver.
+>>> Please use subject prefixes matching the subsystem. You can get them for
+>>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>>> your patch is touching.
+>> Ok I will check this.
+>>>> This patch introduces to the binding the standard property #sound-dai-cells
+>>>> and also an optional codec child node to hold codec specific properties.
+>>>> Currently there is only one property in this node however the downstream
+>>>> driver shows a number of other properties that are supported by the codec
+>>>> hardware, that could be implemented in the future. This maintains the
+>>>> existing driver ABI and keeps consistency with the rk817 bindings.
+>>> So you are adding a new node? Just for one property? No, just put it
+>>> into parent node.
+>> The existing upstream codec driver parses the property from the "codec"
+>> sub-node, if I
+>> move it to the parent node here, I will need to patch the codec driver
+>> to search in both locations,
+>> so as to not break the rk817 bindings.  If that is preferred, I can do
+>> it that way.
+> Your long commit msg has just very short mention about existing driver
+> and the rest is not helpful. Please rephrase to explain why and what you
+> are doing it.
+>
+OK I will rephrase both commit messages for the next version.
+>>> Downstream driver does not matter at all in that aspect.
+>>>
+>> The codec hardware supports additional properties but they are not
+>> implemented currently in
+>> upstream driver.
+>
+> Again: it does not matter. Bindings are not about drivers.
+>
+> Best regards,
+> Krzysztof
+>
 
