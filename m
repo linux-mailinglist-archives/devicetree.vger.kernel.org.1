@@ -1,185 +1,104 @@
-Return-Path: <devicetree+bounces-34191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1258283905C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:44:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45FC4839069
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:50:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B61D1282814
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:44:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1C291F20F26
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:50:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B745EE9E;
-	Tue, 23 Jan 2024 13:43:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 709EB5F563;
+	Tue, 23 Jan 2024 13:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="o855QV/e"
+	dkim=pass (1024-bit key) header.d=pschenker.ch header.i=@pschenker.ch header.b="LsdP6EjA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp-bc0e.mail.infomaniak.ch (smtp-bc0e.mail.infomaniak.ch [45.157.188.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7227E5F840;
-	Tue, 23 Jan 2024 13:43:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A0595F55F
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 13:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.157.188.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706017439; cv=none; b=GheOyaGKzoqyzVN4v4cEvran/KHYjs/jWoCpZHWC7al0hQ3nrAt8AGwpseED4/xUBQ8i6/XXLlrjJRfz+U2mplOTTKqe4BdOW2v04pKD9mGMgCyWBgA9T2EYKZJuAItttEB6+D+dulFwqgiajBOg2hchTFkeMDfW70yiyxnuqEs=
+	t=1706017827; cv=none; b=mK67tmGr7j76AUpuEHJynn9gCGeSSGYFIyKPqrznknm1kwhru0BgcQ/uFNVAJzrXcDUjHKciAIvov2g0aEpn1SUEWpxzgk7iowrC96+ajIdVV4mvF9Y9h5UY1XviI8Bm7tJzxsBk/3ARpP2eizpquRqKsQbyWnSeDREwfan8Fr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706017439; c=relaxed/simple;
-	bh=LhPh2JflSkf4Eh9L4wigdSNPjwvTJS+d6yoBjqkQUu4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=a/qwaK1P769iTLxYFYYcetJgJ8Y+dmXhqGNv62NGGU1CpOjzDM1noT9RMLL8oPGr9WVaU5MOYFMQhXotTLfr9hadLEVEvM2Q+x1/hwZgtpydlmNdUf0rnV166iqvAXYoz9sIkSGHGElUVsWUJNcnWiARoVot91nXGD0kLyKmXoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=o855QV/e; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40N9svH4025268;
-	Tue, 23 Jan 2024 13:43:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=jCQOtSJ9PoUIcSjoiIspfcchAoWUzG5bAaJvDSmlONY=; b=o8
-	55QV/eNfSUXYbsetOlNX40v7eRtXBjRlAWnV2lfd9neGmAXXvYJ89pb3KSbMOmBl
-	6j0lmqYLb0u3mlDnVBnpIAKlfcUS4zSLPIRseaoS9bjIlv9/sTsqH/rW6sMxn2UV
-	JOCTfYo+1O3gryeOTi4HtqRPcqiPki0YKl4Q2E73rZbsi4cw0lddRbAolDIaBxnh
-	wX+kLBPg74JKD9APD/NUakhvc+u/XmMRZe7wFLmgeij+9/0SSq+fimYJCR0mNLdP
-	s7BtyOkSUotzq4KTp5sSAzJuu0oPi8QDxy0gxIPprsnWfjFya5AyqyHekRDPLVzp
-	eykkoXQBcWhXIESyP93w==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vt9un8r0k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 13:43:35 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40NDhZXO025227
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 13:43:35 GMT
-Received: from [10.216.46.55] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 23 Jan
- 2024 05:43:27 -0800
-Message-ID: <99a9a562-9f6f-411c-be1c-0a28fc2524dd@quicinc.com>
-Date: Tue, 23 Jan 2024 19:13:23 +0530
+	s=arc-20240116; t=1706017827; c=relaxed/simple;
+	bh=LjhC1jDaXjp11zwHWnmEkccOYnM+1J/uiTXo3eT0lfI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NqnUI+sinn8+UFYand5aZkQO30/JV2JM8Aw4pbqekohrGc51dJj5YWG4SDAb2rg1+kaS7anvJyakc61oghvnaW3NP3Nm9Lwljh72j95V3oYAqEGql+bs47ZWtFwgpphoNLfBPBYnRc1MEeZDFBkMwpjh2k0kVTwCLrXrTiXI1J4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pschenker.ch; spf=pass smtp.mailfrom=pschenker.ch; dkim=pass (1024-bit key) header.d=pschenker.ch header.i=@pschenker.ch header.b=LsdP6EjA; arc=none smtp.client-ip=45.157.188.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pschenker.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pschenker.ch
+Received: from smtp-3-0001.mail.infomaniak.ch (unknown [10.4.36.108])
+	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4TK7kz23cLzMpvZR;
+	Tue, 23 Jan 2024 14:50:19 +0100 (CET)
+Received: from unknown by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4TK7ky1Ds2zMppBZ;
+	Tue, 23 Jan 2024 14:50:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
+	s=20220412; t=1706017819;
+	bh=LjhC1jDaXjp11zwHWnmEkccOYnM+1J/uiTXo3eT0lfI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=LsdP6EjAqB46MQ8ZQkcFvTTgfsAgYFPC3amz7zJRhFaGiicuvD/a3YCx/Qqx+yVeK
+	 5T0XYHSPS/EJaJujI1wpp1nLx5laTQn5VoK+2AXEnyqGjWfJo+nKo2QHJqfTOaFIL7
+	 HwL5Wzc7etOlm+vnsh6zrM1yl7OyornibrS5itWs=
+From: Philippe Schenker <dev@pschenker.ch>
+To: netdev@vger.kernel.org
+Cc: Paolo Abeni <pabeni@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	UNGLinuxDriver@microchip.com,
+	Marek Vasut <marex@denx.de>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	devicetree@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Philippe Schenker <philippe.schenker@impulsing.ch>
+Subject: [PATCH net-next v1 1/2] dt-bindings: net: dsa: Add KSZ8567 switch support
+Date: Tue, 23 Jan 2024 14:50:13 +0100
+Message-Id: <20240123135014.614858-1-dev@pschenker.ch>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcm6490-idp: add display and panel
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>
-CC: <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <quic_bjorande@quicinc.com>, <geert+renesas@glider.be>,
-        <arnd@arndb.de>, <neil.armstrong@linaro.org>,
-        <nfraprado@collabora.com>, <m.szyprowski@samsung.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_abhinavk@quicinc.com>, <quic_rajeevny@quicinc.com>,
-        <quic_vproddut@quicinc.com>
-References: <20240116094935.9988-1-quic_riteshk@quicinc.com>
- <20240116094935.9988-3-quic_riteshk@quicinc.com>
- <20a8efd1-e243-434e-8f75-aa786ac8014f@linaro.org>
- <CAA8EJpqQVuS+yqXQ2y5sNQrRVg7tcQAJ3ywsEjg+O=7TkUZWLQ@mail.gmail.com>
-From: Ritesh Kumar <quic_riteshk@quicinc.com>
-In-Reply-To: <CAA8EJpqQVuS+yqXQ2y5sNQrRVg7tcQAJ3ywsEjg+O=7TkUZWLQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RvR87RTdicsPBy4455whRNbg-5dkbgAK
-X-Proofpoint-GUID: RvR87RTdicsPBy4455whRNbg-5dkbgAK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-23_06,2024-01-23_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- priorityscore=1501 adultscore=0 clxscore=1015 spamscore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 impostorscore=0 phishscore=0
- malwarescore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2401230100
+Content-Transfer-Encoding: 8bit
+X-Infomaniak-Routing: alpha
 
+From: Philippe Schenker <philippe.schenker@impulsing.ch>
 
-On 1/16/2024 6:27 PM, Dmitry Baryshkov wrote:
+This commit adds the dt-binding for KSZ8567, a robust 7-port
+Ethernet switch. The KSZ8567 features two RGMII/MII/RMII interfaces,
+each capable of gigabit speeds, complemented by five 10/100 Mbps
+MAC/PHYs.
 
-> On Tue, 16 Jan 2024 at 14:06, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->>
->> On 1/16/24 10:49, Ritesh Kumar wrote:
->>> Enable Display Subsystem with Novatek NT36672E Panel
->>> on qcm6490 idp platform.
->>>
->>> Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
->>> ---
->>>    arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 100 +++++++++++++++++++++++
->>>    1 file changed, 100 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->>> index 2a6e4907c5ee..efa5252130a1 100644
->>> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
->>> @@ -9,6 +9,7 @@
->>>    #define PM7250B_SID 8
->>>    #define PM7250B_SID1 9
->>>
->>> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->>>    #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->>>    #include "sc7280.dtsi"
->>>    #include "pm7250b.dtsi"
->>> @@ -38,6 +39,25 @@
->>>                stdout-path = "serial0:115200n8";
->>>        };
->>>
->>> +     lcd_disp_bias: lcd-disp-bias-regulator {
->>> +             compatible = "regulator-fixed";
->>> +             regulator-name = "lcd_disp_bias";
->>> +             regulator-min-microvolt = <5500000>;
->>> +             regulator-max-microvolt = <5500000>;
->>> +             gpio = <&pm7250b_gpios 2 GPIO_ACTIVE_HIGH>;
->>> +             enable-active-high;
->>> +             pinctrl-names = "default";
->>> +             pinctrl-0 = <&lcd_disp_bias_en>;
->> property-n
->> property-names
->>
->> all throughout the patch
+Signed-off-by: Philippe Schenker <philippe.schenker@impulsing.ch>
+---
 
-Thanks, I will update in the new version.
+ Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
->>> +&gpu {
->>> +     status = "disabled";
->>> +};
->> Hm.. generally we disable the GPU in the SoC DT, but that doesn't
->> seem to have happened here..
->>
->> Thinking about it more, is disabling it here necessary? Does it
->> not fail gracefully?
-> Missed this.
->
-> I'd say, I don't see a reason to disable it at all. The GPU should be
-> working on sc7280 / qcm4290.
+diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+index c963dc09e8e1..52acc15ebcbf 100644
+--- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+@@ -31,6 +31,7 @@ properties:
+       - microchip,ksz9893
+       - microchip,ksz9563
+       - microchip,ksz8563
++      - microchip,ksz8567
+ 
+   reset-gpios:
+     description:
+-- 
+2.34.1
 
-With GPU device node enabled, adreno_bind failure is seen as the 
-"speed_bin" was not populated on QCM6490 target which leads to display 
-bind failure.
-Spoke with GPU team and on QCM6490 board, only CPU rendering is 
-supported for now and there is no plan to enable GPU rendering in near 
-future.
-
-In this regard, what do you suggest
-
-1) Disable GPU in QCM6490 DT (as per the current patch)
-2) Disable GPU in the SoC DT, but enable it in other platform DTs. (This 
-will prompt change in all the dt's and we don't have all the devices to 
-test)
-
-Please let me know your views on it.
-
-
-Thanks,
-Ritesh
 
