@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-34418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4D68839AF6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:21:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F7CD839AF7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:21:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E91D11C26AC5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:21:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC16E28B763
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:21:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D88236B04;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74259381A5;
 	Tue, 23 Jan 2024 21:21:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BUmKv755"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A4v/zdNM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96A742C1BC
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F602C1BF
 	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 21:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706044881; cv=none; b=fhm95rbQOpBPqVYhlU+utvFmNSyh5F5FJ0Luf03wucCnx62B7F8n29Hv46n/UsBzZYAkJ8xMaE+/n5g90hubnpxtmypmJKO9E8oQu+7ckg5T/9uHjzxlK/hejdoYKDBIjwS7LqmfTjrBaQrWnTT40rExh9tCrto5UDl8hqelkps=
+	t=1706044881; cv=none; b=O5AvCKpy4TdeRvyEl8rBvpDBaPvGFAqtsIvxHi9Vd5RuKHiJ60GhY0l1CpDLb6fbzPDsK55DhMSd6u/FVlwZ5eQ6g4uUkg6POTlJXrVqo8qleJYmSCFXhZsQbvuPy+QWmSBMzu1fj3j+lXY1ZZRBvqEpwkrfCCK+txSRXXnpzJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1706044881; c=relaxed/simple;
-	bh=bLbHblfklv6DyfX+wEHJLDoaFQApt56Czv0huwiAQ40=;
+	bh=1ZHP3yIW4cG47qhxCPSwerTEAfqsHzWhDkhXzRPrXPY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BcXeEXVgeQOcmS8+FkEbYJEDOj9PDUHwyJCIrftseFL1aUF6P0OhItoCMv/Gfc4swV8zd8qoo5ZzOUOJ15sG3t3WVMCNS5EwxpSnHitbls96Hj9JmQHOVldPr+K1xN12xvMMtN3nXBH8Pd0C8NxAB3Z5sCrisxlxvL8D+8KPiQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BUmKv755; arc=none smtp.client-ip=209.85.160.54
+	 MIME-Version; b=eoQuXyGYLvfFVSNPAKwbVdqwc9rzrO56aLWgBqzWCC8LXMkY67NRVNdOF09y52xlxqu8CQj67hsKILQNI4tfY7K8mFHyO7tDEvNH3q2oPaqNfq9G5ioKA4LSLyvF+bo18g4jU1PyvbRn8M3bB4Ql0t0sGRz4aMFienXkW+qqOrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A4v/zdNM; arc=none smtp.client-ip=209.85.160.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-214917ed35aso483810fac.2
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-2148b28ccafso469946fac.3
         for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 13:21:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706044878; x=1706649678; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1706044879; x=1706649679; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=atdXaQZCw8Ctbj/HWpcWiAsjfznuoi7ii5HEQI3brC4=;
-        b=BUmKv755MxQanlwSAsmQm7aKMRjZM6zcE1sXgLzfmg2U1qFW/4VCgpk8Xi/K8OQbqD
-         hdNhCn8N+xuJZUjboulgc+g7l5qAnAKwexAy5oDte/NNFrxan5BOffWbKOxAHK9ftSCV
-         h6POxs3H3NTipy7c1LStD9/lXvgluNDxQ6BJBgvCENiGbpxyDvivA1OFTYUbk9trKPxQ
-         0C6XUcgVHzKbnO+GGZ+kARMLFZ0li4F4Qd1sqoAouZdIW8SESuld5OCkvibsCz6enH8v
-         RjqtDYUSSA+AyZIwLmYs+231AiN0Wzh89feCAgGwH2nXZJBgpyMswCPbs7MYli/EQ91q
-         Wubg==
+        bh=sWxTTmvypeY8hSwgGVw3+bFVkwR+7Vq8EoTW4jvNu7c=;
+        b=A4v/zdNMPIe+rGAZvYPl+kkyA2ppufM8tQhjXVNkazA6gj1926wDIk3bmbbLNedJmC
+         emLdJ1LfnzNfvBxSz+zfTNEdDGUlwYdCvoiLZnEfy49BVhPioHPhIqRf7NfX1+O3IHS2
+         S8zycTYaPbPwqTECvQu1gP0HjTeUmXQ06Iooif5LjDSDOSByxQn/GVLgbaaEs26Zgiuy
+         hyoKwYXJo/IBSRTcgJ07DeMfCJ90tnpLNpVm7OAx9mPcDV2yj+2Zr6ay97i1gzoxht0h
+         /ZO5PpyVoXi7UeIRljqDfokzdS69CYDdn0mw0vHkBIazJywKqVyxO5JrILrvKdh7Cp55
+         7gRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706044878; x=1706649678;
+        d=1e100.net; s=20230601; t=1706044879; x=1706649679;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=atdXaQZCw8Ctbj/HWpcWiAsjfznuoi7ii5HEQI3brC4=;
-        b=AdfFdFIDPc8h7A+a9SS/jff22g9UpvBNTGMmD7r/QcDWRpJ7zKOi4NPIL09fHIN8nv
-         fQLDNOvrGAvzzHvO8Z0PlE/IAa6vYIubkOQpFClnxuDSkqdG1YRdfALoQv0dGsY4aznB
-         547McvOW5O9wOfdEBpd8n2q+QUHMuZzUIwM5QVkd25RRkKtRHGtTw/Tn9cXQbSYhbsKg
-         QK02YDT4fCLCm0IYnQM64Ox0Rdda6H1EI98x5jhmzWlEebv/JLUZ8Jtgkv71m6VI4rDl
-         8o0ov06hW/M2JPUCFvf5eOFCkRPfGhXDJGXTi2K0IiN6Ovm/2AaeGg9nVV/IEpB4WTsm
-         bOwA==
-X-Gm-Message-State: AOJu0YwwPJGdA867HQyrB5T+EnBOt9tgVYF4H36KH/XUUuCdKtbYPn8Q
-	yh2v4dAyrNA0uzaWMVrH1Ua6XRSDcQJYFCTqUckJSmh/Q+PwzuPp
-X-Google-Smtp-Source: AGHT+IEuyIETcjdu3Kp6BJQc8aH1nwWNGAOF/jiKDUyXWKMQQLrHpX1zXf2tWflzeubfSv5BiXQ3dQ==
-X-Received: by 2002:a05:6871:798f:b0:214:831a:76e7 with SMTP id pb15-20020a056871798f00b00214831a76e7mr2056177oac.81.1706044878445;
+        bh=sWxTTmvypeY8hSwgGVw3+bFVkwR+7Vq8EoTW4jvNu7c=;
+        b=NPMOoA63DCUKzNd5mXvR7AJFF1PfYzSt42xkP9kS3JYagxcQ45onHcsLwggABhznqx
+         sYriefp0goYjDQJQcFRUeCRldRWeEyEQ0kq32+ueZZECiSHIE9OfgKBzRx9bacA+fxgO
+         xJI7IukkRginO+6oyuXfYkO/rHjYOBnvnLC4KvpCzcj3QwApATsWqhfzREgzoReYclD+
+         U6D3IyxVk7rMKlCGvkiURa/ZZrAWlaf6ocRYL6nmaTLTfn3Dq3nUE6U7NzqwGQNhMhO1
+         3OZWfd24+hlsOgdhW0rp9hA+FFd5DdrWTv45aQHKilUZk3qzF8uj8XgWQqIruwWYRzwy
+         uB5g==
+X-Gm-Message-State: AOJu0Yy9Mo4RpTfv73t128ReEFrM8OpIKR2Gyto8ERzawSH+1s6va0LC
+	l4uVJQLxr+rjT9rBah5wMFJRM0LKGhDTcrg7kkxg54+7vcHlo1TX
+X-Google-Smtp-Source: AGHT+IGK/VUGFNkHOBl97RvjCZ8ZfMUgIf4+aEkpbywEmMngm6YKO5SFrej9dQQ0OsyV/C7fuiv0gw==
+X-Received: by 2002:a05:6870:ac25:b0:214:7225:a0af with SMTP id kw37-20020a056870ac2500b002147225a0afmr1938740oab.84.1706044878940;
         Tue, 23 Jan 2024 13:21:18 -0800 (PST)
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id w2-20020a9d4502000000b006dc6e40ba97sm2265770ote.72.2024.01.23.13.21.17
+        by smtp.gmail.com with ESMTPSA id w2-20020a9d4502000000b006dc6e40ba97sm2265770ote.72.2024.01.23.13.21.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 23 Jan 2024 13:21:18 -0800 (PST)
 From: Chris Morgan <macroalpha82@gmail.com>
@@ -76,9 +76,9 @@ Cc: devicetree@vger.kernel.org,
 	mturquette@baylibre.com,
 	sboyd@kernel.org,
 	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 1/4] arm64: dts: rockchip: Move device specific properties
-Date: Tue, 23 Jan 2024 15:21:08 -0600
-Message-Id: <20240123212111.202146-2-macroalpha82@gmail.com>
+Subject: [PATCH 2/4] dt-bindings: arm: rockchip: Add Anbernic RG-Arc
+Date: Tue, 23 Jan 2024 15:21:09 -0600
+Message-Id: <20240123212111.202146-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240123212111.202146-1-macroalpha82@gmail.com>
 References: <20240123212111.202146-1-macroalpha82@gmail.com>
@@ -92,319 +92,57 @@ Content-Transfer-Encoding: 8bit
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Move device specific properties related to the ADC Joystick to
-different board specific device trees. This is in preparation for
-adding the Anbernic RG-Arc series of devices.
+Add the Anbernic RG-Arc S and RG-Arc D devices, and consolidate
+all Anbernic RK3566 based devices under a single description.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- .../dts/rockchip/rk3566-anbernic-rg353x.dtsi  | 74 +++++++++++++++++++
- .../dts/rockchip/rk3566-anbernic-rg503.dts    | 74 +++++++++++++++++++
- .../dts/rockchip/rk3566-anbernic-rgxx3.dtsi   | 74 -------------------
- 3 files changed, 148 insertions(+), 74 deletions(-)
+ .../devicetree/bindings/arm/rockchip.yaml     | 31 ++++++-------------
+ 1 file changed, 9 insertions(+), 22 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
-index 2a2821f4c580..63a18ff36cea 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg353x.dtsi
-@@ -8,11 +8,73 @@
- #include "rk3566-anbernic-rgxx3.dtsi"
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 5cf5cbef2cf5..5592fdc85b9e 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -37,29 +37,16 @@ properties:
+               - anbernic,rg351v
+           - const: rockchip,rk3326
  
- / {
-+	adc-joystick {
-+		compatible = "adc-joystick";
-+		io-channels = <&adc_mux 0>,
-+			      <&adc_mux 1>,
-+			      <&adc_mux 2>,
-+			      <&adc_mux 3>;
-+		pinctrl-0 = <&joy_mux_en>;
-+		pinctrl-names = "default";
-+		poll-interval = <60>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		axis@0 {
-+			reg = <0>;
-+			abs-flat = <32>;
-+			abs-fuzz = <32>;
-+			abs-range = <1023 15>;
-+			linux,code = <ABS_X>;
-+		};
-+
-+		axis@1 {
-+			reg = <1>;
-+			abs-flat = <32>;
-+			abs-fuzz = <32>;
-+			abs-range = <15 1023>;
-+			linux,code = <ABS_RX>;
-+		};
-+
-+		axis@2 {
-+			reg = <2>;
-+			abs-flat = <32>;
-+			abs-fuzz = <32>;
-+			abs-range = <15 1023>;
-+			linux,code = <ABS_Y>;
-+		};
-+
-+		axis@3 {
-+			reg = <3>;
-+			abs-flat = <32>;
-+			abs-fuzz = <32>;
-+			abs-range = <1023 15>;
-+			linux,code = <ABS_RY>;
-+		};
-+	};
-+
-+	adc_mux: adc-mux {
-+		compatible = "io-channel-mux";
-+		channels = "left_x", "right_x", "left_y", "right_y";
-+		#io-channel-cells = <1>;
-+		io-channels = <&saradc 3>;
-+		io-channel-names = "parent";
-+		mux-controls = <&gpio_mux>;
-+		settle-time-us = <100>;
-+	};
-+
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
- 		power-supply = <&vcc_sys>;
- 		pwms = <&pwm4 0 25000 0>;
- 	};
-+
-+	gpio_mux: mux-controller {
-+		compatible = "gpio-mux";
-+		mux-gpios = <&gpio0 RK_PB6 GPIO_ACTIVE_LOW>,
-+			    <&gpio0 RK_PB7 GPIO_ACTIVE_LOW>;
-+		#mux-control-cells = <0>;
-+	};
- };
- 
- &cru {
-@@ -83,6 +145,18 @@ button-right {
- 		linux,code = <BTN_DPAD_RIGHT>;
- 	};
- 
-+	button-thumbl {
-+		gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_LOW>;
-+		label = "THUMBL";
-+		linux,code = <BTN_THUMBL>;
-+	};
-+
-+	button-thumbr {
-+		gpios = <&gpio3 RK_PA2 GPIO_ACTIVE_LOW>;
-+		label = "THUMBR";
-+		linux,code = <BTN_THUMBR>;
-+	};
-+
- 	button-y {
- 		gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
- 		label = "WEST";
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
-index c763c7f3b1b3..94e6dd61a2db 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rg503.dts
-@@ -17,6 +17,61 @@ aliases {
- 		mmc2 = &sdmmc2;
- 	};
- 
-+	adc-joystick {
-+		compatible = "adc-joystick";
-+		io-channels = <&adc_mux 0>,
-+			      <&adc_mux 1>,
-+			      <&adc_mux 2>,
-+			      <&adc_mux 3>;
-+		pinctrl-0 = <&joy_mux_en>;
-+		pinctrl-names = "default";
-+		poll-interval = <60>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		axis@0 {
-+			reg = <0>;
-+			abs-flat = <32>;
-+			abs-fuzz = <32>;
-+			abs-range = <1023 15>;
-+			linux,code = <ABS_X>;
-+		};
-+
-+		axis@1 {
-+			reg = <1>;
-+			abs-flat = <32>;
-+			abs-fuzz = <32>;
-+			abs-range = <15 1023>;
-+			linux,code = <ABS_RX>;
-+		};
-+
-+		axis@2 {
-+			reg = <2>;
-+			abs-flat = <32>;
-+			abs-fuzz = <32>;
-+			abs-range = <15 1023>;
-+			linux,code = <ABS_Y>;
-+		};
-+
-+		axis@3 {
-+			reg = <3>;
-+			abs-flat = <32>;
-+			abs-fuzz = <32>;
-+			abs-range = <1023 15>;
-+			linux,code = <ABS_RY>;
-+		};
-+	};
-+
-+	adc_mux: adc-mux {
-+		compatible = "io-channel-mux";
-+		channels = "left_x", "right_x", "left_y", "right_y";
-+		#io-channel-cells = <1>;
-+		io-channels = <&saradc 3>;
-+		io-channel-names = "parent";
-+		mux-controls = <&gpio_mux>;
-+		settle-time-us = <100>;
-+	};
-+
- 	battery: battery {
- 		compatible = "simple-battery";
- 		charge-full-design-microamp-hours = <3472000>;
-@@ -36,6 +91,13 @@ battery: battery {
- 					<3400000 0>;
- 	};
- 
-+	gpio_mux: mux-controller {
-+		compatible = "gpio-mux";
-+		mux-gpios = <&gpio0 RK_PB6 GPIO_ACTIVE_LOW>,
-+			    <&gpio0 RK_PB7 GPIO_ACTIVE_LOW>;
-+		#mux-control-cells = <0>;
-+	};
-+
- 	gpio_spi: spi {
- 		compatible = "spi-gpio";
- 		pinctrl-names = "default";
-@@ -174,6 +236,18 @@ button-right {
- 		linux,code = <BTN_DPAD_RIGHT>;
- 	};
- 
-+	button-thumbl {
-+		gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_LOW>;
-+		label = "THUMBL";
-+		linux,code = <BTN_THUMBL>;
-+	};
-+
-+	button-thumbr {
-+		gpios = <&gpio3 RK_PA2 GPIO_ACTIVE_LOW>;
-+		label = "THUMBR";
-+		linux,code = <BTN_THUMBR>;
-+	};
-+
- 	button-y {
- 		gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
- 		label = "WEST";
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-index 8cbf3d9a4f22..18b8c2e7befa 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
-@@ -14,51 +14,6 @@ chosen: chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
--	adc-joystick {
--		compatible = "adc-joystick";
--		io-channels = <&adc_mux 0>,
--			      <&adc_mux 1>,
--			      <&adc_mux 2>,
--			      <&adc_mux 3>;
--		pinctrl-0 = <&joy_mux_en>;
--		pinctrl-names = "default";
--		poll-interval = <60>;
--		#address-cells = <1>;
--		#size-cells = <0>;
+-      - description: Anbernic RG353P
++      - description: Anbernic RK3566 Handheld Gaming Console
+         items:
+-          - const: anbernic,rg353p
+-          - const: rockchip,rk3566
 -
--		axis@0 {
--			reg = <0>;
--			abs-flat = <32>;
--			abs-fuzz = <32>;
--			abs-range = <1023 15>;
--			linux,code = <ABS_X>;
--		};
+-      - description: Anbernic RG353PS
+-        items:
+-          - const: anbernic,rg353ps
+-          - const: rockchip,rk3566
 -
--		axis@1 {
--			reg = <1>;
--			abs-flat = <32>;
--			abs-fuzz = <32>;
--			abs-range = <15 1023>;
--			linux,code = <ABS_RX>;
--		};
+-      - description: Anbernic RG353V
+-        items:
+-          - const: anbernic,rg353v
+-          - const: rockchip,rk3566
 -
--		axis@2 {
--			reg = <2>;
--			abs-flat = <32>;
--			abs-fuzz = <32>;
--			abs-range = <15 1023>;
--			linux,code = <ABS_Y>;
--		};
+-      - description: Anbernic RG353VS
+-        items:
+-          - const: anbernic,rg353vs
+-          - const: rockchip,rk3566
 -
--		axis@3 {
--			reg = <3>;
--			abs-flat = <32>;
--			abs-fuzz = <32>;
--			abs-range = <1023 15>;
--			linux,code = <ABS_RY>;
--		};
--	};
--
- 	adc_keys: adc-keys {
- 		compatible = "adc-keys";
- 		io-channels = <&saradc 0>;
-@@ -77,16 +32,6 @@ button-mode {
- 		};
- 	};
+-      - description: Anbernic RG503
+-        items:
+-          - const: anbernic,rg503
++          - enum:
++              - anbernic,rg353p
++              - anbernic,rg353ps
++              - anbernic,rg353v
++              - anbernic,rg353vs
++              - anbernic,rg503
++              - anbernic,rg-arc-d
++              - anbernic,rg-arc-s
+           - const: rockchip,rk3566
  
--	adc_mux: adc-mux {
--		compatible = "io-channel-mux";
--		channels = "left_x", "right_x", "left_y", "right_y";
--		#io-channel-cells = <1>;
--		io-channels = <&saradc 3>;
--		io-channel-names = "parent";
--		mux-controls = <&gpio_mux>;
--		settle-time-us = <100>;
--	};
--
- 	gpio_keys_control: gpio-keys-control {
- 		compatible = "gpio-keys";
- 		pinctrl-0 = <&btn_pins_ctrl>;
-@@ -128,18 +73,6 @@ button-start {
- 			linux,code = <BTN_START>;
- 		};
- 
--		button-thumbl {
--			gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_LOW>;
--			label = "THUMBL";
--			linux,code = <BTN_THUMBL>;
--		};
--
--		button-thumbr {
--			gpios = <&gpio3 RK_PA2 GPIO_ACTIVE_LOW>;
--			label = "THUMBR";
--			linux,code = <BTN_THUMBR>;
--		};
--
- 		button-up {
- 			gpios = <&gpio3 RK_PA3 GPIO_ACTIVE_LOW>;
- 			label = "DPAD-UP";
-@@ -172,13 +105,6 @@ button-vol-up {
- 		};
- 	};
- 
--	gpio_mux: mux-controller {
--		compatible = "gpio-mux";
--		mux-gpios = <&gpio0 RK_PB6 GPIO_ACTIVE_LOW>,
--			    <&gpio0 RK_PB7 GPIO_ACTIVE_LOW>;
--		#mux-control-cells = <0>;
--	};
--
- 	hdmi-con {
- 		compatible = "hdmi-connector";
- 		ddc-i2c-bus = <&i2c5>;
+       - description: Asus Tinker board
 -- 
 2.34.1
 
