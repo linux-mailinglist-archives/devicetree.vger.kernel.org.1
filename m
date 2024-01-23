@@ -1,73 +1,55 @@
-Return-Path: <devicetree+bounces-34153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484FE838D48
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:20:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D375E838D4D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:20:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC07D2838E0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:20:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 038191C227E7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF7CB5D72F;
-	Tue, 23 Jan 2024 11:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E33D65D900;
+	Tue, 23 Jan 2024 11:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FiEaYuCJ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="OiIjpPi+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FFB35DF2C
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 11:19:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8D75D8EB;
+	Tue, 23 Jan 2024 11:20:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706008787; cv=none; b=Y7fcfNZ1Oe2gdcJVjfaAKfEvRdMBqLF//NytyMqkw4H2fDHQyyX6FZ4+z/iVeYTpMrtjWEEKgyDjdWfVE3CZdA0VV4UQtRkPqpqzmFjILpI6EsUymTgl2hoeZd7VCPof/tCPI0Cxs5woABvxGMAj3R1dW0gXY9tG6mj1+MwfakU=
+	t=1706008834; cv=none; b=Um0ZGhkqhw4EywePvxIFaBtOtEuShMvdxWC9uB1pu5srb+lHC4vY3Gt1fwU+mmnWtX+yKan9AdnMCx2Pb9hiHAGK9IL4GwLOhPFUYpf9YifSKyWk1EX/WT1nzKIfxKiLSb//ORSt3Gran3HQYhoykwNv/u4biOJP06TT033uQbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706008787; c=relaxed/simple;
-	bh=GgwNwAKqntZhpBHXUdkraU4i1oGsVWSOKkMIn/QnXQ8=;
+	s=arc-20240116; t=1706008834; c=relaxed/simple;
+	bh=Ma8J6HFntmgJqAnxZ1TzwNoqA60TOtVPoP1qAOVBdOo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k6zNN4/m+NlsltJFoGUKOOFFR1wM9Vc4E9kL+D+6+eYr2P+CyKODSQL1Y1KqWe6X60Y/wieiOrTw7JfcsFKKrPu+9KrMTk7OxXMQ83o6lhnLMZtC1ax7bmi4HDkT1B9vJDjBg8NKbcFfbJ2P42ED2x24ghR8iAPSEjQorva8xcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FiEaYuCJ; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-337d99f9cdfso3699994f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 03:19:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706008784; x=1706613584; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=umkoF8lD5EXJ084c1Yy2JMluWPz6456uub3hg+7fmD4=;
-        b=FiEaYuCJNKXT8gW7gGkOGmdNfECBYC+aX4VVpYzMlWFaO9S3eD4oSjySHxw4ayNTyA
-         Iy7q9D5Tg274FyqMhQSXsDzmuHqyrjZdxv/SZ6UJ72mHJzLXNxGS3AD3JbqrGfGJtPo+
-         QUmDlJIjA33avgswjE1iAJNJqS2MjuGH4M+sAV3ISE481/3jNMJa73a5Rob3T7zPQE7E
-         t9p8aR8YWcK5bOcdN3cvTWLhy8vOguDMG+jhcxO5tJxERaEmw5IhLYR0r5hCRS+/rqjX
-         m8hgsxWdtSdMnADy/IVBhs/XWevnBKw+NPIl9K6puGme0VsyNqncXWDRB9UiZPAP2sbd
-         jobw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706008784; x=1706613584;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=umkoF8lD5EXJ084c1Yy2JMluWPz6456uub3hg+7fmD4=;
-        b=CYrO5CSjtlyxqmePVUW2Daa4QxP01aO4mb+4CwIy5YdP02eyGwSsio1kCoZbuZVKva
-         FeiQQOR5kS0EYDy+sCDGDT8b3jc80MiJF5neCd3OcTWVh3vWj4wzH9CMJDf6HsAScoii
-         ih+kzBxYeZylRyP+LVR9dWFaeCkehAv6/uTAysfYWoBEB+pA67sTEiiYAyKRmxf9inKP
-         UMTvLne4pgeZewMAM6gjFiKtRz8F9IyCSRF2+KokbtbMV2Dwjw0tT3asHM1axC3nFqvZ
-         BOg/ojSg4eMZtUG+QdltKTAnP6djw/WmkvOwh7l5f5mSs5tZsouK2J/P3cOPP3qrDSTK
-         G/BA==
-X-Gm-Message-State: AOJu0Yx4DszzXMCwjKH7QW2wsdoZVyXa/dLvnQZ9elQ2+hRutAwH5BN/
-	v6IPy2QFi7B3egLfsrht/sHDWfeFO5PlBsXONizMFbQeJQnylWFmgSAP/ym3rNM=
-X-Google-Smtp-Source: AGHT+IG2ZE7D+Wjj1Jx+XVzdo5feRrtg+NTa3+oUQ+xaXK3Kk2B5ESqbltT6j/+SBRtMz8eXwL7lMQ==
-X-Received: by 2002:a05:6000:49:b0:337:c0e1:ef with SMTP id k9-20020a056000004900b00337c0e100efmr2497292wrx.1.1706008784389;
-        Tue, 23 Jan 2024 03:19:44 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id i7-20020a5d6307000000b00337d71bb3c0sm12208876wru.46.2024.01.23.03.19.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 03:19:44 -0800 (PST)
-Message-ID: <da30a68a-e29f-45c8-aa73-02955255a457@linaro.org>
-Date: Tue, 23 Jan 2024 12:19:41 +0100
+	 In-Reply-To:Content-Type; b=pMPA7sJywQX9+g+DQti/+4zpzpPVvSoaJAwvWXHODouqBeMHgSADxEm6Gaw+51kc6ZmeSKfQvjir4yaRq2n8skjhlgSLn1hI/a6/pa3UV/JBNuCcpu7Rz2hBxVe8kUfhE2XxgNBsnMJeAGC5qqdpsNToZGxg6S3oQxIn9PdSxug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=OiIjpPi+; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1706008831;
+	bh=Ma8J6HFntmgJqAnxZ1TzwNoqA60TOtVPoP1qAOVBdOo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OiIjpPi+qqbZF55b3g1FH53iADZRQPVIE3JvYXt24FNRlry7Mc/kxIGxSJjltIY8t
+	 paaOhSDkeW/GZIyZqk/I3coGbW7gHp/dEAQKoj3DpID416Tm0AvXMs5R0o7FVT7nHv
+	 n8z04qnbz8DdYLedWX5n8/cgCu2QEJ1c9qXdANZJsK+ZTrGGzUFO5ZBduQQW5P2UYr
+	 VZtb1xEHO2r9LVunE4J8+Kl5Edo4MWJCUv+pMq4282q+CcC39d3P00sY+9h/fNWkja
+	 EM0P7HPeVqgxT4jnvw2DZRHpYfEtgffMl6KGYqxdBOornIlk/jMc5lsF+vYmZpK+mB
+	 z/OYXluJ/LUvg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 94BD937813B5;
+	Tue, 23 Jan 2024 11:20:30 +0000 (UTC)
+Message-ID: <e17b85b1-7f1f-4b60-89b7-43f560466cc2@collabora.com>
+Date: Tue, 23 Jan 2024 12:20:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,179 +57,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] watchdog: s3c2410_wdt: update to use new
- exynos_pmu_*() apis
+Subject: Re: [PATCH 2/3] dt-bindings: arm: mediatek: convert PCIESYS to the
+ json-schema
 Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux@roeck-us.net,
- wim@linux-watchdog.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
- jaewon02.kim@samsung.com, chanho61.park@samsung.com,
- semen.protsenko@linaro.org
-Cc: kernel-team@android.com, tudor.ambarus@linaro.org,
- andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
- linux-fsd@tesla.com, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20240122225710.1952066-1-peter.griffin@linaro.org>
- <20240122225710.1952066-4-peter.griffin@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240122225710.1952066-4-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ Russell King <linux@armlinux.org.uk>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>
+References: <20240123082100.7334-1-zajec5@gmail.com>
+ <20240123082100.7334-3-zajec5@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240123082100.7334-3-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 22/01/2024 23:57, Peter Griffin wrote:
-> Instead of obtaining the PMU regmap directly use the new exynos_pmu_*()
-> APIs. The exynos_pmu_ APIs allow support of newer Exynos SoCs that have
-> atomic set/clear bit hardware and platforms where the PMU registers can
-> only be accessed via SMC call.
+Il 23/01/24 09:20, Rafał Miłecki ha scritto:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> As all platforms that have PMU registers use these new APIs, remove the
-> syscon regmap lookup code, as it is now redundant.
+> This helps validating DTS files. Introduced changes:
+> 1. Documented "reg" property
+> 2. Adjusted "reg" in example
 > 
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  drivers/watchdog/Kconfig       |  1 +
->  drivers/watchdog/s3c2410_wdt.c | 25 +++++++++----------------
->  2 files changed, 10 insertions(+), 16 deletions(-)
+>   .../arm/mediatek/mediatek,mt7622-pciesys.yaml | 47 +++++++++++++++++++
+>   .../arm/mediatek/mediatek,pciesys.txt         | 25 ----------
+>   2 files changed, 47 insertions(+), 25 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-pciesys.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,pciesys.txt
 > 
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index 7d22051b15a2..b3e90e1ddf14 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -513,6 +513,7 @@ config S3C2410_WATCHDOG
->  	depends on ARCH_S3C64XX || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
->  	select WATCHDOG_CORE
->  	select MFD_SYSCON if ARCH_EXYNOS
-> +	select EXYNOS_PMU
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-pciesys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-pciesys.yaml
+> new file mode 100644
+> index 000000000000..7340a2512402
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt7622-pciesys.yaml
 
-This does not look compatible with S3C64xx and S5Pv210.
+I think that we should really move all those clock controller yaml files to their
+proper directory, which would be
 
->  	help
->  	  Watchdog timer block in the Samsung S3C64xx, S5Pv210 and Exynos
->  	  SoCs. This will reboot the system when the timer expires with
-> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> index 349d30462c8c..fd3a9ce870a0 100644
-> --- a/drivers/watchdog/s3c2410_wdt.c
-> +++ b/drivers/watchdog/s3c2410_wdt.c
-> @@ -28,6 +28,8 @@
->  #include <linux/regmap.h>
->  #include <linux/delay.h>
->  
-> +#include <linux/soc/samsung/exynos-pmu.h>
+Documentation/devicetree/bindings/clock/
+
+...because those are clock controllers anyway and the fact that they do also
+provide a reset controller doesn't really justify having them in arm/mediatek.
+
+Besides, I would appreciate if you could also move mt8186/92/95 and eventual
+others that are there to clock/.
+
+> @@ -0,0 +1,47 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mt7622-pciesys.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  #define S3C2410_WTCON		0x00
->  #define S3C2410_WTDAT		0x04
->  #define S3C2410_WTCNT		0x08
-> @@ -187,7 +189,6 @@ struct s3c2410_wdt {
->  	struct watchdog_device	wdt_device;
->  	struct notifier_block	freq_transition;
->  	const struct s3c2410_wdt_variant *drv_data;
-> -	struct regmap *pmureg;
->  };
->  
->  static const struct s3c2410_wdt_variant drv_data_s3c2410 = {
-> @@ -355,8 +356,8 @@ static int s3c2410wdt_disable_wdt_reset(struct s3c2410_wdt *wdt, bool mask)
->  	const u32 val = mask ? mask_val : 0;
->  	int ret;
->  
-> -	ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->disable_reg,
-> -				 mask_val, val);
-> +	ret = exynos_pmu_update(wdt->drv_data->disable_reg,
-> +				mask_val, val);
->  	if (ret < 0)
->  		dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
->  
-> @@ -370,8 +371,8 @@ static int s3c2410wdt_mask_wdt_reset(struct s3c2410_wdt *wdt, bool mask)
->  	const u32 val = (mask ^ val_inv) ? mask_val : 0;
->  	int ret;
->  
-> -	ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->mask_reset_reg,
-> -				 mask_val, val);
-> +	ret = exynos_pmu_update(wdt->drv_data->mask_reset_reg,
-> +				mask_val, val);
->  	if (ret < 0)
->  		dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
->  
-> @@ -384,8 +385,8 @@ static int s3c2410wdt_enable_counter(struct s3c2410_wdt *wdt, bool en)
->  	const u32 val = en ? mask_val : 0;
->  	int ret;
->  
-> -	ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->cnt_en_reg,
-> -				 mask_val, val);
-> +	ret = exynos_pmu_update(wdt->drv_data->cnt_en_reg,
-> +				mask_val, val);
->  	if (ret < 0)
->  		dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
->  
-> @@ -617,7 +618,7 @@ static inline unsigned int s3c2410wdt_get_bootstatus(struct s3c2410_wdt *wdt)
->  	if (!(wdt->drv_data->quirks & QUIRK_HAS_PMU_RST_STAT))
->  		return 0;
->  
-> -	ret = regmap_read(wdt->pmureg, wdt->drv_data->rst_stat_reg, &rst_stat);
-> +	ret = exynos_pmu_read(wdt->drv_data->rst_stat_reg, &rst_stat);
->  	if (ret)
->  		dev_warn(wdt->dev, "Couldn't get RST_STAT register\n");
->  	else if (rst_stat & BIT(wdt->drv_data->rst_stat_bit))
-> @@ -698,14 +699,6 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
-> -		wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
-> -						"samsung,syscon-phandle");
-> -		if (IS_ERR(wdt->pmureg))
-> -			return dev_err_probe(dev, PTR_ERR(wdt->pmureg),
-> -					     "syscon regmap lookup failed.\n");
+> +title: MediaTek PCIESYS controller
+> +
+> +description:
+> +  The MediaTek PCIESYS controller provides various clocks to the system.
+> +
+> +maintainers:
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt7622-pciesys
+> +          - mediatek,mt7629-pciesys
+> +      - const: syscon
 
+I know that there's syscon all over the place and, even if I admit I didn't check,
+I am fairly sure that there's absolutely no reason to have syscon there, and that
+the syscon compatible never did anything for (most of, or all of) those clock
+controllers, at all.
 
-Continuing topic from the binding: I don't see how you handle probe
-deferral, suspend ordering.
+I'm not sure - though - if removing syscon during the txt->yaml conversion is
+acceptable (yeah we'd be cheating a bit), but something makes me say it is, because
+the bindings couldn't validate before that one as well.
 
-Best regards,
-Krzysztof
+Of course you'd have to remove the syscon compatible from the affected device trees
+as well as omitting it here.
+
+However, to be sure that we're doing the right thing here, I have to summon someone
+that can actually give a definitive answer to what I just said.....
+
+Krzysztof, please? :-)
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +    description: The available clocks are defined in dt-bindings/clock/mt*-clk.h
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +required:
+> +  - reg
+> +  - "#clock-cells"
+> +  - "#reset-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pciesys@1a100800 {
+
+This is a clock controller, so it is clock-controller@1a100800
+
+> +        compatible = "mediatek,mt7622-pciesys", "syscon";
+> +        reg = <0x1a100800 0x1000>;
+> +        #clock-cells = <1>;
+> +        #reset-cells = <1>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,pciesys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,pciesys.txt
+> deleted file mode 100644
+> index d179a61536f4..000000000000
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,pciesys.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -MediaTek PCIESYS controller
+> -============================
+> -
+> -The MediaTek PCIESYS controller provides various clocks to the system.
+> -
+> -Required Properties:
+> -
+> -- compatible: Should be:
+> -	- "mediatek,mt7622-pciesys", "syscon"
+> -	- "mediatek,mt7629-pciesys", "syscon"
+> -- #clock-cells: Must be 1
+> -- #reset-cells: Must be 1
+> -
+> -The PCIESYS controller uses the common clk binding from
+> -Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -The available clocks are defined in dt-bindings/clock/mt*-clk.h.
+> -
+> -Example:
+> -
+> -pciesys: pciesys@1a100800 {
+> -	compatible = "mediatek,mt7622-pciesys", "syscon";
+> -	reg = <0 0x1a100800 0 0x1000>;
+> -	#clock-cells = <1>;
+> -	#reset-cells = <1>;
+> -};
+
 
 
