@@ -1,159 +1,167 @@
-Return-Path: <devicetree+bounces-34174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACEA8838E67
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:22:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE83838E6C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:23:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 258041F25089
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:22:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D4761F25100
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:23:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8D545DF2D;
-	Tue, 23 Jan 2024 12:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7849F5DF19;
+	Tue, 23 Jan 2024 12:23:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dKYM/PiY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JGz9NGCn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E01A5DF19
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 12:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6BF65DF11;
+	Tue, 23 Jan 2024 12:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706012536; cv=none; b=pICdgtr1Sh9sSd4+JR1Ul4h5Sc7lvyYyebdgQ2sgGbYytOvVN1+/Z3xtUn0h2BQLwnDuhmVCvr1Am57z9LQ7PaFRWcQaLI6i5PRmYmOluGXpzL6PdabyhdWDETUUbMQOsx8ybYfrKMnTWNW04EPoVEbU+Ehm0nIARNKPuJoKMSo=
+	t=1706012604; cv=none; b=khDumpZmk62FRbo40IyGWF90Iv9r3fCzZoonQWZG/mNb4Uh1iAwhLdrrlAr7gDebY22dqjYA0X4l75pOjC6YylWusJ2Lq1E99vXtEE497vmL3+yNM3UUfuXZ90uDdQTWarmFrgh2NYfvBDH6wf2DV97q9PAsPi+XeOwdecdh/pk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706012536; c=relaxed/simple;
-	bh=RxjltIb2tnevyFQ2UZ8jKYTWxSpg4QN8Ti3mX5vGGFA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bL51df8G3kHgBaV2Zk2XifBm0plasfaTuJN+eDhkBlcJzJYSj8WrBAxpzUw/lENyL/c0KrOp2HvbdHmaz8zDKTlXBnn4C9avEfiBgyiq88gCGUp4hvFHIc9igpD2+R6ADlZY3lHX6EeQA3uiZmAyXAOY+7CgmtkMKNva+LHv818=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dKYM/PiY; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40ebf37314fso3914075e9.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 04:22:14 -0800 (PST)
+	s=arc-20240116; t=1706012604; c=relaxed/simple;
+	bh=81Rq969C5fC2gwndSCJqbGyzbfJ1wYlS4kuBnSDBHgM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=jcmmRmbAke1gQhgQl+SEt47DWWAJC5Fzfp9YYElkxStMmTpNQB7igOhMNUBpbeq7O+xUQRjtVP0kEE+CwoCMTnrowCfzbY7I3slFE5nk9ND4zKbYlyk+MA95sX9tvCdRGaIDHR01U6U9Lsq0/2ZENs66np5dFzxwJA64SYhnxww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JGz9NGCn; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55a3a875f7fso4622854a12.3;
+        Tue, 23 Jan 2024 04:23:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706012533; x=1706617333; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3Xh4hoiszx6vPtNJtgIPNAsItrI2Mq/OMaWZXX1X6Pc=;
-        b=dKYM/PiYRdpa4/0zBPLAOiac0dj4S2rPhGZoGb7CJdp58Dp/Z0nJX4hhStRb0wyMKW
-         9JV38dpJI+JzYSCbsyWxgZzRVBBB2ZQrNyda5cZdHkrY4Dir7TOHVgy4+9atf560vK33
-         SFYEWnkP5sG62Noi7FFhOK/0/usMZKiE6UNqi2a12BwbLxUwHb7c2o/wphWQSh1HJSkC
-         6nV1/BRTKHIJCjoIaUqsXwVZSnqWthJeUjMkrCXcm52RkO1VHsMBVunO0Z0+9WrnwCN3
-         XB/qw7wXbX44ODKXozJiQus3dLVF3f3BOJsikA+XbpQCjFFnktz7XRaEt92QvYyLFRbh
-         ITpg==
+        d=gmail.com; s=20230601; t=1706012601; x=1706617401; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0aT0YmN+E9RIm6EBLaUbj2bmTaqy7pebRlFTaUr3D2Y=;
+        b=JGz9NGCnniuAM+DPmb+XqjWLKMTj29KHdVuv8KfXvDgfBPsGz4q5t6xDoHYmyMRSdt
+         3sE2BZ3iIMUTi3y6GJ5QgpOwxXwO5BlfLSBeYFFnzW9a7x87/qvsgxMXPsYapDLPJIE1
+         qL7mimPP1MRjkofJPQqX7Z/KfNOMwv9zAxfPUGSkKDJ9f3s89WxDmiD8uw4sVe8G5Xm1
+         IYt9HChq2kb+4ZtPueXP8H6AMA1HhJHtAouEKrDMlJqRmdrHtYL1AWZMdOt4q/ab1D+B
+         Zj8Ne5ZwIvL+UrDVh+vCg8e2IJQ5PCJ3I7jAbcIwMFKTc3p6Hvm4HnkGZEDWMmQ+u8Bt
+         EE5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706012533; x=1706617333;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Xh4hoiszx6vPtNJtgIPNAsItrI2Mq/OMaWZXX1X6Pc=;
-        b=irzAMGrhXTCMfOD3Fqs3GMkuyr5MkiII+X0d+mcWjGkspD9m6NZ+rafTvXQHjSKzT5
-         irhxv1n5b/WcByFLeSoPtEITkdktxTLOhCabh9ZF1DuRHg+bi/hPh28x87UeySlPyM6O
-         GHpGJjS4rHRsOR2zo7lsI/RdYl4+TdNdi+A4USWRVegzRH2PwNssGjACARHbJ76CaIRc
-         ZsncbO+nMGyq79CiYRTX+1VwABTyuezJIqYBS4gLLfVA+wVjyk30Ew/bqop/1lHug5o9
-         bLhdkDS9EBY35jm1ippZmywFK7KzN3r+k600DefcdrBx0xPTiwFOqEHPsdUxd4QWKRla
-         mj9w==
-X-Gm-Message-State: AOJu0Yxjskm4BdrMW5hxzS0QDeCC8AhvOzB/pRWMuE+LUJ/Kl+dt7zEa
-	yFJcT5g3hY5fMnebxCyO3Ral5fEZO+NqIwm+la+QRg5XgafZXsGdiIrzmNv08nM=
-X-Google-Smtp-Source: AGHT+IGccBIX6QiHEm6StMHteGiq7t8STHchgC5xenXi4ifW3VwAcmeyLDLRMdZevyTxKo2oKmw3Mw==
-X-Received: by 2002:a05:600c:45d2:b0:40e:397e:16e7 with SMTP id s18-20020a05600c45d200b0040e397e16e7mr529388wmo.3.1706012533288;
-        Tue, 23 Jan 2024 04:22:13 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id je14-20020a05600c1f8e00b0040e3635ca65sm46144602wmb.2.2024.01.23.04.22.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 04:22:12 -0800 (PST)
-Message-ID: <0d3505ae-b227-438a-9077-4556ffb64e79@linaro.org>
-Date: Tue, 23 Jan 2024 13:22:11 +0100
+        d=1e100.net; s=20230601; t=1706012601; x=1706617401;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0aT0YmN+E9RIm6EBLaUbj2bmTaqy7pebRlFTaUr3D2Y=;
+        b=q3D/e9lUQiPXbjV6a+aOKUIxMVEshrk680uYp429B1I+bx4XGPi3xKKNz6UANSqO87
+         AtoKR7Y8Z84VHXaPjiAuc2/YilkrP5vgq2dGUxOAgI3TpHHASN3H/Z2OyFaPaPOIDc/L
+         xQxSfZNqtdfwqlmspnkfoumeKXL1vfrC6FSqkxACafqF7yqWSlewr9MMU8hWMY7WXup7
+         aKqY9T3Mayby0RZUkeM7na3yJ/Gf9vd+WruVoetgQ2UUXibGBb4HulfQQntErG3Dd0WR
+         nARmhI89k/3JvrCBUOWNjMHSaClRFFYKUSQMjl3QpDXu2Mf3BKGN4GLw4Oyp9JrRB1cS
+         qRiQ==
+X-Gm-Message-State: AOJu0Yw48c0eONcPQZQCEfQ3KSNl2737lymMTTqQud8SVEubrLwtCWDp
+	B8RqTdIj2e07nEiyGosXsKhp+H33MOnlGasmuISEmIg/ktoui+mn
+X-Google-Smtp-Source: AGHT+IGA3HrSeLV+JUbWs+DXbEXmOPvoc09OHj5n0LVd6cRvKKc77CwwjGVeefJBo43iRrx7MpMG9w==
+X-Received: by 2002:a17:907:c312:b0:a2a:3101:c9c7 with SMTP id tl18-20020a170907c31200b00a2a3101c9c7mr99810ejc.123.1706012600578;
+        Tue, 23 Jan 2024 04:23:20 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id ce2-20020a170906b24200b00a26a0145c5esm14292308ejb.116.2024.01.23.04.23.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jan 2024 04:23:20 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] arm64: dts: marvell: reorder crypto interrupts on Armada SoCs
+Date: Tue, 23 Jan 2024 13:22:58 +0100
+Message-Id: <20240123122258.24218-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dt-bindings: spi: samsung: Add Exynos850 SPI
-Content-Language: en-US
-To: Sam Protsenko <semen.protsenko@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Andi Shyti <andi.shyti@kernel.org>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Tomasz Figa <tomasz.figa@gmail.com>, Chanwoo Choi <cw00.choi@samsung.com>,
- linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-References: <20240120012948.8836-1-semen.protsenko@linaro.org>
- <20240120012948.8836-3-semen.protsenko@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240120012948.8836-3-semen.protsenko@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 20/01/2024 02:29, Sam Protsenko wrote:
-> Document samsung,exynos850-spi compatible which will be used on
-> Exynos850 SoC. Exynos850 doesn't have ioclk, so only two clocks are
-> needed (bus clock and functional SPI clock).
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  Documentation/devicetree/bindings/spi/samsung,spi.yaml | 1 +
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Match order specified in binding documentation. It says "mem" should be
+the last interrupt.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This fixes:
+arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:0: 'ring0' was expected
+        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
+arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:1: 'ring1' was expected
+        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
+arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:2: 'ring2' was expected
+        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
+arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:3: 'ring3' was expected
+        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
+arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:4: 'eip' was expected
+        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
+arch/arm64/boot/dts/marvell/armada-3720-db.dtb: crypto@90000: interrupt-names:5: 'mem' was expected
+        from schema $id: http://devicetree.org/schemas/crypto/inside-secure,safexcel.yaml#
 
-I assume this will go via SPI tree. Probably better to send SPI patches
-separately with fixed subject prefix (spi: dt-bindings: samsung:)
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi  | 10 +++++-----
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 10 +++++-----
+ 2 files changed, 10 insertions(+), 10 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+index e300145ad1a6..1cc3fa1c354d 100644
+--- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
+@@ -431,14 +431,14 @@ xor11 {
+ 			crypto: crypto@90000 {
+ 				compatible = "inside-secure,safexcel-eip97ies";
+ 				reg = <0x90000 0x20000>;
+-				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+-					     <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
++				interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
+ 					     <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
+ 					     <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
+ 					     <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
+-					     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+-				interrupt-names = "mem", "ring0", "ring1",
+-						  "ring2", "ring3", "eip";
++					     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
++					     <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-names = "ring0", "ring1", "ring2",
++						  "ring3", "eip", "mem";
+ 				clocks = <&nb_periph_clk 15>;
+ 			};
+ 
+diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+index 4ec1aae0a3a9..7e595ac80043 100644
+--- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+@@ -511,14 +511,14 @@ CP11X_LABEL(sdhci0): mmc@780000 {
+ 		CP11X_LABEL(crypto): crypto@800000 {
+ 			compatible = "inside-secure,safexcel-eip197b";
+ 			reg = <0x800000 0x200000>;
+-			interrupts = <87 IRQ_TYPE_LEVEL_HIGH>,
+-				<88 IRQ_TYPE_LEVEL_HIGH>,
++			interrupts = <88 IRQ_TYPE_LEVEL_HIGH>,
+ 				<89 IRQ_TYPE_LEVEL_HIGH>,
+ 				<90 IRQ_TYPE_LEVEL_HIGH>,
+ 				<91 IRQ_TYPE_LEVEL_HIGH>,
+-				<92 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "mem", "ring0", "ring1",
+-				"ring2", "ring3", "eip";
++				<92 IRQ_TYPE_LEVEL_HIGH>,
++				<87 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "ring0", "ring1", "ring2", "ring3",
++					  "eip", "mem";
+ 			clock-names = "core", "reg";
+ 			clocks = <&CP11X_LABEL(clk) 1 26>,
+ 				 <&CP11X_LABEL(clk) 1 17>;
+-- 
+2.35.3
 
 
