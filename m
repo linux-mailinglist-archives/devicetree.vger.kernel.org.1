@@ -1,129 +1,149 @@
-Return-Path: <devicetree+bounces-34280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DA81839482
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:18:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 228A28394AE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:32:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1547B233DD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:18:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC97D1F24AF9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8316F63519;
-	Tue, 23 Jan 2024 16:17:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416867F7D7;
+	Tue, 23 Jan 2024 16:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pschenker.ch header.i=@pschenker.ch header.b="F519chZT"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="04v/CNfD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-190e.mail.infomaniak.ch (smtp-190e.mail.infomaniak.ch [185.125.25.14])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AE895DF1D;
-	Tue, 23 Jan 2024 16:17:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BA97F7D4;
+	Tue, 23 Jan 2024 16:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706026678; cv=none; b=RhukSI3xEcoWf84BxFWfLUmwQabHxN+Wj+nTLvSSeETNdxUY4dY93Wt+7FnPePhNUmDNZpVqbBghhmfIyjMfeIAX4+mB970k+C8KsY67uFlxXDRCWLw+zfZqruZkFEsVuVjQ30FWmzjyjQ3SxTu2Ce8I256SDjKPbnUQr64qyaQ=
+	t=1706027521; cv=none; b=kj3sMzSF/dwdi4kdb7Uw2d3K8QwL/CvQuWErNB4y/YMWVdwyS2NQtogVfXXQZQ+OeWjoucBhaOf4wGfIGrEb9JK7SGNS60OTrgMqXQPnlPzXSsCBM4rOqrekMontBWHIk4a4tlOSjmRxtHBeN8gsWJPhENxfafBpPvUYVdVn89s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706026678; c=relaxed/simple;
-	bh=1NG8wi6AszbC+t2mITn/X0WKvcHrmSYn4Gpm9d1E7n0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=J26gu6KWzhQxTcrX1aPGwGktDGQOJ3gPTKlvX7zMawyUqDiXEZX7dJYofg3GDorOlJ6+R+u/i2/1HZn2kOw0+QlsT6CkR/UM99R221Q7bLBKuTPDFzjuFpymWbufI3NEPeQ8MNGEMw97fSAFkVhYu8YiP7wrr+/gyfnVddh79fU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pschenker.ch; spf=pass smtp.mailfrom=pschenker.ch; dkim=pass (1024-bit key) header.d=pschenker.ch header.i=@pschenker.ch header.b=F519chZT; arc=none smtp.client-ip=185.125.25.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pschenker.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pschenker.ch
-Received: from smtp-3-0000.mail.infomaniak.ch (unknown [10.4.36.107])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4TKC1G3P7FzMqFgm;
-	Tue, 23 Jan 2024 17:17:54 +0100 (CET)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4TKC1F6DShzr4;
-	Tue, 23 Jan 2024 17:17:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-	s=20220412; t=1706026674;
-	bh=1NG8wi6AszbC+t2mITn/X0WKvcHrmSYn4Gpm9d1E7n0=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=F519chZTJVObdy2utWFWlWTH24Apz/VpWi/QpvB+KxeHkqtE98o1TTT1fXq61NgK6
-	 5ee7pjWUiJ6viyIQyOFKs2nIBqE5c9DMoJf9YNJr6eotoDf8MMnfEpSR2aLfatIAmj
-	 x21UmRMKRV8e5BCnndG/sC5Kc3wb1eONigMf0ILA=
-Message-ID: <b2e232de11cee47a5932fccc2d151a9c7c276784.camel@pschenker.ch>
-Subject: Re: [PATCH net-next v1 1/2] dt-bindings: net: dsa: Add KSZ8567
- switch support
-From: Philippe Schenker <dev@pschenker.ch>
-To: Conor Dooley <conor@kernel.org>
-Cc: netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>, Conor Dooley
- <conor+dt@kernel.org>, Woojung Huh <woojung.huh@microchip.com>, Vladimir
- Oltean <olteanv@gmail.com>, linux-kernel@vger.kernel.org,
- UNGLinuxDriver@microchip.com,  Marek Vasut <marex@denx.de>, Florian
- Fainelli <f.fainelli@gmail.com>, devicetree@vger.kernel.org, Eric Dumazet
- <edumazet@google.com>, "David S . Miller" <davem@davemloft.net>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Jakub Kicinski
- <kuba@kernel.org>,  Andrew Lunn <andrew@lunn.ch>, Rob Herring
- <robh+dt@kernel.org>
-Date: Tue, 23 Jan 2024 17:17:53 +0100
-In-Reply-To: <20240123-ripening-tabby-b97785375990@spud>
-References: <20240123135014.614858-1-dev@pschenker.ch>
-	 <20240123-ripening-tabby-b97785375990@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2 
+	s=arc-20240116; t=1706027521; c=relaxed/simple;
+	bh=x5Gz6/ukYLg16AqjOP9f3+OkLECvXGXvOENH1UDgQLg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Crxq+7VuzP4U01XrkCE5N7TAFuXkdPyjTANlv12KO598q3qH1pXouDJMzJ9OhYHkkD25vZjeXY8ZguzYPbjDvYSXY9xwD3//iVIHMCP4CUq/8uaUtrz1a+OqIRAF3QL9dMhVijZOfgD1KNJpcR+YVGStyG3Fe9yypxGjU5bNzMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=04v/CNfD; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40NDERUa032149;
+	Tue, 23 Jan 2024 17:31:28 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=dX6v7UYfiZShBbWqoHEeZ6rhQnZ9QgWlD+c9mgtirsw=; b=04
+	v/CNfDZskEgmcnuLhCnIlpMiuO6tEfzwCfFNemp3FqpaZSpmOBMs4fkwKzEFTRUL
+	rSQSafcNGQymQbgiRNLQVwN7b8n0qq2g0fJhR8mKMtgXtnoohTXq9XznUl2xGGhf
+	NJGPVc6PoX5wmUx3PX3nSLEwdkuMxRD6OLF46+0OpsLFtTzqsSUu3N5YTvvQ9fBa
+	3Ox0yuZInid2LGnyCTvXLWCvT/JIb8qjhHIjYFwO1J/+zPLX9oQFA3/BWcleD37U
+	evMlSW8OW/82z93nftbSQqcKwjRzp/XbU1msjzBDeMsem4eDijO0AndQplGUB68H
+	k+5tYyhmvhdAjPNttgTw==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vsrxpxapd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Jan 2024 17:31:28 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 35ACD100056;
+	Tue, 23 Jan 2024 17:31:26 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1BD94232FEE;
+	Tue, 23 Jan 2024 17:31:26 +0100 (CET)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Tue, 23 Jan
+ 2024 17:31:25 +0100
+Message-ID: <f38e8afb-bf08-401e-a747-612a68b96414@foss.st.com>
+Date: Tue, 23 Jan 2024 17:31:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Infomaniak-Routing: alpha
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 3/5] ARM: dts: stm32: rename mmc_vcard to vcc-3v3 on
+ stm32f769-disco
+Content-Language: en-US
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        <linux-kernel@vger.kernel.org>
+CC: <linux-amarula@amarulasolutions.com>, Lee Jones <lee@kernel.org>,
+        Raphael
+ Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20240112144902.40044-1-dario.binacchi@amarulasolutions.com>
+ <20240112144902.40044-4-dario.binacchi@amarulasolutions.com>
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240112144902.40044-4-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-23_09,2024-01-23_02,2023-05-22_02
 
+Hi Dario
 
+On 1/12/24 15:48, Dario Binacchi wrote:
+> In the schematics of document UM2033, the power supply for the micro SD
+> card is the same 3v3 voltage that is used to power other devices on the
+> board. By generalizing the name of the voltage regulator, it can be
+> referenced by other nodes in the device tree without creating
+> misunderstandings.
+> 
+> This patch is preparatory for future developments.
+> 
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Reviewed-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> 
+> ---
+> 
+> Changes in v8:
+> - Add Reviewed-by tag of Raphael Gallais-Pou
+> 
+>   arch/arm/boot/dts/st/stm32f769-disco.dts | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32f769-disco.dts b/arch/arm/boot/dts/st/stm32f769-disco.dts
+> index 5d12ae25b327..8632bd866272 100644
+> --- a/arch/arm/boot/dts/st/stm32f769-disco.dts
+> +++ b/arch/arm/boot/dts/st/stm32f769-disco.dts
+> @@ -92,9 +92,9 @@ usbotg_hs_phy: usb-phy {
+>   		clock-names = "main_clk";
+>   	};
+>   
+> -	mmc_vcard: mmc_vcard {
+> +	vcc_3v3: vcc_3v3 {
 
-On Tue, 2024-01-23 at 16:06 +0000, Conor Dooley wrote:
-> On Tue, Jan 23, 2024 at 02:50:13PM +0100, Philippe Schenker wrote:
-> > From: Philippe Schenker <philippe.schenker@impulsing.ch>
-> >=20
-> > This commit adds the dt-binding for KSZ8567, a robust 7-port
-> > Ethernet switch. The KSZ8567 features two RGMII/MII/RMII
-> > interfaces,
-> > each capable of gigabit speeds, complemented by five 10/100 Mbps
-> > MAC/PHYs.
-> >=20
-> > Signed-off-by: Philippe Schenker <philippe.schenker@impulsing.ch>
->=20
-> This device has all the same constraints as the other ones in this
-> binding, why is it not compatible with any of them? If it isn't, the
-> compatible should mention why it is not.
+Replace node name by vcc-3v3. If no v9 sent, I'll do it directly.
 
-Hi Conor, Thanks for your message!
-
-I need the compatible to make sure the correct ID of the switch is
-being set in the driver as well as its features.
-
-You mean I shall mention the reason in the commit-message, or where?
-
-Philippe
-
->=20
-> Cheers,
-> Conor.
->=20
-> > ---
-> >=20
-> > =C2=A0Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 1 =
-+
-> > =C2=A01 file changed, 1 insertion(+)
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > index c963dc09e8e1..52acc15ebcbf 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> > @@ -31,6 +31,7 @@ properties:
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - microchip,ksz9893
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - microchip,ksz9563
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - microchip,ksz8563
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - microchip,ksz8567
-> > =C2=A0
-> > =C2=A0=C2=A0 reset-gpios:
-> > =C2=A0=C2=A0=C2=A0=C2=A0 description:
-> > --=20
-> > 2.34.1
-> >=20
+>   		compatible = "regulator-fixed";
+> -		regulator-name = "mmc_vcard";
+> +		regulator-name = "vcc_3v3";
+>   		regulator-min-microvolt = <3300000>;
+>   		regulator-max-microvolt = <3300000>;
+>   	};
+> @@ -128,7 +128,7 @@ &rtc {
+>   
+>   &sdio2 {
+>   	status = "okay";
+> -	vmmc-supply = <&mmc_vcard>;
+> +	vmmc-supply = <&vcc_3v3>;
+>   	cd-gpios = <&gpioi 15 GPIO_ACTIVE_LOW>;
+>   	broken-cd;
+>   	pinctrl-names = "default", "opendrain", "sleep";
 
