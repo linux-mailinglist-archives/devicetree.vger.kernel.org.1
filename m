@@ -1,208 +1,151 @@
-Return-Path: <devicetree+bounces-34242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B75C4839283
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:22:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5628392CD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:34:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E49C91C2036E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:22:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 128291F216EB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB23D5FDA8;
-	Tue, 23 Jan 2024 15:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0165FF07;
+	Tue, 23 Jan 2024 15:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ycPf6fz5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aJbX/nGZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2335FBBA
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA68C5FEE8
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:34:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706023325; cv=none; b=ZDVsUH3VlDMCSh0DxHM2nLHyBAhmtdY4/gGtoFveTIJOfFOhnGw3xqCRI3KC40Hnb+2YQxsr1D28Qipf2FRnDqRiT0YwKzQr3RbZ/9MbxyslNCbB7uA6gIn3N+mVmbeXz6sZeTcwD554H9pQN7LAWPGbFi7iZoQ0p+mq0l46Iec=
+	t=1706024069; cv=none; b=OFqq0zk1HqTOYBdED/7VrzIMQjRt7lzCi1a6VOfQ1Dxrl0JU/oCnuwNEjLVmIlQIVL1QPMyXtEz/+5Hes3wdauqo1binuJeVGCa4ULROcHFX53YErr4yedOxAzHruVUXs7R1PVQpE0Wqn0+cySmOAvz0Bk6TgbmlHFCAEPXJl3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706023325; c=relaxed/simple;
-	bh=F80sAY6BWL4epMSCunVWUrYTS0DAbdgdYqbysLTIzZQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AxAd0yx/rb8GteWK03NP5o8UR93ygisxu607AXYy+QjrQelwbbsJYb7zl8L3MCF99t+wKKrGLFsDh6C1KoL1jM9/aWgMXtsb7oF60nsIyph55OsFJN+7OhNrYCoUF4+uip/sidWPRn+cEM+7EXm8ho6en1ZEmpf8vrTxkTN5Ap0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ycPf6fz5; arc=none smtp.client-ip=209.85.128.46
+	s=arc-20240116; t=1706024069; c=relaxed/simple;
+	bh=gNyD7i++uD2R8coWU2KAe3MRsCKjSQZq+dn+mnbIQ9k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AkrlygwYFaLAWjkPbRy+Z6EXULpYBATYPb8+X/jeURoKOswHhIWcnTCNfwU5Lko9q9ceTG9UK03zvJmImoqCgLVdfQw/dnbRfYP5MsksgIDhRVeAuGIz4i6f3M/qMFJ5QD/W3Tqrk7Wk//iirBaFiU/EHzJ7xhLRov7OCmeE0FE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aJbX/nGZ; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40e86a9fc4bso57261755e9.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:22:03 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40eb99a72dcso8385265e9.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:34:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706023322; x=1706628122; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+iqbrl7Faj43DJR0cDgctJVgU3zqJadpG4Ot13HktmM=;
-        b=ycPf6fz5csXGfS31zj7oyV48O+XTY9UO6VS32OljeyLVpMPhlQCyGxFtUGeq+xhWyF
-         KkdMf8UQ8qvE0QmrtAeZ7Y6hsgxmKhm3EdSbfUBqXD7u4nO1VlhXTMwLRQ1bAz+lOvGH
-         c7AP5KSeiD+WrFbLURVmEcBZ1GcfuLvZ24kgvG/LRkQRXFOtn32ATeyoWzAjGA1YAzFp
-         TWLEGcQpa/0CpgXak7MC5Ku53QTltrGdLcDX9n4aLDZ1xctJi9fFMPnXIdOiC2XpaJ4e
-         Y+eNPoUN6kCaduavLn+1gxEX+1CVeWSZv56LWDrdlE/yS7l/jztekksysM7Hnrdjz1PK
-         +Zfg==
+        d=linaro.org; s=google; t=1706024066; x=1706628866; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ziVeE+WCI2TynApAMc3yW1L2n22pt52jWdrqUi+I10A=;
+        b=aJbX/nGZDECc65oOFslfQ1KnfvXsS9zh0efYToJqx/PDuzx5jaPujA7Fr3ED7vZByW
+         oIXpH/t+G4ZTwynRofC8fSMu4OIfof1eT88+31V2juY3eZ+sj5y5C8qBapFLjJL4m8A2
+         4wZ/i06M004CCYNR453CMoRwbp0+dBzrfSaeuJ3ZELx5SsKJs6dAlR7zLpENm2SMgarX
+         +H3gw4tKbYgKz+smjLOknaw4UTP88mZp3PizDL3tJ0qLzGI8UgI7Xa6jda6Sh+aIL2uf
+         wNxfGe/89dpGHY8vmjurcUea7RD0CUC64UUFEvR2mES/MS8ESoJJsZo4bkvefz0261fe
+         Vcbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706023322; x=1706628122;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+iqbrl7Faj43DJR0cDgctJVgU3zqJadpG4Ot13HktmM=;
-        b=toU8TOsmGY5C2t0NCJCfs2dfGwJNbvMG/FyCapybOWbPgHPohDGR0TtNONHRStFwsp
-         ofYQtDuqm2ERHku65ym1eArYSYeMxq7Z35j8LO08kPR0Gs4HQRXGGyPxMdPT6nY+r/JK
-         ifbJSOKomXFqIKz4oMSHDzWPspRINwcgAfAEuQTAEQ6ZfY8DueyNro735xUhuwPnq3Fa
-         4W2GMgbwTBNNwj173mCmT1p0pdc6ZxmXDX+wTrm/mO9mwdT6ujgj+Ydu+IX+Ti3j/GNp
-         2J4nTzRaFu7Xt7w7RvaTXHPLQn/eIXyg1U+Oq/s3FLCH14GPNWgdskeAUpRnbLKMfCZH
-         4rEA==
-X-Gm-Message-State: AOJu0YxLNA8hnvESQTPibORL3TRXx5Sgl00UONU5vMR0J8tu49aBKTGt
-	f4hvMG4xlddFwdrtqH1UJOzGuIzMWCHJEMS5fLeL1eGdZs4r2BC6c2QinNerU9k=
-X-Google-Smtp-Source: AGHT+IEOXfl3wIkINoGBo2a9LOinro00BQdph/9bUAlnOgmOSaOIUWOLM6CynErJPfMMOPU57jtqng==
-X-Received: by 2002:a05:600c:63c4:b0:40e:76b7:e8e3 with SMTP id dx4-20020a05600c63c400b0040e76b7e8e3mr239893wmb.226.1706023322336;
-        Tue, 23 Jan 2024 07:22:02 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id m22-20020a05600c4f5600b0040ebf603a89sm1880424wmq.11.2024.01.23.07.22.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 07:22:01 -0800 (PST)
-Message-ID: <75ab9162-ed02-479d-92a1-7cfabff6b32e@linaro.org>
-Date: Tue, 23 Jan 2024 16:22:00 +0100
+        d=1e100.net; s=20230601; t=1706024066; x=1706628866;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ziVeE+WCI2TynApAMc3yW1L2n22pt52jWdrqUi+I10A=;
+        b=KfERXdfBlQq6INDwfmLe8T1sOwbLy3Vs/dHemGlhzyykkbbwAyXKZ2NwZkgR48uicr
+         UDAFYTcthkeX92NC0FihMDg383Y6SDkNSr31JcaxGHE1i+hlu5CSMFGpBPh1hTkkCa88
+         T7E5ht0TJXODwRnTqWEv1sF4XeYVtJkUC+xQkcujRC98X8Js/h9OTEPM4P3PBIxhRR+i
+         U1Lio68UlJLef6QkdsaTBZ99sVe0wm24H9N4Jl01XefpL9JX03NaD+UtrKvp477jfbft
+         a4WiRjE7GS0PcORXGmZXXcXGT8aOTl5gQl1H1W/9TpyrLLBvxeNl/wvgnJK+Gk/zKtXg
+         CUew==
+X-Gm-Message-State: AOJu0YyC982MQXwuUIp+haZFtHFr7citWTV0N37/raar/x6X0+LlxLmE
+	fpgk5jZHVpcqgmWEk2wXQM3QjZfOzdFWq33Hs3vLj/+GHMSbZAJP00ICf48QDeU=
+X-Google-Smtp-Source: AGHT+IFHJyFWUBBJs2U3QAmGmiqakyommRSeQB3esKGCGNr9xKSS2oKCzm2qjt7cgP0Zzl31M0Ydlw==
+X-Received: by 2002:a05:600c:5706:b0:40d:60b9:700 with SMTP id jv6-20020a05600c570600b0040d60b90700mr252998wmb.126.1706024065863;
+        Tue, 23 Jan 2024 07:34:25 -0800 (PST)
+Received: from ta2.c.googlers.com.com (88.140.78.34.bc.googleusercontent.com. [34.78.140.88])
+        by smtp.gmail.com with ESMTPSA id p21-20020a05600c359500b0040e3488f16dsm42457536wmq.12.2024.01.23.07.34.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jan 2024 07:34:25 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: broonie@kernel.org,
+	andi.shyti@kernel.org,
+	arnd@arndb.de
+Cc: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	alim.akhtar@samsung.com,
+	linux-spi@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-arch@vger.kernel.org,
+	andre.draszik@linaro.org,
+	peter.griffin@linaro.org,
+	semen.protsenko@linaro.org,
+	kernel-team@android.com,
+	willmcvicker@google.com,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH 00/21] spi: s3c64xx: winter cleanup and gs101 support
+Date: Tue, 23 Jan 2024 15:33:59 +0000
+Message-ID: <20240123153421.715951-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: support NXP i.MX95
-Content-Language: en-US
-To: Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "abelvesa@kernel.org" <abelvesa@kernel.org>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- dl-linux-imx <linux-imx@nxp.com>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240121114623.1418597-1-peng.fan@oss.nxp.com>
- <273a80a7-2a60-4490-9c3c-c33dc14be9e7@linaro.org>
- <DU0PR04MB9417A8F4230D2C7C76D1550988742@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <78e296fb-a3dc-4e00-94bc-91dab7294887@linaro.org>
- <DU0PR04MB94173B34D426181D285B995088742@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <7afbabca-e0bb-48a9-8c5a-7582f7ae3a6e@linaro.org>
- <DU0PR04MB9417187117429F7C7BE856F188742@DU0PR04MB9417.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <DU0PR04MB9417187117429F7C7BE856F188742@DU0PR04MB9417.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/01/2024 16:13, Peng Fan wrote:
->> Subject: Re: [PATCH] dt-bindings: clock: support NXP i.MX95
->>
->> On 23/01/2024 14:59, Peng Fan wrote:
->>>> Subject: Re: [PATCH] dt-bindings: clock: support NXP i.MX95
->>>>
->>>> On 23/01/2024 14:08, Peng Fan wrote:
->>>>> Hi Conor, Krzysztof
->>>>>
->>>>> I replied you both here.
->>>>>
->>>>>> Subject: Re: [PATCH] dt-bindings: clock: support NXP i.MX95
->>>>>>
->>>>>> On 21/01/2024 12:46, Peng Fan (OSS) wrote:
->>>>>>> From: Peng Fan <peng.fan@nxp.com>
->>>>>>>
->>>>>>> Add i.MX95 clock dt-binding header file
->>>>>>>
->>>>>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>>>>>
->>>>>> This should be squashed with respective binding patch.
->>>>>
->>>>> i.MX95 use SCMI firmware, the SCP processor handles
->>>>> clock/power/pinmux/reset/performance and etc.
->>>>>
->>>>> I just add the index that SCMI exports, and Linux/UBoot will use the
->>>>> index and go through SCMI to do real HW configuration.
->>>>>
->>>>> In such case, should I still add HW information in a yaml binding doc?
->>>>> I am not sure what should be added if yes.
->>>>
->>>> Then why do you need it in the binding? I don't see any use of this.
->>>
->>> ok, should I just add the clk index header in same folder as soc dtsi?
->>
->> I don't know yet. How are these being used, except SCMI firmware?
-> 
-> Yeah. The clock module is managed by SCMI firmware, others are
-> not able to access because of Trusted Resource Domain controller
-> blocked the access from linux or else.
-> 
-> The linux side use such a node, and pass clk index to let SCMI configure.
->                         scmi_clk: protocol@14 {                                                     
->                                 reg = <0x14>;                                                       
->                                 #clock-cells = <1>;                                                 
->                         };
-> 
+Hi,
 
-OK, then my usual recommendation is that this does not go to the binding
-and use numbers directly in the DTS. There is no binding here between
-Linux drivers and DTS.
+The patch set cleans a bit the driver and adds support for gs101 SPI.
 
-Best regards,
-Krzysztof
+Apart of the SPI patches, I added support for iowrite{8,16}_32 accessors
+in asm-generic/io.h. This will allow devices that require 32 bits
+register accesses to write data in chunks of 8 or 16 bits (a typical use
+case is SPI, where clients can request transfers in words of 8 bits for
+example). GS101 only allows 32bit register accesses otherwise it raisses
+a Serror Interrupt and hangs the system, thus the accessors are needed
+here. If the accessors are fine, I expect they'll be queued either to
+the SPI tree or to the ASM header files tree, but by providing an
+immutable tag, so that the other tree can merge them too.
+
+The SPI patches were tested with the spi-loopback-test on the gs101
+controller.
+
+Thanks!
+ta
+
+Tudor Ambarus (21):
+  spi: dt-bindings: samsung: add google,gs101-spi compatible
+  spi: s3c64xx: sort headers alphabetically
+  spi: s3c64xx: remove extra blank line
+  spi: s3c64xx: remove unneeded (void *) casts in of_match_table
+  spi: s3c64xx: explicitly include <linux/bits.h>
+  spi: s3c64xx: remove else after return
+  spi: s3c64xx: use bitfield access macros
+  spi: s3c64xx: move error check up to avoid rechecking
+  spi: s3c64xx: use full mask for {RX, TX}_FIFO_LVL
+  spi: s3c64xx: move common code outside if else
+  spi: s3c64xx: check return code of dmaengine_slave_config()
+  spi: s3c64xx: propagate the dma_submit_error() error code
+  spi: s3c64xx: rename prepare_dma() to s3c64xx_prepare_dma()
+  spi: s3c64xx: return ETIMEDOUT for wait_for_completion_timeout()
+  spi: s3c64xx: simplify s3c64xx_wait_for_pio()
+  spi: s3c64xx: add missing blank line after declaration
+  spi: s3c64xx: downgrade dev_warn to dev_dbg for optional dt props
+  asm-generic/io.h: add iowrite{8,16}_32 accessors
+  spi: s3c64xx: add support for google,gs101-spi
+  spi: s3c64xx: make the SPI alias optional for newer SoCs
+  MAINTAINERS: add Tudor Ambarus as R for the samsung SPI driver
+
+ .../devicetree/bindings/spi/samsung,spi.yaml  |   1 +
+ MAINTAINERS                                   |   1 +
+ drivers/spi/spi-s3c64xx.c                     | 447 +++++++++---------
+ include/asm-generic/io.h                      |  50 ++
+ 4 files changed, 276 insertions(+), 223 deletions(-)
+
+-- 
+2.43.0.429.g432eaa2c6b-goog
 
 
