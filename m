@@ -1,112 +1,142 @@
-Return-Path: <devicetree+bounces-34071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B74A83892D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:37:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E6283893C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:39:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B217728F0A7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:37:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B7B81F29363
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8A45C5ED;
-	Tue, 23 Jan 2024 08:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF2958AB1;
+	Tue, 23 Jan 2024 08:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nIAV5LS8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZGl7MfO+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FA55A78B
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB59058234
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705998923; cv=none; b=CigPIzFw2gT6lNGzQ0nHYqK/CCeNV2qvyv9hiV7tBSPu+8Sap/PH8wH6IrwYDfj3pltncKUtCc1zs/ALvZXMQh/RLd4hyfIH9e5cCZ+SCAQViOdg2YqOOavEvGNpvYzs4ZAI+1Bl5QNYVkhoLudcGXVvQSfke4EsjS5H9xzApec=
+	t=1705999072; cv=none; b=XOOaRRz0MWUJ8vtl0OHTb3fAA3vPGYCHFlfm0v4sAbxM2OLjnnHtDKSDOYK7a+SST/M2oiqPGlUroBuwRDKCXnP22GGwacswB3Y2TPQiPytdElFz54x32sk0KVSuBlMFYmllk+nAtiGLhkBYli5O93A8cbRxyW98MdKTz4QSsdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705998923; c=relaxed/simple;
-	bh=XSWZdAOs6hAsxD5MITsh6XvhE0ZurohRXOoGiYT/7Ww=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version; b=tFgBV8xEAeN7hc3xTL0tbExIIV71yRsAxAZFQkNQsNfve6+/xBhSLjfi769d1AuYpz9WZW1sOTUcmah5Pzl3zbDFcXTrlqanKJh5ilMKzSIJKTU0OA4pnzIxHk9tiWKc+OieU5d5CsNg7lvuVdGJanBXTicJSI6Z5PYIk17agQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nIAV5LS8; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1705999072; c=relaxed/simple;
+	bh=11tDvkn2462PH4jJLODQKJ12o4xYt9hI/uEwDA/uaYQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
+	 In-Reply-To:Content-Type; b=sl1RUx0C27fg0TOLsR8ESRmLLzguhHiMO7EJRyCs5RMCbrWsIEztu7Wvh62xFZilLrEoxiBX1F0X8j+ty8qv+TN2bYHLCFqAdJA/YbnZUNR2ReYURPmCn56CoXTXudT5bKa+N2dcJw4/MZgAhMszSo+dagYm/rY64Z3fSCWYIO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZGl7MfO+; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40ebece0a45so2579515e9.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 00:35:21 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-338aca547d9so3183130f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 00:37:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705998920; x=1706603720; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=skHURHUQR7i0GOIojP4/LIIN0dBVeJ7kB7JR1qs7z2M=;
-        b=nIAV5LS8m0X6+9c15dz63Jdew/f3//RDSnamYG1YVoks95mmADFP53H3zUbbn3jxPH
-         Q0wZwdaWuTkxI7LFaD9GyZ/VQg9JelHnZD8z3XHfcX3qcAkAtqvMIUjQoUnF0HxiwOSG
-         4NTJBIHVcygPswb4ljXJmnug4Gt7WCGD4upW5anSqTE1ZW8AN+0eAnirLqJWCBHbzSlA
-         vAvQAd1KgdsFnYw8+iGoPD1wfM1pwfv444wNJEnRHmQA+NfT9SAcxWgB+a6OnNzLMrET
-         c9bs8Jt1uBWax9PnU8geWJiAvoPIuH2zEsvPN7BgT2BgTPH5nqU6kCnx2LLhci+1JQp/
-         gSzw==
+        d=linaro.org; s=google; t=1705999069; x=1706603869; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lBsEPkL9C1nc9BB56ipg4dcCdJMuHydCT/0qtNDKizo=;
+        b=ZGl7MfO+kxQEs8dF4ebXTWPOLNw71MVnjW6J6HTawchBm/CvBll6fyqYw/B/t3b9Ky
+         YxOVQLGOLv8FU2xJYFPXpLkmB2motUvjxyFCYzNm7Y+YolkD8PRoE16GMK6IGk4Hok2O
+         WW87wHbrzj+lUgxEFFQfxFS5sUqg/Z05Zk0QHrssE9GPsfFV5QWhTZPUClpiSYkB1xqY
+         fLtExOANFKhr4xHViNs+jaGxcHWcdEuDq2/f+9Ws9+P3hvtAR9zEWnKloImUS6PEss1C
+         9oxEL4z66K3JZFknyG5a+Z6ua1HHBRYSuVeigan2e1s8UtRoN1T1GvbypLxqrmsSsOjz
+         9Ncw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705998920; x=1706603720;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=skHURHUQR7i0GOIojP4/LIIN0dBVeJ7kB7JR1qs7z2M=;
-        b=ryB1jQmlqYSLrHEoHvPWBWhVGu4uHBIKMBnJOl8bv3xWaIKJZogXh3cz/rpvRyjo2K
-         9nOy540pEYhUPcvkvQlGA8UwWlBa//JekH/ZmCnGvoP8AwN4GBB9R8pXGALvz96Fqqs2
-         yvmX/pgmTIjB2TOf8/K+b4CDFoeUa433h6OlUsGegQUULtvAk5LAjQJN8jdF5djUGYuC
-         3AXWvRiB9mVb2HM1MkTTA03z+J/X87Ag590srr+KhkaK82GT+tYI962SOP1r3dTNF6ns
-         +6aCw7W3F2utVSwC5bYKBIrQ2aG+lrHoTjTTJNGVNQrk0tGet4Z5oiCOCy+C/pIXAUyP
-         vomw==
-X-Gm-Message-State: AOJu0YwAGrqMiPw+NWt1C56ksoLk/fcBlNP+Mbhxf1yLWgW3fz/ZkZkz
-	R5Bv9CfudD50mbI0KaLhSJZPcoVfve1r/nFE0E3HgOOWN8QEbg+gN6J6AQmJJ24=
-X-Google-Smtp-Source: AGHT+IEDMr/w8Trt1zB7Og/p3DQFm8Ri9WQH4rTw1DnY+3XH5GBq/BcUu+6w0HawCFf9l/HasGidLQ==
-X-Received: by 2002:a05:600c:2249:b0:40e:4ca6:1017 with SMTP id a9-20020a05600c224900b0040e4ca61017mr347253wmm.57.1705998920390;
-        Tue, 23 Jan 2024 00:35:20 -0800 (PST)
-Received: from krzk-bin.. ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id i19-20020a05600c355300b0040e76b60235sm30590641wmq.8.2024.01.23.00.35.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 00:35:20 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Dmitry Osipenko <digetx@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH] dt-bindings: memory-controllers: narrow regex for unit address to hex numbers
-Date: Tue, 23 Jan 2024 09:35:17 +0100
-Message-Id: <20240123083517.21091-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1705999069; x=1706603869;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=lBsEPkL9C1nc9BB56ipg4dcCdJMuHydCT/0qtNDKizo=;
+        b=hoPPfUi5BpixN3RkmrviqW4+bALmgMmfuZxNVWe5N6Z0a+Me98RPQpKuS++zLjuUDw
+         RjwBRYHskocSmLEymaabWg/D8imd5PzKVNwNSwrwoR/0n4QBnIdWyuno6Lf+au06GeD2
+         21pra3HCiPFhCBQ51OtCow4ojadzyYB5cq6ipzBtFxw0Wh9+4vzgpTAp3MyytSVOWxb6
+         VUjum5bKh/AGHXWRf3TeU2n58HBQkgk5W9aTly0hvDWdaLyDyqkbd0UUgt1rIcaQ2uw/
+         5WI1+XSzvQB/AvaxtbM/0Whb2WW+m49F6F3RCeji6smMyjvOOEvo0eNsZdUrsEz+isZf
+         eS3A==
+X-Gm-Message-State: AOJu0Yx+IHEY+KFANPNraTkrIqJ80XSbPQAzBzTW/f8S5w0eZjDoF/W8
+	/E4kcqboTTIZ8lxUbRebRhyqcLQ9ccOHrRfJ/U9e2vwXyuS+LA2nT6QxGhb6nSo=
+X-Google-Smtp-Source: AGHT+IHSMZJ0bwQErms6IhPKh2wJm0ffRn+UXIJEQKtYhy4afZa6O/xFK0SayBgF0P3Iy+Oel9EjhQ==
+X-Received: by 2002:a05:6000:100a:b0:337:bef1:5091 with SMTP id a10-20020a056000100a00b00337bef15091mr1675562wrx.279.1705999069190;
+        Tue, 23 Jan 2024 00:37:49 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e70d:72be:6c73:25c2? ([2a01:e0a:982:cbb0:e70d:72be:6c73:25c2])
+        by smtp.gmail.com with ESMTPSA id v16-20020a5d4b10000000b00337d4eed87asm12750162wrq.115.2024.01.23.00.37.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 00:37:48 -0800 (PST)
+Message-ID: <d20dfc44-43b0-40b7-ae04-4559942e5210@linaro.org>
+Date: Tue, 23 Jan 2024 09:37:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: amlogic: narrow regex for unit
+ address to hex numbers
+Content-Language: en-US, fr
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240123083511.21063-1-krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20240123083511.21063-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Regular expression used to match the unit address part should not allow
-non-hex numbers.
+On 23/01/2024 09:35, Krzysztof Kozlowski wrote:
+> Regular expression used to match the unit address part should not allow
+> non-hex numbers.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml   | 2 +-
+>   .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml      | 2 +-
+>   .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml    | 2 +-
+>   .../bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml          | 2 +-
+>   .../bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml           | 2 +-
+>   5 files changed, 5 insertions(+), 5 deletions(-)
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/memory-controllers/nvidia,tegra20-emc.yaml         | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+<snip>
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
-index f54e553e6c0e..71896cb10692 100644
---- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
-@@ -145,7 +145,7 @@ patternProperties:
-   "^emc-table@[0-9]+$":
-     $ref: "#/$defs/emc-table"
- 
--  "^emc-tables@[a-z0-9-]+$":
-+  "^emc-tables@[a-f0-9-]+$":
-     type: object
-     properties:
-       reg:
--- 
-2.34.1
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
