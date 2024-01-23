@@ -1,272 +1,277 @@
-Return-Path: <devicetree+bounces-34400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130AA839A11
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:13:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F6F839A4C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:32:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95CF91F22E2D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:13:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 600D41F22FB6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F214F82D91;
-	Tue, 23 Jan 2024 20:13:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4CB1FD1;
+	Tue, 23 Jan 2024 20:32:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AUFvj68+"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="ZFr6E67K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C753150276;
-	Tue, 23 Jan 2024 20:13:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6FED522C
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 20:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706040798; cv=none; b=kS5og9xGRDPj34O5Y/nVQOmDpFqeNIaBaVMyekb8K9A8C53WA7JXwTC9kzW7OcT/57Lfgz4deVfVYXFX4wIjuNq56/ZHDiaQLc4/OkJYFjbNXVkmQG/nUvmCk4xEQHPztX2TmOGV3xm/7EPcSv8awMotX9afp209bHYQT7pnzm8=
+	t=1706041951; cv=none; b=oAa2SlJb/lFfprgtYGfq70bQAfM/FYx9YOnDkntjAA6Rt+cGyWzLfXCFa/b0aeTeZoly+Lp1mCpNiiGgnTqikEMVAWO2IMZMGWoVutNcoEufqZbY0kEtJ6rTv81gA9MnVJXkXuGycbOW3I8HRUC2pH6wUpRWnySbLFI4EMC04F8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706040798; c=relaxed/simple;
-	bh=pi03UgEe3I8Y1AABCY6ECn63w3R2NG8aaETp+FeROkc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=VEnkSh2ctnxDGRJ4B6Rtpm1L4I5rKebbQVprpI+1qY5sGUdiXGk4k3QHWqCnuXvqrbNW3sMXOCAHNTRqgP/zOfPQrffpJVQ+8Em0ZRGvpEhR4QziPshegCiL6dYiFm0hB9hzm1nUIe+khtSu9HGKiPDdpGjuxtNtFCCQ04GLRwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AUFvj68+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6B9AC433C7;
-	Tue, 23 Jan 2024 20:13:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706040798;
-	bh=pi03UgEe3I8Y1AABCY6ECn63w3R2NG8aaETp+FeROkc=;
-	h=From:To:Cc:Subject:Date:From;
-	b=AUFvj68+PlEQlAL1OjBmIp7/r04ae7VChrDLYP72S6y8GORvuzyMiTOTENKNkhyNn
-	 QDDs9w+uNNifScWlw0xllKg+dV2ZFIuZy3+gdQYBtSeZllgI0osaFY2tv8DVzSI9sV
-	 pu/yQZZtCT6z25c6Z7KhWoHF3DUn33siUVsEQ65+Q3/JY0iOcBCE54+V57yKKy7bnK
-	 luCGR1/+k3JGUMdQ62k8qEy4eOiOtCjn3wO9IHGf950itCaCgwk4eSrQFrzASX15p+
-	 iyJzTIDg6zycFKTsgLt+8cl+AVVEkY/q3B+x/flk14z8kjTlkJAJA4l1GNlKIvFV0i
-	 LIKzxmw3R3ZRw==
-From: Roger Quadros <rogerq@kernel.org>
-To: nm@ti.com,
-	vigneshr@ti.com
-Cc: afd@ti.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	srk@ti.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH v3] arm64: dts: ti: am642-evm: Add overlay for NAND expansion card
-Date: Tue, 23 Jan 2024 22:13:12 +0200
-Message-Id: <20240123201312.23187-1-rogerq@kernel.org>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1706041951; c=relaxed/simple;
+	bh=4b7LDfndf0x2pfi/Wttei6CVEV5/thBW6qKKQoEYSGk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=Q5bxDl7yTQLrFqyy/j54cwvxHORvu77qHSYKhDtXlnpREI3q5rCG46ih26Q754JRCeGc0tGtip9alPyGpJrChGwE5HG2aH+4/Sklr3a1nfLnsR6Z1yX9TybAtNQMhlAilSWtjoYXmGT4G+5uty3cQSv49+qAeXq/bVSZ0HNVQ1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=ZFr6E67K; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a30f7c9574eso45319666b.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 12:32:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1706041948; x=1706646748; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z20O7bYlmZHSvcuSYHlwtmasXHxMNJkIAnRQOpXMGzc=;
+        b=ZFr6E67KPHvvq52Zw9LwxDn3ubsg4GWtJuZWrMsw5NqMzYhDh9RpXXfWePk4wkgRmH
+         ekLWr6lwnuKJIt8cWd0u7dCKDfXvzOm4CMfyn+BL1pejBrWLJYWDr3BJ0wWS0v/rqct0
+         hTbJOy4/bLCc5/UaVxs42X5wWi7H4+SusbIKmN0BRw5bwoUo76dIl4OxCQ0XXkJ1ycY8
+         vOEE95m+CJOEJ1bm/dadizPfabo9xa5vw6ioMMhnM8oMIMRdCZ9lskxP62viesVBKDWE
+         /MjnDwWiDIIFsJJkR8OS/9ZCpaU2RexsnFjZmVBo4g60NE3cS65Yyn84+PEb4d53ga+6
+         lKng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706041948; x=1706646748;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=z20O7bYlmZHSvcuSYHlwtmasXHxMNJkIAnRQOpXMGzc=;
+        b=OeAD6df5uE54LHzHDp3aMuqAeBL/3PlBrr8WtQLD/5jDTIZxEfOMCEyjmgZsiM7oBT
+         pvg5eUuiQeCNT+GUhdCppd6+QucGohAFuf91/sZYWv4A8hmZml58/tuY4bCc3HcCSzjx
+         WzR4JR20AFXvV1brBxhqt7jMeaBD1JOjtVQ31F9g6h0xxxtgPc7nJbzdGYjCI2YDbJEU
+         OPMINn791dh0/44tKCHOFOLvM/QwXfiFvaXeYXsw1xkjIxCiAtmRYK1Dw+yF+mx2N7Nr
+         xw7aIr4zjGJ1qiSMlcQAsaTwaIOn9zcS7vE9I2il0Ck/pIaPWimir+DhHT6lbcSIqgx2
+         3MzQ==
+X-Gm-Message-State: AOJu0YyKLsHUnKkp+KHPy689n30W+7UCETE0fHThT3uxDfpkUVlgvyiO
+	fjHIE86m/MlK5aX1MAcbdXxaMWxpvV46GMAzX+a7JOp0F62RjVDnXfrj3kgvv8g=
+X-Google-Smtp-Source: AGHT+IEzedYGdRBr5+Ok9jU9hdAPP97DOkgzEJWvYf4nzAHEUTVNt7U9mR2OB283SD62pYYY2QK+AQ==
+X-Received: by 2002:a17:906:5a4a:b0:a2c:1789:f7a3 with SMTP id my10-20020a1709065a4a00b00a2c1789f7a3mr138437ejc.79.1706041947921;
+        Tue, 23 Jan 2024 12:32:27 -0800 (PST)
+Received: from localhost (dhcp-089-099-055-216.chello.nl. [89.99.55.216])
+        by smtp.gmail.com with ESMTPSA id q5-20020a170906388500b00a28a297d47esm14709048ejd.73.2024.01.23.12.32.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 12:32:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 23 Jan 2024 21:32:26 +0100
+Message-Id: <CYMDEAJZ0TJK.K31XZB3E9QOG@fairphone.com>
+Cc: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-usb@vger.kernel.org>, <linux-phy@lists.infradead.org>
+Subject: Re: [PATCH v2 15/15] arm64: dts: qcom: qrb4210-rb2: enable USB-C
+ port handling
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konrad.dybcio@linaro.org>, "Liam
+ Girdwood" <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob
+ Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Wesley Cheng" <quic_wcheng@quicinc.com>, "Bryan O'Donoghue"
+ <bryan.odonoghue@linaro.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Vinod Koul" <vkoul@kernel.org>, "Kishon
+ Vijay Abraham I" <kishon@kernel.org>, "Guenter Roeck" <linux@roeck-us.net>,
+ "Heikki Krogerus" <heikki.krogerus@linux.intel.com>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>
+X-Mailer: aerc 0.15.2
+References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
+ <20240113-pmi632-typec-v2-15-182d9aa0a5b3@linaro.org>
+In-Reply-To: <20240113-pmi632-typec-v2-15-182d9aa0a5b3@linaro.org>
 
-The NAND expansion card plugs in over the HSE (High Speed Expansion)
-connector. Add support for it.
+On Sat Jan 13, 2024 at 9:55 PM CET, Dmitry Baryshkov wrote:
+> Plug in USB-C related bits and pieces to enable USB role switching and
+> USB-C orientation handling for the Qualcomm RB2 board.
+>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 50 ++++++++++++++++++++++++++=
+++++++
+>  arch/arm64/boot/dts/qcom/sm6115.dtsi     | 43 ++++++++++++++++++++++++++=
++
+>  2 files changed, 93 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/d=
+ts/qcom/qrb4210-rb2.dts
+> index 52f31f3166c2..696d6d43c56b 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> @@ -6,8 +6,10 @@
+>  /dts-v1/;
+> =20
+>  #include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/usb/pd.h>
+>  #include "sm4250.dtsi"
+>  #include "pm6125.dtsi"
+> +#include "pmi632.dtsi"
+> =20
+>  / {
+>  	model =3D "Qualcomm Technologies, Inc. QRB4210 RB2";
+> @@ -256,6 +258,46 @@ kypd_vol_up_n: kypd-vol-up-n-state {
+>  	};
+>  };
+> =20
+> +&pmi632_typec {
+> +	status =3D "okay";
+> +
+> +	connector {
+> +		compatible =3D "usb-c-connector";
+> +
+> +		power-role =3D "dual";
+> +		data-role =3D "dual";
+> +		self-powered;
+> +
+> +		typec-power-opmode =3D "default";
+> +		pd-disable;
+> +
+> +		ports {
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <0>;
+> +
+> +			port@0 {
+> +				reg =3D <0>;
+> +				pmi632_hs_in: endpoint {
+> +					remote-endpoint =3D <&usb_dwc3_hs>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg =3D <1>;
+> +				pmi632_ss_in: endpoint {
+> +					remote-endpoint =3D <&usb_qmpphy_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&pmi632_vbus {
+> +	regulator-min-microamp =3D <500000>;
+> +	regulator-max-microamp =3D <3000000>;
 
-We add the ranges property to the GPMC node instead of the NAND
-overlay file to prevent below warnings.
+Hi Dmitry,
 
-/fragment@3/__overlay__: Relying on default #address-cells value
-/fragment@3/__overlay__: Relying on default #size-cells value
+Are you sure vbus can supply 3000mA?
 
-As GPMC is dedicated for NAND use on this board, it should be OK.
+In Qualcomm's document 80-PF208-77 I see 1000mA is the maximum it can
+provide, and I see the same value looking into downstream smb5 driver
+in sdm632 sources.
 
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
+https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-4.9/+/r=
+efs/heads/int/13/fp3/drivers/power/supply/qcom/qpnp-smb5.c#414
 
-Notes:
-    Changelog:
-    v3:
-    - Fix dtc warning by moving ranges property into the GPMC node
-    - update licence to GPL-2.0-only OR MIT and Copyright year to 2024
-    - don't drop k3-am642-evm.dtb target from Makefile
-    
-    v2:
-    - Don't leave k3-am642-evm-nand.dtbo as an orphan. Make k3-am642-evm-nand.dtb
-    with the overlay applied on the base board.
+Regards
+Luca
 
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso | 139 ++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-evm.dts       |   4 +
- 3 files changed, 145 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 52c1dc910308..cb03d0013fca 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -38,6 +38,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am62x-sk-hdmi-audio.dtbo
- 
- # Boards with AM64x SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-+k3-am642-evm-nand-dtbs := k3-am642-evm.dtb k3-am642-evm-nand.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-new file mode 100644
-index 000000000000..3d1c2111ec88
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-@@ -0,0 +1,139 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT overlay for HSE NAND expansion card on AM642 EVM
-+ *
-+ * Copyright (C) 2021-2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "k3-pinctrl.h"
-+
-+&main_pmx0 {
-+	gpmc0_pins_default: gpmc0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0094, PIN_INPUT, 7) /* (T19) GPMC0_BE1n.GPIO0_36 */
-+
-+			AM64X_IOPAD(0x003c, PIN_INPUT, 0) /* (T20) GPMC0_AD0 */
-+			AM64X_IOPAD(0x0040, PIN_INPUT, 0) /* (U21) GPMC0_AD1 */
-+			AM64X_IOPAD(0x0064, PIN_INPUT, 0) /* (R16) GPMC0_AD10 */
-+			AM64X_IOPAD(0x0068, PIN_INPUT, 0) /* (W20) GPMC0_AD11 */
-+			AM64X_IOPAD(0x006c, PIN_INPUT, 0) /* (W21) GPMC0_AD12 */
-+			AM64X_IOPAD(0x0070, PIN_INPUT, 0) /* (V18) GPMC0_AD13 */
-+			AM64X_IOPAD(0x0074, PIN_INPUT, 0) /* (Y21) GPMC0_AD14 */
-+			AM64X_IOPAD(0x0078, PIN_INPUT, 0) /* (Y20) GPMC0_AD15 */
-+			AM64X_IOPAD(0x0044, PIN_INPUT, 0) /* (T18) GPMC0_AD2 */
-+			AM64X_IOPAD(0x0048, PIN_INPUT, 0) /* (U20) GPMC0_AD3 */
-+			AM64X_IOPAD(0x004c, PIN_INPUT, 0) /* (U18) GPMC0_AD4 */
-+			AM64X_IOPAD(0x0050, PIN_INPUT, 0) /* (U19) GPMC0_AD5 */
-+			AM64X_IOPAD(0x0054, PIN_INPUT, 0) /* (V20) GPMC0_AD6 */
-+			AM64X_IOPAD(0x0058, PIN_INPUT, 0) /* (V21) GPMC0_AD7 */
-+			AM64X_IOPAD(0x005c, PIN_INPUT, 0) /* (V19) GPMC0_AD8 */
-+			AM64X_IOPAD(0x0060, PIN_INPUT, 0) /* (T17) GPMC0_AD9 */
-+			AM64X_IOPAD(0x0098, PIN_INPUT_PULLUP, 0) /* (W19) GPMC0_WAIT0 */
-+			AM64X_IOPAD(0x009c, PIN_INPUT_PULLUP, 0) /* (Y18) GPMC0_WAIT1 */
-+			AM64X_IOPAD(0x00a8, PIN_OUTPUT_PULLUP, 0) /* (R19) GPMC0_CSn0 */
-+			AM64X_IOPAD(0x00ac, PIN_OUTPUT_PULLUP, 0) /* (R20) GPMC0_CSn1 */
-+			AM64X_IOPAD(0x00b0, PIN_OUTPUT_PULLUP, 0) /* (P19) GPMC0_CSn2 */
-+			AM64X_IOPAD(0x00b4, PIN_OUTPUT_PULLUP, 0) /* (R21) GPMC0_CSn3 */
-+			AM64X_IOPAD(0x007c, PIN_OUTPUT, 0) /* (R17) GPMC0_CLK */
-+			AM64X_IOPAD(0x0084, PIN_OUTPUT, 0) /* (P16) GPMC0_ADVn_ALE */
-+			AM64X_IOPAD(0x0088, PIN_OUTPUT, 0) /* (R18) GPMC0_OEn_REn */
-+			AM64X_IOPAD(0x008c, PIN_OUTPUT, 0) /* (T21) GPMC0_WEn */
-+			AM64X_IOPAD(0x0090, PIN_OUTPUT, 0) /* (P17) GPMC0_BE0n_CLE */
-+			AM64X_IOPAD(0x00a0, PIN_OUTPUT_PULLUP, 0) /* (N16) GPMC0_WPn */
-+			AM64X_IOPAD(0x00a4, PIN_OUTPUT, 0) /* (N17) GPMC0_DIR */
-+		>;
-+	};
-+};
-+
-+&main_gpio0 {
-+	gpio0-36 {
-+		gpio-hog;
-+		gpios = <36 0>;
-+		input;
-+		line-name = "GPMC0_MUX_DIR";
-+	};
-+};
-+
-+&elm0 {
-+	status = "okay";
-+};
-+
-+&gpmc0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gpmc0_pins_default>;
-+	#address-cells = <2>;
-+	#size-cells = <1>;
-+
-+	nand@0,0 {
-+		compatible = "ti,am64-nand";
-+		reg = <0 0 64>;		/* device IO registers */
-+		interrupt-parent = <&gpmc0>;
-+		interrupts = <0 IRQ_TYPE_NONE>, /* fifoevent */
-+			     <1 IRQ_TYPE_NONE>;	/* termcount */
-+		rb-gpios = <&gpmc0 0 GPIO_ACTIVE_HIGH>;	/* gpmc_wait0 */
-+		ti,nand-xfer-type = "prefetch-polled";
-+		ti,nand-ecc-opt = "bch8";	/* BCH8: Bootrom limitation */
-+		ti,elm-id = <&elm0>;
-+		nand-bus-width = <8>;
-+		gpmc,device-width = <1>;
-+		gpmc,sync-clk-ps = <0>;
-+		gpmc,cs-on-ns = <0>;
-+		gpmc,cs-rd-off-ns = <40>;
-+		gpmc,cs-wr-off-ns = <40>;
-+		gpmc,adv-on-ns = <0>;
-+		gpmc,adv-rd-off-ns = <25>;
-+		gpmc,adv-wr-off-ns = <25>;
-+		gpmc,we-on-ns = <0>;
-+		gpmc,we-off-ns = <20>;
-+		gpmc,oe-on-ns = <3>;
-+		gpmc,oe-off-ns = <30>;
-+		gpmc,access-ns = <30>;
-+		gpmc,rd-cycle-ns = <40>;
-+		gpmc,wr-cycle-ns = <40>;
-+		gpmc,bus-turnaround-ns = <0>;
-+		gpmc,cycle2cycle-delay-ns = <0>;
-+		gpmc,clk-activation-ns = <0>;
-+		gpmc,wr-access-ns = <40>;
-+		gpmc,wr-data-mux-bus-ns = <0>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "NAND.tiboot3";
-+				reg = <0x00000000 0x00200000>;	/* 2M */
-+			};
-+			partition@200000 {
-+				label = "NAND.tispl";
-+				reg = <0x00200000 0x00200000>;	/* 2M */
-+			};
-+			partition@400000 {
-+				label = "NAND.tiboot3.backup";	/* 2M */
-+				reg = <0x00400000 0x00200000>;	/* BootROM looks at 4M */
-+			};
-+			partition@600000 {
-+				label = "NAND.u-boot";
-+				reg = <0x00600000 0x00400000>;	/* 4M */
-+			};
-+			partition@a00000 {
-+				label = "NAND.u-boot-env";
-+				reg = <0x00a00000 0x00040000>;	/* 256K */
-+			};
-+			partition@a40000 {
-+				label = "NAND.u-boot-env.backup";
-+				reg = <0x00a40000 0x00040000>;	/* 256K */
-+			};
-+			partition@a80000 {
-+				label = "NAND.file-system";
-+				reg = <0x00a80000 0x3f580000>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 8c5651d2cf5d..9c7ed3fd361d 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -731,3 +731,7 @@ &main_mcan1 {
- 	pinctrl-0 = <&main_mcan1_pins_default>;
- 	phys = <&transceiver2>;
- };
-+
-+&gpmc0 {
-+	ranges = <0 0 0x00 0x51000000 0x01000000>; /* CS0 space. Min partition = 16MB */
-+};
-
-base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
--- 
-2.34.1
+> +	status =3D "okay";
+> +};
+> +
+>  &pon_pwrkey {
+>  	status =3D "okay";
+>  };
+> @@ -607,6 +649,10 @@ &usb {
+>  	status =3D "okay";
+>  };
+> =20
+> +&usb_dwc3_hs {
+> +	remote-endpoint =3D <&pmi632_hs_in>;
+> +};
+> +
+>  &usb_hsphy {
+>  	vdd-supply =3D <&vreg_l4a_0p9>;
+>  	vdda-pll-supply =3D <&vreg_l12a_1p8>;
+> @@ -622,6 +668,10 @@ &usb_qmpphy {
+>  	status =3D "okay";
+>  };
+> =20
+> +&usb_qmpphy_out {
+> +	remote-endpoint =3D <&pmi632_ss_in>;
+> +};
+> +
+>  &wifi {
+>  	vdd-0.8-cx-mx-supply =3D <&vreg_l8a_0p664>;
+>  	vdd-1.8-xo-supply =3D <&vreg_l16a_1p3>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/q=
+com/sm6115.dtsi
+> index 76c429e8ebab..01dff6641280 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> @@ -878,8 +878,29 @@ usb_qmpphy: phy@1615000 {
+>  			clock-output-names =3D "usb3_phy_pipe_clk_src";
+> =20
+>  			#phy-cells =3D <0>;
+> +			orientation-switch;
+> =20
+>  			status =3D "disabled";
+> +
+> +			ports {
+> +				#address-cells =3D <1>;
+> +				#size-cells =3D <0>;
+> +
+> +				port@0 {
+> +					reg =3D <0>;
+> +
+> +					usb_qmpphy_out: endpoint {
+> +					};
+> +				};
+> +
+> +				port@1 {
+> +					reg =3D <1>;
+> +
+> +					usb_qmpphy_usb_ss_in: endpoint {
+> +						remote-endpoint =3D <&usb_dwc3_ss>;
+> +					};
+> +				};
+> +			};
+>  		};
+> =20
+>  		system_noc: interconnect@1880000 {
+> @@ -1614,6 +1635,28 @@ usb_dwc3: usb@4e00000 {
+>  				snps,has-lpm-erratum;
+>  				snps,hird-threshold =3D /bits/ 8 <0x10>;
+>  				snps,usb3_lpm_capable;
+> +
+> +				usb-role-switch;
+> +
+> +				ports {
+> +					#address-cells =3D <1>;
+> +					#size-cells =3D <0>;
+> +
+> +					port@0 {
+> +						reg =3D <0>;
+> +
+> +						usb_dwc3_hs: endpoint {
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg =3D <1>;
+> +
+> +						usb_dwc3_ss: endpoint {
+> +							remote-endpoint =3D <&usb_qmpphy_usb_ss_in>;
+> +						};
+> +					};
+> +				};
+>  			};
+>  		};
+> =20
 
 
