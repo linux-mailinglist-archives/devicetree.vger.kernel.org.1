@@ -1,55 +1,73 @@
-Return-Path: <devicetree+bounces-34163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83066838DEC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:52:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64B83838E2E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:09:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39ED2283C27
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:52:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 714411C22FB1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:09:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C83A55D8FD;
-	Tue, 23 Jan 2024 11:52:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06AF95D91A;
+	Tue, 23 Jan 2024 12:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TeJxYeeY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j6MkMbWm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E775D8F7;
-	Tue, 23 Jan 2024 11:52:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ED0A5D732
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 12:09:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706010727; cv=none; b=HOpc96EXzZ8kyipAt3tv1z4HK5EpBj4GRxX0ST0sKYh31YC67K4sE0AUas63NCl354dBwgSUEHnMFHM5yMkLWLL06WLFkMxd+bT0antKt3fiCMBPcJbkeSy/u8rbzLMtobZOlYm219mRDfl0qBZavytFlGV+XFbePDPv8HAVQBg=
+	t=1706011753; cv=none; b=BSUR7YZx/hOH+zpbuJq8/smKGxd6/Q1Mz3g/RGnAUy1/byUtiStGEPLwc86mokuBM9IYhfiXpCQ8u65BPzzGTy9mxIudAdcQ1Iq5qPeqhcx5Hz1hzukeARCBVI82JgU6++imT5dM1T2rDGPgcitMzpZjDALgZFEqH9kUaPakMnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706010727; c=relaxed/simple;
-	bh=CTJyc7lWxBIMIku8+r43eFfZ6jrdhpZoucjgq5lQsds=;
+	s=arc-20240116; t=1706011753; c=relaxed/simple;
+	bh=FFfT5q80Hs3zDMjLI3EodrE/Zh2o/sWHApPCFclFeC0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sgXQUjDFN54M3VQy0HtAA0xvrnNuPm6j03cxEFA6QJOpJKnW4iALWp5arKPS+hDApWKs4P3nEPJ1azp081Q7sGfX7N68WXAL/F0Q3um6yZ16SEjiaGkMEu0xGyrqE/ZbvsEoV8i8GqCOZwZwrvwamB8Cs/kh8ZWJ3vruee5QQtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TeJxYeeY; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706010724;
-	bh=CTJyc7lWxBIMIku8+r43eFfZ6jrdhpZoucjgq5lQsds=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TeJxYeeYccoqWHsL0SfusKYd5T5m+UBKllmxMZLU0x++aiKOUxmMEzgR0UXQJLEru
-	 yF8wVjawFulrJaXP3yDjEXbJt/17DEeuaboXGA0WEK1RhwWP9RO8BpxdDBo99wRaE7
-	 8DDnejk/6IB0gdiPj+tNyrDmLTwMhtqW/QnWKurJgoF629e42UZrpo98DknhmjormF
-	 ezVRPT6W+95Cxc/KMyisWpEL8L7EPzd4Dq5bNg5fRFtNihkXMlL1M5TLUt2pAg1T2W
-	 g9h5LMBcqLVhkeXCB4QfwgljsUFCriqpVJ6QbniMGSmjl4oEIQi8AvxKZu9IWnm5dj
-	 z8d6sY4IAprRQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id F26FC3781FD9;
-	Tue, 23 Jan 2024 11:52:02 +0000 (UTC)
-Message-ID: <ba53cd50-dedd-43a7-9183-83caca16b637@collabora.com>
-Date: Tue, 23 Jan 2024 12:52:02 +0100
+	 In-Reply-To:Content-Type; b=E3Weyqo41rB23ZYdmp4bfY+zBTKA5bny8zrMoFpcXNE72dqKBklBC5K7ekpEilpMC9lgwPD31DpNIe4ZSdzu8LF2oeqytBFA9ZuL+MIjkDZ78YZCUn7ySTxAngCTIAEEaVQGFVNZ99FIfLfiOocsGqdzCvW2onTOaEHdvrXfQFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j6MkMbWm; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3387ef9fc62so3969450f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 04:09:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706011749; x=1706616549; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l3C8Fw5l+jhncPA4wDIldFznr0WXO1yKPR2qB2QrPqU=;
+        b=j6MkMbWm/Ky+OXkpG8xFxAoK6HPI8/NmzIXR/+CHWPrj8HvPFbQGmX7CKu+xqi1z1m
+         lkls/ofkWLmM1H2JLoGr9b86FFF6if14T8L4VlzkvMVQC//RzL6P5lHwPEwyC/7wumU+
+         2VNodlIz4kV5EAFz/aLK7o6zzFhTjcuPv4xzXr5mt6OTEHcRiu1Krtjf8Wbw2t5uS//9
+         Z8dzEcuFEMCUe/hXKbCdnbVv0eso1qkUpdKDNYZjNsEZyFlc7Z704XyQlFDUUrzO/M8w
+         S8ZgtjyQnT+E1tPZTAKb5NaXT875yQKnYEtWotHLGIVd6n7YDJnED64ddHCAg93kllTW
+         TA9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706011749; x=1706616549;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l3C8Fw5l+jhncPA4wDIldFznr0WXO1yKPR2qB2QrPqU=;
+        b=Z/niKohhEH3+WSE6jWMIMoTUU/ZLOqSWd5Xuof1FjAeYtrvQrshbEm/sroqLbicE8d
+         e0X7qjJLonEISravOcBnoDlOyBpU/vvH8T1WKRVRlW7E1KZrQsmkLOllH92lI84idvl1
+         SY9/I3OcSO2fRgCsSPsbkTN/5l4uLW+G45Rlf8O9tzG8zIbmlNUpkdrb48r6xrEvS58s
+         kkqsCRvlLKRUhlM5YEfWgCOt3zXlqQEbs/htZBQXJ3kznaOdF+Ut6D9VhzJkIme7qVZD
+         D01a0aAiXQGUKUEHFCtQVjVGJZNCpP1mmMgk/IN8cGitm6AmcGHsN4nL5rRSk9YNMsU2
+         4zvg==
+X-Gm-Message-State: AOJu0Yw8MUaj5BWRlbjU8sMewSjCT6KTX2tA/a3bbG+iw3X/Bi432Ktd
+	rzLEAGWfvlDxiBLIZV0U+swncODwtjHvMm1b+lzVsn6oaUXkNoTaC9sywMhBI0k=
+X-Google-Smtp-Source: AGHT+IHQmsUP+BU7Tso5igJYN5GTEPdX50NGuYMN9RVsXOr4bhNHRPYgbh0Bp1hDTMEC9YUNwolbyQ==
+X-Received: by 2002:a05:6000:1f89:b0:339:372e:7714 with SMTP id bw9-20020a0560001f8900b00339372e7714mr2297966wrb.32.1706011749386;
+        Tue, 23 Jan 2024 04:09:09 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id j14-20020a5d604e000000b003392cdeb3a2sm7140080wrt.103.2024.01.23.04.09.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 04:09:09 -0800 (PST)
+Message-ID: <1fc9815e-76dd-41d7-aa1a-caa72ef4ad34@linaro.org>
+Date: Tue, 23 Jan 2024 13:09:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,111 +75,191 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Introduce ITE IT5205 Alt. Mode
- Passive MUX
+Subject: Re: [PATCH 1/2] dt-bindings: hwinfo: Introduce board-id
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- heikki.krogerus@linux.intel.com, matthias.bgg@gmail.com,
- dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
- andersson@kernel.org, nathan@kernel.org, luca.weiss@fairphone.com,
- tianping.fang@mediatek.com, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com
-References: <20240119125812.239197-1-angelogioacchino.delregno@collabora.com>
- <20240119125812.239197-2-angelogioacchino.delregno@collabora.com>
- <20240119-remedial-unripe-2a3a46b4f117@spud>
- <9605c20a-12ad-49ad-8114-d59f2f772514@collabora.com>
- <20240122-delouse-popsicle-a6f94cce9fb4@spud>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240122-delouse-popsicle-a6f94cce9fb4@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Amrit Anand <quic_amrianan@quicinc.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, kernel@quicinc.com,
+ Elliot Berman <quic_eberman@quicinc.com>
+References: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
+ <1705749649-4708-2-git-send-email-quic_amrianan@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1705749649-4708-2-git-send-email-quic_amrianan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 22/01/24 19:06, Conor Dooley ha scritto:
-> On Mon, Jan 22, 2024 at 11:27:11AM +0100, AngeloGioacchino Del Regno wrote:
->> Il 19/01/24 17:18, Conor Dooley ha scritto:
->>> On Fri, Jan 19, 2024 at 01:58:11PM +0100, AngeloGioacchino Del Regno wrote:
->>>> Introduce a binding for the ITE IT5205 Alternate Mode Passive MUX,
->>>> used for connecting, disconnecting and switching orientation and
->>>> control the SBU signals for alternate modes on USB Type-C ports.
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>> ---
->>>>    .../devicetree/bindings/usb/ite,it5205.yaml   | 72 +++++++++++++++++++
->>>>    1 file changed, 72 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/usb/ite,it5205.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/usb/ite,it5205.yaml b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
->>>> new file mode 100644
->>>> index 000000000000..36ec4251b5f2
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/usb/ite,it5205.yaml
->>>> @@ -0,0 +1,72 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/usb/ite,it5205.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: ITE IT5202 Type-C USB Alternate Mode Passive MUX
->>>> +
->>>> +maintainers:
->>>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>> +  - Tianping Fang <tianping.fang@mediatek.com>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: ite,it5205
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  vcc-supply:
->>>> +    description: Power supply for VCC pin (3.3V)
->>>> +
->>>> +  mode-switch:
->>>> +    description: Flag the port as possible handle of altmode switching
->>>> +    type: boolean
->>>> +
->>>> +  orientation-switch:
->>>> +    description: Flag the port as possible handler of orientation switching
->>>> +    type: boolean
->>>> +
->>>> +  ite,ovp-enable:
->>>> +    description: Enable Over Voltage Protection functionality
->>>> +    type: boolean
->>>
->>> Bitta devil's advocacy perhaps, but why is this DT property? Is it not
->>> known whether or not this is supported based on the compatible, and
->>> whether or not to enable it is a decision for the operating system to
->>> make?
->>>
->>>
->>
->> AFAIK, not all board designs can use the OVP. On some, this may be unstable - the
->> use case where this can be safely enabled is when there's nothing in between the
->> mux and the controller, and between the mux and the port.
-> 
-> Okay, if it varies based on the configuration that makes sense. Perhaps
-> in the future consider mentioning stuff like that in the commit message.
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+On 20/01/2024 12:20, Amrit Anand wrote:
+> From: Elliot Berman <quic_eberman@quicinc.com>
 > 
 
-You're right, it's totally sensible to write that in the commit message,
-will do next time.
 
-P.S.: I have been too much impatient and already sent a v3 because I had to
-fix an issue with the code, could you please give your R-b to the v3 as well?
-There's no change in the bindings commit.
 
-https://lore.kernel.org/r/20240122110446.140226-2-angelogioacchino.delregno@collabora.com
+> 
+> How is this better than Qualcomm's qcom,msm-id/qcom,board-id?
+> -------------------------------------------------------------
+> The selection process for devicetrees was Qualcomm-specific and not
+> useful for other devices and bootloaders that were not developed by
+> Qualcomm because a complex algorithm was used to implement. Board-ids
+> provide a matching solution that can be implemented by bootloaders
+> without introducing vendor-specific code. Qualcomm uses three
+> devicetree properties: msm-id (interchangeably: soc-id), board-id, and
+> pmic-id.  This does not scale well for use casese which use identifiers,
+> for example, to distinguish between a display panel. For a display
+> panel, an approach could be to add a new property: display-id,
+> but now	bootloaders need to be updated to also read this property. We
+> want to	avoid requiring to update bootloaders with new hardware
 
-Thanks again,
-Angelo
+Some mis-indentation in two lines above.
 
+> identifiers: a bootloader need only recognize the identifiers it can
+> handle.
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> Signed-off-by: Amrit Anand <quic_amrianan@quicinc.com>
+> ---
+>  .../devicetree/bindings/hwinfo/board-id.yaml       | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwinfo/board-id.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwinfo/board-id.yaml b/Documentation/devicetree/bindings/hwinfo/board-id.yaml
+
+I think we should add it to dtschema, because bootloaders are using these.
+
+> new file mode 100644
+> index 0000000..82d5ff7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwinfo/board-id.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwinfo/board-id.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Board Identifier for Devicetree Selection
+> +
+> +maintainers:
+> +  - Amrit Anand <quic_amrianan@quicinc.com>
+> +  - Elliot Berman <quic_eberman@quicinc.com>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  Device manufacturers frequently ship multiple boards under a single
+> +  software package. These software packages will ship multiple devicetree
+> +  blobs and require some mechanism to pick the correct DTB for the board
+> +  the software package was deployed. board-id provides a mechanism for
+> +  bootloaders to select the appropriate DTB which is vendor/OEM-agnostic.
+> +
+> +select:
+> +  anyOf:
+> +    - required:
+> +        - 'board-id'
+> +    - required:
+> +        - 'board-id-types'
+> +    - required:
+> +        - '#board-id-cells'
+
+I don't fully get why do you need this select. Isn't the schema selected
+by nodename? Or maybe it is for the final required: but then this could
+be just set of dependencies.
+
+> +
+> +properties:
+> +  $nodename:
+> +    const: "/"
+
+Blank line.
+
+> +  board-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      A list of identifiers that can be used to match with this devicetree.
+
+s/devicetree/Devicetree/ ?
+
+> +      The interpretatation of each cell can be matched with the
+
+Typo: interpretation
+
+> +      board-id-type at the same index.
+> +
+> +  board-id-types:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description:
+> +      Defines the type of each cell, indicating to the DeviceTree selection
+
+s/DeviceTree/Devicetree/ ?
+
+
+> +      mechanism how to parse the board-id.
+> +
+> +  '#board-id-cells':
+
+ What are the cells for?
+
+> +    minimum: 1
+> +
+> +required:
+> +  - board-id
+> +  - board-id-types
+> +  - '#board-id-cells'
+
+
+> +
+> +additionalProperties: true
+
+Best regards,
+Krzysztof
 
 
