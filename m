@@ -1,106 +1,124 @@
-Return-Path: <devicetree+bounces-34409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975E8839A98
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94464839AA8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:58:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4807C28772E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:57:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D4D728D8D2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30A694A3F;
-	Tue, 23 Jan 2024 20:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8305B538D;
+	Tue, 23 Jan 2024 20:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gs1OgDRh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T4iu9DrU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904675250;
-	Tue, 23 Jan 2024 20:57:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B42513ACC;
+	Tue, 23 Jan 2024 20:57:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706043438; cv=none; b=QMzO174EVuNExjE+2n94vzZUkrPisfmbaeLjNBzDH1hYKkafS5EOd/wmetM+eHdD2cBLX0I+iXQ5fZyxJfW+ZmH4OatG/h+EFQ5KM8L8ZPgZHPs4KAdhAu136fHOcMe2BBYwDHShHaBF1BrhvefjToZMtSYbqIDohre6okAaXnU=
+	t=1706043480; cv=none; b=pRu8axL0szoyqUS6PSDODrHehxH6jGaGwrzahuQEAElc0ffY2VBfpE1JY1kM+GMUDgjByD2mHSb6hM5bFjqufBAWKcQMmRHob2bwcdQwzU+S49xMvaGBHv1UbQ6cbWjqzSTiC/d15pHOKm1AudU+DZ0/UyN9aV6Bu88f/9Mce+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706043438; c=relaxed/simple;
-	bh=Qk3x8dqsv1qQiDdx/sUfNPuTrucAaY1crd6XyC3bwAc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uQ/0n1Bz5+keCyaGmyW393pM7PIS1F5oXjXwJvIvMwoy94IUHQEg2n8Z0OwDXO8diQqQssJiDk9IhabnvkQevVOVKs8NuzxT1FSkRctBQ2E24Z+XHV8AoI269RT8OGDENa9Xb9FcKlEIZLiJOgTQdSt1jiLPQoQPlIBLwHpws5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gs1OgDRh; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-339261a6ec2so3147048f8f.0;
-        Tue, 23 Jan 2024 12:57:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706043435; x=1706648235; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8/zvyCf7Yo4bMfKCjWxvWf8T9kOG2qLOCH9hQfg6UWw=;
-        b=Gs1OgDRhdF42X/sSL9eS3JSrcds7M2a0ZrmDu7BLYDIvYt5vz+VD403gjQboxFxAqa
-         y2275JZ6YTEDtEc2nQWLq4Ov3nSKhQY3Zn+dwabMRaqYatmf2OOz3JkkAYt5fPZA5NpY
-         Gk/bjbkmQITsZUbjS8qo3yD3i75DO2LCo0PFPDQkSP5f1CQaogHEdT1KQp1rhy/gO7Rs
-         R2p4r+JImKKAk9MJcUVubQDMwRNmy0QgUC6DFRf8paLTTSj+qv9SuW97wJEhBvCnswhb
-         oESBzjYQ3g/OQ+j0yAgKtzQfNkqt3AzlGR8FXok8wzYEvK+21Cz/iIOkIFMUaQnqgO+e
-         HBWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706043435; x=1706648235;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8/zvyCf7Yo4bMfKCjWxvWf8T9kOG2qLOCH9hQfg6UWw=;
-        b=ZQ9FRpfnGUyt+obvhEwU0dFGmRdRPA6KJy1B29M282SapCTKprKtW6m2RYm1vgFMMd
-         16XPWyNmlCEps56t8JwHG7f8azLhHyei7V0ls2Udx93W0KWlp7/v0QE3OyjEldgylhr0
-         p8qwxS2Y4Y0w+5yT5n+gvfc97DTrW3Pz2pL8crDJR3V5pM5/5M75hGM2Jn7RQY7mbH8C
-         r/IBU5pk0VTQTyq+zdVG92esWJrg8H83ogphmoTkqVcK7lqJptCdmxSFubZEhelgP5O5
-         dUOyVUAck0AVs0YGi64iKF7mZXiJsAL3nX9Ct8fEPIAvKhzfmDSs85z9J1q4Bz4C05+T
-         F84A==
-X-Gm-Message-State: AOJu0Yx/9smP/mF7w8g1xf5gf6x21c702EAjF9VT3hbzcay71Ge9tAaM
-	Ab8xaxCkPTKK5Wnh11SGCg9mloOIASs75kVM1LOydI+DF5G+mPzu
-X-Google-Smtp-Source: AGHT+IEGWVDOmhMh2CcmH98qX/zmGj+R8TRFm5n1pzOFRnjzDpwsw4e2BFNlV0MLjxy1vjY03h6c9w==
-X-Received: by 2002:a5d:5f53:0:b0:337:c288:2595 with SMTP id cm19-20020a5d5f53000000b00337c2882595mr4433474wrb.78.1706043434520;
-        Tue, 23 Jan 2024 12:57:14 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-14-70.dynamic.telemach.net. [86.58.14.70])
-        by smtp.gmail.com with ESMTPSA id d21-20020adfa355000000b003392a486758sm9520919wrb.99.2024.01.23.12.57.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 12:57:14 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: [PATCH] dt-bindings: sram: narrow regex for unit address to hex numbers
-Date: Tue, 23 Jan 2024 21:57:12 +0100
-Message-ID: <9225339.CDJkKcVGEf@jernej-laptop>
-In-Reply-To: <20240123083450.20996-1-krzysztof.kozlowski@linaro.org>
-References: <20240123083450.20996-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1706043480; c=relaxed/simple;
+	bh=beniaoOVcxeR7gRHaBkA7uCAdkIPvUsqVHb1E+XI+bo=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=LEhH9gvah9958AvjViJ3Ln15h3D58Z8cUbBGTQuuUVZDGtMHP8q4eETKJsd3y1Cy5VlJP3x6k5p5jtFPJSyxz/qRFM0jW3knsJroNZM436zFZMRHtpRfK6Erau+f2egcnMSOk/NF/lYBwaJ2dLR2Y/LEuGihqsWJuYwywP2b+Ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T4iu9DrU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73C03C433C7;
+	Tue, 23 Jan 2024 20:57:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706043479;
+	bh=beniaoOVcxeR7gRHaBkA7uCAdkIPvUsqVHb1E+XI+bo=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=T4iu9DrUuiqMfbn+rWnnPjIF5OPJbWwQEXfwwpWsvqQbm3K3atui4RJT7B6uuhib8
+	 8tlCyTXPYKKrBaQN/JshRYeX5/SbNHQLOKB7CWX8S4t8L2kX9EGx2Afwr/7+0mSWDl
+	 cwLlUnp71H0VE9H9xQpzDPKL4GkDf/DCyorNpXlr/0tDPNVt39B7vR5oerfqiUULeB
+	 hEzDp2h+bzGr2pToW1C5vIDY5JLkv6CQr3y0d//xa9GPRfWJfjJ0oHiIcFqWQCzGSn
+	 59cIktQNBGJxZ8g4w+yq4nxxZJB+ye7y4jYWTViOWnhpcD89EIp39OzCUc0ve7On6J
+	 Ni5i1pgxVqZJQ==
+Date: Tue, 23 Jan 2024 14:57:58 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-mips@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, devicetree@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20240123-mbly-clk-v3-3-392b010b8281@bootlin.com>
+References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
+ <20240123-mbly-clk-v3-3-392b010b8281@bootlin.com>
+Message-Id: <170604347681.1901901.3923700915063893929.robh@kernel.org>
+Subject: Re: [PATCH v3 03/17] dt-bindings: pinctrl: allow pin controller
+ device without unit address
 
-Dne torek, 23. januar 2024 ob 09:34:50 CET je Krzysztof Kozlowski napisal(a):
-> Regular expression used to match the unit address part should not allow
-> non-hex numbers.
+
+On Tue, 23 Jan 2024 19:46:48 +0100, Théo Lebrun wrote:
+> Allow a pin controller device to have no address, therefore no unit
+> address.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The previous $nodename was enforcing a unit address, but
+> scripts/dtc/checks.c enforced that names with unit addresses have reg
+> or ranges:
+> 
+>    Warning (unit_address_vs_reg): .../pinctrl@0: node has a unit
+>    name, but no reg or ranges property
+> 
+> Fix pinctrl.yaml to adopt a (pinctrl|pinmux)(-[a-z]+)? node name when
+> neither reg nor ranges are required. Use [a-z]+ to avoid conflicts with
+> pinctrl-consumer.yaml.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/pinctrl.yaml | 18 +++++++++++++++---
+>  1 file changed, 15 insertions(+), 3 deletions(-)
+> 
 
-Merged, thanks!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Best regards,
-Jernej
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pinctrl/pinctrl.yaml:45:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+./Documentation/devicetree/bindings/pinctrl/pinctrl.yaml:47:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
 
+dtschema/dtc warnings/errors:
 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240123-mbly-clk-v3-3-392b010b8281@bootlin.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
