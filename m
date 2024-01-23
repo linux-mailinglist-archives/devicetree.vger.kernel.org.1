@@ -1,51 +1,40 @@
-Return-Path: <devicetree+bounces-34332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB00C83968E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:39:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3C648396BB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:45:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A5371C2302F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:39:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 998B41F27D9A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:45:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80E180032;
-	Tue, 23 Jan 2024 17:39:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="Nw2HZd/L"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FA8811E4;
+	Tue, 23 Jan 2024 17:45:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774467F7EF;
-	Tue, 23 Jan 2024 17:39:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A5880056;
+	Tue, 23 Jan 2024 17:45:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706031557; cv=none; b=GcPzWcdGmbMdUO5IrX2JFg54AWcGXLwEaTyu1aJ/9fPygVP3onTG8GnvhZWUKFHdf/GzxIaTB1qVQC5+Xw+5ciGTKLWfefNaqOaOK3wmR9HTCk+UbTqBd35SATLBxBUArUHxbVMjRRtKKJul464m5CyWdsr9gd1ihPL1xENy2pk=
+	t=1706031927; cv=none; b=J8fc6+yHmF3nlNr7W6DrX0K4gPfmHWEP5eucYw4s3MvOafPabDC7BATq9YldkgNqCpZJfEIQN8rE6UA3Mefl8iYYtJIZJcAc31j88r9CR+2jhhZJ6HTszbWG1zIc+S8yptXbOQmcgugeFvxu+8CZEagXilqUSWhW6wh6tOm0rgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706031557; c=relaxed/simple;
-	bh=j1oHpg4MxoWTUcQaZ1olHovNZwz63l8U9f6+pGJ2lyw=;
-	h=Message-ID:Date:MIME-Version:To:Cc:From:Subject:Content-Type; b=NdK73ik1GvOADi5RSSKAMoYJ8ehF/vkoo9IiMvY/KIBquoc6sylWbWreqBSohaPhp5QdoyhIw7xMp51a2+1E4Jvq6YSdKyyU0jFXvnT3lkZ+gJ9ifT/sLz/ImbeGYc+dXTd0etHczQAyyDgOAL7PBhfKO0PxN2ntAARe+5L/AVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=Nw2HZd/L; arc=none smtp.client-ip=212.227.15.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de; s=s29768273;
-	t=1706031525; x=1706636325; i=markus.elfring@web.de;
-	bh=j1oHpg4MxoWTUcQaZ1olHovNZwz63l8U9f6+pGJ2lyw=;
-	h=X-UI-Sender-Class:Date:To:Cc:From:Subject;
-	b=Nw2HZd/LI3K4FI7m1djjISxf6D2R8AsLKI2IdRYiLQjaQOz+0+3ICR2TYjGwhbpk
-	 ZPhTPvKYLyAC/nqzMkkSjEd3bevz2F14muq0IeWoO8OFuPJ3yg+QJBbbjxCwLCAok
-	 +aJKbbhiPJqcvS9QTe8Vi6NZRxgiooUInYhg8X5hgZ/ckHuXCNCLVTBQSOmH3dfEY
-	 SRAh3GMLyLOXEs2scYvc+2rJTWPtizR88Csme1ig260izjVHz4swSiGfyOySMgTrv
-	 LHxMTt6kcr21wcIg/O2QZ3VSToEPm9jSuv67uOr0fCRUfLTkSCi46CqbNNEG+4Bvh
-	 LbItnEetlFd21npPdw==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.87.95]) by smtp.web.de (mrweb005
- [213.165.67.108]) with ESMTPSA (Nemesis) id 1N01Za-1rDGct0iwQ-00xLW8; Tue, 23
- Jan 2024 18:38:45 +0100
-Message-ID: <0b2bccfb-d1a3-4c2e-b1d3-159630edf21a@web.de>
-Date: Tue, 23 Jan 2024 18:38:42 +0100
+	s=arc-20240116; t=1706031927; c=relaxed/simple;
+	bh=zlU95aLkeoIPXzeIB/V3X3YFOZP6ePz6r7snUDRfkbQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Cs60KD821DACTU3cg8+D9Wj55LmEuttQbM9JSfJlCjcAq+rhu47XY0ycFRxAbUbRFQAHKf+k0c78o3st5pTikB33xRehoyJyWNnfo/RetFdU0GVMH/40Jxbohyb+GGjFyyrcpy76F8zNKrahxsafdspgm2y1JpySV397dkn1F2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D1681FB;
+	Tue, 23 Jan 2024 09:46:08 -0800 (PST)
+Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0CEB63F5A1;
+	Tue, 23 Jan 2024 09:45:21 -0800 (PST)
+Message-ID: <97fcde65-9eb0-44e1-a87a-caa308d1998b@arm.com>
+Date: Tue, 23 Jan 2024 17:45:20 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,82 +42,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-To: devicetree@vger.kernel.org, kernel-janitors@vger.kernel.org,
- Frank Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,
- Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v1] spi: dt-bindings: spi-rockchip: restrict num-cs
 Content-Language: en-GB
-Cc: LKML <linux-kernel@vger.kernel.org>, Kunwu Chan <chentao@kylinos.cn>
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: [PATCH] of: unittest: Return directly after a failed kasprintf() call
- in of_unittest_pci_node_verify()
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:WJwV0X4SrkIl1x7eYAfuuKIkzEKEjVLiVLm0xDpc25U8/8a10oS
- HHTdw0wX5QhiPucq31noLHuJuWuBDRwZiFpTIJkm5aD8Sj6bCIZ/D8L78e0oZL3kIh9SN/W
- ay7tDhJjCR6DysJFGjWY30id87NXbT/1v7BLn/VZHDEIKC8syGy28HKNKxoPIiDWvuoh4BC
- rMul1Funyal/SvX/IXfeA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:EEXap3aLt3M=;C/95zT7YksgzcT6MP9G9p9xmZei
- DASbxD436h1QydtkXQyROSGVV5xEXam1Yd9yzAqJW9ROwU/q2aBew0s4Hwqy8mtH6mgMHw2Tl
- KqiMoBwK6r3XiaOrijeRkXE1nLR0VrgXO3jjRfkKXyhsRSXNHr263qGi00xQXu+5BNYZMWxvv
- JVF4c/R+GVBIHyGSM5xL92x7kOsyha+zH1u7CFM1RsfA+L9Eir90TyRFdpz3cXBO6xqIgJ1o/
- aeV9OLSFvjPwb4kub+nLLePpOezeRBZYjNqqYQg8u+fKMPypczMOeRCs0MgHaWnKUMzFpPR/Y
- n65GEiAtWtEw+loJqfOboFqxpcz532UGGP7XxT6tm/RjTf7tCpffpVjhxRhEm9YYX4PAJ176Q
- EUb1EGMGKdwT24gff7zlbLMgT7cmc8p4iWcel22FjN2uq0VWoCE3gHyIEkAvHOQakSK6Vwigd
- i6YoJe0Rq6m4t5Da7W2zjB2p9OPDWAx3DFQvEUh07WtyoP6Ld7rGYuwB6FgoJtEdWDqLKebdt
- eT4/9QylULvP3uiIxklSszotDGNW/Njyjn4o7ITkn2QpavdAZ14YHcO1uHBVQ97jxoJTey7uq
- axoo62QKRBoo3UPX5fVvRz99n2Gl9PSKBSmyAhrXnBZfPwDfYnCVbnoc3dqlBSmrijyQh6Cke
- Fm3e4l3N8yGK03jN0kOZaWvjHOyjuOsW4/RM2firIHTx/sp0eEOVhacOZMoeA3YqnUZ0zylkv
- YOc5nLL0SeyMZoSl3QqKRymSu2PnUI8NM1y5Fa7fPNm2KMdBtubmTl1bF0Y0ugGehfxFTIi7X
- HoxfK6ZmcUrLIukBKhFvdKVJu6KDKWR1UuHjNORT0GeoF+BEtGa7En5KNJs0rv9+mQQAJT+Gk
- XqFzjn8Tx4FtDORsSn+CLBmEUGas1RZlOCyLcGJh0Pp+KxXahOp4pOzMEfP2xZKpAZChlg1ir
- cflSnA==
+To: Johan Jonker <jbx6244@gmail.com>, Luis de Arquer <ldearquer@gmail.com>,
+ broonie@kernel.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, heiko@sntech.de, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <acc4ff4b-811a-4a6d-8f58-9d8da3be40bb@gmail.com>
+ <d6fc0ad6-ce20-4604-89e5-2598dc3fc0a6@gmail.com>
+ <344a3de8-7f10-46f0-9524-dca58ceda671@gmail.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <344a3de8-7f10-46f0-9524-dca58ceda671@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Tue, 23 Jan 2024 18:24:53 +0100
+On 23/01/2024 10:49 am, Johan Jonker wrote:
+> 
+> 
+> On 1/23/24 10:17, Luis de Arquer wrote:
+>> On 1/22/24 23:59, Johan Jonker wrote:
+>>> In the driver spi-rockchip.c max_native_cs is limited to 4 and the
+>>> default num-cs property is 1. Restrict num-cs in spi-rockchip.yaml.
+>>>
+>>
+> 
+>> Doesn't num-cs include gpio chip selects too?
+>> I have a setup with num-cs = <12> which uses non-native cs-gpios just fine
+> 
+> Given that bindings and Linux drivers capabilities are 2 separate things.
 
-The result from a call of the function =E2=80=9Ckasprintf=E2=80=9D was pas=
-sed to
-a subsequent function call without checking for a null pointer before
-(according to a memory allocation failure).
-This issue was detected by using the Coccinelle software.
+Er, that's the whole point - bindings and drivers *are* separate things, 
+and bindings do not describe drivers. Not least since the fundamental 
+model is to have one canonical binding for multiple different drivers to 
+consume.
 
-Thus return directly after a failed kasprintf() call.
+There seems to be some ambiguity as to whether the common "num-cs" 
+property is supposed to describe the number of dedicated hardware 
+chipselects or the total number including additional GPIOs, but either 
+way this change appears to be objectively wrong - if it's the former 
+than the comment in the driver plus a survey of a few TRMs implies that 
+the maximum number of hardware lines is 2; if it's the latter then 
+obviously it's valid for a platform to wire up 3 or more additional 
+GPIOs as desired, and for a DT to accurately describe that, regardless 
+of whether any particular consumer happens to support it yet or not. For 
+example, AFAICS the U-Boot and FreeBSD drivers for Rockchip SPI appear 
+not to support GPIO chipselects at all.
 
-Fixes: 26409dd045892 ("of: unittest: Add pci_dt_testdrv pci driver")
-Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-=2D--
- drivers/of/unittest.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Thanks,
+Robin.
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index e9e90e96600e..a46268fe8d2a 100644
-=2D-- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -3990,6 +3990,9 @@ static int of_unittest_pci_node_verify(struct pci_de=
-v *pdev, bool add)
-
- 	if (add) {
- 		path =3D kasprintf(GFP_KERNEL, "%pOF/pci-ep-bus@0/unittest-pci@100", pn=
-p);
-+		if (!path)
-+			return -ENOMEM;
-+
- 		np =3D of_find_node_by_path(path);
- 		unittest(np, "Failed to get unittest-pci node under PCI node\n");
- 		if (!np) {
-@@ -4003,6 +4006,9 @@ static int of_unittest_pci_node_verify(struct pci_de=
-v *pdev, bool add)
- 			rc =3D -ENODEV;
- 	} else {
- 		path =3D kasprintf(GFP_KERNEL, "%pOF/pci-ep-bus@0", pnp);
-+		if (!path)
-+			return -ENOMEM;
-+
- 		np =3D of_find_node_by_path(path);
- 		unittest(!np, "Child device tree node is not removed\n");
- 		child_dev =3D device_find_any_child(&pdev->dev);
-=2D-
-2.43.0
-
+> However this document has also a purpose that must notify mainline maintainers if users submit bogus DT values.
+> Currently that limit is set to 4 in the mainline driver.
+> You are free to submit a real board file/patch serie afterwords as proof for review with 12 spi chips and then adjust this limit and increase ROCKCHIP_SPI_MAX_CS_NUM.
+> 
+> Johan
+> 
+>>
+>> Luis
+>>
+>>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>>> ---
+>>>    Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 5 +++++
+>>>    1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>> index e4941e9212d1..00d555bcbad3 100644
+>>> --- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>> +++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>> @@ -65,6 +65,11 @@ properties:
+>>>          - const: tx
+>>>          - const: rx
+>>>
+>>> +  num-cs:
+>>> +    default: 1
+>>> +    minimum: 1
+>>> +    maximum: 4
+>>> +
+>>>      rx-sample-delay-ns:
+>>>        default: 0
+>>>        description:
+>>> -- 
+>>> 2.39.2
+>>>
+>>>
+>>> _______________________________________________
+>>> Linux-rockchip mailing list
+>>> Linux-rockchip@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>>
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
