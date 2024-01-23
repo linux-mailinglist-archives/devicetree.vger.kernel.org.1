@@ -1,87 +1,81 @@
-Return-Path: <devicetree+bounces-34070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29C383892A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:37:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B74A83892D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:37:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B6F31F280C3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:37:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B217728F0A7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 08:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E6059B6D;
-	Tue, 23 Jan 2024 08:35:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8A45C5ED;
+	Tue, 23 Jan 2024 08:35:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lY10ZFkS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nIAV5LS8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 215F25A788
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:35:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FA55A78B
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:35:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705998917; cv=none; b=f08sQgtAYzO8naEJN9c2sS9iL9hA8FVk2uIurG++qZf8ODuUY5PkIjgpZE4VLh8ZEPZZA/8dBcX5LB07nsbOfrjtiEFmBupuOJXfsbVR3UaIEIGG4FwskwWOXS2qdf9cq9nQaGhNkEsLBRNQrU1Q5icUTcjXI8zEZ2GQ0CyVtGw=
+	t=1705998923; cv=none; b=CigPIzFw2gT6lNGzQ0nHYqK/CCeNV2qvyv9hiV7tBSPu+8Sap/PH8wH6IrwYDfj3pltncKUtCc1zs/ALvZXMQh/RLd4hyfIH9e5cCZ+SCAQViOdg2YqOOavEvGNpvYzs4ZAI+1Bl5QNYVkhoLudcGXVvQSfke4EsjS5H9xzApec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705998917; c=relaxed/simple;
-	bh=kWqtesvHjoSkng0XcFoXgTex3TV+vC9xmsJIv0b0Rx4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pJGUpUogYZPDioxacu/J0Jkz/2lki298PSlycLkmxCYLu9tKH4RWVqXZWxrnzdeSeLEmosAfCyD7g7EiOKmcDXwe0DKBVDUMEeGNev2BgEQN37waIWoJZVGvtixlmsBYJwmp7FTB5WpojdfS5pOGrmvSZ6FNzJI+noo7fkyGtjI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lY10ZFkS; arc=none smtp.client-ip=209.85.128.44
+	s=arc-20240116; t=1705998923; c=relaxed/simple;
+	bh=XSWZdAOs6hAsxD5MITsh6XvhE0ZurohRXOoGiYT/7Ww=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=tFgBV8xEAeN7hc3xTL0tbExIIV71yRsAxAZFQkNQsNfve6+/xBhSLjfi769d1AuYpz9WZW1sOTUcmah5Pzl3zbDFcXTrlqanKJh5ilMKzSIJKTU0OA4pnzIxHk9tiWKc+OieU5d5CsNg7lvuVdGJanBXTicJSI6Z5PYIk17agQk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nIAV5LS8; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40e913e3f03so51284155e9.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 00:35:15 -0800 (PST)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40ebece0a45so2579515e9.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 00:35:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1705998914; x=1706603714; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fdfFrklpfzHBV16Dhq98a7qVy1esOltm6odDyiqYZd0=;
-        b=lY10ZFkSr64GM1PZTEqyK6Mh6IaepPFy6wRzD9oc6Oc5ifV4zZ6x/xFXLKhg0w0BNn
-         ZkhNJxRhi37DluF5BIEgibFBOM4WP1La7rjC1iTwwxj9t6QKJNpse0RCczlzykEIHsVm
-         E9Fqba0H+yfWds9WYSKxsOujg8EygAnfSFmLsGalMBJ4bpm/bz2MMr7bR+y0ECMuSrpA
-         hOcez4pgB5K1GD/SHBTfQhMasUzhPbmRaqCvW/dd2acJ493NSaRKCqnY3IC08KkxcEYm
-         zYU6dMCLfbZu3/vMNP7LA8fTXDCEByiP51z4B/5zNyA5qFpCquDoXt/l+Ieq6BkHyR/H
-         okEw==
+        d=linaro.org; s=google; t=1705998920; x=1706603720; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=skHURHUQR7i0GOIojP4/LIIN0dBVeJ7kB7JR1qs7z2M=;
+        b=nIAV5LS8m0X6+9c15dz63Jdew/f3//RDSnamYG1YVoks95mmADFP53H3zUbbn3jxPH
+         Q0wZwdaWuTkxI7LFaD9GyZ/VQg9JelHnZD8z3XHfcX3qcAkAtqvMIUjQoUnF0HxiwOSG
+         4NTJBIHVcygPswb4ljXJmnug4Gt7WCGD4upW5anSqTE1ZW8AN+0eAnirLqJWCBHbzSlA
+         vAvQAd1KgdsFnYw8+iGoPD1wfM1pwfv444wNJEnRHmQA+NfT9SAcxWgB+a6OnNzLMrET
+         c9bs8Jt1uBWax9PnU8geWJiAvoPIuH2zEsvPN7BgT2BgTPH5nqU6kCnx2LLhci+1JQp/
+         gSzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705998914; x=1706603714;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fdfFrklpfzHBV16Dhq98a7qVy1esOltm6odDyiqYZd0=;
-        b=ChUcm5QKwkb4POakV5/JdmO2UqmwTWTYt6fkxgf3dXL/tGjvgdQdBWldVGvezdYJ9X
-         o5C6cIDe04JeqKFgP+pvod0mznt34c9jpRdpwnDPbj1f8RGMa3O1TBhPwasSlf4SNHSE
-         05FH3GYlv0HNlQ4afLwYHSNZUd6D1b7k4lrvMcFvX3EqCL+9doC20k2WHC9aK+JgpusY
-         w8oCHUEh0qkgvkJMwoqGObEaMf8DlIwYW5gZn7MvcR+Y6wkoz04UczYEVOAKCexexEyh
-         L73mglLqVo0KXcMzoyHY2zTGvFv68aLv00Irb04Hw4byxA1g7QT0c3S4gxxoiyoPFMEq
-         7HNQ==
-X-Gm-Message-State: AOJu0YxmyqSiMlbbuIt/RC1R+y98A+pJw7bMVmn7MqhTLLjQ4uuGL+3i
-	lIi7xxVbiQB6xs5xea5Aoggd3w+eaiVATrowK6kXw1yjzjN7F6qbHGoeV7/6enw=
-X-Google-Smtp-Source: AGHT+IF9LMj2Y7QXHww2dLQc2dx1tE4yQOn/mCe9OD4aOrfDghJAioHG7cXnf0wusg59QKpSBEfY1w==
-X-Received: by 2002:a05:600c:2247:b0:40e:4576:53f7 with SMTP id a7-20020a05600c224700b0040e457653f7mr330077wmm.49.1705998914494;
-        Tue, 23 Jan 2024 00:35:14 -0800 (PST)
+        d=1e100.net; s=20230601; t=1705998920; x=1706603720;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=skHURHUQR7i0GOIojP4/LIIN0dBVeJ7kB7JR1qs7z2M=;
+        b=ryB1jQmlqYSLrHEoHvPWBWhVGu4uHBIKMBnJOl8bv3xWaIKJZogXh3cz/rpvRyjo2K
+         9nOy540pEYhUPcvkvQlGA8UwWlBa//JekH/ZmCnGvoP8AwN4GBB9R8pXGALvz96Fqqs2
+         yvmX/pgmTIjB2TOf8/K+b4CDFoeUa433h6OlUsGegQUULtvAk5LAjQJN8jdF5djUGYuC
+         3AXWvRiB9mVb2HM1MkTTA03z+J/X87Ag590srr+KhkaK82GT+tYI962SOP1r3dTNF6ns
+         +6aCw7W3F2utVSwC5bYKBIrQ2aG+lrHoTjTTJNGVNQrk0tGet4Z5oiCOCy+C/pIXAUyP
+         vomw==
+X-Gm-Message-State: AOJu0YwAGrqMiPw+NWt1C56ksoLk/fcBlNP+Mbhxf1yLWgW3fz/ZkZkz
+	R5Bv9CfudD50mbI0KaLhSJZPcoVfve1r/nFE0E3HgOOWN8QEbg+gN6J6AQmJJ24=
+X-Google-Smtp-Source: AGHT+IEDMr/w8Trt1zB7Og/p3DQFm8Ri9WQH4rTw1DnY+3XH5GBq/BcUu+6w0HawCFf9l/HasGidLQ==
+X-Received: by 2002:a05:600c:2249:b0:40e:4ca6:1017 with SMTP id a9-20020a05600c224900b0040e4ca61017mr347253wmm.57.1705998920390;
+        Tue, 23 Jan 2024 00:35:20 -0800 (PST)
 Received: from krzk-bin.. ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id iv11-20020a05600c548b00b0040d8ff79fd8sm41778732wmb.7.2024.01.23.00.35.12
+        by smtp.gmail.com with ESMTPSA id i19-20020a05600c355300b0040e76b60235sm30590641wmq.8.2024.01.23.00.35.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 00:35:14 -0800 (PST)
+        Tue, 23 Jan 2024 00:35:20 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Linus Walleij <linus.walleij@linaro.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-gpio@vger.kernel.org,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Dmitry Osipenko <digetx@gmail.com>,
+	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: pinctrl: amlogic: narrow regex for unit address to hex numbers
-Date: Tue, 23 Jan 2024 09:35:11 +0100
-Message-Id: <20240123083511.21063-1-krzysztof.kozlowski@linaro.org>
+	linux-tegra@vger.kernel.org
+Subject: [PATCH] dt-bindings: memory-controllers: narrow regex for unit address to hex numbers
+Date: Tue, 23 Jan 2024 09:35:17 +0100
+Message-Id: <20240123083517.21091-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -96,78 +90,22 @@ non-hex numbers.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml   | 2 +-
- .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml      | 2 +-
- .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml    | 2 +-
- .../bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml          | 2 +-
- .../bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml           | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+ .../bindings/memory-controllers/nvidia,tegra20-emc.yaml         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-index c7df4cd34197..d9e0b2c48e84 100644
---- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
-@@ -24,7 +24,7 @@ required:
-   - compatible
+diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+index f54e553e6c0e..71896cb10692 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
+@@ -145,7 +145,7 @@ patternProperties:
+   "^emc-table@[0-9]+$":
+     $ref: "#/$defs/emc-table"
  
- patternProperties:
--  "^bank@[0-9a-z]+$":
-+  "^bank@[0-9a-f]+$":
-     $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
- 
-     unevaluatedProperties: false
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
-index 0942ea60c6cd..108719bde0d0 100644
---- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
-@@ -21,7 +21,7 @@ required:
-   - compatible
- 
- patternProperties:
--  "^bank@[0-9a-z]+$":
-+  "^bank@[0-9a-f]+$":
-     $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
- 
-     unevaluatedProperties: false
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
-index e3c8bde30559..dc277f2e2edf 100644
---- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
-@@ -21,7 +21,7 @@ required:
-   - compatible
- 
- patternProperties:
--  "^bank@[0-9a-z]+$":
-+  "^bank@[0-9a-f]+$":
-     $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
- 
-     unevaluatedProperties: false
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
-index c1b03147e8ec..add83c676327 100644
---- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
-@@ -29,7 +29,7 @@ required:
-   - compatible
- 
- patternProperties:
--  "^bank@[0-9a-z]+$":
-+  "^bank@[0-9a-f]+$":
-     $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
- 
-     unevaluatedProperties: false
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
-index 4ec85b8248fa..412bbcc276f3 100644
---- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
-@@ -29,7 +29,7 @@ required:
-   - compatible
- 
- patternProperties:
--  "^bank@[0-9a-z]+$":
-+  "^bank@[0-9a-f]+$":
-     $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-gpio
- 
-     unevaluatedProperties: false
+-  "^emc-tables@[a-z0-9-]+$":
++  "^emc-tables@[a-f0-9-]+$":
+     type: object
+     properties:
+       reg:
 -- 
 2.34.1
 
