@@ -1,136 +1,136 @@
-Return-Path: <devicetree+bounces-34285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25EC8394C4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:35:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BA5F8394CB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:35:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D50071C25D40
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:35:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E9A91C23D7F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC00D7FBD1;
-	Tue, 23 Jan 2024 16:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8683A7F7C5;
+	Tue, 23 Jan 2024 16:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RqcwivGW"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="JvnU1qvn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3AD481C7;
-	Tue, 23 Jan 2024 16:34:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E93A6481C7
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 16:35:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706027677; cv=none; b=kkZpJwxXex3KS/IrU6k6PWeLGaOT9nbjkcNYlq61eZqrJrpCev0u0E01h1XCdfmsV4ghXR0g+B1NjJRkKEMunhvzk5rBJWkaQyP1ULhcsV8j6Pmv8I3JUjtqBiKr0sf81Z1+0ayP050wcuncXFqcOjJClYqJFbviC8qhF/N++40=
+	t=1706027752; cv=none; b=hnCP62A/mlOGdozPgeMdBiyrAXpfg1dR9aDnUCUNbPMO2d5TwE1waH3QUakORRBHLTfwPccXLD6eVjmI44bjW86zbbsOfRlJ/w7LQWahpXqEm+9PaYYpqfDRlgjxpGV1lKzXfpkGI64cWU/xcKeVZfcHIpPlvgNt5v7D/Wr/yBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706027677; c=relaxed/simple;
-	bh=ZVT6u/jVKOPURDGdsXTE55rzOKA3jVxHIiN5SEtzdcc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=FCbz+i47LY4TRmsk9W4NSWoz8Y8u1Io86G9cW+0WQzWZAA+8VM6TGnZr7RGerFrWUpuGRQJZ/AquUiabXGWc2uZ/cRCMDMupeunniJ43hb2a7ZoqcjAb5OIqDoR/9Uq2mxE6RWKw5aRQVSYIPWTEubss9/RDNXPgmmDwtSIBKcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RqcwivGW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40NBU8k2004867;
-	Tue, 23 Jan 2024 16:34:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=5b5fU+KTOzPUrCgOe77YLsSItA8Pgv5o+1xi3qZwPH0
-	=; b=RqcwivGWESdAuAZqs+/Dzgj6VHm0kVuX5yd/imvEFTJk8vygyB9WwL/68C6
-	d/cGY89W/dpNxB0nH4KWbsR0l5TsCVFGaSmkBplT4VbvMXTKwPw2IbDHJzNhhnt0
-	lfozjlIGbwDjnDsfgAcsJV4c9IAPIeEzTkMm/SeI+U26n+a9j5ub8JqIaoL0c5rh
-	xyla5Svfpp4qx+pNpKGj0VXGpkbK7usCTcMKWjenmT2ufYoEXBTtGuavLvlbk2fa
-	GRf8FA0gBg9+ZulAi7aZT3ZpVsR6mng6XUbERbp/lot91SUyEY6AU6TJGEAMCEYm
-	dNxaTJ9P/Rtg3mZ1JudMkzFiDNA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vt9un97ya-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 16:34:32 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40NGYW6i009628
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 23 Jan 2024 16:34:32 GMT
-Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 23 Jan 2024 08:34:27 -0800
-From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Date: Tue, 23 Jan 2024 22:04:09 +0530
-Subject: [PATCH 3/3] arm64: dts: qcom: sm8150: Add bi_tcxo_ao support for
- gcc
+	s=arc-20240116; t=1706027752; c=relaxed/simple;
+	bh=pelzPdBmCCZdUXfejPg/cWeKXRO59St/ByJi7P4VJeg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ym7W3D5S9fiCpys2xeU75sI96M9K9xYm421icm1k2zk4viGyDCLEmznPRL3+v/JQFo4/N6u8Le8kX0C9Z3GG6G+llPX36EM/qSn99VfxSpa6S0ScaNf/eSn9z0dX/FmQBENTgjOf7PCIIzfAjjW9d1osDBAckJzw4fjsENBYoSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=JvnU1qvn; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1706027749;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=eBZ0jM2Y91GDpqAFQdvBt0eQmR6O4Kseecz7ZIi6fjc=;
+	b=JvnU1qvnGEzQzQdxMLhImFfxhOKEoLRQyf+GnDOtFEcU586WdK77Qyp3s27Mp2TTXwfrs/
+	+T1ACeCB1DOnMeCCrsD4FqVf66QA2AEOvqxVOBwwj6jjdOZyW2vrBmMcnTwA3pqnt/zpsF
+	FHqR31UyGW3KogvWW5mZxNpaQ77goFs=
+Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com
+ [209.85.210.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-311-cZgpl-XWNYGOtoz2Cf8X4g-1; Tue, 23 Jan 2024 11:35:47 -0500
+X-MC-Unique: cZgpl-XWNYGOtoz2Cf8X4g-1
+Received: by mail-ot1-f72.google.com with SMTP id 46e09a7af769-6e0bcaceb20so4748279a34.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 08:35:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706027746; x=1706632546;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eBZ0jM2Y91GDpqAFQdvBt0eQmR6O4Kseecz7ZIi6fjc=;
+        b=PP+03o5uozcYd+MuVe7YxoSjR6hFDsxnE4tV8iDw2WQdQJUDt2ChHMWMOTZ8Z/ncH4
+         9/0R/I1hq+xd6yilXlBpIhL8xourIfisXwsgbsFc5h0ABdCqiscLTq8G7VrUsuJ9AWaL
+         5kIiw3JQdJm2U5RYLJDmXvnv3hXMSBgJCab2pUfvZF8JIO04UxiuDH5sMyzIIm8IW2O5
+         p5Vd0HjKjc0fYq8U8UBh0NzQUxinEf36QQqROszSySev+HKwKf54RxW6UztrfoLQ+8E1
+         ec4L8wq8Cm4hM+kW1gSmNu3UGdmjyrUjx5K+0HJtGOEhzcFkgrESq6NQaI932gcmNhlU
+         9pDg==
+X-Gm-Message-State: AOJu0Yx2SK91P5pYa179ypMHYOMP8DNuScQH6vhg8GXrj7PtfqD4LvCp
+	rpgfAfVQ8d0i90orbfFey7WVx2gGEY/1cISnAw6r72Ja2efI7Q4dZkfxAcCcM0fRpgBqKkXB0JE
+	MFCH7zZ+1Q7ME0i2yl/rv8n0bRD0rtlBpDHXKK0vEtS+j/BWu4bYLKrKglnH/vQpyniZoPiIIWf
+	AKZGJ7SPhxsskUusvKMTUyHtzUoScIc42bJQ==
+X-Received: by 2002:a05:6830:153:b0:6dd:e799:1d27 with SMTP id j19-20020a056830015300b006dde7991d27mr179161otp.26.1706027746559;
+        Tue, 23 Jan 2024 08:35:46 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFEsgoFIkZOcx3W2FCMnR8lFPMvJo4YZKlxyiSRsZwq65pcNCn8cxtzHSu7Td76xMksWYF5I/eNqb2OAWYrbt4=
+X-Received: by 2002:a05:6830:153:b0:6dd:e799:1d27 with SMTP id
+ j19-20020a056830015300b006dde7991d27mr179155otp.26.1706027746340; Tue, 23 Jan
+ 2024 08:35:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240123-gcc-ao-support-v1-3-6c18d5310874@quicinc.com>
-References: <20240123-gcc-ao-support-v1-0-6c18d5310874@quicinc.com>
-In-Reply-To: <20240123-gcc-ao-support-v1-0-6c18d5310874@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
-        Satya Priya Kakitapalli
-	<quic_skakitap@quicinc.com>
-X-Mailer: b4 0.12.4
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8MRo409U4M5HUK3i5XJqUBUDGN5clySr
-X-Proofpoint-GUID: 8MRo409U4M5HUK3i5XJqUBUDGN5clySr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-23_09,2024-01-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=501
- priorityscore=1501 adultscore=0 clxscore=1015 spamscore=0
- lowpriorityscore=0 bulkscore=0 mlxscore=0 impostorscore=0 phishscore=0
- malwarescore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2311290000 definitions=main-2401230122
+References: <95e2d79c1c36663cfffce5a20c95f8201670bbec.1704468417.git.lorenzo@kernel.org>
+In-Reply-To: <95e2d79c1c36663cfffce5a20c95f8201670bbec.1704468417.git.lorenzo@kernel.org>
+From: Lorenzo Bianconi <lorenzo.bianconi@redhat.com>
+Date: Tue, 23 Jan 2024 17:35:35 +0100
+Message-ID: <CAJ0CqmW2AoXa8XxKzXOtBd3VfnOUjRYwjhj0KXg4mgKKHZ1gQw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: airoha: fix pcie ranges properties
+To: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Felix Fietkau <nbd@nbd.name>, devicetree@vger.kernel.org, John Crispin <john@phrozen.org>, 
+	soc@kernel.org, Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
 
-Add bi_tcxo_ao support to be able to put active only vote
-on critical clocks during suspend.
+>
+> Reduce and split pcie controller memory ranges for en7523 SoC
+> in order to properly load a pcie card on the second port.
+>
+> Fixes: 08a4aeb2c23f ("ARM: dts: Add PCIe support for Airoha EN7523")
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  arch/arm/boot/dts/airoha/en7523.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/airoha/en7523.dtsi b/arch/arm/boot/dts/airoha/en7523.dtsi
+> index b523a868c4ad..bb78d54e94f6 100644
+> --- a/arch/arm/boot/dts/airoha/en7523.dtsi
+> +++ b/arch/arm/boot/dts/airoha/en7523.dtsi
+> @@ -159,7 +159,7 @@ pcie0: pcie@1fa91000 {
+>                 clocks = <&scu EN7523_CLK_PCIE>;
+>                 clock-names = "sys_ck0";
+>                 bus-range = <0x00 0xff>;
+> -               ranges = <0x82000000 0 0x20000000  0x20000000  0 0x8000000>;
+> +               ranges = <0x82000000 0 0x20000000 0x20000000 0 0x2000000>;
+>                 status = "disabled";
+>
+>                 #interrupt-cells = <1>;
+> @@ -188,7 +188,7 @@ pcie1: pcie@1fa92000 {
+>                 clocks = <&scu EN7523_CLK_PCIE>;
+>                 clock-names = "sys_ck1";
+>                 bus-range = <0x00 0xff>;
+> -               ranges = <0x82000000 0 0x28000000  0x28000000  0 0x8000000>;
+> +               ranges = <0x82000000 0 0x22000000 0x22000000 0 0x2000000>;
+>                 status = "disabled";
+>
+>                 #interrupt-cells = <1>;
+> --
+> 2.43.0
+>
 
-Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Hi Matthias,
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 761a6757dc26..b91ef95c0c3a 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -906,9 +906,10 @@ gcc: clock-controller@100000 {
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
--			clock-names = "bi_tcxo",
-+			clock-names = "bi_tcxo", "bi_tcxo_ao",
- 				      "sleep_clk";
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
- 				 <&sleep_clk>;
- 		};
- 
+Since you applied the original patch from Felix, I am wondering if
+this fix is expected to go through your tree or applied directly by
+Arnd.
 
--- 
-2.25.1
+Regards,
+Lorenzo
 
 
