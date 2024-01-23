@@ -1,273 +1,206 @@
-Return-Path: <devicetree+bounces-34129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32007838C1F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:33:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97C2F838C26
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4CAA281B67
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:33:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 138131F26395
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:34:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 598435C618;
-	Tue, 23 Jan 2024 10:33:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78FD65C619;
+	Tue, 23 Jan 2024 10:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GB83W9lN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z1//IP1t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31C350A77;
-	Tue, 23 Jan 2024 10:33:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C925C610;
+	Tue, 23 Jan 2024 10:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706006022; cv=none; b=nZCzTvaFpZUf2MY8p8sE2LzTHj7+sUGd6aV+fOpKqZGvzjNBJ2P1hsLfE/82NyvNiL47z2LJsDkKS5ps2LaMA28STm3H65Bt+u7CB5OTrYUDAqMx6rh5CONzNuqnC76xjBZ3cxmlNqVGSHrsv4EzMr+YdHCag3l5wE3uAmQX7DM=
+	t=1706006086; cv=none; b=LgiG4NrvQVvOXyo24xYLL6+vgcBWhkS9hgM7rISH3qFwxJR9uBZjUP1pdwFqBvwfxoSdwfrWiBsxjvBQbu3Pq+gml2jedn3UQ49Iub9hP+lnzwNIIOJ6evDu9IdatC2Pq4inib9AqyH4/Yzw5oJaGWb1YZL7yKuylehFl4zDHXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706006022; c=relaxed/simple;
-	bh=b/HjrJfU8EEcbsztZmBbn++VHf0B5By+qe8X/6IIxsQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YLb38ExKxOzqCpBOAUGA1Ij/RqqFlUEiUhSXZt+CGemtZvF7+9YCFzrdJ089dtUqNxf18HVy80+XDCf04O/Lh9FyKyO4B84jX4s6Azut1Qy9Bc+CajbWJbhyTWnkyJvDz85rni1EbqaWdkvMDQ4ZHGFQ3V9bKf7WXVV+Be0jf+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GB83W9lN; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1706006086; c=relaxed/simple;
+	bh=n8EVx1KnsxT023JauzBveoILnBLCXi0WB1yyp0yg88E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FT7THHOfrQOkkLKJFtL5HPFcUsBLOENz/SvtNOjIEGENNZVlOSw45djM+H1WTUbAQGj6PR2KA/mK4xlwl2oEvsg3NTA3PaTY0pYQbielqdBhMwiCsr0iYtTx5REfILmE2cvUYjOWtSK8iqcAjIXG3pK/rEWLvbmbYo5O0hN2Z+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z1//IP1t; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6dac225bf42so2228203b3a.0;
-        Tue, 23 Jan 2024 02:33:40 -0800 (PST)
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-28bec6ae0ffso1987169a91.3;
+        Tue, 23 Jan 2024 02:34:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706006020; x=1706610820; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=/kWlrAsaCmjeiYXkdVA1YyhGdw7+xla0wi8v7ASUMKs=;
-        b=GB83W9lNmdspxUa6QTZsNb8Ujm05Y8jhYIpvIfZ9JF4PJnS44YEevPKCbPM1OwqUdz
-         uUS+CdHM32TBUZhnuSnOdixhJPcT+lavYhWMYXNo20UoPkOvqcWN12wQC7roHu+Geq9b
-         Bw4+HHh0TRN571MrqhZJ8Q0pymdUjJGmq+XypdO4bVOls1Qt2CTEoUPIkM70ifIJwWsI
-         RFfEIDE2x67F7rWVLWwH73mvJ5jCVVF0dD3ZPGbDdGgHAFQWqJX9D8PuEYqxq+UhB8KS
-         qS12BeLIBQr1sKEfOFCZRRgSlixIAiT4f4wIbmG6gp8XjnvcrfU1slpHpYLTA5J9GSq7
-         +BsA==
+        d=gmail.com; s=20230601; t=1706006084; x=1706610884; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gf2YaREmVYXxOJZhUokIKRBOvqtSAWNcOsE6VEYJ3QI=;
+        b=Z1//IP1tUBhzo4bn4vSZbEqYl+EQsZ+78t38uqNA69vn+YslND2HVWgK3HbGgfTpPT
+         j1WMuL/DIi3FyVOpuvQr5HJ9Wf6SOJ9DvUVg42burj2t0pcZ6skHvWqNxsJ7ema3btaQ
+         4YSFDrVCYEBH1airbRdSdvKrTSUWREcxXNig75w9kh05uQ4QqEPQvHbRAGc7GQMkxG93
+         SXgUbO8SSkOS/YN0j3X/meiBeCLnFw1Urs+GIKG9naOxoz/c4DxSzwO5Y7ICGBZo6tfN
+         9d58UauGIsTLYcc3FHnMO/l91PnGC3dnaqy4cbL5tWJbo4dh9FcUgcdDtjoULeO+Nz0S
+         kkhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706006020; x=1706610820;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1706006084; x=1706610884;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/kWlrAsaCmjeiYXkdVA1YyhGdw7+xla0wi8v7ASUMKs=;
-        b=LqEt/WNl9GQEh6rdLCDh9zJPsos9VwKC0oNr8FpzsiMn8KanzoWQl2zD1/x2tVg1sL
-         7cDrntrHiU2IIKBaQe8wlH1famMoko7iOnQDWcVM2QErGaooY5XgL+Pmp3AOvFJmtFly
-         +aDO/BUPmdRVCZu4qnhr6DL/p3hOdV1iZ/6/AIMATb3blPJ5WYh1PKO3x0y33bHV6eq8
-         8lgSKnVfnQRZG2qPLGT75Tl0Td+GXAMYxK2SpKIwoRqxBueCfsE+eJsUcQgWQ+AEwacj
-         nmt9Oa2NF8XbJ4AebcoA1ynwBBqeUqmrTbscdG2+x2YawVRjWrJUmhPioXfeJtPezxZp
-         v2bg==
-X-Gm-Message-State: AOJu0YyoqagC+vYee5ZzFGGQt+yr66mAmvYsAjRrj2pyhmXfdzVts9dT
-	zyMIYr2QIo5qkoP+xhcYRZ2RlJ9mVpFZmhoh3DBlfvXaxiT/ECTA
-X-Google-Smtp-Source: AGHT+IGrJKjC7DZB2KY9UVMvpA7JZWHnkbXtxo9wARqs/IFIHwZKoLUU1eo7dM+YGQqKl2cfhivS6A==
-X-Received: by 2002:aa7:9841:0:b0:6dd:8092:6c63 with SMTP id n1-20020aa79841000000b006dd80926c63mr238938pfq.63.1706006019786;
-        Tue, 23 Jan 2024 02:33:39 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id y22-20020a62b516000000b006dbd2405882sm5501006pfe.148.2024.01.23.02.33.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 02:33:39 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <726bd8ef-2074-4ae7-89fe-36e2bc70d02e@roeck-us.net>
-Date: Tue, 23 Jan 2024 02:33:36 -0800
+        bh=Gf2YaREmVYXxOJZhUokIKRBOvqtSAWNcOsE6VEYJ3QI=;
+        b=WFryIEq2S9VHx8DIgXgak5NBZfwWW4Mpb7gyIMhlUrCaCtcko6zNdQVamMbLjzD+NF
+         OWttLH7vcyukiSAK8k+KYV/T5Zg90XgZZmB+Zi5atcRXZufjWPYTPdAcTQnIjoScoDYZ
+         eqXaZYUFVK0ZUxhtHW7dvFrATG21LAMgbhqI/khsbjP3lX2XFDvtM7nmXCtbg2LoItwP
+         +uDLae+F6oxOPwCTpLExwmxJNRV3+bkTFpycGXeUhK65XvzqfCm7lBmf/S2V5aUZcR4X
+         i6M1qN2Q0oX8A2PILfeqJqohPChPBM93ENfcAoZSH2clwUZMSesoN0EfmcLh+FQaFEMi
+         XAKg==
+X-Gm-Message-State: AOJu0YzVHjYzFeh6KtSPhzm+nUStVUt6xMK1R5pJq4UBfpANlLZ2RqkW
+	6DvN/RZ+l5PN7M8B7bqaAphJQdoYUMRnjmB5zmTDi9ekz0XMeJa7iKiWPQ1lgb8KyARHz6074Bq
+	nnpgfvIYyHlf5gBy8QCezfB0ZiFSYR7qttmw=
+X-Google-Smtp-Source: AGHT+IGtLI4G6LyMbWMUQB8P4MTNxrKBQrJ79HxJ8bP4yLpCab9rJ66u1Flg526m0fJyc9ODaJKxJjZvD7pQkLmg+ws=
+X-Received: by 2002:a17:90b:228f:b0:28e:82bb:746f with SMTP id
+ kx15-20020a17090b228f00b0028e82bb746fmr2297885pjb.97.1706006084311; Tue, 23
+ Jan 2024 02:34:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] watchdog: s3c2410_wdt: update to use new
- exynos_pmu_*() apis
-Content-Language: en-US
-To: Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- wim@linux-watchdog.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
- jaewon02.kim@samsung.com, chanho61.park@samsung.com,
- semen.protsenko@linaro.org
-Cc: kernel-team@android.com, tudor.ambarus@linaro.org,
- andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com,
- linux-fsd@tesla.com, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20240122225710.1952066-1-peter.griffin@linaro.org>
- <20240122225710.1952066-4-peter.griffin@linaro.org>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240122225710.1952066-4-peter.griffin@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240118195356.133391-1-dregan@broadcom.com> <20240118195356.133391-2-dregan@broadcom.com>
+ <CAOiHx=k2Wn+UaVFbB-n2XKmFuBss4LKmLSW45YME07z=7zg0ww@mail.gmail.com> <c1fc163b-1f4f-42a5-91c3-b31ad33a9741@broadcom.com>
+In-Reply-To: <c1fc163b-1f4f-42a5-91c3-b31ad33a9741@broadcom.com>
+From: Jonas Gorski <jonas.gorski@gmail.com>
+Date: Tue, 23 Jan 2024 11:34:32 +0100
+Message-ID: <CAOiHx=n62Ap8bGbTu0xcKMHcqgpaLZ-GNjsW2DQ5XPrnsxmAJw@mail.gmail.com>
+Subject: Re: [PATCH v2 01/10] dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
+To: William Zhang <william.zhang@broadcom.com>
+Cc: dregan@broadcom.com, dregan@mail.com, miquel.raynal@bootlin.com, 
+	richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	computersforpeace@gmail.com, kdasu.kdev@gmail.com, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com, 
+	tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com, 
+	anand.gore@broadcom.com, kursad.oney@broadcom.com, 
+	florian.fainelli@broadcom.com, rafal@milecki.pl, 
+	bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com, 
+	baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org, 
+	dan.carpenter@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 1/22/24 14:57, Peter Griffin wrote:
-> Instead of obtaining the PMU regmap directly use the new exynos_pmu_*()
-> APIs. The exynos_pmu_ APIs allow support of newer Exynos SoCs that have
-> atomic set/clear bit hardware and platforms where the PMU registers can
-> only be accessed via SMC call.
-> 
-
-Not really sure about using a direect API instead of regmap. I personally
-think that regmap is more generic and like the idea of abstracting hardware
-accesses this way. Since that is POV, I won't argue about it. However,
-
-> As all platforms that have PMU registers use these new APIs, remove the
-> syscon regmap lookup code, as it is now redundant.
+On Mon, 22 Jan 2024 at 18:34, William Zhang <william.zhang@broadcom.com> wrote:
 >
+> Hi,
+>
+> On 1/22/24 03:48, Jonas Gorski wrote:
+> > Hi,
+> >
+> > On Thu, 18 Jan 2024 at 20:56, <dregan@broadcom.com> wrote:
+> >>
+> >> From: William Zhang <william.zhang@broadcom.com>
+> >>
+> >> Update the descriptions to reflect different families of broadband SoC and
+> >> use the general name bcmbca for ARM based SoC.
+> >>
+> >> Add brcm,nand-use-wp property to have an option for disabling this
+> >> feature on broadband board design that does not use write protection.
+> >>
+> >> Add brcm,nand-ecc-use-strap to get ecc setting from board boot strap for
+> >> broadband board designs because they do not specify ecc setting in dts
+> >> but rather using the strap setting.
+> >>
+> >> Remove the requirement of interrupts property to reflect the driver
+> >> code. Also add myself to the list of maintainers.
+> >>
+> >> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> >> Reviewed-by: David Regan <dregan@broadcom.com>
+> >> ---
+> >> Changes in v2:
+> >> - Revert the new compatible string nand-bcmbca
+> >> - Drop the BCM63168 compatible fix to avoid any potential ABI
+> >> incompatibility issue
+> >> - Simplify the explanation for brcm,nand-use-wp
+> >> - Keep the interrupt name requirement when interrupt number is specified
+> >> ---
+> >>   .../bindings/mtd/brcm,brcmnand.yaml           | 36 +++++++++++++++----
+> >>   1 file changed, 30 insertions(+), 6 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> >> index f57e96374e67..56176ec1a992 100644
+> >> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> >> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> >> @@ -9,6 +9,7 @@ title: Broadcom STB NAND Controller
+> >>   maintainers:
+> >>     - Brian Norris <computersforpeace@gmail.com>
+> >>     - Kamal Dasu <kdasu.kdev@gmail.com>
+> >> +  - William Zhang <william.zhang@broadcom.com>
+> >>
+> >>   description: |
+> >>     The Broadcom Set-Top Box NAND controller supports low-level access to raw NAND
+> >> @@ -18,9 +19,10 @@ description: |
+> >>     supports basic PROGRAM and READ functions, among other features.
+> >>
+> >>     This controller was originally designed for STB SoCs (BCM7xxx) but is now
+> >> -  available on a variety of Broadcom SoCs, including some BCM3xxx, BCM63xx, and
+> >> -  iProc/Cygnus. Its history includes several similar (but not fully register
+> >> -  compatible) versions.
+> >> +  available on a variety of Broadcom SoCs, including some BCM3xxx, MIPS based
+> >> +  Broadband SoC (BCM63xx), ARM based Broadband SoC (BCMBCA) and iProc/Cygnus.
+> >> +  Its history includes several similar (but not fully register compatible)
+> >> +  versions.
+> >>
+> >>     -- Additional SoC-specific NAND controller properties --
+> >>
+> >> @@ -53,7 +55,7 @@ properties:
+> >>                 - brcm,brcmnand-v7.2
+> >>                 - brcm,brcmnand-v7.3
+> >>             - const: brcm,brcmnand
+> >> -      - description: BCM63138 SoC-specific NAND controller
+> >> +      - description: BCMBCA SoC-specific NAND controller
+> >>           items:
+> >>             - const: brcm,nand-bcm63138
+> >>             - enum:
+> >> @@ -65,7 +67,7 @@ properties:
+> >>             - const: brcm,nand-iproc
+> >>             - const: brcm,brcmnand-v6.1
+> >>             - const: brcm,brcmnand
+> >> -      - description: BCM63168 SoC-specific NAND controller
+> >> +      - description: BCM63xx SoC-specific NAND controller
+> >
+> > Only the BCM63268 family has a v4.0 NAND controller with support for
+> > ONFI and raw access; BCM6368 has a v2.1, and BCM6328 and BCM6362 have
+> > a v2.2.
+> >
+> > So claiming this is a generic binding is wrong; you would need to add
+> > the appropriate variants first. Or add another one for the BCM6368
+> > NAND v2.x controllers, which is missing. You can find them used in
+> > arch/mips/boot/dts/brcm/bcm63{28,62,68}.dtsi.
+> >
+> I am not changing binding here but jsut update the description to
+> identify these MIPS based chip as bcm63xx family. This convention is
+> used in other IP blocks too.  And yes this binding is not correct and I
+> noticed the same v2.x usage in the dtsi files you pointed out. So I
+> actually updated this binding in my v1 here
+> https://lore.kernel.org/lkml/20230606231252.94838-6-william.zhang@broadcom.com/
+> but there was some concern as it could possibly break the ABI in that
+> thread's discussion.
 
-if syscon is now no longer needed, why keep selecting MFD_SYSCON below,
-and why are linux/mfd/syscon.h and linux/regmap.h still included ?
+That change did change the ABI that would have (AFAICT) broken it for BCM63168.
 
-Also, the driver did not previously only support ARCH_EXYNOS but also
-ARCH_S3C64XX and ARCH_S5PV210. It is not entirely (actually, not at all)
-clear to me if and how those platforms are now supported. EXYNOS_PMU
-still seems to depend on ARCH_EXYNOS. How can the driver select
-EXYNOS_PMU if ARCH_EXYNOS=n ?
+My point is: This binding in its current state is valid *only* for the
+BCM63168 NAND controller, and not for any other BCM63xx NAND
+controllers.
 
-Also, ARCH_EXYNOS already selects EXYNOS_PMU, so a conditional
-"select EXYNOS_PMU if ARCH_EXYNOS" would not make sense (or be required)
-either.
+So changing the description to BCM63xx is wrong, unless you extend it
+to also match the BCM6328/6362/6368 NAND controller bindings as used.
 
-Please explain all the above.
+I can send a patch adding the missing binding parts, I actually have a
+WIP one lying around as I started trying to address dts issues in the
+MIPS bcm63xx dts(i) files a while ago.
 
-Thanks,
-Guenter
-
-> Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> ---
->   drivers/watchdog/Kconfig       |  1 +
->   drivers/watchdog/s3c2410_wdt.c | 25 +++++++++----------------
->   2 files changed, 10 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index 7d22051b15a2..b3e90e1ddf14 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -513,6 +513,7 @@ config S3C2410_WATCHDOG
->   	depends on ARCH_S3C64XX || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
->   	select WATCHDOG_CORE
->   	select MFD_SYSCON if ARCH_EXYNOS
-> +	select EXYNOS_PMU
->   	help
->   	  Watchdog timer block in the Samsung S3C64xx, S5Pv210 and Exynos
->   	  SoCs. This will reboot the system when the timer expires with
-> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> index 349d30462c8c..fd3a9ce870a0 100644
-> --- a/drivers/watchdog/s3c2410_wdt.c
-> +++ b/drivers/watchdog/s3c2410_wdt.c
-> @@ -28,6 +28,8 @@
->   #include <linux/regmap.h>
->   #include <linux/delay.h>
->   
-> +#include <linux/soc/samsung/exynos-pmu.h>
-> +
->   #define S3C2410_WTCON		0x00
->   #define S3C2410_WTDAT		0x04
->   #define S3C2410_WTCNT		0x08
-> @@ -187,7 +189,6 @@ struct s3c2410_wdt {
->   	struct watchdog_device	wdt_device;
->   	struct notifier_block	freq_transition;
->   	const struct s3c2410_wdt_variant *drv_data;
-> -	struct regmap *pmureg;
->   };
->   
->   static const struct s3c2410_wdt_variant drv_data_s3c2410 = {
-> @@ -355,8 +356,8 @@ static int s3c2410wdt_disable_wdt_reset(struct s3c2410_wdt *wdt, bool mask)
->   	const u32 val = mask ? mask_val : 0;
->   	int ret;
->   
-> -	ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->disable_reg,
-> -				 mask_val, val);
-> +	ret = exynos_pmu_update(wdt->drv_data->disable_reg,
-> +				mask_val, val);
->   	if (ret < 0)
->   		dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
->   
-> @@ -370,8 +371,8 @@ static int s3c2410wdt_mask_wdt_reset(struct s3c2410_wdt *wdt, bool mask)
->   	const u32 val = (mask ^ val_inv) ? mask_val : 0;
->   	int ret;
->   
-> -	ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->mask_reset_reg,
-> -				 mask_val, val);
-> +	ret = exynos_pmu_update(wdt->drv_data->mask_reset_reg,
-> +				mask_val, val);
->   	if (ret < 0)
->   		dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
->   
-> @@ -384,8 +385,8 @@ static int s3c2410wdt_enable_counter(struct s3c2410_wdt *wdt, bool en)
->   	const u32 val = en ? mask_val : 0;
->   	int ret;
->   
-> -	ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->cnt_en_reg,
-> -				 mask_val, val);
-> +	ret = exynos_pmu_update(wdt->drv_data->cnt_en_reg,
-> +				mask_val, val);
->   	if (ret < 0)
->   		dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
->   
-> @@ -617,7 +618,7 @@ static inline unsigned int s3c2410wdt_get_bootstatus(struct s3c2410_wdt *wdt)
->   	if (!(wdt->drv_data->quirks & QUIRK_HAS_PMU_RST_STAT))
->   		return 0;
->   
-> -	ret = regmap_read(wdt->pmureg, wdt->drv_data->rst_stat_reg, &rst_stat);
-> +	ret = exynos_pmu_read(wdt->drv_data->rst_stat_reg, &rst_stat);
->   	if (ret)
->   		dev_warn(wdt->dev, "Couldn't get RST_STAT register\n");
->   	else if (rst_stat & BIT(wdt->drv_data->rst_stat_bit))
-> @@ -698,14 +699,6 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
->   	if (ret)
->   		return ret;
->   
-> -	if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
-> -		wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
-> -						"samsung,syscon-phandle");
-> -		if (IS_ERR(wdt->pmureg))
-> -			return dev_err_probe(dev, PTR_ERR(wdt->pmureg),
-> -					     "syscon regmap lookup failed.\n");
-> -	}
-> -
->   	wdt_irq = platform_get_irq(pdev, 0);
->   	if (wdt_irq < 0)
->   		return wdt_irq;
-
+Best Regards,
+Jonas
 
