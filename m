@@ -1,229 +1,215 @@
-Return-Path: <devicetree+bounces-34204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051EC83910B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:15:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C45E839123
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:17:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32BB3B22630
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:15:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70A681C20A19
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6D1604CC;
-	Tue, 23 Jan 2024 14:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F34A5F850;
+	Tue, 23 Jan 2024 14:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VUV7wcHc"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="vKJMwxbA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2087.outbound.protection.outlook.com [40.107.93.87])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F2A9604AE
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 14:13:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706019232; cv=none; b=RuAGCzyqaEGb0pGZSL9ZXTMzH/oRaGofLLEDkdvzX0d68BBTuL6Zl9446zRPDJLFLrVsq7n27/fW0FGoUuIIbHTxW6phWXPJNPPwObA9dJgao8cY4lfqDGCtwYHjjw7uCad0+vSRKKzraZp+Jidp/GEFjuR6f2BV7mnVSrWTwR8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706019232; c=relaxed/simple;
-	bh=zd6Bmh48g7rsM+87XsXBkxNU+Zs2Yu+NMiweLujpj9I=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JlN/8GTwn5tvjgXsyiz0wfqANkEpQ//XH1Z5D/d62OVoGpbsErOQZOE/KCJKd4DuibCCjAi7XGcHv+IWlMZwua+Y56u4ujzBgm8Hz3Rh1OLO6dJSwoPG0DeKby3qWKuc7yKm6AfD3O08u32OWd515jpnfT20KKL+TS5CskhQgZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VUV7wcHc; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-33937dd1b43so1470723f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 06:13:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706019229; x=1706624029; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qJ0gjfKMOfp9CH0Fl1AfdBLtnAI1t5WhWrFWLERW/vA=;
-        b=VUV7wcHcc6udQnCmXkUlYNNaIXwzT45/R90OgLr6ZF9YVFWehNeLZksZ1rhDq8kso/
-         FtjfgzuXFdenYS9N9QONRHYyDNfqal2VXNCxhB2jM9o0kzTNFeXcnW3A/pOy9q3ZbFlY
-         ar7UHsOxXnVOh7eyWgvj6u6Rda4l4SPQ0lawXvvnPRiZdwYX8mEqWwWbkb+klYWcQE20
-         cg6Huqz2d9Pd5OsWOReudJDQQ05PFk1SzbRO243TBdyiqIlNJcrKNPgtuqYA+FXsOFTA
-         1637JUEZlON5rtdXKTdPX8QtuqkxIJFnP7legeuUooXNIiHY8BkaAkTs4r40N9m/HpW0
-         TCAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706019229; x=1706624029;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qJ0gjfKMOfp9CH0Fl1AfdBLtnAI1t5WhWrFWLERW/vA=;
-        b=JYMWQBL9BqbQTMJJ87s8dWWDyELojBrpSTMJvXAd2e4j8JxOblmCp3toAHzzyxQb6Q
-         6i0vM4wpXdAEBvZ+KYigIwrGPoYVJr5FQIQKiT479VKqrwE2Ft1X991EonmNCFtMk/Hp
-         OpF9o1FWtZPV1/k2EE679bSlUEi7ouyGMQo6hLUL3akASj+k3O1HB82nG3voANES8xxF
-         tRQwLn071XAZsDizy98hblRdwmZ2o6TX38Wmum9sWnneXMNcPiR9bvW5VgCoVvYTixOD
-         jcCL+N3O/rkelI6T+iyRfukdvqUDcg+J8wPJ4zqF1irqV2QP1qrj8dhVk63OxzI6QNhB
-         LkjQ==
-X-Gm-Message-State: AOJu0Yx2gIOA7yYOMeB7dD+5r2qvuDiCG/n5lj4aifS2d5xSJQY0O4mI
-	pf+UbA7lhQiZg0QgdfbrHzTBqWOw73eph5eb4EGrpu8VY/X6hI3qzNPXLaIkKuE=
-X-Google-Smtp-Source: AGHT+IEmbmNSvVll9puJMHID5ADLiEU47RyJFA7juTXNLnNPBn9fghYRSUWnGYd4fyil/i4UIdqrsg==
-X-Received: by 2002:a5d:5086:0:b0:337:c5fb:c84f with SMTP id a6-20020a5d5086000000b00337c5fbc84fmr3473681wrt.33.1706019229029;
-        Tue, 23 Jan 2024 06:13:49 -0800 (PST)
-Received: from krzk-bin.. ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id r8-20020adfe688000000b00337d97338b0sm12132298wrm.76.2024.01.23.06.13.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 06:13:48 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	linux-arm-msm@vger.kernel.org,
-	alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Sean Anderson <sean.anderson@seco.com>
-Subject: [PATCH v4 6/6] ASoC: codecs: wsa884x: Allow sharing reset GPIO
-Date: Tue, 23 Jan 2024 15:13:11 +0100
-Message-Id: <20240123141311.220505-7-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240123141311.220505-1-krzysztof.kozlowski@linaro.org>
-References: <20240123141311.220505-1-krzysztof.kozlowski@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 838F65F848;
+	Tue, 23 Jan 2024 14:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.87
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706019440; cv=fail; b=nQ4ev+iOn9BBJvkDtxQDCvx3fyT+NUrjUSp/FHNvwA0prKnr1cSa21wRUY63RJIdw5YrCVGKZMx60nHmpjDLwrYfCs0XPpP0qqk4U64oiAh6nh7kco6L0XERnK9nsh/dTrlRmxbDTfuW/0rMDKk9n0Wfogswcft6nDjKHgNnHl8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706019440; c=relaxed/simple;
+	bh=Ij4A4XTbxviHb+2nyaUhIEsXBbobA8Ua3QKMI88j9Bs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AAk+nDbCa8Y9kJbmhC7Rx0+bjsrf0JD2X9xb2ZLi1gDf66oeT8ud4vzD+XD2XuTgXUzdMwfKnqy48SJG1jxlp51NXIf1Eh+hcpo4Cvek9Q4jRNbZ8xdT/Otan+Jzv1FM4X3NVZmnkuPFaSr4Rw3fHcwG9WC62Dr4+/eL8QKno0g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=vKJMwxbA; arc=fail smtp.client-ip=40.107.93.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gNbibPHIEIfnVaofOFzC5IIBmvrwxCF2faQvMZ5sv4eaHCrO1UUriNESsDHR3YUmSya6Y3iGwfHvp+6uFIwEkwz3m40Bte94O9Oyd2NEnzIDMj05OAzzNzsf6eTFX4+tRBcVH1t8z6YyTj0cPc8CnqLQCZ2RT9ewDMHzTPY1dV7PS+2EB5bpX51BJXuNC3B64vDfVDGMriFrAixpT8RA8/OezUSY0kGJxLC3cv53PhI7aOh8uHSPd0Fc5ueJZNZAMdiguXdkl5prc3JurvEPbrQaS5mGZA2ihV6C0spV+N+e84Ifh0tmaIW3hk37KUdvQ2G0CoWkLm1cFHUgwruZaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DD4Mx1tlASwSWGI/EJpnT38uFe2eE7BDsng0hl407LA=;
+ b=S+1qOJoghME0EK94dYoHsyEjpd5w/HIlLfhnKiN/rZlpfocb0FqeFpfeU73Lb48Dmg9MI31iAn3YOy7iAzrJledPGnolK6O0mMxUwisJNbBk1//spe52dMzfS5rcd86ZcdoyIDmQAEKNRe27U31gqtbI0Cjgcjx0JxB7KcN/cYa6AjtTIdk7/YYbctm9VbIkDSD7DhuYFaoTVa5cxYUK2pec5V3oWdUN/1EfDtBLFFTjBnNjSl+dKxA+c69rxuNfy7PWo39YZGDZZ4GEqm6fGj88U1vtluVHpjMFUTFjnlZZHMKRhhku/pxxO+g0aRtgbqo7LEVEMivUQEojUj/VQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DD4Mx1tlASwSWGI/EJpnT38uFe2eE7BDsng0hl407LA=;
+ b=vKJMwxbAcfrv4RIwIlcVGuAvQSSLmeNz4jYCKbVsPwYra9EJh+wwIugmNm1iYatR4lbapdOybb+U7tzMZu+37or4GMmzK1KUSOMxHkF1qoO3JU5aJWUzPYCvBo5aH4pzhZx5fSgn0IhMGG5+eElEFMKy9Sibi87adeebGtlAbIs=
+Received: from DS7PR03CA0289.namprd03.prod.outlook.com (2603:10b6:5:3ad::24)
+ by IA0PR12MB8253.namprd12.prod.outlook.com (2603:10b6:208:402::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Tue, 23 Jan
+ 2024 14:17:16 +0000
+Received: from CY4PEPF0000EE35.namprd05.prod.outlook.com
+ (2603:10b6:5:3ad:cafe::91) by DS7PR03CA0289.outlook.office365.com
+ (2603:10b6:5:3ad::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22 via Frontend
+ Transport; Tue, 23 Jan 2024 14:17:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000EE35.mail.protection.outlook.com (10.167.242.41) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7202.16 via Frontend Transport; Tue, 23 Jan 2024 14:17:15 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Tue, 23 Jan
+ 2024 08:17:13 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>, "open
+ list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+	<devicetree@vger.kernel.org>, "moderated list:ARM/ZYNQ ARCHITECTURE"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v3] dt-bindings: soc: xilinx: Add support for K26 rev2 SOMs
+Date: Tue, 23 Jan 2024 15:16:44 +0100
+Message-ID: <90e1a393154c3d87e8ee7dc9eef07fc937c1eaf7.1706019397.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3154; i=michal.simek@amd.com; h=from:subject:message-id; bh=Ij4A4XTbxviHb+2nyaUhIEsXBbobA8Ua3QKMI88j9Bs=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtT1p9xunL11eS7HRtZZS2v+sp0/IT+hXvmE74dvBbHH7 wfG58aqdsSyMAgyMciKKbJI21w5s7dyxhThi4flYOawMoEMYeDiFICJ7NJjmB+/PGtz4NTaTTNm bNkXIb9xku4KC0+GebZbdjZPPO30+ujC2ytTJ5epFZY+DAQA
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE35:EE_|IA0PR12MB8253:EE_
+X-MS-Office365-Filtering-Correlation-Id: d8771385-68f1-4c65-90b5-08dc1c1e0027
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	XnsUVxGtUtA1JwUFyMJgSsJy3Wxgc1Qv8lEmKO7GfHe6n5il3u9I0dSfr5OWhLgzt+bS63vFMy52OE/lMNzU/UAX94SDHsR4SiijrvtMkW/xaSX5nbG7IsKiDG3I4tx6TcYnrwaxF3Py8eqYo1ayfwFiz3pWHY7F3l5GNWt88ksu7AOYkqdzl8CSmLzhWfG+FvmfQryBEmXwJ/MNPl51b0MILGiGxARUOcdh2mK0I6pR91tNqhC7IbnF9qOHBwS9+rP7bB8ehrG9ItUpPvwbY/3lBq10n/rgf61R5dZQpIW3z/7jRQaIBQ0Y3oBSJuNjBQzQOnFjkil4SpVydX2FBWievBsmvhUR581Ut0ENSBpFFfWysunnp8j9P3yGeg8N+ZZJAu1NkFaXBknqakaC4dbj1OhjshgXDGOmQV7IsUI9fbRpGYpNFKP7b+EebAxm9esE+lYvSFJidFIyTelNo9dwEnzyqM7Bb/G3u8Y16THSzK4jdBLirTBOj/lFR9TiCo/m0tenXgQOfMnRON1fb0vXJQuTKh3QwQ3d1GBqKC1c0wFqW2IN7FTVy8ECySaClGF6+DLVKjN8CC9x037FIfCjwGuEJz3RSxjXPBVgRx3DD4Vx9efMB2qgEu4gadJsjNqrtf3ajWlhmj2/naazN64ga7dqOhuoYWL6T7+WlEBYJP0aBY11XFu03cwL20p5JVb3Vj/z8SIUGDpW7rJ7RMFy1WA801ueB2mdEHOG4s67NFWc9R3uPKZmyjZhyI0cSayv58flCF+g6d8vQBkUdw0Wpgerc/SGNuuCInN3S4w=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(376002)(346002)(396003)(136003)(39860400002)(230922051799003)(82310400011)(64100799003)(451199024)(1800799012)(186009)(46966006)(40470700004)(36840700001)(16526019)(426003)(2906002)(36860700001)(47076005)(86362001)(36756003)(41300700001)(81166007)(82740400003)(356005)(83380400001)(316002)(478600001)(6666004)(8936002)(4326008)(8676002)(110136005)(54906003)(70586007)(70206006)(5660300002)(26005)(336012)(44832011)(2616005)(40460700003)(40480700001)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2024 14:17:15.5863
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8771385-68f1-4c65-90b5-08dc1c1e0027
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000EE35.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8253
 
-On some boards with multiple WSA8840/WSA8845 speakers, the reset
-(shutdown) GPIO is shared between two speakers.  Use the reset
-controller framework and its "reset-gpio" driver to handle this case.
-This allows bring-up and proper handling of all WSA884x speakers on
-X1E80100-CRD board.
+Revision 2 is SW compatible with revision 1 but it is necessary to reflect
+it in model and compatible properties which are parsed by user space.
+Rev 2 has improved a power on boot reset and MIO34 shutdown glich
+improvement done via an additional filter in the GreenPak chip.
 
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Sean Anderson <sean.anderson@seco.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Signed-off-by: Michal Simek <michal.simek@amd.com>
 ---
 
-If previous patches are fine, then this commit is independent and could
-be taken via ASoC.
----
- sound/soc/codecs/wsa884x.c | 53 +++++++++++++++++++++++++++++++-------
- 1 file changed, 43 insertions(+), 10 deletions(-)
+Changes in v3:
+- use allOf contains structure to avoid random chars caused by
+  additionalItems: true
 
-diff --git a/sound/soc/codecs/wsa884x.c b/sound/soc/codecs/wsa884x.c
-index f2653df84e4a..a9767ef0e39d 100644
---- a/sound/soc/codecs/wsa884x.c
-+++ b/sound/soc/codecs/wsa884x.c
-@@ -13,6 +13,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
- #include <linux/slab.h>
- #include <linux/soundwire/sdw.h>
- #include <linux/soundwire/sdw_registers.h>
-@@ -699,6 +700,7 @@ struct wsa884x_priv {
- 	struct sdw_stream_runtime *sruntime;
- 	struct sdw_port_config port_config[WSA884X_MAX_SWR_PORTS];
- 	struct gpio_desc *sd_n;
-+	struct reset_control *sd_reset;
- 	bool port_prepared[WSA884X_MAX_SWR_PORTS];
- 	bool port_enable[WSA884X_MAX_SWR_PORTS];
- 	unsigned int variant;
-@@ -1799,9 +1801,22 @@ static struct snd_soc_dai_driver wsa884x_dais[] = {
- 	},
- };
+Changes in v2:
+- Support older combinations
+
+I want to support all versions we created:
+All of them:
+-rev2, -rev1, -revB, -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+
+rev1:
+-rev1, -revB, -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+
+revB:
+-revB, -revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+
+revA:
+-revA, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+
+And also single one are permitted:
+-revB, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+-rev1, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+-rev2, "xlnx,zynqmp-smk-k26", "xlnx,zynqmp"
+
+I didn't find a way to pretty much all the time force that there must be
+both "xlnx,zynqmp-smk-k26", "xlnx,zynqmp" that's why there is only
+requested to have xlnx,zynqmp. If you find a way how to encode it please
+let me know.
+
+---
+ .../bindings/soc/xilinx/xilinx.yaml           | 36 +++++++++++++------
+ 1 file changed, 26 insertions(+), 10 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+index d4c0fe1fe435..7c75dbb4f307 100644
+--- a/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
++++ b/Documentation/devicetree/bindings/soc/xilinx/xilinx.yaml
+@@ -117,20 +117,36 @@ properties:
+           - const: xlnx,zynqmp
  
--static void wsa884x_gpio_powerdown(void *data)
-+static void wsa884x_reset_powerdown(void *data)
- {
--	gpiod_direction_output(data, 1);
-+	struct wsa884x_priv *wsa884x = data;
-+
-+	if (wsa884x->sd_reset)
-+		reset_control_assert(wsa884x->sd_reset);
-+	else
-+		gpiod_direction_output(wsa884x->sd_n, 1);
-+}
-+
-+static void wsa884x_reset_deassert(struct wsa884x_priv *wsa884x)
-+{
-+	if (wsa884x->sd_reset)
-+		reset_control_deassert(wsa884x->sd_reset);
-+	else
-+		gpiod_direction_output(wsa884x->sd_n, 0);
- }
+       - description: Xilinx Kria SOMs
++        minItems: 3
+         items:
+-          - const: xlnx,zynqmp-sm-k26-rev1
+-          - const: xlnx,zynqmp-sm-k26-revB
+-          - const: xlnx,zynqmp-sm-k26-revA
+-          - const: xlnx,zynqmp-sm-k26
+-          - const: xlnx,zynqmp
++          enum:
++            - xlnx,zynqmp-sm-k26-rev2
++            - xlnx,zynqmp-sm-k26-rev1
++            - xlnx,zynqmp-sm-k26-revB
++            - xlnx,zynqmp-sm-k26-revA
++            - xlnx,zynqmp-sm-k26
++            - xlnx,zynqmp
++        allOf:
++          - contains:
++              const: xlnx,zynqmp
++          - contains:
++              const: xlnx,zynqmp-sm-k26
  
- static void wsa884x_regulator_disable(void *data)
-@@ -1809,6 +1824,27 @@ static void wsa884x_regulator_disable(void *data)
- 	regulator_bulk_disable(WSA884X_SUPPLIES_NUM, data);
- }
+       - description: Xilinx Kria SOMs (starter)
++        minItems: 3
+         items:
+-          - const: xlnx,zynqmp-smk-k26-rev1
+-          - const: xlnx,zynqmp-smk-k26-revB
+-          - const: xlnx,zynqmp-smk-k26-revA
+-          - const: xlnx,zynqmp-smk-k26
+-          - const: xlnx,zynqmp
++          enum:
++            - xlnx,zynqmp-smk-k26-rev2
++            - xlnx,zynqmp-smk-k26-rev1
++            - xlnx,zynqmp-smk-k26-revB
++            - xlnx,zynqmp-smk-k26-revA
++            - xlnx,zynqmp-smk-k26
++            - xlnx,zynqmp
++        allOf:
++          - contains:
++              const: xlnx,zynqmp
++          - contains:
++              const: xlnx,zynqmp-smk-k26
  
-+static int wsa884x_get_reset(struct device *dev, struct wsa884x_priv *wsa884x)
-+{
-+	wsa884x->sd_reset = devm_reset_control_get_optional_shared(dev, NULL);
-+	if (IS_ERR(wsa884x->sd_reset))
-+		return dev_err_probe(dev, PTR_ERR(wsa884x->sd_reset),
-+				     "Failed to get reset\n");
-+	else if (wsa884x->sd_reset)
-+		return 0;
-+	/*
-+	 * else: NULL, so use the backwards compatible way for powerdown-gpios,
-+	 * which does not handle sharing GPIO properly.
-+	 */
-+	wsa884x->sd_n = devm_gpiod_get_optional(dev, "powerdown",
-+						GPIOD_OUT_HIGH);
-+	if (IS_ERR(wsa884x->sd_n))
-+		return dev_err_probe(dev, PTR_ERR(wsa884x->sd_n),
-+				     "Shutdown Control GPIO not found\n");
-+
-+	return 0;
-+}
-+
- static int wsa884x_probe(struct sdw_slave *pdev,
- 			 const struct sdw_device_id *id)
- {
-@@ -1838,11 +1874,9 @@ static int wsa884x_probe(struct sdw_slave *pdev,
- 	if (ret)
- 		return ret;
- 
--	wsa884x->sd_n = devm_gpiod_get_optional(dev, "powerdown",
--						GPIOD_OUT_HIGH);
--	if (IS_ERR(wsa884x->sd_n))
--		return dev_err_probe(dev, PTR_ERR(wsa884x->sd_n),
--				     "Shutdown Control GPIO not found\n");
-+	ret = wsa884x_get_reset(dev, wsa884x);
-+	if (ret)
-+		return ret;
- 
- 	dev_set_drvdata(dev, wsa884x);
- 	wsa884x->slave = pdev;
-@@ -1858,9 +1892,8 @@ static int wsa884x_probe(struct sdw_slave *pdev,
- 	pdev->prop.sink_dpn_prop = wsa884x_sink_dpn_prop;
- 	pdev->prop.scp_int1_mask = SDW_SCP_INT1_BUS_CLASH | SDW_SCP_INT1_PARITY;
- 
--	/* Bring out of reset */
--	gpiod_direction_output(wsa884x->sd_n, 0);
--	ret = devm_add_action_or_reset(dev, wsa884x_gpio_powerdown, wsa884x->sd_n);
-+	wsa884x_reset_deassert(wsa884x);
-+	ret = devm_add_action_or_reset(dev, wsa884x_reset_powerdown, wsa884x);
- 	if (ret)
- 		return ret;
- 
+       - description: AMD MicroBlaze V (QEMU)
+         items:
 -- 
-2.34.1
+2.36.1
 
 
