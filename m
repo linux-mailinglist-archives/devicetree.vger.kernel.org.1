@@ -1,175 +1,156 @@
-Return-Path: <devicetree+bounces-34108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F85838AD8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:50:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2988A838AF5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:53:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FA3B1F23A15
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:50:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D554A1F23421
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0734D5D741;
-	Tue, 23 Jan 2024 09:45:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SRf6BcNk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D63B59B6A;
+	Tue, 23 Jan 2024 09:52:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F4B5FDB3
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:45:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77D359B69
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:52:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706003135; cv=none; b=EITqS+aXGpWpzUvekFYflActYo+OcdfLYziL3OYD/WBZCwM/CJdJJRWLuwqfpFoM3wzEDOuS0GcwSOk9mOnkkOfRaEtfTiS8YzPEZSXWQiQPFKdKf6duqOtpPZlVAuBF0hEoRpBJl0cXN/o0gfCA6UXkVwZMXsI4yzzHpKQMWA4=
+	t=1706003573; cv=none; b=UUeciXeF+7u74hVCQ7ATPekuaBNQUdWdtQGCKwfmoiZvCUWZkA/4r+I3YjnJBf1Oom42dz8rvD6m8ktHOHKp5areonwlEBI3O2vaVyJwxikQGOskq0G7ksSzQbMocKOVV+KC2vLlgPbiOen9XXk/b81urjD/zcHpwjV61VTCsrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706003135; c=relaxed/simple;
-	bh=odkxBY8FHAysxrkRcY9fITRfwH8TqSDhGBgzysz/3Xk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=uwJxZb+0oxmlFWstu81f0WBlqSb+i9mf12ZlYUmieeqdf2KSljugdpWhCpT8i/cPvx7USNsoYlV8FdzMsGlNpiURDQsPpOz8SsGaCX2gr5WM8fVE4rcTVYousFRiuSP4VMDqZrgXPUzanfswaATGAX/9+lRt95QH/nrAqQCwU8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SRf6BcNk; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-339261a6ec2so2569403f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 01:45:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706003132; x=1706607932; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=u4+mDft7U4+grrKWrx4KfPJ3Se1pTXr+hv+2847ZCNk=;
-        b=SRf6BcNkcwC27XOOfKeVTKU7GmBbr+AW7gUm8atwjSpa0Z7PnmxQ+rA5OVq84Zk6/S
-         DPKqxNMKeT11oxliTyzZbA7JF3wh5DIM8CawupE99/QW6sWVUtaOJRrtvfkn9BtcT5O/
-         9+1xTcvAJ4Hkvpd2U86buqnVaOSxgXTD1htJbsSl11fJoBQoISjL0C6wvmQ8ZXXS54aq
-         5JPhCCvEEaThL+GF24XV4zuWfmk2rUQkZNZX9pvcVeAOpcVX/DeRxm5FVjxr6b6oJyMm
-         KHD0HZfwppFaQq68EjqFEouIeObIBO3AGxrWbqkkfyDADwID+SIv785wBiJb5y8IA5XA
-         Az9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706003132; x=1706607932;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=u4+mDft7U4+grrKWrx4KfPJ3Se1pTXr+hv+2847ZCNk=;
-        b=UcTUjpVDSDZCfyKeNB3X5WEWFqgne1vYCajl4yta20KPcmD4SZrsfPBTLKIIW6278c
-         e9PzfI+C5ixmSfgvN/O/3ednwMsoHJs4or8VkHMpcFHBvprBTMW9xCsJJourg242beJq
-         qlL1lh83E39TxqZTdlXIkrsS52GLzsz/S25w5DhZiGcRMxvZLuStfjSol4W5DOqE5WWo
-         eqRijjkxkHx95l/DRL7mYJqscSwJmEBebO6yCFKBXwvxCDm0/KbyN54bggmf+Oay3AiF
-         RscSe6ybjFzjJEgVPr67DYUOkdq/h5clny1r9ELMcqoxmivxqAdHICxsVrBSq+iP7hzY
-         Q8eQ==
-X-Gm-Message-State: AOJu0Yz7IePVv6ZfvG/6dpjuegpVJP1ZBSBTlPhnEt1YUHlBYS6GEbcC
-	6SqzkhWW29lHxCwAxE357+OWnQDIzDYRoOL4mfaPLokOqmrwh/qLeu218E4tDyayQu6M6DY+oHU
-	Y
-X-Google-Smtp-Source: AGHT+IGeUk4uevU136+WqgA6qK2GCWU3c+cQQnNPm3FHUaU5vvheb5Io6OPMK7/kyI6zteDSYvzpug==
-X-Received: by 2002:a5d:4903:0:b0:337:bc26:5d43 with SMTP id x3-20020a5d4903000000b00337bc265d43mr3398320wrq.4.1706003132548;
-        Tue, 23 Jan 2024 01:45:32 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id d12-20020adfe88c000000b00337be3b02aasm15889985wrm.100.2024.01.23.01.45.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 01:45:32 -0800 (PST)
-Message-ID: <e19f2aa5-5040-4cab-8c67-557436883e40@linaro.org>
-Date: Tue, 23 Jan 2024 10:45:30 +0100
+	s=arc-20240116; t=1706003573; c=relaxed/simple;
+	bh=/pwL8Yk8naFUcATh/l5HS01M5d9UaBR8TpR2YD6nyBQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T7RK3ZjgAQK4s7BxeOv+i1ERo7tcPrNT/O87340zwDhw2nt5uUaezKRmJqbeKI1jFma138Fv5PI/0TZq22/DCaPUR4wL2uHDQx414zp+RCTNBdpQXZdVVi6w4xAf+x+Uxz+vbHzZ6HRmzQofSP4ckbzwYjzCXsvOQ/AWe1lJxFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rSDST-0003WN-Po; Tue, 23 Jan 2024 10:52:41 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rSDST-001nXf-8B; Tue, 23 Jan 2024 10:52:41 +0100
+Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rSDST-001LYv-5H; Tue, 23 Jan 2024 10:52:41 +0100
+Date: Tue, 23 Jan 2024 10:52:41 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	linux-imx@nxp.com, devicetree@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] clocksource: timer-imx-sysctr: support i.MX95
+Message-ID: <20240123095241.66nrgkkrdth6g32w@pengutronix.de>
+References: <20240122092225.2083191-1-peng.fan@oss.nxp.com>
+ <20240122092225.2083191-2-peng.fan@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: memory-controllers: narrow regex for unit
- address to hex numbers
-To: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Dmitry Osipenko <digetx@gmail.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20240123083517.21091-1-krzysztof.kozlowski@linaro.org>
- <a00a3d5f-9d96-4886-9ebe-4e2962667ab3@nvidia.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <a00a3d5f-9d96-4886-9ebe-4e2962667ab3@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240122092225.2083191-2-peng.fan@oss.nxp.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 23/01/2024 10:20, Jon Hunter wrote:
-> 
-> On 23/01/2024 08:35, Krzysztof Kozlowski wrote:
->> Regular expression used to match the unit address part should not allow
->> non-hex numbers.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   .../bindings/memory-controllers/nvidia,tegra20-emc.yaml         | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
->> index f54e553e6c0e..71896cb10692 100644
->> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
->> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra20-emc.yaml
->> @@ -145,7 +145,7 @@ patternProperties:
->>     "^emc-table@[0-9]+$":
->>       $ref: "#/$defs/emc-table"
->>   
->> -  "^emc-tables@[a-z0-9-]+$":
->> +  "^emc-tables@[a-f0-9-]+$":
->>       type: object
->>       properties:
->>         reg:
-> 
-> 
-> Thanks! We could add the fixes tag ...
-> 
-> Fixes: de3d7018372c dt-bindings: memory: tegra20: emc: Convert to schema
+Hi Peng,
 
-There is no bug here, really. At least no bug with impact, because dtc
-won't allow DTS with non-hex numbers.
+On 24-01-22, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> To i.MX95 System counter module, we use Read register space to get
+> the counter, not the Control register space to get the counter, because
+> System Manager firmware not allow Linux to read Control register space.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/clocksource/timer-imx-sysctr.c | 16 +++++++++++++---
+>  1 file changed, 13 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/clocksource/timer-imx-sysctr.c b/drivers/clocksource/timer-imx-sysctr.c
+> index 5a7a951c4efc..3d3bc16388ed 100644
+> --- a/drivers/clocksource/timer-imx-sysctr.c
+> +++ b/drivers/clocksource/timer-imx-sysctr.c
+> @@ -8,9 +8,12 @@
+>  #include "timer-of.h"
+>  
+>  #define CMP_OFFSET	0x10000
+> +#define RD_OFFSET	0x20000
+>  
+>  #define CNTCV_LO	0x8
+>  #define CNTCV_HI	0xc
+> +#define CNTCV_LO_IMX95	(RD_OFFSET + 0x8)
+> +#define CNTCV_HI_IMX95	(RD_OFFSET + 0xc)
+>  #define CMPCV_LO	(CMP_OFFSET + 0x20)
+>  #define CMPCV_HI	(CMP_OFFSET + 0x24)
+>  #define CMPCR		(CMP_OFFSET + 0x2c)
+> @@ -22,6 +25,8 @@
+>  
+>  static void __iomem *sys_ctr_base __ro_after_init;
+>  static u32 cmpcr __ro_after_init;
+> +static u32 cntcv_hi = CNTCV_HI;
+> +static u32 cntcv_lo = CNTCV_LO;
+>  
+>  static void sysctr_timer_enable(bool enable)
+>  {
+> @@ -43,9 +48,9 @@ static inline u64 sysctr_read_counter(void)
+>  	u32 cnt_hi, tmp_hi, cnt_lo;
+>  
+>  	do {
+> -		cnt_hi = readl_relaxed(sys_ctr_base + CNTCV_HI);
+> -		cnt_lo = readl_relaxed(sys_ctr_base + CNTCV_LO);
+> -		tmp_hi = readl_relaxed(sys_ctr_base + CNTCV_HI);
+> +		cnt_hi = readl_relaxed(sys_ctr_base + cntcv_hi);
+> +		cnt_lo = readl_relaxed(sys_ctr_base + cntcv_lo);
+> +		tmp_hi = readl_relaxed(sys_ctr_base + cntcv_hi);
+>  	} while (tmp_hi != cnt_hi);
+>  
+>  	return  ((u64) cnt_hi << 32) | cnt_lo;
+> @@ -139,6 +144,11 @@ static int __init sysctr_timer_init(struct device_node *np)
+>  		to_sysctr.of_clk.rate /= SYS_CTR_CLK_DIV;
+>  	}
+>  
+> +	if (of_device_is_compatible(np, "nxp,imx95-sysctr-timer")) {
+> +		cntcv_hi = CNTCV_HI_IMX95;
+> +		cntcv_lo = CNTCV_LO_IMX95;
+> +	}
 
-Best regards,
-Krzysztof
+I'm not a fan of this, since TIMER_OF_DECLARE() can do the compat check.
+So instead of using fallback bindings just use the correct binding
+within the dts file. Also I'm not a fan of this clobal variable setting
+albeit there is just one instance _yet_ we really should instead rework
+this driver a bit and instead provide a i.MX95 specific
+sysctr_read_counter() function. This is clearly a bit more work but IMO
+a cleaner approach. Also afterwards once you add i.MX9x which is again a
+bit different would gain from this work.
 
+Regards,
+  Marco
+
+> +
+>  	sys_ctr_base = timer_of_base(&to_sysctr);
+>  	cmpcr = readl(sys_ctr_base + CMPCR);
+>  	cmpcr &= ~SYS_CTR_EN;
+> -- 
+> 2.37.1
+> 
+> 
+> 
 
