@@ -1,55 +1,73 @@
-Return-Path: <devicetree+bounces-34194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F150883908D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 614B9839092
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:55:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FEB128D814
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:55:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11CBA2845CA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8C15F863;
-	Tue, 23 Jan 2024 13:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAA9E5F56D;
+	Tue, 23 Jan 2024 13:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EQktctSc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AXVfmAyO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B87C5F858
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 13:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0DE95F561
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 13:55:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706018044; cv=none; b=VORm32rxIIaGjOvid6Fsz2JvmB4E6ewubhWGyP6mz4ZfgZ0Y/Mif68Wke7xS2casCXUN0T8q4vOLeYhCJKdzNhP0LrxQxGuTrp3LJz/Go7m+QFsA1MSq0teLdsWF6ye7SDYijJhUnOLr4Ssd7pYjWBgVVQ110ACewQsaX19vQ1E=
+	t=1706018134; cv=none; b=qp4ux0D/rGNNo9BE7N4m7WomMvpvM7J4o0PD1+xzWw5pjzqsbhfrMOd1K3zGoLWojSkcjNUVpWY4Txto9h97ht87AIMyEKdWEYsiWkMC3+4aLVDICBvk16+ggzjtNkjKyv2dilljFt1FDlfHoGkYkQzfWTK7dHcqyZ0zh0BTgOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706018044; c=relaxed/simple;
-	bh=226hSafs2Gby8zIO77CQ6wXVC9EoRu3pEhgJTqNRUew=;
+	s=arc-20240116; t=1706018134; c=relaxed/simple;
+	bh=99xEFdwuEmJa0szQk3ftvlnaVsfzfuVj2jwniqsIkK4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y+qiDf8CeuNP9o70RlUPqTV/iKHMd7tH4jXjeSz6zC0j/rCDnteLAvu304a59pzDLEM58gGegTQP2PA20tRZ4AyK3JuWfS+K/fUmv/zSiU3Bi3jzCI+Nat8QeYp8/VEkN07FuFNgBGMPu21A1wSbf5g9u073aeWJuzUk3h0vNPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EQktctSc; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706018040;
-	bh=226hSafs2Gby8zIO77CQ6wXVC9EoRu3pEhgJTqNRUew=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EQktctScuaEv+uSI75TJH+H84yEUc7TrdVzbpl4EtWt2SMcO2s3oD5pb14ICSd//m
-	 H7Kz5W5AkLgS+prMkPc40d2PeHfuYHEw1k9oiZ4CZNe9wxWDnIShjC7Sa6fcJETwmx
-	 CP5BYPfFnIjk63XZE59J7kOZDWWkKjLmR/Nq2eIti6ZegX0CMzj1cpPmXlCb7Sg4de
-	 RDMjU902j4lBEoBFQMx31Zinez0fe+ych4EQIfso/2lbFcCR09bMLJg99dSNC4PnSP
-	 +DrAuxZDpXKPDg63UPZTEip2k3LM5qgzHB2ELwh1xJlMR5PPxfL0/uUIT1rB16bSyQ
-	 vqdCqTStJNBww==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1115737810CD;
-	Tue, 23 Jan 2024 13:53:59 +0000 (UTC)
-Message-ID: <cabd1f9d-340a-4778-96bb-4478ae3a791a@collabora.com>
-Date: Tue, 23 Jan 2024 14:53:58 +0100
+	 In-Reply-To:Content-Type; b=HlDgHit6/mNES+ZHF8+k7nSS/1jGXFsPcKZwOZGi9jH6m7cwWq2fJvnFO0nWeYPx9BorUf76GleaKWtn18AdUX7htjoHxZniW7e4bMtId5eEF0T1CzxT9oOFC0VWihx40ep0GCVCzKxjBq/196fFTypJB0IVx9pkvFprqREhAwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AXVfmAyO; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40e5afc18f5so47522575e9.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 05:55:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706018131; x=1706622931; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kZ1hKv5VDOr5/44Jp2vD0q8l5uuzQgADOI66zgGp3Gc=;
+        b=AXVfmAyOghnopjfgLqZJet29JPg45HmphFrC1dwTpSDux1m1S4aNw+5XXm3SPXI1aw
+         Yg3EfVU5kGFWacCEDeMfKgjE2WV4PGiouruWiMeaYKf4XBwAYisFMQITArqGS5ST0knD
+         FdODGoR0WuitFk9eY1tyaVzWx41x6KxlE4NephQoCFJQkg1eRndMWXbV4a0bbnrVulSc
+         ZclrW28+Km0+yVYjGzmS79oEVgiLhEq0m1xLYWi3hLjCJGWOTIzgP122N9bRnqBoYD9j
+         fRhC0NR5rJT9Pwd6DZSH/5jEqyjRrOXxsyOF06RxdMvkWXMU/MX6uYqLZhAGKqKeiKO3
+         /EYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706018131; x=1706622931;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kZ1hKv5VDOr5/44Jp2vD0q8l5uuzQgADOI66zgGp3Gc=;
+        b=HeAzT0uy0Kc2I4ncNaWvUPvhIHpUD00nn0s87OArFnRs630bgiv0DdxMpnb02+ftvB
+         boauanV9lnvRZ6xSVrE/yzqGFFxFwxV3iuPji0LEO1NXzn4py0OEDags2PFWqGqdocx5
+         c7+tbGm8IFk8HWCboX65DstKkxTkj6zLh5KSCvNpRZtGwB7s/yJn5NNcXVFyvV1Kk1Y5
+         eHRb+5ebNdZFZWeHF8WeCGCB98/DE0DTNkGGiE0HsnOMPE1JgHzWt2wTH3rXdz9bBjT/
+         q51LX6M5AoTZxszcNFY2SHrKqeN6AjA6ekgwF65j1KkgJWXcLZO+LyPcDcWO9p6vxQ2f
+         V4nQ==
+X-Gm-Message-State: AOJu0Yw3mR1SSIaI5pEpyEdCze8+U2S3ZhnzvXPsgUetOqaepxbtmzbz
+	Ta9HURWRVde/SnkPgC+0F8CoOpKjr8OD7HB8P5s6uXOsIooj7vDKyMBfGIPdnko=
+X-Google-Smtp-Source: AGHT+IHocjplUQdh1eO7JOaIhz8tihztwFBxV3+rfPDQ6Zm14OlHLC1nxnCx5TTphoukhfxu5TxXwg==
+X-Received: by 2002:a05:600c:d6:b0:40e:540b:1b51 with SMTP id u22-20020a05600c00d600b0040e540b1b51mr160268wmm.132.1706018131172;
+        Tue, 23 Jan 2024 05:55:31 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id b5-20020a5d4d85000000b00337d5aa55cdsm13344989wru.53.2024.01.23.05.55.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 05:55:30 -0800 (PST)
+Message-ID: <78e296fb-a3dc-4e00-94bc-91dab7294887@linaro.org>
+Date: Tue, 23 Jan 2024 14:55:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,479 +75,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: mediatek: Add device tree for
- MT8365-based Pumpkin i350
+Subject: Re: [PATCH] dt-bindings: clock: support NXP i.MX95
 Content-Language: en-US
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-mediatek@lists.infradead.org
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Paul Elder <paul.elder@ideasonboard.com>,
- Fabien Parent <fabien.parent@linaro.org>,
- Alexandre Mergnat <amergnat@baylibre.com>,
- Julien Stephan <jstephan@baylibre.com>,
- Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>,
- Ted Larson <ted@ologicinc.com>
-References: <20231025210342.30995-1-laurent.pinchart@ideasonboard.com>
- <20231025210342.30995-4-laurent.pinchart@ideasonboard.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20231025210342.30995-4-laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Peng Fan <peng.fan@nxp.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "abelvesa@kernel.org" <abelvesa@kernel.org>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ dl-linux-imx <linux-imx@nxp.com>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240121114623.1418597-1-peng.fan@oss.nxp.com>
+ <273a80a7-2a60-4490-9c3c-c33dc14be9e7@linaro.org>
+ <DU0PR04MB9417A8F4230D2C7C76D1550988742@DU0PR04MB9417.eurprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <DU0PR04MB9417A8F4230D2C7C76D1550988742@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 25/10/23 23:03, Laurent Pinchart ha scritto:
-> Add a minimal device tree for the Genio i350 Pumpkin development board,
-> which is based on a MediaTek MT8365.
+On 23/01/2024 14:08, Peng Fan wrote:
+> Hi Conor, Krzysztof
 > 
-> The device tree is based on an initial version by Fabien Parent Based
-> written against the MediaTek BSP kernel ([1]). It has been cleaned up,
-> some features have been added (GPIO LEDs, ethernet), and some features
-> removed (audio, camera, display and dual-role USB). Those features will
-> be added back once the corresponding DT bindings and/or drivers become
-> available in the upstream kernel.
+> I replied you both here.
 > 
-> [1] https://gitlab.com/mediatek/aiot/bsp/linux/-/blob/mtk-v5.15-dev/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
+>> Subject: Re: [PATCH] dt-bindings: clock: support NXP i.MX95
+>>
+>> On 21/01/2024 12:46, Peng Fan (OSS) wrote:
+>>> From: Peng Fan <peng.fan@nxp.com>
+>>>
+>>> Add i.MX95 clock dt-binding header file
+>>>
+>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>>
+>> This should be squashed with respective binding patch.
 > 
-> Co-developed-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Co-developed-by: Paul Elder <paul.elder@ideasonboard.com>
-> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
-> Changes since v1:
+> i.MX95 use SCMI firmware, the SCP processor handles
+> clock/power/pinmux/reset/performance and etc.
 > 
-> - Drop mmc2 alias
-> - Reorder properties of i2c, mmc and usb nodes
+> I just add the index that SCMI exports, and Linux/UBoot
+> will use the index and go through SCMI to do real HW
+> configuration.
 > 
-> Changes compared to the BSP version:
-> 
-> - Add ethernet controller
-> - Add GPIO LEDs
-> - Add reserved memory region for BL31
-> - Update board model and compatible
-> - Rename enable-sdio-wakeup to wakeup-source
-> - Drop audio support
-> - Drop display support
-> - Drop dual role USB support
-> - Don't use underscores in node names
-> - Normalize pinmux node names
-> - Remove unneeded labels
-> - Drop unneeded always-on
-> - Drop unused pinmux nodes
-> - Drop camera GPIO hog
-> - Update copyright
-> - Fix formatting
-> - Sort alphabetically
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile         |   1 +
->   .../boot/dts/mediatek/mt8365-pumpkin.dts      | 541 ++++++++++++++++++
->   2 files changed, 542 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index c99c3372a4b5..bbc232bdadc4 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -53,4 +53,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-pumpkin.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-> new file mode 100644
-> index 000000000000..9c75294c9889
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
-> @@ -0,0 +1,541 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2021 BayLibre, SAS.
-> + * Copyright (c) 2023 Ideas on Board Oy
-> + *
-> + * Author: Fabien Parent <fparent@baylibre.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/pinctrl/mt8365-pinfunc.h>
-> +
-> +#include "mt8365.dtsi"
-> +#include "mt6357.dtsi"
-> +
-> +/ {
-> +	model = "OLogic Pumpkin i350 EVK";
-> +	compatible = "ologic,pumpkin-i350", "mediatek,mt8365";
-> +
-> +	aliases {
-> +		ethernet0 = &ethernet_usb;
-> +		mmc0 = &mmc0;
-> +		mmc1 = &mmc1;
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:921600n8";
-> +	};
-> +
-> +	firmware {
-> +		optee {
-> +			compatible = "linaro,optee-tz";
-> +			method = "smc";
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-red {
-> +			gpios = <&gpio_exp 12 GPIO_ACTIVE_HIGH>;
-> +			color = <LED_COLOR_ID_RED>;
-> +			function = LED_FUNCTION_HEARTBEAT;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +
-> +		led-green {
-> +			gpios = <&gpio_exp 13 GPIO_ACTIVE_HIGH>;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +			default-state = "off";
-> +		};
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0 0x40000000 0 0x80000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
-> +		secmon@43000000 {
-> +			no-map;
-> +			reg = <0 0x43000000 0 0x30000>;
+> In such case, should I still add HW information in
+> a yaml binding doc? I am not sure what should be added
+> if yes.
 
+Then why do you need it in the binding? I don't see any use of this.
 
-reg first, no-map last.
+Best regards,
+Krzysztof
 
-> +		};
-> +
-> +		/*
-> +		 * 12 MiB reserved for OP-TEE (BL32)
-> +		 * +-----------------------+ 0x43e0_0000
-> +		 * |      SHMEM 2MiB       |
-> +		 * +-----------------------+ 0x43c0_0000
-> +		 * |        | TA_RAM  8MiB |
-> +		 * + TZDRAM +--------------+ 0x4340_0000
-> +		 * |        | TEE_RAM 2MiB |
-> +		 * +-----------------------+ 0x4320_0000
-> +		 */
-> +		optee@43200000 {
-> +			no-map;
-> +			reg = <0 0x43200000 0 0x00c00000>;
-
-same here.
-
-> +		};
-> +	};
-> +
-> +	usb_otg_vbus: usb-otg-vbus-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "otg_vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpio = <&pio 25 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +};
-> +
-> +&cpu0 {
-> +	proc-supply = <&mt6357_vproc_reg>;
-> +	sram-supply = <&mt6357_vsram_proc_reg>;
-> +};
-> +
-> +&cpu1 {
-> +	proc-supply = <&mt6357_vproc_reg>;
-> +	sram-supply = <&mt6357_vsram_proc_reg>;
-> +};
-> +
-> +&cpu2 {
-> +	proc-supply = <&mt6357_vproc_reg>;
-> +	sram-supply = <&mt6357_vsram_proc_reg>;
-> +};
-> +
-> +&cpu3 {
-> +	proc-supply = <&mt6357_vproc_reg>;
-> +	sram-supply = <&mt6357_vsram_proc_reg>;
-> +};
-> +
-> +&i2c0 {
-> +	clock-frequency = <100000>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0_pins>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <100000>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_pins>;
-> +
-> +	status = "okay";
-> +
-> +	gpio_exp: gpio@20 {
-> +		compatible = "ti,tca6416";
-> +		reg = <0x20>;
-> +		reset-gpios = <&pio 78 GPIO_ACTIVE_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&tca6416_pins>;
-> +
-> +		gpio-controller;
-
-Please check Documentation/devicetree/bindings/dts-coding-style.rst
-
-> +		#gpio-cells = <2>;
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	clock-frequency = <100000>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c2_pins>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <100000>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c3_pins>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&keypad {
-> +	status = "okay";
-
-status goes last.
-
-Please check Documentation/devicetree/bindings/dts-coding-style.rst
-
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&keypad_pins>;
-> +
-> +	keypad,num-rows = <2>;
-> +	keypad,num-columns = <1>;
-> +	mediatek,debounce-us = <32000>;
-> +	mediatek,double-keys;
-> +
-> +	linux,keymap = <MATRIX_KEY(0x00, 0x00, KEY_VOLUMEDOWN)
-> +			MATRIX_KEY(0x01, 0x00, KEY_VOLUMEUP)>;
-> +};
-> +
-> +/* eMMC */
-> +&mmc0 {
-> +	bus-width = <8>;
-> +	max-frequency = <200000000>;
-> +
-> +	cap-mmc-highspeed;
-> +	cap-mmc-hw-reset;
-> +	hs400-ds-delay = <0x12012>;
-> +	mmc-hs200-1_8v;
-> +	mmc-hs400-1_8v;
-> +	no-sd;
-> +	no-sdio;
-> +	non-removable;
-
-Please order by name.
-
-> +
-> +	vmmc-supply = <&mt6357_vemc_reg>;
-> +	vqmmc-supply = <&mt6357_vio18_reg>;
-> +
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc0_pins_default>;
-> +	pinctrl-1 = <&mmc0_pins_uhs>;
-> +
-> +	assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
-
-assigned clocks and clock parents go first.
-
-> +	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +/* SD card connector */
-> +&mmc1 {
-> +	bus-width = <4>;
-> +	max-frequency = <200000000>;
-> +
-> +	cap-sd-highspeed;
-> +	cd-gpios = <&pio 76 GPIO_ACTIVE_LOW>;
-> +	sd-uhs-sdr104;
-> +	sd-uhs-sdr50;
-
-Please order by name.
-
-> +
-> +	vmmc-supply = <&mt6357_vmch_reg>;
-> +	vqmmc-supply = <&mt6357_vmc_reg>;
-> +
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc1_pins_default>;
-> +	pinctrl-1 = <&mmc1_pins_uhs>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +/* WiFi module */
-> +&mmc2 {
-> +	bus-width = <4>;
-> +	max-frequency = <200000000>;
-> +
-> +	cap-sd-highspeed;
-> +	cap-sdio-irq;
-> +	wakeup-source;
-> +	hs400-ds-delay = <0x12012>;
-
-Please order by name.
-
-> +	keep-power-in-suspend;
-> +	non-removable;
-> +	sd-uhs-sdr104;
-> +	sd-uhs-sdr25;
-> +	sd-uhs-sdr50;
-> +
-> +	vmmc-supply = <&mt6357_vemc_reg>;
-> +	vqmmc-supply = <&mt6357_vio18_reg>;
-> +
-> +	pinctrl-names = "default", "state_uhs";
-> +	pinctrl-0 = <&mmc2_pins_default>;
-> +	pinctrl-1 = <&mmc2_pins_uhs>;
-> +
-> +	assigned-clocks = <&topckgen CLK_TOP_MSDC50_2_SEL>;
-> +	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&mt6357_pmic {
-> +	interrupt-parent = <&pio>;
-> +	interrupts = <145 IRQ_TYPE_LEVEL_HIGH>;
-> +	interrupt-controller;
-> +	#interrupt-cells = <2>;
-> +};
-> +
-> +&pio {
-> +	i2c0_pins: i2c0-pins {
-> +		pins {
-> +			pinmux = <MT8365_PIN_57_SDA0__FUNC_SDA0_0>,
-> +				 <MT8365_PIN_58_SCL0__FUNC_SCL0_0>;
-> +			mediatek,pull-up-adv = <3>;
-> +			mediatek,drive-strength-adv = <00>;
-
-I don't know what 00 is here, and it's not a valid drive strength value in uA.
-
-Valid values are 125, 250, 500 and 1000 microamps.
-
-P.S.: Here and everywhere else.
-
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-> +
-
-..snip..
-
-> +	mmc0_pins_uhs: mmc0-uhs-pins{
-> +		clk-pins {
-> +			pinmux = <MT8365_PIN_99_MSDC0_CLK__FUNC_MSDC0_CLK>;
-> +			drive-strength = <MTK_DRIVE_10mA>;
-> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-> +		};
-> +
-> +		cmd-dat-pins {
-> +			pinmux = <MT8365_PIN_103_MSDC0_DAT0__FUNC_MSDC0_DAT0>,
-> +				 <MT8365_PIN_102_MSDC0_DAT1__FUNC_MSDC0_DAT1>,
-> +				 <MT8365_PIN_101_MSDC0_DAT2__FUNC_MSDC0_DAT2>,
-> +				 <MT8365_PIN_100_MSDC0_DAT3__FUNC_MSDC0_DAT3>,
-> +				 <MT8365_PIN_96_MSDC0_DAT4__FUNC_MSDC0_DAT4>,
-> +				 <MT8365_PIN_95_MSDC0_DAT5__FUNC_MSDC0_DAT5>,
-> +				 <MT8365_PIN_94_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
-> +				 <MT8365_PIN_93_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
-> +				 <MT8365_PIN_98_MSDC0_CMD__FUNC_MSDC0_CMD>;
-> +			input-enable;
-> +			drive-strength = <MTK_DRIVE_10mA>;
-
-There's no need to use MTK_DRIVE_xxxx definitions, as they're really just defining
-the same number that you can just clearly write.
-
-In this case, it is
-			drive-strength = <10>;
-
-please change it here and everywhere else.
-
-> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-> +		};
-> +
-> +		ds-pins {
-> +			pinmux = <MT8365_PIN_104_MSDC0_DSL__FUNC_MSDC0_DSL>;
-> +			drive-strength = <MTK_DRIVE_10mA>;
-> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
-> +		};
-> +
-> +		rst-pins {
-> +			pinmux = <MT8365_PIN_97_MSDC0_RSTB__FUNC_MSDC0_RSTB>;
-> +			drive-strength = <MTK_DRIVE_10mA>;
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-
-..snip..
-
-> +
-> +&usb_host {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	vusb33-supply = <&mt6357_vusb33_reg>;
-> +
-> +	status = "okay";
-> +
-> +	hub@2 {
-> +		reg = <2>;
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethernet_usb: ethernet@1 {
-
-Can you please explain why you need this node on a fully discoverable bus?
-Isn't it enough to just let USB auto enumerate this device at boot?
-
-> +			compatible = "usb424,ec00";
-> +			reg = <1>;
-> +		};
-> +	};
-> +};
-
-
-Cheers,
-Angelo
 
