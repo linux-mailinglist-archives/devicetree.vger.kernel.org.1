@@ -1,271 +1,162 @@
-Return-Path: <devicetree+bounces-34197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB9C8390B4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:00:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3E85839070
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:51:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33E021C21AB2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 14:00:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84D4128D803
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 13:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D6CA5F845;
-	Tue, 23 Jan 2024 14:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1F05D8E2;
+	Tue, 23 Jan 2024 13:51:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pschenker.ch header.i=@pschenker.ch header.b="bPMqBnpz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VrniSicP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-bc0e.mail.infomaniak.ch (smtp-bc0e.mail.infomaniak.ch [45.157.188.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DCB05F578
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 14:00:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.157.188.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69E885F563;
+	Tue, 23 Jan 2024 13:51:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706018420; cv=none; b=NsrIJCXfC3fZNuizQJL93TMtJi7i3E55BMdonJ9gKvuijrsl/0Lr+7DVNHwHA7XayPj2m00q3xfsTU/rTE7QDcbhXx/Q5chR6QqHmQiW+imAW0vcizZcRBEoD4OgS0HRIVyYPJ2iiF8k1lC6MPJjewCQ65qios7o6ADAiWUaS0U=
+	t=1706017875; cv=none; b=inR/V0nmfWJb5f/a59bv6sIDxPK127yZOjiFT3WxbJ+OxPyyjrNMhrnmHPDxr46qZqfGJr4G5wfZ3RU8nFoSByO1/mBnridoWxkQapbkorb/qEVVniFLOrws+H7LxZUOB8SBu/nBC88RaeyqoAgvmXY3gDHrrSYxoIw0J4thpb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706018420; c=relaxed/simple;
-	bh=+q/tYEcIVTExKnWzMTwhtlDg9ZknBc4T0oiIo10zzGY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gCJiD1c/U3iZRSY0AM/ztYfUPkgyZ5EDDnD3tT+6o8AHnQldXk2N/825IkC1u2v8+bfcZxAn0uO8m0HX7X5UwLeMbWR+RRKY72XeuDtOP4x/fBRvR595/Vw/kQD8fvAihuzuKMZb0yiAsxQrfEpqCqtiRxMvGFDSAH+zOnxKAv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pschenker.ch; spf=pass smtp.mailfrom=pschenker.ch; dkim=pass (1024-bit key) header.d=pschenker.ch header.i=@pschenker.ch header.b=bPMqBnpz; arc=none smtp.client-ip=45.157.188.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pschenker.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pschenker.ch
-Received: from smtp-3-0001.mail.infomaniak.ch (unknown [10.4.36.108])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4TK7l039CCzMq1N5;
-	Tue, 23 Jan 2024 14:50:20 +0100 (CET)
-Received: from unknown by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4TK7kz4WkvzMppBk;
-	Tue, 23 Jan 2024 14:50:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-	s=20220412; t=1706017820;
-	bh=+q/tYEcIVTExKnWzMTwhtlDg9ZknBc4T0oiIo10zzGY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bPMqBnpzFFq0nHUd5n3DB8GbbU9QtVQ5oVk802ATafHT4iK49wowRj0zRphKAGnS6
-	 dvj+8DPViTvRnsmuT8N2jT7Za0H9qs/8ufomhQwRjGgP4GmhUyQ+j2OX8PTOp8UvW+
-	 bmKAMMpzD/3UzJ6gKIshZ6WugdZp+0cetnaxBfr4=
-From: Philippe Schenker <dev@pschenker.ch>
-To: netdev@vger.kernel.org
-Cc: Paolo Abeni <pabeni@redhat.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	linux-kernel@vger.kernel.org,
-	UNGLinuxDriver@microchip.com,
-	Marek Vasut <marex@denx.de>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	devicetree@vger.kernel.org,
-	Eric Dumazet <edumazet@google.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Rob Herring <robh+dt@kernel.org>,
-	Philippe Schenker <philippe.schenker@impulsing.ch>
-Subject: [PATCH net-next v1 2/2] net: dsa: Add KSZ8567 switch support
-Date: Tue, 23 Jan 2024 14:50:14 +0100
-Message-Id: <20240123135014.614858-2-dev@pschenker.ch>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240123135014.614858-1-dev@pschenker.ch>
-References: <20240123135014.614858-1-dev@pschenker.ch>
+	s=arc-20240116; t=1706017875; c=relaxed/simple;
+	bh=An5eKsNfJbgcT2d6+gGwNupZ+ioTflkVRVPbjB0iCyo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DfETdYhqwQ9DnlSLXb+fx48CTS9BV44geEiIFl5+K/O4PtsJsAyh1KFExdpPNxYYf/dq89VFAlQUuyqx6/PvtQTwRG4b5twY6QmGA987CaEF8gnq60Gaa4Ux8DBnIQKL/2BzE68TUVBzMMGNT+wPKzze4t7f9csCF61eFqhRrZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VrniSicP; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40e9d4ab5f3so46865665e9.2;
+        Tue, 23 Jan 2024 05:51:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706017871; x=1706622671; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dV+BDeygc2noRbP53tgI9IP4fQK/HUWRgHZ0AVe1P88=;
+        b=VrniSicPdP/TDDpjmMZdrsGYQc3lU+LUUql1Ji9mBVJRR8l7rlQHRXAMOnNc8W5vHr
+         m4ZSoGFPv/HUzSvggR8GQH/IdAjiLjQ4hJyepFZVULBYW3QNOc3m2ywzo/BnZSCdutD7
+         y55/bD+U8ERNYTpZc/dPf68SYDKxnPXdu8MCdF0VrQn0hWuL90z72a1SJ0gHgs2HEHON
+         tiLis4cfNaL8YqvdlnG7ucSqLu1AqX8B1xHuQw+QzSlR2DMMUKsacXhVrYpi+lbgO1UC
+         M/ZYwUgQNVJPLiEkZpuvQqBrPVd0yXWeM8TEJxKvn19dvE9JUDiH4jwqCzAkCEHbtSAq
+         Wi8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706017871; x=1706622671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dV+BDeygc2noRbP53tgI9IP4fQK/HUWRgHZ0AVe1P88=;
+        b=DFO0l+AeX21mjxjIwimD6DRKXoROfYxUIy8TtKqdyhk0Ujh59is5uL2GympITL+UDj
+         p7X0YG+yDIDuSSPOyjTVwwUewELKsf+adUwofITWkkgK4c/XUUWGYXRdoowJkIhk4s7a
+         COgBI6Fg0lx8d8rBXEPNf3m0ZX2ciHC2iUXtRJFGIvqGxhVO2Bakw48T970lbpDqQ2KD
+         XVxz8aXTwUeof+xjW1rJOnmi08LkqOqkODaTG8Rf8YmIiHnaxi9n1b/4ihbWn/neGKWb
+         cISA4g4hWz62rm1khV50jIWmeG4JTBlOGkSaNM4paHEHBIA79+kZ82m5Yh7QqtSwUSHB
+         TI6w==
+X-Gm-Message-State: AOJu0YwTMR+tUep7VBtiCbbvhjZCONWeMUBxwFIjaJNlLVNBgYsL4K2l
+	EAyHEjoe9/ooWQN1Ortck1J+txMqYdFwQp2O8pMkkOATIWwCuE2zPvGJfA7JMxki4w==
+X-Google-Smtp-Source: AGHT+IFbptdjITkQ6GhGrCP/WSSPwBibDyt75XrZLT7OV1LlskK6f/3gKqz29PjZYXDdRobWhPVKMQ==
+X-Received: by 2002:a05:600c:3482:b0:40d:9377:d97c with SMTP id a2-20020a05600c348200b0040d9377d97cmr169438wmq.65.1706017871382;
+        Tue, 23 Jan 2024 05:51:11 -0800 (PST)
+Received: from [192.168.0.5] (cm-83-97-153-254.telecable.es. [83.97.153.254])
+        by smtp.gmail.com with ESMTPSA id x8-20020adfdd88000000b003392ae3aee8sm8552647wrl.97.2024.01.23.05.51.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 05:51:11 -0800 (PST)
+Message-ID: <733a2572-779f-4354-a51a-23c0b6732ca2@gmail.com>
+Date: Tue, 23 Jan 2024 14:51:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] spi: dt-bindings: spi-rockchip: restrict num-cs
+Content-Language: en-US
+To: Johan Jonker <jbx6244@gmail.com>, broonie@kernel.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, heiko@sntech.de, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <acc4ff4b-811a-4a6d-8f58-9d8da3be40bb@gmail.com>
+ <d6fc0ad6-ce20-4604-89e5-2598dc3fc0a6@gmail.com>
+ <344a3de8-7f10-46f0-9524-dca58ceda671@gmail.com>
+From: Luis de Arquer <ldearquer@gmail.com>
+In-Reply-To: <344a3de8-7f10-46f0-9524-dca58ceda671@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Infomaniak-Routing: alpha
 
-From: Philippe Schenker <philippe.schenker@impulsing.ch>
+On 1/23/24 11:49, Johan Jonker wrote:
+> 
+> 
+> On 1/23/24 10:17, Luis de Arquer wrote:
+>> On 1/22/24 23:59, Johan Jonker wrote:
+>>> In the driver spi-rockchip.c max_native_cs is limited to 4 and the
+>>> default num-cs property is 1. Restrict num-cs in spi-rockchip.yaml.
+>>>
+>>
+> 
+>> Doesn't num-cs include gpio chip selects too?
+>> I have a setup with num-cs = <12> which uses non-native cs-gpios just fine
+> 
+> Given that bindings and Linux drivers capabilities are 2 separate things.
+> However this document has also a purpose that must notify mainline maintainers if users submit bogus DT values.
+> Currently that limit is set to 4 in the mainline driver.
+> You are free to submit a real board file/patch serie afterwords as proof for review with 12 spi chips and then adjust this limit and increase ROCKCHIP_SPI_MAX_CS_NUM.
 
-This commit introduces support for the KSZ8567, a robust 7-port
-Ethernet switch. The KSZ8567 features two RGMII/MII/RMII interfaces,
-each capable of gigabit speeds, complemented by five 10/100 Mbps
-MAC/PHYs.
+Hi Johan,
 
-Signed-off-by: Philippe Schenker <philippe.schenker@impulsing.ch>
+OK to that, I was not aware a driver could limit num-cs (I thought it 
+could be extended with as many gpios as needed without involving the 
+controller driver). I thought of num-cs as a spi subsystem generic thing.
 
----
+In fact, I was reviewing the setup I mentioned, and even it defines 12 
+cs in the controller with no driver complaints, so far only 3 of them 
+are mapped to devices (I'll have to review the driver before going any 
+futher!)
 
- drivers/net/dsa/microchip/ksz9477_i2c.c     |  4 ++
- drivers/net/dsa/microchip/ksz_common.c      | 42 ++++++++++++++++++++-
- drivers/net/dsa/microchip/ksz_common.h      |  1 +
- drivers/net/dsa/microchip/ksz_spi.c         |  5 +++
- include/linux/platform_data/microchip-ksz.h |  1 +
- 5 files changed, 52 insertions(+), 1 deletion(-)
+Luis
 
-diff --git a/drivers/net/dsa/microchip/ksz9477_i2c.c b/drivers/net/dsa/microchip/ksz9477_i2c.c
-index cac4a607e54a..82bebee4615c 100644
---- a/drivers/net/dsa/microchip/ksz9477_i2c.c
-+++ b/drivers/net/dsa/microchip/ksz9477_i2c.c
-@@ -103,6 +103,10 @@ static const struct of_device_id ksz9477_dt_ids[] = {
- 		.compatible = "microchip,ksz8563",
- 		.data = &ksz_switch_chips[KSZ8563]
- 	},
-+	{
-+		.compatible = "microchip,ksz8567",
-+		.data = &ksz_switch_chips[KSZ8567]
-+	},
- 	{
- 		.compatible = "microchip,ksz9567",
- 		.data = &ksz_switch_chips[KSZ9567]
-diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index 245dfb7a7a31..9b96de86dfc8 100644
---- a/drivers/net/dsa/microchip/ksz_common.c
-+++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -1214,6 +1214,38 @@ const struct ksz_chip_data ksz_switch_chips[] = {
- 		.rd_table = &ksz8563_register_set,
- 	},
- 
-+	[KSZ8567] = {
-+		.chip_id = KSZ8567_CHIP_ID,
-+		.dev_name = "KSZ8567",
-+		.num_vlans = 4096,
-+		.num_alus = 4096,
-+		.num_statics = 16,
-+		.cpu_ports = 0x7F,	/* can be configured as cpu port */
-+		.port_cnt = 7,		/* total port count */
-+		.port_nirqs = 3,
-+		.num_tx_queues = 4,
-+		.tc_cbs_supported = true,
-+		.tc_ets_supported = true,
-+		.ops = &ksz9477_dev_ops,
-+		.mib_names = ksz9477_mib_names,
-+		.mib_cnt = ARRAY_SIZE(ksz9477_mib_names),
-+		.reg_mib_cnt = MIB_COUNTER_NUM,
-+		.regs = ksz9477_regs,
-+		.masks = ksz9477_masks,
-+		.shifts = ksz9477_shifts,
-+		.xmii_ctrl0 = ksz9477_xmii_ctrl0,
-+		.xmii_ctrl1 = ksz9477_xmii_ctrl1,
-+		.supports_mii	= {false, false, false, false,
-+				   false, true, true},
-+		.supports_rmii	= {false, false, false, false,
-+				   false, true, true},
-+		.supports_rgmii = {false, false, false, false,
-+				   false, true, true},
-+		.internal_phy	= {true, true, true, true,
-+				   true, false, false},
-+		.gbit_capable	= {false, false, false, false, false, true, true},
-+	},
-+
- 	[KSZ8795] = {
- 		.chip_id = KSZ8795_CHIP_ID,
- 		.dev_name = "KSZ8795",
-@@ -2649,6 +2681,7 @@ static void ksz_port_teardown(struct dsa_switch *ds, int port)
- 
- 	switch (dev->chip_id) {
- 	case KSZ8563_CHIP_ID:
-+	case KSZ8567_CHIP_ID:
- 	case KSZ9477_CHIP_ID:
- 	case KSZ9563_CHIP_ID:
- 	case KSZ9567_CHIP_ID:
-@@ -2705,7 +2738,8 @@ static enum dsa_tag_protocol ksz_get_tag_protocol(struct dsa_switch *ds,
- 	    dev->chip_id == KSZ9563_CHIP_ID)
- 		proto = DSA_TAG_PROTO_KSZ9893;
- 
--	if (dev->chip_id == KSZ9477_CHIP_ID ||
-+	if (dev->chip_id == KSZ8567_CHIP_ID ||
-+	    dev->chip_id == KSZ9477_CHIP_ID ||
- 	    dev->chip_id == KSZ9896_CHIP_ID ||
- 	    dev->chip_id == KSZ9897_CHIP_ID ||
- 	    dev->chip_id == KSZ9567_CHIP_ID)
-@@ -2813,6 +2847,7 @@ static int ksz_max_mtu(struct dsa_switch *ds, int port)
- 	case KSZ8830_CHIP_ID:
- 		return KSZ8863_HUGE_PACKET_SIZE - VLAN_ETH_HLEN - ETH_FCS_LEN;
- 	case KSZ8563_CHIP_ID:
-+	case KSZ8567_CHIP_ID:
- 	case KSZ9477_CHIP_ID:
- 	case KSZ9563_CHIP_ID:
- 	case KSZ9567_CHIP_ID:
-@@ -2839,6 +2874,7 @@ static int ksz_validate_eee(struct dsa_switch *ds, int port)
- 
- 	switch (dev->chip_id) {
- 	case KSZ8563_CHIP_ID:
-+	case KSZ8567_CHIP_ID:
- 	case KSZ9477_CHIP_ID:
- 	case KSZ9563_CHIP_ID:
- 	case KSZ9567_CHIP_ID:
-@@ -3183,6 +3219,7 @@ static int ksz_switch_detect(struct ksz_device *dev)
- 		case KSZ9896_CHIP_ID:
- 		case KSZ9897_CHIP_ID:
- 		case KSZ9567_CHIP_ID:
-+		case KSZ8567_CHIP_ID:
- 		case LAN9370_CHIP_ID:
- 		case LAN9371_CHIP_ID:
- 		case LAN9372_CHIP_ID:
-@@ -3220,6 +3257,7 @@ static int ksz_cls_flower_add(struct dsa_switch *ds, int port,
- 
- 	switch (dev->chip_id) {
- 	case KSZ8563_CHIP_ID:
-+	case KSZ8567_CHIP_ID:
- 	case KSZ9477_CHIP_ID:
- 	case KSZ9563_CHIP_ID:
- 	case KSZ9567_CHIP_ID:
-@@ -3239,6 +3277,7 @@ static int ksz_cls_flower_del(struct dsa_switch *ds, int port,
- 
- 	switch (dev->chip_id) {
- 	case KSZ8563_CHIP_ID:
-+	case KSZ8567_CHIP_ID:
- 	case KSZ9477_CHIP_ID:
- 	case KSZ9563_CHIP_ID:
- 	case KSZ9567_CHIP_ID:
-@@ -4142,6 +4181,7 @@ static int ksz_parse_drive_strength(struct ksz_device *dev)
- 	case KSZ8794_CHIP_ID:
- 	case KSZ8765_CHIP_ID:
- 	case KSZ8563_CHIP_ID:
-+	case KSZ8567_CHIP_ID:
- 	case KSZ9477_CHIP_ID:
- 	case KSZ9563_CHIP_ID:
- 	case KSZ9567_CHIP_ID:
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index 15612101a155..060c5de9aa05 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -187,6 +187,7 @@ struct ksz_device {
- /* List of supported models */
- enum ksz_model {
- 	KSZ8563,
-+	KSZ8567,
- 	KSZ8795,
- 	KSZ8794,
- 	KSZ8765,
-diff --git a/drivers/net/dsa/microchip/ksz_spi.c b/drivers/net/dsa/microchip/ksz_spi.c
-index 6f6d878e742c..c8166fb440ab 100644
---- a/drivers/net/dsa/microchip/ksz_spi.c
-+++ b/drivers/net/dsa/microchip/ksz_spi.c
-@@ -164,6 +164,10 @@ static const struct of_device_id ksz_dt_ids[] = {
- 		.compatible = "microchip,ksz8563",
- 		.data = &ksz_switch_chips[KSZ8563]
- 	},
-+	{
-+		.compatible = "microchip,ksz8567",
-+		.data = &ksz_switch_chips[KSZ8567]
-+	},
- 	{
- 		.compatible = "microchip,ksz9567",
- 		.data = &ksz_switch_chips[KSZ9567]
-@@ -204,6 +208,7 @@ static const struct spi_device_id ksz_spi_ids[] = {
- 	{ "ksz9893" },
- 	{ "ksz9563" },
- 	{ "ksz8563" },
-+	{ "ksz8567" },
- 	{ "ksz9567" },
- 	{ "lan9370" },
- 	{ "lan9371" },
-diff --git a/include/linux/platform_data/microchip-ksz.h b/include/linux/platform_data/microchip-ksz.h
-index f177416635a2..c4466e56d9d7 100644
---- a/include/linux/platform_data/microchip-ksz.h
-+++ b/include/linux/platform_data/microchip-ksz.h
-@@ -24,6 +24,7 @@
- 
- enum ksz_chip_id {
- 	KSZ8563_CHIP_ID = 0x8563,
-+	KSZ8567_CHIP_ID = 0x00856700,
- 	KSZ8795_CHIP_ID = 0x8795,
- 	KSZ8794_CHIP_ID = 0x8794,
- 	KSZ8765_CHIP_ID = 0x8765,
--- 
-2.34.1
+
+> 
+> Johan
+> 
+>>
+>> Luis
+>>
+>>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>>> ---
+>>>    Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 5 +++++
+>>>    1 file changed, 5 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>> index e4941e9212d1..00d555bcbad3 100644
+>>> --- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>> +++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>> @@ -65,6 +65,11 @@ properties:
+>>>          - const: tx
+>>>          - const: rx
+>>>
+>>> +  num-cs:
+>>> +    default: 1
+>>> +    minimum: 1
+>>> +    maximum: 4
+>>> +
+>>>      rx-sample-delay-ns:
+>>>        default: 0
+>>>        description:
+>>> -- 
+>>> 2.39.2
+>>>
+>>>
+>>> _______________________________________________
+>>> Linux-rockchip mailing list
+>>> Linux-rockchip@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>>
 
 
