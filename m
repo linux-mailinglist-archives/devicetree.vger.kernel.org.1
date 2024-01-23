@@ -1,144 +1,168 @@
-Return-Path: <devicetree+bounces-34133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D124838C7F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:50:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F145838CB7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 12:02:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46D70283F34
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:50:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F2FC285E69
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 11:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8718F5C8F0;
-	Tue, 23 Jan 2024 10:49:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4302F5C914;
+	Tue, 23 Jan 2024 11:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CNqDzaWi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HcmZxsu0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36AA5C8ED;
-	Tue, 23 Jan 2024 10:49:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C2A25C90A
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 11:01:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706006993; cv=none; b=m+yHAEbHHNA62VIUKYnu/MZ/PyPB1SK119ec7fD1F4eE52zvj4qFwwu9ELr28kIyVoOtTZfke05vez0lB1VMaGgpumStbdELAP6DJ8lasOrzlJ0EipnUowQKl4nlj3MqnPsSVgLjlPm+ld6R45S06RDJQuswNwV+Ab+cVhBjVXA=
+	t=1706007716; cv=none; b=eWwC8Nx2zrOxRSqoJ4qWTo9OEWhNm/70bcT1hvjkZQxCGlhtsRONSZmGjj0sYvmTUHgNgOKKtb6ZalQoGoWzW3QyQoQ+5PFPaA00LbjRGXfGpR43hxL/gnCbvlXyjrngs/57rPkL7fypnBP2qwy4SO3SJW5uRE81uCHqQrnnuos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706006993; c=relaxed/simple;
-	bh=kYN0y4dPsYooNH+c8Qwtty0BKVzTGVGg2vyDLpbRNw0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Uas1z1yaRe0hIi/huor+prpyz1GM44mmd6/yJ0x3gZWLt67bnnze1twSiDj+anoYprACvCXF4VTDrwLZPfh6O/j5bLrByl2Se+Io4Ikz0WvTMDVmht47Wzxc+cieONQ+s0Cc8JV5IYLo+i/umJQ4rAGoumHMtt9qpFjbACB+m3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CNqDzaWi; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55a035669d5so4806575a12.2;
-        Tue, 23 Jan 2024 02:49:51 -0800 (PST)
+	s=arc-20240116; t=1706007716; c=relaxed/simple;
+	bh=mpfY+BCg0dcdts5GW3yyXu28a14NVn8fS8CS8HwrtEA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IBh3/KrJpRHH+OOGnsDuRa0fMcVshG1cmO4rRW72JTHM4Mo1w2joW+SRhW/6SS1QP/9IYORoL/YGHE0NfKh+Ek1ntiHcDIDgYDByeb45t++f9pwACDMR7huph24OPPm+qPnjnbqfDZmQbsqRAIVfdRQ27/LwEoLOMOxhW857a2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HcmZxsu0; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-55a179f5fa1so4794450a12.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 03:01:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706006990; x=1706611790; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j1tTcpctKr7+to+rDFJ+mLDlkTkuMFtvhVWhYOJfG4o=;
-        b=CNqDzaWivtz/17hhiY99kHgtSGHfe5rIbt81z4NuKMI5QYC2AqSelxTL6p9X0LahN5
-         5bqA9YOAjlS61TD+9aO7xSbi1Mb4GS8g5zu3Ii0KzxngccjzO9Nfkx7Uup6nLJu5lEmH
-         hBFIjqDGIhy3uGmWKXSLjGLE/fREBpG1Vn2bLvNZmz5i13kNrPZVpwQQoDkPbtA51jhS
-         fIqXhXO6EDQRziaAIbpvYoaw/8J3W/khScPqO0902hWvtMnpJgEZX6c0M94K/wh15l9U
-         0uJIKJqK8Zz/uAC6TZighl/Otz1pYMNpMv/GTyasBMRqB6/QpmWhBRPcYbKiA1bLVoFR
-         RH6Q==
+        d=linaro.org; s=google; t=1706007712; x=1706612512; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DgWgMqXX/nLyJMe6niIKtw6w9F40cOBRvzu8MWC2fKQ=;
+        b=HcmZxsu0q6kHCOtewyMIiT20RNT/8dKHjpfUF14grAea0ENwoqvF+gzT6C2QzC8/0U
+         WNMFf5f1ktecFXn/uF5DiR/DkVTPzpa8EKvWyIM64TVRRFAVKDmZgqlFRZDz+nTzJpFQ
+         uPnUUwCdSmj6ovQXh7BF6ZeL7fSWvUw9KA3ly63OlUuZlqI3I8Pyx1mUKRfyVeSfB8gV
+         0YptmEkCtDjFR2XXKAH821WiHgIB+iT8pdS5r0sCAdjqjf6xTqYuESdwF3YrurqRjLjK
+         athC6L3NDCGKnSrjaSTKYyFh5gitHOIId156s9dwrB87u9o7annTkbcSwuw5zPHpiJnI
+         lRvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706006990; x=1706611790;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j1tTcpctKr7+to+rDFJ+mLDlkTkuMFtvhVWhYOJfG4o=;
-        b=Sw7HiT3U2J4hAxOEZdK20ihm20ffuLKQ0fot260dRq34OOz1pzcMzqgx9XwZ6V5RQj
-         Pb5kZIG8aYQNDdQGtMHl+a67i8Q265yoYrALYTEAQRs1D30HYn/YEm0cQpuV8H/7ye7V
-         oMqk6GkYGhNs2sgKzeX89RpchYFgIX56Gynrco+HaX6vjQnfKD3S6kKpI+r7Wm3eVlKP
-         ZD30dIebdoiQVBNBMdtLOxIlvs8eVwgbp07qaHAEWTgn9lQ9+2shMPlttDbERqtSgGb6
-         Pd+ss4cjwRVBKk55cE+QwHiJP+rhZ0H1KL7h/VC7LaQOlGts/4EfhWHLQfPxTbG+14k3
-         ZA/w==
-X-Gm-Message-State: AOJu0YxsRv1X7d5kWDJioXr9m6XXSLSrvaRNecAB0ghTqUbZgLx8URtz
-	LTkfYeflA6ov6+NZfQ8XrMr/qyqAYf+V7skGGM2lsMqPtQYMrjF7w7tZKc5I
-X-Google-Smtp-Source: AGHT+IERL/uUCLXkfWZSoUxkEgKCiGTldKue+P4EfKPsE7LACeSUpjZSr2Q4PWCPOqOJQIifcX9wPQ==
-X-Received: by 2002:a05:6402:1502:b0:55a:b97:f79f with SMTP id f2-20020a056402150200b0055a0b97f79fmr751898edw.45.1706006989876;
-        Tue, 23 Jan 2024 02:49:49 -0800 (PST)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id eo3-20020a056402530300b0055c76eebbdbsm779591edb.30.2024.01.23.02.49.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 02:49:49 -0800 (PST)
-Message-ID: <344a3de8-7f10-46f0-9524-dca58ceda671@gmail.com>
-Date: Tue, 23 Jan 2024 11:49:48 +0100
+        d=1e100.net; s=20230601; t=1706007712; x=1706612512;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DgWgMqXX/nLyJMe6niIKtw6w9F40cOBRvzu8MWC2fKQ=;
+        b=XrkL27MLHaiS51MuCk9O1FlHObu+hYfrrL16tPPin5mbAwW9nf33FLVzPu4Z0aBz8U
+         0u+MQd1oTaaMMSpKqrhdb0cKVTaXw+b2wPqxpLVUE+bNjZG+4JiMm7i+MD42xHXiiSkR
+         QnbOwaQpY3uSgx/8btuhn6DOeSDoJWNxgDlUlRINUFrmSiRzXRgNro1x5EehKu/xoyhU
+         1sq/6iISF9OZhXhK5hAQ3jf1L1gm1805XatLSMlEaN1mVy4Zk6d9MYGupcUO/nMyXEJf
+         lOOZA3F/4RwldwTZQoDh53xsZLxFuC0Vma/EG8JYl7k0Gd3fnMA/cQqKL06gDnjojwdN
+         9Z8g==
+X-Gm-Message-State: AOJu0YyMcauj0Bsl9tde0+PzslkjNSRNJ8g4fZtYmURHNW8lxZuFr0Im
+	g6qKl2A7SeKtLh9DCd9A0kn70Gcn+2C203HQSQ8hcU4gnEBq/NmavLWGqVvSonQRXEqetjqq8Yr
+	z
+X-Google-Smtp-Source: AGHT+IG+zaTU8TxCbFcnuYXxlRDTCoKwH1GT1+AG7ChImV8EqNnoFYWpE5t731S5ytaSWx8Db66dHQ==
+X-Received: by 2002:a05:6402:1292:b0:559:fd27:13af with SMTP id w18-20020a056402129200b00559fd2713afmr655840edv.12.1706007712479;
+        Tue, 23 Jan 2024 03:01:52 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id fg7-20020a056402548700b005593c83bdafsm11430074edb.45.2024.01.23.03.01.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jan 2024 03:01:51 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v4 00/11] arm64: dts: qcom: Add more support to X1E80100
+ base dtsi, CRD and QCP boards
+Date: Tue, 23 Jan 2024 13:01:14 +0200
+Message-Id: <20240123-x1e80100-dts-missing-nodes-v4-0-072dc2f5c153@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] spi: dt-bindings: spi-rockchip: restrict num-cs
-To: Luis de Arquer <ldearquer@gmail.com>, broonie@kernel.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, heiko@sntech.de, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <acc4ff4b-811a-4a6d-8f58-9d8da3be40bb@gmail.com>
- <d6fc0ad6-ce20-4604-89e5-2598dc3fc0a6@gmail.com>
-Content-Language: en-US
-From: Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <d6fc0ad6-ce20-4604-89e5-2598dc3fc0a6@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHqcr2UC/43OwU7DMAwG4FeZcsZgp9noOPEeiEOaOG2kkkxxV
+ Q1NfXeSgRAIacK335Y//RclXCKLetpdVOE1SsypBnO3U26yaWSIvmalUXekkeBM3CMhgl8E3qJ
+ ITCOk7FnA4jEQ+2MbVYHBCsNQbHJTIwbz8P38ecp5gSWDTDzP7eFUOMTztc3La81TlCWX92u5l
+ dr2qwfpWz1WAgQyj5oDOz1g/zzHZEu+z2VUzV31T2t/09LV2tsDB4fGI7o/Vvd/q6uWM9x76g/
+ WB/3L2rbtA2NdMcuOAQAA
+To: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
+ Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2467; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=mpfY+BCg0dcdts5GW3yyXu28a14NVn8fS8CS8HwrtEA=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlr5yLn90B09qjP+Yw2LZTpARY3/7N31dGA1ydT
+ 1+0zBY4xdaJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZa+ciwAKCRAbX0TJAJUV
+ VjIKEADHOF3OjHdot5pRmYNv27P5WmoVGIfFimfUf0mW38cuEbl1n/TFQD3jgmO7RprJZBAqj2g
+ IjiYUuhS8u9syplenul0BWGp7y6bwVhiG4DucfZcleQno1jGOFvUln4JyIU0c1IV9aqFbvIV1II
+ AlVo1GySVDSm2u4xBOu4IiKlAk+kMbSo+rR0b5aL4GdMExwijBZjshhnaS4tA1s9kBFnjK0voqK
+ vKjU5UfvQ0KhpXl3u/pFdDooPNlP3mjUrPzFjc0YXj2LHF9b/lKnjgZo8Itd9vfRDmQhjTVee0C
+ 617QyWb/tdpqYAiQ3g1I2vL8uvW9YjKoopEdr1QMet3T/e5cQ+FlsPDnnHITwAWMB8GufhXDJcn
+ dnTgcAWq6ZFXoitDk5ZXcUFZ0DsRy0NW1nP47di/+yTyCey62/f7/5ILURgy5zDSwAYe6ZPxIo8
+ OyYdt62dEn1pMKe+tV1FwoZmUAOxaEX12SlEoUiSIqMizx6EJ7BhMrYa7DdT/h9CZr3V4BYGlO3
+ vymEWW693nJompQkiOykldmjoeiSC+Af+fjuVnmZp960V4IdT+3ayyQrZJKPWbBHSA9/xPZWmEx
+ ba/MzJGcQ1tOq+9xnJJPCqc6BTCYXk8epiowSwdBI/sdA2+ZsLIDrQRuK0YBsIMh5IvxQIEqran
+ r4QGbHMf0RN0CAg==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
+This patchset adds every node necessary for both the CRD and QCP to boot
+with PCIe, USB and embedded DisplayPort.
 
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v4:
+- After a discussion off-list, it was suggested by Bjorn to split in separate patches.
+- Addressed all of Konrad's comments, except of the clock-names one for the mdss,
+  which there is nothing to be done about as all non-v5 do clk_bulk_get_all.
+- Added more support to QCP, to be more aligned with CRD (except touchscreen
+  and keyboard)
+- Added a patch to fix some LDOs supplies on QCP
+- Link to v3: https://lore.kernel.org/r/20231215-x1e80100-dts-missing-nodes-v3-0-c4e8d186adf2@linaro.org
 
-On 1/23/24 10:17, Luis de Arquer wrote:
-> On 1/22/24 23:59, Johan Jonker wrote:
->> In the driver spi-rockchip.c max_native_cs is limited to 4 and the
->> default num-cs property is 1. Restrict num-cs in spi-rockchip.yaml.
->>
-> 
+Changes in v3:
+- Reword the commit messages
+- Link to v2: https://lore.kernel.org/r/20231215-x1e80100-dts-missing-nodes-v2-0-5a6efc04d00c@linaro.org
 
-> Doesn't num-cs include gpio chip selects too?
-> I have a setup with num-cs = <12> which uses non-native cs-gpios just fine
+Changes in v2:
+- Reword both commits to make it more clear nodes that are being added
+- Dropped comments from interrupt maps from pcie nodes
+- Replace all 0x0 with 0 in all reg properties
+- Moved on separate lines reg, reset and clock names
+- Dropped the sram and cpucp nodes
+- Dropped pmic glink node
+- Reordered all new clock controller nodes based on address
+- Dropped unnecessary indent from touchpad and keyboard TLMM nodes
+- Link to v1: https://lore.kernel.org/r/20231212-x1e80100-dts-missing-nodes-v1-0-1472efec2b08@linaro.org
 
-Given that bindings and Linux drivers capabilities are 2 separate things.
-However this document has also a purpose that must notify mainline maintainers if users submit bogus DT values.
-Currently that limit is set to 4 in the mainline driver.
-You are free to submit a real board file/patch serie afterwords as proof for review with 12 spi chips and then adjust this limit and increase ROCKCHIP_SPI_MAX_CS_NUM.
+---
+Abel Vesa (7):
+      arm64: dts: qcom: x1e80100: Add TCSR node
+      arm64: dts: qcom: x1e80100: Add USB nodes
+      arm64: dts: qcom: x1e80100: Add PCIe nodes
+      arm64: dts: qcom: x1e80100: Add display nodes
+      arm64: dts: qcom: x1e80100-crd: Enable more support
+      arm64: dts: qcom: x1e80100-qcp: Enable more support
+      arm64: dts: qcom: x1e80100-qcp: Fix supplies for LDOs 3E and 2J
 
-Johan
+Sibi Sankar (4):
+      arm64: dts: qcom: x1e80100: Add IPCC node
+      arm64: dts: qcom: x1e80100: Add SMP2P nodes
+      arm64: dts: qcom: x1e80100: Add QMP AOSS node
+      arm64: dts: qcom: x1e80100: Add ADSP/CDSP remoteproc nodes
 
-> 
-> Luis
-> 
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->> ---
->>   Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
->> index e4941e9212d1..00d555bcbad3 100644
->> --- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
->> +++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
->> @@ -65,6 +65,11 @@ properties:
->>         - const: tx
->>         - const: rx
->>
->> +  num-cs:
->> +    default: 1
->> +    minimum: 1
->> +    maximum: 4
->> +
->>     rx-sample-delay-ns:
->>       default: 0
->>       description:
->> -- 
->> 2.39.2
->>
->>
->> _______________________________________________
->> Linux-rockchip mailing list
->> Linux-rockchip@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts |  222 +++++
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts |  175 +++-
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi    | 1349 ++++++++++++++++++++++++++++-
+ 3 files changed, 1739 insertions(+), 7 deletions(-)
+---
+base-commit: 853dab01a34378871b37a5e6a800e97a997fe16c
+change-id: 20231201-x1e80100-dts-missing-nodes-a09f1ed99999
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
 
