@@ -1,165 +1,147 @@
-Return-Path: <devicetree+bounces-33994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-33995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4F43838639
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 05:03:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6891838642
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 05:10:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 717E61F24CBC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 04:03:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ECCE28CEE7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 04:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F3001869;
-	Tue, 23 Jan 2024 04:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34B9185B;
+	Tue, 23 Jan 2024 04:10:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="AGQsdm8G"
+	dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b="aEqI77XQ";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="QfHAgxVb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B861846
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 04:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705E61848;
+	Tue, 23 Jan 2024 04:10:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=66.111.4.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1705982604; cv=none; b=Psbo5XNtz1oV6jZQGQExIxb+izi1oRtriHCbU8q0hZBBz0IXI3kbJ2Ml7pkGvYqadC9402rHjOwrhCiHTP98+6GTYr30rkyJq0uRQhzWgzMrUJCnGVmdZD+PdtRKH67riNc2fq+mGY+rxRWrDV7B6NG7MPECjVJmiZrgB6zYzWE=
+	t=1705983048; cv=none; b=SCUb495OxRSl61ylaMw2nZiiu53+6ZRhNkPXf+YzRQ2YJBmDghuj7R7JIs8xvE8vfMasEGuqu+vbn2wis6sBjt6re7jCw4XLC6w/5b2GU+EzJtOU7nk0kTn0PtSRfZ49EAln+07PoK6BQA1Gc511iE4UaNjt0+jJaxvLvc1IEnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1705982604; c=relaxed/simple;
-	bh=8zPcSrF6GmbzOiYc91taFPys9TJUmsTbr1QKDG1KWzc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eOi+ax/KeQFC5Z56JikrNvXMeCN7V3V6hd/sOUweBv6HILH9lmqzN7Be/3D5txDOgf5eDxOGbtUtQ6Cf1XzdA8cVS+9tFU6qK+cfCUonAz77BLj7dZnRzHn46Ns5Nc1/tuJCVnX+8SInB1LeQqJk9YULZn9OtpZPrnkLIQDbUGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=AGQsdm8G; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-50ec948ad31so4290406e87.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Jan 2024 20:03:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1705982600; x=1706587400; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vZiWFNa696bYRV0aTpMTHBZfZZ8Fbva5ASueNEpSuTo=;
-        b=AGQsdm8GnZmIgookWVaY/7zA/9hm1n0LfseZIidLGefxH6cWNG3c6JRNupaIZQRmn9
-         8GBAtlt1sMjZmk5JlusWJen5CpdybU9xRHBLCwGPPus5bH+XCE6MqWjcaTjrX2FdZB9e
-         A5CC3t0IzcgU0SAXjN3lO7vSOjVOzMz1ilLhM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1705982600; x=1706587400;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vZiWFNa696bYRV0aTpMTHBZfZZ8Fbva5ASueNEpSuTo=;
-        b=wc5swLB9aDnKZAzmbeX7C6u+5qQWQ7GlSdqAANVpBnaNRHVxtSSisKZB7zW64Juvga
-         1jO6G7WgoO/rxkcvKjqb0MPDUfzxLZwcxVjSIWzQRK9TIGFBjzj1ZOAiSKoLweNz3Hxi
-         0fDIf2sdxzjH5jtOeQfpITCqwodYMgbiOYejmwfpGvCHyS6aLl2fJpeXJcj2sUXci9YT
-         A6tP2WPgWXEYlvJWsA9dj4XOzOW+Ao4DtJ8s2jkqtJVhpI7iJEMX5txmIKJtovKO21Kq
-         lMJEauaUrHT/6yA0fIkwOiL6fDZyPJQKbTZN0FEvm+Z/Hl54A2JpPBq7d3+OIgMRh1GG
-         OStg==
-X-Gm-Message-State: AOJu0YwUmLZ/gNFliFpNjbjHBHL3SbCWNhWRehQD7+5iqyj9qjFBFccU
-	PCfv6Ysy+ye7TvQhCA2RAZ1oeAnsq2j20kMdxk2Anr2T6xGRcm2Mp3hQ2zPnT1XHMQ9PG6UmxOg
-	vLfrb9TlUtyYqoOCFMT7xvUaL23RRYSMFrbom
-X-Google-Smtp-Source: AGHT+IGiy9y9L53Ax5tTXs/dc2tT4NfqKH1k/Qj4AXIACAgYekrtU+BVkqbTaBWD6iDaDB+W8QdXO0quF0B5cBl9/58=
-X-Received: by 2002:a2e:9112:0:b0:2cc:769e:723d with SMTP id
- m18-20020a2e9112000000b002cc769e723dmr2352566ljg.87.1705982599785; Mon, 22
- Jan 2024 20:03:19 -0800 (PST)
+	s=arc-20240116; t=1705983048; c=relaxed/simple;
+	bh=e1iANXCHAFFGWI13ZwKAwHSge9np6yGnnnIPoEx3lBo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kZy/j0b/EqPtEibfg6YauNquEUkBCH4o9Pgi3pD3Od7N1FnzautFTftBNsQ+WBBcT5AShgpHE71gP+l3izRRZ1MXfykPSC7HOHiKhnRx8tj4UiBVRaf7vq1xUgmnskibAoeXD6GgRXMcDLnbjpKDePU8LlqYqv4xHTknXj9TB2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org; spf=pass smtp.mailfrom=feathertop.org; dkim=pass (2048-bit key) header.d=feathertop.org header.i=@feathertop.org header.b=aEqI77XQ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=QfHAgxVb; arc=none smtp.client-ip=66.111.4.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=feathertop.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=feathertop.org
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailout.nyi.internal (Postfix) with ESMTP id 52A0E5C02FF;
+	Mon, 22 Jan 2024 23:10:45 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 22 Jan 2024 23:10:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=feathertop.org;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm2;
+	 t=1705983044; x=1706069444; bh=X1AxwnZE1mN7IbTs9hN/G30XDwpnHhRi
+	KWHtMsjJUm0=; b=aEqI77XQJ4u07KvVtt6AD42ntSY7SPwR7QWMDRv/EFaSGfbd
+	Dtk1PhZ+JxLzzsw809IdtRzqNM4BTLeZLaNxRDQGfS7SwMe5Pi2lTapAYet7P0SX
+	DHYpMQbwe7kr7oosX+5hY5409EO+7Ue6W5jCxBFvOb3MJBt5NEGlt6neUKOcxfgb
+	zYt8/ysAbh3mkirJ0acAZhpXgI/1M2DjJpXU1l/l5ktSyH8y3lI6xB4PDXSfuHbe
+	ivzfyZsZyoSVukzOpLmXezsaaiBjmJTv7DZpnDR8TH6evmj06usThJDjaQh2IFqi
+	yv1f49ILCXV6vsPjRWLU/4U+gxTtHDIfj1DZQA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1705983044; x=
+	1706069444; bh=X1AxwnZE1mN7IbTs9hN/G30XDwpnHhRiKWHtMsjJUm0=; b=Q
+	fHAgxVbCVfHB8lh5RXJqESKdEPFJzwdgtykuZLFvo2eSgc07a8tXMKYM25PBzvw9
+	ksL1+MnLbNauyYa/E6pmv3hUIICLycJ8M7Uxfh1f5WM8OQuA6mGIspL4sD74upcJ
+	D4adpI4r6/1iC7E4NUWB0BOCEGY+rj7L6WeZPa81NcK97JExSpP+7M94uPHKCuGL
+	Hb1Tg9g07jEFmUbOU2o0VKWc+ZTdiSZtKXXMh32rLcCoE2M96gev3/I29LYnQG1x
+	OtglSD2mZ6xoaIpQPIj2yovrY7TzbNIEC5Q/WEmU/84A5PVCgMP/TiuLEzdGLZZx
+	XocCV4fr5OaqQN6Ktcotw==
+X-ME-Sender: <xms:QzyvZY47fvbmwvwVakG6Y3PISRlTm1pSxFQpGmukHDv5aNJYa8UGdQ>
+    <xme:QzyvZZ4LH7AUz3tEzWaDY5tS5DaofqSEXl8FLzAfGaf0CZTReddMgN5Xm0d4gu_OY
+    CpaKLd2Dg>
+X-ME-Received: <xmr:QzyvZXc-sJLEjVCubf5yYB0amMFwc96MK1008N-vn-3hPjh9hBIPC1xFGe64SgRJV-iEo7upeMlpjrKeldqiAolGJ966qCI6AlRRTg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrvdekjedgieeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefvihhm
+    ucfnuhhnnhcuoehtihhmsehfvggrthhhvghrthhophdrohhrgheqnecuggftrfgrthhtvg
+    hrnhepueegfefgveeuiedtheffgfefveejkeetiefhhfdvjeevlefhueekudeuleeghfek
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhimh
+    esfhgvrghthhgvrhhtohhprdhorhhg
+X-ME-Proxy: <xmx:QzyvZdLuwNmW7gtVIa2fKi7ijGvsnYQ5oG7Jym2PmuV4agGah-dLXg>
+    <xmx:QzyvZcIfko-yFUUatPPba4w-m3MtsRa1okumhLC-th_aLwMPe9_QgA>
+    <xmx:QzyvZextfm3wQD7NLq3YFSAzM5eK0s_yW-kVgxJ5cQWPxoX5oK7fuw>
+    <xmx:RDyvZazTe1eN29OyB8mkpFbtZBqGKAmMZtr_5wsC_x1VgoHIVEGQ0w>
+Feedback-ID: i1f8241ce:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 22 Jan 2024 23:10:38 -0500 (EST)
+Message-ID: <93d775df-af84-44ff-870e-f720a33ddf34@feathertop.org>
+Date: Tue, 23 Jan 2024 15:10:35 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231228105717.719624-1-yuanhsinte@chromium.org>
-In-Reply-To: <20231228105717.719624-1-yuanhsinte@chromium.org>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 23 Jan 2024 12:03:08 +0800
-Message-ID: <CAGXv+5H-mpXZ_0H_HchDWeTgx+4Nkxh6651DEs1C62mrXczTkA@mail.gmail.com>
-Subject: Re: [PATCH RESEND v2] arm64: dts: mt8195-cherry-tomato: change
- watchdog reset boot flow
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org, 
-	=?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= <nfraprado@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] dt-bindings: rockchip: rk809: Document audio codec
+ properties
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-rockchip@lists.infradead.org, conor.dooley@microchip.com,
+ robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, Chris Zhong <zyw@rock-chips.com>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lee Jones <lee@kernel.org>, Zhang Qing <zhangqing@rock-chips.com>,
+ linux-kernel@vger.kernel.org
+References: <20240120135529.899403-1-tim@feathertop.org>
+ <20240120135529.899403-3-tim@feathertop.org>
+ <04ccf5f5-1f02-42f9-b1fc-b781c54d7ae9@linaro.org>
+From: Tim Lunn <tim@feathertop.org>
+In-Reply-To: <04ccf5f5-1f02-42f9-b1fc-b781c54d7ae9@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-+CC Nicolas
 
-On Thu, Dec 28, 2023 at 6:57=E2=80=AFPM Hsin-Te Yuan <yuanhsinte@chromium.o=
-rg> wrote:
+On 1/22/24 19:14, Krzysztof Kozlowski wrote:
+> On 20/01/2024 14:55, Tim Lunn wrote:
+>> Rockchip RK809 shares the same audio codec block as the rk817 mfd, and
+>> is compatible with the existing rk817_codec driver.
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
+Ok I will check this.
 >
-> The external output reset signal was originally disabled and sent from
-> firmware. However, an unfixed bug in the firmware on tomato prevents
-> the signal from being sent, causing the device to fail to boot. To fix
-> this, enable external output reset signal to allow the device to reboot
-> normally.
+>> This patch introduces to the binding the standard property #sound-dai-cells
+>> and also an optional codec child node to hold codec specific properties.
+>> Currently there is only one property in this node however the downstream
+>> driver shows a number of other properties that are supported by the codec
+>> hardware, that could be implemented in the future. This maintains the
+>> existing driver ABI and keeps consistency with the rk817 bindings.
+> So you are adding a new node? Just for one property? No, just put it
+> into parent node.
+The existing upstream codec driver parses the property from the "codec" 
+sub-node, if I
+move it to the parent node here, I will need to patch the codec driver 
+to search in both locations,
+so as to not break the rk817 bindings.  If that is preferred, I can do 
+it that way.
 >
-> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+> Downstream driver does not matter at all in that aspect.
+>
+The codec hardware supports additional properties but they are not 
+implemented currently in
+upstream driver.
 
-Friendly ping?
 
-Also wondering if you folks hit this, or if you haven't triggered the
-watchdog at all.
-
-ChenYu
-
-> ---
 >
-> Changes in v2:
-> - Limit the effect only on tomato.
+> Best regards,
+> Krzysztof
 >
-> ---
->  arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts | 4 ++++
->  arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts | 4 ++++
->  arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts | 4 ++++
->  3 files changed, 12 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts b/a=
-rch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
-> index 2d5e8f371b6d..a82d716f10d4 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
-> @@ -23,3 +23,7 @@ &sound {
->  &ts_10 {
->         status =3D "okay";
->  };
-> +
-> +&watchdog {
-> +       /delete-property/ mediatek,disable-extrst;
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts b/a=
-rch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
-> index 2586c32ce6e6..2fe20e0dad83 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
-> @@ -43,3 +43,7 @@ &sound {
->  &ts_10 {
->         status =3D "okay";
->  };
-> +
-> +&watchdog {
-> +       /delete-property/ mediatek,disable-extrst;
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts b/a=
-rch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
-> index f54f9477b99d..dd294ca98194 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
-> @@ -44,3 +44,7 @@ &sound {
->  &ts_10 {
->         status =3D "okay";
->  };
-> +
-> +&watchdog {
-> +       /delete-property/ mediatek,disable-extrst;
-> +};
-> --
-> 2.43.0.472.g3155946c3a-goog
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
