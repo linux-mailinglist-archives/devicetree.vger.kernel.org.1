@@ -1,226 +1,169 @@
-Return-Path: <devicetree+bounces-34330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD38839670
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:31:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3983E839686
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:34:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CAE81C27335
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:31:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCB8D291DC0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0951680031;
-	Tue, 23 Jan 2024 17:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1403F7FBDC;
+	Tue, 23 Jan 2024 17:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tFNwnrWA"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="CmJCg97v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D070C7FBBF
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 17:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21EA27FBA1;
+	Tue, 23 Jan 2024 17:34:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706031070; cv=none; b=pA8fSplspB8emaRK9SyTfWTGvfYeO1sgseOaSNeGQcZU7Lz45bdjc/oF9zTB1N5qifwkOfNlbeqrPIrxX5MabNQiz2lZn38qPh0QWETg/Kg0/fqqP3tbYRufxHiMDY1XSTZxji8U7tgWVVb8ttyIV3FgN77rlksdlvJdrxIpxqA=
+	t=1706031287; cv=none; b=kHv0dCTP3rB15hFfMFS2d8umNZ9w7+ljzgaOtVGaG88Rt4x6yEG96t/IZMcjX/4NMC0x+e1reiMtH6ITLxcjsfbLdIQHVsgcRlu959vX/PXjbE5KjdtbHiMZomBln65VGOkv+kV5EiAe6QSqRvY3OmkAXs2AyPa7bHDfQFl+Bi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706031070; c=relaxed/simple;
-	bh=BVjHHxnB0kUSnmJxZjaZ30d+pAJNurs59ft6L8A40FY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XYZ2IR1a5FnZEaXfDb+XEw9urzVANCs+mkGCgUlOgY/BkGSEbYJoP/ob7ZiQS7UPiZMptZtO4t5wnPbpYQUMoAEgvDokJj7Yidwsrv8kJRnC92b24Hz+EEVyZY9Wa2Ob5JwTtUkrYmts3r/PYj6lX0rxno+PDLA00ctCrfi6++M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tFNwnrWA; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-783137d7fb4so301714385a.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:31:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706031067; x=1706635867; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=wFVvMcPTA9O9wI9dsmNSl1m60NsVaz3Z3bEn8FjhFOM=;
-        b=tFNwnrWAuIn+T+ouAkIL/0DuHDUAXcRFZDqK6TH3KrAYRSaia0XkTH64217vUGXpPC
-         L2yo9Rb3i39rxF6u1jwxcwmyGUFohUwE0aOt49TNfhhYZsSIfwUmMoKL6YkYdzguEiaU
-         BxAqVnuj0wLKexu4WZPuh6jzrMP6lpAkkRWiWp9l/yVi/55Uwr0GHNwsBDg1zGuedTPJ
-         RkDf7hVxdN36B1yd4nnepTLSallNjmleduiXQdR5vUx4EIDH8Ra8JR1pNfLgR4pEzg+i
-         xOvN76EsmRF00WxWnPx35072bwEPzTnbDFQXsUMivzZSxsFDuf8SStZuyZf5iOl8g/XA
-         DtoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706031067; x=1706635867;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wFVvMcPTA9O9wI9dsmNSl1m60NsVaz3Z3bEn8FjhFOM=;
-        b=S130u8dZbkK716o9Zt1ytgSblGE7nb6nyA9KrZas3sFNrRO+C2R4Q5dnD4VLvfVC8X
-         v5+DrB723FxekJsTLMwMIk1SmbICkwu4rP+mDszrmDb/wI6ruBdKKngbADTk6XFwx1rc
-         n3WkHRqhx/xr42SPhpTTFO+QGD7gRbPKsIpQLRCk1enRNWXrikELgSI65k+F328EvP5y
-         vqtBmGdVRumQ72zQwbBEXeQJiknacbpan3BjD85L6jB8TDpgLDpdZmj7MqmQu5dBLPix
-         qRs91E8Hv1+fL2PxqfR8Zm+EMKKVIuz5kIMXglCFtdMnzco99OFpsfiedz3NQt+sjXaI
-         Jjmg==
-X-Gm-Message-State: AOJu0Yy3t3J6lOxeAFSDvPNMeP4NA8ZofiGilghHjB78mzgP+0tVmB1S
-	qcaqlI+LklFKPo5gnTbJLhaa4fJdkTCBGWkhGmNw1fHbDGxbCJ4lKyd5wtH/IIcEutKKJMkiLtF
-	vUpMBOZ58DxRwaASV9LuTicSnBNNSJhe7BTY3kw==
-X-Google-Smtp-Source: AGHT+IExqOZSCeuONz7SSCMdZN/EixYFSp68S4V4xbr4z4v6pt4eWQqoRuRMUJar2Pz8ZfIgocCgo8xj5GNuQjYdKNM=
-X-Received: by 2002:ad4:5c4a:0:b0:681:3158:f362 with SMTP id
- a10-20020ad45c4a000000b006813158f362mr1310624qva.70.1706031066525; Tue, 23
- Jan 2024 09:31:06 -0800 (PST)
+	s=arc-20240116; t=1706031287; c=relaxed/simple;
+	bh=N5ce6+W/71r/j3ApCh6ji0TMDO8AABTut0B7J4mjWDI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WUiZCU4SJrro5Uxxz59hyescJMMg3nCsv8X2OzYlfZEslOHU/G/I2VP5qLy5Iru22D1OMe7dIUFEXlVTKfs052f+jHp4bL6y2YZaJGti4AHOwOs8FYWeR1f6uBNJYRPJAPcihG7bM0nFMoyZz/3p1gLlSBCnux+FmVgZqsZ+/rs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=CmJCg97v; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 3156A87D51;
+	Tue, 23 Jan 2024 18:34:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1706031277;
+	bh=fJN0EmvuEyVdTweVqK3lb0gw7cCLtKgMHlV2F/gFt3M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CmJCg97v0Bi9szGyck9o3bXSXn8j9wyozrKZR8g1hvsgXIHOPaucmovR886UIt3We
+	 ZsNi4/Agq7n4iAkZ0XFa0UeAy4g9gqACVfjc5tmWRzv4KDA+eHKcVjkTV/aabbIheP
+	 1K51d14poDXzQvo31JRUgA8WGE788CoqFkfyJSjrq+9CmV9y7QOV3tGTfbZ6Q95Khc
+	 oNI2dxY0YArF0ClB80BX7QoOeBKU3jnVT+X4QevhSttYuon1BvRTXbsTD5Cn64ZiPH
+	 Azf1ugYIW3QfywmozWRf50oQ67/Xrzq/w1EAGD5MDCOSUlAZJ59z+74Tie7RXrOkYk
+	 xbL4y8Y8FtvBw==
+Message-ID: <493e9362-bed1-4257-92d5-d1f87e047376@denx.de>
+Date: Tue, 23 Jan 2024 18:34:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240122225710.1952066-1-peter.griffin@linaro.org>
- <20240122225710.1952066-4-peter.griffin@linaro.org> <da30a68a-e29f-45c8-aa73-02955255a457@linaro.org>
-In-Reply-To: <da30a68a-e29f-45c8-aa73-02955255a457@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 23 Jan 2024 17:30:55 +0000
-Message-ID: <CADrjBPor5tMY4r0jOy7GH36auCU7dWn6Qn4ct89bsSMW4vAQOA@mail.gmail.com>
-Subject: Re: [PATCH 3/9] watchdog: s3c2410_wdt: update to use new
- exynos_pmu_*() apis
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: arnd@arndb.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux@roeck-us.net, wim@linux-watchdog.org, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, jaewon02.kim@samsung.com, chanho61.park@samsung.com, 
-	semen.protsenko@linaro.org, kernel-team@android.com, tudor.ambarus@linaro.org, 
-	andre.draszik@linaro.org, saravanak@google.com, willmcvicker@google.com, 
-	linux-fsd@tesla.com, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] [RFC] net: phy: broadcom: Add DT LED configuration
+ support
+Content-Language: en-US
+To: Florian Fainelli <florian.fainelli@broadcom.com>, netdev@vger.kernel.org,
+ Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Andrew Lunn <andrew@lunn.ch>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Conor Dooley <conor+dt@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Lee Jones <lee@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Pavel Machek <pavel@ucw.cz>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Rob Herring <robh+dt@kernel.org>,
+ Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20240122204650.344794-1-marex@denx.de>
+ <1c57c364-dbe8-42f8-836c-52fad76a3f48@broadcom.com>
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <1c57c364-dbe8-42f8-836c-52fad76a3f48@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Krzysztof,
+On 1/22/24 23:34, Florian Fainelli wrote:
+> On 1/22/24 12:45, Marek Vasut wrote:
+>> The BCM54213E and similar PHYs have extensive LED configuration
+>> capabilities -- the PHY has two LEDs, either of the two LEDs can
+>> be configured to 1 of 16 functions (speed, TX, RX, activity, on,
+>> off, quality, ... multi-color) used to drive single-color LED.
+>> The multi-color mode is special, it provides 16 more sub-modes
+>> used to drive multi-color LED.
+>>
+>> The current configuration -- both LEDs configured as multi-color,
+>> with both LEDs multi-color sub-mode set to link activity indicator,
+>> is not suitable for all systems in which this PHY is used.
+>>
+>> Attempt to implement a way to describe the LED configuration in DT.
+>>
+>> Use Documentation/devicetree/bindings/net/ethernet-phy.yaml leds {}
+>> subnode of the PHY DT node, describe both LEDs present on this PHY
+>> as single LEDs within the leds {} subnode. Each described LED is a
+>> subnode of its own, the description uses standard LED subsystem
+>> bindings from Documentation/devicetree/bindings/leds/common.yaml .
+>>
+>> The DT description of the LED configuration can look for example
+>> like this:
+>>
+>> "
+>> ethernet-phy@1 {
+>> ...
+>>     leds {
+>>         #address-cells = <1>;
+>>         #size-cells = <0>;
+>>
+>>         led@0 {
+>>             reg = <0>;
+>>             function = LED_FUNCTION_ACTIVITY;
+>>         };
+>>
+>>         led@1 {
+>>             reg = <1>;
+>>             function = LED_FUNCTION_SPEED_2;
+>>         };
+>>     };
+>> };
+>> "
+>>
+>> Implement parsing code in the broadcom PHY driver to detemine desired
+>> LED configuration from DT. In case the leds {} subnode is present, the
+>> parser code iterates over its subnodes and for each led@N subnode it
+>> parses the following properties:
+>>
+>> - reg - LED ID, either 0 or 1, used to identify the LED on the PHY
+>> - function - LED single-color function (speed, TX, RX, multi-color...),
+>>               uses LED subsystem LED_FUNCTION_* string. The parser in
+>>          the driver maps this to register setting.
+>> - function-enumerator - In case function is set to "multi-color",
+>>                          the multi-color function number. The parser
+>>             in the driver uses this value directly for
+>>             the multi-color configuration register.
+>>
+>> Once the properties are parsed, the LED configuration registers of the
+>> PHY are programmed.
+>>
+>> The current list of LED subsystem LED_FUNCTION_* does not cover the
+>> entire list of possible single-color LED functions of this PHY, add
+>> example extension for "link speed 1" and "link speed 2" setting into
+>> the leds/common.h header file.
+>>
+>> The function-enumerator should probably not be a number, but maybe
+>> some sort of macro specific to this PHY ? I would like to avoid new
+>> broadcom PHY specific DT properties.
+> 
+> The parsing should definitively not be in the driver code, the driver 
+> should only be providing a mapping between the function and enumerator 
+> and a method to set those. Christian has been working on Ethernet PHY 
+> LEDs for a while now, so he would be in a better position to comment 
+> about how to about that.
+> 
+> The LED functions and register interface is actually quite stable across 
+> Ethernet PHYs from Broadcom so this code, however it looks like in the 
+> future should be moved to bcm-phy-lib.[ch]. If and where they are 
+> differences we can account for them in the library or by having each PHY 
+> driver entry provide a bcm54xx_* wrapper function that provides a table 
+> with the appropriate mapping.
 
-Thanks for your review feedback.
-
-On Tue, 23 Jan 2024 at 11:19, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/01/2024 23:57, Peter Griffin wrote:
-> > Instead of obtaining the PMU regmap directly use the new exynos_pmu_*()
-> > APIs. The exynos_pmu_ APIs allow support of newer Exynos SoCs that have
-> > atomic set/clear bit hardware and platforms where the PMU registers can
-> > only be accessed via SMC call.
-> >
-> > As all platforms that have PMU registers use these new APIs, remove the
-> > syscon regmap lookup code, as it is now redundant.
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  drivers/watchdog/Kconfig       |  1 +
-> >  drivers/watchdog/s3c2410_wdt.c | 25 +++++++++----------------
-> >  2 files changed, 10 insertions(+), 16 deletions(-)
-> >
-> > diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> > index 7d22051b15a2..b3e90e1ddf14 100644
-> > --- a/drivers/watchdog/Kconfig
-> > +++ b/drivers/watchdog/Kconfig
-> > @@ -513,6 +513,7 @@ config S3C2410_WATCHDOG
-> >       depends on ARCH_S3C64XX || ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
-> >       select WATCHDOG_CORE
-> >       select MFD_SYSCON if ARCH_EXYNOS
-> > +     select EXYNOS_PMU
->
-> This does not look compatible with S3C64xx and S5Pv210.
-
-Please refer to my reply to Guenter on how I propose fixing that in v2.
-
->
-> >       help
-> >         Watchdog timer block in the Samsung S3C64xx, S5Pv210 and Exynos
-> >         SoCs. This will reboot the system when the timer expires with
-> > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> > index 349d30462c8c..fd3a9ce870a0 100644
-> > --- a/drivers/watchdog/s3c2410_wdt.c
-> > +++ b/drivers/watchdog/s3c2410_wdt.c
-> > @@ -28,6 +28,8 @@
-> >  #include <linux/regmap.h>
-> >  #include <linux/delay.h>
-> >
-> > +#include <linux/soc/samsung/exynos-pmu.h>
-> > +
-> >  #define S3C2410_WTCON                0x00
-> >  #define S3C2410_WTDAT                0x04
-> >  #define S3C2410_WTCNT                0x08
-> > @@ -187,7 +189,6 @@ struct s3c2410_wdt {
-> >       struct watchdog_device  wdt_device;
-> >       struct notifier_block   freq_transition;
-> >       const struct s3c2410_wdt_variant *drv_data;
-> > -     struct regmap *pmureg;
-> >  };
-> >
-> >  static const struct s3c2410_wdt_variant drv_data_s3c2410 = {
-> > @@ -355,8 +356,8 @@ static int s3c2410wdt_disable_wdt_reset(struct s3c2410_wdt *wdt, bool mask)
-> >       const u32 val = mask ? mask_val : 0;
-> >       int ret;
-> >
-> > -     ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->disable_reg,
-> > -                              mask_val, val);
-> > +     ret = exynos_pmu_update(wdt->drv_data->disable_reg,
-> > +                             mask_val, val);
-> >       if (ret < 0)
-> >               dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
-> >
-> > @@ -370,8 +371,8 @@ static int s3c2410wdt_mask_wdt_reset(struct s3c2410_wdt *wdt, bool mask)
-> >       const u32 val = (mask ^ val_inv) ? mask_val : 0;
-> >       int ret;
-> >
-> > -     ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->mask_reset_reg,
-> > -                              mask_val, val);
-> > +     ret = exynos_pmu_update(wdt->drv_data->mask_reset_reg,
-> > +                             mask_val, val);
-> >       if (ret < 0)
-> >               dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
-> >
-> > @@ -384,8 +385,8 @@ static int s3c2410wdt_enable_counter(struct s3c2410_wdt *wdt, bool en)
-> >       const u32 val = en ? mask_val : 0;
-> >       int ret;
-> >
-> > -     ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->cnt_en_reg,
-> > -                              mask_val, val);
-> > +     ret = exynos_pmu_update(wdt->drv_data->cnt_en_reg,
-> > +                             mask_val, val);
-> >       if (ret < 0)
-> >               dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
-> >
-> > @@ -617,7 +618,7 @@ static inline unsigned int s3c2410wdt_get_bootstatus(struct s3c2410_wdt *wdt)
-> >       if (!(wdt->drv_data->quirks & QUIRK_HAS_PMU_RST_STAT))
-> >               return 0;
-> >
-> > -     ret = regmap_read(wdt->pmureg, wdt->drv_data->rst_stat_reg, &rst_stat);
-> > +     ret = exynos_pmu_read(wdt->drv_data->rst_stat_reg, &rst_stat);
-> >       if (ret)
-> >               dev_warn(wdt->dev, "Couldn't get RST_STAT register\n");
-> >       else if (rst_stat & BIT(wdt->drv_data->rst_stat_bit))
-> > @@ -698,14 +699,6 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
-> >       if (ret)
-> >               return ret;
-> >
-> > -     if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
-> > -             wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
-> > -                                             "samsung,syscon-phandle");
-> > -             if (IS_ERR(wdt->pmureg))
-> > -                     return dev_err_probe(dev, PTR_ERR(wdt->pmureg),
-> > -                                          "syscon regmap lookup failed.\n");
->
->
-> Continuing topic from the binding: I don't see how you handle probe
-> deferral, suspend ordering.
-
-The current implementation is simply relying on exynos-pmu being
-postcore_initcall level.
-
-I was just looking around for any existing Linux APIs that could be a
-more robust solution. It looks like
-
-of_parse_phandle()
-and
-of_find_device_by_node();
-
-Are often used to solve this type of probe deferral issue between
-devices. Is that what you would recommend using? Or is there something
-even better?
-
-Thanks,
-
-Peter
+I very much agree. I also hope Rafal can chime in, I saw some openwrt 
+LED patches floating around recently.
 
