@@ -1,112 +1,136 @@
-Return-Path: <devicetree+bounces-34342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48AD1839700
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:54:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BF983970D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:56:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9D5B1F22286
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:54:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DF92285617
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66DEF81AA2;
-	Tue, 23 Jan 2024 17:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23A9281AA1;
+	Tue, 23 Jan 2024 17:56:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W1RxQXQP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dHYPbyaz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01558004C;
-	Tue, 23 Jan 2024 17:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 782C481207
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 17:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706032444; cv=none; b=ZdVOQX0nLeHwgZrMd7BkTYwGQiTIroFozS+DtIiIx0XDjyerq7Kh8uUKLTMJrjc/DJpzLg+Bcpq+0BzAjkOm7oFWotVy9kdYBcs7/GUcZ7/J8wgp39YUPukZPHQX+7SzGzBarULijjDveXQTiRE1ExqYygrnIb91nmQKFi3v5Ns=
+	t=1706032569; cv=none; b=WRO7uok/yclHHFLLZ26FlyXdjGrBHNCHV6vYMazvJJKbMqnfdMz9JFW1MjOdVcEwm2yDRrjYjtHjycQVCMeG8HwcCnC+NpkzOz+onCvCokC7w5Opedn6iHIWPvyYqet7KjSys2E02LNKyh/4/A1B2zP5QoiuUDi0OKBoGSvQHYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706032444; c=relaxed/simple;
-	bh=/Lf65r0jEFfaCyx/YVAM+/B+UJeshYc86BaIyXbVHIM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TtH+MO3EX4rPPhNaDHjAN6KePAnSQ8+BVQr7IsQ/YzDC78i97iGYCg1RWJTYtDRjSnnD/HP8x2bfu1YjG/s0dWsrl0rZs52KjmrPYr9VM+wNSmm3JR3mshJtb3RG54yTJWn2CfkrtmeKYWt/U5ZEi3eUbA4zbcQunsrBFVugtoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W1RxQXQP; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40eacb6067dso28879555e9.1;
-        Tue, 23 Jan 2024 09:54:02 -0800 (PST)
+	s=arc-20240116; t=1706032569; c=relaxed/simple;
+	bh=Kr7w+SGEwqQihNACAI+flJSJVscpWWcaaMGKuGdc9I4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X7HOASi/dW6M/wTzpoJHLkyytxRyiUZklcvGxezSgCajtKLfbqUQo5lMbr1ViT9qlu07BgTS8snTzUB1v4sNklES4LrE5LaIzkN0OOJI3H5bUvNgqaVumpvUXZmTKFORL+gyDJRzGfyoMG+Vu7h1hMsQqmXlWWLbaE9sTQk1378=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dHYPbyaz; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-50e7d6565b5so5650292e87.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:56:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706032441; x=1706637241; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T9axCURSdPj5O6k/8fwokenEz2T/EczgGrNIrYgrSFE=;
-        b=W1RxQXQPxmgC4hjde1Xra6NULCtL8wQd2yIwEfjwHTwRCf3E53PObHwNcWEOc6Jo5g
-         2wAOZu6VEh4QwXFFo4EexEcJezUBIUzLrHdZam78peBnD/K5aPT/PtqB1d6TffFpnVHy
-         B6FwUsydRWP9LBo/gk/9I8W+P7kPrXQNgwHrI7J+xAu+p5nhHVoRakBT6/01Zvc/nkiJ
-         8ufAjOreZuIsGvc6KvhII6NgAKAV8zelkG3OpPStipRoIXpNZyEuSfgBj+aHnaZRtRen
-         l/qs5cRKNryR7lrxhy5BSPHzjU7IM9nWXp7UXqoWC2Xw3LArVQSqjaC3NiUc03k1d0p2
-         cw9A==
+        d=linaro.org; s=google; t=1706032565; x=1706637365; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WsZ4KlUHiglOsCzCfXatA2rETh1XN4ZPTM126THuUHg=;
+        b=dHYPbyaziPPSWKqT5rWuOtoNXKtw3ZOQj1AVUwhhT9ddAk2OMQq/JQUZMOhpcWKCJW
+         9vD3cHW8opbTSRbAhxJi2rS5ErzLPab2/JS4pBtxZ7IoaGkFlpRYNEQ0dTU+810V3TlA
+         eEfBVJz+2R7kd1b3CtYize6ct9ZhryKlf8JCrar9bBw9N/iJ3ZNQOX8YaJTjdUBnbiMD
+         L5zkIjX4HAG40A5TdZlFsNyO1iVpH/dk8foT02RiU4ZuSJvdhh4XpOMR04eMt8b9TGnK
+         5eXnAvmGAbRVRVV1Et1Eg9V7UvSuxx3+9Xr1y1+VTPZvUrDcBFO229ENnX7FDA+tKWrQ
+         smyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706032441; x=1706637241;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=T9axCURSdPj5O6k/8fwokenEz2T/EczgGrNIrYgrSFE=;
-        b=i3fd0V+uJBBIpFUUOlLbjeo4Qd4EY0dobjE2+8hDPzKf2pLTWcwMDz00ADsVUC6ALZ
-         IhLzkJU1uitd82reQlo8biGUS2eVc2M2Vd+QxgBbNbPXqN9cFxJJ7kWB//rE2q4V3hsc
-         VSZBKkuqUezB/fA3COZSbZE8fjDs1ppzbs3SS1RT+vqaqHpkz0vEKMAA/sOf0FDgH4E7
-         Hqiu9mcLm7Ofjd15sIIGeDZG65ne+Kd9g/zT4s6k0OuiU2BzGqpgClS6nTI57D0maqA1
-         HoOZmwSShyK0XvJV7zJ4ieVnzqECW117DJtH54yjlFMzxa2wZ6gETaJvOIkv096xCUvQ
-         HFMw==
-X-Gm-Message-State: AOJu0YwNPMD/ldS5Y+FYW5X8hwjPR2jZb7yPmcYJV/agSPuA+R8PSTNe
-	fYBEoY3NBe6rpd02wamIywpaRAjB5kmqLu+uhJeePlFfD/vsmq35bc2biGvNhWM=
-X-Google-Smtp-Source: AGHT+IHfolV3zQWbsCi6txDpI6lqMV3lpStI7mStzT3HOm8ywicmpEIYK00D6kIX3ljjceGHtRFaog==
-X-Received: by 2002:a05:600c:4657:b0:40e:5afe:a42e with SMTP id n23-20020a05600c465700b0040e5afea42emr409342wmo.247.1706032441017;
-        Tue, 23 Jan 2024 09:54:01 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-14-70.dynamic.telemach.net. [86.58.14.70])
-        by smtp.gmail.com with ESMTPSA id f18-20020a05600c155200b0040d87100733sm43414126wmg.39.2024.01.23.09.53.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 09:54:00 -0800 (PST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
-Cc: Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-sound@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/7] arm64: dts: allwinner: h616: Add SPDIF device node
-Date: Tue, 23 Jan 2024 18:53:59 +0100
-Message-ID: <3786260.kQq0lBPeGt@jernej-laptop>
-In-Reply-To: <20240122170518.3090814-8-wens@kernel.org>
-References:
- <20240122170518.3090814-1-wens@kernel.org>
- <20240122170518.3090814-8-wens@kernel.org>
+        d=1e100.net; s=20230601; t=1706032565; x=1706637365;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WsZ4KlUHiglOsCzCfXatA2rETh1XN4ZPTM126THuUHg=;
+        b=LiF27XBpWNW3YIjqZz7o1qcxClHZXHAG/OJlI48hQXNNSYkJ2lxN0XasssAcOc58fb
+         71FbLQBtKJ+clzgR+iKNpSDqbdsykgIQDbIRHEvRK1yWE1OaFsYLWED2vhxQACOGdcXW
+         IDr5dsIIthjkzI0QjdukTk+pv4gNsvgRaRr8N27Lirf+ptwOzUUbuD9MEaL35F5vW61o
+         fvSEgrC6Ml/JAPhYhQkpPy+bkqIgpaj6DKz1hRJKo9Q6wto8kfeMcMuU8ctne6I6vL2y
+         kNBd0QLC0V7xsFUZjukBKW2pfuACHBOS6d7icgfy8xBn10GhisLw6rYsDGCj+PChkLzH
+         8SFw==
+X-Gm-Message-State: AOJu0YyKM644fSv0fJZfpdDOYBBl6w511GK2LGpImNgWc2H6sK330TCS
+	BwIAFAuaNzQHVaZ84IxkA0jVMcsYCKFhmToG7iqNE2I3vXhdU54GMdqkWu4ARy8=
+X-Google-Smtp-Source: AGHT+IFmCLYzgjjZPiLgBJlOLM29I1/FO8zGdLnpI82VdMTXlCFvm48M4Uuf3x4GeJBr2Vn8ojX7mg==
+X-Received: by 2002:a05:6512:33c3:b0:50e:9a0d:d402 with SMTP id d3-20020a05651233c300b0050e9a0dd402mr3678975lfg.105.1706032565599;
+        Tue, 23 Jan 2024 09:56:05 -0800 (PST)
+Received: from [172.30.205.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id o9-20020a056512050900b0050ef7f44884sm2335262lfb.199.2024.01.23.09.56.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 09:56:05 -0800 (PST)
+Message-ID: <f5784838-0386-4ef8-bc3b-195a0132a29d@linaro.org>
+Date: Tue, 23 Jan 2024 18:56:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 10/10] clk: qcom: Add camcc clock driver for x1e80100
+Content-Language: en-US
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <20231214-x1e80100-clock-controllers-v2-0-2b0739bebd27@linaro.org>
+ <20231214-x1e80100-clock-controllers-v2-10-2b0739bebd27@linaro.org>
+ <624956b6-d7ea-43da-bb8d-32d9166a0272@linaro.org>
+ <Za+n4zfzoZFhhLIa@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <Za+n4zfzoZFhhLIa@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Dne ponedeljek, 22. januar 2024 ob 18:05:18 CET je Chen-Yu Tsai napisal(a):
-> From: Chen-Yu Tsai <wens@csie.org>
+
+
+On 1/23/24 12:49, Abel Vesa wrote:
+> On 23-12-16 14:39:48, Konrad Dybcio wrote:
+>> On 14.12.2023 17:49, Abel Vesa wrote:
+>>> From: Rajendra Nayak <quic_rjendra@quicinc.com>
+>>>
+>>> Add the camcc clock driver for x1e80100
+>>>
+>>> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>> ---
+>> [...]
+>>
+>>> +enum {
+>>> +	DT_BI_TCXO,
+>>> +	DT_BI_TCXO_AO,
+>>> +	DT_SLEEP_CLK,
+>>> +};
+>>> +
+>>> +enum {
+>>> +	P_BI_TCXO,
+>> Please don't overload this define with DT_BI_TCXO_AO, add a new one
+>> for the active-only clock. Please also do this in other drivers in
+>> this series.
 > 
-> The H616 SoC has an SPDIF transmitter hardware block, which has the same
-> layout as the one in the H6, minus the receiver side.
-> 
-> Add a device node for it, and a default pinmux.
-> 
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> Nope, that needs to stay if we want to align the dt bindings between
+> SM8550, SM8650 and this. At least for dispcc. But I would like to have
+> the same dt schema for the rest of the clock controller drivers between
+> platforms that share basically the same ip block.
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+No, you're confusing the dt ordering enum (the first one) with the
+parent list enum (the one below that I'm commenting on).
 
-Best regards,
-Jernej
-
-
+Konrad
 
