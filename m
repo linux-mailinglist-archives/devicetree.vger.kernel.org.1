@@ -1,221 +1,156 @@
-Return-Path: <devicetree+bounces-34397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A28E08399D8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:48:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3B748399F4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:06:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B722D1C20E4B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 19:48:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A153286DA0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 20:06:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37BFA823D3;
-	Tue, 23 Jan 2024 19:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7790982D82;
+	Tue, 23 Jan 2024 20:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mPPUwHPc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UxL+L9NL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6262081207;
-	Tue, 23 Jan 2024 19:48:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DAEE63511;
+	Tue, 23 Jan 2024 20:06:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706039294; cv=none; b=CYmRoyltc+xgCMIbdtiCtpOESn5onYSHO556olqA7woMMeLgkoDb4rNkC3++R3izPtxjJ2Q/QQOVpBNuD/xepUNaM6V7hME2JesHO+P9P6cos8vJKrtknYGbCmU722Ox2QrwK2QV+WeQA0Bzk6ElymPguYkUWQn36czrfOyhhSM=
+	t=1706040371; cv=none; b=cZ/PrgUupvO1pNmarddrkkYKb70mkQXcbEr9GmfGhbHy2nu5QZrwCpSur/f3+aZAdMjnsby0i3R25Db2Z0xwj+vex1IGlmvf3efxooNuF9znIH7PTCw5huaFTj9AT3oEOhM0to1Nd8fUQ3oqntO72aZg1VsZkX33O4vzskitG40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706039294; c=relaxed/simple;
-	bh=dIt5Io/oxapQTL0cgujU3110DTiODpzJbHKjZUEISms=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bBx4DHkbP08Tdn1u5a0VOIblN5R9CdDN2mFpWWBWaVXJXvBPpuBZ8PttbmdQoDrD9oW8BKOoxc4gAdYm8xINi04yOm3gXgwVe325ZrU0xJh2LGRnse2ts2Gll50X/tw20qYhKPCba54Wk17m8+5ybTuj04++eZI3XIX6XCkwb+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mPPUwHPc; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a310f4b3597so2190366b.3;
-        Tue, 23 Jan 2024 11:48:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706039290; x=1706644090; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ErC+/ZkGQ3Loz8EHkG675aqy4eM2oDlUc1hoqX6MvnU=;
-        b=mPPUwHPcR5gZl2nX/Kg7R7LZHaRC0Vuh8qjR9lcwq9zy0IrdRM2FYjLhxcsuXk1Vix
-         2008tVIhyAqUltRsaD5SU3//SAKkEyuG+bNLSI+DL3cu84TDvHy5TSObNvMgboInFCcO
-         4lVizO06g6VMBlWrOahoxTBVBPVcoMO9jpEyHp2eo1EE7smjCmSSXOzRES9uqOESgSCE
-         vCY8fTeENMSJSQdnfCZn5GBSd3a5MR0i2Tvni3YOm0lSNmldXeI3DMqqT8IQDlnQRDPt
-         utnj6tbJKc3AW8fzPHBOWj26iS2CJbQyCLEZdFRSXpFiVv4/Yv++laj0QDo+44m9ruc1
-         otIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706039290; x=1706644090;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ErC+/ZkGQ3Loz8EHkG675aqy4eM2oDlUc1hoqX6MvnU=;
-        b=oLZbwgsBPCN0ofzIyYCTw7LKhz4KX2ZubtgOn4gn+Ps4SfTLp9SDegbY+XfW98+h+i
-         WRjifXU0vjv/q7x2dNn6511cg/xHmKIQoKbkMLrcqKX9wiR820xeToBSCVfGhb7V2YzC
-         CM75xJ3LIDCFi9QKXOJ07CbwEVX35tfN287kqVeXKcw0aQfGaDF1xNf7OdkUu0BrfeOO
-         Bl4kBHMVdEU3bqQ/XGcLNc/Ns/nTdf3Q9o9LMDtWUYCLvf0Un2HYi2bkrLlTZcOHLlsU
-         bopxGzCyNA8UJWx1beeBt38iv3JzZ9LcKt84NleOxJIQSS2T9+O/SH2aUzamEi2QJMnl
-         +dWA==
-X-Gm-Message-State: AOJu0Yy0Px0xJWxTRb/6MBkpyE02CwArYFLY/G/G/hUUhWJPM7SipxR4
-	duB9JR+Ln/miRIEbLbKv5rtE0gSlg3zRlc6QD3TUcs1emgPjsO0bjN/OQ7zMZU2dEvumCMZSut2
-	3Ad72fv0Qb5hGcI0OqezM6+9SP48=
-X-Google-Smtp-Source: AGHT+IE7Xa6EaS2tw064//+LZ0qIXqlD517DZIOrh7h8y20z6YIfE+YprQ29Rceyk9ATcFsNARKzeKKgO+oMWPo76YI=
-X-Received: by 2002:a17:907:a642:b0:a2c:dfa:4f7 with SMTP id
- vu2-20020a170907a64200b00a2c0dfa04f7mr327771ejc.82.1706039290312; Tue, 23 Jan
- 2024 11:48:10 -0800 (PST)
+	s=arc-20240116; t=1706040371; c=relaxed/simple;
+	bh=GzhJCzJzKpc9xeFhTpsdwMvee7CM5aTLill6q4USv3U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nNgJFY8pYQz6l4ko0JKZD3FJAdN9fhcX/lWv6sOp50QtlENpWQFLUZFjJzcTRw3L1jmm0+HqJx3cuRWHqWFmHODhYbJND0Ndr/1dn16kOA0x+sSPjxGC/BIsal7c7ArZTm5lIyKgl5tKfrseSOLvP1nWYdns9qRCo90Ed/u+M2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UxL+L9NL; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40NGPRR5029341;
+	Tue, 23 Jan 2024 20:06:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=hUYsYhKG8zh/NNdalZUM0dorkIoNrzpo0eGcmzdbCH4=; b=Ux
+	L+L9NL7W3fcIBkONqHWLOW36dZTeWbd+HPbi4EFcKAV6JZr41W7+xaANSML/P/cb
+	9G7Qw+65VseuGMlWiNptOiO9ViqhfdjEBRyeDNfN7vF/+AiTtDh/PkV7Ep0onY50
+	6vb3yAz1BmjO8J4hOvuLsmAMEqostsCsyXR4ndGZ/lDme8zDforBZnF6Pkja2E7O
+	eYB8L0A4tOHPp8R7Q/5iXdMdw+25u6THmb/Ee43t+OKpbb98OhLvfmo34QllQdm/
+	TlYQEa87hfYRdb5xzrl4LUBSRo31DUGGlfR8rkJD6qCyAAgPI3DGcy0d/1bmbOKI
+	MEhkJsOjMX/ehg7PpstQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vtesch2a5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Jan 2024 20:06:01 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40NK60r0023727
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Jan 2024 20:06:00 GMT
+Received: from [10.110.28.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 23 Jan
+ 2024 12:05:56 -0800
+Message-ID: <fd2c8c1b-02f3-2750-3449-f93fc119fda2@quicinc.com>
+Date: Tue, 23 Jan 2024 12:05:56 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240106222357.23835-1-alchark@gmail.com> <20240109192608.5981-1-alchark@gmail.com>
- <c517f26c-34bc-4b99-b744-8e2549cd28b5@linaro.org> <CABjd4YxYpsvf+ghHTn1z8TAZxQb-2dFOQaVSm8zHKSSWOokqww@mail.gmail.com>
- <e45f72c2-0b5b-44dd-ad39-e7e5bd17ae26@linaro.org>
-In-Reply-To: <e45f72c2-0b5b-44dd-ad39-e7e5bd17ae26@linaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 23 Jan 2024 23:47:58 +0400
-Message-ID: <CABjd4Yz+tqaS38B9uRUZC2nz_VeZ-Db6BpF5oWL3ahmskfbTMA@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: enable built-in thermal
- monitoring on rk3588
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
-	Christopher Obbard <chris.obbard@collabora.com>, =?UTF-8?B?VGFtw6FzIFN6xbFjcw==?= <szucst@iit.uni-miskolc.hu>, 
-	Shreeya Patel <shreeya.patel@collabora.com>, Kever Yang <kever.yang@rock-chips.com>, 
-	Jagan Teki <jagan@edgeble.ai>, Chris Morgan <macromorgan@hotmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/2] dt-bindings: hwinfo: Introduce board-id
+Content-Language: en-US
+To: Elliot Berman <quic_eberman@quicinc.com>,
+        Amrit Anand
+	<quic_amrianan@quicinc.com>
+CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>, <konrad.dybcio@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
+        Conor Dooley
+	<conor@kernel.org>, <andersson@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+References: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
+ <1705749649-4708-2-git-send-email-quic_amrianan@quicinc.com>
+ <6e40dd60-884f-be23-0052-d14f7194f844@quicinc.com>
+ <f21bc259-45fa-d14b-a556-625b813287f4@quicinc.com>
+ <499320f4-f6b1-4582-9512-89ab505305b6@linaro.org>
+ <20240123-sterilize-flap-8971aa3bad4b@spud>
+ <1941558d-d1e0-43b7-9208-65b9ba191bc2@quicinc.com>
+From: Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <1941558d-d1e0-43b7-9208-65b9ba191bc2@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Tbf2azYCNSayz4Q5wH74QmTAEgBJ7PpC
+X-Proofpoint-ORIG-GUID: Tbf2azYCNSayz4Q5wH74QmTAEgBJ7PpC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-23_11,2024-01-23_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
+ bulkscore=0 spamscore=0 phishscore=0 mlxscore=0 mlxlogscore=892
+ impostorscore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401230148
 
-On Mon, Jan 22, 2024 at 4:04=E2=80=AFAM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
->
-> Hi Alexey,
->
->
-> On 21/01/2024 20:57, Alexey Charkov wrote:
-> > On Fri, Jan 19, 2024 at 8:21=E2=80=AFPM Daniel Lezcano
-> > <daniel.lezcano@linaro.org> wrote:
-> > Hello Daniel,
-> >
-> > Thanks a lot for your review and comments! Please see some reflections =
-below.
-> >
-> >> On 09/01/2024 20:19, Alexey Charkov wrote:
-> >>> Include thermal zones information in device tree for rk3588 variants
-> >>> and enable the built-in thermal sensing ADC on RADXA Rock 5B
-> >>>
-> >>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> >>> ---
-> >>> Changes in v2:
-> >>>    - Dropped redundant comments
-> >>>    - Included all CPU cores in cooling maps
-> >>>    - Split cooling maps into more granular ones utilizing TSADC
-> >>>      channels 1-3 which measure temperature by separate CPU clusters
-> >>>      instead of channel 0 which measures the center of the SoC die
-> >>> ---
-> >>>    .../boot/dts/rockchip/rk3588-rock-5b.dts      |   4 +
-> >>>    arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 151 ++++++++++++++=
-++++
-> >>>    2 files changed, 155 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/a=
-rm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >>> index a5a104131403..f9d540000de3 100644
-> >>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >>> @@ -772,3 +772,7 @@ &usb_host1_ehci {
-> >>>    &usb_host1_ohci {
-> >>>        status =3D "okay";
-> >>>    };
-> >>> +
-> >>> +&tsadc {
-> >>> +     status =3D "okay";
-> >>> +};
-> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/b=
-oot/dts/rockchip/rk3588s.dtsi
-> >>> index 8aa0499f9b03..8d54998d0ecc 100644
-> >>> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> >>> @@ -10,6 +10,7 @@
-> >>>    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> >>>    #include <dt-bindings/phy/phy.h>
-> >>>    #include <dt-bindings/ata/ahci.h>
-> >>> +#include <dt-bindings/thermal/thermal.h>
-> >>>
-> >>>    / {
-> >>>        compatible =3D "rockchip,rk3588";
-> >>> @@ -2112,6 +2113,156 @@ tsadc: tsadc@fec00000 {
-> >>>                status =3D "disabled";
-> >>>        };
-> >>>
-> >>> +     thermal_zones: thermal-zones {
-> >>> +             /* sensor near the center of the whole chip */
-> >>> +             soc_thermal: soc-thermal {
-> >>> +                     polling-delay-passive =3D <20>;
-> >>
-> >> There is no mitigation set for this thermal zone. It is pointless to
-> >> specify a passive polling.
-> >
-> > Indeed, it makes sense to me. There seems to be a catch though in that
-> > the driver calls the generic thermal_of_zone_register during the
-> > initial probe, which expects both of those polling delays to be
-> > present in the device tree, otherwise it simply refuses to add the
-> > respective thermal zone, see drivers/thermal/thermal_of.c:502
->
-> Usually:
->
-> polling-delay-passive =3D <0>;
-> polling-delay =3D <0>;
->
-> cf:
->
-> git grep "polling-delay =3D <0>" arch/arm64/boot/dts
+On 1/23/2024 10:51 AM, Elliot Berman wrote:
+> 
+> 
+> On 1/23/2024 9:18 AM, Conor Dooley wrote:
+>> On Tue, Jan 23, 2024 at 12:50:07PM +0100, Krzysztof Kozlowski wrote:
+>>> On 22/01/2024 11:10, Amrit Anand wrote:
+>>>>
+>>>> On 1/21/2024 12:40 AM, Trilok Soni wrote:
+>>>>> On 1/20/2024 3:20 AM, Amrit Anand wrote:
+>>>>>> From: Elliot Berman <quic_eberman@quicinc.com>
+>>>>>>
+>>>>>> Device manufacturers frequently ship multiple boards or SKUs under a
+>>>>>> single software package. These software packages will ship multiple
+>>>>>> devicetree blobs and require some mechanism to pick the correct DTB for
+>>>>>> the board the software package was deployed. Introduce a common
+>>>>>> definition for adding board identifiers to device trees. board-id
+>>>>>> provides a mechanism for bootloaders to select the appropriate DTB which
+>>>>>> is vendor/OEM-agnostic.
+>>>>> Please extend CC list to more architectures? linux-arm-kernel, risc-v etc; since
+>>>>> the proposal below is not specific to ARM but any architecture is using the
+>>>>> devicetree.
+>>>> Wouldn't devicetree@vger.kernel.org will have concern folks from all the 
+>>>> architectures?
+>>>> Please correct me.
+>>>
+>>> No.
+>>
+>> The chromium guys should get a CC on future versions of this stuff,
+>> since they like doing wacky things with compatible strings in their
+>> bootloader and this problem is one they also face. Doug Anderson and the
+>> mediatek chromebook folks would be a good start.
+>>
+> 
+> Please CC Peter Griffin from Linaro as he helped restart this 
+> discussion at Plumbers.
+> 
+> Peter Griffin <peter.griffin@linaro.org>
+> 
+> Also, for the oneplus boards:
+> Caleb Connolly <caleb.connolly@linaro.org>
 
-For some reason when I have both polling-delay-passive and
-polling-delay set to 0, the active cooling map I have in my board DT
-(using a PWM controlled fan) behaves weirdly.
+Thank you everyone. Amrit - please take care of above comments
+when you post next revision and as suggested please add other
+architecture mailing lists using the devicetree. Thank you. 
 
-I use the following fragment in my board DTS:
+-- 
+---Trilok Soni
 
-+&package_thermal {
-+       trips {
-+               package_fan: package-fan {
-+                       temperature =3D <55000>;
-+                       hysteresis =3D <2000>;
-+                       type =3D "active";
-+               };
-+       };
-+
-+       cooling-maps {
-+               map-fan {
-+                       trip =3D <&package_fan>;
-+                       cooling-device =3D <&fan THERMAL_NO_LIMIT
-THERMAL_NO_LIMIT>;
-+               };
-+       };
-+};
-
-If I add polling-delay =3D <1000>; at the top, the fan speeds up and
-down dynamically as the package temperature swings around 55C. If I
-remove that (having set polling-delay =3D <0>; in rk3588s.dtsi), the fan
-speeds up to the midpoint cooling state once the package temperature
-approaches 55C, and then it just stays there forever: it doesn't speed
-up above the midpoint even as the temperature climbs above 70C, nor
-does it spin down as it falls back to around 45C.
-
-Is that the expected behavior for when the polling is disabled?
-
-I haven't yet studied in detail if passive cooling kicks in correctly
-with polling disabled, but this behavior with active cooling left me
-quite confused - any pointers would be much appreciated.
-
-Thanks a lot,
-Alexey
 
