@@ -1,112 +1,119 @@
-Return-Path: <devicetree+bounces-34335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 819548396D1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:48:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B95F98396D9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:49:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A941294677
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:48:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 721F6294619
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC86081ADF;
-	Tue, 23 Jan 2024 17:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 598F781AB7;
+	Tue, 23 Jan 2024 17:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a71sppmp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y8tDoqL4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD2E7811EC
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 17:47:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F86811F6;
+	Tue, 23 Jan 2024 17:48:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706032058; cv=none; b=dDkO4OkX2eb6J8xFUF7BuK1BWrWvPD5sCkICMPApKQPxYXyXukJCpWGQ6qXikq/Hq7YUJb78C429IcwIDdohnWG0d5PmhQcshjyfb9KLDkbcZemCzdFsglelhxNm/tPdFLUYEcZgrrSN6IAQsStwh20xEWJaTQkXMQx2itqlAg0=
+	t=1706032136; cv=none; b=uaYsDuD24rZeuSGenCEoQWJtJaCpnMkrNxNtZ/xk+6O1i+pdssjEtoAxWGrDFdvnn0qgFJnh5K9/WL4CSNKati7LDvGGP+JpeyF0HRUi2oUBuNTY4u/gUr+Ms+LHNDFNo6a4JcEF6NIylU1ejnmjp4pAFnUu8LQ4zy2xkLPacnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706032058; c=relaxed/simple;
-	bh=YdAKd8XoB3/ojklKtoW2d/PEp52Xm7vQ/1wzjyM7Njo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mMU9M1RL7SaSCye8YzvoSK1d+HZulDSq/R260uY4Gxq5EvyVvdId3tOfRPrsbM724lewZEmYWuhnHCk2pQ+2jjJeJ65Fev3lATaW5nq1UiImUo3oYd43VTz4jHDXYwm9xA9+Z8OEVwx+lM3N50IZ7NQOUp8wNOmZf9RmAzSXhQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a71sppmp; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5100e817640so74519e87.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:47:36 -0800 (PST)
+	s=arc-20240116; t=1706032136; c=relaxed/simple;
+	bh=QQ9uZ4Wazjii5m802qrsRtRIm765++713g/rq7dljig=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VgMQ2WYJDbQMVLoDBwPaeHE7VpTHhnLmm2/B0CkdwjVTZrcGJCw3NXbhQAggOwMt82Hr2kLT2RiseTJAV6f3Of/slMDE1L5g8Nm6/rfmWRY8ZukoA9qI5P04ZHtSh6ZM49tiyaqaFnmW4JYEf7G2jDUf+S/22BRKeUc6Ff95E2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y8tDoqL4; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-337cf4eabc9so3753213f8f.3;
+        Tue, 23 Jan 2024 09:48:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706032055; x=1706636855; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0xGfYmopes4ykntH4ktUyEr+1jXwvGHf/bYmnlHLwxs=;
-        b=a71sppmpXAqdCC7TpbtC+3Qu2fXJ276eVy0zeXRwvQr+pzm85IUbxDiFbUDsOZ3ih0
-         rIFk4TzIOP5V99sGf8+F+XLNIXpRxK81w92pCyN4k5yAC3pThujTqCLFdNx+n4jVzNpD
-         fra4x9uPIMQB9J4J0i0JTpZoOKM4R9J2Dcs3Mjjv3uoCpujZvirgXWF+S9kexTMjXhPW
-         N3GeYr89lYbufqG+ovMJcU5acElcbKZmixsTDgDtMlVpTxnFiKsXowvtE3nnbKMtHCT1
-         90Bk/HaKC9R2QSg80J7AyhbmBqKK2wEdeJjwFO6zru7tpTmf1MHksmk1YiYaTs5bkxva
-         9GTg==
+        d=gmail.com; s=20230601; t=1706032133; x=1706636933; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EUjlyaIMA5LD+Pgub4rYNwex11S+1W6zP2cY/Lr1Xls=;
+        b=Y8tDoqL4P14FPmRdnia+YasCKacgcDoSIoz32rIb+nbjdKa444md6RAUiyPg3ABLRD
+         ll1+u+HbbU4Race4hgDflHeVGCseT6joltFc5xCt6IT61XEWQC/39lL7DmQdHCg1NCOF
+         ajICtrFwtMk7OYUFjLqS+o8U5+gp700tfR8iG0vRbuajRU+HtZpYDoErYQfTMGXu/C/R
+         Eh3s0cUeh0VNvYHwQpKtBO0r4Xebl1Yq4Owg49Nr8U//8DxMW/YCr25UOdsKIkShX36y
+         Xqiwyi3eN943waCFAgjxuUlnyvetHLAs47IRlZhAsxjZZAaZKD2h8NM+2rvP8AM7qs8j
+         miZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706032055; x=1706636855;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0xGfYmopes4ykntH4ktUyEr+1jXwvGHf/bYmnlHLwxs=;
-        b=F2IAr0Ehx2SogQJmSx9NguPOElX3hx5a8vQHVIGXPD1H1YNdxngOPqfcjGRWsmxhK5
-         uRl59qntG9md/leQ2PcHgh9HOA2Mz3WXCcl+slmTJPdSz4BxnHgvqy15J7bVzZ52hJhI
-         QiKD8NnV96sH1UuSWRlIasFIxWu7LbSVJSeBbOs5Nt15uizMszkv9EztdBusBH8MWoSK
-         dEXk0hjBpKdSiHcTCL+YIGH3BQIkhZH9sh4zGTWr+9gd8VynM9LTY48Xb1yedKHdG3Qs
-         pPwrNxxOBHyOhMN7UhEgg0HKg4mZGCP3j0b0YNTxUqusmRjeMv99VOZgpeLzy7sEBFbH
-         seXA==
-X-Gm-Message-State: AOJu0YwufYTqViT9gdD67WmCL3/6sXQXOW983PYQhDVvVGzJJcp/4yVC
-	qlztIMrM3i8zyeA0XdCJdh1HI+1wXhxb9MUBdWt3YdJMXALWwftUmsiS6x0sm58=
-X-Google-Smtp-Source: AGHT+IG516HFF5Sf1auhohh1cpQeonpngG1CTtP4ybKJ+ixd/4zpZU641wfVfjcasCJQnnLATvwDDA==
-X-Received: by 2002:a05:6512:12ce:b0:50f:1124:2c63 with SMTP id p14-20020a05651212ce00b0050f11242c63mr3346612lfg.101.1706032054676;
-        Tue, 23 Jan 2024 09:47:34 -0800 (PST)
-Received: from [172.30.205.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id c14-20020a19654e000000b005100889fbd4sm237118lfj.279.2024.01.23.09.47.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 09:47:34 -0800 (PST)
-Message-ID: <d31a52fc-9073-483d-b84b-1f02a5698a89@linaro.org>
-Date: Tue, 23 Jan 2024 18:47:32 +0100
+        d=1e100.net; s=20230601; t=1706032133; x=1706636933;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EUjlyaIMA5LD+Pgub4rYNwex11S+1W6zP2cY/Lr1Xls=;
+        b=RjihdfSsMYB7AlM+V5ROZZOy36FESy/x51lbC9XyqZqAtLtMJezQMuyNWIAeTOJs3B
+         GmiA2DxVEXgnzGy2sFwzZymnmibLpAf9jnREFns7hGBq8oRNUM9HGAJuQcM1jjGJEpTl
+         7LkHaD3FQgmtj7eqg7l3jbIOFy2WGxXrggI8xjFMrFdioHbnm3fVABAWnCCYNm1+sxdD
+         yR0ytozA25XN7yTwkj6JfujGqmqqBzj9N5BwNfegziV6rNRvYoo1zOped5VpordOHXf8
+         Zhkpubw14v2E6VIN6hyqs8nCOzfp876UJGIUJcZu+KjRqaaqHK1LVm9do7jwakq2vAbm
+         EWMg==
+X-Gm-Message-State: AOJu0Yzr6ofuctxXZg3q6RNTakKIkCz2ucZ3GEkwZiFpo/KzTZgD7MIl
+	HBBHDnbCAuYcNrJ3JZx3MvgWCNdB4aqqoJ63RNzHLiBo+5Wpw8to
+X-Google-Smtp-Source: AGHT+IGctHEVFEZp6eUBc8QU6uDhSqzejWNbzNEdCvC2potV0ciD/WNpi/cB1xLvCujpx1Tux5Yl1A==
+X-Received: by 2002:a05:6000:1089:b0:337:c80f:6e19 with SMTP id y9-20020a056000108900b00337c80f6e19mr3407648wrw.69.1706032132766;
+        Tue, 23 Jan 2024 09:48:52 -0800 (PST)
+Received: from jernej-laptop.localnet (86-58-14-70.dynamic.telemach.net. [86.58.14.70])
+        by smtp.gmail.com with ESMTPSA id y6-20020a5d6146000000b003392f625adcsm7158392wrt.36.2024.01.23.09.48.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Jan 2024 09:48:52 -0800 (PST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-sound@vger.kernel.org, dmaengine@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH 1/7] dt-bindings: sound: sun4i-spdif: Fix requirements for H6
+Date: Tue, 23 Jan 2024 18:48:51 +0100
+Message-ID: <3271743.aeNJFYEL58@jernej-laptop>
+In-Reply-To: <20240122170518.3090814-2-wens@kernel.org>
+References:
+ <20240122170518.3090814-1-wens@kernel.org>
+ <20240122170518.3090814-2-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] clk: qcom: gcc-sm8150: Add gcc_parents_0_ao support
-Content-Language: en-US
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20240123-gcc-ao-support-v1-0-6c18d5310874@quicinc.com>
- <20240123-gcc-ao-support-v1-2-6c18d5310874@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240123-gcc-ao-support-v1-2-6c18d5310874@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-
-
-On 1/23/24 17:34, Satya Priya Kakitapalli wrote:
-> Add active_only support for gcc_parents_0, this is needed because
-> some of the clocks under it are critical which would vote on xo
-> blocking the suspend.
+Dne ponedeljek, 22. januar 2024 ob 18:05:12 CET je Chen-Yu Tsai napisal(a):
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-> ---
+> When the H6 was added to the bindings, only the TX DMA channel was
+> added. As the hardware supports both transmit and receive functions,
+> the binding is missing the RX DMA channel and is thus incorrect.
+> Also, the reset control was not made mandatory.
+> 
+> Add the RX DMA channel for SPDIF on H6 by removing the compatible from
+> the list of compatibles that should only have a TX DMA channel. And add
+> the H6 compatible to the list of compatibles that require the reset
+> control to be present.
+> 
+> Fixes: b20453031472 ("dt-bindings: sound: sun4i-spdif: Add Allwinner H6 compatible")
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
-Is there a need to keep gcc_cpuss_ahb_clk_src around? Do we do any
-ratesetting on it? Should we ever turn it off?
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Konrad
+Best regards,
+Jernej
+
+
 
