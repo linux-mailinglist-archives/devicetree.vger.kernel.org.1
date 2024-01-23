@@ -1,164 +1,241 @@
-Return-Path: <devicetree+bounces-34423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4097839B04
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:23:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99CDB839B0A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 22:26:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 942A528DB44
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:23:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDFC91C21835
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 21:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4671B2FC29;
-	Tue, 23 Jan 2024 21:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187AD36B04;
+	Tue, 23 Jan 2024 21:26:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dX1Y2mCd"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="SxWssYbk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2055.outbound.protection.outlook.com [40.107.8.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE7A2C682
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 21:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706045006; cv=none; b=gXTdD1SkNZM9krA0Y50FXVzV6heCrZrlXDIwJDCrYTLWyav+ioke7BsE5/EzP4qg+Iay0d7gaQeIERY7ry8ZVGRwTe3I8xOCq3woVVl7mwrNsjxtMn7h8oXbVkrzX51rZVhhiiNsokHEtTCo0daxy4GrFzy7T+JoGCmgdRdEtwE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706045006; c=relaxed/simple;
-	bh=m9E+F/oA5LkHU+pCGXkD112rZWxy9q/+83JzCaHExbI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HZ8OK/uoyNPXYO7vZ5UJif91Cd87rc53IHWV7/TkBIevh36912nVZze1VwPcUOY2YgReJbiWqiFZ1feniXqyzD+OznPrq5e0UpetYLyBgLSf43XDCbkBAARsuSHLHBHXGufP/nIya5o4AD7L0PYiZHKXCzVEbtj465GqD247lMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dX1Y2mCd; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-337d05b8942so5477756f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 13:23:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706045003; x=1706649803; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3MCJmwcDYheLryivir45qzq+Sya6kRlb5Iyxi3zIwpA=;
-        b=dX1Y2mCdW5pk4Xdg13+a5ZskH+rpJsfOUSVmKIUVw6j59jou/r4kRaW+j0tqHnuCbU
-         TlXkPhPW0R+w41XzmXna9yXN6DWsvpQckC9zdBxOtEZdnYou5CNMcZvfDsU7Tdt1/LaA
-         3KT2RAJOmHWmNpue9G+W6wBUVMiFs/ONgucnt4z4ztSSCAMz9Vlls7KaGCwczXVpOz8z
-         rfvxhL2pvw+W56lnOlJpgTTis1sKb/ttMAPnxSyUrx0dECxTAd2mHrarH6yQMO7Nu1S6
-         +oXHCamTB1QcH6VAPZZB8eXmmwpQD6e/3L357OS8CUl5EJqT68hzDY6mmfFR8ZRIesia
-         oeUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706045003; x=1706649803;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3MCJmwcDYheLryivir45qzq+Sya6kRlb5Iyxi3zIwpA=;
-        b=fpYZPF2FJBPTW8x3HJ/FayGD0lR6Lk1JnbkFAZGuA0EvWO+jOOv3y3BctlmAdzj4Me
-         7VET4HeuYpiAAIYOgLmTL8kDCpaqTTCaOcJuWCfmJ34qN7bOZ7nwTEYkoexF+u9PH+ST
-         WcKH+dGOSqqLASq80kSUDqrbwJwN1ZVwFs+tlCumHfCxnLrM3kAyqy0DpGY/Mw7bHZJG
-         9/EM9+pu1N+ks3p6uvE8QFM5L1M53rpxYddS/lI8otDxIgSNPpr/Zpg85bxnigzAIv0R
-         Op+Ys7/j37s4CySTyOeto8cm4EYhXicpU9LiUq+Es2dmxSvrUOZEl2EhHA2kMK6pMp9u
-         uGXg==
-X-Gm-Message-State: AOJu0YzJxVuyca5mu5aweqF3EYhC1qaCfk9qnVhWIylTtYqQfwX5wUqe
-	eqt6qPs6mA0VNrQWkjBirL/8TDPv7+pgpM936QN1VwionA4J8r03dp4M3JjBiHA=
-X-Google-Smtp-Source: AGHT+IE9IqwzmxdxfPGN4mZYbkj0glhBkt3q5rj5haIhPSDLJ0Qe2t/s89vOUq2/9qXG2roOAx7lhg==
-X-Received: by 2002:a1c:7415:0:b0:40e:47de:d7e1 with SMTP id p21-20020a1c7415000000b0040e47ded7e1mr525116wmc.73.1706045002762;
-        Tue, 23 Jan 2024 13:23:22 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id ay2-20020a05600c1e0200b0040ead97f70dsm8053119wmb.24.2024.01.23.13.23.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 13:23:22 -0800 (PST)
-Message-ID: <279dab82-aff6-4d1d-b414-57910433e36c@linaro.org>
-Date: Tue, 23 Jan 2024 22:23:21 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29D6753AB;
+	Tue, 23 Jan 2024 21:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706045173; cv=fail; b=tyhtPWEyUwjSHc8R1fxEkHlKy3hO+UNSGsTCs3vttLjV1SDFI/BqqwRTui60yTRojj6hV0D1eZjRHjZnzpHWR28Y2ty1Cp6cQt6T2UtxOvjVbvy34gHE2SMkRCeWHhVYIxgsIgqbQDJ5Ucd1lVKK7yqHKUXGCy09SQiWKeeFavQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706045173; c=relaxed/simple;
+	bh=mn0ChQxh9SVQBCBFCFxbD44mymz+sMRtR63H/bfwNxk=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=fPCuP173QVlEsk/PEv69jyFbQlUR6MSE0cjujgyYHInktR32HBpBq+FjQfcFaffAi5ndVrPSzDoClhBj9Mj9ntX0guRXMxe0B6l93lHEsaNOil3J1Qfvt1JhDOhh55/t9Wxe7cG2Lj1k1Hr+1gLawlQXGBT9A7rMZM8GLBnfP7M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=SxWssYbk; arc=fail smtp.client-ip=40.107.8.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CRZD4goYgpH+Xv25EDrEuv5+aQx3MSgTTlz/lBSsI4sO+8Z8j7ep4V14lNsfTeMnUJymflcuucGC1Z7qlHt5HfB7DobhaEYZZQAngdVcZGZ8ngtrTAw3BkLYO+hTsZrnx96jm6IjjzULVCxuutiiud+sKcZc0y37s56X57OY/iIkXolrGZERHv8pZXFkzG+EZTtu9BNcAsF+BVPyCxGG+zzjGjdXfdXlzztbGDOXitKcHdXImYBZsJSzLhEMtThcT291Pcz7lPE8P+9yzSQQM1DR0DnLtgxRMeJJ76BZfwpSHVixLee9r9KFfjge+rBWCkSoPBiIQLAWlq7xQa7lkA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XMAF6N536AjPAoovcp+vXEnKbjyZDtfqPFMlyEUT7Z8=;
+ b=Mx6kp8UZvfuag8oIGKDShquVKUku4A2bZWbrDGgMj9OmiWmyWm9Rs698LiKnSzynz+bDXxL1ds896gIJ6BwobPkPOtYETYTET+qHBb4NAesRTDToQn/Bbl1gzZ4Sqk4AEwvliupAEh3ppB75Gv6Q7Tewyc5Ruwvdqp+Ml/vu7IzuNPLmsAnYjrrpTWPU1AwoDxAaBdPEgHWmMXHQjRBxcR4fi2lqFQAiGjwbMm2FLiAh9O35fXYt/z89Do0M4mGYMiFJvSpiyGpcMqTlEHMfNll6DSgZwa8KarR+xOfBBBSzQqydVN6+YQsTYb+1fdgYCK/6L3xp34Ki+dJKUxBwug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XMAF6N536AjPAoovcp+vXEnKbjyZDtfqPFMlyEUT7Z8=;
+ b=SxWssYbkW3rtCLtOjSFohmUfogsbQfjKNP3t/pcylQ2GmwWpxvkOXoKEHqU3KpNMAiRCtmIXP7g/Rc2Dga0orv/mR7fVcaDaMkTeoobbfOvTwWx3+vNiNhx0tdlN15B6Z6m0UQhU4FyW6EVQXz1Upt+nAbLGEKfohV24JWw7VOA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AS5PR04MB9873.eurprd04.prod.outlook.com (2603:10a6:20b:672::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.29; Tue, 23 Jan
+ 2024 21:26:07 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7202.035; Tue, 23 Jan 2024
+ 21:26:07 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: frank.li@nxp.com
+Cc: alexandre.belloni@bootlin.com,
+	conor.culhane@silvaco.com,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	imx@lists.linux.dev,
+	jirislaby@kernel.org,
+	joe@perches.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-i3c@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	miquel.raynal@bootlin.com,
+	robh@kernel.org,
+	zbigniew.lukwinski@linux.intel.com
+Subject: [PATCH v3 0/8] I3C target mode support
+Date: Tue, 23 Jan 2024 16:25:41 -0500
+Message-Id: <20240123212549.3858137-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR13CA0081.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::26) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] dt-bindings: memory: add two chip-specific
- compatible string
-Content-Language: en-US
-To: Markus Mayer <mmayer@broadcom.com>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
- Device Tree Mailing List <devicetree@vger.kernel.org>
-References: <20240119215231.758844-1-mmayer@broadcom.com>
- <20240119215231.758844-3-mmayer@broadcom.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240119215231.758844-3-mmayer@broadcom.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS5PR04MB9873:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28f454af-528e-4764-e912-08dc1c59e91a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	CYVpKZc//fpWql6Uu8phA/GYL7G91jwpkl0jym/M+G4zU6W1z4Xps2O4CriKr/gXVTwwAf/MKTpX2fwB1g9kuzOy64u47iOz/QM8kYLJk5V8ub13eA+lpnHmb6Q9P11QGl/Bu5Ic6jiR9vGVMhR7MI5YArNbEauNK5F5xdyB2KxAzrDbEM422onj47Q0chGe/rLFIsB7nzn1R46/twhXfBtVMASkQzBvE0PnhwQd8v9SCJdJEIykB3uhxoNW//UJkJogAPeFW5jDqKQaeSDpTWpXjNY9wQ3ZjI+B4UtdAv8Q/czePeIPaZHzxVOdhdb1DnE8TpGgLiScx2y2X3kv1ZlzoujokZ+VYzVCU8VH2j1R6ic0wpOo+rRVemrXzlBc+6yZJBrbbgX8yq0cTFTx/4sheunMOAfyJAPlK8N2ags2TqbPUTnKpdLxom5Dk6wwmpQxmPEhtdqNw4fRBvMPH0ghmYcEQdB9mbZnxGQxaR7Pr6rr5w6iCZrMWCiWuWPyUd970HZe8Tvk8YJkedJiQDRixprCRgoz1miVXeVehGd0bKLvvJ+bNJCY//B2I+s5vdYKsKzfLR9KckoPQB73JWNw7U8BuBEAOrcp3ODO0Qw7xNzhlKnFXJhheuFCyMw7DR4185FmgfzQsbUTMWkbXTu/BL7WINH00m8wE9OD3sA=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(366004)(136003)(376002)(396003)(346002)(230173577357003)(230273577357003)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(38350700005)(34206002)(316002)(52116002)(2906002)(6506007)(66556008)(66946007)(37006003)(26005)(5660300002)(6486002)(7416002)(66476007)(4326008)(478600001)(6512007)(6666004)(8936002)(2616005)(1076003)(38100700002)(8676002)(36756003)(41300700001)(83380400001)(86362001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?KBGyHXyDFYximBU0QSDdvK0qMh+EJbP1sI/MQCt1D1JMYl3o6QY1lH5Y04qQ?=
+ =?us-ascii?Q?JA/HxzUnaN995SJobsYdzZRlcVHBi+eTsuoAUv/Cmx1a279B7V70/vHuo8vI?=
+ =?us-ascii?Q?tlonRppa0iD0kP8mH+IBJW5rt6Jq+KsR6eRBkrZU46r078WkdMSNs1D1Efat?=
+ =?us-ascii?Q?eIO9zGJFuGtBGTTy0m75jav/+xpkSynRgDY4LFIWt8JPpv/zsv80C/8q+2s+?=
+ =?us-ascii?Q?1lXdOhKC0660x9trQeR2rPWlpSPD6eE3VEYX3wFYKPOgCjZ0O5EOodvOlcY3?=
+ =?us-ascii?Q?LsJw6xAoMrYS4ywarcYgg3qe3tyjJXWn6wtfY6IngOWU9EdH/o+1tc6mBcqX?=
+ =?us-ascii?Q?I1RFBx1fGerTBFQ/ZSl23mtJM9Rgd3C4n3kO+qqQLUULvcA6GbhanPgf0WcJ?=
+ =?us-ascii?Q?3pNJBXhi1DoY4pGElI+yExj+/qYWniPTvq+VW3kgqDU4aD7VG1A3SEEPwoCV?=
+ =?us-ascii?Q?X8OkoqeUIKyOAaCuki2knqAK4c58GaiwEZOuGVzcCt3OTK6b/NE3vQFncYid?=
+ =?us-ascii?Q?NgQMtTga0aREwP+x+CrTOFbim2DHtgLOSPNz8Ru+YK4Rc33okFBA5WT9/cna?=
+ =?us-ascii?Q?R0dpTxfYHKSSBUuWYhqCo2EPAMzYc0urVo6iHeyuQSYVE4wEsVBqW3Zpg7G+?=
+ =?us-ascii?Q?BSQm5livANIJ+10iAwBmvVVQelTtc1tICKrVY35G1r89Qf1tPEUMsS92KgkB?=
+ =?us-ascii?Q?oEI2NibCvRuX74w3Ayk3JUHohFU8J/GOjfJd7qMkYna/rxJOixy1ZtLQLXf4?=
+ =?us-ascii?Q?mRVY9rN9HmngAmCuCjU2+/Tf/OXPBRT6g7WYoYJlsl/AKy0Gk64dyqv+/9BD?=
+ =?us-ascii?Q?A6IyvWGN0RB46rTd+A+cG5mSC6mPOsDM3c0kazh7XH3SQYCLpppnbdlBkx6K?=
+ =?us-ascii?Q?cNiwz8H3LpSlwmWzEsYs2UkAYa9DOaa7K//8sLt7RDJwi1FTV2z8hrFK3lwS?=
+ =?us-ascii?Q?9S54hjDE1b/QwFOfWAVoNbP9O6+dt+oDk0cNytIUZ2hPX3YH+h/Xp9qiypt2?=
+ =?us-ascii?Q?QWH1emXV1HPMB/JLhB4B6J8SNGM+BgLCHeFMxXwolsW25TM9LmsLxRZLAe0q?=
+ =?us-ascii?Q?kxstNkG4FYxEjxwWHK37cKvIoErnlgSBIMnDJXluhuhIYo1MC/hyrx0h3f7n?=
+ =?us-ascii?Q?lQXA8bLMP9JlNKSGWlyT9pCt9kZ5U0OMIoYfPF1UM9q9IWhfcr7QDgGzt4YM?=
+ =?us-ascii?Q?Yj9hVTLXjKrbc9R9T9+Mgv/o82XjRJLdhBVm6xhV6XFiNQLaB4r9rJ0qWDrW?=
+ =?us-ascii?Q?ikJ0LiwDL+SiaJa63Azs7YkhvUBtxt/MOj6YANscE4RVDG9wKhVPbMakJO76?=
+ =?us-ascii?Q?aZqLME+YTgWsBrXyq3aD3K67e26GiCo7bSxCOqBDKsetKOo5pdypLtqbW6uE?=
+ =?us-ascii?Q?5wgdEkH4Vlw7/PvrfopDLuFH5DJ6ApMQz5LxwjViZlmNzKME6DfKFRCsx/zu?=
+ =?us-ascii?Q?s3iplqN8LzfQ7u1JRt72bdgbnP3wnkFcSU5/QwfPd0vAophVDWcHQMrZLPt3?=
+ =?us-ascii?Q?fhceXzqM8mveK1+KeTXwg114jBcEjwTV7d+Z+OAv4iJeEE8AkyE0kdHVkYFl?=
+ =?us-ascii?Q?I7gUizNnxm3sSF+l/sLrc1t7Hu85zrpnzKEeiSVg?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28f454af-528e-4764-e912-08dc1c59e91a
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2024 21:26:06.9688
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5gw8eSm+WbDb4/JShbVuMMyPeOOH3aT2hMDCmfM2PaoK0lOXaiKoU+8B0arIuXXq7ZhshvK8iarvOuEBlFJs7A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9873
 
-On 19/01/2024 22:52, Markus Mayer wrote:
-> Add brcm,bcm7278-dpfe-cpu and brcm,bcm7211-dpfe-cpu to the list of
-> acceptable compatible strings.
-> 
-> Signed-off-by: Markus Mayer <mmayer@broadcom.com>
-> ---
->  .../devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml   | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml b/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
-> index e2b990e4a792..3f00bc2fd3ec 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/brcm,dpfe-cpu.yaml
-> @@ -16,6 +16,8 @@ properties:
->        - enum:
->            - brcm,bcm7271-dpfe-cpu
->            - brcm,bcm7268-dpfe-cpu
-> +          - brcm,bcm7278-dpfe-cpu
-> +          - brcm,bcm7211-dpfe-cpu
+This  patch introduces support for I3C target mode, which is referenced
+with a PCIe Endpoint system. It also establishes a configuration framework
+(configfs) for the I3C target controller driver and the I3C target function
+driver
 
-Let's not make it more random than it already is. Feel free to re-order
-the two entries to have alphabetical order and then place new entries in
-proper places.
+Typic usage as
 
-Best regards,
-Krzysztof
+The user can configure the i3c-target-tty device using configfs entry. In
+order to change the vendorid, the following commands can be used
+
+        # echo 0x011b > functions/tty/func1/vendor_id
+        # echo 0x1000 > functions/tty/func1/part_id
+        # echo 0x6 > functions/tty/t/bcr
+
+Binding i3c-target-tty Device to target Controller
+------------------------------------------------
+
+In order for the target function device to be useful, it has to be bound to
+a I3C target controller driver. Use the configfs to bind the function
+device to one of the controller driver present in the system::
+
+        # ln -s functions/pci_epf_test/func1 controllers/44330000.i3c-target/
+
+Host side:
+        cat /dev/ttyI3C0
+Taret side:
+        echo abc >/dev/ttyI3C0
+
+Chagne from v2 to v3
+- using 'mode' distingiush master and target.
+- move svc-i3c-target.c to under master,
+- built together with svc-i3c-master.c
+
+Change from v1 to v2
+- change "slave" to "target"
+- include master side tty patch
+- fixed dtbcheck problem
+- fixed kerne-doc check warning
+
+Some review comment may be lost since it is quite long time since v1. Now
+master side dependent patches already in linux-next. So sent target side
+patches with tty support again.
+
+No sure why an additional "\r\n" appended.
+
+Frank Li (8):
+  i3c: add target mode support
+  dt-bindings: i3c: svc: add proptery mode
+  Documentation: i3c: Add I3C target mode controller and function
+  i3c: svc: Add svc-i3c-main.c and svc-i3c.h
+  i3c: target: add svc target controller support
+  i3c: target: func: add tty driver
+  i3c: add API i3c_dev_gettstatus_format1() to get target device status
+  tty: i3c: add TTY over I3C master support
+
+ .../bindings/i3c/silvaco,i3c-master.yaml      |  11 +-
+ Documentation/driver-api/i3c/index.rst        |   1 +
+ .../driver-api/i3c/target/i3c-target-cfs.rst  | 109 +++
+ .../driver-api/i3c/target/i3c-target.rst      | 189 +++++
+ .../driver-api/i3c/target/i3c-tty-howto.rst   | 109 +++
+ Documentation/driver-api/i3c/target/index.rst |  13 +
+ drivers/i3c/Kconfig                           |  31 +-
+ drivers/i3c/Makefile                          |   3 +
+ drivers/i3c/device.c                          |  24 +
+ drivers/i3c/func/Kconfig                      |   9 +
+ drivers/i3c/func/Makefile                     |   3 +
+ drivers/i3c/func/tty.c                        | 475 +++++++++++
+ drivers/i3c/i3c-cfs.c                         | 389 +++++++++
+ drivers/i3c/internals.h                       |   1 +
+ drivers/i3c/master.c                          |  26 +
+ drivers/i3c/master/Makefile                   |   3 +-
+ drivers/i3c/master/svc-i3c-main.c             |  79 ++
+ drivers/i3c/master/svc-i3c-master.c           |  34 +-
+ drivers/i3c/master/svc-i3c-target.c           | 776 ++++++++++++++++++
+ drivers/i3c/master/svc-i3c.h                  |  14 +
+ drivers/i3c/target.c                          | 453 ++++++++++
+ drivers/tty/Kconfig                           |  13 +
+ drivers/tty/Makefile                          |   1 +
+ drivers/tty/i3c_tty.c                         | 426 ++++++++++
+ include/linux/i3c/device.h                    |   1 +
+ include/linux/i3c/target.h                    | 527 ++++++++++++
+ 26 files changed, 3689 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/driver-api/i3c/target/i3c-target-cfs.rst
+ create mode 100644 Documentation/driver-api/i3c/target/i3c-target.rst
+ create mode 100644 Documentation/driver-api/i3c/target/i3c-tty-howto.rst
+ create mode 100644 Documentation/driver-api/i3c/target/index.rst
+ create mode 100644 drivers/i3c/func/Kconfig
+ create mode 100644 drivers/i3c/func/Makefile
+ create mode 100644 drivers/i3c/func/tty.c
+ create mode 100644 drivers/i3c/i3c-cfs.c
+ create mode 100644 drivers/i3c/master/svc-i3c-main.c
+ create mode 100644 drivers/i3c/master/svc-i3c-target.c
+ create mode 100644 drivers/i3c/master/svc-i3c.h
+ create mode 100644 drivers/i3c/target.c
+ create mode 100644 drivers/tty/i3c_tty.c
+ create mode 100644 include/linux/i3c/target.h
+
+-- 
+2.34.1
 
 
