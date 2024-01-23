@@ -1,198 +1,153 @@
-Return-Path: <devicetree+bounces-34223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0BBD83920A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:06:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58A86839210
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:07:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 604E828CF9B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:06:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CC9828B978
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 15:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DEF05F853;
-	Tue, 23 Jan 2024 15:06:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uv0nDCxj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9811541A85;
+	Tue, 23 Jan 2024 15:07:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6535941A85
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:06:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED2B05FF0A
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 15:07:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706022402; cv=none; b=OjlcRjMQMAKStjw5uQQlP059Q3sXZVoap81u1z+cN5zN7kfeKdDrZ+2Kxe8AlyMR29hxj0/DGTEkpzzLvmInnuhM00J8oBKmq52a2fTb0lluEf9dROvOIb93SafeWEENKkLPqdTKfjcixkVmWtyz6f+5XXXjLOjXriYq2gZhmSY=
+	t=1706022431; cv=none; b=fI3mQimn1pbSuDCbZT7+cX7rNhzdUdwR1ne/8+TEIU4mN85PPBHCp+9cEs35noahQLiG9+1dvDCMXzHNG+jI3+bEQEvJmO1I2TSLpRdmfOSRVHHEWxtKXi3JIjxupq8p2uxAdz9A3qIIGtCSjX8ih8eFeS6C0rcF5nZzMgBOmTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706022402; c=relaxed/simple;
-	bh=Rzv9vebhz47fokP7LiSSzv96GDQrjjYMuUYW7jzviPg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ux4+yu0kqTCeRU1Imflri929eUmEScHWGY4vVWH54DQc/7IIx0dZ6BT9SpxlLabzAH5jNOYyT13abBzZuUNDkPDu/Kt1BGO3aar3bWYgS4PASXMtUI2RHsYwiNVVyQGzQAy8k0vaHI3uM/7C/XI7FRG6xi2KlWSnhvvJFCgWkH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uv0nDCxj; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-337d99f9cdfso3920035f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 07:06:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706022398; x=1706627198; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1zO5Gerp3x7bTpsg9KpkTY28DYtOnGCMLOCBNBnjsd4=;
-        b=uv0nDCxjKthCa36/rNpe9GyoB/R38O9Qw+8OvhTo0moruND7OV76V+T2vQCMdGK8P/
-         3D4Sc57wsRlpFcSwt8jSM+AHEwCcJvoqPkVQ7Q7mX1C41hUSTu6qZN0EWGZqDAbwn+n2
-         wSsAR685UonZmLFvvS8HOwWc7NIMPajcuMsrrZWiLdT4CY/YnI3NVkfRktnKsdq1s+UH
-         Ijk8YYlvZVgMxRkvij8BCBeZw0SxPW02OFBsDz3mtgWpSK7KIGrALf1bGKI2OC0YYEQb
-         vMt5yA/B0T6vt1hNm+U4ufFF/N/C00P6iWMHkMNpEja1a66IFTzlr74BXh8GsAlXYywq
-         jIRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706022398; x=1706627198;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1zO5Gerp3x7bTpsg9KpkTY28DYtOnGCMLOCBNBnjsd4=;
-        b=mgZ6VDipDUoErujWZkPtRvpD0bBX/Ci5Lm/LoGvlLDxATNprtnUS/0fy8X0tTCI+qL
-         s+B7f7Y712LeYNQ9txz7QFTP5n3Ox9z4Qf7GkUM0eqLG5WrVV/UuXnE3KaXHuvNa7YnB
-         H2M2h1/6z+u8Fyt7DuweI5oAMuynz0PlH+aoRL6eV7lpsQZyOIs7c8uOAFPwYFvbg43B
-         v0PqzOTkAOFxw074E95mlF+DcSg3GG3dXWiLUytQ7herDb/WIKktALiMBQDSeyTMIiPJ
-         V2PJQiDdnno3KeFmnE1VVDvudH9qp4Wle1A7YYskcADaMCv8MmDLeCYsJM3ev/qp5RZO
-         BjZQ==
-X-Gm-Message-State: AOJu0Yz+/uMCZ+N0++ygCVDNwYcpA+rPWTyXI0YNucamvmIViTpnxVUh
-	7NeW58xkjmBREi8R7j5NIcxsqCCKpjz9C7bzFY9S9/11upRkuNA9PioCzi3Xjhc=
-X-Google-Smtp-Source: AGHT+IHy3ot08fJzZ8QEE1/0yRjbwjyL7FHwkxJnn/3pfaMDfS3G4gmL90KNOb3CPtMJufjQL/PXnw==
-X-Received: by 2002:adf:fdc7:0:b0:336:6aa4:b62c with SMTP id i7-20020adffdc7000000b003366aa4b62cmr3376483wrs.49.1706022398471;
-        Tue, 23 Jan 2024 07:06:38 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id y6-20020adfee06000000b003392be82b25sm8026083wrn.86.2024.01.23.07.06.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 07:06:38 -0800 (PST)
-Message-ID: <96190db7-96c9-4d5b-b327-b75d09a3013a@linaro.org>
-Date: Tue, 23 Jan 2024 16:06:36 +0100
+	s=arc-20240116; t=1706022431; c=relaxed/simple;
+	bh=b0nsHC1LlsVf82gw0OcuACEz8HSMsfQcxZCNzRl/XfU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=LlfVsxQJxy6ubPGdI/ULoIhSeRJop8dfvnZv+4PDOskyJachRUY5HqmIOFov6sX68WV8BmNQUVZiJfOPnHucX+KBj4mEgd0AH4chSUj5OPLHP2KVHXy6d3mnNxDDjBf0fKH+fUSAl4fu4c6s38CCWLolBhaI8nHNUNFvPUgGklI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rSIMU-0001Fo-Gh; Tue, 23 Jan 2024 16:06:50 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rSIMR-001rL1-Fx; Tue, 23 Jan 2024 16:06:47 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rSIMR-000Ab1-1K;
+	Tue, 23 Jan 2024 16:06:47 +0100
+Message-ID: <b9d2e1e5fd8b5022890e05fcc33410360e0d11d7.camel@pengutronix.de>
+Subject: Re: [PATCH v4 4/6] reset: Instantiate reset GPIO controller for
+ shared reset-gpios
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Srinivas
+ Kandagatla <srinivas.kandagatla@linaro.org>, Banajit Goswami
+ <bgoswami@quicinc.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar
+ <viresh.kumar@linaro.org>, Frank Rowand <frowand.list@gmail.com>, Jaroslav
+ Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ linux-arm-msm@vger.kernel.org,  alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org,  devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,  linux-pm@vger.kernel.org
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Chris Packham
+ <chris.packham@alliedtelesis.co.nz>, Sean Anderson <sean.anderson@seco.com>
+Date: Tue, 23 Jan 2024 16:06:47 +0100
+In-Reply-To: <20240123141311.220505-5-krzysztof.kozlowski@linaro.org>
+References: <20240123141311.220505-1-krzysztof.kozlowski@linaro.org>
+	 <20240123141311.220505-5-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: mailbox: fsl,mu: add i.MX95
- Generic/ELE/V2X MU compatible
-Content-Language: en-US
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
- Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-References: <20240123-imx-mailbox-v3-0-ed932945e0bf@nxp.com>
- <20240123-imx-mailbox-v3-1-ed932945e0bf@nxp.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240123-imx-mailbox-v3-1-ed932945e0bf@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 23/01/2024 15:38, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX95 Generic, Secure Enclave and V2X Message Unit compatible string.
-> And some MUs has internal RAMs for SCMI shared buffer usage.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/mailbox/fsl,mu.yaml        | 50 +++++++++++++++++++++-
->  1 file changed, 48 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> index 12e7a7d536a3..569fabc5285c 100644
-> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> @@ -29,10 +29,14 @@ properties:
->        - const: fsl,imx8ulp-mu
->        - const: fsl,imx8-mu-scu
->        - const: fsl,imx8-mu-seco
-> -      - const: fsl,imx93-mu-s4
->        - const: fsl,imx8ulp-mu-s4
-> +      - const: fsl,imx93-mu-s4
-> +      - const: fsl,imx95-mu-ele
-> +      - const: fsl,imx95-mu-v2x
->        - items:
-> -          - const: fsl,imx93-mu
-> +          - enum:
-> +              - fsl,imx93-mu
-> +              - fsl,imx95-mu
->            - const: fsl,imx8ulp-mu
->        - items:
->            - enum:
-> @@ -95,6 +99,17 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  ranges: true
+On Di, 2024-01-23 at 15:13 +0100, Krzysztof Kozlowski wrote:
+> Devices sharing a reset GPIO could use the reset framework for
+> coordinated handling of that shared GPIO line.  We have several cases of
+> such needs, at least for Devicetree-based platforms.
+>=20
+> If Devicetree-based device requests a reset line, while "resets"
+> Devicetree property is missing but there is a "reset-gpios" one,
+> instantiate a new "reset-gpio" platform device which will handle such
+> reset line.  This allows seamless handling of such shared reset-gpios
+> without need of changing Devicetree binding [1].
+>=20
+> To avoid creating multiple "reset-gpio" platform devices, store the
+> Devicetree "reset-gpios" GPIO specifiers used for new devices on a
+> linked list.  Later such Devicetree GPIO specifier (phandle to GPIO
+> controller, GPIO number and GPIO flags) is used to check if reset
+> controller for given GPIO was already registered.
+>=20
+> If two devices have conflicting "reset-gpios" property, e.g. with
+> different ACTIVE_xxx flags, this would allow to spawn two separate
+> "reset-gpio" devices, where the second would fail probing on busy GPIO
+> request.
+>=20
+> Link: https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/ [1=
+]
+> Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Cc: Sean Anderson <sean.anderson@seco.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+I'm nearly out of complaints, two tiny cosmetic issues remaining:
+
+[...]
+> diff --git a/drivers/reset/core.c b/drivers/reset/core.c
+> index 4d5a78d3c085..6e81b8d35055 100644
+> --- a/drivers/reset/core.c
+> +++ b/drivers/reset/core.c
+[...]
+> @@ -813,12 +838,161 @@ static void __reset_control_put_internal(struct re=
+set_control *rstc)
+>  	kref_put(&rstc->refcnt, __reset_control_release);
+>  }
+> =20
+> +static int __reset_add_reset_gpio_lookup(int id, struct device_node *np,
+> +					 unsigned int gpio,
+> +					 unsigned int of_flags)
+> +{
+> +	unsigned int lookup_flags;
+> +	const char *label_tmp;
 > +
-> +  "#address-cells": true
+> +	/*
+> +	 * Later we map GPIO flags between OF and Linux, however not all
+> +	 * constants from include/dt-bindings/gpio/gpio.h and
+> +	 * include/linux/gpio/machine.h match each other.
+> +	 */
+> +	if (of_flags > GPIO_ACTIVE_LOW) {
+> +		pr_err("reset-gpio code does not support GPIO flags %u for GPIO %u\n",
+> +			of_flags, gpio);
+
+Alignment to parenthesis is slightly off.
+
+> +		return -EINVAL;
+> +	}
 > +
-> +  "#size-cells": true
-> +
-> +patternProperties:
-> +  "^sram@[a-z0-9]+":
+> +	struct gpio_device *gdev __free(gpio_device_put) =3D gpio_device_find_b=
+y_fwnode(of_fwnode_handle(np));
 
-This is a friendly reminder during the review process.
+Adding a local fwnode variable would make this fit in the 100 character
+limit again.
 
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-
-Best regards,
-Krzysztof
-
+regards
+Philipp
 
