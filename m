@@ -1,156 +1,202 @@
-Return-Path: <devicetree+bounces-34109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2988A838AF5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:53:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C129838B0F
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:56:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D554A1F23421
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:53:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D4001C20D50
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:56:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D63B59B6A;
-	Tue, 23 Jan 2024 09:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E0AC5A100;
+	Tue, 23 Jan 2024 09:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ddJvFs27"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77D359B69
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D875A0EB;
+	Tue, 23 Jan 2024 09:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706003573; cv=none; b=UUeciXeF+7u74hVCQ7ATPekuaBNQUdWdtQGCKwfmoiZvCUWZkA/4r+I3YjnJBf1Oom42dz8rvD6m8ktHOHKp5areonwlEBI3O2vaVyJwxikQGOskq0G7ksSzQbMocKOVV+KC2vLlgPbiOen9XXk/b81urjD/zcHpwjV61VTCsrw=
+	t=1706003719; cv=none; b=ObqlW1CiKuw+hoZqc6X+fyukrh/in44U6KRVAfvNJm0zGv5+QgoIMA99levogso/tZGNK/JUMLP3FirtgMKo+2i9kFrZBf2HAQ2erCj1qL6jaU2x1siagrDpsTmc0Onxx77dD9Pmb+t6rvtFxrZMHf7CXickD5SztGiGgBqWRuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706003573; c=relaxed/simple;
-	bh=/pwL8Yk8naFUcATh/l5HS01M5d9UaBR8TpR2YD6nyBQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T7RK3ZjgAQK4s7BxeOv+i1ERo7tcPrNT/O87340zwDhw2nt5uUaezKRmJqbeKI1jFma138Fv5PI/0TZq22/DCaPUR4wL2uHDQx414zp+RCTNBdpQXZdVVi6w4xAf+x+Uxz+vbHzZ6HRmzQofSP4ckbzwYjzCXsvOQ/AWe1lJxFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rSDST-0003WN-Po; Tue, 23 Jan 2024 10:52:41 +0100
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rSDST-001nXf-8B; Tue, 23 Jan 2024 10:52:41 +0100
-Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1rSDST-001LYv-5H; Tue, 23 Jan 2024 10:52:41 +0100
-Date: Tue, 23 Jan 2024 10:52:41 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	linux-imx@nxp.com, devicetree@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] clocksource: timer-imx-sysctr: support i.MX95
-Message-ID: <20240123095241.66nrgkkrdth6g32w@pengutronix.de>
-References: <20240122092225.2083191-1-peng.fan@oss.nxp.com>
- <20240122092225.2083191-2-peng.fan@oss.nxp.com>
+	s=arc-20240116; t=1706003719; c=relaxed/simple;
+	bh=w18KFz7ofjv8IsXWNWU7jrhImM+WYA6YpT6/NNV1cts=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RSe1W7oPGP9TfpecX0QMDjgby+FurfX7LOC7ii6muil1hb+cUnLaQnBpBxbJ+xVgIsJJweovRF40j5oVry+3qKX3uzjkusit3U18YSSqyC29+mkz1QJvZ1rbfRCXeaPi95UHWPiZN7BVPOyuZMnjcRNrcaK5FN3E+35ld6Jw7SE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ddJvFs27; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40N5FLRZ012469;
+	Tue, 23 Jan 2024 09:55:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=WFKpQCQgUKsoDsuPBzYjPe5sC0xwJhE2I1Uk4c/3dHE=; b=dd
+	JvFs277WszcG/afxLR4+vjiDXj7PaElzMWoY9Hl93dKVcvNZlThyOP23qI464ZmU
+	Fq/XWFnvG6vfbW2WBMl2KO1B8yopP//gdWWQP58ulna0ILbk9/6MQGPxkIVhkqbA
+	tfvMK4cXCkn8E/NVxwU2ZavYtv+bQWAJ8RyWB19aVAH7aQemCgSiUMOkxIzM4xHj
+	V+eRZYQH2tzQZs/y6kY1vxDzfeH3cFcZ/P4npJ3naG6mvhZyLiiqiwcfadqrvn3h
+	LJeE6X7pnCLx/EIpeWYAqISPQ3OnTDHHCmrixxTAJvfAk2d2mZqnVh43pFLH1jYk
+	fiXfMvWV4WSl/XBqUumA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vspw8u00b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Jan 2024 09:55:13 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40N9tCI4027079
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Jan 2024 09:55:12 GMT
+Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 23 Jan
+ 2024 01:55:07 -0800
+Message-ID: <3d037485-a79c-de63-2ae8-ed419d2b70d6@quicinc.com>
+Date: Tue, 23 Jan 2024 15:24:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240122092225.2083191-2-peng.fan@oss.nxp.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v7 3/4] remoteproc: qcom: pas: Add SM8650 remoteproc
+ support
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob
+ Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Dmitry
+ Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20240123-topic-sm8650-upstream-remoteproc-v7-0-61283f50162f@linaro.org>
+ <20240123-topic-sm8650-upstream-remoteproc-v7-3-61283f50162f@linaro.org>
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <20240123-topic-sm8650-upstream-remoteproc-v7-3-61283f50162f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 24tIlH2GQUGRrWsyioVwNJ2KY_6b5Kpm
+X-Proofpoint-ORIG-GUID: 24tIlH2GQUGRrWsyioVwNJ2KY_6b5Kpm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-23_04,2024-01-23_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ adultscore=0 mlxscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
+ clxscore=1011 suspectscore=0 impostorscore=0 mlxlogscore=999
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2311290000 definitions=main-2401230071
 
-Hi Peng,
 
-On 24-01-22, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+
+On 1/23/2024 2:21 PM, Neil Armstrong wrote:
+> Add DSP Peripheral Authentication Service support for the SM8650 platform.
 > 
-> To i.MX95 System counter module, we use Read register space to get
-> the counter, not the Control register space to get the counter, because
-> System Manager firmware not allow Linux to read Control register space.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  drivers/clocksource/timer-imx-sysctr.c | 16 +++++++++++++---
->  1 file changed, 13 insertions(+), 3 deletions(-)
+>   drivers/remoteproc/qcom_q6v5_pas.c | 50 ++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 50 insertions(+)
 > 
-> diff --git a/drivers/clocksource/timer-imx-sysctr.c b/drivers/clocksource/timer-imx-sysctr.c
-> index 5a7a951c4efc..3d3bc16388ed 100644
-> --- a/drivers/clocksource/timer-imx-sysctr.c
-> +++ b/drivers/clocksource/timer-imx-sysctr.c
-> @@ -8,9 +8,12 @@
->  #include "timer-of.h"
->  
->  #define CMP_OFFSET	0x10000
-> +#define RD_OFFSET	0x20000
->  
->  #define CNTCV_LO	0x8
->  #define CNTCV_HI	0xc
-> +#define CNTCV_LO_IMX95	(RD_OFFSET + 0x8)
-> +#define CNTCV_HI_IMX95	(RD_OFFSET + 0xc)
->  #define CMPCV_LO	(CMP_OFFSET + 0x20)
->  #define CMPCV_HI	(CMP_OFFSET + 0x24)
->  #define CMPCR		(CMP_OFFSET + 0x2c)
-> @@ -22,6 +25,8 @@
->  
->  static void __iomem *sys_ctr_base __ro_after_init;
->  static u32 cmpcr __ro_after_init;
-> +static u32 cntcv_hi = CNTCV_HI;
-> +static u32 cntcv_lo = CNTCV_LO;
->  
->  static void sysctr_timer_enable(bool enable)
->  {
-> @@ -43,9 +48,9 @@ static inline u64 sysctr_read_counter(void)
->  	u32 cnt_hi, tmp_hi, cnt_lo;
->  
->  	do {
-> -		cnt_hi = readl_relaxed(sys_ctr_base + CNTCV_HI);
-> -		cnt_lo = readl_relaxed(sys_ctr_base + CNTCV_LO);
-> -		tmp_hi = readl_relaxed(sys_ctr_base + CNTCV_HI);
-> +		cnt_hi = readl_relaxed(sys_ctr_base + cntcv_hi);
-> +		cnt_lo = readl_relaxed(sys_ctr_base + cntcv_lo);
-> +		tmp_hi = readl_relaxed(sys_ctr_base + cntcv_hi);
->  	} while (tmp_hi != cnt_hi);
->  
->  	return  ((u64) cnt_hi << 32) | cnt_lo;
-> @@ -139,6 +144,11 @@ static int __init sysctr_timer_init(struct device_node *np)
->  		to_sysctr.of_clk.rate /= SYS_CTR_CLK_DIV;
->  	}
->  
-> +	if (of_device_is_compatible(np, "nxp,imx95-sysctr-timer")) {
-> +		cntcv_hi = CNTCV_HI_IMX95;
-> +		cntcv_lo = CNTCV_LO_IMX95;
-> +	}
-
-I'm not a fan of this, since TIMER_OF_DECLARE() can do the compat check.
-So instead of using fallback bindings just use the correct binding
-within the dts file. Also I'm not a fan of this clobal variable setting
-albeit there is just one instance _yet_ we really should instead rework
-this driver a bit and instead provide a i.MX95 specific
-sysctr_read_counter() function. This is clearly a bit more work but IMO
-a cleaner approach. Also afterwards once you add i.MX9x which is again a
-bit different would gain from this work.
-
-Regards,
-  Marco
-
+> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> index 09e8ad9f08c4..d0b1f0f38347 100644
+> --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> @@ -1213,6 +1213,53 @@ static const struct adsp_data sc7280_wpss_resource = {
+>   	.ssctl_id = 0x19,
+>   };
+>   
+> +static const struct adsp_data sm8650_cdsp_resource = {
+> +	.crash_reason_smem = 601,
+> +	.firmware_name = "cdsp.mdt",
+> +	.dtb_firmware_name = "cdsp_dtb.mdt",
+> +	.pas_id = 18,
+> +	.dtb_pas_id = 0x25,
+> +	.minidump_id = 7,
+> +	.auto_boot = true,
+> +	.proxy_pd_names = (char*[]){
+> +		"cx",
+> +		"mxc",
+> +		"nsp",
+> +		NULL
+> +	},
+> +	.load_state = "cdsp",
+> +	.ssr_name = "cdsp",
+> +	.sysmon_name = "cdsp",
+> +	.ssctl_id = 0x17,
+> +	.region_assign_idx = 2,
+> +	.region_assign_count = 1,
+> +	.region_assign_shared = true,
+> +	.region_assign_vmid = QCOM_SCM_VMID_CDSP,
+> +};
 > +
->  	sys_ctr_base = timer_of_base(&to_sysctr);
->  	cmpcr = readl(sys_ctr_base + CMPCR);
->  	cmpcr &= ~SYS_CTR_EN;
-> -- 
-> 2.37.1
-> 
-> 
+> +static const struct adsp_data sm8650_mpss_resource = {
+> +	.crash_reason_smem = 421,
+> +	.firmware_name = "modem.mdt",
+> +	.dtb_firmware_name = "modem_dtb.mdt",
+> +	.pas_id = 4,
+> +	.dtb_pas_id = 0x26,
+> +	.minidump_id = 3,
+> +	.auto_boot = false,
+> +	.decrypt_shutdown = true,
+> +	.proxy_pd_names = (char*[]){
+> +		"cx",
+> +		"mss",
+> +		NULL
+> +	},
+> +	.load_state = "modem",
+> +	.ssr_name = "mpss",
+> +	.sysmon_name = "modem",
+> +	.ssctl_id = 0x12,
+> +	.region_assign_idx = 2,
+> +	.region_assign_count = 3,
+
+I see this has changed from 2 to 3 after qlink logging addition;
+
+> +	.region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
+> +};
+> +
+>   static const struct of_device_id adsp_of_match[] = {
+>   	{ .compatible = "qcom,msm8226-adsp-pil", .data = &adsp_resource_init},
+>   	{ .compatible = "qcom,msm8953-adsp-pil", .data = &msm8996_adsp_resource},
+> @@ -1268,6 +1315,9 @@ static const struct of_device_id adsp_of_match[] = {
+>   	{ .compatible = "qcom,sm8550-adsp-pas", .data = &sm8550_adsp_resource},
+>   	{ .compatible = "qcom,sm8550-cdsp-pas", .data = &sm8550_cdsp_resource},
+>   	{ .compatible = "qcom,sm8550-mpss-pas", .data = &sm8550_mpss_resource},
+> +	{ .compatible = "qcom,sm8650-adsp-pas", .data = &sm8550_adsp_resource},
+
+Same as sm8550;
+> +	{ .compatible = "qcom,sm8650-cdsp-pas", .data = &sm8650_cdsp_resource},
+> +	{ .compatible = "qcom,sm8650-mpss-pas", .data = &sm8650_mpss_resource},
+
+LGTM,
+
+Acked-by: Mukesh Ojha <quic_mojha@quicinc.com>
+
+-Mukesh
+
+>   	{ },
+>   };
+>   MODULE_DEVICE_TABLE(of, adsp_of_match);
 > 
 
