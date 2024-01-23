@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-34116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17688838B1C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:57:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF7AB838B2A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 10:58:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80C31B27089
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:57:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BF701F2510E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 09:58:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84DA55C60F;
-	Tue, 23 Jan 2024 09:56:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E73255A107;
+	Tue, 23 Jan 2024 09:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZHGUiZ4B"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gIIviI62"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63E135A0FC
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25FFC5A0E6
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:57:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706003778; cv=none; b=BteyTU2C0y4LWc8HqS/Gf85X+AX7tfgMOExg1IyCgD7Tnoaurb4mnEQV/Pde+bAYWYVZ3ZwUOtQe1qsl7C5SAUCAGD8aOoCn5EvqM7Diqqk8lxcl1inMfdFOUDIZYrJta+HpuFqwe0ctmtUnbcZjsse326CgalFdW29HRh8JzBs=
+	t=1706003841; cv=none; b=oXAj89q/KeaNj+R7n4rDiRQU/nm6xAtvWebCAYJXNwlxa/RRAslbXJ3lBt5/YbN/2fKA2T9IkGf5Ko81ssNt4CptjQa1fizNy1gTyw8Rr9cAciAFVxNkYjy1gsLYp1gliOppoMCSy+vHlgyikAudcQO6hvRt9cqEU64Rfntxt7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706003778; c=relaxed/simple;
-	bh=oc9Oysjni3ydGEpm3YDVh/15RVAletOH3LRLcKW6L2I=;
+	s=arc-20240116; t=1706003841; c=relaxed/simple;
+	bh=5e3AHPmxRzCBZ2/YKeHc9fgIZIpVeb9OeyngWpKu49A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZD/LX9e2xzuUtz61MHlplK8seS1+dNn9OQw1Ptb4v8I5NitlIIZzZyoKRE6LGOaBVkWALDTupHnInyP0Vz3yBy1HhaeHBalPs2Q9FpU5gKXRZKe9MKKhMb8uUfp7hEHvPla7bS83njBA/tV6Zdkz7E4ETWE37nhkbbmYAaPjR4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZHGUiZ4B; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:Content-Type; b=QJQR7bQlWStnUu+2stDBtEgPsJeUPn1cTBhf0juwrkYiIsuC28NuwYOZLxUU3LyETp6SSUuGGKY0ybGx5LZJCq3ArDBZHPeYvYmxlqeaoleX1VAzZL42pzUZazLLtXINTXcu23zevkPSsiR/YCFtWuU1l1EQJGynSz2O7XGHvm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gIIviI62; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40e76626170so46159935e9.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 01:56:15 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40d6b4e2945so49061185e9.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 01:57:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706003773; x=1706608573; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706003837; x=1706608637; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pd7Hb7m2iMwIQrn8qvIVrWmzIrDfXJvCnVzjTZCjLDs=;
-        b=ZHGUiZ4BPKhzO0HTTLFXh9vR7sX2bF1PCjwCUjvjrfbyot0g7wWpnD7McCUSr1xsjh
-         CEhb7+gkCKLjyhY1761GvmGXsFUTmC00uI/4sCoaCpa1A8AZu57C7JmTeMZvk9w8RfVM
-         bYsUcqvhMzmMS1c1LWUnZKzfHeQ1sak94ezMa6zFKb60Swpol9Wsh4c+vpj56bHfYWy3
-         v7p3uC0jfJXrF0SvrsX/IFyfeQyZrh4OczlR/Ly3SOMQu3QEtEp/n7ozFlgnF/LW1ijW
-         gSebuOLYdJTun+A+0rSNjAEqvlZ4DObSuYLcwvCra5/XFtdvYJy+KLXWAai8bnRQQEE2
-         Q52g==
+        bh=vaHd8LrOOmEomX/l7KKDLe+YmjgMBhv83n5CF+7e4Fc=;
+        b=gIIviI62LVoVj4UirmqpaeVQTwxZ5VGGaC04goCO72dTUvsv45Rte/gfbCkhH3SzuU
+         yxxGIB1QnnWk6rGG6LTKdlGzQ9EkUmezzAlZGNuGwNNXnwmNbuEFCpoWRwP+1L89snyC
+         lR5r0TaaQUE+DMy0EdzunuDZlwiDzPkw3/m90MKXIN1llvi1EyVNyr7B7uAUCASneiAh
+         7iMAIuQYQQVhxUKe5io81qbd4oD0FIsBKUe+Q5iKD7kE62QO4N9RzJnp6FQuio4YoMoR
+         /TVtEmGDoT8rfu+U8CE7WwqwrQuUQ4TXA6GYz2y8ikdsJa74DnWXsYwHSSMwTwX74QhE
+         vAaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706003773; x=1706608573;
+        d=1e100.net; s=20230601; t=1706003837; x=1706608637;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pd7Hb7m2iMwIQrn8qvIVrWmzIrDfXJvCnVzjTZCjLDs=;
-        b=ACwnm+lkOExpYMtBTq9xgIyLAZvc4Honj+pWWayPzsmxdq4pBLZ5zO3aCZdINzlxPH
-         RKogP6hkXvZ/gdFKqI7/Pv3jLGD35b5D+CsyP+j+3B6m5NebkuqgbzczqoLEBsu5RgFe
-         c/4Wiv7BTTEOB9Qq2SfZsIgfh+G6Pa1ND8IMgziid/7KGMAmMZElZEBRWnUr119IzObf
-         +rHiYQvCgVifozd3gnud3ZVOG9TaYlaUgmhrV8xYSTt7Zn+v6dwJnmzHPPOovK8GF2sg
-         4/Cd9gDzKow1DjlF/uDOoCii1mKsEvZf7avufj6xxSF04VUWqQGZUCZdqvZYZhOFabVp
-         qBwg==
-X-Gm-Message-State: AOJu0YwmIHYPv394xtgkZ/xRmPHi/1Gom+Eg/TPLn4jiUlMRLaHA3bEj
-	o0ouHewzG/CG2YbI2/OCClG8no4WTDnzlDstMQlrAE8URkxgtslR9m+GAxYH6O0=
-X-Google-Smtp-Source: AGHT+IHzwY5cRu9xczalZqFBHEjcP/tkDy6VyEpi3Id1yYcjXUUFY86PXQ8S0269gQuIjgRQhysqsA==
-X-Received: by 2002:a05:600c:1c21:b0:40e:ac07:21fe with SMTP id j33-20020a05600c1c2100b0040eac0721femr401326wms.177.1706003773735;
-        Tue, 23 Jan 2024 01:56:13 -0800 (PST)
+        bh=vaHd8LrOOmEomX/l7KKDLe+YmjgMBhv83n5CF+7e4Fc=;
+        b=Jl0/qZ8hsEYtYAM42fQZ7C/Nr9oVvBU9seXwOuzr/feLIFyGsZlqMOHdJDoVI5C2O0
+         eFhnC+XO6F4U2o4WHTfSAMFhNfT8Na2AYF8F93mdsOzP4IkGnwo8QXC7CQacKleOcQ6c
+         GOlWiUJkxhm5JejPGKEpMD0GKpSPppJWlcTd5KSSJ42gu1dNmRO1LQ+bftaT4lflghsK
+         F1cXP5UHHDctC3VMfzI1AeWq+n5Wy0jHw2u2qpMwSXSuTi4RWBX/J9gsaOa5HnR/hQ5E
+         s+vP8KHYZ+fPnlrDCLV5/mp7B7hI0z4mtl/UaepC9uv5+Tfh3Tf6jml8MEKlljkY++oD
+         1XDA==
+X-Gm-Message-State: AOJu0YyQmc3KZW8ibpIhQ1JrnH5wkAC+J/eoILjmw/xmL8e3ZpJbp1ce
+	Zl1oPGwtGwNkfZOPcuruxRQHpoQyMdTAssle5HwyQ78EqD1S7UYQU1AlTw/AWfY=
+X-Google-Smtp-Source: AGHT+IGZqmA3kwErgQlGHXolN3kzWIriiqo4nPzEEJThLvhcgKofE603AN4S9C8nWVyAnWs1OjG/Vw==
+X-Received: by 2002:a05:600c:450a:b0:40d:5502:5834 with SMTP id t10-20020a05600c450a00b0040d55025834mr226178wmo.14.1706003837440;
+        Tue, 23 Jan 2024 01:57:17 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id bg23-20020a05600c3c9700b0040d91fa270fsm42202520wmb.36.2024.01.23.01.56.11
+        by smtp.gmail.com with ESMTPSA id bg23-20020a05600c3c9700b0040d91fa270fsm42202520wmb.36.2024.01.23.01.57.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 01:56:13 -0800 (PST)
-Message-ID: <a4aacb81-04b5-4a9f-809e-5b52fb0c4d7b@linaro.org>
-Date: Tue, 23 Jan 2024 10:56:10 +0100
+        Tue, 23 Jan 2024 01:57:17 -0800 (PST)
+Message-ID: <da7bdb66-3463-4880-87b9-414c0bd31688@linaro.org>
+Date: Tue, 23 Jan 2024 10:57:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,20 +75,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] net: phy: adin: add missing clock option
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: add adg1414
 Content-Language: en-US
-To: Fabian Pfitzner <f.pfitzner@pengutronix.de>,
- Michael Hennerich <michael.hennerich@analog.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
+To: "Paller, Kim Seer" <KimSeer.Paller@analog.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Alexandru Tachici <alexandru.tachici@analog.com>
-Cc: kernel@pengutronix.de, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240122110311.2725036-1-f.pfitzner@pengutronix.de>
+ Conor Dooley <conor+dt@kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240121103505.26475-1-kimseer.paller@analog.com>
+ <20240121103505.26475-2-kimseer.paller@analog.com>
+ <2e34faa9-a0ca-49f6-a268-1c01c31b041c@linaro.org>
+ <PH0PR03MB7141D8CD02D93AB420FA535DF9742@PH0PR03MB7141.namprd03.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,29 +134,74 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240122110311.2725036-1-f.pfitzner@pengutronix.de>
+In-Reply-To: <PH0PR03MB7141D8CD02D93AB420FA535DF9742@PH0PR03MB7141.namprd03.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 22/01/2024 12:03, Fabian Pfitzner wrote:
-> The GP_CLK pin on Adin1300 PHY's offers three different output clocks.
-> This patch adds the missing 125MHz recovered clock option which is not
-> yet availible in the driver.
+On 23/01/2024 10:55, Paller, Kim Seer wrote:
+> Hi Krzysztof,
 > 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Monday, January 22, 2024 8:40 PM
+>> To: Paller, Kim Seer <KimSeer.Paller@analog.com>; linux-gpio@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+>> Cc: Linus Walleij <linus.walleij@linaro.org>; Bartosz Golaszewski
+>> <brgl@bgdev.pl>; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>
+>> Subject: Re: [PATCH 1/2] dt-bindings: gpio: add adg1414
+>>
+>> [External]
+>>
+>> On 21/01/2024 11:35, Kim Seer Paller wrote:
+>>> The ADG1414 is a 9.5 Ω RON ±15 V/+12 V/±5 V iCMOS Serially-Controlled
+>>> Octal SPST Switches
+>>>
+>>> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+>>> ---
+>>>  .../bindings/gpio/gpio-adg1414.yaml           | 66 +++++++++++++++++++
+>>>  MAINTAINERS                                   |  6 ++
+>>>  2 files changed, 72 insertions(+)
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/gpio/gpio-adg1414.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-adg1414.yaml
+>>> b/Documentation/devicetree/bindings/gpio/gpio-adg1414.yaml
+>>> new file mode 100644
+>>> index 000000000..24a51e79f
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/gpio/gpio-adg1414.yaml
+>>
+>> Filename like compatible.
+> 
+> I would like to clarify, is it changing the filename from gpio-adg1414.yaml
+> to adg1414.yaml? 
 
-Typo
+No, because you miss vendor prefix. I doubt that it is your compatible...
 
-> Signed-off-by: Fabian Pfitzner <f.pfitzner@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/net/adi,adin.yaml | 7 +++++--
+> 
+>>> @@ -0,0 +1,66 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>>> +---
+>>> +$id:
+>>> +https://urldefense.com/v3/__http://devicetree.org/schemas/gpio/gpio-a
+>>> +dg1414.yaml*__;Iw!!A3Ni8CS0y2Y!_Q0zRB8J-
+>> inWIIybgOjtThU0toJeUzqaT9Tveg
+>>> +XTjvPWiCTh4IAJ5DkNepFdfhXXfxXLnB2wSR9_LgPnvVnFqw2bDuvBI8g$
+>>> +$schema:
+>>> +https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.y
+>>> +aml*__;Iw!!A3Ni8CS0y2Y!_Q0zRB8J-
+>> inWIIybgOjtThU0toJeUzqaT9TvegXTjvPWiC
+>>> +Th4IAJ5DkNepFdfhXXfxXLnB2wSR9_LgPnvVnFqw2bEIZ1PG4$
+>>> +
+>>> +title: ADG1414 SPST Switch Driver
+>>
+>> "Driver" as Linux driver or some hardware driver?
+> 
+> Linux device driver. It seems I overlooked this one, it should be ADG1414 Octal SPST Switches
 
-Bindings are separate.
-
-Please run scripts/checkpatch.pl and fix reported warnings. Some
-warnings can be ignored, but the code here looks like it needs a fix.
-Feel free to get in touch if the warning is not clear.
-
-
+Then please drop it and double check if your description also has it.
+The title and description should describe hardware.
 
 Best regards,
 Krzysztof
