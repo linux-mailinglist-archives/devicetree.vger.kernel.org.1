@@ -1,172 +1,135 @@
-Return-Path: <devicetree+bounces-34354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55B668397AA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 19:27:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B9C8397B4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 19:30:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C45572878F0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:27:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E06D8B220F9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2EB481AA2;
-	Tue, 23 Jan 2024 18:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCDFD81AD3;
+	Tue, 23 Jan 2024 18:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="SqSMVBap"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MjBwkIwA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D90D5F842
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 18:27:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF2F281AB6
+	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 18:29:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706034456; cv=none; b=mHz0VMRmalVlgdtJEl1MJgH4lQ00YBcalvG+L8jjDuv5tubxQ2KuleO5nr1pWzGObbQn8R0E3dZFhpIOYrDuapn54UEAIiVnFkMlL2UtFdi7HcMYlD217mFpMw4p0fSjDrbTUJWv87iru5JKeGzventypSKsItYTMj1uYqKnb4Y=
+	t=1706034593; cv=none; b=WB+S40nrm09OkjAwR0xtnnfVb0Pp8UFMB3XwklXG/I+RtFVbQS/vw3I+aDEMgStzhIdd7SITiHcFJBhK5LtVJHQGu8lXaqM0rrKXwis6e28WQsW58ysJkexkM4v9BLw2QQuYZvyPXVxqnk1eUWQ/JyPi72rilPJdgXcwZY38cpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706034456; c=relaxed/simple;
-	bh=WDvTf4Pb4AwKk2fqMyJRNXjOW+wyQ7ey2oSE0XSdntw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hmRLPCCCALORDF0R3xsFNwQlZ2DGCs2kSgRybhDWmuIOlwlCmaQ8eSpsr3SVe9aLRzPYnHkqv2AdgMASsXojMSiHrp5UMkg38fwWgZqC+a3rNzimyi6DheJNT0sKIpSH+87RC1nmnnXWOUhdFzvtrPyD8V0b9Wxdd2KX1+ENsfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=SqSMVBap; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dae7cc31151so3401618276.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 10:27:34 -0800 (PST)
+	s=arc-20240116; t=1706034593; c=relaxed/simple;
+	bh=fiekJ9gQkX3GHpy870ZYvVqe/CwFCpVFEzjy6fVDr+U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RbNqJ4Nw5RbOgXqVhFb/DMkAleLPmWwqnxQU5amsjzfU0bfdqSwT9lqoJHwiUvBBvN2tFAzhMIdKrOpum+o6SEXPAJCafDLhyFDjfZVzvWxgfBA7EXCiXLqtBOpJ5ZtRsJHD550S8B60vdUr4q7/LhBxG9p67KjoKXW59Zmpt78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MjBwkIwA; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50ed808db11so5089416e87.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 10:29:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1706034454; x=1706639254; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4iXjdB14EGx1ap8/L42aOnqGTQ+/kTUhw6/TZGOMWuQ=;
-        b=SqSMVBapWzsreZ8jRL3yg0yWGktYgaZ1mUvTp4XueWAwOVUe74Upw8r3mYYRzf+dMJ
-         rAiI+XlFGvSnAYZJo0zueBOO4IJpCNWCl2KL4AuTKIqi46nXhkGpw7Sc31UGYnDhSSGn
-         c3rNgtGHhJTpe20y+jtXYfboJaGe7sy9oX1jg=
+        d=linaro.org; s=google; t=1706034589; x=1706639389; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2xz+HhUHMvkBPyimWGJbs8g6trJwsAsyPOOXlCioBJk=;
+        b=MjBwkIwARP875PhqJGH6BzZwB1soH3C33zTfXEjqEtaITZYNtnxpDZv/hTayKvtkCz
+         /5lMIGRLi4hNf86+1d2ixZhBiNr7qAzXW8LYgMrHPQutXXA4f6lwApvDCyEpbhyEGZPV
+         vVvwjpOWiHTXYG82iOkdTyeWPxgnk6SLfLnVQN/0eKEqh8CXr5CtkeeWtCmr79ylh+Dg
+         YZZnFmT2vHuR2Zs6NPY/1EL5SOMfNdqbj+Y8n43iniPo3eZuwQA+sQl29Jz9VnpO/QCP
+         7VVXOPU1rvKB6B6U1PosYesIJCSL6znlPRIkGaoCEMh0cS/cIf9HRTwpvYpDMhaRCoUA
+         P0Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706034454; x=1706639254;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4iXjdB14EGx1ap8/L42aOnqGTQ+/kTUhw6/TZGOMWuQ=;
-        b=SQ3QWCtsyHCPuiPAzclL3iVLw0SzPu9B0Ev3aX5KAO1uFZN337q7bH+LX7y3ReZx6j
-         q8QQQRTjn0Dg9nsOUeTrN98cVoyGe8k9bCn2+qNnNuLjbfHzbzlYmG7Gqt6Ax5V4Yhdv
-         7kCgaS1+gWxp8YQxVTa001Fr3isdjaCl60rw+BSIFJwp/3GZIn8WmlwI3Z1okC/QZihb
-         3yILbKb84FQAgx9hsT6k8p15qshjSigeyU5iW9w9pi9D1ZAlpnJEQfSxD9cmlp+iGFcu
-         pE1+2fIWtmnWY3mvuvwAVkHz+mEgo3WirrueGCi+ztm8wGr2a8uxdZT3ePIbyX1lQWhM
-         jQ/w==
-X-Gm-Message-State: AOJu0Yy69weSfAa3SmOy15RCrg4AFBzYsi7Bq6bg7K+B7GmfvKOmSuoN
-	ctD6s3AejLmV20/PxzA4uX0WffpO16W/Xrg980xvutKjF+do/weziQ0/B46+AeNShHA+AyXusvm
-	DSkSAgdtIifCKntmMfTN9jemyHKyHSAlM4lhRbQ==
-X-Google-Smtp-Source: AGHT+IHVZHeolBjGG9wXw9cp0ut6R99LTCUcJAQ6AtSieMrLx8ZzLA1bcIxY8fAXn9j9l84z0oW21VurCWKLFClNa8s=
-X-Received: by 2002:a5b:844:0:b0:dc3:4f94:19d3 with SMTP id
- v4-20020a5b0844000000b00dc34f9419d3mr2559715ybq.61.1706034454031; Tue, 23 Jan
- 2024 10:27:34 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706034589; x=1706639389;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2xz+HhUHMvkBPyimWGJbs8g6trJwsAsyPOOXlCioBJk=;
+        b=tSbVgCVWLvJz6iFkx5U4H97II1Ddaewky24opMruuh2DzLAX401FWMdZ0K9aUj5fhE
+         oh3rZII+MdVG+p41OKY8rHcliksn9Kw73TeuIgg0kBzr63lzKdLRF9wiGAKt7voo/Rsu
+         TfFo6AUQsBER6oAsD9PlpC6HmSE3qV+TlyAGLHrbTuIxjFbcdphNFSRjRqdCTPAMjbkB
+         gwoxHL3mnczFBdUdiR9imlCRFi3KD0PVAyiCYWmajsKS92pXC7S0mFOjjBUCDNjuQnW7
+         +vL/pQPlfeFa/fxk2e0nt0yh37fF3a9y7p03ZxFhrUyJCLkxO0UUW5Y0r0zCp+I+Menn
+         b2sQ==
+X-Gm-Message-State: AOJu0YyPy4LvMNGktbnVGUaGcih41FJPHlDBcaPU/Ji2mLLEzL22QA36
+	tIp/Ri4XjElSe2aB5qjk5uQBj2CHV9gYizbl97XmBgqi3AGVX8c+6xIAOYVX01I=
+X-Google-Smtp-Source: AGHT+IGRd+jzki5BWEBqzfAgV9huF7zXL57P4d+Xg5M85UL8BBk47uG4aqDJftTDnRge4gDfP5SLTA==
+X-Received: by 2002:a05:6512:3e18:b0:510:893:f8c3 with SMTP id i24-20020a0565123e1800b005100893f8c3mr981592lfv.20.1706034588942;
+        Tue, 23 Jan 2024 10:29:48 -0800 (PST)
+Received: from [172.30.205.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id q20-20020a056512211400b0050bea32beeasm2398479lfr.216.2024.01.23.10.29.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Jan 2024 10:29:48 -0800 (PST)
+Message-ID: <990cc7cf-1cc9-4af4-9d94-994e92b1c7f0@linaro.org>
+Date: Tue, 23 Jan 2024 19:29:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240112144902.40044-1-dario.binacchi@amarulasolutions.com>
- <20240112144902.40044-4-dario.binacchi@amarulasolutions.com> <f38e8afb-bf08-401e-a747-612a68b96414@foss.st.com>
-In-Reply-To: <f38e8afb-bf08-401e-a747-612a68b96414@foss.st.com>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Tue, 23 Jan 2024 19:27:23 +0100
-Message-ID: <CABGWkvqDX5czR+2zsH0aStPt5nbDLU_45rDDjGawKFH23e4FQg@mail.gmail.com>
-Subject: Re: [PATCH v8 3/5] ARM: dts: stm32: rename mmc_vcard to vcc-3v3 on stm32f769-disco
-To: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Lee Jones <lee@kernel.org>, Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Rob Herring <robh+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Alexandre,
-
-On Tue, Jan 23, 2024 at 5:31=E2=80=AFPM Alexandre TORGUE
-<alexandre.torgue@foss.st.com> wrote:
->
-> Hi Dario
->
-> On 1/12/24 15:48, Dario Binacchi wrote:
-> > In the schematics of document UM2033, the power supply for the micro SD
-> > card is the same 3v3 voltage that is used to power other devices on the
-> > board. By generalizing the name of the voltage regulator, it can be
-> > referenced by other nodes in the device tree without creating
-> > misunderstandings.
-> >
-> > This patch is preparatory for future developments.
-> >
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > Reviewed-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> >
-> > ---
-> >
-> > Changes in v8:
-> > - Add Reviewed-by tag of Raphael Gallais-Pou
-> >
-> >   arch/arm/boot/dts/st/stm32f769-disco.dts | 6 +++---
-> >   1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/st/stm32f769-disco.dts b/arch/arm/boot/d=
-ts/st/stm32f769-disco.dts
-> > index 5d12ae25b327..8632bd866272 100644
-> > --- a/arch/arm/boot/dts/st/stm32f769-disco.dts
-> > +++ b/arch/arm/boot/dts/st/stm32f769-disco.dts
-> > @@ -92,9 +92,9 @@ usbotg_hs_phy: usb-phy {
-> >               clock-names =3D "main_clk";
-> >       };
-> >
-> > -     mmc_vcard: mmc_vcard {
-> > +     vcc_3v3: vcc_3v3 {
->
-> Replace node name by vcc-3v3. If no v9 sent, I'll do it directly.
-
-I'll do it
-
-Thanks and regards,
-Dario
-
->
-> >               compatible =3D "regulator-fixed";
-> > -             regulator-name =3D "mmc_vcard";
-> > +             regulator-name =3D "vcc_3v3";
-> >               regulator-min-microvolt =3D <3300000>;
-> >               regulator-max-microvolt =3D <3300000>;
-> >       };
-> > @@ -128,7 +128,7 @@ &rtc {
-> >
-> >   &sdio2 {
-> >       status =3D "okay";
-> > -     vmmc-supply =3D <&mmc_vcard>;
-> > +     vmmc-supply =3D <&vcc_3v3>;
-> >       cd-gpios =3D <&gpioi 15 GPIO_ACTIVE_LOW>;
-> >       broken-cd;
-> >       pinctrl-names =3D "default", "opendrain", "sleep";
+User-Agent: Mozilla Thunderbird
+Subject: Re: [4/4] arm64: dts: qcom: sc7280: Add clocks for QOS configuration
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Odelu Kukatla <quic_okukatla@quicinc.com>
+Cc: georgi.djakov@linaro.org, cros-qcom-dts-watchers@chromium.org,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240122143030.11904-1-quic_okukatla@quicinc.com>
+ <20240122143030.11904-5-quic_okukatla@quicinc.com>
+ <CAA8EJpoU=jOSERW70NBXkr5JARH+2TAL1KSb130DTcSu4EmX4w@mail.gmail.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <CAA8EJpoU=jOSERW70NBXkr5JARH+2TAL1KSb130DTcSu4EmX4w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
 
---=20
+On 1/22/24 18:43, Dmitry Baryshkov wrote:
+> On Mon, 22 Jan 2024 at 16:39, Odelu Kukatla <quic_okukatla@quicinc.com> wrote:
+>>
+>> Add clock handles for required clocks to be enabled for
+>> configuring QoS on sc7280.
+>>
+>> Change-Id: I58991300ff1d8d2865763d4e79ee81c03586249e
+>> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 83b5b76ba179..73acf1bd0f97 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -2099,6 +2099,8 @@
+>>                          reg = <0 0x016e0000 0 0x1c080>;
+>>                          #interconnect-cells = <2>;
+>>                          qcom,bcm-voters = <&apps_bcm_voter>;
+>> +                       clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+>> +                               <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>;
+>>                  };
+>>
+>>                  aggre2_noc: interconnect@1700000 {
+>> @@ -2106,6 +2108,7 @@
+>>                          compatible = "qcom,sc7280-aggre2-noc";
+>>                          #interconnect-cells = <2>;
+>>                          qcom,bcm-voters = <&apps_bcm_voter>;
+>> +                       clocks = <&rpmhcc RPMH_IPA_CLK>;
+> 
+> Is there any reason to write QoS for the IPA before the IPA starts
+> poking around? The same question applies to aggre1 NoC.
 
-Dario Binacchi
+Yes, as the NIUs require a clock source which may or may not be
+the peripheral's clock
 
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
+Konrad
 
