@@ -1,62 +1,65 @@
-Return-Path: <devicetree+bounces-34275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE39A839412
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:02:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B8F83944B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 942EC28CEA1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:02:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2B7E1C23884
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 16:07:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA34612CE;
-	Tue, 23 Jan 2024 16:02:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97E5612F6;
+	Tue, 23 Jan 2024 16:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JlFPkc9h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZqKDF9P/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D185FDC6;
-	Tue, 23 Jan 2024 16:02:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE4A612F0;
+	Tue, 23 Jan 2024 16:06:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706025760; cv=none; b=JVXyYb23SqCXlcqFMzy0S6ppJqadYDbABLYFX21RTqejAfCKmVjBuBHpjM52o0pN1dBxTNKcjM6uWxFQvE1RDhd8h6MKPfY8K+kHCY1GF7+5HRv9p4r+cYJ1vdN+v3Ri67tGxRVmwrjSCz6uImc4TPwC48ZEZynMS5VZ0ub+7G8=
+	t=1706025997; cv=none; b=u3UYdKM7absC8LoTxvSCQFYeSrn192Ryfsmnzz0cGdwsV+JLVflZwT69pQcJ5JXPeYgEtoy0OzkqOOHejoTwRJRgXDXmyto3CeqyxNATadKfyGjSiQ6mOSFQYNDEiPWW42Yhxa0Cw/dDHyMSd9htreOb3aOMMoE3M3yxH9brtcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706025760; c=relaxed/simple;
-	bh=6iomC1fv6XGKLh/5wOuoJeeMuD80o9yncgsidbFuLPY=;
+	s=arc-20240116; t=1706025997; c=relaxed/simple;
+	bh=c+2cQ1AyZkqNt9Y2ompQm2rjkM685pFW95EhdYleG2s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qoYl/2J4Vnriz0328eE7wrOyOuaBdUGv9tgs1JAq/l31Q5PmxE2eRd1rznYh4aZlNSMWF1wqermFCPAd55SzvaXibDfGqe0yytSJM4l8h09Cp4kUIBXLyUk8ZSSAobQV4hpHIsx4SfmP8oQDkd+BzrZTCVpQU/Mdzx0gqaF1Pnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JlFPkc9h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9407C433C7;
-	Tue, 23 Jan 2024 16:02:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oLTc4dAlTw0Vjav50id/LIAxuvpMsnHCKnmu1G8UB7mWwTlHmyJxrrmJCXwum4BndzQm+3vuyLuL69aTaDHfE7vyvoqv9KSgNbRdoh0q3TExCnO6YE6lMR31Ys2w5Ir6fgzf2AFC22v5RTE7dj2eCgV2AF6B5dFPJf6IYy4IHlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZqKDF9P/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 897F6C433C7;
+	Tue, 23 Jan 2024 16:06:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706025759;
-	bh=6iomC1fv6XGKLh/5wOuoJeeMuD80o9yncgsidbFuLPY=;
+	s=k20201202; t=1706025997;
+	bh=c+2cQ1AyZkqNt9Y2ompQm2rjkM685pFW95EhdYleG2s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JlFPkc9haUkscVMtVhapVvG6jz3mm5RZ2lNLMQhlD1+86UeJMJaqI55N9V0vLKhDw
-	 8SJ5O2/qLzEVJXuWPFpG1OvnJCkYz5T/MZsr+7sgnE6X3jcYcQ2qJ4bFtx5M7f7VfB
-	 Nd8X66vzboN900SwkbUmgr5sm0weT+qJukLW2GmxdcH4txTtH+A6KmF2p/+iSLdm+v
-	 skGSO11YE0/JMP6Vl80Omwb+oP30YcJiDliuloOrum4AMUpML5Oz+pLHC6gbZrORXM
-	 O9jGkSmNMp9KUnrTM6t2dtVv9X7SOX5GBKQt+3kNfyc2ZEU8ycNI0W9Cy+SK+bVZLZ
-	 d09blVTbqdnnQ==
-Date: Tue, 23 Jan 2024 16:02:34 +0000
+	b=ZqKDF9P/mvQjLAc8h3Abn9WoTJUp9KtaR6/uA+yfV/pt26Ro5WhvSGkyNGHl0z50N
+	 CNXdkMh0bnD1wXemYLC1ueyErXN5KrfnTMWUKETpXP5UCpyYC0gD5PlMiVvFKa9NUL
+	 UWEeCGQm7oVnf+/xZArWo6QcXGGFsz0HoGYikoqRIe2yBh5Trih0ZlNo24J/lBqqX7
+	 BqvTDYyz1y82cgpFPT0W+GNridgk8nez4kKxANPW6edNRi6lzCXK3BYowfZRzgSrDS
+	 bUZvMJRDWivim7ncP3SHc+qQgKJQ89qJvutMuG07s3jWozNpCW9ZiHzavdUSxCM6RN
+	 RCxvYbjxbaDzQ==
+Date: Tue, 23 Jan 2024 16:06:31 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Seven Lee <wtli@nuvoton.com>, lgirdwood@gmail.com,
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-	conor+dt@kernel.org, YHCHuang@nuvoton.com, KCHSU0@nuvoton.com,
-	CTLIN0@nuvoton.com, SJLIN0@nuvoton.com, scott6986@gmail.com,
-	supercraig0719@gmail.com, dardar923@gmail.com
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: Added schema for "nuvoton,nau8325"
-Message-ID: <20240123-brewery-roving-b9ebc70468f4@spud>
-References: <20240122095650.60523-1-wtli@nuvoton.com>
- <20240122-daunting-woof-19fac5689bb2@spud>
- <04945799-eded-42f9-b8fa-8907be44c400@sirena.org.uk>
- <20240123-bottle-elevating-9fbba5424014@spud>
- <185f3912-5a92-4ef2-aac4-0df8363d8727@sirena.org.uk>
+To: Philippe Schenker <dev@pschenker.ch>
+Cc: netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Vladimir Oltean <olteanv@gmail.com>, linux-kernel@vger.kernel.org,
+	UNGLinuxDriver@microchip.com, Marek Vasut <marex@denx.de>,
+	Florian Fainelli <f.fainelli@gmail.com>, devicetree@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Philippe Schenker <philippe.schenker@impulsing.ch>
+Subject: Re: [PATCH net-next v1 1/2] dt-bindings: net: dsa: Add KSZ8567
+ switch support
+Message-ID: <20240123-ripening-tabby-b97785375990@spud>
+References: <20240123135014.614858-1-dev@pschenker.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,60 +67,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="CZOKZjrI+J1e9HlH"
+	protocol="application/pgp-signature"; boundary="NI/8LBe6Z0gbguMf"
 Content-Disposition: inline
-In-Reply-To: <185f3912-5a92-4ef2-aac4-0df8363d8727@sirena.org.uk>
+In-Reply-To: <20240123135014.614858-1-dev@pschenker.ch>
 
 
---CZOKZjrI+J1e9HlH
+--NI/8LBe6Z0gbguMf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 23, 2024 at 01:06:45PM +0000, Mark Brown wrote:
-> On Tue, Jan 23, 2024 at 08:34:03AM +0000, Conor Dooley wrote:
-> > On Mon, Jan 22, 2024 at 07:40:51PM +0000, Mark Brown wrote:
-> > > On Mon, Jan 22, 2024 at 06:00:14PM +0000, Conor Dooley wrote:
-> > > > On Mon, Jan 22, 2024 at 05:56:49PM +0800, Seven Lee wrote:
+On Tue, Jan 23, 2024 at 02:50:13PM +0100, Philippe Schenker wrote:
+> From: Philippe Schenker <philippe.schenker@impulsing.ch>
 >=20
-> > > > > +    enum:
-> > > > > +      - 0 # VDDA
-> > > > > +      - 1 # VDDA*1.5/1.8V
-> > > > > +      - 2 # VDDA*1.6/1.8V
-> > > > > +      - 3 # VDDA*1.7/1.8V
+> This commit adds the dt-binding for KSZ8567, a robust 7-port
+> Ethernet switch. The KSZ8567 features two RGMII/MII/RMII interfaces,
+> each capable of gigabit speeds, complemented by five 10/100 Mbps
+> MAC/PHYs.
 >=20
-> > > > I would also rather than this enum was used to have sensible values=
- for
-> > > > the enum itself (which I suppose means strings here), rather than t=
-he
-> > > > register values. Seeing "nuvoton,dac-vref =3D <2>" in a devicetree =
-is not
-> > > > very meaningful IMO.
->=20
-> > > Do you have a concrete suggestion for how to more clearly write these
-> > > directly?
->=20
-> > I would use what's been given as the explanation comments for each of
-> > the current enum values in the patch.
->=20
-> Given that none of *, / nor . are usable in defines that's going to need
-> a bit of massaging...
+> Signed-off-by: Philippe Schenker <philippe.schenker@impulsing.ch>
 
-At the end of the day, if it is too painful on the driver, then I'll
-live with another enum. This is one of the worse cases of this sort of
-enum that is clearly a bunch of register values, given there's not a
-"nice" explanation for them.
+This device has all the same constraints as the other ones in this
+binding, why is it not compatible with any of them? If it isn't, the
+compatible should mention why it is not.
 
---CZOKZjrI+J1e9HlH
+Cheers,
+Conor.
+
+> ---
+>=20
+>  Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml=
+ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> index c963dc09e8e1..52acc15ebcbf 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> @@ -31,6 +31,7 @@ properties:
+>        - microchip,ksz9893
+>        - microchip,ksz9563
+>        - microchip,ksz8563
+> +      - microchip,ksz8567
+> =20
+>    reset-gpios:
+>      description:
+> --=20
+> 2.34.1
+>=20
+
+--NI/8LBe6Z0gbguMf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa/jCAAKCRB4tDGHoIJi
-0rzSAP9jk8KYC7hIX1HdXqnBFVDfINXYg5zeasUhnLdvnkiJNwEA63S74iCvYyqD
-L2y649pIe19v3rQ2TUGetH88CEsCxgI=
-=VtcS
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa/kBwAKCRB4tDGHoIJi
+0qIwAP0cAGkY71vvUkGVLtIl9vMLiEQ4yyjNGvN6RsdtKatZwwEAnjjiGl1UYl8C
+Ha3eBRlaGSPNPIG1GySfDMPmK5FZhgc=
+=Jrfg
 -----END PGP SIGNATURE-----
 
---CZOKZjrI+J1e9HlH--
+--NI/8LBe6Z0gbguMf--
 
