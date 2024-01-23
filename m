@@ -1,109 +1,150 @@
-Return-Path: <devicetree+bounces-34325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF8D283963D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:22:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF601839647
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 18:23:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F212A1C2119B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:22:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A72FB28C2AF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jan 2024 17:23:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D3E7FBA1;
-	Tue, 23 Jan 2024 17:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D02BE7FBBB;
+	Tue, 23 Jan 2024 17:23:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZmMT0kqH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fta0TOH3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B2863518
-	for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 17:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A126263518;
+	Tue, 23 Jan 2024 17:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706030552; cv=none; b=hUKG65zLBYINKqnDbcVJjO+PjYSV6f6iBkM1lxOBMdVST67fq4KluKhq+/pZ5yvkAL0RUrDPQ3dxwfV3C2gOuG9+VQ2dUIUlugcPsd5EuQkA9QtveFx4cxdZEBtOrURkcibnzE/8DiV3+Ohvew3iX5MXtrCCLxcXNGfzkXQC3/U=
+	t=1706030626; cv=none; b=W1gg148dmIaOxBUs45Z0TmZnQsWcn8RXcrZi0wPyOiRIZveB5EM96KJbjRxAy+WkA02TT3UmWm6VLX8VJy8eM1ZI6YUQtZKwJC6YvjH3bgEcvPYgXXi6wn7pr4OgyUoh8AljopODEBmjovCp9b6c6ImbFWqUeYPryAr5tYJh6PI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706030552; c=relaxed/simple;
-	bh=1Hfc6n+pM6KQNiyZQNXhNkFf773fzhUlASTk4Tfi3oQ=;
+	s=arc-20240116; t=1706030626; c=relaxed/simple;
+	bh=femgqPkSEbLEE9OmJM4uIzxaC1oRXQv/pdyrNKGtr8g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HmnEA5tFWTZD4TpPeLX5II36Syeqfxd141MVYbh41NZvfQox8yBtltYOjFuElV9uHKcvFuUTN6x+vlAEJDBZ8jJc3W0b8Z9Fg6ddz3bedZRxmpOIEDM/cfkdNOag7TTR9oyauU4NaKWlvkGiI48WfNB80j+TR9sx5f0MYa/rYBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZmMT0kqH; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-339237092dcso3297701f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 09:22:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706030549; x=1706635349; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=1Hfc6n+pM6KQNiyZQNXhNkFf773fzhUlASTk4Tfi3oQ=;
-        b=ZmMT0kqH8TvUD3gM5p5O90FrptpqkFMA9wSGe0G5ip+Y05ycwi2OKq2fkBmjiZgKzo
-         Yf5XRSduF4j8q6XLhQJbjQSqe+Deb82QXBJ/BAxEgctBteQQS/424fATVuQI9cPM+6Xx
-         0K+Fw0yFZOyqX0Qk2y1BIG4VjMwyHapqFtoU6LVkiefqBWPnTmM9dtqDnBy+wNJFp4XM
-         hCAlAjpckhoqxVIrHmIqVrHTznRXFRKX2FsNkvhkKLCtn4o40gTh33A1SvFowFQrWaAB
-         3qtke2qgNlHbBttjzKDYusXQdt+FC8b0XLUjizG3o8yvfcXc1FoXNYcbLjsGAAp61hDB
-         WUiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706030549; x=1706635349;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Hfc6n+pM6KQNiyZQNXhNkFf773fzhUlASTk4Tfi3oQ=;
-        b=Fa/De8zGMSbw2D09K+vKmuWUbFFnb7z3fl6Tf/LzQyNFG3y+1Occ9KSEa9YOopCRc5
-         y6wW0Ibk4tgar5e7L6CTpgx3NOnJVeAY/EtF4lL5m3PTDVnVoDrwxi51iT/5yE5NbhNB
-         mJ7D00qid66br1cMZjXLdRQ4iCIkzB4hZaYTGmMP3j0UUnokQat6s550r85pWrpk4YmC
-         6Vi9yfdXpvVlngQAeNu8gqi5QTZmBUruDRz8yphUu0I2XyHDIMNkQ8qsOc1kWXFLtZoz
-         gnzFGgH/n8CrG8cziwqUBTjl1J3mCPSVqCIHwgK1TokQOMk2u/Ml8lEW/gWWu/OezfGw
-         it1A==
-X-Gm-Message-State: AOJu0Yyui9c4BeIdUtnoUq5gkr6Xil5eqdmLG0jpsbFaThD6AOteSj/b
-	OdNzTzdUjqo0PVVPcqOX0s7/zvfqB+uqzqmALLfwhH1nr2GoQq6GX5r52XlYQ/I=
-X-Google-Smtp-Source: AGHT+IFoO7gQRGdGA6peiV/mTL2CvpmYneI+ojl6fbQ6l0AX59DKNiE6xTLu71LBrqA2E5JpU1OYmA==
-X-Received: by 2002:adf:a459:0:b0:338:fcdc:ad21 with SMTP id e25-20020adfa459000000b00338fcdcad21mr4255272wra.49.1706030549105;
-        Tue, 23 Jan 2024 09:22:29 -0800 (PST)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id l8-20020a5d4bc8000000b00338914eb90dsm12032927wrt.82.2024.01.23.09.22.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 09:22:28 -0800 (PST)
-Date: Tue, 23 Jan 2024 17:22:26 +0000
-From: Daniel Thompson <daniel.thompson@linaro.org>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ShiP2H/eCvAAWeGNvaCjn5lLU6u+mheOHyhRgftX5eMyZSmG9HzZ6502J6wTpx/4rQbuaFQWuftnrlnDNTXT20au5kh55/ffRNZxXwomOzy6ISTO8TM8w9g+VkS8X7+OA2mPnUKXJPUdRN+plNouNNk1LS8pIG8MGTuZlAL+N9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fta0TOH3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDB86C433F1;
+	Tue, 23 Jan 2024 17:23:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706030626;
+	bh=femgqPkSEbLEE9OmJM4uIzxaC1oRXQv/pdyrNKGtr8g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fta0TOH3tYq/WKjiidHvlkG2hPr3JzDIjDfhlqVRhOlp9HHNSimElSS7FDSqDYPNL
+	 ZkaSHgVkDbtE6t8PFjdkX4jUQTedln6xmoT9nMHmlFi5NdsI3xuLAQnTL5JVX3oegx
+	 W3r11RvNH/hrWTEegf38z+JY2NW6UYBYJD7bWl3LGruEbvLSNw7csDZwemEl8sFll/
+	 xp+Heyq2kENomXSOIBFlfihPR7ofERTlwQ2FOdAqQCm7qAP9fVqFf0rl/mgfWI9BP2
+	 k9/ZPtnweshaeP/a4DNjdVzZJ7L4y7ca833lFcza2vz1ja7TJdtKcwYrXoTv4IhUFC
+	 O/wttq99ywYOw==
+Date: Tue, 23 Jan 2024 17:23:40 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Philippe Schenker <dev@pschenker.ch>
+Cc: netdev@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Vladimir Oltean <olteanv@gmail.com>, linux-kernel@vger.kernel.org,
+	UNGLinuxDriver@microchip.com, Marek Vasut <marex@denx.de>,
+	Florian Fainelli <f.fainelli@gmail.com>, devicetree@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	"David S . Miller" <davem@davemloft.net>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Karel Balej <balejk@matfyz.cz>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] backlight: Add Kinetic KTD2801 backlight support
-Message-ID: <20240123172226.GC263554@aspen.lan>
-References: <20240122-ktd2801-v4-0-33c986a3eb68@skole.hr>
- <20240122-ktd2801-v4-3-33c986a3eb68@skole.hr>
+	Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH net-next v1 1/2] dt-bindings: net: dsa: Add KSZ8567
+ switch support
+Message-ID: <20240123-atlas-dart-7e955e7e24e5@spud>
+References: <20240123135014.614858-1-dev@pschenker.ch>
+ <20240123-ripening-tabby-b97785375990@spud>
+ <b2e232de11cee47a5932fccc2d151a9c7c276784.camel@pschenker.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="puDO/bicEa8XZtpY"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240122-ktd2801-v4-3-33c986a3eb68@skole.hr>
-
-On Mon, Jan 22, 2024 at 08:50:59PM +0100, Duje Mihanović wrote:
-> KTD2801 is a LED backlight driver IC found in samsung,coreprimevelte.
-> The brightness can be set using PWM or the ExpressWire protocol. Add
-> support for the KTD2801.
->
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
-
-Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
+In-Reply-To: <b2e232de11cee47a5932fccc2d151a9c7c276784.camel@pschenker.ch>
 
 
-Daniel.
+--puDO/bicEa8XZtpY
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jan 23, 2024 at 05:17:53PM +0100, Philippe Schenker wrote:
+>=20
+>=20
+> On Tue, 2024-01-23 at 16:06 +0000, Conor Dooley wrote:
+> > On Tue, Jan 23, 2024 at 02:50:13PM +0100, Philippe Schenker wrote:
+> > > From: Philippe Schenker <philippe.schenker@impulsing.ch>
+> > >=20
+> > > This commit adds the dt-binding for KSZ8567, a robust 7-port
+> > > Ethernet switch. The KSZ8567 features two RGMII/MII/RMII
+> > > interfaces,
+> > > each capable of gigabit speeds, complemented by five 10/100 Mbps
+> > > MAC/PHYs.
+> > >=20
+> > > Signed-off-by: Philippe Schenker <philippe.schenker@impulsing.ch>
+> >=20
+> > This device has all the same constraints as the other ones in this
+> > binding, why is it not compatible with any of them? If it isn't, the
+> > compatible should mention why it is not.
+>=20
+> Hi Conor, Thanks for your message!
+>=20
+> I need the compatible to make sure the correct ID of the switch is
+> being set in the driver as well as its features.
+
+Are the features of this switch such that a driver for another ksz
+switch would not work (even in a limited capacity) with the 8567?
+Things like the register map changing or some feature being removed are
+examples of why it may not work.
+
+> You mean I shall mention the reason in the commit-message, or where?
+
+Yes.
+
+Thanks,
+Conor
+
+> > > =A0Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 1 +
+> > > =A01 file changed, 1 insertion(+)
+> > >=20
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > > b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > > index c963dc09e8e1..52acc15ebcbf 100644
+> > > --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > > @@ -31,6 +31,7 @@ properties:
+> > > =A0=A0=A0=A0=A0=A0 - microchip,ksz9893
+> > > =A0=A0=A0=A0=A0=A0 - microchip,ksz9563
+> > > =A0=A0=A0=A0=A0=A0 - microchip,ksz8563
+> > > +=A0=A0=A0=A0=A0 - microchip,ksz8567
+> > > =A0
+> > > =A0=A0 reset-gpios:
+> > > =A0=A0=A0=A0 description:
+> > > --=20
+> > > 2.34.1
+> > >=20
+
+--puDO/bicEa8XZtpY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZa/2HAAKCRB4tDGHoIJi
+0iK5AP9Rxz/Mwx+CVYnGDVHIuqf+Y0VRbXv4MLXFsmG1xnO9wgEAkK7LkNWYo2x/
+8DecwgALjn0eGXmhJXFDg8p2At5CsgY=
+=KMN+
+-----END PGP SIGNATURE-----
+
+--puDO/bicEa8XZtpY--
 
