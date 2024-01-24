@@ -1,115 +1,328 @@
-Return-Path: <devicetree+bounces-34838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601A883B43C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 22:46:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E138983B455
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 22:56:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 180E61F22C7D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 21:46:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66AA01F230F3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 21:56:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11BF11353F3;
-	Wed, 24 Jan 2024 21:46:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E43135A4E;
+	Wed, 24 Jan 2024 21:56:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iPPtqSum"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XCh6EnZA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83D042A8E;
-	Wed, 24 Jan 2024 21:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8A4135A40
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 21:56:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706132789; cv=none; b=M9J52RKm3Scn+UgqK3JHlSM1zoPU7xO5T25jKUad60ocF6shSrvMiLTu6AKdG4nhkOaf06g/0uEjihRH+FKZkvupqCYxJmvu8YN4jpZg5BJuh7bgumN631f+XaYUiyAow11xB7VRbP1Rz7VL6p5E+adfyOLSQO2jKTU+3L9k5nI=
+	t=1706133388; cv=none; b=tRvNA4vH8KUyrBa48lIVAdsCi7OS1Zi7XvsPqVMPQ3yB6IMjMYxVXL2shC75nIqflKtwJKWOSpnG+tMJzNGS2zwziLVOz7pABktrjushPyCQ2U/Yh5UzIA9Z2bFIQRZrDa/uKw+lohVZTfzeFrBeD17AjX4HdgEwGLbOosP95Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706132789; c=relaxed/simple;
-	bh=rM6xmLejxZB/WOggpRFjLpPZvfPUObjvKe5XzLbFxYg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tC2hthVescAv+J4omp3Bk9FN/1kPjokiDkqewH8v/4s+lyjHty3aQ9PNNGLecoMN5GuJxcaZnwKg9BaR4cjgflwBIBdMYKcFoh+GMm9xQup6RqP5SRvWnLPs0J+dGLu4bOvySyGBoU0kW7IWMRajCR2t68JpeluT72nuB95sje8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iPPtqSum; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16C34C433F1;
-	Wed, 24 Jan 2024 21:46:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706132788;
-	bh=rM6xmLejxZB/WOggpRFjLpPZvfPUObjvKe5XzLbFxYg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iPPtqSumktngzNTzqK6CM5viq3QM8pOsma4gP02ZWDiaSu10zbIjH3ILy0V2eE6vk
-	 lZEWJ6Vgdy4HDLGs/obsiird/S5aUNGtYXNeNlWJQ0BV8zievtRwPz73xo/Dv4W0mU
-	 EByQphIRodtWlH1PPyKTwqXWH7923DH5WT5yEF5C3clluqXGR0pLb9VHPJPRYjaCwN
-	 cnmJDD4SH3DP4luLymRBinnrZqYHyq7b18m6C9se05Dl2W4o/8hEhyq2c5zTTImqmd
-	 0MWsweP5j4OJ9Ks0HLxL/6bawwmerS9DbKlUSKvHyGy6TLsv4deod7imFGq6/ruM/W
-	 2tnAODNAPO5Pw==
-Date: Wed, 24 Jan 2024 15:46:24 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: Fix hs_phy_irq for QUSB2 targets
-Message-ID: <wqdqkzvni4roqulgsiqxzubxcblzxnoydcwvv2av2pobjjx5o6@b7kwl6lq7hij>
-References: <20240120191904.15408-1-quic_kriskura@quicinc.com>
- <20240120191904.15408-2-quic_kriskura@quicinc.com>
+	s=arc-20240116; t=1706133388; c=relaxed/simple;
+	bh=EX6Xg97fogggPujr6zF1z3ZA6WLr4oyUt8u/YA6aViQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UQq/wzl0+OLuQaDigSA/Lh+2liErLC9/FJxK7wFB/wRpLZozVtfXYx6xVjXmpcLr9EgGYCPowsxDuiCCMC5x61fxIiGCxg+tL5WA1hrytA0V0UC7xWxxOlXg15jIVezkyy2CuApsQ125h3OU1dWLqjCzGEw4fsIY6z+l1cflDFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XCh6EnZA; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40e8d3b29f2so70870155e9.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 13:56:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706133383; x=1706738183; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EdTvmEU+xHHgmqyOex/ty2VAc9Q/TL690DSs8BPGiJc=;
+        b=XCh6EnZA0UiaYLgZLRKmSpqj3EPnyE3W9n3UdYIOFdqRs0SZ8aUFBzipHSNjs8ZuS8
+         YmY3cmXmWMDxiw4iQ36kZL1zM2ujUaeGyTl0zAk4KnjB1gRXMiXMZuFzxK4FsZdos1Rs
+         iBHmvlIuI+DZJBYByaEJ9QM/nAfESFWnfG3NpgXEL71wnCQc4KLHnlkIi7U5IjaS3w4y
+         WgC4T1GqOfo5qTrU2UoMR05wCfXLhE6u6czl6IPzkJf5/dlKUHmB5DMbLwIvqCm78Z1k
+         0OCdRu9p/m0AVi1kdcVy7solcKxGXpOFPt9RWgEhrt+ObqLsOfWDxfG5Ra7w0B8v+f/W
+         gqCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706133383; x=1706738183;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EdTvmEU+xHHgmqyOex/ty2VAc9Q/TL690DSs8BPGiJc=;
+        b=q/eEJyXcqUT195LhExVS00wMAmEdaulyrusmLCD07cplVH1zOknrX44Sa+rfyzlAop
+         pHH8ihXMVqIdhTatxzEmWf63Q+Ij6ZzS2jbQqk012Dt/pO/Xsuv7HeUFLqh3JEzhvgbk
+         KiwlEd+VoNkw0hFDCaJJhH9MB3Y8pEm3tuvj2ijCt4ZmB1s/xvOoLYa4yfEZdDpXKOag
+         8BcNfiRNlu4Exh436FGcyPDdP0mJlTXW6mZMGSpglWpOZaOZI8Uwk1HjI5CdHjju+4AR
+         rQFjT6vz9KRWtVZ94L1KVnmXZgATRB7fsQJjUmrto35nkA+zc6nZAN2Tqq+vufuPyCHr
+         uxZw==
+X-Gm-Message-State: AOJu0YzbOpwRC7JEH1iWx8Y+dp6D5iEQzBtSt3828ilYM+WynqbJFXfh
+	nneWoitC6gvpep51Zu4p2vWa6thSxGFwSJLUgPfrE12dbjgvoNii00D++BhBod0=
+X-Google-Smtp-Source: AGHT+IGFN1yZ6bkhyyR0G3nSuRypLXrxZfSyl7bbfq6gvKvNiRN9o22JGYpQGM1U0hToOzmUoKPSdg==
+X-Received: by 2002:a05:600c:4ed2:b0:40e:bfca:f1b8 with SMTP id g18-20020a05600c4ed200b0040ebfcaf1b8mr996061wmq.54.1706133382771;
+        Wed, 24 Jan 2024 13:56:22 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:92d0:e652:43b1:5e6a? ([2a05:6e02:1041:c10:92d0:e652:43b1:5e6a])
+        by smtp.googlemail.com with ESMTPSA id t15-20020a05600c198f00b0040e395cd20bsm377273wmq.7.2024.01.24.13.56.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Jan 2024 13:56:22 -0800 (PST)
+Message-ID: <245f5692-be30-4216-8b13-988092793732@linaro.org>
+Date: Wed, 24 Jan 2024 22:56:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240120191904.15408-2-quic_kriskura@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] arm64: dts: rockchip: enable built-in thermal
+ monitoring on rk3588
+To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
+ <20240125-rk-dts-additions-v1-2-5879275db36f@gmail.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20240125-rk-dts-additions-v1-2-5879275db36f@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jan 21, 2024 at 12:49:01AM +0530, Krishna Kurapati wrote:
-> On several QUSB2 Targets, the hs_phy_irq mentioned is actually
-> qusb2_phy interrupt specific to QUSB2 PHY's. Rename hs_phy_irq
-> to qusb2_phy for such targets.
-> 
-> In actuality, the hs_phy_irq is also present in these targets, but
-> kept in for debug purposes in hw test environments. This is not
-> triggered by default and its functionality is mutually exclusive
-> to that of qusb2_phy interrupt.
-> 
-> Add missing hs_phy_irq's, pwr_event irq's for QUSB2 PHY targets.
-> Add missing ss_phy_irq on some targets which allows for remote
-> wakeup to work on a Super Speed link.
-> 
-> Also modify order of interrupts in accordance to bindings update.
-> Since driver looks up for interrupts by name and not by index, it
-> is safe to modify order of these interrupts in the DT.
-> 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+On 24/01/2024 21:30, Alexey Charkov wrote:
+> Include thermal zones information in device tree for rk3588 variants
+
+There is an energy model for the CPUs. But finding out the sustainable 
+power may be a bit tricky. So I suggest to remove everything related to 
+the power allocator in this change and propose a dedicated change with 
+all the power configuration (which includes proper k_p* coefficients to 
+be set from userspace to have a flat mitigation figure).
+
+That implies removing the "contribution" properties in this description.
+
+Some comments below but definitively this version is close to be ok.
+
+
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 13 +++++++++++++
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 14 ++++++++++++++
->  arch/arm64/boot/dts/qcom/msm8953.dtsi |  7 +++++--
->  arch/arm64/boot/dts/qcom/msm8996.dtsi |  8 ++++++--
->  arch/arm64/boot/dts/qcom/msm8998.dtsi |  7 +++++--
->  arch/arm64/boot/dts/qcom/sdm630.dtsi  | 17 +++++++++++++----
->  arch/arm64/boot/dts/qcom/sm6115.dtsi  |  9 +++++++--
->  arch/arm64/boot/dts/qcom/sm6125.dtsi  |  9 +++++++--
->  8 files changed, 70 insertions(+), 14 deletions(-)
+>   arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 165 ++++++++++++++++++++++++++++++
+>   1 file changed, 165 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 5e1277fea725..ea70b57d1871 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -418,6 +418,12 @@ usb2: usb@70f8800 {
->  					  <&gcc GCC_USB1_MOCK_UTMI_CLK>;
->  			assigned-clock-rates = <133330000>,
->  					       <24000000>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> index 36b1b7acfe6a..131b9eb21398 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -10,6 +10,7 @@
+>   #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+>   #include <dt-bindings/phy/phy.h>
+>   #include <dt-bindings/ata/ahci.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>   
+>   / {
+>   	compatible = "rockchip,rk3588";
+> @@ -2228,6 +2229,170 @@ tsadc: tsadc@fec00000 {
+>   		status = "disabled";
+>   	};
+>   
+> +	thermal_zones: thermal-zones {
+> +		/* sensor near the center of the whole chip */
+> +		package_thermal: package-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 0>;
 > +
-> +			interrupts-extended = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
+> +			trips {
+> +				package_crit: package-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		/* sensor between A76 cores 0 and 1 */
+> +		bigcore0_thermal: bigcore0-thermal {
+> +			polling-delay-passive = <20>;
 
-interrupts-extended takes a reference to a interrupt-controller as well,
-so this doesn't build.
+20ms seems very short, is this value on purpose? Or just picked up 
+arbitrarily?
 
-Did you mean "interrupts" here instead? Please update these and build
-test...
+If it is possible, perhaps you should profile the temperature of these 
+thermal zones (CPUs ones). There is a tool in 
+<linuxdir>/tools/thermal/thermometer to do that.
 
-Regards,
-Bjorn
+You can measure with 10ms sampling rate when running for instance 
+dhrystone pinned on b0 and b1, then on b2 and b3. And finally on the 
+small cluster.
+
+But if you don't have spare time and 20 is ok for you. Then it is fine 
+for me too.
+
+Some nits below.
+
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 1>;
+> +
+> +			trips {
+> +				bigcore0_alert0: bigcore0-alert0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				bigcore0_alert1: bigcore0-alert1 {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				bigcore0_crit: bigcore0-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&bigcore0_alert1>;
+> +					cooling-device =
+> +						<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					contribution = <1024>;
+> +				};
+> +			};
+> +		};
+> +
+> +		/* sensor between A76 cores 2 and 3 */
+> +		bigcore2_thermal: bigcore2-thermal {
+> +			polling-delay-passive = <20>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 2>;
+> +
+> +			trips {
+> +				bigcore2_alert0: bigcore2-alert0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				bigcore2_alert1: bigcore2-alert1 {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				bigcore2_crit: bigcore2-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +			cooling-maps {
+> +				map1 {
+
+s/map1/mpa0/
+
+> +					trip = <&bigcore2_alert1>;
+> +					cooling-device =
+> +						<&cpu_b2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_b3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					contribution = <1024>;
+> +				};
+> +			};
+> +		};
+> +
+> +		/* sensor between the four A55 cores */
+> +		little_core_thermal: littlecore-thermal {
+> +			polling-delay-passive = <20>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 3>;
+> +
+> +			trips {
+> +				littlecore_alert0: littlecore-alert0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				littlecore_alert1: littlecore-alert1 {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				littlecore_crit: littlecore-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +			cooling-maps {
+> +				map2 {
+
+s/map2/map0/
+
+> +					trip = <&littlecore_alert1>;
+> +					cooling-device =
+> +						<&cpu_l0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_l1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_l2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_l3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					contribution = <1024>;
+> +				};
+> +			};
+> +		};
+> +
+> +		/* sensor near the PD_CENTER power domain */
+> +		center_thermal: center-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 4>;
+> +
+> +			trips {
+> +				center_crit: center-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		gpu_thermal: gpu-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 5>;
+> +
+> +			trips {
+> +				gpu_crit: gpu-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		npu_thermal: npu-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 6>;
+> +
+> +			trips {
+> +				npu_crit: npu-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+>   	saradc: adc@fec10000 {
+>   		compatible = "rockchip,rk3588-saradc";
+>   		reg = <0x0 0xfec10000 0x0 0x10000>;
+> 
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
 
