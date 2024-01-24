@@ -1,60 +1,64 @@
-Return-Path: <devicetree+bounces-34740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCEB883ADE6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:01:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A558F83ADF5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:08:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C19C1C2426B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:01:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E7A4B21DB3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E767C0BE;
-	Wed, 24 Jan 2024 16:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41057C0B5;
+	Wed, 24 Jan 2024 16:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fGS/vNP9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AkpFFABp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69EEE40C1B;
-	Wed, 24 Jan 2024 16:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779257A725;
+	Wed, 24 Jan 2024 16:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706112054; cv=none; b=YwBy37RBjxil8BBSwVaVdK80eyUb6ptrV5tnyJk5RYQZLo/NIVchiJofnegozd3JqsGmWkQjHY73rw+cvZcwzH/zeVaoccRGJ6x5xihN88EkfiitOKfgiJz+ZbTbGeVEKDXZSMWNRSdJ2V8e4bdM8ZhGEc0DQDDb6W5SpL2jTK0=
+	t=1706112474; cv=none; b=W+97xLwZ+60Qxukcj9cEW3onbfs8VwSl9uVSER9KwCxOoHN2YgzK70bjq3eMGe+c9vH6A2LxxzCdcOo5RWu2Wn77TJTLFGXzX68pO753lLCPeh3nilTM4DHPvH7EcxGgDXblqK4YsnJu70WX+t3HzK7zLMEueKYZOPY/eLnB3lY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706112054; c=relaxed/simple;
-	bh=TbMpid+LHATwVZnTYINaH5gIN0irhOL9HfsfcOnpyAM=;
+	s=arc-20240116; t=1706112474; c=relaxed/simple;
+	bh=T7a150d0tNI47ue4XaQznSfvq2Kxgb5U4vfbNPnQC8A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eqIh5QGN3ZYr2/9D9O9cC9geRToVmWEt7otkRrC5tVpa2UjF8Yi6qvyoY+ntKvYCrFpMQ8qrY3DqlmdYaWSc9E+mab30lNblqgowxw9U0Wmxz0Y4Djdeu4GUpuiGDKsfZKfYQRzu82xY8Hybr1t790qfytaCG4EUr7htuhrODjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fGS/vNP9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6CF5C433C7;
-	Wed, 24 Jan 2024 16:00:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZJRpGgOh3VcydrvIhOr3qXUP+Cb+fWLx7aqp1/WkPx7TigNt9Q6iynQZhV21tbuzM7vZumDQYTNh8XyIL3libYFHq70G2dLOJpGJdW1iDY2PtqIKP41XEk5G+wiPciOjL7O1ywXFwSZF9m/pRK7j+UxycDvRCy4O63RUaIPHDUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AkpFFABp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09351C433C7;
+	Wed, 24 Jan 2024 16:07:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706112053;
-	bh=TbMpid+LHATwVZnTYINaH5gIN0irhOL9HfsfcOnpyAM=;
+	s=k20201202; t=1706112473;
+	bh=T7a150d0tNI47ue4XaQznSfvq2Kxgb5U4vfbNPnQC8A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fGS/vNP9fAYBFK3NbuaGg90JtmMUInHteQ40zlrLJgbzYh/KKbb46rFXg+eDJTICA
-	 yhtkrxMk1+N9Dqn6jyex3RxibkI4qV7RrI2ppKchYPE7rvvjvZQjXS2OSHPAezBM2H
-	 jPaOnzQStHbUEHsVcP7MU/L3P86oOTq71xASZLEFLx1Uuhpk4/IuNHVzzRO6yoqmQp
-	 citDPYz7HnIQm51/I6srzm1ih8jq5vb6w6j9Wii9XyCmLR1kHW2y5jzK/rVqAYuL8n
-	 ca5wsX0g/TPWAN764C6wC4zLXHiDoKsxW4/J/X3hNKdaSL3f4rrjDMRIWqsyaVudZA
-	 cT4maV27hDBzQ==
-Date: Wed, 24 Jan 2024 16:00:48 +0000
+	b=AkpFFABpJpTm/W1yHzgIqYaAmRMtNDO5b92DqnfpJ9VvStTZi3E6ggtnDYcXTOVlB
+	 iNx4pUbYzt0tcyikh5RqvEpp0BEO3jkA1R0Y/85ophbqGpAqrdZhQntlarok19SYWv
+	 tawp6S6Up5fHCAESVLn9OyiV0mshvWYYRBLl+1fLzsLpWUicgiOt6d9FbsjK/td7yd
+	 kk0IiuVM/FrFcaNjzCWwDQ0vJ9gmg34xBicaLGB3OaT831MO9mZ4mxl95DOVM9rx6t
+	 BcvznleZzDNrXOtRRAB8BjbnRSQbKUyzkmms6eDFIC4iblaWvabJ6ChrazHprXFXF9
+	 H0tXWbdwMy2sA==
+Date: Wed, 24 Jan 2024 16:07:48 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-	leoyang.li@nxp.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	andy.shevchenko@gmail.com,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: remove redundant company name
-Message-ID: <20240124-evoke-lunar-599e43a99494@spud>
-References: <20240124154422.3600920-1-hugo@hugovil.com>
- <20240124154422.3600920-2-hugo@hugovil.com>
+To: Esben Haabendal <esben@geanix.com>
+Cc: devicetree@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: net: snps,dwmac: Add
+ time-based-scheduling property
+Message-ID: <20240124-reptilian-icing-a95b20f123be@spud>
+References: <b365dc6f756a3fad4dfaa2675c98f4078aba8a55.1706105494.git.esben@geanix.com>
+ <30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,63 +66,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fR4KvCHXIGNltKve"
+	protocol="application/pgp-signature"; boundary="orGn1OOIBTBi4VY0"
 Content-Disposition: inline
-In-Reply-To: <20240124154422.3600920-2-hugo@hugovil.com>
+In-Reply-To: <30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
 
 
---fR4KvCHXIGNltKve
+--orGn1OOIBTBi4VY0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 24, 2024 at 10:44:20AM -0500, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->=20
-> Company name in compatible description appears twice, which is not really
-> helpful, so remove it from product name.
->=20
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Wed, Jan 24, 2024 at 03:33:06PM +0100, Esben Haabendal wrote:
+> Time Based Scheduling can be enabled per TX queue, if supported by the
+> controller.
 
-This only landed in 6.8-rc1, right?
-With a Fixes: tag this would probably be okay, but this does seem on the
-"not worth fixing" side of things to be honest.
+If time based scheduling is not supported by the controller, then the
+property should not be present! The presence of a property like this
+should mean that the feature is supported, using it is up to the
+operating system.
 
-Cheers,
+That said, why is this a property that should be in DT? If support is
+per controller is it not sufficient to use the compatible to determine
+if this is supported?
+
+Thanks,
 Conor.
 
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
-on/devicetree/bindings/arm/fsl.yaml
-> index 228dcc5c7d6f..f455c0172c84 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1026,7 +1026,7 @@ properties:
->          items:
->            - enum:
->                - dimonoff,gateway-evk # i.MX8MN Dimonoff Gateway EVK Board
-> -              - rve,rve-gateway # i.MX8MN RVE Gateway Board
-> +              - rve,gateway # i.MX8MN RVE Gateway Board
->                - variscite,var-som-mx8mn-symphony
->            - const: variscite,var-som-mx8mn
->            - const: fsl,imx8mn
+> Signed-off-by: Esben Haabendal <esben@geanix.com>
+> ---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
+mentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 5c2769dc689a..301e9150ecc3 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -399,6 +399,12 @@ properties:
+>              type: boolean
+>              description: TX checksum offload is unsupported by the TX qu=
+eue.
+> =20
+> +          snps,time-based-scheduling:
+> +            type: boolean
+> +            description:
+> +              Time Based Scheduling will be enabled for TX queue.
+> +              This is typically not supported for TX queue 0.
+> +
+>          allOf:
+>            - if:
+>                required:
 > --=20
-> 2.39.2
+> 2.43.0
 >=20
 
---fR4KvCHXIGNltKve
+--orGn1OOIBTBi4VY0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbE0MAAKCRB4tDGHoIJi
-0kDoAQDB8OEo9sqJYqCSDRi+77Dg5aK/ySummjV3lhwEsdXoPgEA4PRGcK44NDKV
-lpQ8tDB6zvgyylOtXYPT6/z+wPh5pgI=
-=y8LY
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbE11AAKCRB4tDGHoIJi
+0v8wAP9TtkDEdLKEVA0n+83492ltV8gpozpt7NTDo9bSA8pPRwEAk2CFLW1Ac02u
+hfaJxQ8KnrIuHQjJ9wb8ToaEVgPN9Ag=
+=Q0u6
 -----END PGP SIGNATURE-----
 
---fR4KvCHXIGNltKve--
+--orGn1OOIBTBi4VY0--
 
