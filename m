@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-34738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E49A283ADAA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:46:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F3AB83ADA7
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:45:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5BBB0B2506A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 15:46:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 808711C256C0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 15:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5165B7C0AD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3377B7C09A;
 	Wed, 24 Jan 2024 15:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="p/v/SQC+"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="mtVUL5TH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1927C099;
-	Wed, 24 Jan 2024 15:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA727A724;
+	Wed, 24 Jan 2024 15:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706111151; cv=none; b=m/yJwwF7yFf4fLMOSJ+h/V+vjfMlTCCWoWEavCjA5s8N6jAW4IWyKRvvGmC5N+ESZZe2habMga70nqoV6hLsF0gg2D1Gb05GIvIuXqRrlqbvB2yCSGJrEsQZwR6nTcV/FOB4slmA6bqoTArxW+dvT9cAz8GJOBdhqVgMBiL1FHE=
+	t=1706111151; cv=none; b=OwlG9h0Z2LCGXM+qRT6yWxcEIRnnu2fNdPEbSuo3+Jnv2cDE9k4EP1bf3Z8h4OPBiOFjXr2ueGvAFSiJdfNE949/CS7L/eEk/w1u5GZRIF/Xq6weJdZEHa7bHcWXR9Y4hCsAMckIXCwpiTyHBMRj/Zn80F7HppkTX4s/U6oay9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1706111151; c=relaxed/simple;
-	bh=5VEK0y8xwK2Yu2cCt2iPYNRvJOFHGsyOOqYVXqeV9rg=;
+	bh=B3WDKkmrlVOWI/LPemHKRxp7EZwsQfNlpWjUjIzH2MU=;
 	h=From:To:Cc:Date:Message-Id:In-Reply-To:References:MIME-Version:
-	 Subject; b=kW4KPS2VkKNWUTe41GOAFj+nK4aZ/LsTBBilePv92w5tGm5PaDhHIvQqgbVcJ7DtAzE6QQg9KwCwE6SOQNt7zYDng7KyOPSy5UyFKZMuwdrp6r8X7spgOi6eMyyKdwbkd1yG2gTNdxbeSzlU23jUfms5e1BlDbHnAkFQvqrbLoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=p/v/SQC+; arc=none smtp.client-ip=162.243.120.170
+	 Subject; b=OyoWDnoZrYCmbceveBX5feOQA7pzoIgpEdk52Y22LloBnpjPVl31ohAoYcg42RGtQiDTaOZ61HAi5grg3l4R6dNOUkcSUvkOgWXllKcNLOuSz9qcmvfQJMyACI2YTOukgzzrx3v3BKTkra3MmIQypL3QOBCndouzej/nThxzKB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=mtVUL5TH; arc=none smtp.client-ip=162.243.120.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
 	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
 	:From:subject:date:message-id:reply-to;
-	bh=yNbAXH5FKiT/iwyT3JP2PKUh3C/2nRMwck7EtGJ1LgU=; b=p/v/SQC+vaZ7cl5BpbqaeL9Q6Q
-	wni32tbqSMeT1o4l71c590tMpImeG11kn8WC/Epsg7vd1XHZh/Gdcd9LDnr+jCJRtk7lyuTwV3H7/
-	Gihp7/F8Bj6vqTmiye4QplKSc4vtmNnUiBJVL7e8fKWKsI8rOcttetT40PAm7Y9r4laE=;
+	bh=J7acFEtpPDajsbbDC0lrPyBCz3dN4ZDx6rM5yN/XWKk=; b=mtVUL5THrCha2dPqpXOaKxdmlx
+	nKFroWUguPZFgS8vnrz8apP6WYnv/h034u5nm9V9/KJoobZTJZlpMiIdQVEaRIhnROOQYdpj3TPn+
+	g67VMgPa0nEdvNxoUTlC2RCl8hi83KddfVIrwlq5lx88xgrkGVMJA7t6YpvNcGwWxvBw=;
 Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:46384 helo=pettiford.lan)
 	by mail.hugovil.com with esmtpa (Exim 4.92)
 	(envelope-from <hugo@hugovil.com>)
-	id 1rSfRb-0007N8-DC; Wed, 24 Jan 2024 10:45:39 -0500
+	id 1rSfRd-0007N8-Fk; Wed, 24 Jan 2024 10:45:41 -0500
 From: Hugo Villeneuve <hugo@hugovil.com>
 To: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
@@ -57,8 +57,8 @@ Cc: devicetree@vger.kernel.org,
 	hugo@hugovil.com,
 	andy.shevchenko@gmail.com,
 	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Date: Wed, 24 Jan 2024 10:44:20 -0500
-Message-Id: <20240124154422.3600920-2-hugo@hugovil.com>
+Date: Wed, 24 Jan 2024 10:44:21 -0500
+Message-Id: <20240124154422.3600920-3-hugo@hugovil.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20240124154422.3600920-1-hugo@hugovil.com>
 References: <20240124154422.3600920-1-hugo@hugovil.com>
@@ -75,7 +75,7 @@ X-Spam-Level:
 X-Spam-Report: 
 	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
 	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
-Subject: [PATCH 1/2] dt-bindings: arm: fsl: remove redundant company name
+Subject: [PATCH 2/2] arm64: dts: imx8mn-rve-gateway: remove redundant company name
 X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
 X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
@@ -86,22 +86,22 @@ helpful, so remove it from product name.
 
 Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 228dcc5c7d6f..f455c0172c84 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1026,7 +1026,7 @@ properties:
-         items:
-           - enum:
-               - dimonoff,gateway-evk # i.MX8MN Dimonoff Gateway EVK Board
--              - rve,rve-gateway # i.MX8MN RVE Gateway Board
-+              - rve,gateway # i.MX8MN RVE Gateway Board
-               - variscite,var-som-mx8mn-symphony
-           - const: variscite,var-som-mx8mn
-           - const: fsl,imx8mn
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
+index 1b633bd1ebb6..ea1855171fb0 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
+@@ -10,7 +10,7 @@
+ 
+ / {
+ 	model = "RVE gateway";
+-	compatible = "rve,rve-gateway", "variscite,var-som-mx8mn", "fsl,imx8mn";
++	compatible = "rve,gateway", "variscite,var-som-mx8mn", "fsl,imx8mn";
+ 
+ 	crystal_duart_24m: crystal-duart-24m {
+ 		compatible = "fixed-clock";
 -- 
 2.39.2
 
