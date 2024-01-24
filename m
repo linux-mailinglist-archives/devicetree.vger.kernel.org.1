@@ -1,57 +1,73 @@
-Return-Path: <devicetree+bounces-34618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D72583A574
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:31:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 748F183A584
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:33:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61788B2CAC7
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:30:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49305B2A5EC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:32:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45AED17C7F;
-	Wed, 24 Jan 2024 09:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D7717C8D;
+	Wed, 24 Jan 2024 09:32:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="MyBtOAv7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kAOGt6cj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE8B17BDD
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:30:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4E817C66
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:32:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706088625; cv=none; b=ZIKXCwoiEAL2Sspc7tZI8/7Kvy/fOTF91/gons9y2psj66eAWk95w4275SNk1u3sZm9Tb/hKaAAV7g6ykCxjHxOPXycK2LbYYHkOoL1pD2dnH/gDgy36ae0ZesP3Da8x8y3E8cZj7ZWE4i45bsKwFI+n1sAn0IuO1BmMD+gh8Hk=
+	t=1706088753; cv=none; b=pBG5O0TZEarYFo1MY035v7gd0MB1OKoEeR6nX29raUukiLZxcJkIDKep70kIAlQcdgyaAv8qK7kRVh5i9eaiuZqSku2r1HFG7IaiYcTrsuaGb3IXc7u5XgaNEGu9yHmyXClh993zLSY1oRXhi6Qrc9df9V5116jpqxLWb/Q9HLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706088625; c=relaxed/simple;
-	bh=NbSMFyHVexF1r6qIlI25N/dgdaTVhceWOLkZFVAfdyI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=YPEBAkCxG5zE0CLJ/AojIOHSsdknG7ekTh6VJK4jEtQWxWk1NNaDOqrCLrzmBtOiN4FLFWWORyzbE6BRolYXtZgxIwplOz862vhLPmaD3DR3ZWz0p8lddYt+G7QfWhviWKyBWtUbaZHWWIY5v35aImMvRdpxv0Jk9J6ZdiWjY/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=MyBtOAv7; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1706088611; x=1708680611;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=NbSMFyHVexF1r6qIlI25N/dgdaTVhceWOLkZFVAfdyI=;
-	b=MyBtOAv7WitejUIqbEho1dLWxraTETluhwTqlLKFBObN6ljk6LbFQqFcVgXaJTaX
-	XAC8QS8ULXPNkw7X3S0RXJbbL/Re2ixN2PIIhmxQxtl7Pfh0kiLe2v41Jng4IHFM
-	2HhfYS94NJTap4eVduvo6nRcbYVzy9KW+q1dn3eOJ0A=;
-X-AuditID: ac14000a-fbefe7000000290d-fc-65b0d8a3ab72
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 66.2F.10509.3A8D0B56; Wed, 24 Jan 2024 10:30:11 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 24 Jan
- 2024 10:30:05 +0100
-Message-ID: <dc315213-5421-4343-adc0-c4396a4d85c4@phytec.de>
-Date: Wed, 24 Jan 2024 10:30:03 +0100
+	s=arc-20240116; t=1706088753; c=relaxed/simple;
+	bh=tQZcL4ECH37EQ+/arRmR7zsnjElJNaWdgCWP0n4ZebY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pCyVXgfqRi31VwPNdyYHBfLFd92KwqdBa3pU13PtMhvQhznA+K5q4ucS9tKu4W5mwqLdo+cvc+KscFosmMy/ybSCcK0JymlNnfsSQ7lHTFqtcYlSL2+m6UVHxyBi0Ev52LtH1YHJA9F9MayxH4c/vZsDbBMY6gE5v1S7Jey09nU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kAOGt6cj; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33921b8988fso4596208f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 01:32:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706088749; x=1706693549; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tL5YthdDbTwVS72RyvMOT0Z4mTu9jQloyjam4JQYcjg=;
+        b=kAOGt6cjAkP2bGS9oXFtiOjMvWLrhUvqeRDfvVVYQBH4YMVHEk77aPfySYLn8vqoJJ
+         aD09xDgl/tWHzefceGuHeWZQVLJpGa/rulOzi+Xa8PHI8U2zk9hT6hAxpLb3Jw/l0CrC
+         3X1bnm+aaWn5VOUnLokINr0sobrM0fYrjI/C/rqnAtue2sGlokJll7W6h6FJ7DbPq/yu
+         SGid9pZOOMFtKk/F+mFGubYpdN474BeQ2ILZbeJ4hu3z2osyA8og9YeXkocr9wbOKvQ6
+         iAgLAhEfXiPi4aMGsZm9YOiuhabTOK0cEcEeeBp7Z6V9kwiq6mFq6dS4pzo25UfPWGHk
+         zXDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706088749; x=1706693549;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tL5YthdDbTwVS72RyvMOT0Z4mTu9jQloyjam4JQYcjg=;
+        b=kS6TUWOn4UcljNsuxbcjz1vrqq4Ilcdjaq0srgd9JlkLA9Hz4Z565XjWPwmXQNsJOL
+         WjAIkXnGQFoa4O4Wong+otLJz/hSxvVJsRPWBG7Huf47s3ez8QuvghfiH+P3PwasBS3o
+         /5REw0U1ldepAJwCFuGoBsqQ2825XjppjkzZPuxYcOsYRu0iaZZYRvqLMdcEgB6VszZb
+         2CFFKQJLySRvTQSoccr0Gsr0ZiXhHjJaeQlNED6NpUDS2wNSPnWliT5qyr8OTLxIWM2D
+         G23OThZzmE5RQSBrXHZSrcCCU6VFXfA24WzOEO097b7122BqddKg4QNA2c2ask8yujo0
+         /jFw==
+X-Gm-Message-State: AOJu0YxozhGX80F2wwGgTeEOgjDWL5jZZaQ7D0DK1ezXWdY8tV74CTZi
+	MSOP4q7ce9i+EgM0GXBfelE3fQTHky3wjRYQy/N7LRtKiJFemXMBtOUxB86D91I=
+X-Google-Smtp-Source: AGHT+IEqvRy7K3CShIUckMyawpSPAkF298SYtjKe6/q+h7oDCvciREplxoVcHybuTBb0Nb3hbWYHYw==
+X-Received: by 2002:adf:f8c6:0:b0:337:c4c2:8141 with SMTP id f6-20020adff8c6000000b00337c4c28141mr307062wrq.35.1706088748867;
+        Wed, 24 Jan 2024 01:32:28 -0800 (PST)
+Received: from [192.168.2.107] ([79.115.63.202])
+        by smtp.gmail.com with ESMTPSA id d10-20020adfa40a000000b0033953f87085sm217636wra.35.2024.01.24.01.32.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Jan 2024 01:32:28 -0800 (PST)
+Message-ID: <8de1c6c5-e86f-40cc-9650-efc2c581b221@linaro.org>
+Date: Wed, 24 Jan 2024 09:32:25 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,69 +75,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: arm: fsl: Add phyBOARD-Segin-i.MX93
+Subject: Re: [PATCH 08/21] spi: s3c64xx: move error check up to avoid
+ rechecking
 Content-Language: en-US
-To: Mathieu Othacehe <othacehe@gnu.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Li
- Yang <leoyang.li@nxp.com>, Primoz Fiser <primoz.fiser@norik.com>, Stefan
- Wahren <wahrenst@gmx.net>, Christoph Stoidner <c.stoidner@phytec.de>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Conor Dooley
-	<conor.dooley@microchip.com>
-References: <20240124074930.26101-1-othacehe@gnu.org>
- <20240124074930.26101-2-othacehe@gnu.org>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240124074930.26101-2-othacehe@gnu.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIIsWRmVeSWpSXmKPExsWyRpKBR3fxjQ2pBu8PcFqs2XuOyWLKph3s
-	FvOPnGO1eHjV32LV1J0sFn0vHjJbHGo+wGSx6fE1VouuXyuZLS7vmsNmcf7uFmaLE10PWS1a
-	9x5ht/i7fROLxYst4hbHT3QyOwh47Jx1l91j8ab9bB5t08w8Nq3qZPO4c20Pm8fmJfUed34s
-	ZfT4/nUDq8fGdzuYPPr/Gnh83iQXwB3FZZOSmpNZllqkb5fAldHZOpO1YAZnxYwbbawNjJPZ
-	uxg5OCQETCSmTgQyuTiEBBYzSax9fYYNwrnLKHH+8FxWkCJeARuJHy9Tuxg5OVgEVCXuz+5m
-	BbF5BQQlTs58wgJiiwrIS9y/NYMdxBYW8JHoX/mVEcRmFhCXuPVkPhPITBGBVhaJjzs3gG1j
-	FpjOKHHjzE6wbiGBRInG9V/ButkE1CXubPgGtoFTwExi0vSzzBCTLCQWvznIDmHLS2x/O4cZ
-	olde4sWl5WBzJIDsaedeM0PYoRJbv2xnmsAoPAvJsbOQHDULydhZSMYuYGRZxSiUm5mcnVqU
-	ma1XkFFZkpqsl5K6iREUzSIMXDsY++Z4HGJk4mA8xCjBwawkwntDcl2qEG9KYmVValF+fFFp
-	TmrxIUZpDhYlcd7VHcGpQgLpiSWp2ampBalFMFkmDk6pBsb+P5t8eET62Kc9zN5/XHHCqvP3
-	j55fc/vYVSfvXpe3B6JPc4rM8N/aYmIa09Xr+/rqWqnf5lHTBX8uuXN5zaSLW1dYLj7SsYv9
-	a2fq9lW3DLdzKuwKvXJSY/Pv5U7Jc1/erhW/vfq1Ff8bfinl0wdyjB5IdfcsPbQryDPpr2qs
-	6KH9mnnRW9q3K7EUZyQaajEXFScCAJEWVsPUAgAA
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ broonie@kernel.org, andi.shyti@kernel.org, arnd@arndb.de
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-arch@vger.kernel.org, peter.griffin@linaro.org,
+ semen.protsenko@linaro.org, kernel-team@android.com, willmcvicker@google.com
+References: <20240123153421.715951-1-tudor.ambarus@linaro.org>
+ <20240123153421.715951-9-tudor.ambarus@linaro.org>
+ <4b8bc0bf2f1fd87183276816522e92f7b0c3b1fd.camel@linaro.org>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <4b8bc0bf2f1fd87183276816522e92f7b0c3b1fd.camel@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
-Am 24.01.24 um 08:49 schrieb Mathieu Othacehe:
-> Add support for phyBOARD-Segin-i.MX93 board.
+
+On 1/24/24 09:21, André Draszik wrote:
+> Hi Tudor,
+> 
+
+Hi!
+
+> On Tue, 2024-01-23 at 15:34 +0000, Tudor Ambarus wrote:
+>> @@ -538,13 +538,8 @@ static int s3c64xx_wait_for_dma(struct s3c64xx_spi_driver_data *sdd,
+>>  			cpu_relax();
+>>  			status = readl(regs + S3C64XX_SPI_STATUS);
+>>  		}
+>> -
+>>  	}
+>>  
+>> -	/* If timed out while checking rx/tx status return error */
+>> -	if (!val)
+>> -		return -EIO;
+>> -
+> 
+> This change behaviour of this function. The loop just above adjusts val and it is used to
+> determine if there was a timeout or not:
+> 
+> 	if (val && !xfer->rx_buf) {
+> 		val = msecs_to_loops(10);
+> 		status = readl(regs + S3C64XX_SPI_STATUS);
+> 		while ((TX_FIFO_LVL(status, sdd)
+> 			|| !S3C64XX_SPI_ST_TX_DONE(status, sdd))
+> 		       && --val) {
+> 			cpu_relax();
+> 			status = readl(regs + S3C64XX_SPI_STATUS);
+> 		}
 >
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
+Oh, yes, the timeout in this block. You're right, I'll drop the patch.
+Thanks!
 
-Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
-
-
-> ---
->   Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->   1 file changed, 6 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 228dcc5c7d6f..b6c523d02d29 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1275,6 +1275,12 @@ properties:
->             - const: tq,imx93-tqma9352        # TQ-Systems GmbH i.MX93 TQMa93xxCA/LA SOM
->             - const: fsl,imx93
->   
-> +      - description: PHYTEC phyCORE-i.MX93 SoM based boards
-> +        items:
-> +          - const: phytec,imx93-phyboard-segin # phyBOARD-Segin with i.MX93
-> +          - const: phytec,imx93-phycore-som    # phyCORE-i.MX93 SoM
-> +          - const: fsl,imx93
-> +
->         - description:
->             Freescale Vybrid Platform Device Tree Bindings
->   
+ta
 
