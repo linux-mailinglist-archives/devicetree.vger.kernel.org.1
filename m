@@ -1,129 +1,166 @@
-Return-Path: <devicetree+bounces-34623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C835883A5BD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:42:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6B583A5CE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:46:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4EBF1C21C30
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:42:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBCF0294889
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABE2A1799C;
-	Wed, 24 Jan 2024 09:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E3D618026;
+	Wed, 24 Jan 2024 09:46:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C08A6182B3
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3352717C9E
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706089372; cv=none; b=s4/NAXbsjvt44U9uIkzSsO1oNuQEbHP8p1tQYebNSXSpNors6XOKgK/maA5jowfHs3Xfv1mZw1MdFmw+FBopTzBNTqYqwIYb7sljzApb+ueQfH5vfv1c4No90wI20xLqDoRALrDxVY/C1Eq32pixiVPxGv8X2DaNM5g36eeDTlc=
+	t=1706089595; cv=none; b=WPLwtLNidSTMC5HWnTLqVy9BtCDP816YSWOmBz7ccAc4B/HMrMZLxNOvA2WsGw9R1tKoWBsl+8MskrL8FXHQq32X7bNWTEUZZklAjO4XyqiCeB0AgcN2TfsfH86O7MdILn5URCVNssWVOUAwNmUDSXhw9k4+8mqpgQDkse+11Ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706089372; c=relaxed/simple;
-	bh=c7AtDwtfUT29Girxwftwf36NoI+3PFJkKiX9LOmNFk4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FZHVS2OiaQ13yx8iaB99glLmBVfr4dnVInm0RX3UrIUVybF7+HQvarrWj4b15IeTMez7nj9Gw0yq4KO7MLNzpen68st1/7DyGKcTRanYhD88f5zbyIHUnxw6uM0Ps13CvV3aGljZKRko8YJia1pGqAcBm3tF4rXLWusGelnmGHo=
+	s=arc-20240116; t=1706089595; c=relaxed/simple;
+	bh=KAXpL6rcNOC7cpNY+gkbkcwqymqfb3e2TV1COL5RfDU=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=IS/feIzrXWeqjEPBE5R4sE9pL0XMCSgE+LPsxWP7y9tGMBx6MrMy/7oIL/dA2Kfrz2bBqNApUA0u4DvQhDXwMA2nG7opiJG5pHB4na3HT6USmVQryz6D1vSN0x5qlMQEGsu9MeFvZ6Dwx6o3Q4eTOkuqvYyseQgbcz2qkdt2/Xs=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZmM-0003ht-Lz; Wed, 24 Jan 2024 10:42:42 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rSZpc-0003zO-ML; Wed, 24 Jan 2024 10:46:04 +0100
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZmL-0021gA-J6; Wed, 24 Jan 2024 10:42:41 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZmL-0071nX-1a;
-	Wed, 24 Jan 2024 10:42:41 +0100
-Date: Wed, 24 Jan 2024 10:42:41 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v4 3/6] pwm: meson: generalize 4 inputs clock on meson8
- pwm type
-Message-ID: <oyayapgrwaetyhuu6ua2nejcpgydmkijqdgtdlfqvq5jvc6nzp@xgvnwvjja3im>
-References: <20231222111658.832167-1-jbrunet@baylibre.com>
- <20231222111658.832167-4-jbrunet@baylibre.com>
- <4kcbh4dezgpic2dpgdi2swtx2puqiq74w2tungmxipf4nznpn7@u4g4f3cimps4>
- <1jy1cfw0qa.fsf@starbuckisacylon.baylibre.com>
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rSZpX-0021gf-GI; Wed, 24 Jan 2024 10:45:59 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1rSZpX-00064D-1N;
+	Wed, 24 Jan 2024 10:45:59 +0100
+Message-ID: <dccb808a2ba6ccb0fd0b4e7ccfe40cd871886b6b.camel@pengutronix.de>
+Subject: Re: [PATCH v13 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for
+ ASPEED g6 PWM/Fan tach
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com, 
+ linux@roeck-us.net, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+ corbet@lwn.net,  u.kleine-koenig@pengutronix.de,
+ naresh.solanki@9elements.com,  linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org,  linux-pwm@vger.kernel.org,
+ BMC-SW@aspeedtech.com, patrick@stwcx.xyz
+Date: Wed, 24 Jan 2024 10:45:59 +0100
+In-Reply-To: <20240124060705.1342461-4-billy_tsai@aspeedtech.com>
+References: <20240124060705.1342461-1-billy_tsai@aspeedtech.com>
+	 <20240124060705.1342461-4-billy_tsai@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="a3xdp7xgdzkgzofk"
-Content-Disposition: inline
-In-Reply-To: <1jy1cfw0qa.fsf@starbuckisacylon.baylibre.com>
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+On Mi, 2024-01-24 at 14:07 +0800, Billy Tsai wrote:
+[...]
+> +static int aspeed_pwm_tach_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev, *hwmon;
+> +	int ret;
+> +	struct device_node *child;
+> +	struct aspeed_pwm_tach_data *priv;
+> +
+> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +	priv->dev =3D dev;
+> +	priv->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +
+> +	priv->clk =3D devm_clk_get_enabled(dev, NULL);
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk),
+> +				     "Couldn't get clock\n");
+> +	priv->clk_rate =3D clk_get_rate(priv->clk);
+> +	priv->reset =3D devm_reset_control_get_exclusive(dev, NULL);
+> +	if (IS_ERR(priv->reset))
+> +		return dev_err_probe(dev, PTR_ERR(priv->reset),
+> +				     "Couldn't get reset control\n");
+> +
+> +	ret =3D reset_control_deassert(priv->reset);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Couldn't deassert reset control\n");
 
---a3xdp7xgdzkgzofk
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Consider using devm_add_action_or_reset() to assert the reset in the
+error paths and on driver unbind.
 
-On Wed, Jan 24, 2024 at 10:11:59AM +0100, Jerome Brunet wrote:
-> On Wed 24 Jan 2024 at 10:08, Uwe Kleine-K=F6nig <u.kleine-koenig@pengutro=
-nix.de> wrote:
-> > I suggest to make this
-> >
-> > 	const char *parent_names[MESON_NUM_MUX_PARENTS];
->=20
-> Ok.
->=20
-> >
-> > to make it more explicit that really four entries are needed here. This
-> > also makes is unnecessary to add the additional NULL entries to
-> > pwm_gxbb_ao_parent_names and the other arrays.
->=20
-> I would normally agree but I'd prefer to be explicit.
->=20
-> There are some instance where the NULL is in the middle, this can't go
-> away. I think it looks if some inputs are explicitly NULL while the
-> other are implicit.
+> +
+> +	priv->chip.dev =3D dev;
+> +	priv->chip.ops =3D &aspeed_pwm_ops;
+> +	priv->chip.npwm =3D PWM_ASPEED_NR_PWMS;
+> +
+> +	ret =3D devm_pwmchip_add(dev, &priv->chip);
+> +	if (ret < 0) {
+> +		reset_control_assert(priv->reset);
 
-Adding soem NULLs explicitly is fine for me. Using an array of fixed length
-still (somewhat) ensures that later no shorter arrays are added which
-result in surprises.
+Then this ...
 
-Best reagrds
-Uwe
+> +		return dev_err_probe(dev, ret, "Failed to add PWM chip\n");
+> +	}
+> +
+> +	for_each_child_of_node(dev->of_node, child) {
+> +		ret =3D aspeed_tach_create_fan(dev, child, priv);
+> +		if (ret < 0) {
+> +			of_node_put(child);
+> +			dev_warn(dev, "Failed to create fan %d", ret);
+> +			return 0;
+> +		}
+> +	}
+> +
+> +	of_platform_populate(dev->of_node, NULL, NULL, dev);
+> +
+> +	hwmon =3D devm_hwmon_device_register_with_info(dev, "aspeed_tach", priv=
+,
+> +						     &aspeed_tach_chip_info, NULL);
+> +	ret =3D PTR_ERR_OR_ZERO(hwmon);
+> +	if (ret) {
+> +		reset_control_assert(priv->reset);
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+... and this ...
 
---a3xdp7xgdzkgzofk
-Content-Type: application/pgp-signature; name="signature.asc"
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to register hwmon device\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int aspeed_pwm_tach_remove(struct platform_device *pdev)
+> +{
+> +	struct aspeed_pwm_tach_data *priv =3D platform_get_drvdata(pdev);
+> +
+> +	reset_control_assert(priv->reset);
+> +
+> +	return 0;
+> +}
 
------BEGIN PGP SIGNATURE-----
+... and this could be dropped.
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWw25AACgkQj4D7WH0S
-/k5e0wf7BlbmFsY4+YWO4iLdNo0BVoOnMnfSSNw2yPZA+YdUvXeulZDQTshMRkgQ
-xNmIvXbYDeBBIUFQ64FzQQ89VyKcwTX459zycaNAg06N51FSdCM1EQO1F/Y6fqy1
-g4+9fH3mHi+UJkcekm0st27G0uTvfiJ7RtkyQYK2KMD1OBmYr2ADURGmMppLzvLX
-6XMsShbScQdqNKMGa2MGjB4plt3IzjyX5ZMRYaMdZABnZJsKJGXWfcr9p3fLZ3I+
-Dvkti+CdMw7zHXAelVFD2EMKCMbV33PjedcIzBe9TTOQM5SPtoZHy3QIbQ+WdqNK
-sbr4C8C10SJBSSUbB1NJfIJfQUTNhw==
-=ENZk
------END PGP SIGNATURE-----
-
---a3xdp7xgdzkgzofk--
+regards
+Philipp
 
