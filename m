@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-34691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1144583A9B6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:28:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 155D083A9B8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:28:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37CDFB238A5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 12:28:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A07C1C20B8E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 12:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECEF063124;
-	Wed, 24 Jan 2024 12:27:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6316063124;
+	Wed, 24 Jan 2024 12:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MuT+LLPR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d7Cq3te4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0BDC63104
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 12:27:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EDF763104
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 12:28:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706099277; cv=none; b=Wmrpk1X8bkFSrMkwY1HJBz3RnsL+fiJq150H1dojwgRneJfV24VXmBQ2VKIcCt8HtK9HdD+cw1sVdnG+YzPjStNUL/TIbhiniY+i2s/t0+799L1wyjYjkkktB5hXlT9Fl6M7iljXsmvAev3ixuk7JifcoklNhcooV5bSx2LutUo=
+	t=1706099287; cv=none; b=otX7mWLhe9TOO6PwEBYytqhq3FMNFISjJKTf3PGLWX1QfWlVMpwkzf6C52wxPh6S15RVEDKgbFOZyC/ueC1rkT3YUWstUNoZk26tPsSOwbYnImBoEOgyKXOX8w6qxBI/rwUTgJqTM4HFiqewyHv3Jrgypt8BoaBLtq8l83GmBTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706099277; c=relaxed/simple;
-	bh=QcrzdZAIWuqluNkPCFBjXED2I0kTrTPJH4PrD77d8u4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J6fVD0HQjWKwwyEWbJLXlq0ul1eoN1oM5hw+tJjg47Cf1EX68ZTpldzNVYRv0519eZ2j8/Xq8wRi1moMaaUEUrnaZszTwog1cfCUkJJzXxbHuHJnqzr2sLpNEbvjcvkMEZDuKLYeOsX057RWoEVt5t9CQDR73VSQhb3Ocb4f5PA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MuT+LLPR; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-559edcee47eso4668537a12.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 04:27:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706099273; x=1706704073; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=8D6lBkmAI2kt3J5yRqgRRusCqmJxb+HqfovcaUAbBU4=;
-        b=MuT+LLPRa8nN1yf4/BZw4jfvTE010OBPDJ2V/vcnhiScS0XCBIg1KIwfv8XBdU6VGh
-         vUdOni+FIgug+/rbFW04JBZBooX/TVQsgR/y3J2AAK9dwimVsP/K7P6NVZRuoY7KVzpL
-         TTjYNzabNJPmo9NxGw7j9QBszIdZ6xP7cynwN2dGKbCC4w91TToxNIujmrDKhyDoKKwD
-         YZrgF2Hr5OnDJWVjNrnoPcRfzwCVnjSHdd5qiv66sfXhvIecO5o6O8SOMOmUNMZx+q/8
-         MY1vnHQ1Aku1KMUM7tnN/1ZWUQ5Ss4I47GsFsa2iIGvhsymGbbMZ5J2pw8jSfD3xeut/
-         blNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706099273; x=1706704073;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8D6lBkmAI2kt3J5yRqgRRusCqmJxb+HqfovcaUAbBU4=;
-        b=I0Fr6bfXx53cJj4/saxJ0wGtzlM0hgMhRTX9f9+apFhSdX7SlpSvEX5vn5OpLiGpqK
-         tP5VUC1wsee9xXorsWhqS0yk7MrOsiSOlXCtSrCmZ+qtZIDT5AnO0jS/4T0puvC3/S/v
-         3D42k6znebQXNt1tSe28Fr0rDkaH3a42Cv8t3W0e3nHYTW66UMRUnbEwF2k6fRAz/sMX
-         kds3RS+BoLyN7BfH3jh3AKR54kR7Bx9jVEWlo1ot99rCCmJUG9vE6nCa/1Sf00oPtkf4
-         WCPjT6Q9LX7mw7RlJqimzUiwDFnVcIQJR4qVObRtUaXSdRaB95iTsgvFxd1lVOA5FP4p
-         Eq5g==
-X-Gm-Message-State: AOJu0YyZgOIIEQwITD8JPyoUM89v15CNjT5z6KfZbKhXPR029/Z24//z
-	W7XPV+Vh/Yej2cdNmfhIe8lesSH0xdpnquQ0m/Az/KoNUrA5zIVfJyqBny9+Eio=
-X-Google-Smtp-Source: AGHT+IEzVBRLLtY/kzttUj/0NHgP5oMXOhx3fSwOtA1lhcvLF90fmBG2RPDGuA8Rdqy4wzo9n14WuQ==
-X-Received: by 2002:a05:6402:5244:b0:55c:a7c6:e617 with SMTP id t4-20020a056402524400b0055ca7c6e617mr766559edd.47.1706099273004;
-        Wed, 24 Jan 2024 04:27:53 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id cn7-20020a0564020ca700b0055c349e04f8sm3558175edb.36.2024.01.24.04.27.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 04:27:52 -0800 (PST)
-Message-ID: <63701d96-5e1e-4d79-b63b-fc5d8e4c3de0@linaro.org>
-Date: Wed, 24 Jan 2024 13:27:50 +0100
+	s=arc-20240116; t=1706099287; c=relaxed/simple;
+	bh=wUi6qmX0ejNUcc2ONvbkcgjeNJjYI2+G47zJmhh7w00=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=AKPumWxlk8Ebkm4btXEjjyrO/VxlLyFutlQUXGTyJtAyPNwxsnGLh2spW+9PxQfwFsGnXLTqFJU31VRBd4g7kyvHwsotYUaMLzour9GVbNFl3ym8h2b8GK8s0qJfLnHI3c0QrzA4x8ZjbSOrgCZVj6+7W3DS+h+aSnr3RFEWFTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d7Cq3te4; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40OBuHio025273;
+	Wed, 24 Jan 2024 12:27:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=A/oMXv/l/ktuUVQomTHiz2Sq9RPsH9mv4EQUE0thkPg=; b=d7
+	Cq3te4eWGEg1UZHKv0UAReiEpmoQ7dSSNaS9C/vA+eijoM1WZYN80Bdlz6r5154R
+	3Ef9gEUxs80zWAbDPILY1J36Az+NbmKKtypuhp+ebPIPpZeVcT2khNyX17JsOHa+
+	HGdu1ffUyz4rhetu3OtcSjpQd2CS+mnHCmXcTpQvlWZO0dTYzBICVikKRehOKsuw
+	8mrrUKrURJTSRwZIgGmKQHXA0eE6xAv2BjyeM1xg2cGcY1ZFOkKfvIP/H8E6ofie
+	kzzLKjBVM2XYWTyBmrQvilCxra7VxxFZfY2lNBnHulc/5RsJxfzeR0S/bhTHAb5z
+	z6T9DAOnaoyblMv78nqw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vtyxyrb71-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 24 Jan 2024 12:27:56 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40OCRuH6001325
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 24 Jan 2024 12:27:56 GMT
+Received: from [10.110.125.140] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 24 Jan
+ 2024 04:27:55 -0800
+Message-ID: <a053261e-6e05-4673-b5dd-2ce8f3c73ac9@quicinc.com>
+Date: Wed, 24 Jan 2024 04:27:55 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,80 +65,168 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: serial: renesas,hscif: Document r8a779h0
- bindings
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Nghia Nguyen
- <nghia.nguyen.jg@renesas.com>, Geert Uytterhoeven <geert+renesas@glider.be>
-References: <55b458e0ba9824e1246e556075bf882032c37279.1706095578.git.geert@linux-m68k.org>
+Subject: Re: DT Query on "New Compatible vs New Property"
+To: Sudeep Holla <sudeep.holla@arm.com>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Prasad Sodagudi (QUIC)"
+	<quic_psodagud@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <vincent.guittot@linaro.org>,
+        <ulf.hansson@linaro.org>
+References: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
+ <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
+ <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com>
+ <20231214061742.GG2938@thinkpad>
+ <66f82e2c-0c42-4ead-93f5-2136ad478df2@linaro.org>
+ <7768258d-4748-84f7-0da2-43988138e5cc@quicinc.com>
+ <20240123161231.GG19029@thinkpad> <ZbDlLJRHu2ebdxc6@bogus>
+ <20240124104530.GK4906@thinkpad> <ZbDuO_iV5i8mE01Q@bogus>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <55b458e0ba9824e1246e556075bf882032c37279.1706095578.git.geert@linux-m68k.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Nikunj Kela <quic_nkela@quicinc.com>
+In-Reply-To: <ZbDuO_iV5i8mE01Q@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: aolpMwohA2tgZQi58sJk41CLwITwcGBD
+X-Proofpoint-GUID: aolpMwohA2tgZQi58sJk41CLwITwcGBD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-24_06,2024-01-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 mlxscore=0 adultscore=0 phishscore=0 mlxlogscore=999
+ bulkscore=0 spamscore=0 priorityscore=1501 clxscore=1011 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401240090
 
-On 24/01/2024 12:27, Geert Uytterhoeven wrote:
-> From: Nghia Nguyen <nghia.nguyen.jg@renesas.com>
-> 
-> The R-Car V4M (R8A779H0) SoC has R-Car Gen4 compatible HSCIF ports, so
-> document the SoC-specific bindings.
-> 
-> Signed-off-by: Nghia Nguyen <nghia.nguyen.jg@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 1/24/2024 3:02 AM, Sudeep Holla wrote:
+> On Wed, Jan 24, 2024 at 04:15:30PM +0530, Manivannan Sadhasivam wrote:
+>> On Wed, Jan 24, 2024 at 10:23:40AM +0000, Sudeep Holla wrote:
+>>> On Tue, Jan 23, 2024 at 09:42:31PM +0530, Manivannan Sadhasivam wrote:
+>>>> On Thu, Dec 14, 2023 at 07:18:25AM -0800, Nikunj Kela wrote:
+>>>>> HW is exactly the same. Let me give more insight on the setup. We have been
+>>>>> using the HW in virtual environment but now the ownership of certain
+>>>>> resources (e.g. clock controller etc.) is handed over to a different VM(non
+>>>>> Linux VM). Earlier the ownership of the resources was local to the same
+>>>>> VM(Linux VM) via passthrough mode so it could directly access them however
+>>>>> now Linux VM talks to non-Linux VM for its operations for resources that it
+>>>>> doesn't own anymore via some interface(shared memory/doorbell).  So shall we
+>>>>> use property like 'qcom, controlled-remotely' or do we need a new compatible
+>>>>> for such setup?
+>>>>>
+>>> I did see the mention of SCMI somewhere in the thread, hence the interest.
+>>> What specific resources are we talking here: clocks, reset, power domains,
+>>> regulators ? If so I don't understand the need for any new compatible
+>>> "qcom, controlled-remotely' or any change in the driver. The DT has standard
+>>> bindings for these and drivers would be requesting these resources using
+>>> std framework apis. If it is a clock controller in the host Linux VM or
+>>> if it is SCMI controlled clock in a non Linux VM must not matter for the
+>>> individual drivers right ? Sorry if I am missing something obvious here ?
+>> The design that Qcom is coming up is, all the hardware (peripheral controllers,
+>> clocks, regulators) stay as it is, but the control to those resources will be
+>> handled by the VM instead of the device driver in OS.
+>>
+> This is no different on any platform that using SCMI or any firmware
+> interface for managing the resources.
+>
+>> The idea is similar (but not same) to ACPI, but here they want to use SCMI
+>> commands to let the device driver request VM to control the resources on its
+>> behalf.
+>>
+> Correct, but that doesn't explain on what you are suggesting to change in
+> the drivers. Drivers must modify nothing to switch between the models.
+>
+>>>> Krzysztof, just a ping on this thread.
+>>>>
+>>>> To summarise, the hardware is exactly same. We can consider the case of UFS. The
+>>>> UFS controller is exactly same in this proposed setup but the resources of the
+>>>> UFS controller are taken care by the VM. So instead of enabling the resources
+>>>> one by one, Linux kernel will just ask the VM to do so using an SCMI command.
+>>>>
+>>> I don't understand why you need to change the UFS controller driver to switch
+>>> to SCMI driver resource model from self/host Linux driven model.
+>>>
+>> If the VM is taking control of the resources, then device drivers cannot control
+>> them. I think it may result in access violation.
+>>
+> Well why are those "raw" resources presented to the Linux. I see no difference
+> between this and presenting the secure resource to the Linux via DT and
+> complaining when it faults accessing them inside the kernel. So still not
+> providing any reasoning to the actual change.
+>
+>> This design (VM + SCMI) is floated by Qcom to offload the resource management
+>> from OS. One can say that ACPI will solve the issue, but...
+>>
+> Yes I am aware of it to some extent.
+>
+>>>> Due to this difference, we need to make the changes in the UFS controller
+>>>> driver. So we want to know if we can use a different compatible for the UFS
+>>>> controller altogether in DT (this will allow Linux kernel to have a separate
+>>>> driver and will simplify things) or just use a property like
+>>>> "remotely-controlled" to let the driver detect this setup and take action
+>>>> accordingly.
+>>>>
+>>> I would say the DT should be set accordingly before the Linux boots to point
+>>> all the resources to SCMI instead of self hosted various controller/provider
+>>> nodes in the DT. I don't understand why the compatible for a device need to
+>>> change if the OS resource handling model changes. The resource nodes just
+>>> points to a different provider node instead.
+>>>
+>> The problem is, the resource provider is not changing. For instance, currently
+>> GCC is supplying clocks to all peripherals in an SoC. In this design also, GCC
+>> will supply clocks, but driver cannot use standard clock API to enable the
+>> clock, but instead it needs to use an SCMI command to let VM enable the clock
+>> on its behalf.
+> I am completely lost. The SCMI clock(and any other resource provider) register
+> itself to the corresponding framework in the kernel. The consumers of these
+> resource must simply use the std. APIs as usual so it doesn't matter who is
+> the provider of this resource. That is the model in which almost all resource
+> framework work in the kernel. Just switching to SCMI doesn't and must not
+> require any change in the consumer drivers.
+>
+> I am still failing terribly here to understand the motive here.
+>
+>> As per Qcom, this will abstract the resource handling from OS.
+>> Like, instead of the driver explicitly enabling all resources, it can ask the VM
+>> to do it on its behalf. During suspend/resume also, VM will manage the
+>> resources.
+>>
+> Yes just use the standard framework calls to indicate the same to the VM.
+>
+>> Hope this clarifies the design.
+> Not really, still puzzled may be more than before as I don't understand
+> what is going on with the approach as it seem to be deviating from my
+> initial understanding.
+>
+> May be take an example of one driver, present the DT binding and driver
+> changes to make sure there is no misunderstanding from my side. But I am
+> not convinced with the explanation so far.
 
-Best regards,
-Krzysztof
+Hi Sudeep,
 
+We are not using clock protocol to deal with clocks individually. We are 
+trying to define different perf domains for peripherals where we are 
+grouping clocks/regulators/interconnect bandwidth into these perf 
+domains and use OPP levels via SCMI perf protocol. This is done so as to 
+avoid individual scmi calls for these resources hence avoiding any race 
+conditions and minimizing the traffic between SCMI client and server to 
+get better KPIs. This is being planned for sa8775p platform and any 
+subsequent platforms will use the same approach. The idea of using perf 
+protocol for peripherals is new and I Qualcomm is first one trying to 
+use that. Therefore existing peripheral drivers will require a way to 
+distinguish between the two different configurations. Hope this provides 
+little more context and insight.
+
+Thanks
+
+>
+> --
+> Regards,
+> Sudeep
 
