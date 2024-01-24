@@ -1,159 +1,102 @@
-Return-Path: <devicetree+bounces-34789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D543083B11A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 19:27:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E30783B0AB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 19:08:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9DDA1B3162D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:59:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 064002877BC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBFA8613D;
-	Wed, 24 Jan 2024 17:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2B3128366;
+	Wed, 24 Jan 2024 18:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="keq5e3oG"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="wcbnsYDQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E0D7765D;
-	Wed, 24 Jan 2024 17:59:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F34877765D;
+	Wed, 24 Jan 2024 18:08:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706119146; cv=none; b=iOULFCy4PKaeMuAPpEtoKCiSjNvhATpFx+BSBm18xG3yG+A9d3M/CjyoXo+nwwsTdRZ0dyPzKQsB5rR2DRYCN4KpqzhgLNV+q4wyi2bG7/MQOCzcWlk/C262OE0YMDQ+F+A12K61VYhKzyPhPMqNvdnz0FU+VSnaztHmFEAeQfs=
+	t=1706119721; cv=none; b=QcFk7V0kR/hgYjEttfCQI2rxjzoB51bEddocKYY1BMGPnSqOVvkB/+8p/5R2zUIMAp9nqmqEa2qY4+9qCwRihWyJcewQG7LpnMy6whXsipnSSpgqrGfDe9gGVYNfo2oagGJVY26/xTBHBgZtTbNMeIRDOkZ832eKCevHw1oBpZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706119146; c=relaxed/simple;
-	bh=Cm7BUzwChHap3mEfOgJloaWrqZWdOhIAJHyy+U2xyWo=;
+	s=arc-20240116; t=1706119721; c=relaxed/simple;
+	bh=tHOAqS07k9N0BYLxRMAX5QLYc0II/FnUt49MFugwFFQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KqXkqhCMOuygIK9k6o+ocQTQEqzBN8Ahn96+iBDuPxPBx6SG1uG7A3p2j+v9R45jU2J3g2SHSjC0pVZJEro8OWCNR/w9r71Kgd5fRXygw237LWCYmHEjo3d4A+BNbtAYG3+c01wJaQLpAEOtHO2kR/PlvSoSkqtvbL/DvPm5GhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=keq5e3oG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2925C433C7;
-	Wed, 24 Jan 2024 17:59:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706119145;
-	bh=Cm7BUzwChHap3mEfOgJloaWrqZWdOhIAJHyy+U2xyWo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=keq5e3oG7YzoqplhWADOaCbnPxZisQAEE8B8Sifw4trHPchjoYKZvIXFsxzs647Fy
-	 ysA1MC8lyGQKGf662tm7oMMRvtDhDDqS4u84Ds+Sk+l5ORJ9deHw0RkgPJLPwLMpJZ
-	 h05iQGZQWzgpiJNUZThPGNQYIgq7sjs1lWFhVPpRovXNC3PvLcb9A7p4RgUulCGrik
-	 bemz4JzwY2hLA0wCM2AL4S1NJMfuduKPMyHjsqQEN/mFMwy0n89Z64nY/LrF7rLjdF
-	 RkAcUcFtxj0gKU39Plq+/n+pv6u4k01huRkZqfgRD/BP9uBhb6MblNdozcWJQUJuC+
-	 HJZabfG0Hk7tg==
-Date: Wed, 24 Jan 2024 17:59:00 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: ran.wang_1@nxp.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=o1fYf6EOKqyOEukC3aBIp6/CGxAf3pydnzmCaNd66wXpgJU6yRXtklcwNr08G27b88+JW3JlJ36rhouRpI+OkS5iHUdW7EN/Z5F94CmMsBfz72EEaykpygR7BJ++VEma+k4iAsXIXSqJkRI9kiqDt3rcGFsKGYx1upk+ZfdEQzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=wcbnsYDQ; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=zFtgHl594Mu0Zn9XavNEY0/YWD7WOji79U8hbCFvrl4=; b=wcbnsYDQE+lxAjxrlIONPB6qcx
+	4IJa0UOXOzMohqxiXQ/TFmy2KZDER0rbv7L3tBjMEwmBKGXM1OTMUjPeGux+8jS2JSILBY0kNsFy0
+	wsbF5b7gF613vyXl9FCNYOaXc/mvgvjoB5xOXSMoBF52Mm9Ki6DjeGMLuDRPaQRSLSqg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rShfp-0061F3-9A; Wed, 24 Jan 2024 19:08:29 +0100
+Date: Wed, 24 Jan 2024 19:08:29 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Conor Dooley <conor@kernel.org>
+Cc: Philippe Schenker <dev@pschenker.ch>, netdev@vger.kernel.org,
+	Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Vladimir Oltean <olteanv@gmail.com>, linux-kernel@vger.kernel.org,
+	UNGLinuxDriver@microchip.com, Marek Vasut <marex@denx.de>,
+	Florian Fainelli <f.fainelli@gmail.com>, devicetree@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	"David S . Miller" <davem@davemloft.net>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	"open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, mark.rutland@arm.com,
-	pku.leo@gmail.com, sergei.shtylyov@cogentembedded.com
-Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add snps,host-vbus-glitches
- avoiding vbus glitch
-Message-ID: <20240124-video-lumpiness-178c4e317f5a@spud>
-References: <20240119213130.3147517-1-Frank.Li@nxp.com>
- <20240124-unclothed-dodgy-c78b1fffa752@spud>
- <ZbFNIvEaAJCxC2VB@lizhi-Precision-Tower-5810>
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH net-next v1 1/2] dt-bindings: net: dsa: Add KSZ8567
+ switch support
+Message-ID: <359c32a1-3ffb-4bb2-9a46-802dff3812c4@lunn.ch>
+References: <20240123135014.614858-1-dev@pschenker.ch>
+ <20240123-ripening-tabby-b97785375990@spud>
+ <b2e232de11cee47a5932fccc2d151a9c7c276784.camel@pschenker.ch>
+ <20240123-atlas-dart-7e955e7e24e5@spud>
+ <979b1e77b5bb62463d52e7b9d3f9ca1415f4006a.camel@pschenker.ch>
+ <20240123-carpool-avatar-c1e51ab3cc32@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nhkkh/uTdZahtS4x"
-Content-Disposition: inline
-In-Reply-To: <ZbFNIvEaAJCxC2VB@lizhi-Precision-Tower-5810>
-
-
---nhkkh/uTdZahtS4x
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240123-carpool-avatar-c1e51ab3cc32@spud>
 
-On Wed, Jan 24, 2024 at 12:47:14PM -0500, Frank Li wrote:
-> On Wed, Jan 24, 2024 at 05:36:42PM +0000, Conor Dooley wrote:
-> > On Fri, Jan 19, 2024 at 04:31:28PM -0500, Frank Li wrote:
-> > > From: Ran Wang <ran.wang_1@nxp.com>
-> > >=20
-> > > When DWC3 is set to host mode by programming register DWC3_GCTL, VBUS
-> > > (or its control signal) will turn on immediately on related Root Hub
-> > > ports. Then the VBUS will be de-asserted for a little while during xh=
-ci
-> > > reset (conducted by xhci driver) for a little while and back to norma=
-l.
-> > >=20
-> > > This VBUS glitch might cause some USB devices emuration fail if kernel
-> > > boot with them connected. One SW workaround which can fix this is to
-> > > program all PORTSC[PP] to 0 to turn off VBUS immediately after setting
-> > > host mode in DWC3 driver(per signal measurement result, it will be too
-> > > late to do it in xhci-plat.c or xhci.c).
-> > >=20
-> > > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-> > > Reviewed-by: Peter Chen <peter.chen@nxp.com>
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/D=
-ocumentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > > index 203a1eb66691f..dbf272b76e0b5 100644
-> > > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > > @@ -273,6 +273,13 @@ properties:
-> > >        with an external supply.
-> > >      type: boolean
-> > > =20
-> > > +  snps,host-vbus-glitches:
-> > > +    description:
-> > > +      When set, power off all Root Hub ports immediately after
-> > > +      setting host mode to avoid vbus (negative) glitch happen in la=
-ter
-> > > +      xhci reset. And the vbus will back to 5V automatically when re=
-set done.
+> That sounds counter productive to be honest. Why does the driver not
+> trust that the dt is correct? I saw this recently in some IIO drivers,
+> but it was shot down for this sort of reason.
 
-nit: "will return to"
+DT is software, therefore it contains bugs.
 
-> > > +    type: boolean
-> >=20
-> > Why do we want to have a property for this at all? The commit message
-> > seems to describe a problem that's limited to specific configurations
-> > and appears to be somethng the driver should do unconditionally.
-> >=20
-> > Could you explain why this cannot be done unconditionally please?
->=20
-> It depends on board design, not all system vbus can be controller by root
-> hub port. If it is always on, it will not trigger this issue.
+Say we ignore that the compatible does not match the hardware on the
+board and just accept the DT has a bug in it and keep going.
 
-Okay, that seems reasonable to have a property for. Can you add that
-info to the commit message please?
+That then makes the compatible pointless, and unusable for anything,
+since there are boards out in the wild with incorrect compatibles. If
+we later actually use the compatible for something, it might cause
+regressions for those buggy DT blobs.
 
-On another note, I like it when the property name explains why you would
-add it, rather than the thing it is trying to solve.
-Named after the disease, rather than the symptoms, if you get me. I
-tried to come up with a name here, but could not really suggest
-something good. If you can think of something, that'd be good, but don't
-stress it.
+By erroring out then the compatible does not match the hardware avoids
+such bugs.
 
-Thanks,
-Conor.
+The marvell mv88e6xxx driver takes a different approach. All the
+compatible does is tell the driver where to find the ID
+register. Marvell keeps moving it around, so there are three different
+compatibles for the three different locations. If you use the wrong
+compatible, its not going to find a device is knows about and errors
+out. So this also avoids bugs in the compatible.
 
-
---nhkkh/uTdZahtS4x
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbFP5AAKCRB4tDGHoIJi
-0jMAAQCp/21Q5979/sF3RN5s/2EsZasO9EBk6OMq7hWHKqQ6bQEAonMgZ+jJ1CwA
-FychGYPa48OqMYsKeXJjFbuS92nlmQM=
-=2AIU
------END PGP SIGNATURE-----
-
---nhkkh/uTdZahtS4x--
+     Andrew
 
