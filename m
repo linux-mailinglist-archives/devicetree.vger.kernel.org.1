@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-34543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B9083A2CD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:22:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF3783A2D0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:23:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2947628959D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 07:22:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 452B11F21544
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 07:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B0B16423;
-	Wed, 24 Jan 2024 07:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF7F156E4;
+	Wed, 24 Jan 2024 07:23:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ovx7AEyq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vq4nl6qj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26943F9C2
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 07:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7675D171A2
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 07:23:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706080952; cv=none; b=hBaT3ltOVyeoWzhYJhQOzKqsWLl7kbPqwDNCvTH3HyV/2HWTRXhsiWWy5BJr5Vts3IidTXsxRXa6WaiFijx1IuVa4j4YBIL9QHeFIflMKeKFksHUVhWc3p8a+9/y9tLzvTi0WxyBIPUjxginiLk5vGfzQoJEjqWC3xPyN+5e9Bw=
+	t=1706080985; cv=none; b=VXlWvL6K1hFAzDNf7yw2I/kz+9NDkmBVrQWHEWjy6nUHjhGfUjVMcEmypmWo5niloHM8YWQ38A/Sg3Krvy3yAuLAb6WzsOGUHUsb2NyXCj/mF/nHrKP7jZOCWGJb8CdfpkJssfJBp8ADQmwLiwdsAG/knwOcQ3IkJ0kzSg8guwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706080952; c=relaxed/simple;
-	bh=KXPYa/18+xPKUUlyN2gXtEQTyDzmUyFHAk84iMlyEh8=;
+	s=arc-20240116; t=1706080985; c=relaxed/simple;
+	bh=L7XWKbMb+wJftcHyAxYSlVjGWIxbjrWGwDtOFtFzDAk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dRfwGmbQ2feCSFsNCwIRXH0rXvuxxocuQS7wnbc91hn7eoxVxn6NAVT/ccARTqZrB+om+/j6VFJrLO4Hf4OQjB9P9iJ6na2oCNuRgH89l2SWn9of5TlbehXxXF0AYu57itfJNlgNKXDK2QYQrYuYpn7g58ghEWRgVJ9na68YSew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ovx7AEyq; arc=none smtp.client-ip=209.85.218.50
+	 In-Reply-To:Content-Type; b=CalkRTMiTr+Q8xMiTygfi11oxfGvDlxARqdBDauPaOPgE/JPYZbV/cfv2NSFT9ao1yk5h/kFK/AH9X/UqdwbsMMZtXFG4bLcmkeL5gemgyfaFj/vc6YbauuQvT9lD4IPwRbs/7cYja+nS+sI/57x5703Hy66AvzjbOisOyt1Tzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vq4nl6qj; arc=none smtp.client-ip=209.85.208.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a3106f5aac8so64444366b.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 23:22:30 -0800 (PST)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55a90b2b554so3912131a12.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 23:23:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706080949; x=1706685749; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706080982; x=1706685782; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=74nQwkPGzi/fWf5wR+BH+XBmoovS6yknmDdHMmlxxzI=;
-        b=Ovx7AEyqTzoLCVfe9gDrrYUubxl8ivzXIoFhMMKfp8cE+UyWuzyMOVFs62do7AvrAM
-         QSxP9G4A66ZhhJBlpU0aKg2p0Ecea4NZ7ifPKO93/fprP1ZrdDL6gYGfHqNQpoA36TEl
-         RBIH/JZeAHtN4ZfRibhWEPdyGoNRtHEHRYuf5TSFkBHUrtzWEgBv+pJU1iIi5VqHg/hX
-         sY/4Cs98V3dT5GSsIDkRkxA9K83QHiyRGYD7dKO0dMXROiitC2hbPjbnkm51hzhxaT9N
-         +QJlGx8sP7Wnq45QjpYK0YtcmySVomjJZ62e+tttlZXiCbCkvW3CPSBGWgFqeXV6CY4w
-         O8+Q==
+        bh=9toEF4naAJLYTJgN+U8K9ZKo/e3bxipAXVwvaHdBgq8=;
+        b=Vq4nl6qjMaceS2CoWgoxnW4iidMOAAkEcCjw8Wga0n1+7pllU9z7KPngKY9Y4E63iN
+         bIDtLHjkZ0q1nS6oO/8P4XG0O37rcPnDjdOKJEcDNJlfBzR6mEaEOWcz9MFzSWo1gVkL
+         3IQZAwFgnFW5SHGWwje/xGtjkfE/3e5D4FvnVhalMuf+sCLae2Wp8QCnyHjL8QBwIl5S
+         O7X0qgvYWLoDNYYmp6RishgVQMAjD9ZxIfXdRrQh+tpBA5U0rircQo8D14k8PYiAqBfw
+         I0cPXe59ZbmIeKCpvW9WYpsXsRTqGnOWlCemVvR7D7khhsOHdPOAPOmHlmWavGfLsT4U
+         vLMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706080949; x=1706685749;
+        d=1e100.net; s=20230601; t=1706080982; x=1706685782;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=74nQwkPGzi/fWf5wR+BH+XBmoovS6yknmDdHMmlxxzI=;
-        b=b0XZBIdoaoTJXyiqK2uKfnRcnil2/ACvukpxgdfoo27/9fOEOblm1bVi1gBvUH/jCp
-         IeSiV0Q9tEa+1NSwYSIwa3mbcft+xeJKTCUutGgOo2Al3CXnm2c6z6xMkh6SJZsRy2jd
-         nKFBU7VIAGQpIuTEXdzmX+Fu1OzVgMssvpS7mmkMtnn3S6Nlf2gvNqTFl4jJvhKh4Z6P
-         IS4g84XIb1dQjzDIsUyCP1D0cqnXkktG8VnoOyb/LARG6H2G4KzBT5tDQTuKmoLiuqD3
-         SW5krAebpW5dgqxnMeILM+hrrqUx+gcSY2bLbdNhShkcC2BUDtKe7Tn16fEAFA8daxRr
-         EXIw==
-X-Gm-Message-State: AOJu0YzUQWtLWNI+sXFi5ZJtZwmxcUECvYtT6mXbIQvfCYsC25uHYaS6
-	9CZ97A9Z2nW+0rviG37KlJsBzWLzDNPvhXjtXTjEoZvwKMYGxFn/SR+xl22i5Co=
-X-Google-Smtp-Source: AGHT+IFtkOvHj0t36DzD9lPSd8R1ObltV3wZbnavVyiBgI63pojO5xiM0r0i8GmOgRy6S9P44hEMuQ==
-X-Received: by 2002:a17:906:d295:b0:a2c:d9fb:ed3d with SMTP id ay21-20020a170906d29500b00a2cd9fbed3dmr589490ejb.78.1706080949205;
-        Tue, 23 Jan 2024 23:22:29 -0800 (PST)
+        bh=9toEF4naAJLYTJgN+U8K9ZKo/e3bxipAXVwvaHdBgq8=;
+        b=l8HcUWood52zEoN9+WuXEUf9oanmSC9n5FgcLoLeW3s+r0pJkpZ6tI3pkYRz1eU5q3
+         2L3myqBstb86ElHnuuCE4E3GSOa86d+acV5SkdOyc5KvP3xykVQT9+OIEzhvvlXHfa8i
+         WQ7ZiioqKktBMJFFMfQyjpLbOlhHtoYROadtUxdLDTA77rWRIQNwgnPZwsG6LfmRRK/X
+         m6ketDI4JWjxODD50UVcl3s/FY8LKPIa71OGt4NTesA9ci0gfVojDmjYHwDimsNUihPC
+         qYcTG3nukbW3kLZ6dxOEqj0oOCD4oG8KpZGtp8J9TnIwet+/fJu5NJxCYR17zJmB/Ul8
+         m83Q==
+X-Gm-Message-State: AOJu0Yzu4pdYaxoBxjf90xvpDOEzBJ2Eb6BRldfvos01b2epl1NO8aG0
+	omBIpCj16FiaBpTv1uBOakOoVuqNvk8yYHRjpHFcrEXP0TXxSB8xXFcuzg8MEj0=
+X-Google-Smtp-Source: AGHT+IEIvnvWvxzCGCLRZ+bRGK7BGE4LOyHwSoEqSus20hJzFP2VHG61xNLLr9qG+yOFEzTbs1R48A==
+X-Received: by 2002:a17:906:3615:b0:a23:36f7:4918 with SMTP id q21-20020a170906361500b00a2336f74918mr562296ejb.72.1706080981872;
+        Tue, 23 Jan 2024 23:23:01 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id o26-20020a170906289a00b00a2bd8953af2sm15042138ejd.55.2024.01.23.23.22.27
+        by smtp.gmail.com with ESMTPSA id o26-20020a170906289a00b00a2bd8953af2sm15042138ejd.55.2024.01.23.23.22.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 23:22:28 -0800 (PST)
-Message-ID: <3300a9f9-40f2-4a23-849e-52858e4ed4d6@linaro.org>
-Date: Wed, 24 Jan 2024 08:22:27 +0100
+        Tue, 23 Jan 2024 23:23:00 -0800 (PST)
+Message-ID: <b1a8bfbe-8e89-4cbb-af5b-3bd260cc89e7@linaro.org>
+Date: Wed, 24 Jan 2024 08:22:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,7 +75,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 16/20] dt-bindings: crypto: meson: add new compatibles
+Subject: Re: [PATCH v2 20/20] arch: arm64: dts: meson: axg: add crypto node
 Content-Language: en-US
 To: Alexey Romanov <avromanov@salutedevices.com>, neil.armstrong@linaro.org,
  clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
@@ -86,7 +86,7 @@ Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
 References: <20240123165831.970023-1-avromanov@salutedevices.com>
- <20240123165831.970023-17-avromanov@salutedevices.com>
+ <20240123165831.970023-21-avromanov@salutedevices.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,73 +132,38 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240123165831.970023-17-avromanov@salutedevices.com>
+In-Reply-To: <20240123165831.970023-21-avromanov@salutedevices.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 23/01/2024 17:58, Alexey Romanov wrote:
-> Now we can use crypto driver at G12A/G12B/S4/A1/SM1/AXG.
+> This patch adds a crypto node declaration. With the
+> Amlogic crypto driver we can use HW implementation
+> of SHA1/224/256 and AES algo.
 > 
 > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
 > ---
->  .../bindings/crypto/amlogic,gxl-crypto.yaml   | 31 ++++++++++++++++---
->  1 file changed, 27 insertions(+), 4 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-> index 948e11ebe4ee..a7145b126a06 100644
-> --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
-> @@ -11,8 +11,15 @@ maintainers:
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 7e5ac9db93f8..39ecb894668e 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -286,6 +286,12 @@ ethmac: ethernet@ff3f0000 {
+>  			status = "disabled";
+>  		};
 >  
->  properties:
->    compatible:
-> -    items:
-> -      - const: amlogic,gxl-crypto
-> +    oneOf:
-> +      - items:
+> +		crypto: crypto@ff63e000 {
+> +			compatible = "amlogic,axg-crypto";
 
-That's just enum.
+Test your code.
 
-> +          - enum:
-> +              - amlogic,g12a-crypto
-> +              - amlogic,s4-crypto
-> +              - amlogic,a1-crypto
-> +      - items:
-> +          - const: amlogic,gxl-crypto
-> +          - const: amlogic,axg-crypto
-
-This is neither explained nor correct. You just affected all DTS.
-
->  
->    reg:
->      maxItems: 1
-> @@ -32,8 +39,24 @@ required:
->    - compatible
->    - reg
->    - interrupts
-> -  - clocks
-> -  - clock-names
-> +
-> +if:
-
-Missing allOf
-
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - amlogic,gxl-crypto
-> +then:
-> +  required:
-> +    - clocks
-> +    - clock-names
-
-Why? Also not explained.
-
-Entire patch was not tested and it unexpectedly affects/changes existing
-bindings without explanation in commit msg.
-
-
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
 Best regards,
 Krzysztof
