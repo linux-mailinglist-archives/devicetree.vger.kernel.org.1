@@ -1,66 +1,69 @@
-Return-Path: <devicetree+bounces-34490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73651839FDB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 04:05:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5590839FDC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 04:05:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12CAF2814C1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 03:05:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 950DA281ED9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 03:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD9F524C;
-	Wed, 24 Jan 2024 03:05:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9926353A2;
+	Wed, 24 Jan 2024 03:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="HkemFHKl"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Ka0pFV66"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f98.google.com (mail-oa1-f98.google.com [209.85.160.98])
+Received: from mail-ot1-f98.google.com (mail-ot1-f98.google.com [209.85.210.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F7C522B
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 03:05:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.98
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89465244
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 03:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706065533; cv=none; b=T0x5xO5opC1LmgBnoqntJct2qFf7IaZu2aIiVBQQfHAD7VYxPMXLNs+jwcae+Noso8z0R4znwcE6AogJdNZSiTd4sgTWJOEwjWDOyUtjPKvgy+9rM52ytAZNnvq5HAKZ+aVWjzq3J7lYnfwZ3dQDaPYyo/7/MsT5v0Oy3PR1Mbw=
+	t=1706065534; cv=none; b=J/mMB08mU9p+o1DbuAhRaT8x9oZF2WCtrCKTBkUC0dPpkPNP32X45lRcxdq3OVxf4GoAfseVIPQ/8exnFFJXsyHqEAJVSlAOoXaz45clhmx6uU2qtxxQofBFiVDmMLM2HSbUqdBVOsuYVmWmSxFVGpg1whzWpSoI8E8tkguw3Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706065533; c=relaxed/simple;
-	bh=WI45SXsWFu1Ah06uFE4I5T18exvgsHj2sXehHkmuaw8=;
-	h=From:To:Subject:Date:Message-Id:MIME-Version; b=nQGUbcGFnAuhLJT07isgjt2+ue05LscSlF1vVA7zztBgth9UE39h691Uf54bHFHgBjjEx8NmTeoqTKkoZYUaXGEAKiLOHd9uXozmV7k8NiXyAJQXbVE/BWcdz3Y/4mA1yJc55xStjxea9lZUxj73TAT6A8oKMJ8CkC/g7+NJDH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=HkemFHKl; arc=none smtp.client-ip=209.85.160.98
+	s=arc-20240116; t=1706065534; c=relaxed/simple;
+	bh=nvrEOWH9z/+z7lJvtyev/8yIQOX98EvFRNg3Zd+SrHQ=;
+	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=f1kMxqpnJogPqbOwqBSsKQhlshs35zOCNShXruk7MEFxhzMV6Wef2Y4Iy0Pxi+GGyFpliQZ6Z+urpemcJmhWqDA5GBm/+AxjYIU9bgBxg/V27RWEDcoeSjXw3YG7D4pW5nUqmfktZyKOivHIF0tVN8f55cJ3vrC9m811I2QrE7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Ka0pFV66; arc=none smtp.client-ip=209.85.210.98
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-oa1-f98.google.com with SMTP id 586e51a60fabf-214917ed35aso637854fac.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 19:05:31 -0800 (PST)
+Received: by mail-ot1-f98.google.com with SMTP id 46e09a7af769-6dd8cba736aso3599475a34.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 19:05:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1706065530; x=1706670330; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=H7KxdgIABAQGBD38+JxvgSmrGDmsE+8Sj0czftnrUzU=;
-        b=HkemFHKlB1lJ08CrqcMC0TI72q71SQwTS2ob/uCxO5vTxDCV/APy9AvN9JFQJ+b8hN
-         1yqymrDqck3bIuUMw6NamvgMRGYASw0NevHhdO0jpjrqS8a3uUlG1l1TLsYo4WirCmuo
-         80qrk3UP5/DKXeBM9Ar/EVvZuHljdSDjl35ig=
+        d=broadcom.com; s=google; t=1706065532; x=1706670332; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RfC42mFMxWbt42N2Y8Snh0FkDOtoFt5c5JS3NwC/Elo=;
+        b=Ka0pFV6679h2oN4khzX+fzYkR0AKjyg1Pl9I219cyRhQqnMt3SLw1GKY3WFlbov3MK
+         rfD2qVjNb5Aa56dBNw7/23m2DkbOa/8WTfYEBQx8cdiJbjUFurBQ8oZ9gmVa0URz4mA1
+         yYTvNEsXA9MUbN+RhqjNGmiNk4J6M81GmXX1A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706065530; x=1706670330;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=H7KxdgIABAQGBD38+JxvgSmrGDmsE+8Sj0czftnrUzU=;
-        b=eWHI9jyPd80aSoRs7mq8+E3xP+C5665y4RcQl5KQI464chB9B/eI9+0y+Xb7Tsedpy
-         NhuZty0v8BYo11oz2d/mIKtOFxDqm/FLxx88Iqk4ac4UDyiBcJoxEo+h/a0T8PcEBiFP
-         Gd6D0GAU2XkJc15850m27sShbNj/WGOqNol3iRWIjd8gyNZgYb49sQ9WcYGb4PPH3yMg
-         ETkazuxyqJi/+29eV4ATohEFJNHk/ww98brAUfDrygvizJ8iEykxRvGLJBoK8vvL+4TY
-         hB4Llr04LyYrSRcBKIBgjNskev2E4eHCXWB+a+k2h2zekG6IFIysM98TpCLeSDdOdZoY
-         jn7Q==
-X-Gm-Message-State: AOJu0YzJNuoDRHwiDmnakUwD37auhNoUajNTV5UgrcaY1Xip7iUY4dxn
-	rCJS4pas5Fs+vKROaB7pE65EWU1Xlc8hc62C8PiJ7SmOnsM9OlS6ZBJg9BrpTDUefpwr16vPwyI
-	Bf8b9tfoHDrfE5o8HiI7KeX8rCJv03A==
-X-Google-Smtp-Source: AGHT+IEJxubg1f0YZ0+rItm2W/njIh4Ow/SOhAglwE4uM77J3dRR0uKAb7I+RPN4THEmri6Sp3Ho+paKfgBN
-X-Received: by 2002:a05:6871:b07:b0:210:9789:7457 with SMTP id fq7-20020a0568710b0700b0021097897457mr2828052oab.99.1706065530407;
-        Tue, 23 Jan 2024 19:05:30 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706065532; x=1706670332;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RfC42mFMxWbt42N2Y8Snh0FkDOtoFt5c5JS3NwC/Elo=;
+        b=P6Sp1hn/L49VWTFXT+WHt+MQl9UAEgUpbzsBlrs2R6pAM4be8bHjCwW+rFy7SIgzvr
+         LiEk4QEs8AuwM/Eo/acwU15au6VYvhYlp6cFi6gskNWPd7eOQCgn3iiScZ3v9ovfq/28
+         rzVb5AivCYQbzDu8N9hf8Cdb36bErYnerwwi57M8I9PBFFTDnLwaQcjZt74SQtQ5bbR6
+         tWyjSLzvo4RIW310XHyAO5+HaH8QkwipgpKeApJnhinZVejeCdsywFX0/29LWdlJtWwE
+         qyebUmKQe7T8Us74GCK/CtKKchkM4L7cWYeku/HimsdnEURXRBFR0DV6HjsUdncH6gQD
+         DYAg==
+X-Gm-Message-State: AOJu0Ywmecip6nPr7oo186SPZzKOwEo9bT1PLVTJ4WJy2YZAy5M0sE0a
+	tTSHPY1mlvgaloSCRPx5jez4HB1UCl58KkReFIflY6FxgwgeCH2IuE/Fx1+UIDYRR0cDdEx+R8W
+	uH3b4EvDir6kjZwc8xrVrSWWNljBHsQ==
+X-Google-Smtp-Source: AGHT+IGkswDyG3Gtz3GqJE+TRieLfMO18ZMJzmD7ROmdRdjJ3ufDF3WoK1jWXcVp3qq/MXq4+F0KEGsc3xvR
+X-Received: by 2002:a9d:5e09:0:b0:6e0:f7bc:24f8 with SMTP id d9-20020a9d5e09000000b006e0f7bc24f8mr847296oti.60.1706065532044;
+        Tue, 23 Jan 2024 19:05:32 -0800 (PST)
 Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp-relay.gmail.com with ESMTPS id c22-20020a056830349600b006dc7502beabsm455320otu.3.2024.01.23.19.05.28
+        by smtp-relay.gmail.com with ESMTPS id c22-20020a056830349600b006dc7502beabsm455320otu.3.2024.01.23.19.05.30
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 23 Jan 2024 19:05:30 -0800 (PST)
+        Tue, 23 Jan 2024 19:05:32 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 From: David Regan <dregan@broadcom.com>
 To: dregan@broadcom.com,
@@ -89,10 +92,12 @@ To: dregan@broadcom.com,
 	baruch@tkos.co.il,
 	linux-arm-kernel@lists.infradead.org,
 	dan.carpenter@linaro.org
-Subject: [PATCH v3 00/10] mtd: rawnand: brcmnand: driver and doc updates
-Date: Tue, 23 Jan 2024 19:04:48 -0800
-Message-Id: <20240124030458.98408-1-dregan@broadcom.com>
+Subject: [PATCH v3 01/10] dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
+Date: Tue, 23 Jan 2024 19:04:49 -0800
+Message-Id: <20240124030458.98408-2-dregan@broadcom.com>
 X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20240124030458.98408-1-dregan@broadcom.com>
+References: <20240124030458.98408-1-dregan@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,90 +106,128 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patch series is an update from the previous version [1] after
-exex_op support and fixes (patch 1 to 4 from the previous version.)
+From: William Zhang <william.zhang@broadcom.com>
 
-It updates all the BCMBCA SoC to support the nand controller and add
-functions to handle BCMBCA specific needs on ECC and Write Protection
-usage. The device tree document is also updated accordingly with the new
-properties needed by the driver.
+Update the descriptions to reflect different families of broadband SoC and
+use the general name bcmbca for ARM based SoC.
 
-In addition there is a bug fix for exec_op helper functions and on-die ECC.
+Add brcm,nand-use-wp property to have an option for disabling this
+feature on broadband board design that does not use write protection.
 
-[1] https://lore.kernel.org/lkml/20230606231252.94838-1-william.zhang@broadcom.com/
+Add brcm,nand-ecc-use-strap to get ecc setting from board boot strap for
+broadband board designs because they do not specify ecc setting in dts
+but rather using the strap setting.
 
+Remove the requirement of interrupts property to reflect the driver
+code. Also add myself to the list of maintainers.
+
+Signed-off-by: William Zhang <william.zhang@broadcom.com>
+Reviewed-by: David Regan <dregan@broadcom.com>
+---
 Changes in v3:
 - Update brcm,nand-use-wp description
 - Revert the description change to BCM63168 SoC-specific NAND controller
-- Updated bcmbca_read_data_bus comment
-
+---
 Changes in v2:
 - Revert the new compatible string nand-bcmbca
 - Drop the BCM63168 compatible fix to avoid any potential ABI
-Incompatibility issue
+incompatibility issue
 - Simplify the explanation for brcm,nand-use-wp
 - Keep the interrupt name requirement when interrupt number is specified
-- Add nand controller node label for 4908 so it is consistent with other
-SoC's and can be referenced by board dts file
-- Drop the is_param argument to the read data bus function now that we
-have the exec_op API to read the parameter page and ONFI data
-- Minor cosmetic fixes
-- Added patches 8, 9, 10 to patch series
+---
+ .../bindings/mtd/brcm,brcmnand.yaml           | 37 ++++++++++++++++---
+ 1 file changed, 32 insertions(+), 5 deletions(-)
 
-William Zhang (7):
-  dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
-  ARM: dts: broadcom: bcmbca: Add NAND controller node
-  arm64: dts: broadcom: bcmbca: Add NAND controller node
-  mtd: rawnand: brcmnand: Rename bcm63138 nand driver
-  mtd: rawnand: brcmnand: Add BCMBCA read data bus interface
-  mtd: rawnand: brcmnand: Add support for getting ecc setting from strap
-  mtd: rawnand: brcmnand: Support write protection setting from dts
-
-David Regan (3):
-  mtd: rawnand: brcmnand: exec_op helper functions return type fixes
-  mtd: rawnand: brcmnand: update log level messages
-  mtd: rawnand: brcmnand: allow for on-die ecc
-
- .../bindings/mtd/brcm,brcmnand.yaml           |  37 ++++-
- arch/arm/boot/dts/broadcom/bcm47622.dtsi      |  17 ++
- arch/arm/boot/dts/broadcom/bcm63138.dtsi      |  10 +-
- arch/arm/boot/dts/broadcom/bcm63148.dtsi      |  17 ++
- arch/arm/boot/dts/broadcom/bcm63178.dtsi      |  17 ++
- arch/arm/boot/dts/broadcom/bcm6756.dtsi       |  17 ++
- arch/arm/boot/dts/broadcom/bcm6846.dtsi       |  17 ++
- arch/arm/boot/dts/broadcom/bcm6855.dtsi       |  17 ++
- arch/arm/boot/dts/broadcom/bcm6878.dtsi       |  17 ++
- arch/arm/boot/dts/broadcom/bcm947622.dts      |   4 +
- arch/arm/boot/dts/broadcom/bcm963138.dts      |   4 +
- arch/arm/boot/dts/broadcom/bcm963138dvt.dts   |  12 +-
- arch/arm/boot/dts/broadcom/bcm963148.dts      |   4 +
- arch/arm/boot/dts/broadcom/bcm963178.dts      |   4 +
- arch/arm/boot/dts/broadcom/bcm96756.dts       |   4 +
- arch/arm/boot/dts/broadcom/bcm96846.dts       |   4 +
- arch/arm/boot/dts/broadcom/bcm96855.dts       |   4 +
- arch/arm/boot/dts/broadcom/bcm96878.dts       |   4 +
- .../boot/dts/broadcom/bcmbca/bcm4908.dtsi     |   5 +-
- .../boot/dts/broadcom/bcmbca/bcm4912.dtsi     |  17 ++
- .../boot/dts/broadcom/bcmbca/bcm63146.dtsi    |  17 ++
- .../boot/dts/broadcom/bcmbca/bcm63158.dtsi    |  17 ++
- .../boot/dts/broadcom/bcmbca/bcm6813.dtsi     |  17 ++
- .../boot/dts/broadcom/bcmbca/bcm6856.dtsi     |  17 ++
- .../boot/dts/broadcom/bcmbca/bcm6858.dtsi     |  17 ++
- .../boot/dts/broadcom/bcmbca/bcm94912.dts     |   4 +
- .../boot/dts/broadcom/bcmbca/bcm963146.dts    |   4 +
- .../boot/dts/broadcom/bcmbca/bcm963158.dts    |   4 +
- .../boot/dts/broadcom/bcmbca/bcm96813.dts     |   4 +
- .../boot/dts/broadcom/bcmbca/bcm96856.dts     |   4 +
- .../boot/dts/broadcom/bcmbca/bcm96858.dts     |   4 +
- drivers/mtd/nand/raw/brcmnand/Makefile        |   2 +-
- drivers/mtd/nand/raw/brcmnand/bcm63138_nand.c |  99 ------------
- drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c   | 126 +++++++++++++++
- drivers/mtd/nand/raw/brcmnand/brcmnand.c      | 146 +++++++++++++++---
- drivers/mtd/nand/raw/brcmnand/brcmnand.h      |   2 +
- 36 files changed, 578 insertions(+), 138 deletions(-)
- delete mode 100644 drivers/mtd/nand/raw/brcmnand/bcm63138_nand.c
- create mode 100644 drivers/mtd/nand/raw/brcmnand/bcmbca_nand.c
-
+diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+index f57e96374e67..752c6ee98a7d 100644
+--- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
++++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+@@ -9,6 +9,7 @@ title: Broadcom STB NAND Controller
+ maintainers:
+   - Brian Norris <computersforpeace@gmail.com>
+   - Kamal Dasu <kdasu.kdev@gmail.com>
++  - William Zhang <william.zhang@broadcom.com>
+ 
+ description: |
+   The Broadcom Set-Top Box NAND controller supports low-level access to raw NAND
+@@ -18,9 +19,10 @@ description: |
+   supports basic PROGRAM and READ functions, among other features.
+ 
+   This controller was originally designed for STB SoCs (BCM7xxx) but is now
+-  available on a variety of Broadcom SoCs, including some BCM3xxx, BCM63xx, and
+-  iProc/Cygnus. Its history includes several similar (but not fully register
+-  compatible) versions.
++  available on a variety of Broadcom SoCs, including some BCM3xxx, MIPS based
++  Broadband SoC (BCM63xx), ARM based Broadband SoC (BCMBCA) and iProc/Cygnus.
++  Its history includes several similar (but not fully register compatible)
++  versions.
+ 
+   -- Additional SoC-specific NAND controller properties --
+ 
+@@ -53,7 +55,7 @@ properties:
+               - brcm,brcmnand-v7.2
+               - brcm,brcmnand-v7.3
+           - const: brcm,brcmnand
+-      - description: BCM63138 SoC-specific NAND controller
++      - description: BCMBCA SoC-specific NAND controller
+         items:
+           - const: brcm,nand-bcm63138
+           - enum:
+@@ -111,6 +113,20 @@ properties:
+       earlier versions of this core that include WP
+     type: boolean
+ 
++  brcm,nand-use-wp:
++    description:
++      Use this property to indicate if board design uses
++      controller's write protection feature and connects its
++      NAND_WPb pin to nand chip's WP_L pin. By default the driver
++      uses a module parameter with default value set to enable to
++      control this feature for all boards. Use this dts property to
++      override the default behavior and enable/disable this feature
++      through board dts on a per board basis.
++      Set to 0 if WP pins are not connected and feature is not
++      used. Set to 1 if WP pins are connected and feature is used.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
+ patternProperties:
+   "^nand@[a-f0-9]$":
+     type: object
+@@ -137,6 +153,16 @@ patternProperties:
+           layout.
+         $ref: /schemas/types.yaml#/definitions/uint32
+ 
++      brcm,nand-ecc-use-strap:
++        description:
++          This flag is used by the driver to get the ecc strength and
++          spare area size from the SoC NAND boot strap setting. This
++          is commonly used by the BCMBCA SoC board design. If ecc
++          strength and spare area size are set by nand-ecc-strength
++          and brcm,nand-oob-sector-size in the dts, these settings
++          have precedence and override this flag.
++        $ref: /schemas/types.yaml#/definitions/flag
++
+     unevaluatedProperties: false
+ 
+ allOf:
+@@ -177,6 +203,8 @@ allOf:
+             - const: iproc-idm
+             - const: iproc-ext
+   - if:
++      required:
++        - interrupts
+       properties:
+         interrupts:
+           minItems: 2
+@@ -189,7 +217,6 @@ unevaluatedProperties: false
+ required:
+   - reg
+   - reg-names
+-  - interrupts
+ 
+ examples:
+   - |
 -- 
 2.37.3
 
