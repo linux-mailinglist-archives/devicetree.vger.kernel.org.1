@@ -1,284 +1,151 @@
-Return-Path: <devicetree+bounces-34636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C1D83A63E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 11:01:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ECEA83A645
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 11:02:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 153E91C2197D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:01:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 711491C232BD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:02:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1691182C3;
-	Wed, 24 Jan 2024 10:01:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="BWaI1bIH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9538182CC;
+	Wed, 24 Jan 2024 10:01:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A1C318C05;
-	Wed, 24 Jan 2024 10:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D3F1AAC4
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 10:01:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706090485; cv=none; b=AKkWim2RZSisJ8UeDT2e9QnzbPx4mha3EH+qNYy5gnwnCz+Shelmd/mBt0/4t/DIGOKHJG9EGGcLnZli6Jo+RBhVDhF7eoCZKQuS8NTxRmI9yqE613GMQlHsAhEBQxNGQtKTM2lvB+ZVDfU6iKrZ8K35cwlBIszqsEx6/x0QRMA=
+	t=1706090509; cv=none; b=Q/i0AFfeJiNn+3JvBhIsiIazDst0s4Wsz7m/qRNbqaN55HJXij67vhG6vBBawRSKfjJIaqv1h+3EYupiE6r3nay/mkuOA0gbik2/9dBpRa5rygbfFGZYCa+NENdlUpmrF0vEmSEbajAJxfeJIUDBAsJB9kQ4c+pSKrRFk+Cy/ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706090485; c=relaxed/simple;
-	bh=0PDa4gBIohaxUIBgGmK/dEAi8w116bN/ZSNOiiGYcDk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f4eiWP+kEc7q0N1m/TxrH8/inDFdRWDEp/gg2h/m5oi6OCLStK0XXCyDHT7/K4wBtj07GRmOwuxA5Z9/gB/eROS7/bh6R78/8uRB+134wrA51VHerDf+jOKrTuaHGYDVrGTd4AUlpYz1wtsQUjag+yXCDoqFkEUMRWQ5slQVfMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=BWaI1bIH; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1706090484; x=1737626484;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0PDa4gBIohaxUIBgGmK/dEAi8w116bN/ZSNOiiGYcDk=;
-  b=BWaI1bIHAAGltIBpnal/DXHbFjCPeefR95ZFoHP2kzNdIELuUV4ve0p6
-   vsjxy8OmZxxmzAI/nmTGM4u7HIyZBQOhhqtSppWXKG79DawrCeZ0cH2p7
-   MBEGa8D/WpOTAgwG0BELzqHSUBVC/VLxcWxK0N8BSNew2IBk54qkb121I
-   fwTzYS+SEKxcx+NDCr3+2IqW4C6+FzFN9L8jt26gkNAPmC2imB/eZV1NW
-   JsHRHbZUOAYBNnJmgHCs87TrvTc2+Avq4KsSinB+QvRQiMogcb0QMMKUH
-   zyl9xGGacrUVjBomwqjdY/UdWYKrAqJTCXxqgGRIGi54xk4g9Tpi/JAlk
-   w==;
-X-CSE-ConnectionGUID: FmI4LJdeRpqsQ+/EnHVlYQ==
-X-CSE-MsgGUID: 0Tbov+NoTz23oqkwGn6WkA==
-X-IronPort-AV: E=Sophos;i="6.05,216,1701154800"; 
-   d="scan'208";a="15213714"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 24 Jan 2024 03:01:23 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 24 Jan 2024 03:00:55 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Wed, 24 Jan 2024 03:00:48 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-To: <sam@ravnborg.org>, <bbrezillon@kernel.org>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<lee@kernel.org>, <thierry.reding@gmail.com>,
-	<u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>
-CC: Dharma Balasubiramani <dharma.b@microchip.com>
-Subject: [PATCH v4 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT schema format
-Date: Wed, 24 Jan 2024 15:30:19 +0530
-Message-ID: <20240124100019.290120-4-dharma.b@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240124100019.290120-1-dharma.b@microchip.com>
-References: <20240124100019.290120-1-dharma.b@microchip.com>
+	s=arc-20240116; t=1706090509; c=relaxed/simple;
+	bh=TBG/Fik5tdCQjDd8JEdUXF6T27+dtYJLFbSDI1eLI10=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tF4RpNvYH3cBXwE5ZkKPobTPWrSXv+241BqyOmTaGNe+tGOD9lFI3BWS6nc/uv32FmwQaB+YN8k270U9FNCYBNX6EqjSuRrJyotbiIE+iRJ+3NRbGyZwxVl8EYclIMoCW6qqtLtAYWFJNjBYJRt2DHCjGaRqMCXZyFuYCY8hym0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rSa4i-0005l5-Mm; Wed, 24 Jan 2024 11:01:40 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rSa4h-0021mi-Jk; Wed, 24 Jan 2024 11:01:39 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rSa4h-0072vx-1f;
+	Wed, 24 Jan 2024 11:01:39 +0100
+Date: Wed, 24 Jan 2024 11:01:39 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: kernel@pengutronix.de, devicetree@vger.kernel.org, 
+	Leonard =?utf-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: stm32: lxa-tac: drive powerboard lines as
+ open-drain
+Message-ID: <j3i24md6kz2t7tw2teqbhhab2iywj6xkeg4qxw7do6jawm7jxw@ew64jmeef5zl>
+References: <20231018203154.1681457-2-u.kleine-koenig@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zdtjwwg5pvmfurm6"
+Content-Disposition: inline
+In-Reply-To: <20231018203154.1681457-2-u.kleine-koenig@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Convert the atmel,hlcdc binding to DT schema format.
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
-changelog
-v3 -> v4
-- Drop lvds_pll_clk, It can be enabled in lvds driver itself.
-- Update commit message.
-Note: Since there is no complexities now, I believe that specifying
-maxitems in the clocks property should be sufficient.
-v2 -> v3
-- Rename hlcdc-display-controller and hlcdc-pwm to generic names.
-- Modify the description by removing the unwanted comments and '|'.
-- Modify clock-names simpler.
-v1 -> v2
-- Remove the explicit copyrights.
-- Modify title (not include words like binding/driver).
-- Modify description actually describing the hardware and not the driver.
-- Add details of lvds_pll addition in commit message.
-- Ref endpoint and not endpoint-base.
-- Fix coding style.
-...
- .../devicetree/bindings/mfd/atmel,hlcdc.yaml  | 97 +++++++++++++++++++
- .../devicetree/bindings/mfd/atmel-hlcdc.txt   | 56 -----------
- 2 files changed, 97 insertions(+), 56 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
- delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+--zdtjwwg5pvmfurm6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml b/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
-new file mode 100644
-index 000000000000..3062298bd756
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/atmel,hlcdc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel's HLCD Controller
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+  - Claudiu Beznea <claudiu.beznea@tuxon.dev>
-+
-+description:
-+  The Atmel HLCDC (HLCD Controller) IP available on Atmel SoCs exposes two
-+  subdevices, a PWM chip and a Display Controller.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - atmel,at91sam9n12-hlcdc
-+      - atmel,at91sam9x5-hlcdc
-+      - atmel,sama5d2-hlcdc
-+      - atmel,sama5d3-hlcdc
-+      - atmel,sama5d4-hlcdc
-+      - microchip,sam9x60-hlcdc
-+      - microchip,sam9x75-xlcdc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 3
-+
-+  clock-names:
-+    items:
-+      - const: periph_clk
-+      - const: sys_clk
-+      - const: slow_clk
-+
-+  display-controller:
-+    $ref: /schemas/display/atmel/atmel,hlcdc-display-controller.yaml
-+
-+  pwm:
-+    $ref: /schemas/pwm/atmel,hlcdc-pwm.yaml
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/dma/at91.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    lcd_controller: lcd-controller@f0030000 {
-+      compatible = "atmel,sama5d3-hlcdc";
-+      reg = <0xf0030000 0x2000>;
-+      clocks = <&lcdc_clk>, <&lcdck>, <&clk32k>;
-+      clock-names = "periph_clk", "sys_clk", "slow_clk";
-+      interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+      display-controller {
-+        compatible = "atmel,hlcdc-display-controller";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb888>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        port@0 {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+          reg = <0>;
-+
-+          hlcdc_panel_output: endpoint@0 {
-+            reg = <0>;
-+            remote-endpoint = <&panel_input>;
-+          };
-+        };
-+      };
-+
-+      pwm {
-+        compatible = "atmel,hlcdc-pwm";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_lcd_pwm>;
-+        #pwm-cells = <3>;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt b/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
-deleted file mode 100644
-index 7de696eefaed..000000000000
---- a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
-+++ /dev/null
-@@ -1,56 +0,0 @@
--Device-Tree bindings for Atmel's HLCDC (High LCD Controller) MFD driver
--
--Required properties:
-- - compatible: value should be one of the following:
--   "atmel,at91sam9n12-hlcdc"
--   "atmel,at91sam9x5-hlcdc"
--   "atmel,sama5d2-hlcdc"
--   "atmel,sama5d3-hlcdc"
--   "atmel,sama5d4-hlcdc"
--   "microchip,sam9x60-hlcdc"
--   "microchip,sam9x75-xlcdc"
-- - reg: base address and size of the HLCDC device registers.
-- - clock-names: the name of the 3 clocks requested by the HLCDC device.
--   Should contain "periph_clk", "sys_clk" and "slow_clk".
-- - clocks: should contain the 3 clocks requested by the HLCDC device.
-- - interrupts: should contain the description of the HLCDC interrupt line
--
--The HLCDC IP exposes two subdevices:
-- - a PWM chip: see ../pwm/atmel-hlcdc-pwm.txt
-- - a Display Controller: see ../display/atmel/hlcdc-dc.txt
--
--Example:
--
--	hlcdc: hlcdc@f0030000 {
--		compatible = "atmel,sama5d3-hlcdc";
--		reg = <0xf0030000 0x2000>;
--		clocks = <&lcdc_clk>, <&lcdck>, <&clk32k>;
--		clock-names = "periph_clk","sys_clk", "slow_clk";
--		interrupts = <36 IRQ_TYPE_LEVEL_HIGH 0>;
--
--		hlcdc-display-controller {
--			compatible = "atmel,hlcdc-display-controller";
--			pinctrl-names = "default";
--			pinctrl-0 = <&pinctrl_lcd_base &pinctrl_lcd_rgb888>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 {
--				#address-cells = <1>;
--				#size-cells = <0>;
--				reg = <0>;
--
--				hlcdc_panel_output: endpoint@0 {
--					reg = <0>;
--					remote-endpoint = <&panel_input>;
--				};
--			};
--		};
--
--		hlcdc_pwm: hlcdc-pwm {
--			compatible = "atmel,hlcdc-pwm";
--			pinctrl-names = "default";
--			pinctrl-0 = <&pinctrl_lcd_pwm>;
--			#pwm-cells = <3>;
--		};
--	};
--- 
-2.25.1
+Hello,
 
+On Wed, Oct 18, 2023 at 10:31:55PM +0200, Uwe Kleine-K=F6nig wrote:
+> From: Leonard G=F6hrs <l.goehrs@pengutronix.de>
+>=20
+> This results in a slight improvement in EMI performance due to the lines
+> no longer being driven by the somewhat noisy VDD_IO supply of the SoM.
+>=20
+> Signed-off-by: Leonard G=F6hrs <l.goehrs@pengutronix.de>
+> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> ---
+>  arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts | 2 +-
+>  arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi     | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts b/arch/arm=
+/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts
+> index 8a34d15e9005..4cc177031661 100644
+> --- a/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts
+> +++ b/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts
+> @@ -148,7 +148,7 @@ adc@0 {
+>  		compatible =3D "ti,lmp92064";
+>  		reg =3D <0>;
+> =20
+> -		reset-gpios =3D <&gpioa 4 GPIO_ACTIVE_HIGH>;
+> +		reset-gpios =3D <&gpioa 4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>  		shunt-resistor-micro-ohms =3D <15000>;
+>  		spi-max-frequency =3D <5000000>;
+>  		vdd-supply =3D <&reg_pb_3v3>;
+> diff --git a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi b/arch/arm/boo=
+t/dts/st/stm32mp15xc-lxa-tac.dtsi
+> index f09b7c384bd9..188c9cfc7102 100644
+> --- a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
+> +++ b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
+> @@ -409,7 +409,7 @@ &sdmmc2 {
+>  &spi2 {
+>  	pinctrl-names =3D "default";
+>  	pinctrl-0 =3D <&spi2_pins_c>;
+> -	cs-gpios =3D <&gpiof 12 GPIO_ACTIVE_LOW>;
+> +	cs-gpios =3D <&gpiof 12 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+>  	status =3D "okay";
+>  };
+> =20
+>=20
+> base-commit: 4d5ab2376ec576af173e5eac3887ed0b51bd8566
+
+Gentle ping. Given this patch is two months old now I assume it fell
+through the cracks?
+
+Best regards
+UWe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--zdtjwwg5pvmfurm6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWw4AIACgkQj4D7WH0S
+/k5z/Qf/cLoIQVdsF5ePfBcAIdvac1PdJcvU05lZuhnL7RY5zcx1GyuLucE8/ODi
+xixNy7J3JTyyJRJVyc8GeLQwEQtcbtwR5zSJ71ZCyLAOBbx1nKaQ/BGDeymAIlSI
+QBJouj59IeLkXQVT9B4ZfFIbzKfmR2zW9GQR8JlFhh1Q9X42Z+xvTakMAwd205W+
+sf21ACalUqNcPxjWRxgCOIUz7yVuS9ohRXF1iyh75TzXHYtRxwY1+HUCtIZkjBWq
+4Pvfk84QSwXyPGXmfnv18BqGUxK4ZgR+YHUyx3HY7VHNn05qfe1k4l3FxN3JwPpG
+/zdWSfVNpBfWeT59oyJq2DL81yBGoA==
+=nDYh
+-----END PGP SIGNATURE-----
+
+--zdtjwwg5pvmfurm6--
 
