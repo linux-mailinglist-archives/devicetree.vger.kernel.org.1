@@ -1,138 +1,81 @@
-Return-Path: <devicetree+bounces-34658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC8D883A734
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 11:51:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD96E83A74C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 11:54:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60B0F2880C6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:51:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8ECE8B2AD82
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F57B19473;
-	Wed, 24 Jan 2024 10:51:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC52219473;
+	Wed, 24 Jan 2024 10:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="un1te8KA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RDT4rjMM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B751AADD;
-	Wed, 24 Jan 2024 10:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C49591AACD;
+	Wed, 24 Jan 2024 10:52:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706093465; cv=none; b=XiXBoqrDhKDnOmOTRxnSWV54n2lrw3DKEo1L7QeK/LcGm9jL7P7Co2pjT8I7EsCDoHFIyWZL+N8nMWw8Jiue5ap46+qmEaL2TCZ/lBDc5PFPrsU1YKjNjkSnPBVOaqeP0AfEOxY6dmVOwizDI+X+pS8jSRRGX6yqRQubh+EAk6E=
+	t=1706093561; cv=none; b=M8oll96KDSU9iC6LVMGC0I5a8F9cU6riyTkpOw6YUh23IDI3Fj/tYm4aDKoUh0JOfBVihO4EiaQweLJdiVIkY9EZ5JjvAbX+lHzhAWTNT4tmNW0oKKzFpr7XoKwHmtyGK7iCM5MEscIsJ5H3msFo2UWagMvPB1X3fbBb5zvxBes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706093465; c=relaxed/simple;
-	bh=xckjaTai+NIhJdr+U5xK5xm6EEGgFYcEd8Jw5TS/yzU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f8jKPlIcxaoKv+gjpFfiZm1x26Uhsh5vV8GEZSN9tY50E6wLdgEXvIZ4W/Tl6W1k+Nb3NmXEo6M1UmocGvdh30+Z9CMeLPePusw/X4L5vV+VvS/QiJu1Enl4s1AHM5mwavDw7KhkBqrylQmbbKV5ebl6zJnngDNS8tiPiJ6lDCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=un1te8KA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D2CBC433F1;
-	Wed, 24 Jan 2024 10:51:03 +0000 (UTC)
+	s=arc-20240116; t=1706093561; c=relaxed/simple;
+	bh=eR7GeRgNBr4xJVLEQ/ipltqfY9Fz19RYQrjwBuo9I9w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PdlIyQfj4GiTBvrkbj+DqIRu202zJGHKajj6p1RdiSg6pDPKkKS6+22hcM7EkmH/Ycz48SsSeJMwXUBWuW3Z63nZIHz/198cjaqVsIyHEVk8xJGNA5cNCW55GLSxnQ4mhc8j6LLVg4iINOdw7cpI8hD5gO2oyFsV+bedOlycCtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RDT4rjMM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB4C2C433F1;
+	Wed, 24 Jan 2024 10:52:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706093464;
-	bh=xckjaTai+NIhJdr+U5xK5xm6EEGgFYcEd8Jw5TS/yzU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=un1te8KAgfRdSYeTJpjm0sO+bk65w2EismhVsuPXCagM06zp793UJV2dzG2MRH+8A
-	 RWcK3FF5c3eJYDidgQi8UeLO1E5i2BclwrEKmpHJyl0B9BohtwxyWO6XwebQE5M0Hu
-	 M3gIeD1mFuC8rJhBgZNLdpqHIN0TABKnk341WWjPizW004mV3MyYM+UcmxIJtHSKTi
-	 1JiyTipUNJsBMd5RVCl6i5yzBS4NSm7gSPlt+RisVoYiASHeJTlVBXXS4CfbtbIk7+
-	 MjqH6Si5PsREpSCbo4+WnkNsaIHhSqPciBba0POq6GWoy7cYVNwgeXDzx6r+RXs9Qe
-	 2iN4DnpB/NlaQ==
-Date: Wed, 24 Jan 2024 11:51:01 +0100
-From: Wolfram Sang <wsa@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Cong Dang <cong.dang.xn@renesas.com>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Hai Pham <hai.pham.ud@renesas.com>,
-	Linh Phung <linh.phung.jy@renesas.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH 12/15] soc: renesas: rcar-rst: Add support for R-Car V4M
-Message-ID: <ZbDrlYassvCCk1cE@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Cong Dang <cong.dang.xn@renesas.com>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Hai Pham <hai.pham.ud@renesas.com>,
-	Linh Phung <linh.phung.jy@renesas.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org
-References: <cover.1704726960.git.geert+renesas@glider.be>
- <1569c749978c3565db6dc013efa41eaa9c688844.1704726960.git.geert+renesas@glider.be>
+	s=k20201202; t=1706093561;
+	bh=eR7GeRgNBr4xJVLEQ/ipltqfY9Fz19RYQrjwBuo9I9w=;
+	h=From:To:Cc:Subject:Date:From;
+	b=RDT4rjMMoKbujnEhh+kdlfZa44CJStDgltV4cYZOA8AswD001L7E9wx0sqEnQTV1f
+	 asM80hgaZGNy2XyeYQ8PFFi5K8Ml897wVLpIZqqQbkpzeLYqJ0QvR7OKK/DTTVP+og
+	 tyuZH24bXME8cZvkOjTuSDgZq/WD4CE9vcCKWiMdATXgcGPqeEIGYYtYye7RwWScFW
+	 tLC2JqY+OJXqwOKp3S72k3Y+4I2FlyQrseVRd+GDtrR+Bir1flBLhzbzVv/W+sX/gv
+	 Kb9Pxi1/QnKOe8snJekNeTTuXhgJUN7YUR+45B8MftzmMNhdJKX44dhd1Am+CyvLsk
+	 4cQfvOj4MBOgg==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: jic23@kernel.org
+Cc: linux-iio@vger.kernel.org,
+	lorenzo.bianconi@redhat.com,
+	devicetree@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org
+Subject: [PATCH 0/2] add support for ASM330LHHXG1
+Date: Wed, 24 Jan 2024 11:52:32 +0100
+Message-ID: <cover.1706093274.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Bh7dvcsQb5oS5pjY"
-Content-Disposition: inline
-In-Reply-To: <1569c749978c3565db6dc013efa41eaa9c688844.1704726960.git.geert+renesas@glider.be>
+Content-Transfer-Encoding: 8bit
 
+Add support for ASM330LHHXG1 IMU automotive mems sensor
+https://www.st.com/resource/en/datasheet/asm330lhhxg1.pdf
 
---Bh7dvcsQb5oS5pjY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Lorenzo Bianconi (2):
+  iio: imu: st_lsm6dsx: add support to ASM330LHHXG1
+  dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhxg1
 
-On Mon, Jan 08, 2024 at 04:33:51PM +0100, Geert Uytterhoeven wrote:
-> From: Duy Nguyen <duy.nguyen.rh@renesas.com>
->=20
-> Add support for the R-Car V4M (R8A779H0) SoC to the R-Car RST driver.
->=20
-> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+ .../bindings/iio/imu/st,lsm6dsx.yaml          |  3 ++
+ drivers/iio/imu/st_lsm6dsx/Kconfig            |  4 +-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h       | 48 ++++++++++---------
+ .../iio/imu/st_lsm6dsx/st_lsm6dsx_buffer.c    |  2 +-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c  |  6 ++-
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_i2c.c   |  5 ++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_spi.c   |  5 ++
+ 7 files changed, 46 insertions(+), 27 deletions(-)
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+-- 
+2.43.0
 
-> ---
-> Early firmware versions may not enable WDT resets, so you may need to do
-> s/rcar_rst_gen4/rcar_rst_v3u/ for testing.
-
-See, how useful this V3U patch has become ;)
-
-
---Bh7dvcsQb5oS5pjY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmWw65UACgkQFA3kzBSg
-Kba2zQ//ZB3tvNcG9LDcopg/pMJinAheWmIEiU5uQmPAWRpx44URI3MhmvxeV0g2
-IVLDk34h5Y1rmrwUyb4RH9U+aLRWHwvJad+HqhP8CAEzlAolOWzyD2mmBeSbq6Ak
-aLxdQwUoXZs/a3QUYjVcr+ej4OI2k59+NmyqY5SYXlpoZ0la9Awd+luimE1bIjoi
-MXFilS0xwNAAuqV/PMdXq/PtOpdIwRCRu+qJmh2b9saV7nZ4zgo4MA/NSZWE+xqj
-1B1/RJKzzhq6jIAjzAoLZvWVF3PJ0/MPnXpzZtHWWshC+NSxuQcW4Qro0k7hnsaj
-MP+gE5s9c0Etzj7NZPfQoYubghUfXOtbg5GAdNfrL4yI4ZCCiWV2x/0Gxjte/ok7
-aYXwDowg0rbJavBcnj+ESzCnlQlZvsNoqX6qiDRb0M8tztak5OP2mKdMYtRfeAqw
-isysxu2nlQsp0+fPdAuugZ5hjVOu5NVQ0sTWjaDqHhmc+JMoKvOYlNsgLhy2+1uP
-P9BnmH8EQ/N1P2vzhNx3HyTIbYfVkDdwvoy5ZFWhZVOZEv8/EVtcgelGp3a6UwHJ
-6jKiRMBY7ivFUA0G/o4RI2WrQL7I0ghR8xO/gDovbhPDNP9+HQu09WMB4+ICrHEd
-2UbyNsXTma1zTmbc4WEBBpWfLor/UUZ0ky2Sjw0d8Abpco93HYg=
-=UCdM
------END PGP SIGNATURE-----
-
---Bh7dvcsQb5oS5pjY--
 
