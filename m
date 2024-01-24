@@ -1,91 +1,152 @@
-Return-Path: <devicetree+bounces-34661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A1D383A73B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 11:52:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D214D83A73E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 11:53:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ADC31F23335
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:52:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A2B5285487
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40BD3199AB;
-	Wed, 24 Jan 2024 10:52:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57571AAA5;
+	Wed, 24 Jan 2024 10:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i2nqimaQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6QjzuYR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19783199A2;
-	Wed, 24 Jan 2024 10:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F531A702;
+	Wed, 24 Jan 2024 10:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706093569; cv=none; b=pM+LPZpyPBZ/SNi7OcqXLcZkbY9HHs7D+UDook+AA0V4rVvsZ1LxCfCxx4pkAZs+viPXYU/+QjKFkBojCxwDBmW/KK6qac0KOLsjyD//rY2aFPnCP3ZyCUTnFwsIjhxVkdEYMeGXG/idSMqFY+tG7YEv5RQVH14qKJckRTqhpMs=
+	t=1706093574; cv=none; b=XFpW1kjVaUYYeG0MEZiRpCnBEFs4IC45J/lLbp983pfRVQ6nBJRPShgDa/W8wJCiCg9fewt6T2+i5Z8sHITyTFOYWp1gyWi1J/E91pbkLy+Puvg0QijwKu9Own4CJ524eslpGPVcFQFzK22ZLbo1JTpD/qt66YfovuzBtJYvl24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706093569; c=relaxed/simple;
-	bh=fvEweWhj7gZResBcZ8QEpA2Pjcf4E+Ob16+YGLRIds4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=O9jKYUqnd7N7vs1zWoN+PJQWJGVJRFaNxh8vBuCe75S21I2Knoc6AVp2YHjDQjuENMXAfdcjVapNAN6fnHJ2CvpUjKHL2PT7e/oQqSWrLQjzhx2HMR/qG7X/UOpZIK/+FhSgsFVijS4Cp+GBk8XRxV/uRnAtG41B0cOVZeHM49s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i2nqimaQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F4DFC43394;
-	Wed, 24 Jan 2024 10:52:48 +0000 (UTC)
+	s=arc-20240116; t=1706093574; c=relaxed/simple;
+	bh=Uzs+O7o19StJ6CqigcycPyzMhwU2e+vJB0oP/LRpLPs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tt54ANtVEwdB3sUBE76SqgVXawNsMQJndY15TL4dJA+E2h0TrSQyyYJBC0uOL8UfXOOHc0I2vJN632QSPQO1PSIDSXnwtZ46o5FGgs671YyeGCVwhMztzcsjktZHljdDl3p4n76Oo/6/qHS4q9bLyVhUBsBKbhRnlc3GQFsWAbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6QjzuYR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87727C433C7;
+	Wed, 24 Jan 2024 10:52:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706093568;
-	bh=fvEweWhj7gZResBcZ8QEpA2Pjcf4E+Ob16+YGLRIds4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=i2nqimaQu3gDR5286lBuGZeuzeVZxc/sAda8GI4rE1DSeMImt18f1gDeGTk65GjBO
-	 AOwsyMQbfeD7r3cVJ+VUrn7HNgTc1CLxXnPkNM5Si8VJNGYmjwe6EsdDSRY4pgeofy
-	 AJUdLIlD5hCBol6dH8zB9PtnyCbteJ/xyX8Y1+wDHPRBgQSjjsHH+F88Aoy+7RA8Qv
-	 JswrGNAxRoeWSvBHOz6HdRKPF/Yo3CBSyxLPcj7kys6GbBecIrvETD/SnSZzg6DYun
-	 5Bw12bfHuTZsgBdAFIt0yAEMegJSmfT25VTOvvwezSrFj/i+kpoZa75oTQjV0065Lw
-	 yJDGFM8AB8wkQ==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: jic23@kernel.org
-Cc: linux-iio@vger.kernel.org,
-	lorenzo.bianconi@redhat.com,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Subject: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhxg1
-Date: Wed, 24 Jan 2024 11:52:34 +0100
-Message-ID: <90d675537e58c9c339545a895e8164a843821682.1706093274.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1706093274.git.lorenzo@kernel.org>
-References: <cover.1706093274.git.lorenzo@kernel.org>
+	s=k20201202; t=1706093574;
+	bh=Uzs+O7o19StJ6CqigcycPyzMhwU2e+vJB0oP/LRpLPs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k6QjzuYRBbr7l/ZDEaUu7i/aFaguiRliv1vuZazw9kHFJdPQ/yKN5oS5Jxo23VugH
+	 505EFDfgTTKaM+nUOIeAJ6q1nLTuPnGgq5/9VNq4AZihVRvvz0XSwEwk6fi1HMvsYt
+	 PZaeHcm7JE81fpoh1izQ13rVYYnIR0xiUzp5knw8FozFP4mligTTtrRJ4ejaWoEFC7
+	 99igB3iJ0ytBKYxRkBvjPuUWtUUdzRHuRxgSg7izDQo9MuK3d71lp4F1ms7TtmqAz/
+	 zCtdR4uSiwV/tEHSzk/9agu3J83S3qnnxkhfjKVZS+xmrkvskaAZ01/G92iiAPJ8jS
+	 V2JHmT+pNBVWA==
+Date: Wed, 24 Jan 2024 11:52:50 +0100
+From: Wolfram Sang <wsa@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+	Cong Dang <cong.dang.xn@renesas.com>,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>,
+	Hai Pham <hai.pham.ud@renesas.com>,
+	Linh Phung <linh.phung.jy@renesas.com>,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH 14/15] arm64: dts: renesas: Add Gray Hawk Single board
+ support
+Message-ID: <ZbDsAmxZSvv7n2hL@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+	Cong Dang <cong.dang.xn@renesas.com>,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>,
+	Hai Pham <hai.pham.ud@renesas.com>,
+	Linh Phung <linh.phung.jy@renesas.com>,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org
+References: <cover.1704726960.git.geert+renesas@glider.be>
+ <3ba3eae34719e6141ab04077586c9ebd849a0346.1704726960.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="BOSOlrlg4mcljAvo"
+Content-Disposition: inline
+In-Reply-To: <3ba3eae34719e6141ab04077586c9ebd849a0346.1704726960.git.geert+renesas@glider.be>
 
-Add device bindings for asm330lhhxg1 IMU sensor.
-Use asm330lhhx as fallback device for asm330lhhxg1 since it implements
-all the features currently supported by asm330lhhxg1.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+--BOSOlrlg4mcljAvo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-index 28b667a9cb76..7ba3de66a2e1 100644
---- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-@@ -49,6 +49,9 @@ properties:
-       - items:
-           - const: st,asm330lhb
-           - const: st,asm330lhh
-+      - items:
-+          - const: st,asm330lhhxg1
-+          - const: st,asm330lhhx
- 
-   reg:
-     maxItems: 1
--- 
-2.43.0
+On Mon, Jan 08, 2024 at 04:33:53PM +0100, Geert Uytterhoeven wrote:
+> Add initial support for the Renesas Gray Hawk Single board, which is
+> based on the R-Car V4M (R8A779H0) SoC:
+>   - Memory,
+>   - Crystal oscillators,
+>   - Serial console.
+>=20
+> Based on the White Hawk Single DTS, and on a patch for the Gray Hawk
+> board stack in the BSP by Hai Pham.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> An alternative naming candidate would be "r8a779h0-gray-hawk-s.dts".
 
+As said in another patch, I like the current naming.
+
+> As the Gray Hawk and White Hawk board stacks share all boards except for
+> the CPU board, we might be able to reuse white-hawk-common.dtsi[1] once
+> all needed SoC support has been added to r8a779h0.dtsi.
+
+Sounds great.
+
+> [1] "[PATCH/RFC 0/7] arm64: dts: renesas: Add support for more R-Car V4H
+>      and White Hawk variants"
+>     https://lore.kernel.org/all/cover.1702309604.git.geert+renesas@glider=
+=2Ebe
+
+I will check it next.
+
+
+--BOSOlrlg4mcljAvo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmWw7AIACgkQFA3kzBSg
+KbZe4w/9HQlQnF9BV8RuM6krBego5+iWmlK9IfE49+qry5el0Q+mwC7Rc1xPwVt8
+r6CxMEHXyzKSMcg6Nb4xQpnAGuTWXz7A6uOD2i1yZ+8Auy3Y+YN9/EcorCbkbcf0
+bRfEZ+i/zMmqmFA1OGMv9FO3oF2qJgUfedNB84jMNBDOFd9R3B/sm1d49S/ZaYvN
+fHj19JW45cTUPAxALO2S+GkKFWbICMOzdYBlj5DgM6jKfij9gbwcFE5eesetwd7v
+cH8QXOscmhzJkzFB4Su2J7ONYWNScfeEakBSBq/d4zvYSGh64kQWwi+bXUEe2bCw
++d+LXKq9LvylJIF1BCWXz67s5tDOc6wyzrvFrzY6hObPtiIowY7cvHEcIEzw/wzK
+s9L+MeAsBlbZXLw/vLSfiyOHmxqSC0TDEfU9qXWnu4UqLIVO6erHK+qAN9L4wUry
+P3b78V8B/xDplFQHpjXIw/g3L7RLkLpILGkwb+AAODXU4x2XpkALGVfaUxjjyMwM
+q3PjzrATSuz7Hfvrl3zGud9NKHflQTE6DhF7fiFtpWtyB3ebbkCcHihq1xlwt+O+
++E3gnucQLzIDy8zCvgdc/B2jJIW7zGNFsrsD7Nwx6crNJtExygncrLwQMDXA7oGM
+yhN+/9178ZhbIIqPH2xUn+D+fuWI06xAZKfcPjAFXN3f8eR7JZY=
+=Nqqd
+-----END PGP SIGNATURE-----
+
+--BOSOlrlg4mcljAvo--
 
