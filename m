@@ -1,169 +1,440 @@
-Return-Path: <devicetree+bounces-34711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B29BA83AB07
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:39:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAD4A83AB13
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:43:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63193286F01
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:39:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C5AA1C21DFB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:43:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9C260BB3;
-	Wed, 24 Jan 2024 13:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7BF477F17;
+	Wed, 24 Jan 2024 13:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EEgxGLay"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a6lCvW3e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB4ACA69
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 13:39:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 810DD77F11;
+	Wed, 24 Jan 2024 13:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706103548; cv=none; b=V6pZQm9kx0wCXeKIIoEdjQx6gwaeCVgK/EDJFXMs7tI1KIqOzzAXqHPIS93kWsxYNr7ckfy2IVjmeakdZI2F8R42bf5HRrAfKwt+rmvuqUX4MJpchTLV3zgeWNEQ3bVQwi/6YbZ2jKehYhmj0vI1IEIVhSqKFRb6TFVf0JoJccM=
+	t=1706103803; cv=none; b=X8IWyRaKa1EmJRCL9erFOyFIg0ParkcVSfA8rktq18aWr09Kdvfdj+nin8KGCFtZ/pLK6MVMopB/JOEseDB7MvVZNM9E0XT7lGBpvMqMC+jHEofoAmx58ScVc/uznuCqJcNZC9a4/hMmR6JdEj9LQw5Y+OfGPbiO3T10ZeQHCuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706103548; c=relaxed/simple;
-	bh=VXDRP3jHlLp1Vz1FUnpl98sb18yc8bn4FPr+vcpYzSU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WvLZSgJhXdq0NUomP8hFqg6gv6oe2ivsG5xRkJCO8uE99bCWgWT/rI7KeqzuatpfRGX1szYPmZie0nbqNt+3DFhblqier/p8XC/6XTyljRSyF5LAjNosEEGBSbF+DMTdg9dBduJRHdkSiKYLXD8W6u7ntQmpHerduNjXSlLnhnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EEgxGLay; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-5cddc5455aeso2999242a12.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 05:39:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706103546; x=1706708346; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ehieE6Pnd31AcdW1Ld/IYXcEsqkI2A3AGWIqKlE3vv4=;
-        b=EEgxGLayXmtVvpeX8+3hbvKAu5yXqx2KOeR7NOXM+DRm0sPZ/Az4T/2kisvr3ZqIKs
-         4+J002lK1bT6imfWgPOXfXpPFKvb0EEU05ty8lNvFRyi0dyqMYJNGySSKyEpRCIGQW7Z
-         LAIcuXKGmSDZmV+3O3VYEfWvKoOeyZCfrdFHlLf3b92wqPyk3eioyIu3fZNXa7pTpObZ
-         EAMdkXR0uFti1P1ITIjqGbADONrEVqI9EL4Mp58q4ogsei4gcOjr5As9nkXBcgPEYmVi
-         YApqCbEEoxjcb4hdsDkTvi276qkd+qmCICH2sy935vFs7q4YcRo9S/wCBaHQs97AId7B
-         rLWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706103546; x=1706708346;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ehieE6Pnd31AcdW1Ld/IYXcEsqkI2A3AGWIqKlE3vv4=;
-        b=hAph5VDEJbEB9Z93DFCXllcmSd3gVwILoL3zU9/nKcZB2AuqnuGHpHB6fb5rni3SjM
-         kW8gg7fogZo/51rIIaRecL8uI1Onq/7TzMAiqBJx7ZExDmpYFkZZ5k2eCEiNsRJYsWt1
-         kz7lfNzIzXJvWUn1t6DULWt86SinKhVsF8JiBpaWsNdy7PDOjNw06DOji0SHoK1XVmvj
-         QanfmJJQoQ9QwHHq+qOWDZ37Vyz6cwM2APiuRThSVE7D+gffDTGJPkSGrFWiGvre5rRF
-         Xkt4apJ4wrSNdTOuztrQWpcFLtB1WQdBOssfFVqEXNRvmEtj07OYlCKEV8noFx+grfTy
-         4a+g==
-X-Gm-Message-State: AOJu0YxR8nUKhk5Nrubj71A2AF9O5Omzifa1ThR02T5Bm4BEZRqW7p6H
-	G7bdb0VqeD11DHPslYHUYVAe6ZJ+TdZaOmSceItKm/Av26z95jlLY82paMOGrN1BQDbEHaGA9r7
-	YbpMryI8rpHyp8i2m9aF+JuuK07wkBZGKvLNi8g==
-X-Google-Smtp-Source: AGHT+IHcNpbw92kmoMveSqNqz8lIJnugRLzHQQfvl+Nc4uHkq5O73dcmbsrRHT4/nl4/CExlT2LTcn7V4gp0EQ52gDo=
-X-Received: by 2002:a05:6a21:328c:b0:19a:508a:7f70 with SMTP id
- yt12-20020a056a21328c00b0019a508a7f70mr826194pzb.30.1706103546485; Wed, 24
- Jan 2024 05:39:06 -0800 (PST)
+	s=arc-20240116; t=1706103803; c=relaxed/simple;
+	bh=pNcY14Mdradw21mgFZzaxoOBUtx88NqXXXmsYGda3dk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qq7PXkSlnrOQg0wVkRENFw9MkQ0pcmFmJCzs6Mm+oCKVtntm/1WlcOhXt8aCthd5Uw7ytJrrswTWOXIaXl8HKiqwNx52AwGgBOYGtik11ULnMZV1OZXpl5yfQfLeylpLHmV7lIVJxtB1H07+Xp8mH4ZXcLub5Tt+i6Zss2zr53A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a6lCvW3e; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706103802; x=1737639802;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pNcY14Mdradw21mgFZzaxoOBUtx88NqXXXmsYGda3dk=;
+  b=a6lCvW3eF3GmW5IRXuTAO5CSwLdDJwhEXrZ6nxzIGEJQr6ho6yl3kfrm
+   Os1kdml4wbM5J9lCYp3nGtKZa5SURXWZYfQvSx6CSacS7nj6UK5CtZR+Y
+   uoEQIqBNvR5Yc3/Znx+se3ZWpvLBtkMFxTa5VsvFI+naj/v+okY5B4gJh
+   UWSPctU5SR5YgGSZ5OZNM+rRdxWWbmO7Rb3iZQjr7QsFqf46QnIwL4lLB
+   8reFPiUGiIMo9jRKStQ0lOU3ieXF7kKa+psJc11As0a899yw4oAHoe47e
+   6ShhcGgKClZwI6fpvmYL9X1Gt+dQrmQ9JYndlewDhOEbn2jcEnB8Qe2fr
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="8518045"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="8518045"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2024 05:43:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="929686965"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="929686965"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 24 Jan 2024 05:43:15 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 24 Jan 2024 15:43:14 +0200
+Date: Wed, 24 Jan 2024 15:43:14 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: gregkh@linuxfoundation.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, dmitry.baryshkov@linaro.org,
+	neil.armstrong@linaro.org, andersson@kernel.org, nathan@kernel.org,
+	luca.weiss@fairphone.com, tianping.fang@mediatek.com,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v3 2/2] usb: typec: mux: Add ITE IT5205 Alternate Mode
+ Passive MUX driver
+Message-ID: <ZbET8jEdp0wYgJq1@kuha.fi.intel.com>
+References: <20240122110446.140226-1-angelogioacchino.delregno@collabora.com>
+ <20240122110446.140226-3-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
- <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com> <20231214061742.GG2938@thinkpad>
- <66f82e2c-0c42-4ead-93f5-2136ad478df2@linaro.org> <7768258d-4748-84f7-0da2-43988138e5cc@quicinc.com>
- <20240123161231.GG19029@thinkpad> <ZbDlLJRHu2ebdxc6@bogus>
- <20240124104530.GK4906@thinkpad> <ZbDuO_iV5i8mE01Q@bogus> <a053261e-6e05-4673-b5dd-2ce8f3c73ac9@quicinc.com>
- <ZbEHNyLE8bQlZHSZ@bogus> <7910de2d-6184-4f78-a286-d2e6e50c7a36@quicinc.com>
-In-Reply-To: <7910de2d-6184-4f78-a286-d2e6e50c7a36@quicinc.com>
-From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Wed, 24 Jan 2024 14:38:54 +0100
-Message-ID: <CAKfTPtCjR_MBO9Lh7=CU+dcFaigkbeKc27rVgCa-aEJyHyfK9A@mail.gmail.com>
-Subject: Re: DT Query on "New Compatible vs New Property"
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, 
-	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>, srinivas.kandagatla@linaro.org, 
-	ulf.hansson@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240122110446.140226-3-angelogioacchino.delregno@collabora.com>
 
-On Wed, 24 Jan 2024 at 14:17, Nikunj Kela <quic_nkela@quicinc.com> wrote:
->
->
-> On 1/24/2024 4:48 AM, Sudeep Holla wrote:
-> > On Wed, Jan 24, 2024 at 04:27:55AM -0800, Nikunj Kela wrote:
-> >> On 1/24/2024 3:02 AM, Sudeep Holla wrote:
-> >>> Not really, still puzzled may be more than before as I don't understand
-> >>> what is going on with the approach as it seem to be deviating from my
-> >>> initial understanding.
-> >>>
-> >>> May be take an example of one driver, present the DT binding and driver
-> >>> changes to make sure there is no misunderstanding from my side. But I am
-> >>> not convinced with the explanation so far.
-> >> Hi Sudeep,
-> >>
-> >> We are not using clock protocol to deal with clocks individually. We are
-> >> trying to define different perf domains for peripherals where we are
-> >> grouping clocks/regulators/interconnect bandwidth into these perf domains
-> >> and use OPP levels via SCMI perf protocol.
-> > That clarifies on what you are trying to achieve.
-> >
-> >> This is done so as to avoid individual scmi calls for these resources
-> >> hence avoiding any race conditions and minimizing the traffic between SCMI
-> >> client and server to get better KPIs.
-> > Fair enough, why can't you just use genpd perf APIs to achieve that ?
->
-> OPP is built on top of genpd perf only and was recommended by Ulf(PM
-> maintainer from Linaro) hence we decided to use OPP APIs instead of
-> directly genpd perf API.
->
->
-> >
-> >> This is being planned for sa8775p platform and any subsequent platforms will
-> >> use the same approach. The idea of using perf protocol for peripherals is
-> >> new and Qualcomm is first one trying to use that.
-> > Sure.
-> >
-> >> Therefore existing peripheral drivers will require a way to distinguish between the
-> >> two different configurations. Hope this provides little more context and
-> >> insight.
-> >>
-> > While I agree this is new, use custom APIs to control standard resources
-> > is simply *VERY VERY BAD IDEA* IMO. You may be fine to have these custom
-> > API calls in qcom specific drivers. But what if this is needed in some
-> > generic IP driver. Just not scalable and why should the maintainer of
-> > such driver accept you custom API.
->
-> Apologies if it wasn't clear but we are not using custom APIs. We are
-> using standard OPP APIs to set to opp level of the perf domain.
-> Example-dev_pm_opp_set_opp(). As mentioned above, we are following PM
-> framework maintainers recommendation to use OPP.
->
->
-> >
-> > So I would suggest to work towards using std framework APIs or create one
-> > if you can justify the need for it. Please stop creating custom APIs for
-> > using SCMI. It defeats the whole standardisation it is meant to provide.
->
-> Not sure I understand what you refer to as custom APIs here. The OPP
-> APIs are not custom APIs. They are from OPP framework built on top of
-> genpd perf. [1] and [2] patch series might provide you more insight into
-> the work that Ulf did to support SCMI perf with OPP framework.
+On Mon, Jan 22, 2024 at 12:04:46PM +0100, AngeloGioacchino Del Regno wrote:
+> The ITE IT5202 is a USB Type-C Alternate Mode Passive MUX, used for
+> muxing the SBU lines of a Type-C port with DisplayPort altmode and
+> also providing an orientation switch.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-I think that you are speaking about the same thing. They plan to use
-SCMI power domain for idle states and SCMI performance domain for
-setting a performance mode. Then, the OPP library is used on top of
-perf domain to gather and manipulate the  different perf levels.
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
+> ---
+>  drivers/usb/typec/mux/Kconfig  |  10 ++
+>  drivers/usb/typec/mux/Makefile |   1 +
+>  drivers/usb/typec/mux/it5205.c | 294 +++++++++++++++++++++++++++++++++
+>  3 files changed, 305 insertions(+)
+>  create mode 100644 drivers/usb/typec/mux/it5205.c
+> 
+> diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
+> index d2cb5e733e57..399c7b0983df 100644
+> --- a/drivers/usb/typec/mux/Kconfig
+> +++ b/drivers/usb/typec/mux/Kconfig
+> @@ -36,6 +36,16 @@ config TYPEC_MUX_INTEL_PMC
+>  	  control the USB role switch and also the multiplexer/demultiplexer
+>  	  switches used with USB Type-C Alternate Modes.
+>  
+> +config TYPEC_MUX_IT5205
+> +	tristate "ITE IT5205 Type-C USB Alt Mode Passive MUX driver"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  Driver for the ITE IT5205 Type-C USB Alternate Mode Passive MUX
+> +	  which provides support for muxing DisplayPort and sideband signals
+> +	  on a common USB Type-C connector.
+> +	  If compiled as a module, the module will be named it5205.
+> +
+>  config TYPEC_MUX_NB7VPQ904M
+>  	tristate "On Semiconductor NB7VPQ904M Type-C redriver driver"
+>  	depends on I2C
+> diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
+> index 57dc9ac6f8dc..bb96f30267af 100644
+> --- a/drivers/usb/typec/mux/Makefile
+> +++ b/drivers/usb/typec/mux/Makefile
+> @@ -4,6 +4,7 @@ obj-$(CONFIG_TYPEC_MUX_FSA4480)		+= fsa4480.o
+>  obj-$(CONFIG_TYPEC_MUX_GPIO_SBU)	+= gpio-sbu-mux.o
+>  obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
+>  obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
+> +obj-$(CONFIG_TYPEC_MUX_IT5205)		+= it5205.o
+>  obj-$(CONFIG_TYPEC_MUX_NB7VPQ904M)	+= nb7vpq904m.o
+>  obj-$(CONFIG_TYPEC_MUX_PTN36502)	+= ptn36502.o
+>  obj-$(CONFIG_TYPEC_MUX_WCD939X_USBSS)	+= wcd939x-usbss.o
+> diff --git a/drivers/usb/typec/mux/it5205.c b/drivers/usb/typec/mux/it5205.c
+> new file mode 100644
+> index 000000000000..5535932e42cd
+> --- /dev/null
+> +++ b/drivers/usb/typec/mux/it5205.c
+> @@ -0,0 +1,294 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ITE IT5205 Type-C USB alternate mode passive mux
+> + *
+> + * Copyright (c) 2020 MediaTek Inc.
+> + * Copyright (c) 2024 Collabora Ltd.
+> + *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> + *
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/i2c.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/usb/tcpm.h>
+> +#include <linux/usb/typec.h>
+> +#include <linux/usb/typec_dp.h>
+> +#include <linux/usb/typec_mux.h>
+> +
+> +#define IT5205_REG_CHIP_ID(x)	(0x4 + (x))
+> +#define IT5205FN_CHIP_ID	0x35323035 /* "5205" */
+> +
+> +/* MUX power down register */
+> +#define IT5205_REG_MUXPDR        0x10
+> +#define IT5205_MUX_POWER_DOWN    BIT(0)
+> +
+> +/* MUX control register */
+> +#define IT5205_REG_MUXCR         0x11
+> +#define IT5205_POLARITY_INVERTED BIT(4)
+> +#define IT5205_DP_USB_CTRL_MASK  GENMASK(3, 0)
+> +#define IT5205_DP                0x0f
+> +#define IT5205_DP_USB            0x03
+> +#define IT5205_USB               0x07
+> +
+> +/* Vref Select Register */
+> +#define IT5205_REG_VSR            0x10
+> +#define IT5205_VREF_SELECT_MASK   GENMASK(5, 4)
+> +#define IT5205_VREF_SELECT_3_3V   0x00
+> +#define IT5205_VREF_SELECT_OFF    0x20
+> +
+> +/* CSBU Over Voltage Protection Register */
+> +#define IT5205_REG_CSBUOVPSR      0x1e
+> +#define IT5205_OVP_SELECT_MASK    GENMASK(5, 4)
+> +#define IT5205_OVP_3_90V          0x00
+> +#define IT5205_OVP_3_68V          0x10
+> +#define IT5205_OVP_3_62V          0x20
+> +#define IT5205_OVP_3_57V          0x30
+> +
+> +/* CSBU Switch Register */
+> +#define IT5205_REG_CSBUSR         0x22
+> +#define IT5205_CSBUSR_SWITCH      BIT(0)
+> +
+> +/* Interrupt Switch Register */
+> +#define IT5205_REG_ISR            0x25
+> +#define IT5205_ISR_CSBU_MASK      BIT(4)
+> +#define IT5205_ISR_CSBU_OVP       BIT(0)
+> +
+> +struct it5205 {
+> +	struct i2c_client *client;
+> +	struct regmap *regmap;
+> +	struct typec_switch_dev *sw;
+> +	struct typec_mux_dev *mux;
+> +};
+> +
+> +static int it5205_switch_set(struct typec_switch_dev *sw, enum typec_orientation orientation)
+> +{
+> +	struct it5205 *it = typec_switch_get_drvdata(sw);
+> +
+> +	switch (orientation) {
+> +	case TYPEC_ORIENTATION_NORMAL:
+> +		regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
+> +				   IT5205_POLARITY_INVERTED, 0);
+> +		break;
+> +	case TYPEC_ORIENTATION_REVERSE:
+> +		regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
+> +				   IT5205_POLARITY_INVERTED, IT5205_POLARITY_INVERTED);
+> +		break;
+> +	case TYPEC_ORIENTATION_NONE:
+> +		fallthrough;
+> +	default:
+> +		regmap_write(it->regmap, IT5205_REG_MUXCR, 0);
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int it5205_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
+> +{
+> +	struct it5205 *it = typec_mux_get_drvdata(mux);
+> +	u8 val;
+> +
+> +	if (state->mode >= TYPEC_STATE_MODAL &&
+> +	    state->alt->svid != USB_TYPEC_DP_SID)
+> +		return -EINVAL;
+> +
+> +	switch (state->mode) {
+> +	case TYPEC_STATE_USB:
+> +		val = IT5205_USB;
+> +		break;
+> +	case TYPEC_DP_STATE_C:
+> +		fallthrough;
+> +	case TYPEC_DP_STATE_E:
+> +		val = IT5205_DP;
+> +		break;
+> +	case TYPEC_DP_STATE_D:
+> +		val = IT5205_DP_USB;
+> +		break;
+> +	case TYPEC_STATE_SAFE:
+> +		fallthrough;
+> +	default:
+> +		val = 0;
+> +		break;
+> +	}
+> +
+> +	return regmap_update_bits(it->regmap, IT5205_REG_MUXCR,
+> +				  IT5205_DP_USB_CTRL_MASK, val);
+> +}
+> +
+> +static irqreturn_t it5205_irq_handler(int irq, void *data)
+> +{
+> +	struct it5205 *it = data;
+> +	int ret;
+> +	u32 val;
+> +
+> +	ret = regmap_read(it->regmap, IT5205_REG_ISR, &val);
+> +	if (ret)
+> +		return IRQ_NONE;
+> +
+> +	if (val & IT5205_ISR_CSBU_OVP) {
+> +		dev_warn(&it->client->dev, "Overvoltage detected!\n");
+> +
+> +		/* Reset CSBU */
+> +		regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
+> +				   IT5205_CSBUSR_SWITCH, 0);
+> +		regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
+> +				   IT5205_CSBUSR_SWITCH, IT5205_CSBUSR_SWITCH);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static void it5205_enable_ovp(struct it5205 *it)
+> +{
+> +	/* Select Vref 3.3v */
+> +	regmap_update_bits(it->regmap, IT5205_REG_VSR,
+> +			   IT5205_VREF_SELECT_MASK, IT5205_VREF_SELECT_3_3V);
+> +
+> +	/* Trigger OVP at 3.68V */
+> +	regmap_update_bits(it->regmap, IT5205_REG_CSBUOVPSR,
+> +			   IT5205_OVP_SELECT_MASK, IT5205_OVP_3_68V);
+> +
+> +	/* Unmask OVP interrupt */
+> +	regmap_update_bits(it->regmap, IT5205_REG_ISR,
+> +			   IT5205_ISR_CSBU_MASK, 0);
+> +
+> +	/* Enable CSBU Interrupt */
+> +	regmap_update_bits(it->regmap, IT5205_REG_CSBUSR,
+> +			   IT5205_CSBUSR_SWITCH, IT5205_CSBUSR_SWITCH);
+> +}
+> +
+> +static const struct regmap_config it5205_regmap = {
+> +	.max_register = 0x2f,
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +};
+> +
+> +static int it5205_probe(struct i2c_client *client)
+> +{
+> +	struct typec_switch_desc sw_desc = { };
+> +	struct typec_mux_desc mux_desc = { };
+> +	struct device *dev = &client->dev;
+> +	struct it5205 *it;
+> +	u32 val, chipid = 0;
+> +	int i, ret;
+> +
+> +	it = devm_kzalloc(dev, sizeof(*it), GFP_KERNEL);
+> +	if (!it)
+> +		return -ENOMEM;
+> +
+> +	ret = devm_regulator_get_enable(dev, "vcc");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get regulator\n");
+> +
+> +	it->client = client;
+> +
+> +	it->regmap = devm_regmap_init_i2c(client, &it5205_regmap);
+> +	if (IS_ERR(it->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(it->regmap),
+> +				     "Failed to init regmap\n");
+> +
+> +	/* IT5205 needs a long time to power up after enabling regulator */
+> +	msleep(50);
+> +
+> +	/* Unset poweroff bit */
+> +	ret = regmap_write(it->regmap, IT5205_REG_MUXPDR, 0);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to set power on\n");
+> +
+> +	/* Read the 32 bits ChipID */
+> +	for (i = 3; i >= 0; i--) {
+> +		ret = regmap_read(it->regmap, IT5205_REG_CHIP_ID(i), &val);
+> +		if (ret)
+> +			return ret;
+> +
+> +		chipid |= val << (i * 8);
+> +	}
+> +
+> +	if (chipid != IT5205FN_CHIP_ID)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Unknown ChipID 0x%x\n", chipid);
+> +
+> +	/* Initialize as USB mode with default (non-inverted) polarity */
+> +	ret = regmap_write(it->regmap, IT5205_REG_MUXCR, IT5205_USB);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Cannot set mode to USB\n");
+> +
+> +	sw_desc.drvdata = it;
+> +	sw_desc.fwnode = dev_fwnode(dev);
+> +	sw_desc.set = it5205_switch_set;
+> +
+> +	it->sw = typec_switch_register(dev, &sw_desc);
+> +	if (IS_ERR(it->sw))
+> +		return dev_err_probe(dev, PTR_ERR(it->sw),
+> +				     "failed to register typec switch\n");
+> +
+> +	mux_desc.drvdata = it;
+> +	mux_desc.fwnode = dev_fwnode(dev);
+> +	mux_desc.set = it5205_mux_set;
+> +
+> +	it->mux = typec_mux_register(dev, &mux_desc);
+> +	if (IS_ERR(it->mux)) {
+> +		typec_switch_unregister(it->sw);
+> +		return dev_err_probe(dev, PTR_ERR(it->mux),
+> +				     "failed to register typec mux\n");
+> +	}
+> +
+> +	i2c_set_clientdata(client, it);
+> +
+> +	if (of_property_read_bool(dev->of_node, "ite,ovp-enable") && client->irq) {
+> +		it5205_enable_ovp(it);
+> +
+> +		ret = devm_request_threaded_irq(dev, client->irq, NULL,
+> +						it5205_irq_handler,
+> +						IRQF_ONESHOT, dev_name(dev), it);
+> +		if (ret) {
+> +			typec_mux_unregister(it->mux);
+> +			typec_switch_unregister(it->sw);
+> +			return dev_err_probe(dev, ret, "Failed to request irq\n");
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void it5205_remove(struct i2c_client *client)
+> +{
+> +	struct it5205 *it = i2c_get_clientdata(client);
+> +
+> +	typec_mux_unregister(it->mux);
+> +	typec_switch_unregister(it->sw);
+> +}
+> +
+> +static const struct i2c_device_id it5205_table[] = {
+> +	{ "it5205" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, it5205_table);
+> +
+> +static const struct of_device_id it5205_of_table[] = {
+> +	{ .compatible = "ite,it5205" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, it5205_of_table);
+> +
+> +static struct i2c_driver it5205_driver = {
+> +	.driver = {
+> +		.name = "it5205",
+> +		.of_match_table = it5205_of_table,
+> +	},
+> +	.probe = it5205_probe,
+> +	.remove = it5205_remove,
+> +	.id_table = it5205_table,
+> +};
+> +module_i2c_driver(it5205_driver);
+> +
+> +MODULE_AUTHOR("Tianping Fang <tianping.fang@mediatek.com>");
+> +MODULE_AUTHOR("AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>");
+> +MODULE_DESCRIPTION("ITE IT5205 alternate mode passive MUX driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.43.0
 
->
-> [1]:
-> https://lore.kernel.org/all/20230919121605.7304-1-ulf.hansson@linaro.org/
->
-> [2]:https://lore.kernel.org/all/20230925131715.138411-1-ulf.hansson@linaro.org/
->
-> >
+-- 
+heikki
 
