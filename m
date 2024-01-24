@@ -1,73 +1,57 @@
-Return-Path: <devicetree+bounces-34516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2883383A0D2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 06:01:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4948583A110
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 06:15:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C1791C23C8A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 05:01:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC55D28DD54
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 05:15:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B025BC2D3;
-	Wed, 24 Jan 2024 05:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 436C7171C2;
+	Wed, 24 Jan 2024 05:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XoW63TPl"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="TG+UG42Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1C1C8D2
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 05:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55063D275
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 05:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706072468; cv=none; b=Gbp2QQzWNK3XHt/i0UpV7CxbqQDgBVmRGJjnOChatJMsI43AXlVPVx2Aqa5F9ksHSS9VbRlVYrfGraNVxCZGHg6PpuingthWudW+SlwUArr6paDZh4ImChtrxPQsyEwBlfz8KHpnT0l1vHp+wPbqr1ZBrFOSG2BDaOLSF7qm66w=
+	t=1706073243; cv=none; b=IIuNtFih8kG1YMcQabcFNbcGbtmKzmLL6ciDWh0MmF4xT63WkWZCylTYMnSLiORIkJzGFhjaqd3osL4JrDo7BjP5qqSKT89b1HZE0R3L4PBjrN8czfh9kfpiPqlqNQKKglVxSOrM03I6Iv5wpoQiVjG+Y3GfCGJ4JDOWa4ajWMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706072468; c=relaxed/simple;
-	bh=Lr34oEPG56izAEfXVC+VzS7CMs5oRhBgTumF1Fjwtvs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SOrFDlIxhLmKdOrszOWTABwEBBFbytKWpzy8/ni5GTwBqxsm0/Sr2fUBMWf0KpbsPdvAzZODZvf7W5GicPnJAVsvNx0gCV9zmpSMCN4W3WRe8wwpaEl6OT4VdW/9TJh083eYFqZo7qipQr51rOxRB2JTph/N3d8DXzO3+RQ6QPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XoW63TPl; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40e76626170so56044845e9.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 21:01:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706072464; x=1706677264; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mg+yXoqVMruWKFx75OynXl2HLLDpn2EH7QUiBIIbeGI=;
-        b=XoW63TPl5WtLYSkUE/4LBkViMglt0tEd1TAFAWxv8l/ayF02uhKSm8kpm0z6vTUqK6
-         Y/KGEDGCb0VXjG0wyg0fyZfheWPgEpJQNfeQQojqoA8EtdPPrKv3tbLawTBFv9Ams6Ca
-         /p0jXsBk8HNjgNWmkV6/WKxTIRm2JpyOcgRzYVosIpg9dC8NCEQnPM1OADC+6XP8NceM
-         CFPuAVPk8rvJ8IFSLGjOw+7qg9EglH4NvNSK19vkmeNWxQVUtpbM9ywRAdAl0XxhK6eP
-         gef57ITw7xYX4B1AG8ULZX+La5qAEbIeSP0VW2PGE0hz/pB6Ogo7NFqYRXq+OX9x5GiT
-         ecgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706072464; x=1706677264;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mg+yXoqVMruWKFx75OynXl2HLLDpn2EH7QUiBIIbeGI=;
-        b=TTjzt1EdGqHDVmSmbiVd4kUvc/zJHGmgH9pobYjD2UCx22bo9uk0s87D5Oy+LXMyxN
-         /4kJrcfyjrptsCYmLhkDgeSAnru8wS3iRju5up8DHB2eCstS7mM3oFZ9UYlW+fRavJP5
-         HI+HrAoOrp8JSuDwPB3rbqk4BVe2l6in2hoaxn7+yUDGTUmqiktKXnxxMjWLfz4Xzs0+
-         2FST5VMvp0FZgb7LUS5L9H+ZHM9X54K/Qj3FyZ4pSL0Up6bVa8MX/wmgDi7MuRiy7fLp
-         Ux2B8D+V5P+ex3/BdiM4n7VQUKlaUZ6mGq6fYYlKgyZmVc/wZAqU1OBscoPSZYdfdsM6
-         xerA==
-X-Gm-Message-State: AOJu0YwRZbs0wArJ5jieDpSLLZy+L3XeCX6ULttxgakP19sW+RA5Z31M
-	2KzLE1s8rt9leePHGpiEyA9eR1Vr71SQtgvVSGPaXzegBXWOLjcEzRHGYbSQ7fA=
-X-Google-Smtp-Source: AGHT+IEF+sQIT0s3TeYunlfmOn2bN96e3yfHNUoZvFh1cXGgZ/0DgRMpBSUOVh9lxQLIL7MTkSj4YQ==
-X-Received: by 2002:a05:600c:84ce:b0:40e:44c2:92be with SMTP id er14-20020a05600c84ce00b0040e44c292bemr706757wmb.143.1706072464015;
-        Tue, 23 Jan 2024 21:01:04 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id t21-20020a05600c451500b0040e3ac9f4c8sm48185934wmo.28.2024.01.23.21.01.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 21:01:03 -0800 (PST)
-Message-ID: <7c998d34-919b-46e7-8942-75da94d5ac21@linaro.org>
-Date: Wed, 24 Jan 2024 05:01:01 +0000
+	s=arc-20240116; t=1706073243; c=relaxed/simple;
+	bh=j0Ft59/vVMe9YartpH/9GGwsUHkrmD3Q9IzIAVDnKpg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UZzVfTezeB+pKFKlFINzXtXDkBrgORyay9Ii1aTRpaSsB0UrnfWzIuVuo4ShcDYDQF3zywQHw4bFJp/OMyEZ2RqsvDgabr4jYjqPXXsfw9AkOirqclPRPZTX5xDl6jU8kVVxpPdYq5DF/okjOBMc16C2aeB8OkfGbEfTYHRhjpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=TG+UG42Z; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1706073232; x=1708665232;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=j0Ft59/vVMe9YartpH/9GGwsUHkrmD3Q9IzIAVDnKpg=;
+	b=TG+UG42ZwK5L/dSyAk9w2/BFREwX0gpk1Pl5RqC9UBOyXKInjXwH1TNwqs5ybjpw
+	zhKCHxriAxiKIxtGCwW34GTvoU71RbaXipveZQvXFrOhX0QfuC7eCkaRux6Q20mc
+	oZ95hFliTLKlKlc5SRY6QmTf/UaOh9EOwxwtW9hp7XI=;
+X-AuditID: ac14000a-fbefe7000000290d-f5-65b09c903d25
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 49.0E.10509.09C90B56; Wed, 24 Jan 2024 06:13:52 +0100 (CET)
+Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 24 Jan
+ 2024 06:14:12 +0100
+Message-ID: <008317aa-4dd1-4889-8c64-5e4396d83931@phytec.de>
+Date: Wed, 24 Jan 2024 06:13:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,53 +59,214 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/21] spi: s3c64xx: winter cleanup and gs101 support
+Subject: Re: [PATCH v4 3/3] arm64: dts: imx93: Add phyBOARD-Segin-i.MX93
+ support
+To: Stefan Wahren <wahrenst@gmx.net>, Mathieu Othacehe <othacehe@gnu.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Li Yang
+	<leoyang.li@nxp.com>, Primoz Fiser <primoz.fiser@norik.com>, Christoph
+ Stoidner <c.stoidner@phytec.de>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>
+References: <20240122095306.14084-1-othacehe@gnu.org>
+ <20240122095306.14084-4-othacehe@gnu.org>
+ <537266fe-0bf7-4208-a9f3-ae27f462c6ed@phytec.de>
+ <85fe8c8b-ea08-4f24-9a06-33a5678c1a0a@gmx.net>
+ <7944bd80-32d7-4ac3-9c0a-806394262f1c@phytec.de>
+ <08ef805a-b041-4db0-aaf7-51d5d06596ff@gmx.net>
 Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-Cc: andi.shyti@kernel.org, arnd@arndb.de, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-arch@vger.kernel.org, andre.draszik@linaro.org,
- peter.griffin@linaro.org, semen.protsenko@linaro.org,
- kernel-team@android.com, willmcvicker@google.com
-References: <20240123153421.715951-1-tudor.ambarus@linaro.org>
- <e233f4ff-9ed9-42bd-8ffb-17b66bcf2b5b@sirena.org.uk>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <e233f4ff-9ed9-42bd-8ffb-17b66bcf2b5b@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <08ef805a-b041-4db0-aaf7-51d5d06596ff@gmx.net>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIIsWRmVeSWpSXmKPExsWyRpKBR3fCnA2pBkfnqVus2XuOyWL+kXOs
+	Fg+v+lusmrqTxaLvxUNmi0PNB5gsNj2+xmrR9Wsls8XlXXPYLM7f3cJscaLrIatF694j7BZ/
+	t29isXixRdyi+526xfETncwOAh47Z91l91i8aT+bR9s0M49NqzrZPO5c28PmsXlJvUd/dwur
+	x/evG1g9Nr7bweTR/9fA4/MmuQDuKC6blNSczLLUIn27BK6MtrcHmQue6Ffc3LSYuYHxjXoX
+	IyeHhICJxIRJUxi7GLk4hAQWM0nsPvaWHSQhJHCXUeLQ9yoQm1fARuLY+n6wOIuAqkTLnzus
+	EHFBiZMzn7CA2KIC8hL3b80AqxEWCJLYcPwvG8hQEYF2Fon7uyawgzjMAm2MElMnvGGDWLeS
+	SeL31CdMIC3MAuISt57MB7PZBNQl7mz4BrSCg4NTwFri1Q85iBILicVvDrJD2PISzVtnM0Nc
+	Ki/x4tJyFoh35CWmnXvNDGGHShzZtJppAqPwLCTHzkKybRaSsbOQjF3AyLKKUSg3Mzk7tSgz
+	W68go7IkNVkvJXUTIyiaRRi4djD2zfE4xMjEwXiIUYKDWUmE94bkulQh3pTEyqrUovz4otKc
+	1OJDjNIcLErivKs7glOFBNITS1KzU1MLUotgskwcnFINjOZ+h6LzPijK8/b8PS3DG6U3t+/P
+	0Z73qwr38zF9EZxz5debid89uq0/bQl6/M7pk8PjYxxZXaJqRY7fVkUpB115ceO77EOHw6vn
+	mM75dUJxD3NLv+asPfO+LfP+2So6v8UgpcQjf+m0c/JX3hxWEz+wa1ebvXtM67NnT66eDzvW
+	Pfnn0pUrgy4qsRRnJBpqMRcVJwIA4tsbV9QCAAA=
 
+Hi,
 
-
-On 1/23/24 19:00, Mark Brown wrote:
-> On Tue, Jan 23, 2024 at 03:33:59PM +0000, Tudor Ambarus wrote:
-> 
->> The patch set cleans a bit the driver and adds support for gs101 SPI.
+Am 23.01.24 um 11:21 schrieb Stefan Wahren:
+> Hi Wadim,
+>
+> Am 23.01.24 um 09:25 schrieb Wadim Egorov:
 >>
->> Apart of the SPI patches, I added support for iowrite{8,16}_32 accessors
->> in asm-generic/io.h. This will allow devices that require 32 bits
->> register accesses to write data in chunks of 8 or 16 bits (a typical use
->> case is SPI, where clients can request transfers in words of 8 bits for
->> example). GS101 only allows 32bit register accesses otherwise it raisses
->> a Serror Interrupt and hangs the system, thus the accessors are needed
->> here. If the accessors are fine, I expect they'll be queued either to
->> the SPI tree or to the ASM header files tree, but by providing an
->> immutable tag, so that the other tree can merge them too.
+>> Am 23.01.24 um 08:42 schrieb Stefan Wahren:
+>>> Hi Wadim,
+>>>
+>>> Am 23.01.24 um 07:11 schrieb Wadim Egorov:
+>>>> Hey Mathieu,
+>>>>
+>>>> Am 22.01.24 um 10:53 schrieb Mathieu Othacehe:
+>>>>> Add basic support for phyBOARD-Segin-i.MX93.
+>>>>> Main features are:
+>>>>> * eMMC
+>>>>> * Ethernet
+>>>>> * SD-Card
+>>>>> * UART
+>>>>>
+>>>>> Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
+>>>>> ---
+>>>>>   arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>>>>>   .../dts/freescale/imx93-phyboard-segin.dts    | 141
+>>>>> ++++++++++++++++++
+>>>>>   .../boot/dts/freescale/imx93-phycore-som.dtsi | 127 
+>>>>> ++++++++++++++++
+>>>>>   3 files changed, 269 insertions(+)
+>>>>>   create mode 100644
+>>>>> arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>>>>>   create mode 100644
+>>>>> arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/freescale/Makefile
+>>>>> b/arch/arm64/boot/dts/freescale/Makefile
+>>>>> index 2e027675d7bb..65db918c821c 100644
+>>>>> --- a/arch/arm64/boot/dts/freescale/Makefile
+>>>>> +++ b/arch/arm64/boot/dts/freescale/Makefile
+>>>>> @@ -201,6 +201,7 @@ dtb-$(CONFIG_ARCH_MXC) +=
+>>>>> imx8qxp-colibri-iris-v2.dtb
+>>>>>   dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
+>>>>>   dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
+>>>>>   dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-evk.dtb
+>>>>> +dtb-$(CONFIG_ARCH_MXC) += imx93-phyboard-segin.dtb
+>>>>>   dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
+>>>>>   dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
+>>>>>   diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>>>>> b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>>>>> new file mode 100644
+>>>>> index 000000000000..5433c33d1322
+>>>>> --- /dev/null
+>>>>> +++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+>>>>> @@ -0,0 +1,141 @@
+>>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>>> +/*
+>>>>> + * Copyright (C) 2023 PHYTEC Messtechnik GmbH
+>>>>> + * Author: Wadim Egorov <w.egorov@phytec.de>, Christoph Stoidner
+>>>>> <c.stoidner@phytec.de>
+>>>>> + * Copyright (C) 2024 Mathieu Othacehe <m.othacehe@gmail.com>
+>>>>> + *
+>>>>> + * Product homepage:
+>>>>> + * phyBOARD-Segin carrier board is reused for the i.MX93 design.
+>>>>> + *
+>>>>> https://www.phytec.de/produkte/single-board-computer/phyboard-segin-imx6ul/ 
+>>>>>
+>>>>>
+>>>>> + */
+>>>>> +
+>>>>> +#include "imx93-phycore-som.dtsi"
+>>>>> +
+>>>>> +/{
+>>>>> +    model = "PHYTEC phyBOARD-Segin-i.MX93";
+>>>>> +    compatible = "phytec,imx93-phyboard-segin",
+>>>>> "phytec,imx93-phycore-som",
+>>>>> +             "fsl,imx93";
+>>>>> +
+>>>>> +    chosen {
+>>>>> +        stdout-path = &lpuart1;
+>>>>> +    };
+>>>>> +
+>>>>> +    reg_usdhc2_vmmc: regulator-usdhc2 {
+>>>>> +        compatible = "regulator-fixed";
+>>>>> +        enable-active-high;
+>>>>> +        gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
+>>>>> +        pinctrl-names = "default";
+>>>>> +        pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
+>>>>> +        regulator-min-microvolt = <3300000>;
+>>>>> +        regulator-max-microvolt = <3300000>;
+>>>>> +        regulator-name = "VCC_SD";
+>>>>> +    };
+>>>>> +};
+>>>>> +
+>>>>> +/* GPIOs */
+>>>>> +&gpio1 {
+>>>>> +    pinctrl-names = "default";
+>>>>> +    pinctrl-0 = <&pinctrl_gpio1>;
+>>>>
+>>>> You are doing more than you describing in your changes log.
+>>>> Here you are forcing a gpio-only functionality for the X16 header. But
+>>>> the pins we route down to the X16 expansion connector can be also used
+>>>> differently.
+>>>
+>>> i think the word "forcing" is little bit hard in this case. It doesn't
+>>> define a gpio-hog.
 >>
->> The SPI patches were tested with the spi-loopback-test on the gs101
->> controller.
-> 
-> The reformatting in this series will conflict with the SPI changes in:
-> 
->    https://lore.kernel.org/r/20240120012948.8836-1-semen.protsenko@linaro.org
-> 
-> Can you please pull those into this series or otherwise coordinate?
+>> You are defaulting it to be a GPIO.
+> Sure, but i still cannot see the problem. Are you concerned about
+> hardware damage, different behavior in comparison to your downstream BSP
+> or overwriting the bootloader defaults?
+>>
+>>>
+>>>> Typically we provide device tree overlays for different use cases on
+>>>> this expansion connectors.
+>>>
+>>> Can you please explain why the device tree overlays cannot overwrite 
+>>> the
+>>> pinmuxing?
+>>
+>> It can, and it should. Thats why I mentioned to use different overlays
+>> for different use cases.
+>> I think it is nicer to have a board only defining it's static 
+>> components.
+> Yes and i would consider the line names as static and board specific.
+>> At this point we do not know what users will use the expansion
+>> connector for.
+>> Adding this kind of functionality with overlays follows the idea of
+>> defining components where they are actually used/implemented: soc,
+>> som/board level.
+>> You can find a few of the adapters we provide as dtsi files in
+>>   arch/arm/boot/dts/nxp/imx/*peb*
+>> Nowadays we have overlays and can use them instead.
+>>
+>>
+>>>
+>>>>
+>>>> Please drop the muxing.
+>>>>
+>>>> Same applies for the gpio names.
+>>> What's the problem with defining gpio line names for user friendliness?
+>>> The Raspberry Pi has also an expansion header, all the pins can be 
+>>> muxed
+>>> to different functions but still have gpio line names.
+>>
+>> This may cause confusion if you use overlays defining other
+>> functionalities as the names you define.
+> I agree most of the line names on the Raspberry Pi contains a function,
+> which wasn't the best idea for an expansion header. But this doesn't
+> mean we must do this here, too.
+>
+> I just want to give you feedback from my point of view as a user. I
+> would expect that the gpio line names are defined regardless of the used
+> overlay.
 
-ah, I haven't noticed Sam's updates. I'll rebase on top of his set and
-adapt if necessary. I'll review that set in a sec.
+I appreciate the feedback :)
+Defining line names should be fine. But I would still prefer to have the 
+muxing in an overlay bound to a specific use case.
 
-Cheers,
-ta
+Regards,
+Wadim
+
+>
+> But at the end it's your product.
+>>
+>> Regards,
+>> Wadim
+>>
+>>
+>>>
+>>> Best regards
+>
 
