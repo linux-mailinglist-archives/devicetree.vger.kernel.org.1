@@ -1,559 +1,181 @@
-Return-Path: <devicetree+bounces-34585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7D883A43C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:36:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B1583A444
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:39:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFA421C22E58
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:36:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79F6D1C233A9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC8B175AC;
-	Wed, 24 Jan 2024 08:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C8221774C;
+	Wed, 24 Jan 2024 08:39:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JFqYgUim"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="V4lbacfo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2044.outbound.protection.outlook.com [40.107.101.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C6A1758D
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 08:36:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706085411; cv=none; b=UrNzM2rZs1/+byNllevf4oSPLtLpPLWuL7s9nZii6HwTNpxJ7PD40Xbua1PWxKNh9GkS7HCBeQXJyQilnBQkETG6vJAluJk1tCkwIftKQXN7dG7y+2wgZBvVWUqxZfgv+5cIBCsorTzTb0ZkqY6kVMqhGj+08dH7SLe3oJp9ai8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706085411; c=relaxed/simple;
-	bh=fTubqUrcvjY2fWw2V+v/BpDL1SgAY/HreczUJAoul0k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K9dL5Ymz7b8sgBrfseivd0XDmvZ2UqE8rzNXukprVUOIpUOU3n6yGr6AwNj9UD3Yr4RyijZryeCv7p+lRDg9DaD8EYTdSIkjrAUHIB9H1111pbOsYCvknN1p4EVh/U2a5xipKxLtjPXv74MJ+QxdWFRocATQTHIah5dUrxF7oBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JFqYgUim; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706085407;
-	bh=fTubqUrcvjY2fWw2V+v/BpDL1SgAY/HreczUJAoul0k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JFqYgUimPr7iWwzyF4uGka27Uj0NQtofHt/v5iZJ81Vx+ymGTbfkoIZkL5SCcLnBn
-	 dEQTNBBbR2Jk2pbpi/IjEnkptKIFcBgFAC35SvYUKDcFEgGX9WIEyUN18WEQ9sba7T
-	 NSWRA7j+vYbmXBcAzAHD2/5ONfDmmb/qdEVGd314tIQ/lt3nRMSRIdORIMH16LTpAL
-	 94S3fb/mNHEcmYgr3/bUgaii4sTZaCO7kDc3XkZDfBAujQ3ad2AdBuCCpYIOSU6avW
-	 e3yL+hhWdkhzQbtwAdQouRE8yzdluAyqpEy9QUqia23hDhqkh5K8McPImR87uN3eUK
-	 GMGek0zYpuWyA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 836B73782074;
-	Wed, 24 Jan 2024 08:36:46 +0000 (UTC)
-Message-ID: <cbcac7d9-47e0-438e-9e3a-05ec5d9b7d33@collabora.com>
-Date: Wed, 24 Jan 2024 09:36:45 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B311717981;
+	Wed, 24 Jan 2024 08:39:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.101.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706085557; cv=fail; b=FS4RHG6AnzkSOQAw0F1T71fgQ7xewnduxNfloStABEz/Y9ShgkM8niWudSXk2LudNE1m0WP4Qxm9Og6DNJdwOYsFXFgJWU17PD2pwKd5IX/s3/FvcgAz4TpQec37vy8/ANjvUylXMC9w7H65MlXM6zjuh92nJxwvflXlpqrgcU4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706085557; c=relaxed/simple;
+	bh=XaI0/OXa2EAUQ1t7yvvTTiipr5ZXAk+YmROclLAJU6o=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=AVYVuFg9wkch/vccwGQuDzjIGpY8L3K9aGAa4VZpTtmpSsVN47iTtDhPtt0+R534lQrCWu99mSgf1B26OkIJjYcUFwYBlYB4uy16fVaqAoeEZ0bTT2PwpcoPGsEeVEgZyUMro/jWI+gH6Po8oqFxof+M4Qz67fyI6R15HYSqj+4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=V4lbacfo; arc=fail smtp.client-ip=40.107.101.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kdVIMZlf4LhHkaERXKm6qu1k23MgaUsL24YNj+ti6hdR/1boHjB2SNEuLa5Udouh9+2Bra5QdE2YjkCzQjeuEtTaeDxC/sACqkcaOSH7qZXHMRLbEn2JmSGdLbWCzvVhxdSxd6Dl1kEesgETBSg5z7bBsu3WMNlaj7f2bM1GkEpzOUC4sZgSiVaAOnEOC/RiQM99Iw677Eq9wb3FMP2oAP83m7uCXSVuw/7BLf/G5QzdIHTeVnVHp5bIKc9ZpjByCQqz6qSmxMhClmY2JLRqPe9TUWu/c7ZssZuRwYpd/6lcxoYKE2pEfywNT+I8hrw8VQ9UT4SvgfnUuOn6WOycAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=d7wIeYfCKFcrxkPc8UZVuR8mX4E8LW5ZhqM0uUMVMFY=;
+ b=bpwKYJbpe7obyQsvk18myg62KeZFw78xsIp+eD+tetbnvbZLTtjOrL07Vv8Ox8QHA7IR9EB1VdF9Ax5REesditl0BKnGGMn5/ZjB4auHZ2iBiWLFTVGudRn+DQbXJtal2UtRlQCfI5EV5dhNcug5IKBszy3QIqHCMaCZoJq/GyOTTn4Xo746qbxA8msA6EM4npodvkTkB/lZVscuzmiMNOXG9/AqWZ0i7p9aY4c9c6veYRQJEIU/8McYSDHmso7/YNvQd0clJXs7bZ6JXSgVk0XnTDxyq8Sfwo0RmfGlI+6MJNdM6n5AKwK/50iJWFU9YY/jViJfIGo61TQrldrTng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=gondor.apana.org.au
+ smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d7wIeYfCKFcrxkPc8UZVuR8mX4E8LW5ZhqM0uUMVMFY=;
+ b=V4lbacfoJlnxMZIdiFuA5JavgHkKYH65mnzsRpynBN4np4a1FSds77f/zJoOx5rtVePJy1SJMn6t5rF+DiT8/WmEs7G4gsiav+CKj7OC4pivyJjiCptcYyou6UefLMcEL3ivkR/7lxqbnuPdimDqnzC8/d3+5DObRQqBnKh6mDtPNWIuYsNIV+lrckINwoTrrsNDhTqMsVZVuZ++0NOCc/UJZz53U27eoAe3wzanw5UrRXSdTsCgrgzEOCj5315Nd6kgP0423P4yaGXAFRw4TL270TRrdE24UDaQOZuqQoyTVsejY0XeZt8HfQR6wfBoy/5vyDZQTKqf8CJBkvSiqQ==
+Received: from DS7PR05CA0091.namprd05.prod.outlook.com (2603:10b6:8:56::12) by
+ MN2PR12MB4471.namprd12.prod.outlook.com (2603:10b6:208:26f::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22; Wed, 24 Jan
+ 2024 08:39:12 +0000
+Received: from DS2PEPF0000343D.namprd02.prod.outlook.com
+ (2603:10b6:8:56:cafe::d2) by DS7PR05CA0091.outlook.office365.com
+ (2603:10b6:8:56::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22 via Frontend
+ Transport; Wed, 24 Jan 2024 08:39:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ DS2PEPF0000343D.mail.protection.outlook.com (10.167.18.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7202.16 via Frontend Transport; Wed, 24 Jan 2024 08:39:10 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 24 Jan
+ 2024 00:39:02 -0800
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 24 Jan
+ 2024 00:39:01 -0800
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.14) by mail.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server id 15.2.986.41 via Frontend
+ Transport; Wed, 24 Jan 2024 00:38:57 -0800
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+	<catalin.marinas@arm.com>, <will@kernel.org>, <mperttunen@nvidia.com>,
+	<linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<krzk@kernel.org>
+CC: Akhil R <akhilrajeev@nvidia.com>
+Subject: [PATCH v4 0/5] Add Tegra Security Engine driver 
+Date: Wed, 24 Jan 2024 14:08:41 +0530
+Message-ID: <20240124083846.46487-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: mediatek: Add device tree for
- MT8365-based Pumpkin i350
-Content-Language: en-US
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Paul Elder <paul.elder@ideasonboard.com>,
- Fabien Parent <fabien.parent@linaro.org>,
- Alexandre Mergnat <amergnat@baylibre.com>,
- Julien Stephan <jstephan@baylibre.com>,
- Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>,
- Ted Larson <ted@ologicinc.com>
-References: <20231025210342.30995-1-laurent.pinchart@ideasonboard.com>
- <20231025210342.30995-4-laurent.pinchart@ideasonboard.com>
- <cabd1f9d-340a-4778-96bb-4478ae3a791a@collabora.com>
- <20240123150236.GJ10679@pendragon.ideasonboard.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240123150236.GJ10679@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF0000343D:EE_|MN2PR12MB4471:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc7d37f9-0a16-45e7-b88b-08dc1cb7eff4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	ehKANKzOjNcj8t+A5ZTP6bydX1azFNkAbX2Z9ym0m7KeitWG4V20gUfUQRw+smfRSqsN1UkyzreYj+vhc5+7n15izaYa7FCACPnot2HP2HKCup+xR6TiN6Wbl7PGiLu25Nf7bqNtdJJfjylSX0hHTsRRUx6eix5myx8si3tuwAS9eDIEI2U4w/Xgl+q4ThRot9lFBo5uxsrqj4WyCBBLnjWU8Y6wdmUe3LZZEg8nYsAmXJwAasd7Nq0SpURILQdqF53TRKqRfLx9DD1Kgl9Qq/tCXcjkIT31cIKgLfdNL1jK7/MDtUfBPHzUbyxdsGUG8vc5/v9qEibXZ74HaK+kbOnC+Sj0dvRhVQj1aePOGa2xHPmCj98p26OEVYfAoyjSzxsE13Lb9Z5oSR6XiG2/3NKX5LUDXp7+/VqYW3p0T1hmhb4EqycZdyJ8zPUsmcpyTnTZR+WX3u36CRbKcN5bO0I0m9A38W4ETnn5RjaXGIG6J+MTF0MkYYJje4b61VUTPXqsJZsF8eIRxc6HPWDE0jHt1mDadylHTwK+1Gmv3E53atjyw0d8sETb//RoAhgONFVF7JJb/1+g2Asixzgux4+/AzA0d9z8xiYtGRG7cgAzRrruereLYggkaXckvH+6h96qOwxCt57DtJ8mHMSPjr3Giu+VsYehP3If0DzOtN/P3vd4YEgcOh4XiI+E3gr+oLsjjaoihDAeHI2RQHCVJAj+sOhXKtaVGq7uwD5+hitvC4NJvKzH3YxuQnp3IACUmhzO8zB1Ti3vD6InK87fmUPbLBXQre9yl9jI2w1grmC6BB//VUb6zresiIxVymzr8avcdI45J5fnLAasRI43dg==
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230031)(4636009)(396003)(136003)(376002)(39860400002)(346002)(230922051799003)(230173577357003)(230273577357003)(451199024)(186009)(64100799003)(1800799012)(82310400011)(36840700001)(46966006)(40470700004)(40460700003)(40480700001)(41300700001)(83380400001)(921011)(86362001)(36756003)(356005)(82740400003)(7636003)(36860700001)(47076005)(1076003)(26005)(107886003)(2616005)(426003)(4743002)(336012)(7696005)(478600001)(2906002)(110136005)(316002)(70586007)(70206006)(6666004)(8936002)(4326008)(8676002)(15650500001)(7416002)(5660300002)(357404004);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 08:39:10.8747
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc7d37f9-0a16-45e7-b88b-08dc1cb7eff4
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS2PEPF0000343D.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4471
 
-Il 23/01/24 16:02, Laurent Pinchart ha scritto:
-> Hi Angelo,
-> 
-> On Tue, Jan 23, 2024 at 02:53:58PM +0100, AngeloGioacchino Del Regno wrote:
->> Il 25/10/23 23:03, Laurent Pinchart ha scritto:
->>> Add a minimal device tree for the Genio i350 Pumpkin development board,
->>> which is based on a MediaTek MT8365.
->>>
->>> The device tree is based on an initial version by Fabien Parent Based
->>> written against the MediaTek BSP kernel ([1]). It has been cleaned up,
->>> some features have been added (GPIO LEDs, ethernet), and some features
->>> removed (audio, camera, display and dual-role USB). Those features will
->>> be added back once the corresponding DT bindings and/or drivers become
->>> available in the upstream kernel.
->>>
->>> [1] https://gitlab.com/mediatek/aiot/bsp/linux/-/blob/mtk-v5.15-dev/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
->>>
->>> Co-developed-by: Fabien Parent <fparent@baylibre.com>
->>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
->>> Co-developed-by: Paul Elder <paul.elder@ideasonboard.com>
->>> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
->>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>> ---
->>> Changes since v1:
->>>
->>> - Drop mmc2 alias
->>> - Reorder properties of i2c, mmc and usb nodes
->>>
->>> Changes compared to the BSP version:
->>>
->>> - Add ethernet controller
->>> - Add GPIO LEDs
->>> - Add reserved memory region for BL31
->>> - Update board model and compatible
->>> - Rename enable-sdio-wakeup to wakeup-source
->>> - Drop audio support
->>> - Drop display support
->>> - Drop dual role USB support
->>> - Don't use underscores in node names
->>> - Normalize pinmux node names
->>> - Remove unneeded labels
->>> - Drop unneeded always-on
->>> - Drop unused pinmux nodes
->>> - Drop camera GPIO hog
->>> - Update copyright
->>> - Fix formatting
->>> - Sort alphabetically
->>> ---
->>>    arch/arm64/boot/dts/mediatek/Makefile         |   1 +
->>>    .../boot/dts/mediatek/mt8365-pumpkin.dts      | 541 ++++++++++++++++++
->>>    2 files changed, 542 insertions(+)
->>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
->>> index c99c3372a4b5..bbc232bdadc4 100644
->>> --- a/arch/arm64/boot/dts/mediatek/Makefile
->>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
->>> @@ -53,4 +53,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
->>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
->>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
->>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
->>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-pumpkin.dtb
->>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
->>> new file mode 100644
->>> index 000000000000..9c75294c9889
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
->>> @@ -0,0 +1,541 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (c) 2021 BayLibre, SAS.
->>> + * Copyright (c) 2023 Ideas on Board Oy
->>> + *
->>> + * Author: Fabien Parent <fparent@baylibre.com>
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include <dt-bindings/input/input.h>
->>> +#include <dt-bindings/leds/common.h>
->>> +#include <dt-bindings/pinctrl/mt8365-pinfunc.h>
->>> +
->>> +#include "mt8365.dtsi"
->>> +#include "mt6357.dtsi"
->>> +
->>> +/ {
->>> +	model = "OLogic Pumpkin i350 EVK";
->>> +	compatible = "ologic,pumpkin-i350", "mediatek,mt8365";
->>> +
->>> +	aliases {
->>> +		ethernet0 = &ethernet_usb;
->>> +		mmc0 = &mmc0;
->>> +		mmc1 = &mmc1;
->>> +		serial0 = &uart0;
->>> +	};
->>> +
->>> +	chosen {
->>> +		stdout-path = "serial0:921600n8";
->>> +	};
->>> +
->>> +	firmware {
->>> +		optee {
->>> +			compatible = "linaro,optee-tz";
->>> +			method = "smc";
->>> +		};
->>> +	};
->>> +
->>> +	leds {
->>> +		compatible = "gpio-leds";
->>> +
->>> +		led-red {
->>> +			gpios = <&gpio_exp 12 GPIO_ACTIVE_HIGH>;
->>> +			color = <LED_COLOR_ID_RED>;
->>> +			function = LED_FUNCTION_HEARTBEAT;
->>> +			linux,default-trigger = "heartbeat";
->>> +		};
->>> +
->>> +		led-green {
->>> +			gpios = <&gpio_exp 13 GPIO_ACTIVE_HIGH>;
->>> +			color = <LED_COLOR_ID_GREEN>;
->>> +			default-state = "off";
->>> +		};
->>> +	};
->>> +
->>> +	memory@40000000 {
->>> +		device_type = "memory";
->>> +		reg = <0 0x40000000 0 0x80000000>;
->>> +	};
->>> +
->>> +	reserved-memory {
->>> +		#address-cells = <2>;
->>> +		#size-cells = <2>;
->>> +		ranges;
->>> +
->>> +		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
->>> +		secmon@43000000 {
->>> +			no-map;
->>> +			reg = <0 0x43000000 0 0x30000>;
->>
->> reg first, no-map last.
->>
->>> +		};
->>> +
->>> +		/*
->>> +		 * 12 MiB reserved for OP-TEE (BL32)
->>> +		 * +-----------------------+ 0x43e0_0000
->>> +		 * |      SHMEM 2MiB       |
->>> +		 * +-----------------------+ 0x43c0_0000
->>> +		 * |        | TA_RAM  8MiB |
->>> +		 * + TZDRAM +--------------+ 0x4340_0000
->>> +		 * |        | TEE_RAM 2MiB |
->>> +		 * +-----------------------+ 0x4320_0000
->>> +		 */
->>> +		optee@43200000 {
->>> +			no-map;
->>> +			reg = <0 0x43200000 0 0x00c00000>;
->>
->> same here.
->>
->>> +		};
->>> +	};
->>> +
->>> +	usb_otg_vbus: usb-otg-vbus-regulator {
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "otg_vbus";
->>> +		regulator-min-microvolt = <5000000>;
->>> +		regulator-max-microvolt = <5000000>;
->>> +		gpio = <&pio 25 GPIO_ACTIVE_HIGH>;
->>> +		enable-active-high;
->>> +	};
->>> +};
->>> +
->>> +&cpu0 {
->>> +	proc-supply = <&mt6357_vproc_reg>;
->>> +	sram-supply = <&mt6357_vsram_proc_reg>;
->>> +};
->>> +
->>> +&cpu1 {
->>> +	proc-supply = <&mt6357_vproc_reg>;
->>> +	sram-supply = <&mt6357_vsram_proc_reg>;
->>> +};
->>> +
->>> +&cpu2 {
->>> +	proc-supply = <&mt6357_vproc_reg>;
->>> +	sram-supply = <&mt6357_vsram_proc_reg>;
->>> +};
->>> +
->>> +&cpu3 {
->>> +	proc-supply = <&mt6357_vproc_reg>;
->>> +	sram-supply = <&mt6357_vsram_proc_reg>;
->>> +};
->>> +
->>> +&i2c0 {
->>> +	clock-frequency = <100000>;
->>> +
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&i2c0_pins>;
->>> +
->>> +	status = "okay";
->>> +};
->>> +
->>> +&i2c1 {
->>> +	clock-frequency = <100000>;
->>> +
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&i2c1_pins>;
->>> +
->>> +	status = "okay";
->>> +
->>> +	gpio_exp: gpio@20 {
->>> +		compatible = "ti,tca6416";
->>> +		reg = <0x20>;
->>> +		reset-gpios = <&pio 78 GPIO_ACTIVE_LOW>;
->>> +		pinctrl-names = "default";
->>> +		pinctrl-0 = <&tca6416_pins>;
->>> +
->>> +		gpio-controller;
->>
->> Please check Documentation/devicetree/bindings/dts-coding-style.rst
-> 
-> I assume you mean the "Order of Properties in Device Node" section ?
-> What part exactly ?
-> 
->>> +		#gpio-cells = <2>;
->>> +	};
->>> +};
->>> +
->>> +&i2c2 {
->>> +	clock-frequency = <100000>;
->>> +
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&i2c2_pins>;
->>> +
->>> +	status = "okay";
->>> +};
->>> +
->>> +&i2c3 {
->>> +	clock-frequency = <100000>;
->>> +
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&i2c3_pins>;
->>> +
->>> +	status = "okay";
->>> +};
->>> +
->>> +&keypad {
->>> +	status = "okay";
->>
->> status goes last.
->>
->> Please check Documentation/devicetree/bindings/dts-coding-style.rst
->>
->>> +
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&keypad_pins>;
->>> +
->>> +	keypad,num-rows = <2>;
->>> +	keypad,num-columns = <1>;
->>> +	mediatek,debounce-us = <32000>;
->>> +	mediatek,double-keys;
->>> +
->>> +	linux,keymap = <MATRIX_KEY(0x00, 0x00, KEY_VOLUMEDOWN)
->>> +			MATRIX_KEY(0x01, 0x00, KEY_VOLUMEUP)>;
->>> +};
->>> +
->>> +/* eMMC */
->>> +&mmc0 {
->>> +	bus-width = <8>;
->>> +	max-frequency = <200000000>;
->>> +
->>> +	cap-mmc-highspeed;
->>> +	cap-mmc-hw-reset;
->>> +	hs400-ds-delay = <0x12012>;
->>> +	mmc-hs200-1_8v;
->>> +	mmc-hs400-1_8v;
->>> +	no-sd;
->>> +	no-sdio;
->>> +	non-removable;
->>
->> Please order by name.
->>
->>> +
->>> +	vmmc-supply = <&mt6357_vemc_reg>;
->>> +	vqmmc-supply = <&mt6357_vio18_reg>;
->>> +
->>> +	pinctrl-names = "default", "state_uhs";
->>> +	pinctrl-0 = <&mmc0_pins_default>;
->>> +	pinctrl-1 = <&mmc0_pins_uhs>;
->>> +
->>> +	assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
->>
->> assigned clocks and clock parents go first.
->>
->>> +	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
->>> +
->>> +	status = "okay";
->>> +};
->>> +
->>> +/* SD card connector */
->>> +&mmc1 {
->>> +	bus-width = <4>;
->>> +	max-frequency = <200000000>;
->>> +
->>> +	cap-sd-highspeed;
->>> +	cd-gpios = <&pio 76 GPIO_ACTIVE_LOW>;
->>> +	sd-uhs-sdr104;
->>> +	sd-uhs-sdr50;
->>
->> Please order by name.
->>
->>> +
->>> +	vmmc-supply = <&mt6357_vmch_reg>;
->>> +	vqmmc-supply = <&mt6357_vmc_reg>;
->>> +
->>> +	pinctrl-names = "default", "state_uhs";
->>> +	pinctrl-0 = <&mmc1_pins_default>;
->>> +	pinctrl-1 = <&mmc1_pins_uhs>;
->>> +
->>> +	status = "okay";
->>> +};
->>> +
->>> +/* WiFi module */
->>> +&mmc2 {
->>> +	bus-width = <4>;
->>> +	max-frequency = <200000000>;
->>> +
->>> +	cap-sd-highspeed;
->>> +	cap-sdio-irq;
->>> +	wakeup-source;
->>> +	hs400-ds-delay = <0x12012>;
->>
->> Please order by name.
->>
->>> +	keep-power-in-suspend;
->>> +	non-removable;
->>> +	sd-uhs-sdr104;
->>> +	sd-uhs-sdr25;
->>> +	sd-uhs-sdr50;
->>> +
->>> +	vmmc-supply = <&mt6357_vemc_reg>;
->>> +	vqmmc-supply = <&mt6357_vio18_reg>;
->>> +
->>> +	pinctrl-names = "default", "state_uhs";
->>> +	pinctrl-0 = <&mmc2_pins_default>;
->>> +	pinctrl-1 = <&mmc2_pins_uhs>;
->>> +
->>> +	assigned-clocks = <&topckgen CLK_TOP_MSDC50_2_SEL>;
->>> +	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
->>> +
->>> +	status = "okay";
->>> +};
->>> +
->>> +&mt6357_pmic {
->>> +	interrupt-parent = <&pio>;
->>> +	interrupts = <145 IRQ_TYPE_LEVEL_HIGH>;
->>> +	interrupt-controller;
->>> +	#interrupt-cells = <2>;
->>> +};
->>> +
->>> +&pio {
->>> +	i2c0_pins: i2c0-pins {
->>> +		pins {
->>> +			pinmux = <MT8365_PIN_57_SDA0__FUNC_SDA0_0>,
->>> +				 <MT8365_PIN_58_SCL0__FUNC_SCL0_0>;
->>> +			mediatek,pull-up-adv = <3>;
->>> +			mediatek,drive-strength-adv = <00>;
->>
->> I don't know what 00 is here, and it's not a valid drive strength value in uA.
-> 
-> I don't know either, I didn't author that part. I'll look it up.
-> 
->> Valid values are 125, 250, 500 and 1000 microamps.
->>
->> P.S.: Here and everywhere else.
->>
->>> +			bias-pull-up;
->>> +		};
->>> +	};
->>> +
->>> +
->>
->> ..snip..
->>
->>> +	mmc0_pins_uhs: mmc0-uhs-pins{
->>> +		clk-pins {
->>> +			pinmux = <MT8365_PIN_99_MSDC0_CLK__FUNC_MSDC0_CLK>;
->>> +			drive-strength = <MTK_DRIVE_10mA>;
->>> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
->>> +		};
->>> +
->>> +		cmd-dat-pins {
->>> +			pinmux = <MT8365_PIN_103_MSDC0_DAT0__FUNC_MSDC0_DAT0>,
->>> +				 <MT8365_PIN_102_MSDC0_DAT1__FUNC_MSDC0_DAT1>,
->>> +				 <MT8365_PIN_101_MSDC0_DAT2__FUNC_MSDC0_DAT2>,
->>> +				 <MT8365_PIN_100_MSDC0_DAT3__FUNC_MSDC0_DAT3>,
->>> +				 <MT8365_PIN_96_MSDC0_DAT4__FUNC_MSDC0_DAT4>,
->>> +				 <MT8365_PIN_95_MSDC0_DAT5__FUNC_MSDC0_DAT5>,
->>> +				 <MT8365_PIN_94_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
->>> +				 <MT8365_PIN_93_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
->>> +				 <MT8365_PIN_98_MSDC0_CMD__FUNC_MSDC0_CMD>;
->>> +			input-enable;
->>> +			drive-strength = <MTK_DRIVE_10mA>;
->>
->> There's no need to use MTK_DRIVE_xxxx definitions, as they're really just defining
->> the same number that you can just clearly write.
->>
->> In this case, it is
->> 			drive-strength = <10>;
->>
->> please change it here and everywhere else.
-> 
-> OK. Looks cleaner indeed.
-> 
->>> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
->>> +		};
->>> +
->>> +		ds-pins {
->>> +			pinmux = <MT8365_PIN_104_MSDC0_DSL__FUNC_MSDC0_DSL>;
->>> +			drive-strength = <MTK_DRIVE_10mA>;
->>> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
->>> +		};
->>> +
->>> +		rst-pins {
->>> +			pinmux = <MT8365_PIN_97_MSDC0_RSTB__FUNC_MSDC0_RSTB>;
->>> +			drive-strength = <MTK_DRIVE_10mA>;
->>> +			bias-pull-up;
->>> +		};
->>> +	};
->>> +
->>
->> ..snip..
->>
->>> +
->>> +&usb_host {
->>> +	#address-cells = <1>;
->>> +	#size-cells = <0>;
->>> +
->>> +	vusb33-supply = <&mt6357_vusb33_reg>;
->>> +
->>> +	status = "okay";
->>> +
->>> +	hub@2 {
->>> +		reg = <2>;
->>> +
->>> +		#address-cells = <1>;
->>> +		#size-cells = <0>;
->>> +
->>> +		ethernet_usb: ethernet@1 {
->>
->> Can you please explain why you need this node on a fully discoverable bus?
->> Isn't it enough to just let USB auto enumerate this device at boot?
-> 
-> To let the boot loader fill in the MAC address in DT. Would you like me
-> to add a comment here ?
-> 
+Add support for Tegra Security Engine which can accelerates various
+crypto algorithms. The Engine has two separate instances within for
+AES and HASH algorithms respectively.
 
-This is pretty unusual... so yes please, add a comment explaining why this
-node is here.
-I can otherwise already see a future engineer removing this node thinking that
-it's useless! :-)
+The driver registers two crypto engines - one for AES and another for
+HASH algorithms and these operate independently and both uses the host1x
+bus. Additionally, it provides  hardware-assisted key protection for up to
+15 symmetric keys which it can use for the cipher operations.
 
-Also, if this is an internal "non-removable" USB ethernet adapter, please add
-that note to the comment.
+v3->v4:
+* Remove unused header in bindings doc.
+* Update commit message in host1x change.
+* Fix test bot warning.
+v2->v3:
+* Update compatible in driver and device trees.
+* Remove extra new lines and symbols in binding doc.
+v1->v2:
+* Update probe errors with 'dev_err_probe'.
+* Clean up function prototypes and redundant prints.
+* Remove readl/writel wrappers.
+* Fix test bot warnings.
 
-Cheers,
-Angelo
+Akhil R (5):
+  dt-bindings: crypto: Add Tegra Security Engine
+  gpu: host1x: Add Tegra SE to SID table
+  crypto: tegra: Add Tegra Security Engine driver
+  arm64: defconfig: Enable Tegra Security Engine
+  arm64: tegra: Add Tegra Security Engine DT nodes
 
->>> +			compatible = "usb424,ec00";
->>> +			reg = <1>;
->>> +		};
->>> +	};
->>> +};
-> 
+ .../crypto/nvidia,tegra234-se-aes.yaml        |   52 +
+ .../crypto/nvidia,tegra234-se-hash.yaml       |   52 +
+ MAINTAINERS                                   |    5 +
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |   16 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/crypto/Kconfig                        |    8 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/tegra/Makefile                 |    9 +
+ drivers/crypto/tegra/tegra-se-aes.c           | 1932 +++++++++++++++++
+ drivers/crypto/tegra/tegra-se-hash.c          | 1022 +++++++++
+ drivers/crypto/tegra/tegra-se-key.c           |  156 ++
+ drivers/crypto/tegra/tegra-se-main.c          |  439 ++++
+ drivers/crypto/tegra/tegra-se.h               |  569 +++++
+ drivers/gpu/host1x/dev.c                      |   24 +
+ 14 files changed, 4286 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/nvidia,tegra234-se-aes.yaml
+ create mode 100644 Documentation/devicetree/bindings/crypto/nvidia,tegra234-se-hash.yaml
+ create mode 100644 drivers/crypto/tegra/Makefile
+ create mode 100644 drivers/crypto/tegra/tegra-se-aes.c
+ create mode 100644 drivers/crypto/tegra/tegra-se-hash.c
+ create mode 100644 drivers/crypto/tegra/tegra-se-key.c
+ create mode 100644 drivers/crypto/tegra/tegra-se-main.c
+ create mode 100644 drivers/crypto/tegra/tegra-se.h
+
+-- 
+2.17.1
 
 
