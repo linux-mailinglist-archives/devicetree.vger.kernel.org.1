@@ -1,145 +1,142 @@
-Return-Path: <devicetree+bounces-34775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF9383B010
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:33:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D27D83B016
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:34:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E13271C270FA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:33:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB39B28DA3F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:34:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEAB1292C5;
-	Wed, 24 Jan 2024 17:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3CB86159;
+	Wed, 24 Jan 2024 17:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Uhh3Cyxd"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nmJQe8B2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12AA128395;
-	Wed, 24 Jan 2024 17:31:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69168613D;
+	Wed, 24 Jan 2024 17:32:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706117505; cv=none; b=amH58QwokYuoIOcvHZnbH6jVb3NRFGKsDr0jDdrKQ3IdNSLHuE0szdh947d02h43Zr6+cywK3+FjNHd47KYCah3jWMG+7Za5VhbU+026DT2s/VEq4nEoUhFioxgndflG8G3CdkLPJcDwctPovXc6/QGjq+gsNeuJ93PI131vUd8=
+	t=1706117537; cv=none; b=kda3Aw/kigbGjXi78HoAlQoBLc7qicv1nPl0VwOlwY7tle7CW/3nrqr5Da4dbqhDhpygMrOKqs0QDS50N68uJSzrY2nNkIoACIAis+RW4pL5H0g6WOH2c+QGj/shRhvuZt+mycZfP9jv83o5Basx0u2YkfCErb8jd/6CwLotJWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706117505; c=relaxed/simple;
-	bh=LyF+uGG8rthtsLAGU6JwLDXQ2xY38jRfZIJ/nE/+i4U=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=TLuypNU1rl9PKEDR2UPCVFSvic62fUgJcfk0aDwH1+Hdfvvm6WEq/cLCiUV0DQsJbDQbHw/tjN0YE1xiMy/WQjca2bVpInQsjOYyp7aON+Ebgh1GYwXzzSfkoQgnqpj2FhUuh/XBsNpYmRXvvTpK6HQcRxoTBXZvXxkqvKqjbhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Uhh3Cyxd; arc=none smtp.client-ip=217.70.183.193
+	s=arc-20240116; t=1706117537; c=relaxed/simple;
+	bh=TxZ56d8Oz9RWmCGvMMps0htj1F9xyGSeaGqs7QVJ/lA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ImQZh0UVeAKhWhCiPXsK3PZOu14f3ZldUjSWxkGO4WqWN67wC4R4iBq2u/e707ZPxpbHdooCggYBjxocVUWaeFdZh1nhWA1ApwFNsCZDwYTeSUDmoMwjTkCzCnuZAIeQf6fLyvnvZSyUlkfYjSZql0jqQov23HHqxXmLLsSBMBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nmJQe8B2; arc=none smtp.client-ip=217.70.183.201
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AC82B240005;
-	Wed, 24 Jan 2024 17:31:39 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B943E1BF207;
+	Wed, 24 Jan 2024 17:32:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706117500;
+	t=1706117532;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=FAy7AHDWICCoITFYxoF5yUyISVpdkZcGB4MmMxueyRw=;
-	b=Uhh3CyxddNadp3bKW19Bu/aCIlFIQepSAUY9rIKbk4eMy3+Hsd6tC2BF0Ckv+XHavn6JXm
-	fRDgh7zMogbFUGlEnTsJaCM1frdY/nxfTYmpI88kf8dAvxgG8qmJkn294h+KYxlHXcpYzG
-	9bYIDnIzycyT/FUtIJkoXPFXXJgk5KuPSXKJOybcNST3/sp5MOkX3S8LFqpkKIbfRTeuoP
-	P5NkAOHxlPlC+d2kMsmmx6Bm+HRdQzaojyr4FGCEXjre6A77llIpsjUO8DnbeXnsd5damr
-	VkrM0a0f+mzrn2F1tzM/bX95x99sl13FNSWD3aSaHsmy0PHd4yC5orLxj9ES6w==
+	bh=vNQYUSii9IjmdDn/Eb+hTpvR6w3u80ExSZv/+b1sAR0=;
+	b=nmJQe8B2zb5cM/dskpVL/QljwU7tZ7EygdQYNJY5H+r6ur3QxzLR63BdYwrVGVBAAVz8oE
+	f4dDfPhiZjkkSClGTfGwZ0hmYQdv0Kti0MciANI+m95RAwbnYuSvSmkdJdu5gO35Jtfwaw
+	+vEoi1MuBYArur6IIgtKv1KMLdBcDN7helz+kEfosN7n5SvVxDzogQ6GMbPvB4jaHw2aai
+	qGYALCoCVhbp91Py7SzTrj1m2dx42VJZkUDdC4KyUVJU17OONEjIhbgdMkjmSGCqOhLyr8
+	zy2/DvI4Q55fFqygmXd6kauIiykFiMA1B8P8Zfvu9zBkqdEECPQ243YCargCdA==
+Date: Wed, 24 Jan 2024 18:32:07 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: David Regan <dregan@broadcom.com>
+Cc: dregan@mail.com, richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ computersforpeace@gmail.com, kdasu.kdev@gmail.com,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com,
+ tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
+ william.zhang@broadcom.com, anand.gore@broadcom.com,
+ kursad.oney@broadcom.com, florian.fainelli@broadcom.com, rafal@milecki.pl,
+ bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com,
+ baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org,
+ dan.carpenter@linaro.org
+Subject: Re: [PATCH v3 06/10] mtd: rawnand: brcmnand: Add support for
+ getting ecc setting from strap
+Message-ID: <20240124183207.5898cbfd@xps-13>
+In-Reply-To: <20240124030458.98408-7-dregan@broadcom.com>
+References: <20240124030458.98408-1-dregan@broadcom.com>
+	<20240124030458.98408-7-dregan@broadcom.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 24 Jan 2024 18:31:39 +0100
-Message-Id: <CYN46F005M23.1Z11SN0VZF777@bootlin.com>
-Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, "Philipp Zabel"
- <p.zabel@pengutronix.de>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, <linux-mips@vger.kernel.org>,
- <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
-To: "Rob Herring" <robh@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v3 10/17] pinctrl: eyeq5: add platform driver
-X-Mailer: aerc 0.15.2
-References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
- <20240123-mbly-clk-v3-10-392b010b8281@bootlin.com>
- <20240124151949.GB930997-robh@kernel.org>
-In-Reply-To: <20240124151949.GB930997-robh@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hello,
+Hi David,
 
-On Wed Jan 24, 2024 at 4:19 PM CET, Rob Herring wrote:
-> On Tue, Jan 23, 2024 at 07:46:55PM +0100, Th=C3=A9o Lebrun wrote:
-> > Add the Mobileye EyeQ5 pin controller driver. It might grow to add late=
-r
-> > support of other platforms from Mobileye. It belongs to a syscon region
-> > called OLB.
-> >=20
-> > Existing pins and their function live statically in the driver code
-> > rather than in the devicetree, see compatible match data.
-> >
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
+> @@ -2622,19 +2667,43 @@ static int brcmnand_setup_dev(struct brcmnand_hos=
+t *host)
+>  		nanddev_get_memorg(&chip->base);
+>  	struct brcmnand_controller *ctrl =3D host->ctrl;
+>  	struct brcmnand_cfg *cfg =3D &host->hwcfg;
+> -	char msg[128];
+> +	struct device_node *np =3D nand_get_flash_node(chip);
+>  	u32 offs, tmp, oob_sector;
+> -	int ret;
+> +	int ret, sector_size_1k =3D 0;
+> +	bool use_strap =3D false;
+> +	char msg[128];
+> =20
+>  	memset(cfg, 0, sizeof(*cfg));
+> +	use_strap =3D of_property_read_bool(np, "brcm,nand-ecc-use-strap");
+> =20
+> -	ret =3D of_property_read_u32(nand_get_flash_node(chip),
+> -				   "brcm,nand-oob-sector-size",
+> +	/*
+> +	 * Set ECC size and strength based on hw configuration from strap
+> +	 * if device tree does not specify them and use strap property is set
+> +	 * If ecc strength is set in dts, don't use strap setting.
+> +	 */
 
-[...]
+You would have to use the strap settings only if the property is set.
+If not property is set, the default from the core should apply I guess.
 
-> > diff --git a/drivers/pinctrl/pinctrl-eyeq5.c b/drivers/pinctrl/pinctrl-=
-eyeq5.c
-
-[...]
-
-> > +static const struct eq5p_match eq5p_match_a =3D {
-> > +	.regs =3D {
-> > +		[EQ5P_PD] =3D 0x0C0,
-> > +		[EQ5P_PU] =3D 0x0C4,
-> > +		[EQ5P_DS_LOW] =3D 0x0D0,
-> > +		[EQ5P_DS_HIGH] =3D 0x0D4,
-> > +		[EQ5P_IOCR] =3D 0x0B0,
-> > +	},
-> > +	.pins =3D eq5p_pins_a,
-> > +	.npins =3D ARRAY_SIZE(eq5p_pins_a),
-> > +	.funcs =3D eq5p_functions_a,
-> > +	.nfuncs =3D ARRAY_SIZE(eq5p_functions_a),
-> > +};
-> > +
-> > +static const struct eq5p_match eq5p_match_b =3D {
-> > +	.regs =3D {
-> > +		[EQ5P_PD] =3D 0x0C8,
-> > +		[EQ5P_PU] =3D 0x0CC,
-> > +		[EQ5P_DS_LOW] =3D 0x0D8,
-> > +		[EQ5P_DS_HIGH] =3D 0x0DC,
-> > +		[EQ5P_IOCR] =3D 0x0B4,
-> > +	},
->
-> These are all the same relative offsets, so you really only need to=20
-> store the base offset.
-
-Indeed, and I don't think I had even noticed. Thanks.
-
-> The use of 2 compatibles is a bit questionable as the programming model=
-=20
-> appears to be the same and only which pins differ. Surely there are=20
-> some other pinctrl drivers handling mutiple instances.
-
-I can confirm the programming model is the same across both banks. I've
-addressed your comment in my answer to yours on [PATCH v3 04/17].
+> +	if (chip->ecc.strength)
+> +		use_strap =3D 0;
+> +
+> +	if (use_strap) {
+> +		chip->ecc.strength =3D brcmnand_get_ecc_strength(host);
+> +		sector_size_1k =3D brcmnand_get_sector_size_1k(host);
+> +		if (chip->ecc.size =3D=3D 0) {
+> +			if (sector_size_1k < 0)
+> +				chip->ecc.size =3D 512;
+> +			else
+> +				chip->ecc.size =3D 512 << sector_size_1k;
+> +		}
+> +	}
+> +
+> +	ret =3D of_property_read_u32(np, "brcm,nand-oob-sector-size",
+>  				   &oob_sector);
+>  	if (ret) {
+> -		/* Use detected size */
+> -		cfg->spare_area_size =3D mtd->oobsize /
+> -					(mtd->writesize >> FC_SHIFT);
+> +		if (use_strap)
+> +			cfg->spare_area_size =3D brcmnand_get_spare_size(host);
+> +		else
+> +			/* Use detected size */
+> +			cfg->spare_area_size =3D mtd->oobsize /
+> +						(mtd->writesize >> FC_SHIFT);
+>  	} else {
+>  		cfg->spare_area_size =3D oob_sector;
+>  	}
 
 
 Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Miqu=C3=A8l
 
