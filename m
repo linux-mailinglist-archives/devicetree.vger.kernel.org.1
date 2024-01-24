@@ -1,157 +1,203 @@
-Return-Path: <devicetree+bounces-34832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F84C83B3D4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 22:23:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE81383B3E6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 22:27:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4FD81F2748B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 21:23:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D23091C22772
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 21:27:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4599D1353E2;
-	Wed, 24 Jan 2024 21:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7EC1353E4;
+	Wed, 24 Jan 2024 21:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CK9J0d7C"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="U76+FhmA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5091350F4;
-	Wed, 24 Jan 2024 21:23:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2AA131757
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 21:27:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706131424; cv=none; b=a5vyX9RDXXojZllYwjl65xYF3VP4HL2yfevWMUNtRFEnJWYaLRXzqP2eU4YNCTE8bkwcYGJkyzLgmnjjZlOvIcKBjensY5RtuEr5XCKJhHpBU0rYoASD6Tc6ZDclih1eCFpYPcCxjUrTiTwuBHWd4regLn7VxbTpw2Qe38puO8s=
+	t=1706131660; cv=none; b=YtuVnHZ1XSktnLYy5hnPS5mr39v09L3t690PX54PK52T2cD2Q50jrBf5SZmhXA1VHwmbQkEW0reXvQlP9YmxsTjTM0ruC6054rhulT24DC1aL82JoDax9IHh7l8ai7sOCCocZuLzn6izCTGB0QPX5HI+LusamJnu0gSc1/xFrh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706131424; c=relaxed/simple;
-	bh=yyw2wTBAUi65i4ZHKK9kqJJWvPudrQSeVdORmsL63CU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jPeSGCwYq1rj4mr79I+ZJKgqOgEvIRsZQ9z00RKUWG6tk6vdgB4uXbon7LLBUcI+tbQItANitji0p5HnjTlq+Rhfq5QhKy3fesHJTDvhDrfgC3DfVYmkZ7fnmyoIfnON6oS+6iAtbCVKTdO0Fq3K44CcAD1ePdOhqD9ac+P63SQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CK9J0d7C; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40OK8BCK011436;
-	Wed, 24 Jan 2024 21:23:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=lEu9IuU4bGL5BCly4Dnyc
-	ngQdVk/sa1XqqPwqrVMMI0=; b=CK9J0d7CIztBWGgb+6OoOhovZZMX2z5S+A1A1
-	IdVAiXmAEMzNqZ6IkoF7/Mzp91HxVeekCJR6Z8oHGnC6D3YrlCZJFJxy9UcnEd8b
-	h91Fk0qI0z9Dw7t1gTWgG8MZsm/+VlagR8rjfuZNCLJwbHRe1GFtPwurHr/hDIb8
-	0pRHinnDdQQij7AtIO077fm5Zda4eZoSXtFzAM/dbc3vSxnEDRN0nX2QjCED2EJ9
-	2F5raurBtt5+L3WL9WVRGBfpoVB9pDvQb9zPwxD5/KoP27+z16nQtc0qHYH+71eL
-	iGmKa/EAMlcGuWDqoOZoDge76bk4EWWSwTTGYUmFVKjZ1Ljpg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vu99b04u4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Jan 2024 21:23:36 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40OLNY1S011669
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Jan 2024 21:23:34 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 24 Jan 2024 13:23:34 -0800
-Date: Wed, 24 Jan 2024 13:23:33 -0800
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Johan Hovold
-	<johan+linaro@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v3 4/8] soc: qcom: rpmhpd: Drop SA8540P gfx.lvl
-Message-ID: <20240124212333.GI2936378@hu-bjorande-lv.qualcomm.com>
-References: <20240123-sa8295p-gpu-v3-0-d5b4474c8f33@quicinc.com>
- <20240123-sa8295p-gpu-v3-4-d5b4474c8f33@quicinc.com>
- <CAPDyKFqre9Y0XOn5Xig3zbiqR0FQJ+cvK0VXMZRbtt0NsSE4+w@mail.gmail.com>
+	s=arc-20240116; t=1706131660; c=relaxed/simple;
+	bh=LWNwA7ukVrj+d7v6MIv5EzJo8y49TqMJStEePkkmQ/0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FoGqXnrSI7ys1qypQeJl3cpzLwJjgP4k8hMa77fjLQcZ3C7zvTStXG8t3vL7qlxUllMevKjPTGl6csHR1GgyB20bgLh5QukPTsHPstR2tQqK5XT2/Vd2bpuOtegzn/59hnkxKdzsYEUhWxRHa4mWGXQ5cYRjq8F4VLde1VSkcYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=U76+FhmA; arc=none smtp.client-ip=209.85.160.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-429d2ebdf05so73491cf.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 13:27:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1706131658; x=1706736458; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b5SzYBWThLP29YqBiKV1/oGuFwlfjpxBatfd0d5rA2w=;
+        b=U76+FhmAASPMcI/XGIlJnnHiDExFE9LQD9Jv5/uUE9L0CSvuU3S9+jhWgTPvfnD9wu
+         xCDOplcZxQ6KhXbQexJ3JvTpZBugujfaflg/K6aga2gEFG8oLoInRcCG5sz/C2c7NsdW
+         x4k9k2Ajfi3GCWUMVsylWyc2ooUySsCciXJmku2fms5AVl52NKotRQAAtc1JXspfJVCC
+         Wkjt5siDjbagraCGAEBNMuvWEbnqoLGTQ3SLGUCGeI72fydKQeXuf7MTL+Xi2LVtLjSp
+         AMKIWJGxNgzjykv1M38pKeclZv7NnSvn6Pm2tsSKwbARnFppAy2hbHDtUArYkS0VYfHg
+         IwRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706131658; x=1706736458;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b5SzYBWThLP29YqBiKV1/oGuFwlfjpxBatfd0d5rA2w=;
+        b=P0OPnSkTnJpaR38h8bs/QewMTJdIp4shqVy+3NxCBrAD7Beo5TDF+mIYLlPohqhqjq
+         PNwJF7ltZ8uJb7JFfA2Nrt7BDD59HBM02lL8pBmwC4n/LCWkcrp15g5hzgAcjJBNA3z1
+         qg38Bufm99WOR3V0YZ/YC+9fcvu7IuJqxkTh5GqO1owtdmAIWmX/Tu5cPLljd1lM8FKT
+         Uo29KZpT4BndT7fooY/CMX5mDGp0er/Vp29aKwuDOnUURW0KVqi/VBZCDNTopyasxIAx
+         99Y9GnnA917+katX8AJAduMJW+tD8HNtpsH33fGmkMwlGpQn6glCRqohP+qYe9T6LI99
+         lvDQ==
+X-Gm-Message-State: AOJu0YxejD1yJQF0+RMhZPehkrMupvlRIFULd08GqJ8Mm753kmJ8E2I/
+	zxxBdjkmplkRLHQGalMZmtsvXkjt3RHq+OzHJeYnskVlb3Lm7uxSEJ8dCSUZDyNknZuTE+MiNhz
+	OGJevB+XSVOftYTkCfokkjveFfSGaS4hLAbje
+X-Google-Smtp-Source: AGHT+IHLUxnD+S8k/LidOhPXZetpLg/bV14wMev6SS1Cx+xwnEmGuy2SmETlMwfJ9REVi3suaTskX1DPqrs38ZFhjKw=
+X-Received: by 2002:a05:622a:229e:b0:42a:5fe1:e8d1 with SMTP id
+ ay30-20020a05622a229e00b0042a5fe1e8d1mr67647qtb.4.1706131657624; Wed, 24 Jan
+ 2024 13:27:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFqre9Y0XOn5Xig3zbiqR0FQJ+cvK0VXMZRbtt0NsSE4+w@mail.gmail.com>
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zWGghweUU2-EPaZhnWMy7rfUWrenPxPX
-X-Proofpoint-ORIG-GUID: zWGghweUU2-EPaZhnWMy7rfUWrenPxPX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-24_10,2024-01-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- mlxlogscore=999 impostorscore=0 spamscore=0 suspectscore=0 malwarescore=0
- lowpriorityscore=0 clxscore=1015 adultscore=0 phishscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401190000
- definitions=main-2401240155
+References: <20240122225710.1952066-1-peter.griffin@linaro.org>
+ <20240122225710.1952066-4-peter.griffin@linaro.org> <da30a68a-e29f-45c8-aa73-02955255a457@linaro.org>
+ <CADrjBPor5tMY4r0jOy7GH36auCU7dWn6Qn4ct89bsSMW4vAQOA@mail.gmail.com>
+ <6c72a521-1048-42eb-ac74-d8f718a90723@linaro.org> <CAGETcx-CCpaV7R0O0HpDpoX6KxQBuJiMmKdWA8nDE-5Qj2Sa7g@mail.gmail.com>
+ <f4d3aa5a-e01d-4ef3-8004-b6eac4461184@linaro.org>
+In-Reply-To: <f4d3aa5a-e01d-4ef3-8004-b6eac4461184@linaro.org>
+From: Saravana Kannan <saravanak@google.com>
+Date: Wed, 24 Jan 2024 13:27:01 -0800
+Message-ID: <CAGETcx_HGcuGQTO11tzX0EvnuLEaKYc4vBse1CRP0JwPqMJdQQ@mail.gmail.com>
+Subject: Re: [PATCH 3/9] watchdog: s3c2410_wdt: update to use new
+ exynos_pmu_*() apis
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, linux@roeck-us.net, wim@linux-watchdog.org, 
+	conor+dt@kernel.org, alim.akhtar@samsung.com, jaewon02.kim@samsung.com, 
+	chanho61.park@samsung.com, semen.protsenko@linaro.org, 
+	kernel-team@android.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
+	willmcvicker@google.com, linux-fsd@tesla.com, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 24, 2024 at 10:36:34AM +0100, Ulf Hansson wrote:
-> On Wed, 24 Jan 2024 at 05:25, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
+On Tue, Jan 23, 2024 at 10:27=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 24/01/2024 04:37, Saravana Kannan wrote:
+> > On Tue, Jan 23, 2024 at 10:12=E2=80=AFAM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 23/01/2024 18:30, Peter Griffin wrote:
+> >>>>>               dev_warn(wdt->dev, "Couldn't get RST_STAT register\n"=
+);
+> >>>>>       else if (rst_stat & BIT(wdt->drv_data->rst_stat_bit))
+> >>>>> @@ -698,14 +699,6 @@ static int s3c2410wdt_probe(struct platform_de=
+vice *pdev)
+> >>>>>       if (ret)
+> >>>>>               return ret;
+> >>>>>
+> >>>>> -     if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
+> >>>>> -             wdt->pmureg =3D syscon_regmap_lookup_by_phandle(dev->=
+of_node,
+> >>>>> -                                             "samsung,syscon-phand=
+le");
+> >>>>> -             if (IS_ERR(wdt->pmureg))
+> >>>>> -                     return dev_err_probe(dev, PTR_ERR(wdt->pmureg=
+),
+> >>>>> -                                          "syscon regmap lookup fa=
+iled.\n");
+> >>>>
+> >>>>
+> >>>> Continuing topic from the binding: I don't see how you handle probe
+> >>>> deferral, suspend ordering.
+> >>>
+> >>> The current implementation is simply relying on exynos-pmu being
+> >>> postcore_initcall level.
+> >>>
+> >>> I was just looking around for any existing Linux APIs that could be a
+> >>> more robust solution. It looks like
+> >>>
+> >>> of_parse_phandle()
+> >>> and
+> >>> of_find_device_by_node();
+> >>>
+> >>> Are often used to solve this type of probe deferral issue between
+> >>> devices. Is that what you would recommend using? Or is there somethin=
+g
+> >>> even better?
+> >>
+> >> I think you should keep the phandle and then set device link based on
+> >> of_find_device_by_node(). This would actually improve the code, becaus=
+e
+> >> syscon_regmap_lookup_by_phandle() does not create device links.
 > >
-> > On SA8295P and SA8540P gfx.lvl is not provdied by rpmh, but rather is
-> > handled by an external regulator (max20411). Drop gfx.lvl from the list
-> > of power-domains exposed on this platform.
+> > I kinda agree with this. Just because we no longer use a syscon API to
+> > find the PMU register address doesn't mean the WDT doesn't depend on
+> > the PMU.
 > >
-> > Fixes: f68f1cb3437d ("soc: qcom: rpmhpd: add sc8280xp & sa8540p rpmh power-domains")
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> 
-> I assume you are picking this via your tree? If not, please tell me if I should.
-> 
-
-That sounds good, thanks.
-
-> Before applying, please amend the prefix of commit message header to
-> be "pmdomain: ..."
-> 
-
-Thanks for noticing, I will update accordingly.
-
-Regards,
-Bjorn
-
-> Kind regards
-> Uffe
-> 
-> > ---
-> >  drivers/pmdomain/qcom/rpmhpd.c | 1 -
-> >  1 file changed, 1 deletion(-)
+> > However, I think we should move to a generic "syscon" property. Then I
+> > can add support for "syscon" property to fw_devlink and then things
+> > will just work in terms of probe ordering, suspend/resume and also
+> > showing the dependency in DT even if you don't use the syscon APIs.
 > >
-> > diff --git a/drivers/pmdomain/qcom/rpmhpd.c b/drivers/pmdomain/qcom/rpmhpd.c
-> > index 3078896b1300..27a73ff72614 100644
-> > --- a/drivers/pmdomain/qcom/rpmhpd.c
-> > +++ b/drivers/pmdomain/qcom/rpmhpd.c
-> > @@ -217,7 +217,6 @@ static struct rpmhpd *sa8540p_rpmhpds[] = {
-> >         [SC8280XP_CX] = &cx,
-> >         [SC8280XP_CX_AO] = &cx_ao,
-> >         [SC8280XP_EBI] = &ebi,
-> > -       [SC8280XP_GFX] = &gfx,
-> >         [SC8280XP_LCX] = &lcx,
-> >         [SC8280XP_LMX] = &lmx,
-> >         [SC8280XP_MMCX] = &mmcx,
+> > Side note 1:
 > >
-> > --
-> > 2.25.1
+> > I think we really should officially document a generic syscon DT
+> > property similar to how we have a generic "clocks" or "dmas" property.
+> > Then we can have a syscon_get_regmap() that's like so:
 > >
+> > struct regmap *syscon_get_regmap(struct device *dev)
+> > {
+> >         return syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
+> > }
+> >
+> > Instead of every device defining its own bespoke DT property to do the
+> > exact same thing. I did a quick "back of the envelope" grep on this
+> > and I get about 143 unique properties just to get the syscon regmap.
+> > $ git grep -A1 syscon_regmap_lookup_by_phandle | grep '"' | sed -e
+> > 's/^[^"]*//' -e 's/"[^"]*$/"/' | sort | uniq | wc -l
+> > 143
+>
+> Sorry, generic "syscon" property won't fly with DT maintainers, because
+> there is no such thing as syscon in any of hardware.
+
+Then why do we allow a "syscon" compatible string and nodes? If the
+"syscon" property isn't clear enough, we can make it something like
+gpios and have it be <whatever>-syscon or have syscon-names property
+if you want to give it a name.
+143 bespoke properties all to say "here are some registers I need to
+twiddle that's outside my regmap" doesn't seem great.
+
+> >
+> > Side note 2:
+> >
+> > How are we making sure that it's the exynos-pmu driver that ends up
+> > probing the PMU and not the generic syscon driver? Both of these are
+> > platform drivers. And the exynos PMU device lists both the exynos
+> > compatible string and the syscon property. Is it purely a link order
+> > coincidence?
+>
+> initcall ordering
+
+Both these drivers usr postcore_initcall(). So it's purely because
+soc/ is listed earlier in drivers/Makefile than mfd/. And as soon as
+drivers are made into modules this is going to break. This is
+terrible. If you want to have a modular system, this is going to throw
+in a wrench.
+
+-Saravana
 
