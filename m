@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-34542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4060283A2A0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:05:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93B9083A2CD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:22:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9889F1F29CED
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 07:05:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2947628959D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 07:22:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5091615AD0;
-	Wed, 24 Jan 2024 07:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04B0B16423;
+	Wed, 24 Jan 2024 07:22:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PBpEhQrr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ovx7AEyq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894D9154B1
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 07:05:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26943F9C2
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 07:22:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706079944; cv=none; b=pH3ducihKt9olCGIuWQO3dUWjMMeaniZecBzeqanWAlJ4m71PK5+R+odP1vSIKDGH6dTu1jSGSPF76FFmHrsOLchw8/HFCaKUivLjNIagOXyAixf0RX65TsPL5Eic9+4OhttG9qlSmLpiEeiAWd3DIjtQdVwTBHWxsHeOHJHd/k=
+	t=1706080952; cv=none; b=hBaT3ltOVyeoWzhYJhQOzKqsWLl7kbPqwDNCvTH3HyV/2HWTRXhsiWWy5BJr5Vts3IidTXsxRXa6WaiFijx1IuVa4j4YBIL9QHeFIflMKeKFksHUVhWc3p8a+9/y9tLzvTi0WxyBIPUjxginiLk5vGfzQoJEjqWC3xPyN+5e9Bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706079944; c=relaxed/simple;
-	bh=Zj5tnw4jopb0rTKmkovPBqBq8nwSE/xJiBlkRKTkq6M=;
+	s=arc-20240116; t=1706080952; c=relaxed/simple;
+	bh=KXPYa/18+xPKUUlyN2gXtEQTyDzmUyFHAk84iMlyEh8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=US2AipmguYCsBIfkDAMbXRyNBbZ6I4eG3lphe00L4TH4SfruVCAUUhqnr+9msEriDEPupxbdd9OOdCdbU0kXbHPGHU56tCxqNVgRCoVMPBSGFJdmZzn6t0JcEmW4VeQbo5gD1U7mMpk+vQyOMRUKUlZqLVMktJPr1VVMnINkJ1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PBpEhQrr; arc=none smtp.client-ip=209.85.208.48
+	 In-Reply-To:Content-Type; b=dRfwGmbQ2feCSFsNCwIRXH0rXvuxxocuQS7wnbc91hn7eoxVxn6NAVT/ccARTqZrB+om+/j6VFJrLO4Hf4OQjB9P9iJ6na2oCNuRgH89l2SWn9of5TlbehXxXF0AYu57itfJNlgNKXDK2QYQrYuYpn7g58ghEWRgVJ9na68YSew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ovx7AEyq; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55a684acf92so5668239a12.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 23:05:42 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a3106f5aac8so64444366b.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 23:22:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706079941; x=1706684741; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706080949; x=1706685749; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cNh642ztM9/JIoi6gRH/DDCNqKXOoK1COb5sZK4/5nY=;
-        b=PBpEhQrrHgi9HZbnr5XsKmpdB6EmsDrwEhXugKSQSvPDEymgxdMb1hzpatiKdvNalY
-         h9LQ2NQLCwQRivcUMRchKwFxTot75840OcR3CxszpH9K3V0utr6vMXaCh4JMC3t5AUFG
-         jr1btrg4RXgEbu9/f/HobYIj7DRMPb752D6ZtLdCf79RuKhB/zpjS53NeyVxwujSPl9Y
-         JIOKRc3sMRMFBNmgBb97OrXh3MQ8MhxqiFrgdE+MEf5XwWaerCBItbdi1XOsWC2c1y9R
-         Q0ds+LouvdV+iOOcuvQYqCHqN3Vqkxd49IZ//D9MM6buxd/UJOI2lH21izgNcvSQFwnp
-         k7Rw==
+        bh=74nQwkPGzi/fWf5wR+BH+XBmoovS6yknmDdHMmlxxzI=;
+        b=Ovx7AEyqTzoLCVfe9gDrrYUubxl8ivzXIoFhMMKfp8cE+UyWuzyMOVFs62do7AvrAM
+         QSxP9G4A66ZhhJBlpU0aKg2p0Ecea4NZ7ifPKO93/fprP1ZrdDL6gYGfHqNQpoA36TEl
+         RBIH/JZeAHtN4ZfRibhWEPdyGoNRtHEHRYuf5TSFkBHUrtzWEgBv+pJU1iIi5VqHg/hX
+         sY/4Cs98V3dT5GSsIDkRkxA9K83QHiyRGYD7dKO0dMXROiitC2hbPjbnkm51hzhxaT9N
+         +QJlGx8sP7Wnq45QjpYK0YtcmySVomjJZ62e+tttlZXiCbCkvW3CPSBGWgFqeXV6CY4w
+         O8+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706079941; x=1706684741;
+        d=1e100.net; s=20230601; t=1706080949; x=1706685749;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cNh642ztM9/JIoi6gRH/DDCNqKXOoK1COb5sZK4/5nY=;
-        b=huPR9Oq7sooFtWrvunGIs0VNf7ey3nrJP/Dts23FrRR1Eao4KE00ogGJeE7ij3wQS1
-         VsKFwLB8qjcpPI+JjMS34y1ZkIE1J4XjGKgSXtyBCWgmretHrAhzSRdVhttdAvf/KuSp
-         /32Qn798drd6zDn97IlTjJ+OWM52fvxgzUMVj8YLG3ZviSg6EAB7IwtBKZBo0K04FN6f
-         fr3bj1iT8SAppR9XYIG3QucEJyWFDIREuNYCdNFHp8YRDzU1f12rKveCKbS13fbuy1nT
-         dXR6Kz0oDfwx0pmqadsNMYt0+bAAC2SwC27aRMibRsgxyozd61BJRb6zQpQlMXTCnLWm
-         NPYA==
-X-Gm-Message-State: AOJu0Yw5us40v7NLvgF/KLjDiUbW6j6FJuNkUL7/Z/8aMEIlCHo8+Q8T
-	LUBk+YcaFOIVhIVixnfzu9QLJN8eO+DVkeTkTqJ9sQhJaSDy9O3O1JKlhjHnbvE=
-X-Google-Smtp-Source: AGHT+IE+B/bzZTkN3YO9vqMT1INobm1x/DmdeR4af9NrfWeqRBgmTbxK71v+Fgo6vHAYR38oOWNrKg==
-X-Received: by 2002:a05:6402:1358:b0:55c:ccd4:7cc3 with SMTP id y24-20020a056402135800b0055cccd47cc3mr81823edw.49.1706079940797;
-        Tue, 23 Jan 2024 23:05:40 -0800 (PST)
+        bh=74nQwkPGzi/fWf5wR+BH+XBmoovS6yknmDdHMmlxxzI=;
+        b=b0XZBIdoaoTJXyiqK2uKfnRcnil2/ACvukpxgdfoo27/9fOEOblm1bVi1gBvUH/jCp
+         IeSiV0Q9tEa+1NSwYSIwa3mbcft+xeJKTCUutGgOo2Al3CXnm2c6z6xMkh6SJZsRy2jd
+         nKFBU7VIAGQpIuTEXdzmX+Fu1OzVgMssvpS7mmkMtnn3S6Nlf2gvNqTFl4jJvhKh4Z6P
+         IS4g84XIb1dQjzDIsUyCP1D0cqnXkktG8VnoOyb/LARG6H2G4KzBT5tDQTuKmoLiuqD3
+         SW5krAebpW5dgqxnMeILM+hrrqUx+gcSY2bLbdNhShkcC2BUDtKe7Tn16fEAFA8daxRr
+         EXIw==
+X-Gm-Message-State: AOJu0YzUQWtLWNI+sXFi5ZJtZwmxcUECvYtT6mXbIQvfCYsC25uHYaS6
+	9CZ97A9Z2nW+0rviG37KlJsBzWLzDNPvhXjtXTjEoZvwKMYGxFn/SR+xl22i5Co=
+X-Google-Smtp-Source: AGHT+IFtkOvHj0t36DzD9lPSd8R1ObltV3wZbnavVyiBgI63pojO5xiM0r0i8GmOgRy6S9P44hEMuQ==
+X-Received: by 2002:a17:906:d295:b0:a2c:d9fb:ed3d with SMTP id ay21-20020a170906d29500b00a2cd9fbed3dmr589490ejb.78.1706080949205;
+        Tue, 23 Jan 2024 23:22:29 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id ch27-20020a0564021bdb00b0055c4a251205sm2823463edb.90.2024.01.23.23.05.38
+        by smtp.gmail.com with ESMTPSA id o26-20020a170906289a00b00a2bd8953af2sm15042138ejd.55.2024.01.23.23.22.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 23:05:39 -0800 (PST)
-Message-ID: <127fd51b-cd64-4e00-99d6-7be9b79f2dcc@linaro.org>
-Date: Wed, 24 Jan 2024 08:05:37 +0100
+        Tue, 23 Jan 2024 23:22:28 -0800 (PST)
+Message-ID: <3300a9f9-40f2-4a23-849e-52858e4ed4d6@linaro.org>
+Date: Wed, 24 Jan 2024 08:22:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,24 +75,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/17] clk: eyeq5: add platform driver
+Subject: Re: [PATCH v2 16/20] dt-bindings: crypto: meson: add new compatibles
 Content-Language: en-US
-To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org
-References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
- <20240123-mbly-clk-v3-8-392b010b8281@bootlin.com>
+To: Alexey Romanov <avromanov@salutedevices.com>, neil.armstrong@linaro.org,
+ clabbe@baylibre.com, herbert@gondor.apana.org.au, davem@davemloft.net,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ khilman@baylibre.com, jbrunet@baylibre.com,
+ martin.blumenstingl@googlemail.com
+Cc: linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kernel@salutedevices.com
+References: <20240123165831.970023-1-avromanov@salutedevices.com>
+ <20240123165831.970023-17-avromanov@salutedevices.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -138,75 +132,71 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240123-mbly-clk-v3-8-392b010b8281@bootlin.com>
+In-Reply-To: <20240123165831.970023-17-avromanov@salutedevices.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/01/2024 19:46, Théo Lebrun wrote:
-> Add the Mobileye EyeQ5 clock controller driver. It might grow to add
-> support for other platforms from Mobileye.
+On 23/01/2024 17:58, Alexey Romanov wrote:
+> Now we can use crypto driver at G12A/G12B/S4/A1/SM1/AXG.
 > 
-> It handles 10 read-only PLLs derived from the main crystal on board. It
-> exposes a table-based divider clock used for OSPI. Other platform
-> clocks are not configurable and therefore kept as fixed-factor
-> devicetree nodes.
+> Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> ---
+>  .../bindings/crypto/amlogic,gxl-crypto.yaml   | 31 ++++++++++++++++---
+>  1 file changed, 27 insertions(+), 4 deletions(-)
 > 
-> Two PLLs are required early on and are therefore registered at
-> of_clk_init(). Those are pll-cpu for the GIC timer and pll-per for the
-> UARTs.
-> 
+> diff --git a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> index 948e11ebe4ee..a7145b126a06 100644
+> --- a/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/amlogic,gxl-crypto.yaml
+> @@ -11,8 +11,15 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: amlogic,gxl-crypto
+> +    oneOf:
+> +      - items:
 
+That's just enum.
 
-> +#define OLB_PCSR1_RESET				BIT(0)
-> +#define OLB_PCSR1_SSGC_DIV			GENMASK(4, 1)
-> +/* Spread amplitude (% = 0.1 * SPREAD[4:0]) */
-> +#define OLB_PCSR1_SPREAD			GENMASK(9, 5)
-> +#define OLB_PCSR1_DIS_SSCG			BIT(10)
-> +/* Down-spread or center-spread */
-> +#define OLB_PCSR1_DOWN_SPREAD			BIT(11)
-> +#define OLB_PCSR1_FRAC_IN			GENMASK(31, 12)
+> +          - enum:
+> +              - amlogic,g12a-crypto
+> +              - amlogic,s4-crypto
+> +              - amlogic,a1-crypto
+> +      - items:
+> +          - const: amlogic,gxl-crypto
+> +          - const: amlogic,axg-crypto
+
+This is neither explained nor correct. You just affected all DTS.
+
+>  
+>    reg:
+>      maxItems: 1
+> @@ -32,8 +39,24 @@ required:
+>    - compatible
+>    - reg
+>    - interrupts
+> -  - clocks
+> -  - clock-names
 > +
-> +static struct clk_hw_onecell_data *eq5c_clk_data;
-> +static struct regmap *eq5c_olb;
+> +if:
 
-Drop these two. No file-scope regmaps for drivers. Use private container
-structures.
+Missing allOf
 
-...
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - amlogic,gxl-crypto
+> +then:
+> +  required:
+> +    - clocks
+> +    - clock-names
 
-> +static void __init eq5c_init(struct device_node *np)
-> +{
-> +	struct device_node *parent_np = of_get_parent(np);
-> +	int i, ret;
-> +
-> +	eq5c_clk_data = kzalloc(struct_size(eq5c_clk_data, hws, EQ5C_NB_CLKS),
-> +				GFP_KERNEL);
-> +	if (!eq5c_clk_data) {
-> +		ret = -ENOMEM;
-> +		goto err;
-> +	}
-> +
-> +	eq5c_clk_data->num = EQ5C_NB_CLKS;
-> +
-> +	/*
-> +	 * Mark all clocks as deferred. We register some now and others at
-> +	 * platform device probe.
-> +	 */
-> +	for (i = 0; i < EQ5C_NB_CLKS; i++)
-> +		eq5c_clk_data->hws[i] = ERR_PTR(-EPROBE_DEFER);
-> +
-> +	/*
-> +	 * Currently, if OLB is not available, we log an error, fail init then
+Why? Also not explained.
 
-How it could be not available? Only with broken initcall ordering. Fix
-your initcall ordering and then simplify all this weird code.
-
-> +	 * fail probe. We might want to change this behavior and assume all
-> +	 * clocks are in bypass mode; this is what is being done in the vendor
-> +	 * driver.
-> +	 *
-> +	 * It is unclear if there are valid situations where the OLB region
-> +	 * would be inaccessible.
+Entire patch was not tested and it unexpectedly affects/changes existing
+bindings without explanation in commit msg.
 
 
 
