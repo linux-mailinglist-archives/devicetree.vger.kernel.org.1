@@ -1,251 +1,148 @@
-Return-Path: <devicetree+bounces-34783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EDEC83B02E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:40:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 840FC83B032
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:41:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C92AD1F23B41
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:40:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B79751C23804
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051028003A;
-	Wed, 24 Jan 2024 17:40:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F9586151;
+	Wed, 24 Jan 2024 17:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZkDgfCqn"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GTartNSV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EB9577F0D;
-	Wed, 24 Jan 2024 17:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E886C86129;
+	Wed, 24 Jan 2024 17:40:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706118022; cv=none; b=axkTB19tHfVHxKhgXS+olZDEIyEN/1tBxJgdxJMM/GYUgomchA4zmf3jReGzeEl1fLk8hpqjCttmcUK4b9J4s218XXN3hBFrEFCHD1WgDx5xKqKV2y0xS4JPFMIibukI12U11QW/Cnpo46TvhWf/DaTr4tDt5GNgmgmL4WwnPxQ=
+	t=1706118035; cv=none; b=PCwAaIPuGKsMghXVKZuugIwvJusiwcM7jYsC2jX5BSaiXxo1fJZzxpr9jb5xbPymmodsE32LQ1a5bRsxixOayFb/rE7oZUkitVmmeWO5tbOiDU1FZkHp7+JHw18gcMYsdxS6LkH32K++PQa3qr2y9T/a+9qYJeCrs/Vj7MdovrA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706118022; c=relaxed/simple;
-	bh=tnMxDBDZrolLa61sNFNNRToA24Ly+A39bcNO7Dae1ws=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=PbwOcndO68gEzMx0iknKMuUAe2pTu3FO3OfQzshEN+Pj2evBQ23pPfMZkKarQiiYlJn/auiXwi0dipzMd7LtO184IxTbMgm3dJYD2eT/FF4L/8gGFtqvfU0PGLuFAB4Nytz1MFyaq4mV7jGtLA/DQdhD87SlPaiqremNdOBhjsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZkDgfCqn; arc=none smtp.client-ip=217.70.183.200
+	s=arc-20240116; t=1706118035; c=relaxed/simple;
+	bh=8gQF0U6eHH6iUkLw6yhHPNLgdvAzk3OMbv/DK+aIbko=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fTHisE8fRoTsZnE1tO5SypMqEqWyQIFGLZKA9C0gQaUQUcplwTuJg/WvRjRt8qJr5NuOIDhhyPQGDe2MdQUN3YL/u7j+LuifJ0VUVL//4uSO/ymPwkt1oUqly99VLxvIggTUk2gJNEFa4IAh21k4XLWE3EsO5nVC5g8Xvk/9Fmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GTartNSV; arc=none smtp.client-ip=217.70.183.201
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9092C20002;
-	Wed, 24 Jan 2024 17:40:17 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DCF851BF20E;
+	Wed, 24 Jan 2024 17:40:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706118018;
+	t=1706118030;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=O3Maf03SY5zgyI6f7z0wgBmsqcEvFSZSxYtZdnKCqrQ=;
-	b=ZkDgfCqngzaSe1DzUlJBp+qY2wjuDx6IIfwDqC4ukQHJKMGcvVAlWhnGBVPMaSh40HjVZY
-	y071i5ML7p2Nt+h/tThD1U4PGdeQ8lXdF7CGCoPgRqZHeq2FTJbUnxJzBAukoF2VDfTYhE
-	LnperkGBzo88kwYf/o+v2nDE2SSYtZvKtHYY37effFs4AmMygdJqlg0Pkm/Icq4PnuH7Iv
-	cPlYvZpoZlFoH1WC21FzjQXLuvvArXas7Sy1YXw0rh1M5ZNjMWXOwJSJXHDxyXvQGnDukD
-	xS72Cnu1xndbyl/fnwYLOg0tg6us8TUDndufL/oGii1y/M6SlHbXmGvsk1jhRA==
+	bh=+9fxvXwre8RvANs3toNyR8cUFT2cBUQEnb6nLZSDgnE=;
+	b=GTartNSV42U1nllXnMMP3aHwlGI/uQS1npcEBCAhl82CqzmhpWZyy0umHbMQZvndvILcei
+	+MzcRQdSS1m/SffVGt+DBHi1UneiynjaI+ZoON+wxOloCR1MWHkivqQcex1aGBj2A4otll
+	BKR/wB/kNds+aHS8FpUH6HuTLci1NVg33cDOFWLZV+H+RaIadaxRap2pgvkPlgtMunlB6r
+	pCCb/fPnrzaV1a6Iz7PjlF9c0IXZ7Xr8iup3NuWDjy6TqJ1akkpsAuYCEc2DbHQdrTmdhI
+	v9okB9VMwgbEDboKsfT0uyjTvjB7gPsEWBA7obVIB1ACu54CKMnVzexPyged5g==
+Date: Wed, 24 Jan 2024 18:40:27 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: David Regan <dregan@broadcom.com>
+Cc: dregan@mail.com, richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ computersforpeace@gmail.com, kdasu.kdev@gmail.com,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com,
+ tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
+ william.zhang@broadcom.com, anand.gore@broadcom.com,
+ kursad.oney@broadcom.com, florian.fainelli@broadcom.com, rafal@milecki.pl,
+ bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com,
+ baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org,
+ dan.carpenter@linaro.org
+Subject: Re: [PATCH v3 10/10] mtd: rawnand: brcmnand: allow for on-die ecc
+Message-ID: <20240124184027.712b1e47@xps-13>
+In-Reply-To: <20240124030458.98408-11-dregan@broadcom.com>
+References: <20240124030458.98408-1-dregan@broadcom.com>
+	<20240124030458.98408-11-dregan@broadcom.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 24 Jan 2024 18:40:17 +0100
-Message-Id: <CYN4D0Z6600X.20W9VWX4BGNXX@bootlin.com>
-Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, "Philipp Zabel"
- <p.zabel@pengutronix.de>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, <linux-mips@vger.kernel.org>,
- <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Rob Herring"
- <robh@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v3 04/17] dt-bindings: soc: mobileye: add EyeQ5 OLB
- system controller
-X-Mailer: aerc 0.15.2
-References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
- <20240123-mbly-clk-v3-4-392b010b8281@bootlin.com>
- <20240124151405.GA930997-robh@kernel.org>
- <CYN43TSPPPZ5.1VUA1CH95D8KJ@bootlin.com>
-In-Reply-To: <CYN43TSPPPZ5.1VUA1CH95D8KJ@bootlin.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hello,
+Hi David,
 
-On Wed Jan 24, 2024 at 6:28 PM CET, Th=C3=A9o Lebrun wrote:
-> Hello,
->
-> On Wed Jan 24, 2024 at 4:14 PM CET, Rob Herring wrote:
-> > On Tue, Jan 23, 2024 at 07:46:49PM +0100, Th=C3=A9o Lebrun wrote:
-> > > Add documentation to describe the "Other Logic Block" syscon.
-> > >=20
-> > > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > > ---
-> > >  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 77 ++++++++++++=
-++++++++++
-> > >  MAINTAINERS                                        |  1 +
-> > >  2 files changed, 78 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/soc/mobileye/mobileye,=
-eyeq5-olb.yaml b/Documentation/devicetree/bindings/soc/mobileye/mobileye,ey=
-eq5-olb.yaml
-> > > new file mode 100644
-> > > index 000000000000..031ef6a532c1
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-o=
-lb.yaml
-> > > @@ -0,0 +1,77 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/soc/mobileye/mobileye,eyeq5-olb.y=
-aml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Mobileye EyeQ5 SoC system controller
-> > > +
-> > > +maintainers:
-> > > +  - Gr=C3=A9gory Clement <gregory.clement@bootlin.com>
-> > > +  - Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > > +  - Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-> > > +
-> > > +description:
-> > > +  OLB ("Other Logic Block") is a hardware block grouping smaller blo=
-cks. Clocks,
-> > > +  resets, pinctrl are being handled from here.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: mobileye,eyeq5-olb
-> > > +      - const: syscon
-> > > +      - const: simple-mfd
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clock-controller:
-> > > +    $ref: /schemas/clock/mobileye,eyeq5-clk.yaml#
-> > > +    type: object
-> > > +
-> > > +  reset-controller:
-> > > +    $ref: /schemas/reset/mobileye,eyeq5-reset.yaml#
-> > > +    type: object
-> > > +
-> > > +  pinctrl-a:
-> > > +    $ref: /schemas/pinctrl/mobileye,eyeq5-pinctrl.yaml#
-> > > +    type: object
-> > > +
-> > > +  pinctrl-b:
-> > > +    $ref: /schemas/pinctrl/mobileye,eyeq5-pinctrl.yaml#
-> > > +    type: object
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    system-controller@e00000 {
-> > > +      compatible =3D "mobileye,eyeq5-olb", "syscon", "simple-mfd";
-> > > +      reg =3D <0xe00000 0x400>;
-> > > +
-> > > +      clock-controller {
-> > > +        compatible =3D "mobileye,eyeq5-clk";
-> > > +        #clock-cells =3D <1>;
-> > > +        clocks =3D <&xtal>;
-> > > +        clock-names =3D "ref";
-> > > +      };
-> > > +
-> > > +      reset-controller {
-> > > +        compatible =3D "mobileye,eyeq5-reset";
-> > > +        #reset-cells =3D <2>;
-> > > +      };
-> > > +
-> > > +      pinctrl-a {
-> > > +        compatible =3D "mobileye,eyeq5-a-pinctrl";
-> > > +        #pinctrl-cells =3D <1>;
-> >
-> > Sure you need this? Generally only pinctrl-single uses this.
->
-> You are completely right, it is useless. I naively expected it in the
-> same vein as other subsystems.
->
-> >
-> > > +      };
-> > > +
-> > > +      pinctrl-b {
-> > > +        compatible =3D "mobileye,eyeq5-b-pinctrl";
-> > > +        #pinctrl-cells =3D <1>;
-> > > +      };
-> > > +    };
-> >
-> > This can all be simplified to:
-> >
-> > system-controller@e00000 {
-> >     compatible =3D "mobileye,eyeq5-olb", "syscon";
-> >     reg =3D <0xe00000 0x400>;
-> >     #reset-cells =3D <2>;
-> >     #clock-cells =3D <1>;
-> >     clocks =3D <&xtal>;
-> >     clock-names =3D "ref";
-> >
-> >     pins { ... };
-> > };
-> >
-> > There is no need for sub nodes unless you have reusable blocks or each=
-=20
-> > block has its own resources in DT.
->
-> That is right, and it does simplify the devicetree as you have shown.
-> However, the split nodes gives the following advantages:
->
->  - Devicetree-wise, it allows for one alias per function.
->    `clocks =3D <&clocks EQ5C_PLL_CPU>` is surely more intuitive
->    than `clocks =3D <&olb EQ5C_PLL_CPU>;`. Same for reset.
->
->  - It means an MFD driver must be implemented, adding between 100 to 200
->    lines of boilerplate code to the kernel.
->
->  - It means one pinctrl device for the two banks. That addresses your
->    comment on [PATCH v3 10/17]. This is often done and would be doable
->    on this platform. However it means added logic to each individual
->    function of pinctrl-eyeq5.
->
->    Overall it makes for less readable code, for code that already looks
->    more complex than it really is.
->
->    My initial non-public version of pinctrl-eyeq5 was using this method
->    (a device handling both banks) and I've leaned away from it.
+dregan@broadcom.com wrote on Tue, 23 Jan 2024 19:04:58 -0800:
 
-I had forgotten one other reason:
+> Allow settings for on-die ecc such that if on-die ECC is selected
+> don't error out but require ECC strap setting of zero
+>=20
+> Signed-off-by: David Regan <dregan@broadcom.com>
+> Reviewed-by: William Zhang <william.zhang@broadcom.com>
+> ---
+> Changes in v3: None
+> ---
+> Changes in v2:
+> - Added to patch series
+> ---
+>  drivers/mtd/nand/raw/brcmnand/brcmnand.c | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mtd/nand/=
+raw/brcmnand/brcmnand.c
+> index a4e311b6798c..42526f3250c9 100644
+> --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
+> +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
+> @@ -2727,9 +2727,11 @@ static int brcmnand_setup_dev(struct brcmnand_host=
+ *host)
+>  	cfg->blk_adr_bytes =3D get_blk_adr_bytes(mtd->size, mtd->writesize);
+> =20
+>  	if (chip->ecc.engine_type !=3D NAND_ECC_ENGINE_TYPE_ON_HOST) {
+> -		dev_err(ctrl->dev, "only HW ECC supported; selected: %d\n",
+> -			chip->ecc.engine_type);
+> -		return -EINVAL;
+> +		if (chip->ecc.strength) {
+> +			dev_err(ctrl->dev, "ERROR!!! HW ECC must be set to zero for non-hardw=
+are ECC; selected: %d\n",
+> +				chip->ecc.strength);
 
- - Reusability does count for something. Other Mobileye platforms exist,
-   and the system controller stuff is more complex on those. Multiple
-   different OLB blocks, etc. But my understanding is that
-   per-peripheral logic is reused across versions.
+Can you use a more formal string? Also clarify it because I don't
+really understand what it leads to.
 
->
-> Those are all minor, but I don't have the feeling a few lines and nodes
-> less in devicetree compensate for those.
+> +			return -EINVAL;
+> +		}
+>  	}
+> =20
+>  	if (chip->ecc.algo =3D=3D NAND_ECC_ALGO_UNKNOWN) {
+> @@ -2797,7 +2799,11 @@ static int brcmnand_setup_dev(struct brcmnand_host=
+ *host)
+>  	if (ret)
+>  		return ret;
+> =20
+> -	brcmnand_set_ecc_enabled(host, 1);
+> +	if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON_DIE) {
+> +		dev_dbg(ctrl->dev, "Disable HW ECC for on-die ECC\n");
+
+Not needed.
+
+> +		brcmnand_set_ecc_enabled(host, 0);
+> +	} else
+> +		brcmnand_set_ecc_enabled(host, 1);
+
+Style is wrong, but otherwise I think ECC should be kept disabled while
+not in active use, so I am a bit surprised by this line.
+
+> =20
+>  	brcmnand_print_cfg(host, msg, cfg);
+>  	dev_info(ctrl->dev, "detected %s\n", msg);
+
 
 Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Miqu=C3=A8l
 
