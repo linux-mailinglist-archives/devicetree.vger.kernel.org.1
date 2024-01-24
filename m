@@ -1,141 +1,232 @@
-Return-Path: <devicetree+bounces-34625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1777883A5DC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:48:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D589483A601
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:54:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1D4228B402
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:48:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47E8DB2BF5A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 112601802B;
-	Wed, 24 Jan 2024 09:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A489718048;
+	Wed, 24 Jan 2024 09:52:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DrfYhubb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89F2C182A1
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 677E118625;
+	Wed, 24 Jan 2024 09:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706089704; cv=none; b=QGzsN1qkofz53wyeXE1bzX93eqKl22TeVmMsn2dU7t6nJAHC0YXD52imFf5XWrfWLi63Mpq+swW+ZzSuaNB2mIT5f9C4yA0EoUDhuFlIvcEML5dLbGwCxwHDvivuX3+okke/6vMvAWvZ8MMhP33eiJK8RTF6e5VdND/SI6Vw94A=
+	t=1706089971; cv=none; b=LtxjExMMHTHAUiLvFfsa4bMJzyiLJ8CqCX2fUCJRfvDDWY5NvIQVXKR2oESjsY/MfojdywGbum97A7G4WIN4IEZtOvti9ikfIkN2kv3ryqpfpVklZs0rHxjmviTGZl0ujNTGFQBgbfcPkHjhJXefCz/WlGGTDMGp8AIDESL9SOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706089704; c=relaxed/simple;
-	bh=y22HqRzsmOQsYLr4WGwc3QzMljL/aweeW4ciyd4mkKU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gem46Uzy4+GH08v4BMGj1zVplkI78Y+amONY2ZnCUkom7luVS2fRKcQSfcndFmjbamxPs3TBZ0RDnoHX0yooRMAf205V62YUA1DJVhYR+9TQGMx/0T5CHBc/JTeWQS3Q/H09azVbXCDAHMy01THts0rHS8FQb4xYjQSl2479OnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZrk-0004BM-78; Wed, 24 Jan 2024 10:48:16 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZrj-0021hH-Cn; Wed, 24 Jan 2024 10:48:15 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZrj-0071yh-0x;
-	Wed, 24 Jan 2024 10:48:15 +0100
-Date: Wed, 24 Jan 2024 10:48:15 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v4 5/6] pwm: meson: don't carry internal clock elements
- around
-Message-ID: <jlrptw2norojxgpfmsybv6b5aq3epkdkqvri2l2rkvtx5qofjd@q4ggezt47a42>
-References: <20231222111658.832167-1-jbrunet@baylibre.com>
- <20231222111658.832167-6-jbrunet@baylibre.com>
- <gyhea42rtydw3g45lfkfbxfm6xcbwibz67vw7xke2sm7powz2a@i33g4pyanu4l>
- <1jttn3w0ja.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1706089971; c=relaxed/simple;
+	bh=NiIeZZFwIvY0DyQXr6Ns8lr+2tiWC2O7tm2aI4XiJ6c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=RhevI4TzESlm4mGsZd57lWu0aW5A4IgL/JUDf2t+BNmhfR85q2naqU0ND/r7kv/hXoCnkXFBZZcg+K+9iThNNYv4z1b1eflJRzHbw79HMPJtZm1drqGyTq/9MJhqaNVzdsrNZVTnmVm/sz+YToP8BIzV0kbcpqPCYyZSiKXVzOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DrfYhubb; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-557dcb0f870so6354062a12.2;
+        Wed, 24 Jan 2024 01:52:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706089966; x=1706694766; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3P4SKIph2kaJ1P9uxNmooxsVTdL3TJ4ADsGzchIR86I=;
+        b=DrfYhubbju74F5rME3DbcZnKMY+sqiHjN4cqe7m+gE1rmXuFowJa38c/sGSWJoFFgG
+         PpdbkSVb71xYgK0mnI1vOtY70bTSu9w4QdW9pfABI4SrHL97Xy5qOE8G38s28HqoTBhB
+         Gyu+REowI2tvXiOmWLpdHieQLGsHLxuuoyVN6It8cB10KZop18y0l84/gbNJjKHEHMZY
+         JrzfxXbgHmqDVH360fYWipIXJIKgcI01FyZG4dDl0ZgYjG/31r3abj0SQOoBATBfQSOW
+         BTYHw3QMrBnB1HFw6B1AT8mEXAX6vDKAybIjz1ecly8wo44iUj2N4drp/3UqEX0j2ZRf
+         9MpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706089966; x=1706694766;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3P4SKIph2kaJ1P9uxNmooxsVTdL3TJ4ADsGzchIR86I=;
+        b=sFFdN7EXK7HeVVkEdFiJBR6/cT23rk3OTNfm7mysaoNQl6oQA3n+7U1eYOkm05lUlk
+         Lru/CPLYpY5+QPs6D7MErsOLeRRwRpbjGHSwesDfY/aoCfyiFbHrYTsJwZzUbkxI/kBm
+         tsJOOYa6JpZu8JgpEcBx+ImHTPBVcKpe0tkR5n+uq7XC/EfV4fwvPeCJGHm3uEsTEUgZ
+         h1miVK9eC44/q1ByqsQABA5jDWsNg6LWeocPHKdKQIUF6w3dzd/bvNC0PCWu2qu9dy+6
+         7gzRXE43iBZHunjR7wsZIwhLfvDnMm1esPQDKb0lqZQaEhHMDejfydxWUBeji51IuWbr
+         xYUw==
+X-Gm-Message-State: AOJu0Yx/gJVka5uUogBjNb3rBSEJy7pCZu/HLvgGVAmCLyh+4yaNigo/
+	TOu5IsJURYUET2dig6vBry4mgBppOnIlM09CVECYIPa0cbJxFaNg
+X-Google-Smtp-Source: AGHT+IF6irlAgTX/3kJ/yMSr7XD5tEf74ti0lx8fEEXP6sie7G0d9uw/OA9b8NTVqdOr0j9L59CNkQ==
+X-Received: by 2002:a05:6402:344e:b0:55a:5d43:2ef4 with SMTP id l14-20020a056402344e00b0055a5d432ef4mr1595734edc.72.1706089966311;
+        Wed, 24 Jan 2024 01:52:46 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id eg34-20020a05640228a200b0055c2404fbe4sm507410edb.69.2024.01.24.01.52.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jan 2024 01:52:45 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: media: convert Mediatek consumer IR to the json-schema
+Date: Wed, 24 Jan 2024 10:52:30 +0100
+Message-Id: <20240124095230.25704-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bi3q4dz4cz4stt46"
-Content-Disposition: inline
-In-Reply-To: <1jttn3w0ja.fsf@starbuckisacylon.baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
---bi3q4dz4cz4stt46
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This helps validating DTS files. Introduced changes:
+1. Reworded title
+2. Added required #include-s and adjusted "reg" in example
 
-Hello Jerome,
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../bindings/media/mediatek,mt7622-cir.yaml   | 81 +++++++++++++++++++
+ .../devicetree/bindings/media/mtk-cir.txt     | 28 -------
+ 2 files changed, 81 insertions(+), 28 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/mtk-cir.txt
 
-On Wed, Jan 24, 2024 at 10:16:17AM +0100, Jerome Brunet wrote:
-> On Wed 24 Jan 2024 at 10:02, Uwe Kleine-K=F6nig <u.kleine-koenig@pengutro=
-nix.de> wrote:
-> > On Fri, Dec 22, 2023 at 12:16:53PM +0100, Jerome Brunet wrote:
-> >> @@ -442,6 +439,13 @@ static int meson_pwm_init_channels(struct device =
-*dev)
-> >>  		struct meson_pwm_channel *channel =3D &meson->channels[i];
-> >>  		struct clk_parent_data div_parent =3D {}, gate_parent =3D {};
-> >>  		struct clk_init_data init =3D {};
-> >> +		struct clk_divider *div;
-> >> +		struct clk_gate *gate;
-> >> +		struct clk_mux *mux;
-> >> +
-> >> +		mux =3D devm_kzalloc(dev, sizeof(*mux), GFP_KERNEL);
-> >> +		if (!mux)
-> >> +			return -ENOMEM;
-> >
-> > I don't like this change. While it doesn't increase the memory used, it
-> > fragments the used memory and increases the overhead of memory
-> > management and the number of devm allocations.
-> >
-> > Are these members of meson_pwm_channel in the way for anything later?
->=20
-> Not really. It is just not useful on the SoCs which do use it and not
-> used at all starting from s4/a1.
+diff --git a/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml b/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
+new file mode 100644
+index 000000000000..a2d0eed33292
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/mediatek,mt7622-cir.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek consumer IR on-SoC controller
++
++maintainers:
++  - Sean Wang <sean.wang@mediatek.com>
++
++properties:
++  compatible:
++    enum:
++      - mediatek,mt7622-cir
++      - mediatek,mt7623-cir
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: clk
++      - const: bus
++
++required:
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++allOf:
++  - $ref: rc.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt7622-cir
++    then:
++      properties:
++        clocks:
++          minItems: 2
++
++        clock-names:
++          minItems: 2
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt7623-cir
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++
++        clock-names:
++          maxItems: 1
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/mt2701-clk.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    ir@10013000 {
++        compatible = "mediatek,mt7623-cir";
++        reg = <0x10013000 0x1000>;
++        interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_LOW>;
++        clocks = <&infracfg CLK_INFRA_IRRX>;
++        clock-names = "clk";
++        linux,rc-map-name = "rc-rc6-mce";
++    };
+diff --git a/Documentation/devicetree/bindings/media/mtk-cir.txt b/Documentation/devicetree/bindings/media/mtk-cir.txt
+deleted file mode 100644
+index 5e18087ce11f..000000000000
+--- a/Documentation/devicetree/bindings/media/mtk-cir.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-Device-Tree bindings for Mediatek consumer IR controller
+-found in Mediatek SoC family
+-
+-Required properties:
+-- compatible	    : Should be
+-			"mediatek,mt7623-cir": for MT7623 SoC
+-			"mediatek,mt7622-cir": for MT7622 SoC
+-- clocks	    : list of clock specifiers, corresponding to
+-		      entries in clock-names property;
+-- clock-names	    : should contain
+-			- "clk" entries: for MT7623 SoC
+-			- "clk", "bus" entries: for MT7622 SoC
+-- interrupts	    : should contain IR IRQ number;
+-- reg		    : should contain IO map address for IR.
+-
+-Optional properties:
+-- linux,rc-map-name : see rc.txt file in the same directory.
+-
+-Example:
+-
+-cir: cir@10013000 {
+-	compatible = "mediatek,mt7623-cir";
+-	reg = <0 0x10013000 0 0x1000>;
+-	interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_LOW>;
+-	clocks = <&infracfg CLK_INFRA_IRRX>;
+-	clock-names = "clk";
+-	linux,rc-map-name = "rc-rc6-mce";
+-};
+-- 
+2.35.3
 
-This remembers me about the old pwm-imx driver. This was essentially a
-single file containing two drivers just because both types appeared on
-imx machines. Later it was split into imx1 and imx27.
-
-I didn't look at the relevant differences between the existing driver
-and the changes needed for s4, but please don't repeat this issue for
-meson. Not sure this fear is justified, just saying ...
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---bi3q4dz4cz4stt46
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWw3N4ACgkQj4D7WH0S
-/k4dMAgAozpZ4OhSVfUnrblhtpzwr4SXMznUu/lW+ZcUZ39z8nQi29MQxtKkYOnJ
-UmUDaTwxqWcWOCGOuIL7XksK2uJOhIpH/kRatrulGYfDznloAAhSN/TSrpQ/BPuX
-4P+kRVTDpJggZ6AjKnPZgRqxNOxIpdFhRcKbgpCMuA7FKRNZhB7FzB5qJPn1VM3D
-ghXMcPWD8wH1gG4q/4bVk2vnpZFekLy14qP2MNYk+uEptXHM6bFtHhhxyWaCx/lQ
-Jd6oR9jeQLudBE0oel+3dHv4rPLV4bc3XSKZBzK5xT5rv2ZXk8IgRoZpRopCkz4O
-apNjdhV0xQJvpJ5gDWpPw1TLQVFVxA==
-=SWXC
------END PGP SIGNATURE-----
-
---bi3q4dz4cz4stt46--
 
