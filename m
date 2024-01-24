@@ -1,130 +1,135 @@
-Return-Path: <devicetree+bounces-34724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1200E83AC8E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 15:57:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C49A183ACA4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:00:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 074911C224C6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:57:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77DC71F23EB5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 15:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624EB12E56;
-	Wed, 24 Jan 2024 14:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6FBD747A;
+	Wed, 24 Jan 2024 14:59:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFLygRVd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Cil6swvt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3543F2F26;
-	Wed, 24 Jan 2024 14:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46057C088;
+	Wed, 24 Jan 2024 14:59:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.134.136.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706108194; cv=none; b=cLhnIV2lgcsCRjZB4tPBKcu60BWRD+dcmlqOZFWegBn1g8VZMBP+2FZrS0bZE4HYVhcMk78v4XmDkfjyennALWNJd4wVQMgtU43QfWxPEVrT3p0Z29/xb+7EM5+pBTLL6mReAfs+DtBVE6/1OJkZlkRTqUq7HWYwwV4HKcHWe64=
+	t=1706108389; cv=none; b=Zl9+fIb4elOuAYJ8NigjYJNj+EAn1iaf6OnDkx+43n+muajD+dQtxvtGq/0cX1tlAu+S/yrN/CsNkhRJrlnccTOye7M6cMdYf3hgTVjrsJevQXZ/ObZ0jyRdYH6tPpWtuVSp7B2ygynmwZy8xJzNMt3A6caUmMBqeHlVa+GS6bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706108194; c=relaxed/simple;
-	bh=7/wklZ6oD0ECwz1vKnU18BgeWzOozsvAiODYnadkp4s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JaBuKgd4XADzmMlrs/R5kNKrlFjufMB5ysKjwI6L+fbSxEM8OChEcylT6+3enN1NPU3l9AWNQC8oZQBkPVLYCqLIbVmO4ZMYtG2/XJrCpdonjxQBg2KzrKKeATA70RvU7MPmDR1lfdmATn8RGhv2OX/m81rIZv2cGokXkqsiDnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFLygRVd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73B0EC433F1;
-	Wed, 24 Jan 2024 14:56:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706108193;
-	bh=7/wklZ6oD0ECwz1vKnU18BgeWzOozsvAiODYnadkp4s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JFLygRVdAi67WUWHRp4/WulZPT9untGPgaFZV/lYT18DrtkTQBhFtoUp91sZuVJyx
-	 0iUV4qnU6xBkADvpEtDb9X1XfomDS78VK7xZILwkZSCzvk2fFRL+DZpbh5Avu741mv
-	 mzgWrQax+cp0brWgly+g993OvOEcVjJ4pMzCs+9CVdDn9wyOJ1Z/0XIHejv9s7lFj2
-	 xTGlXAz1XrejcNZTnegODD9oXkWQRx/2qpmUxcXj60ZRuM0zKspabgcYsgxvzdLeeP
-	 9eZXD4hAbHFj6hjepm9qSpV3XXJEUtwPVYXetz7SfJvcBbk1xNDQusnlFJ0lvuUL55
-	 QxobEzuPn3zQQ==
-Date: Wed, 24 Jan 2024 08:56:31 -0600
-From: Rob Herring <robh@kernel.org>
-To: Amrit Anand <quic_amrianan@quicinc.com>
-Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, kernel@quicinc.com
-Subject: Re: [PATCH 0/2] Add board-id support for multiple DT selection
-Message-ID: <20240124145631.GA873781-robh@kernel.org>
-References: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
+	s=arc-20240116; t=1706108389; c=relaxed/simple;
+	bh=RzDbhYSEcmLvl0Tieidy5sjp9uAbbBuDzPRK5lNr8Tk=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=gPLWkjiuT279M3Etqdd1mpr8Dyln82k5HGxFDFcgFq9OOVG3r4zJtDlAdQOBNFF7TnCEpDf0I12CgAePzjTXZyP68/PMXq4rwWUCttMY6+5qeHApSW4jj3A1P3I4n7SkVMe1HJHoma/9guuSs4ZPgu+xuO2VamUslfEjtZ+uLMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Cil6swvt; arc=none smtp.client-ip=134.134.136.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706108386; x=1737644386;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=RzDbhYSEcmLvl0Tieidy5sjp9uAbbBuDzPRK5lNr8Tk=;
+  b=Cil6swvtNfZ92Cyy1GGmLzszogBQnu1QF5g+xBVoZ+t6GfUXP/FrFt6/
+   vNdiqyE3EnEd2uZShAz2Qg8nZXvbmhe6tv1wWwAM9KBcVQ1N4EBibHKmx
+   c8LmWpWMay06ynyunvaib7uTPldTVNxGfNbJjDr4JvvdrBVQjSqB3lJOu
+   7RpbYvg12YOsjPJX5NgGzSiU9tDoUd9skZD6TLcOf3IRFlidpxDjBOSfp
+   OqUwLOL3vzEiCYjZtXw3860DbJydtEGXQa+JRZS0GeOS1HWoXqrxSsW0L
+   bqTh8tOMvNwQjnfHjvJxooQMwDsEEv3uAIoHshTuT/9zKct1eDz8EQUoe
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="405616927"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="405616927"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2024 06:59:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="1932880"
+Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.246.48.46])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2024 06:59:40 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Wed, 24 Jan 2024 16:59:36 +0200 (EET)
+To: Frank Li <Frank.Li@nxp.com>
+cc: alexandre.belloni@bootlin.com, conor.culhane@silvaco.com, 
+    devicetree@vger.kernel.org, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, imx@lists.linux.dev, 
+    Jiri Slaby <jirislaby@kernel.org>, joe@perches.com, 
+    krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org, 
+    linux-i3c@lists.infradead.org, LKML <linux-kernel@vger.kernel.org>, 
+    linux-serial <linux-serial@vger.kernel.org>, miquel.raynal@bootlin.com, 
+    robh@kernel.org, zbigniew.lukwinski@linux.intel.com
+Subject: Re: [PATCH v4 4/8] i3c: svc: Add svc-i3c-main.c and svc-i3c.h
+In-Reply-To: <20240123231043.3891847-5-Frank.Li@nxp.com>
+Message-ID: <bb434214-0607-4054-dd04-a870db9e7f5d@linux.intel.com>
+References: <20240123231043.3891847-1-Frank.Li@nxp.com> <20240123231043.3891847-5-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
+Content-Type: text/plain; charset=US-ASCII
 
-On Sat, Jan 20, 2024 at 04:50:47PM +0530, Amrit Anand wrote:
-> Device manufacturers frequently ship multiple boards or SKUs under a
-> single software package. These software packages will ship multiple
-> devicetree blobs and require some mechanism to pick the correct DTB for
-> the board the software package was deployed. Introduce a common
-> definition for adding board identifiers to device trees. board-id
-> provides a mechanism for bootloaders to select the appropriate DTB which
-> is vendor/OEM-agnostic.
+On Tue, 23 Jan 2024, Frank Li wrote:
 
-Show me a 2nd user. Or does vendor/OEM-agnostic just mean vendors of 
-QCom devices? Multiple SoC families using this would help your case. I'm 
-not inclined to take it into the DTSpec without that.
-
+> SVC i3c is a dual role controller. Move probe() into svc-i3c-main.c. This
+> prepares to support target probe depending on dts "mode" settings.
 > 
-> Isn't that what the compatible property is for?
-> -----------------------------------------------
-> The compatible property can be used for board matching, but requires
-> bootloaders and/or firmware to maintain a database of possible strings
-> to match against or have complex compatible string matching. Compatible
-> string matching becomes complicated when there are multiple versions of
-> board: the device tree selector should recognize a DTB that cares to
-> distinguish between v1/v2 and a DTB that doesn't make the distinction.
-> An eeprom either needs to store the compatible strings that could match
-> against the board or the bootloader needs to have vendor-specific
-> decoding logic for the compatible string. Neither increasing eeprom
-> storage nor adding vendor-specific decoding logic is desirable.
-
-You could hash the compatible strings if it was just a size issue.
-
-> The solution proposed here is simpler to implement and doesn't require
-> updating firmware or bootloader for every new board.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/i3c/master/Makefile         |  3 +-
+>  drivers/i3c/master/svc-i3c-main.c   | 52 +++++++++++++++++++++++++++++
+>  drivers/i3c/master/svc-i3c-master.c | 34 ++++---------------
+>  drivers/i3c/master/svc-i3c.h        | 11 ++++++
+>  4 files changed, 71 insertions(+), 29 deletions(-)
+>  create mode 100644 drivers/i3c/master/svc-i3c-main.c
+>  create mode 100644 drivers/i3c/master/svc-i3c.h
 > 
-> How is this better than Qualcomm's qcom,msm-id/qcom,board-id?
-> -------------------------------------------------------------
-> The selection process for devicetrees was Qualcomm-specific and not
-> useful for other devices and bootloaders that were not developed by
-> Qualcomm because a complex algorithm was used to implement. Board-ids
-> provide a matching solution that can be implemented by bootloaders
-> without introducing vendor-specific code. Qualcomm uses three
-> devicetree properties: msm-id (interchangeably: soc-id), board-id, and
-> pmic-id.  This does not scale well for use casese which use identifiers,
-> for example, to distinguish between a display panel. For a display
-> panel, an approach could be to add a new property: display-id, but now
-> bootloaders need to be updated to also read this property. We want to
-> avoid requiring to update bootloaders with new hardware identifiers: a
-> bootloader need only recognize the identifiers it can handle.
+> diff --git a/drivers/i3c/master/Makefile b/drivers/i3c/master/Makefile
+> index 3e97960160bc8..484cb81f45821 100644
+> --- a/drivers/i3c/master/Makefile
+> +++ b/drivers/i3c/master/Makefile
+> @@ -2,5 +2,6 @@
+>  obj-$(CONFIG_CDNS_I3C_MASTER)		+= i3c-master-cdns.o
+>  obj-$(CONFIG_DW_I3C_MASTER)		+= dw-i3c-master.o
+>  obj-$(CONFIG_AST2600_I3C_MASTER)	+= ast2600-i3c-master.o
+> -obj-$(CONFIG_SVC_I3C_MASTER)		+= svc-i3c-master.o
+> +svc-i3c-objs				+= svc-i3c-main.o svc-i3c-master.o
+> +obj-$(CONFIG_SVC_I3C_MASTER)		+= svc-i3c.o
+>  obj-$(CONFIG_MIPI_I3C_HCI)		+= mipi-i3c-hci/
+> diff --git a/drivers/i3c/master/svc-i3c-main.c b/drivers/i3c/master/svc-i3c-main.c
+> new file mode 100644
+> index 0000000000000..053b2bd9d8317
+> --- /dev/null
+> +++ b/drivers/i3c/master/svc-i3c-main.c
 
-So the id list will be always expanding list for every last component 
-that is 2nd sourced? The ChromeOS folks are also trying to solve that 
-problem.
+...
 
-There's a similar issue for EFI boot with how to select an OS installed 
-DTB[1]. You might not care now, but users may later on (like we have 
-already with QCom devices with fixed bootloaders). If you do this 
-board-id route, then no doubt that compatible values won't be specific 
-enough or have suitable fallbacks to be used. Then EFI boot can't use 
-compatible either and needs to use this QCom specific logic. It may be a 
-common property name, but all the types you defined are QCom specific 
-and the matching logic is pretty much undocumented. I'm not saying we 
-have to use compatible. There wasn't even agreement to use it for EFI 
-boot case. This does need to work for multiple vendors and multiple boot 
-scenarios.
+> +module_platform_driver(svc_i3c_master);
+> \ No newline at end of file
 
-Rob
+> diff --git a/drivers/i3c/master/svc-i3c.h b/drivers/i3c/master/svc-i3c.h
+> new file mode 100644
+> index 0000000000000..0bd1f0112a071
+> --- /dev/null
+> +++ b/drivers/i3c/master/svc-i3c.h
 
-[1] https://lore.kernel.org/u-boot/20231114232012.GD6601@bill-the-cat/#r
+...
+
+> +#endif
+> \ No newline at end of file
+
+Add the trailing newline characters.
+
+
+-- 
+ i.
+
 
