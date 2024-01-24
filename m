@@ -1,110 +1,214 @@
-Return-Path: <devicetree+bounces-34759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6883B83AED9
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:57:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B00983AEBD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:52:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4871CB26EFC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:56:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 348A61C224F4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E1B7E760;
-	Wed, 24 Jan 2024 16:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0ABD7E571;
+	Wed, 24 Jan 2024 16:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="erE85xfv"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FFci4IkW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4C0F7E574;
-	Wed, 24 Jan 2024 16:56:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1A47E563;
+	Wed, 24 Jan 2024 16:52:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706115397; cv=none; b=Di4gTiagbnGrG5FYVHvYle1x9WsSn3E4SNwq7mYbsftcRSYRTmxvQqHuUEPqyQYrGWDtyAPuzs4zfLo5AilCLBzxIIjm2Rsvk+QJI+PsYZ8YrLXTEcEfhcPRW7N7ESgon0hRIYX/L8WV2Nf2EluEOIq1zxnjJAPOvJevO92+SfM=
+	t=1706115138; cv=none; b=okWI32p4hTmHrqas0Z5C5gPFyrQNMtFQTS6wWn8ESI1GEu7kD+B8Yfb6ZENpMQeopLaQuke0nrhPhsnJLwjWY3KfTUrJ3EXlhkiUiibbXODymCw4dUwYEeWMxSI9NoHh1IKGgOITtRWSyjJddwqF2TU2+lx+MmRnCJhI8UHN/As=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706115397; c=relaxed/simple;
-	bh=N/kGM6SSHeoHMJ/i/c2gY34ro1FC3sWkupBy+t0cAyk=;
-	h=From:To:Cc:Date:Message-Id:In-Reply-To:References:MIME-Version:
-	 Subject; b=ATmSc2h5G9mBrKQzpQpcleckVbR3jpsYRPzJ2BvOWa8MC71W24Aqn9c3Nij3XsqyVDZwpdOxQAsMSfrrmu43I+uCmgM5bNVInoSo/YCvNMJDdj3dHNkSysDh+EMziiRFfxlmH3krh7ss4kCuSV0xIxojrsQvCptUmpl7Ad0ADSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=erE85xfv; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
-	:From:subject:date:message-id:reply-to;
-	bh=BprktDcYRExOw/27QWQGvLSVRCiQlLMf3BAYhVwKXac=; b=erE85xfvepTFm0ptxWkoTE1IAC
-	KqNdeL+oXb//LAH9P2RczM1XWDJD/cwUeHdGSqB6qRKIuc9rRkjdsfxZB/vdVp0Z4KY1fTambXfjS
-	ByjSNrPWbGrgj7YkgpEEVAknRU6aJDfG+xBA527PDAUk5ywLjBh8Q2zIXGYh6REoPCAo=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:45420 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1rSgY9-0007ym-At; Wed, 24 Jan 2024 11:56:29 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	leoyang.li@nxp.com,
-	hvilleneuve@dimonoff.com
-Cc: krzysztof.kozlowski@linaro.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	hugo@hugovil.com,
-	andy.shevchenko@gmail.com
-Date: Wed, 24 Jan 2024 11:46:46 -0500
-Message-Id: <20240124164646.1506814-3-hugo@hugovil.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240124164646.1506814-1-hugo@hugovil.com>
-References: <20240124164646.1506814-1-hugo@hugovil.com>
+	s=arc-20240116; t=1706115138; c=relaxed/simple;
+	bh=xBjanQxj+WlA2NEtJC2FADqKcRyEwqeWXOxBQB5ubLg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=OS0B8MjIPBDDvU9OG9Adaz4oLT2S/cxr9vkC24kFOBAe/6B+vrwF//Vh5FSFBG27sMIeg4SzJAqUC7RCpaFugqFTlzlLaK7AM+pctI5NhzxYA/3SqKJ0jHbc3BYB3tpjShihrElh1rNYsqsQJSXI5qj8tpDgyCJPQXl60D/gyL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FFci4IkW; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3CBCD20009;
+	Wed, 24 Jan 2024 16:52:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1706115134;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DKEfFNRNSTBwprTYctFaKjH1lgQHFqsNz6V6pYZfuuQ=;
+	b=FFci4IkWY6kMPJKkanGCfgkRbyjlHw6Ms54sdmtakBcCG17BCzfL6K9bhUZ9ddZk8SDB7J
+	ETzXhgijv9qe9m2IVC8afgT5ZVktK1DKmK7ieALpFyHql+CC/SoZUASqIkNtfbvSakC94K
+	U5YFRJ66QTyHv9I4yFYJQAG3MI2myW/0jrRK86FuY8nk6Qf7j608KkpsEb+it4RKjbquzM
+	Nv5te6kEqk3nSGPAhaFMbPnjacrsevOX/ameNS9TM7crB9FlemWxuXV7xuoBS99EfPx6aH
+	oTasBy7AkWiCKAi5As4318ukIYkTgNCKczXQxsSSMSYO5HcBEsjJavIcztuPjQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
-Subject: [PATCH v2 2/2] arm64: dts: imx8mn-rve-gateway: remove redundant company name
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 24 Jan 2024 17:52:13 +0100
+Message-Id: <CYN3C7XGTG1T.2U3RS9E2ENWGJ@bootlin.com>
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Gregory
+ CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
+ <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
+ <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v3 09/17] reset: eyeq5: add platform driver
+X-Mailer: aerc 0.15.2
+References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
+ <20240123-mbly-clk-v3-9-392b010b8281@bootlin.com>
+ <b9b8aa19-aa08-42ff-8b2f-dedb1e64700c@linaro.org>
+In-Reply-To: <b9b8aa19-aa08-42ff-8b2f-dedb1e64700c@linaro.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Hello,
 
-Company name in compatible description appears twice, which is not really
-helpful, so remove it from product name.
+On Wed Jan 24, 2024 at 8:00 AM CET, Krzysztof Kozlowski wrote:
+> On 23/01/2024 19:46, Th=C3=A9o Lebrun wrote:
+> > Add the Mobileye EyeQ5 reset controller driver. It belongs to a syscon
+> > region called OLB. It might grow to add later support of other
+> > platforms from Mobileye.
 
-Fixes: 67275c2f3d9b ("arm64: dts: freescale: introduce rve-gateway board")
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[...]
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-index 1b633bd1ebb6..ea1855171fb0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts
-@@ -10,7 +10,7 @@
- 
- / {
- 	model = "RVE gateway";
--	compatible = "rve,rve-gateway", "variscite,var-som-mx8mn", "fsl,imx8mn";
-+	compatible = "rve,gateway", "variscite,var-som-mx8mn", "fsl,imx8mn";
- 
- 	crystal_duart_24m: crystal-duart-24m {
- 		compatible = "fixed-clock";
--- 
-2.39.2
+> > +static int _eq5r_busy_wait(struct eq5r_private *priv, struct device *d=
+ev,
+> > +			   u32 domain, u32 offset, bool assert)
+> > +{
+> > +	unsigned int val, mask;
+> > +	int i;
+> > +
+> > +	lockdep_assert_held(&priv->mutexes[domain]);
+> > +
+> > +	switch (domain) {
+> > +	case 0:
+> > +		for (i =3D 0; i < D0_TIMEOUT_POLL; i++) {
+> > +			regmap_read(priv->olb, EQ5R_OLB_SARCR1, &val);
+> > +			val =3D !(val & BIT(offset));
+> > +			if (val =3D=3D assert)
+> > +				return 0;
+> > +			__udelay(1);
+>
+> What is even "__udelay"? It is the first use in drivers. Please use
+> common methods, like fsleep or udelay... but actually you should rather
+> use regmap_read_poll_timeout() or some variants instead of open-coding it=
+.
 
+udelay is an alias to __udelay on MIPS, which is why this didn't look
+odd to me. Fixed.
+
+[...]
+
+> > +static void _eq5r_assert(struct eq5r_private *priv, u32 domain, u32 of=
+fset)
+>
+> Drop leading _ and name the function in some informative way.
+
+Fixed by turning `_eq5r_assert` into `eq5r_assert_withlock`, and co.
+
+[...]
+
+> > +
+> > +static int eq5r_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev =3D &pdev->dev;
+> > +	struct device_node *np =3D dev->of_node;
+> > +	struct device_node *parent_np =3D of_get_parent(np);
+> > +	struct eq5r_private *priv;
+> > +	int ret, i;
+> > +
+> > +	priv =3D kzalloc(sizeof(*priv), GFP_KERNEL);
+> > +	if (!priv)
+> > +		return -ENOMEM;
+>
+> You leak parent.
+
+Fixed in all three clk+reset+pinctrl drivers. They all had this issue.
+
+>
+> > +
+> > +	dev_set_drvdata(dev, priv);
+> > +
+> > +	priv->olb =3D ERR_PTR(-ENODEV);
+> > +	if (parent_np) {
+> > +		priv->olb =3D syscon_node_to_regmap(parent_np);
+> > +		of_node_put(parent_np);
+> > +	}
+> > +	if (IS_ERR(priv->olb))
+>
+> Also here
+>
+> > +		return PTR_ERR(priv->olb);
+>
+> This looks over-complicated. First, you cannot just
+> dev_get_regmap(pdev->dev.parent)?
+
+No dev_get_regmap() cannot be used as it doesn't pick up syscon regmaps.
+I've just tried it.
+
+However I've simplified the logic, it looks better now.
+
+	static int eq5r_probe(struct platform_device *pdev)
+	{
+		struct device_node *parent_np;
+
+		/* ... */
+
+		parent_np =3D of_get_parent(np);
+		if (!parent_np)
+			return -ENODEV;
+
+		priv->olb =3D syscon_node_to_regmap(parent_np);
+		of_node_put(parent_np);
+		if (IS_ERR(priv->olb))
+			return PTR_ERR(priv->olb);
+
+		/* ... */
+	}
+
+[...]
+
+> > +static struct platform_driver eq5r_driver =3D {
+> > +	.probe =3D eq5r_probe,
+> > +	.driver =3D {
+> > +		.name =3D "eyeq5-reset",
+> > +		.of_match_table =3D eq5r_match_table,
+> > +	},
+> > +};
+> > +
+> > +static int __init eq5r_init(void)
+> > +{
+> > +	return platform_driver_register(&eq5r_driver);
+> > +}
+> > +
+> > +arch_initcall(eq5r_init);
+>
+> This is does not look like arch code, but driver or subsys. Use regular
+> module_driver. I see there is such pattern in reset but I doubt this is
+> something good.
+
+Indeed I've moved things to using the builtin_platform_driver() macro.
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
