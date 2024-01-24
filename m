@@ -1,102 +1,70 @@
-Return-Path: <devicetree+bounces-34574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70A8E83A37A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:47:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6986C83A384
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:51:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C41E1B2962C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 07:47:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCE55B27C13
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 07:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64C317BD9;
-	Wed, 24 Jan 2024 07:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E40168DD;
+	Wed, 24 Jan 2024 07:51:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h0OiU3Tp"
+	dkim=pass (2048-bit key) header.d=gnu.org header.i=@gnu.org header.b="MakCWVCd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from eggs.gnu.org (eggs.gnu.org [209.51.188.92])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0509317BAA
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 07:45:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62E917542;
+	Wed, 24 Jan 2024 07:51:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.51.188.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706082348; cv=none; b=KNL/jO4yKUUDPO+4Y20jFgc1CMvTCLR4JLfIi+yF1F8hIyso9bzd3ajh3/tftup8qJmZqoO5d9R2Ze/GW4adXoizpaer2Tx98mtTsVYsWV1z/Ih1XdJwb7pWOur5+ExfoBl1YFRN2SH/suHVHkOum6lRQ4wTJFJJ43v9Q/fu6Uw=
+	t=1706082688; cv=none; b=nAestmrDElydLqzCTn717ghrnaTU/LpcHXi2LGXUueMfqfQa4AP6FKyIURx2mDYZVhr9C2YRr0pGM4tPZRS+8g0fDHrNLk1f6bda7Rs8rAJvnDvq1XGYn45JLCS4GzbCwnFPAsQSMIhtD4PjB0+zJ5JqnaoS/90Zkf+7cqZQLLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706082348; c=relaxed/simple;
-	bh=oh0sTMif6CnOQLiL5a5MmyT0hcKnwI/jjGqAII0YSDc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=P4i3nFDFsAv/aTUyVUDLLcfum+WWCFh/EXHcXGVANyPGYzDSG65kqPPhMUUGd7TR69uxZANJm2c0Df9UGy5l4YZeimrKnF7b7YpkQ0rqqZhb5rI6lFmI+Mw7O5mYvqulZT2rFeXJ7IbPkR8bGJOIM/51WyYcZPqbzqv+LDLoKNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h0OiU3Tp; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-55a6833c21eso3847321a12.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 23:45:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706082345; x=1706687145; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lRX88GpgU1fgsZxup3Gn93xc8N0Fj24AFUmctHwLfn4=;
-        b=h0OiU3TpQicg0o3kpaS0v/nI2qe7EBYWo9w/H00iiGH0qw6TggAGYMAAFll2MGZyKT
-         XpKErrU/WfdLcbD7gvAIe5op7mQDI8THOBiSXlGNUnhx0EoZF3Slvj+zyHmm397xw9+t
-         G5ESlNL0edDsu37+6ECeOG0v1iYWYicC7QXk41n8f/5Lu7sijWTZUfJRgTRFqzywskXF
-         LPLewqX2CKUBgbFbyQs3X6lXJV3WiDOiKimD8NvFO2wS0N5U5I2LMUxIB68QH512G84P
-         TLkNmMM/bFlv0IXKLdjp0R6qWYcKN+pHBq4tOlTSYepHA2AHzBVzfYkSkOPWTK2Nu9hh
-         LkUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706082345; x=1706687145;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lRX88GpgU1fgsZxup3Gn93xc8N0Fj24AFUmctHwLfn4=;
-        b=UdTNJN8udNY8NNyl+lFO4d3M044GJDpzv3fjG81e1xskFQLrvsZ/XZ3MGGOTon7RPp
-         m9YYbS4f4IJ14MaNVunUAmbqsAjJvPigOGUsgkbZC87AGinAvL35KNuMpBSXnh1w0FvD
-         qz4kxiGld1ibViz9Y+MWxLNomZKGWaSm5WLe8oilJ+dU9pdJBwNiwiveNZNLcDOGALdI
-         ijP9m/czgJtZGDc6hlEVdOtkpPnfC1hlv6unTjlktq98wT/9mx58uFgjZc0F5OVhidfS
-         VaSA6nMGqRmWRbcJXMwh0cQMZx+yv3JAjPnBIqTxGfGQF4naEw2PVseg7SNE/RydXwqe
-         gL+Q==
-X-Gm-Message-State: AOJu0Yz7QLdYYi2uAebtooovYLk1CKiBfiVCsnFS/1w1VoE5BsFooTFh
-	qivF6g62bgHzuUq1kxeYE+YzBMFIVLwVbn8eOs7X7Y9ulSAzU27JQoRY3pJSbY8=
-X-Google-Smtp-Source: AGHT+IHIiivpDee0vXa9Za1ZlMPh5ql9o2I3lx2sDE7uKWnN6FQlUAjNNnKSKOW8KA9hLJkFcO5VfQ==
-X-Received: by 2002:a05:6402:26d4:b0:55a:e42c:fafd with SMTP id x20-20020a05640226d400b0055ae42cfafdmr2239875edd.25.1706082345305;
-        Tue, 23 Jan 2024 23:45:45 -0800 (PST)
-Received: from krzk-bin.. ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id c4-20020a056402100400b0055c8a30152bsm1306951edu.83.2024.01.23.23.45.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Jan 2024 23:45:44 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Banajit Goswami <bgoswami@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1706082688; c=relaxed/simple;
+	bh=DcFSPhT3LeuMsdh0kljwg6YnnEEpXhf+WOiAEbOy9xQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JQwJTRfqWXMtDZHIntPQzrbVbc+ukOnEc/goyCfsnVt5GpTcBUWYvyQSa+nk0XtjubJxSs8H4Xiew6psi0UacJg6vTI9FeO3LfMn1tisqx81AjZ9QB2fJd0UnMxOsnRim7Mr/y62iousF2GSULJWCtbhzU9k/a+p7axFZ1chqo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gnu.org; spf=pass smtp.mailfrom=gnu.org; dkim=pass (2048-bit key) header.d=gnu.org header.i=@gnu.org header.b=MakCWVCd; arc=none smtp.client-ip=209.51.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gnu.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gnu.org
+Received: from fencepost.gnu.org ([2001:470:142:3::e])
+	by eggs.gnu.org with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.90_1)
+	(envelope-from <othacehe@gnu.org>)
+	id 1rSY2R-0004j5-Ca; Wed, 24 Jan 2024 02:51:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=gnu.org;
+	s=fencepost-gnu-org; h=MIME-Version:Date:Subject:To:From:in-reply-to:
+	references; bh=0rTSBM8FAiLBtJbaMKADVCeePIBHC+QW0h8Zr7BMfQU=; b=MakCWVCddnpJR4
+	LaW0p+qScZgkL6uoVzsNKThNpzAhNtVBAjYJBQs/bb+kEPDCMzjeOAWCHtLaUaKkpHSRkJfdNFvG2
+	CXr+be8omi/+xEHpby2FmUN9NF5d3xfZzgFn+bEzYyZU/xyiUjPWkCehuAgvoUk0ilZdyoD4In/Ov
+	bJvb/5Wyuq9pKSyb6FM6gRPlcIwz9t4fYNN1WJLt+AIOLsJs6Ubd4oTX5xRWmk03NFesKcR0ks83B
+	jryrTkRssG/elxpiNBjgDjPSHWpfp8Zt4ypgCL8LeTTA7hOmMVkWf10tMD1SFo7h6oJlBS0t2hIRy
+	ydhI0YgBohroiyjpEhXg==;
+From: Mathieu Othacehe <othacehe@gnu.org>
+To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	alsa-devel@alsa-project.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	Li Yang <leoyang.li@nxp.com>,
+	Primoz Fiser <primoz.fiser@norik.com>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Christoph Stoidner <c.stoidner@phytec.de>,
+	Wadim Egorov <w.egorov@phytec.de>
+Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Sean Anderson <sean.anderson@seco.com>
-Subject: [PATCH v5 6/6] ASoC: codecs: wsa884x: Allow sharing reset GPIO
-Date: Wed, 24 Jan 2024 08:45:27 +0100
-Message-Id: <20240124074527.48869-7-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240124074527.48869-1-krzysztof.kozlowski@linaro.org>
-References: <20240124074527.48869-1-krzysztof.kozlowski@linaro.org>
+	linux-arm-kernel@lists.infradead.org,
+	Mathieu Othacehe <othacehe@gnu.org>
+Subject: [PATCH v5 0/3] Add phyBOARD-Segin-i.MX93 support
+Date: Wed, 24 Jan 2024 08:49:27 +0100
+Message-ID: <20240124074930.26101-1-othacehe@gnu.org>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,125 +73,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-On some boards with multiple WSA8840/WSA8845 speakers, the reset
-(shutdown) GPIO is shared between two speakers.  Use the reset
-controller framework and its "reset-gpio" driver to handle this case.
-This allows bring-up and proper handling of all WSA884x speakers on
-X1E80100-CRD board.
+Hello,
 
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Sean Anderson <sean.anderson@seco.com>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This adds support for the phyBOARD-Segin-i.MX93 board.
+In this v5, I removed the gpio-line-names that were controversial.
+
+Thanks,
+
+Signed-off-by: Mathieu Othacehe <othacehe@gnu.org>
 ---
+Changes in v5:
+- Remove the gpio-line-names
+- Fix the product URLs
+Changes in v4:
+- Add gpio-line-names to gpio-vf610 dt-bindings documentation
+- Add the heartbeat SoM LED
+- Add support for the FEC ethernet port
+- Restore the original authors in the copyright
+- Add gpio-line-names for the GPIOs on the X16 header
+Changes in v3:
+- Update documentation to match PHYTEC naming
+- Remove useless properties
+- Update pinmux from PHYTEC downstream kernel
+Changes in v2: 
+- Remove useless line
+- Add missing reserved-memory entries
 
-If previous patches are fine, then this commit is independent and could
-be taken via ASoC.
----
- sound/soc/codecs/wsa884x.c | 53 +++++++++++++++++++++++++++++++-------
- 1 file changed, 43 insertions(+), 10 deletions(-)
+v4: https://lore.kernel.org/linux-devicetree/20240122095306.14084-1-othacehe@gnu.org/
 
-diff --git a/sound/soc/codecs/wsa884x.c b/sound/soc/codecs/wsa884x.c
-index f2653df84e4a..a9767ef0e39d 100644
---- a/sound/soc/codecs/wsa884x.c
-+++ b/sound/soc/codecs/wsa884x.c
-@@ -13,6 +13,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
- #include <linux/slab.h>
- #include <linux/soundwire/sdw.h>
- #include <linux/soundwire/sdw_registers.h>
-@@ -699,6 +700,7 @@ struct wsa884x_priv {
- 	struct sdw_stream_runtime *sruntime;
- 	struct sdw_port_config port_config[WSA884X_MAX_SWR_PORTS];
- 	struct gpio_desc *sd_n;
-+	struct reset_control *sd_reset;
- 	bool port_prepared[WSA884X_MAX_SWR_PORTS];
- 	bool port_enable[WSA884X_MAX_SWR_PORTS];
- 	unsigned int variant;
-@@ -1799,9 +1801,22 @@ static struct snd_soc_dai_driver wsa884x_dais[] = {
- 	},
- };
- 
--static void wsa884x_gpio_powerdown(void *data)
-+static void wsa884x_reset_powerdown(void *data)
- {
--	gpiod_direction_output(data, 1);
-+	struct wsa884x_priv *wsa884x = data;
-+
-+	if (wsa884x->sd_reset)
-+		reset_control_assert(wsa884x->sd_reset);
-+	else
-+		gpiod_direction_output(wsa884x->sd_n, 1);
-+}
-+
-+static void wsa884x_reset_deassert(struct wsa884x_priv *wsa884x)
-+{
-+	if (wsa884x->sd_reset)
-+		reset_control_deassert(wsa884x->sd_reset);
-+	else
-+		gpiod_direction_output(wsa884x->sd_n, 0);
- }
- 
- static void wsa884x_regulator_disable(void *data)
-@@ -1809,6 +1824,27 @@ static void wsa884x_regulator_disable(void *data)
- 	regulator_bulk_disable(WSA884X_SUPPLIES_NUM, data);
- }
- 
-+static int wsa884x_get_reset(struct device *dev, struct wsa884x_priv *wsa884x)
-+{
-+	wsa884x->sd_reset = devm_reset_control_get_optional_shared(dev, NULL);
-+	if (IS_ERR(wsa884x->sd_reset))
-+		return dev_err_probe(dev, PTR_ERR(wsa884x->sd_reset),
-+				     "Failed to get reset\n");
-+	else if (wsa884x->sd_reset)
-+		return 0;
-+	/*
-+	 * else: NULL, so use the backwards compatible way for powerdown-gpios,
-+	 * which does not handle sharing GPIO properly.
-+	 */
-+	wsa884x->sd_n = devm_gpiod_get_optional(dev, "powerdown",
-+						GPIOD_OUT_HIGH);
-+	if (IS_ERR(wsa884x->sd_n))
-+		return dev_err_probe(dev, PTR_ERR(wsa884x->sd_n),
-+				     "Shutdown Control GPIO not found\n");
-+
-+	return 0;
-+}
-+
- static int wsa884x_probe(struct sdw_slave *pdev,
- 			 const struct sdw_device_id *id)
- {
-@@ -1838,11 +1874,9 @@ static int wsa884x_probe(struct sdw_slave *pdev,
- 	if (ret)
- 		return ret;
- 
--	wsa884x->sd_n = devm_gpiod_get_optional(dev, "powerdown",
--						GPIOD_OUT_HIGH);
--	if (IS_ERR(wsa884x->sd_n))
--		return dev_err_probe(dev, PTR_ERR(wsa884x->sd_n),
--				     "Shutdown Control GPIO not found\n");
-+	ret = wsa884x_get_reset(dev, wsa884x);
-+	if (ret)
-+		return ret;
- 
- 	dev_set_drvdata(dev, wsa884x);
- 	wsa884x->slave = pdev;
-@@ -1858,9 +1892,8 @@ static int wsa884x_probe(struct sdw_slave *pdev,
- 	pdev->prop.sink_dpn_prop = wsa884x_sink_dpn_prop;
- 	pdev->prop.scp_int1_mask = SDW_SCP_INT1_BUS_CLASH | SDW_SCP_INT1_PARITY;
- 
--	/* Bring out of reset */
--	gpiod_direction_output(wsa884x->sd_n, 0);
--	ret = devm_add_action_or_reset(dev, wsa884x_gpio_powerdown, wsa884x->sd_n);
-+	wsa884x_reset_deassert(wsa884x);
-+	ret = devm_add_action_or_reset(dev, wsa884x_reset_powerdown, wsa884x);
- 	if (ret)
- 		return ret;
- 
+Mathieu Othacehe (3):
+  dt-bindings: arm: fsl: Add phyBOARD-Segin-i.MX93
+  dt-bindings: gpio: gpio-vf610: add gpio-line-names
+  arm64: dts: imx93: Add phyBOARD-Segin-i.MX93 support
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../devicetree/bindings/gpio/gpio-vf610.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx93-phyboard-segin.dts    | 117 ++++++++++++++++
+ .../boot/dts/freescale/imx93-phycore-som.dtsi | 126 ++++++++++++++++++
+ 5 files changed, 252 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phyboard-segin.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-phycore-som.dtsi
+
 -- 
-2.34.1
+2.41.0
 
 
