@@ -1,146 +1,186 @@
-Return-Path: <devicetree+bounces-34604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E80983A4D6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:02:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C624A83A4DB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:05:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE32C1C20C30
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:02:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F5FC1F22BEC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:05:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77E7517BA4;
-	Wed, 24 Jan 2024 09:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CBBB17981;
+	Wed, 24 Jan 2024 09:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="WcIIr6q1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5A317BB7
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9BA517BB5
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:05:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706086972; cv=none; b=EXvKKWnw4K8O/YBArpoO7Ht68HIZvpmKLllUuuFiYQ0E8s+Y1XyMcyQkWuHdBUOT25AnxCM85dz2SAGq6SjrEpOGfQjuLfgLh2VasfG3IE4D0G4DZS69unVJNZ+F6MZuJv4wth6RdIh7B0ifoIoaXsfk8t7nprmrO/Rbbsh+hUs=
+	t=1706087117; cv=none; b=LW9zCz4uE8gjcMoHzC+dgvXwUa6KFMXtBw5oVDhQb1yVs0Y4cM9oyiigI76CNPvaOur+0ticY+FGoEWq6FZ/Yd5mtQKuSegzON3IP/gAQm6YT9A8zTA7ZbLaE2Ks4Q2BLcwdMPFFGOKVEW421qihtvhWjYANXIGecIJGE7sCZCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706086972; c=relaxed/simple;
-	bh=IUzPpBw3waxXsmF2u/OJpdQqbjdb1ELOjeunXCIZSuY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CkrlkAFBC/+wxbWICohvoErLZesUW2n62w9Lz9oWY6qlWNc2oT9JiLlz9J2JH96UGgqT+VAS302vMpTOHjHjlCWQuueqw0ZdBbGB1fPcepbh/3u7j9K6rkkgZEx1k6p4Db2+c0BG3q8I9oyHneLIQ22hNknP86SogR7MLAX+fDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZ9d-0001F3-HK; Wed, 24 Jan 2024 10:02:41 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZ9c-00217d-KQ; Wed, 24 Jan 2024 10:02:40 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rSZ9c-0070Sy-1j;
-	Wed, 24 Jan 2024 10:02:40 +0100
-Date: Wed, 24 Jan 2024 10:02:40 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v4 5/6] pwm: meson: don't carry internal clock elements
- around
-Message-ID: <gyhea42rtydw3g45lfkfbxfm6xcbwibz67vw7xke2sm7powz2a@i33g4pyanu4l>
-References: <20231222111658.832167-1-jbrunet@baylibre.com>
- <20231222111658.832167-6-jbrunet@baylibre.com>
+	s=arc-20240116; t=1706087117; c=relaxed/simple;
+	bh=bYGjWyfNDuuEy/uhJ2BsahwEeQkQmwNi/I2B366Ra5w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ckuqldGufjeFFoejXmixmbkFu7Ts3bjgt/FsnmmeLlJAvg/NVdM+9av6XqQyiNXIPM44NQ18jnxkWQs8erxj2n2Qsju6QIEtPk2VqYhDDSo+DqVL/QgMLv9IFhz2uPJIKQ0sPde1O3rPQtrYSDuq0fEdaQDGq2n+MuRQIxCcVzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=WcIIr6q1; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a26fa294e56so524138966b.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 01:05:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1706087113; x=1706691913; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9TdYwfAa3Kb++bbinJAM8F6n7j06tuxaI+2yyckzaPc=;
+        b=WcIIr6q1JjNbUJ44GICbccxKaSJ2iIJ7tzpKtG9ffIPrtoR5l0+qXYJ6/qWg4ucD6A
+         PrgDTdSXKxI5o3hLlWT+OGXXqCiJNaSaeRUjObAT6VSMyuVpvUXuqLgyCPnAjPYkx7oi
+         LJBozvVgB8INR5E6l303x/Ypyv66yvXwfAswQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706087113; x=1706691913;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9TdYwfAa3Kb++bbinJAM8F6n7j06tuxaI+2yyckzaPc=;
+        b=aISDN0zqTBPdiiA6vIf9d3WV1lYONcP7dQLhB0XWay7ta+YiLAKWWKfbF5aMcMyUIj
+         ZtbcK6F1DLCe6HieWt5VCWdcvz2xJkeXpEqcMa1QppfWC/zFI+oDAGVvjQODYzKr+2Pr
+         w1+YQFNZvDmoGm9m+dVYdBu5ZG02BT8ztmqCSu4YXxOWqX3X+TYM+u1McDgrNp34hzxM
+         rOf2JNXyKuR5kAu4fWwjJf8DjmfZ1mXkw/o6mCXsVJo/unPe5dXNmKUoLZ4Iw/PRqvTy
+         S0ZN2F0DV4mqncC5igybk2C9TqyyAgqyJ50tHvkVfV1TzYsjnx+5ZftAwWDg7JYxzlue
+         PNxw==
+X-Gm-Message-State: AOJu0Yxb3t+ft0ik9fpWHUPTJ3MCjBM/xiybvSlo5q4JX0lU9LybBxui
+	6BDvYcPXW0Mgsg5fTMbwmFsy33ZhKUJeXuVuXdbjyMi4ASlfka6mSQey9SIj5OtUnrRTW7CG0yL
+	mDt8ci44=
+X-Google-Smtp-Source: AGHT+IGYwJ7rES5nCq/A3/9PzmH6jkbEGKpluuiAodXg7uc84kdCHLcJTyutByQzcKhwx7a+wXGyGQ==
+X-Received: by 2002:a17:906:b811:b0:a30:d7b8:a827 with SMTP id dv17-20020a170906b81100b00a30d7b8a827mr645637ejb.150.1706087112986;
+        Wed, 24 Jan 2024 01:05:12 -0800 (PST)
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com. [209.85.218.49])
+        by smtp.gmail.com with ESMTPSA id t15-20020a17090605cf00b00a28aa4871c7sm15063087ejt.205.2024.01.24.01.05.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Jan 2024 01:05:12 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a2f79e79f0cso515744666b.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 01:05:12 -0800 (PST)
+X-Received: by 2002:a17:906:1756:b0:a30:cc71:7340 with SMTP id
+ d22-20020a170906175600b00a30cc717340mr560441eje.120.1706087112019; Wed, 24
+ Jan 2024 01:05:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="h373wi4nrohxmd3v"
-Content-Disposition: inline
-In-Reply-To: <20231222111658.832167-6-jbrunet@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-
---h373wi4nrohxmd3v
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+References: <20240124-send-upstream-v3-1-5097c9862a73@chromium.org> <786c85c7-7b38-4a2a-85ec-282196de7b5e@collabora.com>
+In-Reply-To: <786c85c7-7b38-4a2a-85ec-282196de7b5e@collabora.com>
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Wed, 24 Jan 2024 17:04:35 +0800
+X-Gmail-Original-Message-ID: <CAHc4DNKXOb54v7qJZJ2EsVP1KkMq7WnSJJLWhb2SzuhW_=qnxQ@mail.gmail.com>
+Message-ID: <CAHc4DNKXOb54v7qJZJ2EsVP1KkMq7WnSJJLWhb2SzuhW_=qnxQ@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: mt8195-cherry-tomato: change watchdog
+ reset boot flow
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Hsin-Te Yuan <yuanhsinte@chromium.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 22, 2023 at 12:16:53PM +0100, Jerome Brunet wrote:
-> Pointers to the internal clock elements of the PWM are useless
-> after probe. There is no need to carry this around in the device
-> data. Just let devres deal with it.
->=20
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  drivers/pwm/pwm-meson.c | 67 ++++++++++++++++++++++++-----------------
->  1 file changed, 39 insertions(+), 28 deletions(-)
->=20
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index 15c44185d784..fb113bc8da29 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -90,9 +90,6 @@ struct meson_pwm_channel {
->  	unsigned int hi;
->  	unsigned int lo;
-> =20
-> -	struct clk_mux mux;
-> -	struct clk_divider div;
-> -	struct clk_gate gate;
->  	struct clk *clk;
->  };
-> =20
-> @@ -442,6 +439,13 @@ static int meson_pwm_init_channels(struct device *de=
-v)
->  		struct meson_pwm_channel *channel =3D &meson->channels[i];
->  		struct clk_parent_data div_parent =3D {}, gate_parent =3D {};
->  		struct clk_init_data init =3D {};
-> +		struct clk_divider *div;
-> +		struct clk_gate *gate;
-> +		struct clk_mux *mux;
-> +
-> +		mux =3D devm_kzalloc(dev, sizeof(*mux), GFP_KERNEL);
-> +		if (!mux)
-> +			return -ENOMEM;
+Hi AngeloGioacchino,
 
-I don't like this change. While it doesn't increase the memory used, it
-fragments the used memory and increases the overhead of memory
-management and the number of devm allocations.
+This bug can be triggered by stopping watchdog daemon and running
+`sleep 60 > /dev/watchdog`.
 
-Are these members of meson_pwm_channel in the way for anything later?
+Regards,
+Hsin-Te
 
-Best regards
-Uwe
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
---h373wi4nrohxmd3v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWw0i8ACgkQj4D7WH0S
-/k683gf9GGBr93JUCS2xEl/m1YAKTTgHqxB2JExfwiC6KJfo/FURTvQbLwW4gtu9
-BqujrqKJuEIj5YPmfS2DfmnGEQteeSmoeb6vtHwsKyehVtqSqDOF/1ZPSIakbMdx
-hE3kSBmZVCVPwj9s1JoNAlR+AtWRnzVYUdF40iEjJ6VPhWZB9Swh9KJhNfWAuUIg
-KxSIivAcwtRrtX9ThjzjKj5sPWGqdaVGTFxir66leKCCmsboGdDOAV60d39u0bSY
-cDXdp36+vG5DQh1bpjAUE7S/+URvABaCmV8CKBRpMSfyxLo9M65b8VlZS1Q36pl0
-ljk2vMhvu45fpewQYEgUv6kO82pUfw==
-=J1Jy
------END PGP SIGNATURE-----
-
---h373wi4nrohxmd3v--
+On Wed, Jan 24, 2024 at 4:27=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 24/01/24 08:51, Hsin-Te Yuan ha scritto:
+> > From: Hsin-Te Yuan <yuanhsinte@google.com>
+> >
+> > The external output reset signal was originally disabled and sent from
+> > firmware. However, an unfixed bug in the firmware on tomato prevents
+> > the signal from being sent, causing the device to fail to boot. To fix
+> > this, enable external output reset signal to allow the device to reboot
+> > normally.
+> >
+> > Fixes: 5eb2e303ec6b ("arm64: dts: mediatek: Introduce MT8195 Cherry pla=
+tform's Tomato")
+> > Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+>
+> Can't trigger the bug, but also this commit gives no side effects, so:
+>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+>
+>
+> > ---
+> > Changes in v3:
+> > - Add Fixes tag
+> >
+> > Changes in v2:
+> > - Limit the effect only on tomato.
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts | 4 ++++
+> >   arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts | 4 ++++
+> >   arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts | 4 ++++
+> >   3 files changed, 12 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts b=
+/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+> > index 2d5e8f371b6de..a82d716f10d44 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r1.dts
+> > @@ -23,3 +23,7 @@ &sound {
+> >   &ts_10 {
+> >       status =3D "okay";
+> >   };
+> > +
+> > +&watchdog {
+> > +     /delete-property/ mediatek,disable-extrst;
+> > +};
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts b=
+/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
+> > index 2586c32ce6e6f..2fe20e0dad836 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r2.dts
+> > @@ -43,3 +43,7 @@ &sound {
+> >   &ts_10 {
+> >       status =3D "okay";
+> >   };
+> > +
+> > +&watchdog {
+> > +     /delete-property/ mediatek,disable-extrst;
+> > +};
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts b=
+/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
+> > index f54f9477b99da..dd294ca98194c 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry-tomato-r3.dts
+> > @@ -44,3 +44,7 @@ &sound {
+> >   &ts_10 {
+> >       status =3D "okay";
+> >   };
+> > +
+> > +&watchdog {
+> > +     /delete-property/ mediatek,disable-extrst;
+> > +};
+> >
+> > ---
+> > base-commit: 64b50fcb03649ca7f0d762a50e7a3484cfc1d586
+> > change-id: 20230818-send-upstream-e91e615a893c
+> >
+> > Best regards,
+>
 
