@@ -1,148 +1,145 @@
-Return-Path: <devicetree+bounces-34774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C7E83AFEF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:31:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADF9383B010
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:33:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7554D1C27829
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:31:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E13271C270FA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8A7A7F7CA;
-	Wed, 24 Jan 2024 17:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEAB1292C5;
+	Wed, 24 Jan 2024 17:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mVolzOCP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Uhh3Cyxd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ABCF7E79A;
-	Wed, 24 Jan 2024 17:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12AA128395;
+	Wed, 24 Jan 2024 17:31:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706117418; cv=none; b=IG80uqEDfNfmmMN/ai/KIXVX5HZjnaOCwJkw2Atv4ctFhJgLLwszrUZbdcyfvH94K3rFILLZZT3L/ch32GBu2DQmzlJF5ZaPhU2AfhuOgY5Vjpmdn9VV0DB4Y2JpA4jv08LdH0dqhHriQj+3wjB/AGNUFzFQMdbNHnQ5un7mXzs=
+	t=1706117505; cv=none; b=amH58QwokYuoIOcvHZnbH6jVb3NRFGKsDr0jDdrKQ3IdNSLHuE0szdh947d02h43Zr6+cywK3+FjNHd47KYCah3jWMG+7Za5VhbU+026DT2s/VEq4nEoUhFioxgndflG8G3CdkLPJcDwctPovXc6/QGjq+gsNeuJ93PI131vUd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706117418; c=relaxed/simple;
-	bh=pvI+MdgET5RIzh4OhseZv9ITJ5vJ3r2qlytuGPthtbw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YMMz17vRgFW/uNoj1P86nRnNqci6XJ0YnmjaL/8hHEaGidNI3sFIQkjWxwRXFo2IlEJc3ETmgHlN5zPCuWGRINP7tESMGlw57itO+C8RJpicrZP9pgQaalVEU6Bz/PMuB3t+IgF4LyP5D7HLahnJOeOVmu6OedbobbDMJeKP/QE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mVolzOCP; arc=none smtp.client-ip=217.70.183.200
+	s=arc-20240116; t=1706117505; c=relaxed/simple;
+	bh=LyF+uGG8rthtsLAGU6JwLDXQ2xY38jRfZIJ/nE/+i4U=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=TLuypNU1rl9PKEDR2UPCVFSvic62fUgJcfk0aDwH1+Hdfvvm6WEq/cLCiUV0DQsJbDQbHw/tjN0YE1xiMy/WQjca2bVpInQsjOYyp7aON+Ebgh1GYwXzzSfkoQgnqpj2FhUuh/XBsNpYmRXvvTpK6HQcRxoTBXZvXxkqvKqjbhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Uhh3Cyxd; arc=none smtp.client-ip=217.70.183.193
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DA1FD20003;
-	Wed, 24 Jan 2024 17:30:10 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id AC82B240005;
+	Wed, 24 Jan 2024 17:31:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706117414;
+	t=1706117500;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=QDJPwgnovDPZQtAnXZHhrhDNXtdN2BbUYDsnE5iArNU=;
-	b=mVolzOCPVR+lxctmATLnQTHk4XMcD68acOR4A0c9we6uG8asCXhfcSc+YaoDS30d/2LjvO
-	AISia/Qos/zBCf3VLdQL5f9dT5FZ6VccdjYGftW2FmfLbT0vPSRcKqIiwb0oWwRt4eyJVY
-	gmvu4QKQQAk41BWtsNp3SIU3ZW/7d2rRiLzpfm2fcNUk/6fRR6ncNGDd/c5YOQRZKCY8ja
-	7yxHhLBOlL8zNE6myAxm0ZdG8O+lBwiyuI2su77WxAAiyGzB2dpxorEFJYOYEziVmxw+Kw
-	tEwATAwPhXMunV+sZBaQLLSZ+HCYf1FTzSOKNCNsGKJYSfsX25VnsZZf7mIQog==
-Date: Wed, 24 Jan 2024 18:30:08 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: David Regan <dregan@broadcom.com>
-Cc: dregan@mail.com, richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- computersforpeace@gmail.com, kdasu.kdev@gmail.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com,
- tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
- william.zhang@broadcom.com, anand.gore@broadcom.com,
- kursad.oney@broadcom.com, florian.fainelli@broadcom.com, rafal@milecki.pl,
- bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com,
- baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org,
- dan.carpenter@linaro.org
-Subject: Re: [PATCH v3 02/10] ARM: dts: broadcom: bcmbca: Add NAND
- controller node
-Message-ID: <20240124183008.04a1bcb0@xps-13>
-In-Reply-To: <20240124030458.98408-3-dregan@broadcom.com>
-References: <20240124030458.98408-1-dregan@broadcom.com>
-	<20240124030458.98408-3-dregan@broadcom.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	bh=FAy7AHDWICCoITFYxoF5yUyISVpdkZcGB4MmMxueyRw=;
+	b=Uhh3CyxddNadp3bKW19Bu/aCIlFIQepSAUY9rIKbk4eMy3+Hsd6tC2BF0Ckv+XHavn6JXm
+	fRDgh7zMogbFUGlEnTsJaCM1frdY/nxfTYmpI88kf8dAvxgG8qmJkn294h+KYxlHXcpYzG
+	9bYIDnIzycyT/FUtIJkoXPFXXJgk5KuPSXKJOybcNST3/sp5MOkX3S8LFqpkKIbfRTeuoP
+	P5NkAOHxlPlC+d2kMsmmx6Bm+HRdQzaojyr4FGCEXjre6A77llIpsjUO8DnbeXnsd5damr
+	VkrM0a0f+mzrn2F1tzM/bX95x99sl13FNSWD3aSaHsmy0PHd4yC5orLxj9ES6w==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 24 Jan 2024 18:31:39 +0100
+Message-Id: <CYN46F005M23.1Z11SN0VZF777@bootlin.com>
+Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, <linux-mips@vger.kernel.org>,
+ <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
+To: "Rob Herring" <robh@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v3 10/17] pinctrl: eyeq5: add platform driver
+X-Mailer: aerc 0.15.2
+References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
+ <20240123-mbly-clk-v3-10-392b010b8281@bootlin.com>
+ <20240124151949.GB930997-robh@kernel.org>
+In-Reply-To: <20240124151949.GB930997-robh@kernel.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hi David,
+Hello,
 
-dregan@broadcom.com wrote on Tue, 23 Jan 2024 19:04:50 -0800:
+On Wed Jan 24, 2024 at 4:19 PM CET, Rob Herring wrote:
+> On Tue, Jan 23, 2024 at 07:46:55PM +0100, Th=C3=A9o Lebrun wrote:
+> > Add the Mobileye EyeQ5 pin controller driver. It might grow to add late=
+r
+> > support of other platforms from Mobileye. It belongs to a syscon region
+> > called OLB.
+> >=20
+> > Existing pins and their function live statically in the driver code
+> > rather than in the devicetree, see compatible match data.
+> >
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
 
-> From: William Zhang <william.zhang@broadcom.com>
->=20
-> Add support for Broadcom STB NAND controller in BCMBCA ARMv7 chip dts
-> files.
->=20
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
-> Reviewed-by: David Regan <dregan@broadcom.com>
-> ---
-> Changes in v3: None
-> ---
-> Changes in v2: None
-> ---
->  arch/arm/boot/dts/broadcom/bcm47622.dtsi    | 17 +++++++++++++++++
->  arch/arm/boot/dts/broadcom/bcm63138.dtsi    | 10 +++++++++-
->  arch/arm/boot/dts/broadcom/bcm63148.dtsi    | 17 +++++++++++++++++
->  arch/arm/boot/dts/broadcom/bcm63178.dtsi    | 17 +++++++++++++++++
->  arch/arm/boot/dts/broadcom/bcm6756.dtsi     | 17 +++++++++++++++++
->  arch/arm/boot/dts/broadcom/bcm6846.dtsi     | 17 +++++++++++++++++
->  arch/arm/boot/dts/broadcom/bcm6855.dtsi     | 17 +++++++++++++++++
->  arch/arm/boot/dts/broadcom/bcm6878.dtsi     | 17 +++++++++++++++++
->  arch/arm/boot/dts/broadcom/bcm947622.dts    |  4 ++++
->  arch/arm/boot/dts/broadcom/bcm963138.dts    |  4 ++++
->  arch/arm/boot/dts/broadcom/bcm963138dvt.dts | 12 +++++-------
->  arch/arm/boot/dts/broadcom/bcm963148.dts    |  4 ++++
->  arch/arm/boot/dts/broadcom/bcm963178.dts    |  4 ++++
->  arch/arm/boot/dts/broadcom/bcm96756.dts     |  4 ++++
->  arch/arm/boot/dts/broadcom/bcm96846.dts     |  4 ++++
->  arch/arm/boot/dts/broadcom/bcm96855.dts     |  4 ++++
->  arch/arm/boot/dts/broadcom/bcm96878.dts     |  4 ++++
->  17 files changed, 165 insertions(+), 8 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/broadcom/bcm47622.dtsi b/arch/arm/boot/dts=
-/broadcom/bcm47622.dtsi
-> index 7cd38de118c3..55ff18043d96 100644
-> --- a/arch/arm/boot/dts/broadcom/bcm47622.dtsi
-> +++ b/arch/arm/boot/dts/broadcom/bcm47622.dtsi
-> @@ -138,6 +138,23 @@ hsspi: spi@1000 {
->  			status =3D "disabled";
->  		};
-> =20
-> +		nand_controller: nand-controller@1800 {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +			compatible =3D "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcm=
-nand";
-> +			reg =3D <0x1800 0x600>, <0x2000 0x10>;
-> +			reg-names =3D "nand", "nand-int-base";
-> +			brcm,nand-use-wp =3D <0>;
-> +			status =3D "disabled";
-> +
-> +			nandcs: nand@0 {
-> +				compatible =3D "brcm,nandcs";
-> +				reg =3D <0>;
-> +				nand-on-flash-bbt;
-> +				brcm,nand-ecc-use-strap;
+[...]
 
-Describing the NAND chip in a SoC DTSI does not look relevant to me.
-Even more if you add something like this nand-ecc-use-strap setting
-which is very board dependent.
+> > diff --git a/drivers/pinctrl/pinctrl-eyeq5.c b/drivers/pinctrl/pinctrl-=
+eyeq5.c
 
-Same applies to your arm64 DT patch.
+[...]
+
+> > +static const struct eq5p_match eq5p_match_a =3D {
+> > +	.regs =3D {
+> > +		[EQ5P_PD] =3D 0x0C0,
+> > +		[EQ5P_PU] =3D 0x0C4,
+> > +		[EQ5P_DS_LOW] =3D 0x0D0,
+> > +		[EQ5P_DS_HIGH] =3D 0x0D4,
+> > +		[EQ5P_IOCR] =3D 0x0B0,
+> > +	},
+> > +	.pins =3D eq5p_pins_a,
+> > +	.npins =3D ARRAY_SIZE(eq5p_pins_a),
+> > +	.funcs =3D eq5p_functions_a,
+> > +	.nfuncs =3D ARRAY_SIZE(eq5p_functions_a),
+> > +};
+> > +
+> > +static const struct eq5p_match eq5p_match_b =3D {
+> > +	.regs =3D {
+> > +		[EQ5P_PD] =3D 0x0C8,
+> > +		[EQ5P_PU] =3D 0x0CC,
+> > +		[EQ5P_DS_LOW] =3D 0x0D8,
+> > +		[EQ5P_DS_HIGH] =3D 0x0DC,
+> > +		[EQ5P_IOCR] =3D 0x0B4,
+> > +	},
+>
+> These are all the same relative offsets, so you really only need to=20
+> store the base offset.
+
+Indeed, and I don't think I had even noticed. Thanks.
+
+> The use of 2 compatibles is a bit questionable as the programming model=
+=20
+> appears to be the same and only which pins differ. Surely there are=20
+> some other pinctrl drivers handling mutiple instances.
+
+I can confirm the programming model is the same across both banks. I've
+addressed your comment in my answer to yours on [PATCH v3 04/17].
+
 
 Thanks,
-Miqu=C3=A8l
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
