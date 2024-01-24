@@ -1,112 +1,80 @@
-Return-Path: <devicetree+bounces-34805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8B2283B175
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 19:50:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0802783B1A2
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 19:59:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C9D7B2621F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:49:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC53EB2771D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:58:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A266C13472F;
-	Wed, 24 Jan 2024 18:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF16131E23;
+	Wed, 24 Jan 2024 18:58:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tPYZguiw"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="j9mgSg72"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3BD132C0D;
-	Wed, 24 Jan 2024 18:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40AE112AAC0;
+	Wed, 24 Jan 2024 18:58:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706122058; cv=none; b=Q8Ttiz2vGmQpuAn9cEHBif3OZw/RjSysbTHBcP/mMaDFpxKGlUdo+SZyAKbDJYgElxYiJ5RjxqNXiMMLcGSVMB0TgRinrzrGfOrQt2GcbiDqggR0tdJfL/JT6cY3hscV4BAG5oK1jFtodHyVOiO3hKvBE3S0h7zqWl5bhFpau4c=
+	t=1706122729; cv=none; b=K5RWsKYdg2rswrk5PxtGh2ZoCXbNCH1vYGjQevU1EkraTqCQckuCVdSgNYjSvLXoZe8ntjes2Xg2MGTeyUITpRSnL/Zboch2rpwWfmZ57v91W0z6JO65T6l7FCdqaunqdU3HbJ+wAOxqA5NSBNH9V9UEMCvRUiye1csq8+LssFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706122058; c=relaxed/simple;
-	bh=DrTAZKF5736ObEIMtMzHc1o3LhiYd+ETBzd2tQLud9A=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HPysbuABk9eqCIazwO3x5qKU/P3I/ARKJjnFYqc8v6FBAALws61bWCbUAnwTTUiS2tt4Op0djqRVdGR7DzZ7ugGxmCFzU5sUX8vReBo8Te594/TBjG/5cNjfm7Ql/Ej2ruEJTCANZ+HkqkPt3c8Pp+egf4olClH4vwN1qOvivDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tPYZguiw; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40OIlSgq093982;
-	Wed, 24 Jan 2024 12:47:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706122048;
-	bh=becmkEh0ceKIBX8EEyQgA6Nc9kWrrZwFLJkI8S54o3U=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=tPYZguiw8zI2LzB9qlmnnDvRZkInLDN9iiTnwQptz8CjiO5Xs2bB8ZImQqurKcWln
-	 Y/plrmiHiZpPvDiXSA1Rltx+W4eo4Sh4tXKZWXR5V0NmUYHTtQMbwZ2mjG5mRSYuAQ
-	 t+Ayrgshd8HBWWYJb96ZRDCFcUKkAATr+PQxS+Tk=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40OIlSvX127988
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 24 Jan 2024 12:47:28 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
- Jan 2024 12:47:28 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 24 Jan 2024 12:47:28 -0600
-Received: from lelvsmtp6.itg.ti.com ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40OIlNaX119099;
-	Wed, 24 Jan 2024 12:47:27 -0600
-From: Andrew Davis <afd@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH 11/11] arm64: dts: ti: k3-am62a: Make the main_conf node a simple-bus
-Date: Wed, 24 Jan 2024 12:47:22 -0600
-Message-ID: <20240124184722.150615-11-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240124184722.150615-1-afd@ti.com>
-References: <20240124184722.150615-1-afd@ti.com>
+	s=arc-20240116; t=1706122729; c=relaxed/simple;
+	bh=idpivWfwh0y0q2Kq4FzfMntFi5dUXTuAC4flqOAXS3s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DLScr/prbAMHVJkHxfcsEaC/5QJUFbFXcWef3kN7SfYpuFLMrZgUMXl5f7b2kWcM40LrNCYVTFKIPoFFVQFgRJlmEQzfcpGLPtPgS2U2fLDAFg+fZHXSP7qkdRPUctrv5MuNPU6O9kDZnF+P9LR4BH0UtFmGSRd/1fZR7Yaejgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=j9mgSg72; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 087C31C0076; Wed, 24 Jan 2024 19:58:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1706122718;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=idpivWfwh0y0q2Kq4FzfMntFi5dUXTuAC4flqOAXS3s=;
+	b=j9mgSg72l5T6vbfY+R9izxsUIOURfKlNIzDD5yoBUEJ7PEpZ34psQdIIbBt2QaboxYLFA2
+	c2FyiPuQ+7mD0zLnsn5GsbcRq2BUSNWxATbUcP7K5WOLIflJHe64UmJsx0jBiYMLd645B5
+	8XS2d/1q05d6Nu6qmNoDQlwjcBjpLKI=
+Date: Wed, 24 Jan 2024 19:58:38 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: Andrey Skvortsov <andrej.skvortzov@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Ondrej Jirman <megi@xff.cz>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Arnaud Ferraris <arnaud.ferraris@collabora.com>
+Subject: Re: [PATCH] arm64: dts: sun50i-a64-pinephone: Add front/back cameras
+Message-ID: <ZbFd3uLhTnapk_lv@ucw.cz>
+References: <20240123214729.2852346-1-andrej.skvortzov@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240123214729.2852346-1-andrej.skvortzov@gmail.com>
 
-The main_conf node does not need to be a syscon, so change to
-"simple-bus". This removes a DTS check warning.
+Hi!
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+> Pinephone has OV5640 back camera and GC2145 front camera. Add support
+> for both.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-index f0b8c9ab14593..eb3b6679e612c 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-@@ -42,9 +42,8 @@ gic_its: msi-controller@1820000 {
- 		};
- 	};
- 
--	main_conf: syscon@100000 {
--		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
--		reg = <0x00 0x00100000 0x00 0x20000>;
-+	main_conf: bus@100000 {
-+		compatible = "simple-bus";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges = <0x00 0x00 0x00100000 0x20000>;
--- 
-2.39.2
+Thanks for doing this. I'm currently fighting with kexec on pinephone
+(it crashes as soon as I pass dtb) so I did not test this, but hw
+description looks fine.
 
+Signed-off-by: Pavel Machek <pavel@ucw.cz>
 
