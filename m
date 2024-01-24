@@ -1,148 +1,199 @@
-Return-Path: <devicetree+bounces-34784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 840FC83B032
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:41:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1674583B118
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 19:26:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B79751C23804
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:41:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AFF2B333EB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:49:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F9586151;
-	Wed, 24 Jan 2024 17:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4839612BEA4;
+	Wed, 24 Jan 2024 17:47:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GTartNSV"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="J8Z3DOmk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2081.outbound.protection.outlook.com [40.107.6.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E886C86129;
-	Wed, 24 Jan 2024 17:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706118035; cv=none; b=PCwAaIPuGKsMghXVKZuugIwvJusiwcM7jYsC2jX5BSaiXxo1fJZzxpr9jb5xbPymmodsE32LQ1a5bRsxixOayFb/rE7oZUkitVmmeWO5tbOiDU1FZkHp7+JHw18gcMYsdxS6LkH32K++PQa3qr2y9T/a+9qYJeCrs/Vj7MdovrA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706118035; c=relaxed/simple;
-	bh=8gQF0U6eHH6iUkLw6yhHPNLgdvAzk3OMbv/DK+aIbko=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fTHisE8fRoTsZnE1tO5SypMqEqWyQIFGLZKA9C0gQaUQUcplwTuJg/WvRjRt8qJr5NuOIDhhyPQGDe2MdQUN3YL/u7j+LuifJ0VUVL//4uSO/ymPwkt1oUqly99VLxvIggTUk2gJNEFa4IAh21k4XLWE3EsO5nVC5g8Xvk/9Fmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GTartNSV; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DCF851BF20E;
-	Wed, 24 Jan 2024 17:40:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706118030;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+9fxvXwre8RvANs3toNyR8cUFT2cBUQEnb6nLZSDgnE=;
-	b=GTartNSV42U1nllXnMMP3aHwlGI/uQS1npcEBCAhl82CqzmhpWZyy0umHbMQZvndvILcei
-	+MzcRQdSS1m/SffVGt+DBHi1UneiynjaI+ZoON+wxOloCR1MWHkivqQcex1aGBj2A4otll
-	BKR/wB/kNds+aHS8FpUH6HuTLci1NVg33cDOFWLZV+H+RaIadaxRap2pgvkPlgtMunlB6r
-	pCCb/fPnrzaV1a6Iz7PjlF9c0IXZ7Xr8iup3NuWDjy6TqJ1akkpsAuYCEc2DbHQdrTmdhI
-	v9okB9VMwgbEDboKsfT0uyjTvjB7gPsEWBA7obVIB1ACu54CKMnVzexPyged5g==
-Date: Wed, 24 Jan 2024 18:40:27 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: David Regan <dregan@broadcom.com>
-Cc: dregan@mail.com, richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- computersforpeace@gmail.com, kdasu.kdev@gmail.com,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com,
- tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
- william.zhang@broadcom.com, anand.gore@broadcom.com,
- kursad.oney@broadcom.com, florian.fainelli@broadcom.com, rafal@milecki.pl,
- bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com,
- baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org,
- dan.carpenter@linaro.org
-Subject: Re: [PATCH v3 10/10] mtd: rawnand: brcmnand: allow for on-die ecc
-Message-ID: <20240124184027.712b1e47@xps-13>
-In-Reply-To: <20240124030458.98408-11-dregan@broadcom.com>
-References: <20240124030458.98408-1-dregan@broadcom.com>
-	<20240124030458.98408-11-dregan@broadcom.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19C0E129A75;
+	Wed, 24 Jan 2024 17:47:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.81
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706118448; cv=fail; b=nGZ48EZWW6U4vJYJfXgpCYL+CCGSWmn3mQuoPYDutrNWF0ixoXi0SsD5u551LrNQzcUa89GutyvtuB+w7njGYyX3ESNI+H/oDJILh1Z72ltssqLTW4wAa/i1KWTh0MDCansy0kYjOr4htTxJt3NipVcXYPowYh+MJW56pE3xUFk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706118448; c=relaxed/simple;
+	bh=CecXqqUQNUztXbgS/sQnGwa1/ONJnh+EFDVoYaKv9Vw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=KRrdyjFLmn6xJWeGKQzmDkMheRojSxiSMMUgqNnu6Z6NBSJLeTpWBr3CVYC4Ozuqipe5MbYxNXkswdItpfWQZmiMZWjn9PGTACRLX+picK9TDJmikcZYfTAfOTf36mZl4dJU29ekiHjp101dcQyCKunp3QCJZIQPDqlVJLlXhlE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=J8Z3DOmk; arc=fail smtp.client-ip=40.107.6.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Jz5GrN13zvvZa8wJn1hH5Ma3b4ldDJSwMRVRv3DJX+1DZY2DvMRzOvPr/DP1wyCaJuWjsuCrUjTcdTWsgyIeBML85jBqNSjgnwMRLiTpgWnjvEFiWTvoZD04WxjChvDIsm2Pw7NGlZSEyQZ/aJAAtiFoLUDoku8tuFstqezOiDFCmfYwyHTAhTOT5OQPI4yyMcKwokPHmI0yGw0t7jvPqeWis8lHbWDWHTfNy0vi7wHri2v/oG6/v8awtC4B2wBRonBP+E29jl0QPHjzdwERfG3XNn3claacVtAeezsMH9/1kK0KAB8D/wowdj4a+PhM4CJuhz9BJmCW1ganWgnHEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K4z8tJ3R9qttqMdfJs0s9kQTDnXv5kOfYx6SDR7F8gY=;
+ b=XgP5p5q0MtdggjPsoc5b3wQoEB5QhWTEwUX6Pge6k9wIgNQ477rchb5tzNUZGARAOgiPax0EoFgYxp/Tg9TzcdF4ovxQiXqOLQ8k7H0icnhbslY7Oe52HmIyv2RNfbT30VAEgivUNrsd4GoeyVgD/oe8LBJRKCyVciIAw/Dj/UUmgxDeCedwP9I2d+qxPr0bF0bTsB8S3A4oO9hEG2/rfj7/H935PZHV1rDRSl07atyzqomApzqhvLQ8YS3nmglCMTnT3JSXSOSF3lFOHJUXA/mJB86a/i4Te2tC8IK4vFWWl3gTk2GojC42YfrRXgzBX5HiVeuq76Qb9uyUPvgJkQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K4z8tJ3R9qttqMdfJs0s9kQTDnXv5kOfYx6SDR7F8gY=;
+ b=J8Z3DOmke2cPSUaM5CgQn0kj8lIt1/7mAbrAu06UxUc90u+GDhqVIkroHkxfeeg8AOhD8r7I6HxhsNwLtsMBLnvkVmiZtyFkU1Yo5fGv1m0Giwx5kpV/uT6ksLBejNHzXY/fmyv0w3f3M51cdHC/CMBdiISB32OCEQ4gfoFP7Q8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.36; Wed, 24 Jan
+ 2024 17:47:23 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7202.035; Wed, 24 Jan 2024
+ 17:47:23 +0000
+Date: Wed, 24 Jan 2024 12:47:14 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: ran.wang_1@nxp.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+	"open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, mark.rutland@arm.com,
+	pku.leo@gmail.com, sergei.shtylyov@cogentembedded.com
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add snps,host-vbus-glitches
+ avoiding vbus glitch
+Message-ID: <ZbFNIvEaAJCxC2VB@lizhi-Precision-Tower-5810>
+References: <20240119213130.3147517-1-Frank.Li@nxp.com>
+ <20240124-unclothed-dodgy-c78b1fffa752@spud>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240124-unclothed-dodgy-c78b1fffa752@spud>
+X-ClientProxiedBy: BYAPR11CA0094.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::35) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB9367:EE_
+X-MS-Office365-Filtering-Correlation-Id: bba188a5-e27d-4d4e-15ab-08dc1d0484f1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	0TBqwmJiOKbIjPTLueNmnPcgRlFptYaILIk97sVQvruI9gjsQz2EM1GpWimHfdHfe237gfu9FwMa3h5Zp3CM+evDIRMWb29edtFEoHdmCXGFSQD0VA8T9EBYTlylujbDX4Bmvs+FOqxH851ro1qj5hRrsPpy82sSOQ9lYyHWPgpmuu7rV8o7qgOg7wzs+63RDHqXzOkppG/dwqfhivKCn/c/KhfajzUZuXvhmQWI0ebEwoSUG+mcOunvg+Zyij5PwdcWT+ZFPraNZJe60wjlEx1rL/0cXBhH+JG/PMDSGti+sTkWcsPKU0i+VwASR+bd8N+KIQc35cjv+CcK0rW3BhWgsboEcTHkGwENk2LMq+WOptgw+rSKC77Ayfx0cMQ0ZD6l2eW6fGGGKOJ9FFgAWFQV/nNGO50y8WY4FpLpapxrRN/wZvXVhysRk9VFMZBRBphrL+7AB6g3OAPqtpoMLLuLiClLZoeCFR2m+DCrz/D/PL60jpc9K13m7JfIgGM9vhT4DX89dDNfEbWWDzAI3XuQP3yHPJv62xg+SRqDh8kLbT7rawM69FcXQnRY3cs/GPIWj5I4ynUStncC9QlboE1p7jCq+pjZLrgqqpkw+2flKLPOs2O7SmA8c4dpMFholZAsAHinN+K8W1PmoSThQksMRf0Nd+0VeqjwFzXwv3w=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39860400002)(376002)(346002)(396003)(136003)(366004)(230922051799003)(230173577357003)(230273577357003)(1800799012)(451199024)(186009)(64100799003)(83380400001)(86362001)(38350700005)(41300700001)(8676002)(33716001)(52116002)(38100700002)(6512007)(4326008)(26005)(9686003)(6506007)(6666004)(316002)(6916009)(66946007)(66556008)(54906003)(2906002)(7416002)(5660300002)(66476007)(478600001)(8936002)(6486002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?BlMF7gC2WhEpXpwPydN2yea4KxtsXkDCFcIl/ZQH4KhZ3de5NJka6OvAzbnh?=
+ =?us-ascii?Q?OFWTgxQlIePqhHSOqRVoYD3R7WKOAjLu95SpF592bLXueqmapCD6fdXjvfzd?=
+ =?us-ascii?Q?GUpOSLjU2wnh1XohLfYx1uKPxlU0NpPLJ5WAHMOwWceg0GAbkrs3Nr44NhVq?=
+ =?us-ascii?Q?UxVzNCNaxhrxZCTevG1FdMcSKL+VjFwlHq3gr2WJOwYK6QI0GjfvyJqF5QEh?=
+ =?us-ascii?Q?uPg1BtXZR0Mp3KAcCbWqdAuv1cO5i0OkuqjkVG5uAQNRW1Qh5CauMvqpBRqW?=
+ =?us-ascii?Q?aa2Z2l/S5h77KxBld7QmlQ0LtpIuEKJVF6NrcjHyHm/tUviyDeIBhYSsVoId?=
+ =?us-ascii?Q?inGrh553VTZgrLLxO9rWaPOpIPYkDyf1U3dMDkiaZmM2DnAGU679acEarttC?=
+ =?us-ascii?Q?Fv69LO0Gi1ul2xqU2VfFhTMXwRVns/xOZm0FutO9l2jL9roZTByfpZwjytcG?=
+ =?us-ascii?Q?z+vpGHq6r9pO67tCqBXey4YBgaYs8UWjaVCDEHMdaikWbn92NfrIEFug9Wbd?=
+ =?us-ascii?Q?vw4gYSo+KgMZkat8LGxGfLTzc06sK+/nTmWzrvHn+Bnh+9CNuN51kQyCiPHC?=
+ =?us-ascii?Q?e9Z++37akXsBHddaaXVDb2+9N67HKdYn6eUrUAVhJF7BDD+SqsUoNE0CZkF5?=
+ =?us-ascii?Q?tv6gcoIx9XtQHDgEp7klqhn1y7qQQ/UoH72c7r8TIHVhnmbMeKehOdmrdEQT?=
+ =?us-ascii?Q?v/i+KiuHrH7zFhROpnlVMon+kSeXLK5t03QoVknw6giZnTkGE9ixVAFnCXdz?=
+ =?us-ascii?Q?jYcd8isr7w7tycXGxwUE41tPhGp3Mqhrtlu9kmx3KKv2MIAm0fZauG44M+me?=
+ =?us-ascii?Q?801NoJJ6f5m8iGR7krPIfENDVwC5BVgkO0o8OI4jXYV/BWy890BvbUL76EOS?=
+ =?us-ascii?Q?JIt+pbBRgm3si5WlEghs+Ec6xbFdcbIN9QNVYku4XqV2lC7sb96/b2/gbXBd?=
+ =?us-ascii?Q?hazGgtu6l/7N1oAHhgtiSyLohs6rSAn2SFjFwz3cbRodMBfXiA1X7DK2SNKu?=
+ =?us-ascii?Q?RkDvp1YP2gdkaa8dkclkR+zTJlxSq1AFpuMANTweTWYA8adR0he0jj7KYG4y?=
+ =?us-ascii?Q?LaBMoO9S6QjEew0bS1ng+sV4wxDR4tAuKODo3UwVXcghm52d2EG14BZPyiJC?=
+ =?us-ascii?Q?JvHl38aV1sCzj3VpL8O0O3kf6YKmAHcZIEgZ23WXZJnFopuv308ajVUoJgfx?=
+ =?us-ascii?Q?cnJErOk6yQPHrtA9+mjPz+lzOeAuxGAedUsBWehpss71MCR9CPopcIz8kEoS?=
+ =?us-ascii?Q?ZRw8W9raGJAtyEocPMFdxuoay1P35OWzNkHeAw4sH+pXvsm3SDgiXL3/KUKt?=
+ =?us-ascii?Q?OpLnGcrIqhb4PbeLaujmE4TlCSbLKqfakDSfYUWC2jnoN5R9dvItUj6D4DE2?=
+ =?us-ascii?Q?akoyGXf0iI9gKhu5kBLH+DO7YNUrWLGt7DfK2FtSVFEjH3hBLPrDEKSkwXBA?=
+ =?us-ascii?Q?lgEho3sZ6ZwGxtK07x3nnCgdXumIoiiNgSZRNk168um83rRFGjnqq3nZ6hxh?=
+ =?us-ascii?Q?iAQ0FBKMu/JKRRvlKPqGOJM+Z18f1uEdvGO9vyxLtnsd2N6mWiPg4BtS02rr?=
+ =?us-ascii?Q?ErHHIha1L2+9U95Rc6Z79Kf7OeRL09PUIRAfiQcm?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bba188a5-e27d-4d4e-15ab-08dc1d0484f1
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 17:47:22.9605
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: h3LXhktswaGu7+MHocOKvGV4Y/pypSpcY2uUwrAaY0EKThScOXlsbO8f6tp0oV1r9VxkqiFKDZXLKxb/ItrKLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9367
 
-Hi David,
+On Wed, Jan 24, 2024 at 05:36:42PM +0000, Conor Dooley wrote:
+> On Fri, Jan 19, 2024 at 04:31:28PM -0500, Frank Li wrote:
+> > From: Ran Wang <ran.wang_1@nxp.com>
+> > 
+> > When DWC3 is set to host mode by programming register DWC3_GCTL, VBUS
+> > (or its control signal) will turn on immediately on related Root Hub
+> > ports. Then the VBUS will be de-asserted for a little while during xhci
+> > reset (conducted by xhci driver) for a little while and back to normal.
+> > 
+> > This VBUS glitch might cause some USB devices emuration fail if kernel
+> > boot with them connected. One SW workaround which can fix this is to
+> > program all PORTSC[PP] to 0 to turn off VBUS immediately after setting
+> > host mode in DWC3 driver(per signal measurement result, it will be too
+> > late to do it in xhci-plat.c or xhci.c).
+> > 
+> > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+> > Reviewed-by: Peter Chen <peter.chen@nxp.com>
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > index 203a1eb66691f..dbf272b76e0b5 100644
+> > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > @@ -273,6 +273,13 @@ properties:
+> >        with an external supply.
+> >      type: boolean
+> >  
+> > +  snps,host-vbus-glitches:
+> > +    description:
+> > +      When set, power off all Root Hub ports immediately after
+> > +      setting host mode to avoid vbus (negative) glitch happen in later
+> > +      xhci reset. And the vbus will back to 5V automatically when reset done.
+> > +    type: boolean
+> 
+> Why do we want to have a property for this at all? The commit message
+> seems to describe a problem that's limited to specific configurations
+> and appears to be somethng the driver should do unconditionally.
+> 
+> Could you explain why this cannot be done unconditionally please?
 
-dregan@broadcom.com wrote on Tue, 23 Jan 2024 19:04:58 -0800:
+It depends on board design, not all system vbus can be controller by root
+hub port. If it is always on, it will not trigger this issue.
 
-> Allow settings for on-die ecc such that if on-die ECC is selected
-> don't error out but require ECC strap setting of zero
->=20
-> Signed-off-by: David Regan <dregan@broadcom.com>
-> Reviewed-by: William Zhang <william.zhang@broadcom.com>
-> ---
-> Changes in v3: None
-> ---
-> Changes in v2:
-> - Added to patch series
-> ---
->  drivers/mtd/nand/raw/brcmnand/brcmnand.c | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mtd/nand/=
-raw/brcmnand/brcmnand.c
-> index a4e311b6798c..42526f3250c9 100644
-> --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> @@ -2727,9 +2727,11 @@ static int brcmnand_setup_dev(struct brcmnand_host=
- *host)
->  	cfg->blk_adr_bytes =3D get_blk_adr_bytes(mtd->size, mtd->writesize);
-> =20
->  	if (chip->ecc.engine_type !=3D NAND_ECC_ENGINE_TYPE_ON_HOST) {
-> -		dev_err(ctrl->dev, "only HW ECC supported; selected: %d\n",
-> -			chip->ecc.engine_type);
-> -		return -EINVAL;
-> +		if (chip->ecc.strength) {
-> +			dev_err(ctrl->dev, "ERROR!!! HW ECC must be set to zero for non-hardw=
-are ECC; selected: %d\n",
-> +				chip->ecc.strength);
+Frank
 
-Can you use a more formal string? Also clarify it because I don't
-really understand what it leads to.
-
-> +			return -EINVAL;
-> +		}
->  	}
-> =20
->  	if (chip->ecc.algo =3D=3D NAND_ECC_ALGO_UNKNOWN) {
-> @@ -2797,7 +2799,11 @@ static int brcmnand_setup_dev(struct brcmnand_host=
- *host)
->  	if (ret)
->  		return ret;
-> =20
-> -	brcmnand_set_ecc_enabled(host, 1);
-> +	if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON_DIE) {
-> +		dev_dbg(ctrl->dev, "Disable HW ECC for on-die ECC\n");
-
-Not needed.
-
-> +		brcmnand_set_ecc_enabled(host, 0);
-> +	} else
-> +		brcmnand_set_ecc_enabled(host, 1);
-
-Style is wrong, but otherwise I think ECC should be kept disabled while
-not in active use, so I am a bit surprised by this line.
-
-> =20
->  	brcmnand_print_cfg(host, msg, cfg);
->  	dev_info(ctrl->dev, "detected %s\n", msg);
+> 
+> Thanks,
+> Conor.
+> 
+> > +
+> >    snps,is-utmi-l1-suspend:
+> >      description:
+> >        True when DWC3 asserts output signal utmi_l1_suspend_n, false when
+> > -- 
+> > 2.34.1
+> > 
 
 
-Thanks,
-Miqu=C3=A8l
 
