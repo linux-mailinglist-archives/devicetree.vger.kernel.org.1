@@ -1,55 +1,75 @@
-Return-Path: <devicetree+bounces-34696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2A5C83A9D6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:34:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CB6083A9E0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:35:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E86FD1C21AB3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 12:34:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0D37286058
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 12:35:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC997A726;
-	Wed, 24 Jan 2024 12:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F004277F07;
+	Wed, 24 Jan 2024 12:34:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WerqKHpc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xkqbvsGc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E46877F19;
-	Wed, 24 Jan 2024 12:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D71077F00
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 12:34:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706099609; cv=none; b=bHi90UIbL8vgJwpSmX14bxxAW7y4Rld8R/Mjt3nWdNvXN3g56wtzUfnGLK1wABPmbBybGP45LeuA+aGoqV3UsK4F+fjJiwYHfm/rNbXYxJXMWxowF1vuUvtVeFay1yiCULoqK6AOUHW5xFQbjuUyOIymhRUNgxi4qviztyrBrbM=
+	t=1706099645; cv=none; b=nCHIgyk+JdrU/HaFtT3vI4PcQv9Xnjd34R4OJkULE7wEwrCuOOFTRmI8/tsxqCFMiwA3CC1E/yUll6pCKWutEGCqLBvi1ZPSd27jqWVTCyaBDgk/4vDr2QN8m2+HyP37uunERZyQea9vXDcr+awwnbeCKpIdS3a/MfQ6pM7Ad/0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706099609; c=relaxed/simple;
-	bh=ZMh7iqIZgYI902YIRrVcFsxLdtDLtRhbiBT/Ncsnml8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vCln79Ufw5W3OQqp9g9zg4Y1yARwfKDP1jHHTROq2nL5CknLK/MjUR3Z8ZltrgQBgx/7mdjaD2P8Uze7JZinx5niUEbJ7N/XRgyXSf32EK4ME+1o+sExqG/3++N+KnnazKQ/lwKxN4f47K5hquCKO7j/zqH90xkX7ceZdz9TMJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WerqKHpc; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706099599;
-	bh=ZMh7iqIZgYI902YIRrVcFsxLdtDLtRhbiBT/Ncsnml8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WerqKHpc45Lp24f8eTua8oih5ZL9z1gcOG2ODNaWNOFzUfASve9em1n64H1F+l6x6
-	 73dfgZQm3x9qGAW13N6liRMSxmQkXNVjs2noqqzXzT9MiRX0Y7nHyu55k+4VZlKtXe
-	 YgUs9Opr0bfXzXHKMmSFMucgK4O2ivclSQBn8Gx/rATyYHAecgJUFZR0DSORUK754S
-	 dzD0lyDypgDzvL1Xy0aVwiR6WzxTFIBHN0LXRDRsDKAzHNbPHLhGTR5P/QptSjF3av
-	 INd2FDogojLmsndck7v9meID/NOA/6NgdWe+I3sMPiHhuN9vRVgVaCezEGlikaAaZ7
-	 i1YXF4Pfz9lcQ==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id CCBFE378207B;
-	Wed, 24 Jan 2024 12:33:18 +0000 (UTC)
-Message-ID: <62fca33c-eb1a-42ad-b7f7-31b14f0aa446@collabora.com>
-Date: Wed, 24 Jan 2024 13:33:18 +0100
+	s=arc-20240116; t=1706099645; c=relaxed/simple;
+	bh=y1OAzso9p+5ssFJXzvM0wjYbXQHZ5vKrOzRa+X3JbF8=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=r+bqyYfvBXN9Wi+1x0FkLvYwJTGB/dDsiMFL4vgzEi1bN2fA4hQyfFNuwypqYa++vOz0mxPMWSkLK4NKBb6Bk821MkJTWpTVkVnMavMIRjX6CTeViKJq9TEcrkRSwnR9/BUL9Y2Vn4COSXp8fp0uVpPEiNZcaFeeKJGUQENO464=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xkqbvsGc; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40e7065b692so58748155e9.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 04:34:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706099642; x=1706704442; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j4CyEqfj2/BL4C+FmAytidCDy1VCKLDY8HAXokTWCiA=;
+        b=xkqbvsGcZOEv7j+gLkf67i/wAdkY+uy34es1DfyPmlo9IZ56SJcjiINpa7BCB2Ejnl
+         pf/11aULcHlRW3wG5eqkrn/LeX4mhYGs354mr2PZcWNZBBmJetq4rP6vVE0Khe3vZxVQ
+         X2C0vsnYYZBUAMLLrLN2MESltKCHsXKkNftDqWYbeovJ3/Wgm4UsCPl1XecfpSZQMgtx
+         KAmqt1WtAbRtsYlsuo30JfHXFtMZMEwjeSBrQ7NihxPppTf1tOlEs7CmIeL6TNYzJE7V
+         WD6ZuwoxPiAx0Tciyd8Nz6HlkaBHarS0WCsivnqbc8Ds7yR1wuo6xMsDkECis9Tugb7E
+         6XXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706099642; x=1706704442;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=j4CyEqfj2/BL4C+FmAytidCDy1VCKLDY8HAXokTWCiA=;
+        b=W6BTAICopDzSTSj9tKLe1AZ43kEnif7WlC1wug3kHJokUzr3Px6COLDQEGb9E4OM/V
+         UdXOkozjlKFy/elqgg5yJ95Bt/1qxZ2ZFixlX5E8o9irfMNMQ25Bizskk/Qqob2pA8X0
+         YkGt4MiJE8kawvH9YdkhQ40rYbAsUQ7IMAgsiFrg4eFW1Dr65DNiLUkjGLrQXV29P+Ym
+         JldNI6jRMnQwxHsevGHLUrH1aZFioDIkPzH+yxjmGaocHKigZTHGBTj7qI8QFTGuT1BS
+         C5kEmaaguPstpEUHOTWdAzZexxEQWWGFAGAAV8yAh1zyV9BHDbHQo9pAJIsZlXAXv14p
+         A9qg==
+X-Gm-Message-State: AOJu0YwNLcAd1Y361MVaV0N8fYcRc6v63pBOeiwsy3dzyF1oLqM1hSby
+	7YnntueBTEXYZIx/ud+KipwvM1vtRyfumLxQ5+UDTE9D8SgPeJJPUx0j0zz5AYg=
+X-Google-Smtp-Source: AGHT+IEWrgPv43WEZDqGpGl2eARernH5yVyaeMrqaYve22L/yssZp7FrqxPycO+LGfkpDFcmEJim8g==
+X-Received: by 2002:a7b:ce13:0:b0:40e:596a:985b with SMTP id m19-20020a7bce13000000b0040e596a985bmr1155942wmc.160.1706099642464;
+        Wed, 24 Jan 2024 04:34:02 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:fd4f:fd82:e4fb:1654? ([2a01:e0a:982:cbb0:fd4f:fd82:e4fb:1654])
+        by smtp.gmail.com with ESMTPSA id ay2-20020a05600c1e0200b0040ead97f70dsm10083247wmb.24.2024.01.24.04.34.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Jan 2024 04:34:02 -0800 (PST)
+Message-ID: <e8d061fd-151f-4f8d-9199-2c1225bb2278@linaro.org>
+Date: Wed, 24 Jan 2024 13:34:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,153 +77,81 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: media: convert Mediatek consumer IR to the
- json-schema
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 13/14] arm64: dts: qcom: sm8650: Drop PCIE_AUX_CLK from
+ pcie_phy node
+Content-Language: en-US, fr
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
  <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240124095230.25704-1-zajec5@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240124095230.25704-1-zajec5@gmail.com>
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240124-pcie-aux-clk-fix-v1-0-d8a4852b6ba6@linaro.org>
+ <20240124-pcie-aux-clk-fix-v1-13-d8a4852b6ba6@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20240124-pcie-aux-clk-fix-v1-13-d8a4852b6ba6@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Il 24/01/24 10:52, Rafał Miłecki ha scritto:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 24/01/2024 08:36, Manivannan Sadhasivam wrote:
+> PCIe PHY hw doesn't require PCIE_AUX_CLK for functioning. This clock is
+> only required by the PCIe controller. Hence drop it from pcie_phy node.
 > 
-> This helps validating DTS files. Introduced changes:
-> 1. Reworded title
-> 2. Added required #include-s and adjusted "reg" in example
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->   .../bindings/media/mediatek,mt7622-cir.yaml   | 81 +++++++++++++++++++
->   .../devicetree/bindings/media/mtk-cir.txt     | 28 -------
->   2 files changed, 81 insertions(+), 28 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
->   delete mode 100644 Documentation/devicetree/bindings/media/mtk-cir.txt
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 6 ++----
+>   1 file changed, 2 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml b/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
-> new file mode 100644
-> index 000000000000..a2d0eed33292
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,mt7622-cir.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek,mt7622-cir.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek consumer IR on-SoC controller
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 2df77123a8c7..b31e60599891 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -2276,13 +2276,11 @@ pcie0_phy: phy@1c06000 {
+>   			compatible = "qcom,sm8650-qmp-gen3x2-pcie-phy";
+>   			reg = <0 0x01c06000 0 0x2000>;
+>   
+> -			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+> -				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> +			clocks = <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+>   				 <&tcsr TCSR_PCIE_0_CLKREF_EN>,
+>   				 <&gcc GCC_PCIE_0_PHY_RCHNG_CLK>,
+>   				 <&gcc GCC_PCIE_0_PIPE_CLK>;
+> -			clock-names = "aux",
+> -				      "cfg_ahb",
+> +			clock-names = "cfg_ahb",
+>   				      "ref",
+>   				      "rchng",
+>   				      "pipe";
+> 
 
-title: MediaTek Consumer Infrared Receiver on-SoC Controller
-
-> +
-> +maintainers:
-> +  - Sean Wang <sean.wang@mediatek.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt7622-cir
-> +      - mediatek,mt7623-cir
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: clk
-> +      - const: bus
-
-The driver says:
-
-	ir->bus = devm_clk_get(dev, "bus");
-	if (IS_ERR(ir->bus)) {
-		/*
-		 * For compatibility with older device trees try unnamed
-		 * ir->bus uses the same clock as ir->clock.
-		 */
-		ir->bus = ir->clk;
-	}
-
-This makes me think that requiring *one* clock on MT7623 would be a mistake
-and the devicetree should use clk, bus - CLK_INFRA_IRRX_PD, CLK_TOP_F10M_REF_SEL.
-
-Seen that - I'm sure that setting maxItems: 1 on mediatek,mt7623-cir would as
-well be a mistake.
-
-> +
-> +required:
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +allOf:
-> +  - $ref: rc.yaml#
-> +  - if:
-
-The solution would be to simply delete those if branches and, to keep compatibility
-with the already present mt7623.dtsi file, keep min/max items to 1 and 2 (of course
-in the case of clock-names, maxItems shall not be declared, as it's dictated by the
-consts).
-
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt7622-cir
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +
-> +        clock-names:
-> +          minItems: 2
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: mediatek,mt7623-cir
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +
-> +        clock-names:
-> +          maxItems: 1
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt2701-clk.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    ir@10013000 {
-
-Please use a common generic name, as seen in gpio-ir-receiver.yaml and in
-amlogic,meson6-ir.yaml:
-
-ir-receiver@10013000 {
-
-Cheers,
-Angelo
-
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
 
