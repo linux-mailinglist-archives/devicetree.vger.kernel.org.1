@@ -1,104 +1,172 @@
-Return-Path: <devicetree+bounces-34581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA77A83A3B8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:08:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F51383A41B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:26:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 096301C22440
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:08:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 536161C215AB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8F717542;
-	Wed, 24 Jan 2024 08:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nVK5oPfz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA9031756A;
+	Wed, 24 Jan 2024 08:26:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97AA5171CD
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 08:08:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0C8A17565
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 08:26:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706083689; cv=none; b=K3Cg/giXzit8mg0lk/chjGqkmuJDJy7Ik9rPR769tj5ybboPKMT2+tVNvLG5qt+I5XVv1OKsY1IKOpEfS8orH0/QyrLUWdGre//pKWeGWTpyGiifWcBtdIgqS4Ek3+m4oHE6y+CxjfWX1LiTnGSEi6K+PgBVWwnhDLwi5PVDBZQ=
+	t=1706084800; cv=none; b=eBw7lht0dtDWgK0vUGtIBKCcdrVQigN9CKthm/+1yPHXxwwbvuHx6525tJYJPcWmNvwp4SXv8UiGHtxmmqQTZNlVtLjo1672zkEiE8xiByKqss8NBsy0k7M1FnQ5org5WfmtV8QNNgU9ZwOAK9Dp4LBTBd05kjaeSUhT6yEKf+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706083689; c=relaxed/simple;
-	bh=91SKWZKxZZJ9JjqBsEeN2LxEmIvX4sQqPRYAQaqFWFI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ED2A7ym/jVzo7MdIQBprf+eyoqXfAocVm1gHIB1orPSqxtG4RrDssXPPrVIZQEy7JvdPSrTydknqqMrVb1aVK4UUWQwQFoUEN+Le27MD3sD8JcNvgTJA5tKr1cHQlsC603HIPU20AxzZfpjw273+ca5OJKVL3yO5XAQ6MNwhsuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nVK5oPfz; arc=none smtp.client-ip=209.85.219.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dc223463ee4so4585245276.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 00:08:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706083686; x=1706688486; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2oicDxJ90c/wDJuJ0lxNnczG+6khLtrNzAW2IGNICIQ=;
-        b=nVK5oPfzig3WsPDO+hAml4Kdf/SzPC0EMKjA6TIbVgAjx+vUbtCV54PVybfwapXHvD
-         cGsT39mZjYQ4MV8gPM9TTVBu8QBZhs9jVJvVYGHWtF0T+hN8IxuXSb7Rvw9htO9fTvbc
-         wuoK5cBMk9+64KENbLpLLI83JQK7eFbnIzG8wcDeVUFHVl8y+SwVh8AbL9WdKleB8hD1
-         QWqaluE1OT2ejxcRHJNvrjgIsV4OokG6RMMlXGxCJvyG9/GOBaITIJ2iS32j9s6Pyy8w
-         A0IH9gTyB6yj0uEdHGkcoXYaz1e3S5grxwNzBFoeAtx8ZOanPuxcm6d1tXifljtXDgJh
-         qTmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706083686; x=1706688486;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2oicDxJ90c/wDJuJ0lxNnczG+6khLtrNzAW2IGNICIQ=;
-        b=BZcWl3ZEsCy8dixzP7xiB4hfGNob2e4eL5OgKgJvX8YoHuyaiLFVu/kbzQh7Wk6g8C
-         /+F99o3cF8oPVVsIwmiSEX/xGkID0XUXRHK/54QMxLUnxhtiwHsg97PLRs4kfeOyw4QE
-         spXtA47rBtFHCqR77KOSlOPDg+nZnIARecbi9UPmH2KLiGvVkVinfa0/9y364f3FZPnP
-         oN+BlrJ0fro1jRP7VI594erZUU4yWZxDpefRmt+9Pul58rIaCjVPuZrq/U6cLT4+6JZA
-         o/EsiRt6VtRwpI5aAFe3X/5L2+FL2hEMnxFC9di9VXCAVHpawRB0Vptk7ERB7iNY/XQw
-         e/5w==
-X-Gm-Message-State: AOJu0YyMk6uotP2dYWh9BENSJJeS4+YBKzJiDSSJ0ZeRL8tFNQDxoZe7
-	SOrCTHJrHyZb6eSUQw4EpJESZtxdJD9pxDF9b+sJWJdyH9RD5FNG+9p5f/vm+C6PQHjEZhPU06Q
-	sS0soKziLrT3RIea6vTlsc1V8ZN5s1el/7M5csw==
-X-Google-Smtp-Source: AGHT+IEBx+hbv8cP9QQzl1nlNfUSW8zsGd6/0L2c4D7VdKAIm+FH6gkg6c1ug2KhF8rkgn0s4KWP1B+MHSfUQwurYAE=
-X-Received: by 2002:a25:bfcb:0:b0:dc2:303b:db2f with SMTP id
- q11-20020a25bfcb000000b00dc2303bdb2fmr308783ybm.101.1706083686675; Wed, 24
- Jan 2024 00:08:06 -0800 (PST)
+	s=arc-20240116; t=1706084800; c=relaxed/simple;
+	bh=HQRiUyWco/AQAm8j4TGQ2KP7Et83Pp67ONtM56voZgM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K81eAJRO0FlEI4qQeqQ1mggqs615hdUAkKNUolxkl8iX0GMRUZjfKtG9mgOeOn0p1vs1fYMxe25NW/5Ig4nFNZkYHgeGVQdacy9Ud9+atmk78L2FsYUfHx9N3rxY5Pkz1y6mcXenWL2F2yZ8gmGE7WVVZ+ddQLotjTRZ5rfv3P0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rSYag-0006T1-8M; Wed, 24 Jan 2024 09:26:34 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rSYaf-0020x1-75; Wed, 24 Jan 2024 09:26:33 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rSYaf-006zXL-0P;
+	Wed, 24 Jan 2024 09:26:33 +0100
+Date: Wed, 24 Jan 2024 09:26:33 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Johan Jonker <jbx6244@yandex.com>
+Cc: linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+	linux-rockchip@lists.infradead.org, Thierry Reding <thierry.reding@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: pwm: rockchip: Allow "interrupts" prooperty
+Message-ID: <5swqcqpc5zwa3bfhuoyjnymozyzy3lgurnbsurebybj2c7fck3@ycwk2ugo2ouf>
+References: <20240106142654.1262758-2-u.kleine-koenig@pengutronix.de>
+ <7dea73a6-d733-4cd2-b2d5-02f09e2a6dd9@linaro.org>
+ <94ad0f59-4095-40ee-963d-4ac379fc8852@yandex.com>
+ <cvvifoctmgdsgqfadqbhgywfw2ff57fz33w26hghf5kyo5j5sw@mj75xtvczr2h>
+ <210132de-a46b-4f9f-8546-0c36d8a34665@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240124023305.15755-1-quic_tengfan@quicinc.com>
- <20240124023305.15755-2-quic_tengfan@quicinc.com> <88e8cffb-024d-4f4d-ba1f-e0be9ee85e31@linaro.org>
-In-Reply-To: <88e8cffb-024d-4f4d-ba1f-e0be9ee85e31@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 24 Jan 2024 10:07:55 +0200
-Message-ID: <CAA8EJpqXS97FXoTwiLaSeHHEDOeBFRPRbCNR6WF-ArDm22tu-Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: modify the wrong
- compatible name
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, linus.walleij@linaro.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-
-On Wed, 24 Jan 2024 at 08:38, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 24/01/2024 03:33, Tengfei Fan wrote:
-> > Use right compatible name "qcom,sm4450-tlmm" instead of
-> > "qcom,sm4450-pinctrl".
->
-> Why do you claim this one is right and other is wrong? Provide
-> arguments. To me the compatible looks correct.
-
-Yeah, but the driver (and the dtsi) use -tlmm
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="g63cxjnywwxblftj"
+Content-Disposition: inline
+In-Reply-To: <210132de-a46b-4f9f-8546-0c36d8a34665@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
--- 
-With best wishes
-Dmitry
+--g63cxjnywwxblftj
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello Johan,
+
+On Sun, Jan 07, 2024 at 11:30:14AM +0100, Krzysztof Kozlowski wrote:
+> On 07/01/2024 00:25, Uwe Kleine-K=F6nig wrote:
+> > On Sat, Jan 06, 2024 at 10:25:10PM +0100, Johan Jonker wrote:
+> >> On 1/6/24 18:10, Krzysztof Kozlowski wrote:
+> >>> On 06/01/2024 15:26, Uwe Kleine-K=F6nig wrote:
+> >>>> This fixes the dtbs_check error
+> >>>>
+> >>>> 	arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb: pwm@10280030: 'inte=
+rrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+> >>>> 	from schema $id: http://devicetree.org/schemas/pwm/pwm-rockchip.yam=
+l#
+> >>>>
+> >>>> in several device trees.
+> >>>>
+> >>>> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> >>
+> >>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>
+> >> NAK
+> >>
+> >> There's a reason why this isn't implemented before:
+> >>
+> >> [RFC PATCH v1 1/2] dt-bindings: pwm: rockchip: add interrupts property=
+ <https://lore.kernel.org/linux-rockchip/ed3df2c8-ffb5-1723-0ed7-3a27219728=
+52@gmail.com/#r>
+> >>
+> >> https://lore.kernel.org/linux-rockchip/ed3df2c8-ffb5-1723-0ed7-3a27219=
+72852@gmail.com/
+> >>
+> >> [PATCH 1/1] dt-bindings: pwm: rockchip: Add description for rk3588 <ht=
+tps://lore.kernel.org/linux-rockchip/20220901135523.52151-1-sebastian.reich=
+el@collabora.com/#r>
+> >>
+> >> https://lore.kernel.org/linux-rockchip/66b5b616-ae9f-a1aa-e2b5-450f570=
+cfcdd@gmail.com/
+> >>
+> >> [PATCH v1 03/11] dt-bindings: pwm: rockchip: add rockchip,rk3128-pwm <=
+https://lore.kernel.org/linux-rockchip/f5dd0ee4-d97e-d878-ffde-c06e9b233e38=
+@gmail.com/>
+> >>
+> >> https://lore.kernel.org/linux-rockchip/946d8ac2-6ff2-093a-ad3c-aa755e0=
+0d1dd@arm.com/
+> >>
+> >>
+> >> On how to correctly model the DT with common interrupts , PWM and one =
+shot as a sort of MFD etc there's no consensus yet.
+> >>
+> >> Leaf it as it is till someone made a working driver demo, so that the =
+coder is free to model a DT solution that fits to him/her.
+> >=20
+> > Having the warnings until this happens is bad though. If describing the
+> > irqs in the schema is considered wrong, we should remove the interrupts
+> > properties from the device tree sources.
+>=20
+> I think the previous thread mixes bindings with driver. Does the
+> hardware have interrupt? Yes? Add it to the bindings. No? Don't add it.
+>=20
+> However Johan's reply is saying something about driver, so how is it
+> related?
+
+Following Krzysztof's argumentation I'm inclined to apply the patch
+despite Johan's objection as the irqs are already described in the
+device trees and not having them in the binding only adds warnings to
+the dt checks.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--g63cxjnywwxblftj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWwybgACgkQj4D7WH0S
+/k5/Jgf/b/nfgkm/z6r4IycnlkEkHBd6KuwpTZCG/WLoFRBzIv5EGibepKaqeBPj
+Afvp9Kw4vGeNU1fGvGgDII7i8+V4KK4QpIIB7/8dCH6G+u+rDmm+dnPcB0wtWKX7
+I2H+tO1SEiegnpvn17AiqC2datTVeKuOatRlUQeNpfsc3QtNk5MJ0Gc2y8u4CC7s
+A1A7GF3GJko2JF/5+lV5tS/uQORgyL6GIe3z1bEd+Nuzu0G3rMOZNTSdqnRigZRz
+3E9nAKTWY6RHje4OFBe/qqfaH5enxziFkLNcR29GF5AHaVKiU0uDHBLHiyYiEi6G
+kCiQix9wyz3lQM+EuhN3PZnhSyQmHg==
+=beb2
+-----END PGP SIGNATURE-----
+
+--g63cxjnywwxblftj--
 
