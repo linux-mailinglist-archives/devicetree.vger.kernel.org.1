@@ -1,139 +1,115 @@
-Return-Path: <devicetree+bounces-34615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D33C983A556
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:25:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18B4C83A566
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:28:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87A2F1F22C85
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:25:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BA68B2D6A9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D601617C62;
-	Wed, 24 Jan 2024 09:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A283B1862A;
+	Wed, 24 Jan 2024 09:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B2BGTB20"
+	dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b="KFkCKND5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7FD17C61
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F348718E0F
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:24:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.225
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706088178; cv=none; b=t+834vLQsOEuhloWakeLyRW398qUMav1ey2oFwKQyi4Chj5emgAlNWSZ+aK9Yvca+y5c14F/W7TeXntLaJNEzg/T7D8mktBU6ynm0ZaWYU0CSrnt5Uo4otEToHVmsnk56q4Yd7LvC2TkAxAHwa94159nIfXXKHjCB3USV5P43VA=
+	t=1706088261; cv=none; b=Sgp8Fw8EmRy10EiiPE67ojUaaTMJbM+t0g/TIFEVAAkF5Pw0K38xEbB1ntL62uQqO1kO2Y1R6y45Xo3ZqA5Mfp3xZAj9VvOmZkubopMM6gZXDr9p+4bXtywmHoLN08F+m3CNm93aii9swn1Gyn8Eps4l9IS22RM81Df7gwmd99M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706088178; c=relaxed/simple;
-	bh=RvnstN+NQtpHBGLJ1c4pR3cxTU/16Rx2Upex7re0PLU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u2SmoAcRsjatrfzoBolZdSseHRmsJjMN0NRj1bXVpw0Dasph05d3RUJgZnRpu0GvXwLmjWFI60gWdnw61iGT0MMURGiZL5WQ3fYFc01V1NH0eXaYCKm3o+B92Zph5ajYYzrS0j10gCsl40aMqkNHiBG8NK9fFYtEaYIMS9SoUX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B2BGTB20; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a3082d450adso323793366b.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 01:22:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706088174; x=1706692974; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=sR9zPble25AhmUNn+7x39sNPQF5UdEiml7UIrsN5jbk=;
-        b=B2BGTB20b5UXlN9sUOASVlxIooM9/v55LjQozjD8DCsgomzq0X92Q7aBEoYB+zHcXo
-         CE/oI5iCe2IFg6LC+WRpRgQ56zFGGa6MJ+1mgQJZPA+HhVHOVe+7fluNtzjV0cLYt/yQ
-         7FbBMocf3RVQGZLKRMQ7d9JhBC2teYMjwc+5SM50knfuE9W7imKvbYFTu9t/Ev8ryhIm
-         CK4JPMHBz+idWPM1qDbEBrnzve8kMCXXiczBD+xC9B21yw7fl/c0XyUEPnoZPIb+gvvx
-         nCb2b4gC/e/ynYUSGgC8IHDjEji982pXZ1nOhtjbszzGsGI6HCBzC6H86GUTF3P8Tiz2
-         q23Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706088174; x=1706692974;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sR9zPble25AhmUNn+7x39sNPQF5UdEiml7UIrsN5jbk=;
-        b=VzM12JRgN9f8ckJBLIHody/vc0FLcAjg3YPlsFT/YnWCUzm9cbL/6q3uMRIaL6fm60
-         ERZsy+afuDqsS97zp+14XGspkW9NKfmMMlsL3oDVo9ZfjnXxE9Ojdc/cHOyXn+ORggOv
-         VQFcyv+3XB5UTZLoPO+MgIu/iUqLiaWkDYX7fFRFt19eXEo3jvjamPJJVF+WUidWbJjE
-         c5egIl18EvbnwUlhcgITclYnZYtnv75MQAduxetskNgBbGBKLlhgEU/Y2uBEpQ4Q0vOZ
-         WOqtkF5lhO+xXBcjcuDoesUEIxFeTm7MczZ8+lDzv4Xb919FX+tpPm8Mo0e722ByLbQU
-         KXSA==
-X-Gm-Message-State: AOJu0Yx7OM5n6v1e5sYavaERr3VIb4Xa7TuS6nbUVY31r8CI8poSF+tf
-	2KssJ2pvmTLpAb8VNVCC2HhXlatS3qi4lUHdGAD/AaL/VbP5h2z1IMmOZ7hezKE=
-X-Google-Smtp-Source: AGHT+IFdHK7IwG9O5huGr481sKlTD4E6DbBxhdu32Sit5PoGIT0INmXPy3MH1E6DiFAnsTKSOS6+Jg==
-X-Received: by 2002:a17:906:c4c1:b0:a2f:68cb:dbe3 with SMTP id cl1-20020a170906c4c100b00a2f68cbdbe3mr627050ejb.75.1706088173863;
-        Wed, 24 Jan 2024 01:22:53 -0800 (PST)
-Received: from linaro.org ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id ss3-20020a170907c00300b00a2eb3d16fa9sm8688546ejc.144.2024.01.24.01.22.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jan 2024 01:22:53 -0800 (PST)
-Date: Wed, 24 Jan 2024 11:22:51 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: Re: [PATCH v2 10/10] clk: qcom: Add camcc clock driver for x1e80100
-Message-ID: <ZbDW6zKX5FqG+6Qy@linaro.org>
-References: <20231214-x1e80100-clock-controllers-v2-0-2b0739bebd27@linaro.org>
- <20231214-x1e80100-clock-controllers-v2-10-2b0739bebd27@linaro.org>
- <624956b6-d7ea-43da-bb8d-32d9166a0272@linaro.org>
- <Za+n4zfzoZFhhLIa@linaro.org>
- <f5784838-0386-4ef8-bc3b-195a0132a29d@linaro.org>
+	s=arc-20240116; t=1706088261; c=relaxed/simple;
+	bh=MeoFvYCX5I/4Iw9kDB6v7/eQYwHW6zdRyLzG3rP6rpU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BbNa4WWu0nAI0Xih9DkWYDgjVJefTWKnq9Nio7Cn620s2hNnRXwyUp0sgcWRKilVUdFJTDUc2rfkfPOVmoquUqBkFmE9kS7q5ToBSgdjooijrrsDWYtvosFfbAnHk+Eu95DI4GEDcsH6xhyXmUBgFCvPX07NKZoPSqikSqUyilY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (1024-bit key) header.d=siemens.com header.i=diogo.ivo@siemens.com header.b=KFkCKND5; arc=none smtp.client-ip=185.136.64.225
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 20240124092414dc0790205361e9f705
+        for <devicetree@vger.kernel.org>;
+        Wed, 24 Jan 2024 10:24:14 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=diogo.ivo@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
+ bh=MeoFvYCX5I/4Iw9kDB6v7/eQYwHW6zdRyLzG3rP6rpU=;
+ b=KFkCKND5wlYq3tF8QVLXmi5XWvl6k/h21izYNYWzHKsSobtUBEjqlWhXY+2//kPhcfYWUY
+ pDeaYxCum81P4MXMVRZ/vNA75lwLJ21HLvOMH5/xXgu0Rfzt3sg95gq4qDAJIMx9rztSIJyI
+ gbHbwAH8wZsaoRMwhmNeJdmTGwLQk=;
+Message-ID: <8c4e1e69-210c-4eb7-bd54-97adb16e7c06@siemens.com>
+Date: Wed, 24 Jan 2024 09:24:13 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f5784838-0386-4ef8-bc3b-195a0132a29d@linaro.org>
+Subject: Re: [PATCH v2 0/8] Add support for ICSSG-based Ethernet on SR1.0
+ devices
+Content-Language: en-US
+To: Roger Quadros <rogerq@kernel.org>, danishanwar@ti.com,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, andrew@lunn.ch, dan.carpenter@linaro.org,
+ grygorii.strashko@ti.com, jacob.e.keller@intel.com, robh@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: jan.kiszka@siemens.com, diogo.ivo@siemens.com
+References: <20240117161602.153233-1-diogo.ivo@siemens.com>
+ <6b345be6-3bd0-4410-8255-97bf661fc890@kernel.org>
+From: Diogo Ivo <diogo.ivo@siemens.com>
+In-Reply-To: <6b345be6-3bd0-4410-8255-97bf661fc890@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-1320519:519-21489:flowmailer
 
-On 24-01-23 18:56:03, Konrad Dybcio wrote:
-> 
-> 
-> On 1/23/24 12:49, Abel Vesa wrote:
-> > On 23-12-16 14:39:48, Konrad Dybcio wrote:
-> > > On 14.12.2023 17:49, Abel Vesa wrote:
-> > > > From: Rajendra Nayak <quic_rjendra@quicinc.com>
-> > > > 
-> > > > Add the camcc clock driver for x1e80100
-> > > > 
-> > > > Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> > > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > > > ---
-> > > [...]
-> > > 
-> > > > +enum {
-> > > > +	DT_BI_TCXO,
-> > > > +	DT_BI_TCXO_AO,
-> > > > +	DT_SLEEP_CLK,
-> > > > +};
-> > > > +
-> > > > +enum {
-> > > > +	P_BI_TCXO,
-> > > Please don't overload this define with DT_BI_TCXO_AO, add a new one
-> > > for the active-only clock. Please also do this in other drivers in
-> > > this series.
-> > 
-> > Nope, that needs to stay if we want to align the dt bindings between
-> > SM8550, SM8650 and this. At least for dispcc. But I would like to have
-> > the same dt schema for the rest of the clock controller drivers between
-> > platforms that share basically the same ip block.
-> 
-> No, you're confusing the dt ordering enum (the first one) with the
-> parent list enum (the one below that I'm commenting on).
+Hi all, thank you for your input so far.
 
-Got it. P_BI_TCXO_AO it is then.
+On 1/23/24 12:15, Roger Quadros wrote:
+> Hello Diogo,
+>
+> On 17/01/2024 18:14, Diogo Ivo wrote:
+>> Hello,
+>>
+>> This series extends the current ICSSG-based Ethernet driver to support
+>> Silicon Revision 1.0 devices.
+>>
+>> Notable differences between the Silicon Revisions are that there is
+>> no TX core in SR1.0 with this being handled by the firmware, requiring
+>> extra DMA channels to communicate commands to the firmware (with the
+>> firmware being different as well) and in the packet classifier.
+>>
+>> The motivation behind it is that a significant number of Siemens
+>> devices containing SR1.0 silicon have been deployed in the field
+>> and need to be supported and updated to newer kernel versions
+>> without losing functionality.
+> Adding SR1.0 support with all its ifdefs makes the driver more complicated
+> than it should be.
+>
+> I think we need to treat SR1.0 and SR2.0 as different devices with their
+> own independent drivers. While the data path is pretty much the same,
+> also like in am65-cpsw-nuss.c, the initialization, firmware and other
+> runtime logic is significantly different.
+>
+> How about introducing a new icssg_prueth_sr1.c and putting all the SR1 stuff
+> there? You could still re-use the other helper files in net/ti/icssg/.
+> It also warrants for it's own Kconfig symbol so it can be built only
+> if required.
+> Any common logic could still be moved to icssg_common.c and re-used in both drivers.
 
-> 
-> Konrad
+Yes, that sounds like a more reasonable approach. I will refactor the code
+
+and come back with a v3, hopefully with all patches getting sent out :)
+
+
+Best regards,
+
+Diogo
+
 
