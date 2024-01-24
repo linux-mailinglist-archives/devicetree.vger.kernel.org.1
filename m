@@ -1,63 +1,73 @@
-Return-Path: <devicetree+bounces-34709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A62AF83AACA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:17:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0A7883AAD8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:23:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55179285DB9
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:17:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69A56284B50
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F63777644;
-	Wed, 24 Jan 2024 13:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E0377F0B;
+	Wed, 24 Jan 2024 13:23:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RlZbaAno"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uD0zyZ3W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABD6199D9
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 13:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67FF4199D9
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 13:23:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706102239; cv=none; b=R7qcnZQL5E4kRSKJt2YoYVaenw8Syr72rPXiva2Ho/+deY90CtqfxeOSxy3NsU1u3I+U9qh6Xh4N8xXb0CoCe7juiHo/GaIpxHwYeF7fVuKQZdPZh3Y53ZH2upbC9e9Retzz2S+rUWJ2Sw7/UY6z4UPYFhqmGlYET/YCXH4LHwg=
+	t=1706102583; cv=none; b=QY1HPppsOan/xPLH9vhBPu0TrjM8Y9KyuNr1XerTEJ2ZZuIkLmC2i2a5hRuniF5IvTM3rQw14l6Q3hkkCSBQpQJ4+qn2TvKilwPNn0L8WQGexk7rrAogLT0RP2YrsdXuINszcwT38NRLafGi+eHZdOB2a11AQJdW1UvIk8S//5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706102239; c=relaxed/simple;
-	bh=vSguf18bS09A3Lbep+7WoMQXjXYHly/SZngz1+sd1S4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BQge0LkbQGjRA9/w6ZocyuaTgRX5sMH5GrIyMzznWqubf+3iMMZFrjdl60F09qJmTo+oTFLUIaO+Xg9G4WXASscfiCsSEh1HX4oVObIsSUoNBOY09+dyWuKMpz69MB6cLSQ1VpF8neO3G3wC9Vwq1uGDa+relo/JvbU1OEeo9Qo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RlZbaAno; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40ODC7Ok019580;
-	Wed, 24 Jan 2024 13:17:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=m2YMVFuqtPAOcYMmrhSihS2cuAG0pP04a5oieaKLkvw=; b=Rl
-	ZbaAnogMuVXHvSKVLoocHg2Y5v0ASWc+67V94sMfaUb5k3Ic16DsxkVctodaZXcv
-	AOwis/Lt6fER5rsa3MrMFB3izd0D5KSCTWExo5RvHqUWfYYx80QrWQiXub7CSmpr
-	cHSiiFecfJqUh+ZfmjuOm8BltxgkS5/dlo1qUQ/o3Tnk+6hTIM9Kqdv/uiJSIteX
-	0m3XsczvRxPxrXeKPonhEFZuuDtVKw/R8M7/w75JsatzirJmbVuehDiFYNHvECdM
-	treKo3Sn06GpfNlVCXQCuxkGZnC3lIyAHavyGnC2V/NxQRVnMtAHSlNFug2Q4FPh
-	owtSPpeZphcKvVLmlFcw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vu19gg8dj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Jan 2024 13:17:11 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40ODHAko003657
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Jan 2024 13:17:10 GMT
-Received: from [10.110.125.140] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 24 Jan
- 2024 05:17:09 -0800
-Message-ID: <7910de2d-6184-4f78-a286-d2e6e50c7a36@quicinc.com>
-Date: Wed, 24 Jan 2024 05:17:09 -0800
+	s=arc-20240116; t=1706102583; c=relaxed/simple;
+	bh=T4RmIf7VkFcj8d4ZpyZYR6aCfDUYT5c7VXzocciPTWw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nlU0CW+SjFSmBEPGTY7XQaS8NMh+rQoo9yi3bWhye9XeI8/bkuPi3k/EUT7Fg9COp8+RDdRs6kD6ix+LGCq+ckT5oB36LcbNE3K7W5RdQ3id7Yy+vJxO4612X9d8V77O9MoLEcjnVhy6MWrSZggs9sAAEUqfBXR4O3aTTu+6N3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uD0zyZ3W; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50eac018059so7609968e87.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 05:23:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706102579; x=1706707379; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=11kgJruv5+K6DtBwAzB0hg6cqT5dVQUnLRiLI1MHmYk=;
+        b=uD0zyZ3W418Hxi0Js3RwCmxwiRCtoGnjxb0h0/tQysBALQdB2/OWkRmEsDP2gBSNw4
+         kaN/W34x9citNgxI9wqsLmvQnVKUdluigoZhVN5uRf/mGO8kIZirN2s/O7F1FwA5TJq4
+         VnVUhdyFE8T8bDyd2Gi9kYOIAgkTSXyUvEZOb9LyDwLd2vPZhgaapsEW5rnzneRnX8bK
+         CR2zMjEhL5ypjwWUc6q5b3G3G3reCCEDS+uqQSUq7CSdV9G5i9XFvL2DCRA7uXwET6tF
+         mAMvnDM9BcVqjVjU8lIjya4EZQKKgAerx3BnqsjHpzJOcqLIIRKQpJlZtSAkClixNDm8
+         3gbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706102579; x=1706707379;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=11kgJruv5+K6DtBwAzB0hg6cqT5dVQUnLRiLI1MHmYk=;
+        b=oO8aEvRLIUv9wo1T+RCz99gkYRCnVwXhtr2aOnCp+0Qx7npJB82cjfUJZu0RQBvjgt
+         6UydKSs21Js++nt3Wx03YxIC1tzpNbiyV2Ild6ly+78qMcCB9qIr1t5eWYZzO7HgNNU+
+         fkI3NsXLFaWWLW/DfjazjlB/YQZWlthAc+6FjA36rdnyWK0hNG+NCgDe9fQl6FxhxiKz
+         3a+FQjEBdhIDV9ux6uR+gwiFNBtsl3C4uSUcjGX2ciD2QVqM7l8Xf3Iy/+Ho3YH0H47m
+         7ECCnSUK/Ze4qy+V40ZQQOnESQcymYFU4HpToK/sTHGFti83AmCxeWfy9eJ1KAKhLSZK
+         J8WQ==
+X-Gm-Message-State: AOJu0YxiPbr2AZQmhcFStwtulGdBUICu6uog4IAR33IF6G6z99m/+Ua2
+	EQTzNtndbKCKycBvV2kGeb/zoEeGpdnvsE3rLuS04ekaaeXTGqpBENky1M4228M=
+X-Google-Smtp-Source: AGHT+IGCJx8XZDV9wXehwa6+blBx6gU7Yw+6Pl2WRXQb/rId7vUfO2+yja1A4V5G91EOYOUuQjTl2g==
+X-Received: by 2002:a19:4305:0:b0:50e:6909:7f68 with SMTP id q5-20020a194305000000b0050e69097f68mr3327351lfa.117.1706102579410;
+        Wed, 24 Jan 2024 05:22:59 -0800 (PST)
+Received: from [172.30.205.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id u6-20020ac25186000000b0050e70a5b804sm2589732lfi.302.2024.01.24.05.22.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Jan 2024 05:22:59 -0800 (PST)
+Message-ID: <9feae876-5170-4b57-8cd4-dbf35dddbefc@linaro.org>
+Date: Wed, 24 Jan 2024 14:22:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,110 +75,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: DT Query on "New Compatible vs New Property"
-To: Sudeep Holla <sudeep.holla@arm.com>
-CC: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        "Prasad Sodagudi (QUIC)"
-	<quic_psodagud@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <vincent.guittot@linaro.org>,
-        <ulf.hansson@linaro.org>
-References: <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
- <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com>
- <20231214061742.GG2938@thinkpad>
- <66f82e2c-0c42-4ead-93f5-2136ad478df2@linaro.org>
- <7768258d-4748-84f7-0da2-43988138e5cc@quicinc.com>
- <20240123161231.GG19029@thinkpad> <ZbDlLJRHu2ebdxc6@bogus>
- <20240124104530.GK4906@thinkpad> <ZbDuO_iV5i8mE01Q@bogus>
- <a053261e-6e05-4673-b5dd-2ce8f3c73ac9@quicinc.com> <ZbEHNyLE8bQlZHSZ@bogus>
+Subject: Re: [PATCH 09/14] arm64: dts: qcom: sc8280xp: Drop PCIE_AUX_CLK from
+ pcie_phy nodes
 Content-Language: en-US
-From: Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <ZbEHNyLE8bQlZHSZ@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240124-pcie-aux-clk-fix-v1-0-d8a4852b6ba6@linaro.org>
+ <20240124-pcie-aux-clk-fix-v1-9-d8a4852b6ba6@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240124-pcie-aux-clk-fix-v1-9-d8a4852b6ba6@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: zS87PplIgPmMx-RVPsUM-Nsz0XW35rUq
-X-Proofpoint-ORIG-GUID: zS87PplIgPmMx-RVPsUM-Nsz0XW35rUq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-24_06,2024-01-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- clxscore=1015 mlxlogscore=344 spamscore=0 phishscore=0 lowpriorityscore=0
- impostorscore=0 priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401190000
- definitions=main-2401240095
 
 
-On 1/24/2024 4:48 AM, Sudeep Holla wrote:
-> On Wed, Jan 24, 2024 at 04:27:55AM -0800, Nikunj Kela wrote:
->> On 1/24/2024 3:02 AM, Sudeep Holla wrote:
->>> Not really, still puzzled may be more than before as I don't understand
->>> what is going on with the approach as it seem to be deviating from my
->>> initial understanding.
->>>
->>> May be take an example of one driver, present the DT binding and driver
->>> changes to make sure there is no misunderstanding from my side. But I am
->>> not convinced with the explanation so far.
->> Hi Sudeep,
->>
->> We are not using clock protocol to deal with clocks individually. We are
->> trying to define different perf domains for peripherals where we are
->> grouping clocks/regulators/interconnect bandwidth into these perf domains
->> and use OPP levels via SCMI perf protocol.
-> That clarifies on what you are trying to achieve.
->
->> This is done so as to avoid individual scmi calls for these resources
->> hence avoiding any race conditions and minimizing the traffic between SCMI
->> client and server to get better KPIs.
-> Fair enough, why can't you just use genpd perf APIs to achieve that ?
 
-OPP is built on top of genpd perf only and was recommended by Ulf(PM 
-maintainer from Linaro) hence we decided to use OPP APIs instead of 
-directly genpd perf API.
+On 1/24/24 08:36, Manivannan Sadhasivam wrote:
+> PCIe PHY hw doesn't require PCIE_AUX_CLK for functioning. This clock is
+> only required by the PCIe controller. Hence drop it from pcie_phy nodes.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
 
+So, I have a small phytest module that basically does this:
 
->
->> This is being planned for sa8775p platform and any subsequent platforms will
->> use the same approach. The idea of using perf protocol for peripherals is
->> new and Qualcomm is first one trying to use that.
-> Sure.
->
->> Therefore existing peripheral drivers will require a way to distinguish between the
->> two different configurations. Hope this provides little more context and
->> insight.
->>
-> While I agree this is new, use custom APIs to control standard resources
-> is simply *VERY VERY BAD IDEA* IMO. You may be fine to have these custom
-> API calls in qcom specific drivers. But what if this is needed in some
-> generic IP driver. Just not scalable and why should the maintainer of
-> such driver accept you custom API.
+phy_get
+phy_init
+phy_set_mode_ext(PCIE_RC)
+phy_power_on
 
-Apologies if it wasn't clear but we are not using custom APIs. We are 
-using standard OPP APIs to set to opp level of the perf domain. 
-Example-dev_pm_opp_set_opp(). As mentioned above, we are following PM 
-framework maintainers recommendation to use OPP.
+To load it, I skip PCIe init (comment out the node), then wait for clk
+and pmdomain unused cleanup, then load the phytest module to ensure that
+I'm not piggybacking off of the RC's resources.
+
+I tried it out on the CRD, on PCIE2A (NVMe)
+
+Without this patch, the PHY seems to init fine
+
+With this patch, I get:
+
+(1) qcom-qmp-pcie-phy 1c24000.phy: phy initialization timed-out
 
 
->
-> So I would suggest to work towards using std framework APIs or create one
-> if you can justify the need for it. Please stop creating custom APIs for
-> using SCMI. It defeats the whole standardisation it is meant to provide.
+Kicking the PCIe GDSC from the PHY, I additionally get:
 
-Not sure I understand what you refer to as custom APIs here. The OPP 
-APIs are not custom APIs. They are from OPP framework built on top of 
-genpd perf. [1] and [2] patch series might provide you more insight into 
-the work that Ulf did to support SCMI perf with OPP framework.
+(2) gcc_pcie_2a_cfg_ahb_clk status stuck at 'off'
 
-[1]: 
-https://lore.kernel.org/all/20230919121605.7304-1-ulf.hansson@linaro.org/
 
-[2]:https://lore.kernel.org/all/20230925131715.138411-1-ulf.hansson@linaro.org/
+I think we expected (2), but is (1) okay?
 
->
+Konrad
 
