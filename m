@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-34491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5590839FDC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 04:05:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 228E0839FDE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 04:05:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 950DA281ED9
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 03:05:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 469CE1C2676E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 03:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9926353A2;
-	Wed, 24 Jan 2024 03:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8701ABE56;
+	Wed, 24 Jan 2024 03:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Ka0pFV66"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="XOCdth9+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f98.google.com (mail-ot1-f98.google.com [209.85.210.98])
+Received: from mail-ot1-f100.google.com (mail-ot1-f100.google.com [209.85.210.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89465244
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 03:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.98
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B02F53B9
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 03:05:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706065534; cv=none; b=J/mMB08mU9p+o1DbuAhRaT8x9oZF2WCtrCKTBkUC0dPpkPNP32X45lRcxdq3OVxf4GoAfseVIPQ/8exnFFJXsyHqEAJVSlAOoXaz45clhmx6uU2qtxxQofBFiVDmMLM2HSbUqdBVOsuYVmWmSxFVGpg1whzWpSoI8E8tkguw3Eo=
+	t=1706065536; cv=none; b=SuWERoAnA9hB+7Y+Xpr1/9kmXpjbiUgX5tFqrFkES+eR5euuLgLEqydFC/IEkuaHzcQ/imaUI46kgfh7JjZla2Ei2Egfqd3997U8HoRE7H8rIePDMuYR9zxbUrNtdkVuAlOfMqL1/HWAsb9uIvX6Q9PKQAjLN5RtV71YGmKchd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706065534; c=relaxed/simple;
-	bh=nvrEOWH9z/+z7lJvtyev/8yIQOX98EvFRNg3Zd+SrHQ=;
+	s=arc-20240116; t=1706065536; c=relaxed/simple;
+	bh=LouMiwwrPXt5Uhi4y6QsIegyH40WdfN7qrjk9//sGOA=;
 	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=f1kMxqpnJogPqbOwqBSsKQhlshs35zOCNShXruk7MEFxhzMV6Wef2Y4Iy0Pxi+GGyFpliQZ6Z+urpemcJmhWqDA5GBm/+AxjYIU9bgBxg/V27RWEDcoeSjXw3YG7D4pW5nUqmfktZyKOivHIF0tVN8f55cJ3vrC9m811I2QrE7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Ka0pFV66; arc=none smtp.client-ip=209.85.210.98
+	 MIME-Version; b=sekVwNgwQoASfTlfak5YRfzs4LTRaQm7kujvdpwoO2eZ9Hqz1ovtE3KPRrtSoYpndwhvcRv242NlLy97xntUpOWXhGjsbr1jn5wEf0KRfDFtDod5DPDN9FcrJASQJ7ReAM94GA+Qtuo9vRf7dqA8JNdMmip3TqAloIB2nzjj9Ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=XOCdth9+; arc=none smtp.client-ip=209.85.210.100
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-ot1-f98.google.com with SMTP id 46e09a7af769-6dd8cba736aso3599475a34.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 19:05:32 -0800 (PST)
+Received: by mail-ot1-f100.google.com with SMTP id 46e09a7af769-6ddeb015ec6so3544421a34.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 19:05:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1706065532; x=1706670332; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1706065533; x=1706670333; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=RfC42mFMxWbt42N2Y8Snh0FkDOtoFt5c5JS3NwC/Elo=;
-        b=Ka0pFV6679h2oN4khzX+fzYkR0AKjyg1Pl9I219cyRhQqnMt3SLw1GKY3WFlbov3MK
-         rfD2qVjNb5Aa56dBNw7/23m2DkbOa/8WTfYEBQx8cdiJbjUFurBQ8oZ9gmVa0URz4mA1
-         yYTvNEsXA9MUbN+RhqjNGmiNk4J6M81GmXX1A=
+        bh=ThJa0h4fa0Qqrzqap7bg7YPhFAxFKY8FrPLl0QLp5r8=;
+        b=XOCdth9+enG/zGrm4DZOVWg6wY3//BmJSCbfFMxid1R6OEGWmMdrTCYJH0f1eHg5E3
+         TzjfeEdqB3uIDKRELzk1DnCPeWyZ7FZvz0T0Tzc0+fSvDJAx8F3oBlLYN3TbVUHid9El
+         TnDDBWYIn4NS1YPXuLGIozkP0Uqi5w9Pv87zY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706065532; x=1706670332;
+        d=1e100.net; s=20230601; t=1706065533; x=1706670333;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RfC42mFMxWbt42N2Y8Snh0FkDOtoFt5c5JS3NwC/Elo=;
-        b=P6Sp1hn/L49VWTFXT+WHt+MQl9UAEgUpbzsBlrs2R6pAM4be8bHjCwW+rFy7SIgzvr
-         LiEk4QEs8AuwM/Eo/acwU15au6VYvhYlp6cFi6gskNWPd7eOQCgn3iiScZ3v9ovfq/28
-         rzVb5AivCYQbzDu8N9hf8Cdb36bErYnerwwi57M8I9PBFFTDnLwaQcjZt74SQtQ5bbR6
-         tWyjSLzvo4RIW310XHyAO5+HaH8QkwipgpKeApJnhinZVejeCdsywFX0/29LWdlJtWwE
-         qyebUmKQe7T8Us74GCK/CtKKchkM4L7cWYeku/HimsdnEURXRBFR0DV6HjsUdncH6gQD
-         DYAg==
-X-Gm-Message-State: AOJu0Ywmecip6nPr7oo186SPZzKOwEo9bT1PLVTJ4WJy2YZAy5M0sE0a
-	tTSHPY1mlvgaloSCRPx5jez4HB1UCl58KkReFIflY6FxgwgeCH2IuE/Fx1+UIDYRR0cDdEx+R8W
-	uH3b4EvDir6kjZwc8xrVrSWWNljBHsQ==
-X-Google-Smtp-Source: AGHT+IGkswDyG3Gtz3GqJE+TRieLfMO18ZMJzmD7ROmdRdjJ3ufDF3WoK1jWXcVp3qq/MXq4+F0KEGsc3xvR
-X-Received: by 2002:a9d:5e09:0:b0:6e0:f7bc:24f8 with SMTP id d9-20020a9d5e09000000b006e0f7bc24f8mr847296oti.60.1706065532044;
-        Tue, 23 Jan 2024 19:05:32 -0800 (PST)
+        bh=ThJa0h4fa0Qqrzqap7bg7YPhFAxFKY8FrPLl0QLp5r8=;
+        b=XkJSUSrp/+xdO8wHu0IjFirtgAsFZNgi3kpRY8hQTVpQe4eZHpukPlHsZP0H6G1EY6
+         n0Xi/gKRRsrP+cS6QYrDoyx40vmHTkMFhX39fiJwA4HpQkE75dFomx/AYKaif37M/JT4
+         ibEgNmuMAbITpmZVObzgxJq4e2EK2g/MiTw78i/GjQDh652984VR7AqMePjC0cTADAdL
+         T7/QLgu/046NH8q6rQbmcuF9Glm7MJ7BY4fSASJzHzi1YY+5Iy/7GPk+XQ8vE38sZ5Oo
+         Ba0t7c1v+wm400BWtkStW59A85vSF0HtNKZnB4skHnrg7OCux+iFODks21Da+tCxP2b3
+         mdsg==
+X-Gm-Message-State: AOJu0Yxod8cw8X4vOz3Iv7Aq0UcOCHES9mCRJ8OIimlXvYOzv0xFWLuw
+	QqZuL6yV8sKC/0E3waa7dBYTeygodFRejMktfK78BdjXI1ddE1vrggYmv2Iq8TGoS/N2Gn9x/YW
+	7qLBl7tmMgV25CKz/kG6tuwRSYJywiA==
+X-Google-Smtp-Source: AGHT+IGOJv4VmqhHKQ58MHbgQguDFk6gSt5vnWVA8ozPFeH+q78JxaJWfzyfQTlamkcygUhRcCMKi2l84hxm
+X-Received: by 2002:a05:6830:168e:b0:6dd:e17e:f714 with SMTP id k14-20020a056830168e00b006dde17ef714mr1099039otr.27.1706065533728;
+        Tue, 23 Jan 2024 19:05:33 -0800 (PST)
 Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp-relay.gmail.com with ESMTPS id c22-20020a056830349600b006dc7502beabsm455320otu.3.2024.01.23.19.05.30
+        by smtp-relay.gmail.com with ESMTPS id c22-20020a056830349600b006dc7502beabsm455320otu.3.2024.01.23.19.05.32
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 23 Jan 2024 19:05:32 -0800 (PST)
+        Tue, 23 Jan 2024 19:05:33 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 From: David Regan <dregan@broadcom.com>
 To: dregan@broadcom.com,
@@ -92,9 +92,9 @@ To: dregan@broadcom.com,
 	baruch@tkos.co.il,
 	linux-arm-kernel@lists.infradead.org,
 	dan.carpenter@linaro.org
-Subject: [PATCH v3 01/10] dt-bindings: mtd: brcmnand: Updates for bcmbca SoCs
-Date: Tue, 23 Jan 2024 19:04:49 -0800
-Message-Id: <20240124030458.98408-2-dregan@broadcom.com>
+Subject: [PATCH v3 02/10] ARM: dts: broadcom: bcmbca: Add NAND controller node
+Date: Tue, 23 Jan 2024 19:04:50 -0800
+Message-Id: <20240124030458.98408-3-dregan@broadcom.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20240124030458.98408-1-dregan@broadcom.com>
 References: <20240124030458.98408-1-dregan@broadcom.com>
@@ -108,126 +108,370 @@ Content-Transfer-Encoding: 8bit
 
 From: William Zhang <william.zhang@broadcom.com>
 
-Update the descriptions to reflect different families of broadband SoC and
-use the general name bcmbca for ARM based SoC.
-
-Add brcm,nand-use-wp property to have an option for disabling this
-feature on broadband board design that does not use write protection.
-
-Add brcm,nand-ecc-use-strap to get ecc setting from board boot strap for
-broadband board designs because they do not specify ecc setting in dts
-but rather using the strap setting.
-
-Remove the requirement of interrupts property to reflect the driver
-code. Also add myself to the list of maintainers.
+Add support for Broadcom STB NAND controller in BCMBCA ARMv7 chip dts
+files.
 
 Signed-off-by: William Zhang <william.zhang@broadcom.com>
 Reviewed-by: David Regan <dregan@broadcom.com>
 ---
-Changes in v3:
-- Update brcm,nand-use-wp description
-- Revert the description change to BCM63168 SoC-specific NAND controller
+Changes in v3: None
 ---
-Changes in v2:
-- Revert the new compatible string nand-bcmbca
-- Drop the BCM63168 compatible fix to avoid any potential ABI
-incompatibility issue
-- Simplify the explanation for brcm,nand-use-wp
-- Keep the interrupt name requirement when interrupt number is specified
+Changes in v2: None
 ---
- .../bindings/mtd/brcm,brcmnand.yaml           | 37 ++++++++++++++++---
- 1 file changed, 32 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/broadcom/bcm47622.dtsi    | 17 +++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm63138.dtsi    | 10 +++++++++-
+ arch/arm/boot/dts/broadcom/bcm63148.dtsi    | 17 +++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm63178.dtsi    | 17 +++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm6756.dtsi     | 17 +++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm6846.dtsi     | 17 +++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm6855.dtsi     | 17 +++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm6878.dtsi     | 17 +++++++++++++++++
+ arch/arm/boot/dts/broadcom/bcm947622.dts    |  4 ++++
+ arch/arm/boot/dts/broadcom/bcm963138.dts    |  4 ++++
+ arch/arm/boot/dts/broadcom/bcm963138dvt.dts | 12 +++++-------
+ arch/arm/boot/dts/broadcom/bcm963148.dts    |  4 ++++
+ arch/arm/boot/dts/broadcom/bcm963178.dts    |  4 ++++
+ arch/arm/boot/dts/broadcom/bcm96756.dts     |  4 ++++
+ arch/arm/boot/dts/broadcom/bcm96846.dts     |  4 ++++
+ arch/arm/boot/dts/broadcom/bcm96855.dts     |  4 ++++
+ arch/arm/boot/dts/broadcom/bcm96878.dts     |  4 ++++
+ 17 files changed, 165 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-index f57e96374e67..752c6ee98a7d 100644
---- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
-@@ -9,6 +9,7 @@ title: Broadcom STB NAND Controller
- maintainers:
-   - Brian Norris <computersforpeace@gmail.com>
-   - Kamal Dasu <kdasu.kdev@gmail.com>
-+  - William Zhang <william.zhang@broadcom.com>
+diff --git a/arch/arm/boot/dts/broadcom/bcm47622.dtsi b/arch/arm/boot/dts/broadcom/bcm47622.dtsi
+index 7cd38de118c3..55ff18043d96 100644
+--- a/arch/arm/boot/dts/broadcom/bcm47622.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm47622.dtsi
+@@ -138,6 +138,23 @@ hsspi: spi@1000 {
+ 			status = "disabled";
+ 		};
  
- description: |
-   The Broadcom Set-Top Box NAND controller supports low-level access to raw NAND
-@@ -18,9 +19,10 @@ description: |
-   supports basic PROGRAM and READ functions, among other features.
- 
-   This controller was originally designed for STB SoCs (BCM7xxx) but is now
--  available on a variety of Broadcom SoCs, including some BCM3xxx, BCM63xx, and
--  iProc/Cygnus. Its history includes several similar (but not fully register
--  compatible) versions.
-+  available on a variety of Broadcom SoCs, including some BCM3xxx, MIPS based
-+  Broadband SoC (BCM63xx), ARM based Broadband SoC (BCMBCA) and iProc/Cygnus.
-+  Its history includes several similar (but not fully register compatible)
-+  versions.
- 
-   -- Additional SoC-specific NAND controller properties --
- 
-@@ -53,7 +55,7 @@ properties:
-               - brcm,brcmnand-v7.2
-               - brcm,brcmnand-v7.3
-           - const: brcm,brcmnand
--      - description: BCM63138 SoC-specific NAND controller
-+      - description: BCMBCA SoC-specific NAND controller
-         items:
-           - const: brcm,nand-bcm63138
-           - enum:
-@@ -111,6 +113,20 @@ properties:
-       earlier versions of this core that include WP
-     type: boolean
- 
-+  brcm,nand-use-wp:
-+    description:
-+      Use this property to indicate if board design uses
-+      controller's write protection feature and connects its
-+      NAND_WPb pin to nand chip's WP_L pin. By default the driver
-+      uses a module parameter with default value set to enable to
-+      control this feature for all boards. Use this dts property to
-+      override the default behavior and enable/disable this feature
-+      through board dts on a per board basis.
-+      Set to 0 if WP pins are not connected and feature is not
-+      used. Set to 1 if WP pins are connected and feature is used.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
++		nand_controller: nand-controller@1800 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
++			reg = <0x1800 0x600>, <0x2000 0x10>;
++			reg-names = "nand", "nand-int-base";
++			brcm,nand-use-wp = <0>;
++			status = "disabled";
 +
- patternProperties:
-   "^nand@[a-f0-9]$":
-     type: object
-@@ -137,6 +153,16 @@ patternProperties:
-           layout.
-         $ref: /schemas/types.yaml#/definitions/uint32
- 
-+      brcm,nand-ecc-use-strap:
-+        description:
-+          This flag is used by the driver to get the ecc strength and
-+          spare area size from the SoC NAND boot strap setting. This
-+          is commonly used by the BCMBCA SoC board design. If ecc
-+          strength and spare area size are set by nand-ecc-strength
-+          and brcm,nand-oob-sector-size in the dts, these settings
-+          have precedence and override this flag.
-+        $ref: /schemas/types.yaml#/definitions/flag
++			nandcs: nand@0 {
++				compatible = "brcm,nandcs";
++				reg = <0>;
++				nand-on-flash-bbt;
++				brcm,nand-ecc-use-strap;
++			};
++		};
 +
-     unevaluatedProperties: false
+ 		uart0: serial@12000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+ 			reg = <0x12000 0x1000>;
+diff --git a/arch/arm/boot/dts/broadcom/bcm63138.dtsi b/arch/arm/boot/dts/broadcom/bcm63138.dtsi
+index 4ef02283612b..3aaee1c6994e 100644
+--- a/arch/arm/boot/dts/broadcom/bcm63138.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm63138.dtsi
+@@ -229,7 +229,15 @@ nand_controller: nand-controller@2000 {
+ 			reg-names = "nand", "nand-int-base";
+ 			status = "disabled";
+ 			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "nand";
++			interrupt-names = "nand_ctlrdy";
++			brcm,nand-use-wp = <0>;
++
++			nandcs: nand@0 {
++				compatible = "brcm,nandcs";
++				reg = <0>;
++				nand-on-flash-bbt;
++				brcm,nand-ecc-use-strap;
++			};
+ 		};
  
- allOf:
-@@ -177,6 +203,8 @@ allOf:
-             - const: iproc-idm
-             - const: iproc-ext
-   - if:
-+      required:
-+        - interrupts
-       properties:
-         interrupts:
-           minItems: 2
-@@ -189,7 +217,6 @@ unevaluatedProperties: false
- required:
-   - reg
-   - reg-names
--  - interrupts
+ 		serial@4400 {
+diff --git a/arch/arm/boot/dts/broadcom/bcm63148.dtsi b/arch/arm/boot/dts/broadcom/bcm63148.dtsi
+index 24431de1810e..6ecd530a7225 100644
+--- a/arch/arm/boot/dts/broadcom/bcm63148.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm63148.dtsi
+@@ -119,5 +119,22 @@ hsspi: spi@1000 {
+ 			num-cs = <8>;
+ 			status = "disabled";
+ 		};
++
++		nand_controller: nand-controller@2000 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
++			reg = <0x2000 0x600>, <0xf0 0x10>;
++			reg-names = "nand", "nand-int-base";
++			brcm,nand-use-wp = <0>;
++			status = "disabled";
++
++			nandcs: nand@0 {
++				compatible = "brcm,nandcs";
++				reg = <0>;
++				nand-on-flash-bbt;
++				brcm,nand-ecc-use-strap;
++			};
++		};
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/broadcom/bcm63178.dtsi b/arch/arm/boot/dts/broadcom/bcm63178.dtsi
+index 3f9aed96babf..742991fc7544 100644
+--- a/arch/arm/boot/dts/broadcom/bcm63178.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm63178.dtsi
+@@ -129,6 +129,23 @@ hsspi: spi@1000 {
+ 			status = "disabled";
+ 		};
  
- examples:
-   - |
++		nand_controller: nand-controller@1800 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
++			reg = <0x1800 0x600>, <0x2000 0x10>;
++			reg-names = "nand", "nand-int-base";
++			brcm,nand-use-wp = <0>;
++			status = "disabled";
++
++			nandcs: nand@0 {
++				compatible = "brcm,nandcs";
++				reg = <0>;
++				nand-on-flash-bbt;
++				brcm,nand-ecc-use-strap;
++			};
++		};
++
+ 		uart0: serial@12000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+ 			reg = <0x12000 0x1000>;
+diff --git a/arch/arm/boot/dts/broadcom/bcm6756.dtsi b/arch/arm/boot/dts/broadcom/bcm6756.dtsi
+index 1d8d957d65dd..0f08b99d93c2 100644
+--- a/arch/arm/boot/dts/broadcom/bcm6756.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm6756.dtsi
+@@ -139,6 +139,23 @@ hsspi: spi@1000 {
+ 			status = "disabled";
+ 		};
+ 
++		nand_controller: nand-controller@1800 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
++			reg = <0x1800 0x600>, <0x2000 0x10>;
++			reg-names = "nand", "nand-int-base";
++			brcm,nand-use-wp = <0>;
++			status = "disabled";
++
++			nandcs: nand@0 {
++				compatible = "brcm,nandcs";
++				reg = <0>;
++				nand-on-flash-bbt;
++				brcm,nand-ecc-use-strap;
++			};
++		};
++
+ 		uart0: serial@12000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+ 			reg = <0x12000 0x1000>;
+diff --git a/arch/arm/boot/dts/broadcom/bcm6846.dtsi b/arch/arm/boot/dts/broadcom/bcm6846.dtsi
+index cf92cf8c4693..856fd2352cca 100644
+--- a/arch/arm/boot/dts/broadcom/bcm6846.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm6846.dtsi
+@@ -119,5 +119,22 @@ hsspi: spi@1000 {
+ 			num-cs = <8>;
+ 			status = "disabled";
+ 		};
++
++		nand_controller: nand-controller@1800 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
++			reg = <0x1800 0x600>, <0x2000 0x10>;
++			reg-names = "nand", "nand-int-base";
++			brcm,nand-use-wp = <0>;
++			status = "disabled";
++
++			nandcs: nand@0 {
++				compatible = "brcm,nandcs";
++				reg = <0>;
++				nand-on-flash-bbt;
++				brcm,nand-ecc-use-strap;
++			};
++		};
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/broadcom/bcm6855.dtsi b/arch/arm/boot/dts/broadcom/bcm6855.dtsi
+index 52d6bc89f9f8..ad6f63a92c3a 100644
+--- a/arch/arm/boot/dts/broadcom/bcm6855.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm6855.dtsi
+@@ -129,6 +129,23 @@ hsspi: spi@1000 {
+ 			status = "disabled";
+ 		};
+ 
++		nand_controller: nand-controller@1800 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
++			reg = <0x1800 0x600>, <0x2000 0x10>;
++			reg-names = "nand", "nand-int-base";
++			brcm,nand-use-wp = <0>;
++			status = "disabled";
++
++			nandcs: nand@0 {
++				compatible = "brcm,nandcs";
++				reg = <0>;
++				nand-on-flash-bbt;
++				brcm,nand-ecc-use-strap;
++			};
++		};
++
+ 		uart0: serial@12000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+ 			reg = <0x12000 0x1000>;
+diff --git a/arch/arm/boot/dts/broadcom/bcm6878.dtsi b/arch/arm/boot/dts/broadcom/bcm6878.dtsi
+index 2c5d706bac7e..540aac1b82f9 100644
+--- a/arch/arm/boot/dts/broadcom/bcm6878.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm6878.dtsi
+@@ -120,6 +120,23 @@ hsspi: spi@1000 {
+ 			status = "disabled";
+ 		};
+ 
++		nand_controller: nand-controller@1800 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			compatible = "brcm,nand-bcm63138", "brcm,brcmnand-v7.1", "brcm,brcmnand";
++			reg = <0x1800 0x600>, <0x2000 0x10>;
++			reg-names = "nand", "nand-int-base";
++			brcm,nand-use-wp = <0>;
++			status = "disabled";
++
++			nandcs: nand@0 {
++				compatible = "brcm,nandcs";
++				reg = <0>;
++				nand-on-flash-bbt;
++				brcm,nand-ecc-use-strap;
++			};
++		};
++
+ 		uart0: serial@12000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+ 			reg = <0x12000 0x1000>;
+diff --git a/arch/arm/boot/dts/broadcom/bcm947622.dts b/arch/arm/boot/dts/broadcom/bcm947622.dts
+index 93b8ce22678d..22e3c4508e1a 100644
+--- a/arch/arm/boot/dts/broadcom/bcm947622.dts
++++ b/arch/arm/boot/dts/broadcom/bcm947622.dts
+@@ -32,3 +32,7 @@ &uart0 {
+ &hsspi {
+ 	status = "okay";
+ };
++
++&nand_controller {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm963138.dts b/arch/arm/boot/dts/broadcom/bcm963138.dts
+index 1b405c249213..450289d47dc7 100644
+--- a/arch/arm/boot/dts/broadcom/bcm963138.dts
++++ b/arch/arm/boot/dts/broadcom/bcm963138.dts
+@@ -29,3 +29,7 @@ &serial0 {
+ &hsspi {
+ 	status = "okay";
+ };
++
++&nand_controller {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm963138dvt.dts b/arch/arm/boot/dts/broadcom/bcm963138dvt.dts
+index b5af61853a07..22107d14a120 100644
+--- a/arch/arm/boot/dts/broadcom/bcm963138dvt.dts
++++ b/arch/arm/boot/dts/broadcom/bcm963138dvt.dts
+@@ -33,14 +33,12 @@ &serial1 {
+ 
+ &nand_controller {
+ 	status = "okay";
++};
+ 
+-	nand@0 {
+-		compatible = "brcm,nandcs";
+-		reg = <0>;
+-		nand-ecc-strength = <4>;
+-		nand-ecc-step-size = <512>;
+-		brcm,nand-oob-sectors-size = <16>;
+-	};
++&nandcs {
++	nand-ecc-strength = <4>;
++	nand-ecc-step-size = <512>;
++	brcm,nand-oob-sector-size = <16>;
+ };
+ 
+ &ahci {
+diff --git a/arch/arm/boot/dts/broadcom/bcm963148.dts b/arch/arm/boot/dts/broadcom/bcm963148.dts
+index 1f5d6d783f09..aa08b473c7cd 100644
+--- a/arch/arm/boot/dts/broadcom/bcm963148.dts
++++ b/arch/arm/boot/dts/broadcom/bcm963148.dts
+@@ -32,3 +32,7 @@ &uart0 {
+ &hsspi {
+ 	status = "okay";
+ };
++
++&nand_controller {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm963178.dts b/arch/arm/boot/dts/broadcom/bcm963178.dts
+index d036e99dd8d1..c0f504ac43a4 100644
+--- a/arch/arm/boot/dts/broadcom/bcm963178.dts
++++ b/arch/arm/boot/dts/broadcom/bcm963178.dts
+@@ -32,3 +32,7 @@ &uart0 {
+ &hsspi {
+ 	status = "okay";
+ };
++
++&nand_controller {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm96756.dts b/arch/arm/boot/dts/broadcom/bcm96756.dts
+index 8b104f3fb14a..2ce998f2b84f 100644
+--- a/arch/arm/boot/dts/broadcom/bcm96756.dts
++++ b/arch/arm/boot/dts/broadcom/bcm96756.dts
+@@ -32,3 +32,7 @@ &uart0 {
+ &hsspi {
+ 	status = "okay";
+ };
++
++&nand_controller {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm96846.dts b/arch/arm/boot/dts/broadcom/bcm96846.dts
+index 55852c229608..f4b9a07370ee 100644
+--- a/arch/arm/boot/dts/broadcom/bcm96846.dts
++++ b/arch/arm/boot/dts/broadcom/bcm96846.dts
+@@ -32,3 +32,7 @@ &uart0 {
+ &hsspi {
+ 	status = "okay";
+ };
++
++&nand_controller {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm96855.dts b/arch/arm/boot/dts/broadcom/bcm96855.dts
+index 2ad880af2104..5c94063bceaf 100644
+--- a/arch/arm/boot/dts/broadcom/bcm96855.dts
++++ b/arch/arm/boot/dts/broadcom/bcm96855.dts
+@@ -32,3 +32,7 @@ &uart0 {
+ &hsspi {
+ 	status = "okay";
+ };
++
++&nand_controller {
++	status = "okay";
++};
+diff --git a/arch/arm/boot/dts/broadcom/bcm96878.dts b/arch/arm/boot/dts/broadcom/bcm96878.dts
+index b7af8ade7a9d..910f7e125bad 100644
+--- a/arch/arm/boot/dts/broadcom/bcm96878.dts
++++ b/arch/arm/boot/dts/broadcom/bcm96878.dts
+@@ -32,3 +32,7 @@ &uart0 {
+ &hsspi {
+ 	status = "okay";
+ };
++
++&nand_controller {
++	status = "okay";
++};
 -- 
 2.37.3
 
