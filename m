@@ -1,166 +1,239 @@
-Return-Path: <devicetree+bounces-34489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B5E839F37
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 03:34:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC8883A002
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 04:19:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 258AA1F27B18
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 02:34:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4219F1C2796F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 03:19:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299E14684;
-	Wed, 24 Jan 2024 02:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DADCC524C;
+	Wed, 24 Jan 2024 03:19:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AgbnsIy8"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="QfH2Us9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m49214.qiye.163.com (mail-m49214.qiye.163.com [45.254.49.214])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FEAE441B;
-	Wed, 24 Jan 2024 02:33:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64ED846B4;
+	Wed, 24 Jan 2024 03:19:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.214
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706063627; cv=none; b=MFxKHnJPOkOHIbdQY0MyoT7sd9ipGWaS2KLz1cFxEKRrV0r/TdejCYup0NIXBG4htPqU5krZLzkcSHy3rxN1UfbqvrvFYhN2c1PKxiRmluk92cTnkrSjBp8SLUIdSf3xzQKdV7UeNaNoHnk9L+FxJLhYTmg1IpiJ4gHv6gG5vuM=
+	t=1706066366; cv=none; b=lslZQMWJBqbGNg6OdxStGleXqDqbUQyDvrViCJacdlktrQOIURD92u5ibWek04f6IlYjl+zJ8rlHWdkj+IogdbZ//8fvTezz8jgiIC9FWouBPgkeHoq9dI6KJIFV81dfmdQiNkfb8fiDAEwPomvYn3MkX9KN1hUZxwyznvlmLMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706063627; c=relaxed/simple;
-	bh=YU9+wroalOLdMvzmldfqEmWkmf1soj4hQyRF2NROHkY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dPjT/nStMSyZcMAECituZjfeq615qvIbD6yq30IDE5aQe+dZ3eyG8owt5bbnEjinAJ4vgxMYNIb0zGsbjmXjBNNi5njG5l6JGmYlswoYZOJjXwFybD9NOTH4LyBTJSqnVF2n3WFjTQAyjxATnKi+02g2s636NtEM/BukU3LsxHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AgbnsIy8; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40O1nulA005028;
-	Wed, 24 Jan 2024 02:33:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-type; s=qcppdkim1; bh=vfBm3wWuombKn41PnIOC
-	2MsGqxybU5Z0ee5Y/Fq3+L4=; b=AgbnsIy8hs2sBITdplhGq7vyPP8YbrQBpLsY
-	Gumx9s0bGnJVDq9xjal0jZJbdBppO9I0ji2qp0jw0zyfRpAJKrlOVkfEMCSLtnnb
-	MqpG7BDjqQCDyEQZtmm+0ATBr35AWurbKMo7uOwZMP3a82Jlb7FtjNbkR527anaq
-	8a0jn/egVujAByBrcuRoZXBCfUb0+oxt79UIrbmxAM9gxhg7FKfvx3GzGDzbKevR
-	PooZXY8gc2kcY0OAS3pUcZnlHCkHrdMRZzooU4u1KDtXsFHUixZBeMk9nkBT3keC
-	E1r9LflJ0osj0ICFYgDJz+k64EvM03JqtvdUINdK39CYmZ5Kvg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vtmhr0k0k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Jan 2024 02:33:41 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40O2XecK011230
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 24 Jan 2024 02:33:40 GMT
-Received: from tengfan2-gv.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 23 Jan 2024 18:33:35 -0800
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, Tengfei Fan <quic_tengfan@quicinc.com>
-Subject: [PATCH 2/2] dt-bindings: pinctrl: qcom: consolidate functions
-Date: Wed, 24 Jan 2024 10:33:05 +0800
-Message-ID: <20240124023305.15755-3-quic_tengfan@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240124023305.15755-1-quic_tengfan@quicinc.com>
-References: <20240124023305.15755-1-quic_tengfan@quicinc.com>
+	s=arc-20240116; t=1706066366; c=relaxed/simple;
+	bh=2Afcxvj7vwAOm7pIOzh9bPfEuegqAozbnRiCL18B2Cg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s1PrUKCAznU2S/B55H6WP9lxNIO2FBMXmj4WzDZ0QKdjYiV90laf0SXrzPBd2xiH4j+4wlsr/ooWPXv10l9BR3pB+Le68BFF7/H/o0gWsvQAhvfDBUBezAjVAHcUBwWWkYwsYr9WcxVw9BzDyn7tedz6aNGSj/n1V15NWrWxTxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=QfH2Us9E; arc=none smtp.client-ip=45.254.49.214
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=QfH2Us9Eq8B0ueN4t3tCCXCgmbIqlFl7ZJymOQuLq7M9YeL9smUzrKpL905TUTtNqsltZOxtpgQpdHkuqvWUXq0CZPZmy8JLlcS1NlFLVNWSTCiKR0ghlYv2lzXt/RCUWBVgMKQx0A0tv8P0Ew9Cyzg2QyIlvURz7W7Yw0MY5Gg=;
+	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=TAinrEkDcwYxgKcucbTjUS75lf3OZ7z9iVmkDRaZ18I=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 660777801C6;
+	Wed, 24 Jan 2024 10:42:32 +0800 (CST)
+Message-ID: <e1c56975-6a55-4b75-a447-dd2d0eec62e2@rock-chips.com>
+Date: Wed, 24 Jan 2024 10:42:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: EAM-BDHOUDLE6HSa_-IA-y4ZzTmrP92w
-X-Proofpoint-GUID: EAM-BDHOUDLE6HSa_-IA-y4ZzTmrP92w
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-23_15,2024-01-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 mlxlogscore=999 mlxscore=0 bulkscore=0 phishscore=0
- malwarescore=0 adultscore=0 impostorscore=0 priorityscore=1501
- clxscore=1015 suspectscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2401190000 definitions=main-2401240018
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] phy: rockchip: Add Samsung HDMI/DP Combo PHY driver
+Content-Language: en-US
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Johan Jonker <jbx6244@gmail.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Algea Cao <algea.cao@rock-chips.com>, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ kernel@collabora.com, Heiko Stuebner <heiko@sntech.de>
+References: <20240119193806.1030214-1-cristian.ciocaltea@collabora.com>
+ <20240119193806.1030214-4-cristian.ciocaltea@collabora.com>
+ <20240122121409.GW4700@pengutronix.de>
+ <00c749f7-3eb9-4bd1-a057-43a692b77d68@collabora.com>
+From: Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <00c749f7-3eb9-4bd1-a057-43a692b77d68@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkIdTlZNHx9NTUxKTEJLTk9VEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5IVUpLS1VKQk
+	tLWQY+
+X-HM-Tid: 0a8d395908efb24fkuuu660777801c6
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NUk6ORw*MzwtCAJMAxoCKRIz
+	DU8aCwJVSlVKTEtNS01PSk5IT0xCVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBQ0NITDcG
 
-Functions are consolidated in SM4450 tlmm driver, also consolidate these
-functions in SM4450 tlmm binding file.
+Hi Cristian:
 
-Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
----
- .../bindings/pinctrl/qcom,sm4450-tlmm.yaml    | 51 +++++++------------
- 1 file changed, 17 insertions(+), 34 deletions(-)
+On 1/24/24 08:58, Cristian Ciocaltea wrote:
+> On 1/22/24 14:14, Sascha Hauer wrote:
+>> On Fri, Jan 19, 2024 at 09:38:03PM +0200, Cristian Ciocaltea wrote:
+>>> Add driver for the Rockchip HDMI/eDP TX Combo PHY found on RK3588 SoC.
+>>>
+>>> The PHY is based on a Samsung IP block and supports HDMI 2.1 TMDS, FRL
+>>> and eDP links.  The maximum data rate is 12Gbps (HDMI 2.1 FRL), while
+>>> the minimum is 250Mbps (HDMI 2.1 TMDS).
+>>>
+>>> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
+>>> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
+>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>> ---
+>>>   drivers/phy/rockchip/Kconfig                  |    8 +
+>>>   drivers/phy/rockchip/Makefile                 |    1 +
+>>>   .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 2045 +++++++++++++++++
+>>>   3 files changed, 2054 insertions(+)
+>>>   create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+>>>
+>>> diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
+>>> index 94360fc96a6f..95666ac6aa3b 100644
+>>> --- a/drivers/phy/rockchip/Kconfig
+>>> +++ b/drivers/phy/rockchip/Kconfig
+>>> @@ -83,6 +83,14 @@ config PHY_ROCKCHIP_PCIE
+>>>   	help
+>>>   	  Enable this to support the Rockchip PCIe PHY.
+>>>   
+>>> +config PHY_ROCKCHIP_SAMSUNG_HDPTX
+>>> +	tristate "Rockchip Samsung HDMI/DP Combo PHY driver"
+>>> +	depends on (ARCH_ROCKCHIP || COMPILE_TEST) && OF
+>>> +	select GENERIC_PHY
+>>> +	help
+>>> +	  Enable this to support the Rockchip HDMI/DP Combo PHY
+>>> +	  with Samsung IP block.
+>>> +
+>>>   config PHY_ROCKCHIP_SNPS_PCIE3
+>>>   	tristate "Rockchip Snps PCIe3 PHY Driver"
+>>>   	depends on (ARCH_ROCKCHIP && OF) || COMPILE_TEST
+>>> diff --git a/drivers/phy/rockchip/Makefile b/drivers/phy/rockchip/Makefile
+>>> index 7eab129230d1..3d911304e654 100644
+>>> --- a/drivers/phy/rockchip/Makefile
+>>> +++ b/drivers/phy/rockchip/Makefile
+>>> @@ -8,6 +8,7 @@ obj-$(CONFIG_PHY_ROCKCHIP_INNO_HDMI)	+= phy-rockchip-inno-hdmi.o
+>>>   obj-$(CONFIG_PHY_ROCKCHIP_INNO_USB2)	+= phy-rockchip-inno-usb2.o
+>>>   obj-$(CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY)	+= phy-rockchip-naneng-combphy.o
+>>>   obj-$(CONFIG_PHY_ROCKCHIP_PCIE)		+= phy-rockchip-pcie.o
+>>> +obj-$(CONFIG_PHY_ROCKCHIP_SAMSUNG_HDPTX)	+= phy-rockchip-samsung-hdptx.o
+>>>   obj-$(CONFIG_PHY_ROCKCHIP_SNPS_PCIE3)	+= phy-rockchip-snps-pcie3.o
+>>>   obj-$(CONFIG_PHY_ROCKCHIP_TYPEC)	+= phy-rockchip-typec.o
+>>>   obj-$(CONFIG_PHY_ROCKCHIP_USB)		+= phy-rockchip-usb.o
+>>> diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+>>> new file mode 100644
+>>> index 000000000000..d8171ea5ce2b
+>>> --- /dev/null
+>>> +++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+>>> @@ -0,0 +1,2045 @@
+>>> +// SPDX-License-Identifier: GPL-2.0+
+>>> +/*
+>>> + * Copyright (c) 2021-2022 Rockchip Electronics Co., Ltd.
+>>> + * Copyright (c) 2024 Collabora Ltd.
+>>> + *
+>>> + * Author: Algea Cao <algea.cao@rock-chips.com>
+>>> + * Author: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>> + */
+>>> +#include <linux/bitfield.h>
+>>> +#include <linux/clk.h>
+>>> +#include <linux/delay.h>
+>>> +#include <linux/mfd/syscon.h>
+>>> +#include <linux/module.h>
+>>> +#include <linux/of.h>
+>>> +#include <linux/of_platform.h>
+>>> +#include <linux/phy/phy.h>
+>>> +#include <linux/platform_device.h>
+>>> +#include <linux/rational.h>
+>>> +#include <linux/regmap.h>
+>>> +#include <linux/reset.h>
+>>> +
+>>> +#define GRF_HDPTX_CON0			0x00
+>>> +#define HDPTX_I_PLL_EN			BIT(7)
+>>> +#define HDPTX_I_BIAS_EN			BIT(6)
+>>> +#define HDPTX_I_BGR_EN			BIT(5)
+>>> +#define GRF_HDPTX_STATUS		0x80
+>>> +#define HDPTX_O_PLL_LOCK_DONE		BIT(3)
+>>> +#define HDPTX_O_PHY_CLK_RDY		BIT(2)
+>>> +#define HDPTX_O_PHY_RDY			BIT(1)
+>>> +#define HDPTX_O_SB_RDY			BIT(0)
+>>> +
+>>> +#define CMN_REG0000			0x0000
+>>
+>> These register names are not particularly helpful. Maybe use a
+>>
+>> #define CMN_REG(x)			((x) * 4)
+>>
+>> Instead?
+> 
+> Yes, sounds good.
+> 
+>>> +
+>>> +static int hdptx_lcpll_frl_mode_config(struct rockchip_hdptx_phy *hdptx,
+>>> +				       u32 rate)
+>>> +{
+>>> +	u32 bit_rate = rate & DATA_RATE_MASK;
+>>> +	u8 color_depth = (rate & COLOR_DEPTH_MASK) ? 1 : 0;
+>>> +	const struct lcpll_config *cfg = lcpll_cfg;
+>>> +
+>>> +	for (; cfg->bit_rate != ~0; cfg++)
+>>> +		if (bit_rate == cfg->bit_rate)
+>>> +			break;
+>>
+>> You could use ARRAY_SIZE() to iterate over the array and save the extra
+>> entry at the end. Likewise for the other arrays used in the driver.
+> 
+> Sure, will do.
+> 
+>>> +
+>>> +	if (cfg->bit_rate == ~0)
+>>> +		return -EINVAL;
+>>> +
+>>
+>>> +static int rockchip_hdptx_phy_power_on(struct phy *phy)
+>>> +{
+>>> +	struct rockchip_hdptx_phy *hdptx = phy_get_drvdata(phy);
+>>> +	int bus_width = phy_get_bus_width(hdptx->phy);
+>>> +	int bit_rate = bus_width & DATA_RATE_MASK;
+>>
+>> What is going on here? bus_width is set to 8 in probe() using
+>> phy_set_bus_width(), but the value you pull out of phy_get_bus_width()
+>> is expected to contain the bit_rate and several other flags.
+>>
+>> It looks like you are tunneling flags from some other driver using this
+>> field. Isn't there a better way to accomplish this? If not, I think this
+>> needs some explanation.
+> 
+> Indeed, sorry for missing a comment here.  The flags are set by the
+> bridge driver to enable 10-bit color depth, FRL and EARC.  So far I
+> couldn't find an alternative approach to pass custom data using the PHY API.
+> 
+>> At least the variable should be renamed. it's called "bus_width" and it's
+>> passed to functions like hdptx_lcpll_frl_mode_config() which has this
+>> parameter named "rate" which is quite confusing.
+> 
+> I think for the initial support it's not really necessary to implement
+> all those features.  Andy, should we drop them until a better solution
+> is found?
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
-index bb675c8ec220..449fe442d3b2 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
-@@ -72,40 +72,23 @@ $defs:
-         description:
-           Specify the alternative function to be configured for the specified
-           pins.
--        enum: [ gpio, atest_char, atest_char0, atest_char1, atest_char2,
--                atest_char3, atest_usb0, atest_usb00, atest_usb01, atest_usb02,
--                atest_usb03, audio_ref, cam_mclk, cci_async, cci_i2c,
--                cci_timer0, cci_timer1, cci_timer2, cci_timer3, cci_timer4,
--                cmu_rng0, cmu_rng1, cmu_rng2, cmu_rng3, coex_uart1, cri_trng,
--                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
--                dp0_hot, gcc_gp1, gcc_gp2, gcc_gp3, host2wlan_sol, ibi_i3c,
--                jitter_bist, mdp_vsync, mdp_vsync0, mdp_vsync1, mdp_vsync2,
--                mdp_vsync3, mi2s0_data0, mi2s0_data1, mi2s0_sck, mi2s0_ws,
--                mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws, mi2s_mclk0,
--                mi2s_mclk1, nav_gpio0, nav_gpio1, nav_gpio2, pcie0_clk,
--                phase_flag0, phase_flag1, phase_flag10, phase_flag11,
--                phase_flag12, phase_flag13, phase_flag14, phase_flag15,
--                phase_flag16, phase_flag17, phase_flag18, phase_flag19,
--                phase_flag2, phase_flag20, phase_flag21, phase_flag22,
--                phase_flag23, phase_flag24, phase_flag25, phase_flag26,
--                phase_flag27, phase_flag28, phase_flag29, phase_flag3,
--                phase_flag30, phase_flag31, phase_flag4, phase_flag5,
--                phase_flag6, phase_flag7, phase_flag8, phase_flag9,
--                pll_bist, pll_clk, prng_rosc0, prng_rosc1, prng_rosc2,
--                prng_rosc3, qdss_cti, qdss_gpio, qdss_gpio0, qdss_gpio1,
--                qdss_gpio10, qdss_gpio11, qdss_gpio12, qdss_gpio13, qdss_gpio14,
--                qdss_gpio15, qdss_gpio2, qdss_gpio3, qdss_gpio4, qdss_gpio5,
--                qdss_gpio6, qdss_gpio7, qdss_gpio8, qdss_gpio9, qlink0_enable,
--                qlink0_request, qlink0_wmss, qlink1_enable, qlink1_request,
--                qlink1_wmss, qlink2_enable, qlink2_request, qlink2_wmss,
--                qup0_se0, qup0_se1, qup0_se2, qup0_se3, qup0_se4, qup0_se5,
--                qup0_se6, qup0_se7, qup1_se0, qup1_se1, qup1_se2, qup1_se3,
--                qup1_se4, qup1_se5, qup1_se6, sd_write, tb_trig, tgu_ch0,
--                tgu_ch1, tgu_ch2, tgu_ch3, tmess_prng0, tmess_prng1,
--                tmess_prng2, tmess_prng3, tsense_pwm1, tsense_pwm2, uim0_clk,
--                uim0_data, uim0_present, uim0_reset, uim1_clk, uim1_data,
--                uim1_present, uim1_reset, usb0_hs, usb0_phy, vfr_0, vfr_1,
--                vsense_trigger ]
-+        enum: [ gpio, atest_char, atest_usb0, audio_ref_clk, cam_mclk,
-+                cci_async_in0, cci_i2c, cci, cmu_rng, coex_uart1_rx,
-+                coex_uart1_tx, cri_trng, dbg_out_clk, ddr_bist,
-+                ddr_pxi0_test, ddr_pxi1_test, gcc_gp1_clk, gcc_gp2_clk,
-+                gcc_gp3_clk, host2wlan_sol, ibi_i3c_qup0, ibi_i3c_qup1,
-+                jitter_bist_ref, mdp_vsync0_out, mdp_vsync1_out,
-+                mdp_vsync2_out, mdp_vsync3_out, mdp_vsync, nav,
-+                pcie0_clk_req, phase_flag, pll_bist_sync, pll_clk_aux,
-+                prng_rosc, qdss_cti_trig0, qdss_cti_trig1,  qdss_gpio,
-+                qlink0_enable, qlink0_request, qlink0_wmss_reset,
-+                qup0_se0, qup0_se1, qup0_se2, qup0_se3, qup0_se4,
-+                qup1_se0, qup1_se1, qup1_se2, qup1_se2_l2, qup1_se3,
-+                qup1_se4, sd_write_protect, tb_trig_sdc1, tb_trig_sdc2,
-+                tgu_ch0_trigout, tgu_ch1_trigout, tgu_ch2_trigout,
-+                tgu_ch3_trigout, tmess_prng, tsense_pwm1_out,
-+                tsense_pwm2_out, uim0, uim1, usb0_hs_ac, usb0_phy_ps,
-+                vfr_0_mira, vfr_0_mirb, vfr_1, vsense_trigger_mirnat ]
- 
-         required:
-           - pins
--- 
-2.17.1
+I'm fine with it.
+It would be very appreciated if some linux-phy or drm bridge experts can give
+some suggestions about how to pass different custom phy modes.
 
+> 
+>> Sascha
+> 
+> Thanks for the review,
+> Cristian
 
