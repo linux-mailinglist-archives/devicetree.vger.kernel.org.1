@@ -1,188 +1,144 @@
-Return-Path: <devicetree+bounces-34767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F1583AF64
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:14:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A043D83AFBA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 18:26:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C16321F2485D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:14:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D41421C26461
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:26:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82FF7E769;
-	Wed, 24 Jan 2024 17:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169407F7F5;
+	Wed, 24 Jan 2024 17:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b/zKUaeB"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FZ2qjeaf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB95482D61
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 17:14:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F177F7C4;
+	Wed, 24 Jan 2024 17:21:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706116442; cv=none; b=m5psyLxTWqVmsTS0nelIZile/b5TmRVh3089KGZrQfGp34G3P2eBUitZZqe1hs+fpmZX3Y4ebMfscBxsXUNsCTLWQURicA1rdqODnd1hRbGT7KiaZsnMfy0sOP2YbtJdbN8mf2dZuo4VJzswcXLw55sRgGqcWYrKQMvR8uKuRqw=
+	t=1706116921; cv=none; b=ubi9XXTKZHUzbDfa/Wvna71RrNAxMqlRPM7mB6JFRDWesEIQCMc94dVDmxtWfxq5pRXuIIhaOJ8+7/KwVzOlSYMugmKkw/Ul0BoefY/2AqhiJGV8yDl1m+QfjXBLbh69gBlIlaPZbS3pdCa5N4sNV6XnZO6s4c0nODF428FwO9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706116442; c=relaxed/simple;
-	bh=ksY3FyxrpeM45qULHI2CemOCxVkP1KI3deN11YyyMJM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JCk2pD7BUqEAuQ+VlfE2vdMrKZZ9CqwcSxybM3wZzUVLi+ZMHILLnnrl0Ok/l8uk+tfX3e8Jkcs8HvDEvpzAFrDxqNsdyUluZ5Yz3ADlQY+j8QjfizhUuGG6ObxrPl8Q3Vsvh13ZVBamHm4Xj0gqjv9GpBg2FSB0+ZfMCIgWECU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b/zKUaeB; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3394446205dso1721158f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:14:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706116439; x=1706721239; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fL7vekHcmLaJ+7QQ0HPquBXHA0gUr2biUPM9ZcIUwI8=;
-        b=b/zKUaeBH9dJFNKgz8844KBmL6sFsdBFPZrD3Nk0siqqLk10IpOWzjtcAqMGKa78D8
-         EQJiyHdMe90SRPUN0QoCBand9ECO2f40TJtZ0XqIbv8Li+IB1Ku8/yncqdvvwzxX9JuS
-         4LMClIyqL18eTYhiPk+a28gm69o78iX27EdyQ7KE4sopEUfFC4Skv8slk0YG78mxFvvo
-         KGgDFf7d23NtcVq4TkJmDT16YxCo7Yhv//4fQGhnKCQRY5UIgrpcKrUJUP/Qn+xx3SPU
-         IQshVNJtEfS1YFPjV+k5c8SNL+DQY+ZPVrNaLb1OSFGglI718gUILC5ykFrsDQE+Zpr3
-         hkfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706116439; x=1706721239;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fL7vekHcmLaJ+7QQ0HPquBXHA0gUr2biUPM9ZcIUwI8=;
-        b=q5EkameLG2MZBcW6hdqsRE2hunP9+vyfG22Yqa8Vtr/hjv/H52rl++AIPCBf94v2z0
-         1xPzOK866qyQaBrJrvQh71IiuTu0CFMoTycULWnFNCbUnxjE30M2VxfHVZgfwTXu8Wh1
-         CYFihdksEYKrwi5Uta1sSGnvPPA+OqvRMHRSsn+dJWBVoZuFtMMoD3WOroKia65yKMuH
-         4LQuQ8AqsmtPZdzeOcBlYHdyT4HAj8p3EBaPR13fQJJhSdkkqYI6BTwmyWfzYAnPxxTN
-         qEIrIcvThYg4Tu/+7HKaA8cH3zcNSWXdyJm55isq8jbhRKtgkx0Fr9fkQmM0KKT/we/R
-         rPpQ==
-X-Gm-Message-State: AOJu0Yx0dyBxgYqbRUswEx4GW/Z9xRUpjfRYqelQe7xd/SUdvFYtcmx7
-	0+YROaTVl9oBLZqCt5X1JxHOClJrjaZ7HzVz6BdwpaLExvv82+cuJ0t/bKzOkx0=
-X-Google-Smtp-Source: AGHT+IGiztgrcSNL81j59fnaoJJkGT+BbuFUTxiiXBC/V1bmXz1a6xzgEEz/U/UX0uhqc/tpOlHFvg==
-X-Received: by 2002:adf:fd49:0:b0:336:7793:6ab2 with SMTP id h9-20020adffd49000000b0033677936ab2mr571520wrs.143.1706116439175;
-        Wed, 24 Jan 2024 09:13:59 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id m10-20020adffa0a000000b003392172fd60sm13992202wrr.51.2024.01.24.09.13.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 09:13:58 -0800 (PST)
-Message-ID: <64d7811a-61c8-4257-8009-79e023ab3139@linaro.org>
-Date: Wed, 24 Jan 2024 18:13:56 +0100
+	s=arc-20240116; t=1706116921; c=relaxed/simple;
+	bh=7Zkqlj15DzRPQdb/WVAraZl43ecVYS8Atallm3D12ng=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LJJ002ywAOuuVk3O/j8H+EKc6G8lADfpqF/4EDtid3w3jVr0qJ9MUHoYLThLRI819kjHIKeJ5rSDcYkRSRL435MGoh99BG90w0CJHTrY/AKcGzA45eDVP+C0er7e7xKNNr+riSpRc4MlSACXmhd5VH4OGNNEvMWG1/ynFGdwuYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FZ2qjeaf; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40OHLq3P110878;
+	Wed, 24 Jan 2024 11:21:52 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706116912;
+	bh=DmJpWLN7OHtRo6EnwRqfy6v8Zjdi8Isz8zrhFbkPXi4=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=FZ2qjeafGwe0hu5eUhRx4+Au1Nn+Vu4PdIqq0RqavgcnSLvyrlm/Of1CFiaykt5J0
+	 0LmZWCex4XC6Ex2HFkIevDsXGw7s4ie5E/JjKZI2r029dIlFxORC1pOwqkWb6upLze
+	 lpYKLFCkYQ/t25KCYTEiDoAfbM+gU2XPt3mrkdzI=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40OHLq8j029675
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 24 Jan 2024 11:21:52 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
+ Jan 2024 11:21:51 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 24 Jan 2024 11:21:51 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40OHLpqf010551;
+	Wed, 24 Jan 2024 11:21:51 -0600
+Date: Wed, 24 Jan 2024 11:21:51 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Jayesh Choudhary <j-choudhary@ti.com>
+CC: Vaishnav Achath <vaishnav.a@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <bb@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <u-kumar1@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-mcu/wakeup: Disable MCU and
+ wakeup R5FSS nodes
+Message-ID: <20240124172151.ngxaq6k5tnvsx4jr@proud>
+References: <20240121134017.374992-1-vaishnav.a@ti.com>
+ <0fcec921-0220-4251-afa4-44db5e80d2ef@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: remove redundant company
- name
-Content-Language: en-US
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- leoyang.li@nxp.com, hvilleneuve@dimonoff.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- andy.shevchenko@gmail.com
-References: <20240124164646.1506814-1-hugo@hugovil.com>
- <20240124164646.1506814-2-hugo@hugovil.com>
- <799819b6-6183-4d92-8bf6-93e2e2c1122a@linaro.org>
- <20240124120803.019e8408c5a8de292d9a6a35@hugovil.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240124120803.019e8408c5a8de292d9a6a35@hugovil.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0fcec921-0220-4251-afa4-44db5e80d2ef@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 24/01/2024 18:08, Hugo Villeneuve wrote:
-> On Wed, 24 Jan 2024 18:00:00 +0100
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 11:26-20240124, Jayesh Choudhary wrote:
+> Hello Vaishnav,
 > 
->> On 24/01/2024 17:46, Hugo Villeneuve wrote:
->>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->>>
->>> Company name in compatible description appears twice, which is not really
->>> helpful, so remove it from product name.
->>
->> It's just a string. There is no bug, at least you did not describe where
->> the bug is.
+> On 21/01/24 19:10, Vaishnav Achath wrote:
+> > K3 Remoteproc R5 driver requires reserved memory carveouts and
+> > mailbox configuration to instantiate the cores successfully.
+> > Since this is a board level dependency, keep the R5 subsytem
+> > disabled at SoC dtsi, otherwise it results in probe errors like
+> > below during AM62P SK boot:
+> > 
+> > r5fss@79000000: reserved memory init failed, ret = -22
+> > r5fss@79000000: k3_r5_cluster_rproc_init failed, ret = -22
+> > r5fss@78000000: reserved memory init failed, ret = -22
+> > r5fss@78000000: k3_r5_cluster_rproc_init failed, ret = -22
+> > 
+> > Fixes: b5080c7c1f7e ("arm64: dts: ti: k3-am62p: Add nodes for more IPs")
+> > 
+> > Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
 > 
-> Hi Krzysztof,
-> in fact the fix is based on comments you made in a
-> review for another board that I submitted:
+> Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
 > 
-> https://lore.kernel.org/all/6035c4cc-afe1-456d-a4d0-16992da09a2e@linaro.org/
-> 
-> ------------------
-> Company name appears twice, which is not really helpful. What's the true
-> name? Gateway EVK? Then keep only this.
+> > ---
+> >   arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi    | 2 ++
+> >   arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 1 +
+> >   2 files changed, 3 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> > index c4b0b91d70cf..14eb9ba836d3 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> > @@ -187,6 +187,8 @@ mcu_r5fss0: r5fss@79000000 {
+> >   		ranges = <0x79000000 0x00 0x79000000 0x8000>,
+> >   			 <0x79020000 0x00 0x79020000 0x8000>;
+> >   		power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
+> > +		status = "disabled";
+> > +
+> >   		mcu_r5fss0_core0: r5f@79000000 {
+> >   			compatible = "ti,am62-r5f";
+> >   			reg = <0x79000000 0x00008000>,
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> > index 19f42b39394e..10a7059b2d9b 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> > @@ -78,6 +78,7 @@ wkup_r5fss0: r5fss@78000000 {
+> >   		ranges = <0x78000000 0x00 0x78000000 0x8000>,
+> >   			 <0x78100000 0x00 0x78100000 0x8000>;
+> >   		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
+> > +		status = "disabled";
 
-You are mixing arguments. You want to change released compatible based
-on style comment. Style comments are reasonable comments for compatibles
-while they are patches. Not released commits.
+Is there a reason for difference in white space addition?
 
-> ----------------- 
+> >   		wkup_r5fss0_core0: r5f@78000000 {
+> >   			compatible = "ti,am62-r5f";
 > 
->> This has probably little impact on user-space, but there could be such
->> which actually reads compatibles and depends on them. Or bootloader or
->> whatever. Therefore to me such cosmetic change of correct compatible is
->> not worth ABI impact.
-> 
-> Yes, normally you would be right, but in this specific case, the board
-> is a prototype developped by my company and we are still at the
-> prototype stage, so there is zero ABI impact.
-> 
-> Maybe I can add this to the cover letter if you want me to submit a V3.
+> Thanks.
 
-Any explanation and possible ABI impact should be in commit msg.
-
-Anyway, one patchset per day, so people have chance to respond...
-
-Best regards,
-Krzysztof
-
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
