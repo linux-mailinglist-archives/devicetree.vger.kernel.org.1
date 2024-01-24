@@ -1,88 +1,65 @@
-Return-Path: <devicetree+bounces-34755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B37583AEA3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:46:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5559383AEDB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:57:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADB711C2155A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:45:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA3681F21BE1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135DE7E79E;
-	Wed, 24 Jan 2024 16:45:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044BE7E78A;
+	Wed, 24 Jan 2024 16:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RtmEOujY"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="gQceyD+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E757E760
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 16:45:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3DE37E584;
+	Wed, 24 Jan 2024 16:56:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706114716; cv=none; b=sDIWyOOuHZU1lo7CPS8vNsEIwPDdWT6eqY+R7PYc4xpNPbTeBieEeXkcocJ6It0OHO05ssVYtZXsOv0kA1r3H+yGMgxcR9C2J/K83ubgxwiI8TP8KmjFFBJXObi68j/oqKXgszmnIQSeAjueLrNH829+KpX03/g4Rtrz0Lt5i8U=
+	t=1706115398; cv=none; b=pF+C15it9twTyWu2XgWy2f5WOIse1F7j2KRBAXth46WjvfBfuJs/2MPi1VlOz1tLhD05xIdVFHhCVGzU2LU24ZJMHbz2C+5FNzGLRluJiEBOKqBJKVFYQYK2z8fcNMjbPXZzNBzqOuZJuXpKqxxFqAZbgRnvLOh5jOMz9IC4QVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706114716; c=relaxed/simple;
-	bh=jpcsDAXA1KZo6FHeypWnR2nrsXwXdx1uTU+szPAsXns=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kveq+zlAikxtvUYtcapJceuTBxEvhsTvQj5OrxyudFfqiUhn3OrwMyUK2cIK4pfaWHu86YObAd7kE0TJxi27mD1tFaZSGY6fk+lCev2UkufibdCEI1XaRtzJuHRGKh835I/oXHE2Po4wiwYSgL80dUnPda+siDcZjBVfTMBuqaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RtmEOujY; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-339237092dcso4149512f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 08:45:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706114712; x=1706719512; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ma1QQhK11zUQI9f4hz2k25EV0GtpYeqsCa+/7KAoKQo=;
-        b=RtmEOujY5veOsJjr1Ih8ThLDzgb78MykZozR/w5AePWJQO8ThlitYILjYCzS+iWfZz
-         MDCysTjBbTCCNg7xxNAuXKcFUYcFYMyVDxy86xnKbWW5CuplnS20wdWnTfTLvpM5Y7uB
-         qoccCgst41jZK1PspCzAVeYFz4gJ8cuaTxcwD83bCHFbZ+04O7dmaMoMTRr38VQ8ZT+D
-         NAPzElpCy8vopzMWVLmhzOHqqcBN9o3nnjqZxar7WaFLFxsroK2sbUVBvXQ4y3BBaEEI
-         z8xCYkYKTo06oewVDIT4hmyJ9/RfAmQcA/6mmRAKKUqm0XPMrqh5eUAtPFdVlffcGc3Y
-         A2Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706114712; x=1706719512;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ma1QQhK11zUQI9f4hz2k25EV0GtpYeqsCa+/7KAoKQo=;
-        b=IeQRYfaicfW/IPW9+spo2n7tjJGCks5hN+v5gRKAQV/YvIYy9xThdFq4S2fPRGw+NG
-         bJaocQVoJolnyRBqhHDOJjSLn3u4TZcDdqPzIm40k1F4nRi/XRk0latXwqeE/mwoJn73
-         NX3/uNq1Y8bTY7x2ehRmdNaI1uO/CwlDOGoMNa95npgwtIMfGbfT2NUtvfWwTvxwv9x0
-         NoP0ZBCkFAbYltFY7jQCNARinuzqcYmtu6gl3QL15fsn0I2oeEhAzvtgBcgw0lRx00ih
-         YhtflAeWFnjS3rXtGjhGzJILA/c9e/3Zcjk+G0RuSjxn5PbzGJVGp1K8st9jUg/SadiU
-         m4jA==
-X-Gm-Message-State: AOJu0YzaJ2uDpIU2RqaA/lCfQ6lALZ+2zWFrCyOUyBSRHA0RlPCusqUh
-	6tkBBddTtQrpcH7X5u/GWPSDOI1FJLvFthYyIkU6HDVEyyXg0MsADBGiOtGWoVg=
-X-Google-Smtp-Source: AGHT+IGzDIEpUxydzHRjypRSAxJj3nt4qh5Z5VHhh07APhW85LKtlspdKIerOdWzYvhVVp/mhxw6eg==
-X-Received: by 2002:adf:e2ce:0:b0:339:2db3:f4e9 with SMTP id d14-20020adfe2ce000000b003392db3f4e9mr770103wrj.32.1706114712445;
-        Wed, 24 Jan 2024 08:45:12 -0800 (PST)
-Received: from krzk-bin.. ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id v9-20020a5d5909000000b0033936c34713sm8137883wrd.78.2024.01.24.08.45.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jan 2024 08:45:12 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
+	s=arc-20240116; t=1706115398; c=relaxed/simple;
+	bh=J/sQhWMEvt/vn+lfCEXPe62LcDsGsyF7kH6x+xd5LL0=;
+	h=From:To:Cc:Date:Message-Id:MIME-Version:Subject; b=na5K5xKxWDbMQAvl9+8+ay5DRP9QjC3kewHG0pUDaFzmnYEiHRV++EZ/4O1ygeKB8MXsu+RZ8hjYpAU4EbLKkdM+uUdxsMTWQWK4tHGYtlS6t2h5q1mj1UNx3lnLp7o7FENYzTIDDW2OMl/PqFD/yfOUOGIymbhnlpamOLfpB4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=gQceyD+1; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+	:From:subject:date:message-id:reply-to;
+	bh=mnUWpMCy5DToKNWP1PJXR/S74CtvHvrqkEFrG4JVcmw=; b=gQceyD+1WuSt+4y40mjd6PxMF1
+	FehwBP+JKLpk5+tVsOi7HMq60F3ateXgIJLo4dQZismkca2AN6krYcA6HWfPqTmoZqt/POizCd7Ks
+	QYHCyImjGHZ3MX4GaiFJOgRyB6AbaIyjL90geHBph/FQtpKGpuFKo9KGD9Lolf7P5fm4=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:45420 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1rSgY6-0007ym-NO; Wed, 24 Jan 2024 11:56:27 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	leoyang.li@nxp.com,
+	hvilleneuve@dimonoff.com
+Cc: krzysztof.kozlowski@linaro.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8550-mtp: add correct analogue microphones
-Date: Wed, 24 Jan 2024 17:45:05 +0100
-Message-Id: <20240124164505.293202-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240124164505.293202-1-krzysztof.kozlowski@linaro.org>
-References: <20240124164505.293202-1-krzysztof.kozlowski@linaro.org>
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	hugo@hugovil.com,
+	andy.shevchenko@gmail.com
+Date: Wed, 24 Jan 2024 11:46:44 -0500
+Message-Id: <20240124164646.1506814-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,46 +67,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -0.0 T_SCC_BODY_TEXT_LINE No description available.
+Subject: [PATCH v2 0/2] board: imx8mn-rve-gateway: fix compatible description
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-Add proper audio routes for onboard analogue microphones AMIC[1345] -
-MIC biases and route from TX macro codec to WCD9385 audio codec.
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-This should bring AMIC1, AMIC2 (headphones), AMIC3, AMIC4 and AMIC5
-onboard microphones to work, although was not tested on the hardware.
+Hello,
+this patch series fixes compatible description for the RVE gateway board.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Thank you.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index 393702fe61aa..0c94edb8b824 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -105,14 +105,21 @@ sound {
- 				"SpkrRight IN", "WSA_SPK2 OUT",
- 				"IN1_HPHL", "HPHL_OUT",
- 				"IN2_HPHR", "HPHR_OUT",
-+				"AMIC1", "MIC BIAS1",
- 				"AMIC2", "MIC BIAS2",
-+				"AMIC3", "MIC BIAS3",
-+				"AMIC4", "MIC BIAS3",
-+				"AMIC5", "MIC BIAS4",
- 				"VA DMIC0", "MIC BIAS1",
- 				"VA DMIC1", "MIC BIAS1",
- 				"VA DMIC2", "MIC BIAS3",
- 				"TX DMIC0", "MIC BIAS1",
- 				"TX DMIC1", "MIC BIAS2",
- 				"TX DMIC2", "MIC BIAS3",
--				"TX SWR_ADC1", "ADC2_OUTPUT";
-+				"TX SWR_INPUT0", "ADC1_OUTPUT",
-+				"TX SWR_INPUT1", "ADC2_OUTPUT",
-+				"TX SWR_INPUT0", "ADC3_OUTPUT",
-+				"TX SWR_INPUT1", "ADC4_OUTPUT";
- 
- 		wcd-playback-dai-link {
- 			link-name = "WCD Playback";
+Link: [v1] https://lore.kernel.org/all/20240124154422.3600920-1-hugo@hugovil.com/raw
+
+Changes for V2:
+-Add Fixes tags
+
+Hugo Villeneuve (2):
+  dt-bindings: arm: fsl: remove redundant company name
+  arm64: dts: imx8mn-rve-gateway: remove redundant company name
+
+ Documentation/devicetree/bindings/arm/fsl.yaml       | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mn-rve-gateway.dts | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+
+base-commit: 615d300648869c774bd1fe54b4627bb0c20faed4
 -- 
-2.34.1
+2.39.2
 
 
