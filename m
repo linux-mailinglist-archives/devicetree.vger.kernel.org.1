@@ -1,64 +1,59 @@
-Return-Path: <devicetree+bounces-34741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A558F83ADF5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:08:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A925983AE06
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 17:10:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E7A4B21DB3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:08:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC45B1C23544
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:10:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41057C0B5;
-	Wed, 24 Jan 2024 16:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C8347C0BE;
+	Wed, 24 Jan 2024 16:10:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AkpFFABp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Txqt/r9E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779257A725;
-	Wed, 24 Jan 2024 16:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F7540C1B;
+	Wed, 24 Jan 2024 16:10:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706112474; cv=none; b=W+97xLwZ+60Qxukcj9cEW3onbfs8VwSl9uVSER9KwCxOoHN2YgzK70bjq3eMGe+c9vH6A2LxxzCdcOo5RWu2Wn77TJTLFGXzX68pO753lLCPeh3nilTM4DHPvH7EcxGgDXblqK4YsnJu70WX+t3HzK7zLMEueKYZOPY/eLnB3lY=
+	t=1706112629; cv=none; b=cKyiHq3o1AstkyJjLv699kI9IEhOTXoutaRzK8zT2XGKIEQK8jP3wkMT7br9VxVQeTlyyd6Yw0NOdjYZ29hTHCNNa3EOxIeU3lzmFhsnRvkg7wjPx7pU8zHhnxt2uNafBGvXr3Om7MPxuPP84tqNWTaFSHPrv8Z6z80wxSFT1Z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706112474; c=relaxed/simple;
-	bh=T7a150d0tNI47ue4XaQznSfvq2Kxgb5U4vfbNPnQC8A=;
+	s=arc-20240116; t=1706112629; c=relaxed/simple;
+	bh=SalXPkmNubfGiQcSbtanqRQSq5xrw4Ucd7dpoHNEfPg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZJRpGgOh3VcydrvIhOr3qXUP+Cb+fWLx7aqp1/WkPx7TigNt9Q6iynQZhV21tbuzM7vZumDQYTNh8XyIL3libYFHq70G2dLOJpGJdW1iDY2PtqIKP41XEk5G+wiPciOjL7O1ywXFwSZF9m/pRK7j+UxycDvRCy4O63RUaIPHDUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AkpFFABp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09351C433C7;
-	Wed, 24 Jan 2024 16:07:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XK9j234Qep87NZq3uV0lVvxO817RC1s/LofeMTfDfhp8gqckRry03BtIj9P9/7uxuKuZ+1Wqk0TRB1/P4fF6chBm7MESy4MNOI02JeZvQq020bEojuFflqrJ3dKt80zAvlE2Vzk5qJq12/PUH6tOnltS5RDWb+Ti84LH4Rt3uFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Txqt/r9E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47ADDC433C7;
+	Wed, 24 Jan 2024 16:10:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706112473;
-	bh=T7a150d0tNI47ue4XaQznSfvq2Kxgb5U4vfbNPnQC8A=;
+	s=k20201202; t=1706112629;
+	bh=SalXPkmNubfGiQcSbtanqRQSq5xrw4Ucd7dpoHNEfPg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AkpFFABpJpTm/W1yHzgIqYaAmRMtNDO5b92DqnfpJ9VvStTZi3E6ggtnDYcXTOVlB
-	 iNx4pUbYzt0tcyikh5RqvEpp0BEO3jkA1R0Y/85ophbqGpAqrdZhQntlarok19SYWv
-	 tawp6S6Up5fHCAESVLn9OyiV0mshvWYYRBLl+1fLzsLpWUicgiOt6d9FbsjK/td7yd
-	 kk0IiuVM/FrFcaNjzCWwDQ0vJ9gmg34xBicaLGB3OaT831MO9mZ4mxl95DOVM9rx6t
-	 BcvznleZzDNrXOtRRAB8BjbnRSQbKUyzkmms6eDFIC4iblaWvabJ6ChrazHprXFXF9
-	 H0tXWbdwMy2sA==
-Date: Wed, 24 Jan 2024 16:07:48 +0000
+	b=Txqt/r9E4X+x35VNp0w/xCp316LfHogdEXOyL+dfA+JhLsthGLWmBPZVc7aAmwVjs
+	 oAYyBDzF6pCTvE3Lly4F3Q09AEetMXO9i06J7YJEt2ckvA4n0/Jido+oJfC0ObyLWd
+	 XC2ZZ/TG7MAhLyg48x/Ks5U1DNUZ6cctYX02P+ZZnBajhdVaWxe+KG2g5Ln1+DeGt5
+	 g+2lRiDKODDHjOqPZt4M5RPecQLJAK8sAdryi1eIOUMX8OCXr6rnfR7vbISEGCRVZm
+	 MvvhxCEev7ZKdLLQXrqY7CllqJjOzsEzBFlWDa1tEkqBwlX4oQmYwJfGFstKbiZkJp
+	 ODRbW4wYNQvcA==
+Date: Wed, 24 Jan 2024 16:10:24 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Esben Haabendal <esben@geanix.com>
-Cc: devicetree@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: net: snps,dwmac: Add
- time-based-scheduling property
-Message-ID: <20240124-reptilian-icing-a95b20f123be@spud>
-References: <b365dc6f756a3fad4dfaa2675c98f4078aba8a55.1706105494.git.esben@geanix.com>
- <30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
+To: Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, vigneshr@ti.com, afd@ti.com,
+	srk@ti.com
+Subject: Re: [PATCH v3] dt-bindings: PCI: ti,j721e-pci-host: Add support for
+ J722S SoC
+Message-ID: <20240124-unmatched-plating-019a3055cf5e@spud>
+References: <20240124122936.816142-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,71 +61,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="orGn1OOIBTBi4VY0"
+	protocol="application/pgp-signature"; boundary="XMTtUXZ1FD8n2B8o"
 Content-Disposition: inline
-In-Reply-To: <30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
+In-Reply-To: <20240124122936.816142-1-s-vadapalli@ti.com>
 
 
---orGn1OOIBTBi4VY0
+--XMTtUXZ1FD8n2B8o
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 24, 2024 at 03:33:06PM +0100, Esben Haabendal wrote:
-> Time Based Scheduling can be enabled per TX queue, if supported by the
-> controller.
+On Wed, Jan 24, 2024 at 05:59:36PM +0530, Siddharth Vadapalli wrote:
+> TI's J722S SoC has one instance of a Gen3 Single-Lane PCIe controller.
+> The controller on J722S SoC is similar to the one present on TI's AM64
+> SoC, with the difference being that the controller on AM64 SoC supports
+> up to Gen2 link speed while the one on J722S SoC supports Gen3 link speed.
+>=20
+> Update the bindings with a new compatible for J722S SoC.
+>=20
+> Technical Reference Manual of J722S SoC: https://www.ti.com/lit/zip/spruj=
+b3
+>=20
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 
-If time based scheduling is not supported by the controller, then the
-property should not be present! The presence of a property like this
-should mean that the feature is supported, using it is up to the
-operating system.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-That said, why is this a property that should be in DT? If support is
-per controller is it not sufficient to use the compatible to determine
-if this is supported?
-
-Thanks,
+Cheers,
 Conor.
 
->=20
-> Signed-off-by: Esben Haabendal <esben@geanix.com>
 > ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
-mentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 5c2769dc689a..301e9150ecc3 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -399,6 +399,12 @@ properties:
->              type: boolean
->              description: TX checksum offload is unsupported by the TX qu=
-eue.
+> Hello,
+>=20
+> This patch is based on linux-next tagged next-20240124.
+>=20
+> v2:
+> https://lore.kernel.org/r/20240122064457.664542-1-s-vadapalli@ti.com/
+> Changes since v2:
+> - Added fallback compatible for "ti,j722s-pcie-host" as
+>   "ti,j721e-pcie-host" based on Conor's suggestion at:
+>   https://lore.kernel.org/r/20240122-getting-drippy-bb22a0634092@spud/#t
+>=20
+> v1:
+> https://lore.kernel.org/r/20240117102526.557006-1-s-vadapalli@ti.com/
+> Changes since v1:
+> - Dropped patches 1/3 and 2/3 of the v1 series as discussed in the v1
+>   thread.
+> - Updated patch 3/3 which is the v1 for this patch by dropping the checks
+>   for the "num-lanes" property and "max-link-speed" property since the PCI
+>   driver already validates the "num-lanes" property.
+>=20
+> Regards,
+> Siddharth.
+>=20
+>  Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml=
+ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> index b7a534cef24d..ac69deeaf1ee 100644
+> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
+> @@ -23,6 +23,10 @@ properties:
+>          items:
+>            - const: ti,j7200-pcie-host
+>            - const: ti,j721e-pcie-host
+> +      - description: PCIe controller in J722S
+> +        items:
+> +          - const: ti,j722s-pcie-host
+> +          - const: ti,j721e-pcie-host
 > =20
-> +          snps,time-based-scheduling:
-> +            type: boolean
-> +            description:
-> +              Time Based Scheduling will be enabled for TX queue.
-> +              This is typically not supported for TX queue 0.
-> +
->          allOf:
->            - if:
->                required:
+>    reg:
+>      maxItems: 4
 > --=20
-> 2.43.0
+> 2.34.1
 >=20
 
---orGn1OOIBTBi4VY0
+--XMTtUXZ1FD8n2B8o
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbE11AAKCRB4tDGHoIJi
-0v8wAP9TtkDEdLKEVA0n+83492ltV8gpozpt7NTDo9bSA8pPRwEAk2CFLW1Ac02u
-hfaJxQ8KnrIuHQjJ9wb8ToaEVgPN9Ag=
-=Q0u6
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbE2bwAKCRB4tDGHoIJi
+0jHrAQCIBSaSCKrkq41PAo1JM5MQwnH1H5lerQzNSHd34orjQQD/QiTReBxf2B8K
+0HBXqv1UMcgBysJE8No3ifA4Cdp2vA0=
+=tVT8
 -----END PGP SIGNATURE-----
 
---orGn1OOIBTBi4VY0--
+--XMTtUXZ1FD8n2B8o--
 
