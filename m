@@ -1,131 +1,559 @@
-Return-Path: <devicetree+bounces-34584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CB4B83A430
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:33:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7D883A43C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:36:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9A3A287744
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:33:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFA421C22E58
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F1517551;
-	Wed, 24 Jan 2024 08:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC8B175AC;
+	Wed, 24 Jan 2024 08:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m/PHmsqQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JFqYgUim"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23C8168B7;
-	Wed, 24 Jan 2024 08:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80C6A1758D
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 08:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706085224; cv=none; b=C+E/edZjwNLBdaxB8EwntoLWvIaAsgM2Vk8FLhKbH0ECvUJV7u8kJ4TQ0+HAvB/5EEDPOGFQp86jeKJfWWYidP6BKom0BKQc6Vhqz+/PfhLJp6PW7oZetRguPkvfv5OJFQN0fSgTTAlL+5e4ZO+GfuewDzmR1sKBTkRkCepT+zs=
+	t=1706085411; cv=none; b=UrNzM2rZs1/+byNllevf4oSPLtLpPLWuL7s9nZii6HwTNpxJ7PD40Xbua1PWxKNh9GkS7HCBeQXJyQilnBQkETG6vJAluJk1tCkwIftKQXN7dG7y+2wgZBvVWUqxZfgv+5cIBCsorTzTb0ZkqY6kVMqhGj+08dH7SLe3oJp9ai8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706085224; c=relaxed/simple;
-	bh=EzCClBVRfIQQjiEtneiOW2Rs5f79PU3aGY7X9Y7gYBI=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=ckaZIYhFQ7K2tRwPfdMf4sojfxeW2MicVYglra8nBV3w+fj7hCDv6rWtO1MhmbzXgHlsdYNhJKAefRYXkDXJE1yhsKJZZfjhiLneOptw1WlraE+/vR75YRAoB8M+8ADgEE2pFSdb90cqMqt8gVcZR3SBsOWUdq10nkNUZJ7Zrno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m/PHmsqQ; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2cf13c259f3so14764591fa.2;
-        Wed, 24 Jan 2024 00:33:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706085220; x=1706690020; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5hd/1O/Sg3JdYzCg1+SznBDCwVJqhnijf0uPOjWbChE=;
-        b=m/PHmsqQzBwPfXvl3E8XmaEdmgpTFrNqPto7kvI0pVj2/6rIJZSWBr9p8JRKZqgCSv
-         cAV5DehcLnWEgMmpI1yABlgqL3/fwuo34+DxdoJibDR/bMlZLZ7UKMlQ7EaDitA/gaZe
-         H7YghbfYwavKRdPQ3kg/+mwCop+wyMZ/Z2M1KORvd9rH9olLU3bxONV4Pcb30Z7woLRS
-         1pC5JlNSw1KCmwR1qmo1D42Z7t+HF7qcHtK0IMfgtTvHn5N3lU7umTavUXGjEVJTZbL2
-         IGMpoCkW7ir4C6jk5ezVPs/Wn3shRcGUm4JIOjp2zO56Gnyo0ZThSBFSRX7iC5H4ycyd
-         IBYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706085220; x=1706690020;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5hd/1O/Sg3JdYzCg1+SznBDCwVJqhnijf0uPOjWbChE=;
-        b=CrlgkBZOj6xtMuPqiEk+W/CK3SVxHVCSJeRs89DpULI4Sk147Qr+3M7Kf1D9SD+KEo
-         IWXVdbV82IvK8zhCQDlPn/8a0FBYjs1Hr69vYgbt/r9cs9cTwZPblUXPrztVQOGWYCOh
-         +q18RIFxE5dNK8QejMeidzaZKd18C029lQ/tGy2v3aCD4IUn5ur2dal58dZqw6UZwWD6
-         ls4/QHQi5OeRDzybZmtmSkXFFjFJux/UEinTfPpUUCiEztEKsb3aKsJ8x95cJIFQ7pNX
-         JBYatc7YZaf6ipHZSyqJSEhuhaEetZaSdt8moVd4rg5aWYKeGRJa3acfvYXE/JP6AYuu
-         hLzA==
-X-Gm-Message-State: AOJu0YyqTLnAGOjTHaVAytmvPe+yIAAKBrMBO0u2KLnUWZumcnjzrZad
-	GSRzJwSxDoFIpDKMA30iT0PC0oOjnwYb6HjDRXWCiX0UNLWSh9wi1zrcaxkWD3E=
-X-Google-Smtp-Source: AGHT+IE6U5DpYNkERuWKwc5U2ERYS4WpXA04rDyoxcT71SlhND78Rp2Rht6y6AEUfe9ZRdOUS1sqvg==
-X-Received: by 2002:a2e:a37a:0:b0:2cc:8b49:6dbb with SMTP id i26-20020a2ea37a000000b002cc8b496dbbmr364086ljn.62.1706085220103;
-        Wed, 24 Jan 2024 00:33:40 -0800 (PST)
-Received: from [192.168.1.105] ([31.173.80.46])
-        by smtp.gmail.com with ESMTPSA id c18-20020a05651c015200b002cce6095241sm3750351ljd.62.2024.01.24.00.33.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 00:33:39 -0800 (PST)
-Subject: Re: [PATCH v3 12/17] MIPS: mobileye: eyeq5: remove reg-io-width
- property from OLB syscon
-To: =?UTF-8?Q?Th=c3=a9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org
-References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
- <20240123-mbly-clk-v3-12-392b010b8281@bootlin.com>
-From: Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <30ab446a-c00d-12d6-0f54-4bcf7c42a6fe@gmail.com>
-Date: Wed, 24 Jan 2024 11:33:29 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+	s=arc-20240116; t=1706085411; c=relaxed/simple;
+	bh=fTubqUrcvjY2fWw2V+v/BpDL1SgAY/HreczUJAoul0k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K9dL5Ymz7b8sgBrfseivd0XDmvZ2UqE8rzNXukprVUOIpUOU3n6yGr6AwNj9UD3Yr4RyijZryeCv7p+lRDg9DaD8EYTdSIkjrAUHIB9H1111pbOsYCvknN1p4EVh/U2a5xipKxLtjPXv74MJ+QxdWFRocATQTHIah5dUrxF7oBg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JFqYgUim; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1706085407;
+	bh=fTubqUrcvjY2fWw2V+v/BpDL1SgAY/HreczUJAoul0k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JFqYgUimPr7iWwzyF4uGka27Uj0NQtofHt/v5iZJ81Vx+ymGTbfkoIZkL5SCcLnBn
+	 dEQTNBBbR2Jk2pbpi/IjEnkptKIFcBgFAC35SvYUKDcFEgGX9WIEyUN18WEQ9sba7T
+	 NSWRA7j+vYbmXBcAzAHD2/5ONfDmmb/qdEVGd314tIQ/lt3nRMSRIdORIMH16LTpAL
+	 94S3fb/mNHEcmYgr3/bUgaii4sTZaCO7kDc3XkZDfBAujQ3ad2AdBuCCpYIOSU6avW
+	 e3yL+hhWdkhzQbtwAdQouRE8yzdluAyqpEy9QUqia23hDhqkh5K8McPImR87uN3eUK
+	 GMGek0zYpuWyA==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 836B73782074;
+	Wed, 24 Jan 2024 08:36:46 +0000 (UTC)
+Message-ID: <cbcac7d9-47e0-438e-9e3a-05ec5d9b7d33@collabora.com>
+Date: Wed, 24 Jan 2024 09:36:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20240123-mbly-clk-v3-12-392b010b8281@bootlin.com>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: mediatek: Add device tree for
+ MT8365-based Pumpkin i350
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Paul Elder <paul.elder@ideasonboard.com>,
+ Fabien Parent <fabien.parent@linaro.org>,
+ Alexandre Mergnat <amergnat@baylibre.com>,
+ Julien Stephan <jstephan@baylibre.com>,
+ Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>,
+ Ted Larson <ted@ologicinc.com>
+References: <20231025210342.30995-1-laurent.pinchart@ideasonboard.com>
+ <20231025210342.30995-4-laurent.pinchart@ideasonboard.com>
+ <cabd1f9d-340a-4778-96bb-4478ae3a791a@collabora.com>
+ <20240123150236.GJ10679@pendragon.ideasonboard.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240123150236.GJ10679@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 1/23/24 9:46 PM, Théo Lebrun wrote:
-
-> Remove the `reg-io-width` property from the olb@e00000 syscon. The
-
-   The diff says it's system-controller@e00000 now... :-)
-
-> default memory access width is what we desire: no need to make it
-> explicit.
+Il 23/01/24 16:02, Laurent Pinchart ha scritto:
+> Hi Angelo,
 > 
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
-> ---
->  arch/mips/boot/dts/mobileye/eyeq5.dtsi | 1 -
->  1 file changed, 1 deletion(-)
+> On Tue, Jan 23, 2024 at 02:53:58PM +0100, AngeloGioacchino Del Regno wrote:
+>> Il 25/10/23 23:03, Laurent Pinchart ha scritto:
+>>> Add a minimal device tree for the Genio i350 Pumpkin development board,
+>>> which is based on a MediaTek MT8365.
+>>>
+>>> The device tree is based on an initial version by Fabien Parent Based
+>>> written against the MediaTek BSP kernel ([1]). It has been cleaned up,
+>>> some features have been added (GPIO LEDs, ethernet), and some features
+>>> removed (audio, camera, display and dual-role USB). Those features will
+>>> be added back once the corresponding DT bindings and/or drivers become
+>>> available in the upstream kernel.
+>>>
+>>> [1] https://gitlab.com/mediatek/aiot/bsp/linux/-/blob/mtk-v5.15-dev/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
+>>>
+>>> Co-developed-by: Fabien Parent <fparent@baylibre.com>
+>>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+>>> Co-developed-by: Paul Elder <paul.elder@ideasonboard.com>
+>>> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>> ---
+>>> Changes since v1:
+>>>
+>>> - Drop mmc2 alias
+>>> - Reorder properties of i2c, mmc and usb nodes
+>>>
+>>> Changes compared to the BSP version:
+>>>
+>>> - Add ethernet controller
+>>> - Add GPIO LEDs
+>>> - Add reserved memory region for BL31
+>>> - Update board model and compatible
+>>> - Rename enable-sdio-wakeup to wakeup-source
+>>> - Drop audio support
+>>> - Drop display support
+>>> - Drop dual role USB support
+>>> - Don't use underscores in node names
+>>> - Normalize pinmux node names
+>>> - Remove unneeded labels
+>>> - Drop unneeded always-on
+>>> - Drop unused pinmux nodes
+>>> - Drop camera GPIO hog
+>>> - Update copyright
+>>> - Fix formatting
+>>> - Sort alphabetically
+>>> ---
+>>>    arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+>>>    .../boot/dts/mediatek/mt8365-pumpkin.dts      | 541 ++++++++++++++++++
+>>>    2 files changed, 542 insertions(+)
+>>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
+>>>
+>>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+>>> index c99c3372a4b5..bbc232bdadc4 100644
+>>> --- a/arch/arm64/boot/dts/mediatek/Makefile
+>>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+>>> @@ -53,4 +53,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
+>>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-pumpkin.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
+>>> new file mode 100644
+>>> index 000000000000..9c75294c9889
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt8365-pumpkin.dts
+>>> @@ -0,0 +1,541 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright (c) 2021 BayLibre, SAS.
+>>> + * Copyright (c) 2023 Ideas on Board Oy
+>>> + *
+>>> + * Author: Fabien Parent <fparent@baylibre.com>
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +#include <dt-bindings/input/input.h>
+>>> +#include <dt-bindings/leds/common.h>
+>>> +#include <dt-bindings/pinctrl/mt8365-pinfunc.h>
+>>> +
+>>> +#include "mt8365.dtsi"
+>>> +#include "mt6357.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "OLogic Pumpkin i350 EVK";
+>>> +	compatible = "ologic,pumpkin-i350", "mediatek,mt8365";
+>>> +
+>>> +	aliases {
+>>> +		ethernet0 = &ethernet_usb;
+>>> +		mmc0 = &mmc0;
+>>> +		mmc1 = &mmc1;
+>>> +		serial0 = &uart0;
+>>> +	};
+>>> +
+>>> +	chosen {
+>>> +		stdout-path = "serial0:921600n8";
+>>> +	};
+>>> +
+>>> +	firmware {
+>>> +		optee {
+>>> +			compatible = "linaro,optee-tz";
+>>> +			method = "smc";
+>>> +		};
+>>> +	};
+>>> +
+>>> +	leds {
+>>> +		compatible = "gpio-leds";
+>>> +
+>>> +		led-red {
+>>> +			gpios = <&gpio_exp 12 GPIO_ACTIVE_HIGH>;
+>>> +			color = <LED_COLOR_ID_RED>;
+>>> +			function = LED_FUNCTION_HEARTBEAT;
+>>> +			linux,default-trigger = "heartbeat";
+>>> +		};
+>>> +
+>>> +		led-green {
+>>> +			gpios = <&gpio_exp 13 GPIO_ACTIVE_HIGH>;
+>>> +			color = <LED_COLOR_ID_GREEN>;
+>>> +			default-state = "off";
+>>> +		};
+>>> +	};
+>>> +
+>>> +	memory@40000000 {
+>>> +		device_type = "memory";
+>>> +		reg = <0 0x40000000 0 0x80000000>;
+>>> +	};
+>>> +
+>>> +	reserved-memory {
+>>> +		#address-cells = <2>;
+>>> +		#size-cells = <2>;
+>>> +		ranges;
+>>> +
+>>> +		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
+>>> +		secmon@43000000 {
+>>> +			no-map;
+>>> +			reg = <0 0x43000000 0 0x30000>;
+>>
+>> reg first, no-map last.
+>>
+>>> +		};
+>>> +
+>>> +		/*
+>>> +		 * 12 MiB reserved for OP-TEE (BL32)
+>>> +		 * +-----------------------+ 0x43e0_0000
+>>> +		 * |      SHMEM 2MiB       |
+>>> +		 * +-----------------------+ 0x43c0_0000
+>>> +		 * |        | TA_RAM  8MiB |
+>>> +		 * + TZDRAM +--------------+ 0x4340_0000
+>>> +		 * |        | TEE_RAM 2MiB |
+>>> +		 * +-----------------------+ 0x4320_0000
+>>> +		 */
+>>> +		optee@43200000 {
+>>> +			no-map;
+>>> +			reg = <0 0x43200000 0 0x00c00000>;
+>>
+>> same here.
+>>
+>>> +		};
+>>> +	};
+>>> +
+>>> +	usb_otg_vbus: usb-otg-vbus-regulator {
+>>> +		compatible = "regulator-fixed";
+>>> +		regulator-name = "otg_vbus";
+>>> +		regulator-min-microvolt = <5000000>;
+>>> +		regulator-max-microvolt = <5000000>;
+>>> +		gpio = <&pio 25 GPIO_ACTIVE_HIGH>;
+>>> +		enable-active-high;
+>>> +	};
+>>> +};
+>>> +
+>>> +&cpu0 {
+>>> +	proc-supply = <&mt6357_vproc_reg>;
+>>> +	sram-supply = <&mt6357_vsram_proc_reg>;
+>>> +};
+>>> +
+>>> +&cpu1 {
+>>> +	proc-supply = <&mt6357_vproc_reg>;
+>>> +	sram-supply = <&mt6357_vsram_proc_reg>;
+>>> +};
+>>> +
+>>> +&cpu2 {
+>>> +	proc-supply = <&mt6357_vproc_reg>;
+>>> +	sram-supply = <&mt6357_vsram_proc_reg>;
+>>> +};
+>>> +
+>>> +&cpu3 {
+>>> +	proc-supply = <&mt6357_vproc_reg>;
+>>> +	sram-supply = <&mt6357_vsram_proc_reg>;
+>>> +};
+>>> +
+>>> +&i2c0 {
+>>> +	clock-frequency = <100000>;
+>>> +
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&i2c0_pins>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&i2c1 {
+>>> +	clock-frequency = <100000>;
+>>> +
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&i2c1_pins>;
+>>> +
+>>> +	status = "okay";
+>>> +
+>>> +	gpio_exp: gpio@20 {
+>>> +		compatible = "ti,tca6416";
+>>> +		reg = <0x20>;
+>>> +		reset-gpios = <&pio 78 GPIO_ACTIVE_LOW>;
+>>> +		pinctrl-names = "default";
+>>> +		pinctrl-0 = <&tca6416_pins>;
+>>> +
+>>> +		gpio-controller;
+>>
+>> Please check Documentation/devicetree/bindings/dts-coding-style.rst
 > 
-> diff --git a/arch/mips/boot/dts/mobileye/eyeq5.dtsi b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-> index 81497febcdee..03e7e942ee22 100644
-> --- a/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-> +++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-> @@ -103,7 +103,6 @@ uart2: serial@a00000 {
->  		olb: system-controller@e00000 {
->  			compatible = "mobileye,eyeq5-olb", "syscon", "simple-mfd";
->  			reg = <0 0xe00000 0x0 0x400>;
-> -			reg-io-width = <4>;
->  		};
->  
->  		gic: interrupt-controller@140000 {
+> I assume you mean the "Order of Properties in Device Node" section ?
+> What part exactly ?
+> 
+>>> +		#gpio-cells = <2>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&i2c2 {
+>>> +	clock-frequency = <100000>;
+>>> +
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&i2c2_pins>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&i2c3 {
+>>> +	clock-frequency = <100000>;
+>>> +
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&i2c3_pins>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&keypad {
+>>> +	status = "okay";
+>>
+>> status goes last.
+>>
+>> Please check Documentation/devicetree/bindings/dts-coding-style.rst
+>>
+>>> +
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&keypad_pins>;
+>>> +
+>>> +	keypad,num-rows = <2>;
+>>> +	keypad,num-columns = <1>;
+>>> +	mediatek,debounce-us = <32000>;
+>>> +	mediatek,double-keys;
+>>> +
+>>> +	linux,keymap = <MATRIX_KEY(0x00, 0x00, KEY_VOLUMEDOWN)
+>>> +			MATRIX_KEY(0x01, 0x00, KEY_VOLUMEUP)>;
+>>> +};
+>>> +
+>>> +/* eMMC */
+>>> +&mmc0 {
+>>> +	bus-width = <8>;
+>>> +	max-frequency = <200000000>;
+>>> +
+>>> +	cap-mmc-highspeed;
+>>> +	cap-mmc-hw-reset;
+>>> +	hs400-ds-delay = <0x12012>;
+>>> +	mmc-hs200-1_8v;
+>>> +	mmc-hs400-1_8v;
+>>> +	no-sd;
+>>> +	no-sdio;
+>>> +	non-removable;
+>>
+>> Please order by name.
+>>
+>>> +
+>>> +	vmmc-supply = <&mt6357_vemc_reg>;
+>>> +	vqmmc-supply = <&mt6357_vio18_reg>;
+>>> +
+>>> +	pinctrl-names = "default", "state_uhs";
+>>> +	pinctrl-0 = <&mmc0_pins_default>;
+>>> +	pinctrl-1 = <&mmc0_pins_uhs>;
+>>> +
+>>> +	assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
+>>
+>> assigned clocks and clock parents go first.
+>>
+>>> +	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +/* SD card connector */
+>>> +&mmc1 {
+>>> +	bus-width = <4>;
+>>> +	max-frequency = <200000000>;
+>>> +
+>>> +	cap-sd-highspeed;
+>>> +	cd-gpios = <&pio 76 GPIO_ACTIVE_LOW>;
+>>> +	sd-uhs-sdr104;
+>>> +	sd-uhs-sdr50;
+>>
+>> Please order by name.
+>>
+>>> +
+>>> +	vmmc-supply = <&mt6357_vmch_reg>;
+>>> +	vqmmc-supply = <&mt6357_vmc_reg>;
+>>> +
+>>> +	pinctrl-names = "default", "state_uhs";
+>>> +	pinctrl-0 = <&mmc1_pins_default>;
+>>> +	pinctrl-1 = <&mmc1_pins_uhs>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +/* WiFi module */
+>>> +&mmc2 {
+>>> +	bus-width = <4>;
+>>> +	max-frequency = <200000000>;
+>>> +
+>>> +	cap-sd-highspeed;
+>>> +	cap-sdio-irq;
+>>> +	wakeup-source;
+>>> +	hs400-ds-delay = <0x12012>;
+>>
+>> Please order by name.
+>>
+>>> +	keep-power-in-suspend;
+>>> +	non-removable;
+>>> +	sd-uhs-sdr104;
+>>> +	sd-uhs-sdr25;
+>>> +	sd-uhs-sdr50;
+>>> +
+>>> +	vmmc-supply = <&mt6357_vemc_reg>;
+>>> +	vqmmc-supply = <&mt6357_vio18_reg>;
+>>> +
+>>> +	pinctrl-names = "default", "state_uhs";
+>>> +	pinctrl-0 = <&mmc2_pins_default>;
+>>> +	pinctrl-1 = <&mmc2_pins_uhs>;
+>>> +
+>>> +	assigned-clocks = <&topckgen CLK_TOP_MSDC50_2_SEL>;
+>>> +	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
+>>> +
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&mt6357_pmic {
+>>> +	interrupt-parent = <&pio>;
+>>> +	interrupts = <145 IRQ_TYPE_LEVEL_HIGH>;
+>>> +	interrupt-controller;
+>>> +	#interrupt-cells = <2>;
+>>> +};
+>>> +
+>>> +&pio {
+>>> +	i2c0_pins: i2c0-pins {
+>>> +		pins {
+>>> +			pinmux = <MT8365_PIN_57_SDA0__FUNC_SDA0_0>,
+>>> +				 <MT8365_PIN_58_SCL0__FUNC_SCL0_0>;
+>>> +			mediatek,pull-up-adv = <3>;
+>>> +			mediatek,drive-strength-adv = <00>;
+>>
+>> I don't know what 00 is here, and it's not a valid drive strength value in uA.
+> 
+> I don't know either, I didn't author that part. I'll look it up.
+> 
+>> Valid values are 125, 250, 500 and 1000 microamps.
+>>
+>> P.S.: Here and everywhere else.
+>>
+>>> +			bias-pull-up;
+>>> +		};
+>>> +	};
+>>> +
+>>> +
+>>
+>> ..snip..
+>>
+>>> +	mmc0_pins_uhs: mmc0-uhs-pins{
+>>> +		clk-pins {
+>>> +			pinmux = <MT8365_PIN_99_MSDC0_CLK__FUNC_MSDC0_CLK>;
+>>> +			drive-strength = <MTK_DRIVE_10mA>;
+>>> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+>>> +		};
+>>> +
+>>> +		cmd-dat-pins {
+>>> +			pinmux = <MT8365_PIN_103_MSDC0_DAT0__FUNC_MSDC0_DAT0>,
+>>> +				 <MT8365_PIN_102_MSDC0_DAT1__FUNC_MSDC0_DAT1>,
+>>> +				 <MT8365_PIN_101_MSDC0_DAT2__FUNC_MSDC0_DAT2>,
+>>> +				 <MT8365_PIN_100_MSDC0_DAT3__FUNC_MSDC0_DAT3>,
+>>> +				 <MT8365_PIN_96_MSDC0_DAT4__FUNC_MSDC0_DAT4>,
+>>> +				 <MT8365_PIN_95_MSDC0_DAT5__FUNC_MSDC0_DAT5>,
+>>> +				 <MT8365_PIN_94_MSDC0_DAT6__FUNC_MSDC0_DAT6>,
+>>> +				 <MT8365_PIN_93_MSDC0_DAT7__FUNC_MSDC0_DAT7>,
+>>> +				 <MT8365_PIN_98_MSDC0_CMD__FUNC_MSDC0_CMD>;
+>>> +			input-enable;
+>>> +			drive-strength = <MTK_DRIVE_10mA>;
+>>
+>> There's no need to use MTK_DRIVE_xxxx definitions, as they're really just defining
+>> the same number that you can just clearly write.
+>>
+>> In this case, it is
+>> 			drive-strength = <10>;
+>>
+>> please change it here and everywhere else.
+> 
+> OK. Looks cleaner indeed.
+> 
+>>> +			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+>>> +		};
+>>> +
+>>> +		ds-pins {
+>>> +			pinmux = <MT8365_PIN_104_MSDC0_DSL__FUNC_MSDC0_DSL>;
+>>> +			drive-strength = <MTK_DRIVE_10mA>;
+>>> +			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+>>> +		};
+>>> +
+>>> +		rst-pins {
+>>> +			pinmux = <MT8365_PIN_97_MSDC0_RSTB__FUNC_MSDC0_RSTB>;
+>>> +			drive-strength = <MTK_DRIVE_10mA>;
+>>> +			bias-pull-up;
+>>> +		};
+>>> +	};
+>>> +
+>>
+>> ..snip..
+>>
+>>> +
+>>> +&usb_host {
+>>> +	#address-cells = <1>;
+>>> +	#size-cells = <0>;
+>>> +
+>>> +	vusb33-supply = <&mt6357_vusb33_reg>;
+>>> +
+>>> +	status = "okay";
+>>> +
+>>> +	hub@2 {
+>>> +		reg = <2>;
+>>> +
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +
+>>> +		ethernet_usb: ethernet@1 {
+>>
+>> Can you please explain why you need this node on a fully discoverable bus?
+>> Isn't it enough to just let USB auto enumerate this device at boot?
+> 
+> To let the boot loader fill in the MAC address in DT. Would you like me
+> to add a comment here ?
+> 
 
-MBR, Sergey
+This is pretty unusual... so yes please, add a comment explaining why this
+node is here.
+I can otherwise already see a future engineer removing this node thinking that
+it's useless! :-)
+
+Also, if this is an internal "non-removable" USB ethernet adapter, please add
+that note to the comment.
+
+Cheers,
+Angelo
+
+>>> +			compatible = "usb424,ec00";
+>>> +			reg = <1>;
+>>> +		};
+>>> +	};
+>>> +};
+> 
+
 
