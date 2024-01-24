@@ -1,245 +1,404 @@
-Return-Path: <devicetree+bounces-34739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A0283ADB2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:47:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C41683ACF9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:15:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD1A81F240F6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 15:47:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD69CB35957
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04267CF23;
-	Wed, 24 Jan 2024 15:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13217CF1D;
+	Wed, 24 Jan 2024 14:47:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="C/FGntXI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f5KnuI48"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m25475.xmail.ntesmail.com (mail-m25475.xmail.ntesmail.com [103.129.254.75])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480CD7A73A;
-	Wed, 24 Jan 2024 15:46:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.129.254.75
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885CF7CF19;
+	Wed, 24 Jan 2024 14:47:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706111221; cv=none; b=oVRrlh+X2QY2scTnMBupehS/Rj3l3AbN1dANZQsujcbJke4wxCx2pVxmftHa8zSd0OOX9F9itZ9bePcmmkdH8f86D/9V8rlId/UHgEjtUlTkjoxkEAXbif43bYsZO4XSmc2jZdPZFHHescDkRJSCXpOjsfX44ynhY5i3+Vv1/KQ=
+	t=1706107674; cv=none; b=YALw6dHcfV06kEpWdexd/yGUOkNDHSmA/G2kYLlADDtQHM9w+q7b9zcvYPRMSHeUtEXA3RxqWERDAuM4RC1Mlwhe3q7bEu7aJTSjE1mh/EKbhVtuUPCiiTmX+yd48Iz5qxRciCcl5eezqFM5mywtlprHzbSNcBONXcmR2tJaCfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706111221; c=relaxed/simple;
-	bh=uQa2lONtmzEleKOg5ZbKpNdTUps9FaMPEX+MM/Ezrnw=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=KZ7Fm3DZFMn2bG9OwNwHKF9echR+4U5J7MoFNGZHHMgCMCAS8U1oMhHKtmpELt8xm6aD0unrz5X2NZGIerXVYa7NAB4Ky7+k3NK9ojLMUVYMQVypfpN2/uvRtaNLKivKYnjIk3u4bz1/gKBFk53LVciudZ/Ijq8gThV0kik29bE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=C/FGntXI; arc=none smtp.client-ip=103.129.254.75
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=C/FGntXIjF2lIvIm0alsmy2RglzRyK18RkaiHLPRtuPUc4h78ZR0MS6GaRxRZEHq62TdiGviNrqbIUpnKdnOuzXEy4m0NdKbjwEiTuF8fBz8f9289s/9zeg0CGWxF98NXR5bNy7J53jAZfsY/41RQMpcKLQPOm/a5jhKphGR75Q=;
-	s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=TTyPxOdPUgGMjE5qLolsAwgb6LYYW17mcDVr/zky4cw=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-	by mail-m12779.qiye.163.com (Hmail) with ESMTPA id 778477801FD;
-	Wed, 24 Jan 2024 15:30:34 +0800 (CST)
-Message-ID: <b0a3da6d-84e2-44c2-9adf-421e306a2acf@rock-chips.com>
-Date: Wed, 24 Jan 2024 15:30:34 +0800
+	s=arc-20240116; t=1706107674; c=relaxed/simple;
+	bh=1yxtbzaxGd3JHca2hGgqggGoBpu9WDknn9qolkIZq6M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c+iaFvRyIYG29HVqLBrqj2q9KInerSKsfcEchVVzE+pb9ElhmodkCwHFL0S2XBhS9/K3w/i76b32PILp8l2fWVJuim/xV3Iu3iqVUTKUR66UY/GkwKkXdCJRxVUPV7l26uWz3qfXgmufZROoMteVl3qjXyb94t7qZRTVREgWICk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f5KnuI48; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2cdeb4b9aa4so59441211fa.0;
+        Wed, 24 Jan 2024 06:47:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706107670; x=1706712470; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8jdVGJh8za10q3EFpTX1IKnwAYGvPrQt1ejh8CiHA1I=;
+        b=f5KnuI488i8z8rQrDWsDdXW01FeQWnSCeEyRXs84xBnTCGfmU+Ezzz60wwcioxpJhC
+         y7hhLBimUHcLBuIG9RZAIFyD4JFhuHidqG2VOKLgdtVcS8X3LjSZvi99pxvcLzE2rPci
+         b30yQLUGATbs7b6aKhSeXSnXJ+TCK/YEd90SFi+ZnI1KzMyIOes+Jvs3zBxLR0Ij356G
+         StCfPQsWbbswJlrknW6Rb4WFrLgkjGzuI3XPYjwIi/FIPF+yqHv1HphmOKolmkWf5ezQ
+         ugwB+tS6ZV06Ut/8nc6baNeST3NEbjfyhrD4Tp3Glhv9kVT5Pqg+7Jz+R+WiqSyIQPVv
+         YtGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706107670; x=1706712470;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8jdVGJh8za10q3EFpTX1IKnwAYGvPrQt1ejh8CiHA1I=;
+        b=LwKMvgHZxvXF2aLEUsqu9HFHOK24QbHwLTkGo2m4PadNqQooAh2P7RRKrf3Q2DWG6m
+         vEv6aCyMEEb4wZnwl6qxD5ojbJsS9ZiR6amd29bITJDZlyfjOXVdmXPj0y41kmY9ieVX
+         h2fJPt2LXrCUGsCw33BWHGyEgLWtMtqsxBFULQU4t1IDEUi6VAvYLCvGkFpjthd8v5f6
+         4/g4t4JN27Qi9b8sW0rVguuFihMuHoCeMdjOOd6MJPyT2I+4WcRzgikzg0nijSwx6Gpz
+         k6bFuajNp1qwCzNV3Fc1mG6znsvtaUGKRxrDwVIaSpp8YVH1JI1vN1bZwgH1N/rOqQAe
+         Njhw==
+X-Gm-Message-State: AOJu0YyTAtI5WJ9jApOw5HhoLFnutb7Fr4MoW5ufMDaPsKCnMM5yYkJI
+	O5GAPtfrQ9bKbsOtoigj9QY7MZ0iAvKwppC6e6MjckY7EHN6lu2D/Ryk4xIevNc=
+X-Google-Smtp-Source: AGHT+IFB0v+/iAU72gYpt7fE4kN8HObShyq5rUUwvRkwioFblh4A3yoOtG09Y6Hd8ZJRwCr+4Zfc0g==
+X-Received: by 2002:a2e:6a05:0:b0:2ce:f93b:3af5 with SMTP id f5-20020a2e6a05000000b002cef93b3af5mr878125ljc.9.1706107670346;
+        Wed, 24 Jan 2024 06:47:50 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id y9-20020a05651c020900b002cc870295edsm3923276ljn.28.2024.01.24.06.47.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jan 2024 06:47:49 -0800 (PST)
+Date: Wed, 24 Jan 2024 17:47:46 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: "Swee, Leong Ching" <leong.ching.swee@intel.com>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	Teoh Ji Sheng <ji.sheng.teoh@intel.com>
+Subject: Re: [PATCH net-next v2 2/4] net: stmmac: Make MSI interrupt routine
+ generic
+Message-ID: <a5hmg3iwzvltim73aozbrxqxmmhyflszp4a6ea65alk752dbcy@d4jzua45igxe>
+References: <20240105070925.2948871-1-leong.ching.swee@intel.com>
+ <20240105070925.2948871-3-leong.ching.swee@intel.com>
+ <7euscw66rss3iux2cvf7fkvfburmlf6lo4arfx76k42gihspkz@xm3klojs4e26>
+ <CH0PR11MB54909CC4F6E791FFF063BA17CF692@CH0PR11MB5490.namprd11.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] phy: rockchip: Add Samsung HDMI/DP Combo PHY driver
-Content-Language: en-US
-From: Andy Yan <andy.yan@rock-chips.com>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Johan Jonker <jbx6244@gmail.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Algea Cao <algea.cao@rock-chips.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel@collabora.com
-References: <20240119193806.1030214-1-cristian.ciocaltea@collabora.com>
- <20240119193806.1030214-4-cristian.ciocaltea@collabora.com>
- <20240122121409.GW4700@pengutronix.de>
- <00c749f7-3eb9-4bd1-a057-43a692b77d68@collabora.com>
- <e1c56975-6a55-4b75-a447-dd2d0eec62e2@rock-chips.com>
-In-Reply-To: <e1c56975-6a55-4b75-a447-dd2d0eec62e2@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQksZTVYeTRlMSxgYSExMGE9VEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlOQ1VJSVVMVUpKT1lXWRYaDxIVHRRZQVlPS0hVSk1PSU5IVUpLS1VKQk
-	tLWQY+
-X-HM-Tid: 0a8d3a60bd24b24fkuuu778477801fd
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pgg6Iio5DjwYUQEyHFFLSgg5
-	Vg4wCUtVSlVKTEtNS0NKT0hOTE9NVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBQkxPSzcG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CH0PR11MB54909CC4F6E791FFF063BA17CF692@CH0PR11MB5490.namprd11.prod.outlook.com>
 
-Hi Cristian:
+On Wed, Jan 10, 2024 at 05:51:37AM +0000, Swee, Leong Ching wrote:
+> > -----Original Message-----
+> > From: Serge Semin <fancer.lancer@gmail.com>
+> > Sent: Monday, January 8, 2024 4:28 AM
+> > To: Swee, Leong Ching <leong.ching.swee@intel.com>
+> > Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>; Alexandre Torgue
+> > <alexandre.torgue@foss.st.com>; Jose Abreu <joabreu@synopsys.com>;
+> > David S . Miller <davem@davemloft.net>; Eric Dumazet
+> > <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo Abeni
+> > <pabeni@redhat.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof
+> > Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+> > <conor+dt@kernel.org>; Giuseppe Cavallaro <peppe.cavallaro@st.com>;
+> > linux-stm32@st-md-mailman.stormreply.com; linux-arm-
+> > kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+> > netdev@vger.kernel.org; devicetree@vger.kernel.org; Teoh Ji Sheng
+> > <ji.sheng.teoh@intel.com>
+> > Subject: Re: [PATCH net-next v2 2/4] net: stmmac: Make MSI interrupt
+> > routine generic
+> > 
+> > On Fri, Jan 05, 2024 at 03:09:23PM +0800, Leong Ching Swee wrote:
+> > > From: Swee Leong Ching <leong.ching.swee@intel.com>
+> > >
+> > > There is no support for per DMA channel interrupt for non-MSI
+> > > platform, where the MAC's per channel interrupt hooks up to interrupt
+> > > controller(GIC) through shared peripheral interrupt(SPI) to handle
+> > > interrupt from TX/RX transmit channel.
+> > >
+> > > This patch generalize the existing MSI ISR to also support non-MSI
+> > > platform.
+> > 
+> > Basically this patch just fixes the individual IRQ handling code names.
+> >
 
-On 1/24/24 10:42, Andy Yan wrote:
-> Hi Cristian:
+> Will change the commit log to below, please check if it sounds ok?
+>
+> net: stmmac: Fixes individual IRQ handling code names
 > 
-> On 1/24/24 08:58, Cristian Ciocaltea wrote:
->> On 1/22/24 14:14, Sascha Hauer wrote:
->>> On Fri, Jan 19, 2024 at 09:38:03PM +0200, Cristian Ciocaltea wrote:
->>>> Add driver for the Rockchip HDMI/eDP TX Combo PHY found on RK3588 SoC.
->>>>
->>>> The PHY is based on a Samsung IP block and supports HDMI 2.1 TMDS, FRL
->>>> and eDP links.  The maximum data rate is 12Gbps (HDMI 2.1 FRL), while
->>>> the minimum is 250Mbps (HDMI 2.1 TMDS).
->>>>
->>>> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
->>>> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
->>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>>> ---
->>>>   drivers/phy/rockchip/Kconfig                  |    8 +
->>>>   drivers/phy/rockchip/Makefile                 |    1 +
->>>>   .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 2045 +++++++++++++++++
->>>>   3 files changed, 2054 insertions(+)
->>>>   create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
->>>>
->>>> diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
->>>> index 94360fc96a6f..95666ac6aa3b 100644
->>>> --- a/drivers/phy/rockchip/Kconfig
->>>> +++ b/drivers/phy/rockchip/Kconfig
->>>> @@ -83,6 +83,14 @@ config PHY_ROCKCHIP_PCIE
->>>>       help
->>>>         Enable this to support the Rockchip PCIe PHY.
->>>> +config PHY_ROCKCHIP_SAMSUNG_HDPTX
->>>> +    tristate "Rockchip Samsung HDMI/DP Combo PHY driver"
->>>> +    depends on (ARCH_ROCKCHIP || COMPILE_TEST) && OF
->>>> +    select GENERIC_PHY
->>>> +    help
->>>> +      Enable this to support the Rockchip HDMI/DP Combo PHY
->>>> +      with Samsung IP block.
->>>> +
->>>>   config PHY_ROCKCHIP_SNPS_PCIE3
->>>>       tristate "Rockchip Snps PCIe3 PHY Driver"
->>>>       depends on (ARCH_ROCKCHIP && OF) || COMPILE_TEST
->>>> diff --git a/drivers/phy/rockchip/Makefile b/drivers/phy/rockchip/Makefile
->>>> index 7eab129230d1..3d911304e654 100644
->>>> --- a/drivers/phy/rockchip/Makefile
->>>> +++ b/drivers/phy/rockchip/Makefile
->>>> @@ -8,6 +8,7 @@ obj-$(CONFIG_PHY_ROCKCHIP_INNO_HDMI)    += phy-rockchip-inno-hdmi.o
->>>>   obj-$(CONFIG_PHY_ROCKCHIP_INNO_USB2)    += phy-rockchip-inno-usb2.o
->>>>   obj-$(CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY)    += phy-rockchip-naneng-combphy.o
->>>>   obj-$(CONFIG_PHY_ROCKCHIP_PCIE)        += phy-rockchip-pcie.o
->>>> +obj-$(CONFIG_PHY_ROCKCHIP_SAMSUNG_HDPTX)    += phy-rockchip-samsung-hdptx.o
->>>>   obj-$(CONFIG_PHY_ROCKCHIP_SNPS_PCIE3)    += phy-rockchip-snps-pcie3.o
->>>>   obj-$(CONFIG_PHY_ROCKCHIP_TYPEC)    += phy-rockchip-typec.o
->>>>   obj-$(CONFIG_PHY_ROCKCHIP_USB)        += phy-rockchip-usb.o
->>>> diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
->>>> new file mode 100644
->>>> index 000000000000..d8171ea5ce2b
->>>> --- /dev/null
->>>> +++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
->>>> @@ -0,0 +1,2045 @@
->>>> +// SPDX-License-Identifier: GPL-2.0+
->>>> +/*
->>>> + * Copyright (c) 2021-2022 Rockchip Electronics Co., Ltd.
->>>> + * Copyright (c) 2024 Collabora Ltd.
->>>> + *
->>>> + * Author: Algea Cao <algea.cao@rock-chips.com>
->>>> + * Author: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>>> + */
->>>> +#include <linux/bitfield.h>
->>>> +#include <linux/clk.h>
->>>> +#include <linux/delay.h>
->>>> +#include <linux/mfd/syscon.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/of.h>
->>>> +#include <linux/of_platform.h>
->>>> +#include <linux/phy/phy.h>
->>>> +#include <linux/platform_device.h>
->>>> +#include <linux/rational.h>
->>>> +#include <linux/regmap.h>
->>>> +#include <linux/reset.h>
->>>> +
->>>> +#define GRF_HDPTX_CON0            0x00
->>>> +#define HDPTX_I_PLL_EN            BIT(7)
->>>> +#define HDPTX_I_BIAS_EN            BIT(6)
->>>> +#define HDPTX_I_BGR_EN            BIT(5)
->>>> +#define GRF_HDPTX_STATUS        0x80
->>>> +#define HDPTX_O_PLL_LOCK_DONE        BIT(3)
->>>> +#define HDPTX_O_PHY_CLK_RDY        BIT(2)
->>>> +#define HDPTX_O_PHY_RDY            BIT(1)
->>>> +#define HDPTX_O_SB_RDY            BIT(0)
->>>> +
->>>> +#define CMN_REG0000            0x0000
->>>
->>> These register names are not particularly helpful. Maybe use a
->>>
->>> #define CMN_REG(x)            ((x) * 4)
->>>
->>> Instead?
->>
->> Yes, sounds good.
->>
->>>> +
->>>> +static int hdptx_lcpll_frl_mode_config(struct rockchip_hdptx_phy *hdptx,
->>>> +                       u32 rate)
->>>> +{
->>>> +    u32 bit_rate = rate & DATA_RATE_MASK;
->>>> +    u8 color_depth = (rate & COLOR_DEPTH_MASK) ? 1 : 0;
->>>> +    const struct lcpll_config *cfg = lcpll_cfg;
->>>> +
->>>> +    for (; cfg->bit_rate != ~0; cfg++)
->>>> +        if (bit_rate == cfg->bit_rate)
->>>> +            break;
->>>
->>> You could use ARRAY_SIZE() to iterate over the array and save the extra
->>> entry at the end. Likewise for the other arrays used in the driver.
->>
->> Sure, will do.
->>
->>>> +
->>>> +    if (cfg->bit_rate == ~0)
->>>> +        return -EINVAL;
->>>> +
->>>
->>>> +static int rockchip_hdptx_phy_power_on(struct phy *phy)
->>>> +{
->>>> +    struct rockchip_hdptx_phy *hdptx = phy_get_drvdata(phy);
->>>> +    int bus_width = phy_get_bus_width(hdptx->phy);
->>>> +    int bit_rate = bus_width & DATA_RATE_MASK;
->>>
->>> What is going on here? bus_width is set to 8 in probe() using
->>> phy_set_bus_width(), but the value you pull out of phy_get_bus_width()
->>> is expected to contain the bit_rate and several other flags.
->>>
->>> It looks like you are tunneling flags from some other driver using this
->>> field. Isn't there a better way to accomplish this? If not, I think this
->>> needs some explanation.
->>
->> Indeed, sorry for missing a comment here.  The flags are set by the
->> bridge driver to enable 10-bit color depth, FRL and EARC.  So far I
->> couldn't find an alternative approach to pass custom data using the PHY API.
->>
->>> At least the variable should be renamed. it's called "bus_width" and it's
->>> passed to functions like hdptx_lcpll_frl_mode_config() which has this
->>> parameter named "rate" which is quite confusing.
->>
->> I think for the initial support it's not really necessary to implement
->> all those features.  Andy, should we drop them until a better solution
->> is found?
+> Individual IRQ can also be used for non-MSI platform, 
+> today some of the code name for individual IRQ has
+> msi naming, so change msi naming to irq to make it common
+> for both platforms.
 
-How about add a PHY_MODE_HDMI to enum phy_mode, and pass this custom data by extend phy_configure_opts
-or the submode of phy_set_mode_ext ?
-> 
-> I'm fine with it.
-> It would be very appreciated if some linux-phy or drm bridge experts can give
-> some suggestions about how to pass different custom phy modes.
-> 
->>
->>> Sascha
->>
->> Thanks for the review,
->> Cristian
+Much better but IMO the next wording would be a bit more descriptive:
+
+net: stmmac: Generalize individual IRQs handling code names
+
+The individual IRQs can be also available on the non-MSI platforms.
+The respective code has been developed with the MSI-based platform in
+mind thus having the "MSI" word in implementation entities. Drop such
+wording or replace it with just "IRQ" where it's relevant in order to
+generalize the individual IRQs handling code.
+
+-Serge(y)
+
+>  
+> > >
+> > > Signed-off-by: Teoh Ji Sheng <ji.sheng.teoh@intel.com>
+> > > Signed-off-by: Swee Leong Ching <leong.ching.swee@intel.com>
+> > > ---
+> > >  .../net/ethernet/stmicro/stmmac/dwmac-intel.c |  4 +--
+> > >  .../ethernet/stmicro/stmmac/dwmac-socfpga.c   |  3 ++
+> > >  .../net/ethernet/stmicro/stmmac/dwmac4_dma.c  |  2 +-
+> > > .../net/ethernet/stmicro/stmmac/stmmac_main.c | 30 +++++++++----------
+> > >  include/linux/stmmac.h                        |  4 +--
+> > >  5 files changed, 23 insertions(+), 20 deletions(-)
+> > >
+> > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> > > b/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> > > index 60283543ffc8..f0ec69af96c9 100644
+> > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> > > @@ -952,7 +952,7 @@ static int stmmac_config_single_msi(struct pci_dev
+> > > *pdev,
+> > >
+> > >  	res->irq = pci_irq_vector(pdev, 0);
+> > >  	res->wol_irq = res->irq;
+> > > -	plat->flags &= ~STMMAC_FLAG_MULTI_MSI_EN;
+> > > +	plat->flags &= ~STMMAC_FLAG_MULTI_IRQ_EN;
+> > >  	dev_info(&pdev->dev, "%s: Single IRQ enablement successful\n",
+> > >  		 __func__);
+> > >
+> > > @@ -1004,7 +1004,7 @@ static int stmmac_config_multi_msi(struct
+> > pci_dev *pdev,
+> > >  	if (plat->msi_sfty_ue_vec < STMMAC_MSI_VEC_MAX)
+> > >  		res->sfty_ue_irq = pci_irq_vector(pdev, plat-
+> > >msi_sfty_ue_vec);
+> > >
+> > > -	plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
+> > > +	plat->flags |= STMMAC_FLAG_MULTI_IRQ_EN;
+> > >  	dev_info(&pdev->dev, "%s: multi MSI enablement successful\n",
+> > > __func__);
+> > >
+> > >  	return 0;
+> > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
+> > > b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
+> > > index ba2ce776bd4d..cf43fb3c6cc5 100644
+> > 
+> > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
+> > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
+> > > @@ -427,6 +427,9 @@ static int socfpga_dwmac_probe(struct
+> > platform_device *pdev)
+> > >  	plat_dat->bsp_priv = dwmac;
+> > >  	plat_dat->fix_mac_speed = socfpga_dwmac_fix_mac_speed;
+> > >
+> > > +	if (stmmac_res.rx_irq[0] > 0 && stmmac_res.tx_irq[0] > 0)
+> > > +		plat_dat->flags |= STMMAC_FLAG_MULTI_IRQ_EN;
+> > > +
+> > >  	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
+> > >  	if (ret)
+> > >  		return ret;
+> > 
+> > This is unrelated change. It adds the individual DMA IRQs support for the SoC
+> > FPGA platform, which AFAICS doesn't have it supported at the moment.
+> > Please move this into a separate patch with the commit log describing the
+> > change.
+> > 
+> > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> > > b/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> > > index 84d3a8551b03..5f649106ffcd 100644
+> > > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> > > @@ -175,7 +175,7 @@ static void dwmac4_dma_init(void __iomem
+> > *ioaddr,
+> > >
+> > >  	value = readl(ioaddr + DMA_BUS_MODE);
+> > >
+> > > -	if (dma_cfg->multi_msi_en) {
+> > > +	if (dma_cfg->multi_irq_en) {
+> > >  		value &= ~DMA_BUS_MODE_INTM_MASK;
+> > >  		value |= (DMA_BUS_MODE_INTM_MODE1 <<
+> > DMA_BUS_MODE_INTM_SHIFT);
+> > >  	}
+> > > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > > b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > > index 47de466e432c..57873b879b33 100644
+> > > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> > > @@ -129,8 +129,8 @@ static irqreturn_t stmmac_interrupt(int irq, void
+> > > *dev_id);
+> > >  /* For MSI interrupts handling */
+> > >  static irqreturn_t stmmac_mac_interrupt(int irq, void *dev_id);
+> > > static irqreturn_t stmmac_safety_interrupt(int irq, void *dev_id);
+> > > -static irqreturn_t stmmac_msi_intr_tx(int irq, void *data); -static
+> > > irqreturn_t stmmac_msi_intr_rx(int irq, void *data);
+> > > +static irqreturn_t stmmac_dma_tx_interrupt(int irq, void *data);
+> > > +static irqreturn_t stmmac_dma_rx_interrupt(int irq, void *data);
+> > >  static void stmmac_reset_rx_queue(struct stmmac_priv *priv, u32
+> > > queue);  static void stmmac_reset_tx_queue(struct stmmac_priv *priv,
+> > > u32 queue);  static void stmmac_reset_queues_param(struct stmmac_priv
+> > > *priv); @@ -3602,7 +3602,7 @@ static void stmmac_free_irq(struct
+> > net_device *dev,
+> > >  	}
+> > >  }
+> > >
+> > > -static int stmmac_request_irq_multi_msi(struct net_device *dev)
+> > > +static int stmmac_request_irq_multi(struct net_device *dev)
+> > >  {
+> > >  	struct stmmac_priv *priv = netdev_priv(dev);
+> > >  	enum request_irq_err irq_err;
+> > > @@ -3697,7 +3697,7 @@ static int stmmac_request_irq_multi_msi(struct
+> > net_device *dev)
+> > >  		}
+> > >  	}
+> > >
+> > > -	/* Request Rx MSI irq */
+> > 
+> > > +	/* Request Rx irq */
+> > 
+> > s/irq/IRQ
+> > (capitalize)
+> Sure, rework on v3. 
+> > 
+> > >  	for (i = 0; i < priv->plat->rx_queues_to_use; i++) {
+> > >  		if (i >= MTL_MAX_RX_QUEUES)
+> > >  			break;
+> > > @@ -3707,11 +3707,11 @@ static int stmmac_request_irq_multi_msi(struct
+> > net_device *dev)
+> > >  		int_name = priv->int_name_rx_irq[i];
+> > >  		sprintf(int_name, "%s:%s-%d", dev->name, "rx", i);
+> > >  		ret = request_irq(priv->rx_irq[i],
+> > > -				  stmmac_msi_intr_rx,
+> > > +				  stmmac_dma_rx_interrupt,
+> > >  				  0, int_name, &priv-
+> > >dma_conf.rx_queue[i]);
+> > >  		if (unlikely(ret < 0)) {
+> > >  			netdev_err(priv->dev,
+> > > -				   "%s: alloc rx-%d  MSI %d (error: %d)\n",
+> > 
+> > > +				   "%s: alloc rx-%d  dma rx_irq %d (error:
+> > %d)\n",
+> > 
+> > s/ dma/DMA
+> > (capitalize and drop extra space)
+> > 
+> Thanks, rework on v3.
+> > >  				   __func__, i, priv->rx_irq[i], ret);
+> > >  			irq_err = REQ_IRQ_ERR_RX;
+> > >  			irq_idx = i;
+> > > @@ -3722,7 +3722,7 @@ static int stmmac_request_irq_multi_msi(struct
+> > net_device *dev)
+> > >  		irq_set_affinity_hint(priv->rx_irq[i], &cpu_mask);
+> > >  	}
+> > >
+> > > -	/* Request Tx MSI irq */
+> > 
+> > > +	/* Request Tx irq */
+> > 
+> > s/irq/IRQ
+> > 
+> rework on v3.
+> > >  	for (i = 0; i < priv->plat->tx_queues_to_use; i++) {
+> > >  		if (i >= MTL_MAX_TX_QUEUES)
+> > >  			break;
+> > > @@ -3732,11 +3732,11 @@ static int stmmac_request_irq_multi_msi(struct
+> > net_device *dev)
+> > >  		int_name = priv->int_name_tx_irq[i];
+> > >  		sprintf(int_name, "%s:%s-%d", dev->name, "tx", i);
+> > >  		ret = request_irq(priv->tx_irq[i],
+> > > -				  stmmac_msi_intr_tx,
+> > > +				  stmmac_dma_tx_interrupt,
+> > >  				  0, int_name, &priv-
+> > >dma_conf.tx_queue[i]);
+> > >  		if (unlikely(ret < 0)) {
+> > >  			netdev_err(priv->dev,
+> > > -				   "%s: alloc tx-%d  MSI %d (error: %d)\n",
+> > 
+> > > +				   "%s: alloc tx-%d  dma tx_irq %d (error:
+> > %d)\n",
+> > 
+> > s/ dma/DMA
+> > 
+> > -Serge(y)
+> > 
+> rework on v3.
+> > >  				   __func__, i, priv->tx_irq[i], ret);
+> > >  			irq_err = REQ_IRQ_ERR_TX;
+> > >  			irq_idx = i;
+> > > @@ -3811,8 +3811,8 @@ static int stmmac_request_irq(struct net_device
+> > *dev)
+> > >  	int ret;
+> > >
+> > >  	/* Request the IRQ lines */
+> > > -	if (priv->plat->flags & STMMAC_FLAG_MULTI_MSI_EN)
+> > > -		ret = stmmac_request_irq_multi_msi(dev);
+> > > +	if (priv->plat->flags & STMMAC_FLAG_MULTI_IRQ_EN)
+> > > +		ret = stmmac_request_irq_multi(dev);
+> > >  	else
+> > >  		ret = stmmac_request_irq_single(dev);
+> > >
+> > > @@ -6075,7 +6075,7 @@ static irqreturn_t stmmac_safety_interrupt(int
+> > irq, void *dev_id)
+> > >  	return IRQ_HANDLED;
+> > >  }
+> > >
+> > > -static irqreturn_t stmmac_msi_intr_tx(int irq, void *data)
+> > > +static irqreturn_t stmmac_dma_tx_interrupt(int irq, void *data)
+> > >  {
+> > >  	struct stmmac_tx_queue *tx_q = (struct stmmac_tx_queue *)data;
+> > >  	struct stmmac_dma_conf *dma_conf;
+> > > @@ -6107,7 +6107,7 @@ static irqreturn_t stmmac_msi_intr_tx(int irq,
+> > void *data)
+> > >  	return IRQ_HANDLED;
+> > >  }
+> > >
+> > > -static irqreturn_t stmmac_msi_intr_rx(int irq, void *data)
+> > > +static irqreturn_t stmmac_dma_rx_interrupt(int irq, void *data)
+> > >  {
+> > >  	struct stmmac_rx_queue *rx_q = (struct stmmac_rx_queue *)data;
+> > >  	struct stmmac_dma_conf *dma_conf;
+> > > @@ -7456,8 +7456,8 @@ int stmmac_dvr_probe(struct device *device,
+> > >  	priv->plat = plat_dat;
+> > >  	priv->ioaddr = res->addr;
+> > >  	priv->dev->base_addr = (unsigned long)res->addr;
+> > > -	priv->plat->dma_cfg->multi_msi_en =
+> > > -		(priv->plat->flags & STMMAC_FLAG_MULTI_MSI_EN);
+> > > +	priv->plat->dma_cfg->multi_irq_en =
+> > > +		(priv->plat->flags & STMMAC_FLAG_MULTI_IRQ_EN);
+> > >
+> > >  	priv->dev->irq = res->irq;
+> > >  	priv->wol_irq = res->wol_irq;
+> > > diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h index
+> > > dee5ad6e48c5..b950e6f9761d 100644
+> > > --- a/include/linux/stmmac.h
+> > > +++ b/include/linux/stmmac.h
+> > > @@ -98,7 +98,7 @@ struct stmmac_dma_cfg {
+> > >  	int mixed_burst;
+> > >  	bool aal;
+> > >  	bool eame;
+> > > -	bool multi_msi_en;
+> > > +	bool multi_irq_en;
+> > >  	bool dche;
+> > >  };
+> > >
+> > > @@ -215,7 +215,7 @@ struct dwmac4_addrs {
+> > >  #define STMMAC_FLAG_TSO_EN			BIT(4)
+> > >  #define STMMAC_FLAG_SERDES_UP_AFTER_PHY_LINKUP	BIT(5)
+> > >  #define STMMAC_FLAG_VLAN_FAIL_Q_EN		BIT(6)
+> > > -#define STMMAC_FLAG_MULTI_MSI_EN		BIT(7)
+> > > +#define STMMAC_FLAG_MULTI_IRQ_EN		BIT(7)
+> > >  #define STMMAC_FLAG_EXT_SNAPSHOT_EN		BIT(8)
+> > >  #define STMMAC_FLAG_INT_SNAPSHOT_EN		BIT(9)
+> > >  #define STMMAC_FLAG_RX_CLK_RUNS_IN_LPI		BIT(10)
+> > > --
+> > > 2.34.1
+> > >
+> > >
 
