@@ -1,166 +1,95 @@
-Return-Path: <devicetree+bounces-34840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AC8883B45C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 22:59:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E35F783B477
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 23:07:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0428128AADA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 21:59:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E49B1F23BD7
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 22:07:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94F83135401;
-	Wed, 24 Jan 2024 21:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1B7135413;
+	Wed, 24 Jan 2024 22:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qWqsZXR1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oOoHLexc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8E3D1353FA
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 21:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D41135A40;
+	Wed, 24 Jan 2024 22:07:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706133557; cv=none; b=aOQPJzHm26Pu/Qd1Z++G3A2cWE+GpNqChfkhKg+xZ/6vR5PjK3rOEuWIACGU+uWg34wY5UOMy/laSGh8LrJNgyS4JN1il9RjOAwG/49l4Z0CK3auZs+7EelwQncHkYk4dyvsz0woB2wS71CaRWtWsj6P7KXfoNaFa0EBDFUGrZI=
+	t=1706134039; cv=none; b=Gpf0C1EaQn69iL/LcrM8eDASphn3+9m6yQuz4Lf94RB0sr4oYM5sggac7djX7XP0bGqtyF0wl2FoqCNlRhlpSRafb0srTO7bhHpq4bazlM8EErBm8LWTheQbLraITk+tEAMuXS7CvqiG2eV6tydt5jcvKYCWLIPwR3S9mXfqyvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706133557; c=relaxed/simple;
-	bh=VLQeOlfpZxjdT3U1gi97jd8DeMuITFLgRbpN/EoAAxQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JIIgiGM5LKfqXx10O6T6Me8CYeNPs45vX9p7G+5SPSE0JPTXSe+00IFtzCOSmYADX8944rlTCpe6qdLddtQ4pY16FEyiY6nAzpeL77T7dwi0o6u0Oi8P5NX+8fWWJ2CGcrdy8c/4/lmgzPxxhT6iV+PDd6o8lXPQW1022u6PpII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qWqsZXR1; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40eacb6067dso45221865e9.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 13:59:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706133554; x=1706738354; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/x0xwLfqu5z8NcxBEe9tr7BWnY9CY/mlR8s5sFbWe8A=;
-        b=qWqsZXR1p2tjSW/M06QXN4L9rd2Ayq89AEgW5QSvjAi8irwFB3Pf+VIQvpbH9rZnLZ
-         nq0adDdbHVihyDhDlZtZQoDMmuLCCBGuSx+gsZr5UXEjDO3KwJWnyXExOBgXeJTHhmat
-         zfqchhgH/g+qUp3O7a6u444pVAsfwOYzLuDmN9i1ENLuAebSsYkbqDTYtTouHZsq4u0n
-         f77ubd61cxffFmbL8JWCo3oEuHEsorbQRRQbR65SCALwlmSgbQrYJFAY2+w/0XQGkgOQ
-         O3R2tkZxp+SNDH6ZabxHJeZ0V8vKgHKl5EeQlpvbhdB6VvhDBN6IizdVQA5EYChulL5C
-         9UsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706133554; x=1706738354;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/x0xwLfqu5z8NcxBEe9tr7BWnY9CY/mlR8s5sFbWe8A=;
-        b=wV9Dq1SWPILW3lppgWctvW3iMApDFqs4fF1RHedLAqWsEwuPXRdy7yYcRhuhvIYmQI
-         NbhX/UhAZyzJcEgsPT07JbrKDdi6JrBv+f++4yKPuMRhslwJc1CFqpz3GmiQhzaZKmCY
-         BPe7qPoEhQdcFQL5YQxROkbJ3uymDk2RHWrbAbfeenOvzhBirzSqB/kKubevRkDhoXU+
-         D5oK3G0hdK2c3JcNan4eIxwcc8lNvbwfjxsWonA9p/SeHFbkoTcdoj8zPRKQAFpl6y90
-         7QMHfF0IRE+Bm46OQCynqiMiys0SKemgAdqdzdD2czn/z3QmaT93LQ9fvIBQeyIMSjoi
-         JHLw==
-X-Gm-Message-State: AOJu0YwyMSetgBmm72Cg33b4PVRGnh88znaRP9qxRoHgptpKcYs3HGQ9
-	C8efCTfw3GIMoshH0KB6jRfxNtF5bFf74h2bT9yXtRCM2H/bTmC9rPBdpNzYXWc=
-X-Google-Smtp-Source: AGHT+IHw30SWTJoZ+FFFZrE09mSB+uTZpDsgzB9o0ZyoA20fyJ1GgKZ55NN4s2uwVcHBe7cWeYm64A==
-X-Received: by 2002:a05:600c:3286:b0:40e:70f2:5754 with SMTP id t6-20020a05600c328600b0040e70f25754mr1016294wmp.250.1706133554110;
-        Wed, 24 Jan 2024 13:59:14 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:92d0:e652:43b1:5e6a? ([2a05:6e02:1041:c10:92d0:e652:43b1:5e6a])
-        by smtp.googlemail.com with ESMTPSA id o9-20020a05600c4fc900b0040ec66021a7sm380550wmq.1.2024.01.24.13.59.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 13:59:13 -0800 (PST)
-Message-ID: <7c8b9bc2-94f8-46f7-8143-a78c834142ef@linaro.org>
-Date: Wed, 24 Jan 2024 22:59:13 +0100
+	s=arc-20240116; t=1706134039; c=relaxed/simple;
+	bh=hnBTLdmXWaZcqPHY+gzD4i/37L5SLPfwrdKsBL0cpEU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U8OC+TC9VESe2MkHW4wNx9+6JsMwgKX5LAJ3LALHgov4LQUp2kKeaqnbt5rBn9ccjqH4MQLzKMwy0z6VCNSU9h3nrt71EAEjVeoVJCRvWTBuolJTCPA2Y0hiP3zKSF3tx/flUd+Zp0r3x9R8AZn7CtsY7jP+xBh0iLsKfBMuvHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oOoHLexc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C878C433C7;
+	Wed, 24 Jan 2024 22:07:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706134038;
+	bh=hnBTLdmXWaZcqPHY+gzD4i/37L5SLPfwrdKsBL0cpEU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oOoHLexcsJBgDEp/saL5fzCCdq86j+YUMysg/UNA+Ky/q5IVGjrRrK7kvjA6IIOmN
+	 UEV2Wf5KXd4MML2fnI5w8v0jtqa7tNhTjP1RSJd8edBUhAxlWma2zhfsPlqhwbqVa3
+	 GRbyiF+eTAowjZwVSCtFM+P7zOMnCSFeVZYhKQBPUB936AX1hI7zxmEySqVItwAvJm
+	 C++TEA624nt6jdf4pM5S+2flo3X1uv/n7/7qV8Tw8Y8miF4gU74PGZ72T/mxvbgzGt
+	 +1/E5IF3Y0fvO50Y+vAELxX8+1govwRkwydB21finM+v6D/tItKxqabiQYRZPE1DNE
+	 bpCcQg03AaKOw==
+Date: Wed, 24 Jan 2024 16:07:16 -0600
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 1/6] of: Add of_phandle_args_equal() helper
+Message-ID: <20240124220716.GA2454626-robh@kernel.org>
+References: <20240124074527.48869-1-krzysztof.kozlowski@linaro.org>
+ <20240124074527.48869-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: enable temperature driven fan
- control on Rock 5B
-Content-Language: en-US
-To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-3-5879275db36f@gmail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20240125-rk-dts-additions-v1-3-5879275db36f@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240124074527.48869-2-krzysztof.kozlowski@linaro.org>
 
-On 24/01/2024 21:30, Alexey Charkov wrote:
-> This enables thermal monitoring on Radxa Rock 5B and links the PWM
-> fan as an active cooling device managed automatically by the thermal
-> subsystem, with a target SoC temperature of 55C
+On Wed, Jan 24, 2024 at 08:45:22AM +0100, Krzysztof Kozlowski wrote:
+> Add a helper comparing two "struct of_phandle_args" to avoid
+> reinventing the wheel.
 > 
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-
-Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 25 ++++++++++++++++++++++++-
->   1 file changed, 24 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> index 9b7bf6cec8bd..c4c94e0b6163 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -52,7 +52,7 @@ led_rgb_b {
->   
->   	fan: pwm-fan {
->   		compatible = "pwm-fan";
-> -		cooling-levels = <0 95 145 195 255>;
-> +		cooling-levels = <0 120 150 180 210 240 255>;
->   		fan-supply = <&vcc5v0_sys>;
->   		pwms = <&pwm1 0 50000 0>;
->   		#cooling-cells = <2>;
-> @@ -180,6 +180,25 @@ &cpu_l3 {
->   	cpu-supply = <&vdd_cpu_lit_s0>;
->   };
->   
-> +&package_thermal {
-> +	polling-delay = <1000>;
-> +
-> +	trips {
-> +		package_fan: package-fan {
-> +			temperature = <55000>;
-> +			hysteresis = <2000>;
-> +			type = "active";
-> +		};
-> +	};
-> +
-> +	cooling-maps {
-> +		map-fan {
-> +			trip = <&package_fan>;
-> +			cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +		};
-> +	};
-> +};
-> +
->   &i2c0 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&i2c0m2_xfer>;
-> @@ -738,6 +757,10 @@ regulator-state-mem {
->   	};
->   };
->   
-> +&tsadc {
-> +	status = "okay";
-> +};
-> +
->   &uart2 {
->   	pinctrl-0 = <&uart2m0_xfer>;
->   	status = "okay";
-> 
+> Dependency of cpufreq and reset change.
+> ---
+>  include/linux/of.h | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Acked-by: Rob Herring <robh@kernel.org>
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+I've wanted to write this series for some time. Great work.
 
+Rob
 
