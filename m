@@ -1,131 +1,221 @@
-Return-Path: <devicetree+bounces-34702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 209AA83AA03
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:40:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11CA283AA17
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:42:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD671289737
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 12:40:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 820DD1F226FB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 12:42:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EFD77632;
-	Wed, 24 Jan 2024 12:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 402E07762E;
+	Wed, 24 Jan 2024 12:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lDrhPLrS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y2Od0xPz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C9176910
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 12:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D766A002;
+	Wed, 24 Jan 2024 12:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706100033; cv=none; b=NtODH65qfrgutz2a1XBUkn7rYrxCzcC3fE+pzSUcJ3tWKvI/yeBCT5fttPT5VybR4D2YMYJ0EAOVyiNdyakqMbl+cywlkMar2fmCUWNr/jDQHO6pPlzkAkMVUyV0cHUncCRhNK6GxMNdXxAQsUxyDfP3gr3tgZ0j36sFb10E3Es=
+	t=1706100167; cv=none; b=Bg/qoug6bSoPDeNWNbIQ695+dETfzV3hm3NlDAqau5wON9XvKbeG/UdrLL/0Npm8/NfpYrWeXWeAurGSO9MsHCX6XssWvh6w+NVm94BVmTmOFOZn+7AQoeKPbQX36lmFyzfu1sQalQHOhcPdMu2Hc+l2VUif19mHDLH25SaWrOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706100033; c=relaxed/simple;
-	bh=HZXySNav2eCtfTYb3Q1eACHjRWMxY6l58Qkh/AX91ik=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jyKWdYq48BtoDhlkcMP/KdwvmDQh0J55blSqVgIZGLJz28xk0Ih8gFQmEfxZpNswwCwiS+v2LGltM4Zsyza3+wsG03/g2FNQQq2A7GL0DqWVCNYFZwJxbIDvUV34Pk6Hzfgw2aR0q/Bm8E7ZZAhTUMkvZ4903HA95FXtfQMop30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lDrhPLrS; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-50e766937ddso6437721e87.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 04:40:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706100030; x=1706704830; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eQ56JkGxr0Lm3oi7nSQ8ExiMFRGEgpi2bV6cmhPLeG0=;
-        b=lDrhPLrShQf98cxKwRx6koTswR0jHbO5vSgKJiELlzf3mR1zr1Udaz0n4/QlPNSKP3
-         1WO8Gj/ZvJ9XakY484yCgBLTFK4ULwekzhgI3jegt0mvXaqjG+v2680aAapdfccfSkTu
-         x95qPb7/PWERy6Tkf1Y1bEvwXGZgIueoqKItG8DcRzKmedMZqyNGWzZvu7y9j64Fk4eE
-         TeaOwcBkZ3R0nevUHrqT4XBlHCY3/P4gGy9J+n2yOkdZoAPhWhdX7GZrSGxZ9O9nNCE/
-         m2CA5eXKbWRhs94rYRf39ZUI8QHib691k1hCI6oakb7EoLqO1a0hOXixhoiqYnFujGBC
-         BI+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706100030; x=1706704830;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eQ56JkGxr0Lm3oi7nSQ8ExiMFRGEgpi2bV6cmhPLeG0=;
-        b=m7gKhXeQxd1qi4As9fxOW6S+rKunWpzc6m6riZV+UUsmE3qPuyLcxlxqJ0cADuuAvz
-         H5vZ0vABvG6pIJGrWUaqnh1Ef+xK7TaZnanF3fiThVI5bYeIOf8j6DIYUWcftEKcmuwb
-         RP6rFyZvkxYjKSBLMq0AJo8LKNBNhh+0XeUnUmILDtLsFDqZIlvzGFOwPoj4YGPTXaDi
-         Pr8t1vkwCfX9d3JXdD7HgZM2rRKYTB+NPFqbmn6YzCz936CPDRjfQd69Uvul7e1cQqnD
-         3X2X2X/45ncevN3tuR5jmHbTKuWd2zzujK+naMRAqSTndxqy8CGh6yHLsh4Mf0oyh+w9
-         BDFg==
-X-Gm-Message-State: AOJu0YwHIp1PM66B62mhqGND7KXGVlw0RRIlOXst9KmRREA7Ff8Drm8l
-	y7YXExW/okxHkFpMb/CViweB7Upgwaa4Bzr57QShSk4uTZNfVt6qdRyMzrY6PLA=
-X-Google-Smtp-Source: AGHT+IEWR4WNzxLOvPZFaHdGV1W5zHsK0kZ/f7Yvx1L9lhQY4aJx26rUkniEml7UEg3D/KUf/DHMPg==
-X-Received: by 2002:a05:6512:3d94:b0:50e:b2f0:3dbb with SMTP id k20-20020a0565123d9400b0050eb2f03dbbmr4420385lfv.79.1706100029881;
-        Wed, 24 Jan 2024 04:40:29 -0800 (PST)
-Received: from [172.30.205.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id b1-20020a056512024100b005100a13a019sm402504lfo.76.2024.01.24.04.40.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 04:40:29 -0800 (PST)
-Message-ID: <8eefc777-4e41-4ffb-ad4b-444e3754b2e6@linaro.org>
-Date: Wed, 24 Jan 2024 13:40:25 +0100
+	s=arc-20240116; t=1706100167; c=relaxed/simple;
+	bh=N01sEIdXxdAZjuBvaTnGLi0tuo4RuNA8mAbpjxb83G4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=K4YRgx970+yOn5mEpwYi0E+mH3OffwnGVUBOSOJ8tySCBkoJlgjMaiV/CIIDh8igSFtvmUU9GWFjeqiSPxfOwnYn5OmV6ycoiS2Grho+3GxwpH2rZuMk2w8HJCyP8IUxEkjtMRpjpEssUO6DJPJ9JOihO7BuE2gWBngV2OXDE4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y2Od0xPz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40OCagV6013961;
+	Wed, 24 Jan 2024 12:42:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=zwIMoTBgetyseescEdSkA0iCKrExxyXXP+mXbDfuKZo=; b=Y2
+	Od0xPz6oB5P09zEPXET/hXhYQni14v+IUbdybwwKnAHEFrpCdMnKLlU6WuXClbsi
+	RgNpvNhUkg285i6hXKIU2FBXW7Z0Bsr4MkBpQV5pejBneHyNXRUmRKcCMhJpXoiy
+	0gLUcRnVIzxzVR3ebdZOJhqjA63tTDLbVSFALJIJAaBy3uqzqguMegf4n/99aHAj
+	j2ZK4ruep9YUM+tZiAHQCSJus+MU+CbRWMTg2RNOc9DasKTezd3nYrSBO7BoWmNi
+	3zHx+rd0YW7ngFHVZTsIF5oOZn3r/R0nJZmRw8aoJ4qjobClfKkB2anVMckRU+zP
+	hFQQjRs6tIb8+heRJX9g==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vtmhr1rx8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 24 Jan 2024 12:42:40 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40OCgdLm009550
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 24 Jan 2024 12:42:39 GMT
+Received: from [10.216.58.233] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 24 Jan
+ 2024 04:42:32 -0800
+Message-ID: <b4c27fb4-0cbf-7bad-3fc3-163fb4a5eb3f@quicinc.com>
+Date: Wed, 24 Jan 2024 18:12:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 04/11] arm64: dts: qcom: x1e80100: Add ADSP/CDSP
- remoteproc nodes
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: hwinfo: Introduce board-id
 Content-Language: en-US
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
- Rajendra Nayak <quic_rjendra@quicinc.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240123-x1e80100-dts-missing-nodes-v4-0-072dc2f5c153@linaro.org>
- <20240123-x1e80100-dts-missing-nodes-v4-4-072dc2f5c153@linaro.org>
- <e1313275-ca10-49be-ae68-ce783c3262b1@linaro.org>
- <ZbEEppK80NpwqUT7@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ZbEEppK80NpwqUT7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
+        Elliot Berman
+	<quic_eberman@quicinc.com>
+References: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
+ <1705749649-4708-2-git-send-email-quic_amrianan@quicinc.com>
+ <1fc9815e-76dd-41d7-aa1a-caa72ef4ad34@linaro.org>
+From: Amrit Anand <quic_amrianan@quicinc.com>
+In-Reply-To: <1fc9815e-76dd-41d7-aa1a-caa72ef4ad34@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 0eY5KIcnb5mcYtI6Yy6ULcCFaiHf0Ci4
+X-Proofpoint-GUID: 0eY5KIcnb5mcYtI6Yy6ULcCFaiHf0Ci4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-24_06,2024-01-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 mlxlogscore=999 mlxscore=0 bulkscore=0 phishscore=0
+ malwarescore=0 adultscore=0 impostorscore=0 priorityscore=1501
+ clxscore=1011 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2401190000 definitions=main-2401240091
 
 
-
-On 1/24/24 13:37, Abel Vesa wrote:
-> On 24-01-23 19:22:35, Konrad Dybcio wrote:
+On 1/23/2024 5:39 PM, Krzysztof Kozlowski wrote:
+> On 20/01/2024 12:20, Amrit Anand wrote:
+>> From: Elliot Berman <quic_eberman@quicinc.com>
 >>
+>
+>
+>> How is this better than Qualcomm's qcom,msm-id/qcom,board-id?
+>> -------------------------------------------------------------
+>> The selection process for devicetrees was Qualcomm-specific and not
+>> useful for other devices and bootloaders that were not developed by
+>> Qualcomm because a complex algorithm was used to implement. Board-ids
+>> provide a matching solution that can be implemented by bootloaders
+>> without introducing vendor-specific code. Qualcomm uses three
+>> devicetree properties: msm-id (interchangeably: soc-id), board-id, and
+>> pmic-id.  This does not scale well for use casese which use identifiers,
+>> for example, to distinguish between a display panel. For a display
+>> panel, an approach could be to add a new property: display-id,
+>> but now	bootloaders need to be updated to also read this property. We
+>> want to	avoid requiring to update bootloaders with new hardware
+> Some mis-indentation in two lines above.
+Sure will take care of this.
+>
+>> identifiers: a bootloader need only recognize the identifiers it can
+>> handle.
 >>
->> On 1/23/24 12:01, Abel Vesa wrote:
->>> From: Sibi Sankar <quic_sibis@quicinc.com>
->>>
->>> Add ADSP and CDSP remoteproc nodes on X1E80100 platforms.
->>>
->>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
->>> ---
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> Signed-off-by: Amrit Anand <quic_amrianan@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/hwinfo/board-id.yaml       | 53 ++++++++++++++++++++++
+>>   1 file changed, 53 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwinfo/board-id.yaml
 >>
->> [...]
->>
->>> +		remoteproc_cdsp: remoteproc@32300000 {
->>> +			compatible = "qcom,x1e80100-cdsp-pas";
->>> +			reg = <0 0x32300000 0 0x1400000>;
->>> +
->>> +			interrupts-extended = <&intc GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
->>
->> Is there no PDC mapping for this one?
->>
-> 
-> Nope.
+>> diff --git a/Documentation/devicetree/bindings/hwinfo/board-id.yaml b/Documentation/devicetree/bindings/hwinfo/board-id.yaml
+> I think we should add it to dtschema, because bootloaders are using these.
+Do you want us to move this file completely to the below mentioned repo 
+and under which directory?
+https://github.com/devicetree-org/dt-schema
 
-Meh. Okay.
+>
+>> new file mode 100644
+>> index 0000000..82d5ff7
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwinfo/board-id.yaml
+>> @@ -0,0 +1,53 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hwinfo/board-id.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Board Identifier for Devicetree Selection
+>> +
+>> +maintainers:
+>> +  - Amrit Anand <quic_amrianan@quicinc.com>
+>> +  - Elliot Berman <quic_eberman@quicinc.com>
+>> +
+>> +description: |
+> Do not need '|' unless you need to preserve formatting.
+Will drop it.
+>
+>> +  Device manufacturers frequently ship multiple boards under a single
+>> +  software package. These software packages will ship multiple devicetree
+>> +  blobs and require some mechanism to pick the correct DTB for the board
+>> +  the software package was deployed. board-id provides a mechanism for
+>> +  bootloaders to select the appropriate DTB which is vendor/OEM-agnostic.
+>> +
+>> +select:
+>> +  anyOf:
+>> +    - required:
+>> +        - 'board-id'
+>> +    - required:
+>> +        - 'board-id-types'
+>> +    - required:
+>> +        - '#board-id-cells'
+> I don't fully get why do you need this select. Isn't the schema selected
+> by nodename? Or maybe it is for the final required: but then this could
+> be just set of dependencies.
+The nodename here would be "/". So it will be applied to all the DTs, right?
+Here, we wanted this to apply only if the above mentioned properties are 
+present.
+Do you suggest moving this to qcom,board-id.yaml and the required: as well.
+So that vendor specific yaml could be applied?
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    const: "/"
+> Blank line.
+Will add it.
+>> +  board-id:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>> +    description: |
+> Do not need '|' unless you need to preserve formatting.
+Ack
+>> +      A list of identifiers that can be used to match with this devicetree.
+> s/devicetree/Devicetree/ ?
+Will update
+>> +      The interpretatation of each cell can be matched with the
+> Typo: interpretation
+Will update
+>> +      board-id-type at the same index.
+>> +
+>> +  board-id-types:
+>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+>> +    description:
+>> +      Defines the type of each cell, indicating to the DeviceTree selection
+> s/DeviceTree/Devicetree/ ?
+Will update
+>
+>> +      mechanism how to parse the board-id.
+>> +
+>> +  '#board-id-cells':
+>   What are the cells for?
+Bootloader will use this to check the number of entries in a tuple of 
+board-id.
+Vendors can have different logic in bootloader to specify the number
+So wanted to make it flexible.
 
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
+Thanks,
+Amrit.
 
