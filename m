@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-34594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B2EF83A46D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:45:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 437DF83A478
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:46:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ACA8281F25
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:45:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF79A282BE0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071AA179A6;
-	Wed, 24 Jan 2024 08:45:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29A3C179A6;
+	Wed, 24 Jan 2024 08:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pXAG2CLs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E7vTlQn9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B8031799D
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 08:45:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85C1E1798A
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 08:46:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706085911; cv=none; b=FbuCA5vz0edR4rgWAyCzl0k7WZcdkBeSmIamHdc/PS8RbY7N9clbyhP+7sRKsITSk7GMu0pJBJfI5d3kANO43ysgFBaAsJovJOIjbuz2w9WduKpJIHOaweq0TvUEj0axPoawRbGQSQcarJa14eOMegvUz+luKghcPyM4MWRj4bk=
+	t=1706085992; cv=none; b=nJUxzKouPgilo72tiRm0vxKn9rNpho6JYbfaGguN23KgFjbSY/quSS22zwZSdjOYA95LQ9mkYCmT1JmFI3u1wrd3n3ZJ3JBrlwF7u13S08Gj2qdPprgGg0dQuvD3+P99svFO7Hbf9+XYpgvhYJ4Iz9/UQ/m7D1avYap4O1wpowo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706085911; c=relaxed/simple;
-	bh=H7FcCLyL1MxS3dpDuBIUYNy05ERRwtSQXEGmvtuiFJw=;
+	s=arc-20240116; t=1706085992; c=relaxed/simple;
+	bh=dPFBpySFU+F52QWcLga/qfjL4CPw/XvC7r0klQNCxqo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nh00KSTg9NM0uLXo5Hsr/UYHchlf5ENJz99EDbl/HRve/eFpM/Z/QoxD0fW3buyhDf2cwA1sbYdsoNO7eoAZxJbmbN1VgPtun2k25RTEY2gBfY6Atino+zPz/VDiWP3tRL0mWbwHo9EB6EbKY+5yQahPpAZTY54RaPj2OEFquVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pXAG2CLs; arc=none smtp.client-ip=209.85.208.176
+	 In-Reply-To:Content-Type; b=H6bsOu+Li66e/6yM/gsfXO2WBawE5vtaUFwfbnr1u6DNgUAH4kYGWZx2C2fN8t6zUd+r5oZG0HmvHiF7X+W0jAP3TV4BjrWQhWSV1Cirf0mEdacGLQKTdPMtE56/q3YVeg5gfP+QnE1NlAFDIlqpnQx7r1GJ6ltvNtv69mbXSGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E7vTlQn9; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2cf19f65271so15428971fa.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 00:45:09 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a28a6cef709so526558166b.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 00:46:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706085907; x=1706690707; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=HjwhuJKMXUOaSCxbfwXGIZsuQLCVB0RcIFx2qcPByrQ=;
-        b=pXAG2CLso/bJsy3r3A0XZOBpN4muAA8nxQ5/Q+RJmvZjW6sOmAD+owG7WqqQP05X9F
-         2+JN7SRSh7oFl5FTU1j7Z451saRqbVWyANwwlol94VkelQyFa3cXYWsc+d+wfy4K9PFU
-         eTlznzZphKvNsmYZoC57PGi4siQEjQVBQA/0eccSsnDHxxl6X6uqAYiun9Axa6o5taN7
-         Wta4RCLBNIG6UAAdYakj/Ni3UDb+GG9sCPxXyT2urnkm7POeR1MHuOYz2tfap4RWCSbh
-         GFy3TsdM6xDHceyx/btc3OZznOZXepVJNXX+9s1ljVS24SFsKtB8yeK838FD8HaUVK+m
-         wJLw==
+        d=linaro.org; s=google; t=1706085989; x=1706690789; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=M2ft88QIQ5ZBxMJ6XwQH+0caS7K/lXwIMIK+59kmVjg=;
+        b=E7vTlQn9+NnxUpotCzeR59DlFOV5dPJETeODWq40GpwGyRCkKdglNm1hl9CFPPwIg9
+         lQG5iIYGmO43qVPcy9qWDp6pc9QPO11huzZ4J5uvzghAZzAksGtiTWF6RloinhLIQHV3
+         Y74M3IoMtDMCsF2EaYu7NuwJKFbnZbo3d/0cpbn3ec3ZdZstNKEMiros/2Bx3q6XMwM6
+         OqD4dOBohdAusB+FPteSf4MBEeOxAPa2fcaeUHzPCCAEJwQApPtXKsiHUKONedis+hLM
+         4LM7bFlhlSBhg7x55LMaHLxk6vwc8whD2ZFeZaPrJKzZ1wBIdbLkNrWS7xno9hIWMeCk
+         +xQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706085907; x=1706690707;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HjwhuJKMXUOaSCxbfwXGIZsuQLCVB0RcIFx2qcPByrQ=;
-        b=K98aDyNRb1VVFsekMeYqE2qqo4i3/glE38/4ZpeAIToHkN/wmBHEtUJ8jiStMRIduz
-         yMK9d9D8pobF2SatFkQyusgQvW/2By1SBEQx8eHbWBF/iV7qdlSWP5q9SIdCQiZg9EIY
-         HFNLialSnzOXaa8ggOmQafS1nfIJyiSt3msqOTRUBNTHC8vbfpFHAFNImggJxNCqjFi7
-         2rZy1QDyFnfHq0jYRccFvLVjgCa6bINeyU7t64Pyv4M4URe6i2sg8OmDVi2tBzEtE32n
-         olc6LF6QVHtA6wp0q5hvBnaVUt2r3STKSS0lzQHaloCx5gtLtkVC+CXNSxlanQxpGrkz
-         WVCA==
-X-Gm-Message-State: AOJu0Yx1H+eWnLn8hdJWdpO/apYykow08th8NhuU462yx+0H1YTSDtrZ
-	MJisLrlYTS921Z6TAOs9IUq9RRZbWYy1dp/ku84QbyLeqVRGLYTVeQ9n4OqDdUQ=
-X-Google-Smtp-Source: AGHT+IFYiUFlipblYHwnsmFJb3hLAD61umR69H9dlOIxmbXI91/YoAFIfsfRSixEiIpRhgDBzjisvA==
-X-Received: by 2002:a2e:9d88:0:b0:2cd:354e:2483 with SMTP id c8-20020a2e9d88000000b002cd354e2483mr655857ljj.4.1706085907438;
-        Wed, 24 Jan 2024 00:45:07 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706085989; x=1706690789;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=M2ft88QIQ5ZBxMJ6XwQH+0caS7K/lXwIMIK+59kmVjg=;
+        b=GHeHNjw8KUrNNMtxy+QxXiJC86ZI/pwUL40NMJcX5j2Og97ugoRlgMDxQOC0s+kdGK
+         h3Sy4+K58eiP8oPEdq+clZMRmTAibtZCnAJxNFXmSZY+975z0pyxMyUbizu1BY1pK/jj
+         tVvB1GCojlLROz7kl1H5sCZo+lmWkBqj0caVxlGvszsvX4Dei7zLXgfl+Se2L1AvYsvt
+         JZgbkNTeqhJYlemME8wF+qN2rF8J7cYFM8WyrzrWSzm7F3zTr7YVJJd55zoiI9SuMsmL
+         qKYFGOTTuqbf6D/V9VmDFgN0i4RZd5FcuOFKkrDh72+rbllWKiKHsyu9q9BNAwYxWvvw
+         reAg==
+X-Gm-Message-State: AOJu0YxWw2kg0y1xfWF6KnqKkXhAIU/m7O4hT3FnWkDJC4cb6hESqnMQ
+	vR8MEEs0kPj/k8vdmBj+U8C1WHrP2DoMcuXHH20bE578pclbvGUaeAUbyV8P+cA+VAVC0HNUZTc
+	UYY4=
+X-Google-Smtp-Source: AGHT+IGu7R91gLpuMOXByNh+unsLgnvxpr7xFo/lXx159xDTu5ANGnqD67UF5kZNcEm/+wd1FiIPcQ==
+X-Received: by 2002:a17:906:c016:b0:a27:d14b:215 with SMTP id e22-20020a170906c01600b00a27d14b0215mr613258ejz.98.1706085988786;
+        Wed, 24 Jan 2024 00:46:28 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id tj4-20020a170907c24400b00a311082cd00sm518950ejc.37.2024.01.24.00.45.06
+        by smtp.gmail.com with ESMTPSA id tj4-20020a170907c24400b00a311082cd00sm518950ejc.37.2024.01.24.00.46.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 00:45:07 -0800 (PST)
-Message-ID: <7980834a-6bdf-4d6c-9f76-71b156e143d3@linaro.org>
-Date: Wed, 24 Jan 2024 09:45:05 +0100
+        Wed, 24 Jan 2024 00:46:28 -0800 (PST)
+Message-ID: <8b730cb5-871f-47b8-9abd-d8f39d3b8ec6@linaro.org>
+Date: Wed, 24 Jan 2024 09:46:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,24 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: DT Query on "New Compatible vs New Property"
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Nikunj Kela <quic_nkela@quicinc.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org,
- "Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>,
- srinivas.kandagatla@linaro.org, vincent.guittot@linaro.org,
- ulf.hansson@linaro.org
-References: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
- <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
- <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com>
- <20231214061742.GG2938@thinkpad>
- <66f82e2c-0c42-4ead-93f5-2136ad478df2@linaro.org>
- <7768258d-4748-84f7-0da2-43988138e5cc@quicinc.com>
- <20240123161231.GG19029@thinkpad>
- <d3d07e07-5f47-496c-9417-34d502242b40@linaro.org>
- <20240124083919.GC4906@thinkpad>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: modify the wrong
+ compatible name
 Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, linus.walleij@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240124023305.15755-1-quic_tengfan@quicinc.com>
+ <20240124023305.15755-2-quic_tengfan@quicinc.com>
+ <88e8cffb-024d-4f4d-ba1f-e0be9ee85e31@linaro.org>
+ <CAA8EJpqXS97FXoTwiLaSeHHEDOeBFRPRbCNR6WF-ArDm22tu-Q@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -139,80 +134,26 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240124083919.GC4906@thinkpad>
+In-Reply-To: <CAA8EJpqXS97FXoTwiLaSeHHEDOeBFRPRbCNR6WF-ArDm22tu-Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 24/01/2024 09:39, Manivannan Sadhasivam wrote:
-> On Wed, Jan 24, 2024 at 09:02:16AM +0100, Krzysztof Kozlowski wrote:
->> On 23/01/2024 17:12, Manivannan Sadhasivam wrote:
->>> On Thu, Dec 14, 2023 at 07:18:25AM -0800, Nikunj Kela wrote:
->>>>
->>>> On 12/13/2023 11:49 PM, Krzysztof Kozlowski wrote:
->>>>> On 14/12/2023 07:17, Manivannan Sadhasivam wrote:
->>>>>> On Tue, Dec 12, 2023 at 11:06:42AM -0800, Nikunj Kela wrote:
->>>>>>> + Linaro team
->>>>>>>
->>>>>>> On 12/12/2023 11:01 AM, Krzysztof Kozlowski wrote:
->>>>>>>> On 12/12/2023 18:45, Nikunj Kela wrote:
->>>>>>>>> We are abstracting some resources(ex. clocks) under new firmware on an
->>>>>>>>> existing platform therefore need to make changes in certain drivers to
->>>>>>>>> work with that firmware. We need to make a distinction between two
->>>>>>>>> different variants of the FW. In one case, some resources will be
->>>>>>>>> abstracted while in other case, they won't be abstracted. My query is -
->>>>>>>>> "should we define a new compatible string for the variant with
->>>>>>>>> abstracted resources(in FW) or we should add a new DT property keeping
->>>>>>>>> the compatible same?"
->>>>>>>> Hi,
->>>>>>>>
->>>>>>>> Usually change in the interface or behavior warrants new compatible.
->>>>>>>> Property would be suitable if the same device, e.g. same SoC component
->>>>>>>> with same FW, was configured differently on different boards.
->>>>>>>>
->>>>>> Here, the hardware is going to be the same, but the resources (clocks,
->>>>>> regulators, etc...) will be controlled by the firmware instead of OS.
->>>>> Yeah, that's the problem with generic questions, instead of specific...
->>>>> "Talk is cheap."
->>>>>
->>>>> OK, so the hardware is exactly the same? Does FW bring any
->>>>> incompatibilities in the interface or is it just about the clocks? I
->>>>> guess I should not have included "with same FW" in my last statement.
->>>>> It's true, but way too narrow. Therefore let me rephrase it:
->>>>
->>>> HW is exactly the same. Let me give more insight on the setup. We have been
->>>> using the HW in virtual environment but now the ownership of certain
->>>> resources (e.g. clock controller etc.) is handed over to a different VM(non
->>>> Linux VM). Earlier the ownership of the resources was local to the same
->>>> VM(Linux VM) via passthrough mode so it could directly access them however
->>>> now Linux VM talks to non-Linux VM for its operations for resources that it
->>>> doesn't own anymore via some interface(shared memory/doorbell).  So shall we
->>>> use property like 'qcom, controlled-remotely' or do we need a new compatible
->>>> for such setup?
->>>>
->>>
->>> Krzysztof, just a ping on this thread.
->>>
->>> To summarise, the hardware is exactly same. We can consider the case of UFS. The
->>> UFS controller is exactly same in this proposed setup but the resources of the
->>> UFS controller are taken care by the VM. So instead of enabling the resources
->>> one by one, Linux kernel will just ask the VM to do so using an SCMI command.
->>>
->>> Due to this difference, we need to make the changes in the UFS controller
->>> driver. So we want to know if we can use a different compatible for the UFS
->>> controller altogether in DT (this will allow Linux kernel to have a separate
->>> driver and will simplify things) or just use a property like
->>> "remotely-controlled" to let the driver detect this setup and take action
->>> accordingly.
+On 24/01/2024 09:07, Dmitry Baryshkov wrote:
+> On Wed, 24 Jan 2024 at 08:38, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> What devices do we talk about? Are they released? For which other
->> devices you want to use it?
+>> On 24/01/2024 03:33, Tengfei Fan wrote:
+>>> Use right compatible name "qcom,sm4450-tlmm" instead of
+>>> "qcom,sm4450-pinctrl".
+>>
+>> Why do you claim this one is right and other is wrong? Provide
+>> arguments. To me the compatible looks correct.
 > 
-> If you are referring to "peripherals" as "devices", then this new interface is
-> going to be applicable to most of the peripherals in the SoC like PCIe, UFS, USB
-> etc...
-> 
+> Yeah, but the driver (and the dtsi) use -tlmm
 
-And what about SoCs and final products?
+Are they merged? If so, it would be the argument for the commit msg.
+Just provide some rationale why this is done this way, not the other
+(fixing driver and DTS).
 
 Best regards,
 Krzysztof
