@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-34534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AA583A22C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 07:41:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A04C83A233
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 07:44:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D28851C220C8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 06:41:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 500A81C2220F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 06:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D97FFBEC;
-	Wed, 24 Jan 2024 06:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D46F9FF;
+	Wed, 24 Jan 2024 06:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S7qLZwo9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qW4bgW5q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2379F9DE
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 06:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A99B16415
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 06:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706078511; cv=none; b=Pgl/I7A1GnhrXe4AVL67wghG+7f7xO4Its/sBCMjmM0xfZVqeXbxakz4pcyIQyZkZF9o03IySI5j7Cic9hl1nLNXUfA/Fq5AEq4D7WjkE7zmXXBDbvmDf6eAK3IuTRRBU6A9Jc1OxIspHelJzwM62ULhAc+IR1cqDi2sze17TPU=
+	t=1706078642; cv=none; b=KdPLivb9MrsF1wLH217pzgwCEGgWcO9Acsx3TAyWj7SVjdExA0/m0IXN0ecyfRcv3u/HN4zyUwKPeBOjU+p1oK07Kesh7t21kPC+1KgpZdLgyJ+Z37ATYACbnzaloTU/Yr9VIz7XNUOvXX/3b/Y0HQHHFlGv+UmKoDZQZiAOty0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706078511; c=relaxed/simple;
-	bh=gdjigPYxfGVv/qeBZHfdru5JoUiV9JRMZh9hMOWPR+4=;
+	s=arc-20240116; t=1706078642; c=relaxed/simple;
+	bh=Na0yZodDGdLLgXtRdWqdoILFz9ttzJ5tSnwypSt8hZo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pwpAk2OugPS/vAXJGBzAUGZhQfGwhB65RcpG4hHm0dUfiCx5yZAA8CRsfEK6dZaJ4URBwYqGPyhtVVRjjkBddUTJVS8HVh0UQ+Fi6G9E0wHSCNl6NQb6JLzMq+Xr/yOMr8dKvshwbxZYIWuRZCjnewL8QPE3eV/JmggBCTGU5hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S7qLZwo9; arc=none smtp.client-ip=209.85.221.46
+	 In-Reply-To:Content-Type; b=bENVp2oViXdzGmnLzbiFISPPWDsj+ieD8RGf7GO7AWoRng99AzPEObsEfVwnLhKdcn7W8TwE519uZn7i1LPRhyyZni1UOrUwCkaH7SpQWQN/AalmDl6eDs4JBfHARfggA9wtrp+sPYPGAKlnOYALhBkd23ER0SdcRn8Pr4MwsVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qW4bgW5q; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-337d99f9cdfso4499624f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 22:41:49 -0800 (PST)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33931b38b65so2977335f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 22:44:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706078508; x=1706683308; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706078639; x=1706683439; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gXfAVeTUyj0V0Cx9OOrCXcp0NweVNGV81kqhQ909vpE=;
-        b=S7qLZwo9mTNtyx3nHpXDP2tZaUd2uF0Y99gcUnoROA0bjvCvj+rHX250CBY9cuPHf3
-         kwE08Jt+3HNTPaXki9jdeNgenFN0HzDQrJS7L+m1Iv2U7XtLx3Fni6NfyAUXLwmk6bQ1
-         NOYCUBzdY/vPk+KGlSgAlWcqkB95C4bBgwtJ8tCXSaZn8BNkaafcJYx/wHJJr6DdpRHU
-         qAlpMIqCC4faYD1wVYbDupKKkGE+RXpTQgAAQOq9+pPVEreD0op+JLppfqS+gLObclYQ
-         Hgk3VzrdCllnj8Yu3joQNnWItbEc/m7hlRXKtwSMs5RAgUr4nhwVPJtMImxucMbfSIq9
-         EwqQ==
+        bh=0qEUB5tJP/fNciUnEzy2EmInFvQjzNFbZ/qXkS+XWvs=;
+        b=qW4bgW5qJ7ezeHl0fR0bdzB2KgOdMD5Ib1SuuJ2lqXFisRx6fOg7uCvLKe6UP1xSLp
+         HFUXhzqSjSHj1oEgXSYluBXMrZ968J+rXHPTaR1YBt1CI1qjY0aAEhg405F8jSqo2jHX
+         ceNjqlHc9QKDTYXbt+olv7MQkvdchsks4CBJIdge5zn6kR4Ze6DWtrZVt36m2SR3ke5k
+         /iSBmfZfWV7Jfi3G5agog97iklz2tN3F3QkKA3sqGW64htwfe6MoSNAQwRMZbTzzhidU
+         jL0ezqJyapJ5q/pDXv4n5dFX+b3cErsMKdi61Qd2FaViG9Wiizsw8QOVRO+yojla18gc
+         jHrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706078508; x=1706683308;
+        d=1e100.net; s=20230601; t=1706078639; x=1706683439;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gXfAVeTUyj0V0Cx9OOrCXcp0NweVNGV81kqhQ909vpE=;
-        b=dZYr8SuNvid4NTYe/S0sul7G47kln5h9Ee16YfrRqMeORsgaptZ7/c8YBfv6M025N2
-         VbDE5rc5Ec565DS9zAhhiu7vgpxRsBCy9ppDLPMNS1Js2XuTezU3+KTIQ7x0W9tu1P1c
-         OTpjHoRlWO55Sb7Lfzv+yuE2VDE+bsmKFqs2bF14abfZT+hwxoxiIXqcE6wO29r9B2VE
-         WFsSNYW4DSJ7l138NeIBttmvVbJInIguWNno7McCV50Z6gqogWVorYteHyzWXDOhFTWg
-         OogoPMinRlIlf9dWBCptPjrn5zS15jVJv64ZKrgCsR8OFFRzHtBx30/kqKDFZCzpOQEZ
-         LT5A==
-X-Gm-Message-State: AOJu0YxEeLHOa8EtiwW+IfYsx/pGPYq6pQJbV1Mqv/haXsrzOuINJeqh
-	ppOx33OzqrzK3c9TI980N77DJSSbHHKOAy/6Zg56os5xAePl5mZXJDSYi9RcRTI=
-X-Google-Smtp-Source: AGHT+IFy2B3hDcPHpEyupu73Pa43sNWQ6wvHbVMuCgEFRM805mJWYSD88TcNZr89mL9xv0dV6sQyvw==
-X-Received: by 2002:a5d:5042:0:b0:337:c29a:409a with SMTP id h2-20020a5d5042000000b00337c29a409amr206144wrt.119.1706078508198;
-        Tue, 23 Jan 2024 22:41:48 -0800 (PST)
+        bh=0qEUB5tJP/fNciUnEzy2EmInFvQjzNFbZ/qXkS+XWvs=;
+        b=COezuYnrtNuDG1haKtaKbXzqSOaQCxk/l2qgIUKoK9Ma+GEMSSXgcWW13b/pnotdqd
+         tplGdm2Xk8irNlPxV4ENBU91k0fSjjz7JfbSBBuHuHMDVDotwHGu0sx6MyI6vt2n8Uq6
+         nf0yws5zGwhduDwmninegr3WwJnenMSPeFB2tM8d7L4qFC4gQSr6hCIFH7yuV+cRts40
+         47eysnpMQol5kXQzcw0aKW11xvDcnyKdG/fMhNqSjxEuPNgQuRv9ZnipQGQx9hxoZ7zs
+         6npQFff4tu2L/z5s4pfECC/iugTLhrGV7cJhrVIOalwipDkRGc9H7CR9yBKJbST+DJ99
+         AJ3Q==
+X-Gm-Message-State: AOJu0YwJAkuYj1MyzcM5eMusuIg2+Yja2J9NsAFTElTFANBvxO1nXz34
+	K5CdH18bagMhW7zIf5wsqcs8o0ElkKLnBXTgrb2OCDRfd7MmZg+bOMyqd4L81HQ=
+X-Google-Smtp-Source: AGHT+IGr1uEWkcvi66Qp0ZFkWgk/OsnzEd8H9LyXwS6DhOk0+ZGckrbfb3DvoRSS+v9CoKxtteLb+Q==
+X-Received: by 2002:adf:e68c:0:b0:337:699b:26e2 with SMTP id r12-20020adfe68c000000b00337699b26e2mr139105wrm.73.1706078638759;
+        Tue, 23 Jan 2024 22:43:58 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id bw12-20020a0560001f8c00b00337cef427f8sm15589455wrb.70.2024.01.23.22.41.46
+        by smtp.gmail.com with ESMTPSA id i6-20020adfb646000000b00337bc2176f6sm17930422wre.81.2024.01.23.22.43.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Jan 2024 22:41:47 -0800 (PST)
-Message-ID: <256fa483-928a-4f43-8c15-d111b6aa6b21@linaro.org>
-Date: Wed, 24 Jan 2024 07:41:46 +0100
+        Tue, 23 Jan 2024 22:43:58 -0800 (PST)
+Message-ID: <407ffaf1-d16d-4035-9566-866f44411fd2@linaro.org>
+Date: Wed, 24 Jan 2024 07:43:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,21 +75,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: gcc-msm8953: add reset for MDSS
- subsystem
+Subject: Re: [PATCH v3 00/17] Add support for Mobileye EyeQ5 system controller
 Content-Language: en-US
-To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Vladimir Lypak <vladimir.lypak@gmail.com>
-References: <20240123-msm8953-mdss-reset-v1-0-bb8c6d3ce897@z3ntu.xyz>
- <20240123-msm8953-mdss-reset-v1-1-bb8c6d3ce897@z3ntu.xyz>
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org
+References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,21 +137,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240123-msm8953-mdss-reset-v1-1-bb8c6d3ce897@z3ntu.xyz>
+In-Reply-To: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 23/01/2024 22:03, Luca Weiss wrote:
-> From: Vladimir Lypak <vladimir.lypak@gmail.com>
+On 23/01/2024 19:46, Théo Lebrun wrote:
+> Hi,
 > 
-> Add a new define for the GCC_MDSS_BCR found on MSM8953.
-> 
-> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> [luca: expand commit message]
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You miss here, in this place, the most important information which I
+asked previously - dependencies/merging:
+https://lore.kernel.org/all/db9b2786-29f7-4d45-9087-a9f85b770b6c@linaro.org/
 
+> The goal of this series is to add clk, reset and pinctrl support for the
+> Mobileye EyeQ5 platform [0]. Control of those is grouped inside a
+> system controller block called "OLB".
 Best regards,
 Krzysztof
 
