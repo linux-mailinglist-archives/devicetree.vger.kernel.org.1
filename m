@@ -1,113 +1,130 @@
-Return-Path: <devicetree+bounces-34722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9667983AC65
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 15:49:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1200E83AC8E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 15:57:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F07029939D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:49:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 074911C224C6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:57:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CAA87C0AC;
-	Wed, 24 Jan 2024 14:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624EB12E56;
+	Wed, 24 Jan 2024 14:56:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="dWr1NJAh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFLygRVd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 795ED60DD1;
-	Wed, 24 Jan 2024 14:33:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3543F2F26;
+	Wed, 24 Jan 2024 14:56:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706106795; cv=none; b=s+aKjtqMtZ3Ok2lQEyUjQcasr9ghqySyEr0Qy3pkb2jzFRlmLkA9DdQKMW4K30fab2TcyOYWr9VOu4sVe3HDHPi8405ulKpShqRx9FUuOXWpqtO2JQko8270Orq+Wg5ghRddD7bG6P9BqZr507XULOGoEvjaZz59hOWdC1GAVpU=
+	t=1706108194; cv=none; b=cLhnIV2lgcsCRjZB4tPBKcu60BWRD+dcmlqOZFWegBn1g8VZMBP+2FZrS0bZE4HYVhcMk78v4XmDkfjyennALWNJd4wVQMgtU43QfWxPEVrT3p0Z29/xb+7EM5+pBTLL6mReAfs+DtBVE6/1OJkZlkRTqUq7HWYwwV4HKcHWe64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706106795; c=relaxed/simple;
-	bh=vPpxGx3jdv7gATwmSPZOYv7TCt6Wkt2McFWe5Uq8e1A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lb/StMGq7WreeU26FcYRPYgNvau+2C43LA8fWjryCVILS8+3xLA/aUZ8WXoQ0Zc7/yTTKTrmiPRlnczM2DhoJdvS/KP2PimVV7FINo+jP4xWm//vwwfGhG8u8J9PzQOS5oazt903A6Kv7XVuuIKTjVe+X22EwmrlaegoEWvehSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=dWr1NJAh; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=OtP8seYmSML3PMcVqkf6WfD0WEgT7yLINsGkyK/5yRY=; b=dWr1NJAh2O4A7EL6JyQkEBZIVJ
-	Mo2YCfPIx9Ge2pYrb4Lo+ndhfWGE7LOXst4905l2N6eudCvEiDQzdaOIgiejSl/mRHr+zm8chVoFu
-	mz6q4BoKMTBkMxa41EFJbFAODYnSdLcuIHKVMnGbFgaSWav9gY0/NXISgY9pVoGcR4VrT62kcS4Gj
-	Xp8BwMj+yQqZuHkUDHx+VSQ6UR/mmm5HAGXTO8Ibd8TtU4CFOzyWHEVN8qtDz5UvIaOqLJH9SHfkX
-	cZ0GwA8Jf7uiMy5BUyDU5tZ/sCLmFeqMMH69DIHjO7CVA9ZEFbgSdr/Jc99QRc7OVW0Hpkj+bQtjA
-	Azl0nMGQ==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <esben@geanix.com>)
-	id 1rSeJQ-000NaO-OK; Wed, 24 Jan 2024 15:33:08 +0100
-Received: from [87.49.43.79] (helo=localhost)
-	by sslproxy01.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <esben@geanix.com>)
-	id 1rSeJP-0008fi-RM; Wed, 24 Jan 2024 15:33:08 +0100
-From: Esben Haabendal <esben@geanix.com>
-To: devicetree@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>
-Cc: netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] dt-bindings: net: snps,dwmac: Add time-based-scheduling property
-Date: Wed, 24 Jan 2024 15:33:06 +0100
-Message-ID: <30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <b365dc6f756a3fad4dfaa2675c98f4078aba8a55.1706105494.git.esben@geanix.com>
-References: <b365dc6f756a3fad4dfaa2675c98f4078aba8a55.1706105494.git.esben@geanix.com>
+	s=arc-20240116; t=1706108194; c=relaxed/simple;
+	bh=7/wklZ6oD0ECwz1vKnU18BgeWzOozsvAiODYnadkp4s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JaBuKgd4XADzmMlrs/R5kNKrlFjufMB5ysKjwI6L+fbSxEM8OChEcylT6+3enN1NPU3l9AWNQC8oZQBkPVLYCqLIbVmO4ZMYtG2/XJrCpdonjxQBg2KzrKKeATA70RvU7MPmDR1lfdmATn8RGhv2OX/m81rIZv2cGokXkqsiDnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFLygRVd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73B0EC433F1;
+	Wed, 24 Jan 2024 14:56:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706108193;
+	bh=7/wklZ6oD0ECwz1vKnU18BgeWzOozsvAiODYnadkp4s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JFLygRVdAi67WUWHRp4/WulZPT9untGPgaFZV/lYT18DrtkTQBhFtoUp91sZuVJyx
+	 0iUV4qnU6xBkADvpEtDb9X1XfomDS78VK7xZILwkZSCzvk2fFRL+DZpbh5Avu741mv
+	 mzgWrQax+cp0brWgly+g993OvOEcVjJ4pMzCs+9CVdDn9wyOJ1Z/0XIHejv9s7lFj2
+	 xTGlXAz1XrejcNZTnegODD9oXkWQRx/2qpmUxcXj60ZRuM0zKspabgcYsgxvzdLeeP
+	 9eZXD4hAbHFj6hjepm9qSpV3XXJEUtwPVYXetz7SfJvcBbk1xNDQusnlFJ0lvuUL55
+	 QxobEzuPn3zQQ==
+Date: Wed, 24 Jan 2024 08:56:31 -0600
+From: Rob Herring <robh@kernel.org>
+To: Amrit Anand <quic_amrianan@quicinc.com>
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [PATCH 0/2] Add board-id support for multiple DT selection
+Message-ID: <20240124145631.GA873781-robh@kernel.org>
+References: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: esben@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27164/Wed Jan 24 10:45:32 2024)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1705749649-4708-1-git-send-email-quic_amrianan@quicinc.com>
 
-Time Based Scheduling can be enabled per TX queue, if supported by the
-controller.
+On Sat, Jan 20, 2024 at 04:50:47PM +0530, Amrit Anand wrote:
+> Device manufacturers frequently ship multiple boards or SKUs under a
+> single software package. These software packages will ship multiple
+> devicetree blobs and require some mechanism to pick the correct DTB for
+> the board the software package was deployed. Introduce a common
+> definition for adding board identifiers to device trees. board-id
+> provides a mechanism for bootloaders to select the appropriate DTB which
+> is vendor/OEM-agnostic.
 
-Signed-off-by: Esben Haabendal <esben@geanix.com>
----
- Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+Show me a 2nd user. Or does vendor/OEM-agnostic just mean vendors of 
+QCom devices? Multiple SoC families using this would help your case. I'm 
+not inclined to take it into the DTSpec without that.
 
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 5c2769dc689a..301e9150ecc3 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -399,6 +399,12 @@ properties:
-             type: boolean
-             description: TX checksum offload is unsupported by the TX queue.
- 
-+          snps,time-based-scheduling:
-+            type: boolean
-+            description:
-+              Time Based Scheduling will be enabled for TX queue.
-+              This is typically not supported for TX queue 0.
-+
-         allOf:
-           - if:
-               required:
--- 
-2.43.0
+> 
+> Isn't that what the compatible property is for?
+> -----------------------------------------------
+> The compatible property can be used for board matching, but requires
+> bootloaders and/or firmware to maintain a database of possible strings
+> to match against or have complex compatible string matching. Compatible
+> string matching becomes complicated when there are multiple versions of
+> board: the device tree selector should recognize a DTB that cares to
+> distinguish between v1/v2 and a DTB that doesn't make the distinction.
+> An eeprom either needs to store the compatible strings that could match
+> against the board or the bootloader needs to have vendor-specific
+> decoding logic for the compatible string. Neither increasing eeprom
+> storage nor adding vendor-specific decoding logic is desirable.
 
+You could hash the compatible strings if it was just a size issue.
+
+> The solution proposed here is simpler to implement and doesn't require
+> updating firmware or bootloader for every new board.
+> 
+> How is this better than Qualcomm's qcom,msm-id/qcom,board-id?
+> -------------------------------------------------------------
+> The selection process for devicetrees was Qualcomm-specific and not
+> useful for other devices and bootloaders that were not developed by
+> Qualcomm because a complex algorithm was used to implement. Board-ids
+> provide a matching solution that can be implemented by bootloaders
+> without introducing vendor-specific code. Qualcomm uses three
+> devicetree properties: msm-id (interchangeably: soc-id), board-id, and
+> pmic-id.  This does not scale well for use casese which use identifiers,
+> for example, to distinguish between a display panel. For a display
+> panel, an approach could be to add a new property: display-id, but now
+> bootloaders need to be updated to also read this property. We want to
+> avoid requiring to update bootloaders with new hardware identifiers: a
+> bootloader need only recognize the identifiers it can handle.
+
+So the id list will be always expanding list for every last component 
+that is 2nd sourced? The ChromeOS folks are also trying to solve that 
+problem.
+
+There's a similar issue for EFI boot with how to select an OS installed 
+DTB[1]. You might not care now, but users may later on (like we have 
+already with QCom devices with fixed bootloaders). If you do this 
+board-id route, then no doubt that compatible values won't be specific 
+enough or have suitable fallbacks to be used. Then EFI boot can't use 
+compatible either and needs to use this QCom specific logic. It may be a 
+common property name, but all the types you defined are QCom specific 
+and the matching logic is pretty much undocumented. I'm not saying we 
+have to use compatible. There wasn't even agreement to use it for EFI 
+boot case. This does need to work for multiple vendors and multiple boot 
+scenarios.
+
+Rob
+
+[1] https://lore.kernel.org/u-boot/20231114232012.GD6601@bill-the-cat/#r
 
