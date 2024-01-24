@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-34499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1303E839FEE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 04:07:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3FF3839FF0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 04:08:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6D47B26E29
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 03:07:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E66C51C290A3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 03:08:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CE7B171DD;
-	Wed, 24 Jan 2024 03:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0F5717562;
+	Wed, 24 Jan 2024 03:05:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="bw16DmCk"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="NNNMf8+z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f97.google.com (mail-ot1-f97.google.com [209.85.210.97])
+Received: from mail-oa1-f98.google.com (mail-oa1-f98.google.com [209.85.160.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BBC96123
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 03:05:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.97
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D80317546
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 03:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706065549; cv=none; b=U8Bt2+zoayuCj4rTgfc38eM+JB3DgLS11uDgDLNbeTnZWiPDwX/b5e5Q0KG5uUuCVU3SAxKwuvbWd/l4LC9jO3hHF6q/2Fcvf8EAzx35Vd3YEv5EoxFA1mshTHjrZgDD8oehXF8MiXbYT3TG7xNEkOUJcIsnnJs6+xwTJDaRap0=
+	t=1706065550; cv=none; b=To+tF2MzDVmBW7fWpHIHXxIEWNoFaAgI4+rgypUlZuCvi7HevIjQhb3VOSUiq3Wh8Z/oq9o2AP0gEtlECylRj0s2dAJYCfArmzTXil+eK/vCyD8tIi0eyU4Ppw25NGGb2xpKg/rroz6WExsg5/A3Pxxc+ol2vJ7B8DTTfFDlv+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706065549; c=relaxed/simple;
-	bh=gORbgX4teZi7rbooLeEPlNv6bc+nAkHkNdOAFysH/I4=;
+	s=arc-20240116; t=1706065550; c=relaxed/simple;
+	bh=OSS8fz0R/URNmGIQV9ECEcXaS+l2j4CeGiDfsdomdEk=;
 	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ZcGKO1KglBdqBdX4sbKTGpC/HClYskQV5R4vl2II0YN79Cv4fJtLbZ+gBnzBjtNJLH3/zgX/5sI9Ua/z5vNfmD0BJwo+rh0V84G8aqpMMG4kFYexLEDskeyLumvQIQ+zyvTywLYZ4WE/lSWdb6zFyD/fkJeq5aVc7l0S8iaqoag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=bw16DmCk; arc=none smtp.client-ip=209.85.210.97
+	 MIME-Version; b=eSqWlOpwk4V85c0jS25uMerfeiC3i6mgyyY+LueP9DccJnAZs/xHlsYfkQ5xQg4ZaQwsz9lzUnh7tA1eloNMAuuJ6gOJA2WT8meQ8vT6ciOWabIbWWI++gHELwax2k3BggnSNWgj/HFfEFa8KeGvqRMwdgxmyXlnlgPZp968Q6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=NNNMf8+z; arc=none smtp.client-ip=209.85.160.98
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-ot1-f97.google.com with SMTP id 46e09a7af769-6e0f43074edso1138023a34.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 19:05:46 -0800 (PST)
+Received: by mail-oa1-f98.google.com with SMTP id 586e51a60fabf-21433afcc53so1877206fac.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Jan 2024 19:05:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1706065545; x=1706670345; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1706065547; x=1706670347; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=RFcgSd1V+HgKBuaL7L8NE1SRwQaKowsXm4oxPTjKU9s=;
-        b=bw16DmCk0t3GcEnlUjWJl2I+qncVVKpqqhY+QFzgZTekbrTPGcEc59vzp8O9vXdcF2
-         eFwAFQje0EpTUZ2K60iVeLOI+4+l1iMZuCYN2D0iS3ojSM7ugtt8AR/5+mwcJ7LlhaLK
-         dgwXagY3Mi7vpoBhM6D/Wg/+u8hIL1NyZDLFs=
+        bh=EWrjbDqCG/a53iknaUN5XiQX6sRbzWT8kV4u/Nqcod0=;
+        b=NNNMf8+zkru3b2zWt0l9SPmsl0egRVmhcd6r5T9l8ZnNpEcnvCjvJGo6Kh46qVPNwI
+         taiGy1aZU2FbfKuLE7V6UoUks5IO9AZB7NJqxG77jxQmcefprUgToYFMCzjpFNM964dF
+         rhhuCjhGiiG5xaFl1XZkwVIjp/qJioqS88sq4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706065545; x=1706670345;
+        d=1e100.net; s=20230601; t=1706065547; x=1706670347;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RFcgSd1V+HgKBuaL7L8NE1SRwQaKowsXm4oxPTjKU9s=;
-        b=i7giflxiudvvWZ5P9prk0XTG2X5FYl+hsrxIxZEA8G8uMYhCAWRx7DXIAiIz1a8/0M
-         NQXkK3yhNZwplDrPbjRWkM8WkmqGCWrChgGTIVwUuUfeWa4wa6cOaE2s55UDIPWZJHaM
-         iOmkNpPiBn5myAV4APIfit2qj47oyMJ3+mUe/YmPKKPKWmqLeJFH+/1z5oJKanEIogdX
-         6KwAk3qenINX+z5UGgiNWc42a3Oai1DL7OLipUwjjQ8n6SUeNQgv6hjSfFKWIIKqcoN9
-         GofrdxrWAWyWJ67uYjhBIgaBQN32RQHfj0NyqhuGVRahcI++a8sOjbDhvngG5jOAiVxT
-         CdBg==
-X-Gm-Message-State: AOJu0YxhmaYMgIx7pmtCoDJjsbbtWtTWZRpYlOouH7H9Yf1fVdph6/pU
-	Npv7b5/ep7OleVQ6Qf5pnGRZ4xCVjuXYpAJhSIzmT5NzzQKcWvZfM+wMfUjREfOd9vMiL0tI75V
-	Vg6DxiabiPM3U0RyS6FPP/J2v5bFTDw==
-X-Google-Smtp-Source: AGHT+IFUczeGsTMucdCz87Q+XuPWNyli22xHQyTTbN3tL8x5ItmmZiArLg9wfVebnUPSv4u1XyEUy/6CxWC9
-X-Received: by 2002:a05:6830:144a:b0:6dd:ee32:2843 with SMTP id w10-20020a056830144a00b006ddee322843mr937842otp.42.1706065545326;
-        Tue, 23 Jan 2024 19:05:45 -0800 (PST)
+        bh=EWrjbDqCG/a53iknaUN5XiQX6sRbzWT8kV4u/Nqcod0=;
+        b=bPRjCr/VJR412OExDzTfyftOhpjPg4KIbxRKpe0y/MC62y9E4MEfukctGKDBVyMO0c
+         tbOkDY+cKzcFzLw9+tqUCW5Fkn+wpfGQlIWiNwJ0gbKdKxPWNbRsmqkHCGpckCxy4iyf
+         KnJwC9hf2DOSlNfkFEuyX/2E17jrko2bLiZu4qDF2xw/L5Sy3Vj6CfNBgoWeEvEMNhSR
+         cHLZ0Qru+iv5KfJESxhqrA9dugHBNs1ZHx+DAFljDmXKfZ7gQUSoTbD2YxONWTNpcm8e
+         PWcNie7yvdU+9oBM5YA5XdO5EfjHfSgmbR+qvCaBtoZuHyTHfORiJ7K3p4NeTZbDSaP5
+         AJ2A==
+X-Gm-Message-State: AOJu0YyOQucJb5HcSMsCauHmiESjhIcPMRfiJRxqE2Rt/hap+M9OuaNV
+	UGpNLj8tJ9DD8xkn46nWPjrypXGioDMHdTk+y3P/wYwp0o/DMSJIA8nHyylB+OrFb3a76fr6Lvf
+	RB2kOI5LRlw/z/hwViWgth9GvVzGMnw==
+X-Google-Smtp-Source: AGHT+IE2vHfCyYBih52W5M0f3AGmJiw1Z9U9eEUslAe6KVnFMwBp5+AcLPHZaEhOIqYfPDx3p0JRjIIhi8Zi
+X-Received: by 2002:a05:6871:2887:b0:210:9047:1e47 with SMTP id bq7-20020a056871288700b0021090471e47mr2612080oac.60.1706065547131;
+        Tue, 23 Jan 2024 19:05:47 -0800 (PST)
 Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
-        by smtp-relay.gmail.com with ESMTPS id c22-20020a056830349600b006dc7502beabsm455320otu.3.2024.01.23.19.05.43
+        by smtp-relay.gmail.com with ESMTPS id c22-20020a056830349600b006dc7502beabsm455320otu.3.2024.01.23.19.05.45
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 23 Jan 2024 19:05:45 -0800 (PST)
+        Tue, 23 Jan 2024 19:05:47 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 From: David Regan <dregan@broadcom.com>
 To: dregan@broadcom.com,
@@ -92,9 +92,9 @@ To: dregan@broadcom.com,
 	baruch@tkos.co.il,
 	linux-arm-kernel@lists.infradead.org,
 	dan.carpenter@linaro.org
-Subject: [PATCH v3 09/10] mtd: rawnand: brcmnand: update log level messages
-Date: Tue, 23 Jan 2024 19:04:57 -0800
-Message-Id: <20240124030458.98408-10-dregan@broadcom.com>
+Subject: [PATCH v3 10/10] mtd: rawnand: brcmnand: allow for on-die ecc
+Date: Tue, 23 Jan 2024 19:04:58 -0800
+Message-Id: <20240124030458.98408-11-dregan@broadcom.com>
 X-Mailer: git-send-email 2.37.3
 In-Reply-To: <20240124030458.98408-1-dregan@broadcom.com>
 References: <20240124030458.98408-1-dregan@broadcom.com>
@@ -106,8 +106,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Update log level messages so that more critical messages
-can be seen.
+Allow settings for on-die ecc such that if on-die ECC is selected
+don't error out but require ECC strap setting of zero
 
 Signed-off-by: David Regan <dregan@broadcom.com>
 Reviewed-by: William Zhang <william.zhang@broadcom.com>
@@ -117,40 +117,41 @@ Changes in v3: None
 Changes in v2:
 - Added to patch series
 ---
- drivers/mtd/nand/raw/brcmnand/brcmnand.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/mtd/nand/raw/brcmnand/brcmnand.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-index 6b5d76eff0ec..a4e311b6798c 100644
+index a4e311b6798c..42526f3250c9 100644
 --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
 +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-@@ -1143,7 +1143,7 @@ static int bcmnand_ctrl_poll_status(struct brcmnand_host *host,
- 	if ((val & mask) == expected_val)
- 		return 0;
+@@ -2727,9 +2727,11 @@ static int brcmnand_setup_dev(struct brcmnand_host *host)
+ 	cfg->blk_adr_bytes = get_blk_adr_bytes(mtd->size, mtd->writesize);
  
--	dev_warn(ctrl->dev, "timeout on status poll (expected %x got %x)\n",
-+	dev_err(ctrl->dev, "timeout on status poll (expected %x got %x)\n",
- 		 expected_val, val & mask);
+ 	if (chip->ecc.engine_type != NAND_ECC_ENGINE_TYPE_ON_HOST) {
+-		dev_err(ctrl->dev, "only HW ECC supported; selected: %d\n",
+-			chip->ecc.engine_type);
+-		return -EINVAL;
++		if (chip->ecc.strength) {
++			dev_err(ctrl->dev, "ERROR!!! HW ECC must be set to zero for non-hardware ECC; selected: %d\n",
++				chip->ecc.strength);
++			return -EINVAL;
++		}
+ 	}
  
- 	return -ETIMEDOUT;
-@@ -2196,7 +2196,7 @@ static int brcmnand_read(struct mtd_info *mtd, struct nand_chip *chip,
- 				return err;
- 		}
+ 	if (chip->ecc.algo == NAND_ECC_ALGO_UNKNOWN) {
+@@ -2797,7 +2799,11 @@ static int brcmnand_setup_dev(struct brcmnand_host *host)
+ 	if (ret)
+ 		return ret;
  
--		dev_dbg(ctrl->dev, "uncorrectable error at 0x%llx\n",
-+		dev_err(ctrl->dev, "uncorrectable error at 0x%llx\n",
- 			(unsigned long long)err_addr);
- 		mtd->ecc_stats.failed++;
- 		/* NAND layer expects zero on ECC errors */
-@@ -2211,7 +2211,7 @@ static int brcmnand_read(struct mtd_info *mtd, struct nand_chip *chip,
- 			err = brcmnand_read_by_pio(mtd, chip, addr, trans, buf,
- 						   oob, &err_addr);
+-	brcmnand_set_ecc_enabled(host, 1);
++	if (chip->ecc.engine_type == NAND_ECC_ENGINE_TYPE_ON_DIE) {
++		dev_dbg(ctrl->dev, "Disable HW ECC for on-die ECC\n");
++		brcmnand_set_ecc_enabled(host, 0);
++	} else
++		brcmnand_set_ecc_enabled(host, 1);
  
--		dev_dbg(ctrl->dev, "corrected error at 0x%llx\n",
-+		dev_info(ctrl->dev, "corrected error at 0x%llx\n",
- 			(unsigned long long)err_addr);
- 		mtd->ecc_stats.corrected += corrected;
- 		/* Always exceed the software-imposed threshold */
+ 	brcmnand_print_cfg(host, msg, cfg);
+ 	dev_info(ctrl->dev, "detected %s\n", msg);
 -- 
 2.37.3
 
