@@ -1,133 +1,169 @@
-Return-Path: <devicetree+bounces-34710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0A7883AAD8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:23:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B29BA83AB07
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 14:39:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69A56284B50
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:23:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63193286F01
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 13:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E0377F0B;
-	Wed, 24 Jan 2024 13:23:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9C260BB3;
+	Wed, 24 Jan 2024 13:39:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uD0zyZ3W"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EEgxGLay"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67FF4199D9
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 13:23:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BB4ACA69
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 13:39:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706102583; cv=none; b=QY1HPppsOan/xPLH9vhBPu0TrjM8Y9KyuNr1XerTEJ2ZZuIkLmC2i2a5hRuniF5IvTM3rQw14l6Q3hkkCSBQpQJ4+qn2TvKilwPNn0L8WQGexk7rrAogLT0RP2YrsdXuINszcwT38NRLafGi+eHZdOB2a11AQJdW1UvIk8S//5M=
+	t=1706103548; cv=none; b=V6pZQm9kx0wCXeKIIoEdjQx6gwaeCVgK/EDJFXMs7tI1KIqOzzAXqHPIS93kWsxYNr7ckfy2IVjmeakdZI2F8R42bf5HRrAfKwt+rmvuqUX4MJpchTLV3zgeWNEQ3bVQwi/6YbZ2jKehYhmj0vI1IEIVhSqKFRb6TFVf0JoJccM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706102583; c=relaxed/simple;
-	bh=T4RmIf7VkFcj8d4ZpyZYR6aCfDUYT5c7VXzocciPTWw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nlU0CW+SjFSmBEPGTY7XQaS8NMh+rQoo9yi3bWhye9XeI8/bkuPi3k/EUT7Fg9COp8+RDdRs6kD6ix+LGCq+ckT5oB36LcbNE3K7W5RdQ3id7Yy+vJxO4612X9d8V77O9MoLEcjnVhy6MWrSZggs9sAAEUqfBXR4O3aTTu+6N3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uD0zyZ3W; arc=none smtp.client-ip=209.85.167.45
+	s=arc-20240116; t=1706103548; c=relaxed/simple;
+	bh=VXDRP3jHlLp1Vz1FUnpl98sb18yc8bn4FPr+vcpYzSU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WvLZSgJhXdq0NUomP8hFqg6gv6oe2ivsG5xRkJCO8uE99bCWgWT/rI7KeqzuatpfRGX1szYPmZie0nbqNt+3DFhblqier/p8XC/6XTyljRSyF5LAjNosEEGBSbF+DMTdg9dBduJRHdkSiKYLXD8W6u7ntQmpHerduNjXSlLnhnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EEgxGLay; arc=none smtp.client-ip=209.85.215.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-50eac018059so7609968e87.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 05:23:01 -0800 (PST)
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-5cddc5455aeso2999242a12.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 05:39:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706102579; x=1706707379; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=11kgJruv5+K6DtBwAzB0hg6cqT5dVQUnLRiLI1MHmYk=;
-        b=uD0zyZ3W418Hxi0Js3RwCmxwiRCtoGnjxb0h0/tQysBALQdB2/OWkRmEsDP2gBSNw4
-         kaN/W34x9citNgxI9wqsLmvQnVKUdluigoZhVN5uRf/mGO8kIZirN2s/O7F1FwA5TJq4
-         VnVUhdyFE8T8bDyd2Gi9kYOIAgkTSXyUvEZOb9LyDwLd2vPZhgaapsEW5rnzneRnX8bK
-         CR2zMjEhL5ypjwWUc6q5b3G3G3reCCEDS+uqQSUq7CSdV9G5i9XFvL2DCRA7uXwET6tF
-         mAMvnDM9BcVqjVjU8lIjya4EZQKKgAerx3BnqsjHpzJOcqLIIRKQpJlZtSAkClixNDm8
-         3gbw==
+        d=linaro.org; s=google; t=1706103546; x=1706708346; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ehieE6Pnd31AcdW1Ld/IYXcEsqkI2A3AGWIqKlE3vv4=;
+        b=EEgxGLayXmtVvpeX8+3hbvKAu5yXqx2KOeR7NOXM+DRm0sPZ/Az4T/2kisvr3ZqIKs
+         4+J002lK1bT6imfWgPOXfXpPFKvb0EEU05ty8lNvFRyi0dyqMYJNGySSKyEpRCIGQW7Z
+         LAIcuXKGmSDZmV+3O3VYEfWvKoOeyZCfrdFHlLf3b92wqPyk3eioyIu3fZNXa7pTpObZ
+         EAMdkXR0uFti1P1ITIjqGbADONrEVqI9EL4Mp58q4ogsei4gcOjr5As9nkXBcgPEYmVi
+         YApqCbEEoxjcb4hdsDkTvi276qkd+qmCICH2sy935vFs7q4YcRo9S/wCBaHQs97AId7B
+         rLWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706102579; x=1706707379;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=11kgJruv5+K6DtBwAzB0hg6cqT5dVQUnLRiLI1MHmYk=;
-        b=oO8aEvRLIUv9wo1T+RCz99gkYRCnVwXhtr2aOnCp+0Qx7npJB82cjfUJZu0RQBvjgt
-         6UydKSs21Js++nt3Wx03YxIC1tzpNbiyV2Ild6ly+78qMcCB9qIr1t5eWYZzO7HgNNU+
-         fkI3NsXLFaWWLW/DfjazjlB/YQZWlthAc+6FjA36rdnyWK0hNG+NCgDe9fQl6FxhxiKz
-         3a+FQjEBdhIDV9ux6uR+gwiFNBtsl3C4uSUcjGX2ciD2QVqM7l8Xf3Iy/+Ho3YH0H47m
-         7ECCnSUK/Ze4qy+V40ZQQOnESQcymYFU4HpToK/sTHGFti83AmCxeWfy9eJ1KAKhLSZK
-         J8WQ==
-X-Gm-Message-State: AOJu0YxiPbr2AZQmhcFStwtulGdBUICu6uog4IAR33IF6G6z99m/+Ua2
-	EQTzNtndbKCKycBvV2kGeb/zoEeGpdnvsE3rLuS04ekaaeXTGqpBENky1M4228M=
-X-Google-Smtp-Source: AGHT+IGCJx8XZDV9wXehwa6+blBx6gU7Yw+6Pl2WRXQb/rId7vUfO2+yja1A4V5G91EOYOUuQjTl2g==
-X-Received: by 2002:a19:4305:0:b0:50e:6909:7f68 with SMTP id q5-20020a194305000000b0050e69097f68mr3327351lfa.117.1706102579410;
-        Wed, 24 Jan 2024 05:22:59 -0800 (PST)
-Received: from [172.30.205.123] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id u6-20020ac25186000000b0050e70a5b804sm2589732lfi.302.2024.01.24.05.22.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 05:22:59 -0800 (PST)
-Message-ID: <9feae876-5170-4b57-8cd4-dbf35dddbefc@linaro.org>
-Date: Wed, 24 Jan 2024 14:22:55 +0100
+        d=1e100.net; s=20230601; t=1706103546; x=1706708346;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ehieE6Pnd31AcdW1Ld/IYXcEsqkI2A3AGWIqKlE3vv4=;
+        b=hAph5VDEJbEB9Z93DFCXllcmSd3gVwILoL3zU9/nKcZB2AuqnuGHpHB6fb5rni3SjM
+         kW8gg7fogZo/51rIIaRecL8uI1Onq/7TzMAiqBJx7ZExDmpYFkZZ5k2eCEiNsRJYsWt1
+         kz7lfNzIzXJvWUn1t6DULWt86SinKhVsF8JiBpaWsNdy7PDOjNw06DOji0SHoK1XVmvj
+         QanfmJJQoQ9QwHHq+qOWDZ37Vyz6cwM2APiuRThSVE7D+gffDTGJPkSGrFWiGvre5rRF
+         Xkt4apJ4wrSNdTOuztrQWpcFLtB1WQdBOssfFVqEXNRvmEtj07OYlCKEV8noFx+grfTy
+         4a+g==
+X-Gm-Message-State: AOJu0YxR8nUKhk5Nrubj71A2AF9O5Omzifa1ThR02T5Bm4BEZRqW7p6H
+	G7bdb0VqeD11DHPslYHUYVAe6ZJ+TdZaOmSceItKm/Av26z95jlLY82paMOGrN1BQDbEHaGA9r7
+	YbpMryI8rpHyp8i2m9aF+JuuK07wkBZGKvLNi8g==
+X-Google-Smtp-Source: AGHT+IHcNpbw92kmoMveSqNqz8lIJnugRLzHQQfvl+Nc4uHkq5O73dcmbsrRHT4/nl4/CExlT2LTcn7V4gp0EQ52gDo=
+X-Received: by 2002:a05:6a21:328c:b0:19a:508a:7f70 with SMTP id
+ yt12-20020a056a21328c00b0019a508a7f70mr826194pzb.30.1706103546485; Wed, 24
+ Jan 2024 05:39:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/14] arm64: dts: qcom: sc8280xp: Drop PCIE_AUX_CLK from
- pcie_phy nodes
-Content-Language: en-US
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- cros-qcom-dts-watchers@chromium.org
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240124-pcie-aux-clk-fix-v1-0-d8a4852b6ba6@linaro.org>
- <20240124-pcie-aux-clk-fix-v1-9-d8a4852b6ba6@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240124-pcie-aux-clk-fix-v1-9-d8a4852b6ba6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
+ <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com> <20231214061742.GG2938@thinkpad>
+ <66f82e2c-0c42-4ead-93f5-2136ad478df2@linaro.org> <7768258d-4748-84f7-0da2-43988138e5cc@quicinc.com>
+ <20240123161231.GG19029@thinkpad> <ZbDlLJRHu2ebdxc6@bogus>
+ <20240124104530.GK4906@thinkpad> <ZbDuO_iV5i8mE01Q@bogus> <a053261e-6e05-4673-b5dd-2ce8f3c73ac9@quicinc.com>
+ <ZbEHNyLE8bQlZHSZ@bogus> <7910de2d-6184-4f78-a286-d2e6e50c7a36@quicinc.com>
+In-Reply-To: <7910de2d-6184-4f78-a286-d2e6e50c7a36@quicinc.com>
+From: Vincent Guittot <vincent.guittot@linaro.org>
+Date: Wed, 24 Jan 2024 14:38:54 +0100
+Message-ID: <CAKfTPtCjR_MBO9Lh7=CU+dcFaigkbeKc27rVgCa-aEJyHyfK9A@mail.gmail.com>
+Subject: Re: DT Query on "New Compatible vs New Property"
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, 
+	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>, srinivas.kandagatla@linaro.org, 
+	ulf.hansson@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+
+On Wed, 24 Jan 2024 at 14:17, Nikunj Kela <quic_nkela@quicinc.com> wrote:
+>
+>
+> On 1/24/2024 4:48 AM, Sudeep Holla wrote:
+> > On Wed, Jan 24, 2024 at 04:27:55AM -0800, Nikunj Kela wrote:
+> >> On 1/24/2024 3:02 AM, Sudeep Holla wrote:
+> >>> Not really, still puzzled may be more than before as I don't understand
+> >>> what is going on with the approach as it seem to be deviating from my
+> >>> initial understanding.
+> >>>
+> >>> May be take an example of one driver, present the DT binding and driver
+> >>> changes to make sure there is no misunderstanding from my side. But I am
+> >>> not convinced with the explanation so far.
+> >> Hi Sudeep,
+> >>
+> >> We are not using clock protocol to deal with clocks individually. We are
+> >> trying to define different perf domains for peripherals where we are
+> >> grouping clocks/regulators/interconnect bandwidth into these perf domains
+> >> and use OPP levels via SCMI perf protocol.
+> > That clarifies on what you are trying to achieve.
+> >
+> >> This is done so as to avoid individual scmi calls for these resources
+> >> hence avoiding any race conditions and minimizing the traffic between SCMI
+> >> client and server to get better KPIs.
+> > Fair enough, why can't you just use genpd perf APIs to achieve that ?
+>
+> OPP is built on top of genpd perf only and was recommended by Ulf(PM
+> maintainer from Linaro) hence we decided to use OPP APIs instead of
+> directly genpd perf API.
+>
+>
+> >
+> >> This is being planned for sa8775p platform and any subsequent platforms will
+> >> use the same approach. The idea of using perf protocol for peripherals is
+> >> new and Qualcomm is first one trying to use that.
+> > Sure.
+> >
+> >> Therefore existing peripheral drivers will require a way to distinguish between the
+> >> two different configurations. Hope this provides little more context and
+> >> insight.
+> >>
+> > While I agree this is new, use custom APIs to control standard resources
+> > is simply *VERY VERY BAD IDEA* IMO. You may be fine to have these custom
+> > API calls in qcom specific drivers. But what if this is needed in some
+> > generic IP driver. Just not scalable and why should the maintainer of
+> > such driver accept you custom API.
+>
+> Apologies if it wasn't clear but we are not using custom APIs. We are
+> using standard OPP APIs to set to opp level of the perf domain.
+> Example-dev_pm_opp_set_opp(). As mentioned above, we are following PM
+> framework maintainers recommendation to use OPP.
+>
+>
+> >
+> > So I would suggest to work towards using std framework APIs or create one
+> > if you can justify the need for it. Please stop creating custom APIs for
+> > using SCMI. It defeats the whole standardisation it is meant to provide.
+>
+> Not sure I understand what you refer to as custom APIs here. The OPP
+> APIs are not custom APIs. They are from OPP framework built on top of
+> genpd perf. [1] and [2] patch series might provide you more insight into
+> the work that Ulf did to support SCMI perf with OPP framework.
+
+I think that you are speaking about the same thing. They plan to use
+SCMI power domain for idle states and SCMI performance domain for
+setting a performance mode. Then, the OPP library is used on top of
+perf domain to gather and manipulate the  different perf levels.
 
 
-
-On 1/24/24 08:36, Manivannan Sadhasivam wrote:
-> PCIe PHY hw doesn't require PCIE_AUX_CLK for functioning. This clock is
-> only required by the PCIe controller. Hence drop it from pcie_phy nodes.
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
-
-So, I have a small phytest module that basically does this:
-
-phy_get
-phy_init
-phy_set_mode_ext(PCIE_RC)
-phy_power_on
-
-To load it, I skip PCIe init (comment out the node), then wait for clk
-and pmdomain unused cleanup, then load the phytest module to ensure that
-I'm not piggybacking off of the RC's resources.
-
-I tried it out on the CRD, on PCIE2A (NVMe)
-
-Without this patch, the PHY seems to init fine
-
-With this patch, I get:
-
-(1) qcom-qmp-pcie-phy 1c24000.phy: phy initialization timed-out
-
-
-Kicking the PCIe GDSC from the PHY, I additionally get:
-
-(2) gcc_pcie_2a_cfg_ahb_clk status stuck at 'off'
-
-
-I think we expected (2), but is (1) okay?
-
-Konrad
+>
+> [1]:
+> https://lore.kernel.org/all/20230919121605.7304-1-ulf.hansson@linaro.org/
+>
+> [2]:https://lore.kernel.org/all/20230925131715.138411-1-ulf.hansson@linaro.org/
+>
+> >
 
