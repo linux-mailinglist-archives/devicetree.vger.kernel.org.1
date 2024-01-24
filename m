@@ -1,157 +1,259 @@
-Return-Path: <devicetree+bounces-34613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 174E683A52B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:21:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A5383A507
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:17:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A7C91C22C5B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:21:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 843B6288033
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1082018B15;
-	Wed, 24 Jan 2024 09:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D24D17C77;
+	Wed, 24 Jan 2024 09:17:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lNPdkd1a"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="mVXBnLlx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2FE3182D8
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9939217C67
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 09:16:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706088015; cv=none; b=mqH+JJMZfapQjXNid/ghst5a9fZNg6yNJGA/mlzktE7iLfyr3MbMe1ze1BqO+pgWz82oLTVp8gwKO9NaTodhXRaequMmCTJqLTueMpMnvwPPwngxj+o+jk10yGcPjo5mWhseaH1awuPRWvGCXQWGF4eJFYLE4U2VbrsmHSe1C28=
+	t=1706087820; cv=none; b=C9bpQgiiO0qJvXALMmnPIwYGtnca+z4EyXOf08dr9FQYYY80MUXewgFFLX/0iRWm6yws96nnsHGwYbdOYyDlMVNi9yBHueOZKvEjURz46z8YC4EPbLdQL392rafgzqADuWCiJeQfFrYJ4fQuo9GBXg4GQJCV2tvi9zbDD3UpfAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706088015; c=relaxed/simple;
-	bh=SEqCpZT6APAqjYjHdfthclsSjN9J9NtcFcgDByg6704=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=atm0Jv0myHQpbjioJjTShnRrfLuhUIjCa+MAOEUaVAz+UMIwT3d6Khjgey/B/rvioZWNg2CORcHZHHaDx82jVR/LcDsSRB5EGQ4/IkWFCgRqywj15guYH3vyCFv9BSz1Cis2060BdWC9d0NJa/AgTxl6Kt/oNmXB4kPX6NaG7yM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lNPdkd1a; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2cf2b218c62so1779311fa.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 01:20:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1706088010; x=1706692810; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XKfrsIh+is/CrcG9RcsWASRz9/Tq/yuaNYUtRHDrGYY=;
-        b=lNPdkd1ar7PFVviCpzhXDewaVecUKlLnzjPk3HY9rmPz59I/WszYxTx6SG1hoInhWf
-         NMDDJ2kISFP7DNQk7x+JsHcomdQ/UrL3VPCrY7jsqwau8sprZShZ5ZLwfynfXCkpGRY9
-         IqAJKpuFgvKbpraglPjNItwmJFG8NgIWv/S+HhNwAmOuVHuwYdP26RPGT3qP4TbaS37a
-         A6DWoc/cyK1dhjrcj0MI84jXqnqatCxK5ZgtPXUYckNRi2WnjhFOW/NrKjSrFtFnHt/v
-         m0EtZakTWAtFUDnXOCMKW2AZfLCfG7E2yvS0PrbOHoAKvSjPnCqW7X0WH6DZdpdet6v0
-         cQOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706088010; x=1706692810;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XKfrsIh+is/CrcG9RcsWASRz9/Tq/yuaNYUtRHDrGYY=;
-        b=GWx7VSxol9K4VP2HrnA2bd8y6eQBtCNTvKvol8uWKcq6ke2j0NjQqsAf6q5z1osyTM
-         SGHYUB8HrKmK80ytsw7e27Mia5qwh82IGWBQAlXb8G+WX7gGc+pm1wQeUjxNWsKJ0Ews
-         NQAmE8Am6nPAjK0RO+Dd//zEi2FpH0iQy62/hGlyjLo+CoRsEXpQviSJ18mCHkhaZ1zV
-         Ke7Ae+xntL0KgRW0DVkTAvbQjsZjNzdID1CGMnDsDwNRyMtudVzpz/KHXSvuQDSd7hK/
-         2q8tQmEvc//c7pxt2N1o69RPeEXwq6t9zM6caZFVIFAws5svWAqQxfyZ7TYxo3yt+OHq
-         4trA==
-X-Gm-Message-State: AOJu0YxL5w1GUsOZ798srPgDmC0Ftk+ixVZthCLdhnOZo0y/FRrZdX+Q
-	rxer9HbPEt9U7Ndl2FHossMbH/n39spaKd3sJ80rVsRlDMf5R0CGWO78f19TJuU=
-X-Google-Smtp-Source: AGHT+IEZUUso/GaClxXInQJERF5pL3kfwim7rmyD5VQKB34/cKfjEP6E08ieSs6LZXIkiNyWTfvtDA==
-X-Received: by 2002:a2e:9c95:0:b0:2cd:5cfd:b13 with SMTP id x21-20020a2e9c95000000b002cd5cfd0b13mr332903lji.17.1706088009899;
-        Wed, 24 Jan 2024 01:20:09 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:d8b6:17b6:386f:c67b])
-        by smtp.gmail.com with ESMTPSA id bw12-20020a0560001f8c00b00337cef427f8sm15938313wrb.70.2024.01.24.01.20.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Jan 2024 01:20:09 -0800 (PST)
-References: <20231222111658.832167-1-jbrunet@baylibre.com>
- <20231222111658.832167-6-jbrunet@baylibre.com>
- <gyhea42rtydw3g45lfkfbxfm6xcbwibz67vw7xke2sm7powz2a@i33g4pyanu4l>
-User-agent: mu4e 1.10.8; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Thierry Reding
- <thierry.reding@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-pwm@vger.kernel.org, JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v4 5/6] pwm: meson: don't carry internal clock elements
- around
-Date: Wed, 24 Jan 2024 10:16:17 +0100
-In-reply-to: <gyhea42rtydw3g45lfkfbxfm6xcbwibz67vw7xke2sm7powz2a@i33g4pyanu4l>
-Message-ID: <1jttn3w0ja.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1706087820; c=relaxed/simple;
+	bh=iC1q0mZtmUJyO98JwE2idUq+ihslZw8XL0JBpcUFAqg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UKDQai1jSdALZMmFzeyoIMLlpFiPqthZ+Ow53U7c5y/2N+O200W9A6vhZDe24k+dCZT6I2bqRTDzPlxElxl3gEY/nIcIYyTX0by69zWN4vuAWdRs0PXzGIUuQhyJgVXjfzEyXUkrh1vWVUzFecsn78wytCXYEr7tCxYKTRFRA8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=mVXBnLlx; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1706087796;
+ bh=7bKX9WshUJdCDFr0XJcTbAfR2X8wkmHkRmmLWwFg7pM=;
+ b=mVXBnLlxod5cfcP9lAWVEKtCWnpvk74qKyTHeDB0arM7KJ/X8TMzB727tPjBsS6NATxGUoGeC
+ PHyzWd3+CDSUuwjItM3t7Z0nSeXGFP3nWTuqXtgG3N8zQDFv3ZX7hrKLYKBWWXaElf920U61nVU
+ 4TjLivoy4qO7upeAxs8I6+BES1Dc6k1IUwh5XAHDgxr9BJi7Bry0jbzicrYWiWLXh4eBkB1i/id
+ BY1DR6MtcLXXOiN1RZAEDUkDVi5Fvgl22MPbKLTy5n1OWkybW/JEuSRyov22dJTGoiD6m6zGth3
+ yuxGxSl2e0BW5vUcZZ6WNyJzHn/LUaj+6hEIRhfXfCgA==
+Message-ID: <ba598f02-5f74-4cb8-97e3-c9369e6db0d8@kwiboo.se>
+Date: Wed, 24 Jan 2024 10:16:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] phy: rockchip: Add Samsung HDMI/DP Combo PHY driver
+Content-Language: en-US
+To: Andy Yan <andy.yan@rock-chips.com>, Cristian Ciocaltea
+ <cristian.ciocaltea@collabora.com>, Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Johan Jonker <jbx6244@gmail.com>, Sebastian Reichel
+ <sebastian.reichel@collabora.com>, Algea Cao <algea.cao@rock-chips.com>,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel@collabora.com, Sandor Yu
+ <Sandor.yu@nxp.com>, Maxime Ripard <mripard@kernel.org>
+References: <20240119193806.1030214-1-cristian.ciocaltea@collabora.com>
+ <20240119193806.1030214-4-cristian.ciocaltea@collabora.com>
+ <20240122121409.GW4700@pengutronix.de>
+ <00c749f7-3eb9-4bd1-a057-43a692b77d68@collabora.com>
+ <e1c56975-6a55-4b75-a447-dd2d0eec62e2@rock-chips.com>
+ <b0a3da6d-84e2-44c2-9adf-421e306a2acf@rock-chips.com>
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <b0a3da6d-84e2-44c2-9adf-421e306a2acf@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 65b0d574383531b5293f00d7
 
+On 2024-01-24 08:30, Andy Yan wrote:
+> Hi Cristian:
+> 
+> On 1/24/24 10:42, Andy Yan wrote:
+>> Hi Cristian:
+>>
+>> On 1/24/24 08:58, Cristian Ciocaltea wrote:
+>>> On 1/22/24 14:14, Sascha Hauer wrote:
+>>>> On Fri, Jan 19, 2024 at 09:38:03PM +0200, Cristian Ciocaltea wrote:
+>>>>> Add driver for the Rockchip HDMI/eDP TX Combo PHY found on RK3588 SoC.
+>>>>>
+>>>>> The PHY is based on a Samsung IP block and supports HDMI 2.1 TMDS, FRL
+>>>>> and eDP links.  The maximum data rate is 12Gbps (HDMI 2.1 FRL), while
+>>>>> the minimum is 250Mbps (HDMI 2.1 TMDS).
+>>>>>
+>>>>> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
+>>>>> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
+>>>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>>>> ---
+>>>>>   drivers/phy/rockchip/Kconfig                  |    8 +
+>>>>>   drivers/phy/rockchip/Makefile                 |    1 +
+>>>>>   .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 2045 +++++++++++++++++
+>>>>>   3 files changed, 2054 insertions(+)
+>>>>>   create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+>>>>>
+>>>>> diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
+>>>>> index 94360fc96a6f..95666ac6aa3b 100644
+>>>>> --- a/drivers/phy/rockchip/Kconfig
+>>>>> +++ b/drivers/phy/rockchip/Kconfig
+>>>>> @@ -83,6 +83,14 @@ config PHY_ROCKCHIP_PCIE
+>>>>>       help
+>>>>>         Enable this to support the Rockchip PCIe PHY.
+>>>>> +config PHY_ROCKCHIP_SAMSUNG_HDPTX
+>>>>> +    tristate "Rockchip Samsung HDMI/DP Combo PHY driver"
+>>>>> +    depends on (ARCH_ROCKCHIP || COMPILE_TEST) && OF
+>>>>> +    select GENERIC_PHY
+>>>>> +    help
+>>>>> +      Enable this to support the Rockchip HDMI/DP Combo PHY
+>>>>> +      with Samsung IP block.
+>>>>> +
+>>>>>   config PHY_ROCKCHIP_SNPS_PCIE3
+>>>>>       tristate "Rockchip Snps PCIe3 PHY Driver"
+>>>>>       depends on (ARCH_ROCKCHIP && OF) || COMPILE_TEST
+>>>>> diff --git a/drivers/phy/rockchip/Makefile b/drivers/phy/rockchip/Makefile
+>>>>> index 7eab129230d1..3d911304e654 100644
+>>>>> --- a/drivers/phy/rockchip/Makefile
+>>>>> +++ b/drivers/phy/rockchip/Makefile
+>>>>> @@ -8,6 +8,7 @@ obj-$(CONFIG_PHY_ROCKCHIP_INNO_HDMI)    += phy-rockchip-inno-hdmi.o
+>>>>>   obj-$(CONFIG_PHY_ROCKCHIP_INNO_USB2)    += phy-rockchip-inno-usb2.o
+>>>>>   obj-$(CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY)    += phy-rockchip-naneng-combphy.o
+>>>>>   obj-$(CONFIG_PHY_ROCKCHIP_PCIE)        += phy-rockchip-pcie.o
+>>>>> +obj-$(CONFIG_PHY_ROCKCHIP_SAMSUNG_HDPTX)    += phy-rockchip-samsung-hdptx.o
+>>>>>   obj-$(CONFIG_PHY_ROCKCHIP_SNPS_PCIE3)    += phy-rockchip-snps-pcie3.o
+>>>>>   obj-$(CONFIG_PHY_ROCKCHIP_TYPEC)    += phy-rockchip-typec.o
+>>>>>   obj-$(CONFIG_PHY_ROCKCHIP_USB)        += phy-rockchip-usb.o
+>>>>> diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+>>>>> new file mode 100644
+>>>>> index 000000000000..d8171ea5ce2b
+>>>>> --- /dev/null
+>>>>> +++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+>>>>> @@ -0,0 +1,2045 @@
+>>>>> +// SPDX-License-Identifier: GPL-2.0+
+>>>>> +/*
+>>>>> + * Copyright (c) 2021-2022 Rockchip Electronics Co., Ltd.
+>>>>> + * Copyright (c) 2024 Collabora Ltd.
+>>>>> + *
+>>>>> + * Author: Algea Cao <algea.cao@rock-chips.com>
+>>>>> + * Author: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>>>> + */
+>>>>> +#include <linux/bitfield.h>
+>>>>> +#include <linux/clk.h>
+>>>>> +#include <linux/delay.h>
+>>>>> +#include <linux/mfd/syscon.h>
+>>>>> +#include <linux/module.h>
+>>>>> +#include <linux/of.h>
+>>>>> +#include <linux/of_platform.h>
+>>>>> +#include <linux/phy/phy.h>
+>>>>> +#include <linux/platform_device.h>
+>>>>> +#include <linux/rational.h>
+>>>>> +#include <linux/regmap.h>
+>>>>> +#include <linux/reset.h>
+>>>>> +
+>>>>> +#define GRF_HDPTX_CON0            0x00
+>>>>> +#define HDPTX_I_PLL_EN            BIT(7)
+>>>>> +#define HDPTX_I_BIAS_EN            BIT(6)
+>>>>> +#define HDPTX_I_BGR_EN            BIT(5)
+>>>>> +#define GRF_HDPTX_STATUS        0x80
+>>>>> +#define HDPTX_O_PLL_LOCK_DONE        BIT(3)
+>>>>> +#define HDPTX_O_PHY_CLK_RDY        BIT(2)
+>>>>> +#define HDPTX_O_PHY_RDY            BIT(1)
+>>>>> +#define HDPTX_O_SB_RDY            BIT(0)
+>>>>> +
+>>>>> +#define CMN_REG0000            0x0000
+>>>>
+>>>> These register names are not particularly helpful. Maybe use a
+>>>>
+>>>> #define CMN_REG(x)            ((x) * 4)
+>>>>
+>>>> Instead?
+>>>
+>>> Yes, sounds good.
+>>>
+>>>>> +
+>>>>> +static int hdptx_lcpll_frl_mode_config(struct rockchip_hdptx_phy *hdptx,
+>>>>> +                       u32 rate)
+>>>>> +{
+>>>>> +    u32 bit_rate = rate & DATA_RATE_MASK;
+>>>>> +    u8 color_depth = (rate & COLOR_DEPTH_MASK) ? 1 : 0;
+>>>>> +    const struct lcpll_config *cfg = lcpll_cfg;
+>>>>> +
+>>>>> +    for (; cfg->bit_rate != ~0; cfg++)
+>>>>> +        if (bit_rate == cfg->bit_rate)
+>>>>> +            break;
+>>>>
+>>>> You could use ARRAY_SIZE() to iterate over the array and save the extra
+>>>> entry at the end. Likewise for the other arrays used in the driver.
+>>>
+>>> Sure, will do.
+>>>
+>>>>> +
+>>>>> +    if (cfg->bit_rate == ~0)
+>>>>> +        return -EINVAL;
+>>>>> +
+>>>>
+>>>>> +static int rockchip_hdptx_phy_power_on(struct phy *phy)
+>>>>> +{
+>>>>> +    struct rockchip_hdptx_phy *hdptx = phy_get_drvdata(phy);
+>>>>> +    int bus_width = phy_get_bus_width(hdptx->phy);
+>>>>> +    int bit_rate = bus_width & DATA_RATE_MASK;
+>>>>
+>>>> What is going on here? bus_width is set to 8 in probe() using
+>>>> phy_set_bus_width(), but the value you pull out of phy_get_bus_width()
+>>>> is expected to contain the bit_rate and several other flags.
+>>>>
+>>>> It looks like you are tunneling flags from some other driver using this
+>>>> field. Isn't there a better way to accomplish this? If not, I think this
+>>>> needs some explanation.
+>>>
+>>> Indeed, sorry for missing a comment here.  The flags are set by the
+>>> bridge driver to enable 10-bit color depth, FRL and EARC.  So far I
+>>> couldn't find an alternative approach to pass custom data using the PHY API.
+>>>
+>>>> At least the variable should be renamed. it's called "bus_width" and it's
+>>>> passed to functions like hdptx_lcpll_frl_mode_config() which has this
+>>>> parameter named "rate" which is quite confusing.
+>>>
+>>> I think for the initial support it's not really necessary to implement
+>>> all those features.  Andy, should we drop them until a better solution
+>>> is found?
+> 
+> How about add a PHY_MODE_HDMI to enum phy_mode, and pass this custom data by extend phy_configure_opts
+> or the submode of phy_set_mode_ext ?
 
-On Wed 24 Jan 2024 at 10:02, Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutr=
-onix.de> wrote:
+Please see the patch "phy: Add HDMI configuration options" [1] from
+Sandor Yu. Also the series "drm/connector: Create HDMI Connector
+infrastructure" [2] from Maxime Ripard may be of interest.
 
-> [[PGP Signed Part:Undecided]]
-> On Fri, Dec 22, 2023 at 12:16:53PM +0100, Jerome Brunet wrote:
->> Pointers to the internal clock elements of the PWM are useless
->> after probe. There is no need to carry this around in the device
->> data. Just let devres deal with it.
->>=20
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  drivers/pwm/pwm-meson.c | 67 ++++++++++++++++++++++++-----------------
->>  1 file changed, 39 insertions(+), 28 deletions(-)
->>=20
->> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
->> index 15c44185d784..fb113bc8da29 100644
->> --- a/drivers/pwm/pwm-meson.c
->> +++ b/drivers/pwm/pwm-meson.c
->> @@ -90,9 +90,6 @@ struct meson_pwm_channel {
->>  	unsigned int hi;
->>  	unsigned int lo;
->>=20=20
->> -	struct clk_mux mux;
->> -	struct clk_divider div;
->> -	struct clk_gate gate;
->>  	struct clk *clk;
->>  };
->>=20=20
->> @@ -442,6 +439,13 @@ static int meson_pwm_init_channels(struct device *d=
-ev)
->>  		struct meson_pwm_channel *channel =3D &meson->channels[i];
->>  		struct clk_parent_data div_parent =3D {}, gate_parent =3D {};
->>  		struct clk_init_data init =3D {};
->> +		struct clk_divider *div;
->> +		struct clk_gate *gate;
->> +		struct clk_mux *mux;
->> +
->> +		mux =3D devm_kzalloc(dev, sizeof(*mux), GFP_KERNEL);
->> +		if (!mux)
->> +			return -ENOMEM;
->
-> I don't like this change. While it doesn't increase the memory used, it
-> fragments the used memory and increases the overhead of memory
-> management and the number of devm allocations.
->
-> Are these members of meson_pwm_channel in the way for anything later?
+[1] https://lore.kernel.org/all/19070c125268cfe900021dea6e7e8379b89c630e.1704785836.git.Sandor.yu@nxp.com/
+[2] https://lore.kernel.org/dri-devel/20231207-kms-hdmi-connector-state-v5-0-6538e19d634d@kernel.org/
 
-Not really. It is just not useful on the SoCs which do use it and not
-used at all starting from s4/a1.
+Regards,
+Jonas
 
-What about a dedicated struct for the 3 clock elements and a single
-devm_kzalloc() instead of 3 ?=20
+>>
+>> I'm fine with it.
+>> It would be very appreciated if some linux-phy or drm bridge experts can give
+>> some suggestions about how to pass different custom phy modes.
+>>
+>>>
+>>>> Sascha
+>>>
+>>> Thanks for the review,
+>>> Cristian
 
->
-> Best regards
-> Uwe
-
-
---=20
-Jerome
 
