@@ -1,309 +1,703 @@
-Return-Path: <devicetree+bounces-34734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5506783AD4A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:27:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A44CD83AD65
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 16:32:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30EFE1C22390
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 15:27:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17A491F22021
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 15:32:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8E87CF14;
-	Wed, 24 Jan 2024 15:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400AA7CF1A;
+	Wed, 24 Jan 2024 15:31:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a/GI0v9C"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="TWKI5fsA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785BE2BAE5;
-	Wed, 24 Jan 2024 15:27:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.55.52.120
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224EE7CF13
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 15:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706110029; cv=none; b=UWHl8DJIMqCXGWVWDD+3mtk0tLuDCIVDTdqTRZVutj2YIVs1gHg0rqJlsVm7VUzd1CbiDNmag1qAKiZVv7gSq187Asu+yPSbljRs6R50cHJCMZPIiutwOS2SmxPNBu1n29WyPwY02Jq+gE9jTIuwwtSDxBemz+TRqz448oPAzlg=
+	t=1706110308; cv=none; b=HcPh+Hk1cGrnxpHjCqexNlg+kCcy2gI6ZHdhN7P8mkXY6Ms817PgOQ7kroDVfm8kHZ/0rNkZE6p4LMkzy0Re5h7JDIhBvMt+1frYcUYfOJOIOoqub/ZzgZ/TBacrXTLZGAzaz0q9Fk+0vyKRmL7QQJwrofEqa55rI2pUkfjmgYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706110029; c=relaxed/simple;
-	bh=eWgI5cQzGgxjU8IqhiNLaIrbAIei/iVfjxJTyMVtWCw=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=nEMzSRpFhbuYi58QsJHmPIsx9gv1dtZb6ndqVoReQuN7AhhQHXp+eCauw9WGu6PhfCsIAvpL1yKLmTsDPCWk89nP29wX6wBAYQ1hLkyUL/Fvi4zTPLY4Ie13RksnL8ZjmDSn0nvKg62BDgKV1w8yJwcCtipHyNPBRpv86+x7zi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a/GI0v9C; arc=none smtp.client-ip=192.55.52.120
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706110026; x=1737646026;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=eWgI5cQzGgxjU8IqhiNLaIrbAIei/iVfjxJTyMVtWCw=;
-  b=a/GI0v9CdeJzNMJE9SdbZs++m0rOwtAev/4Y1kW9iFOrclVpjKIz153E
-   dUO8KnZO49m5Vvx3h86P017S/uSbyBkLELZUwOv6lK4srKJoYLHMp4MOe
-   jObWMrf4Bi/t6jyiL0219zzL3oxUOZ1rNfczbut4K25WTquP2T8Q+c23m
-   8o/F0KGIxXewPuuKqgZnhNv8CVv7f09IQVMp3awrFtTE2zue+fCGwOSm1
-   ee12UGCHItnxEjlAA1pB9OZuINyf7YvX37NqAs8IwKAIAXRXN8OFdruX7
-   k6MAFRE3PHjT3eJRxqOnrpz2MiYCHBFAQKiY4WIqFL2Wuf6nMwyFUP18Q
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="400730354"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="400730354"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2024 07:27:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="2073769"
-Received: from ijarvine-desk1.ger.corp.intel.com (HELO localhost) ([10.246.48.46])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2024 07:27:00 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 24 Jan 2024 17:26:55 +0200 (EET)
-To: Frank Li <Frank.Li@nxp.com>
-cc: alexandre.belloni@bootlin.com, conor.culhane@silvaco.com, 
-    devicetree@vger.kernel.org, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, imx@lists.linux.dev, 
-    Jiri Slaby <jirislaby@kernel.org>, joe@perches.com, 
-    krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org, 
-    linux-i3c@lists.infradead.org, LKML <linux-kernel@vger.kernel.org>, 
-    linux-serial <linux-serial@vger.kernel.org>, miquel.raynal@bootlin.com, 
-    robh@kernel.org, zbigniew.lukwinski@linux.intel.com
-Subject: Re: [PATCH v4 8/8] tty: i3c: add TTY over I3C master support
-In-Reply-To: <20240123231043.3891847-9-Frank.Li@nxp.com>
-Message-ID: <a2716dab-8681-3bce-d0fb-b83789c51362@linux.intel.com>
-References: <20240123231043.3891847-1-Frank.Li@nxp.com> <20240123231043.3891847-9-Frank.Li@nxp.com>
+	s=arc-20240116; t=1706110308; c=relaxed/simple;
+	bh=ipQ9ry0IOAuSq96jOqA4vEWMv7z/jZVzrNYDETP5tYQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=idxzrPtC5pNzheu1/e+kRk/ExH6Q+HPjFMb0FplvuWlTZ9Xufjvm9R/PIxsnQ0vtn2AbwLH4olkYIpil5WZqTTwkIUUZi96jQss+z55biOVuJpW4e20vPdeb/abJnd9BmiqL9Z7+AzVmNz/DcB6XufCVVlM97XDpHQrcXwsGdmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=TWKI5fsA; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40e76109cdeso62032605e9.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 07:31:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1706110304; x=1706715104; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GAsricnuGYDWOEvmMujJaqYfvg9UV17qPxzlBC4msq8=;
+        b=TWKI5fsAZNPf4gM6h7/3IlLF7prrL/H8YxdSXj5OQGwy8G9fZ6qTVXPfC7wYaUcJvS
+         GobWgkpNcCm3JN4EholHIiu0/d35kbF/BzpGtW9fzU+5M0CZrDXbVx3BVg0j348P+jMM
+         u3u5BxPgFUVDSft2J4cLi36r8cL0+Eg9VtBkcZc/eUOK58oiFzOww3CGDoVRfuXytBRE
+         kYexbOx3hTbWZbfQELMvkh5gFo6jY8TDw/9HXWZTubENec1zV0r5q7QVAuTmjJBqioKR
+         zxjD2PF5QjZuSBiYBOLbTKZxqKRs40VDetzQXricR1RSZ9vVFu+zIiJxMcptrdY8qRHz
+         dG1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706110304; x=1706715104;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GAsricnuGYDWOEvmMujJaqYfvg9UV17qPxzlBC4msq8=;
+        b=DWn1uUKGb9p+uX9NKsD6CUWDly6r754wxT8d3whgsfwbofBP5IrvM7q7sYIh2WEZX2
+         MO0wpHRjxrsNZyUZjM8cs/u150Ylz6QH/wB3TwomhsZgg1SruRpZpOLLYISjuvPYF86q
+         tPnFWVVSIPqXCv6IAxn3ufP3f31XCRpokBNdB+2Q8kpm/5rQk+0URkMqpBLO897YQuOj
+         tqkaOhYadqegdFzGwQUEzPsFTQE5YwMu/Waxepbtt5cv+pmeokqBBcj5uIWQImbH46Yz
+         hwPgfpvZxxvtLDgMuGznuCdxbqzMlQtrh1DcSPvSnlgUwL/82qtbK+/c/HoxFbXgGbkX
+         DLDQ==
+X-Gm-Message-State: AOJu0Yw/m2tmJSzC7o7vDnWv7melXHTDTrpXvvfRmj3cRvl9ObK0G7iQ
+	pEQOPYT4w+uaoPIM83YkMaEi5QEOiLHeY4gTwpW1sEdk0x1ioRlrYqN74Kt7ECo=
+X-Google-Smtp-Source: AGHT+IEoyaKPAJxTFq+bi0+Jy8iwRcCrnO/05xxWNbDb+4f3b66BllV57C8r4zGFefmLmhM7/ns4oQ==
+X-Received: by 2002:a05:600c:3541:b0:40e:c534:f53 with SMTP id i1-20020a05600c354100b0040ec5340f53mr804162wmq.54.1706110304203;
+        Wed, 24 Jan 2024 07:31:44 -0800 (PST)
+Received: from otso.luca.vpn.lucaweiss.eu (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id vi14-20020a170907d40e00b00a2f1a1259fesm7327974ejc.207.2024.01.24.07.31.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jan 2024 07:31:43 -0800 (PST)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Date: Wed, 24 Jan 2024 16:31:43 +0100
+Subject: [PATCH] arm64: dts: qcom: sm6350: Add tsens thermal zones
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240124-sm6350-tsens-v1-1-d37ec82140af@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAF4tsWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQyMT3eJcM2NTA92S4tS8Yt1kQ3MzS6O0tMQU4yQloJaCotS0zAqwcdG
+ xtbUAXKfZh14AAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.4
 
-On Tue, 23 Jan 2024, Frank Li wrote:
+Add the definitions for the various thermal zones found on the SM6350
+SoC. Hooking up GPU and CPU cooling can limit the clock speeds there to
+reduce the temperature again to good levels.
 
-> In typical embedded Linux systems, UART consoles require at least two pins,
-> TX and RX. In scenarios where I2C/I3C devices like sensors or PMICs are
-> present, we can save these two pins by using this driver. Pins is crucial
-> resources, especially in small chip packages.
-> 
-> This introduces support for using the I3C bus to transfer console tty data,
-> effectively replacing the need for dedicated UART pins. This not only
-> conserves valuable pin resources but also facilitates testing of I3C's
-> advanced features, including early termination, in-band interrupt (IBI)
-> support, and the creation of more complex data patterns. Additionally,
-> it aids in identifying and addressing issues within the I3C controller
-> driver.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> 
-> Notes:
->     Notes:
->         Version number use i3c target patches.
->         Change from v3 to v4
->         - add static at i3c_remove()
->         Change v2
->         - using system_unbound_wq working queue
->         - fixed accoring to Jiri Slaby's comments
->     
->         Change before send with i3c target support
->     
->         Change from v4 to v5
->         - send in i3c improvememtn patches.
->     
->         Change from v2 to v4
->         - none
->     
->         Change from v1 to v2
->         - update commit message.
->         - using goto for err handle
->         - using one working queue for all tty-i3c device
->         - fixed typo found by js
->         - update kconfig help
->         - using kfifo
->     
->         Still below items not be fixed (according to Jiri Slaby's comments)
->         - rxwork thread: need trigger from two position.
->         - common thread queue: need some suggestion
-> 
->  drivers/tty/Kconfig   |  13 ++
->  drivers/tty/Makefile  |   1 +
->  drivers/tty/i3c_tty.c | 426 ++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 440 insertions(+)
->  create mode 100644 drivers/tty/i3c_tty.c
-> 
-> diff --git a/drivers/tty/Kconfig b/drivers/tty/Kconfig
-> index 5646dc6242cd9..9ab4cd480e9f8 100644
-> --- a/drivers/tty/Kconfig
-> +++ b/drivers/tty/Kconfig
-> @@ -412,6 +412,19 @@ config RPMSG_TTY
->  	  To compile this driver as a module, choose M here: the module will be
->  	  called rpmsg_tty.
->  
-> +config I3C_TTY
-> +	tristate "TTY over I3C"
-> +	depends on I3C
-> +	help
-> +	  Select this option to use TTY over I3C master controller.
-> +
-> +	  This makes it possible for user-space programs to send and receive
-> +	  data as a standard tty protocol. I3C provide relatively higher data
-> +	  transfer rate and less pin numbers, SDA/SCL are shared with other
-> +	  devices.
-> +
-> +	  If unsure, say N
-> +
->  endif # TTY
->  
->  source "drivers/tty/serdev/Kconfig"
-> diff --git a/drivers/tty/Makefile b/drivers/tty/Makefile
-> index 07aca5184a55d..f329f9c7d308a 100644
-> --- a/drivers/tty/Makefile
-> +++ b/drivers/tty/Makefile
-> @@ -27,5 +27,6 @@ obj-$(CONFIG_GOLDFISH_TTY)	+= goldfish.o
->  obj-$(CONFIG_MIPS_EJTAG_FDC_TTY) += mips_ejtag_fdc.o
->  obj-$(CONFIG_VCC)		+= vcc.o
->  obj-$(CONFIG_RPMSG_TTY)		+= rpmsg_tty.o
-> +obj-$(CONFIG_I3C_TTY)		+= i3c_tty.o
->  
->  obj-y += ipwireless/
-> diff --git a/drivers/tty/i3c_tty.c b/drivers/tty/i3c_tty.c
-> new file mode 100644
-> index 0000000000000..8f4e87dfa01cd
-> --- /dev/null
-> +++ b/drivers/tty/i3c_tty.c
-> @@ -0,0 +1,426 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2023 NXP.
-> + *
-> + * Author: Frank Li <Frank.Li@nxp.com>
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/i3c/device.h>
-> +#include <linux/i3c/master.h>
-> +#include <linux/slab.h>
-> +#include <linux/console.h>
-> +#include <linux/serial_core.h>
-> +#include <linux/interrupt.h>
+Most thermal zones only have one critical temperature configured at
+125°C which can be mostly considered a placeholder until those zones can
+be hooked up to cooling.
 
-Do you need this header.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 565 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 565 insertions(+)
 
-> +#include <linux/workqueue.h>
-> +#include <linux/tty_flip.h>
-> +
-> +static DEFINE_IDR(i3c_tty_minors);
-> +static DEFINE_MUTEX(i3c_tty_minors_lock);
-> +
-> +static struct tty_driver *i3c_tty_driver;
-> +
-> +#define I3C_TTY_MINORS		8
-> +#define I3C_TTY_TRANS_SIZE	16
-> +#define I3C_TTY_RX_STOP		0
-> +#define I3C_TTY_RETRY		20
-> +#define I3C_TTY_YIELD_US	100
-> +
-> +struct ttyi3c_port {
-> +	struct tty_port port;
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 43cffe8e1247..862a80876251 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -19,6 +19,7 @@
+ #include <dt-bindings/phy/phy-qcom-qmp.h>
+ #include <dt-bindings/power/qcom-rpmpd.h>
+ #include <dt-bindings/soc/qcom,rpmh-rsc.h>
++#include <dt-bindings/thermal/thermal.h>
+ 
+ / {
+ 	interrupt-parent = <&intc>;
+@@ -1325,6 +1326,7 @@ gpu: gpu@3d00000 {
+ 			qcom,gmu = <&gmu>;
+ 			nvmem-cells = <&gpu_speed_bin>;
+ 			nvmem-cell-names = "speed_bin";
++			#cooling-cells = <2>;
+ 
+ 			status = "disabled";
+ 
+@@ -2698,6 +2700,569 @@ wifi: wifi@18800000 {
+ 		};
+ 	};
+ 
++	thermal-zones {
++		aoss0-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 0>;
++
++			trips {
++				aoss0-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		aoss1-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 0>;
++
++			trips {
++				aoss1-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		audio-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 2>;
++
++			trips {
++				audio-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		camera-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 5>;
++
++			trips {
++				camera-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu0-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 1>;
++
++			trips {
++				cpu0_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu0-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu0_alert0>;
++					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu1-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 2>;
++
++			trips {
++				cpu1_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu1-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu1_alert0>;
++					cooling-device = <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu2-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 3>;
++
++			trips {
++				cpu2_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu2-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu2_alert0>;
++					cooling-device = <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu3-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 4>;
++
++			trips {
++				cpu3_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu3-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu3_alert0>;
++					cooling-device = <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu4-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 5>;
++
++			trips {
++				cpu4_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu4-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu4_alert0>;
++					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu5-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 6>;
++
++			trips {
++				cpu5_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu5-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu5_alert0>;
++					cooling-device = <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu6-left-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 9>;
++
++			trips {
++				cpu6_left_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu6-left-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu6_left_alert0>;
++					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu6-right-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 10>;
++
++			trips {
++				cpu6_right_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu6-right-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu6_right_alert0>;
++					cooling-device = <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu7-left-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 11>;
++
++			trips {
++				cpu7_left_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu7-left-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu7_left_alert0>;
++					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpu7-right-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 12>;
++
++			trips {
++				cpu7_right_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu7-right-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu7_right_alert0>;
++					cooling-device = <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		cpuss0-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 7>;
++
++			trips {
++				cpuss0-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpuss1-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 8>;
++
++			trips {
++				cpuss1-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cwlan-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 1>;
++
++			trips {
++				cwlan-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		ddr-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 3>;
++
++			trips {
++				ddr-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss0-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 13>;
++
++			trips {
++				gpuss0_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				gpuss0-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&gpuss0_alert0>;
++					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		gpuss1-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens0 14>;
++
++			trips {
++				gpuss1_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				gpuss1-crit {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&gpuss1_alert0>;
++					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++
++		modem-core0-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 6>;
++
++			trips {
++				modem-core0-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		modem-core1-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 7>;
++
++			trips {
++				modem-core1-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		modem-scl-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 9>;
++
++			trips {
++				modem-scl-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		modem-vec-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 8>;
++
++			trips {
++				modem-vec-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		npu-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 10>;
++
++			trips {
++				npu-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		q6-hvx-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 4>;
++
++			trips {
++				q6-hvx-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		video-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens1 11>;
++
++			trips {
++				video-crit {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++	};
++
+ 	timer {
+ 		compatible = "arm,armv8-timer";
+ 		clock-frequency = <19200000>;
 
-Missing #include
+---
+base-commit: 6fd66bc55f7ed910980b9cc4afe31e1bb066c7e0
+change-id: 20240124-sm6350-tsens-c17692ffad3b
 
-> +	int minor;
-> +	spinlock_t xlock; /* protect xmit */
-
-Missing #include
-
-> +	u8 tx_buff[I3C_TTY_TRANS_SIZE];
-> +	u8 rx_buff[I3C_TTY_TRANS_SIZE];
-> +	struct i3c_device *i3cdev;
-> +	struct work_struct txwork;
-> +	struct work_struct rxwork;
-> +	struct completion txcomplete;
-
-Missing #include
-
-> +	unsigned long status;
-> +	u32 buf_overrun;
-> +};
-
-> +static void i3c_port_shutdown(struct tty_port *port)
-> +{
-> +	struct ttyi3c_port *sport =
-> +		container_of(port, struct ttyi3c_port, port);
-
-On one line.
-
-> +
-> +	i3c_device_disable_ibi(sport->i3cdev);
-> +	tty_port_free_xmit_buf(port);
-> +}
-> +
-> +static void i3c_port_destruct(struct tty_port *port)
-> +{
-> +	struct ttyi3c_port *sport =
-> +		container_of(port, struct ttyi3c_port, port);
-
-Ditto.
-
-> +static void tty_i3c_rxwork(struct work_struct *work)
-> +{
-> +	struct ttyi3c_port *sport = container_of(work, struct ttyi3c_port, rxwork);
-> +	struct i3c_priv_xfer xfers;
-> +	u32 retry = I3C_TTY_RETRY;
-> +	u16 status = BIT(0);
-
-Unnecessary initialization.
-
-> +	int ret;
-> +
-> +	memset(&xfers, 0, sizeof(xfers));
-> +	xfers.data.in = sport->rx_buff;
-> +	xfers.len = I3C_TTY_TRANS_SIZE;
-> +	xfers.rnw = 1;
-> +
-> +	do {
-> +		if (test_bit(I3C_TTY_RX_STOP, &sport->status))
-> +			break;
-> +
-> +		i3c_device_do_priv_xfers(sport->i3cdev, &xfers, 1);
-> +
-> +		if (xfers.actual_len) {
-> +			ret = tty_insert_flip_string(&sport->port, sport->rx_buff,
-> +						     xfers.actual_len);
-> +			if (ret < xfers.actual_len)
-> +				sport->buf_overrun++;
-> +
-> +			retry = I3C_TTY_RETRY;
-> +			continue;
-> +		}
-> +
-> +		status = BIT(0);
-
-Can this BIT(0) be named with a #define?
-
-> +		i3c_device_getstatus_format1(sport->i3cdev, &status);
-> +		/*
-> +		 * Target side needs some time to fill data into fifo. Target side may not
-> +		 * have hardware update status in real time. Software update status always
-> +		 * needs some delays.
-> +		 *
-> +		 * Generally, target side have circular buffer in memory, it will be moved
-> +		 * into FIFO by CPU or DMA. 'status' just show if circular buffer empty. But
-> +		 * there are gap, especially CPU have not response irq to fill FIFO in time.
-> +		 * So xfers.actual will be zero, wait for little time to avoid flood
-> +		 * transfer in i3c bus.
-> +		 */
-> +		usleep_range(I3C_TTY_YIELD_US, 10 * I3C_TTY_YIELD_US);
-> +		retry--;
-> +
-> +	} while (retry && (status & BIT(0)));
-
-Name with define?
-
-
+Best regards,
 -- 
- i.
+Luca Weiss <luca.weiss@fairphone.com>
 
 
