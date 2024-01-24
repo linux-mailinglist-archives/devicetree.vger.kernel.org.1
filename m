@@ -1,171 +1,157 @@
-Return-Path: <devicetree+bounces-34638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2887A83A64E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 11:03:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B261383A664
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 11:09:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED6E4B2D2A9
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:03:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8CCD6B23299
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 10:09:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF149182C5;
-	Wed, 24 Jan 2024 10:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E952018637;
+	Wed, 24 Jan 2024 10:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CTZ1JlSz"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="g8Gl8cdb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E69C18E01
-	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 10:02:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AB081862B
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 10:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706090561; cv=none; b=sXDn7KAfxRrtEQQG9ms8vLmYuz71cb2vNEwzhqja7D/ZdBCQVWc2zlo8pSEZoZOWdtNtJFBQNoc8o7ZeHglnjOcvriyEHqWkGdUMZUMnQ6UgEV2q1bAcE9ViPZVQU3u+p2iClfy8dKQFdRWAfqUFM+uxTNCYcvpLl46ZObqag00=
+	t=1706090973; cv=none; b=Ji8lduifA/1iFt7TolIhMV0Jo5zm86wrUQefBNcebPFyYKpOSfJ63vFgg5aPjWMwL3OSvBADI336TzHD0DqOilrkhebS3czC7S2XhEDzBnUaWR0zXEGalZwz3DmnY4d+pWPcwqV1B8IohOgV21/AQfQFa8205xBhNHt550EtlvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706090561; c=relaxed/simple;
-	bh=eZb8KsVdKCKnn8GCgoqYmSVfuu/Q0go0ckHPs8r4gHo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WBWvgW5Ovl0tfjnfpuv4xpYbChI1rWOOzO+6oME8XA4ev/0ZUfG3TBvk76aq/UtDhbdiYeeM41cfnWMYDZktJflMhY82py3UMh9LyToAjxOO1d5m6i68p0GP/I43EtItggQFA3Jdw2UG2eMcZf9/tUSYv9s9fvaIyKM5zqDIe34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CTZ1JlSz; arc=none smtp.client-ip=209.85.210.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6dc36e501e1so4492007a34.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 02:02:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706090559; x=1706695359; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yUpwH1vvlbubZBmKYelxmGkgmJALQKDTM110+USmxN4=;
-        b=CTZ1JlSzmYzjW/1gSgdcic0Rofquz1rTBIhY4ClIHvHBhe6TG2uLDpolg2+eNbQTpV
-         YZdSjloomPoZccsNH16ltOmkIRusBP/mds7dp6pvlpF6x9newN11amR7eIn+3dC2cLI6
-         R7mi73lny74n82ZDmEVoheuOW1kauPqm8+f1755CG65kR3s/RhMPIaW26Ym72OrOHNOU
-         Umv3vThfXvBPYVQR4IMuyhTxNPdYuOoggI8FEaertHZTfxjNiBJgcz0VVMdoRQSWL7xu
-         YhYxw9eDzGYRvaY79lsCfvqScYAPKQtqs4CorlNR5+StMSyM+YavfKERuo17xo2lJFCB
-         sgkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706090559; x=1706695359;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yUpwH1vvlbubZBmKYelxmGkgmJALQKDTM110+USmxN4=;
-        b=Vk7OlMwRGUcxWmddHrX3FesBvmZF1GT1UnmxyJikLWYolW+3vluyhrqmYIqFKfh7A3
-         Gb16NYoOG9Y2dRFWzCDJKb7viHUKEWYxHo6XPIht2ULAwmKl7Khw5hm4F/jop8RiIuCu
-         g5acB6tnur3lemtrxiKcC/5+l/asgz5jbBH+kwvhilp8y57+bFoaNoW0xQCWlG0KzYyR
-         L0W4gHLPPRauRrLJomWvvNeAqs40bPlKN6ftKS86moC2A0gVlhZ15ecVm67GjGkodEnt
-         D5oWsc94mz5JZs0eMTX3s28HCNUHjvQ8iTf7M05IbLv4GGTkmMDDLFfREjBavq94lrr9
-         KFng==
-X-Gm-Message-State: AOJu0Ywkm82GzlH406DgXdEJ9Rs8fMjVh9/kqNYtaQMND4lFBM2Wp6th
-	caWanZgejK5Ue0nFy+fMU5aawNjIIocSq4ENop5HQcNwdMEY+WqrJq7Cad6s26QwwMgNmkpjmUp
-	qhpz3+e36b7xFsS9OTIpXHhVhMYhexH8Av41cCw==
-X-Google-Smtp-Source: AGHT+IE79HSwfv0oyaKG/O5pd/o2yGI9NCIYgU09VQo436h6rDnZM1AO/HGfrAmwLFfRmFGKRkbG+6cW5fHWetbuYc8=
-X-Received: by 2002:a9d:6305:0:b0:6dd:eb93:5b20 with SMTP id
- q5-20020a9d6305000000b006ddeb935b20mr1341915otk.21.1706090559206; Wed, 24 Jan
- 2024 02:02:39 -0800 (PST)
+	s=arc-20240116; t=1706090973; c=relaxed/simple;
+	bh=sSZl4b1b2h+L15f0m1J/Xvc55Ne7ShINDatMmQJD63M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=rdAfGgbcxclw3WnzZIdMCgoLq4AfSANL1Bq+BqUfC+PconTKtmG7KdhmJK0oLLZqpwhWsnGk9equBQqzxPqenVGGqygJ44i2UIH6cbsG6AaXw7Ofg8sZ3hPYwqgvnklFhmeJh8hlZj1CnkcnZDfsmIm0yMt+nGDR0dlQIgq6y+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=g8Gl8cdb; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40O9u0v7031076;
+	Wed, 24 Jan 2024 11:09:08 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=E+ptdx/c28RZ6bn3ntnGPa3sENefNfXpM5d4ZjGqf3c=; b=g8
+	Gl8cdbYXZIySCXhBkCloZFCIiSOcYG8qciw8zDyskwd8NA3vEVmfE+s857XW8k8O
+	eEiNUSyvah5E3ZegC35FFpuzbNzciWUZRpBrhFsvCHj0Hj89+cdAFA/STTJiGPmp
+	9Rr/jwnCtREAonoY2C37ORIQ5m/hbBcckDqMRYY8a5kAflByFadH/dmEQqoyE0kj
+	Pfns20LJ8fqqebKPk2HcY4PlqorKmY84/uO0mT6CemqimZ7lq5AojLan311Ahsss
+	x45c/tPyYGOE/f2vr6owe0WLjOUnbknz8KIZ5niWjOTF8GetP92TAAP7VRV21pnJ
+	/8tVomnaKYslqNXtEY8w==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vtmf7jkbk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 24 Jan 2024 11:09:08 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 152FD10005D;
+	Wed, 24 Jan 2024 11:09:05 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0969929BBC4;
+	Wed, 24 Jan 2024 11:09:05 +0100 (CET)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Wed, 24 Jan
+ 2024 11:09:04 +0100
+Message-ID: <bbf1c946-abf9-4a79-a58f-b170b35b904f@foss.st.com>
+Date: Wed, 24 Jan 2024 11:09:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240122225710.1952066-1-peter.griffin@linaro.org>
- <20240122225710.1952066-3-peter.griffin@linaro.org> <CAPLW+4=G5YiTZaZ5k=H1YciUwOEjKSF0w9Hd8rwymA71UmJnRQ@mail.gmail.com>
-In-Reply-To: <CAPLW+4=G5YiTZaZ5k=H1YciUwOEjKSF0w9Hd8rwymA71UmJnRQ@mail.gmail.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 24 Jan 2024 10:02:27 +0000
-Message-ID: <CADrjBPqbToXYUBx=reE5_W4U4aUUJRFs+FC5AHsrQ6mRYB9iAA@mail.gmail.com>
-Subject: Re: [PATCH 2/9] soc: samsung: exynos-pmu: Add exynos_pmu_update/read/write
- APIs and SoC quirks
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: arnd@arndb.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux@roeck-us.net, wim@linux-watchdog.org, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, jaewon02.kim@samsung.com, chanho61.park@samsung.com, 
-	kernel-team@android.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	saravanak@google.com, willmcvicker@google.com, linux-fsd@tesla.com, 
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: lxa-tac: drive powerboard lines as
+ open-drain
+Content-Language: en-US
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Rob
+ Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC: <kernel@pengutronix.de>, <devicetree@vger.kernel.org>,
+        =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20231018203154.1681457-2-u.kleine-koenig@pengutronix.de>
+ <j3i24md6kz2t7tw2teqbhhab2iywj6xkeg4qxw7do6jawm7jxw@ew64jmeef5zl>
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <j3i24md6kz2t7tw2teqbhhab2iywj6xkeg4qxw7do6jawm7jxw@ew64jmeef5zl>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-24_04,2024-01-24_01,2023-05-22_02
 
-Hi Sam,
 
-Thanks for the review feedback.
 
-On Tue, 23 Jan 2024 at 18:56, Sam Protsenko <semen.protsenko@linaro.org> wr=
-ote:
->
-> On Mon, Jan 22, 2024 at 4:57=E2=80=AFPM Peter Griffin <peter.griffin@lina=
-ro.org> wrote:
-> >
-> > Newer Exynos SoCs have atomic set/clear bit hardware for PMU registers =
-as
-> > these registers can be accessed by multiple masters. Some platforms als=
-o
-> > protect the PMU registers for security hardening reasons so they can't =
-be
-> > written by normal world and are only write acessible in el3 via a SMC c=
-all.
-> >
-> > Add support for both of these usecases using SoC specific quirks that a=
-re
-> > determined from the DT compatible string.
-> >
-> > Drivers which need to read and write PMU registers should now use these
-> > new exynos_pmu_*() APIs instead of obtaining a regmap using
-> > syscon_regmap_lookup_by_phandle()
-> >
-> > Depending on the SoC specific quirks, the exynos_pmu_*() APIs will acce=
-ss
-> > the PMU register in the appropriate way.
-> >
-> > Signed-off-by: Peter Griffin <peter.griffin@linaro.org>
-> > ---
-> >  drivers/soc/samsung/exynos-pmu.c       | 209 ++++++++++++++++++++++++-
-> >  drivers/soc/samsung/exynos-pmu.h       |   4 +
-> >  include/linux/soc/samsung/exynos-pmu.h |  28 ++++
-> >  3 files changed, 234 insertions(+), 7 deletions(-)
-> >
->
-> [snip]
->
-> > +
-> > +int exynos_pmu_update_bits(unsigned int offset, unsigned int mask,
-> > +                          unsigned int val)
-> > +{
-> > +       if (pmu_context->pmu_data &&
-> > +           pmu_context->pmu_data->quirks & QUIRK_PMU_ALIVE_WRITE_SEC)
-> > +               return rmw_priv_reg(pmu_context->pmu_base_pa + offset,
-> > +                                   mask, val);
-> > +
-> > +       return regmap_update_bits(pmu_context->pmureg, offset, mask, va=
-l);
-> > +}
-> > +EXPORT_SYMBOL(exynos_pmu_update_bits);
-> > +
->
-> This seems a bit hacky, from the design perspective. This way the user
-> will have to worry about things like driver dependencies, making sure
-> everything is instantiated in a correct order, etc. It also hides the
-> details otherwise visible through "syscon-phandle" property in the
-> device tree.
+On 1/24/24 11:01, Uwe Kleine-König wrote:
+> Hello,
+> 
+> On Wed, Oct 18, 2023 at 10:31:55PM +0200, Uwe Kleine-König wrote:
+>> From: Leonard Göhrs <l.goehrs@pengutronix.de>
+>>
+>> This results in a slight improvement in EMI performance due to the lines
+>> no longer being driven by the somewhat noisy VDD_IO supply of the SoM.
+>>
+>> Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>> ---
+>>   arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts | 2 +-
+>>   arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi     | 2 +-
+>>   2 files changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts b/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts
+>> index 8a34d15e9005..4cc177031661 100644
+>> --- a/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts
+>> +++ b/arch/arm/boot/dts/st/stm32mp157c-lxa-tac-gen2.dts
+>> @@ -148,7 +148,7 @@ adc@0 {
+>>   		compatible = "ti,lmp92064";
+>>   		reg = <0>;
+>>   
+>> -		reset-gpios = <&gpioa 4 GPIO_ACTIVE_HIGH>;
+>> +		reset-gpios = <&gpioa 4 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>>   		shunt-resistor-micro-ohms = <15000>;
+>>   		spi-max-frequency = <5000000>;
+>>   		vdd-supply = <&reg_pb_3v3>;
+>> diff --git a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
+>> index f09b7c384bd9..188c9cfc7102 100644
+>> --- a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
+>> +++ b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
+>> @@ -409,7 +409,7 @@ &sdmmc2 {
+>>   &spi2 {
+>>   	pinctrl-names = "default";
+>>   	pinctrl-0 = <&spi2_pins_c>;
+>> -	cs-gpios = <&gpiof 12 GPIO_ACTIVE_LOW>;
+>> +	cs-gpios = <&gpiof 12 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+>>   	status = "okay";
+>>   };
+>>   
+>>
+>> base-commit: 4d5ab2376ec576af173e5eac3887ed0b51bd8566
+> 
+> Gentle ping. Given this patch is two months old now I assume it fell
+> through the cracks?
+> 
 
-In v2 I will keep the phandle to pmu_system_controller in DT, and add
-some -EPROBE_DEFER logic (See my email with Krzysztof).
+Yes, apologize for that.
 
-> Can we instead rework it by overriding regmap
-> implementation for Exynos specifics, and then continue to use it in
-> the leaf drivers via "syscon-phandle" property?
+Applied on stm32-next.
 
-I did look at that possibility first, as like you say it would avoid
-updating the leaf drivers to use the new API. Unfortunately a SMC
-backend to regmap was already tried and nacked upstream pretty hard.
-See here https://lore.kernel.org/lkml/20210723163759.GI5221@sirena.org.uk/T=
-/
+Cheers
+Alex
 
-regards,
-
-Peter.
+> Best regards
+> UWe
+> 
 
