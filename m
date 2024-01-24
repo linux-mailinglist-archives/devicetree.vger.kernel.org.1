@@ -1,165 +1,170 @@
-Return-Path: <devicetree+bounces-34593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C71683A460
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:41:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1FDC83A44A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 09:39:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 122BBB2A5D2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:41:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 217001F27E86
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jan 2024 08:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF2117BD5;
-	Wed, 24 Jan 2024 08:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD04A1775B;
+	Wed, 24 Jan 2024 08:39:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="RPkqBPCK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wgL2JaKO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2047.outbound.protection.outlook.com [40.107.92.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A4017BC2;
-	Wed, 24 Jan 2024 08:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706085664; cv=fail; b=I7E3bj8W/4GoAv017TySaTxBtsht+basSYd6j4/es0LWTxx7HJBp5FMNdY1o8H2GSZ/Zxdw8CMEafWRe3EFKGNaqNhuiEcV7FTkKyM7ABeADJEDBpPR22N9VLPt6AR5sdu2Hh1+adhOXqTujvlM1Jn6OjsxhP/pKr6UvSIsI+5I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706085664; c=relaxed/simple;
-	bh=JSavUQwauQ5NugGLC8OHoM1toSWzyiW15+qS8DK9VTI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sMNwyZGiWVgle1abBzPS2tfDOl7kylaTYWq3bLUBL+bH2bWikiZZxewdSCFeP1In8/TY8Mv2oNbLzUGF8g7u3asXUoRGUG0tB86ASN1VoqkixmEFFJLXFOWy+JsvJtbq7JCW8ZVZdLT0aMMI8ErWkawqMAdyqNJe+kPLsuE5sbU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=RPkqBPCK; arc=fail smtp.client-ip=40.107.92.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QhQRKWi6H1f5FNsjWA0rvWthheeFGINkDQ3DaqM5utrOSH2NqAWr9kQjF3iouWTIlILGickXcipf1nfUCuu932G16Gjo7LirS3wbygqFr/c3N3cLSj8v7IeX89yyBivuWD2+sM/3pN5t+vd3QjeWKpFXvX5SG+SBpUHdY5rhmKX6IFVKWCXrZ4BnbpKg6fPuE3JdBjFzMmRjjkpSWlhnl84HEBSRALFc4Uj0iCTrryITNnJ2cf11pnNTMizg4hVPa+rh8mR/4HnhmN1ODx5cVi+1IKt9pP3PQipLfAqUh4m0g/QC4/SDGWL0RtTCkewpCOyS8epDr7d4IFxKunpd5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JtakwJF2Bp/VGmlWNt/aPHSW8I2UW+8++6zg+6yNoeU=;
- b=MekRGeiZzp15rZeHPqUIbfxv72CY68k6Jk3Dy3hIgQJMYajgxGgqkNALU4I/gCg0I7EycWTBHHEYhT5VGW35PTMXFMBDhnvINmE/CO5WV+IQ3SaqQ/5L4ZOOzB2/U0L+b8bUtUTI03z04EeKkCPVfLkQnfG9K86sbUW8fO5V8PuuF2dUmSRGWkoJBZw3ZZOiNGKNiJNn1Nr8ZcvBL8PGN6m0Xje84ubzDlHtqXqcABB0BuyKKo58H+6spLTUJXv+Vdg+3Iame8sXLLKLNxs1trXXNzEVKhJvtrzXBD79iZtXQm7mcrLHXwrjF7OC47OC2QonAYp09lzqG1G0JUIYbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=gondor.apana.org.au
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JtakwJF2Bp/VGmlWNt/aPHSW8I2UW+8++6zg+6yNoeU=;
- b=RPkqBPCK+FPzTNrmOKyd9fBs/qk95S9Dq/3wdgby9U4q+8+/8HqajpDc3ghNWXjaLcTExw9xIOqJ78yPWKLjR/EIKLl9Ek3erZR2+mLPYudo/K/3Ti27fQXtmRsZqbPDa9ndk3VUweICsjRyxxxWvNGdvwLW2pNIjI+p7NZ8uxGS4ZeT6wZowHtl0JZntmdJvEUGv/G9VSLF/wky5FdTdZ4HgYqHlTkAfMr0UtVYaIxRjcvBI6NJuFwLl75gdC6r5taIR72jovDw3i9zeWyPRtOXEmRmXt9c/8Ryyw9w6pSDy2kDbHIcznNuG0sb+/POp/oJtpmkTXSXxWMl46CyZw==
-Received: from SA9PR13CA0051.namprd13.prod.outlook.com (2603:10b6:806:22::26)
- by MW6PR12MB8951.namprd12.prod.outlook.com (2603:10b6:303:244::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.34; Wed, 24 Jan
- 2024 08:40:59 +0000
-Received: from SN1PEPF0002636E.namprd02.prod.outlook.com
- (2603:10b6:806:22:cafe::e2) by SA9PR13CA0051.outlook.office365.com
- (2603:10b6:806:22::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22 via Frontend
- Transport; Wed, 24 Jan 2024 08:40:59 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- SN1PEPF0002636E.mail.protection.outlook.com (10.167.241.139) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7202.16 via Frontend Transport; Wed, 24 Jan 2024 08:40:58 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 24 Jan
- 2024 00:40:39 -0800
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Wed, 24 Jan
- 2024 00:40:39 -0800
-Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.14) by mail.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server id 15.2.986.41 via Frontend
- Transport; Wed, 24 Jan 2024 00:40:35 -0800
-From: Akhil R <akhilrajeev@nvidia.com>
-To: <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-	<catalin.marinas@arm.com>, <will@kernel.org>, <mperttunen@nvidia.com>,
-	<linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<krzk@kernel.org>
-CC: Akhil R <akhilrajeev@nvidia.com>
-Subject: [PATCH v4 5/5] arm64: tegra: Add Tegra Security Engine DT nodes
-Date: Wed, 24 Jan 2024 14:08:46 +0530
-Message-ID: <20240124083846.46487-6-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240124083846.46487-1-akhilrajeev@nvidia.com>
-References: <20240124083846.46487-1-akhilrajeev@nvidia.com>
-X-NVConfidentiality: public
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B65C17BA4
+	for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 08:39:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706085569; cv=none; b=q+bBDN8reMF62VKMqyploP4bR7NWSiWwtek4lXR4IslyPZIh+ZsfAM30mJ8Fc6CuAcmfEFtJd1ZR+I81LT9OZz4qnM39DJJxYKpm8Z3xvXQAusCpz9uihoSwpKd7DeOxd6X7yZMCMCeHxr1U26+l70Iw6xfOWhZ0bRkA4dLDVJs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706085569; c=relaxed/simple;
+	bh=CIB6+GPa0GCYWij/AWNderizltoCThnC/6vfqQni4js=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cqmsMpWl8ceVIfSD5LPxJz9/EUXmg+vBA7xWzQG7So7LzckkjqIbFinXO1rOBByP10PuF+Ns1JyfojTeNR9djkP7PDFtoR7C8lxZh4X4gkH+D1VTT6KuNo/ixHLHyVValorj/qtpuE/iS2bjXfdADp3u1TIGciaLDPH9xwxQWYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wgL2JaKO; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1d7881b1843so1202615ad.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 00:39:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706085567; x=1706690367; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2q1ZPZiIAe8BF0cYeIZCl5XPcn9hhQ0mvUIAjpCb5x8=;
+        b=wgL2JaKOcWj8HKPrUVMvxqEYS7uIfVoe7nrEWjsQC1DUA9RrXKB1ICRCB17nNxjV+0
+         xrRDLsQE7+Ttz2Pl6VkCEl7XHg//QS+JI0yi9l+k/YKB3XTpQ00qOaaSF/aT1ydF5pPE
+         N3xp78uUl19oUghNJle4P6d64MW5SNoZ2AmK1B94nuGZX9T46ZrZ2hzF4fT58/oNAEXC
+         E6xnCPTo1VHr997eMMLNpXnZTOoFKrJLS4q4GPF0/mUhOh5v64HpnsA3i5jthP3psRJ/
+         NW97SL2ypH1vsv0aYNBUWRscfk/jPUYk1s0KfzMburv21mcBSCxcifyw3HLXjlaKli+4
+         E0RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706085567; x=1706690367;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2q1ZPZiIAe8BF0cYeIZCl5XPcn9hhQ0mvUIAjpCb5x8=;
+        b=EzjjTCBAyh1avmdJOZJV12ksc1DcOkRsImCaPaCmLD5pRtJK/R+ZUsMl4YIWgkhw1g
+         aAsYIHuv/jI8QJVWVnAdNzmho4xXIeBNWtXAo61e1fJv/S3JWNopcTs8WuEgFwn/iu5X
+         FsFKQ3k11wzHy0FEydwUuChCWxmwUsN5/3laauHebFviI9iuReFbvh855W0nFSZyHyRT
+         u9vMDQeD0NLxD2UvPtujHMYHEAAawPJ1lLrpQ/2PNsNV2ebYYrDnk4/ZRVfepxRrgAor
+         YunaBEkISnQV+ahQaVYfZLSyp+EgEhzZyYb3BlpjZD85S/v6yuCr2UKwNO8dA0Q5uqB+
+         ef4A==
+X-Gm-Message-State: AOJu0YzUuFKa/W9hP5F/Uv+4dgRY915y8ZP9Ecsxd8AQh4Mgh8nvTPxS
+	isVCBMO0u8XZCNPIFhLCxapAJf0FtCx911wedlD04MrdFXtGHdhDPbs6IRvRug==
+X-Google-Smtp-Source: AGHT+IFA8Tq3qnUQUA9/FvFr6zvN4e5RbZkx1CuhIqIBGPuKtSXGEzdCM78k4PaF1OjAcrSvM4aAMw==
+X-Received: by 2002:a17:902:ecc2:b0:1d5:a279:242b with SMTP id a2-20020a170902ecc200b001d5a279242bmr642306plh.28.1706085567442;
+        Wed, 24 Jan 2024 00:39:27 -0800 (PST)
+Received: from thinkpad ([117.217.189.109])
+        by smtp.gmail.com with ESMTPSA id d19-20020a170903209300b001d787672afcsm514389plc.258.2024.01.24.00.39.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jan 2024 00:39:26 -0800 (PST)
+Date: Wed, 24 Jan 2024 14:09:19 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Nikunj Kela <quic_nkela@quicinc.com>, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>,
+	srinivas.kandagatla@linaro.org, vincent.guittot@linaro.org,
+	ulf.hansson@linaro.org
+Subject: Re: DT Query on "New Compatible vs New Property"
+Message-ID: <20240124083919.GC4906@thinkpad>
+References: <be31801e-bb21-426b-f7aa-2b52727de646@quicinc.com>
+ <82115165-6089-4214-b47b-2c2c0dfb8c66@linaro.org>
+ <1935cb82-648c-f079-8852-d461dc9f8609@quicinc.com>
+ <20231214061742.GG2938@thinkpad>
+ <66f82e2c-0c42-4ead-93f5-2136ad478df2@linaro.org>
+ <7768258d-4748-84f7-0da2-43988138e5cc@quicinc.com>
+ <20240123161231.GG19029@thinkpad>
+ <d3d07e07-5f47-496c-9417-34d502242b40@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002636E:EE_|MW6PR12MB8951:EE_
-X-MS-Office365-Filtering-Correlation-Id: aa60866d-43d8-410c-c29b-08dc1cb8300f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	SheipnI6bs4rUDiEOS3ksZPuiw1LTJ8mP8Pbjgm3Now9KSazPEqdLUicGdcYwbcWQw9LRV7Kmukx9kIpGQRnYNUDUWWpn0R2xpt0xP5o0WWf286xIGXJfpGIMXHIirdP3oKMKCbl5EQlo5IZrqb4Jg9+U1ntqV74qEeB+sDyPLSn9PfMMH2wLUEnRdMZkiRT8MbnyFZU857V/3WgtY/ip4IEr2pLhwgqXV08e6ovScvjAbxwhvoQHQVF3PUD9oRxVYsv+JZXV0MyQ3hoWeBsqh6BtBvCmo+DeW7nfQd3myjPYV0BgL7ZSsMQMhK2Gy65smwnytGwSo8fJFSI51gKmCpa33/Olnyko7U07/Zj48z2eWYPudWWkmPyr6E4O1wNFX1AbBYOFWhfrs8r5ugS5aI26d3PYa70ag6wUhIDoCoeffMHgQMp+a0v2gsTh+sLj7ETBCELM5D/wSP8zCulKCkHfN1hYwBcTmwwNJbotHVcTmcGXfYO43lxcTT2h2Ts50LuoxlsS/ErsboSP7MKrQLNOW1k9mYOz4RdN8Q//KIOjp+KZtbyDuVO06GV1KTPgtTNX6P+v5HnY7ucZkP/cGNS0VF9iYq0mf3DQl0lya4ztCV2O34xmbtGlVeC5KGFHdjGvVShQyAQdWa9pC4Dmu+PJgbjIQjvgjZpwxJjueXU6L4cK0p8RdwtIWYguiQZ9/X1zoRPmZdK1f2OSW6v1G6XDB8q1raARR/EglRzdqd0aVOItpjPYjMz5n0Zj/Sg
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(346002)(396003)(136003)(376002)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(82310400011)(36840700001)(40470700004)(46966006)(36860700001)(83380400001)(47076005)(2616005)(107886003)(1076003)(26005)(336012)(426003)(7636003)(82740400003)(8936002)(5660300002)(2906002)(41300700001)(7696005)(6666004)(70586007)(8676002)(110136005)(7416002)(70206006)(316002)(4326008)(356005)(478600001)(86362001)(36756003)(921011)(4744005)(40480700001)(40460700003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2024 08:40:58.4417
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa60866d-43d8-410c-c29b-08dc1cb8300f
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002636E.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8951
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d3d07e07-5f47-496c-9417-34d502242b40@linaro.org>
 
-Add device tree nodes for Tegra AES and HASH engines.
+On Wed, Jan 24, 2024 at 09:02:16AM +0100, Krzysztof Kozlowski wrote:
+> On 23/01/2024 17:12, Manivannan Sadhasivam wrote:
+> > On Thu, Dec 14, 2023 at 07:18:25AM -0800, Nikunj Kela wrote:
+> >>
+> >> On 12/13/2023 11:49 PM, Krzysztof Kozlowski wrote:
+> >>> On 14/12/2023 07:17, Manivannan Sadhasivam wrote:
+> >>>> On Tue, Dec 12, 2023 at 11:06:42AM -0800, Nikunj Kela wrote:
+> >>>>> + Linaro team
+> >>>>>
+> >>>>> On 12/12/2023 11:01 AM, Krzysztof Kozlowski wrote:
+> >>>>>> On 12/12/2023 18:45, Nikunj Kela wrote:
+> >>>>>>> We are abstracting some resources(ex. clocks) under new firmware on an
+> >>>>>>> existing platform therefore need to make changes in certain drivers to
+> >>>>>>> work with that firmware. We need to make a distinction between two
+> >>>>>>> different variants of the FW. In one case, some resources will be
+> >>>>>>> abstracted while in other case, they won't be abstracted. My query is -
+> >>>>>>> "should we define a new compatible string for the variant with
+> >>>>>>> abstracted resources(in FW) or we should add a new DT property keeping
+> >>>>>>> the compatible same?"
+> >>>>>> Hi,
+> >>>>>>
+> >>>>>> Usually change in the interface or behavior warrants new compatible.
+> >>>>>> Property would be suitable if the same device, e.g. same SoC component
+> >>>>>> with same FW, was configured differently on different boards.
+> >>>>>>
+> >>>> Here, the hardware is going to be the same, but the resources (clocks,
+> >>>> regulators, etc...) will be controlled by the firmware instead of OS.
+> >>> Yeah, that's the problem with generic questions, instead of specific...
+> >>> "Talk is cheap."
+> >>>
+> >>> OK, so the hardware is exactly the same? Does FW bring any
+> >>> incompatibilities in the interface or is it just about the clocks? I
+> >>> guess I should not have included "with same FW" in my last statement.
+> >>> It's true, but way too narrow. Therefore let me rephrase it:
+> >>
+> >> HW is exactly the same. Let me give more insight on the setup. We have been
+> >> using the HW in virtual environment but now the ownership of certain
+> >> resources (e.g. clock controller etc.) is handed over to a different VM(non
+> >> Linux VM). Earlier the ownership of the resources was local to the same
+> >> VM(Linux VM) via passthrough mode so it could directly access them however
+> >> now Linux VM talks to non-Linux VM for its operations for resources that it
+> >> doesn't own anymore via some interface(shared memory/doorbell).  So shall we
+> >> use property like 'qcom, controlled-remotely' or do we need a new compatible
+> >> for such setup?
+> >>
+> > 
+> > Krzysztof, just a ping on this thread.
+> > 
+> > To summarise, the hardware is exactly same. We can consider the case of UFS. The
+> > UFS controller is exactly same in this proposed setup but the resources of the
+> > UFS controller are taken care by the VM. So instead of enabling the resources
+> > one by one, Linux kernel will just ask the VM to do so using an SCMI command.
+> > 
+> > Due to this difference, we need to make the changes in the UFS controller
+> > driver. So we want to know if we can use a different compatible for the UFS
+> > controller altogether in DT (this will allow Linux kernel to have a separate
+> > driver and will simplify things) or just use a property like
+> > "remotely-controlled" to let the driver detect this setup and take action
+> > accordingly.
+> 
+> What devices do we talk about? Are they released? For which other
+> devices you want to use it?
 
-Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+If you are referring to "peripherals" as "devices", then this new interface is
+going to be applicable to most of the peripherals in the SoC like PCIe, UFS, USB
+etc...
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 3f16595d099c..8a6eae4b4365 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -2304,6 +2304,22 @@
- 				 */
- 				status = "disabled";
- 			};
-+
-+			crypto@15820000 {
-+				compatible = "nvidia,tegra234-se-aes";
-+				reg = <0x00 0x15820000 0x00 0x10000>;
-+				clocks = <&bpmp TEGRA234_CLK_SE>;
-+				iommus = <&smmu_niso1 TEGRA234_SID_SES_SE1>;
-+				dma-coherent;
-+			};
-+
-+			crypto@15840000 {
-+				compatible = "nvidia,tegra234-se-hash";
-+				reg = <0x00 0x15840000 0x00 0x10000>;
-+				clocks = <&bpmp TEGRA234_CLK_SE>;
-+				iommus = <&smmu_niso1 TEGRA234_SID_SES_SE1>;
-+				dma-coherent;
-+			};
- 		};
- 
- 		pcie@140a0000 {
+- Mani
+
 -- 
-2.17.1
-
+மணிவண்ணன் சதாசிவம்
 
