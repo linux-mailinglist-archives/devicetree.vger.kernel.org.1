@@ -1,203 +1,110 @@
-Return-Path: <devicetree+bounces-35221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D92CE83CA3A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:43:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF3E83CA45
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:46:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A5961F21496
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:43:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1AC36B235B5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:46:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A54D6131754;
-	Thu, 25 Jan 2024 17:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D16131E40;
+	Thu, 25 Jan 2024 17:46:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YmQDML8y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SWw+roBd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7788F1E861;
-	Thu, 25 Jan 2024 17:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD06763407;
+	Thu, 25 Jan 2024 17:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706204609; cv=none; b=XCZPSR/ByGaBg6LZkpnVI7DW8zXztxegvSD8MRVYBpQFgFQNwOOAM4bFYzBdl3QYFnaf5ReGaXYpVjfeC54WHlooYvgjKIzN1kRFuo2lDAjmf850iqqhQ91RfMnljIfrrZYL7L6Ty3U0bwaJWi9VDwGnPWaElgDMMuHDsTxNkFw=
+	t=1706204763; cv=none; b=bZz2YJ5cRkjUdnHy2QZJ34qTtf+5bLsopwQZH1Wky4e++k6Z1AwLnELPryOCdKdcWSGY4sNIV5rU9xplhCDRX1nOk/AYKXvHHGSkFLeZBhLIs8Ls+ShvaUcTtvLwlfaAROh/joV8cF12kswTcpCKn+fhcHhH8Y+6mqAOfTLavtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706204609; c=relaxed/simple;
-	bh=H+OmZiH2ZIfXeBeTb+1jrdcr4KMaSl+7lR9ke+VrKy0=;
+	s=arc-20240116; t=1706204763; c=relaxed/simple;
+	bh=tIFbUb7rvCJU+XmIHpQfyisWg75JMCe5OtoA5r51LVM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LJhew2Hf2w/qaxtfA2OBEspsUjDGIxpY2+sxP4BG8CO65N6F9DDzcfj4TglbNOU2RmIV/2oF8Zs/Nd1NX4OcQKIaxjbYKU702/4bcQFtINdz4nKwlVDJGcbA2GWHFuwueSfHfmYinikwmGFESlNmW1UflrLcN/xiN5z0uewz4gE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YmQDML8y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49925C433C7;
-	Thu, 25 Jan 2024 17:43:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SgNITTD6syVZt14eikPMEgiuGkTfTNBBP1nF3A956Ussd9Pm9LiNa6Glk0atkTnhrqc3VPEuYynXKFL1xTi2y0UHrd7lw0c92gci7RQE+QESsqU56BnqbP4XhznXE0dj7eQ/CKI0Q52z5e2+yrFkE3hcm/WyEz0Pl/ncGc24g/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SWw+roBd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A13E2C433F1;
+	Thu, 25 Jan 2024 17:45:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706204608;
-	bh=H+OmZiH2ZIfXeBeTb+1jrdcr4KMaSl+7lR9ke+VrKy0=;
+	s=k20201202; t=1706204763;
+	bh=tIFbUb7rvCJU+XmIHpQfyisWg75JMCe5OtoA5r51LVM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YmQDML8ylJ+AIeU/tofb9f8a/gvkWs/jTr4AGstTX0M58zZhpf8ERfvuDHai+1WfG
-	 s1zRusVbvY7jrpEaSitbgN2mkLVMPzbsSxTlaVJv81SH7yqVREN2WhQWDb0M7V8ePv
-	 ffYY816Mm+lVBnJ/4H6Wwez0uB02mFPfWkPgzFTognv1v0hWjVWX716xX/uJhYhnPn
-	 5uAKfRPBFU5VhPbeA29PlUi+aT+hYsR8XdPSV2I4/58AolQqGktqcNuTW4AIDuVpre
-	 /cZ3XuIwp+f8vEl5TMCkSiaTw15MOwNsQexNKij6QPaS1jJYCB/OV00lYJUo8MlS/1
-	 gxssXUbkrTIiQ==
-Date: Thu, 25 Jan 2024 17:43:22 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: ran.wang_1@nxp.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	"open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, mark.rutland@arm.com,
-	pku.leo@gmail.com, sergei.shtylyov@cogentembedded.com
-Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add snps,host-vbus-glitches
- avoiding vbus glitch
-Message-ID: <20240125-appear-unclog-7da879f946e8@spud>
-References: <20240119213130.3147517-1-Frank.Li@nxp.com>
- <20240124-unclothed-dodgy-c78b1fffa752@spud>
- <ZbFNIvEaAJCxC2VB@lizhi-Precision-Tower-5810>
- <20240124-video-lumpiness-178c4e317f5a@spud>
- <ZbFiQmD1VRVzFSa+@lizhi-Precision-Tower-5810>
+	b=SWw+roBdU0finNlhvvQnyaImkPJwwEZkqiVd9reBwsFM9ViXSuZ5ALCrMfQwqT3St
+	 Seq+6cKY6hw1LtbUniJFQ1iuERJtlPEqoD0votinHp5LoYivNdfEuruoYD4sADkAqk
+	 m32XQ5cBWr10dMSGy8TsOY4itOuMVFyzAEHYCe/IA2/Q0Q2WgIb3VOlmwe1xqsc7Qt
+	 7IskTrDaeD5DmDOELhgLNedaB28xC3/PFxXDQcAbHTYgISfChcgOGKT8XvFiaNzt7l
+	 DIw5xCLyGvi2eIRq0r64omTAArm4KpXBPT6NwE7kfz3TR1jJDkrhhHgdbWwntDBazk
+	 GFKK/96H8vsZQ==
+Date: Thu, 25 Jan 2024 17:45:56 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: andi.shyti@kernel.org, arnd@arndb.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-arch@vger.kernel.org, andre.draszik@linaro.org,
+	peter.griffin@linaro.org, semen.protsenko@linaro.org,
+	kernel-team@android.com, willmcvicker@google.com
+Subject: Re: [PATCH v2 05/28] spi: dt-bindings: samsung: add
+ samsung,spi-fifosize property
+Message-ID: <f44d5c58-234d-45ec-8027-47df079e2f16@sirena.org.uk>
+References: <20240125145007.748295-1-tudor.ambarus@linaro.org>
+ <20240125145007.748295-6-tudor.ambarus@linaro.org>
+ <7ef86704-3e40-4d39-a69d-a30719c96660@sirena.org.uk>
+ <1c58deef-bc0f-4889-bf40-54168ce9ff7c@linaro.org>
+ <55af5d4a-7bc9-4ae7-88c5-5acae4666450@sirena.org.uk>
+ <f2ec664b-cd67-4cae-9c0d-5a435c72f121@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DYnLHzNM1BRheBXO"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="JpqJhr1HaxPy2/jb"
 Content-Disposition: inline
-In-Reply-To: <ZbFiQmD1VRVzFSa+@lizhi-Precision-Tower-5810>
+In-Reply-To: <f2ec664b-cd67-4cae-9c0d-5a435c72f121@linaro.org>
+X-Cookie: Entropy isn't what it used to be.
 
 
---DYnLHzNM1BRheBXO
+--JpqJhr1HaxPy2/jb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 24, 2024 at 02:17:22PM -0500, Frank Li wrote:
-> On Wed, Jan 24, 2024 at 05:59:00PM +0000, Conor Dooley wrote:
-> > On Wed, Jan 24, 2024 at 12:47:14PM -0500, Frank Li wrote:
-> > > On Wed, Jan 24, 2024 at 05:36:42PM +0000, Conor Dooley wrote:
-> > > > On Fri, Jan 19, 2024 at 04:31:28PM -0500, Frank Li wrote:
-> > > > > From: Ran Wang <ran.wang_1@nxp.com>
-> > > > >=20
-> > > > > When DWC3 is set to host mode by programming register DWC3_GCTL, =
-VBUS
-> > > > > (or its control signal) will turn on immediately on related Root =
-Hub
-> > > > > ports. Then the VBUS will be de-asserted for a little while durin=
-g xhci
-> > > > > reset (conducted by xhci driver) for a little while and back to n=
-ormal.
-> > > > >=20
-> > > > > This VBUS glitch might cause some USB devices emuration fail if k=
-ernel
-> > > > > boot with them connected. One SW workaround which can fix this is=
- to
-> > > > > program all PORTSC[PP] to 0 to turn off VBUS immediately after se=
-tting
-> > > > > host mode in DWC3 driver(per signal measurement result, it will b=
-e too
-> > > > > late to do it in xhci-plat.c or xhci.c).
-> > > > >=20
-> > > > > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-> > > > > Reviewed-by: Peter Chen <peter.chen@nxp.com>
-> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 7 +++++++
-> > > > >  1 file changed, 7 insertions(+)
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml=
- b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > > > > index 203a1eb66691f..dbf272b76e0b5 100644
-> > > > > --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > > > > @@ -273,6 +273,13 @@ properties:
-> > > > >        with an external supply.
-> > > > >      type: boolean
-> > > > > =20
-> > > > > +  snps,host-vbus-glitches:
-> > > > > +    description:
-> > > > > +      When set, power off all Root Hub ports immediately after
-> > > > > +      setting host mode to avoid vbus (negative) glitch happen i=
-n later
-> > > > > +      xhci reset. And the vbus will back to 5V automatically whe=
-n reset done.
-> >=20
-> > nit: "will return to"
-> >=20
-> > > > > +    type: boolean
-> > > >=20
-> > > > Why do we want to have a property for this at all? The commit messa=
-ge
-> > > > seems to describe a problem that's limited to specific configuratio=
-ns
-> > > > and appears to be somethng the driver should do unconditionally.
-> > > >=20
-> > > > Could you explain why this cannot be done unconditionally please?
-> > >=20
-> > > It depends on board design, not all system vbus can be controller by =
-root
-> > > hub port. If it is always on, it will not trigger this issue.
-> >=20
-> > Okay, that seems reasonable to have a property for. Can you add that
-> > info to the commit message please?
->=20
-> By the way, I sent v4 at
-> https://lore.kernel.org/imx/20240124152525.3910311-1-Frank.Li@nxp.com/T/#t
+On Thu, Jan 25, 2024 at 05:30:53PM +0000, Tudor Ambarus wrote:
+> On 1/25/24 17:26, Mark Brown wrote:
 
-I see.
+> > OK, so just the compatible is enough information then?
 
-> How about add below sentence?
->=20
-> This was only happen when PORTSC[PP} can control vbus. Needn't set it if
-> vbus is always on.
+> For gs101, yes. All the gs101 SPI instances are configured with 64 bytes
+> FIFO depths. So instead of specifying the FIFO depth for each SPI node,
+> we can infer the FIFO depth from the compatible.
 
-"This can only happen when ... controls vbus, if vbus is always on, omit
-this property".
+But this is needed for other SoCs?  This change is scattered through a
+very large series which does multiple things so it's a bit difficult to
+follow what's going on here.
 
-Just a wee grammatical nitpicking.
-
-> > On another note, I like it when the property name explains why you would
-> > add it, rather than the thing it is trying to solve.
-> > Named after the disease, rather than the symptoms, if you get me. I
-> > tried to come up with a name here, but could not really suggest
-> > something good. If you can think of something, that'd be good, but don't
-> > stress it.
->=20
-> snps,host-vbus-glitches change to snps,host-vbus-glitches-quirk.
-
-I don't think adding "quirk" moves the needle.
-
-> How about use below description:
->=20
-> When set, power off all Root Hub ports immediately after
-> setting host mode to avoid vbus (negative) glitch happen in later
-> xhci reset. That may cause some USB devices emuration fail when kernel bo=
-ot
-> with device connected and PORTSC[PP] control vbus in board desgin.
-
-"When set, all root hub ports should be powered off immediately after
-enabling host mode, to avoid Vbus (negative) glitches that may happen
-during xHCI reset. These glitches can cause enumeration of some USB
-devices to fail when PORTSC[PP] controls Vbus. If Vbus is always on,
-omit this property."
-
-How's that?
-
---DYnLHzNM1BRheBXO
+--JpqJhr1HaxPy2/jb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKdugAKCRB4tDGHoIJi
-0rW6AP9mEQlUrIIosavfS3kjJIpwvgVbgjfh5fLTZ2BBHxvtcgEAsQ/t921axT9S
-4B+qHdP7RqUk6gTi8US6ykZQjSheCgc=
-=rgw9
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWynlMACgkQJNaLcl1U
+h9AWIgf/VcfD5zzA5FHst40J+FzkclKI9H7PqSMKnPOfL023kNx0ic5o8lhp6YlO
+q5Nxe4Iq/nOoCxKo5qN0BP/CWFfOU4A4vbNjunU9tLwZiQYRHFW++SCGe+9XrJas
+vfuD1FLLHxE3Dj7Nmgn3iCfTHI0bSI6VKwFo6ZTgAB3FFKBNaioYcXqzKv203oDj
+ZtCHAZvr8W2VOZN05F4WwoFZNBPhI8Kyfu7UJxMGgaJnFj1GCH6C9tNCHPB38gxs
+5rlXg38mhQaL+awPUyOoL3R4wRkdCBPGsvLUBP6cxqrzF0kn5fgY27SM7zYkju/8
+jvw863iKejvXy0T+c+VwdoXIaRbyig==
+=33yx
 -----END PGP SIGNATURE-----
 
---DYnLHzNM1BRheBXO--
+--JpqJhr1HaxPy2/jb--
 
