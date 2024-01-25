@@ -1,192 +1,161 @@
-Return-Path: <devicetree+bounces-35074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B4183C3EA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:43:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8415183C3F1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:44:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2637F28FA02
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:43:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B719D1C245C8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEA2356775;
-	Thu, 25 Jan 2024 13:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBEB755E40;
+	Thu, 25 Jan 2024 13:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mAB9krfD"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YbRem9aB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE6855C12
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 13:43:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D40158114;
+	Thu, 25 Jan 2024 13:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706190188; cv=none; b=GkmdmFEwEnlEs6NdCFAVui7sZgdLouANazcbclDHnfHFTlbmPQ4519CbfIQ4+yMGnrXHWZreBeAtvemvliXTyfTxkqoDBvyL2t9Q50FYhUDfhjXL26MrKWievAN2hfpBth3gQuvY+sMeglmis8dvLRKvrE5rSWOACtEUKVSCqhU=
+	t=1706190238; cv=none; b=TKR1KArJXlo8NIo2q9FkwRWnYKDk0etVmRsF8W4P2mbEQaA0L5mMB1MB19jDM6kxCFEfaOkKlN/ek08qiwKmHanobrmbjJHYoJmLwLdJvhHsxrrONcwermQVjp3hvprRvgL2/I2gSfyk7113frIu8n3jtPZ8bWHnrcoSdv0UG7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706190188; c=relaxed/simple;
-	bh=CLMiGZb99qiGs0po0LQ2ck2GX30OXK41bHI/SHAhM1Y=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=AOyqdPPKCnQRCi+7cCGHlvkLA3TXjgBMY1S+Bpbg6J1OCl+q5GHn3Dag0+AubRHNXgq8dDGWf82KyL1hMjDFpY5PPsDGQpXDUqEoQ970IOeT3Lab32iUl1ZAqaNglJIne1aGz7Vn68mB1HxUL7tQCnxTvxuoizF7Aq7Pw4zMhrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mAB9krfD; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3394ca0c874so1612425f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 05:43:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706190184; x=1706794984; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RiqoviQXGM/czPfXIjMxujYMnPmJeDkpHzRHL7FpUdI=;
-        b=mAB9krfD2SrV+bPdo+0QsMvwyGRBBzmGsYR9pNCgVwNGIdsLCh2W39xFZIg2WnXhNb
-         gjMJtN2TTAXCV73zGa0bP7XDfPTUba9XmbEz8krItyNs23cgVjmKoZv7VTm3gyMr1Wz2
-         LDw6Cp1MNJBxJl4hn+lovGT2E0diniCudLt0nuAlwT5ghASesRNFv2+zKG/cKGf+Z9vL
-         fT4dCU1HPywLET+BGZu7nsuJcVxc80W+uGeNJh2Ss8GQP0KXyF+R71HDPPAWbhINBqi9
-         pP6tVraSln1jI5GHlohVPcylGebNSpBlg0LrZxmH6HyG4WZWSwN+soYhp16tp3fgoPWd
-         gIXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706190184; x=1706794984;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=RiqoviQXGM/czPfXIjMxujYMnPmJeDkpHzRHL7FpUdI=;
-        b=YiMmL3eFQvAluE9X9B0RShwDC4xdTC3pwC1MapxLYIXN9UR2g/A5ACyQhpIyY2h//7
-         EKBbeqhDGkWzVK22XLC8iZGiLzyqfXC1tGx5ZIYMDrnT2DTyIAsRvhuNvhdKWenQWuzO
-         h0rD2DgdkxGsc46JPRtcX3tWZkfSEh2vAAwpWVxx1RrHBp2bKebT41Eioi+1oOO3fGg4
-         ZRHAAm8/dURJ9ospkT5y+LTHnLIT4SdP1spUoZK5S3JkUlb7sHyKPFxG38cXBdrcmzwh
-         bjE/swK6/YZhIgyrrzB6XfCB0h5cYB6h3lIpVa6mdQJYtXqwuSKzmflL/AVXPv8NBApV
-         l6kg==
-X-Gm-Message-State: AOJu0YwEN3j55g7AI8+ulkclC4fgEkKWVL8kOxLkXmrgifUP70RIBYG3
-	pHXbt8wKM9KX3nFqbMVXR+hOfL4Cybv5jOznK+0EAVXjhPQkJj1hnUMtctvUl5k=
-X-Google-Smtp-Source: AGHT+IElvR+L8tozYGzsd7mvdLxlUMTooJMXJNqiSCYmS/kXO1pBEAc6rKhiqik6jajBUIaLpDpQwQ==
-X-Received: by 2002:adf:efd2:0:b0:339:3968:65a5 with SMTP id i18-20020adfefd2000000b00339396865a5mr557214wrp.41.1706190184014;
-        Thu, 25 Jan 2024 05:43:04 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1a7d:7b36:3842:9bc3? ([2a01:e0a:982:cbb0:1a7d:7b36:3842:9bc3])
-        by smtp.gmail.com with ESMTPSA id x16-20020adfcc10000000b00337b47ae539sm10652410wrh.42.2024.01.25.05.43.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 05:43:03 -0800 (PST)
-Message-ID: <59ea1ace-7505-4275-bcfa-766e25e621b4@linaro.org>
-Date: Thu, 25 Jan 2024 14:43:02 +0100
+	s=arc-20240116; t=1706190238; c=relaxed/simple;
+	bh=uxtBabVZoIxX1rXoTyZaUDap/Zujw1w8+jvXnRMCn8Y=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XEKhcJ/P8IXSiZTdS20wwwAu9flk48QaM2cLcbN2iJkQ9KFdr0kadwSJNEVVGfy9KHfjiK4U9IIyrmY8wfGF0LfXO3ZMCJfc/3nIEkxMWeHnXqKaSe+RHgi6DhmDPEJSTnTuSR+Wio+1NBf/l3ZkXx0jG9OeCR6Mdg9gs5MpQfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YbRem9aB; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40PDhdOt116135;
+	Thu, 25 Jan 2024 07:43:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706190219;
+	bh=r2lrXBYSssJ7OnQOBdMOIycQN4ypBfbTdn/rkYN0/SE=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=YbRem9aByDzpoE7pijyaC//GONs4L5Ju2pRLnJtVATYFMhK5NybYRA8ZUIKDMJ3dt
+	 FJnhxYAiB51tQxfUxVvqQCyAylEWG+LisFnPsRVY7DeLWO8lZiPL13mBfmaVb6JnPK
+	 APEHuNxpeklLkgenmKKg47EY1lXclSyd1Vngu6BI=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40PDhdeE089103
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 25 Jan 2024 07:43:39 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
+ Jan 2024 07:43:39 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 25 Jan 2024 07:43:39 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40PDhcnh063679;
+	Thu, 25 Jan 2024 07:43:38 -0600
+Date: Thu, 25 Jan 2024 07:43:38 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Vaishnav Achath <vaishnav.a@ti.com>
+CC: Jayesh Choudhary <j-choudhary@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <bb@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <u-kumar1@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-mcu/wakeup: Disable MCU and
+ wakeup R5FSS nodes
+Message-ID: <20240125134338.5rrentfbw5grbrqk@caution>
+References: <20240121134017.374992-1-vaishnav.a@ti.com>
+ <0fcec921-0220-4251-afa4-44db5e80d2ef@ti.com>
+ <20240124172151.ngxaq6k5tnvsx4jr@proud>
+ <2291204f-97d5-4887-b68f-8789fe85f838@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sm8650: describe all PCI MSI
- interrupts
-Content-Language: en-US, fr
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240125130626.390850-1-krzysztof.kozlowski@linaro.org>
- <20240125130626.390850-6-krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20240125130626.390850-6-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <2291204f-97d5-4887-b68f-8789fe85f838@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 25/01/2024 14:06, Krzysztof Kozlowski wrote:
-> Each group of MSI interrupts is mapped to the separate host interrupt.
-> Describe each of interrupts in the device tree for PCIe hosts.  Not
-> tested on hardware.
+On 11:17-20240125, Vaishnav Achath wrote:
+> Hi Nishanth,
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 24 ++++++++++++++++++++----
->   1 file changed, 20 insertions(+), 4 deletions(-)
+> On 24/01/24 22:51, Nishanth Menon wrote:
+> > On 11:26-20240124, Jayesh Choudhary wrote:
+> > > Hello Vaishnav,
+> > > 
+> > > On 21/01/24 19:10, Vaishnav Achath wrote:
+> > > > K3 Remoteproc R5 driver requires reserved memory carveouts and
+> > > > mailbox configuration to instantiate the cores successfully.
+> > > > Since this is a board level dependency, keep the R5 subsytem
+> > > > disabled at SoC dtsi, otherwise it results in probe errors like
+> > > > below during AM62P SK boot:
+> > > > 
+> > > > r5fss@79000000: reserved memory init failed, ret = -22
+> > > > r5fss@79000000: k3_r5_cluster_rproc_init failed, ret = -22
+> > > > r5fss@78000000: reserved memory init failed, ret = -22
+> > > > r5fss@78000000: k3_r5_cluster_rproc_init failed, ret = -22
+> > > > 
+> > > > Fixes: b5080c7c1f7e ("arm64: dts: ti: k3-am62p: Add nodes for more IPs")
+> > > > 
+> > > > Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> > > 
+> > > Reviewed-by: Jayesh Choudhary <j-choudhary@ti.com>
+> > > 
+> > > > ---
+> > > >    arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi    | 2 ++
+> > > >    arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 1 +
+> > > >    2 files changed, 3 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> > > > index c4b0b91d70cf..14eb9ba836d3 100644
+> > > > --- a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> > > > +++ b/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> > > > @@ -187,6 +187,8 @@ mcu_r5fss0: r5fss@79000000 {
+> > > >    		ranges = <0x79000000 0x00 0x79000000 0x8000>,
+> > > >    			 <0x79020000 0x00 0x79020000 0x8000>;
+> > > >    		power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
+> > > > +		status = "disabled";
+> > > > +
+
+	^^ Look here.
+
+> > > >    		mcu_r5fss0_core0: r5f@79000000 {
+> > > >    			compatible = "ti,am62-r5f";
+> > > >    			reg = <0x79000000 0x00008000>,
+> > > > diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> > > > index 19f42b39394e..10a7059b2d9b 100644
+> > > > --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> > > > +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> > > > @@ -78,6 +78,7 @@ wkup_r5fss0: r5fss@78000000 {
+> > > >    		ranges = <0x78000000 0x00 0x78000000 0x8000>,
+> > > >    			 <0x78100000 0x00 0x78100000 0x8000>;
+> > > >    		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
+> > > > +		status = "disabled";
+> > 
+
+	^^ no white space here.
+
+> > Is there a reason for difference in white space addition?
+> > 
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 2df77123a8c7..9fc4f3e37a8c 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -2213,8 +2213,16 @@ pcie0: pci@1c00000 {
->   			      <0 0x60100000 0 0x100000>;
->   			reg-names = "parf", "dbi", "elbi", "atu", "config";
->   
-> -			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names = "msi";
-> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "msi0", "msi1", "msi2", "msi3",
-> +					  "msi4", "msi5", "msi6", "msi7";
->   
->   			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->   				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-> @@ -2317,8 +2325,16 @@ pcie1: pci@1c08000 {
->   				    "atu",
->   				    "config";
->   
-> -			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names = "msi";
-> +			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "msi0", "msi1", "msi2", "msi3",
-> +					  "msi4", "msi5", "msi6", "msi7";
->   
->   			clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
->   				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
+> For mcu_r5fss0_core0 child node there was no blank line as per the
+> recommended coding style : https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n124
+> 
+> So I added a newline there and wkup_r5fss0 already had it correct, since the
+> change was trivial it was not mentioned in commit message.
 
-175:          4          0          0          0          0          0          0          0   PCI-MSI 524288 Edge      bhi
-176:          5          0          0          0          0          0          0          0   PCI-MSI 524289 Edge      mhi
-177:         34          0          0          0          0          0          0          0   PCI-MSI 524290 Edge      mhi
-178:          3          0          0          0          0          0          0          0   PCI-MSI 524291 Edge      ce0
-179:          2          0          0          0          0          0          0          0   PCI-MSI 524292 Edge      ce1
-180:         42          0          0          0          0          0          0          0   PCI-MSI 524293 Edge      ce2
-181:         29          0          0          0          0          0          0          0   PCI-MSI 524294 Edge      ce3
-182:          0          0          0          0          0          0          0          0   PCI-MSI 524295 Edge      ce5
-183:          0          0          0          0          0          0          0          0   PCI-MSI 524296 Edge      DP_EXT_IRQ
-184:          0          0          0          0          0          0          0          0   PCI-MSI 524297 Edge      DP_EXT_IRQ
-185:          0          0          0          0          0          0          0          0   PCI-MSI 524298 Edge      DP_EXT_IRQ
-186:          0          0          0          0          0          0          0          0   PCI-MSI 524299 Edge      DP_EXT_IRQ
-187:          0          0          0          0          0          0          0          0   PCI-MSI 524300 Edge      DP_EXT_IRQ
-188:          0          0          0          0          0          0          0          0   PCI-MSI 524301 Edge      DP_EXT_IRQ
-189:          0          0          0          0          0          0          0          0   PCI-MSI 524302 Edge      DP_EXT_IRQ
+Sigh, please add a EoL here to keep the look consistent between mcu and
+wakeup dtsis. there is no need to state in commit message.
 
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
