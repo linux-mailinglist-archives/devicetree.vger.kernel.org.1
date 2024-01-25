@@ -1,128 +1,158 @@
-Return-Path: <devicetree+bounces-35236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B92CE83CBAE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 073B383CBB9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:59:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 433631F21565
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:58:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8945C1F22157
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE4D313472F;
-	Thu, 25 Jan 2024 18:58:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF0641339BE;
+	Thu, 25 Jan 2024 18:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z5IALI8I"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dVno+sGy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E53B1339B9
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 18:58:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7D679EA;
+	Thu, 25 Jan 2024 18:59:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706209108; cv=none; b=C2VbsdWLTTva/ZkwW0J7e2PdwluumhPNgr/P/rD5leKOE/2MkWLqYvz0jcZ0ZWNhVTe2MGVh9/nXnUQIaODNQg9ygiQcu0mXBUrEYLV186HyzZ7Sdlf0ah2BERlaS1oWzOBhMYwCp8efYBpeHXLN8nNHssbOP1mFgqlip5NnPuY=
+	t=1706209186; cv=none; b=bHlITTMuvkRtfraLiZXBLDr7T4G4xvRjQkt+GDuSVTWwoc4qqBiZFpj7UxISDE3y1aGy1Nf6vRrGhEHwNt8dUzaNvvdnXUQAjVoXOVffsh291/IJERA6HwtKKKPnWF1b6UQoYhra9ifaqlnoKj4X4k14piWPEuBDZjBUcJ/Ckg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706209108; c=relaxed/simple;
-	bh=/yuX+ZwAqeiEBG+9snyPxfUHA4kLw20Lq3tkl7WzUfU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ITnekcG3MLFB+ituY3U/jj1Hl4CUw4HWHTh8mRt62CTp0GR9m+NTq3nkf1lK0Axiv1NkDJvnYzr8SHziA7PwpUe/DU9fHNgctNjWNGArMXa3FLRVtEa53hdyLxlIj8mgwpLVh5EWi8wwEdGHfRa8sSh3s3qdr02OXDA7ICyydS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z5IALI8I; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-290d59df3f0so2530773a91.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 10:58:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706209106; x=1706813906; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cKodC4CUWzXNZRd0RvY8kflDnv2+qlK7ZzKTDP0BS34=;
-        b=Z5IALI8IARtyOtpRCxsnd1W3OOtIIGd8wZHPboiTW3oRYv9oOv0oPbvIzTPYchOJky
-         k2UxtyH051QIyOstuDzppF8Uo6ESHt6h7LswT7KHEvH8XymbOJE8FlL2eiKMQNHLMfO5
-         zrDWXTrhlt1LdB7CVNLSZ5UJ5p4lSDS7Fnpo/BZYuNjBY3cTWIVqYlh/H6v1plUt0IRo
-         2q63v+wsbkvXlPondLo+MQThOsduqhhiRwvP7lCSIhRNkGLzPI4z61AiOLuWQZmEtREt
-         1JwGQIoYisbgGsWwuC68mx6FirZKy9J8t+3t8/XKu82mLFZ3ZC08uU0Rb/HsHc/1aZmd
-         uKeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706209106; x=1706813906;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cKodC4CUWzXNZRd0RvY8kflDnv2+qlK7ZzKTDP0BS34=;
-        b=Haef/Ex2BVgwVrBs05DDDi05cNz4d2mz/NzdFfGa9yWWPe3U3YGpzyRcjnaxEdeWLy
-         gJASc1wTyhEIJb+FHB+Y24l6QZs1S9ZE/GkXtl0tCuBcVotBaTBu4p0zwnzISuywhrzR
-         RPKW/xBsdmhOVQ6uKlX36pAgCuVnAyiquh7YHSRhEX0Yggo/LEen1rnEbCto7zb89A7N
-         MSdZsO2udO9q170gmbNh0B6eNXe6IJTKeoQfv1EmhOixNf4RR3cm7N6+YUa0KNqiXysj
-         BovOF292O/8fboYjeBbZseLkLWqm559dIx6p/IFaqwhKL8t6FoOWifMDV/nJBUN+PNnA
-         L2lQ==
-X-Gm-Message-State: AOJu0YxD5zZ1zCLNKxqBlO8RMB1AAtAF7Lvh76wubHA5u+13dgifNd0A
-	xOJngKmDUyDN/0JFFF0Wa5C52h2ubFI0Bysy1QEs7PpRd7WbJveHf+g5USA53cgAILmX6xwmOAq
-	3jS/QZFfs9DuZpqRFj8k2+naQutIljRmGbgzxyA==
-X-Google-Smtp-Source: AGHT+IHGqu+F52i8g1m/kMXpX3DElw6QjaxmyN1VJK+gS/nX+WAvT8nHp1ClH077kwlifFuyQq5EZg0+FOpZfc3CsKM=
-X-Received: by 2002:a17:90a:1986:b0:292:bcc9:450e with SMTP id
- 6-20020a17090a198600b00292bcc9450emr70570pji.11.1706209106577; Thu, 25 Jan
- 2024 10:58:26 -0800 (PST)
+	s=arc-20240116; t=1706209186; c=relaxed/simple;
+	bh=GBhUCRYOrlVRIz8+hxGXV/Txmkv0aZqDm2jzXdHY/eA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=r4FZXLV9kk1o0EoTLa3c+raFmZ9vebFTAE/UZE2rtYWhtKLIzfW0uhh4kshShd97cZdOnIM2pcHUEKfdQrnaOlY39s+5zYKeI3gMvp1q1XshIAVv8DtOVrMs7E7hi8zRlQZmTRUTARVEk+bC35RwgjbVU8T01YudAhNgQNDuKw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dVno+sGy; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40PEs12i020717;
+	Thu, 25 Jan 2024 18:59:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=ev2teN+
+	6tIBloVhI99FMn/AeWLQu/1QIzyrbwvxtSNc=; b=dVno+sGyQuWXrNUm6Qt1BnF
+	wtwwvQLJF3KkUAcqRO4XHD9pFdFKZghxDCLraiUuoW+ib2UJCujsGLMC6UGiVszb
+	0cGuBsQZNqVUHFnIp60/1N+hlQ+S7jEY0hVypFHgqKeI3Y2OzuX16Jl346mTLYNe
+	uc4zMvQjENZdIyX2V+KErM/CN4BW77szSoQH+GGjpp3stt2TGs2fOiALIl+/lEGK
+	sd8WxOHUecSHgRv/3mmW3JP4Tjz/Jjulzyl8w+UihD8Jwg/R7WiGGwGYTD5vrxyf
+	/eCNxpi72OSLReD3QRF5M+5i8W5Z+7M7PKDsmjUgjWwUzM5WSPNGnN6vk/+sNdQ=
+	=
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vun5yhhpa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Jan 2024 18:59:34 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40PIxX9l009147
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Jan 2024 18:59:33 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 25 Jan 2024 10:59:30 -0800
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH v3 0/4] Fix USB Interrupts on Qualcomm Platforms
+Date: Fri, 26 Jan 2024 00:29:17 +0530
+Message-ID: <20240125185921.5062-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240125145007.748295-1-tudor.ambarus@linaro.org> <20240125145007.748295-2-tudor.ambarus@linaro.org>
-In-Reply-To: <20240125145007.748295-2-tudor.ambarus@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Thu, 25 Jan 2024 12:58:15 -0600
-Message-ID: <CAPLW+4=kEhMz5eUCTLO5e4RCK23g+EWqRqcGQ-V9FNnL6jaFtg@mail.gmail.com>
-Subject: Re: [PATCH v2 01/28] spi: s3c64xx: explicitly include <linux/io.h>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: broonie@kernel.org, andi.shyti@kernel.org, arnd@arndb.de, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, linux-spi@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arch@vger.kernel.org, andre.draszik@linaro.org, 
-	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qiMp2algxiMzBg0oyUD8OB4TqGf_DAvq
+X-Proofpoint-ORIG-GUID: qiMp2algxiMzBg0oyUD8OB4TqGf_DAvq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-25_12,2024-01-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ suspectscore=0 mlxscore=0 mlxlogscore=235 adultscore=0 malwarescore=0
+ priorityscore=1501 clxscore=1015 impostorscore=0 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401250137
 
-On Thu, Jan 25, 2024 at 8:50=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
-.org> wrote:
->
-> The driver uses readl() but does not include <linux/io.h>.
->
-> It is good practice to directly include all headers used, it avoids
-> implicit dependencies and spurious breakage if someone rearranges
-> headers and causes the implicit include to vanish.
->
-> Include the missing header.
->
-> Fixes: 230d42d422e7 ("spi: Add s3c64xx SPI Controller driver")
+Currently the interrupts mentioned in most of Qualcomm platforms
+are partially faulty because of following reasons:
 
-Not sure the "Fixes" tag is needed here. AFAIU, this patch doesn't fix
-any actual bugs, seems more like a style fix to me. In other words,
-I'm not convinced it has to be necessarily backported to stable
-kernels. The same goes for another similar patch from this series.
+1. hs_phy_irq mentioned on QUSB2 PHY targets is actually qusb2_phy irq
+2. pwr_event irq is missing for many targets
+3. Actual hs_phy_irq is also missing for most of the platforms
 
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
->  drivers/spi/spi-s3c64xx.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-> index 7f7eb8f742e4..c1cbc4780a3b 100644
-> --- a/drivers/spi/spi-s3c64xx.c
-> +++ b/drivers/spi/spi-s3c64xx.c
-> @@ -10,6 +10,7 @@
->  #include <linux/clk.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/dmaengine.h>
-> +#include <linux/io.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/spi/spi.h>
-> --
-> 2.43.0.429.g432eaa2c6b-goog
->
+DT changes made as per binidngs update done in [1].
+
+Changes in v3:
+Modified "interrupts-extended" property to "interrupts" in ipq6018
+and ipq8074 as using warnings were not see on DTC version 1.4.0
+So tested with latest DTC version now.
+
+Changes in v2:
+Didn't modify usb3 controller interrupts as they were changed to MPM
+recently and I wasn't able to get my hands on missing interrupt numbres.
+
+[1]: https://lore.kernel.org/all/20231227091951.685-1-quic_kriskura@quicinc.com/
+
+Link to v2:
+https://lore.kernel.org/all/20240120191904.15408-1-quic_kriskura@quicinc.com/
+
+Link to v1:
+https://lore.kernel.org/all/20231211121611.6765-1-quic_kriskura@quicinc.com/
+
+Krishna Kurapati (4):
+  arm64: dts: qcom: Fix hs_phy_irq for QUSB2 targets
+  arm64: dts: qcom: Fix hs_phy_irq for non-QUSB2 targets
+  arm64: dts: qcom: Fix hs_phy_irq for SDM670/SDM845/SM6350
+  arm64: dts: qcom: Add missing interrupts for qcs404/ipq5332
+
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 14 ++++++++-----
+ arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 14 +++++++------
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi  |  8 ++++++--
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi  | 13 ++++++++++++
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi  | 14 +++++++++++++
+ arch/arm64/boot/dts/qcom/msm8953.dtsi  |  7 +++++--
+ arch/arm64/boot/dts/qcom/msm8996.dtsi  |  8 ++++++--
+ arch/arm64/boot/dts/qcom/msm8998.dtsi  |  7 +++++--
+ arch/arm64/boot/dts/qcom/qcs404.dtsi   | 16 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi  |  6 ++++++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi   | 14 ++++++++-----
+ arch/arm64/boot/dts/qcom/sc7280.dtsi   | 12 +++++++----
+ arch/arm64/boot/dts/qcom/sdm630.dtsi   | 17 ++++++++++++----
+ arch/arm64/boot/dts/qcom/sdm670.dtsi   | 14 ++++++++-----
+ arch/arm64/boot/dts/qcom/sdm845.dtsi   | 28 +++++++++++++++++---------
+ arch/arm64/boot/dts/qcom/sm6115.dtsi   |  9 +++++++--
+ arch/arm64/boot/dts/qcom/sm6125.dtsi   |  9 +++++++--
+ arch/arm64/boot/dts/qcom/sm6350.dtsi   | 13 +++++++-----
+ arch/arm64/boot/dts/qcom/sm6375.dtsi   | 12 ++++++-----
+ arch/arm64/boot/dts/qcom/sm8150.dtsi   | 28 +++++++++++++++++---------
+ arch/arm64/boot/dts/qcom/sm8250.dtsi   | 28 +++++++++++++++-----------
+ arch/arm64/boot/dts/qcom/sm8350.dtsi   | 28 +++++++++++++++-----------
+ arch/arm64/boot/dts/qcom/sm8450.dtsi   | 12 ++++++-----
+ arch/arm64/boot/dts/qcom/sm8550.dtsi   | 12 ++++++-----
+ 24 files changed, 238 insertions(+), 105 deletions(-)
+
+-- 
+2.42.0
+
 
