@@ -1,178 +1,172 @@
-Return-Path: <devicetree+bounces-35146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A96F83C6A5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 16:32:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B6E483C6E1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 16:35:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF5341C22223
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:32:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE7AE1C218B3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8440274E19;
-	Thu, 25 Jan 2024 15:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GF9Nlara"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E26C6745C5;
+	Thu, 25 Jan 2024 15:35:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [195.130.137.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F395174E0B;
-	Thu, 25 Jan 2024 15:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0A57316E
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 15:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.90
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706196691; cv=none; b=ZIF5PXy4HDJrPu1tsA1SzXpm/IzJD3ECdtxUGCH1yfBNNy5JxrsE8IRjbRwnLQQ6jkxIbnlR8P6Slw5FJjiPs9qkxp0thfVaYaRKT2v4c3KTVinmmG6ZuBbly3ZovYYHtHPRVXiWotrHYHqgmV9atLQg5fmyJ2BIjNMvewrtuq0=
+	t=1706196903; cv=none; b=qrf7vi+8BK9tl2V8PDjiL3w9R6hHozcTBlj3MffultSBeLjsWsDuAwQha5hBWuSuOdB547AELh9lA6J+hDDAV3N9P9sa4zvpGPn+5U1LYq1SnpXBMVwyxNNdUYv2pPHI2DJfjL/mdk024rHrfN0blMzx8l7Wy/WX9/9pYrxqDqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706196691; c=relaxed/simple;
-	bh=zNfziP2hTMcLh6aM+pHvlEvv55LKnzBUgDLOFVAlOU8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=TkrJC3EaY34vsGeGjsWVhWD7TjChSW2TUQ4jrJk6EwTxPu1Fce7Cr0EjRtBXl2qn80z/KOXHqE4+i1QmAv+XRfgO2Aa+T15h6AQzfESztP0nWAbX6WXT5kDcWPKywuTcPO/QIuNeIkVBRQKd9gv5PqOSuYNFdHueWsaYyncRQVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GF9Nlara; arc=none smtp.client-ip=209.85.166.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-7bc332d49f6so298732939f.1;
-        Thu, 25 Jan 2024 07:31:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706196689; x=1706801489; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=zNfziP2hTMcLh6aM+pHvlEvv55LKnzBUgDLOFVAlOU8=;
-        b=GF9NlaraAdXvAZ9JZ9M7Zx8xN0V+4kOdJmSCqQ3GBB03d3vlim4Dyme/q2uQ8yUM8M
-         k+cpOYvSg0TXsOuQij8/+2RFqqf3oY9Hg6qV6C7cLm60suDUyzUmqlCG8F7savB6sxLY
-         RUz2s4e4THrNpQSmLhDRv/R3zheXdW1iPIRyRu/ZdgFgLMCmGjd6kjAnQqWYva/ZRndg
-         WgdJE8/ATP4JXfyELcxabyASlEN09ZtY45gsyLskMIXpiLmpWGs0HrufKrxXgVbQEp4B
-         NgREzOlqEnDDlh/wKFGAnatUngTlT9ADM6cAgmZJrZwLg3JJ8B65sjropzN4U1jwou5q
-         eTQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706196689; x=1706801489;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zNfziP2hTMcLh6aM+pHvlEvv55LKnzBUgDLOFVAlOU8=;
-        b=ALMHKhQ2K+MU3GJx5CXEBrkOYkB5IaK7OvXDNYuhfx2SSiEMTpWHAOPqZg3l+tyuuC
-         aVb3gHqE5aIYXg4APnrFIalL0Hgy6PvhdGU1ViS0EFSIiO2ArJbrLVPrcvhMRjpRcoam
-         GjJDz8OLcnPToGfL5Ee/oSPclPgDeWVcLGzkMOO9s1t7dz7xaXTfYDprGfxfBVBwLn01
-         Vvx6SANuJGF4O0dl39trHS7w0lFHDU/J2tXOAVFXz4n8oV1lMoo1QtL2vWj1AahZshub
-         AZAipbY4ZdoPKsqqRzyLwXsJEJdlTWfTUn9Ihek9Kfx3tBg6AWNfpKSQqAaT5yEO9bXG
-         ZDyw==
-X-Gm-Message-State: AOJu0YxO7QaKFXYVaRCCVV03WoKUI78AnIeiCbWaDh8dOXnKtyJv1EFd
-	vLlhBgwXxNUYom7oASu7WUeBeU9Uqja0IwXFGB8EDefDIWpG4Lpa
-X-Google-Smtp-Source: AGHT+IFaMMCAySJNmc4SIUNhsQpytb5lAB5OFNA4trGP8SanswulaffQ4p8FI1RTJZMS9bbnd3UQEA==
-X-Received: by 2002:a6b:7d48:0:b0:7bf:8e8d:3412 with SMTP id d8-20020a6b7d48000000b007bf8e8d3412mr1612613ioq.20.1706196689021;
-        Thu, 25 Jan 2024 07:31:29 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id i9-20020a05663813c900b0046e760beffesm4675075jaj.19.2024.01.25.07.31.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jan 2024 07:31:28 -0800 (PST)
-Message-ID: <ef59aaa2a251e92d463d8983ab6eec459298c102.camel@gmail.com>
-Subject: Re: [PATCH v7 4/9] driver: core: allow modifying device_links flags
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Saravana Kannan <saravanak@google.com>, nuno.sa@analog.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Thu, 25 Jan 2024 16:34:41 +0100
-In-Reply-To: <8eae083af481441d83df02a1880e2aedf99efdfb.camel@gmail.com>
-References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
-	 <20240123-iio-backend-v7-4-1bff236b8693@analog.com>
-	 <CAGETcx8_0ExTG4ASb9xK-uwmubMFDx44_wUf1h3VsO8w9jJApQ@mail.gmail.com>
-	 <8eae083af481441d83df02a1880e2aedf99efdfb.camel@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+	s=arc-20240116; t=1706196903; c=relaxed/simple;
+	bh=PrGLmOdB4gT9pV6Vw4tAfL7M/IXCcsXdVseJO1BoioI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=CfG/fE2QJkv23YaGR74Xi6y1VX/rIlLj2kH0JFfL2JV1QBpMn+hn5juj7RHj3tUwwmzd+kd9CPlkC+Vo7rEGmIe9ySsVjOw3PJFvDD/mSeWZ1jEjm937ILKvOQtVdFwP81Uj3WfSv23S7AaQQsaiAOmN6CYDjeJV2QtMxQRbefk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:bc9e:fcb8:8aa3:5dc0])
+	by albert.telenet-ops.be with bizsmtp
+	id f3am2B00M58agq2063am9X; Thu, 25 Jan 2024 16:34:56 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rT1jo-00GUwK-9n;
+	Thu, 25 Jan 2024 16:34:46 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rT1kc-00Fs3K-9J;
+	Thu, 25 Jan 2024 16:34:46 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Cong Dang <cong.dang.xn@renesas.com>,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>,
+	Hai Pham <hai.pham.ud@renesas.com>,
+	Linh Phung <linh.phung.jy@renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 14/15] arm64: dts: renesas: Add Gray Hawk Single board support
+Date: Thu, 25 Jan 2024 16:34:42 +0100
+Message-Id: <b657402113267acd57aece0b4c681b707e704455.1706194617.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <cover.1706194617.git.geert+renesas@glider.be>
+References: <cover.1706194617.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2024-01-25 at 09:14 +0100, Nuno S=C3=A1 wrote:
->=20
-> Hi Saravana,
->=20
-> Thanks for your feedback,
->=20
-> On Wed, 2024-01-24 at 19:21 -0800, Saravana Kannan wrote:
-> > On Tue, Jan 23, 2024 at 7:14=E2=80=AFAM Nuno Sa via B4 Relay
-> > <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> > >=20
-> > > From: Nuno Sa <nuno.sa@analog.com>
-> > >=20
-> > > If a device_link is previously created (eg: via
-> > > fw_devlink_create_devlink()) before the supplier + consumer are both
-> > > present and bound to their respective drivers, there's no way to set
-> > > DL_FLAG_AUTOREMOVE_CONSUMER anymore while one can still set
-> > > DL_FLAG_AUTOREMOVE_SUPPLIER. Hence, rework the flags checks to allow
-> > > for DL_FLAG_AUTOREMOVE_CONSUMER in the same way
-> > > DL_FLAG_AUTOREMOVE_SUPPLIER is done.
-> >=20
-> > Curious, why do you want to set DL_FLAG_AUTOREMOVE_CONSUMER?
-> > Especially if fw_devlink already created the link? You are effectively
-> > trying to delete the link fw_devlink created if any of your devices
-> > unbind.
-> >=20
->=20
-> Well, this is still useful in the modules case as the link will be relaxe=
-d
-> after
-> all devices are initialized and that will already clear AUTOPROBE_CONSUME=
-R
-> AFAIU. But, more importantly, if I'm not missing anything, in [1], fw_dev=
-links
-> will be dropped after the consumer + supplier are bound which means I
-> definitely
-> want to create a link between my consumer and supplier.=C2=A0
->=20
+Add initial support for the Renesas Gray Hawk Single board, which is
+based on the R-Car V4M (R8A779H0) SoC:
+  - Memory,
+  - Crystal oscillators,
+  - Serial console.
 
-Ok, so to add a bit more on this, there are two cases:
+Based on the White Hawk Single DTS, and on a patch for the Gray Hawk
+board stack in the BSP by Hai Pham.
 
-1) Both sup and con are modules and after boot up, the link is relaxed and =
-thus
-turned into a sync_state_only link. That means the link will be deleted any=
-ways
-and AUTOPROBE_CONSUMER is already cleared by the time we try to change the =
-link.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v2:
+  - Add SoC name to top-level comment.
+---
+ arch/arm64/boot/dts/renesas/Makefile          |  2 +
+ .../dts/renesas/r8a779h0-gray-hawk-single.dts | 52 +++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
 
-2) The built-in case where the link is kept as created by fw_devlink and th=
-is
-patch effectively clears AUTOPROBE_CONSUMER.
-
-Given the above, not sure what's the best option. I can think of 4:
-
-1) Drop this patch and leave things as they are. DL_FLAG_AUTOREMOVE_CONSUME=
-R is
-pretty much ignored in my call but it will turn the link in a MANAGED one a=
-nd
-clear SYNC_STATE_ONLY. I could very well just pass 0 in the flags as
-DL_FLAG_AUTOREMOVE_CONSUMER is always ignored;
-
-2) Rework this patch so we can still change an existing link to accept
-DL_FLAG_AUTOREMOVE_CONSUMER (in the modules case for example).
-
-However, instead of clearing AUTOPROBE_CONSUMER, I would add some checks so=
- if
-flags have one of DL_FLAG_AUTOREMOVE_SUPPLIER or DL_FLAG_AUTOREMOVE_CONSUME=
-R and
-AUTOPROBE_CONSUMER is already set, we ignore them. In fact, right now, I th=
-ink
-one could pass DL_FLAG_AUTOREMOVE_SUPPLIER and link->flags ends ups with
-AUTOREMOVE_SUPPLIER | AUTOPROBE_CONSUMER which in theory is not allowed...
-
-3) Keep it as-is... This one is likely a NACK as I'm getting the feeling th=
-at
-clearing stuff that might have been created by fw_devlinks is probably a no=
--go.
-
-Let me know your thoughts...
-
-- Nuno S=C3=A1
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index 1d7d69657a1f0559..4c5ac5f02829ff58 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -86,6 +86,8 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g0-white-hawk-ard-audio-da7212.dtbo
+ r8a779g0-white-hawk-ard-audio-da7212-dtbs := r8a779g0-white-hawk.dtb r8a779g0-white-hawk-ard-audio-da7212.dtbo
+ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g0-white-hawk-ard-audio-da7212.dtb
+ 
++dtb-$(CONFIG_ARCH_R8A779H0) += r8a779h0-gray-hawk-single.dtb
++
+ dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-salvator-xs.dtb
+ r8a779m1-salvator-xs-panel-aa104xd12-dtbs := r8a779m1-salvator-xs.dtb salvator-panel-aa104xd12.dtbo
+ dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-salvator-xs-panel-aa104xd12.dtb
+diff --git a/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
+new file mode 100644
+index 0000000000000000..1ed404712d823871
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
+@@ -0,0 +1,52 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Source for the R-Car V4M Gray Hawk Single board
++ *
++ * Copyright (C) 2023 Renesas Electronics Corp.
++ * Copyright (C) 2024 Glider bv
++ */
++
++/dts-v1/;
++#include "r8a779h0.dtsi"
++
++/ {
++	model = "Renesas Gray Hawk Single board based on r8a779h0";
++	compatible = "renesas,gray-hawk-single", "renesas,r8a779h0";
++
++	aliases {
++		serial0 = &hscif0;
++	};
++
++	chosen {
++		bootargs = "ignore_loglevel";
++		stdout-path = "serial0:921600n8";
++	};
++
++	memory@48000000 {
++		device_type = "memory";
++		/* first 128MB is reserved for secure area. */
++		reg = <0x0 0x48000000 0x0 0x78000000>;
++	};
++
++	memory@480000000 {
++		device_type = "memory";
++		reg = <0x4 0x80000000 0x1 0x80000000>;
++	};
++};
++
++&extal_clk {
++	clock-frequency = <16666666>;
++};
++
++&extalr_clk {
++	clock-frequency = <32768>;
++};
++
++&hscif0 {
++	uart-has-rtscts;
++	status = "okay";
++};
++
++&scif_clk {
++	clock-frequency = <24000000>;
++};
+-- 
+2.34.1
 
 
