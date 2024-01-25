@@ -1,129 +1,157 @@
-Return-Path: <devicetree+bounces-35165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C1D83C70F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 16:43:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7540E83C71E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 16:46:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7053AB213F7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:43:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A62AC1C22F81
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8377316A;
-	Thu, 25 Jan 2024 15:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DF10745FB;
+	Thu, 25 Jan 2024 15:45:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BgRkhNAK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5C6B634FE
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 15:43:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BBC745F0;
+	Thu, 25 Jan 2024 15:45:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706197411; cv=none; b=eUbo0l5YcJEMli/FLLsq+u+Z3q/BkgOsW6RtfAO5kTCkZc9JJtzU7lBCT7RHhG19+U2zJvHQQhzBi6PwgaX6UkV+AF/X0BcA1AXkP0LRVKAVWtFO6UyuETjJlwilCe/Rp3h9KoMrhhUDBHfxhruY9Yp6jSD4ToiPmtZv5AHbDso=
+	t=1706197542; cv=none; b=fnLPjUXl8njtE8D5shq6wgZehl/SF0LIycSEakcBilYNqYnaaW7ohG61JdsbbJ8DUWTJjxvG2buqwDm/QaGvkwWgjypoGiCQiKAuxG2fS5ehO55doL35Odw/YTHsFphIEn8QiEcCF7+bEDrcBfeAYW07CXitBqaodKRkhw8S4zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706197411; c=relaxed/simple;
-	bh=zWe3tCCEsgYRHeb9TN02orgVqN6or7rmfDdSe/lSNLA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=S0KvNUBJRyNpqv26LfJjyXKk0J998aVCoOp9u+S+UPpcurpkzVla2EMkSEmG1HMy6owsvmsay2OVMjkZddhRzHcIgA1dzzQXSS8OhGJxE5bzh7zskQzOVlCYIxoWaty5AGegEo4j+Hfe0GP6HOziKxjiNHbWo7MOzQLxC3du2IE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:bc9e:fcb8:8aa3:5dc0])
-	by andre.telenet-ops.be with bizsmtp
-	id f3jU2B00358agq2013jUiF; Thu, 25 Jan 2024 16:43:28 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rT1sD-00GUxT-WD;
-	Thu, 25 Jan 2024 16:43:28 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rT1t1-00Fs7D-TF;
-	Thu, 25 Jan 2024 16:43:27 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] clk: renesas: r8a779g0: Correct PFC/GPIO parent clocks
-Date: Thu, 25 Jan 2024 16:43:26 +0100
-Message-Id: <5401fccd204dc90b44f0013e7f53b9eff8df8214.1706197297.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1706197542; c=relaxed/simple;
+	bh=LSd+p9tqQe9xvQ1Ck8fwwM0f59A6GB2VqQdcIDtb1Ro=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=V/hdSPR5ZmAwtUzLq5voaiA3wZpjQRINZ1Y3hOS85FDlHz/AtjSq+EkipTqZHVU4lqDCDSmj9vZfV0urBynAvsXmR/ufBoX09jGHah9F7BrXRHTicuup4kUijUydWZLjY3Ham0P6+ADiTwzFhS2B9MTPyS6MNi8azAtzN4Dnzbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BgRkhNAK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B20E3C43609;
+	Thu, 25 Jan 2024 15:45:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706197541;
+	bh=LSd+p9tqQe9xvQ1Ck8fwwM0f59A6GB2VqQdcIDtb1Ro=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=BgRkhNAKYFlwMND1yFknrfT0HtJYdi9oC6rkMg48B0VjthqMcgypt5Ky3bcgESdqh
+	 DWc3wb38X3OSDRlolG2YN1qdJvEejGkv1QrkBq7S61HqZ4Pky01kKskpk1BJ5otP70
+	 94nsWXGUn02RMSU2RWK6ThV/mLnziZtPyJtX+K84jxEqTD+/u77igSNiXzzgDhlGjd
+	 70U/Xo08VlWOaa9ZKhrMbaqtX9UpFUpcgYgtg8f7H+20FUtMqZ/yTz6qJg15Xxej7O
+	 z2xwp4eFVJ7WBM2Z8iX7mMrHE2jid9wznrc2Ein4gmi7/EaYF/bc4mEsoim9lbEZZl
+	 n+jZvZYnOwUyA==
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5ce07cf1e5dso3884129a12.2;
+        Thu, 25 Jan 2024 07:45:41 -0800 (PST)
+X-Gm-Message-State: AOJu0Yz5HErKUbrEKk4by9ixmD2KvqFzuIar86/F5Kc9H5hE3oJXfoIl
+	pjEHL0ExtRq2VzqAxxFOfZOCaITtNOaLQBNfVkGCWyv4psbvtn9YCsTA1u1BUgf66KYdvCSN2eH
+	vx1kngwP/upzhHuHSvr5pCT2jv9I=
+X-Google-Smtp-Source: AGHT+IEDkFC2HvIRERexWpUkVEZ2RLrKEk1HlzpxIR1iwtBWwHcQLFIsNry8fLlluicNYpj+4ciYmw8MPcuj72MuR/g=
+X-Received: by 2002:a05:6a20:432b:b0:19a:fa18:c306 with SMTP id
+ h43-20020a056a20432b00b0019afa18c306mr1213214pzk.6.1706197541181; Thu, 25 Jan
+ 2024 07:45:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240122170518.3090814-1-wens@kernel.org> <20240122170518.3090814-5-wens@kernel.org>
+ <20240123004010.59cac5ad@minigeek.lan> <CAGb2v66UmLuWyLvvULZeW6MKFauM-xAMPAO9W_TPAByXYqKCBg@mail.gmail.com>
+ <20240125150942.2535a228@donnerap.manchester.arm.com>
+In-Reply-To: <20240125150942.2535a228@donnerap.manchester.arm.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Thu, 25 Jan 2024 23:45:29 +0800
+X-Gmail-Original-Message-ID: <CAGb2v650reNd9n-epiCYs6dkbvaG9xARbyP6Rn9eDAKc-sS6+Q@mail.gmail.com>
+Message-ID: <CAGb2v650reNd9n-epiCYs6dkbvaG9xARbyP6Rn9eDAKc-sS6+Q@mail.gmail.com>
+Subject: Re: [PATCH 4/7] dt-bindings: dma: allwinner,sun50i-a64-dma: Add
+ compatible for H616
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-sound@vger.kernel.org, 
+	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-According to the R-Car V4H Series Hardware User’s Manual Rev.1.00, the
-parent clock of the Pin Function (PFC/GPIO) module clocks is the CP
-clock.
+On Thu, Jan 25, 2024 at 11:09=E2=80=AFPM Andre Przywara <andre.przywara@arm=
+.com> wrote:
+>
+> On Thu, 25 Jan 2024 22:37:34 +0800
+> Chen-Yu Tsai <wens@kernel.org> wrote:
+>
+> Hi,
+>
+> > On Tue, Jan 23, 2024 at 8:41=E2=80=AFAM Andre Przywara <andre.przywara@=
+arm.com> wrote:
+> > >
+> > > On Tue, 23 Jan 2024 01:05:15 +0800
+> > > Chen-Yu Tsai <wens@kernel.org> wrote:
+> > >
+> > > Hi,
+> > >
+> > > > From: Chen-Yu Tsai <wens@csie.org>
+> > > >
+> > > > The DMA controllers found on the H616 and H618 are the same as the =
+one
+> > > > found on the H6. The only difference is the DMA endpoint (DRQ) layo=
+ut.
+> > >
+> > > That does not seem to be entirely true: The H616 encodes the two lowe=
+st
+> > > bits in DMA_DESC_ADDR_REG differently: on the H6 they must be 0 (word
+> > > aligned), on the H616 these contain bits [33:32] of the address of th=
+e
+> > > DMA descriptor. The manual doesn't describe the descriptor format in
+> > > much detail, but ec31c5c59492 suggests that those two bits are put in
+> > > the "para" word of the descriptor.
+> >
+> > Good catch. So, same as the A100 I believe?
+>
+> Yes, that's what I got as well.
+>
+> > > The good thing it that this encoding is backwards compatible, so I
+> > > think the fallback string still holds: Any driver just implementing t=
+he
+> > > H6 encoding would be able to drive the H616.
+> > >
+> > > I think the A100 was mis-described, as mentioned here:
+> > > https://lore.kernel.org/linux-arm-kernel/29e575b6-14cb-73f1-512d-9f0f=
+934490ea@arm.com/
+> > > I think we should:
+> > > - make the A100 use: "allwinner,sun50i-a100-dma", "sun50i-h6-dma"
+> > > - make the H616 use: "allwinner,sun50i-h616-dma", "allwinner,sun50i-a=
+100-dma", "sun50i-h6-dma"
+> > >
+> > > Does that make sense?
+> >
+> > I wouldn't call that exactly backward compatible. Say the driver forgot=
+ to
+> > clear the two bits. It would work fine on the H6, but the accessed addr=
+ess
+> > could be way off on the A100 and H616.
+>
+> I don't know the exact boundaries of "compatible" here, but the H6 manual
+> pretty clearly states "The descriptor address must be word-aligned."
+> But since the A100 compatible is known and supported for a while, that
+> doesn't really matter, practically speaking, I guess.
 
-Fix this by adding the missing CP clock, and correcting the PFC parents.
+I'd say that makes the descriptor address register backward compatible,
 
-Fixes: f2afa78d5a0c0b0b ("dt-bindings: clock: Add r8a779g0 CPG Core Clock Definitions")
-Fixes: 36ff366033f0dde1 ("clk: renesas: r8a779g0: Add PFC/GPIO clocks")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-To be queued in renesas-clk for v6.9.
+> One could check how the H6 DMA controller reacts to those bits not being
+> 0, not sure if I find the time, though.
 
- drivers/clk/renesas/r8a779g0-cpg-mssr.c       | 11 ++++++-----
- include/dt-bindings/clock/r8a779g0-cpg-mssr.h |  1 +
- 2 files changed, 7 insertions(+), 5 deletions(-)
+but no idea about the parameter field in the descriptor. So for now I
+think we should just be cautious. Since as you mentioned the A100 is alread=
+y
+supported and listed separately, lets just keep that for now.
 
-diff --git a/drivers/clk/renesas/r8a779g0-cpg-mssr.c b/drivers/clk/renesas/r8a779g0-cpg-mssr.c
-index 5974adcef3eda194..0acc301221e552f7 100644
---- a/drivers/clk/renesas/r8a779g0-cpg-mssr.c
-+++ b/drivers/clk/renesas/r8a779g0-cpg-mssr.c
-@@ -22,7 +22,7 @@
- 
- enum clk_ids {
- 	/* Core Clock Outputs exported to DT */
--	LAST_DT_CORE_CLK = R8A779G0_CLK_R,
-+	LAST_DT_CORE_CLK = R8A779G0_CLK_CP,
- 
- 	/* External Input Clocks */
- 	CLK_EXTAL,
-@@ -141,6 +141,7 @@ static const struct cpg_core_clk r8a779g0_core_clks[] __initconst = {
- 	DEF_FIXED("svd2_vip",	R8A779G0_CLK_SVD2_VIP,	CLK_SV_VIP,	2, 1),
- 	DEF_FIXED("cbfusa",	R8A779G0_CLK_CBFUSA,	CLK_EXTAL,	2, 1),
- 	DEF_FIXED("cpex",	R8A779G0_CLK_CPEX,	CLK_EXTAL,	2, 1),
-+	DEF_FIXED("cp",		R8A779G0_CLK_CP,	CLK_EXTAL,	2, 1),
- 	DEF_FIXED("viobus",	R8A779G0_CLK_VIOBUS,	CLK_VIO,	1, 1),
- 	DEF_FIXED("viobusd2",	R8A779G0_CLK_VIOBUSD2,	CLK_VIO,	2, 1),
- 	DEF_FIXED("vcbus",	R8A779G0_CLK_VCBUS,	CLK_VC,		1, 1),
-@@ -232,10 +233,10 @@ static const struct mssr_mod_clk r8a779g0_mod_clks[] __initconst = {
- 	DEF_MOD("cmt1",		911,	R8A779G0_CLK_R),
- 	DEF_MOD("cmt2",		912,	R8A779G0_CLK_R),
- 	DEF_MOD("cmt3",		913,	R8A779G0_CLK_R),
--	DEF_MOD("pfc0",		915,	R8A779G0_CLK_CL16M),
--	DEF_MOD("pfc1",		916,	R8A779G0_CLK_CL16M),
--	DEF_MOD("pfc2",		917,	R8A779G0_CLK_CL16M),
--	DEF_MOD("pfc3",		918,	R8A779G0_CLK_CL16M),
-+	DEF_MOD("pfc0",		915,	R8A779G0_CLK_CP),
-+	DEF_MOD("pfc1",		916,	R8A779G0_CLK_CP),
-+	DEF_MOD("pfc2",		917,	R8A779G0_CLK_CP),
-+	DEF_MOD("pfc3",		918,	R8A779G0_CLK_CP),
- 	DEF_MOD("tsc",		919,	R8A779G0_CLK_CL16M),
- 	DEF_MOD("tsn",		2723,	R8A779G0_CLK_S0D4_HSC),
- 	DEF_MOD("ssiu",		2926,	R8A779G0_CLK_S0D6_PER),
-diff --git a/include/dt-bindings/clock/r8a779g0-cpg-mssr.h b/include/dt-bindings/clock/r8a779g0-cpg-mssr.h
-index 754c54a6eb06a46d..7850cdc62e285493 100644
---- a/include/dt-bindings/clock/r8a779g0-cpg-mssr.h
-+++ b/include/dt-bindings/clock/r8a779g0-cpg-mssr.h
-@@ -86,5 +86,6 @@
- #define R8A779G0_CLK_CPEX		74
- #define R8A779G0_CLK_CBFUSA		75
- #define R8A779G0_CLK_R			76
-+#define R8A779G0_CLK_CP			77
- 
- #endif /* __DT_BINDINGS_CLOCK_R8A779G0_CPG_MSSR_H__ */
--- 
-2.34.1
+ChenYu
 
+[...]
 
