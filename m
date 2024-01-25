@@ -1,216 +1,140 @@
-Return-Path: <devicetree+bounces-35025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468E683C157
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:53:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D7C83C161
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:55:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D0EA1C23225
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:53:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0AA83B22A8F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:55:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E780435EF1;
-	Thu, 25 Jan 2024 11:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81D0632C91;
+	Thu, 25 Jan 2024 11:55:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="l+pMp/Zc"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="LaukGkcs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40CE33CDB;
-	Thu, 25 Jan 2024 11:53:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D9C481A1;
+	Thu, 25 Jan 2024 11:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706183609; cv=none; b=XGdjenFL3lHG/aB62SrTofcanv7ay2PsXlCRIXLtHykIYQTywqjktD7HfMSkgjr905ldAP+O2MKhPYQeWp0tBpUaXrnyQWTlbH7Ioj5kk9NysZhdA4RFeNkA6LScvePOHHqsXZLZ1vONBlgyiMxxKMOaDTzPF2r3j/CtD/Rdclw=
+	t=1706183721; cv=none; b=rhHBZJnu2y3drFaih2kwuOrO3kybplYyV8mDwadIndio+xDVSJHrH8xYRFcBPbY+oiq0NPbIZ0z22ailTowuFA+OzqGKwN8InElbioSh3IuYBkRXju9OzwC4hu0Eu+wDcdsOzdndU7IIiGnZ/+ve38daapiIvO6KwbYujIfh5SU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706183609; c=relaxed/simple;
-	bh=k9VgRYeNrPHdfOrpwqwrz/D5of6TTpkE5y+OALsVfuw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=hwoqII6Byzyqq0gPvr1IqmIEpCkZbrmXWtCA+AhgQQDFE2008TJaVtXkaGNiLVAemTtlVtEgVN29w85etjy19B0wunFoUF6psawCJ9thGIsV+Mk8v7Jm2jn5/0PeqzWd/21oXfsu+RzsMDXiudI+Rd8UvoX8EJlzIC5l9hPlPhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=l+pMp/Zc; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 44BE81C0005;
-	Thu, 25 Jan 2024 11:53:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706183605;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=abQCJSKdwJXP9+/KbyZE7cBdmY2HQ+LTAyHc/830rpk=;
-	b=l+pMp/ZcEhB5G6Y86pGNxFWhkEksfB4aM2fqWyzqe8NEFX3qNkqSCsRe867m4DYlWmLb+Q
-	gz6Lz11UZmVNxhaFXhk0Ia+SLDi6ZdMzuetZ+QeZ7Vlp9YnWOUvv0E+k2ksOUQaZte2ITY
-	G7aUsDmDos4LPodEUXlSHd7/ttBgLZD24W2Hu3NPtOy6kDU1tI7+USe4hjLN1obejuUyvT
-	RHf0lb/N2prh8ELgiZdtqo5v05cpyunqXW/2eYaML8nY5Vs5l9REklaP7zOFJYaAnt6If+
-	S6NXTOj/Xkk33WMpYHGGqZplLX+a7pSTpvJT2sh75hwMy2Lt5SxM9ADokCGqkQ==
+	s=arc-20240116; t=1706183721; c=relaxed/simple;
+	bh=0/KtXWM+5DW4c3nEA6ICqAjrU+Do2pgeS89POdOEYsU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ULboprvX/U9H4zetJ4oH+ZBGrjpG+LBWevot5BO9T0KtRV8S8ZIjE+faSUtVyhbSP4Y/Y20Q0Lz4v5KBeczLwkspvQrFC1I+RJfmNM84YY/KG/HlW3hedmRDJPGrRPkBNPqoG2Hd0nCEuyh0GnhSYb24/hdLlajjxuf/+ygLhzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=LaukGkcs; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Content-Type:MIME-Version:Message-ID:Date:References:
+	In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=19ahVdd1QUjj/gfp0rYesJtgcE+kp9SEnJVob0r94EQ=; b=LaukGkcsHzUeZW5NLj7IJXgzZQ
+	ivjUU2g1KQCVPUuKm5qDxbGQvetBPb73CVDN4mQNYEnQNvrP1dRPzOV5Rs2ShqH6WrDH4BZEyD8p/
+	c81ueGK+idmgdWov8udfud6RWRhovZmbEzA2sBSF+TaAF7OMDsdP4uMM9JaYjBD38T9mOczg85XL5
+	eR8wYzvyI4Pavou9vASfNoQQ9+rzR21yrH+yXG7Gm4HDFC0Dm5S38YuF0kXQfykGaFoEL21Jxb94X
+	c5zURftVO4Ol71NqI/rRMUJJjAcSy+6/z3aRKMn9mHjj6XLzOAE92eZrHNuPZ3VkwzEmnlVKgQ2GP
+	gtD11bJw==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <esben@geanix.com>)
+	id 1rSyK9-0000LM-ID; Thu, 25 Jan 2024 12:55:13 +0100
+Received: from [185.17.218.86] (helo=localhost)
+	by sslproxy03.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <esben@geanix.com>)
+	id 1rSyK8-000MDh-Ot; Thu, 25 Jan 2024 12:55:12 +0100
+From: esben@geanix.com
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Conor Dooley <conor@kernel.org>,  devicetree@vger.kernel.org,  "David S.
+ Miller" <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub
+ Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
+ <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Alexandre Torgue <alexandre.torgue@foss.st.com>,  Giuseppe Cavallaro
+ <peppe.cavallaro@st.com>,  Jose Abreu <joabreu@synopsys.com>,
+  netdev@vger.kernel.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: net: snps,dwmac: Add
+ time-based-scheduling property
+In-Reply-To: <3adf7908-be27-4125-ae5b-6f2eb6100304@linaro.org> (Krzysztof
+	Kozlowski's message of "Thu, 25 Jan 2024 10:19:45 +0100")
+References: <b365dc6f756a3fad4dfaa2675c98f4078aba8a55.1706105494.git.esben@geanix.com>
+	<30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
+	<20240124-reptilian-icing-a95b20f123be@spud>
+	<87bk99hj7q.fsf@geanix.com>
+	<3adf7908-be27-4125-ae5b-6f2eb6100304@linaro.org>
+Date: Thu, 25 Jan 2024 12:55:12 +0100
+Message-ID: <877cjxhbkv.fsf@geanix.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 25 Jan 2024 12:53:24 +0100
-Message-Id: <CYNRLZ2XTOGY.3ANWB33IDCN2W@bootlin.com>
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Gregory
- CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
- <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v3 08/17] clk: eyeq5: add platform driver
-X-Mailer: aerc 0.15.2
-References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
- <20240123-mbly-clk-v3-8-392b010b8281@bootlin.com>
- <127fd51b-cd64-4e00-99d6-7be9b79f2dcc@linaro.org>
- <CYN33YJ10HYS.2YDXB158LFZPL@bootlin.com>
- <001993b9-ea0c-49c3-a4e5-4cea10c54082@linaro.org>
-In-Reply-To: <001993b9-ea0c-49c3-a4e5-4cea10c54082@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Authenticated-Sender: esben@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27165/Thu Jan 25 10:51:15 2024)
 
-Hi,
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-On Thu Jan 25, 2024 at 8:46 AM CET, Krzysztof Kozlowski wrote:
-> On 24/01/2024 17:41, Th=C3=A9o Lebrun wrote:
-> > Hello,
-> >=20
-> > On Wed Jan 24, 2024 at 8:05 AM CET, Krzysztof Kozlowski wrote:
-> >> On 23/01/2024 19:46, Th=C3=A9o Lebrun wrote:
-> >>> Add the Mobileye EyeQ5 clock controller driver. It might grow to add
-> >>> support for other platforms from Mobileye.
-> >>>
-> >>> It handles 10 read-only PLLs derived from the main crystal on board. =
-It
-> >>> exposes a table-based divider clock used for OSPI. Other platform
-> >>> clocks are not configurable and therefore kept as fixed-factor
-> >>> devicetree nodes.
-> >>>
-> >>> Two PLLs are required early on and are therefore registered at
-> >>> of_clk_init(). Those are pll-cpu for the GIC timer and pll-per for th=
-e
-> >>> UARTs.
-> >>>
-> >>
-> >>
-> >>> +#define OLB_PCSR1_RESET				BIT(0)
-> >>> +#define OLB_PCSR1_SSGC_DIV			GENMASK(4, 1)
-> >>> +/* Spread amplitude (% =3D 0.1 * SPREAD[4:0]) */
-> >>> +#define OLB_PCSR1_SPREAD			GENMASK(9, 5)
-> >>> +#define OLB_PCSR1_DIS_SSCG			BIT(10)
-> >>> +/* Down-spread or center-spread */
-> >>> +#define OLB_PCSR1_DOWN_SPREAD			BIT(11)
-> >>> +#define OLB_PCSR1_FRAC_IN			GENMASK(31, 12)
-> >>> +
-> >>> +static struct clk_hw_onecell_data *eq5c_clk_data;
-> >>> +static struct regmap *eq5c_olb;
-> >>
-> >> Drop these two. No file-scope regmaps for drivers. Use private contain=
-er
-> >> structures.
-> >=20
-> > I wouldn't know how to handle the two steps then. Two clocks and the cl=
-k
-> > provider are registered at of_clk_init() using CLK_OF_DECLARE_DRIVER().
+> On 25/01/2024 10:10, esben@geanix.com wrote:
+>> Conor Dooley <conor@kernel.org> writes:
+>> 
+>>> On Wed, Jan 24, 2024 at 03:33:06PM +0100, Esben Haabendal wrote:
+>>>> Time Based Scheduling can be enabled per TX queue, if supported by the
+>>>> controller.
+>>>
+>>> If time based scheduling is not supported by the controller, then the
+>>> property should not be present! The presence of a property like this
+>>> should mean that the feature is supported, using it is up to the
+>>> operating system.
+>>>
+>>> That said, why is this a property that should be in DT?
+>> 
+>> It is added to the tx-queues-config object of snps,dwmac bindings. This
+>> entire object is about configuration of the ethernet controller, which
+>> is also what the purpose of the snps,time-based-scheduling.
+>> So yes, it is not specifically about describing what the hardware is
+>> capable of, but how the hardware is configured. It is a continuation of
+>> the current driver design.
+>> 
+>>> If support is per controller is it not sufficient to use the
+>>> compatible to determine if this is supported?
+>> 
+>> Are you suggesting to include the mapping from all supported compatible
+>> controllers to which TX queues supports TBS in the driver code?  What
+>> would the benefit of that compared to describing it explicitly in the
+>> binding?
 >
-> Right, if some clocks have to be early, CLK_OF_DECLARE_DRIVER needs
-> static ones. But your commit subject says it is a platform driver and
-> all other pieces of this code is rather incompatible with this approach.
+> The benefit is complying with DT bindings rules, saying that bindings
+> describe hardware pieces, not drivers.
 
-That is my bad on the commit subject. What do you refer to by "all other
-pieces of this code is rather incompatible with this approach"?
+Understood.
 
-I've tried to minimise the use of static variables. Therefore as soon as
-the probe is started, we switch to the usual way of using a private
-struct that contains our info.
-
+>> And for the purpose of the above question, I am talking about it as if
+>> the binding was describing the hardware capability and not the
+>> configuration.
 >
-> Do not use CLK_OF_DECLARE_DRIVER for cases where you have dependencies
-> because it forces you to manually order initcalls, which is exactly what
-> we do not want.
+> "if"? You wrote it is for driver design...
 
-What should I be using? I got confirmation from Stephen that this
-mixture of CLK_OF_DECLARE_DRIVER() + platform driver is what I should
-be using as review in my V1.
+If you look at the current driver, all the devicetree bindings under
+rx-queues-config and tx-queues-config are violating the DT binding
+rules.
+Cleaning up that requires quite some work and I guess will break
+backwards compatibility to some extend.
 
-https://lore.kernel.org/lkml/fa32e6fae168e10d42051b89197855e9.sboyd@kernel.=
-org/
+But that is another story.
 
->
->
-> > The rest is at platform device probe. Without a static, there are no
-> > way to pass the struct clk_hw_onecell_data from one to the other.
-> >=20
-> > I've looked at all clock drivers that do CLK_OF_DECLARE_DRIVER() and
-> > register a platform driver.
->
-> Even though the code is correct, using arguments "other did it" will not
-> work. You want to say that you implement legacy, poor code because you
-> saw legacy, poor code?
+I will respin the patch according to Conor's suggestion.
 
-Yes I see what you mean. It's just that this is not the sort of things
-that are documented. And learning The Right Way(TM) when you don't know
-it can only be done by looking at existing stuff. I'm being exhaustive
-to avoid basing my approach on one old-school driver that is using the
-wrong approach.
-
-> >> ...
-> >>
-> >>> +static void __init eq5c_init(struct device_node *np)
-> >>> +{
-> >>> +	struct device_node *parent_np =3D of_get_parent(np);
-> >>> +	int i, ret;
-> >>> +
-> >>> +	eq5c_clk_data =3D kzalloc(struct_size(eq5c_clk_data, hws, EQ5C_NB_C=
-LKS),
-> >>> +				GFP_KERNEL);
-> >>> +	if (!eq5c_clk_data) {
-> >>> +		ret =3D -ENOMEM;
-> >>> +		goto err;
-> >>> +	}
-> >>> +
-> >>> +	eq5c_clk_data->num =3D EQ5C_NB_CLKS;
-> >>> +
-> >>> +	/*
-> >>> +	 * Mark all clocks as deferred. We register some now and others at
-> >>> +	 * platform device probe.
-> >>> +	 */
-> >>> +	for (i =3D 0; i < EQ5C_NB_CLKS; i++)
-> >>> +		eq5c_clk_data->hws[i] =3D ERR_PTR(-EPROBE_DEFER);
-> >>> +
-> >>> +	/*
-> >>> +	 * Currently, if OLB is not available, we log an error, fail init t=
-hen
-> >>
-> >> How it could be not available? Only with broken initcall ordering. Fix
-> >> your initcall ordering and then simplify all this weird code.
-> >=20
-> > of_syscon_register() and regmap_init_mmio() lists many reasons for
-> > it to not be available. Am I missing something?
->
-> Yes, initcall ordering.
-
-You said the regmap can only not be available with broken initcall
-ordering. I say that is not the only reason.
-
-About initcall, I've removed those that used initcall in the three
-drivers I'm using except this clk one that requires two clocks at
-of_clk_init().
-
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+/Esben
 
