@@ -1,163 +1,146 @@
-Return-Path: <devicetree+bounces-34893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BDED83B966
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 07:06:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33EED83B96E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 07:10:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9461B24869
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 06:06:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8152B22966
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 06:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A0EE3D7A;
-	Thu, 25 Jan 2024 06:05:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542AF1097D;
+	Thu, 25 Jan 2024 06:10:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="nhfsBEwV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J62KC7sf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2CF1118E
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 06:05:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB6A910782;
+	Thu, 25 Jan 2024 06:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706162746; cv=none; b=GFQg5m1lK3nmPjcxPIp7CGYK2s8+3viAbB7M8tuAyYv1KZFBO9EzqOSheG0gq3XxQMyjC289HOYHBxcX3z0T8YQhBJ8zVRkRnoRHhyLUj876k+gH1Y/8ciwAOKthBrO/KTzBolHE+Fl8wNoB0mjbR3Fjqk15vHa7pOzIEOwsENQ=
+	t=1706163030; cv=none; b=JBWdPurwohlpGpVZXwcQhmWL8JtONoGsd41e+pWMywjjVMlgfEl4Xb6wPwd4aYu8weDnjAZpgVzw6bxBjhInpiX0YiS+LpGC3mUrE4rTxYm1SN07x4/glFr+71l1CdLuPMnIeDOmSKqVMgvQ+tNqNuYh3B6nROABlGGkj/hEXME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706162746; c=relaxed/simple;
-	bh=Wht9+cfyMSO6oCY/3DAsC5VOfZrZkJAwCDXfPdou5B4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Q5+1m3CVThxIK/VLO6us9JvtdXQGr/LJmrFzkTGzF4xpciZoy+zPhXTJ4juhJZgj6U+S9HYywVCxQKiHv/GAk6A6KVcSlYMMgfCXm/H84p/mLrdd2z6D5pAccLEfLrjtKdplw6H4pSMZsBMsKK8W9uct+VBfP1lSJKNoLh6cZ6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=nhfsBEwV; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1706162736; x=1708754736;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Wht9+cfyMSO6oCY/3DAsC5VOfZrZkJAwCDXfPdou5B4=;
-	b=nhfsBEwVk6iu/2098D3fQGwGC65TyhgE/4hhyoVF1aTzDseviTIsi8StgRbzJV0u
-	rRyLyvgZ32smBzn0RaPFUBt+3wo0lG364ds3UPLjw8fXPG7BP/NGMXepnSs0a0YL
-	rM1mttK3C6/1shgFvoy74By7P8GuwC1Yqf0Sjp3OfgA=;
-X-AuditID: ac14000a-fbefe7000000290d-99-65b1fa3058b2
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 95.F3.10509.03AF1B56; Thu, 25 Jan 2024 07:05:36 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Thu, 25 Jan
- 2024 07:05:32 +0100
-Message-ID: <13f6edd6-f3ae-4e32-88e9-03355d78153c@phytec.de>
-Date: Thu, 25 Jan 2024 07:05:29 +0100
+	s=arc-20240116; t=1706163030; c=relaxed/simple;
+	bh=/UEVRkJILpAvaty/jsKhIC4XDoOSzKbsdAl07tMk4DA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aazjlkxVYdI+JhZUp74FY+lHu7DRGWx3zb4p52Xv/0WZgOgJqvcRtSNLgNwOBCkTQ/XzTvtrzteiK0iAStiolZm72t0+3VD+Ynu9eV7zHe40wXDWUcTfFiEnQyVKZWDEUt4eQ98BIyoLABdAQDDSzgEf9iooPo/x7J6t6Wjp/GM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J62KC7sf; arc=none smtp.client-ip=209.85.160.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-2108c7829caso2529581fac.3;
+        Wed, 24 Jan 2024 22:10:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706163028; x=1706767828; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=f5UOEcCOGayf5fE0hmDRoB6IFfHak7GXt74RM7JU47Y=;
+        b=J62KC7sfDMO4a8lnlgQKNOu6GV8YXgEtplCOM8eVvPrXzwCKWItxJVt+nc9FpFB9wn
+         IVvl4+hRfBOx6wHKkfWpZWzyn/FF2CA9trK59Wos1XN4vL8Tzo9VHReR8Og3ExcrSZ9k
+         NsVxOyvjvOGw9zpXiJKuI4sj4sYMUgKvZqhEQcNXFGp5xTa7JMluqZ2zI8v0y07ChK+s
+         s7Sksjkh5gmFfNG3xMmnvwmiqrI6vdCsEb57ToJaDvmoDskFpi29Fdx1mmzcU7ii2Pkb
+         CgtaRIR6f1RjOtjz4CT4fOnIVoTx0rBPWb20OyKIA3BSl34Yif2SxFHOtG3q45TSGASu
+         5zQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706163028; x=1706767828;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f5UOEcCOGayf5fE0hmDRoB6IFfHak7GXt74RM7JU47Y=;
+        b=CBFyegGtglkykz55+FcpJuGvJx9LNlKo8ddsabY4q7wodBzOMZuH+H2j8tD9zKgnNF
+         XrC+vqSafZ5QxVh/dA7SN7DYzduL1kEAXe3ouJVG4492h1wE6gihW80QYIlYmPnq66ZD
+         hKWO+5DpcuEhXTB0C2wCPLa5j2obGTbM9lxLykQECZ0ai0vNp4hKatP2Hf7pqbTGZT8J
+         zMUdepa9qKnYPMiqZejYzlVV25ejtwcReormwf8mbjuE0J5CkSeo4Tsr7kJ7ARIZcDO+
+         IUCb/vUvWmgYKLe9vFzZY1luq1NejudT4SvDrhxf5pEAhtNWFNhyZihMkv53RoXC6Eva
+         iX6Q==
+X-Gm-Message-State: AOJu0YxdKjUjWkby8+9+PpofbgZIk+Gapp77zLSOOiHziwNn1SlV1LNq
+	YL4PIzqeCfyCAkWve3Tu16Mr5MqD2/VpSi+JbZVMNhBCQFPZ5MRxLEGtkiZm
+X-Google-Smtp-Source: AGHT+IHxmTVll4Cf8JjrzxGvWNFM4f/G55JM2dOmVP6aW9splGnxNL/nv5pU/Vz/5Rg/XQeNyBlcuw==
+X-Received: by 2002:a05:6870:6189:b0:214:d7de:dc92 with SMTP id a9-20020a056870618900b00214d7dedc92mr154668oah.47.1706163027698;
+        Wed, 24 Jan 2024 22:10:27 -0800 (PST)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id z16-20020a544590000000b003bd9c53096csm2856540oib.31.2024.01.24.22.10.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Jan 2024 22:10:27 -0800 (PST)
+From: Chen Wang <unicornxw@gmail.com>
+To: aou@eecs.berkeley.edu,
+	chao.wei@sophgo.com,
+	conor@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	p.zabel@pengutronix.de,
+	robh+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	haijiao.liu@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	guoren@kernel.org,
+	jszhang@kernel.org,
+	inochiama@outlook.com
+Cc: Chen Wang <unicorn_wang@outlook.com>
+Subject: [PATCH v2 0/4] riscv: sophgo: add reset support for SG2042
+Date: Thu, 25 Jan 2024 14:09:47 +0800
+Message-Id: <cover.1706161530.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm64: dts: imx93: Add phyBOARD-Segin-i.MX93
- support
-Content-Language: en-US
-To: Stefan Wahren <wahrenst@gmx.net>, Mathieu Othacehe <othacehe@gnu.org>
-CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
-	<festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Li Yang
-	<leoyang.li@nxp.com>, Primoz Fiser <primoz.fiser@norik.com>, Christoph
- Stoidner <c.stoidner@phytec.de>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<upstream@lists.phytec.de>
-References: <20240122095306.14084-1-othacehe@gnu.org>
- <20240122095306.14084-4-othacehe@gnu.org>
- <537266fe-0bf7-4208-a9f3-ae27f462c6ed@phytec.de>
- <85fe8c8b-ea08-4f24-9a06-33a5678c1a0a@gmx.net>
- <7944bd80-32d7-4ac3-9c0a-806394262f1c@phytec.de>
- <08ef805a-b041-4db0-aaf7-51d5d06596ff@gmx.net>
- <008317aa-4dd1-4889-8c64-5e4396d83931@phytec.de>
- <47c79a0a-5be0-4ee8-87d4-fd03809a9664@gmx.net> <87o7da4zc1.fsf@gnu.org>
- <f2fcb4d4-b1d7-4d82-a3b0-d06c0ffd906b@gmx.net>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <f2fcb4d4-b1d7-4d82-a3b0-d06c0ffd906b@gmx.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrIIsWRmVeSWpSXmKPExsWyRpKBR9fg18ZUg21XDCzW7D3HZDH/yDlW
-	i4dX/S1WTd3JYtH34iGzxaHmA0wWmx5fY7Xo+rWS2eLyrjlsFufvbmG2ONH1kNWide8Rdou/
-	2zexWLzYIm7R/U7d4viJTmYHAY+ds+6yeyzetJ/No22amcemVZ1sHneu7WHz2Lyk3qO/u4XV
-	4/vXDaweG9/tYPLo/2vg8XmTXAB3FJdNSmpOZllqkb5dAlfGxNdLWQsOC1Y8Ov6auYHxB28X
-	IyeHhICJRENXO1MXIxeHkMBiJolti5ewQzh3GSUO98wCcjg4eAVsJN4e9gJpYBFQlXj9opMF
-	xOYVEJQ4OfMJmC0qIC9x/9YMdhBbWCBIYsPxv2wgNrOAuMStJ/OZQGwRAU+gkcvYQOYzCxxh
-	kfj6fQXUsuvMEnP+97CCVLEJqEvc2fANzOYUsJZomLiWBWKShcTiNwfZIWx5ie1v5zCD2EJA
-	9otLy1kg3pGXmHbuNTOEHSqx9ct2pgmMwrOQHDsLyVGzkIydhWTsAkaWVYxCuZnJ2alFmdl6
-	BRmVJanJeimpmxhB0SzCwLWDsW+OxyFGJg7GQ4wSHMxKIrwmphtThXhTEiurUovy44tKc1KL
-	DzFKc7AoifOu7ghOFRJITyxJzU5NLUgtgskycXBKNTD6duor5E3z2jgnOllvjfi5+xLJC3i/
-	r8v6VnKulU1H1Uj4YWyt6bVnsw5miBldP/Roueq09zZyi2RfWd44LCl4vy7kwt1LZ/IPLzfL
-	3Pr8molPYF5r22GliTZN9gw1t6u9LqsdYmCcnHXB7mvbnk+Vu4UOiLPInW79s/Hr2tXBOdP3
-	zP+i8o5TiaU4I9FQi7moOBEA0DThJ9QCAAA=
+Content-Transfer-Encoding: 8bit
+
+From: Chen Wang <unicorn_wang@outlook.com>
+
+From: Chen Wang <unicorn_wang@outlook.com>
+
+This series adds reset controller support for Sophgo SG2042 using
+reset-simple driver.
+
+Thanks,
+Chen
+
+---
+
+Changes in v2:
+  This patch series is based on v6.8-rc1.
+  - fixed some minor formatting issues.
+  Note that if you need to pass dtb check, you need to apply a patch. This
+  patch is missing in v6.8-rc1. For details, please see [2].
+
+Changes in v1:
+  The patch series is based on v6.7. You can simply review or test the
+  patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1704790558.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/MA0P287MB28228572C526C5099A8BDA2DFE7B2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM/T/#u [2]
+
+---
+
+Chen Wang (4):
+  dt-bindings: reset: sophgo: support SG2042
+  reset: sophgo: add SG2042 reset generator driver
+  riscv: dts: add reset generator for Sophgo SG2042 SoC
+  riscv: dts: add resets property for uart node
+
+ .../bindings/reset/sophgo,sg2042-reset.yaml   | 35 ++++++++
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  9 ++
+ drivers/reset/Kconfig                         |  1 +
+ drivers/reset/reset-simple.c                  |  2 +
+ drivers/reset/sophgo/Kconfig                  | 10 +++
+ .../dt-bindings/reset/sophgo,sg2042-reset.h   | 87 +++++++++++++++++++
+ 6 files changed, 144 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/sophgo,sg2042-reset.yaml
+ create mode 100644 drivers/reset/sophgo/Kconfig
+ create mode 100644 include/dt-bindings/reset/sophgo,sg2042-reset.h
 
 
-Am 24.01.24 um 18:28 schrieb Stefan Wahren:
-> Hello Mathieu,
->
-> Am 24.01.24 um 14:48 schrieb Mathieu Othacehe:
->> Hello Stefan,
->>
->>>> Defining line names should be fine. But I would still prefer to have
->>>> the muxing in an overlay bound to a specific use case.
->>> I'm fine with this. Unfortunately Mathieu dropped the line names in V5
->>> today :-(
->>>
->>> AFAIR reviewers should have 2 weeks time maximum. This was just 2 days.
->> I am sorry but it is not easy for me to deal with contradictory input. I
->> chose to remove the gpio-line-names even though it also seemed like a
->> nice addition to me. The idea was to not interfere with Phytec plans in
->> the future.
-> tbh sending v5 before the discussion between Wadim and me was finished
-> made it more complicated. Please keep in mind that some reviewers do
-> this in their spare time, so a response could take some time.
->
-> In this particular case Wadim and me agreed on a solution, so no action
-> from your side was necessary except a little bit patience.
->
-> The reason why i suggested the gpio-line-names in the first place is
-> that users doesn't need to care about different versions of the DT files
-> (except the downstream one). Changing the line names afterwards leads to
-> confusion.
->
-> So before we discuss on a v6, just a question: are on the X16 connector
-> just 2 pins muxable as GPIO? This is hard to believe.
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+-- 
+2.25.1
 
-In theory you can use more of the Pins as GPIOs. But at this point I 
-should mention that the Segin board became slightly more complicated 
-since it started to support more SoMs with different SoCs. We have 
-routings for various pins to help with the compatibility. So the naming 
-in the schematics is not really trivial. And IMO the dt should follow 
-the naming of the schematics.
-
-I would prefer to go with v5 without having any namings for now.
-
-Regards,
-Wadim
-
->
-> Best regards
->> There is no hurry and I can always restore them in a v6.
->>
->> Let me know what you think,
->>
->> Thanks,
->>
->> Mathieu
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
->
 
