@@ -1,111 +1,94 @@
-Return-Path: <devicetree+bounces-35210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED6A783C9C4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:19:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03C3783C9D0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:20:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2CC551C2472D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:19:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85E0D29580E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:20:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80878134722;
-	Thu, 25 Jan 2024 17:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E841339AC;
+	Thu, 25 Jan 2024 17:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D2HkKulG"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="gZfblozP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4D71339BD;
-	Thu, 25 Jan 2024 17:18:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34FDB1339A7;
+	Thu, 25 Jan 2024 17:19:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706203089; cv=none; b=n0VFn4TBY5a63Q0zfsSzCFqLZZnTRHpwkygdrs8uon2qU5UhxPO35stLlNNSg+fTWLGfyy8cCH3WAJvX9XzNkClsZfj6bpZSxlzBcYrU67CDPNLwk5riygQwM6iluPpSaa8zgyKDKXkAjbZ2x1ixKMbwORazKIUB9fIZOojWBb4=
+	t=1706203147; cv=none; b=YELtbdovwVAGvpZXkbnh6BN3i4WfD5xLDLIBEJ/CVFVkvMF4vxyIM6slpTumb3WD1B+vKmyEOijxKvl9zEOvsQDDlZM7Dyce3ioaXeJQ4guZ3IW73/YuAompAeUmwfMCmnjJqi4I/xwboB0+DHH8NrXBIIpCViVmIihCw2fmKNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706203089; c=relaxed/simple;
-	bh=VmrqQGWyTbOGTNQ/vAkIp69HNVkARx3sDciLeid9ZvU=;
+	s=arc-20240116; t=1706203147; c=relaxed/simple;
+	bh=ZjQiJUD24nK5yX7jLn5kVfmejt7+puip5A0lhvRJGWI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ypy2SR01OYXto7hxEStSowFDFkkbYbUJwlMLZckm0PnW2xb9ER0xLtQ4gsMJrMix4IijPbJEJOsbA0a/JeUF224+UAEeKXlHxbkRwpMN7HhPwOpPYyRcuF96KTorwdnxDEkRdgGiemLz2toO9YYrExAMM2DfsRalf0yCf+hUg3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D2HkKulG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FE2FC433C7;
-	Thu, 25 Jan 2024 17:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706203088;
-	bh=VmrqQGWyTbOGTNQ/vAkIp69HNVkARx3sDciLeid9ZvU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D2HkKulGZOJDLv1CxUoUEePIPPC22jyGmMG6KiuneZXq0/pd1BpJlwCzUgSmTWrV/
-	 R/JO5+1/nhtk15gStc7jK5j/9Q1/XcQ6iFDjFueIIt/D6jmuYCmL6vLVX/2muZDFMY
-	 xVOY6UAULY0vUoG6goSp6+BmSxcBAeKDNAvryLnS/Bq4E9BVcHW9xdeDSIieHGdR2w
-	 Karj56jxx3FtkJNQRD6N3RkOQkt2vCvHkRNdwIR9yIDstmtGDj3vxAh+OJ27K7MQ58
-	 iUkTNtQLK31/1UpBmv2VfbCBk43VbMc+qMI3BrM732hVdA0PpV6KleWQh3uTjWT4zp
-	 kMvvZNesLB/fA==
-Date: Thu, 25 Jan 2024 17:18:01 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: andi.shyti@kernel.org, arnd@arndb.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-arch@vger.kernel.org, andre.draszik@linaro.org,
-	peter.griffin@linaro.org, semen.protsenko@linaro.org,
-	kernel-team@android.com, willmcvicker@google.com
-Subject: Re: [PATCH v2 21/28] spi: s3c64xx: infer fifosize from the compatible
-Message-ID: <2086b88e-45fc-4224-b00f-0840d446d042@sirena.org.uk>
-References: <20240125145007.748295-1-tudor.ambarus@linaro.org>
- <20240125145007.748295-22-tudor.ambarus@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mVHiVt+lxklw5dm4D96sG4iYy32vyeCraSBI0iGZ+tMJU3B6IdAxdMRdmEwSdJexG/qJOQ43VgPqLEzxxlokbVC/j9lER535an2iptOu6Qsm/aq7nC/3M8IG2fEaASJE4H0yaPJmMhZNi37KwTfqRbtlGDYYvDrGQkO++WRBZGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=gZfblozP; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=SobXRVHM72b9LQv0v2wnfJmsjZXWoOULHbE1NnVnurI=; b=gZfblozPLOIAX4kP5pJhuUXXNR
+	oXH816gdCS+5KV3WLxQf4tMfJWiKyqRb9KTjxI7XM1QteKNiYWHKLIRHqUcXatVdNDvQq4R07JCiz
+	3fKd5ptruoYBJ7mXYj6MDNdEnpS67SOLXQgvy38QI65JLlui09SiOtgU7uMoIECbkEZI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rT3NO-0066c3-S5; Thu, 25 Jan 2024 18:18:54 +0100
+Date: Thu, 25 Jan 2024 18:18:54 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: Christian Marangi <ansuelsmth@gmail.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Robert Marko <robert.marko@sartura.hr>,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Sergey Ryazanov <ryazanov.s.a@gmail.com>
+Subject: Re: [net-next PATCH 0/3] net: mdio-ipq4019: fix wrong default MDC
+ rate
+Message-ID: <f8a9e328-5284-4f24-be5d-7e9804869ecd@lunn.ch>
+References: <20240124213640.7582-1-ansuelsmth@gmail.com>
+ <53445feb-a02c-4859-a993-ccf957208115@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="HgRtS/XEVb/749Yx"
-Content-Disposition: inline
-In-Reply-To: <20240125145007.748295-22-tudor.ambarus@linaro.org>
-X-Cookie: Entropy isn't what it used to be.
-
-
---HgRtS/XEVb/749Yx
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <53445feb-a02c-4859-a993-ccf957208115@quicinc.com>
 
-On Thu, Jan 25, 2024 at 02:49:59PM +0000, Tudor Ambarus wrote:
+> Hi Christian,
+> Just a gentle reminder.
+> 
+> The MDIO frequency config is already added by the following patch series.
+> https://lore.kernel.org/netdev/28c8b31c-8dcb-4a19-9084-22c77a74b9a1@linaro.org/T/#m840cb8d269dca133c3ad3da3d112c63382ec2058
 
-> Infer the FIFO size from the compatible, where all the instances of the
-> SPI IP have the same FIFO size. This way we no longer depend on the SPI
-> alias from the device tree to select the FIFO size, thus we remove the
-> dependency of the driver on the SPI alias.
+I admit this version was posted first. However, its embedded in a
+patch series which is not making much progress, and i doubt will make
+progress any time soon.
 
->  static const struct s3c64xx_spi_port_config s3c2443_spi_port_config = {
-> -	.fifo_lvl_mask	= { 0x7f },
-> +	.fifosize	= 64,
->  	.rx_lvl_offset	= 13,
->  	.tx_st_done	= 21,
->  	.clk_div	= 2,
+If you really want your version to be used, please split it out into a
+standalone patch series adding just MDIO clock-frequency support, with
+its binding, and nothing else.
 
-I'm having real trouble associating the changelog with the change here.
-This appears to be changing from specifying the mask for the FIFO level
-register to specifying the size of the FIFO and unrelated to anything to
-do with looking things up from the compatible?
-
---HgRtS/XEVb/749Yx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWyl8gACgkQJNaLcl1U
-h9DTfwf9EPYILffoosYlL9u/einpypgWGHhqhCvASqvmgmec/OFieX6W9rE9756V
-qRQKkCsaD16mHJUSvJSqEf4qwoAXGf/57d03e5ShnK7nF8eUh+gsG2nz8b2mDmIr
-2M6foetkCRim5eV4rNmsqxW8Ce+6EWrJX4y9BqxJNbxaACxa9fO9fIHAF+jnUOdU
-/Bw/4aK99kPkW8PHMsg3vpuHxzbzak0aiYvMTHVZcp8Paan0hz3KYvI6xHLllNL0
-ukoQMrnHrpOKy3ftVmNDXeefDuE0sOHQinzQsIEuIXqiRE2XKyJ+yXII+RaZ2o1b
-v87fTDNtaYqs9bH0jweNhcv62vHu1A==
-=qAfe
------END PGP SIGNATURE-----
-
---HgRtS/XEVb/749Yx--
+    Andrew
 
