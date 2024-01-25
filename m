@@ -1,174 +1,183 @@
-Return-Path: <devicetree+bounces-35192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00CA83C939
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:05:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C73EE83C944
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:06:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 290991F25A4F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:05:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7882028BA43
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF8B6141992;
-	Thu, 25 Jan 2024 16:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vOf1aFCA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECEB8144602;
+	Thu, 25 Jan 2024 16:57:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE00F141986
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 16:55:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CFFB1420DE;
+	Thu, 25 Jan 2024 16:57:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706201709; cv=none; b=N3bx3INvNtY5R09nE8i9cpOlnOyC7Lwa2cQtiU3tKxgLocZHY6SkogMNVgOSrvBwzGpwrzcdnT5IOGgsHI+lo2kHoJ/7zsBpmnsaFJMxU0gem1lj1qGDCZ4h9WN0226h1bdRqPmWxNf6SFjZeCFS1jVO77801dxE/ytlH/QbTFc=
+	t=1706201846; cv=none; b=R8jXg2RQMPi+5vkpcivmX6GvzolKilandItEJfbuzKIx/Q72+tSA5VvgESA/pxQdv8gcvve3ygS/f5uRhVkGRCWF2L4+2fialnSFb2tyWaOr7uZqqBxQiY7DOPf5GuL8JyyXZxDKUaPuba2/HugjRsN1pgCGN0tPqIBuC97mhuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706201709; c=relaxed/simple;
-	bh=Rw+Oj/BjNcnqfn7QvDWzv7ZoteAVYbGdEhGHUSoxplQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ecFzClszLR5XHzPQED10q66ukHkdsiGWUDGz0EYcN7fv90Rhu8czPo5iCb2TeqlKHCYAEyCNoZjWphLWixFHI3hqtsfcEwv+zPxqjwmEySXLXU7EmXIOhsdaeKy+cadQIOxiTOokIjghtQwvkuYEEGxXaFuRfPYWjdXdoOZshN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vOf1aFCA; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-337cf4ac600so6283558f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 08:55:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706201706; x=1706806506; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yB4jfE0/XJsodASjO1q01zoyOa02tPYQ2u4yeHlxV2k=;
-        b=vOf1aFCAGVFyR9bUCGRhcsSv9TWFF6y1INiJR7odljiQVtUoZ8+nr/UQvyj+0z6iqo
-         9mpBaOiTzZUEwdW8awz478UNCwQaAypiSk92MoSrak10skQGvJBdfu2HRvjE1yzSqbmQ
-         bdDcyoqGf13wIJd8l7R59QrSMPmE1oF4kgWH+w++g2okxNzCOv9VFDEfqMzPfwPDrqUV
-         t8LNjgsQY4KzBnG+Qk49bJ9AE4on1Y3gBMz22eLDiCjgx7MrdakUYs9LwtsOvROV0zLn
-         +LpWhpbD2xu06502tpGBsdYq21Fyt3bsgVfVxD06fIVSgvB3UxSI9WxMXIsK0LwvDRXU
-         5swg==
+	s=arc-20240116; t=1706201846; c=relaxed/simple;
+	bh=RiNRizmKhtZbovZ32UpEr84kGZN/y1z8+YDbC/izI9k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VDRM8LnROrHQAvy4W62g+ETpl47RnOW+xYwwECQbFwB5vlZ2cBlVZCixADjEYcqHpbULAuQA7rKN6Wg4Zy13u1O3CeMgLi1QoGfLaMYXhIZForG4aRbBr24ret2Hj599at8HDwVs5zxSzAI6L3QAtPE62NTpKbAh98AXF1kz3ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-6dfd973f3fdso929165a34.1;
+        Thu, 25 Jan 2024 08:57:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706201706; x=1706806506;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yB4jfE0/XJsodASjO1q01zoyOa02tPYQ2u4yeHlxV2k=;
-        b=vMvOoG0jm8UY0fbjdGe57Mmm2Gpq0WkJlIhNyLDkeQd4UZOFwamptvZgz4mbCHnyPK
-         ixENEWUZND96A6j/iHgZnoTGVMg9O3xQUcaRtekBBBfqbzs9Uwb6MYDi7yl/r4w/szLi
-         c0yHlUCtAWRgnsT3dakAFd5Ca6rzdPqvEqXvNbmB5JQqX010/D+XRfZgiasaXVfKes74
-         dorHV3lIXl+ACOmlQKHrKkoe/rnyKzG/cPJGyFmtl7HEKlkEUb7f0dz2z1w68fc2Ixhm
-         bpPPNJq3Y/TzgPX4jqDoRNNq03nF2k8w9/i66WmjCfL57XGSWnd+75fX+SkaXXgmqDQD
-         +GMw==
-X-Gm-Message-State: AOJu0Yy6iPtr4qTLQlgLxmEdxKsX90qiPjeonZWElky/Jlp4UyLfuwM6
-	oCfCZ4jfDbykS9UZT3wI2quajEWH0rHn/GM/ioZHwZpqxEx4CVCaV4XkPiO7AVA=
-X-Google-Smtp-Source: AGHT+IHleA7Y4H0hQ5T4pCCE6WJ098hqFPCRZ9zv/Lp/YDzqnFQIDqHIGMPuwk9ZPkjXATQtn6dqeQ==
-X-Received: by 2002:a05:600c:4ecd:b0:40e:622e:7449 with SMTP id g13-20020a05600c4ecd00b0040e622e7449mr23392wmq.22.1706201705917;
-        Thu, 25 Jan 2024 08:55:05 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id bs8-20020a056000070800b0033959354b59sm1940271wrb.13.2024.01.25.08.55.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jan 2024 08:55:05 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 25 Jan 2024 17:55:04 +0100
-Subject: [PATCH] arm64: dts: qcom: sm8650: Use GIC-ITS for PCIe0 and PCIe1
+        d=1e100.net; s=20230601; t=1706201844; x=1706806644;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RiNRizmKhtZbovZ32UpEr84kGZN/y1z8+YDbC/izI9k=;
+        b=lAXFQNBfG1YvpY3KaQUfgchKE8pN4jIV4NDoVxaYZx6ZhhQKCrrT5nMfygjDl1AnCF
+         VnZDht1k0tH9XPmE8bMxU+QQeoREq/kB4KTeJA1sEs6tLP14IqEOBhe+X7FOkI3RXN36
+         VglZ0A7iSaN0pCrBRuGd5Mix9QXUwuJIVfT9h5mS6z+jNFyYmZs6ruZ0Aw5q8F89LAff
+         gVpRrDzBL0gVy3JoYPzlibdOBtE03GodJtUr1XfyuY4Q0Lrt6M1s/REY4ninpxz2Xnh8
+         HmGShIb7Q/dHg289vcsxQq0HjfcAazSxRFZ2WpfFWvDLeLECBv15G8D8pWY4hBtUNTmh
+         0aPg==
+X-Gm-Message-State: AOJu0YwrfciYJaqxGX8G6bIft9Q1D2+u2h9e1+T0X7ybTmuHglnf4ZkV
+	LOL6UB1aSdP4AHSSEqwUbIjb7kfBLXUN18W/hAs9hWzFEgKkLVlh0lFnbYjgyIx1XcqHR/FsZd9
+	gfJOxqI+ZHH8gJlBP5p4wGgCkwqbMApQlRsI=
+X-Google-Smtp-Source: AGHT+IFv7QuJvr27LC9PmjbvnHxpdU8dlp8GNGoLYqLwP8M7RcYT0SM1kDKfAUAX+10ZKw5fL2gW2lvxNFcM8Kb5YgU=
+X-Received: by 2002:a05:6870:b520:b0:214:2544:bf26 with SMTP id
+ v32-20020a056870b52000b002142544bf26mr2275153oap.3.1706201844502; Thu, 25 Jan
+ 2024 08:57:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240125-topic-sm8650-upstream-pcie-its-v1-1-cb506deeb43e@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAGeSsmUC/x2NQQqDMBAAvyJ7diFJTaN+RXoIcbV7SAzZWAri3
- xt6HBhmLhAqTAJzd0GhDwsfqYHuOwhvn3ZCXhuDUWZQ2lisR+aAEsenVXhmqYV8xBy4mVVwGqw
- zwW3auwe0SC608fc/WF73/QNTQahTcAAAAA==
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3857;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=Rw+Oj/BjNcnqfn7QvDWzv7ZoteAVYbGdEhGHUSoxplQ=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlspJoGGRyEvcAaOXkVwtzoVk7+NYQoHE5INxRMVDO
- VjxpyiiJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZbKSaAAKCRB33NvayMhJ0VcQD/
- 43v9OgaZf/HPPogg7KXWahD0LDbAHVRbH++55dePgGF/NJkvVdtTbebcV3LlLUEvf04VFAcaD+NPhH
- uycaYzUqc161NRy2KavibircNqQF9fKrX3ay4z/l1db1MJxK2WgPZjzhAptZG/AbA87sQVf2mfAsnz
- UHMMhrM9dom8uQHTUk7mAbjfYeJeVgfadCB9/4hKXrF5RTgfebhm8JbI1RSsNrWmOy+qQxPGwNv6VB
- p3ORPIT4g5LVGtPq1cTg7fhLFidF+fr/D9GZTNip2oZDO8CtUEjcfC5SV+Zf2PQ21lJNrUR7j2wTNl
- 2k712xezO0lkO2aLG7Q2dNRbQ46Q8zaRvV0q5T6JkO6ijm7JYMp+yO/9VHjXaQSr2e0vJPLFuvEl+b
- vDUWDxsrFvuf1ihfW5avhzqLBiAH6i81Bh0D0KtXLzN4/Ge12j/44HAAG12fBwt0mMCtXEWYjgWEGH
- 61lkForwMQVDyYvmEyZEuF/vQ+hAed08l4sCG21Ml5OJwIqXhUPOtnxWOUDDrLVMKBH2AHbVO5YARN
- 5UjMOFht24QoxsIXnbkqPFe5yc1S8Xamh0sbVyA16a6UHCXfncZ/bJNuFil90FkqFoIcqKtn/t7lIv
- yU4IIgnK84R8rEZ7yEot9Fifwl0QUFrRUoIJ2UjHyTpUH0ADPvOFlZyt7ulw==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
+ <20240123-iio-backend-v7-4-1bff236b8693@analog.com> <CAGETcx8_0ExTG4ASb9xK-uwmubMFDx44_wUf1h3VsO8w9jJApQ@mail.gmail.com>
+ <8eae083af481441d83df02a1880e2aedf99efdfb.camel@gmail.com> <ef59aaa2a251e92d463d8983ab6eec459298c102.camel@gmail.com>
+In-Reply-To: <ef59aaa2a251e92d463d8983ab6eec459298c102.camel@gmail.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Thu, 25 Jan 2024 17:57:12 +0100
+Message-ID: <CAJZ5v0iHJpvzrNSB4XEYxbTN+kQ6G_NXYrK4Z17WiFOTYDbm9w@mail.gmail.com>
+Subject: Re: [PATCH v7 4/9] driver: core: allow modifying device_links flags
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: Saravana Kannan <saravanak@google.com>, nuno.sa@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Both PCIe0 and PCIe1 controllers are capable of signalling the MSIs
-received from endpoint devices to the CPU using GIC-ITS MSI controller.
-Add support for it.
+On Thu, Jan 25, 2024 at 4:31=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.com=
+> wrote:
+>
+> On Thu, 2024-01-25 at 09:14 +0100, Nuno S=C3=A1 wrote:
+> >
+> > Hi Saravana,
+> >
+> > Thanks for your feedback,
+> >
+> > On Wed, 2024-01-24 at 19:21 -0800, Saravana Kannan wrote:
+> > > On Tue, Jan 23, 2024 at 7:14=E2=80=AFAM Nuno Sa via B4 Relay
+> > > <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> > > >
+> > > > From: Nuno Sa <nuno.sa@analog.com>
+> > > >
+> > > > If a device_link is previously created (eg: via
+> > > > fw_devlink_create_devlink()) before the supplier + consumer are bot=
+h
+> > > > present and bound to their respective drivers, there's no way to se=
+t
+> > > > DL_FLAG_AUTOREMOVE_CONSUMER anymore while one can still set
+> > > > DL_FLAG_AUTOREMOVE_SUPPLIER. Hence, rework the flags checks to allo=
+w
+> > > > for DL_FLAG_AUTOREMOVE_CONSUMER in the same way
+> > > > DL_FLAG_AUTOREMOVE_SUPPLIER is done.
+> > >
+> > > Curious, why do you want to set DL_FLAG_AUTOREMOVE_CONSUMER?
+> > > Especially if fw_devlink already created the link? You are effectivel=
+y
+> > > trying to delete the link fw_devlink created if any of your devices
+> > > unbind.
+> > >
+> >
+> > Well, this is still useful in the modules case as the link will be rela=
+xed
+> > after
+> > all devices are initialized and that will already clear AUTOPROBE_CONSU=
+MER
+> > AFAIU. But, more importantly, if I'm not missing anything, in [1], fw_d=
+evlinks
+> > will be dropped after the consumer + supplier are bound which means I
+> > definitely
+> > want to create a link between my consumer and supplier.
+> >
+>
+> Ok, so to add a bit more on this, there are two cases:
+>
+> 1) Both sup and con are modules and after boot up, the link is relaxed an=
+d thus
+> turned into a sync_state_only link. That means the link will be deleted a=
+nyways
+> and AUTOPROBE_CONSUMER is already cleared by the time we try to change th=
+e link.
+>
+> 2) The built-in case where the link is kept as created by fw_devlink and =
+this
+> patch effectively clears AUTOPROBE_CONSUMER.
+>
+> Given the above, not sure what's the best option. I can think of 4:
+>
+> 1) Drop this patch and leave things as they are. DL_FLAG_AUTOREMOVE_CONSU=
+MER is
+> pretty much ignored in my call but it will turn the link in a MANAGED one=
+ and
+> clear SYNC_STATE_ONLY. I could very well just pass 0 in the flags as
+> DL_FLAG_AUTOREMOVE_CONSUMER is always ignored;
+>
+> 2) Rework this patch so we can still change an existing link to accept
+> DL_FLAG_AUTOREMOVE_CONSUMER (in the modules case for example).
+>
+> However, instead of clearing AUTOPROBE_CONSUMER, I would add some checks =
+so if
+> flags have one of DL_FLAG_AUTOREMOVE_SUPPLIER or DL_FLAG_AUTOREMOVE_CONSU=
+MER and
+> AUTOPROBE_CONSUMER is already set, we ignore them. In fact, right now, I =
+think
+> one could pass DL_FLAG_AUTOREMOVE_SUPPLIER and link->flags ends ups with
+> AUTOREMOVE_SUPPLIER | AUTOPROBE_CONSUMER which in theory is not allowed..=
+.
 
-The GIC-ITS MSI implementation provides an advantage over internal MSI
-implementation using Locality-specific Peripheral Interrupts (LPI) that
-would allow MSIs to be targeted for each CPU core.
+No, because DL_FLAG_AUTOREMOVE_SUPPLIER is only added to the link
+flags if DL_FLAG_AUTOREMOVE_CONSUMER is already set in there and the
+former replaces the latter.
 
-Like SM8450 & SM8550, the IDs are swapped, but works fine on PCIe0 and PCIe1.
+Now, DL_FLAG_AUTOREMOVE_CONSUMER cannot be set in the link flags if
+AUTOPROBE_CONSUMER is set in there.
 
-WiFi PCIe Device on SM8650-QRD using GIC-ITS:
-159:          0          0          0          0          0          0          0          0   ITS-MSI   0 Edge      PCIe PME, aerdrv
-167:          0          4          0          0          0          0          0          0   ITS-MSI 524288 Edge      bhi
-168:          0          0          4          0          0          0          0          0   ITS-MSI 524289 Edge      mhi
-169:          0          0          0         34          0          0          0          0   ITS-MSI 524290 Edge      mhi
-170:          0          0          0          0          3          0          0          0   ITS-MSI 524291 Edge      ce0
-171:          0          0          0          0          0          2          0          0   ITS-MSI 524292 Edge      ce1
-172:          0          0          0          0          0          0        806          0   ITS-MSI 524293 Edge      ce2
-173:          0          0          0          0          0          0          0         76   ITS-MSI 524294 Edge      ce3
-174:          0          0          0          0          0          0          0          0   ITS-MSI 524295 Edge      ce5
-175:          0         13          0          0          0          0          0          0   ITS-MSI 524296 Edge      DP_EXT_IRQ
-176:          0          0          0          0          0          0          0          0   ITS-MSI 524297 Edge      DP_EXT_IRQ
-177:          0          0          0       5493          0          0          0          0   ITS-MSI 524298 Edge      DP_EXT_IRQ
-178:          0          0          0          0         82          0          0          0   ITS-MSI 524299 Edge      DP_EXT_IRQ
-179:          0          0          0          0          0       7204          0          0   ITS-MSI 524300 Edge      DP_EXT_IRQ
-180:          0          0          0          0          0          0        672          0   ITS-MSI 524301 Edge      DP_EXT_IRQ
-181:          0          0          0          0          0          0          0         30   ITS-MSI 524302 Edge      DP_EXT_IRQ
+> 3) Keep it as-is... This one is likely a NACK as I'm getting the feeling =
+that
+> clearing stuff that might have been created by fw_devlinks is probably a =
+no-go.
+>
+> Let me know your thoughts...
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+If the original creator of the link didn't indicate either
+DL_FLAG_AUTOREMOVE_CONSUMER, or DL_FLAG_AUTOREMOVE_SUPPLIER, they are
+expected to need the link to stay around until it is explicitly
+deleted.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 2df77123a8c7..7b3dfcb9a57b 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -2255,6 +2255,10 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			#interrupt-cells = <1>;
- 
-+			/* Entries are reversed due to the unusual ITS DeviceID encoding */
-+			msi-map = <0x0 &gic_its 0x1401 0x1>,
-+				  <0x100 &gic_its 0x1400 0x1>;
-+
- 			linux,pci-domain = <0>;
- 			num-lanes = <2>;
- 			bus-range = <0 0xff>;
-@@ -2364,6 +2368,10 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 			interrupt-map-mask = <0 0 0 0x7>;
- 			#interrupt-cells = <1>;
- 
-+			/* Entries are reversed due to the unusual ITS DeviceID encoding */
-+			msi-map = <0x0 &gic_its 0x1481 0x1>,
-+				  <0x100 &gic_its 0x1480 0x1>;
-+
- 			linux,pci-domain = <1>;
- 			num-lanes = <2>;
- 			bus-range = <0 0xff>;
+Therefore adding any of these flags for an existing link where they
+both are unset would be a mistake, because it would effectively cause
+the link to live shorter than expected by the original creator and
+that might lead to correctness issues.
 
----
-base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
-change-id: 20240125-topic-sm8650-upstream-pcie-its-94572c7f1a73
-
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
-
+Thanks!
 
