@@ -1,122 +1,101 @@
-Return-Path: <devicetree+bounces-35076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E7F983C3F3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:44:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 924D483C3FB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:45:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB7812935EE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:44:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AAC4294A72
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D01455E57;
-	Thu, 25 Jan 2024 13:44:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FDF95677D;
+	Thu, 25 Jan 2024 13:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UpLpM2Nh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rug8Utf/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D1457866;
-	Thu, 25 Jan 2024 13:44:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6888056756;
+	Thu, 25 Jan 2024 13:45:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706190261; cv=none; b=ciey6gSHVIJvQXwmv0rtDGJgO/y+RghUNkTENJxhuorWzXR+7NYUZHcL8dDFgvCQlJHbB7U1v7iVBXjn3FY9IXQdy1pDfE8Pqi1KXFyBSf3WrVQeW5WxXFe3kDFfirYyl/pSjW0t9wyCWd9zJDozq2iK7sLGYlCnnGfQNclXB/I=
+	t=1706190305; cv=none; b=iIB1B4rqSzVRmdXRDVSotCccsLNJtpt7w40sPNA1yRQ2icPpJ0VK9fBdhXa6aZG9sKvAE+oACR5h4qTlmt287ZulLNm3mGFMtRZlPQsb7dpWTcMAXf1nP+PsKqSeQ2wZzLVohk/sVBR9mVybcR82d0k1rSuI1XcxcBMBN6MlQ+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706190261; c=relaxed/simple;
-	bh=U3wRvNY2O/dctsYNoVNOBsBZpab8oQr3jJ3UTtBJXxc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VDgoYbZ9Dl7I90HSP/59dBqSQHfifcEXnRqVRrn1tPxCGvFIQxuO01XojJxWoWy54uvFLV39Y5igjSO7g94icamZI7HeXFzFb5XADkUUwrJV4hA+t2hITNSOSz3Fsr5cVVjUP0XRrgpjZ48jdmzRczafY+pJPDnFaAw62cZk9ZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UpLpM2Nh; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40PDiCGO029911;
-	Thu, 25 Jan 2024 07:44:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706190252;
-	bh=3aBB0bLA/J/XooeXP4TOiES6sNIVwzVCNgkBINyuOlQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=UpLpM2Nh4Ki+T6yGdnWiuX3ihIfMWhJ4lXTSjgS40VAeoulXsoLoq+kSwBU0yREwD
-	 cGG6o+WxERwldMesBBXQWODaHVMLm4dXh7z2c1yDz1afTA6wl5bMFcd7++ZVrk6lgf
-	 BMTSVYuGXETxkdQfZnsmZgtfYdkAOJdWguLFbGQw=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40PDiCEG017297
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 25 Jan 2024 07:44:12 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
- Jan 2024 07:44:11 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 25 Jan 2024 07:44:11 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40PDiBAf064454;
-	Thu, 25 Jan 2024 07:44:11 -0600
-Date: Thu, 25 Jan 2024 07:44:11 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Chintan Vankar <c-vankar@ti.com>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <afd@ti.com>, <srk@ti.com>, <s-vadapalli@ti.com>,
-        <r-gunasekaran@ti.com>, <danishanwar@ti.com>, <tony@atomide.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-Subject: Re: [PATCH v2 2/5] arm64: dts: ti: k3-j784s4: Add Main CPSW2G node
-Message-ID: <20240125134411.nzw7mou7cth7hh4m@postage>
-References: <20240118094454.2656734-1-c-vankar@ti.com>
- <20240118094454.2656734-3-c-vankar@ti.com>
- <20240119131810.2qg2zkb3xi4km74q@irritable>
- <51317410-ae05-45ab-a0d3-3bcb5e925122@ti.com>
+	s=arc-20240116; t=1706190305; c=relaxed/simple;
+	bh=NkGyl0Jo0whrkxO3b7LKj7C4yJ2z5Q7jS9gPgnwH+To=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TWirHiRsF9x9BInlPJbR89htS3CHJ5XVKCxw4p0Pv5No6e9DNHJCliUgEpVfd6hRH3rFDGHxiFtuuLmeQ85Gzz5pg7xMlOZmXUhxVLXGi4nSg8XWrQKvlnZ44LbBe8K8o5iQSb4NNMj6nUUw118zO84LXIrVvAI9pR5k5grbBp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rug8Utf/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59646C433C7;
+	Thu, 25 Jan 2024 13:45:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706190304;
+	bh=NkGyl0Jo0whrkxO3b7LKj7C4yJ2z5Q7jS9gPgnwH+To=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rug8Utf/w3dEQerx0wbHVZ/SWWLm4O7sohG0zDLffqrmWy1HvAKou2t+boHVJO82r
+	 +wpGR6eKbO4rXTPaejfNyYwS8RxD5FSOnymemR/CviaMKn1H6ZhtKt9RVJyexJs+MW
+	 DcK9n4RlsioLM/MRILqegUMF79BdrWHlfGqtQ2X8cBcNXjrCSfgrrrImI3ueuCg/8h
+	 iHXb0JHwoTtGos5SeeD/EylC6Yq+7hTRzfWURDCmZRRT67R7ib026siLqXYVvzH4/N
+	 PZzt51NLWtfLNpaBoE52UJui1OwWm1uMSJM9wCfXzRJERo6qQvyRr7eehDSvc/XuDY
+	 gudz9vm89sPpA==
+Date: Thu, 25 Jan 2024 13:44:58 +0000
+From: Lee Jones <lee@kernel.org>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Karel Balej <balejk@matfyz.cz>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] leds: ktd2692: move ExpressWire code to library
+Message-ID: <20240125134458.GK74950@google.com>
+References: <20240122-ktd2801-v4-0-33c986a3eb68@skole.hr>
+ <20240122-ktd2801-v4-1-33c986a3eb68@skole.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <51317410-ae05-45ab-a0d3-3bcb5e925122@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240122-ktd2801-v4-1-33c986a3eb68@skole.hr>
 
-On 15:02-20240125, Chintan Vankar wrote:
-> 
-> On 19/01/24 18:48, Nishanth Menon wrote:
-> > On 15:14-20240118, Chintan Vankar wrote:
-> > > From: Siddharth Vadapalli<s-vadapalli@ti.com>
-> > > 
-> > > J784S4 SoC has a Main CPSW2G instance of the CPSW Ethernet Switch.
-> > > 
-> > > Add the device-tree nodes for the Main CPSW2G instance and enable it.
-> > > 
-> > > Signed-off-by: Siddharth Vadapalli<s-vadapalli@ti.com>
-> > > Signed-off-by: Jayesh Choudhary<j-choudhary@ti.com>
-> > > Signed-off-by: Chintan Vankar<c-vankar@ti.com>
-> > > ---
-> > >   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   | 47 +++++++++++++++
-> > >   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 68 ++++++++++++++++++++++
-> > >   2 files changed, 115 insertions(+)
-> > Please do not mix the SoC and evm changes in the same patch.
-> Okay. I will separate them in the v3 series
-> > Also, any benefits of giving the second instance an alias?
-> 
-> Yes, there are benefits of adding an alias,
-> 
-> I will add aliases for both Main and MCU cpsw2g,
-> 
-> and post it in a future series.
+On Mon, 22 Jan 2024, Duje Mihanović wrote:
 
-If there is benefit, squash to current patch.
+> The ExpressWire protocol is shared between at least KTD2692 and KTD2801
+> with slight differences such as timings and the former not having a
+> defined set of pulses for enabling the protocol (possibly because it
+> does not support PWM unlike KTD2801). Despite these differences the
+> ExpressWire handling code can be shared between the two, so move it into
+> a library in preparation for adding KTD2801 support.
+> 
+> Suggested-by: Daniel Thompson <daniel.thompson@linaro.org>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+> ---
+>  MAINTAINERS                       |   7 +++
+>  drivers/leds/Kconfig              |   4 ++
+>  drivers/leds/Makefile             |   3 +
+>  drivers/leds/flash/Kconfig        |   2 +-
+>  drivers/leds/flash/leds-ktd2692.c | 116 +++++++++-----------------------------
+
+>  drivers/leds/leds-expresswire.c   |  68 ++++++++++++++++++++++
+>  include/linux/leds-expresswire.h  |  36 ++++++++++++
+
+Please can you separate the Expresswire addition into its own patch?
+
+>  7 files changed, 146 insertions(+), 90 deletions(-)
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Lee Jones [李琼斯]
 
