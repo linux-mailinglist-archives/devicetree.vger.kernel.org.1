@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-34994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1CBF83BEC3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:30:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0D483BEDB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:32:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62F7B1F22CB2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:30:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75BF11F25F1E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEBCD1D542;
-	Thu, 25 Jan 2024 10:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2AF1CAAE;
+	Thu, 25 Jan 2024 10:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hylMrcpu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CBXsm0L+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 073F81CFAE
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 10:28:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7451CA82
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 10:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706178504; cv=none; b=JYPtICLZ5ysxTIHiDYcijArGpg12FJ4rvBBBS/IuGJHqniUVEmrALPxnKCvdh+QJySMfqpWTjxg7BdeVO7Z6PAB22FbeyVf/l4v592OdILn5yyvnTzdIgQUF2inVaFRExLL1U7uqwG0rA3N1MqGfNo1neknsgm7gNmvOJrDpbIw=
+	t=1706178747; cv=none; b=qnB0sTyFLVbUDYoGhpEgJT6ChRbrsci6SkdXtcLAZIkqHfgTCRSyfQdGkO7wHEr+9VjcYO4nfsD0aR+3GlpPWiSEDsens1Ar/J5q79brvCy4yKqlr4Jk+FznkeRJgzNS4f/cOWKR3xfdOPBz9LHAjS7zauUxTTjNnUtxSMpeJic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706178504; c=relaxed/simple;
-	bh=1BUV/n0pld+xzfDrWvK34M5kcqqzdhpPi6FvpKMqCf4=;
+	s=arc-20240116; t=1706178747; c=relaxed/simple;
+	bh=KcbqktA/NLFYyfShbKJxdK0mA/sY4nph7E0oxaWY4sQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OvOPW6hvsqzigQ6Zksn0+P1+LBwWYusi8Wux/CScf+gEUNMh9pry1IDcs6Wp1uN0+woY79ph92bKvz6btr1jJyRkRx/d1vYA496SOp7TohTu8iuWhCckVI1UZwY7TzCK4cj2fZLC2IJoIg0XSNCJCnT0KaI2eWMl3CTIdYKcJa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hylMrcpu; arc=none smtp.client-ip=209.85.218.54
+	 In-Reply-To:Content-Type; b=VNGLPN6pvI+JQhqg3B/dItL3GYX5kiXgVpeMrca+5qzDEAGWgcPkxUwv8DY+GzXsknh17GztaCmjfURfcf11SLXAIVj5AoU9B/Ixb4+1dsukx4IipsyGbhwJ/5ZY6Ezkm5gmI45qgWfLPGcKpeyzndxGajMh861q/OzHpQnzq2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CBXsm0L+; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a314ca7852cso110708266b.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 02:28:22 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-556c3f0d6c5so7866905a12.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 02:32:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706178501; x=1706783301; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706178744; x=1706783544; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qS872QzcI9RYx6rQ9UXd6xffNXdTKVLXMYNRjv3PA84=;
-        b=hylMrcpuvfUX6gabUEJrxkHhXOYjorNn1PvkjjTmlBR8GqdkctsCx6x+u8u0q08sgH
-         sCNB1vSDXw5o/iJEMhABqEU18ioaDsIhB0314N85Ue7F4BZsUJwGqkgmFNzefHHjgJf/
-         Z7D44s83jRCmVGD8AWzbASYcMhj0v++Ry2v92ll2j+ZvE3sRFcKez/S96bitfWjGIl9C
-         fEjckCQCQmTqhbqr9J367fkao4IbnaE8eGByhErnYwpwqy/voyNkIs/C/j/1aipZZ2K/
-         hIV2Y6Ykb8YxPQY6Api7Q/TtqVABERurEXXc6GfH6dqoGjHpiXth8iS9QWIdJKlnnl2v
-         Hb4A==
+        bh=1p6PsuJqyqTGuv5vnLtdjFz7HqpTiAo5pRXyQvLiI8Q=;
+        b=CBXsm0L+Ttz93rHYV+uwRNgahBxHlbGa5oMp+Z3oM0KolS0wZq1al10reVgLjcJlg6
+         EBs/n6vARK8JAy8Zh2e/OJiD/G6hCHdlCH4JZEaXQ9hqYtJdYYnvuTgHSn/Pe9PioeQE
+         hCv3q0DuGd34dyGFr9B5DAOIrV9cJaynv5G5uYF+P2gUYqDIzQ/un9QCG03AEAybvtIz
+         gs7wqhxNYPDCBWy3HpkB9R+/ubi7EfkjFHZ1qLhn3GwyDUvKXd3Okl0yQKAD/Q6sSD0P
+         lntvP4CMMMvKZWqxC1Pm26ajwdKt4TZxkuiEuQV7ZkHcX+IWe+ZSpHN2WoC648I9p4yn
+         JOTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706178501; x=1706783301;
+        d=1e100.net; s=20230601; t=1706178744; x=1706783544;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qS872QzcI9RYx6rQ9UXd6xffNXdTKVLXMYNRjv3PA84=;
-        b=nm6HMT5K9bGFQjOOlUks/VZ0rtx7oV6e/sthOYIpCZPlI5tRhTOxp2xTHw5DbK7uiw
-         KFI2LKK3Kk5nllYSnDP8oeMkvYgpyqGPZa34uw85yKpWKMB4ha8766NNwjhVMqziACpG
-         SNaRdKOmWj9Ydj7oToZTMjKSBNleiF8gOrzxToyl8qozG9vu6TiRZcCdoETlb3e2PZkK
-         lNzYxEmbjRLuxt7CrW+LbihRar+h488e3LoDG0fj30uh7992FK3257hkhgY9I9Ods3j+
-         rGQ+xaS6xxw/3lcx27sivpC/lDHFUd30DTXvVt1ASK7wHJ4ROGYI3vPKolPvAVm4N97J
-         +VvQ==
-X-Gm-Message-State: AOJu0Yya1zhu+fY9oOdpm5cOkzxmfDIVcDekcslsjxJNsam3uSKfSpgz
-	LyihLnnB7FWTdTxpGedRF+izQelPvyluVuXgzLjRraWqlpb2NKS4IGgYcQG0wZg=
-X-Google-Smtp-Source: AGHT+IG7W1x1ChGNejBuzNVo8nbpwbtXbh1ez79+xb/HQzHaLcoMRrZt/DH19dECmI7UVZur8qmgCg==
-X-Received: by 2002:a17:907:c20e:b0:a31:fff9:30cd with SMTP id ti14-20020a170907c20e00b00a31fff930cdmr128912ejc.48.1706178501224;
-        Thu, 25 Jan 2024 02:28:21 -0800 (PST)
+        bh=1p6PsuJqyqTGuv5vnLtdjFz7HqpTiAo5pRXyQvLiI8Q=;
+        b=FyyV9n0p12rLdTN6FPZH6/2iRHa50PzrysUPYhMvOiSnoqxGBLFRyPNPxlFM9vcbfL
+         g9J3T87xrqvsKkQwbqB13a5uvGcmcgxNyEauJR+oSN0wxP28HvNtUv8pMfLttX1dYWlM
+         lvGq+EWICAVLqg6XnRAPeb4DTmKJkmQgX4oOsJweBzzJWVH11JHJgf03ZrMAFgacDdo2
+         t9p/q58CX3dU2YGdn5fN8UPOztAqVpvZj5yVnU5o1A89KXz0iCGPXBc047RZ70+t1d7P
+         /O7x0k2Pb1AQVYF4z5+afxTBkb7nIXbjmYNiZoE1Qnn1BFQ0el6ZBY1XrJ8QfCLZaJ6b
+         foyQ==
+X-Gm-Message-State: AOJu0Yz+vXeozvSupGTjBYzAC1twBmhdFXt4e6GAi2q3zq4UR+5oCY4G
+	MRV9IPvnkaNNPfi564bZ3d3WXM9odhJWnKZugTivxC2e4iDrOu3jc9YbW2KOpwc=
+X-Google-Smtp-Source: AGHT+IHiwyuBltNWm8iCxD87eZxTyLo4GrWYdBbW9KRfkjS0jY0KD3lq5pOzfH+eBn1W3TIyzeRTIQ==
+X-Received: by 2002:a17:906:29c7:b0:a31:433c:2128 with SMTP id y7-20020a17090629c700b00a31433c2128mr206355eje.167.1706178743939;
+        Thu, 25 Jan 2024 02:32:23 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id fj5-20020a1709069c8500b00a318504ecadsm386588ejc.10.2024.01.25.02.28.19
+        by smtp.gmail.com with ESMTPSA id vw16-20020a170907a71000b00a2fc36776a7sm891684ejc.19.2024.01.25.02.32.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 02:28:20 -0800 (PST)
-Message-ID: <cc01d34f-97f4-499b-963f-77204055faa6@linaro.org>
-Date: Thu, 25 Jan 2024 11:28:19 +0100
+        Thu, 25 Jan 2024 02:32:23 -0800 (PST)
+Message-ID: <dc9773aa-690f-47b5-b60a-a79c1e2dbaf2@linaro.org>
+Date: Thu, 25 Jan 2024 11:32:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,25 +75,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: nuvoton,npcm845: Drop redundant
- type for "slew-rate"
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: mt6360-tcpc: Drop
+ interrupt-names
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>,
- Charles Keepax <ckeepax@opensource.cirrus.com>,
- Richard Fitzgerald <rf@opensource.cirrus.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Avi Fishman <avifishman70@gmail.com>,
- Tomer Maimon <tmaimon77@gmail.com>, Tali Perry <tali.perry1@gmail.com>,
- Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
- Benjamin Fair <benjaminfair@google.com>,
- =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
- patches@opensource.cirrus.com
-Cc: alsa-devel@alsa-project.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org
-References: <20240124190106.1540585-1-robh@kernel.org>
- <20240124190106.1540585-2-robh@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org
+Cc: chunfeng.yun@mediatek.com, gregkh@linuxfoundation.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com, linux@roeck-us.net,
+ heikki.krogerus@linux.intel.com, cy_huang@richtek.com,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
+ <20240119-eldest-discharge-e2d3812be0a9@spud>
+ <12b7b339-498b-45c1-bc5e-05e07660aefa@collabora.com>
+ <20240123-procurer-jumbo-ebbec485505d@spud>
+ <4fdbc3d8-3d44-4c2c-aae6-daa0b431e1c9@collabora.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -139,19 +137,48 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240124190106.1540585-2-robh@kernel.org>
+In-Reply-To: <4fdbc3d8-3d44-4c2c-aae6-daa0b431e1c9@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/01/2024 20:01, Rob Herring wrote:
-> pincfg-node.yaml already defines the type for "slew-rate", so drop the
-> type from the nuvoton,npcm845-pinctrl binding.
+On 24/01/2024 09:48, AngeloGioacchino Del Regno wrote:
+> Il 23/01/24 18:14, Conor Dooley ha scritto:
+>> On Mon, Jan 22, 2024 at 11:32:30AM +0100, AngeloGioacchino Del Regno wrote:
+>>> Il 19/01/24 17:32, Conor Dooley ha scritto:
+>>>> On Fri, Jan 19, 2024 at 10:41:04AM +0100, AngeloGioacchino Del Regno wrote:
+>>>>> This IP has only one interrupt, hence interrupt-names is not necessary
+>>>>> to have.
+>>>>> Since there is no user yet, simply remove interrupt-names.
+>>>>
+>>>> I'm a bit confused chief. Patch 2 in this series removes a user of this
+>>>> property from a driver, so can you explain how this statement is true?
+>>>>
+>>>> Maybe I need to drink a few cans of Monster and revisit this patchset?
+>>>>
+>>>
+>>> What I mean with "there is no user" is that there's no device tree with any
+>>> mt6360-tcpc node upstream yet, so there is no meaningful ABI breakage.
+>>> Different story would be if there was a device tree using this already, in
+>>> which case, you can make a required property optional but not remove it.
+>>
+>> Not every devicetree lives within the kernel.. If the driver is using
+>> it, I'm not inclined to agree that it should be removed.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+> I get the point, but as far as I remember, it's not the first time that this
+> kind of change is upstreamed.
+> 
+> I'm fine with keeping things as they are but, since my intention is to actually
+> introduce an actual user of this binding upstream, and that actually depends on
+> if this change is accepted or not (as I have to know whether I can omit adding
+> the interrupt-names property or not)....
+> 
+> ....may I ask for more feedback/opinions from Rob and/or Krzk?
 
+Driver is the user and this is an old binding (released!), thus there
+can be out-of-kernel users already.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Minor cleanup is not really a reason to affect ABI. You could deprecate
+it, though. Driver change is fine.
 
 Best regards,
 Krzysztof
