@@ -1,297 +1,160 @@
-Return-Path: <devicetree+bounces-35318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9DA483CF3B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 23:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7764983CF44
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 23:25:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5830A1F222E4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:19:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A2771F21148
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F97C13AA4D;
-	Thu, 25 Jan 2024 22:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A2E13B786;
+	Thu, 25 Jan 2024 22:25:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="eyt0jOaE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OzAIjlk7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511F4130E3C;
-	Thu, 25 Jan 2024 22:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C2D1350CE
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 22:25:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706221184; cv=none; b=PvMdxzm5WUS2VJPAldA/l/xC8wDr8gZhJefY6i1G6/ZHD+wbvSW0BcepcPDdC4XJG11ITBVdWAcAXQe7nXKM6VS1GhOVXHm+xtIrdqab3MYmHVQW9In7Jo24O9prhqOcpPmvQ/yPkb/rmzwN8K6XYs3kvtu7RXMaPcRJJD7mzMw=
+	t=1706221504; cv=none; b=VVhYGAnk45EYgahL3ODvVNb3UP3wEZ9zpHPjzBZebvyGk42CFn6SDyvLWUCp83T+3IHBHaSio5rZy6Ra1DPOoq+zMMqPUeU9lebin0CFUEIXO9RTNvD4O2jTBc164WHwsmHepjxunC2W8wA/kW712SFqxXYxWok/etK4f9T/57M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706221184; c=relaxed/simple;
-	bh=d38WnNQvNhLYVOelkDEd5MQzIBOLr526Ysbk5Qc+buQ=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Ieblc2XBwQKWthLecbQ1+u42fSC6vsjaOc5Xwb1nQgdUfVS0gkQq5HZ4x0TMhXf0K2Lf7unMW5QTohBtVi+ttR2MPvZZssyi06ze//KZW//hYxiNYFNaMS2Fr7jtrk266WLjt7ARndG+etSVNI3EyB2T+zgrKYhTTaImcssWESI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=eyt0jOaE; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1706221504; c=relaxed/simple;
+	bh=ZG1tB5kx8b26egBLx0eNurCR3uXvicaFKUPIGtwPFFM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iksvpNlpbyFM+l/fGRMOCoe4obiwmB5qtWYmeOSEB8oQ/bqywogKTR7Db65Gs8BioTPSCnsFp/J3XggaI0VoSzXV03ltdstB9tWmIwgPEA3QxlA1ReSvvTU6s6Ikkk24g6dM90x419RX8zglhKpedsqlRzy4wu62PRhovhw2IXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OzAIjlk7; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51025cafb51so50816e87.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 14:25:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706221501; x=1706826301; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PnHxRA6UeYz2yws2MprKM/M5YmL3to/A8lLiCFE7s+Q=;
+        b=OzAIjlk7jfjD6FRi/YJ4ePwplGe/0TWSyYhMER5ux8oOt6G/fmlWk+0mVHQx1FAxOS
+         P/sa91gCQYc88VGuvDMewTgcFWtLT4TZqyOAvZGo/1OOgQhVy94RHa9s2oxC4MYR8pLt
+         IdPw3Qmnqh3ts3jWSKOV6fP3AqgVHTz0TGY4g6ZFoh9qLvBJBhcCV99xfUT7Hl5RiYxv
+         1YALPrLfPnz5yr2vzlNTRnW16TYzYk4i9OL72KaGaLNIqS2+cIMUR0qCB8RYiZplGNTp
+         7Y6NfyujYAM7c1MuUINZbVBWYbimTdZtKJrNjpZJmKE461uacss0gLtdhmKcLKsDIRKz
+         eYyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706221501; x=1706826301;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PnHxRA6UeYz2yws2MprKM/M5YmL3to/A8lLiCFE7s+Q=;
+        b=vZa6BeV8oXsNiA19y7p74qJmVEiHpl2p4FvAs3CysnSBR82ezXbtWh2gDIvWnOBORO
+         qi0e+TJf5nu8OGYQ/g4Yc427eBw3I12T+2dinEZs2xU5fU0TxTWOIEU7iEXsPArlxl8+
+         AasreXsjk3Uw93cJv1yLTFdjtN6lpGbqoiHfsLnWfB2Ium2Btkq7+aCKCdfDy+iGx/A7
+         wHv5vTJVovl99ryE5OqNv86fMYbfoWjqaVWDfKhuf2Wl/M5YAZk+N3nJQXVTNLf9lYpq
+         tk4Wbsp0mL/Rwyi5MeM1/mMeb4OsdIvPKbnWi1ailgQeuNxTCDdy7X0q1EkwocwBsCbr
+         e8cQ==
+X-Gm-Message-State: AOJu0YywT+26+qLk0WzdynmVUKpqT6nYRJwbl/fZzknvrhmicUnPLcu5
+	EdelJsCndljctpa4jzpFUlgjfujvtu4FySkkiJs8Ldq2qfP9UORyYcuR9QoG2Wk=
+X-Google-Smtp-Source: AGHT+IHFHx1hqcIW+TTLcRLrBkrqSvADlhOQQRVbxmAJZZ0FiUTvCtUwZug1+XEzJ3XZFOgWAvpNrQ==
+X-Received: by 2002:ac2:5ded:0:b0:510:171a:40c4 with SMTP id z13-20020ac25ded000000b00510171a40c4mr306346lfq.6.1706221500675;
+        Thu, 25 Jan 2024 14:25:00 -0800 (PST)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id bi28-20020a0565120e9c00b00510220e251csm111794lfb.47.2024.01.25.14.24.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Jan 2024 14:25:00 -0800 (PST)
+Message-ID: <d576e655-5d00-44ff-9405-0fceaa2d3935@linaro.org>
+Date: Fri, 26 Jan 2024 00:24:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1706221177;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bzRBY22pMxg+4h3uegQXsyfdNf8+dTMvBpIgXoWqSig=;
-	b=eyt0jOaEsijExn+j088mTxQDy9lXfFJjPxpYQdEj9EbDxTGKHRwvUcuQF1id8O6cwASHXz
-	GfOj6eUOQ9wnlcooyjzUpzIEQIVlsGaYMIQdBgJyqGoW/rMa8lrVKAkNCsK91AxCbm2+3r
-	+PBCwz67BWEZ6Mwd+lRmfhPGzfOsxZ6p/PI9pkfHBKlMLQ80ThSsywTPmimowLHX0PfRsh
-	O7AP5je7EUg3U64kk99NEoZtPYR5ObXlvQgROCNJCFtvgVDx9r4wy7pH32v12/fNCK7qMt
-	m9f1stk72WwOMvRBz/BimKw1B4Dt388YHj5c9Btq7Fo++nhQZ5PFcasE0MssnA==
-Date: Thu, 25 Jan 2024 23:19:35 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/2] arm64: dts: qcom: msm8953: Add GPU IOMMU
+Content-Language: en-GB
+To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vladimir Lypak <vladimir.lypak@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] arm64: dts: rockchip: enable built-in thermal
- monitoring on rk3588
-In-Reply-To: <CABjd4Yz3RTeog0gvYaSK3A5H8NzQpYeqmjRWN1QDHjVPG9qTpA@mail.gmail.com>
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-2-5879275db36f@gmail.com>
- <245f5692-be30-4216-8b13-988092793732@linaro.org>
- <CABjd4Yz3RTeog0gvYaSK3A5H8NzQpYeqmjRWN1QDHjVPG9qTpA@mail.gmail.com>
-Message-ID: <55aa69e8b9fb0868091e4b2651a99beb@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20240125-msm8953-gpu-v1-0-f6493a5951f3@z3ntu.xyz>
+ <20240125-msm8953-gpu-v1-1-f6493a5951f3@z3ntu.xyz>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20240125-msm8953-gpu-v1-1-f6493a5951f3@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 2024-01-25 09:26, Alexey Charkov wrote:
-> On Thu, Jan 25, 2024 at 1:56 AM Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
->> 
->> On 24/01/2024 21:30, Alexey Charkov wrote:
->> > Include thermal zones information in device tree for rk3588 variants
->> 
->> There is an energy model for the CPUs. But finding out the sustainable
->> power may be a bit tricky. So I suggest to remove everything related 
->> to
->> the power allocator in this change and propose a dedicated change with
->> all the power configuration (which includes proper k_p* coefficients 
->> to
->> be set from userspace to have a flat mitigation figure).
->> 
->> That implies removing the "contribution" properties in this 
->> description.
+On 25/01/2024 23:56, Luca Weiss wrote:
+> From: Vladimir Lypak <vladimir.lypak@gmail.com>
 > 
-> Alright, I'll just drop those "contribution" properties, thanks!
+> Add the IOMMU used for the GPU on MSM8953.
 > 
->> Some comments below but definitively this version is close to be ok.
+> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
+> ---
+>   arch/arm64/boot/dts/qcom/msm8953.dtsi | 31 +++++++++++++++++++++++++++++++
+>   1 file changed, 31 insertions(+)
 > 
-> Yay! :)
-> 
->> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> > ---
->> >   arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 165 ++++++++++++++++++++++++++++++
->> >   1 file changed, 165 insertions(+)
->> >
->> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > index 36b1b7acfe6a..131b9eb21398 100644
->> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> > @@ -10,6 +10,7 @@
->> >   #include <dt-bindings/reset/rockchip,rk3588-cru.h>
->> >   #include <dt-bindings/phy/phy.h>
->> >   #include <dt-bindings/ata/ahci.h>
->> > +#include <dt-bindings/thermal/thermal.h>
->> >
->> >   / {
->> >       compatible = "rockchip,rk3588";
->> > @@ -2228,6 +2229,170 @@ tsadc: tsadc@fec00000 {
->> >               status = "disabled";
->> >       };
->> >
->> > +     thermal_zones: thermal-zones {
->> > +             /* sensor near the center of the whole chip */
->> > +             package_thermal: package-thermal {
->> > +                     polling-delay-passive = <0>;
->> > +                     polling-delay = <0>;
->> > +                     thermal-sensors = <&tsadc 0>;
->> > +
->> > +                     trips {
->> > +                             package_crit: package-crit {
->> > +                                     temperature = <115000>;
->> > +                                     hysteresis = <0>;
->> > +                                     type = "critical";
->> > +                             };
->> > +                     };
->> > +             };
->> > +
->> > +             /* sensor between A76 cores 0 and 1 */
->> > +             bigcore0_thermal: bigcore0-thermal {
->> > +                     polling-delay-passive = <20>;
->> 
->> 20ms seems very short, is this value on purpose? Or just picked up
->> arbitrarily?
-> 
-> Frankly, I simply used the value that Radxa's downstream DTS sets for
-> my board. 100ms seem to work just as well.
+> diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> index dcb5c98b793c..91d083871ab0 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
+> @@ -1046,6 +1046,37 @@ mdss_dsi1_phy: phy@1a96400 {
+>   			};
+>   		};
+>   
+> +		gpu_iommu: iommu@1c48000 {
 
-I think that 100 ms should be just fine (and should lower the resulting
-CPU usage a bit), especially because the resolution of the TSADCs is
-quite low at 1 oC, according to the RK3588 TRM.  If the resolution were
-higher, sampling the temperatures more often might make more sense.
+Nit: most of the platforms use the adreno_smmu label. But maybe the 
+msm-iommu vs arm-smmu makes difference here.
 
->> If it is possible, perhaps you should profile the temperature of these
->> thermal zones (CPUs ones). There is a tool in
->> <linuxdir>/tools/thermal/thermometer to do that.
->> 
->> You can measure with 10ms sampling rate when running for instance
->> dhrystone pinned on b0 and b1, then on b2 and b3. And finally on the
->> small cluster.
+Nevertheless:
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+> +			compatible = "qcom,msm8953-iommu", "qcom,msm-iommu-v2";
+> +			ranges = <0 0x01c48000 0x8000>;
+> +
+> +			clocks = <&gcc GCC_OXILI_AHB_CLK>,
+> +				 <&gcc GCC_BIMC_GFX_CLK>;
+> +			clock-names = "iface", "bus";
+> +
+> +			power-domains = <&gcc OXILI_CX_GDSC>;
+> +
+> +			qcom,iommu-secure-id = <18>;
+> +
+> +			#address-cells = <1>;
+> +			#iommu-cells = <1>;
+> +			#size-cells = <1>;
+> +
+> +			/* gfx3d_user */
+> +			iommu-ctx@0 {
+> +				compatible = "qcom,msm-iommu-v2-ns";
+> +				reg = <0x0000 0x1000>;
+> +				interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+> +
+> +			/* gfx3d_secure */
+> +			iommu-ctx@2000 {
+> +				compatible = "qcom,msm-iommu-v2-sec";
+> +				reg = <0x2000 0x1000>;
+> +				interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
+> +			};
+> +		};
+> +
+>   		apps_iommu: iommu@1e20000 {
+>   			compatible = "qcom,msm8953-iommu", "qcom,msm-iommu-v1";
+>   			ranges = <0 0x01e20000 0x20000>;
 > 
-> It seems tricky to isolate the effects from just one of the CPU
-> clusters, as their individual thermal outputs are not that high.
-> 
-> For my testing I disabled the fan (but didn't remove the heatsink to
-> avoid wasting the thermal interface tape), and tried loading CPUs with
-> stress-ng. Here are the observations:
->  - Little cores alone stressed with 4 threads pegged to them with
-> taskset never reach the throttling temperature (85C), and balance out
-> around 60C
->  - Either of the big core clusters stressed individually with 2
-> threads pegged to them with taskset never reach the throttling
-> temperature either
->  - Four big cores with 4 threads heat up very slowly (>30 minutes to
-> reach throttling temperature, I didn't have enough patience to let
-> them actually reach it - maybe they never do)
->  - Eight cores with 8 threads heat up to the throttling temperature
-> within ~5 minutes (again, with the fan off), and then, as soon as just
-> one of the big core clusters gets throttled, the temperature of all
-> cores balances out just below the throttling threshold. In my
-> observation cores 6,7 go from 2.4GHz down to 1.8GHz while the rest
-> stay at their respective top performance states (2.4GHz for big cores
-> 4,5 and 1.8GHz for little cores 0-3)
-> 
-> Adding to it the fact that the temperature measurement resolution is
-> not very granular (almost 1C) it's somewhat difficult to estimate how
-> fast throttling action on a single cluster really brings its
-> temperature within bounds, as they all affect each other at relevant
-> temperature-load combinations. Perhaps it means that too granular
-> polling doesn't add much value.
-> 
->> But if you don't have spare time and 20 is ok for you. Then it is fine
->> for me too.
-> 
-> I guess I'll go for 100 as other upstream Rockchip .dtsi's do, given
-> all of the above. Thanks for pointing this out!
-> 
->> Some nits below.
->> 
->> > +                     polling-delay = <0>;
->> > +                     thermal-sensors = <&tsadc 1>;
->> > +
->> > +                     trips {
->> > +                             bigcore0_alert0: bigcore0-alert0 {
->> > +                                     temperature = <75000>;
->> > +                                     hysteresis = <2000>;
->> > +                                     type = "passive";
->> > +                             };
->> > +                             bigcore0_alert1: bigcore0-alert1 {
->> > +                                     temperature = <85000>;
->> > +                                     hysteresis = <2000>;
->> > +                                     type = "passive";
->> > +                             };
->> > +                             bigcore0_crit: bigcore0-crit {
->> > +                                     temperature = <115000>;
->> > +                                     hysteresis = <0>;
->> > +                                     type = "critical";
->> > +                             };
->> > +                     };
->> > +                     cooling-maps {
->> > +                             map0 {
->> > +                                     trip = <&bigcore0_alert1>;
->> > +                                     cooling-device =
->> > +                                             <&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> > +                                             <&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->> > +                                     contribution = <1024>;
->> > +                             };
->> > +                     };
->> > +             };
->> > +
->> > +             /* sensor between A76 cores 2 and 3 */
->> > +             bigcore2_thermal: bigcore2-thermal {
->> > +                     polling-delay-passive = <20>;
->> > +                     polling-delay = <0>;
->> > +                     thermal-sensors = <&tsadc 2>;
->> > +
->> > +                     trips {
->> > +                             bigcore2_alert0: bigcore2-alert0 {
->> > +                                     temperature = <75000>;
->> > +                                     hysteresis = <2000>;
->> > +                                     type = "passive";
->> > +                             };
->> > +                             bigcore2_alert1: bigcore2-alert1 {
->> > +                                     temperature = <85000>;
->> > +                                     hysteresis = <2000>;
->> > +                                     type = "passive";
->> > +                             };
->> > +                             bigcore2_crit: bigcore2-crit {
->> > +                                     temperature = <115000>;
->> > +                                     hysteresis = <0>;
->> > +                                     type = "critical";
->> > +                             };
->> > +                     };
->> > +                     cooling-maps {
->> > +                             map1 {
->> 
->> s/map1/mpa0/
-> 
-> Noted, thanks!
-> 
->> > +                                     trip = <&bigcore2_alert1>;
->> > +                                     cooling-device =
->> > +                                             <&cpu_b2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> > +                                             <&cpu_b3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->> > +                                     contribution = <1024>;
->> > +                             };
->> > +                     };
->> > +             };
->> > +
->> > +             /* sensor between the four A55 cores */
->> > +             little_core_thermal: littlecore-thermal {
->> > +                     polling-delay-passive = <20>;
->> > +                     polling-delay = <0>;
->> > +                     thermal-sensors = <&tsadc 3>;
->> > +
->> > +                     trips {
->> > +                             littlecore_alert0: littlecore-alert0 {
->> > +                                     temperature = <75000>;
->> > +                                     hysteresis = <2000>;
->> > +                                     type = "passive";
->> > +                             };
->> > +                             littlecore_alert1: littlecore-alert1 {
->> > +                                     temperature = <85000>;
->> > +                                     hysteresis = <2000>;
->> > +                                     type = "passive";
->> > +                             };
->> > +                             littlecore_crit: littlecore-crit {
->> > +                                     temperature = <115000>;
->> > +                                     hysteresis = <0>;
->> > +                                     type = "critical";
->> > +                             };
->> > +                     };
->> > +                     cooling-maps {
->> > +                             map2 {
->> 
->> s/map2/map0/
-> 
-> Noted, thanks!
+
+-- 
+With best wishes
+Dmitry
+
 
