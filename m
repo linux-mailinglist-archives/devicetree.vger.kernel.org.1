@@ -1,343 +1,150 @@
-Return-Path: <devicetree+bounces-34975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1BA83BE4D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:07:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F89483BE47
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:06:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A316B2A9DB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:02:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9CFD1C21838
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74CBB1CA97;
-	Thu, 25 Jan 2024 10:02:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94AF61CAA7;
+	Thu, 25 Jan 2024 10:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pnSFae0l"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="CPeHRxBX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A9E1C2A1
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 10:02:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DEE1C69A;
+	Thu, 25 Jan 2024 10:05:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706176953; cv=none; b=GH5EWamOLbFTeHhZ73M5+ghYg/Q0MbwYI25OaMoWI6ke9Mh5H0RnOHyUDdpuaONn/r/abCR9Laj1Zl5jHpVhZ8Kgo13G7gUbiqN1XGZf9ueJqRpk4GR/iG8796tgwUEgN613As3HAeHAm5+ow69LkuYezR8bJ8r3QMlgzZZTGsc=
+	t=1706177156; cv=none; b=Smxdz06hFSBofUcVF7W9y0XQ2UICNKQPvUqmQhqsWrlW4Sz+MShGKtsQP2ar1Xo2IZFsq0jclXSoVMAn/tB93mLA7YX9ilLPIWM3G9hEUTXzAdadMk4gNPbR/ZMLVuN6FwiOtsAyr/0NGYe/ryLBeY3i2aGtJ2u/rDqM06s3hmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706176953; c=relaxed/simple;
-	bh=WLH6StazTgM8C9aOXaK4jJ1qIhJ+zjAVs+DFPg1cSrU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fpnrG875c9+ja904Qh1nsN4e1DCM37Or8oKVXjo1APWSjkGCrVCUTD4V6cXQMNc2h82dUcpkPpzBfLPP3fzPLeiwVODIyGyQvfQycH+b7BMr+mzS+w+jm/5FOCOfiXFh1nGOPW8vWCArD9MG1OCcN5S7Wtn/+SCyTlK/i6Eqth8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pnSFae0l; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-40e7e2e04f0so71229325e9.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 02:02:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706176949; x=1706781749; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GcuP9Suezw085ATY2+TEf2JH/9ZzcycdKepZHtrB0i0=;
-        b=pnSFae0lrSo/Xv085NcyEm6GLNDdGInPmN1IV6XDR146XxRmA3jP2t2wmvk03TLsnI
-         GX53IWFa6rC38eqTbAMv3rbyC2WVpkYD5LR4rzA9jg0T8iOMcI8LZE+YcNTeQEI1qS/i
-         +yd68bAhcmMBgYk+Trlalvae4BoVw7xM4/2uMq91pX6m1qdFybRpypvzmmTylxZbjDj6
-         RzJ/vwBRuR4UWuQNBVxM3zyvK+GohruvHBW9o9+muOIiZ9DzAJ8GSnL3GFctQQoOOHmi
-         mzc3TxI+9fA0nBkx6CEsLSc36HzFI12BAo09phkQxV00/CBzOF6epNXbgHzfTxJObFcH
-         tQXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706176949; x=1706781749;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GcuP9Suezw085ATY2+TEf2JH/9ZzcycdKepZHtrB0i0=;
-        b=D1QKJRtF/l+Dw0eZHs+lpJ7dNFCsyL8spOTwDbxdGfmL66+yi/H0L/mztqpFRlUtqn
-         /WLSWKmnTdDdEf5KvMHCTuEGK6Tx7Q+4EDJX8wIsQFPRYEKVf9ME0bz1U7AGBLnZ2kpc
-         IN9ypDhk1OSpFF+yI5GAVnWSYQvCVX6DEfg0rCrlG8KDvxToM+3p8qs6+AJgBizneveI
-         +5ze1LcAgPd30Xjs2iUw4KKBHqpgN+YcdFTX3gA3fK32jMDEFYScnCBad1n/zMc6LBqF
-         SS38ogqhYqymex3zWVcZaHVBw7OwEcVEojfiUjTQeSQ2oAtnwvmrf5hoF3bfKjeaGAqp
-         RYNg==
-X-Gm-Message-State: AOJu0YyuPij9lzVBW/h3lllxq+6ifh+9RpLo7ZW8166ZPLubFFYrW68t
-	63sG4oq9gBJyCSFEwBK0JS2Dho9bZx8+bcux+3Jku7qgQCTAah//qCOwUUBN384=
-X-Google-Smtp-Source: AGHT+IHFxwb67WBKSitE4bHwvziRwgau3GaH95wfg0D8B8S/BgrD+o15VZJ3Jl+4qxBfnHN2wyrSFg==
-X-Received: by 2002:a7b:c856:0:b0:40c:2c40:8c with SMTP id c22-20020a7bc856000000b0040c2c40008cmr199697wml.154.1706176949500;
-        Thu, 25 Jan 2024 02:02:29 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:3efc:18bf:254:203f? ([2a05:6e02:1041:c10:3efc:18bf:254:203f])
-        by smtp.googlemail.com with ESMTPSA id u15-20020a05600c19cf00b0040e39cbf2a4sm1981944wmq.42.2024.01.25.02.02.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 02:02:29 -0800 (PST)
-Message-ID: <e65d4640-9bb0-4c34-8eab-865ce8dd59bf@linaro.org>
-Date: Thu, 25 Jan 2024 11:02:28 +0100
+	s=arc-20240116; t=1706177156; c=relaxed/simple;
+	bh=1NjOq8QpYCQXV9SHSo6d3He/arkTV8LcnlAVkkf9pBU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SaPXLuDhGXNl8U14Zh1ybDwVuO/eQjPcxsNT1/MMIhCzo65CLC6hOvgfF49WkyAa1MFDOSMDoSATlcOYCz0B0xqq7nzJ8gGubyhK0NzR4K+o3zh5e4c41RiUrtL3eu+WEVBNDoOOXTYLEdYoFmZ4kgt46VJ3rUDBGj4/twTHkFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=CPeHRxBX; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40PA5Dv8069387;
+	Thu, 25 Jan 2024 04:05:13 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706177114;
+	bh=90Wx4wXz/bfBM2NhwoVGPDRkYZNOgi7Yeec6KpjN/Ls=;
+	h=From:To:CC:Subject:Date;
+	b=CPeHRxBXGTIzCLbb0ubbCteR0llpO8eSyEdrZpMhdZw2NYEhFwsCl+BSKqXe3wogU
+	 ANxhP0kex5cDRqHkPBPrdpkO2HMRun8lkKC2niysoj620HIxyh/dwmYpXioHMvUclR
+	 qj3NlhoJupU6h+34z7Q/IKCYIo+hSKwN7qZBf7uE=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40PA5D3I025973
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 25 Jan 2024 04:05:13 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
+ Jan 2024 04:05:13 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 25 Jan 2024 04:05:13 -0600
+Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40PA5C6p005006;
+	Thu, 25 Jan 2024 04:05:12 -0600
+From: Chintan Vankar <c-vankar@ti.com>
+To: Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
+        Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
+ Menon <nm@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>, <danishanwar@ti.com>,
+        Chintan Vankar
+	<c-vankar@ti.com>
+Subject: [PATCH v3 0/5] Add CPSW2G and CPSW9G nodes for J784S4
+Date: Thu, 25 Jan 2024 15:34:56 +0530
+Message-ID: <20240125100501.4137977-1-c-vankar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] arm64: dts: rockchip: enable built-in thermal
- monitoring on rk3588
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-2-5879275db36f@gmail.com>
- <245f5692-be30-4216-8b13-988092793732@linaro.org>
- <CABjd4Yz3RTeog0gvYaSK3A5H8NzQpYeqmjRWN1QDHjVPG9qTpA@mail.gmail.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <CABjd4Yz3RTeog0gvYaSK3A5H8NzQpYeqmjRWN1QDHjVPG9qTpA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On 25/01/2024 09:26, Alexey Charkov wrote:
-> On Thu, Jan 25, 2024 at 1:56 AM Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
->>
->> On 24/01/2024 21:30, Alexey Charkov wrote:
->>> Include thermal zones information in device tree for rk3588 variants
->>
->> There is an energy model for the CPUs. But finding out the sustainable
->> power may be a bit tricky. So I suggest to remove everything related to
->> the power allocator in this change and propose a dedicated change with
->> all the power configuration (which includes proper k_p* coefficients to
->> be set from userspace to have a flat mitigation figure).
->>
->> That implies removing the "contribution" properties in this description.
-> 
-> Alright, I'll just drop those "contribution" properties, thanks!
-> 
->> Some comments below but definitively this version is close to be ok.
-> 
-> Yay! :)
-> 
->>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->>> ---
->>>    arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 165 ++++++++++++++++++++++++++++++
->>>    1 file changed, 165 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->>> index 36b1b7acfe6a..131b9eb21398 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->>> @@ -10,6 +10,7 @@
->>>    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
->>>    #include <dt-bindings/phy/phy.h>
->>>    #include <dt-bindings/ata/ahci.h>
->>> +#include <dt-bindings/thermal/thermal.h>
->>>
->>>    / {
->>>        compatible = "rockchip,rk3588";
->>> @@ -2228,6 +2229,170 @@ tsadc: tsadc@fec00000 {
->>>                status = "disabled";
->>>        };
->>>
->>> +     thermal_zones: thermal-zones {
->>> +             /* sensor near the center of the whole chip */
->>> +             package_thermal: package-thermal {
->>> +                     polling-delay-passive = <0>;
->>> +                     polling-delay = <0>;
->>> +                     thermal-sensors = <&tsadc 0>;
->>> +
->>> +                     trips {
->>> +                             package_crit: package-crit {
->>> +                                     temperature = <115000>;
->>> +                                     hysteresis = <0>;
->>> +                                     type = "critical";
->>> +                             };
->>> +                     };
->>> +             };
->>> +
->>> +             /* sensor between A76 cores 0 and 1 */
->>> +             bigcore0_thermal: bigcore0-thermal {
->>> +                     polling-delay-passive = <20>;
->>
->> 20ms seems very short, is this value on purpose? Or just picked up
->> arbitrarily?
-> 
-> Frankly, I simply used the value that Radxa's downstream DTS sets for
-> my board. 100ms seem to work just as well.
-> 
->> If it is possible, perhaps you should profile the temperature of these
->> thermal zones (CPUs ones). There is a tool in
->> <linuxdir>/tools/thermal/thermometer to do that.
->>
->> You can measure with 10ms sampling rate when running for instance
->> dhrystone pinned on b0 and b1, then on b2 and b3. And finally on the
->> small cluster.
-> 
-> It seems tricky to isolate the effects from just one of the CPU
-> clusters, as their individual thermal outputs are not that high.
-> 
-> For my testing I disabled the fan (but didn't remove the heatsink to
-> avoid wasting the thermal interface tape),
+This series adds device-tree nodes for CPSW2G and CPSW9G instance
+of the CPSW Ethernet Switch on TI's J784S4 SoC. Additionally,
+two device-tree overlays are also added:
+1. QSGMII mode with the CPSW9G instance via the ENET EXPANSION 1
+   connector.
+2. USXGMII mode with MAC Ports 1 and 2 of the CPSW9G instance via
+   ENET EXPANSION 1 and 2 connectors, configured in fixed-link
+   mode of operation at 5Gbps link speed.
 
-It is ok but the system will have more heat capacity and it will be 
-necessary to saturate it before running the tests. IOW warm up the 
-system by running thermal stress tests several times.
+Similar to Andrew Davis patch at:
+https://lore.kernel.org/r/20231117222930.228688-5-afd@ti.com/ for J721E,
+similar changes are also required for J784S4 to remove dependency on the
+parent node being a syscon node.
 
-> and tried loading CPUs with
-> stress-ng. Here are the observations:
+This series combines the v1 series at:
+https://lore.kernel.org/r/20230522092201.127598-1-s-vadapalli@ti.com/
+and the patch for Main CPSW2G node that is present in [PATCH v6 2/5] at:
+https://lore.kernel.org/r/20230721132029.123881-1-j-choudhary@ti.com/
+but dropped in it's next version at:
+https://lore.kernel.org/r/20231019054022.175163-1-j-choudhary@ti.com/
 
-Usually I use drhystone to thermal stress the cores (e. one minute).
+Changes from v1 for J784S4 CPSW9G DT Support:
+1. Update serdes_ln_ctrl node in k3-j784s4-main.dtsi
+   to remove dependency on the parent node being a syscon node.
+2. The patch for Main CPSW2G node is combined.
+3. Update description in k3-j784s4-evm-quad-port-eth-exp1.dtso
+   QSGMII overlay file and add product link for QSGMII
+   daughtercard.
+4. Add a comment in k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+   USXGMII overlay file for the serdes_wiz2 node since it uses
+   156.25 MHz clock for USXGMII.
 
->   - Little cores alone stressed with 4 threads pegged to them with
-> taskset never reach the throttling temperature (85C), and balance out
-> around 60C
->   - Either of the big core clusters stressed individually with 2
-> threads pegged to them with taskset never reach the throttling
-> temperature either
+Changes from v6 for J784S4 Main CPSW2G node: 
+1. Rename node name in k3-j784s4-main.dtsi from
+   main_cpsw2g_pins_default to main_cpsw2g_default_pins,
+   main_cpsw2g_mdio_pins_default to main_cpsw2g_mdio_default_pins
+   and main_phy0 to main_cpsw1_phy0 based on Tony's suggestion at:
+   https://lore.kernel.org/all/20230724045032.GU5194@atomide.com/
 
-Not sure what does stress-ng but you may want to test with dhrystone. 
-I'm pretty sure it will make the expected thermal stress.
+Chintan Vankar (1):
+  arm64: dts: ti: k3-j784s4-main: Fix mux-reg-masks in serdes_ln_ctrl
 
-On the rk3388, the temperature on the big cores raises to the threshold 
-in a few seconds (after a warmup).
+Siddharth Vadapalli (4):
+  arm64: dts: ti: k3-j784s4-main: Add CPSW2G and CPSW9G nodes
+  arm64: dts: ti: k3-j784s4: Add Main CPSW2G node
+  arm64: dts: ti: k3-j784s4: Add overlay to enable QSGMII mode with
+    CPSW9G
+  arm64: dts: ti: k3-j784s4: Add overlay for dual port USXGMII mode
 
->   - Four big cores with 4 threads heat up very slowly (>30 minutes to
-> reach throttling temperature, I didn't have enough patience to let
-> them actually reach it - maybe they never do)
->   - Eight cores with 8 threads heat up to the throttling temperature
-> within ~5 minutes (again, with the fan off), and then, as soon as just
-> one of the big core clusters gets throttled, the temperature of all
-> cores balances out just below the throttling threshold. In my
-> observation cores 6,7 go from 2.4GHz down to 1.8GHz while the rest
-> stay at their respective top performance states (2.4GHz for big cores
-> 4,5 and 1.8GHz for little cores 0-3)
-
-Yeah, definitively it is probable stress-ng is not the right tool for 
-that. I gave a try and it does not thermal stress my rk3388 board.
-
-Just try "dhrystone -t 2 -l 10000" pinned on a big cluster
-
-
-> Adding to it the fact that the temperature measurement resolution is
-> not very granular (almost 1C) it's somewhat difficult to estimate how
-> fast throttling action on a single cluster really brings its
-> temperature within bounds, as they all affect each other at relevant
-> temperature-load combinations. Perhaps it means that too granular
-> polling doesn't add much value.
-> 
->> But if you don't have spare time and 20 is ok for you. Then it is fine
->> for me too.
-> 
-> I guess I'll go for 100 as other upstream Rockchip .dtsi's do, given
-> all of the above. Thanks for pointing this out!
-> 
->> Some nits below.
->>
->>> +                     polling-delay = <0>;
->>> +                     thermal-sensors = <&tsadc 1>;
->>> +
->>> +                     trips {
->>> +                             bigcore0_alert0: bigcore0-alert0 {
->>> +                                     temperature = <75000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>> +                             bigcore0_alert1: bigcore0-alert1 {
->>> +                                     temperature = <85000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>> +                             bigcore0_crit: bigcore0-crit {
->>> +                                     temperature = <115000>;
->>> +                                     hysteresis = <0>;
->>> +                                     type = "critical";
->>> +                             };
->>> +                     };
->>> +                     cooling-maps {
->>> +                             map0 {
->>> +                                     trip = <&bigcore0_alert1>;
->>> +                                     cooling-device =
->>> +                                             <&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>> +                                             <&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>> +                                     contribution = <1024>;
->>> +                             };
->>> +                     };
->>> +             };
->>> +
->>> +             /* sensor between A76 cores 2 and 3 */
->>> +             bigcore2_thermal: bigcore2-thermal {
->>> +                     polling-delay-passive = <20>;
->>> +                     polling-delay = <0>;
->>> +                     thermal-sensors = <&tsadc 2>;
->>> +
->>> +                     trips {
->>> +                             bigcore2_alert0: bigcore2-alert0 {
->>> +                                     temperature = <75000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>> +                             bigcore2_alert1: bigcore2-alert1 {
->>> +                                     temperature = <85000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>> +                             bigcore2_crit: bigcore2-crit {
->>> +                                     temperature = <115000>;
->>> +                                     hysteresis = <0>;
->>> +                                     type = "critical";
->>> +                             };
->>> +                     };
->>> +                     cooling-maps {
->>> +                             map1 {
->>
->> s/map1/mpa0/
-> 
-> Noted, thanks!
-> 
->>> +                                     trip = <&bigcore2_alert1>;
->>> +                                     cooling-device =
->>> +                                             <&cpu_b2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>> +                                             <&cpu_b3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>> +                                     contribution = <1024>;
->>> +                             };
->>> +                     };
->>> +             };
->>> +
->>> +             /* sensor between the four A55 cores */
->>> +             little_core_thermal: littlecore-thermal {
->>> +                     polling-delay-passive = <20>;
->>> +                     polling-delay = <0>;
->>> +                     thermal-sensors = <&tsadc 3>;
->>> +
->>> +                     trips {
->>> +                             littlecore_alert0: littlecore-alert0 {
->>> +                                     temperature = <75000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>> +                             littlecore_alert1: littlecore-alert1 {
->>> +                                     temperature = <85000>;
->>> +                                     hysteresis = <2000>;
->>> +                                     type = "passive";
->>> +                             };
->>> +                             littlecore_crit: littlecore-crit {
->>> +                                     temperature = <115000>;
->>> +                                     hysteresis = <0>;
->>> +                                     type = "critical";
->>> +                             };
->>> +                     };
->>> +                     cooling-maps {
->>> +                             map2 {
->>
->> s/map2/map0/
-> 
-> Noted, thanks!
-> 
-> Best regards,
-> Alexey
+ arch/arm64/boot/dts/ti/Makefile               |  11 +-
+ .../ti/k3-j784s4-evm-quad-port-eth-exp1.dtso  | 146 +++++++++++++
+ .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   |  73 +++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  47 +++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 194 +++++++++++++++++-
+ 5 files changed, 464 insertions(+), 7 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+2.34.1
 
 
