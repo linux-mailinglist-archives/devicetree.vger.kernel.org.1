@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-35189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 032ED83C8C1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:53:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EBD283C902
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:00:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D5691F221B6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 16:53:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 268A21F27B7C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB73814077B;
-	Thu, 25 Jan 2024 16:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07ECD134745;
+	Thu, 25 Jan 2024 16:51:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oRrNkVd0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a6T4alu4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24C413541E;
-	Thu, 25 Jan 2024 16:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB86313473A;
+	Thu, 25 Jan 2024 16:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706201111; cv=none; b=DFf1pMjszyv7Oh1KWuB/lYh7Rxvpwn21V6RtMv0cQP9RIy5yvz+4PC4p/zcALuxPCoHBzBrnPqduDnOl9XHA9yZG35kqqyBoUw/5eF86MaVjTswrP21eFKUZg2bCog0qm3WDoVdnvcbatO8CTw63JESrUvjRNFcXLk9B9jb3v7I=
+	t=1706201476; cv=none; b=IhiwDsvvZjH05OwxymxwEdq80OIoONn2QUZrYB9drbt9adPucZacGBDV+IWxcV9OeiD6BrYgvIIZTt3iY9WRp6tVTQIra9qbJ7jX/eXPUrGMucAgbJA4VOlyI/s05Hwov++r6zXf7Jm/J0Ex75itIYntdrfv1NgMCPvM/PrTuYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706201111; c=relaxed/simple;
-	bh=+x0jNMUB0PsAx8UUuJzQkSXimj4lp6KxtD09dm3ixXo=;
+	s=arc-20240116; t=1706201476; c=relaxed/simple;
+	bh=nYjwLe0Lvyg1hMkpp/UsWB21LIhFUpPdnQZaz+AhIYY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nvX+77WWY86GnVaxCngpebB66Jl9vGvXOykhx8HvjRPoCH56vzTzkzqIon3E1BueBmB57BqgOGz+/fan7Ghf8FHzGGSauV0Y2+VLf3RoP7bERGbdneljyJiID2u/7uQgodw3wAIDTBOJC8BH82FEtnzmjAao/2TTbfmkz6bgL2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oRrNkVd0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 912FEC43330;
-	Thu, 25 Jan 2024 16:45:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JF3c6eMtUQjgeMrgl0pCe1EDjhhPR7y8JaXTQpntG0lLErKCjg3gGAFc0gEjeAQX0xh0zPmSRbo+Nl7iSUA03UhkoliZn0VY4H2JSV12UPCVEADa1i6ZFECKsGvPGQhwMcXevnZCDJjMkaFjNKDMwS/61su+t2veD/2zpJdjg7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a6T4alu4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5479C433F1;
+	Thu, 25 Jan 2024 16:51:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706201111;
-	bh=+x0jNMUB0PsAx8UUuJzQkSXimj4lp6KxtD09dm3ixXo=;
+	s=k20201202; t=1706201476;
+	bh=nYjwLe0Lvyg1hMkpp/UsWB21LIhFUpPdnQZaz+AhIYY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oRrNkVd0usNw1Kh6FHh22H1LlbXUlVLol5NM2UjkjhcG+CMBrAEq7pjG8ag/W5fM0
-	 TA4IPzTnNKLDNd/58fbtl/G+0Zst85CZ0fqTnhvNmCadE6HNjcS9uaao1OYX6bpPqr
-	 azh7xYoBYscwB4RAF712b4Hc0I+jv1lkx8udZOhvu2ruHEv2tecvNoNvP8LDTbmNtt
-	 naxan0ET+kVKwJOP2W125UfGppS1cwTetURXX6L9j3CuDAz+vk3whqWAEHIZ/H5Ra8
-	 cyt0uovV2NFFAiM+gwsyssSSNyvM8S77fjEM30SbibXD8RiKoD0ZRhfDqr7W7U4Lz9
-	 p5i79ozhcR3DA==
-Date: Thu, 25 Jan 2024 16:45:07 +0000
+	b=a6T4alu4t4AH8J60KPnFJ+RWxTMs1rVpTJ9vwhs0MrjuNVi7tDbWsuxrpkwrgqVdq
+	 QmHKgs5tZuc4PVLbyqEp6X+KXNTN5ZCNuph+sfTOaOQMVKs8q06Em6wjXWVgENuj4k
+	 tC1VwNj1BELTvyNtfVNZktKzk3oN334vM9BrN0/g3QYFLhZ2ybU6UsFycqB3uUxE4I
+	 mp5MCzF3j94W5IgkHuaYD2pswBse3rq/6qNiGo6ReGKeM/gY0x5JpAVtq8R+wZrQMu
+	 f4m13oz9eNCWR0sdZR/xKeGOounAfneQyRQbjFfHu/8oWwCkWYcrOSeI/CLeWECuka
+	 8sBfwIvLiqK1A==
+Date: Thu, 25 Jan 2024 16:51:11 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH v2 1/9] dt-bindings: soc: renesas: Document R-Car V4H
- White Hawk Single
-Message-ID: <20240125-attain-legged-cacf4d597ed4@spud>
-References: <cover.1706192990.git.geert+renesas@glider.be>
- <a44d990c962c8e0aac3b133eaa563f8c92b2ce29.1706192990.git.geert+renesas@glider.be>
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: thermal-zones: Don't require
+ polling-delay(-passive)
+Message-ID: <20240125-wildfowl-confined-25c6b276cdcb@spud>
+References: <20240125-topic-thermal-v1-0-3c9d4dced138@linaro.org>
+ <20240125-topic-thermal-v1-1-3c9d4dced138@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,74 +64,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8ZnRTkyejO/hbHTc"
+	protocol="application/pgp-signature"; boundary="9G4ehHYANaVFMdfb"
 Content-Disposition: inline
-In-Reply-To: <a44d990c962c8e0aac3b133eaa563f8c92b2ce29.1706192990.git.geert+renesas@glider.be>
+In-Reply-To: <20240125-topic-thermal-v1-1-3c9d4dced138@linaro.org>
 
 
---8ZnRTkyejO/hbHTc
+--9G4ehHYANaVFMdfb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 25, 2024 at 03:48:51PM +0100, Geert Uytterhoeven wrote:
-> Document the compatible values for the Renesas R-Car V4H ES2.0
-> (R8A779G2) SoC and the Renesas White Hawk Single board.
-> The former is an updated version of R-Car V4H (R8A779G0).
-> The latter is a single-board integration of the Renesas White Hawk CPU
-> and Breakout board stack.
+On Thu, Jan 25, 2024 at 01:11:15PM +0100, Konrad Dybcio wrote:
+> Currently, thermal zones associated with providers that have interrupts
+> for signaling hot/critical trips are required to set a polling-delay
+> of 0 to indicate no polling. This feels a bit backwards.
 >=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Assume 0 (no polling) when these properties are not defined.
+>=20
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I think that makes sense.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
 > ---
-> v2:
->   - Add Reviewed-by.
-> ---
->  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  Documentation/devicetree/bindings/thermal/thermal-zones.yaml | 2 --
+>  1 file changed, 2 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b=
-/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> index 16ca3ff7b1aea146..15b9dd52938996f4 100644
-> --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> @@ -348,6 +348,13 @@ properties:
->                - renesas,white-hawk-cpu # White Hawk CPU board (RTP8A779G=
-0ASKB0FC0SA000)
->            - const: renesas,r8a779g0
+> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml=
+ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> index dbd52620d293..68398e7e8655 100644
+> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> @@ -228,8 +228,6 @@ patternProperties:
+>              additionalProperties: false
 > =20
-> +      - description: R-Car V4H (R8A779G2)
-> +        items:
-> +          - enum:
-> +              - renesas,white-hawk-single # White Hawk Single board (RTP=
-8A779G2ASKB0F10SA001)
-> +          - const: renesas,r8a779g2
-> +          - const: renesas,r8a779g0
-> +
->        - items:
->            - enum:
->                - renesas,white-hawk-breakout # White Hawk BreakOut board =
-(RTP8A779G0ASKB0SB0SA000)
+>      required:
+> -      - polling-delay
+> -      - polling-delay-passive
+>        - thermal-sensors
+>        - trips
+> =20
+>=20
 > --=20
-> 2.34.1
+> 2.40.1
 >=20
 
---8ZnRTkyejO/hbHTc
+--9G4ehHYANaVFMdfb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKQEwAKCRB4tDGHoIJi
-0inXAQDtx74/vguxSYwY9vNEe1B/nQiOjGebeFffrAYr3SQ9BAEAk1xPBDgNKK58
-Y2QlRASsKq+lJVQYfVWZxYXI108HMgI=
-=l9WT
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKRfwAKCRB4tDGHoIJi
+0pGsAQDca7xs/EsXv3IRvEB/5hgF1s7CAwqVWnSWD29/BZI0zQD8C1KYjqJ2fxIi
+8eGcI7MuIS7od6Hh7oMlYnwvV49k0AY=
+=OSpF
 -----END PGP SIGNATURE-----
 
---8ZnRTkyejO/hbHTc--
+--9G4ehHYANaVFMdfb--
 
