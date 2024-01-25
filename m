@@ -1,187 +1,162 @@
-Return-Path: <devicetree+bounces-34931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5930A83BBFC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:28:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4BB683BC40
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:47:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C4751C20C59
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:28:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13B9B1C2280C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 427CF175BC;
-	Thu, 25 Jan 2024 08:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5E931B955;
+	Thu, 25 Jan 2024 08:47:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="t5h14y6l"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lTyuOyAp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8445175B4;
-	Thu, 25 Jan 2024 08:28:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E39381B948;
+	Thu, 25 Jan 2024 08:47:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706171322; cv=none; b=YQkwZsXZKoF7xwGrWqR6ApF/N6CLldorKyK556qbFOg/j7EntcRXPw7UKCJmuysNzSwPSzZbsRELWxYC14p2aNnEaMW3nrCacG9q9YRzE2qUCgmCXjIPiB0abZcyDStYKw3EcmmdJN6G9St2ZJyIE5nFbl9qey6KWPHvz4BB8oc=
+	t=1706172452; cv=none; b=BRAhQa8fpJhkXvCWMm+6Bi91E1xF2UkHeRei+p/n0UKTJkDRQ/X8xu50R6KnQKADIEqVbWcXED3E2xZfwUSdroX95LV6riiTnpFI9AswjhOD1zLWDEmiBozg3znQwUsRNxYNpdW75BSdgzz0nxOVHUIqArnu8S2JyPbb8VXe2ro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706171322; c=relaxed/simple;
-	bh=0o18t8f3/iC5wQSPwN+S8bs8VJQ/VDGiBZsmcwU/bDw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=guWQ21QytdC0/xR0H3QoIQ+6YjmEVKZcPF5D1f1e+c3vjqjYlVxhDi+mX8ORMIJMd+YS4LGInnfjvsmjexndOVGmEaBikfoQINOKvNd9sVR/yD7dIYnwE2eRjrC5T5ivwFgDHmyxFYnru0F4zqJO50L4eMtc+45O1PdbKBQRVhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=t5h14y6l; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1706171320; x=1737707320;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0o18t8f3/iC5wQSPwN+S8bs8VJQ/VDGiBZsmcwU/bDw=;
-  b=t5h14y6lHFOYRbzFgZXIcxelOhEUWdmsz/gfdVmr8gnEk6MKHcwwP5aL
-   dEFbwGz00l2O6jzVEyUsb12wsSImVS06oSCWEu2erARSUFxSux8yFllZv
-   htrkJG0eFuU1iC887mXWI+m6hL1GOL+HSVn7FR02GVtffm8ruthlqf08Z
-   onxDTDQTcHci/+5Q/bjkoIXkSwaPLJxPKtz8R2TGZDeqi2R5a4eru9Jsp
-   L6IrIClV2CPVg3RToiy8C/1/hoSYR7gGia8wanS+i7IRCAtK6PoKzuv2Z
-   FX39Q6W4wyXywj81Irr/FamKyQ0fx3QTKhh2GCGxgrllPLIkPwqEAgdNe
-   w==;
-X-CSE-ConnectionGUID: yWKH6XeGSSC8CBa5MkUWWA==
-X-CSE-MsgGUID: /2Vw4AgiQCK4jHQhEACeAA==
-X-IronPort-AV: E=Sophos;i="6.05,216,1701154800"; 
-   d="asc'?scan'208";a="15276256"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Jan 2024 01:28:38 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 25 Jan 2024 01:28:36 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 25 Jan 2024 01:28:32 -0700
-Date: Thu, 25 Jan 2024 08:27:55 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: <Dharma.B@microchip.com>
-CC: <conor@kernel.org>, <sam@ravnborg.org>, <bbrezillon@kernel.org>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<lee@kernel.org>, <thierry.reding@gmail.com>,
-	<u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>,
-	<Linux4Microchip@microchip.com>
-Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
- schema format
-Message-ID: <20240125-proved-passage-7fa128f828db@wendy>
-References: <20240118092612.117491-1-dharma.b@microchip.com>
- <20240118092612.117491-4-dharma.b@microchip.com>
- <20240118-recent-glorified-fd35d72e006e@spud>
- <c33868c8-dc42-4800-885c-5e5f24c2044e@microchip.com>
- <20240119-character-mardi-43571d7fe7d5@wendy>
- <da60f9f3-f955-4a87-a020-5710185953c0@microchip.com>
- <20240122-stark-duress-2f59294dcf27@spud>
- <4906b7e2-0ddb-4d3c-a48b-e16278f2d649@microchip.com>
- <20240124-lend-emerald-1028fe65cc39@spud>
- <c3c30bf2-e7c2-4861-bfdf-519a7afde476@microchip.com>
+	s=arc-20240116; t=1706172452; c=relaxed/simple;
+	bh=zSwWF0claKxQzQoWOkji0OUgq92XNb0vOhOBmzc21Qo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=NW/4kvyWh/Tjx6lyzZ+Vawr9iD6nyHnFMuhZK8jo6PqxPPgC/MwPWSmT5AHmG9i/ujRzab7Jsa0yiIX5iZGrkGPZvR06Hf2th1gJeq7SDJoU8UAU5hrIdZCfxjLfR892nHwOeFZsejII6qCilE1NjZHyY5N29Bh7ruoX2wrAEPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lTyuOyAp; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40P8kaks054089;
+	Thu, 25 Jan 2024 02:46:36 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706172396;
+	bh=zSwWF0claKxQzQoWOkji0OUgq92XNb0vOhOBmzc21Qo=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=lTyuOyApebTeO4Hz2PF8+GhoZ9ZACZUi78DQ55nT1sh/nahvtGUQc2ZijGmkqSNWq
+	 TxoQBRE8/R+Q+BYjqqOpfi8OxTI3kt1paVUEfztf0qlH/1MaRf/9Rfur6b1cs9oxVN
+	 5oHG4GLI/jSw3PwlxrFZcQJ7GlleTedvi/QlFTYw=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40P8kZ7J040244
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 25 Jan 2024 02:46:36 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
+ Jan 2024 02:46:35 -0600
+Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
+ DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
+ 15.01.2507.023; Thu, 25 Jan 2024 02:46:35 -0600
+From: "Ding, Shenghao" <shenghao-ding@ti.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "broonie@kernel.org"
+	<broonie@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>
+CC: "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
+        "Lu,
+ Kevin" <kevin-lu@ti.com>, "Xu, Baojun" <baojun.xu@ti.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz"
+	<perex@perex.cz>,
+        "pierre-louis.bossart@linux.intel.com"
+	<pierre-louis.bossart@linux.intel.com>,
+        "13916275206@139.com"
+	<13916275206@139.com>,
+        "linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "liam.r.girdwood@intel.com"
+	<liam.r.girdwood@intel.com>,
+        "soyer@irl.hu" <soyer@irl.hu>, "Huang, Jonathan"
+	<jkhuang3@ti.com>,
+        "tiwai@suse.de" <tiwai@suse.de>, "Djuandi, Peter"
+	<pdjuandi@ti.com>,
+        "McPherson, Jeff" <j-mcpherson@ti.com>,
+        "Navada Kanyana,
+ Mukund" <navada@ti.com>
+Subject: RE: [EXTERNAL] Re: [PATCH v1 4/4] ASoc: dt-bindings: Create yaml file
+ for pcm6240 codec driver
+Thread-Topic: [EXTERNAL] Re: [PATCH v1 4/4] ASoc: dt-bindings: Create yaml
+ file for pcm6240 codec driver
+Thread-Index: AQHaTe1hznwq6igpf0+r29xPdjuRgbDnplkAgAKAPWCAAGhXgP//qoQg
+Date: Thu, 25 Jan 2024 08:46:35 +0000
+Message-ID: <c107a70e42eb4327802748cda89d292f@ti.com>
+References: <20240123111411.850-1-shenghao-ding@ti.com>
+ <20240123111411.850-4-shenghao-ding@ti.com>
+ <92c1a3f3-6b3b-47cb-a4bf-0d20e4af95e5@linaro.org>
+ <a6c6cad6efc647ba8f0c828ffdb3a54f@ti.com>
+ <d8f00ea9-3bb2-4b17-bbc7-48800516e408@linaro.org>
+In-Reply-To: <d8f00ea9-3bb2-4b17-bbc7-48800516e408@linaro.org>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="KV2dTBGvLz55uW11"
-Content-Disposition: inline
-In-Reply-To: <c3c30bf2-e7c2-4861-bfdf-519a7afde476@microchip.com>
 
---KV2dTBGvLz55uW11
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-> > If the lvds pll is an input to the hlcdc, you need to add it here.
-> >  From your description earlier it does sound like it is an input to
-> > the hlcdc, but now you are claiming that it is not.
->=20
-> The LVDS PLL serves as an input to both the LCDC and LVDSC
-
-Then it should be an input to both the LCDC and LVDSC in the devicetree.
-
-> with the=20
-> LVDS_PLL multiplied by 7 for the Pixel clock to the LVDS PHY, and=20
-
-Are you sure? The diagram doesn't show a multiplier, the 7x comment
-there seems to be showing relations?
-
-> LVDS_PLL divided by 7 for the Pixel clock to the LCDC.
-
-> I am inclined to believe that appropriately configuring and enabling it=
-=20
-> in the LVDS driver would be the appropriate course of action.
-
-We're talking about bindings here, not drivers, but I would imagine that
-if two peripherals are using the same clock then both of them should be
-getting a reference to and enabling that clock so that the clock
-framework can correctly track the users.
-
-> > I don't know your hardware, so I have no idea which of the two is
-> > correct, but it sounds like the former. Without digging into how this
-> > works my assumption about the hardware here looks like is that the lvds
-> > controller is a clock provider,
->=20
-> It's a PLL clock from PMC.
->=20
-> > and that the lvds controller's clock is
-> > an optional input for the hlcdc.
->=20
-> Again it's a PLL clock from PMC.
->=20
-> Please refer Section 39.3=20
-> https://ww1.microchip.com/downloads/aemDocuments/documents/MPU32/ProductD=
-ocuments/DataSheets/SAM9X7-Series-Data-Sheet-DS60001813.pdf
-
-It is not the same exact clock as you pointed out above though, so the
-by 7 divider should be modelled.
-
-> > Can you please explain what provides the lvds pll clock and show an
-> > example of how you think the devictree would look with "the lvds pll in
-> > the lvds dt node"?
->=20
-> Sure, Please see the below example
->=20
-> The typical lvds node will look like
->=20
->                  lvds_controller: lvds-controller@f8060000 {
->                          compatible =3D "microchip,sam9x7-lvds";
->                          reg =3D <0xf8060000 0x100>;
->                          interrupts =3D <56 IRQ_TYPE_LEVEL_HIGH 0>;
->                          clocks =3D <&pmc PMC_TYPE_PERIPHERAL 56>, <&pmc=
-=20
-> PMC_TYPE_CORE PMC_LVDSPLL>;
->                          clock-names =3D "pclk", "lvds_pll_clk";
->                          status =3D "disabled";
->                  };
-
-In isolation, this looks fine.
-
-Cheers,
-Conor.
-
---KV2dTBGvLz55uW11
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbIbiwAKCRB4tDGHoIJi
-0h+8AQCpYI71+drl2FDrbEGThmMOFS/iz1jS+CPJczvYePVUqwD/ZilClwywAcjj
-BSSdZJ4KLwpHGZIe4dxZJbifZWhXPAY=
-=rMTy
------END PGP SIGNATURE-----
-
---KV2dTBGvLz55uW11--
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUaHVyc2RheSwg
+SmFudWFyeSAyNSwgMjAyNCAzOjUwIFBNDQo+IFRvOiBEaW5nLCBTaGVuZ2hhbyA8c2hlbmdoYW8t
+ZGluZ0B0aS5jb20+OyBicm9vbmllQGtlcm5lbC5vcmc7DQo+IGNvbm9yK2R0QGtlcm5lbC5vcmcN
+Cj4gQ2M6IHJvYmgrZHRAa2VybmVsLm9yZzsgYW5kcml5LnNoZXZjaGVua29AbGludXguaW50ZWwu
+Y29tOyBMdSwgS2V2aW4NCj4gPGtldmluLWx1QHRpLmNvbT47IFh1LCBCYW9qdW4gPGJhb2p1bi54
+dUB0aS5jb20+Ow0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGdpcmR3b29kQGdtYWls
+LmNvbTsgcGVyZXhAcGVyZXguY3o7DQo+IHBpZXJyZS1sb3Vpcy5ib3NzYXJ0QGxpbnV4LmludGVs
+LmNvbTsgMTM5MTYyNzUyMDZAMTM5LmNvbTsgbGludXgtDQo+IHNvdW5kQHZnZXIua2VybmVsLm9y
+ZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsNCj4gbGlhbS5yLmdpcmR3b29kQGludGVs
+LmNvbTsgc295ZXJAaXJsLmh1OyBIdWFuZywgSm9uYXRoYW4NCj4gPGpraHVhbmczQHRpLmNvbT47
+IHRpd2FpQHN1c2UuZGU7IERqdWFuZGksIFBldGVyIDxwZGp1YW5kaUB0aS5jb20+Ow0KPiBNY1Bo
+ZXJzb24sIEplZmYgPGotbWNwaGVyc29uQHRpLmNvbT47IE5hdmFkYSBLYW55YW5hLCBNdWt1bmQN
+Cj4gPG5hdmFkYUB0aS5jb20+DQo+IFN1YmplY3Q6IFJlOiBbRVhURVJOQUxdIFJlOiBbUEFUQ0gg
+djEgNC80XSBBU29jOiBkdC1iaW5kaW5nczogQ3JlYXRlIHlhbWwNCj4gZmlsZSBmb3IgcGNtNjI0
+MCBjb2RlYyBkcml2ZXINCj4gDQo+IE9uIDI1LzAxLzIwMjQgMDg64oCKMzksIERpbmcsIFNoZW5n
+aGFvIHdyb3RlOiA+PiA+PiBXaHkgZG8geW91IHJlcGVhdCB0aGUNCj4gcmVnIGNvbnN0cmFpbnRz
+PyBUaGlzIGRvZXMgbm90IHNlZW0gbmVlZGVkLiA+PiA+Pj4gKyBpbnRlcnJ1cHRzOiBmYWxzZSA+
+Pj4NCj4gKyA+Pj4gKyAtIGlmOiA+Pj4gKyBwcm9wZXJ0aWVzOiA+Pj4gWmpRY21RUllGcGZwdEJh
+bm5lclN0YXJ0IFRoaXMgbWVzc2FnZQ0KPiB3YXMgc2VudCBmcm9tIG91dHNpZGUgb2YgVGV4YXMg
+SW5zdHJ1bWVudHMuDQo+IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVu
+bGVzcyB5b3UgcmVjb2duaXplIHRoZSBzb3VyY2Ugb2YNCj4gdGhpcyBlbWFpbCBhbmQga25vdyB0
+aGUgY29udGVudCBpcyBzYWZlLg0KPiANCj4gWmpRY21RUllGcGZwdEJhbm5lckVuZA0KPiBPbiAy
+NS8wMS8yMDI0IDA4OjM5LCBEaW5nLCBTaGVuZ2hhbyB3cm90ZToNCj4gPj4NCj4gPj4gV2h5IGRv
+IHlvdSByZXBlYXQgdGhlIHJlZyBjb25zdHJhaW50cz8gVGhpcyBkb2VzIG5vdCBzZWVtIG5lZWRl
+ZC4NCj4gPj4NCj4gPj4+ICsgICAgICAgIGludGVycnVwdHM6IGZhbHNlDQo+ID4+PiArDQo+ID4+
+PiArICAtIGlmOg0KPiA+Pj4gKyAgICAgIHByb3BlcnRpZXM6DQo+ID4+PiArICAgICAgICBjb21w
+YXRpYmxlOg0KPiA+Pj4gKyAgICAgICAgICBjb250YWluczoNCj4gPj4+ICsgICAgICAgICAgICBl
+bnVtOg0KPiA+Pj4gKyAgICAgICAgICAgICAgLSB0aSxwY20zMTQwDQo+ID4+PiArICAgICAgICAg
+ICAgICAtIHRpLHBjbTUxNDANCj4gPj4+ICsgICAgICAgICAgICAgIC0gdGkscGNtNjE0MA0KPiA+
+Pj4gKyAgICAgICAgICAgICAgLSB0aSxwY21kMzE4MA0KPiA+Pj4gKyAgICB0aGVuOg0KPiA+Pj4g
+KyAgICAgIHByb3BlcnRpZXM6DQo+ID4+PiArICAgICAgICByZWc6DQo+ID4+PiArICAgICAgICAg
+IGRlc2NyaXB0aW9uOg0KPiA+Pj4gKyAgICAgICAgICAgIEkyQyBhZGRyZXNzLCBpbiBtdWx0aXBs
+ZSBwY21kZXZpY2VzIGNhc2UsIGFsbCB0aGUgaTJjIGFkZHJlc3MNCj4gPj4+ICsgICAgICAgICAg
+ICBhZ2dyZWdhdGUgYXMgb25lIEF1ZGlvIERldmljZSB0byBzdXBwb3J0IG11bHRpcGxlIGF1ZGlv
+IHNsb3RzLg0KPiA+Pj4gKyAgICAgICAgICBtYXhJdGVtczogNA0KPiA+Pj4gKyAgICAgICAgICBt
+aW5JdGVtczogMQ0KPiA+Pg0KPiANCj4gWW91IGRpZCBub3QgcmVzcG9uZCB0byBhbnkgb2Ygb3Ro
+ZXIgY29tbWVudHMsIHRoZXJlZm9yZSBJIGFzc3VtZSB5b3UNCj4gYWdyZWUgd2l0aCB0aGVtIDEw
+MCUgYW5kIHlvdSB3aWxsIGltcGxlbWVudCB0aGVtIGZ1bGx5Lg0KPiANCj4gDQo+ID4+IERyb3Ag
+ZW50aXJlIGlmDQo+ID4gSG93IHRvIGNvbnZleSB0aSxwY20xNjkwIGRvZXMgbm90IHN1cHBvcnQg
+aW50ZXJydXB0LCBhbmQgb3RoZXJzDQo+ID4gc3VwcG9ydCBpZiBJIHJlbW92ZSB0aGlzIGlmDQo+
+IA0KPiBIb3c/IFRoZXJlIGlzIG5vIHBjbTE2OTAgaGVyZS4NCkhvdyBjYW4gb3RoZXJzIGtub3cg
+dGhhdCBwY20zMTQwLCBwY201MTQwLCBwY202MTQwIGFuZCBwY21kMzE4MA0KU3VwcG9ydCBpMmMg
+YWRkcmVzcyBmcm9tIDB4NGMgdG8gMHg0ZiwgaWYgdGhpcyBpZiBicmFuY2ggd2FzIHJlbW92ZWQu
+DQo+IA0KPiBCVFcsIGFkZCBtaXNzaW5nIGxpbmUgYnJlYWtzLCBlc3BlY2lhbGx5IGJlZm9yZSBu
+ZXh0IGJsb2NrcyBsaWtlDQo+IGFkZGl0aW9uYWxQcm9wZXJ0aWVzLg0KQWNjZXB0ZWQNCj4gDQo+
+ID4+DQo+ID4+PiArICAgICAgICAgIGl0ZW1zOg0KPiA+Pj4gKyAgICAgICAgICAgIG1pbmltdW06
+IDB4NGMNCj4gPj4+ICsgICAgICAgICAgICBtYXhpbXVtOiAweDRmDQo+ID4+PiArDQo+ID4NCj4g
+PiBCUg0KPiA+IFNoZW5naGFvIERpbmcNCj4gPg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5
+c3p0b2YNCg0K
 
