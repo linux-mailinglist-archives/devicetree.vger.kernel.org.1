@@ -1,123 +1,148 @@
-Return-Path: <devicetree+bounces-34847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6496883B5DF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 01:08:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B48783B67C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 02:19:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CF6E284403
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 00:08:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 798C6B22A54
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 01:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FAE47E1;
-	Thu, 25 Jan 2024 00:08:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F8E910E6;
+	Thu, 25 Jan 2024 01:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oOBj3rWK"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QmUObi/E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76ADF7F
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 00:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB59F7E1;
+	Thu, 25 Jan 2024 01:18:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706141294; cv=none; b=c/JVgSSm4UNfQE7i8o5JJSnjDFvKvuhqRQv2ArKKoU5+EGYrgr8zkRwE49hdpQYAOga1w8hBA2B/4CWvPmLwjv1f6uROq2k+pXMRdVmOfqmmOuV2Sz3b12qOAdmMYsEBMUflYpHS8NAfIl1GvBFXuZrfaWxV8GhrniVzPpB0a88=
+	t=1706145530; cv=none; b=TEEnT/Zyl5apFFXFjQJr+vmskj21+i5FZ38K6LwApmAcJJp/gsVPGYKwLcc8UJUP5FinvgKghGvHhLyAuG1H8GUhb1DIaLZ02PDzm/yNjkek64Ttz7uglfM3D3EZTCnLKolmr0Z+EOpA7vXfwPM1xoiawNwOnOe8VOFGNOXgp/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706141294; c=relaxed/simple;
-	bh=sFb88MTt5iOoIb1ympSk+g+GZOjP6Q895N8Kxxce+Js=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qzYLreYoTuzoh7N8VnTIMIrGgBRBhM2pRCHXap4C8Oh+con/OubFxjbGy0QLTbhf9RqtT4un1o56feKJwnZjj1IEGpAv3tPMx8NGc9pvKbLvmwKeiIXaf6H2dJnafp+fAqiz1Vck3J75VFUcoMek7YgA2GJ/KSMd9K0L7q9PZqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oOBj3rWK; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5ffdf06e009so38164807b3.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 16:08:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706141290; x=1706746090; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=a9zJESR6jJ2yZin+7bBkOo/7z2GEvxg+haubJzAIAaU=;
-        b=oOBj3rWKXZw9LxauWR94xMecJ14XSzh31RfCLqWD5xmlQzJwnK3JNQEF9wH2bZBa0d
-         cKtN/0L9D6jy1LKVThdIDcm5YjX8peJry3Ozap+gog4B9nV3ApzXilKX/qS9zD2MYbP7
-         zTPX6jHjVZIfT879EyqHRefj5YycJir8KvzfyDbV/kQB2fQ/lcqG2UEmyT6NCqSF4ocy
-         6n0exuCrifxZEwLgCvwOieWRQ/Sps43gQSYNbxXhOMVynA4mO3bWIiv8VCQIJt3oYqKM
-         fFNI2ZE3lD5D9KAKqslaOdvyw6Z4Dv0B0f9ul5B1V1kw0tJbtMmCAz8iOyalunepbybh
-         vUBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706141290; x=1706746090;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a9zJESR6jJ2yZin+7bBkOo/7z2GEvxg+haubJzAIAaU=;
-        b=IMukF81q9RGji+29nwGVE5ZqXOz1zysC+A8NK3SU0m8snOeyS5Zrqf9LdPat2NsJzK
-         UcuM6+ncPIW9JoxFID+noGCYrdz7NK/OyDBaWYG8K7oTLqEflr6JXVxU8lapa8FCN+wR
-         x9IchlBfrExFAfRzsvKHGUcz59i1Hdmc1T90oWzpLn75O/JKux4R6cA/HFclYN8e35Xz
-         Rh6oeIYZWrWm3b9JUaK8AujXXg7fmyg4INpIc8HzIl5Kl88PZpdReD0xxSdRVN0QjjOj
-         tG7WF8fNV9VLoSz8WHTqBjmWNTlDEgtfcCM5PLdbRif9n0Imb6v1WgUIypQ7G0EFX53C
-         5fpQ==
-X-Gm-Message-State: AOJu0YzvVoVyB+4sMA6OdUgi70GqHHh7Za8xmSDKFOZtypoAsw0kiva5
-	/lpW3PNM5edXEPuQJKz4oJuBDwjywv6hETTO7tx3UkmFUALNW2edR3HIAiQ9h2EOq4MmIb3deDI
-	myU0m0OuDSenaU3+hfKsT0OYq3f4nI2NGjy50RZFAL6ac3e1V
-X-Google-Smtp-Source: AGHT+IHyZkzZsMBMHXjFP5m3KVk6oKNR1/dMvHgS5VJzm0aLrkrbyapIDbkoVi7IoS1m2aLUZozj3hOStzfoHFNh/+8=
-X-Received: by 2002:a81:840a:0:b0:5ff:4d76:e2e3 with SMTP id
- u10-20020a81840a000000b005ff4d76e2e3mr1259447ywf.63.1706141290473; Wed, 24
- Jan 2024 16:08:10 -0800 (PST)
+	s=arc-20240116; t=1706145530; c=relaxed/simple;
+	bh=wbqMyu7oZpMxsXU0lkcnp8wE0Oln4aYOrHTkE3a28Io=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tOwVWkz7a/x2qsLBpRFiGF1401iTHlNuUWBZauc9hape3m5oeKXn+7bUSjRq3r6cn6S7m56TdNddefvYmJMrPpRHqqTumpgJDmw6Ni2Jp0l01OTFUIdn2Mp7seMPDopFYmCKgxas8x9+ODOw+wu8CQ/rnR7PHZBsCeQa6PXmoSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QmUObi/E; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40P00VXD001043;
+	Thu, 25 Jan 2024 01:18:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=HULk81uGrHcbYZWqBcEZRPGhmCUUJzUvPIETw8bfYLY=; b=Qm
+	UObi/EiAuHIhT9iENN27QSuHtCG/f4oIP3ALU+71mKN+U+1u1XyGGcE/TP/8sPBf
+	/82MD+o2gOMl4R9rXK4ORJUMkixLXTPzJTF/5ioVMHh5SPJrKX8zR9yheswC9aRI
+	MEJDoy37JKvhTpt1WjnsychNe89nG+cnszlwrpEpgItI8S6QjBpDAgX6ohBZ+HPC
+	XiWGVRkLuEGj94lt5zVhOFquskoba0gVwA/D6OGi0B4NetxtDD4DJtSMXUvTwD78
+	49drJVJ8+rkGds5vMIX5S231RaqNV1KXIvkC8Szg1uSeFlegFLiJ0pHDTENIbcrc
+	I+0vDrldX6Rf5T8RQnPA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vuavn8ac7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Jan 2024 01:18:43 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40P1Igfk031425
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Jan 2024 01:18:42 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 24 Jan
+ 2024 17:18:36 -0800
+Message-ID: <67e17efa-df15-45f0-9a13-873cbd8f7507@quicinc.com>
+Date: Thu, 25 Jan 2024 09:18:34 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
- <20240113-pmi632-typec-v2-9-182d9aa0a5b3@linaro.org> <2e07f014-0884-49ca-babd-b89cc90a16b7@linaro.org>
- <CAA8EJpqPqV_nHxxbo2Vzwcp__hvREjF3bhduGhM=7UpuOgBxTQ@mail.gmail.com> <ZaaRZ/xi8vyIKD5d@kuha.fi.intel.com>
-In-Reply-To: <ZaaRZ/xi8vyIKD5d@kuha.fi.intel.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 25 Jan 2024 02:07:59 +0200
-Message-ID: <CAA8EJpq3LAzrdTXtnCskc0Md1e39Yo1+AQLHmOBVfgax4HEjKw@mail.gmail.com>
-Subject: Re: [PATCH v2 09/15] usb: typec: qcom-pmic-typec: add support for
- PMI632 PMIC
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wesley Cheng <quic_wcheng@quicinc.com>, "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: modify the wrong
+ compatible name
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+References: <20240124023305.15755-1-quic_tengfan@quicinc.com>
+ <20240124023305.15755-2-quic_tengfan@quicinc.com>
+ <CAA8EJpqkDcqjn-8HrK7=rRe49ycDY6fbNDCKKQOeUpa_EDjFtw@mail.gmail.com>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <CAA8EJpqkDcqjn-8HrK7=rRe49ycDY6fbNDCKKQOeUpa_EDjFtw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: yC4lhn_mPc80TI_yf8zCcZLUopZk2TdI
+X-Proofpoint-ORIG-GUID: yC4lhn_mPc80TI_yf8zCcZLUopZk2TdI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-24_12,2024-01-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 priorityscore=1501 mlxscore=0 bulkscore=0 malwarescore=0
+ mlxlogscore=906 impostorscore=0 phishscore=0 adultscore=0 suspectscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401250008
 
-On Tue, 16 Jan 2024 at 16:23, Heikki Krogerus
-<heikki.krogerus@linux.intel.com> wrote:
->
-> On Tue, Jan 16, 2024 at 02:56:11PM +0200, Dmitry Baryshkov wrote:
-> > On Tue, 16 Jan 2024 at 14:32, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > > On 1/13/24 21:55, Dmitry Baryshkov wrote:
-> > > > The PMI632 PMIC support Type-C port handling, but lacks USB
-> > > > PowerDelivery support. The TCPM requires all callbacks to be provided
-> > > > by the implementation. Implement a special, 'stub' Qcom PD PHY
-> > > > implementation to enable the PMI632 support.
-> > > >
-> > > > Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > ---
-> > >
-> > > Still not a fan of stubby stubs :/
-> >
-> > Me too. If there are better suggestions, I'll be pleased to implement
-> > them. Greg, Heikki?
->
-> Guenter, do you have time to look at this?
 
-Heikki, Guenter, just a gracious ping for your opinion.
-Probably another option is to read pd_supported (or all caps) before
-checking the callbacks and then instrument all calls to PD with
-pd_supported checks.
+
+On 1/24/2024 11:33 AM, Dmitry Baryshkov wrote:
+> On Wed, 24 Jan 2024 at 04:33, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
+>>
+>> Use right compatible name "qcom,sm4450-tlmm" instead of
+>> "qcom,sm4450-pinctrl".
+>>
+>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+>> index bb08ca5a1509..bb675c8ec220 100644
+>> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+>> @@ -17,7 +17,7 @@ allOf:
+>>
+>>   properties:
+>>     compatible:
+>> -    const: qcom,sm4450-pinctrl
+>> +    const: qcom,sm4450-tlmm
+> 
+> Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Thanks Dmitry. I will inside this "Fixes" tage into commit message in 
+the next patch series.
+
+> 
+> 
+>>
+>>     reg:
+>>       maxItems: 1
+>> --
+>> 2.17.1
+>>
+>>
+> 
+> 
+> --
+> With best wishes
+> Dmitry
 
 -- 
-With best wishes
-Dmitry
+Thx and BRs,
+Tengfei Fan
 
