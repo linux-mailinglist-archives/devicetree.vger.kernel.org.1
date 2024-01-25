@@ -1,186 +1,113 @@
-Return-Path: <devicetree+bounces-34995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A0D483BEDB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:32:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 008FE83BF0F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:39:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75BF11F25F1E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:32:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAE351F24291
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:39:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A2AF1CAAE;
-	Thu, 25 Jan 2024 10:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42C941CABF;
+	Thu, 25 Jan 2024 10:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CBXsm0L+"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="b3+gBlDX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7451CA82
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 10:32:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A348F1CAB8;
+	Thu, 25 Jan 2024 10:39:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706178747; cv=none; b=qnB0sTyFLVbUDYoGhpEgJT6ChRbrsci6SkdXtcLAZIkqHfgTCRSyfQdGkO7wHEr+9VjcYO4nfsD0aR+3GlpPWiSEDsens1Ar/J5q79brvCy4yKqlr4Jk+FznkeRJgzNS4f/cOWKR3xfdOPBz9LHAjS7zauUxTTjNnUtxSMpeJic=
+	t=1706179159; cv=none; b=RUvvQYOo2KgmhylRY7RXnVGHopFy/1d7KK+OSjrOBNc0TLemP/ipamn5AzLO382tVxAcJmAAn9zv+wuB8KKUNORjlKM9/e6Yzp/wClVuP3DS6krJvdjSo5n6H8NArCkEF7P+cMxdURsSlGg8bj4+zBX70PbPY/7mEVdt+6d/Tvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706178747; c=relaxed/simple;
-	bh=KcbqktA/NLFYyfShbKJxdK0mA/sY4nph7E0oxaWY4sQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VNGLPN6pvI+JQhqg3B/dItL3GYX5kiXgVpeMrca+5qzDEAGWgcPkxUwv8DY+GzXsknh17GztaCmjfURfcf11SLXAIVj5AoU9B/Ixb4+1dsukx4IipsyGbhwJ/5ZY6Ezkm5gmI45qgWfLPGcKpeyzndxGajMh861q/OzHpQnzq2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CBXsm0L+; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-556c3f0d6c5so7866905a12.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 02:32:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706178744; x=1706783544; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1p6PsuJqyqTGuv5vnLtdjFz7HqpTiAo5pRXyQvLiI8Q=;
-        b=CBXsm0L+Ttz93rHYV+uwRNgahBxHlbGa5oMp+Z3oM0KolS0wZq1al10reVgLjcJlg6
-         EBs/n6vARK8JAy8Zh2e/OJiD/G6hCHdlCH4JZEaXQ9hqYtJdYYnvuTgHSn/Pe9PioeQE
-         hCv3q0DuGd34dyGFr9B5DAOIrV9cJaynv5G5uYF+P2gUYqDIzQ/un9QCG03AEAybvtIz
-         gs7wqhxNYPDCBWy3HpkB9R+/ubi7EfkjFHZ1qLhn3GwyDUvKXd3Okl0yQKAD/Q6sSD0P
-         lntvP4CMMMvKZWqxC1Pm26ajwdKt4TZxkuiEuQV7ZkHcX+IWe+ZSpHN2WoC648I9p4yn
-         JOTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706178744; x=1706783544;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1p6PsuJqyqTGuv5vnLtdjFz7HqpTiAo5pRXyQvLiI8Q=;
-        b=FyyV9n0p12rLdTN6FPZH6/2iRHa50PzrysUPYhMvOiSnoqxGBLFRyPNPxlFM9vcbfL
-         g9J3T87xrqvsKkQwbqB13a5uvGcmcgxNyEauJR+oSN0wxP28HvNtUv8pMfLttX1dYWlM
-         lvGq+EWICAVLqg6XnRAPeb4DTmKJkmQgX4oOsJweBzzJWVH11JHJgf03ZrMAFgacDdo2
-         t9p/q58CX3dU2YGdn5fN8UPOztAqVpvZj5yVnU5o1A89KXz0iCGPXBc047RZ70+t1d7P
-         /O7x0k2Pb1AQVYF4z5+afxTBkb7nIXbjmYNiZoE1Qnn1BFQ0el6ZBY1XrJ8QfCLZaJ6b
-         foyQ==
-X-Gm-Message-State: AOJu0Yz+vXeozvSupGTjBYzAC1twBmhdFXt4e6GAi2q3zq4UR+5oCY4G
-	MRV9IPvnkaNNPfi564bZ3d3WXM9odhJWnKZugTivxC2e4iDrOu3jc9YbW2KOpwc=
-X-Google-Smtp-Source: AGHT+IHiwyuBltNWm8iCxD87eZxTyLo4GrWYdBbW9KRfkjS0jY0KD3lq5pOzfH+eBn1W3TIyzeRTIQ==
-X-Received: by 2002:a17:906:29c7:b0:a31:433c:2128 with SMTP id y7-20020a17090629c700b00a31433c2128mr206355eje.167.1706178743939;
-        Thu, 25 Jan 2024 02:32:23 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id vw16-20020a170907a71000b00a2fc36776a7sm891684ejc.19.2024.01.25.02.32.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 02:32:23 -0800 (PST)
-Message-ID: <dc9773aa-690f-47b5-b60a-a79c1e2dbaf2@linaro.org>
-Date: Thu, 25 Jan 2024 11:32:21 +0100
+	s=arc-20240116; t=1706179159; c=relaxed/simple;
+	bh=1SIXC4wWYaFLAPwdkKFjp65vXY1gVmwuEvMvTcck4G0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qpvytln082bMY8U5uzSQ8gB8in8GzHKnfbRRCsi0tYH7JY5c3faWp/G5fwHYNshaNodrXDYFuGfywSQPrAb9q+UVQkJuiyRx7lZYj6vWZReE8AzbS+X62KPpajgcc0HMlnbPlKR0ot6XfBS+G9pH19cRh8NdcR3PyWd4MjuHcT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=b3+gBlDX; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40P5AAgS030847;
+	Thu, 25 Jan 2024 04:38:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=PODMain02222019; bh=H+pywFxcGO3YzfU
+	rAAIpNM2vOQO6zCM1bhi8m27y6OI=; b=b3+gBlDXeNI33HTb3T7utPWf75UcvTs
+	ZcP/BhOpa3V4+/1KG2aJyhJmonJrkg58ulrc3GIVe4IVnfvBgY+Lox1KAI5JisQZ
+	3b8JM2obfJM4NwlhRimVpm5BIoKJwxQ8WkYJbiWHrReD3jNTTwvK53q4/to2Qrsq
+	ixXzNZmnJ0tBc4agwBubW1bNhaNmJACR47haBNshaI4PnGrKytTXJGGT7aHEnwcq
+	y7UamTq69F0kQ+sPr/N7LOuKbnexmfPuOe9AwibpexoZATYkP67Q7C/b1PTV1G+k
+	mm+nux6AVYhCUDatO6NJuqJP/k/tOfKBSSFfQEKidf2uiaZ2ktIvQ8g==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3vtmfhj3tc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Jan 2024 04:38:57 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 25 Jan
+ 2024 10:38:55 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40 via Frontend Transport; Thu, 25 Jan 2024 10:38:55 +0000
+Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 21112820246;
+	Thu, 25 Jan 2024 10:38:55 +0000 (UTC)
+Date: Thu, 25 Jan 2024 10:38:54 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Rob Herring <robh@kernel.org>
+CC: Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Avi
+ Fishman" <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        "Tali
+ Perry" <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>, "Nancy
+ Yuen" <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Jonathan
+ =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <openbmc@lists.ozlabs.org>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Unify "input-debounce" schema
+Message-ID: <ZbI6PrrQsVDIjt69@ediswmail9.ad.cirrus.com>
+References: <20240124190106.1540585-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: mt6360-tcpc: Drop
- interrupt-names
-Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-Cc: chunfeng.yun@mediatek.com, gregkh@linuxfoundation.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, linux@roeck-us.net,
- heikki.krogerus@linux.intel.com, cy_huang@richtek.com,
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
- <20240119-eldest-discharge-e2d3812be0a9@spud>
- <12b7b339-498b-45c1-bc5e-05e07660aefa@collabora.com>
- <20240123-procurer-jumbo-ebbec485505d@spud>
- <4fdbc3d8-3d44-4c2c-aae6-daa0b431e1c9@collabora.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <4fdbc3d8-3d44-4c2c-aae6-daa0b431e1c9@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240124190106.1540585-1-robh@kernel.org>
+X-Proofpoint-ORIG-GUID: 8iYiuE_6G63A78QKjJlEqxQHoZze71Jp
+X-Proofpoint-GUID: 8iYiuE_6G63A78QKjJlEqxQHoZze71Jp
+X-Proofpoint-Spam-Reason: safe
 
-On 24/01/2024 09:48, AngeloGioacchino Del Regno wrote:
-> Il 23/01/24 18:14, Conor Dooley ha scritto:
->> On Mon, Jan 22, 2024 at 11:32:30AM +0100, AngeloGioacchino Del Regno wrote:
->>> Il 19/01/24 17:32, Conor Dooley ha scritto:
->>>> On Fri, Jan 19, 2024 at 10:41:04AM +0100, AngeloGioacchino Del Regno wrote:
->>>>> This IP has only one interrupt, hence interrupt-names is not necessary
->>>>> to have.
->>>>> Since there is no user yet, simply remove interrupt-names.
->>>>
->>>> I'm a bit confused chief. Patch 2 in this series removes a user of this
->>>> property from a driver, so can you explain how this statement is true?
->>>>
->>>> Maybe I need to drink a few cans of Monster and revisit this patchset?
->>>>
->>>
->>> What I mean with "there is no user" is that there's no device tree with any
->>> mt6360-tcpc node upstream yet, so there is no meaningful ABI breakage.
->>> Different story would be if there was a device tree using this already, in
->>> which case, you can make a required property optional but not remove it.
->>
->> Not every devicetree lives within the kernel.. If the driver is using
->> it, I'm not inclined to agree that it should be removed.
+On Wed, Jan 24, 2024 at 01:01:04PM -0600, Rob Herring wrote:
+> nuvoton,npcm845-pinctrl defines the common "input-debounce" property as
+> an array rather than an scalar. Update the common definition to expand
+> it to an uint32-array, and update all the users of the property with
+> array constraints.
 > 
-> I get the point, but as far as I remember, it's not the first time that this
-> kind of change is upstreamed.
-> 
-> I'm fine with keeping things as they are but, since my intention is to actually
-> introduce an actual user of this binding upstream, and that actually depends on
-> if this change is accepted or not (as I have to know whether I can omit adding
-> the interrupt-names property or not)....
-> 
-> ....may I ask for more feedback/opinions from Rob and/or Krzk?
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml   | 3 ++-
 
-Driver is the user and this is an old binding (released!), thus there
-can be out-of-kernel users already.
+Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-Minor cleanup is not really a reason to affect ABI. You could deprecate
-it, though. Driver change is fine.
-
-Best regards,
-Krzysztof
-
+Thanks,
+Charles
 
