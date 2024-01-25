@@ -1,116 +1,185 @@
-Return-Path: <devicetree+bounces-35246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA2E83CC10
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:20:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D0FF83CCC9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:48:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D0181C224E8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:20:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DC6D1F23F2B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E061350D3;
-	Thu, 25 Jan 2024 19:20:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F84134730;
+	Thu, 25 Jan 2024 19:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="HGUAA8eZ"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BrFkc3Ux"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195BB1350CB;
-	Thu, 25 Jan 2024 19:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C841963417
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 19:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706210402; cv=none; b=Nq/cGim//2UW7BndG/6L4J+dnWM9IxIoOVLpRLiSXhUbK7fZWUIseJVuynhVqznKLAjZBl3/SyfklIpX9yWGvfnM/OvK/GQx6PwnNdMw2GZ8k9wO7KZsKtZb45Aw97pN1NcjACkBKl6R23QWohPW0syPX0tR78Ev4G1ftYA3YaI=
+	t=1706212079; cv=none; b=WcUrSTFQaLuNwcvOjtmtQc9g9yb51ZspKNMaD/Gh18NYnxsLk2YR5UuQDBQ935eapcplDSOKbe9+TmEb38LUblVZrkNqUmSstwmxq0A7HziGMSVp0oWp5BACC8G/Bjklo/aT6iuZxYAe0FWHt/BJrGdItboIW0FTRbJXk5nehZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706210402; c=relaxed/simple;
-	bh=6SC+L2BA5mqzWUrQpqvo942ACjt3fe5tpYr4jLAl8oo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gb4XCjIUOoIdULBR+Wk1OZUmalZ5dcwRitpKbwVi6vOHOWzjokjSi9pl7D22cagX0wFGK6d1wy3dGTVTKZTtHRctdStTAoQZf+zUoxBkS5U+bgHWK2WQ5I6oWJpMhSogGJJDHBnnvdINiEG1XJQXprOVuPly3PKLD6xGDFPb5Ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=HGUAA8eZ; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 3837522DD0;
-	Thu, 25 Jan 2024 20:19:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1706210395;
-	bh=TvhSW9GthYG8R5OfcQvqscsrRuKNMD6rW4OJhgfyU7w=; h=From:To:Subject;
-	b=HGUAA8eZZSr+v8rJjH/VfykLZ/zOsSDxR1kdi5pMmRNL4GX2YzaSzDEiPc3cX165F
-	 6hTAkJON1lq4ZeYAUgsxrCNupegBy7MVzs3IXm3JGVYZVK5Cp7agbrY+0i+T7zTRD1
-	 j98+0x1CZP/dxc0PuHVhx3HhsbcBjygruK1FUww11d+T3PFKWbxrEjtPN0aUlULwWD
-	 eYmtWaIFqmIMqa5NjjH8WJokBL/wb8yJoWL+8POD4AozlsTOnfmI7gvqODFVUilWMA
-	 SKPl2e11TTvpCFDN9XZ17TD/xKGhtpCQdOCulXeDjRnuQ2ygn0rouADsJWSZYD3ykM
-	 07bkWKpxEX4fg==
-Date: Thu, 25 Jan 2024 20:19:13 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Conor Dooley <conor@kernel.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Li Yang <leoyang.li@nxp.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: arm: fsl: add imx8qm apalis eval
- v1.2 carrier board
-Message-ID: <20240125191913.GA3117@francesco-nb>
-References: <20240125101457.9873-1-francesco@dolcini.it>
- <20240125101457.9873-2-francesco@dolcini.it>
- <20240125-player-disposal-a9cd852e9061@spud>
+	s=arc-20240116; t=1706212079; c=relaxed/simple;
+	bh=9bbfXQdHeX85Eu9CetucjpRjjTfXD9PsAZtUPaED0GE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ram00e2pFjQpWrBgGkiUSlyb5BRV9VVuQPNYx92fzFaxkW2q6QwnMSYdgG9GX7rOBT+qSte4tqRSn5GZmIV9FR5PKsjD6T0QOVWbmAZse/4xQk1S8wz/zyYXdYZvRDZCuU0ZGS+Irl5m/9scguSz3zepcmBxURDZXT/PMXOKi6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=BrFkc3Ux; arc=none smtp.client-ip=209.85.210.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-6e0df9aa43dso5411754a34.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 11:47:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1706212077; x=1706816877; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hyIWFQ1vFWoo45M1BlWLEeXRVeP9Nt7FD+B+f6FiY+w=;
+        b=BrFkc3UxC0+vEyeUqbL3ItUFfEKVP07R+fhogoYwnmfvqIk9DecZzdVyV6drx7WEZ6
+         +Re7kCx033wYNJanapQVMCGYi9rjyOfn6YqHPnHsrFj7QyKky2vOJqKfiDMHrWLDFzlW
+         tqE52AMOjwwVzOtkPhAvTaloo3RjTzHYVB2aw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706212077; x=1706816877;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hyIWFQ1vFWoo45M1BlWLEeXRVeP9Nt7FD+B+f6FiY+w=;
+        b=WtX6vYzu2Nq90QC4sCU2WS31VeaBFK4zR+TsLNXbd3ZRWTfGuDQv3VOWLV1QuD6rjl
+         MvJPXS2O9UQza2HoKPAyPeE/OYqmDgdEuK+OB8Jvz7t6h8QqvgOgJC0+78b4FrM3UmBo
+         rMrP98DOoOVX+vdsQa0vSDL1dNtXagDrvJatmMtTtkQEIrrEBbTHMYQSHF228eMBEfOY
+         nx7tf0hM7pcqKUgz/BSwBAIqBY/EmGwfknKJ6fZYTMlfuOt1TmE/ntchANy8bfaw2D/x
+         920O+mW9nEr5ewnQjTduobcul11AhTZDUtbttFuho9pAo0HFyIxEbUFsf0//Ab+mMN9z
+         C+gw==
+X-Gm-Message-State: AOJu0YxfNXHT7rwf04CWldjogK9O83jLinKJAdJ2LYbXlgYztcDUywHk
+	fJh0zqFgEDijZrzhRa3qECg66vqubUxEScM7Ui9v8WEJgU0ERAOXenpnxpDPgvwqo0XNCfn/1jf
+	ebr8EVQdB5FmGl3tADYTLuat6/nNS/qv1/twf
+X-Google-Smtp-Source: AGHT+IGekG3Dtb9CcWAk4PYoE+WDZ1VA7nT/CUBW+XazLbLifZzJFyi+b1ofXaGFHNvhlX5SIyIFFhz3O6B/sKC2sg0=
+X-Received: by 2002:a9d:7495:0:b0:6db:fa81:564a with SMTP id
+ t21-20020a9d7495000000b006dbfa81564amr488303otk.3.1706212076800; Thu, 25 Jan
+ 2024 11:47:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240125-player-disposal-a9cd852e9061@spud>
+References: <20240124030458.98408-1-dregan@broadcom.com> <20240124030458.98408-11-dregan@broadcom.com>
+ <20240124184027.712b1e47@xps-13>
+In-Reply-To: <20240124184027.712b1e47@xps-13>
+From: David Regan <dregan@broadcom.com>
+Date: Thu, 25 Jan 2024 11:47:46 -0800
+Message-ID: <CAA_RMS42FaiN+Za1iY12o0YUANH9rJarBTBa=9jNn8x6_g-Fng@mail.gmail.com>
+Subject: Re: [PATCH v3 10/10] mtd: rawnand: brcmnand: allow for on-die ecc
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: David Regan <dregan@broadcom.com>, dregan@mail.com, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	computersforpeace@gmail.com, kdasu.kdev@gmail.com, 
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
+	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Joel Peshkin <joel.peshkin@broadcom.com>, 
+	Tomer Yacoby <tomer.yacoby@broadcom.com>, Dan Beygelman <dan.beygelman@broadcom.com>, 
+	William Zhang <william.zhang@broadcom.com>, Anand Gore <anand.gore@broadcom.com>, 
+	Kursad Oney <kursad.oney@broadcom.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	rafal@milecki.pl, bcm-kernel-feedback-list@broadcom.com, 
+	andre.przywara@arm.com, baruch@tkos.co.il, 
+	linux-arm-kernel@lists.infradead.org, 
+	Dan Carpenter <dan.carpenter@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 25, 2024 at 05:08:04PM +0000, Conor Dooley wrote:
-> On Thu, Jan 25, 2024 at 11:14:56AM +0100, Francesco Dolcini wrote:
-> > From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
-> > 
-> > Add the toradex,apalis-imx8-eval-v1.2 and
-> > toradex,apalis-imx8-v1.1-eval-v1.2 compatible strings for version 1.2
-> > of the Apalis Evaluation Board.
-> > 
-> > Version v1.2 includes the following changes compared to v1.1:
-> > 
-> > - 8-bit MMC connector replaced with a 4-bit uSD connector.
-> > - Audio codec NAU88C22 added.
-> > - M24C02 EEPROM i2c added.
-> > - MIPI-CSI-2 connector directly to the board added.
-> > - PCIe switch PEX8605 removed and PCIe now is routed directly to Mini
-> > PCIe connector.
-> > - Power measurement IC INA219 added.
-> > - Replaced DVI with HDMI connector.
-> > - Single-channel USB to UART converter replaced with four-channel USB
-> > to UART/JTAG.
-> > - Temperature sensor TMP75 added.
-> > 
-> > Please note that board version v1.0 (which reached EOL) is compatible with
-> > v1.1, therefore toradex,apalis-imx8-eval and toradex,apalis-v1.1-imx8-eval
-> > compatible strings should be used for both v1.0 and v1.1.
-> > 
-> > Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> I was convinced that I acked this already a few days ago, but no:
-> https://lore.kernel.org/all/20240124141849.26254-2-hiagofranco@gmail.com/
+Hi Miqu=C3=A8l,
 
-Same, but different ;-).
+On Wed, Jan 24, 2024 at 9:40=E2=80=AFAM Miquel Raynal <miquel.raynal@bootli=
+n.com> wrote:
+>
+> Hi David,
+>
+> dregan@broadcom.com wrote on Tue, 23 Jan 2024 19:04:58 -0800:
+>
+> > Allow settings for on-die ecc such that if on-die ECC is selected
+> > don't error out but require ECC strap setting of zero
+> >
+> > Signed-off-by: David Regan <dregan@broadcom.com>
+> > Reviewed-by: William Zhang <william.zhang@broadcom.com>
+> > ---
+> > Changes in v3: None
+> > ---
+> > Changes in v2:
+> > - Added to patch series
+> > ---
+> >  drivers/mtd/nand/raw/brcmnand/brcmnand.c | 14 ++++++++++----
+> >  1 file changed, 10 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mtd/nan=
+d/raw/brcmnand/brcmnand.c
+> > index a4e311b6798c..42526f3250c9 100644
+> > --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
+> > +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
+> > @@ -2727,9 +2727,11 @@ static int brcmnand_setup_dev(struct brcmnand_ho=
+st *host)
+> >       cfg->blk_adr_bytes =3D get_blk_adr_bytes(mtd->size, mtd->writesiz=
+e);
+> >
+> >       if (chip->ecc.engine_type !=3D NAND_ECC_ENGINE_TYPE_ON_HOST) {
+> > -             dev_err(ctrl->dev, "only HW ECC supported; selected: %d\n=
+",
+> > -                     chip->ecc.engine_type);
+> > -             return -EINVAL;
+> > +             if (chip->ecc.strength) {
+> > +                     dev_err(ctrl->dev, "ERROR!!! HW ECC must be set t=
+o zero for non-hardware ECC; selected: %d\n",
+> > +                             chip->ecc.strength);
+>
+> Can you use a more formal string? Also clarify it because I don't
+> really understand what it leads to.
 
-This is a modular system made of a SoM + carrier board. Those two
-series introduce a new revision of the same carrier board [1], combined
-with two different SoMs (apalis imx8 [2] and apalis imx6 [3]).
+How about:
 
-Francesco
+dev_err(ctrl->dev, "HW ECC set to %d, must be zero for on-die ECC\n",
 
-[1] https://www.toradex.com/products/carrier-board/apalis-evaluation-board
-[2] https://www.toradex.com/computer-on-modules/apalis-arm-family/nxp-imx-8
-[3] https://www.toradex.com/computer-on-modules/apalis-arm-family/nxp-freescale-imx-6
+>
+> > +                     return -EINVAL;
+> > +             }
+> >       }
+> >
+> >       if (chip->ecc.algo =3D=3D NAND_ECC_ALGO_UNKNOWN) {
+> > @@ -2797,7 +2799,11 @@ static int brcmnand_setup_dev(struct brcmnand_ho=
+st *host)
+> >       if (ret)
+> >               return ret;
+> >
+> > -     brcmnand_set_ecc_enabled(host, 1);
+> > +     if (chip->ecc.engine_type =3D=3D NAND_ECC_ENGINE_TYPE_ON_DIE) {
+> > +             dev_dbg(ctrl->dev, "Disable HW ECC for on-die ECC\n");
+>
+> Not needed.
+
+Will remove.
+
+>
+> > +             brcmnand_set_ecc_enabled(host, 0);
+> > +     } else
+> > +             brcmnand_set_ecc_enabled(host, 1);
+>
+> Style is wrong, but otherwise I think ECC should be kept disabled while
+> not in active use, so I am a bit surprised by this line.
+
+This is a double check to turn on/off our hardware ECC.
+
+>
+> >
+> >       brcmnand_print_cfg(host, msg, cfg);
+> >       dev_info(ctrl->dev, "detected %s\n", msg);
+>
+>
+> Thanks,
+> Miqu=C3=A8l
+
+Thanks!
+
+-Dave
 
