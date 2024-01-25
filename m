@@ -1,108 +1,124 @@
-Return-Path: <devicetree+bounces-35205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFB3883C9A4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:16:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A18A83C9AB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:17:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6109F1F2217C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:16:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2A2B288CFE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB8313A24C;
-	Thu, 25 Jan 2024 17:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m/gafDU9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7A2135417;
+	Thu, 25 Jan 2024 17:12:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A99E1386D0;
-	Thu, 25 Jan 2024 17:10:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29160481CB
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 17:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706202651; cv=none; b=TN6k5R8vnvzmZEjCJGTnNdQ1+OAA9ojXNLqHGpTtgh/kOiihVwNqiBECG4564oqUnckHSaNWyb+wC2Eyfe3KsI+Hgubrdgc34RNJaGhDCIk5sO6ij0KpxuRGYd2zRLphjVfI1eLFGPMzkQ6PFxpRMQn/SmPC+hjXKozJZGcJuo4=
+	t=1706202727; cv=none; b=SZEaWu1XEaL4EkSoM2w6SIHxJG//9/WouqH54BIv0zW7BNrRDdh92XXlvTeZFd/OWCV6aTJOUnsz9a+OjBELDsZ0/u5Wes5cf09uVSPYIklvopH8MQiXLbfkx4UAVqN+QoyyPeOip+P3n2QITXV8qfYvrVSw5aR5KUk1ETbsUdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706202651; c=relaxed/simple;
-	bh=apArv/y13HeSPeRmSN34Zj5eLLWOr5OjgCHOgzlBIGk=;
+	s=arc-20240116; t=1706202727; c=relaxed/simple;
+	bh=NkWD/j8A67rN4utXThlvq4tYQthwoTcWcmrHRVS7C+4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MkYuNwu26wup7iP8C625AwcDr0MvRnxqw0aCCKe7EQ0zN7tbYHSRz9qq0owtmN9suB/2RQ+zfg4ukG8hc+1nam/Qd08epjSt5coW8egGylJGzeYboXX2W+qxwI/CN4s/GR9Im8GV2/HJWsITP8yKER2BBMr32uh9s9PKw9mBnXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m/gafDU9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18579C433F1;
-	Thu, 25 Jan 2024 17:10:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706202650;
-	bh=apArv/y13HeSPeRmSN34Zj5eLLWOr5OjgCHOgzlBIGk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m/gafDU9bR1Gmuq/H6tHuAOkh22nQj2vy8TNEPAG7cUWBIIgYkSEUNESS6kpoDUUM
-	 qNXj1bhbjohTv+q8Bf5YTEcULJDqmZJtFUQSnF8QeAvYeOi5tYzuG2MSw4MM+OSiWY
-	 yiUuq+Ry/6kmiAwwyujryuTD6VPyv/Skz6IMuuc8hbsZUyUOd+WBf9QksrUbhv91dU
-	 iwC9hrZ7/sjznYaFTLKwjTEfa+JuVhm5t1ZFBjbsS6U9gVMtubmqSk2WzHxf2fDekB
-	 v39RxBz0VRrwhmOt0OEqOFiXbJOs96OrruqYpjomN77J14zZqAqYjWGW8k/vKTUcnS
-	 Q2VuxQx9P2b6w==
-Date: Thu, 25 Jan 2024 17:10:45 +0000
-From: Conor Dooley <conor@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qXcQASDOEtYaxn+XymXMDFT+cL144G1BuadqDkRi7QbIMdcHLpSN6MgZm5Rx/OanpB+GeGcO9Ga3NKC1qT6Ntier8/gtb9jXkb2RT+nAaRIuOz2/j+9itCPdnQGVfdAlW6vJSrM+TTtAXlYurcHTh+SCFRgvK38wQLdZKatzIt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rT3GV-00061z-8M; Thu, 25 Jan 2024 18:11:47 +0100
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rT3GU-002KpY-CE; Thu, 25 Jan 2024 18:11:46 +0100
+Received: from ore by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1rT3GU-001mwF-9K; Thu, 25 Jan 2024 18:11:46 +0100
+Date: Thu, 25 Jan 2024 18:11:46 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: AnnanLiu <annan.liu.xdu@outlook.com>, chao.wei@sophgo.com,
-	unicorn_wang@outlook.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] riscv: dts: sophgo: add watchdog dt node for CV1800
-Message-ID: <20240125-repackage-shore-049e7fcd559e@spud>
-References: <DM6PR20MB2316366FC9ADCBC7B6E9C289AB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
- <9f9a1f5f-2104-4a5c-a837-cd8d18e173d6@linaro.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	=?utf-8?B?U8O4cmVu?= Andersen <san@skov.dk>
+Subject: Re: [PATCH v2 4/8] dt-bindings: power: reset: add bindings for NVMEM
+ hardware storing PSCR Data
+Message-ID: <20240125171146.GC381737@pengutronix.de>
+References: <20240124122204.730370-1-o.rempel@pengutronix.de>
+ <20240124122204.730370-5-o.rempel@pengutronix.de>
+ <4e14b7c7-7f0a-437b-aa84-20fdc30a2361@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PY07s+DrUtRLCc1c"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <9f9a1f5f-2104-4a5c-a837-cd8d18e173d6@linaro.org>
+In-Reply-To: <4e14b7c7-7f0a-437b-aa84-20fdc30a2361@linaro.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
---PY07s+DrUtRLCc1c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jan 25, 2024 at 01:39:51PM +0100, Krzysztof Kozlowski wrote:
-> On 25/01/2024 10:46, AnnanLiu wrote:
+On Thu, Jan 25, 2024 at 11:57:18AM +0100, Krzysztof Kozlowski wrote:
+> On 24/01/2024 13:22, Oleksij Rempel wrote:
+> > Add device tree bindings that describe hardware implementations of
+> > Non-Volatile Memory (NVMEM) used for storing Power State Change Reasons
+> > (PSCR).
+> > +  that stores Power State Change Reasons (PSCR).
 > > +
-> > +		pclk: pclk {
-> > +			#clock-cells =3D <0>;
-> > +			compatible =3D "fixed-clock";
-> > +			clock-frequency =3D <25000000>;
->=20
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=3D1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
-rces-with-the-devicetree-schema/
-> for instructions).
->=20
+> > +allOf:
+> > +  - $ref: pscrr.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: pscrr-nvmem
+> > +
+> 
+> So that's a driver :/. Maybe Rob will like it, but it's a no from me.
+> Please come up with something really suiting DEVICES, not DRIVERS.
 
-> Also, why do you describe internal clock as stub?
+If I understand your distinction between 'DEVICES' and 'DRIVERS'
+correctly, 'DEVICES' in the device tree context are meant to represent
+physical hardware components, while 'DRIVERS' refer to software
+abstractions of these components. However, there are numerous device
+tree instances, like software-based implementations for SPI, I2C, or
+GPIO, which could also be interpreted as 'DRIVERS' in the context of
+your email. Similarly, the binding for PSCRR represents functionality not
+fully implemented in hardware but supported by the hardware component of
+NVMEM, akin to how ramoops or other functionalities are represented.
 
-Under the --- line it says the patch depends on the clock series, but
-as you pointed out the clock is a "fake" stub, so I don't understand
-what the dependency would be.
+If I'm misunderstanding your distinction between 'DEVICES' and
+'DRIVERS', please clarify with an example of how a proper binding should
+be implemented for a case like this.
 
---PY07s+DrUtRLCc1c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKWFQAKCRB4tDGHoIJi
-0tqoAQD+Wvy3whUfNoEmsB1b/zxhahkinspAiLRmXLLBW4ln+QEAgexJgU/2QH4+
-duQy/xFKdEnnsoj1mbE8G63JT/LScg0=
-=3gZ2
------END PGP SIGNATURE-----
-
---PY07s+DrUtRLCc1c--
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
