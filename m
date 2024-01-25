@@ -1,107 +1,197 @@
-Return-Path: <devicetree+bounces-35029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C83283C17A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:59:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 693B383C197
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:04:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB384B23D7B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:58:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 028541F226D7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:04:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520E236B10;
-	Thu, 25 Jan 2024 11:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B48693589C;
+	Thu, 25 Jan 2024 12:04:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="KjTozkX3"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Hf0soOzB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAAED33CDB
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 11:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03330175BC;
+	Thu, 25 Jan 2024 12:04:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706183922; cv=none; b=cnHuVkHsxwRJXUtiBPyDbK7ieJKr6L7BP6DmgiKYbyYzOkwVi188q05R2ffk+JKRyFEtL7WKYNcchykJd8sBjU2dZpW+dbOIDdMqfFlfEIMfjymTCSKVKCgLBxRloPiR1yvnp0xeeh9dGhK+woMjzkd3LW/vwtOvs5OlpEv7yjo=
+	t=1706184263; cv=none; b=IFtARP3QkoJWpqBhF/BGpBQ31qqTjN1eWmwbvkEdvajBVju7Hap1Wbo0zaS8KcrAdaEryv7/nu+PAmVZot2Ak0jz+9SnXye4FHydL9lUhajrE2DqlJ0H719cjKzfqqTJ3WLCXsnY8AyfCWxEt8QQc1mMDjoNHbxXHywGCNsApMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706183922; c=relaxed/simple;
-	bh=c1MXNU8fBQIq7CZAvmDVQrraCezkC83dzdTmFADzH6c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Content-Type; b=NKvBBhBpY8KXf3i8Pf14fif7Npd9MIu0DiTBW6eY/MFnzjdwfmv/lHDPXSg6UPgL4CfEK6gm9+85KsKYZWCE1+iVS5nr8fgXknCZUC6PiIUx+GEHp2pnsYt0oMad3gi390Crz78RRcQHDME8gtJbLqR6BdgCZVn5TLJ8aQFarLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=KjTozkX3; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-5cedfc32250so3719333a12.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 03:58:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1706183920; x=1706788720; darn=vger.kernel.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c1MXNU8fBQIq7CZAvmDVQrraCezkC83dzdTmFADzH6c=;
-        b=KjTozkX3byEp4c7Cm9xbyivUYjZgNidkhHhNTgnASbYgx7RfDW47rOxGp9sm2SUFsR
-         0btAmWE8iK8yKT1UbrZv3CwN/Ut4n3CKY8EyVEIImjzFWK5IJ+cRoMXNuVrwR1C9TECC
-         2kqe/4FW9+U4yKb8uT659zR2V4ignmtJnaOd4dx38v5mFMc+7/vVysYYyfx3zfZYW28Q
-         NFQC7wAoFyz7xo8uBz+l7q2RBDHKWrUHg/i9CHBfkzH6uVKpeAbm205xOWXpQIZv4FaV
-         h/c8z/02x2SkNOPBkVRaGtyMFQWrHLKjEOnhlyelNb82F+AWomQLZYPgNtK91LF6J0Db
-         3MMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706183920; x=1706788720;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c1MXNU8fBQIq7CZAvmDVQrraCezkC83dzdTmFADzH6c=;
-        b=pgqF2+iJEXAqGiUbeyMTrJaA/kRaBnc25o6RGpDk0/x3T9IVKcEBhzI6qNaYI+ObVZ
-         mv6jQbbLIp2rkLa569XXPcloYJDjekdNnE4c+9RvJ7+IpVowue2hYbKhFhz/Sz/Aba4o
-         q4hP80D2lNjarrPius1UpBtVHkxi9NvRALUZ5+IDDV3bvIWNypGwX+GR4VBMwjYeYXUm
-         ut3KnuLjGdBhIs97nqIJtez14oiyrl1ZDCr3dFuCFyTVId2F566nG2mOenhuHLW/Bxia
-         Y1kzx+c571sbKndnNuyOTtqNflG7DtwkFffaSRBbjzfehWXiqs6mx0wQfuS2HwpxRvpW
-         CCug==
-X-Gm-Message-State: AOJu0YzGHNvUN/xccurL/cAcDIEVTrZFA3LTBGFDyNR3bLR1pS6yGiOx
-	ApRREhtCJYyGo5LYRFBjJjRafnda3AdWfbiigkfUv2IbzYQ2h4PueqwuHRpEQnTTP0j0aX50igX
-	yPrqPCPKFFLCXSxDqNTpAwrWV31bZ3WAfBM5ldQ==
-X-Google-Smtp-Source: AGHT+IGVGqvZTn0517bIq0KM9GtuUE40zBP+m/ZFjGMQb49WTfSmNYb/qaIO9kLZQYy7D4bbUFW9PXU6IfiojJjRAd0=
-X-Received: by 2002:a05:6a20:b809:b0:19c:5e76:d81f with SMTP id
- fi9-20020a056a20b80900b0019c5e76d81fmr628988pzb.66.1706183920112; Thu, 25 Jan
- 2024 03:58:40 -0800 (PST)
+	s=arc-20240116; t=1706184263; c=relaxed/simple;
+	bh=5bp79cwDp8DSmmQoBYXJMCmgVWIkVUnM66o+7HqXkY8=;
+	h=Message-ID:Date:MIME-Version:CC:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=b05avqX3DZvvX06NctWT7wA4amzl7jpkfG3lnpYxgaw35Lenm9cH1fImpP0W5H+KRBG95wsGWGHVTiQ3NmyeXCDJlhSBDfZlzbOqtlQ4gxlUbSlyjYobe0Pv79eCVd/U6Fx/4i3GihqbhHQ8ahk+RJydpD9pTreGmZ/vYbU/pN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Hf0soOzB; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40PC3pVf106723;
+	Thu, 25 Jan 2024 06:03:51 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706184231;
+	bh=k+mmQBY2pE0JBtYEWVRQvsRmj8Awiu7mIvMnAkSv+mI=;
+	h=Date:CC:Subject:To:References:From:In-Reply-To;
+	b=Hf0soOzBNclS7zZhil5eXj9DMg/zI3jdSCQ/nlzpYlBI9aK7geluSs71mFiMO+I+U
+	 D4USidB/4RVdlWukwU6AKKBstSIptkgCMneRwKB3EGyy3gy40yOULDwc8WV/xudzvF
+	 xJtJBDQm5xLCnYU8kUmU7GhSBM9FZMeACZfNT09c=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40PC3pYK110230
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 25 Jan 2024 06:03:51 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
+ Jan 2024 06:03:50 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 25 Jan 2024 06:03:50 -0600
+Received: from [172.24.227.9] (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40PC3jFG017632;
+	Thu, 25 Jan 2024 06:03:46 -0600
+Message-ID: <0db57065-b48a-4c63-8ad3-45af2924a3cb@ti.com>
+Date: Thu, 25 Jan 2024 17:33:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231220082803.345153-1-naresh.solanki@9elements.com>
- <ZYNTfKLFGrLq8qGY@shikoro> <497e6eda-a416-415a-b468-fe764c14a8aa@linaro.org> <ZYVmZXpwgHJhS8Nf@shikoro>
-In-Reply-To: <ZYVmZXpwgHJhS8Nf@shikoro>
-From: Naresh Solanki <naresh.solanki@9elements.com>
-Date: Thu, 25 Jan 2024 17:28:31 +0530
-Message-ID: <CABqG17jucw00M3PxjAUrmTUuHajFT4qBjNMx5BsN59bsRrDEXQ@mail.gmail.com>
-Subject: Re: [RESEND PATCH v5 1/2] dt-bindings: i2c: pca954x: Add custom
- properties for MAX7357
-To: Wolfram Sang <wsa@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Naresh Solanki <naresh.solanki@9elements.com>, Rob Herring <robh+dt@kernel.org>, 
-	Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Patrick Rudolph <patrick.rudolph@9elements.com>, Rob Herring <robh@kernel.org>, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+CC: Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
+        Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
+ Menon <nm@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <r-gunasekaran@ti.com>, <danishanwar@ti.com>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v3 2/5] arm64: dts: ti: k3-j784s4-main: Add CPSW2G and
+ CPSW9G nodes
+Content-Language: en-US
+To: Chintan Vankar <c-vankar@ti.com>
+References: <20240125100501.4137977-1-c-vankar@ti.com>
+ <20240125100501.4137977-3-c-vankar@ti.com>
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <20240125100501.4137977-3-c-vankar@ti.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Wolfram,
+Hello Chintan,
 
-On Fri, 22 Dec 2023 at 16:05, Wolfram Sang <wsa@kernel.org> wrote:
->
->
-> > Some explanation was provided here:
-> > https://lore.kernel.org/all/CABqG17g8QOgU7cObe=4EMLbEC1PeZWxdPXt7zzFs35JGqpRbfg@mail.gmail.com/
-> >
-> > AFAIU, these properties are board-design choice.
->
-> Hey, thanks for the heads up. I agree that these options should not be
-> "on" by default. I am still not fully convinced they serve as hardware
-> description, though. Need to think about it some more...
-Any update on this ? Let me know if I can help with additional information.
+On 25/01/24 15:34, Chintan Vankar wrote:
+> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+> 
 
+...
+
+>  
+> +	main_cpsw0: ethernet@c000000 {
+> +		compatible = "ti,j784s4-cpswxg-nuss";
+> +		reg = <0x00 0xc000000 0x00 0x200000>;
+> +		reg-names = "cpsw_nuss";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x00 0x00 0xc000000 0x00 0x200000>;
+> +		dma-coherent;
+> +		clocks = <&k3_clks 64 0>;
+> +		clock-names = "fck";
+> +		power-domains = <&k3_pds 64 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		dmas = <&main_udmap 0xca00>,
+> +		       <&main_udmap 0xca01>,
+> +		       <&main_udmap 0xca02>,
+> +		       <&main_udmap 0xca03>,
+> +		       <&main_udmap 0xca04>,
+> +		       <&main_udmap 0xca05>,
+> +		       <&main_udmap 0xca06>,
+> +		       <&main_udmap 0xca07>,
+> +		       <&main_udmap 0x4a00>;
+> +		dma-names = "tx0", "tx1", "tx2", "tx3",
+> +			    "tx4", "tx5", "tx6", "tx7",
+> +			    "rx";
+> +
+> +		status = "disabled";
+> +
+> +		ethernet-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			main_cpsw0_port1: port@1 {
+> +				reg = <1>;
+> +				label = "port1";
+> +				ti,mac-only;
+> +				status = "disabled";
+> +			};
+> +
+> +			main_cpsw0_port2: port@2 {
+> +				reg = <2>;
+> +				label = "port2";
+> +				ti,mac-only;
+> +				status = "disabled";
+> +			};
+> +
+> +			main_cpsw0_port3: port@3 {
+> +				reg = <3>;
+> +				label = "port3";
+> +				ti,mac-only;
+> +				status = "disabled";
+> +			};
+> +
+> +			main_cpsw0_port4: port@4 {
+> +				reg = <4>;
+> +				label = "port4";
+> +				ti,mac-only;
+> +				status = "disabled";
+> +			};
+> +
+> +			main_cpsw0_port5: port@5 {
+> +				reg = <5>;
+> +				label = "port5";
+
+Please add the "ti,mac-only" property here and in the following 3 nodes as well
+to keep it consistent.
+
+> +				status = "disabled";
+> +			};
+> +
+> +			main_cpsw0_port6: port@6 {
+> +				reg = <6>;
+> +				label = "port6";
+> +				status = "disabled";
+> +			};
+> +
+> +			main_cpsw0_port7: port@7 {
+> +				reg = <7>;
+> +				label = "port7";
+> +				status = "disabled";
+> +			};
+> +
+> +			main_cpsw0_port8: port@8 {
+> +				reg = <8>;
+> +				label = "port8";
+> +				status = "disabled";
+> +			};
+> +		};
+> +
+
+...
+
+-- 
 Regards,
-Naresh
->
+Siddharth.
 
