@@ -1,207 +1,116 @@
-Return-Path: <devicetree+bounces-35245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1781783CC06
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:16:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA2E83CC10
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:20:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 849B9B2142B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:16:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D0181C224E8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFAC31350E6;
-	Thu, 25 Jan 2024 19:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E061350D3;
+	Thu, 25 Jan 2024 19:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="ai6EcKs1"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="HGUAA8eZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E09181350CE
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 19:16:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195BB1350CB;
+	Thu, 25 Jan 2024 19:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706210172; cv=none; b=P2sqwyu9iEZzAEElq1979zFHNjzUOmnwcrQxNdUOJoE/wBR5nMTmn+H2Wlk49/mLRii4zCRwht/hbAqcnIHbNexmGLMDvt/AnSEgGceLNoODV4Vc76/kY1ONDkVyccspcLFFdgz5TxpvZAeRDm7lDXz2tQVXhuR+KmPHXnTvRgA=
+	t=1706210402; cv=none; b=Nq/cGim//2UW7BndG/6L4J+dnWM9IxIoOVLpRLiSXhUbK7fZWUIseJVuynhVqznKLAjZBl3/SyfklIpX9yWGvfnM/OvK/GQx6PwnNdMw2GZ8k9wO7KZsKtZb45Aw97pN1NcjACkBKl6R23QWohPW0syPX0tR78Ev4G1ftYA3YaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706210172; c=relaxed/simple;
-	bh=09vrqzF6q+v3GSLa4a6q1J4UdDnckaZNCxxfSutxA6c=;
+	s=arc-20240116; t=1706210402; c=relaxed/simple;
+	bh=6SC+L2BA5mqzWUrQpqvo942ACjt3fe5tpYr4jLAl8oo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wj5x1cOc1uJB6ydUQk4VUPKunqrIJwqLJsm1EDtjIAiw0YIxdi5KbV9oKig63tiqDHi2edlQF+sHjqvZMOpYYXCvVTVGwJoYzgWleQMvav6k+lsKn4GtrrWbznUqwuV8Jcb2hpAEPgibd9iUrHRToQI0Xrro9g2cn6zBcMlrUW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=ai6EcKs1; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2ccec119587so91131011fa.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 11:16:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech.se; s=google; t=1706210168; x=1706814968; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=OmBqHxoi1/NsICzRv9uA89VCC1IgkS6de7qvx7LzHjs=;
-        b=ai6EcKs1WW3xq8b0KWD5jRFKW2nJKmO6F/YDvtGzm/bel97TTaO6PIP0I65mYKRSpJ
-         GVYWZl5x3d/4odAz4WeIGLpgsxeYQ0bzdfu2FSzpujkpZjOy9GnbUrPTO/FwmyHVk8HP
-         /R0oLb8K5bZUTsbKmPosaPNAYFw78u35EAdg72Wrp2dOjSvu+wB8PwaGrEh+2ZscScSR
-         teFJ++6/b0WPOttrcl8uVQVjkk+HtPbhrOlDDchwfyh1rWGTXHMe5GyKkjRNYmrri1CT
-         I8TrmXxvtwyBMXFuKrDQyswMLdIj4F3v8UN9Xcpi9XdRooS7/V5rkdjwzVdw66BKMLAK
-         jZtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706210168; x=1706814968;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OmBqHxoi1/NsICzRv9uA89VCC1IgkS6de7qvx7LzHjs=;
-        b=VX2k0D0htcl7GkeqyBr9JB2+8LysZ7H4fSDYwWfnew+3hYsb0pyVTOhH5RJTkmBn5C
-         rfmvWbydYw3lxryPyXq7am66pqGil2mVt1+Ug97xOdM/GDFahniw7Q4pYbyBhP1Tw4mM
-         fZdz+g6xlJpSK5sADUBIBWBzRllb6mJqQ3DIHP5Mb24vM8tbyYPv3GOz9ZBTumw0Beum
-         ST1r3D9siQWD9x92LtW+TyN/Vbc8IBPRGRIMnILzEOnLYzfsjMmJTnUSIQSznEIFlvKe
-         Y8wtg45nDm5kf2GBL5m8NV6E62e0HwUaVQ6PiMjNWTFFxwteUXKV8gHxzhh7nPueEY0Q
-         RxGg==
-X-Gm-Message-State: AOJu0YxojPDSA/7HFdPxsJqQb3oUYiRK8owXJvZZF2a8hyBqXLWpiiFA
-	Osckm6ZFqN+T39uNQMRDv7g0U+bAvOouvCfLm5+28w/Svl9fbIqzjZkgudzDpCk=
-X-Google-Smtp-Source: AGHT+IHWEkqNuG86dx3DnIpU6B2Sugfv9OUGOxAvp/LpQrYdwhdsGQTlw3AWwkerWvRzifluFaf/5A==
-X-Received: by 2002:a2e:b556:0:b0:2cf:2fb0:978 with SMTP id a22-20020a2eb556000000b002cf2fb00978mr82751ljn.45.1706210168001;
-        Thu, 25 Jan 2024 11:16:08 -0800 (PST)
-Received: from localhost (h-46-59-36-113.A463.priv.bahnhof.se. [46.59.36.113])
-        by smtp.gmail.com with ESMTPSA id f15-20020a2e918f000000b002cd35d8b018sm356032ljg.113.2024.01.25.11.16.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jan 2024 11:16:07 -0800 (PST)
-Date: Thu, 25 Jan 2024 20:16:06 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gb4XCjIUOoIdULBR+Wk1OZUmalZ5dcwRitpKbwVi6vOHOWzjokjSi9pl7D22cagX0wFGK6d1wy3dGTVTKZTtHRctdStTAoQZf+zUoxBkS5U+bgHWK2WQ5I6oWJpMhSogGJJDHBnnvdINiEG1XJQXprOVuPly3PKLD6xGDFPb5Ew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=HGUAA8eZ; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 3837522DD0;
+	Thu, 25 Jan 2024 20:19:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1706210395;
+	bh=TvhSW9GthYG8R5OfcQvqscsrRuKNMD6rW4OJhgfyU7w=; h=From:To:Subject;
+	b=HGUAA8eZZSr+v8rJjH/VfykLZ/zOsSDxR1kdi5pMmRNL4GX2YzaSzDEiPc3cX165F
+	 6hTAkJON1lq4ZeYAUgsxrCNupegBy7MVzs3IXm3JGVYZVK5Cp7agbrY+0i+T7zTRD1
+	 j98+0x1CZP/dxc0PuHVhx3HhsbcBjygruK1FUww11d+T3PFKWbxrEjtPN0aUlULwWD
+	 eYmtWaIFqmIMqa5NjjH8WJokBL/wb8yJoWL+8POD4AozlsTOnfmI7gvqODFVUilWMA
+	 SKPl2e11TTvpCFDN9XZ17TD/xKGhtpCQdOCulXeDjRnuQ2ygn0rouADsJWSZYD3ykM
+	 07bkWKpxEX4fg==
+Date: Thu, 25 Jan 2024 20:19:13 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Conor Dooley <conor@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
-	Cong Dang <cong.dang.xn@renesas.com>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Hai Pham <hai.pham.ud@renesas.com>,
-	Linh Phung <linh.phung.jy@renesas.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 14/15] arm64: dts: renesas: Add Gray Hawk Single board
- support
-Message-ID: <20240125191606.GQ4126432@ragnatech.se>
-References: <cover.1706194617.git.geert+renesas@glider.be>
- <b657402113267acd57aece0b4c681b707e704455.1706194617.git.geert+renesas@glider.be>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Li Yang <leoyang.li@nxp.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: fsl: add imx8qm apalis eval
+ v1.2 carrier board
+Message-ID: <20240125191913.GA3117@francesco-nb>
+References: <20240125101457.9873-1-francesco@dolcini.it>
+ <20240125101457.9873-2-francesco@dolcini.it>
+ <20240125-player-disposal-a9cd852e9061@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b657402113267acd57aece0b4c681b707e704455.1706194617.git.geert+renesas@glider.be>
+In-Reply-To: <20240125-player-disposal-a9cd852e9061@spud>
 
-Hi Geert,
+On Thu, Jan 25, 2024 at 05:08:04PM +0000, Conor Dooley wrote:
+> On Thu, Jan 25, 2024 at 11:14:56AM +0100, Francesco Dolcini wrote:
+> > From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+> > 
+> > Add the toradex,apalis-imx8-eval-v1.2 and
+> > toradex,apalis-imx8-v1.1-eval-v1.2 compatible strings for version 1.2
+> > of the Apalis Evaluation Board.
+> > 
+> > Version v1.2 includes the following changes compared to v1.1:
+> > 
+> > - 8-bit MMC connector replaced with a 4-bit uSD connector.
+> > - Audio codec NAU88C22 added.
+> > - M24C02 EEPROM i2c added.
+> > - MIPI-CSI-2 connector directly to the board added.
+> > - PCIe switch PEX8605 removed and PCIe now is routed directly to Mini
+> > PCIe connector.
+> > - Power measurement IC INA219 added.
+> > - Replaced DVI with HDMI connector.
+> > - Single-channel USB to UART converter replaced with four-channel USB
+> > to UART/JTAG.
+> > - Temperature sensor TMP75 added.
+> > 
+> > Please note that board version v1.0 (which reached EOL) is compatible with
+> > v1.1, therefore toradex,apalis-imx8-eval and toradex,apalis-v1.1-imx8-eval
+> > compatible strings should be used for both v1.0 and v1.1.
+> > 
+> > Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> I was convinced that I acked this already a few days ago, but no:
+> https://lore.kernel.org/all/20240124141849.26254-2-hiagofranco@gmail.com/
 
-On 2024-01-25 16:34:42 +0100, Geert Uytterhoeven wrote:
-> Add initial support for the Renesas Gray Hawk Single board, which is
-> based on the R-Car V4M (R8A779H0) SoC:
->   - Memory,
->   - Crystal oscillators,
->   - Serial console.
-> 
-> Based on the White Hawk Single DTS, and on a patch for the Gray Hawk
-> board stack in the BSP by Hai Pham.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Same, but different ;-).
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+This is a modular system made of a SoM + carrier board. Those two
+series introduce a new revision of the same carrier board [1], combined
+with two different SoMs (apalis imx8 [2] and apalis imx6 [3]).
 
-> ---
-> v2:
->   - Add SoC name to top-level comment.
-> ---
->  arch/arm64/boot/dts/renesas/Makefile          |  2 +
->  .../dts/renesas/r8a779h0-gray-hawk-single.dts | 52 +++++++++++++++++++
->  2 files changed, 54 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-> index 1d7d69657a1f0559..4c5ac5f02829ff58 100644
-> --- a/arch/arm64/boot/dts/renesas/Makefile
-> +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -86,6 +86,8 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g0-white-hawk-ard-audio-da7212.dtbo
->  r8a779g0-white-hawk-ard-audio-da7212-dtbs := r8a779g0-white-hawk.dtb r8a779g0-white-hawk-ard-audio-da7212.dtbo
->  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g0-white-hawk-ard-audio-da7212.dtb
->  
-> +dtb-$(CONFIG_ARCH_R8A779H0) += r8a779h0-gray-hawk-single.dtb
-> +
->  dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-salvator-xs.dtb
->  r8a779m1-salvator-xs-panel-aa104xd12-dtbs := r8a779m1-salvator-xs.dtb salvator-panel-aa104xd12.dtbo
->  dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-salvator-xs-panel-aa104xd12.dtb
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
-> new file mode 100644
-> index 0000000000000000..1ed404712d823871
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
-> @@ -0,0 +1,52 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Device Tree Source for the R-Car V4M Gray Hawk Single board
-> + *
-> + * Copyright (C) 2023 Renesas Electronics Corp.
-> + * Copyright (C) 2024 Glider bv
-> + */
-> +
-> +/dts-v1/;
-> +#include "r8a779h0.dtsi"
-> +
-> +/ {
-> +	model = "Renesas Gray Hawk Single board based on r8a779h0";
-> +	compatible = "renesas,gray-hawk-single", "renesas,r8a779h0";
-> +
-> +	aliases {
-> +		serial0 = &hscif0;
-> +	};
-> +
-> +	chosen {
-> +		bootargs = "ignore_loglevel";
-> +		stdout-path = "serial0:921600n8";
-> +	};
-> +
-> +	memory@48000000 {
-> +		device_type = "memory";
-> +		/* first 128MB is reserved for secure area. */
-> +		reg = <0x0 0x48000000 0x0 0x78000000>;
-> +	};
-> +
-> +	memory@480000000 {
-> +		device_type = "memory";
-> +		reg = <0x4 0x80000000 0x1 0x80000000>;
-> +	};
-> +};
-> +
-> +&extal_clk {
-> +	clock-frequency = <16666666>;
-> +};
-> +
-> +&extalr_clk {
-> +	clock-frequency = <32768>;
-> +};
-> +
-> +&hscif0 {
-> +	uart-has-rtscts;
-> +	status = "okay";
-> +};
-> +
-> +&scif_clk {
-> +	clock-frequency = <24000000>;
-> +};
-> -- 
-> 2.34.1
-> 
-> 
+Francesco
 
--- 
-Kind Regards,
-Niklas Söderlund
+[1] https://www.toradex.com/products/carrier-board/apalis-evaluation-board
+[2] https://www.toradex.com/computer-on-modules/apalis-arm-family/nxp-imx-8
+[3] https://www.toradex.com/computer-on-modules/apalis-arm-family/nxp-freescale-imx-6
 
