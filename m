@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-34915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A04FD83BAF3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:50:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08FE783BAFB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:52:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C365C1C237F6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 07:50:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 790FA1F2165E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 07:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD43B13AC6;
-	Thu, 25 Jan 2024 07:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C1613ADB;
+	Thu, 25 Jan 2024 07:52:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lwp/Nw5+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zO8O4VXK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02EA312B9F
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 07:50:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA71B13AC4
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 07:51:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706169009; cv=none; b=ZRVkgUM+28cv9QyKBwGpAoPqrpBcCPHJbHRiQXgWx8nVU4H8sQWHvO9FsLWDonW9VdLtho7c8MXDV/lZNiE61i2Mc/AOhKxw2x0u3DAs/6WExDaSs0VbXttuj9IB20SWmwXN7GJK5CAc3EcyRv9L7dURXzxW9+kKym7zwHY2H94=
+	t=1706169121; cv=none; b=VeMdfZWEfQbrvWpfMZgTLnPAV/0kr3W70l6I2kKrS8zBHop0cVTE0gKPDpqXdcGyfsKxL7xyb3GyUPQvRTtOh1ThkIrTpiaR+x+CnU47fZOavbEsyvaqtx9sbYa/JpmKh4vCOYd7R2Yg2l/wsQ3LApcKx4xuqXTSOhOoiEZ2Mt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706169009; c=relaxed/simple;
-	bh=Rx1m8W5qcYoLqxuwR6PWRIHj/JKmUKw1q9wg+h2yxxw=;
+	s=arc-20240116; t=1706169121; c=relaxed/simple;
+	bh=l9hU/QKK2PtHrlBfySC/vkpZwslcuIUNq8yPn8eBBow=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZW1mr7zkF+zYZz4VXAuUBKtrqB58/q5Oy1U0fmvBwXW7++IYR30PmYu2QiudQfCXB4ye3GgaXvyvwiq958rz8TIQm6lk3xJcZoYfqAA8YV/4hX2mTIyGRdQ9tSDa4YD4loxORieW270OQPqOWEkYJ30LbmnZxblNti5QNGIcqaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lwp/Nw5+; arc=none smtp.client-ip=209.85.208.52
+	 In-Reply-To:Content-Type; b=I4upcQa+Bbll++3a+Cd0GW0+UUXHKhOdhwdyUgc8oObXcwtRpzqXR4ybA8rQU4NO361DiZj92BFa5J9VnepDbWcNb+FuNZIzwOu98AewhXf5t2y6tlexTwDvyV82UMlL3x8rdh8WPMJEo/ar5a79KOv/SBSjwDwyU0+TOQPoSCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zO8O4VXK; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-556c3f0d6c5so7709510a12.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 23:50:07 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-55a50649ff6so7077739a12.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 23:51:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706169006; x=1706773806; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706169118; x=1706773918; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bAYu80DmXRENUtwrMjEwKt1nZY4pwGfPgGYSpZ+esrA=;
-        b=Lwp/Nw5+U/gmaCfmVeszr6aYbVQwYmflZcdKKILUs1LDwFfykeSMgTMZxAZ+S6Wwb/
-         aOWilmlI44Jp8LTG97Zx+C6WuJL9K99eeWgGytEhOXA+6ALuBEgcg3LLmz/WKaNTXhdn
-         kuRmHDBM37G9WB/FPvnWP0HrYCBFpUhVQVKUhPHfwotrMIdE9fSLg04ddYvohqaB1BAy
-         G/SqjmceSYMLHNdDA2mOnWXKazfqq5GHWbSel45qCuR5cwjo7zN8ekoL3+Oq65oXGBTw
-         e1Y6PbdHC+BdUQGu5ZwmjTjx+plsOr7O8Zt2mLic44V47tL/Lu9k0zHj86xds+Ee6nl8
-         AAKw==
+        bh=nxsDUEfK9tANQSKnsl+k6AMIFKQpzSLvqrgC9O6EHUs=;
+        b=zO8O4VXKqsS5jWzqLyodB/tonR5unBUTUxVBatCBwSlryM8WFIcVuzy8dVTzQCB8YB
+         iuwD4+2zlACSMgCd9q7Q0FLlZ2tr42/oSRFrxafBvD/7zS6BUFg1hpOpgzYZIt9wm79U
+         jcqljuTPELI4ZlgpKaUO0dVNKswady6vKYg/US4ev8dX2+ohv24gC7kZvdRFP9Xrxp/7
+         Kv2D6pxUO+uDs5fL9nxgvd4iZED3giMerNbmHoupJJsW9Z+ZSj/DxuGFg5VV503LEKfA
+         9nL3X3NUe4Cl684wnXxo5pe8lfPRS6G1nDmCO5roRzI2STdBfpoKZARUZg3uVBkcp4C4
+         ++fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706169006; x=1706773806;
+        d=1e100.net; s=20230601; t=1706169118; x=1706773918;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bAYu80DmXRENUtwrMjEwKt1nZY4pwGfPgGYSpZ+esrA=;
-        b=YAaQdH6J2SYf7ScMli+eiUr/5vO+M2AeJuLPsYCEK9e3BiufATIuLNqXp56HbEIU+z
-         bjekU/880F6cm4yud4I6UdAxvndPvYSAgF2XYW+dcqs0B0RDlxffgWFZHUVGzPboqfFm
-         NrxaonYyBZktRCDhlKuE7R2M2RbN3y+UCHveRKly96RdZ518gdT8PrDdBq65IXTmPegj
-         C0x9XE7FV6YaGjG70FY9umi6XPkUmLYeOnGNV4aKdMhNza4y4ha2xm42qLqEQB6p3Ppy
-         iUzWXtBGmeC4F7kuRbMaeSu0S3FHqyD9rBiJ0IB/exABn8Hm/ukx2ovdyBFQ/BmSLA/N
-         WBPw==
-X-Gm-Message-State: AOJu0YwmTpnUiPeolskA2I4ISFGKRMV1rk5z2l7s6FAYjnO6IJHhXxT+
-	Hk4zryFYCS0Kf/jqjK5ar1W8GcLsWJUmmzl1LM4pvQ5/w2BbCZ+J1OmasPS+Pc4=
-X-Google-Smtp-Source: AGHT+IGtffkK3MVjn1PVMcY5xJaYn+bXhOby+WAtg7NMd/hxZNp+zAxIuoX+Jp0AKauxM6gVTvzjBQ==
-X-Received: by 2002:aa7:dccd:0:b0:55c:8855:952e with SMTP id w13-20020aa7dccd000000b0055c8855952emr235614edu.15.1706169004760;
-        Wed, 24 Jan 2024 23:50:04 -0800 (PST)
+        bh=nxsDUEfK9tANQSKnsl+k6AMIFKQpzSLvqrgC9O6EHUs=;
+        b=tXdYNkoXS1QG+mePuwErS/jzgA+bGJEGtXO/zawRddqkxK2PUrIjHPBroRc0XdmeaF
+         9zGnQ/tl4hVFigYx8OYgsJ3p+F8sBR86EiCv7mAhScHK6Um86LgY30Y59gX9NWXB6x0n
+         CnONs2kRmBRVHOl5fTxT6H5K+5yTsED77azcrDWzLIckbQTYIkaIWSbYKpYv+uVgUNXh
+         HRgBiRPaW72Vvo/RkKQ46rg1sLdxk7aEmr2Xkq4vjQOZJNC8y9AgQcMu16YB74DOWYcg
+         55TZ65ZlSibWrtdNBBNfCmU0T/MHktHGgkxkEfLyHuUy8IeWygN9J5NdgeANRxWr+2WB
+         Jh5A==
+X-Gm-Message-State: AOJu0YzBFM11YR6DIhxnt0yvk8IEhEB5FWIWt80u45xc3A4/4u1qsOAo
+	8ZgydZjK93GG44bY/uTbaHhh/RX4pTi9PZxxX79P4k48D0/BBzrfWP2xtNdzPqvAcz/n6NcYYVD
+	V
+X-Google-Smtp-Source: AGHT+IFBKe7scLDRr6uP13ptInBh6NVwFkI/u6B/ANKQDXM2oGaVYvzbiYWVFDto6r17WEwD4EzQpQ==
+X-Received: by 2002:a17:907:1591:b0:a2e:d32b:6fc7 with SMTP id cf17-20020a170907159100b00a2ed32b6fc7mr216045ejc.119.1706169118001;
+        Wed, 24 Jan 2024 23:51:58 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id fk4-20020a056402398400b005576a384b46sm17162999edb.10.2024.01.24.23.50.03
+        by smtp.gmail.com with ESMTPSA id f26-20020a17090624da00b00a26ac037ff3sm727960ejb.132.2024.01.24.23.51.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 23:50:04 -0800 (PST)
-Message-ID: <d8f00ea9-3bb2-4b17-bbc7-48800516e408@linaro.org>
-Date: Thu, 25 Jan 2024 08:50:01 +0100
+        Wed, 24 Jan 2024 23:51:57 -0800 (PST)
+Message-ID: <dd7e723d-3c4c-4edf-afc2-51db9a074efa@linaro.org>
+Date: Thu, 25 Jan 2024 08:51:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,32 +76,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] Re: [PATCH v1 4/4] ASoc: dt-bindings: Create yaml file
- for pcm6240 codec driver
+Subject: Re: [PATCH v3 04/17] dt-bindings: soc: mobileye: add EyeQ5 OLB system
+ controller
 Content-Language: en-US
-To: "Ding, Shenghao" <shenghao-ding@ti.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "Lu, Kevin" <kevin-lu@ti.com>, "Xu, Baojun" <baojun.xu@ti.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "perex@perex.cz"
- <perex@perex.cz>,
- "pierre-louis.bossart@linux.intel.com"
- <pierre-louis.bossart@linux.intel.com>,
- "13916275206@139.com" <13916275206@139.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "liam.r.girdwood@intel.com" <liam.r.girdwood@intel.com>,
- "soyer@irl.hu" <soyer@irl.hu>, "Huang, Jonathan" <jkhuang3@ti.com>,
- "tiwai@suse.de" <tiwai@suse.de>, "Djuandi, Peter" <pdjuandi@ti.com>,
- "McPherson, Jeff" <j-mcpherson@ti.com>,
- "Navada Kanyana, Mukund" <navada@ti.com>
-References: <20240123111411.850-1-shenghao-ding@ti.com>
- <20240123111411.850-4-shenghao-ding@ti.com>
- <92c1a3f3-6b3b-47cb-a4bf-0d20e4af95e5@linaro.org>
- <a6c6cad6efc647ba8f0c828ffdb3a54f@ti.com>
+To: Rob Herring <robh@kernel.org>, =?UTF-8?Q?Th=C3=A9o_Lebrun?=
+ <theo.lebrun@bootlin.com>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org
+References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
+ <20240123-mbly-clk-v3-4-392b010b8281@bootlin.com>
+ <20240124151405.GA930997-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -146,56 +141,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <a6c6cad6efc647ba8f0c828ffdb3a54f@ti.com>
+In-Reply-To: <20240124151405.GA930997-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/01/2024 08:39, Ding, Shenghao wrote:
->>
->> Why do you repeat the reg constraints? This does not seem needed.
->>
->>> +        interrupts: false
->>> +
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - ti,pcm3140
->>> +              - ti,pcm5140
->>> +              - ti,pcm6140
->>> +              - ti,pcmd3180
->>> +    then:
->>> +      properties:
->>> +        reg:
->>> +          description:
->>> +            I2C address, in multiple pcmdevices case, all the i2c address
->>> +            aggregate as one Audio Device to support multiple audio slots.
->>> +          maxItems: 4
->>> +          minItems: 1
->>
-
-You did not respond to any of other comments, therefore I assume you
-agree with them 100% and you will implement them fully.
-
-
->> Drop entire if
-> How to convey ti,pcm1690 does not support interrupt, and others support if I remove this if
-
-How? There is no pcm1690 here.
-
-BTW, add missing line breaks, especially before next blocks like
-additionalProperties.
-
->>
->>> +          items:
->>> +            minimum: 0x4c
->>> +            maximum: 0x4f
->>> +
+On 24/01/2024 16:14, Rob Herring wrote:
+>> +
+>> +      pinctrl-b {
+>> +        compatible = "mobileye,eyeq5-b-pinctrl";
+>> +        #pinctrl-cells = <1>;
+>> +      };
+>> +    };
 > 
-> BR
-> Shenghao Ding
+> This can all be simplified to:
 > 
+> system-controller@e00000 {
+>     compatible = "mobileye,eyeq5-olb", "syscon";
+>     reg = <0xe00000 0x400>;
+>     #reset-cells = <2>;
+>     #clock-cells = <1>;
+>     clocks = <&xtal>;
+>     clock-names = "ref";
+> 
+>     pins { ... };
+> };
+> 
+> There is no need for sub nodes unless you have reusable blocks or each 
+> block has its own resources in DT.
+
+Yes, however I believe there should be resources here: each subnode
+should get its address space. This is a bit tied to implementation,
+which currently assumes "everyone can fiddle with everything" in this block.
+
+Theo, can you draw memory map?
 
 Best regards,
 Krzysztof
