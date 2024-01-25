@@ -1,101 +1,119 @@
-Return-Path: <devicetree+bounces-35077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 924D483C3FB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:45:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40EEA83C436
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:01:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AAC4294A72
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:45:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAB431F23E09
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:01:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FDF95677D;
-	Thu, 25 Jan 2024 13:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42055605A0;
+	Thu, 25 Jan 2024 14:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rug8Utf/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AdOI+uXN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6888056756;
-	Thu, 25 Jan 2024 13:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81F85604CD
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 14:01:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706190305; cv=none; b=iIB1B4rqSzVRmdXRDVSotCccsLNJtpt7w40sPNA1yRQ2icPpJ0VK9fBdhXa6aZG9sKvAE+oACR5h4qTlmt287ZulLNm3mGFMtRZlPQsb7dpWTcMAXf1nP+PsKqSeQ2wZzLVohk/sVBR9mVybcR82d0k1rSuI1XcxcBMBN6MlQ+Y=
+	t=1706191306; cv=none; b=BOW9Ms4TeI/CcFQ8XIUw222HxZz+3FGZbo68BZRZn4xFudP4eFTkruMDoL/mTMXoBg6bSt/cZkwZL9wPxLL3SLdOilr4xkyRWHXNGvuDtMgLMf57F7rwSneLEg9IK9IHKG903l9nurIk3mJOuefWamsz8U48HJlqiCJxayk7LdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706190305; c=relaxed/simple;
-	bh=NkGyl0Jo0whrkxO3b7LKj7C4yJ2z5Q7jS9gPgnwH+To=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TWirHiRsF9x9BInlPJbR89htS3CHJ5XVKCxw4p0Pv5No6e9DNHJCliUgEpVfd6hRH3rFDGHxiFtuuLmeQ85Gzz5pg7xMlOZmXUhxVLXGi4nSg8XWrQKvlnZ44LbBe8K8o5iQSb4NNMj6nUUw118zO84LXIrVvAI9pR5k5grbBp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rug8Utf/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59646C433C7;
-	Thu, 25 Jan 2024 13:45:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706190304;
-	bh=NkGyl0Jo0whrkxO3b7LKj7C4yJ2z5Q7jS9gPgnwH+To=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rug8Utf/w3dEQerx0wbHVZ/SWWLm4O7sohG0zDLffqrmWy1HvAKou2t+boHVJO82r
-	 +wpGR6eKbO4rXTPaejfNyYwS8RxD5FSOnymemR/CviaMKn1H6ZhtKt9RVJyexJs+MW
-	 DcK9n4RlsioLM/MRILqegUMF79BdrWHlfGqtQ2X8cBcNXjrCSfgrrrImI3ueuCg/8h
-	 iHXb0JHwoTtGos5SeeD/EylC6Yq+7hTRzfWURDCmZRRT67R7ib026siLqXYVvzH4/N
-	 PZzt51NLWtfLNpaBoE52UJui1OwWm1uMSJM9wCfXzRJERo6qQvyRr7eehDSvc/XuDY
-	 gudz9vm89sPpA==
-Date: Thu, 25 Jan 2024 13:44:58 +0000
-From: Lee Jones <lee@kernel.org>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Daniel Thompson <daniel.thompson@linaro.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Karel Balej <balejk@matfyz.cz>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] leds: ktd2692: move ExpressWire code to library
-Message-ID: <20240125134458.GK74950@google.com>
-References: <20240122-ktd2801-v4-0-33c986a3eb68@skole.hr>
- <20240122-ktd2801-v4-1-33c986a3eb68@skole.hr>
+	s=arc-20240116; t=1706191306; c=relaxed/simple;
+	bh=lfXymCih8K4E3VCnUTnLCvDgmUDS6aPwTshK7FgaqVY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jt/bREmN7sWPGoJ45UtIxtWV34L6azdtXOZBYJdnoNuaB5eRzNkjtJti0PO1KueUVxhacRA/6BGGTlUOEEWYslp5RMpT1iZ3RvVCarvaHnXlcEjFVuTpwRQH92BFE8DtEsgsX/RNOynDIXW6iyZF05rkKD0rJPPSZ5Usta2gXpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AdOI+uXN; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5100893015fso3750584e87.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 06:01:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706191302; x=1706796102; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1KvKCRCBN449rio/DKI464Fncv3o1DnaiUByEc969UA=;
+        b=AdOI+uXNDQzJmfGTNRyUm1GtkUx/EyKhwcoQI1G1bOA8mNRIT98F/1IdAmE462hrBk
+         0KwTAez614+dlJaAwNrimmsnQLYIkzyWQBTGO652Ayhd1Ca3B2ykxw8Qy7pUjsxfCe/m
+         Guq7rdlEEap5Q9DXiHiuh/xmWdVXJPibikkJjNDSDbb30HU9rT0+SMmE5bL6yWuoK9Fi
+         uH9KTRAsqFOzl5/7i4Sg+aTkWDC7WnrTeV/PHqXapNERjlmCKaQY0ZfD+cXECSbGcEcP
+         HUrQdfw/oYB5eekHkw3jYShtzrtIv6+iL9KwShIfvsC6R2fZc9bc+Djz0bkWREPE7TyC
+         Djgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706191302; x=1706796102;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1KvKCRCBN449rio/DKI464Fncv3o1DnaiUByEc969UA=;
+        b=WcOqn8wtIu7WK7txcPE3xCDjnApANSJxpVLp0FgYrOMAZpTWqZtQX7+ATeagBS9Utj
+         CJf2jvwl08WvlhOIextBcRcDEI1f51Ck/Fc+7taDB+uAYv5K0fId7wRqqMSi0Dba9r2I
+         s4Yp0jvat1cROb+6m1rLRAkpSQm4wsvBgdVTVZsujWePc2tEY53sn4iWTkVaVdrl/a60
+         isAMfJiLbe19rS3g0VGZh1hTNMZkQA63f1lk6l7PSG4TOzr9ut8xlxNyUcB594inbHWw
+         gh+M3UPvb3Z5SNA2opNJprnYFijZNNQ0HyfpZHqhWfeAq5PRd531qvVtxL/eTquSdviq
+         OPIQ==
+X-Gm-Message-State: AOJu0Yxr5u/k/CrJ6+yBj9a4ix8HUC8nWi+YyYsD0iOFy3AH2FiyPi7l
+	6m+Xg4wMmEjkG7djdeulwKh40yzwTx+HOaG3kaR/88LHpEhebVdgzGv9RqEoRNo=
+X-Google-Smtp-Source: AGHT+IEUSuckZSbp7+7LJ/KMKFB8cmOCZlQnHH9oeU4dOPU6vGxMnuPXXl5wbqmBe4kz+uw5KVF/4g==
+X-Received: by 2002:ac2:5e66:0:b0:510:bbd:6de1 with SMTP id a6-20020ac25e66000000b005100bbd6de1mr329846lfr.204.1706191302478;
+        Thu, 25 Jan 2024 06:01:42 -0800 (PST)
+Received: from puffmais.c.googlers.com.com (229.112.91.34.bc.googleusercontent.com. [34.91.112.229])
+        by smtp.gmail.com with ESMTPSA id r17-20020a1709067fd100b00a2c7d34157asm1048170ejs.180.2024.01.25.06.01.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jan 2024 06:01:41 -0800 (PST)
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>
+To: linux-kernel@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	alim.akhtar@samsung.com,
+	peter.griffin@linaro.org
+Cc: kernel-team@android.com,
+	tudor.ambarus@linaro.org,
+	willmcvicker@google.com,
+	daniel.lezcano@linaro.org,
+	tglx@linutronix.de,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: samsung: exynos-sysreg: gs101-peric0 requires a clock
+Date: Thu, 25 Jan 2024 14:01:38 +0000
+Message-ID: <20240125140139.3616119-1-andre.draszik@linaro.org>
+X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240122-ktd2801-v4-1-33c986a3eb68@skole.hr>
 
-On Mon, 22 Jan 2024, Duje Mihanović wrote:
+... otherwise it won't be accessible.
 
-> The ExpressWire protocol is shared between at least KTD2692 and KTD2801
-> with slight differences such as timings and the former not having a
-> defined set of pulses for enabling the protocol (possibly because it
-> does not support PWM unlike KTD2801). Despite these differences the
-> ExpressWire handling code can be shared between the two, so move it into
-> a library in preparation for adding KTD2801 support.
-> 
-> Suggested-by: Daniel Thompson <daniel.thompson@linaro.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
-> ---
->  MAINTAINERS                       |   7 +++
->  drivers/leds/Kconfig              |   4 ++
->  drivers/leds/Makefile             |   3 +
->  drivers/leds/flash/Kconfig        |   2 +-
->  drivers/leds/flash/leds-ktd2692.c | 116 +++++++++-----------------------------
+Update the schema to make this obvious.
 
->  drivers/leds/leds-expresswire.c   |  68 ++++++++++++++++++++++
->  include/linux/leds-expresswire.h  |  36 ++++++++++++
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+ .../devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml   | 1 +
+ 1 file changed, 1 insertion(+)
 
-Please can you separate the Expresswire addition into its own patch?
-
->  7 files changed, 146 insertions(+), 90 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+index 1794e3799f21..33d837ae4f45 100644
+--- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
++++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+@@ -72,6 +72,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - google,gs101-peric0-sysreg
+               - samsung,exynos850-cmgp-sysreg
+               - samsung,exynos850-peri-sysreg
+               - samsung,exynos850-sysreg
 -- 
-Lee Jones [李琼斯]
+2.43.0.429.g432eaa2c6b-goog
+
 
