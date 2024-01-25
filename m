@@ -1,130 +1,146 @@
-Return-Path: <devicetree+bounces-34971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC8CC83BE12
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:55:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EABE783BE1C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:57:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35EFA1F23EFE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:55:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85C1F1F2769C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1E81C290;
-	Thu, 25 Jan 2024 09:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6FA1BF3A;
+	Thu, 25 Jan 2024 09:57:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qfo5mEc4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e10KUXJY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7F81BF33
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 09:55:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29EAC1CA8F;
+	Thu, 25 Jan 2024 09:57:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706176541; cv=none; b=hr+edTDTndiG2p+9HHo30WQitrizElf2yau0kOIXWE3GC8gHrELDoXN3BywpPQA1w2pLK1R0zG0yrKDvpBllA6/zI6kr8o/0ayrw87GBOIpd1Iz8TpaXpt0/BkXTNMSyr4Gp3a7p0wWEmn+1f2QpCnIxjeKUXWFC1qIGk0OzFzk=
+	t=1706176645; cv=none; b=bcuyDpUrqpVQlI2Brn3ZQi4+U20OSY/l3Evw5lvBfOpRKeqiQPkfEM/F4vqiswz7lOviiBs6YSYbtFggHzrFbiOltDybX5ogu1iYBF9lqQFt6v1HRagS6gWzI/2CQYb7vAwRfwnWj7Y11NBW4S+YKRw8KLtKmV5jwLsiB7iaRaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706176541; c=relaxed/simple;
-	bh=6lNqeaEksv1cualUi6+FAxuzKNDXiCPe52QpN8JpUzg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WOob8W6RR9lA9J+59ujC/7VlqRlfSCHqMAxmP5DZ4M6cnpVIDS700SMGErL2abIjPSED0L2jr1UgxLFs4TAEjnUAzce0vLJmOZJ0jDK+p67Ki+8PLXAi6Bpg41EB2pmHSvQ/K8DFmiYChD8fcEcQ3vw0IfCXsfbOXrpGBoWk/gM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qfo5mEc4; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50eabd1c701so7471586e87.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 01:55:38 -0800 (PST)
+	s=arc-20240116; t=1706176645; c=relaxed/simple;
+	bh=nDBj2jaw5rA3cCvKk+09ETAP4UZsp4kCO/FWScfddaQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IHtjzndgwmGM4bx2jHNkUN8JX4ehK0+n+QSVz1zEfapWSapU1yDTsaYUQGmnsnzYkBku9Qq/IW+KPQl9e0vneT0fd6gv3/eDK3RTXWzyK7dC+gZaCrLCyuazGAqwzZ7jbSWp/001bquvreTeX2Q8nXtUxML/FkpMY76eBXGiXLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e10KUXJY; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a3106f5aac8so213273066b.0;
+        Thu, 25 Jan 2024 01:57:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706176537; x=1706781337; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/nRRg0fCzYKQkswk6Yuy7lpWZxrjK5S0VOtBK9puANA=;
-        b=Qfo5mEc4fuO5aWZ+IqY86f+85VTunzFdnqDzptj4PMyzY3LiInX5474DIYBYgahvAT
-         6mycT1SkRuGZdlrWpZvHOUq7MgD15Y+GN9QkQz5RKu94kBWMXLxQmbP/p6yRzIC6MbX0
-         s39C3cXT2WN6xFq08C7HMYt7shWqyd+zIB9uK1TNWZT96PmAf0qUltiMtNXVAaeJsSkC
-         qumuV6Qo5leE1ghBVxyH51gZLvyGmvDB7MI4gnuMkliPhiQGfYUHB5N9Rtczj7OC3ee6
-         UxlZscgVeA4PHxp6vr92ghd8Q3hzX2lLC6uWl0bhQBnJTS1OvKb1KZgaemqmfL1WlXpc
-         edGg==
+        d=gmail.com; s=20230601; t=1706176642; x=1706781442; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nBbqKY/v6t61r3biu1JvqsGDvuKRc6bpf7H0wAyMpUs=;
+        b=e10KUXJYM0iTljz7redYixUolXVLKkd4NEhJZnMvrANt4/xS1BVjTAQFk84K3Zjq/6
+         AAvrjZKzzeOZLKiixv87kMODhdSfCYEWU2Ynq0+iJSfPRYod/oLaSkVXbcrTl27dEgO5
+         AUU1tqjL1IYgXs6Nureri02FHXXjU+1w/jsDSgpujBNsdkQD1UtHAIqYjiJGgi+Rk8v5
+         DJ/T1/MR1XgAo1AIMZEXOR+lG24GGOtHzdpNa1mZ62o7kqJWE9IZintUaGKedcnVjIy7
+         kRio3jLaHVGqjr560JmbD7u/aARd9clRApHAT0D2wkSyVUdvR0HG7Ij0PcBPUVc9CAcg
+         GGRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706176537; x=1706781337;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/nRRg0fCzYKQkswk6Yuy7lpWZxrjK5S0VOtBK9puANA=;
-        b=QifAGSeKxplixAWuzja1mWM42W2rDwcd4dilhpoh6CLiaUJrTRipKja7CRRG5BD3qK
-         i6Pls31UukxditUsb+lxFI0pcYqtgtY0BDSMZSplKZpROK0KUw5j9oEWB6FtO4ZzAMhh
-         gocBrlYmkd4tu5UTxADajHBvaf95cMnK8d4QRFnvBOCZozNndUk4uCzBtK/+QbN1R5HH
-         4UPVUZXEKDD5vRVE6lgGOYCJH9D2dE113eEtEu9sKZWmDvsHbEWm3ubkrbu6rTgD8gb7
-         mwr1kgMq2apePpoOXaULlT/iWUZc4Mb1DBsZMyC4sxtoFV4EBurSrLay62bapbWc9Q3G
-         DQHA==
-X-Gm-Message-State: AOJu0Yy6VesD/QpJAHXd5rNb0neg7gjsHxH7DK22XEzm3Bh/I0O4Pc1N
-	eIo7I/cq+FrgAOop8FU+W6Gd/WXQbhyYoFsgtMuksN/RzE2LzJLTCXgPeGiKWR4=
-X-Google-Smtp-Source: AGHT+IHk/moDiI4nmXXECSLzTb5A0yWjob+jLxVa9F5uccM2gYBYDUyV+b0NAmcXM6vNsnRosHIf1Q==
-X-Received: by 2002:a05:6512:234c:b0:50e:8e74:6406 with SMTP id p12-20020a056512234c00b0050e8e746406mr578523lfu.36.1706176536902;
-        Thu, 25 Jan 2024 01:55:36 -0800 (PST)
-Received: from [172.30.205.155] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id w12-20020ac2598c000000b0051007e2a2e7sm713457lfn.231.2024.01.25.01.55.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 01:55:36 -0800 (PST)
-Message-ID: <5ae84692-b05d-4a43-aabb-4d2e7d9926d5@linaro.org>
-Date: Thu, 25 Jan 2024 10:55:35 +0100
+        d=1e100.net; s=20230601; t=1706176642; x=1706781442;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nBbqKY/v6t61r3biu1JvqsGDvuKRc6bpf7H0wAyMpUs=;
+        b=e81Kh2KKWflTnB8W46r3QHXc5+h+DfAIMxWYFrU2896aFbj0K/EWDz4J8nW4hmGtTF
+         KEvChj3HcQZ342mILR0YhMWAmPoi4I8vgsCIiEYm2/keB/jWQ9CuSXbQoyulsw8Z8Ge1
+         7locfC44L8uVTq3RqNfomhZihTiDDY1TLWeuzb/b6G+RC66uCa9zQH4/53d7w4m2xYSe
+         szIz8A9qOqykUx4rKgl8o3RGcOVA/WMxYN57rVI3Hphrd5zeXkDotIk6OWYbmA7BysA8
+         jgI0/iO4F8g+P6/+kR/2EXPMOc5E5NEwGK0nmVt9B+lu3GXJF/Xr/0Qgp+A/dk0zymBS
+         ruKg==
+X-Gm-Message-State: AOJu0YxyEO5Q90Rvcwyvur3IRCE8ropGXpIOe9I1ktZwIPR+YmRfV/pN
+	muRQk72UkvLgge8yNlikvA7nMgD9y1hdxZupip2KdFyOXX9FsIRveVjAzy8yC+I=
+X-Google-Smtp-Source: AGHT+IFSLNteMzFmcoCxXhKIiQTLIeb3M6E1SRC9QOgEuM+h6q1NvxgMhZSWrXXmAt1a6HlmbzKLog==
+X-Received: by 2002:a17:907:b9d3:b0:a27:7075:7613 with SMTP id xa19-20020a170907b9d300b00a2770757613mr374859ejc.67.1706176642129;
+        Thu, 25 Jan 2024 01:57:22 -0800 (PST)
+Received: from skbuf ([188.25.255.36])
+        by smtp.gmail.com with ESMTPSA id vg8-20020a170907d30800b00a3172cc2a0fsm543030ejc.136.2024.01.25.01.57.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jan 2024 01:57:21 -0800 (PST)
+Date: Thu, 25 Jan 2024 11:57:19 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Philippe Schenker <dev@pschenker.ch>, netdev@vger.kernel.org,
+	Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+	Marek Vasut <marex@denx.de>,
+	Florian Fainelli <f.fainelli@gmail.com>, devicetree@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	"David S . Miller" <davem@davemloft.net>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH net-next v1 1/2] dt-bindings: net: dsa: Add KSZ8567
+ switch support
+Message-ID: <20240125095719.2nu3u3auwdcmouaw@skbuf>
+References: <20240123135014.614858-1-dev@pschenker.ch>
+ <20240123-ripening-tabby-b97785375990@spud>
+ <b2e232de11cee47a5932fccc2d151a9c7c276784.camel@pschenker.ch>
+ <20240123-atlas-dart-7e955e7e24e5@spud>
+ <979b1e77b5bb62463d52e7b9d3f9ca1415f4006a.camel@pschenker.ch>
+ <20240123-carpool-avatar-c1e51ab3cc32@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] clk: qcom: gcc-sm8150: Add gcc_parents_0_ao support
-Content-Language: en-US
-To: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20240123-gcc-ao-support-v1-0-6c18d5310874@quicinc.com>
- <20240123-gcc-ao-support-v1-2-6c18d5310874@quicinc.com>
- <d31a52fc-9073-483d-b84b-1f02a5698a89@linaro.org>
- <77903574-696b-90f9-f136-be5c5d219ba1@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <77903574-696b-90f9-f136-be5c5d219ba1@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240123-carpool-avatar-c1e51ab3cc32@spud>
 
+Hi Conor,
 
-
-On 1/25/24 06:49, Satya Priya Kakitapalli (Temp) wrote:
+On Tue, Jan 23, 2024 at 06:37:55PM +0000, Conor Dooley wrote:
+> On Tue, Jan 23, 2024 at 06:30:16PM +0100, Philippe Schenker wrote:
+> > > > Hi Conor, Thanks for your message!
+> > > > 
+> > > > I need the compatible to make sure the correct ID of the switch is
+> > > > being set in the driver as well as its features.
+> > > 
+> > > Are the features of this switch such that a driver for another ksz
+> > > switch would not work (even in a limited capacity) with the 8567?
+> > > Things like the register map changing or some feature being removed
+> > > are
+> > > examples of why it may not work.
+> > 
+> > Yes the ksz dsa driver is made so that it checks the ID of the attached
+> > chip and refuses to work if it doesn't match. [1]
 > 
-> On 1/23/2024 11:17 PM, Konrad Dybcio wrote:
->>
->>
->> On 1/23/24 17:34, Satya Priya Kakitapalli wrote:
->>> Add active_only support for gcc_parents_0, this is needed because
->>> some of the clocks under it are critical which would vote on xo
->>> blocking the suspend.
->>>
->>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
->>> ---
->>
->> Is there a need to keep gcc_cpuss_ahb_clk_src around? Do we do any
->> ratesetting on it? Should we ever turn it off?
->>
-> 
-> The branch clocks under gcc_cpuss_ahb_clk_src are critical clocks, which are running at 19.2Mhz causing vote on XO during suspend. As of now no rate setting is happening but this rcg is useful to get the exact rates from debugfs. Hence this change is needed to avoid XO shutdown issues.
+> That sounds counter productive to be honest. Why does the driver not
+> trust that the dt is correct? I saw this recently in some IIO drivers,
+> but it was shot down for this sort of reason.
 
-So, if I underderstood you correctly, this clock serves no purpose other
-than getting rate?
+If the hardware provides device ID registers, what is the best practice
+in reconciling them with the compatible string?
 
-In this case, I'd say we should de-register it from the clock driver and
-use debugcc [1] (contributions welcome!) for precise measurements.
+I see 2 extreme cases. Ethernet PHY devices seem to blindly trust the
+PHY ID from the "ethernet-phy-idXXXX.XXXX" compatible string, and phylib
+won't read the PHY ID from the standard MDIO registers when this is present.
+Whereas PCI seems to completely disregard the vendor ID and device ID
+from the "pciXXXX,XXXX" compatible string of function OF nodes. Both
+these subsystems have the "compatible" string optional.
 
-Konrad
+I could see an advantage in using a precise device ID in the compatible
+string, rather than just one from which the _location_ of the device ID
+can be deduced, because the precise compatible string allows for much
+finer grained static analysis in the schema for the device. In case of a
+switch, that is the number of ports, supported interface modes for each
+port, etc. With an imprecise device ID, you don't know what you really
+get until you boot the board.
 
-[1] https://github.com/linux-msm/debugcc
+> And despite the email, I have nothing to do with these switches, I am
+> just a sucker that signed up to review dt-bindings...
+
+Same here, just a sucker with some switches and not many clues about
+other things :)
 
