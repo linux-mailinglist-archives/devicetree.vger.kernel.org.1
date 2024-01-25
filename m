@@ -1,262 +1,176 @@
-Return-Path: <devicetree+bounces-35145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F4483C69A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 16:31:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADAD783C6CD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 16:35:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F1971F21780
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:31:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64184294971
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:35:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2A5B42A9B;
-	Thu, 25 Jan 2024 15:31:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="ijNHiB46"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 098C1745D2;
+	Thu, 25 Jan 2024 15:35:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2045.outbound.protection.outlook.com [40.107.7.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE5973160;
-	Thu, 25 Jan 2024 15:31:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706196677; cv=fail; b=UI0GHBm8gn6ulajjS2ar2RfRZouYi11QLNz/EjMxgyM0jaG7MAI32Sls561mTY7SG6XVrHRT11IdBh2uLjsXB+UI1IzgOVLtpAv+cQE/u0UlX0lEhnSNrKVIc+rA7o3eD1yStzRoH6D7n7ysGIHlBzqPMqHJE0QlW18tubEIEXg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706196677; c=relaxed/simple;
-	bh=E95Hl7N5eLEw4PmDTbEsfKwYVZwr9QT36k92cjo1khw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=dkPshStFBJeOVLnAx0yZ1ree/VLs2w6QOtmtU0yyvQOUEASkF0MZfoAhZIRxnUmukoXU9i8y0J6qwoZFGM0heExAIHJz2uNzfiUNereGAAXwmXH6LdMdvTVvqI+lX6hLwHYsQPc5j7/eex/2iyRE8G62nKrb1LXamx4ItKxt59Q=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=ijNHiB46; arc=fail smtp.client-ip=40.107.7.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J4/KleVyGWJWyoddy5jLK07ymEmdqeNI14FXvsLrg4L+UMGkF2ztR28wIjA1h8nYlxLzKrl3KYrO3w3nWhCoee3rpEml3pnGbY29EFD6s+q17141t9AOxpgH1fuMiXqaHaJLJxMe87fvcMV04fpQ6yk+SrOSgm3e9pQF0jgbhLEGTdsnh+wM4JC5uBquHzoT6TfiM1XsZne9q2VeucDEqggi0UQMjA5/OOhRClyb2ZUXIylUh6xNRUlH1Us3gqcjn2AzdS99CvORGsCQdFHnEd27hbJNAdT9rDQ8hs20bjazz4hQHztwsF06zpQsoptyOPr9z0EUdb19P2F0rIoiYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LuK+sVzB8Zi28Icf0Hx5lsUjWE4gViG8lvMZqWp93KE=;
- b=Vz1ryrP3vAROkTsamGPw6IYky+32Dr6JwOLdjpgFZpAT9rw0UrClcLjnZvdoNvnOYGA/lrHL2cRuuEGbMml8u9BU8DocX49/qpMDoektQxSJ8HuYYEextC7n4XQAzkl9HIGKOty1bjXtixcjqZrrdwGSO2HP2Sp5QzdqyfX/sB3jd8bST8VkJM4OqPM4RNG9fyy2jFAvvlhjuLUfYjNaDGyfz/z23mmNPB+vLcQhPrdOeM1EqDafZeoDkEt8t3tmwdxcIWjd5HbufELCE3YQJnHRhwDnXWwSGnfysykkwgYiy8CKO0b98TY1UVunWRC3rNhA9vs2RjajcHX9Tij3iA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LuK+sVzB8Zi28Icf0Hx5lsUjWE4gViG8lvMZqWp93KE=;
- b=ijNHiB46Jk4PCuBtzSxhIKqUY3V6QjrZKtUIr457hdVQPZtcyJgYUyBsfoNbU2tWr4XMtK6d4FmqRAEOa9TQwNEYYHVNz8fhqvnKCw+2Fs+krEIY1YrO4Px6WRUwuGEegZpRY7ncDNg8HQZ9hgROKOR36qCVeVPfY0StkVLK17Q=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB9PR04MB10033.eurprd04.prod.outlook.com (2603:10a6:10:4ee::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7202.32; Thu, 25 Jan
- 2024 15:31:10 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::c8b4:5648:8948:e85c%3]) with mapi id 15.20.7202.035; Thu, 25 Jan 2024
- 15:31:10 +0000
-Date: Thu, 25 Jan 2024 10:31:00 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: lpieralisi@kernel.org
-Cc: bhelgaas@google.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	festevam@gmail.com, helgaas@kernel.org, hongxing.zhu@nxp.com,
-	imx@lists.linux.dev, kernel@pengutronix.de,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	kw@linux.com, l.stach@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	lpieralisi@kernel.org, robh@kernel.org, s.hauer@pengutronix.de,
-	shawnguo@kernel.org
-Subject: Re: [PATCH v9 00/16] PCI: imx6: Clean up and add imx95 pci support
-Message-ID: <ZbJ+tFPn3aOYHCwf@lizhi-Precision-Tower-5810>
-References: <20240119171122.3057511-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240119171122.3057511-1-Frank.Li@nxp.com>
-X-ClientProxiedBy: SJ0PR13CA0097.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::12) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892D673167
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 15:34:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706196901; cv=none; b=Gki3qvGcyY3IK3Xa/yDzcCSCUWvmyn342hFL2ApOcdg6CAr6JgVADG9RRxGRI0G9DulvE/bu2ouFh3nAQe3t7wNelwCqkutm3irb6uTLpSSLB0OY7sai64HN/4kZ2t1Lf/bfDwNp4nOI4/R7rtkNrD6QMyr8o+m9SiPxZoEIHzQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706196901; c=relaxed/simple;
+	bh=v15vasOy5jTU6RKaAc6l/DxvJnBWxYnDy11GfBA+2Fc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=fYIQv6dowkI0erb5sRLS2GjDsNspPpjuM/OCrNQ/uSI/BUSsJco+eAoOq6NFOcnM5jI06A5r0hS2399j45jKi6WewH+znecHAEPHs/F9dtPCjOvQuFwrx1ebI1qJwE7sSK24a836V8KaenNZqNwHy9lDS+ey6pT8q4l+kvb6fhU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:bc9e:fcb8:8aa3:5dc0])
+	by andre.telenet-ops.be with bizsmtp
+	id f3am2B00558agq2013amKN; Thu, 25 Jan 2024 16:34:56 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rT1jn-00GUvT-Tx;
+	Thu, 25 Jan 2024 16:34:45 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rT1kb-00Fs2H-Qu;
+	Thu, 25 Jan 2024 16:34:45 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Cong Dang <cong.dang.xn@renesas.com>,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>,
+	Hai Pham <hai.pham.ud@renesas.com>,
+	Linh Phung <linh.phung.jy@renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 00/15] arm64: renesas: Add R-Car V4M and Gray Hawk Single support
+Date: Thu, 25 Jan 2024 16:34:28 +0100
+Message-Id: <cover.1706194617.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB10033:EE_
-X-MS-Office365-Filtering-Correlation-Id: d8605673-200c-4f41-f85a-08dc1dbaa81c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	zGmV+A4bdVCcAF6Kx2pSWCu56Qlpw8xqjGdRRYgIPygGNiNdwINuj28Etx534UXe03jueJqDcx+JV46fsmDeoRxyDDNvP6EtXtEGRw/7fKr1IIKZzQS8uZD2WQfB5dU+FUN95W9m8R2UrMGUzWIXJzWvMz2ZhfW894A4wBGGY/HdEr4nAiv7JdJB37glv0UuSU303qOl5CBfa1KMWmfoZcVmwHdKMZn8yQRbRDzBUtkLrhGgHhIEwmx3wpDiqRMbDAm3ULTZPzZ9vvxeIKDseicWkSqtJsx8NbXGOQT6F+TJe54QJuV+4CwN3WeWq72uIDBcpkKpW32lvvynSEOhbcPLLGBGrmitzTIo8/cyAGBonO5ZrBLN2G+aZDBBeDC7TY0aCznb07+LM4JZzZPKhN3j6U2xcf2C87lbZmm0GXcjxJMsbjhptqRyUaM17adW1BTFnWZpbE52qgXRXgKKMH4bo2DoArOlS0U+UjNsxfNw4MN2Qdbyju4/MeLFEShP2vTISc60krsbTPPEezvZge7/fbNLcRRcWp1M/T9DI94YXqSHCyGpheO7dZzCOhEx00L0/1k2EcRxhHuBbZEIWgdYtE59ZTXl5ngtHssDvV9tlvGqRd7oOG9oLs7TL4XdWFHONFkrOyx6LOTUAFKe4A==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(39860400002)(346002)(366004)(376002)(396003)(136003)(230922051799003)(1800799012)(451199024)(186009)(64100799003)(5660300002)(6506007)(6666004)(52116002)(86362001)(41300700001)(38100700002)(33716001)(83380400001)(6916009)(8936002)(66476007)(4326008)(478600001)(26005)(6512007)(2906002)(66946007)(6486002)(316002)(7416002)(9686003)(66556008)(8676002)(38350700005)(67856001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?kivEgaLCE/VjxEnwqFJbv1jTUXm1uv5JOK0HKkdM28i7yIDpqhh5+jay1Krd?=
- =?us-ascii?Q?j0VjS1qiuR2kVz0PfwIPB96/J9ytST5sl+A+Kvh9iT2w89RJwtT64vZXEj7u?=
- =?us-ascii?Q?oRuv9l2Vdv0wzIaXlzVGnPDGIgo0+LwkKmUA64MgyoiwyyBiQniafHonxwPt?=
- =?us-ascii?Q?W/aQRucj6a/i13L9TYK8tlla79CkUbxTM01mZHlvoY36AYzQBgl1rOW7217Q?=
- =?us-ascii?Q?7goIfAiO5FkqRQyQ7xzuTclZCcMW7gP1Vnxbo3NpAW0+58D+M9wrezQnsxlw?=
- =?us-ascii?Q?6O19k6dki26v+/1rh7JNX9tyTGhuEMuuLX8VmfvtOhVxt9Ch8WO51qlDtfEX?=
- =?us-ascii?Q?OVoubpYTQW+CMDoar5HM/m6+mMhdKP+HZW/TyCfU6umpkxqCcykq5vyyfCrK?=
- =?us-ascii?Q?hkV+he+IIz988X+1YzEGGqT4xHLlvBL8P2V1KhLmogE/xg4DinunAgi8iZ5Q?=
- =?us-ascii?Q?r1l+6VhSxgF+lcMXWiVNxBkum9MKNJNpu3ewXQpXzjK6+F63Q5yRZDaz4In+?=
- =?us-ascii?Q?F3Ba1xoZ/kHgcJhiYJUfy2J/ylT/G6NHaahf1yGb+qp4hN23MHBLJroocfp9?=
- =?us-ascii?Q?p1ahm31nVeNNDOm0uGOIMPsvP36/vx2V8GHns8Mtx/v4S6BZ0NrzKRPVthDD?=
- =?us-ascii?Q?P6mwkqoQAY05+2DfmEcREvUreLjV8incxIURmhbzzgmJL6L9Wp6jZwVQnbn9?=
- =?us-ascii?Q?r7AY0Cr23vcOIP+KUwhfW7e37ouUpb6fiqd9Ll1Tx/AJuEZT/0AoDfPLtRTq?=
- =?us-ascii?Q?MbYJE9egPyuf8/UmTxvx3H+wT33GHkeqXc+BdPb8gWILfGhwwX6QMxCYdXOT?=
- =?us-ascii?Q?0Ug3jmqvBTvILhRxM6sMb98wZHD4Gs39QBz+55d4g9V0PFPpHW23BFEyxOGd?=
- =?us-ascii?Q?avbxTX6sNkgbdNR7QgVa2bABsp5k691vutrrPWSVTVuCB9ahh8FvV7Ov4SWW?=
- =?us-ascii?Q?KwFXm5ciH5jJ9WB7rSnZsVp6nXcaOJ5nDJrePr0psSMRW7OoK+cJsoKkQW/U?=
- =?us-ascii?Q?GScb9AYrNWnURN0Ru+XoZBKoGjNPuAX1vJ/DmQhhczCllwxbRqdcYnz8dc06?=
- =?us-ascii?Q?+/fmYDewqfrxscbUJdpE6no/MVVr5I4Ia8+2/EfBDowAWr/Hzh6XpKwyGbzy?=
- =?us-ascii?Q?RR8LzdCE8DWDdSNYwBN+8btzs/t796PlDYYvq1OrW4XYTKqiEOT7+Fw0mzII?=
- =?us-ascii?Q?jKrPhqxqE1Ansl9sEEokK0yeivv2gaoSRNsTcyN6jtk8FZoOViD/TCsZnlha?=
- =?us-ascii?Q?Byavlk4Mcr0E+bagAFvTsW3LCD1KfK/1uFthzI296KM8EB37UTqgKiyLufT8?=
- =?us-ascii?Q?f8fzzj+TAC+b92fYM57xM89BpsIPurDJarUu/jWlxrYFveRsjHNxpGv3Tesw?=
- =?us-ascii?Q?wPsIrjPv35tN7o6LEiYDcpNewrv2auGJICBChA/e/xX/JKrXojGg9Gj7Xdrw?=
- =?us-ascii?Q?BsDYLTW3zvQYmbycUfCvgVdaSoS66U2wVX+lLxDA1mVBXKnisJK9tjmCjTQA?=
- =?us-ascii?Q?LwD/rQNmXBbO9FezIu4FFyoeO1n+TA2EZLgDXZt19tsHw3epJd4BXXMxdvEz?=
- =?us-ascii?Q?KDGe/7oGmAT8Tz2Hv9LuPaQxw/jFrZm5EAYOVXtJ?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8605673-200c-4f41-f85a-08dc1dbaa81c
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2024 15:31:10.2703
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I7qhRlEYX3cHZxoB6CF5udOF4mDowYw1IwE2ZH5NHLieANJr97WxArsgA5bZSttVAX27b4mzCQ8OGK8SsImoxw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB10033
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jan 19, 2024 at 12:11:06PM -0500, Frank Li wrote:
-> first 6 patches use drvdata: flags to simplify some switch-case code.
-> Improve maintaince and easy to read code.
+	Hi all,
 
-@lpieralisi:
+This patch series adds initial support for the Renesas R-Car V4M
+(R8A779G0) SoC and the Renesas Gray Hawk Single development board.
 
-	Could you please pick up these patches? All already reviewed by
-Mani. dt-binding part acked by rob/krzysztof. Add it only impact freecale
-imx platform.
+As both driver code and DTS have hard dependencies on DT binding
+definitions, most patches in this series are supposed to go in through
+the renesas-devel and/or renesas-clk trees, using a shared branch for DT
+binding definitions, as usual.  For the PM domain patches (03, 04, 09),
+Ulf already offered to apply these to his pmdomain tree, and provide an
+immutable "dt" branch, to be pulled in my renesas-devel tree.
 
-Frank
+Changes compared to v1[1]:
+  - Add Acked-by, Reviewed-by,
+  - Add vendor-prefix to DT binding definition header file names and
+    update include guards,
+  - Add "board" to compatible comment,
+  - Add missing CP core clock,
+  - Add SoC name to top-level comment.
 
-> 
-> Then add imx95 basic pci host function.
-> 
-> follow two patch do endpoint code clean up.
-> Then add imx95 basic endpont function.
-> 
-> Compared with v2, added EP function support and some fixes,  please change
-> notes at each patches.
-> 
-> dt-binding pass pcie node:
-> 
-> pcie0: pcie@4c300000 {
->                         compatible = "fsl,imx95-pcie";
->                         reg = <0 0x4c300000 0 0x40000>,
->                                 <0 0x4c360000 0 0x10000>,
->                                 <0 0x4c340000 0 0x20000>,
->                                 <0 0x60100000 0 0xfe00000>;
->                         reg-names = "dbi", "atu", "app", "config";
->                         #address-cells = <3>;
->                         #size-cells = <2>;
->                         device_type = "pci";
->                         linux,pci-domain = <0>;
->                         bus-range = <0x00 0xff>;
->                         ranges = <0x81000000 0x0 0x00000000 0x0 0x6ff00000 0 0x00100000>,
->                                  <0x82000000 0x0 0x10000000 0x9 0x10000000 0 0x10000000>;
->                         num-lanes = <1>;
->                         num-viewport = <8>;
->                         interrupts = <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>;
->                         interrupt-names = "msi";
->                         #interrupt-cells = <1>;
->                         interrupt-map-mask = <0 0 0 0x7>;
->                         interrupt-map = <0 0 0 1 &gic 0 0 GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
->                                         <0 0 0 2 &gic 0 0 GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
->                                         <0 0 0 3 &gic 0 0 GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
->                                         <0 0 0 4 &gic 0 0 GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
->                         fsl,max-link-speed = <3>;
->                         clocks = <&scmi_clk IMX95_CLK_HSIO>,
->                                  <&scmi_clk IMX95_CLK_HSIOPLL>,
->                                  <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
->                                  <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
->                         clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
->                         assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
->                                          <&scmi_clk IMX95_CLK_HSIOPLL>,
->                                          <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
->                         assigned-clock-rates = <3600000000>, <100000000>, <10000000>;
->                         assigned-clock-parents = <0>, <0>,
->                                                  <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
->                         power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
->                         /* 0x30~0x37 stream id for pci0 */
->                         /*
->                          * iommu-map = <0x000 &apps_smmu 0x30 0x1>,
->                          * <0x100 &apps_smmu 0x31 0x1>;
->                          */
->                         status = "disabled";
->                 };
-> 
-> pcie1: pcie-ep@4c380000 {
->                         compatible = "fsl,imx95-pcie-ep";
->                         reg = <0 0x4c380000 0 0x20000>,
->                               <0 0x4c3e0000 0 0x1000>,
->                               <0 0x4c3a0000 0 0x1000>,
->                               <0 0x4c3c0000 0 0x10000>,
->                               <0 0x4c3f0000 0 0x10000>,
->                               <0xa 0 1 0>;
->                         reg-names = "dbi", "atu", "dbi2", "app", "dma", "addr_space";
->                         interrupts = <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>;
->                         interrupt-names = "dma";
->                         fsl,max-link-speed = <3>;
->                         clocks = <&scmi_clk IMX95_CLK_HSIO>,
->                                  <&scmi_clk IMX95_CLK_HSIOPLL>,
->                                  <&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
->                                  <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
->                         clock-names = "pcie", "pcie_bus", "pcie_phy", "pcie_aux";
->                         assigned-clocks =<&scmi_clk IMX95_CLK_HSIOPLL_VCO>,
->                                          <&scmi_clk IMX95_CLK_HSIOPLL>,
->                                          <&scmi_clk IMX95_CLK_HSIOPCIEAUX>;
->                         assigned-clock-rates = <3600000000>, <100000000>, <10000000>;
->                         assigned-clock-parents = <0>, <0>,
->                                                  <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
->                         power-domains = <&scmi_devpd IMX95_PD_HSIO_TOP>;
->                         status = "disabled";
->                 };
-> 
-> Frank Li (15):
->   PCI: imx6: Simplify clock handling by using clk_bulk*() function
->   PCI: imx6: Simplify phy handling by using IMX6_PCIE_FLAG_HAS_PHYDRV
->   PCI: imx6: Simplify reset handling by using by using
->     *_FLAG_HAS_*_RESET
->   dt-bindings: imx6q-pcie: Add linux,pci-domain as required for iMX8MQ
->   PCI: imx6: Using "linux,pci-domain" as slot ID
->   PCI: imx6: Simplify ltssm_enable() by using ltssm_off and ltssm_mask
->   PCI: imx6: Simplify configure_type() by using mode_off and mode_mask
->   PCI: imx6: Simplify switch-case logic by involve init_phy callback
->   dt-bindings: imx6q-pcie: Clean up irrationality clocks check
->   dt-bindings: imx6q-pcie: Restruct reg and reg-name
->   PCI: imx6: Add iMX95 PCIe Root Complex support
->   PCI: imx6: Clean up get addr_space code
->   PCI: imx6: Add epc_features in imx6_pcie_drvdata
->   dt-bindings: imx6q-pcie: Add iMX95 pcie endpoint compatible string
->   PCI: imx6: Add iMX95 Endpoint (EP) support
-> 
-> Richard Zhu (1):
->   dt-bindings: imx6q-pcie: Add imx95 pcie compatible string
-> 
->  .../bindings/pci/fsl,imx6q-pcie-common.yaml   |  28 +-
->  .../bindings/pci/fsl,imx6q-pcie-ep.yaml       |  57 +-
->  .../bindings/pci/fsl,imx6q-pcie.yaml          |  49 +-
->  drivers/pci/controller/dwc/pci-imx6.c         | 640 ++++++++++--------
->  4 files changed, 462 insertions(+), 312 deletions(-)
-> 
-> -- 
-> 2.34.1
-> 
+For testing, this series can be found at
+https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/v4m-gray-hawk-single-v2
+
+Thanks for your comments!
+
+[1] "[PATCH 00/15] arm64: renesas: Add R-Car V4M and Gray Hawk Single
+    support"
+    https://lore.kernel.org/linux-renesas-soc/cover.1704726960.git.geert+renesas@glider.be
+
+Cong Dang (1):
+  clk: renesas: cpg-mssr: Add support for R-Car V4M
+
+Duy Nguyen (6):
+  dt-bindings: clock: Add R8A779H0 V4M CPG Core Clock Definitions
+  dt-bindings: power: renesas,rcar-sysc: Document R-Car V4M support
+  dt-bindings: power: Add r8a779h0 SYSC power domain definitions
+  pmdomain: renesas: r8a779h0-sysc: Add r8a779h0 support
+  soc: renesas: Identify R-Car V4M
+  soc: renesas: rcar-rst: Add support for R-Car V4M
+
+Geert Uytterhoeven (6):
+  dt-bindings: clock: renesas,cpg-mssr: Document R-Car V4M support
+  dt-bindings: reset: renesas,rst: Document R-Car V4M support
+  dt-bindings: soc: renesas: Document R-Car V4M Gray Hawk Single
+  clk: renesas: rcar-gen4: Add support for FRQCRC1
+  soc: renesas: Introduce ARCH_RCAR_GEN4
+  arm64: dts: renesas: Add Gray Hawk Single board support
+
+Hai Pham (1):
+  arm64: dts: renesas: Add Renesas R8A779H0 SoC support
+
+Linh Phung (1):
+  arm64: defconfig: Enable R8A779H0 SoC
+
+ .../bindings/clock/renesas,cpg-mssr.yaml      |   1 +
+ .../bindings/power/renesas,rcar-sysc.yaml     |   1 +
+ .../bindings/reset/renesas,rst.yaml           |   1 +
+ .../bindings/soc/renesas/renesas.yaml         |   6 +
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ .../dts/renesas/r8a779h0-gray-hawk-single.dts |  52 ++++
+ arch/arm64/boot/dts/renesas/r8a779h0.dtsi     | 121 +++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/clk/renesas/Kconfig                   |   5 +
+ drivers/clk/renesas/Makefile                  |   1 +
+ drivers/clk/renesas/r8a779h0-cpg-mssr.c       | 241 ++++++++++++++++++
+ drivers/clk/renesas/rcar-gen4-cpg.c           |  10 +-
+ drivers/clk/renesas/renesas-cpg-mssr.c        |   6 +
+ drivers/clk/renesas/renesas-cpg-mssr.h        |   1 +
+ drivers/pmdomain/renesas/Kconfig              |   4 +
+ drivers/pmdomain/renesas/Makefile             |   1 +
+ drivers/pmdomain/renesas/r8a779h0-sysc.c      |  55 ++++
+ drivers/pmdomain/renesas/rcar-gen4-sysc.c     |   3 +
+ drivers/pmdomain/renesas/rcar-gen4-sysc.h     |   1 +
+ drivers/soc/renesas/Kconfig                   |  17 +-
+ drivers/soc/renesas/rcar-rst.c                |   1 +
+ drivers/soc/renesas/renesas-soc.c             |   8 +
+ .../clock/renesas,r8a779h0-cpg-mssr.h         |  96 +++++++
+ .../dt-bindings/power/renesas,r8a779h0-sysc.h |  49 ++++
+ 24 files changed, 679 insertions(+), 5 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779h0.dtsi
+ create mode 100644 drivers/clk/renesas/r8a779h0-cpg-mssr.c
+ create mode 100644 drivers/pmdomain/renesas/r8a779h0-sysc.c
+ create mode 100644 include/dt-bindings/clock/renesas,r8a779h0-cpg-mssr.h
+ create mode 100644 include/dt-bindings/power/renesas,r8a779h0-sysc.h
+
+-- 
+2.34.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
