@@ -1,166 +1,142 @@
-Return-Path: <devicetree+bounces-35194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B1FD83C946
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F26BE83C94B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:07:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 337C8291248
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:06:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C5D4289D3A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9FF137C41;
-	Thu, 25 Jan 2024 16:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B604B130E58;
+	Thu, 25 Jan 2024 16:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U5fLREEN"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="J1Oo/a2K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4209A131721;
-	Thu, 25 Jan 2024 16:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3CF4130E53;
+	Thu, 25 Jan 2024 16:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706201859; cv=none; b=RSULYOJOo1G6jiTIjDjEw4v/5VEeoQa3Aw44gDizAC0KkVLOQOtCiGDs18NWmG3pfMiozXapYvqdiVT+wwF7DbruqV2268p1YyNNpcMJSUKOewxLLSQPwUTl8QP2JUqTZQpI27l3lKM/HxJYTyX46P2jXx6CCq65WdgfQLX9IT0=
+	t=1706201915; cv=none; b=dXXAb5OZB1t3rc9TBRuR0IGqvSFwdpy3JE6Lu7Shiu1jt2DuOQZhz4VdKqFFlHE/tpiMVgfv1Kk0PGt55yqVvWTAR0wgexwmc7WjPyZEZ5QewVBemG3Fa4+OK3oYKWhdh/m/id5xjwt1aJgM7z3cXos/fYNg6cVdpbx0YPmQqKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706201859; c=relaxed/simple;
-	bh=ntB+bbUKnhOxh8y7HNEjbmxNyzwcc8uYo8PAcwggoqI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pAsJ6yfVA35nrAlqub/sa2oFhjp/xInt51OoE40l0s++nh21It0mVy5fxlBRLsfUca4xYL1WgTZgmyxBjRGQK6iA32Hv4upqYGxDHECWqY/ytq3nQlFTcZuD6aXpmZpS0icyfT1qFxQLywv0/qDyA9H6Qu6YEi8zxSLjS3HF8Ls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U5fLREEN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8289AC433C7;
-	Thu, 25 Jan 2024 16:57:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706201858;
-	bh=ntB+bbUKnhOxh8y7HNEjbmxNyzwcc8uYo8PAcwggoqI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U5fLREENADd4qPzz1kyfRN7stOoYD5ZBiDhBgSIT8UZiF18VX+PCcg40Sx9dcyzvI
-	 cjyt3shnMe4mQ7IdFfy+10BijEZ0Jm6dzIp/+PKpUmOYnqIUS6rbk2MLA56r8C0AUH
-	 3/GS8vzvcVC3pQm5mUbVAp/FHc35ICvqAfnt4AHJpaqX+GmpxacDflQODNYD1k8MsE
-	 P6sVLrWbcY9nhTfcKagRtB7KcSAcR3xMB3bq9Dx4iEO6kCieQhYMLDlBCriLjOHIJm
-	 05IxAyRGv/JIzbNWmU2/j4xYl50naB+kLhGt8jqSCnFgM1DmfCjSNIbzGhEyZz/MCQ
-	 lXJfkXFY6/HzQ==
-Date: Thu, 25 Jan 2024 16:57:33 +0000
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	chunfeng.yun@mediatek.com, gregkh@linuxfoundation.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, linux@roeck-us.net,
-	heikki.krogerus@linux.intel.com, cy_huang@richtek.com,
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: mt6360-tcpc: Drop
- interrupt-names
-Message-ID: <20240125-disdain-delivery-ff3bf246bbe1@spud>
-References: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
- <20240119-eldest-discharge-e2d3812be0a9@spud>
- <12b7b339-498b-45c1-bc5e-05e07660aefa@collabora.com>
- <20240123-procurer-jumbo-ebbec485505d@spud>
- <4fdbc3d8-3d44-4c2c-aae6-daa0b431e1c9@collabora.com>
- <dc9773aa-690f-47b5-b60a-a79c1e2dbaf2@linaro.org>
- <abbc1135-6d32-421a-baea-123a9f761362@collabora.com>
+	s=arc-20240116; t=1706201915; c=relaxed/simple;
+	bh=QRBuPbXAwINhQzLtUTftaUxhVpdA/iChm/wqx17zvRg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nAdZpC8cRnIDY1vNyQqbIKYehDvv9GoOAZTrT3BeGxg2joJOCa4RJo28Cmn3vsU5hOVcJXAuMUPRzqgUQIIXsNpAyrCM7zJDieNqKo/9p8/l/9cfYCLavm17C4HwSsbycCHM/lNc8GrcIHy7mHTnHU1iE6kE44IRcJMgkxjZb5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=J1Oo/a2K; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 126C4240005;
+	Thu, 25 Jan 2024 16:58:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1706201909;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=CfYnpqPBAd2xHwgJxsRg8c6biWK5zlf195w2E1yhLik=;
+	b=J1Oo/a2Kiw7RMpwfVrwqLiP2iOOdJm6E6Hiysqi6YLm+L0FkTvbYeYeo7Sp7DfbEypaE7d
+	rarBQX9k0/socUCdZw/CPu4r01rORp0dXSKkNLF28bfoYC+ysjaPdIyc8Fu28JYOkQHrOS
+	H0u4wieWTJO5EaYTn1Of69DagpDbNWxFkwfNc8HFX5Wp6mW8inJ/eCzsEAHA4cgQTGnqN0
+	xt61uhqwoVZeOhEWiCHE+9WtkEk5vpmp/5PTumafr4sAuFil8sbdmdP+lLWKJPBGaPnufY
+	cWTpqOELEMSUnvbR29NMF0UyHjQuQHalzp2MIboNQ5qQrzwP2lXI6hhe6ugNlA==
+From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>
+Cc: catalin.popescu@leica-geosystems.com,
+	mark.satterthwaite@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>
+Subject: [PATCH v6 0/3] Input: Add TouchNetix axiom touchscreen driver
+Date: Thu, 25 Jan 2024 17:58:19 +0100
+Message-ID: <20240125165823.996910-1-kamel.bouhara@bootlin.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="clhVPuZeufoXCJeF"
-Content-Disposition: inline
-In-Reply-To: <abbc1135-6d32-421a-baea-123a9f761362@collabora.com>
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
+Add a new driver for the TouchNetix's axiom family of touchscreen
+controller. This driver only support i2c and can be later adapted for
+SPI and USB support.
 
---clhVPuZeufoXCJeF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+---
+Changes in v2:
+ - Add device tree binding documentation
+ - Move core functions in axiom_i2c as we only care about i2c support now
+ - Use static function when required
+ - Use syntax dev_err_probe()
+ - Add an hardware based reset
 
-On Thu, Jan 25, 2024 at 12:41:57PM +0100, AngeloGioacchino Del Regno wrote:
-> Il 25/01/24 11:32, Krzysztof Kozlowski ha scritto:
-> > On 24/01/2024 09:48, AngeloGioacchino Del Regno wrote:
-> > > Il 23/01/24 18:14, Conor Dooley ha scritto:
-> > > > On Mon, Jan 22, 2024 at 11:32:30AM +0100, AngeloGioacchino Del Regn=
-o wrote:
-> > > > > Il 19/01/24 17:32, Conor Dooley ha scritto:
-> > > > > > On Fri, Jan 19, 2024 at 10:41:04AM +0100, AngeloGioacchino Del =
-Regno wrote:
-> > > > > > > This IP has only one interrupt, hence interrupt-names is not =
-necessary
-> > > > > > > to have.
-> > > > > > > Since there is no user yet, simply remove interrupt-names.
-> > > > > >=20
-> > > > > > I'm a bit confused chief. Patch 2 in this series removes a user=
- of this
-> > > > > > property from a driver, so can you explain how this statement i=
-s true?
-> > > > > >=20
-> > > > > > Maybe I need to drink a few cans of Monster and revisit this pa=
-tchset?
-> > > > > >=20
-> > > > >=20
-> > > > > What I mean with "there is no user" is that there's no device tre=
-e with any
-> > > > > mt6360-tcpc node upstream yet, so there is no meaningful ABI brea=
-kage.
-> > > > > Different story would be if there was a device tree using this al=
-ready, in
-> > > > > which case, you can make a required property optional but not rem=
-ove it.
-> > > >=20
-> > > > Not every devicetree lives within the kernel.. If the driver is usi=
-ng
-> > > > it, I'm not inclined to agree that it should be removed.
-> > >=20
-> > > I get the point, but as far as I remember, it's not the first time th=
-at this
-> > > kind of change is upstreamed.
-> > >=20
-> > > I'm fine with keeping things as they are but, since my intention is t=
-o actually
-> > > introduce an actual user of this binding upstream, and that actually =
-depends on
-> > > if this change is accepted or not (as I have to know whether I can om=
-it adding
-> > > the interrupt-names property or not)....
-> > >=20
-> > > ....may I ask for more feedback/opinions from Rob and/or Krzk?
-> >=20
-> > Driver is the user and this is an old binding (released!), thus there
-> > can be out-of-kernel users already.
-> >=20
-> > Minor cleanup is not really a reason to affect ABI. You could deprecate
-> > it, though. Driver change is fine.
-> >=20
->=20
-> Thanks for the clarification. If USB maintainers want to take the driver =
-part only
-> without me resending this, I'd appreciate that.
->=20
+Changes in v3:
+ - Remove irq-gpios property in dt-binding
+ - Use a generic node name
+ - Fix issues reported in https://lore.kernel.org/oe-kbuild-all/202310100300.oAC2M62R-lkp@intel.com/
 
-> The interrupt-names is not a required property in this binding anyway... =
-:-)
+Changes in v4:
+ - Cleanup unused headers and macros
+ - Use standard kernel type
+ - Namespace structures and functions
+ - Use packed struct when possible to avoid bitfield operators
+ - Fix missing break when address is found in axiom_populate_target_address()
+ - Split reads in two steps for the reports, first length then report
+   itself so we only read required bytes
+ - Get poll-interval from devicetree
+ - Add VDDI/VDDA regulators
+ - Add a startup delay of 110 ms required after VDDA/VDDI is applied
+ - Remove axiom_i2c_write() as it is no more used
 
-Having -names properties that are not required when the base property is
-always seem so pointless to me, except in cases where they're not
-required for the case where there's one item but required when there are
-more than one. Ultimately they're pointless if not required since they
-can't be relied on. I think dropping it from the driver is required for
-correctness.
+Changes in v5:
+ - Fix wrong message constructed in axiom_i2c_read
+ - Delay required between i2c reads is >= 250us
+ - Do not split report reading in two phases as we'll
+   have to wait 500us
+ - Use lower-case in properties names
+ - Make regulators properties are required in dt-binding
+ - Fix bug report: https://lore.kernel.org/lkml/202312051457.y3N1q3sZ-lkp@intel.com/
+ - Fix bug report: https://lore.kernel.org/lkml/6f8e3b64-5b21-4a50-8680-063ef7a93bdb@suswa.mountain/
 
---clhVPuZeufoXCJeF
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v6:
+ - Fix missing unevaluatedProperties.in dt-binding
+ - Use __le16 to correctly deal with device endianness
+ - Use standart kernel types s/char/u8/
+ - Use regmap api as driver might support spi later
+ - Use get_unaligned_le16() for the sake of clarity
+ - Use devm_regulator_enable_optional()
 
------BEGIN PGP SIGNATURE-----
+Kamel Bouhara (3):
+  dt-bindings: vendor-prefixes: Add TouchNetix AS
+  dt-bindings: input: Add TouchNetix axiom touchscreen
+  Input: Add TouchNetix axiom i2c touchscreen driver
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKS/QAKCRB4tDGHoIJi
-0v86AP9l1CfLfFT8z5XQyQXQOWkzpec/y9WalTIbnXpbEFgfBAEA5Q7RAW2pLt1Q
-MwNSHR9bNbwJHwNJfnR8eKxAltE8fgg=
-=z3OQ
------END PGP SIGNATURE-----
+ .../input/touchscreen/touchnetix,ax54a.yaml   |  67 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/input/touchscreen/Kconfig             |  12 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/touchnetix_axiom.c  | 664 ++++++++++++++++++
+ 6 files changed, 753 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+ create mode 100644 drivers/input/touchscreen/touchnetix_axiom.c
 
---clhVPuZeufoXCJeF--
+--
+2.25.1
+
 
