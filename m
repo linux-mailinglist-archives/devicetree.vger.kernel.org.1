@@ -1,175 +1,131 @@
-Return-Path: <devicetree+bounces-35010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AFB083C05F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:11:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E92083C068
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:11:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEB4129D7BE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:11:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 353DA1F29942
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87AF526ADA;
-	Thu, 25 Jan 2024 11:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82974594C;
+	Thu, 25 Jan 2024 11:04:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jRfou/QQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DAEJgJyv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B4D5B206
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 11:02:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B7A4503E;
+	Thu, 25 Jan 2024 11:04:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706180574; cv=none; b=DTgggjtfescPkGssP+YewxvpyKK3FYVNiD08D3A72fYdzXfg0/wPEiVr5TcQERCS0rNgcu1JKttOYpbbvIXTDEuBXzRWBxEYvqt5qFju690iPWFbwFBu3ERC1OJExfshUBwj4R4RE54/3B99+jQS1fRd6Bmlb2lSX+zUdLz1Nz8=
+	t=1706180646; cv=none; b=Z7FASoeo3QhrYh9LSRsd53KyCD8cvwlb9lxONF/UhR+endR74KPU8c85k0PDVD2BEJncTauziQDvaKV38C2zt3Q18wIuVZjWsurnFr+hYr7e4NNQz618uxoI4DGQJXEecFeLLtt4RKZ81n/nLS4VO/XpmKZnbfqE56KVtnLiZnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706180574; c=relaxed/simple;
-	bh=NzpBSwHj3ANTe90qfNqofyt4I++n2BseQJCz4L4PJ+k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bu5nbzMJsP4oDG7bl+QAQZswabWjUzl+4wQuAmk63zEz8AIH9m26b9ZdU8z0aTcL+76l+NaLnN8zLRJgabPhQ9iGBitQwPpo6rG0eG0HSrSvxHiDkM07ePjQBIJTe6E10xwb2iGu2tE1yzMQ/+DzqhggixQDXp3IGdD4YuSJ9Z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jRfou/QQ; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55a9008c185so1094268a12.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 03:02:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706180571; x=1706785371; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cr6sgDCVNvl2+zTSYayZUMasMb5p1dzPzxTtqTYGBH8=;
-        b=jRfou/QQJ3qUfR5OpK1W4LxWFRrK9rRfGxs7MafKcIZ5q0r8cPNTPn4/Kg6xc5OS5x
-         cpCAuY1F/YroaH9wkPf7A77zHKRiLF21mP2DGFkrh2ZuTZz1fgP+bGc0focDgtAMzyds
-         wA5N0BuLndt4WvvARKeUYRrE1hScg5Yq1eLOrjrCKHLbpyLzzwKRiqWAtjlag8JmtqwL
-         v+tJN2cxdd5zK07fbSqZtgGD8EpnIfvFmr/PwuSeLq/99gdwDE9lJZR2+MULQIswaJsl
-         rZ1QAJTLMcrtL7EWRD+zfztULH3nKP4rxlnDbT/vsiJWA4aXHh5dGljocshRZT4dEguc
-         NpjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706180571; x=1706785371;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cr6sgDCVNvl2+zTSYayZUMasMb5p1dzPzxTtqTYGBH8=;
-        b=V2yIZBmvBQMHJyu6S87hbcQLMWb3s2bxJJaeNNH2ymP6RM53wdEGV4zWTfi1l2zfT/
-         j34vaqgmxoifFmqHrz3gFucLovL4ImxZeg1yyi0CkPozW+tHnupoDISn0VDiDAXyADlu
-         9kyoMNR27lVoHdCnSIGFdpfHfgR3D65a8GwcvdF0QRhycRijDMQlBljSM5cuFt+IU8GU
-         bbxxcSIqsEAmJnHWyHrqZkHlaXSy67299pN7dYhqnoy2WNUZcypNEJuFfOe/8Zd3TTGD
-         5FObe3u0rtPOuAXz1XZ9I9Y2YkzsVXj1Ib3FTarxq5k//MUWNi+rkupEe2LERlYZS++5
-         ZIqQ==
-X-Gm-Message-State: AOJu0Yww5AHD5sNOFCTOzHDZfp/jBU+aar37Qem9SJcGc+5dxr+HzlHC
-	zlvCG+khx1bVZS8NaxhN+DMJNDWzKIBSP5iX/7XSa9K3qwn8No1xNoZx8SkzYfo=
-X-Google-Smtp-Source: AGHT+IEE942Lq4JN3nGhqRL1L6Adh+ON9zzLB/mIoRBqKydoLVjTZKjcSeCU2SiAjUBpYFbjqConyQ==
-X-Received: by 2002:aa7:c158:0:b0:55d:1615:4bd7 with SMTP id r24-20020aa7c158000000b0055d16154bd7mr31820edp.6.1706180570772;
-        Thu, 25 Jan 2024 03:02:50 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id fi15-20020a056402550f00b0055c73b56bb2sm2935445edb.29.2024.01.25.03.02.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 03:02:50 -0800 (PST)
-Message-ID: <ec96c9cd-4734-4265-9693-d997eddccf93@linaro.org>
-Date: Thu, 25 Jan 2024 12:02:48 +0100
+	s=arc-20240116; t=1706180646; c=relaxed/simple;
+	bh=a9NXweH9qUd8G7a734VJZg6C/IWxoVP+919kuw6amkQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RlnBQMjEWVrana1TVr99nA02Z0ZFZGiahHsCSmYedTomyyG5o1uqH14uzu+Diln1xknhAsZdDMqKxaUAKuME8LQ7AIqlABpmK6OFv5MF+JQ/nRPc237lA2CkTfehZprBgdra2F114w5hmli9BKiyqFND64bgJE8MS7Xo64eQjxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DAEJgJyv; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706180645; x=1737716645;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=a9NXweH9qUd8G7a734VJZg6C/IWxoVP+919kuw6amkQ=;
+  b=DAEJgJyvU68LVGL5SVgBAolTUVZMzCa7xgNovNXePwuGoa/lzfSCBznD
+   Ij2izLWiTjtf9Kc9i0O+YcClelP7KWIgGjo7VMUYOOMCs6z6uUhmWTkLN
+   pG4wpj9nRqAVrigkt8oU5gCaBRo60nDB3C+dPygciLEdYxgZ6JCJMNhDW
+   yIa56TT7obNrUEQnJLTaGCk9pEURd55SqadaoAOAv+WdbvDptwr6dGSO1
+   8yFfsRvK6Y2iH5GhpV1ytwEQH+HdaLk3fBu1dTr3rYiBsJKDcCJCMzQjs
+   /Futv0+khgKo5bVQLjaUdcjqUyrhdr52YoqG1h3Vyz3/KjYFETzt+CzRS
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="9509256"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="9509256"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2024 03:04:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="929985015"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="929985015"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 25 Jan 2024 03:03:55 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 25 Jan 2024 13:03:54 +0200
+Date: Thu, 25 Jan 2024 13:03:54 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Guenter Roeck <linux@roeck-us.net>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 09/15] usb: typec: qcom-pmic-typec: add support for
+ PMI632 PMIC
+Message-ID: <ZbJAGmq6AWxgr47o@kuha.fi.intel.com>
+References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
+ <20240113-pmi632-typec-v2-9-182d9aa0a5b3@linaro.org>
+ <2e07f014-0884-49ca-babd-b89cc90a16b7@linaro.org>
+ <CAA8EJpqPqV_nHxxbo2Vzwcp__hvREjF3bhduGhM=7UpuOgBxTQ@mail.gmail.com>
+ <ZaaRZ/xi8vyIKD5d@kuha.fi.intel.com>
+ <CAA8EJpq3LAzrdTXtnCskc0Md1e39Yo1+AQLHmOBVfgax4HEjKw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: fpga: Convert fpga-region binding to yaml
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
- git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Moritz Fischer <mdf@kernel.org>, Tom Rix <trix@redhat.com>,
- Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>
-References: <4d87561dcbfab9e4818d7ad99caf89938774a839.1705491050.git.michal.simek@amd.com>
- <20240117214722.GA3176505-robh@kernel.org>
- <1aa2c865-3a9b-441a-ba61-b551f3f7a832@amd.com>
- <20240119233231.GA1290941-robh@kernel.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240119233231.GA1290941-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpq3LAzrdTXtnCskc0Md1e39Yo1+AQLHmOBVfgax4HEjKw@mail.gmail.com>
 
-On 20/01/2024 00:32, Rob Herring wrote:
-> On Thu, Jan 18, 2024 at 01:34:16PM +0100, Michal Simek wrote:
->>
->>
->> On 1/17/24 22:47, Rob Herring wrote:
->>> On Wed, Jan 17, 2024 at 12:30:58PM +0100, Michal Simek wrote:
-
+On Thu, Jan 25, 2024 at 02:07:59AM +0200, Dmitry Baryshkov wrote:
+> On Tue, 16 Jan 2024 at 16:23, Heikki Krogerus
+> <heikki.krogerus@linux.intel.com> wrote:
+> >
+> > On Tue, Jan 16, 2024 at 02:56:11PM +0200, Dmitry Baryshkov wrote:
+> > > On Tue, 16 Jan 2024 at 14:32, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> > > > On 1/13/24 21:55, Dmitry Baryshkov wrote:
+> > > > > The PMI632 PMIC support Type-C port handling, but lacks USB
+> > > > > PowerDelivery support. The TCPM requires all callbacks to be provided
+> > > > > by the implementation. Implement a special, 'stub' Qcom PD PHY
+> > > > > implementation to enable the PMI632 support.
+> > > > >
+> > > > > Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > > > ---
+> > > >
+> > > > Still not a fan of stubby stubs :/
+> > >
+> > > Me too. If there are better suggestions, I'll be pleased to implement
+> > > them. Greg, Heikki?
+> >
+> > Guenter, do you have time to look at this?
 > 
->>>> +additionalProperties: true
->>>
->>> Why? This should only be used if another schema is going to include this
->>> one. That's not the case here.
->>
->> In v2 we discussed this with Krzysztof. I used pattern properties from
->> simple-bus.yaml in v2.
->>
->> https://lore.kernel.org/all/b2dd8bcd-1e23-4b68-b7b7-c01b034fc1fe@linaro.org/
-> 
-> You didn't answer his question. You just picked up 
-> 'additionalProperties: true' which is easy because it avoids 'problems'.
-> 
-> His question was is this a common schema referenced by other schemas? If 
-> so, then use 'additionalProperties: true'. But it is not. You've 
-> defined exactly what 'compatible' must be and that means it can't be a 
-> common schema.
+> Heikki, Guenter, just a gracious ping for your opinion.
+> Probably another option is to read pd_supported (or all caps) before
+> checking the callbacks and then instrument all calls to PD with
+> pd_supported checks.
 
-Yes, I missed that it has a compatible, so it is not expected to be
-referenced from other schema, thus it should end with
-'additionalProperties: false'.
+I don't have anything to suggest here, but Guenter should really
+comment this one. In any case, FWIW:
 
-Best regards,
-Krzysztof
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
+-- 
+heikki
 
