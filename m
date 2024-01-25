@@ -1,151 +1,121 @@
-Return-Path: <devicetree+bounces-35041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F76F83C2DB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:54:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2808C83C2F6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:01:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90B971C2293B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:54:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2B17290C4B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 797794F203;
-	Thu, 25 Jan 2024 12:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC9DB4F215;
+	Thu, 25 Jan 2024 13:00:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="RLUEzpka"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PkT9D3PY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C48614F885;
-	Thu, 25 Jan 2024 12:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB87B3172D;
+	Thu, 25 Jan 2024 13:00:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706187271; cv=none; b=KXFbe9h0yLhKKxJ/8fQYIY5u5/cBwDkuXv7ipmbjPFjFw4S0BVDy/AsWhJzGnPjP3jqiZaICA040/YqnfZbtNQ3TuyhHUcQGmARFEcRLJHFB6RI9agbNM9u/H7iwfPpaZtPCi4S8jX/FXHPJOA3dgUYp8J6xTPKs7wQ0U4eAyOo=
+	t=1706187655; cv=none; b=RXLkE4/DlNF0HYaTEDzQCpN22U/Org+Zw0wL7ZPAQ2LuG5TRd7APh8WW9r++UUEqqc9EIl2p2CvVIvK6e9c4O/s6wNdMynBloJDtF6kXedV5KV8G/ALv+azbmohfPE1AcCXWpErR7B8mJbGkuGYNdv8uZ9ML4TGEevVa7qwLTic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706187271; c=relaxed/simple;
-	bh=IJhoKFM+i5ASs0eGsRCruWhTxm7oDqUUNqFVN5TeXwM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OQc3dB7OM35F17N2HHdP2rE6vwCIIbBi8pcFer+7uWoF0EG6j9XnX3CokMG3pSEptfULlqK0Sr3cPVIz9sKd/8MhiyaYbPApN0eudrM4affxWKqlMkYuDV78qBf3WjRnzCDrAJmJrq2WQKRM+VWZ3WKSb0S3qkTY+GLJLvzaq/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=RLUEzpka; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1706187270; x=1737723270;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IJhoKFM+i5ASs0eGsRCruWhTxm7oDqUUNqFVN5TeXwM=;
-  b=RLUEzpkamyNFAt8RaguLH99mrXM/dtLTLRE8bGaEPqhWVqvf7CmM5SYJ
-   aR1Nv3qikNHuX/zYK5bGcQBOmZKVtAPizspvC6ebkCKuOsjUbb6sZ14K4
-   mqtZll5QAxDB65OoL+ve4YhS8wfoBaozVhSB6U0pWbM7G5WSSK7zSt+F6
-   rvpQU2eU08rDZ4vB3WYoOOooj9wAnnaPyXq0Z60S3KkhXfrwn0lWB7cNR
-   lR8clLN5E3T+US1zYib3yErByprz0QY5ilMG93IITRCR0E4YeI5p3ITFF
-   LKqCi7h0oNdogNSYrzTbq23/O9kpkVef51+/PqTBKRMuYoMFsIVAmyGHX
-   Q==;
-X-CSE-ConnectionGUID: /Aq3hlafTTiCOLhNSRHcKA==
-X-CSE-MsgGUID: lzBoItwTTlWkoW1LraUKKg==
-X-IronPort-AV: E=Sophos;i="6.05,216,1701154800"; 
-   d="asc'?scan'208";a="246002953"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 25 Jan 2024 05:54:29 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 25 Jan 2024 05:54:19 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 25 Jan 2024 05:54:16 -0700
-Date: Thu, 25 Jan 2024 12:53:38 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Conor Dooley <conor@kernel.org>, Philippe Schenker <dev@pschenker.ch>,
-	<netdev@vger.kernel.org>, Paolo Abeni <pabeni@redhat.com>, Conor Dooley
-	<conor+dt@kernel.org>, Woojung Huh <woojung.huh@microchip.com>, "Vladimir
- Oltean" <olteanv@gmail.com>, <linux-kernel@vger.kernel.org>,
-	<UNGLinuxDriver@microchip.com>, Marek Vasut <marex@denx.de>, Florian Fainelli
-	<f.fainelli@gmail.com>, <devicetree@vger.kernel.org>, Eric Dumazet
-	<edumazet@google.com>, "David S . Miller" <davem@davemloft.net>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, Jakub Kicinski
-	<kuba@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH net-next v1 1/2] dt-bindings: net: dsa: Add KSZ8567
- switch support
-Message-ID: <20240125-crouch-decay-5b149b60e9f3@wendy>
-References: <20240123135014.614858-1-dev@pschenker.ch>
- <20240123-ripening-tabby-b97785375990@spud>
- <b2e232de11cee47a5932fccc2d151a9c7c276784.camel@pschenker.ch>
- <20240123-atlas-dart-7e955e7e24e5@spud>
- <979b1e77b5bb62463d52e7b9d3f9ca1415f4006a.camel@pschenker.ch>
- <20240123-carpool-avatar-c1e51ab3cc32@spud>
- <359c32a1-3ffb-4bb2-9a46-802dff3812c4@lunn.ch>
+	s=arc-20240116; t=1706187655; c=relaxed/simple;
+	bh=99bv9c9eHb4ZdXwaGxVfbOS63w2nNy5OFAbWyD1Bli4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mP8hWKUO82BAKmP5ZpIAjEgqD6Ufe/b7kPdSb4967WmlnZIJc5/sbkqXA4rMcBcrBAtQkDVR6ja3FVlvv0DBRJXm3xFJ1C06jJelTH9ZielrfUjrAMUetCnaQNY2fLef+3LD2+PRrNw5WTLwDvcLo+NnZFys6GW5c+J3hg16rAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PkT9D3PY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34BD1C433F1;
+	Thu, 25 Jan 2024 13:00:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706187655;
+	bh=99bv9c9eHb4ZdXwaGxVfbOS63w2nNy5OFAbWyD1Bli4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PkT9D3PYND3pBYWrVLVUK+Re669pSmoPnHh6SkfDJ94KdzW1ClDWidO4RV1qWY4gD
+	 aMCZ7y4XLz5fhiVt0VrT7p+U1cEp5eDWOiQ99oMH/5tn09q7Fa7ayWVVArwyqu0CCE
+	 rsfuZqd4whgdal9xPYuy4xwrksrP8mlPq7aPCIbM4+3n0AECMUIyFfl9s7x7Kp011Y
+	 UwpnPGacNkJisHrmsWDIW/coQ26S/TZj8PTUSNzg4wmmw+8oxBIJ1dtLXUzVpVymRI
+	 XHjVAXIoPxDo3LzHXQN45t2TsF1aNqipwjKnKwDjlmwv3Yct4Mj/UG4xqO22EEh/t4
+	 ivCzdQL+mKpsQ==
+Date: Thu, 25 Jan 2024 13:00:49 +0000
+From: Lee Jones <lee@kernel.org>
+To: Martin Kurbanov <mmkurbanov@salutedevices.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	kernel@salutedevices.com,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v1 1/2] leds: aw200xx: support for hw pattern controllers
+Message-ID: <20240125130049.GF74950@google.com>
+References: <20231207125938.175119-1-mmkurbanov@salutedevices.com>
+ <20231207125938.175119-2-mmkurbanov@salutedevices.com>
+ <20231221161011.GO10102@google.com>
+ <85c89859-ae03-4692-9c09-5779e4c40eae@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="FasY058SMp5+ll7F"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <359c32a1-3ffb-4bb2-9a46-802dff3812c4@lunn.ch>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <85c89859-ae03-4692-9c09-5779e4c40eae@salutedevices.com>
 
---FasY058SMp5+ll7F
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Looping in Jacek (LEDS) and Greg (SYFS) for some knowledgable input.
 
-On Wed, Jan 24, 2024 at 07:08:29PM +0100, Andrew Lunn wrote:
-> > That sounds counter productive to be honest. Why does the driver not
-> > trust that the dt is correct? I saw this recently in some IIO drivers,
-> > but it was shot down for this sort of reason.
->=20
-> DT is software, therefore it contains bugs.
->=20
-> Say we ignore that the compatible does not match the hardware on the
-> board and just accept the DT has a bug in it and keep going.
->=20
-> That then makes the compatible pointless, and unusable for anything,
-> since there are boards out in the wild with incorrect compatibles. If
-> we later actually use the compatible for something, it might cause
-> regressions for those buggy DT blobs.
->=20
-> By erroring out then the compatible does not match the hardware avoids
-> such bugs.
+On Fri, 12 Jan 2024, Martin Kurbanov wrote:
+> On 21.12.2023 19:10, Lee Jones wrote:
+> > On Thu, 07 Dec 2023, Martin Kurbanov wrote:
+> > 
+> >> This led-controller supports 3 pattern controllers for auto breathing or
+> >> group dimming control. Each pattern controller can work in auto
+> >> breathing or manual control mode. All breathing parameters including
+> >> rising/falling slope, on/off time, repeat times, min/max brightness
+> >> and so on are configurable.
+> >>
+> >> Signed-off-by: Martin Kurbanov <mmkurbanov@salutedevices.com>
+> >> ---
+> >>  .../testing/sysfs-class-led-driver-aw200xx    | 108 +++
+> >>  Documentation/leds/leds-aw200xx.rst           | 274 ++++++++
+> >>  drivers/leds/leds-aw200xx.c                   | 649 ++++++++++++++++++
+> >>  3 files changed, 1031 insertions(+)
+> >>  create mode 100644 Documentation/leds/leds-aw200xx.rst
+> > 
+> > This interface is bananas.  Exposing an entire register interface to
+> > sysfs does not sit will with me at all.  When we add support to a sysfs
+> > class, we usually require it to be generic and work across all devices.
+> > Adding device specific interfaces is generally decried and to be
+> > avoided.  Don't forget, once we commit something to sysfs, it becomes
+> > ABI and we have to support it forever.
+> > 
+> > A far better approach would be to add support for this in userspace
+> > instead  You can use the standard I2C character device API to achieve
+> > the same result.  That way we don't have the same level of commitment
+> > and is generally a much more flexible/future-proof.
+> > 
+> 
+> I used sysfs similarly to other LED drivers (for example, leds-lm3533).
+> Additionally, the controller has interrupts about the completion of the pattern,
+> which is best to handle in the kernel. In the case of implementation in user
+> mode, there may be synchronization problems, as the controller has several
+> memory pages that can be switched by writing the page number to register 0xF0.
 
-It also makes fallback compatibles useless, which is what I see as being
-counter productive, since you'll have to add support to the driver even
-if (other than the id) the change is imperceptible to software.
-If you have your reasons why you do not trust the compatibles for these
-devices, then it is your prerogative as a driver author to cross check it
-and fail if they don't match.
+leds-lm3533 is a 12 year old legacy exception AND has less than half of
+the sysfs exports proposed here.  What makes aw200xx so different it
+needs to an incomparable interface to any other that we currently
+support?
 
-That said, it does not prevent the fallback being accurately described
-in the binding itself, which at the end of the day is what I am more
-interested it.
-
-> The marvell mv88e6xxx driver takes a different approach. All the
-> compatible does is tell the driver where to find the ID
-> register. Marvell keeps moving it around, so there are three different
-> compatibles for the three different locations. If you use the wrong
-> compatible, its not going to find a device is knows about and errors
-> out. So this also avoids bugs in the compatible.
->=20
->      Andrew
-
---FasY058SMp5+ll7F
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbJZ0gAKCRB4tDGHoIJi
-0kQ+AQC8bfXwu4cS2q0UdokiptXIHP0dNFYEDpmgxeF19Tpo+wEAlrHaYMrYkfJH
-CKM8cpf8KpQLdoE/xhPrfS1a1YBYBQU=
-=aa2K
------END PGP SIGNATURE-----
-
---FasY058SMp5+ll7F--
+-- 
+Lee Jones [李琼斯]
 
