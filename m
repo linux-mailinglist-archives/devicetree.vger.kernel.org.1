@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-35213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C576483C9D8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:21:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4985B83C9E9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:24:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 006EA1C21E1E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:21:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DBEB51F248BE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DBB3745FB;
-	Thu, 25 Jan 2024 17:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83DDB130E35;
+	Thu, 25 Jan 2024 17:24:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S6J1Gi0D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uG7NIfWq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0E14F611;
-	Thu, 25 Jan 2024 17:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577B0130E20;
+	Thu, 25 Jan 2024 17:24:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706203264; cv=none; b=WdDvekwji4jXJK5KEuW/RlmYEQvjNw0PR+c1bq+FibrsJpdEiX43ngDm6EVIsDzuDVirIF6WnHrP3VyC+0xuuX4qa4tjvNWxHa3m49dammpnceOorM2tQbXHavJABfResD06TqNVxf3WnhClmREKciAlz/0necex+QpTPaL1kDk=
+	t=1706203479; cv=none; b=cNbAsnnjHV3sV+P45qnfxlS2wvezvu6+38fkUExcYtir+IbyK1O5C7TxAXcqCKjp72TTCTmutlnGsFHi2r1mFDnUD5pP3KglMaV5sO3aqyqSGEB9MUkqinVNCQHFp5uh9+t/8UzuY09q+13KN5eCIcv96RrGxtDWfEnZQcqctZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706203264; c=relaxed/simple;
-	bh=qJy6aD69ChOOiKQIQ8IywuiR88JjYpmJGGBZxwAX/9I=;
+	s=arc-20240116; t=1706203479; c=relaxed/simple;
+	bh=V9ka2qXzdEJuRAebj5OgqDcPDbq9Epq7uKXZHp+iGo4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e8PpPVO0GmwFyuZDNcwdP3McxSyL/19ZVudzfoevctMQhJWkH5xatXbEhPBolfzyns+LFT5e5ZHmyFMM8nIH3cn+HPChV/CA4hX7me+UyWXQMYeE1gO0xnaooVGLE7IdDrn8I/y3SC0WNiODkO7NDBm0u/q7EPsJhkoZ1kuO/kE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S6J1Gi0D; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49BB6C433F1;
-	Thu, 25 Jan 2024 17:21:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qQs0rLytVqxh3wiUxI5At1IycX4ZQqC12AK0V9wJ94KNcEoUW7ru9+05HAHFOMKxX3QkN4HbeF/nC1B4OhSQSY7tel4aqS7XOdo8+G7uPo/eHI1MPLdLoVlJRHaOIXcjRVJTtShYBa1IAR/2gcA6sRD/SDldeSFBqlemPOHyQdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uG7NIfWq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97D4BC433F1;
+	Thu, 25 Jan 2024 17:24:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706203264;
-	bh=qJy6aD69ChOOiKQIQ8IywuiR88JjYpmJGGBZxwAX/9I=;
+	s=k20201202; t=1706203478;
+	bh=V9ka2qXzdEJuRAebj5OgqDcPDbq9Epq7uKXZHp+iGo4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S6J1Gi0Db2CKExachaEhFx0H826vwASbgafEzEYdAl8/lwrm1DMbWukjBnAwkSBRU
-	 XigEeGOjEeH1lpeb+xflyEys6WWb8w9y/ox6mGn0FZCkO+3/aRjJU860uG+DvrP9OJ
-	 XMVfQ7umWSnXKX1ed1gUy3JP6cCcaX/TsbfWTzjNZtIOKTrWU8fFvP+43jrHL8tfhE
-	 /FFU0xBRwASKxZ0hPu7qLnHmUT5TRJWwVfJmgb8gvgKj8Qphnf86w5l/GorvD2BtKN
-	 3wEAo1ZOKwLv0IYWWQTWK38/1y+nhvEn8Ae3fmyP196FVDy6Rt9Zum69d+PFE7Dkts
-	 tq2flJcOg7RrA==
-Date: Thu, 25 Jan 2024 17:20:59 +0000
+	b=uG7NIfWquPGwy1B0M504M/E9Vfqa6SQZWZtJr2cWJFQ5fS9wZxzvBUlTRnlD5jQBE
+	 5fhuaY/ehaxNls8wBkpA6CO/K+GHnl4nrWj1/zPENy7bgfrDz5ht9YTBJkRQkmpoif
+	 6+OOz+Sb5E3y1my+VcqD8SJkUyYMhlYWxV6/4xLJX5CCpx5xl31HBB0lBBClTs2avu
+	 x0kQUKKZhOPtOx2TBNv1f5nc2/tMXh6wUdvANn+YkBVZ7N0rUUkdyHN2yRX/gjiR0e
+	 Cvv2JXimvXnSq3PF75PpnLaHSLtEpekgZ6WANoZrhFNFrdte6j3vvP6/tX+hXwICvc
+	 XIYBDim0Nm7lQ==
+Date: Thu, 25 Jan 2024 17:24:33 +0000
 From: Conor Dooley <conor@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+To: Wenhua Lin <Wenhua.Lin@unisoc.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: mailbox: fsl,mu: add i.MX95
- Generic/ELE/V2X MU compatible
-Message-ID: <20240125-prudishly-contort-274a48bbb33e@spud>
-References: <20240125-imx-mailbox-v4-0-800be5383c20@nxp.com>
- <20240125-imx-mailbox-v4-1-800be5383c20@nxp.com>
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	wenhua lin <wenhua.lin1994@gmail.com>,
+	Xiongpeng Wu <xiongpeng.wu@unisoc.com>,
+	zhaochen su <zhaochen.su29@gmail.com>,
+	Zhaochen Su <Zhaochen.Su@unisoc.com>,
+	Xiaolong Wang <Xiaolong.Wang@unisoc.com>
+Subject: Re: [PATCH V2 6/6] dt-bindings: pwm: sprd: Add sprd,mod attribute
+Message-ID: <20240125-stammer-sandblast-0dcad9e535c0@spud>
+References: <20240125025533.10315-1-Wenhua.Lin@unisoc.com>
+ <20240125025533.10315-7-Wenhua.Lin@unisoc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,127 +68,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="gZWG52K1GgRCAoNi"
+	protocol="application/pgp-signature"; boundary="Ia640Mup0gRbyG16"
 Content-Disposition: inline
-In-Reply-To: <20240125-imx-mailbox-v4-1-800be5383c20@nxp.com>
+In-Reply-To: <20240125025533.10315-7-Wenhua.Lin@unisoc.com>
 
 
---gZWG52K1GgRCAoNi
+--Ia640Mup0gRbyG16
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 25, 2024 at 01:20:03PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Thu, Jan 25, 2024 at 10:55:33AM +0800, Wenhua Lin wrote:
+> Add sprd,mod attribute, which set the number of different
+> duty cycles that PWM's waveform could output, to dts.
 >=20
-> Add i.MX95 Generic, Secure Enclave and V2X Message Unit compatible string.
-> And some MUs has internal RAMs for SCMI shared buffer usage.
+> Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/pwm-sprd.yaml | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sprd.yaml b/Docume=
+ntation/devicetree/bindings/pwm/pwm-sprd.yaml
+> index 02e039fee3b4..7c956b840fa1 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-sprd.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-sprd.yaml
+> @@ -55,6 +55,16 @@ properties:
+>      minItems: 4
+>      maxItems: 4
+> =20
+> +  sprd,mod:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 4
+> +    maxItems: 4
+> +    items:
+> +      minimum: 0xFF
+> +      maximum: 0xFFF
+> +    description: |
+> +      The number of different duty cycles that could be set for PWM's wa=
+veform output.
 
-Please restrict the SRAM child none to whatever the "some MUs" are that
-actually have it.
+Why is this not a fixed value for a given SoC? Given the description, it
+certainly sounds like something that does not vary on a per device
+basis.
 
 Thanks,
 Conor.
 
->=20
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/mailbox/fsl,mu.yaml        | 52 ++++++++++++++++=
-+++++-
->  1 file changed, 50 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Docu=
-mentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> index 12e7a7d536a3..86759831b24a 100644
-> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> @@ -29,10 +29,14 @@ properties:
->        - const: fsl,imx8ulp-mu
->        - const: fsl,imx8-mu-scu
->        - const: fsl,imx8-mu-seco
-> -      - const: fsl,imx93-mu-s4
->        - const: fsl,imx8ulp-mu-s4
-> +      - const: fsl,imx93-mu-s4
-> +      - const: fsl,imx95-mu-ele
-> +      - const: fsl,imx95-mu-v2x
->        - items:
-> -          - const: fsl,imx93-mu
-> +          - enum:
-> +              - fsl,imx93-mu
-> +              - fsl,imx95-mu
->            - const: fsl,imx8ulp-mu
->        - items:
->            - enum:
-> @@ -95,6 +99,19 @@ properties:
->    power-domains:
->      maxItems: 1
+> +
+>    "#pwm-cells":
+>      const: 2
 > =20
-> +  ranges: true
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +patternProperties:
-> +  "^sram@[a-f0-9]+":
-> +    $ref: /schemas/sram/sram.yaml#
-> +    unevaluatedProperties: false
-> +
->  required:
->    - compatible
+> @@ -63,6 +73,7 @@ required:
 >    - reg
-> @@ -134,3 +151,34 @@ examples:
->          interrupts =3D <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
->          #mbox-cells =3D <2>;
+>    - clocks
+>    - clock-names
+> +  - sprd,mod
+> =20
+>  additionalProperties: false
+> =20
+> @@ -88,6 +99,7 @@ examples:
+>                                   <&ext_26m>,
+>                                   <&ext_26m>,
+>                                   <&ext_26m>;
+> +        sprd,mod =3D <0xFF 0x1FF 0x3FF 0xFFF>;
+>          #pwm-cells =3D <2>;
 >      };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    mu2: mailbox@445b0000 {
-> +        compatible =3D "fsl,imx95-mu", "fsl,imx8ulp-mu";
-> +        reg =3D <0x445b0000 0x10000>;
-> +        ranges;
-> +        interrupts =3D <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <1>;
-> +        #mbox-cells =3D <2>;
-> +
-> +        sram@445b1000 {
-> +            compatible =3D "mmio-sram";
-> +            reg =3D <0x445b1000 0x400>;
-> +            ranges =3D <0x0 0x445b1000 0x400>;
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <1>;
-> +
-> +            scmi_buf0: scmi-sram-section@0 {
-> +                compatible =3D "arm,scmi-shmem";
-> +                reg =3D <0x0 0x80>;
-> +            };
-> +
-> +            scmi_buf1: scmi-sram-section@80 {
-> +                compatible =3D "arm,scmi-shmem";
-> +                reg =3D <0x80 0x80>;
-> +            };
-> +        };
-> +    };
->=20
+> =20
 > --=20
-> 2.37.1
+> 2.17.1
 >=20
 
---gZWG52K1GgRCAoNi
+--Ia640Mup0gRbyG16
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKYegAKCRB4tDGHoIJi
-0uQkAP9DvCsBlILZzMc3awEyQXoCSoSWWB6nyUnmS7/lsZOxaAEArkQa8GnAv7FF
-vPfHkN1MKkWVPBG4ByV36ieeHXZ5OgA=
-=tP/N
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKZUQAKCRB4tDGHoIJi
+0p/4APwOno17wR0ULk3ScAzUFUpYmnfhWHJD4AVnFP5xK4a2ZQEA1ePEUwebT2ZG
+YtxYi+oxd1sm4IGeW4GQklWnv0hdBAY=
+=24Fz
 -----END PGP SIGNATURE-----
 
---gZWG52K1GgRCAoNi--
+--Ia640Mup0gRbyG16--
 
