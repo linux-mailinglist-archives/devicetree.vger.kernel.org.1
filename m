@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-34916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08FE783BAFB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:52:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 828EF83BB14
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:57:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 790FA1F2165E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 07:52:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BB93287486
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 07:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C1613ADB;
-	Thu, 25 Jan 2024 07:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C7313AD9;
+	Thu, 25 Jan 2024 07:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zO8O4VXK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l+xq+Gyn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA71B13AC4
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 07:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28A4175A6
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 07:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706169121; cv=none; b=VeMdfZWEfQbrvWpfMZgTLnPAV/0kr3W70l6I2kKrS8zBHop0cVTE0gKPDpqXdcGyfsKxL7xyb3GyUPQvRTtOh1ThkIrTpiaR+x+CnU47fZOavbEsyvaqtx9sbYa/JpmKh4vCOYd7R2Yg2l/wsQ3LApcKx4xuqXTSOhOoiEZ2Mt4=
+	t=1706169437; cv=none; b=q6nMCqOqu6Ul1s/Kt3mxmrnD4Lo0ezDKy+gSycPM+JdfJRzG8drGvYtY9RonkCgNhbkCoDWmu5XRltl/uwf2tlmD63d+kbk/Cs1iQ4X3iUBlK8EDVDb9gK7pQOtB/dD4THeg444vaqmTwJltcGXe4ENjhb6y30akUdJmJUoiOlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706169121; c=relaxed/simple;
-	bh=l9hU/QKK2PtHrlBfySC/vkpZwslcuIUNq8yPn8eBBow=;
+	s=arc-20240116; t=1706169437; c=relaxed/simple;
+	bh=MMovICcHBLOIBN+8/Tze8+7DdOVKhECE9b14WunCbyg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=I4upcQa+Bbll++3a+Cd0GW0+UUXHKhOdhwdyUgc8oObXcwtRpzqXR4ybA8rQU4NO361DiZj92BFa5J9VnepDbWcNb+FuNZIzwOu98AewhXf5t2y6tlexTwDvyV82UMlL3x8rdh8WPMJEo/ar5a79KOv/SBSjwDwyU0+TOQPoSCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zO8O4VXK; arc=none smtp.client-ip=209.85.208.46
+	 In-Reply-To:Content-Type; b=KsQzEvrt0KIYrFqg360mkOjuY4xKUICFUh++6uJsqHon7dQJ3YqQL81kUWcV9Fcx4wPzEx4fQEvTsj60hllQeJJWYXSBoJorWRWCHnly6Kdxf3Jc65Fma97KDzlVK1uRVCCD5UTKuE0Wgy4V/oYLuUO4uDEjXdqavndke5RmXN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l+xq+Gyn; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-55a50649ff6so7077739a12.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 23:51:59 -0800 (PST)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40e76626170so70859775e9.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 23:57:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706169118; x=1706773918; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706169434; x=1706774234; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nxsDUEfK9tANQSKnsl+k6AMIFKQpzSLvqrgC9O6EHUs=;
-        b=zO8O4VXKqsS5jWzqLyodB/tonR5unBUTUxVBatCBwSlryM8WFIcVuzy8dVTzQCB8YB
-         iuwD4+2zlACSMgCd9q7Q0FLlZ2tr42/oSRFrxafBvD/7zS6BUFg1hpOpgzYZIt9wm79U
-         jcqljuTPELI4ZlgpKaUO0dVNKswady6vKYg/US4ev8dX2+ohv24gC7kZvdRFP9Xrxp/7
-         Kv2D6pxUO+uDs5fL9nxgvd4iZED3giMerNbmHoupJJsW9Z+ZSj/DxuGFg5VV503LEKfA
-         9nL3X3NUe4Cl684wnXxo5pe8lfPRS6G1nDmCO5roRzI2STdBfpoKZARUZg3uVBkcp4C4
-         ++fw==
+        bh=3VDiCwy8+9JrBnAMb9PIsv+1UoGhnw8+lWFqg1PNXVk=;
+        b=l+xq+GynsZckIH2EJPoaEhJlfCybzL4rATAEk15geeBd2Wr6m/7EpikpamkFWxO8rA
+         688jDNIx3uJjq5CDGQ91ZfSAbVN3ruINOTrw9HUiXX2oiGt781Bbxwr82sA4kZeBrN0C
+         2twUvJTxVrNGgINvaE84jTYnFTGxBrktyiJd0lQvtjU9i5L4T872ZGkSRDOAchLQyS9H
+         JZfEeXhZVrrQ/ZwhNlY1gP/kxAXuFciKn7ElkLQe9XKY+aWISw3ft42pHmvkp9/gwspG
+         MSBLow0867YveKczQY36oSgNvZdUfjYKFNAByIPG6D2X/EXg1y6+HWBVquFxXTMn+uA0
+         Cgug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706169118; x=1706773918;
+        d=1e100.net; s=20230601; t=1706169434; x=1706774234;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nxsDUEfK9tANQSKnsl+k6AMIFKQpzSLvqrgC9O6EHUs=;
-        b=tXdYNkoXS1QG+mePuwErS/jzgA+bGJEGtXO/zawRddqkxK2PUrIjHPBroRc0XdmeaF
-         9zGnQ/tl4hVFigYx8OYgsJ3p+F8sBR86EiCv7mAhScHK6Um86LgY30Y59gX9NWXB6x0n
-         CnONs2kRmBRVHOl5fTxT6H5K+5yTsED77azcrDWzLIckbQTYIkaIWSbYKpYv+uVgUNXh
-         HRgBiRPaW72Vvo/RkKQ46rg1sLdxk7aEmr2Xkq4vjQOZJNC8y9AgQcMu16YB74DOWYcg
-         55TZ65ZlSibWrtdNBBNfCmU0T/MHktHGgkxkEfLyHuUy8IeWygN9J5NdgeANRxWr+2WB
-         Jh5A==
-X-Gm-Message-State: AOJu0YzBFM11YR6DIhxnt0yvk8IEhEB5FWIWt80u45xc3A4/4u1qsOAo
-	8ZgydZjK93GG44bY/uTbaHhh/RX4pTi9PZxxX79P4k48D0/BBzrfWP2xtNdzPqvAcz/n6NcYYVD
-	V
-X-Google-Smtp-Source: AGHT+IFBKe7scLDRr6uP13ptInBh6NVwFkI/u6B/ANKQDXM2oGaVYvzbiYWVFDto6r17WEwD4EzQpQ==
-X-Received: by 2002:a17:907:1591:b0:a2e:d32b:6fc7 with SMTP id cf17-20020a170907159100b00a2ed32b6fc7mr216045ejc.119.1706169118001;
-        Wed, 24 Jan 2024 23:51:58 -0800 (PST)
+        bh=3VDiCwy8+9JrBnAMb9PIsv+1UoGhnw8+lWFqg1PNXVk=;
+        b=gVWI/uhvIm4yv62fCTQ1I+DLDrBhGZmcyb9EtTLY4eWPVJuI+WVOBJ24nKu1pKVWWJ
+         HO0wXVfGj9yJsJYXnspJ5l9iuk9Eq/ljg61whVYTQBXpP+r8otTs/cV17Kf7oSNBDI7p
+         tHqDMDX/raeTM/22tRenLf7MzkrD5n3t3d6toVfKF00ALjRo8ZEdCj3Lr7MP1CTkVMAn
+         fjUYfBNrYPoBjooL9m97THgeGpr3xbqamDOY8PypMnh3Bcud87QnpilzIuMQfI8j1J24
+         4TKCsjorGuZIz47QD9WJSyUPIXU4+v0lBbsxoIxDVohGl2f+v4xK+7cUuo58oGGNrTmr
+         IM4A==
+X-Gm-Message-State: AOJu0YzG7H3wOAmK397NwBQe6RFlqDUeReTzS+HLHkKlYHfOvafPTar/
+	rr3V4t0D+ORJmaH7t0rp7FlqobpDM19Rpqj8LGf80SkOOOtbfWIpMC1Bj+qOIvo=
+X-Google-Smtp-Source: AGHT+IFIlA7GZzVy/7o9D6UPji4oRrqz8C/odkHa+kQJvEE0JUecqIJpNl9PoHbCCvwG/LESpPzR+g==
+X-Received: by 2002:a7b:c5c8:0:b0:40d:8459:480e with SMTP id n8-20020a7bc5c8000000b0040d8459480emr270548wmk.178.1706169434066;
+        Wed, 24 Jan 2024 23:57:14 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id f26-20020a17090624da00b00a26ac037ff3sm727960ejb.132.2024.01.24.23.51.56
+        by smtp.gmail.com with ESMTPSA id b1-20020a5d6341000000b0033930b9a2b1sm10354692wrw.26.2024.01.24.23.57.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 23:51:57 -0800 (PST)
-Message-ID: <dd7e723d-3c4c-4edf-afc2-51db9a074efa@linaro.org>
-Date: Thu, 25 Jan 2024 08:51:55 +0100
+        Wed, 24 Jan 2024 23:57:13 -0800 (PST)
+Message-ID: <02919dac-cd22-4d3e-9d8c-d0572d91c3f7@linaro.org>
+Date: Thu, 25 Jan 2024 08:57:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,26 +75,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 04/17] dt-bindings: soc: mobileye: add EyeQ5 OLB system
- controller
+Subject: Re: [PATCH] dt-bindings: ufs: samsung,exynos-ufs: Add size
+ constraints on "samsung,sysreg"
 Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, =?UTF-8?Q?Th=C3=A9o_Lebrun?=
- <theo.lebrun@bootlin.com>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, Philipp Zabel <p.zabel@pengutronix.de>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org
-References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
- <20240123-mbly-clk-v3-4-392b010b8281@bootlin.com>
- <20240124151405.GA930997-robh@kernel.org>
+To: Rob Herring <robh@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240124190733.1554314-1-robh@kernel.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -141,39 +131,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240124151405.GA930997-robh@kernel.org>
+In-Reply-To: <20240124190733.1554314-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/01/2024 16:14, Rob Herring wrote:
->> +
->> +      pinctrl-b {
->> +        compatible = "mobileye,eyeq5-b-pinctrl";
->> +        #pinctrl-cells = <1>;
->> +      };
->> +    };
+On 24/01/2024 20:07, Rob Herring wrote:
+> The 'phandle-array' type is a bit ambiguous. It can be either just an
+> array of phandles or an array of phandles plus args. "samsung,sysreg" is
+> the latter and needs to be constrained to a single entry with a phandle and
+> offset.
 > 
-> This can all be simplified to:
-> 
-> system-controller@e00000 {
->     compatible = "mobileye,eyeq5-olb", "syscon";
->     reg = <0xe00000 0x400>;
->     #reset-cells = <2>;
->     #clock-cells = <1>;
->     clocks = <&xtal>;
->     clock-names = "ref";
-> 
->     pins { ... };
-> };
-> 
-> There is no need for sub nodes unless you have reusable blocks or each 
-> block has its own resources in DT.
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-Yes, however I believe there should be resources here: each subnode
-should get its address space. This is a bit tied to implementation,
-which currently assumes "everyone can fiddle with everything" in this block.
-
-Theo, can you draw memory map?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
