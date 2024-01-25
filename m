@@ -1,68 +1,61 @@
-Return-Path: <devicetree+bounces-35202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1605083C974
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:10:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6101883C997
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:15:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 485201C24846
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:10:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F1A01C21267
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6377513B7A5;
-	Thu, 25 Jan 2024 17:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E9A0131736;
+	Thu, 25 Jan 2024 17:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kq4eMyVO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r0jMYfzi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B3813B79E;
-	Thu, 25 Jan 2024 17:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBBC6130E4B;
+	Thu, 25 Jan 2024 17:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706202127; cv=none; b=U/B5lW+eObehMY3cPgQ8h9AveTuBG/4noth019P7qn5ikeQxlsmeUlDDnCeUjZSgfBrw3pqCwjlPyn8OyyL/iTFCe2pEt4SIfnifE1VRMNuK9Hj9HWVVEXgp6phP2ms3VDLXxwIplKTlNp0/Nzpp3XLB/TltSsEjiFDPVQuGFLU=
+	t=1706202490; cv=none; b=WfE1YMUMxrvXOM6fXMxoUlESLgV4y8ESo2/6lhsplrp8crxU4Z/jSqUkYVXDLPsVyNuZ7TjwksKlCSSIFfR16Qz8C0eaGtFHpA8cxj2cJgkN1AaQNUq4OXhqXzPN1AazOJKE0KKMYcKDytdDnBbRSCZSNteG6QK9xE3qyQH+nHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706202127; c=relaxed/simple;
-	bh=fk/H3bg9JLDDydFanhvs6w6j0jx0x4c5O/IG5hRLQJ0=;
+	s=arc-20240116; t=1706202490; c=relaxed/simple;
+	bh=AExTusMF4INxCnd5hFNzvqahxV6pvzKQNN6GGi8BlDg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hUcWtc0+mPF6wJNKOn2DWdqk1LA/Or42DNrGfQlMHZI60R90gkjHVxVjrL2vFCiKha3wkaKUCkTS68TJYeIsW2G5BE2kr7qkcy5CE20l4SM16OwR9hc+rRFX4H074jaC29DrpNKFHbH1V+wkPOdRF4dBViEDOE8iJ6qD39+3QmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kq4eMyVO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D107FC433C7;
-	Thu, 25 Jan 2024 17:02:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Aqs2lqsuS0PSOLQYQGLfEpcdKQ6cEQ/vblK1yVqLLaWNvtLkfvsXFJpgAw+Gt4J28ZdPRHjEdWuPmoy7w3Jx3M2doBwwcdfFTXYQDRAzzv90LT0uf/UdeW7Kqlk9Wn8g/8arz3Tt5RwxXj675Tl4s23vXzaKDvpJpErjSFCdi24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r0jMYfzi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28C9FC433C7;
+	Thu, 25 Jan 2024 17:08:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706202127;
-	bh=fk/H3bg9JLDDydFanhvs6w6j0jx0x4c5O/IG5hRLQJ0=;
+	s=k20201202; t=1706202489;
+	bh=AExTusMF4INxCnd5hFNzvqahxV6pvzKQNN6GGi8BlDg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Kq4eMyVO4mKFGDDymfXbO8h3JEzTwDp0ohWuuo2MDlw0CSJOll1ez1CXQOzNUqr2f
-	 9aq3BBUeJqm4A86hAD0BANxfeIB6eekVzyAhHoXUdOIr7JDiyYxpvMdb8GRpMRdxh1
-	 X35tBckk/NCH115dnVRrUe4Dm0bqG9f4UmlxTcara69xN2O6tPJH1wM/+svj2HzdxM
-	 KbUArgJxlgeYgl5ltk1PVdcys4SSECRmd09puiff7hVryGNucP5QdVQQUT6uMYQaqs
-	 IBDtg9MHd2tFJc3weU4iJEX1ctdxigkJsZJsMXE6MmWkHhEG9zIwIwub7uF8OZ4k+x
-	 vJmIHwOzVWt5Q==
-Date: Thu, 25 Jan 2024 17:02:01 +0000
+	b=r0jMYfziQNN9sa6AmXoKSCurKA6BqmG0INQ+XdOsKnF8kNWE7IY7ybm+Wd0PgA0Zr
+	 U9pPkSnIheEO2AJYHygBeqbbgcaOYR3BPX8PWO664E66/DhClkUbL49zuAKBhzDqPr
+	 s5otYwc+lDBvuoi9aIbkqKjCx38tZpTsbNC5+YCw6wR8rpnKjUosv6G32FwG+yH8pd
+	 fEKHJL+yRuyHsbOiSkFSwiOo4MaG8fRDEv+H6Edg+kFD1WbU6qYqT8i18yfTBdZLHY
+	 ZnY5/fPfeo1plfWXTvWXEdkMMQ21mQgaGWHB5qFx6XUbh9I9A3nwHvcfaboSdAWy1F
+	 HXLbKmS5E5Iuw==
+Date: Thu, 25 Jan 2024 17:08:04 +0000
 From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	chunfeng.yun@mediatek.com, gregkh@linuxfoundation.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, linux@roeck-us.net,
-	heikki.krogerus@linux.intel.com, cy_huang@richtek.com,
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: mt6360-tcpc: Drop
- interrupt-names
-Message-ID: <20240125-elective-sermon-32dc2cba79be@spud>
-References: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
- <20240119-eldest-discharge-e2d3812be0a9@spud>
- <12b7b339-498b-45c1-bc5e-05e07660aefa@collabora.com>
- <20240123-procurer-jumbo-ebbec485505d@spud>
- <4fdbc3d8-3d44-4c2c-aae6-daa0b431e1c9@collabora.com>
- <dc9773aa-690f-47b5-b60a-a79c1e2dbaf2@linaro.org>
- <abbc1135-6d32-421a-baea-123a9f761362@collabora.com>
- <20240125-disdain-delivery-ff3bf246bbe1@spud>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Li Yang <leoyang.li@nxp.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Francesco Dolcini <francesco.dolcini@toradex.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: fsl: add imx8qm apalis eval
+ v1.2 carrier board
+Message-ID: <20240125-player-disposal-a9cd852e9061@spud>
+References: <20240125101457.9873-1-francesco@dolcini.it>
+ <20240125101457.9873-2-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,110 +63,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ONwNo4Eg6efmgFLG"
+	protocol="application/pgp-signature"; boundary="G03XcziqO5uHVHWG"
 Content-Disposition: inline
-In-Reply-To: <20240125-disdain-delivery-ff3bf246bbe1@spud>
+In-Reply-To: <20240125101457.9873-2-francesco@dolcini.it>
 
 
---ONwNo4Eg6efmgFLG
+--G03XcziqO5uHVHWG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 25, 2024 at 04:57:33PM +0000, Conor Dooley wrote:
-> On Thu, Jan 25, 2024 at 12:41:57PM +0100, AngeloGioacchino Del Regno wrot=
-e:
-> > Il 25/01/24 11:32, Krzysztof Kozlowski ha scritto:
-> > > On 24/01/2024 09:48, AngeloGioacchino Del Regno wrote:
-> > > > Il 23/01/24 18:14, Conor Dooley ha scritto:
-> > > > > On Mon, Jan 22, 2024 at 11:32:30AM +0100, AngeloGioacchino Del Re=
-gno wrote:
-> > > > > > Il 19/01/24 17:32, Conor Dooley ha scritto:
-> > > > > > > On Fri, Jan 19, 2024 at 10:41:04AM +0100, AngeloGioacchino De=
-l Regno wrote:
-> > > > > > > > This IP has only one interrupt, hence interrupt-names is no=
-t necessary
-> > > > > > > > to have.
-> > > > > > > > Since there is no user yet, simply remove interrupt-names.
-> > > > > > >=20
-> > > > > > > I'm a bit confused chief. Patch 2 in this series removes a us=
-er of this
-> > > > > > > property from a driver, so can you explain how this statement=
- is true?
-> > > > > > >=20
-> > > > > > > Maybe I need to drink a few cans of Monster and revisit this =
-patchset?
-> > > > > > >=20
-> > > > > >=20
-> > > > > > What I mean with "there is no user" is that there's no device t=
-ree with any
-> > > > > > mt6360-tcpc node upstream yet, so there is no meaningful ABI br=
-eakage.
-> > > > > > Different story would be if there was a device tree using this =
-already, in
-> > > > > > which case, you can make a required property optional but not r=
-emove it.
-> > > > >=20
-> > > > > Not every devicetree lives within the kernel.. If the driver is u=
-sing
-> > > > > it, I'm not inclined to agree that it should be removed.
-> > > >=20
-> > > > I get the point, but as far as I remember, it's not the first time =
-that this
-> > > > kind of change is upstreamed.
-> > > >=20
-> > > > I'm fine with keeping things as they are but, since my intention is=
- to actually
-> > > > introduce an actual user of this binding upstream, and that actuall=
-y depends on
-> > > > if this change is accepted or not (as I have to know whether I can =
-omit adding
-> > > > the interrupt-names property or not)....
-> > > >=20
-> > > > ....may I ask for more feedback/opinions from Rob and/or Krzk?
-> > >=20
-> > > Driver is the user and this is an old binding (released!), thus there
-> > > can be out-of-kernel users already.
-> > >=20
-> > > Minor cleanup is not really a reason to affect ABI. You could depreca=
-te
-> > > it, though. Driver change is fine.
-> > >=20
-> >=20
-> > Thanks for the clarification. If USB maintainers want to take the drive=
-r part only
-> > without me resending this, I'd appreciate that.
-> >=20
+On Thu, Jan 25, 2024 at 11:14:56AM +0100, Francesco Dolcini wrote:
+> From: Joao Paulo Goncalves <joao.goncalves@toradex.com>
 >=20
-> > The interrupt-names is not a required property in this binding anyway..=
-=2E :-)
+> Add the toradex,apalis-imx8-eval-v1.2 and
+> toradex,apalis-imx8-v1.1-eval-v1.2 compatible strings for version 1.2
+> of the Apalis Evaluation Board.
 >=20
-> Having -names properties that are not required when the base property is
-> always seem so pointless to me, except in cases where they're not
-> required for the case where there's one item but required when there are
-> more than one. Ultimately they're pointless if not required since they
-> can't be relied on. I think dropping it from the driver is required for
-> correctness.
+> Version v1.2 includes the following changes compared to v1.1:
+>=20
+> - 8-bit MMC connector replaced with a 4-bit uSD connector.
+> - Audio codec NAU88C22 added.
+> - M24C02 EEPROM i2c added.
+> - MIPI-CSI-2 connector directly to the board added.
+> - PCIe switch PEX8605 removed and PCIe now is routed directly to Mini
+> PCIe connector.
+> - Power measurement IC INA219 added.
+> - Replaced DVI with HDMI connector.
+> - Single-channel USB to UART converter replaced with four-channel USB
+> to UART/JTAG.
+> - Temperature sensor TMP75 added.
+>=20
+> Please note that board version v1.0 (which reached EOL) is compatible with
+> v1.1, therefore toradex,apalis-imx8-eval and toradex,apalis-v1.1-imx8-eval
+> compatible strings should be used for both v1.0 and v1.1.
+>=20
+> Signed-off-by: Joao Paulo Goncalves <joao.goncalves@toradex.com>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-Actually, looking at the binding again:
+I was convinced that I acked this already a few days ago, but no:
+https://lore.kernel.org/all/20240124141849.26254-2-hiagofranco@gmail.com/
 
-| required:
-|   - compatible
-|   - interrupts
-|   - interrupt-names
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-It looks like it is a required property after all!
+Cheers,
+Conor.
 
---ONwNo4Eg6efmgFLG
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentati=
+on/devicetree/bindings/arm/fsl.yaml
+> index 228dcc5c7d6f..b877f940490a 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -1194,7 +1194,8 @@ properties:
+>        - description: i.MX8QM Boards with Toradex Apalis iMX8 Modules
+>          items:
+>            - enum:
+> -              - toradex,apalis-imx8-eval            # Apalis iMX8 Module=
+ on Apalis Evaluation Board
+> +              - toradex,apalis-imx8-eval            # Apalis iMX8 Module=
+ on Apalis Evaluation V1.0/V1.1 Board
+> +              - toradex,apalis-imx8-eval-v1.2       # Apalis iMX8 Module=
+ on Apalis Evaluation V1.2 Board
+>                - toradex,apalis-imx8-ixora-v1.1      # Apalis iMX8 Module=
+ on Ixora V1.1 Carrier Board
+>            - const: toradex,apalis-imx8
+>            - const: fsl,imx8qm
+> @@ -1202,7 +1203,8 @@ properties:
+>        - description: i.MX8QM Boards with Toradex Apalis iMX8 V1.1 Modules
+>          items:
+>            - enum:
+> -              - toradex,apalis-imx8-v1.1-eval       # Apalis iMX8 V1.1 M=
+odule on Apalis Eval. Board
+> +              - toradex,apalis-imx8-v1.1-eval       # Apalis iMX8 V1.1 M=
+odule on Apalis Eval. V1.0/V1.1 Board
+> +              - toradex,apalis-imx8-v1.1-eval-v1.2  # Apalis iMX8 V1.1 M=
+odule on Apalis Eval. V1.2 Board
+>                - toradex,apalis-imx8-v1.1-ixora-v1.1 # Apalis iMX8 V1.1 M=
+odule on Ixora V1.1 C. Board
+>                - toradex,apalis-imx8-v1.1-ixora-v1.2 # Apalis iMX8 V1.1 M=
+odule on Ixora V1.2 C. Board
+>            - const: toradex,apalis-imx8-v1.1
+> --=20
+> 2.39.2
+>=20
+
+--G03XcziqO5uHVHWG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKUCQAKCRB4tDGHoIJi
-0mRvAQCB6XXEgJ6lkUl5g2rTMFMft8zDVFsRQhLfLfeQOdmJCgD+K5Ydq/dlE8BG
-U82vwFSKghs02EGx2QllPGxubSjCsQE=
-=vNNy
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKVdAAKCRB4tDGHoIJi
+0k1uAQDJEsSzP9Dn7ZbijgWvm6jFf4fSgLV6t0SmvLAG4DSHVwEAlDIHQnE1ionO
+Hu1NVhWyn9DTkBsNbO+5Lju+D7DX/QA=
+=drxf
 -----END PGP SIGNATURE-----
 
---ONwNo4Eg6efmgFLG--
+--G03XcziqO5uHVHWG--
 
