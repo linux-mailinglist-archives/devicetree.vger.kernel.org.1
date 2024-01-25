@@ -1,127 +1,176 @@
-Return-Path: <devicetree+bounces-35223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF36B83CA4D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:51:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F6EE83CA7F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:04:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46CA61F21944
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:51:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17BD528D59F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E9D1131755;
-	Thu, 25 Jan 2024 17:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39C6913341F;
+	Thu, 25 Jan 2024 18:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YCYtXio1"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="PYoziZdM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72777745C6;
-	Thu, 25 Jan 2024 17:51:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459641350CB
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 18:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706205092; cv=none; b=feK3GixkO8sH4vC7PoR0YUGf7UAB10EM4AcloPn4XcJ2OUplIpFeyyfWFbs2DYkDml8RIHVXyYZgPPeT7RPEUlzc6PIcekClM5wqvpiWzF4JieunWt7KdbpoeePhVmtjVwkJ52kUAsPA1HUjj1UjO1+P+rqZcrdgzq7HDp5e9FE=
+	t=1706205861; cv=none; b=BJB1Mbs+oPZ0o2GHSM3Mq6LZVClSeJ+pwmGMT01qEd0eqkD3ugK0GPI172Q79MxehY5/tta+hgN+c6p1sQbziZQ6maNSERvXZ81GYp7PasqqUb4nqiRW6pcZnUlgNB1LUiSyMyiXQTzig2Sd40n3o4Fr/VgmW2yX67W0LoaAEjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706205092; c=relaxed/simple;
-	bh=2wXMWzJrsvdXbyuTbULpTynzCmHvTb36YvRUQsqBAjQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DtSi1aIAt8Fm5JgyImz4LsCSoGu0rD/puKgeEIALqHhY+Fb8FmLmbtbBX+SxmO+9hIfHH1UUd+9UJCv6r9J4Yh70rzFWBEwYxo5VzVMzkyk7D0mcojBemDnSVMlaT1bKZKNUZ/Q1wijJ+pDFhNdq15ivoVBtChyS6kvLnU+0k1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YCYtXio1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BB64C433F1;
-	Thu, 25 Jan 2024 17:51:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706205090;
-	bh=2wXMWzJrsvdXbyuTbULpTynzCmHvTb36YvRUQsqBAjQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YCYtXio1lCz2zthpIALKJN+oDiIjVeKX+D2tLFhond8juH3Pk8Z5P9C0hOo6JUai8
-	 FA5GVn0K9wkq9BcKAGC/ahbRC4rOsvZVObQh2vUKLy7dzSNQ2NZ2U6qoU/DfIyECU4
-	 Zm5Eo1HG5ZoZRk171Xo0012geh584FoUd4xjVyadA89nrEcdEE515S2OxPUlDFOmCE
-	 YVYJWU4jmKCxFTtUayqYrhbF6jlxnAOvW2aFV6Xw0CTP/xWc+0G9ROaB1LLFmN5rFp
-	 fvsM+JpksTqjbdGBVPNJ5N+1oABuZwBUi7Se97u3YEaX5Q59YN9f5uLgap3tBBBPzi
-	 nbN6KISFLT+HQ==
-Date: Thu, 25 Jan 2024 17:51:26 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm/arm64: samsung: Enable W=1 on dtbs by default
-Message-ID: <20240125-unsaved-promoter-c0bc72bb4691@spud>
-References: <20231116211739.3228239-1-robh@kernel.org>
- <ee10e67b-6a2f-4ab5-91ef-e42d2f03a424@linaro.org>
- <CAL_JsqJ67tZOmhTHQ7KqEbFuDjK8sKHR1FFtAFAaGjZ4uYi9Uw@mail.gmail.com>
- <986db909-144b-465a-8c46-273042a4fe5e@linaro.org>
+	s=arc-20240116; t=1706205861; c=relaxed/simple;
+	bh=jNa8Tk4jMsQxNpLS5wzZjgSt9rxUGQ9AVXYhYCuvYYc=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oJsiXBhWpw6IrVfaHQkZfxdaAZfNYyzthSur8/5CQoHIQvkSeeq2E1+btLoM8RyOr8NzS7bA/vd3oWNn8DG49oi3UPo/lz27mQ9jYef5mzYyT28nZLLJB4tr1k9NBBGjtW8ES4NAKNloFgKLHUAgyRgZN89eXwSDYqpXfiQ/5M8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=PYoziZdM; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 0AF713F460
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 18:04:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1706205856;
+	bh=ayub+31DU82NBlOvVCPDnf32wdKHrULJJXVRXXuuL9c=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=PYoziZdM51JoXq0hr52HJCcRvUJmo6e5IOCNgetRKw8xU/bOlLtuz5JK+RbYJHF8P
+	 Gbn8XOlDNnkhjbLQNUe4FROrj/gCP+lv+3ZKLfv6qhN1Oslg83UkfLkft6yNwvXCX6
+	 QF4/n7jZ0z6hp1iNY5tE4DBq84BPSmVcFzEhe3pqvvtqYH7AM+vA91v8PZPnY6dtF5
+	 Vt90NZO6jvSin4y5d1v15akjIYijRiHhS68LWEXmkzQJb9rnUz55/SbfRE2AlueIDV
+	 8VqrvUUXL/ajQtOFjIg7RkGvRl57Ffk7fbGdJHPG3ns5hbo13Gj1MZCWMruWK6TDuK
+	 O4S/TmmGmihqQ==
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-42a32dff21bso90751651cf.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 10:04:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706205855; x=1706810655;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ayub+31DU82NBlOvVCPDnf32wdKHrULJJXVRXXuuL9c=;
+        b=J3SUDA8pyg26phFNpD3CvhUo9wihsXlN+GA83HbvION7f+7ho59LXwOel8LfK0R+0+
+         T4Fi8R/ea945Jwm7CSCmnCgGSiN3WBtUYOMxh7Qxv3znpzk9H2a8KklucL04IzEOXSCa
+         z6MYu4EPjsJEyDBaJlPn+FjFc+w728dDs26/xxedSBPUlslYiHMCKKencZda1JG7qEqW
+         5lAFDmxYngI4pbjxPqdOcYYYN71pUmTDACODEPmcNsutBeBTT+6Ddi7x/vKG3c6JGmn5
+         bsPj1ns3SuJdYfs4llERWzh7WAKgIbymSGRd75uV3qH+tsrKwHzRbh9hCc0DHksTk0+G
+         FzVQ==
+X-Gm-Message-State: AOJu0Yxd8EIjTKYPX+sJAiAyTtm8W2q8mz9YQ0dD0EGgFcVMeNrAuF+J
+	U3Ay6tznNAhOxG4CB1SebaELs+SjY6KKisFkFqDJ3ReTfWpvq5YcgNTVWABQDpxPWz4C/KfZUcY
+	Oejy/ZSjPUNkwlJZTEtM3hlIfw10xlUC8UFN9/fLuZ5xI3e7fIG4RQUoBorcgB97yZgePHT658R
+	0iNJiJ+tpeQ/I6ASGxEF9QHhVkrli+kCyvNiJl+eVnyLI8A9APlw==
+X-Received: by 2002:a05:622a:1a9a:b0:42a:39ef:e699 with SMTP id s26-20020a05622a1a9a00b0042a39efe699mr40096qtc.96.1706205855071;
+        Thu, 25 Jan 2024 10:04:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGg5qDGICDhkaPcE9L5WU3IS+FgRzGS9fLfcnH+CV2bsry9F4JkTFoWocsmx3aGbnJrWIYBpfdW4XfPKSyrFSA=
+X-Received: by 2002:a05:622a:1a9a:b0:42a:39ef:e699 with SMTP id
+ s26-20020a05622a1a9a00b0042a39efe699mr40078qtc.96.1706205854721; Thu, 25 Jan
+ 2024 10:04:14 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 25 Jan 2024 10:04:14 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <DM6PR20MB2316366FC9ADCBC7B6E9C289AB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
+References: <DM6PR20MB2316366FC9ADCBC7B6E9C289AB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="iXw0RVCUpgM41HU7"
-Content-Disposition: inline
-In-Reply-To: <986db909-144b-465a-8c46-273042a4fe5e@linaro.org>
+Mime-Version: 1.0
+Date: Thu, 25 Jan 2024 10:04:14 -0800
+Message-ID: <CAJM55Z8aeQs+KOHo-5dxHE+kDSp5DMaNcw3MukzS_K0HGj92Og@mail.gmail.com>
+Subject: Re: [PATCH v2] riscv: dts: sophgo: add watchdog dt node for CV1800
+To: AnnanLiu <annan.liu.xdu@outlook.com>, chao.wei@sophgo.com, 
+	unicorn_wang@outlook.com, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+AnnanLiu wrote:
+> Add the watchdog device tree node to cv1800 SoC.
+>
+> Signed-off-by: AnnanLiu <annan.liu.xdu@outlook.com>
+> ---
+> This patch depends on the clk driver and reset driver.
+> Clk driver link:
+> https://lore.kernel.org/all/IA1PR20MB49539CDAD9A268CBF6CA184BBB9FA@IA1PR20MB4953.namprd20.prod.outlook.com/
+> Reset driver link:
+> https://lore.kernel.org/all/20231113005503.2423-1-jszhang@kernel.org/
+>
+> Changes since v1:
+> - Change the name of the watchdog from watchdog0 to watchdog.
+> - Change the status of watchdog.
+> v1 link:
+> https://lore.kernel.org/all/DM6PR20MB23160B8499CC2BFDAE6FCACDAB9EA@DM6PR20MB2316.namprd20.prod.outlook.com/
+>
+>
+>  arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts |  4 ++++
+>  arch/riscv/boot/dts/sophgo/cv1800b.dtsi          | 16 ++++++++++++++++
+>  2 files changed, 20 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+> index 3af9e34b3bc7..75469161bfff 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b-milkv-duo.dts
+> @@ -36,3 +36,7 @@ &osc {
+>  &uart0 {
+>  	status = "okay";
+>  };
+> +
+> +&watchdog {
+> +	status = "okay";
+> +};
+> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> index aec6401a467b..03ca32cd37b6 100644
+> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>  /*
+>   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
+> + * Copyright (C) 2024 Annan Liu <annan.liu.xdu@outlook.com>
+>   */
+>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+> @@ -103,6 +104,21 @@ uart4: serial@41c0000 {
+>  			status = "disabled";
+>  		};
+>
+> +		watchdog: watchdog@3010000{
+> +			compatible = "snps,dw-wdt";
+> +			reg = <0x3010000 0x100>;
+> +			interrupts = <58 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&pclk>;
+> +			resets = <&rst RST_WDT>;
+> +			status = "disabled";
+> +		};
 
---iXw0RVCUpgM41HU7
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Before this patch the nodes seems to be ordered by their address. This
+patch breaks that.
 
-On Thu, Jan 25, 2024 at 12:31:42PM +0100, Krzysztof Kozlowski wrote:
-> On 21/11/2023 15:58, Rob Herring wrote:
-> > On Fri, Nov 17, 2023 at 3:19=E2=80=AFAM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 16/11/2023 22:17, Rob Herring wrote:
-> >>> Samsung platforms are clean of W=3D1 dtc warnings, so enable the warn=
-ings
-> >>> by default. This way submitters don't have to remember to run a W=3D1
-> >>> build of the .dts files and the grumpiness of the maintainers can be
-> >>> reduced.
-> >>>
-> >>> Signed-off-by: Rob Herring <robh@kernel.org>
-> >>> ---
-> >>> Well, there's a couple of warnings on 32-bit, but they look fixable to
-> >>> me.
-> >>>
-> >>> There's a few other platforms we could do this to. Sadly, they are st=
-ill
-> >>> the minority. Otherwise, we could change the default and add a flag to
-> >>> disable (I_STILL_HAVENT_FIXED_MY_PLATFORMS=3D1).
-> >>
-> >> 64-bit has still few warnings:
-> >> https://krzk.eu/#/builders/29/builds/3710/steps/26/logs/warnings__6_
-> >=20
-> > I may move that graph check to W=3D2. There's some cases where port@1 is
-> > optional and it doesn't really make sense to fix these.
-> >=20
-> > Also, Conor wants to do this for all of riscv, but this solution is
-> > per directory. So I need to rework it to use a different variable that
-> > can be per directory or global.
->=20
-> Just to clarify, because I still have this patch in my inbox: I assume
-> you are going to send a v2 of this, so I drop it.
-
-We got
-https://lore.kernel.org/linux-devicetree/20231122-dtc-warnings-v2-0-bd40873=
-25392@kernel.org/
-out of this instead of a v2, did we not?
-
---iXw0RVCUpgM41HU7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKfngAKCRB4tDGHoIJi
-0j0NAQD28RcyTNPt5VHz/tzXT693iiTa2fFTS4yGxrlF/vJvcgD/f875k394JnHH
-Yqn46n84+XqdCaQ3gGiJ82cD1Jilgw4=
-=/Zqn
------END PGP SIGNATURE-----
-
---iXw0RVCUpgM41HU7--
+> +
+> +		pclk: pclk {
+> +			#clock-cells = <0>;
+> +			compatible = "fixed-clock";
+> +			clock-frequency = <25000000>;
+> +		};
+> +
+>  		plic: interrupt-controller@70000000 {
+>  			compatible = "sophgo,cv1800b-plic", "thead,c900-plic";
+>  			reg = <0x70000000 0x4000000>;
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
