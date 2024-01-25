@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-35226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B79B83CB06
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:30:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CC7183CB0C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:31:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0104287A69
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:30:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA9BA28A329
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:31:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 665051339B0;
-	Thu, 25 Jan 2024 18:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5793B1353EA;
+	Thu, 25 Jan 2024 18:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="J7/SRfb0"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="insloKZU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8A0413399E
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 18:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87DA7136679
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 18:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706207041; cv=none; b=gCI8wW4WXuJ+cix+zgBG2DyC8WAy5Pz9BRg4t3NH7ylDZ7gXC/OpyIS3SGf8TYzyrLTtAIILZQueBfeB+S/IZCxjQ9A++peu8mkkhVGJtweMajrCV4AhytuNVZzHfYPmIQPtMmo+FIsyKyNpG4WaXUUI7x4Srbv4wmU6XJq5bPQ=
+	t=1706207148; cv=none; b=Xbpp1v/1eNTLFiPNwDc1HiQ4/cuWd70XSdlYdPiskem/2MNC/HV5ccq7rBcO8O3a8ieorx2EEpy2D96CLPNrO1QAvvg+Kjo6lkirVuIvjXh7+aje84vljJM5tUav3QJW9/H2VklDJCjp0Zqwa0vssnleamsqdEyMUqm6oBlApjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706207041; c=relaxed/simple;
-	bh=Vs/2etCJo4GCdGu7RqQwK5PVwhcqbfp0rOyfnq9PC90=;
+	s=arc-20240116; t=1706207148; c=relaxed/simple;
+	bh=ZWNlxoR+1hMRAsJWEOjGfIstKOtgcFa3ZuPFazzmu28=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jZ66KdejLYHMHbCFdHjzBZLd2NSjyofI8TXdUzbr3/UjxIOTfPaD4hw1AYD9LXRNsOGOVlEfSJqg25OFTXctyShjOiFiJ1XDqN7e9Tskf/F2pgVK3Z1SyuL1wTwMBVqrS9LP8Qnm16oz9eDDPgeqV3ImYNG2vctJgDAut658hAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=J7/SRfb0; arc=none smtp.client-ip=209.85.208.173
+	 Content-Type:Content-Disposition:In-Reply-To; b=GvHx0Ob5KOSXfjK8XodPsyUvI2WyH/YdwfKTYvqsvC3SKkzCPZQvQck+vi2DmplKoeG02y765yCxamDON/EdX1R4U3wuqoGGjX61MO/rSBBlFGWhxGcI9ayCZhozAFHKV42DgPogG4/FKQv810/j+011dny/UqYFJUG1kqQ6I2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=insloKZU; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2cf0390eddbso55644431fa.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 10:23:57 -0800 (PST)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2cd0d05838fso84231811fa.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 10:25:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech.se; s=google; t=1706207035; x=1706811835; darn=vger.kernel.org;
+        d=ragnatech.se; s=google; t=1706207144; x=1706811944; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=j8i43m8kTOqmnZB/XPL3iQaZB6nxd5Q27RjRsOK4XY8=;
-        b=J7/SRfb04HzciVkCtoRGmguFl5DYEeuKDuzpMNtTEduLAtrX4hXIlob1LzSJUDodBK
-         7YgXbs8wR266Gd1s5IAQRjL0B5nU4RFIX16Ua/3cjRT6DA2cwvu5ykkKVHzZgo98e7+N
-         SaQaZBZ2lX4dqe1dDY+ixDzUaCCzdL5E1uNT0JUfxwW/ujNJqs8bJ8S83ahq9Vfv8ozs
-         ZiPA4eWiAlOYBA8iXix9/at74WL/XUX3sKrbexAJJqOReiQfpnFwwhn9qgk2DSOuNF+F
-         5VqmEskxNFumdr5Kq5ovEQ06KKkY0QCCXP+t40Ix57/5+368Q0A+FoA8/IhXa/qBaoA/
-         LDAA==
+        bh=R1HbNAAArmyIYx+70NVdiVPkoCSSDX9+F6wCHxLzr6w=;
+        b=insloKZU939HOU4S6yqiSUmAX6YVJ64ooaw22rEtu/99nyxGSlsU86ARhWKkXMpGbO
+         gWueWh+veXuPFoBVU/VbnC8lfNgAuRXOTZlX+D+YfsXhMUtde4jZM0nKFHj9sa8VoxsC
+         H3jbPfs58szZDUUYPBROokaA5nqOAiru6Z8tKeaOC4FS7i0uioTTXb4O8tAF6T7MGwhm
+         EAH46UFF3Am5pbESQ50jMbX/icHYcVWn6omin82//Plg2rIgQ5027uAQY2WsIFtk3ji2
+         2yWrx3B1uiVVBL17Cmy8wfpsNVT4YBsVLLOkOVFm26zuqZXfSvG5hfI+hIiV6FEQgG4h
+         WGfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706207035; x=1706811835;
+        d=1e100.net; s=20230601; t=1706207144; x=1706811944;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j8i43m8kTOqmnZB/XPL3iQaZB6nxd5Q27RjRsOK4XY8=;
-        b=aeEAldpuuQbf4t/xWqTuV2oUx4x4Wl2pYHU89ZgXkqg9hVkNTjGalLjU8Nbq0Ibd+j
-         3iDM5h2iTiL2Zgu2eqBYYQO2HfV3xesa8f/cjHjbj+vV9tbTEN2RdolH+iYpIOTYLA8G
-         X3mOVfYBb6pnTwbQWzGzstxKQh8px9yn0ePY2G4wMsLO3aiN/blSmuQeEc1nY9gBcc+s
-         9MyqP7bgt6ydFj6DG6B1BEt6ziQ2OMGkmfBWUokOHAI9GmNCxGaPxYKN8YSpCErEBeHo
-         8LORBrV7/XfUgEEqAXJU6tSz4P1LPQyLYsYUa0Ls8bscaFIucRAHRDc/zSMphTgQNMzt
-         F7PQ==
-X-Gm-Message-State: AOJu0YxGCIgTh9Q1s0Qmo/q1QVVDeYchzjo9Mjq7TfrX9yvOprDzgMjL
-	6flOBwfX1k4ZyIvQj3Mb3vNDauCOItVtboPBOB8a1nJq6yZDvKbAPi430fshAvc=
-X-Google-Smtp-Source: AGHT+IEFf+ZEdGYf92I8e74Dc8NJstUZ2E+B/x+1bV7MBK9sjfS40qLqE91r5CyjxIE8T8Ipk3W5EQ==
-X-Received: by 2002:a2e:9dc9:0:b0:2cd:3227:130c with SMTP id x9-20020a2e9dc9000000b002cd3227130cmr54273ljj.95.1706207035247;
-        Thu, 25 Jan 2024 10:23:55 -0800 (PST)
+        bh=R1HbNAAArmyIYx+70NVdiVPkoCSSDX9+F6wCHxLzr6w=;
+        b=pxl2hzX3YtoKLgy1g3Mibwi7MMpufolQfa0Xwu85oWQqqe9eNWjx13ab7E2WomZRfe
+         9hmyNpxw+N0gyLv/VmEUQ9CF/HutrhgvwOeABjEirb5Jr59LqcGxZb6m/xTAZ+9U1ADW
+         k5IwsGIoCieRT27tO9zBdQggIEcz92nw+eeLi+o1TNW+crr3GR0C/ru7shN0ZWwBpuAL
+         xRIVe7iSaSv/tinvuOcCW7YgazD4eWrzv1LZmcxpOz3hlXQtiVSO1/FuHSnpcUjeRj/E
+         hc9Wk8PJr0MFhFioo9GlSGTUermr4t8XaXU9GdvecwGDH09UQbWctPSpiixHHMOEQg6h
+         D6fA==
+X-Gm-Message-State: AOJu0YyZdeS/CqXarLpZsX3gYioD0bk9FXobn4jIVNfXZnSpxx9y7qg6
+	HF9JjLtk20qoVYvHWyQVKjTVY316cQmVZMXSmcurI9Ms4EceDZBWUSYfv8sFucY=
+X-Google-Smtp-Source: AGHT+IEy3x/4zU1b+G6G9Nc7qJId8/pFCHll+4/GOnCvyCmbv7OGeQy6it2E16Ai2K3syZKDH52h9g==
+X-Received: by 2002:a2e:a44d:0:b0:2cf:414f:772 with SMTP id v13-20020a2ea44d000000b002cf414f0772mr52932ljn.20.1706207144548;
+        Thu, 25 Jan 2024 10:25:44 -0800 (PST)
 Received: from localhost (h-46-59-36-113.A463.priv.bahnhof.se. [46.59.36.113])
-        by smtp.gmail.com with ESMTPSA id z2-20020a05651c022200b002cd40121a49sm335661ljn.36.2024.01.25.10.23.54
+        by smtp.gmail.com with ESMTPSA id q16-20020a2ea690000000b002cf19bb6b86sm341544lje.81.2024.01.25.10.25.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jan 2024 10:23:54 -0800 (PST)
-Date: Thu, 25 Jan 2024 19:23:54 +0100
+        Thu, 25 Jan 2024 10:25:44 -0800 (PST)
+Date: Thu, 25 Jan 2024 19:25:43 +0100
 From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
 To: Geert Uytterhoeven <geert+renesas@glider.be>
 Cc: Michael Turquette <mturquette@baylibre.com>,
@@ -85,10 +85,10 @@ Cc: Michael Turquette <mturquette@baylibre.com>,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-pm@vger.kernel.org,
 	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH v2 10/15] soc: renesas: Introduce ARCH_RCAR_GEN4
-Message-ID: <20240125182354.GK4126432@ragnatech.se>
+Subject: Re: [PATCH v2 11/15] soc: renesas: Identify R-Car V4M
+Message-ID: <20240125182543.GL4126432@ragnatech.se>
 References: <cover.1706194617.git.geert+renesas@glider.be>
- <a283913ba7a39ec2dae0ebf9fc2b06096f009511.1706194617.git.geert+renesas@glider.be>
+ <31e06d055aec1bc70c3e9a02f9268bcfc72b2204.1706194617.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,78 +98,78 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a283913ba7a39ec2dae0ebf9fc2b06096f009511.1706194617.git.geert+renesas@glider.be>
+In-Reply-To: <31e06d055aec1bc70c3e9a02f9268bcfc72b2204.1706194617.git.geert+renesas@glider.be>
 
 Hi Geert,
 
-Thanks for your patch.
+Thanks for your work.
 
-On 2024-01-25 16:34:38 +0100, Geert Uytterhoeven wrote:
-> Currently, all Kconfig symbols for R-Car Gen4 SoCs select the
-> ARCH_RCAR_GEN3 SoC family symbol, which might confuse the casual reader.
+On 2024-01-25 16:34:39 +0100, Geert Uytterhoeven wrote:
+> From: Duy Nguyen <duy.nguyen.rh@renesas.com>
 > 
-> Fix this by introducing a new SoC family symbol for R-Car Gen4 SoCs.
-> For now this just selects ARCH_RCAR_GEN3, to avoid duplication, and to
-> relax dependencies.
+> Add support for identifying the R-Car V4M (R8A779H0) SoC.
 > 
+> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
 > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
 Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
 > ---
-> Once "[PATCH] i2c: rcar: Prepare for the advent of ARCH_RCAR_GEN4"[1]
-> has been applied, ARCH_RCAR_GEN4 can stop selecting ARCH_RCAR_GEN3.
-> 
 > v2:
 >   - Add Reviewed-by.
 > 
-> [1] https://lore.kernel.org/r/bf7b105f7d9728ae5cd9fa99d1cdd278d71e7df2.1704723713.git.geert+renesas@glider.be
+> Changes compared to the BSP:
+>   - Use lower-case hex for literals in C source code.
 > ---
->  drivers/soc/renesas/Kconfig | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
+>  drivers/soc/renesas/Kconfig       | 7 +++++++
+>  drivers/soc/renesas/renesas-soc.c | 8 ++++++++
+>  2 files changed, 15 insertions(+)
 > 
 > diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
-> index 1c14be3e46e58ef1..2367385d84b5a17d 100644
+> index 2367385d84b5a17d..1b8a89ad4fd7e7a3 100644
 > --- a/drivers/soc/renesas/Kconfig
 > +++ b/drivers/soc/renesas/Kconfig
-> @@ -38,6 +38,10 @@ config ARCH_RCAR_GEN3
->  	select SYS_SUPPORTS_SH_CMT
->  	select SYS_SUPPORTS_SH_TMU
->  
-> +config ARCH_RCAR_GEN4
-> +	bool
-> +	select ARCH_RCAR_GEN3
-> +
->  config ARCH_RMOBILE
->  	bool
->  	select PM
-> @@ -245,7 +249,7 @@ config ARCH_R8A77961
->  
->  config ARCH_R8A779F0
->  	bool "ARM64 Platform support for R-Car S4-8"
-> -	select ARCH_RCAR_GEN3
-> +	select ARCH_RCAR_GEN4
->  	select SYSC_R8A779F0
->  	help
->  	  This enables support for the Renesas R-Car S4-8 SoC.
-> @@ -266,14 +270,14 @@ config ARCH_R8A77970
->  
->  config ARCH_R8A779A0
->  	bool "ARM64 Platform support for R-Car V3U"
-> -	select ARCH_RCAR_GEN3
-> +	select ARCH_RCAR_GEN4
->  	select SYSC_R8A779A0
->  	help
->  	  This enables support for the Renesas R-Car V3U SoC.
->  
->  config ARCH_R8A779G0
->  	bool "ARM64 Platform support for R-Car V4H"
-> -	select ARCH_RCAR_GEN3
-> +	select ARCH_RCAR_GEN4
->  	select SYSC_R8A779G0
+> @@ -282,6 +282,13 @@ config ARCH_R8A779G0
 >  	help
 >  	  This enables support for the Renesas R-Car V4H SoC.
+>  
+> +config ARCH_R8A779H0
+> +	bool "ARM64 Platform support for R-Car V4M"
+> +	select ARCH_RCAR_GEN4
+> +	select SYSC_R8A779H0
+> +	help
+> +	  This enables support for the Renesas R-Car V4M SoC.
+> +
+>  config ARCH_R8A774C0
+>  	bool "ARM64 Platform support for RZ/G2E"
+>  	select ARCH_RCAR_GEN3
+> diff --git a/drivers/soc/renesas/renesas-soc.c b/drivers/soc/renesas/renesas-soc.c
+> index 67de980ec4244c41..083f6580cb5dae00 100644
+> --- a/drivers/soc/renesas/renesas-soc.c
+> +++ b/drivers/soc/renesas/renesas-soc.c
+> @@ -271,6 +271,11 @@ static const struct renesas_soc soc_rcar_v4h __initconst __maybe_unused = {
+>  	.id	= 0x5c,
+>  };
+>  
+> +static const struct renesas_soc soc_rcar_v4m __initconst __maybe_unused = {
+> +	.family = &fam_rcar_gen4,
+> +	.id     = 0x5d,
+> +};
+> +
+>  static const struct renesas_soc soc_shmobile_ag5 __initconst __maybe_unused = {
+>  	.family	= &fam_shmobile,
+>  	.id	= 0x37,
+> @@ -381,6 +386,9 @@ static const struct of_device_id renesas_socs[] __initconst __maybe_unused = {
+>  #ifdef CONFIG_ARCH_R8A779G0
+>  	{ .compatible = "renesas,r8a779g0",	.data = &soc_rcar_v4h },
+>  #endif
+> +#ifdef CONFIG_ARCH_R8A779H0
+> +	{ .compatible = "renesas,r8a779h0",	.data = &soc_rcar_v4m },
+> +#endif
+>  #ifdef CONFIG_ARCH_R9A07G043
+>  #ifdef CONFIG_RISCV
+>  	{ .compatible = "renesas,r9a07g043",	.data = &soc_rz_five },
 > -- 
 > 2.34.1
 > 
