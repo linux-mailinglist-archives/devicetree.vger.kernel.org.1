@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-34943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06F3583BCF6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:12:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C6E183BD11
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:19:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C8FA1C25779
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:12:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B5B928D144
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:19:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2888E1BC32;
-	Thu, 25 Jan 2024 09:12:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0AF11BC41;
+	Thu, 25 Jan 2024 09:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vZJPfDId"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sE4IMfbI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D7F1BC26
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 09:12:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD93B1BC3E
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 09:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706173924; cv=none; b=cp0sHVGBzCPx+de3DhWZMqbChOgjn+5hj6WeM88QyotpIBcU/7mL+oX5fpBY4dngagM/qhall99crvHvtPv97ceDCknbIShQOvO+ycO9hN6Vf11Ubj0UCEer6ITS5sKCEnLLeMYoZiJsh5Bg0eUN7hs2a+hngUkDriPx09rSM3w=
+	t=1706174391; cv=none; b=FrZ5zHlji7nRQiZMBxhjSq+ZJpMo4hM1bBwvYIpwevEp4h+g1p05r8PGxwGRkcGyycECR/g1xUeZ1C+L6dQioRUQ0kSZnAZXCJAKCPd0mWiGtJIICjYB1i8lgrVw8qQYWwEcFpAvkUoCNbyUJLTO7infuMrrqt36sZNJLl6YgjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706173924; c=relaxed/simple;
-	bh=joxfvjiMQkIvYYheM+24nPuxbemf21wVGFdBkcuH5Nk=;
+	s=arc-20240116; t=1706174391; c=relaxed/simple;
+	bh=hY4QKISaa+b5z3JLeMajVJ/VnYmdjxa6qn7nKSvIo14=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EM6/glI7WfIThMp7jJqn22SZEZ27a284920wSwFbdenprKa6hSdw2I4WEjcnTFQR9i+4NsLHj3k68KBieVTxm2Pn4BQK5zXpy4HxSe6N1VbzyT0nrqBuyc9ZUQ8cEUrYtkauWpMDDDjH66SnCnzz92J9JoHCo3cCy0/N7nIs+NE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vZJPfDId; arc=none smtp.client-ip=209.85.221.46
+	 In-Reply-To:Content-Type; b=AhSRqeJtyXQL0YRtuXoeV4pojGgEbTk95Q7QKxXdHv0+rrVSNSHZte6FOvERIdwM2TcSpdPqkpoiuSpf2r3WMAfzcMxrcY80wO7+lg4dKoQZwySC9yQSzPbLv6H+QSTUBzGBa6jjlKPGFHINcugkxVM6248GijgfW+nOYo0sUEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sE4IMfbI; arc=none smtp.client-ip=209.85.221.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-33929364bdaso4585605f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 01:12:02 -0800 (PST)
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-337d99f9cdfso5421736f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 01:19:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706173920; x=1706778720; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706174388; x=1706779188; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=M2SHDklRhuIM4Vve+jzipzf/eeoRWPqWL/eYEbe7cNc=;
-        b=vZJPfDId2uaihIXZQ7ZSdzXjXb3Z9fexKHKV9cpFzt89a6T+UjCxnpKVNkzv3im0dO
-         Mjb/L9bcrZqoSsluRZ9a5zywxiYS7sUoQ6NaNDWlVlxTKSwYyP/ysBEKSGQN2AUbuc2a
-         ln80TFB9bvpvyJRJh80RPLZczByyLfjvdXojn2/A6rixewFGaSxrw1a/LHVRk0X/qU8+
-         WtR1yqYEm0Iq+SkfoVbqN9M9E0vMC9CqObmbYRnkL6yq77qsvuUJGYWoJOGPkfh1Kzf2
-         97YsuomK/6EC4ZeVNH6NdlDnsOJPfNqA03DenIxNkovalmVV5Sqi1ViveKdQDheUgY7G
-         9kQw==
+        bh=4X+3bRBtP42tNMXuYBkK8DKxTBN/GwDVxxSGraNwbGQ=;
+        b=sE4IMfbIpRo00gYefnbsQR0nPmgkLSLGkh/4XXeZDudhMd41NoKDs7p6OluN86qAGh
+         QGpTGPQbi5TYrpNjObhcVhZogtB8Uy3M8MD7Qcu9Tn+MmbQxEEqtte4i3aD9BNvyIcfj
+         rv9woXdGxHvr8Md0xlqatKA7nQZRYpkajKFUwHzPgqFQgGzEgvBAbR9xgc0RkIpk4qOr
+         Ji2lTv+zIBmuqrgBtH2rs4voN2deop/C4HL+1JjcpJ64IEgaVK0Xbx+bf6oucsUMSFam
+         a1F5+GN9p6GhpqPVOEv/FUNOEzF7pA60iqULsznXMW8aOl39qiuIXqF3Yt+SsFMlp+MX
+         dSdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706173920; x=1706778720;
+        d=1e100.net; s=20230601; t=1706174388; x=1706779188;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M2SHDklRhuIM4Vve+jzipzf/eeoRWPqWL/eYEbe7cNc=;
-        b=k+G84rJu8qiy2MfyCBlXl7q1oa5w3O9GBOSRNXT6ZyXnYWhKel0wKRpWZBeCsZRsBT
-         JHfe1aZQGXNlDWAKDdgH/0aEgdfOXr7FQGxLS6GyEgUGIECjBF9jlLmB+aK7/bBbd+6I
-         GtoRNbECTn248YgYTr0vkYMURSvlUryDs4Evfk2wI/xfK5wllqzyC+N6UIlptqPhK+wN
-         uHorjb9xEC9SSBqRqs5z3wK4yJQKR/pyPElgo2vo0f50802bGDSWQ77AiBz0ocU5lO/z
-         8FVRpEzTRpZZGzQXTCZe9VM+XcsouFxVQR2JYGw+hO72gHMPks9F89Wds7fbH0mQMAAs
-         XR+A==
-X-Gm-Message-State: AOJu0YwiqTiIEnfckDV1C8JMmtozUcJMbSe9+AXxiRX0CQsYqe34/8sI
-	Rjto+MUnxnnE6dvExqQXUwR0ycGfU1+6jelIzcpX3Ey4fxWFRVO09XE8nTViaX0=
-X-Google-Smtp-Source: AGHT+IF/XHrOyv+BY+vt+ddWUVuE2X08It9QeCFnkuJ5Ef6N6u3nEayjIWZqwtCWE9zoJxMIA+elBA==
-X-Received: by 2002:adf:e84a:0:b0:333:2fd2:5d21 with SMTP id d10-20020adfe84a000000b003332fd25d21mr397719wrn.83.1706173920604;
-        Thu, 25 Jan 2024 01:12:00 -0800 (PST)
+        bh=4X+3bRBtP42tNMXuYBkK8DKxTBN/GwDVxxSGraNwbGQ=;
+        b=lcRzKEiOyCtlKRIGWBEWmqdf3qURQbc+BOcFqDXG9lx4YhK5rYvOi4k8SQq8X9G/a9
+         YW3D2UjWJAaYYtuMIVy0RNWUdsVfs7VCxDfSpDNqqnYYhFxE6sbyHHqqIFMJPGdSelM3
+         dqgqK4dTv3jugK4z5C7kdxZHGp5iQGQ59zxx4O5qAQ/oEY++r/HTOmmYJm5EnZ9Y2k+c
+         FjQOhQysD2CZBJLVlsUmi0oy8F5iH27rzUMvcRDi6L83FjS8HzUb3QZ1rlQHwoExXQyk
+         +J4wdAMw81Rbmg7h050UoJ1tnQS9L5iezIoYFUlFW5EhwRNRYePAUzQvAnGVDKR39CUA
+         i/Sw==
+X-Gm-Message-State: AOJu0YwCNMKobM2Gmw342/21bw0jLPo4Asbk85fiZo/aRM/o9Kd1ihgZ
+	h7KTqotPlhrj1zYd0QC1AKvs3YpnZNc6B8/4XEcgew1HeAzBEtApT+/soBVUpto=
+X-Google-Smtp-Source: AGHT+IGSM37j5cCGKBhXBHBBRNisZ/yCBYOSZgstZR6wbZOnSOh1QlrDSppejQ5MaYdkyJoWTcHb+g==
+X-Received: by 2002:a05:600c:310f:b0:40e:aed3:e9b5 with SMTP id g15-20020a05600c310f00b0040eaed3e9b5mr284589wmo.103.1706174388180;
+        Thu, 25 Jan 2024 01:19:48 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id q7-20020adffec7000000b0033926505eafsm13294530wrs.32.2024.01.25.01.11.59
+        by smtp.gmail.com with ESMTPSA id r12-20020a05600c35cc00b0040ecd258f29sm1914308wmq.0.2024.01.25.01.19.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 01:12:00 -0800 (PST)
-Message-ID: <18f66108-98e7-49b3-b362-880121438fc6@linaro.org>
-Date: Thu, 25 Jan 2024 10:11:58 +0100
+        Thu, 25 Jan 2024 01:19:47 -0800 (PST)
+Message-ID: <3adf7908-be27-4125-ae5b-6f2eb6100304@linaro.org>
+Date: Thu, 25 Jan 2024 10:19:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,23 +75,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: phy: Add Rockchip HDMI/DP Combo PHY
- schema
+Subject: Re: [PATCH 2/3] dt-bindings: net: snps,dwmac: Add
+ time-based-scheduling property
 Content-Language: en-US
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: esben@geanix.com, Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Johan Jonker <jbx6244@gmail.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andy.yan@rock-chips.com>,
- Algea Cao <algea.cao@rock-chips.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20240119193806.1030214-1-cristian.ciocaltea@collabora.com>
- <20240119193806.1030214-3-cristian.ciocaltea@collabora.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <b365dc6f756a3fad4dfaa2675c98f4078aba8a55.1706105494.git.esben@geanix.com>
+ <30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
+ <20240124-reptilian-icing-a95b20f123be@spud> <87bk99hj7q.fsf@geanix.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,35 +136,47 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240119193806.1030214-3-cristian.ciocaltea@collabora.com>
+In-Reply-To: <87bk99hj7q.fsf@geanix.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 19/01/2024 20:38, Cristian Ciocaltea wrote:
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      hdptxphy_grf: syscon@fd5e0000 {
-> +        compatible = "rockchip,rk3588-hdptxphy-grf", "syscon";
-> +        reg = <0x0 0xfd5e0000 0x0 0x100>;
-> +      };
+On 25/01/2024 10:10, esben@geanix.com wrote:
+> Conor Dooley <conor@kernel.org> writes:
+> 
+>> On Wed, Jan 24, 2024 at 03:33:06PM +0100, Esben Haabendal wrote:
+>>> Time Based Scheduling can be enabled per TX queue, if supported by the
+>>> controller.
+>>
+>> If time based scheduling is not supported by the controller, then the
+>> property should not be present! The presence of a property like this
+>> should mean that the feature is supported, using it is up to the
+>> operating system.
+>>
+>> That said, why is this a property that should be in DT?
+> 
+> It is added to the tx-queues-config object of snps,dwmac bindings. This
+> entire object is about configuration of the ethernet controller, which
+> is also what the purpose of the snps,time-based-scheduling.
+> So yes, it is not specifically about describing what the hardware is
+> capable of, but how the hardware is configured. It is a continuation of
+> the current driver design.
+> 
+>> If support is per controller is it not sufficient to use the
+>> compatible to determine if this is supported?
+> 
+> Are you suggesting to include the mapping from all supported compatible
+> controllers to which TX queues supports TBS in the driver code?  What
+> would the benefit of that compared to describing it explicitly in the
+> binding?
 
-Drop node, not part of this binding.
+The benefit is complying with DT bindings rules, saying that bindings
+describe hardware pieces, not drivers.
 
-> +
-> +      hdptxphy: phy@fed60000 {
+> And for the purpose of the above question, I am talking about it as if
+> the binding was describing the hardware capability and not the
+> configuration.
 
-Drop label.
-
-> +        compatible = "rockchip,rk3588-hdptx-phy";
-> +        reg = <0x0 0xfed60000 0x0 0x2000>;
-> +        clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>, <&cru PCLK_HDPTX0>;
-> +        clock-names = "ref", "apb";
-
-With these two changes:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+"if"? You wrote it is for driver design...
 
 Best regards,
 Krzysztof
