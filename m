@@ -1,127 +1,123 @@
-Return-Path: <devicetree+bounces-35260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE28383CD49
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:20:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F30E83CD4A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:20:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96803294CD7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:19:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B81F7295198
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EEB137C25;
-	Thu, 25 Jan 2024 20:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AFEB137C34;
+	Thu, 25 Jan 2024 20:19:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f7sFwNmd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aA34IaJ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA2713666B
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 20:19:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58A113666B
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 20:19:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706213993; cv=none; b=bsPjYKNEEoh4UtT8uRCQny5ox9YBOMDSjQdG4NvhRP2IIdbkHj9cr4omXWKgoiiybv8gvypujtA8O5NGEqdK9XtipO8drfTSq7cWfIFqnJqB9yatpY6m93vDmHEA0iAk47ILdmRY0LGAePVlAYZS9HrF46ugYkELvDexAMC8sXY=
+	t=1706213998; cv=none; b=DMRS6NFfIEeRktceshTElP5l99oeyr9/9AUOSRlfOavMMuu1BZs3h8A5UGazmZonjCaOTLD0EVcBAtZbPw/QAmj+DTi/Liua8ZwAOabvqv2wGJ1BIIM1QahZLXT7nRZLrLU41ZfkVM8citApv6dyZYcbX6ArImdvQuWPJjwQddo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706213993; c=relaxed/simple;
-	bh=kBVjQm/k4UBe/ARXqzpxRjLBkuRY5cW1OrPF8i9Ro6k=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lmafr89webM9mBiTkVpxzojeauZrYfHEdf8pSTW0NSCIzoxuYnJDx+2GVSQ9iIsZZd5e2CyhIvviQ/UXoUiUhnqaWylb5HPvnKhXYNQq0P1bmgYyeKCwK5U6vFzIffeTezw6K9mJjmfyK0FW8stZkZEAVFuMVAoYBBC7V/4uphc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f7sFwNmd; arc=none smtp.client-ip=209.85.160.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-214c940145bso526157fac.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 12:19:52 -0800 (PST)
+	s=arc-20240116; t=1706213998; c=relaxed/simple;
+	bh=PhI9LW/VlbekrhSAPPRbJUPp4nixxFeRGjHAOy1SKHg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KCu6G204z4/PdApFJ/NBBIxTx31AZfd0TUkokWiGQ6pNsJGb365y5lwgDPz+DIRW/bEh1VDAbrV0ChIgYipf6IeVaz4dwuaiCnLFAOkFYC5Vy/6PWHPsBIJqiLBuTspMvBgqaFH4CjfY8gSYE3pVxc2LeVClW7Vm0Fa04AZ/2iU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aA34IaJ5; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1d71c844811so38939375ad.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 12:19:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706213991; x=1706818791; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1706213996; x=1706818796; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=NIswtFjpTHkt28ZzGGuiAiEl1xXsySXj+yOH1B9fU/0=;
-        b=f7sFwNmdPVuhmNxWIXBROLPOQ9sUk1FhBA2VkvURd/iNUgBE3XtcFIZdoN7VSAXK4J
-         xv4Zo2zARgoYEyixg+nZFAfkqedzTBF+WICAkO0NkfsyDXKxKlNRb0zvsFiGzY56DxWL
-         f7hpPwko9k5PNtVtGrnKX8JEUyKFWuiQewePVlGbVGd02BkrFTFn8GDGKZBIMdmRgALt
-         aWRjW6FzrIIWTDvMH8lC299KS/oF4eHkA6JPPgz9S79Yd0S8DBSLKdGQfzykGrS6UEo/
-         aqlxdiddY4VXGXQaDEL/KusvBtnnAsBhys2vSRZ741tO5TyGxQ7GfSA1nM+E+3KUn0eg
-         kXMQ==
+        bh=1AMn0y6UWpR7xw27jljzDWKtm5PPL6Cu6Mug2W0VcTk=;
+        b=aA34IaJ54qmnN4639ntC0tBaqILwKLtWGgrubPDL42t7BoVYBjeWxUYWALtJ61N5dC
+         3JhqHizcKmyiEjULvkyUaQBVdkxCRxx6Bk3CvgNgnSrJfeUmXMBfmdwBCtIxZPb/9bWo
+         Ei/vFFMofDL+pP/fP90jLr3MsrZkTiRcClsByswP4HWxICQKZPP+ZYWLhSzb7MruJErZ
+         HJDYCLuen6vJzs+/qlFZchYBYCHK/Gu15yOlA098gCZQY9wP/L4akPdFMbWAokPpzzbP
+         6uCqxY/GXwlRkficGYt4NTcIYYQtwJEmzP5V7GfMzqvvqakLX8aUMNKIhmdvzWBDc+GO
+         MRHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706213991; x=1706818791;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1706213996; x=1706818796;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NIswtFjpTHkt28ZzGGuiAiEl1xXsySXj+yOH1B9fU/0=;
-        b=Y0ucWE3U6xFhhsLzxow/CMU+rOiL1mXIGItPR4OnGQSamSE+5h2ZHZONeXzy8NMa4c
-         RXPSyDpn24EfFOIXKrm+uymUek5tN1t8FItk/4C/gJKlcR1t9Dt7766PZQHkwvV6jKcH
-         4xcfYJrTREJ3WlmFwFaoShVGX4+5r1hwkCxsGlPbNybgOaTRMB0+tuib/KpUR212MtFw
-         kj74pVmGwHKDL7IpmJi1ftWirEbq34ZWc4Rr2YFJEhT7qod5+SHMMxRNuouhA1apobQR
-         pZ2Swz34z0ddVhM28LHoeHM3P8GwGArW1c7vpyjgnPF5/2ZDf0tGFa2zjulmz4efBjvK
-         r/Wg==
-X-Gm-Message-State: AOJu0YzzCcy5uJ6BXOnLtWeOp4z4tEvtNLmbefl5kTNUy3Nl7TTW5oPV
-	anT17ntO6Urf/FcUMwMmp/lHKOc31TrdGfv83FqeVorVbu6+uJDg
-X-Google-Smtp-Source: AGHT+IF/OoKX+Hp19TnvIEuqKhNMvvPVJxKVbybIu6KrpTO+4C46554d0JIZV6alhSS3juE3Z2rDQQ==
-X-Received: by 2002:a05:6870:f690:b0:210:e117:df8e with SMTP id el16-20020a056870f69000b00210e117df8emr212985oab.47.1706213991489;
-        Thu, 25 Jan 2024 12:19:51 -0800 (PST)
-Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id gx11-20020a056870b90b00b00210cc6cc9eesm3610024oab.33.2024.01.25.12.19.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jan 2024 12:19:51 -0800 (PST)
-From: Chris Morgan <macroalpha82@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	conor+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Add USB3.0 to Indiedroid Nova
-Date: Thu, 25 Jan 2024 14:19:43 -0600
-Message-Id: <20240125201943.90476-3-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240125201943.90476-1-macroalpha82@gmail.com>
-References: <20240125201943.90476-1-macroalpha82@gmail.com>
+        bh=1AMn0y6UWpR7xw27jljzDWKtm5PPL6Cu6Mug2W0VcTk=;
+        b=HZovIKcB69ZFJFDJkACl3EYb7jOQUUirotqx2RduSuXavU0eea3ViFKmefVLAGuSTe
+         1UYOAlgVAIbls1KeWNtsobiETPk95rvbhjaeo37uGrD7bIq6WxB4sJ2eFUyU24duhmTx
+         GCnSpq96GnbZJvjAlGx+7/XMsL+kPt5fEleDiXVTftRYAeIJbnyGML7f9GH9JiWus1EF
+         QEL3dI1iuN++J3IPQSOYNzQVnk4OPcYyOQZCsNvz6Q3uwPsVJFwerOI54u3/BjJH5WW4
+         qd5S77NFs0WDqE5uTcjydZJKk87Gp7ig3fPnGb+lJM+3mkuCMzP5qVfo4uC29BGzJciU
+         ijFw==
+X-Gm-Message-State: AOJu0YycNEyM1kuJ+U6ILHqxq0h5dYZ4jUN0rHBYDzy9s96/tfu4SEpq
+	m2jCJ6v9bk0NdZOWlv0k9GyufyVt0yobamT++GzpgKiWwRJABZjgZkZnzbdPCKog/K7sOcVGNdx
+	rWw+pvk7uem3lGGQmee1GXn7len2JjTofn9B+PQ==
+X-Google-Smtp-Source: AGHT+IEDlNMo5aTWzDJycnq3U1sMwSmzGwmT5xXHVku5Um1940OW4HPZE75X2sbisg5ytxzRxcqd5yUDHa1l+h1tjfo=
+X-Received: by 2002:a17:902:ecc4:b0:1d8:94e4:7718 with SMTP id
+ a4-20020a170902ecc400b001d894e47718mr262595plh.114.1706213996125; Thu, 25 Jan
+ 2024 12:19:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240125145007.748295-1-tudor.ambarus@linaro.org> <20240125145007.748295-13-tudor.ambarus@linaro.org>
+In-Reply-To: <20240125145007.748295-13-tudor.ambarus@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Thu, 25 Jan 2024 14:19:44 -0600
+Message-ID: <CAPLW+4nW1LyMT2CGD7R_oRPtRgNQiyUjjUqZJYTAJ2HJMW9yfg@mail.gmail.com>
+Subject: Re: [PATCH v2 12/28] spi: s3c64xx: check return code of dmaengine_slave_config()
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: broonie@kernel.org, andi.shyti@kernel.org, arnd@arndb.de, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	alim.akhtar@samsung.com, linux-spi@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arch@vger.kernel.org, andre.draszik@linaro.org, 
+	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Thu, Jan 25, 2024 at 8:50=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
+.org> wrote:
+>
+> Check the return code of dmaengine_slave_config().
+>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
 
-Add the proper nodes to activate the USB 3.0 ports on the Indiedroid
-Nova.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index 3c2278886851..ce8119cbb824 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -141,6 +141,10 @@ &combphy0_ps {
- 	status = "okay";
- };
- 
-+&combphy2_psu {
-+	status = "okay";
-+};
-+
- &cpu_l0 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
- };
-@@ -842,3 +846,7 @@ &usb_host1_ehci {
- &usb_host1_ohci {
- 	status = "okay";
- };
-+
-+&usb_host2_xhci {
-+	status = "okay";
-+};
--- 
-2.34.1
-
+>  drivers/spi/spi-s3c64xx.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+> index 107b4200ab00..48b87c5e2dd2 100644
+> --- a/drivers/spi/spi-s3c64xx.c
+> +++ b/drivers/spi/spi-s3c64xx.c
+> @@ -297,7 +297,9 @@ static int prepare_dma(struct s3c64xx_spi_dma_data *d=
+ma,
+>                 config.dst_maxburst =3D 1;
+>         }
+>         config.direction =3D dma->direction;
+> -       dmaengine_slave_config(dma->ch, &config);
+> +       ret =3D dmaengine_slave_config(dma->ch, &config);
+> +       if (ret)
+> +               return ret;
+>
+>         desc =3D dmaengine_prep_slave_sg(dma->ch, sgt->sgl, sgt->nents,
+>                                        dma->direction, DMA_PREP_INTERRUPT=
+);
+> --
+> 2.43.0.429.g432eaa2c6b-goog
+>
 
