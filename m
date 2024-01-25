@@ -1,186 +1,267 @@
-Return-Path: <devicetree+bounces-35243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 285C883CBD6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:04:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED6383CBFF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:15:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90F391F21FA6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:04:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C792C1F27186
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 19:15:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E921A1350C4;
-	Thu, 25 Jan 2024 19:04:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E578D1350C6;
+	Thu, 25 Jan 2024 19:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZaJP7JCo"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="y8R1QLd/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462E2537E3
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 19:04:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774AA13474C
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 19:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706209473; cv=none; b=oyVD8wWp2t1+6D+6LFTD1V7X9hdxiZVkj8nNy65UvDIPjGWl13f24cTdHl9AqXk8fMyYqEXgejn5UUhNn5SvEBhvL+hr566dRNnQ3o6Xu1G6cblT4ZKeK9TcKA9isgISUOUxGhxikzEpNEL/LxMNeOoXTsXP/8OcCDGLkTP1VBs=
+	t=1706210122; cv=none; b=X9MZrnKYFBKfkSaw1NXEYrZwA+X6eqVCiWbUbr22+llwA1NJNq5odmSj22OyEgH+sh7Gh493ER6uforO50b/AygZjcqIjiQ+K5ypF3Z3Lk9z9q9U5j7/vBvPeUALTx5hnK/et++ZYjT8fcz4VX0GgOQBLnXzBhbzgPFci5UZcPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706209473; c=relaxed/simple;
-	bh=kyz7VN/4ZcUerMlxwf3NWPLVw11KuWBrkD6c9Je0eew=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ab/SpHT9CK3EkICFEy1vglM3PNu43i1bTLgjjE19TTRpx+fvjL9x1uq49Entvs9hl5LO2SlMI/W7Q1iDdbMVZ0YBIWxc7fsoa2xC0+0xHSuZje6dk5xcjDYmyzha5coR5C0qvy61bmF31QaKZ1T4GDhV/Owcc27z/9Opo2/gb5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZaJP7JCo; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2901ac9ba23so4132492a91.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 11:04:32 -0800 (PST)
+	s=arc-20240116; t=1706210122; c=relaxed/simple;
+	bh=kzQaYPUWbynoSnERWzMhIZje2cAZDJ5JaR8kt7YTbqY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jFulZvI/HM0QjMLxb31vmNlYl0hRg/vzmcZwzmJN4beKy3/hBEiUwFCDC69z1sdfG6fDfozg/h56ifjn+yu48B/IoQM85UuoEmF5R1rago/SiVSlGLdOWNwRMMfXEbthLEx0BxytuTWy/xG3cuFwx/KWFlcVR2kzsFWJH2E/Xpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=y8R1QLd/; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-510218c4a0eso508428e87.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 11:15:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706209472; x=1706814272; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wmh1WjBejQi02ZPJBsuRfWlQ6TdlM/kcPPZwBwZbKTI=;
-        b=ZaJP7JCoksK9xmxs3TW8E55u1+gmSRRj+9KhpQJVKrhQ3P0NKojfHvg8lYd1mID3Gt
-         g827fEqPOuGOBCrIsQHuceUPTryDjcKkKPe3CI/+9N4kPOdW707osLI3qqMwPZK5zHNj
-         cXhVGUaG1rRpoS//cZDP4cOr0GPh7QVs26tO3/gBjkXZG6IGsYcmb3OUkb8M+lgCWmrm
-         0AAUgVDFlkCXE0pepJpkrtwMcMQSnZ2CbSkBlxUKOdT99WHreWI88Oei+aO/B4cMZTJB
-         PIFrfITALKtsEg9JaJbw8MTEOhLGj/hy+tlRcTQlKReL/tZcBFGdLClbD8RAixPHPE7a
-         oAgA==
+        d=ragnatech.se; s=google; t=1706210118; x=1706814918; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=l5lfCYOS1NBrTdzjyrz70RC7raHVrIJ2n0SqF7ll480=;
+        b=y8R1QLd/NE2Dacorgmlgs6dJwoApduA794o+quFH7F6aviM93eTf/pF3sgVSjaFSVG
+         Td1PM9psxOXQ7QA6AJjwpK6rWSHnPXvnhJ2C45VRQ7SmwMUNQyKeEk3vQyIY+c6zX1UT
+         AyxlzypawPWvtzMx7wqVhMvUxT2dJ+xIBRg7h6kJ011nXYc3vSK6SHqKc9dmifPRf0fK
+         xIL7enjWq+ZoSZqWvjNZJ72S/furaO2dGdF0tXkBpikrfIUEsmgE9B/d5jeCPouSYB5t
+         4tB0iEr+9yMSEU4FOTbFzptoKegm9l09ZcnTpD7jt1P97vmf4fCgoYRXsuITEGkgOub4
+         IYFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706209472; x=1706814272;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wmh1WjBejQi02ZPJBsuRfWlQ6TdlM/kcPPZwBwZbKTI=;
-        b=hEfNnxj2KCL/lbzYJXCdhH8SGW9clmDi+nTk7GhpB5ymjv0SRVOzzQzdIUCuSrIw5N
-         btyp+9KuiLYBEyLxeEhAAJq9rL9BEHW0uiU46OZ0Sf2uRaVuk9q8dEHuSBL+1YD3+H8s
-         vXAmfj7laTm6mat6Ff1cVjyxffaQhHk0dAm8JbJouf7CItcufsip6L/hCssNiBsp0mZU
-         /VQ33v52RkhzY9e9fYsaz4TyJEPZswmhq9DfRjrxziB4o2Bf/slafsgwIA113yeduowi
-         fmWolxsxcfwDcOGVrcUGXrTrua2iroG45eKh+NkyF4xItIN2jgAq/zikgeYTyV6kArXH
-         67AQ==
-X-Gm-Message-State: AOJu0Yywuz89NK2kfgQGPljDDLCHy1Se7v6gF9A4qtYZ5YKuCFizr4Bt
-	+i03bXm9pNnd93bGQFYdFhqGyUJhcZOsFVfajVBOpj5ymC1r5WrRHf8DBViQhpXRTTfiwXUW7RC
-	EQK5wFX9yE5mswnjcmzAIDGcYrio/ZiyH2T2xtQ==
-X-Google-Smtp-Source: AGHT+IG6YlwnSeWpwQZCjQC/4bwVfXO3ZLqyr7wz2ahkS1E5zXvVRkZg7RSC50vQwXZpquzQdqmKHy32ABLJfpuTPnM=
-X-Received: by 2002:a17:90b:912:b0:286:8dd6:db65 with SMTP id
- bo18-20020a17090b091200b002868dd6db65mr57262pjb.91.1706209471761; Thu, 25 Jan
- 2024 11:04:31 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706210118; x=1706814918;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l5lfCYOS1NBrTdzjyrz70RC7raHVrIJ2n0SqF7ll480=;
+        b=kXn7hiSf/rOUgxZYfoVGAvZWUf5jzgDXmb0Dzuam7uL0uqaeUPAP79V3IURKOtbjnZ
+         CW9o7f0IiaOvpGHAYncDNH4InfuVvUekv+oVS8DXNDvNoIanYCcKkNH0y1VxNybTbYlX
+         9/SIN4V98Wp9HpKYbOHhibFjaGyt/RSFCLJ++RU7CfhNhbfLwYIWeLUgTYy1N8telaai
+         HHjNWHuVhIiPExNRnRG0XPXHC54titobY9aMHSNHz/594rIyL1waaqi61fz/L4OYKL0G
+         QRDoOyw6HVTwb9WkdkcKxXEkD7sYi9bgrm+QtzHR45yG1GuosOyoODwBjN1f+baf4dqe
+         jc6g==
+X-Gm-Message-State: AOJu0YyCXdYzSwsG5L+yGvTi23coHb35FDuMUjcxp3cjjL99phkTUx4y
+	wNbiWzChByUChfQZAIAwuLDjV3E+aEPdbAgqg/AEYXrjE1Y4lh607eRR2k5NE9E=
+X-Google-Smtp-Source: AGHT+IHdhRRf00wGnpJGNkIlMig5CfXGMbmF8O8TgwEHLBg4n1bEZ9kzRmDO2Ym2ZF/YsbEisx9tNA==
+X-Received: by 2002:ac2:5b0f:0:b0:50e:74f3:c320 with SMTP id v15-20020ac25b0f000000b0050e74f3c320mr7358lfn.21.1706210118492;
+        Thu, 25 Jan 2024 11:15:18 -0800 (PST)
+Received: from localhost (h-46-59-36-113.A463.priv.bahnhof.se. [46.59.36.113])
+        by smtp.gmail.com with ESMTPSA id j11-20020ac2454b000000b005100d4455a2sm635122lfm.72.2024.01.25.11.15.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jan 2024 11:15:17 -0800 (PST)
+Date: Thu, 25 Jan 2024 20:15:17 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+	Cong Dang <cong.dang.xn@renesas.com>,
+	Duy Nguyen <duy.nguyen.rh@renesas.com>,
+	Hai Pham <hai.pham.ud@renesas.com>,
+	Linh Phung <linh.phung.jy@renesas.com>,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 13/15] arm64: dts: renesas: Add Renesas R8A779H0 SoC
+ support
+Message-ID: <20240125191517.GP4126432@ragnatech.se>
+References: <cover.1706194617.git.geert+renesas@glider.be>
+ <4107bc3d7c31932da29e671ddf4b1564ba38a84c.1706194617.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240125145007.748295-1-tudor.ambarus@linaro.org> <20240125145007.748295-8-tudor.ambarus@linaro.org>
-In-Reply-To: <20240125145007.748295-8-tudor.ambarus@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Thu, 25 Jan 2024 13:04:20 -0600
-Message-ID: <CAPLW+4kGGtG2BxeN0wRXMD5M2TR+eMUHZpL2KDaEFubBCP7jdg@mail.gmail.com>
-Subject: Re: [PATCH v2 07/28] spi: s3c64xx: remove unneeded (void *) casts in of_match_table
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: broonie@kernel.org, andi.shyti@kernel.org, arnd@arndb.de, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, linux-spi@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-arch@vger.kernel.org, andre.draszik@linaro.org, 
-	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4107bc3d7c31932da29e671ddf4b1564ba38a84c.1706194617.git.geert+renesas@glider.be>
 
-On Thu, Jan 25, 2024 at 8:50=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
-.org> wrote:
->
-> of_device_id::data is an opaque pointer. No explicit cast is needed.
-> Remove unneeded (void *) casts in of_match_table. While here align the
-> compatible and data members.
->
-> Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+Hi Geert,
+
+Thanks for your work.
+
+On 2024-01-25 16:34:41 +0100, Geert Uytterhoeven wrote:
+> From: Hai Pham <hai.pham.ud@renesas.com>
+> 
+> Add initial support for the Renesas R-Car V4M (R8A779H0) SoC.
+> 
+> Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+
 > ---
->  drivers/spi/spi-s3c64xx.c | 45 +++++++++++++++++++++++----------------
->  1 file changed, 27 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-> index 230fda2b3417..137faf9f2697 100644
-> --- a/drivers/spi/spi-s3c64xx.c
-> +++ b/drivers/spi/spi-s3c64xx.c
-> @@ -1511,32 +1511,41 @@ static const struct platform_device_id s3c64xx_sp=
-i_driver_ids[] =3D {
->  };
->
->  static const struct of_device_id s3c64xx_spi_dt_match[] =3D {
-> -       { .compatible =3D "samsung,s3c2443-spi",
-> -                       .data =3D (void *)&s3c2443_spi_port_config,
+> v2:
+>   - Add vendor-prefixes to DT binding definition header files.
+> 
+> Changes compared to the BSP:
+>   - Add "-clk" suffix to clock node names,
+>   - Rename "pmu_a76" node to "pmu-a76",
+>   - Drop bogus CPU masks from GICv3 PPI interrupt specifiers,
+>   - Drop hscif0 dmas and dma-names placeholder,
+>   - Add missing hypervisor virtual timer IRQ to timer node.
+> ---
+>  arch/arm64/boot/dts/renesas/r8a779h0.dtsi | 121 ++++++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/renesas/r8a779h0.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
+> new file mode 100644
+> index 0000000000000000..a082e2d06b696019
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
+> @@ -0,0 +1,121 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Device Tree Source for the R-Car V4M (R8A779H0) SoC
+> + *
+> + * Copyright (C) 2023 Renesas Electronics Corp.
+> + */
+> +
+> +#include <dt-bindings/clock/renesas,r8a779h0-cpg-mssr.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/power/renesas,r8a779h0-sysc.h>
+> +
+> +/ {
+> +	compatible = "renesas,r8a779h0";
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		a76_0: cpu@0 {
+> +			compatible = "arm,cortex-a76";
+> +			reg = <0>;
+> +			device_type = "cpu";
+> +			power-domains = <&sysc R8A779H0_PD_A1E0D0C0>;
+> +		};
+> +	};
+> +
+> +	extal_clk: extal-clk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		/* This value must be overridden by the board */
+> +		clock-frequency = <0>;
+> +	};
+> +
+> +	extalr_clk: extalr-clk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		/* This value must be overridden by the board */
+> +		clock-frequency = <0>;
+> +	};
+> +
+> +	pmu-a76 {
+> +		compatible = "arm,cortex-a76-pmu";
+> +		interrupts-extended = <&gic GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +
+> +	/* External SCIF clock - to be overridden by boards that provide it */
+> +	scif_clk: scif-clk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <0>;
+> +	};
+> +
+> +	soc: soc {
+> +		compatible = "simple-bus";
+> +		interrupt-parent = <&gic>;
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		cpg: clock-controller@e6150000 {
+> +			compatible = "renesas,r8a779h0-cpg-mssr";
+> +			reg = <0 0xe6150000 0 0x4000>;
+> +			clocks = <&extal_clk>, <&extalr_clk>;
+> +			clock-names = "extal", "extalr";
+> +			#clock-cells = <2>;
+> +			#power-domain-cells = <0>;
+> +			#reset-cells = <1>;
+> +		};
+> +
+> +		rst: reset-controller@e6160000 {
+> +			compatible = "renesas,r8a779h0-rst";
+> +			reg = <0 0xe6160000 0 0x4000>;
+> +		};
+> +
+> +		sysc: system-controller@e6180000 {
+> +			compatible = "renesas,r8a779h0-sysc";
+> +			reg = <0 0xe6180000 0 0x4000>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+> +		hscif0: serial@e6540000 {
+> +			compatible = "renesas,hscif-r8a779h0",
+> +				     "renesas,rcar-gen4-hscif", "renesas,hscif";
+> +			reg = <0 0xe6540000 0 0x60>;
+> +			interrupts = <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cpg CPG_MOD 514>,
+> +				 <&cpg CPG_CORE R8A779H0_CLK_SASYNCPERD1>,
+> +				 <&scif_clk>;
+> +			clock-names = "fck", "brg_int", "scif_clk";
+> +			power-domains = <&sysc R8A779H0_PD_ALWAYS_ON>;
+> +			resets = <&cpg 514>;
+> +			status = "disabled";
+> +		};
+> +
+> +		gic: interrupt-controller@f1000000 {
+> +			compatible = "arm,gic-v3";
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <0>;
+> +			interrupt-controller;
+> +			reg = <0x0 0xf1000000 0 0x20000>,
+> +			      <0x0 0xf1060000 0 0x110000>;
+> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		prr: chipid@fff00044 {
+> +			compatible = "renesas,prr";
+> +			reg = <0 0xfff00044 0 4>;
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts-extended = <&gic GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+> +				      <&gic GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+> +				      <&gic GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> +				      <&gic GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
+> +				      <&gic GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> -- 
+> 2.34.1
+> 
+> 
 
-I support removing (void *) cast. But this new braces style:
-
-      },
-      {
-
-seems to bloat the code a bit. For my taste, having something like },
-{ on the same line would be more compact, and more canonical so to
-speak. Or even preserving the existing style would be ok too, for that
-matter.
-
-Assuming the braces style is fixed, you can add:
-
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-
-> +       {
-> +               .compatible =3D "samsung,s3c2443-spi",
-> +               .data =3D &s3c2443_spi_port_config,
->         },
-> -       { .compatible =3D "samsung,s3c6410-spi",
-> -                       .data =3D (void *)&s3c6410_spi_port_config,
-> +       {
-> +               .compatible =3D "samsung,s3c6410-spi",
-> +               .data =3D &s3c6410_spi_port_config,
->         },
-> -       { .compatible =3D "samsung,s5pv210-spi",
-> -                       .data =3D (void *)&s5pv210_spi_port_config,
-> +       {
-> +               .compatible =3D "samsung,s5pv210-spi",
-> +               .data =3D &s5pv210_spi_port_config,
->         },
-> -       { .compatible =3D "samsung,exynos4210-spi",
-> -                       .data =3D (void *)&exynos4_spi_port_config,
-> +       {
-> +               .compatible =3D "samsung,exynos4210-spi",
-> +               .data =3D &exynos4_spi_port_config,
->         },
-> -       { .compatible =3D "samsung,exynos7-spi",
-> -                       .data =3D (void *)&exynos7_spi_port_config,
-> +       {
-> +               .compatible =3D "samsung,exynos7-spi",
-> +               .data =3D &exynos7_spi_port_config,
->         },
-> -       { .compatible =3D "samsung,exynos5433-spi",
-> -                       .data =3D (void *)&exynos5433_spi_port_config,
-> +       {
-> +               .compatible =3D "samsung,exynos5433-spi",
-> +               .data =3D &exynos5433_spi_port_config,
->         },
-> -       { .compatible =3D "samsung,exynos850-spi",
-> -                       .data =3D (void *)&exynos850_spi_port_config,
-> +       {
-> +               .compatible =3D "samsung,exynos850-spi",
-> +               .data =3D &exynos850_spi_port_config,
->         },
-> -       { .compatible =3D "samsung,exynosautov9-spi",
-> -                       .data =3D (void *)&exynosautov9_spi_port_config,
-> +       {
-> +               .compatible =3D "samsung,exynosautov9-spi",
-> +               .data =3D &exynosautov9_spi_port_config,
->         },
-> -       { .compatible =3D "tesla,fsd-spi",
-> -                       .data =3D (void *)&fsd_spi_port_config,
-> +       {
-> +               .compatible =3D "tesla,fsd-spi",
-> +               .data =3D &fsd_spi_port_config,
->         },
->         { },
->  };
-> --
-> 2.43.0.429.g432eaa2c6b-goog
->
+-- 
+Kind Regards,
+Niklas Söderlund
 
