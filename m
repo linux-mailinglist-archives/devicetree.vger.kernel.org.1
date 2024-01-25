@@ -1,266 +1,144 @@
-Return-Path: <devicetree+bounces-34940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDAA583BCD7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:09:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 855F583BCF2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:11:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 357821F2F08B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:09:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23DB11F2ADFF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E741CF82;
-	Thu, 25 Jan 2024 09:04:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 030121BDCA;
+	Thu, 25 Jan 2024 09:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=8devices.com header.i=@8devices.com header.b="Owo7p++X"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="O4ULXlhg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD38B1CFAE
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 09:04:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27501BC39;
+	Thu, 25 Jan 2024 09:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706173487; cv=none; b=BNN1kcujMZ5k0mSKVmi99Mf6fVWyM5Le+M4LQYQvzfvJleQqzg40JKr2SR6U9hVT4GabMvv2xu4XmkJObrypDeKSBfBlPMzzH7AL7Vj7+AVXG/kyvhEYyCw6Z1GRT+8FI0loxbztzwxNHw89dIifY/2JLTBFvEhJ0Qzw4hYWJgQ=
+	t=1706173827; cv=none; b=rwjAgU6LSBrPRUhJQWSACpQNh58kiIfC3n0044H2DQCIEqv04xAdvLl2s6JsX6KTUx21n7IkUA39vOs/Tg/a15WtoSqMCK+jF6g2D8MefqO8FiuK/7+vdCtlmksiRHZwYIN1LCYNg4h0AcpHL84VE6sEjh6iJfFsFDLaBeEarAo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706173487; c=relaxed/simple;
-	bh=6Wrp/Rh7g2JRqGMXr7Kxyiy8NHVcDuyn2kD7EmsJJfg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=pZKPGYIhCm4TECB2WwRk/afBDPorRWEVlNMOKruJn4sIym1nhiwqeo0vMwuK1usmd0bvKEBBFooXTZmp2ZV39y7974qFIH7A7E2Mu+1hprM9NQxkcr9A4hspkzng3PlbNkT65f4dvwHV89DM5heIBC5BebRFyfGMk5WlP7aXCNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=8devices.com; spf=pass smtp.mailfrom=8devices.com; dkim=pass (2048-bit key) header.d=8devices.com header.i=@8devices.com header.b=Owo7p++X; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=8devices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8devices.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2cf2fdd518bso10781361fa.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 01:04:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=8devices.com; s=8devices; t=1706173484; x=1706778284; darn=vger.kernel.org;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ZA8ITQmXH67a4MbXLZRtTrGVOfb5zy3I23H5qUM12E0=;
-        b=Owo7p++Xp6CvpSG2vOw2bn6ue5f470hHsECOMNHej3JUHcpHbkV/DuDcX9WLRPE73+
-         TusED+zAx6XhS4DSkvMI2R+t/FTQq8Puaq6Gt1bq1GgV6eqB6TY0/R3N71Q0/XbqlxuG
-         +Sf3v11BohhhOBkEzx0afca6HnVm2zPzTol0TK/7VOOGr4P3482VYekjyn3Ji53d5/k8
-         /LuzdXPRiufIosB/xmo7yFwlimi/wp+1LOyuLkYjegGN1qAwb7QsX/1g8XdaUwb6vcC1
-         qms5UW43A5en9Pb5lbT2qF6wyVqkxwYkwqyuxRz/LQpAZL5QExZp94SIU3f/dJX7p/UJ
-         FlQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706173484; x=1706778284;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZA8ITQmXH67a4MbXLZRtTrGVOfb5zy3I23H5qUM12E0=;
-        b=BE7SPqu4CQyjwDEL1gd94JJ4D/L6a46db2RdjQ4sD1Vwu4+1FLIkb09aGewKqRAqTh
-         f47+kewwH/MHgYkx/8gzDGui7SG6n1BF2XCrGYhYAbnOweiXaaBc6jg+szAw8jP0q8XZ
-         OvdU4nDKN/KC/cD2ftjJ6NwYLL7FLwHN+8NAXGTnyu18ahyMoa8bHgdqZzzbL1eWnNwK
-         tqK5OCdoYVukJ4LZ9x0lwANdk2MiJ0ZtKGOlsT+tASyUhdhQaErVONrq2MbADR1c1Kk/
-         7vYc7O4xih7l9nWLn/P3npAjdnX0zq4KMKMIwydTczXj3O5rKA4JI1+vZaxWHxV91plz
-         bKbA==
-X-Gm-Message-State: AOJu0YyLCnogV5TsYT0gsN88sBNqV7qa8YNUE5mO9O6l6kxNGpWR+46h
-	zQmtslJjnmRkOuFaOZtqjxhODuXYZWZNcPnyu3q6wtppgDQhgBVU6lYLE5ZFa+0=
-X-Google-Smtp-Source: AGHT+IGV5hFPtJQpKhAggzHO+h17QNxpuZoz05HMk0EkeGrRidecDaIzxG7BR8AxqWKJk50LwCs0Jg==
-X-Received: by 2002:a2e:804f:0:b0:2cf:24c5:8089 with SMTP id p15-20020a2e804f000000b002cf24c58089mr236151ljg.56.1706173483922;
-        Thu, 25 Jan 2024 01:04:43 -0800 (PST)
-Received: from mantas-MS-7994.8devices.com ([84.15.37.222])
-        by smtp.gmail.com with ESMTPSA id m10-20020a2e870a000000b002cdf8c9af34sm229123lji.57.2024.01.25.01.04.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 25 Jan 2024 01:04:43 -0800 (PST)
-From: Mantas Pucka <mantas@8devices.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Mantas Pucka <mantas@8devices.com>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: ipq6018: add thermal zones
-Date: Thu, 25 Jan 2024 11:04:12 +0200
-Message-Id: <1706173452-1017-4-git-send-email-mantas@8devices.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1706173452-1017-1-git-send-email-mantas@8devices.com>
-References: <1706173452-1017-1-git-send-email-mantas@8devices.com>
+	s=arc-20240116; t=1706173827; c=relaxed/simple;
+	bh=mWozjZ0MQ+V6lQWz+OjK00G+pFbB5gGnuEUnxHrILTY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=DNrJ7GNflxfq8nnPTPeRWo8dOCYpZ+yYKHKt/tEU7c/OUDDenH1RrlQYmpMZiNQlZb8qvwb1DISNZr8mw9bvCiCHxvP93jJu3ap/KP/0KJJ+jzV2CMiDT9isGME8BKeBGNmYCI5H2DSV++rw3ynY6NVeleGarRqphh1Aq5SdclQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=O4ULXlhg; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Content-Type:MIME-Version:Message-ID:Date:References:
+	In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=v7OHKf/eD55Qem09PPYclG2VfzoScAThX9wIj8orSYc=; b=O4ULXlhgZi+zbMO8b6WHYFzfuk
+	qNakRjVE6dc4R7OgodO6nyTQG9Plrk+O7BoYHgBciWgmjKf3YUHjitBGQ06BnTfxIFNrD151EIGsO
+	L/9C3eCoOeillnLyHONjFtcvlZtF37IwhEGW4M4pLrUfDQmfPYafbRwMAkRr/9EWpWcoZ28s0ZOUE
+	/bBzDUnOE9ozDamxxdkRPHpmBPmtqbwRQ/EiYlX5xe2Z1QgO7jq4FD0sRDo7gul93vBWtVJhNq4Py
+	ji5F4O5Do+Fab7Yt2/6EhM15nLJbZ1lfa3UKpoxFNsdzr+e0B85lE/amZ+Vqs5BrI0Wnt5/14ENII
+	X5s398cg==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <esben@geanix.com>)
+	id 1rSvkZ-000OIA-5F; Thu, 25 Jan 2024 10:10:19 +0100
+Received: from [185.17.218.86] (helo=localhost)
+	by sslproxy03.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <esben@geanix.com>)
+	id 1rSvkY-000KJu-8A; Thu, 25 Jan 2024 10:10:18 +0100
+From: esben@geanix.com
+To: Conor Dooley <conor@kernel.org>
+Cc: devicetree@vger.kernel.org,  "David S. Miller" <davem@davemloft.net>,
+  Eric Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,
+  Paolo Abeni <pabeni@redhat.com>,  Rob Herring <robh+dt@kernel.org>,
+  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  Alexandre Torgue <alexandre.torgue@foss.st.com>,
+  Giuseppe Cavallaro <peppe.cavallaro@st.com>,  Jose Abreu
+ <joabreu@synopsys.com>,  netdev@vger.kernel.org,
+  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: net: snps,dwmac: Add
+ time-based-scheduling property
+In-Reply-To: <20240124-reptilian-icing-a95b20f123be@spud> (Conor Dooley's
+	message of "Wed, 24 Jan 2024 16:07:48 +0000")
+References: <b365dc6f756a3fad4dfaa2675c98f4078aba8a55.1706105494.git.esben@geanix.com>
+	<30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
+	<20240124-reptilian-icing-a95b20f123be@spud>
+Date: Thu, 25 Jan 2024 10:10:17 +0100
+Message-ID: <87bk99hj7q.fsf@geanix.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Authenticated-Sender: esben@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27164/Wed Jan 24 10:45:32 2024)
 
-Add thermal zones to make use of thermal sensors data. For CPU zone,
-add cooling device that uses CPU frequency scaling.
+Conor Dooley <conor@kernel.org> writes:
 
-Signed-off-by: Mantas Pucka <mantas@8devices.com>
----
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 121 ++++++++++++++++++++++++++++++++++
- 1 file changed, 121 insertions(+)
+> On Wed, Jan 24, 2024 at 03:33:06PM +0100, Esben Haabendal wrote:
+>> Time Based Scheduling can be enabled per TX queue, if supported by the
+>> controller.
+>
+> If time based scheduling is not supported by the controller, then the
+> property should not be present! The presence of a property like this
+> should mean that the feature is supported, using it is up to the
+> operating system.
+>
+> That said, why is this a property that should be in DT?
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index f2765fe8c20b..4fb253b845c8 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/clock/qcom,gcc-ipq6018.h>
- #include <dt-bindings/reset/qcom,gcc-ipq6018.h>
- #include <dt-bindings/clock/qcom,apss-ipq.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	#address-cells = <2>;
-@@ -43,6 +44,7 @@
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
- 			cpu-supply = <&ipq6018_s2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		CPU1: cpu@1 {
-@@ -55,6 +57,7 @@
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
- 			cpu-supply = <&ipq6018_s2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		CPU2: cpu@2 {
-@@ -67,6 +70,7 @@
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
- 			cpu-supply = <&ipq6018_s2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		CPU3: cpu@3 {
-@@ -79,6 +83,7 @@
- 			clock-names = "cpu";
- 			operating-points-v2 = <&cpu_opp_table>;
- 			cpu-supply = <&ipq6018_s2>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		L2_0: l2-cache {
-@@ -996,6 +1001,122 @@
- 		};
- 	};
- 
-+	thermal-zones {
-+		nss-top-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&tsens 4>;
-+
-+			trips {
-+				nss-top-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		nss-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&tsens 5>;
-+
-+			trips {
-+				nss-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		wcss-phya0-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&tsens 7>;
-+
-+			trips {
-+				wcss-phya0-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		wcss-phya1-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&tsens 8>;
-+
-+			trips {
-+				wcss-phya1-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpu-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&tsens 13>;
-+
-+			trips {
-+				cpu-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+
-+				cpu_alert: cpu-passive {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "passive";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert>;
-+					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+
-+		lpass-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&tsens 14>;
-+
-+			trips {
-+				lpass-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ddrss-top-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&tsens 15>;
-+
-+			trips {
-+				ddrss-top-critical {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 2 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--- 
-2.7.4
+It is added to the tx-queues-config object of snps,dwmac bindings. This
+entire object is about configuration of the ethernet controller, which
+is also what the purpose of the snps,time-based-scheduling.
+So yes, it is not specifically about describing what the hardware is
+capable of, but how the hardware is configured. It is a continuation of
+the current driver design.
 
+> If support is per controller is it not sufficient to use the
+> compatible to determine if this is supported?
+
+Are you suggesting to include the mapping from all supported compatible
+controllers to which TX queues supports TBS in the driver code?  What
+would the benefit of that compared to describing it explicitly in the
+binding?
+And for the purpose of the above question, I am talking about it as if
+the binding was describing the hardware capability and not the
+configuration.
+
+/Esben
+
+
+>> Signed-off-by: Esben Haabendal <esben@geanix.com>
+>> ---
+>>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> index 5c2769dc689a..301e9150ecc3 100644
+>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+>> @@ -399,6 +399,12 @@ properties:
+>>              type: boolean
+>>              description: TX checksum offload is unsupported by the TX queue.
+>>  
+>> +          snps,time-based-scheduling:
+>> +            type: boolean
+>> +            description:
+>> +              Time Based Scheduling will be enabled for TX queue.
+>> +              This is typically not supported for TX queue 0.
+>> +
+>>          allOf:
+>>            - if:
+>>                required:
+>> -- 
+>> 2.43.0
+>> 
 
