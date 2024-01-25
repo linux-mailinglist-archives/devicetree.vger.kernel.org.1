@@ -1,129 +1,138 @@
-Return-Path: <devicetree+bounces-35091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E717483C51F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:47:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C4783C52E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:49:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FEF1292B54
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:47:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56097B2596A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:49:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B966E2D9;
-	Thu, 25 Jan 2024 14:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HSbj3U7o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5950D6E2D0;
+	Thu, 25 Jan 2024 14:49:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [195.130.132.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2936DD1D;
-	Thu, 25 Jan 2024 14:47:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5FD56E2BE
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 14:49:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706194042; cv=none; b=iN7cvrEB//Cx1fgBGHWDpj7b4QgL5TCSQVsjKnUpxBt94Stlvo5ljrsNR9nseYSpkePSV8XxF87xVipmLAA4VYa2Gn+QERSvAcmTkjsIeLorZ1vpYHw/VQwGM7zeCP566reDx8bECe2+LQOUR1p5CiXti3WYvIWnlOfclU6Dh0s=
+	t=1706194152; cv=none; b=tA/xtR/mytuLM5jj4h4RgrzOvMvx/u8SV0SdGdqtcbH6hfwIVXOoChVQjeeuIBC5a/OP4eAqPCIWo9a0doWK+VM9P5hh8R/Owicbn7e3y9wmVAkZC3YNqNAaj7a1w0qvg4VlCGpZy5Y7LzYmPeZDqoXfDRvbV6DGv+MJmxqGHlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706194042; c=relaxed/simple;
-	bh=WsVmPf+FEspaeZMEYX/3tKPPjqKErDviLE42fEGcT0U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LGG0fEmt5/0M7Lbanao4wsaj+iSE1+KiMEaRUCdpdirvAo7QYDAFnfZ47RUcWGNDKfD6P1hJx3zKiydBI3C7GqPN0z/KaNfEYMD1ZZqKRe9A8E9JR8Fa5g4ak8eMBekB0cv+g5twRLvUHveILtUuibV9yiyyxZhzI4c1yfllVfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HSbj3U7o; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40PEl9nv055580;
-	Thu, 25 Jan 2024 08:47:09 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706194029;
-	bh=GNbstS5x7P650fLxgLNehqdh3nUvUe2wiyCCBgE0H/A=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=HSbj3U7oGoL+PzG5NPkj0w+57+zritNreWUelqzDjTTOA/HJFRtCasqytBQtPnVX+
-	 BnKYPT8noTR7vmD2qhHbCiyXYtxDtkTKXsishTixIgy7qwK9HY5d+wkSt6A3s2b5H5
-	 YDZFlp2g7UMCqppyMNOOVPu7T4aiwXH9HAx67UhQ=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40PEl9ji064671
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 25 Jan 2024 08:47:09 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
- Jan 2024 08:47:09 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 25 Jan 2024 08:47:09 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40PEl8kL101598;
-	Thu, 25 Jan 2024 08:47:08 -0600
-Message-ID: <585e7ceb-f714-4c11-b9af-13d3bd325d12@ti.com>
-Date: Thu, 25 Jan 2024 08:47:08 -0600
+	s=arc-20240116; t=1706194152; c=relaxed/simple;
+	bh=2/zLGCywPXNMD5m9HYw0HjcUDon0DXnT/FXN55i69DU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RshTCFZUNlMokbhkyxOwklshZn/Wx794O5b1crscpom9WliQHhPKJpCAX2qDwNR3825b7qd5PQToRPkj1x1TrkWwp30R00z48d609zZyHjaqQag5gKrxszjJ26LvwRJUeGPdFBl533ZX2cvUi8Jq3cNk+HytXT+WeQRzlHJLB+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:bc9e:fcb8:8aa3:5dc0])
+	by xavier.telenet-ops.be with bizsmtp
+	id f2p02B00B58agq2012p01J; Thu, 25 Jan 2024 15:49:01 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rT11W-00GUrv-Hu;
+	Thu, 25 Jan 2024 15:49:00 +0100
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1rT12K-00Fltp-F0;
+	Thu, 25 Jan 2024 15:49:00 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 0/9] arm64: dts: renesas: Add support for more R-Car V4H and White Hawk variants
+Date: Thu, 25 Jan 2024 15:48:50 +0100
+Message-Id: <cover.1706192990.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] arm64: dts: ti: k3-j784s4-main: Fix mux-reg-masks
- in serdes_ln_ctrl
-Content-Language: en-US
-To: Chintan Vankar <c-vankar@ti.com>, Peter Rosin <peda@axentia.se>,
-        Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
- Menon <nm@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>, <danishanwar@ti.com>
-References: <20240125100501.4137977-1-c-vankar@ti.com>
- <20240125100501.4137977-2-c-vankar@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240125100501.4137977-2-c-vankar@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 
-On 1/25/24 4:04 AM, Chintan Vankar wrote:
-> Change offset in mux-reg-masks property for serdes_ln_ctrl node
-> since reg-mux property is used in compatible.
-> 
-> Fixes: 2765149273f4 ("mux: mmio: use reg property when parent device is not a syscon")
-> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+	Hi all,
 
-Acked-by: Andrew Davis <afd@ti.com>
+This patch series extends the existing support for the Renesas White
+Hawk CPU and Breakout board stack by adding support for:
+  1. Standalone use of the White Hawk CPU board,
+  2. The White Hawk Single board, which is a single-board integration
+     of the Renesas White Hawk CPU and Breakout board stack, based on
+     the R-Car V4H ES2.0 (R8A779G2) SoC.
 
-> ---
->   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 12 ++++++------
->   1 file changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> index f2b720ed1e4f..56c8eaad6324 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -52,12 +52,12 @@ serdes_ln_ctrl: mux-controller@4080 {
->   			compatible = "reg-mux";
->   			reg = <0x00004080 0x30>;
->   			#mux-control-cells = <1>;
-> -			mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1 select */
-> -					<0x4088 0x3>, <0x408c 0x3>, /* SERDES0 lane2/3 select */
-> -					<0x4090 0x3>, <0x4094 0x3>, /* SERDES1 lane0/1 select */
-> -					<0x4098 0x3>, <0x409c 0x3>, /* SERDES1 lane2/3 select */
-> -					<0x40a0 0x3>, <0x40a4 0x3>, /* SERDES2 lane0/1 select */
-> -					<0x40a8 0x3>, <0x40ac 0x3>; /* SERDES2 lane2/3 select */
-> +			mux-reg-masks = <0x0 0x3>, <0x4 0x3>, /* SERDES0 lane0/1 select */
-> +					<0x8 0x3>, <0xc 0x3>, /* SERDES0 lane2/3 select */
-> +					<0x10 0x3>, <0x14 0x3>, /* SERDES1 lane0/1 select */
-> +					<0x18 0x3>, <0x1c 0x3>, /* SERDES1 lane2/3 select */
-> +					<0x20 0x3>, <0x24 0x3>, /* SERDES2 lane0/1 select */
-> +					<0x28 0x3>, <0x2c 0x3>; /* SERDES2 lane2/3 select */
->   			idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>,
->   				      <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
->   				      <J784S4_SERDES0_LANE2_IP3_UNUSED>,
+Changes compared to v1[1]:
+  - Add Reviewed-by.
+  - Split off restoring sort order into its own patch,
+  - New patch "[PATCH v2 5/9] arm64: dts: renesas: white-hawk: Add SoC
+    name to top-level comment",
+  - Rebase on top of commit fc67495680f60e88 ("arm64: dts: renesas:
+    white-hawk-cpu: Fix missing serial console pin control",
+  - Refer to hscif0_pins directly,
+  - Add SoC name to top-level comment.
+
+I plan to queue this in renesas-devel for v6.9.
+
+For testing, this series can be found at
+https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/v4h-white-hawk-more-v2
+
+Thanks for your comments!
+
+[1] "[PATCH/RFC 0/7] arm64: dts: renesas: Add support for more R-Car V4H and
+     White Hawk variants"
+    https://lore.kernel.org/linux-renesas-soc/cover.1702309604.git.geert+renesas@glider.be
+
+Geert Uytterhoeven (9):
+  dt-bindings: soc: renesas: Document R-Car V4H White Hawk Single
+  arm64: dts: renesas: r8a779g0: Add standalone White Hawk CPU support
+  arm64: dts: renesas: white-hawk-cpu: Restore sort order
+  arm64: dts: renesas: white-hawk: Drop SoC parts from sub boards
+  arm64: dts: renesas: white-hawk: Add SoC name to top-level comment
+  arm64: dts: renesas: white-hawk-cpu: Factor out common parts
+  arm64: dts: renesas: white-hawk: Factor out common parts
+  arm64: dts: renesas: Add Renesas R8A779G2 SoC support
+  arm64: dts: renesas: r8a779g2: Add White Hawk Single support
+
+ .../bindings/soc/renesas/renesas.yaml         |   7 +
+ arch/arm64/boot/dts/renesas/Makefile          |   3 +
+ .../dts/renesas/r8a779g0-white-hawk-cpu.dts   |  13 +
+ .../dts/renesas/r8a779g0-white-hawk-cpu.dtsi  | 368 +-----------------
+ .../boot/dts/renesas/r8a779g0-white-hawk.dts  |  58 +--
+ .../renesas/r8a779g2-white-hawk-single.dts    |  26 ++
+ arch/arm64/boot/dts/renesas/r8a779g2.dtsi     |  12 +
+ ...-white-hawk.dts => white-hawk-common.dtsi} |  12 +-
+ ...wk-cpu.dtsi => white-hawk-cpu-common.dtsi} |  21 +-
+ ...k-csi-dsi.dtsi => white-hawk-csi-dsi.dtsi} |   2 +-
+ ...ethernet.dtsi => white-hawk-ethernet.dtsi} |   2 +-
+ 11 files changed, 80 insertions(+), 444 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g0-white-hawk-cpu.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g2-white-hawk-single.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g2.dtsi
+ copy arch/arm64/boot/dts/renesas/{r8a779g0-white-hawk.dts => white-hawk-common.dtsi} (71%)
+ copy arch/arm64/boot/dts/renesas/{r8a779g0-white-hawk-cpu.dtsi => white-hawk-cpu-common.dtsi} (97%)
+ rename arch/arm64/boot/dts/renesas/{r8a779g0-white-hawk-csi-dsi.dtsi => white-hawk-csi-dsi.dtsi} (97%)
+ rename arch/arm64/boot/dts/renesas/{r8a779g0-white-hawk-ethernet.dtsi => white-hawk-ethernet.dtsi} (76%)
+
+-- 
+2.34.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
