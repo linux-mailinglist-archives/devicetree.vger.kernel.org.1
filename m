@@ -1,237 +1,114 @@
-Return-Path: <devicetree+bounces-34957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CB6D83BD69
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:33:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91AEB83BD92
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:40:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 531F51F2E0E0
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:33:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E0201F30473
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:40:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA95A1CA8E;
-	Thu, 25 Jan 2024 09:31:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB471C680;
+	Thu, 25 Jan 2024 09:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ovksOdtA"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HNmTjZM+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAEFB1C6BE;
-	Thu, 25 Jan 2024 09:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F2E1CA84;
+	Thu, 25 Jan 2024 09:39:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706175081; cv=none; b=n4tW6yFxfqHjBXYC5RGxZWEoI4BLHw8+/AxJGFB4WTXe0C0uPJ5IEkX1eAPQ0gxvR8GteKXqyndXoZ39jN8L4e3wSnE+tCJCSSE8DYp6wfF7L0gUbpzcV7wsQS5hr1e6xcclO19uW1Vy7s9S9b4o2HGWwwDeI+cvh3PgKVlkIRA=
+	t=1706175612; cv=none; b=loXXQZB5cpntolNW1pq4fBnAmsQPSSEqk/G7Uk+5lreG/sGvfT5LOp5gM+LQYP8TbcUy9sch6BXAu0Hg9PCmeLoRW0DSbiH+qt8HpKihMY1qRecSh0BOGIhOPr5QDNgfNPaMMZHPlL1oSzil40DstK3cOzWrn5+7FToc4ugEBkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706175081; c=relaxed/simple;
-	bh=zKAon4rhCDLxrAShb2I1lmfyDlokHotqCogBLSlxoaI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ivk8a6DvYtm0NiQ7x28CoFsl7mnUJXwQfvQAmc/DpT9eqiE5HGeNT+4pIN6U/7CvtCWE94gp0vTIteddlqBibm/GS0ZPhVA6GDz/gHVGuwdnJGhnfUMc69HeTTOA3kddpqGket5yinTj1KtJbSPzLwltKv7TnrMj1em0Cz2jIkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ovksOdtA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4CBDBC433F1;
-	Thu, 25 Jan 2024 09:31:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706175081;
-	bh=zKAon4rhCDLxrAShb2I1lmfyDlokHotqCogBLSlxoaI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ovksOdtA/mLfMGT0ZYCaKr/aPxhzoYbCx5TU5i1GjqULQaaJ5VmttLfDqtpZHHUiE
-	 MR0GOxYD3OjD6TuN9DHJM2IgRZxl6DUXRPo4bsC8RG+6nGb8ctfQp1Bdt1aE1ZXpDt
-	 8kElrD0HN1gjpzaOl3JMSi6d8Vq/mZinF1fk3iDVF99N06M6+CjWEgf95e7lF1tKVF
-	 O8vPjrLX7SocMwvvVIOq+hRoGCB6ojEttVTlRf9RICoYpRd9LgEbH5lAPb1tXd2of7
-	 IXuohtljNEaRprEMBM/x4X0tvyHUhVmxtsmS2d2zvhtMuHwpUhVDXGZYcjTFLPYrMc
-	 0GhblCGqnzXDw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 22C29C47258;
-	Thu, 25 Jan 2024 09:31:21 +0000 (UTC)
-From: Fenglin Wu via B4 Relay <devnull+quic_fenglinw.quicinc.com@kernel.org>
-Date: Thu, 25 Jan 2024 17:31:16 +0800
-Subject: [PATCH v3 2/2] arm64: dts: qcom: sm8650-qrd: add PM8010 regulators
+	s=arc-20240116; t=1706175612; c=relaxed/simple;
+	bh=LHVp2Aq1cKc1dUF9nEIRvfSxerS4jkPtOKuHQWo2Y4U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sXuDHW5E+L9EBmGjXI85W8ZqzXMWSnuEVAsC0L2qCWgLwAHbzyVAYXsLrVXaCtOwIodCO9hwRUZC+n4Y5+ENENKm3EHUwZFjpvApU26DBxhY/+Fpiy2rmiabVTpYEhV6AMGT+cGnuwy2myBR/50IYD5u5n9Y7MYLGjn4BXm8wb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HNmTjZM+; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1706175594;
+	bh=LHVp2Aq1cKc1dUF9nEIRvfSxerS4jkPtOKuHQWo2Y4U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HNmTjZM+cfx0ARK433VvR4AuJnBRyXEw1t7MXW/7qvt8fNu48UCHv4cGpps2Qfcbk
+	 NGgtbIaDvr/RhskarosTfvZSg14zgPUZMG7XDzzbLas/ExbbsCvwvImusFlzByYYzN
+	 aVqYqvgloem1PAXShyRctp6AR5WHU81qFV2b62goE7KJX115atg9Z0jmiDGNIwQme9
+	 sNNf+Hh0/LwbOSI8lHzCHV9urNkt8yCSyIQBblPKFyDOfqpdZUeeGCFuhfu60QRhCn
+	 uR85MzEx4+KRNHeOJ2tV3S25GhjmP/vrJ2nmfkE29b/fBzAnO0AzTePS8J4CJvcAHS
+	 q8KxPCEnHllqA==
+Received: from [100.115.223.179] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9F4D937820BC;
+	Thu, 25 Jan 2024 09:39:53 +0000 (UTC)
+Message-ID: <4a68ff4b-fafc-4d51-91c3-304b01562945@collabora.com>
+Date: Thu, 25 Jan 2024 11:39:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: phy: Add Rockchip HDMI/DP Combo PHY
+ schema
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Johan Jonker <jbx6244@gmail.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Algea Cao <algea.cao@rock-chips.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20240119193806.1030214-1-cristian.ciocaltea@collabora.com>
+ <20240119193806.1030214-3-cristian.ciocaltea@collabora.com>
+ <18f66108-98e7-49b3-b362-880121438fc6@linaro.org>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <18f66108-98e7-49b3-b362-880121438fc6@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240125-sm8650_pm8010_support-v3-2-2f291242a7c4@quicinc.com>
-References: <20240125-sm8650_pm8010_support-v3-0-2f291242a7c4@quicinc.com>
-In-Reply-To: <20240125-sm8650_pm8010_support-v3-0-2f291242a7c4@quicinc.com>
-To: kernel@quicinc.com, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com, 
- Fenglin Wu <quic_fenglinw@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1706175079; l=4668;
- i=quic_fenglinw@quicinc.com; s=20230725; h=from:subject:message-id;
- bh=tB1NmHqD8nUjJXF8aywAhtmMrcFxquNbzFe/xKtf690=;
- b=oPOr5MqkKEKxzvCt/RvCLa7xz2dVi2lNZBFFwbJ6xREv8ywm0D29FUjNAvlxlo44Exy6nms8P
- MQeYiw5UzSkCjxT2d0J2W3zOq1yRQkJq1aLW99KUh51J43M7hrrIDFO
-X-Developer-Key: i=quic_fenglinw@quicinc.com; a=ed25519;
- pk=hleIDz3Unk1zeiwwOnZUjoQVMMelRancDFXg927lNjI=
-X-Endpoint-Received:
- by B4 Relay for quic_fenglinw@quicinc.com/20230725 with auth_id=68
-X-Original-From: Fenglin Wu <quic_fenglinw@quicinc.com>
-Reply-To: <quic_fenglinw@quicinc.com>
 
-From: Fenglin Wu <quic_fenglinw@quicinc.com>
+On 1/25/24 11:11, Krzysztof Kozlowski wrote:
+> On 19/01/2024 20:38, Cristian Ciocaltea wrote:
+>> +    soc {
+>> +      #address-cells = <2>;
+>> +      #size-cells = <2>;
+>> +
+>> +      hdptxphy_grf: syscon@fd5e0000 {
+>> +        compatible = "rockchip,rk3588-hdptxphy-grf", "syscon";
+>> +        reg = <0x0 0xfd5e0000 0x0 0x100>;
+>> +      };
+> 
+> Drop node, not part of this binding.
+> 
+>> +
+>> +      hdptxphy: phy@fed60000 {
+> 
+> Drop label.
+> 
+>> +        compatible = "rockchip,rk3588-hdptx-phy";
+>> +        reg = <0x0 0xfed60000 0x0 0x2000>;
+>> +        clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>, <&cru PCLK_HDPTX0>;
+>> +        clock-names = "ref", "apb";
+> 
+> With these two changes:
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Add PM8010 regulator device nodes for sm8650-qrd board.
+Will do, thanks for the review!
 
-Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 132 ++++++++++++++++++++++++++++++++
- 1 file changed, 132 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-index 592a67a47c78..294fb3f37af1 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-@@ -436,6 +436,138 @@ vreg_l3i_1p2: ldo3 {
- 						   RPMH_REGULATOR_MODE_HPM>;
- 		};
- 	};
-+
-+	regulators-6 {
-+		compatible = "qcom,pm8010-rpmh-regulators";
-+		qcom,pmic-id = "m";
-+
-+		vdd-l1-l2-supply = <&vreg_s1c_1p2>;
-+		vdd-l3-l4-supply = <&vreg_bob2>;
-+		vdd-l5-supply = <&vreg_s6c_1p8>;
-+		vdd-l6-supply = <&vreg_bob1>;
-+		vdd-l7-supply = <&vreg_bob1>;
-+
-+		vreg_l1m_1p1: ldo1 {
-+			regulator-name = "vreg_l1m_1p1";
-+			regulator-min-microvolt = <1104000>;
-+			regulator-max-microvolt = <1104000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2m_1p056: ldo2 {
-+			regulator-name = "vreg_l2m_1p056";
-+			regulator-min-microvolt = <1056000>;
-+			regulator-max-microvolt = <1056000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3m_2p8: ldo3 {
-+			regulator-name = "vreg_l3m_2p8";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4m_2p8: ldo4 {
-+			regulator-name = "vreg_l4m_2p8";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5m_1p8: ldo5 {
-+			regulator-name = "vreg_l5m_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6m_2p8: ldo6 {
-+			regulator-name = "vreg_l6m_2p8";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7m_2p96: ldo7 {
-+			regulator-name = "vreg_l7m_2p96";
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
-+
-+	regulators-7 {
-+		compatible = "qcom,pm8010-rpmh-regulators";
-+		qcom,pmic-id = "n";
-+
-+		vdd-l1-l2-supply = <&vreg_s1c_1p2>;
-+		vdd-l3-l4-supply = <&vreg_s6c_1p8>;
-+		vdd-l5-supply = <&vreg_bob2>;
-+		vdd-l6-supply = <&vreg_bob2>;
-+		vdd-l7-supply = <&vreg_bob1>;
-+
-+		vreg_l1n_1p1: ldo1 {
-+			regulator-name = "vreg_l1n_1p1";
-+			regulator-min-microvolt = <1104000>;
-+			regulator-max-microvolt = <1104000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l2n_1p056: ldo2 {
-+			regulator-name = "vreg_l2n_1p056";
-+			regulator-min-microvolt = <1056000>;
-+			regulator-max-microvolt = <1056000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
-+						   RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l3n_1p8: ldo3 {
-+			regulator-name = "vreg_l3n_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l4n_1p8: ldo4 {
-+			regulator-name = "vreg_l4n_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l5n_2p8: ldo5 {
-+			regulator-name = "vreg_l5n_2p8";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l6n_2p8: ldo6 {
-+			regulator-name = "vreg_l6n_2p8";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7n_3p3: ldo7 {
-+			regulator-name = "vreg_l7n_3p3";
-+			regulator-min-microvolt = <3304000>;
-+			regulator-max-microvolt = <3304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+	};
- };
- 
- &dispcc {
-
--- 
-2.25.1
-
+Regards,
+Cristian
 
