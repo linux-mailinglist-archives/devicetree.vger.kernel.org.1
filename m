@@ -1,175 +1,171 @@
-Return-Path: <devicetree+bounces-35088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B919F83C4ED
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:38:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C9D83C519
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:47:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72773290A92
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:37:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C3F3B24DB3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:47:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74B86E2BE;
-	Thu, 25 Jan 2024 14:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845F46E2CD;
+	Thu, 25 Jan 2024 14:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AyNb4R1O"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="henT+Gff"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8603E4F218;
-	Thu, 25 Jan 2024 14:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3075DF32
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 14:46:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706193466; cv=none; b=cTZ1LdjFUY1UN5xMuYvM7Nreg6giyucRWWrpriYFIRmuAVbVcBFYeDVOXsonQQ2Hsnp2aB8HCKeTOI3cg6Shph/tcJNHrWfkaxbMpJ5w5FMqQS+YkSdQIBTv7ZAFMt8T7lbGQyQ5u/MOW1fu5bQzQW5qgSMhQ+mEX6A3Lv7aW9E=
+	t=1706194019; cv=none; b=oS8P/aWezEXlNUvdrRt7qw2JtZGdVcUC1Ox+xZgl/Mpi+YHakboABUe4mkMx8ENfSkQWEX7hVNqhNgOEaD6aphPKtuBI8llITpZWJ6B/OYvDl6eY0JvrJ9wXPCTSRp8m898lLDk/PsD1GS5AE5nfCxSaGAbVz46uiftt1I9rdbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706193466; c=relaxed/simple;
-	bh=YAJ84nFqDAAULU1LrFi+Bod6RZHD93P1gKfDzYnewtE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BfhRTvw59D5I/VM4DJ/fngE9qlABrRwm4z1jF0iSv6Xgv/4uY2VVSpgOi9227W932u0yevgoSmQWW71k6UpLf6OuVxoi5ycaYrPkH3Nfpo7Fj3UlGgrn3lvqTnrcm+8g+/uKu7TdIjw2DpwFRojsQ3uZ0W/XxLou6mtT85KOmq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AyNb4R1O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15BA8C43390;
-	Thu, 25 Jan 2024 14:37:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706193466;
-	bh=YAJ84nFqDAAULU1LrFi+Bod6RZHD93P1gKfDzYnewtE=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=AyNb4R1Ox5Sv2XDBewRnHPFjArH3pt/MhCM8kNlYk9WkiHcEteOyf0pd2LTXukMPx
-	 rYrcrzhgbjYoAeElb3dPQHnCbRmPRmpWVx+sz4KgHLcN/bc0R+Y8kNBIXrvnvFcPNF
-	 +qVAsIFvC8zTMU+dl7NNYyjepXSp14gk+vDTuipT51iBWRsihoZacfckqZm8mSCzvn
-	 dWQ9BDdLV2mOX0SmDkF37brPI4Qwn6AMiHaJkqOrYrnc5ab/ve0FHrULTNMndADKUJ
-	 nfdVSrh0fBPJkTJIhd91uYfy92B9KYbpt5rM3OSG7OpF91X8Ti+iXgBjAhbl/g/g4p
-	 R0fq1xCMR5s9A==
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-5cddfe0cb64so3625355a12.0;
-        Thu, 25 Jan 2024 06:37:46 -0800 (PST)
-X-Gm-Message-State: AOJu0YxBPzsFVTo3TvPt3TO5Fzv9hwGWkBBwFlP42cgTVO6Ok2A5K1Lh
-	SHeftDQDCZKwI7uPngltTtXuxaVdVW9Jy0gY9hscZSU5AKPwCKwADuXCmgDzlqqrhqtCj+FRp+y
-	ATkbFJUj9eKxZo3sXKiAkrIYh6Eg=
-X-Google-Smtp-Source: AGHT+IHMDXu5vLiZaszPKiS42W06RUB1yoz7PCt7rek3lH97h03j66qsoEA9gOP8ssrxNd6PSDM1IsM6gy8Gek1sVvc=
-X-Received: by 2002:a17:90b:b85:b0:28c:a9d0:33ff with SMTP id
- bd5-20020a17090b0b8500b0028ca9d033ffmr645889pjb.62.1706193465678; Thu, 25 Jan
- 2024 06:37:45 -0800 (PST)
+	s=arc-20240116; t=1706194019; c=relaxed/simple;
+	bh=GSabaqaJdXnU/qRSD1BuTU9GYupaRm2owUIzdswd99c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qQQaPH7oziH15nFDwuItXI4GDYmtumwlT34InUEGdiB1pNfXMgoqG8jQaLbT73nC1LRH682VzTtG7ISjCdiO4Ikmwhpp46DX6MJ3GBvLsUgy2ftBvO7lJ/EBpHd60HXjYl1Y+XhIFOaHX3A572CV+7bKhK8Ag2yMrQoeewxMjFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=henT+Gff; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40eccccfce0so18368645e9.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 06:46:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706194016; x=1706798816; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=c5TYYoSIS6DFr2+M25tAHJQD5shuiaKNFicKqBEZydQ=;
+        b=henT+GfffYwVUw8HMHNJjOTsaJR6TuhdpU2v7KAHc/daxIZb4ra0VBxMhIfHfXcdR0
+         D+MFExvRK6WtYGnt9JXn7+V5GXR1Mgx2s7SvxnsnO17ZTmbBly1JGujlKnUB5edDutI8
+         KgRMVIhMTm9P5hTLYhBfJ7Ch7VxM/bpvwaeBQD3x9DoB6bRGsnH8h1btFrq6LFBu0voT
+         aAScgJv8ZKDUxw1fVUevdz6D+3MZ6QujsK/ZrnB8m2A9CBN7Gtz+uIGycIay9FNTPIC8
+         c89WMzANFf0rYtDKZGz+v7OaTSsPYjql2YNfz2K20QRWjIY55PD6z5Ji6kMxXv7+O+CJ
+         99zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706194016; x=1706798816;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c5TYYoSIS6DFr2+M25tAHJQD5shuiaKNFicKqBEZydQ=;
+        b=rvwqZTMDKLgYMD8UCUArlGjRwyQ6TuAPKT7c/K8viA0EvzcY7GRgB40SOUnz8bJBGp
+         pGMHgy1jSVhlGk2ltjT0DD0ffAyy2HngqCZEi9d/kfGZWML65uQ+I8zR3JCCLipX6ecC
+         /D8N/5VXKQgPUhAdfk8b4XqhBuhXJJ2qkmTm69G4NanXE2zOGTEAKrJvFelepRAWz5o/
+         y5NdXWyRQNb1uWV2OmEzvbXBMAzoudX0/WyeSar8VwlmoFHqhhXTKYmBnG9ho6CWuZ+g
+         IuMnfj7NE/y/xubjmO/rmiLRQ49fj2Oz69QV3BWeIpJu9V0p2QxoDnRNI3tv8QsHEpBJ
+         FuqQ==
+X-Gm-Message-State: AOJu0YwZ/f/D905ApPC4BWIDYpYUa2OsfUTl6YOCcP6+bHz0JdStHtJ9
+	8tU62Y9wYSoo1LxAsIsxn2o9CkjoK+VFPXjXuZnfepMMRzP3k81MLUtQ45W+DLY=
+X-Google-Smtp-Source: AGHT+IHLEzrC0jE3m+aMfp4HdU7bsgKUkZeL0aBj6XPyWrx2MilZirtRPTy4/Zv3Xrq5v+g9JAEzPA==
+X-Received: by 2002:a05:600c:6023:b0:40e:d24d:1448 with SMTP id az35-20020a05600c602300b0040ed24d1448mr542822wmb.121.1706194015963;
+        Thu, 25 Jan 2024 06:46:55 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id w11-20020adfec4b000000b003392bfcf508sm12538230wrn.29.2024.01.25.06.46.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Jan 2024 06:46:55 -0800 (PST)
+Message-ID: <475b4eaf-bdf9-4f55-b6bd-4ba215e24144@linaro.org>
+Date: Thu, 25 Jan 2024 15:46:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240122170518.3090814-1-wens@kernel.org> <20240122170518.3090814-5-wens@kernel.org>
- <20240123004010.59cac5ad@minigeek.lan>
-In-Reply-To: <20240123004010.59cac5ad@minigeek.lan>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Thu, 25 Jan 2024 22:37:34 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66UmLuWyLvvULZeW6MKFauM-xAMPAO9W_TPAByXYqKCBg@mail.gmail.com>
-Message-ID: <CAGb2v66UmLuWyLvvULZeW6MKFauM-xAMPAO9W_TPAByXYqKCBg@mail.gmail.com>
-Subject: Re: [PATCH 4/7] dt-bindings: dma: allwinner,sun50i-a64-dma: Add
- compatible for H616
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-sound@vger.kernel.org, 
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] arm64: dts: qcom: sm8250: describe all PCI MSI
+ interrupts
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240125130626.390850-1-krzysztof.kozlowski@linaro.org>
+ <20240125130626.390850-2-krzysztof.kozlowski@linaro.org>
+ <CAA8EJprfhZ3m6aKcPsQMAUjDFPPeqN_L-E6Tz604pYJqgSvDZA@mail.gmail.com>
+ <CAA8EJpoEMsrEp02pLpceMx7fr-j9=xVDiUYt1SKHsF4YCmfvAQ@mail.gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAA8EJpoEMsrEp02pLpceMx7fr-j9=xVDiUYt1SKHsF4YCmfvAQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 23, 2024 at 8:41=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> On Tue, 23 Jan 2024 01:05:15 +0800
-> Chen-Yu Tsai <wens@kernel.org> wrote:
->
-> Hi,
->
-> > From: Chen-Yu Tsai <wens@csie.org>
-> >
-> > The DMA controllers found on the H616 and H618 are the same as the one
-> > found on the H6. The only difference is the DMA endpoint (DRQ) layout.
->
-> That does not seem to be entirely true: The H616 encodes the two lowest
-> bits in DMA_DESC_ADDR_REG differently: on the H6 they must be 0 (word
-> aligned), on the H616 these contain bits [33:32] of the address of the
-> DMA descriptor. The manual doesn't describe the descriptor format in
-> much detail, but ec31c5c59492 suggests that those two bits are put in
-> the "para" word of the descriptor.
+On 25/01/2024 14:25, Dmitry Baryshkov wrote:
+>>>                         interrupt-map = <0 0 0 1 &intc 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+>>> @@ -2349,8 +2357,16 @@ pcie2: pcie@1c10000 {
+>>>                         ranges = <0x01000000 0x0 0x00000000 0x0 0x64200000 0x0 0x100000>,
+>>>                                  <0x02000000 0x0 0x64300000 0x0 0x64300000 0x0 0x3d00000>;
+>>>
+>>> -                       interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>;
+>>> -                       interrupt-names = "msi";
+>>> +                       interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                    <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                    <GIC_SPI 262 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                    <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                    <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                    <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                    <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                                    <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>;
+>>> +                       interrupt-names = "msi0", "msi1", "msi2", "msi3",
+>>> +                                         "msi4", "msi5", "msi6", "msi7";
+>>
+>> This part looks a bit suspicious. All other platforms have these
+>> interrupts in a continuous range.
+> 
+> Hmm, pcie1 interrupts are also not contiguous. Okay, fine then:
+> 
 
-Good catch. So, same as the A100 I believe?
+Yeah, the other case has even two gaps.
 
-> The good thing it that this encoding is backwards compatible, so I
-> think the fallback string still holds: Any driver just implementing the
-> H6 encoding would be able to drive the H616.
->
-> I think the A100 was mis-described, as mentioned here:
-> https://lore.kernel.org/linux-arm-kernel/29e575b6-14cb-73f1-512d-9f0f9344=
-90ea@arm.com/
-> I think we should:
-> - make the A100 use: "allwinner,sun50i-a100-dma", "sun50i-h6-dma"
-> - make the H616 use: "allwinner,sun50i-h616-dma", "allwinner,sun50i-a100-=
-dma", "sun50i-h6-dma"
->
-> Does that make sense?
+Best regards,
+Krzysztof
 
-I wouldn't call that exactly backward compatible. Say the driver forgot to
-clear the two bits. It would work fine on the H6, but the accessed address
-could be way off on the A100 and H616.
-
-
-ChenYu
-
-> Cheers,
-> Andre
->
-> > Since the number of channels and endpoints are described with additiona=
-l
-> > generic properties, just add a new H616-specific compatible string and
-> > fallback to the H6 one.
-> >
-> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> > ---
-> >  .../bindings/dma/allwinner,sun50i-a64-dma.yaml    | 15 +++++++++++----
-> >  1 file changed, 11 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64=
--dma.yaml b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.=
-yaml
-> > index ec2d7a789ffe..e5693be378bd 100644
-> > --- a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.ya=
-ml
-> > +++ b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.ya=
-ml
-> > @@ -28,6 +28,9 @@ properties:
-> >        - items:
-> >            - const: allwinner,sun8i-r40-dma
-> >            - const: allwinner,sun50i-a64-dma
-> > +      - items:
-> > +          - const: allwinner,sun50i-h616-dma
-> > +          - const: allwinner,sun50i-h6-dma
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -59,10 +62,14 @@ required:
-> >  if:
-> >    properties:
-> >      compatible:
-> > -      enum:
-> > -        - allwinner,sun20i-d1-dma
-> > -        - allwinner,sun50i-a100-dma
-> > -        - allwinner,sun50i-h6-dma
-> > +      oneOf:
-> > +        - enum:
-> > +            - allwinner,sun20i-d1-dma
-> > +            - allwinner,sun50i-a100-dma
-> > +            - allwinner,sun50i-h6-dma
-> > +        - items:
-> > +            - const: allwinner,sun50i-h616-dma
-> > +            - const: allwinner,sun50i-h6-dma
-> >
-> >  then:
-> >    properties:
->
 
