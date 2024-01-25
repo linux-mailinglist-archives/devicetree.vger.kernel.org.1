@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-34910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 360D683BAC4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:37:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF0D83BACD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:39:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B30701F22F18
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 07:37:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B23D21C21574
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 07:39:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70E1512B7A;
-	Thu, 25 Jan 2024 07:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D2EA12E72;
+	Thu, 25 Jan 2024 07:39:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LBL7vbka"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fht7J5sm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874A412B6D
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 07:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D53112B90
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 07:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706168261; cv=none; b=cbhFPLfnZ19UG0AzpJWLXO50dVMEMIxs93gJkA+mL7KBup+o1bo3/rcZuvQsGfYjrje/tJj/5ibDT+XThFp3bzeiZfzrgPs5rJiFOxabi+0eSyadtfwTr1NJjc9XqVj3kFEiWYYPF5impmPolO4gFml3yE0a+8KBcITw81qaP7Y=
+	t=1706168360; cv=none; b=L2dzcysyFJEF5bDcU1l0y64dwwNTHZdZCng1zH8fEf76jIvP6CHTf6cW1rVOtDwFNyHouSQ2kxnu3OVdTApaNLnICh4QL5HZuDCOw4xruWKU2XFpQA3nQabqdHzxrV2CeOt6Dai0KXkeVJZ8TeJ0yp6hiraOQptYd927b2kCvlE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706168261; c=relaxed/simple;
-	bh=BULKPueSd6FUCRZ349T4+wX1lApgUj19QadMyGGWILw=;
+	s=arc-20240116; t=1706168360; c=relaxed/simple;
+	bh=Mw5vEDQv7u4zVkX/DvrsT1kbpOxxCwaGJtvj/Ec3hEI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LBjGujkNYcczro4ducYDapGGuC0Apd4V5kh/jhk8zgHZS4Cl66wi/x6ghl56mxH7Owtt5NPTiTu7JoeQWEusmKD85KsxrEbHIWag3/ZTNl2skLOBB8I2LL8onEuTla41R7XFDJPWcus20l5xCh/v1SjEGofzmJ/eomSqeXmbmh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LBL7vbka; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:Content-Type; b=FT5tFDdr2iIhY6/K/wSj4UGAjPTeBGfvynQDSXqRdp6taS5Mb0FDzUOWv+aGzaFnDYV9zGG1BB6CNLeqSkn06ppwnTDlZbwU1ieBbvx6WnNTjIXazopj1hS//9W6VAh7DbEiGfWjjvZXIetcoRd9CoTVY/f2Xl9Y6u2rH6f8NTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fht7J5sm; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-40e8fec0968so81846545e9.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 23:37:39 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-40eccccfce0so12860765e9.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 23:39:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706168258; x=1706773058; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tt9c3L6xLHxEH4Xq+0fqlWuKOPFNWTaVYRPe6NdZRFw=;
-        b=LBL7vbkaHNNdOV1iDeTPAFoVfjjStAFF2zefm8gUIbQnrJBqCJp36tV0cl1SfOnvBM
-         9IgTJa5YLYh7qqSRXbVRDhtkDOgZnNv7lA3mH1d5yuwONYkdlprgyFslc1pcIOx0QIr/
-         M0YJ+UXkPyiep4zoIsU0VuY2W8/v/CEBb+5dxRerjHQbzxs6QBsVQuPbG2Vl5fJEq04S
-         QEmIxv0QyI93TgjTR5x8JMZx3xTuAkzeD8EBF7UcS4sJNAQPH6DXzfNVeXo8wqBJEnCw
-         IbPnS4DftX9Yu3+ns8kfAYFRY/By5N4+wVxGbIbCvpCd4xLgYkLFFpy7by1BldTWsgyT
-         pQSw==
+        d=linaro.org; s=google; t=1706168357; x=1706773157; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hH0jMx6UHZTKBifmk34GWSzSdS+/3EcRnn013oRzjRk=;
+        b=Fht7J5sm9m5XGId5hfOY9kb4IU4dwaNyODFNogIMxqx3jhYoLcH88Z0hUsYjTchQE8
+         YbNVyFJfXXhtceqmsuVKgykTUl7mABoaL7e5vZSC0FoPAGpD3gXxi/CmNkChAovZYBjq
+         kZKZS4OnKn7EKzLv2vPfAVlz+BfSmZiPXT48CR5EFGxJq4utO+WYw/Tv0tuoVozcHhpg
+         m1xOkuSPUsyCJ6BRXhSVPvs1errala3rqKqTr0GZ4CcDnVPafE8h/0dh3bE54m0UTWiR
+         A+WhuMmmXfBYmlwKUtwTCvkYQFgR3/QMXSXXnnmcJMQGrUPYVwmiKZD5jCCzNlU1OBTH
+         nSaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706168258; x=1706773058;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tt9c3L6xLHxEH4Xq+0fqlWuKOPFNWTaVYRPe6NdZRFw=;
-        b=vvzNG8DqAkjwPd1bmYGtuVR15FV5PpXc+76VWCu23xb/cIYwQo7R8bl7BXdzlFJMdB
-         4ayrtSgR1xsaTMsHvJSz7oDxLyTBx94+JgP/k36/mpDnp1b6T/FZX3conTEaccUJm4wb
-         ccTvKM+5HtUfvzVTwg27rshPIBCwEcm4QfkwNnUQaypPeZx5lMfDMOXMHIHyt4RoFNfI
-         wTL4PLDotYB/KfDfEPC+zCYsqP8juMDaMwCY0MZhfxBWXGrolITYdMTZZq7e9V79N66u
-         cVEp07lJQySMZyv5C61ea6dy6JacTrS7KPn9dgFzYrJkCMeFTg211D1dXNUa/msszTQo
-         bDYg==
-X-Gm-Message-State: AOJu0Yz5brVGuhlTwLo9NDZxxOxC/C/9sVRUEXc4k4YAstojM/bh47+q
-	x5EQDe6fAytiroU5O3LOLQP3mZBcY/kb/nmELvVVjPvE6lZkTgWIsc/JWpMJPbg=
-X-Google-Smtp-Source: AGHT+IHdMJVprQzVU82qnhjOv9A3fxHwxa21rh2msOKfIUA660cSu3ThoZFAOiYcOWiGABpdKs8t9g==
-X-Received: by 2002:a05:600c:601c:b0:40e:d30d:4066 with SMTP id az28-20020a05600c601c00b0040ed30d4066mr2862wmb.169.1706168257738;
-        Wed, 24 Jan 2024 23:37:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706168357; x=1706773157;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hH0jMx6UHZTKBifmk34GWSzSdS+/3EcRnn013oRzjRk=;
+        b=wl9O08F7xr2hhLWwmOUR0z539ago376KJBJz8TDE9kojv1tvoTnvIdw+eQI4yjBhuy
+         bSH2zK/Vu9DMkQ5VxbT5lu+K8STMvDmeMSb+xgcn2XgFopQ1KNS17uiNyBpYY8933Gbw
+         kUKPo0lTtbcyN6T1/u9WVhwDAXpQRTzxZbO4jHTm5tAI28Le9bYmgcFqXam2vk+9v5Yz
+         /JwY5kjm0QyGEOCJk0EY6FHoz8vMAAWO5D5Tyb8rrp2W/eDNd8BFMBGidelht9Ogbrpm
+         AZQ0RFbhoehF8ZpV9dfKgvXyrgQE+IU0/V2kqBAFiUKeA87MRn6pjo71FTEhQowKRRvl
+         pODQ==
+X-Gm-Message-State: AOJu0YxeHdjrSMenE8SGD4RDkTv7aQN7vxYWwr3k//c3aiAFrcZInFCT
+	BzM22LwDjllZQZNi1LjwIqcHC81Xox7p8QjzlwNRagrZnqt4Vi+bDNuuIqrUhQU=
+X-Google-Smtp-Source: AGHT+IFOytjLNvmjiHVzdf4a427+lqnb2WeSj7VtriuX3UHr11rQpJFezm0gCR++NUoAsyLwbOJbIA==
+X-Received: by 2002:a05:600c:1ca2:b0:40d:60ac:16f1 with SMTP id k34-20020a05600c1ca200b0040d60ac16f1mr244533wms.55.1706168356610;
+        Wed, 24 Jan 2024 23:39:16 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id fk15-20020a05600c0ccf00b0040e9f7dadc6sm1539709wmb.25.2024.01.24.23.37.36
+        by smtp.gmail.com with ESMTPSA id fk15-20020a05600c0ccf00b0040e9f7dadc6sm1539709wmb.25.2024.01.24.23.39.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 23:37:37 -0800 (PST)
-Message-ID: <04411aaf-6f2c-4f43-83b4-aa0741ccd25f@linaro.org>
-Date: Thu, 25 Jan 2024 08:37:35 +0100
+        Wed, 24 Jan 2024 23:39:16 -0800 (PST)
+Message-ID: <cc68112f-3863-4f82-b708-7787a4895a88@linaro.org>
+Date: Thu, 25 Jan 2024 08:39:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,28 +75,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] watchdog: s3c2410_wdt: update to use new
- exynos_pmu_*() apis
-To: Saravana Kannan <saravanak@google.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, linux@roeck-us.net,
- wim@linux-watchdog.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
- jaewon02.kim@samsung.com, chanho61.park@samsung.com,
- semen.protsenko@linaro.org, kernel-team@android.com,
- tudor.ambarus@linaro.org, andre.draszik@linaro.org, willmcvicker@google.com,
- linux-fsd@tesla.com, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <20240122225710.1952066-1-peter.griffin@linaro.org>
- <20240122225710.1952066-4-peter.griffin@linaro.org>
- <da30a68a-e29f-45c8-aa73-02955255a457@linaro.org>
- <CADrjBPor5tMY4r0jOy7GH36auCU7dWn6Qn4ct89bsSMW4vAQOA@mail.gmail.com>
- <6c72a521-1048-42eb-ac74-d8f718a90723@linaro.org>
- <CAGETcx-CCpaV7R0O0HpDpoX6KxQBuJiMmKdWA8nDE-5Qj2Sa7g@mail.gmail.com>
- <f4d3aa5a-e01d-4ef3-8004-b6eac4461184@linaro.org>
- <CAGETcx_HGcuGQTO11tzX0EvnuLEaKYc4vBse1CRP0JwPqMJdQQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/8] dt-bindings: clock: qcom: Allow VDD_GFX supply to
+ GX
 Content-Language: en-US
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+ Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240123-sa8295p-gpu-v3-0-d5b4474c8f33@quicinc.com>
+ <20240123-sa8295p-gpu-v3-1-d5b4474c8f33@quicinc.com>
+ <f6844d28-c7c2-4afa-8520-2e62c608930d@linaro.org>
+ <20240124212116.GH2936378@hu-bjorande-lv.qualcomm.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -143,119 +138,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAGETcx_HGcuGQTO11tzX0EvnuLEaKYc4vBse1CRP0JwPqMJdQQ@mail.gmail.com>
+In-Reply-To: <20240124212116.GH2936378@hu-bjorande-lv.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 24/01/2024 22:27, Saravana Kannan wrote:
-> On Tue, Jan 23, 2024 at 10:27 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 24/01/2024 22:21, Bjorn Andersson wrote:
+> On Wed, Jan 24, 2024 at 07:31:34AM +0100, Krzysztof Kozlowski wrote:
+>> On 24/01/2024 05:25, Bjorn Andersson wrote:
+>>> +# Allow either power-domains or vdd-gfx-supply, not both
+>>> +oneOf:
+>>> +  - required:
+>>> +      - power-domains
+>>> +  - required:
+>>> +      - vdd-gfx-supply
+>>> +  - not:
+>>> +      anyOf:
+>>> +        - required:
+>>> +            - power-domains
+>>> +        - required:
+>>> +            - vdd-gfx-supply
 >>
->> On 24/01/2024 04:37, Saravana Kannan wrote:
->>> On Tue, Jan 23, 2024 at 10:12 AM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 23/01/2024 18:30, Peter Griffin wrote:
->>>>>>>               dev_warn(wdt->dev, "Couldn't get RST_STAT register\n");
->>>>>>>       else if (rst_stat & BIT(wdt->drv_data->rst_stat_bit))
->>>>>>> @@ -698,14 +699,6 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
->>>>>>>       if (ret)
->>>>>>>               return ret;
->>>>>>>
->>>>>>> -     if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
->>>>>>> -             wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
->>>>>>> -                                             "samsung,syscon-phandle");
->>>>>>> -             if (IS_ERR(wdt->pmureg))
->>>>>>> -                     return dev_err_probe(dev, PTR_ERR(wdt->pmureg),
->>>>>>> -                                          "syscon regmap lookup failed.\n");
->>>>>>
->>>>>>
->>>>>> Continuing topic from the binding: I don't see how you handle probe
->>>>>> deferral, suspend ordering.
->>>>>
->>>>> The current implementation is simply relying on exynos-pmu being
->>>>> postcore_initcall level.
->>>>>
->>>>> I was just looking around for any existing Linux APIs that could be a
->>>>> more robust solution. It looks like
->>>>>
->>>>> of_parse_phandle()
->>>>> and
->>>>> of_find_device_by_node();
->>>>>
->>>>> Are often used to solve this type of probe deferral issue between
->>>>> devices. Is that what you would recommend using? Or is there something
->>>>> even better?
->>>>
->>>> I think you should keep the phandle and then set device link based on
->>>> of_find_device_by_node(). This would actually improve the code, because
->>>> syscon_regmap_lookup_by_phandle() does not create device links.
->>>
->>> I kinda agree with this. Just because we no longer use a syscon API to
->>> find the PMU register address doesn't mean the WDT doesn't depend on
->>> the PMU.
->>>
->>> However, I think we should move to a generic "syscon" property. Then I
->>> can add support for "syscon" property to fw_devlink and then things
->>> will just work in terms of probe ordering, suspend/resume and also
->>> showing the dependency in DT even if you don't use the syscon APIs.
->>>
->>> Side note 1:
->>>
->>> I think we really should officially document a generic syscon DT
->>> property similar to how we have a generic "clocks" or "dmas" property.
->>> Then we can have a syscon_get_regmap() that's like so:
->>>
->>> struct regmap *syscon_get_regmap(struct device *dev)
->>> {
->>>         return syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
->>> }
->>>
->>> Instead of every device defining its own bespoke DT property to do the
->>> exact same thing. I did a quick "back of the envelope" grep on this
->>> and I get about 143 unique properties just to get the syscon regmap.
->>> $ git grep -A1 syscon_regmap_lookup_by_phandle | grep '"' | sed -e
->>> 's/^[^"]*//' -e 's/"[^"]*$/"/' | sort | uniq | wc -l
->>> 143
+>> I don't fully understand what you want to achieve here. If only "allow
+>> either", so not a "require either", then simpler:
 >>
->> Sorry, generic "syscon" property won't fly with DT maintainers, because
->> there is no such thing as syscon in any of hardware.
-> 
-> Then why do we allow a "syscon" compatible string and nodes? If the
-
-To bind Linux drivers.
-
-> "syscon" property isn't clear enough, we can make it something like
-> gpios and have it be <whatever>-syscon or have syscon-names property
-> if you want to give it a name.
-
-This could work.
-
-> 143 bespoke properties all to say "here are some registers I need to
-> twiddle that's outside my regmap" doesn't seem great.
-
-Why? 143 of these registers are not the same.
-
-> 
->>>
->>> Side note 2:
->>>
->>> How are we making sure that it's the exynos-pmu driver that ends up
->>> probing the PMU and not the generic syscon driver? Both of these are
->>> platform drivers. And the exynos PMU device lists both the exynos
->>> compatible string and the syscon property. Is it purely a link order
->>> coincidence?
+>> https://lore.kernel.org/all/20230118163208.GA117919-robh@kernel.org/
 >>
->> initcall ordering
 > 
-> Both these drivers usr postcore_initcall(). So it's purely because
-> soc/ is listed earlier in drivers/Makefile than mfd/. And as soon as
+> As discussed in v2, power-domains is currently an optional property in
+> this binding and I'm adding vdd-gfx-supply as an alternative to that.
+> 
 
-Oh... great :/.
-
-> drivers are made into modules this is going to break. This is
-> terrible. If you want to have a modular system, this is going to throw
-> in a wrench.
+Then go with Rob's syntax - not:required: Much easier code.
 
 Best regards,
 Krzysztof
