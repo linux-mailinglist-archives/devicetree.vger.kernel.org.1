@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-35204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14C5B83C99F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:15:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFB3883C9A4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:16:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E7A61C247D8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:15:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6109F1F2217C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3116B1339B1;
-	Thu, 25 Jan 2024 17:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB8313A24C;
+	Thu, 25 Jan 2024 17:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DatNNHTp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m/gafDU9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B6541339AB;
-	Thu, 25 Jan 2024 17:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A99E1386D0;
+	Thu, 25 Jan 2024 17:10:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706202571; cv=none; b=rMUtcOMnvyqNtdBoWf41iLAAZbvw2k/yZpTUJaz5m0VK3Fr+AXPPfFTcBJMuc5R4GK9iDMKAM0RUVJugZ9qpbgm3wTujiTNZPL1qyR3jsOZadGj+KLvkC8MKx2onL9uuN0vqmhT27pQ/4kPFuwnG2Xe5jegNMbzTxKIntttETeI=
+	t=1706202651; cv=none; b=TN6k5R8vnvzmZEjCJGTnNdQ1+OAA9ojXNLqHGpTtgh/kOiihVwNqiBECG4564oqUnckHSaNWyb+wC2Eyfe3KsI+Hgubrdgc34RNJaGhDCIk5sO6ij0KpxuRGYd2zRLphjVfI1eLFGPMzkQ6PFxpRMQn/SmPC+hjXKozJZGcJuo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706202571; c=relaxed/simple;
-	bh=pu8IV/oM2GXGcXE2FRrF9Az35Or5t0xaqQKFZwXlfCY=;
+	s=arc-20240116; t=1706202651; c=relaxed/simple;
+	bh=apArv/y13HeSPeRmSN34Zj5eLLWOr5OjgCHOgzlBIGk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jWGYQ2KWAzDb0niKoBYCkOL8zMxWkCXkvvrmrIT/SWDsX+oHl2A0aIa12H01U324ARn6t1/JH59ol8KiY2zyUzwchlzQnNEUgHEoMFRfEDc42twYNeSXg8tHMSiwZTPhz4J3uagyzVCQTF+yfuI5PJw7H4TMDFxbg8lJzWDbSPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DatNNHTp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06A36C43390;
-	Thu, 25 Jan 2024 17:09:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MkYuNwu26wup7iP8C625AwcDr0MvRnxqw0aCCKe7EQ0zN7tbYHSRz9qq0owtmN9suB/2RQ+zfg4ukG8hc+1nam/Qd08epjSt5coW8egGylJGzeYboXX2W+qxwI/CN4s/GR9Im8GV2/HJWsITP8yKER2BBMr32uh9s9PKw9mBnXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m/gafDU9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18579C433F1;
+	Thu, 25 Jan 2024 17:10:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706202570;
-	bh=pu8IV/oM2GXGcXE2FRrF9Az35Or5t0xaqQKFZwXlfCY=;
+	s=k20201202; t=1706202650;
+	bh=apArv/y13HeSPeRmSN34Zj5eLLWOr5OjgCHOgzlBIGk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DatNNHTpMR3nUM8xW0u0Sza8gYNdNaU0vGnczxG30GBqGHudI0IEVdQIT2CwZ+n8z
-	 Jdi+/bn2IlJ5yA0DRAlkljGe1aMgcpyPufzsCsRNdniNv4KvykSr9FftuNq1g0zOLO
-	 Q+kpaQ8TxuE6v+pMFgcbyIOGPZ2Oq3h8SqTqRzreEZMZgQrpt26Zl2Xv6PcqBJZIJ0
-	 e7QuP5gsVBH59vIpBkwiMBUZfxouEtCFlVKaesVGvQ6DInL/EsbJN5zE0BThiV6u3N
-	 gdGA4uK4KOGztLePEZ6SaroUkOtzIljOgbQhdS3qm4rR1JPB3Do4BF2TigpxQXE8MJ
-	 iP59zSeaGvJBw==
-Date: Thu, 25 Jan 2024 17:09:25 +0000
+	b=m/gafDU9bR1Gmuq/H6tHuAOkh22nQj2vy8TNEPAG7cUWBIIgYkSEUNESS6kpoDUUM
+	 qNXj1bhbjohTv+q8Bf5YTEcULJDqmZJtFUQSnF8QeAvYeOi5tYzuG2MSw4MM+OSiWY
+	 yiUuq+Ry/6kmiAwwyujryuTD6VPyv/Skz6IMuuc8hbsZUyUOd+WBf9QksrUbhv91dU
+	 iwC9hrZ7/sjznYaFTLKwjTEfa+JuVhm5t1ZFBjbsS6U9gVMtubmqSk2WzHxf2fDekB
+	 v39RxBz0VRrwhmOt0OEqOFiXbJOs96OrruqYpjomN77J14zZqAqYjWGW8k/vKTUcnS
+	 Q2VuxQx9P2b6w==
+Date: Thu, 25 Jan 2024 17:10:45 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Chen Wang <unicorn_wang@outlook.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc: AnnanLiu <annan.liu.xdu@outlook.com>, chao.wei@sophgo.com,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+	unicorn_wang@outlook.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v2] riscv: dts: sophgo: add watchdog dt node for CV1800
-Message-ID: <20240125-gurgle-mute-03c6cad0b972@spud>
+Message-ID: <20240125-repackage-shore-049e7fcd559e@spud>
 References: <DM6PR20MB2316366FC9ADCBC7B6E9C289AB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
- <MA0P287MB2822D37F523A075320BDA99AFE7A2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+ <9f9a1f5f-2104-4a5c-a837-cd8d18e173d6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,31 +61,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="SIZWS90p3InuhLKb"
+	protocol="application/pgp-signature"; boundary="PY07s+DrUtRLCc1c"
 Content-Disposition: inline
-In-Reply-To: <MA0P287MB2822D37F523A075320BDA99AFE7A2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+In-Reply-To: <9f9a1f5f-2104-4a5c-a837-cd8d18e173d6@linaro.org>
 
 
---SIZWS90p3InuhLKb
+--PY07s+DrUtRLCc1c
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 25, 2024 at 08:15:32PM +0800, Chen Wang wrote:
-> hi, Annan, I see another email with same title, any difference between them
-> two? Which one you want us to review? Maybe you should void one of them.
+On Thu, Jan 25, 2024 at 01:39:51PM +0100, Krzysztof Kozlowski wrote:
+> On 25/01/2024 10:46, AnnanLiu wrote:
+> > +
+> > +		pclk: pclk {
+> > +			#clock-cells =3D <0>;
+> > +			compatible =3D "fixed-clock";
+> > +			clock-frequency =3D <25000000>;
+>=20
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=3D1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
+rces-with-the-devicetree-schema/
+> for instructions).
+>=20
 
-This one I think, the other did not get sent to the mailing lists.
+> Also, why do you describe internal clock as stub?
 
---SIZWS90p3InuhLKb
+Under the --- line it says the patch depends on the clock series, but
+as you pointed out the clock is a "fake" stub, so I don't understand
+what the dependency would be.
+
+--PY07s+DrUtRLCc1c
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKVxQAKCRB4tDGHoIJi
-0pF+AQDKYDVWZwKYqeMxVI0xdihLBxXitCKFLCCodXag9cndjgD/Wddnsu6w9uKh
-uAAm31GYUWE0rEgZgKBpGRKH84OoyAY=
-=cf4g
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKWFQAKCRB4tDGHoIJi
+0tqoAQD+Wvy3whUfNoEmsB1b/zxhahkinspAiLRmXLLBW4ln+QEAgexJgU/2QH4+
+duQy/xFKdEnnsoj1mbE8G63JT/LScg0=
+=3gZ2
 -----END PGP SIGNATURE-----
 
---SIZWS90p3InuhLKb--
+--PY07s+DrUtRLCc1c--
 
