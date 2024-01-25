@@ -1,230 +1,178 @@
-Return-Path: <devicetree+bounces-35154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8C0D83C6D2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 16:35:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A96F83C6A5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 16:32:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58BFE1F21BC3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:35:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF5341C22223
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3239673196;
-	Thu, 25 Jan 2024 15:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8440274E19;
+	Thu, 25 Jan 2024 15:31:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GF9Nlara"
 X-Original-To: devicetree@vger.kernel.org
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 675D96EB7E
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 15:34:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F395174E0B;
+	Thu, 25 Jan 2024 15:31:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706196903; cv=none; b=MwE55TI7SD1RL9T2vKdnGcGXE/K7flr+D4MdHIVC7LFijxQ8UJTZ3N5zpfMzkOfUG3+a7NlbIHP8ukjl3jFN+gDrEV7UsT6+PFurCPMYbKSRO8usD2rf2zvllILT6VOihMP55hm/aborztKgLIlK2lqHaDxdjgApwp7OjZeW/GM=
+	t=1706196691; cv=none; b=ZIF5PXy4HDJrPu1tsA1SzXpm/IzJD3ECdtxUGCH1yfBNNy5JxrsE8IRjbRwnLQQ6jkxIbnlR8P6Slw5FJjiPs9qkxp0thfVaYaRKT2v4c3KTVinmmG6ZuBbly3ZovYYHtHPRVXiWotrHYHqgmV9atLQg5fmyJ2BIjNMvewrtuq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706196903; c=relaxed/simple;
-	bh=Eur2rkOIf6kFZcP6Zrtp15/cO6YVofM69aRwlAEX3BU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Sp8AjK/SSfTw9i8MZLkJVCtzok7nrfwcIaGKhNXwAjx4CHyzXJ3nZdOKB95TakP45Lqx/qugsjs8CEcJtgmRzLWqX3wrhnL6FQTbkVrYtr/WeAKHaI7cFeQV8sJi8s5EUJzAbPEr2lFTIDaEJLZHPxAsd78zjAcU/jmPexkGuog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:bc9e:fcb8:8aa3:5dc0])
-	by andre.telenet-ops.be with bizsmtp
-	id f3am2B00R58agq2013amKe; Thu, 25 Jan 2024 16:34:56 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rT1jo-00GUwG-97;
-	Thu, 25 Jan 2024 16:34:46 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rT1kc-00Fs3F-8Z;
-	Thu, 25 Jan 2024 16:34:46 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Cong Dang <cong.dang.xn@renesas.com>,
-	Duy Nguyen <duy.nguyen.rh@renesas.com>,
-	Hai Pham <hai.pham.ud@renesas.com>,
-	Linh Phung <linh.phung.jy@renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 13/15] arm64: dts: renesas: Add Renesas R8A779H0 SoC support
+	s=arc-20240116; t=1706196691; c=relaxed/simple;
+	bh=zNfziP2hTMcLh6aM+pHvlEvv55LKnzBUgDLOFVAlOU8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=TkrJC3EaY34vsGeGjsWVhWD7TjChSW2TUQ4jrJk6EwTxPu1Fce7Cr0EjRtBXl2qn80z/KOXHqE4+i1QmAv+XRfgO2Aa+T15h6AQzfESztP0nWAbX6WXT5kDcWPKywuTcPO/QIuNeIkVBRQKd9gv5PqOSuYNFdHueWsaYyncRQVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GF9Nlara; arc=none smtp.client-ip=209.85.166.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-7bc332d49f6so298732939f.1;
+        Thu, 25 Jan 2024 07:31:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706196689; x=1706801489; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=zNfziP2hTMcLh6aM+pHvlEvv55LKnzBUgDLOFVAlOU8=;
+        b=GF9NlaraAdXvAZ9JZ9M7Zx8xN0V+4kOdJmSCqQ3GBB03d3vlim4Dyme/q2uQ8yUM8M
+         k+cpOYvSg0TXsOuQij8/+2RFqqf3oY9Hg6qV6C7cLm60suDUyzUmqlCG8F7savB6sxLY
+         RUz2s4e4THrNpQSmLhDRv/R3zheXdW1iPIRyRu/ZdgFgLMCmGjd6kjAnQqWYva/ZRndg
+         WgdJE8/ATP4JXfyELcxabyASlEN09ZtY45gsyLskMIXpiLmpWGs0HrufKrxXgVbQEp4B
+         NgREzOlqEnDDlh/wKFGAnatUngTlT9ADM6cAgmZJrZwLg3JJ8B65sjropzN4U1jwou5q
+         eTQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706196689; x=1706801489;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zNfziP2hTMcLh6aM+pHvlEvv55LKnzBUgDLOFVAlOU8=;
+        b=ALMHKhQ2K+MU3GJx5CXEBrkOYkB5IaK7OvXDNYuhfx2SSiEMTpWHAOPqZg3l+tyuuC
+         aVb3gHqE5aIYXg4APnrFIalL0Hgy6PvhdGU1ViS0EFSIiO2ArJbrLVPrcvhMRjpRcoam
+         GjJDz8OLcnPToGfL5Ee/oSPclPgDeWVcLGzkMOO9s1t7dz7xaXTfYDprGfxfBVBwLn01
+         Vvx6SANuJGF4O0dl39trHS7w0lFHDU/J2tXOAVFXz4n8oV1lMoo1QtL2vWj1AahZshub
+         AZAipbY4ZdoPKsqqRzyLwXsJEJdlTWfTUn9Ihek9Kfx3tBg6AWNfpKSQqAaT5yEO9bXG
+         ZDyw==
+X-Gm-Message-State: AOJu0YxO7QaKFXYVaRCCVV03WoKUI78AnIeiCbWaDh8dOXnKtyJv1EFd
+	vLlhBgwXxNUYom7oASu7WUeBeU9Uqja0IwXFGB8EDefDIWpG4Lpa
+X-Google-Smtp-Source: AGHT+IFaMMCAySJNmc4SIUNhsQpytb5lAB5OFNA4trGP8SanswulaffQ4p8FI1RTJZMS9bbnd3UQEA==
+X-Received: by 2002:a6b:7d48:0:b0:7bf:8e8d:3412 with SMTP id d8-20020a6b7d48000000b007bf8e8d3412mr1612613ioq.20.1706196689021;
+        Thu, 25 Jan 2024 07:31:29 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id i9-20020a05663813c900b0046e760beffesm4675075jaj.19.2024.01.25.07.31.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jan 2024 07:31:28 -0800 (PST)
+Message-ID: <ef59aaa2a251e92d463d8983ab6eec459298c102.camel@gmail.com>
+Subject: Re: [PATCH v7 4/9] driver: core: allow modifying device_links flags
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Saravana Kannan <saravanak@google.com>, nuno.sa@analog.com
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>,  Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>
 Date: Thu, 25 Jan 2024 16:34:41 +0100
-Message-Id: <4107bc3d7c31932da29e671ddf4b1564ba38a84c.1706194617.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1706194617.git.geert+renesas@glider.be>
-References: <cover.1706194617.git.geert+renesas@glider.be>
+In-Reply-To: <8eae083af481441d83df02a1880e2aedf99efdfb.camel@gmail.com>
+References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
+	 <20240123-iio-backend-v7-4-1bff236b8693@analog.com>
+	 <CAGETcx8_0ExTG4ASb9xK-uwmubMFDx44_wUf1h3VsO8w9jJApQ@mail.gmail.com>
+	 <8eae083af481441d83df02a1880e2aedf99efdfb.camel@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-From: Hai Pham <hai.pham.ud@renesas.com>
+On Thu, 2024-01-25 at 09:14 +0100, Nuno S=C3=A1 wrote:
+>=20
+> Hi Saravana,
+>=20
+> Thanks for your feedback,
+>=20
+> On Wed, 2024-01-24 at 19:21 -0800, Saravana Kannan wrote:
+> > On Tue, Jan 23, 2024 at 7:14=E2=80=AFAM Nuno Sa via B4 Relay
+> > <devnull+nuno.sa.analog.com@kernel.org> wrote:
+> > >=20
+> > > From: Nuno Sa <nuno.sa@analog.com>
+> > >=20
+> > > If a device_link is previously created (eg: via
+> > > fw_devlink_create_devlink()) before the supplier + consumer are both
+> > > present and bound to their respective drivers, there's no way to set
+> > > DL_FLAG_AUTOREMOVE_CONSUMER anymore while one can still set
+> > > DL_FLAG_AUTOREMOVE_SUPPLIER. Hence, rework the flags checks to allow
+> > > for DL_FLAG_AUTOREMOVE_CONSUMER in the same way
+> > > DL_FLAG_AUTOREMOVE_SUPPLIER is done.
+> >=20
+> > Curious, why do you want to set DL_FLAG_AUTOREMOVE_CONSUMER?
+> > Especially if fw_devlink already created the link? You are effectively
+> > trying to delete the link fw_devlink created if any of your devices
+> > unbind.
+> >=20
+>=20
+> Well, this is still useful in the modules case as the link will be relaxe=
+d
+> after
+> all devices are initialized and that will already clear AUTOPROBE_CONSUME=
+R
+> AFAIU. But, more importantly, if I'm not missing anything, in [1], fw_dev=
+links
+> will be dropped after the consumer + supplier are bound which means I
+> definitely
+> want to create a link between my consumer and supplier.=C2=A0
+>=20
 
-Add initial support for the Renesas R-Car V4M (R8A779H0) SoC.
+Ok, so to add a bit more on this, there are two cases:
 
-Signed-off-by: Hai Pham <hai.pham.ud@renesas.com>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - Add vendor-prefixes to DT binding definition header files.
+1) Both sup and con are modules and after boot up, the link is relaxed and =
+thus
+turned into a sync_state_only link. That means the link will be deleted any=
+ways
+and AUTOPROBE_CONSUMER is already cleared by the time we try to change the =
+link.
 
-Changes compared to the BSP:
-  - Add "-clk" suffix to clock node names,
-  - Rename "pmu_a76" node to "pmu-a76",
-  - Drop bogus CPU masks from GICv3 PPI interrupt specifiers,
-  - Drop hscif0 dmas and dma-names placeholder,
-  - Add missing hypervisor virtual timer IRQ to timer node.
----
- arch/arm64/boot/dts/renesas/r8a779h0.dtsi | 121 ++++++++++++++++++++++
- 1 file changed, 121 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779h0.dtsi
+2) The built-in case where the link is kept as created by fw_devlink and th=
+is
+patch effectively clears AUTOPROBE_CONSUMER.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-new file mode 100644
-index 0000000000000000..a082e2d06b696019
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-@@ -0,0 +1,121 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the R-Car V4M (R8A779H0) SoC
-+ *
-+ * Copyright (C) 2023 Renesas Electronics Corp.
-+ */
-+
-+#include <dt-bindings/clock/renesas,r8a779h0-cpg-mssr.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/power/renesas,r8a779h0-sysc.h>
-+
-+/ {
-+	compatible = "renesas,r8a779h0";
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		a76_0: cpu@0 {
-+			compatible = "arm,cortex-a76";
-+			reg = <0>;
-+			device_type = "cpu";
-+			power-domains = <&sysc R8A779H0_PD_A1E0D0C0>;
-+		};
-+	};
-+
-+	extal_clk: extal-clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		/* This value must be overridden by the board */
-+		clock-frequency = <0>;
-+	};
-+
-+	extalr_clk: extalr-clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		/* This value must be overridden by the board */
-+		clock-frequency = <0>;
-+	};
-+
-+	pmu-a76 {
-+		compatible = "arm,cortex-a76-pmu";
-+		interrupts-extended = <&gic GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	/* External SCIF clock - to be overridden by boards that provide it */
-+	scif_clk: scif-clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <0>;
-+	};
-+
-+	soc: soc {
-+		compatible = "simple-bus";
-+		interrupt-parent = <&gic>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		cpg: clock-controller@e6150000 {
-+			compatible = "renesas,r8a779h0-cpg-mssr";
-+			reg = <0 0xe6150000 0 0x4000>;
-+			clocks = <&extal_clk>, <&extalr_clk>;
-+			clock-names = "extal", "extalr";
-+			#clock-cells = <2>;
-+			#power-domain-cells = <0>;
-+			#reset-cells = <1>;
-+		};
-+
-+		rst: reset-controller@e6160000 {
-+			compatible = "renesas,r8a779h0-rst";
-+			reg = <0 0xe6160000 0 0x4000>;
-+		};
-+
-+		sysc: system-controller@e6180000 {
-+			compatible = "renesas,r8a779h0-sysc";
-+			reg = <0 0xe6180000 0 0x4000>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		hscif0: serial@e6540000 {
-+			compatible = "renesas,hscif-r8a779h0",
-+				     "renesas,rcar-gen4-hscif", "renesas,hscif";
-+			reg = <0 0xe6540000 0 0x60>;
-+			interrupts = <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 514>,
-+				 <&cpg CPG_CORE R8A779H0_CLK_SASYNCPERD1>,
-+				 <&scif_clk>;
-+			clock-names = "fck", "brg_int", "scif_clk";
-+			power-domains = <&sysc R8A779H0_PD_ALWAYS_ON>;
-+			resets = <&cpg 514>;
-+			status = "disabled";
-+		};
-+
-+		gic: interrupt-controller@f1000000 {
-+			compatible = "arm,gic-v3";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xf1000000 0 0x20000>,
-+			      <0x0 0xf1060000 0 0x110000>;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
-+		prr: chipid@fff00044 {
-+			compatible = "renesas,prr";
-+			reg = <0 0xfff00044 0 4>;
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts-extended = <&gic GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+				      <&gic GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+				      <&gic GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+				      <&gic GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+				      <&gic GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
--- 
-2.34.1
+Given the above, not sure what's the best option. I can think of 4:
+
+1) Drop this patch and leave things as they are. DL_FLAG_AUTOREMOVE_CONSUME=
+R is
+pretty much ignored in my call but it will turn the link in a MANAGED one a=
+nd
+clear SYNC_STATE_ONLY. I could very well just pass 0 in the flags as
+DL_FLAG_AUTOREMOVE_CONSUMER is always ignored;
+
+2) Rework this patch so we can still change an existing link to accept
+DL_FLAG_AUTOREMOVE_CONSUMER (in the modules case for example).
+
+However, instead of clearing AUTOPROBE_CONSUMER, I would add some checks so=
+ if
+flags have one of DL_FLAG_AUTOREMOVE_SUPPLIER or DL_FLAG_AUTOREMOVE_CONSUME=
+R and
+AUTOPROBE_CONSUMER is already set, we ignore them. In fact, right now, I th=
+ink
+one could pass DL_FLAG_AUTOREMOVE_SUPPLIER and link->flags ends ups with
+AUTOREMOVE_SUPPLIER | AUTOPROBE_CONSUMER which in theory is not allowed...
+
+3) Keep it as-is... This one is likely a NACK as I'm getting the feeling th=
+at
+clearing stuff that might have been created by fw_devlinks is probably a no=
+-go.
+
+Let me know your thoughts...
+
+- Nuno S=C3=A1
 
 
