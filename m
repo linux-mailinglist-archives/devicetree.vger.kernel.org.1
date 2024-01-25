@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-35073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A15F83C3E2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:41:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75B4183C3EA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:43:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EA8D1C2301C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:41:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2637F28FA02
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4970755C12;
-	Thu, 25 Jan 2024 13:41:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEA2356775;
+	Thu, 25 Jan 2024 13:43:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ur51TMm7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mAB9krfD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D98F5787E
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 13:41:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE6855C12
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 13:43:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706190083; cv=none; b=ilUjIza32CszOi9LkFZyVu5ZhWdKy17eF9bhdUQyLVmQ1haAVbVLBlZ+JhPUe7XdbfbBWBcq8Wlvv0RVi3y4M8nmKGmuGk7oHy5OhDxlIEmWRq2jxX9GPrdx2fX2VLRPmY1Fn2pzMyURvXzNVtA62NRkprrs7HOveURaLH9P+gs=
+	t=1706190188; cv=none; b=GkmdmFEwEnlEs6NdCFAVui7sZgdLouANazcbclDHnfHFTlbmPQ4519CbfIQ4+yMGnrXHWZreBeAtvemvliXTyfTxkqoDBvyL2t9Q50FYhUDfhjXL26MrKWievAN2hfpBth3gQuvY+sMeglmis8dvLRKvrE5rSWOACtEUKVSCqhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706190083; c=relaxed/simple;
-	bh=+PDHWeDWYawPP7KdfMCSUCIRoZJrKe3T9QQFG92CHuE=;
+	s=arc-20240116; t=1706190188; c=relaxed/simple;
+	bh=CLMiGZb99qiGs0po0LQ2ck2GX30OXK41bHI/SHAhM1Y=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=NDCj1i+knXajwGHy8nRaAhFufZB2z+YZpNyEfFd634jwNXdmZNDy88tfqCHdERinIm4Hd41nfcuOFu6j794xaqXJSMdA3PeVcUzXk/DTehQPEoXXAgF0ug6+WpH8pbha0NlrOskmWoKE4+kXqZWxck7OtxEp4AlsoeTXCv8mQ4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ur51TMm7; arc=none smtp.client-ip=209.85.128.45
+	 In-Reply-To:Content-Type; b=AOyqdPPKCnQRCi+7cCGHlvkLA3TXjgBMY1S+Bpbg6J1OCl+q5GHn3Dag0+AubRHNXgq8dDGWf82KyL1hMjDFpY5PPsDGQpXDUqEoQ970IOeT3Lab32iUl1ZAqaNglJIne1aGz7Vn68mB1HxUL7tQCnxTvxuoizF7Aq7Pw4zMhrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mAB9krfD; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-40ec6a002a7so20529925e9.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 05:41:21 -0800 (PST)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3394ca0c874so1612425f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 05:43:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706190079; x=1706794879; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706190184; x=1706794984; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Gft2BW9y4/GZdP3gPjIqF6R/WNLiCwDjr+fDFTTpeqY=;
-        b=ur51TMm7cOVQNlGLl4JuDQU+wHKWDZzwsdbkpkwUYel12Ec1+bKfPt/YPhBYScAWkI
-         RJo3fUB0NvF6VbnZNLvYiBQv8aRGPd0PCgemADrBJ+sHxjOREnYDmaB648tlEqHEVF4Y
-         lw+tDR8/2GRl81wbx/G/xYqKTe93y96QE6ZQ3FeOK4svzUNi79Q3z648zFWwe7WpnSM+
-         /bsrx0h2yUO5S+w0rTzluvFKAnP0kWptPHKymxU9oHGUfw5nGi3ZJZ2EW3EwJJsjc9x6
-         9NRqxZVcCa4UGyy48IcbCwXfz05zwgXceIOcY/UEbmqP1WF6C7/ReBVX3+F9Q8OSdyGm
-         DHRw==
+        bh=RiqoviQXGM/czPfXIjMxujYMnPmJeDkpHzRHL7FpUdI=;
+        b=mAB9krfD2SrV+bPdo+0QsMvwyGRBBzmGsYR9pNCgVwNGIdsLCh2W39xFZIg2WnXhNb
+         gjMJtN2TTAXCV73zGa0bP7XDfPTUba9XmbEz8krItyNs23cgVjmKoZv7VTm3gyMr1Wz2
+         LDw6Cp1MNJBxJl4hn+lovGT2E0diniCudLt0nuAlwT5ghASesRNFv2+zKG/cKGf+Z9vL
+         fT4dCU1HPywLET+BGZu7nsuJcVxc80W+uGeNJh2Ss8GQP0KXyF+R71HDPPAWbhINBqi9
+         pP6tVraSln1jI5GHlohVPcylGebNSpBlg0LrZxmH6HyG4WZWSwN+soYhp16tp3fgoPWd
+         gIXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706190079; x=1706794879;
+        d=1e100.net; s=20230601; t=1706190184; x=1706794984;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Gft2BW9y4/GZdP3gPjIqF6R/WNLiCwDjr+fDFTTpeqY=;
-        b=TJT0Wmcghc/+Zev0MyEkzFQwAAWQBsVCybdVnn/ssyMTTNOgctm6UiIo3cL1AtjYOJ
-         fEDt0ypC1DUYp7rr4glKPRt4IQ0WB8AvwAIf7qqE77IvF8XokT9GgJ/gaT8al2ZCGvwl
-         50ZMILKzoCbXCpLIFaMWbAvi+srm88mEIbclWupOlcrX189dHzX1EDLnA3nQs1fJCzBo
-         f7GQVvo63Hi3LpUpvs9tauL+aomLOtIngcrVN6TkhX51Zicn20l75Z5xF1CINOd810ey
-         MUP6zRh6btlvYuXp7jemBHBi/O37EPTInt3hW2VFKFhKIrp3EnDKkwiR14OElw6om8bF
-         1xlw==
-X-Gm-Message-State: AOJu0Yz3gNlbmh/cLVU3zapI48yzCAqPE+M5Vmsvew+09jLMxgFqj/gB
-	cYhAUXzRVdxom81IegabGGDIOjd72ugDLvnxVr5vSNlzUjS8U0+A8FcUPTV6H2Q=
-X-Google-Smtp-Source: AGHT+IF3HQcfgulmL4rbE0PhVuEQH3aTlmyJc/upFGPE/d1Azu5qJp0oAoLPwtr4g9akkEm8Fa4OQg==
-X-Received: by 2002:a1c:740d:0:b0:40d:5a9f:5281 with SMTP id p13-20020a1c740d000000b0040d5a9f5281mr396381wmc.200.1706190079332;
-        Thu, 25 Jan 2024 05:41:19 -0800 (PST)
+        bh=RiqoviQXGM/czPfXIjMxujYMnPmJeDkpHzRHL7FpUdI=;
+        b=YiMmL3eFQvAluE9X9B0RShwDC4xdTC3pwC1MapxLYIXN9UR2g/A5ACyQhpIyY2h//7
+         EKBbeqhDGkWzVK22XLC8iZGiLzyqfXC1tGx5ZIYMDrnT2DTyIAsRvhuNvhdKWenQWuzO
+         h0rD2DgdkxGsc46JPRtcX3tWZkfSEh2vAAwpWVxx1RrHBp2bKebT41Eioi+1oOO3fGg4
+         ZRHAAm8/dURJ9ospkT5y+LTHnLIT4SdP1spUoZK5S3JkUlb7sHyKPFxG38cXBdrcmzwh
+         bjE/swK6/YZhIgyrrzB6XfCB0h5cYB6h3lIpVa6mdQJYtXqwuSKzmflL/AVXPv8NBApV
+         l6kg==
+X-Gm-Message-State: AOJu0YwEN3j55g7AI8+ulkclC4fgEkKWVL8kOxLkXmrgifUP70RIBYG3
+	pHXbt8wKM9KX3nFqbMVXR+hOfL4Cybv5jOznK+0EAVXjhPQkJj1hnUMtctvUl5k=
+X-Google-Smtp-Source: AGHT+IElvR+L8tozYGzsd7mvdLxlUMTooJMXJNqiSCYmS/kXO1pBEAc6rKhiqik6jajBUIaLpDpQwQ==
+X-Received: by 2002:adf:efd2:0:b0:339:3968:65a5 with SMTP id i18-20020adfefd2000000b00339396865a5mr557214wrp.41.1706190184014;
+        Thu, 25 Jan 2024 05:43:04 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:1a7d:7b36:3842:9bc3? ([2a01:e0a:982:cbb0:1a7d:7b36:3842:9bc3])
-        by smtp.gmail.com with ESMTPSA id h6-20020a05600c350600b0040e86fbd772sm2663887wmq.38.2024.01.25.05.41.18
+        by smtp.gmail.com with ESMTPSA id x16-20020adfcc10000000b00337b47ae539sm10652410wrh.42.2024.01.25.05.43.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 05:41:18 -0800 (PST)
-Message-ID: <c001bc36-5abc-4246-af54-f6ed04465cfd@linaro.org>
-Date: Thu, 25 Jan 2024 14:41:18 +0100
+        Thu, 25 Jan 2024 05:43:03 -0800 (PST)
+Message-ID: <59ea1ace-7505-4275-bcfa-766e25e621b4@linaro.org>
+Date: Thu, 25 Jan 2024 14:43:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm8550: describe all PCI MSI
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: sm8650: describe all PCI MSI
  interrupts
 Content-Language: en-US, fr
 To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -89,7 +89,7 @@ To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240125130626.390850-1-krzysztof.kozlowski@linaro.org>
- <20240125130626.390850-5-krzysztof.kozlowski@linaro.org>
+ <20240125130626.390850-6-krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -115,27 +115,27 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20240125130626.390850-5-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240125130626.390850-6-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 25/01/2024 14:06, Krzysztof Kozlowski wrote:
 > Each group of MSI interrupts is mapped to the separate host interrupt.
-> Describe each of interrupts in the device tree for PCIe hosts.  Only
-> boot tested on hardware.
+> Describe each of interrupts in the device tree for PCIe hosts.  Not
+> tested on hardware.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 24 ++++++++++++++++++++----
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 24 ++++++++++++++++++++----
 >   1 file changed, 20 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index ee1ba5a8c8fc..80e31fb21055 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -1713,8 +1713,16 @@ pcie0: pcie@1c00000 {
->   			linux,pci-domain = <0>;
->   			num-lanes = <2>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 2df77123a8c7..9fc4f3e37a8c 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -2213,8 +2213,16 @@ pcie0: pci@1c00000 {
+>   			      <0 0x60100000 0 0x100000>;
+>   			reg-names = "parf", "dbi", "elbi", "atu", "config";
 >   
 > -			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
 > -			interrupt-names = "msi";
@@ -150,11 +150,11 @@ On 25/01/2024 14:06, Krzysztof Kozlowski wrote:
 > +			interrupt-names = "msi0", "msi1", "msi2", "msi3",
 > +					  "msi4", "msi5", "msi6", "msi7";
 >   
->   			#interrupt-cells = <1>;
->   			interrupt-map-mask = <0 0 0 0x7>;
-> @@ -1804,8 +1812,16 @@ pcie1: pcie@1c08000 {
->   			linux,pci-domain = <1>;
->   			num-lanes = <2>;
+>   			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+>   				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> @@ -2317,8 +2325,16 @@ pcie1: pci@1c08000 {
+>   				    "atu",
+>   				    "config";
 >   
 > -			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
 > -			interrupt-names = "msi";
@@ -169,52 +169,24 @@ On 25/01/2024 14:06, Krzysztof Kozlowski wrote:
 > +			interrupt-names = "msi0", "msi1", "msi2", "msi3",
 > +					  "msi4", "msi5", "msi6", "msi7";
 >   
->   			#interrupt-cells = <1>;
->   			interrupt-map-mask = <0 0 0 0x7>;
+>   			clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
+>   				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
 
-230:         22          0          0          0          0          0          0          0   PCI-MSI 134742016 Edge      nvme0q0
-232:          0          0          0          0          0          0          0          0   PCI-MSI 134742017 Edge      nvme0q1
-233:          1          0          0          0          0          0          0          0   PCI-MSI 134742018 Edge      nvme0q2
-234:          0          0          0          0          0          0          0          0   PCI-MSI 134742019 Edge      nvme0q3
-235:          1          0          0          0          0          0          0          0   PCI-MSI 134742020 Edge      nvme0q4
-236:          1          0          0          0          0          0          0          0   PCI-MSI 134742021 Edge      nvme0q5
-237:         23          0          0          0          0          0          0          0   PCI-MSI 134742022 Edge      nvme0q6
-238:         18          0          0          0          0          0          0          0   PCI-MSI 134742023 Edge      nvme0q7
-239:          0          0          0          0          0          0          0          0   PCI-MSI 134742024 Edge      nvme0q8
-258:          4          0          0          0          0          0          0          0   PCI-MSI 524288 Edge      bhi
-259:          5          0          0          0          0          0          0          0   PCI-MSI 524289 Edge      mhi
-260:         33          0          0          0          0          0          0          0   PCI-MSI 524290 Edge      mhi
-261:          3          0          0          0          0          0          0          0   PCI-MSI 524291 Edge      ce0
-262:          2          0          0          0          0          0          0          0   PCI-MSI 524292 Edge      ce1
-263:         41          0          0          0          0          0          0          0   PCI-MSI 524293 Edge      ce2
-264:         28          0          0          0          0          0          0          0   PCI-MSI 524294 Edge      ce3
-265:          0          0          0          0          0          0          0          0   PCI-MSI 524295 Edge      ce5
-266:          0          0          0          0          0          0          0          0   PCI-MSI 524296 Edge      DP_EXT_IRQ
-267:          0          0          0          0          0          0          0          0   PCI-MSI 524297 Edge      DP_EXT_IRQ
-268:          0          0          0          0          0          0          0          0   PCI-MSI 524298 Edge      DP_EXT_IRQ
-269:          0          0          0          0          0          0          0          0   PCI-MSI 524299 Edge      DP_EXT_IRQ
-270:          0          0          0          0          0          0          0          0   PCI-MSI 524300 Edge      DP_EXT_IRQ
-271:          0          0          0          0          0          0          0          0   PCI-MSI 524301 Edge      DP_EXT_IRQ
-272:          0          0          0          0          0          0          0          0   PCI-MSI 524302 Edge      DP_EXT_IRQ
+175:          4          0          0          0          0          0          0          0   PCI-MSI 524288 Edge      bhi
+176:          5          0          0          0          0          0          0          0   PCI-MSI 524289 Edge      mhi
+177:         34          0          0          0          0          0          0          0   PCI-MSI 524290 Edge      mhi
+178:          3          0          0          0          0          0          0          0   PCI-MSI 524291 Edge      ce0
+179:          2          0          0          0          0          0          0          0   PCI-MSI 524292 Edge      ce1
+180:         42          0          0          0          0          0          0          0   PCI-MSI 524293 Edge      ce2
+181:         29          0          0          0          0          0          0          0   PCI-MSI 524294 Edge      ce3
+182:          0          0          0          0          0          0          0          0   PCI-MSI 524295 Edge      ce5
+183:          0          0          0          0          0          0          0          0   PCI-MSI 524296 Edge      DP_EXT_IRQ
+184:          0          0          0          0          0          0          0          0   PCI-MSI 524297 Edge      DP_EXT_IRQ
+185:          0          0          0          0          0          0          0          0   PCI-MSI 524298 Edge      DP_EXT_IRQ
+186:          0          0          0          0          0          0          0          0   PCI-MSI 524299 Edge      DP_EXT_IRQ
+187:          0          0          0          0          0          0          0          0   PCI-MSI 524300 Edge      DP_EXT_IRQ
+188:          0          0          0          0          0          0          0          0   PCI-MSI 524301 Edge      DP_EXT_IRQ
+189:          0          0          0          0          0          0          0          0   PCI-MSI 524302 Edge      DP_EXT_IRQ
 
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-HDK
-
-235:          4          0          0          0          0          0          0          0   PCI-MSI 524288 Edge      bhi
-236:          5          0          0          0          0          0          0          0   PCI-MSI 524289 Edge      mhi
-237:         33          0          0          0          0          0          0          0   PCI-MSI 524290 Edge      mhi
-238:          3          0          0          0          0          0          0          0   PCI-MSI 524291 Edge      ce0
-239:          2          0          0          0          0          0          0          0   PCI-MSI 524292 Edge      ce1
-240:         40          0          0          0          0          0          0          0   PCI-MSI 524293 Edge      ce2
-241:         29          0          0          0          0          0          0          0   PCI-MSI 524294 Edge      ce3
-242:          0          0          0          0          0          0          0          0   PCI-MSI 524295 Edge      ce5
-243:          0          0          0          0          0          0          0          0   PCI-MSI 524296 Edge      DP_EXT_IRQ
-244:          0          0          0          0          0          0          0          0   PCI-MSI 524297 Edge      DP_EXT_IRQ
-245:          0          0          0          0          0          0          0          0   PCI-MSI 524298 Edge      DP_EXT_IRQ
-246:          0          0          0          0          0          0          0          0   PCI-MSI 524299 Edge      DP_EXT_IRQ
-247:          0          0          0          0          0          0          0          0   PCI-MSI 524300 Edge      DP_EXT_IRQ
-248:          0          0          0          0          0          0          0          0   PCI-MSI 524301 Edge      DP_EXT_IRQ
-249:          0          0          0          0          0          0          0          0   PCI-MSI 524302 Edge      DP_EXT_IRQ
-
-
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
 
