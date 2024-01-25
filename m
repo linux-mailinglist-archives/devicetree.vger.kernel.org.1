@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-35274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A5F83CDB4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:44:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0FBE83CDBB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:45:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16D961C21595
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:44:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97F661F26FA9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 20:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A69D1386C2;
-	Thu, 25 Jan 2024 20:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5271386C4;
+	Thu, 25 Jan 2024 20:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ve+S+Opg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oPrPCEg4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53AB5135A5E
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 20:44:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4490135A5E
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 20:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706215452; cv=none; b=UnLGjmN82OuyXWcx5K8P+NkaooHIwBuGXlg77OGc4bAzonbSlHuFtkg/TVRZ+86k6ldCFui8Yakl3jH/1CYbhUeR71kmf5wkq/bjB4oJUntbGlOkhoMku5YZ4X8txxeLjP6HwzDEr+Twbk11ysV7kcxBq3cc1WyEe+KJQxc4iB4=
+	t=1706215535; cv=none; b=X/o8eR0KkXj4pkEYHqe8SLXxZ6F90/zUXgY4N3T1BANzi6ALLlKnCPEGjulqiMsaqqtwNoOGueeMrXvXEL/n9EVUJSc6JnZZEFtrEHIglRper5FWmU5n0itAZkUxyFynR4XcDvz8FY4XXD4n3faqe+uRJOhTFJULQRT9iUOWZpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706215452; c=relaxed/simple;
-	bh=A4DlPA5ZS8DI8SfLbauTdQPP3/bM0j755xOJ7bN0/S8=;
+	s=arc-20240116; t=1706215535; c=relaxed/simple;
+	bh=u4m3rhslZrR5Hsot++6wdzU0ej58tjNpwhODKsqQKLI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=V5KNNGyFVf3bKdhv+9166yzLfiIXCstekqwZZPSar7N621IngQyr5/YBQk6aPGWbwJltRUKwx+k3+PZ4b0Hj369ZSjG0kLq2ulvIZjoGXU0U/QrmOQ6cMRrKbvv9bFtNuMup6oMETt4A/Dr2Z2AWpUec0n8bf9CYvQW2p2VfHPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ve+S+Opg; arc=none smtp.client-ip=209.85.214.170
+	 To:Cc:Content-Type; b=d2cqHiagFbu9IkdvEolZC+KBxL9pJk+ZTLq069t+jswtqmSWvqTNbOMCfYqEEifGN9XFmzBI/PqjyNSe+jz3EWfQK3pNOqNRF1cXIgw5E3nMqk7ag1gX0PO6Ah2sizj8udUH5vGEwhH3ewXqBwR6/NFmPhgoTFfTumDpabzrMiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oPrPCEg4; arc=none smtp.client-ip=209.85.216.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1d72f71f222so33103035ad.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 12:44:09 -0800 (PST)
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2909978624eso2415443a91.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 12:45:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706215449; x=1706820249; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706215532; x=1706820332; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=45hoLVU1kMNJvCkEmNn31hPORALk5tp9XZjsZd89mts=;
-        b=ve+S+Opg0+nNdr3cG1Hmlq/n/tylJEi7bNn+b3HrEaGUHTRKZN7XtBExIbZ6LXFsfI
-         YVlTOlvnlC4eoiAh+KUo0z9GS/kOU/BEZJRi+13ViFrgfVHdB8C3O3oVj8zhCPOxGNa4
-         tZ5yh6iMP0NuNDFTFMfUcvLENxuulopTJcxSvYDXIli/TvjvwBOdaDaMBxfxesU/Ysgk
-         9JvcOxtquvcVZB8+TTBD/naVr5a8G7ssb5ItQqHZNbF89OfgtDBtTuyY8mrACUveL+O4
-         lsmTjo3ZInh9oLBtscqCvPPZ3actpJOdnNJdrkKegLrLiZO4CS6uxiF6vi7CXPoSDyGR
-         c9wA==
+        bh=OjdvfWOMZIbIKqDPk6c3LehvDX9fVj7yu1ffjzs1Y4w=;
+        b=oPrPCEg49l26MN0w4JTS7mulcbHu3czWBt/DEPdZz4u7jJZTrUcTNgU/6cgGTaN3bw
+         T8bymBfZqrLedtX42si++VVzS0pA2fIxQHz29gfHuqOXEhPmCnAPojItVhRrpWkscn/Y
+         C/E/v5DRWFAODZXkEwUNAqnNqnSw3P8iBZHYqfIgPZ7t77FMSj3f3NxCelhiLJIjWtjn
+         VDQS9+ZyNTsby7YkTFAG68yObCiBCR5nTNM4GMrvhO1vMCkQjb0Y3ewa0MqqO1kSrxr+
+         IM6YQEfGjj5reuKQafnSkUkZc2E0dqAs/L4+Jj/zJ/MKquO3LsCQi7fPGs3gPMNcw7Am
+         YUCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706215449; x=1706820249;
+        d=1e100.net; s=20230601; t=1706215532; x=1706820332;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=45hoLVU1kMNJvCkEmNn31hPORALk5tp9XZjsZd89mts=;
-        b=p7og3LiUTWewaACF0qK+flhQenQ/sYTfASaG/jaVVwJvA3Z3BZW51OlWp1WO/d9HlW
-         Qg4YpmiIkiFWE5pPAjdPs7SW4XRdEiFUI2uPmgy5451lbDh3GhIDfYDazZYy3kx2kGjX
-         ZBeAj24wzfRzhk1JA3EnNmPQZMSjdiIV3yq7NV2Ms10ufVMYP+atlLNOR6vVJ9atuvmz
-         4uZQ0ceiyzD3uMO8PfYJrrARqhPkTS0sOpyszhfv0igpYgnTR7iiTqeLTvurmHmKqh7Q
-         Z/RXD4mXT4QBYj4T9VIfZZ8p3YAhOGxHFU7c0eCn5SHEpOWV3pyv3QcmOwsfsAYkNMVJ
-         U0Bw==
-X-Gm-Message-State: AOJu0YzdKhMTRUseZhcks4pi1h/OcUoH5qKi9BjiJBQw3Z+anZ0oaMR/
-	tMJkSPBjS7MSBOdxiOt/ge+fUryP3eMzXOdv41JFoeoU5dl7f4s94EEqEbOEa0piWjzGtOdX8Vb
-	NQrZ/cRzSNkFVG00BYedjRWdotrXYKP+OQZVWaw==
-X-Google-Smtp-Source: AGHT+IFjxDRR951l2uvjkFJzpekmldx6UXtJcNdQqyuBbeP5oU2ps8Vv1hWhLiEkCrbTHrGuKMtCJQO0mTbC53OYYXY=
-X-Received: by 2002:a17:90a:5785:b0:28c:fb86:23ce with SMTP id
- g5-20020a17090a578500b0028cfb8623cemr181303pji.44.1706215448724; Thu, 25 Jan
- 2024 12:44:08 -0800 (PST)
+        bh=OjdvfWOMZIbIKqDPk6c3LehvDX9fVj7yu1ffjzs1Y4w=;
+        b=mYP/NiBV0ACgnx9Q/An3CUE1cIO7QudTbQOljnocfC5gil9Y6doGsMES9kO4+i0BJB
+         QHrg6m1CpXhSWNtcVwEwRlMT6WbNT1Wpf9X0rre4WCqJi/Ljqv4UXOtFY6HbGjkANKyQ
+         V8E5v4nBxsCI6hZuB/PFc6A8BJL6ovzYkRbUfWhcoA9Vd/wuZXa7lz7j785JPbQgFqQV
+         fkhxUKmsqI+CG/3h/NudbytYGf3CWnpfkUP2BfT411Gdr4kkoGN7i0R7txozMv5nyZ80
+         HqCB4I1rEiAc8rxSIQHUErV5fWiNCLl34S8MY1prFVr1XlZ1f/uA9rDgtPnAnOO2lyA2
+         Vs/w==
+X-Gm-Message-State: AOJu0YyOjdH0arSVw5JmI+5PaZxDYQZb6wIJQyoJQOIsre9N0Og40paN
+	rGQlotiouV5Yhmc/6kw6p/ndlxJtQPngkXOHAGJp5QTHlyXAfsoR+Kbj3aG8KIiUIGTKHbewEcv
+	YheR/odh2oNxb3tfWttosERLkifd+MaT0ufdA8w==
+X-Google-Smtp-Source: AGHT+IFofqibqxuDjtddSx6QluMZVRpw+2AXJrlPUc7U34sNPQ9cpNct34ReKCCPsxw5hwiOFV0+l3LKSUbE88X6ZwI=
+X-Received: by 2002:a17:90a:1a08:b0:292:6b51:6bb with SMTP id
+ 8-20020a17090a1a0800b002926b5106bbmr262488pjk.0.1706215532174; Thu, 25 Jan
+ 2024 12:45:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240125145007.748295-1-tudor.ambarus@linaro.org> <20240125145007.748295-17-tudor.ambarus@linaro.org>
-In-Reply-To: <20240125145007.748295-17-tudor.ambarus@linaro.org>
+References: <20240125145007.748295-1-tudor.ambarus@linaro.org> <20240125145007.748295-28-tudor.ambarus@linaro.org>
+In-Reply-To: <20240125145007.748295-28-tudor.ambarus@linaro.org>
 From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Thu, 25 Jan 2024 14:43:57 -0600
-Message-ID: <CAPLW+4mLWU-8H=qESe9csXm=e_ByvP=nc7MEJzknv+XAUjqUZg@mail.gmail.com>
-Subject: Re: [PATCH v2 16/28] spi: s3c64xx: simplify s3c64xx_wait_for_pio()
+Date: Thu, 25 Jan 2024 14:45:21 -0600
+Message-ID: <CAPLW+4kTDxvRuCvg8TO8QFQiTUfrvzEavX=Cx2QVRZ=SnRLrOg@mail.gmail.com>
+Subject: Re: [PATCH v2 27/28] spi: s3c64xx: add support for google,gs101-spi
 To: Tudor Ambarus <tudor.ambarus@linaro.org>
 Cc: broonie@kernel.org, andi.shyti@kernel.org, arnd@arndb.de, 
 	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
@@ -90,138 +90,58 @@ Content-Transfer-Encoding: quoted-printable
 On Thu, Jan 25, 2024 at 8:50=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
 .org> wrote:
 >
-> s3c64xx_spi_transfer_one() makes sure that for PIO the xfer->len is
-> always smaller than the fifo size. Since we can't receive more that the
-> FIFO size, droop the loop handling, the code becomes less misleading.
-
-Drop (spelling)?
-
-For the patch: how exactly it was tested to make sure there is no regressio=
-n?
-
+> Add support for GS101 SPI. All the SPI nodes on GS101 have 64 bytes
+> FIFOs, infer the FIFO size from the compatible. GS101 allows just 32bit
+> register accesses, otherwise a Serror Interrupt is raised. Do the write
+> reg accesses in 32 bits.
 >
 > Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 > ---
->  drivers/spi/spi-s3c64xx.c | 75 +++++++++------------------------------
->  1 file changed, 17 insertions(+), 58 deletions(-)
+>  drivers/spi/spi-s3c64xx.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 >
 > diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-> index d2dd28ff00c6..00a0878aeb80 100644
+> index 35a2d5554dfd..e887be6955a0 100644
 > --- a/drivers/spi/spi-s3c64xx.c
 > +++ b/drivers/spi/spi-s3c64xx.c
-> @@ -485,26 +485,6 @@ static int s3c64xx_enable_datapath(struct s3c64xx_sp=
-i_driver_data *sdd,
->         return 0;
->  }
+> @@ -1501,6 +1501,18 @@ static const struct s3c64xx_spi_port_config exynos=
+autov9_spi_port_config =3D {
+>         .quirks         =3D S3C64XX_SPI_QUIRK_CS_AUTO,
+>  };
 >
-> -static u32 s3c64xx_spi_wait_for_timeout(struct s3c64xx_spi_driver_data *=
-sdd,
-> -                                       int timeout_ms)
-> -{
-> -       void __iomem *regs =3D sdd->regs;
-> -       unsigned long val =3D 1;
-> -       u32 status;
-> -       u32 max_fifo =3D FIFO_DEPTH(sdd);
-> -
-> -       if (timeout_ms)
-> -               val =3D msecs_to_loops(timeout_ms);
-> -
-> -       do {
-> -               status =3D readl(regs + S3C64XX_SPI_STATUS);
-> -       } while (FIELD_GET(S3C64XX_SPI_ST_RX_FIFO_LVL, status) < max_fifo=
- &&
-> -                --val);
-> -
-> -       /* return the actual received data length */
-> -       return FIELD_GET(S3C64XX_SPI_ST_RX_FIFO_LVL, status);
-> -}
-> -
->  static int s3c64xx_wait_for_dma(struct s3c64xx_spi_driver_data *sdd,
->                                 struct spi_transfer *xfer)
->  {
-> @@ -553,13 +533,11 @@ static int s3c64xx_wait_for_pio(struct s3c64xx_spi_=
-driver_data *sdd,
->                                 struct spi_transfer *xfer, bool use_irq)
->  {
->         void __iomem *regs =3D sdd->regs;
-> +       u8 *buf =3D xfer->rx_buf;
-> +       unsigned long time_us;
->         unsigned long val;
-> -       u32 status;
-> -       int loops;
-> -       u32 cpy_len;
-> -       u8 *buf;
-> +       u32 status, len;
->         int ms;
-> -       unsigned long time_us;
->
->         /* microsecs to xfer 'len' bytes @ 'cur_speed' */
->         time_us =3D (xfer->len * 8 * 1000 * 1000) / sdd->cur_speed;
-> @@ -582,48 +560,29 @@ static int s3c64xx_wait_for_pio(struct s3c64xx_spi_=
-driver_data *sdd,
->                 status =3D readl(regs + S3C64XX_SPI_STATUS);
->         } while (FIELD_GET(S3C64XX_SPI_ST_RX_FIFO_LVL, status) < xfer->le=
-n &&
->                  --val);
-> -
->         if (!val)
->                 return -EIO;
->
->         /* If it was only Tx */
-> -       if (!xfer->rx_buf) {
-> +       if (!buf) {
->                 sdd->state &=3D ~TXBUSY;
->                 return 0;
->         }
->
-> -       /*
-> -        * If the receive length is bigger than the controller fifo
-> -        * size, calculate the loops and read the fifo as many times.
-> -        * loops =3D length / max fifo size (calculated by using the
-> -        * fifo mask).
-> -        * For any size less than the fifo size the below code is
-> -        * executed atleast once.
-> -        */
-> -       loops =3D xfer->len / FIFO_DEPTH(sdd);
-> -       buf =3D xfer->rx_buf;
-> -       do {
-> -               /* wait for data to be received in the fifo */
-> -               cpy_len =3D s3c64xx_spi_wait_for_timeout(sdd,
-> -                                                      (loops ? ms : 0));
-> -
-> -               switch (sdd->cur_bpw) {
-> -               case 32:
-> -                       ioread32_rep(regs + S3C64XX_SPI_RX_DATA,
-> -                                    buf, cpy_len / 4);
-> -                       break;
-> -               case 16:
-> -                       ioread16_rep(regs + S3C64XX_SPI_RX_DATA,
-> -                                    buf, cpy_len / 2);
-> -                       break;
-> -               default:
-> -                       ioread8_rep(regs + S3C64XX_SPI_RX_DATA,
-> -                                   buf, cpy_len);
-> -                       break;
-> -               }
-> +       len =3D FIELD_GET(S3C64XX_SPI_ST_RX_FIFO_LVL, status);
+> +static const struct s3c64xx_spi_port_config gs101_spi_port_config =3D {
+> +       .fifosize       =3D 64,
+> +       .rx_lvl_offset  =3D 15,
+> +       .tx_st_done     =3D 25,
+> +       .clk_div        =3D 4,
+> +       .high_speed     =3D true,
+> +       .clk_from_cmu   =3D true,
+> +       .has_loopback   =3D true,
+> +       .use_32bit_io   =3D true,
+> +       .quirks         =3D S3C64XX_SPI_QUIRK_CS_AUTO,
+> +};
 > +
-> +       switch (sdd->cur_bpw) {
-> +       case 32:
-> +               ioread32_rep(regs + S3C64XX_SPI_RX_DATA, buf, len / 4);
-> +               break;
-> +       case 16:
-> +               ioread16_rep(regs + S3C64XX_SPI_RX_DATA, buf, len / 2);
-> +               break;
-> +       default:
-> +               ioread8_rep(regs + S3C64XX_SPI_RX_DATA, buf, len);
-> +               break;
-> +       }
->
-> -               buf =3D buf + cpy_len;
-> -       } while (loops--);
->         sdd->state &=3D ~RXBUSY;
->
->         return 0;
+>  static const struct s3c64xx_spi_port_config fsd_spi_port_config =3D {
+>         .fifosize       =3D 64,
+>         .rx_lvl_offset  =3D 15,
+> @@ -1556,6 +1568,10 @@ static const struct of_device_id s3c64xx_spi_dt_ma=
+tch[] =3D {
+>                 .compatible =3D "samsung,exynosautov9-spi",
+>                 .data =3D &exynosautov9_spi_port_config,
+>         },
+> +       {
+
+As I mentioned before, this braces style looks too bloated to me.
+Other than that:
+
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+
+> +               .compatible =3D "google,gs101-spi",
+> +               .data =3D &gs101_spi_port_config,
+> +       },
+>         {
+>                 .compatible =3D "tesla,fsd-spi",
+>                 .data =3D &fsd_spi_port_config,
 > --
 > 2.43.0.429.g432eaa2c6b-goog
 >
