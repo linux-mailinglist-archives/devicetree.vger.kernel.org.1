@@ -1,131 +1,108 @@
-Return-Path: <devicetree+bounces-35011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E92083C068
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:11:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A04F383C0CD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:31:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 353DA1F29942
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:11:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72886B2C110
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:12:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82974594C;
-	Thu, 25 Jan 2024 11:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72E3E5BAD3;
+	Thu, 25 Jan 2024 11:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DAEJgJyv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tXUmYTYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B7A4503E;
-	Thu, 25 Jan 2024 11:04:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF7945BACE
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 11:04:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706180646; cv=none; b=Z7FASoeo3QhrYh9LSRsd53KyCD8cvwlb9lxONF/UhR+endR74KPU8c85k0PDVD2BEJncTauziQDvaKV38C2zt3Q18wIuVZjWsurnFr+hYr7e4NNQz618uxoI4DGQJXEecFeLLtt4RKZ81n/nLS4VO/XpmKZnbfqE56KVtnLiZnY=
+	t=1706180678; cv=none; b=jF4BUf2wNiJ1xIxJPLUZd7bq+PEOc76YT9f8iyX0oS4cRwPXtO8eiPTo95dMEFmWYevXE6BFfmkupuev/UQnU08N2ENsScKisxEBInSxcQUS2HkcezJc8gHvI5OFWULJjq94tsLcxHVFyNZkEDeUpQRI30m2AG3CAnZES/cnbIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706180646; c=relaxed/simple;
-	bh=a9NXweH9qUd8G7a734VJZg6C/IWxoVP+919kuw6amkQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RlnBQMjEWVrana1TVr99nA02Z0ZFZGiahHsCSmYedTomyyG5o1uqH14uzu+Diln1xknhAsZdDMqKxaUAKuME8LQ7AIqlABpmK6OFv5MF+JQ/nRPc237lA2CkTfehZprBgdra2F114w5hmli9BKiyqFND64bgJE8MS7Xo64eQjxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DAEJgJyv; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706180645; x=1737716645;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=a9NXweH9qUd8G7a734VJZg6C/IWxoVP+919kuw6amkQ=;
-  b=DAEJgJyvU68LVGL5SVgBAolTUVZMzCa7xgNovNXePwuGoa/lzfSCBznD
-   Ij2izLWiTjtf9Kc9i0O+YcClelP7KWIgGjo7VMUYOOMCs6z6uUhmWTkLN
-   pG4wpj9nRqAVrigkt8oU5gCaBRo60nDB3C+dPygciLEdYxgZ6JCJMNhDW
-   yIa56TT7obNrUEQnJLTaGCk9pEURd55SqadaoAOAv+WdbvDptwr6dGSO1
-   8yFfsRvK6Y2iH5GhpV1ytwEQH+HdaLk3fBu1dTr3rYiBsJKDcCJCMzQjs
-   /Futv0+khgKo5bVQLjaUdcjqUyrhdr52YoqG1h3Vyz3/KjYFETzt+CzRS
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="9509256"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="9509256"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2024 03:04:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10962"; a="929985015"
-X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
-   d="scan'208";a="929985015"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 25 Jan 2024 03:03:55 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 25 Jan 2024 13:03:54 +0200
-Date: Thu, 25 Jan 2024 13:03:54 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Guenter Roeck <linux@roeck-us.net>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 09/15] usb: typec: qcom-pmic-typec: add support for
- PMI632 PMIC
-Message-ID: <ZbJAGmq6AWxgr47o@kuha.fi.intel.com>
-References: <20240113-pmi632-typec-v2-0-182d9aa0a5b3@linaro.org>
- <20240113-pmi632-typec-v2-9-182d9aa0a5b3@linaro.org>
- <2e07f014-0884-49ca-babd-b89cc90a16b7@linaro.org>
- <CAA8EJpqPqV_nHxxbo2Vzwcp__hvREjF3bhduGhM=7UpuOgBxTQ@mail.gmail.com>
- <ZaaRZ/xi8vyIKD5d@kuha.fi.intel.com>
- <CAA8EJpq3LAzrdTXtnCskc0Md1e39Yo1+AQLHmOBVfgax4HEjKw@mail.gmail.com>
+	s=arc-20240116; t=1706180678; c=relaxed/simple;
+	bh=Ts9q+13xetCVwAeVTuiXnLneaHqI4vRmZWMNM3PN1Cs=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=tp0D0jC42JP42BM53n4+OWIx2JrlT0EaIr8dOC7X2qHX5I9XdK26qFOAF2TuqR7vleU3WBU1eicZ4l4lqH/8BkrNsJAomd8lL9Wbtoh/0zByqezoBJFyxKTG+kMbVku7eYnDFOJAHRAsMKLd8e5bTMu1r30qhi6GymY60j81oNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tXUmYTYV; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2cf0390eddbso48851721fa.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 03:04:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706180674; x=1706785474; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IqKqhdtGXtBOJU6ppRXF6CRxwiYujmvPhfvNz+SyAaQ=;
+        b=tXUmYTYVa0WLhR88zn0j9XmDE0X3ehOYjh3Zk1fUhLLINqr6Hj+itidQ2n0qii1eFr
+         JTLZoGYVDxCO40ah+4LuRc1MT8Sj5IbV5vhrc/yjYBoLaOsXD5Mxul4yLQ0w1T2kG2Ag
+         4gqB/CSj+jNiI9S5jTPsrVIERjNBMTozr/1feTgYASrebfQP6NYdXv/C8C7Az9V5rTpu
+         Vw4cIlU5o138T7huGn4Qtd8eng1F37V60Gr1BF74q6WG4jrFsQucEEy0+GHeO1w7LHU8
+         LBLXT57KqvvkaOYRe0eYt63On4CCUpMqd5tSyg0HZ0mKMCg5F6/VPn+frA87lkQAeCH4
+         ON2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706180674; x=1706785474;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IqKqhdtGXtBOJU6ppRXF6CRxwiYujmvPhfvNz+SyAaQ=;
+        b=lcMhSHCRLaLFI2juzYUMg7BfHWc47sBqn153TsB3tRnYX/r4I1xb5/s0EWA2/E4tg2
+         0e8Uysf3vpuBAlDz9jFgvOnVPIt8XbkCjQ6rd5bm/yXhRN4fxvrw0+A0EaG5HwQd5Axz
+         Jn9VQEynJoXK5jG0Y4FPffHNwgLNxzln+7qqOb/CDTLDZW06bQoRU1MaI8OhKgyJdtE3
+         CdNeJNKPPM+6Q+sIsgRkiacCsR1tRxpD63Ra/6CND2SROsqpzM+PTYbmWPUUg5uhCQyU
+         DTwqfmPB7KFtwq9/Fowx4XOrl0KhQ8SfU49dGysACRRtHGsteu5dLN0SwxV0JI6rtBvS
+         JcQw==
+X-Gm-Message-State: AOJu0YxwZXJbfk0SBCzUbekELb3erAN0DOyPKSneN4MXeByoI08zy6tZ
+	m6d2+M0BkXjovGSR+grClTbskpiUXNO1ap1Hthlp5dMQskVHbGfTLJzjOoMXuW8=
+X-Google-Smtp-Source: AGHT+IHRN0EYIlVEghtEqMxeg1S3Go+WMINZWoqrHECHlbWMgqI/DcQDJtzKvV4+NTQvJ6/PflKb+w==
+X-Received: by 2002:a2e:300d:0:b0:2cd:9503:f91 with SMTP id w13-20020a2e300d000000b002cd95030f91mr465395ljw.15.1706180674614;
+        Thu, 25 Jan 2024 03:04:34 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id tj3-20020a170907c24300b00a2fde3a8097sm209847ejc.74.2024.01.25.03.04.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jan 2024 03:04:34 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Dmitry Osipenko <digetx@gmail.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240123083517.21091-1-krzysztof.kozlowski@linaro.org>
+References: <20240123083517.21091-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] dt-bindings: memory-controllers: narrow regex for unit
+ address to hex numbers
+Message-Id: <170618067286.174727.5575658659915083123.b4-ty@linaro.org>
+Date: Thu, 25 Jan 2024 12:04:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpq3LAzrdTXtnCskc0Md1e39Yo1+AQLHmOBVfgax4HEjKw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.4
 
-On Thu, Jan 25, 2024 at 02:07:59AM +0200, Dmitry Baryshkov wrote:
-> On Tue, 16 Jan 2024 at 16:23, Heikki Krogerus
-> <heikki.krogerus@linux.intel.com> wrote:
-> >
-> > On Tue, Jan 16, 2024 at 02:56:11PM +0200, Dmitry Baryshkov wrote:
-> > > On Tue, 16 Jan 2024 at 14:32, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > > > On 1/13/24 21:55, Dmitry Baryshkov wrote:
-> > > > > The PMI632 PMIC support Type-C port handling, but lacks USB
-> > > > > PowerDelivery support. The TCPM requires all callbacks to be provided
-> > > > > by the implementation. Implement a special, 'stub' Qcom PD PHY
-> > > > > implementation to enable the PMI632 support.
-> > > > >
-> > > > > Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > > ---
-> > > >
-> > > > Still not a fan of stubby stubs :/
-> > >
-> > > Me too. If there are better suggestions, I'll be pleased to implement
-> > > them. Greg, Heikki?
-> >
-> > Guenter, do you have time to look at this?
+
+On Tue, 23 Jan 2024 09:35:17 +0100, Krzysztof Kozlowski wrote:
+> Regular expression used to match the unit address part should not allow
+> non-hex numbers.
 > 
-> Heikki, Guenter, just a gracious ping for your opinion.
-> Probably another option is to read pd_supported (or all caps) before
-> checking the callbacks and then instrument all calls to PD with
-> pd_supported checks.
+> 
 
-I don't have anything to suggest here, but Guenter should really
-comment this one. In any case, FWIW:
+Applied, thanks!
 
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+[1/1] dt-bindings: memory-controllers: narrow regex for unit address to hex numbers
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/2f542c937c48c2bd5a8ddf180b417fbe7152559f
 
+Best regards,
 -- 
-heikki
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
