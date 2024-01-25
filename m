@@ -1,311 +1,108 @@
-Return-Path: <devicetree+bounces-34928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C411483BBEF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:26:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6B983BBF3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:27:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73E66286B96
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:26:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CA59282847
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E87E175B9;
-	Thu, 25 Jan 2024 08:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D76B6175B4;
+	Thu, 25 Jan 2024 08:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XGoOcx7t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZEMYCeZG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A6EA175AA;
-	Thu, 25 Jan 2024 08:26:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5354B199B9
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 08:27:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706171191; cv=none; b=SawzTYSxVbtoy15jjqiBLshXYFxZUdTfHrI0xZ5wahEbrpyFiuY4Z9UnIgDZjXXIhGHAfSPI8l9OF0JLJe8rXzeobvUbRvHE7scklIaTMBWuYym04uxTp4hUx3T8So+ab9RsykKI/uYqTXbhc/qV05RJmzXE92DyDtjqT3OCOJg=
+	t=1706171225; cv=none; b=lkUuR0SpDJhfNpHntsJaqZ5vp4yzpBqG/+GgsJYPp+6qv0MK/YLmxj64Gk9od3DV4jDDGNOS6WNWeRDGOIE2I8dgFx2T6pP/MZ+jM5oCVT4fxp/vL1j3grY5CZy7/KH3xx6KT2cnsrX7a+co8QM2dTi/UC63cIySMhdh7XWH2mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706171191; c=relaxed/simple;
-	bh=Zw8V8UjUD9M5Akt0Mg0TBvrOODvY6i5uuUFpRRZaGyE=;
+	s=arc-20240116; t=1706171225; c=relaxed/simple;
+	bh=epCn74cCro25TUD1QolrGgdibFLExDob+WY6wtKgwgU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gqBSmhg1dImFW4lse0bJi2TpyzEFykTLDvDxsxGG/enzhIRd/udVkiAD7EkOCUw2ivIhVMM/Zby/thnpuXdjAhoP0eJc41fDLc0uegPWs+ShiYsXKZZczs5tOzIOpdgyThFRV2BgCEe/xJbEWUU+BNG0MLeoyLyBAhfQZ55AINM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XGoOcx7t; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a31a69df7ebso5146866b.2;
-        Thu, 25 Jan 2024 00:26:29 -0800 (PST)
+	 To:Cc:Content-Type; b=LL1WEMuTU28NqAMV0hSmKvTorR7vgbJc0wCGfWa3qAob2YEPlwMnt1h/A7RcR2+6EfcOVj7jtll4rjpwfbAT0M8FNmojhbEZPkUt53daNZujile/9SouKR1P961zYDLsXzcUHw2lO4j7UIHz/u2euOCQPyxHPUr5iZTfMqIdPBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZEMYCeZG; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-600273605a9so37342417b3.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 00:27:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706171187; x=1706775987; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VDj9dyDoJvW3QDD18miYbUUM3hC9uhJPCrBBQYx1s3w=;
-        b=XGoOcx7tg6THtesvdnfZQC+S06T1G8feN8HvI+drbK7jSTg+ZgnGfzWtraXNqJrLaE
-         VQlTC+jY5DmrcaTLkNimwfvfB5e7vdrDtsRj6XKYaXXMi1LBb42dfUG5/PiV9wrhGpyf
-         KoFj6RT3JrCwjCNQrP57JJBPOnYD3WDrkXD0Ir8QddXHIC/ZsZogkNhFWgWB5uiy5gtu
-         T2ND/IO/McEyp29M0gBY74CLfpNiezWUwCmoaIVmDbwhg4UvNRASq5CVXW5YVkKWI6wM
-         PzNin7kYAxsgC8weXwVeyIIJM2JHCembl5TP6WMAj5L7qPgor53Fg1lk7qlmsmzmaQe6
-         4LbA==
+        d=linaro.org; s=google; t=1706171223; x=1706776023; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5db9cUe3aHqjgTBEeT9QTdcx827mStp0Y3bBIBsr4u0=;
+        b=ZEMYCeZGT5DFTI7ZZcwNjRAywthp74itgUlUcL8/0l28YpdHU8mRKiHESNoPuzP761
+         KkMaXXph5DRJZiSgYAwkMhnSEhMYqoJEqqM6teV4Yo5SCLRGQvnu7qVDq3ciax9TRmmK
+         kG8JGApkxpvc4NZvIBVKwzPleqpLQQRBYix029tsVNQgR2Cb3jaBgyhPDlZqnlP6qmoR
+         z2gPEX2JKDSyUY6MLDILzAE5VJZsX2zIbpHtLnjaL5W5W4nmg6vk1VKbZLSYUfvs2GH7
+         vXhDPN/o9Dpvg6fjjj6CSHN9L3B89c9LSpmSMjIN88e667pt1JR+MYk5OUJ33aYMPH41
+         iVrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706171187; x=1706775987;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VDj9dyDoJvW3QDD18miYbUUM3hC9uhJPCrBBQYx1s3w=;
-        b=KNGN4KM1SYuSWDeeEu36n3KnD+6WG3M0qW6SF327wq+/mvw0FKGBp9rQ3tiBJNNY2K
-         zXOzW8T4fnh5HXe1MfRCEjwKQxHodlgAXlNPRrVSgmD0dW32h1U+mzrasKVHFf0o8P68
-         +/q65lx0oyfKr7CG4rKdoBlkGYGy+BqEVubRS0L3vEh0OfSYhIEDB5qgmpSagzYoIUsq
-         UuxgwVPJvCN2jvvk28qv1SwTeveHK07AdUGCO2oemicwryA08ZCN0M4ccRAbC5etfV/L
-         XefSN786UbqpEzAYmN+2JaXZ0tBoYq0YB8MNddGUcCMfxtAbOVHev0ccVeaeyzr8SWlb
-         9x6A==
-X-Gm-Message-State: AOJu0YzQgKn6Y+vHsyZlHp7ijXkTS32m94ByXWPRd98w2zQLRHVbXcwr
-	D26IA393zr9xvNhxs1d22udkMDeJtG5fLIaYEhysnizJtwom1qrrePmh6ojRTTvxopekzv1SQDj
-	iMa7udJigno/qTVhEygZTG1oclfWAnE+04J6L0tpM
-X-Google-Smtp-Source: AGHT+IFe5x9xJqmTBkPbDbVckjTr5VlFUGBZ1jAXSJ0LaemIY/IikLrFwH4+EqivDX2V//P3tQKjtaGhPsWbBksy39U=
-X-Received: by 2002:a17:907:a70d:b0:a30:e04b:cbd7 with SMTP id
- vw13-20020a170907a70d00b00a30e04bcbd7mr449239ejc.64.1706171187180; Thu, 25
- Jan 2024 00:26:27 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706171223; x=1706776023;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5db9cUe3aHqjgTBEeT9QTdcx827mStp0Y3bBIBsr4u0=;
+        b=lpceDrZX9boPexpZUxDQ74Z5k4zPAYoFlhjGWFgA32qwdrHLAW+n/htzC2xV4KAuRS
+         9jEPDnHbTk8VfyEvRfUvhlhA3umFRKALcMyYqsiunlAx1eSk72u+31Y2h39ZevOoKbrj
+         wTkZuwGp784g3wbWmGncWyjui7QMTv9oVY0l5erKrUyMJ7iO8Zuq/U09BCKhuj498AIY
+         cdJE7N3rOA5u1TdOTautAd2h/TIp/KvKI3rc4t2FTbxaH+G/qO2vPjyy4YJvQJQCOKqT
+         PlBz5ecQTYWkpdJzrMoQaV03AG9YbkhkZm4e51sy8brUFjui930nfvs3HdhwajLYgiNf
+         j+sQ==
+X-Gm-Message-State: AOJu0YxtFDYUYKH7Uk2hnFQuhy+BVDFVvOScxryw85owW6E0bKkcye7G
+	y/AGZjY2cEn405YFCNL27j00pQQS3TC6I9qHcPtWl3GU2z2O5zqDih8EUuPNesEzvoKup/SeIV5
+	46gvxDEN3oJAdFnP3M04m7fd/jxEG+DRtAqpWTQ==
+X-Google-Smtp-Source: AGHT+IEUQCuoEpqKG7r7GJy4FbZtSZ/S0mjmHDm9w7otjaaJRTfJiU+7gOZnFJldnLX/tYEdSk92C7pDiM359eCuLz4=
+X-Received: by 2002:a0d:dd89:0:b0:5ff:88d2:631e with SMTP id
+ g131-20020a0ddd89000000b005ff88d2631emr355966ywe.90.1706171223325; Thu, 25
+ Jan 2024 00:27:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-2-5879275db36f@gmail.com> <245f5692-be30-4216-8b13-988092793732@linaro.org>
-In-Reply-To: <245f5692-be30-4216-8b13-988092793732@linaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 25 Jan 2024 12:26:15 +0400
-Message-ID: <CABjd4Yz3RTeog0gvYaSK3A5H8NzQpYeqmjRWN1QDHjVPG9qTpA@mail.gmail.com>
-Subject: Re: [PATCH 2/4] arm64: dts: rockchip: enable built-in thermal
- monitoring on rk3588
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
+References: <20240123102817.2414155-1-quic_uchheda@quicinc.com>
+ <CAA8EJppwboaEbKFFACr3LO0OHg4iOJPapKRqoH2EGEYcjV6HfA@mail.gmail.com> <735575f5-ee46-4c91-b0bd-e9c6fb97361c@quicinc.com>
+In-Reply-To: <735575f5-ee46-4c91-b0bd-e9c6fb97361c@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 25 Jan 2024 10:26:52 +0200
+Message-ID: <CAA8EJpr6XrhNp2gdbqmCow7ShXLNXEwGZ-a_Yxr08bcxtORg6A@mail.gmail.com>
+Subject: Re: [PATCH RESEND] arm64: dts: qcom: qcm6490-idp: Add support for
+ PM7250B PMIC
+To: Umang Chheda <quic_uchheda@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Kamal Wadhwa <quic_kamalw@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 25, 2024 at 1:56=E2=80=AFAM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
+On Thu, 25 Jan 2024 at 10:10, Umang Chheda <quic_uchheda@quicinc.com> wrote:
 >
-> On 24/01/2024 21:30, Alexey Charkov wrote:
-> > Include thermal zones information in device tree for rk3588 variants
+> Hi Dmitry,
 >
-> There is an energy model for the CPUs. But finding out the sustainable
-> power may be a bit tricky. So I suggest to remove everything related to
-> the power allocator in this change and propose a dedicated change with
-> all the power configuration (which includes proper k_p* coefficients to
-> be set from userspace to have a flat mitigation figure).
->
-> That implies removing the "contribution" properties in this description.
-
-Alright, I'll just drop those "contribution" properties, thanks!
-
-> Some comments below but definitively this version is close to be ok.
-
-Yay! :)
-
-> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > ---
-> >   arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 165 +++++++++++++++++++++=
-+++++++++
-> >   1 file changed, 165 insertions(+)
+> On 1/23/2024 5:48 PM, Dmitry Baryshkov wrote:
+> > On Tue, 23 Jan 2024 at 12:28, Umang Chheda <quic_uchheda@quicinc.com> wrote:
+> >>
+> >> qcm6490-idp platform supports PM7250B PMIC as well.
+> >> Add support for the same.
 > >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boo=
-t/dts/rockchip/rk3588s.dtsi
-> > index 36b1b7acfe6a..131b9eb21398 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> > @@ -10,6 +10,7 @@
-> >   #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> >   #include <dt-bindings/phy/phy.h>
-> >   #include <dt-bindings/ata/ahci.h>
-> > +#include <dt-bindings/thermal/thermal.h>
-> >
-> >   / {
-> >       compatible =3D "rockchip,rk3588";
-> > @@ -2228,6 +2229,170 @@ tsadc: tsadc@fec00000 {
-> >               status =3D "disabled";
-> >       };
-> >
-> > +     thermal_zones: thermal-zones {
-> > +             /* sensor near the center of the whole chip */
-> > +             package_thermal: package-thermal {
-> > +                     polling-delay-passive =3D <0>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 0>;
-> > +
-> > +                     trips {
-> > +                             package_crit: package-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             /* sensor between A76 cores 0 and 1 */
-> > +             bigcore0_thermal: bigcore0-thermal {
-> > +                     polling-delay-passive =3D <20>;
->
-> 20ms seems very short, is this value on purpose? Or just picked up
-> arbitrarily?
+> > The platform can not "support" PMIC. Please fix the commit message.
+> Shall I change the commit message as below in the next patch ?
+> "Add PM7250B PMIC support for qcm6490-idp"
 
-Frankly, I simply used the value that Radxa's downstream DTS sets for
-my board. 100ms seem to work just as well.
+This is also not accurate. You are not adding support for the PMIC.
+You are describing PMICs present on the board.
 
-> If it is possible, perhaps you should profile the temperature of these
-> thermal zones (CPUs ones). There is a tool in
-> <linuxdir>/tools/thermal/thermometer to do that.
->
-> You can measure with 10ms sampling rate when running for instance
-> dhrystone pinned on b0 and b1, then on b2 and b3. And finally on the
-> small cluster.
-
-It seems tricky to isolate the effects from just one of the CPU
-clusters, as their individual thermal outputs are not that high.
-
-For my testing I disabled the fan (but didn't remove the heatsink to
-avoid wasting the thermal interface tape), and tried loading CPUs with
-stress-ng. Here are the observations:
- - Little cores alone stressed with 4 threads pegged to them with
-taskset never reach the throttling temperature (85C), and balance out
-around 60C
- - Either of the big core clusters stressed individually with 2
-threads pegged to them with taskset never reach the throttling
-temperature either
- - Four big cores with 4 threads heat up very slowly (>30 minutes to
-reach throttling temperature, I didn't have enough patience to let
-them actually reach it - maybe they never do)
- - Eight cores with 8 threads heat up to the throttling temperature
-within ~5 minutes (again, with the fan off), and then, as soon as just
-one of the big core clusters gets throttled, the temperature of all
-cores balances out just below the throttling threshold. In my
-observation cores 6,7 go from 2.4GHz down to 1.8GHz while the rest
-stay at their respective top performance states (2.4GHz for big cores
-4,5 and 1.8GHz for little cores 0-3)
-
-Adding to it the fact that the temperature measurement resolution is
-not very granular (almost 1C) it's somewhat difficult to estimate how
-fast throttling action on a single cluster really brings its
-temperature within bounds, as they all affect each other at relevant
-temperature-load combinations. Perhaps it means that too granular
-polling doesn't add much value.
-
-> But if you don't have spare time and 20 is ok for you. Then it is fine
-> for me too.
-
-I guess I'll go for 100 as other upstream Rockchip .dtsi's do, given
-all of the above. Thanks for pointing this out!
-
-> Some nits below.
->
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 1>;
-> > +
-> > +                     trips {
-> > +                             bigcore0_alert0: bigcore0-alert0 {
-> > +                                     temperature =3D <75000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             bigcore0_alert1: bigcore0-alert1 {
-> > +                                     temperature =3D <85000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             bigcore0_crit: bigcore0-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +                     cooling-maps {
-> > +                             map0 {
-> > +                                     trip =3D <&bigcore0_alert1>;
-> > +                                     cooling-device =3D
-> > +                                             <&cpu_b0 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>,
-> > +                                             <&cpu_b1 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>;
-> > +                                     contribution =3D <1024>;
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             /* sensor between A76 cores 2 and 3 */
-> > +             bigcore2_thermal: bigcore2-thermal {
-> > +                     polling-delay-passive =3D <20>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 2>;
-> > +
-> > +                     trips {
-> > +                             bigcore2_alert0: bigcore2-alert0 {
-> > +                                     temperature =3D <75000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             bigcore2_alert1: bigcore2-alert1 {
-> > +                                     temperature =3D <85000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             bigcore2_crit: bigcore2-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +                     cooling-maps {
-> > +                             map1 {
->
-> s/map1/mpa0/
-
-Noted, thanks!
-
-> > +                                     trip =3D <&bigcore2_alert1>;
-> > +                                     cooling-device =3D
-> > +                                             <&cpu_b2 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>,
-> > +                                             <&cpu_b3 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>;
-> > +                                     contribution =3D <1024>;
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             /* sensor between the four A55 cores */
-> > +             little_core_thermal: littlecore-thermal {
-> > +                     polling-delay-passive =3D <20>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 3>;
-> > +
-> > +                     trips {
-> > +                             littlecore_alert0: littlecore-alert0 {
-> > +                                     temperature =3D <75000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             littlecore_alert1: littlecore-alert1 {
-> > +                                     temperature =3D <85000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             littlecore_crit: littlecore-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +                     cooling-maps {
-> > +                             map2 {
->
-> s/map2/map0/
-
-Noted, thanks!
-
-Best regards,
-Alexey
+-- 
+With best wishes
+Dmitry
 
