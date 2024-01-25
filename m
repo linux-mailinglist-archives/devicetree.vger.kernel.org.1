@@ -1,173 +1,195 @@
-Return-Path: <devicetree+bounces-35017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9151B83C0D1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:31:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D917883C119
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:40:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 099FE1F240A5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:31:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 470151F26638
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:40:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B8A2C68A;
-	Thu, 25 Jan 2024 11:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 728924F8B6;
+	Thu, 25 Jan 2024 11:36:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="opKgYAfZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PSqj+YfC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6DE249EF
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 11:31:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C404A5731D;
+	Thu, 25 Jan 2024 11:36:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706182308; cv=none; b=pBZJcUIC0XjysGiWACpP0aDvqU/tC2oW4P/DBT1GJUBTywljUS6HGedghY5AyV6Tk6b4/hL5xz1YywaKUfvUum0VwbPVRtmysUAmf4vCnVtETFxqD1S1M8H3HYgmHnErDtUrCOBrox1uAXxJ97/QUulFO8AuYtLD2NDSPMih3c0=
+	t=1706182614; cv=none; b=uL+vNXcJYbPyx26PUxc/enJgqIXNqXBv9DVyhcK3gIxghRVbnz8q9ZHdVbpA0a/9pGbcZGrnQr3OK7mp0sjUpqihYgF5qrDW/UUITydS2KTXAw6l374IlVnTwSFHrGbfbMW2kH/OZie9RYSZ+e5XkDrj7NVTJE/E1I+W4XmywmY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706182308; c=relaxed/simple;
-	bh=Gkox73kJQuPMe66Dq8WQy5T/1qpGqY8Q73OZXUdTLMg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XawSNn9pO7Z5kDtAV9BcB1/hDX3E5mUwGYMSlIYtA/Ld5kOH2E4T2YrGyc9RT7TlIPSAdXaM1Xfn7j02Z7SR9F5KhZdfvPEXQ0+z0ZnbW6YAOKpDzwSkPFyd6TRyE0aAsPGFskRJSRoPNZuYFw9knB4mVQx/4NWekXZxrGEFIfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=opKgYAfZ; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3150c9568bso144809366b.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 03:31:46 -0800 (PST)
+	s=arc-20240116; t=1706182614; c=relaxed/simple;
+	bh=9OP2AYCXD7CTzXDDBNhR6z28ox5cvhSWUThScGzrt+w=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bog0JRlwdCPUSVbuAXDdv39qB2Zu0Kc7gudh39RlLYC3h04vYNGGH7Ft8bAPobjNStoMmtMYWlkAw5EfhSEioESQCjyjjkp/kg+xun7iqFtdH/vcy8ojGsdwad/nRr06DhYNxAe0H/oFQDb7FMLoK1lXW2PY+pUozWFyvDOvI3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PSqj+YfC; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40ea5653f6bso68137195e9.3;
+        Thu, 25 Jan 2024 03:36:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706182305; x=1706787105; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kXUM1YzAYFxAt6CaSZMDshr9nnMeTjeJvJ3fZvy8u/s=;
-        b=opKgYAfZ5aaJt0W7P2JLzR805OtAPLvUkor0EjHZxh+D0O0xa9hAVxLF66ycScTY+a
-         RQIAZcIrOpj8g3AOdUKiADlJRn3XMFphf+VJ7+s+XcTXyE1KvirJy6YEKeKLkKmzuvfm
-         FEn9NyqaAiCLTtk3OJR08HCiA5V8UkMOIU4UerDF3YrCelmgnV5hNF8DnXhUDbUFBqWW
-         ynlC0sKRdiPkG/mFLwPXNC7Q2dfLKZWKRgiF5xZBuqxq2IiEGdiVRtqfMWE2cIrenNHw
-         RmysPCG4GUu8eRxRR39I0GhE+WxyjKvQpYhBJjREUF015NIFDVjGoyWqE9t6Ft3ZqAzd
-         5+KA==
+        d=gmail.com; s=20230601; t=1706182610; x=1706787410; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=DYXWEmKQIsLe7nv5ynnIoPrTMyRKUKUjaFaattLgh4Y=;
+        b=PSqj+YfC4dKUf3TITfNWqC9Y/OljlkLJ+hVYL0FhM/Dcot19NQxX5Bl20+5m+CbCZr
+         pkehB2n3JmKF1Orw3gmWgclhwkbtAP32k5jqNSZZR6LQzKHO+RzG2oij1r4OI9pilDge
+         3/A+HSO85uK/vA5IFoLokw6mDrRwoRZx8yeRheNPugJ2i9cKQ74vxLMQP1kyK7wnk3Zi
+         Aw3l1Ra0SMuAm09HX7g8FMpG57Wz4vuzU9g7MMQJ+tnajXF6loO0k/S72c3DwJSHRYxh
+         geu3YQVrUTWQ5ACxTXHsnpFhEORbR/uU+jkDboj1ZHfDf/HrSLMsla3QJXxatpEyoCYY
+         iBqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706182305; x=1706787105;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kXUM1YzAYFxAt6CaSZMDshr9nnMeTjeJvJ3fZvy8u/s=;
-        b=ltue36nxl0Ol3qWLbz/ESLprwtzNwubjwBxF2U+8MVSSpisK12ADNol744kxOBRZTw
-         H4BJZLlj0Z6/ExQNVrU0QNgzmKYoHnKLHl4TVmq707YCM0h91J44kCWBEGXDz0ltyDZI
-         UlkDyiY0Qav5gbkAGVHITQRGo8nbIXu4uCP5hrv+SYR0eVPZeqhtGK+BD1SnKcvvxrMS
-         +guccu6ZVIQnpOXZhT0J3IDlz8g2Ihbam3Lu/8+G9nnZQiBLR5tB+7HX0Cu0B36959mN
-         K9ca7cL1qbfwn+1tVdaq+5YQZnmXKZdS4Q6BNROeMsNXzCOJ6ZSW5qId7uhLcOoEPTUD
-         0AaA==
-X-Gm-Message-State: AOJu0Yx5zrgs0OOpqYQi0cKuVcbyGX8P+6Ph2Hmc9FirzZivAVt9byf4
-	TNmUj6PalDpd0OkRh54AwUgbD+FzeFL07e7e3ntboFqkLHwn+zgAfIEjDNAUfVQmSJbqX5/9sqM
-	A
-X-Google-Smtp-Source: AGHT+IG+EI2F/oVESA9vZty2MHPPsg/wRRdsbAdTQn1xzmWa06cwSrT2Culo5UeVGzoI/+EGUXZ1hQ==
-X-Received: by 2002:a17:906:250c:b0:a2e:893f:7333 with SMTP id i12-20020a170906250c00b00a2e893f7333mr281802ejb.5.1706182304677;
-        Thu, 25 Jan 2024 03:31:44 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id tk11-20020a170907c28b00b00a3040040011sm928081ejc.45.2024.01.25.03.31.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 03:31:44 -0800 (PST)
-Message-ID: <986db909-144b-465a-8c46-273042a4fe5e@linaro.org>
-Date: Thu, 25 Jan 2024 12:31:42 +0100
+        d=1e100.net; s=20230601; t=1706182610; x=1706787410;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DYXWEmKQIsLe7nv5ynnIoPrTMyRKUKUjaFaattLgh4Y=;
+        b=Qqyfdg3L0749d8eo4FDiphObPWzp4qLABYAKRu25lmiTfi4N+A+z+HJXmSgQr11n5C
+         82Opv8eDtwOP7wCwXKtt6Y5XP3G9LLw1oqTxmNlwic7gA7uC2InwLJuaCcVn5XV1WCoD
+         X+5HYW4z4YYlik5/EVvof2bGk/f0kFPrYxzxKZ9TSHEdGtTALzSgt0lo4BEANaTgor+O
+         HNlH+Anpr0LHNRw17cPIVQrKuXkdnLuNacHFQOJyx22wVUY7O0pvqay/Vy+7yBHzrnBV
+         HF/h2sMX65LFgyBo8WToVLvO+Y9KKs2eevvz1jtP2L+ToaWxAlA/r2m48+gquvrjDbRG
+         z9Gw==
+X-Gm-Message-State: AOJu0YxEpIzX1bWFJU6caXg8FfRuo/Nw8R79LSsdyOSYk1ZNhh0DX+0F
+	vjHdFQgn38AwKs+hyCHRTo3Y84hVvAj2BPX1pLtIUiofILhmFb+6
+X-Google-Smtp-Source: AGHT+IH+/n86D85sKsgvGlpJ6zoWcRtr5Zg1ujyeXp+NnFo+8QR08EJvB11lYtfkWyctEvjXABh0bg==
+X-Received: by 2002:a05:600c:6a90:b0:40e:5aa4:44f8 with SMTP id jl16-20020a05600c6a9000b0040e5aa444f8mr405862wmb.216.1706182609563;
+        Thu, 25 Jan 2024 03:36:49 -0800 (PST)
+Received: from Ansuel-xps. (93-34-89-13.ip49.fastwebnet.it. [93.34.89.13])
+        by smtp.gmail.com with ESMTPSA id bl1-20020adfe241000000b0033935779a23sm10153265wrb.89.2024.01.25.03.36.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jan 2024 03:36:49 -0800 (PST)
+Message-ID: <65b247d1.df0a0220.12334.efd9@mx.google.com>
+X-Google-Original-Message-ID: <ZbJHzSCj8oGm-OJ3@Ansuel-xps.>
+Date: Thu, 25 Jan 2024 12:36:45 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Jie Luo <quic_luoj@quicinc.com>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Robert Marko <robert.marko@sartura.hr>,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Sergey Ryazanov <ryazanov.s.a@gmail.com>
+Subject: Re: [net-next PATCH 0/3] net: mdio-ipq4019: fix wrong default MDC
+ rate
+References: <20240124213640.7582-1-ansuelsmth@gmail.com>
+ <53445feb-a02c-4859-a993-ccf957208115@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm/arm64: samsung: Enable W=1 on dtbs by default
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20231116211739.3228239-1-robh@kernel.org>
- <ee10e67b-6a2f-4ab5-91ef-e42d2f03a424@linaro.org>
- <CAL_JsqJ67tZOmhTHQ7KqEbFuDjK8sKHR1FFtAFAaGjZ4uYi9Uw@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAL_JsqJ67tZOmhTHQ7KqEbFuDjK8sKHR1FFtAFAaGjZ4uYi9Uw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <53445feb-a02c-4859-a993-ccf957208115@quicinc.com>
 
-On 21/11/2023 15:58, Rob Herring wrote:
-> On Fri, Nov 17, 2023 at 3:19 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 16/11/2023 22:17, Rob Herring wrote:
->>> Samsung platforms are clean of W=1 dtc warnings, so enable the warnings
->>> by default. This way submitters don't have to remember to run a W=1
->>> build of the .dts files and the grumpiness of the maintainers can be
->>> reduced.
->>>
->>> Signed-off-by: Rob Herring <robh@kernel.org>
->>> ---
->>> Well, there's a couple of warnings on 32-bit, but they look fixable to
->>> me.
->>>
->>> There's a few other platforms we could do this to. Sadly, they are still
->>> the minority. Otherwise, we could change the default and add a flag to
->>> disable (I_STILL_HAVENT_FIXED_MY_PLATFORMS=1).
->>
->> 64-bit has still few warnings:
->> https://krzk.eu/#/builders/29/builds/3710/steps/26/logs/warnings__6_
+On Thu, Jan 25, 2024 at 01:57:20PM +0800, Jie Luo wrote:
 > 
-> I may move that graph check to W=2. There's some cases where port@1 is
-> optional and it doesn't really make sense to fix these.
 > 
-> Also, Conor wants to do this for all of riscv, but this solution is
-> per directory. So I need to rework it to use a different variable that
-> can be per directory or global.
+> On 1/25/2024 5:36 AM, Christian Marangi wrote:
+> > This was a long journey to arrive and discover this problem.
+> > 
+> > To not waste too much char, there is a race problem with PHY and driver
+> > probe. This was observed with Aquantia PHY firmware loading.
+> > 
+> > With some hacks the race problem was workarounded but an interesting
+> > thing was notice. It took more than a minute for the firmware to load
+> > via MDIO.
+> > 
+> > This was strange as the same operation was done by UBoot in at max 5
+> > second and the same data was loaded.
+> > 
+> > A similar problem was observed on a mtk board that also had an
+> > Aquantia PHY where the load was very slow. It was notice that the cause
+> > was the MDIO bus running at a very low speed and the firmware
+> > was missing a property (present in mtk sdk) that set the right frequency
+> > to the MDIO bus.
+> > 
+> > It was fun to find that THE VERY SAME PROBLEM is present on IPQ in a
+> > different form. The MDIO apply internally a division to the feed clock
+> > resulting in the bus running at 390KHz instead of 6.25Mhz.
+> > 
+> > Searching around the web for some documentation and some include and
+> > analyzing the uboot codeflow resulted in the divider being set wrongly
+> > at /256 instead of /16 as the value was actually never set.
+> > Applying the value restore the original load time for the Aquantia PHY.
+> > 
+> > This series mainly handle this by adding support for the "clock-frequency"
+> > property.
+> > 
+> > Christian Marangi (3):
+> >    dt-bindings: net: ipq4019-mdio: document now supported clock-frequency
+> >    net: mdio: ipq4019: add support for clock-frequency property
+> >    arm64: dts: qcom: ipq8074: add clock-frequency to MDIO node
+> > 
+> >   .../bindings/net/qcom,ipq4019-mdio.yaml       | 10 +++
+> >   arch/arm64/boot/dts/qcom/ipq8074.dtsi         |  2 +
+> >   drivers/net/mdio/mdio-ipq4019.c               | 68 +++++++++++++++++--
+> >   3 files changed, 75 insertions(+), 5 deletions(-)
+> > 
+> 
+> Hi Christian,
+> Just a gentle reminder.
+>
 
-Just to clarify, because I still have this patch in my inbox: I assume
-you are going to send a v2 of this, so I drop it.
+Hi Jie,
+hope you can understand my reason.
 
-Best regards,
-Krzysztof
+> The MDIO frequency config is already added by the following patch series.
+> https://lore.kernel.org/netdev/28c8b31c-8dcb-4a19-9084-22c77a74b9a1@linaro.org/T/#m840cb8d269dca133c3ad3da3d112c63382ec2058
+> 
 
+Wasn't aware of this, as I said in the cover letter this all comes by a
+problem we notice in the Aquantia firmware load that was slow as hell
+and we just notice the misconfiguration of the divisor.
+
+The feature in this series is really a simple one and almost ready (I
+already have v2 ready for the request from Andrew to follow 802.3 spec)
+and we really need it ASAP as we are trying to move our ipq807x targets to
+upstream driver and finally start using the integrated firmware loading
+for Aquantia PHY.
+
+Also I can see some fundamental difference between the 2 patch, mainly
+in how the value is applied and setting a sane divisor by default
+instead of using 0xff. (probably Andrew would have pointed out the same
+thing in some later revision to your series)
+
+Looking at the linked series I notice there are still some thing to
+polish and to clarify with DT and driver and I think it's only
+beneficial if this feature is worked separately as it's not only needed
+for ipq50xx but affects every user of this (ipq40xx, ipq807x, ipq60xx)
+and it would be a pitty to wait the entire ipq50xx series to be handled
+just to fix a long lasting misconfiguration on various SoC family.
+
+Hope you can understand these reasons, it's all for the sake of making
+this driver more mature quicker.
+
+> This MDIO patch series will be updated to just keep the MDIO frequency
+> patch and DT document for this MDIO frequency property added.
+> 
+> For CMN PLL config will be moved to the CMN PLL clock driver and the UNIPHY
+> clock config will be moved the uniphy driver as suggested by
+> Sergey's suggestions.
+> 
+> Thanks.
+> 
+> 
+
+-- 
+	Ansuel
 
