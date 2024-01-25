@@ -1,112 +1,108 @@
-Return-Path: <devicetree+bounces-35310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01AC383CEBC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:36:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D67883CED9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:49:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33C551C23F0C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:36:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B23991F28EB8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:49:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7071813AA5A;
-	Thu, 25 Jan 2024 21:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB0A13A26E;
+	Thu, 25 Jan 2024 21:48:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="8HxHjOLF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NBZqDCRb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A5D1386DF;
-	Thu, 25 Jan 2024 21:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2E1135413;
+	Thu, 25 Jan 2024 21:48:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706218542; cv=none; b=Hb1Z6f7qoRG7jru+4VPp9lNL1vEKJe9LEfVdyvBomX+z3EYjsM6Tm8rs2NA/4ohqBqUnfEOy+R1T2oG2lgWPf/Nazo55gclwxlD1YRNIeNXjFkF8NZzCtVoar1lt/0Nx0j/XgaJb1qLiDjg+CoDDp5CVwdFFD1hL5NuUonabszI=
+	t=1706219336; cv=none; b=RpwdciipZR6ES0yJ2+vJe6G42oxUaNYOgsk0EyMJI9jhB1dAJ3ot+H/bUfTdbhuFu9bmJLzftHyA2l2BKUxE9RnbtVZzvxi3pk0YBMICYCHfvRvv002rFZEIeglb8OUlgB5BuZ9zM+0cPd34JGD+18j19BO4sIb9k6X6VU+Asuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706218542; c=relaxed/simple;
-	bh=yU5QrcQggwQQZ+kfNFxdDHxu5MXwpTUge718BD6qWsA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hhjek9Z/1EUyKOBo4i1B8wCOn+XwkVthPCHdY6wGruLNEStK8lSIcd+CRYD0slVyi2RoTjgy58whKGfCX8nyR+PzreD/Zoa1prdVNTHJXT9LYUTU+zTk+5xYeXKgMc82x+w7XSSI2WrFxrKl1Oe/fR4zjJn8JU0kfb6eeaD1ARc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=8HxHjOLF; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1706218539; bh=yU5QrcQggwQQZ+kfNFxdDHxu5MXwpTUge718BD6qWsA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=8HxHjOLF+iUIlmdJpb+yOEnAOc73gJ70iQl3IEieRVCRQBRZkpfENOBnc0vIdKrhm
-	 FXYR2/mVAIz9uHQs/owmqJQqFdW/Q3u04NI46mXKpRkOGBketnm3BFgs9ULiC8rIzI
-	 N8fsDFDKGquBYwTD6euXWUiGU/qgo+JkkF/k+CBY=
-From: Luca Weiss <luca@z3ntu.xyz>
-Date: Thu, 25 Jan 2024 22:35:14 +0100
-Subject: [PATCH v2 3/3] arm64: dts: qcom: msm8953: add reset for display
- subsystem
+	s=arc-20240116; t=1706219336; c=relaxed/simple;
+	bh=rWGTonIdjaAw97+VCMgdvv8+A740NjupUkUrNWkZhiU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VIyxkyuO64u1Y6eoIxZP3XE4WNxTrDty5SqRG8WoJOmuOs2NLaL6y2eUvPQqPSOtk3c5Muf6nbka/xPIFqvgb+WFxBzODwbaQG0UxcyQptLLpylLfO2GRzQJTXNqRqzmGi1F8Z1H1CxCywbIZfq3fA99Eb1OUu2+zNnF5FJT2Ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NBZqDCRb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD265C433C7;
+	Thu, 25 Jan 2024 21:48:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706219335;
+	bh=rWGTonIdjaAw97+VCMgdvv8+A740NjupUkUrNWkZhiU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NBZqDCRb8YD9sWKY5X5LSGXBZlsGS5XW90KA4XY5rwha8+ew31eOIpNFyMuattB4w
+	 2sz8XKtIikx9HlT5vLckXPu1NtzXZqplpKMxpUQVIdM/jSBGwdp3dapwPJJkH5PWPU
+	 3wnPCxc/O51mJ4W7Bl+DBqK0MIiZdH+I3x08hAbUmq3FFVnZ7/IFxC3MJ8UZ2Xclyr
+	 rcwFlKGeOghipvEhMXHX7vXwe1da98i7EosC7ZRaf8GBBOmBj+m1ftDESID+YFE861
+	 Z28nCaCuycEPvpwQ54qFY+y2LfyseerDBw8ftFaf7V2pPT0gF8y4Zs61QrL1M3KM/U
+	 yCjsFsafBTZlw==
+Date: Thu, 25 Jan 2024 21:48:48 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, andi.shyti@kernel.org,
+	arnd@arndb.de, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-arch@vger.kernel.org, andre.draszik@linaro.org,
+	peter.griffin@linaro.org, kernel-team@android.com,
+	willmcvicker@google.com
+Subject: Re: [PATCH v2 10/28] spi: s3c64xx: use full mask for {RX,
+ TX}_FIFO_LVL
+Message-ID: <e2c25c1b-7fe9-4174-95ed-e867eff14e37@sirena.org.uk>
+References: <20240125145007.748295-1-tudor.ambarus@linaro.org>
+ <20240125145007.748295-11-tudor.ambarus@linaro.org>
+ <CAPLW+4nOGjfniu+shzO5irmH5bC1E_yD0EZcuDwQJKdfMiDswA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240125-msm8953-mdss-reset-v2-3-fd7824559426@z3ntu.xyz>
-References: <20240125-msm8953-mdss-reset-v2-0-fd7824559426@z3ntu.xyz>
-In-Reply-To: <20240125-msm8953-mdss-reset-v2-0-fd7824559426@z3ntu.xyz>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca@z3ntu.xyz>, Vladimir Lypak <vladimir.lypak@gmail.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=829; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=PzUs+5/iYFOXD5TPEPyAZhq1wFpo0mlo1sKi+auOvx0=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlstQoUguZBfVZalKZvT/s2F/nZ2v3tWppxGDNu
- tWud5Pl8XGJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZbLUKAAKCRBy2EO4nU3X
- VoMYEACbrmNAcNRKzZvwmfCgVFNyTCg1I1Z2ILz9rZou8AdDvxucvfn6vRdhtimmK9FrTm2PETT
- sioLaWn6Z4sQyHTqQzlypeWR45Ip/9rc4DCGob51xftVJQU0RGaNdiyDMq4m0IQXgIZVK9Er6bm
- +C1FdGzc9+Tzx8NpNX7hFViGOiqhwxSLeCyYQSCDda73uQbntRtqtOMggHyQinLEXx4HJOJsiod
- cJeUcq/7F6vb0SbQI64bddmjwUbq9cu3m+FcgSgabmCEYqenq8jhjJ/hIf26195ons2CcPxFQWF
- spj+75YQBK2NFdISJnjdg6OpJyB60gJnghou8p23Vd2rU8kIZib9X1tzG7BUxLgcNq/pTqzbFCm
- yVf7KHFfABIkx3PqccOVNVGUPfNekEpz2Bv7yVvXkRWavxTN0gYF7InjuiXWmpII2JKnhbdoLIo
- OMjOe2g4IC7+P6FobM7aVW7WyeRPV1HpIhR2Lp6Y+dk2lYitHIqStFUUle6H0iyD+Y6kwBEcT0f
- QvrhfBkX2TT4lPbs7+InXcFstxgmu6GQyLSe00atj5+mjIhpcLTD2eI0nrnEqiAZUPnFQ+XGMNc
- ynjS38vRZm+saU8xa0MEgUro0MWpGiTtdZ7+2jq9oyKtfAKFGfgt8a6Tct6nYSVYCyTMSobnFLu
- +RAuiMrvgrw2epg==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="D8vvs0/b2DbNCmIR"
+Content-Disposition: inline
+In-Reply-To: <CAPLW+4nOGjfniu+shzO5irmH5bC1E_yD0EZcuDwQJKdfMiDswA@mail.gmail.com>
+X-Cookie: Entropy isn't what it used to be.
 
-From: Vladimir Lypak <vladimir.lypak@gmail.com>
 
-With this reset we can avoid situations like IRQ storms from DSI host
-before it even started probing (because boot-loader left DSI IRQs on).
+--D8vvs0/b2DbNCmIR
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm64/boot/dts/qcom/msm8953.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+On Thu, Jan 25, 2024 at 02:03:15PM -0600, Sam Protsenko wrote:
+> On Thu, Jan 25, 2024 at 8:50=E2=80=AFAM Tudor Ambarus <tudor.ambarus@lina=
+ro.org> wrote:
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-index ad2f8cf9c966..dcb5c98b793c 100644
---- a/arch/arm64/boot/dts/qcom/msm8953.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8953.dtsi
-@@ -859,6 +859,8 @@ mdss: display-subsystem@1a00000 {
- 				      "vsync",
- 				      "core";
- 
-+			resets = <&gcc GCC_MDSS_BCR>;
-+
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
+> > +#define S3C64XX_SPI_ST_RX_FIFO_LVL             GENMASK(23, 15)
 
--- 
-2.43.0
+> What about s3c* architectures, where RX_LVL starts with bit #13, as
+> can be seen from .rx_lvl_offset values in corresponding port_configs?
+> Wouldn't this change break those?
 
+I should point out that I have a s3c6410 board I care about.
+
+--D8vvs0/b2DbNCmIR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWy1z8ACgkQJNaLcl1U
+h9A4kAf/Q+HBGYYkQyjJ5STSJRHGbWJxkifiVS4eI6m2f7lwAyvgTOjwWh00Ok4+
+Cyya2gAMfFPhwVXlaJDdCJy/iUerkZi31WdJ1mWXIi8emYRn8hzqPEMupJMjiHGK
+T05f9YtcTwyD1P2cHdhrrq0d8hpGqwvfH7zBsKDTwqXqS6BtARjR4MLX7mvReCYj
+uHHO2UtwKzAOClsM6BeDnSciuXDx2z57MhaXZNX9RpeMTrYCW57UdkfPOS0ZuSty
+6pAdSh7jgREL7cSTq2cU5K4BOXlwcWdmGPRk1d7V5x55zmPWVeuKZzGmfji1BQz9
+XH9AJbaQWAdfFzGPvs730pb/JC1GRw==
+=j0Ln
+-----END PGP SIGNATURE-----
+
+--D8vvs0/b2DbNCmIR--
 
