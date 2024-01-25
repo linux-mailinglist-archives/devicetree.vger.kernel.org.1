@@ -1,483 +1,159 @@
-Return-Path: <devicetree+bounces-35036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8423C83C275
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:26:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE8E883C2A1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:36:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8ADC1C23654
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:26:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F2E41C20DD3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C56F045971;
-	Thu, 25 Jan 2024 12:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359894439F;
+	Thu, 25 Jan 2024 12:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hOh7T/QS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hssU5OUD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C6A374F5;
-	Thu, 25 Jan 2024 12:26:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A07CF321AF
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 12:35:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706185600; cv=none; b=Xkfs7yBUq3cRrEMgOcvaqWURfs5RqcQwG9b7jrdVv6An3E7KUWGfx8bd+g66dEGkv8YFBJOVlFZwwzq5KgYK0+FrbxdxZdC3Mpk8j/kUkLnp2Dag4YkksqDmYRl2KHR5pA+1moVOlCg7Tta51yjKVwAiShYhZxcNzNInAuYkxU4=
+	t=1706186160; cv=none; b=OsRPh5qWiC027zd3KlDsbgTqtSdJ8DEsxaR0/ECcpZWSKrbN3mkELKzs2gfr0JOCuwl0OsdZyX71cxWefi4fUsTYDm/20aYQtEWy7+hNhY5O68Ot92VjxEG7GdAzUCzS4AlsYGLDCuZ82XhHCyiAe8NDev1mVKBRiXZ0N+K4cfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706185600; c=relaxed/simple;
-	bh=eg0BE0/bzHiVwjqaGGkO59lR5yhNlSyrwoDGQHAKiCw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H1+3xn/sYtAGGSYqhVYsdyDthMHsIdQi6G+4JAgRfMDiQP4e12DcXSZmEmkDAPwEbdzuDlQjPFyE7MWBAgEM44cyXANYOBfd8XMiv/hUIrorsP7ao9tfJvFAygX32OhAkZojoi3EO59i1NYjt+XUzHCUQdCzmTCoACJ4BqhSAe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hOh7T/QS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96F2EC433F1;
-	Thu, 25 Jan 2024 12:26:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706185600;
-	bh=eg0BE0/bzHiVwjqaGGkO59lR5yhNlSyrwoDGQHAKiCw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hOh7T/QSBw5sOWUjJsXbE8hWEIzW5nQwRQLSWteW1SCL9tJ1njr3CurQrWSfay0Rd
-	 AK//QA4mV1OVfjb4kjeljj5l67Cdd8HDHCYCds0dbeflBjPgk2nZ3MRM4n2VkjWzQP
-	 qH4wgEqb3R1mPDJOQLxT12C5L9xeN5cxzuptHjf3GAZt4qPBHl5kN4Vr6p3mWgIQN1
-	 4Ov16tACzBjJsRAaj/GxMeIF5YaEndARx/7XXcr5WsJFKmerKLOcGmfLnn1kIgLFxc
-	 QSFbvkHT9I+/SgJRRWndvHrOUOWUTq7szVFcS1clZbup5x7t36xu+0mlrOewUzYHCd
-	 VKI7Bsetl6kig==
-Date: Thu, 25 Jan 2024 12:26:34 +0000
-From: Lee Jones <lee@kernel.org>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: Karel Balej <balejk@matfyz.cz>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RFC PATCH 2/5] mfd: add 88pm88x driver
-Message-ID: <20240125122634.GE74950@google.com>
-References: <20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz>
- <20231217131838.7569-3-karelb@gimli.ms.mff.cuni.cz>
+	s=arc-20240116; t=1706186160; c=relaxed/simple;
+	bh=dW0TbzH85SjVANvAD4Sg0V7ktB0kgMzX7+8Ml8WnKYA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uBGmAIis2T0C4KbpNqmZqTxwPrXAXu/Zv9vEnK6SXc1kYKjdLzBAI0Ge1I1jSas/riVKOZr3pVS/xnnrfcJnQpmNusv4g+2aNrUsEiJqw01ts9dEcb5i7jw5EK0r6iEx5m4dGJo7BwYuMW8m4vRiHthDkkUrK52K3ay/WsqXLiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hssU5OUD; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40e7e2e04f0so72845645e9.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 04:35:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706186157; x=1706790957; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UKB+WrASShPGpvGZObpE9E8WIuSvj1nO7qysCIW9sOs=;
+        b=hssU5OUDfQhkxpresbD/LtQJ9XIb6agRYoXsWjzlYOEH0K1z4qnptIbHErbuO/mMEM
+         9clo4MDqSUYVunrqCp+GwdXjzocBLwKCCiCt78HFWj25khsKyPUCvKk0STGgO0rLWkhr
+         hK8iPBm8lqW3tJgkcAMvB31iixnrm/ec3aEDpt/2Kw9NulS6mBXukQAn/aNSlIn9fRY3
+         wNDt3LFFc8mTvtIvu8lbefDT891b8hhVdD5gaRemMl7Ml2UWdWhIk8v4CP+yJZGz2I9v
+         CXpDOQ+E4oqHOAaboE8QdtqBKpyfv0L1Ta1JmIhI43fPIN75c2hi7SfWp8CXkoe0OBPe
+         qhvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706186157; x=1706790957;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UKB+WrASShPGpvGZObpE9E8WIuSvj1nO7qysCIW9sOs=;
+        b=VsG+PhgxbGXwmNY81+xlG/7g0W/a9NtciwU09ZZez27BsH++okQGI121DGFX6FSzHo
+         SW/LkeIu/RnScSFXfKoQ6viuTvoFE7swpg5PZwuGJ5CZOsonJ4DTuGAV6aWmBVSQOCas
+         pXYvJpc7eiSM4RVowwsIO34qaF0eF7LQ9snS3sxqq7knKjHeZlctkGX18fRzkUb02s9J
+         WI64A/hXQHSKHK1HQV0NEogoNkoTEKOmSV9GwC0TP85bDysIpmAPLeImnprkPl1hSb1C
+         vWfOQPot55zoEict9f6giXr0xHnSVSXW99CNz10lftneGbi04nLiIjmpdMHvvs40EV4n
+         OHHA==
+X-Gm-Message-State: AOJu0YyqkY7tp/lVEtTBRKVYF2ueYBRA0vfubbWJDNWqMBaEJimnVjH1
+	aMA010aXttCrW82DH7JEFu38XhGunym7dK8ZOPh55IdyWZ00Esw9qCMvkhpBeso=
+X-Google-Smtp-Source: AGHT+IF3ESUT6NJ0IzUKzPatabf5gQRJ63HMWK6IJcQa5KRp/+HOK55vK+YSV24Bn/payaQzhufL1g==
+X-Received: by 2002:a05:600c:4f90:b0:40e:4119:cb4a with SMTP id n16-20020a05600c4f9000b0040e4119cb4amr347141wmq.15.1706186156918;
+        Thu, 25 Jan 2024 04:35:56 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id u15-20020a05600c19cf00b0040e39cbf2a4sm2451204wmq.42.2024.01.25.04.35.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Jan 2024 04:35:56 -0800 (PST)
+Message-ID: <c06b02b1-f04a-497c-a84b-2516f160e8a5@linaro.org>
+Date: Thu, 25 Jan 2024 13:35:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231217131838.7569-3-karelb@gimli.ms.mff.cuni.cz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: PCI: qcom,pcie-sm8550: move SM8550 to
+ dedicated schema
+Content-Language: en-US
+To: Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240108-dt-bindings-pci-qcom-split-v1-0-d541f05f4de0@linaro.org>
+ <20240108-dt-bindings-pci-qcom-split-v1-1-d541f05f4de0@linaro.org>
+ <20240116144419.GA3856889-robh@kernel.org> <20240117063039.GA8708@thinkpad>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240117063039.GA8708@thinkpad>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, 17 Dec 2023, Karel Balej wrote:
-
-> From: Karel Balej <balejk@matfyz.cz>
+On 17/01/2024 07:30, Manivannan Sadhasivam wrote:
+>>
+>> How does a given SoC have 1 or 8 interrupts? I guess it is possible. A 
+>> comment here would be helpful.
+>>
 > 
-> Marvell 88PM880 and 8PM886 are two similar PMICs with mostly matching
-> register mapping. They provide various functions such as onkey, battery,
-> charger and regulators.
+> No, this is due to kernel developers not able to find out the max MSI numbers
+> for each platforms out of the Qcom internal documentation.
 > 
-> Add support for 88PM886 found for instance in the samsung,coreprimevelte
-> smartphone with which this was tested. Support for 88PM880 is not
-> implemented here but should be straightforward to add.
-> 
-> Implement only the most basic support omitting the currently unused
-> registers and I2C subclients which should thus be added with the
-> respective subdevices. However, add support for the onkey already.
-> 
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> ---
->  drivers/mfd/88pm88x.c       | 199 ++++++++++++++++++++++++++++++++++++
->  drivers/mfd/Kconfig         |  11 ++
->  drivers/mfd/Makefile        |   1 +
->  include/linux/mfd/88pm88x.h |  60 +++++++++++
->  4 files changed, 271 insertions(+)
->  create mode 100644 drivers/mfd/88pm88x.c
->  create mode 100644 include/linux/mfd/88pm88x.h
-> 
-> diff --git a/drivers/mfd/88pm88x.c b/drivers/mfd/88pm88x.c
-> new file mode 100644
-> index 000000000000..5db6c65b667d
-> --- /dev/null
-> +++ b/drivers/mfd/88pm88x.c
-> @@ -0,0 +1,199 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/notifier.h>
-> +#include <linux/reboot.h>
+> Let it be for now, I will try to fetch these numbers to make it accurate later.
 
-Alphabetical
+I'll complete the interrupts the binding and the DTS.
 
-> +#include <linux/mfd/88pm88x.h>
-> +
-> +/* interrupt status registers */
+Best regards,
+Krzysztof
 
-Use correct grammar in comments, including capital letters.
-
- - Applies throughout
-
-The comment is not required - we can see what they are from the
-nomenclature.
-
-> +#define PM88X_REG_INT_STATUS1			0x05
-> +
-> +#define PM88X_REG_INT_ENA_1			0x0a
-> +#define PM88X_INT_ENA1_ONKEY			BIT(0)
-> +
-> +enum pm88x_irq_number {
-> +	PM88X_IRQ_ONKEY,
-> +
-> +	PM88X_MAX_IRQ
-> +};
-
-An enum for a single IRQ?
-
-> +static struct regmap_irq pm88x_regmap_irqs[] = {
-> +	REGMAP_IRQ_REG(PM88X_IRQ_ONKEY, 0, PM88X_INT_ENA1_ONKEY),
-> +};
-> +
-> +static struct regmap_irq_chip pm88x_regmap_irq_chip = {
-> +	.name = "88pm88x",
-> +	.irqs = pm88x_regmap_irqs,
-> +	.num_irqs = ARRAY_SIZE(pm88x_regmap_irqs),
-> +	.num_regs = 4,
-> +	.status_base = PM88X_REG_INT_STATUS1,
-> +	.ack_base = PM88X_REG_INT_STATUS1,
-> +	.unmask_base = PM88X_REG_INT_ENA_1,
-> +};
-> +
-> +static struct reg_sequence pm886_presets[] = {
-> +	/* disable watchdog */
-> +	REG_SEQ0(PM88X_REG_WDOG, 0x01),
-
-Easier to read if you place spaces between them.
-
-> +	/* GPIO1: DVC, GPIO0: input */
-> +	REG_SEQ0(PM88X_REG_GPIO_CTRL1, 0x40),
-
-Shouldn't you set these up using Pintrl?
-
-> +	/* GPIO2: input */
-> +	REG_SEQ0(PM88X_REG_GPIO_CTRL2, 0x00),
-> +	/* DVC2, DVC1 */
-
-Please unify all of the comments.
-
-They all use a different structure.
-
-> +	REG_SEQ0(PM88X_REG_GPIO_CTRL3, 0x44),
-> +	/* GPIO5V_1:input, GPIO5V_2: input */
-> +	REG_SEQ0(PM88X_REG_GPIO_CTRL4, 0x00),
-> +	/* output 32 kHz from XO */
-> +	REG_SEQ0(PM88X_REG_AON_CTRL2, 0x2a),
-> +	/* OSC_FREERUN = 1, to lock FLL */
-> +	REG_SEQ0(PM88X_REG_BK_OSC_CTRL1, 0x0f),
-> +	/* XO_LJ = 1, enable low jitter for 32 kHz */
-> +	REG_SEQ0(PM88X_REG_LOWPOWER2, 0x20),
-> +	/* OV_VSYS and UV_VSYS1 comparators on VSYS disabled, VSYS_OVER_TH : 5.6V */
-> +	REG_SEQ0(PM88X_REG_LOWPOWER4, 0xc8),
-> +	/* set the duty cycle of charger DC/DC to max */
-> +	REG_SEQ0(PM88X_REG_BK_OSC_CTRL3, 0xc0),
-
-These all looks like they should be handled in their respective drivers?
-
-"patch"ing these in seems like a hack.
-
-> +};
-
-Why this instead of 
-> +static struct resource onkey_resources[] = {
-> +	DEFINE_RES_IRQ_NAMED(PM88X_IRQ_ONKEY, "88pm88x-onkey"),
-> +};
-> +
-> +static struct mfd_cell pm88x_devs[] = {
-> +	{
-> +		.name = "88pm88x-onkey",
-> +		.num_resources = ARRAY_SIZE(onkey_resources),
-> +		.resources = onkey_resources,
-> +		.id = -1,
-> +	},
-> +};
-
-It's not an MFD if it only supports a single device.
-
-> +static struct pm88x_data pm886_a1_data = {
-> +	.whoami = PM886_A1_WHOAMI,
-> +	.presets = pm886_presets,
-> +	.num_presets = ARRAY_SIZE(pm886_presets),
-> +};
-
-Just pass the device ID through DT's .data, then match on that instead
-of passing pointer to random data structures.
-
-> +static const struct regmap_config pm88x_i2c_regmap = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = 0xfe,
-
-Define this please.
-
-> +};
-> +
-> +static int pm88x_power_off_handler(struct sys_off_data *data)
-
-'data' is a terrible variable name.  Please change throughout.
-
-> +{
-> +	struct pm88x_chip *chip = data->cb_data;
-> +	int ret;
-> +
-> +	ret = regmap_update_bits(chip->regmaps[PM88X_REGMAP_BASE], PM88X_REG_MISC_CONFIG1,
-> +			PM88X_SW_PDOWN, PM88X_SW_PDOWN);
-> +	if (ret) {
-> +		dev_err(&chip->client->dev, "Failed to power off the device: %d\n", ret);
-> +		return NOTIFY_BAD;
-> +	}
-> +	return NOTIFY_DONE;
-> +}
-> +
-> +static int pm88x_setup_irq(struct pm88x_chip *chip)
-> +{
-> +	int ret;
-> +
-> +	/* set interrupt clearing mode to clear on write */
-> +	ret = regmap_update_bits(chip->regmaps[PM88X_REGMAP_BASE], PM88X_REG_MISC_CONFIG2,
-> +			PM88X_INT_INV | PM88X_INT_CLEAR | PM88X_INT_MASK_MODE,
-> +			PM88X_INT_WC);
-> +	if (ret) {
-> +		dev_err(&chip->client->dev, "Failed to set interrupt clearing mode: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_regmap_add_irq_chip(&chip->client->dev, chip->regmaps[PM88X_REGMAP_BASE],
-> +			chip->client->irq, IRQF_ONESHOT, -1, &pm88x_regmap_irq_chip,
-> +			&chip->irq_data);
-> +	if (ret) {
-> +		dev_err(&chip->client->dev, "Failed to request IRQ: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int pm88x_probe(struct i2c_client *client)
-> +{
-> +	struct pm88x_chip *chip;
-> +	int ret = 0;
-> +	unsigned int chip_id;
-> +
-> +	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
-> +	if (!chip)
-> +		return -ENOMEM;
-> +
-> +	chip->client = client;
-> +	chip->data = device_get_match_data(&client->dev);
-
-Now where is this being past to?
-
-What is going to consume this?
-
-> +	i2c_set_clientdata(client, chip);
-> +
-> +	device_init_wakeup(&client->dev, 1);
-> +
-> +	chip->regmaps[PM88X_REGMAP_BASE] = devm_regmap_init_i2c(client, &pm88x_i2c_regmap);
-> +	if (IS_ERR(chip->regmaps[PM88X_REGMAP_BASE])) {
-
-Just define different regmaps if you really need them.
-
-I only see one being used anyway.
-
-> +		ret = PTR_ERR(chip->regmaps[PM88X_REGMAP_BASE]);
-> +		dev_err(&client->dev, "Failed to initialize regmap: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_read(chip->regmaps[PM88X_REGMAP_BASE], PM88X_REG_ID, &chip_id);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Failed to read chip ID: %d\n", ret);
-> +		return ret;
-> +	}
-> +	if (chip->data->whoami != chip_id) {
-> +		dev_err(&client->dev, "Device reported wrong chip ID: %u\n", chip_id);
-
-Use dev_err_probe() throughout.
-
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = pm88x_setup_irq(chip);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_mfd_add_devices(&client->dev, 0, pm88x_devs, ARRAY_SIZE(pm88x_devs),
-> +			NULL, 0, regmap_irq_get_domain(chip->irq_data));
-> +	if (ret) {
-> +		dev_err(&client->dev, "Failed to add devices: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_register_patch(chip->regmaps[PM88X_REGMAP_BASE], chip->data->presets,
-> +			chip->data->num_presets);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Failed to register regmap patch: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_register_power_off_handler(&client->dev, pm88x_power_off_handler, chip);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Failed to register power off handler: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +const struct of_device_id pm88x_of_match[] = {
-> +	{ .compatible = "marvell,88pm886-a1", .data = &pm886_a1_data },
-> +	{ },
-> +};
-> +
-> +static struct i2c_driver pm88x_i2c_driver = {
-> +	.driver = {
-> +		.name = "88pm88x",
-> +		.of_match_table = of_match_ptr(pm88x_of_match),
-> +	},
-> +	.probe = pm88x_probe,
-> +};
-> +module_i2c_driver(pm88x_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("Marvell 88PM88X PMIC driver");
-> +MODULE_AUTHOR("Karel Balej <balejk@matfyz.cz>");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 90ce58fd629e..c593279fd766 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -794,6 +794,17 @@ config MFD_88PM860X
->  	  select individual components like voltage regulators, RTC and
->  	  battery-charger under the corresponding menus.
->  
-> +config MFD_88PM88X
-
-"MFD_88PM88X_PMIC"?
-
-> +	bool "Marvell 88PM886"
-
-"Marvell 88PM886 PMIC"?
-
-> +	depends on I2C=y
-> +	select REGMAP_I2C
-> +	select REGMAP_IRQ
-> +	select MFD_CORE
-> +	help
-> +	  This enables support for Marvell 88PM886 Power Management IC.
-> +	  This includes the I2C driver and the core APIs _only_, you have to
-> +	  select individual components like onkey under the corresponding menus.
-> +
->  config MFD_MAX14577
->  	tristate "Maxim Semiconductor MAX14577/77836 MUIC + Charger Support"
->  	depends on I2C
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index c66f07edcd0e..14e42b045c92 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -7,6 +7,7 @@
->  obj-$(CONFIG_MFD_88PM860X)	+= 88pm860x.o
->  obj-$(CONFIG_MFD_88PM800)	+= 88pm800.o 88pm80x.o
->  obj-$(CONFIG_MFD_88PM805)	+= 88pm805.o 88pm80x.o
-> +obj-$(CONFIG_MFD_88PM88X)	+= 88pm88x.o
->  obj-$(CONFIG_MFD_ACT8945A)	+= act8945a.o
->  obj-$(CONFIG_MFD_SM501)		+= sm501.o
->  obj-$(CONFIG_ARCH_BCM2835)	+= bcm2835-pm.o
-> diff --git a/include/linux/mfd/88pm88x.h b/include/linux/mfd/88pm88x.h
-> new file mode 100644
-> index 000000000000..a34c57447827
-> --- /dev/null
-> +++ b/include/linux/mfd/88pm88x.h
-> @@ -0,0 +1,60 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +#ifndef __LINUX_MFD_88PM88X_H
-> +#define __LINUX_MFD_88PM88X_H
-
-Drop the LINUX part.
-
-> +
-> +#include <linux/mfd/core.h>
-> +
-> +#define PM886_A1_WHOAMI		0xa1
-
-s/WHOAMI/CHIP_ID/
-
-> +#define PM88X_REG_ID			0x00
-> +
-> +#define PM88X_REG_STATUS1		0x01
-> +#define PM88X_ONKEY_STS1		BIT(0)
-> +
-> +#define PM88X_REG_MISC_CONFIG1		0x14
-> +#define PM88X_SW_PDOWN			BIT(5)
-> +
-> +#define PM88X_REG_MISC_CONFIG2		0x15
-> +#define PM88X_INT_INV			BIT(0)
-> +#define PM88X_INT_CLEAR			BIT(1)
-> +#define PM88X_INT_RC			0x00
-> +#define PM88X_INT_WC			BIT(1)
-> +#define PM88X_INT_MASK_MODE		BIT(2)
-> +
-> +#define PM88X_REG_WDOG			0x1d
-> +
-> +#define PM88X_REG_LOWPOWER2		0x21
-> +#define PM88X_REG_LOWPOWER4		0x23
-> +
-> +#define PM88X_REG_GPIO_CTRL1		0x30
-
-These don't really need to be spaced out, do they?
-
-> +#define PM88X_REG_GPIO_CTRL2		0x31
-> +
-> +#define PM88X_REG_GPIO_CTRL3		0x32
-> +
-> +#define PM88X_REG_GPIO_CTRL4		0x33
-> +
-> +#define PM88X_REG_BK_OSC_CTRL1		0x50
-> +#define PM88X_REG_BK_OSC_CTRL3		0x52
-> +
-> +#define PM88X_REG_AON_CTRL2		0xe2
-> +
-> +enum pm88x_regmap_index {
-> +	PM88X_REGMAP_BASE,
-> +
-> +	PM88X_REGMAP_NR
-> +};
-> +
-> +struct pm88x_data {
-> +	unsigned int whoami;
-> +	struct reg_sequence *presets;
-> +	unsigned int num_presets;
-> +};
-> +
-> +struct pm88x_chip {
-> +	struct i2c_client *client;
-> +	struct regmap_irq_chip_data *irq_data;
-
-Group this with the other regmap related member(s).
-
-What are you using this for?
-
-> +	const struct pm88x_data *data;
-
-Remove this.
-
-> +	struct regmap *regmaps[PM88X_REGMAP_NR];
-> +};
-> +#endif /* __LINUX_MFD_88PM88X_H */
-> -- 
-> 2.43.0
-> 
-
--- 
-9)
-4)
-Lee Jones [李琼斯]
 
