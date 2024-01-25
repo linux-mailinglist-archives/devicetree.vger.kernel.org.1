@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-35316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967C983CF2E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 23:11:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 455CC83CF30
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 23:13:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3827CB24CD6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:11:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5F0F1F263B2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:13:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E035713AA4A;
-	Thu, 25 Jan 2024 22:11:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44A713AA4F;
+	Thu, 25 Jan 2024 22:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W/LggRvS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bW2gQW2s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D5013AA27
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 22:11:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C33D13AA27
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 22:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706220703; cv=none; b=APAqowKfAar0NVuLiVA4UivKpNXPezWQoMIJj2VaJP8z/zksTbNpwutXtHfqhDlmALctwfKPcr257DK77XK5ryx0rt3kKU0PMrRoQSzGzycGGZ+7Fbzo2/Cxo05v4apmAOBZ2oVCTG07co6r0Yo4x0cHe1FDA2bAeJ4BPMAnR/c=
+	t=1706220823; cv=none; b=Peked2OjmO0+L3jFJDbrXDDd+idbMKsSd31iclGKdbHNjxHT1gwkTehoTp6n0mDoNSRPq03HwyURDVytcL2hfX6vKS7NnzveWWX3upNzhuuZvi3VcmVY989mGQFdx2bAMz9LdUp90XtEdssdL5j9gowmmQ1dxRW45mjQFOD1ecE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706220703; c=relaxed/simple;
-	bh=DbrULba5JMpUHoRfF0b2ZW/wUZBr+NdaB81g1Az+ZwY=;
+	s=arc-20240116; t=1706220823; c=relaxed/simple;
+	bh=/q+OKPTvjfhtwgZQ3LtD4ypTdtx/UFBmU0i1AagUJwU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VQz0yGY6osSvXqgNMk1DQbMJgLYy74b2r7HozaXibl5Y2pySCPGQtjnP3+Q4URSeNQkJ7Rkh2Zp9g27jstUSFq8X+0Mq9a+dasAoe79ieBvIUq85j7AF8QFTPyUkx7EU6s5xGtBQKNOgj+Myq8R5joRzr81yhV43STWLWcNHlyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W/LggRvS; arc=none smtp.client-ip=209.85.219.174
+	 To:Cc:Content-Type; b=o64iJdgmVtsB4EYV+fO4HX9YlvDu2iSDhWwk7lnUhejvivuGWPwAhtNmGrrULPuBxr2t1cOzLKueybmpnGsSygIbBRoPz5OSpIK0ICLdX7h2Tkp6VjfVXdGz0UlJK85TX4Q9wJDgjDdqgwPcRPFhLzIAt5wCIFooRZCD89+D5RA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bW2gQW2s; arc=none smtp.client-ip=209.85.128.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc25099b084so4969806276.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 14:11:42 -0800 (PST)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6001449a2beso37569137b3.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 14:13:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706220701; x=1706825501; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706220821; x=1706825621; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=xLMcToKhdmiwb+Vgm0ASzJXUITbFWiE3/ITy5z4WO+Y=;
-        b=W/LggRvSCWuXdK9eWrjp3B7WDHlvdrpo8hU+xMznLtEIyxmcbJ2x5eqB2uyncxAHt5
-         kIO+xZfYPWClzevogWGF8FY2OObj9b+T7WOvQdhtSyrSj5BmwvtBTB0U0yDwc7o7488S
-         RO9VAHWs9KreOkYP7nnAZSe5ySVe1gValr97KdrUqZF+lXOhcg6hR0J7UD1WV5ovReO7
-         xvlsg1oA8kHDSdTZPAhF44qGbpGe7CFQRxxWRfGhlB6zAXzp/XmkH6jkSX4WIl1IAkLm
-         2ju2HbMAYK+u7+dr8NfeWXUnv63rUxo6Rq2AW7QeoXSKBLRfVzUJz5cPxgMFvEbRrJNM
-         fF/g==
+        bh=slwtZcSfd5oU0OLpt8FDjn7MWT/cYH2TJp6qwy9HSCY=;
+        b=bW2gQW2sQmAslc3/bpTtAV5QqH6TAAxFQ7V9JEk58Cq7AkNeKTYBKSir+YX4kZvBfL
+         JICtdNL2fOWOOe43hSPVvdmWUjPzsHfuXp08B+scFUSFVk/p9Q41rvQHt7GoTTgfk8kS
+         XtVDn8RZ5tbcQsqmZK2/HLNXVhib5iEpvoArs85b/PC407wLmc2QmOPMllWxzqgkHrAZ
+         SnoIVQXKpw4KUtAEJP1sEjtPa4+LjnxKltA2WvH9MIqae7ytMawnFPt2olm/H0Giz+2X
+         PMH1u87jn0KiQWKtpXmp7jXnrrwYINDo+RDJVUQMi4Xb5fx1INXPKEgWvASiEPRpSKI+
+         6mfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706220701; x=1706825501;
+        d=1e100.net; s=20230601; t=1706220821; x=1706825621;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=xLMcToKhdmiwb+Vgm0ASzJXUITbFWiE3/ITy5z4WO+Y=;
-        b=rEFnv3sqFuGi4+ieXhp/Vy/+7HwqZ6WogFaspewOq1oNAFUnyfDA0C6vRvovnle5eO
-         j3WGf6XAk1LW9ZTH+013LnqlufO4TMzuDFeL2k+JA/S53DbPuMQ+h5iKiYloAgbIUckJ
-         PPZWh/WmPBpyfIifaVkFmekMnO1cM68jRf4DWsa8gheSIbzl6XcpdtG2wO9xJfOWVPFq
-         kr7wjxv4N2dKubOLCS9CA9VCgBQ8ocUolsgdCbpLl9TrzU5wl4OODkzw/dQsN3A6c0Da
-         OaFQZAdki9131vpda6hlngb6bsPGScRP3XpGxeyC7xwJGQnJrxtSGL9Hg+gJ0m7ozTmT
-         1K3w==
-X-Gm-Message-State: AOJu0YzX/Kpp6Cy3lFQTf99CG9yMorndB/VRM7wKq2/q61setjLCwpYd
-	mO0AkuEmjod9FGRfzcNxLcOJ+f/+cydRny+Zs96ZxAIl7jPvshHkt0MBKCtuOf08FEQjIR6DbvP
-	lxCazLkR6t7qHUxJF3KQXq7E6jZI5wlt8WicOJA==
-X-Google-Smtp-Source: AGHT+IGyhYkUs57iPAfgqwjJQmmq3Qlba1EBKrI7ojK1xvRb2h7JC3m/aWADVmXJGmcqgLz60U06quUiTM0G9gFNWJw=
-X-Received: by 2002:a25:2e07:0:b0:dbd:5be1:1768 with SMTP id
- u7-20020a252e07000000b00dbd5be11768mr471772ybu.73.1706220701308; Thu, 25 Jan
- 2024 14:11:41 -0800 (PST)
+        bh=slwtZcSfd5oU0OLpt8FDjn7MWT/cYH2TJp6qwy9HSCY=;
+        b=CwMEcdvIHG/Bp7cryfykNlwy57s7nRB3v8M452z23Fhqlp8RUaW1ybMDBSP9lM+GoZ
+         EI+r71oryRT7chhlJFUQRHRpTTKh5spSd7PjP2QkRib3QFTWGF6khP2hHN+vVvPwCg+Q
+         NCS8DFOf9BVsBsZll0V87My0cBtvP0nC1yStLcPpsdJY/s+uiuaJoSseKwR9h1vxvcym
+         W87hdjlQqyqz6IpLdzwcHmWqVZi62XWKQTLvRFVAlz4FD+CxzvZrOIjCT0Z260lCnSe9
+         PKaRwYFxMIjfnmvxvjkz+aq0X3MW8q/f8vGwCZyPgBHZwCPwk9/nfHcb+RYDKBXTd+GZ
+         2Brw==
+X-Gm-Message-State: AOJu0YxR6qylSw1JU5CiViQZhI7bNmhuj30MZx+Mx9fSFs2pDxJAxgzZ
+	i72Com48GSB5VZpy+26NZK1W7e9B1WZ64CivLS5Ax8vPFMKLXXpH3fxDpyW/rzUdcetdgIPR0uD
+	mJIjHpoT+srfhmEz16Zh2XhJe8kL/RxO40aljSg==
+X-Google-Smtp-Source: AGHT+IE3TWyGHNGHsG2xqF2JXCIF6aVnGmnqe4/3CyA3myFBwqZCxjCHe2OS/OaFjyPxVBpRCKQb3m3/ij+f63iLZtk=
+X-Received: by 2002:a81:c441:0:b0:5ff:7cc9:1691 with SMTP id
+ s1-20020a81c441000000b005ff7cc91691mr475647ywj.70.1706220821421; Thu, 25 Jan
+ 2024 14:13:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240125-msm8953-mdss-reset-v2-0-fd7824559426@z3ntu.xyz> <20240125-msm8953-mdss-reset-v2-3-fd7824559426@z3ntu.xyz>
-In-Reply-To: <20240125-msm8953-mdss-reset-v2-3-fd7824559426@z3ntu.xyz>
+References: <20240125-msm8953-mdss-reset-v2-0-fd7824559426@z3ntu.xyz> <20240125-msm8953-mdss-reset-v2-2-fd7824559426@z3ntu.xyz>
+In-Reply-To: <20240125-msm8953-mdss-reset-v2-2-fd7824559426@z3ntu.xyz>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 26 Jan 2024 00:11:30 +0200
-Message-ID: <CAA8EJpoVxyX-cVggL2RJvM1eG+XzF_kkgAsKdS8ybv7u_MAyXA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: msm8953: add reset for display subsystem
+Date: Fri, 26 Jan 2024 00:13:30 +0200
+Message-ID: <CAA8EJpqb_FFUzyGR2SYH7wwrDCrC8Wy7QcUFyJgHqAvx42Vgfw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] clk: qcom: gcc-msm8953: add more resets
 To: Luca Weiss <luca@z3ntu.xyz>
 Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
 	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
@@ -90,15 +90,14 @@ On Thu, 25 Jan 2024 at 23:36, Luca Weiss <luca@z3ntu.xyz> wrote:
 >
 > From: Vladimir Lypak <vladimir.lypak@gmail.com>
 >
-> With this reset we can avoid situations like IRQ storms from DSI host
-> before it even started probing (because boot-loader left DSI IRQs on).
+> Add new entries in the gcc driver for some more resets found on MSM8953.
 >
 > Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> [luca: expand commit message, move entry, add more entries]
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->  arch/arm64/boot/dts/qcom/msm8953.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/clk/qcom/gcc-msm8953.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
