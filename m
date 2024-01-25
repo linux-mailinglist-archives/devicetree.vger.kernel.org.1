@@ -1,152 +1,191 @@
-Return-Path: <devicetree+bounces-34917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 828EF83BB14
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:57:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5024083BB2D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:02:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BB93287486
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 07:57:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75F071C25F27
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C7313AD9;
-	Thu, 25 Jan 2024 07:57:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D2917579;
+	Thu, 25 Jan 2024 08:01:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l+xq+Gyn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zRw+5CBB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28A4175A6
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 07:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 006E219BCA
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 08:01:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706169437; cv=none; b=q6nMCqOqu6Ul1s/Kt3mxmrnD4Lo0ezDKy+gSycPM+JdfJRzG8drGvYtY9RonkCgNhbkCoDWmu5XRltl/uwf2tlmD63d+kbk/Cs1iQ4X3iUBlK8EDVDb9gK7pQOtB/dD4THeg444vaqmTwJltcGXe4ENjhb6y30akUdJmJUoiOlY=
+	t=1706169670; cv=none; b=fc4eQWDexN79OvQtZMTdbhIlvRKnt7/2DNNmhM15mef1t7pCYYFBQHTo9Bnhninb3Gh52NiGg45uEW8+uFT/soFTZDl8IUrDKZXhNqBPl3Wrx78Ki21iGlRXeIKbiEJHfW4JrhhRUuVQV3d7aNpiJpFSwCB6H/zOkJbvwai+I4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706169437; c=relaxed/simple;
-	bh=MMovICcHBLOIBN+8/Tze8+7DdOVKhECE9b14WunCbyg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KsQzEvrt0KIYrFqg360mkOjuY4xKUICFUh++6uJsqHon7dQJ3YqQL81kUWcV9Fcx4wPzEx4fQEvTsj60hllQeJJWYXSBoJorWRWCHnly6Kdxf3Jc65Fma97KDzlVK1uRVCCD5UTKuE0Wgy4V/oYLuUO4uDEjXdqavndke5RmXN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l+xq+Gyn; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1706169670; c=relaxed/simple;
+	bh=iFYbbyM+nQ0ro0IYJXBv56mfFK+KQxu+c2++uA+eFY0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z9kay5QNvuA12EYA6g+f8g4D0ZbES0QvFUjTG9Ja6v6jTI67Nkp9+85MUpfVk0ps7DmRvlqXcKmIrE8p3TdXmjmIrmEm/5fHXMk7qbMEFyMc2TC+yswJt8SikdMQmAFMmIcrBHb9I8aF70yUzpLsYOmM5DIkJoIjngt0qpventI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zRw+5CBB; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40e76626170so70859775e9.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Jan 2024 23:57:15 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-55cd798b394so863585a12.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 00:01:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706169434; x=1706774234; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3VDiCwy8+9JrBnAMb9PIsv+1UoGhnw8+lWFqg1PNXVk=;
-        b=l+xq+GynsZckIH2EJPoaEhJlfCybzL4rATAEk15geeBd2Wr6m/7EpikpamkFWxO8rA
-         688jDNIx3uJjq5CDGQ91ZfSAbVN3ruINOTrw9HUiXX2oiGt781Bbxwr82sA4kZeBrN0C
-         2twUvJTxVrNGgINvaE84jTYnFTGxBrktyiJd0lQvtjU9i5L4T872ZGkSRDOAchLQyS9H
-         JZfEeXhZVrrQ/ZwhNlY1gP/kxAXuFciKn7ElkLQe9XKY+aWISw3ft42pHmvkp9/gwspG
-         MSBLow0867YveKczQY36oSgNvZdUfjYKFNAByIPG6D2X/EXg1y6+HWBVquFxXTMn+uA0
-         Cgug==
+        d=linaro.org; s=google; t=1706169667; x=1706774467; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bdCsaPdfHyF0+3oh1xtxlDB6UHXp/bOH9izBPavO0Fw=;
+        b=zRw+5CBBAWKmYIUoPywYgXjybQ6GCCmsRutJvCtJ7Yji7ikUa7myIROnTHYH6F/Ts+
+         m4wtcPQItzDQJDWDST0qjuHXL+q39dtJ72g6DEMiV/77FyD9UrZmmxRYzfvbZi6Bp7Xi
+         v1O7umg7K0i3C8GBO41UW8u6R4VOhOBv71LQYuQXZzW7LmtggIFKo/CERU7dCTBljdlw
+         NuaB/ONTDRX6YYk1OsfWObP/ZyNyw4mlo6pLTWBaIw2xi9CDb6vUm09IahPDF7fL26Sf
+         TnNUrC76ItK2QBHa6QPBJFxHqRPj53gcbI8dizuGg8KQAviiL/wHHwRk6H8scLSlI8xt
+         09xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706169434; x=1706774234;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3VDiCwy8+9JrBnAMb9PIsv+1UoGhnw8+lWFqg1PNXVk=;
-        b=gVWI/uhvIm4yv62fCTQ1I+DLDrBhGZmcyb9EtTLY4eWPVJuI+WVOBJ24nKu1pKVWWJ
-         HO0wXVfGj9yJsJYXnspJ5l9iuk9Eq/ljg61whVYTQBXpP+r8otTs/cV17Kf7oSNBDI7p
-         tHqDMDX/raeTM/22tRenLf7MzkrD5n3t3d6toVfKF00ALjRo8ZEdCj3Lr7MP1CTkVMAn
-         fjUYfBNrYPoBjooL9m97THgeGpr3xbqamDOY8PypMnh3Bcud87QnpilzIuMQfI8j1J24
-         4TKCsjorGuZIz47QD9WJSyUPIXU4+v0lBbsxoIxDVohGl2f+v4xK+7cUuo58oGGNrTmr
-         IM4A==
-X-Gm-Message-State: AOJu0YzG7H3wOAmK397NwBQe6RFlqDUeReTzS+HLHkKlYHfOvafPTar/
-	rr3V4t0D+ORJmaH7t0rp7FlqobpDM19Rpqj8LGf80SkOOOtbfWIpMC1Bj+qOIvo=
-X-Google-Smtp-Source: AGHT+IFIlA7GZzVy/7o9D6UPji4oRrqz8C/odkHa+kQJvEE0JUecqIJpNl9PoHbCCvwG/LESpPzR+g==
-X-Received: by 2002:a7b:c5c8:0:b0:40d:8459:480e with SMTP id n8-20020a7bc5c8000000b0040d8459480emr270548wmk.178.1706169434066;
-        Wed, 24 Jan 2024 23:57:14 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id b1-20020a5d6341000000b0033930b9a2b1sm10354692wrw.26.2024.01.24.23.57.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Jan 2024 23:57:13 -0800 (PST)
-Message-ID: <02919dac-cd22-4d3e-9d8c-d0572d91c3f7@linaro.org>
-Date: Thu, 25 Jan 2024 08:57:12 +0100
+        d=1e100.net; s=20230601; t=1706169667; x=1706774467;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bdCsaPdfHyF0+3oh1xtxlDB6UHXp/bOH9izBPavO0Fw=;
+        b=ALqL8wQAG89ps2IqA6SBJ2aF7BpsSqCj31pozoIyDWjY1mGhhftvNUls0RmJi3o0ki
+         wVq7uez9s0Zd4wQFeFD+vlLhUh2MknAUspGtSrEc/3VkKx4nDZ3IvrzcITh4cXxVm4xE
+         VMH/x9KEkjqg5ZVcA6g8njhxbhg4zXq+Plv5nszFxtojbnYUcPPGB568RsvD/Sd2/kWo
+         2aprKjHkN3uKFI2ucd6VnkdIM1xzVyRM6t6SQCbbLS0zOamEHn6K6sBVkm+6jicOJKtZ
+         cjsAZRaNp8+zml3O8ULxHJuL25uPQM50uiv2oIsd2CezITwNpuUsNV6zCAUu/QqNiSJ8
+         dmAw==
+X-Gm-Message-State: AOJu0YzYGvOJU/IaUGNkaMTRSxx8r+1WzmyalggRShGNuHo0+h5xUVzs
+	latSfKytL6yuf15MF+MB1DVjSVPUltjdGUbiTdjdSZkJdOQL+ch4QMU1s4GynsY=
+X-Google-Smtp-Source: AGHT+IEIGh2RPoqSNs6gjgwEeb+4JoGwghNAzOIOwVVQIN9icNRWS861KqVYt0Yby6sWa372ycFsgg==
+X-Received: by 2002:a17:906:1b57:b0:a31:7d52:a787 with SMTP id p23-20020a1709061b5700b00a317d52a787mr344859ejg.60.1706169667062;
+        Thu, 25 Jan 2024 00:01:07 -0800 (PST)
+Received: from linaro.org ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id dt3-20020a170906b78300b00a2f1888ddecsm736677ejb.166.2024.01.25.00.01.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jan 2024 00:01:06 -0800 (PST)
+Date: Thu, 25 Jan 2024 10:01:05 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 08/11] arm64: dts: qcom: x1e80100: Add display nodes
+Message-ID: <ZbIVQat9onAlKGWa@linaro.org>
+References: <20240123-x1e80100-dts-missing-nodes-v4-0-072dc2f5c153@linaro.org>
+ <20240123-x1e80100-dts-missing-nodes-v4-8-072dc2f5c153@linaro.org>
+ <07cef0ec-dc18-4cee-a6df-8c7f16600c50@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: ufs: samsung,exynos-ufs: Add size
- constraints on "samsung,sysreg"
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240124190733.1554314-1-robh@kernel.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240124190733.1554314-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <07cef0ec-dc18-4cee-a6df-8c7f16600c50@linaro.org>
 
-On 24/01/2024 20:07, Rob Herring wrote:
-> The 'phandle-array' type is a bit ambiguous. It can be either just an
-> array of phandles or an array of phandles plus args. "samsung,sysreg" is
-> the latter and needs to be constrained to a single entry with a phandle and
-> offset.
+On 24-01-23 19:36:17, Konrad Dybcio wrote:
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+> 
+> On 1/23/24 12:01, Abel Vesa wrote:
+> > Add the required nodes to support display on X1E80100.
+> > 
+> > Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+> > Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> > Co-developed-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> > Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 518 +++++++++++++++++++++++++++++++++
+> >   1 file changed, 518 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > index e8d2ea2b26ed..247ff7a9e405 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > @@ -4,6 +4,7 @@
+> >    */
+> >   #include <dt-bindings/clock/qcom,rpmh.h>
+> > +#include <dt-bindings/clock/qcom,x1e80100-dispcc.h>
+> >   #include <dt-bindings/clock/qcom,x1e80100-gcc.h>
+> >   #include <dt-bindings/clock/qcom,x1e80100-tcsr.h>
+> >   #include <dt-bindings/dma/qcom-gpi.h>
+> > @@ -3298,6 +3299,523 @@ usb_1_ss1_role_switch: endpoint {
+> >   			};
+> >   		};
+> > +		mdss: display-subsystem@ae00000 {
+> > +			compatible = "qcom,x1e80100-mdss";
+> > +			reg = <0 0x0ae00000 0 0x1000>;
+> > +			reg-names = "mdss";
+> > +
+> > +			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> > +				 <&gcc GCC_DISP_AHB_CLK>,
+> > +				 <&gcc GCC_DISP_HF_AXI_CLK>,
+> > +				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> > +
+> > +			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
+> > +
+> > +			interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_ALWAYS
+> > +					 &gem_noc SLAVE_LLCC QCOM_ICC_TAG_ALWAYS>,
+> > +					<&mc_virt MASTER_LLCC QCOM_ICC_TAG_ALWAYS
+> > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+> > +			interconnect-names = "mdp0-mem",
+> > +					     "mdp1-mem";
+> 
+> You likely also want to add the cpu-cfg path
+> 
+> [...]
+> 
+> > +
+> > +		dispcc: clock-controller@af00000 {
+> > +			compatible = "qcom,x1e80100-dispcc";
+> > +			reg = <0 0x0af00000 0 0x20000>;
+> > +			clocks = <&bi_tcxo_div2>,
+> > +				 <&bi_tcxo_ao_div2>,
+> > +				 <&gcc GCC_DISP_AHB_CLK>,
+> 
+> This clock is not actually registered with the CCF.. Which means it's
+> also never cleanly shut down.. Please fix the clock driver and check
+> which others got omitted as well.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Right, so this clock is actually enabled on probe and is expected to be
+always-on.
 
-Best regards,
-Krzysztof
+And I just noticed that at least on SM8[456]50 it's the same.
 
+So I guess the solution here is to drop it from the dt node and fix the
+dt schema. For all these platforms.
+
+> > +				 <&sleep_clk>,
+> > +				 <0>, /* dsi0 */
+> > +				 <0>,
+> > +				 <0>, /* dsi1 */
+> > +				 <0>,
+> > +				 <&usb_1_ss0_qmpphy QMP_USB43DP_DP_LINK_CLK>, /* dp0 */
+> > +				 <&usb_1_ss0_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
+> > +				 <&usb_1_ss1_qmpphy QMP_USB43DP_DP_LINK_CLK>, /* dp1 */
+> > +				 <&usb_1_ss1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
+> > +				 <&mdss_dp2_phy 0>, /* dp2 */
+> > +				 <&mdss_dp2_phy 1>,
+> > +				 <&mdss_dp3_phy 0>, /* dp3 */
+> > +				 <&mdss_dp3_phy 1>;
+> > +			power-domains = <&rpmhpd RPMHPD_MMCX>;
+> 
+> Likely:
+> 
+> required-opps = <&rpmhpd_opp_low_svs>;
+> 
+> so that the PLLs have a chance to spin up
+> 
+> Konrad
 
