@@ -1,170 +1,106 @@
-Return-Path: <devicetree+bounces-35303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE7E83CE78
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:24:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBE6283CE84
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:26:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16C85291ACE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:24:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 859D4292CE8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33F013A253;
-	Thu, 25 Jan 2024 21:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC8813A266;
+	Thu, 25 Jan 2024 21:26:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="oDdGM3I/"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="nmdQJrpj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B32D13A242;
-	Thu, 25 Jan 2024 21:24:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11ABD13A262;
+	Thu, 25 Jan 2024 21:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706217892; cv=none; b=pSEPLFxIfW05rskpy3nb2jLm2IQTMSLix/HN40WH3wNNekOMfirz27sxw0UV1Lrgk5BrXAmwkBAOaPAIW0EAcz1l51zmeKg51m8PcYF03vQaOWDsYfQQA0DGq4n3fmnwkdC1OoOvwqpA54kJCSjpBOUFT0FB/EULxXbvawf0Or8=
+	t=1706217966; cv=none; b=soDdT7pqLRtKQZtD1Sfh5M90QoaUXna++xlhR6DaVo2g3MYt6mjvKJ+6MptAh+yJQpA+kA23USm7SaObll18GiiuMcG0yPA74pGvVn73NgJtmlEEBhYBZOmkYQBbctgDmfcOudoastu+S74ksThzaa+rKdjcL3+Nls9KRfP7r7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706217892; c=relaxed/simple;
-	bh=wF7lnyES1kcFW+pAAffY+2WrYEqI4AmwamSHD36HjYE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uIdbdaRqeNF3FpIaZHeRRSH1lR0tafzQ0lxW961wpxzkeZ3tOoIxE5hUQHhWC7RV8TOrifuhDJq0G2gIshsLMC7f+voTZYRVhFo/uUOPTyrAg1gOpLFk11MY2PLyTkL+2sexedZTCoyNpyfi9kJWclI+fRJnLx98gL3r+jS6y1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=oDdGM3I/; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 40PKOsK4003822;
-	Thu, 25 Jan 2024 21:24:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=X4knlC7JqfUtxkp4byTD9WxtEc2D+QZ0DzKaY+9nXvc=;
- b=oDdGM3I/PlfVC3eEYZJUWpkehZIryqK8YI6DAmCPcpEmCGf4pqftn47xiYbX4I7mmDOG
- mWVnRwSabJfoF9QpArNrWfY/InQYzcZ5hdnhb5woY8A5JFE8sbFcU0DDTf7XYFPTz5X/
- kJ9toCpuWfdhs4ggGVSk8NYmLxwM9rTkg4iUjtxo7J2Oy4ebV9/GspiEZT8SYzQqFWkh
- V07dOnACOV4aDFftBOFcdUS3NH95HyQVxXcsepxWQj6FCYVtMYyNTbflCr9mtiPH1m/v
- n2jWNelNZqAuf8t/XmDixav+MiajfrHtUbKmydnzda+WTCr4zTfigZsc3+FtdHiYmqgF 3Q== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vuvv0v9fe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Jan 2024 21:24:00 +0000
-Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 40PLEhiB000766;
-	Thu, 25 Jan 2024 21:23:59 GMT
-Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3vuvv0v9es-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Jan 2024 21:23:59 +0000
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma13.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 40PK3JJQ025291;
-	Thu, 25 Jan 2024 21:23:58 GMT
-Received: from smtprelay05.dal12v.mail.ibm.com ([172.16.1.7])
-	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 3vrtqkpdva-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Jan 2024 21:23:58 +0000
-Received: from smtpav06.dal12v.mail.ibm.com (smtpav06.dal12v.mail.ibm.com [10.241.53.105])
-	by smtprelay05.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 40PLNvY125887374
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 25 Jan 2024 21:23:58 GMT
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id CB36F58055;
-	Thu, 25 Jan 2024 21:23:57 +0000 (GMT)
-Received: from smtpav06.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id C17B358043;
-	Thu, 25 Jan 2024 21:23:56 +0000 (GMT)
-Received: from [9.61.160.70] (unknown [9.61.160.70])
-	by smtpav06.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Thu, 25 Jan 2024 21:23:56 +0000 (GMT)
-Message-ID: <b5b0e7bd-25e5-49a4-8ac2-349020c2344b@linux.ibm.com>
-Date: Thu, 25 Jan 2024 15:23:56 -0600
+	s=arc-20240116; t=1706217966; c=relaxed/simple;
+	bh=kx9FeMTO9kz6c3Lety3dxdwU6n70e2EWE5IksjXF7fw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rEo3+RdkSTsUuCYx16XHvQTt/ebHT698wnJKues6Rfpx6gd+4Kl1zOLrgcajsS7hm1ZDRgEmg9i3mR7syiZWOo4BWwOPHPXuDuIygjxfUhRlfic9MCqZl+MvdHq/LTVbjCddf8sV+/AQ+3Y95ThO/H1TqFkcQPJktuU5L/1Ujyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=nmdQJrpj; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1706217953; bh=kx9FeMTO9kz6c3Lety3dxdwU6n70e2EWE5IksjXF7fw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=nmdQJrpjwPNb9Uo1+W7e0ZLHvt8kwoGM6TTZ+z8WY9H/VB4fHN6Dx01K4HVk7C6ek
+	 8Xj61dSRqMRw6ZY0cbcX9X6x0vz7BgcEoI1/6ChHvQUr2bBGfFj+hlMYJLwJPUt4Gy
+	 lGLYDp6sUyciEEP2ANDqc8JUKrigpNO8bWDVFgfU=
+From: Luca Weiss <luca@z3ntu.xyz>
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Vladimir Lypak <vladimir.lypak@gmail.com>
+Subject: Re: [PATCH 2/3] clk: qcom: gcc-msm8953: add MDSS_BCR reset
+Date: Thu, 25 Jan 2024 22:25:52 +0100
+Message-ID: <2714198.mvXUDI8C0e@z3ntu.xyz>
+In-Reply-To: <5192c3b1-46fd-455d-aa67-b05bf5c54e19@linaro.org>
+References:
+ <20240123-msm8953-mdss-reset-v1-0-bb8c6d3ce897@z3ntu.xyz>
+ <20240123-msm8953-mdss-reset-v1-2-bb8c6d3ce897@z3ntu.xyz>
+ <5192c3b1-46fd-455d-aa67-b05bf5c54e19@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] ARM: dts: aspeed: System1: IBM system1 BMC board
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        joel@jms.id.au, andrew@codeconstruct.com.au, peterhuewe@gmx.de,
-        jarkko@kernel.org, jgg@ziepe.ca, keescook@chromium.org,
-        tony.luck@intel.com, gpiccoli@igalia.com,
-        johannes.holland@infineon.com, linux@roeck-us.net, broonie@kernel.org,
-        andre.werner@systec-electronic.com,
-        Andrew Geissler <geissonator@yahoo.com>, patrick.rudolph@9elements.com,
-        vincent@vtremblay.dev, peteryin.openbmc@gmail.com, lakshmiy@us.ibm.com,
-        bhelgaas@google.com, naresh.solanki@9elements.com,
-        alexander.stein@ew.tq-group.com, festevam@denx.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org,
-        geert+renesas@glider.be, luca.ceresoli@bootlin.com
-References: <20240116190321.GA102334@bhelgaas>
-Content-Language: en-US
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <20240116190321.GA102334@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: wUZ0cU7yrFT0wEjuA747LiOyYUO_dYd_
-X-Proofpoint-GUID: HJm4xSjPhV2NU6Q64V5KJgHDqN0uwgdU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
- adultscore=0 phishscore=0 clxscore=1011 priorityscore=1501 impostorscore=0
- suspectscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
- definitions=main-2401250154
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Hello Bjorn,
+On Mittwoch, 24. J=E4nner 2024 13:10:53 CET Konrad Dybcio wrote:
+> On 1/23/24 22:03, Luca Weiss wrote:
+> > From: Vladimir Lypak <vladimir.lypak@gmail.com>
+> >=20
+> > Add an entry in the gcc driver for the MDSS_BCR reset found on MSM8953.
+> >=20
+> > Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
+> > [luca: expand commit message, move entry]
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+>=20
+> I found some more definitions in lk2nd
+>=20
+> 88:#define  GCC_CRYPTO_BCR                    (CLK_CTL_BASE + 0x16000)
+> 106:#define SDCC1_BCR                          (CLK_CTL_BASE + 0x42000) /*
+> block reset*/ 125:#define SDCC2_BCR                          (CLK_CTL_BASE
+> + 0x43000) /* block reset */ 150:#define USB_HS_BCR                      =
+ =20
+> (CLK_CTL_BASE + 0x41000) 155:#define GCC_QUSB2_PHY_BCR                =20
+> (CLK_CTL_BASE + 0x4103C) 168:#define USB_30_BCR                =20
+> (CLK_CTL_BASE + 0x3F070)
+> 189:#define USB3_PHY_BCR                (CLK_CTL_BASE + 0x3F034)
+> 190:#define USB3PHY_PHY_BCR                 (CLK_CTL_BASE + 0x3F03C)
+>=20
+> Couldn't find this one though, did you confirm that MDSS goes off
+> when you assert it?
 
-On 1/16/24 13:03, Bjorn Helgaas wrote:
-> On Tue, Jan 16, 2024 at 12:37:34PM -0600, Ninad Palsule wrote:
->> From: Andrew Geissler <geissonator@yahoo.com>
->>
->> Add a device tree for IBM system1 BMC board. It uses AST2600 SOC.
->> - Added base board
-> s/Added/Add/ to match first sentence.
-Fixed
->
->> - Added i2c devices and muxes.
->> - Added different voltage regulators.
->> - Added GPIO pin assignements, GPIO expansion devices
->> - Added LED brinker devices
-> "brinker"?  "blinker" maybe (no idea what it actually is).
-Fixed. Its blinker.
->> - Added Fan controllers
-> s/Fan/fan/
-Fixed.
->
->> - Added EEPROM/VPD
->> - Added Power supplies
-> s/Power/power/
-Fixed.
->
->> - Added Humidity, pressure and temperature sensors.
-> s/Humidity/humidity/
-Fixed.
->
->> - Added Trusted platform module(TPM) chip.
-> s/Trusted platform module/Trusted Platform Module /
-Fixed
->
->> Tested:
->>      This board is tested using the simics simulator.
->>
->> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
->> Signed-off-by: Andrew Geissler <geissonator@yahoo.com>
-> Your sign-off should be last since you are sending the series.
+That one's defined here:
+https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-4.9/+/r=
+efs/heads/int/13/fp3/arch/arm64/boot/dts/qcom/msm8953-mdss-pll.dtsi#21
 
-Fixed.
+I'll add some of the others in v2.
 
-Thanks for the review.
+>=20
+> Konrad
 
-Regards,
 
-Ninad Palsule
 
 
 
