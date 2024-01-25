@@ -1,209 +1,137 @@
-Return-Path: <devicetree+bounces-35008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 993C983C04B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:09:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02A3283C0B0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 12:21:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22E731F214A5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:09:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C90EB21599
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99D855E5E;
-	Thu, 25 Jan 2024 10:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32AD9446A0;
+	Thu, 25 Jan 2024 11:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HByBT7zP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MfjLijkO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787A955C36
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 10:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A061BDCA;
+	Thu, 25 Jan 2024 11:01:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706180245; cv=none; b=MARHRISX7x4IQdS0xM/t6VxGLh5gm5a8h3K1NKSkh3nOOsPQxTqMyd1mTPfNlI2P4BigzpAlpxbcbjQGgGizlyhBAF/AP2ndjjNyqMphIFujis9URMHmAyMQYDrY9ceyjjLp6pF44b6r9r0d4ktIJSF5A5p0ZLk361SynBS6ACY=
+	t=1706180473; cv=none; b=ufP5h4zqxySHxmc/3uYd6G2nGuwhem1oF4OixzXzSp9viYyvSdPVHLRzplRzWw9Kc/LUOOhIY7RK6spDFk5YEC0bKfJE3JCmzRWSMevxjxKBtQjZiP//4a6p0Vqr9vgLout+kD5aRJaXy8EXCwFYpyYWiGw3HRjftuYVhkYUchM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706180245; c=relaxed/simple;
-	bh=4qD2CXu8N/6r+864TKXfk3a5vuGTZ4qhXFLEbdOxfK8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LvFth20C0lCoFyz965hNrn52P9Q/Cc1q58MSj+kn00SZ7VSg6v+GzF/+uqJItboBQxMO30zQNBKu1vNVPFCLYVybNGvZALPMQoQRMZp0wcSu4+maFgd1ZwMlrpCuXCksIouRqFaewIBtcRzU+scFKwJPQPMKBF2jDAFtj5B9HdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HByBT7zP; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2cf161b5eadso31337351fa.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 02:57:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706180241; x=1706785041; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HwpguGkqNwgpijlAt2Oe0B1qzP3LlkGTfciVecu4QVQ=;
-        b=HByBT7zPYjtY+36iBWoGVukWS8Ximk4NnYYY1Pb+ydZceB5JLZSaiCoqzO18M2WJom
-         8nIWwA4VQKuWJXVSP0FFTJOZGSMZZ3lti5d3AybG7WzyHCX+LhffhZ8dML9pH6og+jBO
-         hh8W/4FyMj7B2ojY0j1ZOLGuCT6gxvjn73ZzPlCuKniX2cdi8Vna7RyXoaBdPuVlv2s7
-         kOwdjodJ8RJ+bGniJJU5/lLMQr9BialzFE0btoWDVPWfFFZN0zX2lDNc/FfFM/oMvwMG
-         nhSnaqlmPuWmCj1Wp51CEYIDHJ1rAMTdCKkSVyCM4ZqCSVwMwRHct28LDic913UC+a+7
-         HiBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706180241; x=1706785041;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HwpguGkqNwgpijlAt2Oe0B1qzP3LlkGTfciVecu4QVQ=;
-        b=ZZMB0RXqNWOcBYwBk8usYgK1c0t4Rdd0TfronDanX3GnY7582m7I/pA0c3AI5iRMLW
-         8bBnQFra6wLsqkHGlbQsvYFks2uVIcLUVpSARRmDYnvXDQe67lTJGd7lAU6lDgCl7xMB
-         4pUdEIclDcyo5Eg1ghTiTkQ1EtBaWOdIhT1NCoSbK6aYArG7XLdv/VCyHCkilSD3jxB8
-         3J5u4YWhbB92Of3xd2jJfMmxFd2Xp4Yk/6oGPiMG/P1bRc3vXSLV967PztrH2YEenug7
-         Z3d/hF85+GHMdI/9oV7Q1dZa8uF7kZZzSKoojBwhP0qz5biVk0VBe/aMiTR0hXg9hYNL
-         Zd8w==
-X-Gm-Message-State: AOJu0YwZ/uC37ji6Yf8IR+uOFEaZrDf4aXbT+H6pZMtTgelG+ZDv+hBE
-	9PHLHZrsk4QskwvGvaiL9hekPoO3PIhlwQyukJU+fV/5eEDu0UPPHBecvHzxNRE=
-X-Google-Smtp-Source: AGHT+IGWm1fEW9w//XlIVmaPmR3FIhXEoLIWxVuRfsxULhe2J7QZD7uMCG5MCVPNBXtBMJ9DTE0kGQ==
-X-Received: by 2002:a05:651c:205c:b0:2cd:7039:e281 with SMTP id t28-20020a05651c205c00b002cd7039e281mr530622ljo.8.1706180241628;
-        Thu, 25 Jan 2024 02:57:21 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id qu27-20020a170907111b00b00a331d6c0c70sm13878ejb.71.2024.01.25.02.57.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 02:57:21 -0800 (PST)
-Message-ID: <4e14b7c7-7f0a-437b-aa84-20fdc30a2361@linaro.org>
-Date: Thu, 25 Jan 2024 11:57:18 +0100
+	s=arc-20240116; t=1706180473; c=relaxed/simple;
+	bh=YSxa/mMSgqpJQW+2kobPEHT7Vxr7BU0VRT1lEHw89/8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=o6UdvLhBpA6I7ZHZt5F7piMDaQ0k6wnYyLNup8JndyrTqlPqj+8lrrsrOmuwcP/tqs/qYdiX86d2bDNFx6c+dkVOVxzs3yngGrsfHm+BxzIg+M5/I4TtWo2C54sPefYFOEeoem48N8O0e04UPuQElGwOwYjF99jDNGspWksCbzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MfjLijkO; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C16C3E0007;
+	Thu, 25 Jan 2024 11:01:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1706180467;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0WPcj9jp5TczMii0r01DGB7rL3rO4+5GSU7rJ/lR9/s=;
+	b=MfjLijkO2Rs/IJY59mGODNP/JT6HojMlLEygWWr5DF4P1y0IIez1TW8cVbD6TDFRHWVTKi
+	PR3KcjQR2MWWU75NdypK99FP5jLTmpxeUFGB/PboMU9DRs8TT12e/NG3cxNsZlYZJrxemH
+	4D6PuAiSzlf8BwD9Xlu1994KMwwrs4Gy2NidmNbl4HZ6zzjdGAFii2WJAG4MH4ilF+6G+W
+	H73hkH12M/633aKMyZynCItrWYvFM7JbX3251ecZAZvm6GSgwYKauN4igXpCn9hiTqKaFf
+	V8ynQBqZaDO+R+kFRJQdbUzuQlHTOMFGwxJ/fpG2i+HjY7D/nYuPNbuVoKWV4A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] dt-bindings: power: reset: add bindings for NVMEM
- hardware storing PSCR Data
-Content-Language: en-US
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: kernel@pengutronix.de, linux-kernel@vger.kernel.org,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, =?UTF-8?Q?S=C3=B8ren_Andersen?= <san@skov.dk>
-References: <20240124122204.730370-1-o.rempel@pengutronix.de>
- <20240124122204.730370-5-o.rempel@pengutronix.de>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240124122204.730370-5-o.rempel@pengutronix.de>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Thu, 25 Jan 2024 12:01:06 +0100
+Message-Id: <CYNQHXOZ73YR.3QODFI2X08KC6@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v3 04/17] dt-bindings: soc: mobileye: add EyeQ5 OLB
+ system controller
+Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Linus Walleij" <linus.walleij@linaro.org>,
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, "Philipp Zabel"
+ <p.zabel@pengutronix.de>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, <linux-mips@vger.kernel.org>,
+ <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Rob Herring"
+ <robh@kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
+ <20240123-mbly-clk-v3-4-392b010b8281@bootlin.com>
+ <20240124151405.GA930997-robh@kernel.org>
+ <dd7e723d-3c4c-4edf-afc2-51db9a074efa@linaro.org>
+In-Reply-To: <dd7e723d-3c4c-4edf-afc2-51db9a074efa@linaro.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 24/01/2024 13:22, Oleksij Rempel wrote:
-> Add device tree bindings that describe hardware implementations of
-> Non-Volatile Memory (NVMEM) used for storing Power State Change Reasons
-> (PSCR).
+Hello,
 
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+On Thu Jan 25, 2024 at 8:51 AM CET, Krzysztof Kozlowski wrote:
+> On 24/01/2024 16:14, Rob Herring wrote:
+> >> +
+> >> +      pinctrl-b {
+> >> +        compatible =3D "mobileye,eyeq5-b-pinctrl";
+> >> +        #pinctrl-cells =3D <1>;
+> >> +      };
+> >> +    };
+> >=20
+> > This can all be simplified to:
+> >=20
+> > system-controller@e00000 {
+> >     compatible =3D "mobileye,eyeq5-olb", "syscon";
+> >     reg =3D <0xe00000 0x400>;
+> >     #reset-cells =3D <2>;
+> >     #clock-cells =3D <1>;
+> >     clocks =3D <&xtal>;
+> >     clock-names =3D "ref";
+> >=20
+> >     pins { ... };
+> > };
+> >=20
+> > There is no need for sub nodes unless you have reusable blocks or each=
+=20
+> > block has its own resources in DT.
+>
+> Yes, however I believe there should be resources here: each subnode
+> should get its address space. This is a bit tied to implementation,
+> which currently assumes "everyone can fiddle with everything" in this blo=
+ck.
+>
+> Theo, can you draw memory map?
 
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  .../bindings/power/reset/pscrr-nvmem.yaml     | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/reset/pscrr-nvmem.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/reset/pscrr-nvmem.yaml b/Documentation/devicetree/bindings/power/reset/pscrr-nvmem.yaml
-> new file mode 100644
-> index 000000000000..779920dea283
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/reset/pscrr-nvmem.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/reset/pscrr-nvmem.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic NVMEM Power State Change Reason Recorder
-> +
-> +maintainers:
-> +  - Oleksij Rempel <o.rempel@pengutronix.de>
-> +
-> +description: This binding describes the Non-Volatile Memory (NVMEM) hardware
+It would be a mess. I've counted things up. The first 147 registers are
+used in this 0x400 block. There are 31 individual blocks, with 7
+registers unused (holes to align next block).
 
-Same comment and also: describe the hardware, not the binding. s/This
-binding describes/something useful/
+Functions are reset, clocks, LBIST, MBIST, DDR control, GPIO,
+accelerator control, CPU entrypoint, PDTrace, IRQs, chip info & ID
+stuff, control registers for PCIe / eMMC / Eth / SGMII / DMA / etc.
 
-> +  that stores Power State Change Reasons (PSCR).
-> +
-> +allOf:
-> +  - $ref: pscrr.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: pscrr-nvmem
-> +
+Some will never get used from Linux, others might. Maybe a moderate
+approach would be to create ressources for major blocks and make it
+evolve organically, without imposing that all uses lead to a new
+ressource creation.
 
-So that's a driver :/. Maybe Rob will like it, but it's a no from me.
-Please come up with something really suiting DEVICES, not DRIVERS.
+Thanks,
 
-> +  nvmem-cells:
-> +    description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +      A phandle pointing to the nvmem-cells node where the power state change
-> +      reasons are stored.
-> +    maxItems: 1
-> +
-
-
-Best regards,
-Krzysztof
-
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
