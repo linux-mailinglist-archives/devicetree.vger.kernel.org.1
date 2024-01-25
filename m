@@ -1,211 +1,140 @@
-Return-Path: <devicetree+bounces-34947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75FEF83BD2A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:23:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F1583BD3A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:28:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25F7528661C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:23:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16BC1B2C02B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87301BC41;
-	Thu, 25 Jan 2024 09:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C211BC58;
+	Thu, 25 Jan 2024 09:28:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ihRZ83cq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x6+4eyLj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28B61C6AE;
-	Thu, 25 Jan 2024 09:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B011BF3A
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 09:28:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706174593; cv=none; b=rJVhJWkxycuQPAGDkqpceDxMN2FmGkUTaMhRjp/aHHgwg4KmoQ7x9L63j/kkjTj/mcRiQdxv5QHPADWCMwbuvRojleLfzCrAtVFqwhwH8dzLC3dZV1ItRo5AzC/mTpfeGba5ArKCL7CdAgZO8aoBDTeCSkkwIRj1hX/gPSF+KXo=
+	t=1706174885; cv=none; b=bicLxxOgf9y7N2kcBhLFqebh6pgWi6nDPR/4EStlE4X2rYeHRJlDwtqArVfEqiyQadxGEzDmu8eihELrhKzDxJlhJkevHl0ZBTKvzuihGaVrYK8Trgb0FVoUWBy2uwokflC4kuRGcks1ack+MK0zCIDIVAlbK4Mf4LdrLQriq3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706174593; c=relaxed/simple;
-	bh=fXFbKRBE8R8j26jWgNr+6m8YuTvOSuVQlhrk8Y4vpho=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qLaNykNE41yNa7OlX3sl9N9usblXB4v8M7pGSEteunQVVx/HBP3lDTIqxaVdloCTLrNZGO8oA8bOuJjW+RJhTY+9+/2v9BUW8c04esPXpy4b15RAALMka84ARVwiF65KVvKyKAZ4XKC6vq8Fmx75oZodm1XKQZMRuoS0QKYcJIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ihRZ83cq; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40P3TH8o031133;
-	Thu, 25 Jan 2024 10:22:25 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=Msx1MMGlXbEbEdl4gJcqYdH22Y4+8xYTs1q0zeYndR4=; b=ih
-	RZ83cqUW5SKppQ20svWJ3WknYwfYXvi8QKlz0cDrPuSnWq5/qimrD1Vsco7yHQDj
-	OoC5rbKcJhy/CXoe7gTtkHxcEpiFFAl38A36wHw1DLYBsnL9i7Uz0+hUVzC5a+Jt
-	6JkuDnVFDe8pByXVQkKw6HyLxEtCDCNR9JHYKGD1lzemDwsrxMM8AiJCLEarkoNN
-	PJkG8aSD63+nwlXxy1EVwwuZb8NzKRLSnyBYbC3aINEMhqpf/uL1XaADpTcw+3cR
-	Ruw3Bn9powq7OrRsvFuGgLpggNxtaoUjF8FKRRtKPBFZi1zbclrz6WCcM6QCCant
-	mOKRwcjUjt3xA43ZoZ/A==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vtmf7q92p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 25 Jan 2024 10:22:25 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CADAC10005D;
-	Thu, 25 Jan 2024 10:22:22 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BD7CC233008;
-	Thu, 25 Jan 2024 10:22:22 +0100 (CET)
-Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 25 Jan
- 2024 10:22:21 +0100
-Message-ID: <12b1747b-5cbb-415a-8cfd-1304be5558a6@foss.st.com>
-Date: Thu, 25 Jan 2024 10:22:21 +0100
+	s=arc-20240116; t=1706174885; c=relaxed/simple;
+	bh=gy0zUIMX0ecGhpvp4QAVUCRKbXWcUlLlLRZf94hkeOk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QLJxbWZ3eqK3dctUirteqPHWRuFMzaYHFOfMj/w/5kqvjhRW5oLDs2YZTLMcrG4fbifgBEQn+H8XzhnqlWL9APNHIgQUQ8jfyIRe31YgnL2yAC0Qz/G1ItV3zlr4gvKsGMvr4T7g8LLBzX3efQDkghs4E03XMiW7YC2HfuV0KHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x6+4eyLj; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55a356f8440so7701466a12.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 01:28:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706174882; x=1706779682; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KH02RcuM2+v9UWcFG0xYMqcwTW43qilDo47iIK70Yx8=;
+        b=x6+4eyLjhocUR6N46/NzRVdBcljV/rOLTyeoqjqYvfI9U83Cha43z7H3aAi/aTAm2O
+         uxin+Ph/c3HnIwiPvvF4Z2VOhztASGo2JjpW3GJOwl4obtmM3xpQUod2l6rOMh7RVwNe
+         M3GZCDLwBh0e7OXN9G39tNrohVDac4grOnp+caS/KIybVzmOOPtfL3YWquQXdebrQYd8
+         2A4imYpqPaZNHdFjEgZ/CByvqDsRnCqF1wQgUis2QdEHIxIPi55tvCXbAkG2B9adDVKc
+         rLh2sL4TPp8p2prdiBXwGdPbHHlXYgMuY47Dg9wbLQRu6AeMIVOpFHmb3uZ2Cnbj24bB
+         WmVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706174882; x=1706779682;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KH02RcuM2+v9UWcFG0xYMqcwTW43qilDo47iIK70Yx8=;
+        b=w/lKDuhhWEr8P0BHpipWde/bae+3sV5PEb9P2oBvILoLSLpR2SG720vZ2JgQ8VpBUt
+         e4KRSzPpAAb+RrlSaSUv+gzgUwYNrqWercx8taol8HJzab5P+WyagEmoRBPar3wf3knY
+         OvgW4LBXCpnB8wvVlUtcS9Jj7L9COKKY5NBR3CA1RE17xw95FlfnUEhw9DXJaUXLXJA7
+         IamsfToKkhWAsAAXZUFZ55GZh3EtXvGaHN+3FaHG0qKka7soEyDgoyADAR1ZIiY6nK2Z
+         wpb6L8gWZl2uRIayT1Ys1lnL3HVM1aiR2HIXG4c7xnXrVtmuHTVfD97G0uBfQu9cNjya
+         P3qA==
+X-Gm-Message-State: AOJu0YyBB/dMrGEWrOYgAh+X/+o86Y/P+GGhke7p/yjzuRKqsU3yW9H7
+	OoRQk5XufpJthOUnAOlxnsY+DKh/sG0p5wMCMbJjOM4Z8nO4VNOuu1LlLiTVRgXygVWluDbrswm
+	T
+X-Google-Smtp-Source: AGHT+IGrcysk+o5meGm3pKRBCvTlh9267epGM9XB2KmgkiZ9t0IIWFs273iprtH1A0sD/YdIt6gDAg==
+X-Received: by 2002:aa7:da8e:0:b0:55c:7dbe:2c47 with SMTP id q14-20020aa7da8e000000b0055c7dbe2c47mr35179eds.29.1706174881745;
+        Thu, 25 Jan 2024 01:28:01 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id f19-20020a056402005300b00554af5ec62asm17356391edu.8.2024.01.25.01.28.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jan 2024 01:28:01 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH 0/5] clk: qcom: sm8[56]50: Drop the Disp AHB clock from
+ Display Clock Controller
+Date: Thu, 25 Jan 2024 11:27:44 +0200
+Message-Id: <20240125-dispcc-sm8550-sm8650-drop-disp-ahb-clk-v1-0-0f8d96156156@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 5/5] ARM: dts: add stm32f769-disco-mb1166-reva09
-Content-Language: en-US
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        <linux-kernel@vger.kernel.org>
-CC: <linux-amarula@amarulasolutions.com>, Lee Jones <lee@kernel.org>,
-        Raphael
- Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jesper Nilsson <jesper.nilsson@axis.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Leonard_G=C3=B6hrs?=
-	<l.goehrs@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob
- Herring <robh+dt@kernel.org>, Sean Nyekjaer <sean@geanix.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20240124113336.658198-1-dario.binacchi@amarulasolutions.com>
- <20240124113336.658198-6-dario.binacchi@amarulasolutions.com>
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20240124113336.658198-6-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-25_04,2024-01-24_01,2023-05-22_02
+X-B4-Tracking: v=1; b=H4sIAJApsmUC/x2NywqDMBBFf0Vm7UASTFv9FXERk0kd6iNkoBSC/
+ 27q6nC4cG4BocwkMDQFMn1Z+Nir6LYBv7j9TcihOhhlOqWNxcCSvEfZXtaqPx4VIR/pXtAtM/r
+ 1g9EpreNzpj46qLGUKfLvPhqn87wA7N0rq3gAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1190; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=gy0zUIMX0ecGhpvp4QAVUCRKbXWcUlLlLRZf94hkeOk=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlsimVIXDYDCtv1pTKnIrt9mks0y3gW2UWjifWu
+ VCieoCzUouJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZbIplQAKCRAbX0TJAJUV
+ VtvAD/wPCohABL7H3uUrA8gJ+cgaA1bMLZB+k3KUurpKJmMm6vO9Uy1h/rQTDsIN19EvrgoOETz
+ TBCtU4zH7jRCPTy+CBUR0Zb6/rzvZA47l/TxiG2Vy2RyPRvrPyohlcGWMmN8GEGIrn3TRUhcnoT
+ qKtD6TdZqmzeCwoH8PsuezyTiUe8l4mJOUTDv/r4GxvXJb1itQXz669HlF3zjZ6a3YFZ+nGKczi
+ sXRIVDuZFlnSKRSNKH4e2ru7GZi2vAk4d2nWQbRwHMow+iHVC7LY08yGnMrFAza0fc6D8yvGhCn
+ T1EPSohGOJ42PFnRKeLC5eKMDZRhT5iZN+wwbUMZaAFhrzrl0tuHpgjgBjwQkHnZ2JfeDwiG350
+ n7Dkdjqc8PABVewqRNHIkKd7BHiLtoR+dhWarZd3PYiEi1BMIG7w+w+x4YU+ixM4M/TNrvV/atV
+ /BdWEX/OY4f/SDxKIsD/4jGjBAADoS57s0KD5z4d5sYV8YIEJw+MZaJs9QCA7KpCL2RPUnIYgJa
+ aiAUUikBZiDlQhN/wYj0v3YF7Sh44P83PspafVewi2G6ZriQ1Ozf1Ym3QgZjqS2KFAAvUBwvYb3
+ Pz5/S4F8ffTC+iLnhBuq44lcJHT43Ox3R8rkG3ncsYsDFQUu3xmn6UWGFQeeygalg4bNyNJhBcj
+ 6RnMzW0Z1c2aoRg==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Hi Dario
+The Disp AHB clock is provided by the GCC but never registered. It is
+instead enabled on probe as it is expected to be always-on. So it should
+be dropped from Disp CC entirely.
 
-On 1/24/24 12:33, Dario Binacchi wrote:
-> As reported in the section 8.3 (i. e. Board revision history) of document
-> UM2033 (i. e. Discovery kit with STM32F769NI MCU) these are the changes
-> related to the board revision addressed by the patch:
-> - Board MB1166 revision A-09:
->    - LCD FRIDA FRD397B25009-D-CTK replaced by FRIDA FRD400B25025-A-CTK
-> 
-> The patch adds the DTS support for the new display which belongs to the
-> the Novatek NT35510-based panel family.
-> 
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-> 
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Abel Vesa (5):
+      dt-bindings: clock: sm8550-dispcc: Drop the Disp AHB clock
+      arm64: dts: qcom: sm8550: Drop the Disp AHB clock from dispcc node
+      arm64: dts: qcom: sm8650: Drop the Disp AHB clock from dispcc node
+      clk: qcom: dispcc-sm8550: Drop the Disp AHB DT provided clock
+      clk: qcom: dispcc-sm8650: Drop the Disp AHB DT provided clock
 
-I still have the following yaml error:
+ Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml | 2 --
+ arch/arm64/boot/dts/qcom/sm8550.dtsi                            | 1 -
+ arch/arm64/boot/dts/qcom/sm8650.dtsi                            | 1 -
+ drivers/clk/qcom/dispcc-sm8550.c                                | 1 -
+ drivers/clk/qcom/dispcc-sm8650.c                                | 1 -
+ 5 files changed, 6 deletions(-)
+---
+base-commit: 01af33cc9894b4489fb68fa35c40e9fe85df63dc
+change-id: 20240125-dispcc-sm8550-sm8650-drop-disp-ahb-clk-fa011f7be9fa
 
-arch/arm/boot/dts/st/stm32f769-disco-mb1166-reva09.dtb: panel@0: 'port' 
-does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: 
-http://devicetree.org/schemas/display/panel/novatek,nt35510.yaml#
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
-It seems that "port" property is missing in "novatek,nt35510.yaml" file, 
-can you update it ? Or delete it in the dts file if not needed.
-
-With this change I'll take your series.
-
-I also saw that stm32f769-disco has a similar problem with 
-orisetech,otm8009a.yaml file, "backlight" property is not defined.
-
-thanks in advance
-Alex
-
-> ---
-> 
-> Changes in v9:
-> - Change commit message
-> - Rename stm32f769-disco-mb1225-revb03-mb1166-reva09 to
->    stm32f769-disco-mb1166-reva09
-> 
-> Changes in v8:
-> - Add Reviewed-by tag of Linus Walleij
-> - Add Reviewed-by tag of Raphael Gallais-Pou
-> 
-> Changes in v7:
-> - Replace .dts with .dtb in the Makefile
-> 
-> Changes in v6:
-> - Drop patches
->    - [5/8] dt-bindings: nt35510: add compatible for FRIDA FRD400B25025-A-CTK
->    - [7/8] drm/panel: nt35510: move hardwired parameters to configuration
->    - [8/8] drm/panel: nt35510: support FRIDA FRD400B25025-A-CTK
->    because applied by the maintainer Linus Walleij
-> 
-> Changes in v5:
-> - Replace GPIOD_ASIS with GPIOD_OUT_HIGH in the call to devm_gpiod_get_optional().
-> 
-> Changes in v2:
-> - Change the status of panel_backlight node to "disabled"
-> - Delete backlight property from panel0 node.
-> - Re-write the patch [8/8] "drm/panel: nt35510: support FRIDA FRD400B25025-A-CTK"
->    in the same style as the original driver.
-> 
->   arch/arm/boot/dts/st/Makefile                  |  1 +
->   .../dts/st/stm32f769-disco-mb1166-reva09.dts   | 18 ++++++++++++++++++
->   2 files changed, 19 insertions(+)
->   create mode 100644 arch/arm/boot/dts/st/stm32f769-disco-mb1166-reva09.dts
-> 
-> diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
-> index 7892ad69b441..9fedd6776208 100644
-> --- a/arch/arm/boot/dts/st/Makefile
-> +++ b/arch/arm/boot/dts/st/Makefile
-> @@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
->   	stm32f469-disco.dtb \
->   	stm32f746-disco.dtb \
->   	stm32f769-disco.dtb \
-> +	stm32f769-disco-mb1166-reva09.dtb \
->   	stm32429i-eval.dtb \
->   	stm32746g-eval.dtb \
->   	stm32h743i-eval.dtb \
-> diff --git a/arch/arm/boot/dts/st/stm32f769-disco-mb1166-reva09.dts b/arch/arm/boot/dts/st/stm32f769-disco-mb1166-reva09.dts
-> new file mode 100644
-> index 000000000000..014cac192375
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/st/stm32f769-disco-mb1166-reva09.dts
-> @@ -0,0 +1,18 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2023 Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> + */
-> +
-> +#include "stm32f769-disco.dts"
-> +
-> +&panel_backlight {
-> +	status = "disabled";
-> +};
-> +
-> +&panel0 {
-> +	compatible = "frida,frd400b25025", "novatek,nt35510";
-> +	vddi-supply = <&vcc_3v3>;
-> +	vdd-supply = <&vcc_3v3>;
-> +	/delete-property/backlight;
-> +	/delete-property/power-supply;
-> +};
 
