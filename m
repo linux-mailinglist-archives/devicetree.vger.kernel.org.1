@@ -1,57 +1,69 @@
-Return-Path: <devicetree+bounces-35207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3DF83C9AD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:17:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA61583C9B1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 18:17:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63B8C1F24D94
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:17:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 706AA28EFA0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 17:17:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207FA13664B;
-	Thu, 25 Jan 2024 17:13:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05FA6131E40;
+	Thu, 25 Jan 2024 17:15:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ffDXEQ6x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Txkf3O/b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED358131723;
-	Thu, 25 Jan 2024 17:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF38113173F;
+	Thu, 25 Jan 2024 17:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706202780; cv=none; b=YoN+9+4y6yDjNETBMUSL6axeU3AT3Rc7St/P1Y/njhYgF4X3nUgh1SFeE8P2QZnT0saLnTiGCr7QLEDkvBPo++nzPn4xJbahntsopYaWHqAxlkZZcKyO0afCOCwsnM7uvfngagm0ykIm8SbwCC70psY+y5Emij7z6IRvxNB+Hqg=
+	t=1706202901; cv=none; b=asiRPTMshk5PCqoj45SfEjGxqJNJe+SbTlN7qdzgsW6ZY/unm4tmr9OpGKQxAz4ZFQ07pDd9kN8Lv5IMZKKj3F7Q7x5Xz+WngAY8Lztgka6enOnjskFGdWTDbpJT5yIsn/03iWwAfQtKRZkqLgGGftre59TUHAyH5uwMdyn4SVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706202780; c=relaxed/simple;
-	bh=P8twLiBk8195NVVkVBNtmDPSljomu/5qIfayjD6vnKg=;
+	s=arc-20240116; t=1706202901; c=relaxed/simple;
+	bh=3dVf+vPXIdsPQhadKBnqSmffUhDAz2vQfQH/Y8KghKo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=vGvlR5j/3IurDou94xphbNSBpnyelrjjgYe4GJlXWE5dw4+B5qtEatmYDOHxamZTLCpEa2kgW9he0epXZFDKKOE26YYq0jWCMdDN2y/GMT7dLPFKdM8Q60Iwi4AYrT0HSAVZqVbrtsjabY2pDH8osdZ942xK/ZRYuSEtWhY7Ewc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ffDXEQ6x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 020FAC433F1;
-	Thu, 25 Jan 2024 17:12:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jH+e6bjtG2eUB+YcB2SbFZJIGI/CKirqZ15gJ7TbwH/2LljRJXw8hdWEw0kAn49su8BlOTpaLAUpZu7ul7cH5UyEe8c3f8an7lHaPLMhQSAzeIGj1P3mCMViHR2tDSWFI3V3IHvgwEqDk7/K4HC7pJ3q+I+CG3/GJGtZSoAUBEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Txkf3O/b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FB71C433C7;
+	Thu, 25 Jan 2024 17:14:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706202779;
-	bh=P8twLiBk8195NVVkVBNtmDPSljomu/5qIfayjD6vnKg=;
+	s=k20201202; t=1706202901;
+	bh=3dVf+vPXIdsPQhadKBnqSmffUhDAz2vQfQH/Y8KghKo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ffDXEQ6xe5Oc09Q0Ks5MWZFNjI/ryOga9U0VvRre4UlZEsa4bu1C1FXVa6Kf3v4qP
-	 P8E/TALOBWSYRQd5NsV2L5zUqy4jO7BVVip0OWlmeyLMgqtw55dnQGKSOpNFTFMqqR
-	 Fp8KqNxBzSziJSwDZdZEx7JJUL12SiHu9misY+GkRJBqdgG1zwLfsSeOWHkTeFNexM
-	 Ahi5B3AJZf0vRBV3NRRn4YuJ5SB+VZqA0fRwsWGfJVi2hH8UJ7JFTSwvnye1xjr+BO
-	 yg5sTt5RbpjbV9x6hUkNkW1WDlzfJIZqyudzyT/UtsrbgL+5xT0If1FURMZAkirwTy
-	 Pc9SwmnCEFYtA==
-Date: Thu, 25 Jan 2024 17:12:54 +0000
+	b=Txkf3O/bU+w3xpkbVkgMMl8QUXBKPsrBmaVGJ73PJStKMIRdZZqS1btShnlKYSe4B
+	 3tWxt+neitpkeD6DPTmPIUV6ZB93graF8xd+2W1FuoHqZVfe3h0vR4YjO2jucAzK5y
+	 2apRC9G275s0VAckQ1rnOTKJLj8fI2J5p5OR32uU3NdIO0LvfNUgaLt0gBUvnsSowf
+	 plXpjO3La7ab9VYy8UASERjMOsLZ1L1jr8FdGdOFn5MP6r47IiDue4UFNF7/j8k4Zx
+	 ImdM51iNoWJfm+COzc+RPfgZT6UUCi5JAPHOGVraofBaXE5VDj5vhVyLzUjZFsjSlY
+	 S2yjAiaTH/QFA==
+Date: Thu, 25 Jan 2024 17:14:55 +0000
 From: Conor Dooley <conor@kernel.org>
-To: AnnanLiu <annan.liu.xdu@outlook.com>
-Cc: chao.wei@sophgo.com, unicorn_wang@outlook.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+To: esben@geanix.com
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	devicetree@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] riscv: dts: sophgo: add timer dt node for CV1800
-Message-ID: <20240125-rosy-folk-976dd297e32f@spud>
-References: <DM6PR20MB23167ABF18C1F004A5710D4FAB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
+Subject: Re: [PATCH 2/3] dt-bindings: net: snps,dwmac: Add
+ time-based-scheduling property
+Message-ID: <20240125-pebble-reproach-f550d00a2abb@spud>
+References: <b365dc6f756a3fad4dfaa2675c98f4078aba8a55.1706105494.git.esben@geanix.com>
+ <30ce8f45b8752c603acc861ebb2f18d74d2f8a07.1706105494.git.esben@geanix.com>
+ <20240124-reptilian-icing-a95b20f123be@spud>
+ <87bk99hj7q.fsf@geanix.com>
+ <3adf7908-be27-4125-ae5b-6f2eb6100304@linaro.org>
+ <877cjxhbkv.fsf@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,78 +71,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="U7ZAB6TpsVs6HOXN"
+	protocol="application/pgp-signature"; boundary="AsbEPBmbmpQjmWgj"
 Content-Disposition: inline
-In-Reply-To: <DM6PR20MB23167ABF18C1F004A5710D4FAB7A2@DM6PR20MB2316.namprd20.prod.outlook.com>
+In-Reply-To: <877cjxhbkv.fsf@geanix.com>
 
 
---U7ZAB6TpsVs6HOXN
+--AsbEPBmbmpQjmWgj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 25, 2024 at 05:46:23PM +0800, AnnanLiu wrote:
-> Add the timer device tree node to CV1800 SoC.
+On Thu, Jan 25, 2024 at 12:55:12PM +0100, esben@geanix.com wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 >=20
-> Signed-off-by: AnnanLiu <annan.liu.xdu@outlook.com>
-> ---
-> This patch depends on the clk driver and reset driver.
-> Clk driver link:
-> https://lore.kernel.org/all/IA1PR20MB49539CDAD9A268CBF6CA184BBB9FA@IA1PR2=
-0MB4953.namprd20.prod.outlook.com/
-> Reset driver link:
-> https://lore.kernel.org/all/20231113005503.2423-1-jszhang@kernel.org/
+> > On 25/01/2024 10:10, esben@geanix.com wrote:
+> >> Conor Dooley <conor@kernel.org> writes:
+> >>=20
+> >>> On Wed, Jan 24, 2024 at 03:33:06PM +0100, Esben Haabendal wrote:
+> >>>> Time Based Scheduling can be enabled per TX queue, if supported by t=
+he
+> >>>> controller.
+> >>>
+> >>> If time based scheduling is not supported by the controller, then the
+> >>> property should not be present! The presence of a property like this
+> >>> should mean that the feature is supported, using it is up to the
+> >>> operating system.
+> >>>
+> >>> That said, why is this a property that should be in DT?
+> >>=20
+> >> It is added to the tx-queues-config object of snps,dwmac bindings. This
+> >> entire object is about configuration of the ethernet controller, which
+> >> is also what the purpose of the snps,time-based-scheduling.
+> >> So yes, it is not specifically about describing what the hardware is
+> >> capable of, but how the hardware is configured. It is a continuation of
+> >> the current driver design.
+> >>=20
+> >>> If support is per controller is it not sufficient to use the
+> >>> compatible to determine if this is supported?
+> >>=20
+> >> Are you suggesting to include the mapping from all supported compatible
+> >> controllers to which TX queues supports TBS in the driver code?  What
+> >> would the benefit of that compared to describing it explicitly in the
+> >> binding?
+> >
+> > The benefit is complying with DT bindings rules, saying that bindings
+> > describe hardware pieces, not drivers.
 >=20
-> Changes since v1:
-> - Change the status of the timer from disabled to okay.
-> v1 link:
-> https://lore.kernel.org/all/DM6PR20MB23167E08FCA546D6C1899CB1AB9EA@DM6PR2=
-0MB2316.namprd20.prod.outlook.com/
+> Understood.
 >=20
->  arch/riscv/boot/dts/sophgo/cv1800b.dtsi | 73 +++++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
+> >> And for the purpose of the above question, I am talking about it as if
+> >> the binding was describing the hardware capability and not the
+> >> configuration.
+> >
+> > "if"? You wrote it is for driver design...
 >=20
-> diff --git a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi b/arch/riscv/boot/dt=
-s/sophgo/cv1800b.dtsi
-> index aec6401a467b..aef7970af2b8 100644
-> --- a/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> +++ b/arch/riscv/boot/dts/sophgo/cv1800b.dtsi
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
->   * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + * Copyright (C) 2024 Annan Liu <annan.liu.xdu@outlook.com>
->   */
-> =20
->  #include <dt-bindings/interrupt-controller/irq.h>
-> @@ -113,6 +114,78 @@ plic: interrupt-controller@70000000 {
->  			riscv,ndev =3D <101>;
->  		};
-> =20
-> +		timer0: timer@030a0000 {
-> +			compatible =3D "snps,dw-apb-timer";
-> +			reg =3D <0x030a0000 0x14>;
-> +			interrupts =3D <79 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&osc>;
-> +			resets =3D <&rst RST_TIMER0>;
-> +			status =3D "okay";
+> If you look at the current driver, all the devicetree bindings under
+> rx-queues-config and tx-queues-config are violating the DT binding
+> rules.
+> Cleaning up that requires quite some work and I guess will break
+> backwards compatibility to some extend.
 
-Do these really have no interface clock? I'd expect something that
-is almost certainly sitting on a apb (or similar) interface to have one.
+Let bygones be bygones. If something undesirable got in previously,
+breaking backwards compatibility there is not justified IMO.
 
-Thanks,
-Conor.
-
---U7ZAB6TpsVs6HOXN
+--AsbEPBmbmpQjmWgj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKWlgAKCRB4tDGHoIJi
-0vpGAP9NN4LPvUxivpiccMxrAPRFKuRn7nj+iQE9H6tZd0YdzAEAjWezQmZEkdEt
-fL6gE5liQ4NsH5TG4cdJc7SJ9zAU2gk=
-=yJSK
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbKXDwAKCRB4tDGHoIJi
+0mZmAP9R7uQLuENcaLcze3yAlLCBg7nWplWJaCgWwS4IRXlV9gEAjX3MUDAdIDcP
+ALEQkpPnRg6hiT9y1JmMSKxla8Uclwg=
+=Q2qx
 -----END PGP SIGNATURE-----
 
---U7ZAB6TpsVs6HOXN--
+--AsbEPBmbmpQjmWgj--
 
