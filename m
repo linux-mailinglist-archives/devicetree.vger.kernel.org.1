@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-34952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3404283BD4A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E53D83BD4E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:29:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C99F21F2D397
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:29:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FDB01F2D57B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:29:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDB31CD11;
-	Thu, 25 Jan 2024 09:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88BCB1CD30;
+	Thu, 25 Jan 2024 09:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hmDtWrBy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="coRIzuKu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA0A1BDD9
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 09:28:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53461CD04
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 09:28:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706174891; cv=none; b=nx/TsH26IFDDRtWeSKNZA3AN9gFfqreMKIjjwx74RoEvmqiEbFfvVL+03B1g2fsPyOesQrWZU5vYjwLMGQPu/x9AoSeII2GUH2I4loifO8GzUoEYbYJlI0MOxj7cBG05lPbYvzBD8rGWXqRfL38CuXR1mW70D4dlj7Ods69JHhs=
+	t=1706174892; cv=none; b=pWqGL1rU2GYbjjc9sFwDkq/2DkJ7PONe8ujQ0zhLjhspmroj+yQLdomInwbOKn8ler49+7dK/cCS7J37c2ULUKGbKa+VPbbOF/nHTIcYWd0A0vcbhfCfSIGjxi4Uohp++mnxyr4+0FvKmig2tVLjZnN9a5R9zHCJ3fgXwZjDDQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706174891; c=relaxed/simple;
-	bh=vM8sAjWAZdmpMApzUnKAm7BTvnMQ9KS6M6m1MOE6Rz8=;
+	s=arc-20240116; t=1706174892; c=relaxed/simple;
+	bh=4FhzQMyuNRu9cVH4Ij85n7GCnfVD5xm77q2Ax+afBBk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EN45/VfWGGc8fKsOpm3rvLHNKeEnrpD1+k/hZW68oLoKkVQzSfdK1Qm8aSpk9G9b4hcY22X1WzAW5QmqeSSOhK1jJZXgPye9vo8OX1OL9uiTDtsxik5oMrQPrXkVUF3VerpIZmk39N58Qw8lYogzg2dS2UAMrBM9+ifThoJDATo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hmDtWrBy; arc=none smtp.client-ip=209.85.208.46
+	 In-Reply-To:To:Cc; b=iYW9PosMDlRMGcr0yTPvs97L+LTE411a+5IjnaAWKdB19OE4ld+gz09zoe3i7nKP4zXajHhxs3ktJcd47MdweaoRRSpD+MR5W3pPmjczi0ajyj6rD2sU0RRKINLGKZbh+M1iLQuDui2MIJ7y/xuMf0wfxIUt0BiOlkRzGOSK9O0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=coRIzuKu; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-55a035669d5so7846089a12.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 01:28:09 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-55c2c90c67dso5034698a12.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 01:28:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706174887; x=1706779687; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706174889; x=1706779689; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JTwXeJttr1S5lj9FfbVYYeUxM0hcJGZds3WqL24wOLw=;
-        b=hmDtWrByeZ1Y7aHhWh53vXNQb7XD1U7esmPtbC/fNXqxn1IqDiqmKjX27OURDTQboc
-         3nhaxez3+jZciYvC8KAMbI3dUDHwfoJczNO1RPshF6+eep5ASx4b2fjKkTZgbwhfX2Ao
-         b/xZN5aasbzvCCCYGetYZluD1ZqLh6F4a1gdUCIHnplhDmSqaq+M0lQSRZtLXyvJsUAV
-         uwR7w3y0P7Q18nCOXkb6LauIqNr1cET2cGJBiKpGStt/OMU4xDxfvxk+5bGPAO74qagN
-         DY94eH+n5OXrB9neC0MmK+yxoUldhCb1hCm6oYQ1jrzHNt51xlZsCHDRDJcHc6Gwm778
-         psXw==
+        bh=JLNRnzxe4/p0rMB0AsJl/Ri8TUeEmBjJpE+eIe/tTYA=;
+        b=coRIzuKuOqIEM+LyOBo1js6mdCEXlkaoOnr2ooeVDFveVHAfyHgfoMC0ltSa3bwLrN
+         laA4YoDrkvJNGh+xkaGYFKdaiivNALfXPaSRmLNz4yWdIBfHYp+oEKj2fo4I/gjDDHuc
+         piAgusGkJOVxEskVui+yGGxrSooR89YlNlrM1VQYgbA/hfK5+PFtvr1vKS5ZCiW14AuA
+         wUJSDCXbJLtw91BRQicjQxWwp4nXakLEnLaaaM1njgl1+Im0W+VOIXmMSUlI4T0fZgOG
+         xPKRAZmuUbGIQ1YQOxXy9iGm10PSasjaGkjhBgFOdl+xlBJfmgERpPb9e2xAh8bCR3gX
+         5mKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706174887; x=1706779687;
+        d=1e100.net; s=20230601; t=1706174889; x=1706779689;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JTwXeJttr1S5lj9FfbVYYeUxM0hcJGZds3WqL24wOLw=;
-        b=qd0va2FYObjOw9GboTJk0s9eXLkTXHuQRMK3+5aGEe1hWVe7FubgQexl9+W3MBLrIJ
-         ZLA255yucGTzJinJA8A0loRmmbJWPUjJ7U4xMJBcQM0jCKvf/982JZ+7gnSgg0XxOXsE
-         vQtFpZ9T+i5+oby88+Ue9CoNgZKRoQnV9zZ4DR2WBglV23EHIEhCUPs63v3cXZ+Oaaf+
-         qZo4uM9RMBZgdIiyNIMpq00PrEXz27qg3ZfSwWqjAXJxEZJjZg3aLCu3KmHBcJyRJLGH
-         +ZG0dd1tTL2duZ0FhyV8F2g07sKmLv11vRZXY5aEQAFtXfizIwWpbNY6B+AZ82JGX8gG
-         D9kA==
-X-Gm-Message-State: AOJu0YxDSE6ClKDSIHbaqFQGuXFzJEzjxn5MSczQfmf5Ct2wZsfhrX+1
-	CLGcPSzKd35+Pa6OCVSlxC5kR4KA51AduIIqK/HaHH6GtkFhiC9M4nwaoeX8DGxLay2hETiazCx
-	I
-X-Google-Smtp-Source: AGHT+IF4STyFToBkXX9Qf3dstQgW+j+GfF6phsrITwrpWr26gqU3SVpWLw58fThxoUw+27T3eqFPkw==
-X-Received: by 2002:aa7:c55a:0:b0:55c:167:7206 with SMTP id s26-20020aa7c55a000000b0055c01677206mr376941edr.70.1706174887615;
-        Thu, 25 Jan 2024 01:28:07 -0800 (PST)
+        bh=JLNRnzxe4/p0rMB0AsJl/Ri8TUeEmBjJpE+eIe/tTYA=;
+        b=AMiUvO+EW6EUlCrQpVTrYsSpPIiVEMIVQ+uqQicDLAU6mKPj8wK5m4F0yG57HrdnQa
+         InhXSqBsAtcIBpqM6Hc+Xgzis24JBmd4oUlfJQ+DbQXlVmPz9qLzd6oFKjHEKRxe9mZt
+         JQ4Ktz2Bwbf4PPYqctaYIk5IooCtgF3K7V2g2RVxgFJUhsQqIC+IA5hc8dz9bWCrCa16
+         oToLBFZtzMTn0dyiveNRNbTNntaFOuh4NIOpmKLBcMxTueRizAdhLx5IX6mZSqv1xgzc
+         Y44OMSLdQfF/tm47l/v6v9Gta1oZCpUIwSvS/b73guHbayCIuY9gn7OZA9Ts79cbbLSq
+         9IhA==
+X-Gm-Message-State: AOJu0YxwzjxBzVZbr9+nDFVwjtqN3zl+IljH4WWfBilziq5hB628OhQ6
+	DLVhhfUTxwL4cF/qcrrhsCYLK2BmObKbJI7OY+h0psOgb8ZSv2QwxodcWSYB8f0UkNMSCZ5IBkQ
+	5
+X-Google-Smtp-Source: AGHT+IGF5HE4900Esq4LG85HNYrVZua2xMqt9RXVRLh3ifbkx5FX+VjRG/Dgu3rYNjdwZlS4bfnKWQ==
+X-Received: by 2002:a05:6402:714:b0:55c:8cdc:b2c6 with SMTP id w20-20020a056402071400b0055c8cdcb2c6mr381105edx.10.1706174888969;
+        Thu, 25 Jan 2024 01:28:08 -0800 (PST)
 Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id f19-20020a056402005300b00554af5ec62asm17356391edu.8.2024.01.25.01.28.06
+        by smtp.gmail.com with ESMTPSA id f19-20020a056402005300b00554af5ec62asm17356391edu.8.2024.01.25.01.28.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jan 2024 01:28:07 -0800 (PST)
+        Thu, 25 Jan 2024 01:28:08 -0800 (PST)
 From: Abel Vesa <abel.vesa@linaro.org>
-Date: Thu, 25 Jan 2024 11:27:48 +0200
-Subject: [PATCH 4/5] clk: qcom: dispcc-sm8550: Drop the Disp AHB DT
+Date: Thu, 25 Jan 2024 11:27:49 +0200
+Subject: [PATCH 5/5] clk: qcom: dispcc-sm8650: Drop the Disp AHB DT
  provided clock
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240125-dispcc-sm8550-sm8650-drop-disp-ahb-clk-v1-4-0f8d96156156@linaro.org>
+Message-Id: <20240125-dispcc-sm8550-sm8650-drop-disp-ahb-clk-v1-5-0f8d96156156@linaro.org>
 References: <20240125-dispcc-sm8550-sm8650-drop-disp-ahb-clk-v1-0-0f8d96156156@linaro.org>
 In-Reply-To: <20240125-dispcc-sm8550-sm8650-drop-disp-ahb-clk-v1-0-0f8d96156156@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -94,37 +94,37 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Abel Vesa <abel.vesa@linaro.org>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=677; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=vM8sAjWAZdmpMApzUnKAm7BTvnMQ9KS6M6m1MOE6Rz8=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlsimeaXC4IQaaqMFuSTI/X6sHoHCXKySS2ZZwc
- Y0U0qsRcVKJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZbIpngAKCRAbX0TJAJUV
- VpG4EACXx2zpzkgGrpHYlxWC5e88R/xH4b60vUTfMKBaFuImspeeGadj/XwL/QuYYsERJUSA0iX
- zleQXXSnaq0LcPHG1HVDcMPorHotyHCRORKKDwhvuJpbx51pW9Ikwa6itvtziyYoJw1wMWWywxb
- /hJxYFr1dZyXyTJPLtipK59eGRxMhk2zYmDIm5ndz/IGG1UKaSlSzCG0zFEFqzA8copr7HYldSd
- HLTGnN9ziC2VY5LPiv1cOfP+UzZQ9c1Lzy/uxXwJ5EpNS7EaTh6AghUgVbofeY7PIm3IdSEZKPH
- lTbA2WOWgAJqt38KjIcW0l6QqosfYlElFJsGr6vIPGad16NLJnXsDFVWfg8A94o8yh1K7UQa5g2
- DEXe+oqDg4gXsAzQM8HzO5RcPu0n2/8xG45HdaV/+BFv7iPmSTx6UQvgrlns0KpLIEIfbHSWKp2
- XHnZz+XVvJiF1wRJ6GMFssfsthq0zMSnmRe/OJgElyIgSwBg3LqmT1c/N8e207wwf0waxS9bf4d
- XI4BHql9ntxAqiNQiMlohCm58L6US5rZYcTyAQdvxkot2CI4HmkUNyM2M+pgLUG3DbPfIt/ydNN
- Z5bU5WoluSr+oqXgVDiCheqFHqIteEU9Ma3y6foCYQPWvLva7OZnnjIbr6N9EUeJLcA//GW8JCg
- claAHhOiVsm3vdg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=699; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=4FhzQMyuNRu9cVH4Ij85n7GCnfVD5xm77q2Ax+afBBk=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlsimf+b1kIT9CRygBqdcl6OsrWJwKtA+IS6Mus
+ 59bM1COowaJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZbIpnwAKCRAbX0TJAJUV
+ VlNhD/4j69Ljrfvn/PVcSUIvyHNmnIqC/mxKxo6qN/NK0EfeFzzFY2G28aABZxuSQtAZLCxu0+B
+ UV9Xb8QZ2l0Ka9aCnVP4TF+Ax1UmVfnqX5WQOWlKbqQ9eqoeqyknMjjTgNjyqsxHUZ0xdFZN+/g
+ LhzweFk6FmQwvNfKusPau6VTHufo9+p9eo5q5RAt1vgs5GYLmDcdp38ecMp7eaPUcNhss+TTjeh
+ Mk++gwVLfuY8cpV2R3wsLLoWjb1hyiSvkZrghWIfJYPRsUGFCAmM2CKqz9Ej9znvNhDk4+DANVt
+ FtB6NXyAMkc7JVOYBzHzA/969k1biyHNdbt9Gj3mxiZZlcfylpTV5+wtUMX5pz12zMz2UchLbJY
+ dDxZVqFZB5Lpptalv295B6C+eOVZ1N0a9h9HdmHRVUWgMky6iMqLKN+toGvS/rRkiSJ5Ph4HOVv
+ 7xWTKWGsmrmfnaj2we4MakE5Z7RBX/t2eroX5EqdChrob8YjXFSAtK6RAGyoF7ZmrC0efqFbQjV
+ 8zctck7/adbJY5iaGtMeXvBVoJBrIysiV4mOoYRCH13Sl3lhEyebf8ZniBJ6n6s65EUnJbuYcEk
+ gEnDmU2gOgyRAkC9W5QibH6CVlw9giEVR+lnNFO1S+t2SFwogomzfN5utkvGqUFFUXExwaWMUdu
+ /ppzcrqQc93R5Yw==
 X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
 The GCC doesn't even register the Disp AHB clock. It enables it
 on probe though. So drop it from the list of DT provided clocks as well.
 
-Fixes: 90114ca11476 ("clk: qcom: add SM8550 DISPCC driver")
+Fixes: 9e939f008338 ("clk: qcom: add the SM8650 Display Clock Controller driver")
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- drivers/clk/qcom/dispcc-sm8550.c | 1 -
+ drivers/clk/qcom/dispcc-sm8650.c | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/drivers/clk/qcom/dispcc-sm8550.c b/drivers/clk/qcom/dispcc-sm8550.c
-index f96d8b81fd9a..b33795f8e8cf 100644
---- a/drivers/clk/qcom/dispcc-sm8550.c
-+++ b/drivers/clk/qcom/dispcc-sm8550.c
-@@ -31,7 +31,6 @@
+diff --git a/drivers/clk/qcom/dispcc-sm8650.c b/drivers/clk/qcom/dispcc-sm8650.c
+index f3b1d9d16bae..382ebc1866b9 100644
+--- a/drivers/clk/qcom/dispcc-sm8650.c
++++ b/drivers/clk/qcom/dispcc-sm8650.c
+@@ -29,7 +29,6 @@
  enum {
  	DT_BI_TCXO,
  	DT_BI_TCXO_AO,
