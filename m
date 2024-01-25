@@ -1,228 +1,195 @@
-Return-Path: <devicetree+bounces-34935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38CE883BC6A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:58:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BFB083BCBF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:06:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19A7BB26189
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 08:58:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18D10B2300F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62EB21B95F;
-	Thu, 25 Jan 2024 08:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8BA1B96F;
+	Thu, 25 Jan 2024 09:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e325S8Q8"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h7tPYbWL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D1B51B94F
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 08:57:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB781BF42;
+	Thu, 25 Jan 2024 09:03:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706173074; cv=none; b=d35X5kM3gTPvJoiK4AtWELQlxK4b3e1ZUs6HXRyksqhs+fuWPWG3Q8NJahf4PcZ2LiGnleoAKk4dzsrsy4ketzV0qmQF/HeF2q1DcKuH+kutnVv2r55NFu835ap7SW+EvGjijsc+htCZUy5L9FwUzudzV3v4GcRTuMnlnigvEDE=
+	t=1706173426; cv=none; b=qaLEv3c7vbYe25aB7XGo4vbQAGnEMi7TCrZz/vPaxdsiaQzoalNaNGTOL/9Ox8Dyp7AnJL0ZlC2KsqsM5CnkQsxft3x3WWbSNZvLg+aXdU/5JhLSW4qs/pdhmX3fl/L/tLXFcWwmK3EWysv2O20EJWeH7rC5w+FmDIrXPWmSdPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706173074; c=relaxed/simple;
-	bh=ASSAcrZC686QXcaT0VDsrrNCHgxrvYn7vN/gCgNrBk8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IsSOWeYqnVL/qBgb/ATr0Q4v/IxTbWMIA4UFPgS+8gTpfLHXxaMeL3wsLtXGs5Qv7xRXEN85qPvBjMynT2yb+qo1SzQLlvvTRWoHlPUyuOvrR8o2KZ3iJ+rG5fsvCU68mRzUn26Ro9jvfM+h+rgdgDIhFvEynaydyzksvBaSPF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e325S8Q8; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40eccccfce0so13663565e9.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 00:57:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706173071; x=1706777871; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=J7Fjy061af3WQwkrtjqs4ezbtKnwx+BKx0P5XcCzsUU=;
-        b=e325S8Q89BIDNrGXMUbTD+9zHwDroS1DIqV/Beb7+6mdUilUEfTd2GS8MUzm3m0ejo
-         WpswdzFhX/w5jNb7HdNgFwXzMw78CvwJcjY7pvoZqSsNM8/NtGotH1xYy9p2EqcRFn1Q
-         7Hq09aWlaV/ZgHd24JDVlpzVwU8rAqI5D1sqwdKwKYn+TitdqpTkZ1+L5/ZyUN4ESTkI
-         V9t8cdjc+uhOocXFfGdgdC5ENP4RRFsqmmATVVeY97kCIQWVImzK7kkNJY49kKtcHavF
-         APJAdK4TnxSsvrSs+errp+71+MFkJu+fD3RvKMmAfHt9qKQe9ghTxVBIEUjWfrN5Rc2b
-         JWew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706173071; x=1706777871;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J7Fjy061af3WQwkrtjqs4ezbtKnwx+BKx0P5XcCzsUU=;
-        b=nH9tzuz508LvXYdil6WUiMuKvlb2n2cDLJ9SubEkTtCMqyX6sy4qMGczUFr2XTinO1
-         0ENctHTqBzkHUkDR7RPV+3OymiWRmwbm7Tub96W1r3tbjMoEQegAtUp+vYwp2ZXzsZvJ
-         S1mQbF1t2m0qSJxirVU7paYPLwbLoHDQ50yOjKo2HB13PedBLO+wMqA2pxdQnemRUCR3
-         d0fHeweVWahEyzLjbFgKMlCzvnSYsi1WVyngrg//G+qSujIxHdqovtYaKRcR26KQIrje
-         9yum+ygaRFkhusWWRK1o+5J6jGk+9KQ5ItQ/hpS22/sZPC0YBDyp/hGeWSGQ5gn9UuhN
-         wIZA==
-X-Gm-Message-State: AOJu0Yw820CRTGc22Kn0RvrkwXaQa+3ttyknraeihybVIgSn26mdjXEa
-	CtI4d9oHmlxhtF39I84Wy5WjkJHdCP90MxDZlBvId2hTP/ss7U0mkzFA+wGuXZA=
-X-Google-Smtp-Source: AGHT+IG92mHalxw+oDjOcxLes1wcOSJEjV0q4XNAGx+NRSjZz3FTyKXHHopr6lgobIiqar2MGSEslQ==
-X-Received: by 2002:a05:600c:384e:b0:40e:c1a9:6829 with SMTP id s14-20020a05600c384e00b0040ec1a96829mr280733wmr.120.1706173070864;
-        Thu, 25 Jan 2024 00:57:50 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id gv21-20020a170906f11500b00a28a66028bcsm794592ejb.91.2024.01.25.00.57.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 00:57:50 -0800 (PST)
-Message-ID: <42a3038f-33b0-404d-b311-65426961c0c1@linaro.org>
-Date: Thu, 25 Jan 2024 09:57:48 +0100
+	s=arc-20240116; t=1706173426; c=relaxed/simple;
+	bh=UGFyWFrK2eV09kMnnOtyw3NvYNaY880yvB/i7zyrohg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AwKO/7E5uVdt7BlKP4ikELJ7qXEk7nlEe6K60IJjHQataFscaMzlM/PbCGWdMmhs0UnM/qd13mqwrRrGWv9x/9eFv4dhHC1v1slSd9NSKYMrlLTyut6OiqClG0TSmzC8fI5y8P3s9viUCxxipf0Umo8jZImdW5T3x9/4HebuLzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h7tPYbWL; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 09E5FFF810;
+	Thu, 25 Jan 2024 09:03:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1706173415;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=amEwt+tQpUauBKOrLyvtckHhU3glK+LW1t8VaRaSQ+o=;
+	b=h7tPYbWLx9Q7CrUiyrSIru3rmmC7ljqz9v4hecMN6We9lJHJt3ADOKT6wl2tVfCo/0p+AW
+	K90922nu2/h2KHGXf3hDXz4zIjrh8zL9oj3Xf7ey77OyPp0WNCdpAkOC+A0FkPOdnC6O+T
+	iVE0LDx57uNcC0hLpN2SjlnXJvNOaZLot3NqjZaFdtS10wTT+rCIYEjUwVCr1LTocEig1U
+	sEtjySVDjU5UHzLu0eDKoh0FyNoW6TH6pdaKuj1ImWq3ANiRQpzMuUvNW5oYfBO5WphseI
+	P2k2vnTN4jtiEP4j+DKFnGYoCk5Hp+M3e1D/geBkG5xFgOGRop3MCsKD3XgBxg==
+Date: Thu, 25 Jan 2024 10:03:31 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Elad Nachman <enachman@marvell.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+ <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [EXT] [PATCH net-next] net: marvell,prestera: Fix example PCI
+ bus addressing
+Message-ID: <20240125100331.5d3ce739@xps-13>
+In-Reply-To: <20240123224324.GA2181680-robh@kernel.org>
+References: <20240122173514.935742-1-robh@kernel.org>
+	<BN9PR18MB4251944C1AE34057DACD7556DB742@BN9PR18MB4251.namprd18.prod.outlook.com>
+	<20240123224324.GA2181680-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] Re: [PATCH v1 4/4] ASoc: dt-bindings: Create yaml file
- for pcm6240 codec driver
-To: "Ding, Shenghao" <shenghao-ding@ti.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "robh+dt@kernel.org" <robh+dt@kernel.org>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "Lu, Kevin" <kevin-lu@ti.com>, "Xu, Baojun" <baojun.xu@ti.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "perex@perex.cz"
- <perex@perex.cz>,
- "pierre-louis.bossart@linux.intel.com"
- <pierre-louis.bossart@linux.intel.com>,
- "13916275206@139.com" <13916275206@139.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "liam.r.girdwood@intel.com" <liam.r.girdwood@intel.com>,
- "soyer@irl.hu" <soyer@irl.hu>, "Huang, Jonathan" <jkhuang3@ti.com>,
- "tiwai@suse.de" <tiwai@suse.de>, "Djuandi, Peter" <pdjuandi@ti.com>,
- "McPherson, Jeff" <j-mcpherson@ti.com>,
- "Navada Kanyana, Mukund" <navada@ti.com>
-References: <20240123111411.850-1-shenghao-ding@ti.com>
- <20240123111411.850-4-shenghao-ding@ti.com>
- <92c1a3f3-6b3b-47cb-a4bf-0d20e4af95e5@linaro.org>
- <a6c6cad6efc647ba8f0c828ffdb3a54f@ti.com>
- <d8f00ea9-3bb2-4b17-bbc7-48800516e408@linaro.org>
- <c107a70e42eb4327802748cda89d292f@ti.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c107a70e42eb4327802748cda89d292f@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On 25/01/2024 09:46, Ding, Shenghao wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Thursday, January 25, 2024 3:50 PM
->> To: Ding, Shenghao <shenghao-ding@ti.com>; broonie@kernel.org;
->> conor+dt@kernel.org
->> Cc: robh+dt@kernel.org; andriy.shevchenko@linux.intel.com; Lu, Kevin
->> <kevin-lu@ti.com>; Xu, Baojun <baojun.xu@ti.com>;
->> devicetree@vger.kernel.org; lgirdwood@gmail.com; perex@perex.cz;
->> pierre-louis.bossart@linux.intel.com; 13916275206@139.com; linux-
->> sound@vger.kernel.org; linux-kernel@vger.kernel.org;
->> liam.r.girdwood@intel.com; soyer@irl.hu; Huang, Jonathan
->> <jkhuang3@ti.com>; tiwai@suse.de; Djuandi, Peter <pdjuandi@ti.com>;
->> McPherson, Jeff <j-mcpherson@ti.com>; Navada Kanyana, Mukund
->> <navada@ti.com>
->> Subject: Re: [EXTERNAL] Re: [PATCH v1 4/4] ASoc: dt-bindings: Create yaml
->> file for pcm6240 codec driver
->>
->> On 25/01/2024 08: 39, Ding, Shenghao wrote: >> >> Why do you repeat the
->> reg constraints? This does not seem needed. >> >>> + interrupts: false >>>
->> + >>> + - if: >>> + properties: >>> ZjQcmQRYFpfptBannerStart This message
->> was sent from outside of Texas Instruments.
->> Do not click links or open attachments unless you recognize the source of
->> this email and know the content is safe.
->>
->> ZjQcmQRYFpfptBannerEnd
->> On 25/01/2024 08:39, Ding, Shenghao wrote:
->>>>
->>>> Why do you repeat the reg constraints? This does not seem needed.
->>>>
->>>>> +        interrupts: false
->>>>> +
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            enum:
->>>>> +              - ti,pcm3140
->>>>> +              - ti,pcm5140
->>>>> +              - ti,pcm6140
->>>>> +              - ti,pcmd3180
->>>>> +    then:
->>>>> +      properties:
->>>>> +        reg:
->>>>> +          description:
->>>>> +            I2C address, in multiple pcmdevices case, all the i2c address
->>>>> +            aggregate as one Audio Device to support multiple audio slots.
->>>>> +          maxItems: 4
->>>>> +          minItems: 1
->>>>
->>
->> You did not respond to any of other comments, therefore I assume you
->> agree with them 100% and you will implement them fully.
->>
->>
->>>> Drop entire if
->>> How to convey ti,pcm1690 does not support interrupt, and others
->>> support if I remove this if
->>
->> How? There is no pcm1690 here.
-> How can others know that pcm3140, pcm5140, pcm6140 and pcmd3180
-> Support i2c address from 0x4c to 0x4f, if this if branch was removed.
+Hello,
 
-They do not need anything to support any specific I2C address... If ever
-wondering, open some recent bindings and take a look how it is done there.
+> > > The example for PCI devices has some addressing errors. 'reg' is writ=
+ten as if
+> > > the parent bus is PCI, but the default bus for examples is 1 address =
+and size
+> > > cell. 'ranges' is defining config space with a size of 0. Generally, =
+config space
+> > > should not be defined in 'ranges', only PCI memory and I/O spaces. Fi=
+x these
+> > > issues by updating the values with made-up, but valid values.
+> > >=20
+> > > This was uncovered with recent dtschema changes.
+> > >=20
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/net/marvell,prestera.yaml | 4 ++--
+> > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/net/marvell,prestera.y=
+aml
+> > > b/Documentation/devicetree/bindings/net/marvell,prestera.yaml
+> > > index 5ea8b73663a5..16ff892f7bbd 100644
+> > > --- a/Documentation/devicetree/bindings/net/marvell,prestera.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/marvell,prestera.yaml
+> > > @@ -78,8 +78,8 @@ examples:
+> > >      pcie@0 {
+> > >          #address-cells =3D <3>;
+> > >          #size-cells =3D <2>;
+> > > -        ranges =3D <0x0 0x0 0x0 0x0 0x0 0x0>;
+> > > -        reg =3D <0x0 0x0 0x0 0x0 0x0 0x0>;
+> > > +        ranges =3D <0x02000000 0x0 0x100000 0x10000000 0x0 0x0>;
+> > > +        reg =3D <0x0 0x1000>;
+> > >          device_type =3D "pci";
+> > >=20
+> > >          switch@0,0 {
+> > > --
+> > > 2.43.0
+> > >  =20
+> >=20
+> > This yaml has a mix-up of device P/N (belonging to AC3, BC2) and PCIe=20
+> > IDs (belonging to AC3X, Aldrin2)
+> > Looks like a part of the yaml was updated, and another part was not
+> >=20
+> > There is a reference here of actual usage of prestera switch device:
+> > https://github.com/dentproject/linux/blob/dent-linux-5.15.y/arch/arm64/=
+boot/dts/marvell/accton-as4564-26p.dts =20
+>=20
+> That doesn't match upstream at all...
 
+Yes, the DTS there are not up to date. I actually took mine (see below)
+from:
+https://github.com/dentproject/linux/blob/dent-linux-5.15.105/arch/arm64/bo=
+ot/dts/marvell/delta-tn48m.dts#L133
+and fixed the Prestera representation (a root node does not make any
+sense).
 
-Best regards,
-Krzysztof
+> > So actual ranges and reg could be used instead of made up ones.
+> >=20
+> > But the actual real life dts places the prestera at the top level of=20
+> > the dts, not under pci.
+> >=20
+> > I am not aware of any dts/dtsi using such kind of switch node under=20
+> > pcie node, similar to the example given in the yaml file, and did not=20
+> > manage to find any under latest linux-next for both arm and arm64 dts=20
+> > directories (please correct me here if I am wrong). =20
+>=20
+> Don't know. It seems plausible.
 
+The DT where this is used is public but not upstream, it was derived
+from the above link:
+https://github.com/miquelraynal/linux/blob/onie/syseeprom-public/arch/arm64=
+/boot/dts/marvell/armada-7040-tn48m.dts#L316
+
+> > So the question here is if this pci example really necessary for the=20
+> > prestera device, or can be removed altogether (which is what I think is=
+ best to do). =20
+>=20
+> Miquel's commit adding indicates such devices exist. Why would he add=20
+> them otherwise?
+>=20
+> Anyways, I'm just fixing boilerplate to make the PCI bus properties=20
+> valid. Has nothing to do with this Marvell device really.
+
+I can't remember why the example in the schema is slightly different
+(must have seen an update) but here is the exact diff I used to get it
+working. Maybe the reg/ranges are loose though, TBH I've always been
+a bit lost by PCI DT properties.
+
++       pci@0,0 {
++               device_type =3D "pci";
++               reg =3D <0x0 0x0 0x0 0x0 0x0>;
++               ranges;
++               #address-cells =3D <3>;
++               #size-cells =3D <2>;
++               bus-range =3D <0x0 0x0>;
++
++               switch@0,0 {
++                       reg =3D <0x0 0x0 0x0 0x0 0x0>;
++                       compatible =3D "pci11ab,c80c";
+...
+
+Would something like this work better for the example?
+
+FYI the pci@0,0 node is a child of
+
+	CP11X_LABEL(pcie0): pcie@CP11X_PCIE0_BASE=20
+
+from armada-cp11x.dtsi (which is upstream).
+
+It defines the Prestera switch as attached through PCI on a TN48M
+Marvell based switch. There was a "whish" to get this DT upstream in
+the past but it needs to be updated a bit and no action like that was
+ever triggered. The reason why we want to describe it is that it
+exposes interesting NVMEM cells to the system (like MAC addresses).
+
+Thanks,
+Miqu=C3=A8l
 
