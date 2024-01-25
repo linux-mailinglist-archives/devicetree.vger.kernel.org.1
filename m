@@ -1,195 +1,108 @@
-Return-Path: <devicetree+bounces-34936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BFB083BCBF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:06:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BF4783BCCA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:08:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18D10B2300F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:06:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD24428CF65
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8BA1B96F;
-	Thu, 25 Jan 2024 09:03:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FBB1CAB3;
+	Thu, 25 Jan 2024 09:04:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h7tPYbWL"
+	dkim=pass (2048-bit key) header.d=8devices.com header.i=@8devices.com header.b="N8/5S9qb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB781BF42;
-	Thu, 25 Jan 2024 09:03:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89EF1CAAE
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 09:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706173426; cv=none; b=qaLEv3c7vbYe25aB7XGo4vbQAGnEMi7TCrZz/vPaxdsiaQzoalNaNGTOL/9Ox8Dyp7AnJL0ZlC2KsqsM5CnkQsxft3x3WWbSNZvLg+aXdU/5JhLSW4qs/pdhmX3fl/L/tLXFcWwmK3EWysv2O20EJWeH7rC5w+FmDIrXPWmSdPQ=
+	t=1706173469; cv=none; b=Y4DA0r1r6xOvis1NlNNhZnr9O4tF1hAEsR/KDzNcXrlfzSAKqWLJQA/uF6WNnoADTPsfPrKqF/P5Ag70LYdEI7aIj3iNyxE3qiqEW1MKeo2VsY+cyl6Up3z35LoLvBVKqiutkIrWm2m6t6tMV5CXgquFsFZn9WdjthJlRljHqzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706173426; c=relaxed/simple;
-	bh=UGFyWFrK2eV09kMnnOtyw3NvYNaY880yvB/i7zyrohg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AwKO/7E5uVdt7BlKP4ikELJ7qXEk7nlEe6K60IJjHQataFscaMzlM/PbCGWdMmhs0UnM/qd13mqwrRrGWv9x/9eFv4dhHC1v1slSd9NSKYMrlLTyut6OiqClG0TSmzC8fI5y8P3s9viUCxxipf0Umo8jZImdW5T3x9/4HebuLzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h7tPYbWL; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 09E5FFF810;
-	Thu, 25 Jan 2024 09:03:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1706173415;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=amEwt+tQpUauBKOrLyvtckHhU3glK+LW1t8VaRaSQ+o=;
-	b=h7tPYbWLx9Q7CrUiyrSIru3rmmC7ljqz9v4hecMN6We9lJHJt3ADOKT6wl2tVfCo/0p+AW
-	K90922nu2/h2KHGXf3hDXz4zIjrh8zL9oj3Xf7ey77OyPp0WNCdpAkOC+A0FkPOdnC6O+T
-	iVE0LDx57uNcC0hLpN2SjlnXJvNOaZLot3NqjZaFdtS10wTT+rCIYEjUwVCr1LTocEig1U
-	sEtjySVDjU5UHzLu0eDKoh0FyNoW6TH6pdaKuj1ImWq3ANiRQpzMuUvNW5oYfBO5WphseI
-	P2k2vnTN4jtiEP4j+DKFnGYoCk5Hp+M3e1D/geBkG5xFgOGRop3MCsKD3XgBxg==
-Date: Thu, 25 Jan 2024 10:03:31 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Elad Nachman <enachman@marvell.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
- <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [EXT] [PATCH net-next] net: marvell,prestera: Fix example PCI
- bus addressing
-Message-ID: <20240125100331.5d3ce739@xps-13>
-In-Reply-To: <20240123224324.GA2181680-robh@kernel.org>
-References: <20240122173514.935742-1-robh@kernel.org>
-	<BN9PR18MB4251944C1AE34057DACD7556DB742@BN9PR18MB4251.namprd18.prod.outlook.com>
-	<20240123224324.GA2181680-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1706173469; c=relaxed/simple;
+	bh=j8yHfYc8rT4cCjil4J1cdPfU1EMZKqXsrfl2Tj80u2E=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=QnNsTDfVRlSxp63ZVOHi99TF2ltrbt7lwXUx8yLrcFJ3AwEoEgArbuL2dHTDVxdqeKA9h4lfhzQn8yFF0q0lnRMvdcjF7rBvNzzAvSdTAczvbfV+Mv2/mXEhPzdpg5Bio2QvIgAZdLXioLC9I6GtbN9B4c9qBKcMl8ka5pEmKt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=8devices.com; spf=pass smtp.mailfrom=8devices.com; dkim=pass (2048-bit key) header.d=8devices.com header.i=@8devices.com header.b=N8/5S9qb; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=8devices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=8devices.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2cf35e5c2ddso3818771fa.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 01:04:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=8devices.com; s=8devices; t=1706173466; x=1706778266; darn=vger.kernel.org;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tDv/sys5e51cK1vtXuPubCwtBeb3bjXaIBvIqtUc4wM=;
+        b=N8/5S9qbXhaoYUe9T0+4RG8aUcb5ozkH+6iN1BAgnrBM6dVA7slbbBtwHpN+XSICOU
+         EDBssTXmvWILTZptJhwFtkxveSX7hnXFBFpV0y2fszF9ONqbeqSvKUoODF3S5Pvy+3Q6
+         U0VDWGGrVUfco7U4nl9qYMJZVQbBvCqp4Lc8TQ+0Gn73l2APJQxuHJOYtpQmowpnvP6/
+         Nq0lRX5ElAdxpYlgIIHe85aYmWhRg7u4zlvzme8T2e3NQUPO4SAOcfLz93vbj/kkbswe
+         x1POObgj7HNI/B7XCFjYYY8BZ4kBccpn5BOEE9/CDmIq2XvodGwPGG0VWsProiXJJvsh
+         VXfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706173466; x=1706778266;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tDv/sys5e51cK1vtXuPubCwtBeb3bjXaIBvIqtUc4wM=;
+        b=EYwD132EA9/slzUWA5qLMp2/IstLWLlZC35S79AMLyZN2s0xgLHrHy210Bc650wBmV
+         rr/R+BlDdp7FTx3y/5TNA/hf22TFstDeIyasd5/5c2MdV/Dy5sSI6kaXlcnSXVOAZryx
+         uMwIFxoP0VC6ritTmQJadYuO+S4Ynnr/NweIzonBt+aoF59eCeadV8QuZyvoDqjfTRWf
+         0NQYNagT8qmqBdT+X3cMqjInfdzfzfIWJQDKxRsPX7/iKOIDw9/1FgvQAq+/GYSyD5dn
+         tOebBHKK4ylMfwZhzCU/B40JhOmH8rJ1pIF4D2gMgab3KbmlSlCPRIFuuJxJPLk3IoLx
+         opoQ==
+X-Gm-Message-State: AOJu0YxTdf/oF21ITdL6mMCgZQuVBc0GzB+Z2v2Z/DoWbIUiuZSk6nq5
+	Mq8/Ak1+D76bYiZO8wU86sA+Z8Ff4bvZE+GsJviH6BPMZsz1KhMvVCB0MSgvaf4=
+X-Google-Smtp-Source: AGHT+IEgxoySDRJaWqdUU5wrFAsmsmlGqcO4GvfK1sq6qwJeE4xboJPEWSWa54JTJpONZeTuqOEM+Q==
+X-Received: by 2002:a05:651c:80d:b0:2cd:1b38:14fb with SMTP id r13-20020a05651c080d00b002cd1b3814fbmr294833ljb.82.1706173465766;
+        Thu, 25 Jan 2024 01:04:25 -0800 (PST)
+Received: from mantas-MS-7994.8devices.com ([84.15.37.222])
+        by smtp.gmail.com with ESMTPSA id m10-20020a2e870a000000b002cdf8c9af34sm229123lji.57.2024.01.25.01.04.24
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 25 Jan 2024 01:04:25 -0800 (PST)
+From: Mantas Pucka <mantas@8devices.com>
+To: Amit Kucheria <amitk@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Mantas Pucka <mantas@8devices.com>,
+	linux-arm-msm@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] arm64: dts: qcom: ipq6018: support thermal sensors
+Date: Thu, 25 Jan 2024 11:04:09 +0200
+Message-Id: <1706173452-1017-1-git-send-email-mantas@8devices.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hello,
+IPQ6018 have a thermal sensor HW that's compatible with existing
+qcom-tsens driver, so add dt-binding and enable it in devicei-tree.
 
-> > > The example for PCI devices has some addressing errors. 'reg' is writ=
-ten as if
-> > > the parent bus is PCI, but the default bus for examples is 1 address =
-and size
-> > > cell. 'ranges' is defining config space with a size of 0. Generally, =
-config space
-> > > should not be defined in 'ranges', only PCI memory and I/O spaces. Fi=
-x these
-> > > issues by updating the values with made-up, but valid values.
-> > >=20
-> > > This was uncovered with recent dtschema changes.
-> > >=20
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/net/marvell,prestera.yaml | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/net/marvell,prestera.y=
-aml
-> > > b/Documentation/devicetree/bindings/net/marvell,prestera.yaml
-> > > index 5ea8b73663a5..16ff892f7bbd 100644
-> > > --- a/Documentation/devicetree/bindings/net/marvell,prestera.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/marvell,prestera.yaml
-> > > @@ -78,8 +78,8 @@ examples:
-> > >      pcie@0 {
-> > >          #address-cells =3D <3>;
-> > >          #size-cells =3D <2>;
-> > > -        ranges =3D <0x0 0x0 0x0 0x0 0x0 0x0>;
-> > > -        reg =3D <0x0 0x0 0x0 0x0 0x0 0x0>;
-> > > +        ranges =3D <0x02000000 0x0 0x100000 0x10000000 0x0 0x0>;
-> > > +        reg =3D <0x0 0x1000>;
-> > >          device_type =3D "pci";
-> > >=20
-> > >          switch@0,0 {
-> > > --
-> > > 2.43.0
-> > >  =20
-> >=20
-> > This yaml has a mix-up of device P/N (belonging to AC3, BC2) and PCIe=20
-> > IDs (belonging to AC3X, Aldrin2)
-> > Looks like a part of the yaml was updated, and another part was not
-> >=20
-> > There is a reference here of actual usage of prestera switch device:
-> > https://github.com/dentproject/linux/blob/dent-linux-5.15.y/arch/arm64/=
-boot/dts/marvell/accton-as4564-26p.dts =20
->=20
-> That doesn't match upstream at all...
+Mantas Pucka (3):
+  dt-bindings: thermal: qcom-tsens: add IPQ6018 compatible
+  arm64: dts: qcom: ipq6018: add tsens node
+  arm64: dts: qcom: ipq6018: add thermal zones
 
-Yes, the DTS there are not up to date. I actually took mine (see below)
-from:
-https://github.com/dentproject/linux/blob/dent-linux-5.15.105/arch/arm64/bo=
-ot/dts/marvell/delta-tn48m.dts#L133
-and fixed the Prestera representation (a root node does not make any
-sense).
+ .../devicetree/bindings/thermal/qcom-tsens.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              | 131 +++++++++++++++++++++
+ 2 files changed, 132 insertions(+)
 
-> > So actual ranges and reg could be used instead of made up ones.
-> >=20
-> > But the actual real life dts places the prestera at the top level of=20
-> > the dts, not under pci.
-> >=20
-> > I am not aware of any dts/dtsi using such kind of switch node under=20
-> > pcie node, similar to the example given in the yaml file, and did not=20
-> > manage to find any under latest linux-next for both arm and arm64 dts=20
-> > directories (please correct me here if I am wrong). =20
->=20
-> Don't know. It seems plausible.
+-- 
+2.7.4
 
-The DT where this is used is public but not upstream, it was derived
-from the above link:
-https://github.com/miquelraynal/linux/blob/onie/syseeprom-public/arch/arm64=
-/boot/dts/marvell/armada-7040-tn48m.dts#L316
-
-> > So the question here is if this pci example really necessary for the=20
-> > prestera device, or can be removed altogether (which is what I think is=
- best to do). =20
->=20
-> Miquel's commit adding indicates such devices exist. Why would he add=20
-> them otherwise?
->=20
-> Anyways, I'm just fixing boilerplate to make the PCI bus properties=20
-> valid. Has nothing to do with this Marvell device really.
-
-I can't remember why the example in the schema is slightly different
-(must have seen an update) but here is the exact diff I used to get it
-working. Maybe the reg/ranges are loose though, TBH I've always been
-a bit lost by PCI DT properties.
-
-+       pci@0,0 {
-+               device_type =3D "pci";
-+               reg =3D <0x0 0x0 0x0 0x0 0x0>;
-+               ranges;
-+               #address-cells =3D <3>;
-+               #size-cells =3D <2>;
-+               bus-range =3D <0x0 0x0>;
-+
-+               switch@0,0 {
-+                       reg =3D <0x0 0x0 0x0 0x0 0x0>;
-+                       compatible =3D "pci11ab,c80c";
-...
-
-Would something like this work better for the example?
-
-FYI the pci@0,0 node is a child of
-
-	CP11X_LABEL(pcie0): pcie@CP11X_PCIE0_BASE=20
-
-from armada-cp11x.dtsi (which is upstream).
-
-It defines the Prestera switch as attached through PCI on a TN48M
-Marvell based switch. There was a "whish" to get this DT upstream in
-the past but it needs to be updated a bit and no action like that was
-ever triggered. The reason why we want to describe it is that it
-exposes interesting NVMEM cells to the system (like MAC addresses).
-
-Thanks,
-Miqu=C3=A8l
 
