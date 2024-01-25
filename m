@@ -1,105 +1,209 @@
-Return-Path: <devicetree+bounces-35083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF9183C45D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:10:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4854383C485
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 15:17:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F0721F23D33
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:10:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBAD528AA91
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662FC6310D;
-	Thu, 25 Jan 2024 14:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2676340E;
+	Thu, 25 Jan 2024 14:17:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="My6ult1q"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="IWQFHSBP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2110.outbound.protection.outlook.com [40.107.114.110])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19845B5B2
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 14:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706191833; cv=none; b=aPAkKc2s0HfXWE4PfVd6ZLgZsyajK1ch6el3Cm/rBNpy1OWiJbvNuDqh/4DxMSgP8YitTunmUL1cLY530ks4Hj0J2nO4VQh7avhHvbLmJpe393/DqoPmeXPXr2J9MTOKvpiVurMJ+xUEWXYkCeIO7vI2Qgdn0upBuplswpY1MwA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706191833; c=relaxed/simple;
-	bh=GFWuoyj6kM7mp555UokZjvMLSAMuQRKEdo1HvImE3Ag=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=h8ePyxEOYDlgriO13FzwrlRKTI7J+fWT44ElJ76DJQauG/XEHzCTRHQGaqnEgTFv4gxo+fCgCtcykaQ427R8SFevgh5LSdslm2XF1JtwQ2vdc69imJTeuCsPNLMG5S73mjRckDq6PhYEGr19MvMPWclUiggCCYn+rrgUT50t8eI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=My6ult1q; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40ea5653f6bso70373655e9.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 06:10:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706191830; x=1706796630; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GFWuoyj6kM7mp555UokZjvMLSAMuQRKEdo1HvImE3Ag=;
-        b=My6ult1qxuHJC4zQbM+ddki4s3sam6r+Z7V/qGRxai///ckiTozhu8R57mNR+nTd3w
-         iEG8uM08ypE+wrOSgNdDAwUg0rqKUqLw7tWvNL/fV2ABQcLtbY+XmevQA/UacWzROHwP
-         VvB+OvyiJK5UmrU/lvYkNi0ufqHpWn1rKhUS9Wk8+Yz90egnJ2v5p+SFxeLTKBUz4RpE
-         iz+pAHEi+Tw5J/mTdPT0u9miPN0nykAA1KfX75vZnJugVUs1vojIQTyMSNJwVZMpWWJQ
-         PcT+uql/bQTkMbEj754Z6iSi2o8JhJy+jB+L36OkS7P3Eo4X/TxdFFXFUvpAoGfMYpMG
-         crVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706191830; x=1706796630;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GFWuoyj6kM7mp555UokZjvMLSAMuQRKEdo1HvImE3Ag=;
-        b=WuLEiIUZe2d3lPMQxmon2MPoTpU4naZrS89lahGfa5Qe6J4LUHa+UB3phL00qcdN64
-         kOYMcYWRqKPevIl/Kgv9MRUYgRlnG7ZnOr4hnOBaFZRWjMRHgdznkMisXekPshGVDWH9
-         hXh/Pyfz2N++ZXtqInjO5cxRz96FTluZLkkm5NzzPIDhEKUJvNF8BKt4u/z0S0GS1U+F
-         UXhnZh3bmkKJBXZ5rwSetnfwVswuZJBDRqYE5nAGF/1J83tP14OBR1z468CNKu85cdkp
-         URnBhYelsZLtTUqXa/nkZhvreRQVUPN2++WLbVLRVMsxEva5M1yAhgsCB0Jj2KSIfyFO
-         /u4w==
-X-Gm-Message-State: AOJu0YzoSVc+rR9uZs88oQ8Bpdt96lsMU8tFfftX/qM0yDmRml8Xlc8i
-	EqXYU3kbtmRIg6fhyrN1PtKpEnICqDMdrHe8uYc1xt1fur49g4+mCZzU59+ebtY=
-X-Google-Smtp-Source: AGHT+IGRsQ095n/697hTcPYLtlxQazA8W1CfVIDPw5ka1a4U1RywC5HxBmgzKgKf82JR6cjwd/lP8g==
-X-Received: by 2002:a05:600c:19c7:b0:40d:5cd2:5027 with SMTP id u7-20020a05600c19c700b0040d5cd25027mr532830wmq.61.1706191829992;
-        Thu, 25 Jan 2024 06:10:29 -0800 (PST)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id t10-20020a05600c450a00b0040d8ff79fd8sm2781090wmo.7.2024.01.25.06.10.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jan 2024 06:10:29 -0800 (PST)
-Message-ID: <9a8bf6f17a0f8b4e31a6d59c1adb735823f579aa.camel@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: exynos: gs101: sysreg_peric1 needs a
- clock
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: linux-kernel@vger.kernel.org, robh+dt@kernel.org, 
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- alim.akhtar@samsung.com,  peter.griffin@linaro.org
-Cc: kernel-team@android.com, tudor.ambarus@linaro.org,
- willmcvicker@google.com,  daniel.lezcano@linaro.org, tglx@linutronix.de,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-Date: Thu, 25 Jan 2024 14:10:28 +0000
-In-Reply-To: <20240125140139.3616119-2-andre.draszik@linaro.org>
-References: <20240125140139.3616119-1-andre.draszik@linaro.org>
-	 <20240125140139.3616119-2-andre.draszik@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9192D627;
+	Thu, 25 Jan 2024 14:17:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.110
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706192232; cv=fail; b=I8+Q726Ap0OKbtlNhXTlCRbG7ui56sASq7AAqD2HeN8qGKZqlOsYZ0ecK88pQburMX8jTiAOLV6hWYIfe8NPx+3rnFZLAk4aq2cmKnRp9SZoXJxsUale0HKC8prSr5HcRUU1utCOMgYdbDlL04oNZkHDJyzNz0u6PvsEGPpPjdc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706192232; c=relaxed/simple;
+	bh=Ho8gQddjRg7r5ziODxCObWcRMMETC7SqmtFc5mUpV9M=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=dlhQiF8xDOUVeiBMOXZ4a0enFXucI5xhZNu+tadksullPlIt1hROqlTgBjYlLIB8IRiwJhtASQCL71pLlqPBU3I80Dqyw+h5Jn6dREi+bh6Pwy+CUM+KQAHaJBWbZwcEuETpE4KahNeyQanOgDZ/KCtgpPywGEoktCmATeu30+c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=IWQFHSBP; arc=fail smtp.client-ip=40.107.114.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e3neBkSuuTScodnxI7qZkG1OP3sYHhPsjzddSm+HJ3skOIHnVkg30CPDoigm6ypzMGLPydYYJq/MgsAHUlWy4h/ljSbYLVEEHl+rFTFMa8TO27RvSH/cV04dCRkCLm85s0/EWg1kG0BeQiDzAg1S7nxGJ6PgjcldxEW6RNxCuSfMJJmu6T3y9MXmXwsbHSLx1s536jz6Wn3tkw/sRaas4x1Zs5qrKzxKDxACpeB2OEmq0gVaIRSPidptzjp1QVq9oJxex+F96Q2GAbS76+GN+dtD5kszZXExXlBwkK3zFVTzUSMfF+0BM4LWiLDnIlaVT6rW5bDQ5xnycMxRdyaBYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QY/4f90g55YcGfeQkbdqGLUD3W0Hdg/mysn+6IZKSuw=;
+ b=U31QJOIQ0jINOuoYxwN/Z3sl4MNpVh+6YGNvVvLOw529aP57qKR+gcl6m2yY8HgcjJqZ/ONVEKWDXdOlkvKZZl4/86vYeRCUhZ3tInrKRwmgBzyld6+03owTtBCQZhc4HCij3XO9004b44UTu49VMiI9QT9QNcAjJqGcx0O6lm/t+fszTqsIC+kSEFj7pmINqsFqsoksXnbC5Vp57eltN/pWkX/+snsHh/egY+mtd7GkjAjLsmvsrDvkruAP4qF72y5VtFXSbyrjNXaZiid0Oqr45GwempyyBGAGfzmkCE2lDdnPdpl6o+ZY/H4usD6lo1kHVrFySHSo5h3+8/IYew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QY/4f90g55YcGfeQkbdqGLUD3W0Hdg/mysn+6IZKSuw=;
+ b=IWQFHSBPOKwW2sh39JLAOLrB4L6kpiKTWHH7EGmKufAm3OetOsl072xJNHm9ZChJ62JN5QZUTg/LOysXTZej2vJUCtJ3lyM44hH7UsqwFsPSp5ksYz5BveU3Ew8wvt5UfrWToU3wziwEQhmuXcZh5DaRRIL23UpMXxWxCRpPJVg=
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ (2603:1096:400:3c0::10) by TYCPR01MB9877.jpnprd01.prod.outlook.com
+ (2603:1096:400:20f::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22; Thu, 25 Jan
+ 2024 14:17:05 +0000
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::8d12:a02a:9fdc:9c78]) by TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::8d12:a02a:9fdc:9c78%5]) with mapi id 15.20.7249.013; Thu, 25 Jan 2024
+ 14:17:05 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
+	<magnus.damm@gmail.com>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, biju.das.au <biju.das.au@gmail.com>
+Subject: RE: [PATCH 1/5] media: dt-bindings: renesas,rzg2l-csi2: Document
+ Renesas RZ/G2UL CSI-2 block
+Thread-Topic: [PATCH 1/5] media: dt-bindings: renesas,rzg2l-csi2: Document
+ Renesas RZ/G2UL CSI-2 block
+Thread-Index: AQHaTfYjtASPYwiQLk6t8lgz1jelFLDpP2yAgAFVsaA=
+Date: Thu, 25 Jan 2024 14:17:05 +0000
+Message-ID:
+ <TYCPR01MB11269296E09CC1FB4BC59A42C867A2@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+References: <20240123121720.294753-1-biju.das.jz@bp.renesas.com>
+ <20240123121720.294753-2-biju.das.jz@bp.renesas.com>
+ <20240124-financial-unfiled-2a5485fea2d4@spud>
+In-Reply-To: <20240124-financial-unfiled-2a5485fea2d4@spud>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB11269:EE_|TYCPR01MB9877:EE_
+x-ms-office365-filtering-correlation-id: 65034d6a-d7bf-4ec7-8b0b-08dc1db04eaf
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ aHtGHcnkbUSJedivLRlBy5ZEu0jj3gZZlbsEwQV4oPa5giL2eifmSM2whZYLgN+5LuMsTu97xrAGAgnBwhdi53l2Ch3NENmAW96CXuthNi2AOB6pnTcrp/6+pOsBgGlzaSljN9WKKuEenqvvq4onERQJp36ByDP7snyzxcSpqMr1cpe9BrfQTmH9NpPQnWq7eDx0yTjRdg0ua+STRANH+qGcq2w/WJM89nxeWXIWg6kHKVfFLaImQRwxXGYgg4867Xjf4SWksuzW0Gu6FUtlTbVOUNyd43BA+G/H8jv+X5pCDL4OPCdZXQy/4oUBFTNdI5TQIECPK79U4AiKmSUE6TkGvk3ybjuB2ZtD3Wnkjnedc0mWkT9zgafO1OvRsk0TJMpDQ8P8DNVHFsAC9EgLzw0WRE7QDv9IJzD1iigDtC+IwaVy1f7+FHmEDccE82dZoYGWTb6M0kISPW5mIwwGb4f/m46H1MD9vGJWzC/7IRJcN0ZIiZ3OqLtOoMKrgJ5i5C0iQdqrYG9NIxSjUhC6auIrAKoKy4TjL8/rgq2psaCYvfAxedExlFODw6HeYAedJ0tbERGiAfNCzx3LnPx/hkgz5b+1nfPDPUnY/FrZtqT8n4EQTzsLMybDVnkok/1l
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11269.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(39860400002)(376002)(366004)(396003)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(38100700002)(86362001)(478600001)(38070700009)(66476007)(71200400001)(26005)(55016003)(9686003)(6506007)(66556008)(6916009)(316002)(54906003)(8676002)(8936002)(4326008)(52536014)(76116006)(66946007)(66446008)(64756008)(2906002)(33656002)(5660300002)(53546011)(7416002)(41300700001)(122000001)(83380400001)(7696005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?m+UplMW9nqAw3Z9VZdhEYruNQpZM7AqweugEGVslccc6BX4XKwfHRFotvlt1?=
+ =?us-ascii?Q?bMQRETbgf8vnibNxT0ly4kAT+0gjYrpaMZUEotZiqP3h8mhMAeCpL48R/Za7?=
+ =?us-ascii?Q?b/3i9f1imEebTvlEOAcwjnTGeJ3N9YFnsIkbH5NCVSSwSxQPCgBH2f8+7CLL?=
+ =?us-ascii?Q?0hW7ejTxZMB9ypX2pt/NTfxSQCVgAXaXjbwsZjvvrOnmt4hzQAAFDcx95JZE?=
+ =?us-ascii?Q?Bd07l2N88kOKjd7G0FU6uMd98HeogVvD11le8pStjODWUPjsZLkjA+GZAcjj?=
+ =?us-ascii?Q?hMB17k4U7pUHyClYXA47CZSdheC5diGStNkQcdR9ZQLHjPEkdXgnDFRSl7JJ?=
+ =?us-ascii?Q?K+lDueLzkqYSZTPBiBAM5iNlwO6j8oQod7we8Oej2GJbJYipQIKdeZz3gWSE?=
+ =?us-ascii?Q?uUzNCWtLS+we+K0r+Zfdu7ToJyCV0CSe9yL51NFRrh/HgI55Ky71v6PH9GL7?=
+ =?us-ascii?Q?fTalOriQkR4MfK0qRJA9JJ+haatAdD4y7WJnV58dPVsDc4hk8CO3iZHTufS5?=
+ =?us-ascii?Q?SHeMaE2CxeXIXuh0B8k4Evi6ijC4D1VXQCJTZfYPtoCEU35SmZNEEzxy1R5f?=
+ =?us-ascii?Q?14yz8IvD9qOlarxN9i9MVqyHXHniLIZdo5RjmBDyX6vkd7jPs7HQg70C5gq7?=
+ =?us-ascii?Q?qZBtf9gY88QY52Fiue8lKZNqhOG3jHzv/xMZpr2g/d8BPrxdlpa7QcIvHfTR?=
+ =?us-ascii?Q?djM+8PqbIOp9oOlyY6WSMb1al4YftgfNYcChBTiFKFOoraInbqgI4XxkZYAs?=
+ =?us-ascii?Q?uqD8fb2EoGMr+DTJhCnhTY3MHERdQaKaaiS7vl3dcYdEXF4hyAUX/x5+1wtw?=
+ =?us-ascii?Q?/p/cDDDVQvAQoSsHQRlhZumJYTKMBGKCCZoTwXinoHAI/az1oLTWuekrJrTC?=
+ =?us-ascii?Q?o5OtMP5HnStUO+tKMKFXrx0MC0DKe16QPXM87djyRaqy3eUWwg74fmtiGHqw?=
+ =?us-ascii?Q?K7UsJ1u+KsDsuAu2IRF10jhkS10RgW8XO3kuHbVr4MqDeuKxxCk04MPimFXA?=
+ =?us-ascii?Q?gbIMyw4Q9pEboQNIgPVASin+/56HnHhioGPAGC7U2wxCQSROAZ1N2NwwUb1y?=
+ =?us-ascii?Q?trG8P1ZxCAL2u8EAeKrSLrg5DlTAyejym5hMp3aVQIpzwSkW2VLGFE7MVunJ?=
+ =?us-ascii?Q?Uo4MXDk7r7Ucm48PpcUd+NNyXl2dINISTJmLpRPP04kXKzONLS6xoTwQM7gL?=
+ =?us-ascii?Q?a3jupqizFmwg211C7GzDbhSbTR4lpJI+2R1Pa8ihOvXy9a9zKxGkAozpqYAs?=
+ =?us-ascii?Q?AoFPN/YFTyJ5q2oXEe+eYRJMYtIuqsJtEv/clMynJS/lnLB90Kgy5nWJGcJz?=
+ =?us-ascii?Q?NIMoIZmGqyxNKvoKew0LFm6kLOrCDFuxzICQ4xX59Vogu2RPhjINo3Lg2nQY?=
+ =?us-ascii?Q?o6JZ3mdiYB0Jlq2QKQ7kpoDDS47i9kjW2ppaWkNat3+7/Xy0nNWagX6q1xxR?=
+ =?us-ascii?Q?Tc7zNrhw9PnS77FlWQuPY4yaAO4OS2S2s9qlpG5PYZfgonStPqkp11srEZoH?=
+ =?us-ascii?Q?n+h6TqmoFJkJuzWZN5AOPA5Ly//aRFdbY82K0FUF1HJhNgKUR7md6s/p0YGc?=
+ =?us-ascii?Q?jxxKh8RzAxFzZa//kziwX2t5gIig/0W1L798OBuaWudnulzbvNDjSvjHMGbU?=
+ =?us-ascii?Q?HA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11269.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65034d6a-d7bf-4ec7-8b0b-08dc1db04eaf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jan 2024 14:17:05.0856
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AFiCbuGFUgWANdQRtZ/4mR0Z9CWQZVJNlXblBD6fT3D+lsXeufoj/V32zuVGVeUmcY+mmZtHUDDwFcQcO/HG0qs2n5UotyN7vH4Oz3ZjzKY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB9877
 
-> [PATCH v2] arm64: dts: exynos: gs101: sysreg_peric0 needs a clock
+Hi Conor Dooley,
 
-Sorry for copy/paste error in the subject :-(
+Thanks for the feedback.
 
-I've sent an update in https://lore.kernel.org/all/20240125140644.3617587-1=
--andre.draszik@linaro.org/
+> -----Original Message-----
+> From: Conor Dooley <conor@kernel.org>
+> Sent: Wednesday, January 24, 2024 5:49 PM
+> Subject: Re: [PATCH 1/5] media: dt-bindings: renesas,rzg2l-csi2: Document
+> Renesas RZ/G2UL CSI-2 block
+>=20
+> On Tue, Jan 23, 2024 at 12:17:16PM +0000, Biju Das wrote:
+> > Document the CSI-2 block which is part of CRU found in Renesas RZ/G2UL
+> > SoC.
+> >
+> > The CSI-2 block on the RZ/G2UL SoC is identical to one found on the
+> > RZ/G2L SoC.
+> >
+>=20
+> > No driver changes are required as generic compatible string
+> > "renesas,rzg2l-csi2" will be used as a fallback on RZ/G2UL SoC.
+>=20
+> Not super relevant to the bindings commit tbh.
+
+I agree driver doesn't have anything to do with bindings other than using
+the fallback compatible. From bindings anyway one can get fallback
+compatible details for a device. So strictly speaking it is not required.
+I will remove this in next version, if there is no objection.
 
 Cheers,
-Andre'
+Biju
 
-
+>=20
+> >
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>=20
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>=20
+> Cheers,
+> Conor.
+>=20
+> > ---
+> >  Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+> > b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+> > index 67eea2ac1d22..7faa12fecd5b 100644
+> > --- a/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+> > +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+> > @@ -19,6 +19,7 @@ properties:
+> >    compatible:
+> >      items:
+> >        - enum:
+> > +          - renesas,r9a07g043-csi2       # RZ/G2UL
+> >            - renesas,r9a07g044-csi2       # RZ/G2{L,LC}
+> >            - renesas,r9a07g054-csi2       # RZ/V2L
+> >        - const: renesas,rzg2l-csi2
+> > --
+> > 2.25.1
+> >
 
