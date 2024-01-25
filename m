@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-35297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499B083CE42
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:13:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39C4F83CE3B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:13:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8A8029D0B6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:13:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C4851C23299
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 764C313A254;
-	Thu, 25 Jan 2024 21:12:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A87BC13B78A;
+	Thu, 25 Jan 2024 21:12:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD28413BEAB;
-	Thu, 25 Jan 2024 21:12:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F7F13A26E
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 21:12:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706217158; cv=none; b=pTJ0hk4qv2UE2n6d1FuSvi8IUPIza4bWoDxtUG/lhokmYx0it/4Pj0ibi7vzgACrCsLi4TpYqvc1FqHqZ4VefOarhZzajGVpvzyLJjq14ehIUQSRJOL+6THYGvRvOum3ccCzP3mJ6qeeID7z0/kzKbjm7dKmEdQJr8ayWDKMGRM=
+	t=1706217151; cv=none; b=UtrGkUsXxidmEymzt7QlFdD83rtM2PytclgaTEZcYXBMRSuKVpWmlA2vKPVwULEB7nHNvWoE0o4q024gW6iSwqpMEqdsujOFO3N1xryebjuc4UKunGChJqS3yl/2yenGTqsJqbtoxMVNh7d164RuMg2dNsZRBJlxw3+2+e4lCug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706217158; c=relaxed/simple;
-	bh=vd6/DXjKhlsGcZeIq12IfQ0wreBg6NM9pi0RXu+VKEE=;
+	s=arc-20240116; t=1706217151; c=relaxed/simple;
+	bh=Q/l/ZD2jON/Pcl+oV49H9bUOnKiNkNaeLF+/0JWPl08=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gYla5NC+rhKLtc7cCiG8eUySV51tKF5pGvOBCR1ac0Ebl9GPD1Lhui1UzzrzVMy+T3iGIqF4be90roVaXUiagmrlPixDP8SvzmmAtMwvkW9kOof/p3F1wMGUpCMVsaWQsAx28iJLyouhYv5VfOkBTHA0EdJhotUYB/NuYR3M81I=
+	 MIME-Version:Content-Type; b=CBkHhGcRau+H60bj1bEo9Re3bLK1EhZSGdJ3CNwZsPGEupslF1UCYsNQtbz4TSs2IJfdnGn5HRJhG9BtLzy53vqZKCLJKHGd1+AzPS9DJWObozsEVogpLR2syo5aWF/VSdb1Mfq1EnGH2U6iA5w6ix097+vgj05oozTzN4s9GQc=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
@@ -33,30 +33,24 @@ Received: from [194.95.143.137] (helo=phil.dip.tu-dresden.de)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1rT71L-0002EX-AC; Thu, 25 Jan 2024 22:12:23 +0100
+	id 1rT71L-0002EX-K2; Thu, 25 Jan 2024 22:12:23 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Alex Bee <knaerzche@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
+To: linux-rockchip@lists.infradead.org,
+	Chris Morgan <macroalpha82@gmail.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Daniel Vetter <daniel@ffwll.ch>,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	David Airlie <airlied@gmail.com>
-Subject: Re: (subset) [PATCH v4 00/29] Add HDMI support for RK3128
-Date: Thu, 25 Jan 2024 22:12:12 +0100
-Message-Id: <170621707729.1872080.13318760381519094242.b4-ty@sntech.de>
+	conor+dt@kernel.org,
+	robh+dt@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>,
+	mturquette@baylibre.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	sboyd@kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/4] Add Support for RK3566 Anbernic RG-ARC
+Date: Thu, 25 Jan 2024 22:12:13 +0100
+Message-Id: <170621707721.1872080.13657125176438385219.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231222174220.55249-1-knaerzche@gmail.com>
-References: <20231222174220.55249-1-knaerzche@gmail.com>
+In-Reply-To: <20240123212111.202146-1-macroalpha82@gmail.com>
+References: <20240123212111.202146-1-macroalpha82@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,24 +60,30 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On Fri, 22 Dec 2023 18:41:51 +0100, Alex Bee wrote:
-> This is version 4 of my series that aims to add support for the display
-> controller (VOP) and the HDMI controller block of RK3128 (which is very
-> similar to the one found in RK3036). The original intention of this series
-> was to add support for this slightly different integration but is by now,
-> driven by maintainer's feedback, exploded to be a rework of inno-hdmi
-> driver in large parts. It is, however, a change for the better.
+On Tue, 23 Jan 2024 15:21:07 -0600, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add support for the Anbernic RG-ARC S and RG-ARC D handheld gaming
+> console.
+> 
+> Chris Morgan (4):
+>   arm64: dts: rockchip: Move device specific properties
+>   dt-bindings: arm: rockchip: Add Anbernic RG-Arc
+>   clk: rockchip: rk3568: Add PLL rate for 128MHz
+>   arm64: dts: rockchip: add Anbernic RG-ARC S and RG-ARC D
 > 
 > [...]
 
 Applied, thanks!
 
-[27/29] ARM: dts: rockchip: Add display subsystem for RK3128
-        commit: 695b9b57443d88a1c8e0567c88a79d1a4532c75e
-[28/29] ARM: dts: rockchip: Add HDMI node for RK3128
-        commit: 3fd6e33f8fde16869d4cd9cef71ca964b2b0789b
-[29/29] ARM: dts: rockchip: Enable HDMI output for XPI-3128
-        commit: 5aab66e319df2a6fc4ab06bcb4bd974c1ac4927e
+[1/4] arm64: dts: rockchip: Move device specific properties
+      commit: 46943b333d60b8f4998df359fe697254eb2f90ad
+[2/4] dt-bindings: arm: rockchip: Add Anbernic RG-Arc
+      commit: e441dd472eb23329de738f365a5429fe7e6f844b
+[3/4] clk: rockchip: rk3568: Add PLL rate for 128MHz
+      commit: b3244351e2b39bd49aba780ea204f0f2a45a4725
+[4/4] arm64: dts: rockchip: add Anbernic RG-ARC S and RG-ARC D
+      commit: 05a708c6ebcadfb6c506f649375ccfc56b572652
 
 Best regards,
 -- 
