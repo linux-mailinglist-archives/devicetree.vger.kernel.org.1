@@ -1,226 +1,107 @@
-Return-Path: <devicetree+bounces-34986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2689083BE76
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:17:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D378D83BE8E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 11:24:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 963D71F2274C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:17:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CFF2286968
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 165CD1C6A1;
-	Thu, 25 Jan 2024 10:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96D71CA84;
+	Thu, 25 Jan 2024 10:24:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fXq2igKD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GPNQp0sv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 440861C6BC;
-	Thu, 25 Jan 2024 10:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364F41CA80;
+	Thu, 25 Jan 2024 10:24:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706177856; cv=none; b=UvHHzLSo6r9t+4ojjDEQlfnc6cpjM29KLfUIF1rT5Ohe8ImyduQuBsNvyTee19ubnR7i8adxuRcQJVUyPtpddrpjY6UpnbV2KhwydKBSIEvJlXY+v+mn6OeWupdZsQNZN1WlDlR1ZeKnLpE+Tion+xHx7+hMGEC8SZVpKTE5wgk=
+	t=1706178288; cv=none; b=XEss/3wbNef6Q1QZqpKjrM4MZtq61G117o6W5qNrwzMQsntFRJprgaxH8zDus0YIRHe4nmUxwcIB7wsGg2doZDhuuxhK0/Pj6jtolx//0e2U9g8RaOaeKos9Fdt+atAK/K+ufwZj5DN5w5X6/PHP6lOU6psLfO9WCPRVfBgtFgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706177856; c=relaxed/simple;
-	bh=QjDA9PkCJirHegUJ4lnB7pA7PyppfMkdD3Xdk3N02jQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oOt9MczvSooVav2HC5NCSBJHt5wdn5WcErkr1i2htDX4jT6GDAZ+iyjlrqDwT4ZULFAh+vsBBOTpyJdu6hWX20i42MTzJ7iXmiJdZXYaArMRPdnu7WWRzc8nhvE1AyMT8LQPlGrEfgp7+wMUwYA1WeWc9unIQGB0EPXXq7R2ppg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fXq2igKD; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55a349cf29cso7634674a12.0;
-        Thu, 25 Jan 2024 02:17:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706177852; x=1706782652; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kHFPm70p9n02aaOjN2EKpORM1VcAf+spqQnNizZf5G8=;
-        b=fXq2igKDtQ/aQ12V2QLZiMXHwZckzO8cSOqcI5WxbJtvx5213eszy2h+o8Wq6PEF8H
-         dxLbwsCOBGcMOa8gNLjP4ZPo+flWyMMlbPiQmxykUTPOH6lGzHKPbgVy1B0r1emfLsr1
-         baJMgZzRrJ16CpAow6tyc8sm92vmEgP7MQec35FgUa1wENxPJlluWA3xItWUm+LGPdqc
-         YVGkrY7iMy+JfhUbW0cf7k3GWExus3KYkd9G+6E0AHTeomczmtg+akas0uYHl9Jk0xvE
-         AmrvuwXMNmU/gNgqC32i5mm4QDjCfcgWN/+cLxtS0LxzdL6E3IztxPqAVzPo9MUbvJwg
-         1/tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706177852; x=1706782652;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kHFPm70p9n02aaOjN2EKpORM1VcAf+spqQnNizZf5G8=;
-        b=hH1hiTVOUHFnJG6Nd2IGSpYOLpl14Ry2rM/H7ucRkECgsztYxlNi2wootcspZ4wAl8
-         S6ZcUl1MwKc72jb2HPYcthRKWgD382jj2BVRc2XZgU8kG5r7ocTAhB2YslCkcZjJBt9i
-         HU6DTTc1/+sbG3PcStLtAGsdKpMoh/0sDVzEPohZxGRznD01i5KsltDahFeMDTxtGKY7
-         s3V6dEIE/5/Bno/8X23DXgD6FByr9QKnfW/IIkMGzeDL9TD5ID6m2W9yCWtsBl5A44+2
-         FQyOYTQpow//zfWSK/mHRG0iwt5rSMje/CHMKajBuPeqacOg2YbcDJR6VUhtiGJDsEPo
-         Ig5Q==
-X-Gm-Message-State: AOJu0YzYMjKg36b0omaUkSGvMPNnnUUJlqPTHfLrzZuQ5j7mRDz7pVo6
-	VLB+gLItJPJEhhtB1yDJZZC7Gbxr1kzdQbekisBcBtaERd4vgZ9xrBibt+/OyHwmJBWT3bh261O
-	A/PwdKs3zuzRy0AvCEoJ2AGlVVrRhunQvhR79yQ==
-X-Google-Smtp-Source: AGHT+IEx+h5SBM2bgId1zr3Ii7PWy5ejzUKeLAKwDFAolLyZwSnTAs++pEfiZXhmeMzu/OZAN8qTpteBhMuGeCYaaRU=
-X-Received: by 2002:a17:906:11d6:b0:a2b:1fc1:b3b5 with SMTP id
- o22-20020a17090611d600b00a2b1fc1b3b5mr394022eja.99.1706177852190; Thu, 25 Jan
- 2024 02:17:32 -0800 (PST)
+	s=arc-20240116; t=1706178288; c=relaxed/simple;
+	bh=1uLuo0q4CJFxnwbdcpnYTHdkbkU42NKCQv4Mp39rfgM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cniIZF+5fBWnmnsn4AhlRgfOpDm+tTdVmDY4uk1SnaiFPD4MmDsKBqzPM2hAz+xDoR2y1fIyo9qhJ7yJuNamN1bOV8BTFnWdsbxP1CmADL9WlPk7wNxk3Zjl1PeNkIvAW4Jh8RFaY/wWdx1cDXKWssVtxVP7lxHgWpdmUOOVYho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GPNQp0sv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40P9dtHb031568;
+	Thu, 25 Jan 2024 10:24:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=elRGrw/emhO5jisB+PebDbwXVwKPeANiwLTWWLDJB8w=; b=GP
+	NQp0svZJjmf5yYMB0Rdbj8+G9B4GE3Wl3wboK8veH8PaKlJAPFel/has9DeFMqCW
+	+DQp6qYMIu7NHXfHXx80Jufj6CN+87m4jxPmADSifArVGyIdUZ1o/2KK/gPH+KLO
+	jJv6qQRidtyYgQXz0OoxaiEmgRiWotGiMyvm/twz8bqR1dn9McNAvZhJt+VqH2jy
+	FstNew3UzdfAZSROr0rXfCECKd4XkvPeBlmKVVEr5Pzxi83Caq0+f79Xip/vaexA
+	zglGh5pULB782N20QMdteLBJt/xOLu0aVwNFqENgqacoMCC2qPIDxGfkLxiKw9MF
+	UCMLFJM6fDYisFhRs1Yw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vun6w034k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Jan 2024 10:24:42 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40PAOfvE012594
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 25 Jan 2024 10:24:41 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 25 Jan 2024 02:24:35 -0800
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <quic_kuiw@quicinc.com>, <quic_ekangupt@quicinc.com>, <kernel@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Ling Xu
+	<quic_lxu5@quicinc.com>
+Subject: [PATCH 0/2] arm64: dts: qcom: Add dma-coherent property on
+Date: Thu, 25 Jan 2024 15:54:11 +0530
+Message-ID: <20240125102413.3016-1-quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com> <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
-In-Reply-To: <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 25 Jan 2024 14:17:21 +0400
-Message-ID: <CABjd4YzWJie91kcbHom_Zso=QQR9gPmAVvJb1vbqa0Qwu5egKg@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add OPP data for CPU cores on RK3588
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: r0emfoENkl3pxTxT0EjfgUlYkUeP8f3F
+X-Proofpoint-ORIG-GUID: r0emfoENkl3pxTxT0EjfgUlYkUeP8f3F
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-25_05,2024-01-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=342
+ lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501 mlxscore=0
+ bulkscore=0 phishscore=0 impostorscore=0 malwarescore=0 suspectscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401250070
 
-On Thu, Jan 25, 2024 at 1:30=E2=80=AFPM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->
->
-> Hi Alexey,
->
-> Adding Viresh
->
-> On 24/01/2024 21:30, Alexey Charkov wrote:
-> > By default the CPUs on RK3588 start up in a conservative performance
-> > mode. Add frequency and voltage mappings to the device tree to enable
-> > dynamic scaling via cpufreq
-> >
-> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > ---
-> >   arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 209 +++++++++++++++++++++=
-+++++++++
-> >   1 file changed, 209 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boo=
-t/dts/rockchip/rk3588s.dtsi
-> > index 131b9eb21398..e605be531a0f 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> > @@ -97,6 +97,7 @@ cpu_l0: cpu@0 {
-> >                       clocks =3D <&scmi_clk SCMI_CLK_CPUL>;
-> >                       assigned-clocks =3D <&scmi_clk SCMI_CLK_CPUL>;
-> >                       assigned-clock-rates =3D <816000000>;
-> > +                     operating-points-v2 =3D <&cluster0_opp_table>;
-> >                       cpu-idle-states =3D <&CPU_SLEEP>;
-> >                       i-cache-size =3D <32768>;
-> >                       i-cache-line-size =3D <64>;
-> > @@ -116,6 +117,7 @@ cpu_l1: cpu@100 {
-> >                       enable-method =3D "psci";
-> >                       capacity-dmips-mhz =3D <530>;
-> >                       clocks =3D <&scmi_clk SCMI_CLK_CPUL>;
-> > +                     operating-points-v2 =3D <&cluster0_opp_table>;
-> >                       cpu-idle-states =3D <&CPU_SLEEP>;
-> >                       i-cache-size =3D <32768>;
-> >                       i-cache-line-size =3D <64>;
-> > @@ -135,6 +137,7 @@ cpu_l2: cpu@200 {
-> >                       enable-method =3D "psci";
-> >                       capacity-dmips-mhz =3D <530>;
-> >                       clocks =3D <&scmi_clk SCMI_CLK_CPUL>;
-> > +                     operating-points-v2 =3D <&cluster0_opp_table>;
-> >                       cpu-idle-states =3D <&CPU_SLEEP>;
-> >                       i-cache-size =3D <32768>;
-> >                       i-cache-line-size =3D <64>;
-> > @@ -154,6 +157,7 @@ cpu_l3: cpu@300 {
-> >                       enable-method =3D "psci";
-> >                       capacity-dmips-mhz =3D <530>;
-> >                       clocks =3D <&scmi_clk SCMI_CLK_CPUL>;
-> > +                     operating-points-v2 =3D <&cluster0_opp_table>;
-> >                       cpu-idle-states =3D <&CPU_SLEEP>;
-> >                       i-cache-size =3D <32768>;
-> >                       i-cache-line-size =3D <64>;
-> > @@ -175,6 +179,7 @@ cpu_b0: cpu@400 {
-> >                       clocks =3D <&scmi_clk SCMI_CLK_CPUB01>;
-> >                       assigned-clocks =3D <&scmi_clk SCMI_CLK_CPUB01>;
-> >                       assigned-clock-rates =3D <816000000>;
-> > +                     operating-points-v2 =3D <&cluster1_opp_table>;
-> >                       cpu-idle-states =3D <&CPU_SLEEP>;
-> >                       i-cache-size =3D <65536>;
-> >                       i-cache-line-size =3D <64>;
-> > @@ -194,6 +199,7 @@ cpu_b1: cpu@500 {
-> >                       enable-method =3D "psci";
-> >                       capacity-dmips-mhz =3D <1024>;
-> >                       clocks =3D <&scmi_clk SCMI_CLK_CPUB01>;
-> > +                     operating-points-v2 =3D <&cluster1_opp_table>;
-> >                       cpu-idle-states =3D <&CPU_SLEEP>;
-> >                       i-cache-size =3D <65536>;
-> >                       i-cache-line-size =3D <64>;
-> > @@ -215,6 +221,7 @@ cpu_b2: cpu@600 {
-> >                       clocks =3D <&scmi_clk SCMI_CLK_CPUB23>;
-> >                       assigned-clocks =3D <&scmi_clk SCMI_CLK_CPUB23>;
-> >                       assigned-clock-rates =3D <816000000>;
-> > +                     operating-points-v2 =3D <&cluster2_opp_table>;
-> >                       cpu-idle-states =3D <&CPU_SLEEP>;
-> >                       i-cache-size =3D <65536>;
-> >                       i-cache-line-size =3D <64>;
-> > @@ -234,6 +241,7 @@ cpu_b3: cpu@700 {
-> >                       enable-method =3D "psci";
-> >                       capacity-dmips-mhz =3D <1024>;
-> >                       clocks =3D <&scmi_clk SCMI_CLK_CPUB23>;
-> > +                     operating-points-v2 =3D <&cluster2_opp_table>;
-> >                       cpu-idle-states =3D <&CPU_SLEEP>;
-> >                       i-cache-size =3D <65536>;
-> >                       i-cache-line-size =3D <64>;
-> > @@ -348,6 +356,207 @@ l3_cache: l3-cache {
-> >               };
-> >       };
-> >
-> > +     cluster0_opp_table: opp-table-cluster0 {
-> > +             compatible =3D "operating-points-v2";
-> > +             opp-shared;
-> > +
-> > +             opp-408000000 {
-> > +                     opp-hz =3D /bits/ 64 <408000000>;
-> > +                     opp-microvolt =3D <675000 675000 950000>;
-> > +                     clock-latency-ns =3D <40000>;
-> > +             };
-> > +             opp-600000000 {
-> > +                     opp-hz =3D /bits/ 64 <600000000>;
-> > +                     opp-microvolt =3D <675000 675000 950000>;
-> > +                     clock-latency-ns =3D <40000>;
-> > +             };
-> > +             opp-816000000 {
-> > +                     opp-hz =3D /bits/ 64 <816000000>;
-> > +                     opp-microvolt =3D <675000 675000 950000>;
-> > +                     clock-latency-ns =3D <40000>;
-> > +             };
-> > +             opp-1008000000 {
-> > +                     opp-hz =3D /bits/ 64 <1008000000>;
-> > +                     opp-microvolt =3D <675000 675000 950000>;
-> > +                     clock-latency-ns =3D <40000>;
-> > +             };
->
-> It is not useful to introduce OPP with the same voltage. There is no
-> gain in terms of energy efficiency as the compute capacity is linearly
-> tied with power consumption (P=3DCxFxV=C2=B2) in this case.
->
-> For example, opp-408 consumes 2 bogoWatts and opp-816 consumes 4
-> bogoWatts (because of the same voltage).
->
-> For a workload, opp-408 takes 10 sec and opp-816 takes 5 sec because it
-> is twice faster.
->
-> The energy consumption is:
->
-> opp-408 =3D 10 x 2 =3D 20 BogoJoules
-> opp-816 =3D 5 x 4 =3D 20 BogoJoules
+Add dma-coherent property to fastRPC context bank nodes on sm8550 and
+sm8650 dtsi files to pass dma sequence test in fastrpc sanity test,
+ensure that data integrity is matained during DMA operations.
 
-I see, thank you. Will drop all "lower frequency - same voltage"
-instances and resubmit in the next iteration.
+Ling Xu (2):
+  arm64: dts: qcom: sm8550: Add dma-coherent property
+  arm64: dts: qcom: sm8650: Add dma-coherent property
 
-Best regards,
-Alexey
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 13 +++++++++++++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 13 +++++++++++++
+ 2 files changed, 26 insertions(+)
+
+
+base-commit: 774551425799cb5bbac94e1768fd69eec4f78dd4
+-- 
+2.17.1
+
 
