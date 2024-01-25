@@ -1,87 +1,111 @@
-Return-Path: <devicetree+bounces-35070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0AFB83C3B9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:33:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 022C283C3C3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EEDE1F26771
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:33:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35C481C242D5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2DE755E5A;
-	Thu, 25 Jan 2024 13:33:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624FD5577F;
+	Thu, 25 Jan 2024 13:35:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ft1hS6ad"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="AXEWAW6S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79EA54F212;
-	Thu, 25 Jan 2024 13:33:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA7056B70
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 13:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706189592; cv=none; b=qC+0UUPrt6BS3LifA+uTh5bR7j3kb+TSsj07AU6hXGfnBfMKccw+LLwSbgLnxGBUmynSzQ2s9zB5b+GEJb0/lG/iuUOd9NQRYIut4tlymR2e204Bky5r0H09wPzh4Ix1ojTc2ScbywQDmWCt4RpIShwpCmkOR3pGk2hbewz4Phc=
+	t=1706189706; cv=none; b=j02yRmpl/dE/Uv/7uGQAyz39P3Ts7whn4Ihokobhvn2BWTw+o1BPcJIuOwKRcRzwH6+NgIZ//+SgipjZALtqI6X+HxjAjdK2WLkr/eVr0kYCJWlFUaWyv/PfBnPpx57BJ85bJkhfdhB4A/t0nUleSNeBjE/Lr435gKWNwAMHh9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706189592; c=relaxed/simple;
-	bh=oR73ElII+Ea6VkMoxYabaKds5uCTTrP+pC0GdwTuXJw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=t4xTg+fLjrBx3R//vSMBCADbiIC+2GcG9PD6p5LIyNqXXmI8BhK+ZxE5OR6fkpxNXmUy9GFNbgepIxhqdwKydrKJ4Ry4DCajpb7oYxA1QGjhH/UhC9uMYrdfdWruC67ErD7DOCxkelTR5At9EKn01xmi1TrztdSfuhGSzSIJ2ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ft1hS6ad; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE6A0C433C7;
-	Thu, 25 Jan 2024 13:33:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706189592;
-	bh=oR73ElII+Ea6VkMoxYabaKds5uCTTrP+pC0GdwTuXJw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ft1hS6adPP9rT33QQ5YF1IUjkQU/i4uGCPgGGVy6fv1v2/1MWLgEGyW/yBxL4fCtf
-	 /wkb2OI9H150wo5Ql7HEXpRbe6897kQEKEGKHd3CikE5FnL5h/PglTcLXo5+yWdCDC
-	 64ReazRq9rCEAlsrkEQhEjq/xPmVv3suG7qTNOWHB/4h2e8A8/tZ+NVDa51ip3frcV
-	 CZAxmGk0/UjHSc4LHzDEQUegYEpJUdE/ELITIWFt3WdWC9ECx7Jp4mYVW5uf+FJq6G
-	 Pk+hFzHICw75gO4/fNn20eCl/m/jk1jfpAGR5vguJLF6FjGrvOdv//+8coaoDZQylW
-	 rAqX5U2Yzcefw==
-From: Lee Jones <lee@kernel.org>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, openwrt-devel@lists.openwrt.org, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-In-Reply-To: <20240117151736.27440-1-zajec5@gmail.com>
-References: <20240117151736.27440-1-zajec5@gmail.com>
-Subject: Re: (subset) [PATCH] dt-bindings: leds: add FUNCTION defines for
- per-band WLANs
-Message-Id: <170618958957.1465772.9140099725352786170.b4-ty@kernel.org>
-Date: Thu, 25 Jan 2024 13:33:09 +0000
+	s=arc-20240116; t=1706189706; c=relaxed/simple;
+	bh=4LsMWW45vLtQuo3XidYiPfZUbQT8FyYnDkVfk4oplzs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=N1wPayqEfn9RJXDx3CjG9ZYfiJv/oMnu7jQhcx7o3I7zLl6YA+Y5/hZfpwAktmM0m4m+KWnoPpIk4HfW9mEgxHP/LvJDkZJ6RB+nDG2+NjnH4C18yoRPdrMSGmpn5Xkmv+DMXRQhBQ9wtWy6X6ZmFJd+2X+x2TOhsIg7vqm+j48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=AXEWAW6S; arc=none smtp.client-ip=91.218.175.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1706189701;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=51k3AHXGohIJoLoxDV00w5xStGGYYOVxEKd0gWSXjl4=;
+	b=AXEWAW6S4/kdZsZwyWh+CUsGYuDIYgb4amFUns0o+QYTTakww1DwkpcnsAN3Z5KmRXsr67
+	QBPNlEgkrY9lEZd6RsEnNACI2PYcQeDIEoJ7T8Twai7zniYI6pcBQXjBSAg8C3qU067Ttm
+	c9NXwyFXxrA7/eEo2islYV6bMurKDf/Y6fVt6KLPTHG1MIrer9PuBpvu3kOuBrDZg8Ua3b
+	IhSqVliB1rtwli0/xiSxtvVU1oZXsR9GpOvZgC34/escTgpfVkK9zlV3ml0Sa6/vqCGcv5
+	28qB28r5hidmQTxRa8PSVCH/hUKQoie22143UGpoHbwGW9Z6BLxYGW2KMrKGLA==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ linux-rockchip@lists.infradead.org
+Cc: Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Daniel Lezcano <daniel.lezcano@linaro.org>
+Subject:
+ Re: [PATCH 2/4] arm64: dts: rockchip: enable built-in thermal monitoring on
+ rk3588
+Date: Thu, 25 Jan 2024 14:34:47 +0100
+Message-ID: <1824717.EqSB1tO5pr@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <245f5692-be30-4216-8b13-988092793732@linaro.org>
+References:
+ <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
+ <20240125-rk-dts-additions-v1-2-5879275db36f@gmail.com>
+ <245f5692-be30-4216-8b13-988092793732@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.3
+Content-Type: multipart/signed; boundary="nextPart4312370.MBFMXe44yd";
+ micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, 17 Jan 2024 16:17:36 +0100, Rafał Miłecki wrote:
-> Most wireless routers and access points can operate in multiple bands
-> simultaneously. Vendors often equip their devices with per-band LEDs.
+--nextPart4312370.MBFMXe44yd
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Diederik de Haas <didi.debian@cknow.org>
+Date: Thu, 25 Jan 2024 14:34:47 +0100
+Message-ID: <1824717.EqSB1tO5pr@bagend>
+Organization: Connecting Knowledge
+In-Reply-To: <245f5692-be30-4216-8b13-988092793732@linaro.org>
+MIME-Version: 1.0
+
+On Wednesday, 24 January 2024 22:56:21 CET Daniel Lezcano wrote:
+> > +                       cooling-maps {
+> > +                               map1 {
 > 
-> Add defines for those very common functions to allow cleaner & clearer
-> bindings.
-> 
-> 
-> [...]
+> s/map1/mpa0/
 
-Applied, thanks!
+FTR: that should be ``s/map1/map0/``
+(verified with Daniel Lezcano)
+--nextPart4312370.MBFMXe44yd
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-[1/1] dt-bindings: leds: add FUNCTION defines for per-band WLANs
-      commit: 89d9d3eedc8804e06a770e3cf1279f9131b785f1
+-----BEGIN PGP SIGNATURE-----
 
---
-Lee Jones [李琼斯]
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZbJjdwAKCRDXblvOeH7b
+biA/APwNyu3DMP1k8u1Z1gxe5C8Vi6G43KSWumtPGN2v9paVbAEAtSdbFcND47gA
+MsiAV1fUxJbOATVo1LIngCtRbhbSkAs=
+=YVZI
+-----END PGP SIGNATURE-----
+
+--nextPart4312370.MBFMXe44yd--
+
+
 
 
