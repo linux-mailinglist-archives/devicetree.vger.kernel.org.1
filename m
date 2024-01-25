@@ -1,72 +1,71 @@
-Return-Path: <devicetree+bounces-35056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C930583C342
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:08:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65DCF83C348
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 14:08:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65193B255BD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:08:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0504C1F240B5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 13:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1CFB56758;
-	Thu, 25 Jan 2024 13:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3705787E;
+	Thu, 25 Jan 2024 13:06:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hB6+OKT7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ksk4o+Cd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4225A55795
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 13:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A94C56B60
+	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 13:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706188002; cv=none; b=NbAn0th2zl9Ep37tARX/3bEpku1MKD5IzZ/xHur/E8l0k2vFuWrL/GVx+9ARoFrr5jlElIGsN4f5JdA5eNinPErBfNxzICXkiLWjTA7f/+llo2WXsi50taKhD/hD3jpy+noJ14A8PLEQKYgqVmrJGT+vEe2cMtZCGWTZfXw3xN4=
+	t=1706188004; cv=none; b=pN6/lkTEKBR8xnTUEb4xh9ns89Gjlxd4ziJneoOF6nrFgNVCotE5mEyT+Q1Dt06PnZnpJMXsSDTqxFh1XAzbw/nTCU6eq5SpKyrwjyvRcRL1B0bj4srWID8QCWAKhMKAvdOePPK4iLCk2ZuP42VdgHR9UZYh9bpY0hJcSL7BTwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706188002; c=relaxed/simple;
-	bh=evYnu3QuudYg3vSYFXFPI9JOdAXgqDFA+MTb5aqHvxk=;
+	s=arc-20240116; t=1706188004; c=relaxed/simple;
+	bh=Vm8FYWkCbiN6pEEwfgqVnqgx6X6dabUYF1SQcOeQgi4=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=f7+nbRmdrW83sBeWM8Am9kaD9l46PPICb4lKgqbcsd5/c+Ri+Afg7GaXpNLMpRknfnUvcz772axPhbPLOYwTj3zQEtVaKU22jf75mYIRnVksPuJgtPGWShH8sZSFeOwIQ3kEadtyba6UgZMY8/rQuPL+sv/A7J3hB1Mmt37gSXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hB6+OKT7; arc=none smtp.client-ip=209.85.208.50
+	 MIME-Version; b=Bn+SW0LqDT9zoB8D+uo8Rt2fbnmkld0aA29V0LKZPkxjSPi0U7CV76qyUV0Jhs5lycHmbzP1zr6JjeODoMSXbzsj9/lLqvm8kG1v/eA9TNQbMevfhPajzM+tXsoojKpvC6hU41QdSMYRRIcK1y62L0bY6rLzrAfSlJoH8ZGcbbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ksk4o+Cd; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55a6833c21eso5179146a12.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 05:06:41 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-55a8fd60af0so6221680a12.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 05:06:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706187999; x=1706792799; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706188001; x=1706792801; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fg8gFt45fS4TDeXPLD804quwOBK0D43uZtoHVR0hKM4=;
-        b=hB6+OKT7OHKHJm1LETvtn21l4taq9/meJxSsVlDoqaNrngN3fBcknCh4SxEXiexHVo
-         tJ81cP59BJaXZeKdI6Fet84TtnXpXCt+HVEUkJIJEt/LJdPfaew5RdXBTvAe7MJM32Xq
-         rTHNCOHvckp0+ubMn4bkKH96Z/1SwZerrjXYWmZ/uVU3TxKSWqSeCgAGrxALiYXn0inj
-         jSgUCxHkXcazRTLDSQsvXLqVVf3mVI5q/37/q9uPYsnjzQ+dQBfzfTHQsU7TqeqGM6EO
-         iBrp2zsJDBiEYkwUSuYbnmcIHPuCCZjPfOIAxe9q6NdI+C8L985/C6MS5nK52Sp7QZUF
-         o4MQ==
+        bh=Hz4UOUwLaTrVZVjKRBIuuQV1CZ1n1JSNcVoZKpZXtzg=;
+        b=Ksk4o+CdSuwqgXZZ1vMSQQhoXKBocWFevZyu4NuT9i3uFKhB5ZquGNzcHPZMjuTfW7
+         UepuOrSB+CKGVq/Lg6tb2Jq22em++JBoBQrxUqWKF96MB8H/bp1T9iB7CCWd6TBq33cP
+         Rqz3Y+Dn+ySFKmNKR5axj7BB/pXlkdRvPX5jdrjH2VcCsvwNihDtxS0zRH0ty7HlRpPX
+         Obqk9BnOcmA2WM1fInPh/ANB0u2bYGUr5c+9+UCZ/bJYAZHnoVHmdKH3q/NcYevxso+a
+         y1TXk3BSUUQWvR2pjBFZqvTbZF7zqLwo8zUb/na514yY0GolgvoCcRrSW2CTJY6z7NoI
+         0NyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706187999; x=1706792799;
+        d=1e100.net; s=20230601; t=1706188001; x=1706792801;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fg8gFt45fS4TDeXPLD804quwOBK0D43uZtoHVR0hKM4=;
-        b=GljytQXMXMrAtXn6OYJgJxwVQ8IpU5uldZtj09M8sEFyzYw6vC+FwBajFRrL/Hjw6n
-         4XK74jrRfSTTq0MAg3R+5FDX9I/H6UivUimg4oMBYy5T1VEQwtJYcKin6xzOHHdhmSt+
-         fW2Y9b71kZEKUhujdvWLJPsz/KVeISTZmxBYDn11DcmxTJLHpMOfOBQKtiiC8tcTSJky
-         zpDUHzBjdlza5FDaEfa31lNjW/wqNB5cl2naBD9pNBRTQymVQtbK9RKfENfYUzPm3MjB
-         Ufm94hv/WiemyIYK6T/RMwWvSPdSRxzi4b0/lTubmCxyrhm6yezgsfUOZ5d6u3RsHvTc
-         0lQA==
-X-Gm-Message-State: AOJu0Yw+2oF+pc4MhEguGXKZWRkbzsZvEHOhdzJDxDZ/ChJmmHRRHpt9
-	73mnfELQSzaB6fDvz/Ki/VCy8UDdnUrrNsgFGaDWza7D86anIrhH8FSVlTdaDeQZnmMhOut+4eZ
-	0
-X-Google-Smtp-Source: AGHT+IFjTdaK93LlmCb3mMx6m5IycjkfiwGdZ1VpLJHzNIcZ9oqtk8bbpaI7KpCqDNTzZ6umS13i2Q==
-X-Received: by 2002:a05:6402:310a:b0:55c:7aff:b456 with SMTP id dc10-20020a056402310a00b0055c7affb456mr614343edb.17.1706187999636;
-        Thu, 25 Jan 2024 05:06:39 -0800 (PST)
+        bh=Hz4UOUwLaTrVZVjKRBIuuQV1CZ1n1JSNcVoZKpZXtzg=;
+        b=D1/81IQCmHwNFDNkIZyFbcJJy4TTxm37kk8QOSuLHfY0koL8/jloZKrvhOpqQbmx9p
+         QphtBpGNIIYNA8Yro0s5Ch+QvWSRqWtL28w5lsFhAUjrwsPNShhLHCBNfyw9CQIOKS7T
+         lNPATZGGJUGnWAozOelT/41TetcEhT/7PwaRqde5wNkWwaGgRHTRUqxbY3yvhi+sVnXR
+         PY1EKiXyZWfP5vELmsvSAYVxLYp3JgX/qNqjM7zrUgii+DlBb1iY8ZtsWzpxuJJ4Jo8d
+         y2RKc089nslVXq8tJK3dVwWYgUbMtFhFK2ONSvcNXNlQOI1RVoV3K6e99wg7OUrC7fQ5
+         CbOw==
+X-Gm-Message-State: AOJu0Ywc2kUiZQQ8j1rH9zJJIMeRfUX8I+G9ObcSKV0PRXGI9BKdmxbV
+	UncPRKkoXi/a3zdBzqBgRvKtNjai4/Ck/sve5gqU0HmdCK4kS0lkt0sXl53GCbI=
+X-Google-Smtp-Source: AGHT+IHm6+LA7xKQVSTlAszsDlUkRYqXhWF42y0uqkcwpk8+pO6DRmRsYDU9XLKhjy6W3WVccCpC/Q==
+X-Received: by 2002:a50:99de:0:b0:55c:fd62:18a4 with SMTP id n30-20020a5099de000000b0055cfd6218a4mr283034edb.82.1706188001502;
+        Thu, 25 Jan 2024 05:06:41 -0800 (PST)
 Received: from krzk-bin.. ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id ig1-20020a056402458100b0055ca5ce62ddsm1873315edb.12.2024.01.25.05.06.38
+        by smtp.gmail.com with ESMTPSA id ig1-20020a056402458100b0055ca5ce62ddsm1873315edb.12.2024.01.25.05.06.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Jan 2024 05:06:38 -0800 (PST)
+        Thu, 25 Jan 2024 05:06:40 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -77,9 +76,9 @@ To: Bjorn Andersson <andersson@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/6] arm64: dts: qcom: sm8550: describe all PCI MSI interrupts
-Date: Thu, 25 Jan 2024 14:06:25 +0100
-Message-Id: <20240125130626.390850-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 6/6] arm64: dts: qcom: sm8650: describe all PCI MSI interrupts
+Date: Thu, 25 Jan 2024 14:06:26 +0100
+Message-Id: <20240125130626.390850-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240125130626.390850-1-krzysztof.kozlowski@linaro.org>
 References: <20240125130626.390850-1-krzysztof.kozlowski@linaro.org>
@@ -92,21 +91,21 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
 Each group of MSI interrupts is mapped to the separate host interrupt.
-Describe each of interrupts in the device tree for PCIe hosts.  Only
-boot tested on hardware.
+Describe each of interrupts in the device tree for PCIe hosts.  Not
+tested on hardware.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 24 ++++++++++++++++++++----
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 24 ++++++++++++++++++++----
  1 file changed, 20 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index ee1ba5a8c8fc..80e31fb21055 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1713,8 +1713,16 @@ pcie0: pcie@1c00000 {
- 			linux,pci-domain = <0>;
- 			num-lanes = <2>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index 2df77123a8c7..9fc4f3e37a8c 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -2213,8 +2213,16 @@ pcie0: pci@1c00000 {
+ 			      <0 0x60100000 0 0x100000>;
+ 			reg-names = "parf", "dbi", "elbi", "atu", "config";
  
 -			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
 -			interrupt-names = "msi";
@@ -121,11 +120,11 @@ index ee1ba5a8c8fc..80e31fb21055 100644
 +			interrupt-names = "msi0", "msi1", "msi2", "msi3",
 +					  "msi4", "msi5", "msi6", "msi7";
  
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
-@@ -1804,8 +1812,16 @@ pcie1: pcie@1c08000 {
- 			linux,pci-domain = <1>;
- 			num-lanes = <2>;
+ 			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+ 				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+@@ -2317,8 +2325,16 @@ pcie1: pci@1c08000 {
+ 				    "atu",
+ 				    "config";
  
 -			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
 -			interrupt-names = "msi";
@@ -140,8 +139,8 @@ index ee1ba5a8c8fc..80e31fb21055 100644
 +			interrupt-names = "msi0", "msi1", "msi2", "msi3",
 +					  "msi4", "msi5", "msi6", "msi7";
  
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
+ 			clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
+ 				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
 -- 
 2.34.1
 
