@@ -1,421 +1,113 @@
-Return-Path: <devicetree+bounces-34954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-34955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C63183BDA9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:44:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC2D983BD91
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 10:40:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 830FDB2ECC4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:32:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 745E4B2D3EC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 09:33:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26FC1BC58;
-	Thu, 25 Jan 2024 09:30:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB1CC1C6BF;
+	Thu, 25 Jan 2024 09:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R9bz5TP4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YaZHQHdz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3E8A1CD2C
-	for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 09:30:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90AB11C6B6;
+	Thu, 25 Jan 2024 09:31:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706175025; cv=none; b=pMdOBur5SrDPeVs85AsJuXgLP/YgiQWR9iNxEo5VdPBCugx887rB0eD/gKv40K64ORnJ/Yd2LFTPHNHgL48HV/JOhA3GkaveOPX/Xk+h/5oLKa/f/n9ZCR50VZjvL9AgStanBrVu8GF6unAzvRMUmlo+QZVKH+45Ji44gPPEBiM=
+	t=1706175081; cv=none; b=mhTiQxqO7LGcWCY65AZq1gbAih3zMsY2W2+Igqr6l+Rm47nGddR1BswUMJ770D9o5++m9S4W0HRktZQzEjAc9237p6TrsOlP0pAFKdYUOXG0IAaL116O1IMLL9MhrZY1laNdUwdV6ZKZSqL0etuqtb3owS509VsuAFSlhCoOKAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706175025; c=relaxed/simple;
-	bh=+z8U3jmkrYITgqElhgcXRMdg31Uor/mf5V6CeNez3JI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oRXnq1O6EpgThE0JClBGYsGDsLTnMNhWN8+smNGs299/GUTigBsboWg9kKgd0cjz7Tq45TITC3J7YyfcwMyC+MZRHmuLezEVfRWun+it9L1Y4ClGeJcm9LFAp/lxqVMTGceT/pXnF0VeXZ7CKV/+SPdrMABL9PcwjOUKINAUaws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R9bz5TP4; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40ec6a002a7so17604625e9.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 01:30:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706175022; x=1706779822; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qZ93Ung9UFj9gEmUJ9dbTh7s4u6LdRY89gOu3DzOeMw=;
-        b=R9bz5TP42ob88mBEkjL4/Ahdn70pmu17HWyVDSdTrnYCeiSB1tg5XRo4xXkiAOCKVr
-         5swLsF88KebPCNaC5YGN0QUjY7h5pYA0GWcwdTfOIoCSwIn0egI60N0rF4WEPC2vSU3Y
-         SZZt8+bF97Y11hDwBSlDF2OkkH++AvXBJhy3gupK/BB9V2UtSRCKa0kQntOKiWmvL6G+
-         njeTbatXSP7lpjbyBBBg4PWvxNZQzA4vWC3LbeSOUIklM6kFp0q8XNbSHLfw3x0vWq38
-         EYcYrBb5nsazJQphNORsw5+ip8dUHml5zVwr9ufbOkPMRa2zDXTtdlslDsbhGQbv1UbP
-         9geA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706175022; x=1706779822;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qZ93Ung9UFj9gEmUJ9dbTh7s4u6LdRY89gOu3DzOeMw=;
-        b=F+lfvJZTq7BuQdzFp8/X2tGT+qB9Jf3QXsjZp94xFvjKe5lE6UH8S3ZhzHJxCNW8mO
-         lLYvAXVvHPJE2hDLHe8VgwXUZCJFwNQTmyxSFMTCMZK174+neXQWlOIoe9B2SOOOTogP
-         jslOSKZk+yp9qWhKZ7CalmjDCusMsbYMkjRssnX0d+5/yjTNF+ONh2R1ba2j8Fhv/Dxg
-         ROxFpszkq1yEt0IPr+CMH1eHr+FxUKqIQpYqQ/G4VtxOTb1tSj6yXQwmTGA6IsNOThAr
-         w9tzI+DFFL/7tFTP+j2oE/8haRWg5udqPwy6CEod6GVnsEImymJYqO9LHymBzCqVL7kP
-         djMg==
-X-Gm-Message-State: AOJu0YylXydPwM6vmrlD6/ITd0bJaVn4AeMbmWnKA/mVcohGBT+3m8et
-	fDTVv4H/ArBMT3ZQFGGwlhjSRbdIy4wG9WMQTc0Wh0zn1C4qzk/WfIf3b5M7HcXmBWjTN9VLFbt
-	6
-X-Google-Smtp-Source: AGHT+IFW9Dh9uQSkOuMQVDpLAUQv+08vOtsrRbDpJ59aMyH0jm7MsfbpJ9gZPI/GPcA4/RL6Ig0vBg==
-X-Received: by 2002:a05:600c:4747:b0:40e:48e9:b47f with SMTP id w7-20020a05600c474700b0040e48e9b47fmr242908wmo.147.1706175021858;
-        Thu, 25 Jan 2024 01:30:21 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:3efc:18bf:254:203f? ([2a05:6e02:1041:c10:3efc:18bf:254:203f])
-        by smtp.googlemail.com with ESMTPSA id er9-20020a05600c84c900b0040e596320bfsm733750wmb.0.2024.01.25.01.30.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Jan 2024 01:30:21 -0800 (PST)
-Message-ID: <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
-Date: Thu, 25 Jan 2024 10:30:20 +0100
+	s=arc-20240116; t=1706175081; c=relaxed/simple;
+	bh=HyKIL7MR0TT3sSkhF/hxv6Xzw9uF1jLRyVnGFnT9B4c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NvCN3UxMIPomWqGhFPWbPMQliQ4rmCsQTCGhpqRvuT6j2lhCY0BVU9QZ+UpkvKNvCVEdiy4CQuH879KkrlHXMi1XEQm/+deK/3faQo1qzxwoz37GIUAtIzf7webf0BZAdLjaz945oVjU8GyFephm7QvMla55jK+0dShT7ksNtG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YaZHQHdz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 37D3CC433C7;
+	Thu, 25 Jan 2024 09:31:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706175081;
+	bh=HyKIL7MR0TT3sSkhF/hxv6Xzw9uF1jLRyVnGFnT9B4c=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=YaZHQHdzCAosfsePBIPCfGVWTb1wt959cqEwr0ivySFxZrWY11Ia3lfCaRlmfYMG2
+	 c+dHsifvCoRqXUqBZFSp1lBoTPVVZhjFuV3I2FwPpOyRj1mK5D+epI2dUvMkHZyY0K
+	 1fKi9ZeTrQMtL69T9bvCdJo2UWAvazqrdPdwFGTQkzJEPB/6z+PFekbe+hoxEbEzVK
+	 0ThlFXNYwjHh53gqVlxlBsQjsufIGClGwy5QiM1PNcFVPrA/dYkMLiN/ZEMa5AbCnh
+	 LD/Dci8Tjm/2DTdMiU2UuHRtEb1c3ARE3sV2Abelm+z7O8mwY2hdXO2173vnY3DCsb
+	 TcJVZli58R7tQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0918CC48260;
+	Thu, 25 Jan 2024 09:31:21 +0000 (UTC)
+From: Fenglin Wu via B4 Relay <devnull+quic_fenglinw.quicinc.com@kernel.org>
+Subject: [PATCH v3 0/2] Add PM8010 regulators for sm8650 boards.
+Date: Thu, 25 Jan 2024 17:31:14 +0800
+Message-Id: <20240125-sm8650_pm8010_support-v3-0-2f291242a7c4@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add OPP data for CPU cores on
- RK3588
-Content-Language: en-US
-To: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Dragan Simic <dsimic@manjaro.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGIqsmUC/43NQQ6CMBCF4auQrq2ZDowQV97DGIJtkVkAtYVGQ
+ 7i7hZ0rXf4vmW8WEaxnG8Q5W4S3kQOPQ4r8kAndNcPDSjapBQIWoDCXoa9OBLXrK1BQh9m50U+
+ yJNBADWlDRqRb523Lr9293lJ3HKbRv/c3UW3rLzEqCdJYjYiFobKAy3NmzYM+6rEXmxnxLweTQ
+ 9iSKu8IjTLfzrquH4ohnNkEAQAA
+To: kernel@quicinc.com, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com, 
+ Fenglin Wu <quic_fenglinw@quicinc.com>
+X-Mailer: b4 0.13-dev-83828
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1706175079; l=1205;
+ i=quic_fenglinw@quicinc.com; s=20230725; h=from:subject:message-id;
+ bh=HyKIL7MR0TT3sSkhF/hxv6Xzw9uF1jLRyVnGFnT9B4c=;
+ b=MwaMrUsVDw8ZqP/STnoorwurZg9Rk9jDEX2VTUFbuKxodgE7PyVveBgbJclfsKgqubHwPiOTl
+ j3onBIhMblrDi+SPMNNn2HsHIZsFRxCHeIsiRizg5QYJhUHHwSrAOuN
+X-Developer-Key: i=quic_fenglinw@quicinc.com; a=ed25519;
+ pk=hleIDz3Unk1zeiwwOnZUjoQVMMelRancDFXg927lNjI=
+X-Endpoint-Received:
+ by B4 Relay for quic_fenglinw@quicinc.com/20230725 with auth_id=68
+X-Original-From: Fenglin Wu <quic_fenglinw@quicinc.com>
+Reply-To: <quic_fenglinw@quicinc.com>
 
+Add PM8010 RPMh regulators for sm8650-mtp and sm8650-qrd boards.
 
-Hi Alexey,
+Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+---
+Changes in v3:
+- Split vdd-l6-l7 supply for regulator-6, and split vdd-l5-l6 for regulator-7,
+  as vdd-[5-7]-supply is defined in the driver seperately.
+- Add regulator-allow-set-load and regulator-allowed-modes for LDO1/LDO2
+  as they are the only LDOs support mode transition in PM8010.
+- Link to v2: https://lore.kernel.org/r/20240123-sm8650_pm8010_support-v2-0-52f517b20a1d@quicinc.com
 
-Adding Viresh
+Changes in v2:
+- Added Reviewed-by/Tested-by trailers
+- Link to v1: https://lore.kernel.org/r/20240123-sm8650_pm8010_support-v1-0-dec2224d5740@quicinc.com
 
-On 24/01/2024 21:30, Alexey Charkov wrote:
-> By default the CPUs on RK3588 start up in a conservative performance
-> mode. Add frequency and voltage mappings to the device tree to enable
-> dynamic scaling via cpufreq
-> 
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
->   arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 209 ++++++++++++++++++++++++++++++
->   1 file changed, 209 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> index 131b9eb21398..e605be531a0f 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> @@ -97,6 +97,7 @@ cpu_l0: cpu@0 {
->   			clocks = <&scmi_clk SCMI_CLK_CPUL>;
->   			assigned-clocks = <&scmi_clk SCMI_CLK_CPUL>;
->   			assigned-clock-rates = <816000000>;
-> +			operating-points-v2 = <&cluster0_opp_table>;
->   			cpu-idle-states = <&CPU_SLEEP>;
->   			i-cache-size = <32768>;
->   			i-cache-line-size = <64>;
-> @@ -116,6 +117,7 @@ cpu_l1: cpu@100 {
->   			enable-method = "psci";
->   			capacity-dmips-mhz = <530>;
->   			clocks = <&scmi_clk SCMI_CLK_CPUL>;
-> +			operating-points-v2 = <&cluster0_opp_table>;
->   			cpu-idle-states = <&CPU_SLEEP>;
->   			i-cache-size = <32768>;
->   			i-cache-line-size = <64>;
-> @@ -135,6 +137,7 @@ cpu_l2: cpu@200 {
->   			enable-method = "psci";
->   			capacity-dmips-mhz = <530>;
->   			clocks = <&scmi_clk SCMI_CLK_CPUL>;
-> +			operating-points-v2 = <&cluster0_opp_table>;
->   			cpu-idle-states = <&CPU_SLEEP>;
->   			i-cache-size = <32768>;
->   			i-cache-line-size = <64>;
-> @@ -154,6 +157,7 @@ cpu_l3: cpu@300 {
->   			enable-method = "psci";
->   			capacity-dmips-mhz = <530>;
->   			clocks = <&scmi_clk SCMI_CLK_CPUL>;
-> +			operating-points-v2 = <&cluster0_opp_table>;
->   			cpu-idle-states = <&CPU_SLEEP>;
->   			i-cache-size = <32768>;
->   			i-cache-line-size = <64>;
-> @@ -175,6 +179,7 @@ cpu_b0: cpu@400 {
->   			clocks = <&scmi_clk SCMI_CLK_CPUB01>;
->   			assigned-clocks = <&scmi_clk SCMI_CLK_CPUB01>;
->   			assigned-clock-rates = <816000000>;
-> +			operating-points-v2 = <&cluster1_opp_table>;
->   			cpu-idle-states = <&CPU_SLEEP>;
->   			i-cache-size = <65536>;
->   			i-cache-line-size = <64>;
-> @@ -194,6 +199,7 @@ cpu_b1: cpu@500 {
->   			enable-method = "psci";
->   			capacity-dmips-mhz = <1024>;
->   			clocks = <&scmi_clk SCMI_CLK_CPUB01>;
-> +			operating-points-v2 = <&cluster1_opp_table>;
->   			cpu-idle-states = <&CPU_SLEEP>;
->   			i-cache-size = <65536>;
->   			i-cache-line-size = <64>;
-> @@ -215,6 +221,7 @@ cpu_b2: cpu@600 {
->   			clocks = <&scmi_clk SCMI_CLK_CPUB23>;
->   			assigned-clocks = <&scmi_clk SCMI_CLK_CPUB23>;
->   			assigned-clock-rates = <816000000>;
-> +			operating-points-v2 = <&cluster2_opp_table>;
->   			cpu-idle-states = <&CPU_SLEEP>;
->   			i-cache-size = <65536>;
->   			i-cache-line-size = <64>;
-> @@ -234,6 +241,7 @@ cpu_b3: cpu@700 {
->   			enable-method = "psci";
->   			capacity-dmips-mhz = <1024>;
->   			clocks = <&scmi_clk SCMI_CLK_CPUB23>;
-> +			operating-points-v2 = <&cluster2_opp_table>;
->   			cpu-idle-states = <&CPU_SLEEP>;
->   			i-cache-size = <65536>;
->   			i-cache-line-size = <64>;
-> @@ -348,6 +356,207 @@ l3_cache: l3-cache {
->   		};
->   	};
->   
-> +	cluster0_opp_table: opp-table-cluster0 {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp-408000000 {
-> +			opp-hz = /bits/ 64 <408000000>;
-> +			opp-microvolt = <675000 675000 950000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-600000000 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <675000 675000 950000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-816000000 {
-> +			opp-hz = /bits/ 64 <816000000>;
-> +			opp-microvolt = <675000 675000 950000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1008000000 {
-> +			opp-hz = /bits/ 64 <1008000000>;
-> +			opp-microvolt = <675000 675000 950000>;
-> +			clock-latency-ns = <40000>;
-> +		};
+---
+Fenglin Wu (2):
+      arm64: dts: qcom: sm8650-mtp: add PM8010 regulators
+      arm64: dts: qcom: sm8650-qrd: add PM8010 regulators
 
-It is not useful to introduce OPP with the same voltage. There is no 
-gain in terms of energy efficiency as the compute capacity is linearly 
-tied with power consumption (P=CxFxV²) in this case.
+ arch/arm64/boot/dts/qcom/sm8650-mtp.dts | 132 ++++++++++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 132 ++++++++++++++++++++++++++++++++
+ 2 files changed, 264 insertions(+)
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240123-sm8650_pm8010_support-750c05a5cd5d
 
-For example, opp-408 consumes 2 bogoWatts and opp-816 consumes 4 
-bogoWatts (because of the same voltage).
-
-For a workload, opp-408 takes 10 sec and opp-816 takes 5 sec because it 
-is twice faster.
-
-The energy consumption is:
-
-opp-408 = 10 x 2 = 20 BogoJoules
-opp-816 = 5 x 4 = 20 BogoJoules
-
-
-> +		opp-1200000000 {
-> +			opp-hz = /bits/ 64 <1200000000>;
-> +			opp-microvolt = <712500 712500 950000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1416000000 {
-> +			opp-hz = /bits/ 64 <1416000000>;
-> +			opp-microvolt = <762500 762500 950000>;
-> +			clock-latency-ns = <40000>;
-> +			opp-suspend;
-> +		};
-> +		opp-1608000000 {
-> +			opp-hz = /bits/ 64 <1608000000>;
-> +			opp-microvolt = <850000 850000 950000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1800000000 {
-> +			opp-hz = /bits/ 64 <1800000000>;
-> +			opp-microvolt = <950000 950000 950000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +	};
-> +
-> +	cluster1_opp_table: opp-table-cluster1 {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp-408000000 {
-> +			opp-hz = /bits/ 64 <408000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +			opp-suspend;
-> +		};
-> +		opp-600000000 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-816000000 {
-> +			opp-hz = /bits/ 64 <816000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1008000000 {
-> +			opp-hz = /bits/ 64 <1008000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-
-same comment
-
-> +		opp-1200000000 {
-> +			opp-hz = /bits/ 64 <1200000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1416000000 {
-> +			opp-hz = /bits/ 64 <1416000000>;
-> +			opp-microvolt = <725000 725000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1608000000 {
-> +			opp-hz = /bits/ 64 <1608000000>;
-> +			opp-microvolt = <762500 762500 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1800000000 {
-> +			opp-hz = /bits/ 64 <1800000000>;
-> +			opp-microvolt = <850000 850000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2016000000 {
-> +			opp-hz = /bits/ 64 <2016000000>;
-> +			opp-microvolt = <925000 925000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2208000000 {
-> +			opp-hz = /bits/ 64 <2208000000>;
-> +			opp-microvolt = <987500 987500 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2256000000 {
-> +			opp-hz = /bits/ 64 <2256000000>;
-> +			opp-microvolt = <1000000 1000000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2304000000 {
-> +			opp-hz = /bits/ 64 <2304000000>;
-> +			opp-microvolt = <1000000 1000000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2352000000 {
-> +			opp-hz = /bits/ 64 <2352000000>;
-> +			opp-microvolt = <1000000 1000000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2400000000 {
-> +			opp-hz = /bits/ 64 <2400000000>;
-> +			opp-microvolt = <1000000 1000000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-
-Same comment
-
-> +	};
-> +
-> +	cluster2_opp_table: opp-table-cluster2 {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp-408000000 {
-> +			opp-hz = /bits/ 64 <408000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +			opp-suspend;
-> +		};
-> +		opp-600000000 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-816000000 {
-> +			opp-hz = /bits/ 64 <816000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1008000000 {
-> +			opp-hz = /bits/ 64 <1008000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1200000000 {
-> +			opp-hz = /bits/ 64 <1200000000>;
-> +			opp-microvolt = <675000 675000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1416000000 {
-> +			opp-hz = /bits/ 64 <1416000000>;
-> +			opp-microvolt = <725000 725000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1608000000 {
-> +			opp-hz = /bits/ 64 <1608000000>;
-> +			opp-microvolt = <762500 762500 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-1800000000 {
-> +			opp-hz = /bits/ 64 <1800000000>;
-> +			opp-microvolt = <850000 850000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2016000000 {
-> +			opp-hz = /bits/ 64 <2016000000>;
-> +			opp-microvolt = <925000 925000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2208000000 {
-> +			opp-hz = /bits/ 64 <2208000000>;
-> +			opp-microvolt = <987500 987500 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2256000000 {
-> +			opp-hz = /bits/ 64 <2256000000>;
-> +			opp-microvolt = <1000000 1000000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2304000000 {
-> +			opp-hz = /bits/ 64 <2304000000>;
-> +			opp-microvolt = <1000000 1000000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2352000000 {
-> +			opp-hz = /bits/ 64 <2352000000>;
-> +			opp-microvolt = <1000000 1000000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp-2400000000 {
-> +			opp-hz = /bits/ 64 <2400000000>;
-> +			opp-microvolt = <1000000 1000000 1000000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-
-Same comment
-
-> +	};
-> +
->   	firmware {
->   		optee: optee {
->   			compatible = "linaro,optee-tz";
-> 
-
+Best regards,
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Fenglin Wu <quic_fenglinw@quicinc.com>
 
 
