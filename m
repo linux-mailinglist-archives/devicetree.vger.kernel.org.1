@@ -1,108 +1,138 @@
-Return-Path: <devicetree+bounces-35311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D67883CED9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 215F783CEF5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:56:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B23991F28EB8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:49:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5C021F265A5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 21:56:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB0A13A26E;
-	Thu, 25 Jan 2024 21:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A8813B785;
+	Thu, 25 Jan 2024 21:56:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NBZqDCRb"
+	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="gLTXPjoG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF2E1135413;
-	Thu, 25 Jan 2024 21:48:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25AF4131E4F;
+	Thu, 25 Jan 2024 21:56:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706219336; cv=none; b=RpwdciipZR6ES0yJ2+vJe6G42oxUaNYOgsk0EyMJI9jhB1dAJ3ot+H/bUfTdbhuFu9bmJLzftHyA2l2BKUxE9RnbtVZzvxi3pk0YBMICYCHfvRvv002rFZEIeglb8OUlgB5BuZ9zM+0cPd34JGD+18j19BO4sIb9k6X6VU+Asuo=
+	t=1706219793; cv=none; b=IJKtUxhSAQNYBnpM3mQJhvMo9YjcKge17AIZkl4pLz93nisxxIO/GRl4TH+AgOIlDYf7TsmIdbnH/9JbbK5IlPLP6S0Gkr9VFO4Rhe0xArpP8zDrxOfVvx1ZtntCAU720Ghj5KwCu1xNMZyYuG4/L+JJq7zmiJw2aKEmdXY/rAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706219336; c=relaxed/simple;
-	bh=rWGTonIdjaAw97+VCMgdvv8+A740NjupUkUrNWkZhiU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VIyxkyuO64u1Y6eoIxZP3XE4WNxTrDty5SqRG8WoJOmuOs2NLaL6y2eUvPQqPSOtk3c5Muf6nbka/xPIFqvgb+WFxBzODwbaQG0UxcyQptLLpylLfO2GRzQJTXNqRqzmGi1F8Z1H1CxCywbIZfq3fA99Eb1OUu2+zNnF5FJT2Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NBZqDCRb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD265C433C7;
-	Thu, 25 Jan 2024 21:48:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706219335;
-	bh=rWGTonIdjaAw97+VCMgdvv8+A740NjupUkUrNWkZhiU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NBZqDCRb8YD9sWKY5X5LSGXBZlsGS5XW90KA4XY5rwha8+ew31eOIpNFyMuattB4w
-	 2sz8XKtIikx9HlT5vLckXPu1NtzXZqplpKMxpUQVIdM/jSBGwdp3dapwPJJkH5PWPU
-	 3wnPCxc/O51mJ4W7Bl+DBqK0MIiZdH+I3x08hAbUmq3FFVnZ7/IFxC3MJ8UZ2Xclyr
-	 rcwFlKGeOghipvEhMXHX7vXwe1da98i7EosC7ZRaf8GBBOmBj+m1ftDESID+YFE861
-	 Z28nCaCuycEPvpwQ54qFY+y2LfyseerDBw8ftFaf7V2pPT0gF8y4Zs61QrL1M3KM/U
-	 yCjsFsafBTZlw==
-Date: Thu, 25 Jan 2024 21:48:48 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, andi.shyti@kernel.org,
-	arnd@arndb.de, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-arch@vger.kernel.org, andre.draszik@linaro.org,
-	peter.griffin@linaro.org, kernel-team@android.com,
-	willmcvicker@google.com
-Subject: Re: [PATCH v2 10/28] spi: s3c64xx: use full mask for {RX,
- TX}_FIFO_LVL
-Message-ID: <e2c25c1b-7fe9-4174-95ed-e867eff14e37@sirena.org.uk>
-References: <20240125145007.748295-1-tudor.ambarus@linaro.org>
- <20240125145007.748295-11-tudor.ambarus@linaro.org>
- <CAPLW+4nOGjfniu+shzO5irmH5bC1E_yD0EZcuDwQJKdfMiDswA@mail.gmail.com>
+	s=arc-20240116; t=1706219793; c=relaxed/simple;
+	bh=b7Y6SDBxaY7d2ufdRgw40VrIGg/JPSikCPGoPt4otcU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cZknTNSD1uopJqvhqSWanTBX52zvcXqXCT7iN9RJwXoHlIuCP59+fhRxavaKnjAAZdKYZ2/74P5Dy5YmKt5OnAkdQBtzxBukMpDFTcFt4lmPRxqVXY9321n/O8uu0Hk6t4akxfM4PuwurvJJ4gW2Ly7VVdtCw1Wcl6jKBp8kjlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=gLTXPjoG; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
+	t=1706219789; bh=b7Y6SDBxaY7d2ufdRgw40VrIGg/JPSikCPGoPt4otcU=;
+	h=From:Subject:Date:To:Cc;
+	b=gLTXPjoG2oB1f5FyD097277HHw1LhrAzecH/DRwqdnznSFUYLB/jWXlCs+9tyFxP6
+	 c8KLTyK0Em76VnvEOCHMF9VPQ505ynf9hHHUIu3X5zp4tyZtVN44o5mpTWZRUIGRcc
+	 SXeJY70LFYKXJRMOnsqo/KrAd87ySr6+82+zxVns=
+From: Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH RFC 0/2] Add GPU support to MSM8953 SoC
+Date: Thu, 25 Jan 2024 22:56:24 +0100
+Message-Id: <20240125-msm8953-gpu-v1-0-f6493a5951f3@z3ntu.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="D8vvs0/b2DbNCmIR"
-Content-Disposition: inline
-In-Reply-To: <CAPLW+4nOGjfniu+shzO5irmH5bC1E_yD0EZcuDwQJKdfMiDswA@mail.gmail.com>
-X-Cookie: Entropy isn't what it used to be.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAjZsmUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2NDI0Mj3dziXAtLU2Pd9IJSXZNkAwtTYzPTNFNLEyWgjoKi1LTMCrBp0Up
+ Bbs5KsbW1AFPUyvJiAAAA
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Vladimir Lypak <vladimir.lypak@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2377; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=b7Y6SDBxaY7d2ufdRgw40VrIGg/JPSikCPGoPt4otcU=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBlstkJfc3l2laEi7sRN3lqVds6XpkA0MzjRBHOf
+ nwFNvAq0lmJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZbLZCQAKCRBy2EO4nU3X
+ VhAsEADDLcuQHxd9v+Kxexh0y3s9hvictSjNkBDZ5R/NiVYX6qa9VHKiAGjVfPKAyvipzhz1N5e
+ pbko36jzoRLC4VFPzxVZLxidssu8v40pxBK37fqPph5SVAyNQKKelKoTl8ZKYk+P3drW1TJzc/y
+ BjOg3TGhC5JIXrOUTHuwSrxb7NODZ+l+lUxc0+JC//VwbU8hCXCQAFrDRidFROPUlCwhZ+MKzEs
+ cjJcnc/483dv3e8wgTHL8zgwZXKs62tmvKH68ptkw5iIZC2rwsDTjh+OU7+EjArzJwPZ84O5l54
+ A5ZOLTCy6qXqKT6TdGe1f1LzTw+7DEoFcZa7aOJpWBM5LbduUvyWQIwN1AXWbwEPigNaLcj/QsX
+ IQS/6RS/tkoCzoGwzQl5w5aA1EyHq+pETY/46nx71sY0tagjDG5dbyeIkzJcItPwDTTFCExptmC
+ 9w/q2Y1vRBUcphG8OpdRtZ94g/h2R6n+W2l+MRxmCYat0diWxN/ty4o6ttA4sctEBVf7euz1key
+ Kvq+8pS6sUWIXqQTqpnDdCFfpWPaiavbbECTbXKTVk4xkZan9E9bcON4hVaS0x7tW2rBy39Rvj9
+ fX0mXT1NHsZLE/hqP/TTt14vU86R6QPgTsbuzX2HlNc06dcPXDQdA4afgqP+61MXILJs/nHH9Qk
+ B8q1CsiS9LtX9iA==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
+Add the GPU IOMMU and GPU nodes to the msm8953 dtsi so GPU can work.
 
---D8vvs0/b2DbNCmIR
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+First of all, functionally this series looks fine, tested on
+sdm632-fairphone-fp3.
 
-On Thu, Jan 25, 2024 at 02:03:15PM -0600, Sam Protsenko wrote:
-> On Thu, Jan 25, 2024 at 8:50=E2=80=AFAM Tudor Ambarus <tudor.ambarus@lina=
-ro.org> wrote:
+Secondly and the reason this is marked RFC for now is basically just dt
+bindings check fail, and some questions regarding IOMMU compatible.
 
-> > +#define S3C64XX_SPI_ST_RX_FIFO_LVL             GENMASK(23, 15)
+Basically I'm unsure what compatible (or even driver) IOMMU should use.
+qcom,msm-iommu-v2 is now in the patchset which seems to be okay, and
+also should handle the gfx3d_secure secure context correctly. Apart from
+some special handling there qcom,msm-iommu-v1 compatible is equivalent
+on the driver side.
 
-> What about s3c* architectures, where RX_LVL starts with bit #13, as
-> can be seen from .rx_lvl_offset values in corresponding port_configs?
-> Wouldn't this change break those?
+Currently the dt bindings say qcom,msm8953-iommu should be followed by
+qcom,msm-iommu-v1 which is the case for apps_iommu. But if we use
+qcom,msm-iommu-v2 for gpu_iommu then we can't re-use the same
+qcom,msm8953-iommu I think.
 
-I should point out that I have a s3c6410 board I care about.
+Possible solutions:
+1. Switch apps_iommu to use qcom,msm-iommu-v2 in dts & bindings? Since
+   there's basically no special handling for either in the driver I
+   don't forsee any problems. Then we can also use -v2 for gpu_iommu no
+   problem.
+2. Use qcom,msm-iommu-v1 for gpu_iommu? From some testing it also seems
+   to work, I guess because the secure context is never used?
+3. Use arm_smmu driver for gpu_iommu? Vladimir Lypak has suggested that,
+   but that would at least need some more patching to work on msm8953.
+   I probably don't have the motivation to take this on myself. Also
+   what benefit would it bring?
 
---D8vvs0/b2DbNCmIR
-Content-Type: application/pgp-signature; name="signature.asc"
+Hope I haven't rambled too long here and it's somewhat understandable.
 
------BEGIN PGP SIGNATURE-----
+Please let me know what you think, which direction we can take to
+resolve this.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWy1z8ACgkQJNaLcl1U
-h9A4kAf/Q+HBGYYkQyjJ5STSJRHGbWJxkifiVS4eI6m2f7lwAyvgTOjwWh00Ok4+
-Cyya2gAMfFPhwVXlaJDdCJy/iUerkZi31WdJ1mWXIi8emYRn8hzqPEMupJMjiHGK
-T05f9YtcTwyD1P2cHdhrrq0d8hpGqwvfH7zBsKDTwqXqS6BtARjR4MLX7mvReCYj
-uHHO2UtwKzAOClsM6BeDnSciuXDx2z57MhaXZNX9RpeMTrYCW57UdkfPOS0ZuSty
-6pAdSh7jgREL7cSTq2cU5K4BOXlwcWdmGPRk1d7V5x55zmPWVeuKZzGmfji1BQz9
-XH9AJbaQWAdfFzGPvs730pb/JC1GRw==
-=j0Ln
------END PGP SIGNATURE-----
+(Also GPU clock-names dt-schema check fails but that seems to be the
+ case on more a5xx GPUs also)
 
---D8vvs0/b2DbNCmIR--
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Vladimir Lypak (2):
+      arm64: dts: qcom: msm8953: Add GPU IOMMU
+      arm64: dts: qcom: msm8953: Add GPU
+
+ arch/arm64/boot/dts/qcom/msm8953.dtsi            | 146 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm450-motorola-ali.dts |   2 +-
+ arch/arm64/boot/dts/qcom/sdm450.dtsi             |  14 +++
+ arch/arm64/boot/dts/qcom/sdm632.dtsi             |   8 ++
+ 4 files changed, 169 insertions(+), 1 deletion(-)
+---
+base-commit: 0e21aa976976d5fba8cd1f8f64bcce49beb5f895
+change-id: 20231212-msm8953-gpu-4c085365f594
+
+Best regards,
+-- 
+Luca Weiss <luca@z3ntu.xyz>
+
 
