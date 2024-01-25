@@ -1,147 +1,191 @@
-Return-Path: <devicetree+bounces-35326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B88683CFA0
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 23:50:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F4383D06B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 00:13:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABA9A1C228C4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 22:50:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7496628A6A6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jan 2024 23:13:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEDE111B6;
-	Thu, 25 Jan 2024 22:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93432125DC;
+	Thu, 25 Jan 2024 23:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lUIlhYzO"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="oQ9PeWRp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 977DF67C45;
-	Thu, 25 Jan 2024 22:50:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF82134A3;
+	Thu, 25 Jan 2024 23:13:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706223034; cv=none; b=dnI3Vk/FTCGReTia2v4y63bzXUr+dahB5U3aq9W//Nyp5yIoajSEpZeJbWMf2XvSUL4CAb6crqBiZ5fxbnNg0ySH5rfVR6UPm7/ICvvU/NVgVxLXE6EgVJIpEC4O8pCdwIYjDTdzvgpNXGcE9ayceebvtOTLyAmPPgrtX+AphLs=
+	t=1706224390; cv=none; b=YMpLmfn61qZAQTJ1ynyy7N92jEYhljRKqEVWrDV6t5Cw6BKtZ+AXkWOtzIU5OP1EsqZkHYYjVXmMcaGfhfN7axli30w14eVPbfMeZYQrO5EQ6LTvstAeToEQgDDACNaJNE1nZtM+4zvONN/TuhTR+milrQmr/97EBMzde++VgZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706223034; c=relaxed/simple;
-	bh=HknESiBZP/3axcY3RqkHCvBDkhixmbUnM9EvB+nTOiY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IA/bk+c0NZ12gfmqNbuhPF+VUgQDu1I4bwrgAuD8x8VmJk3Vhqm32c3Mk/h3SKMGjv7jq1WUB8vqI4rkqV8RRRXBsEOR/7aZHWXctcQc3rIwXUSolYStV+suGQW9DW8LfS+qRKN6y82UY7f9pVLNdzk6ODjWOVADbA0sJZJ6LEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lUIlhYzO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4B33C433C7;
-	Thu, 25 Jan 2024 22:50:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706223034;
-	bh=HknESiBZP/3axcY3RqkHCvBDkhixmbUnM9EvB+nTOiY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lUIlhYzO2hYjp0MgLM2dleVO+Zexpipxm/zy6F0Ssv6SQKHTR63fPuIvUpOuv4Kg5
-	 1wODYS/7wZjSriL8kKkDa717tpBJ6IMMSTWSIFqjMBHp77+ZrRxHuiqxggS/kSdj+J
-	 jU9DGMVCBx6e1ayVR5zER+mrG+JJz6hUnKVF0NaEjHHWZJbfmKkJmcPbi1Ohduv9rG
-	 AHTNJ8PveLJyG72+YrrZiAWjnZdJ16u4d7xC5JQlTrRq3wpUjyPWyWb8pe+vA7WfgF
-	 wYyJf4Ky0CoRd7Ax7/EbLIeZo8UA8/h0bbev9ADF29+bbgi7P85Gb97ucI6VmLf+vU
-	 3R4A17ZQCo5iA==
-Date: Thu, 25 Jan 2024 23:50:27 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: broonie@kernel.org, arnd@arndb.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, alim.akhtar@samsung.com, 
-	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-arch@vger.kernel.org, 
-	andre.draszik@linaro.org, peter.griffin@linaro.org, semen.protsenko@linaro.org, 
-	kernel-team@android.com, willmcvicker@google.com
-Subject: Re: [PATCH 07/21] spi: s3c64xx: use bitfield access macros
-Message-ID: <ri7gerw4ov4jnmmkhtumhhtgfgxtr6kpsopdxjlx6fylbqznna@3qgvejyhjirw>
-References: <20240123153421.715951-1-tudor.ambarus@linaro.org>
- <20240123153421.715951-8-tudor.ambarus@linaro.org>
+	s=arc-20240116; t=1706224390; c=relaxed/simple;
+	bh=9flTA40nrohKjnR1u2q4ufge3KYUiV6E/UDx3w19aNA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=DNEdWfc3CEodBWd4srlILYiTF+pjPHDtCMjb4uzKpyMqfBY5ooXysWzYioJ4qRYUGDnBbbcNdXaX3S82eFeFYhbYppHFTcpXeBPo8ecwtmtDrJpKeKSj4UuhxcVbC3/Uwn62URQtIzT6a3cD4yL7mkkxTfHjjclBmYkkYIjl/fA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=oQ9PeWRp; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240123153421.715951-8-tudor.ambarus@linaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1706224385;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hPLAItx+quR8qx4bS8DZbs9AeDwCziiqDgH23b0i5fE=;
+	b=oQ9PeWRpZTirjz9bTW4hltMyh5cfkAEcXosHgnbSj01VRcBdhrbfktaj2VqawtHPjlwtoX
+	n0MjVrItA8DbSPUMt2s/xcvd4nR0BTD2Lh/lbNLe8CJQJLf5nTrIZUDopUNgp2RvPOwh68
+	6F6etuRRi7GchXscC6E61psCHUF0J88CYLcu4fvpVtPcyiSxEQ6m9qUXUzf/IviR7u4Gm2
+	ufzTlbs5PtiTvSRydUvunEGTIJYb15HWMwpTGkE/StCFn0E0tPjFx70LxLeMvhTKq47sgQ
+	WW3BByk26uVaz7buFpTPq0DdUrg35l/hCsknPe1V6JGl10enLHS4ITrRrvCIZA==
+Date: Fri, 26 Jan 2024 00:13:05 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: enable temperature driven fan
+ control on Rock 5B
+In-Reply-To: <20240125-rk-dts-additions-v1-3-5879275db36f@gmail.com>
+References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
+ <20240125-rk-dts-additions-v1-3-5879275db36f@gmail.com>
+Message-ID: <df062818d21f3318c033859d0e95efc7@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Tudor,
+Hello Alexey,
 
-On Tue, Jan 23, 2024 at 03:34:06PM +0000, Tudor Ambarus wrote:
-> Use the bitfield access macros in order to clean and to make the driver
-> easier to read.
-
-most of the changes done here are allignment. I would mention it
-in the log.
-
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+On 2024-01-24 21:30, Alexey Charkov wrote:
+> This enables thermal monitoring on Radxa Rock 5B and links the PWM
+> fan as an active cooling device managed automatically by the thermal
+> subsystem, with a target SoC temperature of 55C
+> 
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
 > ---
-
-...
-
-> -#define S3C64XX_SPI_CLKSEL_SRCMSK	(3<<9)
-> -#define S3C64XX_SPI_CLKSEL_SRCSHFT	9
-> -#define S3C64XX_SPI_ENCLK_ENABLE	(1<<8)
-> -#define S3C64XX_SPI_PSR_MASK		0xff
-> -
-> -#define S3C64XX_SPI_MODE_CH_TSZ_BYTE		(0<<29)
-> -#define S3C64XX_SPI_MODE_CH_TSZ_HALFWORD	(1<<29)
-> -#define S3C64XX_SPI_MODE_CH_TSZ_WORD		(2<<29)
-> -#define S3C64XX_SPI_MODE_CH_TSZ_MASK		(3<<29)
-> -#define S3C64XX_SPI_MODE_BUS_TSZ_BYTE		(0<<17)
-> -#define S3C64XX_SPI_MODE_BUS_TSZ_HALFWORD	(1<<17)
-> -#define S3C64XX_SPI_MODE_BUS_TSZ_WORD		(2<<17)
-> -#define S3C64XX_SPI_MODE_BUS_TSZ_MASK		(3<<17)
-> +#define S3C64XX_SPI_CH_CFG			0x00
-> +#define S3C64XX_SPI_CLK_CFG			0x04
-> +#define S3C64XX_SPI_MODE_CFG			0x08
-> +#define S3C64XX_SPI_CS_REG			0x0C
-> +#define S3C64XX_SPI_INT_EN			0x10
-> +#define S3C64XX_SPI_STATUS			0x14
-> +#define S3C64XX_SPI_TX_DATA			0x18
-> +#define S3C64XX_SPI_RX_DATA			0x1C
-> +#define S3C64XX_SPI_PACKET_CNT			0x20
-> +#define S3C64XX_SPI_PENDING_CLR			0x24
-> +#define S3C64XX_SPI_SWAP_CFG			0x28
-> +#define S3C64XX_SPI_FB_CLK			0x2C
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 25 
+> ++++++++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> index 9b7bf6cec8bd..c4c94e0b6163 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -52,7 +52,7 @@ led_rgb_b {
+> 
+>  	fan: pwm-fan {
+>  		compatible = "pwm-fan";
+> -		cooling-levels = <0 95 145 195 255>;
+> +		cooling-levels = <0 120 150 180 210 240 255>;
+>  		fan-supply = <&vcc5v0_sys>;
+>  		pwms = <&pwm1 0 50000 0>;
+>  		#cooling-cells = <2>;
+> @@ -180,6 +180,25 @@ &cpu_l3 {
+>  	cpu-supply = <&vdd_cpu_lit_s0>;
+>  };
+> 
+> +&package_thermal {
+> +	polling-delay = <1000>;
 > +
-> +#define S3C64XX_SPI_CH_HS_EN			BIT(6)	/* High Speed Enable */
-> +#define S3C64XX_SPI_CH_SW_RST			BIT(5)
-> +#define S3C64XX_SPI_CH_SLAVE			BIT(4)
-> +#define S3C64XX_SPI_CPOL_L			BIT(3)
-> +#define S3C64XX_SPI_CPHA_B			BIT(2)
-> +#define S3C64XX_SPI_CH_RXCH_ON			BIT(1)
-> +#define S3C64XX_SPI_CH_TXCH_ON			BIT(0)
+> +	trips {
+> +		package_fan: package-fan {
+> +			temperature = <55000>;
+> +			hysteresis = <2000>;
+> +			type = "active";
+> +		};
+> +	};
 > +
-> +#define S3C64XX_SPI_CLKSEL_SRCMSK		GENMASK(10, 9)
-> +#define S3C64XX_SPI_ENCLK_ENABLE		BIT(8)
-> +#define S3C64XX_SPI_PSR_MASK			GENMASK(15, 0)
+> +	cooling-maps {
+> +		map-fan {
+> +			trip = <&package_fan>;
+> +			cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +		};
+> +	};
+> +};
 
-I find it easier as 0xff to be honest, but I'm not going to be
-picky.
+It should be better to have two new trips and two new cooling maps
+defined, instead of having just one trip/map pair, like this:
 
+&package_thermal {
+	polling-delay = <1000>;
+
+	trips {
+		package_warm: package-warm {
+			temperature = <55000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+
+		package_hot: package-hot {
+			temperature = <65000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+	};
+
+	cooling-maps {
+		mapX {
+			trip = <&package_warm>;
+			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
+		};
+
+		mapY {
+			trip = <&package_hot>;
+			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
+		};
+	};
+};
+
+The idea behind this approach is to keep the fan spinning at the lowest
+available speed until the package temperature reaches the second trip's
+temperature level, at which point the fan starts ramping up.  An 
+approach
+like this is already employed by the Pine64 RockPro64 SBC.
+
+This way, we'll be doing our best to keep the fan noise down;  of 
+course,
+it will depend on the particular heatsink and fan combo how long the fan
+can be kept at the lowest speed, but we should aim at supporting as many
+different cooling setups as possible, and as well as possible, out of 
+the
+box and with no additional tweaking required.
+
+Please notice "mapX" and "mapY" as the names of the additional cooling 
+maps,
+where X and Y are simply the next lowest available indices, which is 
+pretty
+much the usual way to name the additional cooling maps.
+
+>  &i2c0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&i2c0m2_xfer>;
+> @@ -738,6 +757,10 @@ regulator-state-mem {
+>  	};
+>  };
+> 
+> +&tsadc {
+> +	status = "okay";
+> +};
 > +
-> +#define S3C64XX_SPI_MODE_CH_TSZ_MASK		GENMASK(30, 29)
-> +#define S3C64XX_SPI_MODE_CH_TSZ_BYTE		0
-> +#define S3C64XX_SPI_MODE_CH_TSZ_HALFWORD	1
-> +#define S3C64XX_SPI_MODE_CH_TSZ_WORD		2
-
-I personally find this pattern harder to read. Perhaps you can
-already define these as FIELD_PREP here.
-
-> +#define S3C64XX_SPI_MAX_TRAILCNT_MASK		GENMASK(28, 19)
-> +#define S3C64XX_SPI_MODE_BUS_TSZ_MASK		GENMASK(18, 17)
-
-...
-
-> -#define S3C64XX_SPI_FBCLK_MSK			(3<<0)
-> +#define S3C64XX_SPI_FBCLK_MASK			GENMASK(1, 0)
-
-0x3 to me is more understandable than (3<<0) and GENMASK(1, 0).
-Bit operation defines should be used when they really simplify
-the reading. But when they make it more difficult, then, I don't
-see the point.
-
-Overall looks good, though.
-
-Andi
+>  &uart2 {
+>  	pinctrl-0 = <&uart2m0_xfer>;
+>  	status = "okay";
 
