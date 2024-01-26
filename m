@@ -1,157 +1,136 @@
-Return-Path: <devicetree+bounces-35393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9D1483D5B9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:14:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F0283D5BC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:14:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FD27289C9A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:14:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CD1128A04B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:14:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52B196D1CC;
-	Fri, 26 Jan 2024 08:13:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cGhbUI0d"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E7E6DCF5;
+	Fri, 26 Jan 2024 08:13:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751D36D1C4
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DD76D1A8;
+	Fri, 26 Jan 2024 08:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706256780; cv=none; b=p0Nal+/Jj2ceThZggMqC8lHSeKxaD3w1uRHt5C1mZR/K2b3UZXUrWV10Dyg6s9XMbOFq7S8v2tMgGMUCdScTuUj0k+2O26rPy/xrVcW+luplom72wMKJYxljcTfssqOVDlDskJTN4onCuJs6HGKpNdrnNm3kwezKiFCb+MmYh7Y=
+	t=1706256801; cv=none; b=FO24g7rnSGZ0/hK74YNzuqLG4WZRA8asZcD/cfoMW+MiLdgKG8jF9dXhqb6STRcdWCIh0KPhwt3NjKmUNkxAgKDWjmfnZUZRY5fea/cL+WDTFjOOjfzsJUmEVcj7QYusM8XONjTBRi/w0KrQkBQf+YGRpqmHVQ0P1OFO0F6DNmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706256780; c=relaxed/simple;
-	bh=j0KyPZxIPo0uWsEdhfU4pbbVE5DXmn5Ni8Prmsb0wmQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kNZNwfhFuioastfD/IlfFOAzNoHjX366wsdjXovxrow7mx2/xI5QjEcFyTuBsfiTn88rnkN88a+Yqa07HCVExUHjZdYYzidXogqzAiRdRGXI44vRKysFEChxNjCfJKjsFf1Ze/b7+kKUFOod5sA9Ea3e9NAt/QnZOI/ygpq1vpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cGhbUI0d; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-33922d2cb92so150457f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 00:12:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706256776; x=1706861576; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7rrGeLbPaiEO5WdfZAroSibRcJzRjQTQSH2UK6pfWWU=;
-        b=cGhbUI0ddbkg1yqHF5QGLw29FKlMaq4LhI9mCSEsD25FDzarB3MzZo1b6djaDYcGq7
-         6SiuoRJhq2FIqcceuV2QYjChtdXsEdTiKoQZxO7oUcyTa/E/xVwPuzSIQSHqyiK+YgKI
-         zVd5jiO81CqXTk9MGNEsnmnoUGln34XDCNBnbdDKibWahhFE2eH3mi9jK4GyeBcOfw3L
-         11HljxmiW6DkX1Xi+udVapg9OiqVCSlnxtuIcglkbZQaRrzdQvqTiTSswB0l4+VbeFRV
-         Srq9JGt0dPXFznN+pu78EuT7iCtW7E8R1q3t6yRBC3vUOcrBz/vPCrG4xtYaql/YqfJI
-         Q0aA==
+	s=arc-20240116; t=1706256801; c=relaxed/simple;
+	bh=weH33ky7oNm3EiJ3aEacbbdeg0oNvXbtDaN1/TiAS3s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SQ2Tw+JzdL7xLFSD8sAFY3mTGObKH0qKvKNesj5qQ3OQyTzC98jkCndzfZINFXjM6BWvkTAymWthr3Eyg5OQz7DxYhbkf/yHGP9xmlfZISbm4F0cTJIusEDGWkUmFbFZ+pX5qC2NXy2SUpk7k1iOgKegEVksxGLB2+ivczyUb84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-602cf7dfeb1so1005567b3.0;
+        Fri, 26 Jan 2024 00:13:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706256776; x=1706861576;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7rrGeLbPaiEO5WdfZAroSibRcJzRjQTQSH2UK6pfWWU=;
-        b=FPNxodhAkkV07tupZbWOVZRBXaMOzj5fgj37bB9rs0dPcjA0i+4kiJkPArwkWuv8Jx
-         FxWTsAEXYDQumf3d25ZXuI/wEQ1MTqTVIokH5K6JKNgBkpVfmdp6+2cFK+9BTcLHbyql
-         mG48y7dsH5mnBqU0NGAS3huAKf5JPIcVlP4tIe+0jgIHL5vEhsJ97IAxLY2QXpeTakNf
-         Js/CvAyxDaqNUCSpwBZTErEzGtrqX8fV6kd6rP1MV6RltzxaJ8ByIOEtXt81gHRp1UKm
-         wmN8tNWSw90tr7C9gYTDnM8yKG6nYKd/xbJDhxWwsfZtDeBclrd2xLqy8FymGE5Mb8Le
-         gt8w==
-X-Gm-Message-State: AOJu0YzocB/pQRj41ilFjaVUbDc6wBwmsNxhDctxq5Pfo4dWL2OITDxo
-	pnUlslSjwTR/FSmMK1lvuAI2Z7ZTiPE6gYkLimuNipvbLF1U6kmqfFgn1kBgY10=
-X-Google-Smtp-Source: AGHT+IHYWsJaFOgmZA2cYd4ZXS8KktyrXEtOyqRNy+rcez2sY0vlMH99r9icXczxQRRDhB61fWdP/Q==
-X-Received: by 2002:adf:a485:0:b0:337:bdff:bfc0 with SMTP id g5-20020adfa485000000b00337bdffbfc0mr296142wrb.99.1706256776614;
-        Fri, 26 Jan 2024 00:12:56 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id s18-20020a5d69d2000000b003393457afc2sm694393wrw.95.2024.01.26.00.12.54
+        d=1e100.net; s=20230601; t=1706256798; x=1706861598;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/QB6xsdYCRXR/22GDHbqNHIS69HRzW17anUq6GjF6Pw=;
+        b=Q1EwLQCZG+xzSYkzIp7oPz8fwgG7LYxPU7qFoBX9adZVs1r0PmqkqPwz9u6yZK53iH
+         B88Gbc1oMUV5o2EaYA4+/XTDx+echv/elIH7hdB3ctj1Uxx1TJTwjVixqkborctAdfD+
+         NAa+8cQFcF+s4KfpFAkLCmKirFLiE4UfznDf/zbgBUUeFlc3spIEISDdQikCzccCyt4Y
+         oQT+6mhPYMVF2FusHTkgKr6sQqIv7+LjWQHvM7smqB4210ZKonuv4AW12Ncbif6HGbJF
+         G3bMiMObE7JXKa4UoKWER5kDl5AnY32ChCCxpit90w8ITuPqmBB2GbTFTJhhLHGYeMwK
+         vCeQ==
+X-Gm-Message-State: AOJu0YytcwvQ4Qa5JpmMdwOwB+q4MkVg9c3XZZcIvciHmeo2QIe/Tv5R
+	K9DXD+N5Egtxp4j00WLHUHAgb0ez9pBPq9X9sV2239Nk1+ZQiZ+Ds4BMMtvOxj8=
+X-Google-Smtp-Source: AGHT+IHKaJLdjj9r7u/sJwswtl4eZOWoFKnImF7c4zcTQAewRfjU7c4ipSYXiUnGTRyh5TXG5Py26A==
+X-Received: by 2002:a0d:d489:0:b0:5ff:529c:504d with SMTP id w131-20020a0dd489000000b005ff529c504dmr1021098ywd.79.1706256798157;
+        Fri, 26 Jan 2024 00:13:18 -0800 (PST)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id y192-20020a81a1c9000000b00602ab11425csm228055ywg.81.2024.01.26.00.13.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jan 2024 00:12:56 -0800 (PST)
-Message-ID: <6cedad43-766c-4b3d-81d2-957b9e88f471@linaro.org>
-Date: Fri, 26 Jan 2024 08:12:53 +0000
+        Fri, 26 Jan 2024 00:13:17 -0800 (PST)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5ff7a8b5e61so1065777b3.2;
+        Fri, 26 Jan 2024 00:13:17 -0800 (PST)
+X-Received: by 2002:a0d:ea82:0:b0:5ff:30d2:a63c with SMTP id
+ t124-20020a0dea82000000b005ff30d2a63cmr960276ywe.14.1706256796983; Fri, 26
+ Jan 2024 00:13:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/28] spi: s3c64xx: use full mask for {RX,
- TX}_FIFO_LVL
-Content-Language: en-US
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: broonie@kernel.org, andi.shyti@kernel.org, arnd@arndb.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-arch@vger.kernel.org, andre.draszik@linaro.org,
- peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com
-References: <20240125145007.748295-1-tudor.ambarus@linaro.org>
- <20240125145007.748295-11-tudor.ambarus@linaro.org>
- <CAPLW+4nOGjfniu+shzO5irmH5bC1E_yD0EZcuDwQJKdfMiDswA@mail.gmail.com>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <CAPLW+4nOGjfniu+shzO5irmH5bC1E_yD0EZcuDwQJKdfMiDswA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <cover.1706194617.git.geert+renesas@glider.be> <eed6faa02c628d32676ab8ea0eee636b4ffd6c47.1706194617.git.geert+renesas@glider.be>
+ <20240125184650.GO4126432@ragnatech.se>
+In-Reply-To: <20240125184650.GO4126432@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 26 Jan 2024 09:13:05 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUBPdiSqgkZOs2nddvk_xEVe3m7sZ51XC20Optcp+pVLg@mail.gmail.com>
+Message-ID: <CAMuHMdUBPdiSqgkZOs2nddvk_xEVe3m7sZ51XC20Optcp+pVLg@mail.gmail.com>
+Subject: Re: [PATCH v2 09/15] pmdomain: renesas: r8a779h0-sysc: Add r8a779h0 support
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Cong Dang <cong.dang.xn@renesas.com>, 
+	Duy Nguyen <duy.nguyen.rh@renesas.com>, Hai Pham <hai.pham.ud@renesas.com>, 
+	Linh Phung <linh.phung.jy@renesas.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Niklas,
 
+On Thu, Jan 25, 2024 at 7:46=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund@ragnatech.se> wrote:
+> On 2024-01-25 16:34:37 +0100, Geert Uytterhoeven wrote:
+> > From: Duy Nguyen <duy.nguyen.rh@renesas.com>
+> >
+> > Add support for R-Car V4M (R8A779H0) SoC power areas to the R-Car SYSC
+> > driver.
+> >
+> > Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v2:
+> >   - Add vendor-prefix to DT binding definition header file.
 
-On 1/25/24 20:03, Sam Protsenko wrote:
-> On Thu, Jan 25, 2024 at 8:50 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->>
->> SPI_STATUSn.{RX, TX}_FIFO_LVL fields show the data level in the RX and
->> TX FIFOs. The IP supports FIFOs from 8 to 256 bytes, but apart from the
->> MODE_CFG.{RX, TX}_RDY_LVL fields that configure the {RX, TX} FIFO
->> trigger level in the interrupt mode, there's nothing in the registers
->> that configure the FIFOs depth. Is the responsibility of the SoC that
->> integrates the IP to dictate the FIFO depth and of the SPI driver to
->> make sure it doesn't bypass the FIFO length.
->>
->> {RX, TX}_FIFO_LVL was used to pass the FIFO length information based on
->> the IP configuration in the SoC. Its value was defined so that it
->> includes the entire FIFO length. For example, if one wanted to specify a
->> 64 FIFO length (0x40), it wold configure the FIFO level to 127 (0x7f).
-> 
-> s/wodl/would/
+> > --- /dev/null
+> > +++ b/drivers/pmdomain/renesas/r8a779h0-sysc.c
+> > @@ -0,0 +1,55 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Renesas R-Car V4M System Controller
+> > + *
+> > + * Copyright (C) 2016-2017 Glider bvba
+>
+> Is 2016-2017 correct? With or without that fixed,
 
-oh, yes, thanks
-> 
->> This is not only wrong, because it doesn't respect the IP's register
->> fields, it's also misleading. Use the full mask for the
->> SPI_STATUSn.{RX, TX}_FIFO_LVL fields. No change in functionality is
->> expected.
->>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->> ---
->>  drivers/spi/spi-s3c64xx.c | 21 +++++++++++----------
->>  1 file changed, 11 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
->> index d046810da51f..b048e81e6207 100644
->> --- a/drivers/spi/spi-s3c64xx.c
->> +++ b/drivers/spi/spi-s3c64xx.c
->> @@ -78,6 +78,8 @@
->>  #define S3C64XX_SPI_INT_RX_FIFORDY_EN          BIT(1)
->>  #define S3C64XX_SPI_INT_TX_FIFORDY_EN          BIT(0)
->>
->> +#define S3C64XX_SPI_ST_RX_FIFO_LVL             GENMASK(23, 15)
-> 
-> What about s3c* architectures, where RX_LVL starts with bit #13, as
-> can be seen from .rx_lvl_offset values in corresponding port_configs?
-> Wouldn't this change break those?
+That must have been copied from r8a7795-sysc.c...
+As the layout of R-Car V4M is completely different from R-Car H3,
+I will drop that line (with or without reposting).
 
-ah, wonderful catch, Sam. I break those indeed.
-> 
-> More generally, I don't understand why this patch is needed. Looks
+> Acked-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.se>
 
-I said in the commit message and subject that I'd like to use the full
-FIFO level mask rather than just a partial mask. On gs101 at least, that
-register field is on 9 bits, but as the code is now, we consider that
-register on 7 bits. For gs101 the FIFO size is always 64 bytes, thus
-indirectly the fifo_lvl_mask is always 0x7f.
+Thanks!
 
-Unfortunately I'll drop this patch because I don't have access to all
-the SoC datasheets, thus I can't tell for sure if that register is
-always 9 bits wide. s3c2443 and s3c6410, which have the rx-lvl-offset
-set to 13, use just 0x7f masks. That's a pitty.
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
