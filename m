@@ -1,223 +1,136 @@
-Return-Path: <devicetree+bounces-35391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DED9F83D5AE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:13:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A890583D5C1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:14:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 549111F27DA7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:13:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AAD71F28065
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E17DF17572;
-	Fri, 26 Jan 2024 08:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6596717997;
+	Fri, 26 Jan 2024 08:18:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fqB1wPAx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H+JeTIhF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0394010A17;
-	Fri, 26 Jan 2024 08:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE8A11CBB
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:18:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706256616; cv=none; b=d2P8gyjCSGc7D3oxG7PE/2BXJrExdiNrg5kPHGckJPN+7EZu/mJaF3jPlN3v8NT9v/i7Vop3dstpuo2OvWXvMBxatnsTnPRknWWSpNypvNFaL5np6LDCHdvdzVcFKzGLYnfKe6vEXI51CK2QCi/HFxGVNvBzeifZCCfdfxMPSqE=
+	t=1706257127; cv=none; b=YKNNOZBuNgPxItpnvbSjzgFVCIGyhnuwmMhRqSO5ocfhmpPfiT1WBUfKGmf6Cxpb9qiGqjewcRjelg5uo35P3IC7STnINdXODs0FfgTdnnTmtyJzi77jVWz1sJbPd+LJq+3YVk1MEr66Vjhdvdccgr9Kmpp/j+XvPxnwNTrPm6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706256616; c=relaxed/simple;
-	bh=fjJDWMW4vwQS9Nf0tVgun4J7xTALICwka7Pe6pGqZc0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DYzhNAP+zetyD55J2hEX4mPfzqig1fGkE43pEN0gfB4COqOWRCaDjBY+LmyQYOWiQw4AvAMh4FwhF7BeoAIhM8ep8c1ZiFRTMU75x3D3UuBp0oqUSMBOK8+9SqafFypyILPZSkPVMPSHakN1EeWJ/iyIiHKb0Ov5bTeyamo08K4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fqB1wPAx; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-55a90b2b554so105216a12.1;
-        Fri, 26 Jan 2024 00:10:14 -0800 (PST)
+	s=arc-20240116; t=1706257127; c=relaxed/simple;
+	bh=1v1p0jrAJR50Kueh7YF9CPLO/I/oXE+euJsb8wrKQ+M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a8W//ZMov3IXShrJHXlPI93PxnNtj4Ovcn6Alg/JA4OWhBaBpcW+FXgvfN5JfFwYta4eTrsNrzj8kAn3P0YdDskbK7tdXvB81JL83iF4iWJehIFxMhL0S0Xn755HN5B5PzcSq4Z2gZdy+pAYUi6XxFmBTe0wPjgqObRvbzphSXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H+JeTIhF; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a2a17f3217aso17613866b.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 00:18:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706256613; x=1706861413; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=fjJDWMW4vwQS9Nf0tVgun4J7xTALICwka7Pe6pGqZc0=;
-        b=fqB1wPAx7WMfX3GQsG4Fo+EUvxNLXJbe56h3zZ0SiuwEB7u5+c+sZh7zoAI6jCyFYI
-         4m7msQSZ0X9GNdpmLCaGIOEP2SqOiIWfMDtTJDXKSnIWQGB7lSRbYiQq24H+81m+qvHs
-         QQf3pOK+AovEr/nPaBPNLNpJuqbPOMv91G5HuTLa2yG9lJHgA93Cy9lAOeCBZgqGVGGg
-         32NyD2JcnZ53nocRPhIDy6r0nPsWbKG5eDoH3PUjwplhyzYgwstXomPuoswInM7wDm1Y
-         3cv1Xx/uESoes9WYDQTICanc7CnSK9ov4zuZ6bFk+UFbNnEdcQklSCRbI1fyp1N6m99Z
-         ATYQ==
+        d=linaro.org; s=google; t=1706257124; x=1706861924; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3eKbQ9dPSaynT5h1DWbytWa8cizVUJhYOPdgPpMBlYw=;
+        b=H+JeTIhFKdgDE97RUL23Y7vt9Hab569XLsLp7NT00I2ZZ74HeOAnxqIgK9P//DwNIG
+         iengf9mXTH1kjZpDsMV97EfQMnViFr+2XiOieFlOKYEm37MRjy3bgOuJf6d+4LmHx+Hw
+         QSR3yZCf3Xzj4LbZmJCYc54l63C/qrRMqqppr+nfT5a+mXSYQR/klx/C6og0iacysYVw
+         q5QYVXfazGNnbgmsK7E8w5pezGWsHdGaJbv6NoMapvfzJNKuR4zWTo+jvraxBOiC9uGr
+         1ONZj/FMDRb/dREzmF0rpo0ywp/nYHT7XfSsbyiVvGPaFfO1vwCnWO6aPOIZL4eQFXPn
+         de+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706256613; x=1706861413;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fjJDWMW4vwQS9Nf0tVgun4J7xTALICwka7Pe6pGqZc0=;
-        b=ktZ6N5aqwAIeDItes25AOQF+q07kC0xYvoW/7RrqlvHR9uRRJbkQA84pOA+bUmvEZM
-         2LXHxJ9a0Bc8nxSbrNReu//iDR8zJgRr2xcy3WGaorfeeZg5IcWB8jjDK7cSDYlp7npB
-         4T/9UAErgFZvsDXGgDoS1n9xRFSShs69nTm4jM2aMepKQ/N/sO5kFwBfgOzVqTw6Hh6h
-         MKnfbxlb+4QJOJ4Zx01My3Qvhty6/zSRQTpXJI6Qd1jiA50GNQLMSi+8ZKOTxiTWjYkx
-         etyvAJG8fr4jsY7WcckGXJ1Ua9hgfugkOI/jmNMWZ/zuNTE2GfxqMn6twQrt0vGsCK8G
-         KmaA==
-X-Gm-Message-State: AOJu0YxYZLBg2SIBXlGIU+laaQLAxW6QFP6rBRoyHlEoEpwiQst3Ln9H
-	7JaFZZNC2t1t5zsjWNTBXjavvaxCmUtdxxkYM5llRrji2b5yLNx1
-X-Google-Smtp-Source: AGHT+IE7/Ghl6SBe8tXUbo7L1Oe16r2I0mIMU31XxXXSJaqzLd0JVmMphKORghdFkH2gvT8oo+a9Xg==
-X-Received: by 2002:a17:906:390d:b0:a31:6942:eaae with SMTP id f13-20020a170906390d00b00a316942eaaemr915913eje.35.1706256612781;
-        Fri, 26 Jan 2024 00:10:12 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
-        by smtp.gmail.com with ESMTPSA id l26-20020a1709060e1a00b00a2bf375ceebsm347770eji.208.2024.01.26.00.10.12
+        d=1e100.net; s=20230601; t=1706257124; x=1706861924;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3eKbQ9dPSaynT5h1DWbytWa8cizVUJhYOPdgPpMBlYw=;
+        b=HXSP7VVrCagChDdV/uXEL9Lnxv9qmr/kqjTqB2V6ZxvXvUuI6F5mGw8aMJPsvKpgMc
+         E8zu4iT9M/OjlA9UH1zqQHCvTwdmA2npqB8EKHDA7Cw6LXF/CiBiQdjPYywk+bcJ1GOu
+         yaRtfuWOz9VP1pi1M+8XXnXCLp+M9evbU8KnO65CYoL4uxpnu3YJGt+Rt9QP44dbInEU
+         ORuNzMryu5iEVmaouGoCBXAvi6GyvfNFm52KbALusbbSbwDHuWzqbzvc54zROARfTKh7
+         tnoQrnUXF+Cbbja6jFAei9Ou2EsTADC9yyLK4cJYqY3Q94ibcWVxyFO5fXyzAOgVM/y+
+         6nTQ==
+X-Gm-Message-State: AOJu0YzXTLHcadvIr0BhUz7o8yu1eFgX+BSEmlZoWZv5ytQZ/RLNF7H2
+	T3gn/kjc9CTH5lph6MQTt9RzWEEwA9tY9HL+Kf4saqrWJLUGQX5LtXWrs7IkBQ8=
+X-Google-Smtp-Source: AGHT+IGAHjYbYuhhbEn3hJ2jgzKambyOC27Tkan/Yq9Qzl1vlpSHYnZRuSY3GbgR8HYC+EhmgrcwyQ==
+X-Received: by 2002:a17:907:1751:b0:a30:ec79:25f3 with SMTP id lf17-20020a170907175100b00a30ec7925f3mr893519ejc.42.1706257123688;
+        Fri, 26 Jan 2024 00:18:43 -0800 (PST)
+Received: from linaro.org ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id ck5-20020a170906c44500b00a31930ffa7esm358242ejb.153.2024.01.26.00.18.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 00:10:12 -0800 (PST)
-Message-ID: <865346908c9b76d72741e6f319a4535459de1ea6.camel@gmail.com>
-Subject: Re: [PATCH v7 4/9] driver: core: allow modifying device_links flags
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Saravana Kannan <saravanak@google.com>
-Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>,  Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Fri, 26 Jan 2024 09:13:28 +0100
-In-Reply-To: <CAGETcx_ScsW4gKpAK01dHYxB3XGs-pRjJQMygbZUNAdxV6BqtA@mail.gmail.com>
-References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
-	 <20240123-iio-backend-v7-4-1bff236b8693@analog.com>
-	 <CAGETcx8_0ExTG4ASb9xK-uwmubMFDx44_wUf1h3VsO8w9jJApQ@mail.gmail.com>
-	 <8eae083af481441d83df02a1880e2aedf99efdfb.camel@gmail.com>
-	 <CAGETcx_ScsW4gKpAK01dHYxB3XGs-pRjJQMygbZUNAdxV6BqtA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+        Fri, 26 Jan 2024 00:18:43 -0800 (PST)
+Date: Fri, 26 Jan 2024 10:18:41 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Rajendra Nayak <quic_rjendra@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 05/11] arm64: dts: qcom: x1e80100: Add TCSR node
+Message-ID: <ZbNq4b813348ZiV8@linaro.org>
+References: <20240123-x1e80100-dts-missing-nodes-v4-0-072dc2f5c153@linaro.org>
+ <20240123-x1e80100-dts-missing-nodes-v4-5-072dc2f5c153@linaro.org>
+ <b0f4236a-c87e-4d50-b1a0-42ed5b015b86@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b0f4236a-c87e-4d50-b1a0-42ed5b015b86@linaro.org>
 
-On Thu, 2024-01-25 at 16:50 -0800, Saravana Kannan wrote:
-> On Thu, Jan 25, 2024 at 12:11=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.=
-com> wrote:
-> >=20
-> >=20
-> > Hi Saravana,
-> >=20
-> > Thanks for your feedback,
-> >=20
-> > On Wed, 2024-01-24 at 19:21 -0800, Saravana Kannan wrote:
-> > > On Tue, Jan 23, 2024 at 7:14=E2=80=AFAM Nuno Sa via B4 Relay
-> > > <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> > > >=20
-> > > > From: Nuno Sa <nuno.sa@analog.com>
-> > > >=20
-> > > > If a device_link is previously created (eg: via
-> > > > fw_devlink_create_devlink()) before the supplier + consumer are bot=
-h
-> > > > present and bound to their respective drivers, there's no way to se=
-t
-> > > > DL_FLAG_AUTOREMOVE_CONSUMER anymore while one can still set
-> > > > DL_FLAG_AUTOREMOVE_SUPPLIER. Hence, rework the flags checks to allo=
-w
-> > > > for DL_FLAG_AUTOREMOVE_CONSUMER in the same way
-> > > > DL_FLAG_AUTOREMOVE_SUPPLIER is done.
-> > >=20
-> > > Curious, why do you want to set DL_FLAG_AUTOREMOVE_CONSUMER?
-> > > Especially if fw_devlink already created the link? You are effectivel=
-y
-> > > trying to delete the link fw_devlink created if any of your devices
-> > > unbind.
-> > >=20
-> >=20
-> > Well, this is still useful in the modules case as the link will be rela=
-xed
-> > after
-> > all devices are initialized and that will already clear AUTOPROBE_CONSU=
-MER
-> > AFAIU. But, more importantly, if I'm not missing anything, in [1],
-> > fw_devlinks
-> > will be dropped after the consumer + supplier are bound which means I
-> > definitely
-> > want to create a link between my consumer and supplier.
-> >=20
-> > FWIW, I was misunderstanding things since I thought
-> > DL_FLAG_AUTOREMOVE_CONSUMER
-> > was needed to make sure the consumer is unbound before the supplier. Bu=
-t for
-> > that I think I can even pass 0 in the flags as I only need the link to =
-be
-> > MANAGED. Still, I think having DL_FLAG_AUTOREMOVE_CONSUMER makes sense.
->=20
-> As you noticed, your understanding of DL_FLAG_AUTOREMOVE_CONSUMER is
-> not correct. There's almost never a good reason to drop a device link.
-> Even when a device/driver are unbound, we still want future probe
-> attempts to make use of the dependency info and block a device from
-> probing if the supplier hasn't probed.
->=20
+On 24-01-23 19:09:37, Konrad Dybcio wrote:
+> 
+> 
+> On 1/23/24 12:01, Abel Vesa wrote:
+> > Add the TCSR clock controller and halt register space node.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> 
+> The former - yes, the latter - ?
 
-Yeah that makes sense and is making me thinking that I should change my cal=
-l (in
-patch 7 to use the MANAGED flag instead of AUTOREMOVE_CONSUMER). Sure,
-AUTOREMOVE_CONSUMER won't matter most cases but if someone disables fw_devl=
-inks
-then it matters.
+Hm, so halt register space is at 0x1f60000. That would be in the mutex
+region. But the mutex region is 0x20000 short, even on SM8650 and
+SM8550. Need to see why is that, historically.
 
-> If you don't want the links created by fw_devlink to be relaxed, I
-> think you should instead set the kernel command line param so that the
-> kernel doesn't time out and give up on enforcing dependencies.
-> deferred_probe_timeout=3D-1
+Either way, the tcsr node region still contains the regs needed by the
+SCM driver to enable download mode. So I will rephrase this accordingly.
 
-Good to know... Nope, I don't care much about them being relaxed as I will =
-still
-call device_link_add() when the consumer probes and finds the supplier. The=
- only
-downside from relaxing is "loosing" AUTOPROBE_CONSUMER but that is not a bi=
-g
-deal.
-
->=20
-> Then you don't have to worry about creating device links.
->=20
-> > Also note that there are more places in the kernel with
-> > DL_FLAG_AUTOREMOVE_CONSUMER and that flag is likely being ignored in ca=
-se
-> > the
-> > link already exists.
-> >=20
-> > I'm also clearing DL_FLAG_AUTOPROBE_CONSUMER as from the first check in
-> > device_link_add(() check I realize that we can't/shouldn't have it toge=
-ther
-> > with
-> > one of AUTOREMOVE_CONSUMER | AUTOREMOVE_SUPPLIER, right? At this point,
-> > AUTOPROBE_CONSUMER is also likely not that useful anymore as both suppl=
-ier
-> > and
-> > consumer are up and I guess that's the typical case for subsystems/driv=
-ers
-> > to
-> > call device_link_add().
-> >=20
-> > And since I have your attention, it would be nice if you could look in
-> > another
-> > sensible patch [2] that I've resended 3 times already. You're not in CC=
- but
-> > I
-> > see you've done quite some work in dev_links so... Completely unrelated=
- I
-> > know
-> > :)
->=20
-> Regarding [2], I'll try.
->=20
-
-Thanks! I think it's a valid bug with devlinks and overlays but it's sensib=
-le
-stuff (so the RFC) so it would be nice to have some review and recommendati=
-ons
-how to solve it... I would definitely like to have it fixed as I see more a=
-nd
-more people (ab)using overlays.
-
-- Nuno S=C3=A1
-
-
+> 
+> Konrad
+> >   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 8 ++++++++
+> >   1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > index be69e71b7f53..2b6c55a486b2 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > @@ -2606,6 +2606,14 @@ tcsr_mutex: hwlock@1f40000 {
+> >   			#hwlock-cells = <1>;
+> >   		};
+> > +		tcsr: clock-controller@1fc0000 {
+> > +			compatible = "qcom,x1e80100-tcsr", "syscon";
+> > +			reg = <0 0x01fc0000 0 0x30000>;
+> > +			clocks = <&rpmhcc RPMH_CXO_CLK>;
+> > +			#clock-cells = <1>;
+> > +			#reset-cells = <1>;
+> > +		};
+> > +
+> >   		gem_noc: interconnect@26400000 {
+> >   			compatible = "qcom,x1e80100-gem-noc";
+> >   			reg = <0 0x26400000 0 0x311200>;
+> > 
 
