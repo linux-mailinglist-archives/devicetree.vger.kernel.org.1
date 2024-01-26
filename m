@@ -1,252 +1,130 @@
-Return-Path: <devicetree+bounces-35339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A1C83D287
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 03:24:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8F5783D291
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 03:34:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B5AF1C25171
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 02:24:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 961A81F247C5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 02:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC2A8C18;
-	Fri, 26 Jan 2024 02:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F2071C17;
+	Fri, 26 Jan 2024 02:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="N29fNl8B"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TkzBq7wT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A6A79F4
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 02:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A2B8F44;
+	Fri, 26 Jan 2024 02:34:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706235870; cv=none; b=B7hzUy1Ih9CHBrrLTGVDGuRuxaNpBbTZy7lUu7MW9xioyh35SZCVsBpx2K9qzrNHIT/Rg/UDVqPv+nwcxCJDCU700KRpqsEtMNv9Es9KNLuOSzJIXZQhf9HpdcvIu1eitw5W74sb/GsW3nzrMTcTbqPF0+dfhi8aGOlLlqcGVes=
+	t=1706236485; cv=none; b=KOHk1rTzTPaMLwfDyDDUC17U67vShgx1ys0D6F1BBMbGZSE1mUkcrQGZC5w13qtBcSezTrEUa/0zqfp1oBFBj2KtOkpmfrDM/KHKl5J4jivgcU/xoskqaPluPtOC5tuVGVBHdQxBPdKIXKchT95mxHmu4UE2nqgbVlcqN9KayuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706235870; c=relaxed/simple;
-	bh=U+sljIPjwTGEa/e8pcd5Zj0VJm9xVGm61FMKNNTG6JQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ljGzXgp4G0QLARBYklYV/DzYjJNFV2yL2lhtiTgnhHVXPwCR4d6cKkp756mglJb8S9MLTckJlfuk+Ov7gKa+s75KhqCasjg0A2svec/kNCGjDEx6Ybqfs9wQR5uPErmxFT0xbABLwkLy+ps4iTn1JB4+ph9CvmqApNvVXkmcpzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=N29fNl8B; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-42a7e2a0b40so551cf.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 18:24:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1706235866; x=1706840666; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BcanplUuigeG7+SyQESZ+PLtXFKVvk0gBTooHhSHHRc=;
-        b=N29fNl8BZqCUddj3zBlELxpAoJFEg03dbCfE3dvDVtnH6uA8f+/u+rqcFG9GUorT4k
-         DgE+2m3+NlK2dspPX/nKvtxMxi/JEbOLnL+J1RYMHdBZppoyRes3Y3OD05lin9+IQQhZ
-         KWTaclHrIUEjDYCqC8CbTwZWhmUyPSTTTD3xJxxeBPTgmDIRtdFEpbxeq1kDLi6GtPYi
-         OT9W4HugRWExZipyz+JE5Qfy5JjgPXCgZgWjjpaA6gRa4+su02Aph9zDP5QzEW/m8Ulv
-         hvvGKRV71aAqECSBU6n0UEMl/HMXxjoQmrGXrJfMlUV70utelXZnJGjZRIu+rIkjatTX
-         ZZzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706235866; x=1706840666;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BcanplUuigeG7+SyQESZ+PLtXFKVvk0gBTooHhSHHRc=;
-        b=s8P0sm39MfZnHplOgQbVluYx40ylQg6nTHRFPB39VyrEKxGanX/jve/n/7TfyLVFvC
-         9b1XXwIYpKocQ32/5PmhGGErTvint0x+atcIq7E+bSxpHeR7pdVPkdpF80o8tdZG7orr
-         IMNhRgRgpIwKKFq4zs3ygFzBbenL623ANLurm3RtvD4K+svQJ9esIv8GGwXISdIH0h1o
-         EKY92615uxKYIP+5HmbVr6sDXzjvwRHAQcaDPUK0cojSfXlfq5HHYfJ/Nnle6cINEQcx
-         cYZ1tYE6eAyYuF6T3IgGLczG6C+ktWVEs2l4P5aXt6AfahBUit+rGupW9BUSR6+rYH+n
-         9gnQ==
-X-Gm-Message-State: AOJu0Ywa0ngFFqKpXNrg7y5r8Og69F2kpiag2HkPq1ENvT7JbJPtJJo5
-	QXSRr0SWYNbgpVsY9wwgD7tUwsfsAhcJfe6PPyzy4uXn9zdwcXTxf55JbOhIzumkmze979rXjHA
-	gp5PonSkhdj4Szp2PHLbDUAwUPw+HiivuLcx+
-X-Google-Smtp-Source: AGHT+IF/ZjCQprLAq5jGDSptgQBwNVbqFRuAhJO2rELD+78XU9TW9TFfow5bmp/ztezQ0ineqG3PU4a9MUvsr92ka1g=
-X-Received: by 2002:a05:622a:1c0d:b0:42a:1b6f:ec97 with SMTP id
- bq13-20020a05622a1c0d00b0042a1b6fec97mr128440qtb.26.1706235866248; Thu, 25
- Jan 2024 18:24:26 -0800 (PST)
+	s=arc-20240116; t=1706236485; c=relaxed/simple;
+	bh=gEFdeH1dz5MeH3OyYmFVrtxyGmyY5C/fWJsuhHJJiBg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Kz4JXOBFxs2Gag8TLiAfvKAHNU8jKJjyTeVfXSJ1g6UbeVBq1S3nIjRo7Unl6fowwjp1zOLtPDEVl/z8CAAapxUetS6MpejzXz+UAXikvCbt2QGOsYPtjRndwADsTlidpOb35Gd48Pn38BjmrhRPb+QiSegFM2OOalO7dK0mayY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TkzBq7wT; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40Q0qqsK019345;
+	Fri, 26 Jan 2024 02:34:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=7aCazePiOgGahy5501KDly4q9vHVLXT5EBlhyF1E9P8=; b=Tk
+	zBq7wTSWNYn00NM23lg7QZMIx6/Tert/9D9CXHgr7XUR+CVAHsKALu38DgqcIxkx
+	54ullmmC/hgyT3WN56gBNmF1U3IhZyaVZvRHxOtMBahmJiLUntE6AFM/be+6s5pU
+	mBojgS4NO5XHexqhS4TBp67srTwxVO1Lg53q+IrnMkvYocyDBiQYEAzoGjBWL8+y
+	wATMoLhi8bGWI0/xvEg2/VLP18YEkeD2iBynkPidgayFNyp9xDHzL1vpRXdATDrn
+	TrCzKRkVE4GeRAfjoRaQFS5z1wTy9IPTadv7++WM9DMZuXdI0/4U4ePh8YjF1Wv/
+	ZccaJUQhXTHdmtZU51iw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vup2tj82c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jan 2024 02:34:39 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40Q2Ycvt027670
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jan 2024 02:34:38 GMT
+Received: from [10.239.29.49] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 25 Jan
+ 2024 18:34:31 -0800
+Message-ID: <05a5402e-9c9e-4dbe-88a6-f990c5c2fbf0@quicinc.com>
+Date: Fri, 26 Jan 2024 10:34:26 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240122225710.1952066-1-peter.griffin@linaro.org>
- <20240122225710.1952066-4-peter.griffin@linaro.org> <da30a68a-e29f-45c8-aa73-02955255a457@linaro.org>
- <CADrjBPor5tMY4r0jOy7GH36auCU7dWn6Qn4ct89bsSMW4vAQOA@mail.gmail.com>
- <6c72a521-1048-42eb-ac74-d8f718a90723@linaro.org> <CAGETcx-CCpaV7R0O0HpDpoX6KxQBuJiMmKdWA8nDE-5Qj2Sa7g@mail.gmail.com>
- <f4d3aa5a-e01d-4ef3-8004-b6eac4461184@linaro.org> <CAGETcx_HGcuGQTO11tzX0EvnuLEaKYc4vBse1CRP0JwPqMJdQQ@mail.gmail.com>
- <04411aaf-6f2c-4f43-83b4-aa0741ccd25f@linaro.org> <20240125114606.GA1327902@google.com>
-In-Reply-To: <20240125114606.GA1327902@google.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Thu, 25 Jan 2024 18:23:47 -0800
-Message-ID: <CAGETcx8r_+_B0S3VJ6_66+dgAOusN_pt_=pmgoa-r8TUY7quPA@mail.gmail.com>
-Subject: Re: [PATCH 3/9] watchdog: s3c2410_wdt: update to use new
- exynos_pmu_*() apis
-To: Lee Jones <lee@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, arnd@arndb.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, linux@roeck-us.net, wim@linux-watchdog.org, 
-	conor+dt@kernel.org, alim.akhtar@samsung.com, jaewon02.kim@samsung.com, 
-	chanho61.park@samsung.com, semen.protsenko@linaro.org, 
-	kernel-team@android.com, tudor.ambarus@linaro.org, andre.draszik@linaro.org, 
-	willmcvicker@google.com, linux-fsd@tesla.com, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550: Add dma-coherent property
+Content-Language: en-US
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <quic_kuiw@quicinc.com>, <quic_ekangupt@quicinc.com>, <kernel@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20240125102413.3016-1-quic_lxu5@quicinc.com>
+ <20240125102413.3016-2-quic_lxu5@quicinc.com>
+ <918d1d55-e95a-4b00-af59-7b5d7057b9fb@linaro.org>
+From: Ling Xu <quic_lxu5@quicinc.com>
+In-Reply-To: <918d1d55-e95a-4b00-af59-7b5d7057b9fb@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lzknJc3C8nQLOzuySaw82gYcgQJhLq8K
+X-Proofpoint-ORIG-GUID: lzknJc3C8nQLOzuySaw82gYcgQJhLq8K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 spamscore=0 mlxlogscore=587 phishscore=0 mlxscore=0
+ priorityscore=1501 adultscore=0 malwarescore=0 clxscore=1015
+ impostorscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2401190000 definitions=main-2401260018
 
-On Thu, Jan 25, 2024 at 3:46=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
->
-> On Thu, 25 Jan 2024, Krzysztof Kozlowski wrote:
->
-> > On 24/01/2024 22:27, Saravana Kannan wrote:
-> > > On Tue, Jan 23, 2024 at 10:27=E2=80=AFPM Krzysztof Kozlowski
-> > > <krzysztof.kozlowski@linaro.org> wrote:
-> > >>
-> > >> On 24/01/2024 04:37, Saravana Kannan wrote:
-> > >>> On Tue, Jan 23, 2024 at 10:12=E2=80=AFAM Krzysztof Kozlowski
-> > >>> <krzysztof.kozlowski@linaro.org> wrote:
-> > >>>>
-> > >>>> On 23/01/2024 18:30, Peter Griffin wrote:
-> > >>>>>>>               dev_warn(wdt->dev, "Couldn't get RST_STAT registe=
-r\n");
-> > >>>>>>>       else if (rst_stat & BIT(wdt->drv_data->rst_stat_bit))
-> > >>>>>>> @@ -698,14 +699,6 @@ static int s3c2410wdt_probe(struct platfor=
-m_device *pdev)
-> > >>>>>>>       if (ret)
-> > >>>>>>>               return ret;
-> > >>>>>>>
-> > >>>>>>> -     if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
-> > >>>>>>> -             wdt->pmureg =3D syscon_regmap_lookup_by_phandle(d=
-ev->of_node,
-> > >>>>>>> -                                             "samsung,syscon-p=
-handle");
-> > >>>>>>> -             if (IS_ERR(wdt->pmureg))
-> > >>>>>>> -                     return dev_err_probe(dev, PTR_ERR(wdt->pm=
-ureg),
-> > >>>>>>> -                                          "syscon regmap looku=
-p failed.\n");
-> > >>>>>>
-> > >>>>>>
-> > >>>>>> Continuing topic from the binding: I don't see how you handle pr=
-obe
-> > >>>>>> deferral, suspend ordering.
-> > >>>>>
-> > >>>>> The current implementation is simply relying on exynos-pmu being
-> > >>>>> postcore_initcall level.
-> > >>>>>
-> > >>>>> I was just looking around for any existing Linux APIs that could =
-be a
-> > >>>>> more robust solution. It looks like
-> > >>>>>
-> > >>>>> of_parse_phandle()
-> > >>>>> and
-> > >>>>> of_find_device_by_node();
-> > >>>>>
-> > >>>>> Are often used to solve this type of probe deferral issue between
-> > >>>>> devices. Is that what you would recommend using? Or is there some=
-thing
-> > >>>>> even better?
-> > >>>>
-> > >>>> I think you should keep the phandle and then set device link based=
- on
-> > >>>> of_find_device_by_node(). This would actually improve the code, be=
-cause
-> > >>>> syscon_regmap_lookup_by_phandle() does not create device links.
-> > >>>
-> > >>> I kinda agree with this. Just because we no longer use a syscon API=
- to
-> > >>> find the PMU register address doesn't mean the WDT doesn't depend o=
-n
-> > >>> the PMU.
-> > >>>
-> > >>> However, I think we should move to a generic "syscon" property. The=
-n I
-> > >>> can add support for "syscon" property to fw_devlink and then things
-> > >>> will just work in terms of probe ordering, suspend/resume and also
-> > >>> showing the dependency in DT even if you don't use the syscon APIs.
-> > >>>
-> > >>> Side note 1:
-> > >>>
-> > >>> I think we really should officially document a generic syscon DT
-> > >>> property similar to how we have a generic "clocks" or "dmas" proper=
-ty.
-> > >>> Then we can have a syscon_get_regmap() that's like so:
-> > >>>
-> > >>> struct regmap *syscon_get_regmap(struct device *dev)
-> > >>> {
-> > >>>         return syscon_regmap_lookup_by_phandle(dev->of_node, "sysco=
-n");
-> > >>> }
-> > >>>
-> > >>> Instead of every device defining its own bespoke DT property to do =
-the
-> > >>> exact same thing. I did a quick "back of the envelope" grep on this
-> > >>> and I get about 143 unique properties just to get the syscon regmap=
-.
-> > >>> $ git grep -A1 syscon_regmap_lookup_by_phandle | grep '"' | sed -e
-> > >>> 's/^[^"]*//' -e 's/"[^"]*$/"/' | sort | uniq | wc -l
-> > >>> 143
-> > >>
-> > >> Sorry, generic "syscon" property won't fly with DT maintainers, beca=
-use
-> > >> there is no such thing as syscon in any of hardware.
-> > >
-> > > Then why do we allow a "syscon" compatible string and nodes? If the
-> >
-> > To bind Linux drivers.
-> >
-> > > "syscon" property isn't clear enough, we can make it something like
-> > > gpios and have it be <whatever>-syscon or have syscon-names property
-> > > if you want to give it a name.
-> >
-> > This could work.
->
-> I'm not opposed to this idea.  The issue you'll have is keeping the
-> kernel backwards compatible with older DTBs, thus this solution may only
-> be possible for newly created bindings.  More than happy to be proven
-> wrong here though.
+在 2024/1/26 0:38, Konrad Dybcio 写道:
+> 
+> 
+> On 1/25/24 11:24, Ling Xu wrote:
+>> Add dma-coherent property to fastRPC context bank nodes to pass dma
+>> sequence test in fastrpc sanity test, ensure that data integrity is
+>> maintained during DMA operations.
+>>
+>> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+>> ---
+> 
+> How can we replicate this validation?
+> 
+> Konrad
 
-You are right about backwards compatibility. Technically, we might be
-able to fix up the DT at runtime (by keeping a list of those 143
-property names) to maintain backward compatibility, but I'm not
-suggesting that.
+Without this change, case8 and case14 about DMA sequence test in fastRPC sanity test can not pass.
 
-We can leave the existing ones as is, but we can at least use the new
-property going forward to make dependencies easier to track and handle
+The steps to do fastRPC sanity test is:
+1.download code
+p4 login
+export PATH="$PATH:/prj/qct/asw/qctss/linux/bin/vce"
+vce.py view --base fastrpctest.common.1.0 --checkout=<username> --root .
+2.compile command
+chmod -R 777 ./fastrpc_tests && python3 ./fastrpc_tests/build_fastrpc_test.py -target=LE
+3.run fastRPC test
+fastrpc_tests_ReleaseG_push_LE.bat
+adb shell fastrpc_tests -e (case number) -d 3
 
--Saravana
+-- 
+Thx and BRs,
+Ling Xu
 
->
-> > >>> How are we making sure that it's the exynos-pmu driver that ends up
-> > >>> probing the PMU and not the generic syscon driver? Both of these ar=
-e
-> > >>> platform drivers. And the exynos PMU device lists both the exynos
-> > >>> compatible string and the syscon property. Is it purely a link orde=
-r
-> > >>> coincidence?
-> > >>
-> > >> initcall ordering
-> > >
-> > > Both these drivers usr postcore_initcall(). So it's purely because
-> > > soc/ is listed earlier in drivers/Makefile than mfd/. And as soon as
-> >
-> > Oh... great :/.
->
-> Agree.
->
-> Even using initcalls for ordering is fragile.  Relying on the
-> lexicographical order of a directory / filename structure is akin to
-> rolling a dice.  It would be far nicer if you are able to find a more
-> robust method of ensuring load order e.g. dynamically poking at
-> hardware and / or utilising -EPROBE_DEFER.
-
-Let me dig in to see if all the existing examples of listing syscon in
-compatible AND have a different driver that needs to probe it always
-list syscon as a secondary compatible string. In that case, we might
-be able to make the syscon driver only match with the device it it's
-the first entry in the compatible string.
-
--Saravana
 
