@@ -1,102 +1,134 @@
-Return-Path: <devicetree+bounces-35672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5060483E6CA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 00:24:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDBEC83E6E9
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 00:26:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E67DF1F2A637
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 23:24:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BD8B1C230BC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 23:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12B05B214;
-	Fri, 26 Jan 2024 23:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13DF36088E;
+	Fri, 26 Jan 2024 23:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="fP4yEtVo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gP4jPlKc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7352051033;
-	Fri, 26 Jan 2024 23:21:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67A812420B;
+	Fri, 26 Jan 2024 23:22:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706311319; cv=none; b=FzJjFCogp2H2/ne5ZMk4xpjtF4FYvj3nETDLSd/0gBSpU1Fg2EcGcgqdMmEYQc494+W3uRQ1d3XAv+aXcusStuWRvDcrYUwsVC4m6aThyfUUFLewCjpzst2+hJIK8VQ/PoX/pvwwJJ6Y2xK2JTsHLzHsGqudYac17p5DNgAyAPk=
+	t=1706311362; cv=none; b=lfiKhg4dKNScsmh2D1vCcri2Ch6KWd53kmCIkvXu7SF74TIvspT9SBLkNKxlGWFkW6mdWFA/m7Z7Xy75lDBH9Ap6oHU36N6s5i40zaUbIFh8tZE/wfucsQ0Ir+lHRm/64Ndu0+adKsF55mX0VgamsZf873eY1JWaAA9q7PbZ9Go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706311319; c=relaxed/simple;
-	bh=3LcrOLtYCxr/GTKWLKz03ve3ssDHsY2b8TJXl7Am82s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IifKrO+LcKI+hDV7720iK4NpWMwsJK0+oJKDI7GvACqSNIr2u0myWoJhB2k1SiSPNltnfgpBqyAb+4eGtvgkBLOeHnXPb2lKd0it0DKSUa9GJE18mlIIZzLABDrh4pghDbiQCJCjAJ82UCm85jSomUjQNW5qBWrT6APe1m7ov44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=fP4yEtVo; arc=none smtp.client-ip=46.255.230.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 0040B1C0050; Sat, 27 Jan 2024 00:21:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1706311309;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=k4M+57OyzmopiBIibRxQExCs1rF4Qqo0urnMF24rcgA=;
-	b=fP4yEtVoWFjetgmkNwG6bgTmXr4f5heLhJ+SAoItwacPFkw+NpmRgcrwojJZd49ZiXOpCc
-	QGO7Q4gnNjvX6wretNhfRvs2ddmGykrBbu3jlcCg1yXqpWAbldspd9S+hTO5D9vHVcW87m
-	ulH1g/j2xyl2VtCzm10jDyZmxGDtD2M=
-Date: Sat, 27 Jan 2024 00:21:48 +0100
-From: Pavel Machek <pavel@ucw.cz>
-To: Lee Jones <lee@kernel.org>
-Cc: Martin Kurbanov <mmkurbanov@salutedevices.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	kernel@salutedevices.com,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v1 1/2] leds: aw200xx: support for hw pattern controllers
-Message-ID: <ZbQ-jKD_zhonHOCa@ucw.cz>
-References: <20231207125938.175119-1-mmkurbanov@salutedevices.com>
- <20231207125938.175119-2-mmkurbanov@salutedevices.com>
- <20231221161011.GO10102@google.com>
+	s=arc-20240116; t=1706311362; c=relaxed/simple;
+	bh=k1lLM/lKfVzuiaAVJaAchBIOPdQQvb8bXl1o4bfTGKI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=PQo9TxStLaLABq1AvffTDnxTUXqfOoEqgyjLHwIn8APjt8ENd1zKqjSk4HojmNCNz2pdul0n3+dSMky6u/k6sADNQg9p685DpTkeOimAxO2QRli8OwX+v+I+bd2B87kfdOzs4tqS0mug/2pjRTXbKxgCU1PT49k/DHVL2cmq5zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gP4jPlKc; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706311360; x=1737847360;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=k1lLM/lKfVzuiaAVJaAchBIOPdQQvb8bXl1o4bfTGKI=;
+  b=gP4jPlKcSgzd/B3aXgRwwri8x+rsW9N6YuOR0ZOhBlqEkozCC5vh5esy
+   8QiFfc/MgXOmfWjps5dcUQ42WAHINlU1fia+K/xcLLHoKq4Nm2Vc1V1k1
+   H3xaNg/SdtJIVCz82hKWuyeMi9EQPb32tSoZnG0saVOijKuLXpqEmBo6/
+   bzfGtHi6ymC3E4tsyxqulD8w3Ff5Q388DssmcF6iMgWCmiwwfGaEpv3ll
+   n9cel4MCfQD7Kh5L57OW9qG43ve+0mCVH14xgnbbk34AOAqgZstZn7HLu
+   VyUpi5DqDOIYumaLKauDiQkdHQvR4PNJNY2UKudt9pmhPBKhWqxQVfwvE
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="24065211"
+X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
+   d="scan'208";a="24065211"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2024 15:22:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="736831999"
+X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
+   d="scan'208";a="736831999"
+Received: from ppglcf2090.png.intel.com ([10.126.160.96])
+  by orsmga003.jf.intel.com with ESMTP; 26 Jan 2024 15:22:34 -0800
+From: Rohan G Thomas <rohan.g.thomas@intel.com>
+To: kuba@kernel.org
+Cc: alexandre.torgue@foss.st.com,
+	conor+dt@kernel.org,
+	davem@davemloft.net,
+	devicetree@vger.kernel.org,
+	edumazet@google.com,
+	esben@geanix.com,
+	fancer.lancer@gmail.com,
+	joabreu@synopsys.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	mcoquelin.stm32@gmail.com,
+	netdev@vger.kernel.org,
+	pabeni@redhat.com,
+	peppe.cavallaro@st.com,
+	robh@kernel.org,
+	rohan.g.thomas@intel.com
+Subject: RE: [PATCH net-next 1/2] dt-bindings: net: snps,dwmac: Time Based Scheduling
+Date: Sat, 27 Jan 2024 07:22:30 +0800
+Message-Id: <20240126232230.15733-1-rohan.g.thomas@intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20240126121928.48a44327@kernel.org>
+References: <20240126121928.48a44327@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20231221161011.GO10102@google.com>
+Content-Transfer-Encoding: 8bit
 
-Hi!
-
-> > This led-controller supports 3 pattern controllers for auto breathing or
-> > group dimming control. Each pattern controller can work in auto
-> > breathing or manual control mode. All breathing parameters including
-> > rising/falling slope, on/off time, repeat times, min/max brightness
-> > and so on are configurable.
-> > 
-> > Signed-off-by: Martin Kurbanov <mmkurbanov@salutedevices.com>
-> > ---
-> >  .../testing/sysfs-class-led-driver-aw200xx    | 108 +++
-> >  Documentation/leds/leds-aw200xx.rst           | 274 ++++++++
-> >  drivers/leds/leds-aw200xx.c                   | 649 ++++++++++++++++++
-> >  3 files changed, 1031 insertions(+)
-> >  create mode 100644 Documentation/leds/leds-aw200xx.rst
+On Fri, 26 Jan 2024 12:19:28 -0800, Jakub Kicinski wrote:
+> > > The tricky part here is that the whole devicetree bindings story for the
+> > > stmmac driver is filled with such configuration choices. As such, it is
+> > > only natural to add the property you are suggesting here. I completely
+> > > agree. But you can also argue that it is "wrong", because it does not
+> > > just describe the hardware, but also a configuration choice.
+> >
+> > Isn't this requirement of using enhanced tx desc instead of normal tx
+> > desc to support TBS is specific to Synopsys IP? Switching from
+> > normal desc to enhanced desc at the time of tc-etf qdisc offload
+> > cannot be done without traffic disruption, which I don't think is
+> > acceptable. Since this behavior is IP specific, can we consider
+> > this as an OS configuration choice?
 > 
-> This interface is bananas.  Exposing an entire register interface to
-> sysfs does not sit will with me at all.  When we add support to a sysfs
-> class, we usually require it to be generic and work across all devices.
-> Adding device specific interfaces is generally decried and to be
-> avoided.  Don't forget, once we commit something to sysfs, it becomes
-> ABI and we have to support it forever.
+> Why is traffic disruption not acceptable when TBS gets turned on?
+> User has to install the right qdisc to enable TBS, I presume,
+> installing qdiscs destroys the old ones which also leads to packet
+> drops.
 
-If you do git grep hw_pattern, you should get pointers to qcom-lpg
-driver that solves similar problem, with interface that should be
-acceptable.
+Hi Jakub,
 
-Best regards,
-								Pavel
+Agreed that packet loss is acceptable during qdisc install.
+
+Sorry, I'm a little out of context in the above statements.
+Switching between normal and enhanced desc is really not needed as
+enhanced desc can support transmission of packets that don't have any
+launch time also. So for any tbs supported queues we can enable
+enhanced desc for tbs during stmmac_open itself.
+
+As I mentioned in my previous reply:
+
+> > Agreed that this feature(use of enhanced desc) can be enabled from
+> > glue drivers. But I added this dt property, thinking this feature is
+> > specific and common to DWMAC core and we can enable this feature for
+> > stmmac platform driver without a glue driver. If this is not
+> > acceptable, I can think of doing this from the glue driver.
+
+Like Esben mentioned I think enabling tbs_en flag explicitly from the
+glue driver is the way to enable tbs support for a tx-queue right now.
+
+BR,
+Rohan
 
