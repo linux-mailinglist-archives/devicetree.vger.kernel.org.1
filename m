@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-35469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A82F483D958
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:31:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F117E83D8F3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:04:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F072B3EDC3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:31:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A35D28E2CF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:04:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B3F1D6AB;
-	Fri, 26 Jan 2024 10:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F1212E76;
+	Fri, 26 Jan 2024 11:03:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t1BrjcRx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VjIADlhn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010731DA24
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 10:17:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 731A1134A9
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706264242; cv=none; b=UGNquYb2eMdPhFwR82uMtKQPDBnZwhmtUJCIkv4vnayYdQiFgKRL81oRftsLdQ97DoBXgE5upaasrlYXResC29haMvtO33th1NTFvRd1UR35nUC/bwIK4MwmdsZxFgmFaKB2cRxCQU24GvA1J+bScAGCHQ2JtqAEC2puY+J8S30=
+	t=1706267012; cv=none; b=R+MShZb4L0zqLeMSOZc+M8ZoDpw7cmp6AGomCdkjBHepWZ/9Dsgf42LtB0EYErHDzl6XGZmj86SgP88XEwR8WerePN3NYxzbcu8truLPavtXp9QVOa1vVQNgMswkChxA7QHvTRnWbkUbHJLg3jHA+X+Oko29UaDxG5SwMtVG8Iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706264242; c=relaxed/simple;
-	bh=avP/XbqnV88bcO6fMUOCilFbUFjeFbVehgs7GWAEhcs=;
+	s=arc-20240116; t=1706267012; c=relaxed/simple;
+	bh=TA+ntvp3JdYQPvJsnk42CXmY67EVNq9+cY9GQU3HUPE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lHbqwwmfp8BgMke5ySCyvbsN4Juu01mamZ+MZZinKkcYXZsJFcKT49tHL4jNIDuKR3NavxWZi3dOnUaoAY9kCtyjfAG6d1CxiOIyH00fxKcb5sIpoAKp/AYU8yCjhJfEC0JJkt+74tO5VeOqAMk63M5yS4ZXfBuAn9Ax7PLsv2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t1BrjcRx; arc=none smtp.client-ip=209.85.128.51
+	 In-Reply-To:Content-Type; b=p4cmMy9MIJKflbtkV1CzDJRHfunhJIrXU6a9zqV2SXOHXMhfGjHI7Y585nJuYvPuvKjZN92lkaFJX8RSrJpK0RMD9O+0HRK5BTUN/tL1KKPVQI3YXOELyUnCGZbAWo7drrwkr9CXwfXrV6rD00ms0JJkegG1YC4cjlo8BDe7Vms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VjIADlhn; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40eccf4a91dso2692475e9.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 02:17:20 -0800 (PST)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-51021ba75edso299603e87.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:03:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706264239; x=1706869039; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706267007; x=1706871807; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4Ii87Q/qzyCftqvFYpicM4K/S83guym+V7i/OJWrxv4=;
-        b=t1BrjcRxnh13Ckwg7L8xPp5lnZ4LWXjxtwecsS0U2ktz/L6+ZwS1Ws+2IWnH+EDcaD
-         XN+tde77+pqoiCLR7G+8oR7qyEE1pPOGMqxDAre50QL2Pj8j2Ucw/SoelQdTRayzv4yS
-         WIEG5IKMf8ZnI8gQ1llQUBsStTyzRGJdOvr9JOkt6jFEc0MREWXrLYkpTW7joxHcZ0+k
-         LBJ21uQ2LG9D7rkNNYTGCz9+3EOooV84lAPKtO7Ub/LlLsUuom2s7ZLi4oyvvq9kTgwc
-         BhrGESYQ+8r9S5TEdDqk7MnNhJApjcnj7BwgOxkfpuu0jMmmhybGH2kDA5AT3cMfln3M
-         RrBQ==
+        bh=dshtbFxRCnFVER93fqS4xoshF/3Vm7dUsgixiL+seOM=;
+        b=VjIADlhn7I12XdVvaNFjJAdNY3TfTNkCILTRw1fj8keLiqbuz9I4sQA+ay463VXPNK
+         Wo+OWzCV0uAEoADhJ2ZT1sI+hU71gmrrI7xc3VDjGHKWY8TRo2QgrY7TFG8Xo7PZvWye
+         tAtDWsI5cXRES921/pbox8UqhKYZuesqxy6Dmnoz3zAQw52FemUu2FTTCijnJeK3hQKr
+         UPWPANvfE5Fye61D7T4DRNH6iBHpUWWX3KDgpJswHRJyHMIwDJWRe+ZHt/WBADH0bC9+
+         JC3mkxGLbKIcTfHI/psCUtFS7f8zpegJ9Z0lF7B02XwB/n/0siTmS/xwUDrT/O4S5eMk
+         XwgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706264239; x=1706869039;
+        d=1e100.net; s=20230601; t=1706267007; x=1706871807;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Ii87Q/qzyCftqvFYpicM4K/S83guym+V7i/OJWrxv4=;
-        b=u9xSzjvNhutQVOYbCgG7E6HHfZUgRpS/FG7CA1CqBS9Qg/zVRe/TR8RVeEQxgHNeCc
-         goSgIH+hhFi4/nmtv3MxarMPf4h4edaALQtRGcPvhzOgiBPbsPnpuELUIwb3MBy/nQDv
-         Da4s47ZxNbHFnXhM/Osnk+neyaKr5xdkFbyb4fNCCWV/JfFQ94jGyu8yj524GgpZY3yx
-         Ro2mzY/y/sAMsyDldHK2T7PnaFQqX0SHQHZ7bzUoW8ciYDnggQARZ6vtCYHBYQQZdOa7
-         wjsgJI290NHufPIm6OInX1JlMO+HyFWO7Y8UDo0DDVATRhtLqoy/JyqnVwPlRvO3t3IW
-         +nsQ==
-X-Gm-Message-State: AOJu0Yxl0xIDc2uDC6tJMEZnaHaAFP8ToRDenNR9hhkUm/JKA36fCV+W
-	fvZgxywd09BfNle5KQv5IKYkxMZm55jai4R61VylrvW1+9eC1km8rkaM2BcpGaM=
-X-Google-Smtp-Source: AGHT+IEXQNuDnO+k4eeiL3CGCUxsZj/6lSMuqV0c9/bRFbaH1AZlVdFUnYW2wJcU7K4Jqfz8CGrd6A==
-X-Received: by 2002:a05:600c:2e11:b0:40e:d2fa:fbdd with SMTP id o17-20020a05600c2e1100b0040ed2fafbddmr711292wmf.172.1706264239166;
-        Fri, 26 Jan 2024 02:17:19 -0800 (PST)
+        bh=dshtbFxRCnFVER93fqS4xoshF/3Vm7dUsgixiL+seOM=;
+        b=wC7Dwh9UrkQjceKZ5MBR/Usrv92tx1fSpbUmX+j3XN2LuGlRp6EuZHjlm9+ZObqBuK
+         5dOpL+PSQAt/h8H4N9mYOR3Jl2Lqugb0TBAE4PdbRmXt1/9Yo/ayapEQr+Z/KeM235Ze
+         fKNtTXGSnpuCZKg3EdwiIBeM4IpA9gPQD/VzasnrejgrA7EQ1rOGHrjdsZInbt1yz2xy
+         55gURXqW1YCkaN6pzFmldzmx+tkduN3u8MeTgehGUy1qxAB5PZoxtFlGzpM1VFlHNF9Q
+         9JH3uPJ1LxxYESjm6YyWWQlzuwsd+k8KbMKWiG/j+fYYlNogYRI/rqscPYN3b8ERNWuv
+         FMUA==
+X-Gm-Message-State: AOJu0YwjPLguDxjGclESFuZkFebTJUJyt+4aILPfZS0kwB/lVT7jZ9EB
+	doX3eSnWDOe1sqhklN5aLkqEq81kj1O5LtKtD/rhKpkaFZvKQU9SWPMIFvVsqgM=
+X-Google-Smtp-Source: AGHT+IGmbXoLMnbdwIu3jJtMWI5gr7pjzGugSnO08Z+8kO0pEr9RforRNAwKapCq8mTMs3uXrFY7xw==
+X-Received: by 2002:a05:6512:3e07:b0:510:1b46:7f6e with SMTP id i7-20020a0565123e0700b005101b467f6emr821365lfv.120.1706267007468;
+        Fri, 26 Jan 2024 03:03:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id sn24-20020a170906629800b00a3040040011sm462787ejc.45.2024.01.26.02.17.17
+        by smtp.gmail.com with ESMTPSA id vk2-20020a170907cbc200b00a31c211fa71sm505575ejc.107.2024.01.26.03.03.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jan 2024 02:17:18 -0800 (PST)
-Message-ID: <25e0a1c6-70dd-409b-927b-ef113e6a4cc4@linaro.org>
-Date: Fri, 26 Jan 2024 11:17:17 +0100
+        Fri, 26 Jan 2024 03:03:27 -0800 (PST)
+Message-ID: <75429209-8f30-4880-8f92-ecb3cf90ae33@linaro.org>
+Date: Fri, 26 Jan 2024 12:03:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,23 +75,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: display: bridge: it6505: Add
- #sound-dai-cells
+Subject: Re: [PATCH v2 2/4] dt-bindings: remoteproc: Add compatibility for TEE
+ support
 Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Allen Chen <allen.chen@ite.com.tw>
-Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240126073511.2708574-1-wenst@chromium.org>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Jens Wiklander <jens.wiklander@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-remoteproc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, op-tee@lists.trustedfirmware.org,
+ devicetree@vger.kernel.org
+References: <20240118100433.3984196-1-arnaud.pouliquen@foss.st.com>
+ <20240118100433.3984196-3-arnaud.pouliquen@foss.st.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,39 +135,67 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240126073511.2708574-1-wenst@chromium.org>
+In-Reply-To: <20240118100433.3984196-3-arnaud.pouliquen@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/01/2024 08:35, Chen-Yu Tsai wrote:
-> The ITE IT6505 display bridge can take one I2S input and transmit it
-> over the DisplayPort link.
+On 18/01/2024 11:04, Arnaud Pouliquen wrote:
+> The "st,stm32mp1-m4-tee" compatible is utilized in a system configuration
+> where the Cortex-M4 firmware is loaded by the Trusted execution Environment
+> (TEE).
+> For instance, this compatible is used in both the Linux and OP-TEE
+> device-tree:
+> - In OP-TEE, a node is defined in the device tree with the
+>   st,stm32mp1-m4-tee to support signed remoteproc firmware.
+>   Based on DT properties, OP-TEE authenticates, loads, starts, and stops
+>   the firmware.
+> - On Linux, when the compatibility is set, the Cortex-M resets should not
+>   be declared in the device tree.
 > 
-> Add #sound-dai-cells (= 0) to the binding for it.
-> 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
 > ---
-> The driver side changes [1] are still being worked on, but given the
-> hardware is very simple, it would be nice if we could land the binding
-> first and be able to introduct device trees that have this.
+> V1 to V2 updates
+> - update "st,stm32mp1-m4" compatible description to generalize
+> - remove the 'reset-names' requirement in one conditional branch, as the
+>   property is already part of the condition test.
+> ---
+>  .../bindings/remoteproc/st,stm32-rproc.yaml   | 52 +++++++++++++++----
+>  1 file changed, 43 insertions(+), 9 deletions(-)
 > 
-> [1] https://lore.kernel.org/linux-arm-kernel/20230730180803.22570-4-jiaxin.yu@mediatek.com/
-> 
->  .../devicetree/bindings/display/bridge/ite,it6505.yaml         | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> index 348b02f26041..7ec4decc9c21 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
-> @@ -52,6 +52,9 @@ properties:
->      maxItems: 1
->      description: extcon specifier for the Power Delivery
+> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> index 370af61d8f28..6af821b15736 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> @@ -16,7 +16,12 @@ maintainers:
 >  
-> +  "#sound-dai-cells":
-> +    const: 0
+>  properties:
+>    compatible:
+> -    const: st,stm32mp1-m4
+> +    enum:
+> +      - st,stm32mp1-m4
+> +      - st,stm32mp1-m4-tee
 
-In such case you also want to $ref /schemas/sound/dai-common.yaml.
+The patch looks good to me, but I wonder about this choice of two
+compatibles.
+
+Basically this is the same hardware with the same interface, but two
+compatibles to differentiate a bit different firmware setup. We have
+already such cases for Qualcomm [1] [2] and new ones will be coming. [3]
+
+I wonder whether this should be rather the same compatible with
+additional property, e.g. "st,tee-control" or "remote-control".
+
+[1]
+https://elixir.bootlin.com/linux/v6.7.1/source/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml#L54
+
+[2]
+https://elixir.bootlin.com/linux/v6.7.1/source/Documentation/devicetree/bindings/net/qcom,ipa.yaml#L129
+(that's a bit different)
+
+[3] https://lore.kernel.org/linux-devicetree/20240124103623.GJ4906@thinkpad/
+
+@Rob,
+Any general guidance for this and Qualcomm?
 
 Best regards,
 Krzysztof
