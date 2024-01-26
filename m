@@ -1,73 +1,63 @@
-Return-Path: <devicetree+bounces-35556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8808483DCCE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:55:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A185283DCFB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:01:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AC421C241D2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:55:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56FEF281784
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBFD1C2A5;
-	Fri, 26 Jan 2024 14:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69E81CD3C;
+	Fri, 26 Jan 2024 15:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HO/rDZ2c"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OsPyVERI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2921CD07
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 14:55:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2ADB1CD1B;
+	Fri, 26 Jan 2024 15:01:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706280928; cv=none; b=YJkZOpzpQSZUjf6GIi5ywk1sEtjp6xhVsN4tYMRiWMe3ZfgNQ/xZn7uAfmEhYptBQWaSpSA7r6MHGILoQUfwAIok3nCtsiA8y2rkC3u9Qd1+5ssD27iFqa8UrMS9kxUItvJhK+E+Sr2ngOHU7w79PfgQP2Ndz9onuYDnyCZfFQQ=
+	t=1706281271; cv=none; b=AAeglmJOFvjx6FQWQ0MWUQKwN7P4yH91Yh1MlEyAsn42DpsZeC33is4z645D0x+JARj1VVfATHtz/Be0wgRK+WuWfcbqgy6r2VSc3enwn0udZGctda/PRRuOVbGMSOsDofcc9RQz/lyhric+4j8purdASwI1syv0zQW7qcxvQHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706280928; c=relaxed/simple;
-	bh=a6Wydf21Xmhb2YTwCyQD4VV76zs/v6VW1LM7GKsO3C0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pbUEoV4eiVcJoflnep9d/zxZfP0z1oNFZBIKqwtlG0IYQKUq0qRgy27uXsA7oglIq8uzrsc3ivcJC/jfwGqMe2Pf7fAKYl3pf0F3nIbeJDaD0vYRR0exc2KuSTgJa0Xroof241ACkjyszAmq2yOJvzzBmM6gl07XSrcAT04ihE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HO/rDZ2c; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50eabbc3dccso556905e87.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 06:55:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706280925; x=1706885725; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JKCwp0h7j0wQ8ptFHYyH1wL9D/pl1P6winLkZPVvdvQ=;
-        b=HO/rDZ2cFKjTs7QOklBRvbZj6afzElekC3WaxnJYbc2kV48h13o4OhHKCEiHuO8wOV
-         kn0R5zyiPm4RarvHSlmrdgsi8ISKaw4oBr6DH5iBpGprvjEpK48Vc0cGHiK+QLmStNx3
-         DVBW/ooO+z4ep40Ih/oUr12DSNigB+/lmgwwvbhDzT5DiPR9Nkg66AQJPdif0gJyvkV5
-         MBeKuw/vLf5cAtD5W03bfwOAcAoOzVrXTs7VRtSqmnus4TWO97s9tLhCIFQQomtD5+l/
-         3B3DqV3f5qhZKviOZlU2nAfZDaaTtPXs3P6Bsh/m4QQpL5zab7Smzk9wSZb/aOjxCmSG
-         cgkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706280925; x=1706885725;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JKCwp0h7j0wQ8ptFHYyH1wL9D/pl1P6winLkZPVvdvQ=;
-        b=Ji0o4hRQYdl20SM19NEeZ65ggObegPEr9dAWosFmyVVjhnr6rIzXiq4aZUTrNAJ9Ww
-         nYSDqNpOyFR3QAUY2XhGV1qJSm4awGejWo7ggoOGmAvh7lC+W65+4yWMSsSMkRIuezw3
-         9s75E87oUiZdFclhpdAGv3toADXpCnN+n0OcMsqtflK5GKfIsmidmCnRs4vVy3JTX/9+
-         oV1EKxy4GnYFHnXVcE+Zb9usw3bsgbpAOvT1RYreuThVjUA1Ew7LksW7MNXeWMnpRIu8
-         v45ov/DDOPuxyXghkq0ZVPNHhIfuDobULZgE8X1ROBFxQgoFGp0ysKSQg381ixpcPobC
-         c22w==
-X-Gm-Message-State: AOJu0YzBmHArE43lnX9mwCRGl9wI720QYE9QaBQKxrdRoqAMC3fCqlyw
-	/fZ9V9P+Mp3dkEqjLxgwAfdwEI7jP8VGfd5c5Zj03A6ukS5Lepij
-X-Google-Smtp-Source: AGHT+IFmLz6G8Nq8ruWrhsCMZ9dGCIAyuitqMMZ0UWNA5T6iguTMY4JVe3dKiRTTYXpZp+pJpu0UzA==
-X-Received: by 2002:a2e:9684:0:b0:2cf:2111:4e48 with SMTP id q4-20020a2e9684000000b002cf21114e48mr599254lji.52.1706280924646;
-        Fri, 26 Jan 2024 06:55:24 -0800 (PST)
-Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.googlemail.com with ESMTPSA id a2-20020a05640233c200b0055731d8f459sm672407edc.24.2024.01.26.06.55.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jan 2024 06:55:23 -0800 (PST)
-Message-ID: <aa7f0c6e-8f7d-4e75-8296-e968ac543218@gmail.com>
-Date: Fri, 26 Jan 2024 15:55:21 +0100
+	s=arc-20240116; t=1706281271; c=relaxed/simple;
+	bh=ogH/WxYNzbxPJyMWY22zLDSZVE6tO2CwW3DYcs0iSi0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LQW+P1/dMFh9QJwO5y0gDTdoWdkESHW1SAFLkqPQKKWRvpfNzZQqhCktUbPP7PlhGsURCBpCpyel/GhEBvKx0w/ZUiJzrUfibfmnIWf3OSMzB5QXOo0P5aFgyjSKsyJVOBuQeDzY69V56MfKU9gQ9+U3MQ15pFwSAE0gJA0yYzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OsPyVERI; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40QF0wKq085493;
+	Fri, 26 Jan 2024 09:00:58 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706281258;
+	bh=c771FDHfVeJbjIOLYa+Ep4vTxtf3uSuzaoVrdsfKZ6U=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=OsPyVERIck5lszwtfBEiqG1MbXfFj/2fkfU6V6HLKAwgd5a2yKWRbrDg9EA5HzJ9d
+	 i8W+2LnXtHpC5knhxEUvtX9P+4FhtO9aynmbK4mXEOs7/tNN3uzbCZSMuG4mW+E7wv
+	 FtLVvhlpfKmNVrxEzBPVgUXdDmxc7cQVGM2Kmt2E=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40QF0wUA021144
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 26 Jan 2024 09:00:58 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 26
+ Jan 2024 09:00:57 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 26 Jan 2024 09:00:57 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40QF0vjJ004728;
+	Fri, 26 Jan 2024 09:00:57 -0600
+Message-ID: <16473ecf-c837-4424-a279-e5d921c2a588@ti.com>
+Date: Fri, 26 Jan 2024 09:00:57 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,66 +65,154 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/3] dt-bindings: vendor-prefixes: add acelink
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
- <nfraprado@collabora.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
- =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
- Heiko Stuebner <heiko@sntech.de>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Chris Morgan <macromorgan@hotmail.com>,
- Linus Walleij <linus.walleij@linaro.org>, Sean Wang
- <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20231207080512.3688-1-zajec5@gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62/a/p: use sub-node for
+ USB_PHY_CTRL registers
+To: Roger Quadros <rogerq@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>
+CC: <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <srk@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240126125951.18585-1-rogerq@kernel.org>
+ <20240126125951.18585-2-rogerq@kernel.org>
 Content-Language: en-US
-From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20231207080512.3688-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20240126125951.18585-2-rogerq@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi,
-
-On 7.12.2023 09:05, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 1/26/24 6:59 AM, Roger Quadros wrote:
+> Exposing the entire CTRL_MMR space to syscon is not a good idea.
+> Add sub-nodes for USB0_PHY_CTRL and USB1_PHY_CTRL and use them
+> in the USB0/USB1 nodes.
 > 
-> Acelink is a Taiwan company providing network products (routers, access
-> points, switches, cameras and more).
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-AngeloGioacchino, Matthias: I'd like just to make sure you didn't miss
-those patches. Other patches are already present in mediatek/linux.git
-but this patchset didn't make it there.
-
-P.S.
-Other two pending patches are:
-[PATCH 1/2] arm64: dts: mediatek: mt7986: reorder properties
-[PATCH 2/2] arm64: dts: mediatek: mt7986: reorder nodes
-
-
+> Signed-off-by: Roger Quadros <rogerq@kernel.org>
 > ---
->   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->   1 file changed, 2 insertions(+)
+>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi    |  4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi  | 10 ++++++++++
+>   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi   |  4 ++--
+>   arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 10 ++++++++++
+>   arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 10 ++++++++++
+>   5 files changed, 34 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 309b94c328c8..503a3caf6fc9 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -39,6 +39,8 @@ patternProperties:
->       description: ShenZhen Asia Better Technology Ltd.
->     "^acbel,.*":
->       description: Acbel Polytech Inc.
-> +  "^acelink,.*":
-> +    description: Acelink Technology Co., Ltd.
->     "^acer,.*":
->       description: Acer Inc.
->     "^acme,.*":
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index 464b7565d085..9432ed344d52 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -625,7 +625,7 @@ usbss0: dwc3-usb@f900000 {
+>   		reg = <0x00 0x0f900000 0x00 0x800>;
+>   		clocks = <&k3_clks 161 3>;
+>   		clock-names = "ref";
+> -		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4008>;
+> +		ti,syscon-phy-pll-refclk = <&usb0_phy_ctrl 0x0>;
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+>   		power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
+> @@ -648,7 +648,7 @@ usbss1: dwc3-usb@f910000 {
+>   		reg = <0x00 0x0f910000 0x00 0x800>;
+>   		clocks = <&k3_clks 162 3>;
+>   		clock-names = "ref";
+> -		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4018>;
+> +		ti,syscon-phy-pll-refclk = <&usb1_phy_ctrl 0x0>;
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+>   		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> index fef76f52a52e..bd09662a3c29 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+> @@ -19,6 +19,16 @@ chipid: chipid@14 {
+>   			compatible = "ti,am654-chipid";
+>   			reg = <0x14 0x4>;
+>   		};
+> +
+> +		usb0_phy_ctrl: syscon@4008 {
+> +			compatible = "syscon";
 
+You'll want to add a binding for this to the simple syscon list.
+See this patch for an example[0]. Otherwise this gives a DT check
+warning.
+
+Also, adding the new nodes for AM62p should be moved to the
+next patch in this series. Fixing AM62 and AM62a should be
+a standalone patch.
+
+Andrew
+
+[0] commit cb523495ee2a ("dt-bindings: mfd: syscon: Add ti,am654-dss-oldi-io-ctrl compatible")
+
+> +			reg = <0x4008 0x4>;
+> +		};
+> +
+> +		usb1_phy_ctrl: syscon@4018 {
+> +			compatible = "syscon";
+> +			reg = <0x4018 0x4>;
+> +		};
+>   	};
+>   
+>   	wkup_uart0: serial@2b300000 {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> index f0b8c9ab1459..8311c7c44cd3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
+> @@ -566,7 +566,7 @@ usbss0: dwc3-usb@f900000 {
+>   		reg = <0x00 0x0f900000 0x00 0x800>;
+>   		clocks = <&k3_clks 161 3>;
+>   		clock-names = "ref";
+> -		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4008>;
+> +		ti,syscon-phy-pll-refclk = <&usb0_phy_ctrl 0x0>;
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+>   		power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
+> @@ -589,7 +589,7 @@ usbss1: dwc3-usb@f910000 {
+>   		reg = <0x00 0x0f910000 0x00 0x800>;
+>   		clocks = <&k3_clks 162 3>;
+>   		clock-names = "ref";
+> -		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4018>;
+> +		ti,syscon-phy-pll-refclk = <&usb1_phy_ctrl 0x0>;
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+>   		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+> index 4e8279fa01e1..26e9fd9da78f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
+> @@ -17,6 +17,16 @@ chipid: chipid@14 {
+>   			compatible = "ti,am654-chipid";
+>   			reg = <0x14 0x4>;
+>   		};
+> +
+> +		usb0_phy_ctrl: syscon@4008 {
+> +			compatible = "syscon";
+> +			reg = <0x4008 0x4>;
+> +		};
+> +
+> +		usb1_phy_ctrl: syscon@4018 {
+> +			compatible = "syscon";
+> +			reg = <0x4018 0x4>;
+> +		};
+>   	};
+>   
+>   	wkup_uart0: serial@2b300000 {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> index 19f42b39394e..0893e63c399a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> @@ -18,6 +18,16 @@ chipid: chipid@14 {
+>   			reg = <0x14 0x4>;
+>   			bootph-all;
+>   		};
+> +
+> +		usb0_phy_ctrl: syscon@4008 {
+> +			compatible = "syscon";
+> +			reg = <0x4008 0x4>;
+> +		};
+> +
+> +		usb1_phy_ctrl: syscon@4018 {
+> +			compatible = "syscon";
+> +			reg = <0x4018 0x4>;
+> +		};
+>   	};
+>   
+>   	wkup_uart0: serial@2b300000 {
 
