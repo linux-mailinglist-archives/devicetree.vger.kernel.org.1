@@ -1,144 +1,181 @@
-Return-Path: <devicetree+bounces-35434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF8F683D709
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:58:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D10083D616
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:23:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03F1B1C2D69A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:58:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23272283AA4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82021612C8;
-	Fri, 26 Jan 2024 09:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B69F31CD09;
+	Fri, 26 Jan 2024 08:48:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="qhQ+aznB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iSzqCaaZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76DC860ED5;
-	Fri, 26 Jan 2024 09:08:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C0114280
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:48:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706260134; cv=none; b=e15QsUn5GXgw0Zld4O4x90xB+wmZUl0aV0ABTpcXEnU4Sjoh+OrNLaG6kXmiLpZTiO57+7qpIs7KyOlMjZy/gJ37OSlkhWjJa3a9e+PFIrPjsunt/Ux9Zn7vUwA+Wih9vhlmVE7XigFSqURlU9SG4g/P+2h+j53h10YbpOyeHXQ=
+	t=1706258907; cv=none; b=H7z5KiN67I5890Nksj4YhLflB/UN5GhZBMLreSoNpIxK8idQVQ7iRfDCe6QnPafwtf9L5x/3cplLJ5U0qr/Q+XNVC5m52jCCnl7ztd9zsCYsLcWCO5Pu92laGUYwB75zNvhgrL44qRh8t4SyLdZdv+i6pqmyV9zkK/XyE+UJArA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706260134; c=relaxed/simple;
-	bh=+iBdilf2oAlb3QWslakRcDz4Slj2S/vo74OJbOpf7io=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=u+AS+h6e+EB6kzV+2NBhUL8CsyW36hXqgqG0oVd0hiOPutyNizo8iZ/+ULEBPVagOJyF9mIN23mHmuC11Wg+xobX9wrdxLJiG3cCW24ApN0fqxiaggdZrZIfblbJKRs3lBUAeH2kuTLwDiH6feBDtyWxFzSU18kW8aBhWkGP4ZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=qhQ+aznB; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=Content-Type:MIME-Version:Message-ID:Date:References:
-	In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=PUfxJlZFVfmPhNLMt5rpstbfpKShoNxijw+jhoG4IIQ=; b=qhQ+aznBBExDH5jZPmD78Y4aEl
-	8AGLUycpgv2X48qKwFSdTpu0TvBGX9DeIgtBi5WsujLd4bS2Zhk4nuIPMCzzn6BV6Rq/1n/gIHCm9
-	nKxz8qwTLQqzd7B/VcTl/eteW1uBuGjqqU86wiZHpJmgO0casflUaxMcIU4jm2gSgiQ9k/F9z0d3d
-	Vt3wBK2LJbhhJQMrLaTejZOB+mnXokTB0YMlfid+Gur3Yke93LIfiRTEYkVfO3nvd7PPOKVtIpRUo
-	5kpwVCPRUpwGSjB6tJoQv7rr4mBywoyWdNKNRQyqDzmlOqPzNONvwV8T24J3sjRxSEY1OvewUg1KY
-	476+OxDA==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <esben@geanix.com>)
-	id 1rTHoA-000CBk-GH; Fri, 26 Jan 2024 09:43:30 +0100
-Received: from [87.49.42.9] (helo=localhost)
-	by sslproxy01.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <esben@geanix.com>)
-	id 1rTHo9-000Kqi-0v; Fri, 26 Jan 2024 09:43:29 +0100
-From: Esben Haabendal <esben@geanix.com>
-To: "Abhishek Chauhan (ABC)" <quic_abchauha@quicinc.com>
-Cc: Rohan G Thomas <rohan.g.thomas@intel.com>,  "David S . Miller"
- <davem@davemloft.net>,  Alexandre Torgue <alexandre.torgue@foss.st.com>,
-  "Jose Abreu" <joabreu@synopsys.com>,  Eric Dumazet <edumazet@google.com>,
-  "Jakub Kicinski" <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,
-  Maxime Coquelin <mcoquelin.stm32@gmail.com>,  Rob Herring
- <robh+dt@kernel.org>,  "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Giuseppe Cavallaro <peppe.cavallaro@st.com>,  "Serge Semin"
- <fancer.lancer@gmail.com>,  Andrew Halaney <ahalaney@redhat.com>,
-  <elder@linaro.org>,  <netdev@vger.kernel.org>,
-  <linux-stm32@st-md-mailman.stormreply.com>,
-  <linux-arm-kernel@lists.infradead.org>,  <devicetree@vger.kernel.org>,
-  <linux-kernel@vger.kernel.org>,  <quic_bhaviks@quicinc.com>,
-  <kernel.upstream@quicinc.com>
-Subject: Re: [PATCH net-next 2/2] net: stmmac: TBS support for platform driver
-In-Reply-To: <92892988-bb77-4075-812e-19f6112f436e@quicinc.com> (Abhishek
-	Chauhan's message of "Wed, 10 Jan 2024 12:19:29 -0800")
-References: <20230927130919.25683-1-rohan.g.thomas@intel.com>
-	<20230927130919.25683-3-rohan.g.thomas@intel.com>
-	<92892988-bb77-4075-812e-19f6112f436e@quicinc.com>
-Date: Fri, 26 Jan 2024 09:43:28 +0100
-Message-ID: <87r0i44h8v.fsf@geanix.com>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	s=arc-20240116; t=1706258907; c=relaxed/simple;
+	bh=VS5Ni5maj31JArPqZY1vs9pBolpnXuzegBBwM4lLN28=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eU5y6xvTv6TXbiEXsVKfGJ9lQcITR4G62ZRFUusoBghgEn8GOPf5gL98gaAAO28ST73of5+H4P0R6KE7ANozi8TkDNu2T64dkfv3fElBktdDV6pywyWWk6wjz7NIRrA0qvloYPntGTicmV+YylDa5rX+k7HTgY8I5En8dFegYS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iSzqCaaZ; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-338aca547d9so167788f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 00:48:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706258904; x=1706863704; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=n6wRtkPjuUrJjlFMUMqH+6j6lsvanycmt3XDtafzhRg=;
+        b=iSzqCaaZk3Q+Gt2sOZ+gzwPF0rgLRUAFmVzIM/V5gBZQ/E/KUzK4aLJ0GwK13qscX0
+         Z49BGBeHmY1iO4cTHpPD7w7H+y3buhgKVl5YKw2GTvlMRwYEiBbqp9Ja1+YE6VOhDSoX
+         zqT/9Dfg+oVDj2pjUy1n7ByP0mUUf+oW5iMLakEc3KdbIb4rIv5s/serg67LfsAVJw9C
+         CblcjhKAQQv/u/ST1oNLfyjMpk/k9B98M+7Y9RzsZ7vBDDGJpWjlreN1QKhagWcaYCNg
+         Q/rxXvZym2MsUg1s4KP3m9anKpDL39VnKmZWpYkc7IO8m1TJLUU+cr3yTUBVO0DYXEnD
+         nXKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706258904; x=1706863704;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n6wRtkPjuUrJjlFMUMqH+6j6lsvanycmt3XDtafzhRg=;
+        b=FtP4gV34Ql9M00c4n2dQONrRwxfmtmIXkKNSVqleOBN3CFknm8fvjpeHlypAr4qEaH
+         yVSF8ORFUpxKsjb/VdeUqn2qj4ALsdmxwywLaXyEmypiBG/RkzrAQnTfMp5zMjr8epgK
+         sQruLgzipj5WkHO0bMcpNSmyqq4wBAGb+7sH+/2jSvqCnzeo08R3JKvKFHrPaoqDLzEu
+         rDTgLi537yKZ/IkKzXxp6cvfVDUVa2Q2Swzl1J6Vn4HSUu/SjmCMt5yaD0Fh90XdUJaC
+         BBuZZozu9q/CbgQ941mjp1Vd0YNMkcqpk9TZZfhQu821SIYGQv8QHZTHW4enRWWNnR0X
+         wHhw==
+X-Gm-Message-State: AOJu0Ywx2TrGQG6ozjYSTTZKLqhVag8DBZWkLqFx7p23sFlxtpY+x9SJ
+	UhY6yRYfdzGMQK/j6v6KqAPvCDTPfyyZe2irIWKzdy5FZcGhmKxl++k94Z/rJ9c=
+X-Google-Smtp-Source: AGHT+IEwQsLrUSRj8yMQZRrM3TJrxtGnaUPwFw8asQJYI5gX43nSMwhRCTMymhgu1XArH0UM/lj1QA==
+X-Received: by 2002:adf:e581:0:b0:337:bc89:c11a with SMTP id l1-20020adfe581000000b00337bc89c11amr398266wrm.239.1706258904145;
+        Fri, 26 Jan 2024 00:48:24 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id gx3-20020a170906f1c300b00a19b7362dcfsm382645ejb.139.2024.01.26.00.48.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jan 2024 00:48:23 -0800 (PST)
+Message-ID: <ddaae46e-e081-4bff-9a36-44499584cb08@linaro.org>
+Date: Fri, 26 Jan 2024 09:48:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Authenticated-Sender: esben@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27165/Thu Jan 25 10:51:15 2024)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/6] dt-bindings: PCI: qcom,pcie-sm8450: move SM8450 to
+ dedicated schema
+To: Rob Herring <robh@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84sk?=
+ =?UTF-8?Q?i?= <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ linux-pci@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+References: <20240125-dt-bindings-pci-qcom-split-v2-0-6b58efd91a7a@linaro.org>
+ <20240125-dt-bindings-pci-qcom-split-v2-2-6b58efd91a7a@linaro.org>
+ <170623813219.6729.5150130088127136653.robh@kernel.org>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <170623813219.6729.5150130088127136653.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-"Abhishek Chauhan (ABC)" <quic_abchauha@quicinc.com> writes:
+On 26/01/2024 04:02, Rob Herring wrote:
+> 
+> On Thu, 25 Jan 2024 14:03:25 +0100, Krzysztof Kozlowski wrote:
+>> Move SM8450 PCIe devices from qcom,pcie.yaml binding to a dedicated file
+>> to make reviewing easier.
+>>
+>> This creates equivalent schema file, except:
+>>  - Missing required compatible which is actually redundant.
+>>  - Expecting eight MSI interrupts, instead of only one, which was
+>>    incomplete hardware description.
+>>
+>> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../devicetree/bindings/pci/qcom,pcie-sm8450.yaml  | 175 +++++++++++++++++++++
+>>  .../devicetree/bindings/pci/qcom,pcie.yaml         |  67 --------
+>>  2 files changed, 175 insertions(+), 67 deletions(-)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-sm8450.example.dtb: pcie@1c00000: Unevaluated properties are not allowed ('#address-cells', '#interrupt-cells', '#size-cells', 'bus-range', 'device_type', 'interrupt-map', 'interrupt-map-mask', 'iommu-map', 'linux,pci-domain', 'max-link-speed', 'msi-map', 'msi-map-mask', 'num-lanes', 'perst-gpios', 'phy-names', 'phys', 'power-domains', 'ranges', 'wake-gpios' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/pci/qcom,pcie-sm8450.yaml#
 
-> Qualcomm had similar discussions with respect to enabling of TBS for a
-> particular queue. We had similar discussion on these terms yesterday
-> with Redhat. Adding Andrew from Redhat here
->
-> What we discovered as part of the discussions is listed below.
->
-> 1. Today upstream stmmac code is designed in such a way that TBS flag
-> is put as part of queue configurations(see below snippet) and as well
-> know that stmmac queue configuration comes from the dtsi file.
->
-> //ndo_open => stmmac_open
-> int tbs_en = priv->plat->tx_queues_cfg[chan].tbs_en;(comes from tx_queues_cfg)
->
-> /* Setup per-TXQ tbs flag before TX descriptor alloc */
-> tx_q->tbs |= tbs_en ? STMMAC_TBS_AVAIL : 0;
->
-> 2. There is a no way to do this dynamically from user space because we don't have any 
-> API exposed which can do it from user space
+I thought that's error coming from dtschema about msi-map, but in fact I
+removed a bit too much in this binding when dropping if:then:.
 
-Not now. But why not extend ethtool API to allow enabling TBS for
-supported controllers?
+I'll fix in v3.
 
-> and also TBS rely on special descriptors aka enhanced desc this cannot
-> be done run time and stmmac has to be aware of it before we do
-> DMA/MAC/MTL start.
+Best regards,
+Krzysztof
 
-Isn't this somewhat similar to changing the RX/TX ring parameters, which
-I believe also is quite difficult to do at run time, and ethtool
-therefore requires the interface to be down in oroer to change them?
-
-> To do this dynamically would only mean stopping DMA/MAC/MTL realloc
-> resources for enhanced desc and the starting MAC/DMA/MTL. This means
-> we are disrupting other traffic(By stopping MAC block).
-
-Yes. But you would be disrupting traffic less than by requiring a
-complete reboot of the target which is needed if the devicetree must be
-changed.
-
-> 3. I dont think there is a way we can enable this dynamically today. I
-> would like upstream community to share your thoughts as well.
-
-Hereby done. Could we investigate the possibility of using ethtool to
-change TBS enable/disable "run-time"?
-
-> 4. I agree with Rohan's patch here and want upstream community to
-> accept it. This will allow use to configure the queues where TBS needs
-> to be enabled as hardcoding in the code unless upstream has better way
-> to this using userspace.
->
-> Please let us know if you think otherwise. 
-
-/Esben
 
