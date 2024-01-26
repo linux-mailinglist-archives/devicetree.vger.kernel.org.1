@@ -1,179 +1,181 @@
-Return-Path: <devicetree+bounces-35440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134FE83D906
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E77D83D92C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:18:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F666B34C4B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:03:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3AFE8B39297
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:15:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A4871427F;
-	Fri, 26 Jan 2024 09:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE4967E6D;
+	Fri, 26 Jan 2024 09:38:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="uBTAk+9P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eW9AakYd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF87D6772A;
-	Fri, 26 Jan 2024 09:13:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0140564CF9
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 09:38:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706260424; cv=none; b=eK2aZ3l3kIGT8Z3e0Lge1Jsh/+TkLLnKxPUfy/UoFMzuUgPNr5WdY66iVG/jH6UMvmrcjvwEp3A0c4wLRzZR85NpoFkepgoZ4InQXSQrdeJQOh44qYYvD28ciQbThE98eot0tX7m/HgAUDU4rGOMKbUKDpNkXhymSHL0/YHWvas=
+	t=1706261935; cv=none; b=aGr68Dtz+74MppRo34a2x2fR7en/TZYQ4wSGZbY3gLidBHdrT7FoFoIQo1NbSAqMD4mHUgexfO7UPORiRaOciKcSuiOmy5Y9zgFdRP3FPSdsta9F9/ynHBgeFwgmYUOVIxDxqjlGkYiUjHB5rviXBVS5wEy4xo5hs2/s4tNFg0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706260424; c=relaxed/simple;
-	bh=ixHA4ByvJdYwI4VG4upsmomgkVlzfaNWXloCbrP7WpE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dqzhx+/d1IT6jcbBCAV4kkBPh56bCFMwGbp+qrECsfpJbSRO5jNdt2LZ6tmFLx3Xewba71aQuMGAbkesmEB5rqZ1MrXQE/o8QJp2WguKZJhnCW/3IZA1s1X5fpTEbX6SV1ziBauDNDqCE0U7i7qsBJySLfx7G28FVujyYRR4FL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=uBTAk+9P; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706260421;
-	bh=ixHA4ByvJdYwI4VG4upsmomgkVlzfaNWXloCbrP7WpE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uBTAk+9PlPa/wc0i6kX1JN/PCLrIrGXTAg4pE6Yb8HZ841bcL1/8hVSbFpjUzDrNS
-	 Xdz97p6c9l6hSg01dkMz8HYQhvP9hSBtrYOcoJFiRP2DJtHKU2sOR9o9Ku+yrdfFAt
-	 tHo7bZnc2fAkzgIu1DBJKIP2x4CU9uzjvjdvwcjRE4criuNib1zB/MXOawjUo+JMke
-	 wujOIMXPvYxOQtweBNYBOVSvMet1rUIotg/0ro6h0IJTkZOCOKWYSVPd3zBUH5Khib
-	 hkH7op4BoBDZ6mgXJx3inkYmJFew32r2Ba7R65I+fDD4iiQmTr2c2ynXx7SQkNWOSU
-	 kwJR5SQa7Wydg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 528853782072;
-	Fri, 26 Jan 2024 09:13:40 +0000 (UTC)
-Message-ID: <69af3310-3e6f-4730-bebc-44d5e29498b6@collabora.com>
-Date: Fri, 26 Jan 2024 10:13:40 +0100
+	s=arc-20240116; t=1706261935; c=relaxed/simple;
+	bh=4449UScTTEGM5kZZoyLU0xXEQfqky887G2FwqhxVQzY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=DGPZjzjEL34S+2/sKRF+p/SXeBA7rmMnpgOdV7OJlczAcYULsP8QymZEsOXpW/76dBXHnZaMpvEiD7UmpGbxFbDQ6ozl3XSlPb171o6lz65/paMgeiqw1MqRRCs4u2wVfzPtgLU93cwdl7e0FDnD1RvPhDvI+4ANchO1noTh4ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eW9AakYd; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a314ca7852cso15710866b.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 01:38:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706261932; x=1706866732; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SU0QZ/C9JHR+wXOt/l6AbaKKe/yMkJBOBv7GjvM4hjc=;
+        b=eW9AakYdTKT4609RZDcSM1M0Xa3J0LC/FpbOSBR4vnaiVhX6jiWI/w204mhAdS3TBJ
+         y4M8p1tvfHJGHDmilB9oFC06IKzsBUL8A21ZKem1bpOKhDxHL4Ps500o8UWVEEjRoz+Y
+         dXgxHYVP7C/AolMsMBrK1fglf5QkNxikG50mXfLvACW7xBHfeH7MlycpyUUoIVIc4FP9
+         lqEVGac6aXG+fN9l64WdHeiRCQfEZPpH31ITkiWOBwCn6j/nXmhXRzaGOelr/VomeB/Y
+         L9uXQS25oD4fktz3H1+KHSbA8T5X83A/WRycYzLgnYJ3CSCnvyn7UlUH3797zf18caR4
+         T9PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706261932; x=1706866732;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SU0QZ/C9JHR+wXOt/l6AbaKKe/yMkJBOBv7GjvM4hjc=;
+        b=P5QqZNeBW610mIGSliToypcB694WWDX7jhIUHbEcFTSEIcOzk9oPphkcrMuWAfw9pT
+         +s16ksEuDkRZ0mUcCd+jzQ8te1AIvcHyQuStBeYyu6gYb/5WGPkunIRnUycJLxLArxRM
+         +co5OuPnWM8nko6AIDZD0wJOlsIQmMLPKOr2RK8ni4VAq8b1XYpuUb6zS12n33J+sRU5
+         Q7Tk/1EAOq8qKapn3/0cYDJVs2LOIfPMM6kj6f4u8rgUmyeXwcSPj4EN9xDICtuijaiV
+         OORLx02Jj53Qqii6tb2sACz5JPB6OifO3zoUncA8b0mNtKun4lOP4vIQgacKl9R6SWeN
+         hlAQ==
+X-Gm-Message-State: AOJu0YxjAE4cqk+NiY1frd00hZ1iAnHxnA7JPB3ChU9v95nnHvFmUHh0
+	UKun9uOBIeR+lJ0Syl230BDWp2ANdNVK8ejmIwNhy2xlzKtBd70vpWXB/GvzrWA=
+X-Google-Smtp-Source: AGHT+IF6WMg+EQloM2Nfov3qxjumSbvSzaj+mwT9SUnJkZPl3YgID/ABrmbwxei7lFTdWWGOQbpXDw==
+X-Received: by 2002:a17:906:1d0b:b0:a31:5b30:6f54 with SMTP id n11-20020a1709061d0b00b00a315b306f54mr617313ejh.30.1706261932364;
+        Fri, 26 Jan 2024 01:38:52 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id se27-20020a170906ce5b00b00a349318ea10sm426768ejb.199.2024.01.26.01.38.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jan 2024 01:38:52 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Fri, 26 Jan 2024 10:38:35 +0100
+Subject: [PATCH v2 6/7] arm64: dts: qcom: sm8650: describe all PCI MSI
+ interrupts
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
- SDIO Bluetooth
-Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>, Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Sean Wang <sean.wang@mediatek.com>, linux-bluetooth@vger.kernel.org,
- netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240126063500.2684087-1-wenst@chromium.org>
- <20240126063500.2684087-2-wenst@chromium.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240126063500.2684087-2-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20240126-b4-dt-bindings-pci-qcom-split-dts-v2-6-0bb067f73adb@linaro.org>
+References: <20240126-b4-dt-bindings-pci-qcom-split-dts-v2-0-0bb067f73adb@linaro.org>
+In-Reply-To: <20240126-b4-dt-bindings-pci-qcom-split-dts-v2-0-0bb067f73adb@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2346;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=4449UScTTEGM5kZZoyLU0xXEQfqky887G2FwqhxVQzY=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBls32f/HouX2kiquOsLRlva4BDb/H0zwhQPUv+g
+ DtS/w6Fy8GJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZbN9nwAKCRDBN2bmhouD
+ 1x0gD/4xWYzaMlIWsbSjIZFH2QFtUcEdZ6Jl4q6NfuOEe//uDaFv5ZSx/ofkrgyeQ1yT4sdK/+I
+ 8W+HdiiXZVgTrf6puCN+M3JNTFHUM78i9LoPAAZLcFzo3h81T0CjwNj7eYqc0TUKC93HfVOmKUM
+ 90srCof7cDHSgU4aan3GBV/prIsPiAHRuY24c8x3gwiFdY7p+OdKnC8gUkM04tbJeaLlVE2v0Gy
+ e3Kz3uLr9kPo8HBc/UvgrQZhMhcQDnIu52owgO7Pg1NBB7HjUQEuESVeqNIWPlKPZyibSR6s2/J
+ zaZeonVSARkXCbqAYDssH/Bl+HBjlG+wyFfuM/hFGlmPaBDE6HAAb8u8/wx9bFFOrWhP7qiwt0F
+ lj3qe214ui8kfLb8G7YKw+6Dv3ex8gD701bLMEZyUi5UK5NmB6aE67WZgetAeGwpkX+Ed0c3bdJ
+ /iPypfDVtEYk6welMZhWaVmpVu3EowtqPBtuc5C+JJMA+mp5CC+ch9IV2cTGkJFnhVOU8FiDSk5
+ tvJGh0Q0kDjWzuFOmtXKKMPNtDzZ+zg6gQWRrZwhdclc5NoWoMnahqdM5O8QLVH7W531H2WH3jm
+ CadJ8K4RCv9BV1RiEaEua55bwrepvcclZXewzFltArLZzwQBgojW0FjDptH6SkN2Vc8IZn3/xiN
+ rKKcap3pxsxEYGg==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Il 26/01/24 07:34, Chen-Yu Tsai ha scritto:
-> The MediaTek MT7921S is a WiFi/Bluetooth combo chip that works over
-> SDIO. While the Bluetooth function is fully discoverable, the chip
-> has a pin that can reset just the Bluetooth side, as opposed to the
-> full chip. This needs to be described in the device tree.
-> 
-> Add a device tree binding for MT7921S Bluetooth over SDIO specifically
-> ot document the reset line.
-> 
-> Cc: Sean Wang <sean.wang@mediatek.com>
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+Each group of MSI interrupts is mapped to the separate host interrupt.
+Describe each of interrupts in the device tree for PCIe hosts.  Not
+tested on hardware.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 36 ++++++++++++++++++++++++++++++++----
+ 1 file changed, 32 insertions(+), 4 deletions(-)
 
-> ---
-> Changes since v1:
-> - Reworded descriptions
-> - Moved binding maintainer section before description
-> - Added missing reference to bluetooth-controller.yaml
-> - Added missing GPIO header to example
-> 
->   .../bluetooth/mediatek,mt7921s-bluetooth.yaml | 53 +++++++++++++++++++
->   MAINTAINERS                                   |  1 +
->   2 files changed, 54 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
-> new file mode 100644
-> index 000000000000..ff11c95c816c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/bluetooth/mediatek,mt7921s-bluetooth.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT7921S Bluetooth
-> +
-> +maintainers:
-> +  - Sean Wang <sean.wang@mediatek.com>
-> +
-> +description:
-> +  MT7921S is an SDIO-attached dual-radio WiFi+Bluetooth Combo chip; each
-> +  function is its own SDIO function on a shared SDIO interface. The chip
-> +  has two dedicated reset lines, one for each function core.
-> +  This binding only covers the Bluetooth part of the chip.
-> +
-> +allOf:
-> +  - $ref: bluetooth-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt7921s-bluetooth
-> +  reg:
-> +    const: 2
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      An active-low reset line for the Bluetooth core; on typical M.2
-> +      key E modules this is the W_DISABLE2# pin.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    mmc {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        bluetooth@2 {
-> +            compatible = "mediatek,mt7921s-bluetooth";
-> +            reg = <2>;
-> +            reset-gpios = <&pio 8 GPIO_ACTIVE_LOW>;
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b64a64ca7916..662957146852 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13657,6 +13657,7 @@ M:	Sean Wang <sean.wang@mediatek.com>
->   L:	linux-bluetooth@vger.kernel.org
->   L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
->   S:	Maintained
-> +F:	Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
->   F:	Documentation/devicetree/bindings/net/mediatek-bluetooth.txt
->   F:	drivers/bluetooth/btmtkuart.c
->   
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index 2df77123a8c7..942e602bfc97 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -2213,8 +2213,22 @@ pcie0: pci@1c00000 {
+ 			      <0 0x60100000 0 0x100000>;
+ 			reg-names = "parf", "dbi", "elbi", "atu", "config";
+ 
+-			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "msi";
++			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi0",
++					  "msi1",
++					  "msi2",
++					  "msi3",
++					  "msi4",
++					  "msi5",
++					  "msi6",
++					  "msi7";
+ 
+ 			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+ 				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+@@ -2317,8 +2331,22 @@ pcie1: pci@1c08000 {
+ 				    "atu",
+ 				    "config";
+ 
+-			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "msi";
++			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi0",
++					  "msi1",
++					  "msi2",
++					  "msi3",
++					  "msi4",
++					  "msi5",
++					  "msi6",
++					  "msi7";
+ 
+ 			clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
+ 				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
 
-
+-- 
+2.34.1
 
 
