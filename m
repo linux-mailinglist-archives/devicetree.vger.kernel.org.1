@@ -1,297 +1,132 @@
-Return-Path: <devicetree+bounces-35546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE88083DBA2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:23:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA66D83DBCF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:26:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9502628359E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:23:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B7BBB2713D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FAE1C28F;
-	Fri, 26 Jan 2024 14:23:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="dXeRsRFQ";
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ZmdHQ54I"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E751C291;
+	Fri, 26 Jan 2024 14:25:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F59F1B599;
-	Fri, 26 Jan 2024 14:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.153.233
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706278998; cv=fail; b=jCAkM+cbpNFzRWzE7pODU1TTNLPenX1eaibErX1rLx9aO++frc1sBIzSnCh5WEGIVJFOxiMX0WN1kgFkEOn0l+npRJuu7OAqjDejUaR5UtYSKx8Ro1L6FK6uvj6iTGTv4m8XINn5TbVsB7pqmvoRh6ELVizAXngpK4WqXmiT7MU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706278998; c=relaxed/simple;
-	bh=1/BnJRsX/1elYaMb7wTHT0zOi8CFwgptJT4WJz9pXwE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=XVhbMbxZ0oZ/5JpsOi+hdt5fRSEHtCPtU4Gos12j3JFMc6MbTmyHkoqYkHcgXDPZ9kg5ljCAQ6Hr0tcNtvvgEvufQsr5M/szoiUZ+ztRmkYqldXlZ+oXQBkVtt4cg7YFcKODiV9fmXU6RiUUsmVIZQCJIS7FUR1jqSaq6+id9h8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=dXeRsRFQ; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZmdHQ54I; arc=fail smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1706278996; x=1737814996;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=1/BnJRsX/1elYaMb7wTHT0zOi8CFwgptJT4WJz9pXwE=;
-  b=dXeRsRFQDsBZyLH5O/MT5JNko8wKY7g1eJj1wvtLA4I5lKqVfAuF7la0
-   Jarl3VEe0HRaN6cDBqhD3OOyUCd7eSFZ8NM3gq7MRxBZzJ4ZvGNJWF5we
-   +UiSq91aXIY89c/MYn3GymH+CBNU8Werk9wgEXTQqCT9/8m4N/bdNc1/Y
-   O052Qiu4REuT8ZQMuviy9Qenb214q2krMu0p08q9/VZEsLK4ka6OTGGMk
-   ToJ0FGH7oyB1ER8wDtlFqvhT94KMGbempsb5ToytG7uoJSZxVs386ObxP
-   NDT6c584k73rKWNedf+a6jfOCxXIN7PfZPFOfHU/ucBxrGHk8pHXTuZyp
-   g==;
-X-CSE-ConnectionGUID: 8sfnxV1mT+O2iKYZH7Y4HQ==
-X-CSE-MsgGUID: WqZ+8E3UTDiNGAw/Skq3JQ==
-X-IronPort-AV: E=Sophos;i="6.05,216,1701154800"; 
-   d="scan'208";a="16634588"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Jan 2024 07:23:08 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 26 Jan 2024 07:22:48 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.250)
- by email.microchip.com (10.10.87.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Fri, 26 Jan 2024 07:22:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UbfkSNxu/zE9IF3AeHQpEkg14HZt79pfC9ESUox4+5LA6wDRNEcBQ5LmTbf958ngJOwe8OVLWep1RvXexJCxzeAoVgC95cL89cKjEYRaVHE0uEas8kqNUFPaq/zctkGXF6KcrVQeOsFh+HLvKQ/PZgdqkpB0HUojsIcJfpLWj5KS9odTdb9hQ/0UURdGOdQ/wBkaeN8CfQ0FTYczUL44Ze5zTlYwlicqpfUI+uiY8cI9oSXyqy580VTDZRXGE6tg0OyszcRlHGH4Ki+pp3KGBsa0UaaGR8c/N57vNqPPT2vBHRAZy4NVFOsbobJJW8bDPSDJtx3OIKtWWT41HBj66A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tOFV6tiSB9u+ZkCLFW9JBApssCZqvXAFKd7F9phRM7w=;
- b=gZRaRpFwFko0dHhr504N1xQ9PH4XRWSkJ4zpSKvWLJNCDNaBTajZTQZ+rxTRekqFq6NHGbMYTyhEoBQmOHdF3x/ogvfZRfhpx5iu5LdKuko75pE1m/8zMXjgiRCfEg8dw9CgpezcHvAOPoe6rDmgDDX2jV3oPSASf3+MMITcjm122GXSvFbG/lGxUS4YTyM82shiM56/5OP8Jl7A/gsmWB3ksQu80NPdiDmqvP3ovGgf0IvCYGXNEVxFxpN6gZj2Hrn/AlNxUzR58Lm5fKFV9BAyCy7XCrKvfIaQFnl+LeioCxbbpJL93S5BP2JYTQ1ZaoKpI7AxeAD1PP12h4344A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tOFV6tiSB9u+ZkCLFW9JBApssCZqvXAFKd7F9phRM7w=;
- b=ZmdHQ54IbmH3AXzx3LQ0YP/DMVnbLLJsgtIm6Dkvg9YavXymPM5a5/RIuwBo+fFYaXezx4JoG6DNccLe6e2KVF7r0xpH+jtxb/bIDS9sDP2a6CIbQxmnBASAY113X6wfSyDfIIoy6Ym6UrUtpLp15y32C9bzwBCbnxze0G5h9/grczCSrYagWgQfno6NuTBv023hzQ7L579Z6iAloRWIZr6FOaaYJHIZOU2rdtZeRr6yX0Xnp4pH2lrP7Lvx/9eoAFSaZLAkmj/iB236XRIRxGINtfw6zGW8kmI24TUDHBIN0SY94c8ll17NPtKIbjtHhorL2CpfkDI8j7FQTyee2A==
-Received: from PH7PR11MB6451.namprd11.prod.outlook.com (2603:10b6:510:1f4::16)
- by PH0PR11MB4949.namprd11.prod.outlook.com (2603:10b6:510:31::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.27; Fri, 26 Jan
- 2024 14:22:44 +0000
-Received: from PH7PR11MB6451.namprd11.prod.outlook.com
- ([fe80::80b9:80a3:e88a:57ee]) by PH7PR11MB6451.namprd11.prod.outlook.com
- ([fe80::80b9:80a3:e88a:57ee%3]) with mapi id 15.20.7228.028; Fri, 26 Jan 2024
- 14:22:42 +0000
-From: <Dharma.B@microchip.com>
-To: <Conor.Dooley@microchip.com>
-CC: <conor@kernel.org>, <sam@ravnborg.org>, <bbrezillon@kernel.org>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<lee@kernel.org>, <thierry.reding@gmail.com>,
-	<u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>,
-	<Linux4Microchip@microchip.com>
-Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
- schema format
-Thread-Topic: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
- schema format
-Thread-Index: AQHaSfB9G+vm5oXSwEmW6mjsJvC8kbDftWKAgADHFQCAAI7AgIAEKeOAgABefoCAAuIIAIAAvjkAgADtGQCAABv2gIAAKg+A
-Date: Fri, 26 Jan 2024 14:22:42 +0000
-Message-ID: <51da296d-a8a9-417a-8875-3b5e866a89a3@microchip.com>
-References: <20240118092612.117491-1-dharma.b@microchip.com>
- <20240118092612.117491-4-dharma.b@microchip.com>
- <20240118-recent-glorified-fd35d72e006e@spud>
- <c33868c8-dc42-4800-885c-5e5f24c2044e@microchip.com>
- <20240119-character-mardi-43571d7fe7d5@wendy>
- <da60f9f3-f955-4a87-a020-5710185953c0@microchip.com>
- <20240122-stark-duress-2f59294dcf27@spud>
- <4906b7e2-0ddb-4d3c-a48b-e16278f2d649@microchip.com>
- <20240124-lend-emerald-1028fe65cc39@spud>
- <c3c30bf2-e7c2-4861-bfdf-519a7afde476@microchip.com>
- <20240125-proved-passage-7fa128f828db@wendy>
-In-Reply-To: <20240125-proved-passage-7fa128f828db@wendy>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR11MB6451:EE_|PH0PR11MB4949:EE_
-x-ms-office365-filtering-correlation-id: 8649439e-13b7-4f75-fbc4-08dc1e7a4230
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: uabJoKcXS8FtbYzPFRQ4aplJlolork/Sl+lTLoK008VnR7ePsRrEASZgAMhkX/YZju0Db6b3e+Hai+01LB5xHDGUDmgW79SMPZxuJYi8pvigy60DJyO1MuXWPOrB7D2PWlz955fZJN9Yuiu6YDv9UEQ1d0YNfBsW48Ius5EAgUup5hosUoJkUDyh7qWpp1kGgU36gbWtcd0tbehIwT80uXlFcYwfKJ40VqMSX4zy8YYG99M0j5wf6d+9j9Z0aEVJpIgvBm8I5E5Wvs7wiotmj0MzcjPReJsBDGAoepFAv3PMD+7eM6bT4ZTWrY/Wj8jrKEc0ex5Ts4YXP9UhwEjosWHfYy9fnumR0eXmnF6D3c/EoUOdUefdBDkj7CJKWdW1euD6NzkksmByle5i1T0SfGZnEEm9UQD6MFqnWozo/jJggay/t73S9IabiTiZO3hherAoxyTsBPTS328YsrUnwuP8jm/Bw9voRDrBUBGvp5Jp2isSbwO3lAGSf1uVt7R8gJQME54u/KaFfC8PAk7mxofGYXM4eT7pRqMhIIEh0gLci0OcYm9ILA8qvUcVOIGlY+lB5HATaFVuubBfx5FADZv2/euOj3mHQE3oiE+9rkq9aoajM6fa5Xkv2pGM9Y8QNQZIVwTZSc6bH/qTpBMHXw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB6451.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(136003)(39860400002)(376002)(346002)(230922051799003)(451199024)(186009)(64100799003)(1800799012)(83380400001)(6512007)(2616005)(107886003)(38100700002)(122000001)(4326008)(5660300002)(8676002)(8936002)(7416002)(2906002)(478600001)(6862004)(966005)(6486002)(6506007)(41300700001)(71200400001)(53546011)(66446008)(66476007)(54906003)(64756008)(66556008)(76116006)(37006003)(316002)(6636002)(66946007)(91956017)(38070700009)(31696002)(86362001)(36756003)(31686004)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?sM2PE+T7q4pySDiHknZfd2jcw9zuHix/ZgHFHDX0xXG65GFLNBl3ItOyHE?=
- =?iso-8859-1?Q?ue9GqsjGo68Mjr7qSS3sFtu4XIJlTY7tzepN0dfxcoK3VF5nwqm0uDcgXW?=
- =?iso-8859-1?Q?54tMQUUEw1lPyLLXWv7khJv+4QCIws5AvOU3BZZNgxIWPH1f4EzpCTBOc0?=
- =?iso-8859-1?Q?D0tBbVgnWIzkNi4+vzhs6x5XVLV0kD2HsF0GIvpYdU2jhtHJryHexJbjD5?=
- =?iso-8859-1?Q?ryP+MHM3PuUITws2ojkzIr73Ah1FuxU1uVb57aI8OD2Ss1Pmf441JbF2EI?=
- =?iso-8859-1?Q?UuF3ZJIthEC4aAgZdME3k6Qo1uZ/63sg/Vw4OTGMvlhC/Y85rsFEAXhyBh?=
- =?iso-8859-1?Q?8MrivPwVFJpcfTACuAdbm4YxRhPxXOf9c/4mBNHO5jjtv1ISxxNQwY4NPF?=
- =?iso-8859-1?Q?a++FApWVpCpQcAybIJvtjmhRdkKctqbOLPxGfdWG7syNPRHf6z3/AKo54g?=
- =?iso-8859-1?Q?I/zaTbWsXe3LubVIySy00glpaxxON5kL/rJz9OlzAhZRLNNiAvxE3fYTGD?=
- =?iso-8859-1?Q?mBihEDI/fKc2Tbej/5TN7IUnfXBEseuZwOPMiWkBtPXbvD48FdrW87keab?=
- =?iso-8859-1?Q?cgkB3xiJYxSf7/T/7V4mJ5YbP7i94YZ1EMVMBbAyk2owv0Nmony7QrkG2Q?=
- =?iso-8859-1?Q?fPQ8Fz+4PmWC4JJnOITDjLbg5k8Sh10cAXaFDatrNoxLSc+pPfYoPH4fVd?=
- =?iso-8859-1?Q?vFQbV8r8pFb3ExfctWVEgCb0tur4hP4Ox0ocM9zVXTjLnKKjhcQZTDRD72?=
- =?iso-8859-1?Q?fefLK1L9EjAWqTDUYBEUdJVazOhbCC/AcBxnjhE1d7zZA4tYdCGri9DYij?=
- =?iso-8859-1?Q?cggJ5e8bIHoemHdrnBeWgGKp1OeLYVp+M6wvuWUtoSuXOFKCFxs3LSM8dX?=
- =?iso-8859-1?Q?+VhZfUrOOtflcFHJwB3bGGhFq93ZEN9ExFSHJxqin+giA6EI5wj20mNZk5?=
- =?iso-8859-1?Q?GQyqjtA78Gg2IZdbW/mH7/7ZFsCbWzeI4Qkg50rgAySn1tLWNTmbyYvW2i?=
- =?iso-8859-1?Q?CorPuZ6xbBnVz8/nzW5fRV1ls8XxL9Im09xDlxdCiGSFw7JX9hcLQ5iAe2?=
- =?iso-8859-1?Q?r7E4ly/IxyTVXemTLd/aKcuYYY1O8yh/9xwUF6AjoyPa0PdH1LSdrsx0iG?=
- =?iso-8859-1?Q?vTtrF/OU3YYCDRUBvqM2I7dvIC1TakiZivoo2x4vti+64Ymw5V+N+KAhq7?=
- =?iso-8859-1?Q?kEU/w2pYJOgtiBn1NXC+J4twnPSr0iK3RrAqIYGfaytEWQqtxLiCq9PEQ7?=
- =?iso-8859-1?Q?apyvSy4gB5OioW73XaeKDGbfqmHN8OuTXluSfzQ07aBIuZQnWCn3BKSfjP?=
- =?iso-8859-1?Q?OnRDdg5YEJq3V0MAGC9IPip56WUCC0RWWnJI4GvsoFb5ljVhncWrwfS8yR?=
- =?iso-8859-1?Q?sqf6UbASupIVyo5D2fDb+ANpwluM+ig7qr2g4kNv/tQjUjXY7ITeZKaV80?=
- =?iso-8859-1?Q?toz9RWSYtCILu6u4y3qNEYLMDjKCKKiyRL2/nAcwpoEDba6nrrOpLFr67t?=
- =?iso-8859-1?Q?JIkcIGvH7eErwIBP3EgpwRapdaWIoJ0nFFbzQ+IAtE4kTvSnLCPHg9daeA?=
- =?iso-8859-1?Q?Aj4WMrO8IKkl5Azl8EvSkISvkHSPq6bDDbcVqgndxjrMoBLP6/ODzXoHhT?=
- =?iso-8859-1?Q?OCMlu2tbNDJgUJMvwgMK9uoziDSQ6aYAcxvNvfTUUigRqusoe7oKRz+Y+M?=
- =?iso-8859-1?Q?bL4eK7WNmevp0QcNxf4pb4XwJDjOt4H0NIxqvuJl?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <05AAE253C650464985AA72B3E4957186@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C772030A;
+	Fri, 26 Jan 2024 14:25:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706279103; cv=none; b=e+Ev/roHu/FiGq4f4q5nwW9FqJrZUnpj2XeghkzpSdeBVy58wTm1YE9abtgNokfxf67hk3lvEVx1tL7miaBHgzZkK/DxWkfZ+BmYXA2J1xsxY2E0RggIxokOyvHDE/fZOFzExz/1YN9Gf+vfR3kAopMSZQnnptprfoE5v/tkOJw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706279103; c=relaxed/simple;
+	bh=lGOt20atkVEg9U8C7LSGX4rCm3axcdD6rMU6JLeU+Cg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QLTClqRn/UhbjYul5lwdZCKdC2ZxuB2jfYIPnSmB5Icbs7g8geLY0YAszn+iIURXepf/YG/8jgJxhwHvVriSyxxnrjK07jIfIGxmxX/aKVq51ixr/WzORi494SlTXxVV3Ljv+yiVDdqEz9jqYlGH8y1673kAegpA1x9UTd6kZRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5ff821b9acfso4051057b3.1;
+        Fri, 26 Jan 2024 06:25:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706279100; x=1706883900;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AobresbOLLicv0OGCL/TB/MYyPZSt0c9M3tIrPkCdUo=;
+        b=lGeXrvtd4F2oN121ttLZd82BYYbRlP+myEPE/aXmrjwMPwZOOekPH70dBpP+WtwcbD
+         vnqRjKb6nZ/BKlwYhVJ/jB68zSsHJQ1rkv5wNaWSwMSG8LkvBAk+WZbIbWoQH2j2/SRh
+         hTKF/cLEpC3GaeGfFKdmSOsXbLkqiBeOP0oR+c1+oEy+2m1E6WDeyT3aIENGRVMhTdCE
+         OMyFr3d67XzmHaC546ENtbUAXKUo1XIH6r1UXdm0VaQ+UhPHnXE4ebHFCp1tyyUQGIu7
+         99E9XWWXGCVF5qK7b6mWQevKxZ46hRyu5TZjVjL2TUNx3k72wd9LQtjnltkNw07FO01B
+         zuaA==
+X-Gm-Message-State: AOJu0YzxKdYarRdabX/gILdacPTyWOptmN3CZuSRm+GbWz5TffXH6gdY
+	1yGh94yHiJF68huH3ZFGsX4eqT5i9p+/GAMK6SJ4q7Mo4vXz14Uv6eHzOIluecM=
+X-Google-Smtp-Source: AGHT+IHSyl7ChSwD8TQvLm8DRI5o+x9RWRc3RQhHs0SU/W7/JYTnogKIIAfB5D3GnkEROxLImLqUtg==
+X-Received: by 2002:a0d:d895:0:b0:602:b24c:2321 with SMTP id a143-20020a0dd895000000b00602b24c2321mr1329450ywe.62.1706279099987;
+        Fri, 26 Jan 2024 06:24:59 -0800 (PST)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id r12-20020a0de80c000000b005f900790763sm416158ywe.49.2024.01.26.06.24.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jan 2024 06:24:59 -0800 (PST)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5ffe7e7b7b3so3919657b3.3;
+        Fri, 26 Jan 2024 06:24:59 -0800 (PST)
+X-Received: by 2002:a81:a10f:0:b0:600:ec7f:5442 with SMTP id
+ y15-20020a81a10f000000b00600ec7f5442mr1174685ywg.70.1706279099354; Fri, 26
+ Jan 2024 06:24:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6451.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8649439e-13b7-4f75-fbc4-08dc1e7a4230
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2024 14:22:42.4853
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eIpYgw6oObuibjwdzSEV5vNMHhK4mf0o/W1n+f6aafvGZ7zpOC533i0xUbSVapN0mY7LVs/mF6AXeGPBI4Q43A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4949
+References: <20240117131807.24997-1-wsa+renesas@sang-engineering.com> <20240117131807.24997-3-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240117131807.24997-3-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 26 Jan 2024 15:24:48 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX7Z8w0JykKuboP__ZE4x+LeKSQAGdyrUezERxysPUCKA@mail.gmail.com>
+Message-ID: <CAMuHMdX7Z8w0JykKuboP__ZE4x+LeKSQAGdyrUezERxysPUCKA@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 2/2] arm64: dts: renesas: ulcb-kf: add node for GNSS
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Conor,=0A=
-=0A=
-On 25/01/24 1:57 pm, Conor Dooley - M52691 wrote:=0A=
-> =0A=
->>> If the lvds pll is an input to the hlcdc, you need to add it here.=0A=
->>>   From your description earlier it does sound like it is an input to=0A=
->>> the hlcdc, but now you are claiming that it is not.=0A=
->>=0A=
->> The LVDS PLL serves as an input to both the LCDC and LVDSC=0A=
-> =0A=
-> Then it should be an input to both the LCDC and LVDSC in the devicetree.=
-=0A=
-=0A=
-For the LVDSC to operate, the presence of the LVDS PLL is crucial. However,=
- in the case of the LCDC, LVDS PLL is not essential for its operation unles=
-s LVDS interface is used and when it is used lvds driver will take care of =
-preparing and enabling the LVDS PLL.=0A=
-=0A=
-Consequently, it seems that there might not be any significant actions we c=
-an take within the LCD driver regarding the LVDS PLL.=0A=
-=0A=
-If there are no intentions to utilize it within the driver, is it necessary=
- to explicitly designate it as an input in the device tree?=0A=
-=0A=
-If yes, I will update the bindings with optional LVDS PLL clock.=0A=
-=0A=
-clock-names:=0A=
-  items:=0A=
-    - const: periph_clk=0A=
-    - const: sys_clk=0A=
-    - const: slow_clk=0A=
-    - const: lvds_pll  # Optional clock=0A=
-=0A=
-=0A=
-> =0A=
->> with the=0A=
->> LVDS_PLL multiplied by 7 for the Pixel clock to the LVDS PHY, and=0A=
-> =0A=
-> Are you sure? The diagram doesn't show a multiplier, the 7x comment=0A=
-> there seems to be showing relations?=0A=
-=0A=
-Sorry, =0A=
-LVDS PLL =3D (PCK * 7) goes to LVDSC PHY=0A=
-PCK =3D (LVDS PLL / 7) goes to LCDC=0A=
-=0A=
-> =0A=
->> LVDS_PLL divided by 7 for the Pixel clock to the LCDC.=0A=
-> =0A=
->> I am inclined to believe that appropriately configuring and enabling it=
-=0A=
->> in the LVDS driver would be the appropriate course of action.=0A=
-> =0A=
-> We're talking about bindings here, not drivers, but I would imagine that=
-=0A=
-> if two peripherals are using the same clock then both of them should be=
-=0A=
-> getting a reference to and enabling that clock so that the clock=0A=
-> framework can correctly track the users.=0A=
-> =0A=
->>> I don't know your hardware, so I have no idea which of the two is=0A=
->>> correct, but it sounds like the former. Without digging into how this=
-=0A=
->>> works my assumption about the hardware here looks like is that the lvds=
-=0A=
->>> controller is a clock provider,=0A=
->>=0A=
->> It's a PLL clock from PMC.=0A=
->>=0A=
->>> and that the lvds controller's clock is=0A=
->>> an optional input for the hlcdc.=0A=
->>=0A=
->> Again it's a PLL clock from PMC.=0A=
->>=0A=
->> Please refer Section 39.3=0A=
->> https://ww1.microchip.com/downloads/aemDocuments/documents/MPU32/Product=
-Documents/DataSheets/SAM9X7-Series-Data-Sheet-DS60001813.pdf=0A=
-> =0A=
-> It is not the same exact clock as you pointed out above though, so the=0A=
-> by 7 divider should be modelled.=0A=
-=0A=
-Modelled in mfd binding? If possible, could you please provide an example f=
-or better clarity? Thank you.=0A=
-=0A=
-> =0A=
->>> Can you please explain what provides the lvds pll clock and show an=0A=
->>> example of how you think the devictree would look with "the lvds pll in=
-=0A=
->>> the lvds dt node"?=0A=
->>=0A=
->> Sure, Please see the below example=0A=
->>=0A=
->> The typical lvds node will look like=0A=
->>=0A=
->>                   lvds_controller: lvds-controller@f8060000 {=0A=
->>                           compatible =3D "microchip,sam9x7-lvds";=0A=
->>                           reg =3D <0xf8060000 0x100>;=0A=
->>                           interrupts =3D <56 IRQ_TYPE_LEVEL_HIGH 0>;=0A=
->>                           clocks =3D <&pmc PMC_TYPE_PERIPHERAL 56>, <&pm=
-c=0A=
->> PMC_TYPE_CORE PMC_LVDSPLL>;=0A=
->>                           clock-names =3D "pclk", "lvds_pll_clk";=0A=
->>                           status =3D "disabled";=0A=
->>                   };=0A=
-> =0A=
-> In isolation, this looks fine.=0A=
-> =0A=
-> Cheers,=0A=
-> Conor.=0A=
--- =0A=
-With Best Regards,=0A=
-Dharma B.=0A=
-=0A=
+Hi Wolfram,
+
+On Wed, Jan 17, 2024 at 2:18=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+> Changes since last version:
+>
+> * use 'reg_3p3v' instead of custom regulator
+
+Thanks for the update!
+
+> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> @@ -392,6 +392,13 @@ &scif1 {
+>         pinctrl-names =3D "default";
+>
+>         status =3D "okay";
+> +
+> +       gnss {
+> +               compatible =3D "u-blox,neo-m8";
+> +               reset-gpios =3D <&gpio_exp_75 6 GPIO_ACTIVE_LOW>;
+> +               vcc-supply =3D <&reg_3p3v>;
+> +               current-speed =3D <9600>;
+> +       };
+>  };
+>
+>  &sdhi3 {
+
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Before I queue this, I have one remaining question.
+The device is also connected to I2C bus i2c@7 aka AUDIO_S{DA,CL}.
+Can it be used over I2C too? Is there some strapping to select the
+interface used? I couldn't find that in the documentation.
+(It does support clock stretching! ;-)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
