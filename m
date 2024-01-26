@@ -1,85 +1,142 @@
-Return-Path: <devicetree+bounces-35396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F07C183D5C7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:15:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C4B483D5C9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:15:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B2581C266D9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:15:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78DFC1C266D4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:15:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96ED6171AB;
-	Fri, 26 Jan 2024 08:20:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3716C1758E;
+	Fri, 26 Jan 2024 08:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="lzwrviwr"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n4BcvKza"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E03D272
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54EBF14ABC;
+	Fri, 26 Jan 2024 08:22:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706257234; cv=none; b=AqISVXLsX2YIbgRpncfchpmO3qOwu94WoFDJFTe/pl0A6QHMcJgMXgq9xwfj3UA3D85z5801WSJFNsjlm4G8PeFr8YCm5Lod36WwDxgAJZMYLWd1dtS2UzXtdrgx2I3uRQjV/HaYLN/Obsm5h/sWqNaFStNEOkq8vWl6KIC5k2k=
+	t=1706257360; cv=none; b=d0gYZGCUz8VSEj+V+AuX1S+kpptV1Y/HJ31t/egw4Itv79BX+orndUvHLnbI7odnIiE9xi4xvRfwW2LEBt+ZRcRX4B+9loX+CGFtRyYCXlpzo6KJ/PAHck9W+iFMxfQnEk/ncpAmi3Nj+/aSnqv1B354sbYhUZCiVoFoWcon2BU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706257234; c=relaxed/simple;
-	bh=LcaQO4Y0Om2XAvomVedhbbfSkTpmnqjr9w/usEsktZA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ly572NfprloAUvetmJwYMttWnr+PTKDGOaOfqEISQuHvFs+KJUAh39EjlXUEEN8z2kEwOU13scPOdIFPuCEG96ewMMT2ZXP54HSWJndWUnRnsk9ucY3ISGFr0RWYY2uejJrDY1k2YX5aJ3piNRDZbcFV0tLzgIM0ZQgqbNPtVng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=lzwrviwr; arc=none smtp.client-ip=74.50.62.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 3238E6042F;
-	Fri, 26 Jan 2024 08:20:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1706257232;
-	bh=LcaQO4Y0Om2XAvomVedhbbfSkTpmnqjr9w/usEsktZA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lzwrviwrXNxml6xexZr7PhltBsmUh37iWa+Yvdc9asidM0bAbs5HXsZoXiYYvYBdp
-	 /U2ENoGFDaOC1uklay1jKSTxi5TOOvBqveGQHlPUBIdvJJmZrvChX4c2eECgLAS3Lb
-	 wfHS0RnI52KHtJBjvYYjvnLuolJaOgvba61/m/IjrV2IG8izKLqTCADDeZS7AtAb1Q
-	 wA1nKy7O9DT89ZC/yf8mBCdG+LBZtZnKDow2v5kvdgZCoGAFeokqSS2J8H347/wtWv
-	 Qzt1h380ugDUbICcxKxaTsVSGLuuQDJLKPPuRK3+CxqxjAA3WFFAGhje2j8kjKa+9z
-	 cFi5qg4NE53dA==
-Date: Fri, 26 Jan 2024 10:20:06 +0200
-From: Tony Lindgren <tony@atomide.com>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/1] arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc
- for wkup_uart0
-Message-ID: <20240126082006.GT5185@atomide.com>
-References: <20231219072503.12427-1-tony@atomide.com>
- <q54c4f3l2ddvnnwzigz2hebru27nhevf4oij6g2nqv6yyijigr@nuvwukfwpsjh>
+	s=arc-20240116; t=1706257360; c=relaxed/simple;
+	bh=dipTF7ivFzJBUGuMC5GSS3gGIcrOoM+/+vNV/FLIF4A=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=cuTk2UGyi6pHtISq3hiRkasmZfHgW0J+0ijU3oG+m9hWw0l5w+DV3VA2cBw/ET54wpwooZ2LMKL/tLltioC2DSDMZ8oWl9h3YpxegKLBEkMbGzJbHMT9oU9ghyJnb8DxtVnrvULyNBquLkoq1HW4i5j52lF/rO7GF1B5kli9PbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n4BcvKza; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40Q7H2fT003217;
+	Fri, 26 Jan 2024 08:22:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id; s=qcppdkim1; bh=6NtidV9gxcpV
+	E2RdeDp3evY2S/4Fj2EmikvmYaqvksE=; b=n4BcvKzaPm3PTaIIocmrEDXjDnjo
+	CzW/Sjt83y5tQdlk1E7CRdEiKYNKC9XnftlfCc6j3mKs/OLiMP4QBpoOENCxpPX8
+	AqhbdLEIqAXUUHljgQWOoUB0qDhyXUg4MrjhG1BNDLxEtnQY70CsAxdrRjGqTcOQ
+	R0Ij2Zkr5h8JpT2frhUzbM40kWfGTphP+D+MJqhOq4SoN1LY5xVdS9v20Dv6puKH
+	ptVn7MXYZE0235xyzYYAFIv9LB+ExyK4pX/jKKUGO9WZ2r10r4uWDIBtRxvV4LnY
+	6tYJZFmssl/ajkvrPhEJamwKah5YSAMvmsWWHY9aL+N6nPoEulg9WSDOBw==
+Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vv4f9gmmv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jan 2024 08:22:34 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 40Q8MW1T015825;
+	Fri, 26 Jan 2024 08:22:32 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTP id 3vr78m35q9-1;
+	Fri, 26 Jan 2024 08:22:32 +0000
+Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 40Q8MVKZ015820;
+	Fri, 26 Jan 2024 08:22:31 GMT
+Received: from cbsp-sh-gv.qualcomm.com (CBSP-SH-gv.ap.qualcomm.com [10.231.249.68])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTP id 40Q8MVw7015819;
+	Fri, 26 Jan 2024 08:22:31 +0000
+Received: by cbsp-sh-gv.qualcomm.com (Postfix, from userid 4098150)
+	id 966495844; Fri, 26 Jan 2024 16:22:30 +0800 (CST)
+From: Qiang Yu <quic_qianyu@quicinc.com>
+To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_cang@quicinc.com,
+        quic_mrana@quicinc.com, quic_qianyu@quicinc.com
+Subject: [PATCH] arm64: dts: qcom: aim300: Enable PCIe0 for WLAN
+Date: Fri, 26 Jan 2024 16:22:28 +0800
+Message-Id: <1706257348-638-1-git-send-email-quic_qianyu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: aTc29Clfhlh9iC_oVEU9KJLBZqauo_B9
+X-Proofpoint-GUID: aTc29Clfhlh9iC_oVEU9KJLBZqauo_B9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
+ priorityscore=1501 impostorscore=0 mlxscore=0 suspectscore=0
+ mlxlogscore=362 spamscore=0 bulkscore=0 lowpriorityscore=0 phishscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401260060
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <q54c4f3l2ddvnnwzigz2hebru27nhevf4oij6g2nqv6yyijigr@nuvwukfwpsjh>
 
-* Markus Schneider-Pargmann <msp@baylibre.com> [240124 13:55]:
-> I tested this patch on am62-lp-sk and required this additional property:
-> 
->   ti,no-reset-on-init;
-> 
-> I am not sure at the moment why a reset doesn't work. But with the given
-> property (so without reset) the wakeup on wkup_uart0 works as expected.
+WLAN is connected to PCIe0 on aim300 board. Hence, enable PCIe0 to let
+WLAN work.
 
-OK. This might be some firmware related difference. Care to describe what
-goes wrong so that can be added to the patch description?
+Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+---
+This change is tested and rebased on https://lore.kernel.org/linux-arm-msm/20240119100621.11788-7-quic_tengfan@quicinc.com/
 
-Regards,
+ arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts | 19 ++++++++++++++++++-
+ 1 file changed, 18 insertions(+), 1 deletion(-)
 
-Tony
+diff --git a/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts b/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+index 20a3c97..d42cfac 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
++++ b/arch/arm64/boot/dts/qcom/qcs8550-aim300-aiot.dts
+@@ -251,7 +251,7 @@
+ 
+ &gcc {
+ 	clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+-		 <0>,
++		 <&pcie0_phy>,
+ 		 <&pcie1_phy>,
+ 		 <0>,
+ 		 <&ufs_mem_phy 0>,
+@@ -349,6 +349,23 @@
+ 	status = "okay";
+ };
+ 
++&pcie0 {
++	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
++	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie0_default_state>;
++
++	status = "okay";
++};
++
++&pcie0_phy {
++	vdda-phy-supply = <&vreg_l1e_0p88>;
++	vdda-pll-supply = <&vreg_l3e_1p2>;
++
++	status = "okay";
++};
++
+ &pm8550_flash {
+ 	status = "okay";
+ 
+-- 
+2.7.4
+
 
