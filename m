@@ -1,144 +1,172 @@
-Return-Path: <devicetree+bounces-35519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D315483DA02
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 13:15:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C6883DA14
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 13:23:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48482B2148F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:15:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7F6C28733A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:23:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787E518B1B;
-	Fri, 26 Jan 2024 12:15:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F67E1802A;
+	Fri, 26 Jan 2024 12:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQ/qzxE5"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="Z0nR0MNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD3E1805E;
-	Fri, 26 Jan 2024 12:15:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185FF13FEE;
+	Fri, 26 Jan 2024 12:23:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706271314; cv=none; b=Rl+vDvZzrTGRo0bYOi65qHNnTectnP/LJLprNdc1qMo4Ust526vMUEMdsvuPXDcvJ74BAeSDX7dJdhSQ2/QQDce4eXtH3TpY3KcYksuZH/t1L2s5L/9nAitMiO28SqYUjinxJJss8hyH90kGmLHxPuoBVeCLIhOWkAHXOBSOlrs=
+	t=1706271800; cv=none; b=OaK32+v6MXUEKhu2OHnmon5jnO//OuXLdcPGVgyBHo91F45oZfaBO8BE+4qzHj+JSjuGKNRPE/I0xTkRmy76G00oSdTVDsNfgfJMxfU3Q6XC2nSmkda5Nu0EKtVdLspw2CpF/63OY7xa0iaBsNC+2hsRGFP50fmAnne1+BnrL7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706271314; c=relaxed/simple;
-	bh=HJOduO1JjpKeSMWHdo7UhDLFHAL2ERhNtFLf9tTl7/M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VzeuBVn96FWoekAveXvDelEf0CneIBEw5EcV4CsTP6ijpSDAUl9AH/D75ja2H5mhojwrp/4BuHDAlkqeEz+EBkODZZ7OVtq1C9f/rDgJO0pbinikXCIghS9CtJANHbcTCHRq4EFRP1r7sVyMJ2wrwPprEYGpe4sMHc8LPYWk3/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PQ/qzxE5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44C1CC43390;
-	Fri, 26 Jan 2024 12:15:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706271313;
-	bh=HJOduO1JjpKeSMWHdo7UhDLFHAL2ERhNtFLf9tTl7/M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PQ/qzxE5wGewrakIg8oLGEkwJ54mnPdktyre3AdnzZTooJ62cM2wyo/1c2eQ52CMd
-	 5v8345kQSl3s0+GH9MuiP1gFKCALyPqldWAX4Ye6aYB49AnY9r0nl1cBXjLTncedWR
-	 xkZL4H9TIHmW7Sa5aJX9M+YIeBeR3NDIw4rQ1+9jJGtie+lImWVD7uZk4HVP7cKSCB
-	 vs74U+EZsVGbSXX4DfbYu0vs9zpuTrrmwWchH393i8gJCfxt8O0dbMwDlmKN5M0v/4
-	 URpRWrM0l71BkDwt4rB3mbQYdvhL5k50VuzWZW0gtl6B9TTUs5mACbQ78Wv5Byo9Jn
-	 j72HbCOhq6M/g==
-Date: Fri, 26 Jan 2024 13:15:10 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: jyri.sarha@iki.fi, tomi.valkeinen@ideasonboard.com, airlied@gmail.com, 
-	daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, nm@ti.com, vigneshr@ti.com, kristo@kernel.org, praneeth@ti.com, 
-	a-bhatia1@ti.com, j-luthra@ti.com
-Subject: Re: [RFC PATCH 2/3] drm/tidss: Add support for display sharing
-Message-ID: <vgfzhamtiwkpdyk5ndagsb63subclinotoe6tsi3wu6z7454ec@igxfzjc5gyqm>
-References: <20240116134142.2092483-1-devarsht@ti.com>
- <20240116134142.2092483-3-devarsht@ti.com>
+	s=arc-20240116; t=1706271800; c=relaxed/simple;
+	bh=FUoOlA7SEsmZQCCCoAomLStIAwVpeVTQ+3yZ6glGOag=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PZezjzom4pSsjmmcArYWuTBaClFxZPqch+Cew8YfIO1M4kSly3SvZtJQcg0Uni/e3o688+qc/mn6lAQCx2ZH62Leka0PSqlZde2fQPzPXjPt9FvMrs8tu5ZFMFGHTshpD5oaM65+b03nEnlb+WwJExYyTjOLiD5Nr4c4jvJXs58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=Z0nR0MNj; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4EE99100005;
+	Fri, 26 Jan 2024 15:23:11 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4EE99100005
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1706271791;
+	bh=tbL6XxsbbaDgXHm9IcCy2M+iiWgJnoaXzmTqbl73lsg=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+	b=Z0nR0MNjy5QzdW+OjnTMli4Go//StdjUKrraQJlAYKmizAXPkQiRrKEtz6ocHRkUn
+	 GhiwAsT7wim6CTv+9n8TBwVrXFH0ZuN8diV8rqf2lOFmmKGRLy+pqBKc02NuU2ZEeS
+	 /xRHveCCqugHRZ7BfO1XzKSlwoYY7iFctzQCjqjOIUrTbHIEcfQc2+g4TlbOVckxlA
+	 THMCiWj9uEpsee3hZ+TtvnK6TBQO04+kaSskbEU2SO7lAlO1x20T2ERuL8e+DWHwXf
+	 i6LpNXSoKcnQdn776cqxm9VcYvyip41gvWYySAKBEUoTsX3t3Sd3FfK8zt3ZO1RD1s
+	 sedtki/W4lZlw==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 26 Jan 2024 15:23:11 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 26 Jan
+ 2024 15:23:10 +0300
+Date: Fri, 26 Jan 2024 15:23:10 +0300
+From: Dmitry Rokosov <ddrokosov@salutedevices.com>
+To: Lee Jones <lee@kernel.org>
+CC: Martin Kurbanov <mmkurbanov@salutedevices.com>, Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Andy Shevchenko
+	<andy.shevchenko@gmail.com>, <linux-kernel@vger.kernel.org>,
+	<linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>, <kernel@salutedevices.com>
+Subject: Re: [PATCH v1 1/2] leds: aw200xx: support for hw pattern controllers
+Message-ID: <20240126122310.hrs37vybo2wnxto3@CAB-WSD-L081021>
+References: <20231207125938.175119-1-mmkurbanov@salutedevices.com>
+ <20231207125938.175119-2-mmkurbanov@salutedevices.com>
+ <20231221161011.GO10102@google.com>
+ <85c89859-ae03-4692-9c09-5779e4c40eae@salutedevices.com>
+ <20240125130049.GF74950@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="eefocgpe5td6sveu"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20240116134142.2092483-3-devarsht@ti.com>
+In-Reply-To: <20240125130049.GF74950@google.com>
+User-Agent: NeoMutt/20220415
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 182964 [Jan 26 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, smtp.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/01/26 07:16:00 #23429590
+X-KSMG-AntiVirus-Status: Clean, skipped
 
+Hello Lee,
 
---eefocgpe5td6sveu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Jan 25, 2024 at 01:00:49PM +0000, Lee Jones wrote:
+> Looping in Jacek (LEDS) and Greg (SYFS) for some knowledgable input.
+> 
+> On Fri, 12 Jan 2024, Martin Kurbanov wrote:
+> > On 21.12.2023 19:10, Lee Jones wrote:
+> > > On Thu, 07 Dec 2023, Martin Kurbanov wrote:
+> > > 
+> > >> This led-controller supports 3 pattern controllers for auto breathing or
+> > >> group dimming control. Each pattern controller can work in auto
+> > >> breathing or manual control mode. All breathing parameters including
+> > >> rising/falling slope, on/off time, repeat times, min/max brightness
+> > >> and so on are configurable.
+> > >>
+> > >> Signed-off-by: Martin Kurbanov <mmkurbanov@salutedevices.com>
+> > >> ---
+> > >>  .../testing/sysfs-class-led-driver-aw200xx    | 108 +++
+> > >>  Documentation/leds/leds-aw200xx.rst           | 274 ++++++++
+> > >>  drivers/leds/leds-aw200xx.c                   | 649 ++++++++++++++++++
+> > >>  3 files changed, 1031 insertions(+)
+> > >>  create mode 100644 Documentation/leds/leds-aw200xx.rst
+> > > 
+> > > This interface is bananas.  Exposing an entire register interface to
+> > > sysfs does not sit will with me at all.  When we add support to a sysfs
+> > > class, we usually require it to be generic and work across all devices.
+> > > Adding device specific interfaces is generally decried and to be
+> > > avoided.  Don't forget, once we commit something to sysfs, it becomes
+> > > ABI and we have to support it forever.
+> > > 
+> > > A far better approach would be to add support for this in userspace
+> > > instead  You can use the standard I2C character device API to achieve
+> > > the same result.  That way we don't have the same level of commitment
+> > > and is generally a much more flexible/future-proof.
+> > > 
+> > 
+> > I used sysfs similarly to other LED drivers (for example, leds-lm3533).
+> > Additionally, the controller has interrupts about the completion of the pattern,
+> > which is best to handle in the kernel. In the case of implementation in user
+> > mode, there may be synchronization problems, as the controller has several
+> > memory pages that can be switched by writing the page number to register 0xF0.
+> 
+> leds-lm3533 is a 12 year old legacy exception AND has less than half of
+> the sysfs exports proposed here.  What makes aw200xx so different it
+> needs to an incomparable interface to any other that we currently
+> support?
 
-Hi,
+From my point of view, direct I2C raw requests from userspace are not a
+good solution as well due to synchronization problems, as Martin
+mentioned in the previous message.
 
-Thanks a lot for working on that.
+We have honestly been attempting to integrate this functionality into
+the official LED pattern interface, but it cannot be achieved due to the
+absence of this interface's functionality:
+1) Page-based access
+2) Interrupts
 
-On Tue, Jan 16, 2024 at 07:11:41PM +0530, Devarsh Thakkar wrote:
-> Display subsystem present in TI Keystone family of devices supports shari=
-ng
-> of display between multiple hosts as it provides separate register space
-> (common* region) for each host to programming display controller and also=
- a
-> unique interrupt line for each host.
->=20
-> This adds support for display sharing, by allowing partitioning of
-> resources either at video port level or at video plane level as
-> described below :
->=20
-> 1) Linux can own (i.e have write access) completely one or more of video
-> ports along with corresponding resources (viz. overlay managers,
-> video planes) used by Linux in context of those video ports.
-> Even if Linux is owning
-> these video ports it can still share this video port with a remote core
-> which can own one or more video planes associated with this video port.
->=20
-> 2) Linux owns one or more of the video planes with video port
-> (along with corresponding overlay manager) associated with these planes
-> being owned and controlled by a remote core. Linux still has read-only
-> access to the associated video port and overlay managers so that it can
-> parse the settings made by remote core.
+HW patterns are very useful mechanism to draw animation faster without
+any interactions with CPU, so I think we need to find the best architect
+approach for its integration.
 
-So, just to make sure we're on the same page. 1) means Linux drives the
-whole display engine, but can lend planes to the R5? How does that work,
-is Linux aware of the workload being there (plane size, format, etc) ?
+What is an alternative way to access such a hardware pattern interface?
+Debugfs? Or perhaps we should consider extending the LED pattern
+interface?
 
-And 2) would mean that the display engine is under the R5 control and
-Linux only gets to fill the plane and let the firmware know of what it
-wants?
-
-If so, do we even need the tidss driver in the second case? We could
-just write a fwkms driver of some sorts that could be used by multiple
-implementations of the same "defer to firmware" logic.
-
-> For both the cases, the resources used in context of processing core
-> running Linux along with ownership information are exposed by user as
-> part of device-tree blob and driver uses an updated feature list tailored
-> for this shared mode accordingly. The driver also auto-populates
-> matching overlay managers and output types from shared video
-> port list provided in device-tree blob.
-> In dispc_feature struct remove const access specfier for output_type
-> array as it is required to be updated dynamically in run-time for shared
-> mode.
-
-I'm also not entirely sure that the device tree is the right path there.
-Surely the firmware capabilities will evolve over time, while the device
-tree won't. Is there some way to make it discoverable at probe time by
-the driver?
-
-Maxime
-
---eefocgpe5td6sveu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZbOiTgAKCRDj7w1vZxhR
-xUZHAQC9UEm2aY+VJZIu3cY6lpRxt2+gjm/F09tvTETL6uyTGwD/YkQWVcLu/vz4
-MgJdyfGZKivewFLe/q0RCkDicEbLcQI=
-=YUl/
------END PGP SIGNATURE-----
-
---eefocgpe5td6sveu--
+-- 
+Thank you,
+Dmitry
 
