@@ -1,122 +1,123 @@
-Return-Path: <devicetree+bounces-35512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C598183D9BB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:55:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EEEB83D9C4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:56:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F10D1F247A3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:55:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9202B1C23DFE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8CA17BC9;
-	Fri, 26 Jan 2024 11:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96B51B7FA;
+	Fri, 26 Jan 2024 11:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="bEHO79tw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sxd04UQZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88C8B1AAA5
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85571A731
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706270121; cv=none; b=MSW2FScqI8V1eSZezLblCnltOrgguY5/sXYYYzXf2Ums8Mgbjea7iCrCO4vtRE3mtjqoI5Q9bUhlfQWr/gv89d5T08vnoDpphQRgq9KGUxJ8uq/I5dzRLxWBsns2rSj8DeqFrnd9PL4AZ8VeV3k6m29q8WrLIOiwV5Sp/24eEVA=
+	t=1706270124; cv=none; b=Rl7NY+mXF5JxflYHYjCPkDD2Spnl8ch1sNqx6wSxRqkyG0pgZPGHgbtJqEQ++mdQtyHltUdiDTexzbeG+iW5T7eGefm118MovrelMHMrZaBUN0ke1m2UZ77/n+t34JcjINaN7sC4tzAplbGf4FWXgCZDaz1Yb5vl+kRpTuGmU/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706270121; c=relaxed/simple;
-	bh=KvDW3oimirzaLZ+3LyQ7tjVmuNkF2WsoEwGt2Ec9I+U=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NMKqlAPT93k0K2oQNA6hR8uQNH1mpxHMR9h0KGGEMQn1I8m/r+qsWnGwgW+MTT22TGs9lzFx0E82+yFJrGrHhvQwT6z1PrzGSp+aZjrZE4+wYKlem8Lb+UlO+CRO4MO2v5DCukxBWI1OPFGNvQMpNA88eq330LfNX9btFGfaXHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=bEHO79tw; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40e7065b7bdso5309345e9.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:55:19 -0800 (PST)
+	s=arc-20240116; t=1706270124; c=relaxed/simple;
+	bh=5gQbWGeiAGTlDLAa9LO74fg/WiV7ejSsxBG3mOJYxCE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TCPph93/JRDonyThNco0/rdaiPL2coayqeS76XbrpdqUYtawhDVKjsj84FAbBzQT/VvHtBxW2HtdPoIaPPGdxOhbS/QemttvSWYkWLX9MMrR3s6XyjCqOjj+M7NhcZ2Q2LxMH3L4TVhuGhjW9xUMpBkBTj+2zj+cUMJ8Jz18EUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sxd04UQZ; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a2c179aa5c4so47179266b.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:55:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1706270118; x=1706874918; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706270120; x=1706874920; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5YD1avWXiDmKVPhJNDv4Z+Ew3Vz4aGu7X+vQARwJOeU=;
-        b=bEHO79tw3TzVQ2l67Em3pJ1i2WQahpxukP6KAly1UgAx260fqefLl3M98Da/7ioDNF
-         XWKoB1dzLEVQX8XhRR5Y1ynSUPBqF0+v0ONgwFhf5e1mrEQfFRRSkcjiKxCyacQ0DsS5
-         PrYP5/pnX2ElLzFAruz0byazQKEU29EEM9PlNDPGTkf+g1zhUlrfiOtR0jVeDZLDyyOW
-         eHLNSNikLwUS2qLA9SflP7LcPdoDTqB4gL4jvLB2CAUwC6yyzZUP8rYR3jNNSmebcC1j
-         ZOlCGl9OO+199o2VGsLo0F/6X1ktu5HxJpeME+CPpZJsXIhFAiYzu62Coln5Az+pxbQi
-         uSzA==
+        bh=1LVcqUTXP/P2WsnP6Y5tfw0AY+HXGkieDjmGHyFGDKA=;
+        b=sxd04UQZOL++DRDSLqE5sSLNSGqznkTncIPsu1hCkKzF5xQbuvy3Q8uq8WU7wr/vho
+         EVUtYYR+Y2ONL9fm9ODT+OwwPyvnRUhEMgjrzKEZndNVIt0tBgft+yTxgeMn4n8ZfpRO
+         Jq6ZbPjBuLtBx8iZgu1HApVTOMJpLJasHiYtoeM/x+gPFi0625Yi7fcCNEmFzi7pgMcr
+         O+xGhmVpeZV3zivPNYTRJbsH7DmBPkRFQ7uCf37K7FjZtA2FMi9TumOPK21nwI5yLiLI
+         o+EjT9QxrhJxh+XiUXpQgSeXH1yKY4+g4bJy33Gpq4HIucZo+/gRTmVqw0/nXm5ThYFo
+         DOHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706270118; x=1706874918;
+        d=1e100.net; s=20230601; t=1706270120; x=1706874920;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5YD1avWXiDmKVPhJNDv4Z+Ew3Vz4aGu7X+vQARwJOeU=;
-        b=t0h5QI9ENPq6eswt6NaM0OgZ4nNKIDUK4AChImk79DXqIMSnKSRmfUAvHVvDh4UDxC
-         CnQJiLio4bz8H5K4RawOgtWRB+WpF5FpEFsrhmQVxE0I1yB4jb2Ar4sn1c1pJzspklIV
-         oW9ICmXwdlklsMiwDx9UEijYec3BuSc6unl1y+emXoQH6QsM5mFp1AtjkQ3p+3VEWuQ1
-         sdAOcWAgSFoij6yQeX9GaMRr0fbRUHPCvxI54haPSkt9/nyuZLjx1lu/+izL8aKgGLhT
-         NxXIuiFynoUJRVJaMobxfFv1ZKmNQZXPl3HqQLE6cXXmT2Lc5zfCLQg9hJ7zKcZSiwfw
-         500Q==
-X-Gm-Message-State: AOJu0YzQoVToS6X3kgn/gvkT1cuKVhe05hb7iQJ4iFqOLEK+YW1wL2aa
-	EJug7luAbDTC2BkZDApJP+hxHOsydLz78Zg4tgl4NVIZ75fV/k8tDrElzupqh9A=
-X-Google-Smtp-Source: AGHT+IECraYXk/gis2PyyZjpxoZQsQq+NsKnyjHm2H37sX1KMoJpc1j7bNxvr2bN1NJQpzQfiVhaCA==
-X-Received: by 2002:a05:600c:3548:b0:40e:d5c7:8355 with SMTP id i8-20020a05600c354800b0040ed5c78355mr466668wmq.131.1706270117801;
-        Fri, 26 Jan 2024 03:55:17 -0800 (PST)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id f11-20020a05600c154b00b0040ed434ef66sm3387424wmg.25.2024.01.26.03.55.16
+        bh=1LVcqUTXP/P2WsnP6Y5tfw0AY+HXGkieDjmGHyFGDKA=;
+        b=nEH/HO7VwEsUFLVvRU2q8qm27dI4wYAew+ceodvVTHbEA8d9rT7PYA9skY5AHdqO1n
+         ebsTZKpXsR9ds/XdLu7M/l08ob6dLXZ7xoJhfO1a6aXwmcBEsoVev3ARP8nQfQ48tWsR
+         tlpawpOItLa68kux173z5JzMbsfTuUpdMhGi6icEIwGJX5rJycqPINrbZtqnh8DtvOmM
+         ssd/xLRHL8E1bwwpfJhHnxyKIUvwW46uODXHDp26VAySmfcXmVOdE6DdVbREMib/WCi7
+         Iy/U253PWo2egwfUlb/DXQDBm/MDFW/jIt5Cg5UMUx3FA2AcoEQwlHVaYpitlRCVapGB
+         Wn5A==
+X-Gm-Message-State: AOJu0YxSa6fHVqDZTRoCdVC4+/439hV8wX7E66B+SjjrQYwGe6b1gP+/
+	1AveAPFJDEVGg7EA9whEMIk6N3Q2pwUKsGKEtIagzEdhs/BlSfLJjVCOU4Yjspo=
+X-Google-Smtp-Source: AGHT+IFRkMZKCLree9XUXLoFwO0IzzGB3sFNqGLLWGA4sB0l0tlaNsDMLiafgrhUecbTMmtb+SjOFQ==
+X-Received: by 2002:a17:906:16cb:b0:a2f:b9bf:3955 with SMTP id t11-20020a17090616cb00b00a2fb9bf3955mr628553ejd.21.1706270119990;
+        Fri, 26 Jan 2024 03:55:19 -0800 (PST)
+Received: from puffmais.c.googlers.com.com (229.112.91.34.bc.googleusercontent.com. [34.91.112.229])
+        by smtp.gmail.com with ESMTPSA id hw18-20020a170907a0d200b00a2d7f63dd71sm551280ejc.29.2024.01.26.03.55.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 03:55:17 -0800 (PST)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: Peter Rosin <peda@axentia.se>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: mazziesaccount@gmail.com,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	linux-iio@vger.kernel.org,
+        Fri, 26 Jan 2024 03:55:19 -0800 (PST)
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <andre.draszik@linaro.org>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	alim.akhtar@samsung.com,
+	peter.griffin@linaro.org
+Cc: linux-kernel@vger.kernel.org,
+	kernel-team@android.com,
+	tudor.ambarus@linaro.org,
+	willmcvicker@google.com,
+	daniel.lezcano@linaro.org,
+	tglx@linutronix.de,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: iio: afe: voltage-divider: Add io-channel-cells
-Date: Fri, 26 Jan 2024 17:25:08 +0530
-Message-ID: <20240126115509.1459425-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.42.0
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: samsung: exynos-sysreg: gs101-peric0 requires a clock
+Date: Fri, 26 Jan 2024 11:55:16 +0000
+Message-ID: <20240126115517.1751971-1-andre.draszik@linaro.org>
+X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Add #io-channel-cells expected by driver. i.e., below is the message
-seen in kernel log:
-OF: /iio-hwmon: could not get #io-channel-cells for /voltage_divider1
+... otherwise it won't be accessible.
 
-TEST=Run below command & make sure there is no error:
-make DT_CHECKER_FLAGS=-m dt_binding_check -j1
+Update the schema to make this obvious.
 
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+
 ---
- Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+v3: no changes, resend as a complete series
+v2: no changes
+---
+ .../devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml   | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-index dddf97b50549..b4b5489ad98e 100644
---- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-+++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
-@@ -39,6 +39,9 @@ properties:
-     description: |
-       Channel node of a voltage io-channel.
- 
-+  '#io-channel-cells':
-+    const: 1
-+
-   output-ohms:
-     description:
-       Resistance Rout over which the output voltage is measured. See full-ohms.
-
-base-commit: ecb1b8288dc7ccbdcb3b9df005fa1c0e0c0388a7
+diff --git a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+index 1794e3799f21..33d837ae4f45 100644
+--- a/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
++++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos-sysreg.yaml
+@@ -72,6 +72,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - google,gs101-peric0-sysreg
+               - samsung,exynos850-cmgp-sysreg
+               - samsung,exynos850-peri-sysreg
+               - samsung,exynos850-sysreg
 -- 
-2.42.0
+2.43.0.429.g432eaa2c6b-goog
 
 
