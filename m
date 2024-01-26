@@ -1,184 +1,140 @@
-Return-Path: <devicetree+bounces-35563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68A8883DCF3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:59:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8808483DCCE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:55:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F16528159D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:59:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AC421C241D2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:55:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB781DA3A;
-	Fri, 26 Jan 2024 14:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBFD1C2A5;
+	Fri, 26 Jan 2024 14:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=theobroma-systems.com header.i=@theobroma-systems.com header.b="NW/Rzc/v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HO/rDZ2c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2040.outbound.protection.outlook.com [40.107.22.40])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD4A1CA9A;
-	Fri, 26 Jan 2024 14:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706281116; cv=fail; b=M8bC8pByDr4aoh9J7m6ZUS2BSfJ/d06DCf7G24NmWpIFaO+XdZIqvgdfw1ELR4EMIgSq4kVs6xD12OYswPxFxP6E/3tSm6AkFGlAa3GCsSty1sYq+E2d2LUR4cMz//PMi+dpZZjywkd8EAjjb0YOJbgi17qgNOVQLbsCFuaXdDM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706281116; c=relaxed/simple;
-	bh=L1LBo3EmHljy0N4wo6uS24KfxGyxhrOe9FDDZAXSSXY=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=HcDZLZ/oVnLKvOoW0yjCZJNHvxFirntes9IwEABc9hVBa3rqrWWWUctWvF5q0eX0ZfAKoYwk3JAWaGl2XMlLVT/sFGwgp50eMtXVyn6o34m0vwdkFn67DccUmVBGcGoxUgNaW2MOZfAv0bJk3yaOVaHtyBPzeHKu4CljvU35ztk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=theobroma-systems.com; spf=pass smtp.mailfrom=theobroma-systems.com; dkim=pass (2048-bit key) header.d=theobroma-systems.com header.i=@theobroma-systems.com header.b=NW/Rzc/v; arc=fail smtp.client-ip=40.107.22.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=theobroma-systems.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=theobroma-systems.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kEZV7cXC2JLpj6SdV3H2Dg6dkr2w1IpE+59odzv2Vg9VWHiEAvkAVd4zKHEC1BEnuPGbJtB759Bn1r2nPSFVfh7Pxr+lLhZOAp2MQnyGHkAZvRSXuLztpOMUZXZgb0fyKBT7L08KEmBQ5n2+/maPJkLbQch66YDKLnAYvBVgwbNWdCz7FBf6i69ueSjZ1JATY+YrGJBLXC3Fz+yGKqpmHslZlrHCfbJgEBdmXpRvExsF5A6L9OJOwIy5Iq2kHXLgRi00ZQobQdDlOb23CWt4m7i4dDZYqnv4nx9gT30errzgscqeE04xJ9pNVwZ/4rIZQv9LuKj8v3xukgAWmXUzxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+Avz5e+3EBr62BuVXgj6UPnkpZs3MvAqOK/jqvWr25w=;
- b=N0dTU1WSOo4LVAXO9M5U++homUxYWk0+pn87MpCtnGDuwcs/n6t7AiIp8h2tZ7yeON6Zw/XMTYnyH+TjPmbGpceZFQ0vAcgYNFMcne1vypSDpbCRvm99BN2n+brpkeErIoKPXzgd33ttDJcr4BRAIp6Ga7edq5v/PpAahMKtEMR4TygP2qPrVpBLz/sl1OnoCaXdUs3nnBy+tSdJfFWr/IOSjV61XztxbejR1oVqqfDusc8Dj3Utt7NR4DkYhULOcxt7B295LcGIWfWZqjN3e9vtwTTQhT66zOOYFYL49LjxpjjdgxaDNymqmvpkU1VGm0aeLv5ov10P0FC5b/RAUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+Avz5e+3EBr62BuVXgj6UPnkpZs3MvAqOK/jqvWr25w=;
- b=NW/Rzc/vjPiobwyC3PDI2BMv0ymC+h2Xr11AdKhv0tJRMfRdyOz1+4yMX0cDmogaUwKABQjI12iwb1pbdvhLuQsMMoKVYWvY0aa78Z3tQIVjkLsiko5aS83yg3zyuYfXwIRDnwzXqDgaw2FMy6J1HL617JDBH2SDfSfky9UwIfG07Es09tJSZbSaCBeRbIAmzPnM7BMwwmB78e0mOH087UE3Ysk1U46TV3a9zgX9yaH5L3evNUw+kHVg4tnRIoOGPIIgds63KN87T9wZFrYzY30dGIxDHAGZN8NKzbUtgASPFzqwWqcNDdyz89Iepaz05jJaQZ6euK0W8fQUmqtmfg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from AM0PR04MB6371.eurprd04.prod.outlook.com (2603:10a6:208:178::19)
- by GVXPR04MB9735.eurprd04.prod.outlook.com (2603:10a6:150:118::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.22; Fri, 26 Jan
- 2024 14:58:27 +0000
-Received: from AM0PR04MB6371.eurprd04.prod.outlook.com
- ([fe80::e130:6c40:23e5:9a8f]) by AM0PR04MB6371.eurprd04.prod.outlook.com
- ([fe80::e130:6c40:23e5:9a8f%5]) with mapi id 15.20.7228.022; Fri, 26 Jan 2024
- 14:58:27 +0000
-From: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-Date: Fri, 26 Jan 2024 15:55:15 +0100
-Subject: [PATCH v4 6/6] arm64: dts: rockchip: px30-ringneck-haikou: add
- rs485 support on uart5
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240126-dev-rx-enable-v4-6-45aaf4d96328@theobroma-systems.com>
-References: <20240126-dev-rx-enable-v4-0-45aaf4d96328@theobroma-systems.com>
-In-Reply-To: <20240126-dev-rx-enable-v4-0-45aaf4d96328@theobroma-systems.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- quentin.schulz@theobroma-systems.com, 
- Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-X-Mailer: b4 0.12.3
-X-ClientProxiedBy: VI1PR06CA0114.eurprd06.prod.outlook.com
- (2603:10a6:803:8c::43) To AM0PR04MB6371.eurprd04.prod.outlook.com
- (2603:10a6:208:178::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2921CD07
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 14:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706280928; cv=none; b=YJkZOpzpQSZUjf6GIi5ywk1sEtjp6xhVsN4tYMRiWMe3ZfgNQ/xZn7uAfmEhYptBQWaSpSA7r6MHGILoQUfwAIok3nCtsiA8y2rkC3u9Qd1+5ssD27iFqa8UrMS9kxUItvJhK+E+Sr2ngOHU7w79PfgQP2Ndz9onuYDnyCZfFQQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706280928; c=relaxed/simple;
+	bh=a6Wydf21Xmhb2YTwCyQD4VV76zs/v6VW1LM7GKsO3C0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pbUEoV4eiVcJoflnep9d/zxZfP0z1oNFZBIKqwtlG0IYQKUq0qRgy27uXsA7oglIq8uzrsc3ivcJC/jfwGqMe2Pf7fAKYl3pf0F3nIbeJDaD0vYRR0exc2KuSTgJa0Xroof241ACkjyszAmq2yOJvzzBmM6gl07XSrcAT04ihE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HO/rDZ2c; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-50eabbc3dccso556905e87.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 06:55:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706280925; x=1706885725; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JKCwp0h7j0wQ8ptFHYyH1wL9D/pl1P6winLkZPVvdvQ=;
+        b=HO/rDZ2cFKjTs7QOklBRvbZj6afzElekC3WaxnJYbc2kV48h13o4OhHKCEiHuO8wOV
+         kn0R5zyiPm4RarvHSlmrdgsi8ISKaw4oBr6DH5iBpGprvjEpK48Vc0cGHiK+QLmStNx3
+         DVBW/ooO+z4ep40Ih/oUr12DSNigB+/lmgwwvbhDzT5DiPR9Nkg66AQJPdif0gJyvkV5
+         MBeKuw/vLf5cAtD5W03bfwOAcAoOzVrXTs7VRtSqmnus4TWO97s9tLhCIFQQomtD5+l/
+         3B3DqV3f5qhZKviOZlU2nAfZDaaTtPXs3P6Bsh/m4QQpL5zab7Smzk9wSZb/aOjxCmSG
+         cgkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706280925; x=1706885725;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JKCwp0h7j0wQ8ptFHYyH1wL9D/pl1P6winLkZPVvdvQ=;
+        b=Ji0o4hRQYdl20SM19NEeZ65ggObegPEr9dAWosFmyVVjhnr6rIzXiq4aZUTrNAJ9Ww
+         nYSDqNpOyFR3QAUY2XhGV1qJSm4awGejWo7ggoOGmAvh7lC+W65+4yWMSsSMkRIuezw3
+         9s75E87oUiZdFclhpdAGv3toADXpCnN+n0OcMsqtflK5GKfIsmidmCnRs4vVy3JTX/9+
+         oV1EKxy4GnYFHnXVcE+Zb9usw3bsgbpAOvT1RYreuThVjUA1Ew7LksW7MNXeWMnpRIu8
+         v45ov/DDOPuxyXghkq0ZVPNHhIfuDobULZgE8X1ROBFxQgoFGp0ysKSQg381ixpcPobC
+         c22w==
+X-Gm-Message-State: AOJu0YzBmHArE43lnX9mwCRGl9wI720QYE9QaBQKxrdRoqAMC3fCqlyw
+	/fZ9V9P+Mp3dkEqjLxgwAfdwEI7jP8VGfd5c5Zj03A6ukS5Lepij
+X-Google-Smtp-Source: AGHT+IFmLz6G8Nq8ruWrhsCMZ9dGCIAyuitqMMZ0UWNA5T6iguTMY4JVe3dKiRTTYXpZp+pJpu0UzA==
+X-Received: by 2002:a2e:9684:0:b0:2cf:2111:4e48 with SMTP id q4-20020a2e9684000000b002cf21114e48mr599254lji.52.1706280924646;
+        Fri, 26 Jan 2024 06:55:24 -0800 (PST)
+Received: from [192.168.26.149] (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.googlemail.com with ESMTPSA id a2-20020a05640233c200b0055731d8f459sm672407edc.24.2024.01.26.06.55.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jan 2024 06:55:23 -0800 (PST)
+Message-ID: <aa7f0c6e-8f7d-4e75-8296-e968ac543218@gmail.com>
+Date: Fri, 26 Jan 2024 15:55:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6371:EE_|GVXPR04MB9735:EE_
-X-MS-Office365-Filtering-Correlation-Id: 402d2297-329a-4ce6-3f6e-08dc1e7f4076
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	B2EHdQFhHVfIHVDeEtrMVG5Mn3scCo7JXD7IeFOHBW++LNmM0+tNyCZEl0eo1babFhMwJ6cw3K/fjfxSlka7CWj9eRlNJe3kJrXy4+dcg23n/F7m9Csl667rUOSQ/jSefDULzUDedzvUjIBAicW0LpPoyKpW6JqgbXtqFmqmsZcYVxVn9H/jtltxwYQ66r7v7Z40co3DFy2Z1VxJ+xBzYv+/EN3ct7SUsTe1ARdHvZV3sp0eD0fhA/pPNN/3pxsHM7pmN0yniaZpmEvHhhHPDE6gn/M88vuNHY+KD88cyNwKJTBFensfObIELiTdYw1H2969FcGnHsci2wVRlRzRIPDrYaDomY4Z0Z6tsCkwrMiORDb1aFuyv+HEU0vw9S3mTDVRFeboORzYSTgDfNFk7gqGVtJSulRx/FWjwuuHeArOVQy6n1+g3+au7y+Zc1sFEOyobVzChUSNkYVSiBzqGd14e0ynU305nbjsz2t0xVKeyjXsVYtZBughapBUvFMco52qNSTAzEfiUsNinCVkOJjXwRA5oBuJHdg+MQnWKz64flQtwfbHbkEGqJqw+B/AqIOfB+YlsBSlY930SCVoNoIhyD3KiOs068NB3uP0PE5pYxmBQgWKx/hURQUtLTbf
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6371.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(346002)(136003)(39850400004)(376002)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(66476007)(54906003)(66556008)(86362001)(478600001)(38100700002)(6486002)(6506007)(36756003)(38350700005)(41300700001)(52116002)(4326008)(8676002)(8936002)(26005)(2616005)(316002)(5660300002)(66946007)(6512007)(6666004)(7416002)(2906002)(44832011)(83380400001)(107886003)(110136005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MXR3cWI0ZjRxNU0xTmswamRFSTkxWEpvVC93U2I0d2QzMWh2NzBPTjhoTklV?=
- =?utf-8?B?bkY3Z0h5VlBubnMzWmF2KzVHUEQ2TFc2VHpBU1Q1a2lRN1ZpM1VuYVB0Mk83?=
- =?utf-8?B?WXVYYkl3ZDVvdXl1RTJNTW1nd1VLQ3pxNStBakJ3YW12L05vaStOUDZpS2VV?=
- =?utf-8?B?eEJiWjl4YXIzRTJMTzAwNHNhYVM2NU1YRFlVUFhFYmJEN2k2NmhzTUx4SUpv?=
- =?utf-8?B?dTFSRkxKY1JBTmZ2UXNBa3dYTEFNQnM4QUZxdGs3R09mS1BPZ1hCUyt5TEUw?=
- =?utf-8?B?b3U0aHFLcUt0MG96MW9yKzFNZ0pWYnVXR1BUS1lxd3BGL25YbjNBVlhOeE5K?=
- =?utf-8?B?Y2Rwci9HZjVZaGl4MWNQNHM4Z21rMlBIbHNvV3daQVRzbXVxbnFHeklYenZ2?=
- =?utf-8?B?aW9DY0dDOFNraDEzNGFyZ0tXeDJReGk5aHk5MzUzdzBtSE1xK29SZ1kySlRP?=
- =?utf-8?B?L1pnbU0xeXB0dFpkc1NtYlFXK1I4aUdpM0NQRmtZaSs3NUdEOGZWcnRFcENB?=
- =?utf-8?B?YjNQZUF3YkF6cXprWmQzVG91NEZQclBoSmVyU0VoaW9zWDZrR2dlVW5QYVov?=
- =?utf-8?B?ejNDNHROdjE4WGZaNExqN1d2Yk53VWpDNjAvcnlSRzg2SmpON0JLdjRlMzZz?=
- =?utf-8?B?QkVrWmk5SHRQRUFUMlhVSWxXaldwN1ViTzJ3N2FSTTNPbmVwR0M0RTFHMTF1?=
- =?utf-8?B?bm1aK1Rob3gxSUwzc0RidU9leFV1WjlFYzVwOGZnSlZnMS94ckFyRE5FQWZw?=
- =?utf-8?B?ZThUOTg5bGN0V3c0VCtYTnpZZDRnSUhOOWk5WSsxY2QxMGp4QjMzSm1vaDRW?=
- =?utf-8?B?MldsR2RuZkgyNzlFM0xUU0orS2VXc0pTbnVuL3JOYVJBTWZqNnlnaFY1YXl0?=
- =?utf-8?B?VW45UGhrK2UvcmJwbGtGUnh0YUYxdDdueHFQTVg3Q0Q3R0YwR25ZT3Jhb2Z3?=
- =?utf-8?B?Ym5YTlNVQmdRd20xK1p2R1BDRkFvdlIzM1FyczE5WXh0ZHZ0K2xIT2lZRmtK?=
- =?utf-8?B?SW1TMU9xbnNENFYzSmg3dEhjR09nSXpma1JZYlJGT3FOT1VrL3NSaWFxRkFs?=
- =?utf-8?B?Z1VJNmVCRDdZTmFudHpKeUh4SjJkcXFJaUtRYXhHbkZDd1QxeStFWXpCVnR3?=
- =?utf-8?B?Q3YyelpoclVLR1czdW8xOHo0T3Z3bWZaT3NlL0NqNWFUY28rQ2ZZM0pNbWVN?=
- =?utf-8?B?LzNFQ1VXZThuRWJhU0ROT3NsSVFNMzFRK1RlekNPSkJReVVHSzhTalJ0SEgx?=
- =?utf-8?B?bytZcUc4U0FNY2k1Q2NXR0RZcnczb0llNk92SkFRREMrV3NiVzYvalpCbVF5?=
- =?utf-8?B?RXVra1h4dlVIc3VCeWR5K1p6VEZtUTNaUGkxbUpuWEVPRmVOSlYrRThlSWMw?=
- =?utf-8?B?TkRhZUtjdDFwb2VyNyt5NGNIazh2TmdpY29tbWpIK0dIRW9JcWJHOXpINFpn?=
- =?utf-8?B?T1hIWkk1cTEyV2YrTlNpNC9UYmJHUjdGNGdMMDRKdVBtTjJSRXhsb3c5dnA5?=
- =?utf-8?B?MWZ6aURZRFVWRE5CNWxTellUOUFkazVQUGlEZ2dxT0puNnlML0drMXB0VnhJ?=
- =?utf-8?B?RnJUamxZbWMrb285aDV2ME9WVE5HaUd0Tms2VmdyOGFQZElOYVVaamN5Ujhs?=
- =?utf-8?B?OXJ5bituUWplN1ltQ0JaU0ZXdnYrQkY2bVZYUkhQU3RVekwxc0JSMy9EQWRw?=
- =?utf-8?B?TEVYd2E3Ly80YS9JaStlL0pWczQ5QWZNdDJGcnNFUmFXUkFSWFI3VTd3L3Iw?=
- =?utf-8?B?b1dCeEhUR2p3dWlKSHJnL1Y3YzdhNGRVdlRuQnhCYzlmY1JVZkFybW1PeFB0?=
- =?utf-8?B?Q3hqOU9nRTZESUkyOEdxT1FWVU1RZnVJdFh4Q3pFQjZCSXNBQjIvaWh4VzVU?=
- =?utf-8?B?OG5rVmlrWXpwMUhlRUdpSXFJOEN3aXhLd0p3TkIwN3lRdlN0WVhlaVQ3Qlpr?=
- =?utf-8?B?bGFpREtjTmM5RnhVUWp2RXVPbi9YcTgrdkx1RGo1SlROSlJ1dklQV0twWlpD?=
- =?utf-8?B?RWZxbDRmb2JYcjFTbzRoVGFhSDNmNmhjR2dOMHZMZUhIbUlQVzBzNWVQK2pF?=
- =?utf-8?B?ZEMyNEhpTHRscEppY3o3K1ZIWThUVHBFd2lxa3NnL2hEUGgwVXBiZmp4bktj?=
- =?utf-8?B?cU1SaFlmaXRtV1lGVVZRT3E1eDhHeDQxWlFlcmNEQVhZUE9sKzdqN0hqbnRX?=
- =?utf-8?Q?3dcRZ9kCRdIMAorSbmRkIvw=3D?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 402d2297-329a-4ce6-3f6e-08dc1e7f4076
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6371.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2024 14:58:27.1648
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XNSD3WHet0GRzBjZHYALvtbaUjYUVkP/uXjs6KuaQuv9S9gHNsPKQharQKbZscxLrQN+lMp3l3hf4rX/9hmeTwHQqVl6fQ1DAmFZEHTdpXQRTle+YO7ZGehzVypmgKxt
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9735
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 1/3] dt-bindings: vendor-prefixes: add acelink
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
+ <nfraprado@collabora.com>, Macpaul Lin <macpaul.lin@mediatek.com>,
+ =?UTF-8?Q?Bernhard_Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+ Heiko Stuebner <heiko@sntech.de>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Sean Wang
+ <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20231207080512.3688-1-zajec5@gmail.com>
+Content-Language: en-US
+From: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20231207080512.3688-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-A hardware switch can set the rs485 transceiver into half or full duplex
-mode.
+Hi,
 
-Switching to the half-duplex mode requires the user to enable em485 on
-uart5 using ioctl, DE/RE are both connected to GPIO0_B5 which is the
-RTS signal for uart5. Which means GPIO0_B5 is implemented as rs485
-rx-enable gpio.
+On 7.12.2023 09:05, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Acelink is a Taiwan company providing network products (routers, access
+> points, switches, cameras and more).
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-In full-duplex mode (em485 is disabled), DE is connected to GPIO0_B5 and
-RE is grounded (active). This requires rx-enable gpio to be inactive to
-enable DE as well.
+AngeloGioacchino, Matthias: I'd like just to make sure you didn't miss
+those patches. Other patches are already present in mediatek/linux.git
+but this patchset didn't make it there.
 
-Signed-off-by: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
----
- arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 2 ++
- 1 file changed, 2 insertions(+)
+P.S.
+Other two pending patches are:
+[PATCH 1/2] arm64: dts: mediatek: mt7986: reorder properties
+[PATCH 2/2] arm64: dts: mediatek: mt7986: reorder nodes
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-index 16798eb77077..369a6518a487 100644
---- a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-@@ -227,6 +227,8 @@ &uart0 {
- 
- &uart5 {
- 	pinctrl-0 = <&uart5_xfer>;
-+	rs485-rx-enable-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_LOW>;
-+	rs485-rx-enable-inactive-when-rs485-disabled;
- 	status = "okay";
- };
- 
 
--- 
-2.34.1
+> ---
+>   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 309b94c328c8..503a3caf6fc9 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -39,6 +39,8 @@ patternProperties:
+>       description: ShenZhen Asia Better Technology Ltd.
+>     "^acbel,.*":
+>       description: Acbel Polytech Inc.
+> +  "^acelink,.*":
+> +    description: Acelink Technology Co., Ltd.
+>     "^acer,.*":
+>       description: Acer Inc.
+>     "^acme,.*":
 
 
