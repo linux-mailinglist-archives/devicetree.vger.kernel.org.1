@@ -1,179 +1,129 @@
-Return-Path: <devicetree+bounces-35541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 355F483DB61
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:59:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C98A483DB6C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:05:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598371C232AC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 13:59:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B518B21E03
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:05:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5762C1B801;
-	Fri, 26 Jan 2024 13:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oUxtrhiv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7E11BC24;
+	Fri, 26 Jan 2024 14:05:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9781BF2C;
-	Fri, 26 Jan 2024 13:59:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94C611B7ED;
+	Fri, 26 Jan 2024 14:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706277557; cv=none; b=XrblSXv0BKLXjPXkdlVxOvaKl0TZY+f2lnQ9k2qzc092jIH7+lPqkaHk7JPzPBAC21LfkM95ufbJHKjWX4BihP6Csp8qOOAmHb7v+xYpi+2QmnORWFyOdKG52oTKpdsgYzBbmRbJ/2178KxEkf/aGdmGgnFwISxkXQceHJMFkWI=
+	t=1706277922; cv=none; b=OjfUZjCkGgAIryf3BIImaqZeUKFqYMB2vhTkR0grZhr8ZQCNkmw6ZDMqGSAMbO5u1BdZNSwunwovPfyCeWMlLmOS6n6oAx5ni8wbPnq27jLTX3fhZnGKTta/piC+cYaF2TcJyvPW/1aeddrQKz4xFNfNYtqqtnG7x0b9m/WoYk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706277557; c=relaxed/simple;
-	bh=pyF83y5tVfnL83cZxX2TVpeE+02/AnbnZJxbFrSpVlg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VQP+1Sq70SyFpzR8BgbGlFF+9UNlpVD9u2kk63LsRJXF5j7WrKe5weVTc/7co6tuFrBZKQLoOOBpPVT4Tx8MaVqrI00isK67P5KwAby+GPOzVSFy6yfbJ0/P9DkHTMlHJaO6G6285QPOrt5dvRwK6qu8dCAUjvfgiJXg3lC44zU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oUxtrhiv; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40QAM0hg008172;
-	Fri, 26 Jan 2024 14:59:03 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	selector1; bh=DlWza8//9CYZZEeRqSDaLqxbATgDAXvWp1xCzj+RZZU=; b=oU
-	xtrhivReW8tupdJ7UOkEzvmrzBPQFQe71EqRyka0OiB7Yz5BsEh8uokt99zDBqPX
-	BDM6qM9OyKMNfz6ShTLBDpKIddOp8j5HDLkPk1izK7RSK9zAAHwiDgaXnSI17qvN
-	4L505JAg6PYayJQjKmMh6LyW9S/9aqwXUxSwZuf+NS1IXFKM4VRAJcydiz7qFhEl
-	wes1JCvYiWvNzRgcvBlyxHLnVlqBhNKoFzwyaI0pLKK2GX+cN/gPxHF560KoEnMg
-	HfXfMfz//03zjBfeL5rocmw31SISD3vzGOajQJsLKVPKKrs7DJtTvSYt9NyVvFSW
-	DW8DTUEdXL4PW2C1Ikvg==
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vtun2bxj2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jan 2024 14:59:02 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EEFAC10004F;
-	Fri, 26 Jan 2024 14:59:01 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D627E2ABBF5;
-	Fri, 26 Jan 2024 14:59:01 +0100 (CET)
-Received: from [10.252.25.40] (10.252.25.40) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 26 Jan
- 2024 14:59:01 +0100
-Message-ID: <6e45d577-ab03-457e-ada6-1b75735d42ed@foss.st.com>
-Date: Fri, 26 Jan 2024 14:59:00 +0100
+	s=arc-20240116; t=1706277922; c=relaxed/simple;
+	bh=y5XV2iWDw/9ztxzDPozZcIidWpXfunjJxpv/NOvfRus=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b0FxzukWk69LLm7htS7/1jkIAn/IcUW8G1axsyre/w4KFqeufjFtzvWUdNJQefZzLgU9BgULxE6YRyn/qZ/W/ID76w02kawoS5KS2ZQQi8rv05mr/YX+V9+LGiFuaSw+fyUMmwR3/sXiaM10BuwJJyEKeDJDZ5lqtrrv4cnEyck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5ff7ec8772dso8188627b3.0;
+        Fri, 26 Jan 2024 06:05:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706277918; x=1706882718;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/oDyGvwYwPLztiGZb85xGU6osFH8DNpEp/o7IfIZl6c=;
+        b=Cjp1q+6nvcyutWTT86p7mQOXuR+GFRcQQJwTgKi1e2FIQmIg2vEzwl3wAQ6kvw6xVD
+         9qJKjcq4O2L+ajk4H6J6B/IVzBXUVGmQrDMILbHhka6hWP+5j1Yls9LWQbgJqM0apbwv
+         Hqxo2nwOB9rHPnV6IqUwIEk75PJ7MmooJSThW6wbz17gW4z9OUfvgt5bKnnMYj/v/XIx
+         +oNEp0zYjhrIDQABFvU5fHjf596bm9FiZWC3W3jzrJdxKiSOrt6zivZe20LuLUUulsd6
+         gytOoEvX/XB5G+23+hm/Ghvf/rCO3UEsl905fLz/vEiabj+Ll6WUSpybbZgCQa3PPlCs
+         jDcA==
+X-Gm-Message-State: AOJu0YyyoI3LAOwAw9QLZfe4no3FoOYjgmq9YcIfVJIHHJGvcwxqZb9+
+	ceu3uLiqMimcN6ld85tkJxJ76DAkWrc/P0QXsYypfo4sYJiqBxmFm1meA1E3PhA=
+X-Google-Smtp-Source: AGHT+IE+/e9P0xXvEnomhn8nWZ03JSoZhF7ggdLESbt4qZEnIP5kdXOoNDjK99a3OI5fwbkbEiBWGg==
+X-Received: by 2002:a81:4904:0:b0:5ff:9d3d:290a with SMTP id w4-20020a814904000000b005ff9d3d290amr1257026ywa.56.1706277918075;
+        Fri, 26 Jan 2024 06:05:18 -0800 (PST)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id ft2-20020a05690c360200b0060026481ad9sm403177ywb.0.2024.01.26.06.05.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jan 2024 06:05:17 -0800 (PST)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-dc35fd0df02so464632276.0;
+        Fri, 26 Jan 2024 06:05:17 -0800 (PST)
+X-Received: by 2002:a25:ad1a:0:b0:dc2:2f78:bb9a with SMTP id
+ y26-20020a25ad1a000000b00dc22f78bb9amr1195792ybi.106.1706277917490; Fri, 26
+ Jan 2024 06:05:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: remoteproc: Add compatibility for TEE
- support
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Jens
- Wiklander <jens.wiklander@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>
-References: <20240118100433.3984196-1-arnaud.pouliquen@foss.st.com>
- <20240118100433.3984196-3-arnaud.pouliquen@foss.st.com>
- <75429209-8f30-4880-8f92-ecb3cf90ae33@linaro.org>
-From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-Organization: STMicroelectronics
-In-Reply-To: <75429209-8f30-4880-8f92-ecb3cf90ae33@linaro.org>
+References: <20240117131807.24997-1-wsa+renesas@sang-engineering.com> <20240117131807.24997-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240117131807.24997-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 26 Jan 2024 15:05:05 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVtqyJDrq4MYrG7BEtppwUsa75mf=0+Tm7Ov+JvDMSHLQ@mail.gmail.com>
+Message-ID: <CAMuHMdVtqyJDrq4MYrG7BEtppwUsa75mf=0+Tm7Ov+JvDMSHLQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 1/2] arm64: dts: renesas: ulcb-kf: drop duplicate
+ 3.3v regulators
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
+Content-Transfer-Encoding: quoted-printable
 
-Hello Krzysztof,
+Hi Wolfram,
 
-On 1/26/24 12:03, Krzysztof Kozlowski wrote:
-> On 18/01/2024 11:04, Arnaud Pouliquen wrote:
->> The "st,stm32mp1-m4-tee" compatible is utilized in a system configuration
->> where the Cortex-M4 firmware is loaded by the Trusted execution Environment
->> (TEE).
->> For instance, this compatible is used in both the Linux and OP-TEE
->> device-tree:
->> - In OP-TEE, a node is defined in the device tree with the
->>   st,stm32mp1-m4-tee to support signed remoteproc firmware.
->>   Based on DT properties, OP-TEE authenticates, loads, starts, and stops
->>   the firmware.
->> - On Linux, when the compatibility is set, the Cortex-M resets should not
->>   be declared in the device tree.
->>
->> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
->> ---
->> V1 to V2 updates
->> - update "st,stm32mp1-m4" compatible description to generalize
->> - remove the 'reset-names' requirement in one conditional branch, as the
->>   property is already part of the condition test.
->> ---
->>  .../bindings/remoteproc/st,stm32-rproc.yaml   | 52 +++++++++++++++----
->>  1 file changed, 43 insertions(+), 9 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
->> index 370af61d8f28..6af821b15736 100644
->> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
->> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
->> @@ -16,7 +16,12 @@ maintainers:
->>  
->>  properties:
->>    compatible:
->> -    const: st,stm32mp1-m4
->> +    enum:
->> +      - st,stm32mp1-m4
->> +      - st,stm32mp1-m4-tee
-> 
-> The patch looks good to me, but I wonder about this choice of two
-> compatibles.
-> 
-> Basically this is the same hardware with the same interface, but two
-> compatibles to differentiate a bit different firmware setup. We have
-> already such cases for Qualcomm [1] [2] and new ones will be coming. [3]
-> 
-> I wonder whether this should be rather the same compatible with
-> additional property, e.g. "st,tee-control" or "remote-control".
+On Wed, Jan 17, 2024 at 2:18=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Schematics say that all these 3.3v sources are driven by "D3.3V". We
+> have a regulator for it already in ulcb.dtsi. Use it instead.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>
+> Following a suggestion from Geert[1], let's inherit the 3.3V regulator
+> from ulcb.dtsi. I kept the other KF regulators because:
 
-Yes the point is valid, I asked myself the question.
+Thanks for the update!
 
-I proposed a compatibility solution for one main reason. On the STM32MP15, if
-the firmware is loaded by Linux, no driver is probed in OP-TEE. But if the
-firmware is authenticated and loaded by OP-TEE, a Op-TEE driver is probed to
-manage memory access rights.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.9.
 
-The drawback of a property is that we would need to probe the OP-TEE driver for
-the STM32MP1 platform even if it is not used, just to check this property.
+> - 'hdmi_1v8' is really derived from d3.3v on the KingFisher board. It is
+>   named "T1.8V" in the schematics. Maybe we rename it?
+>
+> - 'snd_vcc5v' looks like D5V to me. While it seems available on the
 
-Thanks,
-Arnaud
+Yes, it's D5 (KF) aka D5.0V (ULCB).
 
-> 
-> [1]
-> https://elixir.bootlin.com/linux/v6.7.1/source/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml#L54
-> 
-> [2]
-> https://elixir.bootlin.com/linux/v6.7.1/source/Documentation/devicetree/bindings/net/qcom,ipa.yaml#L129
-> (that's a bit different)
-> 
-> [3] https://lore.kernel.org/linux-devicetree/20240124103623.GJ4906@thinkpad/
-> 
-> @Rob,
-> Any general guidance for this and Qualcomm?
-> 
-> Best regards,
-> Krzysztof
-> 
+>   connectors, it looks unused on the ULCB. So, keep it KingFisher only.
+>   But maybe rename it to "reg_5v"?
+
+These two can be updated later.
+
+> [1] https://lore.kernel.org/r/CAMuHMdXbpBeKNL6QC_vYTrocf7xPcvUBQmoV9vboqV=
+t_ciio+g@mail.gmail.com
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
