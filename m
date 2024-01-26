@@ -1,161 +1,297 @@
-Return-Path: <devicetree+bounces-35544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C224083DB8F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:14:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE88083DBA2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:23:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A214283624
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:14:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9502628359E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0CA1BF53;
-	Fri, 26 Jan 2024 14:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FAE1C28F;
+	Fri, 26 Jan 2024 14:23:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="X6jWZwJf"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="dXeRsRFQ";
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ZmdHQ54I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4DA11C287;
-	Fri, 26 Jan 2024 14:14:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706278476; cv=none; b=jMccUmijEAACM3sHVoEbHJhrEBO93f54PaXwqlvvIDqJWhfy4beTyFUx5N50ftmZeOIEoEt1SigQoHICru6CGujXMqtrB4Y76+siqEgOZEvXadcRhPN/Xfj3ouQfEFSDnF7RpeUzsyxAw0aoOwqmL74Y2IyK2NSxyQQzUcu1yqo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706278476; c=relaxed/simple;
-	bh=ftLuAd9U3YPVeEzec70Y/JSfQC6jcmT5YJPmcGrNDAE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PdhEFnRYqa8PVYokJEoB5hAyZ33cq0YhqDJjP9zKlKg/toFKYf5qoUumQx+2geeDySeSojbl/h0ZzolA7rXUez1t4DdQtAB381dw80NFJu+lWxYgSR3MqjP/1PmEUysexEzTFParc9k2VJKkuxLwZyr25XI/v4eSFEzT8cRoazA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=X6jWZwJf; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40QCQ7rC005300;
-	Fri, 26 Jan 2024 14:14:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=+SpPdyF3w8Fw1tNKmk5zm/UXCiCDAnEu7aqBtZrqwjQ=; b=X6
-	jWZwJfqWJPYU5LXTLKDWkbD+7zYLaFPX1QRZo5/CLcwK3CRrlN6650Q/XVQ1GZIT
-	rJKow7yXKXeFpImvwVqa+WGTCuXO/v//TwQsP9mWIXNyzfyA5EiSBa7fi63rZSff
-	hjBandhIkhAS3GSqEcEYRNIsqckzmLvmn99PnAXclcyKi251cXpOE6xFxwzNwCXt
-	ROJxMfjSameupDRSdQL8tHbFVGzn0OPfx74gOJDTKwFWZakN4wShkmjzXVZ1ZwzY
-	592H4qbSoDvQY44XPPohaFkQrmKKg7EvzZmdEt400LpgslAaBiWaf243yEH1AM6F
-	TCHAKVOm1g89Tji5YSig==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vv4f9h8yc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jan 2024 14:14:24 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40QEENYu021168
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jan 2024 14:14:23 GMT
-Received: from [10.216.50.194] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 26 Jan
- 2024 06:14:19 -0800
-Message-ID: <a4606673-64e9-4e16-8d9e-307fb37d8763@quicinc.com>
-Date: Fri, 26 Jan 2024 19:44:16 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F59F1B599;
+	Fri, 26 Jan 2024 14:23:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=68.232.153.233
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706278998; cv=fail; b=jCAkM+cbpNFzRWzE7pODU1TTNLPenX1eaibErX1rLx9aO++frc1sBIzSnCh5WEGIVJFOxiMX0WN1kgFkEOn0l+npRJuu7OAqjDejUaR5UtYSKx8Ro1L6FK6uvj6iTGTv4m8XINn5TbVsB7pqmvoRh6ELVizAXngpK4WqXmiT7MU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706278998; c=relaxed/simple;
+	bh=1/BnJRsX/1elYaMb7wTHT0zOi8CFwgptJT4WJz9pXwE=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=XVhbMbxZ0oZ/5JpsOi+hdt5fRSEHtCPtU4Gos12j3JFMc6MbTmyHkoqYkHcgXDPZ9kg5ljCAQ6Hr0tcNtvvgEvufQsr5M/szoiUZ+ztRmkYqldXlZ+oXQBkVtt4cg7YFcKODiV9fmXU6RiUUsmVIZQCJIS7FUR1jqSaq6+id9h8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=dXeRsRFQ; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ZmdHQ54I; arc=fail smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1706278996; x=1737814996;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=1/BnJRsX/1elYaMb7wTHT0zOi8CFwgptJT4WJz9pXwE=;
+  b=dXeRsRFQDsBZyLH5O/MT5JNko8wKY7g1eJj1wvtLA4I5lKqVfAuF7la0
+   Jarl3VEe0HRaN6cDBqhD3OOyUCd7eSFZ8NM3gq7MRxBZzJ4ZvGNJWF5we
+   +UiSq91aXIY89c/MYn3GymH+CBNU8Werk9wgEXTQqCT9/8m4N/bdNc1/Y
+   O052Qiu4REuT8ZQMuviy9Qenb214q2krMu0p08q9/VZEsLK4ka6OTGGMk
+   ToJ0FGH7oyB1ER8wDtlFqvhT94KMGbempsb5ToytG7uoJSZxVs386ObxP
+   NDT6c584k73rKWNedf+a6jfOCxXIN7PfZPFOfHU/ucBxrGHk8pHXTuZyp
+   g==;
+X-CSE-ConnectionGUID: 8sfnxV1mT+O2iKYZH7Y4HQ==
+X-CSE-MsgGUID: WqZ+8E3UTDiNGAw/Skq3JQ==
+X-IronPort-AV: E=Sophos;i="6.05,216,1701154800"; 
+   d="scan'208";a="16634588"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Jan 2024 07:23:08 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 26 Jan 2024 07:22:48 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.250)
+ by email.microchip.com (10.10.87.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35 via Frontend Transport; Fri, 26 Jan 2024 07:22:48 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UbfkSNxu/zE9IF3AeHQpEkg14HZt79pfC9ESUox4+5LA6wDRNEcBQ5LmTbf958ngJOwe8OVLWep1RvXexJCxzeAoVgC95cL89cKjEYRaVHE0uEas8kqNUFPaq/zctkGXF6KcrVQeOsFh+HLvKQ/PZgdqkpB0HUojsIcJfpLWj5KS9odTdb9hQ/0UURdGOdQ/wBkaeN8CfQ0FTYczUL44Ze5zTlYwlicqpfUI+uiY8cI9oSXyqy580VTDZRXGE6tg0OyszcRlHGH4Ki+pp3KGBsa0UaaGR8c/N57vNqPPT2vBHRAZy4NVFOsbobJJW8bDPSDJtx3OIKtWWT41HBj66A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tOFV6tiSB9u+ZkCLFW9JBApssCZqvXAFKd7F9phRM7w=;
+ b=gZRaRpFwFko0dHhr504N1xQ9PH4XRWSkJ4zpSKvWLJNCDNaBTajZTQZ+rxTRekqFq6NHGbMYTyhEoBQmOHdF3x/ogvfZRfhpx5iu5LdKuko75pE1m/8zMXjgiRCfEg8dw9CgpezcHvAOPoe6rDmgDDX2jV3oPSASf3+MMITcjm122GXSvFbG/lGxUS4YTyM82shiM56/5OP8Jl7A/gsmWB3ksQu80NPdiDmqvP3ovGgf0IvCYGXNEVxFxpN6gZj2Hrn/AlNxUzR58Lm5fKFV9BAyCy7XCrKvfIaQFnl+LeioCxbbpJL93S5BP2JYTQ1ZaoKpI7AxeAD1PP12h4344A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tOFV6tiSB9u+ZkCLFW9JBApssCZqvXAFKd7F9phRM7w=;
+ b=ZmdHQ54IbmH3AXzx3LQ0YP/DMVnbLLJsgtIm6Dkvg9YavXymPM5a5/RIuwBo+fFYaXezx4JoG6DNccLe6e2KVF7r0xpH+jtxb/bIDS9sDP2a6CIbQxmnBASAY113X6wfSyDfIIoy6Ym6UrUtpLp15y32C9bzwBCbnxze0G5h9/grczCSrYagWgQfno6NuTBv023hzQ7L579Z6iAloRWIZr6FOaaYJHIZOU2rdtZeRr6yX0Xnp4pH2lrP7Lvx/9eoAFSaZLAkmj/iB236XRIRxGINtfw6zGW8kmI24TUDHBIN0SY94c8ll17NPtKIbjtHhorL2CpfkDI8j7FQTyee2A==
+Received: from PH7PR11MB6451.namprd11.prod.outlook.com (2603:10b6:510:1f4::16)
+ by PH0PR11MB4949.namprd11.prod.outlook.com (2603:10b6:510:31::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.27; Fri, 26 Jan
+ 2024 14:22:44 +0000
+Received: from PH7PR11MB6451.namprd11.prod.outlook.com
+ ([fe80::80b9:80a3:e88a:57ee]) by PH7PR11MB6451.namprd11.prod.outlook.com
+ ([fe80::80b9:80a3:e88a:57ee%3]) with mapi id 15.20.7228.028; Fri, 26 Jan 2024
+ 14:22:42 +0000
+From: <Dharma.B@microchip.com>
+To: <Conor.Dooley@microchip.com>
+CC: <conor@kernel.org>, <sam@ravnborg.org>, <bbrezillon@kernel.org>,
+	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+	<tzimmermann@suse.de>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<lee@kernel.org>, <thierry.reding@gmail.com>,
+	<u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>,
+	<Linux4Microchip@microchip.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
+ schema format
+Thread-Topic: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
+ schema format
+Thread-Index: AQHaSfB9G+vm5oXSwEmW6mjsJvC8kbDftWKAgADHFQCAAI7AgIAEKeOAgABefoCAAuIIAIAAvjkAgADtGQCAABv2gIAAKg+A
+Date: Fri, 26 Jan 2024 14:22:42 +0000
+Message-ID: <51da296d-a8a9-417a-8875-3b5e866a89a3@microchip.com>
+References: <20240118092612.117491-1-dharma.b@microchip.com>
+ <20240118092612.117491-4-dharma.b@microchip.com>
+ <20240118-recent-glorified-fd35d72e006e@spud>
+ <c33868c8-dc42-4800-885c-5e5f24c2044e@microchip.com>
+ <20240119-character-mardi-43571d7fe7d5@wendy>
+ <da60f9f3-f955-4a87-a020-5710185953c0@microchip.com>
+ <20240122-stark-duress-2f59294dcf27@spud>
+ <4906b7e2-0ddb-4d3c-a48b-e16278f2d649@microchip.com>
+ <20240124-lend-emerald-1028fe65cc39@spud>
+ <c3c30bf2-e7c2-4861-bfdf-519a7afde476@microchip.com>
+ <20240125-proved-passage-7fa128f828db@wendy>
+In-Reply-To: <20240125-proved-passage-7fa128f828db@wendy>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB6451:EE_|PH0PR11MB4949:EE_
+x-ms-office365-filtering-correlation-id: 8649439e-13b7-4f75-fbc4-08dc1e7a4230
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: uabJoKcXS8FtbYzPFRQ4aplJlolork/Sl+lTLoK008VnR7ePsRrEASZgAMhkX/YZju0Db6b3e+Hai+01LB5xHDGUDmgW79SMPZxuJYi8pvigy60DJyO1MuXWPOrB7D2PWlz955fZJN9Yuiu6YDv9UEQ1d0YNfBsW48Ius5EAgUup5hosUoJkUDyh7qWpp1kGgU36gbWtcd0tbehIwT80uXlFcYwfKJ40VqMSX4zy8YYG99M0j5wf6d+9j9Z0aEVJpIgvBm8I5E5Wvs7wiotmj0MzcjPReJsBDGAoepFAv3PMD+7eM6bT4ZTWrY/Wj8jrKEc0ex5Ts4YXP9UhwEjosWHfYy9fnumR0eXmnF6D3c/EoUOdUefdBDkj7CJKWdW1euD6NzkksmByle5i1T0SfGZnEEm9UQD6MFqnWozo/jJggay/t73S9IabiTiZO3hherAoxyTsBPTS328YsrUnwuP8jm/Bw9voRDrBUBGvp5Jp2isSbwO3lAGSf1uVt7R8gJQME54u/KaFfC8PAk7mxofGYXM4eT7pRqMhIIEh0gLci0OcYm9ILA8qvUcVOIGlY+lB5HATaFVuubBfx5FADZv2/euOj3mHQE3oiE+9rkq9aoajM6fa5Xkv2pGM9Y8QNQZIVwTZSc6bH/qTpBMHXw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR11MB6451.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(366004)(136003)(39860400002)(376002)(346002)(230922051799003)(451199024)(186009)(64100799003)(1800799012)(83380400001)(6512007)(2616005)(107886003)(38100700002)(122000001)(4326008)(5660300002)(8676002)(8936002)(7416002)(2906002)(478600001)(6862004)(966005)(6486002)(6506007)(41300700001)(71200400001)(53546011)(66446008)(66476007)(54906003)(64756008)(66556008)(76116006)(37006003)(316002)(6636002)(66946007)(91956017)(38070700009)(31696002)(86362001)(36756003)(31686004)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?sM2PE+T7q4pySDiHknZfd2jcw9zuHix/ZgHFHDX0xXG65GFLNBl3ItOyHE?=
+ =?iso-8859-1?Q?ue9GqsjGo68Mjr7qSS3sFtu4XIJlTY7tzepN0dfxcoK3VF5nwqm0uDcgXW?=
+ =?iso-8859-1?Q?54tMQUUEw1lPyLLXWv7khJv+4QCIws5AvOU3BZZNgxIWPH1f4EzpCTBOc0?=
+ =?iso-8859-1?Q?D0tBbVgnWIzkNi4+vzhs6x5XVLV0kD2HsF0GIvpYdU2jhtHJryHexJbjD5?=
+ =?iso-8859-1?Q?ryP+MHM3PuUITws2ojkzIr73Ah1FuxU1uVb57aI8OD2Ss1Pmf441JbF2EI?=
+ =?iso-8859-1?Q?UuF3ZJIthEC4aAgZdME3k6Qo1uZ/63sg/Vw4OTGMvlhC/Y85rsFEAXhyBh?=
+ =?iso-8859-1?Q?8MrivPwVFJpcfTACuAdbm4YxRhPxXOf9c/4mBNHO5jjtv1ISxxNQwY4NPF?=
+ =?iso-8859-1?Q?a++FApWVpCpQcAybIJvtjmhRdkKctqbOLPxGfdWG7syNPRHf6z3/AKo54g?=
+ =?iso-8859-1?Q?I/zaTbWsXe3LubVIySy00glpaxxON5kL/rJz9OlzAhZRLNNiAvxE3fYTGD?=
+ =?iso-8859-1?Q?mBihEDI/fKc2Tbej/5TN7IUnfXBEseuZwOPMiWkBtPXbvD48FdrW87keab?=
+ =?iso-8859-1?Q?cgkB3xiJYxSf7/T/7V4mJ5YbP7i94YZ1EMVMBbAyk2owv0Nmony7QrkG2Q?=
+ =?iso-8859-1?Q?fPQ8Fz+4PmWC4JJnOITDjLbg5k8Sh10cAXaFDatrNoxLSc+pPfYoPH4fVd?=
+ =?iso-8859-1?Q?vFQbV8r8pFb3ExfctWVEgCb0tur4hP4Ox0ocM9zVXTjLnKKjhcQZTDRD72?=
+ =?iso-8859-1?Q?fefLK1L9EjAWqTDUYBEUdJVazOhbCC/AcBxnjhE1d7zZA4tYdCGri9DYij?=
+ =?iso-8859-1?Q?cggJ5e8bIHoemHdrnBeWgGKp1OeLYVp+M6wvuWUtoSuXOFKCFxs3LSM8dX?=
+ =?iso-8859-1?Q?+VhZfUrOOtflcFHJwB3bGGhFq93ZEN9ExFSHJxqin+giA6EI5wj20mNZk5?=
+ =?iso-8859-1?Q?GQyqjtA78Gg2IZdbW/mH7/7ZFsCbWzeI4Qkg50rgAySn1tLWNTmbyYvW2i?=
+ =?iso-8859-1?Q?CorPuZ6xbBnVz8/nzW5fRV1ls8XxL9Im09xDlxdCiGSFw7JX9hcLQ5iAe2?=
+ =?iso-8859-1?Q?r7E4ly/IxyTVXemTLd/aKcuYYY1O8yh/9xwUF6AjoyPa0PdH1LSdrsx0iG?=
+ =?iso-8859-1?Q?vTtrF/OU3YYCDRUBvqM2I7dvIC1TakiZivoo2x4vti+64Ymw5V+N+KAhq7?=
+ =?iso-8859-1?Q?kEU/w2pYJOgtiBn1NXC+J4twnPSr0iK3RrAqIYGfaytEWQqtxLiCq9PEQ7?=
+ =?iso-8859-1?Q?apyvSy4gB5OioW73XaeKDGbfqmHN8OuTXluSfzQ07aBIuZQnWCn3BKSfjP?=
+ =?iso-8859-1?Q?OnRDdg5YEJq3V0MAGC9IPip56WUCC0RWWnJI4GvsoFb5ljVhncWrwfS8yR?=
+ =?iso-8859-1?Q?sqf6UbASupIVyo5D2fDb+ANpwluM+ig7qr2g4kNv/tQjUjXY7ITeZKaV80?=
+ =?iso-8859-1?Q?toz9RWSYtCILu6u4y3qNEYLMDjKCKKiyRL2/nAcwpoEDba6nrrOpLFr67t?=
+ =?iso-8859-1?Q?JIkcIGvH7eErwIBP3EgpwRapdaWIoJ0nFFbzQ+IAtE4kTvSnLCPHg9daeA?=
+ =?iso-8859-1?Q?Aj4WMrO8IKkl5Azl8EvSkISvkHSPq6bDDbcVqgndxjrMoBLP6/ODzXoHhT?=
+ =?iso-8859-1?Q?OCMlu2tbNDJgUJMvwgMK9uoziDSQ6aYAcxvNvfTUUigRqusoe7oKRz+Y+M?=
+ =?iso-8859-1?Q?bL4eK7WNmevp0QcNxf4pb4XwJDjOt4H0NIxqvuJl?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <05AAE253C650464985AA72B3E4957186@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: Fix hs_phy_irq for QUSB2 targets
-To: Bjorn Andersson <andersson@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
-References: <20240120191904.15408-1-quic_kriskura@quicinc.com>
- <20240120191904.15408-2-quic_kriskura@quicinc.com>
- <wqdqkzvni4roqulgsiqxzubxcblzxnoydcwvv2av2pobjjx5o6@b7kwl6lq7hij>
-Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <wqdqkzvni4roqulgsiqxzubxcblzxnoydcwvv2av2pobjjx5o6@b7kwl6lq7hij>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6bLippXMlQBWho7Sf-qbyUXJAPAqgD9h
-X-Proofpoint-GUID: 6bLippXMlQBWho7Sf-qbyUXJAPAqgD9h
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 mlxscore=0 suspectscore=0
- mlxlogscore=999 spamscore=0 bulkscore=0 lowpriorityscore=0 phishscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401190000 definitions=main-2401260104
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6451.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8649439e-13b7-4f75-fbc4-08dc1e7a4230
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2024 14:22:42.4853
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eIpYgw6oObuibjwdzSEV5vNMHhK4mf0o/W1n+f6aafvGZ7zpOC533i0xUbSVapN0mY7LVs/mF6AXeGPBI4Q43A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4949
 
-
-
-On 1/25/2024 3:16 AM, Bjorn Andersson wrote:
-> On Sun, Jan 21, 2024 at 12:49:01AM +0530, Krishna Kurapati wrote:
->> On several QUSB2 Targets, the hs_phy_irq mentioned is actually
->> qusb2_phy interrupt specific to QUSB2 PHY's. Rename hs_phy_irq
->> to qusb2_phy for such targets.
->>
->> In actuality, the hs_phy_irq is also present in these targets, but
->> kept in for debug purposes in hw test environments. This is not
->> triggered by default and its functionality is mutually exclusive
->> to that of qusb2_phy interrupt.
->>
->> Add missing hs_phy_irq's, pwr_event irq's for QUSB2 PHY targets.
->> Add missing ss_phy_irq on some targets which allows for remote
->> wakeup to work on a Super Speed link.
->>
->> Also modify order of interrupts in accordance to bindings update.
->> Since driver looks up for interrupts by name and not by index, it
->> is safe to modify order of these interrupts in the DT.
->>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 13 +++++++++++++
->>   arch/arm64/boot/dts/qcom/ipq8074.dtsi | 14 ++++++++++++++
->>   arch/arm64/boot/dts/qcom/msm8953.dtsi |  7 +++++--
->>   arch/arm64/boot/dts/qcom/msm8996.dtsi |  8 ++++++--
->>   arch/arm64/boot/dts/qcom/msm8998.dtsi |  7 +++++--
->>   arch/arm64/boot/dts/qcom/sdm630.dtsi  | 17 +++++++++++++----
->>   arch/arm64/boot/dts/qcom/sm6115.dtsi  |  9 +++++++--
->>   arch/arm64/boot/dts/qcom/sm6125.dtsi  |  9 +++++++--
->>   8 files changed, 70 insertions(+), 14 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
->> index 5e1277fea725..ea70b57d1871 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
->> @@ -418,6 +418,12 @@ usb2: usb@70f8800 {
->>   					  <&gcc GCC_USB1_MOCK_UTMI_CLK>;
->>   			assigned-clock-rates = <133330000>,
->>   					       <24000000>;
->> +
->> +			interrupts-extended = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
-> 
-> interrupts-extended takes a reference to a interrupt-controller as well,
-> so this doesn't build.
-> 
-> Did you mean "interrupts" here instead? Please update these and build
-> test...
-> 
-
-Hi Bjorn,
-
-  Thanks for the catch. I was using DTC version 1.4.0.
-When I moved to 1.5.0, I did see these warnings. Fixed them up and sent v3.
-
-Thanks,
-Krishna,
+Hi Conor,=0A=
+=0A=
+On 25/01/24 1:57 pm, Conor Dooley - M52691 wrote:=0A=
+> =0A=
+>>> If the lvds pll is an input to the hlcdc, you need to add it here.=0A=
+>>>   From your description earlier it does sound like it is an input to=0A=
+>>> the hlcdc, but now you are claiming that it is not.=0A=
+>>=0A=
+>> The LVDS PLL serves as an input to both the LCDC and LVDSC=0A=
+> =0A=
+> Then it should be an input to both the LCDC and LVDSC in the devicetree.=
+=0A=
+=0A=
+For the LVDSC to operate, the presence of the LVDS PLL is crucial. However,=
+ in the case of the LCDC, LVDS PLL is not essential for its operation unles=
+s LVDS interface is used and when it is used lvds driver will take care of =
+preparing and enabling the LVDS PLL.=0A=
+=0A=
+Consequently, it seems that there might not be any significant actions we c=
+an take within the LCD driver regarding the LVDS PLL.=0A=
+=0A=
+If there are no intentions to utilize it within the driver, is it necessary=
+ to explicitly designate it as an input in the device tree?=0A=
+=0A=
+If yes, I will update the bindings with optional LVDS PLL clock.=0A=
+=0A=
+clock-names:=0A=
+  items:=0A=
+    - const: periph_clk=0A=
+    - const: sys_clk=0A=
+    - const: slow_clk=0A=
+    - const: lvds_pll  # Optional clock=0A=
+=0A=
+=0A=
+> =0A=
+>> with the=0A=
+>> LVDS_PLL multiplied by 7 for the Pixel clock to the LVDS PHY, and=0A=
+> =0A=
+> Are you sure? The diagram doesn't show a multiplier, the 7x comment=0A=
+> there seems to be showing relations?=0A=
+=0A=
+Sorry, =0A=
+LVDS PLL =3D (PCK * 7) goes to LVDSC PHY=0A=
+PCK =3D (LVDS PLL / 7) goes to LCDC=0A=
+=0A=
+> =0A=
+>> LVDS_PLL divided by 7 for the Pixel clock to the LCDC.=0A=
+> =0A=
+>> I am inclined to believe that appropriately configuring and enabling it=
+=0A=
+>> in the LVDS driver would be the appropriate course of action.=0A=
+> =0A=
+> We're talking about bindings here, not drivers, but I would imagine that=
+=0A=
+> if two peripherals are using the same clock then both of them should be=
+=0A=
+> getting a reference to and enabling that clock so that the clock=0A=
+> framework can correctly track the users.=0A=
+> =0A=
+>>> I don't know your hardware, so I have no idea which of the two is=0A=
+>>> correct, but it sounds like the former. Without digging into how this=
+=0A=
+>>> works my assumption about the hardware here looks like is that the lvds=
+=0A=
+>>> controller is a clock provider,=0A=
+>>=0A=
+>> It's a PLL clock from PMC.=0A=
+>>=0A=
+>>> and that the lvds controller's clock is=0A=
+>>> an optional input for the hlcdc.=0A=
+>>=0A=
+>> Again it's a PLL clock from PMC.=0A=
+>>=0A=
+>> Please refer Section 39.3=0A=
+>> https://ww1.microchip.com/downloads/aemDocuments/documents/MPU32/Product=
+Documents/DataSheets/SAM9X7-Series-Data-Sheet-DS60001813.pdf=0A=
+> =0A=
+> It is not the same exact clock as you pointed out above though, so the=0A=
+> by 7 divider should be modelled.=0A=
+=0A=
+Modelled in mfd binding? If possible, could you please provide an example f=
+or better clarity? Thank you.=0A=
+=0A=
+> =0A=
+>>> Can you please explain what provides the lvds pll clock and show an=0A=
+>>> example of how you think the devictree would look with "the lvds pll in=
+=0A=
+>>> the lvds dt node"?=0A=
+>>=0A=
+>> Sure, Please see the below example=0A=
+>>=0A=
+>> The typical lvds node will look like=0A=
+>>=0A=
+>>                   lvds_controller: lvds-controller@f8060000 {=0A=
+>>                           compatible =3D "microchip,sam9x7-lvds";=0A=
+>>                           reg =3D <0xf8060000 0x100>;=0A=
+>>                           interrupts =3D <56 IRQ_TYPE_LEVEL_HIGH 0>;=0A=
+>>                           clocks =3D <&pmc PMC_TYPE_PERIPHERAL 56>, <&pm=
+c=0A=
+>> PMC_TYPE_CORE PMC_LVDSPLL>;=0A=
+>>                           clock-names =3D "pclk", "lvds_pll_clk";=0A=
+>>                           status =3D "disabled";=0A=
+>>                   };=0A=
+> =0A=
+> In isolation, this looks fine.=0A=
+> =0A=
+> Cheers,=0A=
+> Conor.=0A=
+-- =0A=
+With Best Regards,=0A=
+Dharma B.=0A=
+=0A=
 
