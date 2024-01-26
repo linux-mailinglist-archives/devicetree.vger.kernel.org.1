@@ -1,176 +1,150 @@
-Return-Path: <devicetree+bounces-35547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 564FB83DBB4
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:25:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 448E483DBE4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:30:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D75FE1F24B0D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:25:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 657741C209A5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:30:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D951C28F;
-	Fri, 26 Jan 2024 14:24:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B410667C73;
+	Fri, 26 Jan 2024 14:30:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OcAryFce"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KWB2+Ym8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E94C51DDF8;
-	Fri, 26 Jan 2024 14:24:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822177F;
+	Fri, 26 Jan 2024 14:30:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706279049; cv=none; b=Zhsejf/58AwER5i094pYKnmBnAEkVMYKII9s7ZGpmco94b/YFe5DdZv7YS9K0GliTxh01yk33OZYQd4F0cl7Ck8s/bD53rZZAiVwkUrG2qCg5a4dGMKcYxC+6w97av65Vz8D+0EbxLsDlLc66y10pVUDCichB5sHI/6aq8YhGGc=
+	t=1706279452; cv=none; b=ftg5TTMQiHIhjpxkJcPLry+i6UBt+j1adlWu+7LD5ho/NpPgkdLKQYYgcUfI99ik+BLwINhsG3OFgXfvMd1xvajczuoX7gVd8HfOi/ZD3fsjD45cLSGL+u7+Ub4wwyB3Gxg9UwAdkFgoX1Jplrz+PWWj5qiwQn/Ten2kniLApt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706279049; c=relaxed/simple;
-	bh=vagUOHF2Lunl2BO2OA4jMWY0HAMi684yyFXzkym1nAg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Vb4tLUWNGySUyes420ZTTmnNT6HstOaJNTOZUkYP7BHTu4PJ3ydjEPwGWyDCiUJggxhKV8VOk7SGqA+iN9K+nhodI+YR/U2Y0Pvl5UBwit6dl9+RF6gn/xZDuIfmJHClrJzUSGiZ/xf3pUmvBOgh/u7eObo+A5uurhrhI47keWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OcAryFce; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-40e8fec0968so7580295e9.1;
-        Fri, 26 Jan 2024 06:24:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706279046; x=1706883846; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=vagUOHF2Lunl2BO2OA4jMWY0HAMi684yyFXzkym1nAg=;
-        b=OcAryFceg/iAxifGxYse8Jm9ccnhgQxD5EHMEhUosiUvG2A1dgh2XYMwydr40ysxpj
-         hWOmIB+LYSDDpv0qzfvFIyD4+ne61ZvUoS3As6vH5K4g0jDLkTNoTU8B4eXDggBatHek
-         kZnyMgWWG1VRbemZP7VOFyrCF12NVkmaGkjHYv/sAhOS5O59A7uyU9/bS+IabiM3FgeH
-         H9oyyn71hFQYW+ugxeUUojGa+TELAMaHqdMtas+SgZJcRQD1LrHhna6SmmjZfqsW58P3
-         rkqs+0gSswzc38NOhtjcEeEL8cSHQ/IrwAY9gaROzhVj0coqn7c2vkC9VDoMOLxHgi88
-         jwjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706279046; x=1706883846;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vagUOHF2Lunl2BO2OA4jMWY0HAMi684yyFXzkym1nAg=;
-        b=SA40ybgOiuJkl3yPeRsnlQiByMlhqycZE/X0fiVvS2+mB3DDdkdqaC5yeYt7qYGSgX
-         03S76S8NH5dQ1larPJPDHCk5W82tEbNrxrFNSSrPk29apVpQnLiB4WqOhMV0yGRP2Oa8
-         k6L+2Hrb+o3siultONEoQ6vWJxUE4YHEhbztizb+WmMNNJTPHlUcZQh5khc3EeO5W2ZA
-         AQ0KY0oUbdeDpr47FohHssIrhbE6tPVq3ltRYOEGpuhwwVVUEZIbb2l6DAQuFAdszlNm
-         GNeQa92R4kGsIgsFyyVCeYpd2rHnMmfJum6ivuWsMNNsDd/a2ac1oSTMcfnOrNYH8jXS
-         2VZg==
-X-Gm-Message-State: AOJu0YwLSDB2weHPov1y/STbwRYlLuJJwSBU7LKqTLTdEJS91KStEYym
-	SJBjJAT8TK34vnQMXFSzyGGoiBP/kdIT6WP1XR+sZF0RvuPmiBsC
-X-Google-Smtp-Source: AGHT+IHVf+ru38l7q+iSE5Ol6151trWdoMqv0NFetoArb+s6iXdKIRkzuTedyuLV4ujuodmBaI4RqA==
-X-Received: by 2002:a05:600c:5405:b0:40e:541e:d5b with SMTP id he5-20020a05600c540500b0040e541e0d5bmr868179wmb.192.1706279045770;
-        Fri, 26 Jan 2024 06:24:05 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
-        by smtp.gmail.com with ESMTPSA id s12-20020a17090699cc00b00a2cd74b743csm686902ejn.3.2024.01.26.06.24.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 06:24:05 -0800 (PST)
-Message-ID: <c459cc6766b741892cdf9de0b50832023eb4196d.camel@gmail.com>
-Subject: Re: [PATCH v7 4/9] driver: core: allow modifying device_links flags
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Saravana Kannan <saravanak@google.com>
-Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>,  Jonathan Cameron
- <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Fri, 26 Jan 2024 15:27:21 +0100
-In-Reply-To: <865346908c9b76d72741e6f319a4535459de1ea6.camel@gmail.com>
-References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
-	 <20240123-iio-backend-v7-4-1bff236b8693@analog.com>
-	 <CAGETcx8_0ExTG4ASb9xK-uwmubMFDx44_wUf1h3VsO8w9jJApQ@mail.gmail.com>
-	 <8eae083af481441d83df02a1880e2aedf99efdfb.camel@gmail.com>
-	 <CAGETcx_ScsW4gKpAK01dHYxB3XGs-pRjJQMygbZUNAdxV6BqtA@mail.gmail.com>
-	 <865346908c9b76d72741e6f319a4535459de1ea6.camel@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+	s=arc-20240116; t=1706279452; c=relaxed/simple;
+	bh=5PTW+IqP2/VHagHq8RzcNDNtfY8AXE4R1InU9ZFsRoY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N4yQkH5o+kBSVm8q6JNuVBel0tFUzzInpkASaqZrjgFp37PZrfH0/X15nfHC+BWyuCK1IbcS5UzAOyNt99n0Mz4oUAC+wQFSh+aWpSYYL4IOWtgpa4EXfNC96FXUjEWKD4+mkUJuq++qssBomTH/egCUvPpF4qLoeBXzwmABXlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KWB2+Ym8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0F80C433C7;
+	Fri, 26 Jan 2024 14:30:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706279452;
+	bh=5PTW+IqP2/VHagHq8RzcNDNtfY8AXE4R1InU9ZFsRoY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KWB2+Ym84uJLouqbVirqCK9/fentoQ0ElweL6zwW5q84ZepK9XW2oSbMqyOs+c6wR
+	 bbPzecqjB7lB7pB2LiY/78NJd2MSOTi57HTrxqibk6MtThVUmexxg6LVBS3eFgTzhY
+	 w5wEaZbgL33rMhDbWVXD3lNUMFXNnqjKS8EoKaqiJx1Aj4wD9sPYDE54B0eLz0K5bl
+	 ldC+Pv8RtPxYOiyLhCIf6WcE6lUu3uSQW2YaI1hVZmZzYlgapfAnfZp8VHAx1mjBDK
+	 uN1HrFnXmWq0rg8fgEXUYtmSykuEuZcdIowGn6D5LLdTMFPhXT6RwHANmDRi1QkUsf
+	 3b8pNQrkjyPtg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rTNEU-000000007UG-3KiF;
+	Fri, 26 Jan 2024 15:31:03 +0100
+Date: Fri, 26 Jan 2024 15:31:02 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Daniel Thompson <daniel.thompson@linaro.org>
+Cc: Bjorn Andersson <quic_bjorande@quicinc.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+	Jiri Kosina <jikos@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@somainline.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp-x13s: Fix/enable
+ touchscreen
+Message-ID: <ZbPCJv7HW8OQzPMT@hovoldconsulting.com>
+References: <20240125-x13s-touchscreen-v1-0-ab8c882def9c@quicinc.com>
+ <20240125-x13s-touchscreen-v1-2-ab8c882def9c@quicinc.com>
+ <ZbNpdaSyFS9tYrkd@hovoldconsulting.com>
+ <20240126130232.GA5506@aspen.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240126130232.GA5506@aspen.lan>
 
-On Fri, 2024-01-26 at 09:13 +0100, Nuno S=C3=A1 wrote:
-> On Thu, 2024-01-25 at 16:50 -0800, Saravana Kannan wrote:
-> > On Thu, Jan 25, 2024 at 12:11=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmai=
-l.com> wrote:
-> > >=20
-> > >=20
-> > > Hi Saravana,
-> > >=20
-> > > Thanks for your feedback,
-> > >=20
-> > > On Wed, 2024-01-24 at 19:21 -0800, Saravana Kannan wrote:
-> > > > On Tue, Jan 23, 2024 at 7:14=E2=80=AFAM Nuno Sa via B4 Relay
-> > > > <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> > > > >=20
-> > > > > From: Nuno Sa <nuno.sa@analog.com>
-> > > > >=20
-> > > > > If a device_link is previously created (eg: via
-> > > > > fw_devlink_create_devlink()) before the supplier + consumer are b=
-oth
-> > > > > present and bound to their respective drivers, there's no way to =
-set
-> > > > > DL_FLAG_AUTOREMOVE_CONSUMER anymore while one can still set
-> > > > > DL_FLAG_AUTOREMOVE_SUPPLIER. Hence, rework the flags checks to al=
-low
-> > > > > for DL_FLAG_AUTOREMOVE_CONSUMER in the same way
-> > > > > DL_FLAG_AUTOREMOVE_SUPPLIER is done.
-> > > >=20
-> > > > Curious, why do you want to set DL_FLAG_AUTOREMOVE_CONSUMER?
-> > > > Especially if fw_devlink already created the link? You are effectiv=
-ely
-> > > > trying to delete the link fw_devlink created if any of your devices
-> > > > unbind.
-> > > >=20
-> > >=20
-> > > Well, this is still useful in the modules case as the link will be re=
-laxed
-> > > after
-> > > all devices are initialized and that will already clear AUTOPROBE_CON=
-SUMER
-> > > AFAIU. But, more importantly, if I'm not missing anything, in [1],
-> > > fw_devlinks
-> > > will be dropped after the consumer + supplier are bound which means I
-> > > definitely
-> > > want to create a link between my consumer and supplier.
-> > >=20
-> > > FWIW, I was misunderstanding things since I thought
-> > > DL_FLAG_AUTOREMOVE_CONSUMER
-> > > was needed to make sure the consumer is unbound before the supplier. =
-But
-> > > for
-> > > that I think I can even pass 0 in the flags as I only need the link t=
-o be
-> > > MANAGED. Still, I think having DL_FLAG_AUTOREMOVE_CONSUMER makes sens=
-e.
-> >=20
-> > As you noticed, your understanding of DL_FLAG_AUTOREMOVE_CONSUMER is
-> > not correct. There's almost never a good reason to drop a device link.
-> > Even when a device/driver are unbound, we still want future probe
-> > attempts to make use of the dependency info and block a device from
-> > probing if the supplier hasn't probed.
-> >=20
->=20
-> Yeah that makes sense and is making me thinking that I should change my c=
-all
-> (in
-> patch 7 to use the MANAGED flag instead of AUTOREMOVE_CONSUMER). Sure,
-> AUTOREMOVE_CONSUMER won't matter most cases but if someone disables
-> fw_devlinks
-> then it matters.
->=20
+On Fri, Jan 26, 2024 at 01:02:32PM +0000, Daniel Thompson wrote:
+> On Fri, Jan 26, 2024 at 09:12:37AM +0100, Johan Hovold wrote:
+> > On Thu, Jan 25, 2024 at 07:55:14PM -0800, Bjorn Andersson wrote:
+> > > The failing read-test in __i2c_hid_core_probe() determines that there's
+> > > nothing connected at the documented address of the touchscreen.
+> > >
+> > > Introduce the 5ms after-power and 200ms after-reset delays found in the
+> > > ACPI tables. Also wire up the reset-gpio, for good measure.
+> >
+> > As the supplies for the touchscreen are always on (and left on by the
+> > bootloader) it would seem that it is really the addition of the reset
+> > gpio which makes things work here. Unless the delay is needed for some
+> > other reason.
+> >
+> > (The power-on delay also looks a bit short compared to what is used for
+> > other devices.)
+> >
+> > Reset support was only recently added with commit 2be404486c05 ("HID:
+> > i2c-hid-of: Add reset GPIO support to i2c-hid-of") so we should not
+> > backport this one before first determining that.
+> 
+> This comment attracted my attention so I tried booting with each of the
+> three lines individually.
+> 
+> On Thu, Jan 25, 2024 at 07:55:14PM -0800, Bjorn Andersson wrote:
+> > +             reset-gpios = <&tlmm 99 GPIO_ACTIVE_LOW>;
+> 
+> This is not enough, on it's own, to get the touch screen running.
+> 
+> I guess that's not so much of a surprise since the rebind-the-driver
+> from userspace trick wouldn't have been touching this reset.
 
-Yeah, just realized MANAGED is not a valid flag one can pass to
-device_link_add() :)
+Right, I realised that after hitting send.
 
-- Nuno S=C3=A1
->=20
+For the record, people have successfully been using the touchpad after
+forcing the driver to reprobe through sysfs:
 
+	echo 4-0010 >/sys/bus/i2c/drivers/i2c_hid_of/bind
+
+> > +             post-power-on-delay-ms = <5>;
+> 
+> This line alone is enough (in v6.7.1).
+
+Thanks for confirming.
+
+> > +             post-reset-deassert-delay-ms = <200>;
+> 
+> This line alone is also enough!
+
+Yes, the driver honours this delay regardless of whether a reset gpio is
+defined currently, so this is expected.
+
+> In short it looks like the delays make the difference and, even a short
+> delay, can fix the problem.
+
+Right, but since the suppliers are left enabled by the bootloader (and
+never disabled by the kernel), that only begs the question of why this
+makes a difference.
+
+Without the delay, the other HID devices are probing (successfully)
+slightly before, but essentially in parallel with the touchscreen while
+using the same resources. Is that causing trouble somehow?
+
+Or is there a bug in the i2c controller driver affecting only this
+device that can be worked around by adding a delay before the first
+transfer?
+
+Johan
 
