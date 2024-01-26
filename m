@@ -1,86 +1,63 @@
-Return-Path: <devicetree+bounces-35395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A890583D5C1
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:14:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F07C183D5C7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:15:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AAD71F28065
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:14:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B2581C266D9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6596717997;
-	Fri, 26 Jan 2024 08:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96ED6171AB;
+	Fri, 26 Jan 2024 08:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H+JeTIhF"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="lzwrviwr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE8A11CBB
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E03D272
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:20:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706257127; cv=none; b=YKNNOZBuNgPxItpnvbSjzgFVCIGyhnuwmMhRqSO5ocfhmpPfiT1WBUfKGmf6Cxpb9qiGqjewcRjelg5uo35P3IC7STnINdXODs0FfgTdnnTmtyJzi77jVWz1sJbPd+LJq+3YVk1MEr66Vjhdvdccgr9Kmpp/j+XvPxnwNTrPm6E=
+	t=1706257234; cv=none; b=AqISVXLsX2YIbgRpncfchpmO3qOwu94WoFDJFTe/pl0A6QHMcJgMXgq9xwfj3UA3D85z5801WSJFNsjlm4G8PeFr8YCm5Lod36WwDxgAJZMYLWd1dtS2UzXtdrgx2I3uRQjV/HaYLN/Obsm5h/sWqNaFStNEOkq8vWl6KIC5k2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706257127; c=relaxed/simple;
-	bh=1v1p0jrAJR50Kueh7YF9CPLO/I/oXE+euJsb8wrKQ+M=;
+	s=arc-20240116; t=1706257234; c=relaxed/simple;
+	bh=LcaQO4Y0Om2XAvomVedhbbfSkTpmnqjr9w/usEsktZA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a8W//ZMov3IXShrJHXlPI93PxnNtj4Ovcn6Alg/JA4OWhBaBpcW+FXgvfN5JfFwYta4eTrsNrzj8kAn3P0YdDskbK7tdXvB81JL83iF4iWJehIFxMhL0S0Xn755HN5B5PzcSq4Z2gZdy+pAYUi6XxFmBTe0wPjgqObRvbzphSXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H+JeTIhF; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a2a17f3217aso17613866b.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 00:18:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706257124; x=1706861924; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3eKbQ9dPSaynT5h1DWbytWa8cizVUJhYOPdgPpMBlYw=;
-        b=H+JeTIhFKdgDE97RUL23Y7vt9Hab569XLsLp7NT00I2ZZ74HeOAnxqIgK9P//DwNIG
-         iengf9mXTH1kjZpDsMV97EfQMnViFr+2XiOieFlOKYEm37MRjy3bgOuJf6d+4LmHx+Hw
-         QSR3yZCf3Xzj4LbZmJCYc54l63C/qrRMqqppr+nfT5a+mXSYQR/klx/C6og0iacysYVw
-         q5QYVXfazGNnbgmsK7E8w5pezGWsHdGaJbv6NoMapvfzJNKuR4zWTo+jvraxBOiC9uGr
-         1ONZj/FMDRb/dREzmF0rpo0ywp/nYHT7XfSsbyiVvGPaFfO1vwCnWO6aPOIZL4eQFXPn
-         de+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706257124; x=1706861924;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3eKbQ9dPSaynT5h1DWbytWa8cizVUJhYOPdgPpMBlYw=;
-        b=HXSP7VVrCagChDdV/uXEL9Lnxv9qmr/kqjTqB2V6ZxvXvUuI6F5mGw8aMJPsvKpgMc
-         E8zu4iT9M/OjlA9UH1zqQHCvTwdmA2npqB8EKHDA7Cw6LXF/CiBiQdjPYywk+bcJ1GOu
-         yaRtfuWOz9VP1pi1M+8XXnXCLp+M9evbU8KnO65CYoL4uxpnu3YJGt+Rt9QP44dbInEU
-         ORuNzMryu5iEVmaouGoCBXAvi6GyvfNFm52KbALusbbSbwDHuWzqbzvc54zROARfTKh7
-         tnoQrnUXF+Cbbja6jFAei9Ou2EsTADC9yyLK4cJYqY3Q94ibcWVxyFO5fXyzAOgVM/y+
-         6nTQ==
-X-Gm-Message-State: AOJu0YzXTLHcadvIr0BhUz7o8yu1eFgX+BSEmlZoWZv5ytQZ/RLNF7H2
-	T3gn/kjc9CTH5lph6MQTt9RzWEEwA9tY9HL+Kf4saqrWJLUGQX5LtXWrs7IkBQ8=
-X-Google-Smtp-Source: AGHT+IGAHjYbYuhhbEn3hJ2jgzKambyOC27Tkan/Yq9Qzl1vlpSHYnZRuSY3GbgR8HYC+EhmgrcwyQ==
-X-Received: by 2002:a17:907:1751:b0:a30:ec79:25f3 with SMTP id lf17-20020a170907175100b00a30ec7925f3mr893519ejc.42.1706257123688;
-        Fri, 26 Jan 2024 00:18:43 -0800 (PST)
-Received: from linaro.org ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id ck5-20020a170906c44500b00a31930ffa7esm358242ejb.153.2024.01.26.00.18.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 00:18:43 -0800 (PST)
-Date: Fri, 26 Jan 2024 10:18:41 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ly572NfprloAUvetmJwYMttWnr+PTKDGOaOfqEISQuHvFs+KJUAh39EjlXUEEN8z2kEwOU13scPOdIFPuCEG96ewMMT2ZXP54HSWJndWUnRnsk9ucY3ISGFr0RWYY2uejJrDY1k2YX5aJ3piNRDZbcFV0tLzgIM0ZQgqbNPtVng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=lzwrviwr; arc=none smtp.client-ip=74.50.62.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 3238E6042F;
+	Fri, 26 Jan 2024 08:20:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1706257232;
+	bh=LcaQO4Y0Om2XAvomVedhbbfSkTpmnqjr9w/usEsktZA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lzwrviwrXNxml6xexZr7PhltBsmUh37iWa+Yvdc9asidM0bAbs5HXsZoXiYYvYBdp
+	 /U2ENoGFDaOC1uklay1jKSTxi5TOOvBqveGQHlPUBIdvJJmZrvChX4c2eECgLAS3Lb
+	 wfHS0RnI52KHtJBjvYYjvnLuolJaOgvba61/m/IjrV2IG8izKLqTCADDeZS7AtAb1Q
+	 wA1nKy7O9DT89ZC/yf8mBCdG+LBZtZnKDow2v5kvdgZCoGAFeokqSS2J8H347/wtWv
+	 Qzt1h380ugDUbICcxKxaTsVSGLuuQDJLKPPuRK3+CxqxjAA3WFFAGhje2j8kjKa+9z
+	 cFi5qg4NE53dA==
+Date: Fri, 26 Jan 2024 10:20:06 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 05/11] arm64: dts: qcom: x1e80100: Add TCSR node
-Message-ID: <ZbNq4b813348ZiV8@linaro.org>
-References: <20240123-x1e80100-dts-missing-nodes-v4-0-072dc2f5c153@linaro.org>
- <20240123-x1e80100-dts-missing-nodes-v4-5-072dc2f5c153@linaro.org>
- <b0f4236a-c87e-4d50-b1a0-42ed5b015b86@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>, Dhruva Gole <d-gole@ti.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/1] arm64: dts: ti: k3-am62-wakeup: Configure ti-sysc
+ for wkup_uart0
+Message-ID: <20240126082006.GT5185@atomide.com>
+References: <20231219072503.12427-1-tony@atomide.com>
+ <q54c4f3l2ddvnnwzigz2hebru27nhevf4oij6g2nqv6yyijigr@nuvwukfwpsjh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,48 +66,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b0f4236a-c87e-4d50-b1a0-42ed5b015b86@linaro.org>
+In-Reply-To: <q54c4f3l2ddvnnwzigz2hebru27nhevf4oij6g2nqv6yyijigr@nuvwukfwpsjh>
 
-On 24-01-23 19:09:37, Konrad Dybcio wrote:
+* Markus Schneider-Pargmann <msp@baylibre.com> [240124 13:55]:
+> I tested this patch on am62-lp-sk and required this additional property:
 > 
+>   ti,no-reset-on-init;
 > 
-> On 1/23/24 12:01, Abel Vesa wrote:
-> > Add the TCSR clock controller and halt register space node.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> 
-> The former - yes, the latter - ?
+> I am not sure at the moment why a reset doesn't work. But with the given
+> property (so without reset) the wakeup on wkup_uart0 works as expected.
 
-Hm, so halt register space is at 0x1f60000. That would be in the mutex
-region. But the mutex region is 0x20000 short, even on SM8650 and
-SM8550. Need to see why is that, historically.
+OK. This might be some firmware related difference. Care to describe what
+goes wrong so that can be added to the patch description?
 
-Either way, the tcsr node region still contains the regs needed by the
-SCM driver to enable download mode. So I will rephrase this accordingly.
+Regards,
 
-> 
-> Konrad
-> >   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 8 ++++++++
-> >   1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index be69e71b7f53..2b6c55a486b2 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -2606,6 +2606,14 @@ tcsr_mutex: hwlock@1f40000 {
-> >   			#hwlock-cells = <1>;
-> >   		};
-> > +		tcsr: clock-controller@1fc0000 {
-> > +			compatible = "qcom,x1e80100-tcsr", "syscon";
-> > +			reg = <0 0x01fc0000 0 0x30000>;
-> > +			clocks = <&rpmhcc RPMH_CXO_CLK>;
-> > +			#clock-cells = <1>;
-> > +			#reset-cells = <1>;
-> > +		};
-> > +
-> >   		gem_noc: interconnect@26400000 {
-> >   			compatible = "qcom,x1e80100-gem-noc";
-> >   			reg = <0 0x26400000 0 0x311200>;
-> > 
+Tony
 
