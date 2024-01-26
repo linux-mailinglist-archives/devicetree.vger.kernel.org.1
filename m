@@ -1,162 +1,117 @@
-Return-Path: <devicetree+bounces-35441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC7D83D735
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E778383D75B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:08:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89D661C2F2DD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:04:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 355FA1C2F699
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:08:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1C2D524;
-	Fri, 26 Jan 2024 09:15:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1162218E29;
+	Fri, 26 Jan 2024 09:25:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="foaka/db"
+	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="YttUgaxp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mail.subdimension.ro (skycaves.subdimension.ro [172.104.132.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 957DCBE5D;
-	Fri, 26 Jan 2024 09:15:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C310C1CA8D;
+	Fri, 26 Jan 2024 09:25:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.104.132.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706260559; cv=none; b=fFDEDtRGTuv61WnQVUe1Jb4JZzDpy/WFfKf31brxbKsDQL2OA7RQO/DHmcN7gTNtNIj9t9uZFLC56mUG1STcb2RPQ4RF3v4Rp4PLEu+3wN82kw6UojJ2GEgchhYTwEi4KG3GLY1yrtYMu3IGPPiF2HjgHdnPr7vpVgSt/3kajxg=
+	t=1706261149; cv=none; b=AFWKf0Ptt1HJT5lj2Uv1/gCmKwt8zbOKJZqe70xQ9zH0YxK/t4Ua2R1T7X0S0DoqufsRuPlPQCjgAQYgSBPMV9CQNY9ZE6F0qVQ/YG86zz7R/iLYtDnOdwaefEJlxCoaAt0Zn29wFaiGaf+nUZsMRYHVh6XIRe9OxgNFXh56kW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706260559; c=relaxed/simple;
-	bh=cTOqvscxgkEm+jjAOeB+HwCjWsvKYRV/3IERaIp2Z6U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AkRMt4iORtUItc/9nMSB4AJAuz4Tpqo5BjVC629aDN5FfHKlAnQ3yJ2anqAK9VsRZwNQJ1gtSvCVPvq37Mb/oPxPoufe/c6hF3bQrEXZxylXfZhZCAaXepbcuGzeXTBWY4HMgLwczwE2UUwYh45baPTclQnU+V+lqHDybT+Quss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=foaka/db; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706260555;
-	bh=cTOqvscxgkEm+jjAOeB+HwCjWsvKYRV/3IERaIp2Z6U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=foaka/dbwOa4i+lCE/UY7QdaFni+nQr1DuUfGOXRTNuj4XoYTBLYYKMkQh43oJ+ln
-	 5n9aZCTQb83jJXciEP2u2YGDy1QhECpdMOo1jtFaFQVucKiV6KgOP/N6wTfRaIlpy/
-	 XNLe4PtzWHZG4zItC6MonC/glxP+ohhL7ONRYZypQhahrGbfUTNZYlgKcggJ+oA9I3
-	 m5vmrg/2JqlACOZSUut9MqQz0IXqQcT+2F2zSOVk6DX2nDSeOiLzS1BOdCIArKbgVo
-	 RYD82NiT/pxafRn6Fsq4TmvK7EL3PgE2QZV7jmlk6QqJic5YgE23GoPHo+LxiNY448
-	 JN33/1GOqfw8A==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D6C8A378107C;
-	Fri, 26 Jan 2024 09:15:54 +0000 (UTC)
-Message-ID: <27070454-09e6-422b-95f0-5d674735426b@collabora.com>
-Date: Fri, 26 Jan 2024 10:15:54 +0100
+	s=arc-20240116; t=1706261149; c=relaxed/simple;
+	bh=n1UBKAu2ZgXN3cWai6jMRx5pc8gubthvcwbKikKKg3o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mmKjgfmg4CDINBkpMc8mrTRLx0lYuoJ3EBxIO+390DYunqfeSZbmAGeqtodbmqHAaOG1esdEsvUy7T4/1iP7+oWoZ58z/adcfuBdrq1Sy/H9+yhzjMdyAWR7IfbAW2zJLfzwyXjix96pfubMQ/JOvYVO835x3jBTpQjyBE88ScE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=YttUgaxp; arc=none smtp.client-ip=172.104.132.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=subdimension.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
+Received: from sunspire (unknown [188.24.94.216])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 13D5928B531;
+	Fri, 26 Jan 2024 09:18:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
+	s=skycaves; t=1706260710;
+	bh=n1UBKAu2ZgXN3cWai6jMRx5pc8gubthvcwbKikKKg3o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=YttUgaxpksQHLTeHn0Hb0BPTrat5FxykCUHJwI+qKvaTADWKd+3lNkZdI9UvnCQwG
+	 hZ4aJ3ii1dpTVaU+sx7IljtS/h6lexJaEmOAr4rZ0P6F1Q4rH4byiQgKN+EEz+8d8p
+	 uSr3392UmlC/IyQdWe6rZescC3cS1AOp+Eu3w5AE=
+Date: Fri, 26 Jan 2024 11:18:28 +0200
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>
+Subject: Re: [PATCH v4 5/5] iio: amplifiers: hmc425a: add support for LTC6373
+ Instrumentation Amplifier
+Message-ID: <ZbN45P3yAZxtb8jA@sunspire>
+References: <20240117125124.8326-1-mitrutzceclan@gmail.com>
+ <20240117125124.8326-6-mitrutzceclan@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: mt6360-tcpc: Drop
- interrupt-names
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, chunfeng.yun@mediatek.com,
- gregkh@linuxfoundation.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
- linux@roeck-us.net, heikki.krogerus@linux.intel.com, cy_huang@richtek.com,
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
- <20240119-eldest-discharge-e2d3812be0a9@spud>
- <12b7b339-498b-45c1-bc5e-05e07660aefa@collabora.com>
- <20240123-procurer-jumbo-ebbec485505d@spud>
- <4fdbc3d8-3d44-4c2c-aae6-daa0b431e1c9@collabora.com>
- <dc9773aa-690f-47b5-b60a-a79c1e2dbaf2@linaro.org>
- <abbc1135-6d32-421a-baea-123a9f761362@collabora.com>
- <20240125-disdain-delivery-ff3bf246bbe1@spud>
- <20240125-elective-sermon-32dc2cba79be@spud>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240125-elective-sermon-32dc2cba79be@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="W4yEtjcCTOC3q2WB"
+Content-Disposition: inline
+In-Reply-To: <20240117125124.8326-6-mitrutzceclan@gmail.com>
 
-Il 25/01/24 18:02, Conor Dooley ha scritto:
-> On Thu, Jan 25, 2024 at 04:57:33PM +0000, Conor Dooley wrote:
->> On Thu, Jan 25, 2024 at 12:41:57PM +0100, AngeloGioacchino Del Regno wrote:
->>> Il 25/01/24 11:32, Krzysztof Kozlowski ha scritto:
->>>> On 24/01/2024 09:48, AngeloGioacchino Del Regno wrote:
->>>>> Il 23/01/24 18:14, Conor Dooley ha scritto:
->>>>>> On Mon, Jan 22, 2024 at 11:32:30AM +0100, AngeloGioacchino Del Regno wrote:
->>>>>>> Il 19/01/24 17:32, Conor Dooley ha scritto:
->>>>>>>> On Fri, Jan 19, 2024 at 10:41:04AM +0100, AngeloGioacchino Del Regno wrote:
->>>>>>>>> This IP has only one interrupt, hence interrupt-names is not necessary
->>>>>>>>> to have.
->>>>>>>>> Since there is no user yet, simply remove interrupt-names.
->>>>>>>>
->>>>>>>> I'm a bit confused chief. Patch 2 in this series removes a user of this
->>>>>>>> property from a driver, so can you explain how this statement is true?
->>>>>>>>
->>>>>>>> Maybe I need to drink a few cans of Monster and revisit this patchset?
->>>>>>>>
->>>>>>>
->>>>>>> What I mean with "there is no user" is that there's no device tree with any
->>>>>>> mt6360-tcpc node upstream yet, so there is no meaningful ABI breakage.
->>>>>>> Different story would be if there was a device tree using this already, in
->>>>>>> which case, you can make a required property optional but not remove it.
->>>>>>
->>>>>> Not every devicetree lives within the kernel.. If the driver is using
->>>>>> it, I'm not inclined to agree that it should be removed.
->>>>>
->>>>> I get the point, but as far as I remember, it's not the first time that this
->>>>> kind of change is upstreamed.
->>>>>
->>>>> I'm fine with keeping things as they are but, since my intention is to actually
->>>>> introduce an actual user of this binding upstream, and that actually depends on
->>>>> if this change is accepted or not (as I have to know whether I can omit adding
->>>>> the interrupt-names property or not)....
->>>>>
->>>>> ....may I ask for more feedback/opinions from Rob and/or Krzk?
->>>>
->>>> Driver is the user and this is an old binding (released!), thus there
->>>> can be out-of-kernel users already.
->>>>
->>>> Minor cleanup is not really a reason to affect ABI. You could deprecate
->>>> it, though. Driver change is fine.
->>>>
->>>
->>> Thanks for the clarification. If USB maintainers want to take the driver part only
->>> without me resending this, I'd appreciate that.
->>>
->>
->>> The interrupt-names is not a required property in this binding anyway... :-)
->>
->> Having -names properties that are not required when the base property is
->> always seem so pointless to me, except in cases where they're not
->> required for the case where there's one item but required when there are
->> more than one. Ultimately they're pointless if not required since they
->> can't be relied on. I think dropping it from the driver is required for
->> correctness.
-> 
-> Actually, looking at the binding again:
-> 
-> | required:
-> |   - compatible
-> |   - interrupts
-> |   - interrupt-names
-> 
-> It looks like it is a required property after all!
 
-Apparently my brain's binding had
+--W4yEtjcCTOC3q2WB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-required:
-   - blindness
 
-:-P
+hello Dumitru,
 
-Yeah, I have no idea why I didn't see that, sorry!
+I know this is not part of your current patch, but you might also want to h=
+ave
+a look at ltc6373_write_powerdown():
 
-Cheers,
-Angelo
+hmc425a.c:239:2: warning: Value stored to 'ret' is never read [deadcode.Dea=
+dStores]
+  239 |         ret =3D hmc425a_write(indio_dev, code);
+
+cheers,
+peter
+
+--=20
+petre rodan
+
+--W4yEtjcCTOC3q2WB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEE2Ap/wXYVGTXsPl+pzyaZmYROfzAFAmWzeN8ACgkQzyaZmYRO
+fzBf7RAAjWm86CjoHWJlT6gbM37H+Lb91tIr2zGAt8neIdjIv1TZNHv05LTbRLy5
+LQ+RdDK6GGRI17aflYYpdeauAyKr+aHnf7o5E73e0p/R9cVN5MmvWgc0oUjcIFHf
+r8IFvWpSrt9XWgUMBzoxqYkFmzKgVytqJtIUTXbpTGhFld1lZNFyEi+vRV/zSrxk
+qmRZ7Ry7xZ+BTAJuKatIFsqmCPjnV7b/5myc4U4ekKm9/6x/jL6ZtTjywBFCeb5K
+UKmQAeHQWWLdxeeUq1xGovEPLs2kgxUt5fEJcNyNiuELcfWkefXxy4xmzsieyPiB
+galm9pXqxojORHaFB5zdH1fIoyid7p/YqtxsNrvNHT6avlhPjjCD8lepI/cCD5tT
+4W/5GGwd0L0MJozkw5fR+yem4BqVFCsMlTMbB+oDU86KjpsFgWGYJ+4gUi/mAzaQ
+xBtlrMmed6X21Np8AfpXd5528PXpU5Uk2QU9+acqKjp5RM4TB4Qx2cDVkD9/wfTn
+ttCfD0cM/Q/PKViOEQlo9Iko4yVHYW9vjHupbmLAS5qgh7Pdgp5mwjqejC1qkXYc
+6QsQJ67JG7VEFcbxjR8XpjAABKcgfFPGLKZwNMDq5/1NcAi8Kkg7o3FVAlB0iHN4
+aJ7Cap9euRjp4ZXV+BYOa6vHwKegf4etzbB5BIaq9ubF4yIZ2Z8=
+=N8Nm
+-----END PGP SIGNATURE-----
+
+--W4yEtjcCTOC3q2WB--
 
