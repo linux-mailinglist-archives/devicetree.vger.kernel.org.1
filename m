@@ -1,198 +1,210 @@
-Return-Path: <devicetree+bounces-35640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE91083E267
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 20:22:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0AE683E26A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 20:23:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DB701F2355D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 19:22:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 902B3281596
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 19:23:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162A82261B;
-	Fri, 26 Jan 2024 19:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278DC1DFE4;
+	Fri, 26 Jan 2024 19:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="311GBVSb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kspVoq8K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 552BA224DA;
-	Fri, 26 Jan 2024 19:21:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46193224CC;
+	Fri, 26 Jan 2024 19:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706296908; cv=none; b=cjjfBjla/0ObozzBi5UD0zfxGfeFUBhKrjuyJT3Z9TgZOQqa7aKEv58Eoi9kSICZsDyzyPrPxksKRrJuFF66qbdQ3ZDGVeUzYDGeBNB90BbEBFhU+qCgQ8yAvCSdHNYzICUqQbIbSmOofsVcbDr5YhWEN6HeS3h3DGgzNrzDUO8=
+	t=1706296990; cv=none; b=chzW5KkCc+HlBpQqMaM/1lq79LcVlkC31r3tXB5ewGKFYcDBHjyVka4iA09C6zBuehlzjl1UETtKTHeeHkL+R2GEiZwRCloZKB0sGzCoN+vJ/Vfryzw8KEMsn3kzs6YSdC4X0lUcJGKxD+3thc2AzH3TRxTe7+VCmap9yFUv3HU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706296908; c=relaxed/simple;
-	bh=WQe4wDwRNT0S65UeCvFunjCWa8R+Rf3G+Co3wYKG0EU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iC6iO+/qRARoeFINBplHpnKMrdu0nWu8eDeTn2zXxrLpeEPeBgIWeRSEpPjToPjO7/kccfCiEIJMo6dRYb4cNzp8BkEx3EUVYsUyTPkg5NeoagVBGhU56MsXFT2DF1Win9OKODs40//paO76ayNGVjtNq03GAsC6Zwu3e/KtVwg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=311GBVSb; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706296904;
-	bh=WQe4wDwRNT0S65UeCvFunjCWa8R+Rf3G+Co3wYKG0EU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=311GBVSbo+T/wQRgYiIOl2xibolvW59jtWlTeVmFrUjMgYHTFocqch27G1J3v/DlH
-	 /0RD52FART9t1NnW19GVOIIeDmbQbGgeJpmK3Gu247GkkG8uoEnLG4J7BOqzcXZeSl
-	 gT4jwaZ9Hmhfur2gDBYxbu2Tl+K7tAOTH2GFDcS0Mz2FDTwjy6jbwYCuU+WAnimCES
-	 NAfMKZQ3HDa8fz6pzGtKXwlUq/dyZoOXy6Mk79Uq5bd6iIyhUQ9UqCBHY7O7kTURM5
-	 1En/bi8h4U4mh6h0XYpM3XgORY5pP9ni9xqcfRRBgZ7f/scgdSJPORyPBxaYk4BzkB
-	 T4JylAtLd2qfg==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 73EB73782076;
-	Fri, 26 Jan 2024 19:21:44 +0000 (UTC)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Samin Guo <samin.guo@starfivetech.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Jacob Keller <jacob.e.keller@intel.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: [RESEND PATCH v4 2/2] net: stmmac: dwmac-starfive: Add support for JH7100 SoC
-Date: Fri, 26 Jan 2024 21:21:26 +0200
-Message-ID: <20240126192128.1210579-3-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240126192128.1210579-1-cristian.ciocaltea@collabora.com>
-References: <20240126192128.1210579-1-cristian.ciocaltea@collabora.com>
+	s=arc-20240116; t=1706296990; c=relaxed/simple;
+	bh=mZPODikZGByOoaS0XQWvyYVnm0Q6peBX7kl97gM7l7I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GNVhNd6gNNbteks8/av2qZuRtN0I8tCKBf7mrMop/p0INQdLGCbrqjrYzCd1v36YVCJvh2HaGslYKm0KPxfpmgt5QaUeQwlY4e1VPrKDGR1BkzdeEO8MaztzX+8E57nCUGivo/Dotq8z76GDrDGYg/WE+zLq74M2ciCjG0Qnuy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kspVoq8K; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-339231c062bso818961f8f.0;
+        Fri, 26 Jan 2024 11:23:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1706296986; x=1706901786; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i7XyfHafPzk4o7TH4Z/Q88VVxtW7j3Tbp7VfVnvGsEc=;
+        b=kspVoq8KnUjYi2tICO4pf7WFm3v47x+Xazz/C6lk1j1Mpx1/dm8lw+x7ac2e4v7+Qw
+         Nmss4pul689hEkY3SU+4NbHpL2Li13OQq+F4BsBF7gJGSmy2GlO8UlPe7ZFkGHFP6EVK
+         Y/UG98rG/zXHGx/h1pYgmKb3PY1E95wbTwkbOVejBlZ15QKlSDmu9XyhU9KGTWer3Zzg
+         7rVtuZre1VOD02hYQc3xMk3atg+RHeMfDmFVQGOJJHXF59lgiKIvnoYwaW0fqrvZFoex
+         h9U1dm/jKdo83Pzc1QMoTS99Xr32J4/HjKwGs78W0MLFwWMdnUfJgtniAEHiUht+LRhF
+         iB4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706296986; x=1706901786;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i7XyfHafPzk4o7TH4Z/Q88VVxtW7j3Tbp7VfVnvGsEc=;
+        b=kB3qMZYp0N8GeTiwUKh9lhIvfAbVweo1mmi1uZBG6HSZoLJxyfG+EYNHzrAqhjA7rD
+         MazpM3V3Qwnr2EKwhMU1ZCTW47WENm6KbpmXgJ252alM8fHTFsAiqkApcA7awymX8ECH
+         DM913Pp055otvyMD8DHuBdVDX9jtC+L/ZJWtA7x1WD6IWRtbsCA/lXvLcu/4/nkmAxfC
+         CopHH8Jn5/TNH7sdipDIYOHupV7F5pKl+WR/F0XJF2JUme3JCys7nCfMO9S6b7E5imX4
+         O8u8fQmTKdnKAnt7l3hMOAKkjsGbZxS+sEajcM68MbgkkqzDcm4VqTZLQAHpKpKp35v5
+         ynaQ==
+X-Gm-Message-State: AOJu0YxrI7RdYUeK4HCUrN5Y/0DywYyey4+bUekqxcizPiDfAZDAmr2E
+	VVgBLLUWI8CnX7jSQeCKIONVe1St+PL5pbnqVpPo1kqK6PDpXSZ6HVM+tXKiOOeqSQ==
+X-Google-Smtp-Source: AGHT+IF1+PZeX7PZt2kTQgTViZHQHL+3yVD7+6dcQhCOhwvZBDjkk41rFIK3ofAq4p5K5JETMKgALQ==
+X-Received: by 2002:a5d:4008:0:b0:337:c7ff:85e1 with SMTP id n8-20020a5d4008000000b00337c7ff85e1mr83945wrp.131.1706296986249;
+        Fri, 26 Jan 2024 11:23:06 -0800 (PST)
+Received: from [192.168.0.5] (cm-83-97-153-254.telecable.es. [83.97.153.254])
+        by smtp.gmail.com with ESMTPSA id ba11-20020a0560001c0b00b003366c058509sm1859765wrb.23.2024.01.26.11.23.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jan 2024 11:23:05 -0800 (PST)
+Message-ID: <c88d56ba-3214-4053-9533-bec12bf110ef@gmail.com>
+Date: Fri, 26 Jan 2024 20:23:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] spi: dt-bindings: spi-rockchip: restrict num-cs
+To: Robin Murphy <robin.murphy@arm.com>, Johan Jonker <jbx6244@gmail.com>,
+ broonie@kernel.org
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, heiko@sntech.de, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <acc4ff4b-811a-4a6d-8f58-9d8da3be40bb@gmail.com>
+ <d6fc0ad6-ce20-4604-89e5-2598dc3fc0a6@gmail.com>
+ <344a3de8-7f10-46f0-9524-dca58ceda671@gmail.com>
+ <97fcde65-9eb0-44e1-a87a-caa308d1998b@arm.com>
+Content-Language: en-US
+From: Luis de Arquer <ldearquer@gmail.com>
+In-Reply-To: <97fcde65-9eb0-44e1-a87a-caa308d1998b@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Add a missing quirk to enable support for the StarFive JH7100 SoC.
+Hi Robin,
 
-Additionally, for greater flexibility in operation, allow using the
-rgmii-rxid and rgmii-txid phy modes.
+On 1/23/24 18:45, Robin Murphy wrote:
+> On 23/01/2024 10:49 am, Johan Jonker wrote:
+>>
+>>
+>> On 1/23/24 10:17, Luis de Arquer wrote:
+>>> On 1/22/24 23:59, Johan Jonker wrote:
+>>>> In the driver spi-rockchip.c max_native_cs is limited to 4 and the
+>>>> default num-cs property is 1. Restrict num-cs in spi-rockchip.yaml.
+>>>>
+>>>
+>>
+>>> Doesn't num-cs include gpio chip selects too?
+>>> I have a setup with num-cs = <12> which uses non-native cs-gpios just 
+>>> fine
+>>
+>> Given that bindings and Linux drivers capabilities are 2 separate things.
+> 
+> Er, that's the whole point - bindings and drivers *are* separate things, 
+> and bindings do not describe drivers. Not least since the fundamental 
+> model is to have one canonical binding for multiple different drivers to 
+> consume.
+> 
+> There seems to be some ambiguity as to whether the common "num-cs" 
+> property is supposed to describe the number of dedicated hardware 
+> chipselects or the total number including additional GPIOs, but either 
+> way this change appears to be objectively wrong - if it's the former 
+> than the comment in the driver plus a survey of a few TRMs implies that 
+> the maximum number of hardware lines is 2; if it's the latter then 
+> obviously it's valid for a platform to wire up 3 or more additional 
+> GPIOs as desired, and for a DT to accurately describe that, regardless 
+> of whether any particular consumer happens to support it yet or not. For 
+> example, AFAICS the U-Boot and FreeBSD drivers for Rockchip SPI appear 
+> not to support GPIO chipselects at all.
+> 
 
-Co-developed-by: Emil Renner Berthing <kernel@esmil.dk>
-Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  6 ++--
- .../ethernet/stmicro/stmmac/dwmac-starfive.c  | 32 ++++++++++++++++---
- 2 files changed, 31 insertions(+), 7 deletions(-)
+I always understood num-cs was a spi subsystem thing, which can be 
+extended with as many gpios as needed.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 85dcda51df05..4ec61f1ee71a 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -165,9 +165,9 @@ config DWMAC_STARFIVE
- 	help
- 	  Support for ethernet controllers on StarFive RISC-V SoCs
- 
--	  This selects the StarFive platform specific glue layer support for
--	  the stmmac device driver. This driver is used for StarFive JH7110
--	  ethernet controller.
-+	  This selects the StarFive platform specific glue layer support
-+	  for the stmmac device driver. This driver is used for the
-+	  StarFive JH7100 and JH7110 ethernet controllers.
- 
- config DWMAC_STI
- 	tristate "STi GMAC support"
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-index 5d630affb4d1..4e1076faee0c 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
-@@ -15,13 +15,20 @@
- 
- #include "stmmac_platform.h"
- 
--#define STARFIVE_DWMAC_PHY_INFT_RGMII	0x1
--#define STARFIVE_DWMAC_PHY_INFT_RMII	0x4
--#define STARFIVE_DWMAC_PHY_INFT_FIELD	0x7U
-+#define STARFIVE_DWMAC_PHY_INFT_RGMII		0x1
-+#define STARFIVE_DWMAC_PHY_INFT_RMII		0x4
-+#define STARFIVE_DWMAC_PHY_INFT_FIELD		0x7U
-+
-+#define JH7100_SYSMAIN_REGISTER49_DLYCHAIN	0xc8
-+
-+struct starfive_dwmac_data {
-+	unsigned int gtxclk_dlychain;
-+};
- 
- struct starfive_dwmac {
- 	struct device *dev;
- 	struct clk *clk_tx;
-+	const struct starfive_dwmac_data *data;
- };
- 
- static void starfive_dwmac_fix_mac_speed(void *priv, unsigned int speed, unsigned int mode)
-@@ -67,6 +74,8 @@ static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
- 
- 	case PHY_INTERFACE_MODE_RGMII:
- 	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
- 		mode = STARFIVE_DWMAC_PHY_INFT_RGMII;
- 		break;
- 
-@@ -89,6 +98,14 @@ static int starfive_dwmac_set_mode(struct plat_stmmacenet_data *plat_dat)
- 	if (err)
- 		return dev_err_probe(dwmac->dev, err, "error setting phy mode\n");
- 
-+	if (dwmac->data) {
-+		err = regmap_write(regmap, JH7100_SYSMAIN_REGISTER49_DLYCHAIN,
-+				   dwmac->data->gtxclk_dlychain);
-+		if (err)
-+			return dev_err_probe(dwmac->dev, err,
-+					     "error selecting gtxclk delay chain\n");
-+	}
-+
- 	return 0;
- }
- 
-@@ -114,6 +131,8 @@ static int starfive_dwmac_probe(struct platform_device *pdev)
- 	if (!dwmac)
- 		return -ENOMEM;
- 
-+	dwmac->data = device_get_match_data(&pdev->dev);
-+
- 	dwmac->clk_tx = devm_clk_get_enabled(&pdev->dev, "tx");
- 	if (IS_ERR(dwmac->clk_tx))
- 		return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->clk_tx),
-@@ -144,8 +163,13 @@ static int starfive_dwmac_probe(struct platform_device *pdev)
- 	return stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
- }
- 
-+static const struct starfive_dwmac_data jh7100_data = {
-+	.gtxclk_dlychain = 4,
-+};
-+
- static const struct of_device_id starfive_dwmac_match[] = {
--	{ .compatible = "starfive,jh7110-dwmac"	},
-+	{ .compatible = "starfive,jh7100-dwmac", .data = &jh7100_data },
-+	{ .compatible = "starfive,jh7110-dwmac" },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, starfive_dwmac_match);
--- 
-2.43.0
+However, it looks spi-rockchip may be limiting num-cs to 4 after all.
+
+It keeps a copy of the state of the chip selects into an array 
+'cs_asserted' of size 4. It wouldn't be a problem if it wasn't because 
+the driver sets the flag SPI_CONTROLLER_GPIO_SS, which makes driver's 
+set_cs() function to be called even for gpio lines.
+
+All this leads to an out of bounds access when num-cs > 4.
+
+I was able to reproduce the issue with 6 spidev devices (all with gpio 
+cs) adding 2 guard u8 variables in 'struct rockchip_spi' right after 
+'cs_asserted' array, and they got overwritten when accessing devices 
+spidev0.4 and spidev0.5
+
+Even though I did the test with a downstream kernel (I need more time to 
+test on mainline), the driver is mostly identical, and the problem seems 
+to persist in mainline.
+
+I reviewed and prepared a fix on my system. I am building the fix on 
+linux-rockchip tree, and I will try to post it for review soon.
+
+Luis
+
+> Thanks,
+> Robin.
+> 
+>> However this document has also a purpose that must notify mainline 
+>> maintainers if users submit bogus DT values.
+>> Currently that limit is set to 4 in the mainline driver.
+>> You are free to submit a real board file/patch serie afterwords as 
+>> proof for review with 12 spi chips and then adjust this limit and 
+>> increase ROCKCHIP_SPI_MAX_CS_NUM.
+>>
+>> Johan
+>>
+>>>
+>>> Luis
+>>>
+>>>> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 5 +++++
+>>>>    1 file changed, 5 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml 
+>>>> b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>>> index e4941e9212d1..00d555bcbad3 100644
+>>>> --- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>>> +++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>>> @@ -65,6 +65,11 @@ properties:
+>>>>          - const: tx
+>>>>          - const: rx
+>>>>
+>>>> +  num-cs:
+>>>> +    default: 1
+>>>> +    minimum: 1
+>>>> +    maximum: 4
+>>>> +
+>>>>      rx-sample-delay-ns:
+>>>>        default: 0
+>>>>        description:
+>>>> -- 
+>>>> 2.39.2
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> Linux-rockchip mailing list
+>>>> Linux-rockchip@lists.infradead.org
+>>>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>>>
+>>
+>> _______________________________________________
+>> Linux-rockchip mailing list
+>> Linux-rockchip@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
 
