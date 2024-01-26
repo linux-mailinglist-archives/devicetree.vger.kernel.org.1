@@ -1,125 +1,77 @@
-Return-Path: <devicetree+bounces-35428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B65283D6A9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:42:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16FD883D6DE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:51:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F4031F2BAB4
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:42:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF12028EFEA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A359E14A082;
-	Fri, 26 Jan 2024 08:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="PrKilppn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA36950A74;
+	Fri, 26 Jan 2024 08:59:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3E54148FF1
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2362C1534F3;
+	Fri, 26 Jan 2024 08:59:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706259466; cv=none; b=pipLIxVLEQWc7q/E+YVDRSDuKjWpwNu+Pwb7nyFr/emFi8km6Q+g6OAyvrDMhyoqPCzLyrpvUNTbVXWg41J18fggeZJ4PMTik4VFgkI+pDN6tmkdCGpC75LpJ8ghCD1jC7Ewn/UayaPX68FijgLv8pkzAjys+qP0S4Jo4s3JDHw=
+	t=1706259557; cv=none; b=nUpsdBc5Sd9D06245Hv7Cv/pclsYQKG/B1PsqctuG74U9jQS60DVOMwo2ZztKy6NToHFXdRUOy1jwlTMgED/KEVLG1a5XtfE7gHO9uMdis0cGwsaDo2HH3lPWi5oPv+bpCGtrLwvUxulxQALrpFZvpqMfT/PyXL27YRvQMyfdiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706259466; c=relaxed/simple;
-	bh=wBQ4xfAfXtn1FLfmimQlpQJ+HcmxcQEmSqcJyqP6Px0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=oDVQiI5IiH+5q2r0DvDTQt3amM9toCwBrwsXzkAK3wn4HJ+0mO8PI9bdNRzodQP78p0YVO9mU7yZdEFyfdd5BYbxEcEakyoHzGlWajhTjRCOASlSmJmFGMTv7Vtja6+M9+2F46VmCvnMnUJLFvtgpspeZHnEW0XpdOpXLg4o5iE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=PrKilppn; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1706259457; x=1708851457;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=wBQ4xfAfXtn1FLfmimQlpQJ+HcmxcQEmSqcJyqP6Px0=;
-	b=PrKilppnBmch0CAVl61IH3pQu9sJHL61j8hreTot/ZKHNO1zTo5HjVxbTw4defKf
-	54FsbVmAz4a9b7/z8LExmMEWPgHOiHKYYhDWQu1Im/xXJosatrsSwMexIMx026o5
-	l2WWdgGpCxM7m/ho4wq9ygWBiE84hvsRt7FoQ0bhdA8=;
-X-AuditID: ac14000a-fbefe7000000290d-bd-65b37401dcb5
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 27.F9.10509.10473B56; Fri, 26 Jan 2024 09:57:37 +0100 (CET)
-Received: from lws-moog.phytec.de (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 26 Jan
- 2024 09:57:36 +0100
-From: Yannic Moog <y.moog@phytec.de>
-Date: Fri, 26 Jan 2024 09:57:26 +0100
-Subject: [PATCH RFC for upstream 4/4] arm64: defconfig: enable i.MX8MP ldb
- bridge
+	s=arc-20240116; t=1706259557; c=relaxed/simple;
+	bh=D8VbU5mjeZe3vkqTBVXQtA/B1a+u/vrIoT2ylxQ8Vn0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dFzkhtsODpLPDqbtJBeKwFDcFqZkUc/Zttt+OUAJk26xGDlGxeDm+oZZRvOiSLVMHwJoueJa2vDufu9M/w6aVpUsDcRwEN+gNplBsW/MXNR45F2sKqKMsXXRgp3vwof3t83ES8qWlG0zKeZfI68c8tviwBi0tP0GGWpcsKH7oSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+	id 1rTI3D-006Eay-LZ; Fri, 26 Jan 2024 16:59:04 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 26 Jan 2024 16:59:16 +0800
+Date: Fri, 26 Jan 2024 16:59:16 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: qcom-qce: Add compatible for SM6350
+Message-ID: <ZbN0ZBggHzdM12BD@gondor.apana.org.au>
+References: <20240105-sm6350-qce-v1-0-416e5c7319ac@fairphone.com>
+ <20240105-sm6350-qce-v1-1-416e5c7319ac@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240126-wip-y-moog-phytec-de-upstream-pollux-lvds-v1-4-8ec5b48eec05@phytec.de>
-References: <20240126-wip-y-moog-phytec-de-upstream-pollux-lvds-v1-0-8ec5b48eec05@phytec.de>
-In-Reply-To: <20240126-wip-y-moog-phytec-de-upstream-pollux-lvds-v1-0-8ec5b48eec05@phytec.de>
-To: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
-	<quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, David Airlie
-	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, Shawn Guo
-	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP
- Linux Team <linux-imx@nxp.com>, Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-CC: Primoz Fiser <primoz.fiser@norik.com>, <dri-devel@lists.freedesktop.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>, Yannic
- Moog <y.moog@phytec.de>
-X-Mailer: b4 0.12.3
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbSyVYRjH3c+bx6nTnh7KTQsZ6c1LTXZ/qFattduXVOpDlumMezkjzo6j
-	JVtFp+QQqaWRnRASGo6XwxnZRDmzWPNSeclMNS/FzNuI5Oms5dvv+l//67r+Hy6eFr8xjrwy
-	SkPUUYpIV07GlDlYbfQEmirik6LdgNo+5lNoqigVoLLGDgqt1mbQ6FlLB4u656Y4NNwTgEoe
-	1zMobXSYRoaRXhbpll7SqMuUw6G86RoG3U0uYtFUfR9AbbphFiU+fEKjO40t1mjFaGBQ8WIN
-	QKPV9mjRpGdQ9Y8MFqVMeiDtwMGjDrhMXwZw43wug+uzB62xoSSZwwO9DRzWm8/goZR3FK4q
-	uInTU7QsXpirYHHlZB2F01d8cEbDDVyQ2cPhqvZ4PGNwOi0EyQ6FkUjlVaL2PnJJFq41VdKq
-	FvbazCO3W2Cc0QEbHgq+8LNueY1lvCg8p2CS+a21pRgGsKlpDEguTnCDI6NfWB3geUZwh7++
-	H5dkWyEQ9mjNfxfJhc3QnPWVkSy0sBuWm7wlmRacofFnDi3JcuEiHHsdK6G4hrqREAlthGCY
-	cNtTumkn6Dg4YXjPWSZnAcw3ultS2sKk/D5KYlHYDkc771tbdGeY2TFBW/g8rJk1Ug+AmL0u
-	T/b/PNnr8uQCugSIV5ShEUStjPBShcdpSKhXGDEA6RXsrGR1IC0HNwOKB80A8rSrndz3YCUR
-	5WGKuOtEHR2ijo0kMc1gG8+42stL7wUSUbis0JAIQlRE/a9L8TaOt0Dq/HJFQnGwb+0+F6c8
-	uwt9LzY0xE76rAR4+C/VGNnfy8auVV3UicHozMKnxcd6HQLV43WtnfGiauZNoZC4I0Hf6K/a
-	2bopWraQpY0U2bP1+vyEglOm/iFmKOlV967+UqRXsgufiNmP4uwrptvLz6Xt/eAXtIVsPXnD
-	5fAcfcCViQlX7N9Dq2MUfwBl3OZO+AIAAA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240105-sm6350-qce-v1-1-416e5c7319ac@fairphone.com>
 
-Enable the i.MX8MP LDB driver used for display support of the i.MX8MP
-LVDS interface.
+On Fri, Jan 05, 2024 at 05:15:43PM +0100, Luca Weiss wrote:
+> Add a compatible for the crypto block found on the SM6350 SoC.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Signed-off-by: Yannic Moog <y.moog@phytec.de>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index b60aa1f89343..acd71548cf29 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -850,6 +850,7 @@ CONFIG_DRM_PANEL_RAYDIUM_RM67191=m
- CONFIG_DRM_PANEL_SITRONIX_ST7703=m
- CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA=m
- CONFIG_DRM_PANEL_VISIONOX_VTDR6130=m
-+CONFIG_DRM_FSL_LDB=m
- CONFIG_DRM_LONTIUM_LT8912B=m
- CONFIG_DRM_LONTIUM_LT9611=m
- CONFIG_DRM_LONTIUM_LT9611UXC=m
-
+Patch applied.  Thanks.
 -- 
-2.34.1
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
