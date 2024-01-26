@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-35432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB7E83D6ED
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:54:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B8DE83D707
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:57:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B562B1C2EFA6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:54:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 835CE29A790
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7C01BC25;
-	Fri, 26 Jan 2024 09:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6F16088B;
+	Fri, 26 Jan 2024 09:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sFPmoKHr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Oz7FwITY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239D612E57
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 09:05:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D4E61B80B
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 09:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706259915; cv=none; b=kmpVMFAmtrno7drc7VtIf1T16f9NE37h8OlSLbciFBGMBK43x7ZK7oI8sY8XqtWaLdCH5ae3kW9gHQr+UMGGZIZZIrOW+UfcWxJ9pUAXf6cJfsfcGdNCk6wn19ANzQKoA7qGUWex5a/lgEU2PgRPNN2Psrc51X4BJNBHU0bDR78=
+	t=1706259987; cv=none; b=dWr66soQe61Ok6s0CAM6w2CSLCMMkbzozl4Oz51H2uCjodq0oF4k8uMFITOyTWtQHNLl550p04i4ghfyxr0lYfkt+LidP8ARjjrGzVARmty/23nhRdt0na+1h7SoP7JDrpHkC8U0bm/rkEecmYSZsu8XnvSUIdu/JiBjSugJdVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706259915; c=relaxed/simple;
-	bh=ufIEFyYW5t9gixZPBQoZWxYq3Cyp5gU+k+fMvIimQxc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a08FE5hBbllxle9jTy9z77C7xY0r4wR1g0S2Z2szczQ0x3AE7iHEuC11Dwi/Q/C/Uu4n0F1EgITTbHjbWpA0RxuQzFogdaRdobCAcHA/owKsHcyAPbcGiWvu7SWfp8aj2jiPnZaHaQiGQYOwM5gJ+kIf4vdrrPiJP0oM53CWyY0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sFPmoKHr; arc=none smtp.client-ip=209.85.208.181
+	s=arc-20240116; t=1706259987; c=relaxed/simple;
+	bh=JwlYCno3y3+EekfAsA1SKQcKgzF5sM7HUv/useOmK5M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=B99O1dHrnUM5j9Ka/8KSw0Oz0AORukUFLUxB9tWSYKHEkHWQ7AHMWMPPFiJQyOR5XPDrupYbzx1LMjQQhCvVXNNVZZUkNdrV7O9jo6iG+fwY7NjPbRcXLX7zSMTz5QnNLoJxKx2fwItCZa03EHOz6NVJGGv+KYDfoLgtN/L4EzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Oz7FwITY; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2cddb0ee311so2849451fa.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 01:05:13 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55a86795a3bso84449a12.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 01:06:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706259912; x=1706864712; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1706259984; x=1706864784; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=N/dreIlst6Eo+Y4KVZHn9lXrpuENSa0tyCyj3uRGbik=;
-        b=sFPmoKHrNhWBxaL+dxYYIbpI2OAJIOcsJ0rS/N7ZSzAc+U7x7fD/hdAnDxBbOg5FnE
-         5tGTTTRlDwVWMp4MqZGemrnruFEsORPGQbqyk/jmKvaQvgawFZ5BMCs8rrbyoE7QGzZ3
-         /ubA900cq2s/FomNrADB/rYCWakcdQjDLYxrfAC04rdVd4LtblzLskFFVXacOwcG3eDH
-         LdUeoeO9AZAwRVL/85DwbXPRGN+c9YlWMMnjgwT5FlxXHqL7S5ruR2xJt4VdqLMNFHDz
-         mVGkdi5l9LGjG9I+FmmjUd6FD09AlR/EhJa3U4kb7llrpVp4Cg1AvJ9elQIO4X6uLU5n
-         7/AQ==
+        bh=9fnyCml0RSOb/+s8Sa68hY9RkrzY292IILDVRadvA1M=;
+        b=Oz7FwITYaYouQY/SnJuIWZPnNMLYIb08Xp21RuaVn8dRhO1G7g13gnK4VA6xYL0jkJ
+         1uVTRCmnenw9hQ6cbtMisAzJTUU6HlponVkW/xRRkO6gLF9FaGSI3ZCorj33uoEYMOGA
+         73FvKWtrnmxKe9Dvp8jxJvx9DIRolpUtlaHTNCReRNpPLmBGXpbHEqyXVjFJXqr2zaDF
+         m72RMh7bV8JPXSWlgDxEO3MYBcqAN4iHJYbtJE2BE6ADbeM3SorKd9BMuUv5ckgvQ81y
+         KdKiZiQl2+oDoXbkZId++VBY64I11AmuAgMTPOCWjEatTYOnXpTK1hi03cFLV9s/rqjm
+         F3Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706259912; x=1706864712;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1706259984; x=1706864784;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N/dreIlst6Eo+Y4KVZHn9lXrpuENSa0tyCyj3uRGbik=;
-        b=DvTvwBzDqqU4pBcTDjfcJbQw5y1zheqbxF0v1xgcQz1DDSlqzIybf8t+HwqmtvZe3t
-         0e5diXvLKXl8oBu1MlKqeRoEgTXEidLnmo1cUTicOV84nxta/47WeaJvbNFykxWHyjc0
-         zQ6vGFi7uHUIAERO1V9Kx2r5dnB1OfUpAYlwzCHbzeHYmVyrQ69sWHuLEV7IHtta5haN
-         tcz4RQccaj17YzIj6PXRK8nwS7Uqdy0qbhcch5MAyQz8NlWp58khrcoCSMuhgejsMtb/
-         QRumNuJOCJzXqMxPylL86PL9xUL0KP4MKTxOZG42T3djrpZpyy8qSFVAkBu70Bz9SXVv
-         TvOA==
-X-Gm-Message-State: AOJu0YzLlklPsCJsKcPxJ27kdr3M1w1VWPPhNzvgPR+tVLXTlSLWUqz+
-	oZ/4OoNxLboCCyizMEynqodtPWXrGiCX+USMzvRb+vzRBZrdtizOBznWHXmYwOM=
-X-Google-Smtp-Source: AGHT+IEMgBDqkn8F5J5RUcrGMf484RQvGBVMlqsxtL0MGeQw8BXbJRz2pbtb5dGeILrtXo4oGWa7nA==
-X-Received: by 2002:a2e:a496:0:b0:2cd:217:45fc with SMTP id h22-20020a2ea496000000b002cd021745fcmr324392lji.13.1706259912228;
-        Fri, 26 Jan 2024 01:05:12 -0800 (PST)
+        bh=9fnyCml0RSOb/+s8Sa68hY9RkrzY292IILDVRadvA1M=;
+        b=cKXEEqSYhbdiwK4EDoFhaSPZxsqLIFTxnzg6mPCFMN+w/vOqnvikerzAAz1EzaALkA
+         rUSJ8w+nuZ/fBp81ElORwBpXY/6R3biuj6P1SAEyk0Gdnz23W/WHgy1xsVvjptEUXmF4
+         7DgS52qOfw8uJq+3cA9IY+qzFebZa3MwwxojVUkBa5LOZCc8hWV2S9qe+eyf0Jkt7oKj
+         raQVrRSziT+k5uVOhKmgIQbvVxvMnqBT4wQOOmiNqfv8imjCm3Thhv31aZawXm/DARgt
+         0tYc5fNK7ArMbeUkARAQ4/8GR+nYY+RGXAFmD2UHS8HJdeLsC5lcgsSY96xKtATX5tBi
+         5HuQ==
+X-Gm-Message-State: AOJu0YyKdEv2KJCqx/dOU6+YDlxpFQQAd44YgE6U3Jy2FuL1pZRIRI0L
+	ydPXUE7hcST8ie+71HJxGzL2NHOPzqITHlF6KvaU/lQSi2dwfxh8J9zNVaN6+Q8=
+X-Google-Smtp-Source: AGHT+IETQ0yGRKQtFSxl1IIu58uxmZavbkkducSrbbOezNYyhpjpO/I8RVBFTdwCr3qsx41uLkSnVg==
+X-Received: by 2002:aa7:d796:0:b0:55c:92f4:4755 with SMTP id s22-20020aa7d796000000b0055c92f44755mr399510edq.32.1706259984414;
+        Fri, 26 Jan 2024 01:06:24 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id z34-20020a509e25000000b00559dd0a5146sm390490ede.44.2024.01.26.01.05.10
+        by smtp.gmail.com with ESMTPSA id z34-20020a509e25000000b00559dd0a5146sm390490ede.44.2024.01.26.01.06.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jan 2024 01:05:11 -0800 (PST)
-Message-ID: <a5cc3d05-4f6d-4d80-8f4b-20b69f7c3cb6@linaro.org>
-Date: Fri, 26 Jan 2024 10:05:10 +0100
+        Fri, 26 Jan 2024 01:06:24 -0800 (PST)
+Message-ID: <9db8d4d6-7f5b-47e7-b1c0-c300f3dc681b@linaro.org>
+Date: Fri, 26 Jan 2024 10:06:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,17 +75,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: imx8mn-rve-gateway: remove redundant
- company name
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8150: describe all PCI MSI
+ interrupts
 Content-Language: en-US
-To: Hugo Villeneuve <hugo@hugovil.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-imx@nxp.com, leoyang.li@nxp.com, hvilleneuve@dimonoff.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, andy.shevchenko@gmail.com
-References: <20240125165935.886992-1-hugo@hugovil.com>
- <20240125165935.886992-3-hugo@hugovil.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240125130626.390850-1-krzysztof.kozlowski@linaro.org>
+ <554d8d03-fa8f-476e-97a0-96d1ecc8e158@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,24 +130,31 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240125165935.886992-3-hugo@hugovil.com>
+In-Reply-To: <554d8d03-fa8f-476e-97a0-96d1ecc8e158@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/01/2024 17:59, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On 25/01/2024 17:33, Konrad Dybcio wrote:
 > 
-> Company name in compatible description appears twice, which is not really
-> helpful, so remove it from product name.
 > 
-> The board is a prototype developed by my company and we are still at the
-> prototype stage, so there is zero ABI impact.
+> On 1/25/24 14:06, Krzysztof Kozlowski wrote:
+>> Each group of MSI interrupts is mapped to the separate host interrupt.
+>> Describe each of interrupts in the device tree for PCIe hosts.  Not
+>> tested on hardware.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
 > 
-> Fixes: 67275c2f3d9b ("arm64: dts: freescale: introduce rve-gateway board")
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> ---
+> There's no cover letter, so I can't batch a-b..
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Sorry for that. I'll fix it for next version.
+
+> 
+> Could you please resend, turning interrupt-names into a vertical
+> list?
+
+One "msiX" per line? Sure, I can.
 
 Best regards,
 Krzysztof
