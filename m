@@ -1,320 +1,141 @@
-Return-Path: <devicetree+bounces-35385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5D9983D551
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:04:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 864F983D576
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:07:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAAD91C221BE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:04:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3618E2849A2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27303605A1;
-	Fri, 26 Jan 2024 07:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020F412B84;
+	Fri, 26 Jan 2024 07:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="dud+ZG/y"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="HY+hVYQc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F15BA4B;
-	Fri, 26 Jan 2024 07:50:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936F111731
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 07:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706255408; cv=none; b=SJBVk2SMuaWm3iX2P5qwUEiFK8tpxcvhvbXER+MIYgljhXbhjuJX35GzYLF9MPuyfgWEL3gP7N3auohsNJN4kwYSRf7Z1Ch3bPAcLnNStxfmlN4hNLctFDkdGOPvbDNOdxy1yPvMyZvjao1Zg+/qash9J1sfiP8aqqb0O0IK6ss=
+	t=1706255800; cv=none; b=ncKwAJjZoHHeufEdcLsuLus/31ZzftLK4bgU9Ngqsdsn8d9UNwKbDhpkBBpdPYKxuSvKXqYm5IB6pGUIdVihganiHhGonPdP2vdVKs93gFbIlg5ytJrVJ+bcco9RNcFGW7qeFoeP2dK51D+xqHAH+Gf1yw0T958kejRTLyuoT6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706255408; c=relaxed/simple;
-	bh=uDurqKZcdW1Q4lqQPkLnYLzmxd/ccgaaiBEc8UDFtdg=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=m6jI1KhN1UQoxmD8toKEc8MfbhPI4f+IiOXicEbGMnD2XACED7kJCYS7yKNkuTM3QzOQ3vVISU1YsCzlHJfX9ZO7lsdmstgWUgwed8g7IKtvSLbvZzTOQo8LivJ/toeMYEdSknqt7AbeKgPIAhDbvqEg6GM+zJdjSg4N4GQtfwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=dud+ZG/y; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1706255800; c=relaxed/simple;
+	bh=SGlkjOF0x1E5rB8ZCRFzqb+92VKR/RyFWfynYGQYX6Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Wms6HKOOXhW1AtfYLnJB/H0AwKVUxkKsOKi819difTvSr3+spcIh5dWuSM9KhTB8+t1bnd/qprCnJxG9D9T7l+soOHWAxHvNzxqSonH/cXN+MOMBUsmn3KIAQrKqwu6BRZpx5QHCgwTyoYoC8xqztzRY6THHudjda2Zc8hSeYY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=HY+hVYQc; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1706255789; x=1708847789;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=SGlkjOF0x1E5rB8ZCRFzqb+92VKR/RyFWfynYGQYX6Y=;
+	b=HY+hVYQcokiEIHMgXF9ka+mMTh6oXqSH+HGZVCHoBxCU6DnPl1QHSQ6Dn4sccftY
+	e3M2tm+aztgE/2QGnlVBMBFr+uUk8lo3xVpTcOqh9+XxC36QEiUY/GAD7uHTkkR+
+	5qZUxL2fj+N48zx6hXdlSfS+8qjSg7mvMycH/P6zWgM=;
+X-AuditID: ac14000a-fbefe7000000290d-85-65b365adcc29
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id A6.89.10509.DA563B56; Fri, 26 Jan 2024 08:56:29 +0100 (CET)
+Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 26 Jan
+ 2024 08:56:26 +0100
+Message-ID: <b63056c1-0554-4514-8cba-896d1274246a@phytec.de>
+Date: Fri, 26 Jan 2024 08:56:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1706255399;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Xw3AV2Zzyh1dsXRJyPwP9+jXKzeLbOZy7VI2LDMmdE0=;
-	b=dud+ZG/y9TrympkaREVlxNI/pgyOt8WoAdH6+Tx1oQ/cqNjXcAAjGbmL5hW1/lLE8WaWX+
-	MfXhvKGR/DXBo7Aq3qgsW9hyZqeBZBJ42BPCb6NyBxSdLGuifc6Txy5tq+h3zh1OUz8T3e
-	b7oEKGm+q9EYIR6OkK1n9fyEsPWXIpXSbk8fhkNxRgr4pHrSe9kT/VRE8ZrMy18wy/IL1o
-	2upC6fdk0FiU1yaAC5MT7G2pexKmmk/S2WKaiQY1VliR51n2jTNOnMrlTTmAgrcBE4gV3X
-	aDmt4CaS8IKjo51ngjFCEQPKbNRlLez5mY79xRbe93B3nqMCq+qDSRM5eGIV3A==
-Date: Fri, 26 Jan 2024 08:49:59 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add OPP data for CPU cores on
- RK3588
-In-Reply-To: <CABjd4Yx06igrZQvHA4q-mcr2oSEf7eQyUS+KEATUGbw6qLc2sg@mail.gmail.com>
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com>
- <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
- <ccc004cfae513195351ce0a79e12f6af@manjaro.org>
- <CABjd4YxSTLZjrnSCn0fh81US682-uhZ16-cgydzz97shhCpq4w@mail.gmail.com>
- <1f0608831cfb95c80edf16cd751eee76@manjaro.org>
- <CABjd4Yx06igrZQvHA4q-mcr2oSEf7eQyUS+KEATUGbw6qLc2sg@mail.gmail.com>
-Message-ID: <528a37d84cdd871e717b4ebf648bb8a7@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-mcu/wakeup: Disable MCU and
+ wakeup R5FSS nodes
+Content-Language: en-US
+To: Vaishnav Achath <vaishnav.a@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+	<kristo@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <bb@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<u-kumar1@ti.com>
+References: <20240121134017.374992-1-vaishnav.a@ti.com>
+From: Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <20240121134017.374992-1-vaishnav.a@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWyRpKBR3dt6uZUgzPPxSzmvjnAarFm7zkm
+	i/lHzrFaLP88m92i78VDZotNj6+xWlzeNYfN4s2Ps0wWrXuPsFtM2zuD2eL6jylsFv/PfmB3
+	4PHYtKqTzePOtT1sHpuX1Hscv7GdyePzJrkA1igum5TUnMyy1CJ9uwSujLZtvUwF+wUqOjsX
+	sjUwnuXtYuTgkBAwkXjYI9PFyMUhJLCYSeL+rDWsEM5dRonmGb+BHE4OXgEbiY37DrCBNLAI
+	qEr8um4LERaUODnzCQuILSogL3H/1gx2EFtYIE5iUussMJtZQFzi1pP5TCAzRQQ2MUq8frGY
+	BSLRwyixc6oniC0kYC4xZW8PM4jNJqAucWfDN7C9nAIWEjsfzmODqLeQWPzmINRQeYntb+cw
+	Q/TKS7y4tBxspgSQPe3ca2YIO1TiyKbVTBMYhWchuXUWkptmIRk7C8nYBYwsqxiFcjOTs1OL
+	MrP1CjIqS1KT9VJSNzGC4k2EgWsHY98cj0OMTByMhxglOJiVRHhNTDemCvGmJFZWpRblxxeV
+	5qQWH2KU5mBREudd3RGcKiSQnliSmp2aWpBaBJNl4uCUamDktN615qH1hqeNQVH72oy+vmEQ
+	j047vjTGJtE+cOc0a/F/f4984BZKP6v/6G7K+dfvGA8XrN/yfOqz63pqE/KKt5b8uP5LoN7k
+	gZ74rOqSO0EWYrmO2wwaOIpXTOyP9oufzjBZdI2p8CdpqfJEuYWVes8W7VvgNvu8dtgsf5XP
+	Kx9tmuWa29SgxFKckWioxVxUnAgASvOwYqUCAAA=
 
-On 2024-01-26 08:30, Alexey Charkov wrote:
-> On Fri, Jan 26, 2024 at 11:05 AM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> On 2024-01-26 07:44, Alexey Charkov wrote:
->> > On Fri, Jan 26, 2024 at 10:32 AM Dragan Simic <dsimic@manjaro.org>
->> > wrote:
->> >> On 2024-01-25 10:30, Daniel Lezcano wrote:
->> >> > On 24/01/2024 21:30, Alexey Charkov wrote:
->> >> >> By default the CPUs on RK3588 start up in a conservative performance
->> >> >> mode. Add frequency and voltage mappings to the device tree to enable
->> >> >> dynamic scaling via cpufreq
->> >> >>
->> >> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> >> >> ---
->> >> >>   arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 209
->> >> >> ++++++++++++++++++++++++++++++
->> >> >>   1 file changed, 209 insertions(+)
->> >> >>
->> >> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> >> >> b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> >> >> index 131b9eb21398..e605be531a0f 100644
->> >> >> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> >> >> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> >> >> @@ -97,6 +97,7 @@ cpu_l0: cpu@0 {
->> >> >>                      clocks = <&scmi_clk SCMI_CLK_CPUL>;
->> >> >>                      assigned-clocks = <&scmi_clk SCMI_CLK_CPUL>;
->> >> >>                      assigned-clock-rates = <816000000>;
->> >> >> +                    operating-points-v2 = <&cluster0_opp_table>;
->> >> >>                      cpu-idle-states = <&CPU_SLEEP>;
->> >> >>                      i-cache-size = <32768>;
->> >> >>                      i-cache-line-size = <64>;
->> >> >> @@ -116,6 +117,7 @@ cpu_l1: cpu@100 {
->> >> >>                      enable-method = "psci";
->> >> >>                      capacity-dmips-mhz = <530>;
->> >> >>                      clocks = <&scmi_clk SCMI_CLK_CPUL>;
->> >> >> +                    operating-points-v2 = <&cluster0_opp_table>;
->> >> >>                      cpu-idle-states = <&CPU_SLEEP>;
->> >> >>                      i-cache-size = <32768>;
->> >> >>                      i-cache-line-size = <64>;
->> >> >> @@ -135,6 +137,7 @@ cpu_l2: cpu@200 {
->> >> >>                      enable-method = "psci";
->> >> >>                      capacity-dmips-mhz = <530>;
->> >> >>                      clocks = <&scmi_clk SCMI_CLK_CPUL>;
->> >> >> +                    operating-points-v2 = <&cluster0_opp_table>;
->> >> >>                      cpu-idle-states = <&CPU_SLEEP>;
->> >> >>                      i-cache-size = <32768>;
->> >> >>                      i-cache-line-size = <64>;
->> >> >> @@ -154,6 +157,7 @@ cpu_l3: cpu@300 {
->> >> >>                      enable-method = "psci";
->> >> >>                      capacity-dmips-mhz = <530>;
->> >> >>                      clocks = <&scmi_clk SCMI_CLK_CPUL>;
->> >> >> +                    operating-points-v2 = <&cluster0_opp_table>;
->> >> >>                      cpu-idle-states = <&CPU_SLEEP>;
->> >> >>                      i-cache-size = <32768>;
->> >> >>                      i-cache-line-size = <64>;
->> >> >> @@ -175,6 +179,7 @@ cpu_b0: cpu@400 {
->> >> >>                      clocks = <&scmi_clk SCMI_CLK_CPUB01>;
->> >> >>                      assigned-clocks = <&scmi_clk SCMI_CLK_CPUB01>;
->> >> >>                      assigned-clock-rates = <816000000>;
->> >> >> +                    operating-points-v2 = <&cluster1_opp_table>;
->> >> >>                      cpu-idle-states = <&CPU_SLEEP>;
->> >> >>                      i-cache-size = <65536>;
->> >> >>                      i-cache-line-size = <64>;
->> >> >> @@ -194,6 +199,7 @@ cpu_b1: cpu@500 {
->> >> >>                      enable-method = "psci";
->> >> >>                      capacity-dmips-mhz = <1024>;
->> >> >>                      clocks = <&scmi_clk SCMI_CLK_CPUB01>;
->> >> >> +                    operating-points-v2 = <&cluster1_opp_table>;
->> >> >>                      cpu-idle-states = <&CPU_SLEEP>;
->> >> >>                      i-cache-size = <65536>;
->> >> >>                      i-cache-line-size = <64>;
->> >> >> @@ -215,6 +221,7 @@ cpu_b2: cpu@600 {
->> >> >>                      clocks = <&scmi_clk SCMI_CLK_CPUB23>;
->> >> >>                      assigned-clocks = <&scmi_clk SCMI_CLK_CPUB23>;
->> >> >>                      assigned-clock-rates = <816000000>;
->> >> >> +                    operating-points-v2 = <&cluster2_opp_table>;
->> >> >>                      cpu-idle-states = <&CPU_SLEEP>;
->> >> >>                      i-cache-size = <65536>;
->> >> >>                      i-cache-line-size = <64>;
->> >> >> @@ -234,6 +241,7 @@ cpu_b3: cpu@700 {
->> >> >>                      enable-method = "psci";
->> >> >>                      capacity-dmips-mhz = <1024>;
->> >> >>                      clocks = <&scmi_clk SCMI_CLK_CPUB23>;
->> >> >> +                    operating-points-v2 = <&cluster2_opp_table>;
->> >> >>                      cpu-idle-states = <&CPU_SLEEP>;
->> >> >>                      i-cache-size = <65536>;
->> >> >>                      i-cache-line-size = <64>;
->> >> >> @@ -348,6 +356,207 @@ l3_cache: l3-cache {
->> >> >>              };
->> >> >>      };
->> >> >>   +  cluster0_opp_table: opp-table-cluster0 {
->> >> >> +            compatible = "operating-points-v2";
->> >> >> +            opp-shared;
->> >> >> +
->> >> >> +            opp-408000000 {
->> >> >> +                    opp-hz = /bits/ 64 <408000000>;
->> >> >> +                    opp-microvolt = <675000 675000 950000>;
->> >> >> +                    clock-latency-ns = <40000>;
->> >> >> +            };
->> >> >> +            opp-600000000 {
->> >> >> +                    opp-hz = /bits/ 64 <600000000>;
->> >> >> +                    opp-microvolt = <675000 675000 950000>;
->> >> >> +                    clock-latency-ns = <40000>;
->> >> >> +            };
->> >> >> +            opp-816000000 {
->> >> >> +                    opp-hz = /bits/ 64 <816000000>;
->> >> >> +                    opp-microvolt = <675000 675000 950000>;
->> >> >> +                    clock-latency-ns = <40000>;
->> >> >> +            };
->> >> >> +            opp-1008000000 {
->> >> >> +                    opp-hz = /bits/ 64 <1008000000>;
->> >> >> +                    opp-microvolt = <675000 675000 950000>;
->> >> >> +                    clock-latency-ns = <40000>;
->> >> >> +            };
->> >> >
->> >> > It is not useful to introduce OPP with the same voltage. There is no
->> >> > gain in terms of energy efficiency as the compute capacity is linearly
->> >> > tied with power consumption (P=CxFxV²) in this case.
->> >> >
->> >> > For example, opp-408 consumes 2 bogoWatts and opp-816 consumes 4
->> >> > bogoWatts (because of the same voltage).
->> >> >
->> >> > For a workload, opp-408 takes 10 sec and opp-816 takes 5 sec because
->> >> > it is twice faster.
->> >> >
->> >> > The energy consumption is:
->> >> >
->> >> > opp-408 = 10 x 2 = 20 BogoJoules
->> >> > opp-816 = 5 x 4 = 20 BogoJoules
->> >>
->> >> I'd respectfully disagree that including multiple OPPs with the same
->> >> voltage
->> >> but different frequencies isn't useful.  Please allow me to explain.
->> >>
->> >> See, the total amount of consumed energy is, in general, the same for
->> >> such
->> >> OPPs and the same CPU task(s), if we ignore the static leakage current
->> >> and
->> >> such stuff, which isn't important here.  Though, the emphasis here is
->> >> on
->> >> "total", i.e. without taking into account the actual amount of time
->> >> required
->> >> for the exemplified CPU task(s) to complete.  If the total amount of
->> >> time
->> >> is quite short, we aren't going to heat up the package and the board
->> >> enough
->> >> to hit the CPU thermal throttling;  this approach is also sometimes
->> >> referred
->> >> to as "race to idle", which is actually quite effective for
->> >> battery-powered
->> >> mobile devices that tend to load their CPU cores in bursts, while
->> >> remaining
->> >> kind of inactive for the remaining time.
->> >>
->> >> However, if the CPU task(s) last long enough to actually saturate the
->> >> thermal
->> >> capacities of the package and the board or the device, we're getting
->> >> into the
->> >> CPU throttling territory, in which running the CPU cores slower, but
->> >> still as
->> >> fast as possible, may actually be beneficial for the overall CPU
->> >> performance.
->> >> By running the CPU cores slower, we're lowering the power and
->> >> "spreading" the
->> >> total energy consumption over time, i.e. we're making some time to
->> >> allow
->> >> the
->> >> generated heat to dissipate into the surroundings.  As we know, having
->> >> more
->> >> energy consumed by the SoC means more heat generated by the SoC, but
->> >> the
->> >> resulting temperature of the SoC depends on how fast the energy is
->> >> consumed,
->> >> which equals to how fast the CPUs run;  of course, all that is valid
->> >> under
->> >> the reasonable assumption that the entire cooling setup, including the
->> >> board
->> >> surroundings, remains unchanged all the time.
->> >
->> > On the other hand, convective heat dissipation is approximately
->> > proportional to the temperature differential, therefore heating up the
->> > core to a higher temperature over a shorter period of time would let
->> > it dissipate the same joule amount faster. Given that total joules
->> 
->> Let me point out that the emphasis is again on "shorter period". :)
->> Yes, when the CPU load is bursty, having multiple same-voltage OPPs
->> almost surely won't help us at all, as I already noted.  However,
->> the things will surely change when the CPU cores are loaded for
->> longer amounts of time and, as a result, the defined thermal trips
->> are reached, because the cooling system gets saturated.
->> 
->> > generated for a particular load are approximately the same for
->> > different frequencies as long as voltage remains the same (as Daniel
->> > pointed out), higher frequency seems to lead to better heat transfer
->> > to the environment for the same load. And also the task completes
->> > sooner, which is probably always good, ceteris paribus.
->> >
->> > Not sure how that all changes when throttling enters the game though :)
->> 
->> As I already noted above, the things are quite different when the CPU
->> load isn't bursty.  Once the cooling setup is saturated, the heat no
->> longer gets transferred effectively to the surroundings, while the CPU
->> cores keep producing the heat, which cannot continue indefinitely.  As
->> a result, the CPU cores need to run slower and "spread" the total 
->> amount
->> of joules over time, but they still should run as fast as possible.
-> 
-> Wouldn't in this "non-bursty" case the total thermal production be
-> driven by how fast the system generates tasks, which is independent of
-> the thermal and frequency state? If joules per task are constant
-> (under steady state load), then it shouldn't matter whether they are
-> generated in short bursts or in a slower continuous flow - as long as
-> the time to dissipate the heat is longer than the time between tasks
-> at the high frequency state, in which case we are back to the "bursty"
-> scenario.
 
-You're right, if there's enough time for the generated heat to 
-dissipate,
-between scheduled CPU tasks, there should be no significant OPP dips,
-and how bursty (or not) the CPU load is shouldn't matter much.  
-Actually,
-if you agree, exactly this might be our definition of bursty CPU load.
+Am 21.01.24 um 14:40 schrieb Vaishnav Achath:
+> K3 Remoteproc R5 driver requires reserved memory carveouts and
+> mailbox configuration to instantiate the cores successfully.
+> Since this is a board level dependency, keep the R5 subsytem
+> disabled at SoC dtsi, otherwise it results in probe errors like
+> below during AM62P SK boot:
+>
+> r5fss@79000000: reserved memory init failed, ret = -22
+> r5fss@79000000: k3_r5_cluster_rproc_init failed, ret = -22
+> r5fss@78000000: reserved memory init failed, ret = -22
+> r5fss@78000000: k3_r5_cluster_rproc_init failed, ret = -22
 
-The things change when there isn't enough time.
+Shouldn't we have a similar patch for the am64 R5 cores?
 
->> Another option is to introduce active cooling, which also comes with
->> its own set of limits, but the initial assumption is that the cooling
->> setup remains unchanged.
->> 
->> In the end, if all that weren't the case, we wouldn't need CPU thermal
->> throttling at all, or not as much. :)
-> 
-> Throttling would also lower the voltage at some point, which cools it
-> down much faster!
 
-Of course, but the key is not to cool (and slow down) the CPU cores too
-much, but just enough to stay within the available thermal envelope,
-which is where the same-voltage, lower-frequency OPPs should shine.
-
-When the CPU load isn't bursty but steady and high, we don't race to
-idle, but run a marathon instead, so to speak. :)
+>
+> Fixes: b5080c7c1f7e ("arm64: dts: ti: k3-am62p: Add nodes for more IPs")
+>
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi    | 2 ++
+>   arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 1 +
+>   2 files changed, 3 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> index c4b0b91d70cf..14eb9ba836d3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
+> @@ -187,6 +187,8 @@ mcu_r5fss0: r5fss@79000000 {
+>   		ranges = <0x79000000 0x00 0x79000000 0x8000>,
+>   			 <0x79020000 0x00 0x79020000 0x8000>;
+>   		power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
+> +		status = "disabled";
+> +
+>   		mcu_r5fss0_core0: r5f@79000000 {
+>   			compatible = "ti,am62-r5f";
+>   			reg = <0x79000000 0x00008000>,
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> index 19f42b39394e..10a7059b2d9b 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
+> @@ -78,6 +78,7 @@ wkup_r5fss0: r5fss@78000000 {
+>   		ranges = <0x78000000 0x00 0x78000000 0x8000>,
+>   			 <0x78100000 0x00 0x78100000 0x8000>;
+>   		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
+> +		status = "disabled";
+>   
+>   		wkup_r5fss0_core0: r5f@78000000 {
+>   			compatible = "ti,am62-r5f";
 
