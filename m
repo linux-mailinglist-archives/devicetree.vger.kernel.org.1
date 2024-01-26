@@ -1,189 +1,199 @@
-Return-Path: <devicetree+bounces-35570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E99EC83DD2E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:13:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF67A83DD8E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:33:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E1111F23678
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:13:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76C31284EC0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:33:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2AE61CD34;
-	Fri, 26 Jan 2024 15:13:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0937A1D520;
+	Fri, 26 Jan 2024 15:33:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cangrTtf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M9d1S/ow"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F911CD23;
-	Fri, 26 Jan 2024 15:13:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C856D1CFBC;
+	Fri, 26 Jan 2024 15:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706282021; cv=none; b=KOHVEDjw3Uo7XS42Rc5m0E66ksdR7P9HJfNHiGfKg09GroSyJtdKWoajSJ3EXoLk6hmjCC8kGEizkpa8CZ2qzcQpFT5ChhpdKw5hFSfDmu3sduUcFWOLZdTyiDrakSvYCC2M8hSlLUDFGqKBQdXTzboRR+ohIqv8QL55rpPkc0Y=
+	t=1706283195; cv=none; b=HYlmclryTXzUEeFr2dQkkBF2pxuYBf/O507B3oOVLgqS3yeJdcTaxarpohwzAVmJqEoY2G4L5eyxO9DiIb0qWgPL2uutB3iLCeEsgyhVptb0cpEjuX4Vs3cl6vyVTDSNBXI4C82HKuUsbjZfBqWbTsMNpwMc/SG/5BqtGLF3sE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706282021; c=relaxed/simple;
-	bh=cuMZ0xohqpnrjE1sn+GN/bE3cXEaSruxpkeDOj/4obA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=CRFxswmzN0gnfC3pkr+/nNj77yE14h3l1sRR6LSknCPpOGJW31ESK+bn4zeFnQdRakRhLXmbYHiZXFU7yPwsQxVt9q0CQgCqEud0kTnX2j1IfmjzsHO0oyg4GDPY82+LQdBZQ+r44k20EO/vRihDr3v8vdNh9JqplwR99R8eph4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cangrTtf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40QDmFdj018212;
-	Fri, 26 Jan 2024 15:13:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:to:cc; s=qcppdkim1; bh=knC
-	aqwLbRAz3GezKtQtpwgqOqAROHknpLYmHd715Ma4=; b=cangrTtfhNKiOkAnrxq
-	0XboSQkmRMe0bJMR8VkAF0tf99HjEGd+5cUqjMqAj60MF/QhWRxK5u6VQm8RgOMB
-	XBwi4dZ/bQM4+DcYZl5IwF9rZBbnoW5ikO7iMwe5wL5ZjMaZfjTaMPhAtkTJFGko
-	ifXJkZGCvAstptEIMxoFddw/W1ZRcseK9czgt6HkAuDr5aSi3Ff65i8gw1VCqgDg
-	jrs0AYTa6Gw9f6pqEWK53EpvpscIdeQdTLek2RcZ0Lksl0B+SQHiBBZrjDLNphKS
-	ypGMJlHuD22qeUFWeVsoF6lB5mYNQsjV+aiontEPWm//Yw008thNcMar6f6xc+T6
-	+Vg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vv6c8h4y9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jan 2024 15:13:30 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40QFCpuN006039
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jan 2024 15:12:51 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 26 Jan
- 2024 07:12:50 -0800
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-Date: Fri, 26 Jan 2024 07:12:45 -0800
-Subject: [PATCH v2] arm64: dts: qcom: sc8280xp: Introduce additional tsens
- instances
+	s=arc-20240116; t=1706283195; c=relaxed/simple;
+	bh=mAzKWZzPkM6ug0onv0vRe/nRxVt4tmp8a5kHaDgKrWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gwp1HaeckqiWk/p+KwPxT0ZJEUn6/+w/t/TD4P8fL+/MypJH/qrrc2/7deCdGNNYLZ6djgqA8x9mLpTHEw0BWYd/tBT0EywrZcClTbymOGlihbqOTxQ9YoOBeQoPPM+HhAR/C8LbdtUMj6j6d1iqRjRXZ3dnbv9Cl/d69lLfR8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M9d1S/ow; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6E19C433C7;
+	Fri, 26 Jan 2024 15:33:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706283195;
+	bh=mAzKWZzPkM6ug0onv0vRe/nRxVt4tmp8a5kHaDgKrWc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M9d1S/owaLykjwZWoE/JjcSyfLO7y4RC6T8y6akAgrduNm62lUq45zOIYoRkDGeGQ
+	 bdV4MyfhzQ3kZ2yklUTH4mBzQkaA7EDoW7q65hvlDrJwnfW3wL7Oh/mvn3nWO8m2+5
+	 RUSeikg8Npwu33rkmN3Hu9DeqalWWeet9m+tN4rQPIdyfHXaGd2QwyKz2JNdi4/Ia6
+	 Y3vgbXw724n07b6UrC9832j8q8EOkse6XYAuGUXS7CtCoIfdNj9QrdBbnUexpMBbsD
+	 yjqmhSlc8gkmG99WflAqiOHbM51tbxHxPcEPGPsK3TeQ5aOGrgsQizpvqiMUvHOzcO
+	 XLAUrWVhHl+bg==
+Date: Fri, 26 Jan 2024 15:33:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dharma.B@microchip.com
+Cc: Conor.Dooley@microchip.com, sam@ravnborg.org, bbrezillon@kernel.org,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	lee@kernel.org, thierry.reding@gmail.com,
+	u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
+	Linux4Microchip@microchip.com
+Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
+ schema format
+Message-ID: <20240126-uncommon-stout-dd3243e6b43f@spud>
+References: <20240118-recent-glorified-fd35d72e006e@spud>
+ <c33868c8-dc42-4800-885c-5e5f24c2044e@microchip.com>
+ <20240119-character-mardi-43571d7fe7d5@wendy>
+ <da60f9f3-f955-4a87-a020-5710185953c0@microchip.com>
+ <20240122-stark-duress-2f59294dcf27@spud>
+ <4906b7e2-0ddb-4d3c-a48b-e16278f2d649@microchip.com>
+ <20240124-lend-emerald-1028fe65cc39@spud>
+ <c3c30bf2-e7c2-4861-bfdf-519a7afde476@microchip.com>
+ <20240125-proved-passage-7fa128f828db@wendy>
+ <51da296d-a8a9-417a-8875-3b5e866a89a3@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240126-sc8280xp-tsens2_3-v2-1-8504d18828de@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAOzLs2UC/32NQQ6CMBBFr0JmbQ2tlFRX3sMQU9qpzMKCHSQY0
- rtbOYDL95L//gaMiZDhUm2QcCGmMRZQhwrcYOMDBfnCoGrV1FIawc4oU6+TmBkjq/tJWB382Tb
- Gt1pD2U0JA61789YVHojnMX32i0X+7L/aIoUUaNreoWxC24fr602Ooju68QldzvkLWyXO2LQAA
- AA=
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Johan Hovold <johan@kernel.org>,
-        "Bjorn
- Andersson" <quic_bjorande@quicinc.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1706281970; l=2337;
- i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
- bh=cuMZ0xohqpnrjE1sn+GN/bE3cXEaSruxpkeDOj/4obA=;
- b=ijny0goOnqHSWBi7mijP0EEhHd9vvASaf3FCUOX34zm9hoc2TmcYvP2FHOrRw7mcbDfY8N0fh
- IHB4Mm0Hk6sA4eP6lRF4sXyzNfwbNJpS4QIUygYQdhg1UwPbaW77RMC
-X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
- pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: dpkZ8ZTPRsSbMbW6gUZELkhTwxU_auXt
-X-Proofpoint-ORIG-GUID: dpkZ8ZTPRsSbMbW6gUZELkhTwxU_auXt
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=606
- priorityscore=1501 bulkscore=0 mlxscore=0 adultscore=0 lowpriorityscore=0
- malwarescore=0 clxscore=1015 spamscore=0 suspectscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401190000
- definitions=main-2401260112
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="N7HfhWSgZScgqIKp"
+Content-Disposition: inline
+In-Reply-To: <51da296d-a8a9-417a-8875-3b5e866a89a3@microchip.com>
 
-The SC8280XP contains two additional tsens instances, providing among
-other things thermal measurements for the GPU.
 
-Add these and a GPU thermal-zone.
+--N7HfhWSgZScgqIKp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
-Changes in v2:
-- Drop TM/SROT comments
-- Remove polling delays, rely on interrupts
-- Link to v1: https://lore.kernel.org/r/20240118-sc8280xp-tsens2_3-v1-1-e86bce14f6bf@quicinc.com
----
- arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 37 ++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+On Fri, Jan 26, 2024 at 02:22:42PM +0000, Dharma.B@microchip.com wrote:
+> On 25/01/24 1:57 pm, Conor Dooley - M52691 wrote:
+> >=20
+> >>> If the lvds pll is an input to the hlcdc, you need to add it here.
+> >>>   From your description earlier it does sound like it is an input to
+> >>> the hlcdc, but now you are claiming that it is not.
+> >>
+> >> The LVDS PLL serves as an input to both the LCDC and LVDSC
+> >=20
+> > Then it should be an input to both the LCDC and LVDSC in the devicetree.
+>=20
+> For the LVDSC to operate, the presence of the LVDS PLL is crucial. Howeve=
+r, in the case of the LCDC, LVDS PLL is not essential for its operation unl=
+ess LVDS interface is used and when it is used lvds driver will take care o=
+f preparing and enabling the LVDS PLL.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-index febf28356ff8..7bfbb1bd8f4a 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-@@ -4033,6 +4033,28 @@ tsens1: thermal-sensor@c265000 {
- 			#thermal-sensor-cells = <1>;
- 		};
- 
-+		tsens2: thermal-sensor@c251000 {
-+			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
-+			reg = <0 0x0c251000 0 0x1ff>,
-+			      <0 0x0c224000 0 0x8>;
-+			#qcom,sensors = <11>;
-+			interrupts-extended = <&pdc 122 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&pdc 124 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow", "critical";
-+			#thermal-sensor-cells = <1>;
-+		};
-+
-+		tsens3: thermal-sensor@c252000 {
-+			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
-+			reg = <0 0x0c252000 0 0x1ff>,
-+			      <0 0x0c225000 0 0x8>;
-+			#qcom,sensors = <5>;
-+			interrupts-extended = <&pdc 123 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&pdc 125 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow", "critical";
-+			#thermal-sensor-cells = <1>;
-+		};
-+
- 		aoss_qmp: power-management@c300000 {
- 			compatible = "qcom,sc8280xp-aoss-qmp", "qcom,aoss-qmp";
- 			reg = <0 0x0c300000 0 0x400>;
-@@ -5212,6 +5234,21 @@ cpu-crit {
- 			};
- 		};
- 
-+		gpu-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+
-+			thermal-sensors = <&tsens2 2>;
-+
-+			trips {
-+				cpu-crit {
-+					temperature = <110000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
- 		mem-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
+Please fix your line wrapping, not sure what's going on here, but these
+lines are super long.
 
----
-base-commit: 943b9f0ab2cfbaea148dd6ac279957eb08b96904
-change-id: 20240118-sc8280xp-tsens2_3-a5fd9a48d655
+> Consequently, it seems that there might not be any significant actions we=
+ can take within the LCD driver regarding the LVDS PLL.
 
-Best regards,
--- 
-Bjorn Andersson <quic_bjorande@quicinc.com>
+You should be getting a reference to the clock and calling enable on it
+etc, even if the LVDSC is also doing so. That will allow the clock
+framework to correctly track users.
 
+> If there are no intentions to utilize it within the driver, is it necessa=
+ry to explicitly designate it as an input in the device tree?
+
+The binding describes the hardware, so yes it should be there. What the
+driver implementation does with the clock is not relevant. That said, I
+think the driver should actually be using it, as I wrote above.
+
+>=20
+> If yes, I will update the bindings with optional LVDS PLL clock.
+>=20
+> clock-names:
+>   items:
+>     - const: periph_clk
+>     - const: sys_clk
+>     - const: slow_clk
+>     - const: lvds_pll  # Optional clock
+
+This looks correct, but the comment is not needed. Setting minItems: 3
+does this for you.
+
+> >> with the
+> >> LVDS_PLL multiplied by 7 for the Pixel clock to the LVDS PHY, and
+> >=20
+> > Are you sure? The diagram doesn't show a multiplier, the 7x comment
+> > there seems to be showing relations?
+>=20
+> Sorry,=20
+> LVDS PLL =3D (PCK * 7) goes to LVDSC PHY
+> PCK =3D (LVDS PLL / 7) goes to LCDC
+
+I'll take your word for it :)
+
+> >> LVDS_PLL divided by 7 for the Pixel clock to the LCDC.
+> >=20
+> >> I am inclined to believe that appropriately configuring and enabling it
+> >> in the LVDS driver would be the appropriate course of action.
+> >=20
+> > We're talking about bindings here, not drivers, but I would imagine that
+> > if two peripherals are using the same clock then both of them should be
+> > getting a reference to and enabling that clock so that the clock
+> > framework can correctly track the users.
+> >=20
+> >>> I don't know your hardware, so I have no idea which of the two is
+> >>> correct, but it sounds like the former. Without digging into how this
+> >>> works my assumption about the hardware here looks like is that the lv=
+ds
+> >>> controller is a clock provider,
+> >>
+> >> It's a PLL clock from PMC.
+> >>
+> >>> and that the lvds controller's clock is
+> >>> an optional input for the hlcdc.
+> >>
+> >> Again it's a PLL clock from PMC.
+> >>
+> >> Please refer Section 39.3
+> >> https://ww1.microchip.com/downloads/aemDocuments/documents/MPU32/Produ=
+ctDocuments/DataSheets/SAM9X7-Series-Data-Sheet-DS60001813.pdf
+> >=20
+> > It is not the same exact clock as you pointed out above though, so the
+> > by 7 divider should be modelled.
+>=20
+> Modelled in mfd binding? If possible, could you please provide an example=
+ for better clarity? Thank you.
+
+Whatever node corresponds to the register range controlling this PLL
+should be a "clock-controller" (like any other clock provider does).
+Your PMC should have this property. I don't know if the correct location
+is the mfd node or somewhere else, you'll have to check your docs.
+
+Thanks,
+Conor.
+
+--N7HfhWSgZScgqIKp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbPQtAAKCRB4tDGHoIJi
+0hAfAP9oD7w7XXefbTe7aCamQ784UR9nGzozBzN9AoLVCrxKGAD+JD5kiMlu70l/
+6YBAmgN41j1kRbKlAUFnrV4Y2INzNgU=
+=MfAt
+-----END PGP SIGNATURE-----
+
+--N7HfhWSgZScgqIKp--
 
