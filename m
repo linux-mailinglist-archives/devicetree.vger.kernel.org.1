@@ -1,116 +1,123 @@
-Return-Path: <devicetree+bounces-35539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6711F83DB2A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:50:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B3483DB33
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:53:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99CB51C21ADA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 13:50:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A154B23093
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 13:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF9091B94D;
-	Fri, 26 Jan 2024 13:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D9U7CUaJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3878F1B958;
+	Fri, 26 Jan 2024 13:53:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAB531B810;
-	Fri, 26 Jan 2024 13:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE221B943;
+	Fri, 26 Jan 2024 13:53:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706276994; cv=none; b=EaeOEBhWjxdKY7rB00hWKuMLfkYdtuAAtQ4Upq+jq7ts1NxauBSf5iDxSGosxTachNsb8e3FURjYSJuGeDhAbVmg/Uu0AaTDggwgrEcuqtRzRMY5Or0EiJOmcGQn+Qyd0ZW9ERzpb+Yutf4e6AUrbBzNqc23QdamCcHFUBk/gDc=
+	t=1706277195; cv=none; b=QGQfPp9epZx2lZR0uTIwoqiv0KQf/XeNpzzv34TxLZSN6ruC8Zsto59XCu7aKomIDvHwOdd2uY6cmmFqCQsNv7ZqIIOoKu9RN9AAf7HrD/ykatnk/4Yhh5Hy7N4jH/9Y4ZvZM95Uen6riqxwE19u2V97HBkbHzw+DSLSJPsdALM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706276994; c=relaxed/simple;
-	bh=CKsAW7aJdD99Zo2RUgNrfJmMx2i0/42SKzLnKWV7MEI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WDPQ/cjP8dJBpHxcG5GKNOVVvJdwSla75+i4RK1pLRPTs1IGvlReEmcPU++YSC1DF/Y4uE4EsPN8mgZgxxw6KstVgd6+g2AJioo63B0qHdgH4ue3uD9HS1Ah9Fg7+l4IFGlDQIA9CCvP50WgszLbFUxbS6VBEI0VJGXrpA3mQtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D9U7CUaJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C00EEC433F1;
-	Fri, 26 Jan 2024 13:49:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706276994;
-	bh=CKsAW7aJdD99Zo2RUgNrfJmMx2i0/42SKzLnKWV7MEI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D9U7CUaJIP4th5k2wTFcDqzX40tpeJGFRdrAnD6ABACLgC2Vo6DPngLBHLYC8T8Sf
-	 ba/uOnXJ9LiKHcrdxkV0YkrUT1SlDZzWSVRLZiQ+C4t5kVkMmd1bwoLDqAr6xMgluC
-	 /9TBLVWbD0tlkHL4wncXj5qtL8v9UytEJbGcfLCo4oM/qpsi+ubDdhUjd6Mn+1UEdJ
-	 jF3o2vTuuVvQGWtufqT9qHMrP97EInCDcTnHZvbS9drBG2QP7Jz2AAvV79+eVVI3jQ
-	 zpAz9f32Usa1s0IBiH8KaqVG3lNAErPzOs7n8IcgYCsOY8W4YaA+CceAclYjy1kEwC
-	 t2AT/dQEB77mg==
-Date: Fri, 26 Jan 2024 13:49:46 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Shenghao Ding <shenghao-ding@ti.com>, conor+dt@kernel.org,
-	robh+dt@kernel.org, andriy.shevchenko@linux.intel.com,
-	kevin-lu@ti.com, baojun.xu@ti.com, devicetree@vger.kernel.org,
-	v-po@ti.com, lgirdwood@gmail.com, perex@perex.cz,
-	pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
-	mohit.chawla@ti.com, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, liam.r.girdwood@intel.com,
-	soyer@irl.hu, jkhuang3@ti.com, tiwai@suse.de, pdjuandi@ti.com,
-	j-mcpherson@ti.com, navada@ti.com
-Subject: Re: [PATCH v2 4/4] ASoc: dt-bindings: PCM6240: Add initial DT binding
-Message-ID: <f5357751-ed4d-49ad-9d65-199c49f4cbdf@sirena.org.uk>
-References: <20240126035855.1785-1-shenghao-ding@ti.com>
- <20240126035855.1785-4-shenghao-ding@ti.com>
- <f7a2de19-55c5-4aa9-b0a8-632f22b6c147@linaro.org>
+	s=arc-20240116; t=1706277195; c=relaxed/simple;
+	bh=Z6I31NT0BcGf7psD17XzyIlVKaXrRZiIAJ8RzTvC1l4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RqAmDmi4KVZNcmjY1/Mv/amksC1FK/iBPH02+MYVUw4uS/2F/37Z9iV3YIR3AYShvktMMNdWBuQuyAKo6EdzmK87Mlg4qHK88zsoXmrCEXOGqZsNRSSYwupStcFVqoR/zE88DvZydR0KfZbepdrqtOUAS03TVOOeFQ+96VSLD9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dc226dca91aso380717276.2;
+        Fri, 26 Jan 2024 05:53:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706277192; x=1706881992;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NhvF8nacolHiA8n/Jg7CYQM1D3ZaUoBxjgtxv4pX148=;
+        b=Q3m/8NuhMKooPk/jthbnLvYv0CVA+inaXuB4h2E6JUbCb1E7O9HkdhYtEXT/gKLlx3
+         R57+MC43xG3RCLhoR19MW9fUY5fSN4H21u0hB6Myftc64ra/DwDPzklzd95Hz9iHBDyC
+         UaJLkNQTysvPzFBrUjJhbHuqgdMYyuiT4UyDRQ2BqMaDR/v3VcE45nBsAnuV2AGQM60f
+         dOd4b0y8/dEOqGzO5RYfSQxxp3x5j3uUeUfCRZjloR7dJUr6V0SX4owiSHiNlzIB4gSD
+         0OhLIMGAXTXWik7DnqAree2fBMIy6G8+esf7CYShxT+1ztg2liEdPyKMqjA0QHIRxy1w
+         MjRA==
+X-Gm-Message-State: AOJu0YzPufX8gEVqAaprsIIYBqeLfY9SzWyFCQYGaN9s/pUie+mQ6X9M
+	EDwdgja3X6p5VJXO8OpGBXNBIJtQIzbaW/jzHOacVvDntZ8/ilmVaCeA9b7IZE4=
+X-Google-Smtp-Source: AGHT+IErh3yNnJjLfe5X3czrTIy+dfkAZPFsEL59r62stsg4HCfqYayJ6EHW8huJYjRIO1ejcwmdPA==
+X-Received: by 2002:a5b:c83:0:b0:dc2:3618:c119 with SMTP id i3-20020a5b0c83000000b00dc23618c119mr1063056ybq.116.1706277191830;
+        Fri, 26 Jan 2024 05:53:11 -0800 (PST)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id k8-20020a5b0a08000000b00dc22f4bf808sm385169ybq.32.2024.01.26.05.53.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jan 2024 05:53:11 -0800 (PST)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5fc2e997804so3973147b3.3;
+        Fri, 26 Jan 2024 05:53:11 -0800 (PST)
+X-Received: by 2002:a05:690c:398:b0:5ff:dee3:b866 with SMTP id
+ bh24-20020a05690c039800b005ffdee3b866mr1462172ywb.14.1706277191099; Fri, 26
+ Jan 2024 05:53:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gUpTdPZmTowW/ENb"
-Content-Disposition: inline
-In-Reply-To: <f7a2de19-55c5-4aa9-b0a8-632f22b6c147@linaro.org>
-X-Cookie: Excellent day to have a rotten day.
+References: <20240126133116.121981-1-biju.das.jz@bp.renesas.com> <20240126133116.121981-6-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20240126133116.121981-6-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 26 Jan 2024 14:52:59 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUa+wd36-ErDRgb91KpRbryNYzA2Mmhvzjx0-_47=zfdg@mail.gmail.com>
+Message-ID: <CAMuHMdUa+wd36-ErDRgb91KpRbryNYzA2Mmhvzjx0-_47=zfdg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: renesas: r9a07g043u11-smarc-cru-csi-ov5645:
+ Reduce I2C frequency
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Biju,
 
---gUpTdPZmTowW/ENb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Fri, Jan 26, 2024 at 2:31=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> Reduce i2c freq from 400->100 kHz on RZ/G2UL SMARC EVK as the captured
+> image is not proper with the sensor configuration over I2C.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-On Fri, Jan 26, 2024 at 09:27:47AM +0100, Krzysztof Kozlowski wrote:
-> On 26/01/2024 04:58, Shenghao Ding wrote:
+Thanks for your patch!
 
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - ti,pcm1690
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          items:
-> > +            minimum: 0x4c
-> > +            maximum: 0x4f
+> --- a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc-cru-csi-ov5645.dtso
+> +++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc-cru-csi-ov5645.dtso
+> @@ -19,3 +19,7 @@ &ov5645 {
+>         enable-gpios =3D <&pinctrl RZG2L_GPIO(4, 4) GPIO_ACTIVE_HIGH>;
+>         reset-gpios =3D <&pinctrl RZG2L_GPIO(0, 1) GPIO_ACTIVE_LOW>;
+>  };
+> +
+> +&i2c0 {
+> +       clock-frequency =3D <100000>;
+> +};
 
-> Nothing improved.
+Is this a limitation of one of the I2C devices on the bus, or a PCB
+design issue?
 
-Shenghao explained what what this is doing - I'm not sure what the
-actual problem is here?  It's an actual restriction on the values that
-are valid.
+Doesn't this need a Fixes tag?
 
---gUpTdPZmTowW/ENb
-Content-Type: application/pgp-signature; name="signature.asc"
+Gr{oetje,eeting}s,
 
------BEGIN PGP SIGNATURE-----
+                        Geert
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWzuHkACgkQJNaLcl1U
-h9CMSQf/TLFEYtZNLviYAnC1MgIL8OEEkfUobbFx7KZqo6evDq8XXX/2P+Nf/bYh
-N0w2mKTh4k6VLzYZyr4I/7lMCqPeXfV9Ej+svlHbZ3TIjsXt697uTehbq8FX02w7
-+5QupGUzIOjthDNC9z9YZ28+SD7OQVyuNzV30exRaL7NH+ZKooNkw1lQKAZsUPTH
-pWcTv9S1HZEGIXsbHnDhHeeHEu6R85KtiPTd+KvthKVRTITX9dwpFSeWnVvOJ8O2
-jOEI45qOPd/rm3HT6XReogyghoMkTlFxF6VROHaZ61mFF9QodkVv2AYEFG5VdzMb
-MRa+Gq3twKv2qD8lhyDrZXdmOTJnEw==
-=xhiZ
------END PGP SIGNATURE-----
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
---gUpTdPZmTowW/ENb--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
