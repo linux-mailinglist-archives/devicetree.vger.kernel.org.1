@@ -1,188 +1,285 @@
-Return-Path: <devicetree+bounces-35626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D718483E110
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 19:10:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0560383E10B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 19:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 41D9CB2463A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 18:10:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29B131C2151B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 18:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ADFB208A3;
-	Fri, 26 Jan 2024 18:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A7F208A0;
+	Fri, 26 Jan 2024 18:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="NJqWUt1I"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="hXth6Yof"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6832520DF6
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 18:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A73C125D8
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 18:09:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706292596; cv=none; b=tg83mdHGMVb4Lr8AEYwrXdTSD2hlOkCWsxKgj0RCElgm14AS6MUEFno/guEcWPgzUdykKewDe8RabKdZA+aeowcvDuS3fLWGBfTTsNPycQSNBv8x1gzMPuWVVfIIuKHFQf+B7vtBfjcK2v4BiKAbQuhEyQHciFVJq7A2GDA2Ezo=
+	t=1706292568; cv=none; b=WeJZNVjeaN+hBFlprPEoGAnKV9QvkTwqGLiX5n/FtuPzkSOaioLPxQ490b+cX8BDTQy+1vtI1aPu7c0NnHkPpIdpfVUfxy77aPWFYp/HLpnpHoiizPF5ryLt4kslXoO0IrvDi2GuFBrlz5X9aj7I6DyI97k74BComgagb+2DZa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706292596; c=relaxed/simple;
-	bh=IApN5jeDzJFeUDMG9m9MSuW8aJpOPCcJcvFopWbIyTc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A3WSo2Dd5FOqoLDTwW/4XgCXn3UbJ7Ocvjsm3AjzKW+MbROCEbFxwL2JD9xBe3I1KqL8vBf2hR/4o0WNy+1QO9vD0E0ImYMO9oKTn43JfI0tLD9VSrvBNo8Yq9Ies0nHZUSv7fm03/iCdG3qylgzceoW2Mwl1sbSPx32VKXZgtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=NJqWUt1I; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-428405a0205so5251cf.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 10:09:54 -0800 (PST)
+	s=arc-20240116; t=1706292568; c=relaxed/simple;
+	bh=utUPLQ3yS8u+soFB5jk3+AWE3lHwxFcV2TOGtGcu6ds=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pJYkvooxrgpw7ipxr9GAJ0+NgINX5xfzdiLnjieNHWa/FkkILWI+OwD31njwcxG+IuSEEWut524yMcMc051t69YulVfEqlj5ihzGhXxmh3ELIWgONZHBpz5YMMfxTHhiCeBdvK5cVTdA6REGNQSWux73jlr5m2hBJhMQvS3sMWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=hXth6Yof; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1d8aadc624dso3129685ad.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 10:09:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1706292593; x=1706897393; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IApN5jeDzJFeUDMG9m9MSuW8aJpOPCcJcvFopWbIyTc=;
-        b=NJqWUt1IAoy/KdHO4BcDS2OiX1HSYSBjZ54O18jURVEBz8fKru/2FKjeMzga82Ok9J
-         XQXhDFuLQf4w7zZMKBocl7ZkJZez7RoxVQjLC2EV98dK9n0abCgAuTeiF9zpR1yvpUAZ
-         BRr4WPt58SuHldnNiY0XAYgd/pPibMG/961izp1xl+3w98bQd92p3b1s411YD9cCrE0y
-         upTeC7NW91oWl8sVh009yCXvaDOpwuvAjCknnTtPHaXw2MZPOsoxggQTXzG9wBlfsueZ
-         FICAsHx5XaOWTnL3O/VEHeARYegh0e3p5Gqc0Imss0mR12aI6pf27D8lKYKuwQ63tq9E
-         i/Cw==
+        d=broadcom.com; s=google; t=1706292566; x=1706897366; darn=vger.kernel.org;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=besKRLy6yQbSTw/dQlTWL8wk71OrKbvYodnbEXshzcU=;
+        b=hXth6YofnZWSlguhbRSTJuhRFXXmHQSLOzRgH+soWs3pnXerzIYHYENUKuGw3YgqDu
+         3hA1ctAqfnz1dNAJpo5ebXfKyHx0INZaQV4V0AbWU+NwMHVldUfGhlaV8oJXXzAVZR66
+         /1xA1pY8qlZcP7lKUFXEdP0J8vxiLhvPXwzqQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706292593; x=1706897393;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IApN5jeDzJFeUDMG9m9MSuW8aJpOPCcJcvFopWbIyTc=;
-        b=GDNIXyk4vvV2G8W7EBruOtDdk+QBEIXhL3sYvydOT8xYD15KsytjGO+XTTfmMdkWnJ
-         QdGHt5omtXgn6NgVtyAbU1ncBmOO66YYiw/+ZaAIoWqpNP07qnP8y9BWtW73YJv3MDjO
-         VWqt9gJZH/ZdWQ9gNUOOydmKivUThw1cS8lPQfzoEPgfEF9pcYVmNaH7CSYYGFx+V2Rq
-         pn4dz7LgqTlsbWd3WT2O6dXhrWiRjN4UIlxNLUErN/rvA2U1wl0d54UTUzBt9FPTfHdf
-         cH5dWz/Z7GdgQEAMPIzTKTkLLApM6Lj/A5TmruNSDBX9V+wrcpcij3WDPKbTwOrJspok
-         2yAg==
-X-Gm-Message-State: AOJu0YwM6VkbUThWsHDSvgyd/Al4UF327SIJlijtEjIQWi7UJTEcCWfm
-	es/OsZ941zphczsz7qg3/xVaEU/yHNZ4d39uQZ674zpJkoQqERwapMaBCKIOUhVf83XltHy0uIV
-	i/mEctYp2nacQiUHq+ZR1zBg4YOgLcfJokCx1
-X-Google-Smtp-Source: AGHT+IHZyNsxPB0vf1l+a3JL0IxifsSg1TT1JukI6eVph+diAKXGvURUDfqHRQHz8xvr+w06DI7qli1x9UYLzckitd0=
-X-Received: by 2002:a05:622a:4c0f:b0:42a:2976:8a7a with SMTP id
- ey15-20020a05622a4c0f00b0042a29768a7amr325741qtb.10.1706292593090; Fri, 26
- Jan 2024 10:09:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706292566; x=1706897366;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=besKRLy6yQbSTw/dQlTWL8wk71OrKbvYodnbEXshzcU=;
+        b=wHZWasjKYhrZuHimZBPlzp67sqazQayJg9adyLaqb1Rs4LCKnWNp3hyNFwzvUWZ9z4
+         +1vidfnU2riarJQymP6IVnC3otJ2vOFWA7UkpUhXegr3j8HA3zdR+yd0u5WmtHmRcMUW
+         GECBk1QmiumLiXwJehLRJH8Ks2BFQEXbXdCz3pwS+/YKcs/U+beqOvjKPJ8aP0Sr1Cxp
+         7k4jMIYBTWDIJDVL+xNK+rInN0qLcWFYrH3Lr9SmAt8c3NEfLOH0fWQ2JD0jzTUoBPtT
+         DRf3idv+1Bqzoo63ynZSjphj2LPVvb+zTBPkqkZtTUhU8PPAKDB6w8alMZbdYm9KND57
+         lBoQ==
+X-Gm-Message-State: AOJu0Yzb6vDbDsnna+TMqA6Ns+YhysWd00vhcD5Vs2ze/VJh+HhJh51z
+	rJYrfli7NpE/KU5ckxjHQuR4ENOfMljjR/FI3SaTHq9GHNswE3aU+X17719xjQ==
+X-Google-Smtp-Source: AGHT+IGxNUhpLxiiCPrISZ5CIlxnOeh1sXqyVtIXkr9k5mtrWbdl/kpZNbxvv5U/gLfZ1J+fJNgcQA==
+X-Received: by 2002:a17:902:c703:b0:1d5:bc1d:eb99 with SMTP id p3-20020a170902c70300b001d5bc1deb99mr101785plp.131.1706292565623;
+        Fri, 26 Jan 2024 10:09:25 -0800 (PST)
+Received: from [192.168.52.129] ([192.19.222.250])
+        by smtp.gmail.com with ESMTPSA id g10-20020a170902c98a00b001d6f4d7ed1bsm1221475plc.296.2024.01.26.10.09.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jan 2024 10:09:24 -0800 (PST)
+Message-ID: <9af23e54-a484-44b7-bf88-0ade194ab74e@broadcom.com>
+Date: Fri, 26 Jan 2024 10:09:22 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
- <20240123-iio-backend-v7-4-1bff236b8693@analog.com> <CAGETcx8_0ExTG4ASb9xK-uwmubMFDx44_wUf1h3VsO8w9jJApQ@mail.gmail.com>
- <8eae083af481441d83df02a1880e2aedf99efdfb.camel@gmail.com>
- <CAGETcx_ScsW4gKpAK01dHYxB3XGs-pRjJQMygbZUNAdxV6BqtA@mail.gmail.com>
- <865346908c9b76d72741e6f319a4535459de1ea6.camel@gmail.com> <c459cc6766b741892cdf9de0b50832023eb4196d.camel@gmail.com>
-In-Reply-To: <c459cc6766b741892cdf9de0b50832023eb4196d.camel@gmail.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Fri, 26 Jan 2024 10:09:13 -0800
-Message-ID: <CAGETcx_TXTddsExr+7hq9VWY518Qoai_YQ9u1Jb3WPihAK5fqg@mail.gmail.com>
-Subject: Re: [PATCH v7 4/9] driver: core: allow modifying device_links flags
-To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
-Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/10] dt-bindings: mtd: brcmnand: Updates for bcmbca
+ SoCs
+To: Conor Dooley <conor@kernel.org>
+Cc: David Regan <dregan@broadcom.com>, dregan@mail.com,
+ miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ computersforpeace@gmail.com, kdasu.kdev@gmail.com,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, joel.peshkin@broadcom.com,
+ tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com,
+ anand.gore@broadcom.com, kursad.oney@broadcom.com,
+ florian.fainelli@broadcom.com, rafal@milecki.pl,
+ bcm-kernel-feedback-list@broadcom.com, andre.przywara@arm.com,
+ baruch@tkos.co.il, linux-arm-kernel@lists.infradead.org,
+ dan.carpenter@linaro.org
+References: <20240124030458.98408-1-dregan@broadcom.com>
+ <20240124030458.98408-2-dregan@broadcom.com>
+ <20240124-direness-outpost-bbc22550a161@spud>
+ <451151f3-33df-4de8-ab62-a683ad4b7cb1@broadcom.com>
+ <20240125-drove-undiluted-5d822b7fd4fa@spud>
+ <b2bc0948-7039-4dbd-8152-08a51e744c59@broadcom.com>
+ <20240126-armadillo-clean-e3509ed23ed5@spud>
+From: William Zhang <william.zhang@broadcom.com>
+In-Reply-To: <20240126-armadillo-clean-e3509ed23ed5@spud>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="000000000000485765060fdd3222"
 
-On Fri, Jan 26, 2024 at 6:24=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.com=
-> wrote:
->
-> On Fri, 2024-01-26 at 09:13 +0100, Nuno S=C3=A1 wrote:
-> > On Thu, 2024-01-25 at 16:50 -0800, Saravana Kannan wrote:
-> > > On Thu, Jan 25, 2024 at 12:11=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gm=
-ail.com> wrote:
-> > > >
-> > > >
-> > > > Hi Saravana,
-> > > >
-> > > > Thanks for your feedback,
-> > > >
-> > > > On Wed, 2024-01-24 at 19:21 -0800, Saravana Kannan wrote:
-> > > > > On Tue, Jan 23, 2024 at 7:14=E2=80=AFAM Nuno Sa via B4 Relay
-> > > > > <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> > > > > >
-> > > > > > From: Nuno Sa <nuno.sa@analog.com>
-> > > > > >
-> > > > > > If a device_link is previously created (eg: via
-> > > > > > fw_devlink_create_devlink()) before the supplier + consumer are=
- both
-> > > > > > present and bound to their respective drivers, there's no way t=
-o set
-> > > > > > DL_FLAG_AUTOREMOVE_CONSUMER anymore while one can still set
-> > > > > > DL_FLAG_AUTOREMOVE_SUPPLIER. Hence, rework the flags checks to =
-allow
-> > > > > > for DL_FLAG_AUTOREMOVE_CONSUMER in the same way
-> > > > > > DL_FLAG_AUTOREMOVE_SUPPLIER is done.
-> > > > >
-> > > > > Curious, why do you want to set DL_FLAG_AUTOREMOVE_CONSUMER?
-> > > > > Especially if fw_devlink already created the link? You are effect=
-ively
-> > > > > trying to delete the link fw_devlink created if any of your devic=
-es
-> > > > > unbind.
-> > > > >
-> > > >
-> > > > Well, this is still useful in the modules case as the link will be =
-relaxed
-> > > > after
-> > > > all devices are initialized and that will already clear AUTOPROBE_C=
-ONSUMER
-> > > > AFAIU. But, more importantly, if I'm not missing anything, in [1],
-> > > > fw_devlinks
-> > > > will be dropped after the consumer + supplier are bound which means=
- I
-> > > > definitely
-> > > > want to create a link between my consumer and supplier.
-> > > >
-> > > > FWIW, I was misunderstanding things since I thought
-> > > > DL_FLAG_AUTOREMOVE_CONSUMER
-> > > > was needed to make sure the consumer is unbound before the supplier=
-. But
-> > > > for
-> > > > that I think I can even pass 0 in the flags as I only need the link=
- to be
-> > > > MANAGED. Still, I think having DL_FLAG_AUTOREMOVE_CONSUMER makes se=
-nse.
-> > >
-> > > As you noticed, your understanding of DL_FLAG_AUTOREMOVE_CONSUMER is
-> > > not correct. There's almost never a good reason to drop a device link=
-.
-> > > Even when a device/driver are unbound, we still want future probe
-> > > attempts to make use of the dependency info and block a device from
-> > > probing if the supplier hasn't probed.
-> > >
-> >
-> > Yeah that makes sense and is making me thinking that I should change my=
- call
-> > (in
-> > patch 7 to use the MANAGED flag instead of AUTOREMOVE_CONSUMER). Sure,
-> > AUTOREMOVE_CONSUMER won't matter most cases but if someone disables
-> > fw_devlinks
-> > then it matters.
+--000000000000485765060fdd3222
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I don't fully understand the patch series, but what exactly are you
-gaining by adding device links explicitly. I'd rather that every
-driver didn't explicitly create a device link. That's just a lot of
-useless code in most cases and we shouldn't have useless code lying
-around. If someone does fw_devlink=3Doff and you don't create a device
-link explicitly, what's the worst that's going to happen? Useless
-deferred probes? fw_devlink is really only there as a debug tool at
-this point -- I don't think you need to worry about people setting it
-to off/permissive.
 
-> >
->
-> Yeah, just realized MANAGED is not a valid flag one can pass to
-> device_link_add() :)
 
-If you don't pass the STATELESS flag, a link is assumed to be MANAGED.
-So, you can still create managed device links.
+On 1/26/24 08:46, Conor Dooley wrote:
+> On Thu, Jan 25, 2024 at 05:55:29PM -0800, William Zhang wrote:
+>> On 1/25/24 11:51, Conor Dooley wrote:
+>>> On Wed, Jan 24, 2024 at 07:01:48PM -0800, William Zhang wrote:
+>>>> On 1/24/24 09:24, Conor Dooley wrote:
+>>>>> On Tue, Jan 23, 2024 at 07:04:49PM -0800, David Regan wrote:
+>>>>>> From: William Zhang <william.zhang@broadcom.com>
+> 
+>>>> And the reason I keep it as int is because there could be a potential value
+>>>> of 2 for another mode that the current driver could set the wp_on to.
+>>>
+>>> Can you explain, in driver independent terms, what this other mode has
+>>> to do with how the WP is connected?
+>>> Either you've got the standard scenario where apparently "NAND_WPb" and
+>>> "WP_L" are connected and another situation where they are not.
+>>> Is there another pin configuration in addition to that, that this 3rd
+>>> mode represents?
+>>>
+>> The 3rd mode is WP pin connected but wp feature is disabled in the
+>> controller.
+> 
+> What does "disabled" mean? The controller itself is not capable of using
+> the WP pin because of hardware modifications? Or there's a bit in a
+> register that disables it and that bit has been set by software?
+> 
+Yes that is a bit in the controller reg to disable the feature by the 
+driver even the chip have the WP pin connected.
 
--Saravana
+> If it is a hardware difference for that controller, why does it not have
+> a dedicated compatible? If it's a software decision, then it shouldn't
+> be in the DT in the first place ;)
+> 
+Agree it is more on the software for that particular mode.
+
+> We've gone back here a bunch trying to figure stuff out, and you give me
+> a vague one sentence answer. Please.
+> 
+>>>> I
+>>>> don't see it is being used in BCMBCA product but I am not sure about other
+>>>> SoC family. So I don't want to completely close the door here just in case.
+>>>
+>>> If you ever need it, you could have a "brcm,wp-in-wacky-configuration"
+>>> property that indicates that the hardware is configured in that way
+>>> (providing that this hardware configuration is not just "NAND_WPb" and
+>>> "WP_L" pins connected. The property can very easily be made mutually
+>>> exclusive with "brcm,wp-not-connected" iff it ever comes to be.
+>> Yes we could have a new property but if we can have a single int property to
+>> cover all, IMHO it is better to just have one property as these three modes
+>> are related. I would really like to have it as an int property to keep
+>> things simple.
+> 
+> It is "better" because it is easier for you perhaps, but ripe for abuse.
+> 
+Well if binding only say 3 possible value, you can not use this property 
+for other value of course. DTS binding check will fail. But agree there 
+is no check on this in the driver side for any integer property.
+
+>> But if you think this is absolutely against the dts rule,  I will switch to
+>> the "brcm,wp-not-connected" boolean property as you suggested.
+> 
+> I'll answer this when you describe the mode better, right now I cannot
+> really comment, but I have not yet seen a justification for the non-flag
+> version of the property. Even if there's a justification for documenting
+> that other mode in the DT, I'm likely to still think boolean properties
+> are a better fit.
+> 
+That's fine. I will just change to the boolean.
+
+>>>>>> If ecc
+>>>>>> +          strength and spare area size are set by nand-ecc-strength
+>>>>>> +          and brcm,nand-oob-sector-size in the dts, these settings
+>>>>>> +          have precedence and override this flag.
+>>>>>
+>>>>> Again, IMO, this is not for the binding to decide. That is a decision
+>>>>> for the operating system to make.
+>>>>>
+>>>> Again this is just for historic reason and BCMBCA as late player does not
+>>>> want to break any existing dts setting.  So I thought it is useful to
+>>>> explain here.  I can remove this text if you don't think it should be in the
+>>>> binding document.
+>>>
+>>> I don't, at least not in that form. I think it is reasonable to explain
+>>> why these values are better though.
+>> I understand the decision is for OS/driver to make. If we were to write
+>> another driver for other OS, the same precedence will apply too so the
+>> binding works the same way across all the OS. So I am not sure what better
+>> explanation or form I can put up here. I am open to any suggestion or I just
+>> delete it.
+> 
+> I would just delete it tbh.
+Will delete.
+
+> 
+> Thanks,
+> Conor.
+
+--000000000000485765060fdd3222
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIIQcAYJKoZIhvcNAQcCoIIQYTCCEF0CAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+gg3HMIIFDTCCA/WgAwIBAgIQeEqpED+lv77edQixNJMdADANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA5MTYwMDAwMDBaFw0yODA5MTYwMDAwMDBaMFsxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBS
+MyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+vbCmXCcsbZ/a0fRIQMBxp4gJnnyeneFYpEtNydrZZ+GeKSMdHiDgXD1UnRSIudKo+moQ6YlCOu4t
+rVWO/EiXfYnK7zeop26ry1RpKtogB7/O115zultAz64ydQYLe+a1e/czkALg3sgTcOOcFZTXk38e
+aqsXsipoX1vsNurqPtnC27TWsA7pk4uKXscFjkeUE8JZu9BDKaswZygxBOPBQBwrA5+20Wxlk6k1
+e6EKaaNaNZUy30q3ArEf30ZDpXyfCtiXnupjSK8WU2cK4qsEtj09JS4+mhi0CTCrCnXAzum3tgcH
+cHRg0prcSzzEUDQWoFxyuqwiwhHu3sPQNmFOMwIDAQABo4IB2jCCAdYwDgYDVR0PAQH/BAQDAgGG
+MGAGA1UdJQRZMFcGCCsGAQUFBwMCBggrBgEFBQcDBAYKKwYBBAGCNxQCAgYKKwYBBAGCNwoDBAYJ
+KwYBBAGCNxUGBgorBgEEAYI3CgMMBggrBgEFBQcDBwYIKwYBBQUHAxEwEgYDVR0TAQH/BAgwBgEB
+/wIBADAdBgNVHQ4EFgQUljPR5lgXWzR1ioFWZNW+SN6hj88wHwYDVR0jBBgwFoAUj/BLf6guRSSu
+TVD6Y5qL3uLdG7wwegYIKwYBBQUHAQEEbjBsMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC5nbG9i
+YWxzaWduLmNvbS9yb290cjMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5j
+b20vY2FjZXJ0L3Jvb3QtcjMuY3J0MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFs
+c2lnbi5jb20vcm9vdC1yMy5jcmwwWgYDVR0gBFMwUTALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgEo
+CjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAN
+BgkqhkiG9w0BAQsFAAOCAQEAdAXk/XCnDeAOd9nNEUvWPxblOQ/5o/q6OIeTYvoEvUUi2qHUOtbf
+jBGdTptFsXXe4RgjVF9b6DuizgYfy+cILmvi5hfk3Iq8MAZsgtW+A/otQsJvK2wRatLE61RbzkX8
+9/OXEZ1zT7t/q2RiJqzpvV8NChxIj+P7WTtepPm9AIj0Keue+gS2qvzAZAY34ZZeRHgA7g5O4TPJ
+/oTd+4rgiU++wLDlcZYd/slFkaT3xg4qWDepEMjT4T1qFOQIL+ijUArYS4owpPg9NISTKa1qqKWJ
+jFoyms0d0GwOniIIbBvhI2MJ7BSY9MYtWVT5jJO3tsVHwj4cp92CSFuGwunFMzCCA18wggJHoAMC
+AQICCwQAAAAAASFYUwiiMA0GCSqGSIb3DQEBCwUAMEwxIDAeBgNVBAsTF0dsb2JhbFNpZ24gUm9v
+dCBDQSAtIFIzMRMwEQYDVQQKEwpHbG9iYWxTaWduMRMwEQYDVQQDEwpHbG9iYWxTaWduMB4XDTA5
+MDMxODEwMDAwMFoXDTI5MDMxODEwMDAwMFowTDEgMB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENB
+IC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzARBgNVBAMTCkdsb2JhbFNpZ24wggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMJXaQeQZ4Ihb1wIO2hMoonv0FdhHFrYhy/EYCQ8eyip0E
+XyTLLkvhYIJG4VKrDIFHcGzdZNHr9SyjD4I9DCuul9e2FIYQebs7E4B3jAjhSdJqYi8fXvqWaN+J
+J5U4nwbXPsnLJlkNc96wyOkmDoMVxu9bi9IEYMpJpij2aTv2y8gokeWdimFXN6x0FNx04Druci8u
+nPvQu7/1PQDhBjPogiuuU6Y6FnOM3UEOIDrAtKeh6bJPkC4yYOlXy7kEkmho5TgmYHWyn3f/kRTv
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBU8wggQ3oAMCAQICDDG6HZcbcVdEvVYk4TANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMTMxNDVaFw0yNTA5MTAxMTMxNDVaMIGQ
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xFjAUBgNVBAMTDVdpbGxpYW0gWmhhbmcxKTAnBgkqhkiG9w0B
+CQEWGndpbGxpYW0uemhhbmdAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+CgKCAQEAyKF+RmY29Wvfmfe3L8J4rZNmBIvRmrWKI5td5L0vlpPMCEzUkVhBdL2N9cDP0rPScvWL
+CX/9cI1a2BUy/6/ZT5j9PhcUn6A3kwKFGukLY2itfKaDrP3ANVJGhBXPVJ6sx55GF41PkiL2EMnY
+7LJGNpl9WHYrw8VqtRediPyXq8M6ZWGPZWxygsE6y1pOkEk9qLpvXTb2Epxk2JWcQFZQCDWVULue
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIE2qzo+wcRTLgU2qDiiv4j8dwQpn
+jDFUaaeRwg6M0RNOMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0
+MDEyNjE4MDkyNlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQAPcTbAkWF5mLRxzPMaByt7wTe9DZvHFWom2cTkEmYn/CKn
+TSKIT8MXUmbh8Eafk+vfqFqwdqZQVTHDPmCx8zn3TfKL8WLUDvdS4w0Q+/tMhl0RwOUX4n8X5IrQ
+mdfhh6tPkRbs/Vi8/92N5b90NNGeMkniTD8Q9uiZQnWaMWzwSyJpztBVm/ob5Js1/eRv5XI1aJbK
+solxYYOsZFnFsngyfTBa4VoAZtq6vQZGmRCGAMg3PyvoiwFbi2kiiPCOSSsuFahs+r+uYniHvkQV
+h37Cz7rasz+0qkdskmlDI5r7DeX1WBcJHpy7TmIHLqHulMSg7aIhI1S3SC3MBHO36WsB
+--000000000000485765060fdd3222--
 
