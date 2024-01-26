@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-35580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A4483DE5B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 17:10:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A2B483DE68
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 17:17:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A40471F251C4
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:10:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D5041C22744
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA1051D54C;
-	Fri, 26 Jan 2024 16:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B22F1D54C;
+	Fri, 26 Jan 2024 16:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ut8MVSe+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qNAb6POM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1201CD3A;
-	Fri, 26 Jan 2024 16:10:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351E81CD3A;
+	Fri, 26 Jan 2024 16:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706285408; cv=none; b=MjbHCm/M1AvpwucCn9rfTPys3R7xhojuy/XDh+VhMbwBjB2eNZpc0FUd/W9c2UEP4+xUfdLJPJRi9Bpuyy+PTRmhKedIsMkO3W13sKQ8V3ASXsIAdBHj7GTgqLSzISjZ0JGShD1lYNfN8evuDh0GVqSvZCRwDuepMAwWLRJj7zM=
+	t=1706285817; cv=none; b=KHADTA1udrZGlyvw21FwRopMgh3palwRGcrUgdbrBIzCxRTvOWVIU5BTO/t/vvTDujK73zHnltes2EIP0E/euLEl4ShJqIvmF4D4jW4/Q6mYNcAe4JBqCkJQ2vPD5GY8T80QmZEbl9IK+lK4B1WLZPwsF2gEfjhkLW7ps8pV6gQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706285408; c=relaxed/simple;
-	bh=RuGe721aXOgItyEsXe/xUrOR8ZxZvSgNmsK+y5G9BUk=;
+	s=arc-20240116; t=1706285817; c=relaxed/simple;
+	bh=gwEC0mZ3wmaz41ZWSaPrbffP1dL0wcfSE1Ji9/A1WeI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mnhhZxljHZVecD5GWnT1xeXqBtEFRi2E2O+cZxSSXIXfhoQp8egSNWoJ7vO47QNHq0Ytb68iSgQQKNtalWPGBvDX1JX1sdTyEXoh1gDx0MJzxsxRhdNqllwDOv5BdUGXvvdsMMAximVro0m20q6EMCHrLm3u/q8J0df4xGVOuiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ut8MVSe+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DAF2C433C7;
-	Fri, 26 Jan 2024 16:10:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eb86kpOBg7Mvyuux/E7vHrLaoZDwoPXaZR0coGuJGdxVPZuGbXhT0aeVjFFoidAUxCfVIKbWMipUbYTaoOeE+Ke2lawafW1V/Dx/Kffcvtq6mo2eR8QQfSegRGK5SCj89LndRsfzf5Wys0dyWpYrXh/CpOhmAyWNUXMLplgnlYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qNAb6POM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D9F2C433C7;
+	Fri, 26 Jan 2024 16:16:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706285407;
-	bh=RuGe721aXOgItyEsXe/xUrOR8ZxZvSgNmsK+y5G9BUk=;
+	s=k20201202; t=1706285816;
+	bh=gwEC0mZ3wmaz41ZWSaPrbffP1dL0wcfSE1Ji9/A1WeI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ut8MVSe+jtKdSuxh4/aKm3Rl6XOZYAy3WyVpeLa3+zmrq4TBerSFex539spWsuq4F
-	 yKg+S1viQCOLzWl+avm1l/qPjayBNVYGNg1KbGPLjKPeZTKDLlInVMKf3qimKzz94I
-	 yLP1F1wJSqm0CASQev3LzRtT6Bv38GOj6A8xfKI3KrkI7NsL5xqyTnYe3bb1zj1qPt
-	 oizoXreFUfIWQ7Y8LOPU08jt0LJl+b8y56xa6ni3KeFQxSEdmNOI+eEZavORaZSIXS
-	 jFl1Mo3FLG1yVBCj7R9XquxjrKlofOcCik3ZztnurFwDzncHXjW8fY8wAePN/azjbR
-	 eYB4ZvNf7SbsA==
-Date: Fri, 26 Jan 2024 16:10:03 +0000
+	b=qNAb6POMddLb+6+2TnRFDDdm3RH0RanBaH+pOWI/j1l8qfSMXQic2dNC15xmUvYqf
+	 lF6AXbKdR6psvdkwf7IghSgKttTN+lumUKNt+gpliIqF62c0bxRBjglioVQTguwrtm
+	 zKrW97vKNKe/++9q2eCtv3F4j2+DA5iOkNYHbiptKCw4O1lGivv2qIi6VXaiTl1cLk
+	 oKWiBUnAE+w9ZHLrGn5es4HvO9nezNERyWcAyiTQ0Fl8tOkNW5MtiSCA2/OKu4PPDy
+	 VtbB6JkE8+fr7Ed9uJFegzjayN0oF+VT7eWICpXySLzCYZq/toy26kVd+RjtKauQLm
+	 /YXisbX7mWTPg==
+Date: Fri, 26 Jan 2024 16:16:52 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.au@gmail.com>
-Subject: Re: [PATCH v2 2/5] media: dt-bindings: renesas,rzg2l-cru: Document
- Renesas RZ/G2UL CRU block
-Message-ID: <20240126-joystick-dividers-b319ba5e1cda@spud>
-References: <20240126133116.121981-1-biju.das.jz@bp.renesas.com>
- <20240126133116.121981-3-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: afe: voltage-divider: Add
+ io-channel-cells
+Message-ID: <20240126-cinnamon-flatware-e042b5773f17@spud>
+References: <20240126115509.1459425-1-naresh.solanki@9elements.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,113 +62,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="datV++l/1YXNpvxC"
+	protocol="application/pgp-signature"; boundary="wvdRtw+17GEGpdoo"
 Content-Disposition: inline
-In-Reply-To: <20240126133116.121981-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20240126115509.1459425-1-naresh.solanki@9elements.com>
 
 
---datV++l/1YXNpvxC
+--wvdRtw+17GEGpdoo
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 26, 2024 at 01:31:13PM +0000, Biju Das wrote:
-> Document the CRU IP found in Renesas RZ/G2UL SoC.
+Hey,
+
+On Fri, Jan 26, 2024 at 05:25:08PM +0530, Naresh Solanki wrote:
+> Add #io-channel-cells expected by driver. i.e., below is the message
+> seen in kernel log:
+> OF: /iio-hwmon: could not get #io-channel-cells for /voltage_divider1
 >=20
-> The CRU block on the RZ/G2UL SoC is identical to one found on the
-> RZ/G2L SoC, but it does not support parallel input.
+
+> TEST=3DRun below command & make sure there is no error:
+> make DT_CHECKER_FLAGS=3D-m dt_binding_check -j1
+
+This shouldn't be in the commit message.
+
 >=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
+> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
 > ---
-> v1->v2:
->  * Dropped the description from if/else block.
->  * Dropped driver reference from commit description.
-> ---
->  .../bindings/media/renesas,rzg2l-cru.yaml     | 35 ++++++++++++++++---
->  1 file changed, 31 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.ya=
-ml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> index 1e72b8808d24..bc1245127025 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> @@ -19,6 +19,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - renesas,r9a07g043-cru       # RZ/G2UL
->            - renesas,r9a07g044-cru       # RZ/G2{L,LC}
->            - renesas,r9a07g054-cru       # RZ/V2L
->        - const: renesas,rzg2l-cru
-> @@ -87,10 +88,6 @@ properties:
->            Input port node, describing the Image Processing module connec=
-ted to the
->            CSI-2 receiver.
+> diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-divider.ya=
+ml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+> index dddf97b50549..b4b5489ad98e 100644
+> --- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+> +++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+> @@ -39,6 +39,9 @@ properties:
+>      description: |
+>        Channel node of a voltage io-channel.
 > =20
-> -    required:
-> -      - port@0
-> -      - port@1
-> -
->  required:
->    - compatible
->    - reg
-> @@ -102,6 +99,36 @@ required:
->    - reset-names
->    - power-domains
-> =20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r9a07g044-cru
-> +              - renesas,r9a07g054-cru
-> +    then:
-> +      properties:
-> +        ports:
-> +          required:
-> +            - port@0
-> +            - port@1
+> +  '#io-channel-cells':
+> +    const: 1
+
+The example in this binding looks like the voltage-divider is intended
+to be an "IIO consumer" but "#io-channels-cells" is an "IIO provider"
+property.
+
+Are you sure this is correct?
+
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,r9a07g043-cru
-> +    then:
-> +      properties:
-> +        ports:
-> +          properties:
-> +            port@0: false
-> +
-> +          required:
-> +            - port@1
-> +
->  additionalProperties: false
-> =20
->  examples:
+>    output-ohms:
+>      description:
+>        Resistance Rout over which the output voltage is measured. See ful=
+l-ohms.
+>=20
+> base-commit: ecb1b8288dc7ccbdcb3b9df005fa1c0e0c0388a7
 > --=20
-> 2.25.1
+> 2.42.0
 >=20
 
---datV++l/1YXNpvxC
+--wvdRtw+17GEGpdoo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbPZWwAKCRB4tDGHoIJi
-0rkOAQDgBl8yHHmgw/w0hEoSq68i0daBar9ofdJlimlGDCIcjAD/YmgzbXPfn5BY
-SupcEQq83CHWwKPi5x6hymC2XkW02QQ=
-=AZZL
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbPa9AAKCRB4tDGHoIJi
+0h7+AP9saceOMyUzytSlRwVy5YzQaZ0LZvk31o2TRV06wkAmKAEAoI8Ut9mMne7U
+uJOtKAI2Ng+E6A+XyIl9WbuaYrcXqwE=
+=kzaD
 -----END PGP SIGNATURE-----
 
---datV++l/1YXNpvxC--
+--wvdRtw+17GEGpdoo--
 
