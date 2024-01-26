@@ -1,123 +1,179 @@
-Return-Path: <devicetree+bounces-35540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B3483DB33
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:53:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 355F483DB61
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A154B23093
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 13:53:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598371C232AC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 13:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3878F1B958;
-	Fri, 26 Jan 2024 13:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5762C1B801;
+	Fri, 26 Jan 2024 13:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oUxtrhiv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE221B943;
-	Fri, 26 Jan 2024 13:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9781BF2C;
+	Fri, 26 Jan 2024 13:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706277195; cv=none; b=QGQfPp9epZx2lZR0uTIwoqiv0KQf/XeNpzzv34TxLZSN6ruC8Zsto59XCu7aKomIDvHwOdd2uY6cmmFqCQsNv7ZqIIOoKu9RN9AAf7HrD/ykatnk/4Yhh5Hy7N4jH/9Y4ZvZM95Uen6riqxwE19u2V97HBkbHzw+DSLSJPsdALM=
+	t=1706277557; cv=none; b=XrblSXv0BKLXjPXkdlVxOvaKl0TZY+f2lnQ9k2qzc092jIH7+lPqkaHk7JPzPBAC21LfkM95ufbJHKjWX4BihP6Csp8qOOAmHb7v+xYpi+2QmnORWFyOdKG52oTKpdsgYzBbmRbJ/2178KxEkf/aGdmGgnFwISxkXQceHJMFkWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706277195; c=relaxed/simple;
-	bh=Z6I31NT0BcGf7psD17XzyIlVKaXrRZiIAJ8RzTvC1l4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RqAmDmi4KVZNcmjY1/Mv/amksC1FK/iBPH02+MYVUw4uS/2F/37Z9iV3YIR3AYShvktMMNdWBuQuyAKo6EdzmK87Mlg4qHK88zsoXmrCEXOGqZsNRSSYwupStcFVqoR/zE88DvZydR0KfZbepdrqtOUAS03TVOOeFQ+96VSLD9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dc226dca91aso380717276.2;
-        Fri, 26 Jan 2024 05:53:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706277192; x=1706881992;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NhvF8nacolHiA8n/Jg7CYQM1D3ZaUoBxjgtxv4pX148=;
-        b=Q3m/8NuhMKooPk/jthbnLvYv0CVA+inaXuB4h2E6JUbCb1E7O9HkdhYtEXT/gKLlx3
-         R57+MC43xG3RCLhoR19MW9fUY5fSN4H21u0hB6Myftc64ra/DwDPzklzd95Hz9iHBDyC
-         UaJLkNQTysvPzFBrUjJhbHuqgdMYyuiT4UyDRQ2BqMaDR/v3VcE45nBsAnuV2AGQM60f
-         dOd4b0y8/dEOqGzO5RYfSQxxp3x5j3uUeUfCRZjloR7dJUr6V0SX4owiSHiNlzIB4gSD
-         0OhLIMGAXTXWik7DnqAree2fBMIy6G8+esf7CYShxT+1ztg2liEdPyKMqjA0QHIRxy1w
-         MjRA==
-X-Gm-Message-State: AOJu0YzPufX8gEVqAaprsIIYBqeLfY9SzWyFCQYGaN9s/pUie+mQ6X9M
-	EDwdgja3X6p5VJXO8OpGBXNBIJtQIzbaW/jzHOacVvDntZ8/ilmVaCeA9b7IZE4=
-X-Google-Smtp-Source: AGHT+IErh3yNnJjLfe5X3czrTIy+dfkAZPFsEL59r62stsg4HCfqYayJ6EHW8huJYjRIO1ejcwmdPA==
-X-Received: by 2002:a5b:c83:0:b0:dc2:3618:c119 with SMTP id i3-20020a5b0c83000000b00dc23618c119mr1063056ybq.116.1706277191830;
-        Fri, 26 Jan 2024 05:53:11 -0800 (PST)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id k8-20020a5b0a08000000b00dc22f4bf808sm385169ybq.32.2024.01.26.05.53.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jan 2024 05:53:11 -0800 (PST)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-5fc2e997804so3973147b3.3;
-        Fri, 26 Jan 2024 05:53:11 -0800 (PST)
-X-Received: by 2002:a05:690c:398:b0:5ff:dee3:b866 with SMTP id
- bh24-20020a05690c039800b005ffdee3b866mr1462172ywb.14.1706277191099; Fri, 26
- Jan 2024 05:53:11 -0800 (PST)
+	s=arc-20240116; t=1706277557; c=relaxed/simple;
+	bh=pyF83y5tVfnL83cZxX2TVpeE+02/AnbnZJxbFrSpVlg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=VQP+1Sq70SyFpzR8BgbGlFF+9UNlpVD9u2kk63LsRJXF5j7WrKe5weVTc/7co6tuFrBZKQLoOOBpPVT4Tx8MaVqrI00isK67P5KwAby+GPOzVSFy6yfbJ0/P9DkHTMlHJaO6G6285QPOrt5dvRwK6qu8dCAUjvfgiJXg3lC44zU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oUxtrhiv; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40QAM0hg008172;
+	Fri, 26 Jan 2024 14:59:03 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=DlWza8//9CYZZEeRqSDaLqxbATgDAXvWp1xCzj+RZZU=; b=oU
+	xtrhivReW8tupdJ7UOkEzvmrzBPQFQe71EqRyka0OiB7Yz5BsEh8uokt99zDBqPX
+	BDM6qM9OyKMNfz6ShTLBDpKIddOp8j5HDLkPk1izK7RSK9zAAHwiDgaXnSI17qvN
+	4L505JAg6PYayJQjKmMh6LyW9S/9aqwXUxSwZuf+NS1IXFKM4VRAJcydiz7qFhEl
+	wes1JCvYiWvNzRgcvBlyxHLnVlqBhNKoFzwyaI0pLKK2GX+cN/gPxHF560KoEnMg
+	HfXfMfz//03zjBfeL5rocmw31SISD3vzGOajQJsLKVPKKrs7DJtTvSYt9NyVvFSW
+	DW8DTUEdXL4PW2C1Ikvg==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3vtun2bxj2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jan 2024 14:59:02 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EEFAC10004F;
+	Fri, 26 Jan 2024 14:59:01 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D627E2ABBF5;
+	Fri, 26 Jan 2024 14:59:01 +0100 (CET)
+Received: from [10.252.25.40] (10.252.25.40) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 26 Jan
+ 2024 14:59:01 +0100
+Message-ID: <6e45d577-ab03-457e-ada6-1b75735d42ed@foss.st.com>
+Date: Fri, 26 Jan 2024 14:59:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240126133116.121981-1-biju.das.jz@bp.renesas.com> <20240126133116.121981-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240126133116.121981-6-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 26 Jan 2024 14:52:59 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUa+wd36-ErDRgb91KpRbryNYzA2Mmhvzjx0-_47=zfdg@mail.gmail.com>
-Message-ID: <CAMuHMdUa+wd36-ErDRgb91KpRbryNYzA2Mmhvzjx0-_47=zfdg@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: renesas: r9a07g043u11-smarc-cru-csi-ov5645:
- Reduce I2C frequency
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] dt-bindings: remoteproc: Add compatibility for TEE
+ support
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Jens
+ Wiklander <jens.wiklander@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>
+References: <20240118100433.3984196-1-arnaud.pouliquen@foss.st.com>
+ <20240118100433.3984196-3-arnaud.pouliquen@foss.st.com>
+ <75429209-8f30-4880-8f92-ecb3cf90ae33@linaro.org>
+From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Organization: STMicroelectronics
+In-Reply-To: <75429209-8f30-4880-8f92-ecb3cf90ae33@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
 
-Hi Biju,
+Hello Krzysztof,
 
-On Fri, Jan 26, 2024 at 2:31=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Reduce i2c freq from 400->100 kHz on RZ/G2UL SMARC EVK as the captured
-> image is not proper with the sensor configuration over I2C.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On 1/26/24 12:03, Krzysztof Kozlowski wrote:
+> On 18/01/2024 11:04, Arnaud Pouliquen wrote:
+>> The "st,stm32mp1-m4-tee" compatible is utilized in a system configuration
+>> where the Cortex-M4 firmware is loaded by the Trusted execution Environment
+>> (TEE).
+>> For instance, this compatible is used in both the Linux and OP-TEE
+>> device-tree:
+>> - In OP-TEE, a node is defined in the device tree with the
+>>   st,stm32mp1-m4-tee to support signed remoteproc firmware.
+>>   Based on DT properties, OP-TEE authenticates, loads, starts, and stops
+>>   the firmware.
+>> - On Linux, when the compatibility is set, the Cortex-M resets should not
+>>   be declared in the device tree.
+>>
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>> ---
+>> V1 to V2 updates
+>> - update "st,stm32mp1-m4" compatible description to generalize
+>> - remove the 'reset-names' requirement in one conditional branch, as the
+>>   property is already part of the condition test.
+>> ---
+>>  .../bindings/remoteproc/st,stm32-rproc.yaml   | 52 +++++++++++++++----
+>>  1 file changed, 43 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+>> index 370af61d8f28..6af821b15736 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+>> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+>> @@ -16,7 +16,12 @@ maintainers:
+>>  
+>>  properties:
+>>    compatible:
+>> -    const: st,stm32mp1-m4
+>> +    enum:
+>> +      - st,stm32mp1-m4
+>> +      - st,stm32mp1-m4-tee
+> 
+> The patch looks good to me, but I wonder about this choice of two
+> compatibles.
+> 
+> Basically this is the same hardware with the same interface, but two
+> compatibles to differentiate a bit different firmware setup. We have
+> already such cases for Qualcomm [1] [2] and new ones will be coming. [3]
+> 
+> I wonder whether this should be rather the same compatible with
+> additional property, e.g. "st,tee-control" or "remote-control".
 
-Thanks for your patch!
+Yes the point is valid, I asked myself the question.
 
-> --- a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc-cru-csi-ov5645.dtso
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc-cru-csi-ov5645.dtso
-> @@ -19,3 +19,7 @@ &ov5645 {
->         enable-gpios =3D <&pinctrl RZG2L_GPIO(4, 4) GPIO_ACTIVE_HIGH>;
->         reset-gpios =3D <&pinctrl RZG2L_GPIO(0, 1) GPIO_ACTIVE_LOW>;
->  };
-> +
-> +&i2c0 {
-> +       clock-frequency =3D <100000>;
-> +};
+I proposed a compatibility solution for one main reason. On the STM32MP15, if
+the firmware is loaded by Linux, no driver is probed in OP-TEE. But if the
+firmware is authenticated and loaded by OP-TEE, a Op-TEE driver is probed to
+manage memory access rights.
 
-Is this a limitation of one of the I2C devices on the bus, or a PCB
-design issue?
+The drawback of a property is that we would need to probe the OP-TEE driver for
+the STM32MP1 platform even if it is not used, just to check this property.
 
-Doesn't this need a Fixes tag?
+Thanks,
+Arnaud
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> 
+> [1]
+> https://elixir.bootlin.com/linux/v6.7.1/source/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml#L54
+> 
+> [2]
+> https://elixir.bootlin.com/linux/v6.7.1/source/Documentation/devicetree/bindings/net/qcom,ipa.yaml#L129
+> (that's a bit different)
+> 
+> [3] https://lore.kernel.org/linux-devicetree/20240124103623.GJ4906@thinkpad/
+> 
+> @Rob,
+> Any general guidance for this and Qualcomm?
+> 
+> Best regards,
+> Krzysztof
+> 
 
