@@ -1,137 +1,147 @@
-Return-Path: <devicetree+bounces-35444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E458283D77E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:12:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B1F83D793
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:14:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E7C8297519
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:10:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1AC329A57D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 378E7208B8;
-	Fri, 26 Jan 2024 09:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C7AE2421E;
+	Fri, 26 Jan 2024 09:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Nv7Wk/SZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zXQ8hMcB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB72020306;
-	Fri, 26 Jan 2024 09:29:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F60249F0
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 09:38:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706261355; cv=none; b=MBvx/QwOXvEwvoQ715aLWPyh1Q3nVTRTA43AiWuUCLBae+6cmWnbSRFQna7PeNlLsI4t6QJehUffQo07v4Awh4FLMGTW6w96K3xi70/L3n4gQhf4hqdiYzT5VGtadYTmJOl/U7ZdTXShJR5pTLP5RN304fN0wnC9KbMT9r53ICc=
+	t=1706261926; cv=none; b=fzcElbtpTqeNvWZdvz+nHo49T52s9PK+3YC0tZkzKUXO1URjo/wSkPMACGhKK8ayaTmDW8OnYFicExbc77dn2qQ9ZxEbxhezN9531PHSJd2y63IOImSnNlpHsPVMiBvXdiYGz1LNAu3+Nu15frUHRHfJZqpBJuBKp9F3MqXLaBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706261355; c=relaxed/simple;
-	bh=nKBYb8AiFMDEoSH6ix/SA0rKwkG4+NOIJo8+mqHka+k=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oqZR1tbMhe7JpDlVRMSd3cLRR/Edq9tz2Xi9Eij1G6r5eH5CpQW4S6TA1bb9fjPysfNgwQgtD6kkHzQsuU0lDnehZjAJGOB+bxTLvWlYusgq/wXDmpGsMDPsFYSl7dBLNoG/QEuc3SL2KRAGcorByanQt9xCwqhpQuaV2udqEgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Nv7Wk/SZ; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1706261353; x=1737797353;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nKBYb8AiFMDEoSH6ix/SA0rKwkG4+NOIJo8+mqHka+k=;
-  b=Nv7Wk/SZ4OeUG5/lgtmtkdY/nZ56KmNhG7L+ZXrRrMlVUjUhFM0STYk1
-   RgHG6IHf4xtQpXkqpcTtIPwMsMygvZ/kUMvt+Vxwjf4+hYCc6d2Xa44Rq
-   f9euWSVT/jR16ZGvaK5HnoLghe9FA5Ebm0ffN6v+kUlO5Sjm4yQfzFbAv
-   LYOdEpK7aqEO236Oc7y9eO8SoNmffFbdOFXVUvuO5d+50d5unhznFggtd
-   UTU/R9hZRcNK8f9wNYTl2LG3wSskKogwvN8cVarYcf/uoSl8rttlW+BsY
-   YEOoopVpcVKWqpWE/xyQJm2PjlRLtvdk6fKthNM4XC7QSGD/NZOEymoY3
-   w==;
-X-CSE-ConnectionGUID: DXk/349nTLGQJU8P3BOkdw==
-X-CSE-MsgGUID: uxq0XLC8Q4qT3IJ/CM0bvA==
-X-IronPort-AV: E=Sophos;i="6.05,216,1701154800"; 
-   d="asc'?scan'208";a="15343956"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 26 Jan 2024 02:29:12 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 26 Jan 2024 02:28:30 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Fri, 26 Jan 2024 02:28:27 -0700
-Date: Fri, 26 Jan 2024 09:27:50 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-CC: Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <chunfeng.yun@mediatek.com>,
-	<gregkh@linuxfoundation.org>, <conor+dt@kernel.org>,
-	<matthias.bgg@gmail.com>, <linux@roeck-us.net>,
-	<heikki.krogerus@linux.intel.com>, <cy_huang@richtek.com>,
-	<linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: mt6360-tcpc: Drop
- interrupt-names
-Message-ID: <20240126-shut-gusto-1da71fd410be@wendy>
-References: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
- <20240119-eldest-discharge-e2d3812be0a9@spud>
- <12b7b339-498b-45c1-bc5e-05e07660aefa@collabora.com>
- <20240123-procurer-jumbo-ebbec485505d@spud>
- <4fdbc3d8-3d44-4c2c-aae6-daa0b431e1c9@collabora.com>
- <dc9773aa-690f-47b5-b60a-a79c1e2dbaf2@linaro.org>
- <abbc1135-6d32-421a-baea-123a9f761362@collabora.com>
- <20240125-disdain-delivery-ff3bf246bbe1@spud>
- <20240125-elective-sermon-32dc2cba79be@spud>
- <27070454-09e6-422b-95f0-5d674735426b@collabora.com>
+	s=arc-20240116; t=1706261926; c=relaxed/simple;
+	bh=g7e+yhke6CuQaTb0vwojMU5Dw6mWLLDGwVST9ctV3GA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LKAuXZ5gVpOy2HcoJSsSxvNTsf0GdhsaQ6vKEnKa2BQnZjProsuKEiza7S/i1oDIJxnaRJMekvu8TeO4HyDq6KyMpsOw7WA07/QrfcU6+Qt1ZccLVRWfz6qFXHKHXAiGzCq1Rw811IqGgxvEBbNlFzji0gLOpqJXGpmDLpmqaZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zXQ8hMcB; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a26f73732c5so15202966b.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 01:38:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706261923; x=1706866723; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZXraUwcbwioUou5Z7d+tyQMhsd+xF79CThUEt2wnBkY=;
+        b=zXQ8hMcBVPicv4NIKgqwp9F429S9X7yY9N/hePglfeMDTolBQj6TZ5QqO12oBPwFHA
+         XmG6+xMKBYssjNkXbWv6qcHvdMbG3TNEpWAU2/qB/xgYBvSMPJJA3kzlstogPBFEg+EI
+         KXmeeqKG1JwmR50XalF3BxNao5agZSewRjcu89HU3ng6RzDfQpiuC0DPH4C5k0I22ZhH
+         4lZpWlMeOcaTFAzBu4CNO/qyGsvpzVKo+JqZOFV+q4TimSNmgIZfEyGRBH6OP+52IP3v
+         QwDKHbPCAtKps6oPBfDgM0h76tcgNULHvRbb4DTFBjEvzvmN1zLVeno364hryeQeATk5
+         2WjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706261923; x=1706866723;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZXraUwcbwioUou5Z7d+tyQMhsd+xF79CThUEt2wnBkY=;
+        b=LUCLRoi4nD/9yNyp3L1Cm9TW13tHRWQbryQ5mOUaZeE42AdmH/Zys9BS7WkgrgZ1YT
+         56RuuYv33b9buXKDqG9849H4FTJdOM23Yxqjl7dPS1XQqzfPKkoz9dhuJiKSitBxKJ5X
+         rdEJhnLHWqJq4qRf3TkoD7+z9oFchilGvW7aZ6vEQ+FxS+VlNYye4vE9e+WlVSK40+RM
+         rvMm1rJuFhyeW0lybcwRvqDzslGcCzYsUbWXRSPzy3xKBc3/EqnzgYN3B9rmp7fWi0uN
+         S8beB1PgAjn7ogIFs5eR50xtEjAoyGCrNB9K8DiS8SgIr0q2/7aVJ8XdSaLoiKFdojRu
+         IVWQ==
+X-Gm-Message-State: AOJu0YyIo6+ms6+27KwyBwx43qWN0GCwS7dwaiPsZAdsQkG/CtyS4vsM
+	4e1fp/ii0WkgIYj/YMfoWSeo6XNl6v3gulHJ/zC/fvfv5kvpheKOSTx11/7H9m1X7zD5KVOr8+w
+	J
+X-Google-Smtp-Source: AGHT+IGM6Fa9E4dEgeCNjPOPUp4YPodvVHY50fqSg2vyggX8cPm967vui1fUDTGLDuFtb1sWkDGQLQ==
+X-Received: by 2002:a17:907:20ca:b0:a31:c233:6aa6 with SMTP id qq10-20020a17090720ca00b00a31c2336aa6mr501716ejb.30.1706261922793;
+        Fri, 26 Jan 2024 01:38:42 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id se27-20020a170906ce5b00b00a349318ea10sm426768ejb.199.2024.01.26.01.38.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jan 2024 01:38:42 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 0/7] arm64: dts: qcom: describe all PCIe MSI interrupts
+Date: Fri, 26 Jan 2024 10:38:29 +0100
+Message-Id: <20240126-b4-dt-bindings-pci-qcom-split-dts-v2-0-0bb067f73adb@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7Cd24lZZUOXWuHuK"
-Content-Disposition: inline
-In-Reply-To: <27070454-09e6-422b-95f0-5d674735426b@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJV9s2UC/x2NwQqDMBAFf0X23AWbLkL7K6WHmGzsA41pVkpB/
+ PcGj8PAzE6mFWr06Haq+oVhzQ3cpaPw9nlSRmxMrnfSX93Ao3DceESOyJNxCeBPWBe2MmNryti
+ npHcVuXlRap1SNeF3Pp6v4/gDiBAahnMAAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1460;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=g7e+yhke6CuQaTb0vwojMU5Dw6mWLLDGwVST9ctV3GA=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBls32au36i1qbWXKFBv2iHJ+vZwRZVK57SgLyPx
+ +LjjFc7IoCJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZbN9mgAKCRDBN2bmhouD
+ 146YD/4vmktxP9+sRiBOub6PaQUqWRT6y5NrSqqkuAopKB/TPX2iMIAlr4SDf3LX6vQBMpPRpgR
+ XInRrtpBUbG9wDuHjMrDjffOAhNxc2ho38cgaO4ijtcl5VhnfEs/w9F1vLPJRfWJtiPEqQHRJ16
+ RA5+jKWef+m0UqymoKQ2ZxGylRCOyhm2aTJoyCrEs/9l24HvL1JxZlK8zPicCifdx0E7Lii/opV
+ kcSqdecxoP5MJ6O1DikybXB/Ku2lYIVw3LfIcTL/2m6n3mBsRJvbWIjQ0uaFB8js2dn/pFGL53b
+ 0QyVKewGxQoywIIx2SJpVkME2oVlkCyTsZ9gQxtWCTWn7LFTxL28NR4UZI6FT6buam6jShusAys
+ G23npeMTNzLevGGU/x46MNtq4+cPO0RGX/adTRCoiT1P40lF4iCcmTApmixvahFdY4MrlKWoUuJ
+ YqjXdGM0AvIzd2TK2GMZ0V3mIju3MI2vcpZ//rlM61tnRcRZApdp29fmOGeEfXeEy7qNklNtrjX
+ JjxEwnou4dennYH8NHMCH7E9tM2GWK90XOfXZxZqd3BNjaVr0swQXnPLrqO6QpuCGSGb75jgI8j
+ je1cInPonJqQusQeMbMlApAqRJ2H2Yf3CK/2z+JPYKL5q9Pg3joPI5twG28qd4hWThADsRZoSnm
+ WH86KHJxK++3CHA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
---7Cd24lZZUOXWuHuK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v2:
+1. Add tags.
+2. Split interrupt-names: one entry per line.
+3. New patch #7.
 
-On Fri, Jan 26, 2024 at 10:15:54AM +0100, AngeloGioacchino Del Regno wrote:
-> > | required:
-> > |   - compatible
-> > |   - interrupts
-> > |   - interrupt-names
-> >=20
-> > It looks like it is a required property after all!
->=20
-> Apparently my brain's binding had
->=20
-> required:
->   - blindness
->=20
-> :-P
->=20
-> Yeah, I have no idea why I didn't see that, sorry!
+Bindings now expect 8 interrupts in PCIe nodes:
+https://lore.kernel.org/r/20240126-dt-bindings-pci-qcom-split-v3-0-f23cda4d74c0@linaro.org
 
-Possibly because your patch never removed it from required in the first
-place, if you only looked back at that, and not the binding (or Rob's
-bot's report), I can see how you could miss it.
+Best regards,
+Krzysztof
 
---7Cd24lZZUOXWuHuK
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+Krzysztof Kozlowski (7):
+      arm64: dts: qcom: sm8150: describe all PCI MSI interrupts
+      arm64: dts: qcom: sm8250: describe all PCI MSI interrupts
+      arm64: dts: qcom: sm8350: describe all PCI MSI interrupts
+      arm64: dts: qcom: sm8450: describe all PCI MSI interrupts
+      arm64: dts: qcom: sm8550: describe all PCI MSI interrupts
+      arm64: dts: qcom: sm8650: describe all PCI MSI interrupts
+      arm64: dts: qcom: split PCIe interrupt-names entries per lines
 
------BEGIN PGP SIGNATURE-----
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 36 ++++++++++++++++++++++++----
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 46 +++++++++++++++++++++++++++++++-----
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 28 ++++++++++++++++++----
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 36 ++++++++++++++++++++++++----
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 38 ++++++++++++++++++++++++-----
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 36 ++++++++++++++++++++++++----
+ 6 files changed, 192 insertions(+), 28 deletions(-)
+---
+base-commit: 2c055cf9571d45d1438a6a3aadccb300edac1bce
+change-id: 20240126-b4-dt-bindings-pci-qcom-split-dts-affe9e443a4e
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbN7CAAKCRB4tDGHoIJi
-0s1AAP99lEEN3Rs36ZLVjjD7+MTaVanX2HF/Wf0i0gDwQVdu0gEAnmQlWcC9h9ni
-yidZUPY+ZpGMidClS9ob3KGIc+iQ3AA=
-=3mBr
------END PGP SIGNATURE-----
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
---7Cd24lZZUOXWuHuK--
 
