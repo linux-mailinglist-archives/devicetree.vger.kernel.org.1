@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-35438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F01A883D74A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:06:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B19B83D756
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:07:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19C2F28DB5F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:00:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF48F29C57A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2190364ABE;
-	Fri, 26 Jan 2024 09:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DE2657AA;
+	Fri, 26 Jan 2024 09:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CsidsPSI"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CFE0E9XX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1BB14263;
-	Fri, 26 Jan 2024 09:10:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CCC65BBB;
+	Fri, 26 Jan 2024 09:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706260216; cv=none; b=gbkIDN7mTp7G308F2+MIR2+0jOx84tP0ipmNLZOAWbZNh2xw4fNTp1Z/2lHq9ArpFwJ7FB0uxJXC7h9q2WViHBGnRXBZaaHuNMRvIUGnZWtG+Svk7IcE2Ictajaa+RvBt1ck1OPgOfAyNPNMhCJVaOndYBkRxJqW3fFeb/LTjtQ=
+	t=1706260373; cv=none; b=kpRRRBQ87m5DPN80MHQG5yUUhz6c33z3w3KyQmAJkcZ3CqM61YpO1XOVDwqMC6mWwXSr5oili88wrD3DFRjQQfccqM8SFT9kHex/aYoHDFM995yIhE9GvgGhNvBM038T5prrbv9utpwsA2ozoZtwBfM5GKwkLJTHTixWmyJK9Lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706260216; c=relaxed/simple;
-	bh=SxA01WsGYaiPR9ygKYJLgo2WCbqnCyZLRDfMY+rV6Bs=;
+	s=arc-20240116; t=1706260373; c=relaxed/simple;
+	bh=ZoRSJvoWqKga1SG2FFzE2w6OD+wWH46tFmixAACobBI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UmoblvM+ALBOAI4BDuzkvfJuEoAYrOKQlXVRpxKC2v1iDkCxguldvGzJiOkzsglh4tcaAK9YReNYNEeU9kb5Dp8UdVWHQUHFI+a0+nR+HTLzDTlkkdxMtcDkz3bJh80aHyenTwuZWVinxs//HPddJndkQLYBTUHWQ0JBIQQ+CR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CsidsPSI; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=NymuNqwF7EIStNPPzfo6ysjo0T1xChGXF+nYUOmVutnwSMROdmOVyMwtMBQUIGpKEaZZQsBZ0XRcKcboqmjPMpVxkPNsPta6Tt1qfYCjRIqxq5A+3s8HWc8vCWgMB/aj/R+i4tglXTvWGI8MCMNrxFbiq9gCWWGojur7mf6usSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CFE0E9XX; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706260212;
-	bh=SxA01WsGYaiPR9ygKYJLgo2WCbqnCyZLRDfMY+rV6Bs=;
+	s=mail; t=1706260370;
+	bh=ZoRSJvoWqKga1SG2FFzE2w6OD+wWH46tFmixAACobBI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CsidsPSIcR6/+pQuEXLQ9vCn7YW8F3/zKlwAHE0vJHrGn2i/BPbqxIOpepjB9sAm/
-	 Jow9+j7iW3P3bA5Tl8zbNkF5YP3rrLUrJL7ROX2xOAlJrKbhtH9No00Bj1oMDQvBOo
-	 GwaPUkP1zUmcgI+TbHCAOFbvninsgIVC6bswXBOfAy4eT6t2jZRFT1cjhzXN7n0CER
-	 92GretTOS43sE6H5tsSw6iTZze9FKn4MA71i6pkqZpSqFPoSjbK8Iv+tBsec01x8jJ
-	 7TlrqglJdNwUFOuvz0mIrZVs90w7NilbiqKR8aXfhdbAg23xfSbMRPxm6SGCXwN20r
-	 VdPHNW1d7Dd8A==
+	b=CFE0E9XXR9BWxs45HlGn7FRIOAj7TxaAi78vLgkJJbntjVkegYxIJ2ZIByVPlrRCM
+	 8UGtochIV68ovE5QoG+zzAS0OIzy5Kbj86EiqA3NgXQL8Bt9hjnLyPzg0o7Cin8+ot
+	 VNWTOx9qO16+aPEHIFL0TJ+vwHh2wqdSGeS9SbNWL+hGZbR1n1E5nHZyKl11AVd7zZ
+	 hadui7C8Gv4rcFkeidmOzxTqKO3asz/XZUm2zjYqpguY5Cr5UYMCcl8voFmLn9G6CE
+	 GEn/BBbP/HhwypxMtQPK+qtDEHfPos50OH1vm3tHZGt4VnqiQK0oqol4voiNP6yGQF
+	 ExZYWNJedohGQ==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 1DBBC3782080;
-	Fri, 26 Jan 2024 09:10:12 +0000 (UTC)
-Message-ID: <051a0b5b-068d-43ce-a73a-f70f94888f8c@collabora.com>
-Date: Fri, 26 Jan 2024 10:10:12 +0100
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7EB853782072;
+	Fri, 26 Jan 2024 09:12:49 +0000 (UTC)
+Message-ID: <dc6f77bd-6671-43eb-8658-626b2591415d@collabora.com>
+Date: Fri, 26 Jan 2024 10:12:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,46 +57,172 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/9] arm64: dts: mediatek: Add MT8186 Krabby platform
- based Tentacruel / Tentacool
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
+ SDIO Bluetooth
 Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Eugen Hristev <eugen.hristev@collabora.com>, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20240126083802.2728610-1-wenst@chromium.org>
- <20240126083802.2728610-7-wenst@chromium.org>
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>,
+ linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240125095240.2308340-1-wenst@chromium.org>
+ <20240125095240.2308340-2-wenst@chromium.org>
+ <68249675-4081-48d9-abbb-1b2e49894fae@collabora.com>
+ <CAGXv+5GG+Ko4nZKCvpQ2TnjeHDKWi5qS_SWAgLcrZ6fn_ySiug@mail.gmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240126083802.2728610-7-wenst@chromium.org>
+In-Reply-To: <CAGXv+5GG+Ko4nZKCvpQ2TnjeHDKWi5qS_SWAgLcrZ6fn_ySiug@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 26/01/24 09:37, Chen-Yu Tsai ha scritto:
-> Tentacruel and Tentacool are MT8186 based Chromebooks based on the
-> Krabby design.
+Il 26/01/24 04:26, Chen-Yu Tsai ha scritto:
+> On Thu, Jan 25, 2024 at 7:39 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Il 25/01/24 10:52, Chen-Yu Tsai ha scritto:
+>>> The MediaTek MT7921S is a WiFi/Bluetooth combo chip that works over
+>>> SDIO. While the Bluetooth function is fully discoverable, the chip
+>>> has a pin that can reset just the Bluetooth side, as opposed to the
+>>> full chip. This needs to be described in the device tree.
+>>>
+>>> Add a device tree binding for MT7921S Bluetooth over SDIO specifically
+>>> ot document the reset line.
+>>>
+>>> Cc: Sean Wang <sean.wang@mediatek.com>
+>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>>> ---
+>>>    .../bluetooth/mediatek,mt7921s-bluetooth.yaml | 49 +++++++++++++++++++
+>>>    MAINTAINERS                                   |  1 +
+>>>    2 files changed, 50 insertions(+)
+>>>    create mode 100644 Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
+>>> new file mode 100644
+>>> index 000000000000..bbe240e7cc40
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
+>>> @@ -0,0 +1,49 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/net/bluetooth/mediatek,mt7921s-bluetooth.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: MediaTek MT7921S Bluetooth
+>>> +
+>>
+>> title:
+>>
+>> maintainers:
+>>
+>> description:
+>>
+>> ... and then, you missed
+>>
+>> allOf:
+>>     - $ref: bluetooth-controller.yaml#
 > 
-> Tentacruel, also known as the ASUS Chromebook CM14 Flip CM1402F, is a
-> convertible device with touchscreen and stylus.
+> (facepalm)
 > 
-> Tentacool, also known as the ASUS Chromebook CM14 CM1402C, is a laptop
-> device. It does not have a touchscreen or stylus.
+>> Everything else looks good.
+>>
+>> Cheers,
+>> Angelo
+>>
+>>> +description:
+>>
+>> MT7921S is a (dual?) SDIO-attached dual-radio WiFi+Bluetooth combo chip;
+>> this chip has two dedicated reset lines, one of which is used to reset
+>> the Bluetooth core.
+>> The WiFi part of this chip is described in ....where? :-)
 > 
-> The two devices both have two variants. The difference is a second
-> source trackpad controller that shares the same address as the original,
-> but is incompatible.
+> The function itself is fully probable and the implementation doesn't make
+> use of the WiFi's reset line, so I don't see any reason to describe it?
+> I don't actually know what the reset line does in the chip hardware.
+> This patch is just described what is already used.
 > 
-> The extra SKU IDs for the Tentacruel devices map to different sensor
-> components attached to the Embedded Controller. These are not visible
-> to the main processor.
+>>> +  This binding describes the Bluetooth side of the SDIO-attached MT7921S
+>>> +  WiFi+Bluetooth combo chips. These chips are dual-radio chips supporting
+>>> +  WiFi and Bluetooth. Bluetooth works over SDIO just like WiFi. Bluetooth
+>>> +  has its own reset line, separate from WiFi, which can be used to reset
+>>> +  the Bluetooth core.
+>>> +
+>>> +maintainers:
+>>> +  - Sean Wang <sean.wang@mediatek.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - mediatek,mt7921s-bluetooth
+>>> +  reg:
+>>> +    const: 2
+>>> +
+>>> +  reset-gpios:
+>>> +    maxItems: 1
+>>> +    description: A GPIO line connected to the Bluetooth subsystem reset line.
+>>> +      Typically the W_DISABLE2# pin on M.2 E-key modules. If present this
+>>> +      shall be flagged as active low.
+>>
+>> description:
+>>     An active-low reset line connected for the Bluetooth core;
 > 
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> connected to?
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Eh yes, sorry - I edited that statement multiple times and that "for" stuck
+there for reasons :-)
+
+> 
+>>     on typical M.2 Key-E modules this is the W_DISABLE2# pin.
+> 
+> Otherwise this looks better. Thanks.
+
+You're welcome!
+
+Cheers!
+
+> 
+> 
+> ChenYu
+> 
+>> Cheers,
+>> Angelo
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    mmc {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        bluetooth@2 {
+>>> +            compatible = "mediatek,mt7921s-bluetooth";
+>>> +            reg = <2>;
+>>> +            reset-gpios = <&pio 8 GPIO_ACTIVE_LOW>;
+>>> +        };
+>>> +    };
+>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>> index b64a64ca7916..662957146852 100644
+>>> --- a/MAINTAINERS
+>>> +++ b/MAINTAINERS
+>>> @@ -13657,6 +13657,7 @@ M:    Sean Wang <sean.wang@mediatek.com>
+>>>    L:  linux-bluetooth@vger.kernel.org
+>>>    L:  linux-mediatek@lists.infradead.org (moderated for non-subscribers)
+>>>    S:  Maintained
+>>> +F:   Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
+>>>    F:  Documentation/devicetree/bindings/net/mediatek-bluetooth.txt
+>>>    F:  drivers/bluetooth/btmtkuart.c
+>>>
+>>
 
 
 
