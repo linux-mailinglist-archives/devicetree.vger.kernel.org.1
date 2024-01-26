@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-35509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1A383D99A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:47:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3562283D9A0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:51:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5411E1F21B6C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:47:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E24E929819E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:51:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B11D617993;
-	Fri, 26 Jan 2024 11:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D406D17BC9;
+	Fri, 26 Jan 2024 11:51:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v/2795rY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G3y0vTya"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07FF14A84
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:47:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1501617565
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:51:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706269658; cv=none; b=LgnsCv0+kzFqKhTFG4fsJ8DZvNFoUam0wwoBZJPJwZJAF/E+Tx/uzPkDZcb0spI0aPJv2O13mol2LDe29LXwrFfxgmINP/O1BoeVkaM7bWNyltj3o38l5LcQ5pvmhO3RX2CgikVZP61yD1Q3oJiM/sypfPwX4FN6cEynveMeA0g=
+	t=1706269890; cv=none; b=GLLtTTNOP9vacyRIQCIO0YAGCxWUXnZugwGDaCN8xR1x5mdN5QFoVlQiPhHAlTfdmcvJb2/zwO76e0haQr0SKTvFH+SN3a/rfLCHg5G87m7C/gTEouOFgLIBOeZUggkKwoYhzXfijtqhHTiUoKit03m41dwvib7g7d7AxrreVkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706269658; c=relaxed/simple;
-	bh=yHCrKH+AnEM/T0ihEvGZadp8TTITWybzMgxYPZCzYKo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=XTfBKCb9Wr3abuqJKYaqmB6QBjwPYtC8K+lV/noWYp/5jm6Eve/jrsbQdKTUpP1LMIt/xo3UQooUVzwJ1WtUYtIEWz8I+Y+0mHaedGI/HxHWOdgQN83hRMwhVazjA28u4b/Wy3NTlfLAcLd9cC11tnNPeqkQqkdD4h1Y0BojhHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v/2795rY; arc=none smtp.client-ip=209.85.167.45
+	s=arc-20240116; t=1706269890; c=relaxed/simple;
+	bh=OtD6qtzg55sWzM5Z8Rb+7F4VnGdyNRhHaoa+dKRUkVg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s2zYRIsH6GsOau5ZKlZ7KBbq252Asp/eWtULnXi2osTX/CXLXaGC/S7ZPPEd/+dEmDJRJtuK48hKnoBDbB/TDQuFFzfV44qoAIrcB0PzBgUwpkQuV7Yzwxj6UahY7iO1e2K7NeTt2XG0cMaGUj1Gta0isk49rpSgRyDsSeYw92A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G3y0vTya; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5102188d2aeso237120e87.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:47:36 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a298accc440so46791766b.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:51:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706269655; x=1706874455; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1706269887; x=1706874687; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=km6awW/Aayhk0l8ry5MXEblNqFhpeN2ebS+DYr3ZZaY=;
-        b=v/2795rYZB2O5zUn9lSjMOQBp59s3AeAKv4EyKQgbhMktast9XA1ybjNDQ5SoAVAgh
-         Er8SSNuU4dMu5HiZfGZdDoXdiQEArL0h8LErg/wH7YntqOpAtnnCl8uPo/rtJ+3c+/TL
-         JROwKteHNTeualGqC4HZATeeYqXN2Ul4CacjuL3SewM+GEHK/RMh0mafEtN1b1Ii08ky
-         hDNcfvIof2Z5tYt24LRhNP5P3INvn7y6FSfD1kBUgr2uONKll/+//JnRxdFLLwthFEJa
-         oZxhMtRxYqcNS1gHMv2SPpWKqydPbPaRURi8aUtk0mdT4tx4zR4c+egFv9XCQL/guGV1
-         BYbQ==
+        bh=RO2vy9Gohf4fesVKOSGHEr8L+y5rrbvowDx96zw2txI=;
+        b=G3y0vTyad9eY74vZMWtz7BihfGIZe1YJg6QI5Ey9eaCnpG5KeHUtX5FJnZEMUqSioA
+         dAKRz0T4K4fsPVlq2Ng/hCJHEup/kpkkZ/uthCTs9VfeZxEVE7x2Y5neMA/A98N/EtVM
+         nKY6x+QvjBh2bYjDVCJGcmvBhs2LEueSlIPqbUdJWk140rxcrcQE+QHL/bXHZFAiWZRp
+         SiXIkmGh9dlCnwL6f5sksgcpOMyCHFmilZyntyYjG0yj7ZfSOR09WLSAGCQ2CFNZY1aP
+         ieIXWfxzWfxzU6UdTDUsVjLu4qBMfHQ2VNW418Y8NYP82kIPNI0yePkRHTMEgl+7oVYA
+         myXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706269655; x=1706874455;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1706269887; x=1706874687;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=km6awW/Aayhk0l8ry5MXEblNqFhpeN2ebS+DYr3ZZaY=;
-        b=G2H870QKLDswfSiVL++1F2+78m6YQ5gnSgFwHaKHnkWqHNoW4/arYYFkzRnxk2oKHU
-         qovc6RzQVkJ5A1JJdlF8sfmZW7uu/7BXIqrtFry/e+5GidoG7yB+8ufiaqm8bC2SH/5k
-         72OY899wEeNjf2+gQj4su9Z0dXMj4RpuhhGjE+jMicbTFp7dV+jY5Aagn7X2iNc+BOuV
-         f0RGwMiKDWCKp0wrSNC2K+JXD8dXMBPspk8v+dc89m56Ehe+Vy46hjI2qWHoIEBrGGbw
-         Wf8lKaCqYfGMwKpYkV7xW9ZFD9ATXTuMneJn6k5W8Z9OfTByp2YJew276ut+rrDsqmAq
-         dTZw==
-X-Gm-Message-State: AOJu0YwyKQ7D+/2Wc5/V9bwVI784yXpN9NRPOrMwN2V8NdksFEVB1Rjj
-	uidDcWH7nTF7uf2Bmr3+f6BtLuH1EzjYJjfkXaMNbcm8phiSdR0vxmrxAPdfyQM=
-X-Google-Smtp-Source: AGHT+IENPPAEvE0HeE7wrE3hVYtc79+XGW9jk22npX5jOKFldHlIWjfKtJr1vm5tvhEp8bj75Lqj3g==
-X-Received: by 2002:a2e:88c4:0:b0:2cc:a53c:ae49 with SMTP id a4-20020a2e88c4000000b002cca53cae49mr742569ljk.12.1706269654981;
-        Fri, 26 Jan 2024 03:47:34 -0800 (PST)
+        bh=RO2vy9Gohf4fesVKOSGHEr8L+y5rrbvowDx96zw2txI=;
+        b=Urv8BgYMcumOClPJ98YsDK+LynQ9sC4XEZJ3HbyeAQTXCgMIZQGx2hbY2gSFDn75VY
+         6z5TBJ5mkuJZe0AeFcZy+UgjhqMexXrS8NJ2rzMW+I716/2dhiIRv6pPZaMcwEMP6od6
+         zvFKUvxLpyORGxtX3+hSUYXSWSnDWyPOyxYJseEkMrz152FOD+qotOn/SZAelYvnPqfX
+         sGVKxa9NZOELXjqmH+n1C8aXAWmMUcVlVK/qp6+kG4xxDbWlfmlZK5Yk+AHhG3mzULcA
+         pbZCE07RMUlcpqljTpo0rh+otclKUYKCpfNGiD7PuO6HTtaj697L5pAQbnr+9VN+H1Qc
+         qWeA==
+X-Gm-Message-State: AOJu0YxK4obb6wOqiHpuBPw+ag4m1bHU2FjZukESoFZvzmZGb1clZ2Ld
+	ha8m9HyglULX8ar3W0YGVivrGC7O8JwF9y+JYHyq20u16V99z01R1eI5faoNk+o=
+X-Google-Smtp-Source: AGHT+IF9IhXflvx/W5B3Po+MJ3rAwfJ8wZiq7vbmid2/bAXymV9jEMmCULgsLH6q+PDyMhOrjEbSIg==
+X-Received: by 2002:a17:906:5a87:b0:a31:7af3:f46f with SMTP id l7-20020a1709065a8700b00a317af3f46fmr1085152ejq.77.1706269887267;
+        Fri, 26 Jan 2024 03:51:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id el15-20020a056402360f00b0055d1d8e058asm506752edb.69.2024.01.26.03.47.32
+        by smtp.gmail.com with ESMTPSA id vh5-20020a170907d38500b00a3517d26918sm840ejc.107.2024.01.26.03.51.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jan 2024 03:47:34 -0800 (PST)
-Message-ID: <a6e36ea3-d3ad-40e1-8fd2-38a52fbcd05e@linaro.org>
-Date: Fri, 26 Jan 2024 12:47:32 +0100
+        Fri, 26 Jan 2024 03:51:26 -0800 (PST)
+Message-ID: <48edb603-3d45-45ed-be25-31fd8a5b69f1@linaro.org>
+Date: Fri, 26 Jan 2024 12:51:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,23 +75,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next PATCH 1/3] dt-bindings: net: ipq4019-mdio: document now
- supported clock-frequency
+Subject: Re: [PATCH v3 04/17] dt-bindings: soc: mobileye: add EyeQ5 OLB system
+ controller
 Content-Language: en-US
-To: Christian Marangi <ansuelsmth@gmail.com>, Andy Gross <agross@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Robert Marko <robert.marko@sartura.hr>,
- linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240124213640.7582-1-ansuelsmth@gmail.com>
- <20240124213640.7582-2-ansuelsmth@gmail.com>
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Rob Herring <robh@kernel.org>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Linus Walleij <linus.walleij@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org
+References: <20240123-mbly-clk-v3-0-392b010b8281@bootlin.com>
+ <20240123-mbly-clk-v3-4-392b010b8281@bootlin.com>
+ <20240124151405.GA930997-robh@kernel.org>
+ <dd7e723d-3c4c-4edf-afc2-51db9a074efa@linaro.org>
+ <CYNQHXOZ73YR.3QODFI2X08KC6@bootlin.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,28 +142,58 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240124213640.7582-2-ansuelsmth@gmail.com>
+In-Reply-To: <CYNQHXOZ73YR.3QODFI2X08KC6@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/01/2024 22:36, Christian Marangi wrote:
-> Document support for clock-frequency and add details on why this
-> property is needed and what values are supported.
+On 25/01/2024 12:01, Théo Lebrun wrote:
+> Hello,
+> 
+> On Thu Jan 25, 2024 at 8:51 AM CET, Krzysztof Kozlowski wrote:
+>> On 24/01/2024 16:14, Rob Herring wrote:
+>>>> +
+>>>> +      pinctrl-b {
+>>>> +        compatible = "mobileye,eyeq5-b-pinctrl";
+>>>> +        #pinctrl-cells = <1>;
+>>>> +      };
+>>>> +    };
+>>>
+>>> This can all be simplified to:
+>>>
+>>> system-controller@e00000 {
+>>>     compatible = "mobileye,eyeq5-olb", "syscon";
+>>>     reg = <0xe00000 0x400>;
+>>>     #reset-cells = <2>;
+>>>     #clock-cells = <1>;
+>>>     clocks = <&xtal>;
+>>>     clock-names = "ref";
+>>>
+>>>     pins { ... };
+>>> };
+>>>
+>>> There is no need for sub nodes unless you have reusable blocks or each 
+>>> block has its own resources in DT.
+>>
+>> Yes, however I believe there should be resources here: each subnode
+>> should get its address space. This is a bit tied to implementation,
+>> which currently assumes "everyone can fiddle with everything" in this block.
+>>
+>> Theo, can you draw memory map?
+> 
+> It would be a mess. I've counted things up. The first 147 registers are
+> used in this 0x400 block. There are 31 individual blocks, with 7
+> registers unused (holes to align next block).
+
+Holes are not really a problem.
+
+> 
+> Functions are reset, clocks, LBIST, MBIST, DDR control, GPIO,
+> accelerator control, CPU entrypoint, PDTrace, IRQs, chip info & ID
+> stuff, control registers for PCIe / eMMC / Eth / SGMII / DMA / etc.
+
+So they are within separate blocks or not?
 
 
-...
-
-> +  clock-frequency:
-> +    description:
-> +      The MDIO bus clock that must be output by the MDIO bus hardware, if
-> +      absent, the default hardware values are used.
-> +
-> +      MDC rate is feed by an external clock (fixed 100MHz) and is divider
-> +      internally. The default divider is /256 resulting in the default rate
-> +      applied of 390KHz.
-> +    enum: [ 390625, 781250, 1562500, 3125000, 6250000, 12500000 ]
-
-default: 390625
 
 Best regards,
 Krzysztof
