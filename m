@@ -1,114 +1,151 @@
-Return-Path: <devicetree+bounces-35589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A845A83DECB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 17:34:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A444683DED3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 17:36:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB11B1C21B6A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:34:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43B381F28853
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:36:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9C71CD3F;
-	Fri, 26 Jan 2024 16:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EFC81D559;
+	Fri, 26 Jan 2024 16:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pROfp1SL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QTlmYaPZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429FD1B954;
-	Fri, 26 Jan 2024 16:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63391DA22;
+	Fri, 26 Jan 2024 16:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706286859; cv=none; b=elaw3NDgt9ci/tCM8fWgxNWB3LNIxUQUKoT2qzu9q9c9SmsJNmnKGo7+wQkNCU7bvDOiZK1dDf2/xlhmsIAnhJaHhTmz8JSl3oMl5Q/kFAX/dGmuYL77F5BM6Xar+GQO4gbPGERgK9rCMzrEzx4r6igUE2tc93Jif6H+r0u6bOQ=
+	t=1706286960; cv=none; b=lTHtuJmTGpSUA3+yhtEKHbJ0PxPX7B9sDN9pJlr0XymKSCnMoQ4CskgsgQsj9uOJtOXWDwd3m80a3TYbI6IzKqss6K5p4y6oyTS8NfqP+bY4Ex5FNVaisUoyk+Jo55m46QRU+P5M9QEpFIOQhuspjhQFIh5dPKbKstBRQ7ZpC0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706286859; c=relaxed/simple;
-	bh=8LEy4G6CqWr+CSK268QbkSrRkLiJ54WoUVg17J6xvQk=;
+	s=arc-20240116; t=1706286960; c=relaxed/simple;
+	bh=1CvEZcDRXJkLYSzovAlFWb7VTNYLLAWd7l3AIviMY/0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hevurgdeiOd06BJHB4vNkkXJul2jXWCyyAs+I+k+eQ7sxDZI/HahYvJ1du9cdjQez10STP7Vp+6kv1b4S1Cx45yAGNlFgTVrBse4hRr23XqjWf4FHsrCZ+56FXt/juIg2zBrnDmXcEcYx1HafZIvsTKpcdCGDCYFubnwEY9p6ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pROfp1SL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02E2DC433F1;
-	Fri, 26 Jan 2024 16:34:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VFeEh/aFFjqB6Y/NYY5W2xitgPu7puixn11Nq80Mux9jp0vWinprmIwSFoO/jTxqAaWml94CZ6t8weiOJlscVOwbXWeVIhZYHNWNO0HW+DvgesoqVQ36KIM7nR+9gm/tTTbnKWoXKEXt1qChyX6VBpzixiSLTyq2GWvgPg0+gak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QTlmYaPZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59E45C433F1;
+	Fri, 26 Jan 2024 16:35:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706286858;
-	bh=8LEy4G6CqWr+CSK268QbkSrRkLiJ54WoUVg17J6xvQk=;
+	s=k20201202; t=1706286958;
+	bh=1CvEZcDRXJkLYSzovAlFWb7VTNYLLAWd7l3AIviMY/0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pROfp1SLgWTIjpkOMYgvKqg+F5zndUaLFuJUt2jWtMc0cOC37SXfg0Koez7yXa8aJ
-	 Yb6+04O2SlhwCtHZZ8gYMzWuFDbxgju0rl6ki6JGcyPBsJuBB86XXh+6jzrj7Kt0NR
-	 m+TE/R7Nfgh7qGeBtIHlB7usMeyE6z5ddQS1jK5mSjACBTO0ki30FSvx43sEvDwgyj
-	 cOvLjv2QRn5/omFtsICWDEJ9ijMzqaBrWTyDWQAFxsxkRRCc7emtjrJEkoIgDxpWzy
-	 krmoB1dAMnW78gTqsToozjUXJZAh3kClYYTOtpstjB9krYAmp3DEzApKreUSxqvR2u
-	 vfaN95UG8Raaw==
-Date: Fri, 26 Jan 2024 16:34:13 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: ran.wang_1@nxp.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	b=QTlmYaPZfmk0WzHXYdceMMa/gKFOZmoiQQeszLWFCww0as7M20/nv+JeMMwgXU1t8
+	 0Ocpmgjbg3Hfxyq56UzmzAji+I5+BfkmssrLQmGXH91zqHF4Vl8aTaZV7uWl1jMLY8
+	 SAHKlwS7lXgTm1ZP8hwVePGQzGxCh4xIKMctxnHl23wtrP6IE9O5gl0aQ03urPZt1Z
+	 1mzHGgAUmksymZl3wRtQoZF5ZjDtC0C2a2dhDwZ4P1IYGdXmBk+qUzMKeo3sBRTTVR
+	 EZjs5yn5oMEpM+IpbSZR713pFDKjc6rw6WU0txTmbI9NxviioBtVBRYiG7IO4ZjqBc
+	 8f3fgxpGaswEw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rTPBa-00000000808-1LoK;
+	Fri, 26 Jan 2024 17:36:11 +0100
+Date: Fri, 26 Jan 2024 17:36:10 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	"open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, mark.rutland@arm.com,
-	pku.leo@gmail.com, sergei.shtylyov@cogentembedded.com
-Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add snps,host-vbus-glitches
- avoiding vbus glitch
-Message-ID: <20240126-starch-puma-49c7dc3e2da8@spud>
-References: <20240119213130.3147517-1-Frank.Li@nxp.com>
- <20240124-unclothed-dodgy-c78b1fffa752@spud>
- <ZbFNIvEaAJCxC2VB@lizhi-Precision-Tower-5810>
- <20240124-video-lumpiness-178c4e317f5a@spud>
- <ZbFiQmD1VRVzFSa+@lizhi-Precision-Tower-5810>
- <20240125-appear-unclog-7da879f946e8@spud>
- <ZbMvsQpBtX88+muU@lizhi-Precision-Tower-5810>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc8280xp: Introduce additional
+ tsens instances
+Message-ID: <ZbPfeq6ElA3vMf_O@hovoldconsulting.com>
+References: <20240126-sc8280xp-tsens2_3-v2-1-8504d18828de@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8/kXroQjWzGHZPqs"
-Content-Disposition: inline
-In-Reply-To: <ZbMvsQpBtX88+muU@lizhi-Precision-Tower-5810>
-
-
---8/kXroQjWzGHZPqs
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240126-sc8280xp-tsens2_3-v2-1-8504d18828de@quicinc.com>
 
-On Thu, Jan 25, 2024 at 11:06:09PM -0500, Frank Li wrote:
+On Fri, Jan 26, 2024 at 07:12:45AM -0800, Bjorn Andersson wrote:
+> The SC8280XP contains two additional tsens instances, providing among
+> other things thermal measurements for the GPU.
+> 
+> Add these and a GPU thermal-zone.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+> Changes in v2:
+> - Drop TM/SROT comments
+> - Remove polling delays, rely on interrupts
+> - Link to v1: https://lore.kernel.org/r/20240118-sc8280xp-tsens2_3-v1-1-e86bce14f6bf@quicinc.com
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 37 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index febf28356ff8..7bfbb1bd8f4a 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -4033,6 +4033,28 @@ tsens1: thermal-sensor@c265000 {
+>  			#thermal-sensor-cells = <1>;
+>  		};
+>  
+> +		tsens2: thermal-sensor@c251000 {
+> +			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0c251000 0 0x1ff>,
+> +			      <0 0x0c224000 0 0x8>;
+> +			#qcom,sensors = <11>;
+> +			interrupts-extended = <&pdc 122 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 124 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "uplow", "critical";
+> +			#thermal-sensor-cells = <1>;
+> +		};
+> +
+> +		tsens3: thermal-sensor@c252000 {
+> +			compatible = "qcom,sc8280xp-tsens", "qcom,tsens-v2";
+> +			reg = <0 0x0c252000 0 0x1ff>,
+> +			      <0 0x0c225000 0 0x8>;
+> +			#qcom,sensors = <5>;
+> +			interrupts-extended = <&pdc 123 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 125 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "uplow", "critical";
+> +			#thermal-sensor-cells = <1>;
+> +		};
 
-> > > > On another note, I like it when the property name explains why you =
-would
-> > > > add it, rather than the thing it is trying to solve.
-> > > > Named after the disease, rather than the symptoms, if you get me. I
-> > > > tried to come up with a name here, but could not really suggest
-> > > > something good. If you can think of something, that'd be good, but =
-don't
-> > > > stress it.
-> > >=20
-> > > snps,host-vbus-glitches change to snps,host-vbus-glitches-quirk.
-> >=20
-> > I don't think adding "quirk" moves the needle.
->=20
-> I think "quirk" is reasonable because it is workaround.
+These should go before tsens0 based on the unit address.
 
-Workaround is what the software will do. In the binding we just describe
-what the problem is.
+> +
+>  		aoss_qmp: power-management@c300000 {
+>  			compatible = "qcom,sc8280xp-aoss-qmp", "qcom,aoss-qmp";
+>  			reg = <0 0x0c300000 0 0x400>;
+> @@ -5212,6 +5234,21 @@ cpu-crit {
+>  			};
+>  		};
+>  
+> +		gpu-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +
+> +			thermal-sensors = <&tsens2 2>;
+> +
+> +			trips {
+> +				cpu-crit {
+> +					temperature = <110000>;
+> +					hysteresis = <1000>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
 
---8/kXroQjWzGHZPqs
-Content-Type: application/pgp-signature; name="signature.asc"
+Shall you submit a follow-on patch to set the polling delays to zero
+for the other thermal zones (cpu, cluster, mem) so that we don't poll
+for those?
 
------BEGIN PGP SIGNATURE-----
+Looks good to me otherwise: 
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbPfBQAKCRB4tDGHoIJi
-0mBXAQD45CC2nv7KtLh6RjMARCAWlJkP0kVmV/E5HGTKIgKViAEA9FBorkCrPPXN
-Q6HIpRR8RC39OqVDO9Z8Bs0BE8YqPAE=
-=CLn9
------END PGP SIGNATURE-----
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
---8/kXroQjWzGHZPqs--
+Johan
 
