@@ -1,73 +1,74 @@
-Return-Path: <devicetree+bounces-35398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35399-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F1483D5CC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:15:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF4483D5D2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:16:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD6EA1C2513B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:15:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A411B1F28460
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A2B12E7D;
-	Fri, 26 Jan 2024 08:24:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C081B94C;
+	Fri, 26 Jan 2024 08:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B873oe1t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g2M+A+H8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922CED272
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:24:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 470C81B81F
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706257466; cv=none; b=MGH5GzI3MMXNghFBpceUFEY7efNoNHAglF46U1+1MjLI/FcnHMVY23ceUQ0KN+MpA7A7pPGlCBJtudnIjb5wYlrPVOwGU0qEgxKbRRuLsVtEVcsgFSH3KeQexRAmb3GOIPg2RDKW4aSzkOu6EXGOjmMh5CQDSPy665d3kmxns60=
+	t=1706257674; cv=none; b=ngHK7lHYxLBxD9HJLqiZ+SVw9zzXzyLpofs7pO02mqtmII6j0Xj3Mv5ZembXJpdc20ogmZDEVpHNdvGK9am2l5JCSy/84XGu9NGwqHBEIrR4buy+kWLxZI2l6bpsuA6T/hVLT7974/4zjwZPRlLmOBk72V1+ngkOeUPGKhwi20Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706257466; c=relaxed/simple;
-	bh=PRiN7e2outscEnHnnIc+xjLsVlsduMoJoGpra6YYkPw=;
+	s=arc-20240116; t=1706257674; c=relaxed/simple;
+	bh=iGtHLHEEHiS6uj0QwPvMFkaRW6WE8OwPPgr8M4LcXSs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IwdB11Vk8s3qA4DKgoWInpBi2+qjSdyyNEV/QLYEUfE3wkr7SwEFMilbhOyjF4IYJV4KSRdy44ur0bsh2rjkJRS/fJ2j3i7B2z6ddXoRzm7SmwbO5OeKznvPehPZsBT3yLtQzANyPQh8ISgmWD31wcN3XSsRy1i7Ty3MLXwxBig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B873oe1t; arc=none smtp.client-ip=209.85.128.41
+	 In-Reply-To:Content-Type; b=rHfe8LYQ3xo8P/nfTqDRpgJSN3Oi80aPaiL896N5bb2yfi7ItWVrXMZeKp8zzBMFpGq/J5JR/VD4Kk+rwgnhdQqtrj289IZTlijOUbBg7rAbumx+YuKg4PvJG1cHggL3eMC+TJQ3B/YMJQRebGTi3ZqfPTwmI5qv4Z+Oh28OESg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g2M+A+H8; arc=none smtp.client-ip=209.85.208.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-40ea5653f6bso1583915e9.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 00:24:24 -0800 (PST)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55cd798b394so2945465a12.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 00:27:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706257463; x=1706862263; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=shyCezrNB7XdCB+Nwxl8E09WYma+GSqW2YNffaervI0=;
-        b=B873oe1tzF/5GiyOO0gZ3paixuF7K0XQLCCt+ZasiNLGrsmrXm69tm8cXnds6cus08
-         rdGu/R95pKsq6z0Jw5bnNL31qkvRLvtOqs3qOUtSecym1Wu2GQufl55U8zD7q8WK2Chh
-         AghhZpL6lAUZvRj1HtN76d5zgZgo/lol8XVXgqAqsSrHb0tocwWti9wxtzQ0Uqh0n/ZJ
-         kjztQl28Ph7/+HCr9lvg+kjofAlwiQj63z/KnXwel+6s3wO5oGbc4PgkNXwpfGTp4kVj
-         0ZMzK63/5FQORlHGWZFbTGI6FT/WJ3d5clHTgkP3IFm2S3bQzQSz6ixEWhnUF10A3hMN
-         Vgng==
+        d=linaro.org; s=google; t=1706257670; x=1706862470; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=/IPAH8DIzGg3QLNUNSBtjrthJB0vkfcBLJNMSgUZw60=;
+        b=g2M+A+H837337XkwCHOcCmhq7mfw8ubI9PV1JWQJ+tOhNIAl64mlgJ/bAEZ0uyutS5
+         kKuTfXADG6jFuQ5qsCRkcYAdqIIsQgYr53/UdbpgGb0Q65gMjASyAwnWyXyUb3XMZVT3
+         PI1qpo06eoVRQus0U+eWdtW0XOG60tq3YhsSC14yfV+0Q9mQ9RoVyHHiCVqRItFoBHal
+         HvCQQmbQN3/0C4L1rbzHyRGZXrYaAeOAeDeYqCL5D/7cTde4C1sWxII9O09tRNPUkbma
+         A0vmiwqTm2mfhFIJk13cenOXlB0IpB9oed7BL0gB2dNEMQE+S01IOYJWDjcecymGaMcf
+         sriQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706257463; x=1706862263;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=shyCezrNB7XdCB+Nwxl8E09WYma+GSqW2YNffaervI0=;
-        b=qvvR+UnIG7lij+9on1UvvYZ8onA8QPMdnGi0I+i99kNRTbqjDlcRMcl3YdaFDydswy
-         aMv2qaohfWZxJ4UQhtWXwlvF646Eaby6vjZyHlsclR2ppOO4R0s5l7iiWeJEjRX9JqGY
-         wPKo7RYa9/iCbuXMe/JRxbbP3m2Uiny2T7oNILXuh0teHlgsuCyscGEyIhiMqCRv2cXr
-         kYvzJ5o+Jgaoyytk0NbIeXDK2W7XIFCHwaL3RIhDqorUpmRsd/u3iE23bGsMdfOCjLJ9
-         2sbnFL4u0jKzxIDuYZhiZoKhP3veKWFrdfA6wLKKkbCAmAqa4XOeaoDaXaeftOoob26g
-         V6nA==
-X-Gm-Message-State: AOJu0YyWakzF+9P8U4QtYBAG1oI0I6/AvI2zu6qoziezwMFonqYUVCFH
-	Vunc/vk8FF38TkGX3biRk0L7zll1FwR8nqZWhZoHtzKDvqbUGf1KcIC4k8hiW0Y=
-X-Google-Smtp-Source: AGHT+IF8TECZcCCPFmI7NyjhLaU1SCuZ0j6JwuqK/IVgmHR7p9cOEyfu9nM+Qt9p7KtLUq18bPrGPA==
-X-Received: by 2002:a05:600c:213:b0:40e:4d65:59c7 with SMTP id 19-20020a05600c021300b0040e4d6559c7mr587695wmi.244.1706257462826;
-        Fri, 26 Jan 2024 00:24:22 -0800 (PST)
-Received: from [192.168.2.107] ([79.115.63.202])
-        by smtp.gmail.com with ESMTPSA id fa26-20020a05600c519a00b0040e4746d80fsm1129109wmb.19.2024.01.26.00.24.21
+        d=1e100.net; s=20230601; t=1706257670; x=1706862470;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/IPAH8DIzGg3QLNUNSBtjrthJB0vkfcBLJNMSgUZw60=;
+        b=i8BIzqih2L4wTj/MCqPRwpVHdu1AG51fkXji74H2udYQcoLC7XrbNjyT1N0qmngQy9
+         NeeYrkMyO+dExI89lFhAiy4xjQeBqqntGmf+hwRLgK28Qo/id/w4bithaQ+xbT+UJyys
+         fHpPhga3nawVpM+VrraGlU7GBdwX3xCWKjedmc3aBgcLFWQ9th2KciK94mVKwd99EfiD
+         iCBBOjsr+FOC8OC8ik4ksOLRqr5eePY55L2E8noNVtCAFaazly0q68V1KhTvW07cI/DU
+         GAvdhlBkJq5/dsgqlslFON0Rwl04AF7GjreTG2ROb078MFt0Rx3A+rolDRwGel0bHX/n
+         7ZBA==
+X-Gm-Message-State: AOJu0YyPvP62uIKgWWxKKU349dL/CTeJsT+TqUwSZFY+MmYP+ml8X66l
+	BPBaq16aPVwMEghDLCaZUwcCzckf+QQ0OgAH+8kz0noezsxGzqEXK9q82xwPRFs=
+X-Google-Smtp-Source: AGHT+IEBZHD1wW7iPcP4z0alptoeDbgQjFkTTbrvST3VQjoPUHYb9ZlEtyTmeZdUd7cDEZIYVUOAdg==
+X-Received: by 2002:a17:907:f95:b0:a26:f7ea:7cb6 with SMTP id kb21-20020a1709070f9500b00a26f7ea7cb6mr680931ejc.16.1706257670372;
+        Fri, 26 Jan 2024 00:27:50 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id t12-20020a17090616cc00b00a317be75012sm374069ejd.27.2024.01.26.00.27.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jan 2024 00:24:22 -0800 (PST)
-Message-ID: <cad69841-9ca2-45af-9db2-4c4aced63d5e@linaro.org>
-Date: Fri, 26 Jan 2024 08:24:19 +0000
+        Fri, 26 Jan 2024 00:27:49 -0800 (PST)
+Message-ID: <f7a2de19-55c5-4aa9-b0a8-632f22b6c147@linaro.org>
+Date: Fri, 26 Jan 2024 09:27:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,131 +76,308 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/28] spi: s3c64xx: remove unneeded (void *) casts in
- of_match_table
+Subject: Re: [PATCH v2 4/4] ASoc: dt-bindings: PCM6240: Add initial DT binding
+To: Shenghao Ding <shenghao-ding@ti.com>, broonie@kernel.org,
+ conor+dt@kernel.org
+Cc: robh+dt@kernel.org, andriy.shevchenko@linux.intel.com, kevin-lu@ti.com,
+ baojun.xu@ti.com, devicetree@vger.kernel.org, v-po@ti.com,
+ lgirdwood@gmail.com, perex@perex.cz, pierre-louis.bossart@linux.intel.com,
+ 13916275206@139.com, mohit.chawla@ti.com, linux-sound@vger.kernel.org,
+ linux-kernel@vger.kernel.org, liam.r.girdwood@intel.com, soyer@irl.hu,
+ jkhuang3@ti.com, tiwai@suse.de, pdjuandi@ti.com, j-mcpherson@ti.com,
+ navada@ti.com
+References: <20240126035855.1785-1-shenghao-ding@ti.com>
+ <20240126035855.1785-4-shenghao-ding@ti.com>
 Content-Language: en-US
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: broonie@kernel.org, andi.shyti@kernel.org, arnd@arndb.de,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-arch@vger.kernel.org, andre.draszik@linaro.org,
- peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com
-References: <20240125145007.748295-1-tudor.ambarus@linaro.org>
- <20240125145007.748295-8-tudor.ambarus@linaro.org>
- <CAPLW+4kGGtG2BxeN0wRXMD5M2TR+eMUHZpL2KDaEFubBCP7jdg@mail.gmail.com>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <CAPLW+4kGGtG2BxeN0wRXMD5M2TR+eMUHZpL2KDaEFubBCP7jdg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240126035855.1785-4-shenghao-ding@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Thanks for the review feedback, Sam, great catches so far!
-
-On 1/25/24 19:04, Sam Protsenko wrote:
-> On Thu, Jan 25, 2024 at 8:50 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
->>
->> of_device_id::data is an opaque pointer. No explicit cast is needed.
->> Remove unneeded (void *) casts in of_match_table. While here align the
->> compatible and data members.
->>
->> Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
->> ---
->>  drivers/spi/spi-s3c64xx.c | 45 +++++++++++++++++++++++----------------
->>  1 file changed, 27 insertions(+), 18 deletions(-)
->>
->> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
->> index 230fda2b3417..137faf9f2697 100644
->> --- a/drivers/spi/spi-s3c64xx.c
->> +++ b/drivers/spi/spi-s3c64xx.c
->> @@ -1511,32 +1511,41 @@ static const struct platform_device_id s3c64xx_spi_driver_ids[] = {
->>  };
->>
->>  static const struct of_device_id s3c64xx_spi_dt_match[] = {
->> -       { .compatible = "samsung,s3c2443-spi",
->> -                       .data = (void *)&s3c2443_spi_port_config,
-> 
-> I support removing (void *) cast. But this new braces style:
-> 
->       },
->       {
-
-this style was there before my patch.
-> 
-> seems to bloat the code a bit. For my taste, having something like },
-> { on the same line would be more compact, and more canonical so to
-
-I don't lean towards neither of the styles, I'm ok with both
-
-> speak. Or even preserving the existing style would be ok too, for that
-> matter.
+On 26/01/2024 04:58, Shenghao Ding wrote:
+> PCM6240 driver implements a flexible and configurable setting for register
+> and filter coefficients, to one, two or even multiple PCM6240 Family Audio
+> chips.
 > 
 
-seeing .compatible and .data unaligned hurt my eyes and I think that
-aligning them while dropping the cast is fine. I don't really want to do
-the style change unless you, Andi or Mark insist. Would you please come
-with a patch on top if you really want them changed?
+Subject: you just ignored my comment...
 
-> Assuming the braces style is fixed, you can add:
-> 
-> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> 
->> +       {
->> +               .compatible = "samsung,s3c2443-spi",
->> +               .data = &s3c2443_spi_port_config,
->>         },
->> -       { .compatible = "samsung,s3c6410-spi",
->> -                       .data = (void *)&s3c6410_spi_port_config,
->> +       {
->> +               .compatible = "samsung,s3c6410-spi",
->> +               .data = &s3c6410_spi_port_config,
->>         },
->> -       { .compatible = "samsung,s5pv210-spi",
->> -                       .data = (void *)&s5pv210_spi_port_config,
->> +       {
->> +               .compatible = "samsung,s5pv210-spi",
->> +               .data = &s5pv210_spi_port_config,
->>         },
->> -       { .compatible = "samsung,exynos4210-spi",
->> -                       .data = (void *)&exynos4_spi_port_config,
->> +       {
->> +               .compatible = "samsung,exynos4210-spi",
->> +               .data = &exynos4_spi_port_config,
->>         },
->> -       { .compatible = "samsung,exynos7-spi",
->> -                       .data = (void *)&exynos7_spi_port_config,
->> +       {
->> +               .compatible = "samsung,exynos7-spi",
->> +               .data = &exynos7_spi_port_config,
->>         },
->> -       { .compatible = "samsung,exynos5433-spi",
->> -                       .data = (void *)&exynos5433_spi_port_config,
->> +       {
->> +               .compatible = "samsung,exynos5433-spi",
->> +               .data = &exynos5433_spi_port_config,
->>         },
->> -       { .compatible = "samsung,exynos850-spi",
->> -                       .data = (void *)&exynos850_spi_port_config,
->> +       {
->> +               .compatible = "samsung,exynos850-spi",
->> +               .data = &exynos850_spi_port_config,
->>         },
->> -       { .compatible = "samsung,exynosautov9-spi",
->> -                       .data = (void *)&exynosautov9_spi_port_config,
->> +       {
->> +               .compatible = "samsung,exynosautov9-spi",
->> +               .data = &exynosautov9_spi_port_config,
->>         },
->> -       { .compatible = "tesla,fsd-spi",
->> -                       .data = (void *)&fsd_spi_port_config,
->> +       {
->> +               .compatible = "tesla,fsd-spi",
->> +               .data = &fsd_spi_port_config,
->>         },
->>         { },
->>  };
->> --
->> 2.43.0.429.g432eaa2c6b-goog
->>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
+
+Tools like b4 or scripts_getmaintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, use mainline), work on fork of kernel (don't, use
+mainline) or you ignore some maintainers (really don't). Just use b4 and
+all the problems go away.
+
+...
+
+> +      ti,pcmd3140: Four-channel PDM-input to TDM or I�S output converter.
+
+This does not look like proper encoding.
+
+> +
+> +      ti,pcmd3180: Eight-channel pulse-density-modulation input to TDM or
+> +      I�S output converter.
+> +
+> +      ti,taa5212: Low-power high-performance stereo audio ADC with 118-dB
+> +      dynamic range.
+> +
+> +      ti,tad5212: Low-power stereo audio DAC with 120-dB dynamic range.
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - ti,adc3120
+> +              - ti,adc5120
+> +              - ti,pcm3120
+> +              - ti,pcm5120
+> +              - ti,pcm6120
+> +          - const: ti,adc6120
+> +      - items:
+> +          - enum:
+> +              - ti,pcm6260
+> +              - ti,pcm6140
+> +              - ti,pcm3140
+> +              - ti,pcm5140
+> +          - const: ti,pcm6240
+> +      - items:
+> +          - const: ti,dix4192
+> +          - const: ti,pcm6240
+> +          - const: ti,adc6120
+
+It does not make sense. You said above adc6120 is not compatible with
+pcm6240.
+
+> +      - items:
+> +          - const: ti,pcm1690
+> +          - const: ti,pcm9211
+> +          - const: ti,pcmd512x
+> +      - items:
+> +          - enum:
+> +              - ti,pcmd3180
+> +          - const: ti,pcmd3140
+> +      - items:
+> +          - enum:
+> +              - taa5412
+> +          - const: ti,taa5212
+> +      - items:
+> +          - enum:
+> +              - tad5412
+> +          - const: ti,tad5212
+> +      - items:
+
+No need for items.
+
+> +          - enum:
+> +              - ti,pcm6240
+> +              - ti,pcmd3140
+> +              - ti,taa5212
+> +              - ti,tad5212
+> +              - ti,pcmd3180
+
+Where is adc6120 and others?
+
+Missing blank line.
+
+> +  reg:
+> +    description:
+> +      I2C address, in multiple pcmdevices case, all the i2c address
+> +      aggregate as one Audio Device to support multiple audio slots.
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description:
+> +      Invalid only for ti,pcm1690 because of no INT pin.
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,pcm1690
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            minimum: 0x4c
+> +            maximum: 0x4f
+
+Nothing improved.
+
+> +        interrupts: false
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,adc3120
+> +              - ti,adc5120
+> +              - ti,adc6120
+> +              - ti,pcm3120
+> +              - ti,pcm5120
+> +              - ti,pcm6120
+> +              - ti,pcmd3140
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +          items:
+> +            maximum: 0x4e
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,dix4192
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            minimum: 0x70
+> +            maximum: 0x73
+
+Drop entire if
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,pcm6240
+> +              - ti,pcm6260
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 1
+> +          maxItems: 4
+> +          items:
+> +            minimum: 0x48
+> +            maximum: 0x4b
+
+Drop entire if
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,pcm9211
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            minimum: 0x40
+> +            maximum: 0x43
+
+Drop entire if
+
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,taa5212
+> +              - ti,taa5412
+> +              - ti,tad5212
+> +              - ti,tad5412
+> +    then:
+> +      properties:
+> +        reg:
+> +          items:
+> +            minimum: 0x50
+> +            maximum: 0x53
+
+Drop entire if
+
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +   #include <dt-bindings/gpio/gpio.h>
+> +   i2c {
+> +     /* example for two devices with interrupt support */
+> +     #address-cells = <1>;
+> +     #size-cells = <0>;
+> +     pcm6240: audio-codec@48 {
+> +       compatible = "ti,pcm6240";
+> +       reg = <0x48>, /* primary-device */
+> +            <0x4b>; /* secondary-device */
+
+Looks misaligned.
+
+
+
+Best regards,
+Krzysztof
+
 
