@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-35439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B19B83D756
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:07:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC7D83D735
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:04:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF48F29C57A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:02:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89D661C2F2DD
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DE2657AA;
-	Fri, 26 Jan 2024 09:12:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1C2D524;
+	Fri, 26 Jan 2024 09:15:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CFE0E9XX"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="foaka/db"
 X-Original-To: devicetree@vger.kernel.org
 Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CCC65BBB;
-	Fri, 26 Jan 2024 09:12:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 957DCBE5D;
+	Fri, 26 Jan 2024 09:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706260373; cv=none; b=kpRRRBQ87m5DPN80MHQG5yUUhz6c33z3w3KyQmAJkcZ3CqM61YpO1XOVDwqMC6mWwXSr5oili88wrD3DFRjQQfccqM8SFT9kHex/aYoHDFM995yIhE9GvgGhNvBM038T5prrbv9utpwsA2ozoZtwBfM5GKwkLJTHTixWmyJK9Lo=
+	t=1706260559; cv=none; b=fFDEDtRGTuv61WnQVUe1Jb4JZzDpy/WFfKf31brxbKsDQL2OA7RQO/DHmcN7gTNtNIj9t9uZFLC56mUG1STcb2RPQ4RF3v4Rp4PLEu+3wN82kw6UojJ2GEgchhYTwEi4KG3GLY1yrtYMu3IGPPiF2HjgHdnPr7vpVgSt/3kajxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706260373; c=relaxed/simple;
-	bh=ZoRSJvoWqKga1SG2FFzE2w6OD+wWH46tFmixAACobBI=;
+	s=arc-20240116; t=1706260559; c=relaxed/simple;
+	bh=cTOqvscxgkEm+jjAOeB+HwCjWsvKYRV/3IERaIp2Z6U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NymuNqwF7EIStNPPzfo6ysjo0T1xChGXF+nYUOmVutnwSMROdmOVyMwtMBQUIGpKEaZZQsBZ0XRcKcboqmjPMpVxkPNsPta6Tt1qfYCjRIqxq5A+3s8HWc8vCWgMB/aj/R+i4tglXTvWGI8MCMNrxFbiq9gCWWGojur7mf6usSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CFE0E9XX; arc=none smtp.client-ip=46.235.227.194
+	 In-Reply-To:Content-Type; b=AkRMt4iORtUItc/9nMSB4AJAuz4Tpqo5BjVC629aDN5FfHKlAnQ3yJ2anqAK9VsRZwNQJ1gtSvCVPvq37Mb/oPxPoufe/c6hF3bQrEXZxylXfZhZCAaXepbcuGzeXTBWY4HMgLwczwE2UUwYh45baPTclQnU+V+lqHDybT+Quss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=foaka/db; arc=none smtp.client-ip=46.235.227.194
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706260370;
-	bh=ZoRSJvoWqKga1SG2FFzE2w6OD+wWH46tFmixAACobBI=;
+	s=mail; t=1706260555;
+	bh=cTOqvscxgkEm+jjAOeB+HwCjWsvKYRV/3IERaIp2Z6U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CFE0E9XXR9BWxs45HlGn7FRIOAj7TxaAi78vLgkJJbntjVkegYxIJ2ZIByVPlrRCM
-	 8UGtochIV68ovE5QoG+zzAS0OIzy5Kbj86EiqA3NgXQL8Bt9hjnLyPzg0o7Cin8+ot
-	 VNWTOx9qO16+aPEHIFL0TJ+vwHh2wqdSGeS9SbNWL+hGZbR1n1E5nHZyKl11AVd7zZ
-	 hadui7C8Gv4rcFkeidmOzxTqKO3asz/XZUm2zjYqpguY5Cr5UYMCcl8voFmLn9G6CE
-	 GEn/BBbP/HhwypxMtQPK+qtDEHfPos50OH1vm3tHZGt4VnqiQK0oqol4voiNP6yGQF
-	 ExZYWNJedohGQ==
+	b=foaka/dbwOa4i+lCE/UY7QdaFni+nQr1DuUfGOXRTNuj4XoYTBLYYKMkQh43oJ+ln
+	 5n9aZCTQb83jJXciEP2u2YGDy1QhECpdMOo1jtFaFQVucKiV6KgOP/N6wTfRaIlpy/
+	 XNLe4PtzWHZG4zItC6MonC/glxP+ohhL7ONRYZypQhahrGbfUTNZYlgKcggJ+oA9I3
+	 m5vmrg/2JqlACOZSUut9MqQz0IXqQcT+2F2zSOVk6DX2nDSeOiLzS1BOdCIArKbgVo
+	 RYD82NiT/pxafRn6Fsq4TmvK7EL3PgE2QZV7jmlk6QqJic5YgE23GoPHo+LxiNY448
+	 JN33/1GOqfw8A==
 Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 7EB853782072;
-	Fri, 26 Jan 2024 09:12:49 +0000 (UTC)
-Message-ID: <dc6f77bd-6671-43eb-8658-626b2591415d@collabora.com>
-Date: Fri, 26 Jan 2024 10:12:48 +0100
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id D6C8A378107C;
+	Fri, 26 Jan 2024 09:15:54 +0000 (UTC)
+Message-ID: <27070454-09e6-422b-95f0-5d674735426b@collabora.com>
+Date: Fri, 26 Jan 2024 10:15:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,172 +57,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
- SDIO Bluetooth
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: mt6360-tcpc: Drop
+ interrupt-names
 Content-Language: en-US
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>,
- linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, chunfeng.yun@mediatek.com,
+ gregkh@linuxfoundation.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ linux@roeck-us.net, heikki.krogerus@linux.intel.com, cy_huang@richtek.com,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240125095240.2308340-1-wenst@chromium.org>
- <20240125095240.2308340-2-wenst@chromium.org>
- <68249675-4081-48d9-abbb-1b2e49894fae@collabora.com>
- <CAGXv+5GG+Ko4nZKCvpQ2TnjeHDKWi5qS_SWAgLcrZ6fn_ySiug@mail.gmail.com>
+ linux-kernel@vger.kernel.org
+References: <20240119094105.98312-1-angelogioacchino.delregno@collabora.com>
+ <20240119-eldest-discharge-e2d3812be0a9@spud>
+ <12b7b339-498b-45c1-bc5e-05e07660aefa@collabora.com>
+ <20240123-procurer-jumbo-ebbec485505d@spud>
+ <4fdbc3d8-3d44-4c2c-aae6-daa0b431e1c9@collabora.com>
+ <dc9773aa-690f-47b5-b60a-a79c1e2dbaf2@linaro.org>
+ <abbc1135-6d32-421a-baea-123a9f761362@collabora.com>
+ <20240125-disdain-delivery-ff3bf246bbe1@spud>
+ <20240125-elective-sermon-32dc2cba79be@spud>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5GG+Ko4nZKCvpQ2TnjeHDKWi5qS_SWAgLcrZ6fn_ySiug@mail.gmail.com>
+In-Reply-To: <20240125-elective-sermon-32dc2cba79be@spud>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Il 26/01/24 04:26, Chen-Yu Tsai ha scritto:
-> On Thu, Jan 25, 2024 at 7:39 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 25/01/24 10:52, Chen-Yu Tsai ha scritto:
->>> The MediaTek MT7921S is a WiFi/Bluetooth combo chip that works over
->>> SDIO. While the Bluetooth function is fully discoverable, the chip
->>> has a pin that can reset just the Bluetooth side, as opposed to the
->>> full chip. This needs to be described in the device tree.
+Il 25/01/24 18:02, Conor Dooley ha scritto:
+> On Thu, Jan 25, 2024 at 04:57:33PM +0000, Conor Dooley wrote:
+>> On Thu, Jan 25, 2024 at 12:41:57PM +0100, AngeloGioacchino Del Regno wrote:
+>>> Il 25/01/24 11:32, Krzysztof Kozlowski ha scritto:
+>>>> On 24/01/2024 09:48, AngeloGioacchino Del Regno wrote:
+>>>>> Il 23/01/24 18:14, Conor Dooley ha scritto:
+>>>>>> On Mon, Jan 22, 2024 at 11:32:30AM +0100, AngeloGioacchino Del Regno wrote:
+>>>>>>> Il 19/01/24 17:32, Conor Dooley ha scritto:
+>>>>>>>> On Fri, Jan 19, 2024 at 10:41:04AM +0100, AngeloGioacchino Del Regno wrote:
+>>>>>>>>> This IP has only one interrupt, hence interrupt-names is not necessary
+>>>>>>>>> to have.
+>>>>>>>>> Since there is no user yet, simply remove interrupt-names.
+>>>>>>>>
+>>>>>>>> I'm a bit confused chief. Patch 2 in this series removes a user of this
+>>>>>>>> property from a driver, so can you explain how this statement is true?
+>>>>>>>>
+>>>>>>>> Maybe I need to drink a few cans of Monster and revisit this patchset?
+>>>>>>>>
+>>>>>>>
+>>>>>>> What I mean with "there is no user" is that there's no device tree with any
+>>>>>>> mt6360-tcpc node upstream yet, so there is no meaningful ABI breakage.
+>>>>>>> Different story would be if there was a device tree using this already, in
+>>>>>>> which case, you can make a required property optional but not remove it.
+>>>>>>
+>>>>>> Not every devicetree lives within the kernel.. If the driver is using
+>>>>>> it, I'm not inclined to agree that it should be removed.
+>>>>>
+>>>>> I get the point, but as far as I remember, it's not the first time that this
+>>>>> kind of change is upstreamed.
+>>>>>
+>>>>> I'm fine with keeping things as they are but, since my intention is to actually
+>>>>> introduce an actual user of this binding upstream, and that actually depends on
+>>>>> if this change is accepted or not (as I have to know whether I can omit adding
+>>>>> the interrupt-names property or not)....
+>>>>>
+>>>>> ....may I ask for more feedback/opinions from Rob and/or Krzk?
+>>>>
+>>>> Driver is the user and this is an old binding (released!), thus there
+>>>> can be out-of-kernel users already.
+>>>>
+>>>> Minor cleanup is not really a reason to affect ABI. You could deprecate
+>>>> it, though. Driver change is fine.
+>>>>
 >>>
->>> Add a device tree binding for MT7921S Bluetooth over SDIO specifically
->>> ot document the reset line.
->>>
->>> Cc: Sean Wang <sean.wang@mediatek.com>
->>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
->>> ---
->>>    .../bluetooth/mediatek,mt7921s-bluetooth.yaml | 49 +++++++++++++++++++
->>>    MAINTAINERS                                   |  1 +
->>>    2 files changed, 50 insertions(+)
->>>    create mode 100644 Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
->>> new file mode 100644
->>> index 000000000000..bbe240e7cc40
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
->>> @@ -0,0 +1,49 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/bluetooth/mediatek,mt7921s-bluetooth.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MediaTek MT7921S Bluetooth
->>> +
->>
->> title:
->>
->> maintainers:
->>
->> description:
->>
->> ... and then, you missed
->>
->> allOf:
->>     - $ref: bluetooth-controller.yaml#
-> 
-> (facepalm)
-> 
->> Everything else looks good.
->>
->> Cheers,
->> Angelo
->>
->>> +description:
->>
->> MT7921S is a (dual?) SDIO-attached dual-radio WiFi+Bluetooth combo chip;
->> this chip has two dedicated reset lines, one of which is used to reset
->> the Bluetooth core.
->> The WiFi part of this chip is described in ....where? :-)
-> 
-> The function itself is fully probable and the implementation doesn't make
-> use of the WiFi's reset line, so I don't see any reason to describe it?
-> I don't actually know what the reset line does in the chip hardware.
-> This patch is just described what is already used.
-> 
->>> +  This binding describes the Bluetooth side of the SDIO-attached MT7921S
->>> +  WiFi+Bluetooth combo chips. These chips are dual-radio chips supporting
->>> +  WiFi and Bluetooth. Bluetooth works over SDIO just like WiFi. Bluetooth
->>> +  has its own reset line, separate from WiFi, which can be used to reset
->>> +  the Bluetooth core.
->>> +
->>> +maintainers:
->>> +  - Sean Wang <sean.wang@mediatek.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - mediatek,mt7921s-bluetooth
->>> +  reg:
->>> +    const: 2
->>> +
->>> +  reset-gpios:
->>> +    maxItems: 1
->>> +    description: A GPIO line connected to the Bluetooth subsystem reset line.
->>> +      Typically the W_DISABLE2# pin on M.2 E-key modules. If present this
->>> +      shall be flagged as active low.
->>
->> description:
->>     An active-low reset line connected for the Bluetooth core;
-> 
-> connected to?
-
-Eh yes, sorry - I edited that statement multiple times and that "for" stuck
-there for reasons :-)
-
-> 
->>     on typical M.2 Key-E modules this is the W_DISABLE2# pin.
-> 
-> Otherwise this looks better. Thanks.
-
-You're welcome!
-
-Cheers!
-
-> 
-> 
-> ChenYu
-> 
->> Cheers,
->> Angelo
->>
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    mmc {
->>> +        #address-cells = <1>;
->>> +        #size-cells = <0>;
->>> +
->>> +        bluetooth@2 {
->>> +            compatible = "mediatek,mt7921s-bluetooth";
->>> +            reg = <2>;
->>> +            reset-gpios = <&pio 8 GPIO_ACTIVE_LOW>;
->>> +        };
->>> +    };
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index b64a64ca7916..662957146852 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -13657,6 +13657,7 @@ M:    Sean Wang <sean.wang@mediatek.com>
->>>    L:  linux-bluetooth@vger.kernel.org
->>>    L:  linux-mediatek@lists.infradead.org (moderated for non-subscribers)
->>>    S:  Maintained
->>> +F:   Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
->>>    F:  Documentation/devicetree/bindings/net/mediatek-bluetooth.txt
->>>    F:  drivers/bluetooth/btmtkuart.c
+>>> Thanks for the clarification. If USB maintainers want to take the driver part only
+>>> without me resending this, I'd appreciate that.
 >>>
 >>
+>>> The interrupt-names is not a required property in this binding anyway... :-)
+>>
+>> Having -names properties that are not required when the base property is
+>> always seem so pointless to me, except in cases where they're not
+>> required for the case where there's one item but required when there are
+>> more than one. Ultimately they're pointless if not required since they
+>> can't be relied on. I think dropping it from the driver is required for
+>> correctness.
+> 
+> Actually, looking at the binding again:
+> 
+> | required:
+> |   - compatible
+> |   - interrupts
+> |   - interrupt-names
+> 
+> It looks like it is a required property after all!
 
+Apparently my brain's binding had
 
+required:
+   - blindness
+
+:-P
+
+Yeah, I have no idea why I didn't see that, sorry!
+
+Cheers,
+Angelo
 
