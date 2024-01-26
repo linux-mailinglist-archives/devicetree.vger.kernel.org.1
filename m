@@ -1,106 +1,170 @@
-Return-Path: <devicetree+bounces-35401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A736283D5DC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:17:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B303083D5E3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:18:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9FE01C21F83
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:17:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29D391F28222
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:18:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 941F229CF9;
-	Fri, 26 Jan 2024 08:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C3E01BC32;
+	Fri, 26 Jan 2024 08:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="sIqksMLT"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="z+nrrGxV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFA501CFAE;
-	Fri, 26 Jan 2024 08:32:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE2D14276;
+	Fri, 26 Jan 2024 08:36:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706257940; cv=none; b=pQhfLOGzzqxxWjB6QZ6xMXLD3vEK3ms/kC+scbp+fITYPxiP7HstRM3XtTfMsLgK06m8c8uSBq64jreHKMHtkc2ien9uUpVzsDxuAsE6DgCcbEBDqJf+i+eS+4vBe1xp0aXVRMaANnmFTIIO6acGBnua0anY3YvSppuVyQk+djg=
+	t=1706258181; cv=none; b=MH67avjLsvkeJnczEEywvrnL1kHEUyydKAHPUfksyjOj2FNy34MbIL1eePCNGI3js9lfF9ZSGDm6o/KzrjqBQW/V5jI5GuDyWSmBcAUbKvydgjE/GuG0SW4dtY7E3cNL12NAI25CAL2Osj84QXj6vml+o5ZnT23c3P+EaTgQFN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706257940; c=relaxed/simple;
-	bh=jlmG1wzP0u2ArENwmDLoBVgwPoZ/B4FgKHD1TWOBq7E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r8Kv1YzsrirkXdov0iUQhIvY/JuskEdtsff6zWPzqjAbrp1KIH6IYHd5dWsMLG6FF7uSMJQWSZTFvE7kGLEMzeO5ZXZCLVGnV6bO4VJ/UtYhAeauHdyxHQ+yy8YNle/eRjshFE8twtxipzAnxbc0SuAOdxBwHcWmaq3YvZ2UvN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=sIqksMLT; arc=none smtp.client-ip=74.50.62.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
-Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
-	by mail5.25mail.st (Postfix) with ESMTPSA id 185BD6042F;
-	Fri, 26 Jan 2024 08:31:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
-	s=25mailst; t=1706257937;
-	bh=jlmG1wzP0u2ArENwmDLoBVgwPoZ/B4FgKHD1TWOBq7E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sIqksMLTCXWb8YUFNG8ewkvN10ILCXI1aOGTilVIg35IPVz+WJkoCE8estBQG+FAi
-	 Ki7xAhTnIBvmU7OT5pDVYwupm0MNdBVikCkHmOMS9zEnkFYc+p+Rv439YyW0wezQ1m
-	 AQm1UrgeSR3ciAJ3BUe5fRPWvd1aD73HTbeyQcR6/w7KFSGosKYgBRYmLPOjEu2v0g
-	 mVdpTvoPRdfSwfRtXaknFwhfG7tSnHQ2Nw7J0GGffMSE7mDHmuKgl3dLTRVj+R2bCQ
-	 FPbBMatNFsfpZfk6sdEu7p4PAQn8v0x91DqeXdCxoUqSYY1vMnecRDXgdstAf4F0rd
-	 G/IDhnoyGsmvg==
-Date: Fri, 26 Jan 2024 10:31:17 +0200
-From: Tony Lindgren <tony@atomide.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Andrew Davis <afd@ti.com>, Frank Binns <frank.binns@imgtec.com>,
-	Matt Coster <matt.coster@imgtec.com>,
-	"H . Nikolaus Schaller" <hns@goldelico.com>,
-	Adam Ford <aford173@gmail.com>,
-	Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	=?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Paul Cercueil <paul@crapouillou.net>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-omap@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH 02/11] dt-bindings: gpu: Add PowerVR Series5 SGX GPUs
-Message-ID: <20240126083117.GU5185@atomide.com>
-References: <20240109171950.31010-1-afd@ti.com>
- <20240109171950.31010-3-afd@ti.com>
- <e2fce141-4966-4e70-9a5c-865a2737174c@linaro.org>
- <20240110083857.GB5185@atomide.com>
- <20240119174815.GA633343-robh@kernel.org>
+	s=arc-20240116; t=1706258181; c=relaxed/simple;
+	bh=tkg39RAYsAhIELMHYR7dU6szqBbIFK6BgQpLq2STJIE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=LePb6/4pYtT0zakKAaXyyYaRwfIFQA3IRFODohOayGd9jgh6Kef45s3R8kpF2O1frVHDDqn4p32T+CIyZcBUnIn+TfVj4hpmSD/efAWpElEQjz9nTJFVY8vQrrlougheKB8Uy7Q7+GQSpqWM/lhxsppHpDVVGwYki4vhxAVe5N0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=z+nrrGxV; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Content-Type:MIME-Version:Message-ID:Date:References:
+	In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=GfWOdJizn9qajP2fgFEpsk2c/JN4N7LIyYRvIOWoG84=; b=z+nrrGxVXrBFOfyxlMj3aHedI9
+	acH/1Fxur1lc7V7veDwL0sRWrLxY1i0lZKHq9i8gvklx0sVnfe+PONud9xMEUOghestnulhzCWIbC
+	At5DzfwRL72qRhozA2gRWzcMAUBcf2YRSP6PWH7S3hHc5Xat2NFuUuIswgEYf6ULyoq+XO6AxufTc
+	JkDoZGTrhBm0FW56xaDfoqm7ABHVqWOwpRjpj4Sx8ODLHvOZEfgOLMfMpJdzMlaxVWy35MMh6vesq
+	y4ngsAXlNb+wxroZRgEe8MBy1ZXN2LAwMyi3eOKKgrcQVRCvh07l53+TgQXTdsZjnjPnUSZbOelRw
+	hCrp8c1w==;
+Received: from sslproxy04.your-server.de ([78.46.152.42])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <esben@geanix.com>)
+	id 1rTHfy-000AzR-Lb; Fri, 26 Jan 2024 09:35:02 +0100
+Received: from [87.49.42.9] (helo=localhost)
+	by sslproxy04.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <esben@geanix.com>)
+	id 1rTHfx-000Ioh-Jv; Fri, 26 Jan 2024 09:35:01 +0100
+From: Esben Haabendal <esben@geanix.com>
+To: Rohan G Thomas <rohan.g.thomas@intel.com>
+Cc: "David S . Miller" <davem@davemloft.net>,  Alexandre Torgue
+ <alexandre.torgue@foss.st.com>,  Jose Abreu <joabreu@synopsys.com>,  Eric
+ Dumazet <edumazet@google.com>,  Jakub Kicinski <kuba@kernel.org>,  Paolo
+ Abeni <pabeni@redhat.com>,  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+  Rob Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Giuseppe Cavallaro <peppe.cavallaro@st.com>,  Serge Semin
+ <fancer.lancer@gmail.com>,  netdev@vger.kernel.org,
+  linux-stm32@st-md-mailman.stormreply.com,
+  linux-arm-kernel@lists.infradead.org,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: stmmac: TBS support for platform driver
+In-Reply-To: <20230927130919.25683-3-rohan.g.thomas@intel.com> (Rohan G.
+	Thomas's message of "Wed, 27 Sep 2023 21:09:19 +0800")
+References: <20230927130919.25683-1-rohan.g.thomas@intel.com>
+	<20230927130919.25683-3-rohan.g.thomas@intel.com>
+Date: Fri, 26 Jan 2024 09:35:01 +0100
+Message-ID: <87v87g4hmy.fsf@geanix.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240119174815.GA633343-robh@kernel.org>
+Content-Type: text/plain
+X-Authenticated-Sender: esben@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27165/Thu Jan 25 10:51:15 2024)
 
-* Rob Herring <robh@kernel.org> [240119 17:48]:
-> On Wed, Jan 10, 2024 at 10:38:57AM +0200, Tony Lindgren wrote:
-> > So for merging these, as many of the changes touch the omap variants, I
-> > could set up an immutable branch with all the changes after -rc1. Or I can
-> > ack the patches too if somebody has better ideas.
-> 
-> Just take all but patches 10 and 11. I don't think it matters if the 
-> binding is there for them as long as it is all there in next. No one is 
-> paying that close attention to the warnings I think.
+Rohan G Thomas <rohan.g.thomas@intel.com> writes:
 
-OK I've now applied these except patches 10 and 11 into a sgx-for-v6.9
-branch [0].
+> Enable Time Based Scheduling(TBS) support for Tx queues through the
+> stmmac platform driver. For this a new per-queue tx-config property,
+> tbs-enabled is added to the devicetree.
+>
+> Commit 7eadf57290ec ("net: stmmac: pci: Enable TBS on GMAC5 IPK PCI
+> entry") enables similar support for the stmmac pci driver.
+>
+> Also add check whether TBS support is available for a Tx DMA channel
+> before enabling TBS support for that Tx DMA channel.
+>
+> Signed-off-by: Rohan G Thomas <rohan.g.thomas@intel.com>
+> ---
+>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 25 +++++++++++++++----
+>  .../ethernet/stmicro/stmmac/stmmac_platform.c |  4 +++
+>  2 files changed, 24 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 81b6f3ecdf92..7333f0640b3d 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -3773,12 +3773,18 @@ stmmac_setup_dma_desc(struct stmmac_priv *priv, unsigned int mtu)
+>  		dma_conf->dma_rx_size = DMA_DEFAULT_RX_SIZE;
+>  
+>  	/* Earlier check for TBS */
+> -	for (chan = 0; chan < priv->plat->tx_queues_to_use; chan++) {
+> -		struct stmmac_tx_queue *tx_q = &dma_conf->tx_queue[chan];
+> -		int tbs_en = priv->plat->tx_queues_cfg[chan].tbs_en;
+> +	if (priv->dma_cap.tbssel) {
+> +		/* TBS is available only for tbs_ch_num of Tx DMA channels,
+> +		 * starting from the highest Tx DMA channel.
+> +		 */
+> +		chan = priv->dma_cap.number_tx_channel - priv->dma_cap.tbs_ch_num;
+> +		for (; chan < priv->plat->tx_queues_to_use; chan++) {
+> +			struct stmmac_tx_queue *tx_q = &dma_conf->tx_queue[chan];
+> +			int tbs_en = priv->plat->tx_queues_cfg[chan].tbs_en;
+>  
+> -		/* Setup per-TXQ tbs flag before TX descriptor alloc */
+> -		tx_q->tbs |= tbs_en ? STMMAC_TBS_AVAIL : 0;
+> +			/* Setup per-TXQ tbs flag before TX descriptor alloc */
+> +			tx_q->tbs |= tbs_en ? STMMAC_TBS_AVAIL : 0;
+> +		}
+>  	}
+>  
+>  	ret = alloc_dma_desc_resources(priv, dma_conf);
+> @@ -7505,6 +7511,15 @@ int stmmac_dvr_probe(struct device *device,
+>  		}
+>  	}
+>  
+> +	/* If TBS feature is supported(i.e. tbssel is true), then at least 1 Tx
+> +	 * DMA channel supports TBS. So if tbs_ch_num is 0 and tbssel is true,
+> +	 * assume all Tx DMA channels support TBS. TBS_CH field, which gives
+> +	 * number of Tx DMA channels with TBS support is only available only for
+> +	 * DW xGMAC IP. For other DWMAC IPs all Tx DMA channels can support TBS.
 
-Regards,
+The Ethernet QOS controllers found in various i.MX socs does not support
+TBS on TX queue 0. I believe this patch would break the dwmac driver for
+these platforms.
 
-Tony
+> +	 */
+> +	if (priv->dma_cap.tbssel && !priv->dma_cap.tbs_ch_num)
+> +		priv->dma_cap.tbs_ch_num = priv->dma_cap.number_tx_channel;
+> +
+>  	ndev->features |= ndev->hw_features | NETIF_F_HIGHDMA;
+>  	ndev->watchdog_timeo = msecs_to_jiffies(watchdog);
+>  #ifdef STMMAC_VLAN_TAG_USED
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> index 843bd8804bfa..6c0191c84071 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> @@ -279,6 +279,10 @@ static int stmmac_mtl_setup(struct platform_device *pdev,
+>  		plat->tx_queues_cfg[queue].coe_unsupported =
+>  			of_property_read_bool(q_node, "snps,coe-unsupported");
+>  
+> +		/* Select TBS for supported queues */
+> +		plat->tx_queues_cfg[queue].tbs_en =
+> +			of_property_read_bool(q_node, "snps,tbs-enabled");
+> +
+>  		queue++;
+>  	}
+>  	if (queue != plat->tx_queues_to_use) {
 
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap.git/log/?h=sgx-for-v6.9
+/Esben
 
