@@ -1,57 +1,73 @@
-Return-Path: <devicetree+bounces-35387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 864F983D576
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:07:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D3A783D578
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:07:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3618E2849A2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:07:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 730981C25CC4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020F412B84;
-	Fri, 26 Jan 2024 07:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AD263516;
+	Fri, 26 Jan 2024 07:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="HY+hVYQc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aDJ8guap"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936F111731
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 07:56:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED57A63507
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 07:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706255800; cv=none; b=ncKwAJjZoHHeufEdcLsuLus/31ZzftLK4bgU9Ngqsdsn8d9UNwKbDhpkBBpdPYKxuSvKXqYm5IB6pGUIdVihganiHhGonPdP2vdVKs93gFbIlg5ytJrVJ+bcco9RNcFGW7qeFoeP2dK51D+xqHAH+Gf1yw0T958kejRTLyuoT6s=
+	t=1706255818; cv=none; b=bwoKZav4gNjNNb2C2hdjMV1P+M/i01GL7vh5VZebzr4CwQur6cKgkIAp35MKFnpuq3yK2G9m9pbX3BaDZJqCB1RVyWwwm8Ex3iEZIcyqCmK+5PGhzEylMKzbPSAVVhg864qnbQNfzHf0aID6Mif7crlAQ21tgdhh0njF0Fkj6Wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706255800; c=relaxed/simple;
-	bh=SGlkjOF0x1E5rB8ZCRFzqb+92VKR/RyFWfynYGQYX6Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Wms6HKOOXhW1AtfYLnJB/H0AwKVUxkKsOKi819difTvSr3+spcIh5dWuSM9KhTB8+t1bnd/qprCnJxG9D9T7l+soOHWAxHvNzxqSonH/cXN+MOMBUsmn3KIAQrKqwu6BRZpx5QHCgwTyoYoC8xqztzRY6THHudjda2Zc8hSeYY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=HY+hVYQc; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1706255789; x=1708847789;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=SGlkjOF0x1E5rB8ZCRFzqb+92VKR/RyFWfynYGQYX6Y=;
-	b=HY+hVYQcokiEIHMgXF9ka+mMTh6oXqSH+HGZVCHoBxCU6DnPl1QHSQ6Dn4sccftY
-	e3M2tm+aztgE/2QGnlVBMBFr+uUk8lo3xVpTcOqh9+XxC36QEiUY/GAD7uHTkkR+
-	5qZUxL2fj+N48zx6hXdlSfS+8qjSg7mvMycH/P6zWgM=;
-X-AuditID: ac14000a-fbefe7000000290d-85-65b365adcc29
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id A6.89.10509.DA563B56; Fri, 26 Jan 2024 08:56:29 +0100 (CET)
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 26 Jan
- 2024 08:56:26 +0100
-Message-ID: <b63056c1-0554-4514-8cba-896d1274246a@phytec.de>
-Date: Fri, 26 Jan 2024 08:56:23 +0100
+	s=arc-20240116; t=1706255818; c=relaxed/simple;
+	bh=GmcENEElrbmu4+qu30DqEDmtjJ2hYqL4X3elhdiKmmQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pWIxqrLTM7Tfho8g/0NHGU5s4muCKg1OLcg60yuXGpVWeNmxsDCz9z4nM15GBzMtaDOYOvoMImAH2bfV9QaetachoCYucyERnBBkZARCUB4+7UptTafupr6ghKrxuyFVFljPnJf6Lm20nEr1+vnUF1sQb0t2JlLT59f3mh7YtCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aDJ8guap; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-337cf4eabc9so103948f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 23:56:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706255815; x=1706860615; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uPleq8v+IkwCDBo36+ymb8DinsNdEMNv1kWJ7eUs/+E=;
+        b=aDJ8guapjFvAha7QE36KWWEQAy/rVQz277PN6O/tF1W3/k9BIet3u/yv8Ze7+zSRm1
+         5utQqVMS/KWo+neGiN9mekkBb++ojpLBqcVIJV2z7cPfkaRef/KWS6W4qp8ysa1bBxeW
+         pMbnkVco1/oOmj0ibXgjJJNcPzYt3QHdrKlnT+Ohuklq28NMTipCzDtnsnAZPqZvOJOK
+         zI6sNSXkQ7iW254K5M8IcsMxMVoyknMA3xS4TgYrcQhwFTwYoAo1QVrzJV2vHaJMj8Ug
+         WdmTuiON+v0cHvcCxQbH3dJfCjNd4r2D7SghyEha2EHcD9JHmiVNtQToTnF/CUm74cjT
+         Go1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706255815; x=1706860615;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uPleq8v+IkwCDBo36+ymb8DinsNdEMNv1kWJ7eUs/+E=;
+        b=nkAzZW9SNkI68jEyX/ww3Hhk/bgbIfGkGyCBwY27KFla5BN80NK7qrCjnJ97iPQxD4
+         OwpuaaMMOIOhFsbs0MnbihTNs5XiWDgbUShxFN+eHbSJNC4GQ1SN1xpJB0A24wQQxgwb
+         f+dfurlSaR63yVW2NgCYBRAUzaRsoaxEDti8ZrMx4sVsMo48imZ7SqGCGyZcpdtC5gSV
+         xbGK35dq1zwhmNzQtgt4NKKff2r3WvOlaJw9Z6SFaKQYWRGTHaaQE68yBbg7BUvFsQZd
+         UD04snLp2UN0r6KNmsWF2rEYeHiK9H1z1TgkV43dDW+lEeBKDvLH/aSXtx3VzEAWEcCd
+         grzQ==
+X-Gm-Message-State: AOJu0YwmGBCzkDSeQQMm1Z156zuRHmrizvptGNtwPwlJVk/m8oHujyMW
+	psN83nzSgWuHVyJz2FxI+xue6ppyvbqZubXlcAcnSBl60kM8CnIwW2fVnOWAQTM=
+X-Google-Smtp-Source: AGHT+IF4ZRzpdk9B+kPkzSfTldHpKYPP1lO7tlsg8x+Bq/NbPYnjD64G1cVIyHa8s5kXAAjz+lbHLQ==
+X-Received: by 2002:a5d:4006:0:b0:337:aa99:82aa with SMTP id n6-20020a5d4006000000b00337aa9982aamr593223wrp.91.1706255815070;
+        Thu, 25 Jan 2024 23:56:55 -0800 (PST)
+Received: from [192.168.2.107] ([79.115.63.202])
+        by smtp.gmail.com with ESMTPSA id ch15-20020a5d5d0f000000b0033905a60689sm682416wrb.45.2024.01.25.23.56.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Jan 2024 23:56:54 -0800 (PST)
+Message-ID: <36a664b1-666d-4fc4-90d9-35b42e56973d@linaro.org>
+Date: Fri, 26 Jan 2024 07:56:52 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,83 +75,170 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62p-mcu/wakeup: Disable MCU and
- wakeup R5FSS nodes
+Subject: Re: [PATCH v2 16/28] spi: s3c64xx: simplify s3c64xx_wait_for_pio()
 Content-Language: en-US
-To: Vaishnav Achath <vaishnav.a@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh+dt@kernel.org>,
-	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <bb@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<u-kumar1@ti.com>
-References: <20240121134017.374992-1-vaishnav.a@ti.com>
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20240121134017.374992-1-vaishnav.a@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWyRpKBR3dt6uZUgzPPxSzmvjnAarFm7zkm
-	i/lHzrFaLP88m92i78VDZotNj6+xWlzeNYfN4s2Ps0wWrXuPsFtM2zuD2eL6jylsFv/PfmB3
-	4PHYtKqTzePOtT1sHpuX1Hscv7GdyePzJrkA1igum5TUnMyy1CJ9uwSujLZtvUwF+wUqOjsX
-	sjUwnuXtYuTgkBAwkXjYI9PFyMUhJLCYSeL+rDWsEM5dRonmGb+BHE4OXgEbiY37DrCBNLAI
-	qEr8um4LERaUODnzCQuILSogL3H/1gx2EFtYIE5iUussMJtZQFzi1pP5TCAzRQQ2MUq8frGY
-	BSLRwyixc6oniC0kYC4xZW8PM4jNJqAucWfDN7C9nAIWEjsfzmODqLeQWPzmINRQeYntb+cw
-	Q/TKS7y4tBxspgSQPe3ca2YIO1TiyKbVTBMYhWchuXUWkptmIRk7C8nYBYwsqxiFcjOTs1OL
-	MrP1CjIqS1KT9VJSNzGC4k2EgWsHY98cj0OMTByMhxglOJiVRHhNTDemCvGmJFZWpRblxxeV
-	5qQWH2KU5mBREudd3RGcKiSQnliSmp2aWpBaBJNl4uCUamDktN615qH1hqeNQVH72oy+vmEQ
-	j047vjTGJtE+cOc0a/F/f4984BZKP6v/6G7K+dfvGA8XrN/yfOqz63pqE/KKt5b8uP5LoN7k
-	gZ74rOqSO0EWYrmO2wwaOIpXTOyP9oufzjBZdI2p8CdpqfJEuYWVes8W7VvgNvu8dtgsf5XP
-	Kx9tmuWa29SgxFKckWioxVxUnAgASvOwYqUCAAA=
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: broonie@kernel.org, andi.shyti@kernel.org, arnd@arndb.de,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ alim.akhtar@samsung.com, linux-spi@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-arch@vger.kernel.org, andre.draszik@linaro.org,
+ peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com
+References: <20240125145007.748295-1-tudor.ambarus@linaro.org>
+ <20240125145007.748295-17-tudor.ambarus@linaro.org>
+ <CAPLW+4mLWU-8H=qESe9csXm=e_ByvP=nc7MEJzknv+XAUjqUZg@mail.gmail.com>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <CAPLW+4mLWU-8H=qESe9csXm=e_ByvP=nc7MEJzknv+XAUjqUZg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 
-Am 21.01.24 um 14:40 schrieb Vaishnav Achath:
-> K3 Remoteproc R5 driver requires reserved memory carveouts and
-> mailbox configuration to instantiate the cores successfully.
-> Since this is a board level dependency, keep the R5 subsytem
-> disabled at SoC dtsi, otherwise it results in probe errors like
-> below during AM62P SK boot:
->
-> r5fss@79000000: reserved memory init failed, ret = -22
-> r5fss@79000000: k3_r5_cluster_rproc_init failed, ret = -22
-> r5fss@78000000: reserved memory init failed, ret = -22
-> r5fss@78000000: k3_r5_cluster_rproc_init failed, ret = -22
 
-Shouldn't we have a similar patch for the am64 R5 cores?
+On 1/25/24 20:43, Sam Protsenko wrote:
+> On Thu, Jan 25, 2024 at 8:50 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>>
+>> s3c64xx_spi_transfer_one() makes sure that for PIO the xfer->len is
+>> always smaller than the fifo size. Since we can't receive more that the
+>> FIFO size, droop the loop handling, the code becomes less misleading.
+> 
+> Drop (spelling)?
 
+oh yeah, thanks.
 
->
-> Fixes: b5080c7c1f7e ("arm64: dts: ti: k3-am62p: Add nodes for more IPs")
->
-> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi    | 2 ++
->   arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 1 +
->   2 files changed, 3 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
-> index c4b0b91d70cf..14eb9ba836d3 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-mcu.dtsi
-> @@ -187,6 +187,8 @@ mcu_r5fss0: r5fss@79000000 {
->   		ranges = <0x79000000 0x00 0x79000000 0x8000>,
->   			 <0x79020000 0x00 0x79020000 0x8000>;
->   		power-domains = <&k3_pds 7 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
-> +
->   		mcu_r5fss0_core0: r5f@79000000 {
->   			compatible = "ti,am62-r5f";
->   			reg = <0x79000000 0x00008000>,
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-> index 19f42b39394e..10a7059b2d9b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-> @@ -78,6 +78,7 @@ wkup_r5fss0: r5fss@78000000 {
->   		ranges = <0x78000000 0x00 0x78000000 0x8000>,
->   			 <0x78100000 0x00 0x78100000 0x8000>;
->   		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
-> +		status = "disabled";
->   
->   		wkup_r5fss0_core0: r5f@78000000 {
->   			compatible = "ti,am62-r5f";
+> 
+> For the patch: how exactly it was tested to make sure there is no regression?
+
+no regression testing for the entire patch set, I have just a gs101 on
+my hands.
+
+However, we shouldn't refrain ourselves on improving things when we
+think they're straight forward and they worth it. In this particular
+case, for PIO, s3c64xx_spi_transfer_one() does:
+	xfer->len = fifo_len - 1;
+then in s3c64xx_enable_datapath() we write xfer->len and then in
+s3c64xx_wait_for_pio() we code did the following:
+	loops = xfer->len / FIFO_DEPTH(sdd);
+loops is always zero, this is bogus and we shall remove it.
+
+>>
+>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> ---
+>>  drivers/spi/spi-s3c64xx.c | 75 +++++++++------------------------------
+>>  1 file changed, 17 insertions(+), 58 deletions(-)
+>>
+>> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+>> index d2dd28ff00c6..00a0878aeb80 100644
+>> --- a/drivers/spi/spi-s3c64xx.c
+>> +++ b/drivers/spi/spi-s3c64xx.c
+>> @@ -485,26 +485,6 @@ static int s3c64xx_enable_datapath(struct s3c64xx_spi_driver_data *sdd,
+>>         return 0;
+>>  }
+>>
+>> -static u32 s3c64xx_spi_wait_for_timeout(struct s3c64xx_spi_driver_data *sdd,
+>> -                                       int timeout_ms)
+>> -{
+>> -       void __iomem *regs = sdd->regs;
+>> -       unsigned long val = 1;
+>> -       u32 status;
+>> -       u32 max_fifo = FIFO_DEPTH(sdd);
+>> -
+>> -       if (timeout_ms)
+>> -               val = msecs_to_loops(timeout_ms);
+>> -
+>> -       do {
+>> -               status = readl(regs + S3C64XX_SPI_STATUS);
+>> -       } while (FIELD_GET(S3C64XX_SPI_ST_RX_FIFO_LVL, status) < max_fifo &&
+>> -                --val);
+>> -
+>> -       /* return the actual received data length */
+>> -       return FIELD_GET(S3C64XX_SPI_ST_RX_FIFO_LVL, status);
+>> -}
+>> -
+>>  static int s3c64xx_wait_for_dma(struct s3c64xx_spi_driver_data *sdd,
+>>                                 struct spi_transfer *xfer)
+>>  {
+>> @@ -553,13 +533,11 @@ static int s3c64xx_wait_for_pio(struct s3c64xx_spi_driver_data *sdd,
+>>                                 struct spi_transfer *xfer, bool use_irq)
+>>  {
+>>         void __iomem *regs = sdd->regs;
+>> +       u8 *buf = xfer->rx_buf;
+>> +       unsigned long time_us;
+>>         unsigned long val;
+>> -       u32 status;
+>> -       int loops;
+>> -       u32 cpy_len;
+>> -       u8 *buf;
+>> +       u32 status, len;
+>>         int ms;
+>> -       unsigned long time_us;
+>>
+>>         /* microsecs to xfer 'len' bytes @ 'cur_speed' */
+>>         time_us = (xfer->len * 8 * 1000 * 1000) / sdd->cur_speed;
+>> @@ -582,48 +560,29 @@ static int s3c64xx_wait_for_pio(struct s3c64xx_spi_driver_data *sdd,
+>>                 status = readl(regs + S3C64XX_SPI_STATUS);
+>>         } while (FIELD_GET(S3C64XX_SPI_ST_RX_FIFO_LVL, status) < xfer->len &&
+>>                  --val);
+>> -
+>>         if (!val)
+>>                 return -EIO;
+>>
+>>         /* If it was only Tx */
+>> -       if (!xfer->rx_buf) {
+>> +       if (!buf) {
+>>                 sdd->state &= ~TXBUSY;
+>>                 return 0;
+>>         }
+>>
+>> -       /*
+>> -        * If the receive length is bigger than the controller fifo
+>> -        * size, calculate the loops and read the fifo as many times.
+>> -        * loops = length / max fifo size (calculated by using the
+>> -        * fifo mask).
+>> -        * For any size less than the fifo size the below code is
+>> -        * executed atleast once.
+>> -        */
+>> -       loops = xfer->len / FIFO_DEPTH(sdd);
+>> -       buf = xfer->rx_buf;
+>> -       do {
+>> -               /* wait for data to be received in the fifo */
+>> -               cpy_len = s3c64xx_spi_wait_for_timeout(sdd,
+>> -                                                      (loops ? ms : 0));
+>> -
+>> -               switch (sdd->cur_bpw) {
+>> -               case 32:
+>> -                       ioread32_rep(regs + S3C64XX_SPI_RX_DATA,
+>> -                                    buf, cpy_len / 4);
+>> -                       break;
+>> -               case 16:
+>> -                       ioread16_rep(regs + S3C64XX_SPI_RX_DATA,
+>> -                                    buf, cpy_len / 2);
+>> -                       break;
+>> -               default:
+>> -                       ioread8_rep(regs + S3C64XX_SPI_RX_DATA,
+>> -                                   buf, cpy_len);
+>> -                       break;
+>> -               }
+>> +       len = FIELD_GET(S3C64XX_SPI_ST_RX_FIFO_LVL, status);
+>> +
+>> +       switch (sdd->cur_bpw) {
+>> +       case 32:
+>> +               ioread32_rep(regs + S3C64XX_SPI_RX_DATA, buf, len / 4);
+>> +               break;
+>> +       case 16:
+>> +               ioread16_rep(regs + S3C64XX_SPI_RX_DATA, buf, len / 2);
+>> +               break;
+>> +       default:
+>> +               ioread8_rep(regs + S3C64XX_SPI_RX_DATA, buf, len);
+>> +               break;
+>> +       }
+>>
+>> -               buf = buf + cpy_len;
+>> -       } while (loops--);
+>>         sdd->state &= ~RXBUSY;
+>>
+>>         return 0;
+>> --
+>> 2.43.0.429.g432eaa2c6b-goog
+>>
 
