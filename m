@@ -1,68 +1,68 @@
-Return-Path: <devicetree+bounces-35407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CCFD83D5EF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:19:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5393383D5F1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:20:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE0CD1C26676
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:19:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5B00B27015
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68E5185C77;
-	Fri, 26 Jan 2024 08:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F04CE86AC7;
+	Fri, 26 Jan 2024 08:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="jlAqrquL"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Uqnv5vEc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA72C1BF3E
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD498613C
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 08:38:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706258305; cv=none; b=VbvDxjb1XgobLxidkk6Kp2YcZkzcP/SNh8rXlB6rwIRecO1GckV4aJ6cXO0lFxX13w5buO/VS9uxTVSZKSvfFSGAvwMeh1uvJXznH2fmL11NoOQFkqZzZIAvnY/YKI9vngZ7VT8xPls8gtjcu+xA5Tn6fd3HBsIrRIsogtraA1s=
+	t=1706258307; cv=none; b=uSv0eaXCuUW7RtveMMNswLDEYsuMcjMG9PGM5VXHpWw5Z+MAph07LXyp2gH3hULDLsp3G3ShMsAn5o+1ERBhRJyvz7dDYPd3W5QW7aDE8GSPa0qy+XX8UwgnbZC+Q3trwuYKYlankQ+3vD9Fc+Y4zsUInghPDCUxgQVIN9TY2og=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706258305; c=relaxed/simple;
-	bh=HDrHr2Mm2RpUpCdp9W2zvjhFzmQiCA8tVkPkSw8UHGc=;
+	s=arc-20240116; t=1706258307; c=relaxed/simple;
+	bh=2ET6gXx2WDcj/tTCYQs+rCB8w/NgFBj9M/d+V4yzwcQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pbWhAS5xaBGdUh0vtbfiyj+2aJFh6YSmPU0W5Dwtu0dANltxt743Y2bxOQOv0/x0jSafJgO7gmQXHEr4yNhI4+KagC9ra71nZfpyKvlMPOxAr/lEulqHqQGRsiodfFJksHQ+iolayr64wSLYl+dCfZbHPxi9IVZyGF+m4UCX7uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=jlAqrquL; arc=none smtp.client-ip=209.85.214.172
+	 MIME-Version; b=FnM4rBjooE9rqnTaS+EugBcVm0YppafwGgQUXiW6shQhyO3SktbwZSRF23itEiOmhCtM4fKHfDRNoxGLerRNqNcvya7C3HC12ZFZ3WBYmlfhdGJ9h59/mwXoxSnw4H3VSCVMSZc8qcgJUirz2S/9wnf2GqBRB9wCGHIXILxKvAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Uqnv5vEc; arc=none smtp.client-ip=209.85.214.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1d7859efea5so3472925ad.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 00:38:23 -0800 (PST)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1d711d7a940so1130445ad.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 00:38:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1706258303; x=1706863103; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1706258306; x=1706863106; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GKzePUGiZpVCb+bUEgD2WbfAbzcapL4u7uh81bBR8VA=;
-        b=jlAqrquLZ5x5UWtFjyvRkbPtjEh11wuuxgodyI1cVXF6u11qE0DDznQvgZXNJr+/AL
-         zr5rA9WT7x1EeQBbEpvpkEUxvFEqb7AxGsNoPhV5Md3mFz4XcskSd93mAJE3rJTe9DiH
-         BaIyYcNGcDl3ONSStilv7NCc9TglF2a7NBMrY=
+        bh=vOQ3ZMLM6BNgqZNY26VIORkirN4X+ohLlja4VMJ4YDQ=;
+        b=Uqnv5vEcEQe3ejRWemwagBL/VvB5hXWXdD3y527q/llf8+4D+M+/7Sl5D9XK6vo1vx
+         D6JCY8fJswT5igky3KqZ+yVTRiyY5KxrvZ7sUxxHJY0RXsKbAA+S2HfGJQGyYmcylwJr
+         rAs82B0qi+dagXy4xzMJQ4/5a/5MDjTX5/xVQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706258303; x=1706863103;
+        d=1e100.net; s=20230601; t=1706258306; x=1706863106;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GKzePUGiZpVCb+bUEgD2WbfAbzcapL4u7uh81bBR8VA=;
-        b=nxwarGBIVYjg7dED4fYDavWqUCPEjG9l5CzkO4ayJqH8SvR6OSEqTnTxHOexCDNDrA
-         l/GdC4krmxg6lHZl85hlXM2cCgoFEhzO97Sf9aEdfXl62Dv8iFAt8qX7nul4XKKMHnT7
-         fnHw40ktMZHHsmeV1ED01svJgekiRqzoNKwq58gNN7kWqRa3Lo4PHAjelBCpMYYPYq7u
-         z9gRFjXz/iQyvJJumMggf4IN6vvZTp45g7AFZGvUUkWDTFwLUlMUOB1V7OO8QCkhYFD0
-         uLiyxKFwvmHExG4yDWkKsPGsKjlbWeEK07ido1PDeBMdZojuPyGAE4gCliFu5xvsottp
-         CeGw==
-X-Gm-Message-State: AOJu0Ywku0EmBwGRj8syagartfzO7rwdLdT+jeeAHFrvyHPAOo+DPpQ4
-	3tUdEtqzScm13RwUHCmJ/PNIkFvRfr+XxENXLnSOMyu3Bb5iHUTTzf/Jc6UVBA==
-X-Google-Smtp-Source: AGHT+IGoX96u4tjHCtE1Z/7U5hmcjioZkWhGRLyo7bwfK9lQa1gK/mT/fr7N573TKumHNoAFPo3xfA==
-X-Received: by 2002:a17:903:1c3:b0:1d7:2817:a63a with SMTP id e3-20020a17090301c300b001d72817a63amr1016382plh.19.1706258303293;
-        Fri, 26 Jan 2024 00:38:23 -0800 (PST)
+        bh=vOQ3ZMLM6BNgqZNY26VIORkirN4X+ohLlja4VMJ4YDQ=;
+        b=j37ZEfPh8CkLF7254sfAIj+2Ew/xd8bAtqzx+j3XsCS80mM2WIYX6krHIv+U3eHL7e
+         Emudkx6erVutQxHOBB4XRdonZ/4ntE5SJtscNRxKu31ns/3u+4UglK9PrqPY/RCnwUz8
+         qiAHwYr2NxezEOIjYHC+42axfpdR+dfYpFC+K3iF8BwwiuDZHXNAS0SHslZU4cSRgRbE
+         6DvA8tuqiOz2s6eplsNXhfEpBCO/TQ8q6URAWNVyBFBM7/QbMpXgiELY1dpLGT0ZpVtX
+         8MEhwcU6D3qKtgov0M6wOAa4Z2MM4MlGjP1ghVQhVBGtnTSorJMdwKsIkKgr6BIySjef
+         OKTg==
+X-Gm-Message-State: AOJu0YxpgJ5NvT6Rd2cTEDnPMm1YAqF6pOECOf/dbunOboVUzcnrab00
+	gHSE3x52kiUe7KDbfNUbJW/3NdUwQ82+DgjLKPcnwf4g4W7rQ8Tx3jTpcSwRAQ==
+X-Google-Smtp-Source: AGHT+IEdU0jjp4x1vfdUDk27VzbSzMJV7tHx5EPjaW1ZDfrbybo5kZdbWLoY7h2ux1gijzQ8/dWEiw==
+X-Received: by 2002:a17:903:22c8:b0:1d7:c27:2d32 with SMTP id y8-20020a17090322c800b001d70c272d32mr1144102plg.12.1706258305852;
+        Fri, 26 Jan 2024 00:38:25 -0800 (PST)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:2614:bbbd:8db2:1f54])
-        by smtp.gmail.com with ESMTPSA id b2-20020a170902a9c200b001d6ff1795aesm589529plr.8.2024.01.26.00.38.21
+        by smtp.gmail.com with ESMTPSA id b2-20020a170902a9c200b001d6ff1795aesm589529plr.8.2024.01.26.00.38.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 00:38:22 -0800 (PST)
+        Fri, 26 Jan 2024 00:38:25 -0800 (PST)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
@@ -76,9 +76,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v5 4/9] dt-bindings: arm: mediatek: Add MT8186 Rusty Chromebook
-Date: Fri, 26 Jan 2024 16:37:53 +0800
-Message-ID: <20240126083802.2728610-5-wenst@chromium.org>
+Subject: [PATCH v5 5/9] dt-bindings: arm: mediatek: Add MT8186 Magneton Chromebooks
+Date: Fri, 26 Jan 2024 16:37:54 +0800
+Message-ID: <20240126083802.2728610-6-wenst@chromium.org>
 X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
 In-Reply-To: <20240126083802.2728610-1-wenst@chromium.org>
 References: <20240126083802.2728610-1-wenst@chromium.org>
@@ -90,8 +90,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add an entry for the MT8186 based Rusty Chromebook, also known as the
-Lenovo 100e Chromebook Gen 4.
+Add entries for the MT8186 based Chromebooks, also collectively known
+as the Lenovo IdeaPad Slim 3 Chromebook (14M868). It is also based on
+the "Steelix" design. Being a laptop instead of a convertible device,
+there is no touchscreen or stylus, which is similar to Rusty. However
+Magneton does not have ports on the right side of the device.
+
+Three variants are listed separately. These use different touchscreen
+controllers, or lack a touchscreen altogether.
 
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
@@ -109,26 +115,38 @@ Changes since v2:
 Changes since v1:
 - Reorder SKU numbers in descending order.
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../devicetree/bindings/arm/mediatek.yaml      | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 23acfe5ed940..385bd2765626 100644
+index 385bd2765626..2a2ca4756bca 100644
 --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
 +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -235,6 +235,12 @@ properties:
+@@ -235,6 +235,24 @@ properties:
            - enum:
                - mediatek,mt8183-pumpkin
            - const: mediatek,mt8183
-+      - description: Google Rusty (Lenovo 100e Chromebook Gen 4)
++      - description: Google Magneton (Lenovo IdeaPad Slim 3 Chromebook (14M868))
 +        items:
-+          - const: google,steelix-sku196609
-+          - const: google,steelix-sku196608
++          - const: google,steelix-sku393219
++          - const: google,steelix-sku393216
 +          - const: google,steelix
 +          - const: mediatek,mt8186
-       - description: Google Steelix (Lenovo 300e Yoga Chromebook Gen 4)
++      - description: Google Magneton (Lenovo IdeaPad Slim 3 Chromebook (14M868))
++        items:
++          - const: google,steelix-sku393220
++          - const: google,steelix-sku393217
++          - const: google,steelix
++          - const: mediatek,mt8186
++      - description: Google Magneton (Lenovo IdeaPad Slim 3 Chromebook (14M868))
++        items:
++          - const: google,steelix-sku393221
++          - const: google,steelix-sku393218
++          - const: google,steelix
++          - const: mediatek,mt8186
+       - description: Google Rusty (Lenovo 100e Chromebook Gen 4)
          items:
-           - enum:
+           - const: google,steelix-sku196609
 -- 
 2.43.0.429.g432eaa2c6b-goog
 
