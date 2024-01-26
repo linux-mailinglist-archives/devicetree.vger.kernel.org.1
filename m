@@ -1,199 +1,196 @@
-Return-Path: <devicetree+bounces-35571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF67A83DD8E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:33:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFF983DDC5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:42:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76C31284EC0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:33:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D96AC28741F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:42:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0937A1D520;
-	Fri, 26 Jan 2024 15:33:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4B81D53F;
+	Fri, 26 Jan 2024 15:42:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M9d1S/ow"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dAJq1/H2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C856D1CFBC;
-	Fri, 26 Jan 2024 15:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3217D1D522;
+	Fri, 26 Jan 2024 15:42:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706283195; cv=none; b=HYlmclryTXzUEeFr2dQkkBF2pxuYBf/O507B3oOVLgqS3yeJdcTaxarpohwzAVmJqEoY2G4L5eyxO9DiIb0qWgPL2uutB3iLCeEsgyhVptb0cpEjuX4Vs3cl6vyVTDSNBXI4C82HKuUsbjZfBqWbTsMNpwMc/SG/5BqtGLF3sE4=
+	t=1706283759; cv=none; b=R5xuXxO/5bTh0I0sRaBUgGwf9BRSzJL8gMxC4SXx+L3v8NceJXYhULoA0XgcgS5hCk82SmpC/qMmU+L0Y+8fsA+un4F8Noh0egGswQ0EkllPfQkRo+8C4hcs2DTKli5sZRV2CQd0CKz3L6Fbgb8xtCBv/yqAh8LLwe3l74adRcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706283195; c=relaxed/simple;
-	bh=mAzKWZzPkM6ug0onv0vRe/nRxVt4tmp8a5kHaDgKrWc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gwp1HaeckqiWk/p+KwPxT0ZJEUn6/+w/t/TD4P8fL+/MypJH/qrrc2/7deCdGNNYLZ6djgqA8x9mLpTHEw0BWYd/tBT0EywrZcClTbymOGlihbqOTxQ9YoOBeQoPPM+HhAR/C8LbdtUMj6j6d1iqRjRXZ3dnbv9Cl/d69lLfR8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M9d1S/ow; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6E19C433C7;
-	Fri, 26 Jan 2024 15:33:10 +0000 (UTC)
+	s=arc-20240116; t=1706283759; c=relaxed/simple;
+	bh=Y3Z8LYJk8ojW2lKAiG+yhwYm9jBbV1csLki0ZOFKhMU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UM6OYIxjoSNOYEO6HVgIy3m5XAuEN0jDlTIyDkwXlaKCveA4lAgL3uYoIdhfAdtRLQgRkNtvRa9PbKsnrR/TtbkWoAqtt9qxz9/qeBAFLJruSjhRKOk2Fnq7f5U1Fl8DJxz28mX/zW2JyIx8kxiKYX1QU6yPauiCAq6moa/PqHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dAJq1/H2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AA51BC433A6;
+	Fri, 26 Jan 2024 15:42:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706283195;
-	bh=mAzKWZzPkM6ug0onv0vRe/nRxVt4tmp8a5kHaDgKrWc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M9d1S/owaLykjwZWoE/JjcSyfLO7y4RC6T8y6akAgrduNm62lUq45zOIYoRkDGeGQ
-	 bdV4MyfhzQ3kZ2yklUTH4mBzQkaA7EDoW7q65hvlDrJwnfW3wL7Oh/mvn3nWO8m2+5
-	 RUSeikg8Npwu33rkmN3Hu9DeqalWWeet9m+tN4rQPIdyfHXaGd2QwyKz2JNdi4/Ia6
-	 Y3vgbXw724n07b6UrC9832j8q8EOkse6XYAuGUXS7CtCoIfdNj9QrdBbnUexpMBbsD
-	 yjqmhSlc8gkmG99WflAqiOHbM51tbxHxPcEPGPsK3TeQ5aOGrgsQizpvqiMUvHOzcO
-	 XLAUrWVhHl+bg==
-Date: Fri, 26 Jan 2024 15:33:08 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dharma.B@microchip.com
-Cc: Conor.Dooley@microchip.com, sam@ravnborg.org, bbrezillon@kernel.org,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	lee@kernel.org, thierry.reding@gmail.com,
-	u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
-	Linux4Microchip@microchip.com
-Subject: Re: [PATCH v3 3/3] dt-bindings: mfd: atmel,hlcdc: Convert to DT
- schema format
-Message-ID: <20240126-uncommon-stout-dd3243e6b43f@spud>
-References: <20240118-recent-glorified-fd35d72e006e@spud>
- <c33868c8-dc42-4800-885c-5e5f24c2044e@microchip.com>
- <20240119-character-mardi-43571d7fe7d5@wendy>
- <da60f9f3-f955-4a87-a020-5710185953c0@microchip.com>
- <20240122-stark-duress-2f59294dcf27@spud>
- <4906b7e2-0ddb-4d3c-a48b-e16278f2d649@microchip.com>
- <20240124-lend-emerald-1028fe65cc39@spud>
- <c3c30bf2-e7c2-4861-bfdf-519a7afde476@microchip.com>
- <20240125-proved-passage-7fa128f828db@wendy>
- <51da296d-a8a9-417a-8875-3b5e866a89a3@microchip.com>
+	s=k20201202; t=1706283758;
+	bh=Y3Z8LYJk8ojW2lKAiG+yhwYm9jBbV1csLki0ZOFKhMU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=dAJq1/H2LfglyYCA895mP0pspSKJfqBVqPTM4GDwFZ8lW8euWLEuCc2/hX/jRTuiV
+	 3f/FkRZKJMdvbAhB9rNhN9sH152hxZKGQCFIf9T3/v1iCgCBTclwEXnkDL9CnUV/Cv
+	 vVXKvYuZLmaoyvwI84OPn8tjrTDIcQwaJuha8qPDer5lOafCjlHGb2h3GW++6Nwr2H
+	 XukhS077gS7ztTG4Jd8BbprS1hcOLQDmvu8CPjBVTrx85qxt2ubCJtQOyccAEeKV6K
+	 gA6K7jWJN82Dg1gi+TfMVRYYE0EaHDP+CWYTy+gtz8sTgZp+bvHPery5G9FZVSGPSr
+	 WG/k81l3tdSwA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92D52C47DDF;
+	Fri, 26 Jan 2024 15:42:38 +0000 (UTC)
+From: Christoph Winklhofer via B4 Relay
+ <devnull+cj.winklhofer.gmail.com@kernel.org>
+Subject: [PATCH v5 0/3] w1: add UART w1 bus driver
+Date: Fri, 26 Jan 2024 16:42:02 +0100
+Message-Id: <20240126-w1-uart-v5-0-1d82bfdc2ae9@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="N7HfhWSgZScgqIKp"
-Content-Disposition: inline
-In-Reply-To: <51da296d-a8a9-417a-8875-3b5e866a89a3@microchip.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMrSs2UC/02OzQ6CMBAGX8X07JLtH1RPvofxUHCRqlBTEDSEd
+ 7eQqBz28CU7kxlZS8FRy/abkQXqXet8E4feblhR2eZC4M5xM4FCIUcFA4enDR0QmdRoy7XVyOL
+ 3I1DpXovpeIq7DL6Grgpkv7zkIh6iQpMohToFDsU1GVxzu1e+pHC41Nbdk8LXs7BybefDeynr5
+ az9RuhfRC8BIXZkuJO5oCxdKeaIXq259M+pyGUlcZkZa3JJa26apg/1cHhQFwEAAA==
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Christoph Winklhofer <cj.winklhofer@gmail.com>, 
+ Rob Herring <robh@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Jonathan Corbet <corbet@lwn.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-serial@vger.kernel.org, linux-doc@vger.kernel.org
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1706283756; l=4786;
+ i=cj.winklhofer@gmail.com; s=20240104; h=from:subject:message-id;
+ bh=Y3Z8LYJk8ojW2lKAiG+yhwYm9jBbV1csLki0ZOFKhMU=;
+ b=R7jPweL5XSb8Z6yp5Suh+YaLtVSrdR/qZScd1ek+b7zMEqmM4CViPNz9//ExzoN4cS/V1iWGN
+ p22SMvhB6kFBdh3lKRlb1aK20ei243q+aWJr1N5gDMfxQrWPaE+ys/d
+X-Developer-Key: i=cj.winklhofer@gmail.com; a=ed25519;
+ pk=lgjGjOt7hFKJT9UXhgUyrdthxvZ7DJ5F1U/7d9qdAsk=
+X-Endpoint-Received:
+ by B4 Relay for cj.winklhofer@gmail.com/20240104 with auth_id=111
+X-Original-From: Christoph Winklhofer <cj.winklhofer@gmail.com>
+Reply-To: <cj.winklhofer@gmail.com>
 
+Hello!
 
---N7HfhWSgZScgqIKp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch contains a driver for a 1-Wire bus over UART. The driver
+utilizes the UART interface via the Serial Device Bus to create the
+1-Wire timing patterns.
 
-On Fri, Jan 26, 2024 at 02:22:42PM +0000, Dharma.B@microchip.com wrote:
-> On 25/01/24 1:57 pm, Conor Dooley - M52691 wrote:
-> >=20
-> >>> If the lvds pll is an input to the hlcdc, you need to add it here.
-> >>>   From your description earlier it does sound like it is an input to
-> >>> the hlcdc, but now you are claiming that it is not.
-> >>
-> >> The LVDS PLL serves as an input to both the LCDC and LVDSC
-> >=20
-> > Then it should be an input to both the LCDC and LVDSC in the devicetree.
->=20
-> For the LVDSC to operate, the presence of the LVDS PLL is crucial. Howeve=
-r, in the case of the LCDC, LVDS PLL is not essential for its operation unl=
-ess LVDS interface is used and when it is used lvds driver will take care o=
-f preparing and enabling the LVDS PLL.
+Changes in v5:
+- dt-binding: allow child object for onewire and use prefix -bps for
+  baud rate configuration.
+- use type u8 for a byte, instead of unsigned char
+- use constants (NSEC_PER_SEC, BITS_PER_BYTE)
+- make delay computation from packet time more coherent
+- Link to v4: https://lore.kernel.org/r/20240106-w1-uart-v4-0-7fe1378a8b3e@gmail.com
+Thanks Jiri, Krzysztof and Rob for the review.
 
-Please fix your line wrapping, not sure what's going on here, but these
-lines are super long.
+Changes in v4:
+- rework baud-rate configuration: also check max bit-time, support higher
+  baud-rates by adding a delay to complete 1-Wire cycle.
+- dt-binding w1-uart: specify baud-rates for 1-Wire operations
+- Link to v3: https://lore.kernel.org/r/20240105-w1-uart-v3-0-8687093b2e76@gmail.com
 
-> Consequently, it seems that there might not be any significant actions we=
- can take within the LCD driver regarding the LVDS PLL.
+Changes in v3:
+- improve baud-rate configuration: use specific limits for 1-Wire
+  reset, touch-0 and touch-1 operation, compute in nanoseconds.
+- remove unused header atomic.h
+- use function instead of macro to compute bit-time from baud-rate
+- switch to b4 util to publish patch: missing recipients
+- Link to v2: https://lore.kernel.org/lkml/20231223100408.44056-1-cj.winklhofer@gmail.com
 
-You should be getting a reference to the clock and calling enable on it
-etc, even if the LVDSC is also doing so. That will allow the clock
-framework to correctly track users.
+Changes in v2:
+- add documentation for dt-binding
+- allow onewire as serial child node
+- support different baud-rates: The driver requests a baud-rate (9600
+  for reset and 115200 for write/read) and tries to adapt the
+  transmitted byte according to the actual baud-rate returned from
+  serdev.
+- fix locking problem for serdev-receive and w1-master reset/touch: The
+  received byte is now protected with a mutex - instead of the atomic,
+  which was used before due to the concurrent store and load.
+- explicit error in serdev-receive: Receiving more than one byte results
+  in an error, since the w1-uart driver is the only writer, it writes a
+  single-byte and should receive a single byte.
+- fix variable names, errno-returns, wrong define CONFIG_OF
+- fix log flooding
+- fix driver remove (error-path for rxtx-function)
+- Link to v1: https://lore.kernel.org/all/20231217122004.42795-1-cj.winklhofer@gmail.com
+Krzysztof, thank your very much for your feedback!
 
-> If there are no intentions to utilize it within the driver, is it necessa=
-ry to explicitly designate it as an input in the device tree?
+It was tested on a "Raspberry Pi 3 Model B+" with a DS18B20 and on a
+"Variscite DART-6UL" with a DS18S20 temperature sensor.
 
-The binding describes the hardware, so yes it should be there. What the
-driver implementation does with the clock is not relevant. That said, I
-think the driver should actually be using it, as I wrote above.
+Content:
+- Patch 1: device tree binding 1-Wire
+- Patch 2: allow onewire as serial child node
+- Patch 3: driver and documentation
 
->=20
-> If yes, I will update the bindings with optional LVDS PLL clock.
->=20
-> clock-names:
->   items:
->     - const: periph_clk
->     - const: sys_clk
->     - const: slow_clk
->     - const: lvds_pll  # Optional clock
+The patch was created against the w1 subsytem tree (branch w1-next):
+  Link: https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-w1.git/
 
-This looks correct, but the comment is not needed. Setting minItems: 3
-does this for you.
+The checkpatch.pl script reported the following error - which I am not
+sure how to fix:
+  WARNING: added, moved or deleted file(s), does MAINTAINERS need
+  updating?
 
-> >> with the
-> >> LVDS_PLL multiplied by 7 for the Pixel clock to the LVDS PHY, and
-> >=20
-> > Are you sure? The diagram doesn't show a multiplier, the 7x comment
-> > there seems to be showing relations?
->=20
-> Sorry,=20
-> LVDS PLL =3D (PCK * 7) goes to LVDSC PHY
-> PCK =3D (LVDS PLL / 7) goes to LCDC
+The technical details for 1-Wire over UART are in the document:
+  Link: https://www.analog.com/en/technical-articles/using-a-uart-to-implement-a-1wire-bus-master.html
 
-I'll take your word for it :)
+  In short, the UART peripheral must support full-duplex and operate in
+open-drain mode. The timing patterns are generated by a specific
+combination of baud-rate and transmitted byte, which corresponds to a
+1-Wire read bit, write bit or reset pulse.
 
-> >> LVDS_PLL divided by 7 for the Pixel clock to the LCDC.
-> >=20
-> >> I am inclined to believe that appropriately configuring and enabling it
-> >> in the LVDS driver would be the appropriate course of action.
-> >=20
-> > We're talking about bindings here, not drivers, but I would imagine that
-> > if two peripherals are using the same clock then both of them should be
-> > getting a reference to and enabling that clock so that the clock
-> > framework can correctly track the users.
-> >=20
-> >>> I don't know your hardware, so I have no idea which of the two is
-> >>> correct, but it sounds like the former. Without digging into how this
-> >>> works my assumption about the hardware here looks like is that the lv=
-ds
-> >>> controller is a clock provider,
-> >>
-> >> It's a PLL clock from PMC.
-> >>
-> >>> and that the lvds controller's clock is
-> >>> an optional input for the hlcdc.
-> >>
-> >> Again it's a PLL clock from PMC.
-> >>
-> >> Please refer Section 39.3
-> >> https://ww1.microchip.com/downloads/aemDocuments/documents/MPU32/Produ=
-ctDocuments/DataSheets/SAM9X7-Series-Data-Sheet-DS60001813.pdf
-> >=20
-> > It is not the same exact clock as you pointed out above though, so the
-> > by 7 divider should be modelled.
->=20
-> Modelled in mfd binding? If possible, could you please provide an example=
- for better clarity? Thank you.
+For instance the timing pattern for a 1-Wire reset and presence detect
+uses the baud-rate 9600, i.e. 104.2 us per bit. The transmitted byte
+0xf0 over UART (least significant bit first, start-bit low) sets the
+reset low time for 1-Wire to 521 us. A present 1-Wire device changes the
+received byte by pulling the line low, which is used by the driver to
+evaluate the result of the 1-Wire operation.
 
-Whatever node corresponds to the register range controlling this PLL
-should be a "clock-controller" (like any other clock provider does).
-Your PMC should have this property. I don't know if the correct location
-is the mfd node or somewhere else, you'll have to check your docs.
+Similar for a 1-Wire read bit or write bit, which uses the baud-rate
+115200, i.e. 8.7 us per bit. The transmitted byte 0x00 is used for a
+Write-0 operation and the byte 0xff for Read-0, Read-1 and Write-1.
+
+Hope the driver is helpful.
 
 Thanks,
-Conor.
+Christoph
 
---N7HfhWSgZScgqIKp
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+Christoph Winklhofer (3):
+      dt-bindings: w1: UART 1-Wire bus
+      dt-bindings: serial: allow onewire as child node
+      w1: add UART w1 bus driver
 
------BEGIN PGP SIGNATURE-----
+ .../devicetree/bindings/serial/serial.yaml         |   2 +-
+ Documentation/devicetree/bindings/w1/w1-uart.yaml  |  60 +++
+ Documentation/w1/masters/index.rst                 |   1 +
+ Documentation/w1/masters/w1-uart.rst               |  54 +++
+ drivers/w1/masters/Kconfig                         |  10 +
+ drivers/w1/masters/Makefile                        |   1 +
+ drivers/w1/masters/w1-uart.c                       | 402 +++++++++++++++++++++
+ 7 files changed, 529 insertions(+), 1 deletion(-)
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240104-w1-uart-ee8685a15a50
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbPQtAAKCRB4tDGHoIJi
-0hAfAP9oD7w7XXefbTe7aCamQ784UR9nGzozBzN9AoLVCrxKGAD+JD5kiMlu70l/
-6YBAmgN41j1kRbKlAUFnrV4Y2INzNgU=
-=MfAt
------END PGP SIGNATURE-----
+Best regards,
+-- 
+Christoph Winklhofer <cj.winklhofer@gmail.com>
 
---N7HfhWSgZScgqIKp--
 
