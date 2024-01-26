@@ -1,151 +1,111 @@
-Return-Path: <devicetree+bounces-35501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48F2583D952
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1A7083D979
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:37:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED64F28B0DA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:30:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72A3F291077
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1775914288;
-	Fri, 26 Jan 2024 11:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C9912B6F;
+	Fri, 26 Jan 2024 11:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="Iv99MF2k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r2DOHFRO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40A5514273
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4795D175B4
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:37:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706268600; cv=none; b=PGfy2rRDDB7wuxNhsZD6dnwL5KGqTv/6U++q8nKwiQxato7nzYHIyXrYbibUiufrm5RxdufjrLlupIfCgnYGbNV4jRvNvmIGBbu9fMcjJcfJveUDHYOmX47KP6+l0eGcRUJuw76BjaI5/+rqVqFOBAhQxMca+rwLCKbiYwB6v/Q=
+	t=1706269059; cv=none; b=CPh4LYtCRFGyp9ikNqM4joaSZPgBryc9dhWsP8YavTmZeQ0k9u83ptgMgTBIPw5Kd/WNodIyNK8krkXvWOv7B8pKOEqA3mW/YBloihlA87eVhjBCaCrcSq37ez2m3MZ1o1tpPXMoYCWOOU4FlolG1xZUxl2XumzHkJCKs08ZntE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706268600; c=relaxed/simple;
-	bh=kk8TW/ENv6T0jmFy9Fe2+TbD0NwhTcZRKCATFbVXU5Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V2QuLkMjnpZKA3vD2AILKLGkqC5+1kByeMy5ZEJ8rc7g/BLxqkGL4HLz7303E5B0JB5QV/zoi+XRVQdqiaBf/f49Fy3bSlP5wmdVz3+dZ5zqdmNpAj6bmA3lkCPpNgC7kkDqWIhJc0Ur4sEV5zHCQJLJQ0KHbZ/l9hmBtBAwFQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=Iv99MF2k; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-40e913e3f03so3871685e9.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:29:57 -0800 (PST)
+	s=arc-20240116; t=1706269059; c=relaxed/simple;
+	bh=aVtryNgCeI9llkL9nErhikWbqjYRuoSjAg5NeEwQLjM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=YK6Nc1gL08lqadKOfDXQoZpuqb0O4GumpesAcN+uvkYac16AV0qK+Whwfr6Jj20+aRR3QsZnNVusKpnRmjob3gh1aPRUcKTKC0GrP+01cqNDSp38GQccIVGDKri3ZRyjbY4egZVO+pKsSs7anKWB5UoOiMFLqrzYxkTZvsUYFVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r2DOHFRO; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a3122b70439so40796266b.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:37:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1706268596; x=1706873396; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4MpsuS1RISyLieZhG+nOiB9EUsr5IB8MOc8CVenn3tg=;
-        b=Iv99MF2kSSEJGJY2SZq2G/qhZ0/3ytHYOkTRoy7bzw7AkwjNpKKDqfMGQNonCVsA2X
-         RqdrvIfrbei+JIgmhpGt8y+ctkgE6mOpx7iA3VDOrH8M5pph3NGH9woIVbC1bAculiBw
-         rX9Tlhs6NW4fnNmzXcLeGP1kA1/x2/0o83h3nHrhkLnh6W4Fpf9KTuxbkFb7dUQG8FpK
-         qBXrWHV4pM0kqK30Sq8SeFSAg3lG96cvpqysCXRIQt8htqlWcGPR55MR4GqyOUr6IQSq
-         Oa53djDYl4mCUwwNOL+b82DtaQh8gjTkx0OUiys+J+knfr/HpEOGAAsN8Hp6+A/Nciv/
-         BFIQ==
+        d=linaro.org; s=google; t=1706269056; x=1706873856; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VyfE4aHWGmupocj2MXVZCjO5uTyD3plTwI5NbWoJyRI=;
+        b=r2DOHFROPuJAfDfRysrYaNgHgE/xqLmLhoXwDcUHaQDRnp1ZZ/JSDKP/1tArAH0Bi+
+         zNXQNvAnRxq+vB/n7i0wTthgNWinkFBDA5YSXeslXlX0oDeeQJGOYE8tQhqNHxnVLcWu
+         QRWigzosloeIy/0BnEH5SuNhH4QHyoW70TQ0bFJI4Jr8f6ihD5IRLxfb7OnVWCnsAsxN
+         cX+ubE23Ou5TH0ZRKEZbaXVh3HA1Wacz2SWTYS7tzCjQYCTd35WM6zxEGyKn9SIVrRvc
+         gKMfgMAEwSn/3jsBSkRLiTxu9wKOlEDQrr6CO/EPJaxCr0jVgjI5RX3MAdfDERNqMJI8
+         KE5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706268596; x=1706873396;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4MpsuS1RISyLieZhG+nOiB9EUsr5IB8MOc8CVenn3tg=;
-        b=GAXqPAMrp9FOp80eMgr9D3FFnVzUbUdzG0/z8sx5NmPcBjat0LfYS2hSZbN6JBP+qC
-         ELpkheTKEnU6y59pP2kPEJwv7zq6/UvRAkFTxdj/YOXCW+4x3AfSI5ECVgNBBT9o5VPq
-         KfT3E3YiRGJNBuyYi0aHHYyYmbzAYmH0AArMfMzr50XsXPy6pKXSFawgVnsGI++56U55
-         v9Q+WuDMCmcMLIzGxDnp4h+s15nTIgd4Hj4le/9hMYosS186va1CfV3cSIja6OFHaef+
-         EbMY5Lm5JUAeaBtymZ74PT8dCZUyQ4UMmNQgE4rs9YsZmnX5cm0H/M9jJiBx1oNzd2lD
-         VDuQ==
-X-Gm-Message-State: AOJu0YzI7OL09BrG3FZ3XWmKPWVxLigAr7npQOKZFsFQ3g3DIHdK8H1m
-	mcXhTaQHBVSVbHKkuT8Sa9oOXXsX5+QDSHUx6iY1q2osj5p0z47v5VeF7GJWFTKtlhNna4fbXux
-	R5dM=
-X-Google-Smtp-Source: AGHT+IFZgFs4WF2KSb72kcILtaARumCAGosfYJuXqhmjqYlE1W8oA4FFNJfIo+it28R8yLf/Ude3eg==
-X-Received: by 2002:a05:600c:5247:b0:40e:44ad:4645 with SMTP id fc7-20020a05600c524700b0040e44ad4645mr810415wmb.3.1706268596440;
-        Fri, 26 Jan 2024 03:29:56 -0800 (PST)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id p13-20020a05600c468d00b0040eaebc4e8fsm5523313wmo.1.2024.01.26.03.29.55
+        d=1e100.net; s=20230601; t=1706269056; x=1706873856;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VyfE4aHWGmupocj2MXVZCjO5uTyD3plTwI5NbWoJyRI=;
+        b=lZsb3kitBFGkng1ggMFxORk6xcN3UuiMDBJS3GBAfS9temcwOGNx4HNp9P1KQ7RJAg
+         U0e2Z8holm89t2/LOVQmCSWrn1oei/4yrn1Gan3vClc4Jzuafj8K1Eql852ZMVT1d0s8
+         EYEPKwuv9Os7IfxJieNhlJqkEVzPp2YKKaiNrPwLfghyFH/m2qCI8W/t9StTi+ca1EBc
+         iXsfEbAdJ5lFIAc3Zji2qZirZGmzqY2gWOirp+ta5qemw6AKaTO5Awo8L99j8/wwT3/K
+         QkIG3NJIllgkldBAeTrPRqHQd3hAyaLG8WcbaCh5reH2yOnwmmcFHG6oVcBMO3YcJI/i
+         ooqg==
+X-Gm-Message-State: AOJu0YySLjZDr6UzAin5N5gh5k8lgb3H44HcpNcgQfyT57ykp1y5T2cD
+	IP6fqZRTu/USuW17fuxOuGXvTk7ERkgyKd/btDPU07gOyDvXKeC/7hCJS4XZM2U=
+X-Google-Smtp-Source: AGHT+IE5JL0AWt0MwbO/5tTi7/PLqwNL3x9FZCwpvME4CHdNTEo/fI4XwYPgYtF7z78zX/MliMr66Q==
+X-Received: by 2002:a17:906:c45:b0:a31:6a55:7d71 with SMTP id t5-20020a1709060c4500b00a316a557d71mr1378211ejf.71.1706269056409;
+        Fri, 26 Jan 2024 03:37:36 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id cw6-20020a170907160600b00a2d5e914392sm534735ejd.110.2024.01.26.03.37.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 03:29:56 -0800 (PST)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Naresh Solanki <naresh.solanki@9elements.com>
-Cc: mazziesaccount@gmail.com,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: hwmon: tda38640: Add interrupt & regulator properties
-Date: Fri, 26 Jan 2024 16:59:44 +0530
-Message-ID: <20240126112945.1389573-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.42.0
+        Fri, 26 Jan 2024 03:37:36 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: linux-arm-kernel@lists.infradead.org, 
+ David Lechner <david@lechnology.com>
+Cc: Sekhar Nori <nsekhar@ti.com>, Rob Herring <robh+dt@kernel.org>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <20211017195105.3498643-1-david@lechnology.com>
+References: <20211017195105.3498643-1-david@lechnology.com>
+Subject: Re: [RESEND PATCH] ARM: dts: da850: add MMD SDIO interrupts
+Message-Id: <170626905516.53425.15339364766871978744.b4-ty@linaro.org>
+Date: Fri, 26 Jan 2024 12:37:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.4
 
-Add properties for interrupt & regulator.
-Also update example.
 
-TEST=Run below command & make sure there is no error.
-make DT_CHECKER_FLAGS=-m dt_binding_check
+On Sun, 17 Oct 2021 14:51:05 -0500, David Lechner wrote:
+> This adds the MMC SDIO interrupts to the MMC nodes in the device tree
+> for TI DA850/AM18XX/OMAP-L138.
+> 
+> The missing interrupts were causing the following error message to be
+> printed:
+> 
+>     davinci_mmc 1c40000.mmc: IRQ index 1 not found
+> 
+> [...]
 
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
----
- .../hwmon/pmbus/infineon,tda38640.yaml        | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-index ded1c115764b..2df625a8b514 100644
---- a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-@@ -30,6 +30,15 @@ properties:
-       unconnected(has internal pull-down).
-     type: boolean
- 
-+  interrupts:
-+    maxItems: 1
-+
-+  regulators:
-+    $ref: /schemas/regulator/regulator.yaml#
-+    type: object
-+    description: |
-+      list of regulators provided by this controller.
-+
- required:
-   - compatible
-   - reg
-@@ -38,6 +47,7 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-     i2c {
-         #address-cells = <1>;
-         #size-cells = <0>;
-@@ -45,5 +55,15 @@ examples:
-         tda38640@40 {
-             compatible = "infineon,tda38640";
-             reg = <0x40>;
-+
-+            //interrupt-parent = <&smb_pex_cpu0_event>;
-+            interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
-+            regulators {
-+                pvnn_main_cpu0: vout0 {
-+                    regulator-compatible = "vout0";
-+                    regulator-name = "pvnn_main_cpu0";
-+                    regulator-enable-ramp-delay = <200>;
-+                };
-+            };
-         };
-     };
+[1/1] ARM: dts: da850: add MMD SDIO interrupts
+      https://git.kernel.org/krzk/linux-dt/c/8af75ce86f7d55124e41b499aa43f50748138bec
 
-base-commit: ecb1b8288dc7ccbdcb3b9df005fa1c0e0c0388a7
+Best regards,
 -- 
-2.42.0
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
