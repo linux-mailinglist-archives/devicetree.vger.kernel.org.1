@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-35430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F2483D6E8
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:53:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E25AA83D700
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:56:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB8F41C2E885
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:53:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E4ED29904A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:54:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE215BAC0;
-	Fri, 26 Jan 2024 09:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D5B65C608;
+	Fri, 26 Jan 2024 09:05:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="On48FVs5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nBCXb1E0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA765B5D6
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 09:03:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CD6123D6
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 09:05:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706259839; cv=none; b=TdYVvPls/jCsBMmR8wb2aqrXXtn51VBPfnxMBfEqrkoa7OmLDN1EDwjWn2JP87zx/v2vPKwPhwWH1lWiRHf3jxXtTTKcvvHsK1eDgvL/G6ggGO8pOpGMtxBivjQ/Yt4S68rxRUIEee8C8KjY22Ktwqfzro01oyvHOLeT4rA9tEo=
+	t=1706259908; cv=none; b=JY5FkGPbYKjAHHa6t9fhjU63MRz3piZ+0TYqI7a8zuCU4QfPotN73v6+v9EHAhhSXekGfkztr22dMCtJJxkWI0hiUL3H+uBEfguqd65scLEZANp12ID9mTqE/2Hd7bPfMbM7byt0OJfbq9vnoK3kYFXhJVPODOQoamCuOLEgXIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706259839; c=relaxed/simple;
-	bh=3LnmvNetm1QwgznC98yi3XYnV0Q3PjpkLrlwj9rwZx0=;
+	s=arc-20240116; t=1706259908; c=relaxed/simple;
+	bh=x35Kj8wm58jrT0Wc51eUf9sCVbM3qnclfERDjXz18sU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dEvmczwDiuftmNe8eyvzuThCbgUvZV+oFtoMJZyJbL/EPghnfzoL1sUWj0jTKOhirmLdZ0Oop2FbETKN9T6Rf/YwJeuPMtX9AQ5YFnOjEgs85MA6z3NzdUg/131k3ej/+zSTn6Zvpsq7uiwT8666VBkilpz2QutjbAKcwFqgfcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=On48FVs5; arc=none smtp.client-ip=209.85.208.54
+	 In-Reply-To:Content-Type; b=gtt1AhQTicZXgUxO2GZiyYX10jR2/BezeHqbv+1ItDaGgB7pxYve4V0jYImGBcPP071jnP8lRcDFt8cFywPtp31IBlFKvQGPfzPQZ8DEuRl6y6Z8C0fG5cdldbbURBLIVUQK0D8VZzjG2JUI8HSwM/S7/UPRSCUD3jWTI47ujh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nBCXb1E0; arc=none smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-55a5e7fa471so109963a12.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 01:03:57 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-55c1ac8d2f2so97870a12.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 01:05:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706259836; x=1706864636; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706259905; x=1706864705; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YUogZIWl0s+Zj3EdGUH/qSBYhbrIOgv7SRqOagEMmc0=;
-        b=On48FVs5XRH/ae92wJAFObx2xk4Di6SRILyzg/g0ECkNZ1A90i9o/ToOIMJKaohimV
-         7SEynPNk52pKccd7PSAp5oAVNKAEeajWy25zpR7Z92r2wI9tDuJCnZY/quFPq5nLWoVN
-         ddNsmygynsi0CksMJbe7UvANuj8VKQ1y4mll/Nn9oQ/OyRXQHB5iu1etddfAsSDhdUOq
-         zZLAI+UpTAaOF2IqfHz/5VxIc7MYrWBK7YB+WbOrZnC48fiKj5EnbFkVQK96WUY7hLt0
-         KB4ddue1btX9AHtk+lx7sFbhcq8S0X97z3Ku4fDr9eSAjHlI64W1y1vICS+qGdrXbGIQ
-         Jbmw==
+        bh=EV128Swe/u/zZUG88wpAtk90vrfCtb7ojfwXQ24B0Ic=;
+        b=nBCXb1E015adxvhjtHehkp/VnQeHR4ijXWA/VYDB+R2uXtdiH0E7n1akWPaRKcj4d+
+         oUXs11jFPvKn5ypsxHkg86xgQY7URkmxsASQAjEjbupp88QHi7VumwaNA9uJWegsqr1J
+         PiIQkoMSmCgIvE96HpSgm+QqjJDGRE8Y/EyMZztgQPV1gxmexAFdIIwA0DzxEfTvzlcD
+         h/8WtGBM7QG7FUbuXA5baUXCI4uULCa7glu0tL/chbdmiOGvS5bi7E5StLA02+z2DAbU
+         ow5n9qsaHJZ2+T8LRyM4/d2Kfl1gR6ORWMn4ih9y2fxebxFPHfPvkCteOHlHgObIPFr5
+         fvfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706259836; x=1706864636;
+        d=1e100.net; s=20230601; t=1706259905; x=1706864705;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YUogZIWl0s+Zj3EdGUH/qSBYhbrIOgv7SRqOagEMmc0=;
-        b=iHfx3w4ju+1F8u1na1wIUS9dCH8wQi1t4b8AdGxFx6ByHHX9Z7n+3LX1TKMc81v8QS
-         FPUE3msuObjaB/3eea05Y56YtpiIqWCJLZam6oTaprYTgaV9BCBg91NhEhGZx2mR14E1
-         te3Mu0M0sJ1CxhsN8jKP2KD3NJpCec0JuQbQyKlYnNscT7ODijtzHRWg875fluVt7VSW
-         pqkyotSySD8Al1/AnzPna1THg9Wib5PA6McpRm2q4aRIHLrmtA1QMWqoFZWFD2vMDBBF
-         BZnD4Yf80N1jHAwD7L2QWdBMfg/uTeaHJYJY+lk7RVPkZq6hCnCWdAO3ppD52YoDOnco
-         UFsg==
-X-Gm-Message-State: AOJu0YzQZDD03jhHLZs4d6TC9R544wgfc25os2leJjH+ckJXU43LMgNk
-	Lgqd+I2c/oNn+CyqTwsp4mgjRZedbOj78R+xaNewO31bEy4I3UQR7nC9XZRmcvY=
-X-Google-Smtp-Source: AGHT+IHtocSuP9Gwsy3Jh+BKdTz2C5aBNFPV+8qkTgvdxysckcW2hYHiGcQrWucsjtJm/URpE3uoMA==
-X-Received: by 2002:aa7:c510:0:b0:55a:ea3:c12a with SMTP id o16-20020aa7c510000000b0055a0ea3c12amr546874edq.20.1706259835789;
-        Fri, 26 Jan 2024 01:03:55 -0800 (PST)
+        bh=EV128Swe/u/zZUG88wpAtk90vrfCtb7ojfwXQ24B0Ic=;
+        b=f2o25AuEPJG9NK60L/+55TAOjbC235H+0mXGMWPp1Rlif6m+M1jTAiLPIHfMuHx+Sx
+         ChqAEGHg888l1JTZkctD4wWqBYh4vcNkvf8cRbVE5l6ifRSuSHwj7JMnyeS717eWFUnk
+         RaKZNnJeLAT4LP5G6FTFpax1qckxVXHZOZIZ5EdZ7ErUo6sKTDRBOF7Z8Lt9jnmykekC
+         0A4JOsuapkDGtaeG8xlRgbbf6rordBsl1B5YJgEp72JzKwWNr1UAF7EWKz/k/tnP08Uf
+         DY7EmGxWX+fumkfBGGnnBnciVTyumimYxh2nB2XyCaW240wD8Qpw6HI7m9SPlKdeH8R8
+         CdDw==
+X-Gm-Message-State: AOJu0Yzcm2iXJdcOpcJptCTFMLFMcZfn+9iYSfVcRrCUyuOk7mZe5NlU
+	SNeKR5I5hNadVWY2wWj3hes4WNdnxttT6rXLQQQ+jQ3VSWdG6Pd+C1ipAWjMmr4=
+X-Google-Smtp-Source: AGHT+IGc74PDiVlf5Q8T/hAWqFgHviz6OKqEYcEZ2/BNcmQZSFZHio14YRqbvoYLoLdRz5KZ36mAlg==
+X-Received: by 2002:a05:6402:22ad:b0:55d:2ecf:7ae7 with SMTP id cx13-20020a05640222ad00b0055d2ecf7ae7mr357309edb.9.1706259904795;
+        Fri, 26 Jan 2024 01:05:04 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.215.66])
-        by smtp.gmail.com with ESMTPSA id z34-20020a509e25000000b00559dd0a5146sm390490ede.44.2024.01.26.01.03.52
+        by smtp.gmail.com with ESMTPSA id z34-20020a509e25000000b00559dd0a5146sm390490ede.44.2024.01.26.01.05.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jan 2024 01:03:55 -0800 (PST)
-Message-ID: <58d24ddc-4e8f-4932-ac37-c9a699d36425@linaro.org>
-Date: Fri, 26 Jan 2024 10:03:51 +0100
+        Fri, 26 Jan 2024 01:05:04 -0800 (PST)
+Message-ID: <45688b5c-c92d-44fc-9d1e-894a4e0af864@linaro.org>
+Date: Fri, 26 Jan 2024 10:05:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,23 +75,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/8] dt-bindings: power: reset: add bindings for NVMEM
- hardware storing PSCR Data
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: fsl: remove redundant company
+ name
 Content-Language: en-US
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, kernel@pengutronix.de,
- linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, =?UTF-8?Q?S=C3=B8ren_Andersen?= <san@skov.dk>
-References: <20240124122204.730370-1-o.rempel@pengutronix.de>
- <20240124122204.730370-5-o.rempel@pengutronix.de>
- <4e14b7c7-7f0a-437b-aa84-20fdc30a2361@linaro.org>
- <20240125171146.GC381737@pengutronix.de>
+To: Hugo Villeneuve <hugo@hugovil.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ linux-imx@nxp.com, leoyang.li@nxp.com, hvilleneuve@dimonoff.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, andy.shevchenko@gmail.com
+References: <20240125165935.886992-1-hugo@hugovil.com>
+ <20240125165935.886992-2-hugo@hugovil.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,49 +131,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240125171146.GC381737@pengutronix.de>
+In-Reply-To: <20240125165935.886992-2-hugo@hugovil.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/01/2024 18:11, Oleksij Rempel wrote:
-> On Thu, Jan 25, 2024 at 11:57:18AM +0100, Krzysztof Kozlowski wrote:
->> On 24/01/2024 13:22, Oleksij Rempel wrote:
->>> Add device tree bindings that describe hardware implementations of
->>> Non-Volatile Memory (NVMEM) used for storing Power State Change Reasons
->>> (PSCR).
->>> +  that stores Power State Change Reasons (PSCR).
->>> +
->>> +allOf:
->>> +  - $ref: pscrr.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: pscrr-nvmem
->>> +
->>
->> So that's a driver :/. Maybe Rob will like it, but it's a no from me.
->> Please come up with something really suiting DEVICES, not DRIVERS.
+On 25/01/2024 17:59, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> If I understand your distinction between 'DEVICES' and 'DRIVERS'
-> correctly, 'DEVICES' in the device tree context are meant to represent
-> physical hardware components, while 'DRIVERS' refer to software
+> Company name in compatible description appears twice, which is not really
+> helpful, so remove it from product name.
+> 
+> The board is a prototype developed by my company and we are still at the
+> prototype stage, so there is zero ABI impact.
+> 
+> Fixes: bb405e8b5336 ("dt-bindings: arm: fsl: add RVE gateway board")
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> ---
 
-Yes.
-
-> abstractions of these components. However, there are numerous device
-> tree instances, like software-based implementations for SPI, I2C, or
-> GPIO, which could also be interpreted as 'DRIVERS' in the context of
-
-True. Yet they are still for physical interfaces. There is no DTS having
-some virtual I2C for a board which does not have I2C.
-
-> your email. Similarly, the binding for PSCRR represents functionality not
-> fully implemented in hardware but supported by the hardware component of
-> NVMEM, akin to how ramoops or other functionalities are represented.
-
-You don't need a binding for your case. Instantiate it whatever you wish
-- modprobe for example - and configure through approved kernel
-interfaces - sysfs for example.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
