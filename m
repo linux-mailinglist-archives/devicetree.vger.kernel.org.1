@@ -1,115 +1,155 @@
-Return-Path: <devicetree+bounces-35619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459FE83E04A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 18:34:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ADF183E05B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 18:36:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA76D1F22D4C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 17:34:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B093284644
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 17:36:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C615A200DD;
-	Fri, 26 Jan 2024 17:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11462031D;
+	Fri, 26 Jan 2024 17:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J3VGTPmt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CQDJjSGe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4302A200A6;
-	Fri, 26 Jan 2024 17:34:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07222AD53;
+	Fri, 26 Jan 2024 17:36:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706290492; cv=none; b=jtk/w1FK9yYGNLsfdDFA7/ikkhs14hxUTdGZ8pgXVjD3LRafMp9YA/mJEAvPsbCKMxCDWbCifBWDdu/pKevq0yCoNZ2g38jC9JwKCvRs4j7lxR9W+OMhlfSVS9ceKJNd1EwbU9j2mIjp7a/chfOwxbFspfsF49/NPVbCqa2ygTA=
+	t=1706290605; cv=none; b=VIfmLOG15Ce0QwdfAEhoDjk1Z3lcaSv+eIyyrxWHsXef2k6+Qi+qtsL8umnn3GiiUcL81Y+oXf78uKZHTmSPogGrrn6qNttZ0xsuymXvueeU2Ndf/VHq+5FcYBqzTwXlKJvFwiSnSh5CeINf90+ru9yDC/Q4sk4L9FE4q9ZMk58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706290492; c=relaxed/simple;
-	bh=PSve2HMsCSePamiKDZJKBwpef0wyPdobTyM/VM4wbEM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=X/UnhYcqhnE1FOfhwQj1BkHrgbokqg63eb7YiWJsO6SxFmn1J8svs6I4RM9zOd3ldZZaWQpZpwM6Lh8vje3qOpDx2zspF+MODizCJjdup30gQExe2sY76uWgBbWjaR4OyO7pV0xFiEG9T7RElhgwc0CZp+pSTX5gpI6+7hKbZgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J3VGTPmt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40QEu1No031328;
-	Fri, 26 Jan 2024 17:34:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Thymci3bHa5YmIFU4ETZg1p/85tKhDiTQBJEgDI+Olg=; b=J3
-	VGTPmtRnyNuepq/OtJh8S7KWc1D9nzaTad55i7yzAmktj52QA6UgYmGiN4MWOn2O
-	rDMhAK0nbMiTWKlxKM8gVNOpatm8od3nFBFdRM69nFlFRJnkfcDD2ABRmpIs/JFZ
-	lIjnzSPBfrblgILBhvkNprRsELIPHUC+5wy/M/mf9/zHb7WeT7A/uQBPqQMtp95a
-	dAkI7Lj9XBNLyqo2Vyg/yO6nCTUYxFzKEn57sI/opa3CVK8CgWui6xisyfB5unYA
-	1hxx8Arrlnc2MFvGmkqZbBJduFcdqX9Zz98lyhKaSg1m4DDWINPnp3rxDo0Si7xA
-	5E9/wdZy1xo9GajMIcTg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vv1ypsyxp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jan 2024 17:34:44 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40QHYgXT030289
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jan 2024 17:34:42 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 26 Jan
- 2024 09:34:42 -0800
-Message-ID: <694d5eb8-8a5b-55b6-e75d-6673ee44a7ac@quicinc.com>
-Date: Fri, 26 Jan 2024 10:34:41 -0700
+	s=arc-20240116; t=1706290605; c=relaxed/simple;
+	bh=ieTfurtfat+pVfBbfHgnr7Gb/OnUunNsdTZt3fG9fSs=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=DXdhiX8bzL6BeKEyGM/cNFKPOWpXJQn/BbqPqFm2IEPZq10vnth2QYbPXViheQbskSs94BfjBCO9AaDBIC1WoyelMJn6D+PbEckdG3E66fv0arFzscgvxLzrG7EitMaA7+S/t4ZRm2o2y88YPYtCZOPYj/WOXBoXnjaJsBN7/C0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CQDJjSGe; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706290604; x=1737826604;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=ieTfurtfat+pVfBbfHgnr7Gb/OnUunNsdTZt3fG9fSs=;
+  b=CQDJjSGe0sS/Q3TTyj7EM7zAc7KVtoh7oFmUINmt6XSLnWHQDycD38A7
+   Xrl07vsZJZEid4lnMxvLtqmlq8cQ6YwkFjrdsf+4D7E4PZ7Dx7rxK/V7G
+   uv6JXgSJhIAiFG2bDZSq58z8VVvod5TT/vUJ+CxJvwlkoThh+aIxmyY/x
+   7PnPwVnINQoqXdMa8qNnlFGh2/IwMAgAgnF332AgGkEs1vzMyRfnhiU0E
+   Tdze4QnhA+YxE5AbfHPkE6/x2iBD6LMjIR99ZHSARLwVSW4zIlmP0EXnF
+   tHXcztWxcqUo4HOPs9smiThHQwhltf7h6D4OBF9V7NVwr0WwJxbadtrMd
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="15886426"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="15886426"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2024 09:36:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="930424527"
+X-IronPort-AV: E=Sophos;i="6.05,216,1701158400"; 
+   d="scan'208";a="930424527"
+Received: from ppglcf2090.png.intel.com ([10.126.160.96])
+  by fmsmga001.fm.intel.com with ESMTP; 26 Jan 2024 09:36:37 -0800
+From: rohan.g.thomas@intel.com
+To: esben@geanix.com
+Cc: alexandre.torgue@foss.st.com,
+	conor+dt@kernel.org,
+	davem@davemloft.net,
+	devicetree@vger.kernel.org,
+	edumazet@google.com,
+	fancer.lancer@gmail.com,
+	joabreu@synopsys.com,
+	krzysztof.kozlowski+dt@linaro.org,
+	kuba@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	mcoquelin.stm32@gmail.com,
+	netdev@vger.kernel.org,
+	pabeni@redhat.com,
+	peppe.cavallaro@st.com,
+	robh@kernel.org,
+	rohan.g.thomas@intel.com
+Subject: RE: [PATCH net-next 1/2] dt-bindings: net: snps,dwmac: Time Based Scheduling
+Date: Sat, 27 Jan 2024 01:36:34 +0800
+Message-Id: <20240126173634.13162-1-rohan.g.thomas@intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <87msss4gtj.fsf@geanix.com>
+References: <87msss4gtj.fsf@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: msm8998: declare VLS CLAMP
- register for USB3 PHY
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>, Lee Jones
-	<lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <20240117-usbc-phy-vls-clamp-v2-0-a950c223f10f@linaro.org>
- <20240117-usbc-phy-vls-clamp-v2-4-a950c223f10f@linaro.org>
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20240117-usbc-phy-vls-clamp-v2-4-a950c223f10f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ncc6p8JmTJR_aOz3cnUQxysKIJMvDHsl
-X-Proofpoint-GUID: ncc6p8JmTJR_aOz3cnUQxysKIJMvDHsl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=685 mlxscore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 clxscore=1015 suspectscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 spamscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401190000
- definitions=main-2401260130
+Content-Transfer-Encoding: 8bit
 
-On 1/17/2024 7:04 AM, Dmitry Baryshkov wrote:
-> The USB3 PHY on the MSM8998 platform doesn't have built-in
-> PCS_MISC_CLAMP_ENABLE register. Instead clamping is handled separately
-> via the register in the TCSR space. Declare corresponding register.
+From: Rohan G Thomas <rohan.g.thomas@intel.com>
+
+On Fri, 26 Jan 2024 09:52:40 +0100, Esben Haabendal wrote:
+Hi Esben,
+
+Thanks for your comments. Like to get some clarification on a few
+things.
+
+> >>
+> >>Seems like OS configuration and policy.
+> >
+> > Tx queues need to be configured for TBS during hw setup itself as
+> > special enhanced descriptors are used by the hw for TBS support
+> > enabled queues. Switching between enhanced and normal descriptors on
+> > run is not feasible. So this flag is for enabling "Enhanced
+> > Descriptors for Time Based Scheduling". This I think is a hw specific
+> > requirement.
 > 
-> Fixes: 026dad8f5873 ("arm64: dts: qcom: msm8998: Add USB-related nodes")
-> Cc: Jeffrey Hugo <quic_jhugo@quicinc.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Support for enhanced descriptors is definitely hardware specific.
+> Enabling the use of enhanced descriptors is a configuration choice.
+> 
+> The tricky part here is that the whole devicetree bindings story for the
+> stmmac driver is filled with such configuration choices. As such, it is
+> only natural to add the property you are suggesting here. I completely
+> agree. But you can also argue that it is "wrong", because it does not
+> just describe the hardware, but also a configuration choice.
 
-Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+Isn't this requirement of using enhanced tx desc instead of normal tx
+desc to support TBS is specific to Synopsys IP? Switching from
+normal desc to enhanced desc at the time of tc-etf qdisc offload
+cannot be done without traffic disruption, which I don't think is
+acceptable. Since this behavior is IP specific, can we consider
+this as an OS configuration choice?
+
+Agreed that this feature(use of enhanced desc) can be enabled from
+glue drivers. But I added this dt property, thinking this feature is
+specific and common to DWMAC core and we can enable this feature for
+stmmac platform driver without a glue driver. If this is not
+acceptable, I can think of doing this from the glue driver.
+
+> >>Doesn't eh DWMAC have capability registers for supported features? Or
+> >>did they forget per queue capabilities?
+> >
+> > Yes, capability registers are available. For DWMAC5 IP, if TBSSEL bit
+> > is set, then TBS is supported by all Tx queues.
+> 
+> Not true. Some NXP imx8 and imx9 chips support Synopsys MAC 5.10a IP,
+> and does not support TBS for queue 0. And they have TBSSEL bit set, but
+> no TBS_CH support.
+
+AFAIU from Synopsys DWMAC5 Databook, all queues support TBS. But TBS
+cannot coexist with TSO. So all glue drivers enabling TBS feature
+avoid queue 0 to support TSO. Please correct me if I'm wrong.
+
+> 
+> > For DWXGMAC IP, if TBSSEL bit is set, then TBS is supported by TBS_CH
+> > number of Tx queues starting from the highest Tx queue. But because of
+> > the hw limitations mentioned above, TBS cannot be enabled for all
+> > capable queues.
+> >
+
+BR,
+Rohan
 
