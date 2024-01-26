@@ -1,129 +1,175 @@
-Return-Path: <devicetree+bounces-35583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7087183DE91
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 17:23:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB04083DE99
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 17:24:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AA48286EF3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:23:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 020EF1C234E8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658141D55D;
-	Fri, 26 Jan 2024 16:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79BEF1DA23;
+	Fri, 26 Jan 2024 16:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fEkTsWGm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CnWEJMii"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A231CD3F;
-	Fri, 26 Jan 2024 16:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECEE1D551;
+	Fri, 26 Jan 2024 16:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706286199; cv=none; b=fkpxCt6ZMbMfdTfQBW6ORKApV4y9LnkLq+p2JQ0xV7Z8RWaSg0Q/Hrt76rcge7Gh4RzSlp1SavikUVH3j7vPXyPwETml8Fnjf8PsBa6e62ZUgxyjr7Eus3L3qpk8ia/CyfEJxDvKMRt0i+9EK274nbzfUtW3VBYHefzDxMunJuk=
+	t=1706286285; cv=none; b=oPIzWE3gZWhzVqwedFWKj+xgHDEy010cq3PJdzgZ0VvJfzxc8vs5nWd3K/bL7fjdVfCM9FC5A1w98g8AOIhZnRTvyv1xxBtLjcD7phjLlC/6ZINJu7QWkVOAj4m3N3ejrBkoeYhJral45EQJdtfJvgRTFHmaeiUAk9ZRduQ7AzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706286199; c=relaxed/simple;
-	bh=2JCXgq32qIglC6mO72WRbjPvok3iIvPLQe2ZqDXoq+4=;
+	s=arc-20240116; t=1706286285; c=relaxed/simple;
+	bh=DoqAbsfp/jXuEtftuZQHNgaz372UxSZm/KUcTkXFdmc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ACJ4xEDku3bvSGTSw2JZKg6ICFGNRqGXbXlqj0sw14WqDgvT6lr7qE8kUzM4oZA96by1+Nn55tgOhpoUky2FEso6GWIB71FT/CZB/A70Mg2NKinkTCN0NAJvEOLABOLXlzls/oKTBM86zzCFh9R1CPz4UhI8Chu+1Ik/8edcD/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fEkTsWGm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A10D0C433F1;
-	Fri, 26 Jan 2024 16:23:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s9rWleizyDgtMP3y/mnmUU74y0Ap4eXymsdikAKPg5u84YFVTHRKRq+dWjPOusJ+LzEkn65HSwe1SQvLOIQVjAvXeHuJg2TlaYLH0NjLsz6kSqCwreb+NJf5bqDflJ+ZvajEUA9tW/eVNSNcAI+5G41ULpAEKUOHpss5iNIK420=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CnWEJMii; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3A1EC433C7;
+	Fri, 26 Jan 2024 16:24:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706286198;
-	bh=2JCXgq32qIglC6mO72WRbjPvok3iIvPLQe2ZqDXoq+4=;
+	s=k20201202; t=1706286284;
+	bh=DoqAbsfp/jXuEtftuZQHNgaz372UxSZm/KUcTkXFdmc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fEkTsWGm+pTv3JpEFsZcSKKxEWVnImncAwsQyoI3Ld7l8SqlSPkkztT/6mu8pqEam
-	 vpLLbGXpWSpvxubuMPdi5uAwFg5PAsQpDJ2RYnDpXQb18Lkdozxrjscnx2eqEOnHm8
-	 N3YGwkvhkqmRoM4YyAG0hwlgvuEX6Cw1xuO9WWStHUSB+R76n524qZSpZ52mqSDMbt
-	 qAmd1GVQf7jgU3LVhcwQgru0P+PSyZS1HKGCkz9QcV41zFIh+g6izksdFp3d+SIS53
-	 oB319QBS/gebFb4F/ER1A13hzFoCVoHbdFA3lczGeOkC/6HOiU0ADFoxFjTG9zgJ8u
-	 8cbQygMkAxiWg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rTOzK-000000007rm-46Kw;
-	Fri, 26 Jan 2024 17:23:31 +0100
-Date: Fri, 26 Jan 2024 17:23:30 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Daniel Thompson <daniel.thompson@linaro.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	b=CnWEJMiilY1kj327erSSMTX/4WCpqilT3s9TKiE/MAD1m+mXQCvvMqEXWriQ3zA6K
+	 clSMRsn8kMZWChKRCG9XamxXpY4TnBJ3MgFQ4NKPv9InPA+q5sWY90FTzrDxEq2EPt
+	 9b7yshKkveUpJvF1ty3suSApmznkUd/uXXDvIlR2pQHTI8KgJyoaxBZGet693aW1V5
+	 mhb79CqUe6IegisfRzBmg8vU/BNr6Y8C9cpIcPt/Fr3ulW22lL7Hz028b8vGmrWkOf
+	 msifvxpbvKbRkgdDtxp2nLRTOKmwWHmGjUjFc0b/wU8BrxxHu5EGs/0vg3l9xhgNe2
+	 pX7VWbflp4WCQ==
+Date: Fri, 26 Jan 2024 16:24:40 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-	Jiri Kosina <jikos@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@somainline.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp-x13s: Fix/enable
- touchscreen
-Message-ID: <ZbPcgqr9gBByqV7Q@hovoldconsulting.com>
-References: <20240125-x13s-touchscreen-v1-0-ab8c882def9c@quicinc.com>
- <20240125-x13s-touchscreen-v1-2-ab8c882def9c@quicinc.com>
- <ZbNpdaSyFS9tYrkd@hovoldconsulting.com>
- <20240126130232.GA5506@aspen.lan>
- <ZbPCJv7HW8OQzPMT@hovoldconsulting.com>
- <20240126145346.GN2936378@hu-bjorande-lv.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: hwmon: tda38640: Add interrupt & regulator
+ properties
+Message-ID: <20240126-fleshed-subdued-36bae813e2ba@spud>
+References: <20240126112945.1389573-1-naresh.solanki@9elements.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="qKb9f2iDT7+wsvKn"
+Content-Disposition: inline
+In-Reply-To: <20240126112945.1389573-1-naresh.solanki@9elements.com>
+
+
+--qKb9f2iDT7+wsvKn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240126145346.GN2936378@hu-bjorande-lv.qualcomm.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 26, 2024 at 06:53:46AM -0800, Bjorn Andersson wrote:
-> On Fri, Jan 26, 2024 at 03:31:02PM +0100, Johan Hovold wrote:
-> > On Fri, Jan 26, 2024 at 01:02:32PM +0000, Daniel Thompson wrote:
+On Fri, Jan 26, 2024 at 04:59:44PM +0530, Naresh Solanki wrote:
+> Add properties for interrupt & regulator.
+> Also update example.
 
-> > > In short it looks like the delays make the difference and, even a short
-> > > delay, can fix the problem.
-> > 
-> > Right, but since the suppliers are left enabled by the bootloader (and
-> > never disabled by the kernel), that only begs the question of why this
-> > makes a difference.
-> 
-> You're right, the supply is kept on by other things, so this isn't the
-> problem.
-> 
-> > Without the delay, the other HID devices are probing (successfully)
-> > slightly before, but essentially in parallel with the touchscreen while
-> > using the same resources. Is that causing trouble somehow?
-> 
-> The difference to those other HID devices is GPIO 99 - the reset pin,
-> which is configured pull down input from boot - i.e. the chip is held in
-> reset.
-> 
-> When the HID device is being probed, pinctrl applies &ts0_default starts
-> driving it high, bringing the device out of reset. But insufficient time
-> is given for the chip to come up so the I2C read fails.
+Feeling like a broken record, given I am leaving the same comments on
+multiple patches. The commit message needs to explain why you're doing
+something. I can read the diff and see what you did!
 
-Ah, that's it.
+>=20
+> TEST=3DRun below command & make sure there is no error.
+> make DT_CHECKER_FLAGS=3D-m dt_binding_check
 
-You should drop that 'output-high' from the pin config as part of this
-patch to avoid toggling the reset line twice at boot.
+Same comment here as elsewhere.
 
-Looks like we have the same problem on the CRD as well. There the
-touchscreen still works, possibly because it has been enabled by the
-boot firmware or simply because that touchscreen can handle a shorter
-delay.
+>=20
+> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> ---
+>  .../hwmon/pmbus/infineon,tda38640.yaml        | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38=
+640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.=
+yaml
+> index ded1c115764b..2df625a8b514 100644
+> --- a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> @@ -30,6 +30,15 @@ properties:
+>        unconnected(has internal pull-down).
+>      type: boolean
+> =20
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  regulators:
+> +    $ref: /schemas/regulator/regulator.yaml#
+> +    type: object
+> +    description: |
 
-Where exactly did you find those delay values in the ACPI tables? I
-couldn't seem to find anything in the decompiled DSDT.
+The | here is not needed, there's no formatting to preserve.
 
-> If you later try to probe again, 200ms has elapsed since the reset was
-> deasserted (driven high).
+=46rom a quick check, most bindings with regulator subnodes restrict the
+subnode names with patternproperties. Is there a reason you have not?
 
-Right.
+> +      list of regulators provided by this controller.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -38,6 +47,7 @@ additionalProperties: false
+> =20
+>  examples:
+>    - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+>      i2c {
+>          #address-cells =3D <1>;
+>          #size-cells =3D <0>;
+> @@ -45,5 +55,15 @@ examples:
+>          tda38640@40 {
+>              compatible =3D "infineon,tda38640";
+>              reg =3D <0x40>;
+> +
+> +            //interrupt-parent =3D <&smb_pex_cpu0_event>;
 
-Johan
+Why is this commented out? Please either restore it or remove it (with
+justification).
+
+Thanks
+
+Conor.
+
+> +            interrupts =3D <10 IRQ_TYPE_LEVEL_LOW>;
+
+Blank line here please.
+
+> +            regulators {
+> +                pvnn_main_cpu0: vout0 {
+> +                    regulator-compatible =3D "vout0";
+> +                    regulator-name =3D "pvnn_main_cpu0";
+> +                    regulator-enable-ramp-delay =3D <200>;
+> +                };
+> +            };
+>          };
+>      };
+>=20
+> base-commit: ecb1b8288dc7ccbdcb3b9df005fa1c0e0c0388a7
+> --=20
+> 2.42.0
+>=20
+
+--qKb9f2iDT7+wsvKn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbPcyAAKCRB4tDGHoIJi
+0teEAQD64Q0ot/0ME0q/yFIeuCDvMzxK6MoqCM3r57v7LnmEuAEAiHZuOa/sLQC2
+SpoFQjl7IHHanVwZYyRTpwKNruahDAU=
+=ZOVp
+-----END PGP SIGNATURE-----
+
+--qKb9f2iDT7+wsvKn--
 
