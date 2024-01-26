@@ -1,142 +1,161 @@
-Return-Path: <devicetree+bounces-35508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B0483D995
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:46:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 581A183D993
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 12:46:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3F0B1C27863
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:46:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B4631C26F64
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 11:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93DC6179B2;
-	Fri, 26 Jan 2024 11:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85A0117BC5;
+	Fri, 26 Jan 2024 11:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="Bx4W899V"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HxPSMVws"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDAB719470
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C393418E06
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706269587; cv=none; b=DiKMZ2mOajKtom8C5TozdGIp4zMM8HPnFJlbGuep2O1fsgfIJ3SEWhdD+zr0do/HquNcoGqWzTrQBS0VzbiUf6ev/VdVmnAiJUKXTGS19Fy0qZf3dGUwpJKPNvRFXeSJevowQJslIosu0BGkTGXisHX5UmzCp43AAKOGYm/FDuQ=
+	t=1706269582; cv=none; b=tgNADtVZATSpUuy5mUKWiDv1+n8LS78s1MiAYzSNS3U1xHGpm/ZbpWQe6Y2H+3ErbOdkOH9l2s9k+wYm3Ddj66vmgOb5La9cqBDbQs+NHSs+lMVLL0qvnm1kV1datCcMLko1b1Th8ohZlNV7OVXUtsIVm9RtzU2Bxm5ebD2WT7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706269587; c=relaxed/simple;
-	bh=MYgTpznrzXaD6fYHjmBAqa58IYtxhCWEWhjaZObhnWo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fPQ7OxCPvCXQSi/h7Dl6G7Ts/J6lvzM1uYEyiw/PJq/F1rojBrtyg9a6tesQWSnkHdlwEPTbLRebh6+g+85LpOuqA4Fxrxfc7DH0bZDItUB3gGNkBgR21l4fNoi/IWCYaE5nni/HrCOJqdRyIZnU0s/davWKNU6irz5vxVr5rV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=Bx4W899V; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-40e86a9fc4bso4579405e9.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:46:25 -0800 (PST)
+	s=arc-20240116; t=1706269582; c=relaxed/simple;
+	bh=jdSVSOW4S3cVB/lrRyT2T8+woWNF5mmW4K+M3PhTaCU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gMwqOZWR5kYbGGURcLYyIYuuC8K2q5MUh3P1WD4tRKIsRafUS80y5eX0W6X3IFflw0N9pkNOTJE2fuWLgZ4Ey7KMPJR9HwJSF/z07pojMoSq8TRVRLhMPkqDwHSpnYlV37f5+LQeszqiVXRS6XstUmP0xzq5OMkuTxQYULbKcFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HxPSMVws; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55c2c90c67dso186541a12.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:46:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1706269584; x=1706874384; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gBNfFDWRGxc5HogyZttW4uFMPBW85vTV+PElgd3Td0k=;
-        b=Bx4W899V4SAirmb8TeBavpd/JgCUl/glxnURNppgpeWxp3vDokjm/9faPKYhrpu2qK
-         YWdtVuzBU/Bb0pfJ0b5VWHzdudghKLFCxPiNtDQLnAkDB0lIkrl92zUHUU92zt5XiFU4
-         fL6foluXvxtxmO0EZglIEeMdwabvh++Pz5Y4C+cu65FiByxjeYWNE/e8SmQLxBcDR46c
-         FzXrzIeUtKgj+sOlvPqtOGiSrJq7gQWMGLQYAVgoWcUatX1tZWlQ6HXbYISPYHQeqhi0
-         HYjjRbWpmlPX9J0IFU4UlLBe++seB92V8+6JWLbCjNJCZZ+pPWF2NZDGR3OHLiTg5jwX
-         NeEQ==
+        d=linaro.org; s=google; t=1706269579; x=1706874379; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/SptwUWIsbNk7qK39wNHbbMiIPCKUkVigUQ+MN6aFWw=;
+        b=HxPSMVwsj6KWcB77xk4aKY7EB6xQk5JZkkEKOrPxpa0PfvtGxqxW2Np47Cfpw0rO4K
+         wsv8B5aw5jbhYO5848JRTekzJzFPi1Reg4dWuw0aPHAcVzZHGn95gI/mO2QFFWH/2qIO
+         L/4ZfMyLQxoCe2Jiv0TdNY7a3Lta3AaZW9E0buoIO7UDbhXMiQrZI3E6AqhsiUMJnRn1
+         j3sJhIXt+lxxQ8znxz1nhTos7h9BeefjnehBF9/vdQm45C0NhV8yTnEC+g2ZWWZVASI/
+         mFYntPaGFFjrrHMZX4l/mAdElUCzBOoG+2oSZ+Q8V0+FaHPg8ASoZElL7u0E+tr4kL8S
+         Fa6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706269584; x=1706874384;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gBNfFDWRGxc5HogyZttW4uFMPBW85vTV+PElgd3Td0k=;
-        b=ZrBd2wLM7LTyNvGm+fZQ2UP5lQxe2sOh4+s0d4h6LQPzJ5QqXVM6qZ4WOdI/YSG+5i
-         kUouOk/G5ne2OliBuDLZ+QnMhky3QMEZ5vDsqF+6kF59fSY3zo0/XYXnww4iLIz48ARb
-         Xq3/sdXf/a3VTK1JGZkB6HpvMP/b5WFYFyXp3qJqnrMrjnczKis8DL2ZadkMaT4mTcgz
-         D9KoKPdZ32IoZZmQ52n75EaG0YiqdwhIGs7ZSPUKjwZ5d4hryH7SLVmJPzTXzwn2HHSU
-         6temdEi3ujVOHGngtvB7bkkcZ7xIG8382NCqSoY5mKjZA7GCYcqCyT9JN+Dq5SrlXify
-         XzpA==
-X-Gm-Message-State: AOJu0YzKd7HJC72Qr/pGx6mcQ5TbS5j6qaelXEK+6Y5UlTKLDfcQTl+l
-	UbMcMUYNa+ytzIyoJWhsllE2jcucH6k419CcKBna0Z1poe2/47DqtPIYTbWkMu4=
-X-Google-Smtp-Source: AGHT+IEEVlW+BNWbMV85vZ6WYdTOqTzeRLV3AEtJ9tACnigk7GOkKqx+ZvsE8SGG0B3BCJLd8T+F8Q==
-X-Received: by 2002:a05:600c:3ba2:b0:40e:62d8:3321 with SMTP id n34-20020a05600c3ba200b0040e62d83321mr750444wms.34.1706269584076;
-        Fri, 26 Jan 2024 03:46:24 -0800 (PST)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id vh10-20020a170907d38a00b00a318be03519sm542518ejc.105.2024.01.26.03.46.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 03:46:23 -0800 (PST)
-From: Naresh Solanki <naresh.solanki@9elements.com>
-To: Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc: mazziesaccount@gmail.com,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mfd: Add regulator-compatible property
-Date: Fri, 26 Jan 2024 17:16:14 +0530
-Message-ID: <20240126114614.1424592-1-naresh.solanki@9elements.com>
-X-Mailer: git-send-email 2.42.0
+        d=1e100.net; s=20230601; t=1706269579; x=1706874379;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/SptwUWIsbNk7qK39wNHbbMiIPCKUkVigUQ+MN6aFWw=;
+        b=w6AD0ptGNNXz8C9M2ER6fNP78uG0hlCK6oG2SyvXDupraTlndXRrKo0uI4LFUGREf2
+         hkQ6+8PHqYl0AtB1Qoj0UmALPGiLUoucbocNz6vAmvcGvCxUf71RzcgZ+qI7z2i35Pcg
+         sxVS3iy70Q6n0v//wE+5jvKFxLnAUGBALLP89vIHCwrqN//LaIaexIEsOJEdBAw2Ell3
+         OQBwaEQApIHKtHf1JIXr7991ihYUuKTSsU4gkE07SgfrvSzQqHFJ26GndHpStrM4mn6a
+         ZMlP3XEcYFNAX/3XxltgJysdGDHLJVfxCF8ub8FoBs9f5zrtVYk5D8rRlsvec0dHdM74
+         MkPQ==
+X-Gm-Message-State: AOJu0YzWQ/0vr6/sVMZHPW2zfC5kx7u+1x+j9V0SJ/GUbMzIQqKL43Df
+	TssAE06bEXDIKeODZYsbYYeBqtHIzrjP3SATXvQbDkVPFPykzr3BezKn3t81Cac=
+X-Google-Smtp-Source: AGHT+IHJ+565KaSILXURtz/VzVm2tikFKd31yCjOUwBElldjIimbisxTb7DLQ1S7TSjm2MtCYzmazQ==
+X-Received: by 2002:aa7:da54:0:b0:55c:92f4:4754 with SMTP id w20-20020aa7da54000000b0055c92f44754mr723938eds.8.1706269578851;
+        Fri, 26 Jan 2024 03:46:18 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id el15-20020a056402360f00b0055d1d8e058asm506752edb.69.2024.01.26.03.46.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jan 2024 03:46:18 -0800 (PST)
+Message-ID: <2c8961ff-9fcc-402c-b048-744ae9473164@linaro.org>
+Date: Fri, 26 Jan 2024 12:46:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/3] dt-bindings: input: Add TouchNetix axiom
+ touchscreen
+Content-Language: en-US
+To: Kamel Bouhara <kamel.bouhara@bootlin.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Marco Felsch <m.felsch@pengutronix.de>, Jeff LaBundy <jeff@labundy.com>
+Cc: catalin.popescu@leica-geosystems.com, mark.satterthwaite@touchnetix.com,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ bsp-development.geo@leica-geosystems.com
+References: <20240125165823.996910-1-kamel.bouhara@bootlin.com>
+ <20240125165823.996910-3-kamel.bouhara@bootlin.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240125165823.996910-3-kamel.bouhara@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add regulator-compatible property.
-Also update example.
+On 25/01/2024 17:58, Kamel Bouhara wrote:
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  vdda-supply:
+> +    description: Analog power supply regulator on VDDA pin
+> +
+> +  vddi-supply:
+> +    description: I/O power supply regulator on VDDI pin
+> +
+> +  startup-time-ms:
+> +    description: delay after power supply regulator is applied in ms
 
-TEST=Run below command & make sure there is no error
-make DT_CHECKER_FLAGS=-m dt_binding_check
+That's a regulator property - ramp up time.
 
-Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
----
- Documentation/devicetree/bindings/mfd/maxim,max5970.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-index 0da5cae3852e..75175098cbc2 100644
---- a/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max5970.yaml
-@@ -74,6 +74,9 @@ properties:
-             description: |
-               The value of current sense resistor in microohms.
- 
-+          regulator-compatible:
-+            pattern: "^SW[0-1]$"
-+
-         required:
-           - shunt-resistor-micro-ohms
- 
-@@ -111,6 +114,8 @@ examples:
- 
-             regulators {
-                 sw0_ref_0: sw0 {
-+                    regulator-compatible = "SW0";
-+                    regulator-name = "p5v";
-                     shunt-resistor-micro-ohms = <12000>;
-                 };
-             };
-@@ -145,9 +150,13 @@ examples:
- 
-             regulators {
-                 sw0_ref_1: sw0 {
-+                    regulator-compatible = "SW0";
-+                    regulator-name = "p5v_aux";
-                     shunt-resistor-micro-ohms = <12000>;
-                 };
-                 sw1_ref_1: sw1 {
-+                    regulator-compatible = "SW1";
-+                    regulator-name = "p3v3_aux";
-                     shunt-resistor-micro-ohms = <10000>;
-                 };
-             };
-
-base-commit: ecb1b8288dc7ccbdcb3b9df005fa1c0e0c0388a7
--- 
-2.42.0
+Best regards,
+Krzysztof
 
 
