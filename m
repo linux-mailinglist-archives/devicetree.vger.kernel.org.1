@@ -1,127 +1,129 @@
-Return-Path: <devicetree+bounces-35376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8CCD83D522
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:59:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC91783D528
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 10:00:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 872321F21D50
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 08:59:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A7BB1C25C59
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 09:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C13450A97;
-	Fri, 26 Jan 2024 07:31:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C9EC38DC1;
+	Fri, 26 Jan 2024 07:35:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TzqOmKfl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF61C5466F
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 07:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240B51B7FC
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 07:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706254269; cv=none; b=antZ5P6YM/wvVFSBdwr+UZ0QvgyLkFJPzwN4mB2qGu8KezEt7fZDEsaJHKd/bZGUoKS8jLclWRmJlBJ2h250Qn7Tl8+NONUDbQwzYA0oATIbRcwmTNLVE4mnHQePVE1W2i4m8UNEhZs1acv0JycnluVeP/XB40Pttk/04J1H7kI=
+	t=1706254521; cv=none; b=hIw7Nv8+QKh8HfHh8GPX/N/ugNgJD8EEXCZvoLCfTq0G5s7P4a3exoaWPXuO8wdaAOnCWACa1gsQpL81ah4KIsTWAKc5jhM4nsUwGtUoZdxR2EyrsNqf/vj+1U2xyJg7Ph/+LjQNC1FOk61LVgx8f6PnpHPIjs5kLa0gBQuoNcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706254269; c=relaxed/simple;
-	bh=AdHSgCHXz4t9LFcMc7HD0XQaTLFaT8m5meLQIXeDfIM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B4njsHez64UcGAf4nGod+0cfhYboMWKVOOj5v5utw331M5eQKRCw4gQOIJ4IEBQgfdUQ9kUwNCMOHSgAaMIShbgx5ginxf4kfT2OAtZdFxz93d5BhMp0+jbCTd0tgdOIcZUYgKFFNkXH5lRVjp56vr6DuzmWUrIxn66o8l8CkSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rTGfo-0000uf-Uv; Fri, 26 Jan 2024 08:30:48 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rTGfi-002SbC-QR; Fri, 26 Jan 2024 08:30:42 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rTGfi-008SgD-2J;
-	Fri, 26 Jan 2024 08:30:42 +0100
-Date: Fri, 26 Jan 2024 08:30:39 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Wenhua Lin <Wenhua.Lin@unisoc.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Chunyan Zhang <zhang.lyra@gmail.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, wenhua lin <wenhua.lin1994@gmail.com>, 
-	Xiongpeng Wu <xiongpeng.wu@unisoc.com>, zhaochen su <zhaochen.su29@gmail.com>, 
-	Zhaochen Su <Zhaochen.Su@unisoc.com>, Xiaolong Wang <Xiaolong.Wang@unisoc.com>
-Subject: Re: [PATCH V2 3/6] pwm: sprd: Optimize the calculation method of duty
-Message-ID: <mdrr6ko2zqsf2osdkecjac6ollnuvlv4irkkiyn4ihkq5fioxx@nm6677kkih4h>
-References: <20240125025533.10315-1-Wenhua.Lin@unisoc.com>
- <20240125025533.10315-4-Wenhua.Lin@unisoc.com>
+	s=arc-20240116; t=1706254521; c=relaxed/simple;
+	bh=CN7eRsF2RUuCp59wm9aMwYGQrieE8Tt4W8JYrmNcByo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MFT0a9hETZqIlE5xNzVqVnoRKKJfTzOnZnYkqp/wJ5dmezyaJWpFXc3Yr86aVvCTAU7mFMpe5ddfvAo4F1pDbDGdBgOFD9roULAV4GtrUyBx46xqn3Up6BfJcV0JtsjRgT6tu8NsT3mNrmznm8zJRVuVJFZHIPgHhFc9H9BBecQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=TzqOmKfl; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6dd7a44d51bso29478b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 23:35:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1706254519; x=1706859319; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LLBtLu4wKX94/+P/QqcYo4A1h3dyVmhkosY/sUXTdjA=;
+        b=TzqOmKflUa7Sqo9Csqa0VrjO+jLyz54pxux/BouGU2vDno94pOCQ3cqDnW4P7m740q
+         0E92DCq45ZboYuak8HxOeWDCVHsD4Cl6F2VpO9HqeDShl3xyeI6CNLpXoUMknxq0mnmo
+         h1R2ZpcJXU/csw2hUlXhmc8WTVJa+YAUtIdkY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706254519; x=1706859319;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LLBtLu4wKX94/+P/QqcYo4A1h3dyVmhkosY/sUXTdjA=;
+        b=L5OhMB9Y6mwZen8ylwpPfMWq8Lu9Iq6nOeLQqd81ZGiwPOmBqcGD9wJEX6BvxzK+tr
+         TtvgWwP+fF+Z//eeXA+kjFbTIp67EiVWSDjK9XtyorbkVfmwX/czk6yHP8Mj4y3GZzvL
+         I3DxO3bCNDa/Db15NXtOc0bR4ElO3GUkSe0zc0Nl39Lb88S0qsPTfVFTlaMRIlqVWBlo
+         GxBQ7/NrSvDTy+qEyCqpdllCrHyYytKabzjeTXHwaZGtx1yYtesBCq3ETE58NhE/CVu8
+         M3wY6Y1CEzlG1D8q3//Cl/CSQXIJsICHzWNA1gFTL63rHF3HmvwQkJ0kB5pmKQWOykA+
+         iPVA==
+X-Gm-Message-State: AOJu0YwnyhvG5RQIGLkW3B+WR5XY5eT56C9scNe7Tzsbl19kIDL5xP8R
+	NzX1w18YFi9vPZ59QDNkGhZHgqVDI/TdsTwoUFIsuqgoV0NYLIQmilb0un0TfQ==
+X-Google-Smtp-Source: AGHT+IHCfZg7myP94HWqLShb7FnZKGeEWhG1lB4m6nfTYh97Z4qNJy4ySGIQ0mSBgidZ/Z3eT7G7RA==
+X-Received: by 2002:a05:6a20:7b19:b0:199:f708:207a with SMTP id s25-20020a056a207b1900b00199f708207amr591065pzh.116.1706254519486;
+        Thu, 25 Jan 2024 23:35:19 -0800 (PST)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:2614:bbbd:8db2:1f54])
+        by smtp.gmail.com with ESMTPSA id l5-20020a170902eb0500b001d58ed4c591sm516983plb.105.2024.01.25.23.35.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jan 2024 23:35:19 -0800 (PST)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Allen Chen <allen.chen@ite.com.tw>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: display: bridge: it6505: Add #sound-dai-cells
+Date: Fri, 26 Jan 2024 15:35:10 +0800
+Message-ID: <20240126073511.2708574-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.43.0.429.g432eaa2c6b-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nbxfrdzexmsdijcq"
-Content-Disposition: inline
-In-Reply-To: <20240125025533.10315-4-Wenhua.Lin@unisoc.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
+The ITE IT6505 display bridge can take one I2S input and transmit it
+over the DisplayPort link.
 
---nbxfrdzexmsdijcq
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add #sound-dai-cells (= 0) to the binding for it.
 
-Hello,
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+The driver side changes [1] are still being worked on, but given the
+hardware is very simple, it would be nice if we could land the binding
+first and be able to introduct device trees that have this.
 
-On Thu, Jan 25, 2024 at 10:55:30AM +0800, Wenhua Lin wrote:
-> diff --git a/drivers/pwm/pwm-sprd.c b/drivers/pwm/pwm-sprd.c
-> index cc54aa77c7e6..8de3f9e154ce 100644
-> --- a/drivers/pwm/pwm-sprd.c
-> +++ b/drivers/pwm/pwm-sprd.c
-> @@ -156,7 +156,8 @@ static int sprd_pwm_config(struct sprd_pwm_chip *spc,=
- struct pwm_device *pwm,
->  	 * given settings (MOD and input clock).
->  	 */
->  	mod =3D spc->mod[pwm->hwpwm];
-> -	duty =3D duty_ns * mod / period_ns;
-> +	tmp =3D (u64)duty_ns * mod;
-> +	duty =3D DIV_ROUND_CLOSEST_ULL(tmp, period_ns);
+[1] https://lore.kernel.org/linux-arm-kernel/20230730180803.22570-4-jiaxin.yu@mediatek.com/
 
-Please stick to rounding down in .apply() (and so sprd_pwm_config()).
-Given that duty_ns is an u64 in .apply(), you're loosing precision
-anyhow. Look at how the microchip-core driver uses mul_u64_u64_div_u64()
-for how to do that properly.
+ .../devicetree/bindings/display/bridge/ite,it6505.yaml         | 3 +++
+ 1 file changed, 3 insertions(+)
 
-You tested your patch with CONFIG_PWM_DEBUG enabled, right?
+diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+index 348b02f26041..7ec4decc9c21 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.yaml
+@@ -52,6 +52,9 @@ properties:
+     maxItems: 1
+     description: extcon specifier for the Power Delivery
+ 
++  "#sound-dai-cells":
++    const: 0
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+-- 
+2.43.0.429.g432eaa2c6b-goog
 
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---nbxfrdzexmsdijcq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmWzX54ACgkQj4D7WH0S
-/k4qqQf8CaMZ4GC23NL6d3gan0EFqQgyw5XxVJwmfjLIEtA+dS0X9v7addb+u/zB
-4tvbIX1ODa40SNWJsg/rF2NbYrEhyzHOYuj5ByjCZWuQnYFaefEfqcU9OoBTtiL9
-3RNRKYwkWO/h1+oWV+7B7ZRBY5y5r+dPhGCE7Xda8RbgELeBtZ6cKERyjsAR1tDw
-yIBTwPp71RNxnPiAbPR/OqNRFuafy5LVXV3yuk+1yqj7O8midCQAwDPZGi0ZZwf1
-7BMtWQZH7pDaml9UfjainioEZKLH4RvbZvRf2PobuqJlE6I3jfR4flsHmp3fvZsB
-gMK6THLg/QmGriqtkEgsKcldcB8PBA==
-=wH2f
------END PGP SIGNATURE-----
-
---nbxfrdzexmsdijcq--
 
