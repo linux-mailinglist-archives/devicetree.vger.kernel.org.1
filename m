@@ -1,102 +1,187 @@
-Return-Path: <devicetree+bounces-35668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A2D83E409
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 22:38:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2685C83E4EC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 23:14:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92F1B285B72
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 21:38:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBC9F2838A9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 22:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC77D250F1;
-	Fri, 26 Jan 2024 21:38:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B93825578;
+	Fri, 26 Jan 2024 22:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RHeDa9TY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n2v+5Osv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE754250E2;
-	Fri, 26 Jan 2024 21:38:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 462BD25573;
+	Fri, 26 Jan 2024 22:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706305090; cv=none; b=cavSt8mDwlAunqRdsVxpGgIf5vdb/GXleZzuEUJKQ7YWjfbncQLEoWQ7sVocoSDtNAOU8/iLC9kfnDeTmh9Uq4jiwQOK2EKK/Tltv3TKIaKkX03RnLTSlVkFSI/4U7zDkOrwELB6Zo+fXs+XhWlbp02iDzyPBd0kZemaj+uGEJk=
+	t=1706307248; cv=none; b=V3O94hGRATRh+OBxv5w4zHQsPvWdth7PZ1pn7FCMMr5vIU6rVwP9CrC8GznupHihglhBpdhQLpDwYu++KEM3lhPqHs7qinx1911p3NlmuKClPubCE6WSqN8h8Y43vlhx72tbJ8Z9TtNqP+XRllD5VJj6OMBGift9cBhZQEvAi3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706305090; c=relaxed/simple;
-	bh=vO6Gr5GyXh5tlWuEvRivZoIQNu/GhJ0SdDW9dLqaJkg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=gM30hHWjP6KpzB/e/4+YvL280Ckeynp7Lzg/gy4MQ5THROdwzClODOxyyj91QeGNyfID+8egSEUO//D7+WjdjHEz0gocAPB2FRH0XwT3PuALiim3sF9j8M92/VSI5NDbYPPG9jwtEgSV/8RQ4IMg43XV71YxsKXMgMO9sADdawA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RHeDa9TY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDCF7C43390;
-	Fri, 26 Jan 2024 21:38:08 +0000 (UTC)
+	s=arc-20240116; t=1706307248; c=relaxed/simple;
+	bh=0b8lK1c7dQnFioNfIBpSdxAWV5NjN5Icq9TAOnp0CbI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MIXlDyiDxDX+18V4VCYxNwCWKQwNeYzHXAU9poLkTOdAdbUxZT7N1MJ/nUdDYXusDi68OEovfgnaermTlcSIHmgkWKj34GoiFPJQOzZ3gG/egbIN5kaLf76gLK1bczWKsawk8mTvIfDu9NQN/9gR+gTrt7x9O0dGBYsq6UHdcg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n2v+5Osv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1224C433F1;
+	Fri, 26 Jan 2024 22:14:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706305090;
-	bh=vO6Gr5GyXh5tlWuEvRivZoIQNu/GhJ0SdDW9dLqaJkg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=RHeDa9TYwvcqsrOul/V08dEjXxkklKvSiB/1GrgwNiiiet6avB1yuRnw6cOugZEuG
-	 4wYEXLEBw3cs5xlosy23yCoErorCYs0HqxBs4ndaE8chH2XRKZcvzY+uLUudnOfFyf
-	 RTYciPkiCxdqh3d/fGukDze3BW4B1vGDtgEK6jXwEyXJxuLjBhV7je7zjZKAxRZaBt
-	 8Q7rC1KioTEF9lYJWu9uL4qb8Tys4Bqz/uCbQmHlagSymIZ69fJeP3VZ2sqTV/uRZ4
-	 j32iHo71jimMQfEHGT9J3sHR+zBsGFKbdGcDqgl9NGVlz90hfK7i0UlyDobeQdKkIe
-	 9IUjcy+GfvZNg==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
- Rob Herring <robh@kernel.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240124190808.1555263-1-robh@kernel.org>
-References: <20240124190808.1555263-1-robh@kernel.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: audio-graph-port: Drop type from
- "clocks"
-Message-Id: <170630508850.52716.5172843197960717999.b4-ty@kernel.org>
-Date: Fri, 26 Jan 2024 21:38:08 +0000
+	s=k20201202; t=1706307248;
+	bh=0b8lK1c7dQnFioNfIBpSdxAWV5NjN5Icq9TAOnp0CbI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n2v+5OsvdqgT3i4Kqm59IquUkMr2RwumpWqwYaQeU3u8MDlGdElaRznNLlJ2bM5BC
+	 DWAcMB7xbDv+X+8wlwPbVBiOOnonowk+oOOnuFwD9EYKkKKP9lmfzUIRrCNJevipRp
+	 Gm5CKc8LUeJcKlI55319rgTbhgXqGnwve0ZvDxHtZ8cGdFqOCZLP4VxqKWwi4CpynU
+	 SS4IZR7Vjlg9xw/A6cj0wl5iyCSNt4sFCXIwcuawXvm3YidLdeWyTvPciy3RNQOr9/
+	 bTBo6y1JpCEKAxGWxy2/hk8K+bZBqSJ4oennqOjIJLBCXwT0RvtBwrQjqrtES9Ze+W
+	 SzvoicC3tf6Pw==
+Date: Fri, 26 Jan 2024 22:14:03 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: afe: voltage-divider: Add
+ io-channel-cells
+Message-ID: <20240126-blaspheme-calculate-a4134dc1ed68@spud>
+References: <20240126115509.1459425-1-naresh.solanki@9elements.com>
+ <20240126-cinnamon-flatware-e042b5773f17@spud>
+ <CABqG17hzZf2mme0v7hALhpd6-N3ZHqxdH-AhFg5eF9sbLSC2gw@mail.gmail.com>
+ <20240126-scale-serrated-33686467d91b@spud>
+ <CABqG17jp6YRGyTmNitz-xDdyhWOPgfT_XpXxw-OJLnXQ777vAA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-a684c
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="51HTn85XAt3vYgRW"
+Content-Disposition: inline
+In-Reply-To: <CABqG17jp6YRGyTmNitz-xDdyhWOPgfT_XpXxw-OJLnXQ777vAA@mail.gmail.com>
 
-On Wed, 24 Jan 2024 13:08:07 -0600, Rob Herring wrote:
-> "clocks" is a standard property which already has a type. Users only need
-> to define how many clocks and what each clock is if more than 1 clock.
-> 
-> 
 
-Applied to
+--51HTn85XAt3vYgRW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+On Fri, Jan 26, 2024 at 11:10:36PM +0530, Naresh Solanki wrote:
+> Hi Conor,
+>=20
+>=20
+> On Fri, 26 Jan 2024 at 22:22, Conor Dooley <conor@kernel.org> wrote:
+> >
+> > On Fri, Jan 26, 2024 at 09:55:20PM +0530, Naresh Solanki wrote:
+> > > On Fri, 26 Jan 2024 at 21:47, Conor Dooley <conor@kernel.org> wrote:
+> > > > On Fri, Jan 26, 2024 at 05:25:08PM +0530, Naresh Solanki wrote:
+> > > > > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml |=
+ 3 +++
+> > > > >  1 file changed, 3 insertions(+)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/iio/afe/voltage-di=
+vider.yaml b/Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+> > > > > index dddf97b50549..b4b5489ad98e 100644
+> > > > > --- a/Documentation/devicetree/bindings/iio/afe/voltage-divider.y=
+aml
+> > > > > +++ b/Documentation/devicetree/bindings/iio/afe/voltage-divider.y=
+aml
+> > > > > @@ -39,6 +39,9 @@ properties:
+> > > > >      description: |
+> > > > >        Channel node of a voltage io-channel.
+> > > > >
+> > > > > +  '#io-channel-cells':
+> > > > > +    const: 1
+> > > >
+> > > > The example in this binding looks like the voltage-divider is inten=
+ded
+> > > > to be an "IIO consumer" but "#io-channels-cells" is an "IIO provide=
+r"
+> > > > property.
+> > > >
+> > > > Are you sure this is correct?
+> > > I'm not aware that #io-channels-cells is only for IIO provider.
+> >
+> > #foo-cells properties are always for resource providers
+> >
+> > > But I do get some kernel message as mention in commit messages
+> > > if this is specified in DT.
+> >
+> > Can you please share the DT in question? Or at least, the section that
+> > describes the IIO provider and consumer?
+> Below is link to complete DT:
+> https://github.com/torvalds/linux/commit/522bf7f2d6b085f69d4538535bfc1eb9=
+65632f54
 
-Thanks!
+If you're gonna link something that is in a vendor tree, you should link
+the actual vendor tree and not something that "does not belong to any
+branch on this repository, and may belong to a fork outside of the
+repository"!
 
-[1/1] ASoC: dt-bindings: audio-graph-port: Drop type from "clocks"
-      commit: 01dffdcaa094858a03e3694694815f1a4915940c
+I did look at what you have there and I think your dts is wrong.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+The iio-hwmon binding says:
+| description: >
+|   Bindings for hardware monitoring devices connected to ADC controllers
+|   supporting the Industrial I/O bindings.
+|=20
+|   io-channels:
+|     minItems: 1
+|     maxItems: 51 # Should be enough
+|     description: >
+|       List of phandles to ADC channels to read the monitoring values
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+And then you have:
+|	iio-hwmon {
+|		compatible =3D "iio-hwmon";
+|		// Voltage sensors top to down
+|		io-channels =3D <&p12v_vd 0>, <&p5v_aux_vd 0>, <&p5v_bmc_aux_vd 0>, <&p3=
+v3_aux_vd 0>,
+|			<&p3v3_bmc_aux_vd 0>, <&p1v8_bmc_aux_vd 0>, <&adc1 4>, <&adc0 2>, <&adc=
+1 0>,
+|			<&p2V5_aux_vd 0>, <&p3v3_rtc_vd 0>;
+|	};
+|
+|	p12v_vd: voltage_divider1 {
+|		compatible =3D "voltage-divider";
+|		io-channels =3D <&adc1 3>;
+|		#io-channel-cells =3D <1>;
+|
+|		/* Scale the system voltage by 1127/127 to fit the ADC range.
+|		 * Use small nominator to prevent integer overflow.
+|		 */
+|		output-ohms =3D <15>;
+|		full-ohms =3D <133>;
+|	};
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+A voltage divider is _not_ an ADC channel, so I don't know why you are
+treating it as one in the iio-hwmon entry. Can you explain this please?
 
 Thanks,
-Mark
+Conor.
 
+--51HTn85XAt3vYgRW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbQuqwAKCRB4tDGHoIJi
+0qjuAP9odQPk4Rld47KxMAhyjjvAY+H2UQ4tgEBdtSu82pnmHgD/YOowmNyiakzs
+BOEey09K7vzMOq+xY/EArtk2sMjdVQ8=
+=279c
+-----END PGP SIGNATURE-----
+
+--51HTn85XAt3vYgRW--
 
