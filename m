@@ -1,220 +1,215 @@
-Return-Path: <devicetree+bounces-35551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35552-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52CDA83DBEE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:33:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C8F883DC18
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:37:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09FCC284CBD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:33:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F875284AA6
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 14:37:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41AAC134B1;
-	Fri, 26 Jan 2024 14:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BADFE14A8F;
+	Fri, 26 Jan 2024 14:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YhFaRahL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t8wZtZtR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159511CA8D;
-	Fri, 26 Jan 2024 14:33:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D926D1C291
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 14:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706279603; cv=none; b=gvYZLITpUfGo6EAt3UzyMZLmZoAMnWmnSnCKj+lEesVzqVzjZ7VklEG0kSDPrG9j6tpn9BkBTFNyY7VOBDglLBV6av3pzO5ZaFoGQ/lVlvfG9IqL3RE3Fbc6R/UI93wpV9m7Jd3+XlI3GmJYt2fAFg7lsAzq06tFHfHl50/8Cyg=
+	t=1706279829; cv=none; b=Z9iYOcSLQZMAyPUQcF/yzqdc6zAE4E+85wqGAav70Mk1QhtFog1mBb93v30OAljwsbZBOMx5nGLxXA4fWl9Fr1Fd2BS4Gf6mmA2jum6PBGwKD4WkBkPUH7SQnesrXr13xV8sVjoY6bVIi6iMWNmgcTpOopt9lW9bOazH4VZALBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706279603; c=relaxed/simple;
-	bh=toHPWrukG5ZJdg4r3h3ugd+zNwZSP1onspiF6e+jS4Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Il8cvhOkfHF2CNbVSzurF/vzdZj9ECRUJOlOVSLh2nk/Q9kLv0kkt59EtmzIU7B9HEjN8Yt0tMtRTGoWBQfAHOxEzdNF0v6raZ7Y+agQ77NZxIZVGMug3l9Vxf9EWJaH2uL7I9ZNB2RnaNoJt5Q4QWhuZEDMdKILFvpEe7j18/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YhFaRahL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 194BBC433F1;
-	Fri, 26 Jan 2024 14:33:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706279602;
-	bh=toHPWrukG5ZJdg4r3h3ugd+zNwZSP1onspiF6e+jS4Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YhFaRahL9Dr/6ZCzpQy0FfOc9+vbwzEbVoH9SDzoA+gHW8uI0BQ0bYXQuDH6G+0N1
-	 fPc+9HJv+rXimvjgGTzaIZsW91g3xYA9pHihjIi6FcKQZ0iMDxxDgvzxZLLosriFE4
-	 S6KCaEhR5Pje3ZlyEBsA/xoboa2KYY19h7bIztvSnux+0E+aM9vJ1oxE5GoBbWt8ch
-	 hq+056fZsfZKzBzm2X8vhf/1HdYacxIwBivjPKB5FaM5ApOO5GmBEXRPtkdE/3gfBi
-	 H80FH4MxmUF9sdDcRJztINay9si+hPerUcnWdb5PEl7q0QXi4WJIH4pckVc0WVubJt
-	 zxy7ZkODckUAw==
-Date: Fri, 26 Jan 2024 14:33:14 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Shenghao Ding <shenghao-ding@ti.com>
-Cc: conor+dt@kernel.org, krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-	andriy.shevchenko@linux.intel.com, kevin-lu@ti.com,
-	baojun.xu@ti.com, devicetree@vger.kernel.org, v-po@ti.com,
-	lgirdwood@gmail.com, perex@perex.cz,
-	pierre-louis.bossart@linux.intel.com, 13916275206@139.com,
-	mohit.chawla@ti.com, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, liam.r.girdwood@intel.com,
-	soyer@irl.hu, jkhuang3@ti.com, tiwai@suse.de, pdjuandi@ti.com,
-	j-mcpherson@ti.com, navada@ti.com
-Subject: Re: [PATCH v2 1/4] ASoc: PCM6240: Create PCM6240 Family driver code
-Message-ID: <6c1d04be-c558-4aa4-96a3-ac21ae36bfae@sirena.org.uk>
-References: <20240126035855.1785-1-shenghao-ding@ti.com>
+	s=arc-20240116; t=1706279829; c=relaxed/simple;
+	bh=aFY8y40n4sXeS2ljcZoWoVB1dwzaVGLoVGtpSHl78t8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qYt2FoiuBvxCOCWBKsNZMR5tjYVOto9gqqvtGpJwyjpkt5tdCfRDgTaB9iTxX716LYiyRu0uSYSlNEsRDu905gD7WZe6EhTjD/dxLNN7Yw2fuCoceVOCf7F4J8Re8k7RipiafCuMbqukfmwMli5Pvy9FFFwi7HtmNHpqkqA6V/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t8wZtZtR; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-40eacb6067dso9362995e9.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 06:37:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706279826; x=1706884626; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=gIElliFYd6UvMHIfcgImKqiD/HyMTyjhftkGcP6yJKM=;
+        b=t8wZtZtRsG5AffI9CmujVbB+FIjk3dDI+FfNtFcRTdyKkpt2yIVl/FBKwuQuP/1Tgh
+         XXi3acl7JimcB4IkO0K+3gIIKo1KGL/C1WoavQfObaVP6DuGwQkexS8NhGg6VaGHAdtR
+         /yaj6vgYDMg12d0cVFM4yfZhMQlGUtZYt+UyB2qU2/cHX1OHOAWtGJxmGNOC9+pBJwDc
+         GZQ+pAc1wCbTbA2Yjw+9mcYZ8Ts55SEEbO/wbVpK5pOsGqYx7WPG8/oI9RrpB8SrKZAF
+         kmOzylJoRoY12i0RbQ6j6exCTfq/eOqFEN3Wz1cd54JClZQ825OxPZKWRehdtTo3HbDB
+         mUTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706279826; x=1706884626;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gIElliFYd6UvMHIfcgImKqiD/HyMTyjhftkGcP6yJKM=;
+        b=cHlX1lHXQLaoSrsOgaMPK29u6w2dK/cqsz4aDGTWdUVVlPeEPE0FuWk8tJrX60YLVZ
+         eolGwlRnWm8qy+ngXhwOHQEf+ouBVH6ny4eHwMMtY+0HDkAZUTWd2ItX2B4qu46TZWfV
+         7RqSNnqOXMlIzw8tope2dGAsESXcdmbBjDPGpbNSZoE6pw8xsC1paEo7FsQbF6wlxK5o
+         /mbhZU5bXc9R5O8xEkiub/8liw8nbEwA4UHV9NoFYG7mWOdoTjOTbYic0g3qTNQRR4zX
+         56gt7DTlxrTH1LJxObPr15dCiWVXaKtzDYIzzSpTHPgTGdIfWRbuypbe7MX/WZ8vIKva
+         6+OA==
+X-Gm-Message-State: AOJu0Yw+48mMApEGUI/8IT71PtIyMAv8mkFJkcQyh7pJ2ysfqa8Hl3Ys
+	9nRHChlZafE3lo5Z0uTkhAxVQC11BRGo7BXBiSK61nV0tD5vQsNeOEJaYRDDoZc=
+X-Google-Smtp-Source: AGHT+IFWmdkrtlL2A3Ih8oaB1KbhFnAt/lrHxwSzFC7r64minL26nGFZfdUeS4pu8LbcM+Xff2dwyg==
+X-Received: by 2002:a05:600c:204b:b0:40e:6b7b:a343 with SMTP id p11-20020a05600c204b00b0040e6b7ba343mr553118wmg.223.1706279826129;
+        Fri, 26 Jan 2024 06:37:06 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.215.66])
+        by smtp.gmail.com with ESMTPSA id ko20-20020a170907987400b00a28fd9607a8sm689119ejc.81.2024.01.26.06.37.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Jan 2024 06:37:05 -0800 (PST)
+Message-ID: <7f780a0b-5f70-480e-82fc-08bd89870d13@linaro.org>
+Date: Fri, 26 Jan 2024 15:37:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zICUD1iSPynTqKb5"
-Content-Disposition: inline
-In-Reply-To: <20240126035855.1785-1-shenghao-ding@ti.com>
-X-Cookie: Excellent day to have a rotten day.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: Fix hs_phy_irq for QUSB2 targets
+To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20240120191904.15408-1-quic_kriskura@quicinc.com>
+ <20240120191904.15408-2-quic_kriskura@quicinc.com>
+ <wqdqkzvni4roqulgsiqxzubxcblzxnoydcwvv2av2pobjjx5o6@b7kwl6lq7hij>
+ <a4606673-64e9-4e16-8d9e-307fb37d8763@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <a4606673-64e9-4e16-8d9e-307fb37d8763@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 26/01/2024 15:14, Krishna Kurapati PSSNV wrote:
+> 
+> 
+> On 1/25/2024 3:16 AM, Bjorn Andersson wrote:
+>> On Sun, Jan 21, 2024 at 12:49:01AM +0530, Krishna Kurapati wrote:
+>>> On several QUSB2 Targets, the hs_phy_irq mentioned is actually
+>>> qusb2_phy interrupt specific to QUSB2 PHY's. Rename hs_phy_irq
+>>> to qusb2_phy for such targets.
+>>>
+>>> In actuality, the hs_phy_irq is also present in these targets, but
+>>> kept in for debug purposes in hw test environments. This is not
+>>> triggered by default and its functionality is mutually exclusive
+>>> to that of qusb2_phy interrupt.
+>>>
+>>> Add missing hs_phy_irq's, pwr_event irq's for QUSB2 PHY targets.
+>>> Add missing ss_phy_irq on some targets which allows for remote
+>>> wakeup to work on a Super Speed link.
+>>>
+>>> Also modify order of interrupts in accordance to bindings update.
+>>> Since driver looks up for interrupts by name and not by index, it
+>>> is safe to modify order of these interrupts in the DT.
+>>>
+>>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 13 +++++++++++++
+>>>   arch/arm64/boot/dts/qcom/ipq8074.dtsi | 14 ++++++++++++++
+>>>   arch/arm64/boot/dts/qcom/msm8953.dtsi |  7 +++++--
+>>>   arch/arm64/boot/dts/qcom/msm8996.dtsi |  8 ++++++--
+>>>   arch/arm64/boot/dts/qcom/msm8998.dtsi |  7 +++++--
+>>>   arch/arm64/boot/dts/qcom/sdm630.dtsi  | 17 +++++++++++++----
+>>>   arch/arm64/boot/dts/qcom/sm6115.dtsi  |  9 +++++++--
+>>>   arch/arm64/boot/dts/qcom/sm6125.dtsi  |  9 +++++++--
+>>>   8 files changed, 70 insertions(+), 14 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>>> index 5e1277fea725..ea70b57d1871 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>>> @@ -418,6 +418,12 @@ usb2: usb@70f8800 {
+>>>   					  <&gcc GCC_USB1_MOCK_UTMI_CLK>;
+>>>   			assigned-clock-rates = <133330000>,
+>>>   					       <24000000>;
+>>> +
+>>> +			interrupts-extended = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>,
+>>
+>> interrupts-extended takes a reference to a interrupt-controller as well,
+>> so this doesn't build.
+>>
+>> Did you mean "interrupts" here instead? Please update these and build
+>> test...
+>>
+> 
+> Hi Bjorn,
+> 
+>   Thanks for the catch. I was using DTC version 1.4.0.
+
+v1.4.0? I am sorry, but what?
+
+Isn't that like 10 years old? What systems are you using there? I am
+asking, because maybe we should be rejecting DTS patches assuming they
+were never tested (testing on ancient dtc counts like no testing).
+
+> When I moved to 1.5.0, I did see these warnings. Fixed them up and sent v3.
+
+Nope, you just moved from 10 years old to 5 years old.
+
+Fix your systems and use the recent one. v1.6.1
 
 
---zICUD1iSPynTqKb5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Fri, Jan 26, 2024 at 11:58:51AM +0800, Shenghao Ding wrote:
+Best regards,
+Krzysztof
 
-This looks mostly good - I've got a few comments that are mainly
-stylistic or otherwise very minor, there's one issue with validation of
-profile IDs that does look like it's important to fix though.
-
-> +static int pcmdev_dev_read(struct pcmdevice_priv *pcm_dev,
-> +	unsigned int dev_no, unsigned int reg, unsigned int *val)
-> +{
-> +	int ret = -EINVAL;
-> +
-> +	if (dev_no < pcm_dev->ndev) {
-
-You could write all these functions a bit more simply if you rewrote
-these error checks to return immediately on error, that way there's less
-indentation and fewer paths later on.
-
-	if (dev_no >= pcm_dev->ndev)
-		return -EINVAL;
-
-and so on.  For the ones dealing with locking it can help to have a
-single exit path but functions like this don't deal directly with the
-locks.
-
-> +
-> +		ret = regmap_read(map, reg, val);
-> +		if (ret < 0)
-> +			dev_err(pcm_dev->dev, "%s, E=%d\n", __func__, ret);
-> +	} else
-> +		dev_err(pcm_dev->dev, "%s, no such channel(%d)\n", __func__,
-> +			dev_no);
-> +
-
-The kernel coding style is that if one side of an if/else has { } both
-should.
-
-> +static int pcmdevice_set_profile_id(
-> +	struct snd_kcontrol *kcontrol,
-> +	struct snd_ctl_elem_value *ucontrol)
-> +{
-> +	struct snd_soc_component *codec
-> +		= snd_soc_kcontrol_component(kcontrol);
-> +	struct pcmdevice_priv *pcm_dev =
-> +		snd_soc_component_get_drvdata(codec);
-> +	int ret = 0;
-> +
-> +	if (pcm_dev->cur_conf != ucontrol->value.integer.value[0]) {
-> +		pcm_dev->cur_conf = ucontrol->value.integer.value[0];
-> +		ret = 1;
-> +	}
-> +
-> +	return ret;
-> +}
-
-This will accept any configuration number, shouldn't there be some
-validation here?  The put functions doing regmap_update_bits() have
-some limiting of values in the regmap_update_bits() but this just stores
-the value directly.
-
-> +static int pcmdevice_get_volsw(struct snd_kcontrol *kcontrol,
-> +	struct snd_ctl_elem_value *ucontrol)
-> +{
-
-> +	mutex_lock(&pcm_dev->codec_lock);
-> +	rc = pcmdev_dev_read(pcm_dev, dev_no, reg, &val);
-> +	if (rc) {
-> +		dev_err(pcm_dev->dev, "%s:read, ERROR, E=%d\n",
-> +			__func__, rc);
-> +		goto out;
-> +	}
-
-It would be kind of nice if the device switching could be hidden inside
-a custom regmap and we didn't have all this code duplication but I'm not
-thinking of a way of doing that which doesn't just create complications
-so probably this is fine.
-
-> +	val = (val >> shift) & mask;
-> +	val = (val > max) ? max : val;
-> +	val = mc->invert ? max - val : val;
-> +	ucontrol->value.integer.value[0] = val;
-
-There's the FIELD_GET() macro (and FIELD_SET() for writing values) - the
-core predates them and hence doesn't use them, we might want to update
-some time.
-
-> +static int pcmdevice_codec_probe(struct snd_soc_component *codec)
-> +{
-
-> +	ret = request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT,
-> +		pcm_dev->regbin_name, pcm_dev->dev, GFP_KERNEL, pcm_dev,
-> +		pcmdev_regbin_ready);
-> +	if (ret) {
-> +		dev_err(pcm_dev->dev, "load %s error = %d\n",
-> +			pcm_dev->regbin_name, ret);
-> +		goto out;
-> +	}
-
-It might be better to request the firmware in the I2C probe rather than
-in the ASoC level probe, that way there's more time for the firmware to
-be loaded before we actually need it.  That does mean you can't register
-the controls immediately though so it may be more trouble than it's
-worth.
-
-Similarly for the reset, if we reset as early as possible that seems
-better.
-
-> +static int pcmdevice_startup(struct snd_pcm_substream *substream,
-> +	struct snd_soc_dai *dai)
-> +{
-> +	struct snd_soc_component *codec = dai->component;
-> +	struct pcmdevice_priv *pcm_priv = snd_soc_component_get_drvdata(codec);
-> +	int ret = 0;
-> +
-> +	if (pcm_priv->fw_state != PCMDEVICE_FW_LOAD_OK) {
-> +		dev_err(pcm_priv->dev, "DSP bin file not loaded\n");
-> +		ret = -EINVAL;
-> +	}
-
-Perhaps -EBUSY instead?  What the user is doing is valid.
-
-> +static const struct regmap_config pcmdevice_i2c_regmap = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.cache_type = REGCACHE_RBTREE,
-
-Use _MAPLE for new devices, it's a more modern design with tradeoffs
-that work better for most current systems.
-
---zICUD1iSPynTqKb5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmWzwqoACgkQJNaLcl1U
-h9BCzwf+L41HbR0BgZxeKdyUNHfjw//dNQQiokt5X33hzy2MfX0cEw4MOf8k9xyv
-x7kjEUSTwhyF6hxi1Ov9iApcnot6U5L1aoxrAS19xBs3zCqO5dEDtDQz8B6jHXF3
-hR6dT0dwXyKQxOx57BhEPbF16MY0ZpJuE3Od6i4s54zt/rqJw2hUH9xoZNA7BgRH
-8w2OMYMbbY+FL9QyLrDBxMJCgxDDnblMbeBp4yIS35A20M7d2MnxgedAmCmDWZth
-Zkhut1zLOwqZydXjkXrJQAB3izplMzHYS1lxmBOqdAjC+cwTrVIxr0O8GwmYc8bI
-P4rWI9yDw6TygfQlYVCQd3jyHNiuSA==
-=OLs3
------END PGP SIGNATURE-----
-
---zICUD1iSPynTqKb5--
 
