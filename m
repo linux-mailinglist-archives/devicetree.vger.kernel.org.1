@@ -1,182 +1,174 @@
-Return-Path: <devicetree+bounces-35651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE35883E2E2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 20:48:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC8BE83E2F3
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 20:55:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D296D1C2332C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 19:48:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5639F2870BE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 19:55:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17234249F2;
-	Fri, 26 Jan 2024 19:47:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81A6F2260B;
+	Fri, 26 Jan 2024 19:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Vce4AKX7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ul4jqA5V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA75249F4;
-	Fri, 26 Jan 2024 19:47:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF482137E
+	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 19:55:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706298477; cv=none; b=KqUVNhp92S5OL4s58UicdFogCp9Wc1DiJPfm3xDpqqOTWtHbajAQppWS4Yqmf2/ICitQWb6FD7MW5+sQCGGEX4uZAnQIjj036RrG6ilF2V0C2d1PdZ49ZJQRHCkan8/MLp/BiASfR2eC5QnC56HKkPsW9Mx71mI+R//eN0LEOCs=
+	t=1706298929; cv=none; b=dCD8rYrJftUxGAgVpEe1GLeVPGNk3OqlKE8cYAPzJlCWcOGBPJKOLvYmh70oa7ohzkd9w06UHUnJpNk1cXP5fELO6n0PqR9mWiZEKBmeRq1w3h4Ovqn4X0NrQ8RgQ8dxdNFZJ+/DMm6tRAgUk3SmjGJf/jFgu0c2yY9SmKxvZi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706298477; c=relaxed/simple;
-	bh=Ji8V8/6QMqSvyXwiNVz2SRVGYMhG6xJrSjLOiHKq3hc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fJ+f7YtT/hpUNNUFK5DoKKeUEk90K2kUpfrWF08/mgciOAqGdlrddEIyy89Qow+HGUx49gS6iijl6wkWrgXeOGQLbxdCsV7GY3ZTJXGdF592C0e4mO185EV4EQ7B0UOkMd7DSJdamzps2tq6puwlmLH6Lid317EW2d0BisnzKzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Vce4AKX7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40QGP9sN013289;
-	Fri, 26 Jan 2024 19:47:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding:content-type; s=
-	qcppdkim1; bh=Dwty2lX8ZQK/jKvohsYqyBDwT9yvmSCvSC15xrKSkq0=; b=Vc
-	e4AKX7a+3qwG3cj4fw78NbzGkNt9pjiMoUVe55F/jzVhcxaQ5n52EviheXxNM08D
-	M7cMYA7FlTcy2OIuSRLh91d2Tj2Fw2R5mHs+/kDInSRqxVHTSWLU6RZe4tKvl5Ql
-	LOEVbvVcd0L/i3sY+3O3kYay0dhwsxhSODtnN2iYNYjerVg7m9d2qM+wP/D0luHi
-	gIeSVbUyMlskQxIuTwj4mYWzrErKZ6cdtp4nbC+7dz8qrRxO7QNau4rOAxdB9fN3
-	gOv+NENkJ+wkQ8jIE/CenDGlO15BhnDC+qcm9V8icte8tWFSvKNqEoLwj+smVZjF
-	Lz4R1VEp0BI6j0cHluCg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vvfc8gkab-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jan 2024 19:47:36 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40QJlZRG010276
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 26 Jan 2024 19:47:35 GMT
-Received: from hu-uchalich-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 26 Jan 2024 11:47:32 -0800
-From: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-Subject: [PATCH 5/5] soc: qcom: llcc: Add regmap for Broadcast_AND region
-Date: Fri, 26 Jan 2024 11:47:21 -0800
-Message-ID: <12bfdd23772c49530b8b0993cc82bc89b3eb4ada.1706296015.git.quic_uchalich@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1706296015.git.quic_uchalich@quicinc.com>
-References: <cover.1706296015.git.quic_uchalich@quicinc.com>
+	s=arc-20240116; t=1706298929; c=relaxed/simple;
+	bh=2+Mnpq5M1TmHpvvq2JcoFPCJIYA7dRmmpp/zPWcspWo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sV31rYfRCZV++VfOcNZwwj0zsJbhooODpnxhh6mRWfaIvAVxDUmI4HRW/f6UWhTHQeUANydsC0cFwVPf7AmgWgCqjHpjRL65B2EWsA9FyjKrctBfX50XaixXuwajL6vdlu5b2FMQxUvOlgxD01tUM9AsEB+/8RQhUmu1bYxOsJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ul4jqA5V; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6d9b37f4804so1461281b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 11:55:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706298927; x=1706903727; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tgVLV7ILUXV6plhvsfHg8kvJr4geR1tUsOVTbhlRqhA=;
+        b=ul4jqA5VKXVzz3OqTLPrOeH7mrci/D2KSN8egU6d/xxxlSDYcQyz+ifj9kjnPxPNq+
+         UcQQzEIGrYQnYuV0McIaSvysZ05Qp3vSLqM9y2LKQJP/QLkF1hGW8qeWofHihBIpPPcz
+         gCQb2Z2QLQ+UMUCcaD3UCfneB7VNSbZBBUaezcMCMFsaMDB46sJuo9Y/NAckMosbe39t
+         fXl4u3aqv+svlYaE2atw4XSo1cpGfQDKTx9u8rbDaOFinaujEj9SbXds6MlQC1NLnhKD
+         WeuEHWGDKAIFvr4F81zX/SY0jtODhfJA0tzCtTHj0pZZZyaLJnftpV+PZwFiGNy2bYVA
+         Un7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706298927; x=1706903727;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tgVLV7ILUXV6plhvsfHg8kvJr4geR1tUsOVTbhlRqhA=;
+        b=CHkDs3B7t+HeXeO7Zse56GpWLGvmqBmSr4M+JU+jHABsD/PhDzZD2DlK5wGYgc/4Yz
+         ElSF4JgiT7eoYFKNOxxfhaZnVRgMkb25auW3/xdCBaQVSLqiLk4EK+oWnSm9JL+jivcD
+         vp/rcL1VNnu6h1ncWPYVaC/2jevsqG7l4eb8m9V4qzypcZdDyH/2wQMDlQOLjS/yjs3z
+         ZJbLIbiAChKQwDtBkaen5JJ61CYWEHQxRzxATmf+31HsxPtV2bzAdV+ZFeiqqpAFX/4H
+         65LtW8NUoK7TsNxqWR1yq4/7fn6Sfv8ONtYsziDoZHOKQpUtq6lSJCS4Y6Tjr3HHn6FL
+         Nlww==
+X-Gm-Message-State: AOJu0YyNth7/NJZjS7tmrF5MiYz9UUP1dzIv0bejWdzksHH/pLm5z0+z
+	spy87kbi4cCro/YpTrG64Ynx/eH6P3ZjDKN+XuSNSkIrgVPUkck5AhTYQh8p46foWAjSXAhmdBF
+	fnlQnFJeuAH2nGDlTiYzJdkclD1v8UM+RmFZTD7D6sQbxTGJ7l6Q=
+X-Google-Smtp-Source: AGHT+IF4iydsZkMvpCgm0ty66tZIGvdesf18VuJVzD0djZrB1NCToxAc0H5npBMQOmf+WXehhv2hYW+e9IaFx1r7kjM=
+X-Received: by 2002:a05:6a00:1d8e:b0:6db:c5fe:df39 with SMTP id
+ z14-20020a056a001d8e00b006dbc5fedf39mr443978pfw.31.1706298927034; Fri, 26 Jan
+ 2024 11:55:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3wlWglaAQShM26e0Aof2sS0qzvkWn8-z
-X-Proofpoint-ORIG-GUID: 3wlWglaAQShM26e0Aof2sS0qzvkWn8-z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- adultscore=0 clxscore=1015 phishscore=0 malwarescore=0 spamscore=0
- suspectscore=0 priorityscore=1501 bulkscore=0 mlxlogscore=894
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2401190000 definitions=main-2401260146
+References: <20240125145007.748295-1-tudor.ambarus@linaro.org>
+ <20240125145007.748295-10-tudor.ambarus@linaro.org> <CAPLW+4mDM2aJdPwPRKt9yLtwx5zEHwBr6OSyYbGgZU7w9OiYkg@mail.gmail.com>
+ <ee4107c3-1141-45ab-874c-03474d8ec18d@linaro.org>
+In-Reply-To: <ee4107c3-1141-45ab-874c-03474d8ec18d@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Fri, 26 Jan 2024 13:55:15 -0600
+Message-ID: <CAPLW+4=pM=gY1bypGNhKmcftLFHWBMUZ7=JitMj_3TaxLF672A@mail.gmail.com>
+Subject: Re: [PATCH v2 09/28] spi: s3c64xx: use bitfield access macros
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Mark Brown <broonie@kernel.org>, andi.shyti@kernel.org, arnd@arndb.de, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	alim.akhtar@samsung.com, linux-spi@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-arch@vger.kernel.org, andre.draszik@linaro.org, 
+	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-To support CSR programming, a broadcast interface is used to program
-all channels in a single command. Until SM8450 there was only one
-broadcast region (Broadcast_OR) used to broadcast write and check
-for status bit 0. From SM8450 onwards another broadcast region
-(Broadcast_AND) has been added which checks for status bit 1.
+On Fri, Jan 26, 2024 at 2:49=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro=
+.org> wrote:
+>
+>
+>
+> On 1/25/24 19:50, Sam Protsenko wrote:
+> > On Thu, Jan 25, 2024 at 8:50=E2=80=AFAM Tudor Ambarus <tudor.ambarus@li=
+naro.org> wrote:
+> >>
+> >> Use the bitfield access macros in order to clean and to make the drive=
+r
+> >> easier to read.
+> >>
+> >> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> >> ---
+> >>  drivers/spi/spi-s3c64xx.c | 196 +++++++++++++++++++------------------=
+-
+> >>  1 file changed, 99 insertions(+), 97 deletions(-)
+> >>
+> >> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
+> >> index 1e44b24f6401..d046810da51f 100644
+> >> --- a/drivers/spi/spi-s3c64xx.c
+> >> +++ b/drivers/spi/spi-s3c64xx.c
+> >> @@ -4,6 +4,7 @@
+>
+> cut
+>
+> >> +#define S3C64XX_SPI_PSR_MASK                   GENMASK(15, 0)
+> >
+> > But it was 0xff (7:0) originally, and here you extend it up to 15:0.
+>
+> this is a bug from my side, I'll fix it, thanks!
+>
+> cut
+>
+> >>         default:
+> >> -               val |=3D S3C64XX_SPI_MODE_BUS_TSZ_BYTE;
+> >> -               val |=3D S3C64XX_SPI_MODE_CH_TSZ_BYTE;
+> >> +               val |=3D FIELD_PREP(S3C64XX_SPI_MODE_BUS_TSZ_MASK,
+> >> +                                 S3C64XX_SPI_MODE_BUS_TSZ_BYTE) |
+> >> +                      FIELD_PREP(S3C64XX_SPI_MODE_CH_TSZ_MASK,
+> >> +                                 S3C64XX_SPI_MODE_CH_TSZ_BYTE);
+> >
+> > I don't know. Maybe it's me, but using this FIELD_PREP() macro seems
+> > to only making the code harder to read. At least in cases like this. I
+> > would vote against its usage, to keep the code compact and easy to
+> > read.
+>
+> I saw Andi complained about this too, maybe Mark can chime in.
+>
+> To me this is not a matter of taste, it's how it should be done. In this
 
-Update llcc_drv_data structure with new regmap for Broadcast_AND
-region and initialize regmap for Broadcast_AND region when HW block
-version is greater than 4.1 for backwards compatibility.
+Sure. But if you think it has to be done, I suggest it's done taking
+next things into the account:
+  1. It shouldn't make code harder to read
+  2. Preferably stick to canonical ways of doing things
+  3. IMHO patches like this *must* be tested thoroughly on different
+boards with different test-cases, to make sure there are no
+regressions. Because the benefits of cleanups are not that great, as I
+see it, but we are risking to break some hardware/software combination
+unintentionally while doing those cleanups. It's a good idea to
+describe how it was tested in commit message or PATCH #0. Just my
+$.02.
 
-Switch from broadcast_OR to broadcast_AND region for checking
-status bit 1 as Broadcast_OR region checks only for bit 0.
-While at it, also check return value after reading Broadcast_OR
-region in llcc_update_act_ctrl().
+For (1) and (2): I noticed a lot of drivers are carrying additional
+helper functions for read/write operations, to keep things tidy and
+functional at the same time. Another mechanism that comes into mind is
+regmap, though I'm not sure if it's needed for such low-level entities
+as bus drivers. Also I think Andi has a point about FIELD_PREP and how
+that can be handled.
 
-Signed-off-by: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
----
- drivers/soc/qcom/llcc-qcom.c       | 12 +++++++++++-
- include/linux/soc/qcom/llcc-qcom.h |  4 +++-
- 2 files changed, 14 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-index 4ca88eaebf06..5a2dac2d4772 100644
---- a/drivers/soc/qcom/llcc-qcom.c
-+++ b/drivers/soc/qcom/llcc-qcom.c
-@@ -849,7 +849,7 @@ static int llcc_update_act_ctrl(u32 sid,
- 		return ret;
- 
- 	if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
--		ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
-+		ret = regmap_read_poll_timeout(drv_data->bcast_and_regmap, status_reg,
- 				      slice_status, (slice_status & ACT_COMPLETE),
- 				      0, LLCC_STATUS_READ_DELAY);
- 		if (ret)
-@@ -859,6 +859,8 @@ static int llcc_update_act_ctrl(u32 sid,
- 	ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
- 				      slice_status, !(slice_status & status),
- 				      0, LLCC_STATUS_READ_DELAY);
-+	if (ret)
-+		return ret;
- 
- 	if (drv_data->version >= LLCC_VERSION_4_1_0_0)
- 		ret = regmap_write(drv_data->bcast_regmap, act_clear_reg,
-@@ -1282,6 +1284,14 @@ static int qcom_llcc_probe(struct platform_device *pdev)
- 
- 	drv_data->version = version;
- 
-+	if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
-+		drv_data->bcast_and_regmap = qcom_llcc_init_mmio(pdev, i + 1, "llcc_broadcast_and_base");
-+		if (IS_ERR(drv_data->bcast_and_regmap)) {
-+			ret = PTR_ERR(drv_data->bcast_and_regmap);
-+			goto err;
-+		}
-+	}
-+
- 	llcc_cfg = cfg->sct_data;
- 	sz = cfg->size;
- 
-diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
-index 1a886666bbb6..9e9f528b1370 100644
---- a/include/linux/soc/qcom/llcc-qcom.h
-+++ b/include/linux/soc/qcom/llcc-qcom.h
-@@ -115,7 +115,8 @@ struct llcc_edac_reg_offset {
- /**
-  * struct llcc_drv_data - Data associated with the llcc driver
-  * @regmaps: regmaps associated with the llcc device
-- * @bcast_regmap: regmap associated with llcc broadcast offset
-+ * @bcast_regmap: regmap associated with llcc broadcast OR offset
-+ * @bcast_and_regmap: regmap associated with llcc broadcast AND offset
-  * @cfg: pointer to the data structure for slice configuration
-  * @edac_reg_offset: Offset of the LLCC EDAC registers
-  * @lock: mutex associated with each slice
-@@ -129,6 +130,7 @@ struct llcc_edac_reg_offset {
- struct llcc_drv_data {
- 	struct regmap **regmaps;
- 	struct regmap *bcast_regmap;
-+	struct regmap *bcast_and_regmap;
- 	const struct llcc_slice_config *cfg;
- 	const struct llcc_edac_reg_offset *edac_reg_offset;
- 	struct mutex lock;
--- 
-2.25.1
-
+> particular case you have more lines when using FIELD_PREP because the
+> mask starts from bit 0. If the mask ever changes for new IPs then you'd
+> have to hack the code, whereas if using FIELD_PREP you just have to
+> update the mask field, something like:
+>
+>         FIELD_PREP(drv_prv_data->whatever_reg.field_mask,
+>                    S3C64XX_SPI_MODE_CH_TSZ_BYTE);
+>
+> Thus it makes the code generic and more friendly for new IP additions.
+> And I have to admit I like it better too. I know from the start that
+> we're dealing with register fields and not some internal driver mask.
 
