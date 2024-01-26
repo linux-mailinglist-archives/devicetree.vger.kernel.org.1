@@ -1,237 +1,136 @@
-Return-Path: <devicetree+bounces-35346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2138083D2F0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 04:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B453783D316
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 04:55:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBEFE28FC4C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 03:26:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7823628C1AE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 03:55:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 321D08F54;
-	Fri, 26 Jan 2024 03:26:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A7F9473;
+	Fri, 26 Jan 2024 03:55:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="KvuGBhh+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JD3R4M7j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542F5A947
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 03:26:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B61BE4C;
+	Fri, 26 Jan 2024 03:55:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706239600; cv=none; b=mzWJ8Wh6EbhnZJxCft5hcKvYRN1bRRJ+e7xuFtXjdP92i5aLK8Xymy3Oc+v8953tfprGpy24xkWSO9qMDMCMU33rrG2mO7fjEJiSc3HMwubZFc0NaafnnEV86TuvMvCjTZOg7eBhLOh8WXjFvXTtB7bfV05W0SebcXashj0k8Qc=
+	t=1706241331; cv=none; b=Yw6uY8bMjP97C2Yeox4+FDYYDZ7J1cjjcYIS+KKS38bDsxSF6H9fRFFUhAfHrxkEUfyDebVvmcaZmsD2EHLBZEwPFUxAhfnRTjqTppDTHy/FxoC8qnvy8sOoDYk1haWzkHVWFUTxJUgBJVmU0UY5Mvp7Om6xxbKteuk0LAham/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706239600; c=relaxed/simple;
-	bh=g4i+w63+sy9yYZPW+kGZdrOYodleOa12DosNrHLn0ww=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f9MihumT5toNLV25rib+3Df+B6RDqhuTJ4/72xV3dubGWC9NKThGN7ZpmLfPRsgjvmnlmJ5CW9sAMOdA3/bimZuWvee65M7/WHNdgnu2ODVpHZIgcc3GCbwj60rsrfZDm+rQMyi1L7aPlTSpH79OJIbyFo1JCPwXIkUK5hqtbvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=KvuGBhh+; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2cf4a22e10dso147581fa.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Jan 2024 19:26:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1706239596; x=1706844396; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9WyUC6MmB08/BiaNWVTf9K2ZnTvIR5FpF1Gb9asD+uw=;
-        b=KvuGBhh+zU0JKA19AEukbWG8KwvsdTj+hxPNAe3MX67kOBoX/+UQLmq0/N36s3XB6v
-         f54yUKT7P3+avfVhCQj6yLZRfiFNNVDPHl244RJUtuM5qRLA+RMYoSXF98Pg7oI6wTzK
-         q4uUbAUvTsF3XpTiADM6w9cgFXm4Bic4DZ9hc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706239596; x=1706844396;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9WyUC6MmB08/BiaNWVTf9K2ZnTvIR5FpF1Gb9asD+uw=;
-        b=gNNcvM481IHcunPF4Ghlfv40L4mQ1INn7r1GcIuX1P8B6GwYu8e9aoMS9fL/8IPMlX
-         twhYbtg/ClOnnyeGXGLVhegK4pn6LEzPz5YKimN1FhgDSpGP1oCYWXu/z4LoaUTmwFjM
-         bYvYswqN+11PQVh6DqOIQo6dddMnJHUdwVsCwNJoGoSCLHx/jYNGNzPCtQ0aOouuFzTw
-         eMctKtfDm1vC4eLw2xGx5Zjv8G6qZo1CUIFlRn854n9DB4buqAufV4HhLELhK1DZpA7x
-         S+OlBYjTLNm1wJJs0Oxw8fCLOhuDWTiSE7WydM93Awlnip9rQYbQfsFS+e/euW3el3i/
-         oFVw==
-X-Gm-Message-State: AOJu0Yy6JbU7DxO59QlVnd+8AMk51q+CvRB8sd8nZG8uWco92Zd5iXLN
-	o53Dzfed13u26fa7fPDFQ3fgrrVuG0NPSyC/ChTVvxraVdiK0nQbgoHkg7zt/GcPxlZO7mKnSCl
-	sXlfJxxlkSrqDT5aSGhxjf/6t78zPWkDWvT+emLV3zrC3mro=
-X-Google-Smtp-Source: AGHT+IEDjNQzwVaWPwAv+h5mtaVgEfszPvfXWHkJHOd/8GLlNf7ga0naC1J+rIBTXRI404s6h2BKMm+4EmCTd7dMJ8I=
-X-Received: by 2002:a05:651c:b1f:b0:2cc:a569:48d with SMTP id
- b31-20020a05651c0b1f00b002cca569048dmr210919ljr.44.1706239596392; Thu, 25 Jan
- 2024 19:26:36 -0800 (PST)
+	s=arc-20240116; t=1706241331; c=relaxed/simple;
+	bh=KrhrQ0tvNVJ+4cAK8q+wOOdb/RYDdrZuBoVCellyfZg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=SK73aKkJlvjCL0Hx68OS2gzAO/wydxTcQI9n9LBnvVXvHAS6B2Lp9q9WROiK1aH8e2Ng/D/AH/h1qIE5vyrVf3w7KocOtBtk9bL56wCbztw5aoH4Wg8M69G0RH4AKUA1gvZkTr44BH/jjb2iWYul+k7Ne6O77c5xmKTTyspXMZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JD3R4M7j; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40Q3a5ra022681;
+	Fri, 26 Jan 2024 03:55:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=Q9PEpT5d0K89jY
+	+OAqVxi28NZMVH5s03aNK1+117VZ4=; b=JD3R4M7jVnYUQ0SJ56WCIGj9SFKXJc
+	UwxqWhs+0hnBVPHGdFnKInsaB6rdqbeCjiKz67Xpzrhu/yKShrhom6pQ76ieKU+3
+	edocyhNcbJEqI8mPLxfM20fAh0r+4jAIVpEZombCZ1dAzwLfoT+o+YOMUMq/JhnV
+	p0B++cERACwLAr4Vz1958ZHg40Z4FO64eKS7zzmrhZfriPyBti1Flpzj3uym+l7T
+	H4z4JmA81kDJZVhDLtyAMAWEo+2scgMwEH+NCDNK+gcXsDo02AehmHSc/UdsRUTx
+	XFIbq1Vi/oJBShcvh7/F2C5orbHK8cpg0LfQQOPhOPout2MM2K8zqAhA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vv1018f2a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jan 2024 03:55:18 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40Q3tHFN017841
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jan 2024 03:55:17 GMT
+Received: from [169.254.0.1] (10.49.16.6) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 25 Jan
+ 2024 19:55:16 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+Subject: [PATCH 0/2] arm64: dts: qcom: sc8280xp-x13s: Enable touchscreen
+Date: Thu, 25 Jan 2024 19:55:12 -0800
+Message-ID: <20240125-x13s-touchscreen-v1-0-ab8c882def9c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240125095240.2308340-1-wenst@chromium.org> <20240125095240.2308340-2-wenst@chromium.org>
- <68249675-4081-48d9-abbb-1b2e49894fae@collabora.com>
-In-Reply-To: <68249675-4081-48d9-abbb-1b2e49894fae@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 26 Jan 2024 11:26:25 +0800
-Message-ID: <CAGXv+5GG+Ko4nZKCvpQ2TnjeHDKWi5qS_SWAgLcrZ6fn_ySiug@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
- SDIO Bluetooth
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Sean Wang <sean.wang@mediatek.com>, 
-	linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACAts2UC/x2MywqAIBAAfyX2nOAriH4lOoStuRcNt0IQ/z3pO
+ AMzFRgzIcMyVMj4ElOKHdQ4gAt7PFHQ0Rm01FYqPYmiDIs7PS6wy4hR2Ll7743TFqFnV0ZP5V+
+ uW2sf2D2ow2IAAAA=
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Jiri Kosina
+	<jikos@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1706241316; l=740;
+ i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
+ bh=KrhrQ0tvNVJ+4cAK8q+wOOdb/RYDdrZuBoVCellyfZg=;
+ b=9+ugStnJZS5YmfVKrhUaHEkTUr4sb5UzOtiSOyv6YSrXUz8JBoQtfVjUwtw+PuGrhYTzsWGyJ
+ br6vBtXx2gECfQSQMTMIuuDqSv2bbU5O0/tSGUIs9zQfJ5ipjHyKiP/
+X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
+ pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _GXpBmOPdIDcXxn0_uDGZh6BFGBMhnr_
+X-Proofpoint-GUID: _GXpBmOPdIDcXxn0_uDGZh6BFGBMhnr_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxlogscore=698 adultscore=0 spamscore=0 clxscore=1011 phishscore=0
+ malwarescore=0 priorityscore=1501 mlxscore=0 lowpriorityscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401260026
 
-On Thu, Jan 25, 2024 at 7:39=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 25/01/24 10:52, Chen-Yu Tsai ha scritto:
-> > The MediaTek MT7921S is a WiFi/Bluetooth combo chip that works over
-> > SDIO. While the Bluetooth function is fully discoverable, the chip
-> > has a pin that can reset just the Bluetooth side, as opposed to the
-> > full chip. This needs to be described in the device tree.
-> >
-> > Add a device tree binding for MT7921S Bluetooth over SDIO specifically
-> > ot document the reset line.
-> >
-> > Cc: Sean Wang <sean.wang@mediatek.com>
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> >   .../bluetooth/mediatek,mt7921s-bluetooth.yaml | 49 ++++++++++++++++++=
-+
-> >   MAINTAINERS                                   |  1 +
-> >   2 files changed, 50 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/net/bluetooth/me=
-diatek,mt7921s-bluetooth.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/bluetooth/mediatek,m=
-t7921s-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/med=
-iatek,mt7921s-bluetooth.yaml
-> > new file mode 100644
-> > index 000000000000..bbe240e7cc40
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-=
-bluetooth.yaml
-> > @@ -0,0 +1,49 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/bluetooth/mediatek,mt7921s-blue=
-tooth.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MediaTek MT7921S Bluetooth
-> > +
->
-> title:
->
-> maintainers:
->
-> description:
->
-> ... and then, you missed
->
-> allOf:
->    - $ref: bluetooth-controller.yaml#
+This documents and defines the necessary properties for the I2C
+HID-based touchscreen found in some SKUs of the Lenovo Thinkpad X13s to
+work.
 
-(facepalm)
+Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+---
+Bjorn Andersson (2):
+      dt-bindings: HID: i2c-hid: Document reset-related properties
+      arm64: dts: qcom: sc8280xp-x13s: Fix/enable touchscreen
 
-> Everything else looks good.
->
-> Cheers,
-> Angelo
->
-> > +description:
->
-> MT7921S is a (dual?) SDIO-attached dual-radio WiFi+Bluetooth combo chip;
-> this chip has two dedicated reset lines, one of which is used to reset
-> the Bluetooth core.
-> The WiFi part of this chip is described in ....where? :-)
+ Documentation/devicetree/bindings/input/hid-over-i2c.yaml  | 6 ++++++
+ arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 6 +++++-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
+---
+base-commit: 8bf1262c53f50fa91fe15d01e5ef5629db55313c
+change-id: 20240125-x13s-touchscreen-48012ff3c24e
 
-The function itself is fully probable and the implementation doesn't make
-use of the WiFi's reset line, so I don't see any reason to describe it?
-I don't actually know what the reset line does in the chip hardware.
-This patch is just described what is already used.
+Best regards,
+-- 
+Bjorn Andersson <quic_bjorande@quicinc.com>
 
-> > +  This binding describes the Bluetooth side of the SDIO-attached MT792=
-1S
-> > +  WiFi+Bluetooth combo chips. These chips are dual-radio chips support=
-ing
-> > +  WiFi and Bluetooth. Bluetooth works over SDIO just like WiFi. Blueto=
-oth
-> > +  has its own reset line, separate from WiFi, which can be used to res=
-et
-> > +  the Bluetooth core.
-> > +
-> > +maintainers:
-> > +  - Sean Wang <sean.wang@mediatek.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mediatek,mt7921s-bluetooth
-> > +  reg:
-> > +    const: 2
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +    description: A GPIO line connected to the Bluetooth subsystem rese=
-t line.
-> > +      Typically the W_DISABLE2# pin on M.2 E-key modules. If present t=
-his
-> > +      shall be flagged as active low.
->
-> description:
->    An active-low reset line connected for the Bluetooth core;
-
-connected to?
-
->    on typical M.2 Key-E modules this is the W_DISABLE2# pin.
-
-Otherwise this looks better. Thanks.
-
-
-ChenYu
-
-> Cheers,
-> Angelo
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    mmc {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        bluetooth@2 {
-> > +            compatible =3D "mediatek,mt7921s-bluetooth";
-> > +            reg =3D <2>;
-> > +            reset-gpios =3D <&pio 8 GPIO_ACTIVE_LOW>;
-> > +        };
-> > +    };
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index b64a64ca7916..662957146852 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -13657,6 +13657,7 @@ M:    Sean Wang <sean.wang@mediatek.com>
-> >   L:  linux-bluetooth@vger.kernel.org
-> >   L:  linux-mediatek@lists.infradead.org (moderated for non-subscribers=
-)
-> >   S:  Maintained
-> > +F:   Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-=
-bluetooth.yaml
-> >   F:  Documentation/devicetree/bindings/net/mediatek-bluetooth.txt
-> >   F:  drivers/bluetooth/btmtkuart.c
-> >
->
 
