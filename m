@@ -1,218 +1,180 @@
-Return-Path: <devicetree+bounces-35564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A185283DCFB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:01:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34DE383DD09
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 16:05:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56FEF281784
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:01:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E9661C215EE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 15:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69E81CD3C;
-	Fri, 26 Jan 2024 15:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 023801CD1F;
+	Fri, 26 Jan 2024 15:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OsPyVERI"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FaE03Ch/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2ADB1CD1B;
-	Fri, 26 Jan 2024 15:01:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550CB1B970;
+	Fri, 26 Jan 2024 15:05:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706281271; cv=none; b=AAeglmJOFvjx6FQWQ0MWUQKwN7P4yH91Yh1MlEyAsn42DpsZeC33is4z645D0x+JARj1VVfATHtz/Be0wgRK+WuWfcbqgy6r2VSc3enwn0udZGctda/PRRuOVbGMSOsDofcc9RQz/lyhric+4j8purdASwI1syv0zQW7qcxvQHc=
+	t=1706281528; cv=none; b=Qzf92lBbhU8ctDZmIHNMjZZE/kzZ4xWMLBTLy1mrIJwTyseUzRf7IZlzsgb83oDj3YQepQrGNwpkJLt3nvZqSLxfEPLWOAePDEbDVWs+GfrleWFjStGJh6kpahiUfCQ2TCT4ESY97hhdM6oUMfjPDlDJOUU5ul1yYX5cdWjWCd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706281271; c=relaxed/simple;
-	bh=ogH/WxYNzbxPJyMWY22zLDSZVE6tO2CwW3DYcs0iSi0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LQW+P1/dMFh9QJwO5y0gDTdoWdkESHW1SAFLkqPQKKWRvpfNzZQqhCktUbPP7PlhGsURCBpCpyel/GhEBvKx0w/ZUiJzrUfibfmnIWf3OSMzB5QXOo0P5aFgyjSKsyJVOBuQeDzY69V56MfKU9gQ9+U3MQ15pFwSAE0gJA0yYzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OsPyVERI; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40QF0wKq085493;
-	Fri, 26 Jan 2024 09:00:58 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706281258;
-	bh=c771FDHfVeJbjIOLYa+Ep4vTxtf3uSuzaoVrdsfKZ6U=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=OsPyVERIck5lszwtfBEiqG1MbXfFj/2fkfU6V6HLKAwgd5a2yKWRbrDg9EA5HzJ9d
-	 i8W+2LnXtHpC5knhxEUvtX9P+4FhtO9aynmbK4mXEOs7/tNN3uzbCZSMuG4mW+E7wv
-	 FtLVvhlpfKmNVrxEzBPVgUXdDmxc7cQVGM2Kmt2E=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40QF0wUA021144
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 26 Jan 2024 09:00:58 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 26
- Jan 2024 09:00:57 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 26 Jan 2024 09:00:57 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40QF0vjJ004728;
-	Fri, 26 Jan 2024 09:00:57 -0600
-Message-ID: <16473ecf-c837-4424-a279-e5d921c2a588@ti.com>
-Date: Fri, 26 Jan 2024 09:00:57 -0600
+	s=arc-20240116; t=1706281528; c=relaxed/simple;
+	bh=U+99tjIt56hBCPSlbSxS/+VqtJhV/6wL04M231JSrzI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gOKTg0xi6xqlaxaaw51wNawJHsWlN5Cp6/GuS8K8Aina7Ibd9jEgkJdu2//UFbBQT10ffXgAX78BA6DEG+5QWjWUq2h+RV+8sBDLyHFK+WR3W0OUkiSWNsqy30MB0b9MmAcEynvkNaIJQ9U2xIWI97aBpyawHk7ZH9+nu7HthU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FaE03Ch/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40QDirPM006836;
+	Fri, 26 Jan 2024 15:05:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=jHB9hK1+IxDYTk3mHsGBs
+	lK9MjCNeNeTQmuomB3w7zM=; b=FaE03Ch/Jzfiv1T2d8ixQbSUtaq1l9MO5jj8n
+	yRFebQlkMJBdnxqtn6tchK1EdBTeT2ELjVlWC/Qdc6Jem7DazcTNPoKiA5GK1y+P
+	QqFTc8VJ3vZF+mHDkRnpgNWKBevBWtgw2ksSZx/yIxPIrC/vVTRut69wCoXhaM4d
+	2WU9VV5pc8NdWJXdnk4f/Lv6uyV21FVBosmjwYEQLt92vWF1NQDOVAZM1ujh7cSE
+	R9TCiCONAxMWHnPtXFga7TNVvHCpE3ZkeG7VIUGTKya2pBpwOvRuKvpZZHHJOD/X
+	j7d1WaQ+MKfqqlWqjlpAzLHJOtCbhCTGN2LahcOaZS01YapPw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vv4cascjm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jan 2024 15:05:14 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40QF5DHx029835
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 26 Jan 2024 15:05:13 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 26 Jan 2024 07:05:12 -0800
+Date: Fri, 26 Jan 2024 07:05:11 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Daniel Thompson <daniel.thompson@linaro.org>
+CC: Johan Hovold <johan@kernel.org>,
+        Dmitry Torokhov
+	<dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Jiri Kosina <jikos@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Johan Hovold
+	<johan+linaro@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp-x13s: Fix/enable
+ touchscreen
+Message-ID: <20240126150511.GO2936378@hu-bjorande-lv.qualcomm.com>
+References: <20240125-x13s-touchscreen-v1-0-ab8c882def9c@quicinc.com>
+ <20240125-x13s-touchscreen-v1-2-ab8c882def9c@quicinc.com>
+ <ZbNpdaSyFS9tYrkd@hovoldconsulting.com>
+ <20240126130232.GA5506@aspen.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62/a/p: use sub-node for
- USB_PHY_CTRL registers
-To: Roger Quadros <rogerq@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>
-CC: <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srk@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240126125951.18585-1-rogerq@kernel.org>
- <20240126125951.18585-2-rogerq@kernel.org>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240126125951.18585-2-rogerq@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240126130232.GA5506@aspen.lan>
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zkWHTT7R8Yj7UAoh4kZBsPEbusf-OyKI
+X-Proofpoint-GUID: zkWHTT7R8Yj7UAoh4kZBsPEbusf-OyKI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
+ bulkscore=0 impostorscore=0 priorityscore=1501 spamscore=0 suspectscore=0
+ mlxlogscore=999 phishscore=0 lowpriorityscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401260110
 
-On 1/26/24 6:59 AM, Roger Quadros wrote:
-> Exposing the entire CTRL_MMR space to syscon is not a good idea.
-> Add sub-nodes for USB0_PHY_CTRL and USB1_PHY_CTRL and use them
-> in the USB0/USB1 nodes.
+On Fri, Jan 26, 2024 at 01:02:32PM +0000, Daniel Thompson wrote:
+> On Fri, Jan 26, 2024 at 09:12:37AM +0100, Johan Hovold wrote:
+> > On Thu, Jan 25, 2024 at 07:55:14PM -0800, Bjorn Andersson wrote:
+> > > The failing read-test in __i2c_hid_core_probe() determines that there's
+> > > nothing connected at the documented address of the touchscreen.
+> > >
+> > > Introduce the 5ms after-power and 200ms after-reset delays found in the
+> > > ACPI tables. Also wire up the reset-gpio, for good measure.
+> >
+> > As the supplies for the touchscreen are always on (and left on by the
+> > bootloader) it would seem that it is really the addition of the reset
+> > gpio which makes things work here. Unless the delay is needed for some
+> > other reason.
+> >
+> > (The power-on delay also looks a bit short compared to what is used for
+> > other devices.)
+> >
+> > Reset support was only recently added with commit 2be404486c05 ("HID:
+> > i2c-hid-of: Add reset GPIO support to i2c-hid-of") so we should not
+> > backport this one before first determining that.
 > 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-main.dtsi    |  4 ++--
->   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi  | 10 ++++++++++
->   arch/arm64/boot/dts/ti/k3-am62a-main.dtsi   |  4 ++--
->   arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 10 ++++++++++
->   arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi | 10 ++++++++++
->   5 files changed, 34 insertions(+), 4 deletions(-)
+> This comment attracted my attention so I tried booting with each of the
+> three lines individually.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index 464b7565d085..9432ed344d52 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -625,7 +625,7 @@ usbss0: dwc3-usb@f900000 {
->   		reg = <0x00 0x0f900000 0x00 0x800>;
->   		clocks = <&k3_clks 161 3>;
->   		clock-names = "ref";
-> -		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4008>;
-> +		ti,syscon-phy-pll-refclk = <&usb0_phy_ctrl 0x0>;
->   		#address-cells = <2>;
->   		#size-cells = <2>;
->   		power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
-> @@ -648,7 +648,7 @@ usbss1: dwc3-usb@f910000 {
->   		reg = <0x00 0x0f910000 0x00 0x800>;
->   		clocks = <&k3_clks 162 3>;
->   		clock-names = "ref";
-> -		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4018>;
-> +		ti,syscon-phy-pll-refclk = <&usb1_phy_ctrl 0x0>;
->   		#address-cells = <2>;
->   		#size-cells = <2>;
->   		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> index fef76f52a52e..bd09662a3c29 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> @@ -19,6 +19,16 @@ chipid: chipid@14 {
->   			compatible = "ti,am654-chipid";
->   			reg = <0x14 0x4>;
->   		};
-> +
-> +		usb0_phy_ctrl: syscon@4008 {
-> +			compatible = "syscon";
+> 
+> On Thu, Jan 25, 2024 at 07:55:14PM -0800, Bjorn Andersson wrote:
+> > +             reset-gpios = <&tlmm 99 GPIO_ACTIVE_LOW>;
+> 
+> This is not enough, on it's own, to get the touch screen running.
+> 
 
-You'll want to add a binding for this to the simple syscon list.
-See this patch for an example[0]. Otherwise this gives a DT check
-warning.
+No, because pinctrl already brings the chip out of reset without this.
 
-Also, adding the new nodes for AM62p should be moved to the
-next patch in this series. Fixing AM62 and AM62a should be
-a standalone patch.
+> I guess that's not so much of a surprise since the rebind-the-driver
+> from userspace trick wouldn't have been touching this reset.
+> 
 
-Andrew
+Right, it would just have been left deasserted from the first attempt.
 
-[0] commit cb523495ee2a ("dt-bindings: mfd: syscon: Add ti,am654-dss-oldi-io-ctrl compatible")
+That said, the addition of the reset means that we're now asserting
+reset in such rebind attempts. And as such the
+post-reset-deassert-delay-ms is now needed between the explicit deassert
+from the driver and the i2c read.
 
-> +			reg = <0x4008 0x4>;
-> +		};
-> +
-> +		usb1_phy_ctrl: syscon@4018 {
-> +			compatible = "syscon";
-> +			reg = <0x4018 0x4>;
-> +		};
->   	};
->   
->   	wkup_uart0: serial@2b300000 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-> index f0b8c9ab1459..8311c7c44cd3 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-> @@ -566,7 +566,7 @@ usbss0: dwc3-usb@f900000 {
->   		reg = <0x00 0x0f900000 0x00 0x800>;
->   		clocks = <&k3_clks 161 3>;
->   		clock-names = "ref";
-> -		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4008>;
-> +		ti,syscon-phy-pll-refclk = <&usb0_phy_ctrl 0x0>;
->   		#address-cells = <2>;
->   		#size-cells = <2>;
->   		power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
-> @@ -589,7 +589,7 @@ usbss1: dwc3-usb@f910000 {
->   		reg = <0x00 0x0f910000 0x00 0x800>;
->   		clocks = <&k3_clks 162 3>;
->   		clock-names = "ref";
-> -		ti,syscon-phy-pll-refclk = <&wkup_conf 0x4018>;
-> +		ti,syscon-phy-pll-refclk = <&usb1_phy_ctrl 0x0>;
->   		#address-cells = <2>;
->   		#size-cells = <2>;
->   		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-> index 4e8279fa01e1..26e9fd9da78f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi
-> @@ -17,6 +17,16 @@ chipid: chipid@14 {
->   			compatible = "ti,am654-chipid";
->   			reg = <0x14 0x4>;
->   		};
-> +
-> +		usb0_phy_ctrl: syscon@4008 {
-> +			compatible = "syscon";
-> +			reg = <0x4008 0x4>;
-> +		};
-> +
-> +		usb1_phy_ctrl: syscon@4018 {
-> +			compatible = "syscon";
-> +			reg = <0x4018 0x4>;
-> +		};
->   	};
->   
->   	wkup_uart0: serial@2b300000 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-> index 19f42b39394e..0893e63c399a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-wakeup.dtsi
-> @@ -18,6 +18,16 @@ chipid: chipid@14 {
->   			reg = <0x14 0x4>;
->   			bootph-all;
->   		};
-> +
-> +		usb0_phy_ctrl: syscon@4008 {
-> +			compatible = "syscon";
-> +			reg = <0x4008 0x4>;
-> +		};
-> +
-> +		usb1_phy_ctrl: syscon@4018 {
-> +			compatible = "syscon";
-> +			reg = <0x4018 0x4>;
-> +		};
->   	};
->   
->   	wkup_uart0: serial@2b300000 {
+> 
+> > +             post-power-on-delay-ms = <5>;
+> 
+> This line alone is enough (in v6.7.1).
+> 
+
+So the delay taken through really_probe() until we reach that i2c read
+is almost the entire delay needed, on your specific device.
+
+> 
+> > +             post-reset-deassert-delay-ms = <200>;
+> 
+> This line alone is also enough!
+> 
+> In short it looks like the delays make the difference and, even a short
+> delay, can fix the problem.
+> 
+> Of course, regardless of the line-by-line results I also ran with all
+> the changes so, FWIW:
+> Tested-by: Daniel Thompson <daniel.thompson@linaro.org>
+> 
+
+Thanks,
+Bjorn
+
+> 
+> Daniel.
 
