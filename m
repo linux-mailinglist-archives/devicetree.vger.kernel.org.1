@@ -1,166 +1,103 @@
-Return-Path: <devicetree+bounces-35666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B6AA83E3D9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 22:23:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F034A83E407
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 22:38:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E75302874EA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 21:23:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C5BDB236E8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jan 2024 21:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5073A249F5;
-	Fri, 26 Jan 2024 21:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10C2024A1B;
+	Fri, 26 Jan 2024 21:38:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tzsgxdhU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KAPLvw0/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E8124215
-	for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 21:23:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3C461DFD9;
+	Fri, 26 Jan 2024 21:38:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706304227; cv=none; b=MzY/qPN3jb6WgPjYHzM8ZU7xh1/Yp9mxhtzqOpx05ff/fgJACaZwvCx7RC4jA9PTCWGBy4vpgU12VyOhAZ42c06few6N5DLSfL2/4DFXWmdfghwWrGpnBuE6SDDifbGPfJXPSf3J6bJnCLdMW0GTZphj8mYj9VPD9f1JPvdaZMU=
+	t=1706305089; cv=none; b=DM0Gjpyx5xCyzGwIdCArOltcEIOa7132Fpy1jCmlfPHDHiecvNWuB81eLBkTs7fZzzPoBimmxm4iEtmiOPrmh5IBfZ9bO/5v86ob2cYeC73x6/Lc4s45WewBkWfSVNXXqwjF27ksfkJQ+ZQP5yDtvIFVODqa4D6pcBivPPxQQlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706304227; c=relaxed/simple;
-	bh=mngwzQ1tW4ra+TgOhuZhs7sUcDu+H/klAorbuEgjoBM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FMWpey7qRJYdfXTmixQ63sJYDdTBQrg3Vxqild4uWiY952RESFaOx8eWJnFY9nhbE3HAStb9WrZeWBOka/lWL6+ruaVi6qYikuYCqEy/Xj/Mi8a2Ag4aLxQCLUrvuZhHgHSCGZP8hUHFlzUjayxLhvUbCEatfyhkOAyGxjHScEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tzsgxdhU; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2cf3ea86423so9229871fa.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 13:23:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706304223; x=1706909023; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nb6lh03t2Y/P5wpyJLZs3j8XPaxvw2LYek8NlAlQ38A=;
-        b=tzsgxdhUhDxcUjZimCLtlJodtzfOf09iSvVwif/+29kyNMvY0GVI51cgioc+K69riV
-         cOgCUzcUIGK9IAmIqCofsynzXkSmsh6zgmyUT0L+SoGdAtL6zLfEebpWtSXXUPeLeJz8
-         wnDjRs1AlBXd5qBSPQk+rQvU1ajlLFDuYlUsd2R+UAGV5AVdY5JeBDc96HvZoV/Wis+8
-         EcsY2QPJugr1MmvOT72rXQ9KScrc8Q3j3+52onQW2DXLFRMhlmG+NB+LPj1LXBzFCRBQ
-         5/8091tJgSKpkY089We9R8W6adjd5wcfk8gVE7rSXNccnz0xEDhduoEQFCENPl/iZBoQ
-         4w+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706304223; x=1706909023;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nb6lh03t2Y/P5wpyJLZs3j8XPaxvw2LYek8NlAlQ38A=;
-        b=AF4TSQ3X24a+0Y4SMMl6PCWc8OOHtyn4TU7DfG4guIm0w09TdHXcN38f9PUeuFEo9F
-         x6ybMVJCIKfWxZGGiArBuFBIQMVJ4Rc98BPV4t2f01+yz+Tb4VvHTERUKqKFWjjw0s4V
-         57/5bTT1mmjXBRgYW9vlnztVbY00xEI8E4otuGxW6XxK2YyjrrI+lPSGqv9ET22If6AN
-         BRuzCwZhoeADs7vLLtomwMVAI8i4QjgSUNHbA32PzG/JKte4e69i7ZLsQbGLUxVnvmod
-         Ygf2F6zdOGzLHPmiMryQG8RJGrtLXpsaZ+oCzpj45kCDSDOe8kn1PFRiSlfuyI93bAdC
-         ukuQ==
-X-Gm-Message-State: AOJu0Yz175GaDA1Go0Aw69J7geAXzPqkZ+32LYTuDhK/OyTCksA8utXf
-	4OUgmSEMHcVhBh5Tlky9gpHU/qdokGTZvCVcFoX1PAJ6csrJDZ3sWzMgukBzDeg=
-X-Google-Smtp-Source: AGHT+IHgPyi0JRFd4/vgCp62QKGLsOfwgqtNUV8jYGIesmhciNt34fa6WdWZ+P+cC+dVYi3kqi9uhw==
-X-Received: by 2002:a2e:5c84:0:b0:2cd:3663:979d with SMTP id q126-20020a2e5c84000000b002cd3663979dmr284037ljb.0.1706304223477;
-        Fri, 26 Jan 2024 13:23:43 -0800 (PST)
-Received: from [192.168.231.132] (178235179146.dynamic-4-waw-k-1-3-0.vectranet.pl. [178.235.179.146])
-        by smtp.gmail.com with ESMTPSA id ba30-20020a0564021ade00b0055d07073cc6sm999494edb.80.2024.01.26.13.23.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Jan 2024 13:23:43 -0800 (PST)
-Message-ID: <f28604d2-20a8-4662-9412-f09c6bf4a67b@linaro.org>
-Date: Fri, 26 Jan 2024 22:23:41 +0100
+	s=arc-20240116; t=1706305089; c=relaxed/simple;
+	bh=Cyr+ohTCDNTF015J2dl9lIrDXnFHUzCsBweKOJFBkuw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=kJ+VM1Q0LlvbAXj+4r7GQOmj53SNDEZZBvlz6hBfVeJ7h4GayH0QY55JjfermszAaxkgQnsmyV+2Ux/5SOcxC313sfh6fis854lNGA5OdcFcgQFt8C5D8cfViWrowfh+DUU4mkhx7mSu5xLwa5C6J3WZ3dl/cytsSsfLboG6CD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KAPLvw0/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AC00C433C7;
+	Fri, 26 Jan 2024 21:38:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706305088;
+	bh=Cyr+ohTCDNTF015J2dl9lIrDXnFHUzCsBweKOJFBkuw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=KAPLvw0/vaB0QKZx0Mo4DAoXZh5RzceBvBjcNZ7f0T1o5tZIqA+6+qFPlZi3DkuOg
+	 wAj3bFB7Q+GG480+li8sMBk70or/p0ziIjQDlO+DTa7OeTVA2ZJLIUjRUATwQp810m
+	 BGyLONVlk4pUz5DZarX/yzwG9KA3Z3gxe7b6MKAoplZx1Rzmd/WwmUtRaKUcJqaXrK
+	 pup1pk3Sbt9jrIeE9lhgrh6LzP2DZOYtWok4k86diFPH7Co1pimFGiFQCxSo0sNORv
+	 h5gff3Ta3vnKFIpA6omH23Nb9IeZRg2Q1YsT6jrCkV0UJvzwu7c1XI+wlL8mH4o7u/
+	 a/Jaj13xIbnlw==
+From: Mark Brown <broonie@kernel.org>
+To: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, alsa-devel@alsa-project.org, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20240124190754.1554899-1-robh@kernel.org>
+References: <20240124190754.1554899-1-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: samsung,tm2: Correct "audio-codec"
+ constraints
+Message-Id: <170630508611.52716.16893175190780075572.b4-ty@kernel.org>
+Date: Fri, 26 Jan 2024 21:38:06 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc8280xp: Introduce additional tsens
- instances
-Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>,
- Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240126-sc8280xp-tsens2_3-v2-1-8504d18828de@quicinc.com>
- <ZbPfeq6ElA3vMf_O@hovoldconsulting.com>
- <20240126165113.GS2936378@hu-bjorande-lv.qualcomm.com>
- <ZbPlRsx3czAHRBew@hovoldconsulting.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
- BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
- HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
- TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
- zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
- MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
- t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
- UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
- aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
- kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
- Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
- R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
- BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
- yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
- xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
- 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
- GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
- mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
- x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
- BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
- mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
- Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
- xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
- AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
- 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
- jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
- cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
- jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
- cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
- bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
- YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
- bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
- nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
- izWDgYvmBE8=
-In-Reply-To: <ZbPlRsx3czAHRBew@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-a684c
 
-On 26.01.2024 18:00, Johan Hovold wrote:
-> On Fri, Jan 26, 2024 at 08:51:13AM -0800, Bjorn Andersson wrote:
->> On Fri, Jan 26, 2024 at 05:36:10PM +0100, Johan Hovold wrote:
+On Wed, 24 Jan 2024 13:07:53 -0600, Rob Herring wrote:
+> The "audio-codec" constraints define how many entries(2), but not the
+> size of each entry. Each entry is a single phandle. Define the size with
+> an inner 'items' list.
 > 
->>> Shall you submit a follow-on patch to set the polling delays to zero
->>> for the other thermal zones (cpu, cluster, mem) so that we don't poll
->>> for those?
->>
->> I optimistically interpreted Konrad's response as a promise by him to do
->> so ;)
->>
->> I do like his patch which remove the poll-properties for non-polling
->> mode. Would be nice to not first change the values to 0 and then remove
->> the properties...
-
-That was my intention as well..
-
 > 
-> No, that should not be an issue as it allows us to get rid of the
-> polling without waiting for a binding update which may or may not
-> materialise in 6.9-rc1.
 
-If you really insist, I may do that, but if the thermal guys act on it
-quickly and we negotiate an immutable branch, we can simply but atop it,
-saving the submitter timeof(patchset), the reviewers timeof(verify), the
-build bots timeof(builds) and the applier timeof(pick-build-push)..
+Applied to
 
-> 
-> But whoever updates those properties need to do some proper testing to
-> make sure that those interrupts really work.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-They seem to, check /proc/interrupts before and after adding an e.g. 45degC
-trip point on one of the CPU thermal zones, they fire aplenty.
+Thanks!
 
-Konrad
+[1/1] ASoC: dt-bindings: samsung,tm2: Correct "audio-codec" constraints
+      commit: 36553eb7785da18568de2b8ecafb3d80db1a0d6b
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
