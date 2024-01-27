@@ -1,118 +1,273 @@
-Return-Path: <devicetree+bounces-35851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 013CE83EEC9
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 17:48:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EDB383EED6
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 17:55:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3477F1C21398
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 16:48:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8F01284A9E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 16:55:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92CC22CCB4;
-	Sat, 27 Jan 2024 16:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fLM4L3dt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 904D62C6AE;
+	Sat, 27 Jan 2024 16:55:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 655822C862;
-	Sat, 27 Jan 2024 16:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13FA52576D;
+	Sat, 27 Jan 2024 16:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.53.165.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706374089; cv=none; b=IQugXetb3SViRpkthI1X80jWVs59ahs8FQoPlyfu3Nr7eJops1+nXRvmZnJTgmKvc3aMAbM9/Qsk96JF9ERz5ObTbulf/cKCRmvpMTqfAsHwDHupNvXfMPzEsfzZ76JeuzE+cBibn+tmp6bMJg5QnT1/dS1xGMeI6cTl5EOfiZU=
+	t=1706374536; cv=none; b=gkSO+pz14jx/UBERUXk7q26/04fZ/+8QDm1HHpgUEbkqJja5sjCyBiIOckYaXjIx4ydJNqXuVXyOy9XwSwr23ueIBJ+c4gDebippRGXwNSbhgrlPWdRjhDaaWSUEZr0lPdalZGVtmpjs0/gN7zmJklX2z233AdWLyjAaDbC2Fso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706374089; c=relaxed/simple;
-	bh=OPq57q57/l0vaJyrp1dFReHXsv+Tc2EmXfdWmH42XL0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CuzPHc2G0CkrhJwlYMWOmlm7K5i7mAWwjzJIENV0fVzgBgd/j6xAPPs1fy75RmJI+Nx56oGPQbt8ZFD45iY1HOL25pTN91SEY96ctJ8xMeikDkHbzZSlYTaVmvbDsZXQIHq9i/YLMAAJUb7PGM9KZKFZ4sDkzkt8xVkhL6BlTfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fLM4L3dt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F1A1C43609;
-	Sat, 27 Jan 2024 16:48:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706374088;
-	bh=OPq57q57/l0vaJyrp1dFReHXsv+Tc2EmXfdWmH42XL0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fLM4L3dt/BKhiEalXuSOAD1IbKSf1uK73N84EdAaiMk8jPcYxiqwLYzJRMmX0Q4tx
-	 bWzjPOATlxMctISSgIAxm5YpPMPVEF4GlFr7/VMCtHa86lwdop8I+EA2D5hze6Ctvj
-	 NXmAW4ydGPXhI/2BmOFlfSNTNoHDDRaDjzTeqP0/+IpOfm8dm0T0NBaWIrh/GLj1Nc
-	 fz2SaptdnWGOeOW4WuQInFTLgkRkzwdqgOtTKvN+CiCSQWxtJBSPIH5zLjAmS0ZxjM
-	 TUCNGJp8TxS7OtV56HjLk+HERfJIIiYvwG5gwmsDLcJK1UohYGXACS6AX4KRiOaORk
-	 a2WTxwgFVqxXA==
-Date: Sat, 27 Jan 2024 16:48:04 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Peter Rosin <peda@axentia.se>,
-	Naresh Solanki <naresh.solanki@9elements.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: afe: voltage-divider: Add
- io-channel-cells
-Message-ID: <20240127-capitol-cabbage-7a9b67112a28@spud>
-References: <20240126115509.1459425-1-naresh.solanki@9elements.com>
- <20240126-cinnamon-flatware-e042b5773f17@spud>
- <CABqG17hzZf2mme0v7hALhpd6-N3ZHqxdH-AhFg5eF9sbLSC2gw@mail.gmail.com>
- <20240126-scale-serrated-33686467d91b@spud>
- <CABqG17jp6YRGyTmNitz-xDdyhWOPgfT_XpXxw-OJLnXQ777vAA@mail.gmail.com>
- <20240126-blaspheme-calculate-a4134dc1ed68@spud>
- <536971eb-51f0-40e5-d025-7c4c1d683d49@axentia.se>
- <20240127-hunting-wick-fc1eed1af6b1@spud>
- <20240127144920.455b6f0c@jic23-huawei>
+	s=arc-20240116; t=1706374536; c=relaxed/simple;
+	bh=UJf8LfIAA2qfS/89s5e5bsmdSscHEaH22ow4zmGKK8s=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=e3QSCfWsbtTEzvc/SnbS8+7qAZj9oobjuKkD3ddZcbhWOmzJzwERXvJ3G3x8NqTP+myHH8P9y3jQOj2mPX1PbdjhKGFLaJBZTJO0xyJz9cJL1CaNPV+Ol8wENMOrNv+4NaZGiQ+oaNkeouchUYOokwK6asg2an678VLk0UA74U0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr; spf=pass smtp.mailfrom=skole.hr; arc=none smtp.client-ip=161.53.165.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
+Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id D1647855D6;
+	Sat, 27 Jan 2024 17:55:22 +0100 (CET)
+From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Date: Sat, 27 Jan 2024 17:53:45 +0100
+Subject: [PATCH] dt-bindings: mmp-dma: convert to YAML
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GjKLRvODLoSn+Ea7"
-Content-Disposition: inline
-In-Reply-To: <20240127144920.455b6f0c@jic23-huawei>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20240127-pxa-dma-yaml-v1-1-573bafe86454@skole.hr>
+X-B4-Tracking: v=1; b=H4sIABk1tWUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDQyNT3YKKRN2U3ETdysTcHF2DJDOjVEMDCyOTNBMloJaCotS0zAqwcdG
+ xtbUA23t0gV4AAAA=
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5739;
+ i=duje.mihanovic@skole.hr; h=from:subject:message-id;
+ bh=UJf8LfIAA2qfS/89s5e5bsmdSscHEaH22ow4zmGKK8s=;
+ b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBltTVR8l6pIYcroTtyjyjMEx6FofUU+ApvB/KzH
+ XvfS2BhdRyJAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZbU1UQAKCRCaEZ6wQi2W
+ 4VkEEACJkFd7cQtUpT0G2ulzPw7PJeX0xzLQDL7h437/7HJN+/MqD0h8FFHgJp5uOxbLUGSTzcI
+ sDSgWEMJz8xrggEU2BM9A/vmaAN5Htxg1Ll9z8vF3UfjQ67Mo8kRGisk0wjGR2Izxr/GpKrA0ke
+ 0LEgsSPC6Vx4zVxbbbA2ytzQvXHRSzFp89eZaf1xdnuttf5zvq6SJpsi9RQWYrPmjj/LZs/Tr1C
+ tr3+U34Em78q+1y0Ys6dxNu4PCo+HwhqTQ5wb7wbm/kBMicbZ0fgAiSxI8PWCalFrNxP3tpPTP+
+ 9waZMTWR9iYDB2v2ZXK1VuU5H9gYiq9uBj45NIjN4tnZLCcvoWMtdDHkxA55AILoHQoWct+E5Va
+ 0nNHoOsU9HcvLgeCZHOezf8kVw5vbeNnTSNKo0xRtaQqZCx9jOkTD44saq1R+FbtsEuGhRDrgIM
+ ITukzDMlIp95ibNb3p9KKc5rP+Tg2/7qlcjLGXITCw+sysvNqPNhvuG2gknOsBF7LUsu9U67Zyo
+ x0tUvo8WlQ7igvEVd/eaO2ath4C5+XL+lkwL34t6dZfNpml9o80s40s3xkTJ4bltT5vp4nYwuH1
+ oEfRxuim1NVrqgo7Q2IaUfkV1FEMMNToWEJ4WiNDW/2VUt5WGZhJnOlVF/gokIyOErpLOZbwnqO
+ lW6cunRTrkC9Cmw==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
+
+Convert the Marvell MMP DMA binding to YAML.
+
+The TXT binding mentions that the controller may have one IRQ per DMA
+channel. Examples of this were dropped in the YAML binding because of
+dt_binding_check complaints (either too many interrupt cells or
+interrupts) and the fact that this is not used in any of the in-tree
+device trees.
+
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+---
+ .../devicetree/bindings/dma/marvell,mmp-dma.yaml   | 82 ++++++++++++++++++++++
+ Documentation/devicetree/bindings/dma/mmp-dma.txt  | 81 ---------------------
+ 2 files changed, 82 insertions(+), 81 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+new file mode 100644
+index 000000000000..fe94ba9143e0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/marvell,mmp-dma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell MMP DMA controller
++
++maintainers:
++  - Duje Mihanović <duje.mihanovic@skole.hr>
++
++description:
++  Marvell MMP SoCs may have two types of DMA controllers, peripheral and audio.
++
++properties:
++  compatible:
++    enum:
++      - marvell,pdma-1.0
++      - marvell,adma-1.0
++      - marvell,pxa910-squ
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description:
++      Interrupt lines for the controller, may be shared or one per DMA channel
++    minItems: 1
++
++  '#dma-channels':
++    deprecated: true
++
++  '#dma-requests':
++    deprecated: true
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - '#dma-cells'
++
++allOf:
++  - $ref: dma-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - marvell,adma-1.0
++              - marvell,pxa910-squ
++    then:
++      properties:
++        asram:
++          description:
++            phandle to the SRAM pool
++          minItems: 1
++          maxItems: 1
++        iram:
++          maxItems: 1
++
++unevaluatedProperties: false
++
++examples:
++  # Peripheral controller
++  - |
++    pdma0: dma-controller@d4000000 {
++        compatible = "marvell,pdma-1.0";
++        reg = <0xd4000000 0x10000>;
++        interrupts = <47>;
++        #dma-cells = <2>;
++        dma-channels = <16>;
++    };
++
++  # Audio controller
++  - |
++    squ: dma-controller@d42a0800 {
++        compatible = "marvell,pxa910-squ";
++        reg = <0xd42a0800 0x100>;
++        interrupts = <46>;
++        #dma-cells = <2>;
++        dma-channels = <2>;
++    };
+diff --git a/Documentation/devicetree/bindings/dma/mmp-dma.txt b/Documentation/devicetree/bindings/dma/mmp-dma.txt
+deleted file mode 100644
+index ec18bf0a802a..000000000000
+--- a/Documentation/devicetree/bindings/dma/mmp-dma.txt
++++ /dev/null
+@@ -1,81 +0,0 @@
+-* MARVELL MMP DMA controller
+-
+-Marvell Peripheral DMA Controller
+-Used platforms: pxa688, pxa910, pxa3xx, etc
+-
+-Required properties:
+-- compatible: Should be "marvell,pdma-1.0"
+-- reg: Should contain DMA registers location and length.
+-- interrupts: Either contain all of the per-channel DMA interrupts
+-		or one irq for pdma device
+-
+-Optional properties:
+-- dma-channels: Number of DMA channels supported by the controller (defaults
+-  to 32 when not specified)
+-- #dma-channels: deprecated
+-- dma-requests: Number of DMA requestor lines supported by the controller
+-  (defaults to 32 when not specified)
+-- #dma-requests: deprecated
+-
+-"marvell,pdma-1.0"
+-Used platforms: pxa25x, pxa27x, pxa3xx, pxa93x, pxa168, pxa910, pxa688.
+-
+-Examples:
+-
+-/*
+- * Each channel has specific irq
+- * ICU parse out irq channel from ICU register,
+- * while DMA controller may not able to distinguish the irq channel
+- * Using this method, interrupt-parent is required as demuxer
+- * For example, pxa688 icu register 0x128, bit 0~15 is PDMA channel irq,
+- * 18~21 is ADMA irq
+- */
+-pdma: dma-controller@d4000000 {
+-	      compatible = "marvell,pdma-1.0";
+-	      reg = <0xd4000000 0x10000>;
+-	      interrupts = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15>;
+-	      interrupt-parent = <&intcmux32>;
+-	      dma-channels = <16>;
+-      };
+-
+-/*
+- * One irq for all channels
+- * Dmaengine driver (DMA controller) distinguish irq channel via
+- * parsing internal register
+- */
+-pdma: dma-controller@d4000000 {
+-	      compatible = "marvell,pdma-1.0";
+-	      reg = <0xd4000000 0x10000>;
+-	      interrupts = <47>;
+-	      dma-channels = <16>;
+-      };
+-
+-
+-Marvell Two Channel DMA Controller used specifically for audio
+-Used platforms: pxa688, pxa910
+-
+-Required properties:
+-- compatible: Should be "marvell,adma-1.0" or "marvell,pxa910-squ"
+-- reg: Should contain DMA registers location and length.
+-- interrupts: Either contain all of the per-channel DMA interrupts
+-		or one irq for dma device
+-
+-"marvell,adma-1.0" used on pxa688
+-"marvell,pxa910-squ" used on pxa910
+-
+-Examples:
+-
+-/* each channel has specific irq */
+-adma0: dma-controller@d42a0800 {
+-	      compatible = "marvell,adma-1.0";
+-	      reg = <0xd42a0800 0x100>;
+-	      interrupts = <18 19>;
+-	      interrupt-parent = <&intcmux32>;
+-      };
+-
+-/* One irq for all channels */
+-squ: dma-controller@d42a0800 {
+-	      compatible = "marvell,pxa910-squ";
+-	      reg = <0xd42a0800 0x100>;
+-	      interrupts = <46>;
+-      };
+
+---
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
+change-id: 20240125-pxa-dma-yaml-0b62e10824f4
+
+Best regards,
+-- 
+Duje Mihanović <duje.mihanovic@skole.hr>
 
 
---GjKLRvODLoSn+Ea7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Jan 27, 2024 at 02:49:20PM +0000, Jonathan Cameron wrote:
-
-> > > It's all in the description of the binding... =20
-> >=20
-> > Obviously it was not sufficiently clear, it's not as if I didn't look at
-> > it...
->=20
-> Given this device fits in both categories, perhaps a tiny bit of
-> additional documentation would help?
-
-That would be nice.
-
->   '#io-channels-cells':
->     description:
->       In addition to consuming the measurement services of an ADC,
->       the voltage divider can act as an provider of measurement
->       services to other devices.
->     const: 1
-
-But I am not sure that that covers things. I think an example, like
-Peter gave, would be good?
-
---GjKLRvODLoSn+Ea7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbUzwAAKCRB4tDGHoIJi
-0gVsAQCylbDj315fDC3IIidM7TlZtqSvlluKUx0X6SSfvlLphQEAqA/uvT4AisrC
-flXHy0rxQQ4/TCWb21WrmXXQV3hbVwc=
-=7YLY
------END PGP SIGNATURE-----
-
---GjKLRvODLoSn+Ea7--
 
