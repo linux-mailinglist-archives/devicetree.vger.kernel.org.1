@@ -1,82 +1,85 @@
-Return-Path: <devicetree+bounces-35784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78A2D83ECE7
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 12:27:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD34883ECE9
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 12:30:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 204CC1F22B13
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 11:27:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5E82D1F22379
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 11:30:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9851200C7;
-	Sat, 27 Jan 2024 11:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED97200C7;
+	Sat, 27 Jan 2024 11:29:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MGQ/xrYc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f5VHDGY1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BB2200AE
-	for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 11:27:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB84200AE
+	for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 11:29:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706354856; cv=none; b=tnvBhWI/1vJX7nTgaqsEeUsRHxrw0RL9JH77X3rW26I5SbZYM2lmzrQS0uLF+PUuRzQqokOuV9xyoZIgiHhHoYAp0lGcSZ1GEcWM7+mEcACllpi6Qmqf3K7IVu9Hi3To4K5VSPr2f5cl2D9uVnqto9cV+sJ1k5bXNIL38ZFwuXw=
+	t=1706354999; cv=none; b=U1oWynxPMCe2i8f6WMOfbOYN1kYnrLPpzo7bLIS5ooHajqYkeS2cQ92koE/9qsxBxYoJF2vM2isYszV35EmHM6Dt+gme8EmmehKwddSO3DIebBMNL7/p+1QJV89S+EBGVIFPm0VjdEExzpK6L+9b3/5gcYmjkp04v0ixwQbY6rA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706354856; c=relaxed/simple;
-	bh=vK0eqnJKg4J1aQCQzH+8/Z6rONOs/EvbsxZRDKrlQEk=;
+	s=arc-20240116; t=1706354999; c=relaxed/simple;
+	bh=2vC309A8q1QlZwagjlPpO0d57cgiqhamWWBsCy4DApE=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=LmmKsh7yV3yFCTeI2nlypEFaVIv6b360lK17K8XNcyPAZEAyC2kjNKrd1TfPmlEpceEDSsyhVj69u9ilCHh16D8SvUN5PF7ymwnFQ+jXbge5+uY1viRPK+mvfMxLJ8TQI9H2idaCF8EyZXA1DxPykHJgYs2LJPGCeYfjLatZCAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MGQ/xrYc; arc=none smtp.client-ip=209.85.128.50
+	 MIME-Version:Content-Type; b=tJAURs0NnePV1UInEliu+o04taB+b+xg2qUiqW9px4tiw7YqKVs3mpjrUlBGwLPRs3oeQbZKZAvL4SNPo6lFItxNtK2rpSQCJo99elDEqQY9KNbkyxZN5Tcp/syLrzlWfop+L/FB2nywfyJF5BdXeolQKI9NREbl8b8kUt4742U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f5VHDGY1; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-40ee418e7edso18135675e9.2
-        for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 03:27:34 -0800 (PST)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-40ea5653f6bso21092245e9.3
+        for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 03:29:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706354853; x=1706959653; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706354996; x=1706959796; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2dpM1CkfDH0XB95t4O5VTpTHwxkxhmeZblwS/gZTA+A=;
-        b=MGQ/xrYcc0tccIy6OBkCfe6pchSPtKKeZZxMDkMHwwWNr7/sr5hnfh0Cd9vdCBDQBo
-         VJYsmbieXKK6MVt9RC7CGOTTLVAk7N8r3cAEKE5JwR0UScfwU9st7lLAAG76nKIYvfld
-         Mb2IdtZypIA17kJe+xld05HSWq0Cgo2eeDzOwbB7QaFmaVAcQgXbtZrFPdM1VxIkGuLH
-         12LVWGIRrEXWBDUU/RSPCXRTROektcGrYvMQbgOd9DiLQgf3ZbOZpSi/QL/ySXuHxo47
-         OCXqr85xhB6TIjFA63/oFaxxHVQ0VzZLwkgy71VeD1MDYqM6G9gxCMyETjBecQOgIsOT
-         Wrag==
+        bh=2GZIIhmY4ewuA9KgJhwUUlqVtGcUt+YTA3IGIjyGp5g=;
+        b=f5VHDGY1Q2EsAHdp02nCclfkMHJqYk/afKePmm9Krib/aaD7oPg+r1ZT2jQemhG3uU
+         QdvGoDSc/m0Q5XKu6ENOjwzdO5aHL7cyqUhWsAs5vVpSozkW3O+WN33jUIiOkyvsE7Gp
+         /TgW/iW5TBI/MwCGoTd1XNyktSEAGxzpbJO6i+q3LZl1Gg8HeiZ5T2NnjRyLP0K/dRqY
+         fg4O4BmH+7QtzM8DS7/w6g/0K71ojap45Xq8+CutUUtX4PDxKXBkxkHR+yuqvWWQptjJ
+         z/8CzmLtzO/HkJ0xhvjccku3eEgXb3pZzmw/NNUwx0AscZDFuwz76X8C9IOHsVgU+l9h
+         p7hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706354853; x=1706959653;
+        d=1e100.net; s=20230601; t=1706354996; x=1706959796;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2dpM1CkfDH0XB95t4O5VTpTHwxkxhmeZblwS/gZTA+A=;
-        b=pZZ99+T0e2d6Q2W6GMBm/GTVnuzi3BHE3b7JiPF/16wwtdtLCArpFeLNQPvk/i2B8P
-         mbBDx3jc6SxPiDQqOUqOGaR5YTlK77KeyUox2Ki0+OMVrMguakBbJHgmR+KvvMfSiZNI
-         F/bQHmAAbpt1eoSHl3zBxIVYVjucsizLcD/T6MRGAoUgp5zUce6H2xhr8xLC791jLKfj
-         BJehPm75D5Ffzrp21RwJUOzSPAAwNgF5x3uipItOfIeq+jLqKz2j2+DbpnWfYPtxT+77
-         E2yugwoMxyxU1MNl2b7aT56P0Ul3DIWZC0i4CRc0rXSLrZbkW5f3zqQyKkCENOyZP/32
-         MlVQ==
-X-Gm-Message-State: AOJu0YzqxkqmZvtM/YdsPQI/QKzZCNTHvGUlNx/K9EqRTjWhCJ7m6QzU
-	IUU0VJwuC3PpuaediyFD0Qf8vMwLuuPrfNiV4iZoO2N6vReQ6EenA43YpJHQW7g=
-X-Google-Smtp-Source: AGHT+IEZqYwNJrHEDeaHzZ7naxdfE4X1NGyfJELKrR6djyUokV5E53Zvh98ZWJ9alwwC/brnFRuBtQ==
-X-Received: by 2002:a5d:6c63:0:b0:33a:dee8:ac89 with SMTP id r3-20020a5d6c63000000b0033adee8ac89mr1136329wrz.99.1706354852743;
-        Sat, 27 Jan 2024 03:27:32 -0800 (PST)
+        bh=2GZIIhmY4ewuA9KgJhwUUlqVtGcUt+YTA3IGIjyGp5g=;
+        b=BhbF0hW/OaIradKGPtCQUoYZArVQsOfBoYCPz7wEIoI35nXtkSBL2dYBMAExXEVwv+
+         wWtYwNKtN/pAH7dSfwClAJP6te+IwAFJqTrNWXqBJl8QuvjvbxbiLo1bbAZeQa47Q6ha
+         DcwEg56VztkHXsga1Mr1gJEbygxfyen5cSvCa7y2MFnzGNtae9rg9n4X4weYDqUMWfYw
+         gYtGWlCBi1LuvQ2M4Yvut7YNs8Ji/wckJSUcpuyq+ygcuNtWl20tZfce1DP4Ue6lTB7o
+         AfS6oA6KRUCEKKpLGtnjjnybAriieTVyzGcR6+e3HxTJulCdfUncMJqhajtz87kBAJ0Y
+         hlYg==
+X-Gm-Message-State: AOJu0Ywo5E1moUMABoTJUc6Y+89x0G5QWslRTJUkpl2qT0bkmOjNPNt0
+	metpCEfoJdWIozpzAu7Zfy5PnTsBb8wKPTg2uOi8Gy+EqlKnju/MmR6gdVYsP+0=
+X-Google-Smtp-Source: AGHT+IGK1wNu7ZSIsgbkTjQOCpa8D/ABpMbe7tI4xca9X8OXpOP9r4Fup/x/E/gFt/JZ9Szz1a9l0A==
+X-Received: by 2002:a05:600c:4f8e:b0:40e:b313:b8db with SMTP id n14-20020a05600c4f8e00b0040eb313b8dbmr1167208wmq.28.1706354996117;
+        Sat, 27 Jan 2024 03:29:56 -0800 (PST)
 Received: from [172.20.10.4] (82-132-215-85.dab.02.net. [82.132.215.85])
-        by smtp.gmail.com with ESMTPSA id n6-20020a05600c500600b0040e3488f16dsm4369914wmr.12.2024.01.27.03.27.31
+        by smtp.gmail.com with ESMTPSA id h17-20020a05600c315100b0040d62f89381sm4427724wmo.35.2024.01.27.03.29.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Jan 2024 03:27:31 -0800 (PST)
+        Sat, 27 Jan 2024 03:29:55 -0800 (PST)
 From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20240125134645.2549051-1-robh@kernel.org>
-References: <20240125134645.2549051-1-robh@kernel.org>
-Subject: Re: [PATCH] nvmem: fixed-cell: Simplify nested if/then schema
-Message-Id: <170635485051.40968.2673432461747170125.b4-ty@linaro.org>
-Date: Sat, 27 Jan 2024 11:27:30 +0000
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ William-tw Lin <william-tw.lin@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20231222080739.21706-1-william-tw.lin@mediatek.com>
+References: <20231222080739.21706-1-william-tw.lin@mediatek.com>
+Subject: Re: (subset) [PATCH v4 0/3] mtk-socinfo driver implementation
+Message-Id: <170635499406.41064.12411935787824963879.b4-ty@linaro.org>
+Date: Sat, 27 Jan 2024 11:29:54 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,16 +91,20 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.12.2
 
 
-On Thu, 25 Jan 2024 07:46:44 -0600, Rob Herring wrote:
-> There's no reason to have a nested if/then schema as checking for compatible
-> being present and containing 'mac-base' can all be done in one 'if' schema.
+On Fri, 22 Dec 2023 16:07:36 +0800, William-tw Lin wrote:
+> v4 changes:
+> dts:
+> 1. remove phandle from socinfo-data for all platforms
 > 
+> mtk-socinfo.c:
+> 1. use module_platform_driver instead of builtin_platform_driver
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] nvmem: fixed-cell: Simplify nested if/then schema
-      commit: 290ea1d6f990c92d5ae599554d8acafdd0ddeb2e
+[3/3] nvmem: mtk-efuse: Register MediaTek socinfo driver from efuse
+      commit: 4e6102d60d88975bc65a0dde05a8ba096c450249
 
 Best regards,
 -- 
