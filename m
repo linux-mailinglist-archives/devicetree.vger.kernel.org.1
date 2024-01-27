@@ -1,97 +1,88 @@
-Return-Path: <devicetree+bounces-35810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CC4683EE29
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 17:04:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 890F183EE41
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 17:12:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 188B628414B
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 16:04:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10802B218BD
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 16:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F83F2C192;
-	Sat, 27 Jan 2024 16:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C83AA2942F;
+	Sat, 27 Jan 2024 16:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="Cd65x+KJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YBV4TCzB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (skycaves.subdimension.ro [172.104.132.142])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A5929425;
-	Sat, 27 Jan 2024 16:04:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.104.132.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9346128E0D;
+	Sat, 27 Jan 2024 16:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706371462; cv=none; b=ZwLnY7THY1l1GvBWpslECJSvFjlNsoHS9uJvMjb13oIthHy/Ub99oBxsHf9+Bo28aiWuWXH5bULarctY85QX5qKPYNEfV8yTSmc4gsSXPp7d+lyoZKTJSXRNrdOrCVRUMLynK5lSBLPK9EIlUQgBOuvNyeYlVTzrux2Nr/XPcRo=
+	t=1706371968; cv=none; b=DVBMEEi/lwyJxpY7O2pzZ/H7o4mG11Xh8EqVW0ELAvZTgOHZFP4MooKhZMDKH9UPNV4PLj2RYsM+RsAvJY4UA/pamERctmL8uCzm+DI7HPpnGHRUzdbFoWmLkFEyJ1ahvyYsco9Wh2Maj3A+qva0dfFdhH4Wg+eg0wauEaBEMUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706371462; c=relaxed/simple;
-	bh=rThLPG0oKPIY+R5SCgniLS4AOa/AbEm1BbmpT++4eoA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=t2Mpx2pmv7XP/4VQk4ycED3rwx789qyCZyhAdx1gnyB5n26Z88e00N5eoRqr4D4qD22Hq3ixMnZE820Bp+Ke16wRIuJBngn4LozuKsIHzr91O01GjWFN+RyHYAS3e1l+NfQScZfEyymtJSV8Wsal95X8gRpg42hi9XxBVVAa4zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (1024-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=Cd65x+KJ; arc=none smtp.client-ip=172.104.132.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=subdimension.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
-Received: from localhost.localdomain (unknown [188.24.80.170])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id 365B4293A94;
-	Sat, 27 Jan 2024 16:04:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=subdimension.ro;
-	s=skycaves; t=1706371452;
-	bh=rThLPG0oKPIY+R5SCgniLS4AOa/AbEm1BbmpT++4eoA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Cd65x+KJigdUgolM9yGgHvd18F5uWnJQkw1b/oQB/HUPhr4Culgab6NpdCTq/nK95
-	 86UzlvQBZPQhPyzAmsBMSsV+zCQLMS1pz+TA1cnuk7Ami9p7SmDIG/exn1HIUcP8Dc
-	 ov2uVz+GGyq9TQJr0UfJGoM68TqmEQTzNXOrcVxI=
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Petre Rodan <petre.rodan@subdimension.ro>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v2 1/4] dt-bindings: iio: pressure: honeywell,hsc030pa.yaml add spi props
-Date: Sat, 27 Jan 2024 18:03:55 +0200
-Message-ID: <20240127160405.19696-2-petre.rodan@subdimension.ro>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240127160405.19696-1-petre.rodan@subdimension.ro>
-References: <20240127160405.19696-1-petre.rodan@subdimension.ro>
+	s=arc-20240116; t=1706371968; c=relaxed/simple;
+	bh=TGGiLiKyxxokVpqJv9Sir8jHPnD4golICtXC1nVJGDg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FoEj6JvwMg1zZrZdKCcG9Cgv/JidEVw1k2OckBWeNXoJ4JQ8KfET5olaxCHSPBzM6ljQ2iYMjpZ1nJqBnflT13MEXjtFCDssloPvmHo4pI7zj/uAw6AxxjJuWCfrowRUwY9mT9kWwpA++7f+VeeMufWPd30zdgDEfbropqDhyuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YBV4TCzB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 413D2C433F1;
+	Sat, 27 Jan 2024 16:12:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706371968;
+	bh=TGGiLiKyxxokVpqJv9Sir8jHPnD4golICtXC1nVJGDg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=YBV4TCzBJvGdKGLDHi2VeT/9IiZh9EdG5vShj1AWVsLnTiLVq1mENsx6r8acAAkF/
+	 GcolhNBv7apVg7WFWK6dNZnK31UezT8YkKl0+tSGTDIKpeIwCmQ8jxpcQ6hk68OO+z
+	 eQ0OvEA6E08hSAaHNBWgey5JmsPSRKbLcQn9JkwwC2S2wi/k2KwlzlUMzu8ga1nsP2
+	 s/Xz78GvS0srCTxZ4K9RDQs4g5NbHFUDRZEMxTwQklR33PspqCm0Kw6Wa6FGti4IXQ
+	 llIYQAded2es95rtnY2xQ6UhhwTvObYSxYjS1Ud+09/x0cSKjJXK/WS6NAT3lEHXqN
+	 +/vq0bdWV91Xw==
+Date: Sat, 27 Jan 2024 16:12:32 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ "Crt Mori" <cmo@melexis.com>, Linus Walleij <linus.walleij@linaro.org>,
+ "Bartosz Golaszewski" <brgl@bgdev.pl>, Nuno =?UTF-8?B?U8Oh?=
+ <noname.nuno@gmail.com>
+Subject: Re: [PATCH v8 2/2] iio: frequency: admfm2000: New driver
+Message-ID: <20240127161232.5117a108@jic23-huawei>
+In-Reply-To: <20240123081059.5746-2-kimseer.paller@analog.com>
+References: <20240123081059.5746-1-kimseer.paller@analog.com>
+	<20240123081059.5746-2-kimseer.paller@analog.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.40; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Add spi-peripheral-props.yaml requirement needed by the
-spi-max-frequency property.
+On Tue, 23 Jan 2024 16:10:59 +0800
+Kim Seer Paller <kimseer.paller@analog.com> wrote:
 
-Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
----
-v2 -> v1 change the commit message based on Krzysztof's request
- .../devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml   | 3 +++
- 1 file changed, 3 insertions(+)
+> Dual microwave down converter module with input RF and LO frequency
+> ranges from 0.5 to 32 GHz and an output IF frequency range from 0.1 to
+> 8 GHz. It consists of a LNA, mixer, IF filter, DSA, and IF amplifier
+> for each down conversion path.
+> 
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+Series applied.
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-index 65a24ed67b3c..89977b9f01cf 100644
---- a/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-+++ b/Documentation/devicetree/bindings/iio/pressure/honeywell,hsc030pa.yaml
-@@ -99,6 +99,9 @@ required:
-   - honeywell,transfer-function
-   - honeywell,pressure-triplet
- 
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml
-+
- additionalProperties: false
- 
- dependentSchemas:
--- 
-2.43.0
+For future reference please always use a cover letter
+--cover-letter for git format-patch, most because it gives a place for general
+comments (like applied!) and because it gives a nice pretty name in patchwork!
 
+Thanks,
+
+Jonathan
 
