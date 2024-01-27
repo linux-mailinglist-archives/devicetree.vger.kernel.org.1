@@ -1,103 +1,145 @@
-Return-Path: <devicetree+bounces-35771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56EAD83EC43
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 10:21:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0455283EC4C
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 10:31:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80E7D1C21973
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 09:21:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5AA91B22A11
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 09:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E3C1E872;
-	Sat, 27 Jan 2024 09:21:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5FD41E874;
+	Sat, 27 Jan 2024 09:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="K8nyT+Z5"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=mecka.net header.i=@mecka.net header.b="E5zqKQbg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9861DFE8;
-	Sat, 27 Jan 2024 09:21:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+Received: from mecka.net (mecka.net [159.69.159.214])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E55561E88B;
+	Sat, 27 Jan 2024 09:31:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.159.214
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706347286; cv=none; b=gxLpowdfscs7A8M/Mf9cN94cJ9Al0onxSxdizs9Tq++7zj075J6nwlIJcUiXJD1Kaa/wDDa4/3zQgEVjJP1XXVtEf1RxyMS3riHsfLTLg6eP8zvBsLLKmqVNpCG49jpwnh7au+ubEOTnE/oWB9Q1ia/s0rR5wDLdQbFw0vik/TA=
+	t=1706347875; cv=none; b=PCUJPfsZFoMOJ2SJu4ZNLH7JEZJywzoJrbD1jo5e2qruyTSNsKo7PmqQ4KD5eYrknFwCZ7oUwN9nrOOHYE66nCVAXMBEQQvcFf2whWz2bUffEmT1dgTqti2Rslv4jcyBgzUB0wcuIdAaSwF0YK97ifIEv4t6BTZ4uyyNFACu42Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706347286; c=relaxed/simple;
-	bh=UOxD5C37dYkQwJfR2+WR1Axl/c9z0AvtCPGa2cvizAg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cEOjGbZQNYyu2XcLJ5m+iOHKGhu0WTd2cO5X297We0RGNMIcGEQ0BCRWZYf9P6MSXRnlzo+VYZ17VAaZ3soN9EB072P8/AQwQ8puzpRqhqQ0+ZDtruTuE6qj1b2AgS8Ae6kFAJUm7wRz32KFFFdQboEzvu66+WC4p6rVGUNtBE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=K8nyT+Z5; arc=none smtp.client-ip=220.197.31.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=a/VjS
-	8XMkdiNaejedJEj7VqbTBOy9aX70K9qWnPW79Y=; b=K8nyT+Z58mrUAFpNviP9Z
-	b48JmtTNY//qVDuM+J5t0K4TtsY6DMtLDNd+mqQkoPbHDbtGSHNBBNTFaYjarPHy
-	EVh/6F/v76SjPpaFq/f3bOzphtxVN0Zcl6d+M6qOoOihPMrBNzyAssUynJgr6DlS
-	useRmwyIrZm5kAfR3awejM=
-Received: from ProDesk.. (unknown [58.22.7.114])
-	by gzga-smtp-mta-g0-4 (Coremail) with SMTP id _____wD3rzHkyrRl5GopBA--.2976S5;
-	Sat, 27 Jan 2024 17:20:41 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	robh+dt@kernel.org,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1706347875; c=relaxed/simple;
+	bh=ZKfXwd9FW0rWdUEIALu0OP8KvDADbdtz+p95WviJSc4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fyuioiQsHZA0v4N1ZvbbZdwcSCee5lHRm0Eh1djD5i9vQ99YIu81ymIhUtpEL2EgwxUxLxDm0/KOjV42DKZozZwgfJ+cK7p05AYWAQgH+f3Zi7RBDiFgbnbCn5eHEbZ1ftbtUndMjxaQ7KHHZCqaEKZMp2JV3G4mtbIkyWBXtOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mecka.net; spf=pass smtp.mailfrom=mecka.net; dkim=fail (0-bit key) header.d=mecka.net header.i=@mecka.net header.b=E5zqKQbg reason="key not found in DNS"; arc=none smtp.client-ip=159.69.159.214
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mecka.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mecka.net
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mecka.net; s=2016.11;
+	t=1706347870; bh=ZKfXwd9FW0rWdUEIALu0OP8KvDADbdtz+p95WviJSc4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E5zqKQbgtz/Vq1FfeGeVWFW44FAQes1TM4fjycxZbs1PXj/kVBhPZtt8C/MCLa5XM
+	 dai1JImK0gvTG3CT70igLp2rBfb57qbRrPLdvZba717th93qWGahfDoSPH4YxzXy3o
+	 KFLVR2c/ArebjwwBnqxAOeAtAR7PvYD0LYY6uiOcH8I94rBblNT04Edw8a4onAr+Ui
+	 fYBHN55OgbOXxjVOCIvNjCAajRO1CrZrvjnBCMu+xHqEC4DExZ/uHvnMUiudhwP5m+
+	 S/9hkxTVl5vu66m9D3t65iwe/mRLoQov1gFs/bJPNdYvl2v6JKRQOKRP4DWuu9e4WG
+	 z4X7wSbggV/gw==
+Received: from mecka.net (unknown [185.147.11.134])
+	by mecka.net (Postfix) with ESMTPSA id A981E3BF3AE;
+	Sat, 27 Jan 2024 10:31:09 +0100 (CET)
+Date: Sat, 27 Jan 2024 10:31:08 +0100
+From: Manuel Traut <manut@mecka.net>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+	Mark Yao <markyao0591@gmail.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Segfault <awarnecke002@hotmail.com>,
+	Arnaud Ferraris <aferraris@debian.org>,
+	Danct12 <danct12@riseup.net>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andyshrk@163.com>
-Subject: [PATCH 4/4] arm64: dts: rockchip: Fix the num-lanes of pcie3x4 on Cool Pi CM5 EVB
-Date: Sat, 27 Jan 2024 17:20:34 +0800
-Message-Id: <20240127092034.887085-4-andyshrk@163.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240127092034.887085-1-andyshrk@163.com>
-References: <20240127092034.887085-1-andyshrk@163.com>
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v3 4/4] arm64: dts: rockchip: Add devicetree for Pine64
+ PineTab2
+Message-ID: <ZbTNXL6s_wQugVC5@mecka.net>
+References: <20240102-pinetab2-v3-0-cb1aa69f8c30@mecka.net>
+ <20240102-pinetab2-v3-4-cb1aa69f8c30@mecka.net>
+ <775vjfucu2g2s6zzeutj7f7tapx3q2geccpxvv4ppcms4hxbq7@cbrdmlu2ryzp>
+ <903e9d0c-a00c-4214-9f0e-dd676b13b428@kwiboo.se>
+ <ZZVjzwgANJMdHnuo@mecka.net>
+ <6efe305c-4ab4-43c1-ab6d-64bdf1d81a2f@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3rzHkyrRl5GopBA--.2976S5
-X-Coremail-Antispam: 1Uf129KBjvdXoW7Gw4DuryfJF17JrWDJFW5Wrg_yoWDZFb_ta
-	4xW3W8Xa1rGrn0g3s0yay3G3ySk39F9FW7Ga1UZFWDAF9xta1DJFyrtFW2q34UKr429w4f
-	Aa9xJF18C3Z8CjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7xR_LvttUUUUU==
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gxyXmWXvvkQhAAAsT
+In-Reply-To: <6efe305c-4ab4-43c1-ab6d-64bdf1d81a2f@kwiboo.se>
 
-The 4 lane pcie30 phy is shared by pcie3x4 and pcie3x2, so
-the num-lanes of pcie3x4 should be 2.
+Hi Jonas,
 
-Fixes: 791c154c3982 ("arm64: dts: rockchip: Add support for rk3588 based board Cool Pi CM5 EVB")
-Signed-off-by: Andy Yan <andyshrk@163.com>
----
+On Wed, Jan 03, 2024 at 03:19:25PM +0100, Jonas Karlman wrote:
+> Hi Manuel,
+> 
+> On 2024-01-03 14:40, Manuel Traut wrote:
+> > Hi Jonas and Ondřej,
+> > 
+> >>>> +&sfc {
+> >>>> +	pinctrl-names = "default";
+> >>>> +	pinctrl-0 = <&fspi_dual_io_pins>;
+> >>>> +	status = "okay";
+> >>>> +	#address-cells = <1>;
+> >>>> +	#size-cells = <0>;
+> >>>> +
+> >>>> +	flash@0 {
+> >>>> +		compatible = "jedec,spi-nor";
+> >>>> +		reg = <0>;
+> >>>> +		spi-max-frequency = <24000000>;
+> >>>
+> >>> That's a bit on the low side. The flash chip should work for all commands up to
+> >>> 80MHz https://megous.com/dl/tmp/b428ad9b85ac4633.png and SGM3157YC6 switch
+> >>> for the FSPI-CLK should have high enough bandwidth, too.
+> >>
+> >> I agree that this is a little bit on the low side, it was a safe rate
+> >> that I used for U-Boot. U-Boot required an exact rate of the supported
+> >> sfc clk rates: 24, 50, 75, 100, 125 or 150 MHz.
+> >>
+> >> Please also note that the SPI NOR flash chip used in PineTab2 is not a
+> >> GigaDevice GD25LQ128E, it should be a SiliconKaiser SK25LP128, same as
+> >> found in the Pine64 PinePhone Pro.
+> > 
+> > The schematics for v2.0 reference a GD25LQ128EWIGR. I never checked the jedec
+> > id. How did you retrieve this information, or is it maybe a difference in v0.1
+> > and 2.0?
+> 
+> This was when working on mainline U-Boot for the PineTab2 (and other
+> rk356x devices). See [1] for a pending U-Boot patch that is waiting on a
+> proper mainline linux devicetree for the PT2.
+> 
+> The JEDEC ID is reported as 0x257018 on my v2.0 production unit, and
+> does not match the JEDEC ID for GD25LQ128E (0xc86018) referenced in
+> the schematics.
+> 
+> I found that the JEDEC ID 0x257018 was referenced in prior patches
+> related to the SK25LP128 SPI NOR flash chip used in Pine64 PinePhone Pro.
+> 
+> I have only ever tested the 24 MHz rate, but I am expecting that e.g.
+> 100 MHz also should work. Will not be able to test on my PT2 until at
+> earliest next week.
+> 
+> [1] https://github.com/Kwiboo/u-boot-rockchip/commit/66562d6eaf2c11a9f97fcdba379d3ceda8aa70ef
 
- arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts | 2 ++
- 1 file changed, 2 insertions(+)
+I found the time to verify that 100 MHz is also working.
+Will include this in v4
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts b/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-index 5f42f1065d73..9bff04fc7e43 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dts
-@@ -126,6 +126,7 @@ &pcie30phy {
- 	status = "okay";
- };
- 
-+/* Standard pcie */
- &pcie3x2 {
- 	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_sys>;
-@@ -134,6 +135,7 @@ &pcie3x2 {
- 
- /* M.2 M-Key ssd */
- &pcie3x4 {
-+	num-lanes = <2>;
- 	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_sys>;
- 	status = "okay";
--- 
-2.34.1
-
+Thanks for your help
+Manuel
 
