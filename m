@@ -1,103 +1,117 @@
-Return-Path: <devicetree+bounces-35853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0A083EED8
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 17:56:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB0C483EF06
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 18:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E8B21C215A2
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 16:55:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 182271C2163A
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 17:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABBA12C6B6;
-	Sat, 27 Jan 2024 16:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861432C862;
+	Sat, 27 Jan 2024 17:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fj61Otru"
+	dkim=pass (1024-bit key) header.d=rong.moe header.i=i@rong.moe header.b="zQNJPPra"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F9072C1B9;
-	Sat, 27 Jan 2024 16:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706374557; cv=none; b=ERK0viPkoLjQyZHLr0fPRT570NhLPLsqsGoYze/EkSqZQ8SmciZawZWESdpYopeTB2zWv6LJOJPDpAw+YxTisV35wRztmSYVv6/jHX9UbbFL/q5gLeD9zJrMjqMhm12RcjeTBMr78z6y3/196Si93q9nofG0qST2tzczu5tP/R4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706374557; c=relaxed/simple;
-	bh=fTlhHfNlr1Ds/TfS/W7Chw1w907Jm5nmrt/K/Zh/X14=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z8RW3JLbcynPKc8S6j2j0sB0Yn1upXGnITfMqK9VmEDeEaj445sgQruv11SfA9j6ot+lIE2iTl3uYICwg1fM5yKkc1a+ngx84JT3Ho5Kcf567MmUyYXAEAVNTW9y66ZO/E5WD9AZV2f4ejCDnsPVbIpG8xsy0p479xKIAhh47T4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fj61Otru; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1B39C433F1;
-	Sat, 27 Jan 2024 16:55:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706374557;
-	bh=fTlhHfNlr1Ds/TfS/W7Chw1w907Jm5nmrt/K/Zh/X14=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Fj61OtruUPf+puokf6hBoUiIhL8e82GqdVIKjiszjCUf1oLAxMks9Jq1bq+23nS3s
-	 GSqOO3Y3ALNdcPGX9epMAxrQ47DguG8VFH3sW3uBRQYoA+3Wula1XRMLOzTTBhZJQG
-	 sEImCbaU4y8QN7aeRbdZogjB1XqiD0g2GvuXVu9zt9+zpv91iPTybYEjni9/AGSd9j
-	 fUG6ERhJT8K6LWAXywGO6k4pu6yVnQoApqTZIjvCngp7/s6g9dF498I3Uu0Bjw9178
-	 tn8jYGtTH/tRARZojW9iJNqNmhQRAiPl6D0syD0PJ7NZWOuBFXSolMYwV2Q6x1zdnN
-	 rW26YprQCsguw==
-Date: Sat, 27 Jan 2024 16:55:42 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Peter Rosin <peda@axentia.se>, Naresh Solanki
- <naresh.solanki@9elements.com>, Lars-Peter Clausen <lars@metafoo.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- mazziesaccount@gmail.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: afe: voltage-divider: Add
- io-channel-cells
-Message-ID: <20240127165542.6eeb23e9@jic23-huawei>
-In-Reply-To: <20240127-capitol-cabbage-7a9b67112a28@spud>
-References: <20240126115509.1459425-1-naresh.solanki@9elements.com>
-	<20240126-cinnamon-flatware-e042b5773f17@spud>
-	<CABqG17hzZf2mme0v7hALhpd6-N3ZHqxdH-AhFg5eF9sbLSC2gw@mail.gmail.com>
-	<20240126-scale-serrated-33686467d91b@spud>
-	<CABqG17jp6YRGyTmNitz-xDdyhWOPgfT_XpXxw-OJLnXQ777vAA@mail.gmail.com>
-	<20240126-blaspheme-calculate-a4134dc1ed68@spud>
-	<536971eb-51f0-40e5-d025-7c4c1d683d49@axentia.se>
-	<20240127-hunting-wick-fc1eed1af6b1@spud>
-	<20240127144920.455b6f0c@jic23-huawei>
-	<20240127-capitol-cabbage-7a9b67112a28@spud>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.40; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E28E2D022;
+	Sat, 27 Jan 2024 17:23:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706376195; cv=pass; b=LwyfmHa8KFyjoQ81R6gb2tVHbZO4uI0XJs6/6PhHWI7RaXrS9IMGD8KOnxwL3bSEUdlr4p0PWNO2OTNMXnDwUfRjqNhVtw2G087AioHoCzu+5+aRvqvdK2k9XoHI0xZJwLl8uCUjp994WW0b4dT71G2cUvavn7CmdAphUICV92o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706376195; c=relaxed/simple;
+	bh=nSUTtW7W3uVu6B4nU911N4Xf4JPfuRfgtoDUyJidACk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cJpmPX3wIhCfS5WykYCJc+CbwySMuVB1dVxR1B/Mzx1iz/gIzF3R/v1e2ue+mnMblGsCOT4Vablbo6A39ogo7Abd8KIB4FsEGpHPgbJxWfkgmt4Qy3pIXssjl7y7s51ptxOh/1XriUl2Zbiy+JiXNhaWMJCL+qt434Y3U3ORH6Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rong.moe; spf=pass smtp.mailfrom=rong.moe; dkim=pass (1024-bit key) header.d=rong.moe header.i=i@rong.moe header.b=zQNJPPra; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rong.moe
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rong.moe
+Delivered-To: i@rong.moe
+ARC-Seal: i=1; a=rsa-sha256; t=1706376188; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Oc8x+3fKbXxTX1gTypBGckToinAKA4gjm5G1BrV9wJSD78vZf98CTkksggl09LZvbRacXaS085TzjAWEA9/zIpbTeZ0zHK8Z0AOojFYZKCHhOJUJJlBky1JuoUzp4cAw9emz9H+KUgWe5Q29o7cfZXAeJEm5nBhCsvFuRN+sSM0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1706376188; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=YULYF2qWSm5w8MjN71TNrGtiU1ZfqFBbzCJSsRbJmQ4=; 
+	b=FJ3qHaJ0Fx1Oz7rf4fFKOYQSeTedIBQGt1VsigZUu7LnOMBAZPsVldqYPywg5xafhJrJAzTfajaIe9G+grlgcU2iAX9krDsuA8pKv4wtNpE2MREqwCB8wVZflmNu6CyXQ8+KWWPMP9mGEOUYK+edf+Lm60ISHvfR9c0A03mn+5M=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=rong.moe;
+	spf=pass  smtp.mailfrom=i@rong.moe;
+	dmarc=pass header.from=<i@rong.moe>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1706376188;
+	s=zmail; d=rong.moe; i=i@rong.moe;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=YULYF2qWSm5w8MjN71TNrGtiU1ZfqFBbzCJSsRbJmQ4=;
+	b=zQNJPPrayCfd8G21/nbfE/bFM2MZCkWP0AYQiblaip5k6LSqUAbnGQ8RMRDIdam+
+	CTidq4Svf8N3b2ozeSIAWpopyY6JnAQsgtupC62AzwhzimDAicJNTR4AozQKuMiLdbx
+	8LYxSh1zxjOWSXwUYGHT2iRILsA342bPLy6EANG0=
+Received: from tb.lan (182.118.239.249 [182.118.239.249]) by mx.zohomail.com
+	with SMTPS id 170637618610421.554837416501073; Sat, 27 Jan 2024 09:23:06 -0800 (PST)
+From: Rong Zhang <i@rong.moe>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Rong Zhang <i@rong.moe>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH v2 0/4] ARM: dts: qcom: msm8974: Add Samsung Galaxy S5 China support
+Date: Sun, 28 Jan 2024 01:21:49 +0800
+Message-ID: <20240127172155.63624-1-i@rong.moe>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 
-On Sat, 27 Jan 2024 16:48:04 +0000
-Conor Dooley <conor@kernel.org> wrote:
+Samsung Galaxy S5 has many variants. Currently, the only supported one
+is klte. Samsung Galaxy S5 China (kltechn) is the China edition of
+klte, and it can mostly work with the klte DTB, with only LEDs and WiFi
+missing.
 
-> On Sat, Jan 27, 2024 at 02:49:20PM +0000, Jonathan Cameron wrote:
-> 
-> > > > It's all in the description of the binding...    
-> > > 
-> > > Obviously it was not sufficiently clear, it's not as if I didn't look at
-> > > it...  
-> > 
-> > Given this device fits in both categories, perhaps a tiny bit of
-> > additional documentation would help?  
-> 
-> That would be nice.
-> 
-> >   '#io-channels-cells':
-> >     description:
-> >       In addition to consuming the measurement services of an ADC,
-> >       the voltage divider can act as an provider of measurement
-> >       services to other devices.
-> >     const: 1  
-> 
-> But I am not sure that that covers things. I think an example, like
-> Peter gave, would be good?
+This patchset splits out the common part of klte DTS into klte-common
+DTSI, and adds DTS for kltechn by fixing up the GPIO pins for the LEDs
+and GPIO expander connected by the WiFi module. A "brcm,board-type"
+property is added into the wifi@1 node of the common DTSI to allow all
+klte* variants to load the same NVRAM file.
 
-Ok. An example is fine.
+Signed-off-by: Rong Zhang <i@rong.moe>
+---
+Changes in v2:
+- Split out the common part of klte DTS into klte-common DTSI.
+- Fix dt-binding to make it consistent with kltechn compatible.
+- Link to v1: https://lore.kernel.org/r/20240121154010.168440-1-i@rong.moe/
+
+---
+Rong Zhang (4):
+  ARM: dts: qcom: msm8974: Split out common part of samsung-klte
+  ARM: dts: qcom: msm8974-klte-common: Pin WiFi board type
+  dt-bindings: arm: qcom: Add Samsung Galaxy S5 China (kltechn)
+  ARM: dts: qcom: msm8974: Add DTS for Samsung Galaxy S5 China (kltechn)
+
+ .../devicetree/bindings/arm/qcom.yaml         |   7 +
+ arch/arm/boot/dts/qcom/Makefile               |   1 +
+ .../qcom-msm8974pro-samsung-klte-common.dtsi  | 818 ++++++++++++++++++
+ .../dts/qcom/qcom-msm8974pro-samsung-klte.dts | 813 +----------------
+ .../qcom/qcom-msm8974pro-samsung-kltechn.dts  |  16 +
+ 5 files changed, 848 insertions(+), 807 deletions(-)
+ create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte-common.dtsi
+ create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-kltechn.dts
+
+
+base-commit: 3a5879d495b226d0404098e3564462d5f1daa33b
+-- 
+2.43.0
+
 
