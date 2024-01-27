@@ -1,182 +1,106 @@
-Return-Path: <devicetree+bounces-35740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 241A583E8CF
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 01:59:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA4D83E904
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 02:37:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEFA72875CC
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 00:59:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B94FA1F27E7C
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 01:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 327604A30;
-	Sat, 27 Jan 2024 00:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D80899470;
+	Sat, 27 Jan 2024 01:37:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gj31ykGz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dCkJjqS0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32428468B;
-	Sat, 27 Jan 2024 00:58:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 048CD944D
+	for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 01:37:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706317139; cv=none; b=qjZVtGK+1NNwDfsUFOR3+DzGeRnM02cwYUgt41nbPgsctMJDLtpFzbiHuGBE87o/YoQyqfFhqBqjyNx22MW314mT+Lwr8tjsL9G2mWmln39Np+vt7A0t0z/nd2YDFuaNyw+WcFKheyzdhGyPOOTnYJ1f+pkN8+Z1Sc2heXmIFhY=
+	t=1706319448; cv=none; b=DMqlQ9og1V1NQHebj8l9ZJ6yPpdlqeh63vnzJbJ63dZxdqsT4/xg57By4+2JGb9eWdDHa+s4gMgPc0XQZz1+QLFlPlwchDshhioAKy+zrs1cw+s/Eri7sfPL84dBr1wtK/lO4qAnrpCljoiy/GE/WLS7AyC8nvK3uuPbJ+j4JIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706317139; c=relaxed/simple;
-	bh=7W44hQbjWJUDeDb618E3eurSBWCBLQAykx5uVsOx6TY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=njO8JGiqGJmlugre6DRKHEwU4wn/52jaL7BPzLshfcmPIBXJ3SU/r3hPsR0cmSca7E4l6p+NnOWG9MZIJX/XS3rYjyrs8bUBGlIdEz1q6ZitT+5Ytn9MuKZDAOg2HswwcUpmI0qH+bRscMbRkXNVUe5xvy68Uyuk9f1i2g6qxnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gj31ykGz; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706317137; x=1737853137;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7W44hQbjWJUDeDb618E3eurSBWCBLQAykx5uVsOx6TY=;
-  b=gj31ykGzCP/ItM1f7jsld/Uls24WP7BwUSCNIEN/xSDzGwvOiVv/Ye+S
-   vmBmnTuER3q+HlGAFeiYEofO5j4r64ON1eKVdgprKIqkAt4VwjfDzSGsV
-   zxhf0n/GPnXBIQ9kBV00cdmoIXTIJCyOQYRXntJoD0iee2jn2ginbI4zJ
-   odAprmmTCme9NQrSC/kfMLjyJrzzzTcdBVX+lDmhxynJG1Yzgr4qZoSwt
-   g0hzvWf9+dTQEKsb7MNaVeT0k2yGIx5UpyoxFA+AloVWRne0jezKgYS6Z
-   fKOXLDX/CYz1Klh4pWq60stFr2a/SeUTGMIX3VgW2KZtTo3XUazw96cuY
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10964"; a="24080954"
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
-   d="scan'208";a="24080954"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2024 16:58:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
-   d="scan'208";a="35585165"
-Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 26 Jan 2024 16:58:51 -0800
-Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rTX20-0001V8-2f;
-	Sat, 27 Jan 2024 00:58:48 +0000
-Date: Sat, 27 Jan 2024 08:58:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: oe-kbuild-all@lists.linux.dev, alexandre.belloni@bootlin.com,
-	conor.culhane@silvaco.com, devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org, imx@lists.linux.dev,
-	jirislaby@kernel.org, joe@perches.com,
-	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
-	linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, miquel.raynal@bootlin.com,
-	robh@kernel.org, zbigniew.lukwinski@linux.intel.com
-Subject: Re: [PATCH v4 5/8] i3c: target: add svc target controller support
-Message-ID: <202401270838.wdxHPaAT-lkp@intel.com>
-References: <20240123231043.3891847-6-Frank.Li@nxp.com>
+	s=arc-20240116; t=1706319448; c=relaxed/simple;
+	bh=DYj8tn+3Am911Ik0jx3jOUWXXFDXDOrUv1cfVZEFjMY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=SKWFho4Oc6iqY4pnOA9W/obPyT9gam1rdyzxTCqWwV39t6Scl5Zyw3jvk4rrLz6VagaEwIh+OCGuLnSBWhpS7DveD+oRcS1XtkSh8JxDAlmc7F1XaYSm+RdZgE8iun6sw7WoK7qNTPtpXDBGcfXTQ8kJMN1UQ1BBvF0HQGiF0ME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dCkJjqS0; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33ae3cc8a70so100159f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 17:37:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706319445; x=1706924245; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=zeFz+NtLoAQ99uBFeabvQ2L4PFgMX2DpcEuv5deUslc=;
+        b=dCkJjqS0NUJGE1e+H2OGV08Z6njmaesCwefjhnF3aZFh+4MPGtK8Mf/64RqHZFx80z
+         iyw71WAHZQDFTDAzZGxlooQikMbWQym6AdX9pWzu/mvo6vfpifL5FsKTZ0wdRBzGf0O+
+         SRPnh3+HCDS2lq1uREIxLP21ScEN4ncg8P/w0+eoN1xUR5ym0Y2/mqgOlhyhpt1DO/qY
+         YPdE3HcrGioqvHfIqDZvJ/U5UIfSvJCTmA3AcI5+73uc4BArb54YstPB/R/dEhHioqHJ
+         CgnoGnxSisFnR4h42CUWhM4GdWpBUeWFIPk4eXhRhwx+ISjHiwg879eTmRw/MhWL94CE
+         NFAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706319445; x=1706924245;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zeFz+NtLoAQ99uBFeabvQ2L4PFgMX2DpcEuv5deUslc=;
+        b=mNx3DqK+3iriUpCufXAuUZbCDlFiXfj3WlzaZytCSTp4qxba8zmWCcWR+mzdQsv9D+
+         2fVsuDqYpm00jYQAhOo33dy1wUC5UMbs56z7T6nBJNh5t6LVcNlXNYed+K1wqiACT85e
+         /f+M6idmOkCHTdB8sahIB20FTeFfC4HQsTmcPrFsNOmyvemPECMtiLh3xo7A3a1Uv6Iz
+         s5OpjoK2pSQXaruM+N/4avaUlpZucrxb9/1OL4gIoeJ7VTNM0hw9TjjSWXjRMm9HImrz
+         kJ0gQWfKTiIjj0iyXPbT6ObR1WLgnu4xbnblMQnAq9+CVKYkHCxGhaMSt9qGJJ8Gh22e
+         pRIg==
+X-Gm-Message-State: AOJu0YyKB+2idjFoqS6i+T6mNshYvnRTX34IdAAwXqm2+m+i4pSYoNsJ
+	cBox11vzKvX2SegEamSQU4W/6u2Oo3vtJnL0ECs7o7Pgz7rC5Tu5B6WtQ7zVV+4=
+X-Google-Smtp-Source: AGHT+IG7o3FTd1/T/dXyz8w5kUpeTwkLM76RKnG6DH3eIKmaAhEFR0fu3enxkI/xjOD4tjrr2K/sfA==
+X-Received: by 2002:a5d:54c2:0:b0:339:357b:f61a with SMTP id x2-20020a5d54c2000000b00339357bf61amr325905wrv.32.1706319445215;
+        Fri, 26 Jan 2024 17:37:25 -0800 (PST)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id fa7-20020a056000258700b00337cef427f8sm2377408wrb.70.2024.01.26.17.37.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Jan 2024 17:37:24 -0800 (PST)
+Message-ID: <67b2686739e64bad4fb4f84cec0d0f222831a2cb.camel@linaro.org>
+Subject: Re: [PATCH 4/5] arm64: dts: exynos: gs101: use correct clocks for
+ usi_uart
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: peter.griffin@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, kernel-team@android.com, 
+ tudor.ambarus@linaro.org, willmcvicker@google.com,
+ semen.protsenko@linaro.org,  alim.akhtar@samsung.com,
+ s.nawrocki@samsung.com, tomasz.figa@gmail.com,  cw00.choi@samsung.com,
+ mturquette@baylibre.com, sboyd@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Date: Sat, 27 Jan 2024 01:37:23 +0000
+In-Reply-To: <20240127003607.501086-5-andre.draszik@linaro.org>
+References: <20240127003607.501086-1-andre.draszik@linaro.org>
+	 <20240127003607.501086-5-andre.draszik@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240123231043.3891847-6-Frank.Li@nxp.com>
 
-Hi Frank,
+On Sat, 2024-01-27 at 00:35 +0000, Andr=C3=A9 Draszik wrote:
+> Wrong pclk clocks have been used in this usi8 instance here. For USI
+                                           ^^^^
+This should read 'uart', I'll send a v2 after collecting any other potentia=
+l
+feedback.
 
-kernel test robot noticed the following build errors:
+Cheers,
+Andre'
 
-[auto build test ERROR on tty/tty-testing]
-[also build test ERROR on tty/tty-next tty/tty-linus robh/for-next linus/master v6.8-rc1 next-20240125]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/i3c-add-target-mode-support/20240124-071453
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
-patch link:    https://lore.kernel.org/r/20240123231043.3891847-6-Frank.Li%40nxp.com
-patch subject: [PATCH v4 5/8] i3c: target: add svc target controller support
-config: i386-buildonly-randconfig-003-20240127 (https://download.01.org/0day-ci/archive/20240127/202401270838.wdxHPaAT-lkp@intel.com/config)
-compiler: gcc-7 (Ubuntu 7.5.0-6ubuntu2) 7.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240127/202401270838.wdxHPaAT-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401270838.wdxHPaAT-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   In file included from drivers/i3c/master/svc-i3c-target.c:12:0:
-   include/linux/i3c/target.h: In function 'i3c_target_ctrl_alloc_request':
-   include/linux/i3c/target.h:280:9: error: implicit declaration of function 'kzalloc'; did you mean 'xa_alloc'? [-Werror=implicit-function-declaration]
-      req = kzalloc(sizeof(*req), gfp_flags);
-            ^~~~~~~
-            xa_alloc
->> include/linux/i3c/target.h:280:7: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
-      req = kzalloc(sizeof(*req), gfp_flags);
-          ^
-   include/linux/i3c/target.h: In function 'i3c_target_ctrl_free_request':
-   include/linux/i3c/target.h:306:3: error: implicit declaration of function 'kfree'; did you mean '__free'? [-Werror=implicit-function-declaration]
-      kfree(req);
-      ^~~~~
-      __free
-   In file included from include/linux/resource_ext.h:11:0,
-                    from include/linux/acpi.h:13,
-                    from include/linux/i2c.h:13,
-                    from include/linux/i3c/device.h:13,
-                    from drivers/i3c/master/svc-i3c-target.c:24:
-   include/linux/slab.h: At top level:
->> include/linux/slab.h:227:6: warning: conflicting types for 'kfree'
-    void kfree(const void *objp);
-         ^~~~~
-   In file included from drivers/i3c/master/svc-i3c-target.c:12:0:
-   include/linux/i3c/target.h:306:3: note: previous implicit declaration of 'kfree' was here
-      kfree(req);
-      ^~~~~
-   In file included from include/linux/resource_ext.h:11:0,
-                    from include/linux/acpi.h:13,
-                    from include/linux/i2c.h:13,
-                    from include/linux/i3c/device.h:13,
-                    from drivers/i3c/master/svc-i3c-target.c:24:
->> include/linux/slab.h:709:37: error: conflicting types for 'kzalloc'
-    static inline __alloc_size(1) void *kzalloc(size_t size, gfp_t flags)
-                                        ^~~~~~~
-   In file included from drivers/i3c/master/svc-i3c-target.c:12:0:
-   include/linux/i3c/target.h:280:9: note: previous implicit declaration of 'kzalloc' was here
-      req = kzalloc(sizeof(*req), gfp_flags);
-            ^~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +280 include/linux/i3c/target.h
-
-ebda81e6094f36 Frank Li 2024-01-23  264  
-ebda81e6094f36 Frank Li 2024-01-23  265  /**
-ebda81e6094f36 Frank Li 2024-01-23  266   * i3c_target_ctrl_alloc_request() - Alloc an I3C transfer
-ebda81e6094f36 Frank Li 2024-01-23  267   * @ctrl: I3C target controller device
-ebda81e6094f36 Frank Li 2024-01-23  268   * @gfp_flags: additional gfp flags used when allocating the buffers
-ebda81e6094f36 Frank Li 2024-01-23  269   *
-ebda81e6094f36 Frank Li 2024-01-23  270   * Returns: Zero for success, or an error code in case of failure
-ebda81e6094f36 Frank Li 2024-01-23  271   */
-ebda81e6094f36 Frank Li 2024-01-23  272  static inline struct i3c_request *
-ebda81e6094f36 Frank Li 2024-01-23  273  i3c_target_ctrl_alloc_request(struct i3c_target_ctrl *ctrl, gfp_t gfp_flags)
-ebda81e6094f36 Frank Li 2024-01-23  274  {
-ebda81e6094f36 Frank Li 2024-01-23  275  	struct i3c_request *req = NULL;
-ebda81e6094f36 Frank Li 2024-01-23  276  
-ebda81e6094f36 Frank Li 2024-01-23  277  	if (ctrl && ctrl->ops && ctrl->ops->alloc_request)
-ebda81e6094f36 Frank Li 2024-01-23  278  		req = ctrl->ops->alloc_request(ctrl, gfp_flags);
-ebda81e6094f36 Frank Li 2024-01-23  279  	else
-ebda81e6094f36 Frank Li 2024-01-23 @280  		req = kzalloc(sizeof(*req), gfp_flags);
-ebda81e6094f36 Frank Li 2024-01-23  281  
-ebda81e6094f36 Frank Li 2024-01-23  282  	if (req)
-ebda81e6094f36 Frank Li 2024-01-23  283  		req->ctrl = ctrl;
-ebda81e6094f36 Frank Li 2024-01-23  284  
-ebda81e6094f36 Frank Li 2024-01-23  285  	return req;
-ebda81e6094f36 Frank Li 2024-01-23  286  }
-ebda81e6094f36 Frank Li 2024-01-23  287  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
