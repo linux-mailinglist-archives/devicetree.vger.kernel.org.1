@@ -1,116 +1,119 @@
-Return-Path: <devicetree+bounces-35743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEBDF83E910
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 02:40:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38D2683E929
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 02:56:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E5871C21C64
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 01:40:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 637EB1C22A72
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 01:56:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331D82F2E;
-	Sat, 27 Jan 2024 01:40:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26ADA947E;
+	Sat, 27 Jan 2024 01:56:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XgCqaS6D"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZLhdb4W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C0F59470
-	for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 01:40:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E9B8F51;
+	Sat, 27 Jan 2024 01:56:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706319611; cv=none; b=fs/4nqUZonDYb3NR+tFaczRB23KtIU+A4rCcOf1iM4i1d9Vkl0dBxLu3GARqRqd3oLTxiTnMExBxtueKoombbddjgRsupHSRd9lq0snswz8czENmpXHMMlTIqj2X7ns4UFBKDJvVMQOywq7uh8qfgYL6BlBNcjqdPi0XTLJ7N3g=
+	t=1706320595; cv=none; b=Ok8wabcOPhM7WmNT84oBD2qsqjruE1exNApxfz1jo+8zyZvQmBulPCE9w4vjuDQyqhMZeqQ+yiI9PMgzxAfbq/Uq3701106UAQtCYZz401YTNAlWm8QQcSbf+e9cDeSMGw5NP2Bu22btmqXavFmh+di2cwh/ixrWveFs4uYM09Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706319611; c=relaxed/simple;
-	bh=2YnRIQRgnlZQnOPzyfaHkE0dDE0sohaqmY/s2G+mfzg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=YGmkUdecuueTGkqq9sjntbTrtWIiYuZP3x9zTsmRoUFTecVHg//B/LhpVyKfZIXyV6/jkYDMtTjBt6aOOLJZi9VA8gERp6X4x066z5cKvrBrfP8uUEckPFrDm/BR66u/sM45DyLh5sBl1h0LZZN/+URla8RAq3lVGHwdCEbMqAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XgCqaS6D; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-337cc8e72f5so1051527f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 17:40:09 -0800 (PST)
+	s=arc-20240116; t=1706320595; c=relaxed/simple;
+	bh=Bwi5+CdWnELYANOK9dYY2Ztg4Ol9QkvktdG+N4SsqOk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lu0W9t5oDBl8Tx5mitKZWwsSlBcPXrlfbZyxPf8o1+FgCY7PqajMHbInlIfPKDkVY0wRC1Cz4kth/BLaLP5suiDOXpvMttXVXnuR1LD4Gj/ta5rku93FMJR/C5f5boagFEmsXnxPD4I+OpyK8Zg0iHNdtvoYW37G7sHCgRH5Tg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZLhdb4W; arc=none smtp.client-ip=209.85.219.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6868f31a555so6045446d6.1;
+        Fri, 26 Jan 2024 17:56:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706319608; x=1706924408; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2YnRIQRgnlZQnOPzyfaHkE0dDE0sohaqmY/s2G+mfzg=;
-        b=XgCqaS6DxHVmuWKwezOIapkseM35czie2cfoXTew0eQlot6qE+NUQmfxg5XMUccSFz
-         lCPfz0EAD8ufFs9YaUGONVgj71Zn0lgxPcWE30uWiqVO4jGW2yTOVEltN+vIVppblsSs
-         H5p5RglYzllCdHh2DR4FyjRsY6DeBXDi2/cT9sV7RU/LNBy/3g0nfwPu8iGxD1t3y/q3
-         XVyc7S9ZCYrj7f3viY9lTPAJWHDJwj7NOPAfCKddNnA00cdOphaXQYy6Xnz+ZaSMrhAw
-         DY57nYuYvnV3+F0tZf2lxzN5cTMF4IZffRCQnHX07Bo0Ggv+BeoYYIzL8+j5+6ylxwYX
-         zNQw==
+        d=gmail.com; s=20230601; t=1706320592; x=1706925392; darn=vger.kernel.org;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/afVxJVRAH/Hka426Kik5pPJmKRNBFsEk7DBPTNKyGs=;
+        b=QZLhdb4WIgxoyHuO3DhL92IWkQk0qr1zvopIl91l/m/35H3AAzsxEl4/vvmz7/AoSa
+         X822ZfM1fuQeyBNELSlHpw0XjMQLHLMDrahCB5+NlU3ucolQTFvaGViZPW4HMtF5Sf7f
+         xz0AjLSiZFWQG9oPaUYbJUjc0bGtDIdg7sC3osMSayOlDf9EP3FPX39550bcKVl/BsoL
+         oB+Z29RSIsVsf++2laQrTXKZLGcRaF1wIxeJgZ4yxPKJaZ+xHgVbTZEz8mMC5Zl6EALQ
+         qlcov1vElco+ckU314t18wQIRdDniHN2HoqCEpiB1cEMToTMWn8yNUikfSe9vRWuYoc9
+         XC1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706319608; x=1706924408;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2YnRIQRgnlZQnOPzyfaHkE0dDE0sohaqmY/s2G+mfzg=;
-        b=F3HdwVYIs2/r4YHc5pP4SLXSs7dto08G6qvF3uvQAKSZHy0ivlomJYJ4h129y0Z5XN
-         t4EeLsvAVAI/rFdpZ6IjWDHP8uwn+AD6t+a57V3rFT5toZwJlPtmZHJnSAS0Ib0avvbS
-         yKuoUyfOd1qjGaFv9THoLwx+FMb0hjtvmYqjG+rUoza0BRQfH+Rzt3yXm3JSzfGWWVNV
-         mwvPDaAfPW2QEcVFlMJLfeZJxbU52Mc5sSR970VXAzlWBJhR4tq09r07tAXcgq2JRVmc
-         MYg5XyOvSlnj+8lSecofO+iFvVfL1iTASkkT8NXEq3BaPk708yQYW5NDiIZUF0WQ/MPZ
-         1s5g==
-X-Gm-Message-State: AOJu0YwCbPPw5Ml/xyoe+ZyEJnyG+Zw8Ag8m0DR3Xog1ztF1v8wd35wa
-	uT3X599dukNbus/UQsx+f8hY0AtsAa/xLwwRMI0emb+mUkXNEhZ0dBzrxYkR6pE=
-X-Google-Smtp-Source: AGHT+IHSkzXyOriK243MXugaHyRihAWS/eBnZxFTiXv8p/Ej6AY/TMoTn1KUKXTbyrMaGD1ksZyjRg==
-X-Received: by 2002:adf:a418:0:b0:337:c58a:a5fe with SMTP id d24-20020adfa418000000b00337c58aa5femr380086wra.12.1706319607878;
-        Fri, 26 Jan 2024 17:40:07 -0800 (PST)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id bj7-20020a0560001e0700b0033920dfd287sm2357862wrb.19.2024.01.26.17.40.06
+        d=1e100.net; s=20230601; t=1706320592; x=1706925392;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/afVxJVRAH/Hka426Kik5pPJmKRNBFsEk7DBPTNKyGs=;
+        b=tjsfc3JtX0C9k3Z/xgMAzx1flltGy1SoSf5mlrN5TkKzrL5B+Hw01aI1H7I1ZLuF8K
+         sT1fFaDl8DIgYpXF+l2JTcFL3ktFsfNh91oMRFSZIO8bgtIFMgvfNutjrtxI/FjVz4v8
+         u/FF4e50OxVz+96f7BSVgIjeX3AHaVQdB+2Bpm7iHWswL/2VoA5MuxpTw8VAK01l7pD0
+         NWSaeEXpk/z/ML2v9AZ9zi0INqXoVwC9T8/0ijHm/iUDwlqyp9tyIeOb+nIgnPABDwAw
+         GpJyZ1x4k9dekYDV70G9A798eAHEjv2r6MrQ+PTvFhqkahOeNfGS96o+W3REs4Yg2XxS
+         MClA==
+X-Gm-Message-State: AOJu0Yyws5J2x/jF2JwOqMM5NFrGofcPaPukO8N56JMctkPBX4yydlQ5
+	BOOcu2/SfH8l5b2n2TWmc5UVjgVvlA2y0blEacakX3X7E9G1D5U0
+X-Google-Smtp-Source: AGHT+IFkNflH+BD21PMssYPhDkGtjPw/IUQ5epAxGPBNdBEmXmNHE/6kB23j0pbiLNRS52u4ol6Y4g==
+X-Received: by 2002:ad4:5c8b:0:b0:683:c2b7:bee8 with SMTP id o11-20020ad45c8b000000b00683c2b7bee8mr1017615qvh.72.1706320592406;
+        Fri, 26 Jan 2024 17:56:32 -0800 (PST)
+Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id dk6-20020a056214092600b0067f339c0c16sm1015924qvb.134.2024.01.26.17.56.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 17:40:07 -0800 (PST)
-Message-ID: <8af4f6c9c36474d971556f00981ba76d3506d81d.camel@linaro.org>
-Subject: Re: [PATCH 3/9] clk: samsung: gs101: add support for cmu_peric1
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, kernel-team@android.com, 
- tudor.ambarus@linaro.org, willmcvicker@google.com,
- semen.protsenko@linaro.org,  alim.akhtar@samsung.com,
- s.nawrocki@samsung.com, tomasz.figa@gmail.com,  cw00.choi@samsung.com,
- linux-arm-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org,  devicetree@vger.kernel.org
-Date: Sat, 27 Jan 2024 01:40:06 +0000
-In-Reply-To: <20240127001926.495769-4-andre.draszik@linaro.org>
-References: <20240127001926.495769-1-andre.draszik@linaro.org>
-	 <20240127001926.495769-4-andre.draszik@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.1-1 
+        Fri, 26 Jan 2024 17:56:31 -0800 (PST)
+Date: Fri, 26 Jan 2024 20:56:29 -0500
+From: Trevor Woerner <twoerner@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Jonas Karlman <jonas@kwiboo.se>, Chen-Yu Tsai <wens@csie.org>,
+	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rock-pi-e: fix location of
+ snps properties
+Message-ID: <20240127015629.GA36077@localhost>
+References: <20240116204103.29318-1-twoerner@gmail.com>
+ <df78489b-7546-46ea-b09f-39a80692a962@kwiboo.se>
+ <20240118230312.GB14779@localhost>
+ <1976352.usQuhbGJ8B@phil>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1976352.usQuhbGJ8B@phil>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Sat, 2024-01-27 at 00:19 +0000, Andr=C3=A9 Draszik wrote:
-> The clocks marked as CLK_IGNORE_UNUSED need to be kept on until we have
-> updated the respective drivers for the following reasons:
-> =C2=A0=C2=A0=C2=A0 * gout_peric1_gpio_peric1_pclk is required by the pinc=
-trl
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 configuration. With this clock disabled, r=
-econfiguring the pins
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (for USI/I2C, USI/UART) will hang during r=
-egister access.
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Since pingctrl-samsung doesn't support a c=
-lock at the moment, we
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 just keep the kernel from disabling it at =
-boot, until we have an
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 update for samsung-pinctrl, at which point=
- we'll drop the flag.
+On Thu 2024-01-25 @ 09:12:46 PM, Heiko Stuebner wrote:
+> Hi,
+> 
+> Am Freitag, 19. Januar 2024, 00:03:12 CET schrieb Trevor Woerner:
+> > On Thu 2024-01-18 @ 08:31:30 AM, Jonas Karlman wrote:
+> > > On 2024-01-17 09:15, Jonas Karlman wrote:
+> > > I have just sent out a U-Boot series that fix ethernet on the v1.21
+> > > revision of the ROCK Pi E board, see [2].
+> > 
+> > Thank you! I have tested your patches both in U-Boot and Linux and they work
+> > perfectly.
+> 
+> if I'm reading this correctly, this patch is not needed anymore, right?
 
-I have patches for pinctrl-samsung implementing this new clock ready. Will
-send next week.
+True, patch 2/2 is not needed (or correct).
 
-Cheers,
-Andre'
+> I'm not yet sure about the first patch, as it really is
+> just a cosmetic ;-)
 
+I wouldn't say it's entirely cosmetic. Some rock-pi-e boards come with the
+8211e PHY and others come with the 8211f PHY. Labelling the phandle as
+"rtl8211e" would be misleading/confusing for people who had boards whose boot
+logs would report otherwise.
 
