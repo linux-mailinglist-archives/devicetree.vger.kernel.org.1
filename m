@@ -1,102 +1,204 @@
-Return-Path: <devicetree+bounces-35873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A14E83F172
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 00:02:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8716383F219
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 00:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D3531F25AF6
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 23:02:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE521B23CC4
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 23:31:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C7BF1F95B;
-	Sat, 27 Jan 2024 23:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76FB02376C;
+	Sat, 27 Jan 2024 23:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LL5J5/am"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cfl0SUTN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0AB61F94D
-	for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 23:02:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD2E72032F;
+	Sat, 27 Jan 2024 23:29:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706396568; cv=none; b=XFi3x7UY6evJcClBb1TwteUUtAECcQgIaPRGTqdCiGTi52Km4F9IQb2ephvUXpo5zloQa+b6nESB4lECtM+NhZVzK9bzYPfNexcfoW02Fj1BU9JoKY/Q22HaOig9IQ4qhRKUc7jDJPbg3Z1erAxGk79B5Hu3qc3SXHqOv+OH5sc=
+	t=1706398184; cv=none; b=ckiEhHEKdFuIlhbOkcEltt8Ub/z9YMqSnTYm47pWL2TpI54bJpCBNYdrHArIN5hWjlWNDY4rjidBPf/Hn0Sy5ar6Cx8VSzTXkUS8tu0Mvb722p4slfujafUMlP2fmT+hZt/EDAd95GCAGRMnxxUv2yD7PBH7K2Y/Hu3XS48elr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706396568; c=relaxed/simple;
-	bh=OI/DYxsJSWBx+d25tKtsRfVL4GAUVdxqmdpn8lShZf4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RmuZgAha+iG68SaRhJO1Vj2qUI305wMjhnvKsy4Py/iyBWDGmil92WbxvdJmlGmaOu/INmCwz2DL05UR6rQoiQD8jtjP+s8mm9bjUFovwjMLM6KPy+ejh5m4eVU7NXTv4a5Bsk5Ev2NhloJykpMgjUd9JRxILDL6J01srJwi9sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LL5J5/am; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-602ab446cd8so16106507b3.1
-        for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 15:02:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706396565; x=1707001365; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OI/DYxsJSWBx+d25tKtsRfVL4GAUVdxqmdpn8lShZf4=;
-        b=LL5J5/amWFJyixSoJ4X2157faCEDESiXfEqGXLzuJt4ntBLdTnR8KGnquBI5J+zLHf
-         RWghWMasiJqaD7N3H11e8rTymFRe0B154vMispUPO3t9fMyCtf17XZKph10kFok4QVRu
-         cVc6qLoMJaYrflGi73rh9yDKdyrqBnIg2c025wURB5TpupoCXv/6ckkfS0SQ2GJOIL1v
-         8oe9zCXmLy6Cx66UKAjaPEmvu/AjfXWJhmNySjrU0yizVfxwgyaZJebW7ELoZbc6Yct+
-         fuBhxDTqCmYO4U2kMS7gsWJjX6FIUTd8T9uMkSV/i0mBiA8+8LY9V7GUsB3l5My+L9Nt
-         R0AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706396565; x=1707001365;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OI/DYxsJSWBx+d25tKtsRfVL4GAUVdxqmdpn8lShZf4=;
-        b=t5u7Zak34ZEX3SPmoGPQf8fmet+dy64Lfi1iBmMrGGNJyOFNIN/m8r1ZG5Gc4zAgXx
-         Fcm0K9jUTxgrCYOFwbQlhv/T68/DfkkdjPcbCgEosLp/BHnGrPhYP8ymqysAFR2OsmIm
-         2lNhHqGuIt/I94v3QCAAO+mXBVoGgG5PuR0bd7DZWVGiv8S+GTttpmLW+OY30/VOsJMQ
-         k+lxFNZnaIZyCikfJ/tQkC0vyuhTYH90x5hqUm3UYXF5/TI9BsMYR81we0oWteVRi2vW
-         f/3ZG4vIzhzjVw6qgwA5gFfZYNRwIo5ltibKg9KHTbIOI256tYJ3d7aCV/OguWMVjMGh
-         gBYg==
-X-Gm-Message-State: AOJu0Yzy5fGOYn7VUPuGGN+E1dtcgmBwkNBVr5FyyrnJNNUp2NzI01fJ
-	ZL4IVfly23q+XfNJ0IO1gKsyUmoRQujQ0HlHbNAdnaHXiPgcdM7PktdSxEqYCzTRzYc0ezmwnv5
-	UUi++RLyamfWDVpbtnx42caGc01Z9Q/T13eTLfQ==
-X-Google-Smtp-Source: AGHT+IGyjw9LIiDDoT2S5tGsoR6J36rkT7VTljb52lUEVS87VMLK8vJpNqzNYIdeGvFGjm5XifyDw3lPWoEfckgnn6c=
-X-Received: by 2002:a81:a709:0:b0:5ff:6173:e98e with SMTP id
- e9-20020a81a709000000b005ff6173e98emr1920073ywh.63.1706396565671; Sat, 27 Jan
- 2024 15:02:45 -0800 (PST)
+	s=arc-20240116; t=1706398184; c=relaxed/simple;
+	bh=+7sGisfjBDLw3/+65hJ8oE5P46X3obGEXGgOIuz9ZDM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WN4xbYs5aEHyutr32vx6/LRaNluha9nlIAI5O6800j5n/8eftWYQWKAE5pnlBJIYOG+TZmf3t6Sfgu1nj3q3CDxafz6ZsLmFPkSbJZv0sfS5CniqbOTNC1P5L+CnHHnjebDH+4OA6TYsLCcodh0jl8ZSxqbwijOtgqZgHPu1epo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cfl0SUTN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40RNQLfd032284;
+	Sat, 27 Jan 2024 23:26:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=ZtabC2d
+	xcshri/iz1qUsrq8UwR1bNPdOel6KB0APenU=; b=cfl0SUTNFei8oB1OgxmCymf
+	Fd55UL9id5JYRDZW/RGhR6frlnO5M4c9WyeooGnVmN44ewHfS+SBBy5BaBrtoYhW
+	Zoc3/Mx9VoRkEKrplwzxpvn8xMUq9QwRzcrS1M86vysyOd/gYPDwszboc/mDRHMl
+	KDqrt1t1ImzXvdsC47RhN/waFn/Q9zpP3I0kVF02XBBZP6nw+DC+vpSYSBB7Htev
+	5SZVPfrRB0/rthcWsh8Sn/Fpnexmd+dmvgzfDQRWS/OGdtjsLqabiQXCi0I7mT2p
+	ipBFHj6Gx4u0dY0T2HevnRU9cFNCxDmURn7RVc6Vb0b88ws1MQypmRCQx90GksA=
+	=
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vvq6shb8t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 27 Jan 2024 23:26:20 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40RNQJmV031151
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 27 Jan 2024 23:26:19 GMT
+Received: from hu-gaurkash-lv.qualcomm.com (10.49.16.6) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sat, 27 Jan 2024 15:26:16 -0800
+From: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+To: <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <andersson@kernel.org>, <ebiggers@google.com>,
+        <neil.armstrong@linaro.org>, <srinivas.kandagatla@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <robh+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <kernel@quicinc.com>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_omprsing@quicinc.com>,
+        <quic_nguyenb@quicinc.com>, <bartosz.golaszewski@linaro.org>,
+        <konrad.dybcio@linaro.org>, <ulf.hansson@linaro.org>,
+        <jejb@linux.ibm.com>, <martin.petersen@oracle.com>, <mani@kernel.org>,
+        <davem@davemloft.net>, <herbert@gondor.apana.org.au>,
+        Gaurav Kashyap <quic_gaurkash@quicinc.com>
+Subject: [PATCH v4 00/15] Hardware wrapped key support for qcom ice and ufs
+Date: Sat, 27 Jan 2024 15:13:58 -0800
+Message-ID: <20240127232436.2632187-1-quic_gaurkash@quicinc.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240103132852.298964-1-emil.renner.berthing@canonical.com> <20240103132852.298964-3-emil.renner.berthing@canonical.com>
-In-Reply-To: <20240103132852.298964-3-emil.renner.berthing@canonical.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 28 Jan 2024 00:02:34 +0100
-Message-ID: <CACRpkdZhzC_4ZFV6cpA5=tHfzyv+NjFBoFC3=jenS2x0-0DZmg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/8] pinctrl: Add driver for the T-Head TH1520 SoC
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Drew Fustini <dfustini@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: KjY5zR7Wb7Z5kNM7GdqgFixxWWs-mXHx
+X-Proofpoint-ORIG-GUID: KjY5zR7Wb7Z5kNM7GdqgFixxWWs-mXHx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-25_14,2024-01-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
+ phishscore=0 adultscore=0 clxscore=1015 malwarescore=0 priorityscore=1501
+ suspectscore=0 mlxscore=0 lowpriorityscore=0 mlxlogscore=999
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401270178
 
-On Wed, Jan 3, 2024 at 2:29=E2=80=AFPM Emil Renner Berthing
-<emil.renner.berthing@canonical.com> wrote:
+The fourth iteration of patches that add support to Qualcomm ICE (Inline Crypto Engine) for hardware wrapped keys using Qualcomm Hardware Key Manager (HWKM)
 
-> Add pinctrl driver for the T-Head TH1520 RISC-V SoC.
->
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+These patches do the following:
+- Address comments from previous versions (https://lore.kernel.org/linux-arm-msm/20231122053817.3401748-1-quic_gaurkash@quicinc.com/)
+- Tested on top of Eric's latest fscrypt and block set: https://lore.kernel.org/all/20231104211259.17448-1-ebiggers@kernel.org/
+- Rebased and tested on top of Linaro's SHMBridge patches: (https://lkml.org/lkml/2023/11/20/555)
 
-This driver looks mostly fine but I am waiting for the bindings
-to be hashed out.
+Explanation and use of hardware-wrapped-keys can be found here:
+Documentation/block/inline-encryption.rst (https://lore.kernel.org/all/20231104211259.17448-1-ebiggers@kernel.org/)
 
-Yours,
-Linus Walleij
+Testing: 
+Test platform: SM8650 MTP
+
+The changes were tested by mounting initramfs and running the fscryptctl
+tool (Ref: https://github.com/ebiggers/fscryptctl/tree/wip-wrapped-keys) to
+generate and prepare keys, as well as to set policies on folders, which
+consequently invokes disk encryption flows through UFS.
+
+Tested both standard and wrapped keys (Removing qcom,ice-use-hwkm from dtsi will support using standard keys)
+
+Steps to test:
+
+The following configs were enabled:
+CONFIG_BLK_INLINE_ENCRYPTION=y
+CONFIG_QCOM_INLINE_CRYPTO_ENGINE=m
+CONFIG_FS_ENCRYPTION_INLINE_CRYPT=y
+CONFIG_SCSI_UFS_CRYPTO=y
+
+Flash boot image to shell and run the following commands
+
+Creating and preparing keys
+- mkfs.ext4 -F -O encrypt,stable_inodes /dev/disk/by-partlabel/userdata
+- mount /dev/disk/by-partlabel/userdata -o inlinecrypt /mnt
+- ./fscryptctl generate_hw_wrapped_key /dev/disk/by-partlabel/userdata > /mnt/key.longterm  OR
+   dd if=/dev/zero bs=32 count=1 | tr '\0' 'X' \ | fscryptctl import_hw_wrapped_key /dev/disk/by-partlabel/userdata > /mnt/key.longterm
+- ./fscryptctl prepare_hw_wrapped_key /dev/disk/by-partlabel/userdata < /mnt/key.longterm > /tmp/key.ephemeral
+- ./fscryptctl add_key --hw-wrapped-key < /tmp/key.ephemeral /mnt
+
+Create a folder and associate created keys with the folder
+- rm -rf /mnt/dir
+- mkdir /mnt/dir
+- ./fscryptctl set_policy --hw-wrapped-key --iv-ino-lblk-64 "$keyid" /mnt/dir
+- dmesg > /mnt/dir/test.txt
+- sync
+
+- Reboot
+- mount /dev/disk/by-partlabel/userdata -o inlinecrypt /mnt
+- ls /mnt/dir (You should see an encrypted file)
+- ./fscryptctl prepare_hw_wrapped_key /dev/disk/by-partlabel/userdata < /mnt/key.longterm > /tmp/key.ephemeral
+- ./fscryptctl add_key --hw-wrapped-key < /tmp/key.ephemeral /mnt
+- cat /mnt/dir/test.txt
+
+NOTE: Evicting a key with HWKM is not supported in the current SCM call for HWKM v2 chipsets, TZ already supports a different call for this.
+Changes will be added separately for these after further internal discussions. But this should not stop merging the existing patches.
+
+Merge Strategy:
+
+This is an open-ended question to the community and the respective component maintainers.
+The changes have the following components.
+
+- Fscrypt and block patches (From Eric Biggers)
+- SHMBridge patches (Bartosz Golaszewski)
+- Qualcomm SCM (This patchset)
+- Qualcomm ICE (This patchset)
+- UFS Core ((This patchset))
+- Qualcomm UFS Host (This patchset)
+
+It would be ideal if one maintainer can take in all the changes together since working with many immutable branches shared with each other might get tricky.
+
+Gaurav Kashyap (15):
+  ice, ufs, mmc: use blk_crypto_key for program_key
+  qcom_scm: scm call for deriving a software secret
+  qcom_scm: scm call for create, prepare and import keys
+  soc: qcom: ice: add hwkm support in ice
+  soc: qcom: ice: support for hardware wrapped keys
+  soc: qcom: ice: support for generate, import and prepare key
+  ufs: core: support wrapped keys in ufs core
+  ufs: core: add support to derive software secret
+  ufs: core: add support for generate, import and prepare keys
+  ufs: host: wrapped keys support in ufs qcom
+  ufs: host: implement derive sw secret vop in ufs qcom
+  ufs: host: support for generate, import and prepare key
+  dt-bindings: crypto: ice: document the hwkm property
+  arm64: dts: qcom: sm8650: add hwkm support to ufs ice
+  arm64: dts: qcom: sm8550: add hwkm support to ufs ice
+
+ .../crypto/qcom,inline-crypto-engine.yaml     |  10 +
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |   3 +-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi          |   3 +-
+ drivers/firmware/qcom/qcom_scm.c              | 247 ++++++++++++++
+ drivers/firmware/qcom/qcom_scm.h              |   4 +
+ drivers/mmc/host/cqhci-crypto.c               |   7 +-
+ drivers/mmc/host/cqhci.h                      |   2 +
+ drivers/mmc/host/sdhci-msm.c                  |   6 +-
+ drivers/soc/qcom/ice.c                        | 315 +++++++++++++++++-
+ drivers/ufs/core/ufshcd-crypto.c              |  87 ++++-
+ drivers/ufs/host/ufs-qcom.c                   |  61 +++-
+ include/linux/firmware/qcom/qcom_scm.h        |   7 +
+ include/soc/qcom/ice.h                        |  18 +-
+ include/ufs/ufshcd.h                          |  22 ++
+ 14 files changed, 754 insertions(+), 38 deletions(-)
+
+-- 
+2.43.0
+
 
