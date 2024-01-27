@@ -1,173 +1,251 @@
-Return-Path: <devicetree+bounces-35861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E0B83EF75
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 19:20:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F0283EFCA
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 20:41:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 384B21C20B41
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 18:20:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 788F3284120
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 19:41:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A02FE2D61A;
-	Sat, 27 Jan 2024 18:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC382D78A;
+	Sat, 27 Jan 2024 19:41:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EmxeDqHb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hcgGRcl6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 190412D60C;
-	Sat, 27 Jan 2024 18:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E52102E62B;
+	Sat, 27 Jan 2024 19:41:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706379604; cv=none; b=FvE0SOh8WN2V+H/WzN5bPo1ZiZIsSM/NxmUJE4IuYNLwpsSEWJqcdUii+nY+m11MsseCuvZ1uaezeX0uewdV3U9+9K0WcatsCCrXDqWvGabSiWBrtTzlvjIRIt+DXUJoIHtw2hBNTg0Kns5JmV3HQXtPSbPpB5v9HdvOv7i5Spw=
+	t=1706384478; cv=none; b=HHiRpI60vIaSozY9Vol1/VQNRYhS226KJo/TaGpVJ6wVwqtNsKnvbiZWAmGIDHQY3ZIS0QGIf+y5paiSyrS1SMrsI/3Vn0jHB+dltoWnyeu9i2JIsP5RKHNcKyZ/LYFfRiix79I0QixP6yMNDEKPljJagyv46vKvpXwtKBwwwZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706379604; c=relaxed/simple;
-	bh=3qf/Tcsst6PvPX+mtlEE/pY7q7lnHOq8wve0vPMLfeo=;
+	s=arc-20240116; t=1706384478; c=relaxed/simple;
+	bh=3ejxm1++8JheA0B9ih4btULBIs4W0UqLfoXALwZ9lwE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DqT1TXqV7eMcVdVg3l+50maIGzOfFiYKD9OQmeDGnWZmKR6J+c7fJepRvm5xtyBUAHVSwMP5GS0J24sCXUgeceN7ujiuasV7u87i+GV+kvAjFtJsrSOOjbCUeM9vLij5EmNqlfpEWv9i+7ZZqe0uKwVOixIW+Q3l6lz2a3wrK68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EmxeDqHb; arc=none smtp.client-ip=209.85.167.180
+	 To:Cc:Content-Type; b=Aw0qlKBUnJLO5+gNZIITCcZ1QnZ7R0ifUJ5Lq/Mcq59gCnFi/gmDjGa3AZeoy7//AAVP18mQ0hHxBhJ51TpuPby7uBfCDn6RjJFsrzWk68/ABSBHPBs4FySAt9hAH5xJbI5WnY9qZfO7eIYwV1/7EbjYTNEGZdZK3kyxVa9hIm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hcgGRcl6; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3bded20a30eso1039593b6e.2;
-        Sat, 27 Jan 2024 10:20:02 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3510d79ae9so120498066b.0;
+        Sat, 27 Jan 2024 11:41:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706379602; x=1706984402; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1706384475; x=1706989275; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kItuuplq9gKxvPdah7o7cU5Dr7iTWQBKGEy/GZ0EpAA=;
-        b=EmxeDqHbdY8L9oCWNvovK+t6VQZEyrydRVk4ZfrvIBldHkwnJgsC128O3jSsJmYF7R
-         sCl87tFch/F9yg+QOUe862l6Qn7Or4j1zADzKj54u38zFwMry+kKm46pI9DrnnZB8osA
-         3exQ+NUEVcDDxdR30t3dJpDXDhQgM0sTwnf+n8rxATWkHhJghKsEmgek2DYzgchH4CPw
-         2/w02xgwI/Ycumnfhl1hOFTxhclfgPxBEoXlTWT97JrklpLmIhNbIFDFAXSNa8u83wB3
-         fU3xy79DlE906A8eJb8skCyEgv1BXL8vTyC3wgmcOgdjJ99SiDTsGONAxXJQLmYwxRF3
-         /x/A==
+        bh=iQb7quZ1225FJ5IuNCQf5SD++7TJkJ1ApLlRiZiRjrk=;
+        b=hcgGRcl6hOv80PE07WTAsvXpkuvxemADNdn2isWNG3jLl8CLuS744s54vBwSySP+a+
+         mLTv81j6qssOAvLguWYIGhEB9Ei/xF+WiJCCSmqVKPxxU8VPNNF4dQrL2ItqE93Hgn7B
+         2VJ5dOFVtQUhaGdNzD+xNWy6PYYGEvqlQ9fpcdl1DUSZ37A1No6WDL803jEjN1ddn0kM
+         eIrwiMUIIepIjE0Vhj09cNB5vvg5FWDPHbOXH/MFWvTGwxDM1Pa0bMmbXL2C89OeAP8P
+         wl3IucxYJa3a/c2mE+VlnPr1e2dYL9aYFiqPbvN7Dc7Cehei+ztBawafa86v+ZN+LWRK
+         RpUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706379602; x=1706984402;
+        d=1e100.net; s=20230601; t=1706384475; x=1706989275;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kItuuplq9gKxvPdah7o7cU5Dr7iTWQBKGEy/GZ0EpAA=;
-        b=jYRQbjW19/aPn0kDHeIskrNPc+L5KtHR2dBb4vwTfmXJRHH0t5h3ABh2zkMjUbr3Um
-         fQJcZpA4KPYHyZtEjMaUgij6DnKo7zJwV+k/TK0SzolIw2z9OVcKD/OiNlFAOW93XPBz
-         GDZikCy8+WmmRwqA1sssZv7RZImJScGDOkJ7gIiUEC8398a3m6wcg0DbVZnKb0RUgWse
-         o3QPK1oR5y33zx+VCT3Ww4Gh3VKxxrs1w/YpjMW3OFX6UN1o9RS01xiOEs9N398mY0J4
-         3CU9OeHDV2NIszsYeUISHus2Ud9hdz3VoeFNz0fkL5SKLLBsIJsmx4Hcr6vkuLJFJeyI
-         f+vQ==
-X-Gm-Message-State: AOJu0Yz6gK/NljxsItH8lxFaILostD3GOF9MY3qEQw4kF4LoyzuYRhye
-	vxFo6EnGtlqjDBAzbIEsu+C3NTsfjf5+YKwQnK2b47/6qGChToKxiJ317oqS97z0qciUJIYu1fH
-	PtVLO7pZTxMaTNQ1TCVpkCIXHVF1oh6P3
-X-Google-Smtp-Source: AGHT+IFc1oQxSjGZOuzX1x2qeYX1xDk1sFjiGxTFRvEsAOq3/96UKF4ekd05GhqbhBiqz8uTRTYTFg+auxUbUoGxSHc=
-X-Received: by 2002:a05:6359:c89:b0:176:707d:4c71 with SMTP id
- go9-20020a0563590c8900b00176707d4c71mr2398126rwb.15.1706379601425; Sat, 27
- Jan 2024 10:20:01 -0800 (PST)
+        bh=iQb7quZ1225FJ5IuNCQf5SD++7TJkJ1ApLlRiZiRjrk=;
+        b=aP8YOCbCfA6cNzDcb5UYkvmzY5M0dVkXnoOgxhXUtcqG484J6rIgVVHn6fz0MFH02n
+         vkWf4mvg8OZuWXXFg68YphV08C/cIN8EZBWzm9zLbILDHuZ3xUrjyO0OlsONFE7Z/coO
+         1wPk8XNWWXbpBPCvWsxA4/4g5IVNBwb9DaP2uKRLdJzKCUKL7LU8EqZRyCaJziFFnUA5
+         qOBJJs3bkKjzj/WEEbIcIiWNjjdL5lai3A4Vcfaz87UKjQt1+Wmb2Bs3l+lzy+O6cmoy
+         oyedXooM6zlQMawg6KvN8y/DWWpAOw0d0uJTi9onjty3vV5lBofS5kcwNZvRwM1/nz34
+         GAeg==
+X-Gm-Message-State: AOJu0Ywrhm0jKKkxTLZSmOVA/JKkihzvnjCFlugbEWaGGLragErxNfp1
+	Mith/GBx3rGg3DRH5yD1g82t809qS/zakvnhFXdIYpDPDde9VxSSThOQedfdS8dno9gZG+sUlcO
+	Tv/NCumUEaYQyUa53UVzHevX2qdI=
+X-Google-Smtp-Source: AGHT+IHt7GkPzqAJYdxcpfZ+o88hPJ8ZAK8XEyaYEdNrxjHG4Y6W9HhC70fdNLz80LMAchsIPpTkV3M6QMDEErQCdAE=
+X-Received: by 2002:a17:906:b7d4:b0:a31:1ee9:da54 with SMTP id
+ fy20-20020a170906b7d400b00a311ee9da54mr1516808ejb.60.1706384474696; Sat, 27
+ Jan 2024 11:41:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240106223951.387067-1-aford173@gmail.com> <20240106223951.387067-2-aford173@gmail.com>
-In-Reply-To: <20240106223951.387067-2-aford173@gmail.com>
-From: Adam Ford <aford173@gmail.com>
-Date: Sat, 27 Jan 2024 12:19:50 -0600
-Message-ID: <CAHCN7x+=etco+xEELdf5AyR07sR6c9tTFtsA3K5Dy99qhAZQMg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] pmdomain: imx8mp-blk-ctrl: imx8mp_blk: Add fdcc clock
- to hdmimix domain
-To: linux-pm@vger.kernel.org
-Cc: Sandor Yu <Sandor.yu@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
+References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
+ <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com> <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
+ <ccc004cfae513195351ce0a79e12f6af@manjaro.org> <CABjd4YxSTLZjrnSCn0fh81US682-uhZ16-cgydzz97shhCpq4w@mail.gmail.com>
+ <1f0608831cfb95c80edf16cd751eee76@manjaro.org> <CABjd4Yx06igrZQvHA4q-mcr2oSEf7eQyUS+KEATUGbw6qLc2sg@mail.gmail.com>
+ <528a37d84cdd871e717b4ebf648bb8a7@manjaro.org> <9b72b688-be63-464e-a5dc-cf6051ccee12@linaro.org>
+ <CABjd4YzdD9ciMn=p=opEK+fdxCkeCodsryph7pkqgsEUNcNrUQ@mail.gmail.com> <5ef9bab979260884866efe30d19ba8f1@manjaro.org>
+In-Reply-To: <5ef9bab979260884866efe30d19ba8f1@manjaro.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Sat, 27 Jan 2024 23:41:03 +0400
+Message-ID: <CABjd4YyyuB9ou-BaOrvt_rrv1-jPE=wtwWDHDqNqyT4a0E51wg@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add OPP data for CPU cores on RK3588
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Marek Vasut <marex@denx.de>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jan 6, 2024 at 4:40=E2=80=AFPM Adam Ford <aford173@gmail.com> wrote=
-:
+On Sat, Jan 27, 2024 at 12:33=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> =
+wrote:
 >
-> According to i.MX8MP RM and HDMI ADD, the fdcc clock is part of
-> hdmi rx verification IP that should not enable for HDMI TX.
-> But actually if the clock is disabled before HDMI/LCDIF probe,
-> LCDIF will not get pixel clock from HDMI PHY and print the error
-> logs:
+> On 2024-01-26 14:44, Alexey Charkov wrote:
+> > On Fri, Jan 26, 2024 at 4:56=E2=80=AFPM Daniel Lezcano
+> > <daniel.lezcano@linaro.org> wrote:
+> >> On 26/01/2024 08:49, Dragan Simic wrote:
+> >> > On 2024-01-26 08:30, Alexey Charkov wrote:
+> >> >> On Fri, Jan 26, 2024 at 11:05=E2=80=AFAM Dragan Simic <dsimic@manja=
+ro.org> wrote:
+> >> >>> On 2024-01-26 07:44, Alexey Charkov wrote:
+> >> >>> > On Fri, Jan 26, 2024 at 10:32=E2=80=AFAM Dragan Simic <dsimic@ma=
+njaro.org>
+> >> >>> > wrote:
+> >> >>> >> On 2024-01-25 10:30, Daniel Lezcano wrote:
+> >> >>> >> > On 24/01/2024 21:30, Alexey Charkov wrote:
+> >> >>> >> >> By default the CPUs on RK3588 start up in a conservative
+> >> >>> performance
+> >> >>> >> >> mode. Add frequency and voltage mappings to the device tree =
+to
+> >> >>> enable
+> >>
+> >> [ ... ]
+> >>
+> >> >> Throttling would also lower the voltage at some point, which cools =
+it
+> >> >> down much faster!
+> >> >
+> >> > Of course, but the key is not to cool (and slow down) the CPU cores =
+too
+> >> > much, but just enough to stay within the available thermal envelope,
+> >> > which is where the same-voltage, lower-frequency OPPs should shine.
+> >>
+> >> That implies the resulting power is sustainable which I doubt it is
+> >> the
+> >> case.
+> >>
+> >> The voltage scaling makes the cooling effect efficient not the
+> >> frequency.
+> >>
+> >> For example:
+> >>         opp5 =3D opp(2GHz, 1V) =3D> 2 BogoWatt
+> >>         opp4 =3D opp(1.9GHz, 1V) =3D> 1.9 BogoWatt
+> >>         opp3 =3D opp(1.8GHz, 0.9V) =3D> 1.458 BogoWatt
+> >>         [ other states but we focus on these 3 ]
+> >>
+> >> opp5->opp4 =3D> -5% compute capacity, -5% power, ratio=3D1
+> >> opp4->opp3 =3D> -5% compute capacity, -23.1% power, ratio=3D21,6
+> >>
+> >> opp5->opp3 =3D> -10% compute capacity, -27.1% power, ratio=3D36.9
+> >>
+> >> In burst operation (no thermal throttling), opp4 is pointless we agree
+> >> on that.
+> >>
+> >> IMO the following will happen: in burst operation with thermal
+> >> throttling we hit the trip point and then the step wise governor
+> >> reduces
+> >> opp5 -> opp4. We have slight power reduction but the temperature does
+> >> not decrease, so at the next iteration, it is throttle at opp3. And at
+> >> the end we have opp4 <-> opp3 back and forth instead of opp5 <-> opp3.
+> >>
+> >> It is probable we end up with an equivalent frequency average (or
+> >> compute capacity avg).
+> >>
+> >> opp4 <-> opp3 (longer duration in states, less transitions)
+> >> opp5 <-> opp3 (shorter duration in states, more transitions)
+> >>
+> >> Some platforms had their higher OPPs with the same voltage and they
+> >> failed to cool down the CPU in the long run.
+> >>
+> >> Anyway, there is only one way to check it out :)
+> >>
+> >> Alexey, is it possible to compare the compute duration for 'dhrystone'
+> >> with these voltage OPP and without ? (with a period of cool down
+> >> between
+> >> the test in order to start at the same thermal condition) ?
+> >
+> > Sure, let me try that - would be interesting to see the results. In my
+> > previous tinkering there were cases when the system stayed at 2.35GHz
+> > for all big cores for non-trivial time (using the step-wise thermal
+> > governor), and that's an example of "same voltage, lower frequency".
+> > Other times though it throttled one cluster down to 1.8GHz and kept
+> > the other at 2.4GHz, and was also stationary at those parameters for
+> > extended time. This probably indicates that both of those states use
+> > sustainable power in my cooling setup.
 >
-> [CRTC:39:crtc-2] vblank wait timed out
-> WARNING: CPU: 2 PID: 9 at drivers/gpu/drm/drm_atomic_helper.c:1634 drm_at=
-omic_helper_wait_for_vblanks.part.0+0x23c/0x260
->
-> Add fdcc clock to LCDIF and HDMI TX power domains to fix the issue.
+> IMHO, there are simply too many factors at play, including different
+> possible cooling setups, so providing additional CPU throttling
+> granularity can only be helpful.  Of course, testing and recording
+> data is the way to move forward, but I think we should use a few
+> different tests.
 
-Peng (or anyone from NXP),
+Soooo, benchmarking these turned out a bit trickier than I had hoped
+for. Apparently, dhrystone uses an unsigned int rather than an
+unsigned long for the loops count (or something of that sort), which
+means that I can't get it to run enough loops to heat up my chip from
+a stable idle state to the throttling state (due to counter
+wraparound). So I ended up with a couple of crutches, namely:
+ - run dhrystone continuously on 6 out of 8 cores to make the chip
+warm enough (`taskset -c 0-5 ./dhrystone -t 6 -r 6000` - note that on
+my machine cores 6-7 are usually the first ones to get throttled, due
+to whatever thermal peculiarities)
+ - wait for the temperature to stabilize (which happens at 79.5C)
+ - then run timed dhrystone on the remaining 2 out of 6 cores (big
+ones) to see how throttling with different OPP tables affects overall
+performance.
 
-I borrowed this patch from the NXP down-stream kernel for two reasons:
- It's in NXP's branch to address an error & move the fdcc clock out of
-the HDMI-tx driver due to questions/feedback that Lucas got on that
-driver.
+In the end, here's what I got with the 'original' OPP table (including
+"same voltage - different frequencies" states):
+alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
+duration: 0 seconds
+number of threads: 2
+number of loops: 4000000000000000
+delay between starting threads: 0 seconds
 
-The FDCC clock isn't well documented, and it seems like it's necessary
-for the HDMI-TX, but I'd like to make sure this is the proper
-solution, and I haven't received any additional feedback.
-Can someone from NXP confirm that really is the proper solution?
+Dhrystone(1.1) time for 1233977344 passes =3D 29.7
+This machine benchmarks at 41481539 dhrystones/second
+                           23609 DMIPS
+Dhrystone(1.1) time for 1233977344 passes =3D 29.8
+This machine benchmarks at 41476618 dhrystones/second
+                           23606 DMIPS
 
-thank you,
+Total dhrystone run time: 30.864492 seconds.
 
-adam
+And here's what I got with the 'reduced' OPP table (keeping only the
+highest frequency state for each voltage):
+alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
+duration: 0 seconds
+number of threads: 2
+number of loops: 4000000000000000
+delay between starting threads: 0 seconds
 
->
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
-> The original work was from Sandor on the NXP Down-stream kernel
->
-> diff --git a/drivers/pmdomain/imx/imx8mp-blk-ctrl.c b/drivers/pmdomain/im=
-x/imx8mp-blk-ctrl.c
-> index e3203eb6a022..a56f7f92d091 100644
-> --- a/drivers/pmdomain/imx/imx8mp-blk-ctrl.c
-> +++ b/drivers/pmdomain/imx/imx8mp-blk-ctrl.c
-> @@ -55,7 +55,7 @@ struct imx8mp_blk_ctrl_domain_data {
->         const char *gpc_name;
->  };
->
-> -#define DOMAIN_MAX_CLKS 2
-> +#define DOMAIN_MAX_CLKS 3
->  #define DOMAIN_MAX_PATHS 3
->
->  struct imx8mp_blk_ctrl_domain {
-> @@ -457,8 +457,8 @@ static const struct imx8mp_blk_ctrl_domain_data imx8m=
-p_hdmi_domain_data[] =3D {
->         },
->         [IMX8MP_HDMIBLK_PD_LCDIF] =3D {
->                 .name =3D "hdmiblk-lcdif",
-> -               .clk_names =3D (const char *[]){ "axi", "apb" },
-> -               .num_clks =3D 2,
-> +               .clk_names =3D (const char *[]){ "axi", "apb", "fdcc" },
-> +               .num_clks =3D 3,
->                 .gpc_name =3D "lcdif",
->                 .path_names =3D (const char *[]){"lcdif-hdmi"},
->                 .num_paths =3D 1,
-> @@ -483,8 +483,8 @@ static const struct imx8mp_blk_ctrl_domain_data imx8m=
-p_hdmi_domain_data[] =3D {
->         },
->         [IMX8MP_HDMIBLK_PD_HDMI_TX] =3D {
->                 .name =3D "hdmiblk-hdmi-tx",
-> -               .clk_names =3D (const char *[]){ "apb", "ref_266m" },
-> -               .num_clks =3D 2,
-> +               .clk_names =3D (const char *[]){ "apb", "ref_266m", "fdcc=
-" },
-> +               .num_clks =3D 3,
->                 .gpc_name =3D "hdmi-tx",
->         },
->         [IMX8MP_HDMIBLK_PD_HDMI_TX_PHY] =3D {
-> --
-> 2.43.0
->
+Dhrystone(1.1) time for 1233977344 passes =3D 30.9
+This machine benchmarks at 39968549 dhrystones/second
+                          22748 DMIPS
+Dhrystone(1.1) time for 1233977344 passes =3D 31.0
+This machine benchmarks at 39817431 dhrystones/second
+                          22662 DMIPS
+
+Total dhrystone run time: 31.995136 seconds.
+
+Bottomline: removing the lower-frequency OPPs led to a 3.8% drop in
+performance in this setup. This is probably far from a reliable
+estimate, but I guess it indeed indicates that having lower-frequency
+states might be beneficial in some load scenarios.
+
+Note though that several seconds after hitting the throttling
+threshold cores 6-7 were oscillating between 1.608GHz and 1.8GHz in
+both runs, which implies that the whole difference in performance was
+due to different speed of initial throttling (i.e. it might be a
+peculiarity of the step-wise thermal governor operation when it has to
+go through more cooling states to reach the "steady-state" one). Given
+that both 1.608GHz and 1.8GHz have no lower-frequency same-voltage
+siblings in either of the OPP tables, it implies that under prolonged
+constant load there should be no performance difference at all.
+
+Best regards,
+Alexey
 
