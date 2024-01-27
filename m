@@ -1,71 +1,62 @@
-Return-Path: <devicetree+bounces-35869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF2C883F0C9
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 23:35:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 247DC83F0D1
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 23:35:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E15201C24C98
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 22:35:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85BCBB2607A
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 22:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA87922091;
-	Sat, 27 Jan 2024 22:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73BFC1EF1F;
+	Sat, 27 Jan 2024 22:34:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftL6qVLK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QH+dooaY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE00021A12;
-	Sat, 27 Jan 2024 22:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487ED1E87D;
+	Sat, 27 Jan 2024 22:34:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706394872; cv=none; b=uf8bg/uV/0SAYoN5C6iiosQFIu9rakWBa2sjM39w3wsJYKsK6XU+tQ/vl1+hEgsNyuWtmcnFUHQXp6kc+YR/CsojWcO4gRtgU605MDJhUU0uHQh3q7onYvDpIn/xMCV4hfm2bL2iYESa/rGEAaS+e776oejXfIaGoabnsDPOK38=
+	t=1706394892; cv=none; b=EZ0DDhvkYEkvyaCR5Hrw0k3E0Ru3YSVQJMbsj+zJGIPPCKkcffidDBd+XnYWnz97sfrc4UARUWroGDB2QgV8MlkujGHaMLd6wel/c/XgQNP1EGVZqaBKoadhlQqwh1sgVpKd/Orso3hWLH0XZf2rYs0bqgTri3c1h0bX6hr8sjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706394872; c=relaxed/simple;
-	bh=0hd1nt6NIxg/b2E4PHB4vjQG+308/SLzKzQkU9id3mI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t4KSZE+vmJgI7z55kbevKQycGAPb/wQ6Y5/9DcCt/6KDXBYmUNNuYK3cQg6PwlTixJh2NbjpGzbnuxJqeHWSLXfR4j19cEkrRrOvgFHNMdK40H/CnoLGfBlgNrdxKyuPkp2wAEzujEH6kyP4qsdJuVFrWTqpRGi1g/eSSgdFwOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftL6qVLK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96920C43601;
-	Sat, 27 Jan 2024 22:34:30 +0000 (UTC)
+	s=arc-20240116; t=1706394892; c=relaxed/simple;
+	bh=QwVGyBOyyQm5ng8xorMzhmC6WNJpBKU91L9mLbugc2o=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=J5pvH3pdVbcMbg+EqgVD2mB1Durt8CkGhO/H+/6db1++xj2jWl1D4IILwurkL/L3SMNELID5nJ9loW2VNvLZP2nOyvlHEHeqtHMxgfcy4Mz5xMVB762uI3/3QF7I8qoPP3lT9cK3v1E3uvlDVJJNdUT16SdgmnbVpY7PfjNWIQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QH+dooaY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60328C43390;
+	Sat, 27 Jan 2024 22:34:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706394872;
-	bh=0hd1nt6NIxg/b2E4PHB4vjQG+308/SLzKzQkU9id3mI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ftL6qVLKuRLxvoU8sibnI+EnFXNzV6GPmKtMqEz9b7jMJbGZkUFrKpnAMEsUCDYWQ
-	 njksCy+pS4aI97oh/FQLcBa8q5FiigrI/uDdQNk0awxzMwhOh+ID/Di75nx8EalGRP
-	 eSS0syulIbRf3nchVNriyDpIuZYioB5RajMJxtlpc1XgcE8sp6S2q6qCguB78DsVz1
-	 bCFnlK9kbs2HYZ1p6ECiEmHdEgJb01aVY5DZQ+mPY6NOfVlLK/J56J2tjDDeMunSCD
-	 njwgBUlnKOukCdibc7v56V03KU4vtrBIKUk/Uu9t+zHvd4WHBgulvHSSMyp665hWr4
-	 sAbEsbZHtScHg==
+	s=k20201202; t=1706394892;
+	bh=QwVGyBOyyQm5ng8xorMzhmC6WNJpBKU91L9mLbugc2o=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=QH+dooaYlabZGEIcoSJVwl2wQfAQp1/7QW4lCR2fpJ9Gh8vdNvXubknlnQQDXG0Sh
+	 fFB1l0ozIi5CVaEUaQHzgEfR4meSwCSVi9yyZedp4k9Yg+klErcz5j4LAVNDwEA4w0
+	 DuY6HV6vp6OKF4htlT28NSmSfcwhDnaDeQMFaRNF4dAERGkkU2pDc9/SQwvj5G8Czc
+	 n2iJLz3nFIVyqwagEgtgPamzGOYaW8GuDmxNS1Bb558xzt6HT2+rQGX4oiP80lqsLf
+	 r653BWZsbG1CILjqFbpt2axMPEY+Y7haA5iwfaVsWZBgJZwYg5xVcsFzF2nKp44DP4
+	 r0oWJQSO7rKAw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: cros-qcom-dts-watchers@chromium.org,
-	Andy Gross <agross@kernel.org>,
+To: Andy Gross <agross@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Prasad Malisetty <pmaliset@codeaurora.org>,
-	Stephen Boyd <swboyd@chromium.org>,
-	Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	quic_vbadigan@quicinc.com,
-	quic_ramkri@quicinc.com,
-	quic_nitegupt@quicinc.com,
-	quic_skananth@quicinc.com,
-	quic_parass@quicinc.com,
-	stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add additional MSI interrupts
-Date: Sat, 27 Jan 2024 16:34:23 -0600
-Message-ID: <170639483105.20773.383926255672968908.b4-ty@kernel.org>
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH 1/3] ARM: dts: qcom: ipq8064: drop unused reset-names from DWC3 node
+Date: Sat, 27 Jan 2024 16:34:43 -0600
+Message-ID: <170639487714.21016.17473117727051258489.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231218-additional_msi-v1-1-de6917392684@quicinc.com>
-References: <20231218-additional_msi-v1-1-de6917392684@quicinc.com>
+In-Reply-To: <20231112080136.12518-1-krzysztof.kozlowski@linaro.org>
+References: <20231112080136.12518-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +67,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 18 Dec 2023 19:32:36 +0530, Krishna chaitanya chundru wrote:
-> Current MSI's mapping doesn't have all the vectors. This platform
-> supports 8 vectors each vector supports 32 MSI's, so total MSI's
-> supported is 256.
+On Sun, 12 Nov 2023 09:01:34 +0100, Krzysztof Kozlowski wrote:
+> The Qualcomm DWC3 USB controller bindings do not allow "reset-names" and
+> Linux driver does no use it.  This fixes dtbs_check warning:
 > 
-> Add all the MSI groups supported for this PCIe instance in this platform.
+>   qcom-ipq8064-ap148.dtb: usb@100f8800: 'reset-names' does not match any of the regexes: '^usb@[0-9a-f]+$', 'pinctrl-[0-9]+'
 > 
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc7280: Add additional MSI interrupts
-      commit: b8ba66b40da3230a8675cb5dd5c2dea5bce24d62
+[1/3] ARM: dts: qcom: ipq8064: drop unused reset-names from DWC3 node
+      commit: a78a95b98dc5b4dda925b2e9981abf815a46b0de
+[2/3] ARM: dts: qcom: sdx65: correct clock order in DWC3 node
+      commit: 7d912adff5c6484be16b3081aa5ef716b88a682e
+[3/3] ARM: dts: qcom: ipq4019: correct clock order in DWC3 node
+      commit: 71ae7237cd31948b3414aaa07dc594a9fdb8d654
 
 Best regards,
 -- 
