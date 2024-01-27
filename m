@@ -1,135 +1,160 @@
-Return-Path: <devicetree+bounces-35801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB11883EDDF
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 16:21:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 245F183EDE6
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 16:28:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B92E2B21F8C
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 15:21:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A79C1C2139B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 15:28:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36B3928DD0;
-	Sat, 27 Jan 2024 15:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E9528DD7;
+	Sat, 27 Jan 2024 15:28:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hGr2fchC"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="gcSbM8Ck"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CF6029D08;
-	Sat, 27 Jan 2024 15:21:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AEA81DFC9
+	for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 15:28:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706368866; cv=none; b=K5A+rHwi4ryG2c0Yqm7zgRxM1t2d2aUDKARcwxCSFOD/LXovrVrsiEXgruURPajn5Fdz4pol7+hObrA1ZQbSn10Gn0AAYt/DKBMdUiMLDUAAAS6c41dvwJ680npPlEQh0YA7cHoAmk3nddwfptQ1n/xpMVM5MKYizgUTNEuyKv0=
+	t=1706369311; cv=none; b=Zs2LrmzQsHJ2gCL2Z72m7VZi8XTKXOF7oyMfTcrZwyLCOi0jsk9PrX6J0tpFMsX09QtIGVaj1BcFXS3l06pVgl7VRI+SUpwGelyZMZfkfZ5cAPg31dkp2H0p1rlRvBjzLH1nIbxKf9CreH/u8m1z00JtXZw4X4t95FRjDAkxyfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706368866; c=relaxed/simple;
-	bh=z0pu8Sga/qDq7lbfHrE53M/tvuGDdpv66kUE2iwHZ6A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Oh3p+QX8J5epWyWrWllx+sxuy3l5yhXOnJFTIVRUuvnYHyVjffxbuMYQ3oA4jk9nnMVHMjEg8BQ7kkspAd0zUMfpnsl/z97mEUdi3iiuMvMcRzw2NGFquhl+0UV8z1NFAXYQINEzcrMaIt2wg9nYpF5iA6ABtd/myTTSS8buuhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hGr2fchC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DC4AC433C7;
-	Sat, 27 Jan 2024 15:21:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706368865;
-	bh=z0pu8Sga/qDq7lbfHrE53M/tvuGDdpv66kUE2iwHZ6A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=hGr2fchCLmpIGnkzdcLImquRSPrbmINqIw8eDw2AW22n/Zsv4wAP7be9r96NDspGP
-	 eS2gg8XeK7mtUFHZcH+ok2MsNp2x2y234gV1TGqkBCA12i6L/WCn7ZZRM0W1jaywOy
-	 Cyg7eYtXcBPp54XV/mEuPJFeMaNkGJ7OIZB+tTYr8rZdTLZxl7CE44jviJP9l4GzO/
-	 g6JLxJdTxUNiSwGiF9D4Ta3Ff2xJBhh9vDqNNJfPoPzAX9cZReUVxaCLp927NVHEoa
-	 tHH3lJ67VgfIno75z9uvOJ2eQ2fGqUvQrSGw6Hzf/Oiq7Is9UHkoLllF/j8fOEIZu4
-	 1476RfC/JsdUQ==
-Date: Sat, 27 Jan 2024 15:20:49 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
-Cc: <nuno.sa@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
- <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>,
- Saravana Kannan <saravanak@google.com>
-Subject: Re: [PATCH v7 9/9] iio: adc: adi-axi-adc: move to backend framework
-Message-ID: <20240127152049.22a8ce74@jic23-huawei>
-In-Reply-To: <20240123-iio-backend-v7-9-1bff236b8693@analog.com>
-References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
-	<20240123-iio-backend-v7-9-1bff236b8693@analog.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.40; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1706369311; c=relaxed/simple;
+	bh=B1lQN2DRgn3nQBtFdWkRtHnud7Y315A8P2HYAFO7EV4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Q3BBt5PmyTi8I6tpaUofGOoLBTqmLAiHvsuRmwVY53+JdQSsOrKKElOcjiV+yQ0JGkMKr939mM4mXPgiiwpFg+CCb4SlYX44LmYrt8zo6apjxLWK3hhuXpvDVzgdFN7IX/awTOx4bBzh1BN80N/xXdAJnRFH6P9BOcZxVXVIO7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=gcSbM8Ck; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a277339dcf4so129603566b.2
+        for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 07:28:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1706369308; x=1706974108; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=haBaXjP3IuqWi4Vh3TynqcBtGi5D9/RbAjyH8MaxFEk=;
+        b=gcSbM8CkOWCDF+p+eNKp7quYEF1qTbiUKuPCtutrj74yh7XXteIhq1thvHMUJW3z9f
+         Nwee7ZIKqZb7EMrRgHx0uO3iQxemyB10MpeOXmQ4i/0+bqi9b58fORmNFrrJBI7RNYR8
+         ofXaySANPiWe81hUVtcWIcaz47T7Kco5T8Q6k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706369308; x=1706974108;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=haBaXjP3IuqWi4Vh3TynqcBtGi5D9/RbAjyH8MaxFEk=;
+        b=eawqS3JkuxNVU8xCLo142OApWX0rXZ1g6mCsy2ySBxnwodXnUC8VgeM4qaHyhOsljP
+         J9cgvnDbr1QpgWquh42YjXrjC+zzTMXHLu6MeBi7k5g8PHdCCAu95IWweGNR0NOUmoJW
+         hEsDeUJUVsFKnes2ROgRNnhtQpmwXcxPAYuUrmHqe1jJk4NI5jTN760YobIJOgEPnhbC
+         ZVRxzzPB3gbEyKx1PXzwikrj5/A6+el5yPjHTY/bHLI5xCg2tftUhgPHk2aHyVnJxnzc
+         cgLgxbu9NI0vBfMDNOUGljdCSC5SsOzkqR6x50aUnjcylXcWmGGkiVOsIISrkWPzds9h
+         aKJQ==
+X-Gm-Message-State: AOJu0YxrsNpdxrwMC3TE/ZGj2Z8vxG4mmIbXqVyf3y8nMykS9gaYj9JN
+	wHIuNs7le4VXmuERoaTNijSLJ4BAtsvnbgNBDhGY99qUVnkp7EH+8kCu0VU7pK0=
+X-Google-Smtp-Source: AGHT+IErhFoxSEE+bInbELtSYR5kkaNSeW62dXAyFHtebD7TQBYzbADVG8K8/cyVC3nEdk8weBw+vw==
+X-Received: by 2002:a17:906:6953:b0:a34:af8a:ee3d with SMTP id c19-20020a170906695300b00a34af8aee3dmr1160137ejs.16.1706369308266;
+        Sat, 27 Jan 2024 07:28:28 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-21-103-141.retail.telecomitalia.it. [79.21.103.141])
+        by smtp.gmail.com with ESMTPSA id vs3-20020a170907a58300b00a3550c56127sm509361ejc.9.2024.01.27.07.28.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Jan 2024 07:28:27 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [drm-drm-misc:drm-misc-next] dt-bindings: nt35510: document 'port' property
+Date: Sat, 27 Jan 2024 16:28:08 +0100
+Message-ID: <20240127152821.65744-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Tue, 23 Jan 2024 16:14:30 +0100
-Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+Allow 'port' property (coming from panel-common.yaml) to be used in DTS:
 
-> From: Nuno Sa <nuno.sa@analog.com>
-> 
-> Move to the IIO backend framework. Devices supported by adi-axi-adc now
-> register themselves as backend devices.
-> 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-I'm still not getting the %d vs %c change..
+  st/stm32f769-disco-mb1166-reva09.dtb: panel@0: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-Otherwise LGTM
+Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
 
-> -	if (cl->info->version > ver) {
-> +	if (*expected_ver > ver) {
->  		dev_err(&pdev->dev,
-> -			"IP core version is too old. Expected %d.%.2d.%c, Reported %d.%.2d.%c\n",
-> -			ADI_AXI_PCORE_VER_MAJOR(cl->info->version),
-> -			ADI_AXI_PCORE_VER_MINOR(cl->info->version),
-> -			ADI_AXI_PCORE_VER_PATCH(cl->info->version),
-> +			"IP core version is too old. Expected %d.%.2d.%d, Reported %d.%.2d.%c\n",
+---
 
-If it's a valid change fine, but then I'd expect both %c to change.
-I'd also expect it to be in a separate patch with an explanation of why.
+ .../display/panel/novatek,nt35510.yaml        | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-> +			ADI_AXI_PCORE_VER_MAJOR(*expected_ver),
-> +			ADI_AXI_PCORE_VER_MINOR(*expected_ver),
-> +			ADI_AXI_PCORE_VER_PATCH(*expected_ver),
->  			ADI_AXI_PCORE_VER_MAJOR(ver),
->  			ADI_AXI_PCORE_VER_MINOR(ver),
->  			ADI_AXI_PCORE_VER_PATCH(ver));
->  		return -ENODEV;
->  	}
->  
-> -	indio_dev->info = &adi_axi_adc_info;
-> -	indio_dev->name = "adi-axi-adc";
-> -	indio_dev->modes = INDIO_DIRECT_MODE;
-> -	indio_dev->num_channels = conv->chip_info->num_channels;
-> -	indio_dev->channels = conv->chip_info->channels;
-> -
-> -	ret = adi_axi_adc_config_dma_buffer(&pdev->dev, indio_dev);
-> +	ret = devm_iio_backend_register(&pdev->dev, &adi_axi_adc_generic, st);
->  	if (ret)
->  		return ret;
->  
-> -	ret = adi_axi_adc_setup_channels(&pdev->dev, st);
-> -	if (ret)
-> -		return ret;
-> -
-> -	ret = devm_iio_device_register(&pdev->dev, indio_dev);
-> -	if (ret)
-> -		return ret;
-> -
-> -	dev_info(&pdev->dev, "AXI ADC IP core (%d.%.2d.%c) probed\n",
-> +	dev_info(&pdev->dev, "AXI ADC IP core (%d.%.2d.%d) probed\n",
-
-This should also be in that separate patch fixing up this formatting.
-
->  		 ADI_AXI_PCORE_VER_MAJOR(ver),
->  		 ADI_AXI_PCORE_VER_MINOR(ver),
->  		 ADI_AXI_PCORE_VER_PATCH(ver));
-> @@ -428,6 +229,8 @@ static int adi_axi_adc_probe(struct platform_device *pdev)
->  	return 0;
->  }
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
+index a4afaff483b7..72913719df23 100644
+--- a/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
+@@ -31,6 +31,22 @@ properties:
+   vddi-supply:
+     description: regulator that supplies the vddi voltage
+   backlight: true
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - frida,frd400b25025
++then:
++  required:
++    - port
++
++else:
++  properties:
++    port: false
+ 
+ required:
+   - compatible
+@@ -54,5 +70,23 @@ examples:
+             backlight = <&gpio_bl>;
+         };
+     };
++  - |
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "frida,frd400b25025", "novatek,nt35510";
++            vddi-supply = <&vcc_3v3>;
++            vdd-supply = <&vcc_3v3>;
++            reg = <0>; /* dsi virtual channel (0..3) */
++            reset-gpios = <&gpioj 15 GPIO_ACTIVE_LOW>;
+ 
++            port {
++                dsi_panel_in: endpoint {
++                    remote-endpoint = <&dsi_out>;
++                };
++            };
++        };
++    };
+ ...
+-- 
+2.43.0
 
 
