@@ -1,119 +1,123 @@
-Return-Path: <devicetree+bounces-35744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D2683E929
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 02:56:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F281E83E9EC
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 03:42:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 637EB1C22A72
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 01:56:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7DB81B23D01
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jan 2024 02:42:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26ADA947E;
-	Sat, 27 Jan 2024 01:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E03B65D;
+	Sat, 27 Jan 2024 02:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZLhdb4W"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bd6hJAUn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99E9B8F51;
-	Sat, 27 Jan 2024 01:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D73BA2B
+	for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 02:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706320595; cv=none; b=Ok8wabcOPhM7WmNT84oBD2qsqjruE1exNApxfz1jo+8zyZvQmBulPCE9w4vjuDQyqhMZeqQ+yiI9PMgzxAfbq/Uq3701106UAQtCYZz401YTNAlWm8QQcSbf+e9cDeSMGw5NP2Bu22btmqXavFmh+di2cwh/ixrWveFs4uYM09Y=
+	t=1706323367; cv=none; b=XzGsjAywvTy/HhFUECSXppKUzwbAbSnxhD6Woh+kuhfyZL+EfDCgj12BmEIX2mYlPKZnPJgOjxvuuneLsL/gdX4eGji94mrxogjokGkVpytmLPK+6tmEapTTnDtoaTjG0uSKdH6oW50pArNR/9E9LqyjHNSydGdpgPyC67Vsvek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706320595; c=relaxed/simple;
-	bh=Bwi5+CdWnELYANOK9dYY2Ztg4Ol9QkvktdG+N4SsqOk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lu0W9t5oDBl8Tx5mitKZWwsSlBcPXrlfbZyxPf8o1+FgCY7PqajMHbInlIfPKDkVY0wRC1Cz4kth/BLaLP5suiDOXpvMttXVXnuR1LD4Gj/ta5rku93FMJR/C5f5boagFEmsXnxPD4I+OpyK8Zg0iHNdtvoYW37G7sHCgRH5Tg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZLhdb4W; arc=none smtp.client-ip=209.85.219.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6868f31a555so6045446d6.1;
-        Fri, 26 Jan 2024 17:56:33 -0800 (PST)
+	s=arc-20240116; t=1706323367; c=relaxed/simple;
+	bh=TnRkg9YGAMzV36PzYApm/o0Nz4O0TWszbHDaIw2yvJ8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TqRxivoKBUOMpYSC7PR5SlgekjqLzCiqcKoLlz3riaDa0qliuTbojZA3UPHyEIFFkjzen8RxZfOuKrGR+UIKy2XSO+pUMrBE+huzHQr+cweYbenKFpc10xqgjSXBYT70+ZO43Oa6WiP8zCMV9LFyz1dNEFQ1ubUAqaLTHFRrnvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bd6hJAUn; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-602c91a76b1so11526107b3.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Jan 2024 18:42:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706320592; x=1706925392; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1706323364; x=1706928164; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/afVxJVRAH/Hka426Kik5pPJmKRNBFsEk7DBPTNKyGs=;
-        b=QZLhdb4WIgxoyHuO3DhL92IWkQk0qr1zvopIl91l/m/35H3AAzsxEl4/vvmz7/AoSa
-         X822ZfM1fuQeyBNELSlHpw0XjMQLHLMDrahCB5+NlU3ucolQTFvaGViZPW4HMtF5Sf7f
-         xz0AjLSiZFWQG9oPaUYbJUjc0bGtDIdg7sC3osMSayOlDf9EP3FPX39550bcKVl/BsoL
-         oB+Z29RSIsVsf++2laQrTXKZLGcRaF1wIxeJgZ4yxPKJaZ+xHgVbTZEz8mMC5Zl6EALQ
-         qlcov1vElco+ckU314t18wQIRdDniHN2HoqCEpiB1cEMToTMWn8yNUikfSe9vRWuYoc9
-         XC1Q==
+        bh=zf45TsL/1FBpc+V5HKmqZ7dALipphhxtwIfGvzGgYB0=;
+        b=bd6hJAUnRGvIKdCIzdDvoeg+h+kfjaOTHi+ig6VAcMMQzb7J8LDoFsnwqVhw/Hw6KI
+         MiSodAVPB486QpCup7R0SJgbtwb9XHC8Jm0ceKyiT9zb7EhDOhpHSSZNV0MC0/iclIMQ
+         Xe9tr3SXTIq9c8Y+YiSAE2IeIVcR1tmE3Nz++Tq7Tte3GbTQXGuyNhKwIIeUu3BM1Vx8
+         n3zSBGnSi0ajp6T2aRZJ90AQDIycUDfyrgu3VUI9hSJXrJIS9eotwXWXkucg9ghF0+ij
+         fGaCuI85y35BLj85jwza7eEJvYtmRyl73mv1k4QoFpYlxzoLdzV6C3nQLOa9JT2M8LET
+         TrIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706320592; x=1706925392;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1706323364; x=1706928164;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/afVxJVRAH/Hka426Kik5pPJmKRNBFsEk7DBPTNKyGs=;
-        b=tjsfc3JtX0C9k3Z/xgMAzx1flltGy1SoSf5mlrN5TkKzrL5B+Hw01aI1H7I1ZLuF8K
-         sT1fFaDl8DIgYpXF+l2JTcFL3ktFsfNh91oMRFSZIO8bgtIFMgvfNutjrtxI/FjVz4v8
-         u/FF4e50OxVz+96f7BSVgIjeX3AHaVQdB+2Bpm7iHWswL/2VoA5MuxpTw8VAK01l7pD0
-         NWSaeEXpk/z/ML2v9AZ9zi0INqXoVwC9T8/0ijHm/iUDwlqyp9tyIeOb+nIgnPABDwAw
-         GpJyZ1x4k9dekYDV70G9A798eAHEjv2r6MrQ+PTvFhqkahOeNfGS96o+W3REs4Yg2XxS
-         MClA==
-X-Gm-Message-State: AOJu0Yyws5J2x/jF2JwOqMM5NFrGofcPaPukO8N56JMctkPBX4yydlQ5
-	BOOcu2/SfH8l5b2n2TWmc5UVjgVvlA2y0blEacakX3X7E9G1D5U0
-X-Google-Smtp-Source: AGHT+IFkNflH+BD21PMssYPhDkGtjPw/IUQ5epAxGPBNdBEmXmNHE/6kB23j0pbiLNRS52u4ol6Y4g==
-X-Received: by 2002:ad4:5c8b:0:b0:683:c2b7:bee8 with SMTP id o11-20020ad45c8b000000b00683c2b7bee8mr1017615qvh.72.1706320592406;
-        Fri, 26 Jan 2024 17:56:32 -0800 (PST)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id dk6-20020a056214092600b0067f339c0c16sm1015924qvb.134.2024.01.26.17.56.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Jan 2024 17:56:31 -0800 (PST)
-Date: Fri, 26 Jan 2024 20:56:29 -0500
-From: Trevor Woerner <twoerner@gmail.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Jonas Karlman <jonas@kwiboo.se>, Chen-Yu Tsai <wens@csie.org>,
-	linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rock-pi-e: fix location of
- snps properties
-Message-ID: <20240127015629.GA36077@localhost>
-References: <20240116204103.29318-1-twoerner@gmail.com>
- <df78489b-7546-46ea-b09f-39a80692a962@kwiboo.se>
- <20240118230312.GB14779@localhost>
- <1976352.usQuhbGJ8B@phil>
+        bh=zf45TsL/1FBpc+V5HKmqZ7dALipphhxtwIfGvzGgYB0=;
+        b=PF1a1qBziFq4cdAmFTLnGMd0Htk9ncWC/h6Dv0pPsdHGneO1sG76XQX3WTZheVMnLF
+         pfoXV9ymo/xk9qNQDaCBKtwomP1wqPEXwkHRLvkJeWnRM+kBHOWMo8q1ht7NsNSDgZqX
+         YC/aY+pxIh1eQQyLA7Hjl07cdmcbarACJ9UWlphykfZawkIEKzT90XO5Dvk7YpE6AtFB
+         f1O2ZKXm6dqb6WsVkMS6qx1kFJiVH2WwhpUlIC8mKSWrCLKoVKvq8XOpRcsKOmO/M9nj
+         z9TOW3Hvd7JZo/ATa+lcJI2HPdZa6Cwp0Ud7kXJh/w27FRSdUN8edZO8ksmKZb7OOnaH
+         hmEw==
+X-Gm-Message-State: AOJu0YyDRRzUKiFJd6ns96BUMDxA2MKIRuixwj8mlr1nHCsxzuSGQhvp
+	tQvkBKq/P2qwgG0rmhNzQvntgsF+Mw9MQehNk1Ue9yx2vC+hN30ssUssgB7vJ5wkXwIb2ydJT37
+	VXlQtarXEB3opngDufLH9EPnS/jY9LMyRN1qoWQ==
+X-Google-Smtp-Source: AGHT+IHRZPdhgUs/BZGvmVBOvQRD+JgpezMtVZsrlzFangPEP9tjCbmnm9ccToRn0csAj1ZBk6Dz9HZ3cZhVHRwsFEo=
+X-Received: by 2002:a81:7e08:0:b0:5f6:eb69:5e1e with SMTP id
+ o8-20020a817e08000000b005f6eb695e1emr932145ywn.57.1706323364675; Fri, 26 Jan
+ 2024 18:42:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1976352.usQuhbGJ8B@phil>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20240127001926.495769-1-andre.draszik@linaro.org> <20240127001926.495769-2-andre.draszik@linaro.org>
+In-Reply-To: <20240127001926.495769-2-andre.draszik@linaro.org>
+From: Sam Protsenko <semen.protsenko@linaro.org>
+Date: Fri, 26 Jan 2024 20:42:32 -0600
+Message-ID: <CAPLW+4mcTHyoX85pTCEkNf5ZonJm62NLSg7Q+wBKPrr1QV7hbQ@mail.gmail.com>
+Subject: Re: [PATCH 1/9] clk: samsung: gs-101: drop extra empty line
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, kernel-team@android.com, 
+	tudor.ambarus@linaro.org, willmcvicker@google.com, alim.akhtar@samsung.com, 
+	s.nawrocki@samsung.com, tomasz.figa@gmail.com, cw00.choi@samsung.com, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu 2024-01-25 @ 09:12:46 PM, Heiko Stuebner wrote:
-> Hi,
-> 
-> Am Freitag, 19. Januar 2024, 00:03:12 CET schrieb Trevor Woerner:
-> > On Thu 2024-01-18 @ 08:31:30 AM, Jonas Karlman wrote:
-> > > On 2024-01-17 09:15, Jonas Karlman wrote:
-> > > I have just sent out a U-Boot series that fix ethernet on the v1.21
-> > > revision of the ROCK Pi E board, see [2].
-> > 
-> > Thank you! I have tested your patches both in U-Boot and Linux and they work
-> > perfectly.
-> 
-> if I'm reading this correctly, this patch is not needed anymore, right?
+On Fri, Jan 26, 2024 at 6:19=E2=80=AFPM Andr=C3=A9 Draszik <andre.draszik@l=
+inaro.org> wrote:
+>
+> There is an extra empty line here which doesn't exist in any of the
+> other cmu code blocks in this file.
+>
+> Drop it to align cmu_top with the rest of the file.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> ---
 
-True, patch 2/2 is not needed (or correct).
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-> I'm not yet sure about the first patch, as it really is
-> just a cosmetic ;-)
-
-I wouldn't say it's entirely cosmetic. Some rock-pi-e boards come with the
-8211e PHY and others come with the 8211f PHY. Labelling the phandle as
-"rtl8211e" would be misleading/confusing for people who had boards whose boot
-logs would report otherwise.
+>  drivers/clk/samsung/clk-gs101.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs=
+101.c
+> index 4a0520e825b6..27debbafdce4 100644
+> --- a/drivers/clk/samsung/clk-gs101.c
+> +++ b/drivers/clk/samsung/clk-gs101.c
+> @@ -25,7 +25,6 @@
+>  /* ---- CMU_TOP --------------------------------------------------------=
+----- */
+>
+>  /* Register Offset definitions for CMU_TOP (0x1e080000) */
+> -
+>  #define PLL_LOCKTIME_PLL_SHARED0                       0x0000
+>  #define PLL_LOCKTIME_PLL_SHARED1                       0x0004
+>  #define PLL_LOCKTIME_PLL_SHARED2                       0x0008
+> --
+> 2.43.0.429.g432eaa2c6b-goog
+>
 
