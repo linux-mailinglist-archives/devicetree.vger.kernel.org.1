@@ -1,230 +1,116 @@
-Return-Path: <devicetree+bounces-35979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D677F83F9AD
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 21:09:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 126E483F9E9
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 21:49:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77758282F42
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 20:09:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6187B21861
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 20:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C9233CFC;
-	Sun, 28 Jan 2024 20:08:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5931A3C474;
+	Sun, 28 Jan 2024 20:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H9oXllqS"
+	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="EJOMD3Ho"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E452E633;
-	Sun, 28 Jan 2024 20:08:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F9812EB1C;
+	Sun, 28 Jan 2024 20:48:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706472537; cv=none; b=JVu/Tgi5Qvk5oUKCXtHS42Mdbxscke37UJIdXQ1sA2rG58of+bFj14iNywGx6DGLr4L+vJOzGj1dTsCOD5mdfD8EwHtuFtEe+K3xdMytc5m/tq+F5Pb4EsJ2MQv1I+wbGBkSVjWlWnzkSaA7l9wupmrqFyYPMpZaGljgOAK4Cac=
+	t=1706474928; cv=none; b=Vocekce3nilwPd4g0cROpcIBK4rE501ybCrroSe5oTFlB8kVIqLXDxQgHZ4hqMCGFPgJgBAmaqcQffbyfTVjfbViYOyQ4QO5VK0iiR6h32L65eXH8nHw52eIk6Dhbp80F82xs95i0lf3obu1+vV5R9m4HXyRt54btC3XCgVQ/EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706472537; c=relaxed/simple;
-	bh=0kZcbYb2bPI3GpT2W3oFrJwC0e+CxQQTZjnEcqPUZQs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YgQIWusEn+CpLF4DJ40P9SDMdJNvZgnDXfTB2ua0MIjbHu1zc+aNE399lMcwfSTTXg8y720J6GoKAhRMhg866IgxWFqY6BQ9f7WGRNrPRghfR3vY5a0KzOzBgReaBC+uEGFHaRsBUtMlbcr92gDDQjfBbuZVPkRGfU5veDVjDQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H9oXllqS; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-55f0367b15fso122070a12.0;
-        Sun, 28 Jan 2024 12:08:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706472533; x=1707077333; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hpcFb9CQUcmE0qw9BfWGbhCG2pDHXS8RAhRX4upBQ/0=;
-        b=H9oXllqSUfxbbyc6L7czNAvelVHH59bSm4dloCUl6fw6/uDjbPOFnn7G3xMrhtWkf4
-         BmTICtECgGkyfVwUJKvBi+NdyXbyOjg7d8Id/PwPhLNktxmsX0xrDKepRXAETT1i82ve
-         6YwJERD3qA8CpyP4kZsT0FHuCLp0Cym+Gt1IZ9txUsWn4Jr0D5VeM94irxHttAkeGCw4
-         WcpfrY87Y0OR0Hsoh4L33jMNezwwxqEPI1YAVIWKXJHHniJcu2gmEsPII89wlDD7PytE
-         BooBoM0fETWg7Wi276APhyaLTWnpeQ9ySLF8VhHIluvrjQ44deuOsbtKViQLcEEwPEZH
-         IJ7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706472533; x=1707077333;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hpcFb9CQUcmE0qw9BfWGbhCG2pDHXS8RAhRX4upBQ/0=;
-        b=X8He8+NjlJgUhhmkrVl6OpzRztLBOH6o+mVdWBbuQ5pBMYjgTDxmbPCp2AqTxee26Q
-         fiN6p5SjT7jn651xMgPEh++MuI/babE9Rj/eWCpB5A2cDbfuQ7DgZAyFKeEoVI5b1gtW
-         erUsNammBS9qAXLLCbLxmn4PlnpyA4aOP9CrY2w1Q57MeEAuNUPnnOYdAjDLRVD5YUR1
-         tgDaC82idKCR1l4bNMgvpdiFCRbCfKftVpNoeTfxKKjO/ETqcjHYmC2J23yZhJxE8XkU
-         mBG+oe9XaBhKQo0RDvPD5M+H5G/hktiYwKIScIp7OM313hiJrd8ireekO+7DQ9QT7uuj
-         XDsA==
-X-Gm-Message-State: AOJu0YxhZimbjas5RnF3rOSo+GxN4RcbIMIMmUNGQubj69FhVCN9BrZh
-	d2dCXFNz/Uv+7lcNMyNtpGQhqHZrxqShJd4hu6/b/XGeig7RqITj6sw+oyhSyaqp8BlG0zD8o2c
-	m6ODA8nc8Jxv4ryD+MRIh54q07y4=
-X-Google-Smtp-Source: AGHT+IEOEjeCTkeOpSuhG+HjHqJqutXlzhA2zejgtwIdHI9kusmjwwmozj7v/6JbFoiL4ZomYyqtT+oyEnlfzY2Vm0g=
-X-Received: by 2002:a17:906:65cf:b0:a31:8b26:47ee with SMTP id
- z15-20020a17090665cf00b00a318b2647eemr2671421ejn.55.1706472533292; Sun, 28
- Jan 2024 12:08:53 -0800 (PST)
+	s=arc-20240116; t=1706474928; c=relaxed/simple;
+	bh=sC4x0F7ocxCOiTa61zP6CfELEuBIay9GFpbnCJDfh/Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=MZCWfZzua3aHBrIEJxTGXQMg1h0R0S9jba7qbHwP19ClyGpchUmpDStJ5h8Hzw6EdcNro1j6+jnatjPPSUOWVYbMbzqG0K0Sp2qHP+6dOkXoFMbkrKaWO6iFVqny97iRveaOUjydpuXSdOdsvV2Ffa7xfUTXU/EWky7FGumzLc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=EJOMD3Ho; arc=none smtp.client-ip=206.189.193.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
+Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
+	by a.peacevolution.org (Postfix) with ESMTPA id C738C4649A;
+	Sun, 28 Jan 2024 20:48:39 +0000 (UTC)
+From: Aren Moynihan <aren@peacevolution.org>
+To: linux-kernel@vger.kernel.org
+Cc: Miles Alan <m@milesalan.com>,
+	Ondrej Jirman <megi@xff.cz>,
+	Aren Moynihan <aren@peacevolution.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Samuel Holland <samuel@sholland.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev
+Subject: [PATCH 2/4] arm64: dts: sun50i-a64-pinephone: Retain leds state in suspend
+Date: Sun, 28 Jan 2024 15:45:08 -0500
+Message-ID: <20240128204740.2355092-2-aren@peacevolution.org>
+In-Reply-To: <20240128204740.2355092-1-aren@peacevolution.org>
+References: <20240128204740.2355092-1-aren@peacevolution.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-3-5879275db36f@gmail.com> <df062818d21f3318c033859d0e95efc7@manjaro.org>
- <b5b1900a6e309890f449ec91594b8d6c@manjaro.org>
-In-Reply-To: <b5b1900a6e309890f449ec91594b8d6c@manjaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Mon, 29 Jan 2024 00:08:41 +0400
-Message-ID: <CABjd4YxqarUCbZ-a2XLe3TWJ-qjphGkyq=wDnctnEhdoSdPPpw@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: enable temperature driven fan
- control on Rock 5B
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
+X-Spam-Level: **
+X-Spamd-Bar: ++
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
+	s=dkim; t=1706474920;
+	h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:in-reply-to:references;
+	bh=7f8Pqy4UhROYbk09gyqrlaBXv9qrJ3dn1Gj623LQxSg=;
+	b=EJOMD3HotjeLQcDFlPSxcFnoN3nW4WypH8d+tyrewLLGqsU46t6K1yLdx3qDx2od6hNEj3
+	BMaTuqsa8o9W0bD3JuUYBTNax2AflA0B+a69MUnW6kIL9uP8fgDXUz/lcW2PKB1ak5I6ie
+	KujAkq7t9VoaDzzJ8fkALkziEg4/9Ss=
 
-On Sun, Jan 28, 2024 at 12:27=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> =
-wrote:
->
-> Hello Alexey,
+From: Miles Alan <m@milesalan.com>
 
-Hello Dragan,
+Allows user to set a led before entering suspend to know that
+the phone is still on (or could be used for notifications etc.)
 
-> On 2024-01-26 00:13, Dragan Simic wrote:
-> > On 2024-01-24 21:30, Alexey Charkov wrote:
-> >> This enables thermal monitoring on Radxa Rock 5B and links the PWM
-> >> fan as an active cooling device managed automatically by the thermal
-> >> subsystem, with a target SoC temperature of 55C
-> >>
-> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> >> ---
-> >>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 25
-> >> ++++++++++++++++++++++++-
-> >>  1 file changed, 24 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >> index 9b7bf6cec8bd..c4c94e0b6163 100644
-> >> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> >> @@ -52,7 +52,7 @@ led_rgb_b {
-> >>
-> >>      fan: pwm-fan {
-> >>              compatible =3D "pwm-fan";
-> >> -            cooling-levels =3D <0 95 145 195 255>;
-> >> +            cooling-levels =3D <0 120 150 180 210 240 255>;
-> >>              fan-supply =3D <&vcc5v0_sys>;
-> >>              pwms =3D <&pwm1 0 50000 0>;
-> >>              #cooling-cells =3D <2>;
-> >> @@ -180,6 +180,25 @@ &cpu_l3 {
-> >>      cpu-supply =3D <&vdd_cpu_lit_s0>;
-> >>  };
-> >>
-> >> +&package_thermal {
-> >> +    polling-delay =3D <1000>;
-> >> +
-> >> +    trips {
-> >> +            package_fan: package-fan {
-> >> +                    temperature =3D <55000>;
-> >> +                    hysteresis =3D <2000>;
-> >> +                    type =3D "active";
-> >> +            };
-> >> +    };
-> >> +
-> >> +    cooling-maps {
-> >> +            map-fan {
-> >> +                    trip =3D <&package_fan>;
-> >> +                    cooling-device =3D <&fan THERMAL_NO_LIMIT THERMAL=
-_NO_LIMIT>;
-> >> +            };
-> >> +    };
-> >> +};
-> >
-> > It should be better to have two new trips and two new cooling maps
-> > defined, instead of having just one trip/map pair, like this:
-> >
-> > &package_thermal {
-> >       polling-delay =3D <1000>;
-> >
-> >       trips {
-> >               package_warm: package-warm {
-> >                       temperature =3D <55000>;
-> >                       hysteresis =3D <2000>;
-> >                       type =3D "active";
-> >               };
-> >
-> >               package_hot: package-hot {
-> >                       temperature =3D <65000>;
-> >                       hysteresis =3D <2000>;
-> >                       type =3D "active";
-> >               };
-> >       };
-> >
-> >       cooling-maps {
-> >               mapX {
-> >                       trip =3D <&package_warm>;
-> >                       cooling-device =3D <&fan THERMAL_NO_LIMIT 1>;
-> >               };
-> >
-> >               mapY {
-> >                       trip =3D <&package_hot>;
-> >                       cooling-device =3D <&fan 2 THERMAL_NO_LIMIT>;
-> >               };
-> >       };
-> > };
-> >
-> > The idea behind this approach is to keep the fan spinning at the lowest
-> > available speed until the package temperature reaches the second trip's
-> > temperature level, at which point the fan starts ramping up.  An
-> > approach
-> > like this is already employed by the Pine64 RockPro64 SBC.
-> >
-> > This way, we'll be doing our best to keep the fan noise down;  of
-> > course,
-> > it will depend on the particular heatsink and fan combo how long the
-> > fan
-> > can be kept at the lowest speed, but we should aim at supporting as
-> > many
-> > different cooling setups as possible, and as well as possible, out of
-> > the
-> > box and with no additional tweaking required.
-> >
-> > Please notice "mapX" and "mapY" as the names of the additional cooling
-> > maps,
-> > where X and Y are simply the next lowest available indices, which is
-> > pretty
-> > much the usual way to name the additional cooling maps.
->
-> Just checking, have you seen this?  Quite a few messages were exchanged
-> on the same day, so just wanted to make sure you didn't miss this one.
+Signed-off-by: Miles Alan <m@milesalan.com>
+Signed-off-by: Ondrej Jirman <megi@xff.cz>
+Signed-off-by: Aren Moynihan <aren@peacevolution.org>
+---
 
-Yes, thank you for pointing it out and following up.
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-I've been testing different setups to get my thoughts together on this
-one. Long story short, your suggested setup indeed makes the system
-quieter most of the time while still being safely far from hitting the
-throttling threshold, though it appears that the main influence is
-from the higher temperature value in the second trip (after which the
-fan accelerates) rather than from the presence of the first trip and
-the corresponding cooling map capped at the minimum-speed fan action.
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+index 87847116ab6d..ad2476ee01e4 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+@@ -43,18 +43,21 @@ led-0 {
+ 			function = LED_FUNCTION_INDICATOR;
+ 			color = <LED_COLOR_ID_BLUE>;
+ 			gpios = <&pio 3 20 GPIO_ACTIVE_HIGH>; /* PD20 */
++			retain-state-suspended;
+ 		};
+ 
+ 		led-1 {
+ 			function = LED_FUNCTION_INDICATOR;
+ 			color = <LED_COLOR_ID_GREEN>;
+ 			gpios = <&pio 3 18 GPIO_ACTIVE_HIGH>; /* PD18 */
++			retain-state-suspended;
+ 		};
+ 
+ 		led-2 {
+ 			function = LED_FUNCTION_INDICATOR;
+ 			color = <LED_COLOR_ID_RED>;
+ 			gpios = <&pio 3 19 GPIO_ACTIVE_HIGH>; /* PD19 */
++			retain-state-suspended;
+ 		};
+ 	};
+ 
+-- 
+2.43.0
 
-In my observation, the system rarely crosses the 55C threshold under
-partial load, and when the load is high (e.g. compiling stuff with 8
-concurrent jobs) it takes ~2 seconds to go from below the first trip
-point to above the second trip point, so the fan doesn't really get
-the chance to stay at its leisurely first state.
-
-So frankly I'm inclined to leave one trip point here, and simply
-change its temperature threshold from 55C to 65C - just to keep it
-simple.
-
-What do you think?
-
-Best regards,
-Alexey
 
