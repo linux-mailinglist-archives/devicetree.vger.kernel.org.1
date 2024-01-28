@@ -1,242 +1,149 @@
-Return-Path: <devicetree+bounces-35931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCAE83F48D
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 09:01:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA7E483F4B8
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 10:06:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D3E21F21DB4
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 08:01:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67A0328484E
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 09:06:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620DCD29E;
-	Sun, 28 Jan 2024 08:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0D5714263;
+	Sun, 28 Jan 2024 09:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="lNPnO8Lt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gdnAYuK7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-14.smtpout.orange.fr [80.12.242.14])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C017CA4E;
-	Sun, 28 Jan 2024 08:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.14
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D163BDDD2;
+	Sun, 28 Jan 2024 09:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706428863; cv=none; b=XrQIzevBG1ZHyE1PaTwn5ziXppSki7QX74EUkzGzGLTnEmIU7M28TfDxPC11IaGoPH12wofmvUNABYQG/b5vxc2sW/c9hOGMSbNuOJ3qSS3eBE+jufPf7EwLeVZyX79CVUYvHPTVy6aIfjO226plau66xWs5ir19nx0bzpWlL0o=
+	t=1706432788; cv=none; b=nsU/9yLNXKmbr3OR0A1IAxwutraNo6XfhR30QZx7sQGUHZv+NSGti0aWoZdMaDA984Kle636hrLHaX2uAtD2L7TwYbAyx6BgCTm0qD0aWYSyjiLYZFCjcdxE8qIfglcL9j1p9L21LmROcs3LPW7y1qIwVPdrQTYi+AuMSRH3qmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706428863; c=relaxed/simple;
-	bh=T4METYcAZkjFh/mJCuNuZBxdEgskEbxwtwRQLMK6uFM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hY3uuD4eCD+MtUY97u4pqrZ4l/bYDf8mFTF9ZIa5gy05AtIEscS0ZHFoDi0DM0dhj6LODrBtHEpPWu8upRZiVoP1+UGAsjboH8FiwGqz1K/k6kGCn2Kzw203B4nIb/3lU0UNDNOkAZxGFYqbn4S+spmv0ZAZ0Bzdbz2oRPzvXgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=lNPnO8Lt; arc=none smtp.client-ip=80.12.242.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.18] ([92.140.202.140])
-	by smtp.orange.fr with ESMTPA
-	id Tzxcr9tOf3ZDyTzxdrCxUn; Sun, 28 Jan 2024 08:52:16 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1706428336;
-	bh=r+0qjH378TiTSwFjUyd4p9CMqmeCRqj1m8DnL6D02Fs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=lNPnO8LtOmgaPHv4YuPvMIR0GrxSE48lTBQQSDoz7FLOHLvq3xLiGRKieIOmpIGKg
-	 XHXaam8yx0Ntn7h+n88ShlromrAwk/8cDOjL98Ax6KYHvTQJ9iC9v4635Pfi8YHeg/
-	 qT6rhXRHgKrXft1n4EZPzgG8O55pV5Jpe9i0y8hiHOnJXLhx6d3L0scFjtpxEEjin2
-	 xMyfBYEXCKdtGb1+YRv+LbHgGZuljCaq+Mj1/54MeafM3Fnl5rDOeHMoRIq34m9ZgY
-	 0A/oqX/qU65fhqRmIyKOAIM1epM1LcRTKi/XN6S1USI+p9rWmJBN8N2GUsgDaGyeD8
-	 trwTNqmSUcw7g==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Sun, 28 Jan 2024 08:52:16 +0100
-X-ME-IP: 92.140.202.140
-Message-ID: <a2a4bb76-0e6a-425d-bfb8-e1a844b44274@wanadoo.fr>
-Date: Sun, 28 Jan 2024 08:52:12 +0100
+	s=arc-20240116; t=1706432788; c=relaxed/simple;
+	bh=fECoJNI36xhLs+WlNCdEmmGpaXzg+LhNnyvIYrjamVI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eMUkOfdI8mNF2oX0xhkFy+Ej3iQ3FsAzZMQwS3AVSLrcYE0X3BCkrCQv6+DtTaypoStnhZqnYGmnAuenSi0Ht4K7OeDC/jj8OK4bm36R38Q/ThYym/OONScj+APgjWyD1tdS5j/7tYOQ3hSfD5YltM4Ze5N+4mHs/VBV2wWv/V0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gdnAYuK7; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706432787; x=1737968787;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fECoJNI36xhLs+WlNCdEmmGpaXzg+LhNnyvIYrjamVI=;
+  b=gdnAYuK7U2ZW3Gckk/LJR4k+ICIVTDIYYBH57NuLF8+k5zE2+jCRLGcS
+   hOXl9uKd2EP7U7CHsLrSxOCMV3MNe+v90RCzeGvSTaoAf95cg1jNLAjxw
+   u0w/ZJPpyNuirXJ/HKU0E1RcQ+43k5NJui3/P13zRpiav6fjOdodLOBan
+   QBCSqX4hjo+J5MaAC70Liozw5AxjgDiF8WVVdwcbwRvk4FtWnp0i3u1BH
+   MJuMYMbEtD+vtftGlMF9viob0IxQUE1EojSVs5J84byehkbtzUCC4k3uy
+   dvJjId2EAm7dZYKSMCrfdezFpkMywb/9FH+QPeubRHbbDREA8iAzVDXAT
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="9868501"
+X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
+   d="scan'208";a="9868501"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2024 01:06:27 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="787533230"
+X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
+   d="scan'208";a="787533230"
+Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 28 Jan 2024 01:06:21 -0800
+Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rU17L-0003GQ-1N;
+	Sun, 28 Jan 2024 09:06:19 +0000
+Date: Sun, 28 Jan 2024 17:05:26 +0800
+From: kernel test robot <lkp@intel.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Sebastian Reichel <sre@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	=?iso-8859-1?Q?S=F8ren?= Andersen <san@skov.dk>
+Subject: Re: [PATCH v2 3/8] power: reset: Introduce PSCR Recording Framework
+ for Non-Volatile Storage
+Message-ID: <202401281628.Z3E5872D-lkp@intel.com>
+References: <20240124122204.730370-4-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO
- driver
-To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, j.neuschaefer@gmx.net
-Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ychuang3@nuvoton.com, schung@nuvoton.com
-References: <20240123080637.1902578-1-ychuang570808@gmail.com>
- <20240123080637.1902578-5-ychuang570808@gmail.com>
-Content-Language: en-MW
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20240123080637.1902578-5-ychuang570808@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240124122204.730370-4-o.rempel@pengutronix.de>
 
-Le 23/01/2024 à 09:06, Jacky Huang a écrit :
-> From: Jacky Huang <ychuang3@nuvoton.com>
-> 
-> Add common pinctrl and GPIO driver for Nuvoton MA35 series SoC, and
-> add support for ma35d1 pinctrl.
-> 
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> ---
+Hi Oleksij,
 
-Hi,
+kernel test robot noticed the following build warnings:
 
-Should there be a v4, a few nits below.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on broonie-regulator/for-next rafael-pm/thermal linus/master v6.8-rc1 next-20240125]
+[cannot apply to sre-power-supply/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-CJ
+url:    https://github.com/intel-lab-lkp/linux/commits/Oleksij-Rempel/power-Extend-power_on_reason-h-for-upcoming-PSCRR-framework/20240124-202833
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240124122204.730370-4-o.rempel%40pengutronix.de
+patch subject: [PATCH v2 3/8] power: reset: Introduce PSCR Recording Framework for Non-Volatile Storage
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240128/202401281628.Z3E5872D-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240128/202401281628.Z3E5872D-lkp@intel.com/reproduce)
 
-> +static int ma35_pinctrl_dt_node_to_map_func(struct pinctrl_dev *pctldev,
-> +					    struct device_node *np,
-> +					    struct pinctrl_map **map,
-> +					    unsigned int *num_maps)
-> +{
-> +	struct ma35_pinctrl *npctl = pinctrl_dev_get_drvdata(pctldev);
-> +	struct ma35_pin_group *grp;
-> +	struct pinctrl_map *new_map;
-> +	struct device_node *parent;
-> +	int map_num = 1;
-> +	int i;
-> +
-> +	/*
-> +	 * first find the group of this node and check if we need create
-> +	 * config maps for pins
-> +	 */
-> +	grp = ma35_pinctrl_find_group_by_name(npctl, np->name);
-> +	if (!grp) {
-> +		dev_err(npctl->dev, "unable to find group for node %s\n", np->name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	map_num += grp->npins;
-> +	new_map = devm_kzalloc(pctldev->dev, sizeof(*new_map) * map_num, GFP_KERNEL);
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401281628.Z3E5872D-lkp@intel.com/
 
-devm_kcalloc()?
+All warnings (new ones prefixed by >>):
 
-> +	if (!new_map)
-> +		return -ENOMEM;
-> +
-> +	*map = new_map;
-> +	*num_maps = map_num;
-> +	/* create mux map */
-> +	parent = of_get_parent(np);
-> +	if (!parent) {
-> +		devm_kfree(pctldev->dev, new_map);
-> +		return -EINVAL;
-> +	}
-> +
-> +	new_map[0].type = PIN_MAP_TYPE_MUX_GROUP;
-> +	new_map[0].data.mux.function = parent->name;
-> +	new_map[0].data.mux.group = np->name;
-> +	of_node_put(parent);
-> +
-> +	new_map++;
-> +	for (i = 0; i < grp->npins; i++) {
-> +		new_map[i].type = PIN_MAP_TYPE_CONFIGS_PIN;
-> +		new_map[i].data.configs.group_or_pin = pin_get_name(pctldev, grp->pins[i]);
-> +		new_map[i].data.configs.configs = grp->settings[i].configs;
-> +		new_map[i].data.configs.num_configs = grp->settings[i].nconfigs;
-> +	}
-> +	dev_dbg(pctldev->dev, "maps: function %s group %s num %d\n",
-> +		(*map)->data.mux.function, (*map)->data.mux.group, map_num);
-> +
-> +	return 0;
-> +}
+>> drivers/power/reset/pscrr.c:132:2: warning: label at end of compound statement is a C2x extension [-Wc2x-extensions]
+     132 |         }
+         |         ^
+   1 warning generated.
 
-...
 
-> +static int ma35_pinctrl_parse_groups(struct device_node *np, struct ma35_pin_group *grp,
-> +				     struct ma35_pinctrl *npctl, u32 index)
-> +{
-> +	unsigned long *configs;
-> +	unsigned int nconfigs;
-> +	struct ma35_pin_setting *pin;
-> +	const __be32 *list;
-> +	int i, j, size, ret;
-> +
-> +	dev_dbg(npctl->dev, "group(%d): %s\n", index, np->name);
-> +
-> +	grp->name = np->name;
-> +
-> +	ret = pinconf_generic_parse_dt_config(np, NULL, &configs, &nconfigs);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * the binding format is nuvoton,pins = <bank pin-mfp pin-function>,
-> +	 * do sanity check and calculate pins number
-> +	 */
-> +	list = of_get_property(np, "nuvoton,pins", &size);
-> +	size /= sizeof(*list);
-> +	if (!size || size % 3) {
-> +		dev_err(npctl->dev, "wrong setting!\n");
-> +		return -EINVAL;
-> +	}
-> +	grp->npins = size / 3;
-> +
-> +	grp->pins = devm_kzalloc(npctl->dev, grp->npins * sizeof(*grp->pins), GFP_KERNEL);
+vim +132 drivers/power/reset/pscrr.c
 
-devm_kcalloc()?
+   119	
+   120	static const char *pscr_to_por_string(enum pscr pscr)
+   121	{
+   122		switch (pscr) {
+   123		case PSCR_UNDER_VOLTAGE:
+   124			return POWER_ON_REASON_BROWN_OUT;
+   125		case PSCR_OVER_CURRENT:
+   126			return POWER_ON_REASON_OVER_CURRENT;
+   127		case PSCR_REGULATOR_FAILURE:
+   128			return POWER_ON_REASON_REGULATOR_FAILURE;
+   129		case PSCR_OVERTEMPERATURE:
+   130			return POWER_ON_REASON_OVERTEMPERATURE;
+   131		default:
+ > 132		}
+   133	
+   134		return POWER_ON_REASON_UNKNOWN;
+   135	}
+   136	
 
-> +	if (!grp->pins)
-> +		return -ENOMEM;
-> +
-> +	grp->settings = devm_kzalloc(npctl->dev, grp->npins * sizeof(*grp->settings), GFP_KERNEL);
-
-devm_kcalloc()?
-
-> +	if (!grp->settings)
-> +		return -ENOMEM;
-> +
-> +	pin = grp->settings;
-> +
-> +	for (i = 0, j = 0; i < size; i += 3, j++) {
-> +		pin->offset = be32_to_cpu(*list++) * MA35_MFP_REG_SZ_PER_BANK + MA35_MFP_REG_BASE;
-> +		pin->shift = (be32_to_cpu(*list++) * MA35_MFP_BITS_PER_PORT) % 32;
-> +		pin->muxval = be32_to_cpu(*list++);
-> +		pin->configs = configs;
-> +		pin->nconfigs = nconfigs;
-> +		grp->pins[j] = npctl->info->get_pin_num(pin->offset, pin->shift);
-> +		pin++;
-> +	}
-> +	return 0;
-> +}
-> +
-> +static int ma35_pinctrl_parse_functions(struct device_node *np, struct ma35_pinctrl *npctl,
-> +					u32 index)
-> +{
-> +	struct device_node *child;
-> +	struct ma35_pin_func *func;
-> +	struct ma35_pin_group *grp;
-> +	static u32 grp_index;
-> +	u32 ret, i = 0;
-> +
-> +	dev_dbg(npctl->dev, "parse function(%d): %s\n", index, np->name);
-> +
-> +	func = &npctl->functions[index];
-> +	func->name = np->name;
-> +	func->ngroups = of_get_child_count(np);
-> +
-> +	if (func->ngroups <= 0)
-> +		return 0;
-> +
-> +	func->groups = devm_kzalloc(npctl->dev, func->ngroups * sizeof(char *), GFP_KERNEL);
-
-devm_kcalloc()?
-
-> +	if (!func->groups)
-> +		return -ENOMEM;
-> +
-> +	for_each_child_of_node(np, child) {
-> +		func->groups[i] = child->name;
-> +		grp = &npctl->groups[grp_index++];
-> +		ret = ma35_pinctrl_parse_groups(child, grp, npctl, i++);
-> +		if (ret) {
-> +			of_node_put(child);
-> +			return ret;
-> +		}
-> +	}
-> +	return 0;
-> +}
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
