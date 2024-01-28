@@ -1,98 +1,87 @@
-Return-Path: <devicetree+bounces-35970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5A9683F906
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 19:07:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C88B83F90C
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 19:14:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EC41280D57
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 18:07:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BDCF1C20E21
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 18:14:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C723A2E637;
-	Sun, 28 Jan 2024 18:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA7A2E40A;
+	Sun, 28 Jan 2024 18:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="tIOrCohy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hiZAlxBl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A854A3C489;
-	Sun, 28 Jan 2024 18:06:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A65382E3E5;
+	Sun, 28 Jan 2024 18:13:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706465195; cv=none; b=ExQTqC5SmOvz7VD6kPD+hDD2dP3p4ArqnhhLRvnqdUcN5rcS8eIAQdnwXBeBKEy1e9JB+BgdAFAp2ekpULRpSEZIA+b9/i4/djRhRMUW/NCjeWsMf31pnz3mpLLYxAvIOfhrM4aCprUic9FaKmuJ4Ra9GTCYG2bGtd43FAfsj5E=
+	t=1706465639; cv=none; b=mY90CMzb5N5ZGsOtzE8DJVOx1raBo0LGHNgGo/fyrEpXREBqMnuMs/EAUOZHIK28gwta8e3Uih9nR6H9DfrDMmNkhvK2dpUQ+5LBHInJKhEgitkndYzs+nNL4TSrgcpvuzD8x28WLZtSabZDN2E8CxgpR/G+usuruvUKnlP2Jro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706465195; c=relaxed/simple;
-	bh=9SWqwkxkc7LbiSD5VD/OyNGtFRJ/bAopc0MZJ5DlSvI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OLRvkszrCrbufH21xcuoXQT2UIn3kP+C7G+tSHjdHDgtaw4vGGfB+ik05oMhBGMHij5ZfWV7+/2v/AGZNLRfzQPypAofZB6nNOrbNU4NezlonhvhpRUZbu8uTzHULnKFI/QBsEpYeHKrE+n1/XYBGOzEO9VhmTi5YLIf3RebsXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=tIOrCohy; arc=none smtp.client-ip=185.125.188.121
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from localhost.localdomain (ip-178-202-040-247.um47.pools.vodafone-ip.de [178.202.40.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id E5F83413CE;
-	Sun, 28 Jan 2024 18:06:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1706465185;
-	bh=dLYNl6OEot/tkl0vnc26UAKkt+SMWAraqyc+cGDkzMA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version;
-	b=tIOrCohyNvMGB/Xqa1hFx6N+xOZi4izO98fMk2/D1/9U/Wv+AXMuaLhHlxiF0x7x4
-	 UYEuEsv4QiCaW/Vy+U00+80z9rbqssgy8+1neN7fe5975fWaNsOHHgunsSTwFiMKea
-	 /I6PmGlncnhqJZfkLgN+T41qROW1YkM9GeA+KvYZjO5c1XRHlwG4AdegTN/Wb1Lngk
-	 a0KGLvHHGwy/k9QaNOgfs6uqZqmBgqyMiN2x2NaHUdaYi4l5/bJvJpVzQ/k0+6FkcE
-	 SCsIZCprhjCX5Ke/TQdxA0+nIeR3xAgJGoTTG+RD/LrSE4BPFoHEZKqr+dj0NTJmqg
-	 61At2TvNAlroQ==
-From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-To: Conor Dooley <conor@kernel.org>,
+	s=arc-20240116; t=1706465639; c=relaxed/simple;
+	bh=x5xkeH90w3zTKfbeaIMy3rP33RSNJq5Pa47+wWoCNdc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FkFSHYBtKfyHo2ZVwH1ZuC+8knLJUuFsBNlMo1e0Marl7SiqW61lDKVxkFTlpuQ3j/8Pbo2i2mneT9jsYtD1DVO8H9wdaHGOTEOZHKr4jyXctZ+xjbuEy0O3ju+psmaRD0Sr8vr5OPVOszqPi057jvIZj5dk14n+6fECr0WSQ8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hiZAlxBl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC8EFC433C7;
+	Sun, 28 Jan 2024 18:13:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706465639;
+	bh=x5xkeH90w3zTKfbeaIMy3rP33RSNJq5Pa47+wWoCNdc=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=hiZAlxBl/QM66pRhB8zNgzoRorx/VZwAqg3eL3kIpnjeZjOfalNxnGUFC4ir850yt
+	 YEJ7DJaX7QOsl7Zd/ju49KPLeCCE1sHzvzkVubQoT1ZoEE1giRYYx5775+FmBPBBQS
+	 Q70xaE96g9LrYsctbNqXDAMigh/LnYYsUlRaI/TO3HPMqVEe8tD+g4psmizH/TbRy4
+	 ATJ44jhMyft1Tgn2Kj+McYGPAIqAzfOgXTmuuNEnF+cnbWqhfYFuJ7fqyWZOzx2CDH
+	 GXJ8DulkIW4LPaNUXqtwqIrvY1jo0H5lOLeecBhvj22Ln/aQNzUjdlyapyepKfszoO
+	 HLxsXnn9AF+KA==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Andy Gross <agross@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	linux-riscv@lists.infradead.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Subject: [PATCH 1/1] dt-bindings: riscv: cpus: reg matches hart ID
-Date: Sun, 28 Jan 2024 19:06:21 +0100
-Message-ID: <20240128180621.85686-1-heinrich.schuchardt@canonical.com>
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm7225-fairphone-fp4: Switch firmware ext to .mbn
+Date: Sun, 28 Jan 2024 12:13:51 -0600
+Message-ID: <170646562749.66688.7240389646566501227.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240110-fp4-mbn-v1-1-45e7e33b1834@fairphone.com>
+References: <20240110-fp4-mbn-v1-1-45e7e33b1834@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-Add a description to the CPU reg property to clarify that
-the reg property must match the hart ID.
 
-Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
----
- Documentation/devicetree/bindings/riscv/cpus.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+On Wed, 10 Jan 2024 16:21:19 +0100, Luca Weiss wrote:
+> Specify the file name for the squashed/non-split firmware with the .mbn
+> extension instead of the split .mdt. The kernel can load both but the
+> squashed version is preferred in dts nowadays.
+> 
+> 
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index f392e367d673..fa9da59d9316 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -74,6 +74,10 @@ properties:
-       - riscv,sv57
-       - riscv,none
- 
-+  reg:
-+    description:
-+      The hart ID of this CPU node.
-+
-   riscv,cbom-block-size:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
+Applied, thanks!
+
+[1/1] arm64: dts: qcom: sm7225-fairphone-fp4: Switch firmware ext to .mbn
+      commit: 410dd97e3f394a1bac444f1964754968557f844d
+
+Best regards,
 -- 
-2.43.0
-
+Bjorn Andersson <andersson@kernel.org>
 
