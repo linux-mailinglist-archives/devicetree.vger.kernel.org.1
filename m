@@ -1,150 +1,242 @@
-Return-Path: <devicetree+bounces-35930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4EFB83F45F
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 07:39:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBCAE83F48D
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 09:01:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90F63284777
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 06:39:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D3E21F21DB4
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 08:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A05D536;
-	Sun, 28 Jan 2024 06:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620DCD29E;
+	Sun, 28 Jan 2024 08:01:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Aiuyh86g"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="lNPnO8Lt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1655E6FB8;
-	Sun, 28 Jan 2024 06:39:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.55.52.115
+Received: from smtp.smtpout.orange.fr (smtp-14.smtpout.orange.fr [80.12.242.14])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C017CA4E;
+	Sun, 28 Jan 2024 08:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706423965; cv=none; b=Bnl4BM7DCLKaXY2MhRA1IePmEMdWq8IPrbemQbUEAXRiDUzVGQh72D10nylfDln07wVK+zkt5Xiv+XRX1qi+MLvu+W7U5w1qkAyImEcTz9xLK9AN+ZrVJSDbUi7Umw5EuNrhOdys0iXUHDq5H2vp9plLSIF1Ex9t+4VxDNPdRfs=
+	t=1706428863; cv=none; b=XrQIzevBG1ZHyE1PaTwn5ziXppSki7QX74EUkzGzGLTnEmIU7M28TfDxPC11IaGoPH12wofmvUNABYQG/b5vxc2sW/c9hOGMSbNuOJ3qSS3eBE+jufPf7EwLeVZyX79CVUYvHPTVy6aIfjO226plau66xWs5ir19nx0bzpWlL0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706423965; c=relaxed/simple;
-	bh=H1uD8Tfwa5qhv4YaJZekukVZDfIZ6McIsLHA44r7WaQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AVIbpjnZvuu9lW0amaLp+rov1SrHJnNzdlqTHF+kQ6Z6DcExRc0G5RrPS7hKJ9Luw2chgkefk2IriSV/EjdTuFbSBg6EeROyl1bYhU8pI0bwEsc50Pq4vYLDIo7Gz61udjS29r2K0rz+M6PQajBYqO4xzxKiSVnf/kte0w63LR0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Aiuyh86g; arc=none smtp.client-ip=192.55.52.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706423964; x=1737959964;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=H1uD8Tfwa5qhv4YaJZekukVZDfIZ6McIsLHA44r7WaQ=;
-  b=Aiuyh86gI+c00BwP2DW+AlQ0ZsyJTz6eYRsU/aqtTHHCHQi8UDFmB5LL
-   2lTiQItxohTAMzXgHS/8EShffG1bxVHSsz8OyELxHZtwNDkqiBrqn7yyU
-   N1ARcmy6vB8ToZdzhWQ87pObKchj1uXFykaQVs+6/ePktNguTJ5AZswTi
-   v8Y7tYPUf7Mq5ZjxD8ruMp/UBH6RiREe/w1zjM7juVNXQhkU2vj6qy3Ib
-   qd9burMCfLdEDArgUX7CVpa9S4v78ZHqDJVTKH9xEQrNpnXDWZ9t4W+Nw
-   X8u52HAlYV9uwAA4nc0os+S2PdSzoZMeirfSPGRepmWfHh29bVperVvO+
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="402391089"
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
-   d="scan'208";a="402391089"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2024 22:39:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="910733518"
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
-   d="scan'208";a="910733518"
-Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 27 Jan 2024 22:39:16 -0800
-Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rTyp0-0003AU-1Z;
-	Sun, 28 Jan 2024 06:39:14 +0000
-Date: Sun, 28 Jan 2024 14:38:23 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Sebastian Reichel <sre@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	=?iso-8859-1?Q?S=F8ren?= Andersen <san@skov.dk>
-Subject: Re: [PATCH v2 6/8] power: reset: add PSCR NVMEM Driver for Recording
- Power State Change Reasons
-Message-ID: <202401281442.zKlRfljS-lkp@intel.com>
-References: <20240124122204.730370-7-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1706428863; c=relaxed/simple;
+	bh=T4METYcAZkjFh/mJCuNuZBxdEgskEbxwtwRQLMK6uFM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hY3uuD4eCD+MtUY97u4pqrZ4l/bYDf8mFTF9ZIa5gy05AtIEscS0ZHFoDi0DM0dhj6LODrBtHEpPWu8upRZiVoP1+UGAsjboH8FiwGqz1K/k6kGCn2Kzw203B4nIb/3lU0UNDNOkAZxGFYqbn4S+spmv0ZAZ0Bzdbz2oRPzvXgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=lNPnO8Lt; arc=none smtp.client-ip=80.12.242.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.18] ([92.140.202.140])
+	by smtp.orange.fr with ESMTPA
+	id Tzxcr9tOf3ZDyTzxdrCxUn; Sun, 28 Jan 2024 08:52:16 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1706428336;
+	bh=r+0qjH378TiTSwFjUyd4p9CMqmeCRqj1m8DnL6D02Fs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=lNPnO8LtOmgaPHv4YuPvMIR0GrxSE48lTBQQSDoz7FLOHLvq3xLiGRKieIOmpIGKg
+	 XHXaam8yx0Ntn7h+n88ShlromrAwk/8cDOjL98Ax6KYHvTQJ9iC9v4635Pfi8YHeg/
+	 qT6rhXRHgKrXft1n4EZPzgG8O55pV5Jpe9i0y8hiHOnJXLhx6d3L0scFjtpxEEjin2
+	 xMyfBYEXCKdtGb1+YRv+LbHgGZuljCaq+Mj1/54MeafM3Fnl5rDOeHMoRIq34m9ZgY
+	 0A/oqX/qU65fhqRmIyKOAIM1epM1LcRTKi/XN6S1USI+p9rWmJBN8N2GUsgDaGyeD8
+	 trwTNqmSUcw7g==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 28 Jan 2024 08:52:16 +0100
+X-ME-IP: 92.140.202.140
+Message-ID: <a2a4bb76-0e6a-425d-bfb8-e1a844b44274@wanadoo.fr>
+Date: Sun, 28 Jan 2024 08:52:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240124122204.730370-7-o.rempel@pengutronix.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO
+ driver
+To: Jacky Huang <ychuang570808@gmail.com>, linus.walleij@linaro.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, j.neuschaefer@gmx.net
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ychuang3@nuvoton.com, schung@nuvoton.com
+References: <20240123080637.1902578-1-ychuang570808@gmail.com>
+ <20240123080637.1902578-5-ychuang570808@gmail.com>
+Content-Language: en-MW
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20240123080637.1902578-5-ychuang570808@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Oleksij,
+Le 23/01/2024 à 09:06, Jacky Huang a écrit :
+> From: Jacky Huang <ychuang3@nuvoton.com>
+> 
+> Add common pinctrl and GPIO driver for Nuvoton MA35 series SoC, and
+> add support for ma35d1 pinctrl.
+> 
+> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> ---
 
-kernel test robot noticed the following build errors:
+Hi,
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on broonie-regulator/for-next rafael-pm/thermal linus/master v6.8-rc1 next-20240125]
-[cannot apply to sre-power-supply/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Should there be a v4, a few nits below.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Oleksij-Rempel/power-Extend-power_on_reason-h-for-upcoming-PSCRR-framework/20240124-202833
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240124122204.730370-7-o.rempel%40pengutronix.de
-patch subject: [PATCH v2 6/8] power: reset: add PSCR NVMEM Driver for Recording Power State Change Reasons
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20240128/202401281442.zKlRfljS-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240128/202401281442.zKlRfljS-lkp@intel.com/reproduce)
+CJ
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401281442.zKlRfljS-lkp@intel.com/
+> +static int ma35_pinctrl_dt_node_to_map_func(struct pinctrl_dev *pctldev,
+> +					    struct device_node *np,
+> +					    struct pinctrl_map **map,
+> +					    unsigned int *num_maps)
+> +{
+> +	struct ma35_pinctrl *npctl = pinctrl_dev_get_drvdata(pctldev);
+> +	struct ma35_pin_group *grp;
+> +	struct pinctrl_map *new_map;
+> +	struct device_node *parent;
+> +	int map_num = 1;
+> +	int i;
+> +
+> +	/*
+> +	 * first find the group of this node and check if we need create
+> +	 * config maps for pins
+> +	 */
+> +	grp = ma35_pinctrl_find_group_by_name(npctl, np->name);
+> +	if (!grp) {
+> +		dev_err(npctl->dev, "unable to find group for node %s\n", np->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	map_num += grp->npins;
+> +	new_map = devm_kzalloc(pctldev->dev, sizeof(*new_map) * map_num, GFP_KERNEL);
 
-All errors (new ones prefixed by >>):
+devm_kcalloc()?
 
->> drivers/power/reset/pscrr-nvmem.c:53:2: error: call to undeclared function 'kfree'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-      53 |         kfree(buf);
-         |         ^
-   1 error generated.
+> +	if (!new_map)
+> +		return -ENOMEM;
+> +
+> +	*map = new_map;
+> +	*num_maps = map_num;
+> +	/* create mux map */
+> +	parent = of_get_parent(np);
+> +	if (!parent) {
+> +		devm_kfree(pctldev->dev, new_map);
+> +		return -EINVAL;
+> +	}
+> +
+> +	new_map[0].type = PIN_MAP_TYPE_MUX_GROUP;
+> +	new_map[0].data.mux.function = parent->name;
+> +	new_map[0].data.mux.group = np->name;
+> +	of_node_put(parent);
+> +
+> +	new_map++;
+> +	for (i = 0; i < grp->npins; i++) {
+> +		new_map[i].type = PIN_MAP_TYPE_CONFIGS_PIN;
+> +		new_map[i].data.configs.group_or_pin = pin_get_name(pctldev, grp->pins[i]);
+> +		new_map[i].data.configs.configs = grp->settings[i].configs;
+> +		new_map[i].data.configs.num_configs = grp->settings[i].nconfigs;
+> +	}
+> +	dev_dbg(pctldev->dev, "maps: function %s group %s num %d\n",
+> +		(*map)->data.mux.function, (*map)->data.mux.group, map_num);
+> +
+> +	return 0;
+> +}
 
+...
 
-vim +/kfree +53 drivers/power/reset/pscrr-nvmem.c
+> +static int ma35_pinctrl_parse_groups(struct device_node *np, struct ma35_pin_group *grp,
+> +				     struct ma35_pinctrl *npctl, u32 index)
+> +{
+> +	unsigned long *configs;
+> +	unsigned int nconfigs;
+> +	struct ma35_pin_setting *pin;
+> +	const __be32 *list;
+> +	int i, j, size, ret;
+> +
+> +	dev_dbg(npctl->dev, "group(%d): %s\n", index, np->name);
+> +
+> +	grp->name = np->name;
+> +
+> +	ret = pinconf_generic_parse_dt_config(np, NULL, &configs, &nconfigs);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * the binding format is nuvoton,pins = <bank pin-mfp pin-function>,
+> +	 * do sanity check and calculate pins number
+> +	 */
+> +	list = of_get_property(np, "nuvoton,pins", &size);
+> +	size /= sizeof(*list);
+> +	if (!size || size % 3) {
+> +		dev_err(npctl->dev, "wrong setting!\n");
+> +		return -EINVAL;
+> +	}
+> +	grp->npins = size / 3;
+> +
+> +	grp->pins = devm_kzalloc(npctl->dev, grp->npins * sizeof(*grp->pins), GFP_KERNEL);
 
-    39	
-    40	static int pscrr_nvmem_read(struct pscrr_device *pscrr_dev, u32 *magic)
-    41	{
-    42		struct pscrr_nvmem *priv = container_of(pscrr_dev, struct pscrr_nvmem,
-    43							pscrr_dev);
-    44		size_t len;
-    45		void *buf;
-    46	
-    47		buf = nvmem_cell_read(priv->cell, &len);
-    48		if (IS_ERR(buf))
-    49			return PTR_ERR(buf);
-    50	
-    51		*magic = 0;
-    52		memcpy(magic, buf, min(len, sizeof(*magic)));
-  > 53		kfree(buf);
-    54	
-    55		return 0;
-    56	}
-    57	
+devm_kcalloc()?
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +	if (!grp->pins)
+> +		return -ENOMEM;
+> +
+> +	grp->settings = devm_kzalloc(npctl->dev, grp->npins * sizeof(*grp->settings), GFP_KERNEL);
+
+devm_kcalloc()?
+
+> +	if (!grp->settings)
+> +		return -ENOMEM;
+> +
+> +	pin = grp->settings;
+> +
+> +	for (i = 0, j = 0; i < size; i += 3, j++) {
+> +		pin->offset = be32_to_cpu(*list++) * MA35_MFP_REG_SZ_PER_BANK + MA35_MFP_REG_BASE;
+> +		pin->shift = (be32_to_cpu(*list++) * MA35_MFP_BITS_PER_PORT) % 32;
+> +		pin->muxval = be32_to_cpu(*list++);
+> +		pin->configs = configs;
+> +		pin->nconfigs = nconfigs;
+> +		grp->pins[j] = npctl->info->get_pin_num(pin->offset, pin->shift);
+> +		pin++;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int ma35_pinctrl_parse_functions(struct device_node *np, struct ma35_pinctrl *npctl,
+> +					u32 index)
+> +{
+> +	struct device_node *child;
+> +	struct ma35_pin_func *func;
+> +	struct ma35_pin_group *grp;
+> +	static u32 grp_index;
+> +	u32 ret, i = 0;
+> +
+> +	dev_dbg(npctl->dev, "parse function(%d): %s\n", index, np->name);
+> +
+> +	func = &npctl->functions[index];
+> +	func->name = np->name;
+> +	func->ngroups = of_get_child_count(np);
+> +
+> +	if (func->ngroups <= 0)
+> +		return 0;
+> +
+> +	func->groups = devm_kzalloc(npctl->dev, func->ngroups * sizeof(char *), GFP_KERNEL);
+
+devm_kcalloc()?
+
+> +	if (!func->groups)
+> +		return -ENOMEM;
+> +
+> +	for_each_child_of_node(np, child) {
+> +		func->groups[i] = child->name;
+> +		grp = &npctl->groups[grp_index++];
+> +		ret = ma35_pinctrl_parse_groups(child, grp, npctl, i++);
+> +		if (ret) {
+> +			of_node_put(child);
+> +			return ret;
+> +		}
+> +	}
+> +	return 0;
+> +}
+
 
