@@ -1,133 +1,266 @@
-Return-Path: <devicetree+bounces-35944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71ADB83F5AF
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 14:57:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92D4F83F606
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 16:06:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D1F6B2216D
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 13:57:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 499A4284796
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 15:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A68B23767;
-	Sun, 28 Jan 2024 13:57:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8F22375A;
+	Sun, 28 Jan 2024 15:06:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c8fBA1a4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="osdiZg8n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E58B22375A;
-	Sun, 28 Jan 2024 13:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E622209E
+	for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 15:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706450235; cv=none; b=MaXte7Uhmgk3Ym3d6radNXV1tO1BgSO70N0N3Tzlr5iwqpWx7Pz7E91ubMVsdDQzP5nFyLT26x7IEUgchyARppC0qUlOjX6ec3KW7oyfA6nxk8Od6/wDOyP2iOQJAfyQYwUM4/z6JrimNamDt5lP/yurNRP/K0CQW+W2xQYIbk0=
+	t=1706454390; cv=none; b=E5EMN7efFzXAc9UUBlmLMdfH20z++CROtM86pmcADz+SnLbr1+Th3tN+RXSqWZdH2PzfpMK9qr4CE6f53oy6idfdR45mFAjUNvPwqsJXFGGKpB3z6vrpiaS7MPqknlkv9jaG62RuKn44Hb/9xvqp9foyMcVxVISbIP75dpuvCcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706450235; c=relaxed/simple;
-	bh=0iclYHlQ7+8gDvQeikde5z0ZE7mEbXDlk0AjyQfxYf0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HhGN3ZW7Gq8jva9CCoaihO7XPAcCBFb2PTMbN+f+7zBtPKwJcqHbvAC7D+fAeZXmlmsu8bbpPLYRn4+V1aBSrvqfx8oAyU+BxwRRdnhDmaRjTAWdsGCYIezfi5WFq+LwPAJ4fbRCf6iJlxGCPQ9iCgnt2FfNGdID9ROwsc4Qj4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c8fBA1a4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4EAAC433C7;
-	Sun, 28 Jan 2024 13:57:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706450234;
-	bh=0iclYHlQ7+8gDvQeikde5z0ZE7mEbXDlk0AjyQfxYf0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c8fBA1a4y68+n9cv/GlMz9NFhIBA1A4yKckENlkH3A69qAqlEZv7lz1BwPz/WS9Nj
-	 Az+yQovZOqOBf/TtYsjNnweVcPHLML2X0bMotGsf9HRNXWUr0Mja2j6aFfoA6eIQXE
-	 Ebahfv4iu3MVGCpTQpXgnYRjZ6Ms9BUXyd3dOUVWnEiBKqLwPw+U4ZdIU8LkqSTgFz
-	 mxyQXcl2CcZR0sx43QDs9wkHq9HTE2RagGVZNukb+50wlLJ6vrEQDtWZqP6f5RlJIp
-	 J67C8FR5fVJ7yFm/VfnvNHeSNg6WBK1s0IW5jqMVu0Go4aii8W/dDS8hBbxxgnS0+y
-	 y50WhJOJc1rsQ==
-Date: Sun, 28 Jan 2024 14:57:10 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: linux-iio@vger.kernel.org, lorenzo.bianconi@redhat.com,
-	devicetree@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
- asm330lhhxg1
-Message-ID: <ZbZdNjauGPDfeKTk@lore-desk>
-References: <cover.1706441008.git.lorenzo@kernel.org>
- <189b903e939e15d98d198db60e2ca0619b116870.1706441008.git.lorenzo@kernel.org>
- <20240128134542.56e5a08d@jic23-huawei>
+	s=arc-20240116; t=1706454390; c=relaxed/simple;
+	bh=jzi4kRN7E6mn0sx12bR/OnSoPhoWuNopIeB+ZGs9/sw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JsE0gG/sJUl67uSsGR/zXMAoMOc8mTiEHZ3ccEsfOT0EjaWAFFAL11PtIfAMYxD5fj0HH5V9zTHVVU+PsCY1tnVwvjzz7fKODEL+Bp7t8KiyuoM0zXT0N+RAWDA/t3e2HWLNQFA2VCMk0hPc3vcu5YsW/Mgg/fcfux+B0/EZqDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=osdiZg8n; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40ed356a6ecso16766445e9.2
+        for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 07:06:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706454386; x=1707059186; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gt2GoiZlVl4m7DcHB944zDkl2TnQCtXQoPzD4lLJEE4=;
+        b=osdiZg8nwxO0kOz9CRPr4nqMhb3N6Iu6rRxUfSyM7BULSAAJG6VCLUE4zJHsRUL1eu
+         F+8/g9ywYPd83IHJomq6g8Q+F/yRmqF/cfhTJiD+83gncnm7Vc3Oat9w58qBal7cWGqy
+         Xo6kpNmS67cNADIK5Q4+uqaQsQXG9FcMS7RCnJJ/DJDEvGqrmkq5suk/bw2eMU1oXDrz
+         aD0AyoOI+o7RGjTljZvxCSU4ud7wUeJ8IALk6i9AL1DlH0xJeC4waHMUsGPCaIBb15oA
+         Pe6wQLoxZImtWZg78zp/HJW613q/849jkifBJEmW6uufDekheWHGMoeiKHaBVs42l4dq
+         9mpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706454386; x=1707059186;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gt2GoiZlVl4m7DcHB944zDkl2TnQCtXQoPzD4lLJEE4=;
+        b=WBQxDfGW19oy+lmuiGYBEVi0Ef0hYPmVJ2BclTIh+N3hTsI7ZOpAlMbP5ujMnc/oBv
+         YXYD91PgVxJ7Xvt/2aImba2/gRYlgZAeOChwSyoMIrK+mohXp4F1IBtVJOfuJ7Noc9ua
+         q0bHLjx1kGlnFkU+8/CHWn2Qbwnq/yy65d5LjmfC0ZT7cbRsCsasVqYefjgvWn1Nh0H0
+         VVT4hBPAJUnRIVuNOpVFwkIPD0aI2UL9Y5BrOHo5iCrcDPNJ/5epWz2aRn/UY+MD8L4M
+         mVmj46ZcekeWkm6eM+b5osYT/wheZ0kpv/uxia6cf/P0xqEJGIi76g+/QHgumkahL+bF
+         sWfw==
+X-Gm-Message-State: AOJu0Yzx7iO4lGjdYF4fCDZrhhxrdRb1PPNm5mrOG2X1aC2RbX0Amu0q
+	tXHazE4mzlecvyU0h895VphaNmOE29KpGSbUOyQdvi+mmoKc/wrjzOIQWBIUM+w=
+X-Google-Smtp-Source: AGHT+IEj9+cXeSMOZkusGROt1uVn5aKOHGnQIK07UeyCT4an0oglnKBtK3VSSbl0Sq4m0/i3YBG4PA==
+X-Received: by 2002:a05:600c:3d0b:b0:40e:70c0:5054 with SMTP id bh11-20020a05600c3d0b00b0040e70c05054mr4446371wmb.2.1706454386169;
+        Sun, 28 Jan 2024 07:06:26 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0? ([2a05:6e02:1041:c10:c49e:e1a5:3210:b8c0])
+        by smtp.googlemail.com with ESMTPSA id fc20-20020a05600c525400b0040ed1e5d5f3sm10579779wmb.41.2024.01.28.07.06.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 28 Jan 2024 07:06:25 -0800 (PST)
+Message-ID: <ab664c65-954e-4be0-9c1f-6676694e1f11@linaro.org>
+Date: Sun, 28 Jan 2024 16:06:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="EcDOQuaSrcr7EBMj"
-Content-Disposition: inline
-In-Reply-To: <20240128134542.56e5a08d@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add OPP data for CPU cores on
+ RK3588
+Content-Language: en-US
+To: Alexey Charkov <alchark@gmail.com>, Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Viresh Kumar <viresh.kumar@linaro.org>
+References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
+ <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com>
+ <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
+ <ccc004cfae513195351ce0a79e12f6af@manjaro.org>
+ <CABjd4YxSTLZjrnSCn0fh81US682-uhZ16-cgydzz97shhCpq4w@mail.gmail.com>
+ <1f0608831cfb95c80edf16cd751eee76@manjaro.org>
+ <CABjd4Yx06igrZQvHA4q-mcr2oSEf7eQyUS+KEATUGbw6qLc2sg@mail.gmail.com>
+ <528a37d84cdd871e717b4ebf648bb8a7@manjaro.org>
+ <9b72b688-be63-464e-a5dc-cf6051ccee12@linaro.org>
+ <CABjd4YzdD9ciMn=p=opEK+fdxCkeCodsryph7pkqgsEUNcNrUQ@mail.gmail.com>
+ <5ef9bab979260884866efe30d19ba8f1@manjaro.org>
+ <CABjd4YyyuB9ou-BaOrvt_rrv1-jPE=wtwWDHDqNqyT4a0E51wg@mail.gmail.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <CABjd4YyyuB9ou-BaOrvt_rrv1-jPE=wtwWDHDqNqyT4a0E51wg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
---EcDOQuaSrcr7EBMj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Alexey,
 
-> On Sun, 28 Jan 2024 12:25:45 +0100
-> Lorenzo Bianconi <lorenzo@kernel.org> wrote:
->=20
-> > Add device bindings for asm330lhhxg1 IMU sensor.
-> > Use asm330lhhx as fallback device for asm330lhhxg1 since it implements
-> > all the features currently supported by asm330lhhxg1.
->=20
-> If there are no other changes, I can amend this text whilst applying.
-> Something lie:
->=20
-> The asm330lhhx supports a subset of the features and functionality
-> provided by the asm330lhhxg1 via identical interfaces and so is a
-> suitable fallback compatible.
+On 27/01/2024 20:41, Alexey Charkov wrote:
+> On Sat, Jan 27, 2024 at 12:33 AM Dragan Simic <dsimic@manjaro.org> wrote:
+>>
+>> On 2024-01-26 14:44, Alexey Charkov wrote:
+>>> On Fri, Jan 26, 2024 at 4:56 PM Daniel Lezcano
+>>> <daniel.lezcano@linaro.org> wrote:
+>>>> On 26/01/2024 08:49, Dragan Simic wrote:
+>>>>> On 2024-01-26 08:30, Alexey Charkov wrote:
+>>>>>> On Fri, Jan 26, 2024 at 11:05 AM Dragan Simic <dsimic@manjaro.org> wrote:
+>>>>>>> On 2024-01-26 07:44, Alexey Charkov wrote:
+>>>>>>>> On Fri, Jan 26, 2024 at 10:32 AM Dragan Simic <dsimic@manjaro.org>
+>>>>>>>> wrote:
+>>>>>>>>> On 2024-01-25 10:30, Daniel Lezcano wrote:
+>>>>>>>>>> On 24/01/2024 21:30, Alexey Charkov wrote:
+>>>>>>>>>>> By default the CPUs on RK3588 start up in a conservative
+>>>>>>> performance
+>>>>>>>>>>> mode. Add frequency and voltage mappings to the device tree to
+>>>>>>> enable
+>>>>
+>>>> [ ... ]
+>>>>
+>>>>>> Throttling would also lower the voltage at some point, which cools it
+>>>>>> down much faster!
+>>>>>
+>>>>> Of course, but the key is not to cool (and slow down) the CPU cores too
+>>>>> much, but just enough to stay within the available thermal envelope,
+>>>>> which is where the same-voltage, lower-frequency OPPs should shine.
+>>>>
+>>>> That implies the resulting power is sustainable which I doubt it is
+>>>> the
+>>>> case.
+>>>>
+>>>> The voltage scaling makes the cooling effect efficient not the
+>>>> frequency.
+>>>>
+>>>> For example:
+>>>>          opp5 = opp(2GHz, 1V) => 2 BogoWatt
+>>>>          opp4 = opp(1.9GHz, 1V) => 1.9 BogoWatt
+>>>>          opp3 = opp(1.8GHz, 0.9V) => 1.458 BogoWatt
+>>>>          [ other states but we focus on these 3 ]
+>>>>
+>>>> opp5->opp4 => -5% compute capacity, -5% power, ratio=1
+>>>> opp4->opp3 => -5% compute capacity, -23.1% power, ratio=21,6
+>>>>
+>>>> opp5->opp3 => -10% compute capacity, -27.1% power, ratio=36.9
+>>>>
+>>>> In burst operation (no thermal throttling), opp4 is pointless we agree
+>>>> on that.
+>>>>
+>>>> IMO the following will happen: in burst operation with thermal
+>>>> throttling we hit the trip point and then the step wise governor
+>>>> reduces
+>>>> opp5 -> opp4. We have slight power reduction but the temperature does
+>>>> not decrease, so at the next iteration, it is throttle at opp3. And at
+>>>> the end we have opp4 <-> opp3 back and forth instead of opp5 <-> opp3.
+>>>>
+>>>> It is probable we end up with an equivalent frequency average (or
+>>>> compute capacity avg).
+>>>>
+>>>> opp4 <-> opp3 (longer duration in states, less transitions)
+>>>> opp5 <-> opp3 (shorter duration in states, more transitions)
+>>>>
+>>>> Some platforms had their higher OPPs with the same voltage and they
+>>>> failed to cool down the CPU in the long run.
+>>>>
+>>>> Anyway, there is only one way to check it out :)
+>>>>
+>>>> Alexey, is it possible to compare the compute duration for 'dhrystone'
+>>>> with these voltage OPP and without ? (with a period of cool down
+>>>> between
+>>>> the test in order to start at the same thermal condition) ?
+>>>
+>>> Sure, let me try that - would be interesting to see the results. In my
+>>> previous tinkering there were cases when the system stayed at 2.35GHz
+>>> for all big cores for non-trivial time (using the step-wise thermal
+>>> governor), and that's an example of "same voltage, lower frequency".
+>>> Other times though it throttled one cluster down to 1.8GHz and kept
+>>> the other at 2.4GHz, and was also stationary at those parameters for
+>>> extended time. This probably indicates that both of those states use
+>>> sustainable power in my cooling setup.
+>>
+>> IMHO, there are simply too many factors at play, including different
+>> possible cooling setups, so providing additional CPU throttling
+>> granularity can only be helpful.  Of course, testing and recording
+>> data is the way to move forward, but I think we should use a few
+>> different tests.
+> 
+> Soooo, benchmarking these turned out a bit trickier than I had hoped
+> for. Apparently, dhrystone uses an unsigned int rather than an
+> unsigned long for the loops count (or something of that sort), which
+> means that I can't get it to run enough loops to heat up my chip from
+> a stable idle state to the throttling state (due to counter
+> wraparound). So I ended up with a couple of crutches, namely:
+>   - run dhrystone continuously on 6 out of 8 cores to make the chip
+> warm enough (`taskset -c 0-5 ./dhrystone -t 6 -r 6000` - note that on
+> my machine cores 6-7 are usually the first ones to get throttled, due
+> to whatever thermal peculiarities)
+>   - wait for the temperature to stabilize (which happens at 79.5C)
+>   - then run timed dhrystone on the remaining 2 out of 6 cores (big
+> ones) to see how throttling with different OPP tables affects overall
+> performance.
 
-I think it is fine, thx Jonathan.
+Thanks for taking the time to test.
 
-Regards,
-Lorenzo
+> In the end, here's what I got with the 'original' OPP table (including
+> "same voltage - different frequencies" states):
+> alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
+> duration: 0 seconds
+> number of threads: 2
+> number of loops: 4000000000000000
+> delay between starting threads: 0 seconds
+> 
+> Dhrystone(1.1) time for 1233977344 passes = 29.7
+> This machine benchmarks at 41481539 dhrystones/second
+>                             23609 DMIPS
+> Dhrystone(1.1) time for 1233977344 passes = 29.8
+> This machine benchmarks at 41476618 dhrystones/second
+>                             23606 DMIPS
+> 
+> Total dhrystone run time: 30.864492 seconds.
+> 
+> And here's what I got with the 'reduced' OPP table (keeping only the
+> highest frequency state for each voltage):
+> alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
+> duration: 0 seconds
+> number of threads: 2
+> number of loops: 4000000000000000
+> delay between starting threads: 0 seconds
+> 
+> Dhrystone(1.1) time for 1233977344 passes = 30.9
+> This machine benchmarks at 39968549 dhrystones/second
+>                            22748 DMIPS
+> Dhrystone(1.1) time for 1233977344 passes = 31.0
+> This machine benchmarks at 39817431 dhrystones/second
+>                            22662 DMIPS
+> 
+> Total dhrystone run time: 31.995136 seconds.
+> 
+> Bottomline: removing the lower-frequency OPPs led to a 3.8% drop in
+> performance in this setup. This is probably far from a reliable
+> estimate, but I guess it indeed indicates that having lower-frequency
+> states might be beneficial in some load scenarios.
 
->=20
-> As normal for bindings we shouldn't talk about the driver though
-> what we really care about here is that the driver will never support
-> functionality for the fallback part that doesn't apply for the
-> more advanced part (because there isn't any!)
->=20
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml =
-b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > index 28b667a9cb76..7ba3de66a2e1 100644
-> > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > @@ -49,6 +49,9 @@ properties:
-> >        - items:
-> >            - const: st,asm330lhb
-> >            - const: st,asm330lhh
-> > +      - items:
-> > +          - const: st,asm330lhhxg1
-> > +          - const: st,asm330lhhx
-> > =20
-> >    reg:
-> >      maxItems: 1
->=20
+What is the duration between these two tests?
 
---EcDOQuaSrcr7EBMj
-Content-Type: application/pgp-signature; name="signature.asc"
+I would be curious if it is repeatable by inverting the setup (reduced 
+OPP table and then original OPP table).
 
------BEGIN PGP SIGNATURE-----
+BTW: I used -l 10000 for a ~30 seconds workload more or less on the 
+rk3399, may be -l 20000 will be ok for the rk3588.
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZbZdNgAKCRA6cBh0uS2t
-rPXQAP44ljSykByNlsBpF2VQv52ERobDNBYbT55+fISDWct1mwEA14WK2NOv0Msh
-saMq0/S84qZ/PAYvUdL4oKq2xcQSbwM=
-=H75H
------END PGP SIGNATURE-----
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
---EcDOQuaSrcr7EBMj--
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
 
