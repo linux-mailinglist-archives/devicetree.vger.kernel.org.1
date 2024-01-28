@@ -1,239 +1,174 @@
-Return-Path: <devicetree+bounces-35924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D673883F39F
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 04:36:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7562883F3C2
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 05:31:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30AB4B21A5E
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 03:36:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D90AF1F22290
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 04:31:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7080139D;
-	Sun, 28 Jan 2024 03:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D0B67C63;
+	Sun, 28 Jan 2024 04:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="KG6rScrR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="c8zAsAus"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D30903FEF;
-	Sun, 28 Jan 2024 03:36:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B062DDA2;
+	Sun, 28 Jan 2024 04:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.55.52.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706412970; cv=none; b=XRsUcSRGZAxpxEXxMGo+5OGNa5rTx5equrBT4VXtAAzp39RKuDf223gwDq9hGf0HCDwPzsc+lHbzNKONMb1cQpRF5QB61pfKrrMJf5+7e8REshzSAkHi3wUlUCQg10g7ptloW6YsMln0xq4McfeC+v15T/c5zmbOEwb4bo7b9dY=
+	t=1706416223; cv=none; b=XimyJGHIxNrlpu+CeeDt4vouUjNpYriEUAtKdLfu1nLhWk+lYCbyracwJcTzhkq18eojUM0pmmuXK3TnZs2nxwFK2CJ8fBPr6JaTZ8883QkBuZ7Id1GehuQGeaTnszSynIAq6cEtVx7ZDKu7AZraNYA77OKaAHVzIakJbLttYio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706412970; c=relaxed/simple;
-	bh=KYQFlIIyPOnAYU4BCpmcqOZW2Fk66y/U3GkF/Ses4e8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=QCg/Ut2cbi2V1owaLm6JIKWrQ0x+PpCgFjcvDv77D34YBNwGt6KoB+qOpvbcU510DBF53Y5pSRdViyJ6oY4NRJBFldrjDzMq1XLYHl4ggZXDJ7EJI+rsrWGpM6SBxWD6NKx773rMIufPR1i2pXIg6uOxAGn0GKBjut8/vGICMkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=KG6rScrR; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1706416223; c=relaxed/simple;
+	bh=5KJJfPnG1UoHE6jIm0aaEisxP7TFBqaCktqKdcwNC7c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KP9fKCtHe4FpWPBWcXgu/7ucC4XYK5Q4bdcpA5yPCEvXv6r0R0EMqK+cAlQOXOxJiNk8r7M3/s26Cuw7m7bHPrjhpTpAxgapyHqYSEceYgmN7vpro/E8rIPYiUKPP/RJhJ+8rcs1HWUHjb2CI0hJhNKe/aBlyPn9/hRT8I6909Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=c8zAsAus; arc=none smtp.client-ip=192.55.52.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706416221; x=1737952221;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5KJJfPnG1UoHE6jIm0aaEisxP7TFBqaCktqKdcwNC7c=;
+  b=c8zAsAuspSzn5JzuekdZPatzKhS3RtQWaB3hnq6IMisqgJoR4/7RendP
+   IIWAB2ZHbQlP9Dnoq1ola0MBzOvgwMeGn4uGpnZBFtsE0bvaBaOiCk9Cq
+   GrIPPzT/j5Y7QlnNNMGc4nN6pJrddgin4qN5szVPoqp1GenEHb2jsY+MG
+   //D6fuyjoVE4rNhvVYDcz/lao6B9CQ47EC31CSCFqipm5E+tUvfSGmV3E
+   JWhknTaYKHpeyN7V3tC/bcTK0S5txXvnqBCArHkTRzE0m7RGmtmqU0vkt
+   5TOnz1VOyhOXGBAJkkZt16GWuqXDpI7BVfI7geAx9r0PzK02KWFY7WALe
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="433900320"
+X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
+   d="scan'208";a="433900320"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2024 20:30:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="910718819"
+X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
+   d="scan'208";a="910718819"
+Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 27 Jan 2024 20:30:13 -0800
+Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rTwo7-00034k-1V;
+	Sun, 28 Jan 2024 04:30:11 +0000
+Date: Sun, 28 Jan 2024 12:29:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>, catalin.marinas@arm.com,
+	will@kernel.org, robh+dt@kernel.org, frowand.list@gmail.com,
+	vgupta@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+	guoren@kernel.org, monstr@monstr.eu, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, dinguyen@kernel.org, chenhuacai@kernel.org,
+	tsbogend@alpha.franken.de, jonas@southpole.se,
+	stefan.kristiansson@saunalahti.fi, shorne@gmail.com,
+	mpe@ellerman.id.au, ysato@users.sourceforge.jp, dalias@libc.org,
+	glaubitz@physik.fu-berlin.de, richard@nod.at,
+	anton.ivanov@cambridgegreys.com, johannes@sipsolutions.net,
+	chris@zankel.net, jcmvbkbc@gmail.com
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 30/46] of: reserved_mem: Add code to use unflattened DT
+ for reserved_mem nodes
+Message-ID: <202401281219.iIhqs1Si-lkp@intel.com>
+References: <20240126235425.12233-31-quic_obabatun@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1706412958;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IGynTAOYEGgnqBwfLRvahiiezGVmO/RYQ5/JRIx6Ctk=;
-	b=KG6rScrRZHwd6CM0HJJfXU/XWE00HNFc5rAeAejlPdmECoKkqpbO62Qeqy2q9DNE9cgk9g
-	P9io/r1zWzHMvU6jV6jd32bXQecZALlr61VkUpTB/5GQ2ye5R8Q4fOdg29UXOc/LtNLcup
-	DasNWw3fAqWceknmDXZHUp/OaSdniHAmUluORsO6YZvv/5FksGr6k5JTBgfYjUyZJckAH8
-	VNa17VsMXlMhKqg4XfYGkhP+H+5Q595YPnsmv+odGHio5qtz8SlX/gJ56i2zKTF7lT8HiM
-	77ORaZwK7M77FpFPPJzoOA6X4MAquOIRGWP67I5YXk20m+vMBt7JIA0TsIUBPQ==
-Date: Sun, 28 Jan 2024 04:35:58 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add OPP data for CPU cores on
- RK3588
-In-Reply-To: <CABjd4YyyuB9ou-BaOrvt_rrv1-jPE=wtwWDHDqNqyT4a0E51wg@mail.gmail.com>
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com>
- <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
- <ccc004cfae513195351ce0a79e12f6af@manjaro.org>
- <CABjd4YxSTLZjrnSCn0fh81US682-uhZ16-cgydzz97shhCpq4w@mail.gmail.com>
- <1f0608831cfb95c80edf16cd751eee76@manjaro.org>
- <CABjd4Yx06igrZQvHA4q-mcr2oSEf7eQyUS+KEATUGbw6qLc2sg@mail.gmail.com>
- <528a37d84cdd871e717b4ebf648bb8a7@manjaro.org>
- <9b72b688-be63-464e-a5dc-cf6051ccee12@linaro.org>
- <CABjd4YzdD9ciMn=p=opEK+fdxCkeCodsryph7pkqgsEUNcNrUQ@mail.gmail.com>
- <5ef9bab979260884866efe30d19ba8f1@manjaro.org>
- <CABjd4YyyuB9ou-BaOrvt_rrv1-jPE=wtwWDHDqNqyT4a0E51wg@mail.gmail.com>
-Message-ID: <9fda41efe365241ce06bd58974c8e055@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240126235425.12233-31-quic_obabatun@quicinc.com>
 
-On 2024-01-27 20:41, Alexey Charkov wrote:
-> On Sat, Jan 27, 2024 at 12:33 AM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> On 2024-01-26 14:44, Alexey Charkov wrote:
->> > On Fri, Jan 26, 2024 at 4:56 PM Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
->> >> On 26/01/2024 08:49, Dragan Simic wrote:
->> >> > On 2024-01-26 08:30, Alexey Charkov wrote:
->> >> >> On Fri, Jan 26, 2024 at 11:05 AM Dragan Simic <dsimic@manjaro.org> wrote:
->> >> >>> On 2024-01-26 07:44, Alexey Charkov wrote:
->> >> >>> > On Fri, Jan 26, 2024 at 10:32 AM Dragan Simic <dsimic@manjaro.org> wrote:
->> >> >>> >> On 2024-01-25 10:30, Daniel Lezcano wrote:
->> >> >> Throttling would also lower the voltage at some point, which cools it
->> >> >> down much faster!
->> >> >
->> >> > Of course, but the key is not to cool (and slow down) the CPU cores too
->> >> > much, but just enough to stay within the available thermal envelope,
->> >> > which is where the same-voltage, lower-frequency OPPs should shine.
->> >>
->> >> That implies the resulting power is sustainable which I doubt it is
->> >> the
->> >> case.
->> >>
->> >> The voltage scaling makes the cooling effect efficient not the
->> >> frequency.
->> >>
->> >> For example:
->> >>         opp5 = opp(2GHz, 1V) => 2 BogoWatt
->> >>         opp4 = opp(1.9GHz, 1V) => 1.9 BogoWatt
->> >>         opp3 = opp(1.8GHz, 0.9V) => 1.458 BogoWatt
->> >>         [ other states but we focus on these 3 ]
->> >>
->> >> opp5->opp4 => -5% compute capacity, -5% power, ratio=1
->> >> opp4->opp3 => -5% compute capacity, -23.1% power, ratio=21,6
->> >>
->> >> opp5->opp3 => -10% compute capacity, -27.1% power, ratio=36.9
->> >>
->> >> In burst operation (no thermal throttling), opp4 is pointless we agree
->> >> on that.
->> >>
->> >> IMO the following will happen: in burst operation with thermal
->> >> throttling we hit the trip point and then the step wise governor
->> >> reduces
->> >> opp5 -> opp4. We have slight power reduction but the temperature does
->> >> not decrease, so at the next iteration, it is throttle at opp3. And at
->> >> the end we have opp4 <-> opp3 back and forth instead of opp5 <-> opp3.
->> >>
->> >> It is probable we end up with an equivalent frequency average (or
->> >> compute capacity avg).
->> >>
->> >> opp4 <-> opp3 (longer duration in states, less transitions)
->> >> opp5 <-> opp3 (shorter duration in states, more transitions)
->> >>
->> >> Some platforms had their higher OPPs with the same voltage and they
->> >> failed to cool down the CPU in the long run.
->> >>
->> >> Anyway, there is only one way to check it out :)
->> >>
->> >> Alexey, is it possible to compare the compute duration for 'dhrystone'
->> >> with these voltage OPP and without ? (with a period of cool down
->> >> between
->> >> the test in order to start at the same thermal condition) ?
->> >
->> > Sure, let me try that - would be interesting to see the results. In my
->> > previous tinkering there were cases when the system stayed at 2.35GHz
->> > for all big cores for non-trivial time (using the step-wise thermal
->> > governor), and that's an example of "same voltage, lower frequency".
->> > Other times though it throttled one cluster down to 1.8GHz and kept
->> > the other at 2.4GHz, and was also stationary at those parameters for
->> > extended time. This probably indicates that both of those states use
->> > sustainable power in my cooling setup.
->> 
->> IMHO, there are simply too many factors at play, including different
->> possible cooling setups, so providing additional CPU throttling
->> granularity can only be helpful.  Of course, testing and recording
->> data is the way to move forward, but I think we should use a few
->> different tests.
-> 
-> Soooo, benchmarking these turned out a bit trickier than I had hoped
-> for. Apparently, dhrystone uses an unsigned int rather than an
-> unsigned long for the loops count (or something of that sort), which
-> means that I can't get it to run enough loops to heat up my chip from
-> a stable idle state to the throttling state (due to counter
-> wraparound). So I ended up with a couple of crutches, namely:
+Hi Oreoluwa,
 
-Huh, it seems that recent SBCs may have become a bit too fast for it,
-which is great. :)  Thank you for the benchmarking.
+kernel test robot noticed the following build warnings:
 
->  - run dhrystone continuously on 6 out of 8 cores to make the chip
-> warm enough (`taskset -c 0-5 ./dhrystone -t 6 -r 6000` - note that on
-> my machine cores 6-7 are usually the first ones to get throttled, due
-> to whatever thermal peculiarities)
->  - wait for the temperature to stabilize (which happens at 79.5C)
->  - then run timed dhrystone on the remaining 2 out of 6 cores (big
-> ones) to see how throttling with different OPP tables affects overall
-> performance.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on arm64/for-next/core vgupta-arc/for-curr powerpc/next powerpc/fixes jcmvbkbc-xtensa/xtensa-for-next linus/master v6.8-rc1 next-20240125]
+[cannot apply to vgupta-arc/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Just checking, running the test on just two CPU cores was enough to
-keep the package temperature at around 80 oC?
+url:    https://github.com/intel-lab-lkp/linux/commits/Oreoluwa-Babatunde/of-reserved_mem-Change-the-order-that-reserved_mem-regions-are-stored/20240127-081735
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20240126235425.12233-31-quic_obabatun%40quicinc.com
+patch subject: [PATCH 30/46] of: reserved_mem: Add code to use unflattened DT for reserved_mem nodes
+config: i386-randconfig-061-20240127 (https://download.01.org/0day-ci/archive/20240128/202401281219.iIhqs1Si-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240128/202401281219.iIhqs1Si-lkp@intel.com/reproduce)
 
-> In the end, here's what I got with the 'original' OPP table (including
-> "same voltage - different frequencies" states):
-> alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
-> duration: 0 seconds
-> number of threads: 2
-> number of loops: 4000000000000000
-> delay between starting threads: 0 seconds
-> 
-> Dhrystone(1.1) time for 1233977344 passes = 29.7
-> This machine benchmarks at 41481539 dhrystones/second
->                            23609 DMIPS
-> Dhrystone(1.1) time for 1233977344 passes = 29.8
-> This machine benchmarks at 41476618 dhrystones/second
->                            23606 DMIPS
-> 
-> Total dhrystone run time: 30.864492 seconds.
-> 
-> And here's what I got with the 'reduced' OPP table (keeping only the
-> highest frequency state for each voltage):
-> alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
-> duration: 0 seconds
-> number of threads: 2
-> number of loops: 4000000000000000
-> delay between starting threads: 0 seconds
-> 
-> Dhrystone(1.1) time for 1233977344 passes = 30.9
-> This machine benchmarks at 39968549 dhrystones/second
->                           22748 DMIPS
-> Dhrystone(1.1) time for 1233977344 passes = 31.0
-> This machine benchmarks at 39817431 dhrystones/second
->                           22662 DMIPS
-> 
-> Total dhrystone run time: 31.995136 seconds.
-> 
-> Bottomline: removing the lower-frequency OPPs led to a 3.8% drop in
-> performance in this setup. This is probably far from a reliable
-> estimate, but I guess it indeed indicates that having lower-frequency
-> states might be beneficial in some load scenarios.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401281219.iIhqs1Si-lkp@intel.com/
 
-Measuring a difference of about 4% may be attributed to some unknown
-inaccuracy or test deviation, but again, a performance improvement of
-about 4% that comes free of charge is nothing to be sneezed at, IMHO.
+sparse warnings: (new ones prefixed by >>)
+>> drivers/of/of_reserved_mem.c:111:18: sparse: sparse: incompatible types for operation (<):
+   drivers/of/of_reserved_mem.c:111:18: sparse:    struct device_node *[assigned] node
+   drivers/of/of_reserved_mem.c:111:18: sparse:    int
 
-> Note though that several seconds after hitting the throttling
-> threshold cores 6-7 were oscillating between 1.608GHz and 1.8GHz in
-> both runs, which implies that the whole difference in performance was
-> due to different speed of initial throttling (i.e. it might be a
-> peculiarity of the step-wise thermal governor operation when it has to
-> go through more cooling states to reach the "steady-state" one). Given
-> that both 1.608GHz and 1.8GHz have no lower-frequency same-voltage
-> siblings in either of the OPP tables, it implies that under prolonged
-> constant load there should be no performance difference at all.
+vim +111 drivers/of/of_reserved_mem.c
 
-... all that with one possible cooling setup, and with one synthetic
-test.  We simply can't know in advance how would a different cooling
-setup on the same or on a different board behave, if you agree.
+    98	
+    99	/*
+   100	 * Save the reserved_mem reg nodes in the reserved_mem array
+   101	 */
+   102	static void __init dt_scan_reserved_mem_reg_nodes(void)
+   103	{
+   104		int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
+   105		struct device_node *node, *child;
+   106		phys_addr_t base, size;
+   107		const __be32 *prop;
+   108		int len;
+   109	
+   110		node = of_find_node_by_path("/reserved-memory");
+ > 111		if (node < 0) {
+   112			pr_err("Reserved memory: Did not find reserved-memory node\n");
+   113			return;
+   114		}
+   115	
+   116		for_each_child_of_node(node, child) {
+   117			const char *uname;
+   118			struct reserved_mem *rmem;
+   119	
+   120			if (!of_device_is_available(child))
+   121				continue;
+   122	
+   123			prop = of_get_property(child, "reg", &len);
+   124			if (!prop) {
+   125				rmem = of_reserved_mem_lookup(child);
+   126				if (rmem)
+   127					rmem->dev_node = child;
+   128				continue;
+   129			}
+   130	
+   131			uname = of_node_full_name(child);
+   132			if (len && len % t_len != 0) {
+   133				pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
+   134				       uname);
+   135				continue;
+   136			}
+   137	
+   138			base = dt_mem_next_cell(dt_root_addr_cells, &prop);
+   139			size = dt_mem_next_cell(dt_root_size_cells, &prop);
+   140	
+   141			if (size)
+   142				fdt_reserved_mem_save_node(child, uname, base, size);
+   143		}
+   144	}
+   145	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
