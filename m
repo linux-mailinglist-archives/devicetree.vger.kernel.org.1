@@ -1,125 +1,172 @@
-Return-Path: <devicetree+bounces-35968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B07C83F8F1
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 19:00:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 580EF83F8F8
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 19:02:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4084D1F229A1
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 18:00:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA3E428171C
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 18:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EBEC2D60C;
-	Sun, 28 Jan 2024 18:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FsT1GXoX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4002D61A;
+	Sun, 28 Jan 2024 18:02:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323652D044;
-	Sun, 28 Jan 2024 18:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF572E407;
+	Sun, 28 Jan 2024 18:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.53.165.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706464830; cv=none; b=jv8OSSoQSL8gzKVRoJqeKcTTMtEerVNddP1RwpV89Jwgjx69YJpGQtYL4zlWsE9cG2u2lGfynsy5m5TNQi0WghAyYcpdRruOMiU/LvjAWkA+Vrk4YUEUOddxzEnCQYyc++JhaSfa10NFbWziztMF0TDVCMJuIzUUypYqarg1kOw=
+	t=1706464952; cv=none; b=SGz99hECoYgAiHYDpCncGVOm7WWpLqymrlebbRx1AI3NVOWO6byuqOb441+Ap30RyBrVDtjiWRQuVjwNsL6h1FvFfzOC2LM/b97N80oWjXTzfAQO51spT5gaIy+pemdTAq74XcTRj5CkI76as7G8+ijZWDWdAW7tVcEjYuQiflo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706464830; c=relaxed/simple;
-	bh=6qEE5iFXL0RGoiqfGo6GjJkdO/zywWgXuJlLPmA7+5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=isJ3TLAzV502IGeCTDWnN0Tv3OEnoP1TrJ+S8zC8GQKcy0i6mD9yRt7kItCX/3WecVxliAn3FwNnl99oOxjTcIjcpKRhuTM5w5MHn13qLgn5PgJoN4hVWLRhU589yjXwBuHI4CcYO/lcB0q2qAd6kSiLuSy9XTyJM+SFRObOhAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FsT1GXoX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3FFAC433C7;
-	Sun, 28 Jan 2024 18:00:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706464828;
-	bh=6qEE5iFXL0RGoiqfGo6GjJkdO/zywWgXuJlLPmA7+5k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FsT1GXoXSH/52LxccsjtDsNIjuDdp8OxanWHiflBkvM4boc+NDZQgx38HErpRkpjr
-	 zWNUG4SsPOUwkzQRjwyvB1o9KRmCjIw4WWycMBKjEGkTXf1FAYJZnnk+yWAbIacRSu
-	 J2bLdsy2Xs7Ev/FQCB1EqbtLo3KqFCeutoaBwdALuQWsEWpqyItBbN3TWeXzTqotwX
-	 VxF5zvN16MRc13vmRb6mx34Osu22+d5xhVzSDqsBrbug2pOW6YnLOZH+RRVSkyLGtF
-	 ejemvflsjZmD4nJRYlITF+ri8myBfU6f8pqhQ5mllrbuo6bpZoFxOWEWdkuPb2Th/5
-	 t3lTUck/b9GvA==
-Date: Sun, 28 Jan 2024 12:00:25 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Luca Weiss <luca.weiss@fairphone.com>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Amit Pundir <amit.pundir@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Subject: Re: Re: [PATCH] arm64: dts: qcom: sdm845: Fix wild reboot during
- Antutu test
-Message-ID: <iiggyplhtyf3pnj37k4tdzymry26uxzpaldhiqfi6abxk5xjgi@6v6ovkdevn7d>
-References: <20240116115921.804185-1-daniel.lezcano@linaro.org>
- <CYG4WTCOBTG2.11PA7Q4A3H93H@fairphone.com>
- <5db88d48-4868-49f0-b702-6eea14400e5b@linaro.org>
- <CYG6QOFYOX79.2ROURJ8FK446C@fairphone.com>
- <70b359c6-f094-4874-b903-1dca07d0db7c@linaro.org>
+	s=arc-20240116; t=1706464952; c=relaxed/simple;
+	bh=zUIHGKbtwdi0dbaHD+pyc3Pkx/L5jYZarkDnWKJcBXA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ktRF+1IN2WQH5jqq4eKKXC3elbMxr3MebTD/ZpC1TrNjbiz9yDFGEVxlPBFdzEmgVGveKH8u3VMlYXHJ+jhCidQ0AptGYxKfAJAIKJc3HMoxW5DC7g/qPidiNvtedeLgnc2S6KlDXqkcdbtg2xsjH5R8WZQMLGyKnj4CQsXVpNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr; spf=pass smtp.mailfrom=skole.hr; arc=none smtp.client-ip=161.53.165.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
+Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+	by mx.skole.hr (mx.skole.hr) with ESMTP id A800681F3D;
+	Sun, 28 Jan 2024 19:02:18 +0100 (CET)
+From: Duje =?utf-8?B?TWloYW5vdmnEhw==?= <duje.mihanovic@skole.hr>
+To: Conor Dooley <conor@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmp-dma: convert to YAML
+Date: Sun, 28 Jan 2024 19:01:36 +0100
+Message-ID: <2924724.e9J7NaK4W3@radijator>
+In-Reply-To: <20240128-feminine-sulfite-8891c60ec123@spud>
+References:
+ <20240127-pxa-dma-yaml-v1-1-573bafe86454@skole.hr>
+ <20240128-feminine-sulfite-8891c60ec123@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <70b359c6-f094-4874-b903-1dca07d0db7c@linaro.org>
+Autocrypt: addr=duje.mihanovic@skole.hr;
+ keydata=
+ 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
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Jan 16, 2024 at 04:38:33PM +0100, Daniel Lezcano wrote:
-> On 16/01/2024 15:03, Luca Weiss wrote:
-> > On Tue Jan 16, 2024 at 1:51 PM CET, Daniel Lezcano wrote:
-> > > On 16/01/2024 13:37, Luca Weiss wrote:
-> > > > On Tue Jan 16, 2024 at 12:59 PM CET, Daniel Lezcano wrote:
-> > > > > Running an Antutu benchmark makes the board to do a hard reboot.
-> > > > > 
-> > > > > Cause: it appears the gpu-bottom and gpu-top temperature sensors are showing
-> > > > > too high temperatures, above 115°C.
-> > > > > 
-> > > > > Out of tree configuratons show the gpu thermal zone is configured to
-> > > > > be mitigated at 85°C with devfreq.
-> > > > > 
-> > > > > Add the DT snippet to enable the thermal mitigation on the sdm845
-> > > > > based board.
-> > > > > 
-> > > > > Fixes: c79800103eb18 ("arm64: dts: sdm845: Add gpu and gmu device nodes")
-> > > > > Cc: Amit Pundir <amit.pundir@linaro.org>
-> > > > > Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> > > > 
-> > > > A part of this is already included with this patch:
-> > > > https://lore.kernel.org/linux-arm-msm/20240102-topic-gpu_cooling-v1-4-fda30c57e353@linaro.org/
-> > > > 
-> > > > Maybe rebase on top of that one and add the 85degC trip point or
-> > > > something?
-> > > 
-> > > Actually, I think the patch is wrong.
-> > 
-> > I recommend telling Konrad in that patch then, not me :)
-> 
-> That's good Konrad is in the recipient list :)
-> 
-> > > The cooling effect does not operate on 'hot' trip point type as it is
-> > > considered as a critical trip point. The governor is not invoked, so no
-> > > mitigation happen. The 'hot' trip point type results in sending a
-> > > notification to userspace to give the last chance to do something before
-> > > 'critical' is reached where the system is shut down.
-> > > 
-> > > I suggest to revert it and pick the one I proposed.
-> > 
-> > It hasn't been applied yet so it can be fixed in v2 there.
-> 
-> The patch was submitted without testing AFAICT. So it is preferable to pick
-> the one I sent which was tested by Amit and me.
-> 
+On Sunday, January 28, 2024 6:28:03 PM CET Conor Dooley wrote:
+> On Sat, Jan 27, 2024 at 05:53:45PM +0100, Duje Mihanovi=C4=87 wrote:
+> > +allOf:
+> > +  - $ref: dma-controller.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - marvell,adma-1.0
+> > +              - marvell,pxa910-squ
+> > +    then:
+> > +      properties:
+> > +        asram:
+> > +          description:
+> > +            phandle to the SRAM pool
+> > +          minItems: 1
+> > +          maxItems: 1
+> > +        iram:
+>=20
+> > +          maxItems:
+> These properties are not mentioned in the text binding, nor commit
+> message. Where did they come from?
 
-I would have loved to have that feedback in the thread that is wrong!
+Both of them can be found in arch/arm/boot/dts/marvell/mmp2.dtsi. There is =
+one=20
+major difference between the two: iram is not mentioned at all by the mmp_t=
+dma=20
+driver (on the other hand, asram is not only used but also required for a=20
+successful probe), but I left it here as it's still found in the MMP2 dtsi.=
+ On=20
+second thought it should probably be dropped both here and in the dtsi.
 
-Due to my lack of understanding of this detail, and only positive
-reviews I merged said series. Please fix your patch and rebase it on top
-of linux-next.
+> That said, for properties that are only usable on some platforms, please
+> define them at the top level and conditionally permit/constrain them.
 
-Thanks,
-Bjorn
+Could you please point me to how to do so if this if/then does not do it=20
+properly?
+
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  # Peripheral controller
+> > +  - |
+> > +    pdma0: dma-controller@d4000000 {
+>=20
+> The label is not needed here or below.
+> In fact, I'd probably delete the second example as it shows nothing that
+> the first one does not.
+
+I'd rather add the asram property in the second node (adding onto the above=
+=20
+comment, I now see that it shouldn't have even passed dt_binding_check beca=
+use=20
+of the missing asram, but it did).
+
+Regards,
+=2D-=20
+Duje
+
+
+
 
