@@ -1,63 +1,76 @@
-Return-Path: <devicetree+bounces-35963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5E8683F8A9
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 18:47:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60BF383F8B2
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 18:48:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E946281C92
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 17:47:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BD622822BC
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 17:48:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6112D058;
-	Sun, 28 Jan 2024 17:46:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982A92D60C;
+	Sun, 28 Jan 2024 17:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mUuLgP7t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZpFb5uSY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A8AE41A8F;
-	Sun, 28 Jan 2024 17:46:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CBE4C60B;
+	Sun, 28 Jan 2024 17:46:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706463966; cv=none; b=mqDsjO6QvgY+Cea2K84Y0CHnVhVBqx11kOi5a32/EVTV+rMkW4GzQpZVVCpuT2NLYRfdy1Qk8aVjtmFOSgQgstiFL1XvNKububoZjKXedgGbeIQUwJdKuOK4w1JtSKSHrFewXZJXvSISlO7fEwyCvyH6SEAJNGqINtjggVKWNSA=
+	t=1706463969; cv=none; b=CBWsYL9AJibCf0kbxW9UlfBmP8HjiVaTrtBcwaH0ohRoz2r19zl7PeLbuJcug5wp2zHXnjM6hbBc4njnArNgbGhei+VXHvaOEAh2F54E0WFa/aWZs7BaBapHznA81FCJkN3u94pHuI8bt0c/BWqomSySKTc5/l2pr5A4SHAot3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706463966; c=relaxed/simple;
-	bh=4iOszAdH8DjmH7arROjjyCcg53o+BvdhsAW+OufJ8PE=;
+	s=arc-20240116; t=1706463969; c=relaxed/simple;
+	bh=kPoqfY9K78eerpaz+5IEw5d038Vg8EM4N2U9dT+Jg+4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NcMfEOThInBU0LXpGU5dy8gmg4dgFI07UPiNi/1ruIgOAzbLBVr3NK8w0d0wUtzlED15519nY/tvJ3lNmiE9JJ/4P2p6tFo2GT2DkVHVGySA6AwP3gpBANwFN2dHM62lXVBl107ThUCjYQ+pYfrdsIEsNcbX1gQrhkKhwDQVj4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mUuLgP7t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A0A8C433F1;
-	Sun, 28 Jan 2024 17:46:05 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Yc8gRnWQWlN8uomcDa2n9nlNnz46DQMSZ/U0YkTZ3iNDFOMwT2mUgmC1oVufeVT4/+9YghG+B8kRL/4W8ZUFHGDODRrQOWauNyV3mJfSIQu5dumIVVdk9G+skb5unN5Bm/udpP6US9rETIf8LrCEsgqm8PN3WXFjAksFkx6qXsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZpFb5uSY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95F0EC433C7;
+	Sun, 28 Jan 2024 17:46:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706463965;
-	bh=4iOszAdH8DjmH7arROjjyCcg53o+BvdhsAW+OufJ8PE=;
+	s=k20201202; t=1706463969;
+	bh=kPoqfY9K78eerpaz+5IEw5d038Vg8EM4N2U9dT+Jg+4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mUuLgP7tYRcqZWs8rS8DdpU2t9WhNKB+XQLfU4Y6Yicj5JCGkco0nFwJm4QtljL8b
-	 xjOc7b4Y8+QsmTnOBgeQ/EtjZ/ckM3ihGUo2WcEZ4szUchqn9HZeAkHj9qqpJdNNVy
-	 ZVSMHHbANTr4ZDzaQuIgGEBYZv4Yzpl3GUqf7iEbiEGK7T5BsahT2GC6sGWhGkj2TV
-	 G4k+yeK1U7G57Cher3EqhG6MoXUKsxBEzY138XwD3tewYv4DZeRmGIoc7e+4dpefyi
-	 YqUFuAWD+XDd0u5n77xxXbUEzlihwbBnyJMapRdFw2O1cuUY/xd3y+FMPNTSpHr2xu
-	 kU2IMQgCYcu8w==
+	b=ZpFb5uSYe3ZaQubiOpkh6P4No+W8WlTjM+sivoKwZO+hSMN/cgiFW9VFKjfmMzCgW
+	 b3DaV9aOaEA6s2VEZWMvHQ1E4RKFnsjQYqWXxJIeWX0MM9G8LHJiKA3kQE/BtiWG8R
+	 3i4DnLOUz3MMvn6uFRopnMnUCX86gaRnZU0ZoQgBnmUFfwbY90zVUFTVtR1trpzYEL
+	 jgH+mM53nvb5yy06VaJV/KHlGx/N0bOjWuNHuLABhLHaKW0IP9xVL6PzpArOgBTKYl
+	 A9v0LOrSd0jNU0C1SlSIBfbH4J8M3qgW+QjqbiW0zFYlLpVVLR7uYiRK3MEPovpgat
+	 v4m71ZDK6UWzQ==
 From: Bjorn Andersson <andersson@kernel.org>
-To: ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
+To: Vinod Koul <vkoul@kernel.org>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+	Andy Gross <agross@kernel.org>,
 	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Luca Weiss <luca@z3ntu.xyz>
-Cc: linux-arm-msm@vger.kernel.org,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	netdev@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: qcom: msm8926-htc-memul: Add rmtfs memory node
-Date: Sun, 28 Jan 2024 11:45:48 -0600
-Message-ID: <170646395032.64610.7751619864693491875.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Prasad Sodagudi <psodagud@quicinc.com>,
+	Andrew Halaney <ahalaney@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Suraj Jaiswal <quic_jsuraj@quicinc.com>
+Cc: kernel@quicinc.com
+Subject: Re: (subset) [PATCH net-next v9 2/3] arm64: dts: qcom: sa8775p: enable safety IRQ
+Date: Sun, 28 Jan 2024 11:45:51 -0600
+Message-ID: <170646395040.64610.3852658876222651330.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240121-memul-rmtfs-v1-1-e9da29b1f856@z3ntu.xyz>
-References: <20240121-memul-rmtfs-v1-1-e9da29b1f856@z3ntu.xyz>
+In-Reply-To: <20240110111649.2256450-3-quic_jsuraj@quicinc.com>
+References: <20240110111649.2256450-1-quic_jsuraj@quicinc.com> <20240110111649.2256450-3-quic_jsuraj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,17 +81,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sun, 21 Jan 2024 11:21:54 +0100, Luca Weiss wrote:
-> Add the rmtfs-mem node which was part of one of the "unknown" memory
-> reservation. Split that one, make sure the reserved-memory in total
-> still covers the same space.
+On Wed, 10 Jan 2024 16:46:48 +0530, Suraj Jaiswal wrote:
+> Add changes to support safety IRQ handling
+> support for ethernet.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] ARM: dts: qcom: msm8926-htc-memul: Add rmtfs memory node
-      commit: 713bc594c6334a36d0caf4b98510ba3b6795616a
+[2/3] arm64: dts: qcom: sa8775p: enable safety IRQ
+      commit: 7e4ed7db95279d37e9934e30d84bd7335d0a224b
 
 Best regards,
 -- 
