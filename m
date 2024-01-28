@@ -1,84 +1,83 @@
-Return-Path: <devicetree+bounces-35904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F0CA83F29C
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 01:40:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A55A83F29E
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 01:43:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94E33B22B6E
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 00:40:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EB1B1F2321F
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 00:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1585818;
-	Sun, 28 Jan 2024 00:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2411E39B;
+	Sun, 28 Jan 2024 00:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r2dKyg/d"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i344dmOb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F78ECE
-	for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 00:40:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9038DEC2
+	for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 00:43:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706402403; cv=none; b=KcZdbcUfLv62fYd280jjz9VtfP2k1p49LknUqDrQT9dEeEblSLhfXaZ2SDpRKMap7ATR395wDauP9MpsxsQnNqql1BSxxSu14HwXPj1GUbgLFwjriKsK4A72fRKaAEvFlvPJd0gFBGU2UwsmvMAOX/VJYoiBP3OavC1Rcld2Xmg=
+	t=1706402633; cv=none; b=Web0IMYc/fAcwqGSlRgAN/FHXcthUb9oMfkHqyNpRvMttTy2crBnQkd1vvmIL3S643B2AmmVncSUFdxb7v+sD7rwmEqJIKWA5OeH8vxv1Kit4fO/0qxjgl1/Vx4TPymJJ692ZPZmpCsFjaAeWrdQMTss3qS4ZC1bUeXTSiG9Kqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706402403; c=relaxed/simple;
-	bh=QRzZYp6PIx386k68QDCzDOD7UVHoc7rvAMQvOzXv7hQ=;
+	s=arc-20240116; t=1706402633; c=relaxed/simple;
+	bh=fQL8fLXQP/RgVgsU6R7PqCXi4K9bGzEMkXfJji01eTA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HaVW9mW9Au7BaklRqDQSdP9R9nezJQ1LzI6vTZxMFju1W21zSTmFnhtabbo9RI/C/IfZkLf1MZRszMPgF+SBYPEnYTUjWJ2yYMOi5CVfKOZ/cQW5UUHQAQ4jOtb5DCWLIUhoL5q0wbS+rvcoo584/iJpp2f/ebVq0KMJw7I6n9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r2dKyg/d; arc=none smtp.client-ip=209.85.219.181
+	 To:Cc:Content-Type; b=OSKS5IlN9Ar4PKhTffezDRKfNjIBy2mkQ7HtrCh2VbCODcOloZ3/HxvZR8CSpitruLvS3s5I4QL3TUyNA6QPQWYiycNFbozPqFyzv7enashN9Dol9yZ+/ppyEzNQV3a19qkDj0fGlnlCM8zyK07W7R2OCK2I+lh6UZVBiESztps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i344dmOb; arc=none smtp.client-ip=209.85.219.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc227feab99so1512533276.2
-        for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 16:40:01 -0800 (PST)
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dc238cb1b17so2006173276.0
+        for <devicetree@vger.kernel.org>; Sat, 27 Jan 2024 16:43:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706402401; x=1707007201; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1706402630; x=1707007430; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=QRzZYp6PIx386k68QDCzDOD7UVHoc7rvAMQvOzXv7hQ=;
-        b=r2dKyg/d2yewVMxX3LHa7VU1AsRmfzogwqGISrHWmusm86D2Jhq1y1r+Me0u9OB1dU
-         6rsd4TNMvd6ztv2s4U1ZpNZE80mLTJBuAQrcx5m9qZMFytCKvxJXnIF7yctFxL8d66mC
-         FM3zJ8alATFa7KnF8RPBGt0VZTpSDGL6Uojc2ociMePa8oLUtWtFqxP11UT/FMEUG1bO
-         bXqhwUxMXKn4iNjW3M3yyVK78bZVstH4/ZYHmm5GjgKsW0Njvl7WTfZjzbBgmLiVmOpQ
-         QMWlfyZY1zS+TbMKdXycOCCJ0i9OKLKRbb1jKhDRQ+/cVDL49Qs74qcxvj7QjKK7j1vG
-         nFMg==
+        bh=xJjfllB7hqAPskI95KrviUW6Tet29Xm8hBrvemKl1DU=;
+        b=i344dmObLxIAgpyZat6nV0IPHVJEHsm8rMcZw1XQFlN1GIW6nUyWU8AUX5N5G7yw0P
+         51v4kDFMfXEg+N151AE3yaADmCZ/KMWmVgT8Z5x95BiIdA7o6fWoB0XgUvoi9m1znxSF
+         KsJwPlo0dfTJ5CfLS2ReQIzQgf5ExE3L2Z8ORSuyJWACWE41i/dr49sTM1AXTSXw/BLM
+         3YSFQRhTG1J/KWlM0LI8Q4HW5rClcQ1TA9Cm63AJGPz95r7C9reNL6iMdDtC1J5dh8Pe
+         tZOFn64zh1KcaNFVZ0mKLlc4ylYruw40ufLaqP//1xn9ObK0vz2/w+Gas6Q1nJe800Rt
+         1EBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706402401; x=1707007201;
+        d=1e100.net; s=20230601; t=1706402630; x=1707007430;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QRzZYp6PIx386k68QDCzDOD7UVHoc7rvAMQvOzXv7hQ=;
-        b=RLLbWtof7tPgk91Zu0CyhGBQdNF79zgoinukegRcqsM0WBkfGFm7DMd7083Tzc/CcF
-         8n7VKTDTxkSoudczOU9aoN+6K5NOkhSDnnz+ptRsTIIrev9orIajjoMjZ+LGcV7skYEn
-         MbO6zsIiD9VvfpBMLVBaBs6/Xu22mk5YiC3mKjm4vL6zvz2vBzCSw2Wd1gkriSe1dRW/
-         w/i5oiSogmJO1orKryV8Yyqc9qQg3GAqEeXX98yWvc6bLSaKJVrOJR3CCo/tXVI2JIju
-         3KMuQ0ANKp7zYXDvyAAqJ4u5V4KbPkJ7FfGoT2hov0eyIhNJzAmQ8Bh5QNwqx0LGybFd
-         Y3Ag==
-X-Gm-Message-State: AOJu0Yy685feAdLNcNG2q7Xy68URW74bIH7lCj6DDtjPnu6MFOHoNVl3
-	MNwEn53AHtNBLFF/5QdnA11MmbOOXU/X0G0oUJdUsdCnLKeb9YGbC5wXkgzzWO61cfgbgQa7wAw
-	9nMhTLyqd3UKrvEIH6k543uPhnlExzgJuNPy50g==
-X-Google-Smtp-Source: AGHT+IHD8S1WP5J7m0ocSNO7pQgXHBCJmcjr56OoYWSunpFttRnhhjQGC9S9kx9v0RNFLWGmnCmzFF2GWnnjZ15IBb0=
-X-Received: by 2002:a05:690c:82c:b0:602:cabb:64f4 with SMTP id
- by12-20020a05690c082c00b00602cabb64f4mr2155595ywb.97.1706402401071; Sat, 27
- Jan 2024 16:40:01 -0800 (PST)
+        bh=xJjfllB7hqAPskI95KrviUW6Tet29Xm8hBrvemKl1DU=;
+        b=Mwl/5vqZyMaBNjA7jPtyM3jVQE5Y8tDYjiKJQUFjFtoVh+XeKwqZ4rWvD0+6q9s15Y
+         YvPsXlltcR5dB1vo+cK1g7OqJ0oIhJFeLo7gqQ7elAYYES+cf6JHKDeLPTMyK/CgpJ9p
+         kgC8i7CcAjC2hx1UuTHqNID6ymMpXdn7tP8FbH50JTzUcsyrERgh/aG4zrTCVclPu6iq
+         Xhs/8oIwvrTLtR9S+m1NLyHNnAyaBURiZMn5IdpyrGuwLJ4XZhKL/cGTE2sq3ILf89io
+         GntiiTpq+cptR22nO5pcUPxDKm2EtAJKdw/Fi1PCfdYqxmvWa/IDkOjj95xRyLSx0c7p
+         lPJA==
+X-Gm-Message-State: AOJu0YzZlwD9L40Ke06NodpbtIDc/uAJKZ5lWfGfL1egry7UtnLm+BAi
+	jxTTEyCquukykPzNWRFM7fAL6c5tzAT18h5en2mfzIcA8uOCVLgpQDd0CuysUx/VwnduP1UoL3n
+	QT5Ns7JdYgA2ztfMeZ3Bpl5RIizMWDOXsc+JCnw==
+X-Google-Smtp-Source: AGHT+IE2IAS5u1iB18SvOFf2VzBLFJlsGN8Uiy/FjWbYeaSL6lOEryDDytsrHOd929bLK6dJGDV8nAXIEz9HLZwQ9Tc=
+X-Received: by 2002:a81:b1c4:0:b0:5ea:a867:5bc7 with SMTP id
+ p187-20020a81b1c4000000b005eaa8675bc7mr2419245ywh.6.1706402630566; Sat, 27
+ Jan 2024 16:43:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240104-pinctrl-scmi-v2-0-a9bd86ab5a84@nxp.com>
- <20240104-pinctrl-scmi-v2-4-a9bd86ab5a84@nxp.com> <CACRpkdbOVu4A0JdwvBaxvgvoT5u3VbjTyQi0mgqknCixR2vzYw@mail.gmail.com>
- <DU0PR04MB9417E697C5AF094C449C851D887F2@DU0PR04MB9417.eurprd04.prod.outlook.com>
-In-Reply-To: <DU0PR04MB9417E697C5AF094C449C851D887F2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240121-pinctrl-scmi-v3-0-8d94ba79dca8@nxp.com>
+ <20240121-pinctrl-scmi-v3-6-8d94ba79dca8@nxp.com> <CACRpkdaoBgcYToh2Za9k6gek=MX5Q1YZEoy+MrE-oL3t0UhJpg@mail.gmail.com>
+ <DU0PR04MB941773E509C09F9C951253DC887F2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <DU0PR04MB941773E509C09F9C951253DC887F2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 28 Jan 2024 01:39:50 +0100
-Message-ID: <CACRpkdb8ByjDN2=Cuj6+v87_Ad95nG6o3HguN==y+-4zz_SSvA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] pinctrl: Implementation of the generic
- scmi-pinctrl driver
+Date: Sun, 28 Jan 2024 01:43:39 +0100
+Message-ID: <CACRpkdZ0JD5s+=jFN7Zw_uLr-VtRh3Or2=1rknq+aaF_DjvU4w@mail.gmail.com>
+Subject: Re: [PATCH NOT APPLY v3 6/6] pinctrl: scmi: implement pinctrl_scmi_imx_dt_node_to_map
 To: Peng Fan <peng.fan@nxp.com>
 Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Sudeep Holla <sudeep.holla@arm.com>, 
 	Cristian Marussi <cristian.marussi@arm.com>, Rob Herring <robh+dt@kernel.org>, 
@@ -93,11 +92,37 @@ Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Sudeep Holla <sudeep.holla@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jan 28, 2024 at 1:28=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
+On Sun, Jan 28, 2024 at 1:32=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
+> > Subject: Re: [PATCH NOT APPLY v3 6/6] pinctrl: scmi: implement
+> > On Sun, Jan 21, 2024 at 11:18=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.n=
+xp.com>
+> > wrote:
+> >
+> > > -obj-$(CONFIG_PINCTRL_SCMI)     +=3D pinctrl-scmi.o
+> > > +obj-$(CONFIG_PINCTRL_SCMI)     +=3D pinctrl-scmi.o pinctrl-scmi-imx.=
+o
+> >
+> > I think you should probably create a sub-Kconfig option for this file.
+>
+> Yeah, good suggestion.
+>
+> But as of now, the major issue is Cristian is not happy with adding
+> a vendor compatible for scmi pinctrl when vendor has its own pinconf map.
+> So we are stuck on how to support i.MX95 SCMI pinctrl.
 
-> Would you ACK the current V3 patch or wait I add OF dependency?
+I see.
 
-I ACKed it, don't worry it's just a nitpick.
+> Previously Cristian suggested build exclusive for generic scmi pinctrl an=
+d
+> i.MX scmi pinctrl, but this means arm64 generic defconfig will not able
+> to include both configs.
+>
+> Do you have any suggestions?
+
+This is not a technical problem, I think it is more of a policy problem
+and I can just say what works with pinctrl, the others know better than
+me what is best for SCMI in general and how SCMI drivers should
+be designed.
 
 Yours,
 Linus Walleij
