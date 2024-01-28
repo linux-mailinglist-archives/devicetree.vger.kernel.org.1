@@ -1,62 +1,56 @@
-Return-Path: <devicetree+bounces-35953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EDAC83F86E
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 18:08:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFAF083F885
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 18:28:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33B392832D7
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 17:08:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCC8B1C212DD
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 17:28:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EDEE28DDF;
-	Sun, 28 Jan 2024 17:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 270D0208A5;
+	Sun, 28 Jan 2024 17:28:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mT+1p1dz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qpNQvyge"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71BB328E03;
-	Sun, 28 Jan 2024 17:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E40792D044;
+	Sun, 28 Jan 2024 17:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706461714; cv=none; b=ts5zjSVtb/TQ1n8Ys6fxtbDWrYax1XcXlkm4OmY/TuYTWkBx8092cIrA3Hr2RuD2wGuTCB5sZfNsijjQ6eF87eBwLVRBULqYL92fwUPlHhi2PIG89qB+NMsam3atROjiWsOR2kznqPXDtVzC8AGlNzHgx6zOlo5rKwRgRTU4gCM=
+	t=1706462888; cv=none; b=VJA/hxeyunhTBfsV/QoaoTHfuERB6CgDYEi6sNJAeck25zz6KVwom0jXBFI8e0Ifty62zDHEri8krvW6U4erZwwBwL9uD/71QKjWbT5TWzxFCMEUbVmPqSYurRr4r+lqTDX/pv2crwvJFnGESV5XXqrJ5cDRRnrnV5iWZ7dVRNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706461714; c=relaxed/simple;
-	bh=Rk93StFwB5WhjkPfTooaFx9T8P8/WFK5FZOrXNFl/xc=;
+	s=arc-20240116; t=1706462888; c=relaxed/simple;
+	bh=d48xGCfdHgQFf8NpyiDWQFPtYzrREixBaUNB9/MDMRI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Rl7JU0+E1ABF1ooyLqCUGp0IerjAxjDN/nMROEin8W/x8qbXD9TqAkYKctYQUz6+PkqFshzL9MtZqRdVFhtpLLVpKVrkkGIw6cbxtPvlmEQ0GAorAElygie+fDIANBnWh52PokeD0RO1UgAdrrYtmGLinosK8wv5OLnFnutHSM8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mT+1p1dz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A124C433F1;
-	Sun, 28 Jan 2024 17:08:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WFRmz5WzI8S2rd8RtQRNciMU22r2xVZKKT70PYyj0pp/2AkoLtTMETbwv+KTRCm+e/xavjF+m01Dg++w43qV2v8eZ6IBEiJKzyTFKazhJs1/lTIH6srh1uB7Pj3LTRBqNhWYEvut2SnakdDU6Y+5X6V5z7QAafCsDCShU3LEdfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qpNQvyge; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E493C433F1;
+	Sun, 28 Jan 2024 17:28:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706461713;
-	bh=Rk93StFwB5WhjkPfTooaFx9T8P8/WFK5FZOrXNFl/xc=;
+	s=k20201202; t=1706462887;
+	bh=d48xGCfdHgQFf8NpyiDWQFPtYzrREixBaUNB9/MDMRI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mT+1p1dzp3Fmp3rTTPLEJRryULqTcl+7omdJMtuWKOe1TATGVEzA5+hk1X2q+pYSn
-	 1c/cQ0LrK6VIPZV6FkryNERvrSL3oUJD50LXp0TBNhYz7Fi94u5TmEY9dulvkcekfa
-	 TE6zBg51ah2GZWMXp2NHP5tKY13x4uComkZZkPklYl3/f5VBpu/7HvM9/Y6iAQM7b9
-	 DBQNwmMNAObWSqCEfHIRNNCfLTix7bG9qB0KZZSiIPvDXKOfDHVoaNg6X/kP+dL7W6
-	 sVYNMQBmRdaLFQdgKmimnpLnchl+4zFpWoihdCE4wxsvlu33aMICS/FaoOFOQNvtxr
-	 MDz1ZuUFpEiYA==
-Date: Sun, 28 Jan 2024 17:08:28 +0000
+	b=qpNQvygeP1kIb4jcRwrWzShjUPJi7+MCYpyhtJ6xVOF5HBZw61OUpGyi0kAO9Car+
+	 i8BXxlXBSZEdxa+ZFt3ZTzETuYDEBMqBfl8HNDNGDNqa16AV8LIZP8m5EdZKl66edV
+	 aY+qUJTj5D0yf+p1RI/ouX0UoERCqJCGYhHr7Xw6rfhtOLZUkzxg2o65vk8Ln0XpLz
+	 0ODuet16dx/eY5UcEP8aKsS9XR9/WOQsdIC0ZVvmW2jS+d2KUwEWH2Q+V8cYqdkhNA
+	 TyShHsrqj7XzwLJmYcUPUAxoSefLw+sHbxtvWbAbqLaShsOhXS7jm4uRfD5Nkcq57j
+	 bekYc02qspRPA==
+Date: Sun, 28 Jan 2024 17:28:03 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
-	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-	Philip Howard <phil@gadgetoid.com>,
-	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Nicola Di Lieto <nicola.dilieto@gmail.com>
-Subject: Re: [PATCH V3 1/2] dt-bindings: pwm: Add pwm-gpio
-Message-ID: <20240128-unlearned-routine-201fd02bd2c0@spud>
-References: <20240128163630.104725-1-wahrenst@gmx.net>
- <20240128163630.104725-2-wahrenst@gmx.net>
+	Conor Dooley <conor+dt@kernel.org>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmp-dma: convert to YAML
+Message-ID: <20240128-feminine-sulfite-8891c60ec123@spud>
+References: <20240127-pxa-dma-yaml-v1-1-573bafe86454@skole.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,108 +58,151 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="c9CUbGV6iAZ/BEV3"
+	protocol="application/pgp-signature"; boundary="FsqycuUB7fyG5ylo"
 Content-Disposition: inline
-In-Reply-To: <20240128163630.104725-2-wahrenst@gmx.net>
+In-Reply-To: <20240127-pxa-dma-yaml-v1-1-573bafe86454@skole.hr>
 
 
---c9CUbGV6iAZ/BEV3
-Content-Type: text/plain; charset=us-ascii
+--FsqycuUB7fyG5ylo
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Jan 28, 2024 at 05:36:29PM +0100, Stefan Wahren wrote:
-> From: Nicola Di Lieto <nicola.dilieto@gmail.com>
->=20
-> Add bindings for the pwm-gpio driver.
+Hey,
 
-drop "driver" from here and instead explain in terms of what the
-hardware is doing. I think that's just as simple as saying that it is a
-binding for a gpio used as a pwm.
-
+On Sat, Jan 27, 2024 at 05:53:45PM +0100, Duje Mihanovi=C4=87 wrote:
+> Convert the Marvell MMP DMA binding to YAML.
 >=20
-> Signed-off-by: Nicola Di Lieto <nicola.dilieto@gmail.com>
-> Co-developed-by: Stefan Wahren <wahrenst@gmx.net>
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> The TXT binding mentions that the controller may have one IRQ per DMA
+> channel. Examples of this were dropped in the YAML binding because of
+> dt_binding_check complaints (either too many interrupt cells or
+> interrupts) and the fact that this is not used in any of the in-tree
+> device trees.
+>=20
+> Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
 > ---
->  .../devicetree/bindings/pwm/pwm-gpio.yaml     | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
+>  .../devicetree/bindings/dma/marvell,mmp-dma.yaml   | 82 ++++++++++++++++=
+++++++
+>  Documentation/devicetree/bindings/dma/mmp-dma.txt  | 81 ----------------=
+-----
+>  2 files changed, 82 insertions(+), 81 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml b/Docume=
-ntation/devicetree/bindings/pwm/pwm-gpio.yaml
+> diff --git a/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml b=
+/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
 > new file mode 100644
-> index 000000000000..4932484563f9
+> index 000000000000..fe94ba9143e0
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
-> @@ -0,0 +1,42 @@
+> +++ b/Documentation/devicetree/bindings/dma/marvell,mmp-dma.yaml
+> @@ -0,0 +1,82 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-gpio.yaml#
+> +$id: http://devicetree.org/schemas/dma/marvell,mmp-dma.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Generic software PWM for modulating GPIOs
+> +title: Marvell MMP DMA controller
 > +
 > +maintainers:
-> +  - Stefan Wahren <wahrenst@gmx.net>
+> +  - Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
+> +
+> +description:
+> +  Marvell MMP SoCs may have two types of DMA controllers, peripheral and=
+ audio.
 > +
 > +properties:
-> +  "#pwm-cells":
-> +    description: |
-> +      It should be 3. See pwm.yaml in this directory for a
-> +      description of the cells format.
-
-Instead of this description (which I know isn't unique to this binding)
-I think you should have a ref: to pwm.yaml.
-
-> +    const: 3
-> +
 > +  compatible:
-> +    const: pwm-gpio
+> +    enum:
+> +      - marvell,pdma-1.0
+> +      - marvell,adma-1.0
+> +      - marvell,pxa910-squ
 > +
-> +  gpios:
-> +    description:
-> +      GPIO to be modulated
+> +  reg:
 > +    maxItems: 1
 > +
-> +required:
-> +  - "#pwm-cells"
-> +  - compatible
-> +  - gpios
+> +  interrupts:
+> +    description:
+> +      Interrupt lines for the controller, may be shared or one per DMA c=
+hannel
+> +    minItems: 1
 > +
-> +additionalProperties: false
+> +  '#dma-channels':
+> +    deprecated: true
+> +
+> +  '#dma-requests':
+> +    deprecated: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - '#dma-cells'
+> +
+> +allOf:
+> +  - $ref: dma-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - marvell,adma-1.0
+> +              - marvell,pxa910-squ
+> +    then:
+> +      properties:
+> +        asram:
+> +          description:
+> +            phandle to the SRAM pool
+> +          minItems: 1
+> +          maxItems: 1
+> +        iram:
+> +          maxItems:=20
+
+These properties are not mentioned in the text binding, nor commit
+message. Where did they come from?
+
+That said, for properties that are only usable on some platforms, please
+define them at the top level and conditionally permit/constrain them.
+
+> +unevaluatedProperties: false
 > +
 > +examples:
+> +  # Peripheral controller
 > +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    pwm0 {
+> +    pdma0: dma-controller@d4000000 {
 
-Which may then lead to a complaint about the formatting of your node
-name.
+The label is not needed here or below.
+In fact, I'd probably delete the second example as it shows nothing that
+the first one does not.
 
-Cheers,
+thanks,
 Conor.
 
-> +        #pwm-cells =3D <3>;
-> +        compatible =3D "pwm-gpio";
-> +        gpios =3D <&gpio 1 GPIO_ACTIVE_HIGH>;
+> +        compatible =3D "marvell,pdma-1.0";
+> +        reg =3D <0xd4000000 0x10000>;
+> +        interrupts =3D <47>;
+> +        #dma-cells =3D <2>;
+> +        dma-channels =3D <16>;
 > +    };
-> --
-> 2.34.1
->=20
+> +
+> +  # Audio controller
+> +  - |
+> +    squ: dma-controller@d42a0800 {
+> +        compatible =3D "marvell,pxa910-squ";
+> +        reg =3D <0xd42a0800 0x100>;
+> +        interrupts =3D <46>;
+> +        #dma-cells =3D <2>;
+> +        dma-channels =3D <2>;
+> +    };
 
---c9CUbGV6iAZ/BEV3
+--FsqycuUB7fyG5ylo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbaKDAAKCRB4tDGHoIJi
-0iqtAQC8JWlaw8Us9ODHHe0kWVLk7nbGPl1i2GkQWjAgcw8vmAEAoSlmdCHc6s7g
-jdbdeIuUPAR6Pv0jxHjzXYJD/jVNRAw=
-=Ml3p
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbaOowAKCRB4tDGHoIJi
+0m+3AP9YxodicQITyEr/b/mKRwodDU8jOXJAYo19Ub+5NXgh3QEAjNIVJuDzLiYE
+yllcgmsNqNpWgE9hTaQcUSvqNwkinQc=
+=hw/+
 -----END PGP SIGNATURE-----
 
---c9CUbGV6iAZ/BEV3--
+--FsqycuUB7fyG5ylo--
 
