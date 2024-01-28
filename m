@@ -1,175 +1,151 @@
-Return-Path: <devicetree+bounces-35983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A47DD83FA25
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 22:28:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A32DE83FA35
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 22:55:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C87161C21D7A
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 21:28:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A556B21DAE
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 21:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0AC25772;
-	Sun, 28 Jan 2024 21:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 864583C48C;
+	Sun, 28 Jan 2024 21:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FFyUdY/X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cv/CHmIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CEBD4C3BF
-	for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 21:28:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9787A3C46D
+	for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 21:54:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706477285; cv=none; b=TqwkIEXefSg2HTtbhlT1Z86ogsdAZ4WE3CABs0B9+HOK8AtO2cQGKMhWMBCujKfLDzTRDWiy6jUWnlHm4PzlDpI4GqNqJVd0r1NrYkLQWc+7IcozMxd6e7Lfby91kYXTU3Zw4S+VuHdVo24S5bq0b+o4dFy9FEgknBdI8qNoILs=
+	t=1706478897; cv=none; b=TArrcsZhRPs16oyURW/4HQva3AFBq10iO0x32YeEhGa3Wpf0NMmjT4ntk5XcKoI7Ye3UIohR0AeyzyIQycLHzVEjBDxiTpDzVWmh9VERM2kCQmviQxtJhDEpoOTPe3kN7lt0nlFNwX5hjRJMBerHRBmyM4ygRddCYGgwEL82qGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706477285; c=relaxed/simple;
-	bh=CgVdGz7EKTRkelJIVLWkTCcNdrYoc8AKZ/MaSuVBL7Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XJ072AnvW8LXJsnKEyqkmpInmaQ+wEklzgRsDHVgxyv29xGou0buq/t2GLSl7AcqgGOcEA0z82yuqwuYyFnyrqeG6vIkQ/uZG6D7eYzG5tY6sK/V3WlGg+DMrftqhSIpcaTcdSyFkdR5gIgBJQ6gTgUhwp9OcggD6pH9v6aJBnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FFyUdY/X; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2cf47acf8f8so21170331fa.1
-        for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 13:28:03 -0800 (PST)
+	s=arc-20240116; t=1706478897; c=relaxed/simple;
+	bh=WugGfDK+emUMgdBb1FkLCuURsfNZ1uU59q+8DxDxxZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PSHw/2+2Aj58EGIneYgEDnyMzVc5NvqYZvyiKnxjGaeWFQryc0ZJbqTL5ABWzZDK/YQPc0ZxwetxA2uHtw5styCsd6joWxruCcs9jG108OtihWQ1hsx2ef2DYpBvCgxTAR9Yf3k2rxiU2AXdUVJigW1//lyLEdgqY/QwilXWloo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cv/CHmIz; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a353f5407f1so129687866b.3
+        for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 13:54:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1706477282; x=1707082082; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hCQGrFxh/LvGLf8ohnPj0k6l4TPEiUjhbezQwirWFxI=;
-        b=FFyUdY/Xy1G3RowoQ47ZOSuAPm0W9FwJiTYrqHHTUWFrOyGGDmOl1pmCK6t5xdnaCv
-         eqp9EtcKsukJajiMmGqL/FQCHVAaEN81cXWUoJvaVVaqx518eMfU5b9kQmKYydL7EYJV
-         NrFdqPsbAe4PGXlyXMu4dYuY5cQiFZLk5caZF4fgRJpSp4jGvp7WX7BQjcWaao+HXDCt
-         r6ex/ILwzRJbGTaiM6GlNaIoz4tiiFncpf9NzI4dliDrleNweWeMKz0EC+D6JwTEo2Re
-         MNTNLt7fwrflhjaoIUhIxyFM6FGtrezVeDr3yn5/IxbaqhbNky1/nSof3Q4vGv/kALHx
-         4ZMQ==
+        d=linaro.org; s=google; t=1706478893; x=1707083693; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=D+XQ5J70Vv4JK+99QpNV1l2iMHbJbDR/DSuCxbzTjVM=;
+        b=cv/CHmIzfVJ6pd22YjE1Mtfe4WoJ5LPntjTugKqhzRmY3/FtzAdEmDqP0Ga8GxzH4n
+         ZYRdbEs2+ITAwojqhk9c3PKgdpSh7s/gGVgK2a1Meos6i6FQaucc0mi9LazNmLfW8sR7
+         FaUtNI92bm9mqOxbO++zpRNeUosi9fKAqPrJPFKjP0FJsW3kIAArnsbz/gXBguKcIjt0
+         qQD7gQHxutEpDEU/oIVwUDf/RzoxKZbHtdDAmPPBN1TC39XubtlOHbbmKtb8xGJO564z
+         u16Z4g69r6vk3gI2GwfQcmPasRfbXRhWiXogP0DUpxAQASQXNoSwxcnf+h/YR0RijLZu
+         vyng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706477282; x=1707082082;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hCQGrFxh/LvGLf8ohnPj0k6l4TPEiUjhbezQwirWFxI=;
-        b=gGGBagLq5W4JevF27Py3coKdeA5k+99EAsWSIXknEjo22hLZ9kp60YdheEn1eO0gB6
-         P5hVADq6dj2TcNvTkPqTugLwGFqaWyJU90Rz5A2tOM6sAtzKct2Zwe8yzSVMtUF+Sca+
-         D1FhJCBhEZco8vmDantBR5lla9YZX53Ca5LMu7PPuw3mKoRMsLbwq4vldUM2Jql0zpwq
-         R8IKzXiYbT1sQi/YHBLG5+c0zovLxdEpDoJPIUkrcM7je0pgxwv1iNtUdwpCqsDa+PN4
-         g2pRZTfQKHPM20vpd0arWhHk8r/PjqVgNH2Z/sI1rI/PJKmQEIKfsWK4fbY2vzMYOshv
-         t8Wg==
-X-Gm-Message-State: AOJu0YwDfm0FPK3SvKyya/iBLc95WFRtZz/zJF93Cn3xmF6SYbPKhwsx
-	o82UwH2dNigQXVFV9s/Gjs2BHDqMERQhRMXmihN+P1wh2y0aRA+ID21CyBExqiCNiTDL6UI1yem
-	HlhtGm3fxF6N204nRvdcelh2kG1agcdJ2/G1CWA==
-X-Google-Smtp-Source: AGHT+IHMvCkcMt6M2oupNSDclHa2N891EI/vgdGNpp2uWlxC04jIs5KrrzcH3iSyyrRN8THUE5cftlFI90+3KX7fMPo=
-X-Received: by 2002:a2e:3806:0:b0:2cf:73b:26ae with SMTP id
- f6-20020a2e3806000000b002cf073b26aemr1440776lja.22.1706477281672; Sun, 28 Jan
- 2024 13:28:01 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706478893; x=1707083693;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D+XQ5J70Vv4JK+99QpNV1l2iMHbJbDR/DSuCxbzTjVM=;
+        b=FOAZhVOlD9iaoe1knDX7vUDk5wAocgkQswUof7EqfVBNkJ556hJkJHHXuCQQ3Racnk
+         pX0DyhrCzxePNACdhQWsSoUuBe4Lqrrwx+8p3VIAUdOlMwp/vvW06UQqbBpvbstEkxWN
+         H6j0/rVO0ooRYs1T9DIc775o00BxP/I2jTHlM8vmMYreVOCUnT6cPJ4y3ORzItt0MsuU
+         JwyMZb3YG8Ug+iQt7D4PI2ikgHL8t6t6Ni9YVBwMBb47MIwEaWZdeinFkVmqFf71IzQs
+         3//qY69fKfMansT3Lw39Rixu2z33VLe1V906SfEFTDJOS2/NJuVzVqpp4Xu/evEv+Xrz
+         X4EQ==
+X-Gm-Message-State: AOJu0YxcjaWORlHdOshh8fZcE/W0q0PhE+m0sJrOlH6fAFPM2pwT1GDs
+	eqSCSiiJz/oQDbrrcyEh1O7JkK0oLHBBhpM+cDfdq5xR8FW6iuHWj7CLCbqA/Ps=
+X-Google-Smtp-Source: AGHT+IGwkQQURlUlsbXUqGqdg2JFIas0UFI7/DKvPhXxcltfn/ipNh+f9fXJupwAXTqT/wt8TETTOA==
+X-Received: by 2002:a17:906:4901:b0:a35:2758:22a3 with SMTP id b1-20020a170906490100b00a35275822a3mr2847446ejq.1.1706478892377;
+        Sun, 28 Jan 2024 13:54:52 -0800 (PST)
+Received: from linaro.org ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id s8-20020a170906bc4800b00a317165027fsm3297385ejv.13.2024.01.28.13.54.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Jan 2024 13:54:51 -0800 (PST)
+Date: Sun, 28 Jan 2024 23:54:50 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: Re: [PATCH v2 10/10] clk: qcom: Add camcc clock driver for x1e80100
+Message-ID: <ZbbNKtXF7b20YZLl@linaro.org>
+References: <20231214-x1e80100-clock-controllers-v2-0-2b0739bebd27@linaro.org>
+ <20231214-x1e80100-clock-controllers-v2-10-2b0739bebd27@linaro.org>
+ <624956b6-d7ea-43da-bb8d-32d9166a0272@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
- <20240123-iio-backend-v7-9-1bff236b8693@analog.com> <20240127152049.22a8ce74@jic23-huawei>
-In-Reply-To: <20240127152049.22a8ce74@jic23-huawei>
-From: David Lechner <dlechner@baylibre.com>
-Date: Sun, 28 Jan 2024 15:27:50 -0600
-Message-ID: <CAMknhBF6QNUf2zX9sQ+09nt2ZapTShwv3-HbmehFgvHnMfNo5Q@mail.gmail.com>
-Subject: Re: [PATCH v7 9/9] iio: adc: adi-axi-adc: move to backend framework
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>, nuno.sa@analog.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>, 
-	Saravana Kannan <saravanak@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <624956b6-d7ea-43da-bb8d-32d9166a0272@linaro.org>
 
-On Sat, Jan 27, 2024 at 9:21=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Tue, 23 Jan 2024 16:14:30 +0100
-> Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
->
-> > From: Nuno Sa <nuno.sa@analog.com>
-> >
-> > Move to the IIO backend framework. Devices supported by adi-axi-adc now
-> > register themselves as backend devices.
-> >
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> I'm still not getting the %d vs %c change..
->
-> Otherwise LGTM
->
-> > -     if (cl->info->version > ver) {
-> > +     if (*expected_ver > ver) {
-> >               dev_err(&pdev->dev,
-> > -                     "IP core version is too old. Expected %d.%.2d.%c,=
- Reported %d.%.2d.%c\n",
-> > -                     ADI_AXI_PCORE_VER_MAJOR(cl->info->version),
-> > -                     ADI_AXI_PCORE_VER_MINOR(cl->info->version),
-> > -                     ADI_AXI_PCORE_VER_PATCH(cl->info->version),
-> > +                     "IP core version is too old. Expected %d.%.2d.%d,=
- Reported %d.%.2d.%c\n",
->
-> If it's a valid change fine, but then I'd expect both %c to change.
-> I'd also expect it to be in a separate patch with an explanation of why.
+On 23-12-16 14:39:48, Konrad Dybcio wrote:
+> On 14.12.2023 17:49, Abel Vesa wrote:
+> > From: Rajendra Nayak <quic_rjendra@quicinc.com>
+> > 
+> > Add the camcc clock driver for x1e80100
+> > 
+> > Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> [...]
+> 
+> > +enum {
+> > +	DT_BI_TCXO,
+> > +	DT_BI_TCXO_AO,
+> > +	DT_SLEEP_CLK,
+> > +};
+> > +
+> > +enum {
+> > +	P_BI_TCXO,
+> Please don't overload this define with DT_BI_TCXO_AO, add a new one
+> for the active-only clock. Please also do this in other drivers in
+> this series.
+> 
+> [...]
+> 
+> > +	clk_lucid_ole_pll_configure(&cam_cc_pll0, regmap, &cam_cc_pll0_config);
+> > +	clk_lucid_ole_pll_configure(&cam_cc_pll1, regmap, &cam_cc_pll1_config);
+> > +	clk_rivian_evo_pll_configure(&cam_cc_pll2, regmap, &cam_cc_pll2_config);
+> > +	clk_lucid_ole_pll_configure(&cam_cc_pll3, regmap, &cam_cc_pll3_config);
+> > +	clk_lucid_ole_pll_configure(&cam_cc_pll4, regmap, &cam_cc_pll4_config);
+> > +	clk_lucid_ole_pll_configure(&cam_cc_pll6, regmap, &cam_cc_pll6_config);
+> > +	clk_lucid_ole_pll_configure(&cam_cc_pll8, regmap, &cam_cc_pll8_config);
+> Do we know whether these configure calls are actually necessary?
 
-I was noticing this same pattern in other "AXI" drivers. I think the
-reason for the %c is to match the version format in the devicetree
-compatible string which looks like "1.00.a". So to fix this we should
-probably keep %c and change the value line to
-`ADI_AXI_PCORE_VER_PATCH(cl->info->version) + 'a'` to convert it to
-the appropriate ascii value.
+So camera support hasn't been fully brought up yet, but based on the SM8550
+driver (which is quite similar), they seem to be needed.
 
-(But agree that this should be done in a separate patch/)
+Once camera is up, we can confirm for sure.
 
->
-> > +                     ADI_AXI_PCORE_VER_MAJOR(*expected_ver),
-> > +                     ADI_AXI_PCORE_VER_MINOR(*expected_ver),
-> > +                     ADI_AXI_PCORE_VER_PATCH(*expected_ver),
-> >                       ADI_AXI_PCORE_VER_MAJOR(ver),
-> >                       ADI_AXI_PCORE_VER_MINOR(ver),
-> >                       ADI_AXI_PCORE_VER_PATCH(ver));
-> >               return -ENODEV;
-> >       }
-> >
-> > -     indio_dev->info =3D &adi_axi_adc_info;
-> > -     indio_dev->name =3D "adi-axi-adc";
-> > -     indio_dev->modes =3D INDIO_DIRECT_MODE;
-> > -     indio_dev->num_channels =3D conv->chip_info->num_channels;
-> > -     indio_dev->channels =3D conv->chip_info->channels;
-> > -
-> > -     ret =3D adi_axi_adc_config_dma_buffer(&pdev->dev, indio_dev);
-> > +     ret =3D devm_iio_backend_register(&pdev->dev, &adi_axi_adc_generi=
-c, st);
-> >       if (ret)
-> >               return ret;
-> >
-> > -     ret =3D adi_axi_adc_setup_channels(&pdev->dev, st);
-> > -     if (ret)
-> > -             return ret;
-> > -
-> > -     ret =3D devm_iio_device_register(&pdev->dev, indio_dev);
-> > -     if (ret)
-> > -             return ret;
-> > -
-> > -     dev_info(&pdev->dev, "AXI ADC IP core (%d.%.2d.%c) probed\n",
-> > +     dev_info(&pdev->dev, "AXI ADC IP core (%d.%.2d.%d) probed\n",
->
-> This should also be in that separate patch fixing up this formatting.
->
-> >                ADI_AXI_PCORE_VER_MAJOR(ver),
-> >                ADI_AXI_PCORE_VER_MINOR(ver),
-> >                ADI_AXI_PCORE_VER_PATCH(ver));
-> > @@ -428,6 +229,8 @@ static int adi_axi_adc_probe(struct platform_device=
- *pdev)
-> >       return 0;
-> >  }
->
->
+> > +
+> > +	/*
+> > +	 * Keep clocks always enabled:
+> > +	 *	cam_cc_gdsc_clk
+> > +	 *	cam_cc_sleep_clk
+> > +	 */
+> > +	regmap_update_bits(regmap, 0x13a9c, BIT(0), BIT(0));
+> > +	regmap_update_bits(regmap, 0x13ab8, BIT(0), BIT(0));
+> Please make the comments inline with each line
+
+Will do.
+
+> 
+> Konrad
 
