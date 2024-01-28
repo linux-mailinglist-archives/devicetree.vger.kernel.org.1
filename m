@@ -1,152 +1,239 @@
-Return-Path: <devicetree+bounces-35923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E825883F36A
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 03:58:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D673883F39F
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 04:36:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 846FEB22303
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 02:58:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 30AB4B21A5E
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 03:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B25AA1870;
-	Sun, 28 Jan 2024 02:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7080139D;
+	Sun, 28 Jan 2024 03:36:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="re3sFDq2"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="KG6rScrR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A23C17F5;
-	Sun, 28 Jan 2024 02:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D30903FEF;
+	Sun, 28 Jan 2024 03:36:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706410701; cv=none; b=KG52dQJCUTkvn+Pm/k1pXPvYij4+MMBtmLfMPsb294xkHLmo7qWtTti1FVbbJj9/zcDRHwGdW7GBVnQgLaXFg4fRcuL+rz2IdWGqWXH/Ysfyzj6QG8wbG4J5GA2D8x3tseC9jNuDVCAwB3gSUehJK/P5XpMihEYn4PTVIDdxcH0=
+	t=1706412970; cv=none; b=XRsUcSRGZAxpxEXxMGo+5OGNa5rTx5equrBT4VXtAAzp39RKuDf223gwDq9hGf0HCDwPzsc+lHbzNKONMb1cQpRF5QB61pfKrrMJf5+7e8REshzSAkHi3wUlUCQg10g7ptloW6YsMln0xq4McfeC+v15T/c5zmbOEwb4bo7b9dY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706410701; c=relaxed/simple;
-	bh=I2JHP2n51qFJXJlFgu6I1eAj34ctCNFkTtkBruBv+7o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bduqJH461UavZZfJigAlv+WAJslgPH8QqKliGR2vT0YBAlD1dJuqEUd4H7bCIogWS57gQXbSfhvBTLgmfkfQUDoFpJVKe6VkygyTjPBr9bjWM9o2tlmOrm1XUwqBc4xTOL2WDR/WjkNixsGukyzhjwXAV4VD5Zacamba39LAavs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=re3sFDq2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBD5CC433C7;
-	Sun, 28 Jan 2024 02:58:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706410701;
-	bh=I2JHP2n51qFJXJlFgu6I1eAj34ctCNFkTtkBruBv+7o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=re3sFDq2VrRHtBJpU5WFEzsvCO3D4//VGt8/TPGPUEHLuOcc+0LArSoGeiJWeAaM1
-	 0PwhWNvQ218v4SmjQ70WyaSkFM6aGV+u2r+46EgMH3c1W9tfcHBw/qONMj9aBYXjSD
-	 +JEapPqzF7wE0edCFPLwYNLqDKkojra5cRCKbt314xwnew0aA6s8i5do+/LWop085s
-	 s9X0yfqnX/msm9kZZckiFT1ZSD9t4VMeVLCgWDTWQ5AMUlKV+4CUKIqXfyAAqlJV8R
-	 CqutGiZitH/FESUFT7lMQYs5HXgrlcUijnWgEKRQ8L866a6nCqcLlhfdNyMLUwspHd
-	 u9+jplvnbb0cw==
-Date: Sat, 27 Jan 2024 20:58:17 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: agross@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, konrad.dybcio@linaro.org, mani@kernel.org, robh+dt@kernel.org, 
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com, 
-	quic_nayiluri@quicinc.com, dmitry.baryshkov@linaro.org, robh@kernel.org, 
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com, quic_parass@quicinc.com, 
-	quic_schintav@quicinc.com, quic_shijjose@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mhi@lists.linux.dev
-Subject: Re: [PATCH v9 0/5] arm64: qcom: sa8775p: add support for EP PCIe
-Message-ID: <pm2emx3nnypdtfo63f6vly4guybl3pguqe3djgeqgiojxgqttl@oainfndei3qa>
-References: <1701432377-16899-1-git-send-email-quic_msarkar@quicinc.com>
+	s=arc-20240116; t=1706412970; c=relaxed/simple;
+	bh=KYQFlIIyPOnAYU4BCpmcqOZW2Fk66y/U3GkF/Ses4e8=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=QCg/Ut2cbi2V1owaLm6JIKWrQ0x+PpCgFjcvDv77D34YBNwGt6KoB+qOpvbcU510DBF53Y5pSRdViyJ6oY4NRJBFldrjDzMq1XLYHl4ggZXDJ7EJI+rsrWGpM6SBxWD6NKx773rMIufPR1i2pXIg6uOxAGn0GKBjut8/vGICMkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=KG6rScrR; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1701432377-16899-1-git-send-email-quic_msarkar@quicinc.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1706412958;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IGynTAOYEGgnqBwfLRvahiiezGVmO/RYQ5/JRIx6Ctk=;
+	b=KG6rScrRZHwd6CM0HJJfXU/XWE00HNFc5rAeAejlPdmECoKkqpbO62Qeqy2q9DNE9cgk9g
+	P9io/r1zWzHMvU6jV6jd32bXQecZALlr61VkUpTB/5GQ2ye5R8Q4fOdg29UXOc/LtNLcup
+	DasNWw3fAqWceknmDXZHUp/OaSdniHAmUluORsO6YZvv/5FksGr6k5JTBgfYjUyZJckAH8
+	VNa17VsMXlMhKqg4XfYGkhP+H+5Q595YPnsmv+odGHio5qtz8SlX/gJ56i2zKTF7lT8HiM
+	77ORaZwK7M77FpFPPJzoOA6X4MAquOIRGWP67I5YXk20m+vMBt7JIA0TsIUBPQ==
+Date: Sun, 28 Jan 2024 04:35:58 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>
+Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add OPP data for CPU cores on
+ RK3588
+In-Reply-To: <CABjd4YyyuB9ou-BaOrvt_rrv1-jPE=wtwWDHDqNqyT4a0E51wg@mail.gmail.com>
+References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
+ <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com>
+ <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
+ <ccc004cfae513195351ce0a79e12f6af@manjaro.org>
+ <CABjd4YxSTLZjrnSCn0fh81US682-uhZ16-cgydzz97shhCpq4w@mail.gmail.com>
+ <1f0608831cfb95c80edf16cd751eee76@manjaro.org>
+ <CABjd4Yx06igrZQvHA4q-mcr2oSEf7eQyUS+KEATUGbw6qLc2sg@mail.gmail.com>
+ <528a37d84cdd871e717b4ebf648bb8a7@manjaro.org>
+ <9b72b688-be63-464e-a5dc-cf6051ccee12@linaro.org>
+ <CABjd4YzdD9ciMn=p=opEK+fdxCkeCodsryph7pkqgsEUNcNrUQ@mail.gmail.com>
+ <5ef9bab979260884866efe30d19ba8f1@manjaro.org>
+ <CABjd4YyyuB9ou-BaOrvt_rrv1-jPE=wtwWDHDqNqyT4a0E51wg@mail.gmail.com>
+Message-ID: <9fda41efe365241ce06bd58974c8e055@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Fri, Dec 01, 2023 at 05:36:11PM +0530, Mrinmay Sarkar wrote:
-> This series adds the relavent DT bindings, new compatible string,
-> add support to EPF driver and add EP PCIe node in dtsi file for
-> ep pcie0 controller.
+On 2024-01-27 20:41, Alexey Charkov wrote:
+> On Sat, Jan 27, 2024 at 12:33 AM Dragan Simic <dsimic@manjaro.org> 
+> wrote:
+>> On 2024-01-26 14:44, Alexey Charkov wrote:
+>> > On Fri, Jan 26, 2024 at 4:56 PM Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
+>> >> On 26/01/2024 08:49, Dragan Simic wrote:
+>> >> > On 2024-01-26 08:30, Alexey Charkov wrote:
+>> >> >> On Fri, Jan 26, 2024 at 11:05 AM Dragan Simic <dsimic@manjaro.org> wrote:
+>> >> >>> On 2024-01-26 07:44, Alexey Charkov wrote:
+>> >> >>> > On Fri, Jan 26, 2024 at 10:32 AM Dragan Simic <dsimic@manjaro.org> wrote:
+>> >> >>> >> On 2024-01-25 10:30, Daniel Lezcano wrote:
+>> >> >> Throttling would also lower the voltage at some point, which cools it
+>> >> >> down much faster!
+>> >> >
+>> >> > Of course, but the key is not to cool (and slow down) the CPU cores too
+>> >> > much, but just enough to stay within the available thermal envelope,
+>> >> > which is where the same-voltage, lower-frequency OPPs should shine.
+>> >>
+>> >> That implies the resulting power is sustainable which I doubt it is
+>> >> the
+>> >> case.
+>> >>
+>> >> The voltage scaling makes the cooling effect efficient not the
+>> >> frequency.
+>> >>
+>> >> For example:
+>> >>         opp5 = opp(2GHz, 1V) => 2 BogoWatt
+>> >>         opp4 = opp(1.9GHz, 1V) => 1.9 BogoWatt
+>> >>         opp3 = opp(1.8GHz, 0.9V) => 1.458 BogoWatt
+>> >>         [ other states but we focus on these 3 ]
+>> >>
+>> >> opp5->opp4 => -5% compute capacity, -5% power, ratio=1
+>> >> opp4->opp3 => -5% compute capacity, -23.1% power, ratio=21,6
+>> >>
+>> >> opp5->opp3 => -10% compute capacity, -27.1% power, ratio=36.9
+>> >>
+>> >> In burst operation (no thermal throttling), opp4 is pointless we agree
+>> >> on that.
+>> >>
+>> >> IMO the following will happen: in burst operation with thermal
+>> >> throttling we hit the trip point and then the step wise governor
+>> >> reduces
+>> >> opp5 -> opp4. We have slight power reduction but the temperature does
+>> >> not decrease, so at the next iteration, it is throttle at opp3. And at
+>> >> the end we have opp4 <-> opp3 back and forth instead of opp5 <-> opp3.
+>> >>
+>> >> It is probable we end up with an equivalent frequency average (or
+>> >> compute capacity avg).
+>> >>
+>> >> opp4 <-> opp3 (longer duration in states, less transitions)
+>> >> opp5 <-> opp3 (shorter duration in states, more transitions)
+>> >>
+>> >> Some platforms had their higher OPPs with the same voltage and they
+>> >> failed to cool down the CPU in the long run.
+>> >>
+>> >> Anyway, there is only one way to check it out :)
+>> >>
+>> >> Alexey, is it possible to compare the compute duration for 'dhrystone'
+>> >> with these voltage OPP and without ? (with a period of cool down
+>> >> between
+>> >> the test in order to start at the same thermal condition) ?
+>> >
+>> > Sure, let me try that - would be interesting to see the results. In my
+>> > previous tinkering there were cases when the system stayed at 2.35GHz
+>> > for all big cores for non-trivial time (using the step-wise thermal
+>> > governor), and that's an example of "same voltage, lower frequency".
+>> > Other times though it throttled one cluster down to 1.8GHz and kept
+>> > the other at 2.4GHz, and was also stationary at those parameters for
+>> > extended time. This probably indicates that both of those states use
+>> > sustainable power in my cooling setup.
+>> 
+>> IMHO, there are simply too many factors at play, including different
+>> possible cooling setups, so providing additional CPU throttling
+>> granularity can only be helpful.  Of course, testing and recording
+>> data is the way to move forward, but I think we should use a few
+>> different tests.
 > 
+> Soooo, benchmarking these turned out a bit trickier than I had hoped
+> for. Apparently, dhrystone uses an unsigned int rather than an
+> unsigned long for the loops count (or something of that sort), which
+> means that I can't get it to run enough loops to heat up my chip from
+> a stable idle state to the throttling state (due to counter
+> wraparound). So I ended up with a couple of crutches, namely:
 
-Waiting for the driver changes to be picked up, so that I can merge
-patch 5 through the qcom tree. Are there any unresolved issues that I'm
-failing to spot?
+Huh, it seems that recent SBCs may have become a bit too fast for it,
+which is great. :)  Thank you for the benchmarking.
 
-Regards,
-Bjorn
+>  - run dhrystone continuously on 6 out of 8 cores to make the chip
+> warm enough (`taskset -c 0-5 ./dhrystone -t 6 -r 6000` - note that on
+> my machine cores 6-7 are usually the first ones to get throttled, due
+> to whatever thermal peculiarities)
+>  - wait for the temperature to stabilize (which happens at 79.5C)
+>  - then run timed dhrystone on the remaining 2 out of 6 cores (big
+> ones) to see how throttling with different OPP tables affects overall
+> performance.
 
-> v8 -> v9:
-> - update author in "Add pci_epf_mhi_ prefix to the function" patch.
-> - add ack by and reviewed by tag in commit message.
+Just checking, running the test on just two CPU cores was enough to
+keep the package temperature at around 80 oC?
+
+> In the end, here's what I got with the 'original' OPP table (including
+> "same voltage - different frequencies" states):
+> alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
+> duration: 0 seconds
+> number of threads: 2
+> number of loops: 4000000000000000
+> delay between starting threads: 0 seconds
 > 
-> v7 -> v8:
-> - Add new patch PCI: epf-mhi: Add "pci_epf_mhi_" prefix to the function
->   names
-> - Update PCI: epf-mhi: Add support for SA8775P patch on top of the new
->   patch and update commit message.
+> Dhrystone(1.1) time for 1233977344 passes = 29.7
+> This machine benchmarks at 41481539 dhrystones/second
+>                            23609 DMIPS
+> Dhrystone(1.1) time for 1233977344 passes = 29.8
+> This machine benchmarks at 41476618 dhrystones/second
+>                            23606 DMIPS
 > 
-> v6 -> v7:
-> - add reviewed by tag in commit message in all patches.
-> - update commit message in patch 2 as per comment.
-> - update reason for reusing PID in commit message.
+> Total dhrystone run time: 30.864492 seconds.
 > 
-> v5 -> v6:
-> - update cover letter.
+> And here's what I got with the 'reduced' OPP table (keeping only the
+> highest frequency state for each voltage):
+> alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
+> duration: 0 seconds
+> number of threads: 2
+> number of loops: 4000000000000000
+> delay between starting threads: 0 seconds
 > 
-> v4 -> v5:
-> - add maxItems to the respective field to constrain io space and
->   interrupt in all variants.
+> Dhrystone(1.1) time for 1233977344 passes = 30.9
+> This machine benchmarks at 39968549 dhrystones/second
+>                           22748 DMIPS
+> Dhrystone(1.1) time for 1233977344 passes = 31.0
+> This machine benchmarks at 39817431 dhrystones/second
+>                           22662 DMIPS
 > 
-> v3 -> v4:
-> - add maxItems field in dt bindings
-> - update comment in patch2
-> - dropped PHY driver patch as it is already applied [1]
-> - update comment in EPF driver patch
-> - update commect in dtsi and add iommus instead of iommu-map
+> Total dhrystone run time: 31.995136 seconds.
 > 
-> [1] https://lore.kernel.org/all/169804254205.383714.18423881810869732517.b4-ty@kernel.org/
-> 
-> v2 -> v3:
-> - removed if/then schemas, added minItems for reg,
->   reg-bnames, interrupt and interrupt-names instead.
-> - adding qcom,sa8775p-pcie-ep compitable for sa8775p
->   as we have some specific change to add.
-> - reusing sm8450's pcs_misc num table as it is same as sa8775p.
->   used appropriate namespace for pcs.
-> - remove const from sa8775p_header as kernel test robot
->   throwing some warnings due to this.
-> - remove fallback compatiable as we are adding compatiable for sa8775p.
-> 
-> v1 -> v2:
-> - update description for dma
-> - Reusing qcom,sdx55-pcie-ep compatibe so remove compaitable
->   for sa8775p
-> - sort the defines in phy header file and remove extra defines
-> - add const in return type pci_epf_header and remove MHI_EPF_USE_DMA
->   flag as hdma patch is not ready
-> - add fallback compatiable as qcom,sdx55-pcie-ep, add iommu property
-> 
-> 
-> Manivannan Sadhasivam (1):
->   PCI: epf-mhi: Add "pci_epf_mhi_" prefix to the function names
-> 
-> Mrinmay Sarkar (4):
->   dt-bindings: PCI: qcom-ep: Add support for SA8775P SoC
->   PCI: qcom-ep: Add support for SA8775P SOC
->   PCI: epf-mhi: Add support for SA8775P
->   arm64: dts: qcom: sa8775p: Add ep pcie0 controller node
-> 
->  .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 64 +++++++++++++++++++++-
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 46 ++++++++++++++++
->  drivers/pci/controller/dwc/pcie-qcom-ep.c          |  1 +
->  drivers/pci/endpoint/functions/pci-epf-mhi.c       | 21 ++++++-
->  4 files changed, 128 insertions(+), 4 deletions(-)
-> 
-> -- 
-> 2.7.4
-> 
+> Bottomline: removing the lower-frequency OPPs led to a 3.8% drop in
+> performance in this setup. This is probably far from a reliable
+> estimate, but I guess it indeed indicates that having lower-frequency
+> states might be beneficial in some load scenarios.
+
+Measuring a difference of about 4% may be attributed to some unknown
+inaccuracy or test deviation, but again, a performance improvement of
+about 4% that comes free of charge is nothing to be sneezed at, IMHO.
+
+> Note though that several seconds after hitting the throttling
+> threshold cores 6-7 were oscillating between 1.608GHz and 1.8GHz in
+> both runs, which implies that the whole difference in performance was
+> due to different speed of initial throttling (i.e. it might be a
+> peculiarity of the step-wise thermal governor operation when it has to
+> go through more cooling states to reach the "steady-state" one). Given
+> that both 1.608GHz and 1.8GHz have no lower-frequency same-voltage
+> siblings in either of the OPP tables, it implies that under prolonged
+> constant load there should be no performance difference at all.
+
+... all that with one possible cooling setup, and with one synthetic
+test.  We simply can't know in advance how would a different cooling
+setup on the same or on a different board behave, if you agree.
 
