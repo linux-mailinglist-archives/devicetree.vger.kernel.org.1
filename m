@@ -1,134 +1,175 @@
-Return-Path: <devicetree+bounces-35982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3317983F9EB
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 21:49:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A47DD83FA25
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 22:28:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4FC41F22D53
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 20:49:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C87161C21D7A
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 21:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA182E859;
-	Sun, 28 Jan 2024 20:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB0AC25772;
+	Sun, 28 Jan 2024 21:28:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b="LCKLWsPl"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FFyUdY/X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a.peacevolution.org (a.peacevolution.org [206.189.193.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CB33D568;
-	Sun, 28 Jan 2024 20:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.193.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CEBD4C3BF
+	for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 21:28:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706474932; cv=none; b=okGhcue5hG0yueaezKnh0BqhNSMRs2PUEa0GFzhGfQOxPQuzc6KXxc1VXESqT8VaLxiQidz3VSNrJGav2F/Hf4orXc7l7GrwosEakVorVGnM1XPD5ps0FMsQ5wcunksgnqxviaceQHxl7G+Sw3nQYxXN/UKPqudQU7wreEejSyI=
+	t=1706477285; cv=none; b=TqwkIEXefSg2HTtbhlT1Z86ogsdAZ4WE3CABs0B9+HOK8AtO2cQGKMhWMBCujKfLDzTRDWiy6jUWnlHm4PzlDpI4GqNqJVd0r1NrYkLQWc+7IcozMxd6e7Lfby91kYXTU3Zw4S+VuHdVo24S5bq0b+o4dFy9FEgknBdI8qNoILs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706474932; c=relaxed/simple;
-	bh=0llpIrBcrSsgkq+tDt1UudYHAWxp0O8mGXQOF1XSgn0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VOFuyXajjpI9cES4T0zLQasnOgyrkULcFwVe5ivt21yCcPbzRoKzNTbaGUHyeFMsxj3RAuZ/XH0hzh1L3gPHcARMMw+0hFKRQWvK/pSgB+GlBgx9KRuD5y4q1J36Zg7mhCG50AUt0S16Oz9gPGUQWBh6hdIFocvHfLHSLsVRCXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org; spf=pass smtp.mailfrom=peacevolution.org; dkim=pass (1024-bit key) header.d=peacevolution.org header.i=@peacevolution.org header.b=LCKLWsPl; arc=none smtp.client-ip=206.189.193.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=peacevolution.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=peacevolution.org
-Received: from authenticated-user (PRIMARY_HOSTNAME [PUBLIC_IP])
-	by a.peacevolution.org (Postfix) with ESMTPA id F2CFE46366;
-	Sun, 28 Jan 2024 20:48:48 +0000 (UTC)
-From: Aren Moynihan <aren@peacevolution.org>
-To: linux-kernel@vger.kernel.org
-Cc: Miles Alan <m@milesalan.com>,
-	Ondrej Jirman <megi@xff.cz>,
-	Aren Moynihan <aren@peacevolution.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Subject: [PATCH 4/4] arm64: dts: sun50i-a64-pinephone: change led type to status
-Date: Sun, 28 Jan 2024 15:45:10 -0500
-Message-ID: <20240128204740.2355092-4-aren@peacevolution.org>
-In-Reply-To: <20240128204740.2355092-1-aren@peacevolution.org>
-References: <20240128204740.2355092-1-aren@peacevolution.org>
+	s=arc-20240116; t=1706477285; c=relaxed/simple;
+	bh=CgVdGz7EKTRkelJIVLWkTCcNdrYoc8AKZ/MaSuVBL7Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XJ072AnvW8LXJsnKEyqkmpInmaQ+wEklzgRsDHVgxyv29xGou0buq/t2GLSl7AcqgGOcEA0z82yuqwuYyFnyrqeG6vIkQ/uZG6D7eYzG5tY6sK/V3WlGg+DMrftqhSIpcaTcdSyFkdR5gIgBJQ6gTgUhwp9OcggD6pH9v6aJBnk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FFyUdY/X; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2cf47acf8f8so21170331fa.1
+        for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 13:28:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1706477282; x=1707082082; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hCQGrFxh/LvGLf8ohnPj0k6l4TPEiUjhbezQwirWFxI=;
+        b=FFyUdY/Xy1G3RowoQ47ZOSuAPm0W9FwJiTYrqHHTUWFrOyGGDmOl1pmCK6t5xdnaCv
+         eqp9EtcKsukJajiMmGqL/FQCHVAaEN81cXWUoJvaVVaqx518eMfU5b9kQmKYydL7EYJV
+         NrFdqPsbAe4PGXlyXMu4dYuY5cQiFZLk5caZF4fgRJpSp4jGvp7WX7BQjcWaao+HXDCt
+         r6ex/ILwzRJbGTaiM6GlNaIoz4tiiFncpf9NzI4dliDrleNweWeMKz0EC+D6JwTEo2Re
+         MNTNLt7fwrflhjaoIUhIxyFM6FGtrezVeDr3yn5/IxbaqhbNky1/nSof3Q4vGv/kALHx
+         4ZMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706477282; x=1707082082;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hCQGrFxh/LvGLf8ohnPj0k6l4TPEiUjhbezQwirWFxI=;
+        b=gGGBagLq5W4JevF27Py3coKdeA5k+99EAsWSIXknEjo22hLZ9kp60YdheEn1eO0gB6
+         P5hVADq6dj2TcNvTkPqTugLwGFqaWyJU90Rz5A2tOM6sAtzKct2Zwe8yzSVMtUF+Sca+
+         D1FhJCBhEZco8vmDantBR5lla9YZX53Ca5LMu7PPuw3mKoRMsLbwq4vldUM2Jql0zpwq
+         R8IKzXiYbT1sQi/YHBLG5+c0zovLxdEpDoJPIUkrcM7je0pgxwv1iNtUdwpCqsDa+PN4
+         g2pRZTfQKHPM20vpd0arWhHk8r/PjqVgNH2Z/sI1rI/PJKmQEIKfsWK4fbY2vzMYOshv
+         t8Wg==
+X-Gm-Message-State: AOJu0YwDfm0FPK3SvKyya/iBLc95WFRtZz/zJF93Cn3xmF6SYbPKhwsx
+	o82UwH2dNigQXVFV9s/Gjs2BHDqMERQhRMXmihN+P1wh2y0aRA+ID21CyBExqiCNiTDL6UI1yem
+	HlhtGm3fxF6N204nRvdcelh2kG1agcdJ2/G1CWA==
+X-Google-Smtp-Source: AGHT+IHMvCkcMt6M2oupNSDclHa2N891EI/vgdGNpp2uWlxC04jIs5KrrzcH3iSyyrRN8THUE5cftlFI90+3KX7fMPo=
+X-Received: by 2002:a2e:3806:0:b0:2cf:73b:26ae with SMTP id
+ f6-20020a2e3806000000b002cf073b26aemr1440776lja.22.1706477281672; Sun, 28 Jan
+ 2024 13:28:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: auth=pass smtp.auth=aren@peacevolution.org smtp.mailfrom=aren@peacevolution.org
-X-Spam-Level: ****
-X-Spamd-Bar: ++++
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=peacevolution.org;
-	s=dkim; t=1706474929;
-	h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:in-reply-to:references;
-	bh=d/DBwpJ+je99z0h/gXOCUsLpwa/Zbmn1hRkJbFumB7A=;
-	b=LCKLWsPlqvRQtiFZG1vk9RGo0PpHdusVxfhM+KBizv3IAzHDsEBOKiiqeQm2cRJysOQFlj
-	yPD70phfaq/ONb8DwmyRcEqXprMWwQOEdEHKTscwSMPBAhH8XM4LwjOs+hHD/8GPzG1smq
-	Sh/bcnY8qMKjVHRvgiSCewPgy+j4XG4=
+References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
+ <20240123-iio-backend-v7-9-1bff236b8693@analog.com> <20240127152049.22a8ce74@jic23-huawei>
+In-Reply-To: <20240127152049.22a8ce74@jic23-huawei>
+From: David Lechner <dlechner@baylibre.com>
+Date: Sun, 28 Jan 2024 15:27:50 -0600
+Message-ID: <CAMknhBF6QNUf2zX9sQ+09nt2ZapTShwv3-HbmehFgvHnMfNo5Q@mail.gmail.com>
+Subject: Re: [PATCH v7 9/9] iio: adc: adi-axi-adc: move to backend framework
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>, nuno.sa@analog.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>, 
+	Saravana Kannan <saravanak@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The status function is described in the documentation as being a rgb led
-used for system notifications on phones[1][2]. This is exactly what this
-led is used for on the PinePhone, so using status is probably more
-accurate than indicator.
+On Sat, Jan 27, 2024 at 9:21=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
+ wrote:
+>
+> On Tue, 23 Jan 2024 16:14:30 +0100
+> Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org> wrote:
+>
+> > From: Nuno Sa <nuno.sa@analog.com>
+> >
+> > Move to the IIO backend framework. Devices supported by adi-axi-adc now
+> > register themselves as backend devices.
+> >
+> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> I'm still not getting the %d vs %c change..
+>
+> Otherwise LGTM
+>
+> > -     if (cl->info->version > ver) {
+> > +     if (*expected_ver > ver) {
+> >               dev_err(&pdev->dev,
+> > -                     "IP core version is too old. Expected %d.%.2d.%c,=
+ Reported %d.%.2d.%c\n",
+> > -                     ADI_AXI_PCORE_VER_MAJOR(cl->info->version),
+> > -                     ADI_AXI_PCORE_VER_MINOR(cl->info->version),
+> > -                     ADI_AXI_PCORE_VER_PATCH(cl->info->version),
+> > +                     "IP core version is too old. Expected %d.%.2d.%d,=
+ Reported %d.%.2d.%c\n",
+>
+> If it's a valid change fine, but then I'd expect both %c to change.
+> I'd also expect it to be in a separate patch with an explanation of why.
 
-1: Documentation/leds/well-known-leds.txt
-2: include/dt-bindings/leds/common.h
+I was noticing this same pattern in other "AXI" drivers. I think the
+reason for the %c is to match the version format in the devicetree
+compatible string which looks like "1.00.a". So to fix this we should
+probably keep %c and change the value line to
+`ADI_AXI_PCORE_VER_PATCH(cl->info->version) + 'a'` to convert it to
+the appropriate ascii value.
 
-Signed-off-by: Aren Moynihan <aren@peacevolution.org>
----
-I can't find any documentation describing the indicator function, so
-it's definitely less specific than status, but besides that I'm not sure
-how it compares.
+(But agree that this should be done in a separate patch/)
 
-Please ignore this patch if it's not useful and/or just causing churn.
-
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-index 6eab61a12cd8..4f39cfeb13ec 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-@@ -40,21 +40,21 @@ leds {
- 		compatible = "gpio-leds";
- 
- 		led0: led-0 {
--			function = LED_FUNCTION_INDICATOR;
-+			function = LED_FUNCTION_STATUS;
- 			color = <LED_COLOR_ID_BLUE>;
- 			gpios = <&pio 3 20 GPIO_ACTIVE_HIGH>; /* PD20 */
- 			retain-state-suspended;
- 		};
- 
- 		led1: led-1 {
--			function = LED_FUNCTION_INDICATOR;
-+			function = LED_FUNCTION_STATUS;
- 			color = <LED_COLOR_ID_GREEN>;
- 			gpios = <&pio 3 18 GPIO_ACTIVE_HIGH>; /* PD18 */
- 			retain-state-suspended;
- 		};
- 
- 		led2: led-2 {
--			function = LED_FUNCTION_INDICATOR;
-+			function = LED_FUNCTION_STATUS;
- 			color = <LED_COLOR_ID_RED>;
- 			gpios = <&pio 3 19 GPIO_ACTIVE_HIGH>; /* PD19 */
- 			retain-state-suspended;
-@@ -64,7 +64,7 @@ led2: led-2 {
- 	multi-led {
- 		compatible = "leds-group-multicolor";
- 		color = <LED_COLOR_ID_RGB>;
--		function = LED_FUNCTION_INDICATOR;
-+		function = LED_FUNCTION_STATUS;
- 		leds = <&led0>, <&led1>, <&led2>;
- 	};
- 
--- 
-2.43.0
-
+>
+> > +                     ADI_AXI_PCORE_VER_MAJOR(*expected_ver),
+> > +                     ADI_AXI_PCORE_VER_MINOR(*expected_ver),
+> > +                     ADI_AXI_PCORE_VER_PATCH(*expected_ver),
+> >                       ADI_AXI_PCORE_VER_MAJOR(ver),
+> >                       ADI_AXI_PCORE_VER_MINOR(ver),
+> >                       ADI_AXI_PCORE_VER_PATCH(ver));
+> >               return -ENODEV;
+> >       }
+> >
+> > -     indio_dev->info =3D &adi_axi_adc_info;
+> > -     indio_dev->name =3D "adi-axi-adc";
+> > -     indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > -     indio_dev->num_channels =3D conv->chip_info->num_channels;
+> > -     indio_dev->channels =3D conv->chip_info->channels;
+> > -
+> > -     ret =3D adi_axi_adc_config_dma_buffer(&pdev->dev, indio_dev);
+> > +     ret =3D devm_iio_backend_register(&pdev->dev, &adi_axi_adc_generi=
+c, st);
+> >       if (ret)
+> >               return ret;
+> >
+> > -     ret =3D adi_axi_adc_setup_channels(&pdev->dev, st);
+> > -     if (ret)
+> > -             return ret;
+> > -
+> > -     ret =3D devm_iio_device_register(&pdev->dev, indio_dev);
+> > -     if (ret)
+> > -             return ret;
+> > -
+> > -     dev_info(&pdev->dev, "AXI ADC IP core (%d.%.2d.%c) probed\n",
+> > +     dev_info(&pdev->dev, "AXI ADC IP core (%d.%.2d.%d) probed\n",
+>
+> This should also be in that separate patch fixing up this formatting.
+>
+> >                ADI_AXI_PCORE_VER_MAJOR(ver),
+> >                ADI_AXI_PCORE_VER_MINOR(ver),
+> >                ADI_AXI_PCORE_VER_PATCH(ver));
+> > @@ -428,6 +229,8 @@ static int adi_axi_adc_probe(struct platform_device=
+ *pdev)
+> >       return 0;
+> >  }
+>
+>
 
