@@ -1,240 +1,136 @@
-Return-Path: <devicetree+bounces-35933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6707283F4D7
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 10:38:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A14383F4FB
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 11:35:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1EB21F2200F
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 09:38:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EB351C20AE6
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 10:35:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DBA6DF5C;
-	Sun, 28 Jan 2024 09:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D380171AB;
+	Sun, 28 Jan 2024 10:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="vxZpAxfC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T5w1lasS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB5DADDD1;
-	Sun, 28 Jan 2024 09:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55DA2DF5C;
+	Sun, 28 Jan 2024 10:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706434730; cv=none; b=bi2QGOlgOn62A6tuhU4M5fnQjT3WYiWqAvCK/CmxoUpzPTg/LxX110JH1Goo623b1ZMIbINNnBKXDQYZjCe+ueej8Bke2VzIjtcpFv4E5p575/sPJbssPBYsIoWDcLgmV3YY02wuagWRRH911zsAXnQI3FiJIeAo8cFUgvYKcPk=
+	t=1706438127; cv=none; b=Taehd8PHrtSWM2j1wwAw+GEm2FmTDSt0ug1oOLxwSkkl+2O1kc7b2BelkmXxQqWnnYJ7oYMphjA2+RzKgXbK8KJPoVGxKe1XessJc3tFN9dn6C4NUDwJnOxJoxm8or4nKkWCeYU0x9C6wH7RJrtV0OGdjoWarbmWxnopzsyVpBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706434730; c=relaxed/simple;
-	bh=fO5fYT35Z7MKeF67leMqLfINjyNPp1p8IGLqCFKXs18=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
-	 References:In-Reply-To; b=dwWnr+LzfYZh9AdE4BVhkC72Y+CfZbxKPTAPLx2w+wcU3PUjDtR42IzSVmc+AXgyh4ppi3YZZmq29PJfsCRFUJbzXI3G7EMYuoNVvs2JLMl8/iQ/tYjzT7F7bqgdaADKOu9zJx0tJJiiA+hJKOG49l2TqMIIHw4Y2l7g0PendSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz; dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b=vxZpAxfC; arc=none smtp.client-ip=195.113.20.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
-Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id 69FF9283C55;
-	Sun, 28 Jan 2024 10:38:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
-	s=gen1; t=1706434717;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZlGNDBEfBFU3AoPRlSCYcJlBbV7WU9V8gU5maCx3FEQ=;
-	b=vxZpAxfCscrgPaGQ5mGojnxv9NP3lSv+1V+7cUrVS1vjSHhLauQPfExFirKYlzhNS2hisK
-	g176AifOVkJDLQIQw5EB+ImP3ib9GFiWZq30xdv9mQNJPx46S8QTfuvaYRmcS45rr5fHzW
-	lFhej5tu77C79i9J/gZEVsJktEcSc4A=
-Received: from localhost (internet5.mraknet.com [185.200.108.250])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: karelb)
-	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 43283442392;
-	Sun, 28 Jan 2024 10:38:37 +0100 (CET)
+	s=arc-20240116; t=1706438127; c=relaxed/simple;
+	bh=wCBfczLYWZi23Ma8LOhL+q4Ee7XSMSK0TMBtXro6oJA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZBr9xccRdCdsNleiMUWifmYW8OXuB/8bvdzILYAgzNCOAB/dkjv0a38d0r5Nz8jCMCJKdJUMcHM081e4MkRLxIpCiGBi7STqOotWpxuJUN7AC622TYk5irVaJG6VFrGAB/+CQ3lxgj+POl+FhlB4FTqX66rFpDpjUFNNyMy9+kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T5w1lasS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43FC0C433F1;
+	Sun, 28 Jan 2024 10:35:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706438126;
+	bh=wCBfczLYWZi23Ma8LOhL+q4Ee7XSMSK0TMBtXro6oJA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=T5w1lasSzVTLVgcoO0ySnFhN1L2nvWJUZVHjR2rlDh02I5E9A6hM4QPkZVf85bp5u
+	 glHg7vwWYA6j1GUdRpCECNIS16JJGuI8D2utPQQjSQwuOQn7DV3jgJKSUeA3cmpecP
+	 xs4pGdfI9v4MyVVBUBcWXV3dWo9v48BmE2qkJkDemtz86D8TflDZDuGXxTDlgpt80n
+	 htOp74cwYfXuPKBLBdXZoDy/viNw3/wK23uWuDXr4fkh0Gtw9KVmSMg8lRS1Wfuoyn
+	 1F2JeWwlmWofgcaXzHK8yI7B2FbcvJCJIQehTnW89sJ/7oGwsVGXhdKNRsi9VXNmVg
+	 PmQVSYct2zhDQ==
+Date: Sun, 28 Jan 2024 11:35:23 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: linux-iio@vger.kernel.org, lorenzo.bianconi@redhat.com,
+	devicetree@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, mario.tesi@st.com,
+	armando.visconti@st.com
+Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add asm330lhhxg1
+Message-ID: <ZbYt673vc-Cg0s6A@lore-desk>
+References: <cover.1706093274.git.lorenzo@kernel.org>
+ <90d675537e58c9c339545a895e8164a843821682.1706093274.git.lorenzo@kernel.org>
+ <20240127150426.4994a6a0@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4+CyQ+1/XLnFqDWJ"
+Content-Disposition: inline
+In-Reply-To: <20240127150426.4994a6a0@jic23-huawei>
+
+
+--4+CyQ+1/XLnFqDWJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 28 Jan 2024 10:38:36 +0100
-Message-Id: <CYQ8MEQRJELE.2GB9316NZA998@gimli.ms.mff.cuni.cz>
-Cc: "Karel Balej" <balejk@matfyz.cz>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, <linux-input@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [RFC PATCH 2/5] mfd: add 88pm88x driver
-To: "Lee Jones" <lee@kernel.org>
-From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
-References: <20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz>
- <20231217131838.7569-3-karelb@gimli.ms.mff.cuni.cz>
- <20240125122634.GE74950@google.com>
-In-Reply-To: <20240125122634.GE74950@google.com>
 
-Lee,
+> On Wed, 24 Jan 2024 11:52:34 +0100
+> Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+>=20
+> > Add device bindings for asm330lhhxg1 IMU sensor.
+> > Use asm330lhhx as fallback device for asm330lhhxg1 since it implements
+> > all the features currently supported by asm330lhhxg1.
+>=20
+> Can we clarify if the hardware of the asm330lhhxg1 supports
+> 1) Exactly the same features as the asm330lhhx
+>    (Valid use for a fallback compatible, because we might find
+>     bugs etc in future).
+> 2) More features, but the asm330lhhx features set is a subset.
+>    (Most valid use for a fallback compatible)
 
-thank you for your feedback.
+Hi Jonathan,
 
-On Thu Jan 25, 2024 at 1:26 PM CET, Lee Jones wrote:
+afaik asm330lhhx supports a subset of asm330lhhxg1 features (adding st folk=
+s in
+cc for some clarification here) but they are not implemented in st_lsm6dsx.
 
-[...]
+Regards,
+Lorenzo
 
-> > +#define PM88X_REG_INT_STATUS1			0x05
-> > +
-> > +#define PM88X_REG_INT_ENA_1			0x0a
-> > +#define PM88X_INT_ENA1_ONKEY			BIT(0)
-> > +
-> > +enum pm88x_irq_number {
-> > +	PM88X_IRQ_ONKEY,
-> > +
-> > +	PM88X_MAX_IRQ
-> > +};
->
-> An enum for a single IRQ?
+> 3) Different features from the asm330llhhx but driver only supports
+>    a set both support? (this is a problem)
+>=20
+> I 'think' it is 2 from your text, but I'm not 100% sure I've understood
+> correctly.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml =
+b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > index 28b667a9cb76..7ba3de66a2e1 100644
+> > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > @@ -49,6 +49,9 @@ properties:
+> >        - items:
+> >            - const: st,asm330lhb
+> >            - const: st,asm330lhh
+> > +      - items:
+> > +          - const: st,asm330lhhxg1
+> > +          - const: st,asm330lhhx
+> > =20
+> >    reg:
+> >      maxItems: 1
+>=20
 
-There will be a lot more IRQs but I have only added this one so far as
-it is the only one used by this series -- is that OK?
+--4+CyQ+1/XLnFqDWJ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> > +static struct reg_sequence pm886_presets[] =3D {
-> > +	/* disable watchdog */
-> > +	REG_SEQ0(PM88X_REG_WDOG, 0x01),
->
-> Easier to read if you place spaces between them.
->
-> > +	/* GPIO1: DVC, GPIO0: input */
-> > +	REG_SEQ0(PM88X_REG_GPIO_CTRL1, 0x40),
->
-> Shouldn't you set these up using Pintrl?
+-----BEGIN PGP SIGNATURE-----
 
-You mean to add a new MFD cell for the pins and write the respective
-driver? The downstream implementation has no such thing so I'm not sure
-if I would be able to do that from scratch.
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZbYt6gAKCRA6cBh0uS2t
+rNXKAP9rhE2MrTI0D/RyJD4gtcyJBO/ZwVDJHebaZz62sfImRAEA0zs0JmMq+hmX
+6dZTDABm6PGxch6zZCLOewTvMriS6A8=
+=BHL/
+-----END PGP SIGNATURE-----
 
-> > +	/* GPIO2: input */
-> > +	REG_SEQ0(PM88X_REG_GPIO_CTRL2, 0x00),
-> > +	/* DVC2, DVC1 */
->
-> Please unify all of the comments.
->
-> They all use a different structure.
->
-> > +	REG_SEQ0(PM88X_REG_GPIO_CTRL3, 0x44),
-> > +	/* GPIO5V_1:input, GPIO5V_2: input */
-> > +	REG_SEQ0(PM88X_REG_GPIO_CTRL4, 0x00),
-> > +	/* output 32 kHz from XO */
-> > +	REG_SEQ0(PM88X_REG_AON_CTRL2, 0x2a),
-> > +	/* OSC_FREERUN =3D 1, to lock FLL */
-> > +	REG_SEQ0(PM88X_REG_BK_OSC_CTRL1, 0x0f),
-> > +	/* XO_LJ =3D 1, enable low jitter for 32 kHz */
-> > +	REG_SEQ0(PM88X_REG_LOWPOWER2, 0x20),
-> > +	/* OV_VSYS and UV_VSYS1 comparators on VSYS disabled, VSYS_OVER_TH : =
-5.6V */
-> > +	REG_SEQ0(PM88X_REG_LOWPOWER4, 0xc8),
-> > +	/* set the duty cycle of charger DC/DC to max */
-> > +	REG_SEQ0(PM88X_REG_BK_OSC_CTRL3, 0xc0),
->
-> These all looks like they should be handled in their respective drivers?
->
-> "patch"ing these in seems like a hack.
-
-To be honest, I don't really know why these are required and what effect
-they have -- the comments above taken from the downstream version are
-the only thing I have to go by. I might try removing them to see if
-there is any noticable change and whether they could be added only later
-with the respective drivers.
-
->
-> > +};
->
-> Why this instead of=20
-
-What are you refering to here please?
-
-> > +static struct resource onkey_resources[] =3D {
-> > +	DEFINE_RES_IRQ_NAMED(PM88X_IRQ_ONKEY, "88pm88x-onkey"),
-> > +};
-> > +
-> > +static struct mfd_cell pm88x_devs[] =3D {
-> > +	{
-> > +		.name =3D "88pm88x-onkey",
-> > +		.num_resources =3D ARRAY_SIZE(onkey_resources),
-> > +		.resources =3D onkey_resources,
-> > +		.id =3D -1,
-> > +	},
-> > +};
->
-> It's not an MFD if it only supports a single device.
-
-As I have noted above with respect to the IRQ enum and also in the
-commit message, I have so far only added the parts which there is
-already use for. I intend to add the other parts along with the
-respective subdevice drivers, please see my regulator series [1] for an
-example.
-
-I thought this approach would make for shorter and simpler patches and
-also would allow me to make more informed decisions as I familiarize
-myself with the downstream subdevice drivers more closely one by one.
-
-> > +	i2c_set_clientdata(client, chip);
-> > +
-> > +	device_init_wakeup(&client->dev, 1);
-> > +
-> > +	chip->regmaps[PM88X_REGMAP_BASE] =3D devm_regmap_init_i2c(client, &pm=
-88x_i2c_regmap);
-> > +	if (IS_ERR(chip->regmaps[PM88X_REGMAP_BASE])) {
->
-> Just define different regmaps if you really need them.
-
-You mean not to use an array of regmaps but add new struct members
-instead? One for each regmap?
-
-> > diff --git a/include/linux/mfd/88pm88x.h b/include/linux/mfd/88pm88x.h
-> > new file mode 100644
-> > index 000000000000..a34c57447827
-> > --- /dev/null
-> > +++ b/include/linux/mfd/88pm88x.h
-
-[...]
-
-> > +#define PM88X_REG_ID			0x00
-> > +
-> > +#define PM88X_REG_STATUS1		0x01
-> > +#define PM88X_ONKEY_STS1		BIT(0)
-> > +
-> > +#define PM88X_REG_MISC_CONFIG1		0x14
-> > +#define PM88X_SW_PDOWN			BIT(5)
-> > +
-> > +#define PM88X_REG_MISC_CONFIG2		0x15
-> > +#define PM88X_INT_INV			BIT(0)
-> > +#define PM88X_INT_CLEAR			BIT(1)
-> > +#define PM88X_INT_RC			0x00
-> > +#define PM88X_INT_WC			BIT(1)
-> > +#define PM88X_INT_MASK_MODE		BIT(2)
-> > +
-> > +#define PM88X_REG_WDOG			0x1d
-> > +
-> > +#define PM88X_REG_LOWPOWER2		0x21
-> > +#define PM88X_REG_LOWPOWER4		0x23
-> > +
-> > +#define PM88X_REG_GPIO_CTRL1		0x30
->
-> These don't really need to be spaced out, do they?
-
-I have spaced them out already as I expect to add some related
-definitions to each of these in the future and thought it would then
-perhaps be more easily readable like this.
-
-[1] https://lore.kernel.org/all/20231228100208.2932-1-karelb@gimli.ms.mff.c=
-uni.cz/
-
-Kind regards,
-K. B.
+--4+CyQ+1/XLnFqDWJ--
 
