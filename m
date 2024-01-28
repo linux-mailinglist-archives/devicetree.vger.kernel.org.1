@@ -1,149 +1,240 @@
-Return-Path: <devicetree+bounces-35932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA7E483F4B8
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 10:06:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6707283F4D7
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 10:38:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67A0328484E
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 09:06:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1EB21F2200F
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jan 2024 09:38:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0D5714263;
-	Sun, 28 Jan 2024 09:06:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DBA6DF5C;
+	Sun, 28 Jan 2024 09:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gdnAYuK7"
+	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="vxZpAxfC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D163BDDD2;
-	Sun, 28 Jan 2024 09:06:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB5DADDD1;
+	Sun, 28 Jan 2024 09:38:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706432788; cv=none; b=nsU/9yLNXKmbr3OR0A1IAxwutraNo6XfhR30QZx7sQGUHZv+NSGti0aWoZdMaDA984Kle636hrLHaX2uAtD2L7TwYbAyx6BgCTm0qD0aWYSyjiLYZFCjcdxE8qIfglcL9j1p9L21LmROcs3LPW7y1qIwVPdrQTYi+AuMSRH3qmg=
+	t=1706434730; cv=none; b=bi2QGOlgOn62A6tuhU4M5fnQjT3WYiWqAvCK/CmxoUpzPTg/LxX110JH1Goo623b1ZMIbINNnBKXDQYZjCe+ueej8Bke2VzIjtcpFv4E5p575/sPJbssPBYsIoWDcLgmV3YY02wuagWRRH911zsAXnQI3FiJIeAo8cFUgvYKcPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706432788; c=relaxed/simple;
-	bh=fECoJNI36xhLs+WlNCdEmmGpaXzg+LhNnyvIYrjamVI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eMUkOfdI8mNF2oX0xhkFy+Ej3iQ3FsAzZMQwS3AVSLrcYE0X3BCkrCQv6+DtTaypoStnhZqnYGmnAuenSi0Ht4K7OeDC/jj8OK4bm36R38Q/ThYym/OONScj+APgjWyD1tdS5j/7tYOQ3hSfD5YltM4Ze5N+4mHs/VBV2wWv/V0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gdnAYuK7; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706432787; x=1737968787;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fECoJNI36xhLs+WlNCdEmmGpaXzg+LhNnyvIYrjamVI=;
-  b=gdnAYuK7U2ZW3Gckk/LJR4k+ICIVTDIYYBH57NuLF8+k5zE2+jCRLGcS
-   hOXl9uKd2EP7U7CHsLrSxOCMV3MNe+v90RCzeGvSTaoAf95cg1jNLAjxw
-   u0w/ZJPpyNuirXJ/HKU0E1RcQ+43k5NJui3/P13zRpiav6fjOdodLOBan
-   QBCSqX4hjo+J5MaAC70Liozw5AxjgDiF8WVVdwcbwRvk4FtWnp0i3u1BH
-   MJuMYMbEtD+vtftGlMF9viob0IxQUE1EojSVs5J84byehkbtzUCC4k3uy
-   dvJjId2EAm7dZYKSMCrfdezFpkMywb/9FH+QPeubRHbbDREA8iAzVDXAT
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="9868501"
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
-   d="scan'208";a="9868501"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2024 01:06:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10966"; a="787533230"
-X-IronPort-AV: E=Sophos;i="6.05,220,1701158400"; 
-   d="scan'208";a="787533230"
-Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 28 Jan 2024 01:06:21 -0800
-Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rU17L-0003GQ-1N;
-	Sun, 28 Jan 2024 09:06:19 +0000
-Date: Sun, 28 Jan 2024 17:05:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Sebastian Reichel <sre@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	=?iso-8859-1?Q?S=F8ren?= Andersen <san@skov.dk>
-Subject: Re: [PATCH v2 3/8] power: reset: Introduce PSCR Recording Framework
- for Non-Volatile Storage
-Message-ID: <202401281628.Z3E5872D-lkp@intel.com>
-References: <20240124122204.730370-4-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1706434730; c=relaxed/simple;
+	bh=fO5fYT35Z7MKeF67leMqLfINjyNPp1p8IGLqCFKXs18=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
+	 References:In-Reply-To; b=dwWnr+LzfYZh9AdE4BVhkC72Y+CfZbxKPTAPLx2w+wcU3PUjDtR42IzSVmc+AXgyh4ppi3YZZmq29PJfsCRFUJbzXI3G7EMYuoNVvs2JLMl8/iQ/tYjzT7F7bqgdaADKOu9zJx0tJJiiA+hJKOG49l2TqMIIHw4Y2l7g0PendSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz; dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b=vxZpAxfC; arc=none smtp.client-ip=195.113.20.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
+Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id 69FF9283C55;
+	Sun, 28 Jan 2024 10:38:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
+	s=gen1; t=1706434717;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZlGNDBEfBFU3AoPRlSCYcJlBbV7WU9V8gU5maCx3FEQ=;
+	b=vxZpAxfCscrgPaGQ5mGojnxv9NP3lSv+1V+7cUrVS1vjSHhLauQPfExFirKYlzhNS2hisK
+	g176AifOVkJDLQIQw5EB+ImP3ib9GFiWZq30xdv9mQNJPx46S8QTfuvaYRmcS45rr5fHzW
+	lFhej5tu77C79i9J/gZEVsJktEcSc4A=
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: karelb)
+	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 43283442392;
+	Sun, 28 Jan 2024 10:38:37 +0100 (CET)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240124122204.730370-4-o.rempel@pengutronix.de>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 28 Jan 2024 10:38:36 +0100
+Message-Id: <CYQ8MEQRJELE.2GB9316NZA998@gimli.ms.mff.cuni.cz>
+Cc: "Karel Balej" <balejk@matfyz.cz>, "Dmitry Torokhov"
+ <dmitry.torokhov@gmail.com>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, <linux-input@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
+Subject: Re: [RFC PATCH 2/5] mfd: add 88pm88x driver
+To: "Lee Jones" <lee@kernel.org>
+From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
+References: <20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz>
+ <20231217131838.7569-3-karelb@gimli.ms.mff.cuni.cz>
+ <20240125122634.GE74950@google.com>
+In-Reply-To: <20240125122634.GE74950@google.com>
 
-Hi Oleksij,
+Lee,
 
-kernel test robot noticed the following build warnings:
+thank you for your feedback.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on broonie-regulator/for-next rafael-pm/thermal linus/master v6.8-rc1 next-20240125]
-[cannot apply to sre-power-supply/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Thu Jan 25, 2024 at 1:26 PM CET, Lee Jones wrote:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Oleksij-Rempel/power-Extend-power_on_reason-h-for-upcoming-PSCRR-framework/20240124-202833
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240124122204.730370-4-o.rempel%40pengutronix.de
-patch subject: [PATCH v2 3/8] power: reset: Introduce PSCR Recording Framework for Non-Volatile Storage
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20240128/202401281628.Z3E5872D-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240128/202401281628.Z3E5872D-lkp@intel.com/reproduce)
+[...]
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401281628.Z3E5872D-lkp@intel.com/
+> > +#define PM88X_REG_INT_STATUS1			0x05
+> > +
+> > +#define PM88X_REG_INT_ENA_1			0x0a
+> > +#define PM88X_INT_ENA1_ONKEY			BIT(0)
+> > +
+> > +enum pm88x_irq_number {
+> > +	PM88X_IRQ_ONKEY,
+> > +
+> > +	PM88X_MAX_IRQ
+> > +};
+>
+> An enum for a single IRQ?
 
-All warnings (new ones prefixed by >>):
+There will be a lot more IRQs but I have only added this one so far as
+it is the only one used by this series -- is that OK?
 
->> drivers/power/reset/pscrr.c:132:2: warning: label at end of compound statement is a C2x extension [-Wc2x-extensions]
-     132 |         }
-         |         ^
-   1 warning generated.
+> > +static struct reg_sequence pm886_presets[] =3D {
+> > +	/* disable watchdog */
+> > +	REG_SEQ0(PM88X_REG_WDOG, 0x01),
+>
+> Easier to read if you place spaces between them.
+>
+> > +	/* GPIO1: DVC, GPIO0: input */
+> > +	REG_SEQ0(PM88X_REG_GPIO_CTRL1, 0x40),
+>
+> Shouldn't you set these up using Pintrl?
 
+You mean to add a new MFD cell for the pins and write the respective
+driver? The downstream implementation has no such thing so I'm not sure
+if I would be able to do that from scratch.
 
-vim +132 drivers/power/reset/pscrr.c
+> > +	/* GPIO2: input */
+> > +	REG_SEQ0(PM88X_REG_GPIO_CTRL2, 0x00),
+> > +	/* DVC2, DVC1 */
+>
+> Please unify all of the comments.
+>
+> They all use a different structure.
+>
+> > +	REG_SEQ0(PM88X_REG_GPIO_CTRL3, 0x44),
+> > +	/* GPIO5V_1:input, GPIO5V_2: input */
+> > +	REG_SEQ0(PM88X_REG_GPIO_CTRL4, 0x00),
+> > +	/* output 32 kHz from XO */
+> > +	REG_SEQ0(PM88X_REG_AON_CTRL2, 0x2a),
+> > +	/* OSC_FREERUN =3D 1, to lock FLL */
+> > +	REG_SEQ0(PM88X_REG_BK_OSC_CTRL1, 0x0f),
+> > +	/* XO_LJ =3D 1, enable low jitter for 32 kHz */
+> > +	REG_SEQ0(PM88X_REG_LOWPOWER2, 0x20),
+> > +	/* OV_VSYS and UV_VSYS1 comparators on VSYS disabled, VSYS_OVER_TH : =
+5.6V */
+> > +	REG_SEQ0(PM88X_REG_LOWPOWER4, 0xc8),
+> > +	/* set the duty cycle of charger DC/DC to max */
+> > +	REG_SEQ0(PM88X_REG_BK_OSC_CTRL3, 0xc0),
+>
+> These all looks like they should be handled in their respective drivers?
+>
+> "patch"ing these in seems like a hack.
 
-   119	
-   120	static const char *pscr_to_por_string(enum pscr pscr)
-   121	{
-   122		switch (pscr) {
-   123		case PSCR_UNDER_VOLTAGE:
-   124			return POWER_ON_REASON_BROWN_OUT;
-   125		case PSCR_OVER_CURRENT:
-   126			return POWER_ON_REASON_OVER_CURRENT;
-   127		case PSCR_REGULATOR_FAILURE:
-   128			return POWER_ON_REASON_REGULATOR_FAILURE;
-   129		case PSCR_OVERTEMPERATURE:
-   130			return POWER_ON_REASON_OVERTEMPERATURE;
-   131		default:
- > 132		}
-   133	
-   134		return POWER_ON_REASON_UNKNOWN;
-   135	}
-   136	
+To be honest, I don't really know why these are required and what effect
+they have -- the comments above taken from the downstream version are
+the only thing I have to go by. I might try removing them to see if
+there is any noticable change and whether they could be added only later
+with the respective drivers.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+> > +};
+>
+> Why this instead of=20
+
+What are you refering to here please?
+
+> > +static struct resource onkey_resources[] =3D {
+> > +	DEFINE_RES_IRQ_NAMED(PM88X_IRQ_ONKEY, "88pm88x-onkey"),
+> > +};
+> > +
+> > +static struct mfd_cell pm88x_devs[] =3D {
+> > +	{
+> > +		.name =3D "88pm88x-onkey",
+> > +		.num_resources =3D ARRAY_SIZE(onkey_resources),
+> > +		.resources =3D onkey_resources,
+> > +		.id =3D -1,
+> > +	},
+> > +};
+>
+> It's not an MFD if it only supports a single device.
+
+As I have noted above with respect to the IRQ enum and also in the
+commit message, I have so far only added the parts which there is
+already use for. I intend to add the other parts along with the
+respective subdevice drivers, please see my regulator series [1] for an
+example.
+
+I thought this approach would make for shorter and simpler patches and
+also would allow me to make more informed decisions as I familiarize
+myself with the downstream subdevice drivers more closely one by one.
+
+> > +	i2c_set_clientdata(client, chip);
+> > +
+> > +	device_init_wakeup(&client->dev, 1);
+> > +
+> > +	chip->regmaps[PM88X_REGMAP_BASE] =3D devm_regmap_init_i2c(client, &pm=
+88x_i2c_regmap);
+> > +	if (IS_ERR(chip->regmaps[PM88X_REGMAP_BASE])) {
+>
+> Just define different regmaps if you really need them.
+
+You mean not to use an array of regmaps but add new struct members
+instead? One for each regmap?
+
+> > diff --git a/include/linux/mfd/88pm88x.h b/include/linux/mfd/88pm88x.h
+> > new file mode 100644
+> > index 000000000000..a34c57447827
+> > --- /dev/null
+> > +++ b/include/linux/mfd/88pm88x.h
+
+[...]
+
+> > +#define PM88X_REG_ID			0x00
+> > +
+> > +#define PM88X_REG_STATUS1		0x01
+> > +#define PM88X_ONKEY_STS1		BIT(0)
+> > +
+> > +#define PM88X_REG_MISC_CONFIG1		0x14
+> > +#define PM88X_SW_PDOWN			BIT(5)
+> > +
+> > +#define PM88X_REG_MISC_CONFIG2		0x15
+> > +#define PM88X_INT_INV			BIT(0)
+> > +#define PM88X_INT_CLEAR			BIT(1)
+> > +#define PM88X_INT_RC			0x00
+> > +#define PM88X_INT_WC			BIT(1)
+> > +#define PM88X_INT_MASK_MODE		BIT(2)
+> > +
+> > +#define PM88X_REG_WDOG			0x1d
+> > +
+> > +#define PM88X_REG_LOWPOWER2		0x21
+> > +#define PM88X_REG_LOWPOWER4		0x23
+> > +
+> > +#define PM88X_REG_GPIO_CTRL1		0x30
+>
+> These don't really need to be spaced out, do they?
+
+I have spaced them out already as I expect to add some related
+definitions to each of these in the future and thought it would then
+perhaps be more easily readable like this.
+
+[1] https://lore.kernel.org/all/20231228100208.2932-1-karelb@gimli.ms.mff.c=
+uni.cz/
+
+Kind regards,
+K. B.
 
