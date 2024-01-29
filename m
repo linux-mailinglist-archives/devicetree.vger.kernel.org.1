@@ -1,241 +1,189 @@
-Return-Path: <devicetree+bounces-36365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB85F840AB3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:00:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A651840AF2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F03F31C2447F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:00:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A451EB20FBC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E34AA155314;
-	Mon, 29 Jan 2024 16:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA5015531E;
+	Mon, 29 Jan 2024 16:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DkR+Sn31"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jmZTr9+s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32BD1552FE;
-	Mon, 29 Jan 2024 16:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE5C8155316;
+	Mon, 29 Jan 2024 16:11:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706544025; cv=none; b=MukbeoP4L0oeXZg1VeLzoVDvHkT6MRvrDbLpk2ximvohRlZik8A8ClISaPjtyomFRYvTFE0Ci8zKOo+WMDLtdcWMG6uiLnJPSIrHxmdaj3QbL4etUyDm5KWTox/Ys/3BCCgkzPrwNDbGMYx/viCBmAb7JgPGOXyecCMmePieQHc=
+	t=1706544719; cv=none; b=DSvHah43ICESVSxnnFce5yntactFraCyt4yC/RAXhSFqqTtQ5HYsRQwCW2pONsO3uObZpEiVzCw2Y4dknOIevIEj8PhLBH5Y1DaQ4Y/RU49KQ56EwFOoB+IUqCBfKf2ECCC6liu/q3Ut1R9g06CJYu1plLS72iRdgwLLKYUZpPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706544025; c=relaxed/simple;
-	bh=d7kTJL5yA5KYsTfmmiVBkb+irsEYdcGncOobIUTBvxE=;
+	s=arc-20240116; t=1706544719; c=relaxed/simple;
+	bh=EJuKz+rDfnnrgz4jtF7KK8M8+lKo37WzgpZ8fWKe+go=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sxzXNoEifFBtMvUVLRJIlL7lV1YwVCwZoz8Heorpi58/xn6k9js5C/CTfsjNst6nrMJvn+oopRkJY1VF6NpKl+To0cytj0NyEQQQlO7UOKJFJ+zZ7Whx8JpqzWPscRmvXszu6fSNdQbuc3Yh4Ba/te35qpTbvlB7b8Xv4isr/tY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DkR+Sn31; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABB10C43390;
-	Mon, 29 Jan 2024 16:00:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706544024;
-	bh=d7kTJL5yA5KYsTfmmiVBkb+irsEYdcGncOobIUTBvxE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DkR+Sn31qxVYwJj06PpjCcnkbakbuOXyswHUgHAnUQxfxXuPYNH9/AdJPIr9DFudP
-	 7LD2UJC56+6JehOKTitGXlPtwrjbpzXsQhY19AOlKRn4t9RNs42NrunwuYV9vv6lA1
-	 SiSCglNYWNiqIQw5ttetpifKZ3RfoiXarniIMKQ5NUSMMT08dXxutjpUURWMjl+tGQ
-	 2wio/1VoLqIPLC8pvOO0mJhnQGWhgY6K24EazISnuG88jFNx2Dzo5N7gn9LTFOPEV1
-	 sUa4FhHgfBDMvX+gGwGd0/ozZQvf3lOKBqq9Q1PK0pmooqSXJSRJDNUc1GWYpPuaGl
-	 /uJICIXalHPaw==
-Date: Mon, 29 Jan 2024 21:30:00 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
-	vireshk@kernel.org, quic_vbadigan@quicinc.com,
-	quic_skananth@quicinc.com, quic_nitegupt@quicinc.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 6/6] PCI: qcom: Add OPP support to scale performance
- state of power domain
-Message-ID: <20240129160000.GF22617@thinkpad>
-References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
- <20240112-opp_support-v6-6-77bbf7d0cc37@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZB+GO7gWznVf1uLUo7DDZhMlCsWOew2DnJD823kDZZqLuhIsD4Z+e6j9AHZf69vhtpei0uO7giXMeQDt1H8coK1LAQRYajRcA/wcF0e1iVz/mo9APHBx0Bg8oioTzX80JOcYExzB7hD6fAckJi0gxa2p1WDOWJSbp7DcmE6X7Bc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jmZTr9+s; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1706544717; x=1738080717;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EJuKz+rDfnnrgz4jtF7KK8M8+lKo37WzgpZ8fWKe+go=;
+  b=jmZTr9+s0BH0yotyOal0q9jxcJoA62wy25l1FbdVyMSYrG8n8/5I5iXX
+   j6f1Uam6LcnTvGo2QtuQdybq/982+bOjOmiro8aVgfeC/za03w88C5U5F
+   0MGWVmSus8W51EfUIEjZVSDBYPoL8e/2N5o60F5D710ImRdsL38rx5RIQ
+   zqrV4PPN/KiyHIRtvMwhY9U+wL+Ksvj18xrmdcZN/pmKjqluICEowsKVw
+   gjIiuQJbyWMUQsUy0e+m1ye3rkP1aVqCbJwhlC0ZrVeDObPRNslWn3LnY
+   PKaaucS09jcnGyHHffyopgrqE/81eywmV6W0Wm1vy1AUk6AlNf/trU4v0
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="16359739"
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; 
+   d="scan'208";a="16359739"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2024 08:02:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; 
+   d="scan'208";a="3342415"
+Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 29 Jan 2024 08:02:44 -0800
+Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rUU5q-0004Oq-0h;
+	Mon, 29 Jan 2024 16:02:42 +0000
+Date: Tue, 30 Jan 2024 00:02:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Billy Tsai <billy_tsai@aspeedtech.com>, jdelvare@suse.com,
+	linux@roeck-us.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	joel@jms.id.au, andrew@codeconstruct.com.au, corbet@lwn.net,
+	u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
+	naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
+	BMC-SW@aspeedtech.com, patrick@stwcx.xyz
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v13 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED
+ g6 PWM/Fan tach
+Message-ID: <202401292303.6SVAncvn-lkp@intel.com>
+References: <20240124060705.1342461-4-billy_tsai@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240112-opp_support-v6-6-77bbf7d0cc37@quicinc.com>
+In-Reply-To: <20240124060705.1342461-4-billy_tsai@aspeedtech.com>
 
-On Fri, Jan 12, 2024 at 07:52:05PM +0530, Krishna chaitanya chundru wrote:
-> QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
-> maintains hardware state of a regulator by performing max aggregation of
-> the requests made by all of the processors.
-> 
+Hi Billy,
 
-s/processors/clients
+kernel test robot noticed the following build errors:
 
-> PCIe controller can operate on different RPMh performance state of power
-> domain based up on the speed of the link. And this performance state varies
-> from target to target.
-> 
-> It is manadate to scale the performance state based up on the PCIe speed
-> link operates so that SoC can run under optimum power conditions.
-> 
-> Add Operating Performance Points(OPP) support to vote for RPMh state based
-> upon GEN speed link is operating.
-> 
-> OPP can handle ICC bw voting also, so move icc bw voting through opp
-> framework if opp entries are present.
-> 
-> In PCIe certain gen speeds like GEN1x2 & GEN2X1 or GEN3x2 & GEN4x1 use
-> same icc bw and has frequency, so use frequency based search to reduce
-> number of entries in the opp table.
-> 
-> Don't initialize icc if opp is supported.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 83 ++++++++++++++++++++++++++++------
->  1 file changed, 70 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 035953f0b6d8..31512dc9d6ff 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -22,6 +22,7 @@
->  #include <linux/of.h>
->  #include <linux/of_gpio.h>
->  #include <linux/pci.h>
-> +#include <linux/pm_opp.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy/pcie.h>
-> @@ -244,6 +245,7 @@ struct qcom_pcie {
->  	const struct qcom_pcie_cfg *cfg;
->  	struct dentry *debugfs;
->  	bool suspended;
-> +	bool opp_supported;
->  };
->  
->  #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-> @@ -1404,16 +1406,14 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
->  	return 0;
->  }
->  
-> -static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
-> +static void qcom_pcie_icc_opp_update(struct qcom_pcie *pcie)
->  {
->  	struct dw_pcie *pci = pcie->pci;
-> -	u32 offset, status;
-> +	u32 offset, status, freq;
-> +	struct dev_pm_opp *opp;
->  	int speed, width;
->  	int ret;
->  
-> -	if (!pcie->icc_mem)
-> -		return;
-> -
->  	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
->  	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
->  
-> @@ -1424,11 +1424,42 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
->  	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
->  	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
->  
-> -	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
-> -	if (ret) {
-> -		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
-> -			ret);
-> +	if (pcie->opp_supported) {
-> +		switch (speed) {
-> +		case 1:
-> +			freq = 2500000;
-> +			break;
-> +		case 2:
-> +			freq = 5000000;
-> +			break;
-> +		case 3:
-> +			freq = 8000000;
-> +			break;
-> +		default:
-> +			WARN_ON_ONCE(1);
-> +			fallthrough;
-> +		case 4:
-> +			freq = 16000000;
-> +			break;
-> +		}
+[auto build test ERROR on groeck-staging/hwmon-next]
+[also build test ERROR on linus/master v6.8-rc2 next-20240129]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-This switch case is PCIe generic, so need to be moved to drivers/pci/pci.c.
-There is already an API, pcie_link_speed_mbps() that returns the frequency in
-MBps but uses the pcie_capability_read_word() API to read LNKSTA of the device.
+url:    https://github.com/intel-lab-lkp/linux/commits/Billy-Tsai/dt-bindings-hwmon-fan-Add-fan-binding-to-schema/20240124-141405
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20240124060705.1342461-4-billy_tsai%40aspeedtech.com
+patch subject: [PATCH v13 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED g6 PWM/Fan tach
+config: riscv-randconfig-r071-20240129 (https://download.01.org/0day-ci/archive/20240129/202401292303.6SVAncvn-lkp@intel.com/config)
+compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project.git f28c006a5895fc0e329fe15fead81e37457cb1d1)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240129/202401292303.6SVAncvn-lkp@intel.com/reproduce)
 
-But you can move the switch case inside that API to a separate function and
-reuse that here.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202401292303.6SVAncvn-lkp@intel.com/
 
-> +
-> +		opp = dev_pm_opp_find_freq_exact(pci->dev, freq * width, true);
-> +		if (!IS_ERR(opp)) {
-> +			ret = dev_pm_opp_set_opp(pci->dev, opp);
-> +			if (ret)
-> +				dev_err(pci->dev, "Failed to set opp: freq %ld ret %d\n",
-> +					dev_pm_opp_get_freq(opp), ret);
-> +			dev_pm_opp_put(opp);
-> +		}
-> +	} else {
-> +		ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
-> +		if (ret) {
-> +			dev_err(pci->dev, "failed to set interconnect bandwidth for pcie-mem: %d\n",
-> +				ret);
-> +		}
->  	}
-> +
-> +	return;
->  }
->  
->  static int qcom_pcie_link_transition_count(struct seq_file *s, void *data)
-> @@ -1471,8 +1502,10 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
->  static int qcom_pcie_probe(struct platform_device *pdev)
->  {
->  	const struct qcom_pcie_cfg *pcie_cfg;
-> +	unsigned long max_freq = INT_MAX;
->  	struct device *dev = &pdev->dev;
->  	struct qcom_pcie *pcie;
-> +	struct dev_pm_opp *opp;
->  	struct dw_pcie_rp *pp;
->  	struct resource *res;
->  	struct dw_pcie *pci;
-> @@ -1539,9 +1572,33 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  		goto err_pm_runtime_put;
->  	}
->  
-> -	ret = qcom_pcie_icc_init(pcie);
-> -	if (ret)
-> +	 /* OPP table is optional */
-> +	ret = devm_pm_opp_of_add_table(dev);
-> +	if (ret && ret != -ENODEV) {
-> +		dev_err_probe(dev, ret, "Failed to add OPP table\n");
->  		goto err_pm_runtime_put;
-> +	}
-> +
-> +	/* vote for max freq in the opp table if opp table is present */
+All errors (new ones prefixed by >>):
 
-/*
- * Use highest OPP here if the OPP table is present. At the end of the probe(),
- * OPP will be updated using qcom_pcie_icc_opp_update().
- */
+>> drivers/hwmon/aspeed-g6-pwm-tach.c:496:2: error: implicit declaration of function 'of_platform_populate' is invalid in C99 [-Werror,-Wimplicit-function-declaration]
+           of_platform_populate(dev->of_node, NULL, NULL, dev);
+           ^
+   1 error generated.
 
-- Mani
+
+vim +/of_platform_populate +496 drivers/hwmon/aspeed-g6-pwm-tach.c
+
+   446	
+   447	static int aspeed_pwm_tach_probe(struct platform_device *pdev)
+   448	{
+   449		struct device *dev = &pdev->dev, *hwmon;
+   450		int ret;
+   451		struct device_node *child;
+   452		struct aspeed_pwm_tach_data *priv;
+   453	
+   454		priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+   455		if (!priv)
+   456			return -ENOMEM;
+   457		priv->dev = dev;
+   458		priv->base = devm_platform_ioremap_resource(pdev, 0);
+   459		if (IS_ERR(priv->base))
+   460			return PTR_ERR(priv->base);
+   461	
+   462		priv->clk = devm_clk_get_enabled(dev, NULL);
+   463		if (IS_ERR(priv->clk))
+   464			return dev_err_probe(dev, PTR_ERR(priv->clk),
+   465					     "Couldn't get clock\n");
+   466		priv->clk_rate = clk_get_rate(priv->clk);
+   467		priv->reset = devm_reset_control_get_exclusive(dev, NULL);
+   468		if (IS_ERR(priv->reset))
+   469			return dev_err_probe(dev, PTR_ERR(priv->reset),
+   470					     "Couldn't get reset control\n");
+   471	
+   472		ret = reset_control_deassert(priv->reset);
+   473		if (ret)
+   474			return dev_err_probe(dev, ret,
+   475					     "Couldn't deassert reset control\n");
+   476	
+   477		priv->chip.dev = dev;
+   478		priv->chip.ops = &aspeed_pwm_ops;
+   479		priv->chip.npwm = PWM_ASPEED_NR_PWMS;
+   480	
+   481		ret = devm_pwmchip_add(dev, &priv->chip);
+   482		if (ret < 0) {
+   483			reset_control_assert(priv->reset);
+   484			return dev_err_probe(dev, ret, "Failed to add PWM chip\n");
+   485		}
+   486	
+   487		for_each_child_of_node(dev->of_node, child) {
+   488			ret = aspeed_tach_create_fan(dev, child, priv);
+   489			if (ret < 0) {
+   490				of_node_put(child);
+   491				dev_warn(dev, "Failed to create fan %d", ret);
+   492				return 0;
+   493			}
+   494		}
+   495	
+ > 496		of_platform_populate(dev->of_node, NULL, NULL, dev);
+   497	
+   498		hwmon = devm_hwmon_device_register_with_info(dev, "aspeed_tach", priv,
+   499							     &aspeed_tach_chip_info, NULL);
+   500		ret = PTR_ERR_OR_ZERO(hwmon);
+   501		if (ret) {
+   502			reset_control_assert(priv->reset);
+   503			return dev_err_probe(dev, ret,
+   504					     "Failed to register hwmon device\n");
+   505		}
+   506	
+   507		return 0;
+   508	}
+   509	
 
 -- 
-மணிவண்ணன் சதாசிவம்
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
