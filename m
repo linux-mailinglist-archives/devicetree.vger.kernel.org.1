@@ -1,232 +1,254 @@
-Return-Path: <devicetree+bounces-36318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426A58407E2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:09:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0EA8407E6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:10:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC7CC283BC1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:09:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A4E41C213F0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9263465BBB;
-	Mon, 29 Jan 2024 14:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C82657DF;
+	Mon, 29 Jan 2024 14:10:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="owA51J+8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Hj2zh2wY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BFA8657C4
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 14:08:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F333C657AF;
+	Mon, 29 Jan 2024 14:10:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706537340; cv=none; b=PUXQCPg6dWah/1v8DprAXCsv8tgfz0rdTvoKjOJW4j+I4fX8z4/ZuhZmDbvTn0MbWVFVZDd9ne5194MJpJvYfgsAhMavSJOHqNg3JaTp9UWSK63Jh3XLcAOKh9mJ2EJBgVbh0gX20i3ko8CWvagQV7PoaQAWFKiYD089LWhaejU=
+	t=1706537447; cv=none; b=p4OXla4e7tBstybes6YbY3NbHxsItqCc/jYF4BHxAkqZ3BnwG/4bKWhg0gGRl/Blnwk02NBoUX61V2Q8tDf/4Ojk+ZWvYce2zduhVVZWOqcyTt6ycOx1V+TqWHesic6DB168qIwBoVJg94E5zeYEuGsbfKBjG7tAXLympytjrTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706537340; c=relaxed/simple;
-	bh=HtYjkNfO0ttjXsrkH7dPynQ41tr74rYvKIjBqd2n8JY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rK3aSXbJ9787dtjWeqrfxa6reJoMoSIAIZqoL8XzOhhyuAWvUXBh+kJL9Mm+usygOwvXmlknpOL03WUZaSXRAagU9vsnCKqzGQG4aR+4kKIl7pCaHCBe+A3tn7qtlKKhoOtc7T7CNFC6EDy5pEAenpsgboUbvjZTzB79qMKMohI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=owA51J+8; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55eece07a75so1526405a12.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 06:08:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706537336; x=1707142136; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=EVgC9ndqR/MuNvywM9xT1vFd5Ob7Ho0ot1L+E3kxXno=;
-        b=owA51J+8tR8TFxLkY9+hx9AB7DUIgBxa9b5iSc3kJraQs9z/+mD68fsPHsq/hHsyBZ
-         qB/7MI52zSnJSJJZh+I540RdubV536vB4oopsJ0RmCUPaPTn1/OMwImTvpu1JMS0YoPk
-         MmmFvskgg9MPG66y8ng0EvsygefegYqO5Sor7fwa1JiMchO99xAYGpqnzZ68/NDi0nGV
-         Nya5hDiQHzDSDJeoo1DLC7J3Y/wYaxZYswXBRuvOlAC5j7cO/zv3Mloi4X+qDgYMKqCi
-         sKv5pyp8ds+nP2ujcXMWtug+XiECMVEHAKm8LF6aV8Et6duhQEtoPoV1zm211WkKA5tj
-         pt3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706537336; x=1707142136;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EVgC9ndqR/MuNvywM9xT1vFd5Ob7Ho0ot1L+E3kxXno=;
-        b=FjFstAnlAU+2JlrhG6gXNxXFzKG6xXtvWz5r5EFfQWXZUQCovxQ/qhvy7nByddQzQF
-         eK+Y5pQ/uzVRFfwS+Z2afNqG1iPwfxSnZ00BoXKGjggx+RLal15PrW6OSDaPeZs/cpKw
-         uXSh9RaqtOSzFGwRzS4kzzK4uSrLK/EHZ7C5Olk98jX75e9vzsgp6zkhCuvMXBvnWHK7
-         I+9LvAVKc8oGOC2ChPnFSGpw171TlHmV3qRD+i7imOi6Ub+TLFJcnv6MQ66sdqi34OpQ
-         vfMP5kFeP+aWNqOPdC1DWKeTmtMy5U4N96p7emo1cTxZROLfI9h8y+Q7c/dbtzLjnsD0
-         nE4g==
-X-Gm-Message-State: AOJu0YyGYoyqVdEa2aTWe0xdsB4DnqwUVbe3yycqH7t3NeiZ7tdQm0QQ
-	c9ebVE4rWmHKdgxlYHrBvJoeAjhkAoQu3Eoex1uiXIVPNvAhznkZipUABWdFxsE=
-X-Google-Smtp-Source: AGHT+IEfmPLWaM2gz4IcNgfV12bxmfh2h9gb4skOekbcic5q/Q27us3TWRKuRn+sdBiOj3uyGQwyWg==
-X-Received: by 2002:a17:906:a013:b0:a34:96e9:f46c with SMTP id p19-20020a170906a01300b00a3496e9f46cmr4382352ejy.31.1706537335396;
-        Mon, 29 Jan 2024 06:08:55 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id i21-20020a170906a29500b00a35d7b6cb3fsm677384ejz.95.2024.01.29.06.08.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 06:08:54 -0800 (PST)
-Message-ID: <e845e0fa-846c-4f26-9d8c-79eccae72cc2@linaro.org>
-Date: Mon, 29 Jan 2024 15:08:53 +0100
+	s=arc-20240116; t=1706537447; c=relaxed/simple;
+	bh=cpIteSb46C7vMPSZyBEbfueXL51jR4Onxer+aqnEGgk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=O5OGVWdk3gpkZnlRrYt1xpHIgNDJ8hkCfyg23QTNRtk72HB81J3qu0kfNI5pNU2KDeRWbb6itI1JsdwjoJOSFLh5wRZeIu8DPy+1tnDge2+FxNadB30s8/fs8SBjmcGJjSHiAKRrBNprGpyAuZNBsSqAbj+2JXB/6gZqEMaPKBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Hj2zh2wY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40TBccn5003188;
+	Mon, 29 Jan 2024 14:10:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=AobKpWswbqzb3U1KiN/ccc5Pg0YoZC3EQk3XnnWFgbE=; b=Hj
+	2zh2wYurC8clzcltNifz9pQeuPrYPwWXNo9Vb/e/iUOIT1vo4+9+ot3o0WohSFee
+	5YyzzdpfmLKkLxoFC1PBacj8d4vqj7ZMmGIE1XeINHdpO742f/JT1tJsRRFw5p8X
+	5QQM9W7eyrX4CYAj6lxIQ7pyv1mscK74w0AB9xUtbYrAZfvLnb93BLzmE93rBmZg
+	bIQshIq6jb6orGfjylzIxI28bZJ5nRcq1QHDG83FhN3FZE2P3sp1bYoYRAVsUkQA
+	yzIGt/UAoDsg04xcAZgSnRoic141cU6xutXoFwr92hiZoCwqtMnrcycjHy1ftyz2
+	4Jq4fqMTOGXprDIYMAsA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vvqhmv7ee-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 14:10:31 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40TEAUpu026646
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 14:10:30 GMT
+Received: from [10.216.42.199] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
+ 2024 06:10:22 -0800
+Message-ID: <8eb63c69-b769-3623-fd34-b1df959ba7b1@quicinc.com>
+Date: Mon, 29 Jan 2024 19:40:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] clk: samsung: gs101: don't CLK_IGNORE_UNUSED
- peric1_sysreg clock
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
- tudor.ambarus@linaro.org, willmcvicker@google.com,
- semen.protsenko@linaro.org, alim.akhtar@samsung.com, s.nawrocki@samsung.com,
- tomasz.figa@gmail.com, cw00.choi@samsung.com,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240127001926.495769-1-andre.draszik@linaro.org>
- <20240127001926.495769-10-andre.draszik@linaro.org>
- <74b63fd9-bf7a-4a88-bfa9-a975a4f12bca@linaro.org>
- <7d42f80acf7c8bd3882f5ac253a761c71de2034c.camel@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v6 3/6] PCI: qcom: Add missing icc bandwidth vote for cpu
+ to PCIe path
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7d42f80acf7c8bd3882f5ac253a761c71de2034c.camel@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Manivannan Sadhasivam <mani@kernel.org>
+CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Bjorn
+ Helgaas" <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Johan
+ Hovold" <johan+linaro@kernel.org>,
+        Brian Masney <bmasney@redhat.com>,
+        "Georgi
+ Djakov" <djakov@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
+        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
+References: <20240112-opp_support-v6-0-77bbf7d0cc37@quicinc.com>
+ <20240112-opp_support-v6-3-77bbf7d0cc37@quicinc.com>
+ <CAA8EJprq1s42hkbXXKtXTGnyYePQN98t+gmFoHDOGMWJH4Ot3g@mail.gmail.com>
+ <2bc92420-b3b9-047d-e5e4-22a19b4d07d3@quicinc.com>
+ <20240117063938.GC8708@thinkpad>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <20240117063938.GC8708@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UMNi7JRKp41clxxn5vu224Uw6Lk23tS1
+X-Proofpoint-ORIG-GUID: UMNi7JRKp41clxxn5vu224Uw6Lk23tS1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-29_07,2024-01-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ adultscore=0 priorityscore=1501 lowpriorityscore=0 mlxlogscore=999
+ spamscore=0 impostorscore=0 clxscore=1011 mlxscore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401290104
 
-On 29/01/2024 14:47, André Draszik wrote:
-> Hi Krzysztof,
-> 
-> On Mon, 2024-01-29 at 12:03 +0100, Krzysztof Kozlowski wrote:
->> On 27/01/2024 01:19, André Draszik wrote:
->>> Now that we have hooked it up in the DTS, we can drop the
+
+
+On 1/17/2024 12:09 PM, Manivannan Sadhasivam wrote:
+> On Tue, Jan 16, 2024 at 10:27:23AM +0530, Krishna Chaitanya Chundru wrote:
 >>
->> Your driver patch cannot depend on DTS. Not for a new platform. I am
->> repeating this all the time last days...
 >>
->>> CLK_IGNORE_UNUSED from here.
+>> On 1/12/2024 9:00 PM, Dmitry Baryshkov wrote:
+>>> On Fri, 12 Jan 2024 at 16:24, Krishna chaitanya chundru
+>>> <quic_krichai@quicinc.com> wrote:
+>>>>
+>>>> CPU-PCIe path consits for registers PCIe BAR space, config space.
+>>>> As there is less access on this path compared to pcie to mem path
+>>>> add minimum vote i.e GEN1x1 bandwidth always.
 >>>
->>> Signed-off-by: André Draszik <andre.draszik@linaro.org>
->>> ---
->>>  drivers/clk/samsung/clk-gs101.c | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>> Is this BW amount a real requirement or just a random number? I mean,
+>>> the register space in my opinion consumes much less bandwidth compared
+>>> to Gen1 memory access.
 >>>
->>> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
->>> index 7f6c3b52d9ff..d55ed64d0e29 100644
->>> --- a/drivers/clk/samsung/clk-gs101.c
->>> +++ b/drivers/clk/samsung/clk-gs101.c
->>> @@ -3393,7 +3393,7 @@ static const struct samsung_gate_clock peric1_gate_clks[] __initconst = {
->>>  	GATE(CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK,
->>>  	     "gout_peric1_sysreg_peric1_pclk", "mout_peric1_bus_user",
->>>  	     CLK_CON_GAT_GOUT_BLK_PERIC1_UID_SYSREG_PERIC1_IPCLKPORT_PCLK,
->>> -	     21, CLK_IGNORE_UNUSED, 0),
+>> Not register space right the BAR space and config space access from CPU
+>> goes through this path only. There is no recommended value we need to
+>> vote for this path. Keeping BAR space and config space we tried to vote
+>> for GEN1x1.
 >>
->> I don't understand. You just added this clock in this patchset. This
->> means that your patch #3 is incorrect.
+>> Please suggest any recommended value, I will change that in the next
+>> series.
+>>
 > 
-> In patch #3 I'm hooking up all the clocks to Linux. If I don't CLK_IGNORE_UNUSED
-> for the 'sysreg' pclk in patch #3, then it'll hang on loading drivers that
-> require sysreg access (because Linux disabled the clock).
-
-Then add clk_ignore_unused to cmdline. That's anyway recommended for
-development platforms without full clock and pd description
-(pd_ignore_unused). Not mentioning that we might default to
-clk_ignore_unused at some point soon.
-
+> You should ask the HW folks on the recommended value to keep the reg access
+> clocking. We cannot suggest a value here.
 > 
-> I can not change patch #8 to come between 2 and 3 either, because at that stage
-> neither the clock nor the DT node reference &cmu_peric1 actually exist, and the
-> clock and can't be claimed by sysreg.
-
-At the point of me applying this patch, there will be no DTS node
-either. This ordering fixes nothing.
-
+> If they say, "there is no recommended value", then ask them what would the
+> minimum value and use it here.
 > 
-> Since we can not mix DT and driver changes in the same commit, I can not merge
-> patches #3 and #4 and #8 either.
+> - Mani
 > 
-> I had to do it this way so that the platform always boots for every commit to keep
-> things bisectable.
+HW team suggested to use minimum value of 1Kbps for this path.
+I will update the patches to use 1Kbps in the next series.
 
-But it is not bisectable - you did not fix anything. You can try by
-yourself:
-# git checkout drivers
-# git am patch #1, #2, #3 and #9
-# git checkout dt
-# git am patch #4, #5, #6, #7, #8
-
-and now try to bisect it. You will have the same problems you try to
-avoid. So what is solved by this ordering? Nothing.
-
-
+- Krishna Chaitanya.
+>> - Krishna Chaitanya.
+>>>>
+>>>> In suspend remove the cpu vote after register space access is done.
+>>>>
+>>>> Fixes: c4860af88d0c ("PCI: qcom: Add basic interconnect support")
+>>>> cc: stable@vger.kernel.org
+>>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>>> ---
+>>>>    drivers/pci/controller/dwc/pcie-qcom.c | 31 +++++++++++++++++++++++++++++--
+>>>>    1 file changed, 29 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>>>> index 11c80555d975..035953f0b6d8 100644
+>>>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>>>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>>>> @@ -240,6 +240,7 @@ struct qcom_pcie {
+>>>>           struct phy *phy;
+>>>>           struct gpio_desc *reset;
+>>>>           struct icc_path *icc_mem;
+>>>> +       struct icc_path *icc_cpu;
+>>>>           const struct qcom_pcie_cfg *cfg;
+>>>>           struct dentry *debugfs;
+>>>>           bool suspended;
+>>>> @@ -1372,6 +1373,9 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
+>>>>           if (IS_ERR(pcie->icc_mem))
+>>>>                   return PTR_ERR(pcie->icc_mem);
+>>>>
+>>>> +       pcie->icc_cpu = devm_of_icc_get(pci->dev, "cpu-pcie");
+>>>> +       if (IS_ERR(pcie->icc_cpu))
+>>>> +               return PTR_ERR(pcie->icc_cpu);
+>>>>           /*
+>>>>            * Some Qualcomm platforms require interconnect bandwidth constraints
+>>>>            * to be set before enabling interconnect clocks.
+>>>> @@ -1381,7 +1385,18 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
+>>>>            */
+>>>>           ret = icc_set_bw(pcie->icc_mem, 0, QCOM_PCIE_LINK_SPEED_TO_BW(1));
+>>>>           if (ret) {
+>>>> -               dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
+>>>> +               dev_err(pci->dev, "failed to set interconnect bandwidth for pcie-mem: %d\n",
+>>>> +                       ret);
+>>>> +               return ret;
+>>>> +       }
+>>>> +
+>>>> +       /*
+>>>> +        * The config space, BAR space and registers goes through cpu-pcie path.
+>>>> +        * Set peak bandwidth to single-lane Gen1 for this path all the time.
+>>>> +        */
+>>>> +       ret = icc_set_bw(pcie->icc_cpu, 0, QCOM_PCIE_LINK_SPEED_TO_BW(1));
+>>>> +       if (ret) {
+>>>> +               dev_err(pci->dev, "failed to set interconnect bandwidth for cpu-pcie: %d\n",
+>>>>                           ret);
+>>>>                   return ret;
+>>>>           }
+>>>> @@ -1573,7 +1588,7 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
+>>>>            */
+>>>>           ret = icc_set_bw(pcie->icc_mem, 0, kBps_to_icc(1));
+>>>>           if (ret) {
+>>>> -               dev_err(dev, "Failed to set interconnect bandwidth: %d\n", ret);
+>>>> +               dev_err(dev, "Failed to set interconnect bandwidth for pcie-mem: %d\n", ret);
+>>>>                   return ret;
+>>>>           }
+>>>>
+>>>> @@ -1597,6 +1612,12 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
+>>>>                   pcie->suspended = true;
+>>>>           }
+>>>>
+>>>> +       /* Remove cpu path vote after all the register access is done */
+>>>> +       ret = icc_set_bw(pcie->icc_cpu, 0, 0);
+>>>> +       if (ret) {
+>>>> +               dev_err(dev, "failed to set interconnect bandwidth for cpu-pcie: %d\n", ret);
+>>>> +               return ret;
+>>>> +       }
+>>>>           return 0;
+>>>>    }
+>>>>
+>>>> @@ -1605,6 +1626,12 @@ static int qcom_pcie_resume_noirq(struct device *dev)
+>>>>           struct qcom_pcie *pcie = dev_get_drvdata(dev);
+>>>>           int ret;
+>>>>
+>>>> +       ret = icc_set_bw(pcie->icc_cpu, 0, QCOM_PCIE_LINK_SPEED_TO_BW(1));
+>>>> +       if (ret) {
+>>>> +               dev_err(dev, "failed to set interconnect bandwidth for cpu-pcie: %d\n", ret);
+>>>> +               return ret;
+>>>> +       }
+>>>> +
+>>>>           if (pcie->suspended) {
+>>>>                   ret = qcom_pcie_host_init(&pcie->pci->pp);
+>>>>                   if (ret)
+>>>>
+>>>> --
+>>>> 2.42.0
+>>>>
+>>>>
+>>>
+>>>
+>>
 > 
-> Alternatively, I could merge patches #4 and #8 (but that seems wrong to me), or
-> drop patches #7, #8 and #9 from this series and apply it later in the -rc phase?
-
-Probably the mistake was done in the way how you upstream things: adding
-sysreg syscon without its clocks.
-
-Additionally:
-1. Disabling unused clocks is current OS policy, so why the policy
-should affect DTS and driver ordering?
-2. This is platform did not receive a release kernel, so glitches are okay.
-
-For this case #9 must be squashed with #3. #4 with #9.
-
-> 
-> 
-> Is there a better way that you have in mind that we're missing, that keeps things
-> atomic and bootable/bisectable? 
-
-
-Best regards,
-Krzysztof
-
 
