@@ -1,104 +1,137 @@
-Return-Path: <devicetree+bounces-36233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F709840414
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:47:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D20840419
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:48:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D241B1C21FD3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:47:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44FD31C2277A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FECF5C608;
-	Mon, 29 Jan 2024 11:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 747B960241;
+	Mon, 29 Jan 2024 11:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FXXBzZr1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC515FEE5
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 11:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65D85EE82;
+	Mon, 29 Jan 2024 11:48:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706528821; cv=none; b=fAQ9PCBprJHaiR52vW3v3tAlM4OkWteeV7Ovn0zAOuNeVPAXpMT4kqyjhcjmezl4gL3XaRAlzWbyzjgCEJg/jGsGnc76wxr4Z6MTk346rUwi9Szh3rlYIEtTVXOQuSXRBJVZ6O4FVUAtRfBSZe5vZ3TUCY5ZBKRGtDtb4vrOEMQ=
+	t=1706528894; cv=none; b=WABb8oasWxsvWD8dipQj9loSsQXyOGsZeNkrj7dxFRuwW4JzxoUH1MeaxfOl8Vc4/mYEJc+89s6FJ/8a+QWhQvfujHR8yRN7T0F5T0z/1o/sh6YMyi7sVhPUMsHz1g98sqtnpvqJ/0F0jVGccbRDZiFmyxGMuSxS/pL0spRx9Aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706528821; c=relaxed/simple;
-	bh=nsZ+fmh82O2ks56JrvTP2KqeLFDdhVzgvMzmiqGIGuQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rdUkif0miQBvCOcjox+J2ABpGkracm7fZbh6K9Is7U2fAIl2xtpW70mLz1KNCth0HNILKBHZD/qIgWpBmHqwj0Bo/KTRcLmwdAFkeEs5aC5ZGFuAMzgHAiuGaoGtwLBzexOMaz4BNpo40wrAD7Bzc3X8Hc9tmxILFZ4lFBrVuU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rUQ6H-0007AJ-UJ; Mon, 29 Jan 2024 12:46:53 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rUQ6G-0039yH-9z; Mon, 29 Jan 2024 12:46:52 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rUQ6G-00AsMQ-0i;
-	Mon, 29 Jan 2024 12:46:52 +0100
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@pengutronix.de
-Subject: [PATCH] ARM: dts: stm32: lxa-tac: reduce RGMII interface drive strength
-Date: Mon, 29 Jan 2024 12:46:49 +0100
-Message-ID: <20240129114649.2458468-2-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1706528894; c=relaxed/simple;
+	bh=UZSjcZNEWZeuncgjlGL6XIiyi13elCANBwAmNd5nwd0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Vm+S1kMMJwiGi48u0xaxfhk1VKS7ePR1olJbDN7HtykoZ7n0McyZZbd1DMdutTvwLSOYC9msPDIJy8MC3uNfIqGAPY3LXBGWMKnVHdTyix/YG1LV0K4/NSm7+ZRxRmUvWf9i3AKektZhm4+iE2pCDqbLqIA2+dSbo7JO+fYiJJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FXXBzZr1; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40TBlsGn102376;
+	Mon, 29 Jan 2024 05:47:54 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706528874;
+	bh=jIPZjzqodUCMiwZz2MUWXuRmtOiuFatsm+9MP4VW5pU=;
+	h=From:To:CC:Subject:Date;
+	b=FXXBzZr1FnVbiGvubjgqGllGD/VLUeBFyBll8COiORz51wNCXjrtNTFq2eI0ZjzGV
+	 SdLAIJonKlkRIufU+kxcajri5rk9nkd+yMMU40DfD1OjHMTeFIAfPVtJp+hRPwoXKm
+	 G9nS+QKprB9WREg9mRO4Y3cEl3dyn4rnm4fTWKVE=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40TBlsFY064207
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 29 Jan 2024 05:47:54 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
+ Jan 2024 05:47:53 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 29 Jan 2024 05:47:53 -0600
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40TBloqP029678;
+	Mon, 29 Jan 2024 05:47:50 -0600
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
+        <srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH 0/3] Add PCIe DT support for TI's J784S4 SoC
+Date: Mon, 29 Jan 2024 17:17:46 +0530
+Message-ID: <20240129114749.1197579-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=978; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=w+TUJeocBu4MMweRw8tgYLEmSQuNkXHs+pH1aqUe1wQ=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlt5ApRWpQOr/HHLFho90eiPiFHmcdiFtup9Fto Zjfr+PQQX2JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZbeQKQAKCRCPgPtYfRL+ TtrUCACPEt3J6ytRV2Ghf98LrqiuTr7dzOZ8ewYTkSVm4W71RPtEJ9aUtBuaYc+l5QkvyJdSSin 2h05pGiRPFROrYBEZulTdOH1ptW2wmWX6myUubT9dhCFm7ESv0FDAJv4W1ZR7cSWalS4j00umPL LSSM+noHFkfj7TmOW5HY1Uxr66IwZZrrYrgTQoWgGWrwT1hanEL44aamLxJWPAFz+MgK8Aypdhe C58PQS8TCkO1CC0e3jhpP0w2RAcjFNsaDwRpNIZOPITXgIn/G5vEBkjt8okOM+ZTjudf/A3wPxo B/f7TrxUzr0AMWGS/sP2HsB9H+i3g/6G7IvhonZEdWmSKAy1
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Leonard Göhrs <l.goehrs@pengutronix.de>
+Hello,
 
-This results in an improvement of EMI performance by reducing the
-125MHz emission and its harmonics caused by the RGMII clock line.
+TI's J784S4 SoC has two Gen3 x4 Lane PCIe Controllers. This series adds
+the necessary device-tree support to enable both PCIe instances in Root
+Complex mode of operation by default. The device-tree overlay to enable
+both instances in Endpoint mode of operation is also present in this
+series.
 
-Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+**NOTE**
+This series depends on:
+1. https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240124122936.816142-1-s-vadapalli@ti.com/
+   for adding the Device ID in the bindings for J784S4 SoC.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
-index 7e835a7cf64a..cfaf8adde319 100644
---- a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
-@@ -471,6 +471,10 @@ switch: switch@0 {
- 		interrupt-parent = <&gpioa>;
- 		interrupts = <6 IRQ_TYPE_EDGE_RISING>;
- 
-+		/* Reduce RGMII EMI emissions by reducing drive strength */
-+		microchip,hi-drive-strength-microamp = <2000>;
-+		microchip,lo-drive-strength-microamp = <8000>;
-+
- 		ports {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+2. https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240129104958.1139787-1-s-vadapalli@ti.com/
+   for enabling support for configuring the PCIe mode of operation,
+   number of lanes and link speed when the System Controller node
+   in the device-tree is modelled as a "simple-bus" which happens to
+   be the case for J784S4 SoC:
+   https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi#L45
+
+3. https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240125100501.4137977-2-c-vankar@ti.com/
+   for fixing the "serdes_ln_ctrl" node in order to ensure that the PCIe
+   lanes are mapped correctly to the corresponding Serdes Lanes.
+
+This series has been tested on top of linux-next tagged next-20240129
+after applying the above dependent patches and enabling the relevant
+PCIe driver configs.
+
+Test Logs:
+1. PCIe0 and PCIe1 in Root Complex Modes of operation with an NVMe SSD
+connected to PCIe0 instance and Read performance measured using hdparm:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/6592af75ee8ba3f3bdd372a882de8b43
+2. PCIe0 in Endpoint Mode on one J784S4-EVM with PCIe0 in RC Mode on
+other J784S4-EVM connected to each other. Enumeration of PCIe0 as an
+Endpoint is verified on the J784S4-EVM where PCIe0 is in RC Mode:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/cef85519669c12894352ce081ea2a8ab
+3. PCIe1 in Endpoint Mode on one J784S4-EVM with PCIe1 in RC Mode on
+other J784S4-EVM connected to each other. Enumeration of PCIe1 as an
+Endpoint is verified on the J784S4-EVM where PCIe1 is in RC Mode:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/646d51757cffd651b51bac33d138a8ac
+
+Regards,
+Siddharth.
+
+Siddharth Vadapalli (3):
+  arm64: dts: ti: k3-j784s4-main: Add PCIe nodes
+  arm64: dts: ti: k3-j784s4-evm: Enable PCIe0 and PCIe1 in RC Mode
+  arm64: dts: ti: k3-j784s4-evm: Add overlay for PCIE0 and PCIE1 EP Mode
+
+ arch/arm64/boot/dts/ti/Makefile               |  7 +-
+ .../dts/ti/k3-j784s4-evm-pcie0-pcie1-ep.dtso  | 79 +++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      | 46 ++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 84 +++++++++++++++++++
+ 4 files changed, 215 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-pcie0-pcie1-ep.dtso
+
 -- 
-2.43.0
+2.34.1
 
 
