@@ -1,130 +1,153 @@
-Return-Path: <devicetree+bounces-36186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C5F48401E0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:38:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E48468401ED
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:40:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 288752835B8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:38:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8885BB20C09
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E991E55779;
-	Mon, 29 Jan 2024 09:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A447355765;
+	Mon, 29 Jan 2024 09:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/A8iDK+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WP9btXCG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCBAD55765;
-	Mon, 29 Jan 2024 09:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 766E154FB2;
+	Mon, 29 Jan 2024 09:40:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706521102; cv=none; b=KukQa8jmbjNYvADqoYvW8mZzbljspgKTm/c5ZDNRetNV30PJHvcH5clF/lMyqf4xsB6zPKF9S/VudPjENZNB2iceTZVwp7E0q1fr2dZxkhlmnRc39NRSVh8KIUGhLjBZpzrcSPMgbrc5ezKGpovkAfavOUXzUQrDRghZIDGNN38=
+	t=1706521212; cv=none; b=eQZ1qtD2IXATLbg5kbrLArbB92Cz/w2yisFCADkVVoUq4qXh2cpCiqqoyileUMtFUhs+QQzvS49/jsqMmOkWg5UPmpmxXOrGj/+zCOezI6QyMAjSzOprc2B/sMyciv8hrsihgGSkLBp3+JgV7Q+FgTV2IuP33idBa60zmqlMyek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706521102; c=relaxed/simple;
-	bh=rhLbs8RDtFB5pDbCrc/ZKmEFvyOrcNyrTDC+mGeGs/Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aHugUOY+B6OGJ8ZeZFrkE7jKxUoJfbiRFhAo3NTCHtzcqD1ykfvXPNleZlftGVMgYBSKMQ28EhzaEG4tCtdv8ijmCtDeTUUvd3RrKy/rEiIyplvbR1mTiEhLi95/QY+mkPU8U/7tToG2uxteGW905/XXfa61pXRqSvamQuvKKCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/A8iDK+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BDE6C433F1;
-	Mon, 29 Jan 2024 09:38:22 +0000 (UTC)
+	s=arc-20240116; t=1706521212; c=relaxed/simple;
+	bh=9Vv3v+/Pe4SpvRgFIw1kkB8d7DptlxovoLWFbzSC3eo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DVVSyVIPcT++l3lTqTxE5NlOs9S5r6XDN22dvweMJUeDAfITsBHbvZVuCGipBo0wAADLj/wAQWpELixXtcEJVVSROvHFWg5hoWARsFYlsztNa1+kzXmxbyDgy+CHBMafGyFg9aGg4mbB76bJ+gZThHovTJbidKdoqP61sMsl0co=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WP9btXCG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48CBEC433F1;
+	Mon, 29 Jan 2024 09:40:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706521102;
-	bh=rhLbs8RDtFB5pDbCrc/ZKmEFvyOrcNyrTDC+mGeGs/Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R/A8iDK+qvEwZQs2jOfXYFIcUpQQ/XZuYln2omvDlDaFiFFOy/yzYlz2KordHXCDh
-	 Zj1TdiiWtfD235gQGah2tV+0Sxg/xDBNEy/iwcL2QXprybV7H0nNFQnEsoTiuzlROF
-	 KcPcjXd8fQYU8yUZU2zJwQNH/vttSQB9FAJKiDOL9J3tu3q50LAr2OMO68asc/1bPa
-	 lfWeBWaxFR3jwv0xWtlLmsf748j/eDZzdBLIHj2NRs6Jy7gl9g4PV6O6t5vCOQEXCl
-	 Mqt3sGrOkb6afAVlF8IP6KJmIbIuGhwORf1387FSgHyNklONGfkfykiSoft9uwXN80
-	 kWmM9t1DqFqNg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rUO5m-000000006fw-2Kvx;
-	Mon, 29 Jan 2024 10:38:15 +0100
-Date: Mon, 29 Jan 2024 10:38:14 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc8280xp: Introduce additional
- tsens instances
-Message-ID: <ZbdyBgbX2Su80eln@hovoldconsulting.com>
-References: <20240126-sc8280xp-tsens2_3-v2-1-8504d18828de@quicinc.com>
- <ZbPfeq6ElA3vMf_O@hovoldconsulting.com>
- <20240126165113.GS2936378@hu-bjorande-lv.qualcomm.com>
- <ZbPlRsx3czAHRBew@hovoldconsulting.com>
- <f28604d2-20a8-4662-9412-f09c6bf4a67b@linaro.org>
+	s=k20201202; t=1706521211;
+	bh=9Vv3v+/Pe4SpvRgFIw1kkB8d7DptlxovoLWFbzSC3eo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WP9btXCGmiSjvjiwWT+vA9mDVV7IDFi4m8JNXFpYB3XzzVLMARqRVK88iyvsukJS3
+	 ffGu0BrsNFvj2k4ZGFNOgGxJU+U/IJKiGzKJQlDaDMVyhkWgHT+H8XYFNrtclPmfmR
+	 OTCwotaAVMU8tpgPbYOXlDZP2+N1rIIl/nUcyk5MV5ATutESvg3Kj0PFoMajv3Cptz
+	 l8UJRanPvdcJ5BgFge/BDIMO27I4NlU282g+qUCkAeiDUlRJVF65aAYr5cG9M4OJRh
+	 zzddY4yBYr8uCxdnkp7IzkD2p95YzXHgAYVe/Y6IXNOgNpTiqt3BJiTikdL0NL8Jso
+	 zk11Mieaf1fzg==
+Message-ID: <8f525770-7e39-4bf1-9ad3-803826ffbb1e@kernel.org>
+Date: Mon, 29 Jan 2024 10:40:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f28604d2-20a8-4662-9412-f09c6bf4a67b@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 2/2] pwm: Add GPIO PWM driver
+To: Stefan Wahren <wahrenst@gmx.net>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: andy.shevchenko@gmail.com,
+ Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+ Philip Howard <phil@gadgetoid.com>, Linus Walleij
+ <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Vincent Whitchurch <vincent.whitchurch@axis.com>
+References: <20240128163630.104725-1-wahrenst@gmx.net>
+ <20240128163630.104725-3-wahrenst@gmx.net>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240128163630.104725-3-wahrenst@gmx.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jan 26, 2024 at 10:23:41PM +0100, Konrad Dybcio wrote:
-> On 26.01.2024 18:00, Johan Hovold wrote:
-> > On Fri, Jan 26, 2024 at 08:51:13AM -0800, Bjorn Andersson wrote:
-> >> On Fri, Jan 26, 2024 at 05:36:10PM +0100, Johan Hovold wrote:
-> > 
-> >>> Shall you submit a follow-on patch to set the polling delays to zero
-> >>> for the other thermal zones (cpu, cluster, mem) so that we don't poll
-> >>> for those?
-> >>
-> >> I optimistically interpreted Konrad's response as a promise by him to do
-> >> so ;)
-> >>
-> >> I do like his patch which remove the poll-properties for non-polling
-> >> mode. Would be nice to not first change the values to 0 and then remove
-> >> the properties...
+On 28/01/2024 17:36, Stefan Wahren wrote:
+> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
 > 
-> That was my intention as well..
+> Add a software PWM which toggles a GPIO from a high-resolution timer.
 > 
-> > 
-> > No, that should not be an issue as it allows us to get rid of the
-> > polling without waiting for a binding update which may or may not
-> > materialise in 6.9-rc1.
+> This will naturally not be as accurate or as efficient as a hardware
+> PWM, but it is useful in some cases.  I have for example used it for
+> evaluating LED brightness handling (via leds-pwm) on a board where the
+> LED was just hooked up to a GPIO, and for a simple verification of the
+> timer frequency on another platform.
 > 
-> If you really insist, I may do that, but if the thermal guys act on it
-> quickly and we negotiate an immutable branch, we can simply but atop it,
-> saving the submitter timeof(patchset), the reviewers timeof(verify), the
-> build bots timeof(builds) and the applier timeof(pick-build-push)..
 
-Why would introduce such a dependency for really no good reason?
+...
 
-Submit a patch based on the current binding, then when/if your proposed
-binding update hits mainline, you can send a *single* patch dropping the
-parameters from all qualcomm dtsi.
+> +
+> +static struct platform_driver pwm_gpio_driver = {
+> +	.driver = {
+> +		.name = "pwm-gpio",
+> +		.of_match_table = pwm_gpio_dt_ids,
+> +	},
+> +	.probe = pwm_gpio_probe,
+> +	.remove_new = pwm_gpio_remove,
+> +};
+> +module_platform_driver(pwm_gpio_driver);
+> +
+> +MODULE_DESCRIPTION("PWM GPIO driver");
+> +MODULE_ALIAS("platform:pwm-gpio");
 
-Updating the binding is a separate and lower priority task. In fact, it
-may not even be desirable at all as an omission of adding these
-parameters could then lead to broken thermal management on platforms
-where the interrupts do not work. Having an explicit poll-delay of zero
-at least gives people a reason to think about it when merging a new
-platform.
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong (e.g. misses either
+entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+for incomplete ID table.
 
-But again, that's a separate discussion. Don't make this patch depend on
-that.
 
-> > But whoever updates those properties need to do some proper testing to
-> > make sure that those interrupts really work.
-> 
-> They seem to, check /proc/interrupts before and after adding an e.g. 45degC
-> trip point on one of the CPU thermal zones, they fire aplenty.
+Best regards,
+Krzysztof
 
-That's not proper testing. Add/enable debugging in the thermal driver
-and make sure that you trigger precisely once when passing the threshold
-in both directions.
-
-Johan
 
