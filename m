@@ -1,111 +1,132 @@
-Return-Path: <devicetree+bounces-36281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD17F8406C3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:24:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AAC78406E0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:28:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4E219B2271C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:24:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 476A0289622
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C2663133;
-	Mon, 29 Jan 2024 13:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39BD64A94;
+	Mon, 29 Jan 2024 13:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kfGoxO9n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E48634E7;
-	Mon, 29 Jan 2024 13:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC351634F1;
+	Mon, 29 Jan 2024 13:28:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706534669; cv=none; b=uO0K8DWJhAdp53T2CGUdmOyG8uJcY3lFYsGIiaPQUY1ctv8Jbqm+GhACYEvCZcI/VsAGn69taEmGnLJExLv3WC/NnFNn+Q9D5o+BKCpPb5ABMpf6LLKtwfNzvbdIr4C9vq4gFOtgyhBQwnx1e3neMQ+tSoyoUbS9VDoMPnuK/AM=
+	t=1706534882; cv=none; b=qgF+1hYekuCNPnXBR0GNGDlh000BdILD3WRgnbCS6IYJDtZMMZnpVLijWo6mWE9fJr9F+AuDQ8KqEUasT4kty0sRYyfccocQjggBvY9kMA23aS6+NPPt27Q9usj4jFGCfbh6RRLSDDanKeWyUsJ7SG82kF4Nahn8Qqyde/SBao8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706534669; c=relaxed/simple;
-	bh=MaNdJSmcRmSoKWAWXNV6XJ3Z/352Xc8kckkjeiHFpn4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uTZVnNlGxIeXD+OO88XTH7WE5BnursAlDKiZDjphS+B0IDh30NO1CKU7D5HXAGjFoFLxc32HcGN/ZpwnZE8D99VFfmJyYwZRC6j3nx79f1jo0Jv5Bu2Cb5NWKrJ9TMlioBixQsmT2FOr1M609dhKihSeNVsgVN0xjCmTlyuEU8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-602ab446cd8so26499057b3.1;
-        Mon, 29 Jan 2024 05:24:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706534666; x=1707139466;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=60bQeQ4OLSEiw7dGbd1NiVHh4XdBGJExrqOIQcNDss0=;
-        b=Js3uSvvore/iXnNefzIyvelUBRUSywv2T69Hv9M22Hi8vi9fv3uNI2OXvyC1yIySNC
-         aDEJ5sMfSRlMtvvkM4wKg+emlmyu42uXGwqpogejVKsLTcsz1stYUZeiDsiiDjEueJFU
-         +TBQAyYvgn5YveHJKuv+p2C988A3W6dT6toxux675tOqa4CIjI8GKJ19W3BOAU+G6Uvi
-         GXvrcVGPn4BF+6LMWSjHOKkw75+eX9EnEsIgSXgyNsFTJm/W3lSYtxClX/h2kZ5mMRbt
-         5ZwAEtXkPd95KJTFVv+A9BPddhxT/Ob9CykGSRCbElYAuN3TV1OREtb+Hr69XGp9Zyva
-         iMAA==
-X-Gm-Message-State: AOJu0YxMgaANt5JlnL7lebCkXoTl5gNMFu9ZwFUkURaR+81wU+1sNqK9
-	FY+drh1ONJfL3MzYvEG2hFKEqE2gN+6A3wb1+2Fw0n+Za5bcAhQYe/RtlQ0FO1w=
-X-Google-Smtp-Source: AGHT+IEEGHiW2XJUkOVt9t4Yty+4Oq+ZJE3BDAnGN5akOpUfyFzcMJhqZ+5Mk3T79Pe278ga2YaaHg==
-X-Received: by 2002:a0d:d4c4:0:b0:5ff:7f34:1e92 with SMTP id w187-20020a0dd4c4000000b005ff7f341e92mr4065766ywd.98.1706534666153;
-        Mon, 29 Jan 2024 05:24:26 -0800 (PST)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id p64-20020a819843000000b00602b93f6f27sm2465433ywg.120.2024.01.29.05.24.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 05:24:25 -0800 (PST)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-602ab446cd8so26498827b3.1;
-        Mon, 29 Jan 2024 05:24:25 -0800 (PST)
-X-Received: by 2002:a81:c444:0:b0:5ff:aa81:b47d with SMTP id
- s4-20020a81c444000000b005ffaa81b47dmr3501080ywj.88.1706534665529; Mon, 29 Jan
- 2024 05:24:25 -0800 (PST)
+	s=arc-20240116; t=1706534882; c=relaxed/simple;
+	bh=rH3jXrntgM4YgWwATO4Gfv0xLewU3oOUC/m/QCARXuY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=tZsaQvsf5+xkP5QbzLIIbQbKi15Gascqop7MD1QmkKnfxonjaagyv8UHlud2PHhtvdmL93DFagu43u9GgxF0vEkxBehz6qE+Gjrd3yheYSopxzSdj/TT63Vj1iM+L8j05Cn+byWc0asyxvm1+bjsAAA3zOCSGublT1SyM4iq9sI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kfGoxO9n; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40TDRlCZ128826;
+	Mon, 29 Jan 2024 07:27:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706534867;
+	bh=HHazHNXhAm369Ngz+UjtwH3k5gdSdpNy3fLyx9BR4iQ=;
+	h=From:To:CC:Subject:Date;
+	b=kfGoxO9nZL75Kc6EIUsmrU+peluWj5MJrHKoqZ8DZd9gEXE6sKM/TCzbl9hLyVAdQ
+	 NxWYBRWVUaZ2T2moIJhGmJJsz2S9G0zUnyz/GXKrXuHg5ScIQkIG+biAD7Q1El+dJ8
+	 K/VWl5OsvTaDctQ6R5p31SAWYTdl0D9EbHlqILd4=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40TDRlTO026784
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 29 Jan 2024 07:27:47 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
+ Jan 2024 07:27:47 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 29 Jan 2024 07:27:47 -0600
+Received: from uda0490681.dhcp.ti.com ([10.24.69.142])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40TDRg9A036720;
+	Mon, 29 Jan 2024 07:27:43 -0600
+From: Vaishnav Achath <vaishnav.a@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <kernel@pengutronix.de>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vaishnav.a@ti.com>, <u-kumar1@ti.com>, <j-choudhary@ti.com>,
+        <j-luthra@ti.com>
+Subject: [PATCH 0/9] Add CSI2RX capture support on TI J7 platforms
+Date: Mon, 29 Jan 2024 18:57:33 +0530
+Message-ID: <20240129132742.1189783-1-vaishnav.a@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240117131807.24997-1-wsa+renesas@sang-engineering.com>
- <20240117131807.24997-3-wsa+renesas@sang-engineering.com> <CAMuHMdX7Z8w0JykKuboP__ZE4x+LeKSQAGdyrUezERxysPUCKA@mail.gmail.com>
- <ZbPKPGB7DIHhZ3GJ@ninjato>
-In-Reply-To: <ZbPKPGB7DIHhZ3GJ@ninjato>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 29 Jan 2024 14:24:13 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW6KV0Gh-JA8x2Z_vj2n5QPDLLFFZRNLUg2rdc3wFqChg@mail.gmail.com>
-Message-ID: <CAMuHMdW6KV0Gh-JA8x2Z_vj2n5QPDLLFFZRNLUg2rdc3wFqChg@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 2/2] arm64: dts: renesas: ulcb-kf: add node for GNSS
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Wolfram,
+Hi,
 
-On Fri, Jan 26, 2024 at 4:05=E2=80=AFPM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> > Can it be used over I2C too? Is there some strapping to select the
-> > interface used? I couldn't find that in the documentation.
->
-> It looks to me they both work at the same time. I was able to write and
-> read via I2C (thus not very meaningful data) while serial port was doing
-> the real work. I am not aware of a full GNSS implementation supporting
-> the I2C interface, so I considered it good at that point.
+This series adds support for CSI2RX capture support on J7 platforms,
+series was tested for CSI2RX capture on OV5640 sensor and RPI camera
+v2 IMX219 sensor on J721e Common Processor Board, J721E Starter kit,
+J721S2 Common Processor Board, AM68 Starter Kit, J784s4 EVM and AM69
+Starter kit.
 
-Indeed, drivers/gnss/ seems to have no support for I2C yet.
-Queuing in renesas-devel for v6.9.
+Test logs:
+J721E EVM OV5640 - https://gist.github.com/vaishnavachath/b08521386cfbe1939facf39b8b2d796b
+J721S2 EVM OV5640 - https://gist.github.com/vaishnavachath/1b0d60da6b6464cf12334cd5e161a79b
+J784s4 EVM OV5640 - https://gist.github.com/vaishnavachath/02b70df94d2d41662eff99f4ce966d67
+TDA4VM SK IMX219 - https://gist.github.com/vaishnavachath/64fc6edd6cc060027812bebd6573df07
+AM68 SK IMX219 - https://gist.github.com/vaishnavachath/d522254ff5e797bc853e0706fbea932a
+AM69 SK IMX219 - https://gist.github.com/vaishnavachath/8dbd960cc89d691886df371c53aac399
 
-Gr{oetje,eeting}s,
+Only a single set of overlays for RPI IMX219 is included in the series
+for reference and other overlays to test OV5640 can be found here:
+https://gist.github.com/vaishnavachath/d0a052106892fe9f3096733931e9ad5f
 
-                        Geert
+Patch 7/9 depends on : 
+https://lore.kernel.org/all/20240125111449.855876-1-vaishnav.a@ti.com/
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Thanks and Regards,
+Vaishnav
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Vaishnav Achath (9):
+  arm64: dts: ti: k3-j721s2-common-proc-board: Enable camera peripherals
+  arm64: dts: ti: k3-j784s4-evm: Enable camera peripherals
+  arm64: dts: ti: k3-am68-sk-base-board: Enable camera peripherals
+  arm64: dts: ti: k3-am69-sk: Enable camera peripherals
+  arm64: dts: ti: k3-j721e-sk: Model CSI2RX connector mux
+  arm64: dts: ti: k3-j721e-main: Add CSI2RX capture nodes
+  arm64: dts: ti: k3-j721s2-main: Add CSI2RX capture nodes
+  arm64: dts: ti: k3-j784s4-main: Add CSI2RX capture nodes
+  arm64: dts: ti: k3-am69-sk: Add overlay for IMX219
+
+ arch/arm64/boot/dts/ti/Makefile               |   6 +
+ .../boot/dts/ti/k3-am68-sk-base-board.dts     |  50 +++++
+ .../boot/dts/ti/k3-am69-sk-csi2-imx219.dtso   | 124 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts         |  51 +++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 122 ++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts        |  19 +-
+ .../dts/ti/k3-j721s2-common-proc-board.dts    |  25 +++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 123 +++++++++++-
+ arch/arm64/boot/dts/ti/k3-j784s4-evm.dts      |  25 +++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 183 +++++++++++++++++-
+ 10 files changed, 724 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am69-sk-csi2-imx219.dtso
+
+-- 
+2.34.1
+
 
