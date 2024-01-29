@@ -1,106 +1,112 @@
-Return-Path: <devicetree+bounces-36394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BAD1840C88
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:56:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B1BE840C90
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:57:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DA261F26608
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:56:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C7C81C22F38
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF3C8157031;
-	Mon, 29 Jan 2024 16:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 976E6155A5F;
+	Mon, 29 Jan 2024 16:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ay1FWscT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RQRULy0z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79551152E05;
-	Mon, 29 Jan 2024 16:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67183154BF0;
+	Mon, 29 Jan 2024 16:56:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706547322; cv=none; b=n+667skDTZjwNBQ+RADWa+rDlp2EQl4f1fP5FOQedaipdblgL/K2CKvXYPMcnnu8BbFMURL7g9XEks4ETk7yJXb01nGZxE3DIts9F7jSdmmjNfCklHjMerqsTs/EZ+vNyXGjRl835T0333X0yBY29z4ZmWFSuFeQD9dpV+5ln8Y=
+	t=1706547415; cv=none; b=FKv1B2EK5hot3mHYjU/PMBv4ed3LGL7iP5aCoTFvHt9tBnx3KHl2WfnYVHp8YdpU7tCTftjCbA3uNcSdxzCKGkLbwZqWLGNHfnLG3VetqXn8IYBIav0QAI5sTx9P4Bk3qq/N+udA0J70tBKHib/RIuy6+Bc136b8onFgL+wrUH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706547322; c=relaxed/simple;
-	bh=hR9jYGWhCgjIXuOxIH2AVMc3Vqraigi5qVyEese3aHs=;
+	s=arc-20240116; t=1706547415; c=relaxed/simple;
+	bh=o1wrlYDctkpNgv/bHKopV+wojYxYm7idQb4shaCr3YU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C2YYH/Sr3ZfATkxit8yO80HvMJua4gbVhcCS4BCcZFbKmpbVfaTfQFQ5a824XEOPIKoXKxoNqFzX/gIfkD+TxaARfXRxwkh3wIqDTxP3igrXLGcqFJA2K8FMT3QT7S4DcfMG+M2ghzwlFdLstTaormhnPGl/+d1TOK6IkcL1Qds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ay1FWscT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA806C433C7;
-	Mon, 29 Jan 2024 16:55:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gh6Rd0YrjCWL0lOyLhC+n6o0BrETisFgpmTtF8VivpYvtgo70Izd8PZnqw0jRErmuYCMLEDbCqIRBX6U3nmYPJWSiJVbhUbaYZRNxlYJAJBvYDqnmwWDV25Tmjc685iBVxOxqztQZq0ElxKA88QjTRa3rI4I0DCToHdhXWCMPiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RQRULy0z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B93BAC43390;
+	Mon, 29 Jan 2024 16:56:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706547322;
-	bh=hR9jYGWhCgjIXuOxIH2AVMc3Vqraigi5qVyEese3aHs=;
+	s=k20201202; t=1706547414;
+	bh=o1wrlYDctkpNgv/bHKopV+wojYxYm7idQb4shaCr3YU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ay1FWscTz6Za/JwPsFrt6sHJK48AKK1rXolTRSxu0+vC2pF2JBY7y0/UnAFWpwrD8
-	 6lKOBnNOjIMvw4V8TtvzAUI/LA0keuXV58dWCy5HG5UVXxze/4Xn676vEfq/DjF1MC
-	 2g4Ltq3iSsDdXRDF5DLZX4ly2avS9rHzBnYXAEHNiCPgJGOmZvogtt/bwkYR/5F5Kv
-	 MFWi6y7z2mbEeUjDKMdFT8VSyZ6nnpNZAiy8o64oVyF0eZVbC8+5ry8gjRxnRVhktj
-	 Go5Y+DiIHD5FOughSoHJVTLatKFpVV2muTIPdZ2lxMCUdgYrcRKF6TvVyFZDudNeJ2
-	 lFuROlD1ekjRg==
-Date: Mon, 29 Jan 2024 16:55:15 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	b=RQRULy0z9cwooO6H9rYP8ZxioB4lCR3wObNu+XWTnhRT1ptOh0w5UfxYhnS/WZ5pW
+	 CHbHcIQykjr6gKSsovvlLykf405+eY07ySvzG9AXYyR1wo+MC/6EpUY6JSlEL+kPkq
+	 lBYB+VAqwBkF9ET+Vmrl85Dp3Jm9xaRvncl7ipEdfoZ9cSNQSH6i/VFcFKZU6+o+Yb
+	 1vkSqwBS2AvqBzTLCZt2wHoy65OpmaTBi1Sombr89gbY0uDinYoNqcT8/WWnVwbN9x
+	 zQm9rgJQvJSQfeisofxm+B8vM7yKgcV/jq0DnhfrMX6QRwb+QOEsUfyVS4Gw8kFGzr
+	 /YlR92whq/5vw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rUUwB-000000001nU-3lNA;
+	Mon, 29 Jan 2024 17:56:48 +0100
+Date: Mon, 29 Jan 2024 17:56:47 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-sound@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] arm64: sun50i-h616: Add DMA and SPDIF controllers
-Message-ID: <08953129-ade5-4b44-8d4f-4b9ec5c750b1@sirena.org.uk>
-References: <20240127163247.384439-1-wens@kernel.org>
+	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+	Jiri Kosina <jikos@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@somainline.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: HID: i2c-hid: Document reset-related
+ properties
+Message-ID: <ZbfYzyHaNmjJyNpY@hovoldconsulting.com>
+References: <20240129-x13s-touchscreen-v3-0-c4a933034145@quicinc.com>
+ <20240129-x13s-touchscreen-v3-1-c4a933034145@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DjUSIe2lhqm+shtr"
-Content-Disposition: inline
-In-Reply-To: <20240127163247.384439-1-wens@kernel.org>
-X-Cookie: Jenkinson's Law:
-
-
---DjUSIe2lhqm+shtr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20240129-x13s-touchscreen-v3-1-c4a933034145@quicinc.com>
 
-On Sun, Jan 28, 2024 at 12:32:40AM +0800, Chen-Yu Tsai wrote:
+On Mon, Jan 29, 2024 at 08:47:47AM -0800, Bjorn Andersson wrote:
+> Some I2C HID devices has a reset pin and requires that some specified
+> time elapses after this reset pin is deasserted, before communication
+> with the device is attempted.
+> 
+> The Linux implementation is looking for these in the "reset-gpios" and
+> "post-reset-deassert-delay-ms" properties already, so use these property
+> names.
 
-> Chen-Yu Tsai (7):
->   dt-bindings: sound: sun4i-spdif: Fix requirements for H6
->   dt-bindings: sound: sun4i-spdif: Add Allwinner H616 compatible
+> +  post-reset-deassert-delay-ms:
+> +    description: Time required by the device after reset has been deasserted,
+> +      before it is ready for communication.
+> +
+> +  reset-gpios: true
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Hmm, for the third time, it seems you ignored my comment that you need
+to remove the comment about these properties from the driver as part of
+this series.
 
---DjUSIe2lhqm+shtr
-Content-Type: application/pgp-signature; name="signature.asc"
+	/*
+	 * Note this is a kernel internal device-property set by x86 platform code,
+	 * this MUST not be used in devicetree files without first adding it to
+	 * the DT bindings.
+	 */
+	if (!device_property_read_u32(dev, "post-reset-deassert-delay-ms", &val))
+		ihid_of->post_reset_delay_ms = val;
 
------BEGIN PGP SIGNATURE-----
+> +
+>    touchscreen-inverted-x: true
+>  
+>    touchscreen-inverted-y: true
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmW32HIACgkQJNaLcl1U
-h9CTTAf+NBj4Ah7hGuLaROTSDDDiz0BWk9pjww4elLlFi1AUBUBNvQWdDtAijaGu
-C7W6zTydRgAbYyxvQtUXydQVBblXpZO9518kCmpkAiVzNX7shDL0jLVEnCuK0uzx
-7h0Y9sIosdfwPVKv/jUovhp2EpsXMzl/5srlZLo+d6m24zuxstSyR/7I+9BWfk9d
-wUD6iiUUtv+ZIFdcBoH9Fw44U/R/0aN8D0cz84J7dYGV0yCKTl4iEIXPBuBjUbex
-e6kX3qicar6RtwyJpGd7y+L4wVzJSsgTLuf4OrgV8xx6aCCS76MzhjGnNi1CJzIC
-OiZCWF4xwWdg73/Z4xIipYkxAGal7g==
-=E9Pt
------END PGP SIGNATURE-----
-
---DjUSIe2lhqm+shtr--
+Johan
 
