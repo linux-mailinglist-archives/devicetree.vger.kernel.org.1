@@ -1,185 +1,149 @@
-Return-Path: <devicetree+bounces-36065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5275083FD6B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 06:06:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87E7F83FD7C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 06:12:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 775B31C21E2A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 05:06:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EF60B21682
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 05:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0C33C6B9;
-	Mon, 29 Jan 2024 05:05:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 368CD4205B;
+	Mon, 29 Jan 2024 05:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="SJCfLiTs"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mIF+KXVF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0B844205B;
-	Mon, 29 Jan 2024 05:05:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D9E3D3AC;
+	Mon, 29 Jan 2024 05:11:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706504703; cv=none; b=k0SuJhxtL1DLzjR5FrAZ6uH0knVg7pOIfyOAYFxtZ8wmnmr3r+ipd8vqphS7DOHuKosj+NpZs5JFh4ZYLNQVZn0L+xXY4fiJ94o9snzVZXNdf7HyyHoHGqDpb7re0BtMF+K6550UqaPQPx0fiwhX0aIuejKh21W5VJBQYOVbq2Y=
+	t=1706505119; cv=none; b=G3zKu1NgDXf/P1Fm19N+DEvA5qdS4BtyU4QbgjvfUeVzhAIffnjBytL1a4xrHburCTIDZ1z0t7VNraauLqoYIbHI0hLNNmUMVT+TVJWlHZFVD1d28ylh3G+FRilyWUS1dLennctQTpmO9wKmLcSZ/uh4yFXF+HQi61pfEUF1ph4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706504703; c=relaxed/simple;
-	bh=gdcFV7cCGcJoPRZxnKmdremOTbOEcHlPX45FVYJgp9w=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=sdbE13vg+K+oolyoroccOeTOrpK3voLK2TkxCousn/bJDuOcVX3bUpF4dgiHfqommVPpy7JVPDm22c41Bzv46nhJzm32ouxq1p/Us4AYfFb9QZVtj4Ls6rMJh7VDFO/mIgcjCqP5PLDtDJBOBxyYwefyJncJjBPELw+Q6W70iII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=SJCfLiTs; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40T53nWv049220;
-	Sun, 28 Jan 2024 23:03:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706504629;
-	bh=5idWkJXaLnMUDvKQz5gujybZwzqE7FxYrR/YhL0M8zs=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=SJCfLiTsfNYe9XApgy1gesFiolhCWDlovM2IkTleQi4FspMohACW9laoevYyZ2xjS
-	 wPZqCs07ysb7u+YevPrYvD9rKFzLd4LLYzUjBPmPBkwq4yumbrKIKx5FENetwGJGQK
-	 BFL9FHuMjs5Sam/bO4/wy1cHYkrHA1BzKodLIkBw=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40T53nlE040132
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 28 Jan 2024 23:03:49 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 28
- Jan 2024 23:03:48 -0600
-Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
- DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
- 15.01.2507.023; Sun, 28 Jan 2024 23:03:48 -0600
-From: "Ding, Shenghao" <shenghao-ding@ti.com>
-To: Mark Brown <broonie@kernel.org>
-CC: "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
-        "Lu,
- Kevin" <kevin-lu@ti.com>, "Xu, Baojun" <baojun.xu@ti.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "P O, Vijeth"
-	<v-po@ti.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "perex@perex.cz"
-	<perex@perex.cz>,
-        "pierre-louis.bossart@linux.intel.com"
-	<pierre-louis.bossart@linux.intel.com>,
-        "13916275206@139.com"
-	<13916275206@139.com>,
-        "Chawla, Mohit" <mohit.chawla@ti.com>,
-        "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "liam.r.girdwood@intel.com" <liam.r.girdwood@intel.com>,
-        "soyer@irl.hu"
-	<soyer@irl.hu>, "Huang, Jonathan" <jkhuang3@ti.com>,
-        "tiwai@suse.de"
-	<tiwai@suse.de>, "Djuandi, Peter" <pdjuandi@ti.com>,
-        "McPherson, Jeff"
-	<j-mcpherson@ti.com>,
-        "Navada Kanyana, Mukund" <navada@ti.com>
-Subject: RE: [EXTERNAL] Re: [PATCH v2 1/4] ASoc: PCM6240: Create PCM6240
- Family driver code
-Thread-Topic: [EXTERNAL] Re: [PATCH v2 1/4] ASoc: PCM6240: Create PCM6240
- Family driver code
-Thread-Index: AQHaUAwDhKXb/0jDP0G32CaDTkwY+7Dsja0AgAOvM+A=
-Date: Mon, 29 Jan 2024 05:03:48 +0000
-Message-ID: <39804840911a44c8b9da9478f7b4c05d@ti.com>
-References: <20240126035855.1785-1-shenghao-ding@ti.com>
- <6c1d04be-c558-4aa4-96a3-ac21ae36bfae@sirena.org.uk>
-In-Reply-To: <6c1d04be-c558-4aa4-96a3-ac21ae36bfae@sirena.org.uk>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1706505119; c=relaxed/simple;
+	bh=/Xbx5iud/jNw2n247ZZHQLr3VIYzbgeqZXaBadjU2wM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZlQP9JQhyx7S2nzEVpy0eVzV/rGV7O/iys7m5oS32krU9b1tfm715Pz+tATMORqHA1oAbkOiCk9zKOAObsnSNIqAqQbm1Pwp9TqhVUgIFfueci0U68dkKJ4/gtW8WGOHUGO/IlTZ3FwWvDOHV5BHzIZCtS8EIAa2vZDrgFvIKz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mIF+KXVF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40T4BRUg002358;
+	Mon, 29 Jan 2024 05:11:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=dllY4O7
+	uZ73K357nbzp17SDxldytUa04WbNlzeykXLw=; b=mIF+KXVF8GNMpBZHPWdfYVZ
+	kjirV/gR6jSvkMlRYPUlVin0hZU7vP6VsKg/PB4TQBdRneOMJ0AGnxKrF/yBbsTY
+	3cWfKx7raeHerjzB4gQG39rqLRTL+cVoPp3JbMTDGQ4yb8rzelgbwgYpI6PD1p/o
+	7qzId+3SW5oeMQzYkjbPbXD2Hm8UzNjwgNS8ZA090apYfMcvY6VZSWNLtsvPHnsN
+	VhMiKxhN1VTETApTD3W88UDufScYv1HnnRSeJYWi+4TXy8baqFjcQEMeoSeHX/bw
+	6QfVjnziwFoBa9W3QQyan/Sl8AeBOh8jQ6kcifqyGSSFddGRfCm/uwpCzou7nhQ=
+	=
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vvu4ctrdh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 05:11:26 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40T5BPVI023202
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 05:11:25 GMT
+Received: from hu-devipriy-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Sun, 28 Jan 2024 21:11:18 -0800
+From: Devi Priya <quic_devipriy@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <p.zabel@pengutronix.de>,
+        <richardcochran@gmail.com>, <geert+renesas@glider.be>, <arnd@arndb.de>,
+        <neil.armstrong@linaro.org>, <nfraprado@collabora.com>,
+        <m.szyprowski@samsung.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <quic_devipriy@quicinc.com>
+Subject: [PATCH V3 0/7] Add NSS clock controller support for IPQ9574
+Date: Mon, 29 Jan 2024 10:40:57 +0530
+Message-ID: <20240129051104.1855487-1-quic_devipriy@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: iERiaerN-W2X_6N-QiAi-qUOlGUuE5zd
+X-Proofpoint-ORIG-GUID: iERiaerN-W2X_6N-QiAi-qUOlGUuE5zd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-29_02,2024-01-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ clxscore=1011 priorityscore=1501 lowpriorityscore=0 adultscore=0
+ bulkscore=0 suspectscore=0 mlxlogscore=922 phishscore=0 malwarescore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2401190000 definitions=main-2401290033
+
+Add bindings, driver and devicetree node for networking sub system clock 
+controller on IPQ9574. Also add support for NSS Huayra type alpha PLL and
+add support for gpll0_out_aux clock which serves as the parent for 
+some nss clocks.
+
+Some of the nssnoc clocks present in GCC driver is
+enabled by default and its RCG is configured by bootloaders, so enable
+those clocks in driver probe.
+
+The NSS clock controller driver depends on the below patchset which adds
+support for multiple configurations for same frequency.
+https://lore.kernel.org/linux-arm-msm/20231220221724.3822-1-ansuelsmth@gmail.com/
+
+Changes in V3:
+	- Detailed change logs are added to the respective patches.
+
+V2 can be found at:
+https://lore.kernel.org/linux-arm-msm/20230825091234.32713-1-quic_devipriy@quicinc.com/
+
+Devi Priya (7):
+  clk: qcom: clk-alpha-pll: Add NSS HUAYRA ALPHA PLL support for ipq9574
+  dt-bindings: clock: gcc-ipq9574: Add definition for GPLL0_OUT_AUX
+  clk: qcom: gcc-ipq9574: Add gpll0_out_aux clock & enable few nssnoc
+    clocks
+  dt-bindings: clock: Add ipq9574 NSSCC clock and reset definitions
+  clk: qcom: Add NSS clock Controller driver for IPQ9574
+  arm64: dts: qcom: ipq9574: Add support for nsscc node
+  arm64: defconfig: Build NSS Clock Controller driver for IPQ9574
+
+ .../bindings/clock/qcom,ipq9574-nsscc.yaml    |   69 +
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   39 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-alpha-pll.c              |   10 +
+ drivers/clk/qcom/clk-alpha-pll.h              |    1 +
+ drivers/clk/qcom/gcc-ipq9574.c                |   83 +-
+ drivers/clk/qcom/nsscc-ipq9574.c              | 3068 +++++++++++++++++
+ include/dt-bindings/clock/qcom,ipq9574-gcc.h  |    1 +
+ .../dt-bindings/clock/qcom,ipq9574-nsscc.h    |  152 +
+ .../dt-bindings/reset/qcom,ipq9574-nsscc.h    |  134 +
+ 12 files changed, 3511 insertions(+), 55 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
+ create mode 100644 drivers/clk/qcom/nsscc-ipq9574.c
+ create mode 100644 include/dt-bindings/clock/qcom,ipq9574-nsscc.h
+ create mode 100644 include/dt-bindings/reset/qcom,ipq9574-nsscc.h
 
 
-
-> -----Original Message-----
-> From: Mark Brown <broonie@kernel.org>
-> Sent: Friday, January 26, 2024 10:33 PM
-> To: Ding, Shenghao <shenghao-ding@ti.com>
-> Cc: conor+dt@kernel.org; krzysztof.kozlowski@linaro.org;
-> robh+dt@kernel.org; andriy.shevchenko@linux.intel.com; Lu, Kevin <kevin-
-> lu@ti.com>; Xu, Baojun <baojun.xu@ti.com>; devicetree@vger.kernel.org; P
-> O, Vijeth <v-po@ti.com>; lgirdwood@gmail.com; perex@perex.cz; pierre-
-> louis.bossart@linux.intel.com; 13916275206@139.com; Chawla, Mohit
-> <mohit.chawla@ti.com>; linux-sound@vger.kernel.org; linux-
-> kernel@vger.kernel.org; liam.r.girdwood@intel.com; soyer@irl.hu; Huang,
-> Jonathan <jkhuang3@ti.com>; tiwai@suse.de; Djuandi, Peter
-> <pdjuandi@ti.com>; McPherson, Jeff <j-mcpherson@ti.com>; Navada
-> Kanyana, Mukund <navada@ti.com>
-> Subject: [EXTERNAL] Re: [PATCH v2 1/4] ASoc: PCM6240: Create PCM6240
-> Family driver code
->=20
-> On Fri, Jan 26, 2024 at 11:58:51AM +0800, Shenghao Ding wrote:
->=20
-> This looks mostly good - I've got a few comments that are mainly stylisti=
-c or
-> otherwise very minor, there's one issue with validation of profile IDs th=
-at
-> does look like it's important to fix though.
-..............................
->=20
-> > +	val =3D (val >> shift) & mask;
-> > +	val =3D (val > max) ? max : val;
-> > +	val =3D mc->invert ? max - val : val;
-> > +	ucontrol->value.integer.value[0] =3D val;
->=20
-> There's the FIELD_GET() macro (and FIELD_SET() for writing values) - the =
-core
-> predates them and hence doesn't use them, we might want to update some
-> time.
-Hi, Mark. FIELD_GET seemed not suitable in this, because mask in not the co=
-nst.=20
-it will cause compile error.
->=20
-> > +static int pcmdevice_codec_probe(struct snd_soc_component *codec) {
->=20
-> > +	ret =3D request_firmware_nowait(THIS_MODULE,
-> FW_ACTION_UEVENT,
-> > +		pcm_dev->regbin_name, pcm_dev->dev, GFP_KERNEL,
-> pcm_dev,
-> > +		pcmdev_regbin_ready);
-> > +	if (ret) {
-> > +		dev_err(pcm_dev->dev, "load %s error =3D %d\n",
-> > +			pcm_dev->regbin_name, ret);
-> > +		goto out;
-> > +	}
->=20
-> It might be better to request the firmware in the I2C probe rather than i=
-n the
-> ASoC level probe, that way there's more time for the firmware to be loade=
-d
-> before we actually need it.  That does mean you can't register the contro=
-ls
-> immediately though so it may be more trouble than it's worth.
-
-I once put request_firmware_nowait in i2c_probe, but it sometimes returned=
-=20
-error in some platforms. So my customer suggest that it would be moved into=
-=20
-the codec_probe. It seemed filesystem is not completely ready in some=20
-platform during calling the i2c_probe.
->=20
-> Similarly for the reset, if we reset as early as possible that seems bett=
-er.
-
-As to reset, it is also from my customers' suggestion. they found the issue=
- that=20
-i2c access error in i2c_probe in some platform. So they put it into codec_p=
-robe.
+base-commit: 596764183be8ebb13352b281a442a1f1151c9b06
+-- 
+2.34.1
 
 
