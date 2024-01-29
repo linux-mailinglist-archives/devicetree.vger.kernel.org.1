@@ -1,170 +1,1023 @@
-Return-Path: <devicetree+bounces-36250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 027768404D1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:18:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 360E08404D3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:19:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D4D0B20E26
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:18:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C5B91C21D9C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:19:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBDE6027C;
-	Mon, 29 Jan 2024 12:18:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A5B6026B;
+	Mon, 29 Jan 2024 12:19:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="j73kZ1gD"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="V+ZTDA1C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2067.outbound.protection.outlook.com [40.107.223.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FEE60265;
-	Mon, 29 Jan 2024 12:18:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706530695; cv=none; b=X1FxSrvI2W2BzPYG1H/U6jtImYke2LrLszGhU0lPd1/nVd/yftBvzcv0C21WSaCHA+XGxgYpiC0XCGFBseVZyefDmo1v7b9uMO8GdBs1PeFNsYa206SVvxF3Kd8vkIVp7Q0hBKkWcWQn/AVUo/IZkThhJpD5ciJleIwuxiFpLq4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706530695; c=relaxed/simple;
-	bh=I4WK+5da5MlzGnLCtoabMKAZVKEcKY7bPVbFQuu52pE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fe7MwIusdyZe5vHcQWvx3V6jbl7MZnI7JxZw6pw3SqIbBOqvbPBeIDcxK8LfNMuFw1bJux1UJJ4SMPEi6+f1xiCZFaxN+sCQBtNcgWygd9FY9g/PBhh14qbEexLdA9G3qA6xCJxzIh73YfPSeGTIRC026U2E+KpJtd0IY1wOoRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=j73kZ1gD; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-154-35-128.elisa-laajakaista.fi [91.154.35.128])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4B6A51803;
-	Mon, 29 Jan 2024 13:16:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1706530614;
-	bh=I4WK+5da5MlzGnLCtoabMKAZVKEcKY7bPVbFQuu52pE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=j73kZ1gDY5fHCzcCX3TG6cjLNPUssUGu1XevBm+HRC0pG9uUx2m9STQebe0luNf6v
-	 3pLf34bKl5WxzAc+KwzptPvId/3DOT2mhiJcwqbxvdeRkiWdSHN5ECUGm3fCeJ389l
-	 W3rwH7kkH09Rt6O/UtIH8NulJKArktQIqq7ETN80=
-Message-ID: <7b76f975-b22d-4e45-b0a2-b7246c0c027a@ideasonboard.com>
-Date: Mon, 29 Jan 2024 14:18:10 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3B406027C;
+	Mon, 29 Jan 2024 12:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706530745; cv=fail; b=Y+yn2ihFjlhSgd+iUuEeG9TrI6lG4wGf1Ya8tFEnFjIiRCEMbl92Tsx6g9PAw1ILO/GyMT5QcQdvSqj2pkiWXtcvjnfmJaNJaZhQ6fY4ERh/ayOY8Omjk2Lk+5dS6G6c9e1Knw5lgVeHDUrEOI45fvahjQDmsVlrp19SThmQPLU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706530745; c=relaxed/simple;
+	bh=sTxWHSbyH+rt6abaJ7o+J2HRq+TRG2WDnBdXT2JuQVA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=emrLxQxJybXjsMRg4jtLlqQHfjfv697mBTvDm2lNyKYg+nT51r+I0r/Idt3rLLN1avAG56/lNVV8aOZJs32GrOu6CKWOEdZec+WvdZQmItq6yQ3JxPu/z0A9mGIrEf5cEU44IctVa/ZuaA2Xd1na6v52vPlt613txkGOF688y5M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=V+ZTDA1C; arc=fail smtp.client-ip=40.107.223.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CO+Spom9Dr23aTjiOORGd8fBTlkrMv6VbTBAkg2gV8GhP6K4VEVvuSywlYYQXA+Yt/apVOYDA2YDjVTY9qe1EFR2Jr1F9yi/m6RozyGEfBSqlrlfbskguGWaXD++/07XftF41+yn3qYNn4FLXBPdMjCL+fxZ2FFpyvHvRlWJFUYW+bTHnA2cdaSj/sDpGqyQwwpD6wJVyIg46Ii2Jl0wFbcz15UL6NjwpSSMCO1QfPQo3gGGCGIMvTBzTkiz2H6hEdOI7QDzb0E4N+KZCPB21Xhu9ld1+Nzttalo3mxycxcLC2FsyzONJt/mdE+NTCIn+k3wZKI6HPPRryXYdvowKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tBzIj9IJf2fszpRytBN1jn4MpSPoPBibBqOdI4cYBho=;
+ b=fISP5vYW2TkbUq73sPE9M9FZnYo4st0jjPLrlT5rRlIMBHRgqEs9nEj2Vyb8jVVnj6v4/XFvVStF+pdmdtYYHCnxA+XvHhii1JR8c/UbpUp+3Yb08hpHxoKrKUvdl4x0o3etWLZChcXETNzV7PDz2HPDAWsmkpV0SUt5ZyymddYRor07T8Q6lifl+cbqPa8OVS8NV96GDCozCxde3UHGvUUxUuenKDY+L7aIZYVFFvCYfnocqjf7N5KfNETYNho1fVLbces0c57JfNYvso+xLqH10Zy5G2yQAxun70oGGloqEsXt0FgW3CZBMHdefe7wzHTjyLoYc4dBps04/aE/mg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tBzIj9IJf2fszpRytBN1jn4MpSPoPBibBqOdI4cYBho=;
+ b=V+ZTDA1CFTalJbih7oUGtWD23DfsNu6JybnEfZRJcmPYfckvz7H9VrO5Ktqaf+rOsE9S0LB8qEuRtS0cI48189kouL2VaU2McZHJOFp+hQTtp8IZWiJWc3PiMScznIG1ZOUN/PDCoSfZ3nCIPlhb0UAa0rl8pnPMCU+ScHiVKog=
+Received: from DM6PR21CA0010.namprd21.prod.outlook.com (2603:10b6:5:174::20)
+ by SN7PR12MB8148.namprd12.prod.outlook.com (2603:10b6:806:351::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.32; Mon, 29 Jan
+ 2024 12:18:58 +0000
+Received: from CY4PEPF0000EE35.namprd05.prod.outlook.com
+ (2603:10b6:5:174:cafe::6a) by DM6PR21CA0010.outlook.office365.com
+ (2603:10b6:5:174::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.15 via Frontend
+ Transport; Mon, 29 Jan 2024 12:18:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000EE35.mail.protection.outlook.com (10.167.242.41) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7249.19 via Frontend Transport; Mon, 29 Jan 2024 12:18:58 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.34; Mon, 29 Jan
+ 2024 06:18:55 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Moritz Fischer <mdf@kernel.org>, "Rob
+ Herring" <robh+dt@kernel.org>, Tom Rix <trix@redhat.com>, Wu Hao
+	<hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "open
+ list:FPGA MANAGER FRAMEWORK" <linux-fpga@vger.kernel.org>
+Subject: [PATCH v4] dt-bindings: fpga: Convert fpga-region binding to yaml
+Date: Mon, 29 Jan 2024 13:18:53 +0100
+Message-ID: <37b107d86b39ef4bc9c482b57b27de8b92c3fa43.1706530726.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/13] of: property: use of_graph_get_next_port() on
- of_graph_get_next_endpoint()
-Content-Language: en-US
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
- linux-sound@vger.kernel.org,
- =?UTF-8?Q?Uwe_Kleine-K=C3=83=C2=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Frank Rowand <frowand.list@gmail.com>, Helge Deller <deller@gmx.de>,
- Jaroslav Kysela <perex@perex.cz>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Rob Herring <robh+dt@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Takashi Iwai <tiwai@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>
-References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
- <87cytlklgl.wl-kuninori.morimoto.gx@renesas.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <87cytlklgl.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=34859; i=michal.simek@amd.com; h=from:subject:message-id; bh=sTxWHSbyH+rt6abaJ7o+J2HRq+TRG2WDnBdXT2JuQVA=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhtTt05e/LBJxkPZ65yzD+unhzdgup6iVSrctTpnZznuy4 t+RzalMHbEsDIJMDLJiiizSNlfO7K2cMUX44mE5mDmsTCBDGLg4BWAiU1gY5ufeCTu0YFHpM5Hf RVsdOm/wqebxazDMz+O4Z/ZBoEfkX/rLm7885s52u15/EAA=
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE35:EE_|SN7PR12MB8148:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ab5084c-1a2b-481a-3202-08dc20c47860
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	EPoleo1ok6HWDv+kxVKjLez1suaEUPgxEiN0g3V1MwK/P7Ti4oTsjKNKBGvsZIO7NXO/X4J8YvyU2kRRUh2wpZMWcHUKXKsbKBsJpY2r2LcpvhBiqxLTFbm3xAWt34nFPhod+8Z/43A6ePteYZ/6iGFSATNtE/zmoBErD+TwTjlKLk1Dn5qPm66Zlr33Da8fzxBQLleaH2Lgjn4fhrO3Qc1ha+saM+ybtKVvl/c5VvpFfWnR0XUju8QmfUm/sZjZ5ceuO7D8mW8IiatFnMRVs9zsawxsBfdcwPtu29bsfKmTarX7mJTV8C2g2NWAulJYdombJL0mMSWYqI9SL4wvtxq4YZvh7nIhq8IPp2yYZUahCb32kgZhLHZvExlW9jglO0rScawdcMyEfNeezR5mAyw5pQPAErrSxfVIm6h24kf2mp+zuhdJjJcKtIfh05esK17jrKbrsUEu14+GfiDRqelmjWn+GpG71O3S8JhWSWmHRU7tmioDa+kZhrwK82QfeyWtfK2DL8SMz7dN3l/x1fwp1YPgxnKsrNgfDaU2JOCULld3dwV7h1tDfk+i4uAq9lKNvTOqVc4YabS+DXXlRGZbQVsdjfELDV1Uvm/8aT9iNXf0Uw4WukSO4MD5sN5o6o8UglIF4jFjeVcpah8WSOXvUwgF/uymRqAv/or5xdy04Hej7ZiNluV5EQ/oZjN7BTNkY1p0RyUTcU0A2js6VDZxj7K+8GPW2lwjlhrx/iEQdcGD/K2RZez902C7qCo75Lh3iPvbS6THr8wnmaINuEfJvrVxXGU2cnCmVc0JcukeS3EC820AIR9OGCRgL1d+
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(396003)(376002)(39860400002)(136003)(346002)(230173577357003)(230922051799003)(230273577357003)(82310400011)(451199024)(186009)(1800799012)(64100799003)(40470700004)(46966006)(36840700001)(36860700001)(47076005)(83380400001)(36756003)(54906003)(316002)(70206006)(110136005)(70586007)(86362001)(15974865002)(8936002)(8676002)(966005)(478600001)(4326008)(26005)(16526019)(30864003)(2906002)(336012)(426003)(44832011)(7416002)(5660300002)(2616005)(41300700001)(356005)(40460700003)(84970400001)(40480700001)(81166007)(82740400003)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 12:18:58.3141
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0ab5084c-1a2b-481a-3202-08dc20c47860
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000EE35.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8148
 
-On 29/01/2024 02:54, Kuninori Morimoto wrote:
-> We have of_graph_get_next_port(), use it on of_graph_get_next_endpoint().
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->   drivers/of/property.c | 18 ++++--------------
->   1 file changed, 4 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 9e670e99dbbb..14ffd199c9b1 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -690,15 +690,7 @@ struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
->   	 * parent port node.
->   	 */
->   	if (!prev) {
-> -		struct device_node *node;
-> -
-> -		node = of_get_child_by_name(parent, "ports");
-> -		if (node)
-> -			parent = node;
-> -
-> -		port = of_get_child_by_name(parent, "port");
-> -		of_node_put(node);
-> -
-> +		port = of_graph_get_next_port(parent, NULL);
->   		if (!port) {
->   			pr_err("graph: no port node found in %pOF\n", parent);
->   			return NULL;
-> @@ -725,11 +717,9 @@ struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
->   		/* No more endpoints under this port, try the next one. */
->   		prev = NULL;
->   
-> -		do {
-> -			port = of_get_next_child(parent, port);
-> -			if (!port)
-> -				return NULL;
-> -		} while (!of_node_name_eq(port, "port"));
-> +		port = of_graph_get_next_port(parent, port);
-> +		if (!port)
-> +			return NULL;
->   	}
->   }
->   EXPORT_SYMBOL(of_graph_get_next_endpoint);
+Convert the generic fpga region DT binding to json-schema.
+There are some differences compare to txt version.
+1. DT overlay can't be described in example that's why directly include
+information from overlay to node which was referenced. It is visible in
+example with /* DT Overlay contains: &... */
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+2. All example have been rewritten to be simpler and describe only full
+reconfiguration and partial reconfiguration with one bridge.
+Completely drop the case where fpga region can inside partial
+reconfiguration region which is already described in description
 
-  Tomi
+3. Fixed some typos in descriptions compare to txt version but most of it
+is just c&p from txt file.
+
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
+
+Changes in v4:
+- permit only object type as additionalProperties
+- describe also optional reg/ranges properties and remove required
+  #address/size-cells properties
+
+Changes in v3:
+- drop fpga bridge and mgr descriptions in example
+- use additionalProperties: true
+- use fixed-factor-clock instead
+- fixed matching pattern
+
+Changes in v2:
+- Fix typo in subject
+- Fix comment in bridge example
+- Change license back to gpl-2.0 only
+- Do not define firware-name type and add maxItems 1
+- Make fpga-bridge phandle-array
+- Drop ranges property because of missing reg property of fpga-region
+- Also describe case with fixed clock node and axi bus
+- Fix fpga-region names in example
+
+Please let me know if there is a way to describe overlays to dt root to be
+able to reference fpga region back.
+
+fpga-region without MMIO access is also permitted that's why there is no
+need to describe reg/ranges and #.*cells properties for these cases.
+
+---
+ .../devicetree/bindings/fpga/fpga-region.txt  | 479 ------------------
+ .../devicetree/bindings/fpga/fpga-region.yaml | 358 +++++++++++++
+ 2 files changed, 358 insertions(+), 479 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/fpga/fpga-region.txt
+ create mode 100644 Documentation/devicetree/bindings/fpga/fpga-region.yaml
+
+diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+deleted file mode 100644
+index 528df8a0e6d8..000000000000
+--- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
++++ /dev/null
+@@ -1,479 +0,0 @@
+-FPGA Region Device Tree Binding
+-
+-Alan Tull 2016
+-
+- CONTENTS
+- - Introduction
+- - Terminology
+- - Sequence
+- - FPGA Region
+- - Supported Use Models
+- - Device Tree Examples
+- - Constraints
+-
+-
+-Introduction
+-============
+-
+-FPGA Regions represent FPGA's and partial reconfiguration regions of FPGA's in
+-the Device Tree.  FPGA Regions provide a way to program FPGAs under device tree
+-control.
+-
+-This device tree binding document hits some of the high points of FPGA usage and
+-attempts to include terminology used by both major FPGA manufacturers.  This
+-document isn't a replacement for any manufacturers specifications for FPGA
+-usage.
+-
+-
+-Terminology
+-===========
+-
+-Full Reconfiguration
+- * The entire FPGA is programmed.
+-
+-Partial Reconfiguration (PR)
+- * A section of an FPGA is reprogrammed while the rest of the FPGA is not
+-   affected.
+- * Not all FPGA's support PR.
+-
+-Partial Reconfiguration Region (PRR)
+- * Also called a "reconfigurable partition"
+- * A PRR is a specific section of an FPGA reserved for reconfiguration.
+- * A base (or static) FPGA image may create a set of PRR's that later may
+-   be independently reprogrammed many times.
+- * The size and specific location of each PRR is fixed.
+- * The connections at the edge of each PRR are fixed.  The image that is loaded
+-   into a PRR must fit and must use a subset of the region's connections.
+- * The busses within the FPGA are split such that each region gets its own
+-   branch that may be gated independently.
+-
+-Persona
+- * Also called a "partial bit stream"
+- * An FPGA image that is designed to be loaded into a PRR.  There may be
+-   any number of personas designed to fit into a PRR, but only one at at time
+-   may be loaded.
+- * A persona may create more regions.
+-
+-FPGA Bridge
+- * FPGA Bridges gate bus signals between a host and FPGA.
+- * FPGA Bridges should be disabled while the FPGA is being programmed to
+-   prevent spurious signals on the cpu bus and to the soft logic.
+- * FPGA bridges may be actual hardware or soft logic on an FPGA.
+- * During Full Reconfiguration, hardware bridges between the host and FPGA
+-   will be disabled.
+- * During Partial Reconfiguration of a specific region, that region's bridge
+-   will be used to gate the busses.  Traffic to other regions is not affected.
+- * In some implementations, the FPGA Manager transparently handles gating the
+-   buses, eliminating the need to show the hardware FPGA bridges in the
+-   device tree.
+- * An FPGA image may create a set of reprogrammable regions, each having its
+-   own bridge and its own split of the busses in the FPGA.
+-
+-FPGA Manager
+- * An FPGA Manager is a hardware block that programs an FPGA under the control
+-   of a host processor.
+-
+-Base Image
+- * Also called the "static image"
+- * An FPGA image that is designed to do full reconfiguration of the FPGA.
+- * A base image may set up a set of partial reconfiguration regions that may
+-   later be reprogrammed.
+-
+-    ----------------       ----------------------------------
+-    |  Host CPU    |       |             FPGA               |
+-    |              |       |                                |
+-    |          ----|       |       -----------    --------  |
+-    |          | H |       |   |==>| Bridge0 |<==>| PRR0 |  |
+-    |          | W |       |   |   -----------    --------  |
+-    |          |   |       |   |                            |
+-    |          | B |<=====>|<==|   -----------    --------  |
+-    |          | R |       |   |==>| Bridge1 |<==>| PRR1 |  |
+-    |          | I |       |   |   -----------    --------  |
+-    |          | D |       |   |                            |
+-    |          | G |       |   |   -----------    --------  |
+-    |          | E |       |   |==>| Bridge2 |<==>| PRR2 |  |
+-    |          ----|       |       -----------    --------  |
+-    |              |       |                                |
+-    ----------------       ----------------------------------
+-
+-Figure 1: An FPGA set up with a base image that created three regions.  Each
+-region (PRR0-2) gets its own split of the busses that is independently gated by
+-a soft logic bridge (Bridge0-2) in the FPGA.  The contents of each PRR can be
+-reprogrammed independently while the rest of the system continues to function.
+-
+-
+-Sequence
+-========
+-
+-When a DT overlay that targets an FPGA Region is applied, the FPGA Region will
+-do the following:
+-
+- 1. Disable appropriate FPGA bridges.
+- 2. Program the FPGA using the FPGA manager.
+- 3. Enable the FPGA bridges.
+- 4. The Device Tree overlay is accepted into the live tree.
+- 5. Child devices are populated.
+-
+-When the overlay is removed, the child nodes will be removed and the FPGA Region
+-will disable the bridges.
+-
+-
+-FPGA Region
+-===========
+-
+-FPGA Regions represent FPGA's and FPGA PR regions in the device tree.  An FPGA
+-Region brings together the elements needed to program on a running system and
+-add the child devices:
+-
+- * FPGA Manager
+- * FPGA Bridges
+- * image-specific information needed to to the programming.
+- * child nodes
+-
+-The intended use is that a Device Tree overlay (DTO) can be used to reprogram an
+-FPGA while an operating system is running.
+-
+-An FPGA Region that exists in the live Device Tree reflects the current state.
+-If the live tree shows a "firmware-name" property or child nodes under an FPGA
+-Region, the FPGA already has been programmed.  A DTO that targets an FPGA Region
+-and adds the "firmware-name" property is taken as a request to reprogram the
+-FPGA.  After reprogramming is successful, the overlay is accepted into the live
+-tree.
+-
+-The base FPGA Region in the device tree represents the FPGA and supports full
+-reconfiguration.  It must include a phandle to an FPGA Manager.  The base
+-FPGA region will be the child of one of the hardware bridges (the bridge that
+-allows register access) between the cpu and the FPGA.  If there are more than
+-one bridge to control during FPGA programming, the region will also contain a
+-list of phandles to the additional hardware FPGA Bridges.
+-
+-For partial reconfiguration (PR), each PR region will have an FPGA Region.
+-These FPGA regions are children of FPGA bridges which are then children of the
+-base FPGA region.  The "Full Reconfiguration to add PRR's" example below shows
+-this.
+-
+-If an FPGA Region does not specify an FPGA Manager, it will inherit the FPGA
+-Manager specified by its ancestor FPGA Region.  This supports both the case
+-where the same FPGA Manager is used for all of an FPGA as well the case where
+-a different FPGA Manager is used for each region.
+-
+-FPGA Regions do not inherit their ancestor FPGA regions' bridges.  This prevents
+-shutting down bridges that are upstream from the other active regions while one
+-region is getting reconfigured (see Figure 1 above).  During PR, the FPGA's
+-hardware bridges remain enabled.  The PR regions' bridges will be FPGA bridges
+-within the static image of the FPGA.
+-
+-Required properties:
+-- compatible : should contain "fpga-region"
+-- fpga-mgr : should contain a phandle to an FPGA Manager.  Child FPGA Regions
+-	inherit this property from their ancestor regions.  An fpga-mgr property
+-	in a region will override any inherited FPGA manager.
+-- #address-cells, #size-cells, ranges : must be present to handle address space
+-	mapping for child nodes.
+-
+-Optional properties:
+-- firmware-name : should contain the name of an FPGA image file located on the
+-	firmware search path.  If this property shows up in a live device tree
+-	it indicates that the FPGA has already been programmed with this image.
+-	If this property is in an overlay targeting an FPGA region, it is a
+-	request to program the FPGA with that image.
+-- fpga-bridges : should contain a list of phandles to FPGA Bridges that must be
+-	controlled during FPGA programming along with the parent FPGA bridge.
+-	This property is optional if the FPGA Manager handles the bridges.
+-        If the fpga-region is  the child of an fpga-bridge, the list should not
+-        contain the parent bridge.
+-- partial-fpga-config : boolean, set if partial reconfiguration is to be done,
+-	otherwise full reconfiguration is done.
+-- external-fpga-config : boolean, set if the FPGA has already been configured
+-	prior to OS boot up.
+-- encrypted-fpga-config : boolean, set if the bitstream is encrypted
+-- region-unfreeze-timeout-us : The maximum time in microseconds to wait for
+-	bridges to successfully become enabled after the region has been
+-	programmed.
+-- region-freeze-timeout-us : The maximum time in microseconds to wait for
+-	bridges to successfully become disabled before the region has been
+-	programmed.
+-- config-complete-timeout-us : The maximum time in microseconds time for the
+-	FPGA to go to operating mode after the region has been programmed.
+-- child nodes : devices in the FPGA after programming.
+-
+-In the example below, when an overlay is applied targeting fpga-region0,
+-fpga_mgr is used to program the FPGA.  Two bridges are controlled during
+-programming: the parent fpga_bridge0 and fpga_bridge1.  Because the region is
+-the child of fpga_bridge0, only fpga_bridge1 needs to be specified in the
+-fpga-bridges property.  During programming, these bridges are disabled, the
+-firmware specified in the overlay is loaded to the FPGA using the FPGA manager
+-specified in the region.  If FPGA programming succeeds, the bridges are
+-reenabled and the overlay makes it into the live device tree.  The child devices
+-are then populated.  If FPGA programming fails, the bridges are left disabled
+-and the overlay is rejected.  The overlay's ranges property maps the lwhps
+-bridge's region (0xff200000) and the hps bridge's region (0xc0000000) for use by
+-the two child devices.
+-
+-Example:
+-Base tree contains:
+-
+-	fpga_mgr: fpga-mgr@ff706000 {
+-		compatible = "altr,socfpga-fpga-mgr";
+-		reg = <0xff706000 0x1000
+-		       0xffb90000 0x20>;
+-		interrupts = <0 175 4>;
+-	};
+-
+-	fpga_bridge0: fpga-bridge@ff400000 {
+-		compatible = "altr,socfpga-lwhps2fpga-bridge";
+-		reg = <0xff400000 0x100000>;
+-		resets = <&rst LWHPS2FPGA_RESET>;
+-		clocks = <&l4_main_clk>;
+-
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		fpga_region0: fpga-region0 {
+-			compatible = "fpga-region";
+-			fpga-mgr = <&fpga_mgr>;
+-		};
+-	};
+-
+-	fpga_bridge1: fpga-bridge@ff500000 {
+-		compatible = "altr,socfpga-hps2fpga-bridge";
+-		reg = <0xff500000 0x10000>;
+-		resets = <&rst HPS2FPGA_RESET>;
+-		clocks = <&l4_main_clk>;
+-	};
+-
+-Overlay contains:
+-
+-/dts-v1/;
+-/plugin/;
+-
+-&fpga_region0 {
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-
+-	firmware-name = "soc_system.rbf";
+-	fpga-bridges = <&fpga_bridge1>;
+-	ranges = <0x20000 0xff200000 0x100000>,
+-		 <0x0 0xc0000000 0x20000000>;
+-
+-	gpio@10040 {
+-		compatible = "altr,pio-1.0";
+-		reg = <0x10040 0x20>;
+-		altr,ngpio = <4>;
+-		#gpio-cells = <2>;
+-		clocks = <2>;
+-		gpio-controller;
+-	};
+-
+-	onchip-memory {
+-		device_type = "memory";
+-		compatible = "altr,onchipmem-15.1";
+-		reg = <0x0 0x10000>;
+-	};
+-};
+-
+-
+-Supported Use Models
+-====================
+-
+-In all cases the live DT must have the FPGA Manager, FPGA Bridges (if any), and
+-a FPGA Region.  The target of the Device Tree Overlay is the FPGA Region.  Some
+-uses are specific to an FPGA device.
+-
+- * No FPGA Bridges
+-   In this case, the FPGA Manager which programs the FPGA also handles the
+-   bridges behind the scenes.  No FPGA Bridge devices are needed for full
+-   reconfiguration.
+-
+- * Full reconfiguration with hardware bridges
+-   In this case, there are hardware bridges between the processor and FPGA that
+-   need to be controlled during full reconfiguration.  Before the overlay is
+-   applied, the live DT must include the FPGA Manager, FPGA Bridges, and a
+-   FPGA Region.  The FPGA Region is the child of the bridge that allows
+-   register access to the FPGA.  Additional bridges may be listed in a
+-   fpga-bridges property in the FPGA region or in the device tree overlay.
+-
+- * Partial reconfiguration with bridges in the FPGA
+-   In this case, the FPGA will have one or more PRR's that may be programmed
+-   separately while the rest of the FPGA can remain active.  To manage this,
+-   bridges need to exist in the FPGA that can gate the buses going to each FPGA
+-   region while the buses are enabled for other sections.  Before any partial
+-   reconfiguration can be done, a base FPGA image must be loaded which includes
+-   PRR's with FPGA bridges.  The device tree should have an FPGA region for each
+-   PRR.
+-
+-Device Tree Examples
+-====================
+-
+-The intention of this section is to give some simple examples, focusing on
+-the placement of the elements detailed above, especially:
+- * FPGA Manager
+- * FPGA Bridges
+- * FPGA Region
+- * ranges
+- * target-path or target
+-
+-For the purposes of this section, I'm dividing the Device Tree into two parts,
+-each with its own requirements.  The two parts are:
+- * The live DT prior to the overlay being added
+- * The DT overlay
+-
+-The live Device Tree must contain an FPGA Region, an FPGA Manager, and any FPGA
+-Bridges.  The FPGA Region's "fpga-mgr" property specifies the manager by phandle
+-to handle programming the FPGA.  If the FPGA Region is the child of another FPGA
+-Region, the parent's FPGA Manager is used.  If FPGA Bridges need to be involved,
+-they are specified in the FPGA Region by the "fpga-bridges" property.  During
+-FPGA programming, the FPGA Region will disable the bridges that are in its
+-"fpga-bridges" list and will re-enable them after FPGA programming has
+-succeeded.
+-
+-The Device Tree Overlay will contain:
+- * "target-path" or "target"
+-   The insertion point where the contents of the overlay will go into the
+-   live tree.  target-path is a full path, while target is a phandle.
+- * "ranges"
+-    The address space mapping from processor to FPGA bus(ses).
+- * "firmware-name"
+-   Specifies the name of the FPGA image file on the firmware search
+-   path.  The search path is described in the firmware class documentation.
+- * "partial-fpga-config"
+-   This binding is a boolean and should be present if partial reconfiguration
+-   is to be done.
+- * child nodes corresponding to hardware that will be loaded in this region of
+-   the FPGA.
+-
+-Device Tree Example: Full Reconfiguration without Bridges
+-=========================================================
+-
+-Live Device Tree contains:
+-	fpga_mgr0: fpga-mgr@f8007000 {
+-		compatible = "xlnx,zynq-devcfg-1.0";
+-		reg = <0xf8007000 0x100>;
+-		interrupt-parent = <&intc>;
+-		interrupts = <0 8 4>;
+-		clocks = <&clkc 12>;
+-		clock-names = "ref_clk";
+-		syscon = <&slcr>;
+-	};
+-
+-	fpga_region0: fpga-region0 {
+-		compatible = "fpga-region";
+-		fpga-mgr = <&fpga_mgr0>;
+-		#address-cells = <0x1>;
+-		#size-cells = <0x1>;
+-		ranges;
+-	};
+-
+-DT Overlay contains:
+-
+-/dts-v1/;
+-/plugin/;
+-
+-&fpga_region0 {
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-
+-	firmware-name = "zynq-gpio.bin";
+-
+-	gpio1: gpio@40000000 {
+-		compatible = "xlnx,xps-gpio-1.00.a";
+-		reg = <0x40000000 0x10000>;
+-		gpio-controller;
+-		#gpio-cells = <0x2>;
+-		xlnx,gpio-width= <0x6>;
+-	};
+-};
+-
+-Device Tree Example: Full Reconfiguration to add PRR's
+-======================================================
+-
+-The base FPGA Region is specified similar to the first example above.
+-
+-This example programs the FPGA to have two regions that can later be partially
+-configured.  Each region has its own bridge in the FPGA fabric.
+-
+-DT Overlay contains:
+-
+-/dts-v1/;
+-/plugin/;
+-
+-&fpga_region0 {
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-
+-	firmware-name = "base.rbf";
+-
+-	fpga-bridge@4400 {
+-		compatible = "altr,freeze-bridge-controller";
+-		reg = <0x4400 0x10>;
+-
+-		fpga_region1: fpga-region1 {
+-			compatible = "fpga-region";
+-			#address-cells = <0x1>;
+-			#size-cells = <0x1>;
+-			ranges;
+-		};
+-	};
+-
+-	fpga-bridge@4420 {
+-		compatible = "altr,freeze-bridge-controller";
+-		reg = <0x4420 0x10>;
+-
+-		fpga_region2: fpga-region2 {
+-			compatible = "fpga-region";
+-			#address-cells = <0x1>;
+-			#size-cells = <0x1>;
+-			ranges;
+-		};
+-	};
+-};
+-
+-Device Tree Example: Partial Reconfiguration
+-============================================
+-
+-This example reprograms one of the PRR's set up in the previous example.
+-
+-The sequence that occurs when this overlay is similar to the above, the only
+-differences are that the FPGA is partially reconfigured due to the
+-"partial-fpga-config" boolean and the only bridge that is controlled during
+-programming is the FPGA based bridge of fpga_region1.
+-
+-/dts-v1/;
+-/plugin/;
+-
+-&fpga_region1 {
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-
+-	firmware-name = "soc_image2.rbf";
+-	partial-fpga-config;
+-
+-	gpio@10040 {
+-		compatible = "altr,pio-1.0";
+-		reg = <0x10040 0x20>;
+-		clocks = <0x2>;
+-		altr,ngpio = <0x4>;
+-		#gpio-cells = <0x2>;
+-		gpio-controller;
+-	};
+-};
+-
+-Constraints
+-===========
+-
+-It is beyond the scope of this document to fully describe all the FPGA design
+-constraints required to make partial reconfiguration work[1] [2] [3], but a few
+-deserve quick mention.
+-
+-A persona must have boundary connections that line up with those of the partition
+-or region it is designed to go into.
+-
+-During programming, transactions through those connections must be stopped and
+-the connections must be held at a fixed logic level.  This can be achieved by
+-FPGA Bridges that exist on the FPGA fabric prior to the partial reconfiguration.
+-
+---
+-[1] www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_partrecon.pdf
+-[2] tspace.library.utoronto.ca/bitstream/1807/67932/1/Byma_Stuart_A_201411_MAS_thesis.pdf
+-[3] https://www.xilinx.com/support/documentation/sw_manuals/xilinx14_1/ug702.pdf
+diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.yaml b/Documentation/devicetree/bindings/fpga/fpga-region.yaml
+new file mode 100644
+index 000000000000..77554885a6c4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/fpga/fpga-region.yaml
+@@ -0,0 +1,358 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/fpga/fpga-region.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: FPGA Region
++
++maintainers:
++  - Michal Simek <michal.simek@amd.com>
++
++description: |
++  CONTENTS
++   - Introduction
++   - Terminology
++   - Sequence
++   - FPGA Region
++   - Supported Use Models
++   - Constraints
++
++
++  Introduction
++  ============
++
++  FPGA Regions represent FPGA's and partial reconfiguration regions of FPGA's in
++  the Device Tree.  FPGA Regions provide a way to program FPGAs under device tree
++  control.
++
++  The documentation hits some of the high points of FPGA usage and
++  attempts to include terminology used by both major FPGA manufacturers.  This
++  document isn't a replacement for any manufacturers specifications for FPGA
++  usage.
++
++
++  Terminology
++  ===========
++
++  Full Reconfiguration
++   * The entire FPGA is programmed.
++
++  Partial Reconfiguration (PR)
++   * A section of an FPGA is reprogrammed while the rest of the FPGA is not
++     affected.
++   * Not all FPGA's support PR.
++
++  Partial Reconfiguration Region (PRR)
++   * Also called a "reconfigurable partition"
++   * A PRR is a specific section of an FPGA reserved for reconfiguration.
++   * A base (or static) FPGA image may create a set of PRR's that later may
++     be independently reprogrammed many times.
++   * The size and specific location of each PRR is fixed.
++   * The connections at the edge of each PRR are fixed.  The image that is loaded
++     into a PRR must fit and must use a subset of the region's connections.
++   * The busses within the FPGA are split such that each region gets its own
++     branch that may be gated independently.
++
++  Persona
++   * Also called a "partial bit stream"
++   * An FPGA image that is designed to be loaded into a PRR.  There may be
++     any number of personas designed to fit into a PRR, but only one at a time
++     may be loaded.
++   * A persona may create more regions.
++
++  FPGA Bridge
++   * FPGA Bridges gate bus signals between a host and FPGA.
++   * FPGA Bridges should be disabled while the FPGA is being programmed to
++     prevent spurious signals on the cpu bus and to the soft logic.
++   * FPGA bridges may be actual hardware or soft logic on an FPGA.
++   * During Full Reconfiguration, hardware bridges between the host and FPGA
++     will be disabled.
++   * During Partial Reconfiguration of a specific region, that region's bridge
++     will be used to gate the busses.  Traffic to other regions is not affected.
++   * In some implementations, the FPGA Manager transparently handles gating the
++     buses, eliminating the need to show the hardware FPGA bridges in the
++     device tree.
++   * An FPGA image may create a set of reprogrammable regions, each having its
++     own bridge and its own split of the busses in the FPGA.
++
++  FPGA Manager
++   * An FPGA Manager is a hardware block that programs an FPGA under the control
++     of a host processor.
++
++  Base Image
++   * Also called the "static image"
++   * An FPGA image that is designed to do full reconfiguration of the FPGA.
++   * A base image may set up a set of partial reconfiguration regions that may
++     later be reprogrammed.
++
++      ----------------       ----------------------------------
++      |  Host CPU    |       |             FPGA               |
++      |              |       |                                |
++      |          ----|       |       -----------    --------  |
++      |          | H |       |   |==>| Bridge0 |<==>| PRR0 |  |
++      |          | W |       |   |   -----------    --------  |
++      |          |   |       |   |                            |
++      |          | B |<=====>|<==|   -----------    --------  |
++      |          | R |       |   |==>| Bridge1 |<==>| PRR1 |  |
++      |          | I |       |   |   -----------    --------  |
++      |          | D |       |   |                            |
++      |          | G |       |   |   -----------    --------  |
++      |          | E |       |   |==>| Bridge2 |<==>| PRR2 |  |
++      |          ----|       |       -----------    --------  |
++      |              |       |                                |
++      ----------------       ----------------------------------
++
++  Figure 1: An FPGA set up with a base image that created three regions.  Each
++  region (PRR0-2) gets its own split of the busses that is independently gated by
++  a soft logic bridge (Bridge0-2) in the FPGA.  The contents of each PRR can be
++  reprogrammed independently while the rest of the system continues to function.
++
++
++  Sequence
++  ========
++
++  When a DT overlay that targets an FPGA Region is applied, the FPGA Region will
++  do the following:
++
++   1. Disable appropriate FPGA bridges.
++   2. Program the FPGA using the FPGA manager.
++   3. Enable the FPGA bridges.
++   4. The Device Tree overlay is accepted into the live tree.
++   5. Child devices are populated.
++
++  When the overlay is removed, the child nodes will be removed and the FPGA Region
++  will disable the bridges.
++
++
++  FPGA Region
++  ===========
++
++  FPGA Regions represent FPGA's and FPGA PR regions in the device tree.  An FPGA
++  Region brings together the elements needed to program on a running system and
++  add the child devices:
++
++   * FPGA Manager
++   * FPGA Bridges
++   * image-specific information needed to the programming.
++   * child nodes
++
++  The intended use is that a Device Tree overlay (DTO) can be used to reprogram an
++  FPGA while an operating system is running.
++
++  An FPGA Region that exists in the live Device Tree reflects the current state.
++  If the live tree shows a "firmware-name" property or child nodes under an FPGA
++  Region, the FPGA already has been programmed.  A DTO that targets an FPGA Region
++  and adds the "firmware-name" property is taken as a request to reprogram the
++  FPGA.  After reprogramming is successful, the overlay is accepted into the live
++  tree.
++
++  The base FPGA Region in the device tree represents the FPGA and supports full
++  reconfiguration.  It must include a phandle to an FPGA Manager.  The base
++  FPGA region will be the child of one of the hardware bridges (the bridge that
++  allows register access) between the cpu and the FPGA.  If there are more than
++  one bridge to control during FPGA programming, the region will also contain a
++  list of phandles to the additional hardware FPGA Bridges.
++
++  For partial reconfiguration (PR), each PR region will have an FPGA Region.
++  These FPGA regions are children of FPGA bridges which are then children of the
++  base FPGA region.  The "Full Reconfiguration to add PRR's" example below shows
++  this.
++
++  If an FPGA Region does not specify an FPGA Manager, it will inherit the FPGA
++  Manager specified by its ancestor FPGA Region.  This supports both the case
++  where the same FPGA Manager is used for all of an FPGA as well the case where
++  a different FPGA Manager is used for each region.
++
++  FPGA Regions do not inherit their ancestor FPGA regions' bridges.  This prevents
++  shutting down bridges that are upstream from the other active regions while one
++  region is getting reconfigured (see Figure 1 above).  During PR, the FPGA's
++  hardware bridges remain enabled.  The PR regions' bridges will be FPGA bridges
++  within the static image of the FPGA.
++
++
++  Supported Use Models
++  ====================
++
++  In all cases the live DT must have the FPGA Manager, FPGA Bridges (if any), and
++  a FPGA Region.  The target of the Device Tree Overlay is the FPGA Region.  Some
++  uses are specific to an FPGA device.
++
++   * No FPGA Bridges
++     In this case, the FPGA Manager which programs the FPGA also handles the
++     bridges behind the scenes.  No FPGA Bridge devices are needed for full
++     reconfiguration.
++
++   * Full reconfiguration with hardware bridges
++     In this case, there are hardware bridges between the processor and FPGA that
++     need to be controlled during full reconfiguration.  Before the overlay is
++     applied, the live DT must include the FPGA Manager, FPGA Bridges, and a
++     FPGA Region.  The FPGA Region is the child of the bridge that allows
++     register access to the FPGA.  Additional bridges may be listed in a
++     fpga-bridges property in the FPGA region or in the device tree overlay.
++
++   * Partial reconfiguration with bridges in the FPGA
++     In this case, the FPGA will have one or more PRR's that may be programmed
++     separately while the rest of the FPGA can remain active.  To manage this,
++     bridges need to exist in the FPGA that can gate the buses going to each FPGA
++     region while the buses are enabled for other sections.  Before any partial
++     reconfiguration can be done, a base FPGA image must be loaded which includes
++     PRR's with FPGA bridges.  The device tree should have an FPGA region for each
++     PRR.
++
++  Constraints
++  ===========
++
++  It is beyond the scope of this document to fully describe all the FPGA design
++  constraints required to make partial reconfiguration work[1] [2] [3], but a few
++  deserve quick mention.
++
++  A persona must have boundary connections that line up with those of the partition
++  or region it is designed to go into.
++
++  During programming, transactions through those connections must be stopped and
++  the connections must be held at a fixed logic level.  This can be achieved by
++  FPGA Bridges that exist on the FPGA fabric prior to the partial reconfiguration.
++
++  --
++  [1] www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug_partrecon.pdf
++  [2] tspace.library.utoronto.ca/bitstream/1807/67932/1/Byma_Stuart_A_201411_MAS_thesis.pdf
++  [3] https://www.xilinx.com/support/documentation/sw_manuals/xilinx14_1/ug702.pdf
++
++properties:
++  $nodename:
++    pattern: "^fpga-region(@.*|-([0-9]|[1-9][0-9]+))?$"
++
++  compatible:
++    const: fpga-region
++
++  reg:
++    maxItems: 1
++
++  ranges: true
++  "#address-cells": true
++  "#size-cells": true
++
++  config-complete-timeout-us:
++    description:
++      The maximum time in microseconds time for the FPGA to go to operating
++      mode after the region has been programmed.
++
++  encrypted-fpga-config:
++    type: boolean
++    description:
++      Set if the bitstream is encrypted.
++
++  external-fpga-config:
++    type: boolean
++    description:
++      Set if the FPGA has already been configured prior to OS boot up.
++
++  firmware-name:
++    maxItems: 1
++    description:
++      Should contain the name of an FPGA image file located on the firmware
++      search path. If this property shows up in a live device tree it indicates
++      that the FPGA has already been programmed with this image.
++      If this property is in an overlay targeting an FPGA region, it is
++      a request to program the FPGA with that image.
++
++  fpga-bridges:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      Should contain a list of phandles to FPGA Bridges that must be
++      controlled during FPGA programming along with the parent FPGA bridge.
++      This property is optional if the FPGA Manager handles the bridges.
++      If the fpga-region is  the child of an fpga-bridge, the list should not
++      contain the parent bridge.
++
++  fpga-mgr:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Should contain a phandle to an FPGA Manager.  Child FPGA Regions
++      inherit this property from their ancestor regions.  An fpga-mgr property
++      in a region will override any inherited FPGA manager.
++
++  partial-fpga-config:
++    type: boolean
++    description:
++      Set if partial reconfiguration is to be done, otherwise full
++      reconfiguration is done.
++
++  region-freeze-timeout-us:
++    description:
++      The maximum time in microseconds to wait for bridges to successfully
++      become disabled before the region has been programmed.
++
++  region-unfreeze-timeout-us:
++    description:
++      The maximum time in microseconds to wait for bridges to successfully
++      become enabled after the region has been programmed.
++
++required:
++  - compatible
++  - fpga-mgr
++
++additionalProperties:
++  type: object
++
++examples:
++  - |
++    /*
++     * Full Reconfiguration without Bridges with DT overlay
++     */
++    fpga_region0: fpga-region@0 {
++      compatible = "fpga-region";
++      reg = <0 0>;
++      #address-cells = <1>;
++      #size-cells = <1>;
++      fpga-mgr = <&fpga_mgr0>;
++      ranges = <0x10000000 0x20000000 0x10000000>;
++
++      /* DT Overlay contains: &fpga_region0 */
++      firmware-name = "zynq-gpio.bin";
++      gpio@40000000 {
++        compatible = "xlnx,xps-gpio-1.00.a";
++        reg = <0x40000000 0x10000>;
++        gpio-controller;
++        #gpio-cells = <2>;
++      };
++    };
++
++  - |
++    /*
++     * Partial reconfiguration with bridge
++     */
++    fpga_region1: fpga-region@0 {
++      compatible = "fpga-region";
++      reg = <0 0>;
++      ranges;
++      #address-cells = <1>;
++      #size-cells = <1>;
++      fpga-mgr = <&fpga_mgr1>;
++      fpga-bridges = <&fpga_bridge1>;
++      partial-fpga-config;
++
++      /* DT Overlay contains: &fpga_region1 */
++      firmware-name = "zynq-gpio-partial.bin";
++      clk: clock {
++        compatible = "fixed-factor-clock";
++        clocks = <&parentclk>;
++        #clock-cells = <0>;
++        clock-div = <2>;
++        clock-mult = <1>;
++      };
++      axi {
++        compatible = "simple-bus";
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
++        gpio@40000000 {
++          compatible = "xlnx,xps-gpio-1.00.a";
++          reg = <0x40000000 0x10000>;
++          #gpio-cells = <2>;
++          gpio-controller;
++          clocks = <&clk>;
++        };
++      };
++    };
+-- 
+2.36.1
 
 
