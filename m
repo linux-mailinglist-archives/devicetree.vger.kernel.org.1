@@ -1,142 +1,120 @@
-Return-Path: <devicetree+bounces-36322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68E4584081F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:21:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8EC1840827
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:22:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E73D1F246F5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:21:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A62FB2904BA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:21:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A63B86159;
-	Mon, 29 Jan 2024 14:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABFA565BBE;
+	Mon, 29 Jan 2024 14:21:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="AESviUD4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IlUY5qtZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2C474E24;
-	Mon, 29 Jan 2024 14:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1A665BA4
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 14:21:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706537973; cv=none; b=JSepaynuB5dW2x0XQQaTHsKcu7tQmEEzeRGiRtix83AN2nR6xwZ0hsaZ+cL8Ma902J8EU7Xt8+UpAQD1bQxk/lnEjSZobXcvwxoSbPmNzpnQhAH+aJV9CLX/MKffF+vk4AtfbkgLf2c8hkQOFHwn4ycy4aLM28yuVWBZE56qgnc=
+	t=1706538087; cv=none; b=rm0I+MlWg0R7ieYkOhGa+dknPaBpa0ES4aUoptIZNWfWF6fHHyz6Xtbcn/+IPtenc0HNUdCFPtBi8hZAQkIev7oJbzSHs5XUjfbMIfeZC6OCqSATwb4XepRh6J12wDjRtHKG0PDfU140Z0F3h5GJzS673AjhEHgcXmc4kQwkf9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706537973; c=relaxed/simple;
-	bh=DBI5+ltamoC/la8uCrx5/uRCiXV5fQOs4kMU6m6p4mU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iSC74XP9e0WjrLkzf5o/msWtBLVFVgy0ldWbPQ/R7wgoBTwUwTruymvmk4d+3E8j3r6kBvOCTniLLoAXH5V0JiW48bPwGbZTGwHkxEuulFUBGy4aLZ3CAg4FM9f9NX5+CrML6bsjwWLkrJAxjnnzplDiFYHaDa2eX72IU/cHKMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=AESviUD4; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id C0E1512000B;
-	Mon, 29 Jan 2024 17:19:27 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C0E1512000B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1706537967;
-	bh=7WNOpe9GGkirEoGdJnPDDhRmC2NQr+O7BpCO8Kgm7sg=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=AESviUD4O3eGrdIku5y681V+0nXhIqPo6ib4DVOA5WzjLfnw4qG4g37A8J15lvlrN
-	 DeQPg9hmUiQLUH/MLLLFgBrLrD6Kr4CF9cl9vyJ3G74PO/sBKTHqwCrLahinJ58HsL
-	 tkezHI+c7RjKCvgfVzBebX16ZDMxsGSOCHGXkcigAiMfS1OV262ONaUS0/FXjWt7g+
-	 YkT+kRwaXXYBHKqk2Sqgjqf27o31IlR7301Fg86SO3VAJRHywAipT/DQlGXu6Goduh
-	 +98lVzKykUqOamwpUeq8F7kh6gqprLyqRM0TmCCCyTccltbez2c0VXmk6XNm/n8ufb
-	 roGjhVL0aYvIg==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Mon, 29 Jan 2024 17:19:27 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
- 2024 17:19:27 +0300
-Date: Mon, 29 Jan 2024 17:19:27 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Pavel Machek <pavel@ucw.cz>
-CC: Lee Jones <lee@kernel.org>, Martin Kurbanov
-	<mmkurbanov@salutedevices.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Andy Shevchenko
-	<andy.shevchenko@gmail.com>, <linux-kernel@vger.kernel.org>,
-	<linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <kernel@salutedevices.com>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v1 1/2] leds: aw200xx: support for hw pattern controllers
-Message-ID: <20240129141927.4shshli37fb3cwen@CAB-WSD-L081021>
-References: <20231207125938.175119-1-mmkurbanov@salutedevices.com>
- <20231207125938.175119-2-mmkurbanov@salutedevices.com>
- <20231221161011.GO10102@google.com>
- <ZbQ-jKD_zhonHOCa@ucw.cz>
+	s=arc-20240116; t=1706538087; c=relaxed/simple;
+	bh=6ooVY3tCH+LuZLs3fS116FlZFUTRKgmzzxCB52sqz2I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=eKn/ZDLxPNmvHOHHrTBr7MSSuDs4fe7RBO2Gc5GJrJKiYPSfpNbombK/okOT7WXyVV7FHSIvwtpsyej475kXCOtOlrU2TKb6cinqnt+V4Cu8SgClvljyIEG4lv04V8+2o+IZ2nFYnwoci24ObpiMcRUrFhXok9DsyxFpssewrfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IlUY5qtZ; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a359446b57dso148280666b.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 06:21:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706538084; x=1707142884; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8xvAQ4GfJSx9uAg2g1Cik9jmurTFuIkBcKsMco4Ol/M=;
+        b=IlUY5qtZrNnt/HMEReAMXpKx2J1wkKRIpzCqi6epixM95fzv0ArgpCJb/Fho+f1IEI
+         Kc+nMZJvh4ErwZeJVufUN1JenKkFC0ynkaSl7J1KdZlcMDI3PLdHDGQc/OQJahXROwpV
+         tX7lcnfgzws36FAEPrX549EHHMoPriRNTyuos/CtLpsp77biLnjB/nAdo7ull8YIwlP2
+         t9fNmam/OK2cgZfYRsqDAUYlaPeH0eS9BrX9BEjXvlFT1afmDL3dldCtgnziDzM+rUuP
+         B1HiLhqMU3kFy0454Ejrccu5BuZOe+KzdzUIIqD+T6LXhrBQviEyzAe8LBjr1AXatUgL
+         zpwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706538084; x=1707142884;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8xvAQ4GfJSx9uAg2g1Cik9jmurTFuIkBcKsMco4Ol/M=;
+        b=DoIFk3txOIXudkkd5i9H2LJbPO+e20HK1Fm9zRoMJ/TUq7vid9jMSDOTKRe+xADcZf
+         oNJzgE6jtC9etfHeCXwNCD5rgJ9k3Bw3TFHPMQQrcXX/LjfVO3AIc42cZTyyztWXdCOY
+         3l/fPgAWgKZoNW+srE6St6ovOXVFBav/IsSAvsq1G4Mr7HOYJ7wIjgWREPBYOOkyoDKD
+         3/vDo3mR0FhlMoFT1v6zfp1PuMc68hQc2ORtwg3HBHQV472v2LZ/fxpkxELSo0GfW2ct
+         dpPsl2vDB/h7A0Na0I+9m/oblHNtFRv8BLDC5CY7PkxyI7mcDCr+gVazssAlmvJbPCea
+         QIVg==
+X-Gm-Message-State: AOJu0YwjrOPy/kV8tE2Ejj1bGFXcHxSai1X6Wp5DfBKUHjQHS4xD8pOY
+	2HDSA9ClmvxbE5fs2zrdfhns12QHf7yNpYEMBp+IHWC36b+OgMbu8mk798IRSFY=
+X-Google-Smtp-Source: AGHT+IHAFInFVHJG6lhAU3fcYvwUQbSAsGy/m19hvlbJSjKaDCVxBsf8RHHwydjEm/2wZmsKlD3aLw==
+X-Received: by 2002:a17:906:b48:b0:a35:cd66:3e32 with SMTP id v8-20020a1709060b4800b00a35cd663e32mr1394848ejg.35.1706538084240;
+        Mon, 29 Jan 2024 06:21:24 -0800 (PST)
+Received: from krzk-bin.. ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id s12-20020a17090699cc00b00a2cd74b743csm3979681ejn.3.2024.01.29.06.21.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jan 2024 06:21:23 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alex Elder <elder@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: net: qcom,ipa: do not override firmware-name $ref
+Date: Mon, 29 Jan 2024 15:21:21 +0100
+Message-Id: <20240129142121.102450-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZbQ-jKD_zhonHOCa@ucw.cz>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183011 [Jan 29 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;100.64.160.123:7.1.2, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/01/29 10:45:00 #23482469
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Transfer-Encoding: 8bit
 
-Hello Pavel,
+dtschema package defines firmware-name as string-array, so individual
+bindings should not make it a string but instead just narrow the number
+of expected firmware file names.
 
-On Sat, Jan 27, 2024 at 12:21:48AM +0100, Pavel Machek wrote:
-> Hi!
-> 
-> > > This led-controller supports 3 pattern controllers for auto breathing or
-> > > group dimming control. Each pattern controller can work in auto
-> > > breathing or manual control mode. All breathing parameters including
-> > > rising/falling slope, on/off time, repeat times, min/max brightness
-> > > and so on are configurable.
-> > > 
-> > > Signed-off-by: Martin Kurbanov <mmkurbanov@salutedevices.com>
-> > > ---
-> > >  .../testing/sysfs-class-led-driver-aw200xx    | 108 +++
-> > >  Documentation/leds/leds-aw200xx.rst           | 274 ++++++++
-> > >  drivers/leds/leds-aw200xx.c                   | 649 ++++++++++++++++++
-> > >  3 files changed, 1031 insertions(+)
-> > >  create mode 100644 Documentation/leds/leds-aw200xx.rst
-> > 
-> > This interface is bananas.  Exposing an entire register interface to
-> > sysfs does not sit will with me at all.  When we add support to a sysfs
-> > class, we usually require it to be generic and work across all devices.
-> > Adding device specific interfaces is generally decried and to be
-> > avoided.  Don't forget, once we commit something to sysfs, it becomes
-> > ABI and we have to support it forever.
-> 
-> If you do git grep hw_pattern, you should get pointers to qcom-lpg
-> driver that solves similar problem, with interface that should be
-> acceptable.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/net/qcom,ipa.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thank you for pointing that out. Yes, it's a very similar situation to
-ours.
-
-But I haven't observed the merging of this driver. Was it encountering
-similar issues with the sysfs interface?
-
+diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+index c30218684cfe..53cae71d9957 100644
+--- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
++++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
+@@ -159,7 +159,7 @@ properties:
+       when the AP (not the modem) performs early initialization.
+ 
+   firmware-name:
+-    $ref: /schemas/types.yaml#/definitions/string
++    maxItems: 1
+     description:
+       If present, name (or relative path) of the file within the
+       firmware search path containing the firmware image used when
 -- 
-Thank you,
-Dmitry
+2.34.1
+
 
