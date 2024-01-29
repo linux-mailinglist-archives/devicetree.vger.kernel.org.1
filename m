@@ -1,170 +1,124 @@
-Return-Path: <devicetree+bounces-36257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBF3840524
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:39:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD55984053B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:44:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B7A5B22FEB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:39:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E03121C224D7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:44:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86914612C1;
-	Mon, 29 Jan 2024 12:39:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32305612FC;
+	Mon, 29 Jan 2024 12:44:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hd3QBaAd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B9MVX1j8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5253F6166D;
-	Mon, 29 Jan 2024 12:39:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 466E3612DA
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 12:44:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706531969; cv=none; b=ARerNhFYJbIi2dBHu7XXSLQm6qnvPtVcpr6IaLebwEsge7FB1/J0Jb4MAogFbXPnHKumY9WLV9wvMZAjJEOltCpVUGPRS23ftcBUagjy5u5t+3Q45N6PIPMUm7b1YFKLJjgLmqnMWmn2liUkDpUxA65OBCCCRTudbPm0LXEFBS4=
+	t=1706532267; cv=none; b=bp80jzYCn56ytek11cQ06H4wFzxQ9wWDq9s8/fiZyvUc0ucN5+rC/Hbid+bJROcH2Bdi9YpAAAzW5q+fqc3Fv+qMHyzrv57+YeYXmc0U2syKbhCve7+WLWHKsD8RN8efWHAa+Um6ihVqrTfaRDOYJZDislVHd9mlCQpMLPRFMu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706531969; c=relaxed/simple;
-	bh=4vsq0jGRemPIenPEeylBuokXHeP6HZCyOf/KheuJU4Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FE2UdjkfQedtSQUuU+aUNOdP+932nLSSZp2hBZT5xQQ28uDm7FNW6Bwm7IF2m270snqKqgLZLzAfR64dCCspHP2D9Vrf4ttlzZloAyVDyQPuYnh+nX/OO+Bl3oju/paHk1mHUDElr65hbOKfHcuDPOpcTACltvbfctnwYfA/rbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hd3QBaAd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92373C433C7;
-	Mon, 29 Jan 2024 12:39:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706531968;
-	bh=4vsq0jGRemPIenPEeylBuokXHeP6HZCyOf/KheuJU4Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hd3QBaAdKcV2IDgDwKRpUKY7YipRrrIB4zunykNwepqBUiz9io6CvwAh92Q5ob9DS
-	 765eZjZv0Zlg271R8GIrZHAoKkqPVz95UoPGyxD6vJWTNGj36FAe07T1C/cyFnQUln
-	 80v/PlT1GUJBtHFmRKYBLJaz1+WMqAxJr3cvVGehlobyCLgfgwckafiXghcPNjk8uK
-	 udeejD4j4A+yax/aDN8WTKStZ0bfSOuwcZywy2iuonYHCCwaylLSONfxA0+itdkk0J
-	 e6OYL89f26/lvC3IeT3AC/m1lmb/89PBQnGQOZEM8EpP4NGlFCdljSmQp7WTfLevGQ
-	 O3vEB7smUahkA==
-Date: Mon, 29 Jan 2024 18:09:09 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	konrad.dybcio@linaro.org, mani@kernel.org, robh+dt@kernel.org,
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	dmitry.baryshkov@linaro.org, robh@kernel.org,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-	quic_parass@quicinc.com, quic_schintav@quicinc.com,
-	quic_shijjose@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	mhi@lists.linux.dev
-Subject: Re: [PATCH v9 0/5] arm64: qcom: sa8775p: add support for EP PCIe
-Message-ID: <20240129123909.GB22617@thinkpad>
-References: <1701432377-16899-1-git-send-email-quic_msarkar@quicinc.com>
- <pm2emx3nnypdtfo63f6vly4guybl3pguqe3djgeqgiojxgqttl@oainfndei3qa>
+	s=arc-20240116; t=1706532267; c=relaxed/simple;
+	bh=iwVv+KpgojzTz7UiwmCrNbljMrBZg86uVe4TR/XlwHI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K5EgBykUBxyhqmsY6+XJDGj8W4X5nn3GSgAHaG6RjFXJLTCtG0DQjOIzvTJcXkU/EMWoEvR1HVqOwXgGOiONOhCnINrGdii/ob6ZY8ELrND7nMHAgtGGknDz4nj1xet684YZKmLvN0DdecC4R/51Zs8VcVylmeTm0xw1Ji+BMxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B9MVX1j8; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a35c0ed672cso96567766b.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 04:44:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706532263; x=1707137063; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jyyVmj8UXdIVbn7EeSCjlw1l1jJogntZyHkx/8C4+fY=;
+        b=B9MVX1j8iOKwvmWD3QAPD+AbWRZ3sdZW4ptzry3V9r/WnHBzNsfRNxqw395ABkCunE
+         5TFBshl/6mPfoEEUV+8ZxwR6pZWsjbbrtjKUXPgGLDsZd2CwqjIkUY+X6huKb003gtqh
+         shmfIqh8Lt4IYxhCilQHTPFP05yH7IcpNRu24pDUCX4/r5mvsF6HEGFtwhBHg/rq4aR3
+         9nsUpLWIJ+zy7Hb2WOS2DDyPPylYwPBM4Ebt7dv/EWMd4RmCVsoZLuKWKwSisGhwdHxU
+         we1HxbdAbv6nd44xuhnIwcsvP3YhB7XfttdsCIdiLBu8Y9WduzuzZARSbVYEGrMEK4GY
+         6t9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706532263; x=1707137063;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jyyVmj8UXdIVbn7EeSCjlw1l1jJogntZyHkx/8C4+fY=;
+        b=qxdMHtPg03/cBw9n6tmpjQat3U9nIoloTt4AD5+2iZn/+y0ViQoF+qKNBY48kzHzHW
+         wHJEXFjXSNDn1mMQ6RY4ULygmhN2gbO3zmPSTX6zsrmh0tqqbXtL4DLZWNlhH+Mpz9dA
+         A15Ws9t68nihxaqHlw7yqHh9/3PClYk3ymmJEkiqYUNLAtW2vUsjE9R7wOmMYQ3OidhE
+         acI8NxUaJZZLTWizd2q9N+KE2ZQMiaJDJYM22InGpKieqDcFb7LjBrFOJ5mSr+B8qq9r
+         crqXs4vvmKg3lwNQS8OR/2wlIW2QXc7R4Jh5AWafR9KYoiE1lU1V0p7pw6JvN/qNnNp0
+         hErA==
+X-Gm-Message-State: AOJu0YwxW3yAK8pOxbuaBMJOSdaLnIweUhjYhRyks+G0x3kHWxn0vES5
+	P2nHfJIuz4y/B41X/428DoGiC2TpK1I299eKyNJy3tC8f0O6K5gHtfG2AI0PyLU=
+X-Google-Smtp-Source: AGHT+IHcXpDWBglEaMrnhlcTL7JB54poYiZiJo/8VdZd2NLCsiYyXGakojUQHAMn/oc6HZ1dQxwfnA==
+X-Received: by 2002:a17:906:a219:b0:a35:6601:e401 with SMTP id r25-20020a170906a21900b00a356601e401mr3389607ejy.5.1706532263374;
+        Mon, 29 Jan 2024 04:44:23 -0800 (PST)
+Received: from [192.168.2.107] ([79.115.63.202])
+        by smtp.gmail.com with ESMTPSA id vg14-20020a170907d30e00b00a30f3e8838bsm3864736ejc.127.2024.01.29.04.44.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jan 2024 04:44:22 -0800 (PST)
+Message-ID: <93443d6e-50ac-4352-b579-71d5ee12e448@linaro.org>
+Date: Mon, 29 Jan 2024 12:44:20 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] clk: samsung: gs-101: drop extra empty line
+Content-Language: en-US
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, kernel-team@android.com,
+ willmcvicker@google.com, semen.protsenko@linaro.org,
+ alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com,
+ cw00.choi@samsung.com, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240127001926.495769-1-andre.draszik@linaro.org>
+ <20240127001926.495769-2-andre.draszik@linaro.org>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20240127001926.495769-2-andre.draszik@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <pm2emx3nnypdtfo63f6vly4guybl3pguqe3djgeqgiojxgqttl@oainfndei3qa>
 
-On Sat, Jan 27, 2024 at 08:58:17PM -0600, Bjorn Andersson wrote:
-> On Fri, Dec 01, 2023 at 05:36:11PM +0530, Mrinmay Sarkar wrote:
-> > This series adds the relavent DT bindings, new compatible string,
-> > add support to EPF driver and add EP PCIe node in dtsi file for
-> > ep pcie0 controller.
-> > 
+
+
+On 1/27/24 00:19, André Draszik wrote:
+> There is an extra empty line here which doesn't exist in any of the
+> other cmu code blocks in this file.
 > 
-> Waiting for the driver changes to be picked up, so that I can merge
-> patch 5 through the qcom tree. Are there any unresolved issues that I'm
-> failing to spot?
+> Drop it to align cmu_top with the rest of the file.
 > 
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
 
-No, there are no issues. But they fail to catch the eye of maintainers during
-the last merge window. I really hope that these will get picked for 6.9.
+Reviewed-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 
-- Mani
-
-> Regards,
-> Bjorn
+> ---
+>  drivers/clk/samsung/clk-gs101.c | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> > v8 -> v9:
-> > - update author in "Add pci_epf_mhi_ prefix to the function" patch.
-> > - add ack by and reviewed by tag in commit message.
-> > 
-> > v7 -> v8:
-> > - Add new patch PCI: epf-mhi: Add "pci_epf_mhi_" prefix to the function
-> >   names
-> > - Update PCI: epf-mhi: Add support for SA8775P patch on top of the new
-> >   patch and update commit message.
-> > 
-> > v6 -> v7:
-> > - add reviewed by tag in commit message in all patches.
-> > - update commit message in patch 2 as per comment.
-> > - update reason for reusing PID in commit message.
-> > 
-> > v5 -> v6:
-> > - update cover letter.
-> > 
-> > v4 -> v5:
-> > - add maxItems to the respective field to constrain io space and
-> >   interrupt in all variants.
-> > 
-> > v3 -> v4:
-> > - add maxItems field in dt bindings
-> > - update comment in patch2
-> > - dropped PHY driver patch as it is already applied [1]
-> > - update comment in EPF driver patch
-> > - update commect in dtsi and add iommus instead of iommu-map
-> > 
-> > [1] https://lore.kernel.org/all/169804254205.383714.18423881810869732517.b4-ty@kernel.org/
-> > 
-> > v2 -> v3:
-> > - removed if/then schemas, added minItems for reg,
-> >   reg-bnames, interrupt and interrupt-names instead.
-> > - adding qcom,sa8775p-pcie-ep compitable for sa8775p
-> >   as we have some specific change to add.
-> > - reusing sm8450's pcs_misc num table as it is same as sa8775p.
-> >   used appropriate namespace for pcs.
-> > - remove const from sa8775p_header as kernel test robot
-> >   throwing some warnings due to this.
-> > - remove fallback compatiable as we are adding compatiable for sa8775p.
-> > 
-> > v1 -> v2:
-> > - update description for dma
-> > - Reusing qcom,sdx55-pcie-ep compatibe so remove compaitable
-> >   for sa8775p
-> > - sort the defines in phy header file and remove extra defines
-> > - add const in return type pci_epf_header and remove MHI_EPF_USE_DMA
-> >   flag as hdma patch is not ready
-> > - add fallback compatiable as qcom,sdx55-pcie-ep, add iommu property
-> > 
-> > 
-> > Manivannan Sadhasivam (1):
-> >   PCI: epf-mhi: Add "pci_epf_mhi_" prefix to the function names
-> > 
-> > Mrinmay Sarkar (4):
-> >   dt-bindings: PCI: qcom-ep: Add support for SA8775P SoC
-> >   PCI: qcom-ep: Add support for SA8775P SOC
-> >   PCI: epf-mhi: Add support for SA8775P
-> >   arm64: dts: qcom: sa8775p: Add ep pcie0 controller node
-> > 
-> >  .../devicetree/bindings/pci/qcom,pcie-ep.yaml      | 64 +++++++++++++++++++++-
-> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi              | 46 ++++++++++++++++
-> >  drivers/pci/controller/dwc/pcie-qcom-ep.c          |  1 +
-> >  drivers/pci/endpoint/functions/pci-epf-mhi.c       | 21 ++++++-
-> >  4 files changed, 128 insertions(+), 4 deletions(-)
-> > 
-> > -- 
-> > 2.7.4
-> > 
-
--- 
-மணிவண்ணன் சதாசிவம்
+> diff --git a/drivers/clk/samsung/clk-gs101.c b/drivers/clk/samsung/clk-gs101.c
+> index 4a0520e825b6..27debbafdce4 100644
+> --- a/drivers/clk/samsung/clk-gs101.c
+> +++ b/drivers/clk/samsung/clk-gs101.c
+> @@ -25,7 +25,6 @@
+>  /* ---- CMU_TOP ------------------------------------------------------------- */
+>  
+>  /* Register Offset definitions for CMU_TOP (0x1e080000) */
+> -
+>  #define PLL_LOCKTIME_PLL_SHARED0			0x0000
+>  #define PLL_LOCKTIME_PLL_SHARED1			0x0004
+>  #define PLL_LOCKTIME_PLL_SHARED2			0x0008
 
