@@ -1,224 +1,148 @@
-Return-Path: <devicetree+bounces-36273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 390DC8405E3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:02:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B43AC840692
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:19:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DC4D1C2203A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:02:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D2C8289391
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFF2561688;
-	Mon, 29 Jan 2024 13:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A97D6312C;
+	Mon, 29 Jan 2024 13:19:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="djMzyfRg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="efKHsVA0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA8C627F6;
-	Mon, 29 Jan 2024 13:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA71162804
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 13:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706533344; cv=none; b=uzU/uIErzNDSb9VVFshPKX7IHhg2sCe03jwZ3eltiht/TTViML4Wm8vHT37FDV9i+AHhetnmYL13kIqTvFYOfYk7OgXL8dkExqV3/WkbWU6svL4BndkrLgHD/aNdIVqyzmmXaSqOVYK+6AhrooLVqzXladGM58N6pbLN1NO8zUk=
+	t=1706534352; cv=none; b=JrIo0U78N7NQwMqeIzElTjWYUSZZxq9ltTJv8j5Uhtix8vtMlagfB4yy6S/kTIgKlWIexY7x7AtnbwOTzr61tpJsqOEZNlyTctV50HbjBchJQW4zj2/v9PI+1s/F6KPS95XIvYoYJcM7zoNB8r25/CrF+w7dHNlVOM3Ph6fjaQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706533344; c=relaxed/simple;
-	bh=oYJ9n0kmGBMU2bNIDl3amQ7PKIOiEuPvpUteUrfq+VI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cNf0P1ejzZXVgY+Czle3gPL8aBi4wgus4rLRo/i0cNrnYF1r8EVa0SFjxkx3u/nOSpb8ZjO/EeQB8/+PfnlLt1kePFTn6FXYcPG8X1mHHhKxEAVpKeLVo7HnNwyVOBRk6ooPWaBYOmUhZofoddCJ5c5CLaW148wGv45j0ex0qEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=djMzyfRg; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7D80915B5;
-	Mon, 29 Jan 2024 14:01:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1706533261;
-	bh=oYJ9n0kmGBMU2bNIDl3amQ7PKIOiEuPvpUteUrfq+VI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=djMzyfRgXF1NPy65MR+61w/tngalKk2yKnI+GwLaXMGffyykJfxg+BE9W8Ny+SzKp
-	 3edG11TvKTFuKerv6OEweKNRHe4leVvnw1jLWk7XEqB5zloijNMsHBUZ/GvRbEzqKG
-	 ZOkF9RPQ1nYYuooHeJRC/2msKN4yH4MV7pyzzASQ=
-Date: Mon, 29 Jan 2024 15:02:19 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Uwe =?utf-8?B?S2xlaW5lLUvDg8K2bmln?= <u.kleine-koenig@pengutronix.de>,
-	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
-	Frank Rowand <frowand.list@gmail.com>, Helge Deller <deller@gmx.de>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v2 03/13] of: property: add
- of_graph_get_next_endpoint_raw()
-Message-ID: <20240129130219.GA20460@pendragon.ideasonboard.com>
-References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
- <87bk95klgc.wl-kuninori.morimoto.gx@renesas.com>
- <afea123c-12b0-4bcb-8f9e-6a15b4e8c915@ideasonboard.com>
+	s=arc-20240116; t=1706534352; c=relaxed/simple;
+	bh=WXwCrF1iMEcXk395vZUIozuTjV7W1KezDJ0wK+pB1dM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qs+Pa1JrhBuw+qd96H+NYqjIkJxDzbOE/OX+0sGC4cIlYtf3kOiFWLaJ3uDcnuc5vSXT+OEzsUsj0Niw3HRp35+3vLm84lHHNcukRuuVG5uNEHxNwFpcqXSwcY4U43aZWwWkgTglI1MecejGJGDDpLMWyGU7K0A2XtxL0DYS8gQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=efKHsVA0; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a354fc17f24so185054766b.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 05:19:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706534348; x=1707139148; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I5eVpbB25HXQxgWJrqti9OANlwnBf9Ih23lyrFGGtAA=;
+        b=efKHsVA0KSa/VpwFcjm5zRJ5GLZmFXZicAgjLElAZ2UO/s4J3+1iycBq039fumld/w
+         uXGhVc1IzXspjtVRiYstkOTvTLYl2ugegHto1nSYJlt5JvkUp+mGOQPCFIsKV04v+Pe7
+         2C/h12Do7fAQQjG0QjfTiWJHgRnBuVQtCtej/SFqT/gL75fVEVV1RmLvi+KgG3AAX0a8
+         5C+2Trwhj/N4MJT3ZNw4KwLph0BDCr9E7hv2Sef/cM8wDxkqZLZaErBCVRJmEBlHGDfm
+         epa2N+U0LPYmuL+YhlaBVslUYiIpTWP9VnQ9/TNx6v6d/c+dookwYGieTu/SNclJOg12
+         hwWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706534348; x=1707139148;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I5eVpbB25HXQxgWJrqti9OANlwnBf9Ih23lyrFGGtAA=;
+        b=KVZrf4cXQTlWk9o73SQIhfzZeAKJ79bbQEYkgjgpr+EhWHbszcKyy8TjdVWY6RM/Ll
+         jor07L9n2g9gx4RsRMITwbS6hwSSAmQVT+hWWXnrSFCdNh1ikIgGN8gZ92ITDLQvMpOa
+         e+X4RTGGE7EVXQ0Ysvf2rhkFmBTEVtYka2c2YfPNh0H3O3df5YKVrOGgZTHHPU81N67f
+         q+QKQQhDDSU7kua06s4N4BSB5PO/fIKQg5ce4IWbuEDzMj28XjXAX+pKw8UZmxhBlBxu
+         UcBOrUwUX58D1cDN57Yrf+bupOdT1LfM2R5ERucQOOfAujFxxgx0PUDmc0kOe+qAY12z
+         wTkw==
+X-Gm-Message-State: AOJu0YwwjqrO+cLokvSmzdzL3vKB0MuBUD08kMjg/ELoClMbix0SaN7Z
+	0zRlRt7lNXQ1+qjAr2OmO7zy2wD7mjkRc6qvA+ctD6iEWxdQEMrhwLuS3T3dsAQ=
+X-Google-Smtp-Source: AGHT+IHqRqczW+spX0XIhFaQfcphzdcZCldgLjhlKdkZECtdAxveG++qjRbAtDQfSWy/ooYRG6xNIA==
+X-Received: by 2002:a17:906:bc49:b0:a35:69c3:8af5 with SMTP id s9-20020a170906bc4900b00a3569c38af5mr3225051ejv.36.1706534347903;
+        Mon, 29 Jan 2024 05:19:07 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id q15-20020a17090622cf00b00a359afad88dsm1591658eja.10.2024.01.29.05.19.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jan 2024 05:19:07 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH 0/5] drm/msm: Add display support for X1E80100
+Date: Mon, 29 Jan 2024 15:18:53 +0200
+Message-Id: <20240129-x1e80100-display-v1-0-0d9eb8254df0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <afea123c-12b0-4bcb-8f9e-6a15b4e8c915@ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL2lt2UC/x2N0QqDMAwAf0XyvEBSi4z9ythDqlEDpZOGDUX89
+ 5U93sFxJ7hWU4dHd0LVr7m9SwO+dTCuUhZFmxpDoNBzIMad9U5MhJP5luVAiUMfYiRKMkPLkrh
+ iqlLGtYXlk3OTW9XZ9v/n+bquHx8AJ2B3AAAA
+To: Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1409; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=WXwCrF1iMEcXk395vZUIozuTjV7W1KezDJ0wK+pB1dM=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBlt6XAyyrUHNMZ7tZaQaVkKEhqXAPQYD297pt77
+ cVz/Nvo4dCJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZbelwAAKCRAbX0TJAJUV
+ Vv61D/9bBdHXS2wO6uKyfd7rbe1VW/qu+1zH6S6JWIsPFoU1rpxKaN3xBeA24PvB/qvt4AD1PYz
+ xZNQMdJA1PAC8MDqz4/NanHfBFVySXwo/7+Xu31ocVupozgKfbIevnAJxbMh7YvSaVgiru0UcrC
+ p6VigFeydgfKVqWm192f9K2K+GaRC92TfFx7FeHU/ptzu1UbaxxRf6hmn+C/E6nw0SfS20GMkKq
+ +QA65vuln5dQ5roWvWsFlj3XCrr9clS8U6nqTlVpC1d1pt81tOERCP1ithcJGeGHqxHHbJFURh9
+ 7cNwkRfZzVxGPXKREvwbvZxVYxZ/doljclG5U+YWAHR7xWGdygTn0pg3pER3yS6jaD/kqQ2Voc2
+ 5FPVl3W0u3sBbjP/KGLbQQE+bIYesaqBdnEKcH2p+zMTq7yHgpOA1rOCKZelbIGLCXlAR6pmSgC
+ KUO/wHRQDPwh9GIzmVkJnnspHDXEj5sHO1o+tG/PqVP9dvCAQonRXUzKtjtJGRiQpjdbp4JtsnT
+ MeiNuutD5Cho2eapVCv1ukETcJA/SfQ3F/MrZn7NMz/RoHjisv0T8mL0Pb4aCdEmilm0Ejisd83
+ fMnNXZdfIYU81HG1QH/BkPSAUQjKsLC8yAxa2YNRppJgv7cPkrjW+ITRpI/HITT84XTIv7j03Bm
+ F5w42EbmwAIFGmw==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On Mon, Jan 29, 2024 at 02:29:22PM +0200, Tomi Valkeinen wrote:
-> On 29/01/2024 02:54, Kuninori Morimoto wrote:
-> > We already have of_graph_get_next_endpoint(), but it is not intuitive
-> > to use.
-> > 
-> > (X)	node {
-> > (Y)		ports {
-> > 			port@0 { endpoint { remote-endpoint = ...; };};
-> > (A1)			port@1 { endpoint { remote-endpoint = ...; };
-> > (A2)				 endpoint { remote-endpoint = ...; };};
-> > (B)			port@2 { endpoint { remote-endpoint = ...; };};
-> > 		};
-> > 	};
-> > 
-> > For example, if I want to handle port@1's 2 endpoints (= A1, A2),
-> > I want to use like below
-> > 
-> > 	A1 = of_graph_get_next_endpoint(port1, NULL);
-> > 	A2 = of_graph_get_next_endpoint(port1, A1);
-> > 
-> > But 1st one will be error, because of_graph_get_next_endpoint() requested
-> > "parent" means "node" (X) or "ports" (Y), not "port".
-> > Below are OK
-> > 
-> > 	of_graph_get_next_endpoint(node,  NULL); // node/ports/port@0/endpoint
-> > 	of_graph_get_next_endpoint(ports, NULL); // node/ports/port@0/endpoint
-> > 
-> > In other words, we can't handle A1/A2 directly via
-> > of_graph_get_next_endpoint() so far.
-> > 
-> > There is another non intuitive behavior on of_graph_get_next_endpoint().
-> > In case of if I could get A1 pointer for some way, and if I want to
-> > handle port@1 things, I would like use it like below
-> > 
-> > 	/*
-> > 	 * "endpoint" is now A1, and handle port1 things here,
-> > 	 * but we don't know how many endpoints port1 has.
-> > 	 *
-> > 	 * Because "endpoint" is non NULL, we can use port1
-> > 	 * as of_graph_get_next_endpoint(port1, xxx)
-> > 	 */
-> > 	do {
-> > 		/* do something for port1 specific things here */
-> > 	} while (endpoint = of_graph_get_next_endpoint(port1, endpoint))
-> > 
-> > But it also not worked as I expected.
-> > I expect it will be A1 -> A2 -> NULL,
-> > but      it will be A1 -> A2 -> B,    because of_graph_get_next_endpoint()
-> > will fetch endpoint beyond the port.
-> > 
-> > It is not useful on generic driver like Generic Sound Card.
-> > It uses of_get_next_child() instead for now, but it is not intuitive,
-> > and not check node name (= "endpoint").
-> > 
-> > To handle endpoint more intuitive, create of_graph_get_next_endpoint_raw()
-> > 
-> > 	of_graph_get_next_endpoint_raw(port1, NULL); // A1
-> > 	of_graph_get_next_endpoint_raw(port1, A1);   // A2
-> > 	of_graph_get_next_endpoint_raw(port1, A2);   // NULL
-> > 
-> > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > ---
-> >   drivers/of/property.c    | 26 +++++++++++++++++++++++++-
-> >   include/linux/of_graph.h |  2 ++
-> >   2 files changed, 27 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index 14ffd199c9b1..37dbb1b0e742 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -667,6 +667,30 @@ struct device_node *of_graph_get_next_port(const struct device_node *parent,
-> >   }
-> >   EXPORT_SYMBOL(of_graph_get_next_port);
-> >   
-> > +/**
-> > + * of_graph_get_next_endpoint_raw() - get next endpoint node
-> 
-> How about "of_graph_get_next_port_endpoint()"?
+This patchset adds support for display for X1E80100.
+The support for embedded DisplayPort on this platform will not
+be enabled using the connetor type from driver match data,
+but through some 'is-edp' property via DT. This subsequent work
+will be part of a separate patchset.
 
-We may want to also rename the existing of_graph_get_next_endpoint()
-function to of_graph_next_dev_endpoint() then. It would be a tree-wide
-patch, which is always annoying to get reviewed and merged, so if Rob
-would prefer avoiding the rename, I'm fine with that.
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Abel Vesa (4):
+      dt-bindings: display/msm: document MDSS on X1E80100
+      dt-bindings: display/msm: Document the DPU for X1E80100
+      drm/msm: mdss: Add X1E80100 support
+      drm/msm/dpu: Add X1E80100 support
 
-> > + * @port: pointer to the target port node
-> > + * @endpoint: current endpoint node, or NULL to get first
-> > + *
-> > + * Return: An 'endpoint' node pointer with refcount incremented. Refcount
-> > + * of the passed @prev node is decremented.
-> > + */
-> 
-> It might be good to highlight here the difference to the 
-> of_graph_get_next_endpoint().
+Abhinav Kumar (1):
+      drm/msm/dp: Try looking for link-frequencies into the port@0's endpoint first
 
-Yes, and the documentation of of_graph_get_next_endpoint() shoul also be
-improved.
+ .../bindings/display/msm/qcom,sm8650-dpu.yaml      |   5 +-
+ .../bindings/display/msm/qcom,x1e80100-mdss.yaml   | 249 ++++++++++++
+ .../drm/msm/disp/dpu1/catalog/dpu_9_2_x1e80100.h   | 449 +++++++++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   2 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
+ drivers/gpu/drm/msm/dp/dp_parser.c                 |   6 +-
+ drivers/gpu/drm/msm/msm_mdss.c                     |  10 +
+ 8 files changed, 721 insertions(+), 2 deletions(-)
+---
+base-commit: 6776c8d0924953c6bbd4920d8408f4c1d898af71
+change-id: 20231201-x1e80100-display-a46324400baf
 
-> > +struct device_node *of_graph_get_next_endpoint_raw(const struct device_node *port,
-> > +						   struct device_node *endpoint)
-> > +{
-> > +	if (!port)
-> > +		return NULL;
-> > +
-> > +	do {
-> > +		endpoint = of_get_next_child(port, endpoint);
-> > +		if (!endpoint)
-> > +			break;
-> > +	} while (!of_node_name_eq(endpoint, "endpoint"));
-> > +
-> > +	return endpoint;
-> > +}
-> > +EXPORT_SYMBOL(of_graph_get_next_endpoint_raw);
-> > +
-> >   /**
-> >    * of_graph_get_next_endpoint() - get next endpoint node
-> >    * @parent: pointer to the parent device node
-> > @@ -708,7 +732,7 @@ struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
-> >   		 * getting the next child. If the previous endpoint is NULL this
-> >   		 * will return the first child.
-> >   		 */
-> > -		endpoint = of_get_next_child(port, prev);
-> > +		endpoint = of_graph_get_next_endpoint_raw(port, prev);
-> >   		if (endpoint) {
-> >   			of_node_put(port);
-> >   			return endpoint;
-> > diff --git a/include/linux/of_graph.h b/include/linux/of_graph.h
-> > index fff598640e93..427905a6e8c3 100644
-> > --- a/include/linux/of_graph.h
-> > +++ b/include/linux/of_graph.h
-> > @@ -57,6 +57,8 @@ int of_graph_get_port_count(const struct device_node *np);
-> >   struct device_node *of_graph_get_port_by_id(struct device_node *node, u32 id);
-> >   struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
-> >   					struct device_node *previous);
-> > +struct device_node *of_graph_get_next_endpoint_raw(const struct device_node *port,
-> > +						   struct device_node *prev);
-> >   struct device_node *of_graph_get_next_port(const struct device_node *parent,
-> >   					   struct device_node *previous);
-> >   struct device_node *of_graph_get_endpoint_by_regs(
-
+Best regards,
 -- 
-Regards,
+Abel Vesa <abel.vesa@linaro.org>
 
-Laurent Pinchart
 
