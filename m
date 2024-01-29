@@ -1,73 +1,99 @@
-Return-Path: <devicetree+bounces-36237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3999284041B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:49:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19EB684042F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:52:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 588EFB23752
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:49:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C661E28405A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:52:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C506605A0;
-	Mon, 29 Jan 2024 11:48:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18935FB89;
+	Mon, 29 Jan 2024 11:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="D/jvssl4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OH9HviHQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF85604A6;
-	Mon, 29 Jan 2024 11:48:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6761C5D75B
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 11:52:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706528897; cv=none; b=awHrJV/pw96me0illLqcqCw5IMDBr/ZfejhECzrYbV9h0PSVmzU+MwwTEqfzi/FEJ9A27l3vNy9dEud3nvL9/Br9MCfxLSrWqD9Y0WMt2wOHjyftMZAKZT2dKrGsJx80eiZhjLBdwjez8bXWGq5D23RgYsguAoBZnRBK2VTFNeo=
+	t=1706529145; cv=none; b=G58ulMRHphhpXtzbVekj9ae+upJn3980tfKHoO205vIzTyfSAz+fdgXhb2bUd7Wh1XvVXP7EL9OtI1/eX+B6ff9LsxNHUQZ4GUm4Duok8HBX6B0HXDfvTAISRvnYR04vNM3uGcUTc7JfLt7IafglLlra9Aa+DNPKyBTC+MJw9bE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706528897; c=relaxed/simple;
-	bh=3i2nQnrvqC1lBIi9nxN8m/z4iiw2hzDR/RU6uPabObg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MtQvO2fULWv6YMDTjeO3TiyJ4qmCbHp1cW/4osftyWjN2m7EOFF38d0Q5YGlTPCV4VsqYxAg2kPYh079vGeCr23lz2pzGmlWPlWKvs4svnjv3YwURTLq0FbfPiSm+rj0Q/7oZqYz5/Xrz/gIN3tNI8G1zU2muBYwuQvXfErsjps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=D/jvssl4; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40TBm4NZ102392;
-	Mon, 29 Jan 2024 05:48:04 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706528884;
-	bh=oR9YVI0sT/uq05z3T7I9CNQP8STg+8IO3lK0cxlOt7A=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=D/jvssl43MT5ATWCUI/2nqc1fPsM0Ozh+uI1ab/hxIgUDqtbpdC1ImhfW48WzSUq7
-	 H929m6DUxMtm+U30CUVYdCBz0xAbzul2yHNeFDP+gGTq/oqxKJyFT93Vjzakborweh
-	 r3yFcsPXykX7wX12QZXzwHH79x982gyD9TPnzYT8=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40TBm4RF125780
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Jan 2024 05:48:04 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Jan 2024 05:48:04 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Jan 2024 05:48:04 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [172.24.227.9])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40TBloqS029678;
-	Mon, 29 Jan 2024 05:48:01 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <u-kumar1@ti.com>,
-        <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH 3/3] arm64: dts: ti: k3-j784s4-evm: Add overlay for PCIE0 and PCIE1 EP Mode
-Date: Mon, 29 Jan 2024 17:17:49 +0530
-Message-ID: <20240129114749.1197579-4-s-vadapalli@ti.com>
+	s=arc-20240116; t=1706529145; c=relaxed/simple;
+	bh=TevWKR2DSrMzB/VAXnrwgpjtV2WO/i7dhXJ3FYqBRLA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=p5D2n2RoYP8Ohd5pn60B4wYQzIDnoNmDsmxteYKa8Tas+3v30aS4mo54RnfdE7gZwoArN7mBpb7kPjjI2yIU/aNhlGMmKydl9250NxyJgpixALSF1dPtSpYha1hh5ujXHWRowUJBeDJg7T2+C5tQQxYfmCf5au3pzSI/+lMRolA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OH9HviHQ; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2cf0390eddbso29679561fa.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 03:52:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706529140; x=1707133940; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=R/YgAdznIozSs2D/WsWY2hpfyQsPzLBVEOR2iGtuuDw=;
+        b=OH9HviHQWkoyDQT4YvNqrANkRD7RpAirmBuoBJuSOXbhaF1V24XtCDeDMaKuOMGpza
+         lDqDhacP/ihanyKi5G4f00m2tGbxHPTFx5smunBSkdTvrBoABuTn8SJ8EVdx/rVPHXRg
+         Lm9vSniSgtxpXVQl82AvHxaes1TbCG8fbrtyKoz8wmpgh7W/c02XCZxzJf6B4QF3ZvOK
+         aQJKd7f09b7HUcS9TNTYXw8Y9fjBowcIyg0vF1rz+YjITXAFRAjJ6Qf9yLvv5D1OWtYX
+         5MDTWJ4TQ7NfF2b25lWow7dLIwr6K6Ubuf33eHRmTTtWXEptZeMDXRwjPVYY76Nw6CQb
+         gqVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706529140; x=1707133940;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R/YgAdznIozSs2D/WsWY2hpfyQsPzLBVEOR2iGtuuDw=;
+        b=A1Bv5af8kL2MtRuuu5S29vpHVjQPKEUL9jMDsdkVFEgJF3+sqIeM7BZX+q11omu09Z
+         0ENJ1W+4yGr0ell4RIc5NqXnABiaqFvYomZrFTK/U5Oho1muU7DcuuN/wryN8Ozj6+NU
+         4GWVFhJlN2B4OWVZOBf5AEGztEKjJ/H8sB+3x2tEYJqtdTCTNR4Z4XoN8OKQzJE7CB3X
+         QN1T3s0B/sdZPqvfN+uvQkxj5RR0Y8Nyycg0sYtuKrJwdFpMFE+0GfC0c6fUg96IKo01
+         k+G+fKhp1vne8STT8vs5tkMhId7Uf2L6chdo/YzAsCIw1btoR26Mbk9Z6D4UCXsnAdrC
+         hJcA==
+X-Gm-Message-State: AOJu0YxqHBCS24EuYz1CakOyWGfX3kjeeSbVG6qtfSKDdbgLL/gTcUSK
+	f/wzVniMrFC+v3kRBUs0oAsP5ROR0G4NaSLGqalrq3iV0pJmKRflCwXOhvuA7Kc=
+X-Google-Smtp-Source: AGHT+IFqjoy3FZxoV9ITWG/DVDbPwIlEmiyp2X8ew7y1z0leblC2o5ktNI6NnAt/yx6tOebUXaknnQ==
+X-Received: by 2002:a05:651c:1986:b0:2cd:7357:58eb with SMTP id bx6-20020a05651c198600b002cd735758ebmr4260461ljb.39.1706529140447;
+        Mon, 29 Jan 2024 03:52:20 -0800 (PST)
+Received: from krzk-bin.. ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id ec19-20020a0564020d5300b0055f29ececeasm19907edb.57.2024.01.29.03.52.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jan 2024 03:52:19 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Banajit Goswami <bgoswami@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	alsa-devel@alsa-project.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Sean Anderson <sean.anderson@seco.com>
+Subject: [PATCH v6 0/6] reset: gpio: ASoC: shared GPIO resets
+Date: Mon, 29 Jan 2024 12:52:10 +0100
+Message-Id: <20240129115216.96479-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240129114749.1197579-1-s-vadapalli@ti.com>
-References: <20240129114749.1197579-1-s-vadapalli@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,140 +101,142 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Add overlay to enable the PCIE0 and PCIE1 instances of PCIe on J784S4-EVM
-in Endpoint mode of operation.
+Hi,
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile               |  7 +-
- .../dts/ti/k3-j784s4-evm-pcie0-pcie1-ep.dtso  | 79 +++++++++++++++++++
- 2 files changed, 85 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-pcie0-pcie1-ep.dtso
+Dependencies / Merging
+======================
+1. Depends on !GPIOLIB stub:
+   https://lore.kernel.org/all/20240125081601.118051-3-krzysztof.kozlowski@linaro.org/
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 52c1dc910308..16b885009883 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -81,6 +81,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-pcie0-pcie1-ep.dtbo
- 
- # Build time test only, enabled by CONFIG_OF_ALL_DTBS
- k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
-@@ -109,6 +110,8 @@ k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
- 	k3-j721e-evm-pcie0-ep.dtbo
- k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtbo
-+k3-j784s4-evm-pcie0-pcie1-ep-dtbs := k3-j784s4-evm.dtb \
-+	k3-j721e-evm-pcie0-pcie1-ep.dtbo
- dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
- 	k3-am625-sk-csi2-imx219.dtb \
-@@ -121,7 +124,8 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
- 	k3-j721e-evm-pcie0-ep.dtb \
--	k3-j721s2-evm-pcie1-ep.dtb
-+	k3-j721s2-evm-pcie1-ep.dtb \
-+	k3-j784s4-evm-pcie0-pcie1-ep.dtb
- 
- # Enable support for device-tree overlays
- DTC_FLAGS_k3-am625-beagleplay += -@
-@@ -132,3 +136,4 @@ DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
- DTC_FLAGS_k3-j721e-common-proc-board += -@
- DTC_FLAGS_k3-j721s2-common-proc-board += -@
-+DTC_FLAGS_k3-j784s4-evm += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm-pcie0-pcie1-ep.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-evm-pcie0-pcie1-ep.dtso
-new file mode 100644
-index 000000000000..2e3c98870558
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm-pcie0-pcie1-ep.dtso
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT Overlay for enabling PCIE0 and PCIE1 instances in Endpoint Configuration
-+ * on J784S4 EVM.
-+ *
-+ * J784S4 EVM Product Link: https://www.ti.com/tool/J784S4XEVM
-+ *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/soc/ti,sci_pm_domain.h>
-+
-+#include "k3-pinctrl.h"
-+
-+/*
-+ * Since Root Complex and Endpoint modes are mutually exclusive
-+ * disable Root Complex mode.
-+ */
-+&pcie0_rc {
-+	status = "disabled";
-+};
-+
-+&pcie1_rc {
-+	status = "disabled";
-+};
-+
-+&cbass_main {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+	interrupt-parent = <&gic500>;
-+
-+	pcie0_ep: pcie-ep@2900000 {
-+		compatible = "ti,j784s4-pcie-ep";
-+		reg = <0x00 0x02900000 0x00 0x1000>,
-+		      <0x00 0x02907000 0x00 0x400>,
-+		      <0x00 0x0d000000 0x00 0x00800000>,
-+		      <0x00 0x10000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4070>;
-+		max-link-speed = <3>;
-+		num-lanes = <4>;
-+		power-domains = <&k3_pds 332 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 332 0>;
-+		clock-names = "fck";
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
-+		dma-coherent;
-+		phys = <&serdes1_pcie0_link>;
-+		phy-names = "pcie-phy";
-+	};
-+
-+	pcie1_ep: pcie-ep@2910000 {
-+		compatible = "ti,j784s4-pcie-ep";
-+		reg = <0x00 0x02910000 0x00 0x1000>,
-+		      <0x00 0x02917000 0x00 0x400>,
-+		      <0x00 0x0d800000 0x00 0x00800000>,
-+		      <0x00 0x18000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
-+		max-link-speed = <3>;
-+		num-lanes = <2>;
-+		power-domains = <&k3_pds 333 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 333 0>;
-+		clock-names = "fck";
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
-+		dma-coherent;
-+		phys = <&serdes0_pcie1_link>;
-+		phy-names = "pcie-phy";
-+	};
-+};
+2. Patch #2 (cpufreq: do not open-code of_phandle_args_equal()) and patch #4
+   (reset: Instantiate reset GPIO controller for shared reset-gpios) depend on OF
+   change (patch #1).
+
+Changes in v6
+=============
+1. reset/core.c: Add check for number of GPIO cells==2 (Neil).
+2. Add Rb/Ack tags.
+
+Changes in v5
+=============
+1. Minor comments from Philipp: missing cleanup.h, correct indentation of
+   pr_err(), shorten gpio_device_find_by_fwnode() line.
+2. Acks/Rbs.
+
+Changes in v4
+=============
+1. New patches:
+   of: add of_phandle_args_equal() helper
+   cpufreq: do not open-code of_phandle_args_equal()
+
+2. reset-gpio.c:
+   - Drop unneeded comment (Bartosz), add Rb tag.
+   - Do not assign of_node.
+
+3. reset/core.c:
+   - Implement most of Bartosz feedback (I responded to one which I did not
+     implement) and comments from Philipp.
+   - Expect either rcdev->of_args or rcdev->of_node.
+   - Drop __reset_gpios_args_match() and use common helper (Philipp).
+   - Move declarations of automatic-cleanup variables in
+     __reset_add_reset_gpio_lookup() to place of use (Bartosz).
+   - Separate gpio_device_get_label() and kstrdup() (Philipp).
+   - Correct doc for __reset_add_reset_gpio_device(), rewrite few comments.
+   - Drop unneeded "r" variable in __reset_find_rcdev() (Philipp).
+   - Drop of_phandle_args initialization in __of_reset_control_get (Philipp).
+   - Check if CONFIG_RESET_GPIO is enabled before trying to look up reset-gpios.
+
+4. Drop Chris' patch: "i2c: muxes: pca954x: Allow sharing reset GPIO", because
+   discussion is on going.
+
+Changes in v3
+=============
+1. reset-gpio.c:
+  - Add reset_gpio_of_xlate (Philipp).
+  - reset_gpio_of_args_put->reset_gpio_of_node_put (Philipp).
+  - Expect via platdata of_phandle_args.
+  - Do not call device_set_node() to attach itself to reset consumer
+    (the final device).  This was questionable idea in the first place.
+    Bartosz suggested to use GPIO_LOOKUP to solve this.
+
+2. reset/core.c, implement Philipp's feedback. That was a lot:
+  - Commit msg fixes.
+  - Add new platform_device earlier, when reset core found "reset-gpios" but
+    not "resets".
+  - Do not overwrite of_phandle_args.
+  - Expect matching .of_reset_n_cells.
+  - Pass of_phandle_args as platdata to reset-gpio.
+  - Rename reset_gpio_device->reset_gpio_lookup and others. Fix few comments
+    and code cleanup pointed on review.
+  - From Bartosz:
+    Use GPIO_LOOKUP and a lot of cleanup.h in __reset_add_reset_gpio_lookup().
+
+3. Include here Chris' patch: "i2c: muxes: pca954x: Allow sharing reset GPIO".
+
+Changes in v2
+=============
+1. wsa884x.c: add missing return in wsa884x_get_reset(), correct comment.
+2. qcom,wsa8840.yaml: fix oneOf syntax.
+3. reset-gpio.c:
+   - Fix smatch warning on platdata evaluation.
+   - Parse GPIO args and store them in rc.of_args.
+4. reset/core.c:
+   - Revise approach based on Bartosz comments: parse the reset-gpios phandle
+     with arguments, do not use deprecated API and do not rely on gpio_desc
+     pointer.
+   - Create a list of instantiated platform devices to avoid any duplicates.
+   - After creating reset-gpio platform device, try to get new reset controller
+     or return EPROBE_DEFER.
+   - Drop the "cookie" member and add new "of_args" to "struct
+     reset_controller_dev".
+
+Description
+===========
+
+We have at least few cases where hardware engineers decided to use one
+powerdown/shutdown/reset GPIO line for multiple devices:
+
+1. WSA884x (this and previous patch):
+https://lore.kernel.org/all/b7aeda24-d638-45b7-8e30-80d287f498f8@sirena.org.uk/
+2. https://lore.kernel.org/all/20231027033104.1348921-1-chris.packham@alliedtelesis.co.nz/
+3. https://lore.kernel.org/lkml/20191030120440.3699-1-peter.ujfalusi@ti.com/
+4. https://lore.kernel.org/all/20211018234923.1769028-1-sean.anderson@seco.com/
+5. https://social.treehouse.systems/@marcan/111268780311634160
+
+I try to solve my case, hopefuly Chris' (2), partially Sean's (4) and maybe
+Hectors (5), using Rob's suggestion:
+
+https://lore.kernel.org/all/YXi5CUCEi7YmNxXM@robh.at.kernel.org/
+
+Best regards,
+Krzysztof
+
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Sean Anderson <sean.anderson@seco.com>
+
+Krzysztof Kozlowski (6):
+  of: Add of_phandle_args_equal() helper
+  cpufreq: do not open-code of_phandle_args_equal()
+  reset: gpio: Add GPIO-based reset controller
+  reset: Instantiate reset GPIO controller for shared reset-gpios
+  ASoC: dt-bindings: qcom,wsa8840: Add reset-gpios for shared line
+  ASoC: codecs: wsa884x: Allow sharing reset GPIO
+
+ .../bindings/sound/qcom,wsa8840.yaml          |  11 +-
+ MAINTAINERS                                   |   5 +
+ drivers/reset/Kconfig                         |   9 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/core.c                          | 224 +++++++++++++++++-
+ drivers/reset/reset-gpio.c                    | 119 ++++++++++
+ include/linux/cpufreq.h                       |   3 +-
+ include/linux/of.h                            |  16 ++
+ include/linux/reset-controller.h              |   4 +
+ sound/soc/codecs/wsa884x.c                    |  53 ++++-
+ 10 files changed, 419 insertions(+), 26 deletions(-)
+ create mode 100644 drivers/reset/reset-gpio.c
+
 -- 
 2.34.1
 
