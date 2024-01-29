@@ -1,100 +1,117 @@
-Return-Path: <devicetree+bounces-36375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F3C840B97
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:34:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AED5840BBA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:38:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DAA01C22CE5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:34:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D96E1C22EFE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D283159580;
-	Mon, 29 Jan 2024 16:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A4015B10A;
+	Mon, 29 Jan 2024 16:32:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA2415956D;
-	Mon, 29 Jan 2024 16:30:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 870FF15AAC2;
+	Mon, 29 Jan 2024 16:32:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706545852; cv=none; b=dv/jj1WY1+0Q6DI+oHEyFO2N2E1a8qrAnip93s7JBYfTnw+CJy02JlmaQvi4nBrE+KN1yxXNSCdJAa9ayfwPuQ8NyNknlZP2TuQpBPhWr/BN1vp/C8oJomSVmT+qRhSNht3xiXYTAA4f9YX6sR7DOUY2brGSXL0+cuEZMWPWSeE=
+	t=1706545963; cv=none; b=R3BY9hL0LdZCF5PmDOaDN8w8e555BaN/QaMPOcH/xEtVMVAYnzoxtM90uRi+7KMb9nlVSlC78jfIYx12MCc1GOSCA6GOWmdo7UvFm3zYUbT8d/dIIvqm8VBFgmrotP1OENDNHC4UW0eacdh2uPxXc0L9oW9L3S6cDTmUl0XYCZQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706545852; c=relaxed/simple;
-	bh=W6TMqRtC+7055PVNc/k+MoT8M6gVLJlYB+nOkTGTGBE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kZLV/jwypAnlWnIwyo1rB/V4RWgCDrWGVUx6EnIhxphpsbIfj6CHOb63gfxyJSTvpqvYGBttjl5ERr08+ltWP17gARWiAmF50GfSkKw9XLSLgFXzs9DWvQT00fPpjpj9i8eYd2iha4IJZeaL5GTM+Y5R8V2pxQSmq6o9/4y5eQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A95ADA7;
-	Mon, 29 Jan 2024 08:31:33 -0800 (PST)
-Received: from bogus (unknown [10.57.78.35])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C67DC3F738;
-	Mon, 29 Jan 2024 08:30:45 -0800 (PST)
-Date: Mon, 29 Jan 2024 16:30:43 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Cristian Marussi <cristian.marussi@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <20240129163043.if5jj4kyacqfe2n5@bogus>
-References: <20240121-pinctrl-scmi-v3-0-8d94ba79dca8@nxp.com>
- <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com>
+	s=arc-20240116; t=1706545963; c=relaxed/simple;
+	bh=lDpi9yvbwgMWUDTs/NOybqvQB2F3saU706v68qcn0g4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dcC4i+x2Cor5DtRZghUIAFR3g8EDmcu/sxEakG5DGslwDQv+i8M3IYXY+EAk6k7COBOq7GvmHxCiQ3sqc5yMz9tD+kXMIdiyWm5of2ns8tbeJ/0JNDmAvGcFS3dW0uzE1FzXek3mH0TJu1YMHYXQMz7oGuMRieVnSqx+iAsifLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
+Received: from [141.14.220.34] (g34.guest.molgen.mpg.de [141.14.220.34])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: pmenzel)
+	by mx.molgen.mpg.de (Postfix) with ESMTPSA id 092F461E5FE05;
+	Mon, 29 Jan 2024 17:31:53 +0100 (CET)
+Message-ID: <2c37a716-e4bb-4db3-a95f-a40e05b28cad@molgen.mpg.de>
+Date: Mon, 29 Jan 2024 17:31:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: mt8183-pico6: Fix bluetooth
+ node
+Content-Language: en-US
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ Angelo Gioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sean Wang <sean.wang@mediatek.com>, linux-bluetooth@vger.kernel.org,
+ netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240126063500.2684087-1-wenst@chromium.org>
+ <20240126063500.2684087-3-wenst@chromium.org>
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20240126063500.2684087-3-wenst@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 29, 2024 at 08:36:50PM +0800, Peng Fan wrote:
-> Hi Sudeep, Cristian
+Dear Chen-Yu,
+
+
+Thank you for your patch.
+
+Am 26.01.24 um 07:34 schrieb Chen-Yu Tsai:
+> Bluetooth is not a random device connected to the MMC/SD controller. It
+> is function 2 of the SDIO device.
 > 
-> Would you pick up patch 1-4?
+> Fix the address of the bluetooth node. Also fix the node name and drop
+> the label.
 
-I will for v6.9 sometime.
+Excuse my ignorance: Is this a cosmetic fix or does it fix the device 
+somehow?
 
-> And for i.MX95 OEM extenstion, do you have any suggestions?
-> I have two points:
-> 1. use vendor compatible. This would also benefit when supporting vendor
-> protocol.
+> Fixes: 055ef10ccdd4 ("arm64: dts: mt8183: Add jacuzzi pico/pico6 board")
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+> Changes since v1:
+> - Collected reviewed-by
+> 
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
+> index a2e74b829320..6a7ae616512d 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-pico6.dts
+> @@ -82,7 +82,8 @@ pins-clk {
+>   };
+>   
+>   &mmc1 {
+> -	bt_reset: bt-reset {
+> +	bluetooth@2 {
+> +		reg = <2>;
 
-May be, but that was never on plate for standard protocols. So I don't
-like that approach either.
+To avoid confusion, would it be possible to use sdio as a “name”.
 
-> 2. Introduce a property saying supporting-generic-pinconf
->
+>   		compatible = "mediatek,mt7921s-bluetooth";
+>   		pinctrl-names = "default";
+>   		pinctrl-0 = <&bt_pins_reset>;
 
-I am not sure what you mean by that. But that doesn't sound right especial
-in context of SCMI. So I would say no.
 
-> How do you think?
->
+Kind regards,
 
-I don't have any other suggestions than fix your driver to use the pinmux
-properly with features in the upstream pinmux subsystem.
-
--- 
-Regards,
-Sudeep
+Paul
 
