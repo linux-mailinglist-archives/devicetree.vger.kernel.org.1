@@ -1,171 +1,314 @@
-Return-Path: <devicetree+bounces-36439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518EF8412E0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 19:58:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D266D841305
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 20:05:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA49428A226
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:58:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CDBF1F234AF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 19:05:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AABE52E858;
-	Mon, 29 Jan 2024 18:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A4224B57;
+	Mon, 29 Jan 2024 19:05:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XDhUi7Gs"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="i4o151IY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E686414A82;
-	Mon, 29 Jan 2024 18:58:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B143D76C85;
+	Mon, 29 Jan 2024 19:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706554700; cv=none; b=pIHpqJApWQ+/KB753BiZIO/q4iSE/Tt6nbsSjXTMz+EzVOsEzLmU3q2IedGo0n11HQZacjo1lPbv9/oKEz7uTGP56zuGI3MDPrhwAmEaFKiGOPdbbw71aah1C8dTI92QnNC3z5kwJcr54wT04I0qV1Cglt7DJ04ShfUQc60Mty8=
+	t=1706555132; cv=none; b=BvdvW2/Dtur91VTV9Iv5THsCcOX3wYrG63HXmsBkyVpk+UL4qbt9InTY4FdMnbFQqab7wK4ZmlTpKfeMUQBZ6RbSbpRbmb8gzvUJvKKM/5yJYnw3l9KgAZ6geQKn9WTb4UoSYVYqZGIifY6VK9GePZ9f0mYFiq6Pin1SvKaIl6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706554700; c=relaxed/simple;
-	bh=8ch06nTcYc7s7BDv13zY6ZFLhFBoG0R9gezse2mcm2o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NOSRm7iUJkoMFBiEhDKa6FV7uI4KVpKY4SfgSNXXJhTgyGdTaKps738gsswhz/5D0WNaPLoObdOmzF9DzpaJPlaRp/mb83TPeM/1ZsCQdcOdOG0VEPiomdegw0FIMFuIRcrOGg8Bvo5jxaQOWNMsz9IWEVAXMtYQL0V57c3QkYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XDhUi7Gs; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1706554699; x=1738090699;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8ch06nTcYc7s7BDv13zY6ZFLhFBoG0R9gezse2mcm2o=;
-  b=XDhUi7GsLcs7YIRWMPxW0MKqF+g8g6SQhsYTyeYpcqytw3adGQe2QbIa
-   X3tdO/YBbWfCmk5usfI04kyGpCr992d6fja62PTQL26YfAd2KmIeqaG4+
-   zrJXKn0bbDsoLJoSNL25zoO7T8JrnoQULdT2m/bh/IGLSk8hZh3centw9
-   y/IlT7OvUvw2HVch2aNVB2ifhEXH6BLZexIk1TfYn5dAS6HrK3fXjaKQq
-   7Jz3UClbGYovfUmLeKbkk5o08ECE7OXm8Fbrhb4s+50BLIRsOkpFogom8
-   gni3YPcKtWOTbNsa6S+bZOVr/bcJBWKI+K6fNhRD+Gyyc4STOgDNZNGz0
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="16590277"
-X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; 
-   d="scan'208";a="16590277"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2024 10:58:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10968"; a="911172916"
-X-IronPort-AV: E=Sophos;i="6.05,227,1701158400"; 
-   d="scan'208";a="911172916"
-Received: from lkp-server01.sh.intel.com (HELO 370188f8dc87) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 29 Jan 2024 10:58:08 -0800
-Received: from kbuild by 370188f8dc87 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rUWpa-0004ZQ-16;
-	Mon, 29 Jan 2024 18:58:06 +0000
-Date: Tue, 30 Jan 2024 02:58:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>, catalin.marinas@arm.com,
-	will@kernel.org, robh+dt@kernel.org, frowand.list@gmail.com,
-	vgupta@kernel.org, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-	guoren@kernel.org, monstr@monstr.eu, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, dinguyen@kernel.org, chenhuacai@kernel.org,
-	tsbogend@alpha.franken.de, jonas@southpole.se,
-	stefan.kristiansson@saunalahti.fi, shorne@gmail.com,
-	mpe@ellerman.id.au, ysato@users.sourceforge.jp, dalias@libc.org,
-	glaubitz@physik.fu-berlin.de, richard@nod.at,
-	anton.ivanov@cambridgegreys.com, johannes@sipsolutions.net,
-	chris@zankel.net, jcmvbkbc@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 30/46] of: reserved_mem: Add code to use unflattened DT
- for reserved_mem nodes
-Message-ID: <202401300258.xkXVxP8C-lkp@intel.com>
-References: <20240126235425.12233-31-quic_obabatun@quicinc.com>
+	s=arc-20240116; t=1706555132; c=relaxed/simple;
+	bh=J2F3t7U90gGxRYFzv0nzoRdnJzT5QlZ5PZYI4AZgkwo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EX0UdLodZG9ZlDs/QK0NCaFuRzHV8LxyItWk6ltG2mw9uvjsIWJBV0DPeT299mId7drQE496tF7/xqSlfKRJGt5cZakwDHto9JFvSl46j/BGJ44H5eJDMHfgegYPlGosY2QIDqjeSL7WmPVyYwKdWwGfU1Ph4E/fhI1C5205ZOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=i4o151IY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40TIsLAC023069;
+	Mon, 29 Jan 2024 19:05:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=81QrPjX7gzFIZg+7qFwRZB9B2uhffa8qDakhjufL21c=; b=i4
+	o151IYh5ZvGeqRCnieSpT4TyaD754RW7PHbksmDhgUIJRAV/lPN4eF18lLv+5UwV
+	au4bBjC48IxoTdnp32VPmfLEKvMbngKpbk/QlVSV4/V3olcwvybDDaYjRTTYrkVD
+	nGzyqqHvFzVoWu082Syox3nTPjGYtKjD9ui3phf5frhSot0s/800m0u67aNqq9yh
+	OapuFp9AR1jFaR4wCiDQucxKvxFa96bHMvrJBp/FHp+Zits0P4kQPwhwcKeCHoxW
+	oQ3KvL/LM1RNGEKKI6fWPcnX2GYRzmeIvruQvxtvKDjHOuK+ZYjD2ssVgp02OGZJ
+	+h6rQkIiYfcMHjmQJeHA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vx3t9t61r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 19:05:14 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40TJ5D65026809
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 19:05:13 GMT
+Received: from [10.71.109.81] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
+ 2024 11:05:12 -0800
+Message-ID: <99705d73-abcf-6d41-3d50-757e706cf1fc@quicinc.com>
+Date: Mon, 29 Jan 2024 11:05:12 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240126235425.12233-31-quic_obabatun@quicinc.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH RFC 0/4] Support for Simulated Panels
+Content-Language: en-US
+To: Maxime Ripard <mripard@kernel.org>
+CC: Jani Nikula <jani.nikula@linux.intel.com>,
+        Jessica Zhang
+	<quic_jesszhan@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Sam Ravnborg <sam@ravnborg.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-kernel@vger.kernel.org>, "Daniel
+ Vetter" <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED
+ DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
+References: <20240116-jz-test-sim-panel-v1-0-f9511f46c9c7@quicinc.com>
+ <x6wi5xnihnbpqsujjfjfw3ft6njncruta5l3xa44pds5oxmdkw@mmvv4bciy65s>
+ <87cyu0qn81.fsf@intel.com> <e1f10583-1d5b-fdac-24bf-098a0ba06241@quicinc.com>
+ <hhmbghooegclx3jbsx2neryligk3mj77lq7gns5xegags5ltoz@acdu6hssqwlw>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <hhmbghooegclx3jbsx2neryligk3mj77lq7gns5xegags5ltoz@acdu6hssqwlw>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BtSEJq69FeWsXz7GNLyzTyemKb1WNfHV
+X-Proofpoint-ORIG-GUID: BtSEJq69FeWsXz7GNLyzTyemKb1WNfHV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-29_12,2024-01-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=999 phishscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
+ impostorscore=0 clxscore=1011 spamscore=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2401190000 definitions=main-2401290141
 
-Hi Oreoluwa,
+<adding device tree maintainers to comment>
 
-kernel test robot noticed the following build warnings:
+Hi Maxime
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on arm64/for-next/core vgupta-arc/for-curr powerpc/next powerpc/fixes jcmvbkbc-xtensa/xtensa-for-next linus/master v6.8-rc2 next-20240129]
-[cannot apply to vgupta-arc/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 1/26/2024 4:45 AM, Maxime Ripard wrote:
+> On Wed, Jan 17, 2024 at 09:36:20AM -0800, Abhinav Kumar wrote:
+>> Hi Jani and Maxime
+>>
+>> On 1/17/2024 2:16 AM, Jani Nikula wrote:
+>>> On Wed, 17 Jan 2024, Maxime Ripard <mripard@kernel.org> wrote:
+>>>> Hi,
+>>>>
+>>>> On Tue, Jan 16, 2024 at 02:22:03PM -0800, Jessica Zhang wrote:
+>>>>> This series introduces a simulated MIPI DSI panel.
+>>>>>
+>>>>> Currently, the only way to validate DSI connectors is with a physical
+>>>>> panel. Since obtaining physical panels for all possible DSI configurations
+>>>>> is logistically infeasible, introduce a way for DSI drivers to simulate a
+>>>>> panel.
+>>>>>
+>>>>> This will be helpful in catching DSI misconfiguration bugs and catching
+>>>>> performance issues for high FPS panels that might not be easily
+>>>>> obtainable.
+>>>>>
+>>>>> For now, the simulated panel driver only supports setting customized
+>>>>> modes via the panel_simlation.mode modparam. Eventually, we would like
+>>>>> to add more customizations (such as configuring DSC, dual DSI, etc.).
+>>>>
+>>>> I think that it's more complicated than it needs to be.
+>>>
+>>> Both too complicated and not complicated enough! :p
+>>
+>> The end goal is to have a framework to be able to validate the display
+>> pipeline with MIPI panels of any resolution , DSC/non-DSC, different MIPI
+>> flags etc.
+>>
+>> Historically, QC has been having an in-house framework to validate the
+>> panels in a simulated way as its logistically not possible to procure every
+>> panel from every vendor. This has been working pretty well but its not
+>> upstream yet. So we would like to work with the community to work on a model
+>> which works for everyone and this RFC was initiated with that in mind.
+> 
+> I think the goal was pretty clear. My point was more that there's no
+> reason it should be driver specific, and having a second path for it
+> doesn't really exert the actual panel path in the driver. I think a
+> separate driver would be better.
+> 
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Oreoluwa-Babatunde/of-reserved_mem-Change-the-order-that-reserved_mem-regions-are-stored/20240127-081735
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240126235425.12233-31-quic_obabatun%40quicinc.com
-patch subject: [PATCH 30/46] of: reserved_mem: Add code to use unflattened DT for reserved_mem nodes
-config: i386-randconfig-141-20240128 (https://download.01.org/0day-ci/archive/20240130/202401300258.xkXVxP8C-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+We can make this generic. That would be great actually. One option could 
+be to move the modparam we have within the msm to the drm_of.c so that 
+drm_of_find_panel_or_bridge shall return the sim panel if the modparam 
+is passed to select a sim panel.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202401300258.xkXVxP8C-lkp@intel.com/
+So if we make this a compile time decision whether to use real panel or 
+sim panel and just enable the appropriate config, we dont need the 
+modparam and we can implement some policy in the drm_of to first check 
+if sim panel is available and if not try the real panel then everything 
+will just happen under-the-hood. But we thought that a modparam based 
+switching might be convenient if users dont want to recompile the code 
+to switch but will need to compile both the panels.
 
-smatch warnings:
-drivers/of/of_reserved_mem.c:111 dt_scan_reserved_mem_reg_nodes() warn: unsigned 'node' is never less than zero.
+>> There is simulation infrastructure in place in upstream for HDMI/DP in the
+>> form of chamelium based testing in IGT but no such fwk exists for DSI
+>> displays.
+>>
+>> Different MIPI panels and resolutions test out not only the DSI controller
+>> but the entire display pipeline as based on resolution, compression and MIPI
+>> mode flags different parts of the pipeline can get exercised.
+>>
+>>>> Why do we need to support (and switch to) both the actual and
+>>>> "simulated" panel?
+>>>>
+>>
+>> As per my discussion on IRC with the panel/bridge maintainers and DT
+>> maintainers, a simulation panel does not qualify for its own devicetree as
+>> its not a real hardware so we needed to come up with a way to have a module
+>> which can be attached to the encoder without its own bindings and
+>> devicetree. Thats what led to this RFC.
+> 
+> I still think it's worth trying, there's plenty of virtual drivers in
+> the DT already. But even then, DT policies shouldn't dictate general
+> framework design decisions: we have other ways to probe panels than
+> using the DT (by loading overlays, registering devices by hand, etc.). I
+> still think it would be a good idea to try though.
+> 
 
-vim +/node +111 drivers/of/of_reserved_mem.c
+DT option would be great if accepted and will nicely solve the 
+scalability issue of this as it desperately needs one.
 
-    98	
-    99	/*
-   100	 * Save the reserved_mem reg nodes in the reserved_mem array
-   101	 */
-   102	static void __init dt_scan_reserved_mem_reg_nodes(void)
-   103	{
-   104		int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
-   105		struct device_node *node, *child;
-   106		phys_addr_t base, size;
-   107		const __be32 *prop;
-   108		int len;
-   109	
-   110		node = of_find_node_by_path("/reserved-memory");
- > 111		if (node < 0) {
-   112			pr_err("Reserved memory: Did not find reserved-memory node\n");
-   113			return;
-   114		}
-   115	
-   116		for_each_child_of_node(node, child) {
-   117			const char *uname;
-   118			struct reserved_mem *rmem;
-   119	
-   120			if (!of_device_is_available(child))
-   121				continue;
-   122	
-   123			prop = of_get_property(child, "reg", &len);
-   124			if (!prop) {
-   125				rmem = of_reserved_mem_lookup(child);
-   126				if (rmem)
-   127					rmem->dev_node = child;
-   128				continue;
-   129			}
-   130	
-   131			uname = of_node_full_name(child);
-   132			if (len && len % t_len != 0) {
-   133				pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
-   134				       uname);
-   135				continue;
-   136			}
-   137	
-   138			base = dt_mem_next_cell(dt_root_addr_cells, &prop);
-   139			size = dt_mem_next_cell(dt_root_size_cells, &prop);
-   140	
-   141			if (size)
-   142				fdt_reserved_mem_save_node(child, uname, base, size);
-   143		}
-   144	}
-   145	
+I have absolutely no concerns and would be glad if it will be accepted.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Can the DT maintainers please comment if having a device tree for a 
+simulation panel would work OR be considered because of the scalability 
+of the number of panels which can be tried as Maxime wrote.
+
+>>>> Wouldn't it be simpler if we had a vkms-like panel that we could either
+>>>> configure from DT or from debugfs that would just be registered the
+>>>> usual way and would be the only panel we register?
+>>>
+>>
+>> No, we need to have validate actual hardware pipeline with the simulated
+>> panel. With vkms, actual display pipeline will not be validated. With
+>> incorrect display pipeline misconfigurations arising from different panel
+>> combinations, this can easily be caught with any existing IGT CRC testing.
+>> In addition, all performance related bugs can also be easily caught by
+>> simulating high resolution displays.
+> 
+> That's not what I meant. What I meant was that something like a
+> user-configurable, generic, panel driver would be a good idea. Just like
+> vkms (with the debugfs patches) is for a full blown KMS device.
+> 
+
+Let me respond for both this question and the one below from you/Jani.
+
+Certainly having user-configurable information is a goal here. The 
+end-goal is to make everything there in the existing panels such as 
+below like I wrote:
+
+1) Display resolution with timings (drm_display_mode)
+2) Compression/non-compression
+3) Command mode/Video mode
+4) MIPI mode flags
+5) DCS commands for panel enable/disable and other panel sequences
+6) Power-up/Power-down sequence for the panel
+
+But, we also have to see what all is feasible today from the DRM fwk 
+standpoint. There are some limitations about what is boot-time 
+configurable using bootparams and what is runtime configurable (across a 
+modeset) using debugfs.
+
+1) Today, everything part of struct mipi_dsi_device needs to be 
+available at boot time from what I can see as we need that while calling 
+mipi_dsi_attach(). So for that we went with boot-params.
+
+2) For the list of modes, we can move this to a debugfs like 
+"populate_modes" which the client using a sim panel can call before 
+picking a mode and triggering a commit.
+
+But we need to have some default mode and configuration.
+
+This is where I am not totally sure of. On HDMI/DP sinks, we usually go 
+with a default of 640x480 as that one is guaranteed to be supported 
+across sinks.
+
+For MIPI displays, we will have to agree on some default configuration then.
+
+So, we can certainly add debugfs to make the runtime params but we need 
+to start with some default during boot-up and move the others to debugfs.
+
+With vkms, can you pls point us to the debugfs patches you are referring 
+to? With the current vkms, very little is available which is debugfs 
+configurable (overlay, writeback and cursor support).
+
+Ofcourse, all these concerns go away if DT option gets accepted.
+
+>>> I get the idea of trying to test DSI code without panels, and looking at
+>>> the goals above, I think your vkms suggestion is going to fall short of
+>>> those goals.
+>>>
+>>> However, my gut feeling is that creating a simulated panel to catch DSI
+>>> misconfiguration etc. is going to be insanely complicated, and this
+>>> series doesn't even scratch the surface.
+>>>
+>>> I guess my questions are, what's the scope here really, are those goals
+>>> realistic, does more code already exist beyond this skeleton?
+>>>
+>>
+>>
+>> This series is only a starting RFC to be able to validate any display mode.
+>> This would have to be extended to be able to customize different pieces of
+>> the panel. Lets talk about the customizable pieces:
+>>
+>> 1) Display resolution with timings (drm_display_mode)
+>> 2) Compression/non-compression
+>> 3) Command mode/Video mode
+>> 4) MIPI mode flags
+>> 5) DCS commands for panel enable/disable and other panel sequences
+>> 6) Power-up/Power-down sequence for the panel
+>>
+>> Without a physical panel, yes its hard to validate if anything is wrong with
+>> (4) OR (5), the display might not come up at all visually. But from our
+>> experience, thats only a small portion and the real benefit of this
+>> framework will actually be from the validation failures we will catch from
+>> (1) to (4).
+>>
+>> This RFC only provides a way to customize (1) at the moment as we wanted to
+>> get some feedback from the community about the best way which will work for
+>> everyone to customize all these parameters.
+>>
+>> We are willing to expand this series based on the generic way we agree on to
+>> customize other params.
+>>
+>> Yes, debugfs is an option too. But typically MIPI displays need some
+>> parameters configured to attach the panel to the encoder. So perhaps we can
+>> boot the simulation panel with a default resolution passed through command
+>> line and then across a modeset switch (1) to (4).
+> 
+> I think Jani's feeling was that it was going to be super complicated
+> fairly fast so supporting more features would definitely help to get an
+> idea of where this is going.
+> 
+> Maxime
 
