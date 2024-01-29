@@ -1,134 +1,99 @@
-Return-Path: <devicetree+bounces-36293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA5E8406FB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:32:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A47D584070B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDA681C258DC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:32:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F7C9292C2A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F826310F;
-	Mon, 29 Jan 2024 13:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B5D564CFC;
+	Mon, 29 Jan 2024 13:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JL4uGeLc"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ymukBF1m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD97634EF;
-	Mon, 29 Jan 2024 13:30:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7578A64CF8;
+	Mon, 29 Jan 2024 13:34:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706535031; cv=none; b=jLiPrtUo7wPd4SPemzluEFOGt4pg5kjOIv5CjIHjxMEP4QxlxJoXGmiIprSDWdDTzAA6nDdBAE6bo6JHr/4m7hPVAoIuAmp8WdGnngRXqLkn/MZURNXOwEhdO8QhDLyk4F3IJ8vaLCbgAtY85q4GyRgnbQS6/4RzNL904dquQs8=
+	t=1706535277; cv=none; b=VnZDzGZC3rW1bIdTmeVxcIZhuhsW8h+TZNB+YG0FX1ag8/5xCYlD3dEzsrU4asfs1VD5/S1qUpn5JZEh2gV/+9WFeovK/a5FpvvCpYi+beiJMJnAky2NJRhPXkQ/+w9p05DMExoc9CwklwgjD8USb8QGbxJ0zF2OQ/r/++EIv5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706535031; c=relaxed/simple;
-	bh=4Lb0i25yzp7HX7H/A2qgGY5TWZmbLFOQfXMyvqJgC0M=;
+	s=arc-20240116; t=1706535277; c=relaxed/simple;
+	bh=/v6jv4eq+mfToHNxJ6RHn6Z5EZCjZlX7IDopru1EQvc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GZXyhrA3QZE5mJzpiDg1pCQMDV1H0Tf0cE2waU2CO+zpMffrqhpow0Pn4HfnHOE/rHMpN9iv2rOZVyTU/3htt2lfBT7KX9IMK17cxZwX3JY2rLTb9w6GyB+SJPhm+ag515je6slRWJm2/U4ekVxDuWbvBivMGYg+dc8p1xLHgdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JL4uGeLc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 690C6C433F1;
-	Mon, 29 Jan 2024 13:30:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706535030;
-	bh=4Lb0i25yzp7HX7H/A2qgGY5TWZmbLFOQfXMyvqJgC0M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JL4uGeLc4NRjb/5QBU/SVnEubW3h3wslwF1eajyydu2zdO7nuh6FGLmlVi0k0f6c7
-	 +S5HH/0WaQieVffE0MWqRTicUqvtX7F2QtKMQNnumUidRkRpXs9h5VhpZaoIuNIQi6
-	 KMUjCwGNstwGvjGGUHF4AmQzokujihXR0zCnzxB7NoyTWrF3I7KGoIjSZm3hcPN70P
-	 shIWkHgbKPDTy5p1rdkGwx5btlKz5VcMRXLTl2RUjlzHOPIxugkasoZFEIM/KWYsBu
-	 sNnkwWKkF3EV7Wccrf0+Rx2U1GvizDC+NNOoRRhieMOumT2/ix6iizCYGVxcGczOAZ
-	 6PSytpjYT3zEw==
-Date: Mon, 29 Jan 2024 14:30:27 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org,
-	lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
- asm330lhhxg1
-Message-ID: <ZbeoczLjkGG8pogL@lore-desk>
-References: <cover.1706441008.git.lorenzo@kernel.org>
- <189b903e939e15d98d198db60e2ca0619b116870.1706441008.git.lorenzo@kernel.org>
- <51f4782f-09d8-448f-a693-e0c711bee18d@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=dZx/LVUhZlTrc60lxiBFEkaDnRgU+gLckNc5TtraDLOEya04CITZdv8wMSR6Ksdoz6TZl5lnAhZIrOHFiin5vkb0ovxkZ3iSrYAjMSK1UYl1gIzyvxskLi6N8wZrkDlBNJeWMOwhbcX/iYNih0ZtiyewVlg3baeu6WPn80kr214=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ymukBF1m; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Sw+Uc8eIUTOSmcpYyqc0Pr30gRLyGicqOuK7mBwSw0Y=; b=ymukBF1mJOtwGiyHpcUelZv6sQ
+	63xYTF/lfTF2ATMCsUEPgXODnKa2XIWjBFZp9W1OF7lNIViDmsczfg9EbE+TbJylYFdmCP2i9GXWr
+	onVSVf6tp4Kv6vkPtgi+ap0JxlJwIuZSZdhIAXpZ//2ikqatf1QUXT0Gf37wHTE0QeRc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rURmB-006NkS-Kr; Mon, 29 Jan 2024 14:34:15 +0100
+Date: Mon, 29 Jan 2024 14:34:15 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Samin Guo <samin.guo@starfivetech.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jacob Keller <jacob.e.keller@intel.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: net: starfive,jh7110-dwmac: Add
+ JH7100 SoC compatible
+Message-ID: <56f3bd3c-c099-405b-837b-16d8aeb4cc4b@lunn.ch>
+References: <20240126191319.1209821-1-cristian.ciocaltea@collabora.com>
+ <20240126191319.1209821-2-cristian.ciocaltea@collabora.com>
+ <0a6f6dcb-18b0-48d5-8955-76bce0e1295d@linaro.org>
+ <e29ae12b-5823-4fba-8029-e8e490462138@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PVQORnGgn4VHpHAU"
-Content-Disposition: inline
-In-Reply-To: <51f4782f-09d8-448f-a693-e0c711bee18d@linaro.org>
-
-
---PVQORnGgn4VHpHAU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <e29ae12b-5823-4fba-8029-e8e490462138@collabora.com>
 
-> On 28/01/2024 12:25, Lorenzo Bianconi wrote:
-> > Add device bindings for asm330lhhxg1 IMU sensor.
-> > Use asm330lhhx as fallback device for asm330lhhxg1 since it implements
-> > all the features currently supported by asm330lhhxg1.
-> >=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml =
-b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > index 28b667a9cb76..7ba3de66a2e1 100644
-> > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-> > @@ -49,6 +49,9 @@ properties:
-> >        - items:
-> >            - const: st,asm330lhb
-> >            - const: st,asm330lhh
-> > +      - items:
-> > +          - const: st,asm330lhhxg1
-> > +          - const: st,asm330lhhx
->=20
-> lhhx is compatible with st,lsm6dsr, so some explanation would be useful
-> why it is not included here.
->=20
-> Best regards,
-> Krzysztof
->=20
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Thank you for the review!
+> 
+> Could you please apply it to the RESEND version [1] instead, as this one 
+> had an issue collecting the latest tags, as indicated in [2].
+> 
+> Regards,
+> Cristian
 
-Do you mean something like:
+Hi Cristian
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Do=
-cumentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-index 7ba3de66a2e1..92feba6e2427 100644
---- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-+++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
-@@ -35,6 +35,7 @@ properties:
-           - st,lsm6dsv
-           - st,lsm6dso16is
-       - items:
-+          - const: st,asm330lhhxg1
-           - const: st,asm330lhhx
-           - const: st,lsm6dsr
-       - items:
+IT is your job as developers to collect together such reviewed-by:
+tags add apply them to the latest version. So long as there are no
+major changes, they are still consider applicable.
 
-Regards,
-Lorenzo
-
---PVQORnGgn4VHpHAU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZbeocwAKCRA6cBh0uS2t
-rHkrAQCECqeDQAbJzZYojDvuVMR3R02ujruwuVyJYCEQAaOM8gEA3qPi9uaW9crf
-r+CJLacKPG+Z1xnlFjRlYVxeDQBUBQE=
-=16Bx
------END PGP SIGNATURE-----
-
---PVQORnGgn4VHpHAU--
+	 Andrew
 
