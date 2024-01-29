@@ -1,177 +1,121 @@
-Return-Path: <devicetree+bounces-36299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E4AC840721
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:36:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED4A840722
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:37:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45B31292DF7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:36:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D33761F275B0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A234E651B3;
-	Mon, 29 Jan 2024 13:36:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08D7364CF9;
+	Mon, 29 Jan 2024 13:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aW7P15n+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OXWVf8IL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C4564CFF
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 13:36:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738B663105
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 13:37:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706535367; cv=none; b=SeFyPaQYg5WLmtuVxXWgZimrZcdAxbkJxYSYB3QXsxltpbqgjkatOpOczfCXH/1dkDTzpFshBfO9U5mGne6lQtFFq6XOC+u6mjSdwwAvJ3L+G3Sd6E8lfGNB4Vow8NTOQ7P/6xozvY/vCbw6HryYhDUwTEnc5W3Y/Cx9RGHflQk=
+	t=1706535425; cv=none; b=c2U4LCZHAC7+zWm0TcZKLyUcRPJxVZYB/zVFeDCiAQ/X2U5TsWUdzJYHIevbAyqyMM4OcQONPvs0JNDme7TltgeI+fitmMyJ6+74cqwf9NLUWnxFGNK14Vv9/WYY+eYV6YZgeKrNT6SdQahJrExQxW6RJ05e+O9j0fbWtS1p+ck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706535367; c=relaxed/simple;
-	bh=T4GnhyFR5y98C3HQibcoOIirEyGLtipGtL5LbXxfcq0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QwvpCvuWTiXs06tjN/xSJFRFwXz7DBf0efYu+KBAiKAqj7mDZawMwvAqf5jGBiYX/YW/Dn0kToP+bu6VcDjwfBn0flyTv4c/9ouh6mCs74yt1MsGlK4T/VXig7lOb7+Z1RIrinwTCbaHX2UEuSyRyXEfwFhY4BcLFMu9xaATlhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aW7P15n+; arc=none smtp.client-ip=209.85.208.52
+	s=arc-20240116; t=1706535425; c=relaxed/simple;
+	bh=ZCsj/za7RaBNkGKT7kYWtyXABqM1HFsxCWGwnZwyws0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E8VdG7Wn4legvUSAuNAOwnPfHvvaZL6daEPrJIk9zs2dZtq4mwNviuSxI86o3ZVsz+wQcdC5dn5Zcq3cjBiD7I/qjYNJcLqI7Trg+IaRehn/T7nAPvvbH8ot1Wm4J58AMRl/m2d6hi8FLvC5+rc+2vYyYRKu+FBRG5Ki2GWKy0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OXWVf8IL; arc=none smtp.client-ip=209.85.128.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-55a179f5fa1so3010497a12.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 05:36:05 -0800 (PST)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-5ffdf06e009so25141217b3.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 05:37:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706535364; x=1707140164; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Q6N2pZMbADk6hGQInxPfW6SI2ZZFKsccj7BIbiE3RE=;
-        b=aW7P15n+vpV22e8DoiJ5nNQqpiRAMkpWSGtaxRusrkkqxAo2zqtXFqbFYBUcOpuZ41
-         AJeSiHADa/jyl/SivOSoLyxbudavmbg4192VyRFv9/YK874FD7gm+QUtUTbIb/HU22rU
-         PQ7dmsQ0GzKsLSsIJgvuVZ96VpzPB9d254JwIthGlaXyrVgXIj+VMpo7qwINymP56qYX
-         EH9r+BBAVAPQPtbFnpOMJOEi5qKkMrQyBgrKE6Tzqel5Rwv6p3G3JnlXNfg4X1k9kv00
-         A+hhjj9ry3pML0YohftSknS/a0rFQ0UjzkQ0QR2IKu6rWYKXU2FSE1pmRaOpYCwxajEW
-         3YDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706535364; x=1707140164;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1706535423; x=1707140223; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+Q6N2pZMbADk6hGQInxPfW6SI2ZZFKsccj7BIbiE3RE=;
-        b=haSRIkhfbj73ieIrllQhZhf9SiOSSn8MzncOthdiBr6e4FYPMijdXckeNXb62ygdx8
-         1Pn5i4ozwqQRZae2VwlgWL4abHfvi8eaY9iyA19YrlzuCGhwTPProGTXQ8Gl9DRqxzdq
-         P8Y5iSEFzwdBzXOMQ8Ikcv5kZAHo78jG4p4Yg5UMQ/a8bSRYQOJmx+Z32Q0v+6myM2RN
-         Ch2F4LhoEeJYOLyKUkuEnW7TQK4Q4tHKCH3UERO8QsbiNlL+nEYegp+WDWztfpxyvXAS
-         95fUDfgduiZsAMqn0pVYZQzW08K0gx93pVJCpthJ44Lpbm1bDVU+EoiWTCDYHM4Eo5L4
-         ss/w==
-X-Gm-Message-State: AOJu0YwcplL5CLmLauhk4OWUyks7eWvj2Sxyyiw2eGiSLlgNNdS6nrlV
-	2BqEzEpY8jKQyMh4G7A9JaObEntxiXTyQRe/n8WnbQuGKtM9ZMGNZ5Tx8a7o7/Q=
-X-Google-Smtp-Source: AGHT+IFvSzupYrbAuZXVqQZS682YoFgm2/VdRtM3rplknMIFhn6DhR8wf6WmpMQ60zUU0D2kJ3zjhQ==
-X-Received: by 2002:a05:6402:2741:b0:55e:c56e:b210 with SMTP id z1-20020a056402274100b0055ec56eb210mr4467097edd.17.1706535364032;
-        Mon, 29 Jan 2024 05:36:04 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.62])
-        by smtp.gmail.com with ESMTPSA id n3-20020a5099c3000000b0055971af7a23sm3906608edb.95.2024.01.29.05.36.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 05:36:03 -0800 (PST)
-Message-ID: <b17b63cb-9c05-477e-9e0f-3027c5e45d00@linaro.org>
-Date: Mon, 29 Jan 2024 14:36:01 +0100
+        bh=ZCsj/za7RaBNkGKT7kYWtyXABqM1HFsxCWGwnZwyws0=;
+        b=OXWVf8IL7ZqMV2ci5Jwg9lVK1Ybj6KfFHqZ34kNHNtNln6/fZBs/LeHdX0bghc1W+U
+         6QscO7l0tJCcUzy7a0rYNnZEdpkD9bMomaEPsi45cNK7qBRChA83dLoGndFcwGWU7/qT
+         GRN5EvDlC4y/Tvf8bFMlwIfhq0jRCAoHX7HkBtoJIUuLETKsZslhQod7PUIfwknvNQ/+
+         eVAwJUnaRIFa92t3zWkIW2+k4aMF8hPFDaGMAt+MaarnTNvML2hqEbuP5rV/Vh2WtVkG
+         2Kmj6/U5InXuo6XfUXy19KY7oBQtbNkk71cQHjmynmT3Pd/QtL6aNn4CX9+UYcg/M97I
+         z9YQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706535423; x=1707140223;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZCsj/za7RaBNkGKT7kYWtyXABqM1HFsxCWGwnZwyws0=;
+        b=LnlXDV/On/kLR6xes0NZgL3XVNu7cxujiFQApQdEfbrHn4UL4fOjFVBrBDoUSpDBUH
+         FvFv8Z38om+iyxHs+KSeqGhtHd/MEwPD1V7ygzgja2qkLwFleh5AUJYRhg5+vFINqotA
+         2bS+IkXsZx8sHjV4DnEORmZfkRZ4BLmntnn7t/3868I/GLNyt/r8kI8ojEaXYUR41/V0
+         iHtDqOyrgd3tRJGxpx/f9iviJSU/WMeRD1uLOORGHEfY8/+JUpNm/tsoXPL22lVI7qB6
+         LtZR67Ir4psKyiH4g6KOMAJr2iy3Ygeu/S8rnRfcp0/HBgEeWCiRhrH9g42UnlfnI41X
+         d7Zg==
+X-Gm-Message-State: AOJu0Yy6vsF5mRPBMrGmzN1LOIqK6D229Uj3xMx0+rBT0ZwJ8LVx1S9R
+	elQ6zinmUukyfpUv4/vrlJ2jlVImH2uQembkkXxFpoKna9lqtlQvc6u3FAB8gzivVVaARkCfmze
+	f/ftlQXvD6JvFEN5sfKYFtdmViphu2jnQKQJDKg==
+X-Google-Smtp-Source: AGHT+IHZ7ppV7Ra7ON9UtE6bhsWl2QM45AmHugXBrqcS6qRScJO5m5BM8d0Bu6WpG6iGltf56g+QXH1UdhgEs2wGbiI=
+X-Received: by 2002:a81:b61e:0:b0:5ff:e530:eebd with SMTP id
+ u30-20020a81b61e000000b005ffe530eebdmr3227907ywh.19.1706535423411; Mon, 29
+ Jan 2024 05:37:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
- asm330lhhxg1
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: jic23@kernel.org, linux-iio@vger.kernel.org, lorenzo.bianconi@redhat.com,
- devicetree@vger.kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org
-References: <cover.1706441008.git.lorenzo@kernel.org>
- <189b903e939e15d98d198db60e2ca0619b116870.1706441008.git.lorenzo@kernel.org>
- <51f4782f-09d8-448f-a693-e0c711bee18d@linaro.org>
- <ZbeoczLjkGG8pogL@lore-desk>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZbeoczLjkGG8pogL@lore-desk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240121-pinctrl-scmi-v3-0-8d94ba79dca8@nxp.com> <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com>
+In-Reply-To: <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 29 Jan 2024 14:36:52 +0100
+Message-ID: <CACRpkdYV=qYQ9qDUWYTLDAV1niay30gYH5S=zjfi31GpeY5o-A@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Cristian Marussi <cristian.marussi@arm.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	AKASHI Takahiro <takahiro.akashi@linaro.org>, Peng Fan <peng.fan@nxp.com>, 
+	Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 29/01/2024 14:30, Lorenzo Bianconi wrote:
->> On 28/01/2024 12:25, Lorenzo Bianconi wrote:
->>> Add device bindings for asm330lhhxg1 IMU sensor.
->>> Use asm330lhhx as fallback device for asm330lhhxg1 since it implements
->>> all the features currently supported by asm330lhhxg1.
->>>
->>> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
->>> ---
->>>  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
->>>  1 file changed, 3 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
->>> index 28b667a9cb76..7ba3de66a2e1 100644
->>> --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
->>> +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
->>> @@ -49,6 +49,9 @@ properties:
->>>        - items:
->>>            - const: st,asm330lhb
->>>            - const: st,asm330lhh
->>> +      - items:
->>> +          - const: st,asm330lhhxg1
->>> +          - const: st,asm330lhhx
->>
->> lhhx is compatible with st,lsm6dsr, so some explanation would be useful
->> why it is not included here.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Do you mean something like:
-> 
+On Mon, Jan 29, 2024 at 1:37=E2=80=AFPM Peng Fan <peng.fan@oss.nxp.com> wro=
+te:
 
-I meant either explanation in commit msg or adding lsm6dsr fallback.
+> And for i.MX95 OEM extenstion, do you have any suggestions?
+> I have two points:
+> 1. use vendor compatible. This would also benefit when supporting vendor
+> protocol.
+> 2. Introduce a property saying supporting-generic-pinconf
+>
+> How do you think?
 
-Best regards,
-Krzysztof
+While I don't know how OEM extensions to SCMI were designed,
+the pin control subsystem has the philosophy that extensions are
+for minor fringe stuff, such as a pin config option that no other
+silicon is using and thus have no use for anyone else. Well that
+is actually all the custom extensions we have.
+(This notion is even carried over to SCMI pinctrl.)
 
+The i.MX95 OEM extension is really odd to me, it looks like a
+reimplementation of the core aspects of SCMI pin control, and
+looks much more like the old i.MX drivers than like the SCMI driver.
+
+But I sure cannot speak of what is allowed in SCMI OEM
+extensions or not.
+
+Yours,
+Linus Walleij
 
