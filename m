@@ -1,156 +1,218 @@
-Return-Path: <devicetree+bounces-36353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C108409EA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:29:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1CEA840A2F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:37:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A77921F28367
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:29:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73143282C68
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 15:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE881153BC8;
-	Mon, 29 Jan 2024 15:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079E1153BD0;
+	Mon, 29 Jan 2024 15:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="n/FsBQcO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sCzSPJNF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894EC153502;
-	Mon, 29 Jan 2024 15:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF3B815442B;
+	Mon, 29 Jan 2024 15:37:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706542167; cv=none; b=hCl8aoGKykAnc8wIFsGxWDNhCWUzBOBYUguasIxqXrzhwT/e+kTZ/Kmp09jocavdP23wUy+37qvRkvj/aHK7hZxnSzC06ZJvW1SQl71ug1RLK5FFKFRyNiAdUoG/3I4EVkfDQ3++Cd/DztVfVnKzuxEDm/bDO8311cc0Ij7fNh0=
+	t=1706542634; cv=none; b=b/LPSTBU1DuV8rl29+NXc3ZGNSOv2+KFUPWEoHYRlBIam1H0Zrp0XxsFynpxOu0mrPl2W3yxR67RG6l4ANTg/mZk/T3upyvlKj1ydlhATtPrArWfEa9gRSrn4p2dsLII0OEc38j/fuNKW52iATwzZi12FSGAfwfXlhg6eYz6vtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706542167; c=relaxed/simple;
-	bh=temvw+fKuDYFx07W/PqfCRAulSyTIn2NnJqhzpa3B60=;
+	s=arc-20240116; t=1706542634; c=relaxed/simple;
+	bh=l8Gerv/RnUXdqS32Hvg6dJnaeNoXsPQ5rKnHUXy1+3Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GDtdKdVkDDYZXyf4QehpGk2zwB91dpWMiqDwMZsc47tCCVB/U4xjAhmMrqZ7X9Auw6pulyeK5nb+O3PwbyhVjRPBy3grQ7PzNUjk57jfkBjfOEjosMFIOI14Vy8goUAkmJ/nwXR9qHZtfMXNwmjCG3twps8MjAN/S3OIphfqCtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=n/FsBQcO; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=byNfiL/pkoggyG/+oatuw7eueKrFjxfS3K9FZq27IAg=; b=n/FsBQcOafh31HIhCxKunlMYhY
-	BINs0xUg+zirDh74DZomBMBrgPTUg6s+YKFk/eyPkCDp/foDwi2JN6quuX1kkblEZiSbOzXZpnlhP
-	4ghCJVX3y19TyJLpl+W3QY5JDnD9jcKr+o01DYgJzsz6Qek3YsJcsL41l1McDcFMbpBY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rUTZP-006OKZ-UE; Mon, 29 Jan 2024 16:29:11 +0100
-Date: Mon, 29 Jan 2024 16:29:11 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Jie Luo <quic_luoj@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=rqT8bZVId88yM4fQ3rpH/pZmeNRhsk2yH/vLIZTxTRC+JcjD3oSBLAVGbQxabwr6Q0Ra1MExIqNcvBeWkmv8+lUzPfhOB6+SV8C+oliWNMkL9N8dC2yZaAtq172qXUt+pKEXULpLDjpwbDcsJ2djUU647U6L1hxJa/Xqre3NbZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sCzSPJNF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5DC7C433F1;
+	Mon, 29 Jan 2024 15:37:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706542634;
+	bh=l8Gerv/RnUXdqS32Hvg6dJnaeNoXsPQ5rKnHUXy1+3Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sCzSPJNF1f+jY8xMHnlLtWyLXT1HI1n9Z4l5hknVao0Sj9ZK35v8ZQshRQKY/BcQh
+	 U/LfUyh8lv+z9SSWk3kI8YaLHmO+7bYfg+L2dUKlx6/eCn2T2wJond/WgS4SsVssIK
+	 snu2PTE8kFw76oRqBBHS45J3rBnMwFsZpkaSVFfjtE1C8gsMbo0Dlyigho3/J4REU6
+	 P8soMwsIBftAs5Gdwfqx8QWi64XaOVfBXJYqCtDfdLK0NXJPj5rgpa24gLKmRAqM1S
+	 MNY60Zf+1CYLoDlW1j6B9CoTcS0LTvRXnW3r7BSx6yH9Q/9wyqbVFzMsctmng9N1h2
+	 h9oqmmVm0apTA==
+Date: Mon, 29 Jan 2024 15:37:08 +0000
+From: Conor Dooley <conor@kernel.org>
+To: William Qiu <william.qiu@starfivetech.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-can@vger.kernel.org,
+	Emil Renner Berthing <kernel@esmil.dk>,
 	Rob Herring <robh+dt@kernel.org>,
+	Wolfgang Grandegger <wg@grandegger.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Robert Marko <robert.marko@sartura.hr>,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Sergey Ryazanov <ryazanov.s.a@gmail.com>
-Subject: Re: [net-next PATCH 0/3] net: mdio-ipq4019: fix wrong default MDC
- rate
-Message-ID: <df0e0ddc-4134-41d0-94f4-aba1186f0ede@lunn.ch>
-References: <20240124213640.7582-1-ansuelsmth@gmail.com>
- <53445feb-a02c-4859-a993-ccf957208115@quicinc.com>
- <f8a9e328-5284-4f24-be5d-7e9804869ecd@lunn.ch>
- <5d778fc0-864c-4e91-9722-1e39551ffc45@quicinc.com>
- <CAA8EJppUGH1pMg579nJmG2iTHGsOJdgDL93kfOvKofANTGGdHw@mail.gmail.com>
- <65b3ecd7.050a0220.9e26c.0d9e@mx.google.com>
- <cdd0e481-2738-465b-9ef8-b7ab79981fbe@quicinc.com>
- <65b7b565.170a0220.2666a.0d2b@mx.google.com>
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v1 2/4] dt-bindings: can: Add bindings for CAST CAN
+ Controller
+Message-ID: <20240129-garnet-polar-65afd461a1c6@spud>
+References: <20240129031239.17037-1-william.qiu@starfivetech.com>
+ <20240129031239.17037-3-william.qiu@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2qZLto2B8G05buYu"
+Content-Disposition: inline
+In-Reply-To: <20240129031239.17037-3-william.qiu@starfivetech.com>
+
+
+--2qZLto2B8G05buYu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <65b7b565.170a0220.2666a.0d2b@mx.google.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 29, 2024 at 03:25:09PM +0100, Christian Marangi wrote:
-> On Mon, Jan 29, 2024 at 09:59:03PM +0800, Jie Luo wrote:
-> > 
-> > 
-> > On 1/27/2024 1:33 AM, Christian Marangi wrote:
-> > > On Fri, Jan 26, 2024 at 07:20:03PM +0200, Dmitry Baryshkov wrote:
-> > > > On Fri, 26 Jan 2024 at 18:03, Jie Luo <quic_luoj@quicinc.com> wrote:
-> > > > > 
-> > > > > 
-> > > > > 
-> > > > > On 1/26/2024 1:18 AM, Andrew Lunn wrote:
-> > > > > > > Hi Christian,
-> > > > > > > Just a gentle reminder.
-> > > > > > > 
-> > > > > > > The MDIO frequency config is already added by the following patch series.
-> > > > > > > https://lore.kernel.org/netdev/28c8b31c-8dcb-4a19-9084-22c77a74b9a1@linaro.org/T/#m840cb8d269dca133c3ad3da3d112c63382ec2058
-> > > > > > 
-> > > > > > I admit this version was posted first. However, its embedded in a
-> > > > > > patch series which is not making much progress, and i doubt will make
-> > > > > > progress any time soon.
-> > > > > > 
-> > > > > > If you really want your version to be used, please split it out into a
-> > > > > > standalone patch series adding just MDIO clock-frequency support, with
-> > > > > > its binding, and nothing else.
-> > > > > > 
-> > > > > >       Andrew
-> > > > > 
-> > > > > Hi Andrew,
-> > > > > We will rework the patch series to include only MDIO frequency related
-> > > > > function and frequency dt binding, and post the updated patch series
-> > > > > on th/Tuesdae Mondayy of next week. We will work with Christian to
-> > > > > ensure he can re-use this patch as well.
-> > > > 
-> > > > Can you do the other way around: rebase your patches on top of Chritian's work?
-> > 
-> > Hi Dmitry,
-> > Sure, we can take this approach if fine by Andrew as well.
-> > 
-> > > > 
-> > > 
-> > > Would be ideal, also I have to send v2 that handle the 802.3 suggested
-> > > MDC rate (ready I just need to send after this has been handled).
-> > > 
-> > > Also I can see some problem with Lui patch where thse divior
-> > > value is not reapplied after MDIO reset effectively reverting to the
-> > > default value.
-> > 
-> > Hi Christian,
-> > In my version, the divisor is programmed in every MDIO operation and hence I
-> > did not add the code to revert to configured value in reset function. But
-> > sure. we can program it once during the probe/reset and avoid doing it
-> > during read/write ops.
-> > 
-> > In addition, the MDIO divisor 1, 2 and 4 are not supported by the MDIO
-> > hardware block, maybe we can remove these macros to avoid confusion, or add
-> > a comment mentioning that these are not supported.
-> >
-> 
-> Hi, thanks for confirming it! In v2 I already changed the logic to start
-> looping from divisor 8 and added comments in DT and driver about not
-> assuring correct funcionality with those divisor.
+Hey William,
 
-Hi Christian
+On Mon, Jan 29, 2024 at 11:12:37AM +0800, William Qiu wrote:
+> Add bindings for CAST CAN Controller
+>=20
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> ---
+>  .../devicetree/bindings/net/can/cast,can.yaml | 95 +++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/can/cast,can.ya=
+ml
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/can/cast,can.yaml b/Do=
+cumentation/devicetree/bindings/net/can/cast,can.yaml
+> new file mode 100644
+> index 000000000000..ea52132d9b1c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/can/cast,can.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/can/cast,can.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CAST CAN controller
+> +
+> +maintainers:
+> +  - William Qiu <william.qiu@starfivetech.com>
+> +
+> +allOf:
+> +  - $ref: can-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,can
+> +    then:
+> +      required:
+> +        - starfive,syscon
 
-Lets go with your version. Please post V2 whenever you are ready.
+If you've got property related stuff in the allOf, move it down after
+the property definitions.
 
-Jie, please spend some time reviewing to patches, make any comments
-you have, and if everything is O.K, you can add a Reviewed-by:
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cast,can
+> +      - cast,canfd
 
-    Andrew
+I don't like these uber generic compatibles that have no users as a
+fallback. Allowing them in the binding only really discourages people
+=66rom creating device specific compatibles.
+Secondly, this is some purchased IP that I am sure has a versioning
+scheme and the compatibles that you have created do not reflect that.
+If they were being used as a fallback, I would request some versioning.
+That's not going to really work though since the canfd features on the
+jh7110 require setting u0_can_ctrl_can_fd_enable, so neither of these
+compatibles really has a use right now.
+
+> +      - starfive,can
+
+Just "starfive,can"? Can you please add device specific compatibles for
+the SoCs on which this is used?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: apb_clk
+> +      - const: timer_clk
+> +      - const: can_clk
+
+Drop _clk, they're all clocks!
+
+> +
+> +  resets:
+> +    minItems: 3
+> +
+> +  reset-names:
+> +    items:
+> +      - const: rst_apb
+> +      - const: rst_core
+> +      - const: rst_timer
+
+Same here, drop rst_
+
+> +
+> +  starfive,syscon:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: phandle to System Register Controller syscon no=
+de
+> +          - description: offset of SYS_SYSCON_NE__SAIF__SYSCFG register =
+for CAN controller
+
+The docs I have call this register "SYS_SYSCONSAIF__SYSCFG". Did the
+names change since the TRM I have was written?
+
+> +          - description: shift of SYS_SYSCON_NE__SAIF__SYSCFG register f=
+or CAN controller
+> +          - description: mask of SYS_SYSCON_NE__SAIF__SYSCFG register fo=
+r CAN controller
+> +    description:
+> +      Should be four parameters, the phandle to System Register Controll=
+er
+> +      syscon node and the offset/shift/mask of SYS_SYSCON_NE__SAIF__SYSC=
+FG register
+> +      for CAN controller.
+
+Cheers,
+Conor.
+
+--2qZLto2B8G05buYu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbfGJAAKCRB4tDGHoIJi
+0naRAP9mnACAXbLoF5wZAI6lRZERQ91NOgTNtwrrOxfxsnoi6QEAuxoA1rFwLJSd
+w8okICO/nnTr5tVns55t5LOoIKk5wwA=
+=jD/W
+-----END PGP SIGNATURE-----
+
+--2qZLto2B8G05buYu--
 
