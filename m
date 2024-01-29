@@ -1,121 +1,88 @@
-Return-Path: <devicetree+bounces-36202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D8178402BC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:26:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 715978402C1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:27:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 345521C21E54
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:26:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15561B224E7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:27:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA42B56475;
-	Mon, 29 Jan 2024 10:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471BA55E79;
+	Mon, 29 Jan 2024 10:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nHNOHhg9"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="mD7T7xGP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A00955E7F
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 10:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EE057864;
+	Mon, 29 Jan 2024 10:27:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706524007; cv=none; b=CCPf7SKgu4QMuNvtrgkArzA7weaDxxcbnIpcoDGUP2DFGHCsjNK8z7isxY2V2E6nV88ShajNgIckD7Dbdj8b65eaWFpO0FxKhDOx7CM4xYeZv7lClZ74yNnTjn0GqE/Ygkj3KW85C2EvlvoRcavSbc3u8tmfa9ZTq8XrDE2yRCM=
+	t=1706524065; cv=none; b=aVg+oa47sSfu0yM+Aizp88HTplpoITLzK4+DBwbbMUskwq0z9zO7KR8Z8vIk4lxXFbG/aK75BU3wwXxTHrqAAzg/5hfcOS3tTs6H8nXSuBYh7/b4fRT3FkMjchCC2rHDDz9rPhK1Sensv2zham1/j6w44hNbKV+x05EubUHNWS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706524007; c=relaxed/simple;
-	bh=qQPDYqNFKTtJZgfPLIqstPXY62WbL9F9fpeNM+BxM0g=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=tKRRlua93v5XppQpbl/f3tah/91RXLoazMCg51BkasRJKgvs714UZ+vqKas9OiuKd+jImM8MqlWMR8/aATHjwm2aI/JI60Av6ylsgDjrGEmDMe4lcQXuFctJo8S40b/taNiPzBaYpOEkq6Bd+/3talBLOrHei3Z33afKvC2XdoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nHNOHhg9; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-40ed356a6ecso22345165e9.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 02:26:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706524003; x=1707128803; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=qQPDYqNFKTtJZgfPLIqstPXY62WbL9F9fpeNM+BxM0g=;
-        b=nHNOHhg94m3yiLzXs2rIXxnZcSnocxktoAOz2Tp2yl4c+Z3wqkBAx7lJO/uXSe+qsl
-         uZY9v5y76FlHQ/7tA84hnhOfU4kYPpU2tSJEonYuc4/MYSHe91egm1DHwflkZp4HOE0H
-         MhhEi+lyp4v2L7gnnVeJi9FPBogbX38viV4KIy5BrnVW2C2pvFNn8FCISNhSrFUbNa9a
-         PM/shRWQj0MjQRa7HmPUj0ZsxnTHx9JIBIOANEKHBpW924EGw4ZOsThvNlqbYyBa0r3e
-         yYl5lzdbzMrstORifJO5UFilAw7IrI4JUjX0J4HhUaHlT9nfnJbU8Lh8h0qbGsQ9IMfv
-         sPNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706524003; x=1707128803;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qQPDYqNFKTtJZgfPLIqstPXY62WbL9F9fpeNM+BxM0g=;
-        b=YvCdAq/QRK34ICMBuB7NsQ9c97T3slqrj3UTAkwsIrkZqrDEDASsrg5OVPuPKMRCeS
-         nTHrpNuODuYp7ZysvqzDeZ3Z3Qkd1EnGfAHn7hLwSMYnNwdsJZpDPoMLYGVe6FAIc/q3
-         qyU9Awl+qwnB2WfP9scrJ9xd7L9apgF35Tj6DAduNvtNMjUatlMW6+fxaKkBlZEE0x5r
-         EhW84X1oxHu5hLbjpmv8c1jauTx0Cckx88P2Nnr2nxchs9MaAPQqFmWvgHqqP+A2vri/
-         YpMEGABkX9ogCzdlXD5KVKIay5WMzg7bjmaweiZIeLhWpezT9aAssxbVV8HWSl1zUzde
-         FQbQ==
-X-Gm-Message-State: AOJu0YyP3BamX1EKpBKmID9SDK9Prol05W65pFwUkkDJsqqTMGDi0sJJ
-	I+Iv+dNp64hkttmuTeTDhiLMcYrhtILS9B8bzuKl/P/h2hUyRMVQH6m9f45W5mU=
-X-Google-Smtp-Source: AGHT+IFrkgMwW5JA9XnEb8dITynYGKtz4f0avtoo0nrhCnXSt34jRsApPKKQBpw0u3HwgGnZ6lbeXA==
-X-Received: by 2002:a05:600c:4f92:b0:40e:397e:16e7 with SMTP id n18-20020a05600c4f9200b0040e397e16e7mr5488679wmq.3.1706524003124;
-        Mon, 29 Jan 2024 02:26:43 -0800 (PST)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id bd19-20020a05600c1f1300b0040ed1d6ce7csm9783469wmb.46.2024.01.29.02.26.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jan 2024 02:26:42 -0800 (PST)
-Message-ID: <219a57cc21d670c19745a4861e83dd79d4ea2b68.camel@linaro.org>
-Subject: Re: [PATCH 5/9] arm64: dts: exynos: gs101: define USI12 with I2C
- configuration
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: peter.griffin@linaro.org, mturquette@baylibre.com, sboyd@kernel.org, 
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-  linux-kernel@vger.kernel.org, kernel-team@android.com,
- tudor.ambarus@linaro.org,  willmcvicker@google.com,
- alim.akhtar@samsung.com, s.nawrocki@samsung.com,  tomasz.figa@gmail.com,
- cw00.choi@samsung.com,  linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org,  linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org
-Date: Mon, 29 Jan 2024 10:26:40 +0000
-In-Reply-To: <CAPLW+4=rgcftDjd-KDg0G8_JYa9XEBdFB+B42o5JSjEXkr7VNw@mail.gmail.com>
-References: <20240127001926.495769-1-andre.draszik@linaro.org>
-	 <20240127001926.495769-6-andre.draszik@linaro.org>
-	 <CAPLW+4=rgcftDjd-KDg0G8_JYa9XEBdFB+B42o5JSjEXkr7VNw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.50.1-1 
+	s=arc-20240116; t=1706524065; c=relaxed/simple;
+	bh=Se2pMSyaA1uJqQKjYDSSGtdlRITL9xGPFkn0PUHl9v0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eusl00MmCSWkjQa0A6h8dutF7X8keq8vie2WYYjxjAJoz+j8W11HwHTr9Rem6ERh+ao3GvgnsSJ/+YJCJvMJZ7zWvPLl9jnvINnrEu857DFQSqVTTWngNMKfjCWpgYbcnpR+zaCuK1O107YiSkJES/099LpOV2BOEwP/1txMi1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=mD7T7xGP; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1706524061;
+	bh=Se2pMSyaA1uJqQKjYDSSGtdlRITL9xGPFkn0PUHl9v0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mD7T7xGPoHfuFfVwhvfyhBv8vOGj45UWbeiO4wWgmRRDnbY6U3j8J9YPPllTJ8f+F
+	 zUl+gI2Xa7eH6kw2sbhoNQcJ9XbaCV/NbAqNjfgcdtm2dhs21vmxi5jfcEjr9wG/mM
+	 2/Ke4p+45wPfDkjuG20D3wUpeDfZDq9xPeFsafNJoI5WJPkQT3cfmw110geOTzjyMI
+	 AcZBpGB0khB3xQ6Zh9O6Ux55gRURMP2XwnokZmjMLrFyvv1/1MZd47zbWelC7J0Ajb
+	 4+s6sS1R2to2/deYfEuys38AJ67aCVzt7lyY8z7nx9wIqhnOZvyLlmlVIGhEp7845g
+	 Wdw8ZiCLwAfJw==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 501BA3780C1F;
+	Mon, 29 Jan 2024 10:27:41 +0000 (UTC)
+Message-ID: <242fc593-6445-4580-95a8-b60150ff4b84@collabora.com>
+Date: Mon, 29 Jan 2024 11:27:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] arm64: dts: mediatek: Add socinfo efuses to
+ MT8173/83/96/92/95 SoCs
+Content-Language: en-US
+To: William-tw Lin <william-tw.lin@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20231222080739.21706-1-william-tw.lin@mediatek.com>
+ <20231222080739.21706-2-william-tw.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20231222080739.21706-2-william-tw.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-T24gRnJpLCAyMDI0LTAxLTI2IGF0IDIwOjU1IC0wNjAwLCBTYW0gUHJvdHNlbmtvIHdyb3RlOgo+
-IE9uIEZyaSwgSmFuIDI2LCAyMDI0IGF0IDY6MTnigK9QTSBBbmRyw6kgRHJhc3ppayA8YW5kcmUu
-ZHJhc3ppa0BsaW5hcm8ub3JnPiB3cm90ZToKPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMv
-ZXh5bm9zL2dvb2dsZS9nczEwMS5kdHNpCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2V4
-eW5vcy9nb29nbGUvZ3MxMDEuZHRzaQo+ID4gQEAgLTQ1MCw2ICs0NTAsMzYgQEAgcGluY3RybF9w
-ZXJpYzE6IHBpbmN0cmxAMTBjNDAwMDAgewo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgNjQ0IElSUV9UWVBFX0xF
-VkVMX0hJR0ggMD47Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPiA+IAo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdXNpMTI6IHVzaUAxMGQ1MDBjMCB7Cj4g
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29tcGF0aWJs
-ZSA9ICJnb29nbGUsZ3MxMDEtdXNpIiwKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJzYW1zdW5nLGV4eW5v
-czg1MC11c2kiOwo+IAo+IEl0IGRvZXNuJ3QgZml0IG9uIG9uZSBsaW5lPwoKTm8sIGl0J3MgODEg
-Y2hhcmFjdGVycy4gV2hpbGXCoEkga25vdyBpdCdzIG5vdCBhIGhhcmQgcnVsZSBpbiB0aGlzIGNh
-c2UsCnRoZXJlIGFyZSBvdGhlciBjYXNlcyBpbiB0aGlzIGZpbGUgd2hlcmUgdGhlIGxpbmUgd2Fz
-IHNwbGl0IGluIHRoZSBzYW1lCndheSwgc28gSSBmb2xsb3dlZCB0aGF0LgoKPiA+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGlu
-Y3RybC1uYW1lcyA9ICJkZWZhdWx0IjsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGluY3RybC0wID0gPCZoc2kyYzEyX2J1
-cz47Cj4gCj4gSSByZW1lbWJlciBLcnp5c3p0b2YgYXNrZWQgbWUgdG8gcHV0IHBpbmN0cmwtMCBm
-aXJzdCBpbiBteSByZWNlbnQKPiBwYXRjaGVzLiBOb3Qgc3VyZSBob3cgaW1wb3J0YW50IGl0IGlz
-LCBqdXN0IHNheWluZy4gT3RoZXIgdGhhbiB0aGF0LAoKTWFrZXMgc2Vuc2UsIHRoaXMgY2FtZSBm
-cm9tIGEgY29weS9wYXN0ZSBhbmQgSSBoYXZlIGZpeGVkIGl0LgoKQ2hlZXJzLApBbmRyZScKCg==
+Il 22/12/23 09:07, William-tw Lin ha scritto:
+> Add efuse nodes for socinfo retrieval for MT8173, MT8183, MT8186,
+> MT8192 and MT8195.
+> 
+> Signed-off-by: William-tw Lin <william-tw.lin@mediatek.com>
 
+Applied to v6.4-next/dts64
+
+Thanks!
+Angelo
 
