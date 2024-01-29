@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-36407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6803E8410B2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:30:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E979A8410C1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:31:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EE4B1F24923
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:30:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A55B3285A81
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A042A15AABB;
-	Mon, 29 Jan 2024 17:22:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EEBB76C80;
+	Mon, 29 Jan 2024 17:30:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OVENRRMp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+K69jKW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7713D6166D;
-	Mon, 29 Jan 2024 17:22:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E373F76C79;
+	Mon, 29 Jan 2024 17:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706548933; cv=none; b=ALUr1ofmz5KMRk+CV1rjND7kvR8mZF//EL8BBM0fg6uCt6yisuBeEaUvpePX6oQAK8U+qz0NAyflGqPklnN9d+8VdCc3kAywlonccbgwu6OePhAOs7xeML7FM6C5pXG/gdBETTMZ+J4ThhbbqmnJBW5s01IEoIvxPQWgh8rf944=
+	t=1706549437; cv=none; b=Ye7lYxlLBRFUKrH6DwSomNjG2L//fbli3w11vBgM8WSFfFFRDi0Fe4HedROKeJ8pw5b0UQfon2VpdOOkZcySXiS0sdWyawjoBMbks8agVfEgoS5sDHLm0Gf/qqZVur+H+4gDbXGS/0JDgjiNlE6y634nNdxp+82dxjUprt3aTXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706548933; c=relaxed/simple;
-	bh=SIkxvn58cFSwkfs8vCGtPLxhrtNc6Ue9Ey24VfzwgfU=;
+	s=arc-20240116; t=1706549437; c=relaxed/simple;
+	bh=OXQd1RnjO7UJeTnd9b35uKkSkUJf85ceg9kIDyszIk8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J2rNLF9RrQ1vMxkkemP2ei1f4XKo+KaKUDBzUBfdqXK2BPtUSTWoKtNlX6pE3+N4hbkY47jnTvQmvHWW19XmhPPM7N5UgbhD3nu25Sv3DDI5ytwOFYakb9L46hC2gBsWeRI7zJro3HErOd37LLh3ZH5kViW50EGaUnQpSaAP35w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OVENRRMp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F206CC433C7;
-	Mon, 29 Jan 2024 17:22:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bherHQ9hz6l9zYgm5bcqTXUky8cwJA9z+mjET0JMORDS8UOQo9pLn0p6qa8n1w6C5kF6qXR7N6EGycEUOSkRQozpdh5VbyfnviwUj6/1GDGqrmqvJUFTAQlnXmpkNiqE8Ybq0DnCN1Lmsrn2qNuJJjOjIN162nClDHxJ9y47I78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+K69jKW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9E4CC433C7;
+	Mon, 29 Jan 2024 17:30:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706548933;
-	bh=SIkxvn58cFSwkfs8vCGtPLxhrtNc6Ue9Ey24VfzwgfU=;
+	s=k20201202; t=1706549436;
+	bh=OXQd1RnjO7UJeTnd9b35uKkSkUJf85ceg9kIDyszIk8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OVENRRMpfoGyLQ+YOTFshGOj5XxCpLZQGIehYB35ZQkC3ZrP7PZaDmimeUEA5TuJW
-	 BPgnbSU3uNxAw+2416gvXtIx3ObUlk1xz0cYHNuUdC8tIC3r/qTsKBAr37U6T5GRSC
-	 4LPvjc013T6P63HbptHK9Xu3w+6RdFKjUnmnZbLyhN77DH05CCM57l6c8uv+ENpUJ4
-	 Nt2A5fApwfvoDb6EnSTy5Ah6Y8isNveLs7+XjWWzM3jQna8+jMw8ngy9fd6s2X6o2T
-	 MO/q4rG20K7+/8zNiipDx0VdOf4A+FYHubI5MtC+y+EyzwI5jXqdsF9eErKuAvoCQi
-	 wcXpvmwvqG5hQ==
-Date: Mon, 29 Jan 2024 17:22:07 +0000
+	b=m+K69jKWZIF69OHl7PMAE41J0uqd1KVWsmsLishPqiVhnQXmGHaePGHbFCGBWgtDD
+	 833c7oemkGkJ7LfpHyexjIZnfGU0Vi+PWWnI5YUWXbZFvOtRalWswI1jfLu4rjdSgu
+	 MKoK5Jb7qx+divI6WtIGPx+HXtAm5mNGWi76TRKXD6ppuDCZF+9rNGt756SwvJa8iq
+	 4VihGKgCQ/HeC700lCi7aVVw7ggiZVLsM+c0o6uXdcBp4Q1Cq1TMfg6Or0rd7fvQdf
+	 WUQptqLE3iI4BMV63lNP9SahrI6VOONxYXfSFvWQrJEyA3aKs6EkrE10vJVDmwkeeE
+	 GHa19xQe2PbLg==
+Date: Mon, 29 Jan 2024 17:30:30 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Cc: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v4 3/6] dt-bindings: serial: add binding for rs485
- rx-enable state when rs485 is disabled
-Message-ID: <20240129-vagrantly-unaired-4224a5febb01@spud>
-References: <20240126-dev-rx-enable-v4-0-45aaf4d96328@theobroma-systems.com>
- <20240126-dev-rx-enable-v4-3-45aaf4d96328@theobroma-systems.com>
- <20240128-vagabond-mutilator-cf8dc6ac8a41@spud>
- <da864300-ae0a-43fc-84bd-94e985d8ac73@theobroma-systems.com>
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/5] dt-bindings: interrupt-controller:
+ renesas,rzg2l-irqc: Document RZ/Five SoC
+Message-ID: <20240129-magical-unclaimed-e725e2491ccb@spud>
+References: <20240129151618.90922-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240129151618.90922-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,63 +67,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IBCjK9MpjSUCbqHB"
+	protocol="application/pgp-signature"; boundary="Ygn/mpQIjskR0FcW"
 Content-Disposition: inline
-In-Reply-To: <da864300-ae0a-43fc-84bd-94e985d8ac73@theobroma-systems.com>
+In-Reply-To: <20240129151618.90922-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 
---IBCjK9MpjSUCbqHB
+--Ygn/mpQIjskR0FcW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 29, 2024 at 01:26:51PM +0100, Quentin Schulz wrote:
-> Hi Conor,
+On Mon, Jan 29, 2024 at 03:16:14PM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >=20
-> On 1/28/24 18:38, Conor Dooley wrote:
-> > On Fri, Jan 26, 2024 at 03:55:12PM +0100, Farouk Bouabid wrote:
-> > > RS485 can have a receiver-enable gpio (rx-enable-gpios). When rs485 is
-> > > enabled, this gpio, if provided, must be driven active while receivin=
-g.
-> > > However when RS485 is disabled this gpio should not have an undefined
-> > > state. In that case, as DE and RE pins can be connected both to this =
-gpio,
-> > > if its state is not properly defined, can cause unexpected transceiver
-> > > behavior.
-> > > This binding depend on rx-enable-gpios to be implemented.
-> >=20
-> > Why do you need a dedicated property for this when there exists a device
-> > specific compatible for the uart on both of the affected rockchip
-> > systems?
-> >=20
+> Document RZ/Five (R9A07G043F) IRQC bindings. The IRQC block on RZ/Five SoC
+> is almost identical to one found on the RZ/G2L SoC with below differences,
+> * Additional BUS error interrupt
+> * Additional ECCRAM error interrupt
+> * Has additional mask control registers for NMI/IRQ/TINT
 >=20
-> This has nothing to do with Rockchip's IP but the HW design of our
-> carrierboard, so using the "rockchip,px30-uart" for that (which I assume =
-is
-> what was suggested here?) is incorrect since it'll also apply to PX30,
-> RK3399 and RK3588-based Q7 SoCs we manufacture.
+> Hence new compatible string "renesas,r9a07g043f-irqc" is added for RZ/Five
+> SoC.
 >=20
-> Did I understand the suggestion correctly?
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  .../renesas,rzg2l-irqc.yaml                   | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renes=
+as,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller=
+/renesas,rzg2l-irqc.yaml
+> index d3b5aec0a3f7..3abc01e48934 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2=
+l-irqc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2=
+l-irqc.yaml
+> @@ -23,6 +23,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +          - renesas,r9a07g043f-irqc   # RZ/Five
+>            - renesas,r9a07g043u-irqc   # RZ/G2UL
+>            - renesas,r9a07g044-irqc    # RZ/G2{L,LC}
+>            - renesas,r9a07g054-irqc    # RZ/V2L
+> @@ -88,6 +89,12 @@ properties:
+>        - description: GPIO interrupt, TINT30
+>        - description: GPIO interrupt, TINT31
+>        - description: Bus error interrupt
+> +      - description: ECCRAM0 TIE1 interrupt
+> +      - description: ECCRAM0 TIE2 interrupt
+> +      - description: ECCRAM0 overflow interrupt
+> +      - description: ECCRAM1 TIE1 interrupt
+> +      - description: ECCRAM1 TIE2 interrupt
+> +      - description: ECCRAM1 overflow interrupt
+> =20
+>    interrupt-names:
+>      minItems: 41
+> @@ -134,6 +141,12 @@ properties:
+>        - const: tint30
+>        - const: tint31
+>        - const: bus-err
+> +      - const: eccram0-tie1
+> +      - const: eccram0-tie2
+> +      - const: eccram0-ovf
+> +      - const: eccram1-tie1
+> +      - const: eccram1-tie2
+> +      - const: eccram1-ovf
 
-Yes you did. That explanation for not being able to use the compatibles
-makes sense. However, I can't give you an ack, because reading the
-commit message gives me the same feeling as looking at this photo:
-https://www.reddit.com/r/pics/comments/f8jyuz/nothing_in_this_image_is_iden=
-tifiable/
+I think the restrictions already in the file become incorrect with this
+patch:
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - renesas,r9a07g043u-irqc
+              - renesas,r9a08g045-irqc
+    then:
+      properties:
+        interrupts:
+          minItems: 42
+        interrupt-names:
+          minItems: 42
+      required:
+        - interrupt-names
 
-Sorry,
+This used to require all 42 interrupts for the two compatibles here
+and at least the first 41 otherwise. Now you've increased the number of
+interrupts to 48 thereby removing the upper limits on the existing
+devices.
+
+Given the commit message, I figure that providing 48 interrupts for
+(at least some of) those devices would be incorrect?
+
+Cheers,
 Conor.
 
---IBCjK9MpjSUCbqHB
+> =20
+>    clocks:
+>      maxItems: 2
+> @@ -180,6 +193,20 @@ allOf:
+>        required:
+>          - interrupt-names
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: renesas,r9a07g043f-irqc
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 48
+> +        interrupt-names:
+> +          minItems: 48
+> +      required:
+> +        - interrupt-names
+> +
+>  unevaluatedProperties: false
+> =20
+>  examples:
+> --=20
+> 2.34.1
+>=20
+
+--Ygn/mpQIjskR0FcW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbfevwAKCRB4tDGHoIJi
-0pCUAP9U44UkidVfIFyP9IjWHAPwttaCmGToXZjCv2rwlhJiVwEA1GULoLBIRwGa
-1D79uhaA8T7azreJ91+tdhZ26EA4TQQ=
-=Ye3s
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbfgtgAKCRB4tDGHoIJi
+0oqzAQDRsNsMgRYlDd+DmTlEOCZC0GxDFYdGkW9k02+U2C2kUAD/Q+SgbLDfDyC8
++6lTLc/HCbiewN8LWm/xBVSaQNYbWwk=
+=5vqQ
 -----END PGP SIGNATURE-----
 
---IBCjK9MpjSUCbqHB--
+--Ygn/mpQIjskR0FcW--
 
