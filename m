@@ -1,125 +1,210 @@
-Return-Path: <devicetree+bounces-36433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D52028411C5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 19:11:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 409AB8411EB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 19:17:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40F0C1F2401D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:11:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65CB4B2188D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:17:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7316F067;
-	Mon, 29 Jan 2024 18:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2956F06A;
+	Mon, 29 Jan 2024 18:17:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l9vXL+QP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UE1Rg1LD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5523F9E0;
-	Mon, 29 Jan 2024 18:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DC83F9FC;
+	Mon, 29 Jan 2024 18:17:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706551877; cv=none; b=mn8i2jrEGH7dCT7jrwK19tscVBdX6bJEyL045oM41jB4mLISwCTvmkLFqxmnZa5DirB3l+MOrvkK3JWp05FnNc23RZ/9qEhX+iTkL4mMdsk0V4CvImDnNFfnHPWrZoesI4PhMCCH207bih9sB/84Seqsub1IX9sezpCHifro7kQ=
+	t=1706552255; cv=none; b=L0RaIPbu0Ig4oKGnYuLTsOsfgRVUEQPFyebTXL8duEqKsWB39d1QSEXm4Z4PoWx0Hud28Y8nmbsLCa2czckrg4IGabVZcHq0c6+tz7deJbwh06AKc7BWsKfM7jF6OGGS0OPRJm1yVL5Hd8bpetMvv6Hbf2Bt6xzrrify2ByMLAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706551877; c=relaxed/simple;
-	bh=38VobFqUx6l9PMF9zm8mxpkHGsayw0PHLQISoEV2HE0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=KbgYXfyjgF7VrUUpoVYmmc360t51xItawKN+D89ZdXg4hN1K+umub44aq/MxDH3fLl/WyxoIrDnU1mySHDAYxQ7hq5YLuafiKV8OxXiAvKkh2VR095145VzTZhzzhcO3Ff3JdBX6coj3b/5wxVdEgaDKnByprT7oFWP3YcxixPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l9vXL+QP; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-51109060d6aso2355680e87.2;
-        Mon, 29 Jan 2024 10:11:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706551874; x=1707156674; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MYQ+hC2S1+sJSH6fybbuYl6+SkoN1tHPLVhVLFYYIYc=;
-        b=l9vXL+QPfE3NxWzeNSsdUIpuAjyvS5EiZOOdUESGzOerrRWdBpiiBcPBng2aVP1Cyf
-         L/Xf1yGUsk+GYpIE271YQ2KfqsmlFgOC2/iK9mI07EgLKInXbrKo0XOywm1MM1JRzMDq
-         C+oEh3huXbkS22x1PLAIoLqHU+fN7qCB6+TwxaGKPi/qrK0es/X/6M8vnI7W4l+Ac2WD
-         w0QSYxyRAxO/jMqb2fMyH4G2EzcQxLj4KUuRlNqzyyvwSuiXXiKVRuq3xeWrM6lsGNbi
-         7Y5WKJKV+/Q1/bzu53Flh5kwIiejKQXpXceFU2XSu4jNCTaT+HN45A7fIiJew1SoCVOk
-         H6Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706551874; x=1707156674;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MYQ+hC2S1+sJSH6fybbuYl6+SkoN1tHPLVhVLFYYIYc=;
-        b=YaXIwE58wkKWKFubXjmS6jz8xvKCm8zpILKgx2njFT0Me0IHWV4QE86vOTHQSKsLpM
-         e9sn8Bf07ZP3NXqdhPz+po9uS3Lm7rJwGXCx07qZ1zCGvjeGy+qeUZk+I35spsVzRq1j
-         ooBSPQFDDOPjhgcxFrn+NETj8eoO6fymqoYGFk+CmLDESKWriYxePdXSzLHKEgZXjENq
-         nCDtkOT2megQAeZRVhQaOgX8VPfOI8X0Zy+HifXX+bSgYOFXftnyxxqKrjydVWEAbi7S
-         SGSsIj2WGhnGeQp5ulWwRY+x/JJX7dFpl9ktPeEhbkSXpu7JBQWlmqp6u7fhGS8K29R1
-         PQbg==
-X-Gm-Message-State: AOJu0Yzzk+U0NnaQxLj3eFVyFCDtAhF0EhLK0lRHX1VNbvZu1JxmV6rT
-	MpE2RBoZnM3SYHFNyVXZ+d8qNZzF1OGLyvXLORQ88wRj2gkYaBM1
-X-Google-Smtp-Source: AGHT+IGYQc0+dx+ooZm0M9/XDxU2LsxZf+l/xc8uEkp5VFZuf8l6tMjb35vLF5SM+9tdNV7mYXzT0A==
-X-Received: by 2002:a2e:9e81:0:b0:2d0:50c0:41f1 with SMTP id f1-20020a2e9e81000000b002d050c041f1mr1754594ljk.28.1706551873701;
-        Mon, 29 Jan 2024 10:11:13 -0800 (PST)
-Received: from xeon.. ([188.163.112.73])
-        by smtp.gmail.com with ESMTPSA id u26-20020a2e2e1a000000b002ccc6f06e2dsm1231214lju.128.2024.01.29.10.11.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jan 2024 10:11:13 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Andre Przywara <andre.przywara@arm.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Romain Perier <romain.perier@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Robert Eckelmann <longnoserob@gmail.com>
-Cc: devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/1] ARM: tegra: nexus7: add missing clock binding into sound node
-Date: Mon, 29 Jan 2024 20:10:49 +0200
-Message-Id: <20240129181049.89971-2-clamor95@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20240129181049.89971-1-clamor95@gmail.com>
-References: <20240129181049.89971-1-clamor95@gmail.com>
+	s=arc-20240116; t=1706552255; c=relaxed/simple;
+	bh=nXTQEJLYxfzzSUMQN4Fj1DOD8rClNi7sxnITABri9ac=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qqxTWo5BYmUUyezGXDL/IpiSYcJYd3mQEWKboS0qm08h049RRnZjWPCjdjYbS02phdTrsucuUYvasO0xDuTv6PZi/vuBopYHmMb3m7HJSR5OvZzqryzWFlEy5vS8AFar98C9doEJNwvQlj3Qwi+WKVmH+jlZn7UV1hWh1f2eja4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UE1Rg1LD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40TFG5OZ009347;
+	Mon, 29 Jan 2024 18:17:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=D8iWXhqQqZQhIQEyj1RvlkqdhvGjvCNTp5i8GoZKWXs=; b=UE
+	1Rg1LD7kVhtruf/l7pN4uOoSGz0HzD/VYL/XKg+yu/ELuX3umNSPax0wycKgk16r
+	ZT7Cfy8SXBb1U5/v50o5D0L/klr+nzOuLJ60VV/4xPnDxiV5sVBCgdLGMINOqle+
+	VxZUkDfx9EVnbR1GIryrVXvG7jOvwZT/+ANxyclDrDJEMSdvMHWjocN/cr6eXxBd
+	hMvE4UKZptAA6mRfT+atpv24itbG/IBiUQBkWHffpQaEcVZUS6XKkEiISP2xu+4G
+	yoOYeKBxfJKyM0OUfkonrZ2X+0EmFlXB9m22zxieO+3TI5v8n0hbQZE0I05ks5X7
+	OGFa4c7NKcUy4konR4JQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vx3t9t2gg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 18:17:27 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40TIHQh6016730
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Jan 2024 18:17:26 GMT
+Received: from [10.110.61.36] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
+ 2024 10:17:23 -0800
+Message-ID: <94b097d4-dcfa-4136-ba75-f665f5bc747d@quicinc.com>
+Date: Mon, 29 Jan 2024 10:17:17 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/5] soc: qcom: llcc: Add regmap for Broadcast_AND region
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+References: <cover.1706296015.git.quic_uchalich@quicinc.com>
+ <12bfdd23772c49530b8b0993cc82bc89b3eb4ada.1706296015.git.quic_uchalich@quicinc.com>
+ <CAA8EJppapW5nOFphBWove1ni8nbkA=xHON9D13NYeYHhyqL1Fg@mail.gmail.com>
+Content-Language: en-US
+From: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+In-Reply-To: <CAA8EJppapW5nOFphBWove1ni8nbkA=xHON9D13NYeYHhyqL1Fg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jvpqyYsMayqwLjrNcPqJpHy8xoKEoccN
+X-Proofpoint-ORIG-GUID: jvpqyYsMayqwLjrNcPqJpHy8xoKEoccN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-01-29_11,2024-01-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=964 phishscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
+ impostorscore=0 clxscore=1011 spamscore=0 suspectscore=0
+ priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2401190000 definitions=main-2401290134
 
-From: Robert Eckelmann <longnoserob@gmail.com>
 
-A recent rt5640 codec update requires mclk definition in the
-device tree. Without mclk defined sound will not work.
 
-Signed-off-by: Robert Eckelmann <longnoserob@gmail.com>
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- .../boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi    | 3 +++
- 1 file changed, 3 insertions(+)
+On 1/26/2024 12:29 PM, Dmitry Baryshkov wrote:
+> On Fri, 26 Jan 2024 at 21:48, Unnathi Chalicheemala
+> <quic_uchalich@quicinc.com> wrote:
+>>
+>> To support CSR programming, a broadcast interface is used to program
+>> all channels in a single command. Until SM8450 there was only one
+>> broadcast region (Broadcast_OR) used to broadcast write and check
+>> for status bit 0. From SM8450 onwards another broadcast region
+>> (Broadcast_AND) has been added which checks for status bit 1.
+>>
+>> Update llcc_drv_data structure with new regmap for Broadcast_AND
+>> region and initialize regmap for Broadcast_AND region when HW block
+>> version is greater than 4.1 for backwards compatibility.
+>>
+>> Switch from broadcast_OR to broadcast_AND region for checking
+>> status bit 1 as Broadcast_OR region checks only for bit 0.
+> 
+> This breaks backwards compatibility with the existing DT files, doesn't it?
+> 
 
-diff --git a/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi b/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi
-index a9342e04b14b..15f53babdc21 100644
---- a/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi
-+++ b/arch/arm/boot/dts/nvidia/tegra30-asus-nexus7-grouper-common.dtsi
-@@ -915,6 +915,9 @@ rt5640: audio-codec@1c {
- 			reg = <0x1c>;
- 
- 			realtek,dmic1-data-pin = <1>;
-+
-+			clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_1>;
-+			clock-names = "mclk";
- 		};
- 
- 		nct72: temperature-sensor@4c {
--- 
-2.40.1
+It shouldn't as checking for status bit 1 is happening only when the block
+version is greater than 4.1, which is when Broadcast_AND region support
+is added.
 
+>> While at it, also check return value after reading Broadcast_OR
+>> region in llcc_update_act_ctrl().
+> 
+> Separate patch, Fixes tag.
+> 
+
+Ack. Will remove this from existing patch.
+Thanks for the review Dmitry!
+
+>>
+>> Signed-off-by: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+>> ---
+>>  drivers/soc/qcom/llcc-qcom.c       | 12 +++++++++++-
+>>  include/linux/soc/qcom/llcc-qcom.h |  4 +++-
+>>  2 files changed, 14 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+>> index 4ca88eaebf06..5a2dac2d4772 100644
+>> --- a/drivers/soc/qcom/llcc-qcom.c
+>> +++ b/drivers/soc/qcom/llcc-qcom.c
+>> @@ -849,7 +849,7 @@ static int llcc_update_act_ctrl(u32 sid,
+>>                 return ret;
+>>
+>>         if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+>> -               ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+>> +               ret = regmap_read_poll_timeout(drv_data->bcast_and_regmap, status_reg,
+>>                                       slice_status, (slice_status & ACT_COMPLETE),
+>>                                       0, LLCC_STATUS_READ_DELAY);
+>>                 if (ret)
+>> @@ -859,6 +859,8 @@ static int llcc_update_act_ctrl(u32 sid,
+>>         ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+>>                                       slice_status, !(slice_status & status),
+>>                                       0, LLCC_STATUS_READ_DELAY);
+>> +       if (ret)
+>> +               return ret;
+>>
+>>         if (drv_data->version >= LLCC_VERSION_4_1_0_0)
+>>                 ret = regmap_write(drv_data->bcast_regmap, act_clear_reg,
+>> @@ -1282,6 +1284,14 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>>
+>>         drv_data->version = version;
+>>
+>> +       if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+>> +               drv_data->bcast_and_regmap = qcom_llcc_init_mmio(pdev, i + 1, "llcc_broadcast_and_base");
+>> +               if (IS_ERR(drv_data->bcast_and_regmap)) {
+>> +                       ret = PTR_ERR(drv_data->bcast_and_regmap);
+>> +                       goto err;
+>> +               }
+>> +       }
+>> +
+>>         llcc_cfg = cfg->sct_data;
+>>         sz = cfg->size;
+>>
+>> diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
+>> index 1a886666bbb6..9e9f528b1370 100644
+>> --- a/include/linux/soc/qcom/llcc-qcom.h
+>> +++ b/include/linux/soc/qcom/llcc-qcom.h
+>> @@ -115,7 +115,8 @@ struct llcc_edac_reg_offset {
+>>  /**
+>>   * struct llcc_drv_data - Data associated with the llcc driver
+>>   * @regmaps: regmaps associated with the llcc device
+>> - * @bcast_regmap: regmap associated with llcc broadcast offset
+>> + * @bcast_regmap: regmap associated with llcc broadcast OR offset
+>> + * @bcast_and_regmap: regmap associated with llcc broadcast AND offset
+>>   * @cfg: pointer to the data structure for slice configuration
+>>   * @edac_reg_offset: Offset of the LLCC EDAC registers
+>>   * @lock: mutex associated with each slice
+>> @@ -129,6 +130,7 @@ struct llcc_edac_reg_offset {
+>>  struct llcc_drv_data {
+>>         struct regmap **regmaps;
+>>         struct regmap *bcast_regmap;
+>> +       struct regmap *bcast_and_regmap;
+>>         const struct llcc_slice_config *cfg;
+>>         const struct llcc_edac_reg_offset *edac_reg_offset;
+>>         struct mutex lock;
+>> --
+>> 2.25.1
+>>
+>>
+> 
+> 
 
