@@ -1,129 +1,95 @@
-Return-Path: <devicetree+bounces-36399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91A3840CAA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:00:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FAD9840CB2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:01:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8967D28AD40
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:00:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D15061C23A36
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:01:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3579515703B;
-	Mon, 29 Jan 2024 17:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF589159568;
+	Mon, 29 Jan 2024 17:01:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l8UTZ+/s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AAC8157055;
-	Mon, 29 Jan 2024 16:59:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 403E4157E97;
+	Mon, 29 Jan 2024 17:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706547601; cv=none; b=WsV3s1q9uaKTBlWg+9HmEwTk/AAY8sFkF4nC1RkpOCYyu3315RJRp8azDDpEYG32ETvKXnrSb0C73R6yleqD2olDxL6U+ZsRl/CrUcRa3Ncb7V5dDPPuDoJQfRSJmGHnXTR25tARJ+3IDCfCDWuvm+gu1MNpUFWfSvwFOVZRe/s=
+	t=1706547665; cv=none; b=mXYMXGrCQlepWj1V365WnXPDmX0z8jzZC9dOanIf5I5ADL/OEz+EICR6r7mUG5M45qFXMrpbWRQIm7/ZjA/XxwyWkav0SzB3fJSznXH7wk2DJIMTvM6q8Ih/UbLlnGOYvKc+nTejYSEo0RzZ3vJ97QI4/3B/oinv3ncES6FNzpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706547601; c=relaxed/simple;
-	bh=6AlW8GfU0yXdn2MsLvTWS4FUIIv27Mo017RHrFWdyIk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Er4EX8YHr8VHw+phdM576syWetaOizxeb3k8i53g5C2qYG2O4B9WagxIfLjV2Gy5Rk0ws6cJlmG9BPdg0YCEe+APUxGSszYhlRACQwx6qBwdlYub7Cp7+pPnOjf47ZRnChc5wsG4CeMs3keqNEWPTzImCtvhoetclY7BmvoWjS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AFF1CDA7;
-	Mon, 29 Jan 2024 09:00:41 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A3213F738;
-	Mon, 29 Jan 2024 08:59:55 -0800 (PST)
-Date: Mon, 29 Jan 2024 16:59:52 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
- <samuel@sholland.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai
- <wens@csie.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-sound@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/7] dt-bindings: dma: allwinner,sun50i-a64-dma: Add
- compatible for H616
-Message-ID: <20240129165952.0dec633e@donnerap.manchester.arm.com>
-In-Reply-To: <20240127163247.384439-5-wens@kernel.org>
-References: <20240127163247.384439-1-wens@kernel.org>
-	<20240127163247.384439-5-wens@kernel.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1706547665; c=relaxed/simple;
+	bh=zX+G5kuXDX6v7AJY4fAgwDHYmmNEg/NxKfWc+0bpSx4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cmjUlhqXM8t3sVDQF3VBNpiY10qXTpGSHRmnTkByW7rQqIiJd5EBQhynXcKutocfQ7/n1rlIrifCeKRqoqa9bWRRufcQ2qrRo1/H/y3R6bPhtK3dB4anlRR1p+aOKF7G5tFR6lu8PmkP41r6Hy7g+WqtbYs5a8b6xvs7oWqCn5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l8UTZ+/s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21DB8C43390;
+	Mon, 29 Jan 2024 17:00:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706547664;
+	bh=zX+G5kuXDX6v7AJY4fAgwDHYmmNEg/NxKfWc+0bpSx4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l8UTZ+/sskXRDBnUhW42YrouT9Je9Hh6LtzcpIyhUvDHPVpSfwbHin9uWa9vkx+zn
+	 qaXMieQSB7dBLL6o1Xz+4mz6kLgiDNbjGNlILalcENijGko9JVR/T0+3PCY7zBCVOW
+	 GXwK2BJY1hMT/TDhv7TXjOJQuzlsgKD4p2h+cNqHRUDUmEp3thedtNcMTR+FN718aB
+	 RUs+J5omOmaEVLl8b6RjzDMmzW+hUbzVNeOQ2pkbAZu8GoUCG44uIRUCLHFFCpBYME
+	 JOwuKq6ORXd8j2lfvB0/GITqN4ywvquwTA7dkMXvC4Nbnq5dyLyvyuoECZwb5gAKYn
+	 OQuyK9pfj0z1w==
+Date: Mon, 29 Jan 2024 17:00:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: Frank.li@nxp.com, will@kernel.org, mark.rutland@arm.com,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, john.g.garry@oracle.com,
+	jolsa@kernel.org, namhyung@kernel.org, irogers@google.com,
+	linux-imx@nxp.com, mike.leach@linaro.org, leo.yan@linaro.org,
+	peterz@infradead.org, mingo@redhat.com, acme@kernel.org,
+	alexander.shishkin@linux.intel.com, adrian.hunter@intel.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: perf: fsl-imx-ddr: Add i.MX95
+ compatible
+Message-ID: <20240129-unelected-frail-b6062f091625@spud>
+References: <20240129101433.2429536-1-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="sFGmz0jIHMmay47B"
+Content-Disposition: inline
+In-Reply-To: <20240129101433.2429536-1-xu.yang_2@nxp.com>
 
-On Sun, 28 Jan 2024 00:32:44 +0800
-Chen-Yu Tsai <wens@kernel.org> wrote:
 
-Hi,
+--sFGmz0jIHMmay47B
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> The DMA controllers found on the H616 and H618 are the same as the one
-> found on the A100. The only difference is the DMA endpoint (DRQ) layout.
-> 
-> Since the number of channels and endpoints are described with additional
-> generic properties, just add a new H616-specific compatible string and
-> fallback to the A100 one.
-> 
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-
-Looks good, A100 is the right fallback string. dt-binding_check passed for
-me.
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
-Andre
+Conor.
 
-> ---
-> Changes since v1:
-> - Switch to "contains" for if-properties statement
-> - Fall back to A100 instead of H6
-> 
->  .../bindings/dma/allwinner,sun50i-a64-dma.yaml       | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
-> index ec2d7a789ffe..0f2501f72cca 100644
-> --- a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
-> @@ -28,6 +28,9 @@ properties:
->        - items:
->            - const: allwinner,sun8i-r40-dma
->            - const: allwinner,sun50i-a64-dma
-> +      - items:
-> +          - const: allwinner,sun50i-h616-dma
-> +          - const: allwinner,sun50i-a100-dma
->  
->    reg:
->      maxItems: 1
-> @@ -59,10 +62,11 @@ required:
->  if:
->    properties:
->      compatible:
-> -      enum:
-> -        - allwinner,sun20i-d1-dma
-> -        - allwinner,sun50i-a100-dma
-> -        - allwinner,sun50i-h6-dma
-> +      contains:
-> +        enum:
-> +          - allwinner,sun20i-d1-dma
-> +          - allwinner,sun50i-a100-dma
-> +          - allwinner,sun50i-h6-dma
->  
->  then:
->    properties:
 
+--sFGmz0jIHMmay47B
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbfZyAAKCRB4tDGHoIJi
+0v9mAP9ztQbdr4n9L1KbI6eS4QYA23fNGhj58popCCug/nQk7QD/QfzUlFo6SjCy
+gIKZqDJG/EnKMGDXtlRuqj7KADkkswI=
+=Ctoh
+-----END PGP SIGNATURE-----
+
+--sFGmz0jIHMmay47B--
 
