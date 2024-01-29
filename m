@@ -1,277 +1,122 @@
-Return-Path: <devicetree+bounces-36150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40D41840069
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:38:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39BD7840086
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:43:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 659F71C22254
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:38:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E3971C22CE1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:43:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00946604C6;
-	Mon, 29 Jan 2024 08:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC6454FAB;
+	Mon, 29 Jan 2024 08:40:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="hJRq9Zt9"
+	dkim=pass (1024-bit key) header.d=rong.moe header.i=i@rong.moe header.b="DXxE1CBh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890AA57865;
-	Mon, 29 Jan 2024 08:33:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706517203; cv=none; b=NnoTunLOcxje/3fkPnJ6m+0benDL8k4aqOWdkTeWdCNP59U3E7iT+64xRop7+1GUKB0vKN6Mywkke6VR9v82DNTn/TrXBjfMhsR1fYkvGKnt+QWS7YOmZXyQG2vxBE98juhl0z86VGvT9wVK/NV+h9/tWs+ahWtUHtH0anKRs4E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706517203; c=relaxed/simple;
-	bh=0OLRga1LcfHeQkjMoJOa+JV0bOzhYh3zwLeCH8fUSsE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YjCS5LUgwA6AzxiigSIv4AXAS4dgEjbEeozYbDqE/fDyQ/OaQqcEh3Fyj8akwHKoMsDiTxUiBk+WpBtaxuyfVVhhL+t+eyRdEyat3PomEeOPo/o3MwPK2m6dC25hsMZhu/LTEof6wVSvCTXpyHAlrrtyAQE2jAqfMFwtfACtUsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=hJRq9Zt9; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 09257914be8111ee9e680517dc993faa-20240129
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=4aFHlKO68gkpQ2H5DEC8ScmJLpJQbxtvVULWLax4NcE=;
-	b=hJRq9Zt9DKIWEjhwVt+oFt2PxzqrlLUWbhc9nweeP5+x5B58DFO6284fAC6G65DPjIFhJBlaYVkL3cQ7X8gKiCPOotAQfxddbCwL6vVeN9N8VdUJqq85nzhrkQwZZohOtizvcUpovEUJiiw02slJYjUki/evcggLWZ3lxmndU3s=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.36,REQID:0fa141f8-c87f-4633-a718-92c1152ef138,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:6e16cf4,CLOUDID:c2185e83-8d4f-477b-89d2-1e3bdbef96d1,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 09257914be8111ee9e680517dc993faa-20240129
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-	(envelope-from <yi-de.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1672033661; Mon, 29 Jan 2024 16:33:10 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 29 Jan 2024 16:33:09 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 29 Jan 2024 16:33:09 +0800
-From: Yi-De Wu <yi-de.wu@mediatek.com>
-To: Yingshiuan Pan <yingshiuan.pan@mediatek.com>, Ze-Yu Wang
-	<ze-yu.wang@mediatek.com>, Yi-De Wu <yi-de.wu@mediatek.com>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Richard Cochran <richardcochran@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<netdev@vger.kernel.org>, <linux-mediatek@lists.infradead.org>, David Bradil
-	<dbrazdil@google.com>, Trilok Soni <quic_tsoni@quicinc.com>, My Chuang
-	<my.chuang@mediatek.com>, Shawn Hsiao <shawn.hsiao@mediatek.com>, PeiLun Suei
-	<peilun.suei@mediatek.com>, Liju Chen <liju-clr.chen@mediatek.com>, "Willix
- Yeh" <chi-shen.yeh@mediatek.com>, Kevenny Hsieh <kevenny.hsieh@mediatek.com>
-Subject: [PATCH v9 21/21] virt: geniezone: Enable PTP for synchronizing time between host and guest VMs
-Date: Mon, 29 Jan 2024 16:33:02 +0800
-Message-ID: <20240129083302.26044-22-yi-de.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20240129083302.26044-1-yi-de.wu@mediatek.com>
-References: <20240129083302.26044-1-yi-de.wu@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACD154FA8;
+	Mon, 29 Jan 2024 08:40:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706517626; cv=pass; b=mEXbsk34aif+sTr6TcWOGDb4WZkW3UMRrB+N/iEctVl68gTH4gp5Wmay/UPpj+GYFwzFc2N61b9tiw0K1Evxa/sqaAGsD1V2tXXvPkRBhbI2W+FD4yQccfHaUSpks4V0Mi49ax4FZELPLkDdwKjCGrX/LU25L2k8U2QHIWY0Z2c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706517626; c=relaxed/simple;
+	bh=t9sIY05pCRq8hUQ7qfGavTMxoTFFcUrKXiXggNwnA30=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=uuexOtDvSUJlReir3EsfhzSJRyG6M2gZTMa4cwl7uvNG54OXGbdGfoTDX/fOf0luKsNTBtOKtLZMzCCyNRCf9QETCMod+D8FkG+Ai49Ze5PxOVYOIBqnAzdTwBOjbZxdy+CpOl5gfwF9HhSAFcFoDIK8k/JmIW86HYxEeRLTJt8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rong.moe; spf=pass smtp.mailfrom=rong.moe; dkim=pass (1024-bit key) header.d=rong.moe header.i=i@rong.moe header.b=DXxE1CBh; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rong.moe
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rong.moe
+Delivered-To: uwu@icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1706517619; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Lw8ZG0VUrGMa0V39ymB6Z2QZexcVUepY5pmuL1X7yPYXFWZfyb78dtb3FQriZo7/YoHiVSx68FR8zWwp7/UXCu+L/vebDIT+2+vCmMLHcVPgGo88jHdCWNGTkEQoSEttGZQKbp6V9hdvnC6/eqDS9cIIsCqsj2ClR7gb9eyTkDM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1706517619; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=t9sIY05pCRq8hUQ7qfGavTMxoTFFcUrKXiXggNwnA30=; 
+	b=cz1mEdRXDu4vzKhhWI27EY0Yo//+Z+q5Jwahn/a/8ky0IQEWFtlNGzgI0hIa4IxRzHs+FproPj/YRUqcoTDgzU0lD0+XSyB8mnBkkyc9HsIqdJahoK3Tdmb9aVnrtHOy0KPNqkFRK1B1ap9s1pAZceX8QfDUwEUwqA/584YPJbs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=rong.moe;
+	spf=pass  smtp.mailfrom=i@rong.moe;
+	dmarc=pass header.from=<i@rong.moe>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1706517619;
+	s=zmail; d=rong.moe; i=i@rong.moe;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=t9sIY05pCRq8hUQ7qfGavTMxoTFFcUrKXiXggNwnA30=;
+	b=DXxE1CBhSS+Ii028GqJ5Auz5j5yv7i+PfpMClrgFkhoinCT1wqFp7uFJfKiyaRFi
+	iP9RVLqi5PbEaZfEtVD32sXYR/Ffpgb6UMzhbOBMBZ0Ts3jzTlOT4gwwHsoR1KwA1Zq
+	dMVlOWZAslqOmn3EDKoaekxyAI3wY8Uq6YNy8swQ=
+Received: from [192.168.8.238] (149.248.38.156 [149.248.38.156]) by mx.zohomail.com
+	with SMTPS id 1706517616557896.7006883737887; Mon, 29 Jan 2024 00:40:16 -0800 (PST)
+Message-ID: <456b4faf8d2e06423bf66ebe1ff1462230354a84.camel@rong.moe>
+Subject: Re: [PATCH v2 3/4] dt-bindings: arm: qcom: Add Samsung Galaxy S5
+ China (kltechn)
+From: Rong Zhang <i@rong.moe>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+Date: Mon, 29 Jan 2024 16:40:09 +0800
+In-Reply-To: <780e32ce-809a-4ce5-87ec-10f8d6248d31@linaro.org>
+References: <20240127172155.63624-1-i@rong.moe>
+	 <20240127172155.63624-4-i@rong.moe>
+	 <780e32ce-809a-4ce5-87ec-10f8d6248d31@linaro.org>
+Autocrypt: addr=i@rong.moe; prefer-encrypt=mutual;
+ keydata=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
+	cMTsfqztU+orM
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.3-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--10.205400-8.000000
-X-TMASE-MatchedRID: y128Pza/oi5PB4rXagQZ+5LPLrFS265P4Ob1SHQRSIgNqAa+u3rIYNwB
-	sjzU/tkx4ZQqYHZtqxhYo3G+rvxrNao77AcuQhw7A9lly13c/gHt/okBLaEo+BjO8pfx4H7gcam
-	vz988laISXSK8uF+jaPAL7Jj8ilE4LZbtj42l31G4jAucHcCqnZYcYQ11P5U/xKLCLOyCW5B25K
-	XQ4QIGJr1A4/e8Np0k4I4a/QXu4NCR8u6DOJbzp8nUT+eskUQP7h2RrsKOiu0+gR+s21UkWIEpJ
-	RcbelqdADXE8V3mpEVDNcDXkV4d67bfdDP+zORmdXz3l78F3YmkWoMjFfK3Xpsoi2XrUn/Jn6Kd
-	MrRsL14qtq5d3cxkNZd/mwLf2BVU/u97Tz1Q+0kDBDLbZrqaEgJOsKQTld6amsvvnoS3ZploBmT
-	SwRxjXg==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--10.205400-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: A9B58409E70E1E727DD1BE319D4B6D809EFF4DB11FC966FF0DF0FAA8F2E88A3C2000:8
-X-MTK: N
+X-ZohoMailClient: External
 
-From: "Kevenny Hsieh" <kevenny.hsieh@mediatek.com>
+On Mon, 2024-01-29 at 09:20 +0100, Krzysztof Kozlowski wrote:
+> On 27/01/2024 18:21, Rong Zhang wrote:
+> > Document Samsung Galaxy S5 China (kltechn) as a klte variant based on
+> > msm8974pro. Also including "samsung,klte" in the compatible chain as
+> > kltechn works fine with the klte DTB except for LEDs and WiFi missing.
+> >=20
+> > Signed-off-by: Rong Zhang <i@rong.moe>
+> > ---
+>=20
+> This is a friendly reminder during the review process.
+>=20
+> It looks like you received a tag and forgot to add it.
+>=20
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions, under or above your Signed-off-by tag. Tag is "received", when
+> provided in a message replied to you on the mailing list. Tools like b4
+> can help here. However, there's no need to repost patches *only* to add
+> the tags. The upstream maintainer will do that for tags received on the
+> version they apply.
+>=20
+> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/su=
+bmitting-patches.rst#L577
 
-Enabled Precision Time Protocol (PTP) for improved host-guest VM time
-synchronization, optimizing operations needing precise clock sync in
-virtual environment.
+Sorry for forgetting that. I will check more precisely the next time.
 
-Signed-off-by: Kevenny Hsieh <kevenny.hsieh@mediatek.com>
-Signed-off-by: Liju Chen <liju-clr.chen@mediatek.com>
-Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
----
- arch/arm64/geniezone/Makefile           |  2 +-
- arch/arm64/geniezone/gzvm_arch_common.h |  3 +
- arch/arm64/geniezone/hvc.c              | 73 +++++++++++++++++++++++++
- drivers/virt/geniezone/gzvm_exception.c |  3 +-
- include/linux/gzvm_drv.h                |  1 +
- include/uapi/linux/gzvm.h               |  1 +
- 6 files changed, 80 insertions(+), 3 deletions(-)
- create mode 100644 arch/arm64/geniezone/hvc.c
+> If a tag was not added on purpose, please state why and what changed.
 
-diff --git a/arch/arm64/geniezone/Makefile b/arch/arm64/geniezone/Makefile
-index 0e4f1087f9de..553a64a926dc 100644
---- a/arch/arm64/geniezone/Makefile
-+++ b/arch/arm64/geniezone/Makefile
-@@ -4,6 +4,6 @@
- #
- include $(srctree)/drivers/virt/geniezone/Makefile
- 
--gzvm-y += vm.o vcpu.o vgic.o
-+gzvm-y += vm.o vcpu.o vgic.o hvc.o
- 
- obj-$(CONFIG_MTK_GZVM) += gzvm.o
-diff --git a/arch/arm64/geniezone/gzvm_arch_common.h b/arch/arm64/geniezone/gzvm_arch_common.h
-index fbaf2da792a4..e697223f0fd6 100644
---- a/arch/arm64/geniezone/gzvm_arch_common.h
-+++ b/arch/arm64/geniezone/gzvm_arch_common.h
-@@ -93,6 +93,8 @@ static inline u16 get_vcpuid_from_tuple(unsigned int tuple)
-  * @__pad: add an explicit '__u32 __pad;' in the middle to make it clear
-  *         what the actual layout is.
-  * @lr: The array of LRs(list registers).
-+ * @vtimer_offset: The offset maintained by hypervisor that is host cycle count
-+ *                 when guest VM startup.
-  *
-  * - Keep the same layout of hypervisor data struct.
-  * - Sync list registers back for acking virtual device interrupt status.
-@@ -101,6 +103,7 @@ struct gzvm_vcpu_hwstate {
- 	__le32 nr_lrs;
- 	__le32 __pad;
- 	__le64 lr[GIC_V3_NR_LRS];
-+	__le64 vtimer_offset;
- };
- 
- static inline unsigned int
-diff --git a/arch/arm64/geniezone/hvc.c b/arch/arm64/geniezone/hvc.c
-new file mode 100644
-index 000000000000..603db0fad3d8
---- /dev/null
-+++ b/arch/arm64/geniezone/hvc.c
-@@ -0,0 +1,73 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2023 MediaTek Inc.
-+ */
-+#include <linux/clocksource.h>
-+#include <linux/kernel.h>
-+#include <linux/timekeeping.h>
-+#include <linux/gzvm_drv.h>
-+#include "gzvm_arch_common.h"
-+
-+#define GZVM_PTP_VIRT_COUNTER 0
-+#define GZVM_PTP_PHYS_COUNTER 1
-+/**
-+ * gzvm_handle_ptp_time() - Sync time between host and guest VM
-+ * @vcpu: Pointer to struct gzvm_vcpu_run in userspace
-+ * @counter: Counter type from guest VM
-+ * Return: Always return 0 because there are no cases of failure
-+ *
-+ * The following register values will be passed to the guest VM
-+ * for time synchronization:
-+ * regs->x0 (upper 32 bits) wall clock time
-+ * regs->x1 (lower 32 bits) wall clock time
-+ * regs->x2 (upper 32 bits) cycles
-+ * regs->x3 (lower 32 bits) cycles
-+ */
-+static int gzvm_handle_ptp_time(struct gzvm_vcpu *vcpu, int counter)
-+{
-+	struct system_time_snapshot snapshot;
-+	u64 cycles = 0;
-+
-+	ktime_get_snapshot(&snapshot);
-+
-+	switch (counter) {
-+	case GZVM_PTP_VIRT_COUNTER:
-+		cycles = snapshot.cycles -
-+			 le64_to_cpu(vcpu->hwstate->vtimer_offset);
-+		break;
-+	case GZVM_PTP_PHYS_COUNTER:
-+		cycles = snapshot.cycles;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	vcpu->run->hypercall.args[0] = upper_32_bits(snapshot.real);
-+	vcpu->run->hypercall.args[1] = lower_32_bits(snapshot.real);
-+	vcpu->run->hypercall.args[2] = upper_32_bits(cycles);
-+	vcpu->run->hypercall.args[3] = lower_32_bits(cycles);
-+
-+	return 0;
-+}
-+
-+/**
-+ * gzvm_arch_handle_guest_hvc() - Handle architecture-related guest hvc
-+ * @vcpu: Pointer to struct gzvm_vcpu_run in userspace
-+ * Return:
-+ * * true - This hvc has been processed, no need to back to VMM.
-+ * * false - This hvc has not been processed, require userspace.
-+ */
-+bool gzvm_arch_handle_guest_hvc(struct gzvm_vcpu *vcpu)
-+{
-+	int ret, counter;
-+
-+	switch (vcpu->run->hypercall.args[0]) {
-+	case GZVM_HVC_PTP:
-+		counter = vcpu->run->hypercall.args[1];
-+		ret = gzvm_handle_ptp_time(vcpu, counter);
-+		return (ret == 0) ? true : false;
-+	default:
-+		break;
-+	}
-+	return false;
-+}
-diff --git a/drivers/virt/geniezone/gzvm_exception.c b/drivers/virt/geniezone/gzvm_exception.c
-index af26d1c82791..e6209b3b3a3e 100644
---- a/drivers/virt/geniezone/gzvm_exception.c
-+++ b/drivers/virt/geniezone/gzvm_exception.c
-@@ -56,7 +56,6 @@ bool gzvm_handle_guest_hvc(struct gzvm_vcpu *vcpu)
- 		ret = gzvm_handle_relinquish(vcpu, ipa);
- 		return (ret == 0) ? true : false;
- 	default:
--		break;
-+		return gzvm_arch_handle_guest_hvc(vcpu);
- 	}
--	return false;
- }
-diff --git a/include/linux/gzvm_drv.h b/include/linux/gzvm_drv.h
-index d532d2d31d43..ca8adf403d48 100644
---- a/include/linux/gzvm_drv.h
-+++ b/include/linux/gzvm_drv.h
-@@ -195,6 +195,7 @@ int gzvm_handle_page_fault(struct gzvm_vcpu *vcpu);
- bool gzvm_handle_guest_exception(struct gzvm_vcpu *vcpu);
- int gzvm_handle_relinquish(struct gzvm_vcpu *vcpu, phys_addr_t ipa);
- bool gzvm_handle_guest_hvc(struct gzvm_vcpu *vcpu);
-+bool gzvm_arch_handle_guest_hvc(struct gzvm_vcpu *vcpu);
- 
- int gzvm_arch_create_device(u16 vm_id, struct gzvm_create_device *gzvm_dev);
- int gzvm_arch_inject_irq(struct gzvm *gzvm, unsigned int vcpu_idx,
-diff --git a/include/uapi/linux/gzvm.h b/include/uapi/linux/gzvm.h
-index 205fcf7cdfa7..681917357ed0 100644
---- a/include/uapi/linux/gzvm.h
-+++ b/include/uapi/linux/gzvm.h
-@@ -191,6 +191,7 @@ enum {
- 
- /* hypercall definitions of GZVM_EXIT_HYPERCALL */
- enum {
-+	GZVM_HVC_PTP = 0x86000001,
- 	GZVM_HVC_MEM_RELINQUISH = 0xc6000009,
- };
- 
--- 
-2.18.0
+I meant not to add your Acked-by because the dt-binding has changed
+into a different form to make it consistent with the kltechn DTS. I
+should have stated it but hopefully it's not too late to ask if the new
+dt-binding is still eligible to receive your ACK.
 
+
+Thanks,
+Rong
 
