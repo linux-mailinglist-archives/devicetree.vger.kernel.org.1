@@ -1,150 +1,113 @@
-Return-Path: <devicetree+bounces-36397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7792A840C98
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:57:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 950EE840CA6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 18:00:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C1A61C2351A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:57:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5E101C22EEB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7086A157025;
-	Mon, 29 Jan 2024 16:57:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E56A157E69;
+	Mon, 29 Jan 2024 16:59:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i3WIpMrN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1YXFNdo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49241155A5F;
-	Mon, 29 Jan 2024 16:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED0F157020;
+	Mon, 29 Jan 2024 16:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706547460; cv=none; b=suK5P2xT4iAH6ZlFEkmTJqja/4GiDB3ojk6kqB3fIU+SvP6TcEinPO3CbiS81wM1ht2EtRNI9myhsOj/YudbIN8yqP1WZdhpf80Gdt8S89bHu9CCzVFbVUpB0kXDkEVQVfa5BMa6C+kwtcGZfm9VbSgdVeYYdFvqMrvuwykDbrM=
+	t=1706547593; cv=none; b=UjhP2uyRz2OQDQ1hBRykiwZhcFVI/FOHU9q8WCuXatRCJ5gOu76dmAtGJf7bZpX5dHdRWhQuhZ7A/BmJPXFwXwZzmJP/W94LzPN7BhH4rG4iRg4BBowTFwaU+tpuqrdsuitboTZD88hdcxX08fMOxPKcQ6VFse0p7iZDLzJKPm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706547460; c=relaxed/simple;
-	bh=PY5cU+3UW7naDT2PjlI20f6EMZrbPVmbCyvO5POAvBQ=;
+	s=arc-20240116; t=1706547593; c=relaxed/simple;
+	bh=/UzI7ZXEeoI0XJZVFqiFBLMZ5LqRbK9eEwG+B6vZnBk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fUbgY62fQFRdVNm7Ay10Equ7U0pX1TYFuXIycBZBX/xL9W+PnYNGT11M0ucKjiPCH/VBgjNyzviwCmgGL5NkAnZTFCP9WkOLC65m/MS0sMk1lLmsmETM3KmA6fqkpOxtL/yMPYD5HBIUtlnhJ/taB06bBR2YzPWRsssl0TQAPZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i3WIpMrN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EF12C433F1;
-	Mon, 29 Jan 2024 16:57:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cxaCdV5gSTZ0wv0W8eriKbRQgsYNw+rfEcnk1iaK0LjRYcSVxVnvrlch3lJJ0oCJt4gHd1aAWKn+L3iF4g8DgLQwqn9KiViUWEx2gJYVeXJMvhB79XefDK7PGHWp6Ao0lqZSpKbf53PzbXinjLTYtHSgcW6Qmyxj2iejxXCt4z8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1YXFNdo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6395C43390;
+	Mon, 29 Jan 2024 16:59:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706547459;
-	bh=PY5cU+3UW7naDT2PjlI20f6EMZrbPVmbCyvO5POAvBQ=;
+	s=k20201202; t=1706547592;
+	bh=/UzI7ZXEeoI0XJZVFqiFBLMZ5LqRbK9eEwG+B6vZnBk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i3WIpMrNEurrwyWrWFlIwOAON/JCCzeu2JMaXdahxyUfDn7e+HeDM07Gj/eUZxQj6
-	 IH6iRzCvbQVwEGelrJByDP0aLwyNbSSIytcP3jrR6gnKoqem7pMw9qCT5BHH5YUZ+2
-	 P+tpXLDr2N5lvQ0NKm3H9GHcGbO9gP9PULvOPuPSNH9ohoHgeNUez4UMmSJl73swg9
-	 1eXcAN8WVcJMYmrGV6Ma+g3kFDhoTw4J73hBZleXxcq7IyMYGmu/D7LpfguBeEQQ10
-	 FEKLyz/CIghkRFw99dYtQIcFR5k2Fi2Tqm3zqLbVZdulLkw1oyZNkLciZYXVPR1r7b
-	 kTBW9KXOwGn2w==
-Date: Mon, 29 Jan 2024 16:57:35 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
-	git@xilinx.com, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	b=Q1YXFNdowXzkFlFk+S2jJSFXdtePJ8WtKVPS0bpw7dA7113IN4q/pFcidJLRSQkwQ
+	 e5IO5h57TV6jnPCTYyNxneodq+SZp9LV+MOAL5PTSFPaT55u6QUu008zQJTruYgllh
+	 YPpKBI7B6exftv6f3J+VW2seBu+Qj8ReYRkb1TDtT3so+ET+jjbqLwvxAW1t1hQpkT
+	 ywimP/C9gpY7UsqZL4sdK/iIJ8A1DBaZM5LlWlmF2JAkGerBBkBv2QrURd6f4ztZEI
+	 wlBE9FJ+Kb++RWc1Wi+2lYkkWq1pSRKwBSRc8Y3zkjXcDlFHZa1ygVtGbU9rfr9yWC
+	 EuQqguqcq4UpA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rUUz4-000000001o4-2is6;
+	Mon, 29 Jan 2024 17:59:46 +0100
+Date: Mon, 29 Jan 2024 17:59:46 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	kishore Manne <nava.kishore.manne@amd.com>,
-	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: firmware: xilinx: Describe soc-vvmem subnode
-Message-ID: <20240129-vastly-hunk-0680e152c03c@spud>
-References: <3869498c995cbb123127122f429e90de0a3f4014.1706531104.git.michal.simek@amd.com>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+	Jiri Kosina <jikos@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@somainline.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: sc8280xp-x13s: Fix/enable
+ touchscreen
+Message-ID: <ZbfZguXnHIGP0DUe@hovoldconsulting.com>
+References: <20240129-x13s-touchscreen-v3-0-c4a933034145@quicinc.com>
+ <20240129-x13s-touchscreen-v3-2-c4a933034145@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="LOozDfvasueM032q"
-Content-Disposition: inline
-In-Reply-To: <3869498c995cbb123127122f429e90de0a3f4014.1706531104.git.michal.simek@amd.com>
-
-
---LOozDfvasueM032q
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240129-x13s-touchscreen-v3-2-c4a933034145@quicinc.com>
 
-On Mon, Jan 29, 2024 at 01:25:06PM +0100, Michal Simek wrote:
-> Describe soc-nvmem subnode as the part of firmware node. The name can't be
-> pure nvmem because dt-schema already defines it as array property that's
-> why different name should be used.
->=20
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> ---
->=20
-> Dt binding for nvmem node has been already merged and it is the part of
-> linux-next tree.
-> Here is the reference to it just in case:
-> https://lore.kernel.org/r/170635581622.41421.8980881999042944764.b4-ty@li=
-naro.org
->=20
-> ---
->  .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml   | 9 +++++++++
->  1 file changed, 9 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqm=
-p-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zy=
-nqmp-firmware.yaml
-> index 7586fbff7ad6..108772ef574f 100644
-> --- a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmw=
-are.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmw=
-are.yaml
-> @@ -62,6 +62,12 @@ properties:
->        interface.
->      type: object
-> =20
-> +  soc-nvmem:
-> +    $ref: /schemas/nvmem/xlnx,zynqmp-nvmem.yaml#
-> +    description: The ZynqMP MPSoC provides access to the hardware relate=
-d data
-> +      like SOC revision, IDCODE and specific purpose efuses.
-> +    type: object
-> +
->    pcap:
->      $ref: /schemas/fpga/xlnx,zynqmp-pcap-fpga.yaml
->      description: The ZynqMP SoC uses the PCAP (Processor Configuration P=
-ort) to
-> @@ -110,6 +116,9 @@ examples:
->      firmware {
->        zynqmp_firmware: zynqmp-firmware {
->          #power-domain-cells =3D <1>;
-> +        soc-nvmem {
-> +          compatible =3D "xlnx,zynqmp-nvmem-fw";
-> +        };
+On Mon, Jan 29, 2024 at 08:47:48AM -0800, Bjorn Andersson wrote:
+> The touchscreen present on some SKUs of Lenovo Thinkpad X13s is never
+> detected by Linux. Power is applied and the device is brought out of
+> reset using the pinconfig in DeviceTree, but the read-test in
+> __i2c_hid_core_probe() fails to access the device, which result in probe
+> being aborted.
+> 
+> Some users have reported success after rebinding the device.
+> 
+> Looking to the ACPI tables, there's a 5ms after-power and a 200ms
+> after-reset delay. The power-supply is shared with other components, so
+> this is active all the way through boot. The reset GPIO, on the other
+> hand, is low (reset asserted) at boot, so this is first deasserted by
+> the implicit application of the pinconf state.
+> 
+> This means the time between reset deassert and __i2c_hid_core_probe() is
+> significantly below the value documented in the ACPI tables.
+> 
+> As the I2C HID binding and driver support specifying a reset gpio,
+> replace the pinconf-based scheme to pull the device out of reset. Then
+> specify the after-reset time.
+> 
+> The shared power rail is currently always on, but in case this ever
+> change, the after-power delay is added as well, to not violate the
+> power-on to reset-deassert timing requirement.
+> 
+> Fixes: 32c231385ed4 ("arm64: dts: qcom: sc8280xp: add Lenovo Thinkpad X13s devicetree")
+> Tested-by: Daniel Thompson <daniel.thompson@linaro.org>
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
 
-Would it not be better to have an actual nvmem-layout in here? The
-~empty node here looks rather odd.
+Thanks for the update. 
 
-Also, there's a type in $subject of nvmem.
-
-Thanks,
-Conor.
-
->          gpio {
->            compatible =3D "xlnx,zynqmp-gpio-modepin";
->            gpio-controller;
-> --=20
-> 2.36.1
->=20
-
---LOozDfvasueM032q
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbfY/wAKCRB4tDGHoIJi
-0rNqAP99TXsDxAY96t3sGZNtC3Vrmw+Zgegwmy/rGInLx2ByGwEAtZQ/EQisxfOm
-tWkHHbHJ9y+fW5zSNHf2/eVQEco79Q4=
-=PUQx
------END PGP SIGNATURE-----
-
---LOozDfvasueM032q--
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
