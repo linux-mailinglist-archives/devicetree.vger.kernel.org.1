@@ -1,133 +1,210 @@
-Return-Path: <devicetree+bounces-36101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 090B583FF25
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:39:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A401183FF33
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:44:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85BC51F232C6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 07:39:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AAB1280F43
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 07:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E4504E1DA;
-	Mon, 29 Jan 2024 07:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 237204EB3E;
+	Mon, 29 Jan 2024 07:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ktkcbnqt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F5y7kh2c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF264C3A9;
-	Mon, 29 Jan 2024 07:39:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326154EB35
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 07:43:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706513966; cv=none; b=TWqYW43BNeG2QGbScTHeuUW5uXuy8bamvoRd8SQ1r2MRxmfQ5URv0mN5P1Acgn9Noiqpj27TtY95lfMXnDEBSoQhQpEfSQ4T7/Ju2yygsMPk8Wnhm4pApQEdOdmOmrS4hObaGPx34lkHpZX4zx/dCvixJCYwRfLe2LMM/vV5i7c=
+	t=1706514240; cv=none; b=mYlN0EeK+pmpXIL/XtghsYZL3RvMXtFKpzMPpcU922a39DYRnsZBJvvwjIgE0fDAr4R4J4VV9XmabuHdWAQ8ZyOdtrGs2R8BdSiu4E2GhHvlMmlpOjCFuPfqh4XQSuULgOvCruKIZNKlmjZ24v2o3heLN2J+UyiPGzNn5YXE2zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706513966; c=relaxed/simple;
-	bh=ud0/drVm7D72JBsX+4Qb9qLiI/5wcDFXfGpCKNWjTZc=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=C653qY+POBET2WEAPo1KsRFur/HFLXitQDIzUoUCOPI7Mfsdha5CC6/T4se1chLpyp2QXKetmWx2eKJM/SlCwZFH9a+FAFhN19AmMLYO7LEx8gpg0TiWeZPmjZAkUvbrKGHGRZp3MrctR5GjzaYcX8EbMbSucz9H6XQiAxErFLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ktkcbnqt; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1706514240; c=relaxed/simple;
+	bh=5AbHdlOANK+zR4W769BjEvaECm5Ss/OxiiM0vngY+BY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hLqqp/Qen7Zc0lGP0QVpN8Wli2lcsaZRqVReFcM3XqF1MZOznMlimYCh0S5nzWwBFynWOzOylWxXBVDdMRi3Z3NR2U21cK4WKQyOd19uDJwKoI0P0GKynFUolTwd2uIvseSFY3YjqxoZsVArjPYKCHI90YQvhGujsYajiptlNN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F5y7kh2c; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-55f12332350so307681a12.1
+        for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 23:43:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706514236; x=1707119036; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c7+z8Bo3SMKPmqkIq6XWSLwjJi2bKC7rawiiewwddD4=;
+        b=F5y7kh2cYiBBvQsKDbGrrNBNfe5AlT1mivUxuYk5gyVEuqzMBMxZSaLIg/QNbZpG6T
+         T9dD77LXCWjHoIMm2l/PxQYOIQMkcon7fIyMbKOvKe6GtkjPe9qzZCgEj8yybLhCZ7CO
+         02x9oL9Wcu6srkLm6P19pzXOfrwT9JBcTaS3RcHg1pa7uyOaH3lBBufe8iJzsLkhr+hB
+         zyOq5KnlBpMWjegJl6H5AeMaYZKg/siweULu8rjmR6jOsatZxiQwuqotfaYJvSQVkKd7
+         wOswIP61rl60ERWb0s31diH8JbU7GGKU1yZI+bBMJOOeF2xHRB6M3PsS6vbvZs56VAs4
+         Z0Mw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706514236; x=1707119036;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c7+z8Bo3SMKPmqkIq6XWSLwjJi2bKC7rawiiewwddD4=;
+        b=gw4ve739RKDeK9tnLtqqJ77jtysH8o0QM7y/S1Oqp9DQEx7upUwtasiQn4PXl/C/Dg
+         ANS+gCaeN6FZklMTQGTyT/kvL5euc3TvUfJ+xjRvPYtle+IlJyZ2GU+Xg1tdn5c67zuz
+         MqRBnsymwv8bpSUcrz0iMV5+rJHk//rYtzqcW7ZG6lE7XGM2NgHic3WMjHkYpUBQMJQ+
+         Ane/Y19/MNP2fr6dtcsW+kExPVhJunrAl7cpFtHA5Rtiq609KQy7fktTtm0Jpd7WwFk6
+         0/lMwENzTViVwqiQrvbGatdmCkcncjL17YfEepS0BFcRguIZj9VQGGNVHUKMOfZo3EKn
+         LgSw==
+X-Gm-Message-State: AOJu0YxOdE8YsOQ4wQF43e8DlMVLzgETqqp4nM+XMX35MYsID8R5OL/H
+	WrAxMYvdbVUSSjnpokTQYAScrYJjWBX/ehingcawqNbLeNZ61HlUCUWBqhTp+pM=
+X-Google-Smtp-Source: AGHT+IFGImNLs6BdVWrzpFMBfko812D/Jw24sL7/kmvcUI1SwGsK8mJ3icm0eONoT7Smx/eBy6ZIzw==
+X-Received: by 2002:a05:6402:35c4:b0:55a:5891:aa4d with SMTP id z4-20020a05640235c400b0055a5891aa4dmr3747405edc.33.1706514236232;
+        Sun, 28 Jan 2024 23:43:56 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id bt8-20020a0564020a4800b0055ec36a811bsm2129344edb.18.2024.01.28.23.43.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 28 Jan 2024 23:43:55 -0800 (PST)
+Message-ID: <084bc712-caf8-4e4f-b277-2f9d85926067@linaro.org>
+Date: Mon, 29 Jan 2024 08:43:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1706513953;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BtL+amYsa1SIE2IJHAmNtDoN4s2BdOEcZ5ZmhpQDTJY=;
-	b=ktkcbnqtnOzyLtZjoky1OOrr/ZXuVNKhAd/p8fPHS52+r33KM4d4bSvMlpO4e2a/gboOFe
-	5VB25a5EK/o54vP6ReMWowJfEVUiBE1HchSgXN41EuI8u/Y6zSFnW8xf4ClXnt8P0kHxRY
-	OaBKHHbAd8VFWIPz0vuTI80ua0G3u5Vn3G/brQHOZR4+Xg1muMQpL8/HXj0DxMy6NfOblR
-	0jFIUjl1noVvQ1ehIUsZyG1L/mbnMcK0XgkksUkDpbx5dVvMRfCAylknkEM0hntj0dIjeW
-	XBNPZ1EWx0b63ZhTkxawLfH0PAszMaqnzR2a5Hz1jJcXdjSRc9KyU3dJKIN3Cg==
-Date: Mon, 29 Jan 2024 08:39:11 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add OPP data for CPU cores on
- RK3588
-In-Reply-To: <a5fb28fa0f973ed1393dc3edc6bc729c@manjaro.org>
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com>
- <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
- <ccc004cfae513195351ce0a79e12f6af@manjaro.org>
- <CABjd4YxSTLZjrnSCn0fh81US682-uhZ16-cgydzz97shhCpq4w@mail.gmail.com>
- <1f0608831cfb95c80edf16cd751eee76@manjaro.org>
- <CABjd4Yx06igrZQvHA4q-mcr2oSEf7eQyUS+KEATUGbw6qLc2sg@mail.gmail.com>
- <528a37d84cdd871e717b4ebf648bb8a7@manjaro.org>
- <9b72b688-be63-464e-a5dc-cf6051ccee12@linaro.org>
- <CABjd4YzdD9ciMn=p=opEK+fdxCkeCodsryph7pkqgsEUNcNrUQ@mail.gmail.com>
- <5ef9bab979260884866efe30d19ba8f1@manjaro.org>
- <CABjd4YyyuB9ou-BaOrvt_rrv1-jPE=wtwWDHDqNqyT4a0E51wg@mail.gmail.com>
- <9fda41efe365241ce06bd58974c8e055@manjaro.org>
- <CABjd4Ywfy8zT4sJ5v77CZQ9BNC=nkB7ZQq3QQyONST7gVHq=AA@mail.gmail.com>
- <a5fb28fa0f973ed1393dc3edc6bc729c@manjaro.org>
-Message-ID: <436a3e3afbd862743034ac50d1be43cf@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/8] dt-bindings: power: reset: add bindings for NVMEM
+ hardware storing PSCR Data
+Content-Language: en-US
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ linux-kernel@vger.kernel.org, =?UTF-8?Q?S=C3=B8ren_Andersen?= <san@skov.dk>,
+ Rob Herring <robh+dt@kernel.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, kernel@pengutronix.de,
+ linux-pm@vger.kernel.org, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>
+References: <20240124122204.730370-1-o.rempel@pengutronix.de>
+ <20240124122204.730370-5-o.rempel@pengutronix.de>
+ <4e14b7c7-7f0a-437b-aa84-20fdc30a2361@linaro.org>
+ <20240125171146.GC381737@pengutronix.de>
+ <58d24ddc-4e8f-4932-ac37-c9a699d36425@linaro.org>
+ <20240126165153.GA468528@pengutronix.de>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240126165153.GA468528@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello Alexey,
+On 26/01/2024 17:51, Oleksij Rempel wrote:
+> On Fri, Jan 26, 2024 at 10:03:51AM +0100, Krzysztof Kozlowski wrote:
+>> On 25/01/2024 18:11, Oleksij Rempel wrote:
+>>> On Thu, Jan 25, 2024 at 11:57:18AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 24/01/2024 13:22, Oleksij Rempel wrote:
+>>>>> Add device tree bindings that describe hardware implementations of
+>>>>> Non-Volatile Memory (NVMEM) used for storing Power State Change Reasons
+>>>>> (PSCR).
+>>>>> +  that stores Power State Change Reasons (PSCR).
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: pscrr.yaml#
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: pscrr-nvmem
+>>>>> +
+>>>>
+>>>> So that's a driver :/. Maybe Rob will like it, but it's a no from me.
+>>>> Please come up with something really suiting DEVICES, not DRIVERS.
+>>>
+>>> If I understand your distinction between 'DEVICES' and 'DRIVERS'
+>>> correctly, 'DEVICES' in the device tree context are meant to represent
+>>> physical hardware components, while 'DRIVERS' refer to software
+>>
+>> Yes.
+>>
+>>> abstractions of these components. However, there are numerous device
+>>> tree instances, like software-based implementations for SPI, I2C, or
+>>> GPIO, which could also be interpreted as 'DRIVERS' in the context of
+>>
+>> True. Yet they are still for physical interfaces. There is no DTS having
+>> some virtual I2C for a board which does not have I2C.
+>>
+>>> your email. Similarly, the binding for PSCRR represents functionality not
+>>> fully implemented in hardware but supported by the hardware component of
+>>> NVMEM, akin to how ramoops or other functionalities are represented.
+>>
+>> You don't need a binding for your case. Instantiate it whatever you wish
+>> - modprobe for example - and configure through approved kernel
+>> interfaces - sysfs for example.
+> 
+> About using sysfs for the NVMEM cell, it won't work for my needs because
+> I have to know about reboot events before the filesystem is ready. So,
 
-On 2024-01-29 01:09, Dragan Simic wrote:
-> On 2024-01-28 20:14, Alexey Charkov wrote:
->> On Sun, Jan 28, 2024 at 7:35 AM Dragan Simic <dsimic@manjaro.org> 
->> wrote:
->>> Just checking, running the test on just two CPU cores was enough to
->>> keep the package temperature at around 80 oC?
->> 
->> No, not even remotely.
->> 
->> I kept the continuous 6 dhrystone threads running on all the other
->> cores (`taskset -c 0-5 ./dhrystone -t 6 -r 6000`) to let it reach the
->> throttling temperature. This adds further imprecision to the benchmark
->> of course, because the governor might choose to throttle some of the
->> cores that do not participate in the timed benchmarking run, and thus
->> lend some thermal headroom to the latter. That didn't seem to happen
->> from my naked-eye observation via `watch "cpupower -c 0,4,6
->> frequency-info | grep current"`, although I admit that I didn't record
->> more granular logs of frequency states, and some quick transitions to
->> lower frequencies could also have happened on the other cores. Don't
->> think it's a major influence though, because a quick transition back
->> and forth shouldn't have contributed much to the thermal output.
-> 
-> Thank you for the clarification!
-> 
-> You're right, that might have introduced some inaccuracy into the test
-> results, and it also made the tests kind of hardly repeatable.  On the
-> other hand, that way the synthetic CPU test feels a bit more like some
-> real-world CPU load, in which multiple resource-hungry tasks usually
-> compete for the CPU cores and the thermal budget.
-> 
-> Though, as we know repeatability is the key for a scientific approach,
-> but it also usually contradicts with simulating real-world loads that
-> are of rather random nature.  Well, testing is hard. :)
-> 
-> I'll think a bit more about all this, and I'll come back with an 
-> update.
-> Maybe I'll also be able to join the testing.
+initrd can configure it before mounting filesystem.
 
-Good news! :)  Thanks to Radxa, I'll be able to do the testing on my
-side, perhaps in about a week or two.  If you agree, it might be the 
-best
-to wait for those test results as well;  of course, I'll keep thinking
-about some kind of a test suite in the meantime, which we should be able
-to use on other boards as well.
+> I'm thinking of using a boot parameter for the kernel. It would look
+> like this: pscrr-nvmem.nvmem_cell_alias=nvmem-cell0. This way, I can set
+> up the NVMEM cell right at the system's start. I'll need to use stable
+> NVMEM cell names for this. Is it ok to introduce NVMEM cell aliases in
+> the devicetree?
+
+In my opinion no, because the point of Devicetree is not to solve your
+system init problems. You add pure software node which should not be in
+your DTS for many reasons: it is not a hardware description and it is a
+ software policy enforced on all users of DTS without actually
+consulting them. Also, this solution ignores ACPI systems. Developing a
+proper interface would work on ACPI as well.
+
+Best regards,
+Krzysztof
+
 
