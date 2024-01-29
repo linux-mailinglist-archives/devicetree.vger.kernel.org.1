@@ -1,328 +1,235 @@
-Return-Path: <devicetree+bounces-36000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D9E183FB38
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 01:26:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C65483FB3D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 01:47:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7B70285D47
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 00:26:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73F8C1C20B4E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 00:47:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1935346A3;
-	Mon, 29 Jan 2024 00:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 277D73D76;
+	Mon, 29 Jan 2024 00:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K9y80/vn"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="RK2cwpIL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A99C5381
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 00:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 968CA5664;
+	Mon, 29 Jan 2024 00:46:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706487970; cv=none; b=EbfdxPMid/IoLG28I8t7xLI1AYwVo1OOrq48/pRueW8ovZXCuvUQRzevVtGEpnkQNpXeOfCcS/LRWncKeb9CX64Ns+4JJ6V/VfwX+fHZ5g184Hbp+JijtPppPB+1JiJLw6f+gRx6anLt/X/pGVHliiEgzg8IUAv389Iw2RSucJM=
+	t=1706489220; cv=none; b=RL/CchCw0TakZdYreFD+rqIgqng9DSLqOOor9QIwAqFq8GYcKV9TbfowRTUyUplM50QZsCk+s2N2oyKHXrfe7L05TgvJqBm+rf8fGNUDrg5Q/POEOew907gJNcMHDJF29wpNqrsoLoSJNT4gCXBd1YAHK0dtYHVAQaBPv+Hc4fE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706487970; c=relaxed/simple;
-	bh=yM1HmbxAWSUJwXV+g2TEaMJpy6Jb8p7jALfobB13IKc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PTIMpJL6U/3oEYApwA49HzA8oOQviY9jw5KJrEOvDMT3gmJHDJ2RbR8vG1LiPTaTs8hVHiKqpQs7G6RaFPgztap69F6fWrZh18US9NwiJ9xqz9gBJ9wgB5DvLjr9yP4+1pv0Qmpy3J7puvwJAdoDN3aA9NvSOTg3S6awc3lKISY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K9y80/vn; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-55ee686b5d5so793735a12.0
-        for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 16:26:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706487964; x=1707092764; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=G+F65PytcQ8bRw7rSmz8tj7JMLr040VbpgsehDx14EU=;
-        b=K9y80/vnM0Q5nj3FpHLdKQsUbEm0D2/LtuW9EJDJzN5J61qHi1ZRjQLBHPQXuCuv4b
-         jZfExAL39nQDyM0nhSO9BDCfnfyb7Jl7YNUnHQ137Pl3tcyaFm0ocO0ldLJjEoVhy51B
-         AHBuB6PwGP0HyjY9TKjPDc+uUJbeFSJXGsQxPkKAvPvszCmztCOYsE1lEsXePQJec+HB
-         LcaW6P3I2+QuIAXxYMgszVmgEB34edFo0z2XjZrLczQHyeOuYfle+8Y1OTtUem2l2IRr
-         GtwB5v7ABLsYYVe/9COqfzV4CuASENnolLQ9g+lhjitob+XH6ZR6mRIWadKi4uCwI5b+
-         Q/dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706487964; x=1707092764;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=G+F65PytcQ8bRw7rSmz8tj7JMLr040VbpgsehDx14EU=;
-        b=iXXdYcJHUS8g3gUKf8I3YzP6FGlz2FczypiJJmhOZZs1QcJ3AqGOapbdlfEEn9a43W
-         zvTswk+bscI2cn4N9jK+UA1mC+W/okR/waiPlPsE0ErN5uoj9JhhOCHrIXycR3/ViZss
-         pY4j3sA7atsMT2ExAXBdVbOmHQod/POPZX21KYlLDtg7Z0/RDR/z0Fzyl73LCqHolgHR
-         8CmG0wX34GwlMEK1usGekzsTmxCmNyOqWIV4PtpwyH0J/XZz5KppFdvNULQcFfhn+AmM
-         IuUOzU2HHHm4QgTLzair4GqenFr0EtgfA+KeN/v81SdOoLxCqx0ybMpBNhitLBdNg3ey
-         Bgzg==
-X-Gm-Message-State: AOJu0YwCEOfvBlqEe8jaCRIRpaypSJL7aGP1nhCzHZ/3RYiY7Mp0WSfi
-	lf5SoYf5vvKIhCLU8TwPLAeryC/Y8fPk4FqI05HyIzexpJodceniCTTHJjGj1+U=
-X-Google-Smtp-Source: AGHT+IFyUWqmlpnke6uDNFyKcCEQzDpvi2OmpUheL+tQmlsCZedhqTKqkQKEgSUx5CrdYc+q84z6Xw==
-X-Received: by 2002:a05:6402:22d9:b0:55e:da7c:607a with SMTP id dm25-20020a05640222d900b0055eda7c607amr1549330edb.15.1706487963793;
-        Sun, 28 Jan 2024 16:26:03 -0800 (PST)
-Received: from [127.0.1.1] ([79.115.23.25])
-        by smtp.gmail.com with ESMTPSA id h29-20020a0564020e9d00b0055cfb3f948fsm3208193eda.76.2024.01.28.16.26.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Jan 2024 16:26:03 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Mon, 29 Jan 2024 02:25:46 +0200
-Subject: [PATCH v3 2/2] phy: qcom: edp: Add set_mode op for configuring
- eDP/DP submode
+	s=arc-20240116; t=1706489220; c=relaxed/simple;
+	bh=tpybrTrmtAFnc0DQtXFoyBZT4xdv5dsEXBErqx4Obq4=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=PFKSoXBlXYuVbDfvove0fxbqsXj3eXM7qb1tGGa+EQfdNp2HJ5Ru1FKxOQ9lA3atc8OoFzh4ligkhGDIjz1toA9EV59zG3hiUDTeS+AwR2z2nrof7HoqwP6rbg7uNn1Xynykc61K27RZHpdCC8Z4938KQXG/ttO6dRAVHT1/M0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=RK2cwpIL; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240129-x1e80100-phy-edp-compatible-refactor-v3-2-e71f3359c535@linaro.org>
-References: <20240129-x1e80100-phy-edp-compatible-refactor-v3-0-e71f3359c535@linaro.org>
-In-Reply-To: <20240129-x1e80100-phy-edp-compatible-refactor-v3-0-e71f3359c535@linaro.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Johan Hovold <johan@kernel.org>
-Cc: linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7035; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=yM1HmbxAWSUJwXV+g2TEaMJpy6Jb8p7jALfobB13IKc=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBltvCW9TNARm3SS4noZQ5mY3dhee2QdRN1DRyTm
- guXBvIlmcSJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZbbwlgAKCRAbX0TJAJUV
- VrjSEADBSV/ePjnpJojvR5Bn7TxeeIZ7zL/FVXA7KsnHrtifKS+SxSU7ohYYmRImrHIfyCT1KYD
- 9r1SpeKEKjk8uRnqYx899n0MxDcNK/l/Uub50Xz3RGsuc+2l4tnG0MyMnXkXpu7mVSsoDBxkbSw
- 0aLeQWb57pduXWOa3O3eyhsdsRmWUMpAwmrP0PXLHX3fmvyZljALWtDxvNIAhbXuOTWAp1bOUoS
- AcR+xxMqmLvFSr76hu0u8kUqtDP+ygb+JNR5iTiW6ubIzLtB4AecYvAtyT5eVHg7sFuAFP1YrVh
- q5mI9LPIE1Tvmzhv99FoHOmeUwFMDKqR8q5WhbI7/5WBSb9ZQml0Y6PohnQ6t45VrUmis7nQDkj
- CzeQKMxzJqKaHFZyY0aKXB7NmBqsd16VR4UPI8xKGmPXobmHwnu9er1reEXcdcknCANQVqd/4uG
- HJEeH5ZnFTTzxo440Fsr8zVCs6NUp6Li4wic2qNxKsJB5KOdVIP/YaE/Gv6x0dqwd4i8v6JopV5
- DgsJktl6kr769gfnMCHMAee+HkrF8TyAMdlD+4UV/Dj/uKVMg7BdjTbdCd29C2RHB6ZG4fHXByO
- dpk5lroqj+jZP9Qfs2884A6sABODt1+DA7h9maM4HFw7MFd2PYk7qHfOfnSHjYQt98jq+3y07A8
- gRXR89NRHj+25qg==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1706489215;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=GS+RVzeqWuOYqDG8OOVdlRlDHcgTfVGr4oMD5uktGSQ=;
+	b=RK2cwpIL6QJhedwwn2vimofLkN640Q1yIRS8nV7mKqHnpPs4khbTtWfBQw9GOjFrqup7X2
+	T60hPs+CFGUsYNmHLh4ZCGwOhnLYci0cXAO5bgp/ub7hyhfkQNmOi87vjk+chYvz6RDNgM
+	OWUPC1SiKFxFz8c6OEqU+BlYixm5P5QC/lxgMesK/T8Rf7JzralM/UaRLpJs7yigGJdwcK
+	OfUtT3VFWYGVk8vgoU1eFHGaz1w8gmC/v8432P27cuQ7R9G9bigc5N/88HddgCggZ+8oWi
+	dQ91yIRtF58P1PnHShNpB2s97gQaI+3jR7uR5OEqQdaVmSFixFikV7paIlpF1Q==
+Date: Mon, 29 Jan 2024 01:46:54 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: enable temperature driven fan
+ control on Rock 5B
+In-Reply-To: <CABjd4YxqarUCbZ-a2XLe3TWJ-qjphGkyq=wDnctnEhdoSdPPpw@mail.gmail.com>
+References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
+ <20240125-rk-dts-additions-v1-3-5879275db36f@gmail.com>
+ <df062818d21f3318c033859d0e95efc7@manjaro.org>
+ <b5b1900a6e309890f449ec91594b8d6c@manjaro.org>
+ <CABjd4YxqarUCbZ-a2XLe3TWJ-qjphGkyq=wDnctnEhdoSdPPpw@mail.gmail.com>
+Message-ID: <30c3afc28da0a241a6397b30d2d7a922@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Future platforms should not use different compatibles to differentiate
-between eDP and DP mode. Instead, they should use a single compatible as the
-IP block is the same. It will be the job of the controller to set the submode
-of the PHY accordingly.
+Hello Alexey,
 
-The existing platforms will remain with separate compatibles for each mode.
+On 2024-01-28 21:08, Alexey Charkov wrote:
+> On Sun, Jan 28, 2024 at 12:27 AM Dragan Simic <dsimic@manjaro.org> 
+> wrote:
+>> On 2024-01-26 00:13, Dragan Simic wrote:
+>> > On 2024-01-24 21:30, Alexey Charkov wrote:
+>> >> This enables thermal monitoring on Radxa Rock 5B and links the PWM
+>> >> fan as an active cooling device managed automatically by the thermal
+>> >> subsystem, with a target SoC temperature of 55C
+>> >>
+>> >> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+>> >> ---
+>> >>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 25
+>> >> ++++++++++++++++++++++++-
+>> >>  1 file changed, 24 insertions(+), 1 deletion(-)
+>> >>
+>> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> >> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> >> index 9b7bf6cec8bd..c4c94e0b6163 100644
+>> >> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> >> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>> >> @@ -52,7 +52,7 @@ led_rgb_b {
+>> >>
+>> >>      fan: pwm-fan {
+>> >>              compatible = "pwm-fan";
+>> >> -            cooling-levels = <0 95 145 195 255>;
+>> >> +            cooling-levels = <0 120 150 180 210 240 255>;
+>> >>              fan-supply = <&vcc5v0_sys>;
+>> >>              pwms = <&pwm1 0 50000 0>;
+>> >>              #cooling-cells = <2>;
+>> >> @@ -180,6 +180,25 @@ &cpu_l3 {
+>> >>      cpu-supply = <&vdd_cpu_lit_s0>;
+>> >>  };
+>> >>
+>> >> +&package_thermal {
+>> >> +    polling-delay = <1000>;
+>> >> +
+>> >> +    trips {
+>> >> +            package_fan: package-fan {
+>> >> +                    temperature = <55000>;
+>> >> +                    hysteresis = <2000>;
+>> >> +                    type = "active";
+>> >> +            };
+>> >> +    };
+>> >> +
+>> >> +    cooling-maps {
+>> >> +            map-fan {
+>> >> +                    trip = <&package_fan>;
+>> >> +                    cooling-device = <&fan THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> >> +            };
+>> >> +    };
+>> >> +};
+>> >
+>> > It should be better to have two new trips and two new cooling maps
+>> > defined, instead of having just one trip/map pair, like this:
+>> >
+>> > &package_thermal {
+>> >       polling-delay = <1000>;
+>> >
+>> >       trips {
+>> >               package_warm: package-warm {
+>> >                       temperature = <55000>;
+>> >                       hysteresis = <2000>;
+>> >                       type = "active";
+>> >               };
+>> >
+>> >               package_hot: package-hot {
+>> >                       temperature = <65000>;
+>> >                       hysteresis = <2000>;
+>> >                       type = "active";
+>> >               };
+>> >       };
+>> >
+>> >       cooling-maps {
+>> >               mapX {
+>> >                       trip = <&package_warm>;
+>> >                       cooling-device = <&fan THERMAL_NO_LIMIT 1>;
+>> >               };
+>> >
+>> >               mapY {
+>> >                       trip = <&package_hot>;
+>> >                       cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
+>> >               };
+>> >       };
+>> > };
+>> >
+>> > The idea behind this approach is to keep the fan spinning at the lowest
+>> > available speed until the package temperature reaches the second trip's
+>> > temperature level, at which point the fan starts ramping up.  An
+>> > approach
+>> > like this is already employed by the Pine64 RockPro64 SBC.
+>> >
+>> > This way, we'll be doing our best to keep the fan noise down;  of
+>> > course, it will depend on the particular heatsink and fan combo how
+>> > long the fan can be kept at the lowest speed, but we should aim at
+>> > supporting as many different cooling setups as possible, and as
+>> > well as possible, out of the box and with no additional tweaking
+>> > required.
+>> >
+>> > Please notice "mapX" and "mapY" as the names of the additional
+>> > cooling maps, where X and Y are simply the next lowest available
+>> > indices, which is pretty much the usual way to name the additional
+>> > cooling maps.
+>> 
+>> Just checking, have you seen this?  Quite a few messages were 
+>> exchanged
+>> on the same day, so just wanted to make sure you didn't miss this one.
+> 
+> Yes, thank you for pointing it out and following up.
+> 
+> I've been testing different setups to get my thoughts together on this
+> one. Long story short, your suggested setup indeed makes the system
+> quieter most of the time while still being safely far from hitting the
+> throttling threshold, though it appears that the main influence is
+> from the higher temperature value in the second trip (after which the
+> fan accelerates) rather than from the presence of the first trip and
+> the corresponding cooling map capped at the minimum-speed fan action.
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/phy/qualcomm/phy-qcom-edp.c | 71 ++++++++++++++++++++++++++-----------
- 1 file changed, 51 insertions(+), 20 deletions(-)
+Thank you for testing all this!
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
-index 8e5078304646..af941d6c5588 100644
---- a/drivers/phy/qualcomm/phy-qcom-edp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-edp.c
-@@ -14,6 +14,7 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/phy/phy.h>
-+#include <linux/phy/phy-dp.h>
- #include <linux/platform_device.h>
- #include <linux/regulator/consumer.h>
- #include <linux/reset.h>
-@@ -68,19 +69,21 @@
- 
- #define TXn_TRAN_DRVR_EMP_EN                    0x0078
- 
--struct qcom_edp_cfg {
--	bool is_dp;
--
--	/* DP PHY swing and pre_emphasis tables */
-+struct qcom_edp_swing_pre_emph_cfg {
- 	const u8 (*swing_hbr_rbr)[4][4];
- 	const u8 (*swing_hbr3_hbr2)[4][4];
- 	const u8 (*pre_emphasis_hbr_rbr)[4][4];
- 	const u8 (*pre_emphasis_hbr3_hbr2)[4][4];
- };
- 
-+struct qcom_edp_phy_cfg {
-+	bool is_edp;
-+	const struct qcom_edp_swing_pre_emph_cfg *swing_pre_emph_cfg;
-+};
-+
- struct qcom_edp {
- 	struct device *dev;
--	const struct qcom_edp_cfg *cfg;
-+	const struct qcom_edp_phy_cfg *cfg;
- 
- 	struct phy *phy;
- 
-@@ -96,6 +99,8 @@ struct qcom_edp {
- 
- 	struct clk_bulk_data clks[2];
- 	struct regulator_bulk_data supplies[2];
-+
-+	bool is_edp;
- };
- 
- static const u8 dp_swing_hbr_rbr[4][4] = {
-@@ -126,8 +131,7 @@ static const u8 dp_pre_emp_hbr2_hbr3[4][4] = {
- 	{ 0x04, 0xff, 0xff, 0xff }
- };
- 
--static const struct qcom_edp_cfg dp_phy_cfg = {
--	.is_dp = true,
-+static const struct qcom_edp_swing_pre_emph_cfg dp_phy_swing_pre_emph_cfg = {
- 	.swing_hbr_rbr = &dp_swing_hbr_rbr,
- 	.swing_hbr3_hbr2 = &dp_swing_hbr2_hbr3,
- 	.pre_emphasis_hbr_rbr = &dp_pre_emp_hbr_rbr,
-@@ -162,18 +166,28 @@ static const u8 edp_pre_emp_hbr2_hbr3[4][4] = {
- 	{ 0x00, 0xff, 0xff, 0xff }
- };
- 
--static const struct qcom_edp_cfg edp_phy_cfg = {
--	.is_dp = false,
-+static const struct qcom_edp_swing_pre_emph_cfg edp_phy_swing_pre_emph_cfg = {
- 	.swing_hbr_rbr = &edp_swing_hbr_rbr,
- 	.swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3,
- 	.pre_emphasis_hbr_rbr = &edp_pre_emp_hbr_rbr,
- 	.pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3,
- };
- 
-+static const struct qcom_edp_phy_cfg sc7280_dp_phy_cfg = {
-+};
-+
-+static const struct qcom_edp_phy_cfg sc8280xp_dp_phy_cfg = {
-+	.swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg,
-+};
-+
-+static const struct qcom_edp_phy_cfg sc8280xp_edp_phy_cfg = {
-+	.is_edp = true,
-+	.swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg,
-+};
-+
- static int qcom_edp_phy_init(struct phy *phy)
- {
- 	struct qcom_edp *edp = phy_get_drvdata(phy);
--	const struct qcom_edp_cfg *cfg = edp->cfg;
- 	int ret;
- 	u8 cfg8;
- 
-@@ -200,7 +214,7 @@ static int qcom_edp_phy_init(struct phy *phy)
- 	       DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
- 	       edp->edp + DP_PHY_PD_CTL);
- 
--	if (cfg && cfg->is_dp)
-+	if (edp->cfg->swing_pre_emph_cfg && !edp->is_edp)
- 		cfg8 = 0xb7;
- 	else
- 		cfg8 = 0x37;
-@@ -234,7 +248,7 @@ static int qcom_edp_phy_init(struct phy *phy)
- 
- static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configure_opts_dp *dp_opts)
- {
--	const struct qcom_edp_cfg *cfg = edp->cfg;
-+	const struct qcom_edp_swing_pre_emph_cfg *cfg = edp->cfg->swing_pre_emph_cfg;
- 	unsigned int v_level = 0;
- 	unsigned int p_level = 0;
- 	u8 ldo_config;
-@@ -245,6 +259,9 @@ static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configur
- 	if (!cfg)
- 		return 0;
- 
-+	if (edp->is_edp)
-+		cfg = &edp_phy_swing_pre_emph_cfg;
-+
- 	for (i = 0; i < dp_opts->lanes; i++) {
- 		v_level = max(v_level, dp_opts->voltage[i]);
- 		p_level = max(p_level, dp_opts->pre[i]);
-@@ -261,7 +278,7 @@ static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configur
- 	if (swing == 0xff || emph == 0xff)
- 		return -EINVAL;
- 
--	ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-+	ldo_config = edp->is_edp ? 0x0 : 0x1;
- 
- 	writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
- 	writel(swing, edp->tx0 + TXn_TX_DRV_LVL);
-@@ -447,10 +464,9 @@ static int qcom_edp_set_vco_div(const struct qcom_edp *edp, unsigned long *pixel
- static int qcom_edp_phy_power_on(struct phy *phy)
- {
- 	const struct qcom_edp *edp = phy_get_drvdata(phy);
--	const struct qcom_edp_cfg *cfg = edp->cfg;
- 	u32 bias0_en, drvr0_en, bias1_en, drvr1_en;
- 	unsigned long pixel_freq;
--	u8 ldo_config;
-+	u8 ldo_config = 0x0;
- 	int timeout;
- 	int ret;
- 	u32 val;
-@@ -468,7 +484,8 @@ static int qcom_edp_phy_power_on(struct phy *phy)
- 		return timeout;
- 
- 
--	ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
-+	if (edp->cfg->swing_pre_emph_cfg && !edp->cfg->is_edp)
-+		ldo_config = 0x1;
- 
- 	writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
- 	writel(ldo_config, edp->tx1 + TXn_LDO_CONFIG);
-@@ -589,6 +606,18 @@ static int qcom_edp_phy_power_off(struct phy *phy)
- 	return 0;
- }
- 
-+static int qcom_edp_phy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
-+{
-+	struct qcom_edp *edp = phy_get_drvdata(phy);
-+
-+	if (mode != PHY_MODE_DP)
-+		return -EINVAL;
-+
-+	edp->is_edp = submode == PHY_SUBMODE_EDP ? true : false;
-+
-+	return 0;
-+}
-+
- static int qcom_edp_phy_exit(struct phy *phy)
- {
- 	struct qcom_edp *edp = phy_get_drvdata(phy);
-@@ -604,6 +633,7 @@ static const struct phy_ops qcom_edp_ops = {
- 	.configure	= qcom_edp_phy_configure,
- 	.power_on	= qcom_edp_phy_power_on,
- 	.power_off	= qcom_edp_phy_power_off,
-+	.set_mode	= qcom_edp_phy_set_mode,
- 	.exit		= qcom_edp_phy_exit,
- 	.owner		= THIS_MODULE,
- };
-@@ -781,6 +811,7 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
- 
- 	edp->dev = dev;
- 	edp->cfg = of_device_get_match_data(&pdev->dev);
-+	edp->is_edp = edp->cfg->is_edp;
- 
- 	edp->edp = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(edp->edp))
-@@ -839,10 +870,10 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id qcom_edp_phy_match_table[] = {
--	{ .compatible = "qcom,sc7280-edp-phy" },
--	{ .compatible = "qcom,sc8180x-edp-phy" },
--	{ .compatible = "qcom,sc8280xp-dp-phy", .data = &dp_phy_cfg },
--	{ .compatible = "qcom,sc8280xp-edp-phy", .data = &edp_phy_cfg },
-+	{ .compatible = "qcom,sc7280-edp-phy" , .data = &sc7280_dp_phy_cfg, },
-+	{ .compatible = "qcom,sc8180x-edp-phy", .data = &sc7280_dp_phy_cfg, },
-+	{ .compatible = "qcom,sc8280xp-dp-phy", .data = &sc8280xp_dp_phy_cfg, },
-+	{ .compatible = "qcom,sc8280xp-edp-phy", .data = &sc8280xp_edp_phy_cfg, },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, qcom_edp_phy_match_table);
+I see, but having a higher temperature defined in the second active
+thermal trip is exactly the trick that should make cooling setups
+  more quiet.  More precisely, the intention is to define a dual-trip
+configuration that should make as many different active cooling setups
+as quiet as possible, simply because some active cooling setups (and
+some CPU loads) may result in crossing the second trip's temperature
+less frequently than with the other setups.
 
--- 
-2.34.1
+> In my observation, the system rarely crosses the 55C threshold under
+> partial load, and when the load is high (e.g. compiling stuff with 8
+> concurrent jobs) it takes ~2 seconds to go from below the first trip
+> point to above the second trip point, so the fan doesn't really get
+> the chance to stay at its leisurely first state.
+> 
+> So frankly I'm inclined to leave one trip point here, and simply
+> change its temperature threshold from 55C to 65C - just to keep it
+> simple.
+> 
+> What do you think?
 
+I'd much rather have two active thermal trips defined, simply because
+a beefier heatsink, with much larger fin surface, may completely change
+the behavior of the Rock 5B's active cooling.  Radxa already sells a
+much larger heatsink, linked below, to which a fan can rather easily be
+attached, or a fan can be used to provide some airflow inside the case
+into which the board is mounted.
+
+- 
+https://shop.allnetchina.cn/products/rock5-b-passive-heat-sink?variant=39895250239590
+
+In other words, having two active thermal trips at 55 oC and 65 oC does
+not hurt the acoustics and the thermal performance of the active
+cooling setup you're using, compared with having just one active trip
+at 65 oC, while the dual-trip configuration can help with other active
+cooling setups that are different from yours.  It's a win-win.
+
+I hope you agree.
 
