@@ -1,102 +1,117 @@
-Return-Path: <devicetree+bounces-36391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36393-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 564AD840C59
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:52:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C42840C7E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:55:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D99661F2314B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:52:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E742B1C2291D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:55:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D9815697A;
-	Mon, 29 Jan 2024 16:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21298157021;
+	Mon, 29 Jan 2024 16:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E+hVcMcz"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="wboEuH0q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC137664D2;
-	Mon, 29 Jan 2024 16:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19847156967;
+	Mon, 29 Jan 2024 16:54:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706547120; cv=none; b=jO9+j/GnjDgPsYGbjph0vAepTA6lFNKAzUFeYiXl+lxNS0MOGpvhHAdMPxSGgsVapoky9pzCpeYgRaszkcwFY5UgGYUcmgQsppGKAmh31jGOsjqhyaua4lymuu2girGKMUTZ0y4U+Sv0ezkuPBK6c+E2W7p46NId65/I7gb04LY=
+	t=1706547288; cv=none; b=B8h8KisXezPHHDu3eAdIdy2Yl6BLzVgAdYaISJRJTzxpR1xpuTdO50xH9+3vWdIOEPqN4VComqq///0EZjFN2xD/JK6xJkRQKkW2FfdxGDak7q0AzK16fHR/vaV3HmXpnspNwavVSuEoQfOvjEHXsBaMLDu1xc7zeBrQZyfUfBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706547120; c=relaxed/simple;
-	bh=Tere6Vxvz/ed/+qOczM5/zXeFie6UH3FjdtmUEOHVDE=;
+	s=arc-20240116; t=1706547288; c=relaxed/simple;
+	bh=9g45N6/MADpyEGs1h43irAmI5VQUJUrNHZl1OlCSX+4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CEBspswqVpXKrq45w5Rp0fpX2s4Rip4r/CoQ6ka7oC1auwFCe8SbnVFoVB1YMfBBc+jEUwI0a7nY5bFLu78JugbA9O0wwhSeE3NQHwx2KUwytMiH2nS4Gn3VwdF/ePbKDFf/uq7zFFLEdNCBt3w+uY6XJkMkeJOcu+K3dZax6CM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E+hVcMcz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C9F4C433C7;
-	Mon, 29 Jan 2024 16:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706547119;
-	bh=Tere6Vxvz/ed/+qOczM5/zXeFie6UH3FjdtmUEOHVDE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E+hVcMczXYoZwjx5iobCvRdHJflXivAr+727+oIPradNseUtwlzkDMBaOmHo17UDf
-	 6jYj1c6sudKkKAcrAEybsZUoVw1iJtz+teX1reyrtHkVR5DRbF+LUgD1JWxZvLaRb5
-	 AyPeurvXiFgSUQtSR2jEL/MzDbjaqDAqRRl6YDI2IgA8MY5vQ+qaERRd8rR5C1Pvgp
-	 ZBdSMkTBY91LMIDawr9Pbff2AJeD6YKjwGfNWEvLS9tCayJzgn6YCP84/SNRp7+dej
-	 V1K6l4oidJedDLe6gZSZk+wJhwdrNWhReI9OG2bNS7JgHLkfosCGzIlyNEINWvuHUA
-	 LIOY/ekd3r9kQ==
-Date: Mon, 29 Jan 2024 16:51:54 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iNIX+uy4hn2tdaQ2HBHKhjcCO8rXT5LKDt8FD3Ot5N0Yc2xWyGrG77yg1o9CNsJMx6lwSy4i3dskxWb9tcHPdJ/Ldxa6PBmO9lLWENGzVxPAOKtuLUjbDVP0GMbnnhh7ryxHPxvS6EsmVxukakBNK7o3uiKCbFR1o4KXBrpJX5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=wboEuH0q; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=jVE+ke8oHRNLw6ovCoac3QPP9D2Or5p/ykbfeULK/JM=; b=wboEuH0qdKTwrGwunnLYH4BPPy
+	aFRzEaeDha1B60zPjw3n1PLzrTh2zsicbVTNQer1YeBcm4spDdqd/LiAAQSEVNo9LNPaOoT/0r6TO
+	LlvSt652JHIJ0AxGsNz3av1VyyPwzDdz46TbU9CwPNkgnMUHuutYRb06nLdAQBp6W8Cw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rUUto-006P1D-9x; Mon, 29 Jan 2024 17:54:20 +0100
+Date: Mon, 29 Jan 2024 17:54:20 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: qcom,ipa: do not override
- firmware-name $ref
-Message-ID: <20240129-anthill-boxcar-a73159ac1c79@spud>
-References: <20240129142121.102450-1-krzysztof.kozlowski@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Samin Guo <samin.guo@starfivetech.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jacob Keller <jacob.e.keller@intel.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: net: starfive,jh7110-dwmac: Add
+ JH7100 SoC compatible
+Message-ID: <e99e72b3-e0f6-4a80-82c8-bd60c36d180a@lunn.ch>
+References: <20240126191319.1209821-1-cristian.ciocaltea@collabora.com>
+ <20240126191319.1209821-2-cristian.ciocaltea@collabora.com>
+ <0a6f6dcb-18b0-48d5-8955-76bce0e1295d@linaro.org>
+ <e29ae12b-5823-4fba-8029-e8e490462138@collabora.com>
+ <56f3bd3c-c099-405b-837b-16d8aeb4cc4b@lunn.ch>
+ <8c4cfc54-bd23-4d56-a4ae-9f3dd5cedb59@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="sjsnelgbeNpCDbvr"
-Content-Disposition: inline
-In-Reply-To: <20240129142121.102450-1-krzysztof.kozlowski@linaro.org>
-
-
---sjsnelgbeNpCDbvr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <8c4cfc54-bd23-4d56-a4ae-9f3dd5cedb59@collabora.com>
 
-On Mon, Jan 29, 2024 at 03:21:21PM +0100, Krzysztof Kozlowski wrote:
-> dtschema package defines firmware-name as string-array, so individual
-> bindings should not make it a string but instead just narrow the number
-> of expected firmware file names.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Mon, Jan 29, 2024 at 06:38:27PM +0200, Cristian Ciocaltea wrote:
+> On 1/29/24 15:34, Andrew Lunn wrote:
+> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>
+> >> Thank you for the review!
+> >>
+> >> Could you please apply it to the RESEND version [1] instead, as this one 
+> >> had an issue collecting the latest tags, as indicated in [2].
+> >>
+> >> Regards,
+> >> Cristian
+> > 
+> > Hi Cristian
+> > 
+> > IT is your job as developers to collect together such reviewed-by:
+> > tags add apply them to the latest version. So long as there are no
+> > major changes, they are still consider applicable.
+> 
+> Hi Andrew,
+> 
+> Jakub requested a rebase, but I missed a tag and that's why I submitted
+> the RESEND.  Now we got this new tag which is not on the RESEND
+> submission, that's why I asked Krzysztof if he could add his R-b on that
+> one.  Unless the maintainers' tooling is able to fetch tags from both
+> submissions?!
 
-Cheers,
-Conor.
+Well, b4 can do that:
 
+https://b4.docs.kernel.org/en/latest/contributor/trailers.html
 
---sjsnelgbeNpCDbvr
-Content-Type: application/pgp-signature; name="signature.asc"
+But i've no idea if the netdev tooling actual does.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbfXqQAKCRB4tDGHoIJi
-0lfXAQC1ejpO+kSb2Dfpi4BzRds5tGo/fgK/EdsP/ySoLnyhrQEA28RolBg1YnvV
-IRrIGSK94JgSp+hJqsKTpBnHMmxKXgU=
-=uGjc
------END PGP SIGNATURE-----
-
---sjsnelgbeNpCDbvr--
+    Andrew
 
