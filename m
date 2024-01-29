@@ -1,320 +1,199 @@
-Return-Path: <devicetree+bounces-36125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5919840003
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:26:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D13840017
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:30:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C6D12842BC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:26:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B018B21940
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:29:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1FF9537EC;
-	Mon, 29 Jan 2024 08:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A6A7537EE;
+	Mon, 29 Jan 2024 08:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l5Dn+Ypc"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="PQkLgjxN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2096.outbound.protection.outlook.com [40.107.114.96])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7B554679;
-	Mon, 29 Jan 2024 08:26:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706516770; cv=none; b=XL0bYORIFHcaTGqtYUYxiwmIhzMD/Jkd9Ur4ISJldJmGAkxNlRhQ3BfTVNYz89gy5bB2QPEX0fOWskTnslzUtHKMtRcI+Au1Jj9nZhU7pP0IdLNvak60asMPv5xnhE7W/kSqlvPxoR4o1Bztr6FmOAAjNxCr98OseQ3V/vLh9o8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706516770; c=relaxed/simple;
-	bh=+VJrF1WdLLxvDRKuF93xTUcEPpjeJ+F1jPbs0GIt0Dc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=P3apUsG8s3IkDXQu7Y270cDpjUZDRXVPi2FimctyXBs9oV5+k3svSmTQvk5HBfYZWCuMEjMtkwYBCe7LFLXFsPvHAwgZ21qDqPLz4JVF8QpIyNY2SoqcWpeMYIeRUm4pTHYPwjBTIrSecWv/kj63QGpujO6V9XjJtvg0F9uXg20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l5Dn+Ypc; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a354408e6bfso241639166b.1;
-        Mon, 29 Jan 2024 00:26:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706516767; x=1707121567; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+VJrF1WdLLxvDRKuF93xTUcEPpjeJ+F1jPbs0GIt0Dc=;
-        b=l5Dn+YpcA23PPJInAF78qN/zyf/P4DhkVJaScZkoJg+EqK7lwHJ+CrdAPtjCdAlWhx
-         v2tisCPdGdctV+62QNpb2dm1d7ubzpfPOz39OIj3vojrD43BGoYtXLDGmRGyU/gcX784
-         RN22+7kiTYQhY2UQ8vk6xoZKq9c9O5Gv8ix5BajzfYybV1hsAL07au5qP5V0DE4pbnp9
-         FZTFQ6/mHOioc7FGUN8y99Rsq5XMGEItcxM0ShTs8jlLNVBDj+L/rpm1she4G1alymKV
-         9PbAwxgWKM+4zldP6X8Xpa/ZEusGkItZAYtp9H8bJgEOZSJVeCXk2inj9erMP0+OSrlu
-         U2bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706516767; x=1707121567;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+VJrF1WdLLxvDRKuF93xTUcEPpjeJ+F1jPbs0GIt0Dc=;
-        b=EPbKLIHbNR3BcvVZSEEOgAj8mzSeOGvez0PWdd1kdN0Ex2twS6JM/m8T6auFP5ei9f
-         T+FcjFG7dd/YfdEQXwdrQrR6FNiFuKCESPcVE6i9YCdQ1KWFmAHHqvR21vfqh+Xpv//u
-         Dkq4IOxVEzwNSXBK4LNJS6zn+ezulLvx5mzUPmyPYy8K5KsxvxzxfPS0HxsSmQ1HXeSb
-         XJsLdbxQZd3ZAPDADQJIB7fW2r4BKa2DMfthC+EyzKr+O8InPrz+CNlrUKsltMlQc9CG
-         ohAIEY+DdykAUcqqtXewjWcxOx2zAY71An2F3BBDntQJ3sK5IEz+iVW6ErGgoiF+oMf2
-         gEGw==
-X-Gm-Message-State: AOJu0YxM5UApuPwTDblHihpH79Ap8Y6YCmDtTFfwDlUt2b7UMtZrx4zf
-	fDnVv9i4i+V3oZ8Tt/09St+b0drefypZLLu11oEun23HgXrAuOuJ
-X-Google-Smtp-Source: AGHT+IHwm6NBwZc535gjo1NkSmAh0QPivN7JK4ksolBBiRjkiwCokdZNVM1xbtLPF+pwuXXzzfO0FQ==
-X-Received: by 2002:a17:906:468e:b0:a35:d634:ed70 with SMTP id a14-20020a170906468e00b00a35d634ed70mr833775ejr.31.1706516766720;
-        Mon, 29 Jan 2024 00:26:06 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
-        by smtp.gmail.com with ESMTPSA id pv13-20020a170907208d00b00a35b708185esm840011ejb.71.2024.01.29.00.26.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jan 2024 00:26:06 -0800 (PST)
-Message-ID: <b119a1fbc5f50b77d135e8995be95e0b5bf05613.camel@gmail.com>
-Subject: Re: [PATCH v7 4/9] driver: core: allow modifying device_links flags
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Saravana Kannan
- <saravanak@google.com>, nuno.sa@analog.com, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Frank Rowand <frowand.list@gmail.com>, Olivier Moysan
- <olivier.moysan@foss.st.com>
-Date: Mon, 29 Jan 2024 09:29:23 +0100
-In-Reply-To: <20240127151511.4763cd61@jic23-huawei>
-References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
-	 <20240123-iio-backend-v7-4-1bff236b8693@analog.com>
-	 <CAGETcx8_0ExTG4ASb9xK-uwmubMFDx44_wUf1h3VsO8w9jJApQ@mail.gmail.com>
-	 <8eae083af481441d83df02a1880e2aedf99efdfb.camel@gmail.com>
-	 <ef59aaa2a251e92d463d8983ab6eec459298c102.camel@gmail.com>
-	 <CAJZ5v0iHJpvzrNSB4XEYxbTN+kQ6G_NXYrK4Z17WiFOTYDbm9w@mail.gmail.com>
-	 <ff0b5a9362061fb6969099bc7ae6a0b43707968f.camel@gmail.com>
-	 <f6cfd587242001326ea6fdb9678359c1289202e5.camel@gmail.com>
-	 <20240127151511.4763cd61@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA3BE53E07;
+	Mon, 29 Jan 2024 08:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.96
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706516993; cv=fail; b=MYZOlyP6XsEXbfrPW19Vn3jgpLHtXH+73pM2MnQf8DgeiQuFrdlGkslWMmdqK2MfDMViuvqMQ4Zv1+M1gV42OtVSHOKdghj8VkU4fi1VffRl65YPNlZQlEAIqVuD4FL5LU1IhpMVPj8+Ee2VBRxF1h9prbx/MgClm2qn7PRj5HM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706516993; c=relaxed/simple;
+	bh=/+JvgUmL0juX3WbXNrG/lnO59GexQZw96WgPAXOF9J4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=MW7j4xMO+Rg6mBr9lnX3ECA4i3PLvH3xyqEcNxjLGqcqJ4WvdLmaRwCFctvDmo6uSHGsK6ttgKqKA6cp99LWCwBFbTCKt8adVfikGU5rxHrFPypSBlc2ZRcvNBWoGs0BB95Tsj/01I9DQRWPnYx3S/Sv3kzYdx8PTunZOpoUWCY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=PQkLgjxN; arc=fail smtp.client-ip=40.107.114.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gogjDsltdJWybt2mb62kLodTrT/s5Z20GZfIGVO4xN+3CyS7Zl2kqk7QesZn0NV4PFJ9cn2ZqCJ9cVvsS7rb08/ubkkDBHEMdGmxLEaqQA9wcAsHDjemMqIL2vVCSXqtRICM2Rs/dW8JMK2G3QX1XWoLx92bdcdJlEXDqsIGk+lc6iv10VSVB2N5tAQce4tlbJl6dEGavlvVmRMWErmr0Bcgoxy5hgxEh0HmTXkMmwwfVuojT3NXrUgoPSdjTIdo72JQZL3mD3Aiun2rDSoz6IkkecEZRb3lOBi2z4LNlJ5PyZo0Gql0F9iYdYkO5WD7gwLVF0DWwxwSRktmEM5yCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/+JvgUmL0juX3WbXNrG/lnO59GexQZw96WgPAXOF9J4=;
+ b=QP/0hftkdK9JTIorr22N9RbEHO6oXygJveTQqQwuFFrUCZJ/QiFCnvxshRb/xSu2U6Q1U5wlB7Em7quVBgIMc1aUmObmh9rN/QK7bpfKfUc3rlwQ5/+rxd8rxHWJm/DqzpWuwshf+yPTcHsGrdHLAMWWDY5niowXiRZaHVPgPg8NkaociKa1s4+aC9FzKNGBMffKyox8qCQ+Itk6pIHpmjoA+1FyJQBlOPhADYANtcqfOgEBxRw14bqCjN2VCjwHtCINE7cMLVGRS/3jDpv8e3R351IJcKOzuXiCLbQ5yxU4dhm9FaqP5/X9lGlFFVMAZ4fqUSglezpZss6++/JIWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/+JvgUmL0juX3WbXNrG/lnO59GexQZw96WgPAXOF9J4=;
+ b=PQkLgjxNqO2fh+JwDFm/Q61AUExFSP/7IXUN+MONFT+r5SZo2x5/fSYbIcfNasnOWqgTiOrDkcLp1j0sTDi+YJU3ag63fQYfg+TWo5TX/4CgWfIRy4RS+iod0yH2mMlkwrUZC7N431c1hqPUberUPt8rLl7JABaZGoRpxqbmUyc=
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ (2603:1096:400:3c0::10) by TYCPR01MB10116.jpnprd01.prod.outlook.com
+ (2603:1096:400:1ec::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.19; Mon, 29 Jan
+ 2024 08:29:46 +0000
+Received: from TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::8d12:a02a:9fdc:9c78]) by TYCPR01MB11269.jpnprd01.prod.outlook.com
+ ([fe80::8d12:a02a:9fdc:9c78%5]) with mapi id 15.20.7249.017; Mon, 29 Jan 2024
+ 08:29:46 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Lee Jones <lee@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Dmitry Torokhov
+	<dmitry.torokhov@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: Support Opensource <support.opensource@diasemi.com>, "Rafael J. Wysocki"
+	<rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui
+	<rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Steve Twiss
+	<stwiss.opensource@diasemi.com>, "linux-input@vger.kernel.org"
+	<linux-input@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-pm@vger.kernel.org"
+	<linux-pm@vger.kernel.org>, "linux-watchdog@vger.kernel.org"
+	<linux-watchdog@vger.kernel.org>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
+	<biju.das.au@gmail.com>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v6 0/8] Convert DA906{1,2} bindings to json-schema
+Thread-Topic: [PATCH v6 0/8] Convert DA906{1,2} bindings to json-schema
+Thread-Index: AQHaLmTZZmVT0psB8keMNtPm4cmnmbCz04OAgAAE+gCAPOHi4A==
+Date: Mon, 29 Jan 2024 08:29:46 +0000
+Message-ID:
+ <TYCPR01MB1126921A54B9260CC33505FCA867E2@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+References: <20231214080911.23359-1-biju.das.jz@bp.renesas.com>
+ <170316812973.586675.6248412029985031979.b4-ty@kernel.org>
+ <20231221143318.GH10102@google.com>
+In-Reply-To: <20231221143318.GH10102@google.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB11269:EE_|TYCPR01MB10116:EE_
+x-ms-office365-filtering-correlation-id: 4a11c383-45d9-4ae0-7ad5-08dc20a473aa
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ vUjVH/dNlJOwTn81uievgTht6+CS6dxhaz23ljXvwd9k2eC927yEEgX0F7hFj37TUCUjHg8ArYcSY+Fg7ABjCbqMW3IegxQJZTzyeFw6rEhp9yHDfuPtbsMX4BxDciCv9DRu9FCxcDBX3lZ5cE/A0I1zL58M3TWa1R7HhmiurIgdnUPvok15QWWbtQihodCOYBGCZ7ddxysBtPEWVR+Ky7uGgB2ytjWFMaFqJe/EgK+S0MAMVQtJkV0v13lmZ3LX15vfTDfSDbbb4aemQ9oK1pxO4koOo6iCgDPBEifQrpWFtKs9MHd+l+0/4IOXXwHJdGytxXhmtm1+63gOJ25nIQVIzQEEg5l4FRXrrWyRp3vlYXESSTSfTi9Ya8io5VYXdSOmdwJ8Pq06ZbDMW4Uod9co8Lh+H8te0O+ikf2/pptTHNaZ4Eh77CkjEpeqCANgdawscRCwgGag1bnY7fOcet2sm3CMfLLvJ0cHFs/pyUkILcF3jLg31PRuHyFMFXCWdqHfKiQCFBzWhchcRwX/F6HZ2Ko0/P7rO2NdWO0fd6bz+Lvv/X3qYijMQFQLGD/uTTwZ97tO9OlezQKbX1awsXhQyd3L6fEiNqgOIyoRR529f2QjGbRQDqdnYvQ358nD
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11269.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(396003)(366004)(39860400002)(376002)(136003)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(55016003)(83380400001)(26005)(7696005)(6506007)(53546011)(33656002)(86362001)(38070700009)(7416002)(5660300002)(52536014)(41300700001)(4326008)(8936002)(8676002)(9686003)(38100700002)(122000001)(66556008)(66446008)(76116006)(66946007)(66476007)(110136005)(64756008)(54906003)(71200400001)(2906002)(478600001)(316002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?WngzemdRTHkzYkQxZXRITmt6RHJUa0tFN0kvZ0lrRFhwZXlnVFVMcWdnTFlO?=
+ =?utf-8?B?dkgxVVZFeWJCUXFzUm9qSzMzS3R0SDhxZTVzVFJpeW1qUmRjUHIrL0QwM2xv?=
+ =?utf-8?B?b0FUNWNYekxVL050WEg1Y0ZhSG9YelAzZTZmcWZZQmI5cjdUamxjdXZBOWFC?=
+ =?utf-8?B?NDFCU1V6dGUySFl3VjJtZVVmUkt6NFJyeXp5ZFlidVNxNnQ5YVAzL0NLRk94?=
+ =?utf-8?B?dmoxaWtnK2tCWGJwUTZROFM0RHdVMy8wMWEzQkx4SzVvR1RVT29LZGluRXYz?=
+ =?utf-8?B?cHNPLzR3NkN6dTVLZjlwenljKzZFWmNWNzFqa0RTRkNGMXUvZXBoYVh1WVFW?=
+ =?utf-8?B?ZEswR2JEeHYwaEFyS1drWW5qU2RsM3V1dXdNbEhrejdWTGdpckhjeklOZVhv?=
+ =?utf-8?B?Z1VtcVloUzAxNEdBVHlkZUxrSUVZMnV2NUtsYXNrNS9Ed1M4eGZzVVM1a0s5?=
+ =?utf-8?B?V3Y0cUZKY1JGV0J6WkMvQWRXeHVNQlViTUdzK21EUElGRzVVNnM0R1lRQkly?=
+ =?utf-8?B?VGZXdC91WTg5R2kzZEM4ZFd5Q2tKbEF4bDJxSXNOZDZLNklpUXZPb2R0cE5l?=
+ =?utf-8?B?OVdGQmJ6Z294dDlXcW1FUUprbnhtSitvdlNkQ290L2JtN2dsTWpGK1pMTEFJ?=
+ =?utf-8?B?U29lV1NUajdRcUNYTkhCWlhpK2pNcUc5R3RBUkNBbUJTRWY3MG9kWEhRY2ZI?=
+ =?utf-8?B?aW91U2Uwek1kV2haM0FYMUhtWkFVSmUrZ3JGVm93cFJsdll4Z3k0bm9rNExX?=
+ =?utf-8?B?SHhBMUZMRzFzcks1Yk5COUxNM1hzTkFrajV6Wnl5NTAxc2kvejFiSllxRG1N?=
+ =?utf-8?B?dXNseU5OMXRJblZmVHlmbUNsOG4zUGNqU0NHaWVpQmlMWWw4NlVxNGRYeXlK?=
+ =?utf-8?B?QjZ1SDZuRjJUdHdwaGJ0cFpXMEFjcXdPSUFVeXdTOUxGWWxKbFBIVG9Wb1Rx?=
+ =?utf-8?B?Y3M2TkxNM2NWMnFNQnRLUVYyU1hpd2hwQk5jL2pLMjV4VGd4VFc5THptRUd1?=
+ =?utf-8?B?cDBXa2d6dWRQSE9ZbllXVS9JMnlQeE9vSXlxOGwyZkk4NGdVVzRvOFlkajZ0?=
+ =?utf-8?B?Z0hsK29qeFVKL1hQeHp4czdjMnRjMk9iTHBFL3RNcUxRcm1uWThiZkFGalFO?=
+ =?utf-8?B?VUgzYURLUmlNMitLeTN4Z0tnOTEzY2xMVVUvcHdGbUozVk16LzBlL1IyL2VK?=
+ =?utf-8?B?ZDVqL1FZRVAzMTNYYU85ZElmVWdaMkEwbHozcG9LNTZvR0V6R3RRUlVoOGp1?=
+ =?utf-8?B?Tld3Q2xNRUh5b1pLNHZJMG9xRndVNW16T25ISFUwLzQ4R1B4Ylg2UHZOTHRt?=
+ =?utf-8?B?bUk0UU9sN2Ywd0ROTVRzcStRL1lDcytFZzdPZndaVVFoVW9vSHoxN1pHZ0x0?=
+ =?utf-8?B?U1pzRmM1NER6Wm5ueGhGd2pabXJRcjN6bU1GTlBFR2JCR3FvcDBCNXl0OE0w?=
+ =?utf-8?B?dERiSktpWkNOaXZlcjFTbmlzeUlZaUloZFppMmt6d0NYS0dNZGpYZEZKZmoy?=
+ =?utf-8?B?cStST1RJNzFFclNxRHdGUW1zSjZOazhhR3ovdDNXWStnSXc2bC9hb251Vy95?=
+ =?utf-8?B?RDlFa1RibmtHbkhqTHE5VlhBd0xxSlRDb1I1NnVqeHlOWVN5bW1sV2FtcG9T?=
+ =?utf-8?B?NjJ2YkY1eWFXakEyWWlPc2crbkZkYU9EaVZrN2NWNUVMdXQ1Z0krVTloc05t?=
+ =?utf-8?B?OHNFOVlLM0EzbThPcXhwZk95MXhsZkxhSTd4VzNHM2RLVVF5OFF0dzA0dXN2?=
+ =?utf-8?B?MnNDWXpYeU9mWkFmOGpQaG1iZVJBTy9JR0RMSGg0NmVmTDc2M05rZWZNdk4z?=
+ =?utf-8?B?bnVQWVpuQVM4TENTQUFVblZBMDJpWTNGU01lSi9oNmszTGQ0YmJZMDNPc2Mw?=
+ =?utf-8?B?cjlWZHM3dTlCWlpENmczOEpaNXI4WnVHZEFHdkNmaHNwSzIrMEZLeTEySDdj?=
+ =?utf-8?B?QjhWWkVhMkVrdzhaUDkwVWROdFlOMUozYkwwWGFFUm9VSEFwM3IranZlaCtO?=
+ =?utf-8?B?K1NsSG5FQ0FmbWdWcmRmZk1RKzdSakpsWTZFZ2k2VzllWGtNd1JLSW1FS0Zq?=
+ =?utf-8?B?U0RpR05mNnJhVmZJeHZpaFgyZityYURWS3NQMW1OVHg0ME9KNHpzQWVDRDJh?=
+ =?utf-8?B?UmR6cU1YTHhXMVpIYktiWmZKQjYrVnA5Y0lIcENSYXE4aGd4emlOL05TbFlo?=
+ =?utf-8?B?T3c9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11269.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a11c383-45d9-4ae0-7ad5-08dc20a473aa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jan 2024 08:29:46.6926
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: C/t1qKm224d+rLv+qby4PY2NApVbVA++2Da1WxdOVRcC8tdr3tcEcWdHPtgOFEd4N3qmvHfttQUVFkLNBMBaddW0AZSyuVN/h8MgHNRX/J4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB10116
 
-On Sat, 2024-01-27 at 15:15 +0000, Jonathan Cameron wrote:
-> On Fri, 26 Jan 2024 15:26:08 +0100
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > On Fri, 2024-01-26 at 09:04 +0100, Nuno S=C3=A1 wrote:
-> > > On Thu, 2024-01-25 at 17:57 +0100, Rafael J. Wysocki wrote:=C2=A0=20
-> > > > On Thu, Jan 25, 2024 at 4:31=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@g=
-mail.com> wrote:=C2=A0=20
-> > > > >=20
-> > > > > On Thu, 2024-01-25 at 09:14 +0100, Nuno S=C3=A1 wrote:=C2=A0=20
-> > > > > >=20
-> > > > > > Hi Saravana,
-> > > > > >=20
-> > > > > > Thanks for your feedback,
-> > > > > >=20
-> > > > > > On Wed, 2024-01-24 at 19:21 -0800, Saravana Kannan wrote:=C2=A0=
-=20
-> > > > > > > On Tue, Jan 23, 2024 at 7:14=E2=80=AFAM Nuno Sa via B4 Relay
-> > > > > > > <devnull+nuno.sa.analog.com@kernel.org> wrote:=C2=A0=20
-> > > > > > > >=20
-> > > > > > > > From: Nuno Sa <nuno.sa@analog.com>
-> > > > > > > >=20
-> > > > > > > > If a device_link is previously created (eg: via
-> > > > > > > > fw_devlink_create_devlink()) before the supplier + consumer=
- are
-> > > > > > > > both
-> > > > > > > > present and bound to their respective drivers, there's no w=
-ay to
-> > > > > > > > set
-> > > > > > > > DL_FLAG_AUTOREMOVE_CONSUMER anymore while one can still set
-> > > > > > > > DL_FLAG_AUTOREMOVE_SUPPLIER. Hence, rework the flags checks=
- to
-> > > > > > > > allow
-> > > > > > > > for DL_FLAG_AUTOREMOVE_CONSUMER in the same way
-> > > > > > > > DL_FLAG_AUTOREMOVE_SUPPLIER is done.=C2=A0=20
-> > > > > > >=20
-> > > > > > > Curious, why do you want to set DL_FLAG_AUTOREMOVE_CONSUMER?
-> > > > > > > Especially if fw_devlink already created the link? You are
-> > > > > > > effectively
-> > > > > > > trying to delete the link fw_devlink created if any of your
-> > > > > > > devices
-> > > > > > > unbind.
-> > > > > > > =C2=A0=20
-> > > > > >=20
-> > > > > > Well, this is still useful in the modules case as the link will=
- be
-> > > > > > relaxed
-> > > > > > after
-> > > > > > all devices are initialized and that will already clear
-> > > > > > AUTOPROBE_CONSUMER
-> > > > > > AFAIU. But, more importantly, if I'm not missing anything, in [=
-1],
-> > > > > > fw_devlinks
-> > > > > > will be dropped after the consumer + supplier are bound which m=
-eans
-> > > > > > I
-> > > > > > definitely
-> > > > > > want to create a link between my consumer and supplier.
-> > > > > > =C2=A0=20
-> > > > >=20
-> > > > > Ok, so to add a bit more on this, there are two cases:
-> > > > >=20
-> > > > > 1) Both sup and con are modules and after boot up, the link is re=
-laxed
-> > > > > and
-> > > > > thus
-> > > > > turned into a sync_state_only link. That means the link will be
-> > > > > deleted
-> > > > > anyways
-> > > > > and AUTOPROBE_CONSUMER is already cleared by the time we try to c=
-hange
-> > > > > the
-> > > > > link.
-> > > > >=20
-> > > > > 2) The built-in case where the link is kept as created by fw_devl=
-ink
-> > > > > and
-> > > > > this
-> > > > > patch effectively clears AUTOPROBE_CONSUMER.
-> > > > >=20
-> > > > > Given the above, not sure what's the best option. I can think of =
-4:
-> > > > >=20
-> > > > > 1) Drop this patch and leave things as they are.
-> > > > > DL_FLAG_AUTOREMOVE_CONSUMER
-> > > > > is
-> > > > > pretty much ignored in my call but it will turn the link in a MAN=
-AGED
-> > > > > one
-> > > > > and
-> > > > > clear SYNC_STATE_ONLY. I could very well just pass 0 in the flags=
- as
-> > > > > DL_FLAG_AUTOREMOVE_CONSUMER is always ignored;
-> > > > >=20
-> > > > > 2) Rework this patch so we can still change an existing link to a=
-ccept
-> > > > > DL_FLAG_AUTOREMOVE_CONSUMER (in the modules case for example).
-> > > > >=20
-> > > > > However, instead of clearing AUTOPROBE_CONSUMER, I would add some
-> > > > > checks
-> > > > > so
-> > > > > if
-> > > > > flags have one of DL_FLAG_AUTOREMOVE_SUPPLIER or
-> > > > > DL_FLAG_AUTOREMOVE_CONSUMER
-> > > > > and
-> > > > > AUTOPROBE_CONSUMER is already set, we ignore them. In fact, right=
- now,
-> > > > > I
-> > > > > think
-> > > > > one could pass DL_FLAG_AUTOREMOVE_SUPPLIER and link->flags ends u=
-ps
-> > > > > with
-> > > > > AUTOREMOVE_SUPPLIER | AUTOPROBE_CONSUMER which in theory is not
-> > > > > allowed...=C2=A0=20
-> > > >=20
-> > > > No, because DL_FLAG_AUTOREMOVE_SUPPLIER is only added to the link
-> > > > flags if DL_FLAG_AUTOREMOVE_CONSUMER is already set in there and th=
-e
-> > > > former replaces the latter.
-> > > > =C2=A0=20
-> > >=20
-> > > Oh yes, I missed that extra if() against the DL_FLAG_AUTOREMOVE_CONSU=
-MER
-> > > flag...
-> > > =C2=A0=20
-> > > > Now, DL_FLAG_AUTOREMOVE_CONSUMER cannot be set in the link flags if
-> > > > AUTOPROBE_CONSUMER is set in there.
-> > > > =C2=A0=20
-> > > > > 3) Keep it as-is... This one is likely a NACK as I'm getting the
-> > > > > feeling
-> > > > > that
-> > > > > clearing stuff that might have been created by fw_devlinks is pro=
-bably
-> > > > > a
-> > > > > no-
-> > > > > go.
-> > > > >=20
-> > > > > Let me know your thoughts...=C2=A0=20
-> > > >=20
-> > > > If the original creator of the link didn't indicate either
-> > > > DL_FLAG_AUTOREMOVE_CONSUMER, or DL_FLAG_AUTOREMOVE_SUPPLIER, they a=
-re
-> > > > expected to need the link to stay around until it is explicitly
-> > > > deleted.
-> > > >=20
-> > > > Therefore adding any of these flags for an existing link where they
-> > > > both are unset would be a mistake, because it would effectively cau=
-se
-> > > > the link to live shorter than expected by the original creator and
-> > > > that might lead to correctness issues.
-> > > >=20
-> > > > Thanks!=C2=A0=20
-> > >=20
-> > > Thanks Rafael, your last two paragraphs make it really clear what's t=
-he
-> > > reasoning and why this patch is wrong.
-> > >=20
-> > > Jonathan, if nothing else comes that I need a re-spin, can you drop t=
-his
-> > > patch
-> > > when applying?
-> > >=20
-> > > I think we can keep the DL_FLAG_AUTOREMOVE_CONSUMER in the
-> > > device_link_add()
-> > > call as it will be ignored if fw_devlinks already created the link bu=
-t
-> > > might
-> > > be
-> > > important if the kernel command line fw_devlink is set to 'off'.
-> > >=20
-> > > Or maybe, as Saravan mentioned in his reply we can just pass
-> > > DL_FLAG_MANAGED
-> > > as=C2=A0=20
-> >=20
-> > Forget about this as I just realized DL_FLAG_MANAGED is not a proper fl=
-ag we
-> > can
-> > pass...
-> >=20
-> > - Nuno S=C3=A1
-> >=20
->=20
-> Discussion has gotten too complex - so even if no changes, send a v8 drop=
-ping
-> the patch (assuming that's the end conclusion!)
->=20
-
-Dropping the patch is pretty much decided is the right thing to do. The onl=
-y
-thing I'm still thinking is that if I should use AUTOPROBE_CONSUMER (as
-fw_devlinks) instead when creating the link. With that flag, any IIO consum=
-er of
-the IIO backend will be automatically probed as soon as the backend is prob=
-ed.
-It also has the advantage of keeping the link around (vs AUREMOVE_CONSUMER =
-which
-deletes the link when the IIO consumer is gone) so in the re-bind case we c=
-an
-avoid useless EPROBE_DEFERs.=C2=A0
-
-It's a nitpicky thing in the end and not really that important. Moreover be=
-cause
-I expect that in 99% of the usecases, fw_devlinks will already create our l=
-ink
-so the flags we pass in our call don't really matter. Note that our explici=
-t
-call is still important (as I explained to Saravan in another email) as we =
-based
-the design with the assumption that the consumer can never be around withou=
-t the
-backend. And in the case we have modules, we can have the links created by
-fw_devlinks removed unless we explicitly call device_link_add() (and that w=
-ould
-mean our previous assumptions are no longer valid).
-
-
-- Nuno S=C3=A1
-
+SGkgTGVlIEpvbmVzLA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IExl
+ZSBKb25lcyA8bGVlQGtlcm5lbC5vcmc+DQo+IFNlbnQ6IFRodXJzZGF5LCBEZWNlbWJlciAyMSwg
+MjAyMyAyOjMzIFBNDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjYgMC84XSBDb252ZXJ0IERBOTA2
+ezEsMn0gYmluZGluZ3MgdG8ganNvbi1zY2hlbWENCj4gDQo+IE9uIFRodSwgMjEgRGVjIDIwMjMs
+IExlZSBKb25lcyB3cm90ZToNCj4gDQo+ID4gT24gVGh1LCAxNCBEZWMgMjAyMyAwODowOTowMyAr
+MDAwMCwgQmlqdSBEYXMgd3JvdGU6DQo+ID4gPiBDb252ZXJ0IHRoZSBiZWxvdyBiaW5kaW5ncyB0
+byBqc29uLXNjaGVtYQ0KPiA+ID4gMSkgREE5MDZ7MSwyfSBtZmQgYmluZGluZ3MNCj4gPiA+IDIp
+IERBOTA2ezEsMiwzfSBvbmtleSBiaW5kaW5ncw0KPiA+ID4gMykgREE5MDZ7MSwyLDN9IHRoZXJt
+YWwgYmluZGluZ3MNCj4gPiA+DQo+ID4gPiBBbHNvIGFkZCBmYWxsYmFjayBmb3IgREE5MDYxIHdh
+dGNoZG9nIGRldmljZSBhbmQgZG9jdW1lbnQNCj4gPiA+IERBOTA2MyB3YXRjaGRvZyBkZXZpY2Uu
+DQo+ID4gPg0KPiA+ID4gWy4uLl0NCj4gPg0KPiA+IEFwcGxpZWQsIHRoYW5rcyENCj4gPg0KPiA+
+IFsxLzhdIGR0LWJpbmRpbmdzOiBtZmQ6IGRhOTA2MjogVXBkYXRlIHdhdGNoZG9nIGRlc2NyaXB0
+aW9uDQo+ID4gICAgICAgY29tbWl0OiA5ZTdiMTNiODA1YmNiZTUzMzVjMjkzNmQ0YzdlYTAzMjNh
+YzY5YTgxDQo+ID4gWzIvOF0gZHQtYmluZGluZ3M6IHdhdGNoZG9nOiBkbGcsZGE5MDYyLXdhdGNo
+ZG9nOiBBZGQgZmFsbGJhY2sgZm9yDQo+IERBOTA2MSB3YXRjaGRvZw0KPiA+ICAgICAgIGNvbW1p
+dDogMjhkMzRkYjc3NzJmMTg0OTBiNTIzMjhmMDRhM2JmNjllZDUzOTBkMg0KPiA+IFszLzhdIGR0
+LWJpbmRpbmdzOiB3YXRjaGRvZzogZGxnLGRhOTA2Mi13YXRjaGRvZzogRG9jdW1lbnQgREE5MDYz
+DQo+IHdhdGNoZG9nDQo+ID4gICAgICAgY29tbWl0OiBkMmE3ZGJiODA4ODcwYzE3Y2ZmYTI3NDll
+YTg3N2Y2MWYyOThkMDk4DQo+ID4gWzQvOF0gZHQtYmluZGluZ3M6IG1mZDogZGxnLGRhOTA2Mzog
+VXBkYXRlIHdhdGNoZG9nIGNoaWxkIG5vZGUNCj4gPiAgICAgICBjb21taXQ6IGQ0MDE4NTQ3YTE1
+YTk0YzdlODY1YjJjZWY4MmJmZjFjZDQzYTMyYjMNCj4gPiBbNS84XSBkdC1iaW5kaW5nczogaW5w
+dXQ6IENvbnZlcnQgZGE5MDZ7MSwyLDN9IG9ua2V5IHRvIGpzb24tc2NoZW1hDQo+ID4gICAgICAg
+Y29tbWl0OiBkYjQ1OWQzZGE3YmI5YzM3Y2I4Njg5N2M3YjMyMWE0OWY4ZTQwOTY4DQo+ID4gWzYv
+OF0gZHQtYmluZGluZ3M6IHRoZXJtYWw6IENvbnZlcnQgZGE5MDZ7MSwyfSB0aGVybWFsIHRvIGpz
+b24tc2NoZW1hDQo+ID4gICAgICAgY29tbWl0OiA5OThmNDk5Yzg0M2UzNjBiY2Q5ZWUxZmU5YWRk
+YzNiNWQzMmYxMjM0DQo+ID4gWzcvOF0gZHQtYmluZGluZ3M6IG1mZDogZGxnLGRhOTA2MzogU29y
+dCBjaGlsZCBkZXZpY2VzDQo+ID4gICAgICAgY29tbWl0OiAyYmJmOWQyYThlM2JjOTMzNzAzZGZk
+YTg3Y2FjOTUzYmVkNDU4NDk2DQo+ID4gWzgvOF0gZHQtYmluZGluZ3M6IG1mZDogZGxnLGRhOTA2
+MzogQ29udmVydCBkYTkwNjIgdG8ganNvbi1zY2hlbWENCj4gPiAgICAgICBjb21taXQ6IDUyMjIy
+NTE2MTgzMGY2YTkzZjJhYWFiZGE5OTIyNmMxZmZkZGM4YzQNCj4gDQo+IFN1Ym1pdHRlZCBmb3Ig
+dGVzdGluZy4gIFB1bGwtcmVxdWVzdCB0byBmb2xsb3cuDQoNClRoZSBjb21taXQgZGM4MDVlYTA1
+OGMwZSAoIk1BSU5UQUlORVJTOiByZWN0aWZ5IGVudHJ5IGZvciBESUFMT0cgU0VNSUNPTkRVQ1RP
+UiBEUklWRVJTIikNCmluIG1haW5saW5lIHdpbGwgZ2l2ZSBhIGNvbmZsaWN0IGZvciBwYXRjaCMx
+Lg0KDQpQYXRjaCMyIGFuZCBwYXRjaCMzIGFyZSBhbHJlYWR5IGluIG1haW5saW5lLg0KDQoNClBs
+ZWFzZSBsZXQgbWUga25vdyBpZiB5b3Ugd2FudCBtZSB0byByZWJhc2UgYW5kIHJlc2VuZCB0aGUg
+cGF0Y2ggc2VyaWVzDQoNCk9yIA0KDQp5b3Ugd2lsbCB0YWtlIGNhcmUgdGhlIE1BSU5UQUlORVJT
+IGNvbmZsaWN0IHdoaWxlIGFwcGx5aW5nLg0KDQpDaGVlcnMsDQpCaWp1DQo=
 
