@@ -1,148 +1,93 @@
-Return-Path: <devicetree+bounces-36223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2EDB8403AC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:19:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 968B08403AF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:20:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78B921F21B18
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:19:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E759FB20C6A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:20:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C21BC5B5C5;
-	Mon, 29 Jan 2024 11:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16F3537ED;
+	Mon, 29 Jan 2024 11:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="bDrBdVPh"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PH9we1gg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 069B6537ED;
-	Mon, 29 Jan 2024 11:19:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0655C8E8
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 11:20:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706527146; cv=none; b=OGJY/CimG8QsCjP+SXOa3p0bLqwtKwmzEfRGuO7SH9DOMD0Edggbm1zcl9Y9ROSKjmyVhvL3G7jISBrc5730JeQZ95+hILseQ6R+nK/fk4yBd29kil6q/jjPzbG19Wjmz3VioNooNEPtbDF9MEPcz4buAFjV030lmeHhZEdYFyo=
+	t=1706527210; cv=none; b=Of4Fj9J1REbojkLXChO4nY25SRn7mQj4iU2b6eIZOqy10yYv0xLeKDBYATautRRpNiu7JUmqkfZsOIUwFeD1pfVpUCJewyUlGHN64Xmte4CjMnNZVvCugNrkQK9T1FvtO2nV6g/th0Eg0RflN1BUJBY0yFhP712wjPQ5GWfqzZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706527146; c=relaxed/simple;
-	bh=yLOGBTgHsY29I1hO78KiXpoZtEairn+K3yOolLTw06E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hkzBYCLsvnIAkxD+v0+6Dus9zkkdk3oHGR2lNlSE1JrEIiB59ssQ2rNqoMVGT9hO8JZdXYRjwaOMxq45dJYWwVNK8MLoGWQFC/jgJFZCKC9xNPI+Qmhz3744ufuL98BUnMosOOooqr4Z8QGswkemyWsTfJYq9s1o7cOWmBn+F9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=bDrBdVPh; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1706527142;
-	bh=yLOGBTgHsY29I1hO78KiXpoZtEairn+K3yOolLTw06E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bDrBdVPhUdMv4lJG+ODzhQOnksbKEIC5ouN8rljgr3j0PmIVVyd0+IcNAfyFSid8n
-	 46gBMRGRqLu1XVBNZxTIRHc6Ftfk1Ra39qT08N6t3DigfYrIN4olucSqaM+vuKk9le
-	 xGEOn4Gej719qENCagRbATh+89tLyrdNQqLqvCMRQIkEV8n85V15zZRc8Ckv09Ghdh
-	 Yu4KDwnpx7WDtNuUVXV/K0KldJ1T2XBK275CU6lDfU8IXnJuG8CM2isQ982MXE3/oy
-	 ZtYbdYWqAlFKNWYlfYke9fyUN+3v3t5L+ytT/GID6pcQPEaOzGZsKRVfggDD1RivHG
-	 c/IcbTJ6aliEA==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 08AB03780029;
-	Mon, 29 Jan 2024 11:19:00 +0000 (UTC)
-Message-ID: <df6c8b2b-df56-46c5-933d-e56bf704525f@collabora.com>
-Date: Mon, 29 Jan 2024 12:19:00 +0100
+	s=arc-20240116; t=1706527210; c=relaxed/simple;
+	bh=EmN8RznQlcv3XJVtMjnrACuEdVkzu+e2XyXTojClPv0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=bhMhKsChFaOiZCnrW+ZKGy42RRuaHqLmh01fwaM6kuDYSO2CGeZ4LehRSPpb+UbU4dbUDZLa1WBOR8NVMWzNcOGUl8uueOHKlIki7ICq/qJBCVes8s1kGCtonsVfO1GBdvHqGJMLTBzIjKgsxeU+tVufAbQzbAf6E/guTvJxSyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PH9we1gg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA01AC433C7;
+	Mon, 29 Jan 2024 11:20:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706527210;
+	bh=EmN8RznQlcv3XJVtMjnrACuEdVkzu+e2XyXTojClPv0=;
+	h=Date:From:To:List-Id:Cc:Subject:From;
+	b=PH9we1ggCYxn4Q5BZ49a6vZ0G/ucZeZFCqfA03kqiDx40XbyB0Pci2kCfOZtAsLAa
+	 tAQqe4xf5ZT4xZobWJtNcUrdow2docIM35hOLyrgegISpvIClS7FP0Wy49CPpAzICB
+	 fznDQCgaAlOvU0tUD4dlHVZrsU8WhDT/YChEwAr23j3LTscvkJ4KWq+hnUaow+ZM1o
+	 6B31tfGJbHU+M5+PI8zlAbTBfzSpkSaH9BrXHqR1CSjdMHmC99GGM+pFcKv/mjbnz9
+	 IIAq3fl7kDw5qeYrdpfmskT7/MHzASmobNqXeK8UqFGhpw1A0TDOKJfGGeYv5Yvi9C
+	 R9Jyxluc5f6pg==
+Date: Mon, 29 Jan 2024 12:20:06 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+	devicetree@vger.kernel.org, John Crispin <john@phrozen.org>,
+	soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	dd@embedd.com
+Subject: Support for airoha en7581 Soc
+Message-ID: <ZbeJ5okKQ66FXGxP@lore-desk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2,1/2] media: mediatek: vcodec: adding lock to protect
- decoder context list
-Content-Language: en-US
-To: Yunfei Dong <yunfei.dong@mediatek.com>,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Nathan Hebert <nhebert@chromium.org>, Irui Wang <irui.wang@mediatek.com>
-Cc: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
- Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20240129023153.28521-1-yunfei.dong@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20240129023153.28521-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="30fnfXUcwDqiOIse"
+Content-Disposition: inline
 
-Il 29/01/24 03:31, Yunfei Dong ha scritto:
-> The ctx_list will be deleted when scp getting unexpected behavior, then the
-> ctx_list->next will be NULL, the kernel driver maybe access NULL pointer in
-> function vpu_dec_ipi_handler when going through each context, then reboot.
-> 
-> Need to add lock to protect the ctx_list to make sure the ctx_list->next isn't
-> NULL pointer.
-> 
-> Hardware name: Google juniper sku16 board (DT)
-> pstate: 20400005 (nzCv daif +PAN -UAO -TCO BTYPE=--)
-> pc : vpu_dec_ipi_handler+0x58/0x1f8 [mtk_vcodec_dec]
-> lr : scp_ipi_handler+0xd0/0x194 [mtk_scp]
-> sp : ffffffc0131dbbd0
-> x29: ffffffc0131dbbd0 x28: 0000000000000000
-> x27: ffffff9bb277f348 x26: ffffff9bb242ad00
-> x25: ffffffd2d440d3b8 x24: ffffffd2a13ff1d4
-> x23: ffffff9bb7fe85a0 x22: ffffffc0133fbdb0
-> x21: 0000000000000010 x20: ffffff9b050ea328
-> x19: ffffffc0131dbc08 x18: 0000000000001000
-> x17: 0000000000000000 x16: ffffffd2d461c6e0
-> x15: 0000000000000242 x14: 000000000000018f
-> x13: 000000000000004d x12: 0000000000000000
-> x11: 0000000000000001 x10: fffffffffffffff0
-> x9 : ffffff9bb6e793a8 x8 : 0000000000000000
-> x7 : 0000000000000000 x6 : 000000000000003f
-> x5 : 0000000000000040 x4 : fffffffffffffff0
-> x3 : 0000000000000020 x2 : ffffff9bb6e79080
-> x1 : 0000000000000010 x0 : ffffffc0131dbc08
-> Call trace:
-> vpu_dec_ipi_handler+0x58/0x1f8 [mtk_vcodec_dec (HASH:6c3f 2)]
-> scp_ipi_handler+0xd0/0x194 [mtk_scp (HASH:7046 3)]
-> mt8183_scp_irq_handler+0x44/0x88 [mtk_scp (HASH:7046 3)]
-> scp_irq_handler+0x48/0x90 [mtk_scp (HASH:7046 3)]
-> irq_thread_fn+0x38/0x94
-> irq_thread+0x100/0x1c0
-> kthread+0x140/0x1fc
-> ret_from_fork+0x10/0x30
-> Code: 54000088 f94ca50a eb14015f 54000060 (f9400108)
-> ---[ end trace ace43ce36cbd5c93 ]---
-> Kernel panic - not syncing: Oops: Fatal exception
-> SMP: stopping secondary CPUs
-> Kernel Offset: 0x12c4000000 from 0xffffffc010000000
-> PHYS_OFFSET: 0xffffffe580000000
-> CPU features: 0x08240002,2188200c
-> Memory Limit: none
-> 
-> 'Fixes: 655b86e52eac ("media: mediatek: vcodec: Fix possible invalid memory access for decoder")'
 
-Hello Yunfei,
+--30fnfXUcwDqiOIse
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-You've sent two patches as a v2, but:
-  - The two patches are identical (!) apart from the commit message?!
-  - It's Fixes: xxxx , not 'Fixes: xxxx' (please remove the quotes!)
-  - There's no changelog from v1, so, what changed in v2?!
+Hi Matthias,
 
-Cheers,
-Angelo
+I was wondering about the status of the following patches:
+https://lore.kernel.org/linux-arm-kernel/20231001122418.2688120-4-dd@embedd.com/T/#rbafabf4bf2473327f35ce7d79623f63838630537
 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->   .../platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c      | 4 ++--
->   .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c    | 5 +++++
->   .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h    | 2 ++
->   drivers/media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c | 2 ++
->   4 files changed, 11 insertions(+), 2 deletions(-)
-> 
+Do we need to respin them? Thx in advance.
 
+Regards,
+Lorenzo
+
+--30fnfXUcwDqiOIse
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZbeJ5gAKCRA6cBh0uS2t
+rH6UAP4qkxn7CkKcLaOW7Wu0RgdFjYWNJ4a1a/eLgMiAr1GwYgD/TXzi5bwXyZqG
+xTWAJFSl4n/BbU8cIyL2LGCy8Y4afQE=
+=fdcj
+-----END PGP SIGNATURE-----
+
+--30fnfXUcwDqiOIse--
 
