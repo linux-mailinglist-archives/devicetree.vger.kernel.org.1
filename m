@@ -1,148 +1,188 @@
-Return-Path: <devicetree+bounces-36118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7A7683FFCF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:16:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA92083FFDD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:18:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B4AAB20C61
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:16:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 579FF1F221D5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:18:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F13752F84;
-	Mon, 29 Jan 2024 08:16:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F9552F7D;
+	Mon, 29 Jan 2024 08:18:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MXFHZndS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bedTiy6S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D156AFC1E;
-	Mon, 29 Jan 2024 08:16:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED4953802
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 08:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706516177; cv=none; b=eYNXfBFEOXTvHDcphD0Idgzhe3cmsq0ZdCX+trAuRRfAdi+toUe4lwkhZA3FpOqbek21QqmTB1UmB+YadPq7WX/KCGELaMDRyurS1htaR9q3zkAU8xnb0QiUjHr5Q6NCVFeRn4cccSvzKpRLF1wvYTpg32TkLiZeczZ4TVAfilU=
+	t=1706516289; cv=none; b=bG6d0xmK0GRHr9NEad4hGnRxdcnwV+wsp1t3VWeTeUm2XZupxmt7+zIw1fhT6fKJTemk+rOYWZEK/tpaObnZlBaRK19KsSOPcsVcq2dXMOOWOBY5NbQ/+8+OyuBaY5GIA3ui4yKhg/S838Lyt4coJJ8mjw/vF6r1ArqV1k6E480=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706516177; c=relaxed/simple;
-	bh=jFq6CQO9eMcsqJNLoTyOaRKicc+pCL4ISPcZG7GRp1U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JvsSOugODvt09evKW45ZVstBn+z3SKQ5ceck8K8yzZORrLnpBrraubEmy9JnT/hUr/L+YmV+PMmRr9NYgPyOMyH3EHMG9Lk3jDNDiOZ5i20heXrTrrGY/se//QIfc4Mv+7ArEFPlH8rWWEEab2AKqwNnk/nWmTyewWNIfikQjZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MXFHZndS; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-4b7fc7642fcso340797e0c.0;
-        Mon, 29 Jan 2024 00:16:15 -0800 (PST)
+	s=arc-20240116; t=1706516289; c=relaxed/simple;
+	bh=DFhSGuCmZAkqN5OgeWTFC41PjQCD7zNvSO+dCZlSKkA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iwYthwTIIF30rSdky2NP2hKTCoIexpQkD4rof8Sivrx5jZpl7/AYus7Vg271WwcehkcilOCR1xGSEPHwX7+el81b/1d4HQXSu3L5+wmmg536NrKNQ3WRHS0MgpmIzFLEuQ+e8JDx9YaQZzom3UIMLTCZZRvN01SFCapWLfIZv3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bedTiy6S; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-55f0367b15fso611110a12.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 00:18:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706516174; x=1707120974; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/OL962hsrazE62p7R/jJW2A1J29P+0IWGTWAVOKd3dc=;
-        b=MXFHZndSOTqGhp/9kDYBFlzd98hV4Dfee8lxBS5KV64dToev0O7UKr8wXk/WbNNh8X
-         ZAw4RHlLHowE925ko6IHzq5zQZ8NjIJ7LT/KfurqVOIfGoWsUVar3AxphGj9AgzI4Xlr
-         2Ry37zZW2QtYH1Wd/CplNjrEqh74L4Biy8sRG3SdOfen17p8sBF1tjfdOU9Sm6CE3aMn
-         hHhvpdbh+DU3zvUuA2MA4UksZftTgYjhWFU/W/Zd81p3JC066DnbpBut9agv1/bp9sdQ
-         supa/e87LFFJlPFNoqr5/kFNOmL6dWDhGL/FHQwgEKGp4ICKVgZX/9UIFs6t6XIUr7dH
-         JlEg==
+        d=linaro.org; s=google; t=1706516285; x=1707121085; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5tK2QNFGt5/XkKFTt6LBQTu5SmY4cQAXJ0hKxiAOAbM=;
+        b=bedTiy6SUDmlOh//MFL/i6fvLnMo2FBDOaYeO9f1xXcXAvBKwjySmHNX3kEH+4fnxx
+         Vm8M/qX6eCXZZvKcL67CXJRLUHJLgi4vnKbUkNwJJ7R7eNkt+Yd3MIJAn1t/cOMHHE1F
+         II9yetM2tp1BBaqB8p8D7IaLAXZTfcRuCGD3PkC5NJRgwvLrnVDwJ4j8VQQVD4L+WOaV
+         9MYjTkwso1SFohb5TRgy0YNZV4pXdMOtCHjRd9kZgMSokxCJPCw+3h4sl20SG0a5K5J8
+         RYDPW1a9avaJkuV8290Ui36HbsWpg4K6CH9lLhDyM0Gdfv20q/epxmmlB/z7LMcTyP2o
+         QgrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706516174; x=1707120974;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/OL962hsrazE62p7R/jJW2A1J29P+0IWGTWAVOKd3dc=;
-        b=ZucXktoLourPE34pKHCtRomsUq2q7mU+HDUr9w1a2l8I2bpllmtC7n9RbwMtC9n/Ce
-         Ei10Uk2MwCL4HyGWMqIwayFqN/iH9fsMTCTrgt5Oo5xnhXr5vjSxQtglufheLoGrCD+C
-         fReUTIiJFieTM3gjCfJ+lTTmwpeVDqsNaFkPn0F2f/FboI9G+cwr+6xkoXWtkHwkrhrh
-         kV28xj4roYnJQ+V5bUpY+uV5PemKJUYoEGOxvvTc9lUyj/lyGVP0W0gg7SQmViqAFtNQ
-         7Vxusn8FIqw2a1nQLnJrdbFct4J5f4+tHRH3AKCmEFsux0dpThfw52mIWpcW90txvLuu
-         zQTg==
-X-Gm-Message-State: AOJu0YwR3946pQbIJOMDJ6240YvaivNnQL17mopH0dBOX+xme+DE4ZN/
-	pGBdQ3mcmHKS+/x3IDq7/IM385Q0Eto6P/MvVixJDIr3F/HGwqyOD0v6Ap3xfla9FtMjkx9LzAE
-	5+/wbSNCB1m4rswInmeKjHlPQPYI=
-X-Google-Smtp-Source: AGHT+IFVLswNDcWZYfO3yzzAlQv+TtXRezQ/W4fDx0M03rR10TDzekL3bjX7/Ul6Vk7QpTK9ppe6q4oY0+U+lD94G6U=
-X-Received: by 2002:a05:6122:2528:b0:4bd:5799:2c09 with SMTP id
- cl40-20020a056122252800b004bd57992c09mr1524815vkb.5.1706516174654; Mon, 29
- Jan 2024 00:16:14 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706516285; x=1707121085;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5tK2QNFGt5/XkKFTt6LBQTu5SmY4cQAXJ0hKxiAOAbM=;
+        b=UA+307hJqB8WeRQI7Wa3thdN7z2GQVt2SZY32qyVK1oDpKSwrJb32GnR/c5MY82+3e
+         w7uVyNrmD0TKg4AMc4Dbh+ZdO7b+L1/qpWkml4J613Csh036t+Z2hLqdbNMNdmiswvxU
+         c2vzI5vwcLUcR2XG57RppIA5bdHj51mJhaNN7TVzzJrMcMa0/6pO/0wyqXKF+7uzS1aj
+         el+OPZ2bfn1SNVi9TifOXo3v5kJ9gIvzdFo1e15Jc49VNv9XFDp+8cSyLOqDGzvxKNmd
+         JHt2MdWqHxdOMTAQGT2aQ5APklrDi2hikb4Y+64YZz5ADM4uRUHMyRWx3lg/DsR2QQZG
+         pO5A==
+X-Gm-Message-State: AOJu0YzcqFmzZWGBB9HEVrJM+4M6Vg/mjqgrruZfcFIB6BBiwQIv+478
+	Tw+Dop2R7kohv/UaMMLga4t/UXB/7MTNSFHjUTL4adFD0wPgvHxBaXC6FlHFDUO96iV3IFVZjrO
+	+
+X-Google-Smtp-Source: AGHT+IFgv6GsTPAfga862MCO8eyMKgW9fA+kGsyRxEMN4HkTywCg1Zi/ZUj4cMV5UbJLlAbH1y37XQ==
+X-Received: by 2002:a17:906:f9c3:b0:a31:f7e:8a53 with SMTP id lj3-20020a170906f9c300b00a310f7e8a53mr4004848ejb.26.1706516284783;
+        Mon, 29 Jan 2024 00:18:04 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id gu24-20020a170906f29800b00a35b99df4a6sm777687ejb.38.2024.01.29.00.18.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jan 2024 00:18:04 -0800 (PST)
+Message-ID: <301be6d8-b105-4bba-a154-9caebc8013e3@linaro.org>
+Date: Mon, 29 Jan 2024 09:18:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240115130817.88456-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240115130817.88456-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 29 Jan 2024 08:15:48 +0000
-Message-ID: <CA+V-a8t4v2CxZWrLRKBinS5fyG-_FzDFz5zA=mgcrNutJABr5g@mail.gmail.com>
-Subject: Re: [PATCH v5 0/4] Add missing port pins for RZ/Five SoC
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 13/15] dt-bindings: crypto: ice: document the hwkm
+ property
+Content-Language: en-US
+To: Gaurav Kashyap <quic_gaurkash@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ andersson@kernel.org, ebiggers@google.com, neil.armstrong@linaro.org,
+ srinivas.kandagatla@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, robh+dt@kernel.org
+Cc: linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ kernel@quicinc.com, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, quic_omprsing@quicinc.com,
+ quic_nguyenb@quicinc.com, bartosz.golaszewski@linaro.org,
+ konrad.dybcio@linaro.org, ulf.hansson@linaro.org, jejb@linux.ibm.com,
+ martin.petersen@oracle.com, mani@kernel.org, davem@davemloft.net,
+ herbert@gondor.apana.org.au
+References: <20240127232436.2632187-1-quic_gaurkash@quicinc.com>
+ <20240127232436.2632187-14-quic_gaurkash@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240127232436.2632187-14-quic_gaurkash@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Geert,
+On 28/01/2024 00:14, Gaurav Kashyap wrote:
+> When Qualcomm's Inline Crypto Engine (ICE) contains Hardware
+> Key Manager (HWKM), and the 'HWKM' mode is enabled, it
+> supports wrapped keys. However, this also requires firmware
+> support in Trustzone to work correctly, which may not be available
+> on all chipsets. In the above scenario, ICE needs to support standard
+> keys even though HWKM is integrated from a hardware perspective.
+> 
+> Introducing this property so that Hardware wrapped key support
+> can be enabled/disabled from software based on chipset firmware,
+> and not just based on hardware version.
+> 
+> Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../bindings/crypto/qcom,inline-crypto-engine.yaml     | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> index 09e43157cc71..6415d7be9b73 100644
+> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> @@ -25,6 +25,16 @@ properties:
+>    clocks:
+>      maxItems: 1
+>  
+> +  qcom,ice-use-hwkm:
+> +    type: boolean
+> +    description:
+> +      Use the supported Hardware Key Manager (HWKM) in Qualcomm ICE
+> +      to support wrapped keys. Having this entry helps scenarios where
+> +      the ICE hardware supports HWKM, but the Trustzone firmware does
+> +      not have the full capability to use this HWKM and support wrapped
 
-On Mon, Jan 15, 2024 at 1:08=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
->
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Hi All,
->
-> This patch series intends to incorporate the absent port pins P19 to P28,
-> which are exclusively available on the RZ/Five SoC.
->
-> Cheers,
-> Prabhakar
->
-> v4 -> v5:
-> * Made struct rzg2l_variable_pin_cfg variables u32
-> * Updated PIN_CFG_PIN_MAP_MASK macro to use GENMASK_ULL() as reported
->   by kernel test robot.
->
-> v3 -> v4:
-> * Rebased the changes on top Claudiu's patches
-> * patch 1/4 is new patch for using FIELD_PREP_CONST/FIELD_GET as
->   suggested by Geert
-> * patch 2/4 adjusted the code again using FIELD_PREP_CONST/FIELD_GET
-> * patch 3/4 fixed rzg2l_pinctrl_get_variable_pin_cfg() as pointed by Geer=
-t
-> * patch 4/4 is unchanged
-> * patches 1-3 have been boot tested on g2l family
->
-> v2->v3:
-> * Fixed build warnings for m68k as reported by Kernel test robot.
->
-> RFC -> v2:
-> * Fixed review comments pointed by Geert & Biju
->
-> RFC:
-> Link: https://lore.kernel.org/lkml/20230630120433.49529-3-prabhakar.mahad=
-ev-lad.rj@bp.renesas.com/T/
->
->
-> Lad Prabhakar (4):
->   pinctrl: renesas: rzg2l: Improve code for readability
->   pinctrl: renesas: rzg2l: Include pinmap in RZG2L_GPIO_PORT_PACK()
->     macro
->   pinctrl: renesas: pinctrl-rzg2l: Add the missing port pins P19 to P28
->   riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
->
->  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi |   4 +
->  drivers/pinctrl/renesas/pinctrl-rzg2l.c     | 284 +++++++++++++++++---
->  2 files changed, 248 insertions(+), 40 deletions(-)
->
-With recent changes to pinctrl-rzg2l.c this patch series (patch #2)
-does not apply cleanly anymore. Shall I resend it?
+How does it help in this scenario? You enable this property, Trustzone
+does not support it, so what happens?
 
-Cheers,
-Prabhakar
+Also, which SoCs have incomplete Trustzone support? I expect this to be
+a quirk, thus limited to specific SoCs with issues.
+
+Best regards,
+Krzysztof
+
 
