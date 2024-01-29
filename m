@@ -1,135 +1,153 @@
-Return-Path: <devicetree+bounces-36124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 297E683FFFB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:26:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB567840006
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A542B22230
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:25:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 677791F240F8
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:26:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A357B52F94;
-	Mon, 29 Jan 2024 08:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B36537FC;
+	Mon, 29 Jan 2024 08:26:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5945553E01;
-	Mon, 29 Jan 2024 08:25:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27942537F4
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 08:26:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706516752; cv=none; b=HyK+Ulk5TiygJppaerGMNzHJ+2/A+Ha3OxMT6o5GVswRAyhrOgh/S0HcQfgCrscLoFPLBTeVwMDyeLm4UAjmdN7woKrsLee71xCDEpE3UD9QA+V3qLPnnSBJ4SH6Bx3IZRnwomhCY9sVODkobi3RqwYBrXz3pJJAJpDoRprXVjo=
+	t=1706516783; cv=none; b=Jg73jhCjqwIzVUJALZ9qUC4C4wXKeGjYuphY5Y6V6T9MZehws7cYSJGLnXCwdvB9SfPkZz0m6VW+/xWx7rhaJb/zSPIP/cjYiRjIROTsH+HWbIfRzqtsHtoNkCJOXMQagsUguH+ub+wzwx8HIS3YCJn1XDZQZGYjsWrgIbii8n4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706516752; c=relaxed/simple;
-	bh=q1gYYgdvPMV7TyEEJ8sN3MbDG/IkDzJ19sdzRd6Dl2M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mhu2/gYkYqd1sqGk+AUIaCjPwGkwaWlWIzVuBmRMdpl5dvPq4zfp8F7PgtNbNNkRuPrkjGTOTY5oIvxzEFQOY+/ouKA4FIAg2/5Qd7AGrv26S3UW8FdRq24Jtd+sPNVGpZ867wGLe5zqKJlMvVq48kmPxBRZy8t+Ssx/SHwBfi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-602ab446cd8so23294597b3.1;
-        Mon, 29 Jan 2024 00:25:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706516749; x=1707121549;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Qnxd1+UMtflAeTNDn68oCiHgIyPBn7p4OxcQPfoNqMU=;
-        b=QezAcRnUy5ur0Nrmm2KIEo+KbsbyHMpviD+ZqL+B9g0Ld8zV7UV0DVh1O4rnNuiNrj
-         b3sWMVqBABeGj2qVvqqEZD5UnjdEBl8ZFzMSOWs0AtMF18v4IApMtJijNwW/j1TYNwmn
-         1/dFc8WCcNDZbW6olaaujJ56OlnHlbOyHx7sUbf4SP4ObuZtO7DQMYL6kMx42Ijx8YSR
-         VxaLX4Wi/EcsWJsYFu4K2OXUjT4gLePFae6TlDjRfJTTfl39LIrQysBsZJx/lKkxLWmp
-         wzpbafJ1I9GCPivIh2m5GOF4h0mOZubOY4y6sTDeDbHwqXCPEX+I8Fu61dJMwWol8rwf
-         7JlQ==
-X-Gm-Message-State: AOJu0Yw2X5PGeW7ziogVVqkTo1T/SKfjJa3/OYxqxiRpjFlSWfYNGsHg
-	OUG3LXE1hjj+jvHHfzyZMzeCvlJsXGA6riQU2mCjJurUB4oKSCI0cyHUX2sjH7Y=
-X-Google-Smtp-Source: AGHT+IHt2FmPfFVJVznJxUnbieijcR7PqiKiojtoj9hmaXt1H3lzWCLb/jXnHgeQs9w+ybZi9rzqaw==
-X-Received: by 2002:a81:431b:0:b0:5e7:ae43:e90f with SMTP id q27-20020a81431b000000b005e7ae43e90fmr3071006ywa.3.1706516749098;
-        Mon, 29 Jan 2024 00:25:49 -0800 (PST)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id v4-20020a81a544000000b005ff9a21d042sm2305094ywg.46.2024.01.29.00.25.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Jan 2024 00:25:48 -0800 (PST)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-602ab446cd8so23294537b3.1;
-        Mon, 29 Jan 2024 00:25:48 -0800 (PST)
-X-Received: by 2002:a05:690c:338f:b0:5ff:b07c:3b72 with SMTP id
- fl15-20020a05690c338f00b005ffb07c3b72mr3540193ywb.62.1706516748639; Mon, 29
- Jan 2024 00:25:48 -0800 (PST)
+	s=arc-20240116; t=1706516783; c=relaxed/simple;
+	bh=n5mYzt6CIUKIXRBaJM3scUctqvjLnQUCO48pzYRK6PA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QXBednYoAUlwZrwHnJc3l0vFPPJ6CM8f2BiM0Gp3CGj8aeICCxuskAb8/oz1mmubPhyoJ5xMtkqV1ovwtZMmsqESntZKrTo9YDHIx2CAhN5E58Mqr53yWQ1R+dsFRvNGJSbh8qI9c2WCrnJNPQ6wjbsYrPk+ZYVnskrgXY6E8Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1rUMxz-00071K-Tv; Mon, 29 Jan 2024 09:26:07 +0100
+Received: from [2a0a:edc0:0:b01:1d::7b] (helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1rUMxx-0037so-TF; Mon, 29 Jan 2024 09:26:05 +0100
+Received: from pengutronix.de (unknown [172.20.34.65])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 72691280715;
+	Mon, 29 Jan 2024 08:26:05 +0000 (UTC)
+Date: Mon, 29 Jan 2024 09:26:05 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: William Qiu <william.qiu@starfivetech.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-can@vger.kernel.org, 
+	Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, 
+	Wolfgang Grandegger <wg@grandegger.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v1 3/4] can: cast: add driver for CAST CAN controller
+Message-ID: <20240129-zone-defame-c5580e596f72-mkl@pengutronix.de>
+References: <20240129031239.17037-1-william.qiu@starfivetech.com>
+ <20240129031239.17037-4-william.qiu@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240115130817.88456-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CA+V-a8t4v2CxZWrLRKBinS5fyG-_FzDFz5zA=mgcrNutJABr5g@mail.gmail.com>
-In-Reply-To: <CA+V-a8t4v2CxZWrLRKBinS5fyG-_FzDFz5zA=mgcrNutJABr5g@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 29 Jan 2024 09:25:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWKvJRFP+zOeWPALbYwAf7Z_UW879q1aLXyFwXqaJp9GA@mail.gmail.com>
-Message-ID: <CAMuHMdWKvJRFP+zOeWPALbYwAf7Z_UW879q1aLXyFwXqaJp9GA@mail.gmail.com>
-Subject: Re: [PATCH v5 0/4] Add missing port pins for RZ/Five SoC
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="zggniggrx7ssk34l"
+Content-Disposition: inline
+In-Reply-To: <20240129031239.17037-4-william.qiu@starfivetech.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+
+
+--zggniggrx7ssk34l
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Prabhakar,
+Hello William Qiu,
 
-On Mon, Jan 29, 2024 at 9:16=E2=80=AFAM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Mon, Jan 15, 2024 at 1:08=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
-.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > This patch series intends to incorporate the absent port pins P19 to P2=
-8,
-> > which are exclusively available on the RZ/Five SoC.
-> >
-> > Cheers,
-> > Prabhakar
-> >
-> > v4 -> v5:
-> > * Made struct rzg2l_variable_pin_cfg variables u32
-> > * Updated PIN_CFG_PIN_MAP_MASK macro to use GENMASK_ULL() as reported
-> >   by kernel test robot.
+thank you for your contribution. I've some quick notes about your
+driver.
 
-> > Lad Prabhakar (4):
-> >   pinctrl: renesas: rzg2l: Improve code for readability
-> >   pinctrl: renesas: rzg2l: Include pinmap in RZG2L_GPIO_PORT_PACK()
-> >     macro
-> >   pinctrl: renesas: pinctrl-rzg2l: Add the missing port pins P19 to P28
-> >   riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
-> >
-> >  arch/riscv/boot/dts/renesas/r9a07g043f.dtsi |   4 +
-> >  drivers/pinctrl/renesas/pinctrl-rzg2l.c     | 284 +++++++++++++++++---
-> >  2 files changed, 248 insertions(+), 40 deletions(-)
-> >
-> With recent changes to pinctrl-rzg2l.c this patch series (patch #2)
-> does not apply cleanly anymore. Shall I resend it?
+On 29.01.2024 11:12:38, William Qiu wrote:
+> Add driver for CAST CAN Controller. And add compatibility code which
+> based on StarFive JH7110 SoC.
 
-Yes please. That would save me from resolving the conflict when
-I get to this series.
-Thanks!
+Please add yourself or someone else at starfivetech to the Maintainers
+file.
 
-Gr{oetje,eeting}s,
+Please use BIT() and/or GEN_MASK() to create the _MASK enums. Please use
+FIELD_GET(), FIELD_PREP.
 
-                        Geert
+Please replace the ccan_ioread8() by a proper 32 bit read and use
+FIELD_GET to access any non 32 bit value. Instead of ccan_iowrite8() use
+FIELD_PREP and a proper 32 bit write.
+
+The enum ccan_reg_bitchange looks very strange, why do you have OFF and
+SET values?
+
+The ccan_reigister_set_bit() and ccan_reigister_off_bit() functions
+looks very strange, too. I suggest to use a 32 bit read, set, clear the
+bits followed by a 32 bit write. Having set_bit() clear_bit() functions
+may lead to more register accesses than needed, if not handled with care.
+
+If you think the driver absolutely needs bit set/clear functions, please
+follow the name and signature of the regmap_update_bits(),
+regmap_set_bits() and regmap_clear_bits().
+
+Please use can_put_echo_skb(), can_get_echo_skb().
+
+Please implement proper TX-flow control. Stop the TX queue, if you HW
+queue is full, start the TX queue once the HW queue has space again.
+
+Consider using the rx_offload helper
+
+You claim you IRQ handler works with shared interrupts, but you return
+an error if there are no interrupts by your IP core.
+
+Please enable the clocks during open() and disabled during close()
+
+Marc
 
 --=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+--zggniggrx7ssk34l
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmW3YRoACgkQvlAcSiqK
+BOgKmgf8CP4DHYvozr25yPE/15GRtr4yDQDy5doYFxV8tAO2r1Y1iiU0mIz3aCLp
+e3qWwbV9jcftKht75T5CgcurR8Ouc6P4O89HsGkpyRz0c4Pg4X/gswBJ29hTRFQw
+JyaxQCaelQ5mbSAq0i2ZFCNiqBEzk6KyegUcmUabqOHmQTlpcXRYiJWRgKlKMoHr
+xjkTF4HgTcViIXb/JislwP7q8C4F2/qEEtSLfqgOCzZjaPSRP6cTo8yy+YdITFhx
+ntGdaMLEktRyMJVCcMfk5TXzea45E7yCa6cLL/4+VNzm/dsB1YF7Si9CC/nTXP9U
+G5qmdcL6AIGzthY2poRxdC/oX7ppgw==
+=HX7Y
+-----END PGP SIGNATURE-----
+
+--zggniggrx7ssk34l--
 
