@@ -1,114 +1,146 @@
-Return-Path: <devicetree+bounces-36308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ABF384078B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:55:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B907840794
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:56:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 465B928AF40
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:55:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EA731C21A82
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:56:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F9E657BC;
-	Mon, 29 Jan 2024 13:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9D765BA2;
+	Mon, 29 Jan 2024 13:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D+cDND//"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="atdMK3XY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C36B657A7
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 13:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20969657C2;
+	Mon, 29 Jan 2024 13:56:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706536537; cv=none; b=CRYs6S7vRe3kh/RpeVNgtnO4csOcq6AXumuE2j/LxmBgbWZNdDGlUHMD4G/yaNgWcZHM99jzcamCKdY3JPkPkHPXC/cHQAtLmJfe0t7E/5eMRbf/qn/wILX8CLI8TDyH3qgTYnemNa+u2Dk2pAYaB10i/f7becRg/mZk9WEgWAk=
+	t=1706536586; cv=none; b=E+4tmxR8nc53ltIVP5aAgZpm5PCsZRxUjUTlhMSqJkxf8IqiMrdOANu8H83KmefkypJnYh9naKNjdfujXZrhgHh886s588+V2O1trgQVYhWBbQLvedXczd9XO98mkoSv8NsdyD86enXdFAb+GWBlrqntoQNum1qZlOjGiWihEmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706536537; c=relaxed/simple;
-	bh=g5hnEmLuBTV9IeAPhqC/fOJTrs0WTAgexL990thdjRk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uaNytVR10DZrEeigeV5EU05bUQgS+qRLaZlOYTKWVtkoBNm59v3n6UKsXIhqzV8cwe9ceI5a304jkB2q5xLBw6zPDYd4OGJDkZIhaoCwV0DnzpG8HPVSgX45GK91kMxHybcKgFh4NUzel6LnQHvhf9t5fjP03WexrrMm6aO1ulc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D+cDND//; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-5ffa694d8e5so33506727b3.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 05:55:35 -0800 (PST)
+	s=arc-20240116; t=1706536586; c=relaxed/simple;
+	bh=LjKaS9a9ftamQwX3DEza7SKDpTVw8DPs6rjsrh9fANQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=i1xpnj5DjAnVPqJ1GwWwIRMsAANexAh+gumRjqQLzEPTTtGPQLDux2zWArr6J8JP0c1FdS4ncYZ3yO184XDt3t3m99tPU/v0jukg7GSBQS5siIUrpDRRwckp/gaw7ZgcTYUdJ9EK1srQz+9o1GlJISsCCuQKxvbzT/RnohCszWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=atdMK3XY; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5110f515deaso1647434e87.2;
+        Mon, 29 Jan 2024 05:56:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706536535; x=1707141335; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g5hnEmLuBTV9IeAPhqC/fOJTrs0WTAgexL990thdjRk=;
-        b=D+cDND//IEAtDfGdtJoBR/k2/mIOIBWz5EBUecBiYYtu5ieWXQKy9YTTBhCnsip0yI
-         ImC37o6dFcMk4VkUwKGhPPi608P8JfBGc8pzchlVH4gklpidIFQhqXyufQONutRPNH7Q
-         MvpRZocAzLjvnf35m3/UOr3B3Bnbvq0oHb2e/sWOAbgAJaA80xlFDFHU7QyPBrCVrP10
-         Q85xr9i0pwlxQdVCVzhHj29N49Ojac/1LmwGqVPtCE/F6kqbHabtIVlCQZW3+iy1iJlp
-         u9HF/dlHzJBFAoa0jLX5TdJsCxgxOmx/2K0ZGijAf2lfgUt6NGq7KKgla2IRP9RHY9Wu
-         VB0w==
+        d=gmail.com; s=20230601; t=1706536583; x=1707141383; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kLNm6aWjWhP3Zo5PR428kbbo6W3kbQTRbP3vEHT7Ffg=;
+        b=atdMK3XYJwQ1Jsbt0SJp513owJvKojgA/IaJgcIImEySyMKSx2TLnDfYnvRIvxv1WR
+         8B1jsqqBdZ1AMQI46fQOvPVEOfeN9GElFG3vjSdmtNrzdCUj+nRoUUznnyf/MCrBccKL
+         7e5zlIKtJU+mBVR2oZpoEIEKPBPsIJaD+hyQI2QYPcsuH4w2/EJKHK8DH4FmcjehhvOV
+         SJxArGmq6XUHrOujCXB/NFkzq05reOhbb84sRQRtTA99EpKm3ITbuX4U3r8hH8UQLz3y
+         NL7WhQ1ctFUdq4MBHWAKdABLCNMKvlJo90zJLSI8+IfVTRinyV3O/N2hxTliUrGSNUZI
+         FnYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706536535; x=1707141335;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g5hnEmLuBTV9IeAPhqC/fOJTrs0WTAgexL990thdjRk=;
-        b=qm+9XuOQLn4GVtlpA75lzeo9wXErnOu4wnkhEBFff8doYirUcsgddWOG1xkmW3AT1P
-         pmCRXBaeZNBeLyQxRvsEXMgzisSimaCXfiq2GXMPJ6k1cvBunlraT1o679XuWwwPinHp
-         MVpZ+YE+6nyCi0ldhiMMJSsudJpdHpNhwkoakURV47prRI/CWVFu61gw8Uuu74YseNYZ
-         2/m3b2+jCMmUkWjtdKs1Mu/fA08fK3swAonHBbZz6SpYu7CoEKWICDUOPNymsvUxTEhM
-         Ox27v1HDJcppzzQ5HLFmIoFs6jRee/ZxI8JiWnUsU3bjFmzab/sY+MQWQWIbzIh1HX4g
-         yXkQ==
-X-Gm-Message-State: AOJu0YyxfNMcVIUp1THt7+PeBaBpv7CIX+Cxb4Apur24GmHNTt/vHpmb
-	TKJvsfj1DXq4U5qLbas16hUDhN12sEKNm9ixrC8rw6OZasSkU0VGK/1o15yYCK+ii6PHHzACBK2
-	pS1i7DiDlGHLE9xjc/k+//kDBExUrx8L9lAc8eg==
-X-Google-Smtp-Source: AGHT+IEv6CE0f/Y1NjvVVdx6TknhydnToue5+SN9kI2iG5bQIL7oCxiClJdrtrn4bl1a2DbnY4glwWflCywtSdGlGyQ=
-X-Received: by 2002:a81:b14a:0:b0:603:cb87:3272 with SMTP id
- p71-20020a81b14a000000b00603cb873272mr991325ywh.23.1706536535088; Mon, 29 Jan
- 2024 05:55:35 -0800 (PST)
+        d=1e100.net; s=20230601; t=1706536583; x=1707141383;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kLNm6aWjWhP3Zo5PR428kbbo6W3kbQTRbP3vEHT7Ffg=;
+        b=xHRFVErMyKmH/ljNBgI0fpuhX8v13iRom3DaGLnsl9UFEjVd4YQGT5SxsaNREQg60R
+         bwtW/Sw7FDOtMzcQXXgoa/WiUtbPmESow654eNiGtxITE9jYwYB1L6ogOPY/2EGg53OB
+         8CGHWlc5NED/CT0WvqSr1v1y3PckUG2/Ty343ZJO5o7xrZbed5hsFC3bTw4KHNrUzZan
+         0ewKcB+CndwAJoqR+/Tqpzoshq1YcrhwkkMuejjG89FzzngSUKSZ5IxRc7k00O37rrMA
+         PCZUSbwgy4ZS6S8hVLcZNS9EButDZN33fMnNaHOHZYS0+a3Xd0yDfNxihUDaUPybOy9b
+         Lcng==
+X-Gm-Message-State: AOJu0Yyjlpuh+o2BUmNhMHmRaxXSoG2XLRGKrFQbRV6sm1lY6jvblJRD
+	LzTV2gK1WpsoQgIBnAL1HJsh+nWDN3N9udUQhjUDd2KB9q/8M2MW
+X-Google-Smtp-Source: AGHT+IEEtghO5GV+T/CBEzKDmZAqom9CfctaZ5B5R9VZvhtHodZrQXvLgfVQnCcQnTFaBnCC9ONtzQ==
+X-Received: by 2002:a19:7612:0:b0:50e:36ad:5f6e with SMTP id c18-20020a197612000000b0050e36ad5f6emr3552167lff.20.1706536582819;
+        Mon, 29 Jan 2024 05:56:22 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2500:a01:5616:a18c:ea50:2995])
+        by smtp.gmail.com with ESMTPSA id bh5-20020a05600005c500b0033aed46956csm3058057wrb.80.2024.01.29.05.56.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Jan 2024 05:56:22 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v6 0/4] Add missing port pins on RZ/Five SoC
+Date: Mon, 29 Jan 2024 13:55:52 +0000
+Message-Id: <20240129135556.63466-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240128163630.104725-1-wahrenst@gmx.net> <20240128163630.104725-3-wahrenst@gmx.net>
- <8f525770-7e39-4bf1-9ad3-803826ffbb1e@kernel.org>
-In-Reply-To: <8f525770-7e39-4bf1-9ad3-803826ffbb1e@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 29 Jan 2024 14:55:23 +0100
-Message-ID: <CACRpkdZ=wikdPVtC0KnOX7ZAg2obwALqnKARxS3uyTmhKeCuxw@mail.gmail.com>
-Subject: Re: [PATCH V3 2/2] pwm: Add GPIO PWM driver
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Stefan Wahren <wahrenst@gmx.net>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	andy.shevchenko@gmail.com, Angelo Compagnucci <angelo.compagnucci@gmail.com>, 
-	Philip Howard <phil@gadgetoid.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Vincent Whitchurch <vincent.whitchurch@axis.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 29, 2024 at 10:40=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
-> On 28/01/2024 17:36, Stefan Wahren wrote:
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> > +MODULE_ALIAS("platform:pwm-gpio");
->
-> You should not need MODULE_ALIAS() in normal cases. If you need it,
-> usually it means your device ID table is wrong (e.g. misses either
-> entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-> for incomplete ID table.
+Hi All,
 
-I was under the impression that MODULE_ALIAS
-was something people put in to make platforms using
-udev behave better by default, e.g. autoprobing these
-devices better (on coldplug for "platform:*").
+This patch series intends to incorporate the absent port pins P19 to P28,
+which are exclusively available on the RZ/Five SoC.
 
-For example:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-id=3D4f46d6e7e5ffbce0ee1d1a80767fdf45e56cc863
+Cheers,
+Prabhakar
 
-But I might have got it all wrong :/
+v5 -> v6:
+- Rebased the changes due to conflict in pinctrl-rzg2l.c
 
-Yours,
-Linus Walleij
+v4 -> v5:
+- Made struct rzg2l_variable_pin_cfg variables u32
+- Updated PIN_CFG_PIN_MAP_MASK macro to use GENMASK_ULL() as reported
+  by kernel test robot.
+
+v3 -> v4:
+- Rebased the changes on top Claudiu's patches
+- patch 1/4 is new patch for using FIELD_PREP_CONST/FIELD_GET as
+  suggested by Geert
+- patch 2/4 adjusted the code again using FIELD_PREP_CONST/FIELD_GET
+- patch 3/4 fixed rzg2l_pinctrl_get_variable_pin_cfg() as pointed by Geert
+- patch 4/4 is unchanged
+- patches 1-3 have been boot tested on g2l family
+
+v2->v3:
+- Fixed build warnings for m68k as reported by Kernel test robot.
+
+RFC -> v2:
+- Fixed review comments pointed by Geert & Biju
+
+RFC:
+Link: https://lore.kernel.org/lkml/20230630120433.49529-3-prabhakar.mahadev-lad.rj@bp.renesas.com/T/
+
+Lad Prabhakar (4):
+  pinctrl: renesas: rzg2l: Improve code for readability
+  pinctrl: renesas: rzg2l: Include pinmap in RZG2L_GPIO_PORT_PACK()
+    macro
+  pinctrl: renesas: pinctrl-rzg2l: Add the missing port pins P19 to P28
+  riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
+
+ arch/riscv/boot/dts/renesas/r9a07g043f.dtsi |   4 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c     | 284 +++++++++++++++++---
+ 2 files changed, 248 insertions(+), 40 deletions(-)
+
+-- 
+2.34.1
+
 
