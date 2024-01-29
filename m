@@ -1,192 +1,165 @@
-Return-Path: <devicetree+bounces-36155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DAFD8400B5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 771EB8400D4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:02:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 358A2281364
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:57:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C48B2819A4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:02:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9638954BEC;
-	Mon, 29 Jan 2024 08:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD54854F82;
+	Mon, 29 Jan 2024 09:02:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=theobroma-systems.com header.i=@theobroma-systems.com header.b="NoggrED6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RZIiJg4E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2066.outbound.protection.outlook.com [40.107.104.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A8954BCF;
-	Mon, 29 Jan 2024 08:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706518640; cv=fail; b=QCnUCDWh0iLfM2OJQ7X3SLDPTe7LquyPmaTMVO6jLkBqdNhEquVbIA4UEs2RuTe7VA+84OWraflv3cCH4BmULVSnsaCH8mzDcMHE66bqV2xI0r8wRWW0ptuvwU8kGp0KjdDJwxRtaJlm6pGpYZ0S5fafwq+RQrpxmI0vf4dMmis=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706518640; c=relaxed/simple;
-	bh=KiTY6AAwokQQ/Las4PrqmRLJHTiHfOMeoDDkQdaw5/E=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=cpPzcL1zGr1UtQjTyv5unU4HpvrkAehbb0L90+UH//tcD6XtRV0km13apZALXTVusL6LGlOPqWNNysrNBV4GDmV1PPhv5RorhfFzmx+44ti7F4SiXsPhh40q5C+bg8kp487idsCZmHp6bq8TZUW2u+VBrkVL0zRxO78e99Y3Hv0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=theobroma-systems.com; spf=pass smtp.mailfrom=theobroma-systems.com; dkim=pass (2048-bit key) header.d=theobroma-systems.com header.i=@theobroma-systems.com header.b=NoggrED6; arc=fail smtp.client-ip=40.107.104.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=theobroma-systems.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=theobroma-systems.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bZQOHf2QRMgZf4SY8QdSG8fyG+GrklQvX6G/wIr3V5IcthrW2Hfo0Lv6Z9QQoDH7pcU5XJxm28CHTeHmM+20iADhUiSZPs8BocEl3hvqFfpffd/wA0oAeDxoauJzbpHUZvP9Zml4q9no+7CuJ8uVvXYH756APJVwF1i4E5vsGCYJscFtMfDPi60i9JhN2M0ZOUQ7Ksnoe7GvOF1d9hc69H+srPUZ1wrwK51hGUQp4nIWl9t11+yYko1/kufd7XF2xx8oFh3fUPk9VgM2Mymob8NEfnWBSQlZLNng6BH3xoXF8Sn3XiTjSi89qMMAFNJ+uzVUhqSd9gq0ba2XFkpYsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q46nCmTFHjWwJBg0J/4G6n55uo6ypLPpWnEJs7WYOd0=;
- b=gPsfh8O3SfVG5SUtPTPJ2lUDkBae6PGAcS3HJfC3GSpGXJmrqxRSln1t/js1PEIOP9zfkjK497Ein0id4v1yhYSdc0qeH3c3VcX/sk+1Tgy+00g6F/fk1koJAM4gTvTIsQohzae6kseasBImhNjB0oNRxmI699m/YQcZp48HZMo4IqbQK+GYcQlMluRygcPXO6Ie1T5zyUr5m7JEZPBJXREaHF9TnsQLXIp/YGwaA53H1nFXzUjkpIno0/faydRxon011BMKIQpUKFJJ772Rz6gKn6LtPCFJYGvr+y+gj89stndMP8xIY6gCI6CHIHDeQY5catFJVCfXh2Ub8VRRNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q46nCmTFHjWwJBg0J/4G6n55uo6ypLPpWnEJs7WYOd0=;
- b=NoggrED6y3E2on3aknVI1/dHd6Mu8a6U4ZchiOTv56jsLhLCoWEJiet2tbnsFKqY4mG2D5yiPZzP4qzTmpS5aHZpLaQLtk0Axzq6C3ngSmP1KTBCuPzXHN/2Z1t57AxHk5XiwGHao7JeraRLUEjUtdKURzt3wc3trpc1B5udVl04yq1+0XJF4m2PMP8PrWkfQauoNwGBxCGjr3Nqp23rRJHX5qGxxhtEmXX+p8R5fYwSe99azpfqu8f13WkU/DvIXxX9fbAg0kIuqJtboHNWw3xQ/zGCDzriKWLqAjHbqV5wouqFmrO5xXIj+21ZqgOtB1V0bipA/dIVA3Fr74JYQw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from VE1PR04MB6382.eurprd04.prod.outlook.com (2603:10a6:803:122::31)
- by DBBPR04MB7561.eurprd04.prod.outlook.com (2603:10a6:10:209::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.32; Mon, 29 Jan
- 2024 08:57:14 +0000
-Received: from VE1PR04MB6382.eurprd04.prod.outlook.com
- ([fe80::d4b1:cea8:7085:ec50]) by VE1PR04MB6382.eurprd04.prod.outlook.com
- ([fe80::d4b1:cea8:7085:ec50%4]) with mapi id 15.20.7228.029; Mon, 29 Jan 2024
- 08:57:13 +0000
-Message-ID: <37522087-d3ac-4cc7-b11b-c844d36206ba@theobroma-systems.com>
-Date: Mon, 29 Jan 2024 09:57:11 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/6] serial: 8250: Support separate rs485 rx-enable
- GPIO
-To: Lino Sanfilippo <LinoSanfilippo@gmx.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- quentin.schulz@theobroma-systems.com,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-References: <20240126-dev-rx-enable-v5-0-5d934eda05ca@theobroma-systems.com>
- <20240126-dev-rx-enable-v5-2-5d934eda05ca@theobroma-systems.com>
- <098216ce-50b3-43e4-ad1a-42228c58b761@gmx.de>
-Content-Language: en-US
-From: Farouk Bouabid <farouk.bouabid@theobroma-systems.com>
-In-Reply-To: <098216ce-50b3-43e4-ad1a-42228c58b761@gmx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0222.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e4::8) To VE1PR04MB6382.eurprd04.prod.outlook.com
- (2603:10a6:803:122::31)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D968154BF7
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 09:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706518961; cv=none; b=Ec/Di9bK5RnzuH2E1D4fsGP0lIYAuWI+naw3+NlTnsqiYHK94yQMSDu8/bKMneqvbgS+bjNuQPtYZMA+3yUUZRNg7Sp/o+Uj5xaUjHDCrBG8cAX51zfcl4cf2B2PC4yYS+aYEbcXCZyk6IJYsUw7kCTjS7cPgpPXBhg0FZM1xus=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706518961; c=relaxed/simple;
+	bh=X1zJ7Cq8bAtVtLASw0Rg1H/ttk5L9TXWNZzu3ejEejU=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=nBEdE7NGfgjj2MhMT/SSHKoNX9N17Nc739PzHgZssi+xfOUTKn5405/3Bs0jX7bwoq909DJ9G/hcAQJ/6clzCPDXQkZuhHXqNjr0AfOBjKye9GGBuFZXi573cfcSJ/RUWoL4xqHPiLqGU3VW5taM1ty9vgDdVl2uOnkD6CBvW10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RZIiJg4E; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-40e76109cdeso35917405e9.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 01:02:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706518958; x=1707123758; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cYevMNeoNktot3JAMstftSYPsRaaLyjRhS0LapjonnQ=;
+        b=RZIiJg4E7W1RhsITe6CGmpFceCd6HNrVa0jzAvHDNlantalOf/uZBARo7iwIJkBDha
+         O/+615UE0zPcm6EPF/PBBaWPR2Wv2+X5BNPYf3WvhWYR1TptR8ISHEVvN8IKTtm34khO
+         0WjbB6LdDPcD02x1mtaUHXlU9+9/hB4thjDINgXz2YhUwnLv6iYS+AYJFkXhfal7OVjc
+         Hr7s7ekHxita+EYAZp3xCymIHRNSnq6yabxwWew9eY7WjPRRYmdm5636vZqPZTUQGw5x
+         k4Ap22vflXkDohyCV50CMXpInmkiRRcQyy4qbwxuYVJ52AOSa58o+LxgPZi2zh1DLGr2
+         Ev9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706518958; x=1707123758;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=cYevMNeoNktot3JAMstftSYPsRaaLyjRhS0LapjonnQ=;
+        b=XyK7eLRcDk1VQcC546TyTzX5YJsBxNvjybv4t7NFn2J8TyWx9yV/sk+qXUZDJFYJg6
+         snpljaCk3LieciOnW8sBlSFJtSGQNTTVMh5knGFL1YU1pY1pq6uxYlPqC0AuoAzfgJyp
+         QNC6zesBk2uGvFrKKvZbaE7as5AEo6f9m9O0rFUpXlPHgrQeMSDzf2Hgk4ytZo0fqX6b
+         GZ9KvJLD0k/2MR6cbDT5TJX1OPe31YOHpGxOnL0FOMwzBSDr+4LNJ8K5kvvt7J4VDN0w
+         IBsxy8HWzn4q5o0VZwnebof8Lf9RwDXsJ7QA90RPNvUK50lVd35A1Ff1SKXz5Qv0vw/m
+         oP2w==
+X-Gm-Message-State: AOJu0Yz06ycJkUuwMg+sesdFP/7mIZBzkFuHsH/+vgdo7RZK0/aHdA/Q
+	MkzFz32a+7uSYRlL/zq/A68uNL7rIBlM64r7Fu46xxSvh+qteh7bH+K/HHb6VDo=
+X-Google-Smtp-Source: AGHT+IF832ffChBB4wb9YZTobltYh0scrrCKKWNmDElh4bEYRMcp6FY5fnLKCP6CcaPHOLGzvxcAGA==
+X-Received: by 2002:a05:600c:45c9:b0:40e:b6c6:89ee with SMTP id s9-20020a05600c45c900b0040eb6c689eemr4674772wmo.38.1706518958119;
+        Mon, 29 Jan 2024 01:02:38 -0800 (PST)
+Received: from [192.168.7.29] (212-114-21-58.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id r12-20020a05600c35cc00b0040eac0721edsm9554855wmq.3.2024.01.29.01.02.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jan 2024 01:02:37 -0800 (PST)
+Message-ID: <cef1e9ec-1aae-400f-bb30-05d43c6211f4@linaro.org>
+Date: Mon, 29 Jan 2024 10:02:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR04MB6382:EE_|DBBPR04MB7561:EE_
-X-MS-Office365-Filtering-Correlation-Id: e3518b05-c824-431f-50b2-08dc20a84937
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	FOCT+6hKvLZ9KENFi5F0ocEHfbd1wo7VEwgVxtbJPdYPzWPim7rOayph2RSedDKwbF8DriHwYSuQmWiIfj2bg6wYCz7DX9KRWdX7b/7ZiX/sGh23VdjPnLRC+gUCjx0UfMPZ82jAnW05ontD+KsLavGVGYoJOp4rHGkZWM/25OCPIcK9JxS9KEVvtA+CFY0ONgqMu7/fn/4pG4sRH3j12AZZd/caYbGs3LDgQKCpYFI346DQEuKztnxuXKhqU/xDK2gZc7Go5suii/N5xrIQ+6FUrldsS4A6qNMFtJGXTxZymANTMtxAc7VFq1x6600j6hWvTGszy21bDYquc78CL+0jXMD9JqenLJ2FgXNVRg5qOZ3LM5LnGBiaqj7hOH15Qo3RMK3chFeag9WKyZn3s8oUMtxcs8NNYmydtEByaStvJ1ki2H6F6FiO5crJdmK5J9AsTxUrbSiqS+yCyx5qM8O6rGCraWmijiEauOfPlQOWM5UFzXiBYQy+DAHBdph8e6uN13Xx+63SwArU7SUTPj5DawuV74eSh0JkhlOWIO7ENvs/qCdOTSVBBSJFAMF8VaU5CyiAX2+AD+W12RUHTg6wovfeD9vmkmjE4oKtIRytZkZWUzHOpw/IcIAeKFCK/xsvz1bLc5rOXcm09/4iuQrMTm9DKG/RbOGZH01VOK6Nekul0YYPywj20s4I6Hzc
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6382.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(376002)(396003)(136003)(366004)(346002)(230922051799003)(230173577357003)(230273577357003)(451199024)(1800799012)(64100799003)(186009)(26005)(83380400001)(53546011)(6506007)(6512007)(2616005)(107886003)(38100700002)(5660300002)(7416002)(8936002)(8676002)(4326008)(44832011)(41300700001)(2906002)(478600001)(966005)(6486002)(316002)(54906003)(110136005)(66476007)(66946007)(66556008)(36756003)(86362001)(31696002)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cGpuK2tMV0dmRXZwZFYxNkRvMmtGYXFCS0czdGZJR1RsdU50TmpYZFE0RzRz?=
- =?utf-8?B?QkJqNnRObmgwdmxIUnJsT0pzUUNUZ2tqeWZkcUJsQmg0bmdEZTJUS0hWOFZy?=
- =?utf-8?B?RTRQRFlWK2tvb2pKdjZtUFlFTS8wVjZGTGZIY29MaUUwakZyczcvUmw1bDFV?=
- =?utf-8?B?cXVuTFJqKzR3bDRrSTlRejJKY1MrZ0VVWHM4My81Mlk4SWhHYkc3RHR6dklU?=
- =?utf-8?B?ZWpaeVBJLzNqaEE3dlI4Yk96TGhzWTVmelgweUNldkF1TkFjV2c2blh3Ni9h?=
- =?utf-8?B?QVE1anYrNzE0V3g4ak4vUEU1aStrVmNaNitqWkpsc1BUaXFkMGl2VG0xdnpw?=
- =?utf-8?B?Kys5YjRjWWtqOEhodzFIRzNyK0R3ME1nVlVOMU5yQWFVZStJeXVKMEYyQngv?=
- =?utf-8?B?SzNKTVU1OGVLNWhkeVJBb0dRazl3K2FtblFwZkNUSEFkUXZneFREaGRkbWhq?=
- =?utf-8?B?T1JNTTh1MEtaYTR3MkVrNmRPRFFLZjRkekM5bUVkM3hTU0c3ZC8weXY5c1NF?=
- =?utf-8?B?M1dtN1ZuUFpOUjVqTFMrdmxlYW9EWFBBdk90U045NHAyS1JlUnVFSnM1UTIx?=
- =?utf-8?B?Z3RWU0wwMHBnejBoWERucW13VGUrNnBaS2sxb0V5anV3UFhIODY1dm92c04r?=
- =?utf-8?B?NERXWlBxZkU2a3h2bzR2U1JqRjk5TS9VekNZTHlyREV0Qy9tSHppanZZUFF2?=
- =?utf-8?B?WUgzTE5LNCtYQ3ZMenlJNEp5VlA2enlSdVdWWlpoRERDNklHWkVSaVAxbzMv?=
- =?utf-8?B?Vkxtb0hacXp6T0Q2MldFMXI2dnQrY1R2NFZndzFnM2RaT053bTdicE9wMGFI?=
- =?utf-8?B?b0JpQnp1VW5GM2hNMGxNN1R3OEY4OUppVVhEeHU2elBYVzFVWWZ6MVJrY1Fu?=
- =?utf-8?B?RUs0Y3l2T3V4V1AwYzljc093bW1wZGV1aVVyT0tOM0JkajZ1clpvaUVkRm9z?=
- =?utf-8?B?aDc4MzRhcTlpLzdQd1VwaUp5R1Z6emRFaXZjMXZ3NFlHTmt5TlhBbVdWdEJR?=
- =?utf-8?B?aGF4dDJKem04WUY2MmtOMng4a1EvVW5Qei9uNVRRTlJEUFFkTEZPL0g0NE53?=
- =?utf-8?B?ZDlTN0JiL1BLeFREL1MydHkzQUZzWnBWU0ZtbHNwZFFTL3l5N291Q2phNXdl?=
- =?utf-8?B?VVJjdE1UNDBzbmZtK005b3k2bTlKeUdEdEkwWndIZk41N3FJUStlbG91Tkh3?=
- =?utf-8?B?VzM3RzI4ZkdSQzg1SG5nV1JMWVovYzQ0NkJ3dUs5VnZFLzdvdUh5ODJ2K0Mx?=
- =?utf-8?B?citaTWJpWEtLT2ZjWFBXWW5rRWhNSWc0NUszK0NJVDhYZ3haMkVLVmFtcy8z?=
- =?utf-8?B?dzZQNkhiVjg5SkpxWDAwamgyVmE3cEJuaVk4MTZ0K1FrNlVuWlNEY2t6SmRr?=
- =?utf-8?B?NjIzbmpNOXJXbENEbCtObFlhNkxEbFJlWGNxdEJwN1lhMUxSek8zMXo5MHNr?=
- =?utf-8?B?MklXUis2d2VFK2JGYldhSEorN0psOC84SnMzVTN4dllUTndnRXhtT2lvY1Fq?=
- =?utf-8?B?QWFJR1hzZGVJWWN2RmJ4bHBCc3dSQjkyQkYzZTVyTXl0VStHbllnTnZnQU1F?=
- =?utf-8?B?dVk5ZGNrVTREZEM1VDNqWXhlWTFtZThvcmRJSVdSTWt0N1ltdXc0RmhldkYy?=
- =?utf-8?B?RE1yYjk5SnR4Q21YVUlXQ3hKSXlSK1hLUkNFRUhhVkV6QS9CYmVkNFZvWnND?=
- =?utf-8?B?RHJZM3orS3NtcEVZUis1eWJoWmlPMDY4cVN4MmQ4dTl5WFB2d09QVlNDWkxv?=
- =?utf-8?B?cXJpSGxyNXRYMlFCRmI1dTRnemZzVzhnZDY5RFpZWHFaSW4zd2xtTkJUbGdB?=
- =?utf-8?B?Nm9NT3ZXd21PcGJpS3FPRkFWeTVIQUFTVkJxTWI3cmNEaWt0cFpqcXhrcWVD?=
- =?utf-8?B?cnRFenZyT0szLytOWFVJWFZvK3pvVVlmbjdJaTNROUZsbEpib1NFdDU0Q1hF?=
- =?utf-8?B?aXFmSTZhSWZtSVhFSjd0eHVKbUZZUFFKU2EzcEhWbFh2V3Z6TDRCOENuZWt2?=
- =?utf-8?B?L1BBc1NlMlNORm5uM1Y3LzR0dTZTMS93U0lPeENrQnZiNzloYXJZalFENUZa?=
- =?utf-8?B?NHpLU0JMV0c3cFdRUkducTAvT3hiTk5heGI0WkYvdVlKQzdBTjdjM09HWVBQ?=
- =?utf-8?B?WVhKcGpwM0RaLy84U0J5NlgzekwvYVd3K216ZUEyK05HTjhPYnRpM2J1R21P?=
- =?utf-8?Q?4zeAboY5y+36FFwB+EN+6Kk=3D?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3518b05-c824-431f-50b2-08dc20a84937
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6382.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 08:57:13.6044
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TuMuNEpJ9OhmH8OmExjhsE+Aw0xKuMR2dC1aq2WD0AZKoDHsbrPsk7l39X1A2QH5ZT7bPBas/mpdH0nRbcthrjGLXiiOLYPRa3qMEf1DQtmaImTdf4WA+Pvg4Z+sirGK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7561
+User-Agent: Mozilla Thunderbird
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v14 2/4] Input: add core support for Goodix Berlin
+ Touchscreen IC
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: linux-input@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bastien Nocera <hadess@hadess.net>,
+ Hans de Goede <hdegoede@redhat.com>, Henrik Rydberg <rydberg@bitmath.org>,
+ Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20231221-topic-goodix-berlin-upstream-initial-v14-0-04459853b640@linaro.org>
+ <20231221-topic-goodix-berlin-upstream-initial-v14-2-04459853b640@linaro.org>
+ <ZZ-W0UPHOdpU-8el@google.com>
+ <98ed4ee9-f381-43a0-a5cc-523ad108b374@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <98ed4ee9-f381-43a0-a5cc-523ad108b374@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 12/01/2024 16:08, Neil Armstrong wrote:
+> Hi Dmitry,
+> 
+> On 11/01/2024 08:20, Dmitry Torokhov wrote:
+>> Hi Neil,
+>>
+>> On Thu, Dec 21, 2023 at 04:21:20PM +0100, Neil Armstrong wrote:
+>>> Add initial support for the new Goodix "Berlin" touchscreen ICs.
+>>
+>> Thank you very much for explaining how reading of additional contacts
+>> and checksum works, it makes sense now.
+>>
+>> I was a bit unhappy about number of times we copy/move the data over;
+>> could you please try the patch below to see if the device still works
+>> with it?
+> 
+> Sure, I'll test it and report you.
 
-On 26.01.24 20:58, Lino Sanfilippo wrote:
-> [Some people who received this message don't often get email from linosanfilippo@gmx.de. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->
-> Hi,
->
-> On 26.01.24 18:27, Farouk Bouabid wrote:
->> From: Heiko Stuebner <heiko.stuebner@cherry.de>
->>
->> The RE signal is used to control the duplex mode of transmissions,
->> aka receiving data while sending in full duplex mode, while stopping
->> receiving data in half-duplex mode.
->>
->> On a number of boards the !RE signal is tied to ground so reception
->> is always enabled except if the UART allows disabling the receiver.
->> This can be taken advantage of to implement half-duplex mode - like
->> done on 8250_bcm2835aux.
->>
->> Another solution is to tie !RE to RTS always forcing half-duplex mode.
->>
->> And finally there is the option to control the RE signal separately,
->> like done here by introducing a new rs485-specific gpio that can be
->> set depending on the RX_DURING_TX setting in the common em485 callbacks.
->>
-> we just added the rx_during_tx_gpio to the serial core.
-> Why cant you use this GPIO for your purpose?
->
-> Regards,
-> Lino.
-What we are trying to implement is a gpio that emulates the RTS signal 
-itself as we do not have a dedicated RTS signal that can be controlled 
-through MCR. The rx during tx state in our case is a fixed state of 
-"NO_RX_WHILE_TX"
+Ok it still works fine!
 
-Regards,
+Sending v15 with those changes and rebased on latest linux-next.
 
->
+Thanks,
+Neil
+
+> 
+>>
+>> I also shortened some #defines and defines some additional structures.
+>> Also as far as I can see not everything needs to be packed as the data
+>> is naturally aligned on the word boundaries.
+> 
+> Great, thank!
+> 
+> Neil
+> 
+>>
+>> Thanks!
+>>
+> 
+
 
