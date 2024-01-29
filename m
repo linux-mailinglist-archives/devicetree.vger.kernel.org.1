@@ -1,141 +1,200 @@
-Return-Path: <devicetree+bounces-36053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CFDA83FCBA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 04:28:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C18F83FCDF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 04:39:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C1DAB21F46
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 03:28:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 515591C21CC2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 03:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5768FC0C;
-	Mon, 29 Jan 2024 03:28:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37E6F10798;
+	Mon, 29 Jan 2024 03:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NhLmcjLE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1443A17BAF
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 03:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69EB3101E6
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 03:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706498894; cv=none; b=iRlul6K/U3ri12DVTDFI/BF/2G3dnZQjSpKmu2iTXypy/K2izZuac8P9zS1sAZUwJmCTXiuk3Nd5FZYKIjCWUWKCgG2EM37MsngXO8qMMT9vQlSnIoejxXo49OZNE+i67itxpWmKLNX68d3usi/zekitRmfuk7VcgYinKG3H3/4=
+	t=1706499544; cv=none; b=g2G2iF7HYpk9t00079SPIVZUA7O4HrdJ4WoM971rEJ8MHgMjZiyiDAPc6fZf5K1u6fvsVJItaSFhQJ4PhvCu0We37HfQtYxPpD6gJNNuE2IUBryoR8vaOzIZolsQUuf9XrwfN1Bk7aKmR795MMj65Fk6Ffu8F4eIuE7qfYMXFYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706498894; c=relaxed/simple;
-	bh=KWCHUJoh8IiYfejTXfjkt9Z9W02ztrWXN4doyhLMwao=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=suObErQl8cCeYRizNmo0coAluof7cIVJsv43jWxX7slWFTOBwmvpHN4NK1u7lkIVjJyzdXNPCAQw3OthPsFrCqU8A5cAZbhhY7b+eJQzgqwWaNuw8hJSRokEJ5mer5QODUj9Ei3C7HY9FBbltPBMcHlL9hYR/n77yJD8aWDu05g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (unknown [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 9A6A32C0191;
-	Mon, 29 Jan 2024 16:28:03 +1300 (NZDT)
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65b71b430001>; Mon, 29 Jan 2024 16:28:03 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 29 Jan 2024 16:28:03 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.040; Mon, 29 Jan 2024 16:28:03 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: =?utf-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>, "a.zummo@towertech.it"
-	<a.zummo@towertech.it>, "alexandre.belloni@bootlin.com"
-	<alexandre.belloni@bootlin.com>, "jdelvare@suse.com" <jdelvare@suse.com>,
-	"linux@roeck-us.net" <linux@roeck-us.net>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>
-CC: "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 0/2] drivers: rtc: add max313xx series rtc driver
-Thread-Topic: [PATCH v5 0/2] drivers: rtc: add max313xx series rtc driver
-Thread-Index: AQHaT/57pfs9+wriS028zs2/xPWJR7Dq3xGAgARtWAA=
-Date: Mon, 29 Jan 2024 03:28:03 +0000
-Message-ID: <170c8d6b-3246-493f-8cd9-6ac580cabc28@alliedtelesis.co.nz>
-References: <20230403154342.3108-1-Ibrahim.Tilki@analog.com>
- <147c92f9-b42b-4a51-a6f9-2d90bfe63aa0@alliedtelesis.co.nz>
- <1b42866bb6f05b7d68e9b8304e42359fccdf2bad.camel@gmail.com>
-In-Reply-To: <1b42866bb6f05b7d68e9b8304e42359fccdf2bad.camel@gmail.com>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <52903D981EE19B4C887AAA6F5E877544@atlnz.lc>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1706499544; c=relaxed/simple;
+	bh=wE4cixn0oIglWKeS/zIrvtFsWbeheeYOTmOIKWPKXCE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A1P1tKK5wE1AkiYd/h6S95eiYMocwEClFmkdBLZ7rNwnqSMuafGVQaHIXB3ZyymNf+GgVvGJLeSe/dqo+NbVMxVJpz+XUM/R7LznDlKNIxtLAs9n61eKWEmeHXEqD1yyhIYFQG402p6QT7Um1U1FJ0vPCMm9hFf4iMfIC2VQtj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=NhLmcjLE; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-510322d5363so1655754e87.1
+        for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 19:39:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1706499540; x=1707104340; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/yyUGF5rIxxEr8wGxy6mzO1hK1BzZ2gmE5L9TwgfgxA=;
+        b=NhLmcjLEUKN0XxvcQ/70ZW2TkD9d3g8WQqvTjI3yX8UCNlQ/CJtbE2ApB9meI5+TDD
+         zLtc948i1kSVgFnzBQqed5AHQyx2WT6BZL2t49gCmqte/vrmPc0r7DULnucETTnP0HP3
+         ut/5ujrsQ0b8wjeFQqdJ+O7lkdfuLAYhny6R0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706499540; x=1707104340;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/yyUGF5rIxxEr8wGxy6mzO1hK1BzZ2gmE5L9TwgfgxA=;
+        b=scYwp0ZYx/O2EHgIxFTUTASI4wenGKPXwmnPXfR1GAdJiqK2834XVlrZzy1EG93K8A
+         qKWkOuzbNmNw7YNMxuQif2xp934W+brFicgax3HZcauDyzJNwxelpDji/ppO0Hm2bh6D
+         jSepqQ90V+YItortE1PqZApEs7pDB+K1ofCJlMP/iFWyCoChH7Xdon/1YvWkK/hoMbyD
+         c9Q/ir1ODimhertyah28W8ryQKhtRfFWcmlH5g+jqPazOFFXPYqHmxtnFfX1OSj79yk8
+         L7LdMlnFuNMoaAEWbBB49hY2TfZ6RWDvbS7sgZxLb0v2XErL8ovu7PXHXkadL1jwXUfF
+         B0/Q==
+X-Gm-Message-State: AOJu0Yx9eO4w/ujgIqLbaiNyYMMRR1bPLtIBR4zNq162ngnnYp7+hu6i
+	6GDlGfMQECUMUWQ6REdwM9Ks9dLypqTJ4CSBNcdFqFTpmMLmrG8Q80wFXMyDejzakwJu6BmGY8c
+	ZiuEGRe6YhGCwmRVkazmCVy4E7aV8q4vjM4jp
+X-Google-Smtp-Source: AGHT+IEXgMUgHt38rJa9lkZWY3kg2sc8NUxr6P4rZVQj9hDCI16H5nC2o9tzHW8pEEyFHfhwuR4GhhyhIWVA70eTXH0=
+X-Received: by 2002:a05:6512:280e:b0:50e:b25e:94d8 with SMTP id
+ cf14-20020a056512280e00b0050eb25e94d8mr3488177lfb.41.1706499540469; Sun, 28
+ Jan 2024 19:39:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=LZFCFQXi c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=dEuoMetlWLkA:10 a=QyXUC8HyAAAA:8 a=y8u1kND1RjNfctyeU1UA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+References: <20240126063500.2684087-1-wenst@chromium.org> <20240126063500.2684087-2-wenst@chromium.org>
+ <74b9f249-fcb4-4338-bf7b-8477de6c935c@linaro.org>
+In-Reply-To: <74b9f249-fcb4-4338-bf7b-8477de6c935c@linaro.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 29 Jan 2024 11:38:49 +0800
+Message-ID: <CAGXv+5Hu+KsTBd1JtnKcaE3qUzPhHbunoVaH2++yfNopHtFf4g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: bluetooth: Add MediaTek MT7921S
+ SDIO Bluetooth
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Sean Wang <sean.wang@mediatek.com>, linux-bluetooth@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-mediatek@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-DQpPbiAyNi8wMS8yNCAyMDo1MSwgTnVubyBTw6Egd3JvdGU6DQo+IE9uIEZyaSwgMjAyNC0wMS0y
-NiBhdCAwMjoyMiArMDAwMCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+IEhpIEFsbCwNCj4+DQo+
-PiBPbiA0LzA0LzIzIDAzOjQzLCBJYnJhaGltIFRpbGtpIHdyb3RlOg0KPj4+IGNoYW5nZWxvZzoN
-Cj4+PiBzaW5jZSB2NToNCj4+PiAgwqDCoCAtIGR0LWJpbmRpbmc6IGFkZCBlbnVtIHZhbHVlICIy
-IiB0byBhdXgtdm9sdGFnZS1jaGFyZ2FibGUNCj4+PiAgwqDCoCAtIGR0LWJpbmRpbmc6IHJlbW92
-ZSBhZGksdHJpY2tsZS1kaW9kZS1lbmFibGUNCj4+PiAgwqDCoCAtIGR0LWJpbmRpbmc6IGNoYW5n
-ZSBkZXNjcmlwdGlvbiBvZiB0cmlja2xlLXJlc2lzdG9yLW9obXMNCj4+PiAgwqDCoCAtIGR0LWJp
-bmRpbmc6IHJlb3JkZXIgYXMgaW4gZXhhbXBsZSBzY2hlbWENCj4+PiAgwqDCoCAtIHBhcnNlICJ3
-YWtldXAtc291cmNlIiB3aGVuIGlycSBub3QgcmVxdWVzdGVkDQo+Pj4gIMKgwqAgLSByZW1vdmUg
-bGltaXRhdGlvbiBvbiBtYXgzMTMyOCBpcnEgYW5kIGNsb2tvdXQNCj4+PiAgwqDCoCAtIHJlbW92
-ZSBlcnJvciBhbmQgd2FybmluZyBtZXNzYWdlcyBkdXJpbmcgdHJpY2tsZSBjaGFyZ2VyIHNldHVw
-DQo+Pj4NCj4+PiBzaW5jZSB2NDoNCj4+PiAgwqDCoCAtIGR0LWJpbmRpbmc6IHJlbW92ZSBpbnRl
-cnJ1cHQgbmFtZXMuDQo+Pj4gIMKgwqAgLSBkdC1iaW5kaW5nOiBhZGQgZGVzY3JpcHRpb24gZm9y
-ICJpbnRlcnJ1cHRzIiBwcm9wZXJ0eQ0KPj4+ICDCoMKgIC0gZHQtYmluZGluZzogcmVwbGFjZSBk
-ZXByZWNhdGVkIHByb3BlcnR5ICJ0cmlja2xlLWRpb2RlLWRpc2FibGUiDQo+Pj4gIMKgwqDCoMKg
-wqDCoCBieSAiYXV4LXZvbHRhZ2UtY2hhcmdlYWJsZSINCj4+PiAgwqDCoCAtIGR0LWJpbmRpbmc6
-IGFkZCBuZXcgcHJvcGVydHkgImFkaSx0cmlja2xlLWRpb2RlLWVuYWJsZSINCj4+PiAgwqDCoCAt
-IGR0LWJpbmRpbmc6IHJlbW92ZSAid2FrZXVwLXNvdXJjZSINCj4+PiAgwqDCoCAtIHVzZSBjbGVh
-cl9iaXQgaW5zdGVhZCBvZiBfX2NsZWFyX2JpdA0KPj4+ICDCoMKgIC0gdXNlIGRldm1fb2ZfY2xr
-X2FkZF9od19wcm92aWRlciBpbnN0ZWFkIG9mIG9mX2Nsa19hZGRfcHJvdmlkZXINCj4+PiAgwqDC
-oCAtIHVzZSBjaGlwX2Rlc2MgcG9pbnRlciBhcyBkcml2ZXIgZGF0YSBpbnN0ZWFkIG9mIGVudW0u
-DQo+Pj4NCj4+PiBzaW5jZSB2MzoNCj4+PiAgwqDCoCAtIGFkZCAiYnJlYWsiIHRvIGZpeCB3YXJu
-aW5nOiB1bmFubm90YXRlZCBmYWxsLXRocm91Z2gNCj4+PiAgwqDCoMKgwqAgUmVwb3J0ZWQtYnk6
-IGtlcm5lbCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29tPg0KPj4+DQo+Pj4gc2luY2UgdjI6DQo+
-Pj4gIMKgwqAgLSBkdC1iaW5kaW5nOiB1cGRhdGUgdGl0bGUgYW5kIGRlc2NyaXB0aW9uDQo+Pj4g
-IMKgwqAgLSBkdC1iaW5kaW5nOiByZW1vdmUgbGFzdCBleGFtcGxlDQo+Pj4gIMKgwqAgLSBkcm9w
-IHdhdGNoZG9nIHN1cHBvcnQNCj4+PiAgwqDCoCAtIHN1cHBvcnQgcmVhZGluZyAxMkhyIGZvcm1h
-dCBpbnN0ZWFkIG9mIGZvcmNpbmcgMjRociBhdCBwcm9iZSB0aW1lDQo+Pj4gIMKgwqAgLSB1c2Ug
-InRtX3llYXIgJSAxMDAiIGluc3RlYWQgb2YgcmFuZ2UgY2hlY2sNCj4+PiAgwqDCoCAtIHJlZmFj
-dG9yIG1heDMxM3h4X2luaXQgZm9yIHJlYWRhYmlsaXR5DQo+Pj4NCj4+PiBJYnJhaGltIFRpbGtp
-ICgyKToNCj4+PiAgwqDCoCBkcml2ZXJzOiBydGM6IGFkZCBtYXgzMTN4eCBzZXJpZXMgcnRjIGRy
-aXZlcg0KPj4+ICDCoMKgIGR0LWJpbmRpbmdzOiBydGM6IGFkZCBtYXgzMTN4eCBSVENzDQo+Pj4N
-Cj4+PiAgwqAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvcnRjL2FkaSxtYXgzMTN4eC55YW1sIHzC
-oCAxNDQgKysrDQo+Pj4gIMKgIGRyaXZlcnMvcnRjL0tjb25maWfCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDExICsNCj4+PiAgwqAgZHJp
-dmVycy9ydGMvTWFrZWZpbGXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCB8wqDCoMKgIDEgKw0KPj4+ICDCoCBkcml2ZXJzL3J0Yy9ydGMtbWF4MzEzeHgu
-Y8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgMTA1MyArKysrKysrKysr
-KysrKysrKw0KPj4+ICDCoCA0IGZpbGVzIGNoYW5nZWQsIDEyMDkgaW5zZXJ0aW9ucygrKQ0KPj4+
-ICDCoCBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L3J0Yy9hZGksbWF4MzEzeHgueWFtbA0KPj4+ICDCoCBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVy
-cy9ydGMvcnRjLW1heDMxM3h4LmMNCj4+IFdoYXQgaGFwcGVuZWQgdG8gdGhpcyBzZXJpZXMgaW4g
-dGhlIGVuZD8gSXQga2luZCBvZiB3ZW50IG9mZiBteSByYWRhcg0KPj4gYW5kIEkgZm9yZ290IGFi
-b3V0IGl0Lg0KPj4NCj4+IFdlJ3ZlIGJlZW4gY2FycnlpbmcgYSB2ZXJzaW9uIG9mIHRoZXNlIGNo
-YW5nZXMgaW4gb3VyIGxvY2FsIHRyZWUgZm9yIGENCj4+IHdoaWxlIChhbmQgdXNpbmcgaXQgcXVp
-dGUgaGFwcGlseSBJIHNob3VsZCBhZGQpLg0KPj4NCj4gSGkgQ2hyaXMsDQo+DQo+IEFsc28gbm90
-IHN1cmUuLi4uIEluIHRoZSBtZWFudGltZSBJYnJhaGltIGxlZnQgQURJIHNvIGlmIHRoaXMgaXMg
-bm90IGluIHNoYXBlIHRvDQo+IGJlIG1lcmdlZCBoZSB3b24ndCBiZSBhYmxlIHRvIHJlLXNwaW4u
-IElmIHRoZXJlJ3MgYSBuZWVkIGZvciBhIHJlLXNwaW4sIHBsZWFzZQ0KPiBsZXQgbWUga25vdyBz
-byBJIGNhbiBzZWUgaW50ZXJuYWxseSBpZiB0aGVyZSdzIHNvbWVvbmUgd2hvIGNhbiBjb250aW51
-ZSB0aGlzDQo+IHdvcmsuIEkgd291bGQgZG8gaXQgbXlzZWxmIGlmIEkgaGFkIHRoZSBIVy4NCkkn
-dmUgZ290IGEgYm9hcmQgd2l0aCBhIG1heDMxMzMxIHNvIEkgY2FuIHRlc3QgdGhhdC4gSSBkb24n
-dCBoYXZlIGFueSBvZiANCnRoZSBpbnRlcnJ1cHRzIGhvb2tlZCB1cCBzbyBJIHdvbid0IGJlIGFi
-bGUgdG8gdGVzdCB0aGF0LiBMb29rcyBsaWtlIA0KdGhlcmUgd2FzIHNvbWUgb3V0c3RhbmRpbmcg
-ZGlzY3Vzc2lvbiBhcm91bmQgdGhlIHRyaWNrbGUtY2hhcmdlIA0KZGV2aWNldHJlZSBwcm9wZXJ0
-aWVzIHNvIEknZCBuZWVkIHRvIGZpZ3VyZSBvdXQgd2hhdCB3YXMgd2FudGVkIHRoZXJlLiANCkkn
-bGwgdHJ5IHRvIHBpY2sgdXAgdGhlIGxhc3Qgc2VyaWVzIGZyb20gdGhlIG1haWxpbmcgbGlzdCBh
-bmQgZ28gZnJvbSB0aGVyZS4NCg==
+On Fri, Jan 26, 2024 at 6:40=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 26/01/2024 07:34, Chen-Yu Tsai wrote:
+> > The MediaTek MT7921S is a WiFi/Bluetooth combo chip that works over
+> > SDIO. While the Bluetooth function is fully discoverable, the chip
+> > has a pin that can reset just the Bluetooth side, as opposed to the
+> > full chip. This needs to be described in the device tree.
+> >
+> > Add a device tree binding for MT7921S Bluetooth over SDIO specifically
+> > ot document the reset line.
+>
+> s/ot/to/
+>
+> >
+> > Cc: Sean Wang <sean.wang@mediatek.com>
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> > Changes since v1:
+> > - Reworded descriptions
+> > - Moved binding maintainer section before description
+> > - Added missing reference to bluetooth-controller.yaml
+> > - Added missing GPIO header to example
+> >
+> >  .../bluetooth/mediatek,mt7921s-bluetooth.yaml | 53 +++++++++++++++++++
+> >  MAINTAINERS                                   |  1 +
+> >  2 files changed, 54 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/med=
+iatek,mt7921s-bluetooth.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/bluetooth/mediatek,m=
+t7921s-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/med=
+iatek,mt7921s-bluetooth.yaml
+> > new file mode 100644
+> > index 000000000000..ff11c95c816c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-=
+bluetooth.yaml
+> > @@ -0,0 +1,53 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/bluetooth/mediatek,mt7921s-blue=
+tooth.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek MT7921S Bluetooth
+> > +
+> > +maintainers:
+> > +  - Sean Wang <sean.wang@mediatek.com>
+> > +
+> > +description:
+> > +  MT7921S is an SDIO-attached dual-radio WiFi+Bluetooth Combo chip; ea=
+ch
+> > +  function is its own SDIO function on a shared SDIO interface. The ch=
+ip
+> > +  has two dedicated reset lines, one for each function core.
+> > +  This binding only covers the Bluetooth part of the chip.
+> > +
+> > +allOf:
+> > +  - $ref: bluetooth-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mediatek,mt7921s-bluetooth
+>
+> Can it be also WiFi on separate bus? How many device nodes do you need
+> for this device?
+
+For the "S" variant, WiFi is also on SDIO. For the other two variants,
+"U" and "E", WiFi goes over USB and PCIe respectively. On both those
+variants, Bluetooth can either go over USB or UART. That is what I
+gathered from the pinouts. There are a dozen GPIO pins which don't
+have detailed descriptions though. If you want a comprehensive
+binding of the whole chip and all its variants, I suggest we ask
+MediaTek to provide it instead. My goal with the binding is to document
+existing usage and allow me to upstream new device trees.
+
+For now we only need the Bluetooth node. The WiFi part is perfectly
+detectable, and the driver doesn't seem to need the WiFi reset pin.
+The Bluetooth driver only uses its reset pin to reset a hung controller.
+
+> Missing blank line.
+
+Will fix.
+
+> > +  reg:
+> > +    const: 2
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description:
+> > +      An active-low reset line for the Bluetooth core; on typical M.2
+> > +      key E modules this is the W_DISABLE2# pin.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+>
+> Instead 'unevaluatedProperties: false'
+
+Will fix.
+
+
+Thanks
+ChenYu
 
