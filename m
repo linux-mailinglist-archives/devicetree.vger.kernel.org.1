@@ -1,121 +1,210 @@
-Return-Path: <devicetree+bounces-36467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71558841520
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 22:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEF7A841559
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 23:03:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A526E1C23247
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 21:24:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EE261C22E1E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 22:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C661586DA;
-	Mon, 29 Jan 2024 21:24:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8545D15956B;
+	Mon, 29 Jan 2024 22:03:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="c7VetOAL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lkFVN1Ow"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0C6F157E97
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 21:23:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9564158D9C
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 22:03:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706563442; cv=none; b=sEAkvpsOjzgn6kH8NVyfr5Pt0ElY0eltGXJ/TbnlqvfuzuAn14fsSc8UjjFgTgZbZPSDj/KZ3fIsRHj0H4lTOBJ1U15I9+e0067okei+yfZzGu2F4pYjGqfLORUlSUwXwNt5cA8JfsitO3NI/NmOrcOWkVc+/mg2mnxkSY6t+bs=
+	t=1706565805; cv=none; b=oyvGqTzVEBsyfIvaJF2XfJ26j+DlIQ6wGXSoamPnJkm6863ObeMH7QmFcvrB4D3I4U8ZQYecCzm/ETRcMU3zSWa1M2FKvwjKMRSs1giwhBI/enpS0BqZqvbHfKz0ECSosUU3BpfaHYWSEeO4I4ZsGzqf5h2Z++DPFB1L/H5pNUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706563442; c=relaxed/simple;
-	bh=k1GRh25etFTzV0TbJNBHdGdMzhY9M6eqleb+ccaQwX4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=on36nFZoQ6VYJrFW+YL7Jb6KwhDcHuWNPyMQZzXtsnwM3Kx8vtz2bf7674GCCejKTSK/mKpUmLCW6YDUUX49QarIrOvIyMDT/p7xvyLb6dBt9InqNGtoRKXEFgI4mXEmaIhxIHMaxqMIFaFMEbzEs0vvlXTFvmXlMRrhDb99uvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=c7VetOAL; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=tnP8mYbKnfOf93yFIfgxQY+r9CeIktlYjlPhdDrf66o=; b=c7VetO
-	ALxwXnZOTAsIi+htvwSI6NyI/3HhxGDwBngFdRqmnv8ldKP/m/Dj2teMG9gNjD8F
-	a7tsQAYB947gDzrjvveTz/c0LeKQzL7TnpuL5sLHvPvllQATs/qrcxRZ0zK1zjJz
-	P3k3WQhqdKTBamAsoRlcwrqcHP8fsm+Kv/XnwohobIhpWHoDSFyp6tdrTvMaUxol
-	MduK8Lc3c9RDCiPnHQfVxq9+VklcQJNJEQn3koj0y8Cas1nxj4S1TxsgfmlgzWXU
-	6i5fSwbFDtOWmHQshnzdgAzlxiWh9Pga0Dlkqar3ZikDwYJ1muL7pnGe0JtqzDYl
-	6jgHwJLSPfiFJM1Q==
-Received: (qmail 2612167 invoked from network); 29 Jan 2024 22:23:56 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 29 Jan 2024 22:23:56 +0100
-X-UD-Smtp-Session: l3s3148p1@xtBuQxwQhOdehhtJ
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 2/2] arm64: dts: renesas: ulcb-kf: adapt sound 5v regulator to schematics
-Date: Mon, 29 Jan 2024 22:23:50 +0100
-Message-Id: <20240129212350.33370-3-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240129212350.33370-1-wsa+renesas@sang-engineering.com>
-References: <20240129212350.33370-1-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1706565805; c=relaxed/simple;
+	bh=1VUKD21nrbIVOTIxxRybvfvlN1MBpUbaPz67ZZlJlPA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NvyqLrK5OtvV9y0PRNRXhuT7xKIBxuGe7aaJOOOf2KbV6iiqF8gJS/ZbKcpMNYETLZzBmaLKNt57FtnRBQ5eYbWbwBM6UZpo+B4ZYVpgFFcM7JnniwCYGitTHrn+0ojfh5ZzGOv5KBJkHPn2qWK4bJTr7v7zr55hWOB6LgGAxbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lkFVN1Ow; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-602b7cef983so39886657b3.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 14:03:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706565802; x=1707170602; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iizRxv6NysE36xdrVEdKo+2mCUyIdpOKnLfh9KMSTAo=;
+        b=lkFVN1Owg+GMNV0ryFQOc5WHYTsYWPa2ISDlnduIY9eKrUO6YEfk00n81wWBdZyNSL
+         XtFLACiEIjq0lXdRQv/ffZWo0Di4pGfTTgtQJ07Cd6UtXy1FJM9lcx4inPEhq47hpqYs
+         P2vODrHcXb8sIBtdNYAUovDE3cMpYFvNbY1YLBIogfvIOhNQ1mQlYlYPmuanZTkOia29
+         LQjobyAab8vB9RwQzTxAMSqKS8Zsg8z0f3GK1+C8KFA0yO+08dXH1Oo4cKQlRHs/UFnX
+         GJLs0Dgg1VTiSXUIcUS3iL0T9PRME3VgjlG9B922SnehBtq5OMW0G56SJJUhvbSLV0hz
+         TW6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706565802; x=1707170602;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iizRxv6NysE36xdrVEdKo+2mCUyIdpOKnLfh9KMSTAo=;
+        b=aO5D4NwCE/Ui9pfaV0PI4qBM1wYkyilJTRZQyGLtQowsDe+k9Uki2Uov41lJSF2ss5
+         WIXI59na8hWlNRazR6/2nWv/FJGRglYE7LmErQcnB4zbbVrto/kuqhKuUgC23QXQqOFc
+         P/b2ZQC9YrRWDjHf3dUF6b4DKixoeenOXnEN8qyg8Sn3GRnYgF7gVGrM1OmO6y3gi3A/
+         N87QJuKGdT9UhJoV+gvWXSiKAlQolFhmdxI1zP6gwpdmEUbUQKtcJIEkdRqtzfoZPgA3
+         CHzQNIsVuz4YhPEUJBgGTKXoCtMWcNQgoAqt2XLudtTPujmKWQEtjG1L/HFyRQ1kVM4N
+         PFVQ==
+X-Gm-Message-State: AOJu0Yyr6YmxVCrIwtTgH1tFw9FC1mjljgEnJ6vPaczJYPWl8uqwphAv
+	6RcB/MgyfW8X4ybRVF2Rkgy3kUluh4jLF4gMCkk/ZvMbS0gFHXnfRY7Q27dgg8vhCoFmOwmQ9KN
+	mCxtMr2CO3J5IIdWxmTFNgZelu0FF+wq779CgzA==
+X-Google-Smtp-Source: AGHT+IF56uXHT4Cgjob666MahBgikEJ7dPk4T30eS88whDfuArgJB7aIwJP3xVTnl2WJOYxa9KCJ6EHOmRzxFs/98Rg=
+X-Received: by 2002:a05:690c:d1d:b0:5ff:9089:7d19 with SMTP id
+ cn29-20020a05690c0d1d00b005ff90897d19mr7855510ywb.66.1706565802609; Mon, 29
+ Jan 2024 14:03:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1706296015.git.quic_uchalich@quicinc.com>
+ <12bfdd23772c49530b8b0993cc82bc89b3eb4ada.1706296015.git.quic_uchalich@quicinc.com>
+ <CAA8EJppapW5nOFphBWove1ni8nbkA=xHON9D13NYeYHhyqL1Fg@mail.gmail.com> <94b097d4-dcfa-4136-ba75-f665f5bc747d@quicinc.com>
+In-Reply-To: <94b097d4-dcfa-4136-ba75-f665f5bc747d@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 30 Jan 2024 00:03:11 +0200
+Message-ID: <CAA8EJpqa5YArFk893nDz_oibbV=oqGEeYq6_jw582rQs=O_WpA@mail.gmail.com>
+Subject: Re: [PATCH 5/5] soc: qcom: llcc: Add regmap for Broadcast_AND region
+To: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-Sound uses the standard 5V supply, so rename the fixed regulator as
-such. Also add properties dcoumenting it is always on, also during boot.
+On Mon, 29 Jan 2024 at 20:17, Unnathi Chalicheemala
+<quic_uchalich@quicinc.com> wrote:
+>
+>
+>
+> On 1/26/2024 12:29 PM, Dmitry Baryshkov wrote:
+> > On Fri, 26 Jan 2024 at 21:48, Unnathi Chalicheemala
+> > <quic_uchalich@quicinc.com> wrote:
+> >>
+> >> To support CSR programming, a broadcast interface is used to program
+> >> all channels in a single command. Until SM8450 there was only one
+> >> broadcast region (Broadcast_OR) used to broadcast write and check
+> >> for status bit 0. From SM8450 onwards another broadcast region
+> >> (Broadcast_AND) has been added which checks for status bit 1.
+> >>
+> >> Update llcc_drv_data structure with new regmap for Broadcast_AND
+> >> region and initialize regmap for Broadcast_AND region when HW block
+> >> version is greater than 4.1 for backwards compatibility.
+> >>
+> >> Switch from broadcast_OR to broadcast_AND region for checking
+> >> status bit 1 as Broadcast_OR region checks only for bit 0.
+> >
+> > This breaks backwards compatibility with the existing DT files, doesn't it?
+> >
+>
+> It shouldn't as checking for status bit 1 is happening only when the block
+> version is greater than 4.1, which is when Broadcast_AND region support
+> is added.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+Let me reiterate, please: with the existing DT files. You are patching
+DT files in patches 2-4, but this is not enough. DT files are
+considered to be ABI. As such old DT files must continue to work with
+newer kernels.
 
-Or shall we move the regulator to ulcb.dtsi? I tend to leave it here
-because 5V are not used on ULCB, but I am open to change it.
+>
+> >> While at it, also check return value after reading Broadcast_OR
+> >> region in llcc_update_act_ctrl().
+> >
+> > Separate patch, Fixes tag.
+> >
+>
+> Ack. Will remove this from existing patch.
+> Thanks for the review Dmitry!
+>
+> >>
+> >> Signed-off-by: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
+> >> ---
+> >>  drivers/soc/qcom/llcc-qcom.c       | 12 +++++++++++-
+> >>  include/linux/soc/qcom/llcc-qcom.h |  4 +++-
+> >>  2 files changed, 14 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+> >> index 4ca88eaebf06..5a2dac2d4772 100644
+> >> --- a/drivers/soc/qcom/llcc-qcom.c
+> >> +++ b/drivers/soc/qcom/llcc-qcom.c
+> >> @@ -849,7 +849,7 @@ static int llcc_update_act_ctrl(u32 sid,
+> >>                 return ret;
+> >>
+> >>         if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+> >> -               ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+> >> +               ret = regmap_read_poll_timeout(drv_data->bcast_and_regmap, status_reg,
+> >>                                       slice_status, (slice_status & ACT_COMPLETE),
+> >>                                       0, LLCC_STATUS_READ_DELAY);
+> >>                 if (ret)
+> >> @@ -859,6 +859,8 @@ static int llcc_update_act_ctrl(u32 sid,
+> >>         ret = regmap_read_poll_timeout(drv_data->bcast_regmap, status_reg,
+> >>                                       slice_status, !(slice_status & status),
+> >>                                       0, LLCC_STATUS_READ_DELAY);
+> >> +       if (ret)
+> >> +               return ret;
+> >>
+> >>         if (drv_data->version >= LLCC_VERSION_4_1_0_0)
+> >>                 ret = regmap_write(drv_data->bcast_regmap, act_clear_reg,
+> >> @@ -1282,6 +1284,14 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+> >>
+> >>         drv_data->version = version;
+> >>
+> >> +       if (drv_data->version >= LLCC_VERSION_4_1_0_0) {
+> >> +               drv_data->bcast_and_regmap = qcom_llcc_init_mmio(pdev, i + 1, "llcc_broadcast_and_base");
+> >> +               if (IS_ERR(drv_data->bcast_and_regmap)) {
+> >> +                       ret = PTR_ERR(drv_data->bcast_and_regmap);
+> >> +                       goto err;
+> >> +               }
+> >> +       }
+> >> +
+> >>         llcc_cfg = cfg->sct_data;
+> >>         sz = cfg->size;
+> >>
+> >> diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
+> >> index 1a886666bbb6..9e9f528b1370 100644
+> >> --- a/include/linux/soc/qcom/llcc-qcom.h
+> >> +++ b/include/linux/soc/qcom/llcc-qcom.h
+> >> @@ -115,7 +115,8 @@ struct llcc_edac_reg_offset {
+> >>  /**
+> >>   * struct llcc_drv_data - Data associated with the llcc driver
+> >>   * @regmaps: regmaps associated with the llcc device
+> >> - * @bcast_regmap: regmap associated with llcc broadcast offset
+> >> + * @bcast_regmap: regmap associated with llcc broadcast OR offset
+> >> + * @bcast_and_regmap: regmap associated with llcc broadcast AND offset
+> >>   * @cfg: pointer to the data structure for slice configuration
+> >>   * @edac_reg_offset: Offset of the LLCC EDAC registers
+> >>   * @lock: mutex associated with each slice
+> >> @@ -129,6 +130,7 @@ struct llcc_edac_reg_offset {
+> >>  struct llcc_drv_data {
+> >>         struct regmap **regmaps;
+> >>         struct regmap *bcast_regmap;
+> >> +       struct regmap *bcast_and_regmap;
+> >>         const struct llcc_slice_config *cfg;
+> >>         const struct llcc_edac_reg_offset *edac_reg_offset;
+> >>         struct mutex lock;
+> >> --
+> >> 2.25.1
+> >>
+> >>
+> >
+> >
 
- arch/arm64/boot/dts/renesas/ulcb-kf.dtsi | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-index 6b6a0a8bc1db..84b0976503b7 100644
---- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-@@ -59,11 +59,13 @@ pcie_3v3: regulator-pcie-3v3 {
- 		enable-active-high;
- 	};
- 
--	snd_vcc5v: regulator-snd_vcc5v {
-+	reg_5v: regulator-5v {
- 		compatible = "regulator-fixed";
--		regulator-name = "snd-vcc5v";
-+		regulator-name = "fixed-5V";
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
-+		regulator-boot-on;
-+		regulator-always-on;
- 	};
- 
- 	wlan_en: regulator-wlan_en {
-@@ -210,10 +212,10 @@ pcm3168a: audio-codec@44 {
- 
- 				VDD1-supply = <&reg_3p3v>;
- 				VDD2-supply = <&reg_3p3v>;
--				VCCAD1-supply = <&snd_vcc5v>;
--				VCCAD2-supply = <&snd_vcc5v>;
--				VCCDA1-supply = <&snd_vcc5v>;
--				VCCDA2-supply = <&snd_vcc5v>;
-+				VCCAD1-supply = <&reg_5v>;
-+				VCCAD2-supply = <&reg_5v>;
-+				VCCDA1-supply = <&reg_5v>;
-+				VCCDA2-supply = <&reg_5v>;
- 			};
- 
- 			gyroscope@6b {
+
 -- 
-2.39.2
-
+With best wishes
+Dmitry
 
