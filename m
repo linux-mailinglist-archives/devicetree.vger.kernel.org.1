@@ -1,251 +1,307 @@
-Return-Path: <devicetree+bounces-36255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83211840507
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:29:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 283A7840517
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:37:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 092F71F2308F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:29:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94BF41F223DF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A60605AF;
-	Mon, 29 Jan 2024 12:29:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A948612CB;
+	Mon, 29 Jan 2024 12:37:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Ew9fCP6t"
+	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="Qj8UHHh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2049.outbound.protection.outlook.com [40.107.8.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9626605A6;
-	Mon, 29 Jan 2024 12:29:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706531370; cv=none; b=EulSBdCP5Kh7nkyCRvo4nJ1Vu/F+sJNC3KUmuu7s/N1QdhCSFy0hxJI/pWX19QcrLeMUZC5a7N8gHIlaUL8RKduUR0+elI43e24ofsHeh3Ey9dabIMTpCzYg/FsRSOFhiLHu2chM/arUe0uES1R8Vb/I8qH3lmRiiCECli0u4gU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706531370; c=relaxed/simple;
-	bh=seT4cFxJGu1vUJfRNDUUD9uV9saeS5T7Q5DryHH1KRg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FuXUFwhvzw4OyHUkmh0Vrf4bu3xDu0i5wwlgMx8MAUO0AiAkjDlO9jsp1c2eLaokw+MiSTvXCPOFa3XdibTsjYYkqHXPtkXSvBZ5TywW7ljyeHAs2geDIPNrp/P+UlOIYx4il1X8nm0hvOqfxKmojTR4xtOIEal7O83bsuFH0EU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Ew9fCP6t; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-154-35-128.elisa-laajakaista.fi [91.154.35.128])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id AA3D91803;
-	Mon, 29 Jan 2024 13:28:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1706531289;
-	bh=seT4cFxJGu1vUJfRNDUUD9uV9saeS5T7Q5DryHH1KRg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ew9fCP6txddjNsh8EXXz+kSS9vmA1GMuCVrrLPHUXer3lbfWC3JX/Z2I8jfG6AuQC
-	 sXgqei/XxHWhOP705fWcHasNUvrkAVLekNQJXQsY2p6Hwb3Z5CzOFidNtQdJrUrMgt
-	 q+5fn1ch5FJl+4K/+y2ia3oYzrFLqLHAy3llzYGE=
-Message-ID: <afea123c-12b0-4bcb-8f9e-6a15b4e8c915@ideasonboard.com>
-Date: Mon, 29 Jan 2024 14:29:22 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5112460EE5;
+	Mon, 29 Jan 2024 12:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.8.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706531831; cv=fail; b=DqqWDZt3V5ACILeckiHlHNKnTY7/gfaAUSHrdOSriiWC9WbrCOA7enmcA8srUm3BKzW2HdZJgJK5Zw75jnV90yAzViWxIDbX095mS4mhhmm3nlFuNxiKtyw+3ZNLBDTuhrG4zPhEfJ89D+aBpnySEgyQaHGik3KMLb6iTPrfI4E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706531831; c=relaxed/simple;
+	bh=+13vYZeoIcjLwfjY2XzTx8o5Gm0M7lMWUm265Ha8iGM=;
+	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=cpABkAI9Oq/sfTsi0O5fmfKnZ+TEXtnmEZhWGYs0dYuQ6Fjk5hKhyQQwrnfCd9Quw/lhgErPDlPK0WQzeyoYFTCIbfMk5CM3WgG/CyhV7vzeXDs18bcs2wesSUcXvnQjUA1Ah3byQLTJcUGKquYMtlnKaSLAwOzbcQR1d5kKjHk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=Qj8UHHh/; arc=fail smtp.client-ip=40.107.8.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lnGMUb1yqHpI/FRiCaMD9uutOM0a7PRU/XutzGeTmZakVHJ9h141ZJaFapUW8RtyYcaN4h3iN8TwQRabCYiIwzpgiHEkQItv1QLVj+Ir7Bbv/D4anE38DwhFgZ+zg6SeyTESUrolkU6XCVc0oR7+fozkwtdKnL42dsA3vrygR+WF8a8sWO8tUbxLj4ima7ty+Ik9W/pYLoD0ndAZY0k8aVpJdhVrSGqa6ZFbHZWfxjncM5n+tKtT7xWwBxwBsc4zCGVKTM9PeHuViY2PRVIKbwTskAIsqVVwRIV0CrlJrW5OxZpfc5W1rJQqk0SsXB5ksQZXUK1dD8tmOlU02uiJ6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XUhrAlia65ftKCeSaayFNDRnUYsq7ddijTTENeq6F/c=;
+ b=DTaBndP0X4irj5YcMn3Jdz46LokFARwowKfqazdD3F0hMxOIR684rexrzhNlnAtRKP8K9GceXaLCjYur9hgSn87IfOdQqSiunoLffcXSSqA2GcY41gQJXeSxra8VLfK8c4YM2jKf6LAsOG1zvyagHw5w5Hrj0rnUpusAUc9jZXO68Bkn49JFUtXRR1jp2hRf0usD23UrhqBEL65COJgq+rl2EwUN5l3glMBi/biJ8nbLLTmM/sAwqwMJSPMVjWRJlDDLzafwINP5dNOTVEwbcVaeSZAjMDeymTgVAO62hUvaN8uMTVbgIdFjceFpPEkEVCGfDzAAPXbSvcxsYAyR+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XUhrAlia65ftKCeSaayFNDRnUYsq7ddijTTENeq6F/c=;
+ b=Qj8UHHh//eAUcw8YILhAaLb/BCGnuhoZltKxbsDwfHKL6jKZwSms/B0N8W0HYrOjiwamzzfRyVRNaJGJYpMRt0Agh3weIsDcIE65aqf1TsiBfTo4p+W9GGBlsHvAPLEs1hQgkf3SQUvfiObqtgaDToXBHajFw/iOm8N7P3Ztt1o=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AS8PR04MB7557.eurprd04.prod.outlook.com (2603:10a6:20b:294::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.32; Mon, 29 Jan
+ 2024 12:37:04 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c499:8cef:9bb1:ced6]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c499:8cef:9bb1:ced6%3]) with mapi id 15.20.7228.029; Mon, 29 Jan 2024
+ 12:37:03 +0000
+Message-ID: <f88d07ef-83b2-4d14-976a-6dbbd71e036f@oss.nxp.com>
+Date: Mon, 29 Jan 2024 20:36:50 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Sudeep Holla <sudeep.holla@arm.com>,
+ Cristian Marussi <cristian.marussi@arm.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+ AKASHI Takahiro <takahiro.akashi@linaro.org>, Peng Fan <peng.fan@nxp.com>,
+ Rob Herring <robh@kernel.org>
+References: <20240121-pinctrl-scmi-v3-0-8d94ba79dca8@nxp.com>
+In-Reply-To: <20240121-pinctrl-scmi-v3-0-8d94ba79dca8@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI1PR02CA0034.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::10) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/13] of: property: add
- of_graph_get_next_endpoint_raw()
-Content-Language: en-US
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
- linux-sound@vger.kernel.org,
- =?UTF-8?Q?Uwe_Kleine-K=C3=83=C2=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Frank Rowand <frowand.list@gmail.com>, Helge Deller <deller@gmx.de>,
- Jaroslav Kysela <perex@perex.cz>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Mark Brown <broonie@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Maxime Ripard <mripard@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Rob Herring <robh+dt@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Takashi Iwai <tiwai@suse.com>, Thomas Zimmermann <tzimmermann@suse.de>
-References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
- <87bk95klgc.wl-kuninori.morimoto.gx@renesas.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <87bk95klgc.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AS8PR04MB7557:EE_
+X-MS-Office365-Filtering-Correlation-Id: eb5f4252-e711-42a5-c697-08dc20c6fefe
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	iEUMT1aGda6xh7CNiC8MyDdmSIQfd25S93RFFpvo6Augn2SQMyilIOQM6/tYv1p0GsePORxYy8dUY0L9j3kxds9Odiz2eSvt5H9KuE4jQwiLFdzpYNSEHxNojpPACCCjBfi7g0uHJVX2f3nwl7yghREQfMY2amZPRS5xhfqtw1nlR/malzoMBjCvXlR0fOaBSifSwT01B6ZjvfWECnoxtodQZZJvpSEdMN0BJ45K63DX0n1dx/lc0CYi5BkVPW6bh+EYiAg2kRKK4i3WqUBO8CIfY/hqSXt3/+S0DOO512N4c6JI8dMXMWbDIidTtpeZ2aid5LfS5jMGw0+n8+Z8QSiP4AWEj4ov5D4A3jYpxGboOZD8Xd/Cp3CjJDlqQwi2Gz30vE7FkavKrZ2Bo6F47nfJeAMovD0eMVyYwqlQRo3+YxZmITCexZSdleJ6bXQ48kHAdxMOjT3b5tVDKKeNfziondrXZLqCOt5H05LAH+9UAQU9d1TxGRIHMlyNRelI85tPV00ZW1aVj1SUsUqsxKsN7q6b+wgNWo7Zdm+zWAkR+PT7hOjb38Z1ggL2bEqJOKsr9pmd/jdIe4ZrsA1KzjJ2aTajY0zF9J0CieA6eKc8XGy6YrOsVGSntPGUbZbgCnVGQV0mNIq6Sp242bpOSRu/jTxtm5qSrb6i7QQ7q6UtoZV0Xn0pYdyfI/j62XG/
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39860400002)(346002)(366004)(396003)(136003)(376002)(230922051799003)(186009)(64100799003)(451199024)(1800799012)(31686004)(84970400001)(83380400001)(26005)(6512007)(6506007)(6666004)(86362001)(31696002)(921011)(5660300002)(66556008)(7416002)(44832011)(8676002)(8936002)(41300700001)(4326008)(2616005)(2906002)(38100700002)(66476007)(66946007)(110136005)(316002)(966005)(6486002)(54906003)(4001150100001)(478600001)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YkdzT0ovUVp3emJ1TmdiVXZIeFd4U3RMcnNSdVNoTHFGRCtIU1FKTW94SDhV?=
+ =?utf-8?B?ZFJ4ZmgvODJxU2ZLZUFMWFNlcmEwOWtCdHRCSVhVWE1ndG52cmVoeDFQcjR2?=
+ =?utf-8?B?M0xjeExuMlNBYWNjcDA1ZC82NW1XOE1SOHRFTzVyeW13MG5ickZxSTNpa0NX?=
+ =?utf-8?B?TUxXek9kQWUzVmdRVzUxYXY1OGE3dVVUNWIxS3R0NDlIRWZiTzFyRmxRektj?=
+ =?utf-8?B?c0NoaXlkQUF0OHplNk9zdWNZTWhTbGJUZHpGZUYzL1NqbG0xV1VRYmhOcFpF?=
+ =?utf-8?B?Z3B4NlZERzhBWmx4enJkQytFNEg4NnBYZFo0VGxLZjNXdUxhbHdZWnNHUGlm?=
+ =?utf-8?B?Mno2RkdkVFk2N29DOTllQkl4ZTVmWTYwT0ZjamcybVZKdFlBM2pHN1UzVVJT?=
+ =?utf-8?B?OEwvM3FsZ1dVVjB2cmtsdkZpb1E5eFVzcldiQ0MyNmpaVlFuZ0tvSC9URm5o?=
+ =?utf-8?B?U0lKc2VaOGlPaGhxeXJxdXVwK1dzUHlYTUt3ZTVKanZEdzZlb3pIS3pBSXJG?=
+ =?utf-8?B?WTRjYzQ2UlVBSGVlemdCbGsyL0RyNEpSY3hvVDRRV3k5YmFpd3B1SVJheitl?=
+ =?utf-8?B?SVZselg2Q3FQTFlwUjdxV0xpelpSVGxHbkZzWm5uQkhySzh0c0tYYjlNUWJS?=
+ =?utf-8?B?Kzhla1RUcENNNXpZRkovVklQYXdncGtCS05HSmRoUm1mb1Q4cnJ5cEhjbmxW?=
+ =?utf-8?B?R09lSXpqZzVLb0R6WElaT3JxWHBtUGtMeHFCMGhmaEtBOVJJRmNWTlRBQkZZ?=
+ =?utf-8?B?RU1xY0pyREE1VUJndmpTNXczenJhRE1SSE42VW1KUTIyT0hpZnp4bDI5ZGx6?=
+ =?utf-8?B?blNRczhUVHNrRkYxa2hkbGE4eUFaczJ6elA1VWY5QjdoR0hVMDhmaWRDbTJE?=
+ =?utf-8?B?MzRFSUNKeEpZeWFUS0o0eDhMYnFURi96SjBHd1AvTE02cGJqaCthd0NLbVhx?=
+ =?utf-8?B?NCtLcFlJS09BK1BzTHluYXVKNklzK0NmeDRyRjF5NHNjMVE0ZGFHM2k2N3I5?=
+ =?utf-8?B?TzNWRks4Y000MkdreDFOdlVoZG1aM2xESzNIWlg3dDZtcjVUVjFVeXA3RENl?=
+ =?utf-8?B?bm4vTGMvUEZOQUszZFBFK1FwZEo4NmlWRkhtU1Fud0xKVWVtSUp0K1ZQa0Nw?=
+ =?utf-8?B?OTFWbjNzNWFkYmRiQkRsL2U3N1gvTlh2ckxQN3luYUtXVEN5ZExOVC96S09K?=
+ =?utf-8?B?RlM0dXV0cHV3U1V6KzFCNUNDZWp2THlGT2MwWWVkUGJacVBQTkQyTkJFakZF?=
+ =?utf-8?B?dXB1UVNoZGhtcDk4dEd4c1BreHo5YVBCdDA2VU50SXVVUUVQUmxzWUhJYy9l?=
+ =?utf-8?B?cFduVEVZSGZrazMvVlZZYU5iVmxoZUlqbjVuOWNqaXdNNmpsTGN0SWdPS3B1?=
+ =?utf-8?B?WjhTS3UxTU8wV20xbks0Q3dhcFNWRVgvSTNwaGFUeldvQ1NVM3EvcWpXV0ht?=
+ =?utf-8?B?RlJWUGxJcDNKS0RtU2pIdm9PQWdmbjM4UnpRMUJDTmYwZlpLV2JOZjZ2SjNJ?=
+ =?utf-8?B?UmxQMWNOdGxKVkEwc0poLzFSM2JGeCtQazVWNVJsT3FFTTBqbEZINmh4THRr?=
+ =?utf-8?B?bWdKY1lXRVlHQzZQeTFtMjl4WS92cy90MXlIYUV6V0cvbWpZNTUxQmhBSU8x?=
+ =?utf-8?B?b0FaSVg5R1lIcnY2YS9GRjk1eml1U0w5WkN3d0dKTmhWU0QzN3lDa1k2aHg4?=
+ =?utf-8?B?VG5ibWFaeG83S1NOZHBTZ0QyME05RkNjWmwzazRZU3lZYjFjVlhDWWtKZmQ3?=
+ =?utf-8?B?ckkrR3NNOTFBdjduRzUxbWlSdGpNcGFjd2xtb3JQc3JVTXFQZzMvRWRuNGtG?=
+ =?utf-8?B?WnFna0k0TDF6ZFFWdTV6U2FZRlBrTDVia1l1dTc4QnNaa052bnJJV1p0QzJr?=
+ =?utf-8?B?Y1BTZFEvMVJNV0pjMGVOdURvMHllSkEwSUlmVFBQMm9JSHFoRFBiU3FKMGJq?=
+ =?utf-8?B?Qlowb2xXNGtpTmJjQUFab0FOWmZBM2NQblRneUJUT3RZcmRQQ2FscDFSWnNQ?=
+ =?utf-8?B?bzNWNFd1NEJkTzFCaFQveGdUbWYwYk1hM2RMc2pUM09Ec2dFdFdtSzd1Q1Nx?=
+ =?utf-8?B?WGVsa2s1RDJabDFkc1pUQXdzRkFZcnpvSldEVExKMWVqOGR3TFBWM0NkaDdD?=
+ =?utf-8?Q?O9p0AVLpbV1VpM1teMwcQ6Xei?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb5f4252-e711-42a5-c697-08dc20c6fefe
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 12:37:03.8581
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eZ2K7s6PkxN/S6cHBzOa3g1aeTshOcYHwr/KQUUoX7ES11irKJssEXhG7cX7jxFetjqWwDunbPq2MPseeT1TBw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7557
 
-On 29/01/2024 02:54, Kuninori Morimoto wrote:
-> We already have of_graph_get_next_endpoint(), but it is not intuitive
-> to use.
+Hi Sudeep, Cristian
+
+Would you pick up patch 1-4?
+And for i.MX95 OEM extenstion, do you have any suggestions?
+I have two points:
+1. use vendor compatible. This would also benefit when supporting vendor 
+protocol.
+2. Introduce a property saying supporting-generic-pinconf
+
+How do you think?
+
+Thanks,
+Peng.
+
+在 1/21/2024 6:21 PM, Peng Fan (OSS) 写道:
+> This patchset is a rework from Oleksii's RFC v5 patchset
+> https://lore.kernel.org/all/cover.1698353854.git.oleksii_moisieiev@epam.com/
 > 
-> (X)	node {
-> (Y)		ports {
-> 			port@0 { endpoint { remote-endpoint = ...; };};
-> (A1)			port@1 { endpoint { remote-endpoint = ...; };
-> (A2)				 endpoint { remote-endpoint = ...; };};
-> (B)			port@2 { endpoint { remote-endpoint = ...; };};
+> This patchset introduces some changes based on RFC v5:
+> - introduce helper get_max_msg_size
+> - support compatible string
+> - iterate the id_table
+> - Support multiple configs in one command
+> - Added i.MX support
+> - Patch 5 firmware: arm_scmi: Add SCMI v3.2 pincontrol protocol basic support
+>    is almost same as RFCv5 expect multiple configs support.
+> - Patch 4 the dt-bindings includes compatible string to support i.MX
+> - Rebased on 2023-12-15 linux-next/master
+> 
+> If any comments from RFC v5 are missed, I am sorry in advance.
+> 
+> This PINCTRL Protocol is following Version 3.2 SCMI Spec Beta release.
+> 
+> On ARM-based systems, a separate Cortex-M based System Control Processor
+> (SCP) provides control on pins, as well as with power, clocks, reset
+> controllers. So implement the driver to support such cases.
+> 
+> The i.MX95 Example as below:
+> 
+> Configuration:
+> The scmi-pinctrl driver can be configured using DT bindings.
+> For example:
+> / {
+> 	sram0: sram@445b1000 {
+> 		compatible = "mmio-sram";
+> 		reg = <0x0 0x445b1000 0x0 0x400>;
+> 
+> 		#address-cells = <1>;
+> 		#size-cells = <1>;
+> 		ranges = <0x0 0x0 0x445b1000 0x400>;
+> 
+> 		scmi_buf0: scmi-sram-section@0 {
+> 			compatible = "arm,scmi-shmem";
+> 			reg = <0x0 0x80>;
+> 		};
+> 
+> 		scmi_buf1: scmi-sram-section@80 {
+> 			compatible = "arm,scmi-shmem";
+> 			reg = <0x80 0x80>;
 > 		};
 > 	};
 > 
-> For example, if I want to handle port@1's 2 endpoints (= A1, A2),
-> I want to use like below
+> 	firmware {
+> 		scmi {
+> 			compatible = "arm,scmi";
+> 			mboxes = <&mu2 5 0>, <&mu2 3 0>, <&mu2 3 1>;
+> 			shmem = <&scmi_buf0>, <&scmi_buf1>;
+> 			#address-cells = <1>;
+> 			#size-cells = <0>;
 > 
-> 	A1 = of_graph_get_next_endpoint(port1, NULL);
-> 	A2 = of_graph_get_next_endpoint(port1, A1);
+> 			scmi_iomuxc: protocol@19 {
+> 				compatible = "fsl,imx95-scmi-pinctrl";
+> 				reg = <0x19>;
+> 			};
+> 		};
+> 	};
+> };
 > 
-> But 1st one will be error, because of_graph_get_next_endpoint() requested
-> "parent" means "node" (X) or "ports" (Y), not "port".
-> Below are OK
+> &scmi_iomuxc {
+> 	pinctrl_tpm3: tpm3grp {
+> 		fsl,pins = <
+> 			IMX95_PAD_GPIO_IO12__TPM3_CH2		0x51e
+> 		>;
+> 	};
+> };
 > 
-> 	of_graph_get_next_endpoint(node,  NULL); // node/ports/port@0/endpoint
-> 	of_graph_get_next_endpoint(ports, NULL); // node/ports/port@0/endpoint
+> This patchset has been tested on i.MX95-19x19-EVK board.
 > 
-> In other words, we can't handle A1/A2 directly via
-> of_graph_get_next_endpoint() so far.
-> 
-> There is another non intuitive behavior on of_graph_get_next_endpoint().
-> In case of if I could get A1 pointer for some way, and if I want to
-> handle port@1 things, I would like use it like below
-> 
-> 	/*
-> 	 * "endpoint" is now A1, and handle port1 things here,
-> 	 * but we don't know how many endpoints port1 has.
-> 	 *
-> 	 * Because "endpoint" is non NULL, we can use port1
-> 	 * as of_graph_get_next_endpoint(port1, xxx)
-> 	 */
-> 	do {
-> 		/* do something for port1 specific things here */
-> 	} while (endpoint = of_graph_get_next_endpoint(port1, endpoint))
-> 
-> But it also not worked as I expected.
-> I expect it will be A1 -> A2 -> NULL,
-> but      it will be A1 -> A2 -> B,    because of_graph_get_next_endpoint()
-> will fetch endpoint beyond the port.
-> 
-> It is not useful on generic driver like Generic Sound Card.
-> It uses of_get_next_child() instead for now, but it is not intuitive,
-> and not check node name (= "endpoint").
-> 
-> To handle endpoint more intuitive, create of_graph_get_next_endpoint_raw()
-> 
-> 	of_graph_get_next_endpoint_raw(port1, NULL); // A1
-> 	of_graph_get_next_endpoint_raw(port1, A1);   // A2
-> 	of_graph_get_next_endpoint_raw(port1, A2);   // NULL
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->   drivers/of/property.c    | 26 +++++++++++++++++++++++++-
->   include/linux/of_graph.h |  2 ++
->   2 files changed, 27 insertions(+), 1 deletion(-)
+> Changes in v3:
+> - Add R-b for dt-binding patch
+> - Use 80 chars per line to align with other scmi drivers
+> - Add pinctrl_scmi_alloc_configs pinctrl_scmi_free_configs to replace
+>    driver global config_value and config_type array to avoid in parrell
+>    access issue. When num_configs is larger than 4, use alloc, else use
+>    stack.
+> - Drop the separate MAITAINERS entry for firmware scmi pinctrl
+> - Use enum type, not u8 when referring the scmi or generic pin conf type
+> - Drop scmi_pinctrl_config_get_all which is not used at all for now.
+> - Update copyright year to 2024
+> - Move the enum scmi_pinctrl_conf_type above pinctrl_proto_ops for consistency
+> - Link to v2: https://lore.kernel.org/r/20240104-pinctrl-scmi-v2-0-a9bd86ab5a84@nxp.com
 > 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 14ffd199c9b1..37dbb1b0e742 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -667,6 +667,30 @@ struct device_node *of_graph_get_next_port(const struct device_node *parent,
->   }
->   EXPORT_SYMBOL(of_graph_get_next_port);
->   
-> +/**
-> + * of_graph_get_next_endpoint_raw() - get next endpoint node
-
-How about "of_graph_get_next_port_endpoint()"?
-
-> + * @port: pointer to the target port node
-> + * @endpoint: current endpoint node, or NULL to get first
-> + *
-> + * Return: An 'endpoint' node pointer with refcount incremented. Refcount
-> + * of the passed @prev node is decremented.
-> + */
-
-It might be good to highlight here the difference to the 
-of_graph_get_next_endpoint().
-
-> +struct device_node *of_graph_get_next_endpoint_raw(const struct device_node *port,
-> +						   struct device_node *endpoint)
-> +{
-> +	if (!port)
-> +		return NULL;
-> +
-> +	do {
-> +		endpoint = of_get_next_child(port, endpoint);
-> +		if (!endpoint)
-> +			break;
-> +	} while (!of_node_name_eq(endpoint, "endpoint"));
-> +
-> +	return endpoint;
-> +}
-> +EXPORT_SYMBOL(of_graph_get_next_endpoint_raw);
-> +
->   /**
->    * of_graph_get_next_endpoint() - get next endpoint node
->    * @parent: pointer to the parent device node
-> @@ -708,7 +732,7 @@ struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
->   		 * getting the next child. If the previous endpoint is NULL this
->   		 * will return the first child.
->   		 */
-> -		endpoint = of_get_next_child(port, prev);
-> +		endpoint = of_graph_get_next_endpoint_raw(port, prev);
->   		if (endpoint) {
->   			of_node_put(port);
->   			return endpoint;
-> diff --git a/include/linux/of_graph.h b/include/linux/of_graph.h
-> index fff598640e93..427905a6e8c3 100644
-> --- a/include/linux/of_graph.h
-> +++ b/include/linux/of_graph.h
-> @@ -57,6 +57,8 @@ int of_graph_get_port_count(const struct device_node *np);
->   struct device_node *of_graph_get_port_by_id(struct device_node *node, u32 id);
->   struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
->   					struct device_node *previous);
-> +struct device_node *of_graph_get_next_endpoint_raw(const struct device_node *port,
-> +						   struct device_node *prev);
->   struct device_node *of_graph_get_next_port(const struct device_node *parent,
->   					   struct device_node *previous);
->   struct device_node *of_graph_get_endpoint_by_regs(
-
+> Changes in v2:
+>   Added comments, and added R-b for Patch 1
+>   Moved the compatile string and i.MX patch to the end, marked NOT APPLY
+>   Patchset based on lore.kernel.org/all/20231221151129.325749-1-cristian.marussi@arm.com/
+>   Addressed the binding doc issue, dropped i.MX content.
+>   For the firmware pinctrl scmi driver, addressed the comments from Cristian
+>   For the pinctrl scmi driver, addressed comments from Cristian
+> 
+>   For the i.MX95 OEM stuff, I not have good idea, expect using compatbile
+>   string. Maybe the firmware public an protocol attribute to indicate it is
+>   VENDOR stuff or NXP use a new protocol id, not 0x19. But I think
+>   current pinctrl-scmi.c not able to support OEM config, should we extend
+>   it with some method? Anyway if patch 1-4 is good enough, they could
+>   be picked up first.
+> 
+>   Since I am only able to test the patch on i.MX95 which not support
+>   geneirc pinconf, only OEM configs are tested in my side.
+> 
+> ---
+> Oleksii Moisieiev (1):
+>        firmware: arm_scmi: Add SCMI v3.2 pincontrol protocol basic support
+> 
+> Peng Fan (5):
+>        firmware: arm_scmi: introduce helper get_max_msg_size
+>        dt-bindings: firmware: arm,scmi: support pinctrl protocol
+>        pinctrl: Implementation of the generic scmi-pinctrl driver
+>        [NOT APPLY]firmware: scmi: support compatible string
+>        [NOT APPLY] pinctrl: scmi: implement pinctrl_scmi_imx_dt_node_to_map
+> 
+>   .../devicetree/bindings/firmware/arm,scmi.yaml     |  50 ++
+>   MAINTAINERS                                        |   1 +
+>   drivers/firmware/arm_scmi/Makefile                 |   1 +
+>   drivers/firmware/arm_scmi/bus.c                    |  39 +-
+>   drivers/firmware/arm_scmi/common.h                 |   2 +-
+>   drivers/firmware/arm_scmi/driver.c                 |  32 +-
+>   drivers/firmware/arm_scmi/pinctrl.c                | 908 +++++++++++++++++++++
+>   drivers/firmware/arm_scmi/protocols.h              |   3 +
+>   drivers/pinctrl/Kconfig                            |  11 +
+>   drivers/pinctrl/Makefile                           |   1 +
+>   drivers/pinctrl/pinctrl-scmi-imx.c                 | 117 +++
+>   drivers/pinctrl/pinctrl-scmi.c                     | 609 ++++++++++++++
+>   drivers/pinctrl/pinctrl-scmi.h                     |  12 +
+>   include/linux/scmi_protocol.h                      |  77 ++
+>   14 files changed, 1849 insertions(+), 14 deletions(-)
+> ---
+> base-commit: 5389a88b06eb19c3fb08200cc1519406e299b7b0
+> change-id: 20231215-pinctrl-scmi-4c5b0374f4c6
+> 
+> Best regards,
 
