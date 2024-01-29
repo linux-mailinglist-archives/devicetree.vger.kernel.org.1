@@ -1,89 +1,84 @@
-Return-Path: <devicetree+bounces-36015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B58E383FB6C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 01:56:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6D0683FB7A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 01:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32232B22899
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 00:56:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 063F01C20B48
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 00:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6F76110;
-	Mon, 29 Jan 2024 00:55:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="I5VUEv4l"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 517558F48;
+	Mon, 29 Jan 2024 00:59:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2090.outbound.protection.outlook.com [40.107.114.90])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2074.outbound.protection.partner.outlook.cn [139.219.146.74])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63758D528;
-	Mon, 29 Jan 2024 00:55:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11BDDDA0;
+	Mon, 29 Jan 2024 00:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.74
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706489758; cv=fail; b=Jh5ooAJShAjy41lIFVuwiVEOORHGgzqytUFhNP64TWxd5Ayu5jOzFPCdVFXrWaJsbcSa9qF/q0IxxIZc3+qIfCPrpifE8gZKfXR79LhWokiQYbFxvMM2pdRXHxZWzL/vvXTRq/lfs5V/1e6qq5KdlLMCBuLpJKggWGwEWX4/380=
+	t=1706489959; cv=fail; b=paYepL0PP4ksjP14U7bDYQyCAJRqorj3w9/wiRaGtZYIp9lZfmI9hgUTZBxhPjxjdTULHnZrYEDyvRyYrFfub+y1kN7uVNjBno+npePtH/XZ5+NQhBdSLG2hEsiW1ERSz+mZyMTN7dPCqntlqO5zK0NmdpPMTD0EXgPJJcIggeg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706489758; c=relaxed/simple;
-	bh=L97gldjhPAaN74NzEXmSjFMqwLTTfTDhmO8pJ+flifo=;
-	h=Message-ID:From:Subject:To:Cc:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=htqjBAcg1dFJaCp4JJKmzT6VWWiyaFcx5DViEQHCqZ/W9/ONOOEySud3nonDyWHFJZG4c5jjVdhkRMKkEHlw+VOkkAwghIwZv/S1heeEGRvfO90jxp2Gu1I6IonTEqN1ZeL1bNToRl/aRiSb9pZbNFpmQ5L+YrvAEQpxumUhono=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=I5VUEv4l; arc=fail smtp.client-ip=40.107.114.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+	s=arc-20240116; t=1706489959; c=relaxed/simple;
+	bh=a1fIuVIFQj5jHzv1N+V662J9jOLA6EtmSot2Scq1ggI=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Orr0H7SbW9yx2pltrCwuUnUMA6shRPh5ygzwlQZM9OstyAtMAuG0l2WoMzrPHAdZSZE7xWkNDRQuEEu5OceWdSOGRdIMNmhallgA/ZkknIliBPPd2rX6ulalqqRFVcPsP5hxI+TQHjMa7oAvBfj2gxxfLeeH0lvv8CNjVfhIOWA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JXKEdCM7UOA5BQfdWdcgrAXDsk/s1VZOrVj4/nGMPnI8YsZ1VsuLDWtXBOjCPXy326QcPOieNhbsASH8QkaguU/7yEIjS9WgCj4bPEcT8S+OL927tZ/LkdIFkauvIbyzpSRrToWCACawSxizQdNDcAfxrVLTc8Lt+IovvJctp7NPYogIPZL1MvXJqR0WVKpm0ArLB5afLwkXAcacTJlr5fyw400f2tknYyEbDW+uOLS8VsnGV3vW95YG8BI6LmXSygP7KPA9ly315hJBew6tqeG0JjoF9caLCSIZ4wSkx4OClbTKdd+FXOQq+ojU8/x7KHk9uO2e2eZ7T5thXBvIlA==
+ b=lg3hP0DuesBGqT2ukU1vJPVt5Z3+521u4fD3brpvJvM9NUi5kxiQovJuMbIPmqUlbBcZCXiEr954mgKQJ91pyAuABk6I8GI6V1DtSr+Eh7pShRF5n//IapbErdBt8Cn0yqP9vulxWrJyGaTbK2IKmboq7FZCLc8gUu4Lp0wCnsd26FBuaT/6+n2iIyGFcEB1syLv62DOVHBvGPM2bzraAdA+H4h/XfjrYAn02ZP3bMRAYG3DsJGm4l+1FJrhx1XdTZGQhyPJRTqtfAyJ/oLNfHjsfNiPig0l8YL59ogXeNuhJwKt01ddaS02HTSyJKDMMyt2OXE5R398WEeMaBRspg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6IHKBzeEcUZQfmcDU6NiPxc3v8a75Rb9dHE1d6hECT0=;
- b=HdM4PjSXuCRfP9O8Yx9i8c410XHrUDnIDOhotzIr/km8M1xl6Tk3vlMdSmEulXgoBBkMms1vftUMyH1aXI3jP9LszOOGJVuvC+xXt+iySjlkN2KfkyD3xWmQJ0DUlq+1tVnhXhH1Md2F+q1OXMenxFN0iDHcV6Sar1oIDZlsW7XDV/YsDys77C/UpuiSz8sNE7LUip6OTb/MZvXOko6pf7N2X8eZ2OKjHbUSS/LDvxx/VW7U/5HFLgDW92mK1gUXAnIKYusebg/6Y5wXxPFYzshuB/P8qIDCN/fE926U3lIlyShkell+5n4ePxXxc9jpOLAMBn9VnLgoYYhPpEGTQw==
+ bh=+NgpySmXzoxq5FMielMScxGtRu1EyeCLpduhOf7+TO4=;
+ b=SJU8krBeKy1UvUFs4oCVunryNUC2rsawvr/cm96FeeC/WLin1xyOGxJpsBtzaSNIk33aIB4UdPAZGLA3E1El3nzhX1Xg1vsHRCm5WqRJYfzkYsdmNA7I3ev9B2wmNiec7n+0aRy8raZ2YSn6plL+tj3iemvHVPxbl9I8kqAFUTe3TzWbXEH2wR9reYtoFe+9b/urFoavdk/JM/VErrqP/q99o/yyU8Fdxu80OU82FUiPbpaoTzVUa9HwX3ybNzCxF+0W6UnjMA5652Ix7PEAgtNnwYh1vjpGeoLGCvucxJW4c8swF9RbRRJdbpfL0NpGcjH0UkdzOAb0q9QEyAr9dA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6IHKBzeEcUZQfmcDU6NiPxc3v8a75Rb9dHE1d6hECT0=;
- b=I5VUEv4lObV4bltx1OIzwDMo/bF2wl9VbMXUs3tS6NqN4pp9SoZUTiJNPvgiWYxteELEwHVX95GA4907Uk22TURXcTcV/d9SWedom5lca3hiiVqPjGnj6ndsfho/HxgnBOcKVTItM/s4qRhPWe000gX4FBezXe34Re1SOj7Way8=
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by OS3PR01MB9881.jpnprd01.prod.outlook.com
- (2603:1096:604:1e8::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7249.20; Mon, 29 Jan
- 2024 00:55:54 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::ce8:8f5e:99a0:aba4]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::ce8:8f5e:99a0:aba4%2]) with mapi id 15.20.7249.017; Mon, 29 Jan 2024
- 00:55:54 +0000
-Message-ID: <87wmrtj6ue.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Subject: [PATCH v2 13/13] fbdev: omapfb: use of_graph_get_next_endpoint()
-User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
-To: =?ISO-8859-1?Q?=22Uwe_Kleine-K=C3=B6nig=22?=
- <u.kleine-koenig@pengutronix.de>,	Daniel Vetter <daniel@ffwll.ch>,	David
- Airlie <airlied@gmail.com>,	Frank Rowand <frowand.list@gmail.com>,	Helge
- Deller <deller@gmx.de>,	Jaroslav Kysela <perex@perex.cz>,	Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>,	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,	Mark Brown
- <broonie@kernel.org>,	Mauro Carvalho Chehab <mchehab@kernel.org>,	Maxime
- Ripard <mripard@kernel.org>,	Michal Simek <michal.simek@amd.com>,	Rob
- Herring <robh+dt@kernel.org>,	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org,
-	linux-fbdev@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-sound@vger.kernel.org
-In-Reply-To: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
-References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset=US-ASCII
-Date: Mon, 29 Jan 2024 00:55:53 +0000
-X-ClientProxiedBy: TYCP286CA0325.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3b7::8) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+Received: from BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:18::12) by BJXPR01MB0630.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:14::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7228.28; Mon, 29 Jan
+ 2024 00:59:04 +0000
+Received: from BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
+ ([fe80::1ea1:19d5:efef:6fc6]) by
+ BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn ([fe80::1ea1:19d5:efef:6fc6%4])
+ with mapi id 15.20.7228.029; Mon, 29 Jan 2024 00:59:04 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Kevin Xie <kevin.xie@starfivetech.com>,
+	Minda Chen <minda.chen@starfivetech.com>
+Subject: [PATCH v14,RESEND 00/22] Refactoring Microchip PCIe driver and add StarFive PCIe
+Date: Mon, 29 Jan 2024 08:58:53 +0800
+Message-Id: <20240129005854.3554-1-minda.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: ZQ0PR01CA0035.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:2::21) To BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c211:18::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,207 +86,227 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OS3PR01MB9881:EE_
-X-MS-Office365-Filtering-Correlation-Id: 148a8932-cced-4b6c-08a9-08dc20650baa
+X-MS-TrafficTypeDiagnostic: BJXPR01MB0855:EE_|BJXPR01MB0630:EE_
+X-MS-Office365-Filtering-Correlation-Id: feca1bc8-6606-4a71-5846-08dc20657cd6
 X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	n6pRXDYEYib9VjoEnibu12yFAVc5LtclP2re0z7Mcm8oLYk7KkB5vYss+JxK48YAGjRfe/qsR9aiT16P74BDOdFMyRJ4mtzpDtfhEqFkBF3J6utKA38XwIMogXsPYV7MQVWxGYbDu/aC+Z1KPKq2EfrhKFTMSFEFk8ylrJDfVlgxHwSOMtFicPXrwI6crcWVTh/QA4qVIvsrI+fJ3RLlupFed3KuUMUbAY9LdeMnDAvp5qSbh3PtAIj5AgoJpIhoMtoA/r1IaS4gPvmywVePT0qVRTeQ9+4RYwJdB6G74wzRqpM2jDnrhMqL5NUP5LUqRA6vit7lFgHzlMhTpOHEJFt62U14y5zPG6MrgTGGz+VS0ppjYkgUAmvI3QuUfoXL2M8umKqVS1zDGfeeillcOTUEpHxsMgCQ/RTg8gfJSKx0IJwhjjHRBjgiZMoVrv2fTiOnIRyIkFVamwlgJ3DTJrKX/qtGsHt9QfT36B9RzNMhe8cLZdiOaDlhp6kPK4P1Gozz3l+s3r6K0UQkQbgEPaP1x71VWkEqqFUMizRFlPyYVdBMTqsZh0D2L3K86A8TfXcyFUtMS9Xx6ybFnBa/oGgFXMwgCPWs+E6efzXramssgin9r+fXw+eGjxXXG9xn2CZuY7G7CSxNJcwFtOLi7XYbU8zdu4fh49YxJQb+jeA=
+	xnOYMZQziqJXl91EbiqgE/AQbexJSDaq8Apox2jR7lKMmP3JOKh8j13+8brjJR6aQQ3m8aDf0ajOUX7M/ontKrIio7z6JmXzYm8k2lgXf4zKguv1exdUSTP9zV93bA/zhkMrTZQNDd/Lc29E6DffPTFrP4RKvClafZC5CPsVxk0g678BGYji2DH2jF8t9CsA46pnwtLkhzhBVGlNJtWMfPsiIR4vYKqEeQXg1IIu3kA0F9FAXHUKtBg/oa/RJBEFapCSTjbf/Tt9NoVvQh14QxUwuXcbzbUVAXmpZsgngL6JgJT1u45ICXJM3K43m1sH483NeWb4k/AzujfjjUj0MeVJjP2VDD+281zmIXPkkoCteGM1oXeFyKtaiT9Ir9M8oYBUkGWKqLMbz6G7MO2jMMoN1tP6BLEHU1DidJD+7eOuwdf7NNOPeDixbMtVxfkZOaO6FWUZzKFmaoiYEMxAP3r2Q885XqGZRXCq12iZisDZFPkQzIwmOQAAvFa5P89k1FHsY6TS6KTQwwcZcjUFhucZNJZBYxR0jhgScFCbXLycu/9E8VKDvLXL049k58E3
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(396003)(376002)(39860400002)(346002)(230922051799003)(64100799003)(1800799012)(186009)(451199024)(66556008)(8936002)(8676002)(4326008)(2906002)(7416002)(5660300002)(86362001)(110136005)(66946007)(66476007)(316002)(38350700005)(36756003)(38100700002)(52116002)(6506007)(6512007)(478600001)(6486002)(83380400001)(26005)(2616005)(41300700001)(921011)(21314003);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(136003)(39830400003)(396003)(346002)(366004)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(83380400001)(41320700001)(40180700001)(86362001)(40160700002)(36756003)(38350700005)(1076003)(38100700002)(2616005)(26005)(107886003)(2906002)(52116002)(508600001)(6666004)(41300700001)(110136005)(66946007)(66556008)(66476007)(54906003)(5660300002)(8936002)(4326008)(44832011)(8676002)(7416002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?kr+zOy+bLQ43kStVDcqp2oXs1OHP8kblVcDPfhRRI1zrUQgFIJBA4nX8S2xw?=
- =?us-ascii?Q?TS1rqbcN51QP/tO8qsMRenUJvFpYFvBrPW6wtCft1kDjAaf66iW/kguX2YOV?=
- =?us-ascii?Q?TfIspPGxnSO1xV27DXKp6BLR7Au3UdBcpHjG3mRv4ryTjoaPNR/vVSwcstoH?=
- =?us-ascii?Q?aQ4pI3X2R6EIEVdHJNOTakj0DG5EazbR6W2MukAZ4TMp35AipGPUKWB26ip7?=
- =?us-ascii?Q?7WnG3cne5WK7clxekP/hMsTNp95UCEvrVPtL0SK8ll96rpwNhsOdC6HGxqmL?=
- =?us-ascii?Q?piNHN4wjBayCmOQpvrpHjXjMT/zSR4GUuxKxqThVClchFeHzXzVFF74VkUba?=
- =?us-ascii?Q?TwgKGje/3SSQWLhxqz49Ji6UksMGDXQteaewuVIiPez+QqMwtgK0z5iw1VSd?=
- =?us-ascii?Q?m0iOceATwXSFV5cAa2K7SnPxMlRp1USiOyIwb6zz5ypaj7znA4khcPXbS2FK?=
- =?us-ascii?Q?EqGfjKatAU2sE/6b74YfmwYGjVH+F09LRddEmmDiv70QUOGd+Z00uahkC4CK?=
- =?us-ascii?Q?K98sV7Y57PMyE2s3cuaKaChn1LHx0fEUykFB6YrPyDh4S8OS5JA0eZvZk0YR?=
- =?us-ascii?Q?dQ7p51+idOk9nDAdN5ppxKyTVmtbguPLhHnpbzX5gpiH9Y+bH108TzKdUDY7?=
- =?us-ascii?Q?2B9EE9lVBtP5VJ/gV2QmYGlulgHVEe3lJbbZsS7p8pspMz3PxSupVCtFsJJA?=
- =?us-ascii?Q?srqitwd9pGmSJ2cLhbyvtY5xbMnikIFvEARMMxm6h3jsymB02CgQcCHwdsCU?=
- =?us-ascii?Q?iKDtQ3aYLZA+pKCWdeB0jUK0FHpf4w1uHNmhURmXAho9pI01SBXkcWJ63zkX?=
- =?us-ascii?Q?LYRTelxM8S48/NFDhq8LElrMjdkDi9wEb4YCa0RMid1Yi7VnEkINSqB3SuIN?=
- =?us-ascii?Q?dymxmbIxOYtKX0uQCbCdevHg4J4buQAQG3PEhBYdTKoRHsLM1GDNI4IMaJDd?=
- =?us-ascii?Q?sHIg2+YXCT0Jo8RL+HJAvmRSH0UDHjyJHl8PWvpEp+7IICWHsbCKJBOk5f86?=
- =?us-ascii?Q?5qDVzRYUaOIw0lDR/vDriEpKKUXdRfqHPn9eK+UOM7m8Gfe3/HmdIipp1dQ/?=
- =?us-ascii?Q?uCerebhG1iImrKkW6qMNs2HYBL0bTfuvReVQaLyqGTRNRBYTZM8SzSpN2Jqn?=
- =?us-ascii?Q?iWfyYXZ3ovXerdy5MNvrBXqO3bOv/8D8V86ZqV+RNIPIiuDpPx48X+M9WYlJ?=
- =?us-ascii?Q?+6+EVh7zGlf8m8bk9pBa+3BPPjEpZyJZm1Hr73k3OvuLzKEYlMp8utcaXXbv?=
- =?us-ascii?Q?vvaOe2iqOxu9hWRceomNa76ZVNoQ95UrdGdVPfV3QeNG5JNAo8VLkF1PS87F?=
- =?us-ascii?Q?ZIntX2gW0XOtJGwbP7LVuanzKL0J/ystInytHA27DQqtQDd39vI7uBz+QMWH?=
- =?us-ascii?Q?di6Imd6KL7zSTXg6AKIe6dX3tNafnVKqm0gN53Iz0mQgdh4lfFkKNm+Mb5hz?=
- =?us-ascii?Q?YIWPYwvfziR6G4JgMX5bOPf4cYRHq2VD6dHox7rkkUGwcMt1LNQUFieEE8Fc?=
- =?us-ascii?Q?N8pAb3Wsya0NwLhA0btfLhQmJowXYI+QWpAVbQ2TULNj5Dl1pWlEkXrS92h/?=
- =?us-ascii?Q?mH/s/f/MxLIV7JS0FUf9OtIT4oLv8HZaTv6gdRHHcICYSg4/fJX7I3Bbp4GN?=
- =?us-ascii?Q?kZ6IQFPBJuQWinP4Ip8rGiA=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 148a8932-cced-4b6c-08a9-08dc20650baa
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+	=?us-ascii?Q?toLbP8W1gckkGRR2qijtxUW4nxX2ksqH30YMEp5lLoq9YK1icaGl+XqqPh30?=
+ =?us-ascii?Q?VgONJf78Yz1rRn6VtG1vt3IokQGv7oXU2N9PWA4KhaSccBfJ20S4ZKMotefT?=
+ =?us-ascii?Q?B988yRVmQgY0HIgWmKhAiv9Ps03eDgLTao+DPLqR1mQW1AOgtnI9YbPs9995?=
+ =?us-ascii?Q?tdzsK5Bgl06L3kAuihKBseZzj4b+/FgVaizWacBCl92AinCKXFMCDuKkQeYP?=
+ =?us-ascii?Q?lHNPZGSU+q/W5x78T1W8qU5bso3r6F0H+5d74LWveemnRmwuRn3ep3nw9YCK?=
+ =?us-ascii?Q?WI5VARTmuhj/Gs1LPwrTs/T3Atd4vqE6qEaLWJpNJDsFRfiobYpyPsIL7DEx?=
+ =?us-ascii?Q?j/YdCL2aG6zCpydm+HLID/hV77IKqqXbx7w6HPq9DDTgSTfgsxvQCN9hPeRb?=
+ =?us-ascii?Q?NgEN0gzKx4gaBfrLUDgyNj5eBRtAOqypJEdulkLWWqovB6HA9NQQik5Z95kB?=
+ =?us-ascii?Q?4AL7ZxCbuWH5Htq31qzOLK9xc87NXup/PryuMurs5qhJJFfSHEYXVMfnpxYj?=
+ =?us-ascii?Q?W9l0wO9hSMxJkRvYnCggjOc3+5x57BGU96P0061jzUOitliNej0gjUQFtZO/?=
+ =?us-ascii?Q?tFVb2XrQb7sQ7wTPSM0ftVsziRr2R4IMlqK/xNv1kCqs5oHrM87t9hNyfN25?=
+ =?us-ascii?Q?XOXFLJrHHLAw511lONfAvleNRFkTyIa8WGZOGPp2sfaG6F3GwGOx0SUCabxR?=
+ =?us-ascii?Q?zMm02Ebh4zawuWoF+BwFFhw5c667VuyEE6MQ/n6SXG9DtSkOQtTnPmXKF4uC?=
+ =?us-ascii?Q?OqCeD55bJ76k63AdiWLOTP1iqrndfafk541KhOeHzz2JNMJY42myRrgANTTy?=
+ =?us-ascii?Q?/+z/s4YCWkDYCN098+5ss0x43bbETETsV/lHiK/+iv+wuhfRgdtYv5MAhfWT?=
+ =?us-ascii?Q?yJziyt+FDjtC/jmBZc1HIP3kBpS9CXaGnuVthXUhPjaa5Zfv0tes4EfT06CD?=
+ =?us-ascii?Q?/LYLMZqI8WJOIufNZ1BYRGBVSIXBg9jOff4KBDin+dWs0C/UXeSpNavmpd82?=
+ =?us-ascii?Q?une1UiRg1E9eJvjW9hFm8/hTJSZNv6+Y5ko+N83gBgJeimYCQiX1k/Q14+ro?=
+ =?us-ascii?Q?BHatD/ZooYwxFsqq//d1160Mmk6pMMS/aSmQZ8wYkuTkEhWlgvaGjvXjhrQk?=
+ =?us-ascii?Q?igcn6sBQ9fO2a10JrZUq2E7d0R9ZVp1kePvlnc0coatUnmvTVHmoZzIIDBrU?=
+ =?us-ascii?Q?Ekz04P648v2Eu9OchP08/zZPOs5B3BmLl+G4mRrKW6Kuc8C9VAYCwQlFIZyF?=
+ =?us-ascii?Q?q4nMgBtzp5BFJEH0cuAEZ4DUEHncXRdjfrKNPFe57YmOnTuXHGHd9kySFOxy?=
+ =?us-ascii?Q?fqPH2hsSJCQ94tCf2N/5lVLkqZYj1MF8KIOb8fYMHlORqG3y4OqaTwO1sNhr?=
+ =?us-ascii?Q?rkvB5QAOJeW90Ek4JduKB/vaT2StXzWIk5Wl7w9nzcc5bOWk4cxa+fcCvFfH?=
+ =?us-ascii?Q?Lrc+YuIaUnlF6d2SDdU0b3s2CqMDlQEcVuIGorB9Dw2D4bZMBuUZU4r27H3i?=
+ =?us-ascii?Q?B88daEtlnIn9EiwoBMAjRU5dHj9b/GM6+v2KbgdV8Hbn6MZ2K12m6z7yApjH?=
+ =?us-ascii?Q?NCXFvYE3U4Cdh6x7o5MD094ZuK8NqmPwHljgMPzaUKFcCF9zswSp8OdkPd6Y?=
+ =?us-ascii?Q?Rw=3D=3D?=
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: feca1bc8-6606-4a71-5846-08dc20657cd6
+X-MS-Exchange-CrossTenant-AuthSource: BJXPR01MB0855.CHNPR01.prod.partner.outlook.cn
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 00:55:54.0436
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2024 00:59:04.0057
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-Id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: r2mIQIUXOZa4VjVjOCekXhrNdIv7lCvvBCD3fB4hIs0Rn6DpHJtZNwJH1CHbKdm4TxYLLSaqvxkVuAAQdGMeQi3B9YNsUAD19392rOJX08xGjeCVTZRdH/IoFXAMWPqx
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB9881
+X-MS-Exchange-CrossTenant-UserPrincipalName: e/hysvxo45zahjyjbw8pomObEmqUBqN7BqwaxD0Rtz7oxMs0jk/0R/dtX0j8t7nHoTtp8qrC9lQZ50Y5iLROATwemKf89X3U14TQx+zixNw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BJXPR01MB0630
 
-omapdss_of_get_first_endpoint() is same as
-of_graph_get_next_endpoint(xxx, NULL). Replcase it.
+This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+same IP and have commit their codes, which are mixed with PLDA
+controller codes and Microchip platform codes.
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
- drivers/video/fbdev/omap2/omapfb/dss/dsi.c    |  3 ++-
- drivers/video/fbdev/omap2/omapfb/dss/dss-of.c | 20 +------------------
- drivers/video/fbdev/omap2/omapfb/dss/hdmi4.c  |  3 ++-
- drivers/video/fbdev/omap2/omapfb/dss/hdmi5.c  |  3 ++-
- drivers/video/fbdev/omap2/omapfb/dss/venc.c   |  3 ++-
- include/video/omapfb_dss.h                    |  3 ---
- 6 files changed, 9 insertions(+), 26 deletions(-)
+For re-use the PLDA controller codes, I request refactoring microchip
+codes, move PLDA common codes to PLDA files.
+Desigware and Cadence is good example for refactoring codes.
 
-diff --git a/drivers/video/fbdev/omap2/omapfb/dss/dsi.c b/drivers/video/fbdev/omap2/omapfb/dss/dsi.c
-index b7eb17a16ec4..50fdfb9e9411 100644
---- a/drivers/video/fbdev/omap2/omapfb/dss/dsi.c
-+++ b/drivers/video/fbdev/omap2/omapfb/dss/dsi.c
-@@ -28,6 +28,7 @@
- #include <linux/debugfs.h>
- #include <linux/pm_runtime.h>
- #include <linux/of.h>
-+#include <linux/of_graph.h>
- #include <linux/of_platform.h>
- #include <linux/component.h>
- 
-@@ -5079,7 +5080,7 @@ static int dsi_probe_of(struct platform_device *pdev)
- 	struct device_node *ep;
- 	struct omap_dsi_pin_config pin_cfg;
- 
--	ep = omapdss_of_get_first_endpoint(node);
-+	ep = of_graph_get_next_endpoint(node, NULL);
- 	if (!ep)
- 		return 0;
- 
-diff --git a/drivers/video/fbdev/omap2/omapfb/dss/dss-of.c b/drivers/video/fbdev/omap2/omapfb/dss/dss-of.c
-index 8aa2bfc2825f..1cd3e7251964 100644
---- a/drivers/video/fbdev/omap2/omapfb/dss/dss-of.c
-+++ b/drivers/video/fbdev/omap2/omapfb/dss/dss-of.c
-@@ -51,24 +51,6 @@ u32 dss_of_port_get_port_number(struct device_node *port)
- 	return reg;
- }
- 
--struct device_node *
--omapdss_of_get_first_endpoint(const struct device_node *parent)
--{
--	struct device_node *port, *ep;
--
--	port = of_graph_get_next_port(parent, NULL);
--
--	if (!port)
--		return NULL;
--
--	ep = of_graph_get_next_endpoint_raw(port, NULL);
--
--	of_node_put(port);
--
--	return ep;
--}
--EXPORT_SYMBOL_GPL(omapdss_of_get_first_endpoint);
--
- struct omap_dss_device *
- omapdss_of_find_source_for_first_ep(struct device_node *node)
- {
-@@ -76,7 +58,7 @@ omapdss_of_find_source_for_first_ep(struct device_node *node)
- 	struct device_node *src_port;
- 	struct omap_dss_device *src;
- 
--	ep = omapdss_of_get_first_endpoint(node);
-+	ep = of_graph_get_next_endpoint(node, NULL);
- 	if (!ep)
- 		return ERR_PTR(-EINVAL);
- 
-diff --git a/drivers/video/fbdev/omap2/omapfb/dss/hdmi4.c b/drivers/video/fbdev/omap2/omapfb/dss/hdmi4.c
-index f05b4e35a842..83f53858e5b5 100644
---- a/drivers/video/fbdev/omap2/omapfb/dss/hdmi4.c
-+++ b/drivers/video/fbdev/omap2/omapfb/dss/hdmi4.c
-@@ -20,6 +20,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/clk.h>
- #include <linux/of.h>
-+#include <linux/of_graph.h>
- #include <linux/regulator/consumer.h>
- #include <linux/component.h>
- #include <video/omapfb_dss.h>
-@@ -529,7 +530,7 @@ static int hdmi_probe_of(struct platform_device *pdev)
- 	struct device_node *ep;
- 	int r;
- 
--	ep = omapdss_of_get_first_endpoint(node);
-+	ep = of_graph_get_next_endpoint(node, NULL);
- 	if (!ep)
- 		return 0;
- 
-diff --git a/drivers/video/fbdev/omap2/omapfb/dss/hdmi5.c b/drivers/video/fbdev/omap2/omapfb/dss/hdmi5.c
-index 03292945b1d4..427258d04e18 100644
---- a/drivers/video/fbdev/omap2/omapfb/dss/hdmi5.c
-+++ b/drivers/video/fbdev/omap2/omapfb/dss/hdmi5.c
-@@ -25,6 +25,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/clk.h>
- #include <linux/of.h>
-+#include <linux/of_graph.h>
- #include <linux/regulator/consumer.h>
- #include <linux/component.h>
- #include <video/omapfb_dss.h>
-@@ -561,7 +562,7 @@ static int hdmi_probe_of(struct platform_device *pdev)
- 	struct device_node *ep;
- 	int r;
- 
--	ep = omapdss_of_get_first_endpoint(node);
-+	ep = of_graph_get_next_endpoint(node, NULL);
- 	if (!ep)
- 		return 0;
- 
-diff --git a/drivers/video/fbdev/omap2/omapfb/dss/venc.c b/drivers/video/fbdev/omap2/omapfb/dss/venc.c
-index c9d40e28a06f..30d90476f90b 100644
---- a/drivers/video/fbdev/omap2/omapfb/dss/venc.c
-+++ b/drivers/video/fbdev/omap2/omapfb/dss/venc.c
-@@ -24,6 +24,7 @@
- #include <linux/regulator/consumer.h>
- #include <linux/pm_runtime.h>
- #include <linux/of.h>
-+#include <linux/of_graph.h>
- #include <linux/component.h>
- 
- #include <video/omapfb_dss.h>
-@@ -764,7 +765,7 @@ static int venc_probe_of(struct platform_device *pdev)
- 	u32 channels;
- 	int r;
- 
--	ep = omapdss_of_get_first_endpoint(node);
-+	ep = of_graph_get_next_endpoint(node, NULL);
- 	if (!ep)
- 		return 0;
- 
-diff --git a/include/video/omapfb_dss.h b/include/video/omapfb_dss.h
-index fc106aaa75bf..d133190e3143 100644
---- a/include/video/omapfb_dss.h
-+++ b/include/video/omapfb_dss.h
-@@ -811,9 +811,6 @@ static inline bool omapdss_device_is_enabled(struct omap_dss_device *dssdev)
- 	return dssdev->state == OMAP_DSS_DISPLAY_ACTIVE;
- }
- 
--struct device_node *
--omapdss_of_get_first_endpoint(const struct device_node *parent);
--
- struct omap_dss_device *
- omapdss_of_find_source_for_first_ep(struct device_node *node);
- #else
+----------------------------------------------------------
+The refactoring patches total number is 16,(patch 1-16)
+which do NOT contain changing logic of codes.
+
+These patches just contain three type basic operations.
+(rename, modify codes to support starfive platform, and moving to common file)
+If these patched are all be reviewed. They can be accepted first.
+
+Refactoring patches can be devided to different groups
+1. (patch 1- 3 is the prepare work of refactoring)
+patch1 is move PLDA XpressRICH PCIe host common properties dt-binding
+       docs from microchip,pcie-host.yaml
+patch2 is move PolarFire codes to PLDA directory.
+patch3 is move PLDA IP register macros to plda-pcie.h
+
+2. (patch4 - 6 is processing and re-use PCIe host instance)
+patch4 is add bridge_addr field to PCIe host instance.
+patch5 is rename data structure in microchip codes.
+patch6 is moving two data structures to head file
+
+3. (patch 7 - 9 are for re-use two PCIe setup function)
+patch7 is rename two setup functions in microchip codes, prepare to move
+to common file.
+patch8 is change the arguments of plda_pcie_setup_iomems()
+patch9 is move the two setup functions to common file pcie-plda-host.c
+
+4.(patch 10 - 16 are for re-use interupt processing codes)
+patch10 is rename the IRQ related functions, prepare to move to
+pcie-plda-host.c
+patch 11 - 15 is modify the interrupt event codes, preparing for support starfive
+and microchip two platforms.
+patch16 is move IRQ related functions to pcie-plda-host.c
+
+------------------------------------------------------------
+The remainder patches (patch 17 -22) are not refactoring patch.
+They are for adding StarFive codes and dont modify the microchip's
+codes.
+
+patch17 is Add event bitmap for mask unused/unimpementes interrupts
+patch18 is Add host init/deinit functions.
+patch19 is add StarFive JH7110 PCIe dt-binding doc.
+patch20 is Add a PCIe delay time macro
+patch21 is add StarFive JH7110 Soc PCIe codes.
+patch22 is Starfive dts config
+
+This patchset is base on v6.8-rc1
+
+previous version:
+v9:https://patchwork.kernel.org/project/linux-pci/cover/20231020104341.63157-1-minda.chen@starfivetech.com/
+v10:https://patchwork.kernel.org/project/linux-pci/cover/20231031115430.113586-1-minda.chen@starfivetech.com/
+v11:https://patchwork.kernel.org/project/linux-pci/cover/20231115114912.71448-1-minda.chen@starfivetech.com/
+v12:https://patchwork.kernel.org/project/linux-pci/cover/20231206105839.25805-1-minda.chen@starfivetech.com/
+v13:https://patchwork.kernel.org/project/linux-pci/cover/20231214072839.2367-1-minda.chen@starfivetech.com/
+
+change:
+  v14:
+   resend: correct some commit messages. base on v6.8-rc1
+   Add a new patch 17. Add interrupt eventmap to mask non-implemented or unused interrupt.
+   patch3: rename the PLDA interrupts macro name.
+   patch9: remove the redundant head file.
+   patch10,11: modify the commit message suggested by Lorrenzo.
+   patch12: modify the commit message.
+   patch14, 15: PLDA codes will handle DMA interrupts. Modify the commit message. 
+   patch18 remove plda default events. This is implemented by vendor.
+   patch21 Add plda_event instance stf_pcie_event.
+
+  v13:
+   patch14: 1. Add plda_get_event() function. This can be compare with mc_get_event() easily and 
+		track the codes changes in case in the future..
+            2. The host event_ops is directly set to plda host port.
+	    3. Setting default host event_ops instead of checking event ops.
+   patch15:1. Add PLDA event irq_chip instead of event_domain_ops, The
+		event_domain_ops can be re-used.
+            2. The host event irq_chip is directly set to plda host port.
+	    3. Add PLDA event irqchip ops codes.
+            4. Remove Conor's review tag due to whole patch have been changed.
+   patch16: Also move the new added PLDA event codes.
+   patch18: Add plda host init and deinit function only.
+
+  v12:
+   patch18: modify the commit message and add starfive review tag.
+   Add PCIE_RESET_CONFIG_DEVICE_WAIT_MS to patch 19.
+   patch21: Add disable runtime pm function in starfive_pcie_remove()
+            Add "depens on ARCH_STARFIVE || COMPILE_TEST" in Starfive PCie Kconfig
+
+  v11:
+     check and modify some commit messages again.
+     All the codes are the same with v10.   
+
+  v10:
+   All the commit message set to fit in 75 columns.
+   All the codes fit in less than 80 colunms.
+   patch 14: 
+	Commit message changes suggested by Conor.
+   patch 21:
+        Add 100 ms delay macro to pci.h
+	generic phy pointer related codes moving to pcie-starfive.c
+	This patch Change pcie-starfive only, bus_ops move to patch 16.
+	Some Codes changes suggested by Bjorn.
+
+  v9:
+   v8 patch 10 squash to v9 patch 12, v8 patch 18 squash to v9 patch 16.
+   patch 4 - 16: Add new review tags and add more accurate commit messages.
+   patch 18: move the plda_pcie_host_init/deinit from patch 19. Make
+             plda driver become to whole driver.
+
+
+Kevin Xie (1):
+  PCI: Add PCIE_RESET_CONFIG_DEVICE_WAIT_MS waiting time value
+
+Minda Chen (21):
+  dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+  PCI: microchip: Move pcie-microchip-host.c to plda directory
+  PCI: microchip: Move PLDA IP register macros to pcie-plda.h
+  PCI: microchip: Add bridge_addr field to struct mc_pcie
+  PCI: microchip: Rename two PCIe data structures
+  PCI: microchip: Move PCIe host data structures to plda-pcie.h
+  PCI: microchip: Rename two setup functions
+  PCI: microchip: Change the argument of plda_pcie_setup_iomems()
+  PCI: microchip: Move setup functions to pcie-plda-host.c
+  PCI: microchip: Rename interrupt related functions
+  PCI: microchip: Add num_events field to struct plda_pcie_rp
+  PCI: microchip: Add request_event_irq() callback function
+  PCI: microchip: Add INTx and MSI event num to struct plda_event
+  PCI: microchip: Add get_events() callback and add PLDA get_event()
+  PCI: microchip: Add event irqchip field to host port and add PLDA
+    irqchip
+  PCI: microchip: Move IRQ functions to pcie-plda-host.c
+  PCI: plda: Add event bitmap field to struct plda_pcie_rp
+  PCI: plda: Add host init/deinit and map bus functions
+  dt-bindings: PCI: Add StarFive JH7110 PCIe controller
+  PCI: starfive: Add JH7110 PCIe controller
+  riscv: dts: starfive: add PCIe dts configuration for JH7110
+
+ .../bindings/pci/microchip,pcie-host.yaml     |  55 +-
+ .../pci/plda,xpressrich3-axi-common.yaml      |  75 ++
+ .../bindings/pci/starfive,jh7110-pcie.yaml    | 120 ++++
+ MAINTAINERS                                   |  19 +-
+ .../jh7110-starfive-visionfive-2.dtsi         |  64 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  86 +++
+ drivers/pci/controller/Kconfig                |   9 +-
+ drivers/pci/controller/Makefile               |   2 +-
+ drivers/pci/controller/plda/Kconfig           |  30 +
+ drivers/pci/controller/plda/Makefile          |   4 +
+ .../{ => plda}/pcie-microchip-host.c          | 615 ++---------------
+ drivers/pci/controller/plda/pcie-plda-host.c  | 651 ++++++++++++++++++
+ drivers/pci/controller/plda/pcie-plda.h       | 272 ++++++++
+ drivers/pci/controller/plda/pcie-starfive.c   | 473 +++++++++++++
+ drivers/pci/pci.h                             |  16 +
+ 15 files changed, 1875 insertions(+), 616 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich3-axi-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+ create mode 100644 drivers/pci/controller/plda/Kconfig
+ create mode 100644 drivers/pci/controller/plda/Makefile
+ rename drivers/pci/controller/{ => plda}/pcie-microchip-host.c (54%)
+ create mode 100644 drivers/pci/controller/plda/pcie-plda-host.c
+ create mode 100644 drivers/pci/controller/plda/pcie-plda.h
+ create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
+
+
+base-commit: 6613476e225e090cc9aad49be7fa504e290dd33d
 -- 
-2.25.1
+2.17.1
 
 
