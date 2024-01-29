@@ -1,153 +1,342 @@
-Return-Path: <devicetree+bounces-36187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48468401ED
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:40:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A02C8401F0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:40:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8885BB20C09
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:40:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C36271F22887
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A447355765;
-	Mon, 29 Jan 2024 09:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FB405577D;
+	Mon, 29 Jan 2024 09:40:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WP9btXCG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uRWOIs5z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 766E154FB2;
-	Mon, 29 Jan 2024 09:40:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85D6C5576E
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 09:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706521212; cv=none; b=eQZ1qtD2IXATLbg5kbrLArbB92Cz/w2yisFCADkVVoUq4qXh2cpCiqqoyileUMtFUhs+QQzvS49/jsqMmOkWg5UPmpmxXOrGj/+zCOezI6QyMAjSzOprc2B/sMyciv8hrsihgGSkLBp3+JgV7Q+FgTV2IuP33idBa60zmqlMyek=
+	t=1706521238; cv=none; b=VNnYmiEnVqMRvpD/CQO3gY+PvThSdX0ypmMfdzZmUfVgmNCdaq/KiWIh89qiUJNYx5d3/fDsQ3kWQjC+Rixzq2PaGy4iM2UwupRXHmDXTuF+182ARgfHKiqMbh5rdb82NaYLQOPnfW+B4PJS3fA4Ju5tJ0W2cCsbKJ1dqO1n35Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706521212; c=relaxed/simple;
-	bh=9Vv3v+/Pe4SpvRgFIw1kkB8d7DptlxovoLWFbzSC3eo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DVVSyVIPcT++l3lTqTxE5NlOs9S5r6XDN22dvweMJUeDAfITsBHbvZVuCGipBo0wAADLj/wAQWpELixXtcEJVVSROvHFWg5hoWARsFYlsztNa1+kzXmxbyDgy+CHBMafGyFg9aGg4mbB76bJ+gZThHovTJbidKdoqP61sMsl0co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WP9btXCG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48CBEC433F1;
-	Mon, 29 Jan 2024 09:40:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1706521211;
-	bh=9Vv3v+/Pe4SpvRgFIw1kkB8d7DptlxovoLWFbzSC3eo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WP9btXCGmiSjvjiwWT+vA9mDVV7IDFi4m8JNXFpYB3XzzVLMARqRVK88iyvsukJS3
-	 ffGu0BrsNFvj2k4ZGFNOgGxJU+U/IJKiGzKJQlDaDMVyhkWgHT+H8XYFNrtclPmfmR
-	 OTCwotaAVMU8tpgPbYOXlDZP2+N1rIIl/nUcyk5MV5ATutESvg3Kj0PFoMajv3Cptz
-	 l8UJRanPvdcJ5BgFge/BDIMO27I4NlU282g+qUCkAeiDUlRJVF65aAYr5cG9M4OJRh
-	 zzddY4yBYr8uCxdnkp7IzkD2p95YzXHgAYVe/Y6IXNOgNpTiqt3BJiTikdL0NL8Jso
-	 zk11Mieaf1fzg==
-Message-ID: <8f525770-7e39-4bf1-9ad3-803826ffbb1e@kernel.org>
-Date: Mon, 29 Jan 2024 10:40:04 +0100
+	s=arc-20240116; t=1706521238; c=relaxed/simple;
+	bh=LvIa5rnussX39WpEvTL5gFnyjahkkKM2xWu0Uymx6WY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A8RKXhx4d/ZC9NVxGSlzGhOhBCxt8VhrX/ErpSGn3LDIXvYIydsOWxPxZKNWkykg2A+BpoySQliSIMoDTA4FuW5xRV85oB5TqNAI9uLXbIbbqAn3X6IwzXr0EWs1IVLj/Cw/Txn5uQ1FErxB8ncbt6ic9CzOuNHmDWBlofmtE+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uRWOIs5z; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-603c5d7997aso11466957b3.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 01:40:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706521235; x=1707126035; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2JY6ToXPjNwXhuXrTT6QOjgiDmdF+CeM/r9NF1DgPmk=;
+        b=uRWOIs5z5cpIcgIRteOBk0BWRv4DIT3n5pAnv7v7NShb/QfsK6qDWeMocGKBOtUzau
+         U3DaFctFnVIdZo09w5hXWYD8ZxeJMobkjIOklZlp6xX4PK6osWLV/poAM2t9IKiByT4r
+         2oAjaqTt8ld2m0oBA8pQXgolEHfBckhB9BRdu9YdoHcUWiVMFgAXyyIc3OSHrhk+1knF
+         WGCr9HVS4/YNLY61Vr6y62RpIapzlUnFLiuWcEI0hDipgPG+RXIMtvaLilpbE6ltUJ9Y
+         yX+WI327PXEgCa7HRGzEhrDxug4fDl3u6Uf/weUK+KZEYci2ViHnf+TsAewMVW794B1I
+         VN/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706521235; x=1707126035;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2JY6ToXPjNwXhuXrTT6QOjgiDmdF+CeM/r9NF1DgPmk=;
+        b=IhC4fySYOvPCAsnlJrsV1jYSvPh36YdS/lC8O66+IZjGkGL/W9L4PSVxvnyEGYTLm2
+         S9pjnoOP92UrjL3TKMYgfVKwd8onW0+r9E4CYcVcBy1Dlil4Or90y/4kC2QNaBRHyXfI
+         w42LI2r4pPANGPntWdwbXRU0K5NwN5wVmZHDMSVCzIQx61FyDJZPt5vdBCLcgh0rled3
+         rP20jqYVHMV2RxaW/x7aetDw/t4S+JoO+TySmEvre0ZcrA1DULIcm2a325mdRCXqGSDX
+         Ugs73L43GL872qKD5MEWgEG69bN2M/EhIHdVHMey99pBoKCA/vfmqYi6WmaN3RQLWzCy
+         hGdw==
+X-Gm-Message-State: AOJu0YxatPIONm3xgZOruC1ySa8gt7S8rKBaP9PgCMVXx/cINmOiOxPq
+	PRIdGu22ZSTtgOBpdsLYYNuPViiR/IswLvSj0StmsbEi5T5/Ia/GrKn+FL3baA6R+7rwUzS7Dai
+	u5UutJovk4s0e+mfra7eCCg4sKgXw7JMN6yccXw==
+X-Google-Smtp-Source: AGHT+IH4lWSb6WG9jfOKtjqmDCo4I5nviQ3kAEzfInwhv5cfQoct03pp8KFNFA8IYJr4yCU2gWeZ0ebx2mBpRYiPCJA=
+X-Received: by 2002:a0d:d415:0:b0:5ef:78ad:b0b6 with SMTP id
+ w21-20020a0dd415000000b005ef78adb0b6mr3331146ywd.69.1706521235443; Mon, 29
+ Jan 2024 01:40:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/2] pwm: Add GPIO PWM driver
-To: Stefan Wahren <wahrenst@gmx.net>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: andy.shevchenko@gmail.com,
- Angelo Compagnucci <angelo.compagnucci@gmail.com>,
- Philip Howard <phil@gadgetoid.com>, Linus Walleij
- <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
- Vincent Whitchurch <vincent.whitchurch@axis.com>
-References: <20240128163630.104725-1-wahrenst@gmx.net>
- <20240128163630.104725-3-wahrenst@gmx.net>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20240128163630.104725-3-wahrenst@gmx.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240129-x1e80100-phy-edp-compatible-refactor-v3-0-e71f3359c535@linaro.org>
+ <20240129-x1e80100-phy-edp-compatible-refactor-v3-2-e71f3359c535@linaro.org>
+ <CAA8EJpr5Ci7M92ibsCMec3wcQTVqFkaVgRQUhKUSdhg66YhW1Q@mail.gmail.com> <Zbdcao0emQyBodCK@linaro.org>
+In-Reply-To: <Zbdcao0emQyBodCK@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 29 Jan 2024 11:40:24 +0200
+Message-ID: <CAA8EJppkEksTL90KLcaw0adg73K=ngoYp8semB_u5YFk6rChhA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] phy: qcom: edp: Add set_mode op for configuring
+ eDP/DP submode
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johan Hovold <johan@kernel.org>, linux-phy@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 28/01/2024 17:36, Stefan Wahren wrote:
-> From: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> 
-> Add a software PWM which toggles a GPIO from a high-resolution timer.
-> 
-> This will naturally not be as accurate or as efficient as a hardware
-> PWM, but it is useful in some cases.  I have for example used it for
-> evaluating LED brightness handling (via leds-pwm) on a board where the
-> LED was just hooked up to a GPIO, and for a simple verification of the
-> timer frequency on another platform.
-> 
+On Mon, 29 Jan 2024 at 10:06, Abel Vesa <abel.vesa@linaro.org> wrote:
+>
+> On 24-01-29 06:05:09, Dmitry Baryshkov wrote:
+> > On Mon, 29 Jan 2024 at 02:26, Abel Vesa <abel.vesa@linaro.org> wrote:
+> > >
+> > > Future platforms should not use different compatibles to differentiate
+> > > between eDP and DP mode. Instead, they should use a single compatible as the
+> > > IP block is the same. It will be the job of the controller to set the submode
+> > > of the PHY accordingly.
+> > >
+> > > The existing platforms will remain with separate compatibles for each mode.
+> > >
+> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > > ---
+> > >  drivers/phy/qualcomm/phy-qcom-edp.c | 71 ++++++++++++++++++++++++++-----------
+> > >  1 file changed, 51 insertions(+), 20 deletions(-)
+> > >
+> > > diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
+> > > index 8e5078304646..af941d6c5588 100644
+> > > --- a/drivers/phy/qualcomm/phy-qcom-edp.c
+> > > +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
+> > > @@ -14,6 +14,7 @@
+> > >  #include <linux/module.h>
+> > >  #include <linux/of.h>
+> > >  #include <linux/phy/phy.h>
+> > > +#include <linux/phy/phy-dp.h>
+> > >  #include <linux/platform_device.h>
+> > >  #include <linux/regulator/consumer.h>
+> > >  #include <linux/reset.h>
+> > > @@ -68,19 +69,21 @@
+> > >
+> > >  #define TXn_TRAN_DRVR_EMP_EN                    0x0078
+> > >
+> > > -struct qcom_edp_cfg {
+> > > -       bool is_dp;
+> > > -
+> > > -       /* DP PHY swing and pre_emphasis tables */
+> > > +struct qcom_edp_swing_pre_emph_cfg {
+> > >         const u8 (*swing_hbr_rbr)[4][4];
+> > >         const u8 (*swing_hbr3_hbr2)[4][4];
+> > >         const u8 (*pre_emphasis_hbr_rbr)[4][4];
+> > >         const u8 (*pre_emphasis_hbr3_hbr2)[4][4];
+> > >  };
+> > >
+> > > +struct qcom_edp_phy_cfg {
+> > > +       bool is_edp;
+> > > +       const struct qcom_edp_swing_pre_emph_cfg *swing_pre_emph_cfg;
+> > > +};
+> > > +
+> > >  struct qcom_edp {
+> > >         struct device *dev;
+> > > -       const struct qcom_edp_cfg *cfg;
+> > > +       const struct qcom_edp_phy_cfg *cfg;
+> > >
+> > >         struct phy *phy;
+> > >
+> > > @@ -96,6 +99,8 @@ struct qcom_edp {
+> > >
+> > >         struct clk_bulk_data clks[2];
+> > >         struct regulator_bulk_data supplies[2];
+> > > +
+> > > +       bool is_edp;
+> > >  };
+> > >
+> > >  static const u8 dp_swing_hbr_rbr[4][4] = {
+> > > @@ -126,8 +131,7 @@ static const u8 dp_pre_emp_hbr2_hbr3[4][4] = {
+> > >         { 0x04, 0xff, 0xff, 0xff }
+> > >  };
+> > >
+> > > -static const struct qcom_edp_cfg dp_phy_cfg = {
+> > > -       .is_dp = true,
+> > > +static const struct qcom_edp_swing_pre_emph_cfg dp_phy_swing_pre_emph_cfg = {
+> > >         .swing_hbr_rbr = &dp_swing_hbr_rbr,
+> > >         .swing_hbr3_hbr2 = &dp_swing_hbr2_hbr3,
+> > >         .pre_emphasis_hbr_rbr = &dp_pre_emp_hbr_rbr,
+> > > @@ -162,18 +166,28 @@ static const u8 edp_pre_emp_hbr2_hbr3[4][4] = {
+> > >         { 0x00, 0xff, 0xff, 0xff }
+> > >  };
+> > >
+> > > -static const struct qcom_edp_cfg edp_phy_cfg = {
+> > > -       .is_dp = false,
+> > > +static const struct qcom_edp_swing_pre_emph_cfg edp_phy_swing_pre_emph_cfg = {
+> > >         .swing_hbr_rbr = &edp_swing_hbr_rbr,
+> > >         .swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3,
+> > >         .pre_emphasis_hbr_rbr = &edp_pre_emp_hbr_rbr,
+> > >         .pre_emphasis_hbr3_hbr2 = &edp_pre_emp_hbr2_hbr3,
+> > >  };
+> > >
+> > > +static const struct qcom_edp_phy_cfg sc7280_dp_phy_cfg = {
+> > > +};
+> > > +
+> > > +static const struct qcom_edp_phy_cfg sc8280xp_dp_phy_cfg = {
+> > > +       .swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg,
+> > > +};
+> > > +
+> > > +static const struct qcom_edp_phy_cfg sc8280xp_edp_phy_cfg = {
+> > > +       .is_edp = true,
+> > > +       .swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg,
+> > > +};
+> > > +
+> > >  static int qcom_edp_phy_init(struct phy *phy)
+> > >  {
+> > >         struct qcom_edp *edp = phy_get_drvdata(phy);
+> > > -       const struct qcom_edp_cfg *cfg = edp->cfg;
+> > >         int ret;
+> > >         u8 cfg8;
+> > >
+> > > @@ -200,7 +214,7 @@ static int qcom_edp_phy_init(struct phy *phy)
+> > >                DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
+> > >                edp->edp + DP_PHY_PD_CTL);
+> > >
+> > > -       if (cfg && cfg->is_dp)
+> > > +       if (edp->cfg->swing_pre_emph_cfg && !edp->is_edp)
+> >
+> > I think (!edp->is_edp) should be enough here.
+>
+> Actually, in case of DP, the cfg8 needs to be 0xb7 for sc8280xp, while for sc7280 it should be 0x37.
+>
+> So to differentiate between first and second we check if the config
+> provides a swing_pre_emph_cfg
 
-...
+Using swing_pre_emph_cfg to distinguish between those two cases is a pure hack.
+Is there any sensible meaning behind those bits? If not, just put
+those values into the configuration data.
 
-> +
-> +static struct platform_driver pwm_gpio_driver = {
-> +	.driver = {
-> +		.name = "pwm-gpio",
-> +		.of_match_table = pwm_gpio_dt_ids,
-> +	},
-> +	.probe = pwm_gpio_probe,
-> +	.remove_new = pwm_gpio_remove,
-> +};
-> +module_platform_driver(pwm_gpio_driver);
-> +
-> +MODULE_DESCRIPTION("PWM GPIO driver");
-> +MODULE_ALIAS("platform:pwm-gpio");
+>
+> >
+> > >                 cfg8 = 0xb7;
+> > >         else
+> > >                 cfg8 = 0x37;
+> > > @@ -234,7 +248,7 @@ static int qcom_edp_phy_init(struct phy *phy)
+> > >
+> > >  static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configure_opts_dp *dp_opts)
+> > >  {
+> > > -       const struct qcom_edp_cfg *cfg = edp->cfg;
+> > > +       const struct qcom_edp_swing_pre_emph_cfg *cfg = edp->cfg->swing_pre_emph_cfg;
+> > >         unsigned int v_level = 0;
+> > >         unsigned int p_level = 0;
+> > >         u8 ldo_config;
+> > > @@ -245,6 +259,9 @@ static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configur
+> > >         if (!cfg)
+> > >                 return 0;
+> > >
+> > > +       if (edp->is_edp)
+> > > +               cfg = &edp_phy_swing_pre_emph_cfg;
+> > > +
+> > >         for (i = 0; i < dp_opts->lanes; i++) {
+> > >                 v_level = max(v_level, dp_opts->voltage[i]);
+> > >                 p_level = max(p_level, dp_opts->pre[i]);
+> > > @@ -261,7 +278,7 @@ static int qcom_edp_set_voltages(struct qcom_edp *edp, const struct phy_configur
+> > >         if (swing == 0xff || emph == 0xff)
+> > >                 return -EINVAL;
+> > >
+> > > -       ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
+> > > +       ldo_config = edp->is_edp ? 0x0 : 0x1;
+> > >
+> > >         writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
+> > >         writel(swing, edp->tx0 + TXn_TX_DRV_LVL);
+> > > @@ -447,10 +464,9 @@ static int qcom_edp_set_vco_div(const struct qcom_edp *edp, unsigned long *pixel
+> > >  static int qcom_edp_phy_power_on(struct phy *phy)
+> > >  {
+> > >         const struct qcom_edp *edp = phy_get_drvdata(phy);
+> > > -       const struct qcom_edp_cfg *cfg = edp->cfg;
+> > >         u32 bias0_en, drvr0_en, bias1_en, drvr1_en;
+> > >         unsigned long pixel_freq;
+> > > -       u8 ldo_config;
+> > > +       u8 ldo_config = 0x0;
+> > >         int timeout;
+> > >         int ret;
+> > >         u32 val;
+> > > @@ -468,7 +484,8 @@ static int qcom_edp_phy_power_on(struct phy *phy)
+> > >                 return timeout;
+> > >
+> > >
+> > > -       ldo_config = (cfg && cfg->is_dp) ? 0x1 : 0x0;
+> > > +       if (edp->cfg->swing_pre_emph_cfg && !edp->cfg->is_edp)
+> >
+> > I'd assume this should be `if (!edp->is_edp)`, see qcom_edp_set_voltages()
+> >
+>
+> Yep. will fix.
+>
+> > > +               ldo_config = 0x1;
+> > >
+> > >         writel(ldo_config, edp->tx0 + TXn_LDO_CONFIG);
+> > >         writel(ldo_config, edp->tx1 + TXn_LDO_CONFIG);
+> > > @@ -589,6 +606,18 @@ static int qcom_edp_phy_power_off(struct phy *phy)
+> > >         return 0;
+> > >  }
+> > >
+> > > +static int qcom_edp_phy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
+> > > +{
+> > > +       struct qcom_edp *edp = phy_get_drvdata(phy);
+> > > +
+> > > +       if (mode != PHY_MODE_DP)
+> > > +               return -EINVAL;
+> > > +
+> > > +       edp->is_edp = submode == PHY_SUBMODE_EDP ? true : false;
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > >  static int qcom_edp_phy_exit(struct phy *phy)
+> > >  {
+> > >         struct qcom_edp *edp = phy_get_drvdata(phy);
+> > > @@ -604,6 +633,7 @@ static const struct phy_ops qcom_edp_ops = {
+> > >         .configure      = qcom_edp_phy_configure,
+> > >         .power_on       = qcom_edp_phy_power_on,
+> > >         .power_off      = qcom_edp_phy_power_off,
+> > > +       .set_mode       = qcom_edp_phy_set_mode,
+> > >         .exit           = qcom_edp_phy_exit,
+> > >         .owner          = THIS_MODULE,
+> > >  };
+> > > @@ -781,6 +811,7 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
+> > >
+> > >         edp->dev = dev;
+> > >         edp->cfg = of_device_get_match_data(&pdev->dev);
+> > > +       edp->is_edp = edp->cfg->is_edp;
+> > >
+> > >         edp->edp = devm_platform_ioremap_resource(pdev, 0);
+> > >         if (IS_ERR(edp->edp))
+> > > @@ -839,10 +870,10 @@ static int qcom_edp_phy_probe(struct platform_device *pdev)
+> > >  }
+> > >
+> > >  static const struct of_device_id qcom_edp_phy_match_table[] = {
+> > > -       { .compatible = "qcom,sc7280-edp-phy" },
+> > > -       { .compatible = "qcom,sc8180x-edp-phy" },
+> > > -       { .compatible = "qcom,sc8280xp-dp-phy", .data = &dp_phy_cfg },
+> > > -       { .compatible = "qcom,sc8280xp-edp-phy", .data = &edp_phy_cfg },
+> > > +       { .compatible = "qcom,sc7280-edp-phy" , .data = &sc7280_dp_phy_cfg, },
+> > > +       { .compatible = "qcom,sc8180x-edp-phy", .data = &sc7280_dp_phy_cfg, },
+> > > +       { .compatible = "qcom,sc8280xp-dp-phy", .data = &sc8280xp_dp_phy_cfg, },
+> > > +       { .compatible = "qcom,sc8280xp-edp-phy", .data = &sc8280xp_edp_phy_cfg, },
+> > >         { }
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, qcom_edp_phy_match_table);
+> > >
+> > > --
+> > > 2.34.1
+> > >
+> >
+> >
+> > --
+> > With best wishes
+> > Dmitry
 
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
 
 
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
 
