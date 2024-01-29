@@ -1,359 +1,241 @@
-Return-Path: <devicetree+bounces-36165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B124F84012F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:17:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E103D84013E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 10:19:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4ED91C21FD9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:17:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 118C41C20CF5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:19:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6F1C54FAC;
-	Mon, 29 Jan 2024 09:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 874E155E7D;
+	Mon, 29 Jan 2024 09:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bGSacqq4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O+Zw8yen"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F8855789
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 09:16:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C123E55E7B
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 09:18:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706519808; cv=none; b=C7wEBDcF01cbgKkiumujQeKy82eeIIn3aD74PFU4/iXvwu0tL3AhOd3uLyFt8TPytL6FnH2WHF31o2yreCnMVeFL8tPT6inaOT5YXFJ3gaUdlH1lCyFSinaNQJGwQOR3y8xhcfqyM1+e8RTdVFcIvtmA2OFi3UXPqf+G+LytJqU=
+	t=1706519922; cv=none; b=eX7jf9sonPwHTUUNtEHlwMyW57K0PDkzVzbcwFziQ1iX1gAVA4n1R2BYZQkZrI8u0leoel2OXfdfev0eYhoFWjHTTerbv0rYC4l8eD95jQ0012rgfHVruVU+HqcZni4V9vjGJ62IcZUbI4w3olotReX92OWg9cm3mQ+hjPsXPd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706519808; c=relaxed/simple;
-	bh=4NyS6D5Qofbhb2SQAREqrd3GswVI2CZPZl6TmOTm0fg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=c/i0r7dMTjLUoK+wPaAPb2Mhi8XPPmh9IpBAaGUWnYVL7se3u+hFVZG4YnaFUlQydAU5YYNSGhMFdTJDgFYvuGTjsBuGOQwpexOMLmICUZMNF2l2exH80QQ7LRArkANK0ecNzRA/u1v0RLj0q9NCaoO4uUFBM9bfUAS1SuVMjeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bGSacqq4; arc=none smtp.client-ip=209.85.221.44
+	s=arc-20240116; t=1706519922; c=relaxed/simple;
+	bh=sFozMJoAolAGCF8tscjr3ajpcwVLl1NfdfeFIagusCw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=esgFD6gsTezn8i7aOsFfWLJcbzMp/r3LP3lnK1Gt8a9eiYjBoCzhL1b79luJuNOV3MR4FmFuhOITpqgP/H2D9XXaalc56qOlIWPZ6IygmwyjOV+1eHyT6wO4ljYzdtiO2hXz52/JoGau2SxYGUgSWWPrL9PF8sa80ZrvhUpPGuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O+Zw8yen; arc=none smtp.client-ip=209.85.219.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-33af4b34e2cso101672f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 01:16:45 -0800 (PST)
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-68c2f4c3282so21451736d6.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 01:18:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1706519803; x=1707124603; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OetDTW52ox4JEw6CgWxlaDanXL4m3ZtE503VRTXSSV0=;
-        b=bGSacqq4Bx/uMFuFjpUFcHJoEkn2OgkQJqGWiIaqbfBtbUNhBXuU0WUKTp6hw3ened
-         nbc1ZqxqqAdd+FkPuXF1Ed9dtzqpgZdBspHdjpxX6TTqvBSOxPpEa/BUAfsYQrfz7ctL
-         02eLLu0ahmApjSkEzHJK6xeo+z+jnWoiGjIOtdXF5wwN4JIMBJFED4yZKeM8qXJlsbPx
-         pHdk1zwFchR/11hv8uGMtH0X2mgnjF9zsD/hIiIxxzVgoARbsqVXx+AbuMO5RrQWCmUg
-         Gn5nt0mZl8tnvcQhq3g3b+USOcrCFhUjWjESQ7OgUFWY1sE9ovXZV1BrhrUUvwtbtxlG
-         IIbQ==
+        d=linaro.org; s=google; t=1706519918; x=1707124718; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P8QUCC8mxaAYBk9a7j4VTD2YmBLyr7XLPrPfEMJfXSE=;
+        b=O+Zw8yenzEoPh/vaH6nKmPzzb1zsqsmaYbBFktz6RVnBM709pNz15R6Rgvr27AfR0o
+         MwO7/mLx21K8jGrMCKDJyuUSUseeMayD/QLFWdsrc+sYiEy0UxlWS6E7t0S4BsZuBLgM
+         HB4AbIL3J5FtCKzhg84o0DXq49wR1NpIQzAEy3/4RwjvXPxHsIEeFC/gcBRsVpN1UZAa
+         Po0CsTl3vBnKZxWjSs89KtSYk9WZ9XK6y6CuaqRcWYufniEVgL21lo9vy703ZfCX+kKL
+         rpLjP6jUhISNkU87OLmhnLmZPUAaAsAfMhMyGoums+jBARQj3aM3vkv55eXhSsUqDY7B
+         nTNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706519803; x=1707124603;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1706519918; x=1707124718;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OetDTW52ox4JEw6CgWxlaDanXL4m3ZtE503VRTXSSV0=;
-        b=odhYUJiy75SWHJTt6ol0lLMZjy2xU4OgBjimrwjz5cNLff88rP+Bjxe/DHZCPaRLCZ
-         FjFMEWACIj+bZYBPkLqEyua+23r8Drq2Nt6DvRmhgtG8gbST/NKALLJjGyLlMxTZGqgS
-         VP+hdCizxpDkU7654jl9vO8X3NIzP0SjbU+Vhe8j19iAAs510hMnrJhMFCaA8dpnb1H5
-         0ACxsUyEHwiNY55EBf6ftIg+K9xj9OsaO7GSYX43xkbQ6a4InwMfa9wlNTa2AIu7jzp3
-         pyDzN4ANI19R34EeAPDMOcGuwFMd5/Sql2WBDtOFpOmPLxc4Foxncn0XaMWcABG+qg1S
-         vSvw==
-X-Gm-Message-State: AOJu0Ywi4xYJP6t/6ICkGt4h+3IRCeo+r41GxCJIF5b3++xwbfspOiG9
-	aB2eFAL5N/teueton2lDTF2MhT3sqvqDT+1cLA5TQihf7zr9TpbNkAwGS/4dW9Q=
-X-Google-Smtp-Source: AGHT+IHEaVC3jg0Z/Kp44EOxFGL3kQrfQN2WdpS3j0NCaOlBXdoSrOYL0T27GepzO98iWarPzWHftA==
-X-Received: by 2002:adf:e943:0:b0:33a:e653:96b with SMTP id m3-20020adfe943000000b0033ae653096bmr3622091wrn.21.1706519803632;
-        Mon, 29 Jan 2024 01:16:43 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id b7-20020adfee87000000b0033aebf727b2sm2818198wro.60.2024.01.29.01.16.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jan 2024 01:16:43 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 29 Jan 2024 10:16:38 +0100
-Subject: [PATCH v15 4/4] Input: goodix-berlin - add SPI support for Goodix
- Berlin Touchscreen IC
+        bh=P8QUCC8mxaAYBk9a7j4VTD2YmBLyr7XLPrPfEMJfXSE=;
+        b=tMnxHh8wTO9NmDAUPc41x5EVo5qtH6bxuSCXjYv9z9bTLauziFCCt0F5PoUojhIqMz
+         I30/iODYD/Op45vNwKYXKlUVnimJH/ns6XQjrtCVp+T6mFN0fe0tqUA+qQKvswrXiWNk
+         w7lE0SE+LEUVgRL0KTK5krhEe/ot1yLHrcsYYaviGhQSD0SgJ1W+FlcuD06jcXKJydz1
+         1DgUBU3TxxSs3o17cWUo6QTdd2f/OTGKMsU9mI2roTXOl0qnOmjrQIbYeB+x75tH4+Mf
+         BqUQ6inFsl+GMdKZvDTgA3gGMS37w2B9a7TfAuVd7BD3PLJH8gVN0TcjWjGEL1pawm4z
+         XfzA==
+X-Gm-Message-State: AOJu0YzK4OZNFcXWeYCX/oAoWNFhUhMXvg3Ph6+Z5g0OzHmUt553EzPO
+	ZRiu21t/5JcnKfSHVSuaP49FcmlcQAMsfS/rH2eueC+/yyN5UNbUaHP59quKqs5fvWsywsFHX83
+	sINY56+U31JVXTc+AvfhS/qZ1aYrIUMjgDNiP8g==
+X-Google-Smtp-Source: AGHT+IHMF9jA2tNnrgpg+GOHbhcFMUcNlosZdvmduCi5ermtTKqbkzvQ64jyco/nTt46T/fJWnSt6/5J7Zh94ctVnIA=
+X-Received: by 2002:a05:6214:2a4e:b0:685:cf86:45eb with SMTP id
+ jf14-20020a0562142a4e00b00685cf8645ebmr6633834qvb.104.1706519918653; Mon, 29
+ Jan 2024 01:18:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240129-topic-goodix-berlin-upstream-initial-v15-4-6f7d096c0a0a@linaro.org>
-References: <20240129-topic-goodix-berlin-upstream-initial-v15-0-6f7d096c0a0a@linaro.org>
-In-Reply-To: <20240129-topic-goodix-berlin-upstream-initial-v15-0-6f7d096c0a0a@linaro.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- linux-input@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bastien Nocera <hadess@hadess.net>, 
- Hans de Goede <hdegoede@redhat.com>, Henrik Rydberg <rydberg@bitmath.org>, 
- Jeff LaBundy <jeff@labundy.com>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8094;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=4NyS6D5Qofbhb2SQAREqrd3GswVI2CZPZl6TmOTm0fg=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBlt2z1cpm+XgwSsKJqACAF9VCd+DXrdfVhLpXTNrTK
- FkuPRjqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZbds9QAKCRB33NvayMhJ0X4uD/
- 9kECfHMz3XFjUBoZGyXTqaPvK2Qq7u3SsFbaHNfNK1Gl1ZDeLnh5HgFk4CsYtzxW8vcDYk9UpMJXFf
- E1Je5QPfnTel6SyyYb4UtxG+GPpWDikIH3K9tROaDm77dyjmrqhEv95I9z06JBYtWPvgK8Rwvu2V5W
- hF02P9NjxWs5ItZitRYZjrqUl7dg9Z37XDIhrbRFhiPKJvzcRhbfUuZpMDiSgVr8ZxhhtTuiFxpvyY
- Z7hu4Orao5OKEF/MOWKsieUq2Ov+MJB+Cn5AeoKrtQlbdrLsh3asLjLuB5Hf7ZsI8cG67XfzZjpYPh
- NC96kchL0VMx7gwcNQt5V1F1douVleCqCvQU2+KvAGpgPpSPSBiaazsAC03va4iFfthOp4cF2YPz+8
- F0LSfIerlc3qfs+w5R3h/lVkOQya6L+4wQFhP+vhId5cFQPB6Ymogh+qp7zDG5y472wlcp/dR3LuTz
- HYIKZMslpuaE1MIIofrw77LzHbfH5ahW7K9lwRbLX0o06PSv0Ia96NsRW7VYVExdRyEuBt6UYOWT1Z
- KjMeIyFVtkSQ7ecDE6E4hFdJ9NtuShE/Liu3vfYD6FDxDLPctQXjbYuLWAS/LppPs0IC1+Y9NYfGV0
- 7gdMCnVe7R1EWAMsGckJDwGtQDWfWdAlj9uDYwcRzLrjwgA0Hc6CNRxE54xA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+References: <20240127001926.495769-1-andre.draszik@linaro.org> <20240127001926.495769-3-andre.draszik@linaro.org>
+In-Reply-To: <20240127001926.495769-3-andre.draszik@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Mon, 29 Jan 2024 09:18:27 +0000
+Message-ID: <CADrjBPox_NDkq+-XxX5cuxAhYDubMHnqjnpwj4+76_A=izuhjw@mail.gmail.com>
+Subject: Re: [PATCH 2/9] dt-bindings: clock: google,gs101-clock: add PERIC1
+ clock management unit
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, kernel-team@android.com, 
+	tudor.ambarus@linaro.org, willmcvicker@google.com, semen.protsenko@linaro.org, 
+	alim.akhtar@samsung.com, s.nawrocki@samsung.com, tomasz.figa@gmail.com, 
+	cw00.choi@samsung.com, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add initial support for the new Goodix "Berlin" touchscreen ICs
-over the SPI interface.
+Hi Andr=C3=A9
 
-The driver doesn't use the regmap_spi code since the SPI messages
-needs to be prefixed, thus this custom regmap code.
+On Sat, 27 Jan 2024 at 00:19, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
+>
+> Add dt-schema documentation and clock IDs for the Connectivity
+> Peripheral 1 (PERIC1) clock management unit.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+>
+> ---
 
-This initial driver is derived from the Goodix goodix_ts_berlin
-available at [1] and [2] and only supports the GT9916 IC
-present on the Qualcomm SM8550 MTP & QRD touch panel.
+Thanks for working on these regexes! That should make enabling more
+clock units and other Exynos SoCs a bit easier.
 
-The current implementation only supports BerlinD, aka GT9916.
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
-[1] https://github.com/goodix/goodix_ts_berlin
-[2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
-
-Reviewed-by: Jeff LaBundy <jeff@labundy.com>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- drivers/input/touchscreen/Kconfig             |  14 ++
- drivers/input/touchscreen/Makefile            |   1 +
- drivers/input/touchscreen/goodix_berlin_spi.c | 178 ++++++++++++++++++++++++++
- 3 files changed, 193 insertions(+)
-
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index cc7b88118158..c821fe3ee794 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -433,6 +433,20 @@ config TOUCHSCREEN_GOODIX_BERLIN_I2C
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called goodix_berlin_i2c.
- 
-+config TOUCHSCREEN_GOODIX_BERLIN_SPI
-+	tristate "Goodix Berlin SPI touchscreen"
-+	depends on SPI_MASTER
-+	select REGMAP
-+	select TOUCHSCREEN_GOODIX_BERLIN_CORE
-+	help
-+	  Say Y here if you have a Goodix Berlin IC connected to
-+	  your system via SPI.
-+
-+	  If unsure, say N.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called goodix_berlin_spi.
-+
- config TOUCHSCREEN_HIDEEP
- 	tristate "HiDeep Touch IC"
- 	depends on I2C
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index 7ef677cf7a10..a81cb5aa21a5 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -49,6 +49,7 @@ obj-$(CONFIG_TOUCHSCREEN_FUJITSU)	+= fujitsu_ts.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix_ts.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_CORE)	+= goodix_berlin_core.o
- obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_I2C)	+= goodix_berlin_i2c.o
-+obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_SPI)	+= goodix_berlin_spi.o
- obj-$(CONFIG_TOUCHSCREEN_HIDEEP)	+= hideep.o
- obj-$(CONFIG_TOUCHSCREEN_HYNITRON_CSTXXX)	+= hynitron_cstxxx.o
- obj-$(CONFIG_TOUCHSCREEN_ILI210X)	+= ili210x.o
-diff --git a/drivers/input/touchscreen/goodix_berlin_spi.c b/drivers/input/touchscreen/goodix_berlin_spi.c
-new file mode 100644
-index 000000000000..4cc557da048a
---- /dev/null
-+++ b/drivers/input/touchscreen/goodix_berlin_spi.c
-@@ -0,0 +1,178 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Goodix Berlin Touchscreen Driver
-+ *
-+ * Copyright (C) 2020 - 2021 Goodix, Inc.
-+ * Copyright (C) 2023 Linaro Ltd.
-+ *
-+ * Based on goodix_ts_berlin driver.
-+ */
-+#include <asm/unaligned.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/spi/spi.h>
-+#include <linux/input.h>
-+
-+#include "goodix_berlin.h"
-+
-+#define GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN	1
-+#define GOODIX_BERLIN_REGISTER_WIDTH		4
-+#define GOODIX_BERLIN_SPI_READ_DUMMY_LEN	3
-+#define GOODIX_BERLIN_SPI_READ_PREFIX_LEN	(GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + \
-+						 GOODIX_BERLIN_REGISTER_WIDTH + \
-+						 GOODIX_BERLIN_SPI_READ_DUMMY_LEN)
-+#define GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN	(GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + \
-+						 GOODIX_BERLIN_REGISTER_WIDTH)
-+
-+#define GOODIX_BERLIN_SPI_WRITE_FLAG		0xF0
-+#define GOODIX_BERLIN_SPI_READ_FLAG		0xF1
-+
-+static int goodix_berlin_spi_read(void *context, const void *reg_buf,
-+				  size_t reg_size, void *val_buf,
-+				  size_t val_size)
-+{
-+	struct spi_device *spi = context;
-+	struct spi_transfer xfers;
-+	struct spi_message spi_msg;
-+	const u32 *reg = reg_buf; /* reg is stored as native u32 at start of buffer */
-+	u8 *buf;
-+	int error;
-+
-+	if (reg_size != GOODIX_BERLIN_REGISTER_WIDTH)
-+		return -EINVAL;
-+
-+	buf = kzalloc(GOODIX_BERLIN_SPI_READ_PREFIX_LEN + val_size, GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	spi_message_init(&spi_msg);
-+	memset(&xfers, 0, sizeof(xfers));
-+
-+	/* buffer format: 0xF1 + addr(4bytes) + dummy(3bytes) + data */
-+	buf[0] = GOODIX_BERLIN_SPI_READ_FLAG;
-+	put_unaligned_be32(*reg, buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN);
-+	memset(buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN + GOODIX_BERLIN_REGISTER_WIDTH,
-+	       0xff, GOODIX_BERLIN_SPI_READ_DUMMY_LEN);
-+
-+	xfers.tx_buf = buf;
-+	xfers.rx_buf = buf;
-+	xfers.len = GOODIX_BERLIN_SPI_READ_PREFIX_LEN + val_size;
-+	xfers.cs_change = 0;
-+	spi_message_add_tail(&xfers, &spi_msg);
-+
-+	error = spi_sync(spi, &spi_msg);
-+	if (error < 0)
-+		dev_err(&spi->dev, "spi transfer error, %d", error);
-+	else
-+		memcpy(val_buf, buf + GOODIX_BERLIN_SPI_READ_PREFIX_LEN, val_size);
-+
-+	kfree(buf);
-+	return error;
-+}
-+
-+static int goodix_berlin_spi_write(void *context, const void *data,
-+				   size_t count)
-+{
-+	unsigned int len = count - GOODIX_BERLIN_REGISTER_WIDTH;
-+	struct spi_device *spi = context;
-+	struct spi_transfer xfers;
-+	struct spi_message spi_msg;
-+	const u32 *reg = data; /* reg is stored as native u32 at start of buffer */
-+	u8 *buf;
-+	int error;
-+
-+	buf = kzalloc(GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN + len, GFP_KERNEL);
-+	if (!buf)
-+		return -ENOMEM;
-+
-+	spi_message_init(&spi_msg);
-+	memset(&xfers, 0, sizeof(xfers));
-+
-+	buf[0] = GOODIX_BERLIN_SPI_WRITE_FLAG;
-+	put_unaligned_be32(*reg, buf + GOODIX_BERLIN_SPI_TRANS_PREFIX_LEN);
-+	memcpy(buf + GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN,
-+	       data + GOODIX_BERLIN_REGISTER_WIDTH, len);
-+
-+	xfers.tx_buf = buf;
-+	xfers.len = GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN + len;
-+	xfers.cs_change = 0;
-+	spi_message_add_tail(&xfers, &spi_msg);
-+
-+	error = spi_sync(spi, &spi_msg);
-+	if (error < 0)
-+		dev_err(&spi->dev, "spi transfer error, %d", error);
-+
-+	kfree(buf);
-+	return error;
-+}
-+
-+static const struct regmap_config goodix_berlin_spi_regmap_conf = {
-+	.reg_bits = 32,
-+	.val_bits = 8,
-+	.read = goodix_berlin_spi_read,
-+	.write = goodix_berlin_spi_write,
-+};
-+
-+/* vendor & product left unassigned here, should probably be updated from fw info */
-+static const struct input_id goodix_berlin_spi_input_id = {
-+	.bustype = BUS_SPI,
-+};
-+
-+static int goodix_berlin_spi_probe(struct spi_device *spi)
-+{
-+	struct regmap_config regmap_config;
-+	struct regmap *regmap;
-+	size_t max_size;
-+	int error = 0;
-+
-+	spi->mode = SPI_MODE_0;
-+	spi->bits_per_word = 8;
-+	error = spi_setup(spi);
-+	if (error)
-+		return error;
-+
-+	max_size = spi_max_transfer_size(spi);
-+
-+	regmap_config = goodix_berlin_spi_regmap_conf;
-+	regmap_config.max_raw_read = max_size - GOODIX_BERLIN_SPI_READ_PREFIX_LEN;
-+	regmap_config.max_raw_write = max_size - GOODIX_BERLIN_SPI_WRITE_PREFIX_LEN;
-+
-+	regmap = devm_regmap_init(&spi->dev, NULL, spi, &regmap_config);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	error = goodix_berlin_probe(&spi->dev, spi->irq,
-+				    &goodix_berlin_spi_input_id, regmap);
-+	if (error)
-+		return error;
-+
-+	return 0;
-+}
-+
-+static const struct spi_device_id goodix_berlin_spi_ids[] = {
-+	{ "gt9916" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(spi, goodix_berlin_spi_ids);
-+
-+static const struct of_device_id goodix_berlin_spi_of_match[] = {
-+	{ .compatible = "goodix,gt9916", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, goodix_berlin_spi_of_match);
-+
-+static struct spi_driver goodix_berlin_spi_driver = {
-+	.driver = {
-+		.name = "goodix-berlin-spi",
-+		.of_match_table = goodix_berlin_spi_of_match,
-+		.pm = pm_sleep_ptr(&goodix_berlin_pm_ops),
-+	},
-+	.probe = goodix_berlin_spi_probe,
-+	.id_table = goodix_berlin_spi_ids,
-+};
-+module_spi_driver(goodix_berlin_spi_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Goodix Berlin SPI Touchscreen driver");
-+MODULE_AUTHOR("Neil Armstrong <neil.armstrong@linaro.org>");
-
--- 
-2.34.1
-
+> Note for future reference: To ensure consistent naming throughout this
+> file, the IDs have been derived from the data sheet using the
+> following, with the expectation for all future additions to this file
+> to use the same:
+>     sed \
+>         -e 's|^PLL_LOCKTIME_PLL_\([^_]\+\)|CLK_FOUT_\1_PLL|' \
+>         \
+>         -e 's|^PLL_CON0_MUX_CLKCMU_\([^_]\+\)_|CLK_MOUT_\1_|' \
+>         -e 's|^PLL_CON0_PLL_\(.*\)|CLK_MOUT_PLL_\1|' \
+>         -e 's|^CLK_CON_MUX_MUX_CLK_\(.*\)|CLK_MOUT_\1|' \
+>         -e '/^PLL_CON[1-4]_[^_]\+_/d' \
+>         -e '/^[^_]\+_CMU_[^_]\+_CONTROLLER_OPTION/d' \
+>         -e '/^CLKOUT_CON_BLK_[^_]\+_CMU_[^_]\+_CLKOUT0/d' \
+>         \
+>         -e 's|_IPCLKPORT||' \
+>         -e 's|_RSTNSYNC||' \
+>         \
+>         -e 's|^CLK_CON_DIV_DIV_CLK_\([^_]\+\)_|CLK_DOUT_\1_|' \
+>         \
+>         -e 's|^CLK_CON_BUF_CLKBUF_\([^_]\+\)_|CLK_GOUT_\1_|' \
+>         -e 's|^CLK_CON_GAT_CLK_BLK_\([^_]\+\)_UID_|CLK_GOUT_\1_|' \
+>         -e 's|^CLK_GOUT_[^_]\+_[^_]\+_CMU_\([^_]\+\)_PCLK$|CLK_GOUT_\1_PC=
+LK|' \
+>         -e 's|^CLK_CON_GAT_GOUT_BLK_\([^_]\+\)_UID_|CLK_GOUT_\1_|' \
+>         -e 's|^CLK_CON_GAT_CLK_\([^_]\+\)_\(.*\)|CLK_GOUT_\1_CLK_\1_\2|' =
+\
+>         \
+>         -e '/^\(DMYQCH\|PCH\|QCH\|QUEUE\)_/d'
+> ---
+>  .../bindings/clock/google,gs101-clock.yaml    |  9 ++--
+>  include/dt-bindings/clock/google,gs101.h      | 48 +++++++++++++++++++
+>  2 files changed, 54 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/clock/google,gs101-clock.y=
+aml b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> index 03698cdecf7a..1d2bcea41c85 100644
+> --- a/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
+> @@ -31,6 +31,7 @@ properties:
+>        - google,gs101-cmu-apm
+>        - google,gs101-cmu-misc
+>        - google,gs101-cmu-peric0
+> +      - google,gs101-cmu-peric1
+>
+>    clocks:
+>      minItems: 1
+> @@ -93,15 +94,17 @@ allOf:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: google,gs101-cmu-peric0
+> +            enum:
+> +              - google,gs101-cmu-peric0
+> +              - google,gs101-cmu-peric1
+>
+>      then:
+>        properties:
+>          clocks:
+>            items:
+>              - description: External reference clock (24.576 MHz)
+> -            - description: Connectivity Peripheral 0 bus clock (from CMU=
+_TOP)
+> -            - description: Connectivity Peripheral 0 IP clock (from CMU_=
+TOP)
+> +            - description: Connectivity Peripheral 0/1 bus clock (from C=
+MU_TOP)
+> +            - description: Connectivity Peripheral 0/1 IP clock (from CM=
+U_TOP)
+>
+>          clock-names:
+>            items:
+> diff --git a/include/dt-bindings/clock/google,gs101.h b/include/dt-bindin=
+gs/clock/google,gs101.h
+> index 64e6bdc6359c..3dac3577788a 100644
+> --- a/include/dt-bindings/clock/google,gs101.h
+> +++ b/include/dt-bindings/clock/google,gs101.h
+> @@ -470,4 +470,52 @@
+>  #define CLK_GOUT_PERIC0_CLK_PERIC0_USI8_USI_CLK                78
+>  #define CLK_GOUT_PERIC0_SYSREG_PERIC0_PCLK             79
+>
+> +/* CMU_PERIC1 */
+> +#define CLK_MOUT_PERIC1_BUS_USER                       1
+> +#define CLK_MOUT_PERIC1_I3C_USER                       2
+> +#define CLK_MOUT_PERIC1_USI0_USI_USER                  3
+> +#define CLK_MOUT_PERIC1_USI10_USI_USER                 4
+> +#define CLK_MOUT_PERIC1_USI11_USI_USER                 5
+> +#define CLK_MOUT_PERIC1_USI12_USI_USER                 6
+> +#define CLK_MOUT_PERIC1_USI13_USI_USER                 7
+> +#define CLK_MOUT_PERIC1_USI9_USI_USER                  8
+> +#define CLK_DOUT_PERIC1_I3C                            9
+> +#define CLK_DOUT_PERIC1_USI0_USI                       10
+> +#define CLK_DOUT_PERIC1_USI10_USI                      11
+> +#define CLK_DOUT_PERIC1_USI11_USI                      12
+> +#define CLK_DOUT_PERIC1_USI12_USI                      13
+> +#define CLK_DOUT_PERIC1_USI13_USI                      14
+> +#define CLK_DOUT_PERIC1_USI9_USI                       15
+> +#define CLK_GOUT_PERIC1_IP                             16
+> +#define CLK_GOUT_PERIC1_PCLK                           17
+> +#define CLK_GOUT_PERIC1_CLK_PERIC1_I3C_CLK             18
+> +#define CLK_GOUT_PERIC1_CLK_PERIC1_OSCCLK_CLK          19
+> +#define CLK_GOUT_PERIC1_D_TZPC_PERIC1_PCLK             20
+> +#define CLK_GOUT_PERIC1_GPC_PERIC1_PCLK                        21
+> +#define CLK_GOUT_PERIC1_GPIO_PERIC1_PCLK               22
+> +#define CLK_GOUT_PERIC1_LHM_AXI_P_PERIC1_I_CLK         23
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_1            24
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_2            25
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_3            26
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_4            27
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_5            28
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_6            29
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_IPCLK_8            30
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_1             31
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_15            32
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_2             33
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_3             34
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_4             35
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_5             36
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_6             37
+> +#define CLK_GOUT_PERIC1_PERIC1_TOP0_PCLK_8             38
+> +#define CLK_GOUT_PERIC1_CLK_PERIC1_BUSP_CLK            39
+> +#define CLK_GOUT_PERIC1_CLK_PERIC1_USI0_USI_CLK                40
+> +#define CLK_GOUT_PERIC1_CLK_PERIC1_USI10_USI_CLK       41
+> +#define CLK_GOUT_PERIC1_CLK_PERIC1_USI11_USI_CLK       42
+> +#define CLK_GOUT_PERIC1_CLK_PERIC1_USI12_USI_CLK       43
+> +#define CLK_GOUT_PERIC1_CLK_PERIC1_USI13_USI_CLK       44
+> +#define CLK_GOUT_PERIC1_CLK_PERIC1_USI9_USI_CLK                45
+> +#define CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK             46
+> +
+>  #endif /* _DT_BINDINGS_CLOCK_GOOGLE_GS101_H */
+> --
+> 2.43.0.429.g432eaa2c6b-goog
+>
 
