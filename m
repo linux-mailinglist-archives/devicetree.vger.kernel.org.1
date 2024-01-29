@@ -1,187 +1,171 @@
-Return-Path: <devicetree+bounces-36388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B72EF840C30
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:49:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF1D5840C45
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 17:50:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F252DB2953B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:49:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B870282F5A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 16:50:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98302158D76;
-	Mon, 29 Jan 2024 16:48:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC1C15699D;
+	Mon, 29 Jan 2024 16:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hJtT3U7I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ppOhUUjl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8E8D157042;
-	Mon, 29 Jan 2024 16:48:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED4015697A;
+	Mon, 29 Jan 2024 16:49:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706546883; cv=none; b=DuN6H5FANP9IQzmOYMf1/G+cZebX5ukMnC1KXyBN3HcshBH/1LQULqoJcLQYxcMZvrvZiSp/8rpeLmGyldZGGiO+agLiwo7yEq0fqiWj1W/+BnVtmQg1nvxqRbJ9iNsg1ARJcGhjqOxAI/OOcqmsK1S+K9xXKinBGQJ9KIpgaTc=
+	t=1706546967; cv=none; b=aCRzi+oHXr4txE084lkL6+Usy3RortDgLr47sYYsysLo0htzWCZnVD2xfydrp3E1lTx4EZkifed06jLVYJ7pdjABQ53hSIuwP+RHpUQId6YvJDnlO8XLwwVlLpyr+jTQBjxgCXQUz0KVzvjAT2Sup9eaXzwyaMiXg1xPbaoO7EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706546883; c=relaxed/simple;
-	bh=g00yfl+DH1PKAIhHjXI5WM7KPvf1gOq1U0BZdBe3hL8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=dQqcNYEqZCQNyKkJj3oIv5C2xYp9jr0csbRl/vmlPTAPxY6T9vga6PYDHl8KDJulkR7kCbWSrbkeBjRe+2XwH8403klz7N3oJpNuAs5cW9Kcpb0Ulaj2n04saamO8aXRHBI9ybQcqSwFlJ2shAjZ2gHIw5WinBwt5dH9jIc+N7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hJtT3U7I; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 40TFGE0W022275;
-	Mon, 29 Jan 2024 16:47:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=1mIWBEQ6I23iUlEuFHefHGRm8rrhe7cwzgQMQ0yrhek
-	=; b=hJtT3U7ILfuI5oI6Z6TjEId1TmaiCho8XN/Zit+oowMisR5f22NQzNXbFPb
-	NXunzgScWkZ4dOgFwpIqwyfkPvOiVemDyg3gB5jf+KvjNCY0Yiv3fwARN8xZa76f
-	vJXw4yctB77duzBaaUbdE61P4PX9MIxunDO9YHRDYKhWLBVreC572Vult7J3LJkv
-	ASg3M5/Ud9eNe6Y4ZkTvcbMTAvwSP2z6lxWvpxte71VKWar8HfcaMiG/YvTog23g
-	BKDzn1B8N7eoVh18yHva63yJiKiRf8A8dQs6Cpt30RXl9XgANtpnsr1S0/5JmEQ8
-	HLmdf+O2B1Ljkug33Bw0ShzgDqQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3vxcva0ka1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jan 2024 16:47:49 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 40TGlmT6016571
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 29 Jan 2024 16:47:48 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 29 Jan
- 2024 08:47:48 -0800
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-Date: Mon, 29 Jan 2024 08:47:48 -0800
-Subject: [PATCH v3 2/2] arm64: dts: qcom: sc8280xp-x13s: Fix/enable
- touchscreen
+	s=arc-20240116; t=1706546967; c=relaxed/simple;
+	bh=zOI5Zcych/Y1XbO/F2PeWSHwZzbVzcz0tvh/sGN6JJc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C1F7MJ+mYs31YrUJuKUxFYePizV3AqYN5eHSO0L+QTLH1nSgOAMoITBMEvFMmMLDAJA++mIcwtwDVkAbqqh2Sk9OfRECzbYN2/flvRfddccbGmnlUK+r6zsBpXkH6z3cgZ4XqjMbDtJo+Z6K3S8VrP98F30tKVa3N9P24P1R29I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ppOhUUjl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C415C433F1;
+	Mon, 29 Jan 2024 16:49:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706546966;
+	bh=zOI5Zcych/Y1XbO/F2PeWSHwZzbVzcz0tvh/sGN6JJc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ppOhUUjlR8c1sPoKaP7d8lZkfZbmCVyZHzKAGGPKxki7UoGWs3CYi4geMI1j1UYkW
+	 9mJuaqi+tg7WRomVymbe8osvygsfo+bXgDSyhOb8rLxWd7hmriSJ69VSXN8wcwbSnn
+	 uaJUVm4TPCJSuxNGYv0bSAUj6GjIevBoeAVvGGo3dYD9v0LPTWVkTRLKL+vA+DvVvh
+	 zYK7waSRqi/3eTHChqINR+RPMi+Ess6VPuv7g7d/16Kg6N3Gwq6RwZMrGbfEE4Rdpy
+	 KIls2FpaelrUAedJz7CzAmGZzsmI3BKE5YWAIYALJcG7K6bNIc1XzVHsoMgu5VZpRO
+	 d457376DKS42g==
+Date: Mon, 29 Jan 2024 16:49:21 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	thinh.nguyen@synopsys.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	balbi@kernel.org, devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	mark.rutland@arm.com, mathias.nyman@intel.com, pku.leo@gmail.com,
+	sergei.shtylyov@cogentembedded.com
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add system bus request info
+Message-ID: <20240129-encode-catchable-f5712d561a47@spud>
+References: <20240123170206.3702413-1-Frank.Li@nxp.com>
+ <20240123-poking-geography-33be2b5ae578@spud>
+ <Za/8J8MDJaZEPEKO@lizhi-Precision-Tower-5810>
+ <20240123-anew-lilly-0d645bdbfb30@spud>
+ <Za//LX9U6QG5A5NW@lizhi-Precision-Tower-5810>
+ <20240123-nanometer-atlantic-6465b270043a@spud>
+ <ZbAR/NQvjUnf2At+@lizhi-Precision-Tower-5810>
+ <46781012-2678-4f6c-9aee-b020cabcbb28@linaro.org>
+ <ZbA8ea9Ex+hMdDDZ@lizhi-Precision-Tower-5810>
+ <ZbfB/KT+fzO/F2e5@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240129-x13s-touchscreen-v3-2-c4a933034145@quicinc.com>
-References: <20240129-x13s-touchscreen-v3-0-c4a933034145@quicinc.com>
-In-Reply-To: <20240129-x13s-touchscreen-v3-0-c4a933034145@quicinc.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Jiri Kosina
-	<jikos@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<quic_bjorande@quicinc.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1706546867; l=2463;
- i=quic_bjorande@quicinc.com; s=20230915; h=from:subject:message-id;
- bh=g00yfl+DH1PKAIhHjXI5WM7KPvf1gOq1U0BZdBe3hL8=;
- b=EOvZZXYktDen8bCHavy3UmspUhexUqjoxc2j6BMlA6sDPH/3gG8tqL1zMbp6ZbmzTbf0PNHYN
- qJgV7CrlARMDtv7C3QyV0/zulaRi8ZYIMlf3iwY4oDOotMUYixHzC67
-X-Developer-Key: i=quic_bjorande@quicinc.com; a=ed25519;
- pk=VkhObtljigy9k0ZUIE1Mvr0Y+E1dgBEH9WoLQnUtbIM=
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: VDQlIuiBCYbKjJg_QcyRTiUPRWLyTxTn
-X-Proofpoint-GUID: VDQlIuiBCYbKjJg_QcyRTiUPRWLyTxTn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-01-29_10,2024-01-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- lowpriorityscore=0 priorityscore=1501 phishscore=0 mlxscore=0 bulkscore=0
- impostorscore=0 mlxlogscore=999 malwarescore=0 clxscore=1015 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2401190000
- definitions=main-2401290124
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WzYPB8b14vGEc5Ey"
+Content-Disposition: inline
+In-Reply-To: <ZbfB/KT+fzO/F2e5@lizhi-Precision-Tower-5810>
 
-The touchscreen present on some SKUs of Lenovo Thinkpad X13s is never
-detected by Linux. Power is applied and the device is brought out of
-reset using the pinconfig in DeviceTree, but the read-test in
-__i2c_hid_core_probe() fails to access the device, which result in probe
-being aborted.
 
-Some users have reported success after rebinding the device.
+--WzYPB8b14vGEc5Ey
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Looking to the ACPI tables, there's a 5ms after-power and a 200ms
-after-reset delay. The power-supply is shared with other components, so
-this is active all the way through boot. The reset GPIO, on the other
-hand, is low (reset asserted) at boot, so this is first deasserted by
-the implicit application of the pinconf state.
+On Mon, Jan 29, 2024 at 10:19:24AM -0500, Frank Li wrote:
+> On Tue, Jan 23, 2024 at 05:23:53PM -0500, Frank Li wrote:
+> > On Tue, Jan 23, 2024 at 10:46:39PM +0100, Krzysztof Kozlowski wrote:
+> > > On 23/01/2024 20:22, Frank Li wrote:
+> > > > On Tue, Jan 23, 2024 at 06:42:27PM +0000, Conor Dooley wrote:
+> > > >> On Tue, Jan 23, 2024 at 01:02:21PM -0500, Frank Li wrote:
+> > > >>> On Tue, Jan 23, 2024 at 05:51:48PM +0000, Conor Dooley wrote:
+> > > >>>> On Tue, Jan 23, 2024 at 12:49:27PM -0500, Frank Li wrote:
+> > > >>>>> On Tue, Jan 23, 2024 at 05:27:13PM +0000, Conor Dooley wrote:
+> > > >>>>>> On Tue, Jan 23, 2024 at 12:02:05PM -0500, Frank Li wrote:
+> > > >>>>>>> Add device tree binding allow platform overwrite default valu=
+e of *REQIN in
+> > > >>>>>>> GSBUSCFG0.
+> > > >>>>>>
+> > > >>>>>> Why might a platform actually want to do this? Why does this n=
+eed to be
+> > > >>>>>> set at the board level and being aware of which SoC is in use =
+is not
+> > > >>>>>> sufficient for the driver to set the correct values?
+> > > >>>>>
+> > > >>>>> In snps,dwc3.yaml, there are already similary proptery, such as
+> > > >>>>> snps,incr-burst-type-adjustment. Use this method can keep whole=
+ dwc3 usb
+> > > >>>>> driver keep consistent. And not all platform try enable hardware
+> > > >>>>> dma_cohenrence. It is configable for difference platform.
+> > > >>>>
+> > > >>>> When you say "platform", what do you mean? I understand that ter=
+m to
+> > > >>>> mean a combination of board, soc and firmware.
+> > > >>>
+> > > >>> In my company's environment, "platform" is "board". I will use "b=
+oard" in
+> > > >>> future. Is it big difference here?
+> > > >>
+> > > >> Nah, that's close enough that it makes no difference here.
+> > > >>
+> > > >> I'd still like an explanation for why a platform would need to act=
+ually
+> > > >> set these properties though, and why information about coherency c=
+annot
+> > > >> be determined from whether or not the boss the usb controller is o=
+n is
+> > > >> communicated to be dma coherent via the existing devicetree proper=
+ties
+> > > >> for that purpose.
+> > > >=20
+> > > > Actually, I am not very clear about reason. I guest maybe treat off=
+ power
+> > > > consumption and performance.
+> > > >=20
+> > > > What's your judgement about proptery, which should be in dts. Such =
+as
+> > > > reg, clk, reset, dma and irq, which is tighted with SOC. It is the =
+fixed
+> > > > value for every SOC. The board dts never change these.
+> > >=20
+> > > Then it can be deduced from the compatible and there is no need for n=
+ew
+> > > properties.
+> >=20
+> > Okay, I think "*reqinfo" match this. When new Soc(using compatible dwc =
+usb
+> > controller) appear regardless dma-cohorence or not, connect by AXI3 or
+> > AXI4, needn't add new propterties.=20
+>=20
+> Anyone have objection? I will prepare v2 to fix rob's bot error.
 
-This means the time between reset deassert and __i2c_hid_core_probe() is
-significantly below the value documented in the ACPI tables.
+I'm not sure what you want me to object to/not object to.
+Your last message said "needn't add new propterties", seemingly in
+agreement with Krzysztoff saying that it can be deduced from the
+compatible. That seems like a good way forward for me.
 
-As the I2C HID binding and driver support specifying a reset gpio,
-replace the pinconf-based scheme to pull the device out of reset. Then
-specify the after-reset time.
+Thanks,
+Conor.
 
-The shared power rail is currently always on, but in case this ever
-change, the after-power delay is added as well, to not violate the
-power-on to reset-deassert timing requirement.
+--WzYPB8b14vGEc5Ey
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Fixes: 32c231385ed4 ("arm64: dts: qcom: sc8280xp: add Lenovo Thinkpad X13s devicetree")
-Tested-by: Daniel Thompson <daniel.thompson@linaro.org>
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+-----BEGIN PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index def3976bd5bb..33731b95ad51 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -620,7 +620,6 @@ &i2c4 {
- 
- 	status = "okay";
- 
--	/* FIXME: verify */
- 	touchscreen@10 {
- 		compatible = "hid-over-i2c";
- 		reg = <0x10>;
-@@ -630,6 +629,11 @@ touchscreen@10 {
- 		vdd-supply = <&vreg_misc_3p3>;
- 		vddl-supply = <&vreg_s10b>;
- 
-+		reset-gpios = <&tlmm 99 GPIO_ACTIVE_LOW>;
-+
-+		post-power-on-delay-ms = <5>;
-+		post-reset-deassert-delay-ms = <200>;
-+
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&ts0_default>;
- 	};
-@@ -1450,7 +1454,6 @@ int-n-pins {
- 		reset-n-pins {
- 			pins = "gpio99";
- 			function = "gpio";
--			output-high;
- 			drive-strength = <16>;
- 		};
- 	};
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZbfXEQAKCRB4tDGHoIJi
+0pWQAQCcCKkGox59jv0pnLJIkeilqK8+unMnXzYPcoJYF7sjPgD6Ag9fzTbxR7O7
+G3X9f7JRKJEEVCEgR/KaAofoyfZ4Fwk=
+=+D8s
+-----END PGP SIGNATURE-----
 
--- 
-2.25.1
-
+--WzYPB8b14vGEc5Ey--
 
