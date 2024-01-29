@@ -1,163 +1,134 @@
-Return-Path: <devicetree+bounces-36301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AD43840727
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:37:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA5E8406FB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 14:32:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FEA51C20C79
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:37:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDA681C258DC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 13:32:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D6B64CF9;
-	Mon, 29 Jan 2024 13:37:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F826310F;
+	Mon, 29 Jan 2024 13:30:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="HWwgkOWL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JL4uGeLc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98797651AF;
-	Mon, 29 Jan 2024 13:37:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706535466; cv=pass; b=NdY1OUmQygawjckQ6aMZmToYpFa4e4YWxz8muFCWmbrXwZ2VzwDS3yqg7vKb2hWItu5gCfvOE2KZHKgFosgCFqoCF0rfz5Krs/WhNLvtpqZmDBuhsx1u1R4vuluAx+v6UIM7ZV9pD2ijlMFT3mSmDU5cdXJ2GsUivfFThMGIOa4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706535466; c=relaxed/simple;
-	bh=USoguoAsVtRzvLdYpwq9PSQwEzZknH4DB77gCTTu4yA=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD97634EF;
+	Mon, 29 Jan 2024 13:30:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1706535031; cv=none; b=jLiPrtUo7wPd4SPemzluEFOGt4pg5kjOIv5CjIHjxMEP4QxlxJoXGmiIprSDWdDTzAA6nDdBAE6bo6JHr/4m7hPVAoIuAmp8WdGnngRXqLkn/MZURNXOwEhdO8QhDLyk4F3IJ8vaLCbgAtY85q4GyRgnbQS6/4RzNL904dquQs8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1706535031; c=relaxed/simple;
+	bh=4Lb0i25yzp7HX7H/A2qgGY5TWZmbLFOQfXMyvqJgC0M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pWk+OoRSbO2xMZJFTWC9U9j+jv/AOvo7726QtM41exIX1gh5Q3Z480SmiLTpxL+sL7TrxeP/S3YCPWsw7gLqbvXxhC0oxoX+b1ZBGizU/Y/WJ8V/ByC04UTxiz5Eeax3uOAkMplqPBvWAfWIR0SlP/BAoLGP29lvIqm+dU84KHQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=HWwgkOWL; arc=pass smtp.client-ip=185.185.170.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4TNq0D5PsFz49PsS;
-	Mon, 29 Jan 2024 15:29:32 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-	t=1706534974;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ti5qDi4jNpEc7HezPyQo40H85potwB0yNijMtXKik8o=;
-	b=HWwgkOWLzH5ghmaXKwfPxaY00WCBofcmOmeghi2AFgVt/hyO0lxbZoR7KNn2YqsjDDUy9T
-	wbXioyPTV6I1b0D2uAidHUU6mFcaoQvYC1VYrm2QGg61s8sSwmsXCpQ33nek7u+OAzJiL1
-	KohbpioO9kSsyFmmCXj7avOPd3T2DEb4CP8VgEobVn5vqIwJDBPrqA/b63ryCNVgbSY6HB
-	uutj+Ia6DCwugd+STbNMcgNqsj73a+jNabtpQLWsmZAcciqdKKVrNLoKw+IIT/z14mTj8c
-	sv5VTBBAx4scTr+TTbf9mV2l8LgP8imDKphDmHKw/a5sIKKeN2jV13f3Lh9/lg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=lahtoruutu; t=1706534974;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Ti5qDi4jNpEc7HezPyQo40H85potwB0yNijMtXKik8o=;
-	b=nIXCWyMeKTw4vP1xJ/+s4m+uumY8VJjfXn0U0iNRnY3zJ3M73CFkNL1LF6Urfs0QgTqPMo
-	8kCQdKyxDdA5LGaj21SL8MXUvVpHotYd2+BztEFUip9mQXp/Pq54v9ihHIgvZm4UUTBO4m
-	geDXx40Y8UuerWe+JV4Q077f0rZJGBGCFOs63pwqTARUF/ootmlkTpWFq96gT85geRskBc
-	XaGvTJ3s7Bb2djwDby9WuKDRBEPhfBsIkSTwAHGkuuziOUSUvqpe0srgE/94S8oO3OSGop
-	ZNLquxupCinWOdePNujKL/NuccD04MLs1GJzAIw316XmPOTFtGq27Ukdvn4POg==
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1706534974; a=rsa-sha256;
-	cv=none;
-	b=qt1DALoLuXyOBmzEPdZI2WBROdMWb7hdl88hVZqDDCu06N5RbUPh/ncIuKZM01ev98Jh0o
-	Dw7WoUiDfeoX9R6G+CI0BzNuSBsW23Q+IyScAEDnvhSge2mEHAIsRguf6Umo7Oy5UOwptg
-	tu5aj+IWzbzucZborT/3/B0u2CK4srZAkhsuaYDq24Y0u0KZRcD6z4kJ372UxBGg5WwhK2
-	3urSaaP7mC/a5NpyS8FMQriAkgsUmdwZ8nX9Eu58QY/kkU9V6IUgwrectDtOpi/jx5cbMQ
-	cs6eQGPH+F6TIXofczRppdvM7Z3Jynbi9IN7ntCZ1aagFC2GOl1AvbRvgtsJNA==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 1EBAF634C93;
-	Mon, 29 Jan 2024 15:29:32 +0200 (EET)
-Date: Mon, 29 Jan 2024 13:29:32 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	=?iso-8859-1?Q?=22Uwe_Kleine-K=C3=B6nig=22?= <u.kleine-koenig@pengutronix.de>,
-	Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
-	Frank Rowand <frowand.list@gmail.com>, Helge Deller <deller@gmx.de>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-	linux-fbdev@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v2 00/13] of: property: add port base loop
-Message-ID: <ZbeoPBvGJlaJco_J@valkosipuli.retiisi.eu>
-References: <87fryhklhb.wl-kuninori.morimoto.gx@renesas.com>
- <20240129122736.GC8131@pendragon.ideasonboard.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GZXyhrA3QZE5mJzpiDg1pCQMDV1H0Tf0cE2waU2CO+zpMffrqhpow0Pn4HfnHOE/rHMpN9iv2rOZVyTU/3htt2lfBT7KX9IMK17cxZwX3JY2rLTb9w6GyB+SJPhm+ag515je6slRWJm2/U4ekVxDuWbvBivMGYg+dc8p1xLHgdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JL4uGeLc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 690C6C433F1;
+	Mon, 29 Jan 2024 13:30:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1706535030;
+	bh=4Lb0i25yzp7HX7H/A2qgGY5TWZmbLFOQfXMyvqJgC0M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JL4uGeLc4NRjb/5QBU/SVnEubW3h3wslwF1eajyydu2zdO7nuh6FGLmlVi0k0f6c7
+	 +S5HH/0WaQieVffE0MWqRTicUqvtX7F2QtKMQNnumUidRkRpXs9h5VhpZaoIuNIQi6
+	 KMUjCwGNstwGvjGGUHF4AmQzokujihXR0zCnzxB7NoyTWrF3I7KGoIjSZm3hcPN70P
+	 shIWkHgbKPDTy5p1rdkGwx5btlKz5VcMRXLTl2RUjlzHOPIxugkasoZFEIM/KWYsBu
+	 sNnkwWKkF3EV7Wccrf0+Rx2U1GvizDC+NNOoRRhieMOumT2/ix6iizCYGVxcGczOAZ
+	 6PSytpjYT3zEw==
+Date: Mon, 29 Jan 2024 14:30:27 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: jic23@kernel.org, linux-iio@vger.kernel.org,
+	lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
+	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: iio: imu: st_lsm6dsx: add
+ asm330lhhxg1
+Message-ID: <ZbeoczLjkGG8pogL@lore-desk>
+References: <cover.1706441008.git.lorenzo@kernel.org>
+ <189b903e939e15d98d198db60e2ca0619b116870.1706441008.git.lorenzo@kernel.org>
+ <51f4782f-09d8-448f-a693-e0c711bee18d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="PVQORnGgn4VHpHAU"
+Content-Disposition: inline
+In-Reply-To: <51f4782f-09d8-448f-a693-e0c711bee18d@linaro.org>
+
+
+--PVQORnGgn4VHpHAU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240129122736.GC8131@pendragon.ideasonboard.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Laurent, Morimoto-san,
+> On 28/01/2024 12:25, Lorenzo Bianconi wrote:
+> > Add device bindings for asm330lhhxg1 IMU sensor.
+> > Use asm330lhhx as fallback device for asm330lhhxg1 since it implements
+> > all the features currently supported by asm330lhhxg1.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml =
+b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > index 28b667a9cb76..7ba3de66a2e1 100644
+> > --- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+> > @@ -49,6 +49,9 @@ properties:
+> >        - items:
+> >            - const: st,asm330lhb
+> >            - const: st,asm330lhh
+> > +      - items:
+> > +          - const: st,asm330lhhxg1
+> > +          - const: st,asm330lhhx
+>=20
+> lhhx is compatible with st,lsm6dsr, so some explanation would be useful
+> why it is not included here.
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
-On Mon, Jan 29, 2024 at 02:27:36PM +0200, Laurent Pinchart wrote:
-> Hello Morimoto-san,
-> 
-> (CC'ing Sakari Ailus)
+Do you mean something like:
 
-Thanks for cc'ing me.
+diff --git a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml b/Do=
+cumentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+index 7ba3de66a2e1..92feba6e2427 100644
+--- a/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
++++ b/Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml
+@@ -35,6 +35,7 @@ properties:
+           - st,lsm6dsv
+           - st,lsm6dso16is
+       - items:
++          - const: st,asm330lhhxg1
+           - const: st,asm330lhhx
+           - const: st,lsm6dsr
+       - items:
 
-> 
-> On Mon, Jan 29, 2024 at 12:54:24AM +0000, Kuninori Morimoto wrote:
-> > 
-> > Hi Rob
-> > 
-> > This is v2 of port base loop patch-set
-> > 
-> > We have endpoint base functions
-> > 	- of_graph_get_next_endpoint()
-> > 	- of_graph_get_endpoint_count()
-> > 	- for_each_endpoint_of_node()
-> > 
-> > But to handling "port" base things, it is not useful. We want to have
-> > "port" base functions, too. This patch-set adds it.
-> > 
-> > Because current existing drivers couldn't use "port" base functions,
-> > it were implemented in a different way. This patch-set doesn't try
-> > to full-replace to avoid unknown bug, try easy / quick replace only
-> > for now, but easy to know how "port" base functions are needed.
-> > 
-> > Because I can't test the driver which I can't use, non-ASoC drivers
-> > needs Tested-by, Acked-by.
-> 
-> The strategy sounds good to me. However, I'm wondering if you shouldn't
-> take one more step in the core, and implement these as fwnode
-> operations. Or is there a reason why OF is special, and iterating over
-> ports would be useful for drivers on OF systems but not on other types
-> of systems ?
+Regards,
+Lorenzo
 
-I'd prefer that, too.
+--PVQORnGgn4VHpHAU
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Probably we could use the existing callbacks for endpoint enumeration, for
-port enumeration, too, as I don't think this is performance critical in any
-way.
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Kind regards,
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZbeocwAKCRA6cBh0uS2t
+rHkrAQCECqeDQAbJzZYojDvuVMR3R02ujruwuVyJYCEQAaOM8gEA3qPi9uaW9crf
+r+CJLacKPG+Z1xnlFjRlYVxeDQBUBQE=
+=16Bx
+-----END PGP SIGNATURE-----
 
-Sakari Ailus
+--PVQORnGgn4VHpHAU--
 
