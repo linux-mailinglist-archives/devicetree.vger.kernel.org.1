@@ -1,31 +1,30 @@
-Return-Path: <devicetree+bounces-36232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B3818403F7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:41:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F709840414
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 12:47:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0CDDB232AF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:41:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D241B1C21FD3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 11:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107D35BAED;
-	Mon, 29 Jan 2024 11:41:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FECF5C608;
+	Mon, 29 Jan 2024 11:47:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6985BACE
-	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 11:41:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC515FEE5
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 11:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706528513; cv=none; b=GzUzuw0SIbsHJbNNska+oKAbU4dsic+qGMCPuaXpysjSHlfsXOeb+AyAIHkNO0X40yLkRu4XM0vpVz4leBKXi1xX04DDOHodfSYGjYfzBCJDuPXk1B/EH0jnRQ2t04K5+1rSntlqT9h95hpgRokQPf/ZlsQaOnPnH0a4skLTqVU=
+	t=1706528821; cv=none; b=fAQ9PCBprJHaiR52vW3v3tAlM4OkWteeV7Ovn0zAOuNeVPAXpMT4kqyjhcjmezl4gL3XaRAlzWbyzjgCEJg/jGsGnc76wxr4Z6MTk346rUwi9Szh3rlYIEtTVXOQuSXRBJVZ6O4FVUAtRfBSZe5vZ3TUCY5ZBKRGtDtb4vrOEMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706528513; c=relaxed/simple;
-	bh=2lI29vGxeH+es7wJEpP9RobhcZAprA3yoPRF1BvBlW0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iJLlG93Df13bYooa/JxEsbPGqiWMoeoGSDN/TbHDwMmQRcw8MJGW4/4m/iYWS0htPCJagiTwUcg8C/za6V4vD72YaKBeoGB6hJzo6HlmVqqqwvYVwU9IAvok3Sv5gcYNwyVsMYHQkZrm5WdxZMj+RRazkQP367H3HyJbyZfzFDM=
+	s=arc-20240116; t=1706528821; c=relaxed/simple;
+	bh=nsZ+fmh82O2ks56JrvTP2KqeLFDdhVzgvMzmiqGIGuQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rdUkif0miQBvCOcjox+J2ABpGkracm7fZbh6K9Is7U2fAIl2xtpW70mLz1KNCth0HNILKBHZD/qIgWpBmHqwj0Bo/KTRcLmwdAFkeEs5aC5ZGFuAMzgHAiuGaoGtwLBzexOMaz4BNpo40wrAD7Bzc3X8Hc9tmxILFZ4lFBrVuU0=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,97 +32,73 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <ukl@pengutronix.de>)
-	id 1rUQ1K-0006sh-Ut; Mon, 29 Jan 2024 12:41:46 +0100
+	id 1rUQ6H-0007AJ-UJ; Mon, 29 Jan 2024 12:46:53 +0100
 Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <ukl@pengutronix.de>)
-	id 1rUQ1K-0039xJ-1f; Mon, 29 Jan 2024 12:41:46 +0100
+	id 1rUQ6G-0039yH-9z; Mon, 29 Jan 2024 12:46:52 +0100
 Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
 	(envelope-from <ukl@pengutronix.de>)
-	id 1rUQ1J-00As6C-35;
-	Mon, 29 Jan 2024 12:41:45 +0100
-Date: Mon, 29 Jan 2024 12:41:45 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Johan Jonker <jbx6244@yandex.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	Rob Herring <robh+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, kernel@pengutronix.de
-Subject: Re: [PATCH] dt-bindings: pwm: rockchip: Allow "interrupts" prooperty
-Message-ID: <dsq5f77dkwfzjegisz6waaqln4b4hbyhoafeygsisdhfzjy2ud@v4pdwvkkupbh>
-References: <20240106142654.1262758-2-u.kleine-koenig@pengutronix.de>
- <7dea73a6-d733-4cd2-b2d5-02f09e2a6dd9@linaro.org>
- <94ad0f59-4095-40ee-963d-4ac379fc8852@yandex.com>
- <cvvifoctmgdsgqfadqbhgywfw2ff57fz33w26hghf5kyo5j5sw@mj75xtvczr2h>
- <210132de-a46b-4f9f-8546-0c36d8a34665@linaro.org>
- <5swqcqpc5zwa3bfhuoyjnymozyzy3lgurnbsurebybj2c7fck3@ycwk2ugo2ouf>
- <b03fc42e-653a-49b2-8835-6cfb7a7bb39e@yandex.com>
+	id 1rUQ6G-00AsMQ-0i;
+	Mon, 29 Jan 2024 12:46:52 +0100
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@pengutronix.de
+Subject: [PATCH] ARM: dts: stm32: lxa-tac: reduce RGMII interface drive strength
+Date: Mon, 29 Jan 2024 12:46:49 +0100
+Message-ID: <20240129114649.2458468-2-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="p7u3kwx5lvuf6mxa"
-Content-Disposition: inline
-In-Reply-To: <b03fc42e-653a-49b2-8835-6cfb7a7bb39e@yandex.com>
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=978; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=w+TUJeocBu4MMweRw8tgYLEmSQuNkXHs+pH1aqUe1wQ=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBlt5ApRWpQOr/HHLFho90eiPiFHmcdiFtup9Fto Zjfr+PQQX2JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZbeQKQAKCRCPgPtYfRL+ TtrUCACPEt3J6ytRV2Ghf98LrqiuTr7dzOZ8ewYTkSVm4W71RPtEJ9aUtBuaYc+l5QkvyJdSSin 2h05pGiRPFROrYBEZulTdOH1ptW2wmWX6myUubT9dhCFm7ESv0FDAJv4W1ZR7cSWalS4j00umPL LSSM+noHFkfj7TmOW5HY1Uxr66IwZZrrYrgTQoWgGWrwT1hanEL44aamLxJWPAFz+MgK8Aypdhe C58PQS8TCkO1CC0e3jhpP0w2RAcjFNsaDwRpNIZOPITXgIn/G5vEBkjt8okOM+ZTjudf/A3wPxo B/f7TrxUzr0AMWGS/sP2HsB9H+i3g/6G7IvhonZEdWmSKAy1
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
 X-SA-Exim-Mail-From: ukl@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+From: Leonard Göhrs <l.goehrs@pengutronix.de>
 
---p7u3kwx5lvuf6mxa
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This results in an improvement of EMI performance by reducing the
+125MHz emission and its harmonics caused by the RGMII clock line.
 
-Hello Johan,
+Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+---
+ arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-On Wed, Jan 24, 2024 at 10:40:15AM +0100, Johan Jonker wrote:
-> The interrupt registers are located outside the PWM range and have nothin=
-g to do with the PWM driver.
-> Adding them to a PWM binding is just bogus.
-> They are a left over from the manufacturer tree that use them in a IR det=
-ection driver.
-> Heiko keeps them because someone outside mainline kernel might use them?
-> They should be removed and remodeled in a new sort of MFD node that handl=
-es all operating 3 modes.
+diff --git a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
+index 7e835a7cf64a..cfaf8adde319 100644
+--- a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
+@@ -471,6 +471,10 @@ switch: switch@0 {
+ 		interrupt-parent = <&gpioa>;
+ 		interrupts = <6 IRQ_TYPE_EDGE_RISING>;
+ 
++		/* Reduce RGMII EMI emissions by reducing drive strength */
++		microchip,hi-drive-strength-microamp = <2000>;
++		microchip,lo-drive-strength-microamp = <8000>;
++
+ 		ports {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-- 
+2.43.0
 
-After some more feedback on irc, I sent a patch removing the interrupts
-property. However I failed to Cc: you on it. This first patch catched
-your attention even without you being explicitly Cc:d, so I hoped the
-new patch also hit your inbox. Find it at
-
-	https://lore.kernel.org/linux-pwm/20240129113205.2453029-2-u.kleine-koenig=
-@pengutronix.de
-
-and tell me if you want a bounce.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---p7u3kwx5lvuf6mxa
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmW3jvgACgkQj4D7WH0S
-/k7cyQf+KF/024MjeRRDq7JoTp/gABQjsEkdql+YPSGnbFims+m61aWadom2WbqE
-7IcSORlT/w7ttWXcxIFT6YidFwhUVrmNSoDkMNigX6epHthh8gtb5gxf/v9s8aUr
-Zgw8xt9+n8xo5Bcod5719qMm3wE28ke7pbP2Lb30iy/K9hUia7uprlCdWH/RpNos
-/sA2QUvMonssEiE7blvZ1ipy7TOmG+duWbrOy++BqGQHhG6uSeI5yBlrS7a6L6sl
-QC39LKKfAVxLoA+517BjxlOGjI9DAXZn8HXi4K/ZQZ8seMOI4yITzYJ0SJKssraa
-e9L5x42WcyuSgxoU+W7JfE41L329bA==
-=8zBU
------END PGP SIGNATURE-----
-
---p7u3kwx5lvuf6mxa--
 
