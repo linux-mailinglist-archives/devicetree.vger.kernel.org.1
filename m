@@ -1,128 +1,165 @@
-Return-Path: <devicetree+bounces-36117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-36121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D88383FFCC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:15:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF4383FFF1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 09:20:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4243B20DB2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:15:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 793461F235B0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 08:20:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68EC452F6D;
-	Mon, 29 Jan 2024 08:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E26852F8B;
+	Mon, 29 Jan 2024 08:20:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DQGlKOx8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y6UCYQbw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD24453E02;
-	Mon, 29 Jan 2024 08:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB60F52F84
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 08:20:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706516139; cv=none; b=bsianj+YNzjnxJGYc0uONGjYCH+61pSemKsjcnk+RTk3srGoemA/xeZmRkT2Be82X24aqmdNjHDxbZejwaE/m0EOkHd3qoRnVFx76+AEJtBGivqZN2zhPjXGpSSZ8AjTxHVJfURPOgbJ2ZL/tGYwe/lK3PI6uQLY3FZ7RXFo8AQ=
+	t=1706516438; cv=none; b=S/n88tKt7NVttdEj7SDvd3GRUFndjizLyRJIlJz4r1ApBRzFVEwhMDpY/AlItF8SxhoUE5B6FHTU/xsppV4aeFbareHJffMpoS6FFXfItuat1gkmdQ3h9hpOYopyujbTGQXJQqZCHpkCd/Bvzc3H/KfViLJVI6k6fVH/FEi+i0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706516139; c=relaxed/simple;
-	bh=7muQ1StB6x5XaFGccp6wIo++p4fdPmC5mLD1gYXoZjY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JqJKbuJWlf4iBRTj1WQGIwp3ug++7kETn0WJRGRcfixemb8Lzzmd00WQHlCLFCrukWT+c2Bh4yT8B4ObyIuJjRJ1Q1T3XrteVugNdm5BL5XDkXhRatmtpS7pUoPHyMf+p6Bvd5rx0n05dcOPmMxbtPuyIXHh98RVD0aCP4V2qrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DQGlKOx8; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-55f0367b15fso607286a12.0;
-        Mon, 29 Jan 2024 00:15:37 -0800 (PST)
+	s=arc-20240116; t=1706516438; c=relaxed/simple;
+	bh=b2FSutS0/mM4GZeaelnydubeG5yJYeAgpMi/63ym7hs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sAcZEk7pSd+tGU6R7pFtjNTskN47Jkws8V71iDRBoIV9j6ZUlKEkuWAKoABSAj7iOfhP0Dd3Clx4iLQGv19wkK5OPtLKvyX9oweRFRMLFi6Db8GjrDyC5mKJ9P1WDT9ABtXjtRf711orkpKNehcjKJwUI5lRP8qf5FR2k6krKW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y6UCYQbw; arc=none smtp.client-ip=209.85.167.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3bba50cd318so2443564b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 00:20:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1706516136; x=1707120936; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=7muQ1StB6x5XaFGccp6wIo++p4fdPmC5mLD1gYXoZjY=;
-        b=DQGlKOx8VapBA4U8JuCvA0mY2ytBpvaJTwEA+Gx9+JzCcPQxsVDTZD/OpOEzI3nk9H
-         Vk2ER5fz3Shmy6izSPe2DUhlJ4SJq0Oe9r1nQ+8tFIhTv3Rwd4cFgTKUXHWqvySdfthh
-         /xxcb1TCt1rVLtQ14tDU0YTwoRLaddcZRxJ9LGzRrobV/5qL/F15/v+72i8oGmsdyJi1
-         26eNtGGuhGEoO1z/lxnI9natnVPySvnHrmJC5CPbXYZUFm6XgrTFqlIJLHIARTvp6F/H
-         t99QdUAT3//dkLb7ku/LoGuOMRSbiuVhqzdynEKxbjnkWg4JxmtUe4Pwe0ZJdpnknS4t
-         R65Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1706516136; x=1707120936;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+        d=linaro.org; s=google; t=1706516436; x=1707121236; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7muQ1StB6x5XaFGccp6wIo++p4fdPmC5mLD1gYXoZjY=;
-        b=DMygir0OX98i1vz2DQ8YFlOHm4PNoSeAUaytsr+9Qc4Um9QYP0ci5sW9mSOIbtc51o
-         pz0cEDPFv7Kvwspwde3gjhnwBPvREk6ifT/cAyYxHiqrOPHbAPt4uOlNqJ1TZSelRi1p
-         zbadxVZajm+EduX28piCtGCN8xPqv2azwgFPM8n9dteNWmLnuY0jxhVpdODFyw8FgV/k
-         j0G7I1JENmG49JoaOqMD8Bsr6SGhUn90ti0kaHYW9Ly+rLBOSpr8sb4pvlEBMG+X34h5
-         syn//zKsNcsL029K4NnBHZqt8pbKSs55FH+U82fsW55DSzVqu9hu54nxFezahB4Fzk8O
-         LsSw==
-X-Gm-Message-State: AOJu0YxmN2P+2oec4HhP0T9QEppxAUljksg+4Mg3h4KrQvWygzv3fAuK
-	Un/tZ+OwGAFJCMWJYxo+dQJOfWL1m5wvbMHDbpqM+JrjVV+Phlj/
-X-Google-Smtp-Source: AGHT+IFduPtM3ZeVAcbSKSi+TzWbfqH38rJHbquhwfK/62ZmJhbdnACp/YU15Iw2yLdLtmK7M5bktQ==
-X-Received: by 2002:a05:6402:3124:b0:55e:e9e3:715d with SMTP id dd4-20020a056402312400b0055ee9e3715dmr1667169edb.12.1706516135847;
-        Mon, 29 Jan 2024 00:15:35 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
-        by smtp.gmail.com with ESMTPSA id j16-20020aa7de90000000b0055ef0574a59sm1208022edv.40.2024.01.29.00.15.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Jan 2024 00:15:35 -0800 (PST)
-Message-ID: <dbf75dfff3ac2d03d198de918a6c525f7b5266c6.camel@gmail.com>
-Subject: Re: [PATCH v7 1/9] of: property: fix typo in io-channels
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Saravana Kannan
- <saravanak@google.com>
-Cc: nuno.sa@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org,  Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Frank Rowand
- <frowand.list@gmail.com>, Olivier Moysan <olivier.moysan@foss.st.com>
-Date: Mon, 29 Jan 2024 09:18:52 +0100
-In-Reply-To: <20240127150726.3c9150c7@jic23-huawei>
-References: <20240123-iio-backend-v7-0-1bff236b8693@analog.com>
-	 <20240123-iio-backend-v7-1-1bff236b8693@analog.com>
-	 <CAGETcx_0wij8j5u7YRNPDgpPDkJoFq4AL7oRy0iFUELYTbc9Bg@mail.gmail.com>
-	 <20240127150726.3c9150c7@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.3 
+        bh=hO0q/5NoMvSCuD2CnLyInd6LWNLFY4OKKKfJvXXhpCc=;
+        b=Y6UCYQbwKct2ds/N9nIeASeHQy39HgtpKJdUsbRcMlF+7EVv3Z5A8CIfPL3v5KiOF7
+         WibilJeAWw59c6mPbNyd0O+cw5Tgy4iQK3FO4SYPQpM/Ihni3Nrji1bkoNPuue1FhwgT
+         ck0a1VsRxhaIcEDLsMkX+hz+ydUnRfNOnY2PWccdHd65Rt8M3aLwK5KYO6mu18Gk6MvA
+         B0nfd+6pxe8lTxL1jjSqlyGd180Yk+dYQFIS8AmulsZAShbSsGLYaI08znMIlIKvd3TL
+         Vm0paxnf7zq5j4BUVRzfG1dKoMqboPHOlp8xYXMKlc+S7wDcrBeyuaiiRvYm4qvTTb9x
+         vpAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706516436; x=1707121236;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hO0q/5NoMvSCuD2CnLyInd6LWNLFY4OKKKfJvXXhpCc=;
+        b=aK33cbkG7pDGaZnfsytnVU+RP1hqs1wBJe5/PdZLUi3f1aaffP7x7R4DkAeg3JWiNN
+         5oRAoK6kjswvVRghnKDAqz882ZLYOPDcdP+sqz1sdixmuEvns/wstiZ09UTUR1wUJ2Xl
+         HwqZeXi+eg4YIOpWpxRo7oI3QLGWpP7O3Cj2nC33x7+q8RzW0iAp9VIP8tH5vXneA/ET
+         9E2evEmvJwU+deqcRZDEXhyKYgET405X7sae2TwJHiV/mM/ZDHYvhGGFIAgM4tme4RBh
+         CT1h/wqK413EgQpEx1JfigYiih5z4VSe8EsU5qL29n4M4ak849RpYR01DLSxFakNMUnc
+         pg7A==
+X-Gm-Message-State: AOJu0YwVXDX5A3MTY5ZRcWee6NiifxQkIVPbXULuPuwyZ6qGm+PiVxxU
+	NUb0S9VG7XTAZrINhvJy1luL2CRQv71JddyROmnlraA4cKfmLvcOlhVN2sccno4=
+X-Google-Smtp-Source: AGHT+IErn8qStf4cOMLEGCIyDh7QuHggxO/eTqjkZ5PewQ3Ya/WfrQt89XMu0hxcjmyGvFGTM7WBgg==
+X-Received: by 2002:a05:6808:150b:b0:3be:424a:f3e1 with SMTP id u11-20020a056808150b00b003be424af3e1mr4245399oiw.18.1706516435712;
+        Mon, 29 Jan 2024 00:20:35 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.62])
+        by smtp.gmail.com with ESMTPSA id e7-20020aa79807000000b006da96503d9fsm5284053pfl.109.2024.01.29.00.20.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Jan 2024 00:20:35 -0800 (PST)
+Message-ID: <780e32ce-809a-4ce5-87ec-10f8d6248d31@linaro.org>
+Date: Mon, 29 Jan 2024 09:20:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] dt-bindings: arm: qcom: Add Samsung Galaxy S5
+ China (kltechn)
+Content-Language: en-US
+To: Rong Zhang <i@rong.moe>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Icenowy Zheng <uwu@icenowy.me>
+References: <20240127172155.63624-1-i@rong.moe>
+ <20240127172155.63624-4-i@rong.moe>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240127172155.63624-4-i@rong.moe>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, 2024-01-27 at 15:07 +0000, Jonathan Cameron wrote:
-> On Wed, 24 Jan 2024 19:14:35 -0800
-> Saravana Kannan <saravanak@google.com> wrote:
->=20
-> > On Tue, Jan 23, 2024 at 7:14=E2=80=AFAM Nuno Sa via B4 Relay
-> > <devnull+nuno.sa.analog.com@kernel.org> wrote:
-> > >=20
-> > > From: Nuno Sa <nuno.sa@analog.com>
-> > >=20
-> > > The property is io-channels and not io-channel. This was effectively
-> > > preventing the devlink creation.=C2=A0=20
->=20
-> I'm a bit lost on the devlink side of things. Is this something with
-> effects on existing drivers before this patch set, or is it only causing
-> real problems with the changes in here?
->=20
-> i.e. Should we mark it for stable and rush it in as a fix, or can it wait
-> for the rest of the set?
->=20
+On 27/01/2024 18:21, Rong Zhang wrote:
+> Document Samsung Galaxy S5 China (kltechn) as a klte variant based on
+> msm8974pro. Also including "samsung,klte" in the compatible chain as
+> kltechn works fine with the klte DTB except for LEDs and WiFi missing.
+> 
+> Signed-off-by: Rong Zhang <i@rong.moe>
+> ---
 
-I guess you already figured this out? Anyways, this is a real fix that was
-affecting any consumer using io-channels (so nothing to do with the current
-series). Since the there was a typo, no fw_links were being created.
+This is a friendly reminder during the review process.
 
-I stated in the cover why I included this. Just to make the addition of io-
-backends later on easier. But if Rob prefers (or you), I can just send this
-standalone patch to the devicetree list.
+It looks like you received a tag and forgot to add it.
 
-- Nuno S=C3=A1
->=20
->=20
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+
+Best regards,
+Krzysztof
+
 
