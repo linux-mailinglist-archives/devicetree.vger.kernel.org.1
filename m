@@ -1,307 +1,158 @@
-Return-Path: <devicetree+bounces-35997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-35998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9481783FB22
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 01:09:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38F9983FB31
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 01:26:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42CAC2839EC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 00:09:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02EDAB21F00
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jan 2024 00:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9BDA38F;
-	Mon, 29 Jan 2024 00:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 791B853A0;
+	Mon, 29 Jan 2024 00:26:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="F53HV9dh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uZJ1ukuI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9E12381;
-	Mon, 29 Jan 2024 00:09:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E56C74C84
+	for <devicetree@vger.kernel.org>; Mon, 29 Jan 2024 00:26:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1706486964; cv=none; b=h7iBxcNHVhT3/E336XVzkdalcj8gXLf3dlmMQGZFw+/tfSq3F3zSIbOuwV/FWUzbUky9OVDGh5XkOFix94UMzEAlVGgxE5YAOooOACI6eT79oJMstwvkH+gIk/pxCUeJZ1/6G5dcG7Gtek4/RzanO+jYto3JtCohztcdWGqyAW0=
+	t=1706487966; cv=none; b=Cfo2iDsb/VVckCeZpSnoxyJVDCp41Shzzj9PyTx83H79BHNqV3H/pMQ63eLEGW08cFdEp/HJEzFbq51ciyfa49GJTEI6WbI2+xCrkOQBiBw1fvj9uH6xuzbiOzBx524EwTcW0FAtioZyCvtvik58E4V2iePiFvsDxSlolNqBYGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1706486964; c=relaxed/simple;
-	bh=E7dTq7Jojq+twkdk/EmDbkIdUnZFqQXdC2/4OgbjszU=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=B+9OXxAHe3xqQN+tFdu8/RhOp6a9ws61jsilL6vQsajn3mxYBYiAR+ENId0YT0AMqBZlVe9Qa4UaEdxSOPONy7SskI56EXJ9PzEoUcVxGPLw5aq8n7A0v96pJy2eG2VscFLIOp1WUvpl4bf24GKGdu8dm3dVmLqlQFtATX9Wzyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=F53HV9dh; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1706487966; c=relaxed/simple;
+	bh=fAzsOPWQXg496cQXdSRwttLRSK17eobKfvDNm7cJwnI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DZ1FCCC56rwSkfRXysOyvj7KJgdV56lIB7r4bz1eATazK9XDJbde6iEH+Z17LxeSbRJcEBBk8RfwYdHR+8j33m7b3zlbQzlATRohckDW+6r44SQDsXRjXCR3tn5Cvn0srkpn7GtbCCVxQYt0mdi5oOWzcOaYPgQIDrLpCCW8vYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uZJ1ukuI; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-55c2cf644f3so1779337a12.1
+        for <devicetree@vger.kernel.org>; Sun, 28 Jan 2024 16:26:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1706487961; x=1707092761; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QSP/j0QUmoRkVRe8b6nQxtIgMt443r+QjiLpoKVUJr8=;
+        b=uZJ1ukuIKsQ/cc6NPsllbQ9F/w4l2IM/LxJC8QUlCZFRYf75UHbT5rHzCpsSFE5Ybe
+         kbJwSQ0hWMytVioBAedwd4A6FMlyIJRObI95J2EbZ4/dNcDwxMsMjyOEhOGcRrEdcnI9
+         ZBJWHt7DDr1NaTEajI5KOE9iLE+NVWPTo95XFhI6zVlkdhTTnlb5usK3c/mVdnSnmDNe
+         NvsrFIvJjij+3qDQWw9pRG+8+mqQ3ez7+aIGYQrtQZJFWI8nZfwdVcOiYWzby7L6FB3H
+         WL8Zg50figIPfffkA6VSIUPh4wh3KKTwzPob+BG2iXkMAhzkc1MoK0swklE91IrrnNKQ
+         5ngg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1706487961; x=1707092761;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QSP/j0QUmoRkVRe8b6nQxtIgMt443r+QjiLpoKVUJr8=;
+        b=u0DEITaXKz7rY0YBAoHywSZtu0Vx9DQE6MzT2srWOMZFDzNzxSb5UecQbF7UnHRpnz
+         qlDcnVPNYosP3zfr+KyJwHRXkHjn3r7k79eFaCtixiWayFdiTfPSAsCefuUpuX6life2
+         1fV4Xe5WsjCsFcMhdbp6VFImvx8deV5J4dldG6JjNb6LU96CDj59W/j9ow5ZndAlHA5p
+         ng1WaSlvNtp+A9+2ZQx78W4Re+nE5Od2kF5s8Xtz4N5O6jfQ/sA99WjmPEaGhdfch4m1
+         zfB72Ng7y/SA8qmwi47y1L5v1fTrWfSRBmQus+j5hNqMNX7zC5Ztg6jVJEwNstB5UbIK
+         1o3w==
+X-Gm-Message-State: AOJu0YygCd6F48Aa2aAPKKk3f8qzjxmRLq94A8dhDXWEtZzJc3Kv07hw
+	Za/DHzQ3+dH9C2+2MWT/iD2g5AKmuJwdl+S+KWW7b56D+KAXtAfhljXF2Lm/4No=
+X-Google-Smtp-Source: AGHT+IERBspR/BOG1bTBqBY4Y6bfWcD0fOJHyOWkJ1LLmNscXmuRLmLuU5s0xeNWt9RRyzLTJhBxbw==
+X-Received: by 2002:a05:6402:4503:b0:55e:dcdf:50b0 with SMTP id ez3-20020a056402450300b0055edcdf50b0mr1828652edb.15.1706487961084;
+        Sun, 28 Jan 2024 16:26:01 -0800 (PST)
+Received: from [127.0.1.1] ([79.115.23.25])
+        by smtp.gmail.com with ESMTPSA id h29-20020a0564020e9d00b0055cfb3f948fsm3208193eda.76.2024.01.28.16.25.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Jan 2024 16:26:00 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v3 0/2] phy: qcom: edp: Allow eDP/DP configuring via
+ set_mode op
+Date: Mon, 29 Jan 2024 02:25:44 +0200
+Message-Id: <20240129-x1e80100-phy-edp-compatible-refactor-v3-0-e71f3359c535@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1706486956;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Tk03a+FET1k1rmW3l/AR6fyVcT+TC3Z8jhBTopbl0TM=;
-	b=F53HV9dhyPpLRJoADL1M+ou/YvdWoiRYoBqArrJM+6rEfNgOjkEGVS+tt2GeQlK7O6V9cY
-	ZiNahPTAa8L5uYw8YT/G4QqaXcU7knUNUDzLpE57A/LG+UINo7G+3poDoZ+TACLaecSm/w
-	o5DGdX+f1p+ULMas1lNL42oLCRoHvUqIBLu4oiyBmNCrFseUZwy6j/dqaSibRBTokDRlVm
-	e18j222OcQarBD7MuSLr2gb905FKlvNnIyo+2Ny9nH/g/01sZ0J9Fy3n22ke9djEMkZU7Y
-	Os4MARNtmPZ1GfMJ4ym2d4lF5vT3e3mhiKlEfwhEToJknA8q1ibhkuYs76sJ1w==
-Date: Mon, 29 Jan 2024 01:09:14 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Add OPP data for CPU cores on
- RK3588
-In-Reply-To: <CABjd4Ywfy8zT4sJ5v77CZQ9BNC=nkB7ZQq3QQyONST7gVHq=AA@mail.gmail.com>
-References: <20240125-rk-dts-additions-v1-0-5879275db36f@gmail.com>
- <20240125-rk-dts-additions-v1-4-5879275db36f@gmail.com>
- <731aac66-f698-4a1e-b9ee-46a7f24ecae5@linaro.org>
- <ccc004cfae513195351ce0a79e12f6af@manjaro.org>
- <CABjd4YxSTLZjrnSCn0fh81US682-uhZ16-cgydzz97shhCpq4w@mail.gmail.com>
- <1f0608831cfb95c80edf16cd751eee76@manjaro.org>
- <CABjd4Yx06igrZQvHA4q-mcr2oSEf7eQyUS+KEATUGbw6qLc2sg@mail.gmail.com>
- <528a37d84cdd871e717b4ebf648bb8a7@manjaro.org>
- <9b72b688-be63-464e-a5dc-cf6051ccee12@linaro.org>
- <CABjd4YzdD9ciMn=p=opEK+fdxCkeCodsryph7pkqgsEUNcNrUQ@mail.gmail.com>
- <5ef9bab979260884866efe30d19ba8f1@manjaro.org>
- <CABjd4YyyuB9ou-BaOrvt_rrv1-jPE=wtwWDHDqNqyT4a0E51wg@mail.gmail.com>
- <9fda41efe365241ce06bd58974c8e055@manjaro.org>
- <CABjd4Ywfy8zT4sJ5v77CZQ9BNC=nkB7ZQq3QQyONST7gVHq=AA@mail.gmail.com>
-Message-ID: <a5fb28fa0f973ed1393dc3edc6bc729c@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIjwtmUC/5WNQQ6CMBBFr2K6dkw7TS248h7GRWkHaIK0KYRAC
+ He3sNKdLt/Mz3srGyh5GtjttLJEkx986DPI84nZ1vQNgXeZGXKUAkUJs6CCC84htguQi2DDK5r
+ RVx1BotrYMSQotJRkjbbWGZZVMX/8fGQez8ytH/JsOaqT2K9/BiYBHOqStNYKSyXdvfO9SeESU
+ sP2woQfVsQfrZitplK6uFqUqqy/rNu2vQEn1po0LwEAAA==
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Johan Hovold <johan@kernel.org>
+Cc: linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1980; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=fAzsOPWQXg496cQXdSRwttLRSK17eobKfvDNm7cJwnI=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBltvCQBfS5UyZzHhV0GQwwQcciT4hN0x/JoP1/G
+ prHeMx7m1OJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZbbwkAAKCRAbX0TJAJUV
+ VjrFEADJnJpjIiS2JY5iAhr+bwymSv6XOiwMhJ4R5gRXky2QknEdN7w8QdUAGoS07hIU4ZeZKU5
+ 4Kk7X6k8N13FcTvv/Ht1o+l3wmqIalhWQh4dZ3cM3eF/E5bNlEDeU8036WLOhvjJ0JGKG9PAbkN
+ 3bs/fH8DxEQ1P/phajqIl1H1lzWqu2irPh+c5CkDeUuaLj3FdCLTOHPIF8YS8Vp4kUpNosfk0vM
+ gBAuV8+n2fylK6tg8MKzHUDb3ReTmrvLfemSWq/wbKwz6nNu1RyPA3pb4lu3NOG41ZQAaw2b23a
+ MjVgkuadPGVWqSPTALwhB8FlxfX+SQ9hmpD0yFlWXOqknOZ9hXt7xBIos7MCWNwNdf2c6n3uD/M
+ rjMUWV4yvrKK1ZrJW/34XfANc8E7Nt7yKDj5RrwdRakP18BOyoggYkQht47G/50ICnNAK4kNtQW
+ NSL8UfHuws+qy2HRPME1/c+6g/3mggQfIWEgwLAKqO24eoLWnoYvYUVI+fpD9r0UJLJnndziSAn
+ 4eMdvcoilH3189B3ptkwTgmfjyt+hFMpoGRbqgJNmfAW2RsR9sBGVD3gui2xPuG7hUuDeYYw+4+
+ 8FZdDSfWWdBq4CgLknUIzjVjt02xpgcdW4ythAC5a9B9WleDfsG/ZC5S2LILtuvPI0pEhnRgDnR
+ uwQ62LSjJwkC52w==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On 2024-01-28 20:14, Alexey Charkov wrote:
-> On Sun, Jan 28, 2024 at 7:35 AM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> On 2024-01-27 20:41, Alexey Charkov wrote:
->> > On Sat, Jan 27, 2024 at 12:33 AM Dragan Simic <dsimic@manjaro.org> wrote:
->> >> On 2024-01-26 14:44, Alexey Charkov wrote:
->> >> > On Fri, Jan 26, 2024 at 4:56 PM Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
->> >> >> On 26/01/2024 08:49, Dragan Simic wrote:
->> >> >> > On 2024-01-26 08:30, Alexey Charkov wrote:
->> >> >> >> On Fri, Jan 26, 2024 at 11:05 AM Dragan Simic <dsimic@manjaro.org> wrote:
->> >> >> >>> On 2024-01-26 07:44, Alexey Charkov wrote:
->> >> >> >>> > On Fri, Jan 26, 2024 at 10:32 AM Dragan Simic <dsimic@manjaro.org> wrote:
->> >> >> >>> >> On 2024-01-25 10:30, Daniel Lezcano wrote:
->> >> >> >> Throttling would also lower the voltage at some point, which cools it
->> >> >> >> down much faster!
->> >> >> >
->> >> >> > Of course, but the key is not to cool (and slow down) the CPU cores too
->> >> >> > much, but just enough to stay within the available thermal envelope,
->> >> >> > which is where the same-voltage, lower-frequency OPPs should shine.
->> >> >>
->> >> >> That implies the resulting power is sustainable which I doubt it is
->> >> >> the
->> >> >> case.
->> >> >>
->> >> >> The voltage scaling makes the cooling effect efficient not the
->> >> >> frequency.
->> >> >>
->> >> >> For example:
->> >> >>         opp5 = opp(2GHz, 1V) => 2 BogoWatt
->> >> >>         opp4 = opp(1.9GHz, 1V) => 1.9 BogoWatt
->> >> >>         opp3 = opp(1.8GHz, 0.9V) => 1.458 BogoWatt
->> >> >>         [ other states but we focus on these 3 ]
->> >> >>
->> >> >> opp5->opp4 => -5% compute capacity, -5% power, ratio=1
->> >> >> opp4->opp3 => -5% compute capacity, -23.1% power, ratio=21,6
->> >> >>
->> >> >> opp5->opp3 => -10% compute capacity, -27.1% power, ratio=36.9
->> >> >>
->> >> >> In burst operation (no thermal throttling), opp4 is pointless we agree
->> >> >> on that.
->> >> >>
->> >> >> IMO the following will happen: in burst operation with thermal
->> >> >> throttling we hit the trip point and then the step wise governor
->> >> >> reduces
->> >> >> opp5 -> opp4. We have slight power reduction but the temperature does
->> >> >> not decrease, so at the next iteration, it is throttle at opp3. And at
->> >> >> the end we have opp4 <-> opp3 back and forth instead of opp5 <-> opp3.
->> >> >>
->> >> >> It is probable we end up with an equivalent frequency average (or
->> >> >> compute capacity avg).
->> >> >>
->> >> >> opp4 <-> opp3 (longer duration in states, less transitions)
->> >> >> opp5 <-> opp3 (shorter duration in states, more transitions)
->> >> >>
->> >> >> Some platforms had their higher OPPs with the same voltage and they
->> >> >> failed to cool down the CPU in the long run.
->> >> >>
->> >> >> Anyway, there is only one way to check it out :)
->> >> >>
->> >> >> Alexey, is it possible to compare the compute duration for 'dhrystone'
->> >> >> with these voltage OPP and without ? (with a period of cool down
->> >> >> between
->> >> >> the test in order to start at the same thermal condition) ?
->> >> >
->> >> > Sure, let me try that - would be interesting to see the results. In my
->> >> > previous tinkering there were cases when the system stayed at 2.35GHz
->> >> > for all big cores for non-trivial time (using the step-wise thermal
->> >> > governor), and that's an example of "same voltage, lower frequency".
->> >> > Other times though it throttled one cluster down to 1.8GHz and kept
->> >> > the other at 2.4GHz, and was also stationary at those parameters for
->> >> > extended time. This probably indicates that both of those states use
->> >> > sustainable power in my cooling setup.
->> >>
->> >> IMHO, there are simply too many factors at play, including different
->> >> possible cooling setups, so providing additional CPU throttling
->> >> granularity can only be helpful.  Of course, testing and recording
->> >> data is the way to move forward, but I think we should use a few
->> >> different tests.
->> >
->> > Soooo, benchmarking these turned out a bit trickier than I had hoped
->> > for. Apparently, dhrystone uses an unsigned int rather than an
->> > unsigned long for the loops count (or something of that sort), which
->> > means that I can't get it to run enough loops to heat up my chip from
->> > a stable idle state to the throttling state (due to counter
->> > wraparound). So I ended up with a couple of crutches, namely:
->> 
->> Huh, it seems that recent SBCs may have become a bit too fast for it,
->> which is great. :)  Thank you for the benchmarking.
->> 
->> >  - run dhrystone continuously on 6 out of 8 cores to make the chip
->> > warm enough (`taskset -c 0-5 ./dhrystone -t 6 -r 6000` - note that on
->> > my machine cores 6-7 are usually the first ones to get throttled, due
->> > to whatever thermal peculiarities)
->> >  - wait for the temperature to stabilize (which happens at 79.5C)
->> >  - then run timed dhrystone on the remaining 2 out of 6 cores (big
->> > ones) to see how throttling with different OPP tables affects overall
->> > performance.
->> 
->> Just checking, running the test on just two CPU cores was enough to
->> keep the package temperature at around 80 oC?
-> 
-> No, not even remotely.
-> 
-> I kept the continuous 6 dhrystone threads running on all the other
-> cores (`taskset -c 0-5 ./dhrystone -t 6 -r 6000`) to let it reach the
-> throttling temperature. This adds further imprecision to the benchmark
-> of course, because the governor might choose to throttle some of the
-> cores that do not participate in the timed benchmarking run, and thus
-> lend some thermal headroom to the latter. That didn't seem to happen
-> from my naked-eye observation via `watch "cpupower -c 0,4,6
-> frequency-info | grep current"`, although I admit that I didn't record
-> more granular logs of frequency states, and some quick transitions to
-> lower frequencies could also have happened on the other cores. Don't
-> think it's a major influence though, because a quick transition back
-> and forth shouldn't have contributed much to the thermal output.
+Until now, all platform that supported both eDP and DP had different
+compatibles for each mode. Using different compatibles for basically
+the same IP block but for a different configuration is bad way all
+around. There is a new compute platform from Qualcomm that supports
+both eDP and DP with the same PHY. So instead of following the old
+method, we should allow the submode to be configured via set_mode from
+the controller driver.
 
-Thank you for the clarification!
+The controller part will follow after we conclude the PHY part first.
 
-You're right, that might have introduced some inaccuracy into the test
-results, and it also made the tests kind of hardly repeatable.  On the
-other hand, that way the synthetic CPU test feels a bit more like some
-real-world CPU load, in which multiple resource-hungry tasks usually
-compete for the CPU cores and the thermal budget.
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v3:
+- Dropped needs_swing_pre_emph_cfg as we store the table instead
+- Picking the table based on is_edp instead of overriding.
+- Link to v2: https://lore.kernel.org/r/20231222-x1e80100-phy-edp-compatible-refactor-v2-0-ab5786c2359f@linaro.org
 
-Though, as we know repeatability is the key for a scientific approach,
-but it also usually contradicts with simulating real-world loads that
-are of rather random nature.  Well, testing is hard. :)
+Changes in v2:
+- Dropped the dedicated xlate function and added set_mode op instead
+- Dropped the eDP PHY type and mode addition
+- Added the DP PHY submodes (eDP and DP)
+- Removed the device match data storing from the container struct
+- Link to v1: https://lore.kernel.org/r/20231219-x1e80100-phy-edp-compatible-refactor-v1-0-f9e77752953d@linaro.org
 
-I'll think a bit more about all this, and I'll come back with an update.
-Maybe I'll also be able to join the testing.
+Initial attepmpt was here:
+https://lore.kernel.org/all/20231122-phy-qualcomm-edp-x1e80100-v3-3-576fc4e9559d@linaro.org/
+Compared to that version, this one uses the phy-cells method and drops
+the X1E80100 support. The X1E80100 support will be a separate patchset.
 
->> > In the end, here's what I got with the 'original' OPP table (including
->> > "same voltage - different frequencies" states):
->> > alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
->> > duration: 0 seconds
->> > number of threads: 2
->> > number of loops: 4000000000000000
->> > delay between starting threads: 0 seconds
->> >
->> > Dhrystone(1.1) time for 1233977344 passes = 29.7
->> > This machine benchmarks at 41481539 dhrystones/second
->> >                            23609 DMIPS
->> > Dhrystone(1.1) time for 1233977344 passes = 29.8
->> > This machine benchmarks at 41476618 dhrystones/second
->> >                            23606 DMIPS
->> >
->> > Total dhrystone run time: 30.864492 seconds.
->> >
->> > And here's what I got with the 'reduced' OPP table (keeping only the
->> > highest frequency state for each voltage):
->> > alchark@rock-5b ~ $ taskset -c 6-7 ./dhrystone -t 2 -l 4000000000
->> > duration: 0 seconds
->> > number of threads: 2
->> > number of loops: 4000000000000000
->> > delay between starting threads: 0 seconds
->> >
->> > Dhrystone(1.1) time for 1233977344 passes = 30.9
->> > This machine benchmarks at 39968549 dhrystones/second
->> >                           22748 DMIPS
->> > Dhrystone(1.1) time for 1233977344 passes = 31.0
->> > This machine benchmarks at 39817431 dhrystones/second
->> >                           22662 DMIPS
->> >
->> > Total dhrystone run time: 31.995136 seconds.
->> >
->> > Bottomline: removing the lower-frequency OPPs led to a 3.8% drop in
->> > performance in this setup. This is probably far from a reliable
->> > estimate, but I guess it indeed indicates that having lower-frequency
->> > states might be beneficial in some load scenarios.
->> 
->> Measuring a difference of about 4% may be attributed to some unknown
->> inaccuracy or test deviation, but again, a performance improvement of
->> about 4% that comes free of charge is nothing to be sneezed at, IMHO.
-> 
-> True :)
-> 
->> > Note though that several seconds after hitting the throttling
->> > threshold cores 6-7 were oscillating between 1.608GHz and 1.8GHz in
->> > both runs, which implies that the whole difference in performance was
->> > due to different speed of initial throttling (i.e. it might be a
->> > peculiarity of the step-wise thermal governor operation when it has to
->> > go through more cooling states to reach the "steady-state" one). Given
->> > that both 1.608GHz and 1.8GHz have no lower-frequency same-voltage
->> > siblings in either of the OPP tables, it implies that under prolonged
->> > constant load there should be no performance difference at all.
->> 
->> ... all that with one possible cooling setup, and with one synthetic
->> test.  We simply can't know in advance how would a different cooling
->> setup on the same or on a different board behave, if you agree.
-> 
-> Of course. My only concern is whether we might be somewhat deceiving
-> ourselves by that benchmarked performance boost: after all, it's also
-> entirely possible that by going through multiple intermediate
-> frequency states, the step-wise governor simply didn't cool the core
-> just enough over some fraction of the benchmarking run, which we would
-> have observed in a detailed temperature log as a higher peak
-> temperature and longer residence above the throttling threshold
-> temperature (and that would be the case if intermediate frequency
-> states were "unsustainable" as Daniel pointed out, which they probably
-> were given that the throttling didn't stop at any of them).
+---
+Abel Vesa (2):
+      phy: Add Embedded DisplayPort and DisplayPort submodes
+      phy: qcom: edp: Add set_mode op for configuring eDP/DP submode
 
-Well, the observed CPU frequency scaling didn't stop at any particular
-OPP for an extended period of time, if I'm not mistaken?  That's even
-more not to be expected under any kind of unpredictable real-world CPU
-load, if you agree.
+ drivers/phy/qualcomm/phy-qcom-edp.c | 71 ++++++++++++++++++++++++++-----------
+ include/linux/phy/phy-dp.h          |  3 ++
+ 2 files changed, 54 insertions(+), 20 deletions(-)
+---
+base-commit: 72dd5696a6a27d019a1592acbca13263a2ebbac6
+change-id: 20231219-x1e80100-phy-edp-compatible-refactor-8733eca7ccda
 
-> Attributing a performance increase in this case to a benefit from
-> additional intermediate OPPs is not fully fair, because then we can
-> also simply move the throttling threshold higher. And it would be
-> super tricky to separate the effects from greater system throughput at
-> intermediate frequency states vs. greater effective thermal budget we
-> allow the governor to use before it even considers throttling.
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
-I'd agree that drawing such conclusions (or the conclusions from the
-opposite end of the spectrum) wouldn't be exactly fair at this point.
-Though, IMHO it's important that the test results observed so far
-weren't worse with the additional same-voltage, lower-frequency OPPs.
-
-In other words, all I ever said, basically, is that having more granular
-OPPs should be helpful at best, and not harmful at worst.  How helpful
-is very hard to predict, because it depends on all kinds of things.
 
